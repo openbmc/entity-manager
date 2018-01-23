@@ -1,0 +1,857 @@
+{
+    "exposes": [
+        {
+            "name": "1U System Fan connector 1",
+            "pwm": 0,
+            "status": "disabled",
+            "tachs": [
+                0,
+                1
+            ],
+            "type": "IntelFanConnector"
+        },
+        {
+            "name": "1U System Fan connector 2",
+            "pwm": 1,
+            "status": "disabled",
+            "tachs": [
+                2,
+                3
+            ],
+            "type": "IntelFanConnector"
+        },
+        {
+            "name": "1U System Fan connector 3",
+            "pwm": 2,
+            "status": "disabled",
+            "tachs": [
+                4,
+                5
+            ],
+            "type": "IntelFanConnector"
+        },
+        {
+            "name": "1U System Fan connector 4",
+            "pwm": 3,
+            "status": "disabled",
+            "tachs": [
+                6,
+                7
+            ],
+            "type": "IntelFanConnector"
+        },
+        {
+            "name": "1U System Fan connector 5",
+            "pwm": 4,
+            "status": "disabled",
+            "tachs": [
+                8,
+                9
+            ],
+            "type": "IntelFanConnector"
+        },
+        {
+            "name": "1U System Fan connector 6",
+            "pwm": 5,
+            "status": "disabled",
+            "tachs": [
+                10,
+                11
+            ],
+            "type": "IntelFanConnector"
+        },
+        {
+            "name": "2U System Fan connector 1",
+            "pwm": 0,
+            "status": "disabled",
+            "tachs": [
+                0
+            ],
+            "type": "IntelFanConnector"
+        },
+        {
+            "name": "2U System Fan connector 2",
+            "pwm": 1,
+            "status": "disabled",
+            "tachs": [
+                2
+            ],
+            "type": "IntelFanConnector"
+        },
+        {
+            "name": "2U System Fan connector 3",
+            "pwm": 2,
+            "status": "disabled",
+            "tachs": [
+                4
+            ],
+            "type": "IntelFanConnector"
+        },
+        {
+            "name": "2U System Fan connector 4",
+            "pwm": 3,
+            "status": "disabled",
+            "tachs": [
+                6
+            ],
+            "type": "IntelFanConnector"
+        },
+        {
+            "name": "2U System Fan connector 5",
+            "pwm": 4,
+            "status": "disabled",
+            "tachs": [
+                8
+            ],
+            "type": "IntelFanConnector"
+        },
+        {
+            "name": "2U System Fan connector 6",
+            "pwm": 5,
+            "status": "disabled",
+            "tachs": [
+                10
+            ],
+            "type": "IntelFanConnector"
+        },
+        {
+            "address": "0x4A",
+            "bus": 6,
+            "name": "BMC Temp",
+            "thresholds": [
+                [
+                    {
+                        "direction": "greater than",
+                        "name": "upper critical",
+                        "severity": 1,
+                        "value": 115
+                    },
+                    {
+                        "direction": "greater than",
+                        "name": "upper non critical",
+                        "severity": 0,
+                        "value": 110
+                    },
+                    {
+                        "direction": "less than",
+                        "name": "lower non critical",
+                        "severity": 0,
+                        "value": 5
+                    },
+                    {
+                        "direction": "less than",
+                        "name": "lower critical",
+                        "severity": 1,
+                        "value": 0
+                    }
+                ]
+            ],
+            "type": "TMP75"
+        },
+        {
+            "index": 0,
+            "name": "Baseboard 12 Volt",
+            "scale_factor": 0.1124,
+            "thresholds": [
+                [
+                    {
+                        "direction": "greater than",
+                        "name": "upper critical",
+                        "severity": 1,
+                        "value": 13.494
+                    },
+                    {
+                        "direction": "greater than",
+                        "name": "upper non critical",
+                        "severity": 0,
+                        "value": 13.101
+                    },
+                    {
+                        "direction": "less than",
+                        "name": "lower non critical",
+                        "severity": 0,
+                        "value": 10.945
+                    },
+                    {
+                        "direction": "less than",
+                        "name": "lower critical",
+                        "severity": 1,
+                        "value": 10.616
+                    }
+                ]
+            ],
+            "type": "ADC"
+        },
+        {
+            "name": "CPU 1 Fan Connector",
+            "pwm": 7,
+            "status": "disabled",
+            "tachs": [
+                13
+            ],
+            "type": "IntelFanConnector"
+        },
+        {
+            "name": "CPU 2 Fan Connector",
+            "pwm": 8,
+            "status": "disabled",
+            "tachs": [
+                14
+            ],
+            "type": "IntelFanConnector"
+        },
+        {
+            "address": "0x49",
+            "bus": 6,
+            "name": "Left Rear Temp",
+            "thresholds": [
+                [
+                    {
+                        "direction": "greater than",
+                        "name": "upper critical",
+                        "severity": 1,
+                        "value": 115
+                    },
+                    {
+                        "direction": "greater than",
+                        "name": "upper non critical",
+                        "severity": 0,
+                        "value": 110
+                    },
+                    {
+                        "direction": "less than",
+                        "name": "lower non critical",
+                        "severity": 0,
+                        "value": 5
+                    },
+                    {
+                        "direction": "less than",
+                        "name": "lower critical",
+                        "severity": 1,
+                        "value": 0
+                    }
+                ]
+            ],
+            "type": "TMP75"
+        },
+        {
+            "index": 4,
+            "name": "P0V83_LAN_AUX",
+            "thresholds": [
+                [
+                    {
+                        "direction": "greater than",
+                        "name": "upper critical",
+                        "severity": 1,
+                        "value": 0.901
+                    },
+                    {
+                        "direction": "greater than",
+                        "name": "upper non critical",
+                        "severity": 0,
+                        "value": 0.875
+                    },
+                    {
+                        "direction": "less than",
+                        "name": "lower non critical",
+                        "severity": 0,
+                        "value": 0.786
+                    },
+                    {
+                        "direction": "less than",
+                        "name": "lower critical",
+                        "severity": 1,
+                        "value": 0.763
+                    }
+                ]
+            ],
+            "type": "ADC"
+        },
+        {
+            "index": 3,
+            "name": "P105_PCH_AUX",
+            "thresholds": [
+                [
+                    {
+                        "direction": "greater than",
+                        "name": "upper critical",
+                        "severity": 1,
+                        "value": 1.139
+                    },
+                    {
+                        "direction": "greater than",
+                        "name": "upper non critical",
+                        "severity": 0,
+                        "value": 1.106
+                    },
+                    {
+                        "direction": "less than",
+                        "name": "lower non critical",
+                        "severity": 0,
+                        "value": 0.995
+                    },
+                    {
+                        "direction": "less than",
+                        "name": "lower critical",
+                        "severity": 1,
+                        "value": 0.966
+                    }
+                ]
+            ],
+            "type": "ADC"
+        },
+        {
+            "index": 5,
+            "name": "P12V_AUX",
+            "scale_factor": 0.2717,
+            "thresholds": [
+                [
+                    {
+                        "direction": "greater than",
+                        "name": "upper critical",
+                        "severity": 1,
+                        "value": 13.494
+                    },
+                    {
+                        "direction": "greater than",
+                        "name": "upper non critical",
+                        "severity": 0,
+                        "value": 13.101
+                    },
+                    {
+                        "direction": "less than",
+                        "name": "lower non critical",
+                        "severity": 0,
+                        "value": 10.945
+                    },
+                    {
+                        "direction": "less than",
+                        "name": "lower critical",
+                        "severity": 1,
+                        "value": 10.616
+                    }
+                ]
+            ],
+            "type": "ADC"
+        },
+        {
+            "index": 6,
+            "name": "P1V8_PCH",
+            "scale_factor": 0.7505,
+            "thresholds": [
+                [
+                    {
+                        "direction": "greater than",
+                        "name": "upper critical",
+                        "severity": 1,
+                        "value": 1.961
+                    },
+                    {
+                        "direction": "greater than",
+                        "name": "upper non critical",
+                        "severity": 0,
+                        "value": 1.904
+                    },
+                    {
+                        "direction": "less than",
+                        "name": "lower non critical",
+                        "severity": 0,
+                        "value": 1.699
+                    },
+                    {
+                        "direction": "less than",
+                        "name": "lower critical",
+                        "severity": 1,
+                        "value": 1.648
+                    }
+                ]
+            ],
+            "type": "ADC"
+        },
+        {
+            "index": 1,
+            "name": "P3V3",
+            "scale_factor": 0.4107,
+            "thresholds": [
+                [
+                    {
+                        "direction": "greater than",
+                        "name": "upper critical",
+                        "severity": 1,
+                        "value": 3.647
+                    },
+                    {
+                        "direction": "greater than",
+                        "name": "upper non critical",
+                        "severity": 0,
+                        "value": 3.066
+                    },
+                    {
+                        "direction": "less than",
+                        "name": "lower non critical",
+                        "severity": 0,
+                        "value": 3.066
+                    },
+                    {
+                        "direction": "less than",
+                        "name": "lower critical",
+                        "severity": 1,
+                        "value": 2.974
+                    }
+                ]
+            ],
+            "type": "ADC"
+        },
+        {
+            "index": 7,
+            "name": "P3VBAT",
+            "scale_factor": 0.3333,
+            "thresholds": [
+                [
+                    {
+                        "direction": "greater than",
+                        "name": "upper critical",
+                        "severity": 1,
+                        "value": 3.296
+                    },
+                    {
+                        "direction": "greater than",
+                        "name": "upper non critical",
+                        "severity": 0,
+                        "value": 3.263
+                    },
+                    {
+                        "direction": "less than",
+                        "name": "lower non critical",
+                        "severity": 0,
+                        "value": 2.457
+                    },
+                    {
+                        "direction": "less than",
+                        "name": "lower critical",
+                        "severity": 1,
+                        "value": 2.138
+                    }
+                ]
+            ],
+            "type": "ADC"
+        },
+        {
+            "index": 8,
+            "name": "PVCCIN_CPU0",
+            "scale_factor": 0.7505,
+            "thresholds": [
+                [
+                    {
+                        "direction": "greater than",
+                        "name": "upper critical",
+                        "severity": 1,
+                        "value": 2.151
+                    },
+                    {
+                        "direction": "greater than",
+                        "name": "upper non critical",
+                        "severity": 0,
+                        "value": 2.088
+                    },
+                    {
+                        "direction": "less than",
+                        "name": "lower non critical",
+                        "severity": 0,
+                        "value": 1.418
+                    },
+                    {
+                        "direction": "less than",
+                        "name": "lower critical",
+                        "severity": 1,
+                        "value": 1.376
+                    }
+                ]
+            ],
+            "type": "ADC"
+        },
+        {
+            "index": 9,
+            "name": "PVCCIN_CPU1",
+            "thresholds": [
+                [
+                    {
+                        "direction": "greater than",
+                        "name": "upper critical",
+                        "severity": 1,
+                        "value": 2.151
+                    },
+                    {
+                        "direction": "greater than",
+                        "name": "upper non critical",
+                        "severity": 0,
+                        "value": 2.088
+                    },
+                    {
+                        "direction": "less than",
+                        "name": "lower non critical",
+                        "severity": 0,
+                        "value": 1.418
+                    },
+                    {
+                        "direction": "less than",
+                        "name": "lower critical",
+                        "severity": 1,
+                        "value": 1.376
+                    }
+                ]
+            ],
+            "type": "ADC"
+        },
+        {
+            "index": 14,
+            "name": "PVCCIO_CPU0",
+            "thresholds": [
+                [
+                    {
+                        "direction": "greater than",
+                        "name": "upper critical",
+                        "severity": 1,
+                        "value": 1.19
+                    },
+                    {
+                        "direction": "greater than",
+                        "name": "upper non critical",
+                        "severity": 0,
+                        "value": 1.155
+                    },
+                    {
+                        "direction": "less than",
+                        "name": "lower non critical",
+                        "severity": 0,
+                        "value": 0.752
+                    },
+                    {
+                        "direction": "less than",
+                        "name": "lower critical",
+                        "severity": 1,
+                        "value": 0.729
+                    }
+                ]
+            ],
+            "type": "ADC"
+        },
+        {
+            "index": 15,
+            "name": "PVCCIO_CPU1",
+            "thresholds": [
+                [
+                    {
+                        "direction": "greater than",
+                        "name": "upper critical",
+                        "severity": 1,
+                        "value": 1.19
+                    },
+                    {
+                        "direction": "greater than",
+                        "name": "upper non critical",
+                        "severity": 0,
+                        "value": 1.155
+                    },
+                    {
+                        "direction": "less than",
+                        "name": "lower non critical",
+                        "severity": 0,
+                        "value": 0.752
+                    },
+                    {
+                        "direction": "less than",
+                        "name": "lower critical",
+                        "severity": 1,
+                        "value": 0.729
+                    }
+                ]
+            ],
+            "type": "ADC"
+        },
+        {
+            "index": 10,
+            "name": "PVDQ_ABC_CPU0",
+            "thresholds": [
+                [
+                    {
+                        "direction": "greater than",
+                        "name": "upper critical",
+                        "severity": 1,
+                        "value": 1.301
+                    },
+                    {
+                        "direction": "greater than",
+                        "name": "upper non critical",
+                        "severity": 0,
+                        "value": 1.263
+                    },
+                    {
+                        "direction": "less than",
+                        "name": "lower non critical",
+                        "severity": 0,
+                        "value": 1.138
+                    },
+                    {
+                        "direction": "less than",
+                        "name": "lower critical",
+                        "severity": 1,
+                        "value": 1.104
+                    }
+                ]
+            ],
+            "type": "ADC"
+        },
+        {
+            "index": 12,
+            "name": "PVDQ_ABC_CPU1",
+            "thresholds": [
+                [
+                    {
+                        "direction": "greater than",
+                        "name": "upper critical",
+                        "severity": 1,
+                        "value": 1.301
+                    },
+                    {
+                        "direction": "greater than",
+                        "name": "upper non critical",
+                        "severity": 0,
+                        "value": 1.263
+                    },
+                    {
+                        "direction": "less than",
+                        "name": "lower non critical",
+                        "severity": 0,
+                        "value": 1.138
+                    },
+                    {
+                        "direction": "less than",
+                        "name": "lower critical",
+                        "severity": 1,
+                        "value": 1.104
+                    }
+                ]
+            ],
+            "type": "ADC"
+        },
+        {
+            "index": 11,
+            "name": "PVDQ_DEF_CPU0",
+            "thresholds": [
+                [
+                    {
+                        "direction": "greater than",
+                        "name": "upper critical",
+                        "severity": 1,
+                        "value": 1.301
+                    },
+                    {
+                        "direction": "greater than",
+                        "name": "upper non critical",
+                        "severity": 0,
+                        "value": 1.263
+                    },
+                    {
+                        "direction": "less than",
+                        "name": "lower non critical",
+                        "severity": 0,
+                        "value": 1.138
+                    },
+                    {
+                        "direction": "less than",
+                        "name": "lower critical",
+                        "severity": 1,
+                        "value": 1.104
+                    }
+                ]
+            ],
+            "type": "ADC"
+        },
+        {
+            "index": 13,
+            "name": "PVDQ_DEF_CPU1",
+            "thresholds": [
+                [
+                    {
+                        "direction": "greater than",
+                        "name": "upper critical",
+                        "severity": 1,
+                        "value": 1.301
+                    },
+                    {
+                        "direction": "greater than",
+                        "name": "upper non critical",
+                        "severity": 0,
+                        "value": 1.263
+                    },
+                    {
+                        "direction": "less than",
+                        "name": "lower non critical",
+                        "severity": 0,
+                        "value": 1.138
+                    },
+                    {
+                        "direction": "less than",
+                        "name": "lower critical",
+                        "severity": 1,
+                        "value": 1.104
+                    }
+                ]
+            ],
+            "type": "ADC"
+        },
+        {
+            "index": 2,
+            "name": "PVNN_PCH_AUX",
+            "thresholds": [
+                [
+                    {
+                        "direction": "greater than",
+                        "name": "upper critical",
+                        "severity": 1,
+                        "value": 1.081
+                    },
+                    {
+                        "direction": "greater than",
+                        "name": "upper non critical",
+                        "severity": 0,
+                        "value": 1.049
+                    },
+                    {
+                        "direction": "less than",
+                        "name": "lower non critical",
+                        "severity": 0,
+                        "value": 0.807
+                    },
+                    {
+                        "direction": "less than",
+                        "name": "lower critical",
+                        "severity": 1,
+                        "value": 0.783
+                    }
+                ]
+            ],
+            "type": "ADC"
+        },
+        {
+            "address": "0x4D",
+            "bus": 6,
+            "name": "Right Rear Board Temp",
+            "name1": "Right Rear TMP421 Internal Temp",
+            "thresholds": [
+                [
+                    {
+                        "direction": "greater than",
+                        "name": "upper critical",
+                        "severity": 1,
+                        "value": 115
+                    },
+                    {
+                        "direction": "greater than",
+                        "name": "upper non critical",
+                        "severity": 0,
+                        "value": 110
+                    },
+                    {
+                        "direction": "less than",
+                        "name": "lower non critical",
+                        "severity": 0,
+                        "value": 5
+                    },
+                    {
+                        "direction": "less than",
+                        "name": "lower critical",
+                        "severity": 1,
+                        "value": 0
+                    }
+                ]
+            ],
+            "type": "TMP421"
+        },
+        {
+            "address": "0x48",
+            "bus": 6,
+            "name": "Voltage Regulator 1 Temp",
+            "thresholds": [
+                [
+                    {
+                        "direction": "greater than",
+                        "name": "upper critical",
+                        "severity": 1,
+                        "value": 115
+                    },
+                    {
+                        "direction": "greater than",
+                        "name": "upper non critical",
+                        "severity": 0,
+                        "value": 110
+                    },
+                    {
+                        "direction": "less than",
+                        "name": "lower non critical",
+                        "severity": 0,
+                        "value": 5
+                    },
+                    {
+                        "direction": "less than",
+                        "name": "lower critical",
+                        "severity": 1,
+                        "value": 0
+                    }
+                ]
+            ],
+            "type": "TMP75"
+        },
+        {
+            "address": "0x4B",
+            "bus": 6,
+            "name": "Voltage Regulator 2 Temp",
+            "thresholds": [
+                [
+                    {
+                        "direction": "greater than",
+                        "name": "upper critical",
+                        "severity": 1,
+                        "value": 115
+                    },
+                    {
+                        "direction": "greater than",
+                        "name": "upper non critical",
+                        "severity": 0,
+                        "value": 110
+                    },
+                    {
+                        "direction": "less than",
+                        "name": "lower non critical",
+                        "severity": 0,
+                        "value": 5
+                    },
+                    {
+                        "direction": "less than",
+                        "name": "lower critical",
+                        "severity": 1,
+                        "value": 0
+                    }
+                ]
+            ],
+            "type": "TMP75"
+        },
+        {
+            "cpu_id": 0,
+            "dimm_nums": 12,
+            "name": "Skylake CPU 0",
+            "show_core": 1,
+            "type": "SkylakeCPU"
+        },
+        {
+            "cpu_id": 1,
+            "dimm_nums": 12,
+            "name": "Skylake CPU 1",
+            "show_core": 1,
+            "type": "SkylakeCPU"
+        }
+    ],
+    "name": "WFP Baseboard",
+    "probe": "xyz.openbmc_project.FruDevice({'BOARD_PRODUCT_NAME': '.*WFT'})"
+}

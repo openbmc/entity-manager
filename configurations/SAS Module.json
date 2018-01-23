@@ -1,0 +1,17 @@
+{
+    "exposes": [
+        {
+            "bus": "$bus",
+            "name": "SAS Module FRU",
+            "type": "IntelFruDevice"
+        },
+        {
+            "address": "0x98",
+            "bus": "$bus",
+            "name": "SAS Module Temperature",
+            "type": "TMP75"
+        }
+    ],
+    "name": "SAS Module",
+    "probe": "FALSE"
+}
