@@ -81,21 +81,23 @@ link_directories(${EXTERNAL_INSTALL_LOCATION}/lib)
 include_directories(${CMAKE_CURRENT_SOURCE_DIR}/include)
 
 add_executable(fru-device src/FruDevice.cpp src/Utils.cpp)
-add_dependencies(fru-device boost-dbus)
 
-#add_dependencies(entity-manager nlohmann-json)
 target_link_libraries(fru-device  ${DBUS_LIBRARIES})
 target_link_libraries(fru-device pthread)
 target_link_libraries(fru-device stdc++fs)
 target_link_libraries(fru-device ${Boost_LIBRARIES})
 
 add_executable(entity-manager src/EntityManager.cpp src/Utils.cpp)
-add_dependencies(entity-manager boost-dbus)
 
-add_dependencies(entity-manager nlohmann-json)
 target_link_libraries(entity-manager  ${DBUS_LIBRARIES})
 target_link_libraries(entity-manager pthread)
 target_link_libraries(entity-manager stdc++fs)
 target_link_libraries(entity-manager ${Boost_LIBRARIES})
+
+if(NOT YOCTO)
+    add_dependencies(entity-manager nlohmann-json)
+    add_dependencies(entity-manager boost-dbus)
+    add_dependencies(fru-device boost-dbus)
+endif()
 
 install (TARGETS fru-device entity-manager DESTINATION bin)

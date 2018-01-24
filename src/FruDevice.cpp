@@ -24,7 +24,7 @@
 #include <fcntl.h>
 #include <fstream>
 #include <future>
-#include <i2c-dev-user.h>
+#include <linux/i2c-dev-user.h>
 #include <iostream>
 #include <sys/ioctl.h>
 
