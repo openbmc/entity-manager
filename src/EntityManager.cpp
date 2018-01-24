@@ -26,6 +26,7 @@
 #include <boost/container/flat_map.hpp>
 #include <boost/container/flat_set.hpp>
 #include <VariantVisitors.hpp>
+#include <experimental/filesystem>
 
 constexpr const char *OUTPUT_DIR = "/var/configuration/";
 constexpr const char *CONFIGURATION_DIR = "/usr/share/configurations";
@@ -421,7 +422,7 @@ int main(int argc, char **argv)
     // keep looping as long as at least 1 new probe passed, removing
     // configurations from the memory store once the probe passes
     bool probePassed = true;
-    nlohmann::json systemConfiguration;
+    nlohmann::json systemConfiguration = nlohmann::json::object();
     while (probePassed)
     {
         probePassed = false;
@@ -462,7 +463,8 @@ int main(int argc, char **argv)
             {
                 eraseConfig = true;
                 probePassed = true;
-                PASSED_PROBES.push_back(*findName);
+                std::string name = *findName;
+                PASSED_PROBES.push_back(name);
 
                 size_t foundDeviceIdx = 0;
 
@@ -545,11 +547,13 @@ int main(int argc, char **argv)
                                     bool foundBind = false;
                                     std::string bind = keyPair.key().substr(
                                         sizeof("bind_") - 1);
-                                    for (auto &configuration :
-                                         systemConfiguration)
+                                    for (auto &configurationPair :
+                                         nlohmann::json::iterator_wrapper(
+                                             systemConfiguration))
                                     {
                                         auto &configList =
-                                            configuration["exposes"];
+                                            configurationPair
+                                                .value()["exposes"];
                                         for (auto exposedObjectIt =
                                                  configList.begin();
                                              exposedObjectIt !=
@@ -593,7 +597,7 @@ int main(int argc, char **argv)
                             }
                         }
                     }
-                    systemConfiguration.push_back(*it);
+                    systemConfiguration[name] = (*it);
                     foundDeviceIdx++;
                 }
             }
@@ -609,6 +613,7 @@ int main(int argc, char **argv)
         }
     }
     // below here is temporary, to be added to dbus
+    std::experimental::filesystem::create_directory(OUTPUT_DIR);
     std::ofstream output(std::string(OUTPUT_DIR) + "system.json");
     output << systemConfiguration.dump(4);
     output.close();
