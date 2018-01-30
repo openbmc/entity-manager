@@ -6,32 +6,30 @@
                 "bus": "$bus",
                 "name": "Riser 1 Temp",
                 "thresholds": [
-                    [
-                        {
-                            "direction": "greater than",
-                            "name": "upper critical",
-                            "severity": 1,
-                            "value": 80
-                        },
-                        {
-                            "direction": "greater than",
-                            "name": "upper non critical",
-                            "severity": 0,
-                            "value": 75
-                        },
-                        {
-                            "direction": "less than",
-                            "name": "lower non critical",
-                            "severity": 0,
-                            "value": 5
-                        },
-                        {
-                            "direction": "less than",
-                            "name": "lower critical",
-                            "severity": 1,
-                            "value": 0
-                        }
-                    ]
+                    {
+                        "direction": "greater than",
+                        "name": "upper critical",
+                        "severity": 1,
+                        "value": 80
+                    },
+                    {
+                        "direction": "greater than",
+                        "name": "upper non critical",
+                        "severity": 0,
+                        "value": 75
+                    },
+                    {
+                        "direction": "less than",
+                        "name": "lower non critical",
+                        "severity": 0,
+                        "value": 5
+                    },
+                    {
+                        "direction": "less than",
+                        "name": "lower critical",
+                        "severity": 1,
+                        "value": 0
+                    }
                 ],
                 "type": "TMP75"
             },
@@ -52,32 +50,30 @@
                 "bus": "$bus",
                 "name": "Riser 2 Temp",
                 "thresholds": [
-                    [
-                        {
-                            "direction": "greater than",
-                            "name": "upper critical",
-                            "severity": 1,
-                            "value": 80
-                        },
-                        {
-                            "direction": "greater than",
-                            "name": "upper non critical",
-                            "severity": 0,
-                            "value": 75
-                        },
-                        {
-                            "direction": "less than",
-                            "name": "lower non critical",
-                            "severity": 0,
-                            "value": 5
-                        },
-                        {
-                            "direction": "less than",
-                            "name": "lower critical",
-                            "severity": 1,
-                            "value": 0
-                        }
-                    ]
+                    {
+                        "direction": "greater than",
+                        "name": "upper critical",
+                        "severity": 1,
+                        "value": 80
+                    },
+                    {
+                        "direction": "greater than",
+                        "name": "upper non critical",
+                        "severity": 0,
+                        "value": 75
+                    },
+                    {
+                        "direction": "less than",
+                        "name": "lower non critical",
+                        "severity": 0,
+                        "value": 5
+                    },
+                    {
+                        "direction": "less than",
+                        "name": "lower critical",
+                        "severity": 1,
+                        "value": 0
+                    }
                 ],
                 "type": "TMP75"
             },

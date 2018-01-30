@@ -2,215 +2,237 @@
     "exposes": [
         {
             "bind_connector": "1U System Fan connector 1",
-            "name": "Fan 1",
+            "name": "Fan 1a",
             "thresholds": [
-                [
-                    {
-                        "direction": "less than",
-                        "name": "lower critical",
-                        "severity": 1,
-                        "value": 1080
-                    },
-                    {
-                        "direction": "less than",
-                        "name": "lower non critical",
-                        "severity": 0,
-                        "value": 1260
-                    }
-                ],
-                [
-                    {
-                        "direction": "less than",
-                        "name": "lower critical",
-                        "severity": 1,
-                        "value": 1110
-                    },
-                    {
-                        "direction": "less than",
-                        "name": "lower non critical",
-                        "severity": 0,
-                        "value": 1295
-                    }
-                ]
+                {
+                    "direction": "less than",
+                    "name": "lower critical",
+                    "severity": 1,
+                    "value": 1080
+                },
+                {
+                    "direction": "less than",
+                    "name": "lower non critical",
+                    "severity": 0,
+                    "value": 1260
+                }
+            ],
+            "type": "AspeedFan"
+        },
+        {
+            "bind_connector": "1U System Fan connector 1",
+            "name": "Fan 1b",
+            "thresholds": [
+                {
+                    "direction": "less than",
+                    "name": "lower critical",
+                    "severity": 1,
+                    "value": 1110
+                },
+                {
+                    "direction": "less than",
+                    "name": "lower non critical",
+                    "severity": 0,
+                    "value": 1295
+                }
             ],
             "type": "AspeedFan"
         },
         {
             "bind_connector": "1U System Fan connector 2",
-            "name": "Fan 2",
+            "name": "Fan 2a",
             "thresholds": [
-                [
-                    {
-                        "direction": "less than",
-                        "name": "lower critical",
-                        "severity": 1,
-                        "value": 1080
-                    },
-                    {
-                        "direction": "less than",
-                        "name": "lower non critical",
-                        "severity": 0,
-                        "value": 1260
-                    }
-                ],
-                [
-                    {
-                        "direction": "less than",
-                        "name": "lower critical",
-                        "severity": 1,
-                        "value": 1110
-                    },
-                    {
-                        "direction": "less than",
-                        "name": "lower non critical",
-                        "severity": 0,
-                        "value": 1295
-                    }
-                ]
+                {
+                    "direction": "less than",
+                    "name": "lower critical",
+                    "severity": 1,
+                    "value": 1080
+                },
+                {
+                    "direction": "less than",
+                    "name": "lower non critical",
+                    "severity": 0,
+                    "value": 1260
+                }
+            ],
+            "type": "AspeedFan"
+        },
+        {
+            "bind_connector": "1U System Fan connector 2",
+            "name": "Fan 2b",
+            "thresholds": [
+                {
+                    "direction": "less than",
+                    "name": "lower critical",
+                    "severity": 1,
+                    "value": 1110
+                },
+                {
+                    "direction": "less than",
+                    "name": "lower non critical",
+                    "severity": 0,
+                    "value": 1295
+                }
             ],
             "type": "AspeedFan"
         },
         {
             "bind_connector": "1U System Fan connector 3",
-            "name": "Fan 3",
+            "name": "Fan 3a",
             "thresholds": [
-                [
-                    {
-                        "direction": "less than",
-                        "name": "lower critical",
-                        "severity": 1,
-                        "value": 1080
-                    },
-                    {
-                        "direction": "less than",
-                        "name": "lower non critical",
-                        "severity": 0,
-                        "value": 1260
-                    }
-                ],
-                [
-                    {
-                        "direction": "less than",
-                        "name": "lower critical",
-                        "severity": 1,
-                        "value": 1110
-                    },
-                    {
-                        "direction": "less than",
-                        "name": "lower non critical",
-                        "severity": 0,
-                        "value": 1295
-                    }
-                ]
+                {
+                    "direction": "less than",
+                    "name": "lower critical",
+                    "severity": 1,
+                    "value": 1080
+                },
+                {
+                    "direction": "less than",
+                    "name": "lower non critical",
+                    "severity": 0,
+                    "value": 1260
+                }
+            ],
+            "type": "AspeedFan"
+        },
+        {
+            "bind_connector": "1U System Fan connector 3",
+            "name": "Fan 3b",
+            "thresholds": [
+                {
+                    "direction": "less than",
+                    "name": "lower critical",
+                    "severity": 1,
+                    "value": 1110
+                },
+                {
+                    "direction": "less than",
+                    "name": "lower non critical",
+                    "severity": 0,
+                    "value": 1295
+                }
             ],
             "type": "AspeedFan"
         },
         {
             "bind_connector": "1U System Fan connector 4",
-            "name": "Fan 4",
+            "name": "Fan 4a",
             "thresholds": [
-                [
-                    {
-                        "direction": "less than",
-                        "name": "lower critical",
-                        "severity": 1,
-                        "value": 1080
-                    },
-                    {
-                        "direction": "less than",
-                        "name": "lower non critical",
-                        "severity": 0,
-                        "value": 1260
-                    }
-                ],
-                [
-                    {
-                        "direction": "less than",
-                        "name": "lower critical",
-                        "severity": 1,
-                        "value": 1110
-                    },
-                    {
-                        "direction": "less than",
-                        "name": "lower non critical",
-                        "severity": 0,
-                        "value": 1295
-                    }
-                ]
+                {
+                    "direction": "less than",
+                    "name": "lower critical",
+                    "severity": 1,
+                    "value": 1080
+                },
+                {
+                    "direction": "less than",
+                    "name": "lower non critical",
+                    "severity": 0,
+                    "value": 1260
+                }
+            ],
+            "type": "AspeedFan"
+        },
+        {
+            "bind_connector": "1U System Fan connector 4",
+            "name": "Fan 4b",
+            "thresholds": [
+                {
+                    "direction": "less than",
+                    "name": "lower critical",
+                    "severity": 1,
+                    "value": 1110
+                },
+                {
+                    "direction": "less than",
+                    "name": "lower non critical",
+                    "severity": 0,
+                    "value": 1295
+                }
             ],
             "type": "AspeedFan"
         },
         {
             "bind_connector": "1U System Fan connector 5",
-            "name": "Fan 5",
+            "name": "Fan 5a",
             "thresholds": [
-                [
-                    {
-                        "direction": "less than",
-                        "name": "lower critical",
-                        "severity": 1,
-                        "value": 1080
-                    },
-                    {
-                        "direction": "less than",
-                        "name": "lower non critical",
-                        "severity": 0,
-                        "value": 1260
-                    }
-                ],
-                [
-                    {
-                        "direction": "less than",
-                        "name": "lower critical",
-                        "severity": 1,
-                        "value": 1110
-                    },
-                    {
-                        "direction": "less than",
-                        "name": "lower non critical",
-                        "severity": 0,
-                        "value": 1295
-                    }
-                ]
+                {
+                    "direction": "less than",
+                    "name": "lower critical",
+                    "severity": 1,
+                    "value": 1080
+                },
+                {
+                    "direction": "less than",
+                    "name": "lower non critical",
+                    "severity": 0,
+                    "value": 1260
+                }
+            ],
+            "type": "AspeedFan"
+        },
+        {
+            "bind_connector": "1U System Fan connector 5",
+            "name": "Fan 5b",
+            "thresholds": [
+                {
+                    "direction": "less than",
+                    "name": "lower critical",
+                    "severity": 1,
+                    "value": 1110
+                },
+                {
+                    "direction": "less than",
+                    "name": "lower non critical",
+                    "severity": 0,
+                    "value": 1295
+                }
             ],
             "type": "AspeedFan"
         },
         {
             "bind_connector": "1U System Fan connector 6",
-            "name": "Fan 6",
+            "name": "Fan 6a",
             "thresholds": [
-                [
-                    {
-                        "direction": "less than",
-                        "name": "lower critical",
-                        "severity": 1,
-                        "value": 1080
-                    },
-                    {
-                        "direction": "less than",
-                        "name": "lower non critical",
-                        "severity": 0,
-                        "value": 1260
-                    }
-                ],
-                [
-                    {
-                        "direction": "less than",
-                        "name": "lower critical",
-                        "severity": 1,
-                        "value": 1110
-                    },
-                    {
-                        "direction": "less than",
-                        "name": "lower non critical",
-                        "severity": 0,
-                        "value": 1295
-                    }
-                ]
+                {
+                    "direction": "less than",
+                    "name": "lower critical",
+                    "severity": 1,
+                    "value": 1080
+                },
+                {
+                    "direction": "less than",
+                    "name": "lower non critical",
+                    "severity": 0,
+                    "value": 1260
+                }
+            ],
+            "type": "AspeedFan"
+        },
+        {
+            "bind_connector": "1U System Fan connector 6",
+            "name": "Fan 6b",
+            "thresholds": [
+                {
+                    "direction": "less than",
+                    "name": "lower critical",
+                    "severity": 1,
+                    "value": 1110
+                },
+                {
+                    "direction": "less than",
+                    "name": "lower non critical",
+                    "severity": 0,
+                    "value": 1295
+                }
             ],
             "type": "AspeedFan"
         }
     ],
     "name": "R1000 Chassis",
-    "probe": ["FOUND('WFP Baseboard')", "AND", "xyz.openbmc_project.FruDevice({'BOARD_PRODUCT_NAME': 'F1UL16RISER1'})"]
+    "probe": [
+        "FOUND('WFP Baseboard')",
+        "AND",
+        "xyz.openbmc_project.FruDevice({'BOARD_PRODUCT_NAME': 'F1UL16RISER1'})"
+    ]
 }

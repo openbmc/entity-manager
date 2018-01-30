@@ -25,12 +25,14 @@
 #include <boost/lexical_cast.hpp>
 #include <boost/container/flat_map.hpp>
 #include <boost/container/flat_set.hpp>
+#include <dbus/connection.hpp>
 #include <VariantVisitors.hpp>
 #include <experimental/filesystem>
 
 constexpr const char *OUTPUT_DIR = "/var/configuration/";
 constexpr const char *CONFIGURATION_DIR = "/usr/share/configurations";
 constexpr const char *TEMPLATE_CHAR = "$";
+constexpr const size_t PROPERTIES_CHANGED_UNTIL_FLUSH = 20;
 constexpr const size_t MAX_MAPPER_DEPTH = 99;
 
 namespace fs = std::experimental::filesystem;
@@ -76,6 +78,8 @@ std::vector<std::string> PASSED_PROBES;
 
 // todo: pass this through nicer
 std::shared_ptr<dbus::connection> SYSTEM_BUS;
+
+std::regex ILLEGAL_DBUS_REGEX("[^A-Za-z0-9_]");
 
 // calls the mapper to find all exposed objects of an interface type
 // and creates a vector<flat_map> that contains all the key value pairs
@@ -375,6 +379,256 @@ bool probe(
     return ret;
 }
 
+// this function is temporary, no need to have once dbus is solified.
+void writeJsonFiles(nlohmann::json &systemConfiguration)
+{
+    std::experimental::filesystem::create_directory(OUTPUT_DIR);
+    std::ofstream output(std::string(OUTPUT_DIR) + "system.json");
+    output << systemConfiguration.dump(4);
+    output.close();
+
+    auto flat = nlohmann::json::array();
+    for (auto &pair : nlohmann::json::iterator_wrapper(systemConfiguration))
+    {
+        auto value = pair.value();
+        auto exposes = value.find("exposes");
+        if (exposes != value.end())
+        {
+            for (auto &item : *exposes)
+            {
+                flat.push_back(item);
+            }
+        }
+    }
+    output = std::ofstream(std::string(OUTPUT_DIR) + "flattened.json");
+    output << flat.dump(4);
+    output.close();
+}
+// adds simple json types to interface's properties
+void populateInterfaceFromJson(dbus::DbusInterface *iface, nlohmann::json dict,
+                               dbus::DbusObjectServer &objServer)
+{
+    std::vector<std::pair<std::string, dbus::dbus_variant>> properties;
+    static size_t flushCount = 0;
+
+    for (auto &dictPair : nlohmann::json::iterator_wrapper(dict))
+    {
+        switch (dictPair.value().type())
+        {
+        case (nlohmann::json::value_t::boolean):
+        {
+            properties.emplace_back(std::string(dictPair.key()),
+                                    dictPair.value().get<bool>());
+            break;
+        }
+        case (nlohmann::json::value_t::number_integer):
+        {
+            properties.emplace_back(std::string(dictPair.key()),
+                                    dictPair.value().get<int64_t>());
+            break;
+        }
+        case (nlohmann::json::value_t::number_unsigned):
+        {
+            properties.emplace_back(std::string(dictPair.key()),
+                                    dictPair.value().get<uint64_t>());
+            break;
+        }
+        case (nlohmann::json::value_t::number_float):
+        {
+            properties.emplace_back(std::string(dictPair.key()),
+                                    dictPair.value().get<float>());
+            break;
+        }
+        case (nlohmann::json::value_t::string):
+        {
+            properties.emplace_back(std::string(dictPair.key()),
+                                    dictPair.value().get<std::string>());
+            break;
+        }
+        }
+    }
+    if (!properties.empty())
+    {
+        iface->set_properties(properties);
+
+        // flush the queue after adding an amount of properties so we don't hang
+        if (flushCount++ > PROPERTIES_CHANGED_UNTIL_FLUSH)
+        {
+            objServer.flush();
+            flushCount = 0;
+        }
+    }
+}
+
+void postToDbus(const nlohmann::json &systemConfiguration,
+                dbus::DbusObjectServer &objServer,
+                std::vector<std::shared_ptr<dbus::DbusObject>> &objects)
+{
+    for (auto &boardPair :
+         nlohmann::json::iterator_wrapper(systemConfiguration))
+    {
+        std::string boardKey = boardPair.key();
+        auto boardValues = boardPair.value();
+        auto findBoardType = boardValues.find("type");
+        std::string boardType;
+        if (findBoardType != boardValues.end() &&
+            findBoardType->type() == nlohmann::json::value_t::string)
+        {
+            boardType = findBoardType->get<std::string>();
+            std::regex_replace(boardType.begin(), boardType.begin(),
+                               boardType.end(), ILLEGAL_DBUS_REGEX, "_");
+        }
+        else
+        {
+            std::cerr << "Unable to find type for " << boardKey
+                      << " reverting to Chassis.\n";
+            boardType = "Chassis";
+        }
+
+        std::regex_replace(boardKey.begin(), boardKey.begin(), boardKey.end(),
+                           ILLEGAL_DBUS_REGEX, "_");
+        std::string boardName =
+            "/xyz/openbmc_project/Inventory/Item/" + boardType + "/" + boardKey;
+        auto boardObject = objServer.add_object(boardName);
+
+        auto boardIface = boardObject->add_interface(
+            "xyz.openbmc_project.Configuration." + boardType);
+        populateInterfaceFromJson(boardIface.get(), boardValues, objServer);
+        auto exposes = boardValues.find("exposes");
+        if (exposes == boardValues.end())
+        {
+            continue;
+        }
+        for (auto &item : *exposes)
+        {
+            auto findName = item.find("name");
+            if (findName == item.end())
+            {
+                std::cerr << "cannot find name in field " << item << "\n";
+                continue;
+            }
+            auto findStatus = item.find("status");
+            // if status is not found it is assumed to be status = 'okay'
+            if (findStatus != item.end())
+            {
+                if (*findStatus == "disabled")
+                {
+                    continue;
+                }
+            }
+            auto findType = item.find("type");
+            std::string itemType;
+            if (findType != item.end())
+            {
+                itemType = findType->get<std::string>();
+                std::regex_replace(itemType.begin(), itemType.begin(),
+                                   itemType.end(), ILLEGAL_DBUS_REGEX, "_");
+            }
+            else
+            {
+                itemType = "unknown";
+            }
+            std::string itemName = findName->get<std::string>();
+            std::regex_replace(itemName.begin(), itemName.begin(),
+                               itemName.end(), ILLEGAL_DBUS_REGEX, "_");
+            auto itemObject = objServer.add_object(boardName + "/" + itemName);
+            auto itemIface = itemObject->add_interface(
+                "xyz.openbmc_project.Configuration." + itemType);
+
+            populateInterfaceFromJson(itemIface.get(), item, objServer);
+
+            for (auto &objectPair : nlohmann::json::iterator_wrapper(item))
+            {
+                if (objectPair.value().type() ==
+                    nlohmann::json::value_t::object)
+                {
+                    auto objectIface = itemObject->add_interface(
+                        "xyz.openbmc_project.Configuration." + itemType + "." +
+                        objectPair.key());
+                    populateInterfaceFromJson(objectIface.get(),
+                                              objectPair.value(), objServer);
+                }
+                else if (objectPair.value().type() ==
+                         nlohmann::json::value_t::array)
+                {
+                    size_t index = 0;
+                    for (auto &arrayItem : objectPair.value())
+                    {
+                        if (arrayItem.type() != nlohmann::json::value_t::object)
+                        {
+                            std::cerr << "dbus format error" << arrayItem
+                                      << "\n";
+                            break;
+                        }
+                        auto objectIface = itemObject->add_interface(
+                            "xyz.openbmc_project.Configuration." + itemType +
+                            "." + objectPair.key() + "." +
+                            std::to_string(index));
+                        index++;
+                        populateInterfaceFromJson(objectIface.get(), arrayItem,
+                                                  objServer);
+                    }
+                }
+            }
+        }
+    }
+}
+
+// finds the template character (currently set to $) and replaces the value with
+// the field found in a dbus object i.e. $ADDRESS would get populated with the
+// ADDRESS field from a object on dbus
+void templateCharReplace(
+    nlohmann::json::iterator &keyPair,
+    const boost::container::flat_map<std::string, dbus::dbus_variant>
+        &foundDevice,
+    size_t &foundDeviceIdx)
+{
+    if (keyPair.value().type() != nlohmann::json::value_t::string)
+    {
+        return;
+    }
+
+    std::string value = keyPair.value();
+    if (value.find(TEMPLATE_CHAR) != std::string::npos)
+    {
+        std::string templateValue = value;
+
+        templateValue.erase(0, 1); // remove template character
+
+        // special case index
+        if ("index" == templateValue)
+        {
+            keyPair.value() = foundDeviceIdx;
+        }
+        else
+        {
+            std::string subsitute;
+            for (auto &foundDevicePair : foundDevice)
+            {
+                if (boost::iequals(foundDevicePair.first, templateValue))
+                {
+                    // convert value to string
+                    // respresentation
+                    subsitute = boost::apply_visitor(
+                        [](const auto &x) {
+                            return boost::lexical_cast<std::string>(x);
+                        },
+                        foundDevicePair.second);
+                    break;
+                }
+            }
+            if (!subsitute.size())
+            {
+                std::cerr << "could not find symbol " << templateValue << "\n";
+            }
+            else
+            {
+                keyPair.value() = subsitute;
+            }
+        }
+    }
+}
+
 int main(int argc, char **argv)
 {
     // find configuration files
@@ -429,25 +683,18 @@ int main(int argc, char **argv)
         for (auto it = configurations.begin(); it != configurations.end();)
         {
             bool eraseConfig = false;
-            auto findProbe = (*it).find("probe");
-            auto findName = (*it).find("name");
+            auto findProbe = it->find("probe");
+            auto findName = it->find("name");
 
-            // check for poorly formatted fields
-            if (findProbe == (*it).end())
+            nlohmann::json probeCommand;
+            // check for poorly formatted fields, probe must be an array
+            if (findProbe == it->end())
             {
                 std::cerr << "configuration file missing probe:\n " << *it
                           << "\n";
                 eraseConfig = true;
             }
-            if (findName == (*it).end())
-            {
-                std::cerr << "configuration file missing name:\n " << *it
-                          << "\n";
-                eraseConfig = true;
-            }
-
-            nlohmann::json probeCommand;
-            if ((*findProbe).type() != nlohmann::json::value_t::array)
+            else if ((*findProbe).type() != nlohmann::json::value_t::array)
             {
                 probeCommand = nlohmann::json::array();
                 probeCommand.push_back(*findProbe);
@@ -456,10 +703,18 @@ int main(int argc, char **argv)
             {
                 probeCommand = *findProbe;
             }
+
+            if (findName == it->end())
+            {
+                std::cerr << "configuration file missing name:\n " << *it
+                          << "\n";
+                eraseConfig = true;
+            }
+
             std::vector<
                 boost::container::flat_map<std::string, dbus::dbus_variant>>
                 foundDevices;
-            if (probe(probeCommand, foundDevices))
+            if (!eraseConfig && probe(probeCommand, foundDevices))
             {
                 eraseConfig = true;
                 probePassed = true;
@@ -470,12 +725,15 @@ int main(int argc, char **argv)
 
                 for (auto &foundDevice : foundDevices)
                 {
-                    auto findExpose = (*it).find("exposes");
-                    if (findExpose == (*it).end())
+                    for (auto keyPair = it->begin(); keyPair != it->end();
+                         keyPair++)
                     {
-                        std::cerr
-                            << "Warning, configuration file missing exposes"
-                            << *it << "\n";
+                        templateCharReplace(keyPair, foundDevice,
+                                            foundDeviceIdx);
+                    }
+                    auto findExpose = it->find("exposes");
+                    if (findExpose == it->end())
+                    {
                         continue;
                     }
                     for (auto &expose : *findExpose)
@@ -483,123 +741,75 @@ int main(int argc, char **argv)
                         for (auto keyPair = expose.begin();
                              keyPair != expose.end(); keyPair++)
                         {
+
                             // fill in template characters with devices
                             // found
-                            if (keyPair.value().type() ==
-                                nlohmann::json::value_t::string)
+                            templateCharReplace(keyPair, foundDevice,
+                                                foundDeviceIdx);
+                            // special case bind
+                            if (boost::starts_with(keyPair.key(), "bind_"))
                             {
-                                std::string value = keyPair.value();
-                                if (value.find(TEMPLATE_CHAR) !=
-                                    std::string::npos)
+                                if (keyPair.value().type() !=
+                                    nlohmann::json::value_t::string)
                                 {
-                                    std::string templateValue = value;
-
-                                    templateValue.erase(
-                                        0, 1); // remove template character
-
-                                    // special case index
-                                    if ("index" == templateValue)
-                                    {
-                                        keyPair.value() = foundDeviceIdx;
-                                    }
-                                    else
-                                    {
-                                        std::string subsitute;
-                                        for (auto &foundDevicePair :
-                                             foundDevice)
-                                        {
-                                            if (boost::iequals(
-                                                    foundDevicePair.first,
-                                                    templateValue))
-                                            {
-                                                // convert value to string
-                                                // respresentation
-                                                subsitute =
-                                                    boost::apply_visitor(
-                                                        [](const auto &x) {
-                                                            return boost::
-                                                                lexical_cast<
-                                                                    std::
-                                                                        string>(
-                                                                    x);
-                                                        },
-                                                        foundDevicePair.second);
-                                                break;
-                                            }
-                                        }
-                                        if (!subsitute.size())
-                                        {
-                                            std::cerr << "could not find "
-                                                      << templateValue
-                                                      << " in device "
-                                                      << expose["name"] << "\n";
-                                        }
-                                        else
-                                        {
-                                            keyPair.value() = subsitute;
-                                        }
-                                    }
+                                    std::cerr
+                                        << "bind_ value must be of type string "
+                                        << keyPair.key() << "\n";
+                                    continue;
                                 }
-
-                                // special case bind
-                                if (boost::starts_with(keyPair.key(), "bind_"))
+                                bool foundBind = false;
+                                std::string bind =
+                                    keyPair.key().substr(sizeof("bind_") - 1);
+                                for (auto &configurationPair :
+                                     nlohmann::json::iterator_wrapper(
+                                         systemConfiguration))
                                 {
-                                    bool foundBind = false;
-                                    std::string bind = keyPair.key().substr(
-                                        sizeof("bind_") - 1);
-                                    for (auto &configurationPair :
-                                         nlohmann::json::iterator_wrapper(
-                                             systemConfiguration))
+
+                                    auto configListFind =
+                                        configurationPair.value().find(
+                                            "exposes");
+
+                                    if (configListFind ==
+                                            configurationPair.value().end() ||
+                                        configListFind->type() !=
+                                            nlohmann::json::value_t::array)
                                     {
-                                        auto &configList =
-                                            configurationPair
-                                                .value()["exposes"];
-                                        for (auto exposedObjectIt =
-                                                 configList.begin();
-                                             exposedObjectIt !=
-                                             configList.end();)
+                                        continue;
+                                    }
+                                    for (auto &exposedObject : *configListFind)
+                                    {
+                                        std::string foundObjectName =
+                                            (exposedObject)["name"];
+                                        if (boost::iequals(
+                                                foundObjectName,
+                                                keyPair.value()
+                                                    .get<std::string>()))
                                         {
-                                            std::string foundObjectName =
-                                                (*exposedObjectIt)["name"];
-                                            if (boost::iequals(foundObjectName,
-                                                               value))
-                                            {
-                                                (*exposedObjectIt)["status"] =
-                                                    "okay"; // todo: is this the
-                                                            // right spot?
-                                                expose[bind] =
-                                                    (*exposedObjectIt);
-                                                foundBind = true;
-                                                exposedObjectIt =
-                                                    configList.erase(
-                                                        exposedObjectIt);
-                                                break;
-                                            }
-                                            else
-                                            {
-                                                exposedObjectIt++;
-                                            }
-                                        }
-                                        if (foundBind)
-                                        {
+                                            expose[bind] = exposedObject;
+                                            expose[bind]["status"] = "okay";
+
+                                            foundBind = true;
                                             break;
                                         }
                                     }
-                                    if (!foundBind)
+                                    if (foundBind)
                                     {
-                                        std::cerr << "configuration file "
-                                                     "dependency error, "
-                                                     "could not find bind "
-                                                  << value << "\n";
-                                        return 1;
+                                        break;
                                     }
+                                }
+                                if (!foundBind)
+                                {
+                                    std::cerr << "configuration file "
+                                                 "dependency error, "
+                                                 "could not find bind "
+                                              << keyPair.value() << "\n";
                                 }
                             }
                         }
                     }
-                    systemConfiguration[name] = (*it);
-                    foundDeviceIdx++;
                 }
+                systemConfiguration[name] = (*it);
+                foundDeviceIdx++;
             }
 
             if (eraseConfig)
@@ -612,28 +822,11 @@ int main(int argc, char **argv)
             }
         }
     }
-    // below here is temporary, to be added to dbus
-    std::experimental::filesystem::create_directory(OUTPUT_DIR);
-    std::ofstream output(std::string(OUTPUT_DIR) + "system.json");
-    output << systemConfiguration.dump(4);
-    output.close();
-
-    auto flat = nlohmann::json::array();
-    for (auto &pair : nlohmann::json::iterator_wrapper(systemConfiguration))
-    {
-        auto value = pair.value();
-        auto exposes = value.find("exposes");
-        if (exposes != value.end())
-        {
-            for (auto &item : *exposes)
-            {
-                flat.push_back(item);
-            }
-        }
-    }
-    output = std::ofstream(std::string(OUTPUT_DIR) + "flattened.json");
-    output << flat.dump(4);
-    output.close();
+    // this line to be removed in future
+    writeJsonFiles(systemConfiguration);
+    std::vector<std::shared_ptr<dbus::DbusObject>> busObjects;
+    postToDbus(systemConfiguration, objServer, busObjects);
+    io.run();
 
     return 0;
 }
