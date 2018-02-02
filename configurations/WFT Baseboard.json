@@ -1,8 +1,4 @@
 {
-    "manufacturer": "$BOARD_MANUFACTURER",
-    "model": "$BOARD_PRODUCT_NAME",
-    "part_number": "$CHASSIS_PART_NUMBER",
-    "serial_number": "$CHASSIS_SERIAL_NUMBER",
     "exposes": [
         {
             "name": "1U System Fan connector 1",
@@ -814,6 +810,10 @@
             "type": "SkylakeCPU"
         }
     ],
+    "manufacturer": "$BOARD_MANUFACTURER",
+    "model": "$BOARD_PRODUCT_NAME",
     "name": "WFP Baseboard",
-    "probe": "xyz.openbmc_project.FruDevice({'BOARD_PRODUCT_NAME': '.*WFT'})"
+    "part_number": "$CHASSIS_PART_NUMBER",
+    "probe": "xyz.openbmc_project.FruDevice({'BOARD_PRODUCT_NAME': '.*WFT'})",
+    "serial_number": "$CHASSIS_SERIAL_NUMBER"
 }
