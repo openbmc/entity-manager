@@ -301,7 +301,7 @@ bool probe(
                     return false;
                 }
                 std::string commandStr = *(match.begin() + 1);
-                commandStr = boost::replace_all_copy(commandStr, "'", "");
+                boost::replace_all(commandStr, "'", "");
                 cur = (std::find(PASSED_PROBES.begin(), PASSED_PROBES.end(),
                                  commandStr) != PASSED_PROBES.end());
                 break;
@@ -318,8 +318,8 @@ bool probe(
             }
             std::string commandStr = *(match.begin() + 1);
             // convert single ticks and single slashes into legal json
-            commandStr = boost::replace_all_copy(commandStr, "'", R"(")");
-            commandStr = boost::replace_all_copy(commandStr, R"(\)", R"(\\)");
+            boost::replace_all(commandStr, "'", R"(")");
+            boost::replace_all(commandStr, R"(\)", R"(\\)");
             auto json = nlohmann::json::parse(commandStr, nullptr, false);
             if (json.is_discarded())
             {

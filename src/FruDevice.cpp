@@ -27,6 +27,7 @@
 #include <linux/i2c-dev-user.h>
 #include <iostream>
 #include <sys/ioctl.h>
+#include <regex>
 
 namespace fs = std::experimental::filesystem;
 static constexpr bool DEBUG = false;
@@ -351,6 +352,8 @@ void AddFruObjectToDbus(
     if (productNameFind != formattedFru.end())
     {
         productName = productNameFind->second;
+        std::regex illegalObject("[^A-Za-z0-9_]");
+        productName = std::regex_replace(productName, illegalObject, "_");
     }
     else
     {
