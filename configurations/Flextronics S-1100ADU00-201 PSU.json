@@ -1,0 +1,18 @@
+{
+    "exposes": [
+        {
+            "address": "0x58",
+            "bus": "$bus",
+            "name": "Flextronics S-1100ADU00-201 PSU Device",
+            "type": "pmbus"
+        },
+        {
+            "address": "$address",
+            "bus": "$bus",
+            "name": "Flextronics S-1100ADU00-201 PSU FRU",
+            "type": "IntelFruDevice"
+        }
+    ],
+    "name": "Flextronics S-1100ADU00-201 PSU",
+    "probe": "xyz.openbmc_project.FruDevice({'PRODUCT_PRODUCT_NAME': 'S-1100ADU00-201', 'ADDRESS': '0x50'})"
+}
