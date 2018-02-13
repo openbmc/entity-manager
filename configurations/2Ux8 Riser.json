@@ -34,6 +34,12 @@
                 "type": "TMP75"
             },
             {
+                "address": "0x72",
+                "bus": "$bus",
+                "name": "Riser 1 Mux",
+                "type": "SMBusMux"
+            },
+            {
                 "address": "$address",
                 "bus": "$bus",
                 "name": "Riser 1 Fru",
@@ -76,6 +82,12 @@
                     }
                 ],
                 "type": "TMP75"
+            },
+            {
+                "address": "0x73",
+                "bus": "$bus",
+                "name": "Riser 2 Mux",
+                "type": "SMBusMux"
             },
             {
                 "address": "$address",
