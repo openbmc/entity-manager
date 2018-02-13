@@ -31,6 +31,7 @@
 
 namespace fs = std::experimental::filesystem;
 static constexpr bool DEBUG = false;
+static constexpr size_t SLEEP_SECONDS_AFTER_PGOOD = 5;
 static size_t UNKNOWN_BUS_OBJECT_COUNT = 0;
 
 const static constexpr char *BASEBOARD_FRU_LOCATION =
@@ -38,7 +39,7 @@ const static constexpr char *BASEBOARD_FRU_LOCATION =
 
 static constexpr std::array<const char *, 5> FRU_AREAS = {
     "INTERNAL", "CHASSIS", "BOARD", "PRODUCT", "MULTIRECORD"};
-
+const static constexpr char *POWER_OBJECT_NAME = "/org/openbmc/control/power0";
 using DeviceMap = boost::container::flat_map<int, std::vector<char>>;
 using BusMap = boost::container::flat_map<int, std::shared_ptr<DeviceMap>>;
 
@@ -133,7 +134,7 @@ int get_bus_frus(int file, int first, int last, int bus,
 
 static BusMap FindI2CDevices(const std::vector<fs::path> &i2cBuses)
 {
-    static std::vector<std::future<void>> futures;
+    std::vector<std::future<void>> futures;
     BusMap busMap;
     for (auto &i2cBus : i2cBuses)
     {
@@ -328,6 +329,12 @@ bool formatFru(const std::vector<char> &fruBytes,
     return true;
 }
 
+static bool isMuxBus(size_t bus)
+{
+    return std::experimental::filesystem::exists(
+        "/sys/bus/i2c/devices/i2c-" + std::to_string(bus) + "/mux_device");
+}
+
 void AddFruObjectToDbus(
     std::shared_ptr<dbus::connection> dbusConn, std::vector<char> &device,
     dbus::DbusObjectServer &objServer,
@@ -361,8 +368,21 @@ void AddFruObjectToDbus(
         UNKNOWN_BUS_OBJECT_COUNT++;
     }
 
-    auto object =
-        objServer.add_object("/xyz/openbmc_project/FruDevice/" + productName);
+    productName = "/xyz/openbmc_project/FruDevice/" + productName;
+
+    // avoid duplicates by checking to see if on a mux
+    if (bus > 0 && isMuxBus(bus))
+    {
+        for (auto const &busObj : dbusObjectMap)
+        {
+            if ((address == busObj.first.second) &&
+                (busObj.second->object_name == productName))
+            {
+                continue;
+            }
+        }
+    }
+    auto object = objServer.add_object(productName);
     dbusObjectMap[std::pair<size_t, size_t>(bus, address)] = object;
 
     auto iface = std::make_shared<dbus::DbusInterface>(
@@ -403,6 +423,48 @@ static bool readBaseboardFru(std::vector<char> &baseboardFru)
     return true;
 }
 
+void rescanBusses(boost::container::flat_map<std::pair<size_t, size_t>,
+                                             std::shared_ptr<dbus::DbusObject>>
+                      &dbusObjectMap,
+                  std::shared_ptr<dbus::connection> systemBus,
+                  dbus::DbusObjectServer &objServer)
+{
+    auto devDir = fs::path("/dev/");
+    auto matchString = std::string("i2c*");
+    std::vector<fs::path> i2cBuses;
+
+    if (!find_files(devDir, matchString, i2cBuses, 0))
+    {
+        std::cerr << "unable to find i2c devices\n";
+        return;
+    }
+    BusMap busMap = FindI2CDevices(i2cBuses);
+
+    for (auto &busObj : dbusObjectMap)
+    {
+        objServer.remove_object(busObj.second);
+    }
+
+    dbusObjectMap.clear();
+    UNKNOWN_BUS_OBJECT_COUNT = 0;
+
+    for (auto &devicemap : busMap)
+    {
+        for (auto &device : *devicemap.second)
+        {
+            AddFruObjectToDbus(systemBus, device.second, objServer,
+                               dbusObjectMap, devicemap.first, device.first);
+        }
+    }
+    // todo, get this from a more sensable place
+    std::vector<char> baseboardFru;
+    if (readBaseboardFru(baseboardFru))
+    {
+        AddFruObjectToDbus(systemBus, baseboardFru, objServer, dbusObjectMap,
+                           -1, -1);
+    }
+}
+
 int main(int argc, char **argv)
 {
     auto devDir = fs::path("/dev/");
@@ -427,21 +489,7 @@ int main(int argc, char **argv)
                                std::shared_ptr<dbus::DbusObject>>
         dbusObjectMap;
 
-    for (auto &devicemap : busMap)
-    {
-        for (auto &device : *devicemap.second)
-        {
-            AddFruObjectToDbus(systemBus, device.second, objServer,
-                               dbusObjectMap, devicemap.first, device.first);
-        }
-    }
-
-    std::vector<char> baseboardFru;
-    if (readBaseboardFru(baseboardFru))
-    {
-        AddFruObjectToDbus(systemBus, baseboardFru, objServer, dbusObjectMap,
-                           -1, -1);
-    }
+    rescanBusses(dbusObjectMap, systemBus, objServer);
 
     auto object = std::make_shared<dbus::DbusObject>(
         systemBus, "/xyz/openbmc_project/FruDevice");
@@ -450,29 +498,53 @@ int main(int argc, char **argv)
         "xyz.openbmc_project.FruDeviceManager", systemBus);
     object->register_interface(iface);
 
+    std::atomic_bool threadRunning(false);
+    std::future<void> future;
+
     iface->register_method("ReScan", [&]() {
-        busMap = FindI2CDevices(i2cBuses);
-
-        for (auto &busObj : dbusObjectMap)
+        if (!threadRunning)
         {
-            objServer.remove_object(busObj.second);
+            threadRunning = true;
+            future = std::async(std::launch::async, [&] {
+                rescanBusses(dbusObjectMap, systemBus, objServer);
+                threadRunning = false;
+            });
         }
-        dbusObjectMap.clear();
-        UNKNOWN_BUS_OBJECT_COUNT = 0;
-
-        for (auto &devicemap : busMap)
-        {
-            for (auto &device : *devicemap.second)
-            {
-                AddFruObjectToDbus(systemBus, device.second, objServer,
-                                   dbusObjectMap, devicemap.first,
-                                   device.first);
-            }
-        }
-
         return std::tuple<>(); // this is a bug in boost-dbus, needs some sort
                                // of return
     });
+
+    dbus::match powerChange(systemBus,
+                            "type='signal',path_namespace='" +
+                                std::string(POWER_OBJECT_NAME) + "'");
+
+    dbus::filter filter(systemBus, [](dbus::message &m) {
+        auto member = m.get_member();
+        return member == "PropertiesChanged";
+    });
+    std::function<void(boost::system::error_code, dbus::message)> eventHandler =
+        [&](boost::system::error_code ec, dbus::message s) {
+            boost::container::flat_map<std::string, dbus::dbus_variant> values;
+            std::string objectName;
+            s.unpack(objectName, values);
+            auto findPgood = values.find("pgood");
+            if (findPgood != values.end())
+            {
+                if (!threadRunning)
+                {
+                    threadRunning = true;
+                    future = std::async(std::launch::async, [&] {
+                        std::this_thread::sleep_for(
+                            std::chrono::seconds(SLEEP_SECONDS_AFTER_PGOOD));
+                        rescanBusses(dbusObjectMap, systemBus, objServer);
+                        threadRunning = false;
+                    });
+                }
+            }
+            filter.async_dispatch(eventHandler);
+
+        };
+    filter.async_dispatch(eventHandler);
 
     io.run();
     return 0;
