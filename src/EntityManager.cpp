@@ -18,6 +18,7 @@
 #include <dbus/properties.hpp>
 #include <nlohmann/json.hpp>
 #include <fstream>
+#include <future>
 #include <regex>
 #include <boost/algorithm/string/predicate.hpp>
 #include <boost/algorithm/string/replace.hpp>
@@ -80,6 +81,12 @@ std::vector<std::string> PASSED_PROBES;
 std::shared_ptr<dbus::connection> SYSTEM_BUS;
 
 std::regex ILLEGAL_DBUS_REGEX("[^A-Za-z0-9_]");
+
+void registerCallbacks(
+    std::vector<std::pair<std::unique_ptr<dbus::match>,
+                          std::shared_ptr<dbus::filter>>> &dbusMatches,
+    std::atomic_bool &threadRunning, nlohmann::json &systemConfiguration,
+    dbus::DbusObjectServer &objServer);
 
 // calls the mapper to find all exposed objects of an interface type
 // and creates a vector<flat_map> that contains all the key value pairs
@@ -461,8 +468,8 @@ void populateInterfaceFromJson(dbus::DbusInterface *iface, nlohmann::json dict,
 }
 
 void postToDbus(const nlohmann::json &systemConfiguration,
-                dbus::DbusObjectServer &objServer,
-                std::vector<std::shared_ptr<dbus::DbusObject>> &objects)
+                dbus::DbusObjectServer &objServer)
+
 {
     for (auto &boardPair :
          nlohmann::json::iterator_wrapper(systemConfiguration))
@@ -629,7 +636,7 @@ void templateCharReplace(
     }
 }
 
-int main(int argc, char **argv)
+bool findJsonFiles(std::vector<nlohmann::json> &configurations)
 {
     // find configuration files
     std::vector<fs::path> jsonPaths;
@@ -637,15 +644,8 @@ int main(int argc, char **argv)
     {
         std::cerr << "Unable to find any configuration files in "
                   << CONFIGURATION_DIR << "\n";
-        return 1;
+        return false;
     }
-    // setup connection to dbus
-    boost::asio::io_service io;
-    SYSTEM_BUS = std::make_shared<dbus::connection>(io, dbus::bus::system);
-    dbus::DbusObjectServer objServer(SYSTEM_BUS);
-    SYSTEM_BUS->request_name("xyz.openbmc_project.EntityManager");
-
-    std::vector<nlohmann::json> configurations;
     for (auto &jsonPath : jsonPaths)
     {
         std::ifstream jsonStream(jsonPath.c_str());
@@ -672,11 +672,49 @@ int main(int argc, char **argv)
             configurations.emplace_back(data);
         }
     }
+}
 
-    // keep looping as long as at least 1 new probe passed, removing
-    // configurations from the memory store once the probe passes
+bool rescan(nlohmann::json &systemConfiguration)
+{
+    std::vector<nlohmann::json> configurations;
+    if (!findJsonFiles(configurations))
+    {
+        false;
+    }
+    // preprocess already passed configurations and missing fields
+    if (systemConfiguration.size())
+    {
+        for (auto it = configurations.begin(); it != configurations.end();)
+        {
+            auto findName = it->find("name");
+            if (findName == it->end())
+            {
+                std::cerr << "configuration missing name field " << *it << "\n";
+                it = configurations.erase(it);
+                continue;
+            }
+            else if (findName->type() != nlohmann::json::value_t::string)
+            {
+                std::cerr << "name field must be a string " << *findName
+                          << "\n";
+                it = configurations.erase(it);
+                continue;
+            }
+            auto findAlreadyFound =
+                systemConfiguration.find(findName->get<std::string>());
+            if (findAlreadyFound != systemConfiguration.end())
+            {
+                it = configurations.erase(it);
+                continue;
+            }
+            // TODO: add in tags to determine if configuration should be
+            // refreshed on AC / DC / Always.
+            it++;
+        }
+    }
+
+    // probe until no probes pass
     bool probePassed = true;
-    nlohmann::json systemConfiguration = nlohmann::json::object();
     while (probePassed)
     {
         probePassed = false;
@@ -822,10 +860,135 @@ int main(int argc, char **argv)
             }
         }
     }
+}
+
+void propertiesChangedCallback(
+    std::vector<std::pair<std::unique_ptr<dbus::match>,
+                          std::shared_ptr<dbus::filter>>> &dbusMatches,
+    std::atomic_bool &threadRunning, nlohmann::json &systemConfiguration,
+    dbus::DbusObjectServer &objServer, std::shared_ptr<dbus::filter> dbusFilter)
+{
+    static std::future<void> future;
+    bool notRunning = false;
+    if (threadRunning.compare_exchange_strong(notRunning, true))
+    {
+        future = std::async(std::launch::async, [&] {
+            std::this_thread::sleep_for(std::chrono::seconds(5));
+            auto oldConfiguration = systemConfiguration;
+            DBUS_PROBE_OBJECTS.clear();
+            rescan(systemConfiguration);
+            auto newConfiguration = systemConfiguration;
+            for (auto it = newConfiguration.begin();
+                 it != newConfiguration.end();)
+            {
+                auto findKey = oldConfiguration.find(it.key());
+                if (findKey != oldConfiguration.end())
+                {
+                    it = newConfiguration.erase(it);
+                }
+                else
+                {
+                    it++;
+                }
+            }
+            // only post new items to bus for now
+            postToDbus(newConfiguration, objServer);
+            // this line to be removed in future
+            writeJsonFiles(systemConfiguration);
+            registerCallbacks(dbusMatches, threadRunning, systemConfiguration,
+                              objServer);
+            threadRunning = false;
+        });
+    }
+    if (dbusFilter != nullptr)
+    {
+        dbusFilter->async_dispatch([&, dbusFilter](boost::system::error_code ec,
+                                                   dbus::message) {
+            if (ec)
+            {
+                std::cerr << "properties changed callback error " << ec << "\n";
+            }
+            propertiesChangedCallback(dbusMatches, threadRunning,
+                                      systemConfiguration, objServer,
+                                      dbusFilter);
+        });
+    }
+}
+
+void registerCallbacks(
+    std::vector<std::pair<std::unique_ptr<dbus::match>,
+                          std::shared_ptr<dbus::filter>>> &dbusMatches,
+    std::atomic_bool &threadRunning, nlohmann::json &systemConfiguration,
+    dbus::DbusObjectServer &objServer)
+{
+    static boost::container::flat_set<std::string> watchedObjects;
+
+    for (const auto &objectMap : DBUS_PROBE_OBJECTS)
+    {
+        auto findObject = watchedObjects.find(objectMap.first);
+        if (findObject != watchedObjects.end())
+        {
+            continue;
+        }
+        // this creates a filter for properties changed for any new probe type
+        auto propertyChange = std::make_unique<dbus::match>(
+            SYSTEM_BUS,
+            "type='signal',member='PropertiesChanged',arg0='" +
+                objectMap.first + "'");
+        auto filter =
+            std::make_shared<dbus::filter>(SYSTEM_BUS, [](dbus::message &m) {
+                auto member = m.get_member();
+                return member == "PropertiesChanged";
+            });
+
+        filter->async_dispatch([&, filter](boost::system::error_code ec,
+                                           dbus::message) {
+            if (ec)
+            {
+                std::cerr << "register callbacks callback error " << ec << "\n";
+            }
+            propertiesChangedCallback(dbusMatches, threadRunning,
+                                      systemConfiguration, objServer, filter);
+        });
+        dbusMatches.emplace_back(std::move(propertyChange), filter);
+    }
+}
+
+int main(int argc, char **argv)
+{
+    // setup connection to dbus
+    boost::asio::io_service io;
+    SYSTEM_BUS = std::make_shared<dbus::connection>(io, dbus::bus::system);
+    dbus::DbusObjectServer objServer(SYSTEM_BUS);
+    SYSTEM_BUS->request_name("xyz.openbmc_project.EntityManager");
+
+    nlohmann::json systemConfiguration = nlohmann::json::object();
+    rescan(systemConfiguration);
     // this line to be removed in future
     writeJsonFiles(systemConfiguration);
-    std::vector<std::shared_ptr<dbus::DbusObject>> busObjects;
-    postToDbus(systemConfiguration, objServer, busObjects);
+    postToDbus(systemConfiguration, objServer);
+    auto object = std::make_shared<dbus::DbusObject>(
+        SYSTEM_BUS, "/xyz/openbmc_project/EntityManager");
+    objServer.register_object(object);
+    auto iface = std::make_shared<dbus::DbusInterface>(
+        "xyz.openbmc_project.EntityManager", SYSTEM_BUS);
+    object->register_interface(iface);
+
+    std::atomic_bool threadRunning(false);
+    // to keep reference to the match / filter objects so they don't get
+    // destroyed
+    std::vector<
+        std::pair<std::unique_ptr<dbus::match>, std::shared_ptr<dbus::filter>>>
+        dbusMatches;
+    iface->register_method("ReScan", [&]() {
+        propertiesChangedCallback(dbusMatches, threadRunning,
+                                  systemConfiguration, objServer, nullptr);
+        return std::tuple<>(); // this is a bug in boost-dbus, needs some sort
+                               // of return
+    });
+    registerCallbacks(dbusMatches, threadRunning, systemConfiguration,
+                      objServer);
+
     io.run();
 
     return 0;
