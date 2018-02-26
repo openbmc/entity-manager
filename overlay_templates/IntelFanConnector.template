@@ -1,0 +1,19 @@
+/dts-v1/;
+/plugin/;
+/ {
+    compatible = "$platform";
+    fragment@0{
+        target = <&pwm_tacho>;
+        __overlay__{
+            #address-cells = <1>;
+            #size-cells = <0>;
+            status = "okay";
+            oemname$pwm = "$name";
+            fan@$pwm {
+                reg = <$pwm>;
+                aspeed,fan-tach-ch = /bits/ 8 <$tachs>;
+            };
+        };
+
+    };
+};

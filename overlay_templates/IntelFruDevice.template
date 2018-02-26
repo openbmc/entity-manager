@@ -1,0 +1,20 @@
+/dts-v1/;
+/plugin/;
+/ {
+    compatible = "$platform";
+    fragment@0{
+        target = <&i2c$bus>;
+        __overlay__{
+            #address-cells = <1>;
+            #size-cells = <0>;
+            status = "okay";
+            eeprom@$name {
+                compatible = "atmel,24c02";
+                reg = <$address>;
+                oemname1 = "$name";
+                pagesize = <64>;
+            };
+        };
+
+    };
+};

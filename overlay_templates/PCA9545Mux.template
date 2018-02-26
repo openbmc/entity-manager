@@ -1,0 +1,39 @@
+/dts-v1/;
+/plugin/;
+/ {
+    compatible = "$platform";
+    fragment@0{
+        target = <&i2c$bus>;
+        __overlay__{
+            status = "okay";
+            smbus_mux@$name {
+                compatible = "nxp,pca9545";
+                reg = <$address>;
+                #address-cells = <1>;
+                #size-cells = <0>;
+                oemname1 = "$name";
+                $name_0: $name@0 {
+                    #address-cells = <1>;
+                    #size-cells = <0>;
+                    reg = <0>;
+                };
+                $name_1: $name@1 {
+                    #address-cells = <1>;
+                    #size-cells = <0>;
+                    reg = <1>;
+                };
+                $name_2: $name@2{
+                    #address-cells = <1>;
+                    #size-cells = <0>;
+                    reg = <2>;
+                };
+                $name_3: $name@3{
+                    #address-cells = <1>;
+                    #size-cells = <0>;
+                    reg = <3>;
+                };
+            };
+        };
+
+    };
+};

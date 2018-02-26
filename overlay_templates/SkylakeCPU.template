@@ -1,0 +1,64 @@
+/dts-v1/;
+/plugin/;
+/ {
+    compatible = "$platform";
+    fragment@0{
+        target = <&peci_hwmon$cpu_id>;
+        __overlay__{
+            show-core = <$show_core>;
+            dimm-nums = <$dimm_nums>;
+            status = "okay";
+
+            oemname1 = "Die_Temp_CPU$cpu_id";
+            oemname2 = "DTS_Thermal_Margin_CPU$cpu_id";
+            oemname3 = "TControl_CPU$cpu_id";
+            oemname4 = "TThrottle_CPU$cpu_id";
+
+            oemname100 = "Core0_Temp_CPU$cpu_id";
+            oemname101 = "Core1_Temp_CPU$cpu_id";
+            oemname102 = "Core2_Temp_CPU$cpu_id";
+            oemname103 = "Core3_Temp_CPU$cpu_id";
+            oemname104 = "Core4_Temp_CPU$cpu_id";
+            oemname105 = "Core5_Temp_CPU$cpu_id";
+            oemname106 = "Core6_Temp_CPU$cpu_id";
+            oemname107 = "Core7_Temp_CPU$cpu_id";
+            oemname108 = "Core8_Temp_CPU$cpu_id";
+            oemname109 = "Core9_Temp_CPU$cpu_id";
+            oemname110 = "Core10_Temp_CPU$cpu_id";
+            oemname111 = "Core11_Temp_CPU$cpu_id";
+            oemname112 = "Core12_Temp_CPU$cpu_id";
+            oemname113 = "Core13_Temp_CPU$cpu_id";
+            oemname114 = "Core14_Temp_CPU$cpu_id";
+            oemname115 = "Core15_Temp_CPU$cpu_id";
+            oemname116 = "Core16_Temp_CPU$cpu_id";
+            oemname117 = "Core17_Temp_CPU$cpu_id";
+            oemname118 = "Core18_Temp_CPU$cpu_id";
+            oemname119 = "Core19_Temp_CPU$cpu_id";
+            oemname120 = "Core20_Temp_CPU$cpu_id";
+            oemname121 = "Core21_Temp_CPU$cpu_id";
+            oemname122 = "Core22_Temp_CPU$cpu_id";
+            oemname123 = "Core23_Temp_CPU$cpu_id";
+            oemname124 = "Core24_Temp_CPU$cpu_id";
+            oemname125 = "Core25_Temp_CPU$cpu_id";
+            oemname126 = "Core26_Temp_CPU$cpu_id";
+            oemname127 = "Core27_Temp_CPU$cpu_id";
+
+            oemname200 = "DIMM0_Temp_CPU$cpu_id";
+            oemname201 = "DIMM1_Temp_CPU$cpu_id";
+            oemname202 = "DIMM2_Temp_CPU$cpu_id";
+            oemname203 = "DIMM3_Temp_CPU$cpu_id";
+            oemname204 = "DIMM4_Temp_CPU$cpu_id";
+            oemname205 = "DIMM5_Temp_CPU$cpu_id";
+            oemname206 = "DIMM6_Temp_CPU$cpu_id";
+            oemname207 = "DIMM7_Temp_CPU$cpu_id";
+            oemname208 = "DIMM8_Temp_CPU$cpu_id";
+            oemname209 = "DIMM9_Temp_CPU$cpu_id";
+            oemname210 = "DIMM10_Temp_CPU$cpu_id";
+            oemname211 = "DIMM11_Temp_CPU$cpu_id";
+            oemname212 = "DIMM12_Temp_CPU$cpu_id";
+            oemname213 = "DIMM13_Temp_CPU$cpu_id";
+            oemname214 = "DIMM14_Temp_CPU$cpu_id";
+            oemname215 = "DIMM15_Temp_CPU$cpu_id";
+        };
+    };
+};

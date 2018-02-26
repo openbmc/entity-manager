@@ -31,7 +31,6 @@
 
 namespace fs = std::experimental::filesystem;
 static constexpr bool DEBUG = false;
-static constexpr size_t SLEEP_SECONDS_AFTER_PGOOD = 5;
 static size_t UNKNOWN_BUS_OBJECT_COUNT = 0;
 
 const static constexpr char *BASEBOARD_FRU_LOCATION =
@@ -42,6 +41,12 @@ static constexpr std::array<const char *, 5> FRU_AREAS = {
 const static constexpr char *POWER_OBJECT_NAME = "/org/openbmc/control/power0";
 using DeviceMap = boost::container::flat_map<int, std::vector<char>>;
 using BusMap = boost::container::flat_map<int, std::shared_ptr<DeviceMap>>;
+
+static bool isMuxBus(size_t bus)
+{
+    return is_symlink(std::experimental::filesystem::path(
+        "/sys/bus/i2c/devices/i2c-" + std::to_string(bus) + "/mux_device"));
+}
 
 int get_bus_frus(int file, int first, int last, int bus,
                  std::shared_ptr<DeviceMap> devices)
@@ -173,16 +178,26 @@ static BusMap FindI2CDevices(const std::vector<fs::path> &i2cBuses)
         auto &device = busMap[bus];
         device = std::make_shared<DeviceMap>();
 
-        // todo: call with boost asio?
-        futures.emplace_back(
-            std::async(std::launch::async, [file, device, bus] {
-                //  i2cdetect by default uses the range 0x03 to 0x77, as this is
-                //  what we
-                //  have tested with, use this range. Could be changed in
-                //  future.
-                get_bus_frus(file, 0x03, 0x77, bus, device);
-                close(file);
-            }));
+        // don't scan muxed buses async as don't want to confuse the mux
+        if (isMuxBus(bus))
+        {
+            get_bus_frus(file, 0x03, 0x77, bus, device);
+            close(file);
+        }
+        else
+        {
+            // todo: call with boost asio?
+            futures.emplace_back(
+                std::async(std::launch::async, [file, device, bus] {
+                    //  i2cdetect by default uses the range 0x03 to 0x77, as
+                    //  this is
+                    //  what we
+                    //  have tested with, use this range. Could be changed in
+                    //  future.
+                    get_bus_frus(file, 0x03, 0x77, bus, device);
+                    close(file);
+                }));
+        }
     }
     for (auto &fut : futures)
     {
@@ -329,12 +344,6 @@ bool formatFru(const std::vector<char> &fruBytes,
     return true;
 }
 
-static bool isMuxBus(size_t bus)
-{
-    return std::experimental::filesystem::exists(
-        "/sys/bus/i2c/devices/i2c-" + std::to_string(bus) + "/mux_device");
-}
-
 void AddFruObjectToDbus(
     std::shared_ptr<dbus::connection> dbusConn, std::vector<char> &device,
     dbus::DbusObjectServer &objServer,
@@ -438,6 +447,9 @@ void rescanBusses(boost::container::flat_map<std::pair<size_t, size_t>,
         std::cerr << "unable to find i2c devices\n";
         return;
     }
+    // scanning muxes in reverse order seems to have adverse effects
+    // sorting this list seems to be a fix for that
+    std::sort(i2cBuses.begin(), i2cBuses.end());
     BusMap busMap = FindI2CDevices(i2cBuses);
 
     for (auto &busObj : dbusObjectMap)
@@ -476,7 +488,6 @@ int main(int argc, char **argv)
         std::cerr << "unable to find i2c devices\n";
         return 1;
     }
-    BusMap busMap = FindI2CDevices(i2cBuses);
 
     boost::asio::io_service io;
     auto systemBus = std::make_shared<dbus::connection>(io, dbus::bus::system);
@@ -534,8 +545,6 @@ int main(int argc, char **argv)
                 {
                     threadRunning = true;
                     future = std::async(std::launch::async, [&] {
-                        std::this_thread::sleep_for(
-                            std::chrono::seconds(SLEEP_SECONDS_AFTER_PGOOD));
                         rescanBusses(dbusObjectMap, systemBus, objServer);
                         threadRunning = false;
                     });

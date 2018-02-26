@@ -15,6 +15,7 @@
 */
 
 #include <Utils.hpp>
+#include <Overlay.hpp>
 #include <dbus/properties.hpp>
 #include <nlohmann/json.hpp>
 #include <fstream>
@@ -33,8 +34,9 @@
 constexpr const char *OUTPUT_DIR = "/var/configuration/";
 constexpr const char *CONFIGURATION_DIR = "/usr/share/configurations";
 constexpr const char *TEMPLATE_CHAR = "$";
-constexpr const size_t PROPERTIES_CHANGED_UNTIL_FLUSH = 20;
+constexpr const size_t PROPERTIES_CHANGED_UNTIL_FLUSH_COUNT = 20;
 constexpr const size_t MAX_MAPPER_DEPTH = 99;
+constexpr const size_t SLEEP_AFTER_PROPERTIES_CHANGE_SECONDS = 3;
 
 namespace fs = std::experimental::filesystem;
 struct cmp_str
@@ -459,7 +461,7 @@ void populateInterfaceFromJson(dbus::DbusInterface *iface, nlohmann::json dict,
         iface->set_properties(properties);
 
         // flush the queue after adding an amount of properties so we don't hang
-        if (flushCount++ > PROPERTIES_CHANGED_UNTIL_FLUSH)
+        if (flushCount++ > PROPERTIES_CHANGED_UNTIL_FLUSH_COUNT)
         {
             objServer.flush();
             flushCount = 0;
@@ -823,8 +825,8 @@ bool rescan(nlohmann::json &systemConfiguration)
                                                 keyPair.value()
                                                     .get<std::string>()))
                                         {
+                                            exposedObject["status"] = "okay";
                                             expose[bind] = exposedObject;
-                                            expose[bind]["status"] = "okay";
 
                                             foundBind = true;
                                             break;
@@ -873,7 +875,8 @@ void propertiesChangedCallback(
     if (threadRunning.compare_exchange_strong(notRunning, true))
     {
         future = std::async(std::launch::async, [&] {
-            std::this_thread::sleep_for(std::chrono::seconds(5));
+            std::this_thread::sleep_for(
+                std::chrono::seconds(SLEEP_AFTER_PROPERTIES_CHANGE_SECONDS));
             auto oldConfiguration = systemConfiguration;
             DBUS_PROBE_OBJECTS.clear();
             rescan(systemConfiguration);
@@ -891,10 +894,14 @@ void propertiesChangedCallback(
                     it++;
                 }
             }
+            // todo: for now, only add new configurations, unload to come later
+            // unloadOverlays();
+            loadOverlays(newConfiguration);
             // only post new items to bus for now
             postToDbus(newConfiguration, objServer);
             // this line to be removed in future
             writeJsonFiles(systemConfiguration);
+
             registerCallbacks(dbusMatches, threadRunning, systemConfiguration,
                               objServer);
             threadRunning = false;
@@ -966,7 +973,10 @@ int main(int argc, char **argv)
     rescan(systemConfiguration);
     // this line to be removed in future
     writeJsonFiles(systemConfiguration);
+    unloadAllOverlays();
+    loadOverlays(systemConfiguration);
     postToDbus(systemConfiguration, objServer);
+
     auto object = std::make_shared<dbus::DbusObject>(
         SYSTEM_BUS, "/xyz/openbmc_project/EntityManager");
     objServer.register_object(object);

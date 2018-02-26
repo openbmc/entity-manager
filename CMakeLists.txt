@@ -87,7 +87,9 @@ target_link_libraries(fru-device pthread)
 target_link_libraries(fru-device stdc++fs)
 target_link_libraries(fru-device ${Boost_LIBRARIES})
 
-add_executable(entity-manager src/EntityManager.cpp src/Utils.cpp)
+add_executable(entity-manager src/EntityManager.cpp
+                              src/Overlay.cpp
+                              src/Utils.cpp)
 
 target_link_libraries(entity-manager  ${DBUS_LIBRARIES})
 target_link_libraries(entity-manager pthread)

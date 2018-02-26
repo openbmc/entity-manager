@@ -1,0 +1,20 @@
+/dts-v1/;
+/plugin/;
+/ {
+    compatible = "$platform";
+    fragment@0{
+        target = <&i2c$bus>;
+        __overlay__{
+            #address-cells = <1>;
+            #size-cells = <0>;
+            status = "okay";
+            tmp75@$name {
+                compatible = "ti,tmp75";
+                reg = <$address>;
+                oemname1 = "$name";
+                scale = "-3";
+            };
+        };
+
+    };
+};
