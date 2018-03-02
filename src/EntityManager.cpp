@@ -897,10 +897,10 @@ void propertiesChangedCallback(
             // todo: for now, only add new configurations, unload to come later
             // unloadOverlays();
             loadOverlays(newConfiguration);
-            // only post new items to bus for now
-            postToDbus(newConfiguration, objServer);
             // this line to be removed in future
             writeJsonFiles(systemConfiguration);
+            // only post new items to bus for now
+            postToDbus(newConfiguration, objServer);
 
             registerCallbacks(dbusMatches, threadRunning, systemConfiguration,
                               objServer);
