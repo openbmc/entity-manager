@@ -36,7 +36,7 @@ constexpr const char *CONFIGURATION_DIR = "/usr/share/configurations";
 constexpr const char *TEMPLATE_CHAR = "$";
 constexpr const size_t PROPERTIES_CHANGED_UNTIL_FLUSH_COUNT = 20;
 constexpr const size_t MAX_MAPPER_DEPTH = 99;
-constexpr const size_t SLEEP_AFTER_PROPERTIES_CHANGE_SECONDS = 3;
+constexpr const size_t SLEEP_AFTER_PROPERTIES_CHANGE_SECONDS = 5;
 
 namespace fs = std::experimental::filesystem;
 struct cmp_str
@@ -87,8 +87,7 @@ std::regex ILLEGAL_DBUS_REGEX("[^A-Za-z0-9_]");
 void registerCallbacks(
     std::vector<std::pair<std::unique_ptr<dbus::match>,
                           std::shared_ptr<dbus::filter>>> &dbusMatches,
-    std::atomic_bool &threadRunning, nlohmann::json &systemConfiguration,
-    dbus::DbusObjectServer &objServer);
+    nlohmann::json &systemConfiguration, dbus::DbusObjectServer &objServer);
 
 // calls the mapper to find all exposed objects of an interface type
 // and creates a vector<flat_map> that contains all the key value pairs
@@ -867,45 +866,56 @@ bool rescan(nlohmann::json &systemConfiguration)
 void propertiesChangedCallback(
     std::vector<std::pair<std::unique_ptr<dbus::match>,
                           std::shared_ptr<dbus::filter>>> &dbusMatches,
-    std::atomic_bool &threadRunning, nlohmann::json &systemConfiguration,
-    dbus::DbusObjectServer &objServer, std::shared_ptr<dbus::filter> dbusFilter)
+    nlohmann::json &systemConfiguration, dbus::DbusObjectServer &objServer,
+    std::shared_ptr<dbus::filter> dbusFilter)
 {
     static std::future<void> future;
+    static std::atomic_bool threadRunning(false);
+    static std::atomic_bool pendingCallback(false);
     bool notRunning = false;
     if (threadRunning.compare_exchange_strong(notRunning, true))
     {
         future = std::async(std::launch::async, [&] {
-            std::this_thread::sleep_for(
-                std::chrono::seconds(SLEEP_AFTER_PROPERTIES_CHANGE_SECONDS));
-            auto oldConfiguration = systemConfiguration;
-            DBUS_PROBE_OBJECTS.clear();
-            rescan(systemConfiguration);
-            auto newConfiguration = systemConfiguration;
-            for (auto it = newConfiguration.begin();
-                 it != newConfiguration.end();)
-            {
-                auto findKey = oldConfiguration.find(it.key());
-                if (findKey != oldConfiguration.end())
-                {
-                    it = newConfiguration.erase(it);
-                }
-                else
-                {
-                    it++;
-                }
-            }
-            // todo: for now, only add new configurations, unload to come later
-            // unloadOverlays();
-            loadOverlays(newConfiguration);
-            // this line to be removed in future
-            writeJsonFiles(systemConfiguration);
-            // only post new items to bus for now
-            postToDbus(newConfiguration, objServer);
 
-            registerCallbacks(dbusMatches, threadRunning, systemConfiguration,
-                              objServer);
+            do
+            {
+                std::this_thread::sleep_for(std::chrono::seconds(
+                    SLEEP_AFTER_PROPERTIES_CHANGE_SECONDS));
+                auto oldConfiguration = systemConfiguration;
+                DBUS_PROBE_OBJECTS.clear();
+                pendingCallback = false;
+                rescan(systemConfiguration);
+                auto newConfiguration = systemConfiguration;
+                for (auto it = newConfiguration.begin();
+                     it != newConfiguration.end();)
+                {
+                    auto findKey = oldConfiguration.find(it.key());
+                    if (findKey != oldConfiguration.end())
+                    {
+                        it = newConfiguration.erase(it);
+                    }
+                    else
+                    {
+                        it++;
+                    }
+                }
+
+                registerCallbacks(dbusMatches, systemConfiguration, objServer);
+                // todo: for now, only add new configurations, unload to come
+                // later
+                // unloadOverlays();
+                loadOverlays(newConfiguration);
+                // this line to be removed in future
+                writeJsonFiles(systemConfiguration);
+                // only post new items to bus for now
+                postToDbus(newConfiguration, objServer);
+            } while (pendingCallback);
             threadRunning = false;
         });
+    }
+    else
+    {
+        pendingCallback = true;
     }
     if (dbusFilter != nullptr)
     {
@@ -915,9 +925,8 @@ void propertiesChangedCallback(
             {
                 std::cerr << "properties changed callback error " << ec << "\n";
             }
-            propertiesChangedCallback(dbusMatches, threadRunning,
-                                      systemConfiguration, objServer,
-                                      dbusFilter);
+            propertiesChangedCallback(dbusMatches, systemConfiguration,
+                                      objServer, dbusFilter);
         });
     }
 }
@@ -925,8 +934,7 @@ void propertiesChangedCallback(
 void registerCallbacks(
     std::vector<std::pair<std::unique_ptr<dbus::match>,
                           std::shared_ptr<dbus::filter>>> &dbusMatches,
-    std::atomic_bool &threadRunning, nlohmann::json &systemConfiguration,
-    dbus::DbusObjectServer &objServer)
+    nlohmann::json &systemConfiguration, dbus::DbusObjectServer &objServer)
 {
     static boost::container::flat_set<std::string> watchedObjects;
 
@@ -954,8 +962,8 @@ void registerCallbacks(
             {
                 std::cerr << "register callbacks callback error " << ec << "\n";
             }
-            propertiesChangedCallback(dbusMatches, threadRunning,
-                                      systemConfiguration, objServer, filter);
+            propertiesChangedCallback(dbusMatches, systemConfiguration,
+                                      objServer, filter);
         });
         dbusMatches.emplace_back(std::move(propertyChange), filter);
     }
@@ -966,38 +974,37 @@ int main(int argc, char **argv)
     // setup connection to dbus
     boost::asio::io_service io;
     SYSTEM_BUS = std::make_shared<dbus::connection>(io, dbus::bus::system);
+
     dbus::DbusObjectServer objServer(SYSTEM_BUS);
     SYSTEM_BUS->request_name("xyz.openbmc_project.EntityManager");
-
-    nlohmann::json systemConfiguration = nlohmann::json::object();
-    rescan(systemConfiguration);
-    // this line to be removed in future
-    writeJsonFiles(systemConfiguration);
-    unloadAllOverlays();
-    loadOverlays(systemConfiguration);
-    postToDbus(systemConfiguration, objServer);
-
-    auto object = std::make_shared<dbus::DbusObject>(
-        SYSTEM_BUS, "/xyz/openbmc_project/EntityManager");
-    objServer.register_object(object);
-    auto iface = std::make_shared<dbus::DbusInterface>(
-        "xyz.openbmc_project.EntityManager", SYSTEM_BUS);
-    object->register_interface(iface);
-
-    std::atomic_bool threadRunning(false);
-    // to keep reference to the match / filter objects so they don't get
-    // destroyed
     std::vector<
         std::pair<std::unique_ptr<dbus::match>, std::shared_ptr<dbus::filter>>>
         dbusMatches;
+
+    nlohmann::json systemConfiguration = nlohmann::json::object();
+    auto iface = std::make_shared<dbus::DbusInterface>(
+        "xyz.openbmc_project.EntityManager", SYSTEM_BUS);
+    io.post([&]() {
+        unloadAllOverlays();
+        propertiesChangedCallback(dbusMatches, systemConfiguration, objServer,
+                                  nullptr);
+        auto object = std::make_shared<dbus::DbusObject>(
+            SYSTEM_BUS, "/xyz/openbmc_project/EntityManager");
+        objServer.register_object(object);
+
+        object->register_interface(iface);
+
+    });
+
+    // to keep reference to the match / filter objects so they don't get
+    // destroyed
+
     iface->register_method("ReScan", [&]() {
-        propertiesChangedCallback(dbusMatches, threadRunning,
-                                  systemConfiguration, objServer, nullptr);
+        propertiesChangedCallback(dbusMatches, systemConfiguration, objServer,
+                                  nullptr);
         return std::tuple<>(); // this is a bug in boost-dbus, needs some sort
                                // of return
     });
-    registerCallbacks(dbusMatches, threadRunning, systemConfiguration,
-                      objServer);
 
     io.run();
 

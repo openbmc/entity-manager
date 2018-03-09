@@ -28,6 +28,7 @@
 #include <iostream>
 #include <sys/ioctl.h>
 #include <regex>
+#include <sys/inotify.h>
 
 namespace fs = std::experimental::filesystem;
 static constexpr bool DEBUG = false;
@@ -35,6 +36,8 @@ static size_t UNKNOWN_BUS_OBJECT_COUNT = 0;
 
 const static constexpr char *BASEBOARD_FRU_LOCATION =
     "/etc/fru/baseboard.fru.bin";
+
+const static constexpr char *I2C_DEV_LOCATION = "/dev";
 
 static constexpr std::array<const char *, 5> FRU_AREAS = {
     "INTERNAL", "CHASSIS", "BOARD", "PRODUCT", "MULTIRECORD"};
@@ -436,45 +439,52 @@ void rescanBusses(boost::container::flat_map<std::pair<size_t, size_t>,
                                              std::shared_ptr<dbus::DbusObject>>
                       &dbusObjectMap,
                   std::shared_ptr<dbus::connection> systemBus,
-                  dbus::DbusObjectServer &objServer)
+                  dbus::DbusObjectServer &objServer,
+                  std::atomic_bool &pendingCallback)
 {
-    auto devDir = fs::path("/dev/");
-    auto matchString = std::string("i2c*");
-    std::vector<fs::path> i2cBuses;
 
-    if (!find_files(devDir, matchString, i2cBuses, 0))
+    do
     {
-        std::cerr << "unable to find i2c devices\n";
-        return;
-    }
-    // scanning muxes in reverse order seems to have adverse effects
-    // sorting this list seems to be a fix for that
-    std::sort(i2cBuses.begin(), i2cBuses.end());
-    BusMap busMap = FindI2CDevices(i2cBuses);
+        auto devDir = fs::path("/dev/");
+        auto matchString = std::string("i2c*");
+        std::vector<fs::path> i2cBuses;
+        pendingCallback = false;
 
-    for (auto &busObj : dbusObjectMap)
-    {
-        objServer.remove_object(busObj.second);
-    }
-
-    dbusObjectMap.clear();
-    UNKNOWN_BUS_OBJECT_COUNT = 0;
-
-    for (auto &devicemap : busMap)
-    {
-        for (auto &device : *devicemap.second)
+        if (!find_files(devDir, matchString, i2cBuses, 0))
         {
-            AddFruObjectToDbus(systemBus, device.second, objServer,
-                               dbusObjectMap, devicemap.first, device.first);
+            std::cerr << "unable to find i2c devices\n";
+            return;
         }
-    }
-    // todo, get this from a more sensable place
-    std::vector<char> baseboardFru;
-    if (readBaseboardFru(baseboardFru))
-    {
-        AddFruObjectToDbus(systemBus, baseboardFru, objServer, dbusObjectMap,
-                           -1, -1);
-    }
+        // scanning muxes in reverse order seems to have adverse effects
+        // sorting this list seems to be a fix for that
+        std::sort(i2cBuses.begin(), i2cBuses.end());
+        BusMap busMap = FindI2CDevices(i2cBuses);
+
+        for (auto &busObj : dbusObjectMap)
+        {
+            objServer.remove_object(busObj.second);
+        }
+
+        dbusObjectMap.clear();
+        UNKNOWN_BUS_OBJECT_COUNT = 0;
+
+        for (auto &devicemap : busMap)
+        {
+            for (auto &device : *devicemap.second)
+            {
+                AddFruObjectToDbus(systemBus, device.second, objServer,
+                                   dbusObjectMap, devicemap.first,
+                                   device.first);
+            }
+        }
+        // todo, get this from a more sensable place
+        std::vector<char> baseboardFru;
+        if (readBaseboardFru(baseboardFru))
+        {
+            AddFruObjectToDbus(systemBus, baseboardFru, objServer,
+                               dbusObjectMap, -1, -1);
+        }
+    } while (pendingCallback);
 }
 
 int main(int argc, char **argv)
@@ -500,26 +510,26 @@ int main(int argc, char **argv)
                                std::shared_ptr<dbus::DbusObject>>
         dbusObjectMap;
 
-    rescanBusses(dbusObjectMap, systemBus, objServer);
-
-    auto object = std::make_shared<dbus::DbusObject>(
-        systemBus, "/xyz/openbmc_project/FruDevice");
-    objServer.register_object(object);
     auto iface = std::make_shared<dbus::DbusInterface>(
         "xyz.openbmc_project.FruDeviceManager", systemBus);
-    object->register_interface(iface);
 
     std::atomic_bool threadRunning(false);
+    std::atomic_bool pendingCallback(false);
     std::future<void> future;
 
     iface->register_method("ReScan", [&]() {
-        if (!threadRunning)
+        bool notRunning = false;
+        if (threadRunning.compare_exchange_strong(notRunning, true))
         {
-            threadRunning = true;
             future = std::async(std::launch::async, [&] {
-                rescanBusses(dbusObjectMap, systemBus, objServer);
+                rescanBusses(dbusObjectMap, systemBus, objServer,
+                             pendingCallback);
                 threadRunning = false;
             });
+        }
+        else
+        {
+            pendingCallback = true;
         }
         return std::tuple<>(); // this is a bug in boost-dbus, needs some sort
                                // of return
@@ -541,19 +551,87 @@ int main(int argc, char **argv)
             auto findPgood = values.find("pgood");
             if (findPgood != values.end())
             {
-                if (!threadRunning)
+                bool notRunning = false;
+                if (threadRunning.compare_exchange_strong(notRunning, true))
                 {
-                    threadRunning = true;
                     future = std::async(std::launch::async, [&] {
-                        rescanBusses(dbusObjectMap, systemBus, objServer);
+                        rescanBusses(dbusObjectMap, systemBus, objServer,
+                                     pendingCallback);
                         threadRunning = false;
                     });
+                }
+                else
+                {
+                    pendingCallback = true;
                 }
             }
             filter.async_dispatch(eventHandler);
 
         };
     filter.async_dispatch(eventHandler);
+    int fd = inotify_init();
+    int wd = inotify_add_watch(fd, I2C_DEV_LOCATION,
+                               IN_CREATE | IN_MOVED_TO | IN_DELETE);
+    std::array<char, 4096> readBuffer;
+    std::string pendingBuffer;
+    // monitor for new i2c devices
+    boost::asio::posix::stream_descriptor dirWatch(io, fd);
+    std::function<void(const boost::system::error_code, std::size_t)>
+        watchI2cBusses = [&](const boost::system::error_code &ec,
+                             std::size_t bytes_transferred) {
+            if (ec)
+            {
+                std::cout << "Callback Error " << ec << "\n";
+                return;
+            }
+            pendingBuffer += std::string(readBuffer.data(), bytes_transferred);
+            bool devChange = false;
+            while (pendingBuffer.size() > sizeof(inotify_event))
+            {
+                const inotify_event *iEvent =
+                    reinterpret_cast<const inotify_event *>(
+                        pendingBuffer.data());
+                switch (iEvent->mask)
+                {
+                case IN_CREATE:
+                case IN_MOVED_TO:
+                case IN_DELETE:
+                    if (boost::starts_with(std::string(iEvent->name), "i2c"))
+                    {
+                        devChange = true;
+                    }
+                }
+
+                pendingBuffer.erase(0, sizeof(inotify_event) + iEvent->len);
+            }
+            bool notRunning = false;
+            if (devChange &&
+                threadRunning.compare_exchange_strong(notRunning, true))
+            {
+                future = std::async(std::launch::async, [&] {
+                    std::this_thread::sleep_for(std::chrono::seconds(2));
+                    rescanBusses(dbusObjectMap, systemBus, objServer,
+                                 pendingCallback);
+                    threadRunning = false;
+                });
+            }
+            else if (devChange)
+            {
+                pendingCallback = true;
+            }
+            dirWatch.async_read_some(boost::asio::buffer(readBuffer),
+                                     watchI2cBusses);
+        };
+
+    dirWatch.async_read_some(boost::asio::buffer(readBuffer), watchI2cBusses);
+
+    // run the intial scan
+    rescanBusses(dbusObjectMap, systemBus, objServer, pendingCallback);
+
+    auto object = std::make_shared<dbus::DbusObject>(
+        systemBus, "/xyz/openbmc_project/FruDevice");
+    objServer.register_object(object);
+    object->register_interface(iface);
 
     io.run();
     return 0;
