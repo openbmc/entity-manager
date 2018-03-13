@@ -54,14 +54,16 @@ enum class probe_type_codes
     TRUE_T,
     AND,
     OR,
-    FOUND
+    FOUND,
+    MATCH_ONE
 };
 const static boost::container::flat_map<const char *, probe_type_codes, cmp_str>
     PROBE_TYPES{{{"FALSE", probe_type_codes::FALSE_T},
                  {"TRUE", probe_type_codes::TRUE_T},
                  {"AND", probe_type_codes::AND},
                  {"OR", probe_type_codes::OR},
-                 {"FOUND", probe_type_codes::FOUND}}};
+                 {"FOUND", probe_type_codes::FOUND},
+                 {"MATCH_ONE", probe_type_codes::MATCH_ONE}}};
 
 using GetSubTreeType = std::vector<
     std::pair<std::string,
@@ -267,6 +269,7 @@ bool probe(
     const static std::regex command(R"(\((.*)\))");
     std::smatch match;
     bool ret = false;
+    bool matchOne = false;
     bool cur = true;
     probe_type_codes lastCommand = probe_type_codes::FALSE_T;
 
@@ -297,6 +300,14 @@ bool probe(
             case probe_type_codes::TRUE_T:
             {
                 return true; // todo, actually evaluate?
+                break;
+            }
+            case probe_type_codes::MATCH_ONE:
+            {
+                // set current value to last, this probe type shouldn't affect
+                // the outcome
+                cur = ret;
+                matchOne = true;
                 break;
             }
             /*case probe_type_codes::AND:
@@ -383,6 +394,10 @@ bool probe(
     {
         foundDevs.emplace_back(
             boost::container::flat_map<std::string, dbus::dbus_variant>());
+    }
+    if (matchOne && foundDevs.size() > 1)
+    {
+        foundDevs.erase(foundDevs.begin() + 1, foundDevs.end());
     }
     return ret;
 }
