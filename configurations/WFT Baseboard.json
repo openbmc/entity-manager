@@ -811,7 +811,7 @@
     "manufacturer": "$BOARD_MANUFACTURER",
     "model": "$BOARD_PRODUCT_NAME",
     "name": "WFP Baseboard",
-    "part_number": "$CHASSIS_PART_NUMBER",
-    "probe": "xyz.openbmc_project.FruDevice({'BOARD_PRODUCT_NAME': '.*WFT'})",
-    "serial_number": "$CHASSIS_SERIAL_NUMBER"
+    "part_number": "$BOARD_PART_NUMBER",
+    "serial_number": "$BOARD_SERIAL_NUMBER",
+    "probe": "xyz.openbmc_project.FruDevice({'BOARD_PRODUCT_NAME': '.*WFT'})"
 }

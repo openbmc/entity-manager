@@ -1,18 +1,44 @@
-{
-    "exposes": [
-        {
-            "address": "0x58",
-            "bus": "$bus",
-            "name": "Flextronics S-1100ADU00-201 PSU Device",
-            "type": "pmbus"
-        },
-        {
-            "address": "$address",
-            "bus": "$bus",
-            "name": "Flextronics S-1100ADU00-201 PSU FRU",
-            "type": "IntelFruDevice"
-        }
-    ],
-    "name": "Flextronics S-1100ADU00-201 PSU",
-    "probe": "xyz.openbmc_project.FruDevice({'PRODUCT_PRODUCT_NAME': 'S-1100ADU00-201', 'ADDRESS': '0x50'})"
-}
+[
+    {
+        "exposes": [
+            {
+                "address": "0x59",
+                "bus": "$bus",
+                "name": "Flextronics S-1100ADU00-201 PSU Device",
+                "type": "pmbus"
+            },
+            {
+                "address": "$address",
+                "bus": "$bus",
+                "name": "Flextronics S-1100ADU00-201 PSU FRU",
+                "type": "IntelFruDevice"
+            }
+        ],
+        "manufacturer": "$BOARD_MANUFACTURER",
+        "model": "$BOARD_PRODUCT_NAME",
+        "name": "Flextronics S-1100ADU00-201 PSU",
+        "part_number": "$BOARD_PART_NUMBER",
+        "probe": "xyz.openbmc_project.FruDevice({'PRODUCT_PRODUCT_NAME': 'S-1100ADU00-201', 'ADDRESS': '0x51'})"
+    },
+    {
+        "exposes": [
+            {
+                "address": "0x58",
+                "bus": "$bus",
+                "name": "Flextronics S-1100ADU00-201 PSU Device",
+                "type": "pmbus"
+            },
+            {
+                "address": "$address",
+                "bus": "$bus",
+                "name": "Flextronics S-1100ADU00-201 PSU FRU",
+                "type": "IntelFruDevice"
+            }
+        ],
+        "manufacturer": "$BOARD_MANUFACTURER",
+        "model": "$BOARD_PRODUCT_NAME",
+        "name": "Flextronics S-1100ADU00-201 PSU",
+        "part_number": "$BOARD_PART_NUMBER",
+        "probe": "xyz.openbmc_project.FruDevice({'PRODUCT_PRODUCT_NAME': 'S-1100ADU00-201', 'ADDRESS': '0x50'})"
+    }
+]

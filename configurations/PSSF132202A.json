@@ -1,0 +1,46 @@
+[
+    {
+        "exposes": [
+            {
+                "address": "0x59",
+                "bus": "$bus",
+                "name": "Solum 1300W PSU 2 Device",
+                "type": "pmbus"
+            },
+            {
+                "address": "$address",
+                "bus": "$bus",
+                "name": "Solum 1300W PSU 2 FRU",
+                "type": "IntelFruDevice"
+            }
+        ],
+        "manufacturer": "$PRODUCT_MANUFACTURER",
+        "model": "$PRODUCT_PRODUCT_NAME",
+        "name": "Solum 1300W PSU 2",
+        "part_number": "$PRODUCT_PART_NUMBER",
+        "serial_number": "$PRODUCT_PRODUCT_SERIAL_NUMBER",
+        "probe": "xyz.openbmc_project.FruDevice({'PRODUCT_PRODUCT_NAME': 'PSSF132202A', 'ADDRESS': '0x51'})"
+    },
+    {
+        "exposes": [
+            {
+                "address": "0x58",
+                "bus": "$bus",
+                "name": "Solum 1300W PSU 1 Device",
+                "type": "pmbus"
+            },
+            {
+                "address": "$address",
+                "bus": "$bus",
+                "name": "Solum 1300W PSU 1 FRU",
+                "type": "IntelFruDevice"
+            }
+        ],
+        "manufacturer": "$PRODUCT_MANUFACTURER",
+        "model": "$PRODUCT_PRODUCT_NAME",
+        "name": "Solum 1300W PSU 1",
+        "part_number": "$PRODUCT_PART_NUMBER",
+        "serial_number": "$PRODUCT_PRODUCT_SERIAL_NUMBER",
+        "probe": "xyz.openbmc_project.FruDevice({'PRODUCT_PRODUCT_NAME': 'PSSF132202A', 'ADDRESS': '0x50'})"
+    }
+]

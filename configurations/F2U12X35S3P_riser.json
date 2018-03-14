@@ -40,7 +40,11 @@
                 "type": "IntelFruDevice"
             }
         ],
+        "manufacturer": "$BOARD_MANUFACTURER",
+        "model": "$BOARD_PRODUCT_NAME",
         "name": "2U12x35 Riser1",
+        "part_number": "$BOARD_PART_NUMBER",
+        "serial_number": "$BOARD_SERIAL_NUMBER",
         "probe": "xyz.openbmc_project.FruDevice({'BOARD_PRODUCT_NAME': 'A2UL16RISER\\d', 'ADDRESS' : '0x50'})"
     },
     {
@@ -84,7 +88,11 @@
                 "type": "IntelFruDevice"
             }
         ],
+        "manufacturer": "$BOARD_MANUFACTURER",
+        "model": "$BOARD_PRODUCT_NAME",
         "name": "2U12x35 Riser2",
+        "serial_number": "$BOARD_SERIAL_NUMBER",
+        "part_number": "$BOARD_PART_NUMBER",
         "probe": "xyz.openbmc_project.FruDevice({'BOARD_PRODUCT_NAME': 'A2UL16RISER\\d', 'ADDRESS' : '0x51'})"
     }
 ]
