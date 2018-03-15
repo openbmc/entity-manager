@@ -13,6 +13,10 @@
             "type": "TMP75"
         }
     ],
+    "manufacturer": "$BOARD_MANUFACTURER",
+    "model": "$BOARD_PRODUCT_NAME",
     "name": "PCIE SSD Retimer",
+    "part_number": "$BOARD_PART_NUMBER",
+    "serial_number": "$BOARD_SERIAL_NUMBER",
     "probe": "xyz.openbmc_project.FruDevice({'BOARD_PRODUCT_NAME': 'SP3RT040X16'})"
 }

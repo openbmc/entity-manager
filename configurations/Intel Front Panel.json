@@ -39,7 +39,11 @@
             "type": "TMP75"
         }
     ],
+    "manufacturer": "$BOARD_MANUFACTURER",
+    "model": "$BOARD_PRODUCT_NAME",
     "name": "Intel Front Panel",
+    "part_number": "$BOARD_PART_NUMBER",
+    "serial_number": "$BOARD_SERIAL_NUMBER",
     "probe": [
         "xyz.openbmc_project.FruDevice({'BOARD_PRODUCT_NAME': 'FFPANEL'})",
         "OR",
