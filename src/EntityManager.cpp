@@ -100,6 +100,10 @@ bool findDbusObjects(
         &interfaceDevices,
     std::string interface)
 {
+    // todo: this is only static because the mapper is unreliable as of today
+    static boost::container::flat_map<std::string,
+                                      boost::container::flat_set<std::string>>
+        connections;
     // find all connections in the mapper that expose a specific type
     static const dbus::endpoint mapper("xyz.openbmc_project.ObjectMapper",
                                        "/xyz/openbmc_project/object_mapper",
@@ -112,32 +116,60 @@ bool findDbusObjects(
         std::cerr << "Pack Failed GetSensorSubtree\n";
         return false;
     }
-    dbus::message getMapResp = connection->send(getMap);
+
     GetSubTreeType interfaceSubtree;
-    if (!getMapResp.unpack(interfaceSubtree))
+    size_t retries = 1;
+    bool unpackStatus = false;
+    // the mapper seems to hang occasionally, not responding, so we give it a
+    // timeout and retries
+    do
     {
-        std::cerr << "Error communicating to mapper\n";
-        return false;
-    }
-    boost::container::flat_set<std::string> connections;
-    for (auto &object : interfaceSubtree)
+        dbus::message getMapResp =
+            connection->send(getMap, std::chrono::seconds(2));
+        unpackStatus = getMapResp.unpack(interfaceSubtree);
+
+    } while (retries-- && !unpackStatus);
+
+    auto &interfaceConnections = connections[interface];
+    if (!unpackStatus)
     {
-        for (auto &connPair : object.second)
+        std::cerr << "Error communicating to mapper, using cached data if "
+                     "available\n";
+        if (interfaceConnections.empty())
         {
-            connections.insert(connPair.first);
+            return false;
+        }
+    }
+
+    if (unpackStatus)
+    {
+        interfaceConnections.clear();
+        for (auto &object : interfaceSubtree)
+        {
+            for (auto &connPair : object.second)
+            {
+                interfaceConnections.insert(connPair.first);
+            }
         }
     }
     // iterate through the connections, adding creating individual device
     // dictionaries
-    for (auto &conn : connections)
+    for (auto &conn : interfaceConnections)
     {
         auto managedObj =
             dbus::endpoint(conn, "/", "org.freedesktop.DBus.ObjectManager",
                            "GetManagedObjects");
         dbus::message getManagedObj = dbus::message::new_call(managedObj);
-        dbus::message getManagedObjResp = connection->send(getManagedObj);
         ManagedObjectType managedInterface;
-        if (!getManagedObjResp.unpack(managedInterface))
+        retries = 1;
+        unpackStatus = false;
+        do
+        {
+            dbus::message getManagedObjResp = connection->send(getManagedObj);
+            unpackStatus = getManagedObjResp.unpack(managedInterface);
+        } while (retries-- && !unpackStatus);
+
+        if (!unpackStatus)
         {
             std::cerr << "error getting managed object for device " << conn
                       << "\n";
