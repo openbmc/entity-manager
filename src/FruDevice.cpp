@@ -383,14 +383,28 @@ void AddFruObjectToDbus(
     productName = "/xyz/openbmc_project/FruDevice/" + productName;
 
     // avoid duplicates by checking to see if on a mux
-    if (bus > 0 && isMuxBus(bus))
+    if (bus > 0)
     {
+        size_t index = 0;
         for (auto const &busObj : dbusObjectMap)
         {
-            if ((address == busObj.first.second) &&
-                (busObj.second->object_name == productName))
+            if ((busObj.second->object_name == productName))
             {
-                continue;
+                if (isMuxBus(bus) && address == busObj.first.second)
+                {
+                    continue;
+                }
+                // add underscore _index for the same object path on dbus
+                std::string strIndex = std::to_string(index);
+                if (index > 0)
+                {
+                    productName.substr(0, productName.size() - strIndex.size());
+                }
+                else
+                {
+                    productName += "_";
+                }
+                productName += std::to_string(index++);
             }
         }
     }
