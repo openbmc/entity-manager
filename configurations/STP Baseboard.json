@@ -804,12 +804,44 @@
             "cpu_id": 0,
             "address": "0x30",
             "name": "Skylake CPU 0",
+            "thresholds": [
+                {
+                    "direction": "greater than",
+                    "name": "upper critical",
+                    "label": "DIMM",
+                    "severity": 1,
+                    "value": 99
+                },
+                {
+                    "direction": "greater than",
+                    "name": "upper non critical",
+                    "label": "DIMM",
+                    "severity": 0,
+                    "value": 89
+                }
+            ],
             "type": "SkylakeCPU"
         },
         {
             "cpu_id": 1,
             "address": "0x31",
             "name": "Skylake CPU 1",
+            "thresholds": [
+                {
+                    "direction": "greater than",
+                    "name": "upper critical",
+                    "label": "DIMM",
+                    "severity": 1,
+                    "value": 99
+                },
+                {
+                    "direction": "greater than",
+                    "name": "upper non critical",
+                    "label": "DIMM",
+                    "severity": 0,
+                    "value": 89
+                }
+            ],
             "type": "SkylakeCPU"
         }
     ],
