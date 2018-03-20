@@ -8,8 +8,15 @@
             #address-cells = <1>;
             #size-cells = <0>;
 
-            peci-hwmon@Skylake_CPU_$cpu_id {
-                compatible = "intel,peci-hwmon";
+            peci-cputemp@Skylake_CPU_$cpu_id {
+                compatible = "intel,peci-cputemp";
+                oemname1 = "$name";
+                reg = <$address>;
+                status = "okay";
+            };
+
+            peci-dimmtemp@Skylake_CPU_$cpu_id {
+                compatible = "intel,peci-dimmtemp";
                 oemname1 = "$name";
                 reg = <$address>;
                 status = "okay";
