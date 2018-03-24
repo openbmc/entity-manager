@@ -373,7 +373,7 @@ bool probe(
             }
             std::string commandStr = *(match.begin() + 1);
             // convert single ticks and single slashes into legal json
-            boost::replace_all(commandStr, "'", R"(")");
+            boost::replace_all(commandStr, "'", "\"");
             boost::replace_all(commandStr, R"(\)", R"(\\)");
             auto json = nlohmann::json::parse(commandStr, nullptr, false);
             if (json.is_discarded())

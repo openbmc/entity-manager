@@ -42,6 +42,7 @@ const static constexpr char *I2C_DEV_LOCATION = "/dev";
 static constexpr std::array<const char *, 5> FRU_AREAS = {
     "INTERNAL", "CHASSIS", "BOARD", "PRODUCT", "MULTIRECORD"};
 const static constexpr char *POWER_OBJECT_NAME = "/org/openbmc/control/power0";
+const static std::regex NON_ASCII_REGEX("[^\x01-\x7f]");
 using DeviceMap = boost::container::flat_map<int, std::vector<char>>;
 using BusMap = boost::container::flat_map<int, std::shared_ptr<DeviceMap>>;
 
@@ -416,7 +417,13 @@ void AddFruObjectToDbus(
     object->register_interface(iface);
     for (auto &property : formattedFru)
     {
+        std::regex_replace(property.second.begin(), property.second.begin(),
+                           property.second.end(), NON_ASCII_REGEX, "_");
         iface->set_property(property.first, property.second);
+        if (DEBUG)
+        {
+            std::cout << property.first << ": " << property.second << "\n";
+        }
     }
     // baseboard can set this to -1 to not set a bus / address
     if (bus > 0)
