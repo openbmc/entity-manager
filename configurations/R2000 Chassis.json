@@ -130,7 +130,7 @@
     "probe": [
         "FOUND('WFP Baseboard')",
         "AND",
-        "xyz.openbmc_project.FruDevice({'BOARD_PRODUCT_NAME': 'A2UL16RISER\\d'})",
+        "xyz.openbmc_project.FruDevice({'BOARD_PRODUCT_NAME': 'A2UL\\d+RISER\\d'})",
         "MATCH_ONE"
     ]
 }
