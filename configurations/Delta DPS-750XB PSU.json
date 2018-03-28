@@ -1,0 +1,44 @@
+[
+    {
+        "exposes": [
+            {
+                "address": "0x59",
+                "bus": "$bus",
+                "name": "Delta DPS-750XB PSU Device",
+                "type": "pmbus"
+            },
+            {
+                "address": "$address",
+                "bus": "$bus",
+                "name": "Delta DPS-750XB PSU FRU",
+                "type": "IntelFruDevice"
+            }
+        ],
+        "manufacturer": "$BOARD_MANUFACTURER",
+        "model": "$BOARD_PRODUCT_NAME",
+        "name": "Delta DPS-750XB PSU",
+        "part_number": "$BOARD_PART_NUMBER",
+        "probe": "xyz.openbmc_project.FruDevice({'PRODUCT_PRODUCT_NAME': 'DPS-750XB A', 'ADDRESS': '0x51'})"
+    },
+    {
+        "exposes": [
+            {
+                "address": "0x58",
+                "bus": "$bus",
+                "name": "Delta DPS-750XB PSU Device",
+                "type": "pmbus"
+            },
+            {
+                "address": "$address",
+                "bus": "$bus",
+                "name": "Delta DPS-750XB PSU FRU",
+                "type": "IntelFruDevice"
+            }
+        ],
+        "manufacturer": "$BOARD_MANUFACTURER",
+        "model": "$BOARD_PRODUCT_NAME",
+        "name": "Delta DPS-750XB PSU PSU",
+        "part_number": "$BOARD_PART_NUMBER",
+        "probe": "xyz.openbmc_project.FruDevice({'PRODUCT_PRODUCT_NAME': 'DPS-750XB A', 'ADDRESS': '0x50'})"
+    }
+]
