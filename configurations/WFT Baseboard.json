@@ -796,21 +796,21 @@
             "type": "TMP75"
         },
         {
-            "cpu_id": 0,
             "address": "0x30",
+            "cpu_id": 0,
             "name": "Skylake CPU 0",
             "thresholds": [
                 {
                     "direction": "greater than",
-                    "name": "upper critical",
                     "label": "DIMM",
+                    "name": "upper critical",
                     "severity": 1,
                     "value": 99
                 },
                 {
                     "direction": "greater than",
-                    "name": "upper non critical",
                     "label": "DIMM",
+                    "name": "upper non critical",
                     "severity": 0,
                     "value": 89
                 }
@@ -818,21 +818,21 @@
             "type": "SkylakeCPU"
         },
         {
-            "cpu_id": 1,
             "address": "0x31",
+            "cpu_id": 1,
             "name": "Skylake CPU 1",
             "thresholds": [
                 {
                     "direction": "greater than",
-                    "name": "upper critical",
                     "label": "DIMM",
+                    "name": "upper critical",
                     "severity": 1,
                     "value": 99
                 },
                 {
                     "direction": "greater than",
-                    "name": "upper non critical",
                     "label": "DIMM",
+                    "name": "upper non critical",
                     "severity": 0,
                     "value": 89
                 }
@@ -840,10 +840,13 @@
             "type": "SkylakeCPU"
         }
     ],
-    "manufacturer": "$BOARD_MANUFACTURER",
-    "model": "$BOARD_PRODUCT_NAME",
     "name": "WFP Baseboard",
-    "part_number": "$BOARD_PART_NUMBER",
-    "serial_number": "$BOARD_SERIAL_NUMBER",
-    "probe": "xyz.openbmc_project.FruDevice({'BOARD_PRODUCT_NAME': '.*WFT'})"
+    "probe": "xyz.openbmc_project.FruDevice({'PRODUCT_PRODUCT_NAME': '.*WFT'})",
+    "type": "Board",
+    "xyz.openbmc_project.Inventory.Decorator.Asset": {
+        "Manufacturer": "$PRODUCT_MANUFACTURER",
+        "Model": "$PRODUCT_PRODUCT_NAME",
+        "PartNumber": "$PRODUCT_PART_NUMBER",
+        "SerialNumber": "$PRODUCT_PRODUCT_SERIAL_NUMBER"
+    }
 }

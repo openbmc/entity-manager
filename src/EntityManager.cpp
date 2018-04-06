@@ -21,6 +21,7 @@
 #include <fstream>
 #include <future>
 #include <regex>
+#include <boost/algorithm/string/case_conv.hpp>
 #include <boost/algorithm/string/predicate.hpp>
 #include <boost/algorithm/string/replace.hpp>
 #include <boost/variant/apply_visitor.hpp>
@@ -539,16 +540,29 @@ void postToDbus(const nlohmann::json &systemConfiguration,
                       << " reverting to Chassis.\n";
             boardType = "Chassis";
         }
+        std::string boardtypeLower = boost::algorithm::to_lower_copy(boardType);
 
         std::regex_replace(boardKey.begin(), boardKey.begin(), boardKey.end(),
                            ILLEGAL_DBUS_REGEX, "_");
-        std::string boardName =
-            "/xyz/openbmc_project/Inventory/Item/" + boardType + "/" + boardKey;
+        std::string boardName = "/xyz/openbmc_project/inventory/system/" +
+                                boardtypeLower + "/" + boardKey;
         auto boardObject = objServer.add_object(boardName);
 
-        auto boardIface = boardObject->add_interface(
-            "xyz.openbmc_project.Configuration." + boardType);
+        auto boardIface =
+            boardObject->add_interface("xyz.openbmc_project.Inventory.Item");
+
+        boardObject->add_interface("xyz.openbmc_project.Inventory.Item." +
+                                   boardType);
         populateInterfaceFromJson(boardIface.get(), boardValues, objServer);
+        for (auto &boardField : nlohmann::json::iterator_wrapper(boardValues))
+        {
+            if (boardField.value().type() == nlohmann::json::value_t::object)
+            {
+                auto iface = boardObject->add_interface(boardField.key());
+                populateInterfaceFromJson(iface.get(), boardField.value(),
+                                          objServer);
+            }
+        }
         auto exposes = boardValues.find("exposes");
         if (exposes == boardValues.end())
         {
@@ -638,7 +652,16 @@ void templateCharReplace(
         &foundDevice,
     size_t &foundDeviceIdx)
 {
-    if (keyPair.value().type() != nlohmann::json::value_t::string)
+    if (keyPair.value().type() == nlohmann::json::value_t::object)
+    {
+        for (auto nextLayer = keyPair.value().begin();
+             nextLayer != keyPair.value().end(); nextLayer++)
+        {
+            templateCharReplace(nextLayer, foundDevice, foundDeviceIdx);
+        }
+        return;
+    }
+    else if (keyPair.value().type() != nlohmann::json::value_t::string)
     {
         return;
     }
@@ -994,9 +1017,8 @@ void registerCallbacks(
         }
         // this creates a filter for properties changed for any new probe type
         auto propertyChange = std::make_unique<dbus::match>(
-            SYSTEM_BUS,
-            "type='signal',member='PropertiesChanged',arg0='" +
-                objectMap.first + "'");
+            SYSTEM_BUS, "type='signal',member='PropertiesChanged',arg0='" +
+                            objectMap.first + "'");
         auto filter =
             std::make_shared<dbus::filter>(SYSTEM_BUS, [](dbus::message &m) {
                 auto member = m.get_member();

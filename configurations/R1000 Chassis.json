@@ -242,12 +242,16 @@
         }
     ],
     "name": "R1000 Chassis",
-    "part_number": "R1208",
-    "serial_number": "23165",
     "probe": [
         "FOUND('WFP Baseboard')",
         "AND",
         "xyz.openbmc_project.FruDevice({'BOARD_PRODUCT_NAME': 'F1UL16RISER\\d'})",
         "MATCH_ONE"
-    ]
+    ],
+    "xyz.openbmc_project.Inventory.Decorator.Asset": {
+        "Manufacturer": "Intel Corporation",
+        "Model": "R1000",
+        "PartNumber": "R1208",
+        "SerialNumber": "23165"
+    }
 }

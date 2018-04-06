@@ -14,12 +14,15 @@
                 "type": "IntelFruDevice"
             }
         ],
-        "manufacturer": "$PRODUCT_MANUFACTURER",
-        "model": "$PRODUCT_PRODUCT_NAME",
         "name": "Solum 1300W PSU 2",
-        "part_number": "$PRODUCT_PART_NUMBER",
-        "serial_number": "$PRODUCT_PRODUCT_SERIAL_NUMBER",
-        "probe": "xyz.openbmc_project.FruDevice({'PRODUCT_PRODUCT_NAME': 'PSSF132202A', 'ADDRESS': '0x51'})"
+        "probe": "xyz.openbmc_project.FruDevice({'PRODUCT_PRODUCT_NAME': 'PSSF132202A', 'ADDRESS': '0x51'})",
+        "type": "PowerSupply",
+        "xyz.openbmc_project.Inventory.Decorator.Asset": {
+            "Manufacturer": "$PRODUCT_MANUFACTURER",
+            "Model": "$PRODUCT_PRODUCT_NAME",
+            "PartNumber": "$PRODUCT_PART_NUMBER",
+            "SerialNumber": "$PRODUCT_PRODUCT_SERIAL_NUMBER"
+        }
     },
     {
         "exposes": [
@@ -36,11 +39,14 @@
                 "type": "IntelFruDevice"
             }
         ],
-        "manufacturer": "$PRODUCT_MANUFACTURER",
-        "model": "$PRODUCT_PRODUCT_NAME",
         "name": "Solum 1300W PSU 1",
-        "part_number": "$PRODUCT_PART_NUMBER",
-        "serial_number": "$PRODUCT_PRODUCT_SERIAL_NUMBER",
-        "probe": "xyz.openbmc_project.FruDevice({'PRODUCT_PRODUCT_NAME': 'PSSF132202A', 'ADDRESS': '0x50'})"
+        "probe": "xyz.openbmc_project.FruDevice({'PRODUCT_PRODUCT_NAME': 'PSSF132202A', 'ADDRESS': '0x50'})",
+        "type": "PowerSupply",
+        "xyz.openbmc_project.Inventory.Decorator.Asset": {
+            "Manufacturer": "$PRODUCT_MANUFACTURER",
+            "Model": "$PRODUCT_PRODUCT_NAME",
+            "PartNumber": "$PRODUCT_PART_NUMBER",
+            "SerialNumber": "$PRODUCT_PRODUCT_SERIAL_NUMBER"
+        }
     }
 ]

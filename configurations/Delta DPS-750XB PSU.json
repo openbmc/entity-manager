@@ -14,11 +14,15 @@
                 "type": "IntelFruDevice"
             }
         ],
-        "manufacturer": "$BOARD_MANUFACTURER",
-        "model": "$BOARD_PRODUCT_NAME",
-        "name": "Delta DPS-750XB PSU",
-        "part_number": "$BOARD_PART_NUMBER",
-        "probe": "xyz.openbmc_project.FruDevice({'PRODUCT_PRODUCT_NAME': 'DPS-750XB A', 'ADDRESS': '0x51'})"
+        "name": "Delta DPS-750XB PSU 2",
+        "probe": "xyz.openbmc_project.FruDevice({'PRODUCT_PRODUCT_NAME': 'DPS-750XB A', 'ADDRESS': '0x51'})",
+        "type": "PowerSupply",
+        "xyz.openbmc_project.Inventory.Decorator.Asset": {
+            "Manufacturer": "$BOARD_MANUFACTURER",
+            "Model": "$BOARD_PRODUCT_NAME",
+            "PartNumber": "$BOARD_PART_NUMBER",
+            "SerialNumber": "$BOARD_SERIAL_NUMBER"
+        }
     },
     {
         "exposes": [
@@ -35,10 +39,14 @@
                 "type": "IntelFruDevice"
             }
         ],
-        "manufacturer": "$BOARD_MANUFACTURER",
-        "model": "$BOARD_PRODUCT_NAME",
-        "name": "Delta DPS-750XB PSU PSU",
-        "part_number": "$BOARD_PART_NUMBER",
-        "probe": "xyz.openbmc_project.FruDevice({'PRODUCT_PRODUCT_NAME': 'DPS-750XB A', 'ADDRESS': '0x50'})"
+        "name": "Delta DPS-750XB PSU 1",
+        "probe": "xyz.openbmc_project.FruDevice({'PRODUCT_PRODUCT_NAME': 'DPS-750XB A', 'ADDRESS': '0x50'})",
+        "type": "PowerSupply",
+        "xyz.openbmc_project.Inventory.Decorator.Asset": {
+            "Manufacturer": "$BOARD_MANUFACTURER",
+            "Model": "$BOARD_PRODUCT_NAME",
+            "PartNumber": "$BOARD_PART_NUMBER",
+            "SerialNumber": "$BOARD_SERIAL_NUMBER"
+        }
     }
 ]
