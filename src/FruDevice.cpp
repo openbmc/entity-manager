@@ -28,6 +28,7 @@
 #include <sys/ioctl.h>
 #include <regex>
 #include <sys/inotify.h>
+#include <xyz/openbmc_project/Common/error.hpp>
 
 namespace fs = std::experimental::filesystem;
 static constexpr bool DEBUG = false;
@@ -431,16 +432,15 @@ void AddFruObjectToDbus(
             std::cout << property.first << ": " << property.second << "\n";
         }
     }
-    // baseboard can set this to -1 to not set a bus / address
-    if (bus > 0)
-    {
-        std::stringstream data;
-        data << "0x" << std::hex << bus;
-        iface->register_property("BUS", data.str());
-        data.str("");
-        data << "0x" << std::hex << address;
-        iface->register_property("ADDRESS", data.str());
-    }
+
+    // baseboard will be 0, 0
+    std::stringstream data;
+    data << "0x" << std::hex << bus;
+    iface->register_property("BUS", data.str());
+    data.str("");
+    data << "0x" << std::hex << address;
+    iface->register_property("ADDRESS", data.str());
+
     iface->initialize();
 }
 
@@ -464,6 +464,7 @@ static bool readBaseboardFru(std::vector<char> &baseboardFru)
 }
 
 void rescanBusses(
+    BusMap &busMap,
     boost::container::flat_map<std::pair<size_t, size_t>,
                                std::shared_ptr<sdbusplus::asio::dbus_interface>>
         &dbusInterfaceMap,
@@ -487,7 +488,7 @@ void rescanBusses(
         // scanning muxes in reverse order seems to have adverse effects
         // sorting this list seems to be a fix for that
         std::sort(i2cBuses.begin(), i2cBuses.end());
-        BusMap busMap = FindI2CDevices(i2cBuses);
+        busMap = FindI2CDevices(i2cBuses);
 
         for (auto &busIface : dbusInterfaceMap)
         {
@@ -497,6 +498,14 @@ void rescanBusses(
         dbusInterfaceMap.clear();
         UNKNOWN_BUS_OBJECT_COUNT = 0;
 
+        // todo, get this from a more sensable place
+        std::vector<char> baseboardFru;
+        if (readBaseboardFru(baseboardFru))
+        {
+            boost::container::flat_map<int, std::vector<char>> baseboardDev;
+            baseboardDev.emplace(0, baseboardFru);
+            busMap[0] = std::make_shared<DeviceMap>(baseboardDev);
+        }
         for (auto &devicemap : busMap)
         {
             for (auto &device : *devicemap.second)
@@ -505,13 +514,6 @@ void rescanBusses(
                                    dbusInterfaceMap, devicemap.first,
                                    device.first);
             }
-        }
-        // todo, get this from a more sensable place
-        std::vector<char> baseboardFru;
-        if (readBaseboardFru(baseboardFru))
-        {
-            AddFruObjectToDbus(systemBus, baseboardFru, objServer,
-                               dbusInterfaceMap, -1, -1);
         }
     } while (pendingCallback);
 }
@@ -538,6 +540,7 @@ int main(int argc, char **argv)
     boost::container::flat_map<std::pair<size_t, size_t>,
                                std::shared_ptr<sdbusplus::asio::dbus_interface>>
         dbusInterfaceMap;
+    BusMap busmap;
 
     std::shared_ptr<sdbusplus::asio::dbus_interface> iface =
         objServer.add_interface("/xyz/openbmc_project/FruDevice",
@@ -552,7 +555,7 @@ int main(int argc, char **argv)
         if (threadRunning.compare_exchange_strong(notRunning, true))
         {
             future = std::async(std::launch::async, [&] {
-                rescanBusses(dbusInterfaceMap, systemBus, objServer,
+                rescanBusses(busmap, dbusInterfaceMap, systemBus, objServer,
                              pendingCallback);
                 threadRunning = false;
             });
@@ -563,6 +566,25 @@ int main(int argc, char **argv)
         }
         return;
     });
+
+    iface->register_method(
+        "GetRawFru", [&](const uint8_t &bus, const uint8_t &address) {
+            auto deviceMap = busmap.find(bus);
+            if (deviceMap == busmap.end())
+            {
+                throw sdbusplus::xyz::openbmc_project::Common::Error::
+                    InvalidArgument();
+            }
+            auto device = deviceMap->second->find(address);
+            if (device == deviceMap->second->end())
+            {
+                throw sdbusplus::xyz::openbmc_project::Common::Error::
+                    InvalidArgument();
+            }
+            std::vector<uint8_t> &ret =
+                reinterpret_cast<std::vector<uint8_t> &>(device->second);
+            return ret;
+        });
     iface->initialize();
 
     std::function<void(sdbusplus::message::message & message)> eventHandler =
@@ -580,8 +602,8 @@ int main(int argc, char **argv)
                 if (threadRunning.compare_exchange_strong(notRunning, true))
                 {
                     future = std::async(std::launch::async, [&] {
-                        rescanBusses(dbusInterfaceMap, systemBus, objServer,
-                                     pendingCallback);
+                        rescanBusses(busmap, dbusInterfaceMap, systemBus,
+                                     objServer, pendingCallback);
                         threadRunning = false;
                     });
                 }
@@ -641,7 +663,7 @@ int main(int argc, char **argv)
             {
                 future = std::async(std::launch::async, [&] {
                     std::this_thread::sleep_for(std::chrono::seconds(2));
-                    rescanBusses(dbusInterfaceMap, systemBus, objServer,
+                    rescanBusses(busmap, dbusInterfaceMap, systemBus, objServer,
                                  pendingCallback);
                     threadRunning = false;
                 });
@@ -656,7 +678,8 @@ int main(int argc, char **argv)
 
     dirWatch.async_read_some(boost::asio::buffer(readBuffer), watchI2cBusses);
     // run the initial scan
-    rescanBusses(dbusInterfaceMap, systemBus, objServer, pendingCallback);
+    rescanBusses(busmap, dbusInterfaceMap, systemBus, objServer,
+                 pendingCallback);
 
     io.run();
     return 0;

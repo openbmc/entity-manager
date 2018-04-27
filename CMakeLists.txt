@@ -106,6 +106,7 @@ target_link_libraries(fru-device pthread)
 target_link_libraries(fru-device stdc++fs)
 target_link_libraries(fru-device ${Boost_LIBRARIES})
 target_link_libraries(fru-device -lsystemd)
+target_link_libraries(fru-device phosphor_dbus)
 
 add_executable(entity-manager src/EntityManager.cpp
                               src/Overlay.cpp
