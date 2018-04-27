@@ -17,9 +17,8 @@
 #include <Utils.hpp>
 #include <boost/container/flat_map.hpp>
 #include <ctime>
-#include <dbus/connection.hpp>
-#include <dbus/endpoint.hpp>
-#include <dbus/message.hpp>
+#include <sdbusplus/asio/connection.hpp>
+#include <sdbusplus/asio/object_server.hpp>
 #include <dbus/properties.hpp>
 #include <fcntl.h>
 #include <fstream>
@@ -41,7 +40,6 @@ const static constexpr char *I2C_DEV_LOCATION = "/dev";
 
 static constexpr std::array<const char *, 5> FRU_AREAS = {
     "INTERNAL", "CHASSIS", "BOARD", "PRODUCT", "MULTIRECORD"};
-const static constexpr char *POWER_OBJECT_NAME = "/org/openbmc/control/power0";
 const static std::regex NON_ASCII_REGEX("[^\x01-\x7f]");
 using DeviceMap = boost::container::flat_map<int, std::vector<char>>;
 using BusMap = boost::container::flat_map<int, std::shared_ptr<DeviceMap>>;
@@ -238,7 +236,7 @@ bool formatFru(const std::vector<char> &fruBytes,
         return false;
     }
     std::vector<char>::const_iterator fruAreaOffsetField = fruBytes.begin();
-    result["Common Format Version"] =
+    result["Common_Format_Version"] =
         std::to_string(static_cast<int>(*fruAreaOffsetField));
 
     const std::vector<const char *> *fieldData;
@@ -349,11 +347,11 @@ bool formatFru(const std::vector<char> &fruBytes,
 }
 
 void AddFruObjectToDbus(
-    std::shared_ptr<dbus::connection> dbusConn, std::vector<char> &device,
-    dbus::DbusObjectServer &objServer,
+    std::shared_ptr<sdbusplus::asio::connection> dbusConn,
+    std::vector<char> &device, sdbusplus::asio::object_server &objServer,
     boost::container::flat_map<std::pair<size_t, size_t>,
-                               std::shared_ptr<dbus::DbusObject>>
-        &dbusObjectMap,
+                               std::shared_ptr<sdbusplus::asio::dbus_interface>>
+        &dbusInterfaceMap,
     int bus, size_t address)
 {
     boost::container::flat_map<std::string, std::string> formattedFru;
@@ -382,16 +380,15 @@ void AddFruObjectToDbus(
     }
 
     productName = "/xyz/openbmc_project/FruDevice/" + productName;
-
     // avoid duplicates by checking to see if on a mux
     if (bus > 0)
     {
         size_t index = 0;
-        for (auto const &busObj : dbusObjectMap)
+        for (auto const &busIface : dbusInterfaceMap)
         {
-            if ((busObj.second->object_name == productName))
+            if ((busIface.second->get_object_path() == productName))
             {
-                if (isMuxBus(bus) && address == busObj.first.second)
+                if (isMuxBus(bus) && address == busIface.first.second)
                 {
                     continue;
                 }
@@ -409,17 +406,26 @@ void AddFruObjectToDbus(
             }
         }
     }
-    auto object = objServer.add_object(productName);
-    dbusObjectMap[std::pair<size_t, size_t>(bus, address)] = object;
 
-    auto iface = std::make_shared<dbus::DbusInterface>(
-        "xyz.openbmc_project.FruDevice", dbusConn);
-    object->register_interface(iface);
+    std::shared_ptr<sdbusplus::asio::dbus_interface> iface =
+        objServer.add_interface(productName, "xyz.openbmc_project.FruDevice");
+    dbusInterfaceMap[std::pair<size_t, size_t>(bus, address)] = iface;
+
     for (auto &property : formattedFru)
     {
+
         std::regex_replace(property.second.begin(), property.second.begin(),
                            property.second.end(), NON_ASCII_REGEX, "_");
-        iface->set_property(property.first, property.second);
+        if (property.second.empty())
+        {
+            continue;
+        }
+        std::string key =
+            std::regex_replace(property.first, NON_ASCII_REGEX, "_");
+        if (!iface->register_property(key, property.second + '\0'))
+        {
+            std::cerr << "illegal key: " << key << "\n";
+        }
         if (DEBUG)
         {
             std::cout << property.first << ": " << property.second << "\n";
@@ -430,11 +436,12 @@ void AddFruObjectToDbus(
     {
         std::stringstream data;
         data << "0x" << std::hex << bus;
-        iface->set_property("BUS", data.str());
+        iface->register_property("BUS", data.str());
         data.str("");
         data << "0x" << std::hex << address;
-        iface->set_property("ADDRESS", data.str());
+        iface->register_property("ADDRESS", data.str());
     }
+    iface->initialize();
 }
 
 static bool readBaseboardFru(std::vector<char> &baseboardFru)
@@ -456,12 +463,13 @@ static bool readBaseboardFru(std::vector<char> &baseboardFru)
     return true;
 }
 
-void rescanBusses(boost::container::flat_map<std::pair<size_t, size_t>,
-                                             std::shared_ptr<dbus::DbusObject>>
-                      &dbusObjectMap,
-                  std::shared_ptr<dbus::connection> systemBus,
-                  dbus::DbusObjectServer &objServer,
-                  std::atomic_bool &pendingCallback)
+void rescanBusses(
+    boost::container::flat_map<std::pair<size_t, size_t>,
+                               std::shared_ptr<sdbusplus::asio::dbus_interface>>
+        &dbusInterfaceMap,
+    std::shared_ptr<sdbusplus::asio::connection> systemBus,
+    sdbusplus::asio::object_server &objServer,
+    std::atomic_bool &pendingCallback)
 {
 
     do
@@ -481,12 +489,12 @@ void rescanBusses(boost::container::flat_map<std::pair<size_t, size_t>,
         std::sort(i2cBuses.begin(), i2cBuses.end());
         BusMap busMap = FindI2CDevices(i2cBuses);
 
-        for (auto &busObj : dbusObjectMap)
+        for (auto &busIface : dbusInterfaceMap)
         {
-            objServer.remove_object(busObj.second);
+            objServer.remove_interface(busIface.second);
         }
 
-        dbusObjectMap.clear();
+        dbusInterfaceMap.clear();
         UNKNOWN_BUS_OBJECT_COUNT = 0;
 
         for (auto &devicemap : busMap)
@@ -494,7 +502,7 @@ void rescanBusses(boost::container::flat_map<std::pair<size_t, size_t>,
             for (auto &device : *devicemap.second)
             {
                 AddFruObjectToDbus(systemBus, device.second, objServer,
-                                   dbusObjectMap, devicemap.first,
+                                   dbusInterfaceMap, devicemap.first,
                                    device.first);
             }
         }
@@ -503,7 +511,7 @@ void rescanBusses(boost::container::flat_map<std::pair<size_t, size_t>,
         if (readBaseboardFru(baseboardFru))
         {
             AddFruObjectToDbus(systemBus, baseboardFru, objServer,
-                               dbusObjectMap, -1, -1);
+                               dbusInterfaceMap, -1, -1);
         }
     } while (pendingCallback);
 }
@@ -521,18 +529,19 @@ int main(int argc, char **argv)
     }
 
     boost::asio::io_service io;
-    auto systemBus = std::make_shared<dbus::connection>(io, dbus::bus::system);
-    dbus::DbusObjectServer objServer(systemBus);
+    auto systemBus = std::make_shared<sdbusplus::asio::connection>(io);
+    auto objServer = sdbusplus::asio::object_server(systemBus);
     systemBus->request_name("com.intel.FruDevice");
 
     // this is a map with keys of pair(bus number, address) and values of the
     // object on dbus
     boost::container::flat_map<std::pair<size_t, size_t>,
-                               std::shared_ptr<dbus::DbusObject>>
-        dbusObjectMap;
+                               std::shared_ptr<sdbusplus::asio::dbus_interface>>
+        dbusInterfaceMap;
 
-    auto iface = std::make_shared<dbus::DbusInterface>(
-        "xyz.openbmc_project.FruDeviceManager", systemBus);
+    std::shared_ptr<sdbusplus::asio::dbus_interface> iface =
+        objServer.add_interface("/xyz/openbmc_project/FruDevice",
+                                "xyz.openbmc_project.FruDeviceManager");
 
     std::atomic_bool threadRunning(false);
     std::atomic_bool pendingCallback(false);
@@ -543,7 +552,7 @@ int main(int argc, char **argv)
         if (threadRunning.compare_exchange_strong(notRunning, true))
         {
             future = std::async(std::launch::async, [&] {
-                rescanBusses(dbusObjectMap, systemBus, objServer,
+                rescanBusses(dbusInterfaceMap, systemBus, objServer,
                              pendingCallback);
                 threadRunning = false;
             });
@@ -552,23 +561,18 @@ int main(int argc, char **argv)
         {
             pendingCallback = true;
         }
-        return std::tuple<>(); // this is a bug in boost-dbus, needs some sort
-                               // of return
+        return;
     });
+    iface->initialize();
 
-    dbus::match powerChange(systemBus,
-                            "type='signal',path_namespace='" +
-                                std::string(POWER_OBJECT_NAME) + "'");
-
-    dbus::filter filter(systemBus, [](dbus::message &m) {
-        auto member = m.get_member();
-        return member == "PropertiesChanged";
-    });
-    std::function<void(boost::system::error_code, dbus::message)> eventHandler =
-        [&](boost::system::error_code ec, dbus::message s) {
-            boost::container::flat_map<std::string, dbus::dbus_variant> values;
+    std::function<void(sdbusplus::message::message & message)> eventHandler =
+        [&](sdbusplus::message::message &message) {
             std::string objectName;
-            s.unpack(objectName, values);
+            boost::container::flat_map<
+                std::string, sdbusplus::message::variant<
+                                 std::string, bool, int64_t, uint64_t, double>>
+                values;
+            message.read(objectName, values);
             auto findPgood = values.find("pgood");
             if (findPgood != values.end())
             {
@@ -576,7 +580,7 @@ int main(int argc, char **argv)
                 if (threadRunning.compare_exchange_strong(notRunning, true))
                 {
                     future = std::async(std::launch::async, [&] {
-                        rescanBusses(dbusObjectMap, systemBus, objServer,
+                        rescanBusses(dbusInterfaceMap, systemBus, objServer,
                                      pendingCallback);
                         threadRunning = false;
                     });
@@ -586,10 +590,15 @@ int main(int argc, char **argv)
                     pendingCallback = true;
                 }
             }
-            filter.async_dispatch(eventHandler);
-
         };
-    filter.async_dispatch(eventHandler);
+
+    sdbusplus::bus::match::match powerMatch = sdbusplus::bus::match::match(
+        static_cast<sdbusplus::bus::bus &>(*systemBus),
+        "type='signal',interface='org.freedesktop.DBus.Properties',path_"
+        "namespace='/org/openbmc/control/"
+        "power0',arg0='org.openbmc.control.Power'",
+        eventHandler);
+
     int fd = inotify_init();
     int wd = inotify_add_watch(fd, I2C_DEV_LOCATION,
                                IN_CREATE | IN_MOVED_TO | IN_DELETE);
@@ -614,13 +623,14 @@ int main(int argc, char **argv)
                         pendingBuffer.data());
                 switch (iEvent->mask)
                 {
-                case IN_CREATE:
-                case IN_MOVED_TO:
-                case IN_DELETE:
-                    if (boost::starts_with(std::string(iEvent->name), "i2c"))
-                    {
-                        devChange = true;
-                    }
+                    case IN_CREATE:
+                    case IN_MOVED_TO:
+                    case IN_DELETE:
+                        if (boost::starts_with(std::string(iEvent->name),
+                                               "i2c"))
+                        {
+                            devChange = true;
+                        }
                 }
 
                 pendingBuffer.erase(0, sizeof(inotify_event) + iEvent->len);
@@ -631,7 +641,7 @@ int main(int argc, char **argv)
             {
                 future = std::async(std::launch::async, [&] {
                     std::this_thread::sleep_for(std::chrono::seconds(2));
-                    rescanBusses(dbusObjectMap, systemBus, objServer,
+                    rescanBusses(dbusInterfaceMap, systemBus, objServer,
                                  pendingCallback);
                     threadRunning = false;
                 });
@@ -645,14 +655,8 @@ int main(int argc, char **argv)
         };
 
     dirWatch.async_read_some(boost::asio::buffer(readBuffer), watchI2cBusses);
-
     // run the initial scan
-    rescanBusses(dbusObjectMap, systemBus, objServer, pendingCallback);
-
-    auto object = std::make_shared<dbus::DbusObject>(
-        systemBus, "/xyz/openbmc_project/FruDevice");
-    objServer.register_object(object);
-    object->register_interface(iface);
+    rescanBusses(dbusInterfaceMap, systemBus, objServer, pendingCallback);
 
     io.run();
     return 0;

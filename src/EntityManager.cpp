@@ -220,58 +220,58 @@ bool probeDbus(
             {
                 switch (match.second.type())
                 {
-                case nlohmann::json::value_t::string:
-                {
-                    std::regex search(match.second.get<std::string>());
-                    std::smatch match;
-
-                    // convert value to string respresentation
-                    std::string probeValue = boost::apply_visitor(
-                        [](const auto &x) {
-                            return boost::lexical_cast<std::string>(x);
-                        },
-                        deviceValue->second);
-                    if (!std::regex_search(probeValue, match, search))
+                    case nlohmann::json::value_t::string:
                     {
-                        deviceMatches = false;
+                        std::regex search(match.second.get<std::string>());
+                        std::smatch match;
+
+                        // convert value to string respresentation
+                        std::string probeValue = boost::apply_visitor(
+                            [](const auto &x) {
+                                return boost::lexical_cast<std::string>(x);
+                            },
+                            deviceValue->second);
+                        if (!std::regex_search(probeValue, match, search))
+                        {
+                            deviceMatches = false;
+                            break;
+                        }
                         break;
                     }
-                    break;
-                }
-                case nlohmann::json::value_t::boolean:
-                case nlohmann::json::value_t::number_unsigned:
-                {
-                    unsigned int probeValue = boost::apply_visitor(
-                        VariantToUnsignedIntVisitor(), deviceValue->second);
-
-                    if (probeValue != match.second.get<unsigned int>())
+                    case nlohmann::json::value_t::boolean:
+                    case nlohmann::json::value_t::number_unsigned:
                     {
-                        deviceMatches = false;
-                    }
-                    break;
-                }
-                case nlohmann::json::value_t::number_integer:
-                {
-                    int probeValue = boost::apply_visitor(VariantToIntVisitor(),
-                                                          deviceValue->second);
+                        unsigned int probeValue = boost::apply_visitor(
+                            VariantToUnsignedIntVisitor(), deviceValue->second);
 
-                    if (probeValue != match.second.get<int>())
-                    {
-                        deviceMatches = false;
+                        if (probeValue != match.second.get<unsigned int>())
+                        {
+                            deviceMatches = false;
+                        }
+                        break;
                     }
-                    break;
-                }
-                case nlohmann::json::value_t::number_float:
-                {
-                    float probeValue = boost::apply_visitor(
-                        VariantToFloatVisitor(), deviceValue->second);
+                    case nlohmann::json::value_t::number_integer:
+                    {
+                        int probeValue = boost::apply_visitor(
+                            VariantToIntVisitor(), deviceValue->second);
 
-                    if (probeValue != match.second.get<float>())
-                    {
-                        deviceMatches = false;
+                        if (probeValue != match.second.get<int>())
+                        {
+                            deviceMatches = false;
+                        }
+                        break;
                     }
-                    break;
-                }
+                    case nlohmann::json::value_t::number_float:
+                    {
+                        float probeValue = boost::apply_visitor(
+                            VariantToFloatVisitor(), deviceValue->second);
+
+                        if (probeValue != match.second.get<float>())
+                        {
+                            deviceMatches = false;
+                        }
+                        break;
+                    }
                 }
             }
             else
@@ -325,43 +325,44 @@ bool probe(
         {
             switch (probeType->second)
             {
-            case probe_type_codes::FALSE_T:
-            {
-                return false; // todo, actually evaluate?
-                break;
-            }
-            case probe_type_codes::TRUE_T:
-            {
-                return true; // todo, actually evaluate?
-                break;
-            }
-            case probe_type_codes::MATCH_ONE:
-            {
-                // set current value to last, this probe type shouldn't affect
-                // the outcome
-                cur = ret;
-                matchOne = true;
-                break;
-            }
-            /*case probe_type_codes::AND:
-              break;
-            case probe_type_codes::OR:
-              break;
-              // these are no-ops until the last command switch
-              */
-            case probe_type_codes::FOUND:
-            {
-                if (!std::regex_search(probe, match, command))
+                case probe_type_codes::FALSE_T:
                 {
-                    std::cerr << "found probe sytax error " << probe << "\n";
-                    return false;
+                    return false; // todo, actually evaluate?
+                    break;
                 }
-                std::string commandStr = *(match.begin() + 1);
-                boost::replace_all(commandStr, "'", "");
-                cur = (std::find(PASSED_PROBES.begin(), PASSED_PROBES.end(),
-                                 commandStr) != PASSED_PROBES.end());
-                break;
-            }
+                case probe_type_codes::TRUE_T:
+                {
+                    return true; // todo, actually evaluate?
+                    break;
+                }
+                case probe_type_codes::MATCH_ONE:
+                {
+                    // set current value to last, this probe type shouldn't
+                    // affect the outcome
+                    cur = ret;
+                    matchOne = true;
+                    break;
+                }
+                /*case probe_type_codes::AND:
+                  break;
+                case probe_type_codes::OR:
+                  break;
+                  // these are no-ops until the last command switch
+                  */
+                case probe_type_codes::FOUND:
+                {
+                    if (!std::regex_search(probe, match, command))
+                    {
+                        std::cerr << "found probe sytax error " << probe
+                                  << "\n";
+                        return false;
+                    }
+                    std::string commandStr = *(match.begin() + 1);
+                    boost::replace_all(commandStr, "'", "");
+                    cur = (std::find(PASSED_PROBES.begin(), PASSED_PROBES.end(),
+                                     commandStr) != PASSED_PROBES.end());
+                    break;
+                }
             }
         }
         // look on dbus for object
@@ -400,15 +401,15 @@ bool probe(
         // fact
         switch (lastCommand)
         {
-        case probe_type_codes::AND:
-            ret = cur && ret;
-            break;
-        case probe_type_codes::OR:
-            ret = cur || ret;
-            break;
-        default:
-            ret = cur;
-            break;
+            case probe_type_codes::AND:
+                ret = cur && ret;
+                break;
+            case probe_type_codes::OR:
+                ret = cur || ret;
+                break;
+            default:
+                ret = cur;
+                break;
         }
         lastCommand = probeType != PROBE_TYPES.end()
                           ? probeType->second
@@ -444,7 +445,7 @@ void writeJsonFiles(nlohmann::json &systemConfiguration)
     output.close();
 
     auto flat = nlohmann::json::array();
-    for (auto &pair : nlohmann::json::iterator_wrapper(systemConfiguration))
+    for (auto &pair : systemConfiguration.items())
     {
         auto value = pair.value();
         auto exposes = value.find("exposes");
@@ -467,40 +468,40 @@ void populateInterfaceFromJson(dbus::DbusInterface *iface, nlohmann::json dict,
     std::vector<std::pair<std::string, dbus::dbus_variant>> properties;
     static size_t flushCount = 0;
 
-    for (auto &dictPair : nlohmann::json::iterator_wrapper(dict))
+    for (auto &dictPair : dict.items())
     {
         switch (dictPair.value().type())
         {
-        case (nlohmann::json::value_t::boolean):
-        {
-            properties.emplace_back(std::string(dictPair.key()),
-                                    dictPair.value().get<bool>());
-            break;
-        }
-        case (nlohmann::json::value_t::number_integer):
-        {
-            properties.emplace_back(std::string(dictPair.key()),
-                                    dictPair.value().get<int64_t>());
-            break;
-        }
-        case (nlohmann::json::value_t::number_unsigned):
-        {
-            properties.emplace_back(std::string(dictPair.key()),
-                                    dictPair.value().get<uint64_t>());
-            break;
-        }
-        case (nlohmann::json::value_t::number_float):
-        {
-            properties.emplace_back(std::string(dictPair.key()),
-                                    dictPair.value().get<float>());
-            break;
-        }
-        case (nlohmann::json::value_t::string):
-        {
-            properties.emplace_back(std::string(dictPair.key()),
-                                    dictPair.value().get<std::string>());
-            break;
-        }
+            case (nlohmann::json::value_t::boolean):
+            {
+                properties.emplace_back(std::string(dictPair.key()),
+                                        dictPair.value().get<bool>());
+                break;
+            }
+            case (nlohmann::json::value_t::number_integer):
+            {
+                properties.emplace_back(std::string(dictPair.key()),
+                                        dictPair.value().get<int64_t>());
+                break;
+            }
+            case (nlohmann::json::value_t::number_unsigned):
+            {
+                properties.emplace_back(std::string(dictPair.key()),
+                                        dictPair.value().get<uint64_t>());
+                break;
+            }
+            case (nlohmann::json::value_t::number_float):
+            {
+                properties.emplace_back(std::string(dictPair.key()),
+                                        dictPair.value().get<float>());
+                break;
+            }
+            case (nlohmann::json::value_t::string):
+            {
+                properties.emplace_back(std::string(dictPair.key()),
+                                        dictPair.value().get<std::string>());
+                break;
+            }
         }
     }
     if (!properties.empty())
@@ -520,8 +521,7 @@ void postToDbus(const nlohmann::json &systemConfiguration,
                 dbus::DbusObjectServer &objServer)
 
 {
-    for (auto &boardPair :
-         nlohmann::json::iterator_wrapper(systemConfiguration))
+    for (auto &boardPair : systemConfiguration.items())
     {
         std::string boardKey = boardPair.key();
         auto boardValues = boardPair.value();
@@ -554,7 +554,7 @@ void postToDbus(const nlohmann::json &systemConfiguration,
         boardObject->add_interface("xyz.openbmc_project.Inventory.Item." +
                                    boardType);
         populateInterfaceFromJson(boardIface.get(), boardValues, objServer);
-        for (auto &boardField : nlohmann::json::iterator_wrapper(boardValues))
+        for (auto &boardField : boardValues.items())
         {
             if (boardField.value().type() == nlohmann::json::value_t::object)
             {
@@ -606,7 +606,7 @@ void postToDbus(const nlohmann::json &systemConfiguration,
 
             populateInterfaceFromJson(itemIface.get(), item, objServer);
 
-            for (auto &objectPair : nlohmann::json::iterator_wrapper(item))
+            for (auto &objectPair : item.items())
             {
                 if (objectPair.value().type() ==
                     nlohmann::json::value_t::object)
@@ -870,8 +870,7 @@ bool rescan(nlohmann::json &systemConfiguration)
                                 std::string bind =
                                     keyPair.key().substr(sizeof("bind_") - 1);
                                 for (auto &configurationPair :
-                                     nlohmann::json::iterator_wrapper(
-                                         systemConfiguration))
+                                     systemConfiguration.items())
                                 {
 
                                     auto configListFind =

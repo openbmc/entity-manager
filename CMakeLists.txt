@@ -67,6 +67,26 @@ if(NOT YOCTO)
     ExternalProject_Get_Property(nlohmann-json install_dir)
     include_directories(${install_dir}/src/nlohmann-json/src)
 
+    ExternalProject_Add(sdbusplus
+        PREFIX ${CMAKE_CURRENT_BINARY_DIR}/sdbusplus
+        GIT_REPOSITORY ssh://git-amr-2.devtools.intel.com:29418/sdbusplus
+        CMAKE_ARGS -DCMAKE_INSTALL_PREFIX=${EXTERNAL_INSTALL_LOCATION} -DBOOST_ROOT=${BOOST_ROOT}
+        CONFIGURE_COMMAND ""
+        BUILD_COMMAND ""
+        INSTALL_COMMAND ""
+        LOG_DOWNLOAD ON
+    )
+    set(WANT_TRANSACTION 0)
+    configure_file(${CMAKE_BINARY_DIR}/sdbusplus-src/sdbusplus/server.hpp.in
+                  ${CMAKE_BINARY_DIR}/prefix/include/sdbusplus/server.hpp @ONLY)
+    configure_file(${CMAKE_BINARY_DIR}/sdbusplus-src/sdbusplus/bus.hpp.in
+                  ${CMAKE_BINARY_DIR}/prefix/include/sdbusplus/bus.hpp @ONLY)
+
+    ExternalProject_Get_Property(sdbusplus install_dir)
+    include_directories(${install_dir}/src/sdbusplus/include)
+
+    include_directories(${CMAKE_CURRENT_SOURCE_DIR}/include/non-yocto)
+
     option(ENABLE_TEST "Enable Google Test" OFF)
     if(ENABLE_TEST)
         hunter_add_package(GTest)
@@ -82,10 +102,10 @@ include_directories(${CMAKE_CURRENT_SOURCE_DIR}/include)
 
 add_executable(fru-device src/FruDevice.cpp src/Utils.cpp)
 
-target_link_libraries(fru-device  ${DBUS_LIBRARIES})
 target_link_libraries(fru-device pthread)
 target_link_libraries(fru-device stdc++fs)
 target_link_libraries(fru-device ${Boost_LIBRARIES})
+target_link_libraries(fru-device -lsystemd)
 
 add_executable(entity-manager src/EntityManager.cpp
                               src/Overlay.cpp
@@ -99,7 +119,7 @@ target_link_libraries(entity-manager ${Boost_LIBRARIES})
 if(NOT YOCTO)
     add_dependencies(entity-manager nlohmann-json)
     add_dependencies(entity-manager boost-dbus)
-    add_dependencies(fru-device boost-dbus)
+    add_dependencies(fru-device sdbusplus)
 endif()
 
 install (TARGETS fru-device entity-manager DESTINATION bin)
