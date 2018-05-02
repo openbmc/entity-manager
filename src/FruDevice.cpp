@@ -17,6 +17,8 @@
 #include <Utils.hpp>
 #include <boost/container/flat_map.hpp>
 #include <ctime>
+#include <chrono>
+#include <thread>
 #include <sdbusplus/asio/connection.hpp>
 #include <sdbusplus/asio/object_server.hpp>
 #include <dbus/properties.hpp>
@@ -29,10 +31,13 @@
 #include <regex>
 #include <sys/inotify.h>
 #include <xyz/openbmc_project/Common/error.hpp>
+#include <errno.h>
 
 namespace fs = std::experimental::filesystem;
 static constexpr bool DEBUG = false;
 static size_t UNKNOWN_BUS_OBJECT_COUNT = 0;
+constexpr size_t MAX_FRU_SIZE = 512;
+constexpr size_t MAX_EEPROM_PAGE_INDEX = 255;
 
 const static constexpr char *BASEBOARD_FRU_LOCATION =
     "/etc/fru/baseboard.fru.bin";
@@ -484,6 +489,101 @@ static bool readBaseboardFru(std::vector<char> &baseboardFru)
     return true;
 }
 
+bool writeFru(uint8_t bus, uint8_t address, const std::vector<uint8_t> &fru)
+{
+    boost::container::flat_map<std::string, std::string> tmp;
+    if (fru.size() > MAX_FRU_SIZE)
+    {
+        std::cerr << "Invalid fru.size() during writeFru\n";
+        return false;
+    }
+    // verify legal fru by running it through fru parsing logic
+    if (!formatFru(reinterpret_cast<const std::vector<char> &>(fru), tmp))
+    {
+        std::cerr << "Invalid fru format during writeFru\n";
+        return false;
+    }
+    // baseboard fru
+    if (bus == 0 && address == 0)
+    {
+        std::ofstream file(BASEBOARD_FRU_LOCATION, std::ios_base::binary);
+        if (!file.good())
+        {
+            std::cerr << "Error opening file " << BASEBOARD_FRU_LOCATION
+                      << "\n";
+            throw sdbusplus::xyz::openbmc_project::Common::Error::
+                InternalFailure();
+            return false;
+        }
+        file.write(reinterpret_cast<const char *>(fru.data()), fru.size());
+        return file.good();
+    }
+    else
+    {
+        std::string i2cBus = "/dev/i2c-" + std::to_string(bus);
+
+        int file = open(i2cBus.c_str(), O_RDWR | O_CLOEXEC);
+        if (file < 0)
+        {
+            std::cerr << "unable to open i2c device " << i2cBus << "\n";
+            throw sdbusplus::xyz::openbmc_project::Common::Error::
+                InternalFailure();
+            return false;
+        }
+        if (ioctl(file, I2C_SLAVE_FORCE, address) < 0)
+        {
+            std::cerr << "unable to set device address\n";
+            close(file);
+            throw sdbusplus::xyz::openbmc_project::Common::Error::
+                InternalFailure();
+            return false;
+        }
+
+        constexpr const size_t RETRY_MAX = 2;
+        uint16_t index = 0;
+        size_t retries = RETRY_MAX;
+        while (index < fru.size())
+        {
+            if ((index && ((index % (MAX_EEPROM_PAGE_INDEX + 1)) == 0)) &&
+                (retries == RETRY_MAX))
+            {
+                // The 4K EEPROM only uses the A2 and A1 device address bits
+                // with the third bit being a memory page address bit.
+                if (ioctl(file, I2C_SLAVE_FORCE, ++address) < 0)
+                {
+                    std::cerr << "unable to set device address\n";
+                    close(file);
+                    throw sdbusplus::xyz::openbmc_project::Common::Error::
+                        InternalFailure();
+                    return false;
+                }
+            }
+
+            if (i2c_smbus_write_byte_data(file, index & 0xFF, fru[index]) < 0)
+            {
+                if (!retries--)
+                {
+                    std::cerr << "error writing fru: " << strerror(errno)
+                              << "\n";
+                    close(file);
+                    throw sdbusplus::xyz::openbmc_project::Common::Error::
+                        InternalFailure();
+                    return false;
+                }
+            }
+            else
+            {
+                retries = RETRY_MAX;
+                index++;
+            }
+            // most eeproms require 5-10ms between writes
+            std::this_thread::sleep_for(std::chrono::milliseconds(10));
+        }
+        close(file);
+        return true;
+    }
+}
+
 void rescanBusses(
     boost::asio::io_service &io, BusMap &busMap,
     boost::container::flat_map<std::pair<size_t, size_t>,
@@ -594,6 +694,20 @@ int main(int argc, char **argv)
                 reinterpret_cast<std::vector<uint8_t> &>(device->second);
             return ret;
         });
+
+    iface->register_method("WriteFru", [&](const uint8_t bus,
+                                           const uint8_t address,
+                                           const std::vector<uint8_t> &data) {
+        if (!writeFru(bus, address, data))
+        {
+            throw sdbusplus::xyz::openbmc_project::Common::Error::
+                InvalidArgument();
+            return;
+        }
+        // schedule rescan on success
+        rescanBusses(io, busmap, dbusInterfaceMap, systemBus, objServer);
+
+    });
     iface->initialize();
 
     std::function<void(sdbusplus::message::message & message)> eventHandler =
