@@ -1051,24 +1051,37 @@ int main(int argc, char **argv)
         dbusMatches;
 
     nlohmann::json systemConfiguration = nlohmann::json::object();
-    auto iface = std::make_shared<dbus::DbusInterface>(
+    auto entityIface = std::make_shared<dbus::DbusInterface>(
         "xyz.openbmc_project.EntityManager", SYSTEM_BUS);
+    auto inventoryIface = std::make_shared<dbus::DbusInterface>(
+        "xyz.openbmc_project.Inventory.Manager", SYSTEM_BUS);
+    auto inventoryObject = std::make_shared<dbus::DbusObject>(
+        SYSTEM_BUS, "/xyz/openbmc_project/inventory");
+    objServer.register_object(inventoryObject);
+
+    inventoryIface->register_method(
+        "Notify",
+        [](const boost::container::flat_map<
+            std::string,
+            boost::container::flat_map<std::string, dbus::dbus_variant>>
+               &object) { return std::tuple<>(); });
+
+    inventoryObject->register_interface(inventoryIface);
     io.post([&]() {
         unloadAllOverlays();
         propertiesChangedCallback(dbusMatches, systemConfiguration, objServer,
                                   nullptr);
-        auto object = std::make_shared<dbus::DbusObject>(
+        auto entityObject = std::make_shared<dbus::DbusObject>(
             SYSTEM_BUS, "/xyz/openbmc_project/EntityManager");
-        objServer.register_object(object);
-
-        object->register_interface(iface);
+        objServer.register_object(entityObject);
+        entityObject->register_interface(entityIface);
 
     });
 
     // to keep reference to the match / filter objects so they don't get
     // destroyed
 
-    iface->register_method("ReScan", [&]() {
+    entityIface->register_method("ReScan", [&]() {
         propertiesChangedCallback(dbusMatches, systemConfiguration, objServer,
                                   nullptr);
         return std::tuple<>(); // this is a bug in boost-dbus, needs some sort
