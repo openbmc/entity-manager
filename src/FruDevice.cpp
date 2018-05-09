@@ -595,8 +595,8 @@ int main(int argc, char **argv)
     sdbusplus::bus::match::match powerMatch = sdbusplus::bus::match::match(
         static_cast<sdbusplus::bus::bus &>(*systemBus),
         "type='signal',interface='org.freedesktop.DBus.Properties',path_"
-        "namespace='/org/openbmc/control/"
-        "power0',arg0='org.openbmc.control.Power'",
+        "namespace='/xyz/openbmc_project/Chassis/Control/"
+        "power0',arg0='xyz.openbmc_project.Chassis.Control.Power'",
         eventHandler);
 
     int fd = inotify_init();
