@@ -26,28 +26,9 @@ add_definitions(-DBOOST_ALL_NO_LIB)
 add_definitions(-DBOOST_NO_RTTI)
 add_definitions(-DBOOST_NO_TYPEID)
 
-hunter_add_package(dbus)
-find_package(dbus REQUIRED) # Include functions provided by PkgConfig module.
-include_directories(${DBUS_INCLUDE_DIRS})
-
-find_package(Threads REQUIRED)
-
 option(YOCTO "Enable Building in Yocto" OFF)
 
 if(NOT YOCTO)
-    ExternalProject_Add(boost-dbus
-        PREFIX ${CMAKE_CURRENT_BINARY_DIR}/boost-dbus
-        GIT_REPOSITORY ssh://git-amr-2.devtools.intel.com:29418/openbmc-boost-dbus
-        GIT_TAG 216455021500e013a8d95a2d412ade31177353b7
-        CMAKE_ARGS -DCMAKE_INSTALL_PREFIX=${EXTERNAL_INSTALL_LOCATION} -DBOOST_ROOT=${BOOST_ROOT}
-        CONFIGURE_COMMAND ""
-        BUILD_COMMAND ""
-        INSTALL_COMMAND ""
-        LOG_DOWNLOAD ON
-    )
-    ExternalProject_Get_Property(boost-dbus install_dir)
-    include_directories(${install_dir}/src/boost-dbus/include)
-
     include_directories(${CMAKE_CURRENT_SOURCE_DIR}/include/non-yocto)
 
     ExternalProject_Add(nlohmann-json
@@ -112,14 +93,13 @@ add_executable(entity-manager src/EntityManager.cpp
                               src/Overlay.cpp
                               src/Utils.cpp)
 
-target_link_libraries(entity-manager  ${DBUS_LIBRARIES})
+target_link_libraries(entity-manager -lsystemd)
 target_link_libraries(entity-manager pthread)
 target_link_libraries(entity-manager stdc++fs)
 target_link_libraries(entity-manager ${Boost_LIBRARIES})
 
 if(NOT YOCTO)
     add_dependencies(entity-manager nlohmann-json)
-    add_dependencies(entity-manager boost-dbus)
     add_dependencies(fru-device sdbusplus)
 endif()
 

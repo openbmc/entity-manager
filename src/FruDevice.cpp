@@ -16,12 +16,12 @@
 
 #include <Utils.hpp>
 #include <boost/container/flat_map.hpp>
+#include <boost/algorithm/string/predicate.hpp>
 #include <ctime>
 #include <chrono>
 #include <thread>
 #include <sdbusplus/asio/connection.hpp>
 #include <sdbusplus/asio/object_server.hpp>
-#include <dbus/properties.hpp>
 #include <fcntl.h>
 #include <fstream>
 #include <future>
