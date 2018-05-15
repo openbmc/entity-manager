@@ -45,6 +45,8 @@ const static std::regex NON_ASCII_REGEX("[^\x01-\x7f]");
 using DeviceMap = boost::container::flat_map<int, std::vector<char>>;
 using BusMap = boost::container::flat_map<int, std::shared_ptr<DeviceMap>>;
 
+struct FindDevicesWithCallback;
+
 static bool isMuxBus(size_t bus)
 {
     return is_symlink(std::experimental::filesystem::path(
@@ -140,10 +142,10 @@ int get_bus_frus(int file, int first, int last, int bus,
     return 0;
 }
 
-static BusMap FindI2CDevices(const std::vector<fs::path> &i2cBuses)
+static void FindI2CDevices(const std::vector<fs::path> &i2cBuses,
+                           std::shared_ptr<FindDevicesWithCallback> context,
+                           boost::asio::io_service &io, BusMap &busMap)
 {
-    std::vector<std::future<void>> futures;
-    BusMap busMap;
     for (auto &i2cBus : i2cBuses)
     {
         auto busnum = i2cBus.string();
@@ -189,25 +191,44 @@ static BusMap FindI2CDevices(const std::vector<fs::path> &i2cBuses)
         }
         else
         {
-            // todo: call with boost asio?
-            futures.emplace_back(
-                std::async(std::launch::async, [file, device, bus] {
-                    //  i2cdetect by default uses the range 0x03 to 0x77, as
-                    //  this is
-                    //  what we
-                    //  have tested with, use this range. Could be changed in
-                    //  future.
-                    get_bus_frus(file, 0x03, 0x77, bus, device);
-                    close(file);
-                }));
+            io.post([file, device, bus, context] {
+                //  i2cdetect by default uses the range 0x03 to 0x77, as
+                //  this is
+                //  what we
+                //  have tested with, use this range. Could be changed in
+                //  future.
+                get_bus_frus(file, 0x03, 0x77, bus, device);
+                close(file);
+            });
         }
     }
-    for (auto &fut : futures)
-    {
-        fut.get(); // wait for all scans
-    }
-    return busMap;
 }
+
+// this class allows an async response after all i2c devices are discovered
+struct FindDevicesWithCallback
+    : std::enable_shared_from_this<FindDevicesWithCallback>
+{
+    FindDevicesWithCallback(const std::vector<fs::path> &i2cBuses,
+                            boost::asio::io_service &io, BusMap &busMap,
+                            std::function<void(void)> &&callback) :
+        _i2cBuses(i2cBuses),
+        _io(io), _busMap(busMap), _callback(std::move(callback))
+    {
+    }
+    ~FindDevicesWithCallback()
+    {
+        _callback();
+    }
+    void run()
+    {
+        FindI2CDevices(_i2cBuses, shared_from_this(), _io, _busMap);
+    }
+
+    const std::vector<fs::path> &_i2cBuses;
+    boost::asio::io_service &_io;
+    BusMap &_busMap;
+    std::function<void(void)> _callback;
+};
 
 static const std::tm intelEpoch(void)
 {
@@ -464,21 +485,21 @@ static bool readBaseboardFru(std::vector<char> &baseboardFru)
 }
 
 void rescanBusses(
-    BusMap &busMap,
+    boost::asio::io_service &io, BusMap &busMap,
     boost::container::flat_map<std::pair<size_t, size_t>,
                                std::shared_ptr<sdbusplus::asio::dbus_interface>>
         &dbusInterfaceMap,
-    std::shared_ptr<sdbusplus::asio::connection> systemBus,
-    sdbusplus::asio::object_server &objServer,
-    std::atomic_bool &pendingCallback)
+    std::shared_ptr<sdbusplus::asio::connection> &systemBus,
+    sdbusplus::asio::object_server &objServer)
 {
+    static boost::asio::deadline_timer timer(io);
+    timer.expires_from_now(boost::posix_time::seconds(1));
 
-    do
-    {
+    // setup an async wait incase we get flooded with requests
+    timer.async_wait([&](const boost::system::error_code &ec) {
         auto devDir = fs::path("/dev/");
         auto matchString = std::string("i2c*");
         std::vector<fs::path> i2cBuses;
-        pendingCallback = false;
 
         if (!find_files(devDir, matchString, i2cBuses, 0))
         {
@@ -488,34 +509,39 @@ void rescanBusses(
         // scanning muxes in reverse order seems to have adverse effects
         // sorting this list seems to be a fix for that
         std::sort(i2cBuses.begin(), i2cBuses.end());
-        busMap = FindI2CDevices(i2cBuses);
 
-        for (auto &busIface : dbusInterfaceMap)
-        {
-            objServer.remove_interface(busIface.second);
-        }
+        busMap.clear();
+        auto scan = std::make_shared<FindDevicesWithCallback>(
+            i2cBuses, io, busMap, [&]() {
+                for (auto &busIface : dbusInterfaceMap)
+                {
+                    objServer.remove_interface(busIface.second);
+                }
 
-        dbusInterfaceMap.clear();
-        UNKNOWN_BUS_OBJECT_COUNT = 0;
+                dbusInterfaceMap.clear();
+                UNKNOWN_BUS_OBJECT_COUNT = 0;
 
-        // todo, get this from a more sensable place
-        std::vector<char> baseboardFru;
-        if (readBaseboardFru(baseboardFru))
-        {
-            boost::container::flat_map<int, std::vector<char>> baseboardDev;
-            baseboardDev.emplace(0, baseboardFru);
-            busMap[0] = std::make_shared<DeviceMap>(baseboardDev);
-        }
-        for (auto &devicemap : busMap)
-        {
-            for (auto &device : *devicemap.second)
-            {
-                AddFruObjectToDbus(systemBus, device.second, objServer,
-                                   dbusInterfaceMap, devicemap.first,
-                                   device.first);
-            }
-        }
-    } while (pendingCallback);
+                // todo, get this from a more sensable place
+                std::vector<char> baseboardFru;
+                if (readBaseboardFru(baseboardFru))
+                {
+                    boost::container::flat_map<int, std::vector<char>>
+                        baseboardDev;
+                    baseboardDev.emplace(0, baseboardFru);
+                    busMap[0] = std::make_shared<DeviceMap>(baseboardDev);
+                }
+                for (auto &devicemap : busMap)
+                {
+                    for (auto &device : *devicemap.second)
+                    {
+                        AddFruObjectToDbus(systemBus, device.second, objServer,
+                                           dbusInterfaceMap, devicemap.first,
+                                           device.first);
+                    }
+                }
+            });
+        scan->run();
+    });
 }
 
 int main(int argc, char **argv)
@@ -535,8 +561,8 @@ int main(int argc, char **argv)
     auto objServer = sdbusplus::asio::object_server(systemBus);
     systemBus->request_name("com.intel.FruDevice");
 
-    // this is a map with keys of pair(bus number, address) and values of the
-    // object on dbus
+    // this is a map with keys of pair(bus number, address) and values of
+    // the object on dbus
     boost::container::flat_map<std::pair<size_t, size_t>,
                                std::shared_ptr<sdbusplus::asio::dbus_interface>>
         dbusInterfaceMap;
@@ -546,25 +572,8 @@ int main(int argc, char **argv)
         objServer.add_interface("/xyz/openbmc_project/FruDevice",
                                 "xyz.openbmc_project.FruDeviceManager");
 
-    std::atomic_bool threadRunning(false);
-    std::atomic_bool pendingCallback(false);
-    std::future<void> future;
-
     iface->register_method("ReScan", [&]() {
-        bool notRunning = false;
-        if (threadRunning.compare_exchange_strong(notRunning, true))
-        {
-            future = std::async(std::launch::async, [&] {
-                rescanBusses(busmap, dbusInterfaceMap, systemBus, objServer,
-                             pendingCallback);
-                threadRunning = false;
-            });
-        }
-        else
-        {
-            pendingCallback = true;
-        }
-        return;
+        rescanBusses(io, busmap, dbusInterfaceMap, systemBus, objServer);
     });
 
     iface->register_method(
@@ -598,19 +607,9 @@ int main(int argc, char **argv)
             auto findPgood = values.find("pgood");
             if (findPgood != values.end())
             {
-                bool notRunning = false;
-                if (threadRunning.compare_exchange_strong(notRunning, true))
-                {
-                    future = std::async(std::launch::async, [&] {
-                        rescanBusses(busmap, dbusInterfaceMap, systemBus,
-                                     objServer, pendingCallback);
-                        threadRunning = false;
-                    });
-                }
-                else
-                {
-                    pendingCallback = true;
-                }
+
+                rescanBusses(io, busmap, dbusInterfaceMap, systemBus,
+                             objServer);
             }
         };
 
@@ -657,29 +656,19 @@ int main(int argc, char **argv)
 
                 pendingBuffer.erase(0, sizeof(inotify_event) + iEvent->len);
             }
-            bool notRunning = false;
-            if (devChange &&
-                threadRunning.compare_exchange_strong(notRunning, true))
+            if (devChange)
             {
-                future = std::async(std::launch::async, [&] {
-                    std::this_thread::sleep_for(std::chrono::seconds(2));
-                    rescanBusses(busmap, dbusInterfaceMap, systemBus, objServer,
-                                 pendingCallback);
-                    threadRunning = false;
-                });
+                rescanBusses(io, busmap, dbusInterfaceMap, systemBus,
+                             objServer);
             }
-            else if (devChange)
-            {
-                pendingCallback = true;
-            }
+
             dirWatch.async_read_some(boost::asio::buffer(readBuffer),
                                      watchI2cBusses);
         };
 
     dirWatch.async_read_some(boost::asio::buffer(readBuffer), watchI2cBusses);
     // run the initial scan
-    rescanBusses(busmap, dbusInterfaceMap, systemBus, objServer,
-                 pendingCallback);
+    rescanBusses(io, busmap, dbusInterfaceMap, systemBus, objServer);
 
     io.run();
     return 0;
