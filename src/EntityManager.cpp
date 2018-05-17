@@ -68,6 +68,9 @@ const static boost::container::flat_map<const char *, probe_type_codes, cmp_str>
                  {"FOUND", probe_type_codes::FOUND},
                  {"MATCH_ONE", probe_type_codes::MATCH_ONE}}};
 
+static constexpr std::array<const char *, 1> SETTABLE_INTERFACES = {
+    "thresholds"};
+
 using BasicVariantType =
     sdbusplus::message::variant<std::string, int64_t, uint64_t, double, int32_t,
                                 uint32_t, int16_t, uint16_t, uint8_t, bool>;
@@ -521,11 +524,30 @@ void addArrayToDbus(const std::string &name, const nlohmann::json &array,
     }
     iface->register_property(name, values);
 }
+
+template <typename JsonType>
+bool SetJsonFromPointer(const std::string &ptrStr, const JsonType &value,
+                        nlohmann::json &systemConfiguration)
+{
+    try
+    {
+        nlohmann::json::json_pointer ptr(ptrStr);
+        nlohmann::json &ref = systemConfiguration[ptr];
+        ref = value;
+        return true;
+    }
+    catch (const std::out_of_range)
+    {
+        return false;
+    }
+}
 // adds simple json types to interface's properties
-void populateInterfaceFromJson(const nlohmann::json &systemConfiguration,
+void populateInterfaceFromJson(nlohmann::json &systemConfiguration,
+                               const std::string &jsonPointerPath,
                                sdbusplus::asio::dbus_interface *iface,
                                nlohmann::json &dict,
-                               sdbusplus::asio::object_server &objServer)
+                               sdbusplus::asio::object_server &objServer,
+                               bool setable = false)
 {
     for (auto &dictPair : dict.items())
     {
@@ -558,6 +580,7 @@ void populateInterfaceFromJson(const nlohmann::json &systemConfiguration,
                 continue; // handled elsewhere
             }
         }
+        std::string key = jsonPointerPath + "/" + dictPair.key();
         switch (type)
         {
             case (nlohmann::json::value_t::boolean):
@@ -570,12 +593,28 @@ void populateInterfaceFromJson(const nlohmann::json &systemConfiguration,
                                              iface);
                     break;
                 }
-                iface->register_property(
-                    std::string(dictPair.key()), dictPair.value().get<bool>(),
-                    [&, dictPair](const bool &newVal, bool &val) {
-                        val = newVal;
-                        return 1;
-                    });
+                if (setable)
+                {
+                    iface->register_property(
+                        std::string(dictPair.key()),
+                        dictPair.value().get<bool>(),
+                        [&, key](const bool &newVal, bool &val) {
+                            val = newVal;
+                            if (!SetJsonFromPointer(key, val,
+                                                    systemConfiguration))
+                            {
+                                std::cerr << "error writing json\n";
+                                return -1;
+                            }
+                            writeJsonFiles(systemConfiguration);
+                            return 1;
+                        });
+                }
+                else
+                {
+                    iface->register_property(std::string(dictPair.key()),
+                                             dictPair.value().get<bool>());
+                }
                 break;
             }
             case (nlohmann::json::value_t::number_integer):
@@ -586,13 +625,28 @@ void populateInterfaceFromJson(const nlohmann::json &systemConfiguration,
                                             iface);
                     break;
                 }
-                iface->register_property(
-                    std::string(dictPair.key()),
-                    dictPair.value().get<int64_t>(),
-                    [&, dictPair](const int64_t &newVal, int64_t &val) {
-                        val = newVal;
-                        return 1;
-                    });
+                if (setable)
+                {
+                    iface->register_property(
+                        std::string(dictPair.key()),
+                        dictPair.value().get<int64_t>(),
+                        [&, key](const int64_t &newVal, int64_t &val) {
+                            val = newVal;
+                            if (!SetJsonFromPointer(key, val,
+                                                    systemConfiguration))
+                            {
+                                std::cerr << "error writing json\n";
+                                return -1;
+                            }
+                            writeJsonFiles(systemConfiguration);
+                            return 1;
+                        });
+                }
+                else
+                {
+                    iface->register_property(std::string(dictPair.key()),
+                                             dictPair.value().get<int64_t>());
+                }
                 break;
             }
             case (nlohmann::json::value_t::number_unsigned):
@@ -603,13 +657,28 @@ void populateInterfaceFromJson(const nlohmann::json &systemConfiguration,
                                              iface);
                     break;
                 }
-                iface->register_property(
-                    std::string(dictPair.key()),
-                    dictPair.value().get<uint64_t>(),
-                    [&, dictPair](const uint64_t &newVal, uint64_t &val) {
-                        val = newVal;
-                        return 1;
-                    });
+                if (setable)
+                {
+                    iface->register_property(
+                        std::string(dictPair.key()),
+                        dictPair.value().get<uint64_t>(),
+                        [&, key](const uint64_t &newVal, uint64_t &val) {
+                            val = newVal;
+                            if (!SetJsonFromPointer(key, val,
+                                                    systemConfiguration))
+                            {
+                                std::cerr << "error writing json\n";
+                                return -1;
+                            }
+                            writeJsonFiles(systemConfiguration);
+                            return 1;
+                        });
+                }
+                else
+                {
+                    iface->register_property(std::string(dictPair.key()),
+                                             dictPair.value().get<uint64_t>());
+                }
                 break;
             }
             case (nlohmann::json::value_t::number_float):
@@ -620,12 +689,27 @@ void populateInterfaceFromJson(const nlohmann::json &systemConfiguration,
                                            iface);
                     break;
                 }
-                iface->register_property(
-                    std::string(dictPair.key()), dictPair.value().get<double>(),
-                    [&, dictPair](const double &newVal, double &val) {
-                        val = newVal;
-                        return 1;
-                    });
+                if (setable)
+                {
+                    iface->register_property(
+                        std::string(dictPair.key()),
+                        dictPair.value().get<double>(),
+                        [&, key](const double &newVal, double &val) {
+                            val = newVal;
+                            if (!SetJsonFromPointer(key, val,
+                                                    systemConfiguration))
+                            {
+                                std::cerr << "error writing json\n";
+                                return -1;
+                            }
+                            return 1;
+                        });
+                }
+                else
+                {
+                    iface->register_property(std::string(dictPair.key()),
+                                             dictPair.value().get<double>());
+                }
                 break;
             }
             case (nlohmann::json::value_t::string):
@@ -636,13 +720,29 @@ void populateInterfaceFromJson(const nlohmann::json &systemConfiguration,
                                                 dictPair.value(), iface);
                     break;
                 }
-                iface->register_property(
-                    std::string(dictPair.key()),
-                    dictPair.value().get<std::string>(),
-                    [&, dictPair](const std::string &newVal, std::string &val) {
-                        val = newVal;
-                        return 1;
-                    });
+                if (setable)
+                {
+                    iface->register_property(
+                        std::string(dictPair.key()),
+                        dictPair.value().get<std::string>(),
+                        [&, key](const std::string &newVal, std::string &val) {
+                            val = newVal;
+                            if (!SetJsonFromPointer(key, val,
+                                                    systemConfiguration))
+                            {
+                                std::cerr << "error writing json\n";
+                                return -1;
+                            }
+                            writeJsonFiles(systemConfiguration);
+                            return 1;
+                        });
+                }
+                else
+                {
+                    iface->register_property(
+                        std::string(dictPair.key()),
+                        dictPair.value().get<std::string>());
+                }
                 break;
             }
         }
@@ -651,14 +751,20 @@ void populateInterfaceFromJson(const nlohmann::json &systemConfiguration,
     iface->initialize();
 }
 
-void postToDbus(const nlohmann::json &systemConfiguration,
+void postToDbus(const nlohmann::json &newConfiguration,
+                nlohmann::json &systemConfiguration,
                 sdbusplus::asio::object_server &objServer)
 
 {
-    for (auto &boardPair : systemConfiguration.items())
+    // iterate through boards
+    for (auto &boardPair : newConfiguration.items())
     {
         std::string boardKey = boardPair.key();
-        auto boardValues = boardPair.value();
+        std::vector<std::string> path;
+        std::string jsonPointerPath = "/" + boardKey;
+        // loop through newConfiguration, but use values from system
+        // configuration to be able to modify via dbus later
+        auto boardValues = systemConfiguration[boardKey];
         auto findBoardType = boardValues.find("type");
         std::string boardType;
         if (findBoardType != boardValues.end() &&
@@ -686,25 +792,39 @@ void postToDbus(const nlohmann::json &systemConfiguration,
         auto boardIface = objServer.add_interface(
             boardName, "xyz.openbmc_project.Inventory.Item." + boardType);
 
-        populateInterfaceFromJson(systemConfiguration, boardIface.get(),
-                                  boardValues, objServer);
+        populateInterfaceFromJson(systemConfiguration, jsonPointerPath,
+                                  boardIface.get(), boardValues, objServer);
+        jsonPointerPath += "/";
+        // iterate through board properties
         for (auto &boardField : boardValues.items())
         {
             if (boardField.value().type() == nlohmann::json::value_t::object)
             {
                 auto iface =
                     objServer.add_interface(boardName, boardField.key());
-                populateInterfaceFromJson(systemConfiguration, iface.get(),
-                                          boardField.value(), objServer);
+                populateInterfaceFromJson(
+                    systemConfiguration, jsonPointerPath + boardField.key(),
+                    iface.get(), boardField.value(), objServer);
             }
         }
+
         auto exposes = boardValues.find("exposes");
         if (exposes == boardValues.end())
         {
             continue;
         }
+        // iterate through exposes
+        jsonPointerPath += "exposes/";
+
+        // store the board level pointer so we can modify it on the way down
+        std::string jsonPointerPathBoard = jsonPointerPath;
+        size_t exposesIndex = -1;
         for (auto &item : *exposes)
         {
+            exposesIndex++;
+            jsonPointerPath = jsonPointerPathBoard;
+            jsonPointerPath += std::to_string(exposesIndex);
+
             auto findName = item.find("name");
             if (findName == item.end())
             {
@@ -739,11 +859,14 @@ void postToDbus(const nlohmann::json &systemConfiguration,
                 boardName + "/" + itemName,
                 "xyz.openbmc_project.Configuration." + itemType);
 
-            populateInterfaceFromJson(systemConfiguration, itemIface.get(),
-                                      item, objServer);
+            populateInterfaceFromJson(systemConfiguration, jsonPointerPath,
+                                      itemIface.get(), item, objServer);
 
             for (auto &objectPair : item.items())
             {
+                jsonPointerPath = jsonPointerPathBoard +
+                                  std::to_string(exposesIndex) + "/" +
+                                  objectPair.key();
                 if (objectPair.value().type() ==
                     nlohmann::json::value_t::object)
                 {
@@ -751,9 +874,10 @@ void postToDbus(const nlohmann::json &systemConfiguration,
                         boardName + "/" + itemName,
                         "xyz.openbmc_project.Configuration." + itemType + "." +
                             objectPair.key());
-                    populateInterfaceFromJson(systemConfiguration,
-                                              objectIface.get(),
-                                              objectPair.value(), objServer);
+
+                    populateInterfaceFromJson(
+                        systemConfiguration, jsonPointerPath, objectIface.get(),
+                        objectPair.value(), objServer);
                 }
                 else if (objectPair.value().type() ==
                          nlohmann::json::value_t::array)
@@ -788,14 +912,21 @@ void postToDbus(const nlohmann::json &systemConfiguration,
 
                     for (auto &arrayItem : objectPair.value())
                     {
+                        // limit what interfaces accept set for saftey
+                        bool setable = std::find(SETTABLE_INTERFACES.begin(),
+                                                 SETTABLE_INTERFACES.end(),
+                                                 objectPair.key()) !=
+                                       SETTABLE_INTERFACES.end();
+
                         auto objectIface = objServer.add_interface(
                             boardName + "/" + itemName,
                             "xyz.openbmc_project.Configuration." + itemType +
-                                "." + objectPair.key() + "." +
+                                "." + objectPair.key() +
                                 std::to_string(index++));
-                        populateInterfaceFromJson(systemConfiguration,
-                                                  objectIface.get(), arrayItem,
-                                                  objServer);
+                        populateInterfaceFromJson(
+                            systemConfiguration,
+                            jsonPointerPath + "/" + std::to_string(index),
+                            objectIface.get(), arrayItem, objServer, setable);
                     }
                 }
             }
@@ -1091,7 +1222,6 @@ void propertiesChangedCallback(
 
     // setup an async wait as we normally get flooded with new requests
     timer.async_wait([&](const boost::system::error_code &ec) {
-
         if (ec == boost::asio::error::operation_aborted)
         {
             // we were cancelled
@@ -1137,7 +1267,8 @@ void propertiesChangedCallback(
                     loadOverlays(newConfiguration);
                     io.post([&]() { writeJsonFiles(systemConfiguration); });
                     io.post([&, newConfiguration]() {
-                        postToDbus(newConfiguration, objServer);
+                        postToDbus(newConfiguration, systemConfiguration,
+                                   objServer);
                     });
                 });
             });
