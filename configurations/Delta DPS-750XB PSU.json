@@ -15,7 +15,7 @@
             }
         ],
         "name": "Delta DPS-750XB PSU 2",
-        "probe": "xyz.openbmc_project.FruDevice({'PRODUCT_PRODUCT_NAME': 'DPS-750XB A', 'ADDRESS': '0x51'})",
+        "probe": "xyz.openbmc_project.FruDevice({'PRODUCT_PRODUCT_NAME': 'DPS-750XB A', 'ADDRESS': 81})",
         "type": "PowerSupply",
         "xyz.openbmc_project.Inventory.Decorator.Asset": {
             "Manufacturer": "$BOARD_MANUFACTURER",
@@ -40,7 +40,7 @@
             }
         ],
         "name": "Delta DPS-750XB PSU 1",
-        "probe": "xyz.openbmc_project.FruDevice({'PRODUCT_PRODUCT_NAME': 'DPS-750XB A', 'ADDRESS': '0x50'})",
+        "probe": "xyz.openbmc_project.FruDevice({'PRODUCT_PRODUCT_NAME': 'DPS-750XB A', 'ADDRESS': 80})",
         "type": "PowerSupply",
         "xyz.openbmc_project.Inventory.Decorator.Asset": {
             "Manufacturer": "$BOARD_MANUFACTURER",

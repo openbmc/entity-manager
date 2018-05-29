@@ -379,7 +379,7 @@ void AddFruObjectToDbus(
     boost::container::flat_map<std::pair<size_t, size_t>,
                                std::shared_ptr<sdbusplus::asio::dbus_interface>>
         &dbusInterfaceMap,
-    int bus, size_t address)
+    uint32_t bus, uint32_t address)
 {
     boost::container::flat_map<std::string, std::string> formattedFru;
     if (!formatFru(device, formattedFru))
@@ -460,12 +460,8 @@ void AddFruObjectToDbus(
     }
 
     // baseboard will be 0, 0
-    std::stringstream data;
-    data << "0x" << std::hex << bus;
-    iface->register_property("BUS", data.str());
-    data.str("");
-    data << "0x" << std::hex << address;
-    iface->register_property("ADDRESS", data.str());
+    iface->register_property("BUS", bus);
+    iface->register_property("ADDRESS", address);
 
     iface->initialize();
 }

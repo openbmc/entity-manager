@@ -840,25 +840,21 @@ void templateCharReplace(
         }
         else
         {
-            std::string substitute;
+            bool found = false;
             for (auto &foundDevicePair : foundDevice)
             {
                 if (boost::iequals(foundDevicePair.first, templateValue))
                 {
-                    // convert value to string
-                    // respresentation
-                    subsitute = mapbox::util::apply_visitor(
-                        VariantToStringVisitor(), foundDevicePair.second);
+                    mapbox::util::apply_visitor(
+                        [&](auto &&val) { keyPair.value() = val; },
+                        foundDevicePair.second);
+                    found = true;
                     break;
                 }
             }
-            if (!substitute.size())
+            if (!found)
             {
                 std::cerr << "could not find symbol " << templateValue << "\n";
-            }
-            else
-            {
-                keyPair.value() = substitute;
             }
         }
     }

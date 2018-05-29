@@ -41,7 +41,7 @@
             }
         ],
         "name": "2U12x35 Riser1",
-        "probe": "xyz.openbmc_project.FruDevice({'BOARD_PRODUCT_NAME': 'A2UL16RISER\\d', 'ADDRESS' : '0x50'})",
+        "probe": "xyz.openbmc_project.FruDevice({'BOARD_PRODUCT_NAME': 'A2UL16RISER\\d', 'ADDRESS' : 80})",
         "xyz.openbmc_project.Inventory.Decorator.Asset": {
             "Manufacturer": "$BOARD_MANUFACTURER",
             "Model": "$BOARD_PRODUCT_NAME",
@@ -91,7 +91,7 @@
             }
         ],
         "name": "2U12x35 Riser2",
-        "probe": "xyz.openbmc_project.FruDevice({'BOARD_PRODUCT_NAME': 'A2UL16RISER\\d', 'ADDRESS' : '0x51'})",
+        "probe": "xyz.openbmc_project.FruDevice({'BOARD_PRODUCT_NAME': 'A2UL16RISER\\d', 'ADDRESS' : 81})",
         "xyz.openbmc_project.Inventory.Decorator.Asset": {
             "Manufacturer": "$BOARD_MANUFACTURER",
             "Model": "$BOARD_PRODUCT_NAME",
