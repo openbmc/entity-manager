@@ -1218,8 +1218,6 @@ int main(int argc, char **argv)
     });
     entityIface->initialize();
 
-    objServer.add_manager("/xyz/openbmc_project/inventory");
-
     io.run();
 
     return 0;
