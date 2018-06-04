@@ -88,6 +88,7 @@ target_link_libraries(fru-device stdc++fs)
 target_link_libraries(fru-device ${Boost_LIBRARIES})
 target_link_libraries(fru-device -lsystemd)
 target_link_libraries(fru-device phosphor_dbus)
+target_link_libraries(fru-device sdbusplus)
 
 add_executable(entity-manager src/EntityManager.cpp
                               src/Overlay.cpp
@@ -97,6 +98,7 @@ target_link_libraries(entity-manager -lsystemd)
 target_link_libraries(entity-manager pthread)
 target_link_libraries(entity-manager stdc++fs)
 target_link_libraries(entity-manager ${Boost_LIBRARIES})
+target_link_libraries(entity-manager sdbusplus)
 
 if(NOT YOCTO)
     add_dependencies(entity-manager nlohmann-json)
