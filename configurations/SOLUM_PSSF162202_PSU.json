@@ -1,0 +1,52 @@
+[
+    {
+        "exposes": [
+            {
+                "address": "0x59",
+                "bus": "$bus",
+                "name": "SOLUM CO IS162F22 PSU Device",
+                "type": "pmbus"
+            },
+            {
+                "address": "$address",
+                "bus": "$bus",
+                "name": "SOLUM CO IS162F22 PSU FRU",
+                "type": "IntelFruDevice"
+            }
+        ],
+        "name": "SOLUM CO IS162F22 PSU 2",
+        "probe": "xyz.openbmc_project.FruDevice({'PRODUCT_PRODUCT_NAME': 'IS162F22', 'ADDRESS': 81})",
+        "type": "PowerSupply",
+        "xyz.openbmc_project.Inventory.Decorator.Asset": {
+            "Manufacturer": "$BOARD_MANUFACTURER",
+            "Model": "$BOARD_PRODUCT_NAME",
+            "PartNumber": "$BOARD_PART_NUMBER",
+            "SerialNumber": "$BOARD_SERIAL_NUMBER"
+        }
+    },
+    {
+        "exposes": [
+            {
+                "address": "0x58",
+                "bus": "$bus",
+                "name": "SOLUM CO IS162F22 PSU Device",
+                "type": "pmbus"
+            },
+            {
+                "address": "$address",
+                "bus": "$bus",
+                "name": "SOLUM CO IS162F22 PSU FRU",
+                "type": "IntelFruDevice"
+            }
+        ],
+        "name": "SOLUM CO IS162F22 PSU 1",
+        "probe": "xyz.openbmc_project.FruDevice({'PRODUCT_PRODUCT_NAME': 'IS162F22*', 'ADDRESS': 80})",
+        "type": "PowerSupply",
+        "xyz.openbmc_project.Inventory.Decorator.Asset": {
+            "Manufacturer": "$BOARD_MANUFACTURER",
+            "Model": "$BOARD_PRODUCT_NAME",
+            "PartNumber": "$BOARD_PART_NUMBER",
+            "SerialNumber": "$BOARD_SERIAL_NUMBER"
+        }
+    }
+]
