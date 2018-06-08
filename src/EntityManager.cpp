@@ -1096,6 +1096,10 @@ struct PerformScan : std::enable_shared_from_this<PerformScan>
                     PASSED_PROBES.push_back(name);
                     size_t foundDeviceIdx = 0;
 
+                    // insert into configuration temporarly to be able to
+                    // reference ourselves
+                    _systemConfiguration[name] = *record;
+
                     for (auto &foundDevice : foundDevices)
                     {
                         for (auto keyPair = record->begin();
@@ -1133,6 +1137,7 @@ struct PerformScan : std::enable_shared_from_this<PerformScan>
                                     bool foundBind = false;
                                     std::string bind = keyPair.key().substr(
                                         sizeof("bind_") - 1);
+
                                     for (auto &configurationPair :
                                          _systemConfiguration.items())
                                     {
@@ -1183,6 +1188,7 @@ struct PerformScan : std::enable_shared_from_this<PerformScan>
                             }
                         }
                     }
+                    // overwrite ourselves with cleaned up version
                     _systemConfiguration[name] = *record;
                 });
             p->run();
