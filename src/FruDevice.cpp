@@ -525,7 +525,7 @@ int main(int argc, char **argv)
     dbus::DbusObjectServer objServer(systemBus);
     systemBus->request_name("com.intel.FruDevice");
 
-    // this is a map with keys of pair(bus number, adddress) and values of the
+    // this is a map with keys of pair(bus number, address) and values of the
     // object on dbus
     boost::container::flat_map<std::pair<size_t, size_t>,
                                std::shared_ptr<dbus::DbusObject>>
@@ -646,7 +646,7 @@ int main(int argc, char **argv)
 
     dirWatch.async_read_some(boost::asio::buffer(readBuffer), watchI2cBusses);
 
-    // run the intial scan
+    // run the initial scan
     rescanBusses(dbusObjectMap, systemBus, objServer, pendingCallback);
 
     auto object = std::make_shared<dbus::DbusObject>(

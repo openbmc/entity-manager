@@ -94,7 +94,7 @@ Interface: xyz.openbmc_project.Device.threshold.0
 
 ###JSON syntax requirements:
 
-Based on the above DBus object, there is an implicit requirment that device
+Based on the above DBus object, there is an implicit requirement that device
 objects may not have more than one level deep of dictionary or list of
 dictionary. It is possible to extend in the future to allow nearly infinite
 levels deep of dictonary with extending the

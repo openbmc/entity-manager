@@ -657,14 +657,14 @@ void templateCharReplace(
         }
         else
         {
-            std::string subsitute;
+            std::string substitute;
             for (auto &foundDevicePair : foundDevice)
             {
                 if (boost::iequals(foundDevicePair.first, templateValue))
                 {
                     // convert value to string
                     // respresentation
-                    subsitute = boost::apply_visitor(
+                    substitute = boost::apply_visitor(
                         [](const auto &x) {
                             return boost::lexical_cast<std::string>(x);
                         },
@@ -672,13 +672,13 @@ void templateCharReplace(
                     break;
                 }
             }
-            if (!subsitute.size())
+            if (!substitute.size())
             {
                 std::cerr << "could not find symbol " << templateValue << "\n";
             }
             else
             {
-                keyPair.value() = subsitute;
+                keyPair.value() = substitute;
             }
         }
     }
