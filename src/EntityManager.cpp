@@ -147,7 +147,9 @@ void findDbusObjects(std::shared_ptr<PerformProbe> probe,
                        "available\n";
                 if (interfaceConnections.empty())
                 {
-                    return;
+                    // if we can't get the mapper data on the first run,
+                    // something is very wrong
+                    std::exit(EXIT_FAILURE);
                 }
             }
             else
