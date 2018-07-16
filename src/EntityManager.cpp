@@ -94,7 +94,7 @@ std::vector<std::string> PASSED_PROBES;
 // todo: pass this through nicer
 std::shared_ptr<sdbusplus::asio::connection> SYSTEM_BUS;
 
-const std::regex ILLEGAL_DBUS_REGEX("[^A-Za-z0-9_]");
+const std::regex ILLEGAL_DBUS_REGEX("[^A-Za-z0-9_.]");
 
 void registerCallbacks(boost::asio::io_service &io,
                        std::vector<sdbusplus::bus::match::match> &dbusMatches,
