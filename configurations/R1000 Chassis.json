@@ -239,6 +239,169 @@
                 }
             ],
             "type": "AspeedFan"
+        },
+        {
+            "Class": "fan",
+            "FFGainCoefficient": 0.01,
+            "FFOffCoefficient": 0.0,
+            "ICoefficient": 0.0,
+            "ILimit": {
+                "Max": 0.0,
+                "Min": 0.0
+            },
+            "Index": 1,
+            "Inputs": [
+                "Fan 1a",
+                "Fan 1b",
+                "Pwm 1"
+            ],
+            "Name": "Fan 1",
+            "OutLimit": {
+                "Max": 100.0,
+                "Min": 30.0
+            },
+            "PCoefficient": 0.0,
+            "SetPoint": 90.0,
+            "SlewNeg": 0.0,
+            "SlewPos": 0.0,
+            "Type": "Pid"
+        },
+        {
+            "Class": "fan",
+            "FFGainCoefficient": 0.01,
+            "FFOffCoefficient": 0.0,
+            "ICoefficient": 0.0,
+            "ILimit": {
+                "Max": 0.0,
+                "Min": 0.0
+            },
+            "Index": 1,
+            "Inputs": [
+                "Fan 2a",
+                "Fan 2b",
+                "Pwm 2"
+            ],
+            "Name": "Fan 2",
+            "OutLimit": {
+                "Max": 100.0,
+                "Min": 30.0
+            },
+            "PCoefficient": 0.0,
+            "SetPoint": 90.0,
+            "SlewNeg": 0.0,
+            "SlewPos": 0.0,
+            "Type": "Pid"
+        },
+        {
+            "Class": "fan",
+            "FFGainCoefficient": 0.01,
+            "FFOffCoefficient": 0.0,
+            "ICoefficient": 0.0,
+            "ILimit": {
+                "Max": 0.0,
+                "Min": 0.0
+            },
+            "Index": 1,
+            "Inputs": [
+                "Fan 3a",
+                "Fan 3b",
+                "Pwm 3"
+            ],
+            "Name": "Fan 3",
+            "OutLimit": {
+                "Max": 100.0,
+                "Min": 30.0
+            },
+            "PCoefficient": 0.0,
+            "SetPoint": 90.0,
+            "SlewNeg": 0.0,
+            "SlewPos": 0.0,
+            "Type": "Pid"
+        },
+        {
+            "Class": "fan",
+            "FFGainCoefficient": 0.01,
+            "FFOffCoefficient": 0.0,
+            "ICoefficient": 0.0,
+            "ILimit": {
+                "Max": 0.0,
+                "Min": 0.0
+            },
+            "Index": 1,
+            "Inputs": [
+                "Fan 4a",
+                "Fan 4b",
+                "Pwm 4"
+            ],
+            "Name": "Fan 4",
+            "OutLimit": {
+                "Max": 100.0,
+                "Min": 30.0
+            },
+            "PCoefficient": 0.0,
+            "SetPoint": 90.0,
+            "SlewNeg": 0.0,
+            "SlewPos": 0.0,
+            "Type": "Pid"
+        },
+        {
+            "Class": "fan",
+            "FFGainCoefficient": 0.01,
+            "FFOffCoefficient": 0.0,
+            "ICoefficient": 0.0,
+            "ILimit": {
+                "Max": 0.0,
+                "Min": 0.0
+            },
+            "Index": 1,
+            "Inputs": [
+                "Fan 5a",
+                "Fan 5b",
+                "Pwm 5"
+            ],
+            "Name": "Fan 5",
+            "OutLimit": {
+                "Max": 100.0,
+                "Min": 30.0
+            },
+            "PCoefficient": 0.0,
+            "SetPoint": 90.0,
+            "SlewNeg": 0.0,
+            "SlewPos": 0.0,
+            "Type": "Pid"
+        },
+        {
+            "Class": "fan",
+            "FFGainCoefficient": 0.01,
+            "FFOffCoefficient": 0.0,
+            "ICoefficient": 0.0,
+            "ILimit": {
+                "Max": 0.0,
+                "Min": 0.0
+            },
+            "Index": 1,
+            "Inputs": [
+                "Fan 6a",
+                "Fan 6b",
+                "Pwm 6"
+            ],
+            "Name": "Fan 6",
+            "OutLimit": {
+                "Max": 100.0,
+                "Min": 30.0
+            },
+            "PCoefficient": 0.0,
+            "SetPoint": 90.0,
+            "SlewNeg": 0.0,
+            "SlewPos": 0.0,
+            "Type": "Pid"
+        },
+        {
+            "Index": 1,
+            "MinThermalRpm": 3000,
+            "FailSafePercent": 90,
+            "Name": "Pid 1",
+            "Type": "Pid.Zone"
         }
     ],
     "name": "R1000 Chassis",
