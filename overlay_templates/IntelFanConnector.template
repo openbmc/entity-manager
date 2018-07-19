@@ -8,7 +8,7 @@
             #address-cells = <1>;
             #size-cells = <0>;
             status = "okay";
-            oemname$pwm = "$name";
+            oemname$pwm = "$Name";
             fan@$pwm {
                 reg = <$pwm>;
                 aspeed,fan-tach-ch = /bits/ 8 <$tachs>;

@@ -4,19 +4,19 @@
             {
                 "address": "0x59",
                 "bus": "$bus",
-                "name": "Flextronics S-1100ADU00-201 PSU Device",
-                "type": "pmbus"
+                "Name": "Flextronics S-1100ADU00-201 PSU Device",
+                "Type": "pmbus"
             },
             {
                 "address": "$address",
                 "bus": "$bus",
-                "name": "Flextronics S-1100ADU00-201 PSU FRU",
-                "type": "IntelFruDevice"
+                "Name": "Flextronics S-1100ADU00-201 PSU FRU",
+                "Type": "IntelFruDevice"
             }
         ],
-        "name": "Flextronics S-1100ADU00-201 PSU 2",
+        "Name": "Flextronics S-1100ADU00-201 PSU 2",
         "probe": "xyz.openbmc_project.FruDevice({'PRODUCT_PRODUCT_NAME': 'S-1100ADU00-201', 'ADDRESS': 81})",
-        "type": "PowerSupply",
+        "Type": "PowerSupply",
         "xyz.openbmc_project.Inventory.Decorator.Asset": {
             "Manufacturer": "$BOARD_MANUFACTURER",
             "Model": "$BOARD_PRODUCT_NAME",
@@ -29,19 +29,19 @@
             {
                 "address": "0x58",
                 "bus": "$bus",
-                "name": "Flextronics S-1100ADU00-201 PSU Device",
-                "type": "pmbus"
+                "Name": "Flextronics S-1100ADU00-201 PSU Device",
+                "Type": "pmbus"
             },
             {
                 "address": "$address",
                 "bus": "$bus",
-                "name": "Flextronics S-1100ADU00-201 PSU FRU",
-                "type": "IntelFruDevice"
+                "Name": "Flextronics S-1100ADU00-201 PSU FRU",
+                "Type": "IntelFruDevice"
             }
         ],
-        "name": "Flextronics S-1100ADU00-201 PSU 1",
+        "Name": "Flextronics S-1100ADU00-201 PSU 1",
         "probe": "xyz.openbmc_project.FruDevice({'PRODUCT_PRODUCT_NAME': 'S-1100ADU00-201', 'ADDRESS': 80})",
-        "type": "PowerSupply",
+        "Type": "PowerSupply",
         "xyz.openbmc_project.Inventory.Decorator.Asset": {
             "Manufacturer": "$BOARD_MANUFACTURER",
             "Model": "$BOARD_PRODUCT_NAME",

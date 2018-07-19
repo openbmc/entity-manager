@@ -10,7 +10,7 @@
 
             peci-client@Skylake_CPU_$cpu_id {
                 compatible = "intel,peci-client", "simple-mfd";
-                oemname1 = "$name";
+                oemname1 = "$Name";
                 reg = <$address>;
                 status = "okay";
             };

@@ -130,9 +130,9 @@ void fixupSymbols(
         symbolPath =
             symbolPath.substr(sizeof("/sys/firmware/devicetree/base") - 1);
         nlohmann::json configuration = {{"path", symbolPath},
-                                        {"type", "Symbol"},
+                                        {"Type", "Symbol"},
                                         {"bus", std::stoul(bus)},
-                                        {"name", "i2c" + bus}};
+                                        {"Name", "i2c" + bus}};
         createOverlay(TEMPLATE_DIR + std::string("/Symbol.template"),
                       configuration);
     }
@@ -152,7 +152,7 @@ void createOverlay(const std::string &templatePath,
     buff << templateFile.rdbuf();
     std::string templateStr = buff.str();
     std::string name = "unknown";
-    std::string type = configuration["type"];
+    std::string type = configuration["Type"];
     for (auto keyPair = configuration.begin(); keyPair != configuration.end();
          keyPair++)
     {
@@ -166,7 +166,7 @@ void createOverlay(const std::string &templatePath,
                 std::stoul(keyPair.value().get<std::string>(), nullptr, 16);
             subsituteString = std::to_string(dec);
         }
-        else if (keyPair.key() == "name" &&
+        else if (keyPair.key() == "Name" &&
                  keyPair.value().type() == nlohmann::json::value_t::string)
         {
             subsituteString = std::regex_replace(
@@ -268,7 +268,7 @@ bool loadOverlays(const nlohmann::json &systemConfiguration)
             {
                 continue;
             }
-            auto findType = configuration.find("type");
+            auto findType = configuration.find("Type");
             if (findType == configuration.end() ||
                 findType->type() != nlohmann::json::value_t::string)
             {

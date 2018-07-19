@@ -8,10 +8,10 @@
             #address-cells = <1>;
             #size-cells = <0>;
             status = "okay";
-            eeprom@$name {
+            eeprom@$Name {
                 compatible = "atmel,24c02";
                 reg = <$address>;
-                oemname1 = "$name";
+                oemname1 = "$Name";
                 pagesize = <64>;
             };
         };

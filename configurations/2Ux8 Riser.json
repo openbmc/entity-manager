@@ -4,49 +4,49 @@
             {
                 "address": "0x48",
                 "bus": "$bus",
-                "name": "Riser 1 Temp",
+                "Name": "Riser 1 Temp",
                 "thresholds": [
                     {
                         "direction": "greater than",
-                        "name": "upper critical",
+                        "Name": "upper critical",
                         "severity": 1,
                         "value": 80
                     },
                     {
                         "direction": "greater than",
-                        "name": "upper non critical",
+                        "Name": "upper non critical",
                         "severity": 0,
                         "value": 75
                     },
                     {
                         "direction": "less than",
-                        "name": "lower non critical",
+                        "Name": "lower non critical",
                         "severity": 0,
                         "value": 5
                     },
                     {
                         "direction": "less than",
-                        "name": "lower critical",
+                        "Name": "lower critical",
                         "severity": 1,
                         "value": 0
                     }
                 ],
-                "type": "TMP75"
+                "Type": "TMP75"
             },
             {
                 "address": "0x72",
                 "bus": "$bus",
-                "name": "Riser 1 Mux",
-                "type": "PCA9545Mux"
+                "Name": "Riser 1 Mux",
+                "Type": "PCA9545Mux"
             },
             {
                 "address": "$address",
                 "bus": "$bus",
-                "name": "Riser 1 Fru",
-                "type": "IntelFruDevice"
+                "Name": "Riser 1 Fru",
+                "Type": "IntelFruDevice"
             }
         ],
-        "name": "2Ux8 Riser 1",
+        "Name": "2Ux8 Riser 1",
         "probe": "xyz.openbmc_project.FruDevice({'BOARD_PRODUCT_NAME': 'A2UL8RISER1', 'ADDRESS': 80})",
         "xyz.openbmc_project.Inventory.Decorator.Asset": {
             "Manufacturer": "$BOARD_MANUFACTURER",
@@ -60,49 +60,49 @@
             {
                 "address": "0x49",
                 "bus": "$bus",
-                "name": "Riser 2 Temp",
+                "Name": "Riser 2 Temp",
                 "thresholds": [
                     {
                         "direction": "greater than",
-                        "name": "upper critical",
+                        "Name": "upper critical",
                         "severity": 1,
                         "value": 80
                     },
                     {
                         "direction": "greater than",
-                        "name": "upper non critical",
+                        "Name": "upper non critical",
                         "severity": 0,
                         "value": 75
                     },
                     {
                         "direction": "less than",
-                        "name": "lower non critical",
+                        "Name": "lower non critical",
                         "severity": 0,
                         "value": 5
                     },
                     {
                         "direction": "less than",
-                        "name": "lower critical",
+                        "Name": "lower critical",
                         "severity": 1,
                         "value": 0
                     }
                 ],
-                "type": "TMP75"
+                "Type": "TMP75"
             },
             {
                 "address": "0x73",
                 "bus": "$bus",
-                "name": "Riser 2 Mux",
-                "type": "PCA9545Mux"
+                "Name": "Riser 2 Mux",
+                "Type": "PCA9545Mux"
             },
             {
                 "address": "$address",
                 "bus": "$bus",
-                "name": "Riser 2 Fru",
-                "type": "IntelFruDevice"
+                "Name": "Riser 2 Fru",
+                "Type": "IntelFruDevice"
             }
         ],
-        "name": "2Ux8 Riser 2",
+        "Name": "2Ux8 Riser 2",
         "probe": "xyz.openbmc_project.FruDevice({'BOARD_PRODUCT_NAME': 'A2UL8RISER2', 'ADDRESS': 81})",
         "xyz.openbmc_project.Inventory.Decorator.Asset": {
             "Manufacturer": "$BOARD_MANUFACTURER",

@@ -767,7 +767,7 @@ void postToDbus(const nlohmann::json &newConfiguration,
         // loop through newConfiguration, but use values from system
         // configuration to be able to modify via dbus later
         auto boardValues = systemConfiguration[boardKey];
-        auto findBoardType = boardValues.find("type");
+        auto findBoardType = boardValues.find("Type");
         std::string boardType;
         if (findBoardType != boardValues.end() &&
             findBoardType->type() == nlohmann::json::value_t::string)
@@ -827,7 +827,7 @@ void postToDbus(const nlohmann::json &newConfiguration,
             jsonPointerPath = jsonPointerPathBoard;
             jsonPointerPath += std::to_string(exposesIndex);
 
-            auto findName = item.find("name");
+            auto findName = item.find("Name");
             if (findName == item.end())
             {
                 std::cerr << "cannot find name in field " << item << "\n";
@@ -842,7 +842,7 @@ void postToDbus(const nlohmann::json &newConfiguration,
                     continue;
                 }
             }
-            auto findType = item.find("type");
+            auto findType = item.find("Type");
             std::string itemType;
             if (findType != item.end())
             {
@@ -1047,7 +1047,7 @@ struct PerformScan : std::enable_shared_from_this<PerformScan>
         for (auto it = _configurations.begin(); it != _configurations.end();)
         {
             auto findProbe = it->find("probe");
-            auto findName = it->find("name");
+            auto findName = it->find("Name");
 
             nlohmann::json probeCommand;
             // check for poorly formatted fields, probe must be an array
@@ -1160,7 +1160,7 @@ struct PerformScan : std::enable_shared_from_this<PerformScan>
                                              *configListFind)
                                         {
                                             std::string foundObjectName =
-                                                (exposedObject)["name"];
+                                                (exposedObject)["Name"];
                                             if (boost::iequals(
                                                     foundObjectName,
                                                     keyPair.value()

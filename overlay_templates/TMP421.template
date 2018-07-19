@@ -8,11 +8,11 @@
             #address-cells = <1>;
             #size-cells = <0>;
             status = "okay";
-            tmp421@$name$name1 {
+            tmp421@$Name$Name1 {
                 compatible = "ti,tmp421";
                 reg = <$address>;
-                oemname1 = "$name";
-                oemname2 = "$name1";
+                oemname1 = "$Name";
+                oemname2 = "$Name1";
                 scale = "-3";
             };
         };

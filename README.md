@@ -25,9 +25,9 @@ strings.
 
 | String    | Example Value                            | Description                              |
 | :-------- | ---------------------------------------- | ---------------------------------------- |
-| "name"    | "X1000 1U Chassis"                       | Human readable name used for identification and sorting. |
+| "Name"    | "X1000 1U Chassis"                       | Human readable name used for identification and sorting. |
 | "probe"   | "xyz.openbmc_project.FruDevice({'BOARD_PRODUCT_NAME':'FFPANEL'})" | Statement which attempts to read from the hardware. The result determines if a configuration record should be applied. The value for probe can be set to “TRUE” in the case the record should always be applied, or set to more complex lookups, for instance a field in a FRU file. |
-| "exposes" | [{"name" : "CPU fan"}, ...]              | An array of JSON objects which are valid if the probe result is successful. These objects describe the devices BMC can interact. |
+| "exposes" | [{"Name" : "CPU fan"}, ...]              | An array of JSON objects which are valid if the probe result is successful. These objects describe the devices BMC can interact. |
 | "status"  | "disabled"                               | An indicator that allows for some records to be disabled by default. |
 | "bind_*"  | "2U System Fan connector 1"              | The record isn't complete and needs to be combined with another to be functional. The value is a unique reference to a record elsewhere. |
 
@@ -57,94 +57,94 @@ as "WFP baseboard".
 {
     "exposes": [
         {
-            "name": "1U System Fan connector 1",
+            "Name": "1U System Fan connector 1",
             "pwm": 1,
             "status": "disabled",
             "tachs": [
                 1,
                 2
             ],
-            "type": "IntelFanConnector"
+            "Type": "IntelFanConnector"
         },
         {
-            "name": "2U System Fan connector 1",
+            "Name": "2U System Fan connector 1",
             "pwm": 1,
             "status": "disabled",
             "tachs": [
                 1
             ],
-            "type": "IntelFanConnector"
+            "Type": "IntelFanConnector"
         },
         {
             "address": "0x49",
             "bus": 6,
-            "name": "Left Rear Temp",
+            "Name": "Left Rear Temp",
             "thresholds": [
                 [
                     {
                         "direction": "greater than",
-                        "name": "upper critical",
+                        "Name": "upper critical",
                         "severity": 1,
                         "value": 115
                     },
                     {
                         "direction": "greater than",
-                        "name": "upper non critical",
+                        "Name": "upper non critical",
                         "severity": 0,
                         "value": 110
                     },
                     {
                         "direction": "less than",
-                        "name": "lower non critical",
+                        "Name": "lower non critical",
                         "severity": 0,
                         "value": 5
                     },
                     {
                         "direction": "less than",
-                        "name": "lower critical",
+                        "Name": "lower critical",
                         "severity": 1,
                         "value": 0
                     }
                 ]
             ],
-            "type": "TMP75"
+            "Type": "TMP75"
         },
         {
             "address": "0x48",
             "bus": 6,
-            "name": "Voltage Regulator 1 Temp",
+            "Name": "Voltage Regulator 1 Temp",
             "thresholds": [
                 [
                     {
                         "direction": "greater than",
-                        "name": "upper critical",
+                        "Name": "upper critical",
                         "severity": 1,
                         "value": 115
                     },
                     {
                         "direction": "greater than",
-                        "name": "upper non critical",
+                        "Name": "upper non critical",
                         "severity": 0,
                         "value": 110
                     },
                     {
                         "direction": "less than",
-                        "name": "lower non critical",
+                        "Name": "lower non critical",
                         "severity": 0,
                         "value": 5
                     },
                     {
                         "direction": "less than",
-                        "name": "lower critical",
+                        "Name": "lower critical",
                         "severity": 1,
                         "value": 0
                     }
                 ]
             ],
-            "type": "TMP75"
+            "Type": "TMP75"
         }
     ],
-    "name": "WFP Baseboard",
+    "Name": "WFP Baseboard",
     "probe": "xyz.openbmc_project.FruDevice({'BOARD_PRODUCT_NAME' : '.*WFT'})"
 }
 ```
@@ -164,24 +164,24 @@ considered as being joined together.
     "exposes": [
         {
             "bind_connector": "1U System Fan connector 1",
-            "name": "Fan 1",
+            "Name": "Fan 1",
             "thresholds": [
                 [
                     {
                         "direction": "less than",
-                        "name": "lower critical",
+                        "Name": "lower critical",
                         "severity": 1,
                         "value": 1750
                     },
                     {
                         "direction": "less than",
-                        "name": "lower non critical",
+                        "Name": "lower non critical",
                         "severity": 0,
                         "value": 2000
                     }
                 ]
             ],
-            "type": "AspeedFan"
+            "Type": "AspeedFan"
         }
     ]
 }

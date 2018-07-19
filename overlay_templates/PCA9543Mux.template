@@ -6,18 +6,18 @@
         target = <&i2c$bus>;
         __overlay__{
             status = "okay";
-            smbus_mux@$name {
+            smbus_mux@$Name {
                 compatible = "nxp,pca9543";
                 reg = <$address>;
                 #address-cells = <1>;
                 #size-cells = <0>;
-                oemname1 = "$name";
-                $name_0: $name@0 {
+                oemname1 = "$Name";
+                $Name_0: $Name@0 {
                     #address-cells = <1>;
                     #size-cells = <0>;
                     reg = <0>;
                 };
-                $name_1: $name@1 {
+                $Name_1: $Name@1 {
                     #address-cells = <1>;
                     #size-cells = <0>;
                     reg = <1>;

@@ -2,18 +2,18 @@
     "exposes": [
         {
             "address": "0xEB",
-            "name": "HSBP $index Drive Mux",
-            "type": "GenericSMBusMux"
+            "Name": "HSBP $index Drive Mux",
+            "Type": "GenericSMBusMux"
         },
         {
-            "name": "HSBP $index FRU",
-            "type": "IntelHsbpFruDevice"
+            "Name": "HSBP $index FRU",
+            "Type": "IntelHsbpFruDevice"
         },
         {
-            "name": "HSBP $index Temperature",
-            "type": "IntelHsbpTempSensor"
+            "Name": "HSBP $index Temperature",
+            "Type": "IntelHsbpTempSensor"
         }
     ],
-    "name": "1U_HSBP",
+    "Name": "1U_HSBP",
     "probe": "xyz.openbmc_project.FruDevice({'BOARD_PRODUCT_NAME':'F1U8X25S3PHSBP'})"
 }

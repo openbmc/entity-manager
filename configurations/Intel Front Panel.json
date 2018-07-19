@@ -3,43 +3,43 @@
         {
             "address": "$address",
             "bus": "$bus",
-            "name": "Front Panel FRU",
-            "type": "IntelFruDevice"
+            "Name": "Front Panel FRU",
+            "Type": "IntelFruDevice"
         },
         {
             "address": "0x4D",
             "bus": "$bus",
-            "name": "Front Panel Temp",
+            "Name": "Front Panel Temp",
             "thresholds": [
                 {
                     "direction": "greater than",
-                    "name": "upper critical",
+                    "Name": "upper critical",
                     "severity": 1,
                     "value": 55
                 },
                 {
                     "direction": "greater than",
-                    "name": "upper non critical",
+                    "Name": "upper non critical",
                     "severity": 0,
                     "value": 50
                 },
                 {
                     "direction": "less than",
-                    "name": "lower non critical",
+                    "Name": "lower non critical",
                     "severity": 0,
                     "value": 5
                 },
                 {
                     "direction": "less than",
-                    "name": "lower critical",
+                    "Name": "lower critical",
                     "severity": 1,
                     "value": 0
                 }
             ],
-            "type": "TMP75"
+            "Type": "TMP75"
         }
     ],
-    "name": "Intel Front Panel",
+    "Name": "Intel Front Panel",
     "probe": [
         "xyz.openbmc_project.FruDevice({'BOARD_PRODUCT_NAME': 'FFPANEL'})",
         "OR",
