@@ -8,9 +8,9 @@
             #address-cells = <1>;
             #size-cells = <0>;
             status = "okay";
-            tmp75@$Name {
+            $Name: tmp75@$address {
                 compatible = "ti,tmp75";
-                reg = <$address>;
+                reg = <0x$address>;
                 oemname1 = "$Name";
                 scale = "-3";
             };

@@ -8,9 +8,9 @@
             #address-cells = <1>;
             #size-cells = <0>;
             status = "okay";
-            pmbus@$Name {
+            $Name: pmbus@$address {
                 compatible = "pmbus";
-                reg = <$address>;
+                reg = <0x$address>;
                 oemname1 = "$Name";
             };
         };

@@ -8,10 +8,10 @@
             #address-cells = <1>;
             #size-cells = <0>;
 
-            peci-client@Skylake_CPU_$cpu_id {
+            Skylake_CPU_$cpu_id: peci-client@$address {
                 compatible = "intel,peci-client";
                 oemname1 = "$Name";
-                reg = <$address>;
+                reg = <0x$address>;
                 status = "okay";
             };
         };

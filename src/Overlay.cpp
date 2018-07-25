@@ -30,6 +30,7 @@ constexpr const char *DTC = "/usr/bin/dtc";
 constexpr const char *OUTPUT_DIR = "/tmp/overlays";
 constexpr const char *TEMPLATE_DIR = "/usr/share/overlay_templates";
 constexpr const char *TEMPLATE_CHAR = "$";
+constexpr const char *HEX_FORMAT_STR = "0x";
 constexpr const char *PLATFORM = "aspeed,ast2500";
 constexpr const char *I2C_DEVS_DIR = "/sys/class/i2c-dev";
 
@@ -172,6 +173,21 @@ void createOverlay(const std::string &templatePath,
             subsituteString = std::regex_replace(
                 keyPair.value().get<std::string>(), ILLEGAL_NAME_REGEX, "_");
             name = subsituteString;
+        }
+        else if (keyPair.key() == "address")
+        {
+            if (keyPair.value().type() == nlohmann::json::value_t::string)
+            {
+                subsituteString = keyPair.value().get<std::string>();
+                subsituteString.erase(
+                    0, subsituteString.find_first_not_of(HEX_FORMAT_STR));
+            }
+            else
+            {
+                std::ostringstream hex;
+                hex << std::hex << keyPair.value().get<unsigned int>();
+                subsituteString = hex.str();
+            }
         }
         else
         {
