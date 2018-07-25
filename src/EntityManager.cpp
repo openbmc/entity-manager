@@ -108,10 +108,6 @@ void findDbusObjects(std::shared_ptr<PerformProbe> probe,
                      std::shared_ptr<sdbusplus::asio::connection> connection,
                      std::string &interface)
 {
-    // todo: this is only static because the mapper is unreliable as of today
-    static boost::container::flat_map<std::string,
-                                      boost::container::flat_set<std::string>>
-        connections;
 
     // store reference to pending callbacks so we don't overwhelm services
     static boost::container::flat_map<
@@ -137,20 +133,20 @@ void findDbusObjects(std::shared_ptr<PerformProbe> probe,
 
     // find all connections in the mapper that expose a specific type
     connection->async_method_call(
-        [&, connection, interface](boost::system::error_code &ec,
-                                   const GetSubTreeType &interfaceSubtree) {
-            auto &interfaceConnections = connections[interface];
+        [connection, interface, probe](boost::system::error_code &ec,
+                                       const GetSubTreeType &interfaceSubtree) {
+            boost::container::flat_set<std::string> interfaceConnections;
             if (ec)
             {
-                std::cerr
-                    << "Error communicating to mapper, using cached data if "
-                       "available\n";
-                if (interfaceConnections.empty())
+                pendingProbes[interface].clear();
+                if (ec.value() == ENOENT)
                 {
-                    // if we can't get the mapper data on the first run,
-                    // something is very wrong
-                    std::exit(EXIT_FAILURE);
+                    return; // wasn't found by mapper
                 }
+                std::cerr << "Error communicating to mapper.\n";
+
+                // if we can't communicate to the mapper something is very wrong
+                std::exit(EXIT_FAILURE);
             }
             else
             {
@@ -167,7 +163,7 @@ void findDbusObjects(std::shared_ptr<PerformProbe> probe,
             for (const auto &conn : interfaceConnections)
             {
                 connection->async_method_call(
-                    [&, conn,
+                    [conn,
                      interface](boost::system::error_code &ec,
                                 const ManagedObjectType &managedInterface) {
                         if (ec)
@@ -421,12 +417,6 @@ bool probe(
         lastCommand = probeType != PROBE_TYPES.end()
                           ? probeType->second
                           : probe_type_codes::FALSE_T;
-
-        if (!foundProbe)
-        {
-            std::cerr << "Illegal probe type " << probe << "\n";
-            return false;
-        }
     }
 
     // probe passed, but empty device
@@ -565,25 +555,22 @@ void addProperty(const std::string &propertyName, const PropertyType &value,
         iface->register_property(propertyName, value);
         return;
     }
-    iface->register_property(
-        propertyName, value,
-        [&systemConfiguration,
-         jsonPointerString{std::string(jsonPointerString)}](
-            const PropertyType &newVal, PropertyType &val) {
-            val = newVal;
-            if (!setJsonFromPointer(jsonPointerString, val,
-                                    systemConfiguration))
-            {
-                std::cerr << "error setting json field\n";
-                return -1;
-            }
-            if (writeJsonFiles(systemConfiguration))
-            {
-                std::cerr << "error setting json file\n";
-                return 1;
-            }
+    iface->register_property(propertyName, value, [
+        &systemConfiguration, jsonPointerString{std::string(jsonPointerString)}
+    ](const PropertyType &newVal, PropertyType &val) {
+        val = newVal;
+        if (!setJsonFromPointer(jsonPointerString, val, systemConfiguration))
+        {
+            std::cerr << "error setting json field\n";
             return -1;
-        });
+        }
+        if (writeJsonFiles(systemConfiguration))
+        {
+            std::cerr << "error setting json file\n";
+            return 1;
+        }
+        return -1;
+    });
 }
 
 // adds simple json types to interface's properties
