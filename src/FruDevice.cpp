@@ -38,6 +38,7 @@ static constexpr bool DEBUG = false;
 static size_t UNKNOWN_BUS_OBJECT_COUNT = 0;
 constexpr size_t MAX_FRU_SIZE = 512;
 constexpr size_t MAX_EEPROM_PAGE_INDEX = 255;
+constexpr size_t busTimeoutSeconds = 5;
 
 const static constexpr char *BASEBOARD_FRU_LOCATION =
     "/etc/fru/baseboard.fru.bin";
@@ -61,90 +62,102 @@ static bool isMuxBus(size_t bus)
 int get_bus_frus(int file, int first, int last, int bus,
                  std::shared_ptr<DeviceMap> devices)
 {
-    std::array<uint8_t, I2C_SMBUS_BLOCK_MAX> block_data;
 
-    for (int ii = first; ii <= last; ii++)
-    {
-        // Set slave address
-        if (ioctl(file, I2C_SLAVE_FORCE, ii) < 0)
+    std::future<int> future = std::async(std::launch::async, [&]() {
+        std::array<uint8_t, I2C_SMBUS_BLOCK_MAX> block_data;
+        for (int ii = first; ii <= last; ii++)
         {
-            std::cerr << "device at bus " << bus << "register " << ii
-                      << "busy\n";
-            continue;
-        }
-        // probe
-        else if (i2c_smbus_read_byte(file) < 0)
-        {
-            continue;
-        }
 
-        if (DEBUG)
-        {
-            std::cout << "something at bus " << bus << "addr " << ii << "\n";
-        }
-        if (i2c_smbus_read_i2c_block_data(file, 0x0, 0x8, block_data.data()) <
-            0)
-        {
-            std::cerr << "failed to read bus " << bus << " address " << ii
-                      << "\n";
-            continue;
-        }
-        size_t sum = 0;
-        for (int jj = 0; jj < 7; jj++)
-        {
-            sum += block_data[jj];
-        }
-        sum = (256 - sum) & 0xFF;
-
-        // check the header checksum
-        if (sum == block_data[7])
-        {
-            std::vector<char> device;
-            device.insert(device.end(), block_data.begin(),
-                          block_data.begin() + 8);
-
-            for (int jj = 1; jj <= FRU_AREAS.size(); jj++)
+            // Set slave address
+            if (ioctl(file, I2C_SLAVE_FORCE, ii) < 0)
             {
-                auto area_offset = device[jj];
-                if (area_offset != 0)
-                {
-                    area_offset *= 8;
-                    if (i2c_smbus_read_i2c_block_data(file, area_offset, 0x8,
-                                                      block_data.data()) < 0)
-                    {
-                        std::cerr << "failed to read bus " << bus << " address "
-                                  << ii << "\n";
-                        return -1;
-                    }
-                    int length = block_data[1] * 8;
-                    device.insert(device.end(), block_data.begin(),
-                                  block_data.begin() + 8);
-                    length -= 8;
-                    area_offset += 8;
+                std::cerr << "device at bus " << bus << "register " << ii
+                          << "busy\n";
+                continue;
+            }
+            // probe
+            else if (i2c_smbus_read_byte(file) < 0)
+            {
+                continue;
+            }
 
-                    while (length > 0)
+            if (DEBUG)
+            {
+                std::cout << "something at bus " << bus << "addr " << ii
+                          << "\n";
+            }
+            if (i2c_smbus_read_i2c_block_data(file, 0x0, 0x8,
+                                              block_data.data()) < 0)
+            {
+                std::cerr << "failed to read bus " << bus << " address " << ii
+                          << "\n";
+                continue;
+            }
+            size_t sum = 0;
+            for (int jj = 0; jj < 7; jj++)
+            {
+                sum += block_data[jj];
+            }
+            sum = (256 - sum) & 0xFF;
+
+            // check the header checksum
+            if (sum == block_data[7])
+            {
+                std::vector<char> device;
+                device.insert(device.end(), block_data.begin(),
+                              block_data.begin() + 8);
+
+                for (int jj = 1; jj <= FRU_AREAS.size(); jj++)
+                {
+                    auto area_offset = device[jj];
+                    if (area_offset != 0)
                     {
-                        auto to_get = std::min(0x20, length);
+                        area_offset *= 8;
                         if (i2c_smbus_read_i2c_block_data(
-                                file, area_offset, to_get, block_data.data()) <
-                            0)
+                                file, area_offset, 0x8, block_data.data()) < 0)
                         {
                             std::cerr << "failed to read bus " << bus
                                       << " address " << ii << "\n";
                             return -1;
                         }
+                        int length = block_data[1] * 8;
                         device.insert(device.end(), block_data.begin(),
-                                      block_data.begin() + to_get);
-                        area_offset += to_get;
-                        length -= to_get;
+                                      block_data.begin() + 8);
+                        length -= 8;
+                        area_offset += 8;
+
+                        while (length > 0)
+                        {
+                            auto to_get = std::min(0x20, length);
+                            if (i2c_smbus_read_i2c_block_data(
+                                    file, area_offset, to_get,
+                                    block_data.data()) < 0)
+                            {
+                                std::cerr << "failed to read bus " << bus
+                                          << " address " << ii << "\n";
+                                return -1;
+                            }
+                            device.insert(device.end(), block_data.begin(),
+                                          block_data.begin() + to_get);
+                            area_offset += to_get;
+                            length -= to_get;
+                        }
                     }
                 }
+                devices->emplace(ii, device);
             }
-            (*devices).emplace(ii, device);
         }
+        return 1;
+    });
+    std::future_status status =
+        future.wait_for(std::chrono::seconds(busTimeoutSeconds));
+    if (status == std::future_status::timeout)
+    {
+        std::cerr << "Error reading bus " << bus << "\n";
+        return -1;
     }
 
-    return 0;
+    return future.get();
 }
 
 static void FindI2CDevices(const std::vector<fs::path> &i2cBuses,
