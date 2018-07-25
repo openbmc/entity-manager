@@ -9,7 +9,7 @@
             #size-cells = <0>;
 
             peci-client@Skylake_CPU_$cpu_id {
-                compatible = "intel,peci-client", "simple-mfd";
+                compatible = "intel,peci-client";
                 oemname1 = "$Name";
                 reg = <$address>;
                 status = "okay";
