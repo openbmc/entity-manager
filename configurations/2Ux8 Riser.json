@@ -1,53 +1,53 @@
 [
     {
-        "exposes": [
+        "Exposes": [
             {
-                "address": "0x48",
-                "bus": "$bus",
+                "Address": "0x48",
+                "Bus": "$bus",
                 "Name": "Riser 1 Temp",
-                "thresholds": [
+                "Thresholds": [
                     {
-                        "direction": "greater than",
+                        "Direction": "greater than",
                         "Name": "upper critical",
-                        "severity": 1,
-                        "value": 80
+                        "Severity": 1,
+                        "Value": 80
                     },
                     {
-                        "direction": "greater than",
+                        "Direction": "greater than",
                         "Name": "upper non critical",
-                        "severity": 0,
-                        "value": 75
+                        "Severity": 0,
+                        "Value": 75
                     },
                     {
-                        "direction": "less than",
+                        "Direction": "less than",
                         "Name": "lower non critical",
-                        "severity": 0,
-                        "value": 5
+                        "Severity": 0,
+                        "Value": 5
                     },
                     {
-                        "direction": "less than",
+                        "Direction": "less than",
                         "Name": "lower critical",
-                        "severity": 1,
-                        "value": 0
+                        "Severity": 1,
+                        "Value": 0
                     }
                 ],
                 "Type": "TMP75"
             },
             {
-                "address": "0x72",
-                "bus": "$bus",
+                "Address": "0x72",
+                "Bus": "$bus",
                 "Name": "Riser 1 Mux",
                 "Type": "PCA9545Mux"
             },
             {
-                "address": "$address",
-                "bus": "$bus",
+                "Address": "$address",
+                "Bus": "$bus",
                 "Name": "Riser 1 Fru",
                 "Type": "IntelFruDevice"
             }
         ],
         "Name": "2Ux8 Riser 1",
-        "probe": "xyz.openbmc_project.FruDevice({'BOARD_PRODUCT_NAME': 'A2UL8RISER1', 'ADDRESS': 80})",
+        "Probe": "xyz.openbmc_project.FruDevice({'BOARD_PRODUCT_NAME': 'A2UL8RISER1', 'ADDRESS': 80})",
         "xyz.openbmc_project.Inventory.Decorator.Asset": {
             "Manufacturer": "$BOARD_MANUFACTURER",
             "Model": "$BOARD_PRODUCT_NAME",
@@ -56,54 +56,54 @@
         }
     },
     {
-        "exposes": [
+        "Exposes": [
             {
-                "address": "0x49",
-                "bus": "$bus",
+                "Address": "0x49",
+                "Bus": "$bus",
                 "Name": "Riser 2 Temp",
-                "thresholds": [
+                "Thresholds": [
                     {
-                        "direction": "greater than",
+                        "Direction": "greater than",
                         "Name": "upper critical",
-                        "severity": 1,
-                        "value": 80
+                        "Severity": 1,
+                        "Value": 80
                     },
                     {
-                        "direction": "greater than",
+                        "Direction": "greater than",
                         "Name": "upper non critical",
-                        "severity": 0,
-                        "value": 75
+                        "Severity": 0,
+                        "Value": 75
                     },
                     {
-                        "direction": "less than",
+                        "Direction": "less than",
                         "Name": "lower non critical",
-                        "severity": 0,
-                        "value": 5
+                        "Severity": 0,
+                        "Value": 5
                     },
                     {
-                        "direction": "less than",
+                        "Direction": "less than",
                         "Name": "lower critical",
-                        "severity": 1,
-                        "value": 0
+                        "Severity": 1,
+                        "Value": 0
                     }
                 ],
                 "Type": "TMP75"
             },
             {
-                "address": "0x73",
-                "bus": "$bus",
+                "Address": "0x73",
+                "Bus": "$bus",
                 "Name": "Riser 2 Mux",
                 "Type": "PCA9545Mux"
             },
             {
-                "address": "$address",
-                "bus": "$bus",
+                "Address": "$address",
+                "Bus": "$bus",
                 "Name": "Riser 2 Fru",
                 "Type": "IntelFruDevice"
             }
         ],
         "Name": "2Ux8 Riser 2",
-        "probe": "xyz.openbmc_project.FruDevice({'BOARD_PRODUCT_NAME': 'A2UL8RISER2', 'ADDRESS': 81})",
+        "Probe": "xyz.openbmc_project.FruDevice({'BOARD_PRODUCT_NAME': 'A2UL8RISER2', 'ADDRESS': 81})",
         "xyz.openbmc_project.Inventory.Decorator.Asset": {
             "Manufacturer": "$BOARD_MANUFACTURER",
             "Model": "$BOARD_PRODUCT_NAME",

@@ -1,13 +1,13 @@
 /dts-v1/;
 /plugin/;
 / {
-    compatible = "$platform";
+    compatible = "$Platform";
     fragment@0{
         target-path = "/";
         __overlay__{
             iio-hwmon {
                 compatible = "iio-hwmon";
-                oemname$index = "$Name";
+                oemname$Index = "$Name";
             };
         };
 

@@ -1,21 +1,21 @@
 [
     {
-        "exposes": [
+        "Exposes": [
             {
-                "address": "0x59",
-                "bus": "$bus",
+                "Address": "0x59",
+                "Bus": "$bus",
                 "Name": "Flextronics S-1100ADU00-201 PSU Device",
                 "Type": "pmbus"
             },
             {
-                "address": "$address",
-                "bus": "$bus",
+                "Address": "$address",
+                "Bus": "$bus",
                 "Name": "Flextronics S-1100ADU00-201 PSU FRU",
                 "Type": "IntelFruDevice"
             }
         ],
         "Name": "Flextronics S-1100ADU00-201 PSU 2",
-        "probe": "xyz.openbmc_project.FruDevice({'PRODUCT_PRODUCT_NAME': 'S-1100ADU00-201', 'ADDRESS': 81})",
+        "Probe": "xyz.openbmc_project.FruDevice({'PRODUCT_PRODUCT_NAME': 'S-1100ADU00-201', 'ADDRESS': 81})",
         "Type": "PowerSupply",
         "xyz.openbmc_project.Inventory.Decorator.Asset": {
             "Manufacturer": "$BOARD_MANUFACTURER",
@@ -25,22 +25,22 @@
         }
     },
     {
-        "exposes": [
+        "Exposes": [
             {
-                "address": "0x58",
-                "bus": "$bus",
+                "Address": "0x58",
+                "Bus": "$bus",
                 "Name": "Flextronics S-1100ADU00-201 PSU Device",
                 "Type": "pmbus"
             },
             {
-                "address": "$address",
-                "bus": "$bus",
+                "Address": "$address",
+                "Bus": "$bus",
                 "Name": "Flextronics S-1100ADU00-201 PSU FRU",
                 "Type": "IntelFruDevice"
             }
         ],
         "Name": "Flextronics S-1100ADU00-201 PSU 1",
-        "probe": "xyz.openbmc_project.FruDevice({'PRODUCT_PRODUCT_NAME': 'S-1100ADU00-201', 'ADDRESS': 80})",
+        "Probe": "xyz.openbmc_project.FruDevice({'PRODUCT_PRODUCT_NAME': 'S-1100ADU00-201', 'ADDRESS': 80})",
         "Type": "PowerSupply",
         "xyz.openbmc_project.Inventory.Decorator.Asset": {
             "Manufacturer": "$BOARD_MANUFACTURER",

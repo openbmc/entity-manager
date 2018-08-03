@@ -1,21 +1,21 @@
 [
     {
-        "exposes": [
+        "Exposes": [
             {
-                "address": "0x59",
-                "bus": "$bus",
+                "Address": "0x59",
+                "Bus": "$bus",
                 "Name": "Solum 1300W PSU 2 Device",
                 "Type": "pmbus"
             },
             {
-                "address": "$address",
-                "bus": "$bus",
+                "Address": "$address",
+                "Bus": "$bus",
                 "Name": "Solum 1300W PSU 2 FRU",
                 "Type": "IntelFruDevice"
             }
         ],
         "Name": "Solum 1300W PSU 2",
-        "probe": "xyz.openbmc_project.FruDevice({'PRODUCT_PRODUCT_NAME': 'PSSF132202A', 'ADDRESS': 81})",
+        "Probe": "xyz.openbmc_project.FruDevice({'PRODUCT_PRODUCT_NAME': 'PSSF132202A', 'ADDRESS': 81})",
         "Type": "PowerSupply",
         "xyz.openbmc_project.Inventory.Decorator.Asset": {
             "Manufacturer": "$PRODUCT_MANUFACTURER",
@@ -25,22 +25,22 @@
         }
     },
     {
-        "exposes": [
+        "Exposes": [
             {
-                "address": "0x58",
-                "bus": "$bus",
+                "Address": "0x58",
+                "Bus": "$bus",
                 "Name": "Solum 1300W PSU 1 Device",
                 "Type": "pmbus"
             },
             {
-                "address": "$address",
-                "bus": "$bus",
+                "Address": "$address",
+                "Bus": "$bus",
                 "Name": "Solum 1300W PSU 1 FRU",
                 "Type": "IntelFruDevice"
             }
         ],
         "Name": "Solum 1300W PSU 1",
-        "probe": "xyz.openbmc_project.FruDevice({'PRODUCT_PRODUCT_NAME': 'PSSF132202A', 'ADDRESS': 80})",
+        "Probe": "xyz.openbmc_project.FruDevice({'PRODUCT_PRODUCT_NAME': 'PSSF132202A', 'ADDRESS': 80})",
         "Type": "PowerSupply",
         "xyz.openbmc_project.Inventory.Decorator.Asset": {
             "Manufacturer": "$PRODUCT_MANUFACTURER",

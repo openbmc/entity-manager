@@ -1,17 +1,17 @@
 /dts-v1/;
 /plugin/;
 / {
-    compatible = "$platform";
+    compatible = "$Platform";
     fragment@0{
         target = <&peci0>;
         __overlay__{
             #address-cells = <1>;
             #size-cells = <0>;
 
-            Skylake_CPU_$cpu_id: peci-client@$address {
+            Skylake_CPU_$CpuID: peci-client@$Address {
                 compatible = "intel,peci-client";
                 oemname1 = "$Name";
-                reg = <0x$address>;
+                reg = <0x$Address>;
                 status = "okay";
             };
         };

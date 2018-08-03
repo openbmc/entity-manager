@@ -130,9 +130,9 @@ void fixupSymbols(
             std::experimental::filesystem::canonical(devtreePath);
         symbolPath =
             symbolPath.substr(sizeof("/sys/firmware/devicetree/base") - 1);
-        nlohmann::json configuration = {{"path", symbolPath},
+        nlohmann::json configuration = {{"Path", symbolPath},
                                         {"Type", "Symbol"},
-                                        {"bus", std::stoul(bus)},
+                                        {"Bus", std::stoul(bus)},
                                         {"Name", "i2c" + bus}};
         createOverlay(TEMPLATE_DIR + std::string("/Symbol.template"),
                       configuration);
@@ -160,7 +160,7 @@ void createOverlay(const std::string &templatePath,
         std::string subsituteString;
 
         // device tree symbols are in decimal
-        if (keyPair.key() == "bus" &&
+        if (keyPair.key() == "Bus" &&
             keyPair.value().type() == nlohmann::json::value_t::string)
         {
             unsigned int dec =
@@ -174,7 +174,7 @@ void createOverlay(const std::string &templatePath,
                 keyPair.value().get<std::string>(), ILLEGAL_NAME_REGEX, "_");
             name = subsituteString;
         }
-        else if (keyPair.key() == "address")
+        else if (keyPair.key() == "Address")
         {
             if (keyPair.value().type() == nlohmann::json::value_t::string)
             {
@@ -198,7 +198,7 @@ void createOverlay(const std::string &templatePath,
     }
     // todo: this is a lame way to fill in platform, but we only
     // care about ast2500 right now
-    boost::replace_all(templateStr, TEMPLATE_CHAR + std::string("platform"),
+    boost::replace_all(templateStr, TEMPLATE_CHAR + std::string("Platform"),
                        PLATFORM);
     std::string dtsFilename =
         std::string(OUTPUT_DIR) + "/" + name + "_" + type + ".dts";
@@ -269,7 +269,7 @@ bool loadOverlays(const nlohmann::json &systemConfiguration)
     for (auto entity = systemConfiguration.begin();
          entity != systemConfiguration.end(); entity++)
     {
-        auto findExposes = entity.value().find("exposes");
+        auto findExposes = entity.value().find("Exposes");
         if (findExposes == entity.value().end() ||
             findExposes->type() != nlohmann::json::value_t::array)
         {
@@ -278,7 +278,7 @@ bool loadOverlays(const nlohmann::json &systemConfiguration)
 
         for (auto &configuration : *findExposes)
         {
-            auto findStatus = configuration.find("status");
+            auto findStatus = configuration.find("Status");
             // status missing is assumed to be 'okay'
             if (findStatus != configuration.end() && *findStatus == "disabled")
             {

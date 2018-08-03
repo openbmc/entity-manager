@@ -1,128 +1,128 @@
 {
-    "exposes": [
+    "Exposes": [
         {
-            "bind_connector": "2U System Fan connector 1",
-            "index": 0,
+            "BindConnector": "2U System Fan connector 1",
+            "Index": 0,
             "Name": "Fan 1",
-            "thresholds": [
+            "Thresholds": [
                 {
-                    "direction": "less than",
+                    "Direction": "less than",
                     "Name": "lower critical",
-                    "severity": 1,
-                    "value": 1750
+                    "Severity": 1,
+                    "Value": 1750
                 },
                 {
-                    "direction": "less than",
+                    "Direction": "less than",
                     "Name": "lower non critical",
-                    "severity": 0,
-                    "value": 2000
+                    "Severity": 0,
+                    "Value": 2000
                 }
             ],
             "Type": "AspeedFan"
         },
         {
-            "bind_connector": "2U System Fan connector 2",
-            "index": 2,
+            "BindConnector": "2U System Fan connector 2",
+            "Index": 2,
             "Name": "Fan 2",
-            "thresholds": [
+            "Thresholds": [
                 {
-                    "direction": "less than",
+                    "Direction": "less than",
                     "Name": "lower critical",
-                    "severity": 1,
-                    "value": 1750
+                    "Severity": 1,
+                    "Value": 1750
                 },
                 {
-                    "direction": "less than",
+                    "Direction": "less than",
                     "Name": "lower non critical",
-                    "severity": 0,
-                    "value": 2000
+                    "Severity": 0,
+                    "Value": 2000
                 }
             ],
             "Type": "AspeedFan"
         },
         {
-            "bind_connector": "2U System Fan connector 3",
-            "index": 4,
+            "BindConnector": "2U System Fan connector 3",
+            "Index": 4,
             "Name": "Fan 3",
-            "thresholds": [
+            "Thresholds": [
                 {
-                    "direction": "less than",
+                    "Direction": "less than",
                     "Name": "lower critical",
-                    "severity": 1,
-                    "value": 1750
+                    "Severity": 1,
+                    "Value": 1750
                 },
                 {
-                    "direction": "less than",
+                    "Direction": "less than",
                     "Name": "lower non critical",
-                    "severity": 0,
-                    "value": 2000
+                    "Severity": 0,
+                    "Value": 2000
                 }
             ],
             "Type": "AspeedFan"
         },
         {
-            "bind_connector": "2U System Fan connector 4",
-            "index": 6,
+            "BindConnector": "2U System Fan connector 4",
+            "Index": 6,
             "Name": "Fan 4",
-            "thresholds": [
+            "Thresholds": [
                 {
-                    "direction": "less than",
+                    "Direction": "less than",
                     "Name": "lower critical",
-                    "severity": 1,
-                    "value": 1750
+                    "Severity": 1,
+                    "Value": 1750
                 },
                 {
-                    "direction": "less than",
+                    "Direction": "less than",
                     "Name": "lower non critical",
-                    "severity": 0,
-                    "value": 2000
+                    "Severity": 0,
+                    "Value": 2000
                 }
             ],
             "Type": "AspeedFan"
         },
         {
-            "bind_connector": "2U System Fan connector 5",
-            "index": 8,
+            "BindConnector": "2U System Fan connector 5",
+            "Index": 8,
             "Name": "Fan 5",
-            "thresholds": [
+            "Thresholds": [
                 {
-                    "direction": "less than",
+                    "Direction": "less than",
                     "Name": "lower critical",
-                    "severity": 1,
-                    "value": 1750
+                    "Severity": 1,
+                    "Value": 1750
                 },
                 {
-                    "direction": "less than",
+                    "Direction": "less than",
                     "Name": "lower non critical",
-                    "severity": 0,
-                    "value": 2000
+                    "Severity": 0,
+                    "Value": 2000
                 }
             ],
             "Type": "AspeedFan"
         },
         {
-            "bind_connector": "2U System Fan connector 6",
-            "index": 10,
+            "BindConnector": "2U System Fan connector 6",
+            "Index": 10,
             "Name": "Fan 6",
-            "thresholds": [
+            "Thresholds": [
                 {
-                    "direction": "less than",
+                    "Direction": "less than",
                     "Name": "lower critical",
-                    "severity": 1,
-                    "value": 1750
+                    "Severity": 1,
+                    "Value": 1750
                 },
                 {
-                    "direction": "less than",
+                    "Direction": "less than",
                     "Name": "lower non critical",
-                    "severity": 0,
-                    "value": 2000
+                    "Severity": 0,
+                    "Value": 2000
                 }
             ],
             "Type": "AspeedFan"
         }
     ],
     "Name": "R2000 Chassis",
-    "probe": [
+    "Probe": [
         "FOUND('WFP Baseboard')",
         "AND",
         "xyz.openbmc_project.FruDevice({'BOARD_PRODUCT_NAME': 'A2UL\\d+RISER\\d'})",

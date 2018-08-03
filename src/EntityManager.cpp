@@ -34,6 +34,7 @@
 
 constexpr const char *OUTPUT_DIR = "/var/configuration/";
 constexpr const char *CONFIGURATION_DIR = "/usr/share/configurations";
+constexpr const char *schemaFile = "schema.json";
 constexpr const char *TEMPLATE_CHAR = "$";
 constexpr const size_t PROPERTIES_CHANGED_UNTIL_FLUSH_COUNT = 20;
 constexpr const int32_t MAX_MAPPER_DEPTH = 0;
@@ -69,7 +70,7 @@ const static boost::container::flat_map<const char *, probe_type_codes, cmp_str>
                  {"MATCH_ONE", probe_type_codes::MATCH_ONE}}};
 
 static constexpr std::array<const char *, 1> SETTABLE_INTERFACES = {
-    "thresholds"};
+    "Thresholds"};
 
 using BasicVariantType =
     sdbusplus::message::variant<std::string, int64_t, uint64_t, double, int32_t,
@@ -767,13 +768,13 @@ void postToDbus(const nlohmann::json &newConfiguration,
             }
         }
 
-        auto exposes = boardValues.find("exposes");
+        auto exposes = boardValues.find("Exposes");
         if (exposes == boardValues.end())
         {
             continue;
         }
         // iterate through exposes
-        jsonPointerPath += "exposes/";
+        jsonPointerPath += "Exposes/";
 
         // store the board level pointer so we can modify it on the way down
         std::string jsonPointerPathBoard = jsonPointerPath;
@@ -790,7 +791,7 @@ void postToDbus(const nlohmann::json &newConfiguration,
                 std::cerr << "cannot find name in field " << item << "\n";
                 continue;
             }
-            auto findStatus = item.find("status");
+            auto findStatus = item.find("Status");
             // if status is not found it is assumed to be status = 'okay'
             if (findStatus != item.end())
             {
@@ -967,6 +968,11 @@ bool findJsonFiles(std::list<nlohmann::json> &configurations)
     }
     for (auto &jsonPath : jsonPaths)
     {
+        if (boost::algorithm::ends_with(jsonPath.string(), schemaFile))
+        {
+            // todo: parse using schema
+            continue;
+        }
         std::ifstream jsonStream(jsonPath.c_str());
         if (!jsonStream.good())
         {
@@ -1007,7 +1013,7 @@ struct PerformScan : std::enable_shared_from_this<PerformScan>
     {
         for (auto it = _configurations.begin(); it != _configurations.end();)
         {
-            auto findProbe = it->find("probe");
+            auto findProbe = it->find("Probe");
             auto findName = it->find("Name");
 
             nlohmann::json probeCommand;
@@ -1071,7 +1077,7 @@ struct PerformScan : std::enable_shared_from_this<PerformScan>
                             templateCharReplace(keyPair, foundDevice,
                                                 foundDeviceIdx);
                         }
-                        auto findExpose = record->find("exposes");
+                        auto findExpose = record->find("Exposes");
                         if (findExpose == record->end())
                         {
                             continue;
@@ -1087,7 +1093,7 @@ struct PerformScan : std::enable_shared_from_this<PerformScan>
                                 templateCharReplace(keyPair, foundDevice,
                                                     foundDeviceIdx);
                                 // special case bind
-                                if (boost::starts_with(keyPair.key(), "bind_"))
+                                if (boost::starts_with(keyPair.key(), "Bind"))
                                 {
                                     if (keyPair.value().type() !=
                                         nlohmann::json::value_t::string)
@@ -1099,7 +1105,7 @@ struct PerformScan : std::enable_shared_from_this<PerformScan>
                                     }
                                     bool foundBind = false;
                                     std::string bind = keyPair.key().substr(
-                                        sizeof("bind_") - 1);
+                                        sizeof("Bind") - 1);
 
                                     for (auto &configurationPair :
                                          _systemConfiguration.items())
@@ -1107,7 +1113,7 @@ struct PerformScan : std::enable_shared_from_this<PerformScan>
 
                                         auto configListFind =
                                             configurationPair.value().find(
-                                                "exposes");
+                                                "Exposes");
 
                                         if (configListFind ==
                                                 configurationPair.value()
@@ -1127,7 +1133,7 @@ struct PerformScan : std::enable_shared_from_this<PerformScan>
                                                     keyPair.value()
                                                         .get<std::string>()))
                                             {
-                                                exposedObject["status"] =
+                                                exposedObject["Status"] =
                                                     "okay";
                                                 expose[bind] = exposedObject;
 

@@ -1,16 +1,16 @@
 /dts-v1/;
 /plugin/;
 / {
-    compatible = "$platform";
+    compatible = "$Platform";
     fragment@0{
-        target = <&i2c$bus>;
+        target = <&i2c$Bus>;
         __overlay__{
             #address-cells = <1>;
             #size-cells = <0>;
             status = "okay";
-            $Name$Name1: tmp421@$address {
+            $Name$Name1: tmp421@$Address {
                 compatible = "ti,tmp421";
-                reg = <0x$address>;
+                reg = <0x$Address>;
                 oemname1 = "$Name";
                 oemname2 = "$Name1";
                 scale = "-3";

@@ -1,20 +1,20 @@
 {
-    "exposes": [
+    "Exposes": [
         {
-            "address": "$address",
-            "bus": "$bus",
+            "Address": "$address",
+            "Bus": "$bus",
             "Name": "PCIE SSD Retimer FRU",
             "Type": "IntelFruDevice"
         },
         {
-            "address": "0x4F",
-            "bus": "$bus",
+            "Address": "0x4F",
+            "Bus": "$bus",
             "Name": "PCIE SSD Retimer Temp",
             "Type": "TMP75"
         }
     ],
     "Name": "PCIE SSD Retimer",
-    "probe": "xyz.openbmc_project.FruDevice({'BOARD_PRODUCT_NAME': 'SP3RT040X16'})",
+    "Probe": "xyz.openbmc_project.FruDevice({'BOARD_PRODUCT_NAME': 'SP3RT040X16'})",
     "xyz.openbmc_project.Inventory.Decorator.Asset": {
         "Manufacturer": "$BOARD_MANUFACTURER",
         "Model": "$BOARD_PRODUCT_NAME",

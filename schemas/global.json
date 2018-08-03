@@ -1,0 +1,307 @@
+{
+    "$schema": "http://json-schema.org/schema#",
+    "anyOf": [
+        {
+            "type": "array",
+            "items": {
+                "type": "object",
+                "properties": {
+                    "Exposes": {
+                        "type": "array",
+                        "items": {
+                            "type": "object",
+                            "properties": {
+                                "Address": {
+                                    "type": "string"
+                                },
+                                "Bus": {
+                                    "type": "string"
+                                },
+                                "Name": {
+                                    "type": "string"
+                                },
+                                "Thresholds": {
+                                    "type": "array",
+                                    "items": {
+                                        "type": "object",
+                                        "properties": {
+                                            "Direction": {
+                                                "type": "string"
+                                            },
+                                            "Name": {
+                                                "type": "string"
+                                            },
+                                            "Severity": {
+                                                "type": "integer"
+                                            },
+                                            "Value": {
+                                                "type": "integer"
+                                            }
+                                        },
+                                        "required": [
+                                            "Direction",
+                                            "Name",
+                                            "Severity",
+                                            "Value"
+                                        ]
+                                    }
+                                },
+                                "Type": {
+                                    "type": "string"
+                                }
+                            },
+                            "required": [
+                                "Address",
+                                "Bus",
+                                "Name",
+                                "Type"
+                            ]
+                        }
+                    },
+                    "Name": {
+                        "type": "string"
+                    },
+                    "Probe": {
+                        "type": "string"
+                    },
+                    "xyz.openbmc_project.Inventory.Decorator.Asset": {
+                        "type": "object",
+                        "properties": {
+                            "Manufacturer": {
+                                "type": "string"
+                            },
+                            "Model": {
+                                "type": "string"
+                            },
+                            "PartNumber": {
+                                "type": "string"
+                            },
+                            "SerialNumber": {
+                                "type": "string"
+                            }
+                        },
+                        "required": [
+                            "Manufacturer",
+                            "Model",
+                            "PartNumber",
+                            "SerialNumber"
+                        ]
+                    },
+                    "Type": {
+                        "type": "string"
+                    }
+                },
+                "required": [
+                    "Exposes",
+                    "Name",
+                    "Probe",
+                    "xyz.openbmc_project.Inventory.Decorator.Asset"
+                ]
+            }
+        },
+        {
+            "type": "object",
+            "properties": {
+                "Exposes": {
+                    "type": "array",
+                    "items": {
+                        "type": "object",
+                        "properties": {
+                            "Address": {
+                                "type": "string"
+                            },
+                            "Name": {
+                                "type": "string"
+                            },
+                            "Type": {
+                                "type": "string"
+                            },
+                            "Bus": {
+                                "type": [
+                                    "integer",
+                                    "string"
+                                ]
+                            },
+                            "Thresholds": {
+                                "type": "array",
+                                "items": {
+                                    "type": "object",
+                                    "properties": {
+                                        "Direction": {
+                                            "type": "string"
+                                        },
+                                        "Name": {
+                                            "type": "string"
+                                        },
+                                        "Severity": {
+                                            "type": "integer"
+                                        },
+                                        "Value": {
+                                            "type": "number"
+                                        },
+                                        "Label": {
+                                            "type": "string"
+                                        }
+                                    },
+                                    "required": [
+                                        "Direction",
+                                        "Name",
+                                        "Severity",
+                                        "Value"
+                                    ]
+                                }
+                            },
+                            "BindConnector": {
+                                "type": "string"
+                            },
+                            "Index": {
+                                "type": "integer"
+                            },
+                            "Class": {
+                                "type": "string"
+                            },
+                            "FFGainCoefficient": {
+                                "type": "number"
+                            },
+                            "FFOffCoefficient": {
+                                "type": "number"
+                            },
+                            "ICoefficient": {
+                                "type": "number"
+                            },
+                            "ILimit": {
+                                "type": "object",
+                                "properties": {
+                                    "Max": {
+                                        "type": "number"
+                                    },
+                                    "Min": {
+                                        "type": "number"
+                                    }
+                                },
+                                "required": [
+                                    "Max",
+                                    "Min"
+                                ]
+                            },
+                            "Inputs": {
+                                "type": "array",
+                                "items": {
+                                    "type": "string"
+                                }
+                            },
+                            "OutLimit": {
+                                "type": "object",
+                                "properties": {
+                                    "Max": {
+                                        "type": "number"
+                                    },
+                                    "Min": {
+                                        "type": "number"
+                                    }
+                                },
+                                "required": [
+                                    "Max",
+                                    "Min"
+                                ]
+                            },
+                            "PCoefficient": {
+                                "type": "number"
+                            },
+                            "SetPoint": {
+                                "type": "number"
+                            },
+                            "SlewNeg": {
+                                "type": "number"
+                            },
+                            "SlewPos": {
+                                "type": "number"
+                            },
+                            "MinThermalRpm": {
+                                "type": "integer"
+                            },
+                            "FailSafePercent": {
+                                "type": "integer"
+                            },
+                            "present": {
+                                "type": "integer"
+                            },
+                            "Pwm": {
+                                "type": "integer"
+                            },
+                            "Status": {
+                                "type": "string"
+                            },
+                            "Tachs": {
+                                "type": "array",
+                                "items": {
+                                    "type": "integer"
+                                }
+                            },
+                            "Name1": {
+                                "type": "string"
+                            },
+                            "ScaleFactor": {
+                                "type": "number"
+                            },
+                            "CpuID": {
+                                "type": "integer"
+                            }
+                        },
+                        "required": [
+                            "Name",
+                            "Type"
+                        ]
+                    }
+                },
+                "Name": {
+                    "type": "string"
+                },
+                "Probe": {
+                    "anyOf": [
+                        {
+                            "type": "string"
+                        },
+                        {
+                            "type": "array",
+                            "items": {
+                                "type": "string"
+                            }
+                        }
+                    ]
+                },
+                "xyz.openbmc_project.Inventory.Decorator.Asset": {
+                    "type": "object",
+                    "properties": {
+                        "Manufacturer": {
+                            "type": "string"
+                        },
+                        "Model": {
+                            "type": "string"
+                        },
+                        "PartNumber": {
+                            "type": "string"
+                        },
+                        "SerialNumber": {
+                            "type": "string"
+                        }
+                    },
+                    "required": [
+                        "Manufacturer",
+                        "Model",
+                        "PartNumber",
+                        "SerialNumber"
+                    ]
+                },
+                "Type": {
+                    "type": "string"
+                }
+            },
+            "required": [
+                "Exposes",
+                "Name",
+                "Probe"
+            ]
+        }
+    ]
+}

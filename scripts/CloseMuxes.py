@@ -23,10 +23,10 @@ if not os.path.isfile(CONFIGURATION_FILE):
 configuration = json.load(open(CONFIGURATION_FILE))
 
 for _, entity in configuration.iteritems():
-    for exposed in entity.get('exposes', []):
-        if exposed.get('type', None) in MUX_TYPES:
-            bus = exposed.get('bus', False)
-            address = exposed.get('address', False)
+    for exposed in entity.get('Exposes', []):
+        if exposed.get('Type', None) in MUX_TYPES:
+            bus = exposed.get('Bus', False)
+            address = exposed.get('Address', False)
             if bus and address:
                 subprocess.call('i2cset -y -f {} {} 0'.format(bus, address),
                                 shell=True)

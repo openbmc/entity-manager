@@ -1,46 +1,46 @@
 {
-    "exposes": [
+    "Exposes": [
         {
-            "address": "$address",
-            "bus": "$bus",
+            "Address": "$address",
+            "Bus": "$bus",
             "Name": "Front Panel FRU",
             "Type": "IntelFruDevice"
         },
         {
-            "address": "0x4D",
-            "bus": "$bus",
+            "Address": "0x4D",
+            "Bus": "$bus",
             "Name": "Front Panel Temp",
-            "thresholds": [
+            "Thresholds": [
                 {
-                    "direction": "greater than",
+                    "Direction": "greater than",
                     "Name": "upper critical",
-                    "severity": 1,
-                    "value": 55
+                    "Severity": 1,
+                    "Value": 55
                 },
                 {
-                    "direction": "greater than",
+                    "Direction": "greater than",
                     "Name": "upper non critical",
-                    "severity": 0,
-                    "value": 50
+                    "Severity": 0,
+                    "Value": 50
                 },
                 {
-                    "direction": "less than",
+                    "Direction": "less than",
                     "Name": "lower non critical",
-                    "severity": 0,
-                    "value": 5
+                    "Severity": 0,
+                    "Value": 5
                 },
                 {
-                    "direction": "less than",
+                    "Direction": "less than",
                     "Name": "lower critical",
-                    "severity": 1,
-                    "value": 0
+                    "Severity": 1,
+                    "Value": 0
                 }
             ],
             "Type": "TMP75"
         }
     ],
     "Name": "Intel Front Panel",
-    "probe": [
+    "Probe": [
         "xyz.openbmc_project.FruDevice({'BOARD_PRODUCT_NAME': 'FFPANEL'})",
         "OR",
         "xyz.openbmc_project.FruDevice({'BOARD_PRODUCT_NAME': 'F2USTOPANEL'})"

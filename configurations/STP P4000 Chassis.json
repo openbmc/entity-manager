@@ -1,128 +1,128 @@
 {
-    "exposes": [
+    "Exposes": [
         {
-            "bind_connector": "4U System Fan connector 1",
-            "index": 0,
+            "BindConnector": "4U System Fan connector 1",
+            "Index": 0,
             "Name": "Fan 1",
-            "thresholds": [
+            "Thresholds": [
                 {
-                    "direction": "less than",
+                    "Direction": "less than",
                     "Name": "lower critical",
-                    "severity": 1,
-                    "value": 1750
+                    "Severity": 1,
+                    "Value": 1750
                 },
                 {
-                    "direction": "less than",
+                    "Direction": "less than",
                     "Name": "lower non critical",
-                    "severity": 0,
-                    "value": 2000
+                    "Severity": 0,
+                    "Value": 2000
                 }
             ],
             "Type": "AspeedFan"
         },
         {
-            "bind_connector": "4U System Fan connector 2",
-            "index": 1,
+            "BindConnector": "4U System Fan connector 2",
+            "Index": 1,
             "Name": "Fan 2",
-            "thresholds": [
+            "Thresholds": [
                 {
-                    "direction": "less than",
+                    "Direction": "less than",
                     "Name": "lower critical",
-                    "severity": 1,
-                    "value": 1750
+                    "Severity": 1,
+                    "Value": 1750
                 },
                 {
-                    "direction": "less than",
+                    "Direction": "less than",
                     "Name": "lower non critical",
-                    "severity": 0,
-                    "value": 2000
+                    "Severity": 0,
+                    "Value": 2000
                 }
             ],
             "Type": "AspeedFan"
         },
         {
-            "bind_connector": "4U System Fan connector 3",
-            "index": 2,
+            "BindConnector": "4U System Fan connector 3",
+            "Index": 2,
             "Name": "Fan 3",
-            "thresholds": [
+            "Thresholds": [
                 {
-                    "direction": "less than",
+                    "Direction": "less than",
                     "Name": "lower critical",
-                    "severity": 1,
-                    "value": 1750
+                    "Severity": 1,
+                    "Value": 1750
                 },
                 {
-                    "direction": "less than",
+                    "Direction": "less than",
                     "Name": "lower non critical",
-                    "severity": 0,
-                    "value": 2000
+                    "Severity": 0,
+                    "Value": 2000
                 }
             ],
             "Type": "AspeedFan"
         },
         {
-            "bind_connector": "4U System Fan connector 4",
-            "index": 3,
+            "BindConnector": "4U System Fan connector 4",
+            "Index": 3,
             "Name": "Fan 4",
-            "thresholds": [
+            "Thresholds": [
                 {
-                    "direction": "less than",
+                    "Direction": "less than",
                     "Name": "lower critical",
-                    "severity": 1,
-                    "value": 1750
+                    "Severity": 1,
+                    "Value": 1750
                 },
                 {
-                    "direction": "less than",
+                    "Direction": "less than",
                     "Name": "lower non critical",
-                    "severity": 0,
-                    "value": 2000
+                    "Severity": 0,
+                    "Value": 2000
                 }
             ],
             "Type": "AspeedFan"
         },
         {
-            "bind_connector": "4U System Fan connector 5",
-            "index": 4,
+            "BindConnector": "4U System Fan connector 5",
+            "Index": 4,
             "Name": "Fan 5",
-            "thresholds": [
+            "Thresholds": [
                 {
-                    "direction": "less than",
+                    "Direction": "less than",
                     "Name": "lower critical",
-                    "severity": 1,
-                    "value": 1750
+                    "Severity": 1,
+                    "Value": 1750
                 },
                 {
-                    "direction": "less than",
+                    "Direction": "less than",
                     "Name": "lower non critical",
-                    "severity": 0,
-                    "value": 2000
+                    "Severity": 0,
+                    "Value": 2000
                 }
             ],
             "Type": "AspeedFan"
         },
         {
-            "bind_connector": "4U System Fan connector 6",
-            "index": 5,
+            "BindConnector": "4U System Fan connector 6",
+            "Index": 5,
             "Name": "Fan 6",
-            "thresholds": [
+            "Thresholds": [
                 {
-                    "direction": "less than",
+                    "Direction": "less than",
                     "Name": "lower critical",
-                    "severity": 1,
-                    "value": 1750
+                    "Severity": 1,
+                    "Value": 1750
                 },
                 {
-                    "direction": "less than",
+                    "Direction": "less than",
                     "Name": "lower non critical",
-                    "severity": 0,
-                    "value": 2000
+                    "Severity": 0,
+                    "Value": 2000
                 }
             ],
             "Type": "AspeedFan"
         }
     ],
     "Name": "P4000 Chassis",
-    "probe": [
+    "Probe": [
         "FOUND('STP Baseboard')",
         "AND",
         "xyz.openbmc_project.FruDevice({'BOARD_PRODUCT_NAME': 'FFPANEL'})"

@@ -29,7 +29,7 @@ strings.
 | "probe"   | "xyz.openbmc_project.FruDevice({'BOARD_PRODUCT_NAME':'FFPANEL'})" | Statement which attempts to read from the hardware. The result determines if a configuration record should be applied. The value for probe can be set to “TRUE” in the case the record should always be applied, or set to more complex lookups, for instance a field in a FRU file. |
 | "exposes" | [{"Name" : "CPU fan"}, ...]              | An array of JSON objects which are valid if the probe result is successful. These objects describe the devices BMC can interact. |
 | "status"  | "disabled"                               | An indicator that allows for some records to be disabled by default. |
-| "bind_*"  | "2U System Fan connector 1"              | The record isn't complete and needs to be combined with another to be functional. The value is a unique reference to a record elsewhere. |
+| "Bind*"  | "2U System Fan connector 1"              | The record isn't complete and needs to be combined with another to be functional. The value is a unique reference to a record elsewhere. |
 
 Template strings in the form of "$identifier" may be used in configuration
 files. The following table describes the template strings currently defined.
@@ -153,7 +153,7 @@ as "WFP baseboard".
 
 Although fan connectors are considered a part of a baseboard, the physical
 fans themselves are considered as a part of a chassis. In order for a fan to
-be matched with a fan connector, the keyword "bind_connector" is used. The
+be matched with a fan connector, the keyword "Bind" is used. The
 example below shows how a chassis fan named "Fan 1" is connected to the
 connector named "1U System Fan connector 1". When the probe command finds the
 correct product name in baseboard FRU, the fan and the connector are
@@ -163,7 +163,7 @@ considered as being joined together.
 {
     "exposes": [
         {
-            "bind_connector": "1U System Fan connector 1",
+            "BindConnector": "1U System Fan connector 1",
             "Name": "Fan 1",
             "thresholds": [
                 [

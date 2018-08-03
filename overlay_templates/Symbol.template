@@ -1,11 +1,11 @@
 /dts-v1/;
 /plugin/;
 / {
-    compatible = "$platform";
+    compatible = "$Platform";
     fragment@0{
         target-path = "/__symbols__";
         __overlay__{
-           i2c$bus = "$path";
+           i2c$Bus = "$Path";
         };
     };
 };
