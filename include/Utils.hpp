@@ -16,8 +16,12 @@
 
 #pragma once
 #include <experimental/filesystem>
+#include <nlohmann/json.hpp>
 
 bool find_files(const std::experimental::filesystem::path &dir_path,
                 const std::string &match_string,
                 std::vector<std::experimental::filesystem::path> &found_paths,
                 unsigned int symlink_depth = 1);
+
+bool validateJson(const nlohmann::json &schemaFile,
+                  const nlohmann::json &input);

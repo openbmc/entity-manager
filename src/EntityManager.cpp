@@ -33,8 +33,9 @@
 #include <experimental/filesystem>
 
 constexpr const char *OUTPUT_DIR = "/var/configuration/";
-constexpr const char *CONFIGURATION_DIR = "/usr/share/configurations";
-constexpr const char *schemaFile = "schema.json";
+constexpr const char *configurationDirectory = "/usr/share/configurations";
+constexpr const char *schemaDirectory = "/usr/share/configurations/schemas";
+constexpr const char *globalSchema = "global.json";
 constexpr const char *TEMPLATE_CHAR = "$";
 constexpr const size_t PROPERTIES_CHANGED_UNTIL_FLUSH_COUNT = 20;
 constexpr const int32_t MAX_MAPPER_DEPTH = 0;
@@ -960,19 +961,32 @@ bool findJsonFiles(std::list<nlohmann::json> &configurations)
 {
     // find configuration files
     std::vector<fs::path> jsonPaths;
-    if (!find_files(fs::path(CONFIGURATION_DIR), R"(.*\.json)", jsonPaths, 0))
+    if (!find_files(fs::path(configurationDirectory), R"(.*\.json)", jsonPaths,
+                    0))
     {
         std::cerr << "Unable to find any configuration files in "
-                  << CONFIGURATION_DIR << "\n";
+                  << configurationDirectory << "\n";
         return false;
     }
+
+    std::ifstream schemaStream(std::string(schemaDirectory) + "/" +
+                               globalSchema);
+    if (!schemaStream.good())
+    {
+        std::cerr
+            << "Cannot open schema file,  cannot validate JSON, exiting\n\n";
+        std::exit(EXIT_FAILURE);
+    }
+    nlohmann::json schema = nlohmann::json::parse(schemaStream, nullptr, false);
+    if (schema.is_discarded())
+    {
+        std::cerr
+            << "Illegal schema file detected, cannot validate JSON, exiting\n";
+        std::exit(EXIT_FAILURE);
+    }
+
     for (auto &jsonPath : jsonPaths)
     {
-        if (boost::algorithm::ends_with(jsonPath.string(), schemaFile))
-        {
-            // todo: parse using schema
-            continue;
-        }
         std::ifstream jsonStream(jsonPath.c_str());
         if (!jsonStream.good())
         {
@@ -985,6 +999,12 @@ bool findJsonFiles(std::list<nlohmann::json> &configurations)
             std::cerr << "syntax error in " << jsonPath.string() << "\n";
             continue;
         }
+        if (!validateJson(schema, data))
+        {
+            std::cerr << "Error validating " << jsonPath.string() << "\n";
+            continue;
+        }
+
         if (data.type() == nlohmann::json::value_t::array)
         {
             for (auto &d : data)

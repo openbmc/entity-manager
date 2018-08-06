@@ -18,6 +18,10 @@
 #include <experimental/filesystem>
 #include <fstream>
 #include <regex>
+#include <valijson/adapters/nlohmann_json_adapter.hpp>
+#include <valijson/schema.hpp>
+#include <valijson/schema_parser.hpp>
+#include <valijson/validator.hpp>
 
 namespace fs = std::experimental::filesystem;
 
@@ -43,6 +47,21 @@ bool find_files(const fs::path &dir_path, const std::string &match_string,
         {
             find_files(p.path(), match_string, found_paths, symlink_depth - 1);
         }
+    }
+    return true;
+}
+
+bool validateJson(const nlohmann::json &schemaFile, const nlohmann::json &input)
+{
+    valijson::Schema schema;
+    valijson::SchemaParser parser;
+    valijson::adapters::NlohmannJsonAdapter schemaAdapter(schemaFile);
+    parser.populateSchema(schemaAdapter, schema);
+    valijson::Validator validator;
+    valijson::adapters::NlohmannJsonAdapter targetAdapter(input);
+    if (!validator.validate(schema, targetAdapter, NULL))
+    {
+        return false;
     }
     return true;
 }
