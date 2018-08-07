@@ -1257,9 +1257,12 @@ void propertiesChangedCallback(
                 registerCallbacks(io, dbusMatches, systemConfiguration,
                                   objServer);
                 io.post([&, newConfiguration]() {
+
+#ifdef OVERLAYS
                     // todo: for now, only add new configurations,
                     // unload to come later unloadOverlays();
                     loadOverlays(newConfiguration);
+#endif
                     io.post([&]() {
                         if (!writeJsonFiles(systemConfiguration))
                         {

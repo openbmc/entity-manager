@@ -27,6 +27,7 @@ add_definitions(-DBOOST_NO_RTTI)
 add_definitions(-DBOOST_NO_TYPEID)
 
 option(YOCTO "Enable Building in Yocto" OFF)
+option(USE_OVERLAYS "Enable Overlay Usage" ON)
 
 if(NOT YOCTO)
     include_directories(${CMAKE_CURRENT_SOURCE_DIR}/include/non-yocto)
@@ -99,6 +100,11 @@ target_link_libraries(entity-manager pthread)
 target_link_libraries(entity-manager stdc++fs)
 target_link_libraries(entity-manager ${Boost_LIBRARIES})
 target_link_libraries(entity-manager sdbusplus)
+
+if(USE_OVERLAYS)
+    # overlays can be disabled because they require a kernel patch as of today
+    target_compile_definitions(entity-manager PRIVATE OVERLAYS=1)
+endif()
 
 if(NOT YOCTO)
     add_dependencies(entity-manager nlohmann-json)
