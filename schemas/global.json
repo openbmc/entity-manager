@@ -169,20 +169,11 @@
                             "ICoefficient": {
                                 "type": "number"
                             },
-                            "ILimit": {
-                                "type": "object",
-                                "properties": {
-                                    "Max": {
-                                        "type": "number"
-                                    },
-                                    "Min": {
-                                        "type": "number"
-                                    }
-                                },
-                                "required": [
-                                    "Max",
-                                    "Min"
-                                ]
+                            "ILimitMax": {
+                                "type": "number"
+                            },
+                            "ILimitMin": {
+                                "type": "number"
                             },
                             "Inputs": {
                                 "type": "array",
@@ -190,20 +181,17 @@
                                     "type": "string"
                                 }
                             },
-                            "OutLimit": {
-                                "type": "object",
-                                "properties": {
-                                    "Max": {
-                                        "type": "number"
-                                    },
-                                    "Min": {
-                                        "type": "number"
-                                    }
-                                },
-                                "required": [
-                                    "Max",
-                                    "Min"
-                                ]
+                            "OutLimitMax": {
+                                "type": "number"
+                            },
+                            "OutLimitMin": {
+                                "type": "number"
+                            },
+                            "Outputs": {
+                                "type": "array",
+                                "items": {
+                                    "type": "string"
+                                }
                             },
                             "PCoefficient": {
                                 "type": "number"
@@ -217,10 +205,16 @@
                             "SlewPos": {
                                 "type": "number"
                             },
-                            "MinThermalRpm": {
-                                "type": "integer"
+                            "Zones": {
+                                "type": "array",
+                                "items": {
+                                    "type": "string"
+                                }
                             },
                             "FailSafePercent": {
+                                "type": "integer"
+                            },
+                            "MinThermalRpm": {
                                 "type": "integer"
                             },
                             "present": {
