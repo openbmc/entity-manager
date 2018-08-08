@@ -72,7 +72,10 @@ const static boost::container::flat_map<const char *, probe_type_codes, cmp_str>
 
 static constexpr std::array<const char *, 1> SETTABLE_INTERFACES = {
     "Thresholds"};
-
+using JsonVariantType =
+    sdbusplus::message::variant<std::vector<std::string>, std::string, int64_t,
+                                uint64_t, double, int32_t, uint32_t, int16_t,
+                                uint16_t, uint8_t, bool>;
 using BasicVariantType =
     sdbusplus::message::variant<std::string, int64_t, uint64_t, double, int32_t,
                                 uint32_t, int16_t, uint16_t, uint8_t, bool>;
@@ -557,22 +560,25 @@ void addProperty(const std::string &propertyName, const PropertyType &value,
         iface->register_property(propertyName, value);
         return;
     }
-    iface->register_property(propertyName, value, [
-        &systemConfiguration, jsonPointerString{std::string(jsonPointerString)}
-    ](const PropertyType &newVal, PropertyType &val) {
-        val = newVal;
-        if (!setJsonFromPointer(jsonPointerString, val, systemConfiguration))
-        {
-            std::cerr << "error setting json field\n";
+    iface->register_property(
+        propertyName, value,
+        [&systemConfiguration,
+         jsonPointerString{std::string(jsonPointerString)}](
+            const PropertyType &newVal, PropertyType &val) {
+            val = newVal;
+            if (!setJsonFromPointer(jsonPointerString, val,
+                                    systemConfiguration))
+            {
+                std::cerr << "error setting json field\n";
+                return -1;
+            }
+            if (writeJsonFiles(systemConfiguration))
+            {
+                std::cerr << "error setting json file\n";
+                return 1;
+            }
             return -1;
-        }
-        if (writeJsonFiles(systemConfiguration))
-        {
-            std::cerr << "error setting json file\n";
-            return 1;
-        }
-        return -1;
-    });
+        });
 }
 
 // adds simple json types to interface's properties
@@ -712,6 +718,112 @@ void populateInterfaceFromJson(
     iface->initialize();
 }
 
+void createAddObjectMethod(const std::string &jsonPointerPath,
+                           const std::string &path,
+                           nlohmann::json &systemConfiguration,
+                           sdbusplus::asio::object_server &objServer)
+{
+    auto iface = objServer.add_interface(path, "xyz.openbmc_project.AddObject");
+
+    iface->register_method(
+        "AddObject",
+        [&systemConfiguration, &objServer,
+         jsonPointerPath{std::string(jsonPointerPath)},
+         path{std::string(path)}](
+            const boost::container::flat_map<std::string, JsonVariantType>
+                &data) {
+            nlohmann::json::json_pointer ptr(jsonPointerPath);
+            nlohmann::json &base = systemConfiguration[ptr];
+            auto findExposes = base.find("Exposes");
+
+            if (findExposes == base.end())
+            {
+                throw std::invalid_argument("Entity must have children.");
+            }
+
+            // this will throw invalid-argument to sdbusplus if invalid json
+            nlohmann::json newData{};
+            for (const auto &item : data)
+            {
+                nlohmann::json &newJson = newData[item.first];
+                mapbox::util::apply_visitor(
+                    [&newJson](auto &&val) { newJson = std::move(val); },
+                    item.second);
+            }
+
+            auto findName = newData.find("Name");
+            auto findType = newData.find("Type");
+            if (findName == newData.end() || findType == newData.end())
+            {
+                throw std::invalid_argument("AddObject missing Name or Type");
+            }
+            const std::string *type = findType->get_ptr<const std::string *>();
+            const std::string *name = findName->get_ptr<const std::string *>();
+            if (type == nullptr || name == nullptr)
+            {
+                throw std::invalid_argument("Type and Name must be a string.");
+            }
+
+            size_t lastIndex = 0;
+            // we add in the "exposes"
+            for (; lastIndex < findExposes->size(); lastIndex++)
+            {
+                if (findExposes->at(lastIndex)["Name"] == *name &&
+                    findExposes->at(lastIndex)["Type"] == *type)
+                {
+                    throw std::invalid_argument(
+                        "Field already in JSON, not adding");
+                }
+                lastIndex++;
+            }
+
+            std::ifstream schemaFile(std::string(schemaDirectory) + "/" +
+                                     *type + ".json");
+            // todo(james) we might want to also make a list of 'can add'
+            // interfaces but for now I think the assumption if there is a
+            // schema avaliable that it is allowed to update is fine
+            if (!schemaFile.good())
+            {
+                throw std::invalid_argument(
+                    "No schema avaliable, cannot validate.");
+            }
+            nlohmann::json schema =
+                nlohmann::json::parse(schemaFile, nullptr, false);
+            if (schema.is_discarded())
+            {
+                std::cerr << "Schema not legal" << *type << ".json\n";
+                throw DBusInternalError();
+            }
+            if (!validateJson(schema, newData))
+            {
+                throw std::invalid_argument("Data does not match schema");
+            }
+
+            if (!writeJsonFiles(systemConfiguration))
+            {
+                std::cerr << "Error writing json files\n";
+                throw DBusInternalError();
+            }
+            std::string dbusName = *name;
+
+            std::regex_replace(dbusName.begin(), dbusName.begin(),
+                               dbusName.end(), ILLEGAL_DBUS_REGEX, "_");
+            auto iface = objServer.add_interface(
+                path + "/" + dbusName,
+                "xyz.openbmc_project.Configuration." + *type);
+            // permission is read-write, as since we just created it, must be
+            // runtime modifiable
+            populateInterfaceFromJson(
+                systemConfiguration,
+                jsonPointerPath + "/" + std::to_string(lastIndex), iface.get(),
+                newData, objServer,
+                sdbusplus::asio::PropertyPermission::readWrite);
+            // todo(james) generate patch
+            findExposes->push_back(newData);
+        });
+    iface->initialize();
+}
+
 void postToDbus(const nlohmann::json &newConfiguration,
                 nlohmann::json &systemConfiguration,
                 sdbusplus::asio::object_server &objServer)
@@ -750,8 +862,12 @@ void postToDbus(const nlohmann::json &newConfiguration,
 
         auto inventoryIface = objServer.add_interface(
             boardName, "xyz.openbmc_project.Inventory.Item");
+
         auto boardIface = objServer.add_interface(
             boardName, "xyz.openbmc_project.Inventory.Item." + boardType);
+
+        createAddObjectMethod(jsonPointerPath, boardName, systemConfiguration,
+                              objServer);
 
         populateInterfaceFromJson(systemConfiguration, jsonPointerPath,
                                   boardIface.get(), boardValues, objServer);
