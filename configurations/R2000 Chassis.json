@@ -119,6 +119,156 @@
                 }
             ],
             "Type": "AspeedFan"
+        },
+        {
+            "Class": "fan",
+            "FFGainCoefficient": 0.01,
+            "FFOffCoefficient": 0.0,
+            "ICoefficient": 0.0,
+            "ILimitMax": 0.0,
+            "ILimitMin": 0.0,
+            "Inputs": [
+                "Fan 1"
+            ],
+            "Name": "Fan 1",
+            "OutLimitMax": 100.0,
+            "OutLimitMin": 30.0,
+            "Outputs": [
+                "Pwm 1"
+            ],
+            "PCoefficient": 0.0,
+            "SlewNeg": 0.0,
+            "SlewPos": 0.0,
+            "Type": "Pid",
+            "Zones": [
+                "Pid 1"
+            ]
+        },
+        {
+            "Class": "fan",
+            "FFGainCoefficient": 0.01,
+            "FFOffCoefficient": 0.0,
+            "ICoefficient": 0.0,
+            "ILimitMax": 0.0,
+            "ILimitMin": 0.0,
+            "Inputs": [
+                "Fan 2"
+            ],
+            "Name": "Fan 2",
+            "OutLimitMax": 100.0,
+            "OutLimitMin": 30.0,
+            "Outputs": [
+                "Pwm 2"
+            ],
+            "PCoefficient": 0.0,
+            "SlewNeg": 0.0,
+            "SlewPos": 0.0,
+            "Type": "Pid",
+            "Zones": [
+                "Pid 1"
+            ]
+        },
+        {
+            "Class": "fan",
+            "FFGainCoefficient": 0.01,
+            "FFOffCoefficient": 0.0,
+            "ICoefficient": 0.0,
+            "ILimitMax": 0.0,
+            "ILimitMin": 0.0,
+            "Inputs": [
+                "Fan 3"
+            ],
+            "Name": "Fan 3",
+            "OutLimitMax": 100.0,
+            "OutLimitMin": 30.0,
+            "Outputs": [
+                "Pwm 3"
+            ],
+            "PCoefficient": 0.0,
+            "SlewNeg": 0.0,
+            "SlewPos": 0.0,
+            "Type": "Pid",
+            "Zones": [
+                "Pid 1"
+            ]
+        },
+        {
+            "Class": "fan",
+            "FFGainCoefficient": 0.01,
+            "FFOffCoefficient": 0.0,
+            "ICoefficient": 0.0,
+            "ILimitMax": 0.0,
+            "ILimitMin": 0.0,
+            "Inputs": [
+                "Fan 4"
+            ],
+            "Name": "Fan 4",
+            "OutLimitMax": 100.0,
+            "OutLimitMin": 30.0,
+            "Outputs": [
+                "Pwm 4"
+            ],
+            "PCoefficient": 0.0,
+            "SlewNeg": 0.0,
+            "SlewPos": 0.0,
+            "Type": "Pid",
+            "Zones": [
+                "Pid 1"
+            ]
+        },
+        {
+            "Class": "fan",
+            "FFGainCoefficient": 0.01,
+            "FFOffCoefficient": 0.0,
+            "ICoefficient": 0.0,
+            "ILimitMax": 0.0,
+            "ILimitMin": 0.0,
+            "Inputs": [
+                "Fan 5"
+            ],
+            "Name": "Fan 5",
+            "OutLimitMax": 100.0,
+            "OutLimitMin": 30.0,
+            "Outputs": [
+                "Pwm 5"
+            ],
+            "PCoefficient": 0.0,
+            "SlewNeg": 0.0,
+            "SlewPos": 0.0,
+            "Type": "Pid",
+            "Zones": [
+                "Pid 1"
+            ]
+        },
+        {
+            "Class": "fan",
+            "FFGainCoefficient": 0.01,
+            "FFOffCoefficient": 0.0,
+            "ICoefficient": 0.0,
+            "ILimitMax": 0.0,
+            "ILimitMin": 0.0,
+            "Inputs": [
+                "Fan 6"
+            ],
+            "Name": "Fan 6",
+            "OutLimitMax": 100.0,
+            "OutLimitMin": 30.0,
+            "Outputs": [
+                "Pwm 6"
+            ],
+            "PCoefficient": 0.0,
+            "SlewNeg": 0.0,
+            "SlewPos": 0.0,
+            "Type": "Pid",
+            "Zones": [
+                "Pid 1"
+            ]
+        },
+        {
+            "FailSafePercent": 90,
+            "MinThermalRpm": 3000,
+            "Name": "Pid 1",
+            "Type": "Pid.Zone"
         }
     ],
     "Name": "R2000 Chassis",
