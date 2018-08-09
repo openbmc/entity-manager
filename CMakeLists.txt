@@ -106,3 +106,6 @@ if(NOT YOCTO)
 endif()
 
 install (TARGETS fru-device entity-manager DESTINATION bin)
+install (DIRECTORY configurations DESTINATION share)
+install (DIRECTORY overlay_templates DESTINATION share)
+# install (DIRECTORY schemas DESTINATION share/configurations)
