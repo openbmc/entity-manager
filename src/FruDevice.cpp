@@ -610,7 +610,7 @@ void rescanBusses(
         auto matchString = std::string("i2c*");
         std::vector<fs::path> i2cBuses;
 
-        if (!find_files(devDir, matchString, i2cBuses, 0))
+        if (!findFiles(devDir, matchString, i2cBuses))
         {
             std::cerr << "unable to find i2c devices\n";
             return;
@@ -659,7 +659,7 @@ int main(int argc, char **argv)
     auto matchString = std::string("i2c*");
     std::vector<fs::path> i2cBuses;
 
-    if (!find_files(devDir, matchString, i2cBuses, 0))
+    if (!findFiles(devDir, matchString, i2cBuses))
     {
         std::cerr << "unable to find i2c devices\n";
         return 1;

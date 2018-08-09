@@ -111,8 +111,8 @@ void fixupSymbols(
     const std::vector<std::experimental::filesystem::path> &i2cDevsBefore)
 {
     std::vector<std::experimental::filesystem::path> i2cDevsAfter;
-    find_files(std::experimental::filesystem::path(I2C_DEVS_DIR),
-               R"(i2c-\d+)", i2cDevsAfter, 0);
+    findFiles(std::experimental::filesystem::path(I2C_DEVS_DIR),
+              R"(i2c-\d+)", i2cDevsAfter);
 
     for (const auto &dev : i2cDevsAfter)
     {
@@ -222,8 +222,8 @@ void createOverlay(const std::string &templatePath,
     auto findMux = MUX_TYPES.find(type);
     if (findMux != MUX_TYPES.end())
     {
-        find_files(std::experimental::filesystem::path(I2C_DEVS_DIR),
-                   R"(i2c-\d+)", i2cDevsBefore, 0);
+        findFiles(std::experimental::filesystem::path(I2C_DEVS_DIR),
+                  R"(i2c-\d+)", i2cDevsBefore);
     }
 
     // compile dtbo and load overlay
@@ -257,8 +257,8 @@ bool loadOverlays(const nlohmann::json &systemConfiguration)
 {
 
     std::vector<std::experimental::filesystem::path> paths;
-    if (!find_files(std::experimental::filesystem::path(TEMPLATE_DIR),
-                    R"(.*\.template)", paths, 0))
+    if (!findFiles(std::experimental::filesystem::path(TEMPLATE_DIR),
+                   R"(.*\.template)", paths))
     {
         std::cerr << "Unable to find any tempate files in " << TEMPLATE_DIR
                   << "\n";

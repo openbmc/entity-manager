@@ -25,27 +25,20 @@
 
 namespace fs = std::experimental::filesystem;
 
-bool find_files(const fs::path &dir_path, const std::string &match_string,
-                std::vector<fs::path> &found_paths, unsigned int symlink_depth)
+bool findFiles(const fs::path &dirPath, const std::string &matchString,
+               std::vector<fs::path> &foundPaths)
 {
-    if (!fs::exists(dir_path))
+    if (!fs::exists(dirPath))
         return false;
 
-    fs::directory_iterator end_itr;
-    std::regex search(match_string);
+    std::regex search(matchString);
     std::smatch match;
-    for (auto &p : fs::recursive_directory_iterator(dir_path))
+    for (const auto &p : fs::directory_iterator(dirPath))
     {
         std::string path = p.path().string();
         if (std::regex_search(path, match, search))
         {
-            found_paths.emplace_back(p.path());
-        }
-        // since we're using a recursve iterator, these should only be symlink
-        // dirs
-        else if (is_directory(p) && symlink_depth)
-        {
-            find_files(p.path(), match_string, found_paths, symlink_depth - 1);
+            foundPaths.emplace_back(p.path());
         }
     }
     return true;

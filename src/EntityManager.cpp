@@ -961,8 +961,8 @@ bool findJsonFiles(std::list<nlohmann::json> &configurations)
 {
     // find configuration files
     std::vector<fs::path> jsonPaths;
-    if (!find_files(fs::path(configurationDirectory), R"(.*\.json)", jsonPaths,
-                    0))
+    if (!findFiles(fs::path(configurationDirectory),
+                   R"(.*\.json)", jsonPaths))
     {
         std::cerr << "Unable to find any configuration files in "
                   << configurationDirectory << "\n";
