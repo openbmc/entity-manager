@@ -70,8 +70,8 @@ const static boost::container::flat_map<const char *, probe_type_codes, cmp_str>
                  {"FOUND", probe_type_codes::FOUND},
                  {"MATCH_ONE", probe_type_codes::MATCH_ONE}}};
 
-static constexpr std::array<const char *, 1> SETTABLE_INTERFACES = {
-    "Thresholds"};
+static constexpr std::array<const char *, 3> settableInterfaces = {
+    "Thresholds", "Pid", "Pid.Zone"};
 using JsonVariantType =
     sdbusplus::message::variant<std::vector<std::string>, std::string, int64_t,
                                 uint64_t, double, int32_t, uint32_t, int16_t,
@@ -572,10 +572,46 @@ void addProperty(const std::string &propertyName, const PropertyType &value,
                 std::cerr << "error setting json field\n";
                 return -1;
             }
-            if (writeJsonFiles(systemConfiguration))
+            if (!writeJsonFiles(systemConfiguration))
             {
                 std::cerr << "error setting json file\n";
-                return 1;
+                return -1;
+            }
+            return 1;
+        });
+}
+
+void createDeleteObjectMethod(
+    const std::string &jsonPointerPath,
+    const std::shared_ptr<sdbusplus::asio::dbus_interface> &iface,
+    sdbusplus::asio::object_server &objServer,
+    nlohmann::json &systemConfiguration)
+{
+    std::weak_ptr<sdbusplus::asio::dbus_interface> interface = iface;
+    iface->register_method(
+        "Delete", [&objServer, &systemConfiguration, interface,
+                   jsonPointerPath{std::string(jsonPointerPath)}]() {
+            std::shared_ptr<sdbusplus::asio::dbus_interface> iface =
+                interface.lock();
+            if (!iface)
+            {
+                // this technically can't happen as the pointer is pointing to
+                // us
+                throw DBusInternalError();
+            }
+            nlohmann::json::json_pointer ptr(jsonPointerPath);
+            if (!objServer.remove_interface(iface))
+            {
+                std::cerr << "Can't delete interface " << jsonPointerPath
+                          << "\n";
+                throw DBusInternalError();
+            }
+            systemConfiguration[ptr] = nullptr;
+
+            if (!writeJsonFiles(systemConfiguration))
+            {
+                std::cerr << "error setting json file\n";
+                throw DBusInternalError();
             }
             return -1;
         });
@@ -584,8 +620,8 @@ void addProperty(const std::string &propertyName, const PropertyType &value,
 // adds simple json types to interface's properties
 void populateInterfaceFromJson(
     nlohmann::json &systemConfiguration, const std::string &jsonPointerPath,
-    sdbusplus::asio::dbus_interface *iface, nlohmann::json &dict,
-    sdbusplus::asio::object_server &objServer,
+    std::shared_ptr<sdbusplus::asio::dbus_interface> &iface,
+    nlohmann::json &dict, sdbusplus::asio::object_server &objServer,
     sdbusplus::asio::PropertyPermission permission =
         sdbusplus::asio::PropertyPermission::readOnly)
 {
@@ -641,13 +677,14 @@ void populateInterfaceFromJson(
                     // todo: array of bool isn't detected correctly by
                     // sdbusplus, change it to numbers
                     addArrayToDbus<uint64_t>(dictPair.key(), dictPair.value(),
-                                             iface, permission);
+                                             iface.get(), permission);
                 }
 
                 else
                 {
                     addProperty(dictPair.key(), dictPair.value().get<bool>(),
-                                iface, systemConfiguration, key, permission);
+                                iface.get(), systemConfiguration, key,
+                                permission);
                 }
                 break;
             }
@@ -656,12 +693,12 @@ void populateInterfaceFromJson(
                 if (array)
                 {
                     addArrayToDbus<int64_t>(dictPair.key(), dictPair.value(),
-                                            iface, permission);
+                                            iface.get(), permission);
                 }
                 else
                 {
                     addProperty(dictPair.key(), dictPair.value().get<int64_t>(),
-                                iface, systemConfiguration, key,
+                                iface.get(), systemConfiguration, key,
                                 sdbusplus::asio::PropertyPermission::readOnly);
                 }
                 break;
@@ -671,12 +708,12 @@ void populateInterfaceFromJson(
                 if (array)
                 {
                     addArrayToDbus<uint64_t>(dictPair.key(), dictPair.value(),
-                                             iface, permission);
+                                             iface.get(), permission);
                 }
                 else
                 {
                     addProperty(dictPair.key(),
-                                dictPair.value().get<uint64_t>(), iface,
+                                dictPair.value().get<uint64_t>(), iface.get(),
                                 systemConfiguration, key,
                                 sdbusplus::asio::PropertyPermission::readOnly);
                 }
@@ -687,13 +724,14 @@ void populateInterfaceFromJson(
                 if (array)
                 {
                     addArrayToDbus<double>(dictPair.key(), dictPair.value(),
-                                           iface, permission);
+                                           iface.get(), permission);
                 }
 
                 else
                 {
                     addProperty(dictPair.key(), dictPair.value().get<double>(),
-                                iface, systemConfiguration, key, permission);
+                                iface.get(), systemConfiguration, key,
+                                permission);
                 }
                 break;
             }
@@ -701,21 +739,34 @@ void populateInterfaceFromJson(
             {
                 if (array)
                 {
-                    addArrayToDbus<std::string>(
-                        dictPair.key(), dictPair.value(), iface, permission);
+                    addArrayToDbus<std::string>(dictPair.key(),
+                                                dictPair.value(), iface.get(),
+                                                permission);
                 }
                 else
                 {
-                    addProperty(dictPair.key(),
-                                dictPair.value().get<std::string>(), iface,
-                                systemConfiguration, key, permission);
+                    addProperty(
+                        dictPair.key(), dictPair.value().get<std::string>(),
+                        iface.get(), systemConfiguration, key, permission);
                 }
                 break;
             }
         }
     }
-
+    if (permission == sdbusplus::asio::PropertyPermission::readWrite)
+    {
+        createDeleteObjectMethod(jsonPointerPath, iface, objServer,
+                                 systemConfiguration);
+    }
     iface->initialize();
+}
+
+sdbusplus::asio::PropertyPermission getPermission(const std::string &interface)
+{
+    return std::find(settableInterfaces.begin(), settableInterfaces.end(),
+                     interface) != settableInterfaces.end()
+               ? sdbusplus::asio::PropertyPermission::readWrite
+               : sdbusplus::asio::PropertyPermission::readOnly;
 }
 
 void createAddObjectMethod(const std::string &jsonPointerPath,
@@ -815,7 +866,7 @@ void createAddObjectMethod(const std::string &jsonPointerPath,
             // runtime modifiable
             populateInterfaceFromJson(
                 systemConfiguration,
-                jsonPointerPath + "/" + std::to_string(lastIndex), iface.get(),
+                jsonPointerPath + "/" + std::to_string(lastIndex), iface,
                 newData, objServer,
                 sdbusplus::asio::PropertyPermission::readWrite);
             // todo(james) generate patch
@@ -870,7 +921,7 @@ void postToDbus(const nlohmann::json &newConfiguration,
                               objServer);
 
         populateInterfaceFromJson(systemConfiguration, jsonPointerPath,
-                                  boardIface.get(), boardValues, objServer);
+                                  boardIface, boardValues, objServer);
         jsonPointerPath += "/";
         // iterate through board properties
         for (auto &boardField : boardValues.items())
@@ -879,9 +930,9 @@ void postToDbus(const nlohmann::json &newConfiguration,
             {
                 auto iface =
                     objServer.add_interface(boardName, boardField.key());
-                populateInterfaceFromJson(
-                    systemConfiguration, jsonPointerPath + boardField.key(),
-                    iface.get(), boardField.value(), objServer);
+                populateInterfaceFromJson(systemConfiguration,
+                                          jsonPointerPath + boardField.key(),
+                                          iface, boardField.value(), objServer);
             }
         }
 
@@ -932,12 +983,14 @@ void postToDbus(const nlohmann::json &newConfiguration,
             std::string itemName = findName->get<std::string>();
             std::regex_replace(itemName.begin(), itemName.begin(),
                                itemName.end(), ILLEGAL_DBUS_REGEX, "_");
+
             auto itemIface = objServer.add_interface(
                 boardName + "/" + itemName,
                 "xyz.openbmc_project.Configuration." + itemType);
 
             populateInterfaceFromJson(systemConfiguration, jsonPointerPath,
-                                      itemIface.get(), item, objServer);
+                                      itemIface, item, objServer,
+                                      getPermission(itemType));
 
             for (auto &objectPair : item.items())
             {
@@ -953,8 +1006,8 @@ void postToDbus(const nlohmann::json &newConfiguration,
                             objectPair.key());
 
                     populateInterfaceFromJson(
-                        systemConfiguration, jsonPointerPath, objectIface.get(),
-                        objectPair.value(), objServer);
+                        systemConfiguration, jsonPointerPath, objectIface,
+                        objectPair.value(), objServer, getPermission(itemType));
                 }
                 else if (objectPair.value().type() ==
                          nlohmann::json::value_t::array)
@@ -989,24 +1042,16 @@ void postToDbus(const nlohmann::json &newConfiguration,
 
                     for (auto &arrayItem : objectPair.value())
                     {
-                        // limit what interfaces accept set for safety
-                        auto permission =
-                            std::find(SETTABLE_INTERFACES.begin(),
-                                      SETTABLE_INTERFACES.end(),
-                                      objectPair.key()) !=
-                                    SETTABLE_INTERFACES.end()
-                                ? sdbusplus::asio::PropertyPermission::readWrite
-                                : sdbusplus::asio::PropertyPermission::readOnly;
 
                         auto objectIface = objServer.add_interface(
                             boardName + "/" + itemName,
                             "xyz.openbmc_project.Configuration." + itemType +
                                 "." + objectPair.key() + std::to_string(index));
-                        populateInterfaceFromJson(systemConfiguration,
-                                                  jsonPointerPath + "/" +
-                                                      std::to_string(index),
-                                                  objectIface.get(), arrayItem,
-                                                  objServer, permission);
+                        populateInterfaceFromJson(
+                            systemConfiguration,
+                            jsonPointerPath + "/" + std::to_string(index),
+                            objectIface, arrayItem, objServer,
+                            getPermission(objectPair.key()));
                         index++;
                     }
                 }
