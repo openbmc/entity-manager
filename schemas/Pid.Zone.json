@@ -1,0 +1,24 @@
+{
+    "$schema": "http://json-schema.org/schema#",
+    "type": "object",
+    "properties": {
+        "FailSafePercent": {
+            "type": "number"
+        },
+        "MinThermalRpm": {
+            "type": "number"
+        },
+        "Name": {
+            "type": "string"
+        },
+        "Type": {
+            "type": "string"
+        }
+    },
+    "required": [
+        "FailSafePercent",
+        "MinThermalRpm",
+        "Name",
+        "Type"
+    ]
+}
