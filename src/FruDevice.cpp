@@ -604,7 +604,7 @@ void rescanBusses(
     static boost::asio::deadline_timer timer(io);
     timer.expires_from_now(boost::posix_time::seconds(1));
 
-    // setup an async wait incase we get flooded with requests
+    // setup an async wait in case we get flooded with requests
     timer.async_wait([&](const boost::system::error_code &ec) {
         auto devDir = fs::path("/dev/");
         auto matchString = std::string("i2c*");
