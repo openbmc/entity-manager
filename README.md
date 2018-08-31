@@ -1,4 +1,4 @@
-#Entity Manager#
+# Entity Manager
 
 Entity manager is a runtime configuration application which parses configuration
 files (in JSON format) and attempts to detect the devices described by the
@@ -7,7 +7,7 @@ device tree overlays to add sensors to the device tree. The output is also a
 JSON file which includes all devices in the system such as fans and temperature
 sensors.
 
-## Configuration Syntax ##
+## Configuration Syntax
 
 In most cases a server system is built with multiple hardware modules (circuit
 boards) such as baseboard, risers, and hot-swap backplanes. While it is
@@ -42,7 +42,7 @@ files. The following table describes the template strings currently defined.
 
 
 
-## Configuration Records - Baseboard Example##
+## Configuration Records - Baseboard Example
 
 Required fields are name, probe and exposes.
 
@@ -149,7 +149,7 @@ as "WFP baseboard".
 }
 ```
 
-####Configuration Records - Chassis Example ####
+#### Configuration Records - Chassis Example
 
 Although fan connectors are considered a part of a baseboard, the physical
 fans themselves are considered as a part of a chassis. In order for a fan to
@@ -187,7 +187,7 @@ considered as being joined together.
 }
 ```
 
-## Enabling Sensors ##
+## Enabling Sensors
 
 As demons can trigger off of shared types, sometimes some handshaking will be
 needed to enable sensors. Using the TMP75 sensor as an example, when the
@@ -196,7 +196,7 @@ begin. The device tree overlay generator has the ability to key off of
 different types and create device tree overlays for specific offsets. Once
 this is done, the baseboard temperature sensor demon can scan the sensors.
 
-## Run Unit Tests ##
+## Run Unit Tests
 
 The following environment variables need to be set to run unit tests:
 
