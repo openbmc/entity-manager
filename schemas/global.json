@@ -151,6 +151,36 @@
                                     ]
                                 }
                             },
+                            "Inputs": {
+                                "type": "array",
+                                "items": {
+                                    "type": "string"
+                                }
+                            },
+                            "NegativeHysteresis": {
+                                "type": "integer"
+                            },
+                            "Output": {
+                                "type": "array",
+                                "items": {
+                                    "type": "number"
+                                }
+                            },
+                            "PositiveHysteresis": {
+                                "type": "integer"
+                            },
+                            "Reading": {
+                                "type": "array",
+                                "items": {
+                                    "type": "number"
+                                }
+                            },
+                            "Zones": {
+                                "type": "array",
+                                "items": {
+                                    "type": "string"
+                                }
+                            },
                             "BindConnector": {
                                 "type": "string"
                             },
@@ -175,12 +205,6 @@
                             "ILimitMin": {
                                 "type": "number"
                             },
-                            "Inputs": {
-                                "type": "array",
-                                "items": {
-                                    "type": "string"
-                                }
-                            },
                             "OutLimitMax": {
                                 "type": "number"
                             },
@@ -196,28 +220,16 @@
                             "PCoefficient": {
                                 "type": "number"
                             },
-                            "SetPoint": {
-                                "type": "number"
-                            },
                             "SlewNeg": {
                                 "type": "number"
                             },
                             "SlewPos": {
                                 "type": "number"
                             },
-                            "Zones": {
-                                "type": "array",
-                                "items": {
-                                    "type": "string"
-                                }
-                            },
                             "FailSafePercent": {
                                 "type": "integer"
                             },
                             "MinThermalRpm": {
-                                "type": "integer"
-                            },
-                            "present": {
                                 "type": "integer"
                             },
                             "Pwm": {
@@ -240,6 +252,9 @@
                             },
                             "CpuID": {
                                 "type": "integer"
+                            },
+                            "SetPoint": {
+                                "type": "number"
                             }
                         },
                         "required": [
