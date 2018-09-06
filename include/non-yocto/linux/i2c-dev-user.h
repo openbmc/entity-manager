@@ -1,3 +1,4 @@
+// clang-format off
 /*
     i2c-dev.h - i2c-bus driver, char device interface
 
@@ -334,3 +335,4 @@ static inline __s32 i2c_smbus_block_process_call(int file, __u8 command,
 
 
 #endif /* LIB_I2CDEV_H */
+// clang-format on
