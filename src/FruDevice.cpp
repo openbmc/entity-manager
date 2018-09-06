@@ -30,7 +30,6 @@
 #include <sys/ioctl.h>
 #include <regex>
 #include <sys/inotify.h>
-#include <xyz/openbmc_project/Common/error.hpp>
 #include <errno.h>
 
 namespace fs = std::experimental::filesystem;
@@ -520,8 +519,7 @@ bool writeFru(uint8_t bus, uint8_t address, const std::vector<uint8_t> &fru)
         {
             std::cerr << "Error opening file " << BASEBOARD_FRU_LOCATION
                       << "\n";
-            throw sdbusplus::xyz::openbmc_project::Common::Error::
-                InternalFailure();
+            throw DBusInternalError();
             return false;
         }
         file.write(reinterpret_cast<const char *>(fru.data()), fru.size());
@@ -535,16 +533,14 @@ bool writeFru(uint8_t bus, uint8_t address, const std::vector<uint8_t> &fru)
         if (file < 0)
         {
             std::cerr << "unable to open i2c device " << i2cBus << "\n";
-            throw sdbusplus::xyz::openbmc_project::Common::Error::
-                InternalFailure();
+            throw DBusInternalError();
             return false;
         }
         if (ioctl(file, I2C_SLAVE_FORCE, address) < 0)
         {
             std::cerr << "unable to set device address\n";
             close(file);
-            throw sdbusplus::xyz::openbmc_project::Common::Error::
-                InternalFailure();
+            throw DBusInternalError();
             return false;
         }
 
@@ -562,8 +558,7 @@ bool writeFru(uint8_t bus, uint8_t address, const std::vector<uint8_t> &fru)
                 {
                     std::cerr << "unable to set device address\n";
                     close(file);
-                    throw sdbusplus::xyz::openbmc_project::Common::Error::
-                        InternalFailure();
+                    throw DBusInternalError();
                     return false;
                 }
             }
@@ -575,8 +570,7 @@ bool writeFru(uint8_t bus, uint8_t address, const std::vector<uint8_t> &fru)
                     std::cerr << "error writing fru: " << strerror(errno)
                               << "\n";
                     close(file);
-                    throw sdbusplus::xyz::openbmc_project::Common::Error::
-                        InternalFailure();
+                    throw DBusInternalError();
                     return false;
                 }
             }
@@ -690,14 +684,12 @@ int main(int argc, char **argv)
             auto deviceMap = busmap.find(bus);
             if (deviceMap == busmap.end())
             {
-                throw sdbusplus::xyz::openbmc_project::Common::Error::
-                    InvalidArgument();
+                throw std::invalid_argument("Invalid Bus.");
             }
             auto device = deviceMap->second->find(address);
             if (device == deviceMap->second->end())
             {
-                throw sdbusplus::xyz::openbmc_project::Common::Error::
-                    InvalidArgument();
+                throw std::invalid_argument("Invalid Address.");
             }
             std::vector<uint8_t> &ret =
                 reinterpret_cast<std::vector<uint8_t> &>(device->second);
@@ -709,13 +701,11 @@ int main(int argc, char **argv)
                                            const std::vector<uint8_t> &data) {
         if (!writeFru(bus, address, data))
         {
-            throw sdbusplus::xyz::openbmc_project::Common::Error::
-                InvalidArgument();
+            throw std::invalid_argument("Invalid Arguments.");
             return;
         }
         // schedule rescan on success
         rescanBusses(io, busmap, dbusInterfaceMap, systemBus, objServer);
-
     });
     iface->initialize();
 

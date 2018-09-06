@@ -1,115 +1,120 @@
-cmake_minimum_required(VERSION 3.1 FATAL_ERROR)
-SET(BUILD_SHARED_LIBRARIES OFF)
-include(ExternalProject)
-set(CMAKE_CXX_STANDARD 14)
-set(CMAKE_CXX_STANDARD_REQUIRED ON)
-set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -lstdc++fs")
-set(CMAKE_MODULE_PATH ${CMAKE_CURRENT_SOURCE_DIR}/cmake ${CMAKE_MODULE_PATH})
+cmake_minimum_required (VERSION 3.1 FATAL_ERROR)
+set (BUILD_SHARED_LIBRARIES OFF)
+include (ExternalProject)
+set (CMAKE_CXX_STANDARD 14)
+set (CMAKE_CXX_STANDARD_REQUIRED ON)
+set (CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -lstdc++fs")
+set (CMAKE_MODULE_PATH ${CMAKE_CURRENT_SOURCE_DIR}/cmake ${CMAKE_MODULE_PATH})
+set (CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -fno-rtti")
+set (CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -fno-rtti")
 
-option(HUNTER_ENABLED "Enable hunter package pulling" OFF)
-include("cmake/HunterGate.cmake")
+option (YOCTO "Enable Building in Yocto" OFF)
+option (USE_OVERLAYS "Enable Overlay Usage" ON)
 
-HunterGate(
-    URL "https://github.com/ruslo/hunter/archive/v0.18.64.tar.gz"
-    SHA1 "baf9c8cc4f65306f0e442b5419967b4c4c04589a"
-)
-
-project(enitity-manager)
-
-hunter_add_package(Boost)
-find_package(Boost REQUIRED)
-include_directories(${Boost_INCLUDE_DIRS})
-
-add_definitions(-DBOOST_ERROR_CODE_HEADER_ONLY)
-add_definitions(-DBOOST_SYSTEM_NO_DEPRECATED)
-add_definitions(-DBOOST_ALL_NO_LIB)
-add_definitions(-DBOOST_NO_RTTI)
-add_definitions(-DBOOST_NO_TYPEID)
-
-option(YOCTO "Enable Building in Yocto" OFF)
-option(USE_OVERLAYS "Enable Overlay Usage" ON)
-
-if(NOT YOCTO)
-    include_directories(${CMAKE_CURRENT_SOURCE_DIR}/include/non-yocto)
-
-    ExternalProject_Add(nlohmann-json
-        PREFIX ${CMAKE_CURRENT_BINARY_DIR}/nlohmann-json
-        GIT_REPOSITORY https://github.com/nlohmann/json.git
-        GIT_TAG afebb6a3bbc8751e834a5472e5c53cb2b5bbd750
-        CMAKE_ARGS -DCMAKE_INSTALL_PREFIX=${EXTERNAL_INSTALL_LOCATION}
-        CONFIGURE_COMMAND ""
-        BUILD_COMMAND mkdir -p
-            ${CMAKE_CURRENT_BINARY_DIR}/nlohmann-json/src/nlohmann-json/src/nlohmann &&
-                cp ${CMAKE_CURRENT_BINARY_DIR}/nlohmann-json/src/nlohmann-json/src/json.hpp
-                ${CMAKE_CURRENT_BINARY_DIR}/nlohmann-json/src/nlohmann-json/src/nlohmann/json.hpp
-        INSTALL_COMMAND ""
-        LOG_DOWNLOAD ON
+if (NOT YOCTO)
+    externalproject_add (
+        Boost URL
+        https://dl.bintray.com/boostorg/release/1.66.0/source/boost_1_66_0.tar.gz
+        URL_MD5 d275cd85b00022313c171f602db59fc5 SOURCE_DIR
+        "${CMAKE_BINARY_DIR}/boost-src" BINARY_DIR
+        "${CMAKE_BINARY_DIR}/boost-build" CONFIGURE_COMMAND "" BUILD_COMMAND ""
+        INSTALL_COMMAND mkdir -p "${CMAKE_BINARY_DIR}/prefix/include/" && cp -R
+        ${CMAKE_BINARY_DIR}/boost-src/boost ${CMAKE_BINARY_DIR}/prefix/include
     )
 
-    ExternalProject_Get_Property(nlohmann-json install_dir)
-    include_directories(${install_dir}/src/nlohmann-json/src)
-
-    ExternalProject_Add(sdbusplus
-        PREFIX ${CMAKE_CURRENT_BINARY_DIR}/sdbusplus
-        GIT_REPOSITORY ssh://git-amr-2.devtools.intel.com:29418/sdbusplus
-        CMAKE_ARGS -DCMAKE_INSTALL_PREFIX=${EXTERNAL_INSTALL_LOCATION} -DBOOST_ROOT=${BOOST_ROOT}
-        CONFIGURE_COMMAND ""
-        BUILD_COMMAND ""
-        INSTALL_COMMAND ""
-        LOG_DOWNLOAD ON
+    externalproject_add (
+        nlohmann-json GIT_REPOSITORY "https://github.com/nlohmann/json.git"
+        GIT_TAG d2dd27dc3b8472dbaa7d66f83619b3ebcd9185fe SOURCE_DIR
+        "${CMAKE_BINARY_DIR}/nlohmann-json-src" BINARY_DIR
+        "${CMAKE_BINARY_DIR}/nlohmann-json-build" CONFIGURE_COMMAND ""
+        BUILD_COMMAND "" INSTALL_COMMAND mkdir -p
+        "${CMAKE_BINARY_DIR}/nlohmann/include/nlohmann" && cp -r
+        "${CMAKE_BINARY_DIR}/nlohmann-json-src/single_include/nlohmann"
+        "${CMAKE_BINARY_DIR}/nlohmann/include"
     )
-    set(WANT_TRANSACTION 0)
-    configure_file(${CMAKE_BINARY_DIR}/sdbusplus-src/sdbusplus/server.hpp.in
-                  ${CMAKE_BINARY_DIR}/prefix/include/sdbusplus/server.hpp @ONLY)
-    configure_file(${CMAKE_BINARY_DIR}/sdbusplus-src/sdbusplus/bus.hpp.in
-                  ${CMAKE_BINARY_DIR}/prefix/include/sdbusplus/bus.hpp @ONLY)
 
-    ExternalProject_Get_Property(sdbusplus install_dir)
-    include_directories(${install_dir}/src/sdbusplus/include)
+    externalproject_add (valijson GIT_REPOSITORY
+                         "https://github.com/tristanpenman/valijson.git"
+                         GIT_TAG c2f22fddf599d04dc33fcd7ed257c698a05345d9
+                         SOURCE_DIR "${CMAKE_BINARY_DIR}/valijson-src"
+                         BINARY_DIR "${CMAKE_BINARY_DIR}/valijson-build"
+                         CONFIGURE_COMMAND "" BUILD_COMMAND "" INSTALL_COMMAND
+                         mkdir -p
+                         "${CMAKE_BINARY_DIR}/valijson/include/vaijson" && cp
+                         -r "${CMAKE_BINARY_DIR}/valijson-src/include"
+                         "${CMAKE_BINARY_DIR}/valijson")
 
-    include_directories(${CMAKE_CURRENT_SOURCE_DIR}/include/non-yocto)
+    # requires apt install autoconf-archive and autoconf
+    externalproject_add (sdbusplus-project PREFIX
+                         ${CMAKE_BINARY_DIR}/sdbusplus-project GIT_REPOSITORY
+                         https://github.com/openbmc/sdbusplus.git GIT_TAG
+                         387110bdf265b5c4435b740aed7e24c3975c514b SOURCE_DIR
+                         ${CMAKE_BINARY_DIR}/sdbusplus-src BINARY_DIR
+                         ${CMAKE_BINARY_DIR}/sdbusplus-build CONFIGURE_COMMAND
+                         "" BUILD_COMMAND cd ${CMAKE_BINARY_DIR}/sdbusplus-src
+                         && ./bootstrap.sh && ./configure --enable-transaction
+                         && make -j libsdbusplus.la INSTALL_COMMAND ""
+                         LOG_DOWNLOAD ON)
 
-    option(ENABLE_TEST "Enable Google Test" OFF)
-    if(ENABLE_TEST)
-        hunter_add_package(GTest)
-        find_package(GTest CONFIG REQUIRED)
-        enable_testing()
-    endif()
-endif()
-include_directories(${CMAKE_CURRENT_SOURCE_DIR}/include)
+    include_directories (${CMAKE_BINARY_DIR}/sdbusplus-src)
+    include_directories (${CMAKE_BINARY_DIR}/nlohmann/include)
+    include_directories (${CMAKE_BINARY_DIR}/nlohmann/include/nlohmann)
+    include_directories (${CMAKE_BINARY_DIR}/valijson/include)
+    include_directories (${CMAKE_BINARY_DIR}/phosphor-dbus-interfaces/include)
+    link_directories (${CMAKE_BINARY_DIR}/sdbusplus-src/.libs)
 
-link_directories(${EXTERNAL_INSTALL_LOCATION}/lib)
+    include_directories (${CMAKE_CURRENT_SOURCE_DIR}/include/non-yocto)
 
-include_directories(${CMAKE_CURRENT_SOURCE_DIR}/include)
+    include_directories (${CMAKE_BINARY_DIR}/boost-src)
+    set (CMAKE_PREFIX_PATH ${CMAKE_BINARY_DIR}/boost-src ${CMAKE_PREFIX_PATH})
+    option (ENABLE_TEST "Enable Google Test" OFF)
+    if (ENABLE_TEST)
+        hunter_add_package (GTest)
+        find_package (GTest CONFIG REQUIRED)
+        enable_testing ()
+    endif ()
+endif ()
 
-add_executable(fru-device src/FruDevice.cpp src/Utils.cpp)
+add_definitions (-DBOOST_ERROR_CODE_HEADER_ONLY)
+add_definitions (-DBOOST_SYSTEM_NO_DEPRECATED)
+add_definitions (-DBOOST_ALL_NO_LIB)
+add_definitions (-DBOOST_NO_RTTI)
+add_definitions (-DBOOST_NO_TYPEID)
+add_definitions (-DBOOST_ASIO_DISABLE_THREADS)
 
-target_link_libraries(fru-device pthread)
-target_link_libraries(fru-device stdc++fs)
-target_link_libraries(fru-device ${Boost_LIBRARIES})
-target_link_libraries(fru-device -lsystemd)
-target_link_libraries(fru-device phosphor_dbus)
-target_link_libraries(fru-device sdbusplus)
+include_directories (${CMAKE_CURRENT_SOURCE_DIR}/include)
 
-add_executable(entity-manager src/EntityManager.cpp
-                              src/Overlay.cpp
-                              src/Utils.cpp)
+include_directories (${Boost_INCLUDE_DIRS})
+link_directories (${EXTERNAL_INSTALL_LOCATION}/lib)
 
-target_link_libraries(entity-manager -lsystemd)
-target_link_libraries(entity-manager pthread)
-target_link_libraries(entity-manager stdc++fs)
-target_link_libraries(entity-manager ${Boost_LIBRARIES})
-target_link_libraries(entity-manager sdbusplus)
+include_directories (${CMAKE_CURRENT_SOURCE_DIR}/include)
 
-if(USE_OVERLAYS)
-    # overlays can be disabled because they require a kernel patch as of today
-    target_compile_definitions(entity-manager PRIVATE OVERLAYS=1)
-endif()
+add_executable (fru-device src/FruDevice.cpp src/Utils.cpp)
 
-if(NOT YOCTO)
-    add_dependencies(entity-manager nlohmann-json)
-    add_dependencies(fru-device sdbusplus)
-endif()
+target_link_libraries (fru-device pthread)
+target_link_libraries (fru-device stdc++fs)
+target_link_libraries (fru-device ${Boost_LIBRARIES})
+target_link_libraries (fru-device -lsystemd)
+target_link_libraries (fru-device sdbusplus)
+
+add_executable (entity-manager src/EntityManager.cpp src/Overlay.cpp
+                src/Utils.cpp)
+
+target_link_libraries (entity-manager -lsystemd)
+target_link_libraries (entity-manager stdc++fs)
+target_link_libraries (entity-manager ${Boost_LIBRARIES})
+target_link_libraries (entity-manager sdbusplus)
+if (USE_OVERLAYS) # overlays can be disabled because they require a kernel patch
+                  # as of today
+    target_compile_definitions (entity-manager PRIVATE OVERLAYS=1)
+endif ()
+
+if (NOT YOCTO)
+    add_dependencies (entity-manager nlohmann-json)
+    add_dependencies (entity-manager sdbusplus-project)
+    add_dependencies (entity-manager valijson)
+    add_dependencies (fru-device sdbusplus-project)
+endif ()
 
 install (TARGETS fru-device entity-manager DESTINATION bin)
 install (DIRECTORY configurations DESTINATION share)
