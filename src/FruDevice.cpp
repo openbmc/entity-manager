@@ -270,7 +270,7 @@ bool formatFru(const std::vector<char> &fruBytes,
 
     size_t sum = 0;
 
-    if (fruBytes.size() < 8)
+    if (fruBytes.size() <= 8)
     {
         return false;
     }
