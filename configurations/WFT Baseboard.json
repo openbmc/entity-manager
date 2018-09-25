@@ -861,6 +861,48 @@
             "Zones": [
                 "Pid 1"
             ]
+        },
+        {
+            "Direction": "In",
+            "Polarity": "Low",
+            "Index": 32,
+            "Type": "Gpio",
+            "Name": "Reset Button"
+        },
+        {
+            "Direction": "Out",
+            "Polarity": "Low",
+            "Index": 33,
+            "Type": "Gpio",
+            "Name": "Reset Out"
+        },
+        {
+            "Direction": "Both",
+            "Polarity": "Low",
+            "Index": 34,
+            "Type": "Gpio",
+            "Name": "Power Button"
+        },
+        {
+            "Direction": "Both",
+            "Polarity": "Low",
+            "Index": 35,
+            "Type": "Gpio",
+            "Name": "Power Up"
+        },
+        {
+            "Direction": "Input",
+            "Polarity": "Low",
+            "Index": 218,
+            "Type": "Gpio",
+            "Name": "ID Button"
+        },
+        {
+            "Direction": "Input",
+            "Polarity": "High",
+            "Index": 219,
+            "Type": "Gpio",
+            "Name": "Power Good"
         }
     ],
     "Name": "WFP Baseboard",
