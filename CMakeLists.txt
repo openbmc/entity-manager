@@ -63,8 +63,6 @@ if (NOT YOCTO)
     include_directories (${CMAKE_BINARY_DIR}/phosphor-dbus-interfaces/include)
     link_directories (${CMAKE_BINARY_DIR}/sdbusplus-src/.libs)
 
-    include_directories (${CMAKE_CURRENT_SOURCE_DIR}/include/non-yocto)
-
     include_directories (${CMAKE_BINARY_DIR}/boost-src)
     set (CMAKE_PREFIX_PATH ${CMAKE_BINARY_DIR}/boost-src ${CMAKE_PREFIX_PATH})
     option (ENABLE_TEST "Enable Google Test" OFF)
@@ -93,6 +91,7 @@ add_executable (fru-device src/FruDevice.cpp src/Utils.cpp)
 
 target_link_libraries (fru-device pthread)
 target_link_libraries (fru-device stdc++fs)
+target_link_libraries (fru-device i2c)
 target_link_libraries (fru-device ${Boost_LIBRARIES})
 target_link_libraries (fru-device -lsystemd)
 target_link_libraries (fru-device sdbusplus)
