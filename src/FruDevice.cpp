@@ -14,23 +14,28 @@
 // limitations under the License.
 */
 
-#include <Utils.hpp>
-#include <boost/container/flat_map.hpp>
-#include <boost/algorithm/string/predicate.hpp>
-#include <ctime>
-#include <chrono>
-#include <thread>
-#include <sdbusplus/asio/connection.hpp>
-#include <sdbusplus/asio/object_server.hpp>
+#include <errno.h>
 #include <fcntl.h>
+#include <sys/inotify.h>
+#include <sys/ioctl.h>
+
+#include <Utils.hpp>
+#include <boost/algorithm/string/predicate.hpp>
+#include <boost/container/flat_map.hpp>
+#include <chrono>
+#include <ctime>
 #include <fstream>
 #include <future>
-#include <linux/i2c-dev-user.h>
 #include <iostream>
-#include <sys/ioctl.h>
 #include <regex>
-#include <sys/inotify.h>
-#include <errno.h>
+#include <sdbusplus/asio/connection.hpp>
+#include <sdbusplus/asio/object_server.hpp>
+#include <thread>
+
+extern "C" {
+#include <i2c/smbus.h>
+#include <linux/i2c-dev.h>
+}
 
 namespace fs = std::experimental::filesystem;
 static constexpr bool DEBUG = false;
