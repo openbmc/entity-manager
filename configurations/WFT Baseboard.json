@@ -864,45 +864,73 @@
         },
         {
             "Direction": "In",
-            "Polarity": "Low",
             "Index": 32,
-            "Type": "Gpio",
-            "Name": "Reset Button"
+            "Name": "Reset Button",
+            "Polarity": "Low",
+            "Type": "Gpio"
         },
         {
             "Direction": "Out",
-            "Polarity": "Low",
             "Index": 33,
-            "Type": "Gpio",
-            "Name": "Reset Out"
+            "Name": "Reset Out",
+            "Polarity": "Low",
+            "Type": "Gpio"
         },
         {
             "Direction": "Both",
-            "Polarity": "Low",
             "Index": 34,
-            "Type": "Gpio",
-            "Name": "Power Button"
+            "Name": "Power Button",
+            "Polarity": "Low",
+            "Type": "Gpio"
         },
         {
             "Direction": "Both",
-            "Polarity": "Low",
             "Index": 35,
-            "Type": "Gpio",
-            "Name": "Power Up"
-        },
-        {
-            "Direction": "Input",
+            "Name": "Power Up",
             "Polarity": "Low",
-            "Index": 218,
-            "Type": "Gpio",
-            "Name": "ID Button"
+            "Type": "Gpio"
         },
         {
             "Direction": "Input",
+            "Index": 51,
+            "Name": "Lcp Enter Button",
+            "Polarity": "Low",
+            "Type": "Gpio"
+        },
+        {
+            "Direction": "Input",
+            "Index": 52,
+            "Name": "Lcp Left Button",
             "Polarity": "High",
+            "Type": "Gpio"
+        },
+        {
+            "Direction": "Input",
+            "Index": 53,
+            "Name": "Lcp Right Button",
+            "Polarity": "Low",
+            "Type": "Gpio"
+        },
+        {
+            "Direction": "Input",
+            "Index": 217,
+            "Name": "Nmi Button",
+            "Polarity": "High",
+            "Type": "Gpio"
+        },
+        {
+            "Direction": "Input",
+            "Index": 218,
+            "Name": "ID Button",
+            "Polarity": "Low",
+            "Type": "Gpio"
+        },
+        {
+            "Direction": "Input",
             "Index": 219,
-            "Type": "Gpio",
-            "Name": "Power Good"
+            "Name": "Power Good",
+            "Polarity": "High",
+            "Type": "Gpio"
         }
     ],
     "Name": "WFP Baseboard",
