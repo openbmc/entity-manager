@@ -42,6 +42,7 @@ constexpr const int32_t MAX_MAPPER_DEPTH = 0;
 constexpr const size_t SLEEP_AFTER_PROPERTIES_CHANGE_SECONDS = 5;
 
 namespace fs = std::experimental::filesystem;
+namespace variant_ns = sdbusplus::message::variant_ns;
 struct cmp_str
 {
     bool operator()(const char *a, const char *b) const
@@ -237,7 +238,7 @@ bool probeDbus(
                         std::smatch match;
 
                         // convert value to string respresentation
-                        std::string probeValue = mapbox::util::apply_visitor(
+                        std::string probeValue = variant_ns::apply_visitor(
                             VariantToStringVisitor(), deviceValue->second);
                         if (!std::regex_search(probeValue, match, search))
                         {
@@ -249,7 +250,7 @@ bool probeDbus(
                     case nlohmann::json::value_t::boolean:
                     case nlohmann::json::value_t::number_unsigned:
                     {
-                        unsigned int probeValue = mapbox::util::apply_visitor(
+                        unsigned int probeValue = variant_ns::apply_visitor(
                             VariantToUnsignedIntVisitor(), deviceValue->second);
 
                         if (probeValue != match.second.get<unsigned int>())
@@ -260,7 +261,7 @@ bool probeDbus(
                     }
                     case nlohmann::json::value_t::number_integer:
                     {
-                        int probeValue = mapbox::util::apply_visitor(
+                        int probeValue = variant_ns::apply_visitor(
                             VariantToIntVisitor(), deviceValue->second);
 
                         if (probeValue != match.second.get<int>())
@@ -271,7 +272,7 @@ bool probeDbus(
                     }
                     case nlohmann::json::value_t::number_float:
                     {
-                        float probeValue = mapbox::util::apply_visitor(
+                        float probeValue = variant_ns::apply_visitor(
                             VariantToFloatVisitor(), deviceValue->second);
 
                         if (probeValue != match.second.get<float>())
@@ -797,7 +798,7 @@ void createAddObjectMethod(const std::string &jsonPointerPath,
             for (const auto &item : data)
             {
                 nlohmann::json &newJson = newData[item.first];
-                mapbox::util::apply_visitor(
+                variant_ns::apply_visitor(
                     [&newJson](auto &&val) { newJson = std::move(val); },
                     item.second);
             }
@@ -1102,7 +1103,7 @@ void templateCharReplace(
             {
                 if (boost::iequals(foundDevicePair.first, templateValue))
                 {
-                    mapbox::util::apply_visitor(
+                    variant_ns::apply_visitor(
                         [&](auto &&val) { keyPair.value() = val; },
                         foundDevicePair.second);
                     found = true;
