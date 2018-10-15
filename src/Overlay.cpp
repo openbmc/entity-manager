@@ -18,10 +18,12 @@
 #include <iostream>
 #include <regex>
 #include <boost/process/child.hpp>
+#include <boost/algorithm/string/predicate.hpp>
 #include <experimental/filesystem>
 #include <boost/container/flat_map.hpp>
 #include <boost/container/flat_set.hpp>
 #include <nlohmann/json.hpp>
+#include <devices.hpp>
 #include <Overlay.hpp>
 #include <Utils.hpp>
 
@@ -139,6 +141,85 @@ void fixupSymbols(
     }
 }
 
+void exportDevice(const devices::ExportTemplate &exportTemplate,
+                  const nlohmann::json &configuration)
+{
+
+    std::string parameters = exportTemplate.parameters;
+    std::string device = exportTemplate.device;
+    std::string name = "unknown";
+    const uint64_t *bus = nullptr;
+    const uint64_t *address = nullptr;
+
+    for (auto keyPair = configuration.begin(); keyPair != configuration.end();
+         keyPair++)
+    {
+        std::string subsituteString;
+
+        if (keyPair.key() == "Name" &&
+            keyPair.value().type() == nlohmann::json::value_t::string)
+        {
+            subsituteString = std::regex_replace(
+                keyPair.value().get<std::string>(), ILLEGAL_NAME_REGEX, "_");
+            name = subsituteString;
+        }
+        else
+        {
+            subsituteString = jsonToString(keyPair.value());
+        }
+
+        if (keyPair.key() == "Bus")
+        {
+            bus = keyPair.value().get_ptr<const uint64_t *>();
+        }
+        else if (keyPair.key() == "Address")
+        {
+            address = keyPair.value().get_ptr<const uint64_t *>();
+        }
+        boost::replace_all(parameters, TEMPLATE_CHAR + keyPair.key(),
+                           subsituteString);
+        boost::replace_all(device, TEMPLATE_CHAR + keyPair.key(),
+                           subsituteString);
+    }
+
+    // if we found bus and address we can attempt to prevent errors
+    if (bus != nullptr && address != nullptr)
+    {
+        std::ostringstream hex;
+        hex << std::hex << *address;
+        const std::string &addressHex = hex.str();
+        std::string busStr = std::to_string(*bus);
+
+        std::experimental::filesystem::path devicePath(device);
+        const std::string &dir = devicePath.parent_path().string();
+        for (const auto &path :
+             std::experimental::filesystem::directory_iterator(dir))
+        {
+            if (!std::experimental::filesystem::is_directory(path))
+            {
+                continue;
+            }
+
+            const std::string &directoryName = path.path().filename();
+            if (boost::starts_with(directoryName, busStr) &&
+                boost::ends_with(directoryName, addressHex))
+            {
+                return; // already exported
+            }
+        }
+    }
+
+    std::ofstream deviceFile(device);
+    if (!deviceFile.good())
+    {
+        std::cerr << "Error writing " << device << "\n";
+        return;
+    }
+    deviceFile << parameters;
+    deviceFile.close();
+}
+
+// this is now deprecated
 void createOverlay(const std::string &templatePath,
                    const nlohmann::json &configuration)
 {
@@ -214,18 +295,6 @@ void createOverlay(const std::string &templatePath,
     out << templateStr;
     out.close();
 
-    // this is for muxes, we need to store the diff of i2c devices before
-    // and after scanning to load new symbols into device tree so that if we
-    // later add devices to the "virtual" i2c device, we can match the phandle
-    // to the correct mux
-    std::vector<std::experimental::filesystem::path> i2cDevsBefore;
-    auto findMux = MUX_TYPES.find(type);
-    if (findMux != MUX_TYPES.end())
-    {
-        findFiles(std::experimental::filesystem::path(I2C_DEVS_DIR),
-                  R"(i2c-\d+)", i2cDevsBefore);
-    }
-
     // compile dtbo and load overlay
     boost::process::child c1(DTC, "-@", "-q", "-I", "dts", "-O", "dtb", "-o",
                              dtboFilename, dtsFilename);
@@ -246,10 +315,6 @@ void createOverlay(const std::string &templatePath,
     if (findForceProbe != FORCE_PROBES.end())
     {
         forceProbe(findForceProbe->second);
-    }
-    if (findMux != MUX_TYPES.end())
-    {
-        fixupSymbols(i2cDevsBefore);
     }
 }
 
@@ -292,7 +357,7 @@ bool loadOverlays(const nlohmann::json &systemConfiguration)
             }
             std::string type = findType.value().get<std::string>();
             std::string typeFile = type + std::string(".template");
-            for (auto path : paths)
+            for (const auto &path : paths)
             {
                 if (path.filename() != typeFile)
                 {
@@ -300,6 +365,12 @@ bool loadOverlays(const nlohmann::json &systemConfiguration)
                 }
                 createOverlay(path.string(), configuration);
                 break;
+            }
+
+            auto device = devices::exportTemplates.find(type.c_str());
+            if (device != devices::exportTemplates.end())
+            {
+                exportDevice(device->second, configuration);
             }
         }
     }
