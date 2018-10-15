@@ -38,7 +38,9 @@ struct ExportTemplate
 
 const boost::container::flat_map<const char *, ExportTemplate, CmpStr>
     exportTemplates{
-        {{"PCA9543Mux",
+        {{"EEPROM", ExportTemplate("eeprom $Address",
+                                   "/sys/bus/i2c/devices/i2c-$Bus/new_device")},
+         {"PCA9543Mux",
           ExportTemplate("pca9543 $Address",
                          "/sys/bus/i2c/devices/i2c-$Bus/new_device")},
          {"PCA9545Mux",
@@ -47,9 +49,7 @@ const boost::container::flat_map<const char *, ExportTemplate, CmpStr>
          {"pmbus", ExportTemplate("pmbus $Address",
                                   "/sys/bus/i2c/devices/i2c-$Bus/new_device")},
          {"TMP75", ExportTemplate("tmp75 $Address",
-                                  "/sys/bus/i2c/devices/i2c-$Bus/new_device")
-
-         },
+                                  "/sys/bus/i2c/devices/i2c-$Bus/new_device")},
          {"TMP421", ExportTemplate("tmp421 $Address",
                                    "/sys/bus/i2c/devices/i2c-$Bus/new_device")},
          {"SkylakeCPU",
