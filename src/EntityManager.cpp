@@ -1115,6 +1115,16 @@ void templateCharReplace(
             }
         }
     }
+    else if (boost::starts_with(value, "0x"))
+    {
+        try
+        {
+            keyPair.value() = static_cast<uint64_t>(std::stoul(value, 0, 0));
+        }
+        catch (std::invalid_argument)
+        {
+        }
+    }
 }
 
 // reads json files out of the filesystem
