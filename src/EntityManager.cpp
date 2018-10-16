@@ -32,8 +32,8 @@
 #include <experimental/filesystem>
 
 constexpr const char *OUTPUT_DIR = "/var/configuration/";
-constexpr const char *configurationDirectory = "/usr/share/configurations";
-constexpr const char *schemaDirectory = "/usr/share/configurations/schemas";
+constexpr const char *configurationDirectory = PACKAGE_DIR "configurations";
+constexpr const char *schemaDirectory = PACKAGE_DIR "configurations/schemas";
 constexpr const char *globalSchema = "global.json";
 constexpr const char *TEMPLATE_CHAR = "$";
 constexpr const size_t PROPERTIES_CHANGED_UNTIL_FLUSH_COUNT = 20;
@@ -1428,12 +1428,8 @@ void propertiesChangedCallback(
                 registerCallbacks(io, dbusMatches, systemConfiguration,
                                   objServer);
                 io.post([&, newConfiguration]() {
-
-#ifdef OVERLAYS
-                    // todo: for now, only add new configurations,
-                    // unload to come later unloadOverlays();
                     loadOverlays(newConfiguration);
-#endif
+
                     io.post([&]() {
                         if (!writeJsonFiles(systemConfiguration))
                         {
@@ -1512,7 +1508,9 @@ int main(int argc, char **argv)
     inventoryIface->initialize();
 
     io.post([&]() {
+#if OVERLAYS
         unloadAllOverlays();
+#endif
         propertiesChangedCallback(io, dbusMatches, systemConfiguration,
                                   objServer);
     });

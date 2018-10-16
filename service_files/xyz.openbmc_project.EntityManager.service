@@ -1,0 +1,15 @@
+[Unit]
+Description=Entity Manager
+Wants=mapper-wait@-xyz-openbmc_project-FruDevice.service
+After=mapper-wait@-xyz-openbmc_project-FruDevice.service
+ConditionFileNotEmpty={bindir}/entity-manager
+
+[Service]
+ExecStartPre=/bin/mkdir -p /var/configuration
+ExecStartPre=/bin/mkdir -p /tmp/overlays
+ExecStart=/usr/sbin/entity-manager
+Restart=always
+Type=simple
+
+[Install]
+WantedBy=basic.target
