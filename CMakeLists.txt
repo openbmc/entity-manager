@@ -115,7 +115,16 @@ if (NOT YOCTO)
     add_dependencies (fru-device sdbusplus-project)
 endif ()
 
-install (TARGETS fru-device entity-manager DESTINATION bin)
-install (DIRECTORY configurations DESTINATION share)
-install (DIRECTORY overlay_templates DESTINATION share)
-install (DIRECTORY schemas DESTINATION share/configurations)
+set (
+    SERVICE_FILES
+    ${PROJECT_SOURCE_DIR}/service_files/xyz.openbmc_project.EntityManager.service
+    ${PROJECT_SOURCE_DIR}/service_files/xyz.openbmc_project.FruDevice.service
+)
+
+set (PACKAGE_DIR /usr/share/entity-manager/)
+target_compile_definitions (entity-manager PRIVATE PACKAGE_DIR="${PACKAGE_DIR}")
+install (TARGETS fru-device entity-manager DESTINATION sbin)
+install (DIRECTORY configurations DESTINATION ${PACKAGE_DIR})
+install (DIRECTORY overlay_templates DESTINATION ${PACKAGE_DIR})
+install (DIRECTORY schemas DESTINATION ${PACKAGE_DIR}/configurations)
+install (FILES ${SERVICE_FILES} DESTINATION /lib/systemd/system/)

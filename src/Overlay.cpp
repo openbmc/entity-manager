@@ -30,7 +30,7 @@
 constexpr const char *DT_OVERLAY = "/usr/bin/dtoverlay";
 constexpr const char *DTC = "/usr/bin/dtc";
 constexpr const char *OUTPUT_DIR = "/tmp/overlays";
-constexpr const char *TEMPLATE_DIR = "/usr/share/overlay_templates";
+constexpr const char *TEMPLATE_DIR = PACKAGE_DIR "overlay_templates";
 constexpr const char *TEMPLATE_CHAR = "$";
 constexpr const char *HEX_FORMAT_STR = "0x";
 constexpr const char *PLATFORM = "aspeed,ast2500";
@@ -356,6 +356,8 @@ bool loadOverlays(const nlohmann::json &systemConfiguration)
                 continue;
             }
             std::string type = findType.value().get<std::string>();
+#if OVERLAYS
+
             std::string typeFile = type + std::string(".template");
             for (const auto &path : paths)
             {
@@ -366,7 +368,7 @@ bool loadOverlays(const nlohmann::json &systemConfiguration)
                 createOverlay(path.string(), configuration);
                 break;
             }
-
+#endif
             auto device = devices::exportTemplates.find(type.c_str());
             if (device != devices::exportTemplates.end())
             {
