@@ -25,7 +25,6 @@
 #include <boost/algorithm/string/case_conv.hpp>
 #include <boost/algorithm/string/predicate.hpp>
 #include <boost/algorithm/string/replace.hpp>
-#include <boost/variant/apply_visitor.hpp>
 #include <boost/lexical_cast.hpp>
 #include <boost/container/flat_map.hpp>
 #include <boost/container/flat_set.hpp>
@@ -238,7 +237,7 @@ bool probeDbus(
                         std::smatch match;
 
                         // convert value to string respresentation
-                        std::string probeValue = variant_ns::apply_visitor(
+                        std::string probeValue = variant_ns::visit(
                             VariantToStringVisitor(), deviceValue->second);
                         if (!std::regex_search(probeValue, match, search))
                         {
@@ -250,7 +249,7 @@ bool probeDbus(
                     case nlohmann::json::value_t::boolean:
                     case nlohmann::json::value_t::number_unsigned:
                     {
-                        unsigned int probeValue = variant_ns::apply_visitor(
+                        unsigned int probeValue = variant_ns::visit(
                             VariantToUnsignedIntVisitor(), deviceValue->second);
 
                         if (probeValue != match.second.get<unsigned int>())
@@ -261,7 +260,7 @@ bool probeDbus(
                     }
                     case nlohmann::json::value_t::number_integer:
                     {
-                        int probeValue = variant_ns::apply_visitor(
+                        int probeValue = variant_ns::visit(
                             VariantToIntVisitor(), deviceValue->second);
 
                         if (probeValue != match.second.get<int>())
@@ -272,7 +271,7 @@ bool probeDbus(
                     }
                     case nlohmann::json::value_t::number_float:
                     {
-                        float probeValue = variant_ns::apply_visitor(
+                        float probeValue = variant_ns::visit(
                             VariantToFloatVisitor(), deviceValue->second);
 
                         if (probeValue != match.second.get<float>())
@@ -798,7 +797,7 @@ void createAddObjectMethod(const std::string &jsonPointerPath,
             for (const auto &item : data)
             {
                 nlohmann::json &newJson = newData[item.first];
-                variant_ns::apply_visitor(
+                variant_ns::visit(
                     [&newJson](auto &&val) { newJson = std::move(val); },
                     item.second);
             }
@@ -1103,7 +1102,7 @@ void templateCharReplace(
             {
                 if (boost::iequals(foundDevicePair.first, templateValue))
                 {
-                    variant_ns::apply_visitor(
+                    variant_ns::visit(
                         [&](auto &&val) { keyPair.value() = val; },
                         foundDevicePair.second);
                     found = true;
