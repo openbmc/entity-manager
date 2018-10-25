@@ -200,7 +200,7 @@ void findDbusObjects(std::shared_ptr<PerformProbe> probe,
         },
         "xyz.openbmc_project.ObjectMapper",
         "/xyz/openbmc_project/object_mapper",
-        "xyz.openbmc_project.ObjectMapper", "GetSubTree", "", MAX_MAPPER_DEPTH,
+        "xyz.openbmc_project.ObjectMapper", "GetSubTree", "/", MAX_MAPPER_DEPTH,
         objects);
 }
 // probes dbus interface dictionary for a key with a value that matches a regex
