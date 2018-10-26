@@ -39,6 +39,7 @@ struct ExportTemplate
 const boost::container::flat_map<const char *, ExportTemplate, CmpStr>
     exportTemplates{
         {{"PCA9543Mux",
+          {"Gpio", ExportTemplate("$Index", "/sys/class/gpio/export")},
           ExportTemplate("pca9543 $Address",
                          "/sys/bus/i2c/devices/i2c-$Bus/new_device")},
          {"PCA9545Mux",
