@@ -422,6 +422,11 @@
             "MinThermalRpm": 3000,
             "Name": "Pid 1",
             "Type": "Pid.Zone"
+        },
+        {
+            "AllowedFailures": 1,
+            "Name": "FanRedundancy",
+            "Type": "FanRedundancy"
         }
     ],
     "Name": "R1000 Chassis",
