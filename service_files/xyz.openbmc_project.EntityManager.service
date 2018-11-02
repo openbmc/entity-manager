@@ -1,7 +1,6 @@
 [Unit]
 Description=Entity Manager
-Wants=mapper-wait@-xyz-openbmc_project-FruDevice.service
-After=mapper-wait@-xyz-openbmc_project-FruDevice.service
+After=dbus.service
 ConditionFileNotEmpty={bindir}/entity-manager
 
 [Service]
