@@ -63,12 +63,65 @@ static bool isMuxBus(size_t bus)
         "/sys/bus/i2c/devices/i2c-" + std::to_string(bus) + "/mux_device"));
 }
 
+static int isDevice16Bit(int file)
+{
+    int byte1, byte2, i;
+
+    /* Get first byte */
+    if ((byte1 = i2c_smbus_read_byte_data(file, 0)) < 0)
+    {
+        return byte1;
+    }
+    /* Read 7 more bytes, it will read same first byte in case of
+     * 8 bit but it will read next byte in case of 16 bit
+     */
+    for (i = 0; i < 7; i++)
+    {
+        if ((byte2 = i2c_smbus_read_byte_data(file, 0)) < 0)
+        {
+            return byte2;
+        }
+        if (byte2 != byte1)
+        {
+            return 1;
+        }
+    }
+    return 0;
+}
+
+static int read_block_data(int flag, int file, uint16_t offset, uint8_t len,
+                           uint8_t *buf)
+{
+    uint8_t low_addr, high_addr;
+    int ret;
+
+    low_addr = offset & 0xFF;
+    high_addr = (offset >> 8) & 0xFF;
+
+    if (flag == 0)
+    {
+        return i2c_smbus_read_i2c_block_data(file, low_addr, len, buf);
+    }
+
+    /* This is for 16 bit addressing EEPROM device. First an offset
+     * needs to be written before read data from a offset
+     */
+    if ((ret = i2c_smbus_write_byte_data(file, 0, low_addr)) < 0)
+    {
+        return ret;
+    }
+
+    return i2c_smbus_read_i2c_block_data(file, high_addr, len, buf);
+}
+
 int get_bus_frus(int file, int first, int last, int bus,
                  std::shared_ptr<DeviceMap> devices)
 {
 
     std::future<int> future = std::async(std::launch::async, [&]() {
         std::array<uint8_t, I2C_SMBUS_BLOCK_MAX> block_data;
+        int flag;
+
         for (int ii = first; ii <= last; ii++)
         {
 
@@ -90,8 +143,16 @@ int get_bus_frus(int file, int first, int last, int bus,
                 std::cout << "something at bus " << bus << "addr " << ii
                           << "\n";
             }
-            if (i2c_smbus_read_i2c_block_data(file, 0x0, 0x8,
-                                              block_data.data()) < 0)
+
+            /* Check for Device type if it is 8 bit or 16 bit */
+            if ((flag = isDevice16Bit(file)) < 0)
+            {
+                std::cerr << "failed to read bus " << bus << " address " << ii
+                          << "\n";
+                continue;
+            }
+
+            if (read_block_data(flag, file, 0x0, 0x8, block_data.data()) < 0)
             {
                 std::cerr << "failed to read bus " << bus << " address " << ii
                           << "\n";
@@ -117,8 +178,8 @@ int get_bus_frus(int file, int first, int last, int bus,
                     if (area_offset != 0)
                     {
                         area_offset *= 8;
-                        if (i2c_smbus_read_i2c_block_data(
-                                file, area_offset, 0x8, block_data.data()) < 0)
+                        if (read_block_data(flag, file, area_offset, 0x8,
+                                            block_data.data()) < 0)
                         {
                             std::cerr << "failed to read bus " << bus
                                       << " address " << ii << "\n";
@@ -133,9 +194,8 @@ int get_bus_frus(int file, int first, int last, int bus,
                         while (length > 0)
                         {
                             auto to_get = std::min(0x20, length);
-                            if (i2c_smbus_read_i2c_block_data(
-                                    file, area_offset, to_get,
-                                    block_data.data()) < 0)
+                            if (read_block_data(flag, file, area_offset, to_get,
+                                                block_data.data()) < 0)
                             {
                                 std::cerr << "failed to read bus " << bus
                                           << " address " << ii << "\n";
