@@ -263,15 +263,16 @@ bool formatFru(const std::vector<char> &fruBytes,
                boost::container::flat_map<std::string, std::string> &result)
 {
     static const std::vector<const char *> CHASSIS_FRU_AREAS = {
-        "PART_NUMBER", "SERIAL_NUMBER", "CHASSIS_INFO_AM1", "CHASSIS_INFO_AM2"};
+        "PART_NUMBER", "SERIAL_NUMBER", "INFO_AM1", "INFO_AM2"};
 
     static const std::vector<const char *> BOARD_FRU_AREAS = {
-        "MANUFACTURER", "PRODUCT_NAME", "SERIAL_NUMBER", "PART_NUMBER",
-        "VERSION_ID"};
+        "MANUFACTURER",   "PRODUCT_NAME", "SERIAL_NUMBER", "PART_NUMBER",
+        "FRU_VERSION_ID", "INFO_AM1",     "INFO_AM2"};
 
     static const std::vector<const char *> PRODUCT_FRU_AREAS = {
-        "MANUFACTURER",    "PRODUCT_NAME",          "PART_NUMBER",
-        "PRODUCT_VERSION", "PRODUCT_SERIAL_NUMBER", "ASSET_TAG"};
+        "MANUFACTURER",   "PRODUCT_NAME",  "PART_NUMBER",
+        "VERSION",        "SERIAL_NUMBER", "ASSET_TAG",
+        "FRU_VERSION_ID", "INFO_AM1",      "INFO_AM2"};
 
     size_t sum = 0;
 
@@ -356,6 +357,21 @@ bool formatFru(const std::vector<char> &fruBytes,
 
                 size_t length = *fruBytesIter & 0x3f;
                 fruBytesIter += 1;
+
+                /* Checking for length if field present */
+                if (length == 0)
+                {
+                    result[std::string(area) + "_" + field] =
+                        std::string("Null");
+                    continue;
+                }
+
+                /* Checking for last byte C1 to indicate that no more 
+                 * field to be read */
+                if (length == 1)
+                {
+                    break;
+                }
 
                 if (fruBytesIter >= fruBytes.end())
                 {
