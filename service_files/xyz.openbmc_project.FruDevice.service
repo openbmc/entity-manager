@@ -6,7 +6,7 @@ After=xyz.openbmc_project.CloseMuxes.service dbus.service
 
 [Service]
 ExecStart=/usr/sbin/fru-device
-Type=oneshot
+Type=simple
 
 [Install]
 WantedBy=basic.target
