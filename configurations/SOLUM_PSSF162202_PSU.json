@@ -12,6 +12,20 @@
                 "Bus": "$bus",
                 "Name": "SOLUM CO IS162F22 PSU FRU",
                 "Type": "EEPROM"
+            },
+            {
+                "Address": "0x59",
+                "Bus": "$bus",
+                "Index": 0,
+                "Name": "PS 1 Fan 1",
+                "Type": "I2CFan"
+            },
+            {
+                "Address": "0x59",
+                "Bus": "$bus",
+                "Index": 1,
+                "Name": "PS 1 Fan 2",
+                "Type": "I2CFan"
             }
         ],
         "Name": "SOLUM CO IS162F22 PSU 2",
@@ -37,6 +51,20 @@
                 "Bus": "$bus",
                 "Name": "SOLUM CO IS162F22 PSU FRU",
                 "Type": "EEPROM"
+            },
+            {
+                "Address": "0x58",
+                "Bus": "$bus",
+                "Index": 0,
+                "Name": "PS 2 Fan 1",
+                "Type": "I2CFan"
+            },
+            {
+                "Address": "0x58",
+                "Bus": "$bus",
+                "Index": 1,
+                "Name": "PS 2 Fan 2",
+                "Type": "I2CFan"
             }
         ],
         "Name": "SOLUM CO IS162F22 PSU 1",
