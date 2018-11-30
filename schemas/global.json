@@ -232,8 +232,50 @@
                             "MinThermalRpm": {
                                 "type": "integer"
                             },
-                            "Count": {
+                            "AllowedFailures": {
                                 "type": "integer"
+                            },
+                            "AlphaF": {
+                                "type": "number"
+                            },
+                            "AlphaS": {
+                                "type": "number"
+                            },
+                            "PowerFactorMax": {
+                                "type": "integer"
+                            },
+                            "PowerFactorMin": {
+                                "type": "integer"
+                            },
+                            "QMax": {
+                                "type": "integer"
+                            },
+                            "QMin": {
+                                "type": "integer"
+                            },
+                            "C1": {
+                                "type": "number"
+                            },
+                            "C2": {
+                                "type": "number"
+                            },
+                            "MaxCFM": {
+                                "type": "number"
+                            },
+                            "TachMaxPercent": {
+                                "type": "integer"
+                            },
+                            "TachMinPercent": {
+                                "type": "integer"
+                            },
+                            "Tachs": {
+                                "type": "array",
+                                "items": {
+                                    "type": [
+                                        "integer",
+                                        "string"
+                                    ]
+                                }
                             },
                             "BindPresence": {
                                 "type": "string"
@@ -243,12 +285,6 @@
                             },
                             "Status": {
                                 "type": "string"
-                            },
-                            "Tachs": {
-                                "type": "array",
-                                "items": {
-                                    "type": "integer"
-                                }
                             },
                             "Name1": {
                                 "type": "string"
