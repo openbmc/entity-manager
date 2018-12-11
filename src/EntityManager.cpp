@@ -70,8 +70,8 @@ const static boost::container::flat_map<const char *, probe_type_codes, cmp_str>
                  {"FOUND", probe_type_codes::FOUND},
                  {"MATCH_ONE", probe_type_codes::MATCH_ONE}}};
 
-static constexpr std::array<const char *, 3> settableInterfaces = {
-    "Thresholds", "Pid", "Pid.Zone"};
+static constexpr std::array<const char *, 4> settableInterfaces = {
+    "Thresholds", "Pid", "Pid.Zone", "Stepwise"};
 using JsonVariantType =
     sdbusplus::message::variant<std::vector<std::string>, std::string, int64_t,
                                 uint64_t, double, int32_t, uint32_t, int16_t,
