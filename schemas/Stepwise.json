@@ -1,0 +1,52 @@
+{
+    "$schema": "http://json-schema.org/schema#",
+    "type": "object",
+    "properties": {
+        "Inputs": {
+            "type": "array",
+            "items": {
+                "type": "string"
+            }
+        },
+        "Name": {
+            "type": "string"
+        },
+        "NegativeHysteresis": {
+            "type": "integer"
+        },
+        "Output": {
+            "type": "array",
+            "items": {
+                "type": "number"
+            }
+        },
+        "PositiveHysteresis": {
+            "type": "integer"
+        },
+        "Reading": {
+            "type": "array",
+            "items": {
+                "type": "number"
+            }
+        },
+        "Type": {
+            "type": "string"
+        },
+        "Zones": {
+            "type": "array",
+            "items": {
+                "type": "string"
+            }
+        }
+    },
+    "required": [
+        "Inputs",
+        "Name",
+        "NegativeHysteresis",
+        "Output",
+        "PositiveHysteresis",
+        "Reading",
+        "Type",
+        "Zones"
+    ]
+}
