@@ -1,14 +1,15 @@
 {
     "Exposes": [
         {
+            "Connector": {
+                "Name": "System Fan Connector 1",
+                "Pwm": 0,
+                "Tachs": [
+                    0
+                ]
+            },
             "Index": 0,
             "Name": "MB_FAN0_TACH",
-            "Connector":
-                {
-                    "Name": "System Fan Connector 1",
-                    "Pwm": 0,
-                    "Tachs": [0]
-                },
             "Thresholds": [
                 {
                     "Direction": "less than",
@@ -32,14 +33,15 @@
             "Type": "AspeedFan"
         },
         {
+            "Connector": {
+                "Name": "System Fan Connector 3",
+                "Pwm": 1,
+                "Tachs": [
+                    2
+                ]
+            },
             "Index": 2,
             "Name": "MB_FAN1_TACH",
-            "Connector":
-                {
-                    "Name": "System Fan Connector 3",
-                    "Pwm": 1,
-                    "Tachs": [2]
-                },
             "Thresholds": [
                 {
                     "Direction": "less than",
