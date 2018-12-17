@@ -15,7 +15,7 @@
 */
 
 #include <Utils.hpp>
-#include <experimental/filesystem>
+#include "filesystem.hpp"
 #include <fstream>
 #include <regex>
 #include <valijson/adapters/nlohmann_json_adapter.hpp>
@@ -23,7 +23,7 @@
 #include <valijson/schema_parser.hpp>
 #include <valijson/validator.hpp>
 
-namespace fs = std::experimental::filesystem;
+namespace fs = std::filesystem;
 
 bool findFiles(const fs::path &dirPath, const std::string &matchString,
                std::vector<fs::path> &foundPaths)

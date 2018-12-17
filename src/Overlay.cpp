@@ -19,7 +19,7 @@
 #include <regex>
 #include <boost/process/child.hpp>
 #include <boost/algorithm/string/predicate.hpp>
-#include <experimental/filesystem>
+#include "filesystem.hpp"
 #include <boost/container/flat_map.hpp>
 #include <boost/container/flat_set.hpp>
 #include <nlohmann/json.hpp>
@@ -72,8 +72,8 @@ void forceProbe(const std::string &driver)
         return;
     }
 
-    std::experimental::filesystem::path pathObj(driver);
-    for (auto &p : std::experimental::filesystem::directory_iterator(pathObj))
+    std::filesystem::path pathObj(driver);
+    for (auto &p : std::filesystem::directory_iterator(pathObj))
     {
         // symlinks are object names
         if (is_symlink(p))
@@ -109,11 +109,10 @@ std::string jsonToString(const nlohmann::json &in)
 // when muxes create new i2c devices, the symbols are not there to map the new
 // i2c devices to the mux address. this looks up the device tree path and adds
 // the new symbols so the new devices can be referenced via the phandle
-void fixupSymbols(
-    const std::vector<std::experimental::filesystem::path> &i2cDevsBefore)
+void fixupSymbols(const std::vector<std::filesystem::path> &i2cDevsBefore)
 {
-    std::vector<std::experimental::filesystem::path> i2cDevsAfter;
-    findFiles(std::experimental::filesystem::path(I2C_DEVS_DIR),
+    std::vector<std::filesystem::path> i2cDevsAfter;
+    findFiles(std::filesystem::path(I2C_DEVS_DIR),
               R"(i2c-\d+)", i2cDevsAfter);
 
     for (const auto &dev : i2cDevsAfter)
@@ -127,9 +126,8 @@ void fixupSymbols(
         std::string bus =
             std::regex_replace(dev.string(), std::regex("^.*-"), "");
         std::string devtreeRef = dev.string() + "/device/of_node";
-        auto devtreePath = std::experimental::filesystem::path(devtreeRef);
-        std::string symbolPath =
-            std::experimental::filesystem::canonical(devtreePath);
+        auto devtreePath = std::filesystem::path(devtreeRef);
+        std::string symbolPath = std::filesystem::canonical(devtreePath);
         symbolPath =
             symbolPath.substr(sizeof("/sys/firmware/devicetree/base") - 1);
         nlohmann::json configuration = {{"Path", symbolPath},
@@ -190,12 +188,11 @@ void exportDevice(const devices::ExportTemplate &exportTemplate,
         const std::string &addressHex = hex.str();
         std::string busStr = std::to_string(*bus);
 
-        std::experimental::filesystem::path devicePath(device);
+        std::filesystem::path devicePath(device);
         const std::string &dir = devicePath.parent_path().string();
-        for (const auto &path :
-             std::experimental::filesystem::directory_iterator(dir))
+        for (const auto &path : std::filesystem::directory_iterator(dir))
         {
-            if (!std::experimental::filesystem::is_directory(path))
+            if (!std::filesystem::is_directory(path))
             {
                 continue;
             }
@@ -321,8 +318,8 @@ void createOverlay(const std::string &templatePath,
 bool loadOverlays(const nlohmann::json &systemConfiguration)
 {
 
-    std::vector<std::experimental::filesystem::path> paths;
-    if (!findFiles(std::experimental::filesystem::path(TEMPLATE_DIR),
+    std::vector<std::filesystem::path> paths;
+    if (!findFiles(std::filesystem::path(TEMPLATE_DIR),
                    R"(.*\.template)", paths))
     {
         std::cerr << "Unable to find any tempate files in " << TEMPLATE_DIR
@@ -330,7 +327,7 @@ bool loadOverlays(const nlohmann::json &systemConfiguration)
         return false;
     }
 
-    std::experimental::filesystem::create_directory(OUTPUT_DIR);
+    std::filesystem::create_directory(OUTPUT_DIR);
     for (auto entity = systemConfiguration.begin();
          entity != systemConfiguration.end(); entity++)
     {
