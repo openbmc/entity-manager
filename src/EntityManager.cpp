@@ -29,7 +29,7 @@
 #include <boost/container/flat_map.hpp>
 #include <boost/container/flat_set.hpp>
 #include <VariantVisitors.hpp>
-#include <experimental/filesystem>
+#include <filesystem>
 
 constexpr const char *OUTPUT_DIR = "/var/configuration/";
 constexpr const char *configurationDirectory = PACKAGE_DIR "configurations";
@@ -40,7 +40,6 @@ constexpr const size_t PROPERTIES_CHANGED_UNTIL_FLUSH_COUNT = 20;
 constexpr const int32_t MAX_MAPPER_DEPTH = 0;
 constexpr const size_t SLEEP_AFTER_PROPERTIES_CHANGE_SECONDS = 5;
 
-namespace fs = std::experimental::filesystem;
 namespace variant_ns = sdbusplus::message::variant_ns;
 struct cmp_str
 {
@@ -499,7 +498,7 @@ struct PerformProbe : std::enable_shared_from_this<PerformProbe>
 // writes output files to persist data
 bool writeJsonFiles(const nlohmann::json &systemConfiguration)
 {
-    std::experimental::filesystem::create_directory(OUTPUT_DIR);
+    std::filesystem::create_directory(OUTPUT_DIR);
     std::ofstream output(std::string(OUTPUT_DIR) + "system.json");
     if (!output.good())
     {
@@ -1131,8 +1130,8 @@ void templateCharReplace(
 bool findJsonFiles(std::list<nlohmann::json> &configurations)
 {
     // find configuration files
-    std::vector<fs::path> jsonPaths;
-    if (!findFiles(fs::path(configurationDirectory),
+    std::vector<std::filesystem::path> jsonPaths;
+    if (!findFiles(std::filesystem::path(configurationDirectory),
                    R"(.*\.json)", jsonPaths))
     {
         std::cerr << "Unable to find any configuration files in "
@@ -1147,6 +1146,7 @@ bool findJsonFiles(std::list<nlohmann::json> &configurations)
         std::cerr
             << "Cannot open schema file,  cannot validate JSON, exiting\n\n";
         std::exit(EXIT_FAILURE);
+        return false;
     }
     nlohmann::json schema = nlohmann::json::parse(schemaStream, nullptr, false);
     if (schema.is_discarded())
@@ -1154,6 +1154,7 @@ bool findJsonFiles(std::list<nlohmann::json> &configurations)
         std::cerr
             << "Illegal schema file detected, cannot validate JSON, exiting\n";
         std::exit(EXIT_FAILURE);
+        return false;
     }
 
     for (auto &jsonPath : jsonPaths)
@@ -1188,6 +1189,7 @@ bool findJsonFiles(std::list<nlohmann::json> &configurations)
             configurations.emplace_back(data);
         }
     }
+    return true;
 }
 
 struct PerformScan : std::enable_shared_from_this<PerformScan>

@@ -15,13 +15,13 @@
 */
 
 #pragma once
-#include <experimental/filesystem>
+#include <filesystem>
 #include <nlohmann/json.hpp>
 #include <sdbusplus/exception.hpp>
 
-bool findFiles(const std::experimental::filesystem::path &dirPath,
+bool findFiles(const std::filesystem::path &dirPath,
                const std::string &matchString,
-               std::vector<std::experimental::filesystem::path> &foundPaths);
+               std::vector<std::filesystem::path> &foundPaths);
 
 bool validateJson(const nlohmann::json &schemaFile,
                   const nlohmann::json &input);
