@@ -37,7 +37,7 @@ extern "C" {
 #include <linux/i2c-dev.h>
 }
 
-namespace fs = std::experimental::filesystem;
+namespace fs = std::filesystem;
 static constexpr bool DEBUG = false;
 static size_t UNKNOWN_BUS_OBJECT_COUNT = 0;
 constexpr size_t MAX_FRU_SIZE = 512;
@@ -59,7 +59,7 @@ struct FindDevicesWithCallback;
 
 static bool isMuxBus(size_t bus)
 {
-    return is_symlink(std::experimental::filesystem::path(
+    return is_symlink(std::filesystem::path(
         "/sys/bus/i2c/devices/i2c-" + std::to_string(bus) + "/mux_device"));
 }
 
