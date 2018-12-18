@@ -741,7 +741,7 @@ int main(int argc, char **argv)
     boost::asio::io_service io;
     auto systemBus = std::make_shared<sdbusplus::asio::connection>(io);
     auto objServer = sdbusplus::asio::object_server(systemBus);
-    systemBus->request_name("com.intel.FruDevice");
+    systemBus->request_name("xyz.openbmc_project.FruDevice");
 
     // this is a map with keys of pair(bus number, address) and values of
     // the object on dbus
