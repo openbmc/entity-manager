@@ -1,7 +1,6 @@
 [Unit]
 Description=Entity Manager
 After=dbus.service
-ConditionFileNotEmpty={bindir}/entity-manager
 
 [Service]
 ExecStartPre=/bin/mkdir -p /var/configuration
