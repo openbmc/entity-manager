@@ -1,6 +1,5 @@
 [Unit]
 Description=Fru Device
-ConditionFileNotEmpty={bindir}/fru-device
 StopWhenUnneeded=true
 After=xyz.openbmc_project.CloseMuxes.service dbus.service
 
