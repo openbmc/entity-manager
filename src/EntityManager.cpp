@@ -1115,7 +1115,11 @@ void templateCharReplace(
             }
         }
     }
-    else if (boost::starts_with(value, "0x"))
+
+    // convert hex numbers to ints
+    else if (boost::starts_with(value, "0x") &&
+             value.substr(2).find_first_not_of("0123456789ABCDEFabcdef") ==
+                 std::string::npos)
     {
         try
         {
