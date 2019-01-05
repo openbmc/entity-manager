@@ -1115,13 +1115,23 @@ void templateCharReplace(
             }
         }
     }
+
+    // convert hex numbers to ints
     else if (boost::starts_with(value, "0x"))
     {
         try
         {
-            keyPair.value() = static_cast<uint64_t>(std::stoul(value, 0, 0));
+            size_t pos = 0;
+            int64_t temp = std::stoul(value, &pos, 0);
+            if (pos == value.size())
+            {
+                keyPair.value() = static_cast<uint64_t>(temp);
+            }
         }
         catch (std::invalid_argument)
+        {
+        }
+        catch (std::std::out_of_range)
         {
         }
     }
