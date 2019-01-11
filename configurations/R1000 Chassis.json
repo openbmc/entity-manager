@@ -418,6 +418,26 @@
             ]
         },
         {
+            "Inputs": [
+                "Front Panel Temp"
+            ],
+            "Name": "Front Panel Temp",
+            "NegativeHysteresis": 2,
+            "Output": [
+                3000.0,
+                5000.0
+            ],
+            "PositiveHysteresis": 0,
+            "Reading": [
+                20.0,
+                30.0
+            ],
+            "Type": "Stepwise",
+            "Zones": [
+                "Pid 1"
+            ]
+        },
+        {
             "FailSafePercent": 90,
             "MinThermalRpm": 3000,
             "Name": "Pid 1",
