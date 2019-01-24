@@ -1181,11 +1181,15 @@ bool findJsonFiles(std::list<nlohmann::json> &configurations)
             std::cerr << "syntax error in " << jsonPath.string() << "\n";
             continue;
         }
+        /*
+         * todo(james): reenable this once less things are in flight
+         *
         if (!validateJson(schema, data))
         {
             std::cerr << "Error validating " << jsonPath.string() << "\n";
             continue;
         }
+        */
 
         if (data.type() == nlohmann::json::value_t::array)
         {
