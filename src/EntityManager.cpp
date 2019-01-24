@@ -163,6 +163,11 @@ void findDbusObjects(std::shared_ptr<PerformProbe> probe,
                     }
                 }
             }
+            if (interfaceConnections.empty())
+            {
+                pendingProbes[interface].clear();
+                return;
+            }
             // get managed objects for all interfaces
             for (const auto &conn : interfaceConnections)
             {
