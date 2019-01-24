@@ -1416,7 +1416,12 @@ void propertiesChangedCallback(
         }
 
         nlohmann::json oldConfiguration = systemConfiguration;
-        DBUS_PROBE_OBJECTS.clear();
+
+        // clear the result of the last probe, but keep the list of probes
+        for (auto &vecPair : DBUS_PROBE_OBJECTS)
+        {
+            vecPair.second.clear();
+        }
 
         std::list<nlohmann::json> configurations;
         if (!findJsonFiles(configurations))
