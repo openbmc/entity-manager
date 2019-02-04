@@ -307,8 +307,8 @@
             "Name": "Front Panel Temp",
             "NegativeHysteresis": 2,
             "Output": [
-                3000.0,
-                5000.0
+                30.0,
+                50.0
             ],
             "PositiveHysteresis": 0,
             "Reading": [
@@ -321,7 +321,7 @@
             ]
         },
         {
-            "FailSafePercent": 90,
+            "FailSafePercent": 100,
             "MinThermalRpm": 3000,
             "Name": "Pid 1",
             "Type": "Pid.Zone"
