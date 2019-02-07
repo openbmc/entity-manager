@@ -371,7 +371,7 @@
                     "Direction": "greater than",
                     "Name": "upper non critical",
                     "Severity": 0,
-                    "Value": 3.066
+                    "Value": 3.541
                 },
                 {
                     "Direction": "less than",
@@ -1042,18 +1042,19 @@
             "Address": "0x8",
             "Class": "METemp",
             "Name": "SSB Temp",
+            "PowerState": "BiosPost",
             "Thresholds": [
                 {
                     "Direction": "greater than",
                     "Name": "upper critical",
                     "Severity": 1,
-                    "Value": 85
+                    "Value": 103
                 },
                 {
                     "Direction": "greater than",
                     "Name": "upper non critical",
                     "Severity": 0,
-                    "Value": 80
+                    "Value": 98
                 },
                 {
                     "Direction": "less than",
