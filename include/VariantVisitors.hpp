@@ -19,56 +19,60 @@
 
 struct VariantToFloatVisitor
 {
-    template <typename T> float operator()(const T &t) const
+    template <typename T>
+    float operator()(const T& t) const
     {
         return static_cast<float>(t);
     }
 };
 template <>
 inline float VariantToFloatVisitor::
-    operator()<std::string>(const std::string &s) const
+    operator()<std::string>(const std::string& s) const
 {
     throw std::invalid_argument("Cannot translate string to float");
 }
 
 struct VariantToIntVisitor
 {
-    template <typename T> int operator()(const T &t) const
+    template <typename T>
+    int operator()(const T& t) const
     {
         return static_cast<int>(t);
     }
 };
 template <>
 inline int VariantToIntVisitor::
-    operator()<std::string>(const std::string &s) const
+    operator()<std::string>(const std::string& s) const
 {
     throw std::invalid_argument("Cannot translate string to int");
 }
 
 struct VariantToUnsignedIntVisitor
 {
-    template <typename T> unsigned int operator()(const T &t) const
+    template <typename T>
+    unsigned int operator()(const T& t) const
     {
         return static_cast<int>(t);
     }
 };
 template <>
 inline unsigned int VariantToUnsignedIntVisitor::
-    operator()<std::string>(const std::string &s) const
+    operator()<std::string>(const std::string& s) const
 {
     throw std::invalid_argument("Cannot translate string to unsigned int");
 }
 
 struct VariantToStringVisitor
 {
-    template <typename T> std::string operator()(const T &t) const
+    template <typename T>
+    std::string operator()(const T& t) const
     {
         return std::to_string(t);
     }
 };
 template <>
 inline std::string VariantToStringVisitor::
-    operator()<std::string>(const std::string &s) const
+    operator()<std::string>(const std::string& s) const
 {
     return s;
 }
