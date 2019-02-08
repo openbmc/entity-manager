@@ -792,8 +792,8 @@ int main(int argc, char **argv)
         [&](sdbusplus::message::message &message) {
             std::string objectName;
             boost::container::flat_map<
-                std::string, sdbusplus::message::variant<
-                                 std::string, bool, int64_t, uint64_t, double>>
+                std::string,
+                std::variant<std::string, bool, int64_t, uint64_t, double>>
                 values;
             message.read(objectName, values);
             auto findPgood = values.find("pgood");
