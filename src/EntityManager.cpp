@@ -40,7 +40,6 @@ constexpr const size_t PROPERTIES_CHANGED_UNTIL_FLUSH_COUNT = 20;
 constexpr const int32_t MAX_MAPPER_DEPTH = 0;
 constexpr const size_t SLEEP_AFTER_PROPERTIES_CHANGE_SECONDS = 5;
 
-namespace variant_ns = sdbusplus::message::variant_ns;
 struct cmp_str
 {
     bool operator()(const char *a, const char *b) const
@@ -72,11 +71,11 @@ const static boost::container::flat_map<const char *, probe_type_codes, cmp_str>
 static constexpr std::array<const char *, 4> settableInterfaces = {
     "Thresholds", "Pid", "Pid.Zone", "Stepwise"};
 using JsonVariantType =
-    sdbusplus::message::variant<std::vector<std::string>, std::string, int64_t,
+   std::variant<std::vector<std::string>, std::string, int64_t,
                                 uint64_t, double, int32_t, uint32_t, int16_t,
                                 uint16_t, uint8_t, bool>;
 using BasicVariantType =
-    sdbusplus::message::variant<std::string, int64_t, uint64_t, double, int32_t,
+   std::variant<std::string, int64_t, uint64_t, double, int32_t,
                                 uint32_t, int16_t, uint16_t, uint8_t, bool>;
 
 using GetSubTreeType = std::vector<
@@ -241,7 +240,7 @@ bool probeDbus(
                         std::smatch match;
 
                         // convert value to string respresentation
-                        std::string probeValue = variant_ns::visit(
+                        std::string probeValue = std::visit(
                             VariantToStringVisitor(), deviceValue->second);
                         if (!std::regex_search(probeValue, match, search))
                         {
@@ -253,7 +252,7 @@ bool probeDbus(
                     case nlohmann::json::value_t::boolean:
                     case nlohmann::json::value_t::number_unsigned:
                     {
-                        unsigned int probeValue = variant_ns::visit(
+                        unsigned int probeValue = std::visit(
                             VariantToUnsignedIntVisitor(), deviceValue->second);
 
                         if (probeValue != match.second.get<unsigned int>())
@@ -264,8 +263,8 @@ bool probeDbus(
                     }
                     case nlohmann::json::value_t::number_integer:
                     {
-                        int probeValue = variant_ns::visit(
-                            VariantToIntVisitor(), deviceValue->second);
+                        int probeValue = std::visit(VariantToIntVisitor(),
+                                                    deviceValue->second);
 
                         if (probeValue != match.second.get<int>())
                         {
@@ -275,8 +274,8 @@ bool probeDbus(
                     }
                     case nlohmann::json::value_t::number_float:
                     {
-                        float probeValue = variant_ns::visit(
-                            VariantToFloatVisitor(), deviceValue->second);
+                        float probeValue = std::visit(VariantToFloatVisitor(),
+                                                      deviceValue->second);
 
                         if (probeValue != match.second.get<float>())
                         {
@@ -801,9 +800,8 @@ void createAddObjectMethod(const std::string &jsonPointerPath,
             for (const auto &item : data)
             {
                 nlohmann::json &newJson = newData[item.first];
-                variant_ns::visit(
-                    [&newJson](auto &&val) { newJson = std::move(val); },
-                    item.second);
+                std::visit([&newJson](auto &&val) { newJson = std::move(val); },
+                           item.second);
             }
 
             auto findName = newData.find("Name");
@@ -1106,9 +1104,8 @@ void templateCharReplace(
             {
                 if (boost::iequals(foundDevicePair.first, templateValue))
                 {
-                    variant_ns::visit(
-                        [&](auto &&val) { keyPair.value() = val; },
-                        foundDevicePair.second);
+                    std::visit([&](auto &&val) { keyPair.value() = val; },
+                               foundDevicePair.second);
                     found = true;
                     break;
                 }
