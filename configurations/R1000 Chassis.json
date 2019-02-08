@@ -286,7 +286,7 @@
             "SlewPos": 0.0,
             "Type": "Pid",
             "Zones": [
-                "Pid 1"
+                "Left"
             ]
         },
         {
@@ -311,7 +311,7 @@
             "SlewPos": 0.0,
             "Type": "Pid",
             "Zones": [
-                "Pid 1"
+                "Left"
             ]
         },
         {
@@ -336,7 +336,7 @@
             "SlewPos": 0.0,
             "Type": "Pid",
             "Zones": [
-                "Pid 1"
+                "Left"
             ]
         },
         {
@@ -361,7 +361,7 @@
             "SlewPos": 0.0,
             "Type": "Pid",
             "Zones": [
-                "Pid 1"
+                "Right"
             ]
         },
         {
@@ -386,7 +386,7 @@
             "SlewPos": 0.0,
             "Type": "Pid",
             "Zones": [
-                "Pid 1"
+                "Right"
             ]
         },
         {
@@ -411,7 +411,7 @@
             "SlewPos": 0.0,
             "Type": "Pid",
             "Zones": [
-                "Pid 1"
+                "Right"
             ]
         },
         {
@@ -431,13 +431,20 @@
             ],
             "Type": "Stepwise",
             "Zones": [
-                "Pid 1"
+                "Left",
+                "Right"
             ]
         },
         {
             "FailSafePercent": 100,
             "MinThermalRpm": 3000,
-            "Name": "Pid 1",
+            "Name": "Left",
+            "Type": "Pid.Zone"
+        },
+        {
+            "FailSafePercent": 100,
+            "MinThermalRpm": 3000,
+            "Name": "Right",
             "Type": "Pid.Zone"
         },
         {

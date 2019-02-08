@@ -860,9 +860,9 @@
             "ILimitMax": 100,
             "ILimitMin": 30,
             "Inputs": [
-                "Core 0 CPU0"
+                "Core \\d+ CPU0"
             ],
-            "Name": "Core 0 CPU0",
+            "Name": "CPU0",
             "OutLimitMax": 100,
             "OutLimitMin": 30,
             "Outputs": [],
@@ -872,7 +872,30 @@
             "SlewPos": 0.0,
             "Type": "Pid",
             "Zones": [
-                "Pid 1"
+                "Left"
+            ]
+        },
+        {
+            "Class": "temp",
+            "FFGainCoefficient": 0.0,
+            "FFOffCoefficient": 0.0,
+            "ICoefficient": -0.2,
+            "ILimitMax": 100,
+            "ILimitMin": 30,
+            "Inputs": [
+                "Core \\d+ CPU1"
+            ],
+            "Name": "CPU1",
+            "OutLimitMax": 100,
+            "OutLimitMin": 30,
+            "Outputs": [],
+            "PCoefficient": -3.0,
+            "SetPoint": 45.0,
+            "SlewNeg": -1,
+            "SlewPos": 0.0,
+            "Type": "Pid",
+            "Zones": [
+                "Right"
             ]
         },
         {
