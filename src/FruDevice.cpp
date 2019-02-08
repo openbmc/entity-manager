@@ -31,6 +31,7 @@
 #include <sdbusplus/asio/connection.hpp>
 #include <sdbusplus/asio/object_server.hpp>
 #include <thread>
+#include <variant>
 
 extern "C" {
 #include <i2c/smbus.h>
@@ -44,12 +45,12 @@ constexpr size_t MAX_FRU_SIZE = 512;
 constexpr size_t MAX_EEPROM_PAGE_INDEX = 255;
 constexpr size_t busTimeoutSeconds = 5;
 
-const static constexpr char *BASEBOARD_FRU_LOCATION =
+const static constexpr char* BASEBOARD_FRU_LOCATION =
     "/etc/fru/baseboard.fru.bin";
 
-const static constexpr char *I2C_DEV_LOCATION = "/dev";
+const static constexpr char* I2C_DEV_LOCATION = "/dev";
 
-static constexpr std::array<const char *, 5> FRU_AREAS = {
+static constexpr std::array<const char*, 5> FRU_AREAS = {
     "INTERNAL", "CHASSIS", "BOARD", "PRODUCT", "MULTIRECORD"};
 const static std::regex NON_ASCII_REGEX("[^\x01-\x7f]");
 using DeviceMap = boost::container::flat_map<int, std::vector<char>>;
@@ -90,7 +91,7 @@ static int isDevice16Bit(int file)
 }
 
 static int read_block_data(int flag, int file, uint16_t offset, uint8_t len,
-                           uint8_t *buf)
+                           uint8_t* buf)
 {
     uint8_t low_addr = offset & 0xFF;
     uint8_t high_addr = (offset >> 8) & 0xFF;
@@ -222,11 +223,11 @@ int get_bus_frus(int file, int first, int last, int bus,
     return future.get();
 }
 
-static void FindI2CDevices(const std::vector<fs::path> &i2cBuses,
+static void FindI2CDevices(const std::vector<fs::path>& i2cBuses,
                            std::shared_ptr<FindDevicesWithCallback> context,
-                           boost::asio::io_service &io, BusMap &busMap)
+                           boost::asio::io_service& io, BusMap& busMap)
 {
-    for (auto &i2cBus : i2cBuses)
+    for (auto& i2cBus : i2cBuses)
     {
         auto busnum = i2cBus.string();
         auto lastDash = busnum.rfind(std::string("-"));
@@ -260,7 +261,7 @@ static void FindI2CDevices(const std::vector<fs::path> &i2cBuses,
                       << bus << "\n";
             continue;
         }
-        auto &device = busMap[bus];
+        auto& device = busMap[bus];
         device = std::make_shared<DeviceMap>();
 
         // don't scan muxed buses async as don't want to confuse the mux
@@ -288,9 +289,9 @@ static void FindI2CDevices(const std::vector<fs::path> &i2cBuses,
 struct FindDevicesWithCallback
     : std::enable_shared_from_this<FindDevicesWithCallback>
 {
-    FindDevicesWithCallback(const std::vector<fs::path> &i2cBuses,
-                            boost::asio::io_service &io, BusMap &busMap,
-                            std::function<void(void)> &&callback) :
+    FindDevicesWithCallback(const std::vector<fs::path>& i2cBuses,
+                            boost::asio::io_service& io, BusMap& busMap,
+                            std::function<void(void)>&& callback) :
         _i2cBuses(i2cBuses),
         _io(io), _busMap(busMap), _callback(std::move(callback))
     {
@@ -304,9 +305,9 @@ struct FindDevicesWithCallback
         FindI2CDevices(_i2cBuses, shared_from_this(), _io, _busMap);
     }
 
-    const std::vector<fs::path> &_i2cBuses;
-    boost::asio::io_service &_io;
-    BusMap &_busMap;
+    const std::vector<fs::path>& _i2cBuses;
+    boost::asio::io_service& _io;
+    BusMap& _busMap;
     std::function<void(void)> _callback;
 };
 
@@ -317,17 +318,17 @@ static const std::tm intelEpoch(void)
     return val;
 }
 
-bool formatFru(const std::vector<char> &fruBytes,
-               boost::container::flat_map<std::string, std::string> &result)
+bool formatFru(const std::vector<char>& fruBytes,
+               boost::container::flat_map<std::string, std::string>& result)
 {
-    static const std::vector<const char *> CHASSIS_FRU_AREAS = {
+    static const std::vector<const char*> CHASSIS_FRU_AREAS = {
         "PART_NUMBER", "SERIAL_NUMBER", "INFO_AM1", "INFO_AM2"};
 
-    static const std::vector<const char *> BOARD_FRU_AREAS = {
+    static const std::vector<const char*> BOARD_FRU_AREAS = {
         "MANUFACTURER",   "PRODUCT_NAME", "SERIAL_NUMBER", "PART_NUMBER",
         "FRU_VERSION_ID", "INFO_AM1",     "INFO_AM2"};
 
-    static const std::vector<const char *> PRODUCT_FRU_AREAS = {
+    static const std::vector<const char*> PRODUCT_FRU_AREAS = {
         "MANUFACTURER",   "PRODUCT_NAME",  "PART_NUMBER",
         "VERSION",        "SERIAL_NUMBER", "ASSET_TAG",
         "FRU_VERSION_ID", "INFO_AM1",      "INFO_AM2"};
@@ -342,9 +343,9 @@ bool formatFru(const std::vector<char> &fruBytes,
     result["Common_Format_Version"] =
         std::to_string(static_cast<int>(*fruAreaOffsetField));
 
-    const std::vector<const char *> *fieldData;
+    const std::vector<const char*>* fieldData;
 
-    for (auto &area : FRU_AREAS)
+    for (auto& area : FRU_AREAS)
     {
         fruAreaOffsetField++;
         if (fruAreaOffsetField >= fruBytes.end())
@@ -406,7 +407,7 @@ bool formatFru(const std::vector<char> &fruBytes,
             {
                 continue;
             }
-            for (auto &field : *fieldData)
+            for (auto& field : *fieldData)
             {
                 if (fruBytesIter >= fruBytes.end())
                 {
@@ -442,14 +443,14 @@ bool formatFru(const std::vector<char> &fruBytes,
                 if (fruBytesIter >= fruBytes.end())
                 {
                     std::cerr << "Warning Fru Length Mismatch:\n    ";
-                    for (auto &c : fruBytes)
+                    for (auto& c : fruBytes)
                     {
                         std::cerr << c;
                     }
                     std::cerr << "\n";
                     if (DEBUG)
                     {
-                        for (auto &keyPair : result)
+                        for (auto& keyPair : result)
                         {
                             std::cerr << keyPair.first << " : "
                                       << keyPair.second << "\n";
@@ -466,10 +467,10 @@ bool formatFru(const std::vector<char> &fruBytes,
 
 void AddFruObjectToDbus(
     std::shared_ptr<sdbusplus::asio::connection> dbusConn,
-    std::vector<char> &device, sdbusplus::asio::object_server &objServer,
-    boost::container::flat_map<std::pair<size_t, size_t>,
-                               std::shared_ptr<sdbusplus::asio::dbus_interface>>
-        &dbusInterfaceMap,
+    std::vector<char>& device, sdbusplus::asio::object_server& objServer,
+    boost::container::flat_map<
+        std::pair<size_t, size_t>,
+        std::shared_ptr<sdbusplus::asio::dbus_interface>>& dbusInterfaceMap,
     uint32_t bus, uint32_t address)
 {
     boost::container::flat_map<std::string, std::string> formattedFru;
@@ -502,7 +503,7 @@ void AddFruObjectToDbus(
     if (bus > 0)
     {
         size_t index = 0;
-        for (auto const &busIface : dbusInterfaceMap)
+        for (auto const& busIface : dbusInterfaceMap)
         {
             if ((busIface.second->get_object_path() == productName))
             {
@@ -529,7 +530,7 @@ void AddFruObjectToDbus(
         objServer.add_interface(productName, "xyz.openbmc_project.FruDevice");
     dbusInterfaceMap[std::pair<size_t, size_t>(bus, address)] = iface;
 
-    for (auto &property : formattedFru)
+    for (auto& property : formattedFru)
     {
 
         std::regex_replace(property.second.begin(), property.second.begin(),
@@ -557,7 +558,7 @@ void AddFruObjectToDbus(
     iface->initialize();
 }
 
-static bool readBaseboardFru(std::vector<char> &baseboardFru)
+static bool readBaseboardFru(std::vector<char>& baseboardFru)
 {
     // try to read baseboard fru from file
     std::ifstream baseboardFruFile(BASEBOARD_FRU_LOCATION, std::ios::binary);
@@ -576,7 +577,7 @@ static bool readBaseboardFru(std::vector<char> &baseboardFru)
     return true;
 }
 
-bool writeFru(uint8_t bus, uint8_t address, const std::vector<uint8_t> &fru)
+bool writeFru(uint8_t bus, uint8_t address, const std::vector<uint8_t>& fru)
 {
     boost::container::flat_map<std::string, std::string> tmp;
     if (fru.size() > MAX_FRU_SIZE)
@@ -585,7 +586,7 @@ bool writeFru(uint8_t bus, uint8_t address, const std::vector<uint8_t> &fru)
         return false;
     }
     // verify legal fru by running it through fru parsing logic
-    if (!formatFru(reinterpret_cast<const std::vector<char> &>(fru), tmp))
+    if (!formatFru(reinterpret_cast<const std::vector<char>&>(fru), tmp))
     {
         std::cerr << "Invalid fru format during writeFru\n";
         return false;
@@ -601,7 +602,7 @@ bool writeFru(uint8_t bus, uint8_t address, const std::vector<uint8_t> &fru)
             throw DBusInternalError();
             return false;
         }
-        file.write(reinterpret_cast<const char *>(fru.data()), fru.size());
+        file.write(reinterpret_cast<const char*>(fru.data()), fru.size());
         return file.good();
     }
     else
@@ -667,18 +668,18 @@ bool writeFru(uint8_t bus, uint8_t address, const std::vector<uint8_t> &fru)
 }
 
 void rescanBusses(
-    boost::asio::io_service &io, BusMap &busMap,
-    boost::container::flat_map<std::pair<size_t, size_t>,
-                               std::shared_ptr<sdbusplus::asio::dbus_interface>>
-        &dbusInterfaceMap,
-    std::shared_ptr<sdbusplus::asio::connection> &systemBus,
-    sdbusplus::asio::object_server &objServer)
+    boost::asio::io_service& io, BusMap& busMap,
+    boost::container::flat_map<
+        std::pair<size_t, size_t>,
+        std::shared_ptr<sdbusplus::asio::dbus_interface>>& dbusInterfaceMap,
+    std::shared_ptr<sdbusplus::asio::connection>& systemBus,
+    sdbusplus::asio::object_server& objServer)
 {
     static boost::asio::deadline_timer timer(io);
     timer.expires_from_now(boost::posix_time::seconds(1));
 
     // setup an async wait in case we get flooded with requests
-    timer.async_wait([&](const boost::system::error_code &ec) {
+    timer.async_wait([&](const boost::system::error_code& ec) {
         auto devDir = fs::path("/dev/");
         auto matchString = std::string("i2c*");
         std::vector<fs::path> i2cBuses;
@@ -695,7 +696,7 @@ void rescanBusses(
         busMap.clear();
         auto scan = std::make_shared<FindDevicesWithCallback>(
             i2cBuses, io, busMap, [&]() {
-                for (auto &busIface : dbusInterfaceMap)
+                for (auto& busIface : dbusInterfaceMap)
                 {
                     objServer.remove_interface(busIface.second);
                 }
@@ -712,9 +713,9 @@ void rescanBusses(
                     baseboardDev.emplace(0, baseboardFru);
                     busMap[0] = std::make_shared<DeviceMap>(baseboardDev);
                 }
-                for (auto &devicemap : busMap)
+                for (auto& devicemap : busMap)
                 {
-                    for (auto &device : *devicemap.second)
+                    for (auto& device : *devicemap.second)
                     {
                         AddFruObjectToDbus(systemBus, device.second, objServer,
                                            dbusInterfaceMap, devicemap.first,
@@ -726,7 +727,7 @@ void rescanBusses(
     });
 }
 
-int main(int argc, char **argv)
+int main(int argc, char** argv)
 {
     auto devDir = fs::path("/dev/");
     auto matchString = std::string("i2c*");
@@ -759,7 +760,7 @@ int main(int argc, char **argv)
     });
 
     iface->register_method(
-        "GetRawFru", [&](const uint8_t &bus, const uint8_t &address) {
+        "GetRawFru", [&](const uint8_t& bus, const uint8_t& address) {
             auto deviceMap = busmap.find(bus);
             if (deviceMap == busmap.end())
             {
@@ -770,14 +771,14 @@ int main(int argc, char **argv)
             {
                 throw std::invalid_argument("Invalid Address.");
             }
-            std::vector<uint8_t> &ret =
-                reinterpret_cast<std::vector<uint8_t> &>(device->second);
+            std::vector<uint8_t>& ret =
+                reinterpret_cast<std::vector<uint8_t>&>(device->second);
             return ret;
         });
 
     iface->register_method("WriteFru", [&](const uint8_t bus,
                                            const uint8_t address,
-                                           const std::vector<uint8_t> &data) {
+                                           const std::vector<uint8_t>& data) {
         if (!writeFru(bus, address, data))
         {
             throw std::invalid_argument("Invalid Arguments.");
@@ -789,11 +790,11 @@ int main(int argc, char **argv)
     iface->initialize();
 
     std::function<void(sdbusplus::message::message & message)> eventHandler =
-        [&](sdbusplus::message::message &message) {
+        [&](sdbusplus::message::message& message) {
             std::string objectName;
             boost::container::flat_map<
-                std::string, sdbusplus::message::variant<
-                                 std::string, bool, int64_t, uint64_t, double>>
+                std::string,
+                std::variant<std::string, bool, int64_t, uint64_t, double>>
                 values;
             message.read(objectName, values);
             auto findPgood = values.find("pgood");
@@ -806,7 +807,7 @@ int main(int argc, char **argv)
         };
 
     sdbusplus::bus::match::match powerMatch = sdbusplus::bus::match::match(
-        static_cast<sdbusplus::bus::bus &>(*systemBus),
+        static_cast<sdbusplus::bus::bus&>(*systemBus),
         "type='signal',interface='org.freedesktop.DBus.Properties',path_"
         "namespace='/xyz/openbmc_project/Chassis/Control/"
         "power0',arg0='xyz.openbmc_project.Chassis.Control.Power'",
@@ -820,7 +821,7 @@ int main(int argc, char **argv)
     // monitor for new i2c devices
     boost::asio::posix::stream_descriptor dirWatch(io, fd);
     std::function<void(const boost::system::error_code, std::size_t)>
-        watchI2cBusses = [&](const boost::system::error_code &ec,
+        watchI2cBusses = [&](const boost::system::error_code& ec,
                              std::size_t bytes_transferred) {
             if (ec)
             {
@@ -831,8 +832,8 @@ int main(int argc, char **argv)
             bool devChange = false;
             while (pendingBuffer.size() > sizeof(inotify_event))
             {
-                const inotify_event *iEvent =
-                    reinterpret_cast<const inotify_event *>(
+                const inotify_event* iEvent =
+                    reinterpret_cast<const inotify_event*>(
                         pendingBuffer.data());
                 switch (iEvent->mask)
                 {

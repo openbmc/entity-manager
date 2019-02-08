@@ -16,26 +16,27 @@
 
 #pragma once
 #include "filesystem.hpp"
+
 #include <nlohmann/json.hpp>
 #include <sdbusplus/exception.hpp>
 
-bool findFiles(const std::filesystem::path &dirPath,
-               const std::string &matchString,
-               std::vector<std::filesystem::path> &foundPaths);
+bool findFiles(const std::filesystem::path& dirPath,
+               const std::string& matchString,
+               std::vector<std::filesystem::path>& foundPaths);
 
-bool validateJson(const nlohmann::json &schemaFile,
-                  const nlohmann::json &input);
+bool validateJson(const nlohmann::json& schemaFile,
+                  const nlohmann::json& input);
 struct DBusInternalError final : public sdbusplus::exception_t
 {
-    const char *name() const noexcept override
+    const char* name() const noexcept override
     {
         return "org.freedesktop.DBus.Error.Failed";
     };
-    const char *description() const noexcept override
+    const char* description() const noexcept override
     {
         return "internal error";
     };
-    const char *what() const noexcept override
+    const char* what() const noexcept override
     {
         return "org.freedesktop.DBus.Error.Failed: "
                "internal error";

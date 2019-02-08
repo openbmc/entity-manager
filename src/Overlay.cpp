@@ -14,29 +14,30 @@
 // limitations under the License.
 */
 
-#include <string>
-#include <iostream>
-#include <regex>
-#include <iomanip>
-#include <boost/process/child.hpp>
-#include <boost/algorithm/string/predicate.hpp>
 #include "filesystem.hpp"
-#include <boost/container/flat_map.hpp>
-#include <boost/container/flat_set.hpp>
-#include <nlohmann/json.hpp>
-#include <devices.hpp>
+
 #include <Overlay.hpp>
 #include <Utils.hpp>
+#include <boost/algorithm/string/predicate.hpp>
+#include <boost/container/flat_map.hpp>
+#include <boost/container/flat_set.hpp>
+#include <boost/process/child.hpp>
+#include <devices.hpp>
+#include <iomanip>
+#include <iostream>
+#include <nlohmann/json.hpp>
+#include <regex>
+#include <string>
 
-constexpr const char *DT_OVERLAY = "/usr/bin/dtoverlay";
-constexpr const char *DTC = "/usr/bin/dtc";
-constexpr const char *OUTPUT_DIR = "/tmp/overlays";
-constexpr const char *TEMPLATE_DIR = PACKAGE_DIR "overlay_templates";
-constexpr const char *TEMPLATE_CHAR = "$";
-constexpr const char *HEX_FORMAT_STR = "0x";
-constexpr const char *PLATFORM = "aspeed,ast2500";
-constexpr const char *I2C_DEVS_DIR = "/sys/bus/i2c/devices";
-constexpr const char *MUX_SYMLINK_DIR = "/dev/i2c-mux";
+constexpr const char* DT_OVERLAY = "/usr/bin/dtoverlay";
+constexpr const char* DTC = "/usr/bin/dtc";
+constexpr const char* OUTPUT_DIR = "/tmp/overlays";
+constexpr const char* TEMPLATE_DIR = PACKAGE_DIR "overlay_templates";
+constexpr const char* TEMPLATE_CHAR = "$";
+constexpr const char* HEX_FORMAT_STR = "0x";
+constexpr const char* PLATFORM = "aspeed,ast2500";
+constexpr const char* I2C_DEVS_DIR = "/sys/bus/i2c/devices";
+constexpr const char* MUX_SYMLINK_DIR = "/dev/i2c-mux";
 
 // some drivers need to be unbind / bind to load device tree changes
 static const boost::container::flat_map<std::string, std::string> FORCE_PROBES =
@@ -44,8 +45,8 @@ static const boost::container::flat_map<std::string, std::string> FORCE_PROBES =
 
 std::regex ILLEGAL_NAME_REGEX("[^A-Za-z0-9_]");
 
-void createOverlay(const std::string &templatePath,
-                   const nlohmann::json &configuration);
+void createOverlay(const std::string& templatePath,
+                   const nlohmann::json& configuration);
 
 void unloadAllOverlays(void)
 {
@@ -55,7 +56,7 @@ void unloadAllOverlays(void)
 
 // this is hopefully temporary, but some drivers can't detect changes
 // without an unbind and bind so this function must exist for now
-void forceProbe(const std::string &driver)
+void forceProbe(const std::string& driver)
 {
     std::ofstream driverUnbind(driver + "/unbind");
     std::ofstream driverBind(driver + "/bind");
@@ -72,7 +73,7 @@ void forceProbe(const std::string &driver)
     }
 
     std::filesystem::path pathObj(driver);
-    for (auto &p : std::filesystem::directory_iterator(pathObj))
+    for (auto& p : std::filesystem::directory_iterator(pathObj))
     {
         // symlinks are object names
         if (is_symlink(p))
@@ -88,7 +89,7 @@ void forceProbe(const std::string &driver)
 }
 
 // helper function to make json types into string
-std::string jsonToString(const nlohmann::json &in)
+std::string jsonToString(const nlohmann::json& in)
 {
     if (in.type() == nlohmann::json::value_t::string)
     {
@@ -105,8 +106,8 @@ std::string jsonToString(const nlohmann::json &in)
     return in.dump();
 }
 
-void linkMux(const std::string &muxName, size_t bus, size_t address,
-             const nlohmann::json::array_t &channelNames)
+void linkMux(const std::string& muxName, size_t bus, size_t address,
+             const nlohmann::json::array_t& channelNames)
 {
     // create directory first time
     static bool createDir = false;
@@ -118,7 +119,7 @@ void linkMux(const std::string &muxName, size_t bus, size_t address,
     }
     std::ostringstream hex;
     hex << std::hex << std::setfill('0') << std::setw(4) << address;
-    const std::string &addressHex = hex.str();
+    const std::string& addressHex = hex.str();
 
     std::filesystem::path devDir(I2C_DEVS_DIR);
     devDir /= std::to_string(bus) + "-" + addressHex;
@@ -134,8 +135,8 @@ void linkMux(const std::string &muxName, size_t bus, size_t address,
         }
         else
         {
-            const std::string *ptr =
-                channelNames[channel].get_ptr<const std::string *>();
+            const std::string* ptr =
+                channelNames[channel].get_ptr<const std::string*>();
             if (ptr == nullptr)
             {
                 channelName = channelNames[channel].dump();
@@ -152,7 +153,7 @@ void linkMux(const std::string &muxName, size_t bus, size_t address,
         }
 
         std::filesystem::path bus = std::filesystem::read_symlink(channelPath);
-        const std::string &busName = bus.filename();
+        const std::string& busName = bus.filename();
 
         std::string linkDir = MUX_SYMLINK_DIR + std::string("/") + muxName;
         if (channel == 0)
@@ -177,17 +178,17 @@ void linkMux(const std::string &muxName, size_t bus, size_t address,
     }
 }
 
-void exportDevice(const std::string &type,
-                  const devices::ExportTemplate &exportTemplate,
-                  const nlohmann::json &configuration)
+void exportDevice(const std::string& type,
+                  const devices::ExportTemplate& exportTemplate,
+                  const nlohmann::json& configuration)
 {
 
     std::string parameters = exportTemplate.parameters;
     std::string device = exportTemplate.device;
     std::string name = "unknown";
-    const uint64_t *bus = nullptr;
-    const uint64_t *address = nullptr;
-    const nlohmann::json::array_t *channels = nullptr;
+    const uint64_t* bus = nullptr;
+    const uint64_t* address = nullptr;
+    const nlohmann::json::array_t* channels = nullptr;
 
     for (auto keyPair = configuration.begin(); keyPair != configuration.end();
          keyPair++)
@@ -208,16 +209,16 @@ void exportDevice(const std::string &type,
 
         if (keyPair.key() == "Bus")
         {
-            bus = keyPair.value().get_ptr<const uint64_t *>();
+            bus = keyPair.value().get_ptr<const uint64_t*>();
         }
         else if (keyPair.key() == "Address")
         {
-            address = keyPair.value().get_ptr<const uint64_t *>();
+            address = keyPair.value().get_ptr<const uint64_t*>();
         }
         else if (keyPair.key() == "ChannelNames")
         {
             channels =
-                keyPair.value().get_ptr<const nlohmann::json::array_t *>();
+                keyPair.value().get_ptr<const nlohmann::json::array_t*>();
         }
         boost::replace_all(parameters, TEMPLATE_CHAR + keyPair.key(),
                            subsituteString);
@@ -230,19 +231,19 @@ void exportDevice(const std::string &type,
     {
         std::ostringstream hex;
         hex << std::hex << *address;
-        const std::string &addressHex = hex.str();
+        const std::string& addressHex = hex.str();
         std::string busStr = std::to_string(*bus);
 
         std::filesystem::path devicePath(device);
-        const std::string &dir = devicePath.parent_path().string();
-        for (const auto &path : std::filesystem::directory_iterator(dir))
+        const std::string& dir = devicePath.parent_path().string();
+        for (const auto& path : std::filesystem::directory_iterator(dir))
         {
             if (!std::filesystem::is_directory(path))
             {
                 continue;
             }
 
-            const std::string &directoryName = path.path().filename();
+            const std::string& directoryName = path.path().filename();
             if (boost::starts_with(directoryName, busStr) &&
                 boost::ends_with(directoryName, addressHex))
             {
@@ -266,8 +267,8 @@ void exportDevice(const std::string &type,
 }
 
 // this is now deprecated
-void createOverlay(const std::string &templatePath,
-                   const nlohmann::json &configuration)
+void createOverlay(const std::string& templatePath,
+                   const nlohmann::json& configuration)
 {
     std::ifstream templateFile(templatePath);
 
@@ -364,7 +365,7 @@ void createOverlay(const std::string &templatePath,
     }
 }
 
-bool loadOverlays(const nlohmann::json &systemConfiguration)
+bool loadOverlays(const nlohmann::json& systemConfiguration)
 {
 
     std::vector<std::filesystem::path> paths;
@@ -387,7 +388,7 @@ bool loadOverlays(const nlohmann::json &systemConfiguration)
             continue;
         }
 
-        for (auto &configuration : *findExposes)
+        for (auto& configuration : *findExposes)
         {
             auto findStatus = configuration.find("Status");
             // status missing is assumed to be 'okay'
@@ -405,7 +406,7 @@ bool loadOverlays(const nlohmann::json &systemConfiguration)
 #if OVERLAYS
 
             std::string typeFile = type + std::string(".template");
-            for (const auto &path : paths)
+            for (const auto& path : paths)
             {
                 if (path.filename() != typeFile)
                 {
