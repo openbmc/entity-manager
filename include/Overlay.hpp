@@ -18,4 +18,4 @@
 #include <nlohmann/json.hpp>
 
 void unloadAllOverlays(void);
-bool loadOverlays(const nlohmann::json &systemConfiguration);
+bool loadOverlays(const nlohmann::json& systemConfiguration);

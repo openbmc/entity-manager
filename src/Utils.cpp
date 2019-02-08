@@ -14,8 +14,9 @@
 // limitations under the License.
 */
 
-#include <Utils.hpp>
 #include "filesystem.hpp"
+
+#include <Utils.hpp>
 #include <fstream>
 #include <regex>
 #include <valijson/adapters/nlohmann_json_adapter.hpp>
@@ -25,15 +26,15 @@
 
 namespace fs = std::filesystem;
 
-bool findFiles(const fs::path &dirPath, const std::string &matchString,
-               std::vector<fs::path> &foundPaths)
+bool findFiles(const fs::path& dirPath, const std::string& matchString,
+               std::vector<fs::path>& foundPaths)
 {
     if (!fs::exists(dirPath))
         return false;
 
     std::regex search(matchString);
     std::smatch match;
-    for (const auto &p : fs::directory_iterator(dirPath))
+    for (const auto& p : fs::directory_iterator(dirPath))
     {
         std::string path = p.path().string();
         if (std::regex_search(path, match, search))
@@ -44,7 +45,7 @@ bool findFiles(const fs::path &dirPath, const std::string &matchString,
     return true;
 }
 
-bool validateJson(const nlohmann::json &schemaFile, const nlohmann::json &input)
+bool validateJson(const nlohmann::json& schemaFile, const nlohmann::json& input)
 {
     valijson::Schema schema;
     valijson::SchemaParser parser;

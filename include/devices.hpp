@@ -22,7 +22,7 @@ namespace devices
 
 struct CmpStr
 {
-    bool operator()(const char *a, const char *b) const
+    bool operator()(const char* a, const char* b) const
     {
         return std::strcmp(a, b) < 0;
     }
@@ -30,13 +30,13 @@ struct CmpStr
 
 struct ExportTemplate
 {
-    ExportTemplate(const char *parameters, const char *device) :
+    ExportTemplate(const char* parameters, const char* device) :
         parameters(parameters), device(device){};
-    const char *parameters;
-    const char *device;
+    const char* parameters;
+    const char* device;
 };
 
-const boost::container::flat_map<const char *, ExportTemplate, CmpStr>
+const boost::container::flat_map<const char*, ExportTemplate, CmpStr>
     exportTemplates{
         {{"EEPROM", ExportTemplate("eeprom $Address",
                                    "/sys/bus/i2c/devices/i2c-$Bus/new_device")},
