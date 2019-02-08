@@ -17,6 +17,7 @@
 #include <string>
 #include <iostream>
 #include <regex>
+#include <iomanip>
 #include <boost/process/child.hpp>
 #include <boost/algorithm/string/predicate.hpp>
 #include "filesystem.hpp"
@@ -34,14 +35,12 @@ constexpr const char *TEMPLATE_DIR = PACKAGE_DIR "overlay_templates";
 constexpr const char *TEMPLATE_CHAR = "$";
 constexpr const char *HEX_FORMAT_STR = "0x";
 constexpr const char *PLATFORM = "aspeed,ast2500";
-constexpr const char *I2C_DEVS_DIR = "/sys/class/i2c-dev";
+constexpr const char *I2C_DEVS_DIR = "/sys/bus/i2c/devices";
+constexpr const char *MUX_SYMLINK_DIR = "/dev/mux";
 
 // some drivers need to be unbind / bind to load device tree changes
 static const boost::container::flat_map<std::string, std::string> FORCE_PROBES =
     {{"IntelFanConnector", "/sys/bus/platform/drivers/aspeed_pwm_tacho"}};
-
-static const boost::container::flat_set<std::string> MUX_TYPES = {
-    {"PCA9543Mux"}, {"PCA9545Mux"}};
 
 std::regex ILLEGAL_NAME_REGEX("[^A-Za-z0-9_]");
 
@@ -106,40 +105,75 @@ std::string jsonToString(const nlohmann::json &in)
     return in.dump();
 }
 
-// when muxes create new i2c devices, the symbols are not there to map the new
-// i2c devices to the mux address. this looks up the device tree path and adds
-// the new symbols so the new devices can be referenced via the phandle
-void fixupSymbols(const std::vector<std::filesystem::path> &i2cDevsBefore)
+void linkMux(const std::string &muxName, size_t bus, size_t address,
+             const nlohmann::json::array_t &channelNames)
 {
-    std::vector<std::filesystem::path> i2cDevsAfter;
-    findFiles(std::filesystem::path(I2C_DEVS_DIR),
-              R"(i2c-\d+)", i2cDevsAfter);
-
-    for (const auto &dev : i2cDevsAfter)
+    // create directory first time
+    static bool createDir = false;
+    std::error_code ec;
+    if (!createDir)
     {
-        if (std::find(i2cDevsBefore.begin(), i2cDevsBefore.end(), dev) !=
-            i2cDevsBefore.end())
+        std::filesystem::create_directory(MUX_SYMLINK_DIR, ec);
+        createDir = true;
+    }
+    std::ostringstream hex;
+    hex << std::hex << std::setfill('0') << std::setw(4) << address;
+    const std::string &addressHex = hex.str();
+
+    std::filesystem::path devDir(I2C_DEVS_DIR);
+    devDir /= std::to_string(bus) + "-" + addressHex;
+
+    size_t channel = 0;
+    std::string channelName;
+    std::filesystem::path channelPath = devDir / "channel-0";
+    while (is_symlink(channelPath))
+    {
+        if (channel > channelNames.size())
         {
-            continue;
+            channelName = std::to_string(channel);
         }
-        // removes everything before and including the '-' in /path/i2c-##
-        std::string bus =
-            std::regex_replace(dev.string(), std::regex("^.*-"), "");
-        std::string devtreeRef = dev.string() + "/device/of_node";
-        auto devtreePath = std::filesystem::path(devtreeRef);
-        std::string symbolPath = std::filesystem::canonical(devtreePath);
-        symbolPath =
-            symbolPath.substr(sizeof("/sys/firmware/devicetree/base") - 1);
-        nlohmann::json configuration = {{"Path", symbolPath},
-                                        {"Type", "Symbol"},
-                                        {"Bus", std::stoul(bus)},
-                                        {"Name", "i2c" + bus}};
-        createOverlay(TEMPLATE_DIR + std::string("/Symbol.template"),
-                      configuration);
+        else
+        {
+            const std::string *ptr =
+                channelNames[channel].get_ptr<const std::string *>();
+            if (ptr == nullptr)
+            {
+                channelName = channelNames[channel].dump();
+            }
+            else
+            {
+                channelName = *ptr;
+            }
+        }
+
+        std::filesystem::path bus = std::filesystem::read_symlink(channelPath);
+        const std::string &busName = bus.filename();
+
+        std::string linkDir = MUX_SYMLINK_DIR + std::string("/") + muxName;
+        if (channel == 0)
+        {
+            std::filesystem::create_directory(linkDir, ec);
+        }
+        std::filesystem::create_symlink(
+            "/dev/" + busName, linkDir + std::string("/") + channelName, ec);
+
+        if (ec)
+        {
+            std::cerr << "Failure creating symlink for " << busName << "\n";
+            return;
+        }
+
+        channel++;
+        channelPath = devDir / ("channel-" + std::to_string(channel));
+    }
+    if (channel == 0)
+    {
+        std::cerr << "Mux missing channels " << devDir << "\n";
     }
 }
 
-void exportDevice(const devices::ExportTemplate &exportTemplate,
+void exportDevice(const std::string &type,
+                  const devices::ExportTemplate &exportTemplate,
                   const nlohmann::json &configuration)
 {
 
@@ -148,6 +182,7 @@ void exportDevice(const devices::ExportTemplate &exportTemplate,
     std::string name = "unknown";
     const uint64_t *bus = nullptr;
     const uint64_t *address = nullptr;
+    const nlohmann::json::array_t *channels = nullptr;
 
     for (auto keyPair = configuration.begin(); keyPair != configuration.end();
          keyPair++)
@@ -173,6 +208,11 @@ void exportDevice(const devices::ExportTemplate &exportTemplate,
         else if (keyPair.key() == "Address")
         {
             address = keyPair.value().get_ptr<const uint64_t *>();
+        }
+        else if (keyPair.key() == "ChannelNames")
+        {
+            channels =
+                keyPair.value().get_ptr<const nlohmann::json::array_t *>();
         }
         boost::replace_all(parameters, TEMPLATE_CHAR + keyPair.key(),
                            subsituteString);
@@ -214,6 +254,10 @@ void exportDevice(const devices::ExportTemplate &exportTemplate,
     }
     deviceFile << parameters;
     deviceFile.close();
+    if (boost::ends_with(type, "Mux") && bus && address && channels)
+    {
+        linkMux(name, *bus, *address, *channels);
+    }
 }
 
 // this is now deprecated
@@ -369,7 +413,7 @@ bool loadOverlays(const nlohmann::json &systemConfiguration)
             auto device = devices::exportTemplates.find(type.c_str());
             if (device != devices::exportTemplates.end())
             {
-                exportDevice(device->second, configuration);
+                exportDevice(type, device->second, configuration);
             }
         }
     }
