@@ -36,8 +36,14 @@
             {
                 "Address": "0x72",
                 "Bus": "$bus",
+                "ChannelNames": [
+                    "PcieSlot1",
+                    "PcieSlot2",
+                    "PcieSlot3",
+                    ""
+                ],
                 "Name": "Riser 1 Mux",
-                "Type": "PCA9543Mux"
+                "Type": "PCA9545Mux"
             },
             {
                 "Address": "$address",
@@ -92,8 +98,14 @@
             {
                 "Address": "0x73",
                 "Bus": "$bus",
+                "ChannelNames": [
+                    "PcieSlot1",
+                    "PcieSlot2",
+                    "PcieSlot3",
+                    ""
+                ],
                 "Name": "Riser 2 Mux",
-                "Type": "PCA9543Mux"
+                "Type": "PCA9545Mux"
             },
             {
                 "Address": "$address",
