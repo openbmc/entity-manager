@@ -230,19 +230,23 @@ void exportDevice(const std::string& type,
         std::string busStr = std::to_string(*bus);
 
         std::filesystem::path devicePath(device);
-        const std::string& dir = devicePath.parent_path().string();
-        for (const auto& path : std::filesystem::directory_iterator(dir))
+        std::filesystem::path parentPath = devicePath.parent_path();
+        if (std::filesystem::is_directory(parentPath))
         {
-            if (!std::filesystem::is_directory(path))
+            for (const auto& path :
+                 std::filesystem::directory_iterator(parentPath))
             {
-                continue;
-            }
+                if (!std::filesystem::is_directory(path))
+                {
+                    continue;
+                }
 
-            const std::string& directoryName = path.path().filename();
-            if (boost::starts_with(directoryName, busStr) &&
-                boost::ends_with(directoryName, addressHex))
-            {
-                return; // already exported
+                const std::string& directoryName = path.path().filename();
+                if (boost::starts_with(directoryName, busStr) &&
+                    boost::ends_with(directoryName, addressHex))
+                {
+                    return; // already exported
+                }
             }
         }
     }
