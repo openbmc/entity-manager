@@ -147,28 +147,27 @@ void linkMux(const std::string& muxName, size_t bus, size_t address,
             }
         }
         // if configuration has name empty, don't put it in dev
-        if (channelName.empty())
+        if (!channelName.empty())
         {
-            continue;
+            std::filesystem::path bus =
+                std::filesystem::read_symlink(channelPath);
+            const std::string& busName = bus.filename();
+
+            std::string linkDir = MUX_SYMLINK_DIR + std::string("/") + muxName;
+            if (channel == 0)
+            {
+                std::filesystem::create_directory(linkDir, ec);
+            }
+            std::filesystem::create_symlink(
+                "/dev/" + busName, linkDir + std::string("/") + channelName,
+                ec);
+
+            if (ec)
+            {
+                std::cerr << "Failure creating symlink for " << busName << "\n";
+                return;
+            }
         }
-
-        std::filesystem::path bus = std::filesystem::read_symlink(channelPath);
-        const std::string& busName = bus.filename();
-
-        std::string linkDir = MUX_SYMLINK_DIR + std::string("/") + muxName;
-        if (channel == 0)
-        {
-            std::filesystem::create_directory(linkDir, ec);
-        }
-        std::filesystem::create_symlink(
-            "/dev/" + busName, linkDir + std::string("/") + channelName, ec);
-
-        if (ec)
-        {
-            std::cerr << "Failure creating symlink for " << busName << "\n";
-            return;
-        }
-
         channel++;
         channelPath = devDir / ("channel-" + std::to_string(channel));
     }
