@@ -681,7 +681,7 @@ void rescanBusses(
     // setup an async wait in case we get flooded with requests
     timer.async_wait([&](const boost::system::error_code& ec) {
         auto devDir = fs::path("/dev/");
-        auto matchString = std::string("i2c*");
+        auto matchString = std::string(R"(i2c-\d+$)");
         std::vector<fs::path> i2cBuses;
 
         if (!findFiles(devDir, matchString, i2cBuses))
@@ -730,7 +730,7 @@ void rescanBusses(
 int main(int argc, char** argv)
 {
     auto devDir = fs::path("/dev/");
-    auto matchString = std::string("i2c*");
+    auto matchString = std::string(R"(i2c-\d+$)");
     std::vector<fs::path> i2cBuses;
 
     if (!findFiles(devDir, matchString, i2cBuses))
