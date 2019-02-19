@@ -863,10 +863,12 @@
                 "Core \\d+ CPU0"
             ],
             "Name": "CPU0",
+            "NegativeHysteresis": 2.0,
             "OutLimitMax": 100,
             "OutLimitMin": 30,
             "Outputs": [],
             "PCoefficient": -3.0,
+            "PositiveHysteresis": 0.0,
             "SetPoint": 45.0,
             "SlewNeg": -1,
             "SlewPos": 0.0,
