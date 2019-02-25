@@ -415,6 +415,29 @@
             ]
         },
         {
+            "Class": "Ceiling",
+            "Inputs": [
+                "Front Panel Temp"
+            ],
+            "Name": "Front Panel UCC",
+            "NegativeHysteresis": 2,
+            "Output": [
+                70.0,
+                80.0
+            ],
+            "PositiveHysteresis": 0,
+            "Reading": [
+                22.0,
+                32.0
+            ],
+            "Type": "Stepwise",
+            "Zones": [
+                "Left",
+                "Right"
+            ]
+        },
+        {
+            "Class": "Floor",
             "Inputs": [
                 "Front Panel Temp"
             ],
