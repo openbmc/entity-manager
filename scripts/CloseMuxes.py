@@ -11,10 +11,9 @@ remove this file.
 import os
 import json
 import subprocess
-
+import re
 
 CONFIGURATION_FILE = '/var/configuration/system.json'
-MUX_TYPES = ['PCA9543Mux', 'PCA9545Mux']
 
 if not os.path.isfile(CONFIGURATION_FILE):
     print('No Configuration')
@@ -24,7 +23,7 @@ configuration = json.load(open(CONFIGURATION_FILE))
 
 for _, entity in configuration.iteritems():
     for exposed in entity.get('Exposes', []):
-        if exposed.get('Type', None) in MUX_TYPES:
+        if re.match("PCA954\\dMux", exposed.get('Type', None)):
             bus = exposed.get('Bus', False)
             address = exposed.get('Address', False)
             if bus and address:
