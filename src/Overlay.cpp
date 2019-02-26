@@ -106,73 +106,58 @@ std::string jsonToString(const nlohmann::json& in)
     return in.dump();
 }
 
-void linkMux(const std::string& muxName, size_t bus, size_t address,
+void linkMux(const std::string& muxName, size_t busIndex, size_t address,
              const nlohmann::json::array_t& channelNames)
 {
-    // create directory first time
-    static bool createDir = false;
     std::error_code ec;
-    if (!createDir)
-    {
-        std::filesystem::create_directory(MUX_SYMLINK_DIR, ec);
-        createDir = true;
-    }
-    std::ostringstream hex;
-    hex << std::hex << std::setfill('0') << std::setw(4) << address;
-    const std::string& addressHex = hex.str();
+    std::filesystem::path muxSymlinkDir(MUX_SYMLINK_DIR);
+    std::filesystem::create_directory(muxSymlinkDir, ec);
+    // ignore error codes here if the directory already exists
+    ec.clear();
+    std::filesystem::path linkDir = muxSymlinkDir / muxName;
+    std::filesystem::create_directory(linkDir, ec);
+
+    std::ostringstream hexAddress;
+    hexAddress << std::hex << std::setfill('0') << std::setw(4) << address;
 
     std::filesystem::path devDir(I2C_DEVS_DIR);
-    devDir /= std::to_string(bus) + "-" + addressHex;
+    devDir /= std::to_string(busIndex) + "-" + hexAddress.str();
 
-    size_t channel = 0;
     std::string channelName;
-    std::filesystem::path channelPath = devDir / "channel-0";
-    while (is_symlink(channelPath))
-    {
-        if (channel > channelNames.size())
-        {
-            channelName = std::to_string(channel);
-        }
-        else
-        {
-            const std::string* ptr =
-                channelNames[channel].get_ptr<const std::string*>();
-            if (ptr == nullptr)
-            {
-                channelName = channelNames[channel].dump();
-            }
-            else
-            {
-                channelName = *ptr;
-            }
-        }
-        // if configuration has name empty, don't put it in dev
-        if (!channelName.empty())
-        {
-            std::filesystem::path bus =
-                std::filesystem::read_symlink(channelPath);
-            const std::string& busName = bus.filename();
 
-            std::string linkDir = MUX_SYMLINK_DIR + std::string("/") + muxName;
-            if (channel == 0)
-            {
-                std::filesystem::create_directory(linkDir, ec);
-            }
-            std::filesystem::create_symlink(
-                "/dev/" + busName, linkDir + std::string("/") + channelName,
-                ec);
-
-            if (ec)
-            {
-                std::cerr << "Failure creating symlink for " << busName << "\n";
-            }
-        }
-        channel++;
-        channelPath = devDir / ("channel-" + std::to_string(channel));
-    }
-    if (channel == 0)
+    for (std::size_t channelIndex = 0; channelIndex < channelNames.size();
+         channelIndex++)
     {
-        std::cerr << "Mux missing channels " << devDir << "\n";
+        const std::string* channelName =
+            channelNames[channelIndex].get_ptr<const std::string*>();
+        if (channelName == nullptr)
+        {
+            continue;
+        }
+        if (channelName->empty())
+        {
+            continue;
+        }
+
+        std::filesystem::path channelPath =
+            devDir / ("channel-" + std::to_string(channelIndex));
+        if (!is_symlink(channelPath))
+        {
+            std::cerr << channelPath << "for mux channel " << *channelName
+                      << " doesn't exist!\n";
+            continue;
+        }
+        std::filesystem::path bus = std::filesystem::read_symlink(channelPath);
+
+        std::filesystem::path fp("/dev" / bus.filename());
+        std::filesystem::path link(linkDir / *channelName);
+
+        std::filesystem::create_symlink(fp, link, ec);
+        if (ec)
+        {
+            std::cerr << "Failure creating symlink for " << fp << " to " << link
+                      << "\n";
+        }
     }
 }
 
