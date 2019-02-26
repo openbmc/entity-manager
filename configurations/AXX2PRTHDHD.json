@@ -3,7 +3,7 @@
         {
             "Address": "$address",
             "Bus": "$bus",
-            "Name": "PCIe Retimer FRU",
+            "Name": "PCIe Retimer $index FRU",
             "Type": "EEPROM"
         },
         {
@@ -71,7 +71,7 @@
                 "MiniSASHD3",
                 "MiniSASHD4"
             ],
-            "Name": "PCIe Retimer 1 Mux",
+            "Name": "PCIe Retimer $index Mux",
             "Type": "PCA9544Mux"
         }
     ],
