@@ -1080,51 +1080,48 @@ void templateCharReplace(
         }
         return;
     }
-    else if (keyPair.value().type() != nlohmann::json::value_t::string)
+
+    std::string* strPtr = keyPair.value().get_ptr<std::string*>();
+    if (strPtr == nullptr)
     {
         return;
     }
 
-    std::string value = keyPair.value();
-    if (value.find(TEMPLATE_CHAR) != std::string::npos)
+    boost::replace_all(*strPtr, "$index", std::to_string(foundDeviceIdx));
+
+    std::size_t templateIndex = 0;
+
+    for (auto& foundDevicePair : foundDevice)
     {
-        std::string templateValue = value;
-
-        templateValue.erase(0, 1); // remove template character
-
-        // special case index
-        if ("index" == templateValue)
+        std::string templateName = "$" + foundDevicePair.first;
+        if (boost::iequals(*strPtr, templateName))
         {
-            keyPair.value() = foundDeviceIdx;
+            std::visit([&](auto&& val) { keyPair.value() = val; },
+                       foundDevicePair.second);
+            // We probably just invalidated the pointer above, so set it to null
+            strPtr = nullptr;
+            break;
         }
-        else
-        {
-            bool found = false;
-            for (auto& foundDevicePair : foundDevice)
-            {
-                if (boost::iequals(foundDevicePair.first, templateValue))
-                {
-                    std::visit([&](auto&& val) { keyPair.value() = val; },
-                               foundDevicePair.second);
-                    found = true;
-                    break;
-                }
-            }
-            if (!found)
-            {
-                std::cerr << "could not find symbol " << templateValue << "\n";
-            }
-        }
+
+        std::string probeValue =
+            std::visit(VariantToStringVisitor(), foundDevicePair.second);
+        boost::replace_all(*strPtr, templateName, probeValue);
+    }
+
+    strPtr = keyPair.value().get_ptr<std::string*>();
+    if (strPtr == nullptr)
+    {
+        return;
     }
 
     // convert hex numbers to ints
-    else if (boost::starts_with(value, "0x"))
+    if (boost::starts_with(*strPtr, "0x"))
     {
         try
         {
             size_t pos = 0;
-            int64_t temp = std::stoul(value, &pos, 0);
-            if (pos == value.size())
+            int64_t temp = std::stoul(*strPtr, &pos, 0);
+            if (pos == strPtr->size())
             {
                 keyPair.value() = static_cast<uint64_t>(temp);
             }
