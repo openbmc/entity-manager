@@ -1085,57 +1085,64 @@ void templateCharReplace(
         return;
     }
 
-    std::string value = keyPair.value();
-    if (value.find(TEMPLATE_CHAR) != std::string::npos)
+    boost::ireplace_all(*strPtr, "$index", std::to_string(foundDeviceIdx));
+
+    templateValue.erase(0, 1); // remove template character
+
+    // special case index
+    if ("index" == templateValue)
     {
-        std::string templateValue = value;
-
-        templateValue.erase(0, 1); // remove template character
-
-        // special case index
-        if ("index" == templateValue)
+        keyPair.value() = foundDeviceIdx;
+    }
+    else
+    {
+        bool found = false;
+        for (auto& foundDevicePair : foundDevice)
         {
-            keyPair.value() = foundDeviceIdx;
+            if (boost::iequals(foundDevicePair.first, templateValue))
+            {
+                std::visit([&](auto&& val) { keyPair.value() = val; },
+                           foundDevicePair.second);
+                found = true;
+                break;
+            }
         }
-        else
+        if (!found)
         {
-            bool found = false;
-            for (auto& foundDevicePair : foundDevice)
-            {
-                if (boost::iequals(foundDevicePair.first, templateValue))
-                {
-                    std::visit([&](auto&& val) { keyPair.value() = val; },
-                               foundDevicePair.second);
-                    found = true;
-                    break;
-                }
-            }
-            if (!found)
-            {
-                std::cerr << "could not find symbol " << templateValue << "\n";
-            }
+            std::cerr << "could not find symbol " << templateValue << "\n";
         }
     }
 
-    // convert hex numbers to ints
-    else if (boost::starts_with(value, "0x"))
+    std::string probeValue =
+        std::visit(VariantToStringVisitor(), foundDevicePair.second);
+    boost::ireplace_all(*strPtr, templateName, probeValue);
+}
+
+strPtr = keyPair.value().get_ptr<std::string*>();
+if (strPtr == nullptr)
+{
+    return;
+}
+
+// convert hex numbers to ints
+else if (boost::starts_with(value, "0x"))
+{
+    try
     {
-        try
+        size_t pos = 0;
+        int64_t temp = std::stoul(value, &pos, 0);
+        if (pos == value.size())
         {
-            size_t pos = 0;
-            int64_t temp = std::stoul(value, &pos, 0);
-            if (pos == value.size())
-            {
-                keyPair.value() = static_cast<uint64_t>(temp);
-            }
-        }
-        catch (std::invalid_argument)
-        {
-        }
-        catch (std::out_of_range)
-        {
+            keyPair.value() = static_cast<uint64_t>(temp);
         }
     }
+    catch (std::invalid_argument)
+    {
+    }
+    catch (std::out_of_range)
+    {
+    }
+}
 }
 
 // reads json files out of the filesystem
