@@ -110,6 +110,7 @@ if (NOT YOCTO)
     add_dependencies (entity-manager sdbusplus-project)
     add_dependencies (entity-manager valijson)
     add_dependencies (fru-device sdbusplus-project)
+    add_dependencies (valijson nlohmann-json)
 endif ()
 
 set (
