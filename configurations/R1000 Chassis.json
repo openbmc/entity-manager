@@ -519,6 +519,21 @@
                 "Fan 6b"
             ],
             "Type": "CFMSensor"
+        },
+        {
+            "Controllers": [
+                ".*"
+            ],
+            "Name": "Acoustic",
+            "Type": "FanProfile"
+        },
+        {
+            "Controllers": [
+                "Front Panel LCC",
+                "CPU\\d"
+            ],
+            "Name": "Performance",
+            "Type": "FanProfile"
         }
     ],
     "Name": "R1000 Chassis",
