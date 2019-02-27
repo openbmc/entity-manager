@@ -414,31 +414,30 @@ bool formatFru(const std::vector<char>& fruBytes,
                     return false;
                 }
 
-                size_t length = *fruBytesIter & 0x3f;
-                fruBytesIter += 1;
-
-                /* Checking for length if field present */
-                if (length == 0)
-                {
-                    result[std::string(area) + "_" + field] =
-                        std::string("Null");
-                    continue;
-                }
-
                 /* Checking for last byte C1 to indicate that no more
                  * field to be read */
-                if (length == 1)
+                if (*fruBytesIter == 0xC1)
                 {
                     break;
                 }
+
+                size_t length = *fruBytesIter & 0x3f;
+                fruBytesIter += 1;
 
                 if (fruBytesIter >= fruBytes.end())
                 {
                     return false;
                 }
+                std::string value(fruBytesIter, fruBytesIter + length);
 
-                result[std::string(area) + "_" + field] =
-                    std::string(fruBytesIter, fruBytesIter + length);
+                // Strip non null characters from the end
+                value.erase(std::find_if(value.rbegin(), value.rend(),
+                                         [](char ch) { return ch != 0; })
+                                .base(),
+                            value.end());
+
+                result[std::string(area) + "_" + field] = std::move(value);
+
                 fruBytesIter += length;
                 if (fruBytesIter >= fruBytes.end())
                 {
