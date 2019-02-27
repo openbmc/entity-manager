@@ -1446,6 +1446,18 @@
             ],
             "Name": "HSBP 4 Mux",
             "Type": "PCA9546Mux"
+        },
+        {
+            "Address": "0x71",
+            "Bus": 4,
+            "ChannelNames": [
+                "M2_Slot1",
+                "M2_Slot2",
+                "",
+                ""
+            ],
+            "Name": "M.2 Mux",
+            "Type": "PCA9543Mux"
         }
     ],
     "Name": "WFP Baseboard",
