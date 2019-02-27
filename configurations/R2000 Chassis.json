@@ -372,6 +372,21 @@
             "AllowedFailures": 1,
             "Name": "FanRedundancy",
             "Type": "FanRedundancy"
+        },
+        {
+            "Controllers": [
+                ".*"
+            ],
+            "Name": "Acoustic",
+            "Type": "FanProfile"
+        },
+        {
+            "Controllers": [
+                "Front Panel LCC",
+                "CPU\\d"
+            ],
+            "Name": "Performance",
+            "Type": "FanProfile"
         }
     ],
     "Name": "R2000 Chassis",
