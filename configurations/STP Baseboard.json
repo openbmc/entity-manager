@@ -829,6 +829,19 @@
                 }
             ],
             "Type": "SkylakeCPU"
+        },
+        {
+            "Direction": "Input",
+            "Index": 143,
+            "Polarity": "Low",
+            "Name": "Chassis Intrusion GPIO",
+            "Type": "Gpio"
+        },
+        {
+            "Class": "Gpio",
+            "BindGpioIntrusion": "Chassis Intrusion GPIO",
+            "Name": "Chassis Intrusion Sensor",
+            "Type": "ChassisIntrusionSensor"
         }
     ],
     "Name": "STP Baseboard",
