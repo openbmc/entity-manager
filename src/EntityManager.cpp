@@ -73,8 +73,9 @@ const static boost::container::flat_map<const char*, probe_type_codes, cmp_str>
 static constexpr std::array<const char*, 4> settableInterfaces = {
     "Thresholds", "Pid", "Pid.Zone", "Stepwise"};
 using JsonVariantType =
-    std::variant<std::vector<std::string>, std::string, int64_t, uint64_t,
-                 double, int32_t, uint32_t, int16_t, uint16_t, uint8_t, bool>;
+    std::variant<std::vector<std::string>, std::vector<double>, std::string,
+                 int64_t, uint64_t, double, int32_t, uint32_t, int16_t,
+                 uint16_t, uint8_t, bool>;
 using BasicVariantType =
     std::variant<std::string, int64_t, uint64_t, double, int32_t, uint32_t,
                  int16_t, uint16_t, uint8_t, bool>;
