@@ -1,0 +1,77 @@
+[
+    {
+        "Exposes": [
+            {
+                "Address": "0x60",
+                "Bus": "$bus",
+                "Name": "Solum 1600W PSU 3 Device",
+                "Type": "pmbus"
+            },
+            {
+                "Address": "$address",
+                "Bus": "$bus",
+                "Name": "Solum 1600W PSU 3 FRU",
+                "Type": "EEPROM"
+            }
+        ],
+        "Name": "Solum 1600W PSU 3",
+        "Probe": "xyz.openbmc_project.FruDevice({'PRODUCT_PRODUCT_NAME': 'PSSF162205A', 'ADDRESS': 82})",
+        "Type": "PowerSupply",
+        "xyz.openbmc_project.Inventory.Decorator.Asset": {
+            "Manufacturer": "$PRODUCT_MANUFACTURER",
+            "Model": "$PRODUCT_PRODUCT_NAME",
+            "PartNumber": "$PRODUCT_PART_NUMBER",
+            "SerialNumber": "$PRODUCT_SERIAL_NUMBER"
+        }
+    },
+    {
+        "Exposes": [
+            {
+                "Address": "0x59",
+                "Bus": "$bus",
+                "Name": "Solum 1600W PSU 2 Device",
+                "Type": "pmbus"
+            },
+            {
+                "Address": "$address",
+                "Bus": "$bus",
+                "Name": "Solum 1600W PSU 2 FRU",
+                "Type": "EEPROM"
+            }
+        ],
+        "Name": "Solum 1600W PSU 2",
+        "Probe": "xyz.openbmc_project.FruDevice({'PRODUCT_PRODUCT_NAME': 'PSSF162205A', 'ADDRESS': 81})",
+        "Type": "PowerSupply",
+        "xyz.openbmc_project.Inventory.Decorator.Asset": {
+            "Manufacturer": "$PRODUCT_MANUFACTURER",
+            "Model": "$PRODUCT_PRODUCT_NAME",
+            "PartNumber": "$PRODUCT_PART_NUMBER",
+            "SerialNumber": "$PRODUCT_SERIAL_NUMBER"
+        }
+    },
+    {
+        "Exposes": [
+            {
+                "Address": "0x58",
+                "Bus": "$bus",
+                "Name": "Solum 1600W PSU 1 Device",
+                "Type": "pmbus"
+            },
+            {
+                "Address": "$address",
+                "Bus": "$bus",
+                "Name": "Solum 1600W PSU 1 FRU",
+                "Type": "EEPROM"
+            }
+        ],
+        "Name": "Solum 1600W PSU 1",
+        "Probe": "xyz.openbmc_project.FruDevice({'PRODUCT_PRODUCT_NAME': 'PSSF162205A', 'ADDRESS': 80})",
+        "Type": "PowerSupply",
+        "xyz.openbmc_project.Inventory.Decorator.Asset": {
+            "Manufacturer": "$PRODUCT_MANUFACTURER",
+            "Model": "$PRODUCT_PRODUCT_NAME",
+            "PartNumber": "$PRODUCT_PART_NUMBER",
+            "SerialNumber": "$PRODUCT_SERIAL_NUMBER"
+        }
+    }
+]
