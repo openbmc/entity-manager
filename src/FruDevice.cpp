@@ -209,6 +209,11 @@ int get_bus_frus(int file, int first, int last, int bus,
                 }
                 devices->emplace(ii, device);
             }
+            else
+            {
+                std::cerr << "Illegal header checksum at bus " << bus
+                          << " address " << ii << "\n";
+            }
         }
         return 1;
     });
