@@ -54,6 +54,7 @@
         ],
         "Name": "Riser 1",
         "Probe": "xyz.openbmc_project.FruDevice({'BOARD_PRODUCT_NAME': 'AHW1UM2RISER\\d', 'ADDRESS' : 86})",
+        "Type": "Board",
         "xyz.openbmc_project.Inventory.Decorator.Asset": {
             "Manufacturer": "$BOARD_MANUFACTURER",
             "Model": "$BOARD_PRODUCT_NAME",
@@ -116,6 +117,7 @@
         ],
         "Name": "Riser 2",
         "Probe": "xyz.openbmc_project.FruDevice({'BOARD_PRODUCT_NAME': 'AHW1UM2RISER\\d', 'ADDRESS' : 87})",
+        "Type": "Board",
         "xyz.openbmc_project.Inventory.Decorator.Asset": {
             "Manufacturer": "$BOARD_MANUFACTURER",
             "Model": "$BOARD_PRODUCT_NAME",
