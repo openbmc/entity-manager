@@ -4,7 +4,23 @@
             {
                 "Address": "0x59",
                 "Bus": "$bus",
-                "Name": "Flextronics S-1100ADU00-201 PSU Device",
+                "Name": "PSU2",
+                "Thresholds" : [
+                    {
+                        "Direction": "greater than",
+                        "Label": "pin",
+                        "Name": "upper critical",
+                        "Severity": 1,
+                        "Value": 2149
+                    },
+                    {
+                        "Direction": "greater than",
+                        "Label": "pin",
+                        "Name": "upper non critical",
+                        "Severity": 0,
+                        "Value": 1951
+                    }
+                ],
                 "Type": "pmbus"
             },
             {
@@ -29,7 +45,23 @@
             {
                 "Address": "0x58",
                 "Bus": "$bus",
-                "Name": "Flextronics S-1100ADU00-201 PSU Device",
+                "Name": "PSU1",
+                "Thresholds" : [
+                    {
+                        "Direction": "greater than",
+                        "Label": "pin",
+                        "Name": "upper critical",
+                        "Severity": 1,
+                        "Value": 2149
+                    },
+                    {
+                        "Direction": "greater than",
+                        "Label": "pin",
+                        "Name": "upper non critical",
+                        "Severity": 0,
+                        "Value": 1951
+                    }
+                ],
                 "Type": "pmbus"
             },
             {
