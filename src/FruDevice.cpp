@@ -812,9 +812,9 @@ int main(int argc, char** argv)
 
     sdbusplus::bus::match::match powerMatch = sdbusplus::bus::match::match(
         static_cast<sdbusplus::bus::bus&>(*systemBus),
-        "type='signal',interface='org.freedesktop.DBus.Properties',path_"
-        "namespace='/xyz/openbmc_project/Chassis/Control/"
-        "power0',arg0='xyz.openbmc_project.Chassis.Control.Power'",
+        "type='signal',interface='org.freedesktop.DBus.Properties',path='/xyz/"
+        "openbmc_project/Chassis/Control/"
+        "Power0',arg0='xyz.openbmc_project.Chassis.Control.Power'",
         eventHandler);
 
     int fd = inotify_init();
