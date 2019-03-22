@@ -514,27 +514,6 @@ bool writeJsonFiles(const nlohmann::json& systemConfiguration)
     return true;
 }
 
-// template function to add array as dbus property
-template <typename PropertyType>
-void addArrayToDbus(const std::string& name, const nlohmann::json& array,
-                    sdbusplus::asio::dbus_interface* iface,
-                    sdbusplus::asio::PropertyPermission permission)
-{
-    std::vector<PropertyType> values;
-    for (const auto& property : array)
-    {
-        auto ptr = property.get_ptr<const PropertyType*>();
-        if (ptr != nullptr)
-        {
-            values.emplace_back(*ptr);
-        }
-    }
-    // todo(james), currently there are no reason to persist arrays, get around
-    // to it if needed
-
-    iface->register_property(name, values, permission);
-}
-
 template <typename JsonType>
 bool setJsonFromPointer(const std::string& ptrStr, const JsonType& value,
                         nlohmann::json& systemConfiguration)
@@ -549,6 +528,53 @@ bool setJsonFromPointer(const std::string& ptrStr, const JsonType& value,
     catch (const std::out_of_range)
     {
         return false;
+    }
+}
+
+// template function to add array as dbus property
+template <typename PropertyType>
+void addArrayToDbus(const std::string& name, const nlohmann::json& array,
+                    sdbusplus::asio::dbus_interface* iface,
+                    sdbusplus::asio::PropertyPermission permission,
+                    nlohmann::json& systemConfiguration,
+                    const std::string& jsonPointerString)
+{
+    std::vector<PropertyType> values;
+    for (const auto& property : array)
+    {
+        auto ptr = property.get_ptr<const PropertyType*>();
+        if (ptr != nullptr)
+        {
+            values.emplace_back(*ptr);
+        }
+    }
+
+    if (permission == sdbusplus::asio::PropertyPermission::readOnly)
+    {
+        iface->register_property(name, values);
+    }
+    else
+    {
+        iface->register_property(
+            name, values,
+            [&systemConfiguration,
+             jsonPointerString{std::string(jsonPointerString)}](
+                const std::vector<PropertyType>& newVal,
+                std::vector<PropertyType>& val) {
+                val = newVal;
+                if (!setJsonFromPointer(jsonPointerString, val,
+                                        systemConfiguration))
+                {
+                    std::cerr << "error setting json field\n";
+                    return -1;
+                }
+                if (!writeJsonFiles(systemConfiguration))
+                {
+                    std::cerr << "error setting json file\n";
+                    return -1;
+                }
+                return 1;
+            });
     }
 }
 
@@ -666,7 +692,14 @@ void populateInterfaceFromJson(
             // all setable numbers are doubles as it is difficult to always
             // create a configuration file with all whole numbers as decimals
             // i.e. 1.0
-            if (dictPair.value().is_number())
+            if (array)
+            {
+                if (dictPair.value()[0].is_number())
+                {
+                    type = nlohmann::json::value_t::number_float;
+                }
+            }
+            else if (dictPair.value().is_number())
             {
                 type = nlohmann::json::value_t::number_float;
             }
@@ -681,7 +714,8 @@ void populateInterfaceFromJson(
                     // todo: array of bool isn't detected correctly by
                     // sdbusplus, change it to numbers
                     addArrayToDbus<uint64_t>(dictPair.key(), dictPair.value(),
-                                             iface.get(), permission);
+                                             iface.get(), permission,
+                                             systemConfiguration, key);
                 }
 
                 else
@@ -697,7 +731,8 @@ void populateInterfaceFromJson(
                 if (array)
                 {
                     addArrayToDbus<int64_t>(dictPair.key(), dictPair.value(),
-                                            iface.get(), permission);
+                                            iface.get(), permission,
+                                            systemConfiguration, key);
                 }
                 else
                 {
@@ -712,7 +747,8 @@ void populateInterfaceFromJson(
                 if (array)
                 {
                     addArrayToDbus<uint64_t>(dictPair.key(), dictPair.value(),
-                                             iface.get(), permission);
+                                             iface.get(), permission,
+                                             systemConfiguration, key);
                 }
                 else
                 {
@@ -728,7 +764,8 @@ void populateInterfaceFromJson(
                 if (array)
                 {
                     addArrayToDbus<double>(dictPair.key(), dictPair.value(),
-                                           iface.get(), permission);
+                                           iface.get(), permission,
+                                           systemConfiguration, key);
                 }
 
                 else
@@ -743,9 +780,9 @@ void populateInterfaceFromJson(
             {
                 if (array)
                 {
-                    addArrayToDbus<std::string>(dictPair.key(),
-                                                dictPair.value(), iface.get(),
-                                                permission);
+                    addArrayToDbus<std::string>(
+                        dictPair.key(), dictPair.value(), iface.get(),
+                        permission, systemConfiguration, key);
                 }
                 else
                 {
