@@ -99,7 +99,8 @@ std::vector<std::string> PASSED_PROBES;
 // todo: pass this through nicer
 std::shared_ptr<sdbusplus::asio::connection> SYSTEM_BUS;
 
-const std::regex ILLEGAL_DBUS_REGEX("[^A-Za-z0-9_.]");
+const std::regex ILLEGAL_DBUS_PATH_REGEX("[^A-Za-z0-9_.]");
+const std::regex ILLEGAL_DBUS_MEMBER_REGEX("[^A-Za-z0-9_]");
 
 void registerCallbacks(boost::asio::io_service& io,
                        std::vector<sdbusplus::bus::match::match>& dbusMatches,
@@ -861,7 +862,7 @@ void createAddObjectMethod(const std::string& jsonPointerPath,
             std::string dbusName = *name;
 
             std::regex_replace(dbusName.begin(), dbusName.begin(),
-                               dbusName.end(), ILLEGAL_DBUS_REGEX, "_");
+                               dbusName.end(), ILLEGAL_DBUS_MEMBER_REGEX, "_");
             auto iface = objServer.add_interface(
                 path + "/" + dbusName,
                 "xyz.openbmc_project.Configuration." + *type);
@@ -899,7 +900,7 @@ void postToDbus(const nlohmann::json& newConfiguration,
         {
             boardType = findBoardType->get<std::string>();
             std::regex_replace(boardType.begin(), boardType.begin(),
-                               boardType.end(), ILLEGAL_DBUS_REGEX, "_");
+                               boardType.end(), ILLEGAL_DBUS_MEMBER_REGEX, "_");
         }
         else
         {
@@ -910,7 +911,7 @@ void postToDbus(const nlohmann::json& newConfiguration,
         std::string boardtypeLower = boost::algorithm::to_lower_copy(boardType);
 
         std::regex_replace(boardKey.begin(), boardKey.begin(), boardKey.end(),
-                           ILLEGAL_DBUS_REGEX, "_");
+                           ILLEGAL_DBUS_MEMBER_REGEX, "_");
         std::string boardName = "/xyz/openbmc_project/inventory/system/" +
                                 boardtypeLower + "/" + boardKey;
 
@@ -977,7 +978,8 @@ void postToDbus(const nlohmann::json& newConfiguration,
             {
                 itemType = findType->get<std::string>();
                 std::regex_replace(itemType.begin(), itemType.begin(),
-                                   itemType.end(), ILLEGAL_DBUS_REGEX, "_");
+                                   itemType.end(), ILLEGAL_DBUS_PATH_REGEX,
+                                   "_");
             }
             else
             {
@@ -985,7 +987,7 @@ void postToDbus(const nlohmann::json& newConfiguration,
             }
             std::string itemName = findName->get<std::string>();
             std::regex_replace(itemName.begin(), itemName.begin(),
-                               itemName.end(), ILLEGAL_DBUS_REGEX, "_");
+                               itemName.end(), ILLEGAL_DBUS_MEMBER_REGEX, "_");
 
             auto itemIface = objServer.add_interface(
                 boardName + "/" + itemName,
@@ -1141,8 +1143,8 @@ bool findJsonFiles(std::list<nlohmann::json>& configurations)
 {
     // find configuration files
     std::vector<std::filesystem::path> jsonPaths;
-    if (!findFiles(std::filesystem::path(configurationDirectory),
-                   R"(.*\.json)", jsonPaths))
+    if (!findFiles(std::filesystem::path(configurationDirectory), R"(.*\.json)",
+                   jsonPaths))
     {
         std::cerr << "Unable to find any configuration files in "
                   << configurationDirectory << "\n";
