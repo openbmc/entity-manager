@@ -52,7 +52,7 @@ struct VariantToUnsignedIntVisitor
     template <typename T>
     unsigned int operator()(const T& t) const
     {
-        return static_cast<int>(t);
+        return static_cast<unsigned int>(t);
     }
 };
 template <>
