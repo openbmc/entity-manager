@@ -312,6 +312,15 @@
                             },
                             "BindGpioIntrusion": {
                                 "type": "string"
+                            },
+                            "Offset": {
+                                "type": "integer"
+                            },
+                            "FaultType": {
+                                "type": "string"
+                            },
+                            "FaultGroup": {
+                                "type": "string"
                             }
                         },
                         "required": [
