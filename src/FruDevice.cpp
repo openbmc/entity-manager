@@ -269,24 +269,8 @@ static void FindI2CDevices(const std::vector<fs::path>& i2cBuses,
         auto& device = busMap[bus];
         device = std::make_shared<DeviceMap>();
 
-        // don't scan muxed buses async as don't want to confuse the mux
-        if (isMuxBus(bus))
-        {
-            get_bus_frus(file, 0x03, 0x77, bus, device);
-            close(file);
-        }
-        else
-        {
-            io.post([file, device, bus, context] {
-                //  i2cdetect by default uses the range 0x03 to 0x77, as
-                //  this is
-                //  what we
-                //  have tested with, use this range. Could be changed in
-                //  future.
-                get_bus_frus(file, 0x03, 0x77, bus, device);
-                close(file);
-            });
-        }
+        get_bus_frus(file, 0x03, 0x77, bus, device);
+        close(file);
     }
 }
 
@@ -481,7 +465,7 @@ void AddFruObjectToDbus(
     if (!formatFru(device, formattedFru))
     {
         std::cerr << "failed to format fru for device at bus " << std::hex
-                  << bus << "address " << address << "\n";
+                  << bus << " address " << address << "\n";
         return;
     }
     auto productNameFind = formattedFru.find("BOARD_PRODUCT_NAME");
@@ -513,7 +497,9 @@ void AddFruObjectToDbus(
             {
                 if (isMuxBus(bus) && address == busIface.first.second)
                 {
-                    continue;
+                    // This device is already added to the lower numbered bus,
+                    // do not replicate it.
+                    return;
                 }
                 // add underscore _index for the same object path on dbus
                 std::string strIndex = std::to_string(index);
@@ -685,17 +671,19 @@ void rescanBusses(
     // setup an async wait in case we get flooded with requests
     timer.async_wait([&](const boost::system::error_code& ec) {
         auto devDir = fs::path("/dev/");
-        auto matchString = std::string(R"(i2c-\d+$)");
         std::vector<fs::path> i2cBuses;
 
-        if (!findFiles(devDir, matchString, i2cBuses))
+        boost::container::flat_map<size_t, fs::path> busPaths;
+        if (!getI2cDevicePaths(devDir, busPaths))
         {
             std::cerr << "unable to find i2c devices\n";
             return;
         }
-        // scanning muxes in reverse order seems to have adverse effects
-        // sorting this list seems to be a fix for that
-        std::sort(i2cBuses.begin(), i2cBuses.end());
+
+        for (auto busPath : busPaths)
+        {
+            i2cBuses.emplace_back(busPath.second);
+        }
 
         busMap.clear();
         auto scan = std::make_shared<FindDevicesWithCallback>(
