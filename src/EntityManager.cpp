@@ -1257,14 +1257,14 @@ struct PerformScan : std::enable_shared_from_this<PerformScan>
                 it = _configurations.erase(it);
                 continue;
             }
-            nlohmann::json* record = &(*it);
+            nlohmann::json& orig_record = (*it);
 
             // store reference to this to children to makes sure we don't get
             // destroyed too early
             auto thisRef = shared_from_this();
             auto p = std::make_shared<PerformProbe>(
                 probeCommand,
-                [&, record, name,
+                [&, orig_record, name,
                  thisRef](std::vector<boost::container::flat_map<
                               std::string, BasicVariantType>>& foundDevices) {
                     _passed = true;
@@ -1272,20 +1272,21 @@ struct PerformScan : std::enable_shared_from_this<PerformScan>
                     PASSED_PROBES.push_back(name);
                     size_t foundDeviceIdx = 0;
 
-                    // insert into configuration temporarly to be able to
-                    // reference ourselves
-                    _systemConfiguration[name] = *record;
-
                     for (auto& foundDevice : foundDevices)
                     {
-                        for (auto keyPair = record->begin();
-                             keyPair != record->end(); keyPair++)
+                        // insert into configuration temporarly to be able to
+                        // reference ourselves
+                        auto record = orig_record;
+                        _systemConfiguration[name] = record;
+
+                        for (auto keyPair = record.begin();
+                             keyPair != record.end(); keyPair++)
                         {
                             templateCharReplace(keyPair, foundDevice,
                                                 foundDeviceIdx);
                         }
-                        auto findExpose = record->find("Exposes");
-                        if (findExpose == record->end())
+                        auto findExpose = record.find("Exposes");
+                        if (findExpose == record.end())
                         {
                             continue;
                         }
@@ -1363,9 +1364,12 @@ struct PerformScan : std::enable_shared_from_this<PerformScan>
                                 }
                             }
                         }
+                        foundDeviceIdx++;
+                        // overwrite ourselves with cleaned up version
+                        _systemConfiguration.erase(name);
+                        _systemConfiguration[static_cast<std::string>(
+                            record["Name"])] = record;
                     }
-                    // overwrite ourselves with cleaned up version
-                    _systemConfiguration[name] = *record;
                 });
             p->run();
             it++;
