@@ -45,6 +45,36 @@ bool findFiles(const fs::path& dirPath, const std::string& matchString,
     return true;
 }
 
+bool getI2cDevicePaths(const fs::path& dirPath,
+                      boost::container::flat_map<size_t, fs::path>& busPaths)
+{
+    if (!fs::exists(dirPath))
+    {
+        return false;
+    }
+
+    // Regex for matching the path
+    std::regex searchPath(std::string(R"(i2c-\d+$)"));
+    // Regex for matching the bus numbers
+    std::regex searchBus(std::string(R"(\w[^-]*$)"));
+    std::smatch matchPath;
+    std::smatch matchBus;
+    for (const auto& p : fs::directory_iterator(dirPath))
+    {
+        std::string path = p.path().string();
+        if (std::regex_search(path, matchPath, searchPath))
+        {
+            if (std::regex_search(path, matchBus, searchBus));
+            {
+                size_t bus = stoul(*matchBus.begin());
+                busPaths.insert(std::pair<size_t, fs::path>(bus, p.path()));
+            }
+        }
+    }
+
+    return true;
+}
+
 bool validateJson(const nlohmann::json& schemaFile, const nlohmann::json& input)
 {
     valijson::Schema schema;
