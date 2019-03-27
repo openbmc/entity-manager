@@ -59,6 +59,8 @@ using BusMap = boost::container::flat_map<int, std::shared_ptr<DeviceMap>>;
 static std::set<size_t> busBlacklist;
 struct FindDevicesWithCallback;
 
+static BusMap busMap;
+
 static bool isMuxBus(size_t bus)
 {
     return is_symlink(std::filesystem::path(
@@ -315,31 +317,20 @@ static void FindI2CDevices(const std::vector<fs::path>& i2cBuses,
         auto& device = busMap[bus];
         device = std::make_shared<DeviceMap>();
 
-        auto callback = [file, device, bus, context]() {
-            //  i2cdetect by default uses the range 0x03 to 0x77, as
-            //  this is  what we have tested with, use this range. Could be
-            //  changed in future.
-            if (DEBUG)
-            {
-                std::cerr << "Scanning bus " << bus << "\n";
-            }
-
-            // fd is closed in this function in case the bus locks up
-            get_bus_frus(file, 0x03, 0x77, bus, device);
-
-            if (DEBUG)
-            {
-                std::cerr << "Done scanning bus " << bus << "\n";
-            }
-        };
-        // don't scan muxed buses async as don't want to confuse the mux
-        if (isMuxBus(bus))
+        //  i2cdetect by default uses the range 0x03 to 0x77, as
+        //  this is  what we have tested with, use this range. Could be
+        //  changed in future.
+        if (DEBUG)
         {
-            callback();
+            std::cerr << "Scanning bus " << bus << "\n";
         }
-        else
+
+        // fd is closed in this function in case the bus locks up
+        get_bus_frus(file, 0x03, 0x77, bus, device);
+
+        if (DEBUG)
         {
-            io.post(callback);
+            std::cerr << "Done scanning bus " << bus << "\n";
         }
     }
 }
@@ -521,6 +512,24 @@ bool formatFru(const std::vector<char>& fruBytes,
     return true;
 }
 
+std::vector<uint8_t>& getFruInfo(const uint8_t& bus, const uint8_t& address)
+{
+    auto deviceMap = busMap.find(bus);
+    if (deviceMap == busMap.end())
+    {
+        throw std::invalid_argument("Invalid Bus.");
+    }
+    auto device = deviceMap->second->find(address);
+    if (device == deviceMap->second->end())
+    {
+        throw std::invalid_argument("Invalid Address.");
+    }
+    std::vector<uint8_t>& ret =
+        reinterpret_cast<std::vector<uint8_t>&>(device->second);
+
+    return ret;
+}
+
 void AddFruObjectToDbus(
     std::shared_ptr<sdbusplus::asio::connection> dbusConn,
     std::vector<char>& device, sdbusplus::asio::object_server& objServer,
@@ -533,7 +542,7 @@ void AddFruObjectToDbus(
     if (!formatFru(device, formattedFru))
     {
         std::cerr << "failed to format fru for device at bus " << std::hex
-                  << bus << "address " << address << "\n";
+                  << bus << " address " << address << "\n";
         return;
     }
     auto productNameFind = formattedFru.find("BOARD_PRODUCT_NAME");
@@ -563,9 +572,13 @@ void AddFruObjectToDbus(
         {
             if ((busIface.second->get_object_path() == productName))
             {
-                if (isMuxBus(bus) && address == busIface.first.second)
+                if (isMuxBus(bus) && address == busIface.first.second &&
+                    (getFruInfo(busIface.first.first, busIface.first.second) ==
+                     getFruInfo(bus, address)))
                 {
-                    continue;
+                    // This device is already added to the lower numbered bus,
+                    // do not replicate it.
+                    return;
                 }
                 // add underscore _index for the same object path on dbus
                 std::string strIndex = std::to_string(index);
@@ -737,17 +750,19 @@ void rescanBusses(
     // setup an async wait in case we get flooded with requests
     timer.async_wait([&](const boost::system::error_code& ec) {
         auto devDir = fs::path("/dev/");
-        auto matchString = std::string(R"(i2c-\d+$)");
         std::vector<fs::path> i2cBuses;
 
-        if (!findFiles(devDir, matchString, i2cBuses))
+        boost::container::flat_map<size_t, fs::path> busPaths;
+        if (!getI2cDevicePaths(devDir, busPaths))
         {
             std::cerr << "unable to find i2c devices\n";
             return;
         }
-        // scanning muxes in reverse order seems to have adverse effects
-        // sorting this list seems to be a fix for that
-        std::sort(i2cBuses.begin(), i2cBuses.end());
+
+        for (auto busPath : busPaths)
+        {
+            i2cBuses.emplace_back(busPath.second);
+        }
 
         busMap.clear();
         auto scan = std::make_shared<FindDevicesWithCallback>(
@@ -805,32 +820,16 @@ int main(int argc, char** argv)
     boost::container::flat_map<std::pair<size_t, size_t>,
                                std::shared_ptr<sdbusplus::asio::dbus_interface>>
         dbusInterfaceMap;
-    BusMap busmap;
 
     std::shared_ptr<sdbusplus::asio::dbus_interface> iface =
         objServer.add_interface("/xyz/openbmc_project/FruDevice",
                                 "xyz.openbmc_project.FruDeviceManager");
 
     iface->register_method("ReScan", [&]() {
-        rescanBusses(io, busmap, dbusInterfaceMap, systemBus, objServer);
+        rescanBusses(io, busMap, dbusInterfaceMap, systemBus, objServer);
     });
 
-    iface->register_method(
-        "GetRawFru", [&](const uint8_t& bus, const uint8_t& address) {
-            auto deviceMap = busmap.find(bus);
-            if (deviceMap == busmap.end())
-            {
-                throw std::invalid_argument("Invalid Bus.");
-            }
-            auto device = deviceMap->second->find(address);
-            if (device == deviceMap->second->end())
-            {
-                throw std::invalid_argument("Invalid Address.");
-            }
-            std::vector<uint8_t>& ret =
-                reinterpret_cast<std::vector<uint8_t>&>(device->second);
-            return ret;
-        });
+    iface->register_method("GetRawFru", getFruInfo);
 
     iface->register_method("WriteFru", [&](const uint8_t bus,
                                            const uint8_t address,
@@ -841,7 +840,7 @@ int main(int argc, char** argv)
             return;
         }
         // schedule rescan on success
-        rescanBusses(io, busmap, dbusInterfaceMap, systemBus, objServer);
+        rescanBusses(io, busMap, dbusInterfaceMap, systemBus, objServer);
     });
     iface->initialize();
 
@@ -857,7 +856,7 @@ int main(int argc, char** argv)
             if (findPgood != values.end())
             {
 
-                rescanBusses(io, busmap, dbusInterfaceMap, systemBus,
+                rescanBusses(io, busMap, dbusInterfaceMap, systemBus,
                              objServer);
             }
         };
@@ -907,7 +906,7 @@ int main(int argc, char** argv)
             }
             if (devChange)
             {
-                rescanBusses(io, busmap, dbusInterfaceMap, systemBus,
+                rescanBusses(io, busMap, dbusInterfaceMap, systemBus,
                              objServer);
             }
 
@@ -917,7 +916,7 @@ int main(int argc, char** argv)
 
     dirWatch.async_read_some(boost::asio::buffer(readBuffer), watchI2cBusses);
     // run the initial scan
-    rescanBusses(io, busmap, dbusInterfaceMap, systemBus, objServer);
+    rescanBusses(io, busMap, dbusInterfaceMap, systemBus, objServer);
 
     io.run();
     return 0;
