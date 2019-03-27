@@ -45,6 +45,36 @@ bool findFiles(const fs::path& dirPath, const std::string& matchString,
     return true;
 }
 
+bool findFilesWithMap(
+    const fs::path& dirPath, const std::string& pathMatchString,
+    const std::string& numMatchString,
+    std::map<size_t, fs::path>& busPaths)
+{
+    std::cerr <<"inside findFilesWithMap \n";
+
+    if (!fs::exists(dirPath))
+        return false;
+
+    std::regex search(pathMatchString);
+    std::regex search2(numMatchString);
+    std::smatch match;
+    std::smatch numMatch;
+    for (const auto& p : fs::directory_iterator(dirPath))
+    {
+        std::string path = p.path().string();
+        if (std::regex_search(path, match, search))
+        {
+            if(std::regex_search(path, numMatch, search2));
+            {
+                size_t bus = stoul(*numMatch.begin());
+                busPaths.insert(std::pair<size_t, fs::path>(bus, p.path()));
+            }
+        }
+    }
+
+    return true;
+}
+
 bool validateJson(const nlohmann::json& schemaFile, const nlohmann::json& input)
 {
     valijson::Schema schema;

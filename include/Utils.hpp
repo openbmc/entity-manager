@@ -24,6 +24,11 @@ bool findFiles(const std::filesystem::path& dirPath,
                const std::string& matchString,
                std::vector<std::filesystem::path>& foundPaths);
 
+bool findFilesWithMap(
+    const std::filesystem::path& dirPath, const std::string& pathMatchString,
+    const std::string& numMatchString,
+    std::map<size_t, std::filesystem::path>& busPaths );
+
 bool validateJson(const nlohmann::json& schemaFile,
                   const nlohmann::json& input);
 struct DBusInternalError final : public sdbusplus::exception_t
