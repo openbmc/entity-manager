@@ -17,12 +17,17 @@
 #pragma once
 #include "filesystem.hpp"
 
+#include <boost/container/flat_map.hpp>
 #include <nlohmann/json.hpp>
 #include <sdbusplus/exception.hpp>
 
 bool findFiles(const std::filesystem::path& dirPath,
                const std::string& matchString,
                std::vector<std::filesystem::path>& foundPaths);
+
+bool getI2cDevicePaths(
+    const std::filesystem::path& dirPath,
+    boost::container::flat_map<size_t, std::filesystem::path>& busPaths);
 
 bool validateJson(const nlohmann::json& schemaFile,
                   const nlohmann::json& input);
