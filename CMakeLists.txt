@@ -122,7 +122,7 @@ set (
 
 set (PACKAGE_DIR /usr/share/entity-manager/)
 target_compile_definitions (entity-manager PRIVATE PACKAGE_DIR="${PACKAGE_DIR}")
-install (TARGETS fru-device entity-manager DESTINATION sbin)
+install (TARGETS fru-device entity-manager DESTINATION bin)
 install (DIRECTORY configurations DESTINATION ${PACKAGE_DIR})
 install (DIRECTORY overlay_templates DESTINATION ${PACKAGE_DIR})
 install (DIRECTORY schemas DESTINATION ${PACKAGE_DIR}/configurations)

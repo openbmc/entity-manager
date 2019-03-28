@@ -4,7 +4,7 @@ StopWhenUnneeded=true
 After=xyz.openbmc_project.CloseMuxes.service dbus.service
 
 [Service]
-ExecStart=/usr/sbin/fru-device
+ExecStart=/usr/bin/fru-device
 Type=simple
 
 [Install]

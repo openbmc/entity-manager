@@ -5,7 +5,7 @@ After=dbus.service
 [Service]
 ExecStartPre=/bin/mkdir -p /var/configuration
 ExecStartPre=/bin/mkdir -p /tmp/overlays
-ExecStart=/usr/sbin/entity-manager
+ExecStart=/usr/bin/entity-manager
 Restart=always
 Type=simple
 
