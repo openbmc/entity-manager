@@ -327,8 +327,8 @@
         {
             "Address": "0x30",
             "Bus": 0,
-            "CpuID": 0,
-            "Name": "Skylake CPU 0",
+            "CpuID": 1,
+            "Name": "Skylake CPU 1",
             "Thresholds": [
                 {
                     "Direction": "greater than",
@@ -350,8 +350,8 @@
         {
             "Address": "0x31",
             "Bus": 0,
-            "CpuID": 1,
-            "Name": "Skylake CPU 1",
+            "CpuID": 2,
+            "Name": "Skylake CPU 2",
             "Thresholds": [
                 {
                     "Direction": "greater than",
@@ -424,9 +424,9 @@
             "ILimitMax": 70,
             "ILimitMin": 30,
             "Inputs": [
-                "Core 0 CPU0"
+                "Core 0 CPU1"
             ],
-            "Name": "Core 0 CPU0",
+            "Name": "Core 0 CPU1",
             "OutLimitMax": 70,
             "OutLimitMin": 30,
             "Outputs": [],
