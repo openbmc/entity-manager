@@ -55,7 +55,7 @@
             "Type": "IntelFanConnector"
         },
         {
-            "Name": "4U CPU 0 fan connector",
+            "Name": "4U CPU 1 fan connector",
             "Pwm": 7,
             "Status": "disabled",
             "Tachs": [
@@ -64,7 +64,7 @@
             "Type": "IntelFanConnector"
         },
         {
-            "Name": "4U CPU 1 fan connector",
+            "Name": "4U CPU 2 fan connector",
             "Pwm": 8,
             "Status": "disabled",
             "Tachs": [
@@ -532,38 +532,6 @@
         },
         {
             "Index": 8,
-            "Name": "PVCCIN_CPU0",
-            "ScaleFactor": 0.7505,
-            "Thresholds": [
-                {
-                    "Direction": "greater than",
-                    "Name": "upper critical",
-                    "Severity": 1,
-                    "Value": 2.151
-                },
-                {
-                    "Direction": "greater than",
-                    "Name": "upper non critical",
-                    "Severity": 0,
-                    "Value": 2.088
-                },
-                {
-                    "Direction": "less than",
-                    "Name": "lower non critical",
-                    "Severity": 0,
-                    "Value": 1.418
-                },
-                {
-                    "Direction": "less than",
-                    "Name": "lower critical",
-                    "Severity": 1,
-                    "Value": 1.376
-                }
-            ],
-            "Type": "ADC"
-        },
-        {
-            "Index": 9,
             "Name": "PVCCIN_CPU1",
             "ScaleFactor": 0.7505,
             "Thresholds": [
@@ -595,71 +563,39 @@
             "Type": "ADC"
         },
         {
+            "Index": 9,
+            "Name": "PVCCIN_CPU2",
+            "ScaleFactor": 0.7505,
+            "Thresholds": [
+                {
+                    "Direction": "greater than",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 2.151
+                },
+                {
+                    "Direction": "greater than",
+                    "Name": "upper non critical",
+                    "Severity": 0,
+                    "Value": 2.088
+                },
+                {
+                    "Direction": "less than",
+                    "Name": "lower non critical",
+                    "Severity": 0,
+                    "Value": 1.418
+                },
+                {
+                    "Direction": "less than",
+                    "Name": "lower critical",
+                    "Severity": 1,
+                    "Value": 1.376
+                }
+            ],
+            "Type": "ADC"
+        },
+        {
             "Index": 10,
-            "Name": "PVDDQ_ABC_CPU0",
-            "ScaleFactor": 1.0,
-            "Thresholds": [
-                {
-                    "Direction": "greater than",
-                    "Name": "upper critical",
-                    "Severity": 1,
-                    "Value": 1.301
-                },
-                {
-                    "Direction": "greater than",
-                    "Name": "upper non critical",
-                    "Severity": 0,
-                    "Value": 1.263
-                },
-                {
-                    "Direction": "less than",
-                    "Name": "lower non critical",
-                    "Severity": 0,
-                    "Value": 1.138
-                },
-                {
-                    "Direction": "less than",
-                    "Name": "lower critical",
-                    "Severity": 1,
-                    "Value": 1.104
-                }
-            ],
-            "Type": "ADC"
-        },
-        {
-            "Index": 11,
-            "Name": "PVDDQ_DEF_CPU0",
-            "ScaleFactor": 1.0,
-            "Thresholds": [
-                {
-                    "Direction": "greater than",
-                    "Name": "upper critical",
-                    "Severity": 1,
-                    "Value": 1.301
-                },
-                {
-                    "Direction": "greater than",
-                    "Name": "upper non critical",
-                    "Severity": 0,
-                    "Value": 1.263
-                },
-                {
-                    "Direction": "less than",
-                    "Name": "lower non critical",
-                    "Severity": 0,
-                    "Value": 1.138
-                },
-                {
-                    "Direction": "less than",
-                    "Name": "lower critical",
-                    "Severity": 1,
-                    "Value": 1.104
-                }
-            ],
-            "Type": "ADC"
-        },
-        {
-            "Index": 12,
             "Name": "PVDDQ_ABC_CPU1",
             "ScaleFactor": 1.0,
             "Thresholds": [
@@ -691,7 +627,7 @@
             "Type": "ADC"
         },
         {
-            "Index": 13,
+            "Index": 11,
             "Name": "PVDDQ_DEF_CPU1",
             "ScaleFactor": 1.0,
             "Thresholds": [
@@ -723,8 +659,72 @@
             "Type": "ADC"
         },
         {
+            "Index": 12,
+            "Name": "PVDDQ_ABC_CPU2",
+            "ScaleFactor": 1.0,
+            "Thresholds": [
+                {
+                    "Direction": "greater than",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 1.301
+                },
+                {
+                    "Direction": "greater than",
+                    "Name": "upper non critical",
+                    "Severity": 0,
+                    "Value": 1.263
+                },
+                {
+                    "Direction": "less than",
+                    "Name": "lower non critical",
+                    "Severity": 0,
+                    "Value": 1.138
+                },
+                {
+                    "Direction": "less than",
+                    "Name": "lower critical",
+                    "Severity": 1,
+                    "Value": 1.104
+                }
+            ],
+            "Type": "ADC"
+        },
+        {
+            "Index": 13,
+            "Name": "PVDDQ_DEF_CPU2",
+            "ScaleFactor": 1.0,
+            "Thresholds": [
+                {
+                    "Direction": "greater than",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 1.301
+                },
+                {
+                    "Direction": "greater than",
+                    "Name": "upper non critical",
+                    "Severity": 0,
+                    "Value": 1.263
+                },
+                {
+                    "Direction": "less than",
+                    "Name": "lower non critical",
+                    "Severity": 0,
+                    "Value": 1.138
+                },
+                {
+                    "Direction": "less than",
+                    "Name": "lower critical",
+                    "Severity": 1,
+                    "Value": 1.104
+                }
+            ],
+            "Type": "ADC"
+        },
+        {
             "Index": 14,
-            "Name": "PVCCIO_CPU0",
+            "Name": "PVCCIO_CPU1",
             "ScaleFactor": 1.0,
             "Thresholds": [
                 {
@@ -756,7 +756,7 @@
         },
         {
             "Index": 15,
-            "Name": "PVCCIO_CPU1",
+            "Name": "PVCCIO_CPU2",
             "ScaleFactor": 1.0,
             "Thresholds": [
                 {
