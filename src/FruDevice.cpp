@@ -113,6 +113,50 @@ static int read_block_data(int flag, int file, uint16_t offset, uint8_t len,
     return i2c_smbus_read_i2c_block_data(file, high_addr, len, buf);
 }
 
+bool validateHeader(const std::array<uint8_t, I2C_SMBUS_BLOCK_MAX>& blockData)
+{
+    // ipmi spec format version number is currently at 1, verify it
+    if (blockData[0] != 0x1)
+    {
+        return false;
+    }
+
+    // verify pad is set to 0
+    if (blockData[6] != 0x0)
+    {
+        return false;
+    }
+
+    // verify offsets are 0, or don't point to another offset
+    std::set<uint8_t> foundOffsets;
+    for (int ii = 1; ii < 6; ii++)
+    {
+        if (blockData[ii] == 0)
+        {
+            continue;
+        }
+        auto [_, inserted] = foundOffsets.insert(blockData[ii]);
+        if (!inserted)
+        {
+            return false;
+        }
+    }
+
+    // validate checksum
+    size_t sum = 0;
+    for (int jj = 0; jj < 7; jj++)
+    {
+        sum += blockData[jj];
+    }
+    sum = (256 - sum) & 0xFF;
+
+    if (sum != blockData[7])
+    {
+        return false;
+    }
+    return true;
+}
+
 int get_bus_frus(int file, int first, int last, int bus,
                  std::shared_ptr<DeviceMap> devices)
 {
@@ -157,15 +201,9 @@ int get_bus_frus(int file, int first, int last, int bus,
                           << "\n";
                 continue;
             }
-            size_t sum = 0;
-            for (int jj = 0; jj < 7; jj++)
-            {
-                sum += block_data[jj];
-            }
-            sum = (256 - sum) & 0xFF;
 
             // check the header checksum
-            if (sum == block_data[7])
+            if (validateHeader(block_data))
             {
                 std::vector<char> device;
                 device.insert(device.end(), block_data.begin(),
@@ -211,7 +249,7 @@ int get_bus_frus(int file, int first, int last, int bus,
             }
             else
             {
-                std::cerr << "Illegal header checksum at bus " << bus
+                std::cout << "Illegal header checksum at bus " << bus
                           << " address " << ii << "\n";
             }
         }
