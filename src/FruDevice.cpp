@@ -56,6 +56,7 @@ const static std::regex NON_ASCII_REGEX("[^\x01-\x7f]");
 using DeviceMap = boost::container::flat_map<int, std::vector<char>>;
 using BusMap = boost::container::flat_map<int, std::shared_ptr<DeviceMap>>;
 
+static std::set<size_t> busBlacklist;
 struct FindDevicesWithCallback;
 
 static bool isMuxBus(size_t bus)
@@ -260,9 +261,12 @@ int get_bus_frus(int file, int first, int last, int bus,
     if (status == std::future_status::timeout)
     {
         std::cerr << "Error reading bus " << bus << "\n";
+        busBlacklist.insert(bus);
+        close(file);
         return -1;
     }
 
+    close(file);
     return future.get();
 }
 
@@ -280,6 +284,10 @@ static void FindI2CDevices(const std::vector<fs::path>& i2cBuses,
             busnum.erase(0, lastDash + 1);
         }
         auto bus = std::stoi(busnum);
+        if (busBlacklist.find(bus) != busBlacklist.end())
+        {
+            continue; // skip previously failed busses
+        }
 
         auto file = open(i2cBus.c_str(), O_RDWR);
         if (file < 0)
@@ -307,23 +315,31 @@ static void FindI2CDevices(const std::vector<fs::path>& i2cBuses,
         auto& device = busMap[bus];
         device = std::make_shared<DeviceMap>();
 
+        auto callback = [file, device, bus, context]() {
+            //  i2cdetect by default uses the range 0x03 to 0x77, as
+            //  this is  what we have tested with, use this range. Could be
+            //  changed in future.
+            if (DEBUG)
+            {
+                std::cerr << "Scanning bus " << bus << "\n";
+            }
+
+            // fd is closed in this function in case the bus locks up
+            get_bus_frus(file, 0x03, 0x77, bus, device);
+
+            if (DEBUG)
+            {
+                std::cerr << "Done scanning bus " << bus << "\n";
+            }
+        };
         // don't scan muxed buses async as don't want to confuse the mux
         if (isMuxBus(bus))
         {
-            get_bus_frus(file, 0x03, 0x77, bus, device);
-            close(file);
+            callback();
         }
         else
         {
-            io.post([file, device, bus, context] {
-                //  i2cdetect by default uses the range 0x03 to 0x77, as
-                //  this is
-                //  what we
-                //  have tested with, use this range. Could be changed in
-                //  future.
-                get_bus_frus(file, 0x03, 0x77, bus, device);
-                close(file);
-            });
+            io.post(callback);
         }
     }
 }

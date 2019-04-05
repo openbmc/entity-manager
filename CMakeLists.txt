@@ -78,7 +78,6 @@ add_definitions (-DBOOST_SYSTEM_NO_DEPRECATED)
 add_definitions (-DBOOST_ALL_NO_LIB)
 add_definitions (-DBOOST_NO_RTTI)
 add_definitions (-DBOOST_NO_TYPEID)
-add_definitions (-DBOOST_ASIO_DISABLE_THREADS)
 
 include_directories (${CMAKE_CURRENT_SOURCE_DIR}/include)
 include_directories (${Boost_INCLUDE_DIRS})
@@ -121,7 +120,8 @@ set (
 )
 
 set (PACKAGE_DIR /usr/share/entity-manager/)
-target_compile_definitions (entity-manager PRIVATE PACKAGE_DIR="${PACKAGE_DIR}")
+target_compile_definitions (entity-manager PRIVATE PACKAGE_DIR="${PACKAGE_DIR}"
+                            -DBOOST_ASIO_DISABLE_THREADS)
 install (TARGETS fru-device entity-manager DESTINATION bin)
 install (DIRECTORY configurations DESTINATION ${PACKAGE_DIR})
 install (DIRECTORY overlay_templates DESTINATION ${PACKAGE_DIR})
