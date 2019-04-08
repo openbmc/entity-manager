@@ -391,6 +391,7 @@
         {
             "Index": 7,
             "Name": "P3VBAT",
+            "BridgeGpio":208,
             "ScaleFactor": 0.3333,
             "Thresholds": [
                 {
@@ -920,6 +921,13 @@
             "Direction": "Both",
             "Index": 34,
             "Name": "Power Button",
+            "Polarity": "Low",
+            "Type": "Gpio"
+        },
+        {
+            "Direction": "Out",
+            "Index": 208,
+            "Name": "Bridge P3VBAT",
             "Polarity": "Low",
             "Type": "Gpio"
         },
