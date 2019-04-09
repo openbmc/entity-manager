@@ -38,9 +38,7 @@ constexpr const char* configurationDirectory = PACKAGE_DIR "configurations";
 constexpr const char* schemaDirectory = PACKAGE_DIR "configurations/schemas";
 constexpr const char* globalSchema = "global.json";
 constexpr const char* TEMPLATE_CHAR = "$";
-constexpr const size_t PROPERTIES_CHANGED_UNTIL_FLUSH_COUNT = 20;
 constexpr const int32_t MAX_MAPPER_DEPTH = 0;
-constexpr const size_t SLEEP_AFTER_PROPERTIES_CHANGE_SECONDS = 5;
 
 struct cmp_str
 {
@@ -160,8 +158,7 @@ void findDbusObjects(std::shared_ptr<PerformProbe> probe,
                 {
                     for (auto& connPair : object.second)
                     {
-                        auto insertPair =
-                            interfaceConnections.insert(connPair.first);
+                        interfaceConnections.insert(connPair.first);
                     }
                 }
             }
@@ -286,6 +283,11 @@ bool probeDbus(
                         }
                         break;
                     }
+                    default:
+                    {
+                        std::cerr << "unexpected dbus probe type "
+                                  << match.second.type_name() << "\n";
+                    }
                 }
             }
             else
@@ -342,12 +344,10 @@ bool probe(
                 case probe_type_codes::FALSE_T:
                 {
                     return false;
-                    break;
                 }
                 case probe_type_codes::TRUE_T:
                 {
                     return true;
-                    break;
                 }
                 case probe_type_codes::MATCH_ONE:
                 {
@@ -367,7 +367,7 @@ bool probe(
                 {
                     if (!std::regex_search(probe, match, command))
                     {
-                        std::cerr << "found probe sytax error " << probe
+                        std::cerr << "found probe syntax error " << probe
                                   << "\n";
                         return false;
                     }
@@ -377,6 +377,10 @@ bool probe(
                                      commandStr) != PASSED_PROBES.end());
                     break;
                 }
+                default:
+                {
+                    break;
+                }
             }
         }
         // look on dbus for object
@@ -384,7 +388,7 @@ bool probe(
         {
             if (!std::regex_search(probe, match, command))
             {
-                std::cerr << "dbus probe sytax error " << probe << "\n";
+                std::cerr << "dbus probe syntax error " << probe << "\n";
                 return false;
             }
             std::string commandStr = *(match.begin() + 1);
@@ -394,7 +398,7 @@ bool probe(
             auto json = nlohmann::json::parse(commandStr, nullptr, false);
             if (json.is_discarded())
             {
-                std::cerr << "dbus command sytax error " << commandStr << "\n";
+                std::cerr << "dbus command syntax error " << commandStr << "\n";
                 return false;
             }
             // we can match any (string, variant) property. (string, string)
@@ -436,9 +440,14 @@ bool probe(
         foundDevs.emplace_back(
             boost::container::flat_map<std::string, BasicVariantType>());
     }
-    if (matchOne && foundDevs.size() > 1)
+    if (matchOne && ret)
     {
-        foundDevs.erase(foundDevs.begin() + 1, foundDevs.end());
+        // match one could match multiple dbus values, which means we don't care
+        // what one we found so we shouldn't be using template replace. return
+        // an empty one
+        foundDevs.clear();
+        foundDevs.emplace_back(
+            boost::container::flat_map<std::string, BasicVariantType>());
     }
     return ret;
 }
@@ -456,9 +465,11 @@ struct PerformProbe : std::enable_shared_from_this<PerformProbe>
     }
     ~PerformProbe()
     {
-        if (probe(_probeCommand, _foundDevs))
+        std::vector<boost::container::flat_map<std::string, BasicVariantType>>
+            foundDevs;
+        if (probe(_probeCommand, foundDevs))
         {
-            _callback(_foundDevs);
+            _callback(foundDevs);
         }
     }
     void run()
@@ -467,7 +478,6 @@ struct PerformProbe : std::enable_shared_from_this<PerformProbe>
         boost::container::flat_map<const char*, probe_type_codes,
                                    cmp_str>::const_iterator probeType;
 
-        std::vector<std::string> dbusProbes;
         for (std::string& probe : _probeCommand)
         {
             bool found = false;
@@ -497,8 +507,6 @@ struct PerformProbe : std::enable_shared_from_this<PerformProbe>
     std::function<void(std::vector<boost::container::flat_map<
                            std::string, BasicVariantType>>&)>
         _callback;
-    std::vector<boost::container::flat_map<std::string, BasicVariantType>>
-        _foundDevs;
 };
 
 // writes output files to persist data
@@ -793,6 +801,11 @@ void populateInterfaceFromJson(
                 }
                 break;
             }
+            default:
+            {
+                std::cerr << "Unexpected json type in system configuration \n";
+                break;
+            }
         }
     }
     if (permission == sdbusplus::asio::PropertyPermission::readWrite)
@@ -925,7 +938,6 @@ void postToDbus(const nlohmann::json& newConfiguration,
     for (auto& boardPair : newConfiguration.items())
     {
         std::string boardKey = boardPair.key();
-        std::vector<std::string> path;
         std::string jsonPointerPath = "/" + boardKey;
         // loop through newConfiguration, but use values from system
         // configuration to be able to modify via dbus later
@@ -1129,8 +1141,6 @@ void templateCharReplace(
 
     boost::replace_all(*strPtr, "$index", std::to_string(foundDeviceIdx));
 
-    std::size_t templateIndex = 0;
-
     for (auto& foundDevicePair : foundDevice)
     {
         std::string templateName = "$" + foundDevicePair.first;
@@ -1311,7 +1321,7 @@ struct PerformScan : std::enable_shared_from_this<PerformScan>
                     PASSED_PROBES.push_back(name);
                     size_t foundDeviceIdx = 0;
 
-                    // insert into configuration temporarly to be able to
+                    // insert into configuration temporarily to be able to
                     // reference ourselves
                     _systemConfiguration[name] = *record;
 
