@@ -3,9 +3,12 @@ set (BUILD_SHARED_LIBRARIES OFF)
 include (ExternalProject)
 set (CMAKE_CXX_STANDARD 17)
 set (CMAKE_CXX_STANDARD_REQUIRED ON)
-set (CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -lstdc++fs")
 set (CMAKE_MODULE_PATH ${CMAKE_CURRENT_SOURCE_DIR}/cmake ${CMAKE_MODULE_PATH})
-set (CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -fno-rtti")
+set (CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -fno-rtti -Werror -Wall")
+
+# todo: fix these warnings
+set (CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wno-strict-aliasing -Wno-catch-value")
+
 set (CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -fno-rtti")
 
 option (YOCTO "Enable Building in Yocto" OFF)
@@ -21,6 +24,9 @@ if (NOT YOCTO)
         INSTALL_COMMAND mkdir -p "${CMAKE_BINARY_DIR}/prefix/include/" && cp -R
         ${CMAKE_BINARY_DIR}/boost-src/boost ${CMAKE_BINARY_DIR}/prefix/include
     )
+
+    # boost in openbmc-ci seems to trigger this
+    set (CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wno-parentheses")
 
     externalproject_add (
         nlohmann-json GIT_REPOSITORY "https://github.com/nlohmann/json.git"
