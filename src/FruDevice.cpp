@@ -136,8 +136,8 @@ bool validateHeader(const std::array<uint8_t, I2C_SMBUS_BLOCK_MAX>& blockData)
         {
             continue;
         }
-        auto [_, inserted] = foundOffsets.insert(blockData[ii]);
-        if (!inserted)
+        auto inserted = foundOffsets.insert(blockData[ii]);
+        if (!inserted.second)
         {
             return false;
         }
@@ -210,7 +210,7 @@ int get_bus_frus(int file, int first, int last, int bus,
                 device.insert(device.end(), block_data.begin(),
                               block_data.begin() + 8);
 
-                for (int jj = 1; jj <= FRU_AREAS.size(); jj++)
+                for (size_t jj = 1; jj <= FRU_AREAS.size(); jj++)
                 {
                     auto area_offset = device[jj];
                     if (area_offset != 0)
@@ -392,8 +392,6 @@ bool formatFru(const std::vector<char>& fruBytes,
         "VERSION",        "SERIAL_NUMBER", "ASSET_TAG",
         "FRU_VERSION_ID", "INFO_AM1",      "INFO_AM2"};
 
-    size_t sum = 0;
-
     if (fruBytes.size() <= 8)
     {
         return false;
@@ -404,7 +402,7 @@ bool formatFru(const std::vector<char>& fruBytes,
 
     const std::vector<const char*>* fieldData;
 
-    for (auto& area : FRU_AREAS)
+    for (const std::string& area : FRU_AREAS)
     {
         fruAreaOffsetField++;
         if (fruAreaOffsetField >= fruBytes.end())
@@ -495,7 +493,7 @@ bool formatFru(const std::vector<char>& fruBytes,
                                 .base(),
                             value.end());
 
-                result[std::string(area) + "_" + field] = std::move(value);
+                result[area + "_" + field] = std::move(value);
 
                 fruBytesIter += length;
                 if (fruBytesIter >= fruBytes.end())
@@ -872,8 +870,8 @@ int main(int argc, char** argv)
         eventHandler);
 
     int fd = inotify_init();
-    int wd = inotify_add_watch(fd, I2C_DEV_LOCATION,
-                               IN_CREATE | IN_MOVED_TO | IN_DELETE);
+    inotify_add_watch(fd, I2C_DEV_LOCATION,
+                      IN_CREATE | IN_MOVED_TO | IN_DELETE);
     std::array<char, 4096> readBuffer;
     std::string pendingBuffer;
     // monitor for new i2c devices
