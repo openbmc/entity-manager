@@ -3,9 +3,12 @@ set (BUILD_SHARED_LIBRARIES OFF)
 include (ExternalProject)
 set (CMAKE_CXX_STANDARD 17)
 set (CMAKE_CXX_STANDARD_REQUIRED ON)
-set (CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -lstdc++fs")
 set (CMAKE_MODULE_PATH ${CMAKE_CURRENT_SOURCE_DIR}/cmake ${CMAKE_MODULE_PATH})
-set (CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -fno-rtti")
+set (CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -fno-rtti -Werror -Wall")
+
+# todo: fix these warnings
+set (CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wno-strict-aliasing -Wno-catch-value")
+
 set (CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -fno-rtti")
 
 option (YOCTO "Enable Building in Yocto" OFF)
@@ -14,8 +17,8 @@ option (USE_OVERLAYS "Enable Overlay Usage" ON)
 if (NOT YOCTO)
     externalproject_add (
         Boost URL
-        https://dl.bintray.com/boostorg/release/1.66.0/source/boost_1_66_0.tar.gz
-        URL_MD5 d275cd85b00022313c171f602db59fc5 SOURCE_DIR
+        https://dl.bintray.com/boostorg/release/1.69.0/source/boost_1_69_0.tar.gz
+        URL_MD5 b50944c0c13f81ce2c006802a1186f5a SOURCE_DIR
         "${CMAKE_BINARY_DIR}/boost-src" BINARY_DIR
         "${CMAKE_BINARY_DIR}/boost-build" CONFIGURE_COMMAND "" BUILD_COMMAND ""
         INSTALL_COMMAND mkdir -p "${CMAKE_BINARY_DIR}/prefix/include/" && cp -R
