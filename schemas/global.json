@@ -315,6 +315,18 @@
                             },
                             "BridgeGpio": {
                                 "type": "integer"
+                            },
+                            "FaultType": {
+                                "type": "string"
+                            },
+                            "FaultIndex": {
+                                "type": "integer"
+                            },
+                            "LedGpioIndexs": {
+                                "type": "array",
+                                "items": {
+                                    "type": "integer"
+                                }
                             }
                         },
                         "required": [
