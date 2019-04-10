@@ -40,6 +40,8 @@ constexpr const char* globalSchema = "global.json";
 constexpr const char* TEMPLATE_CHAR = "$";
 constexpr const int32_t MAX_MAPPER_DEPTH = 0;
 
+constexpr const bool DEBUG = false;
+
 struct cmp_str
 {
     bool operator()(const char* a, const char* b) const
@@ -210,8 +212,8 @@ void findDbusObjects(std::shared_ptr<PerformProbe> probe,
 bool probeDbus(
     const std::string& interface,
     const std::map<std::string, nlohmann::json>& matches,
-    std::vector<boost::container::flat_map<std::string, BasicVariantType>>&
-        devices,
+    std::vector<std::optional<
+        boost::container::flat_map<std::string, BasicVariantType>>>& devices,
     bool& foundProbe)
 {
     std::vector<boost::container::flat_map<std::string, BasicVariantType>>&
@@ -312,8 +314,8 @@ bool probeDbus(
 // call specific probe functions
 bool probe(
     const std::vector<std::string>& probeCommand,
-    std::vector<boost::container::flat_map<std::string, BasicVariantType>>&
-        foundDevs)
+    std::vector<std::optional<
+        boost::container::flat_map<std::string, BasicVariantType>>>& foundDevs)
 {
     const static std::regex command(R"(\((.*)\))");
     std::smatch match;
@@ -437,8 +439,7 @@ bool probe(
     // probe passed, but empty device
     if (ret && foundDevs.size() == 0)
     {
-        foundDevs.emplace_back(
-            boost::container::flat_map<std::string, BasicVariantType>());
+        foundDevs.emplace_back(std::nullopt);
     }
     if (matchOne && ret)
     {
@@ -446,8 +447,7 @@ bool probe(
         // what one we found so we shouldn't be using template replace. return
         // an empty one
         foundDevs.clear();
-        foundDevs.emplace_back(
-            boost::container::flat_map<std::string, BasicVariantType>());
+        foundDevs.emplace_back(std::nullopt);
     }
     return ret;
 }
@@ -457,15 +457,16 @@ struct PerformProbe : std::enable_shared_from_this<PerformProbe>
 
     PerformProbe(
         const std::vector<std::string>& probeCommand,
-        std::function<void(std::vector<boost::container::flat_map<
-                               std::string, BasicVariantType>>&)>&& callback) :
+        std::function<void(std::vector<std::optional<boost::container::flat_map<
+                               std::string, BasicVariantType>>>&)>&& callback) :
         _probeCommand(probeCommand),
         _callback(std::move(callback))
     {
     }
     ~PerformProbe()
     {
-        std::vector<boost::container::flat_map<std::string, BasicVariantType>>
+        std::vector<std::optional<
+            boost::container::flat_map<std::string, BasicVariantType>>>
             foundDevs;
         if (probe(_probeCommand, foundDevs))
         {
@@ -504,8 +505,8 @@ struct PerformProbe : std::enable_shared_from_this<PerformProbe>
         }
     }
     std::vector<std::string> _probeCommand;
-    std::function<void(std::vector<boost::container::flat_map<
-                           std::string, BasicVariantType>>&)>
+    std::function<void(std::vector<std::optional<boost::container::flat_map<
+                           std::string, BasicVariantType>>>&)>
         _callback;
 };
 
@@ -937,11 +938,11 @@ void postToDbus(const nlohmann::json& newConfiguration,
     // iterate through boards
     for (auto& boardPair : newConfiguration.items())
     {
-        std::string boardKey = boardPair.key();
-        std::string jsonPointerPath = "/" + boardKey;
+        std::string boardKey = boardPair.value()["Name"];
+        std::string jsonPointerPath = "/" + boardPair.key();
         // loop through newConfiguration, but use values from system
         // configuration to be able to modify via dbus later
-        auto boardValues = systemConfiguration[boardKey];
+        auto boardValues = systemConfiguration[boardPair.key()];
         auto findBoardType = boardValues.find("Type");
         std::string boardType;
         if (findBoardType != boardValues.end() &&
@@ -1298,43 +1299,83 @@ struct PerformScan : std::enable_shared_from_this<PerformScan>
                 it = _configurations.erase(it);
                 continue;
             }
-            std::string name = *findName;
+            std::string probeName = *findName;
 
-            if (std::find(PASSED_PROBES.begin(), PASSED_PROBES.end(), name) !=
-                PASSED_PROBES.end())
+            if (std::find(PASSED_PROBES.begin(), PASSED_PROBES.end(),
+                          probeName) != PASSED_PROBES.end())
             {
                 it = _configurations.erase(it);
                 continue;
             }
-            nlohmann::json* record = &(*it);
+            nlohmann::json* recordPtr = &(*it);
 
             // store reference to this to children to makes sure we don't get
             // destroyed too early
             auto thisRef = shared_from_this();
             auto p = std::make_shared<PerformProbe>(
                 probeCommand,
-                [&, record, name,
-                 thisRef](std::vector<boost::container::flat_map<
-                              std::string, BasicVariantType>>& foundDevices) {
+                [&, recordPtr, probeName,
+                 thisRef](std::vector<std::optional<boost::container::flat_map<
+                              std::string, BasicVariantType>>>& foundDevices) {
                     _passed = true;
 
-                    PASSED_PROBES.push_back(name);
+                    PASSED_PROBES.push_back(probeName);
                     size_t foundDeviceIdx = 0;
 
-                    // insert into configuration temporarily to be able to
-                    // reference ourselves
-                    _systemConfiguration[name] = *record;
+                    nlohmann::json record = *recordPtr;
 
                     for (auto& foundDevice : foundDevices)
                     {
-                        for (auto keyPair = record->begin();
-                             keyPair != record->end(); keyPair++)
+                        std::string recordName;
+                        size_t hash = 0;
+                        if (foundDevice)
                         {
-                            templateCharReplace(keyPair, foundDevice,
-                                                foundDeviceIdx);
+                            // use an array so alphabetical order from the
+                            // flat_map is maintained
+                            auto device = nlohmann::json::array();
+                            for (auto& devPair : *foundDevice)
+                            {
+                                device.push_back(devPair.first);
+                                std::visit(
+                                    [&device](auto&& v) {
+                                        device.push_back(v);
+                                    },
+                                    devPair.second);
+                            }
+                            hash = std::hash<std::string>{}(probeName +
+                                                            device.dump());
+                            // hashes are hard to distinguish, use the
+                            // non-hashed version if we want debug
+                            if constexpr (DEBUG)
+                            {
+                                recordName = probeName + device.dump();
+                            }
+                            else
+                            {
+                                recordName = std::to_string(hash);
+                            }
                         }
-                        auto findExpose = record->find("Exposes");
-                        if (findExpose == record->end())
+                        else
+                        {
+                            recordName = probeName;
+                        }
+
+                        // insert into configuration temporarily to be able to
+                        // reference ourselves
+
+                        _systemConfiguration[recordName] = record;
+
+                        if (foundDevice)
+                        {
+                            for (auto keyPair = record.begin();
+                                 keyPair != record.end(); keyPair++)
+                            {
+                                templateCharReplace(keyPair, *foundDevice,
+                                                    foundDeviceIdx);
+                            }
+                        }
+                        auto findExpose = record.find("Exposes");
+                        if (findExpose == record.end())
                         {
                             continue;
                         }
@@ -1346,8 +1387,11 @@ struct PerformScan : std::enable_shared_from_this<PerformScan>
 
                                 // fill in template characters with devices
                                 // found
-                                templateCharReplace(keyPair, foundDevice,
-                                                    foundDeviceIdx);
+                                if (foundDevice)
+                                {
+                                    templateCharReplace(keyPair, *foundDevice,
+                                                        foundDeviceIdx);
+                                }
                                 // special case bind
                                 if (boost::starts_with(keyPair.key(), "Bind"))
                                 {
@@ -1412,9 +1456,10 @@ struct PerformScan : std::enable_shared_from_this<PerformScan>
                                 }
                             }
                         }
+                        // overwrite ourselves with cleaned up version
+                        _systemConfiguration[recordName] = record;
+                        foundDeviceIdx++;
                     }
-                    // overwrite ourselves with cleaned up version
-                    _systemConfiguration[name] = *record;
                 });
             p->run();
             it++;
