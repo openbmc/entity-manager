@@ -925,17 +925,31 @@
             "Type": "Gpio"
         },
         {
-            "Direction": "Out",
-            "Index": 208,
-            "Name": "Bridge P3VBAT",
-            "Polarity": "Low",
-            "Type": "Gpio"
-        },
-        {
             "Direction": "Both",
             "Index": 35,
             "Name": "Power Up",
             "Polarity": "Low",
+            "Type": "Gpio"
+        },
+        {
+            "Direction": "Input",
+            "Index": 40,
+            "Name": "NMI Input",
+            "Polarity": "Low",
+            "Type": "Gpio"
+        },
+        {
+            "Direction": "Input",
+            "Index": 48,
+            "Name": "CPU ERR2",
+            "Polarity": "High",
+            "Type": "Gpio"
+        },
+        {
+            "Direction": "Input",
+            "Index": 49,
+            "Name": "CPU CATERR",
+            "Polarity": "High",
             "Type": "Gpio"
         },
         {
@@ -1021,6 +1035,27 @@
             "Name": "Fan 7 Present",
             "Polarity": "Low",
             "Status": "disabled",
+            "Type": "Gpio"
+        },
+        {
+            "Direction": "Out",
+            "Index": 208,
+            "Name": "Bridge P3VBAT",
+            "Polarity": "Low",
+            "Type": "Gpio"
+        },
+        {
+            "Direction": "Input",
+            "Index": 214,
+            "Name": "SMI Input",
+            "Polarity": "High",
+            "Type": "Gpio"
+        },
+        {
+            "Direction": "Input",
+            "Index": 215,
+            "Name": "Post Complete",
+            "Polarity": "High",
             "Type": "Gpio"
         },
         {
