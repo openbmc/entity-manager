@@ -690,10 +690,10 @@ void populateInterfaceFromJson(
                 std::cerr << "dbus format error" << dictPair.value() << "\n";
                 continue;
             }
-            if (type == nlohmann::json::value_t::object)
-            {
-                continue; // handled elsewhere
-            }
+        }
+        if (type == nlohmann::json::value_t::object)
+        {
+            continue; // handled elsewhere
         }
         std::string key = jsonPointerPath + "/" + dictPair.key();
         if (permission == sdbusplus::asio::PropertyPermission::readWrite)
@@ -803,7 +803,9 @@ void populateInterfaceFromJson(
             }
             default:
             {
-                std::cerr << "Unexpected json type in system configuration \n";
+                std::cerr << "Unexpected json type in system configuration "
+                          << dictPair.key() << ": "
+                          << dictPair.value().type_name() << "\n";
                 break;
             }
         }
