@@ -17,8 +17,14 @@
 #pragma once
 #include "filesystem.hpp"
 
+#include <fstream>
+#include <iostream>
 #include <nlohmann/json.hpp>
 #include <sdbusplus/exception.hpp>
+
+constexpr const char* configurationOutDir = "/var/configuration/";
+constexpr const char* versionHashFile = "/var/configuration/version";
+constexpr const char* versionFile = "/etc/os-release";
 
 bool findFiles(const std::filesystem::path& dirPath,
                const std::string& matchString,
@@ -42,3 +48,42 @@ struct DBusInternalError final : public sdbusplus::exception_t
                "internal error";
     };
 };
+
+inline bool fwVersionIsSame(void)
+{
+    std::ifstream version(versionFile);
+    if (!version.good())
+    {
+        std::cerr << "Can't read " << versionFile << "\n";
+        return false;
+    }
+
+    std::string versionData;
+    std::string line;
+    while (std::getline(version, line))
+    {
+        versionData += line;
+    }
+
+    std::string expectedHash =
+        std::to_string(std::hash<std::string>{}(versionData));
+
+    std::filesystem::create_directory(configurationOutDir);
+    std::ifstream hashFile(versionHashFile);
+    if (hashFile.good())
+    {
+
+        std::string hashString;
+        hashFile >> hashString;
+
+        if (expectedHash == hashString)
+        {
+            return true;
+        }
+        hashFile.close();
+    }
+
+    std::ofstream output(versionHashFile);
+    output << expectedHash;
+    return false;
+}
