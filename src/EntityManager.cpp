@@ -33,7 +33,6 @@
 #include <sdbusplus/asio/object_server.hpp>
 #include <variant>
 
-constexpr const char* OUTPUT_DIR = "/var/configuration/";
 constexpr const char* configurationDirectory = PACKAGE_DIR "configurations";
 constexpr const char* schemaDirectory = PACKAGE_DIR "configurations/schemas";
 constexpr const char* globalSchema = "global.json";
@@ -513,14 +512,18 @@ struct PerformProbe : std::enable_shared_from_this<PerformProbe>
 // writes output files to persist data
 bool writeJsonFiles(const nlohmann::json& systemConfiguration)
 {
-    std::filesystem::create_directory(OUTPUT_DIR);
-    std::ofstream output(std::string(OUTPUT_DIR) + "system.json");
-    if (!output.good())
+    std::filesystem::create_directory(configurationOutDir);
+    for (auto& pair : systemConfiguration.items())
     {
-        return false;
+        std::ofstream output(std::string(configurationOutDir) + pair.key() +
+                             ".json");
+        if (!output.good())
+        {
+            return false;
+        }
+        output << pair.value().dump(4);
+        output.close();
     }
-    output << systemConfiguration.dump(4);
-    output.close();
     return true;
 }
 
@@ -1633,6 +1636,18 @@ int main(int argc, char** argv)
                                   objServer);
     });
     entityIface->initialize();
+
+    if (!fwVersionIsSame())
+    {
+        std::vector<std::filesystem::path> jsonPaths;
+        if (findFiles(configurationOutDir, R"(.*\.json)", jsonPaths))
+        {
+            for (const auto& path : jsonPaths)
+            {
+                std::filesystem::remove(path);
+            }
+        }
+    }
 
     io.run();
 
