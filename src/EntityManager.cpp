@@ -14,6 +14,8 @@
 // limitations under the License.
 */
 
+#include "EntityManager.hpp"
+
 #include "filesystem.hpp"
 
 #include <Overlay.hpp>
@@ -33,9 +35,11 @@
 #include <sdbusplus/asio/object_server.hpp>
 #include <variant>
 
-constexpr const char* OUTPUT_DIR = "/var/configuration/";
 constexpr const char* configurationDirectory = PACKAGE_DIR "configurations";
 constexpr const char* schemaDirectory = PACKAGE_DIR "configurations/schemas";
+constexpr const char* tempConfigDir = "/tmp/configuration/";
+constexpr const char* lastConfiguration = "/tmp/configuration/last.json";
+constexpr const char* currentConfiguration = "/var/configuration/system.json";
 constexpr const char* globalSchema = "global.json";
 constexpr const char* TEMPLATE_CHAR = "$";
 constexpr const int32_t MAX_MAPPER_DEPTH = 0;
@@ -98,6 +102,7 @@ std::vector<std::string> PASSED_PROBES;
 
 // todo: pass this through nicer
 std::shared_ptr<sdbusplus::asio::connection> SYSTEM_BUS;
+nlohmann::json lastJson;
 
 const std::regex ILLEGAL_DBUS_PATH_REGEX("[^A-Za-z0-9_.]");
 const std::regex ILLEGAL_DBUS_MEMBER_REGEX("[^A-Za-z0-9_]");
@@ -513,8 +518,8 @@ struct PerformProbe : std::enable_shared_from_this<PerformProbe>
 // writes output files to persist data
 bool writeJsonFiles(const nlohmann::json& systemConfiguration)
 {
-    std::filesystem::create_directory(OUTPUT_DIR);
-    std::ofstream output(std::string(OUTPUT_DIR) + "system.json");
+    std::filesystem::create_directory(configurationOutDir);
+    std::ofstream output(currentConfiguration);
     if (!output.good())
     {
         return false;
@@ -1362,6 +1367,14 @@ struct PerformScan : std::enable_shared_from_this<PerformScan>
                             recordName = probeName;
                         }
 
+                        auto fromLastJson = lastJson.find(recordName);
+                        if (fromLastJson != lastJson.end())
+                        {
+                            // keep user changes
+                            _systemConfiguration[recordName] = *fromLastJson;
+                            continue;
+                        }
+
                         // insert into configuration temporarily to be able to
                         // reference ourselves
 
@@ -1460,6 +1473,8 @@ struct PerformScan : std::enable_shared_from_this<PerformScan>
                         }
                         // overwrite ourselves with cleaned up version
                         _systemConfiguration[recordName] = record;
+                        logDeviceAdded(record.at("Name").get<std::string>());
+
                         foundDeviceIdx++;
                     }
                 });
@@ -1486,7 +1501,75 @@ struct PerformScan : std::enable_shared_from_this<PerformScan>
     std::function<void(void)> _callback;
     std::vector<std::shared_ptr<PerformProbe>> _probes;
     bool _passed = false;
+    bool powerWasOn = isPowerOn();
 };
+
+void startRemovedTimer(boost::asio::deadline_timer& timer,
+                       std::vector<sdbusplus::bus::match::match>& dbusMatches,
+                       nlohmann::json& systemConfiguration)
+{
+    static bool scannedPowerOff = false;
+    static bool scannedPowerOn = false;
+
+    if (scannedPowerOn)
+    {
+        return;
+    }
+
+    if (!isPowerOn() && scannedPowerOff)
+    {
+        return;
+    }
+
+    timer.expires_from_now(boost::posix_time::seconds(10));
+    timer.async_wait([&systemConfiguration](
+                         const boost::system::error_code& ec) {
+        if (ec == boost::asio::error::operation_aborted)
+        {
+            // we were cancelled
+            return;
+        }
+
+        bool powerOff = !isPowerOn();
+        for (const auto& item : lastJson.items())
+        {
+            if (systemConfiguration.find(item.key()) ==
+                systemConfiguration.end())
+            {
+                bool isDetectedPowerOn = false;
+                auto powerState = item.value().find("PowerState");
+                if (powerState != item.value().end())
+                {
+                    auto ptr = powerState->get_ptr<const std::string*>();
+                    if (ptr)
+                    {
+                        if (*ptr == "On" || *ptr == "BiosPost")
+                        {
+                            isDetectedPowerOn = true;
+                        }
+                    }
+                }
+                if (powerOff && isDetectedPowerOn)
+                {
+                    // power not on yet, don't know if it's there or not
+                    continue;
+                }
+                if (!powerOff && scannedPowerOff && isDetectedPowerOn)
+                {
+                    // already logged it when power was off
+                    continue;
+                }
+
+                logDeviceRemoved(item.value().at("Name").get<std::string>());
+            }
+        }
+        scannedPowerOff = true;
+        if (!powerOff)
+        {
+            scannedPowerOn = true;
+        }
+    });
+}
 
 // main properties changed entry
 void propertiesChangedCallback(
@@ -1496,6 +1579,9 @@ void propertiesChangedCallback(
     sdbusplus::asio::object_server& objServer)
 {
     static boost::asio::deadline_timer timer(io);
+    static bool timerRunning;
+
+    timerRunning = true;
     timer.expires_from_now(boost::posix_time::seconds(1));
 
     // setup an async wait as we normally get flooded with new requests
@@ -1510,6 +1596,7 @@ void propertiesChangedCallback(
             std::cerr << "async wait error " << ec << "\n";
             return;
         }
+        timerRunning = false;
 
         nlohmann::json oldConfiguration = systemConfiguration;
         DBUS_PROBE_OBJECTS.clear();
@@ -1551,6 +1638,11 @@ void propertiesChangedCallback(
                     io.post([&, newConfiguration]() {
                         postToDbus(newConfiguration, systemConfiguration,
                                    objServer);
+                        if (!timerRunning)
+                        {
+                            startRemovedTimer(timer, dbusMatches,
+                                              systemConfiguration);
+                        }
                     });
                 });
             });
@@ -1633,6 +1725,47 @@ int main(int argc, char** argv)
                                   objServer);
     });
     entityIface->initialize();
+
+    if (fwVersionIsSame())
+    {
+        if (std::filesystem::is_regular_file(currentConfiguration))
+        {
+            // this file could just be deleted, but it's nice for debug
+            std::filesystem::create_directory(tempConfigDir);
+            std::filesystem::remove(lastConfiguration);
+            std::filesystem::copy(currentConfiguration, lastConfiguration);
+            std::filesystem::remove(currentConfiguration);
+
+            std::ifstream jsonStream(lastConfiguration);
+            if (jsonStream.good())
+            {
+                auto data = nlohmann::json::parse(jsonStream, nullptr, false);
+                if (data.is_discarded())
+                {
+                    std::cerr << "syntax error in " << lastConfiguration
+                              << "\n";
+                }
+                else
+                {
+                    lastJson = std::move(data);
+                }
+            }
+            else
+            {
+                std::cerr << "unable to open " << lastConfiguration << "\n";
+            }
+        }
+    }
+    else
+    {
+        // not an error, just logging at this level to make it in the journal
+        std::cerr << "Clearing previous configuration\n";
+        std::filesystem::remove(currentConfiguration);
+    }
+
+    // some boards only show up after power is on, we want to not say they are
+    // removed until the same state happens
+    setupPowerMatch(SYSTEM_BUS);
 
     io.run();
 
