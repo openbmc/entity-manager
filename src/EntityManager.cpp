@@ -16,8 +16,6 @@
 
 #include "EntityManager.hpp"
 
-#include "filesystem.hpp"
-
 #include <Overlay.hpp>
 #include <Utils.hpp>
 #include <VariantVisitors.hpp>
@@ -27,6 +25,7 @@
 #include <boost/container/flat_map.hpp>
 #include <boost/container/flat_set.hpp>
 #include <boost/lexical_cast.hpp>
+#include <filesystem>
 #include <fstream>
 #include <iostream>
 #include <nlohmann/json.hpp>
