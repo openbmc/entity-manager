@@ -17,9 +17,11 @@
 #pragma once
 #include "filesystem.hpp"
 
+#include <boost/container/flat_map.hpp>
 #include <fstream>
 #include <iostream>
 #include <nlohmann/json.hpp>
+#include <sdbusplus/asio/connection.hpp>
 #include <sdbusplus/exception.hpp>
 
 constexpr const char* configurationOutDir = "/var/configuration/";
@@ -32,6 +34,9 @@ bool findFiles(const std::filesystem::path& dirPath,
 
 bool validateJson(const nlohmann::json& schemaFile,
                   const nlohmann::json& input);
+
+bool isPowerOn(void);
+void setupPowerMatch(const std::shared_ptr<sdbusplus::asio::connection>& conn);
 struct DBusInternalError final : public sdbusplus::exception_t
 {
     const char* name() const noexcept override

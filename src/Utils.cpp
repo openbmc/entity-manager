@@ -19,12 +19,15 @@
 #include <Utils.hpp>
 #include <fstream>
 #include <regex>
+#include <sdbusplus/bus/match.hpp>
 #include <valijson/adapters/nlohmann_json_adapter.hpp>
 #include <valijson/schema.hpp>
 #include <valijson/schema_parser.hpp>
 #include <valijson/validator.hpp>
 
 namespace fs = std::filesystem;
+static bool powerStatusOn = false;
+static std::unique_ptr<sdbusplus::bus::match::match> powerMatch = nullptr;
 
 bool findFiles(const fs::path& dirPath, const std::string& matchString,
                std::vector<fs::path>& foundPaths)
@@ -58,4 +61,38 @@ bool validateJson(const nlohmann::json& schemaFile, const nlohmann::json& input)
         return false;
     }
     return true;
+}
+
+bool isPowerOn(void)
+{
+    if (!powerMatch)
+    {
+        throw std::runtime_error("Power Match Not Created");
+    }
+    return powerStatusOn;
+}
+
+void setupPowerMatch(const std::shared_ptr<sdbusplus::asio::connection>& conn)
+{
+    // create a match for powergood changes, first time do a method call to
+    // cache the correct value
+    std::function<void(sdbusplus::message::message & message)> eventHandler =
+        [](sdbusplus::message::message& message) {
+            std::string objectName;
+            boost::container::flat_map<std::string, std::variant<int32_t, bool>>
+                values;
+            message.read(objectName, values);
+            auto findPgood = values.find("pgood");
+            if (findPgood != values.end())
+            {
+                powerStatusOn = std::get<int32_t>(findPgood->second);
+            }
+        };
+
+    powerMatch = std::make_unique<sdbusplus::bus::match::match>(
+        static_cast<sdbusplus::bus::bus&>(*conn),
+        "type='signal',interface='org.freedesktop.DBus.Properties',path_"
+        "namespace='/xyz/openbmc_project/Chassis/Control/"
+        "Power0',arg0='xyz.openbmc_project.Chassis.Control.Power'",
+        eventHandler);
 }
