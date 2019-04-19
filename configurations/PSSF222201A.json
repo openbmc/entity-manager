@@ -1,0 +1,209 @@
+[
+    {
+        "Exposes": [
+            {
+                "Address": "0x5a",
+                "Bus": "$bus",
+                "Name": "PSU3",
+                "Thresholds": [
+                    {
+                        "Direction": "greater than",
+                        "Label": "pin",
+                        "Name": "upper critical",
+                        "Severity": 1,
+                        "Value": 2548.4
+                    },
+                    {
+                        "Direction": "greater than",
+                        "Label": "pin",
+                        "Name": "upper non critical",
+                        "Severity": 0,
+                        "Value": 2436.3
+                    },
+                    {
+                        "Direction": "greater than",
+                        "Label": "iout1",
+                        "Name": "upper critical",
+                        "Severity": 1,
+                        "Value": 115
+                    },
+                    {
+                        "Direction": "greater than",
+                        "Label": "iout1",
+                        "Name": "upper non critical",
+                        "Severity": 0,
+                        "Value": 100
+                    },
+                    {
+                        "Direction": "greater than",
+                        "Label": "temp1",
+                        "Name": "upper critical",
+                        "Severity": 1,
+                        "Value": 65
+                    },
+                    {
+                        "Direction": "greater than",
+                        "Label": "temp1",
+                        "Name": "upper non critical",
+                        "Severity": 0,
+                        "Value": 62
+                    }
+                ],
+                "Type": "pmbus"
+            },
+            {
+                "Address": "$address",
+                "Bus": "$bus",
+                "Name": "Solum 2200W PSU 3 FRU",
+                "Type": "EEPROM"
+            }
+        ],
+        "Name": "Solum 2200W PSU 3",
+        "Probe": "xyz.openbmc_project.FruDevice({'PRODUCT_PRODUCT_NAME': 'PSSF222201A', 'ADDRESS': 82})",
+        "Type": "PowerSupply",
+        "xyz.openbmc_project.Inventory.Decorator.Asset": {
+            "Manufacturer": "$PRODUCT_MANUFACTURER",
+            "Model": "$PRODUCT_PRODUCT_NAME",
+            "PartNumber": "$PRODUCT_PART_NUMBER",
+            "SerialNumber": "$PRODUCT_SERIAL_NUMBER"
+        }
+    },
+    {
+        "Exposes": [
+            {
+                "Address": "0x59",
+                "Bus": "$bus",
+                "Name": "PSU2",
+                "Thresholds": [
+                    {
+                        "Direction": "greater than",
+                        "Label": "pin",
+                        "Name": "upper critical",
+                        "Severity": 1,
+                        "Value": 2548.4
+                    },
+                    {
+                        "Direction": "greater than",
+                        "Label": "pin",
+                        "Name": "upper non critical",
+                        "Severity": 0,
+                        "Value": 2436.3
+                    },
+                    {
+                        "Direction": "greater than",
+                        "Label": "iout1",
+                        "Name": "upper critical",
+                        "Severity": 1,
+                        "Value": 115
+                    },
+                    {
+                        "Direction": "greater than",
+                        "Label": "iout1",
+                        "Name": "upper non critical",
+                        "Severity": 0,
+                        "Value": 100
+                    },
+                    {
+                        "Direction": "greater than",
+                        "Label": "temp1",
+                        "Name": "upper critical",
+                        "Severity": 1,
+                        "Value": 65
+                    },
+                    {
+                        "Direction": "greater than",
+                        "Label": "temp1",
+                        "Name": "upper non critical",
+                        "Severity": 0,
+                        "Value": 62
+                    }
+                ],
+                "Type": "pmbus"
+            },
+            {
+                "Address": "$address",
+                "Bus": "$bus",
+                "Name": "Solum 2200W PSU 2 FRU",
+                "Type": "EEPROM"
+            }
+        ],
+        "Name": "Solum 2200W PSU 2",
+        "Probe": "xyz.openbmc_project.FruDevice({'PRODUCT_PRODUCT_NAME': 'PSSF222201A', 'ADDRESS': 81})",
+        "Type": "PowerSupply",
+        "xyz.openbmc_project.Inventory.Decorator.Asset": {
+            "Manufacturer": "$PRODUCT_MANUFACTURER",
+            "Model": "$PRODUCT_PRODUCT_NAME",
+            "PartNumber": "$PRODUCT_PART_NUMBER",
+            "SerialNumber": "$PRODUCT_SERIAL_NUMBER"
+        }
+    },
+    {
+        "Exposes": [
+            {
+                "Address": "0x58",
+                "Bus": "$bus",
+                "Name": "PSU1",
+                "Thresholds": [
+                    {
+                        "Direction": "greater than",
+                        "Label": "pin",
+                        "Name": "upper critical",
+                        "Severity": 1,
+                        "Value": 2548.4
+                    },
+                    {
+                        "Direction": "greater than",
+                        "Label": "pin",
+                        "Name": "upper non critical",
+                        "Severity": 0,
+                        "Value": 2436.3
+                    },
+                    {
+                        "Direction": "greater than",
+                        "Label": "iout1",
+                        "Name": "upper critical",
+                        "Severity": 1,
+                        "Value": 115
+                    },
+                    {
+                        "Direction": "greater than",
+                        "Label": "iout1",
+                        "Name": "upper non critical",
+                        "Severity": 0,
+                        "Value": 100
+                    },
+                    {
+                        "Direction": "greater than",
+                        "Label": "temp1",
+                        "Name": "upper critical",
+                        "Severity": 1,
+                        "Value": 65
+                    },
+                    {
+                        "Direction": "greater than",
+                        "Label": "temp1",
+                        "Name": "upper non critical",
+                        "Severity": 0,
+                        "Value": 62
+                    }
+                ],
+                "Type": "pmbus"
+            },
+            {
+                "Address": "$address",
+                "Bus": "$bus",
+                "Name": "Solum 2200W PSU 1 FRU",
+                "Type": "EEPROM"
+            }
+        ],
+        "Name": "Solum 2200W PSU 1",
+        "Probe": "xyz.openbmc_project.FruDevice({'PRODUCT_PRODUCT_NAME': 'PSSF222201A', 'ADDRESS': 80})",
+        "Type": "PowerSupply",
+        "xyz.openbmc_project.Inventory.Decorator.Asset": {
+            "Manufacturer": "$PRODUCT_MANUFACTURER",
+            "Model": "$PRODUCT_PRODUCT_NAME",
+            "PartNumber": "$PRODUCT_PART_NUMBER",
+            "SerialNumber": "$PRODUCT_SERIAL_NUMBER"
+        }
+    }
+]
