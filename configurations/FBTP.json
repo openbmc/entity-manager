@@ -1,171 +1,6 @@
 {
     "Exposes": [
         {
-            "Name": "Pwm 1",
-            "Type": "Pwm"
-        },
-        {
-            "Name": "Pwm 2",
-            "Type": "Pwm"
-        },
-        {
-            "Connector": {
-                "Name": "System Fan Connector 1",
-                "Pwm": 0,
-                "Tachs": [
-                    0
-                ]
-            },
-            "Index": 0,
-            "Name": "MB_FAN0_TACH",
-            "Thresholds": [
-                {
-                    "Direction": "less than",
-                    "Name": "lower critical",
-                    "Severity": 1,
-                    "Value": 500
-                },
-                {
-                    "Direction": "greater than",
-                    "Name": "upper non critical",
-                    "Severity": 0,
-                    "Value": 8500
-                },
-                {
-                    "Direction": "greater than",
-                    "Name": "upper critical",
-                    "Severity": 1,
-                    "Value": 11500
-                }
-            ],
-            "Type": "AspeedFan"
-        },
-        {
-            "Connector": {
-                "Name": "System Fan Connector 3",
-                "Pwm": 1,
-                "Tachs": [
-                    2
-                ]
-            },
-            "Index": 2,
-            "Name": "MB_FAN1_TACH",
-            "Thresholds": [
-                {
-                    "Direction": "less than",
-                    "Name": "lower critical",
-                    "Severity": 1,
-                    "Value": 500
-                },
-                {
-                    "Direction": "greater than",
-                    "Name": "upper non critical",
-                    "Severity": 0,
-                    "Value": 8500
-                },
-                {
-                    "Direction": "greater than",
-                    "Name": "upper critical",
-                    "Severity": 1,
-                    "Value": 11500
-                }
-            ],
-            "Type": "AspeedFan"
-        },
-        {
-            "Class": "fan",
-            "FFGainCoefficient": 1.0,
-            "FFOffCoefficient": 0.0,
-            "ICoefficient": 0.0,
-            "ILimitMax": 0.0,
-            "ILimitMin": 0.0,
-            "Inputs": [
-                "MB_FAN0_TACH"
-            ],
-            "Name": "MB_FAN0_TACH",
-            "OutLimitMax": 100.0,
-            "OutLimitMin": 30.0,
-            "Outputs": [
-                "Pwm 1"
-            ],
-            "PCoefficient": 0.0,
-            "SlewNeg": 0.0,
-            "SlewPos": 0.0,
-            "Type": "Pid",
-            "Zones": [
-                "Pid 1"
-            ]
-        },
-        {
-            "Class": "fan",
-            "FFGainCoefficient": 1.0,
-            "FFOffCoefficient": 0.0,
-            "ICoefficient": 0.0,
-            "ILimitMax": 0.0,
-            "ILimitMin": 0.0,
-            "Inputs": [
-                "MB_FAN1_TACH"
-            ],
-            "Name": "MB_FAN1_TACH",
-            "OutLimitMax": 100.0,
-            "OutLimitMin": 30.0,
-            "Outputs": [
-                "Pwm 2"
-            ],
-            "PCoefficient": 0.0,
-            "SlewNeg": 0.0,
-            "SlewPos": 0.0,
-            "Type": "Pid",
-            "Zones": [
-                "Pid 1"
-            ]
-        },
-        {
-            "Address": "0x4e",
-            "Bus": 6,
-            "Name": "MB_INLET_TEMP",
-            "Name1": "MB_INLET_REMOTE_TEMP",
-            "Thresholds": [
-                {
-                    "Direction": "greater than",
-                    "Name": "upper critical",
-                    "Severity": 1,
-                    "Value": 40
-                }
-            ],
-            "Type": "TMP421"
-        },
-        {
-            "Address": "0x4f",
-            "Bus": 6,
-            "Name": "MB_OUTLET_TEMP",
-            "Name1": "MB_OUTLET_REMOTE_TEMP",
-            "Thresholds": [
-                {
-                    "Direction": "greater than",
-                    "Name": "upper critical",
-                    "Severity": 1,
-                    "Value": 90
-                }
-            ],
-            "Type": "TMP421"
-        },
-        {
-            "Address": "0x1f",
-            "Bus": 8,
-            "Name": "MEZZ_SENSOR_REMOTE_TEMP",
-            "Name1": "MEZZ_SENSOR_TEMP",
-            "Thresholds": [
-                {
-                    "Direction": "greater than",
-                    "Name": "upper critical",
-                    "Severity": 1,
-                    "Value": 95
-                }
-            ],
-            "Type": "TMP421"
-        },
-        {
             "Index": 0,
             "Name": " MB_P3V3",
             "ScaleFactor": 0.1124,
@@ -325,50 +160,144 @@
             "Type": "ADC"
         },
         {
-            "Address": "0x30",
-            "Bus": 0,
-            "CpuID": 1,
-            "Name": "Skylake CPU 1",
+            "Connector": {
+                "Name": "System Fan Connector 1",
+                "Pwm": 0,
+                "Tachs": [
+                    0
+                ]
+            },
+            "Index": 0,
+            "Name": "MB_FAN0_TACH",
             "Thresholds": [
                 {
-                    "Direction": "greater than",
-                    "Label": "DIMM",
-                    "Name": "upper critical",
+                    "Direction": "less than",
+                    "Name": "lower critical",
                     "Severity": 1,
-                    "Value": 99
+                    "Value": 500
                 },
                 {
                     "Direction": "greater than",
-                    "Label": "DIMM",
                     "Name": "upper non critical",
                     "Severity": 0,
-                    "Value": 89
+                    "Value": 8500
+                },
+                {
+                    "Direction": "greater than",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 11500
                 }
             ],
-            "Type": "SkylakeCPU"
+            "Type": "AspeedFan"
         },
         {
-            "Address": "0x31",
-            "Bus": 0,
-            "CpuID": 2,
-            "Name": "Skylake CPU 2",
+            "Connector": {
+                "Name": "System Fan Connector 3",
+                "Pwm": 1,
+                "Tachs": [
+                    2
+                ]
+            },
+            "Index": 2,
+            "Name": "MB_FAN1_TACH",
             "Thresholds": [
                 {
-                    "Direction": "greater than",
-                    "Label": "DIMM",
-                    "Name": "upper critical",
+                    "Direction": "less than",
+                    "Name": "lower critical",
                     "Severity": 1,
-                    "Value": 99
+                    "Value": 500
                 },
                 {
                     "Direction": "greater than",
-                    "Label": "DIMM",
                     "Name": "upper non critical",
                     "Severity": 0,
-                    "Value": 89
+                    "Value": 8500
+                },
+                {
+                    "Direction": "greater than",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 11500
                 }
             ],
-            "Type": "SkylakeCPU"
+            "Type": "AspeedFan"
+        },
+        {
+            "Direction": "Out",
+            "Index": 33,
+            "Name": "Reset Out",
+            "Polarity": "Low",
+            "Type": "Gpio"
+        },
+        {
+            "Direction": "Both",
+            "Index": 35,
+            "Name": "Power Up",
+            "Polarity": "Low",
+            "Type": "Gpio"
+        },
+        {
+            "Direction": "Out",
+            "Index": 14,
+            "Name": "Power Good",
+            "Polarity": "High",
+            "Type": "Gpio"
+        },
+        {
+            "Direction": "Out",
+            "Index": 145,
+            "Name": "BMC Ready",
+            "Polarity": "High",
+            "Type": "Gpio"
+        },
+        {
+            "Class": "fan",
+            "FFGainCoefficient": 1.0,
+            "FFOffCoefficient": 0.0,
+            "ICoefficient": 0.0,
+            "ILimitMax": 0.0,
+            "ILimitMin": 0.0,
+            "Inputs": [
+                "MB_FAN0_TACH"
+            ],
+            "Name": "MB_FAN0_TACH",
+            "OutLimitMax": 100.0,
+            "OutLimitMin": 30.0,
+            "Outputs": [
+                "Pwm 1"
+            ],
+            "PCoefficient": 0.0,
+            "SlewNeg": 0.0,
+            "SlewPos": 0.0,
+            "Type": "Pid",
+            "Zones": [
+                "Pid 1"
+            ]
+        },
+        {
+            "Class": "fan",
+            "FFGainCoefficient": 1.0,
+            "FFOffCoefficient": 0.0,
+            "ICoefficient": 0.0,
+            "ILimitMax": 0.0,
+            "ILimitMin": 0.0,
+            "Inputs": [
+                "MB_FAN1_TACH"
+            ],
+            "Name": "MB_FAN1_TACH",
+            "OutLimitMax": 100.0,
+            "OutLimitMin": 30.0,
+            "Outputs": [
+                "Pwm 2"
+            ],
+            "PCoefficient": 0.0,
+            "SlewNeg": 0.0,
+            "SlewPos": 0.0,
+            "Type": "Pid",
+            "Zones": [
+                "Pid 1"
+            ]
         },
         {
             "Class": "temp",
@@ -440,32 +369,103 @@
             ]
         },
         {
-            "Direction": "Out",
-            "Index": 33,
-            "Name": "Reset Out",
-            "Polarity": "Low",
-            "Type": "Gpio"
+            "Name": "Pwm 1",
+            "Type": "Pwm"
         },
         {
-            "Direction": "Both",
-            "Index": 35,
-            "Name": "Power Up",
-            "Polarity": "Low",
-            "Type": "Gpio"
+            "Name": "Pwm 2",
+            "Type": "Pwm"
         },
         {
-            "Direction": "Out",
-            "Index": 14,
-            "Name": "Power Good",
-            "Polarity": "High",
-            "Type": "Gpio"
+            "Address": "0x30",
+            "Bus": 0,
+            "CpuID": 1,
+            "Name": "Skylake CPU 1",
+            "Thresholds": [
+                {
+                    "Direction": "greater than",
+                    "Label": "DIMM",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 99
+                },
+                {
+                    "Direction": "greater than",
+                    "Label": "DIMM",
+                    "Name": "upper non critical",
+                    "Severity": 0,
+                    "Value": 89
+                }
+            ],
+            "Type": "SkylakeCPU"
         },
         {
-            "Direction": "Out",
-            "Index": 145,
-            "Name": "BMC Ready",
-            "Polarity": "High",
-            "Type": "Gpio"
+            "Address": "0x31",
+            "Bus": 0,
+            "CpuID": 2,
+            "Name": "Skylake CPU 2",
+            "Thresholds": [
+                {
+                    "Direction": "greater than",
+                    "Label": "DIMM",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 99
+                },
+                {
+                    "Direction": "greater than",
+                    "Label": "DIMM",
+                    "Name": "upper non critical",
+                    "Severity": 0,
+                    "Value": 89
+                }
+            ],
+            "Type": "SkylakeCPU"
+        },
+        {
+            "Address": "0x4e",
+            "Bus": 6,
+            "Name": "MB_INLET_TEMP",
+            "Name1": "MB_INLET_REMOTE_TEMP",
+            "Thresholds": [
+                {
+                    "Direction": "greater than",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 40
+                }
+            ],
+            "Type": "TMP421"
+        },
+        {
+            "Address": "0x4f",
+            "Bus": 6,
+            "Name": "MB_OUTLET_TEMP",
+            "Name1": "MB_OUTLET_REMOTE_TEMP",
+            "Thresholds": [
+                {
+                    "Direction": "greater than",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 90
+                }
+            ],
+            "Type": "TMP421"
+        },
+        {
+            "Address": "0x1f",
+            "Bus": 8,
+            "Name": "MEZZ_SENSOR_REMOTE_TEMP",
+            "Name1": "MEZZ_SENSOR_TEMP",
+            "Thresholds": [
+                {
+                    "Direction": "greater than",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 95
+                }
+            ],
+            "Type": "TMP421"
         }
     ],
     "Name": "TiogaPass Baseboard",

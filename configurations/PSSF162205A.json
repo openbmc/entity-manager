@@ -2,16 +2,16 @@
     {
         "Exposes": [
             {
-                "Address": "0x60",
-                "Bus": "$bus",
-                "Name": "Solum 1600W PSU 3 Device",
-                "Type": "pmbus"
-            },
-            {
                 "Address": "$address",
                 "Bus": "$bus",
                 "Name": "Solum 1600W PSU 3 FRU",
                 "Type": "EEPROM"
+            },
+            {
+                "Address": "0x60",
+                "Bus": "$bus",
+                "Name": "Solum 1600W PSU 3 Device",
+                "Type": "pmbus"
             }
         ],
         "Name": "Solum 1600W PSU 3",
@@ -27,16 +27,16 @@
     {
         "Exposes": [
             {
-                "Address": "0x59",
-                "Bus": "$bus",
-                "Name": "Solum 1600W PSU 2 Device",
-                "Type": "pmbus"
-            },
-            {
                 "Address": "$address",
                 "Bus": "$bus",
                 "Name": "Solum 1600W PSU 2 FRU",
                 "Type": "EEPROM"
+            },
+            {
+                "Address": "0x59",
+                "Bus": "$bus",
+                "Name": "Solum 1600W PSU 2 Device",
+                "Type": "pmbus"
             }
         ],
         "Name": "Solum 1600W PSU 2",
@@ -52,16 +52,16 @@
     {
         "Exposes": [
             {
-                "Address": "0x58",
-                "Bus": "$bus",
-                "Name": "Solum 1600W PSU 1 Device",
-                "Type": "pmbus"
-            },
-            {
                 "Address": "$address",
                 "Bus": "$bus",
                 "Name": "Solum 1600W PSU 1 FRU",
                 "Type": "EEPROM"
+            },
+            {
+                "Address": "0x58",
+                "Bus": "$bus",
+                "Name": "Solum 1600W PSU 1 Device",
+                "Type": "pmbus"
             }
         ],
         "Name": "Solum 1600W PSU 1",

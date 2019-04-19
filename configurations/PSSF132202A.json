@@ -2,10 +2,16 @@
     {
         "Exposes": [
             {
+                "Address": "$address",
+                "Bus": "$bus",
+                "Name": "Solum 1300W PSU 3 FRU",
+                "Type": "EEPROM"
+            },
+            {
                 "Address": "0x5a",
                 "Bus": "$bus",
                 "Name": "PSU3",
-                "Thresholds" : [
+                "Thresholds": [
                     {
                         "Direction": "greater than",
                         "Label": "pin",
@@ -50,12 +56,6 @@
                     }
                 ],
                 "Type": "pmbus"
-            },
-            {
-                "Address": "$address",
-                "Bus": "$bus",
-                "Name": "Solum 1300W PSU 3 FRU",
-                "Type": "EEPROM"
             }
         ],
         "Name": "Solum 1300W PSU 3",
@@ -68,14 +68,19 @@
             "SerialNumber": "$PRODUCT_SERIAL_NUMBER"
         }
     },
-
     {
         "Exposes": [
+            {
+                "Address": "$address",
+                "Bus": "$bus",
+                "Name": "Solum 1300W PSU 2 FRU",
+                "Type": "EEPROM"
+            },
             {
                 "Address": "0x59",
                 "Bus": "$bus",
                 "Name": "PSU2",
-                "Thresholds" : [
+                "Thresholds": [
                     {
                         "Direction": "greater than",
                         "Label": "pin",
@@ -120,12 +125,6 @@
                     }
                 ],
                 "Type": "pmbus"
-            },
-            {
-                "Address": "$address",
-                "Bus": "$bus",
-                "Name": "Solum 1300W PSU 2 FRU",
-                "Type": "EEPROM"
             }
         ],
         "Name": "Solum 1300W PSU 2",
@@ -141,10 +140,16 @@
     {
         "Exposes": [
             {
+                "Address": "$address",
+                "Bus": "$bus",
+                "Name": "Solum 1300W PSU 1 FRU",
+                "Type": "EEPROM"
+            },
+            {
                 "Address": "0x58",
                 "Bus": "$bus",
                 "Name": "PSU1",
-                "Thresholds" : [
+                "Thresholds": [
                     {
                         "Direction": "greater than",
                         "Label": "pin",
@@ -189,12 +194,6 @@
                     }
                 ],
                 "Type": "pmbus"
-            },
-            {
-                "Address": "$address",
-                "Bus": "$bus",
-                "Name": "Solum 1300W PSU 1 FRU",
-                "Type": "EEPROM"
             }
         ],
         "Name": "Solum 1300W PSU 1",
