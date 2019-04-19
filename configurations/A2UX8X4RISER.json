@@ -2,6 +2,12 @@
     {
         "Exposes": [
             {
+                "Address": "$address",
+                "Bus": "$bus",
+                "Name": "Riser 3 Fru",
+                "Type": "EEPROM"
+            },
+            {
                 "Address": "0x4E",
                 "Bus": "$bus",
                 "Name": "Riser 3 Temp",
@@ -32,17 +38,11 @@
                     }
                 ],
                 "Type": "TMP75"
-            },
-            {
-                "Address": "$address",
-                "Bus": "$bus",
-                "Name": "Riser 3 Fru",
-                "Type": "EEPROM"
             }
         ],
         "Name": "2Ux8 Riser 3",
-        "Type": "Board",
         "Probe": "xyz.openbmc_project.FruDevice({'BOARD_PRODUCT_NAME': 'A2UX8X4RISER'})",
+        "Type": "Board",
         "xyz.openbmc_project.Inventory.Decorator.Asset": {
             "Manufacturer": "$BOARD_MANUFACTURER",
             "Model": "$BOARD_PRODUCT_NAME",
