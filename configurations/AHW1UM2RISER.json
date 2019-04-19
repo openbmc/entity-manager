@@ -2,6 +2,24 @@
     {
         "Exposes": [
             {
+                "Address": "$address",
+                "Bus": "$bus",
+                "Name": "Riser 1 Fru",
+                "Type": "EEPROM"
+            },
+            {
+                "Address": "0x72",
+                "Bus": "$bus",
+                "ChannelNames": [
+                    "Pcie_Slot_1",
+                    "Pcie_Slot_2",
+                    "Pcie_Slot_3",
+                    ""
+                ],
+                "Name": "Riser 1 Mux",
+                "Type": "PCA9545Mux"
+            },
+            {
                 "Address": "0x4e",
                 "Bus": "$bus",
                 "Name": "Riser 1 Temp",
@@ -32,24 +50,6 @@
                     }
                 ],
                 "Type": "TMP75"
-            },
-            {
-                "Address": "0x72",
-                "Bus": "$bus",
-                "ChannelNames": [
-                    "Pcie_Slot_1",
-                    "Pcie_Slot_2",
-                    "Pcie_Slot_3",
-                    ""
-                ],
-                "Name": "Riser 1 Mux",
-                "Type": "PCA9545Mux"
-            },
-            {
-                "Address": "$address",
-                "Bus": "$bus",
-                "Name": "Riser 1 Fru",
-                "Type": "EEPROM"
             }
         ],
         "Name": "Riser 1",
@@ -63,6 +63,24 @@
     },
     {
         "Exposes": [
+            {
+                "Address": "$address",
+                "Bus": "$bus",
+                "Name": "Riser 2 Fru",
+                "Type": "EEPROM"
+            },
+            {
+                "Address": "0x73",
+                "Bus": "$bus",
+                "ChannelNames": [
+                    "Pcie_Slot_1",
+                    "Pcie_Slot_2",
+                    "Pcie_Slot_3",
+                    ""
+                ],
+                "Name": "Riser 2 Mux",
+                "Type": "PCA9545Mux"
+            },
             {
                 "Address": "0x4f",
                 "Bus": "$bus",
@@ -94,24 +112,6 @@
                     }
                 ],
                 "Type": "TMP75"
-            },
-            {
-                "Address": "0x73",
-                "Bus": "$bus",
-                "ChannelNames": [
-                    "Pcie_Slot_1",
-                    "Pcie_Slot_2",
-                    "Pcie_Slot_3",
-                    ""
-                ],
-                "Name": "Riser 2 Mux",
-                "Type": "PCA9545Mux"
-            },
-            {
-                "Address": "$address",
-                "Bus": "$bus",
-                "Name": "Riser 2 Fru",
-                "Type": "EEPROM"
             }
         ],
         "Name": "Riser 2",

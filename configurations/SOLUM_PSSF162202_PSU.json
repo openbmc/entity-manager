@@ -2,12 +2,6 @@
     {
         "Exposes": [
             {
-                "Address": "0x59",
-                "Bus": "$bus",
-                "Name": "SOLUM CO IS162F22 PSU Device",
-                "Type": "pmbus"
-            },
-            {
                 "Address": "$address",
                 "Bus": "$bus",
                 "Name": "SOLUM CO IS162F22 PSU FRU",
@@ -26,6 +20,12 @@
                 "Index": 1,
                 "Name": "PS 1 Fan 2",
                 "Type": "I2CFan"
+            },
+            {
+                "Address": "0x59",
+                "Bus": "$bus",
+                "Name": "SOLUM CO IS162F22 PSU Device",
+                "Type": "pmbus"
             }
         ],
         "Name": "SOLUM CO IS162F22 PSU 2",
@@ -40,12 +40,6 @@
     },
     {
         "Exposes": [
-            {
-                "Address": "0x58",
-                "Bus": "$bus",
-                "Name": "SOLUM CO IS162F22 PSU Device",
-                "Type": "pmbus"
-            },
             {
                 "Address": "$address",
                 "Bus": "$bus",
@@ -65,6 +59,12 @@
                 "Index": 1,
                 "Name": "PS 2 Fan 2",
                 "Type": "I2CFan"
+            },
+            {
+                "Address": "0x58",
+                "Bus": "$bus",
+                "Name": "SOLUM CO IS162F22 PSU Device",
+                "Type": "pmbus"
             }
         ],
         "Name": "SOLUM CO IS162F22 PSU 1",

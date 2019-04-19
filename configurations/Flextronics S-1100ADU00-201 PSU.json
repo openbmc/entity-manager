@@ -2,10 +2,16 @@
     {
         "Exposes": [
             {
+                "Address": "$address",
+                "Bus": "$bus",
+                "Name": "Flextronics S-1100ADU00-201 PSU FRU",
+                "Type": "EEPROM"
+            },
+            {
                 "Address": "0x5a",
                 "Bus": "$bus",
                 "Name": "PSU3",
-                "Thresholds" : [
+                "Thresholds": [
                     {
                         "Direction": "greater than",
                         "Label": "pin",
@@ -50,12 +56,6 @@
                     }
                 ],
                 "Type": "pmbus"
-            },
-            {
-                "Address": "$address",
-                "Bus": "$bus",
-                "Name": "Flextronics S-1100ADU00-201 PSU FRU",
-                "Type": "EEPROM"
             }
         ],
         "Name": "Flextronics S-1100ADU00-201 PSU 3",
@@ -71,10 +71,16 @@
     {
         "Exposes": [
             {
+                "Address": "$address",
+                "Bus": "$bus",
+                "Name": "Flextronics S-1100ADU00-201 PSU FRU",
+                "Type": "EEPROM"
+            },
+            {
                 "Address": "0x59",
                 "Bus": "$bus",
                 "Name": "PSU2",
-                "Thresholds" : [
+                "Thresholds": [
                     {
                         "Direction": "greater than",
                         "Label": "pin",
@@ -119,12 +125,6 @@
                     }
                 ],
                 "Type": "pmbus"
-            },
-            {
-                "Address": "$address",
-                "Bus": "$bus",
-                "Name": "Flextronics S-1100ADU00-201 PSU FRU",
-                "Type": "EEPROM"
             }
         ],
         "Name": "Flextronics S-1100ADU00-201 PSU 2",
@@ -140,10 +140,16 @@
     {
         "Exposes": [
             {
+                "Address": "$address",
+                "Bus": "$bus",
+                "Name": "Flextronics S-1100ADU00-201 PSU FRU",
+                "Type": "EEPROM"
+            },
+            {
                 "Address": "0x58",
                 "Bus": "$bus",
                 "Name": "PSU1",
-                "Thresholds" : [
+                "Thresholds": [
                     {
                         "Direction": "greater than",
                         "Label": "pin",
@@ -188,12 +194,6 @@
                     }
                 ],
                 "Type": "pmbus"
-            },
-            {
-                "Address": "$address",
-                "Bus": "$bus",
-                "Name": "Flextronics S-1100ADU00-201 PSU FRU",
-                "Type": "EEPROM"
             }
         ],
         "Name": "Flextronics S-1100ADU00-201 PSU 1",
