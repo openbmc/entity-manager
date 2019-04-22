@@ -283,7 +283,9 @@
         {
             "Controllers": [
                 "Front Panel LCC",
-                "CPU\\d"
+                "CPU\\d",
+                "PSU1 LCC",
+                "PSU2 LCC"
             ],
             "Name": "Performance",
             "Type": "FanProfile"
@@ -519,6 +521,12 @@
             "FailSafePercent": 100,
             "MinThermalOutput": 30,
             "Name": "Zone 6",
+            "Type": "Pid.Zone"
+        },
+        {
+            "FailSafePercent": 100,
+            "MinThermalOutput": 30,
+            "Name": "PSU",
             "Type": "Pid.Zone"
         },
         {
