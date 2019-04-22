@@ -241,8 +241,8 @@
             "Type": "AspeedFan"
         },
         {
-            "C1": 92.16,
-            "C2": 107.52,
+            "C1": 36,
+            "C2": 42,
             "MaxCFM": 17.5,
             "Name": "System Airflow",
             "TachMaxPercent": 100,
@@ -267,8 +267,8 @@
             "AlphaF": 4.352,
             "AlphaS": 0.512,
             "Name": "Exit Air Temp",
-            "PowerFactorMax": 10,
-            "PowerFactorMin": 4,
+            "PowerFactorMax": 1.0,
+            "PowerFactorMin": 0.4,
             "QMax": 88,
             "QMin": 15,
             "Type": "ExitAirTempSensor"
