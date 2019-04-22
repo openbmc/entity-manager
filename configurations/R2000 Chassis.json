@@ -204,7 +204,7 @@
             "SlewPos": 0.0,
             "Type": "Pid",
             "Zones": [
-                "Left"
+                "Zone 1"
             ]
         },
         {
@@ -230,7 +230,7 @@
             "SlewPos": 0.0,
             "Type": "Pid",
             "Zones": [
-                "Left"
+                "Zone 2"
             ]
         },
         {
@@ -256,7 +256,7 @@
             "SlewPos": 0.0,
             "Type": "Pid",
             "Zones": [
-                "Left"
+                "Zone 3"
             ]
         },
         {
@@ -282,7 +282,7 @@
             "SlewPos": 0.0,
             "Type": "Pid",
             "Zones": [
-                "Right"
+                "Zone 4"
             ]
         },
         {
@@ -308,7 +308,7 @@
             "SlewPos": 0.0,
             "Type": "Pid",
             "Zones": [
-                "Right"
+                "Zone 5"
             ]
         },
         {
@@ -334,7 +334,7 @@
             "SlewPos": 0.0,
             "Type": "Pid",
             "Zones": [
-                "Right"
+                "Zone 6"
             ]
         },
         {
@@ -354,25 +354,59 @@
             "Outputs": [],
             "PCoefficient": -0.15,
             "PositiveHysteresis": 0.0,
-            "SetPoint": 70.0,
+            "SetPoint": 60.0,
             "SlewNeg": -1,
             "SlewPos": 0.0,
             "Type": "Pid",
             "Zones": [
-                "Left",
-                "Right"
+                "Zone 1",
+                "Zone 2",
+                "Zone 3",
+                "Zone 4",
+                "Zone 5",
+                "Zone 6"
             ]
         },
         {
             "FailSafePercent": 100,
             "MinThermalOutput": 30,
-            "Name": "Left",
+            "Name": "Zone 1",
             "Type": "Pid.Zone"
         },
         {
             "FailSafePercent": 100,
             "MinThermalOutput": 30,
-            "Name": "Right",
+            "Name": "Zone 2",
+            "Type": "Pid.Zone"
+        },
+        {
+            "FailSafePercent": 100,
+            "MinThermalOutput": 30,
+            "Name": "Zone 3",
+            "Type": "Pid.Zone"
+        },
+        {
+            "FailSafePercent": 100,
+            "MinThermalOutput": 30,
+            "Name": "Zone 4",
+            "Type": "Pid.Zone"
+        },
+        {
+            "FailSafePercent": 100,
+            "MinThermalOutput": 30,
+            "Name": "Zone 5",
+            "Type": "Pid.Zone"
+        },
+        {
+            "FailSafePercent": 100,
+            "MinThermalOutput": 30,
+            "Name": "Zone 6",
+            "Type": "Pid.Zone"
+        },
+        {
+            "FailSafePercent": 100,
+            "MinThermalOutput": 30,
+            "Name": "PSU",
             "Type": "Pid.Zone"
         },
         {
@@ -423,8 +457,12 @@
             ],
             "Type": "Stepwise",
             "Zones": [
-                "Left",
-                "Right"
+                "Zone 1",
+                "Zone 2",
+                "Zone 3",
+                "Zone 4",
+                "Zone 5",
+                "Zone 6"
             ]
         },
         {
@@ -445,8 +483,12 @@
             ],
             "Type": "Stepwise",
             "Zones": [
-                "Left",
-                "Right"
+                "Zone 1",
+                "Zone 2",
+                "Zone 3",
+                "Zone 4",
+                "Zone 5",
+                "Zone 6"
             ]
         }
     ],
