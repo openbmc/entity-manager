@@ -2,12 +2,6 @@
     {
         "Exposes": [
             {
-                "Address": "$address",
-                "Bus": "$bus",
-                "Name": "Delta DPS-750XB PSU FRU",
-                "Type": "EEPROM"
-            },
-            {
                 "Address": "0x5a",
                 "Bus": "$bus",
                 "Name": "PSU3",
@@ -56,6 +50,57 @@
                     }
                 ],
                 "Type": "pmbus"
+            },
+            {
+                "Class": "fan",
+                "FFGainCoefficient": 0.01,
+                "FFOffCoefficient": 0.0,
+                "ICoefficient": 0.0,
+                "ILimitMax": 0.0,
+                "ILimitMin": 0.0,
+                "Inputs": [
+                    "PSU3 Fan Speed 1"
+                ],
+                "Name": "PSU3 Fan 1",
+                "NegativeHysteresis": 2.0,
+                "OutLimitMax": 100.0,
+                "OutLimitMin": 30.0,
+                "Outputs": [
+                    "Pwm PSU3 Fan 1"
+                ],
+                "PCoefficient": 0.0,
+                "PositiveHysteresis": 0.0,
+                "SlewNeg": 0.0,
+                "SlewPos": 0.0,
+                "Type": "Pid",
+                "Zones": [
+                    "PSU"
+                ]
+            },
+            {
+                "Class": "Floor",
+                "Inputs": [
+                    "PSU3 Temperature"
+                ],
+                "Name": "PSU3 LCC",
+                "NegativeHysteresis": 2,
+                "Output": [
+                    40.0, 100.0
+                ],
+                "PositiveHysteresis": 0,
+                "Reading": [
+                    30.0, 65.0
+                ],
+                "Type": "Stepwise",
+                "Zones": [
+                    "PSU"
+                ]
+            },
+            {
+                "Address": "$address",
+                "Bus": "$bus",
+                "Name": "Delta DPS-750XB PSU FRU",
+                "Type": "EEPROM"
             }
         ],
         "Name": "Delta DPS-750XB PSU 3",
@@ -70,12 +115,6 @@
     },
     {
         "Exposes": [
-            {
-                "Address": "$address",
-                "Bus": "$bus",
-                "Name": "Delta DPS-750XB PSU FRU",
-                "Type": "EEPROM"
-            },
             {
                 "Address": "0x59",
                 "Bus": "$bus",
@@ -125,6 +164,57 @@
                     }
                 ],
                 "Type": "pmbus"
+            },
+            {
+                "Class": "fan",
+                "FFGainCoefficient": 0.01,
+                "FFOffCoefficient": 0.0,
+                "ICoefficient": 0.0,
+                "ILimitMax": 0.0,
+                "ILimitMin": 0.0,
+                "Inputs": [
+                    "PSU2 Fan Speed 1"
+                ],
+                "Name": "PSU2 Fan 1",
+                "NegativeHysteresis": 2.0,
+                "OutLimitMax": 100.0,
+                "OutLimitMin": 30.0,
+                "Outputs": [
+                    "Pwm PSU2 Fan 1"
+                ],
+                "PCoefficient": 0.0,
+                "PositiveHysteresis": 0.0,
+                "SlewNeg": 0.0,
+                "SlewPos": 0.0,
+                "Type": "Pid",
+                "Zones": [
+                    "PSU"
+                ]
+            },
+            {
+                "Class": "Floor",
+                "Inputs": [
+                    "PSU2 Temperature"
+                ],
+                "Name": "PSU2 LCC",
+                "NegativeHysteresis": 2,
+                "Output": [
+                    40.0, 100.0
+                ],
+                "PositiveHysteresis": 0,
+                "Reading": [
+                    30.0, 65.0
+                ],
+                "Type": "Stepwise",
+                "Zones": [
+                    "PSU"
+                ]
+            },
+            {
+                "Address": "$address",
+                "Bus": "$bus",
+                "Name": "Delta DPS-750XB PSU FRU",
+                "Type": "EEPROM"
             }
         ],
         "Name": "Delta DPS-750XB PSU 2",
@@ -139,12 +229,6 @@
     },
     {
         "Exposes": [
-            {
-                "Address": "$address",
-                "Bus": "$bus",
-                "Name": "Delta DPS-750XB PSU FRU",
-                "Type": "EEPROM"
-            },
             {
                 "Address": "0x58",
                 "Bus": "$bus",
@@ -194,6 +278,57 @@
                     }
                 ],
                 "Type": "pmbus"
+            },
+            {
+                "Class": "fan",
+                "FFGainCoefficient": 0.01,
+                "FFOffCoefficient": 0.0,
+                "ICoefficient": 0.0,
+                "ILimitMax": 0.0,
+                "ILimitMin": 0.0,
+                "Inputs": [
+                    "PSU1 Fan Speed 1"
+                ],
+                "Name": "PSU1 Fan 1",
+                "NegativeHysteresis": 2.0,
+                "OutLimitMax": 100.0,
+                "OutLimitMin": 30.0,
+                "Outputs": [
+                    "Pwm PSU1 Fan 1"
+                ],
+                "PCoefficient": 0.0,
+                "PositiveHysteresis": 0.0,
+                "SlewNeg": 0.0,
+                "SlewPos": 0.0,
+                "Type": "Pid",
+                "Zones": [
+                    "PSU"
+                ]
+            },
+            {
+                "Class": "Floor",
+                "Inputs": [
+                    "PSU1 Temperature"
+                ],
+                "Name": "PSU1 LCC",
+                "NegativeHysteresis": 2,
+                "Output": [
+                    40.0, 100.0
+                ],
+                "PositiveHysteresis": 0,
+                "Reading": [
+                    30.0, 65.0
+                ],
+                "Type": "Stepwise",
+                "Zones": [
+                    "PSU"
+                ]
+            },
+            {
+                "Address": "$address",
+                "Bus": "$bus",
+                "Name": "Delta DPS-750XB PSU FRU",
+                "Type": "EEPROM"
             }
         ],
         "Name": "Delta DPS-750XB PSU 1",
