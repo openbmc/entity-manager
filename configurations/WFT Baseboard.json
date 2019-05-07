@@ -2255,6 +2255,7 @@
     "Name": "WFP Baseboard",
     "Probe": "xyz.openbmc_project.FruDevice({'PRODUCT_PRODUCT_NAME': '.*WFT'})",
     "Type": "Board",
+    "ProductId": 123,
     "xyz.openbmc_project.Inventory.Decorator.Asset": {
         "Manufacturer": "$PRODUCT_MANUFACTURER",
         "Model": "$PRODUCT_PRODUCT_NAME",
