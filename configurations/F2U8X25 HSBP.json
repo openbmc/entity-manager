@@ -1,0 +1,74 @@
+[
+    {
+        "Exposes": [
+            {
+                "Address": "$address",
+                "Bus": "$bus",
+                "Name": "F2U8X25 HSBP1 FRU",
+                "Type": "EEPROM"
+            },
+            {
+                "Address": "0x48",
+                "Bus": "$bus",
+                "Name": "HSBP1 Temp",
+                "Type": "TMP75"
+            }
+        ],
+        "Name": "F2U8X25 HSBP1",
+        "Probe": "xyz.openbmc_project.FruDevice({'BOARD_PRODUCT_NAME': 'F2U8X25PCIHSBP'})",
+        "xyz.openbmc_project.Inventory.Decorator.Asset": {
+            "Manufacturer": "$BOARD_MANUFACTURER",
+            "Model": "$BOARD_PRODUCT_NAME",
+            "PartNumber": "$BOARD_PART_NUMBER",
+            "SerialNumber": "$BOARD_SERIAL_NUMBER"
+        }
+    },
+    {
+        "Exposes": [
+            {
+                "Address": "$address",
+                "Bus": "$bus",
+                "Name": "F2U8X25 HSBP2 FRU",
+                "Type": "EEPROM"
+            },
+            {
+                "Address": "0x4B",
+                "Bus": "$bus",
+                "Name": "HSBP2 Temp",
+                "Type": "TMP75"
+            }
+        ],
+        "Name": "F2U8X25 HSBP2",
+        "Probe": "xyz.openbmc_project.FruDevice({'BOARD_PRODUCT_NAME': 'F2U8X25PCIHSBP'})",
+        "xyz.openbmc_project.Inventory.Decorator.Asset": {
+            "Manufacturer": "$BOARD_MANUFACTURER",
+            "Model": "$BOARD_PRODUCT_NAME",
+            "PartNumber": "$BOARD_PART_NUMBER",
+            "SerialNumber": "$BOARD_SERIAL_NUMBER"
+        }
+    },
+    {
+        "Exposes": [
+            {
+                "Address": "$address",
+                "Bus": "$bus",
+                "Name": "F2U8X25 HSBP3 FRU",
+                "Type": "EEPROM"
+            },
+            {
+                "Address": "0x4A",
+                "Bus": "$bus",
+                "Name": "HSBP3 Temp",
+                "Type": "TMP75"
+            }
+        ],
+        "Name": "F2U8X25 HSBP3",
+        "Probe": "xyz.openbmc_project.FruDevice({'BOARD_PRODUCT_NAME': 'F2U8X25PCIHSBP'})",
+        "xyz.openbmc_project.Inventory.Decorator.Asset": {
+            "Manufacturer": "$BOARD_MANUFACTURER",
+            "Model": "$BOARD_PRODUCT_NAME",
+            "PartNumber": "$BOARD_PART_NUMBER",
+            "SerialNumber": "$BOARD_SERIAL_NUMBER"
+        }
+    }
+]
