@@ -1,0 +1,24 @@
+{
+    "Exposes": [
+        {
+            "Address": "$address",
+            "Bus": "$bus",
+            "Name": "F1U12X25 HSBP FRU",
+            "Type": "EEPROM"
+        },
+        {
+            "Address": "0x48",
+            "Bus": "$bus",
+            "Name": "HSBP Temp",
+            "Type": "TMP75"
+        }
+    ],
+    "Name": "F1U12X25 HSBP",
+    "Probe": "xyz.openbmc_project.FruDevice({'BOARD_PRODUCT_NAME': 'F1U12X25PCIHSBP'})",
+    "xyz.openbmc_project.Inventory.Decorator.Asset": {
+        "Manufacturer": "$BOARD_MANUFACTURER",
+        "Model": "$BOARD_PRODUCT_NAME",
+        "PartNumber": "$BOARD_PART_NUMBER",
+        "SerialNumber": "$BOARD_SERIAL_NUMBER"
+    }
+}
