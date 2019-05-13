@@ -911,6 +911,7 @@ void createAddObjectMethod(const std::string& jsonPointerPath,
                 throw std::invalid_argument("Data does not match schema");
             }
 
+            findExposes->push_back(newData);
             if (!writeJsonFiles(systemConfiguration))
             {
                 std::cerr << "Error writing json files\n";
@@ -927,11 +928,9 @@ void createAddObjectMethod(const std::string& jsonPointerPath,
             // runtime modifiable
             populateInterfaceFromJson(
                 systemConfiguration,
-                jsonPointerPath + "/" + std::to_string(lastIndex), iface,
-                newData, objServer,
+                jsonPointerPath + "/Exposes/" + std::to_string(lastIndex),
+                iface, newData, objServer,
                 sdbusplus::asio::PropertyPermission::readWrite);
-            // todo(james) generate patch
-            findExposes->push_back(newData);
         });
     iface->initialize();
 }
