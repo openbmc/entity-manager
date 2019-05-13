@@ -274,23 +274,6 @@
             "Type": "ExitAirTempSensor"
         },
         {
-            "Controllers": [
-                ".*"
-            ],
-            "Name": "Acoustic",
-            "Type": "FanProfile"
-        },
-        {
-            "Controllers": [
-                "Front Panel LCC",
-                "CPU\\d",
-                "PSU1 LCC",
-                "PSU2 LCC"
-            ],
-            "Name": "Performance",
-            "Type": "FanProfile"
-        },
-        {
             "AllowedFailures": 1,
             "Name": "FanRedundancy",
             "Type": "FanRedundancy"
@@ -565,6 +548,9 @@
                 80.0
             ],
             "PositiveHysteresis": 0,
+            "Profiles": [
+                "Acoustic"
+            ],
             "Reading": [
                 22.0,
                 32.0
