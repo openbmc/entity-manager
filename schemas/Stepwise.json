@@ -2,6 +2,9 @@
     "$schema": "http://json-schema.org/schema#",
     "type": "object",
     "properties": {
+        "Class": {
+            "type": "string"
+        },
         "Inputs": {
             "type": "array",
             "items": {
@@ -23,6 +26,12 @@
         "PositiveHysteresis": {
             "type": "number"
         },
+        "Profiles": {
+            "type": "array",
+            "items": {
+                "type": "string"
+            }
+        },
         "Reading": {
             "type": "array",
             "items": {
@@ -40,6 +49,7 @@
         }
     },
     "required": [
+        "Class",
         "Inputs",
         "Name",
         "NegativeHysteresis",
