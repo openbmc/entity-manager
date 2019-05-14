@@ -1472,7 +1472,8 @@ struct PerformScan : std::enable_shared_from_this<PerformScan>
                         }
                         // overwrite ourselves with cleaned up version
                         _systemConfiguration[recordName] = record;
-                        logDeviceAdded(record.at("Name").get<std::string>());
+
+                        logDeviceAdded(record);
 
                         foundDeviceIdx++;
                     }
@@ -1559,7 +1560,7 @@ void startRemovedTimer(boost::asio::deadline_timer& timer,
                     continue;
                 }
 
-                logDeviceRemoved(item.value().at("Name").get<std::string>());
+                logDeviceRemoved(item.value());
             }
         }
         scannedPowerOff = true;

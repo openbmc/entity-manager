@@ -19,20 +19,74 @@
 #include <systemd/sd-journal.h>
 
 #include <iostream>
+#include <nlohmann/json.hpp>
 #include <string>
 
-inline void logDeviceAdded(const std::string& device)
+inline void logDeviceAdded(const nlohmann::json& record)
 {
+
+    auto findType = record.find("Type");
+    auto findAsset =
+        record.find("xyz.openbmc_project.Inventory.Decorator.Asset");
+
+    std::string model = "Unkown";
+    std::string type = "Unknown";
+    std::string sn = "Unkown";
+
+    if (findType != record.end())
+    {
+        type = findType->get<std::string>();
+    }
+    if (findAsset != record.end())
+    {
+        auto findModel = findAsset->find("Model");
+        auto findSn = findAsset->find("SerialNumber");
+        if (findModel != findAsset->end())
+        {
+            model = findModel->get<std::string>();
+        }
+        if (findSn != findAsset->end())
+        {
+            sn = findSn->get<std::string>();
+        }
+    }
 
     sd_journal_send("MESSAGE=%s", "Inventory Added", "PRIORITY=%i", LOG_ERR,
                     "REDFISH_MESSAGE_ID=%s", "OpenBMC.0.1.InventoryAdded",
-                    "REDFISH_MESSAGE_ARGS=%s", device.c_str(), NULL);
+                    "REDFISH_MESSAGE_ARGS=%s,%s,%s", model.c_str(),
+                    type.c_str(), sn.c_str(), NULL);
 }
 
-inline void logDeviceRemoved(const std::string& device)
+inline void logDeviceRemoved(const nlohmann::json& record)
 {
+    auto findType = record.find("Type");
+    auto findAsset =
+        record.find("xyz.openbmc_project.Inventory.Decorator.Asset");
+
+    std::string model = "Unkown";
+    std::string type = "Unknown";
+    std::string sn = "Unkown";
+
+    if (findType != record.end())
+    {
+        type = findType->get<std::string>();
+    }
+    if (findAsset != record.end())
+    {
+        auto findModel = findAsset->find("Model");
+        auto findSn = findAsset->find("SerialNumber");
+        if (findModel != findAsset->end())
+        {
+            model = findModel->get<std::string>();
+        }
+        if (findSn != findAsset->end())
+        {
+            sn = findSn->get<std::string>();
+        }
+    }
 
     sd_journal_send("MESSAGE=%s", "Inventory Removed", "PRIORITY=%i", LOG_ERR,
                     "REDFISH_MESSAGE_ID=%s", "OpenBMC.0.1.InventoryRemoved",
-                    "REDFISH_MESSAGE_ARGS=%s", device.c_str(), NULL);
+                    "REDFISH_MESSAGE_ARGS=%s,%s,%s", model.c_str(),
+                    type.c_str(), sn.c_str(), NULL);
 }
