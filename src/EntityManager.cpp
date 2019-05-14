@@ -1472,7 +1472,8 @@ struct PerformScan : std::enable_shared_from_this<PerformScan>
                         }
                         // overwrite ourselves with cleaned up version
                         _systemConfiguration[recordName] = record;
-                        logDeviceAdded(record.at("Name").get<std::string>());
+
+                        logDeviceAdded(record);
 
                         foundDeviceIdx++;
                     }
@@ -1521,53 +1522,53 @@ void startRemovedTimer(boost::asio::deadline_timer& timer,
     }
 
     timer.expires_from_now(boost::posix_time::seconds(10));
-    timer.async_wait([&systemConfiguration](
-                         const boost::system::error_code& ec) {
-        if (ec == boost::asio::error::operation_aborted)
-        {
-            // we were cancelled
-            return;
-        }
-
-        bool powerOff = !isPowerOn();
-        for (const auto& item : lastJson.items())
-        {
-            if (systemConfiguration.find(item.key()) ==
-                systemConfiguration.end())
+    timer.async_wait(
+        [&systemConfiguration](const boost::system::error_code& ec) {
+            if (ec == boost::asio::error::operation_aborted)
             {
-                bool isDetectedPowerOn = false;
-                auto powerState = item.value().find("PowerState");
-                if (powerState != item.value().end())
+                // we were cancelled
+                return;
+            }
+
+            bool powerOff = !isPowerOn();
+            for (const auto& item : lastJson.items())
+            {
+                if (systemConfiguration.find(item.key()) ==
+                    systemConfiguration.end())
                 {
-                    auto ptr = powerState->get_ptr<const std::string*>();
-                    if (ptr)
+                    bool isDetectedPowerOn = false;
+                    auto powerState = item.value().find("PowerState");
+                    if (powerState != item.value().end())
                     {
-                        if (*ptr == "On" || *ptr == "BiosPost")
+                        auto ptr = powerState->get_ptr<const std::string*>();
+                        if (ptr)
                         {
-                            isDetectedPowerOn = true;
+                            if (*ptr == "On" || *ptr == "BiosPost")
+                            {
+                                isDetectedPowerOn = true;
+                            }
                         }
                     }
-                }
-                if (powerOff && isDetectedPowerOn)
-                {
-                    // power not on yet, don't know if it's there or not
-                    continue;
-                }
-                if (!powerOff && scannedPowerOff && isDetectedPowerOn)
-                {
-                    // already logged it when power was off
-                    continue;
-                }
+                    if (powerOff && isDetectedPowerOn)
+                    {
+                        // power not on yet, don't know if it's there or not
+                        continue;
+                    }
+                    if (!powerOff && scannedPowerOff && isDetectedPowerOn)
+                    {
+                        // already logged it when power was off
+                        continue;
+                    }
 
-                logDeviceRemoved(item.value().at("Name").get<std::string>());
+                    logDeviceRemoved(item.value());
+                }
             }
-        }
-        scannedPowerOff = true;
-        if (!powerOff)
-        {
-            scannedPowerOn = true;
-        }
-    });
+            scannedPowerOff = true;
+            if (!powerOff)
+            {
+                scannedPowerOn = true;
+            }
+        });
 }
 
 // main properties changed entry
