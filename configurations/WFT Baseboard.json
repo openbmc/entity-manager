@@ -2,7 +2,7 @@
     "Exposes": [
         {
             "Index": 0,
-            "Name": "Baseboard 12 Volt",
+            "Name": "Baseboard 12Volt",
             "PowerState": "On",
             "ScaleFactor": 0.1124,
             "Thresholds": [
@@ -1997,9 +1997,9 @@
             "ILimitMax": 100,
             "ILimitMin": 30,
             "Inputs": [
-                "Voltage Regulator 1 Temp"
+                "VR 1 Temp"
             ],
-            "Name": "Voltage Regulator 1 Temp",
+            "Name": "VR 1 Temp",
             "NegativeHysteresis": 5.0,
             "OutLimitMax": 100,
             "OutLimitMin": 30,
@@ -2024,9 +2024,9 @@
             "ILimitMax": 100,
             "ILimitMin": 30,
             "Inputs": [
-                "Voltage Regulator 2 Temp"
+                "VR 2 Temp"
             ],
-            "Name": "Voltage Regulator 2 Temp",
+            "Name": "VR 2 Temp",
             "NegativeHysteresis": 5.0,
             "OutLimitMax": 100,
             "OutLimitMin": 30,
@@ -2190,7 +2190,7 @@
         {
             "Address": "0x48",
             "Bus": 6,
-            "Name": "Voltage Regulator 1 Temp",
+            "Name": "VR 1 Temp",
             "Thresholds": [
                 {
                     "Direction": "greater than",
@@ -2222,7 +2222,7 @@
         {
             "Address": "0x4B",
             "Bus": 6,
-            "Name": "Voltage Regulator 2 Temp",
+            "Name": "VR 2 Temp",
             "Thresholds": [
                 {
                     "Direction": "greater than",
