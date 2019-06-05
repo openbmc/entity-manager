@@ -64,40 +64,26 @@
             "Type": "Gpio"
         },
         {
+            "GpioPins": [
+                59,
+                60,
+                61,
+                62
+            ],
+            "Name": "Multi Node ID",
+            "Type": "MultiNodeID"
+        },
+        {
             "Address": "0x18",
             "Bus": 1,
             "Name": "Multi Node Presence Detector",
-            "Type": "MultiNode"
-        },
-        {
-            "BindGpioNodeID": "Node ID GPIO 0",
-            "Name": "Multi Node ID 0",
-            "Type": "MultiNode"
-        },
-        {
-            "BindGpioNodeID": "Node ID GPIO 1",
-            "Name": "Multi Node ID 1",
-            "Type": "MultiNode"
-        },
-        {
-            "BindGpioNodeID": "Node ID GPIO 2",
-            "Name": "Multi Node ID 2",
-            "Type": "MultiNode"
-        },
-        {
-            "BindGpioNodeID": "Node ID GPIO 3",
-            "Name": "Multi Node ID 3",
-            "Type": "MultiNode"
-        },
-        {
-            "Name": "Multi Node Supported",
-            "Type": "MultiNode"
+            "Type": "MultiNodePresence"
         }
     ],
     "Name": "BNP Baseboard",
     "Probe": "xyz.openbmc_project.FruDevice({'PRODUCT_PRODUCT_NAME': '.*BNP'})",
-    "Type": "Board",
     "ProductId": 124,
+    "Type": "Board",
     "xyz.openbmc_project.Inventory.Decorator.Asset": {
         "Manufacturer": "$PRODUCT_MANUFACTURER",
         "Model": "$PRODUCT_PRODUCT_NAME",
