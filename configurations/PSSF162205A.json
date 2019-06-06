@@ -15,14 +15,14 @@
                 "ILimitMax": 0.0,
                 "ILimitMin": 0.0,
                 "Inputs": [
-                    "PSU3 Fan Speed 1"
+                    "PSU$ADDRESS % 4 + 1 Fan Speed 1"
                 ],
-                "Name": "PSU3 Fan 1",
+                "Name": "PSU$ADDRESS % 4 + 1 Fan 1",
                 "NegativeHysteresis": 2.0,
                 "OutLimitMax": 100.0,
                 "OutLimitMin": 30.0,
                 "Outputs": [
-                    "Pwm PSU3 Fan 1"
+                    "Pwm PSU$ADDRESS % 4 + 1 Fan 1"
                 ],
                 "PCoefficient": 0.0,
                 "PositiveHysteresis": 0.0,
@@ -36,241 +36,9 @@
             {
                 "Class": "Floor",
                 "Inputs": [
-                    "PSU3 Temperature"
+                    "PSU$ADDRESS % 4 + 1 Temperature"
                 ],
-                "Name": "PSU3 LCC",
-                "NegativeHysteresis": 2,
-                "Output": [
-                    40.0,
-                    100.0
-                ],
-                "PositiveHysteresis": 0,
-                "Reading": [
-                    30.0,
-                    65.0
-                ],
-                "Type": "Stepwise",
-                "Zones": [
-                    "PSU"
-                ]
-            },
-            {
-                "Address": "0x5a",
-                "Bus": "$bus",
-                "Name": "PSU3",
-                "Thresholds": [
-                    {
-                        "Direction": "greater than",
-                        "Label": "pin",
-                        "Name": "upper critical",
-                        "Severity": 1,
-                        "Value": 2149.5
-                    },
-                    {
-                        "Direction": "greater than",
-                        "Label": "pin",
-                        "Name": "upper non critical",
-                        "Severity": 0,
-                        "Value": 1951.6
-                    },
-                    {
-                        "Direction": "greater than",
-                        "Label": "iout1",
-                        "Name": "upper critical",
-                        "Severity": 1,
-                        "Value": 122
-                    },
-                    {
-                        "Direction": "greater than",
-                        "Label": "iout1",
-                        "Name": "upper non critical",
-                        "Severity": 0,
-                        "Value": 100
-                    },
-                    {
-                        "Direction": "greater than",
-                        "Label": "temp1",
-                        "Name": "upper critical",
-                        "Severity": 1,
-                        "Value": 78
-                    },
-                    {
-                        "Direction": "greater than",
-                        "Label": "temp1",
-                        "Name": "upper non critical",
-                        "Severity": 0,
-                        "Value": 73
-                    }
-                ],
-                "Type": "pmbus"
-            }
-        ],
-        "Name": "Solum 1600W PSU 3",
-        "Probe": "xyz.openbmc_project.FruDevice({'PRODUCT_PRODUCT_NAME': 'PSSF162205A', 'ADDRESS': 82})",
-        "Type": "PowerSupply",
-        "xyz.openbmc_project.Inventory.Decorator.Asset": {
-            "Manufacturer": "$PRODUCT_MANUFACTURER",
-            "Model": "$PRODUCT_PRODUCT_NAME",
-            "PartNumber": "$PRODUCT_PART_NUMBER",
-            "SerialNumber": "$PRODUCT_SERIAL_NUMBER"
-        }
-    },
-    {
-        "Exposes": [
-            {
-                "Address": "$address",
-                "Bus": "$bus",
-                "Name": "Solum 1600W PSU FRU",
-                "Type": "EEPROM"
-            },
-            {
-                "Class": "fan",
-                "FFGainCoefficient": 0.01,
-                "FFOffCoefficient": 0.0,
-                "ICoefficient": 0.0,
-                "ILimitMax": 0.0,
-                "ILimitMin": 0.0,
-                "Inputs": [
-                    "PSU2 Fan Speed 1"
-                ],
-                "Name": "PSU2 Fan 1",
-                "NegativeHysteresis": 2.0,
-                "OutLimitMax": 100.0,
-                "OutLimitMin": 30.0,
-                "Outputs": [
-                    "Pwm PSU2 Fan 1"
-                ],
-                "PCoefficient": 0.0,
-                "PositiveHysteresis": 0.0,
-                "SlewNeg": 0.0,
-                "SlewPos": 0.0,
-                "Type": "Pid",
-                "Zones": [
-                    "PSU"
-                ]
-            },
-            {
-                "Class": "Floor",
-                "Inputs": [
-                    "PSU2 Temperature"
-                ],
-                "Name": "PSU2 LCC",
-                "NegativeHysteresis": 2,
-                "Output": [
-                    40.0,
-                    100.0
-                ],
-                "PositiveHysteresis": 0,
-                "Reading": [
-                    30.0,
-                    65.0
-                ],
-                "Type": "Stepwise",
-                "Zones": [
-                    "PSU"
-                ]
-            },
-            {
-                "Address": "0x59",
-                "Bus": "$bus",
-                "Name": "PSU2",
-                "Thresholds": [
-                    {
-                        "Direction": "greater than",
-                        "Label": "pin",
-                        "Name": "upper critical",
-                        "Severity": 1,
-                        "Value": 2149.5
-                    },
-                    {
-                        "Direction": "greater than",
-                        "Label": "pin",
-                        "Name": "upper non critical",
-                        "Severity": 0,
-                        "Value": 1951.6
-                    },
-                    {
-                        "Direction": "greater than",
-                        "Label": "iout1",
-                        "Name": "upper critical",
-                        "Severity": 1,
-                        "Value": 122
-                    },
-                    {
-                        "Direction": "greater than",
-                        "Label": "iout1",
-                        "Name": "upper non critical",
-                        "Severity": 0,
-                        "Value": 100
-                    },
-                    {
-                        "Direction": "greater than",
-                        "Label": "temp1",
-                        "Name": "upper critical",
-                        "Severity": 1,
-                        "Value": 78
-                    },
-                    {
-                        "Direction": "greater than",
-                        "Label": "temp1",
-                        "Name": "upper non critical",
-                        "Severity": 0,
-                        "Value": 73
-                    }
-                ],
-                "Type": "pmbus"
-            }
-        ],
-        "Name": "Solum 1600W PSU 2",
-        "Probe": "xyz.openbmc_project.FruDevice({'PRODUCT_PRODUCT_NAME': 'PSSF162205A', 'ADDRESS': 81})",
-        "Type": "PowerSupply",
-        "xyz.openbmc_project.Inventory.Decorator.Asset": {
-            "Manufacturer": "$PRODUCT_MANUFACTURER",
-            "Model": "$PRODUCT_PRODUCT_NAME",
-            "PartNumber": "$PRODUCT_PART_NUMBER",
-            "SerialNumber": "$PRODUCT_SERIAL_NUMBER"
-        }
-    },
-    {
-        "Exposes": [
-            {
-                "Address": "$address",
-                "Bus": "$bus",
-                "Name": "Solum 1600W PSU FRU",
-                "Type": "EEPROM"
-            },
-            {
-                "Class": "fan",
-                "FFGainCoefficient": 0.01,
-                "FFOffCoefficient": 0.0,
-                "ICoefficient": 0.0,
-                "ILimitMax": 0.0,
-                "ILimitMin": 0.0,
-                "Inputs": [
-                    "PSU1 Fan Speed 1"
-                ],
-                "Name": "PSU1 Fan 1",
-                "NegativeHysteresis": 2.0,
-                "OutLimitMax": 100.0,
-                "OutLimitMin": 30.0,
-                "Outputs": [
-                    "Pwm PSU1 Fan 1"
-                ],
-                "PCoefficient": 0.0,
-                "PositiveHysteresis": 0.0,
-                "SlewNeg": 0.0,
-                "SlewPos": 0.0,
-                "Type": "Pid",
-                "Zones": [
-                    "PSU"
-                ]
-            },
-            {
-                "Class": "Floor",
-                "Inputs": [
-                    "PSU1 Temperature"
-                ],
-                "Name": "PSU1 LCC",
+                "Name": "PSU$ADDRESS % 4 + 1 LCC",
                 "NegativeHysteresis": 2,
                 "Output": [
                     40.0,
@@ -289,7 +57,7 @@
             {
                 "Address": "0x58",
                 "Bus": "$bus",
-                "Name": "PSU1",
+                "Name": "PSU$ADDRESS % 4 + 1",
                 "Thresholds": [
                     {
                         "Direction": "greater than",
@@ -337,7 +105,7 @@
                 "Type": "pmbus"
             }
         ],
-        "Name": "Solum 1600W PSU 1",
+        "Name": "Solum 1600W PSU$ADDRESS % 4 + 1",
         "Probe": "xyz.openbmc_project.FruDevice({'PRODUCT_PRODUCT_NAME': 'PSSF162205A', 'ADDRESS': 80})",
         "Type": "PowerSupply",
         "xyz.openbmc_project.Inventory.Decorator.Asset": {

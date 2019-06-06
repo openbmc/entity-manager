@@ -2,54 +2,10 @@
     {
         "Exposes": [
             {
-                "Address": "0x5a",
+                "Address": "$address",
                 "Bus": "$bus",
-                "Name": "PSU3",
-                "Thresholds": [
-                    {
-                        "Direction": "greater than",
-                        "Label": "pin",
-                        "Name": "upper critical",
-                        "Severity": 1,
-                        "Value": 1516.5
-                    },
-                    {
-                        "Direction": "greater than",
-                        "Label": "pin",
-                        "Name": "upper non critical",
-                        "Severity": 0,
-                        "Value": 1364.8
-                    },
-                    {
-                        "Direction": "greater than",
-                        "Label": "iout1",
-                        "Name": "upper critical",
-                        "Severity": 1,
-                        "Value": 125
-                    },
-                    {
-                        "Direction": "greater than",
-                        "Label": "iout1",
-                        "Name": "upper non critical",
-                        "Severity": 0,
-                        "Value": 100
-                    },
-                    {
-                        "Direction": "greater than",
-                        "Label": "temp1",
-                        "Name": "upper critical",
-                        "Severity": 1,
-                        "Value": 65
-                    },
-                    {
-                        "Direction": "greater than",
-                        "Label": "temp1",
-                        "Name": "upper non critical",
-                        "Severity": 0,
-                        "Value": 62
-                    }
-                ],
-                "Type": "pmbus"
+                "Name": "PSU $ADDRESS % 4 + 1 FRU",
+                "Type": "EEPROM"
             },
             {
                 "Class": "fan",
@@ -59,14 +15,14 @@
                 "ILimitMax": 0.0,
                 "ILimitMin": 0.0,
                 "Inputs": [
-                    "PSU3 Fan Speed 1"
+                    "PSU $ADDRESS % 4 + 1 Fan Speed 1"
                 ],
-                "Name": "PSU3 Fan 1",
+                "Name": "PSU$ADDRESS % 4 + 1 Fan 1",
                 "NegativeHysteresis": 2.0,
                 "OutLimitMax": 100.0,
                 "OutLimitMin": 30.0,
                 "Outputs": [
-                    "Pwm PSU3 Fan 1"
+                    "Pwm PSU$ADDRESS % 4 + 1 Fan 1"
                 ],
                 "PCoefficient": 0.0,
                 "PositiveHysteresis": 0.0,
@@ -80,159 +36,28 @@
             {
                 "Class": "Floor",
                 "Inputs": [
-                    "PSU3 Temperature"
+                    "PSU$ADDRESS % 4 + 1 Temperature"
                 ],
-                "Name": "PSU3 LCC",
+                "Name": "PSU $ADDRESS % 4 + 1 LCC",
                 "NegativeHysteresis": 2,
                 "Output": [
-                    40.0, 100.0
+                    40.0,
+                    100.0
                 ],
                 "PositiveHysteresis": 0,
                 "Reading": [
-                    30.0, 65.0
+                    30.0,
+                    65.0
                 ],
                 "Type": "Stepwise",
                 "Zones": [
                     "PSU"
                 ]
             },
-            {
-                "Address": "$address",
-                "Bus": "$bus",
-                "Name": "Flextronics S-1100ADU00-201 PSU FRU",
-                "Type": "EEPROM"
-            }
-        ],
-        "Name": "Flextronics S-1100ADU00-201 PSU 3",
-        "Probe": "xyz.openbmc_project.FruDevice({'PRODUCT_PRODUCT_NAME': 'S-1100ADU00-201', 'ADDRESS': 82})",
-        "Type": "PowerSupply",
-        "xyz.openbmc_project.Inventory.Decorator.Asset": {
-            "Manufacturer": "$BOARD_MANUFACTURER",
-            "Model": "$BOARD_PRODUCT_NAME",
-            "PartNumber": "$BOARD_PART_NUMBER",
-            "SerialNumber": "$BOARD_SERIAL_NUMBER"
-        }
-    },
-    {
-        "Exposes": [
-            {
-                "Address": "0x59",
-                "Bus": "$bus",
-                "Name": "PSU2",
-                "Thresholds": [
-                    {
-                        "Direction": "greater than",
-                        "Label": "pin",
-                        "Name": "upper critical",
-                        "Severity": 1,
-                        "Value": 1516.5
-                    },
-                    {
-                        "Direction": "greater than",
-                        "Label": "pin",
-                        "Name": "upper non critical",
-                        "Severity": 0,
-                        "Value": 1364.8
-                    },
-                    {
-                        "Direction": "greater than",
-                        "Label": "iout1",
-                        "Name": "upper critical",
-                        "Severity": 1,
-                        "Value": 125
-                    },
-                    {
-                        "Direction": "greater than",
-                        "Label": "iout1",
-                        "Name": "upper non critical",
-                        "Severity": 0,
-                        "Value": 100
-                    },
-                    {
-                        "Direction": "greater than",
-                        "Label": "temp1",
-                        "Name": "upper critical",
-                        "Severity": 1,
-                        "Value": 65
-                    },
-                    {
-                        "Direction": "greater than",
-                        "Label": "temp1",
-                        "Name": "upper non critical",
-                        "Severity": 0,
-                        "Value": 62
-                    }
-                ],
-                "Type": "pmbus"
-            },
-            {
-                "Class": "fan",
-                "FFGainCoefficient": 0.01,
-                "FFOffCoefficient": 0.0,
-                "ICoefficient": 0.0,
-                "ILimitMax": 0.0,
-                "ILimitMin": 0.0,
-                "Inputs": [
-                    "PSU2 Fan Speed 1"
-                ],
-                "Name": "PSU2 Fan 1",
-                "NegativeHysteresis": 2.0,
-                "OutLimitMax": 100.0,
-                "OutLimitMin": 30.0,
-                "Outputs": [
-                    "Pwm PSU2 Fan 1"
-                ],
-                "PCoefficient": 0.0,
-                "PositiveHysteresis": 0.0,
-                "SlewNeg": 0.0,
-                "SlewPos": 0.0,
-                "Type": "Pid",
-                "Zones": [
-                    "PSU"
-                ]
-            },
-            {
-                "Class": "Floor",
-                "Inputs": [
-                    "PSU2 Temperature"
-                ],
-                "Name": "PSU2 LCC",
-                "NegativeHysteresis": 2,
-                "Output": [
-                    40.0, 100.0
-                ],
-                "PositiveHysteresis": 0,
-                "Reading": [
-                    30.0, 65.0
-                ],
-                "Type": "Stepwise",
-                "Zones": [
-                    "PSU"
-                ]
-            },
-            {
-                "Address": "$address",
-                "Bus": "$bus",
-                "Name": "Flextronics S-1100ADU00-201 PSU FRU",
-                "Type": "EEPROM"
-            }
-        ],
-        "Name": "Flextronics S-1100ADU00-201 PSU 2",
-        "Probe": "xyz.openbmc_project.FruDevice({'PRODUCT_PRODUCT_NAME': 'S-1100ADU00-201', 'ADDRESS': 81})",
-        "Type": "PowerSupply",
-        "xyz.openbmc_project.Inventory.Decorator.Asset": {
-            "Manufacturer": "$BOARD_MANUFACTURER",
-            "Model": "$BOARD_PRODUCT_NAME",
-            "PartNumber": "$BOARD_PART_NUMBER",
-            "SerialNumber": "$BOARD_SERIAL_NUMBER"
-        }
-    },
-    {
-        "Exposes": [
             {
                 "Address": "0x58",
                 "Bus": "$bus",
-                "Name": "PSU1",
+                "Name": "PSU$ADDRESS % 4 + 1",
                 "Thresholds": [
                     {
                         "Direction": "greater than",
@@ -278,61 +103,10 @@
                     }
                 ],
                 "Type": "pmbus"
-            },
-            {
-                "Class": "fan",
-                "FFGainCoefficient": 0.01,
-                "FFOffCoefficient": 0.0,
-                "ICoefficient": 0.0,
-                "ILimitMax": 0.0,
-                "ILimitMin": 0.0,
-                "Inputs": [
-                    "PSU1 Fan Speed 1"
-                ],
-                "Name": "PSU1 Fan 1",
-                "NegativeHysteresis": 2.0,
-                "OutLimitMax": 100.0,
-                "OutLimitMin": 30.0,
-                "Outputs": [
-                    "Pwm PSU1 Fan 1"
-                ],
-                "PCoefficient": 0.0,
-                "PositiveHysteresis": 0.0,
-                "SlewNeg": 0.0,
-                "SlewPos": 0.0,
-                "Type": "Pid",
-                "Zones": [
-                    "PSU"
-                ]
-            },
-            {
-                "Class": "Floor",
-                "Inputs": [
-                    "PSU1 Temperature"
-                ],
-                "Name": "PSU1 LCC",
-                "NegativeHysteresis": 2,
-                "Output": [
-                    40.0, 100.0
-                ],
-                "PositiveHysteresis": 0,
-                "Reading": [
-                    30.0, 65.0
-                ],
-                "Type": "Stepwise",
-                "Zones": [
-                    "PSU"
-                ]
-            },
-            {
-                "Address": "$address",
-                "Bus": "$bus",
-                "Name": "Flextronics S-1100ADU00-201 PSU FRU",
-                "Type": "EEPROM"
             }
         ],
-        "Name": "Flextronics S-1100ADU00-201 PSU 1",
-        "Probe": "xyz.openbmc_project.FruDevice({'PRODUCT_PRODUCT_NAME': 'S-1100ADU00-201', 'ADDRESS': 80})",
+        "Name": "Flextronics S-1100ADU00-201 PSU $ADDRESS % 4 + 1",
+        "Probe": "xyz.openbmc_project.FruDevice({'PRODUCT_PRODUCT_NAME': 'S-1100ADU00-201'})",
         "Type": "PowerSupply",
         "xyz.openbmc_project.Inventory.Decorator.Asset": {
             "Manufacturer": "$BOARD_MANUFACTURER",
