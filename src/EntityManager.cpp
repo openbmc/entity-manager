@@ -20,11 +20,14 @@
 #include <Utils.hpp>
 #include <VariantVisitors.hpp>
 #include <boost/algorithm/string/case_conv.hpp>
+#include <boost/algorithm/string/classification.hpp>
 #include <boost/algorithm/string/predicate.hpp>
 #include <boost/algorithm/string/replace.hpp>
+#include <boost/algorithm/string/split.hpp>
 #include <boost/container/flat_map.hpp>
 #include <boost/container/flat_set.hpp>
 #include <boost/lexical_cast.hpp>
+#include <boost/range/iterator_range.hpp>
 #include <filesystem>
 #include <fstream>
 #include <iostream>
@@ -40,7 +43,7 @@ constexpr const char* tempConfigDir = "/tmp/configuration/";
 constexpr const char* lastConfiguration = "/tmp/configuration/last.json";
 constexpr const char* currentConfiguration = "/var/configuration/system.json";
 constexpr const char* globalSchema = "global.json";
-constexpr const char* TEMPLATE_CHAR = "$";
+constexpr const char* templateChar = "$";
 constexpr const int32_t MAX_MAPPER_DEPTH = 0;
 
 constexpr const bool DEBUG = false;
@@ -304,9 +307,7 @@ bool probeDbus(
         }
         if (deviceMatches)
         {
-            devices.emplace_back(
-                boost::container::flat_map<std::string, BasicVariantType>(
-                    device));
+            devices.emplace_back(device);
             foundMatch = true;
             deviceMatches = false; // for next iteration
         }
@@ -1145,15 +1146,148 @@ void templateCharReplace(
         return;
     }
 
-    boost::replace_all(*strPtr, "$index", std::to_string(foundDeviceIdx));
+    boost::replace_all(*strPtr, std::string(templateChar) + "index",
+                       std::to_string(foundDeviceIdx));
 
     for (auto& foundDevicePair : foundDevice)
     {
-        std::string templateName = "$" + foundDevicePair.first;
-        if (boost::iequals(*strPtr, templateName))
+        std::string templateName = templateChar + foundDevicePair.first;
+        boost::iterator_range<std::string::const_iterator> find =
+            boost::ifind_first(*strPtr, templateName);
+        if (find)
         {
-            std::visit([&](auto&& val) { keyPair.value() = val; },
-                       foundDevicePair.second);
+            size_t start = find.begin() - strPtr->begin();
+            // check for additional operations
+            if (find.end() != strPtr->end())
+            {
+                // save the prefix
+                std::string prefix = strPtr->substr(0, start);
+
+                // operate on the rest (+1 for trailing space)
+                std::string end =
+                    strPtr->substr(start + templateName.size() + 1);
+
+                std::vector<std::string> split;
+                boost::split(split, end, boost::is_any_of(" "));
+
+                // need at least 1 operation and number
+                if (split.size() < 2)
+                {
+                    std::cerr << "Syntax error on template replacement of "
+                              << *strPtr << "\n";
+                    for (const std::string& data : split)
+                    {
+                        std::cerr << data << " ";
+                    }
+                    std::cerr << "\n";
+                    continue;
+                }
+
+                // we assume that the replacement is a number, because we can
+                // only do math on numbers.. we might concatenate strings in the
+                // future, but thats later
+                int number =
+                    std::visit(VariantToIntVisitor(), foundDevicePair.second);
+                std::cerr << "number : " << number << "\n";
+                bool isOperator = true;
+                TemplateOperation next = TemplateOperation::addition;
+
+                auto it = split.begin();
+
+                for (; it != split.end(); it++)
+                {
+                    if (isOperator)
+                    {
+                        if (*it == "+")
+                        {
+                            next = TemplateOperation::addition;
+                        }
+                        else if (*it == "-")
+                        {
+                            next = TemplateOperation::subtraction;
+                        }
+                        else if (*it == "*")
+                        {
+                            next = TemplateOperation::multiplication;
+                        }
+                        else if (*it == R"(%)")
+                        {
+                            next = TemplateOperation::modulo;
+                        }
+                        else if (*it == R"(/)")
+                        {
+                            next = TemplateOperation::division;
+                        }
+                        else
+                        {
+                            break;
+                        }
+                    }
+                    else
+                    {
+                        int constant = 0;
+                        try
+                        {
+                            constant = std::stoi(*it);
+                        }
+                        catch (std::invalid_argument&)
+                        {
+                            std::cerr
+                                << "Parameter not supported for templates "
+                                << *it << "\n";
+                            break;
+                        }
+                        switch (next)
+                        {
+                            case TemplateOperation::addition:
+                            {
+                                number += constant;
+                                break;
+                            }
+                            case TemplateOperation::subtraction:
+                            {
+                                number -= constant;
+                                break;
+                            }
+                            case TemplateOperation::multiplication:
+                            {
+                                number /= constant;
+                                break;
+                            }
+                            case TemplateOperation::division:
+                            {
+                                number /= constant;
+                                break;
+                            }
+                            case TemplateOperation::modulo:
+                            {
+                                number = number % constant;
+                                break;
+                            }
+
+                            default:
+                                break;
+                        }
+                    }
+                    isOperator = !isOperator;
+                }
+                std::string result = prefix + std::to_string(number);
+
+                if (it != split.end())
+                {
+                    for (; it != split.end(); it++)
+                    {
+                        result += " " + *it;
+                    }
+                }
+                keyPair.value() = result;
+            }
+            else
+            {
+                std::visit([&](auto&& val) { keyPair.value() = val; },
+                           foundDevicePair.second);
+            }
+
             // We probably just invalidated the pointer above, so set it to null
             strPtr = nullptr;
             break;
@@ -1186,6 +1320,18 @@ void templateCharReplace(
         {
         }
         catch (std::out_of_range)
+        {
+        }
+    }
+    // non-hex numbers
+    else
+    {
+        try
+        {
+            uint64_t temp = boost::lexical_cast<uint64_t>(*strPtr);
+            keyPair.value() = temp;
+        }
+        catch (boost::bad_lexical_cast&)
         {
         }
     }
@@ -1327,10 +1473,9 @@ struct PerformScan : std::enable_shared_from_this<PerformScan>
                     PASSED_PROBES.push_back(probeName);
                     size_t foundDeviceIdx = 0;
 
-                    nlohmann::json record = *recordPtr;
-
                     for (auto& foundDevice : foundDevices)
                     {
+                        nlohmann::json record = *recordPtr;
                         std::string recordName;
                         size_t hash = 0;
                         if (foundDevice)
