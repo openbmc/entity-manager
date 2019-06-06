@@ -36,3 +36,12 @@ inline void logDeviceRemoved(const std::string& device)
                     "REDFISH_MESSAGE_ID=%s", "OpenBMC.0.1.InventoryRemoved",
                     "REDFISH_MESSAGE_ARGS=%s", device.c_str(), NULL);
 }
+
+enum class TemplateOperation
+{
+    addition,
+    division,
+    multiplication,
+    subtraction,
+    modulo,
+};
