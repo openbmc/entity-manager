@@ -47,7 +47,15 @@ inline void logDeviceAdded(const nlohmann::json& record)
         }
         if (findSn != findAsset->end())
         {
-            sn = findSn->get<std::string>();
+            const std::string* getSn = findSn->get_ptr<const std::string*>();
+            if (getSn != nullptr)
+            {
+                sn = *getSn;
+            }
+            else
+            {
+                sn = findSn->dump();
+            }
         }
     }
 
@@ -81,7 +89,15 @@ inline void logDeviceRemoved(const nlohmann::json& record)
         }
         if (findSn != findAsset->end())
         {
-            sn = findSn->get<std::string>();
+            const std::string* getSn = findSn->get_ptr<const std::string*>();
+            if (getSn != nullptr)
+            {
+                sn = *getSn;
+            }
+            else
+            {
+                sn = findSn->dump();
+            }
         }
     }
 
@@ -90,3 +106,12 @@ inline void logDeviceRemoved(const nlohmann::json& record)
                     "REDFISH_MESSAGE_ARGS=%s,%s,%s", model.c_str(),
                     type.c_str(), sn.c_str(), NULL);
 }
+
+enum class TemplateOperation
+{
+    addition,
+    division,
+    multiplication,
+    subtraction,
+    modulo,
+};
