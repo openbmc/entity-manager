@@ -2,6 +2,59 @@
     {
         "Exposes": [
             {
+                "Address": "$address",
+                "Bus": "$bus",
+                "Name": "Solum 1300W PSU$ADDRESS % 4 + 1 FRU",
+                "Type": "EEPROM"
+            },
+            {
+                "Class": "fan",
+                "FFGainCoefficient": 0.01,
+                "FFOffCoefficient": 0.0,
+                "ICoefficient": 0.0,
+                "ILimitMax": 0.0,
+                "ILimitMin": 0.0,
+                "Inputs": [
+                    "PSU$ADDRESS % 4 + 1 Fan Speed 1"
+                ],
+                "Name": "PSU$ADDRESS % 4 + 1 Fan 1",
+                "NegativeHysteresis": 2.0,
+                "OutLimitMax": 100.0,
+                "OutLimitMin": 30.0,
+                "Outputs": [
+                    "Pwm PSU$ADDRESS % 4 + 1 Fan 1"
+                ],
+                "PCoefficient": 0.0,
+                "PositiveHysteresis": 0.0,
+                "SlewNeg": 0.0,
+                "SlewPos": 0.0,
+                "Type": "Pid",
+                "Zones": [
+                    "PSU"
+                ]
+            },
+            {
+                "Class": "Floor",
+                "Inputs": [
+                    "PSU$ADDRESS % 4 + 1 Temperature"
+                ],
+                "Name": "PSU$ADDRESS % 4 + 1 LCC",
+                "NegativeHysteresis": 2,
+                "Output": [
+                    40.0,
+                    100.0
+                ],
+                "PositiveHysteresis": 0,
+                "Reading": [
+                    30.0,
+                    65.0
+                ],
+                "Type": "Stepwise",
+                "Zones": [
+                    "PSU"
+                ]
+            },
+            {
                 "Address": "$ADDRESS % 4 + 88",
                 "Bus": "$bus",
                 "Name": "PSU$ADDRESS % 4 + 1",
@@ -50,57 +103,6 @@
                     }
                 ],
                 "Type": "pmbus"
-            },
-            {
-                "Class": "fan",
-                "FFGainCoefficient": 0.01,
-                "FFOffCoefficient": 0.0,
-                "ICoefficient": 0.0,
-                "ILimitMax": 0.0,
-                "ILimitMin": 0.0,
-                "Inputs": [
-                    "PSU$ADDRESS % 4 + 1 Fan Speed 1"
-                ],
-                "Name": "PSU$ADDRESS % 4 + 1 Fan 1",
-                "NegativeHysteresis": 2.0,
-                "OutLimitMax": 100.0,
-                "OutLimitMin": 30.0,
-                "Outputs": [
-                    "Pwm PSU$ADDRESS % 4 + 1 Fan 1"
-                ],
-                "PCoefficient": 0.0,
-                "PositiveHysteresis": 0.0,
-                "SlewNeg": 0.0,
-                "SlewPos": 0.0,
-                "Type": "Pid",
-                "Zones": [
-                    "PSU"
-                ]
-            },
-            {
-                "Class": "Floor",
-                "Inputs": [
-                    "PSU$ADDRESS % 4 + 1 Temperature"
-                ],
-                "Name": "PSU$ADDRESS % 4 + 1 LCC",
-                "NegativeHysteresis": 2,
-                "Output": [
-                    40.0, 100.0
-                ],
-                "PositiveHysteresis": 0,
-                "Reading": [
-                    30.0, 65.0
-                ],
-                "Type": "Stepwise",
-                "Zones": [
-                    "PSU"
-                ]
-            },
-            {
-                "Address": "$address",
-                "Bus": "$bus",
-                "Name": "Solum 1300W PSU$ADDRESS % 4 + 1 FRU",
-                "Type": "EEPROM"
             }
         ],
         "Name": "Solum 1300W PSU$ADDRESS % 4 + 1",
