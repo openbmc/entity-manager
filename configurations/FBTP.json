@@ -345,6 +345,12 @@
             ]
         },
         {
+            "FailSafePercent": 100,
+            "MinThermalOutput": 10,
+            "Name": "Left",
+            "Type": "Pid.Zone"
+        },
+        {
             "Class": "temp",
             "Inputs": [
                 "MB_INLET_TEMP"
@@ -577,60 +583,6 @@
             ]
         },
         {
-            "FailSafePercent": 100,
-            "MinThermalOutput": 10,
-            "Name": "Left",
-            "Type": "Pid.Zone"
-        },
-        {
-            "Address": "0x30",
-            "Bus": 0,
-            "CpuID": 1,
-            "Name": "CPU 1",
-            "DtsCritOffset": -2.0,
-            "Thresholds": [
-                {
-                    "Direction": "greater than",
-                    "Label": "DIMM",
-                    "Name": "upper critical",
-                    "Severity": 1,
-                    "Value": 99
-                },
-                {
-                    "Direction": "greater than",
-                    "Label": "DIMM",
-                    "Name": "upper non critical",
-                    "Severity": 0,
-                    "Value": 89
-                }
-            ],
-            "Type": "XeonCPU"
-        },
-        {
-            "Address": "0x31",
-            "Bus": 0,
-            "CpuID": 2,
-            "Name": "CPU 2",
-            "DtsCritOffset": -2.0,
-            "Thresholds": [
-                {
-                    "Direction": "greater than",
-                    "Label": "DIMM",
-                    "Name": "upper critical",
-                    "Severity": 1,
-                    "Value": 99
-                },
-                {
-                    "Direction": "greater than",
-                    "Label": "DIMM",
-                    "Name": "upper non critical",
-                    "Severity": 0,
-                    "Value": 89
-                }
-            ],
-            "Type": "XeonCPU"
-        },
-        {
             "Address": "0x4e",
             "Bus": 6,
             "Name": "MB_INLET_TEMP",
@@ -674,6 +626,54 @@
                 }
             ],
             "Type": "TMP421"
+        },
+        {
+            "Address": "0x30",
+            "Bus": 0,
+            "CpuID": 1,
+            "DtsCritOffset": -2.0,
+            "Name": "CPU 1",
+            "Thresholds": [
+                {
+                    "Direction": "greater than",
+                    "Label": "DIMM",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 99
+                },
+                {
+                    "Direction": "greater than",
+                    "Label": "DIMM",
+                    "Name": "upper non critical",
+                    "Severity": 0,
+                    "Value": 89
+                }
+            ],
+            "Type": "XeonCPU"
+        },
+        {
+            "Address": "0x31",
+            "Bus": 0,
+            "CpuID": 2,
+            "DtsCritOffset": -2.0,
+            "Name": "CPU 2",
+            "Thresholds": [
+                {
+                    "Direction": "greater than",
+                    "Label": "DIMM",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 99
+                },
+                {
+                    "Direction": "greater than",
+                    "Label": "DIMM",
+                    "Name": "upper non critical",
+                    "Severity": 0,
+                    "Value": 89
+                }
+            ],
+            "Type": "XeonCPU"
         }
     ],
     "Name": "TiogaPass Baseboard",
