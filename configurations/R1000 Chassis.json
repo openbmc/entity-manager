@@ -599,13 +599,19 @@
         "FOUND('WFP Baseboard')",
         "AND",
         "xyz.openbmc_project.FruDevice({'BOARD_PRODUCT_NAME': 'F1UL16RISER\\d'})",
+        "AND",
+        "xyz.openbmc_project.FruDevice({'PRODUCT_PRODUCT_NAME': '.*WFT'})",
         "MATCH_ONE"
     ],
     "Type": "Chassis",
     "xyz.openbmc_project.Inventory.Decorator.Asset": {
-        "Manufacturer": "Intel Corporation",
-        "Model": "R1000",
-        "PartNumber": "R1208",
-        "SerialNumber": "23165"
-    }
+        "Manufacturer": "$PRODUCT_MANUFACTURER",
+        "Model": "$PRODUCT_PRODUCT_NAME",
+        "PartNumber": "$PRODUCT_PART_NUMBER",
+        "SerialNumber": "$PRODUCT_SERIAL_NUMBER"
+    },
+    "xyz.openbmc_project.Inventory.Decorator.AssetTag": {
+        "AssetTag": "$PRODUCT_ASSET_TAG"
+    },
+    "xyz.openbmc_project.Inventory.Item.System": {}
 }
