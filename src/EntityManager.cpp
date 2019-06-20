@@ -448,11 +448,11 @@ bool probe(
     }
     if (matchOne && ret)
     {
-        // match one could match multiple dbus values, which means we don't care
-        // what one we found so we shouldn't be using template replace. return
-        // an empty one
+        // match the last one
+        auto last = foundDevs.back();
         foundDevs.clear();
-        foundDevs.emplace_back(std::nullopt);
+
+        foundDevs.emplace_back(std::move(last));
     }
     return ret;
 }
