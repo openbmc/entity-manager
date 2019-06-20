@@ -479,13 +479,17 @@
         "FOUND('WFP Baseboard')",
         "AND",
         "xyz.openbmc_project.FruDevice({'BOARD_PRODUCT_NAME': 'A2UL\\d+RISER\\d'})",
+        "AND",
+        "xyz.openbmc_project.FruDevice({'PRODUCT_PRODUCT_NAME': '.*WFT'})",
         "MATCH_ONE"
     ],
     "Type": "Chassis",
     "xyz.openbmc_project.Inventory.Decorator.Asset": {
-        "Manufacturer": "Intel Corporation",
-        "Model": "R2000",
-        "PartNumber": "R2104",
-        "SerialNumber": "23165"
-    }
+        "AssetTag": "$PRODUCT_ASSET_TAG",
+        "Manufacturer": "$PRODUCT_MANUFACTURER",
+        "Model": "$PRODUCT_PRODUCT_NAME",
+        "PartNumber": "$PRODUCT_PART_NUMBER",
+        "SerialNumber": "$PRODUCT_SERIAL_NUMBER"
+    },
+    "xyz.openbmc_project.Inventory.Item.System": {}
 }
