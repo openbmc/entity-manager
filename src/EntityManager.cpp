@@ -1130,7 +1130,8 @@ void templateCharReplace(
         foundDevice,
     size_t& foundDeviceIdx)
 {
-    if (keyPair.value().type() == nlohmann::json::value_t::object)
+    if (keyPair.value().type() == nlohmann::json::value_t::object ||
+        keyPair.value().type() == nlohmann::json::value_t::array)
     {
         for (auto nextLayer = keyPair.value().begin();
              nextLayer != keyPair.value().end(); nextLayer++)
