@@ -1656,6 +1656,10 @@ void startRemovedTimer(boost::asio::deadline_timer& timer,
     static bool scannedPowerOff = false;
     static bool scannedPowerOn = false;
 
+    if (systemConfiguration.empty() || lastJson.empty())
+    {
+        return; // not ready yet
+    }
     if (scannedPowerOn)
     {
         return;
