@@ -328,6 +328,7 @@ bool probe(
     bool matchOne = false;
     bool cur = true;
     probe_type_codes lastCommand = probe_type_codes::FALSE_T;
+    bool first = true;
 
     for (auto& probe : probeCommand)
     {
@@ -424,17 +425,19 @@ bool probe(
 
         // some functions like AND and OR only take affect after the
         // fact
-        switch (lastCommand)
+        if (lastCommand == probe_type_codes::AND)
         {
-            case probe_type_codes::AND:
-                ret = cur && ret;
-                break;
-            case probe_type_codes::OR:
-                ret = cur || ret;
-                break;
-            default:
-                ret = cur;
-                break;
+            ret = cur && ret;
+        }
+        else if (lastCommand == probe_type_codes::OR)
+        {
+            ret = cur || ret;
+        }
+
+        if (first)
+        {
+            ret = cur;
+            first = false;
         }
         lastCommand = probeType != PROBE_TYPES.end()
                           ? probeType->second
