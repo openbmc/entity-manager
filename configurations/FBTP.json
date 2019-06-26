@@ -1092,6 +1092,238 @@
             "Type": "pmbus"
         },
         {
+            "Address": "0x48",
+            "Bus": 16,
+            "Name": "MB_C2_AVA_RTEMP",
+            "Thresholds": [
+                {
+                    "Direction": "greater than",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 80
+                }
+            ],
+            "Type": "TMP75"
+        },
+        {
+            "Address": "0x49",
+            "Bus": 16,
+            "Name": "MB_C2_AVA_FTEMP",
+            "Thresholds": [
+                {
+                    "Direction": "greater than",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 60
+                }
+            ],
+            "Type": "TMP75"
+        },
+        {
+            "Address": "0x48",
+            "Bus": 17,
+            "Name": "MB_C3_AVA_RTEMP",
+            "Thresholds": [
+                {
+                    "Direction": "greater than",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 80
+                }
+            ],
+            "Type": "TMP75"
+        },
+        {
+            "Address": "0x49",
+            "Bus": 17,
+            "Name": "MB_C3_AVA_FTEMP",
+            "Thresholds": [
+                {
+                    "Direction": "greater than",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 60
+                }
+            ],
+            "Type": "TMP75"
+        },
+        {
+            "Address": "0x48",
+            "Bus": 18,
+            "Name": "MB_C4_AVA_RTEMP",
+            "Thresholds": [
+                {
+                    "Direction": "greater than",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 80
+                }
+            ],
+            "Type": "TMP75"
+        },
+        {
+            "Address": "0x49",
+            "Bus": 18,
+            "Name": "MB_C4_AVA_FTEMP",
+            "Thresholds": [
+                {
+                    "Direction": "greater than",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 60
+                }
+            ],
+            "Type": "TMP75"
+        },
+        {
+            "Address": "0x40",
+            "Bus": 19,
+            "Name": "MB_C2_P12V_INA230",
+            "Labels": ["in1", "curr1", "power1"],
+            "Thresholds" : [
+                {
+                    "Direction": "greater than",
+                    "Label": "in1",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 12.96
+                },
+                {
+                    "Direction": "less than",
+                    "Label": "in1",
+                    "Name": "lower critical",
+                    "Severity": 1,
+                    "Value": 11.04
+                },
+                {
+                    "Direction": "greater than",
+                    "Label": "curr1",
+                    "Name": "upper non critical",
+                    "Severity": 0,
+                    "Value": 5.5
+                },
+                {
+                    "Direction": "greater than",
+                    "Label": "power1",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 75.0
+                }
+            ],
+            "Type": "pmbus"
+        },
+        {
+            "Address": "0x41",
+            "Bus": 19,
+            "Name": "MB_C3_P12V_INA230",
+            "Labels": ["in1", "curr1", "power1"],
+            "Thresholds" : [
+                {
+                    "Direction": "greater than",
+                    "Label": "in1",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 12.96
+                },
+                {
+                    "Direction": "less than",
+                    "Label": "in1",
+                    "Name": "lower critical",
+                    "Severity": 1,
+                    "Value": 11.04
+                },
+                {
+                    "Direction": "greater than",
+                    "Label": "curr1",
+                    "Name": "upper non critical",
+                    "Severity": 0,
+                    "Value": 5.5
+                },
+                {
+                    "Direction": "greater than",
+                    "Label": "power1",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 75.0
+                }
+            ],
+            "Type": "pmbus"
+        },
+        {
+            "Address": "0x44",
+            "Bus": 19,
+            "Name": "MB_C4_P12V_INA230",
+            "Labels": ["in1", "curr1", "power1"],
+            "Thresholds" : [
+                {
+                    "Direction": "greater than",
+                    "Label": "in1",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 12.96
+                },
+                {
+                    "Direction": "less than",
+                    "Label": "in1",
+                    "Name": "lower critical",
+                    "Severity": 1,
+                    "Value": 11.04
+                },
+                {
+                    "Direction": "greater than",
+                    "Label": "curr1",
+                    "Name": "upper non critical",
+                    "Severity": 0,
+                    "Value": 5.5
+                },
+                {
+                    "Direction": "greater than",
+                    "Label": "power1",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 75.0
+                }
+            ],
+            "Type": "pmbus"
+        },
+        {
+            "Address": "0x45",
+            "Bus": 19,
+            "Name": "MB_CONN_P12V_INA230",
+            "Labels": ["in1", "curr1", "power1"],
+            "Thresholds" : [
+                {
+                    "Direction": "greater than",
+                    "Label": "in1",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 12.96
+                },
+                {
+                    "Direction": "less than",
+                    "Label": "in1",
+                    "Name": "lower critical",
+                    "Severity": 1,
+                    "Value": 11.04
+                },
+                {
+                    "Direction": "greater than",
+                    "Label": "curr1",
+                    "Name": "upper non critical",
+                    "Severity": 0,
+                    "Value": 20.0
+                },
+                {
+                    "Direction": "greater than",
+                    "Label": "power1",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 250.0
+                }
+            ],
+            "Type": "pmbus"
+        },
+        {
             "Address": "0x4e",
             "Bus": 6,
             "Name": "MB_INLET_TEMP",
