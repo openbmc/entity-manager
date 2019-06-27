@@ -355,8 +355,8 @@ bool loadOverlays(const nlohmann::json& systemConfiguration)
 {
 
     std::vector<std::filesystem::path> paths;
-    if (!findFiles(std::filesystem::path(TEMPLATE_DIR),
-                   R"(.*\.template)", paths))
+    if (!findFiles(std::filesystem::path(TEMPLATE_DIR), R"(.*\.template)",
+                   paths))
     {
         std::cerr << "Unable to find any tempate files in " << TEMPLATE_DIR
                   << "\n";
