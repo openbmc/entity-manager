@@ -1290,6 +1290,7 @@ void templateCharReplace(
             {
                 std::visit([&](auto&& val) { keyPair.value() = val; },
                            foundDevicePair.second);
+                return;
             }
 
             // We probably just invalidated the pointer above, so set it to null
