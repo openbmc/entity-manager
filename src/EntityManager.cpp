@@ -1297,10 +1297,6 @@ void templateCharReplace(
             strPtr = nullptr;
             break;
         }
-
-        std::string probeValue =
-            std::visit(VariantToStringVisitor(), foundDevicePair.second);
-        boost::replace_all(*strPtr, templateName, probeValue);
     }
 
     strPtr = keyPair.value().get_ptr<std::string*>();
