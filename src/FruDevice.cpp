@@ -96,8 +96,8 @@ static int isDevice16Bit(int file)
 static int read_block_data(int flag, int file, uint16_t offset, uint8_t len,
                            uint8_t* buf)
 {
-    uint8_t low_addr = offset & 0xFF;
-    uint8_t high_addr = (offset >> 8) & 0xFF;
+    uint8_t low_addr = static_cast<uint8_t>(offset);
+    uint8_t high_addr = static_cast<uint8_t>(offset >> 8);
 
     if (flag == 0)
     {
@@ -217,7 +217,7 @@ int get_bus_frus(int file, int first, int last, int bus,
                     auto area_offset = device[jj];
                     if (area_offset != 0)
                     {
-                        area_offset *= 8;
+                        area_offset = static_cast<char>(area_offset * 8);
                         if (read_block_data(flag, file, area_offset, 0x8,
                                             block_data.data()) < 0)
                         {
@@ -229,12 +229,14 @@ int get_bus_frus(int file, int first, int last, int bus,
                         device.insert(device.end(), block_data.begin(),
                                       block_data.begin() + 8);
                         length -= 8;
-                        area_offset += 8;
+                        area_offset = static_cast<char>(area_offset + 8);
 
                         while (length > 0)
                         {
                             auto to_get = std::min(0x20, length);
-                            if (read_block_data(flag, file, area_offset, to_get,
+
+                            if (read_block_data(flag, file, area_offset,
+                                                static_cast<uint8_t>(to_get),
                                                 block_data.data()) < 0)
                             {
                                 std::cerr << "failed to read bus " << bus
@@ -243,7 +245,8 @@ int get_bus_frus(int file, int first, int last, int bus,
                             }
                             device.insert(device.end(), block_data.begin(),
                                           block_data.begin() + to_get);
-                            area_offset += to_get;
+                            area_offset =
+                                static_cast<char>(area_offset + to_get);
                             length -= to_get;
                         }
                     }
@@ -273,8 +276,7 @@ int get_bus_frus(int file, int first, int last, int bus,
 }
 
 static void FindI2CDevices(const std::vector<fs::path>& i2cBuses,
-                           std::shared_ptr<FindDevicesWithCallback> context,
-                           boost::asio::io_service& io, BusMap& busMap)
+                           BusMap& busmap)
 {
     for (auto& i2cBus : i2cBuses)
     {
@@ -314,7 +316,7 @@ static void FindI2CDevices(const std::vector<fs::path>& i2cBuses,
                       << bus << "\n";
             continue;
         }
-        auto& device = busMap[bus];
+        auto& device = busmap[bus];
         device = std::make_shared<DeviceMap>();
 
         //  i2cdetect by default uses the range 0x03 to 0x77, as
@@ -340,10 +342,10 @@ struct FindDevicesWithCallback
     : std::enable_shared_from_this<FindDevicesWithCallback>
 {
     FindDevicesWithCallback(const std::vector<fs::path>& i2cBuses,
-                            boost::asio::io_service& io, BusMap& busMap,
+                            boost::asio::io_service& io, BusMap& busmap,
                             std::function<void(void)>&& callback) :
         _i2cBuses(i2cBuses),
-        _io(io), _busMap(busMap), _callback(std::move(callback))
+        _io(io), _busMap(busmap), _callback(std::move(callback))
     {
     }
     ~FindDevicesWithCallback()
@@ -352,7 +354,7 @@ struct FindDevicesWithCallback
     }
     void run()
     {
-        FindI2CDevices(_i2cBuses, shared_from_this(), _io, _busMap);
+        FindI2CDevices(_i2cBuses, _busMap);
     }
 
     const std::vector<fs::path>& _i2cBuses;
@@ -363,7 +365,7 @@ struct FindDevicesWithCallback
 
 static const std::tm intelEpoch(void)
 {
-    std::tm val = {0};
+    std::tm val = {};
     val.tm_year = 1996 - 1900;
     return val;
 }
@@ -464,7 +466,7 @@ bool formatFru(const std::vector<char>& fruBytes,
 
                 /* Checking for last byte C1 to indicate that no more
                  * field to be read */
-                if (*fruBytesIter == 0xC1)
+                if (static_cast<uint8_t>(*fruBytesIter) == 0xC1)
                 {
                     break;
                 }
@@ -531,7 +533,6 @@ std::vector<uint8_t>& getFruInfo(const uint8_t& bus, const uint8_t& address)
 }
 
 void AddFruObjectToDbus(
-    std::shared_ptr<sdbusplus::asio::connection> dbusConn,
     std::vector<char>& device, sdbusplus::asio::object_server& objServer,
     boost::container::flat_map<
         std::pair<size_t, size_t>,
@@ -573,8 +574,10 @@ void AddFruObjectToDbus(
             if ((busIface.second->get_object_path() == productName))
             {
                 if (isMuxBus(bus) && address == busIface.first.second &&
-                    (getFruInfo(busIface.first.first, busIface.first.second) ==
-                     getFruInfo(bus, address)))
+                    (getFruInfo(static_cast<uint8_t>(busIface.first.first),
+                                static_cast<uint8_t>(busIface.first.second)) ==
+                     getFruInfo(static_cast<uint8_t>(bus),
+                                static_cast<uint8_t>(address))))
                 {
                     // This device is already added to the lower numbered bus,
                     // do not replicate it.
@@ -634,7 +637,7 @@ static bool readBaseboardFru(std::vector<char>& baseboardFru)
     if (baseboardFruFile.good())
     {
         baseboardFruFile.seekg(0, std::ios_base::end);
-        std::streampos fileSize = baseboardFruFile.tellg();
+        size_t fileSize = static_cast<size_t>(baseboardFruFile.tellg());
         baseboardFru.resize(fileSize);
         baseboardFruFile.seekg(0, std::ios_base::beg);
         baseboardFruFile.read(baseboardFru.data(), fileSize);
@@ -712,7 +715,8 @@ bool writeFru(uint8_t bus, uint8_t address, const std::vector<uint8_t>& fru)
                 }
             }
 
-            if (i2c_smbus_write_byte_data(file, index & 0xFF, fru[index]) < 0)
+            if (i2c_smbus_write_byte_data(file, static_cast<uint8_t>(index),
+                                          fru[index]) < 0)
             {
                 if (!retries--)
                 {
@@ -737,18 +741,17 @@ bool writeFru(uint8_t bus, uint8_t address, const std::vector<uint8_t>& fru)
 }
 
 void rescanBusses(
-    boost::asio::io_service& io, BusMap& busMap,
+    boost::asio::io_service& io, BusMap& busmap,
     boost::container::flat_map<
         std::pair<size_t, size_t>,
         std::shared_ptr<sdbusplus::asio::dbus_interface>>& dbusInterfaceMap,
-    std::shared_ptr<sdbusplus::asio::connection>& systemBus,
     sdbusplus::asio::object_server& objServer)
 {
     static boost::asio::deadline_timer timer(io);
     timer.expires_from_now(boost::posix_time::seconds(1));
 
     // setup an async wait in case we get flooded with requests
-    timer.async_wait([&](const boost::system::error_code& ec) {
+    timer.async_wait([&](const boost::system::error_code&) {
         auto devDir = fs::path("/dev/");
         std::vector<fs::path> i2cBuses;
 
@@ -764,9 +767,9 @@ void rescanBusses(
             i2cBuses.emplace_back(busPath.second);
         }
 
-        busMap.clear();
+        busmap.clear();
         auto scan = std::make_shared<FindDevicesWithCallback>(
-            i2cBuses, io, busMap, [&]() {
+            i2cBuses, io, busmap, [&]() {
                 for (auto& busIface : dbusInterfaceMap)
                 {
                     objServer.remove_interface(busIface.second);
@@ -782,13 +785,13 @@ void rescanBusses(
                     boost::container::flat_map<int, std::vector<char>>
                         baseboardDev;
                     baseboardDev.emplace(0, baseboardFru);
-                    busMap[0] = std::make_shared<DeviceMap>(baseboardDev);
+                    busmap[0] = std::make_shared<DeviceMap>(baseboardDev);
                 }
-                for (auto& devicemap : busMap)
+                for (auto& devicemap : busmap)
                 {
                     for (auto& device : *devicemap.second)
                     {
-                        AddFruObjectToDbus(systemBus, device.second, objServer,
+                        AddFruObjectToDbus(device.second, objServer,
                                            dbusInterfaceMap, devicemap.first,
                                            device.first);
                     }
@@ -798,7 +801,7 @@ void rescanBusses(
     });
 }
 
-int main(int argc, char** argv)
+int main()
 {
     auto devDir = fs::path("/dev/");
     auto matchString = std::string(R"(i2c-\d+$)");
@@ -826,7 +829,7 @@ int main(int argc, char** argv)
                                 "xyz.openbmc_project.FruDeviceManager");
 
     iface->register_method("ReScan", [&]() {
-        rescanBusses(io, busMap, dbusInterfaceMap, systemBus, objServer);
+        rescanBusses(io, busMap, dbusInterfaceMap, objServer);
     });
 
     iface->register_method("GetRawFru", getFruInfo);
@@ -840,7 +843,7 @@ int main(int argc, char** argv)
             return;
         }
         // schedule rescan on success
-        rescanBusses(io, busMap, dbusInterfaceMap, systemBus, objServer);
+        rescanBusses(io, busMap, dbusInterfaceMap, objServer);
     });
     iface->initialize();
 
@@ -856,8 +859,7 @@ int main(int argc, char** argv)
             if (findPgood != values.end())
             {
 
-                rescanBusses(io, busMap, dbusInterfaceMap, systemBus,
-                             objServer);
+                rescanBusses(io, busMap, dbusInterfaceMap, objServer);
             }
         };
 
@@ -906,8 +908,7 @@ int main(int argc, char** argv)
             }
             if (devChange)
             {
-                rescanBusses(io, busMap, dbusInterfaceMap, systemBus,
-                             objServer);
+                rescanBusses(io, busMap, dbusInterfaceMap, objServer);
             }
 
             dirWatch.async_read_some(boost::asio::buffer(readBuffer),
@@ -916,7 +917,7 @@ int main(int argc, char** argv)
 
     dirWatch.async_read_some(boost::asio::buffer(readBuffer), watchI2cBusses);
     // run the initial scan
-    rescanBusses(io, busMap, dbusInterfaceMap, systemBus, objServer);
+    rescanBusses(io, busMap, dbusInterfaceMap, objServer);
 
     io.run();
     return 0;

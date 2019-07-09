@@ -122,8 +122,6 @@ void linkMux(const std::string& muxName, size_t busIndex, size_t address,
     std::filesystem::path devDir(I2C_DEVS_DIR);
     devDir /= std::to_string(busIndex) + "-" + hexAddress.str();
 
-    std::string channelName;
-
     for (std::size_t channelIndex = 0; channelIndex < channelNames.size();
          channelIndex++)
     {
@@ -248,7 +246,8 @@ void exportDevice(const std::string& type,
     deviceFile.close();
     if (boost::ends_with(type, "Mux") && bus && address && channels)
     {
-        linkMux(name, *bus, *address, *channels);
+        linkMux(name, static_cast<size_t>(*bus), static_cast<size_t>(*address),
+                *channels);
     }
 }
 
@@ -277,7 +276,7 @@ void createOverlay(const std::string& templatePath,
         if (keyPair.key() == "Bus" &&
             keyPair.value().type() == nlohmann::json::value_t::string)
         {
-            unsigned int dec =
+            long unsigned int dec =
                 std::stoul(keyPair.value().get<std::string>(), nullptr, 16);
             subsituteString = std::to_string(dec);
         }

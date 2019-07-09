@@ -30,8 +30,8 @@ struct CmpStr
 
 struct ExportTemplate
 {
-    ExportTemplate(const char* parameters, const char* device) :
-        parameters(parameters), device(device){};
+    ExportTemplate(const char* params, const char* dev) :
+        parameters(params), device(dev){};
     const char* parameters;
     const char* device;
 };
