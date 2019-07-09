@@ -4,10 +4,33 @@ include (ExternalProject)
 set (CMAKE_CXX_STANDARD 17)
 set (CMAKE_CXX_STANDARD_REQUIRED ON)
 set (CMAKE_MODULE_PATH ${CMAKE_CURRENT_SOURCE_DIR}/cmake ${CMAKE_MODULE_PATH})
-set (CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -fno-rtti -Werror -Wall")
+set (
+    CMAKE_CXX_FLAGS
+    "${CMAKE_CXX_FLAGS} -lstdc++fs \
+    -Werror \
+    -Wall \
+    -Wextra \
+    -Wshadow \
+    -Wnon-virtual-dtor \
+    -Wold-style-cast \
+    -Wcast-align \
+    -Wunused \
+    -Woverloaded-virtual \
+    -Wpedantic \
+    -Wconversion \
+    -Wmisleading-indentation \
+    -Wduplicated-cond \
+    -Wduplicated-branches \
+    -Wlogical-op \
+    -Wnull-dereference \
+    -Wuseless-cast \
+    -Wdouble-promotion \
+    -Wformat=2 \
+"
+)
 
 # todo: fix these warnings
-set (CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wno-strict-aliasing -Wno-catch-value")
+set (CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wno-strict-aliasing -Wno-cast-align")
 
 set (CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -fno-rtti")
 
@@ -59,14 +82,14 @@ if (NOT YOCTO)
                          && make -j libsdbusplus.la INSTALL_COMMAND ""
                          LOG_DOWNLOAD ON)
 
-    include_directories (${CMAKE_BINARY_DIR}/sdbusplus-src)
-    include_directories (${CMAKE_BINARY_DIR}/nlohmann/include)
-    include_directories (${CMAKE_BINARY_DIR}/nlohmann/include/nlohmann)
-    include_directories (${CMAKE_BINARY_DIR}/valijson/include)
-    include_directories (${CMAKE_BINARY_DIR}/phosphor-dbus-interfaces/include)
+    include_directories (SYSTEM ${CMAKE_BINARY_DIR}/sdbusplus-src)
+    include_directories (SYSTEM ${CMAKE_BINARY_DIR}/nlohmann/include)
+    include_directories (SYSTEM ${CMAKE_BINARY_DIR}/nlohmann/include/nlohmann)
+    include_directories (SYSTEM ${CMAKE_BINARY_DIR}/valijson/include)
+    include_directories (SYSTEM ${CMAKE_BINARY_DIR}/phosphor-dbus-interfaces/include)
     link_directories (${CMAKE_BINARY_DIR}/sdbusplus-src/.libs)
 
-    include_directories (${CMAKE_BINARY_DIR}/boost-src)
+    include_directories (SYSTEM ${CMAKE_BINARY_DIR}/boost-src)
     set (CMAKE_PREFIX_PATH ${CMAKE_BINARY_DIR}/boost-src ${CMAKE_PREFIX_PATH})
     option (ENABLE_TEST "Enable Google Test" OFF)
     if (ENABLE_TEST)
@@ -82,8 +105,6 @@ add_definitions (-DBOOST_ALL_NO_LIB)
 add_definitions (-DBOOST_NO_RTTI)
 add_definitions (-DBOOST_NO_TYPEID)
 
-include_directories (${CMAKE_CURRENT_SOURCE_DIR}/include)
-include_directories (${Boost_INCLUDE_DIRS})
 include_directories (${CMAKE_CURRENT_SOURCE_DIR}/include)
 
 add_executable (fru-device src/FruDevice.cpp src/Utils.cpp)

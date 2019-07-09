@@ -181,9 +181,9 @@ void findDbusObjects(std::shared_ptr<PerformProbe> probe,
             {
                 connection->async_method_call(
                     [conn,
-                     interface](boost::system::error_code& ec,
+                     interface](boost::system::error_code& errc,
                                 const ManagedObjectType& managedInterface) {
-                        if (ec)
+                        if (errc)
                         {
                             std::cerr
                                 << "error getting managed object for device "
@@ -246,12 +246,12 @@ bool probeDbus(
                     case nlohmann::json::value_t::string:
                     {
                         std::regex search(match.second.get<std::string>());
-                        std::smatch match;
+                        std::smatch regMatch;
 
                         // convert value to string respresentation
                         std::string probeValue = std::visit(
                             VariantToStringVisitor(), deviceValue->second);
-                        if (!std::regex_search(probeValue, match, search))
+                        if (!std::regex_search(probeValue, regMatch, search))
                         {
                             deviceMatches = false;
                             break;
@@ -484,8 +484,6 @@ struct PerformProbe : std::enable_shared_from_this<PerformProbe>
     void run()
     {
         // parse out dbus probes by discarding other probe types
-        boost::container::flat_map<const char*, probe_type_codes,
-                                   cmp_str>::const_iterator probeType;
 
         for (std::string& probe : _probeCommand)
         {
@@ -543,7 +541,7 @@ bool setJsonFromPointer(const std::string& ptrStr, const JsonType& value,
         ref = value;
         return true;
     }
-    catch (const std::out_of_range)
+    catch (const std::out_of_range&)
     {
         return false;
     }
@@ -639,16 +637,16 @@ void createDeleteObjectMethod(
     iface->register_method(
         "Delete", [&objServer, &systemConfiguration, interface,
                    jsonPointerPath{std::string(jsonPointerPath)}]() {
-            std::shared_ptr<sdbusplus::asio::dbus_interface> iface =
+            std::shared_ptr<sdbusplus::asio::dbus_interface> dbusInterface =
                 interface.lock();
-            if (!iface)
+            if (!dbusInterface)
             {
                 // this technically can't happen as the pointer is pointing to
                 // us
                 throw DBusInternalError();
             }
             nlohmann::json::json_pointer ptr(jsonPointerPath);
-            if (!objServer.remove_interface(iface))
+            if (!objServer.remove_interface(dbusInterface))
             {
                 std::cerr << "Can't delete interface " << jsonPointerPath
                           << "\n";
@@ -925,7 +923,7 @@ void createAddObjectMethod(const std::string& jsonPointerPath,
 
             std::regex_replace(dbusName.begin(), dbusName.begin(),
                                dbusName.end(), ILLEGAL_DBUS_MEMBER_REGEX, "_");
-            auto iface = objServer.add_interface(
+            auto interface = objServer.add_interface(
                 path + "/" + dbusName,
                 "xyz.openbmc_project.Configuration." + *type);
             // permission is read-write, as since we just created it, must be
@@ -933,7 +931,7 @@ void createAddObjectMethod(const std::string& jsonPointerPath,
             populateInterfaceFromJson(
                 systemConfiguration,
                 jsonPointerPath + "/Exposes/" + std::to_string(lastIndex),
-                iface, newData, objServer,
+                interface, newData, objServer,
                 sdbusplus::asio::PropertyPermission::readWrite);
         });
     iface->initialize();
@@ -1317,10 +1315,10 @@ void templateCharReplace(
                 keyPair.value() = static_cast<uint64_t>(temp);
             }
         }
-        catch (std::invalid_argument)
+        catch (std::invalid_argument&)
         {
         }
-        catch (std::out_of_range)
+        catch (std::out_of_range&)
         {
         }
     }
@@ -1650,7 +1648,6 @@ struct PerformScan : std::enable_shared_from_this<PerformScan>
 };
 
 void startRemovedTimer(boost::asio::deadline_timer& timer,
-                       std::vector<sdbusplus::bus::match::match>& dbusMatches,
                        nlohmann::json& systemConfiguration)
 {
     static bool scannedPowerOff = false;
@@ -1789,8 +1786,7 @@ void propertiesChangedCallback(
                                    objServer);
                         if (!timerRunning)
                         {
-                            startRemovedTimer(timer, dbusMatches,
-                                              systemConfiguration);
+                            startRemovedTimer(timer, systemConfiguration);
                         }
                     });
                 });
@@ -1830,7 +1826,7 @@ void registerCallbacks(boost::asio::io_service& io,
     }
 }
 
-int main(int argc, char** argv)
+int main()
 {
     // setup connection to dbus
     boost::asio::io_service io;
@@ -1857,8 +1853,9 @@ int main(int argc, char** argv)
         "Notify",
         [](const boost::container::flat_map<
             std::string,
-            boost::container::flat_map<std::string, BasicVariantType>>&
-               object) { return; });
+            boost::container::flat_map<std::string, BasicVariantType>>&) {
+            return;
+        });
     inventoryIface->initialize();
 
     io.post([&]() {
