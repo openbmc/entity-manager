@@ -20,6 +20,75 @@
                                 "Name": {
                                     "type": "string"
                                 },
+                                "Type": {
+                                    "type": "string"
+                                },
+                                "ChannelNames": {
+                                    "type": "array",
+                                    "items": {
+                                        "type": "string"
+                                    }
+                                },
+                                "Class": {
+                                    "type": "string"
+                                },
+                                "FFGainCoefficient": {
+                                    "type": "number"
+                                },
+                                "FFOffCoefficient": {
+                                    "type": "number"
+                                },
+                                "ICoefficient": {
+                                    "type": "number"
+                                },
+                                "ILimitMax": {
+                                    "type": "number"
+                                },
+                                "ILimitMin": {
+                                    "type": "number"
+                                },
+                                "Inputs": {
+                                    "type": "array",
+                                    "items": {
+                                        "type": "string"
+                                    }
+                                },
+                                "NegativeHysteresis": {
+                                    "type": "number"
+                                },
+                                "OutLimitMax": {
+                                    "type": "number"
+                                },
+                                "OutLimitMin": {
+                                    "type": "number"
+                                },
+                                "Outputs": {
+                                    "type": "array",
+                                    "items": {
+                                        "type": "string"
+                                    }
+                                },
+                                "PCoefficient": {
+                                    "type": "number"
+                                },
+                                "PositiveHysteresis": {
+                                    "type": "number"
+                                },
+                                "SetPoint": {
+                                    "type": "number"
+                                },
+                                "SlewNeg": {
+                                    "type": "number"
+                                },
+                                "SlewPos": {
+                                    "type": "number"
+                                },
+                                "Zones": {
+                                    "type": "array",
+                                    "items": {
+                                        "type": "string"
+                                    }
+                                },
                                 "Thresholds": {
                                     "type": "array",
                                     "items": {
@@ -32,10 +101,13 @@
                                                 "type": "string"
                                             },
                                             "Severity": {
-                                                "type": "integer"
+                                                "type": "number"
                                             },
                                             "Value": {
-                                                "type": "integer"
+                                                "type": "number"
+                                            },
+                                            "Label": {
+                                                "type": "string"
                                             }
                                         },
                                         "required": [
@@ -46,13 +118,26 @@
                                         ]
                                     }
                                 },
-                                "Type": {
-                                    "type": "string"
+                                "Output": {
+                                    "type": "array",
+                                    "items": {
+                                        "type": "number"
+                                    }
+                                },
+                                "Reading": {
+                                    "type": "array",
+                                    "items": {
+                                        "type": "number"
+                                    }
+                                },
+                                "Labels": {
+                                    "type": "array",
+                                    "items": {
+                                        "type": "string"
+                                    }
                                 }
                             },
                             "required": [
-                                "Address",
-                                "Bus",
                                 "Name",
                                 "Type"
                             ]
@@ -62,6 +147,9 @@
                         "type": "string"
                     },
                     "Probe": {
+                        "type": "string"
+                    },
+                    "Type": {
                         "type": "string"
                     },
                     "xyz.openbmc_project.Inventory.Decorator.Asset": {
@@ -86,9 +174,6 @@
                             "PartNumber",
                             "SerialNumber"
                         ]
-                    },
-                    "Type": {
-                        "type": "string"
                     }
                 },
                 "required": [
@@ -118,77 +203,15 @@
                             },
                             "Bus": {
                                 "type": [
-                                    "integer",
+                                    "number",
                                     "string"
                                 ]
                             },
-                            "Thresholds": {
-                                "type": "array",
-                                "items": {
-                                    "type": "object",
-                                    "properties": {
-                                        "Direction": {
-                                            "type": "string"
-                                        },
-                                        "Name": {
-                                            "type": "string"
-                                        },
-                                        "Severity": {
-                                            "type": "integer"
-                                        },
-                                        "Value": {
-                                            "type": "number"
-                                        },
-                                        "Label": {
-                                            "type": "string"
-                                        }
-                                    },
-                                    "required": [
-                                        "Direction",
-                                        "Name",
-                                        "Severity",
-                                        "Value"
-                                    ]
-                                }
-                            },
-                            "Inputs": {
+                            "ChannelNames": {
                                 "type": "array",
                                 "items": {
                                     "type": "string"
                                 }
-                            },
-                            "NegativeHysteresis": {
-                                "type": "integer"
-                            },
-                            "Output": {
-                                "type": "array",
-                                "items": {
-                                    "type": "number"
-                                }
-                            },
-                            "PositiveHysteresis": {
-                                "type": "integer"
-                            },
-                            "Reading": {
-                                "type": "array",
-                                "items": {
-                                    "type": "number"
-                                }
-                            },
-                            "Zones": {
-                                "type": "array",
-                                "items": {
-                                    "type": "string"
-                                }
-                            },
-                            "BindConnector": {
-                                "type": "string"
-                            },
-                            "Index": {
-                                "type": "integer"
-                            },
-                            "MaxReading": {
-                                "type": "integer"
                             },
                             "Class": {
                                 "type": "string"
@@ -208,6 +231,12 @@
                             "ILimitMin": {
                                 "type": "number"
                             },
+                            "Inputs": {
+                                "type": "array",
+                                "items": {
+                                    "type": "string"
+                                }
+                            },
                             "OutLimitMax": {
                                 "type": "number"
                             },
@@ -223,41 +252,131 @@
                             "PCoefficient": {
                                 "type": "number"
                             },
+                            "SetPoint": {
+                                "type": "number"
+                            },
                             "SlewNeg": {
                                 "type": "number"
                             },
                             "SlewPos": {
                                 "type": "number"
                             },
-                            "FailSafePercent": {
-                                "type": "integer"
+                            "Zones": {
+                                "type": "array",
+                                "items": {
+                                    "type": "string"
+                                }
                             },
-                            "MinThermalOutput": {
-                                "type": "integer"
+                            "Thresholds": {
+                                "type": "array",
+                                "items": {
+                                    "type": "object",
+                                    "properties": {
+                                        "Direction": {
+                                            "type": "string"
+                                        },
+                                        "Name": {
+                                            "type": "string"
+                                        },
+                                        "Severity": {
+                                            "type": "number"
+                                        },
+                                        "Value": {
+                                            "type": "number"
+                                        },
+                                        "Label": {
+                                            "type": "string"
+                                        }
+                                    },
+                                    "required": [
+                                        "Direction",
+                                        "Name",
+                                        "Severity",
+                                        "Value"
+                                    ]
+                                }
                             },
-                            "AllowedFailures": {
-                                "type": "integer"
-                            },
-                            "PowerState": {
+                            "Direction": {
                                 "type": "string"
                             },
-                            "AlphaF": {
+                            "Index": {
                                 "type": "number"
                             },
-                            "AlphaS": {
+                            "Polarity": {
+                                "type": "string"
+                            },
+                            "GpioPins": {
+                                "type": "array",
+                                "items": {
+                                    "type": "number"
+                                }
+                            },
+                            "ScaleFactor": {
                                 "type": "number"
                             },
-                            "PowerFactorMax": {
+                            "Connector": {
+                                "type": "object",
+                                "properties": {
+                                    "Name": {
+                                        "type": "string"
+                                    },
+                                    "Pwm": {
+                                        "type": "number"
+                                    },
+                                    "Tachs": {
+                                        "type": "array",
+                                        "items": {
+                                            "type": "number"
+                                        }
+                                    }
+                                },
+                                "required": [
+                                    "Name",
+                                    "Pwm",
+                                    "Tachs"
+                                ]
+                            },
+                            "FailSafePercent": {
                                 "type": "number"
                             },
-                            "PowerFactorMin": {
+                            "MinThermalOutput": {
                                 "type": "number"
                             },
-                            "QMax": {
+                            "NegativeHysteresis": {
                                 "type": "number"
                             },
-                            "QMin": {
+                            "Output": {
+                                "type": "array",
+                                "items": {
+                                    "type": "number"
+                                }
+                            },
+                            "PositiveHysteresis": {
                                 "type": "number"
+                            },
+                            "Reading": {
+                                "type": "array",
+                                "items": {
+                                    "type": "number"
+                                }
+                            },
+                            "Name1": {
+                                "type": "string"
+                            },
+                            "Labels": {
+                                "type": "array",
+                                "items": {
+                                    "type": "string"
+                                }
+                            },
+                            "CpuID": {
+                                "type": "number"
+                            },
+                            "DtsCritOffset": {
+                                "type": "number"
+                            },
+                            "BindConnector": {
+                                "type": "string"
                             },
                             "C1": {
                                 "type": "number"
@@ -278,55 +397,73 @@
                                 "type": "array",
                                 "items": {
                                     "type": [
-                                        "integer",
+                                        "number",
                                         "string"
                                     ]
+                                }
+                            },
+                            "AlphaF": {
+                                "type": "number"
+                            },
+                            "AlphaS": {
+                                "type": "number"
+                            },
+                            "PowerFactorMax": {
+                                "type": "number"
+                            },
+                            "PowerFactorMin": {
+                                "type": "number"
+                            },
+                            "QMax": {
+                                "type": "number"
+                            },
+                            "QMin": {
+                                "type": "number"
+                            },
+                            "AllowedFailures": {
+                                "type": "number"
+                            },
+                            "Profiles": {
+                                "type": "array",
+                                "items": {
+                                    "type": "string"
                                 }
                             },
                             "BindPresence": {
                                 "type": "string"
                             },
-                            "Pwm": {
-                                "type": "integer"
+                            "MaxReading": {
+                                "type": "number"
+                            },
+                            "PowerState": {
+                                "type": "string"
+                            },
+                            "BridgeGpio": {
+                                "type": "number"
                             },
                             "Status": {
                                 "type": "string"
                             },
-                            "Name1": {
-                                "type": "string"
-                            },
-                            "ScaleFactor": {
+                            "Pwm": {
                                 "type": "number"
                             },
-                            "CpuID": {
-                                "type": "integer"
-                            },
-                            "SetPoint": {
+                            "FaultIndex": {
                                 "type": "number"
-                            },
-                            "Direction": {
-                                "type": "string"
-                            },
-                            "Polarity": {
-                                "type": "string"
-                            },
-                            "BindGpioIntrusion": {
-                                "type": "string"
-                            },
-                            "BridgeGpio": {
-                                "type": "integer"
                             },
                             "FaultType": {
                                 "type": "string"
                             },
-                            "FaultIndex": {
-                                "type": "integer"
-                            },
-                            "LedGpioIndexs": {
+                            "LedGpioPins": {
                                 "type": "array",
                                 "items": {
-                                    "type": "integer"
+                                    "type": "number"
                                 }
+                            },
+                            "SetPointOffset": {
+                                "type": "string"
+                            },
+                            "PresenceGpio": {
+                                "type": "number"
                             }
                         },
                         "required": [
@@ -351,6 +488,9 @@
                         }
                     ]
                 },
+                "Type": {
+                    "type": "string"
+                },
                 "xyz.openbmc_project.Inventory.Decorator.Asset": {
                     "type": "object",
                     "properties": {
@@ -374,8 +514,22 @@
                         "SerialNumber"
                     ]
                 },
-                "Type": {
-                    "type": "string"
+                "ProductId": {
+                    "type": "number"
+                },
+                "xyz.openbmc_project.Inventory.Decorator.AssetTag": {
+                    "type": "object",
+                    "properties": {
+                        "AssetTag": {
+                            "type": "string"
+                        }
+                    },
+                    "required": [
+                        "AssetTag"
+                    ]
+                },
+                "xyz.openbmc_project.Inventory.Item.System": {
+                    "type": "object"
                 }
             },
             "required": [
