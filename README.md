@@ -3,9 +3,9 @@
 Entity manager is a runtime configuration application which parses configuration
 files (in JSON format) and attempts to detect the devices described by the
 configuration files. It also can, based on the configuration, attempt to load
-device tree overlays to add sensors to the device tree. The output is also a
-JSON file which includes all devices in the system such as fans and temperature
-sensors.
+install devices into sysfs. It takes these configurations and produces a best
+representation of the files on dbus using the xyz.openbmc_project.Configuration
+namespace. It also produces a system.json file for persistance.
 
 ## Configuration Syntax
 
@@ -19,16 +19,15 @@ JSON file (describes all devices on the baseboard) and a chassis JSON file
 needs to be upgraded (e.g., a new temperature sensor), only such JSON
 configuration file needs to be be updated.
 
-Within a configuration file, there is a JSON object which consists of
-multiple "string : value" pairs. This Entity Manager defines the following
-strings.
+Within a configuration file, there is a JSON object which consists of multiple
+"string : value" pairs. This Entity Manager defines the following strings.
 
 | String    | Example Value                            | Description                              |
 | :-------- | ---------------------------------------- | ---------------------------------------- |
 | "Name"    | "X1000 1U Chassis"                       | Human readable name used for identification and sorting. |
-| "probe"   | "xyz.openbmc_project.FruDevice({'BOARD_PRODUCT_NAME':'FFPANEL'})" | Statement which attempts to read from the hardware. The result determines if a configuration record should be applied. The value for probe can be set to “TRUE” in the case the record should always be applied, or set to more complex lookups, for instance a field in a FRU file. |
-| "exposes" | [{"Name" : "CPU fan"}, ...]              | An array of JSON objects which are valid if the probe result is successful. These objects describe the devices BMC can interact. |
-| "status"  | "disabled"                               | An indicator that allows for some records to be disabled by default. |
+| "Probe"   | "xyz.openbmc_project.FruDevice({'BOARD_PRODUCT_NAME':'FFPANEL'})" | Statement which attempts to read from d-bus. The result determines if a configuration record should be applied. The value for probe can be set to “TRUE” in the case the record should always be applied, or set to more complex lookups, for instance a field in a FRU file that is exposed by the frudevice |
+| "Exposes" | [{"Name" : "CPU fan"}, ...]              | An array of JSON objects which are valid if the probe result is successful. These objects describe the devices BMC can interact. |
+| "Status"  | "disabled"                               | An indicator that allows for some records to be disabled by default. |
 | "Bind*"  | "2U System Fan connector 1"              | The record isn't complete and needs to be combined with another to be functional. The value is a unique reference to a record elsewhere. |
 
 Template strings in the form of "$identifier" may be used in configuration
@@ -49,18 +48,18 @@ Required fields are name, probe and exposes.
 The configuration JSON files attempt to model after actual hardware modules
 which made up a complete system. An example baseboard JSON file shown below
 defines two fan connectors and two temperature sensors of TMP75 type. These
-objects are considered valid by BMC when the probe command (reads and
-compares the product name in FRU) is successful and this baseboard is named
-as "WFP baseboard".
+objects are considered valid by BMC when the probe command (reads and compares
+the product name in FRU) is successful and this baseboard is named as "WFP
+baseboard".
 
 ```
 {
-    "exposes": [
+    "Exposes": [
         {
             "Name": "1U System Fan connector 1",
-            "pwm": 1,
-            "status": "disabled",
-            "tachs": [
+            "Pwm": 1,
+            "Status": "disabled",
+            "Tachs": [
                 1,
                 2
             ],
@@ -68,18 +67,18 @@ as "WFP baseboard".
         },
         {
             "Name": "2U System Fan connector 1",
-            "pwm": 1,
-            "status": "disabled",
-            "tachs": [
+            "Pwm": 1,
+            "Status": "disabled",
+            "Tachs": [
                 1
             ],
             "Type": "IntelFanConnector"
         },
         {
-            "address": "0x49",
-            "bus": 6,
+            "Address": "0x49",
+            "Bus": 6,
             "Name": "Left Rear Temp",
-            "thresholds": [
+            "Thresholds": [
                 [
                     {
                         "direction": "greater than",
@@ -110,10 +109,10 @@ as "WFP baseboard".
             "Type": "TMP75"
         },
         {
-            "address": "0x48",
-            "bus": 6,
+            "Address": "0x48",
+            "Bus": 6,
             "Name": "Voltage Regulator 1 Temp",
-            "thresholds": [
+            "Thresholds": [
                 [
                     {
                         "direction": "greater than",
@@ -145,39 +144,42 @@ as "WFP baseboard".
         }
     ],
     "Name": "WFP Baseboard",
-    "probe": "xyz.openbmc_project.FruDevice({'BOARD_PRODUCT_NAME' : '.*WFT'})"
+    "Probe": "xyz.openbmc_project.FruDevice({'BOARD_PRODUCT_NAME' : '.*WFT'})"
 }
 ```
 
+[Full Configuration](https://github.com/openbmc/entity-manager/blob/master/configurations/WFT%20Baseboard.json)
+
+
 #### Configuration Records - Chassis Example
 
-Although fan connectors are considered a part of a baseboard, the physical
-fans themselves are considered as a part of a chassis. In order for a fan to
-be matched with a fan connector, the keyword "Bind" is used. The
-example below shows how a chassis fan named "Fan 1" is connected to the
-connector named "1U System Fan connector 1". When the probe command finds the
-correct product name in baseboard FRU, the fan and the connector are
-considered as being joined together.
+Although fan connectors are considered a part of a baseboard, the physical fans
+themselves are considered as a part of a chassis. In order for a fan to be
+matched with a fan connector, the keyword "Bind" is used. The example below
+shows how a chassis fan named "Fan 1" is connected to the connector named "1U
+System Fan connector 1". When the probe command finds the correct product name
+in baseboard FRU, the fan and the connector are considered as being joined
+together.
 
 ```
 {
-    "exposes": [
+    "Exposes": [
         {
             "BindConnector": "1U System Fan connector 1",
             "Name": "Fan 1",
-            "thresholds": [
+            "Thresholds": [
                 [
                     {
-                        "direction": "less than",
+                        "Direction": "less than",
                         "Name": "lower critical",
-                        "severity": 1,
-                        "value": 1750
+                        "Severity": 1,
+                        "Value": 1750
                     },
                     {
-                        "direction": "less than",
+                        "Direction": "less than",
                         "Name": "lower non critical",
-                        "severity": 0,
-                        "value": 2000
+                        "Severity": 0,
+                        "Value": 2000
                     }
                 ]
             ],
@@ -190,15 +192,9 @@ considered as being joined together.
 ## Enabling Sensors
 
 As demons can trigger off of shared types, sometimes some handshaking will be
-needed to enable sensors. Using the TMP75 sensor as an example, when the
-sensor object is enabled, the device tree must be updated before scanning may
-begin. The device tree overlay generator has the ability to key off of
-different types and create device tree overlays for specific offsets. Once
-this is done, the baseboard temperature sensor demon can scan the sensors.
+needed to enable sensors. Using the TMP75 sensor as an example, when the sensor
+object is enabled, the device tree must be updated before scanning may begin.
+The entity-manager can key off of different types and export devices for
+specific configurations. Once this is done, the baseboard temperature sensor
+demon can scan the sensors.
 
-## Run Unit Tests
-
-The following environment variables need to be set to run unit tests:
-
-* TEST: 1, this disables the fru parser from scanning on init and changes the
-work directories.
