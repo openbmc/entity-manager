@@ -2161,7 +2161,12 @@
             "Bus": 0,
             "CpuID": 1,
             "Name": "CPU 1",
-            "PresenceGpio": 232,
+            "PresenceGpio": [
+                {
+                    "Name": "CPU1_PRESENCE",
+                    "Polarity": "Low"
+                }
+            ],
             "Thresholds": [
                 {
                     "Direction": "greater than",
@@ -2185,7 +2190,12 @@
             "Bus": 0,
             "CpuID": 2,
             "Name": "CPU 2",
-            "PresenceGpio": 242,
+            "PresenceGpio": [
+                {
+                    "Name": "CPU2_PRESENCE",
+                    "Polarity": "Low"
+                }
+            ],
             "Thresholds": [
                 {
                     "Direction": "greater than",
