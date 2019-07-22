@@ -191,10 +191,10 @@ together.
 
 ## Enabling Sensors
 
-As demons can trigger off of shared types, sometimes some handshaking will be
+As daemons can trigger off of shared types, sometimes some handshaking will be
 needed to enable sensors. Using the TMP75 sensor as an example, when the sensor
 object is enabled, the device tree must be updated before scanning may begin.
 The entity-manager can key off of different types and export devices for
 specific configurations. Once this is done, the baseboard temperature sensor
-demon can scan the sensors.
+daemon can scan the sensors.
 
