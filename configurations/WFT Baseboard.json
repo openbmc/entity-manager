@@ -193,10 +193,15 @@
             "Type": "ADC"
         },
         {
-            "BridgeGpio": 208,
             "Index": 7,
             "Name": "P3VBAT",
             "ScaleFactor": 0.3333,
+            "BridgeGpio": [
+                {
+                    "Name": "P3VBAT_BRIDGE_EN",
+                    "Polarity": "Low"
+                }
+            ],
             "Thresholds": [
                 {
                     "Direction": "greater than",
@@ -618,13 +623,6 @@
             "Name": "Fan 7 Present",
             "Polarity": "Low",
             "Status": "disabled",
-            "Type": "Gpio"
-        },
-        {
-            "Direction": "Out",
-            "Index": 208,
-            "Name": "Bridge P3VBAT",
-            "Polarity": "Low",
             "Type": "Gpio"
         },
         {
