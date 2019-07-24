@@ -1369,6 +1369,85 @@
             "Type": "TMP421"
         },
         {
+            "Address": "0x08",
+            "Class": "METemp",
+            "Name": "MB_PCH_TEMP",
+            "Thresholds": [
+                {
+                    "Direction": "greater than",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 82
+                }
+            ],
+            "Type": "IpmbSensor"
+        },
+        {
+            "Address": "0x8a",
+            "Class": "HSCBridge",
+            "Name": "MB_HSC_TEMP",
+            "OffsetValue": -759.0476,
+            "ScaleValue": 0.238,
+            "Type": "IpmbSensor"
+        },
+        {
+            "Address": "0x8a",
+            "Class": "HSCBridge",
+            "Name": "MB_HSC_OUT_CURR",
+            "OffsetValue": -95.8567,
+            "ScaleValue": 0.0468,
+            "SensorType": "current",
+            "Thresholds": [
+                {
+                    "Direction": "greater than",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 52.8
+                }
+            ],
+            "Type": "IpmbSensor"
+        },
+        {
+            "Address": "0x29",
+            "Class": "METemp",
+            "Name": "MB_HSC_IN_POWER",
+            "OffsetValue": 0,
+            "ScaleValue": 4,
+            "SensorType": "power",
+            "Thresholds": [
+                {
+                    "Direction": "greater than",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 792
+                }
+            ],
+            "Type": "IpmbSensor"
+        },
+        {
+            "Address": "0x2a",
+            "Class": "METemp",
+            "Name": "MB_HSC_IN_VOLT",
+            "OffsetValue": 9.4,
+            "ScaleValue": 0.02,
+            "SensorType": "voltage",
+            "Thresholds": [
+                {
+                    "Direction": "greater than",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 13.2
+                },
+                {
+                    "Direction": "less than",
+                    "Name": "lower critical",
+                    "Severity": 1,
+                    "Value": 10.8
+                }
+            ],
+            "Type": "IpmbSensor"
+        },
+        {
             "Address": "0x30",
             "Bus": 0,
             "CpuID": 1,
