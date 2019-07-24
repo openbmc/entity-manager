@@ -139,6 +139,12 @@
             "Type": "ADC"
         },
         {
+            "BridgeGpio": [
+                {
+                    "Name": "P3VBAT_BRIDGE_EN",
+                    "Polarity": "Low"
+                }
+            ],
             "Index": 7,
             "Name": "MB_P3V_BAT",
             "ScaleFactor": 0.3333,
