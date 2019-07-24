@@ -351,11 +351,13 @@ bool probe(
             {
                 case probe_type_codes::FALSE_T:
                 {
-                    return false;
+                    cur = false;
+                    break;
                 }
                 case probe_type_codes::TRUE_T:
                 {
-                    return true;
+                    cur = true;
+                    break;
                 }
                 case probe_type_codes::MATCH_ONE:
                 {
