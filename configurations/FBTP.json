@@ -1178,8 +1178,10 @@
         {
             "Address": "0x40",
             "Bus": 19,
+            "CurrScaleFactor": 200,
             "Name": "MB_C2_P12V_INA230",
             "Labels": ["in1", "curr1", "power1"],
+            "PowerScaleFactor": 200000,
             "Thresholds" : [
                 {
                     "Direction": "greater than",
@@ -1215,8 +1217,10 @@
         {
             "Address": "0x41",
             "Bus": 19,
+            "CurrScaleFactor": 200,
             "Name": "MB_C3_P12V_INA230",
             "Labels": ["in1", "curr1", "power1"],
+            "PowerScaleFactor": 200000,
             "Thresholds" : [
                 {
                     "Direction": "greater than",
@@ -1252,8 +1256,10 @@
         {
             "Address": "0x44",
             "Bus": 19,
+            "CurrScaleFactor": 200,
             "Name": "MB_C4_P12V_INA230",
             "Labels": ["in1", "curr1", "power1"],
+            "PowerScaleFactor": 200000,
             "Thresholds" : [
                 {
                     "Direction": "greater than",
@@ -1289,8 +1295,10 @@
         {
             "Address": "0x45",
             "Bus": 19,
+            "CurrScaleFactor": 200,
             "Name": "MB_CONN_P12V_INA230",
             "Labels": ["in1", "curr1", "power1"],
+            "PowerScaleFactor": 200000,
             "Thresholds" : [
                 {
                     "Direction": "greater than",
