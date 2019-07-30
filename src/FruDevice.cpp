@@ -546,13 +546,18 @@ void AddFruObjectToDbus(
                   << bus << " address " << address << "\n";
         return;
     }
+
     auto productNameFind = formattedFru.find("BOARD_PRODUCT_NAME");
     std::string productName;
-    if (productNameFind == formattedFru.end())
+    // Not found under Board section or an empty string.
+    if (productNameFind == formattedFru.end() ||
+        productNameFind->second.empty())
     {
         productNameFind = formattedFru.find("PRODUCT_PRODUCT_NAME");
     }
-    if (productNameFind != formattedFru.end())
+    // Found under Product section and not an empty string.
+    if (productNameFind != formattedFru.end() &&
+        !productNameFind->second.empty())
     {
         productName = productNameFind->second;
         std::regex illegalObject("[^A-Za-z0-9_]");
