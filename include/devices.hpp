@@ -40,6 +40,8 @@ const boost::container::flat_map<const char*, ExportTemplate, CmpStr>
     exportTemplates{
         {{"EEPROM", ExportTemplate("eeprom $Address",
                                    "/sys/bus/i2c/devices/i2c-$Bus/new_device")},
+         {"24C64", ExportTemplate("24c64 $Address",
+                                  "/sys/bus/i2c/devices/i2c-$Bus/new_device")},
          {"Gpio", ExportTemplate("$Index", "/sys/class/gpio/export")},
          {"PCA9543Mux",
           ExportTemplate("pca9543 $Address",
