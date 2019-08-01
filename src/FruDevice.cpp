@@ -27,9 +27,11 @@
 #include <fstream>
 #include <future>
 #include <iostream>
+#include <nlohmann/json.hpp>
 #include <regex>
 #include <sdbusplus/asio/connection.hpp>
 #include <sdbusplus/asio/object_server.hpp>
+#include <string>
 #include <thread>
 #include <variant>
 
@@ -44,6 +46,8 @@ static size_t UNKNOWN_BUS_OBJECT_COUNT = 0;
 constexpr size_t MAX_FRU_SIZE = 512;
 constexpr size_t MAX_EEPROM_PAGE_INDEX = 255;
 constexpr size_t busTimeoutSeconds = 5;
+
+constexpr const char* blacklistPath = PACKAGE_DIR "blacklist.json";
 
 const static constexpr char* BASEBOARD_FRU_LOCATION =
     "/etc/fru/baseboard.fru.bin";
@@ -273,6 +277,69 @@ int get_bus_frus(int file, int first, int last, int bus,
 
     close(file);
     return future.get();
+}
+
+void loadBlacklist(const char* path)
+{
+    std::ifstream blacklistStream(path);
+    if (!blacklistStream.good())
+    {
+        // File is optional.
+        std::cerr << "Cannot open blacklist file.\n\n";
+        return;
+    }
+
+    nlohmann::json data =
+        nlohmann::json::parse(blacklistStream, nullptr, false);
+    if (data.is_discarded())
+    {
+        std::cerr << "Illegal blacklist file detected, cannot validate JSON, "
+                     "exiting\n";
+        std::exit(EXIT_FAILURE);
+        return;
+    }
+
+    // It's expected to have at least one field, "buses" that is an array of the
+    // buses by integer. Allow for future options to exclude further aspects,
+    // such as specific addresses or ranges.
+    if (data.type() != nlohmann::json::value_t::object)
+    {
+        std::cerr << "Illegal blacklist, expected to read dictionary\n";
+        std::exit(EXIT_FAILURE);
+        return;
+    }
+
+    // If buses field is missing, that's fine.
+    if (data.count("buses") == 1)
+    {
+        // Parse the buses array after a little validation.
+        auto buses = data.at("buses");
+        if (buses.type() != nlohmann::json::value_t::array)
+        {
+            // Buses field present but invalid, therefore this is an error.
+            std::cerr << "Invalid contents for blacklist buses field\n";
+            std::exit(EXIT_FAILURE);
+            return;
+        }
+
+        // Catch exception here for type mis-match.
+        try
+        {
+            for (const auto& bus : buses)
+            {
+                busBlacklist.insert(bus.get<size_t>());
+            }
+        }
+        catch (const nlohmann::detail::type_error& e)
+        {
+            // Type mis-match is a critical error.
+            std::cerr << "Invalid bus type: " << e.what() << "\n";
+            std::exit(EXIT_FAILURE);
+            return;
+        }
+    }
+
+    return;
 }
 
 static void FindI2CDevices(const std::vector<fs::path>& i2cBuses,
@@ -817,6 +884,9 @@ int main()
         std::cerr << "unable to find i2c devices\n";
         return 1;
     }
+
+    // check for and load blacklist with initial buses.
+    loadBlacklist(blacklistPath);
 
     boost::asio::io_service io;
     auto systemBus = std::make_shared<sdbusplus::asio::connection>(io);
