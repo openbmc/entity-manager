@@ -62,11 +62,7 @@ const boost::container::flat_map<const char*, ExportTemplate, CmpStr>
          {"EMC1413",
           ExportTemplate("emc1413 $Address",
                          "/sys/bus/i2c/devices/i2c-$Bus/new_device")},
-         {"TMP112", ExportTemplate("tmp112 $Address",
-                                   "/sys/bus/i2c/devices/i2c-$Bus/new_device")},
-         {"XeonCPU",
-          ExportTemplate("peci-client $Address",
-                         "/sys/bus/peci/devices/peci-$Bus/new_device")
-
-         }}};
+         {"TMP112",
+          ExportTemplate("tmp112 $Address",
+                         "/sys/bus/i2c/devices/i2c-$Bus/new_device")}}};
 } // namespace devices
