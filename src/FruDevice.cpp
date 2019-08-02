@@ -177,7 +177,7 @@ int get_bus_frus(int file, int first, int last, int bus,
             // Set slave address
             if (ioctl(file, I2C_SLAVE_FORCE, ii) < 0)
             {
-                std::cerr << "device at bus " << bus << "register " << ii
+                std::cerr << "device at bus " << bus << " register " << ii
                           << "busy\n";
                 continue;
             }
@@ -189,7 +189,7 @@ int get_bus_frus(int file, int first, int last, int bus,
 
             if (DEBUG)
             {
-                std::cout << "something at bus " << bus << "addr " << ii
+                std::cout << "something at bus " << bus << " addr " << ii
                           << "\n";
             }
 
@@ -372,7 +372,7 @@ static void FindI2CDevices(const std::vector<fs::path>& i2cBuses,
         if (ioctl(file, I2C_FUNCS, &funcs) < 0)
         {
             std::cerr
-                << "Error: Could not get the adapter functionality matrix bus"
+                << "Error: Could not get the adapter functionality matrix bus "
                 << bus << "\n";
             continue;
         }
