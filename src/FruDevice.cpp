@@ -210,58 +210,59 @@ int get_bus_frus(int file, int first, int last, int bus,
             }
 
             // check the header checksum
-            if (validateHeader(block_data))
+            if (!validateHeader(block_data))
             {
-                std::vector<char> device;
-                device.insert(device.end(), block_data.begin(),
-                              block_data.begin() + 8);
-
-                for (size_t jj = 1; jj <= FRU_AREAS.size(); jj++)
+                if (DEBUG)
                 {
-                    auto area_offset = device[jj];
-                    if (area_offset != 0)
+                    std::cerr << "Illegal header at bus " << bus << " address "
+                              << ii << "\n";
+                }
+                continue;
+            }
+
+            std::vector<char> device;
+            device.insert(device.end(), block_data.begin(),
+                          block_data.begin() + 8);
+
+            for (size_t jj = 1; jj <= FRU_AREAS.size(); jj++)
+            {
+                auto area_offset = device[jj];
+                if (area_offset != 0)
+                {
+                    area_offset = static_cast<char>(area_offset * 8);
+                    if (read_block_data(flag, file, area_offset, 0x8,
+                                        block_data.data()) < 0)
                     {
-                        area_offset = static_cast<char>(area_offset * 8);
-                        if (read_block_data(flag, file, area_offset, 0x8,
+                        std::cerr << "failed to read bus " << bus << " address "
+                                  << ii << "\n";
+                        return -1;
+                    }
+                    int length = block_data[1] * 8;
+                    device.insert(device.end(), block_data.begin(),
+                                  block_data.begin() + 8);
+                    length -= 8;
+                    area_offset = static_cast<char>(area_offset + 8);
+
+                    while (length > 0)
+                    {
+                        auto to_get = std::min(0x20, length);
+
+                        if (read_block_data(flag, file, area_offset,
+                                            static_cast<uint8_t>(to_get),
                                             block_data.data()) < 0)
                         {
                             std::cerr << "failed to read bus " << bus
                                       << " address " << ii << "\n";
                             return -1;
                         }
-                        int length = block_data[1] * 8;
                         device.insert(device.end(), block_data.begin(),
-                                      block_data.begin() + 8);
-                        length -= 8;
-                        area_offset = static_cast<char>(area_offset + 8);
-
-                        while (length > 0)
-                        {
-                            auto to_get = std::min(0x20, length);
-
-                            if (read_block_data(flag, file, area_offset,
-                                                static_cast<uint8_t>(to_get),
-                                                block_data.data()) < 0)
-                            {
-                                std::cerr << "failed to read bus " << bus
-                                          << " address " << ii << "\n";
-                                return -1;
-                            }
-                            device.insert(device.end(), block_data.begin(),
-                                          block_data.begin() + to_get);
-                            area_offset =
-                                static_cast<char>(area_offset + to_get);
-                            length -= to_get;
-                        }
+                                      block_data.begin() + to_get);
+                        area_offset = static_cast<char>(area_offset + to_get);
+                        length -= to_get;
                     }
                 }
-                devices->emplace(ii, device);
             }
-            else if (DEBUG)
-            {
-                std::cerr << "Illegal header at bus " << bus << " address "
-                          << ii << "\n";
-            }
+            devices->emplace(ii, device);
         }
         return 1;
     });
