@@ -1,0 +1,19 @@
+{
+    "Exposes": [
+        {
+            "Address": "0x4c",
+            "Bus": "$bus",
+            "Name": "Razorback Temp Sensor $index",
+            "Type": "TMP421"
+        }
+    ],
+    "Name": "Razorback Board",
+    "Probe" : "xyz.openbmc_project.FruDevice({'PRODUCT_PRODUCT_NAME': 'Razorback'})",
+    "Type": "Board",
+    "xyz.openbmc_project.Inventory.Decorator.Asset": {
+        "Manufacturer": "$PRODUCT_MANUFACTURER",
+        "Model": "$PRODUCT_PRODUCT_NAME",
+        "PartNumber": "$PRODUCT_PART_NUMBER",
+        "SerialNumber": "$PRODUCT_SERIAL_NUMBER"
+    }
+}
