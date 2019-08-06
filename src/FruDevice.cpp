@@ -179,7 +179,7 @@ int get_bus_frus(int file, int first, int last, int bus,
             if (ioctl(file, I2C_SLAVE_FORCE, ii) < 0)
             {
                 std::cerr << "device at bus " << bus << " register " << ii
-                          << "busy\n";
+                          << " busy\n";
                 continue;
             }
             // probe
