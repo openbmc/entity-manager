@@ -27,11 +27,14 @@
 #include <filesystem>
 #include <fstream>
 #include <future>
+#include <iomanip>
 #include <iostream>
 #include <nlohmann/json.hpp>
 #include <regex>
 #include <sdbusplus/asio/connection.hpp>
 #include <sdbusplus/asio/object_server.hpp>
+#include <set>
+#include <sstream>
 #include <string>
 #include <thread>
 #include <variant>
@@ -65,6 +68,42 @@ static std::set<size_t> busBlacklist;
 struct FindDevicesWithCallback;
 
 static BusMap busMap;
+
+// Given a bus/address, produce the path in sysfs for an eeprom.
+static std::string getEepromPath(size_t bus, size_t address)
+{
+    std::stringstream output;
+    output << "/sys/bus/i2c/devices/" << bus << "-" << std::right
+           << std::setfill('0') << std::setw(4) << std::hex << address
+           << "/eeprom";
+    return output.str();
+}
+
+static bool hasEepromFile(size_t bus, size_t address)
+{
+    auto path = getEepromPath(bus, address);
+    try
+    {
+        return fs::exists(path);
+    }
+    catch (...)
+    {
+        return false;
+    }
+}
+
+static ssize_t readFromEeprom(int fd, uint16_t offset, uint8_t len,
+                              uint8_t* buf)
+{
+    auto result = lseek(fd, offset, SEEK_SET);
+    if (result < 0)
+    {
+        std::fprintf(stderr, "failed to seek!\n");
+        return -1;
+    }
+
+    return read(fd, buf, len);
+}
 
 static bool isMuxBus(size_t bus)
 {
@@ -165,6 +204,156 @@ bool validateHeader(const std::array<uint8_t, I2C_SMBUS_BLOCK_MAX>& blockData)
     return true;
 }
 
+// TODO: This code is very similar to the non-eeprom version and can be merged
+// with some tweaks.
+static std::vector<char> processEeprom(int bus, int address)
+{
+    std::vector<char> device;
+    std::array<uint8_t, I2C_SMBUS_BLOCK_MAX> block_data;
+
+    auto path = getEepromPath(bus, address);
+
+    int file = open(path.c_str(), O_RDONLY);
+    if (file < 0)
+    {
+        std::cerr << "Unable to open eeprom file: " << path << "\n";
+        return device;
+    }
+
+    ssize_t readBytes = readFromEeprom(file, 0, 0x8, block_data.data());
+    if (readBytes < 0)
+    {
+        std::cerr << "failed to read eeprom at " << bus << " address "
+                  << address << "\n";
+        close(file);
+        return device;
+    }
+
+    if (!validateHeader(block_data))
+    {
+        if (DEBUG)
+        {
+            std::cerr << "Illegal header at bus " << bus << " address "
+                      << address << "\n";
+        }
+
+        close(file);
+        return device;
+    }
+
+    device.insert(device.end(), block_data.begin(), block_data.begin() + 8);
+
+    for (size_t jj = 1; jj <= FRU_AREAS.size(); jj++)
+    {
+        auto area_offset = device[jj];
+        if (area_offset == 0)
+        {
+            continue;
+        }
+
+        area_offset = static_cast<char>(area_offset * 8);
+        if (readFromEeprom(file, area_offset, 0x8, block_data.data()) < 0)
+        {
+            std::cerr << "failed to read bus " << bus << " address " << address
+                      << "\n";
+            device.clear();
+            close(file);
+            return device;
+        }
+
+        int length = block_data[1] * 8;
+        device.insert(device.end(), block_data.begin(), block_data.begin() + 8);
+        length -= 8;
+        area_offset = static_cast<char>(area_offset + 8);
+
+        while (length > 0)
+        {
+            auto to_get = std::min(0x20, length);
+
+            if (readFromEeprom(file, area_offset, static_cast<uint8_t>(to_get),
+                               block_data.data()) < 0)
+            {
+                std::cerr << "failed to read bus " << bus << " address "
+                          << address << "\n";
+                device.clear();
+                close(file);
+                return device;
+            }
+
+            device.insert(device.end(), block_data.begin(),
+                          block_data.begin() + to_get);
+            area_offset = static_cast<char>(area_offset + to_get);
+            length -= to_get;
+        }
+    }
+
+    close(file);
+    return device;
+}
+
+std::set<int> findI2CEeproms(int i2cBus, std::shared_ptr<DeviceMap> devices)
+{
+    std::set<int> foundList;
+
+    std::string path = "/sys/bus/i2c/devices/i2c-" + std::to_string(i2cBus);
+
+    std::fprintf(stderr, "%s: %d, %s\n", __FUNCTION__, i2cBus, path.c_str());
+
+    // For each file listed under the i2c device
+    // NOTE: This should be faster than just checking for each possible address
+    // path.
+    for (const auto& p : fs::directory_iterator(path))
+    {
+        const std::string node = p.path().string();
+        std::smatch m;
+        bool found =
+            std::regex_match(node, m, std::regex(".+\\d+-([0-9abcdef]+$)"));
+
+        if (!found)
+        {
+            continue;
+        }
+        if (m.size() != 2)
+        {
+            std::cerr << "regex didn't capture\n";
+            continue;
+        }
+
+        std::ssub_match subMatch = m[1];
+        std::string addressString = subMatch.str();
+
+        std::size_t ignored;
+        const int hexBase = 16;
+        int address = std::stoi(addressString, &ignored, hexBase);
+
+        const std::string eeprom = node + "/eeprom";
+
+        try
+        {
+            if (!fs::exists(eeprom))
+            {
+                continue;
+            }
+        }
+        catch (...)
+        {
+            continue;
+        }
+
+        // There is an eeprom file at this address, it may have invalid
+        // contents, but we found it.
+        foundList.insert(address);
+
+        std::vector<char> device = processEeprom(i2cBus, address);
+        if (!device.empty())
+        {
+            devices->emplace(address, device);
+        }
+    }
+
+    return foundList;
+}
+
 int get_bus_frus(int file, int first, int last, int bus,
                  std::shared_ptr<DeviceMap> devices)
 {
@@ -172,8 +361,24 @@ int get_bus_frus(int file, int first, int last, int bus,
     std::future<int> future = std::async(std::launch::async, [&]() {
         std::array<uint8_t, I2C_SMBUS_BLOCK_MAX> block_data;
 
+        // NOTE: When reading the devices raw on the bus, it can interfere with
+        // the driver's ability to operate, therefore read eeproms first before
+        // scanning for devices without drivers. Several experiments were run
+        // and it was determined that if there were any devices on the bus
+        // before the eeprom was hit and read, the eeprom driver wouldn't open
+        // while the bus device was open. An experiment was not performed to see
+        // if this issue was resolved if the i2c bus device was closed, but
+        // hexdumps of the eeprom later were successful.
+
+        // Scan for i2c eeproms loaded on this bus.
+        std::set<int> skipList = findI2CEeproms(bus, devices);
+
         for (int ii = first; ii <= last; ii++)
         {
+            if (skipList.find(ii) != skipList.end())
+            {
+                continue;
+            }
 
             // Set slave address
             if (ioctl(file, I2C_SLAVE_FORCE, ii) < 0)
@@ -755,6 +960,30 @@ bool writeFru(uint8_t bus, uint8_t address, const std::vector<uint8_t>& fru)
     }
     else
     {
+        if (hasEepromFile(bus, address))
+        {
+            auto path = getEepromPath(bus, address);
+            int eeprom = open(path.c_str(), O_RDWR | O_CLOEXEC);
+            if (eeprom < 0)
+            {
+                std::cerr << "unable to open i2c device " << path << "\n";
+                throw DBusInternalError();
+                return false;
+            }
+
+            ssize_t writtenBytes = write(eeprom, fru.data(), fru.size());
+            if (writtenBytes < 0)
+            {
+                std::cerr << "unable to write to i2c device " << path << "\n";
+                close(eeprom);
+                throw DBusInternalError();
+                return false;
+            }
+
+            close(eeprom);
+            return true;
+        }
+
         std::string i2cBus = "/dev/i2c-" + std::to_string(bus);
 
         int file = open(i2cBus.c_str(), O_RDWR | O_CLOEXEC);
