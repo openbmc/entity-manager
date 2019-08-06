@@ -2165,22 +2165,6 @@
                     "Polarity": "Low"
                 }
             ],
-            "Thresholds": [
-                {
-                    "Direction": "greater than",
-                    "Label": "DIMM",
-                    "Name": "upper critical",
-                    "Severity": 1,
-                    "Value": 99
-                },
-                {
-                    "Direction": "greater than",
-                    "Label": "DIMM",
-                    "Name": "upper non critical",
-                    "Severity": 0,
-                    "Value": 89
-                }
-            ],
             "Type": "XeonCPU"
         },
         {
@@ -2192,22 +2176,6 @@
                 {
                     "Name": "CPU2_PRESENCE",
                     "Polarity": "Low"
-                }
-            ],
-            "Thresholds": [
-                {
-                    "Direction": "greater than",
-                    "Label": "DIMM",
-                    "Name": "upper critical",
-                    "Severity": 1,
-                    "Value": 99
-                },
-                {
-                    "Direction": "greater than",
-                    "Label": "DIMM",
-                    "Name": "upper non critical",
-                    "Severity": 0,
-                    "Value": 89
                 }
             ],
             "Type": "XeonCPU"
