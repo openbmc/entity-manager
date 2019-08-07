@@ -613,8 +613,8 @@ void AddFruObjectToDbus(
     boost::container::flat_map<std::string, std::string> formattedFru;
     if (!formatFru(device, formattedFru))
     {
-        std::cerr << "failed to format fru for device at bus " << std::hex
-                  << bus << " address " << address << "\n";
+        std::cerr << "failed to format fru for device at bus " << bus
+                  << " address " << address << "\n";
         return;
     }
 
