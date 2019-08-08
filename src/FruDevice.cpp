@@ -268,7 +268,7 @@ static std::vector<char> processEeprom(int bus, int address)
 
         while (length > 0)
         {
-            auto to_get = std::min(0x20, length);
+            auto to_get = std::min(I2C_SMBUS_BLOCK_MAX, length);
 
             if (readFromEeprom(file, area_offset, static_cast<uint8_t>(to_get),
                                block_data.data()) < 0)
@@ -452,7 +452,7 @@ int get_bus_frus(int file, int first, int last, int bus,
 
                 while (length > 0)
                 {
-                    auto to_get = std::min(0x20, length);
+                    auto to_get = std::min(I2C_SMBUS_BLOCK_MAX, length);
 
                     if (read_block_data(flag, file, area_offset,
                                         static_cast<uint8_t>(to_get),
