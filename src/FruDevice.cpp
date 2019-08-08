@@ -137,27 +137,27 @@ static int isDevice16Bit(int file)
     return 0;
 }
 
-static int read_block_data(int flag, int file, uint16_t offset, uint8_t len,
-                           uint8_t* buf)
+static int readBlockData(int flag, int file, uint16_t offset, uint8_t len,
+                         uint8_t* buf)
 {
-    uint8_t low_addr = static_cast<uint8_t>(offset);
-    uint8_t high_addr = static_cast<uint8_t>(offset >> 8);
+    uint8_t lowAddr = static_cast<uint8_t>(offset);
+    uint8_t highAddr = static_cast<uint8_t>(offset >> 8);
 
     if (flag == 0)
     {
-        return i2c_smbus_read_i2c_block_data(file, low_addr, len, buf);
+        return i2c_smbus_read_i2c_block_data(file, lowAddr, len, buf);
     }
 
     /* This is for 16 bit addressing EEPROM device. First an offset
      * needs to be written before read data from a offset
      */
-    int ret = i2c_smbus_write_byte_data(file, 0, low_addr);
+    int ret = i2c_smbus_write_byte_data(file, 0, lowAddr);
     if (ret < 0)
     {
         return ret;
     }
 
-    return i2c_smbus_read_i2c_block_data(file, high_addr, len, buf);
+    return i2c_smbus_read_i2c_block_data(file, highAddr, len, buf);
 }
 
 bool validateHeader(const std::array<uint8_t, I2C_SMBUS_BLOCK_MAX>& blockData)
@@ -209,7 +209,7 @@ bool validateHeader(const std::array<uint8_t, I2C_SMBUS_BLOCK_MAX>& blockData)
 static std::vector<char> processEeprom(int bus, int address)
 {
     std::vector<char> device;
-    std::array<uint8_t, I2C_SMBUS_BLOCK_MAX> block_data;
+    std::array<uint8_t, I2C_SMBUS_BLOCK_MAX> blockData;
 
     auto path = getEepromPath(bus, address);
 
@@ -220,7 +220,7 @@ static std::vector<char> processEeprom(int bus, int address)
         return device;
     }
 
-    ssize_t readBytes = readFromEeprom(file, 0, 0x8, block_data.data());
+    ssize_t readBytes = readFromEeprom(file, 0, 0x8, blockData.data());
     if (readBytes < 0)
     {
         std::cerr << "failed to read eeprom at " << bus << " address "
@@ -229,7 +229,7 @@ static std::vector<char> processEeprom(int bus, int address)
         return device;
     }
 
-    if (!validateHeader(block_data))
+    if (!validateHeader(blockData))
     {
         if (DEBUG)
         {
@@ -242,22 +242,22 @@ static std::vector<char> processEeprom(int bus, int address)
     }
 
     // Copy the IPMI Fru Header
-    device.insert(device.end(), block_data.begin(), block_data.begin() + 8);
+    device.insert(device.end(), blockData.begin(), blockData.begin() + 8);
 
     int fruLength = 0;
     for (size_t jj = 1; jj <= FRU_AREAS.size(); jj++)
     {
         // TODO: offset can be 255, device is holding "chars" that's not good.
-        int area_offset = device[jj];
-        if (area_offset == 0)
+        int areaOffset = device[jj];
+        if (areaOffset == 0)
         {
             continue;
         }
 
-        area_offset *= 8;
+        areaOffset *= 8;
 
-        if (readFromEeprom(file, static_cast<uint16_t>(area_offset), 0x2,
-                           block_data.data()) < 0)
+        if (readFromEeprom(file, static_cast<uint16_t>(areaOffset), 0x2,
+                           blockData.data()) < 0)
         {
             std::cerr << "failed to read bus " << bus << " address " << address
                       << "\n";
@@ -267,9 +267,9 @@ static std::vector<char> processEeprom(int bus, int address)
         }
 
         // Ignore data type.
-        int length = block_data[1] * 8;
-        area_offset += length;
-        fruLength = (area_offset > fruLength) ? area_offset : fruLength;
+        int length = blockData[1] * 8;
+        areaOffset += length;
+        fruLength = (areaOffset > fruLength) ? areaOffset : fruLength;
     }
 
     // You already copied these first 8 bytes (the ipmi fru header size)
@@ -279,10 +279,11 @@ static std::vector<char> processEeprom(int bus, int address)
 
     while (fruLength > 0)
     {
-        int to_get = std::min(I2C_SMBUS_BLOCK_MAX, fruLength);
+        int requestLength = std::min(I2C_SMBUS_BLOCK_MAX, fruLength);
 
         if (readFromEeprom(file, static_cast<uint16_t>(readOffset),
-                           static_cast<uint8_t>(to_get), block_data.data()) < 0)
+                           static_cast<uint8_t>(requestLength),
+                           blockData.data()) < 0)
         {
             std::cerr << "failed to read bus " << bus << " address " << address
                       << "\n";
@@ -291,11 +292,11 @@ static std::vector<char> processEeprom(int bus, int address)
             return device;
         }
 
-        device.insert(device.end(), block_data.begin(),
-                      block_data.begin() + to_get);
+        device.insert(device.end(), blockData.begin(),
+                      blockData.begin() + requestLength);
 
-        readOffset += to_get;
-        fruLength -= to_get;
+        readOffset += requestLength;
+        fruLength -= requestLength;
     }
 
     close(file);
@@ -363,12 +364,12 @@ std::set<int> findI2CEeproms(int i2cBus, std::shared_ptr<DeviceMap> devices)
     return foundList;
 }
 
-int get_bus_frus(int file, int first, int last, int bus,
-                 std::shared_ptr<DeviceMap> devices)
+int getBusFrus(int file, int first, int last, int bus,
+               std::shared_ptr<DeviceMap> devices)
 {
 
     std::future<int> future = std::async(std::launch::async, [&]() {
-        std::array<uint8_t, I2C_SMBUS_BLOCK_MAX> block_data;
+        std::array<uint8_t, I2C_SMBUS_BLOCK_MAX> blockData;
 
         // NOTE: When reading the devices raw on the bus, it can interfere with
         // the driver's ability to operate, therefore read eeproms first before
@@ -417,7 +418,7 @@ int get_bus_frus(int file, int first, int last, int bus,
                 continue;
             }
 
-            if (read_block_data(flag, file, 0x0, 0x8, block_data.data()) < 0)
+            if (readBlockData(flag, file, 0x0, 0x8, blockData.data()) < 0)
             {
                 std::cerr << "failed to read bus " << bus << " address " << ii
                           << "\n";
@@ -425,7 +426,7 @@ int get_bus_frus(int file, int first, int last, int bus,
             }
 
             // check the header checksum
-            if (!validateHeader(block_data))
+            if (!validateHeader(blockData))
             {
                 if (DEBUG)
                 {
@@ -436,25 +437,24 @@ int get_bus_frus(int file, int first, int last, int bus,
             }
 
             std::vector<char> device;
-            device.insert(device.end(), block_data.begin(),
-                          block_data.begin() + 8);
+            device.insert(device.end(), blockData.begin(),
+                          blockData.begin() + 8);
 
             int fruLength = 0;
             for (size_t jj = 1; jj <= FRU_AREAS.size(); jj++)
             {
                 // TODO: offset can be 255, device is holding "chars" that's not
                 // good.
-                int area_offset = device[jj];
-                if (area_offset == 0)
+                int areaOffset = device[jj];
+                if (areaOffset == 0)
                 {
                     continue;
                 }
 
-                area_offset *= 8;
+                areaOffset *= 8;
 
-                if (read_block_data(flag, file,
-                                    static_cast<uint16_t>(area_offset), 0x2,
-                                    block_data.data()) < 0)
+                if (readBlockData(flag, file, static_cast<uint16_t>(areaOffset),
+                                  0x2, blockData.data()) < 0)
                 {
                     std::cerr << "failed to read bus " << bus << " address "
                               << ii << "\n";
@@ -462,9 +462,9 @@ int get_bus_frus(int file, int first, int last, int bus,
                 }
 
                 // Ignore data type.
-                int length = block_data[1] * 8;
-                area_offset += length;
-                fruLength = (area_offset > fruLength) ? area_offset : fruLength;
+                int length = blockData[1] * 8;
+                areaOffset += length;
+                fruLength = (areaOffset > fruLength) ? areaOffset : fruLength;
             }
 
             // You already copied these first 8 bytes (the ipmi fru header size)
@@ -474,22 +474,22 @@ int get_bus_frus(int file, int first, int last, int bus,
 
             while (fruLength > 0)
             {
-                int to_get = std::min(I2C_SMBUS_BLOCK_MAX, fruLength);
+                int requestLength = std::min(I2C_SMBUS_BLOCK_MAX, fruLength);
 
-                if (read_block_data(
-                        flag, file, static_cast<uint16_t>(readOffset),
-                        static_cast<uint8_t>(to_get), block_data.data()) < 0)
+                if (readBlockData(flag, file, static_cast<uint16_t>(readOffset),
+                                  static_cast<uint8_t>(requestLength),
+                                  blockData.data()) < 0)
                 {
                     std::cerr << "failed to read bus " << bus << " address "
                               << ii << "\n";
                     return -1;
                 }
 
-                device.insert(device.end(), block_data.begin(),
-                              block_data.begin() + to_get);
+                device.insert(device.end(), blockData.begin(),
+                              blockData.begin() + requestLength);
 
-                readOffset += to_get;
-                fruLength -= to_get;
+                readOffset += requestLength;
+                fruLength -= requestLength;
             }
             devices->emplace(ii, device);
         }
@@ -625,7 +625,7 @@ static void FindI2CDevices(const std::vector<fs::path>& i2cBuses,
         }
 
         // fd is closed in this function in case the bus locks up
-        get_bus_frus(file, 0x03, 0x77, bus, device);
+        getBusFrus(file, 0x03, 0x77, bus, device);
 
         if (DEBUG)
         {
