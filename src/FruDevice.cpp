@@ -241,50 +241,63 @@ static std::vector<char> processEeprom(int bus, int address)
         return device;
     }
 
+
+    // Copy the IPMI Fru Header
     device.insert(device.end(), block_data.begin(), block_data.begin() + 8);
 
+    int fru_length = 0;
     for (size_t jj = 1; jj <= FRU_AREAS.size(); jj++)
     {
-        auto area_offset = device[jj];
+        // TODO: offset can be 255, device is holding "chars" that's not good.
+        int area_offset = device[jj];
         if (area_offset == 0)
         {
             continue;
         }
 
-        area_offset = static_cast<char>(area_offset * 8);
-        if (readFromEeprom(file, area_offset, 0x8, block_data.data()) < 0)
+        area_offset *= 8;
+
+        if (readFromEeprom(file, static_cast<uint16_t>(area_offset), 0x2,
+                           block_data.data()) < 0)
         {
-            std::cerr << "failed to read bus " << bus << " address " << address
-                      << "\n";
+            std::cerr << "failed to read bus " << bus << " address "
+                      << address << "\n";
             device.clear();
             close(file);
             return device;
         }
 
+        // Ignore data type.
         int length = block_data[1] * 8;
-        device.insert(device.end(), block_data.begin(), block_data.begin() + 8);
-        length -= 8;
-        area_offset = static_cast<char>(area_offset + 8);
+        area_offset += length;
+        fru_length = (area_offset > fru_length) ? area_offset : fru_length;
+    }
 
-        while (length > 0)
+    // You already copied these first 8 bytes (the ipmi fru header size)
+    fru_length -= 8;
+
+    int read_offset = 8;
+
+    while (fru_length > 0)
+    {
+        int to_get = std::min(I2C_SMBUS_BLOCK_MAX, fru_length);
+
+        if (readFromEeprom(file, static_cast<uint16_t>(read_offset),
+                           static_cast<uint8_t>(to_get),
+                           block_data.data()) < 0)
         {
-            auto to_get = std::min(0x20, length);
-
-            if (readFromEeprom(file, area_offset, static_cast<uint8_t>(to_get),
-                               block_data.data()) < 0)
-            {
-                std::cerr << "failed to read bus " << bus << " address "
-                          << address << "\n";
-                device.clear();
-                close(file);
-                return device;
-            }
-
-            device.insert(device.end(), block_data.begin(),
-                          block_data.begin() + to_get);
-            area_offset = static_cast<char>(area_offset + to_get);
-            length -= to_get;
+            std::cerr << "failed to read bus " << bus << " address "
+                      << address << "\n";
+            device.clear();
+            close(file);
+            return device;
         }
+
+        device.insert(device.end(), block_data.begin(),
+                      block_data.begin() + to_get);
+
+        read_offset += to_get;
+        fru_length -= to_get;
     }
 
     close(file);
@@ -406,6 +419,8 @@ int get_bus_frus(int file, int first, int last, int bus,
                 continue;
             }
 
+            if (ii == 0x56) { flag = 1; }
+
             if (read_block_data(flag, file, 0x0, 0x8, block_data.data()) < 0)
             {
                 std::cerr << "failed to read bus " << bus << " address " << ii
@@ -428,45 +443,55 @@ int get_bus_frus(int file, int first, int last, int bus,
             device.insert(device.end(), block_data.begin(),
                           block_data.begin() + 8);
 
+            int fru_length = 0;
             for (size_t jj = 1; jj <= FRU_AREAS.size(); jj++)
             {
-                auto area_offset = device[jj];
+                // TODO: offset can be 255, device is holding "chars" that's not good.
+                int area_offset = device[jj];
                 if (area_offset == 0)
                 {
                     continue;
                 }
 
-                area_offset = static_cast<char>(area_offset * 8);
-                if (read_block_data(flag, file, area_offset, 0x8,
+                area_offset *= 8;
+
+                if (read_block_data(flag, file, static_cast<uint16_t>(area_offset), 0x2,
                                     block_data.data()) < 0)
                 {
                     std::cerr << "failed to read bus " << bus << " address "
                               << ii << "\n";
                     return -1;
                 }
+
+                // Ignore data type.
                 int length = block_data[1] * 8;
-                device.insert(device.end(), block_data.begin(),
-                              block_data.begin() + 8);
-                length -= 8;
-                area_offset = static_cast<char>(area_offset + 8);
+                area_offset += length;
+                fru_length = (area_offset > fru_length) ? area_offset : fru_length;
+            }
 
-                while (length > 0)
+            // You already copied these first 8 bytes (the ipmi fru header size)
+            fru_length -= 8;
+
+            int read_offset = 8;
+
+            while (fru_length > 0)
+            {
+                int to_get = std::min(I2C_SMBUS_BLOCK_MAX, fru_length);
+
+                if (read_block_data(flag, file, static_cast<uint16_t>(read_offset),
+                                    static_cast<uint8_t>(to_get),
+                                    block_data.data()) < 0)
                 {
-                    auto to_get = std::min(0x20, length);
-
-                    if (read_block_data(flag, file, area_offset,
-                                        static_cast<uint8_t>(to_get),
-                                        block_data.data()) < 0)
-                    {
-                        std::cerr << "failed to read bus " << bus << " address "
-                                  << ii << "\n";
-                        return -1;
-                    }
-                    device.insert(device.end(), block_data.begin(),
-                                  block_data.begin() + to_get);
-                    area_offset = static_cast<char>(area_offset + to_get);
-                    length -= to_get;
+                    std::cerr << "failed to read bus " << bus << " address "
+                              << ii << "\n";
+                    return -1;
                 }
+
+                device.insert(device.end(), block_data.begin(),
+                              block_data.begin() + to_get);
+
+                read_offset += to_get;
+                fru_length -= to_get;
             }
             devices->emplace(ii, device);
         }
@@ -663,6 +688,7 @@ bool formatFru(const std::vector<char>& fruBytes,
     {
         return false;
     }
+
     std::vector<char>::const_iterator fruAreaOffsetField = fruBytes.begin();
     result["Common_Format_Version"] =
         std::to_string(static_cast<int>(*fruAreaOffsetField));
@@ -731,6 +757,7 @@ bool formatFru(const std::vector<char>& fruBytes,
             {
                 continue;
             }
+
             for (auto& field : *fieldData)
             {
                 if (fruBytesIter >= fruBytes.end())
