@@ -245,13 +245,13 @@ static std::vector<char> processEeprom(int bus, int address)
 
     for (size_t jj = 1; jj <= FRU_AREAS.size(); jj++)
     {
-        auto area_offset = device[jj];
+        char area_offset = device[jj];
         if (area_offset == 0)
         {
             continue;
         }
 
-        area_offset = static_cast<char>(area_offset * 8);
+        area_offset = area_offset * 8;
         if (readFromEeprom(file, area_offset, 0x8, block_data.data()) < 0)
         {
             std::cerr << "failed to read bus " << bus << " address " << address
@@ -264,14 +264,14 @@ static std::vector<char> processEeprom(int bus, int address)
         int length = block_data[1] * 8;
         device.insert(device.end(), block_data.begin(), block_data.begin() + 8);
         length -= 8;
-        area_offset = static_cast<char>(area_offset + 8);
+        area_offset = area_offset + 8;
 
         while (length > 0)
         {
-            auto to_get = std::min(0x20, length);
+            uint8_t to_get = std::min(0x20, length);
 
-            if (readFromEeprom(file, area_offset, static_cast<uint8_t>(to_get),
-                               block_data.data()) < 0)
+            if (readFromEeprom(file, area_offset, to_get, block_data.data()) <
+                0)
             {
                 std::cerr << "failed to read bus " << bus << " address "
                           << address << "\n";
