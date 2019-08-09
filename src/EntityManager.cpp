@@ -1530,10 +1530,7 @@ struct PerformScan : std::enable_shared_from_this<PerformScan>
                             }
                         }
                         auto findExpose = record.find("Exposes");
-                        if (findExpose == record.end())
-                        {
-                            continue;
-                        }
+
                         for (auto& expose : *findExpose)
                         {
                             for (auto keyPair = expose.begin();
