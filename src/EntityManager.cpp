@@ -1529,11 +1529,16 @@ struct PerformScan : std::enable_shared_from_this<PerformScan>
                                                     foundDeviceIdx);
                             }
                         }
+
                         auto findExpose = record.find("Exposes");
                         if (findExpose == record.end())
                         {
+                            _systemConfiguration[recordName] = record;
+                            logDeviceAdded(record);
+                            foundDeviceIdx++;
                             continue;
                         }
+
                         for (auto& expose : *findExpose)
                         {
                             for (auto keyPair = expose.begin();
