@@ -526,7 +526,6 @@ void loadBlacklist(const char* path)
         std::cerr << "Illegal blacklist file detected, cannot validate JSON, "
                      "exiting\n";
         std::exit(EXIT_FAILURE);
-        return;
     }
 
     // It's expected to have at least one field, "buses" that is an array of the
@@ -536,7 +535,6 @@ void loadBlacklist(const char* path)
     {
         std::cerr << "Illegal blacklist, expected to read dictionary\n";
         std::exit(EXIT_FAILURE);
-        return;
     }
 
     // If buses field is missing, that's fine.
@@ -549,7 +547,6 @@ void loadBlacklist(const char* path)
             // Buses field present but invalid, therefore this is an error.
             std::cerr << "Invalid contents for blacklist buses field\n";
             std::exit(EXIT_FAILURE);
-            return;
         }
 
         // Catch exception here for type mis-match.
@@ -565,7 +562,6 @@ void loadBlacklist(const char* path)
             // Type mis-match is a critical error.
             std::cerr << "Invalid bus type: " << e.what() << "\n";
             std::exit(EXIT_FAILURE);
-            return;
         }
     }
 
