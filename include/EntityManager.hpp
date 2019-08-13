@@ -106,12 +106,3 @@ inline void logDeviceRemoved(const nlohmann::json& record)
                     "REDFISH_MESSAGE_ARGS=%s,%s,%s", model.c_str(),
                     type.c_str(), sn.c_str(), NULL);
 }
-
-enum class TemplateOperation
-{
-    addition,
-    division,
-    multiplication,
-    subtraction,
-    modulo,
-};

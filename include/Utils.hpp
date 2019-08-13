@@ -15,6 +15,7 @@
 */
 
 #pragma once
+
 #include <boost/container/flat_map.hpp>
 #include <filesystem>
 #include <fstream>
@@ -26,6 +27,19 @@
 constexpr const char* configurationOutDir = "/var/configuration/";
 constexpr const char* versionHashFile = "/var/configuration/version";
 constexpr const char* versionFile = "/etc/os-release";
+
+using BasicVariantType =
+    std::variant<std::string, int64_t, uint64_t, double, int32_t, uint32_t,
+                 int16_t, uint16_t, uint8_t, bool>;
+
+enum class TemplateOperation
+{
+    addition,
+    division,
+    multiplication,
+    subtraction,
+    modulo,
+};
 
 bool findFiles(const std::filesystem::path& dirPath,
                const std::string& matchString,
@@ -95,3 +109,9 @@ inline bool fwVersionIsSame(void)
     output << expectedHash;
     return false;
 }
+
+void templateCharReplace(
+    nlohmann::json::iterator& keyPair,
+    const boost::container::flat_map<std::string, BasicVariantType>&
+        foundDevice,
+    const size_t foundDeviceIdx);
