@@ -15,6 +15,8 @@
 */
 
 #pragma once
+#include "EntityManager.hpp"
+
 #include <boost/container/flat_map.hpp>
 #include <filesystem>
 #include <fstream>
@@ -95,3 +97,9 @@ inline bool fwVersionIsSame(void)
     output << expectedHash;
     return false;
 }
+
+void templateCharReplace(
+    nlohmann::json::iterator& keyPair,
+    const boost::container::flat_map<std::string, BasicVariantType>&
+        foundDevice,
+    const size_t foundDeviceIdx);

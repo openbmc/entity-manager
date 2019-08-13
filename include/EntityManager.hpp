@@ -21,6 +21,11 @@
 #include <iostream>
 #include <nlohmann/json.hpp>
 #include <string>
+#include <variant>
+
+using BasicVariantType =
+    std::variant<std::string, int64_t, uint64_t, double, int32_t, uint32_t,
+                 int16_t, uint16_t, uint8_t, bool>;
 
 inline void logDeviceAdded(const nlohmann::json& record)
 {
