@@ -4,6 +4,12 @@ include (ExternalProject)
 set (CMAKE_CXX_STANDARD 17)
 set (CMAKE_CXX_STANDARD_REQUIRED ON)
 set (CMAKE_MODULE_PATH ${CMAKE_CURRENT_SOURCE_DIR}/cmake ${CMAKE_MODULE_PATH})
+include ("cmake/HunterGate.cmake")
+huntergate (URL "https://github.com/ruslo/hunter/archive/v0.18.64.tar.gz" SHA1
+            "baf9c8cc4f65306f0e442b5419967b4c4c04589a")
+
+project(entity-manager CXX)
+
 set (
     CMAKE_CXX_FLAGS
     "${CMAKE_CXX_FLAGS} -lstdc++fs \
@@ -92,12 +98,23 @@ if (NOT YOCTO)
 
     include_directories (SYSTEM ${CMAKE_BINARY_DIR}/boost-src)
     set (CMAKE_PREFIX_PATH ${CMAKE_BINARY_DIR}/boost-src ${CMAKE_PREFIX_PATH})
-    option (ENABLE_TEST "Enable Google Test" OFF)
-    if (ENABLE_TEST)
-        hunter_add_package (GTest)
-        find_package (GTest CONFIG REQUIRED)
-        enable_testing ()
-    endif ()
+
+
+    option (HUNTER_ENABLED "Enable hunter package pulling" ON)
+    hunter_add_package (GTest)
+
+    find_package (GTest CONFIG REQUIRED)
+
+    enable_testing ()
+
+    add_executable (entityManagerTests test/test_entity-manager.cpp)
+    add_test (NAME test_entitymanager COMMAND entityManagerTests)
+    target_link_libraries (entityManagerTests GTest::main GTest::gtest)
+    target_link_libraries (entityManagerTests -lsystemd)
+    target_link_libraries (entityManagerTests stdc++fs)
+    target_link_libraries (entityManagerTests ${Boost_LIBRARIES})
+    target_link_libraries (entityManagerTests sdbusplus)
+
 endif ()
 
 add_definitions (-DBOOST_ERROR_CODE_HEADER_ONLY)
@@ -133,6 +150,9 @@ if (NOT YOCTO)
     add_dependencies (entity-manager nlohmann-json)
     add_dependencies (entity-manager sdbusplus-project)
     add_dependencies (entity-manager valijson)
+    add_dependencies (entityManagerTests nlohmann-json)
+    add_dependencies (entityManagerTests sdbusplus-project)
+    add_dependencies (entityManagerTests valijson)
     add_dependencies (fru-device nlohmann-json)
     add_dependencies (fru-device valijson)
     add_dependencies (fru-device sdbusplus-project)
