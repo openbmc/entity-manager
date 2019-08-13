@@ -733,13 +733,20 @@ bool formatFru(const std::vector<char>& fruBytes,
                                        *(fruBytesIter + 1) << 8 |
                                        *(fruBytesIter + 2) << 16;
                 std::tm fruTime = intelEpoch();
-                time_t timeValue = mktime(&fruTime);
+                std::time_t timeValue = std::mktime(&fruTime);
                 timeValue += minutes * 60;
-                fruTime = *gmtime(&timeValue);
+                fruTime = *std::gmtime(&timeValue);
 
-                result["BOARD_MANUFACTURE_DATE"] = asctime(&fruTime);
-                result["BOARD_MANUFACTURE_DATE"]
-                    .pop_back(); // remove trailing null
+                // Tue Nov 20 23:08:00 2018
+                char timeString[32] = {0};
+                auto bytes = std::strftime(timeString, sizeof(timeString), "%a %b %d %H:%M:%S %Y", &fruTime);
+                if (bytes == 0)
+                {
+                    std::cerr << "invalid time string encountered\n";
+                    return false;
+                }
+
+                result["BOARD_MANUFACTURE_DATE"] = std::string(timeString);
                 fruBytesIter += 3;
                 fieldData = &BOARD_FRU_AREAS;
             }
