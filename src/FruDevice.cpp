@@ -736,7 +736,7 @@ bool formatFru(const std::vector<char>& fruBytes,
                 // Tue Nov 20 23:08:00 2018
                 char timeString[32] = {0};
                 auto bytes = std::strftime(timeString, sizeof(timeString),
-                                           "%a %b %e %H:%M:%S %Y", &fruTime);
+                                           "%Y-%m-%d - %H:%M:%S", &fruTime);
                 if (bytes == 0)
                 {
                     std::cerr << "invalid time string encountered\n";
