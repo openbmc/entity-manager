@@ -174,7 +174,11 @@ void templateCharReplace(
             boost::ifind_first(*strPtr, templateName);
         if (find)
         {
+            constexpr const std::array<char, 5> mathChars = {'+', '-', '%', '*',
+                                                             '/'};
             size_t start = find.begin() - strPtr->begin();
+            size_t nextItemIdx = start + templateName.size() + 1;
+
             // check for additional operations
             if (!start && find.end() == strPtr->end())
             {
@@ -182,20 +186,22 @@ void templateCharReplace(
                            foundDevicePair.second);
                 return;
             }
-            else if (find.end() == strPtr->end())
+            else if (nextItemIdx > strPtr->size() ||
+                     std::find(mathChars.begin(), mathChars.end(),
+                               strPtr->at(nextItemIdx)) == mathChars.end())
             {
                 std::string val = std::visit(VariantToStringVisitor(),
                                              foundDevicePair.second);
                 boost::replace_all(*strPtr,
                                    templateChar + foundDevicePair.first, val);
-                return;
+                continue;
             }
 
             // save the prefix
             std::string prefix = strPtr->substr(0, start);
 
-            // operate on the rest (+1 for trailing space)
-            std::string end = strPtr->substr(start + templateName.size() + 1);
+            // operate on the rest
+            std::string end = strPtr->substr(nextItemIdx);
 
             std::vector<std::string> split;
             boost::split(split, end, boost::is_any_of(" "));
