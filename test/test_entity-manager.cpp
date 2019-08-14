@@ -45,9 +45,6 @@ TEST(TemplateCharReplace, replaceSecondStr)
     EXPECT_EQ(expected, j["foo"]);
 }
 
-/*
-TODO This should work
-
 TEST(TemplateCharReplace, replaceMiddleStr)
 {
     nlohmann::json j = {{"foo", "the $TEST worked"}};
@@ -60,7 +57,6 @@ TEST(TemplateCharReplace, replaceMiddleStr)
     nlohmann::json expected = "the Test worked";
     EXPECT_EQ(expected, j["foo"]);
 }
-*/
 
 TEST(TemplateCharReplace, replaceLastStr)
 {
@@ -137,5 +133,46 @@ TEST(TemplateCharReplace, divide)
     templateCharReplace(it, data, 0);
 
     nlohmann::json expected = "4 / 2 equals 2";
+    EXPECT_EQ(expected, j["foo"]);
+}
+
+TEST(TemplateCharReplace, multiMath)
+{
+    nlohmann::json j = {{"foo", "4 * 2 % 6 equals $TEST * 2 % 6"}};
+    auto it = j.begin();
+    boost::container::flat_map<std::string, BasicVariantType> data;
+    data["TEST"] = 4;
+
+    templateCharReplace(it, data, 0);
+
+    nlohmann::json expected = "4 * 2 % 6 equals 2";
+    EXPECT_EQ(expected, j["foo"]);
+}
+
+TEST(TemplateCharReplace, twoReplacements)
+{
+    nlohmann::json j = {{"foo", "$FOO $BAR"}};
+    auto it = j.begin();
+    boost::container::flat_map<std::string, BasicVariantType> data;
+    data["FOO"] = std::string("foo");
+    data["BAR"] = std::string("bar");
+
+    templateCharReplace(it, data, 0);
+
+    nlohmann::json expected = "foo bar";
+    EXPECT_EQ(expected, j["foo"]);
+}
+
+TEST(TemplateCharReplace, twoReplacementsWithMath)
+{
+    nlohmann::json j = {{"foo", "4 / 2 equals $TEST / 2 $BAR"}};
+    auto it = j.begin();
+    boost::container::flat_map<std::string, BasicVariantType> data;
+    data["TEST"] = 4;
+    data["BAR"] = std::string("bar");
+
+    templateCharReplace(it, data, 0);
+
+    nlohmann::json expected = "4 / 2 equals 2 bar";
     EXPECT_EQ(expected, j["foo"]);
 }
