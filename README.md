@@ -41,6 +41,12 @@ files. The following table describes the template strings currently defined.
 
 
 
+## Configuration HowTos
+
+If you're just getting started and your goal is to add sensors dynamically,
+check out [My First Sensors](docs/my_first_sensors.md)
+
+
 ## Configuration Records - Baseboard Example
 
 Required fields are name, probe and exposes.
