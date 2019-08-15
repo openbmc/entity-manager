@@ -192,8 +192,8 @@ void templateCharReplace(
             {
                 std::string val = std::visit(VariantToStringVisitor(),
                                              foundDevicePair.second);
-                boost::replace_all(*strPtr,
-                                   templateChar + foundDevicePair.first, val);
+                boost::ireplace_all(*strPtr,
+                                    templateChar + foundDevicePair.first, val);
                 continue;
             }
 
