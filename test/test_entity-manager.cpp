@@ -176,3 +176,37 @@ TEST(TemplateCharReplace, twoReplacementsWithMath)
     nlohmann::json expected = "4 / 2 equals 2 bar";
     EXPECT_EQ(expected, j["foo"]);
 }
+
+TEST(TemplateCharReplace, hexAndWrongCase)
+{
+    nlohmann::json j = {{"Address", "0x54"},
+                        {"Bus", 15},
+                        {"Name", "$bus sensor 0"},
+                        {"Type", "SomeType"}};
+
+    boost::container::flat_map<std::string, BasicVariantType> data;
+    data["BUS"] = 15;
+
+    for (auto it = j.begin(); it != j.end(); it++)
+    {
+        templateCharReplace(it, data, 0);
+    }
+    nlohmann::json expected = {{"Address", 84},
+                               {"Bus", 15},
+                               {"Name", "15 sensor 0"},
+                               {"Type", "SomeType"}};
+    EXPECT_EQ(expected, j);
+}
+
+TEST(TemplateCharReplace, replaceSecondAsInt)
+{
+    nlohmann::json j = {{"foo", "twelve is $TEST"}};
+    auto it = j.begin();
+    boost::container::flat_map<std::string, BasicVariantType> data;
+    data["test"] = 12;
+
+    templateCharReplace(it, data, 0);
+
+    nlohmann::json expected = "twelve is 12";
+    EXPECT_EQ(expected, j["foo"]);
+}
