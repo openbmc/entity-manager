@@ -874,10 +874,13 @@ void AddFruObjectToDbus(
     // avoid duplicates by checking to see if on a mux
     if (bus > 0)
     {
-        size_t index = 0;
+        int highest = -1;
+        bool found = false;
+
         for (auto const& busIface : dbusInterfaceMap)
         {
-            if ((busIface.second->get_object_path() == productName))
+            std::string path = busIface.second->get_object_path();
+            if (std::regex_match(path, std::regex(productName + "(_\\d+|)$")))
             {
                 if (isMuxBus(bus) && address == busIface.first.second &&
                     (getFruInfo(static_cast<uint8_t>(busIface.first.first),
@@ -889,18 +892,33 @@ void AddFruObjectToDbus(
                     // do not replicate it.
                     return;
                 }
-                // add underscore _index for the same object path on dbus
-                std::string strIndex = std::to_string(index);
-                if (index > 0)
+
+                // Check if the match named has extra information.
+                found = true;
+                std::smatch base_match;
+
+                bool match = std::regex_match(
+                    path, base_match, std::regex(productName + "_(\\d+)$"));
+                if (match)
                 {
-                    productName.substr(0, productName.size() - strIndex.size());
+                    if (base_match.size() == 2)
+                    {
+                        std::ssub_match base_sub_match = base_match[1];
+                        std::string base = base_sub_match.str();
+
+                        int value = std::stoi(base);
+                        highest = (value > highest) ? value : highest;
+                    }
                 }
-                else
-                {
-                    productName += "_";
-                }
-                productName += std::to_string(index++);
             }
+        } // end searching objects
+
+        if (found)
+        {
+            // We found something with the same name.  If highest was still -1,
+            // it means this new entry will be _0.
+            productName += "_";
+            productName += std::to_string(++highest);
         }
     }
 
