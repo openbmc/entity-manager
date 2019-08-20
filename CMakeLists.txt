@@ -4,9 +4,11 @@ include (ExternalProject)
 set (CMAKE_CXX_STANDARD 17)
 set (CMAKE_CXX_STANDARD_REQUIRED ON)
 set (CMAKE_MODULE_PATH ${CMAKE_CURRENT_SOURCE_DIR}/cmake ${CMAKE_MODULE_PATH})
-include ("cmake/HunterGate.cmake")
-huntergate (URL "https://github.com/ruslo/hunter/archive/v0.18.64.tar.gz" SHA1
-            "baf9c8cc4f65306f0e442b5419967b4c4c04589a")
+if (NOT YOCTO) # to download gtest
+    include ("cmake/HunterGate.cmake")
+    huntergate (URL "https://github.com/ruslo/hunter/archive/v0.18.64.tar.gz"
+                SHA1 "baf9c8cc4f65306f0e442b5419967b4c4c04589a")
+endif ()
 
 project (entity-manager CXX)
 
