@@ -1254,7 +1254,7 @@ struct PerformScan : std::enable_shared_from_this<PerformScan>
                     _passed = true;
 
                     PASSED_PROBES.push_back(probeName);
-                    size_t foundDeviceIdx = 0;
+                    size_t foundDeviceIdx = 1;
 
                     for (auto& foundDevice : foundDevices)
                     {
