@@ -210,3 +210,15 @@ TEST(TemplateCharReplace, replaceSecondAsInt)
     nlohmann::json expected = "twelve is 12";
     EXPECT_EQ(expected, j["foo"]);
 }
+
+TEST(TemplateCharReplace, singleHex)
+{
+    nlohmann::json j = {{"foo", "0x54"}};
+    auto it = j.begin();
+    boost::container::flat_map<std::string, BasicVariantType> data;
+
+    templateCharReplace(it, data, 0);
+
+    nlohmann::json expected = 84;
+    EXPECT_EQ(expected, j["foo"]);
+}
