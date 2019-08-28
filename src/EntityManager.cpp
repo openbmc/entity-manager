@@ -98,6 +98,9 @@ boost::container::flat_map<
     DBUS_PROBE_OBJECTS;
 std::vector<std::string> PASSED_PROBES;
 
+using FoundDeviceT =
+    std::vector<boost::container::flat_map<std::string, BasicVariantType>>;
+
 // todo: pass this through nicer
 std::shared_ptr<sdbusplus::asio::connection> SYSTEM_BUS;
 static nlohmann::json lastJson;
@@ -212,12 +215,9 @@ void findDbusObjects(std::shared_ptr<PerformProbe> probe,
         objects);
 }
 // probes dbus interface dictionary for a key with a value that matches a regex
-bool probeDbus(
-    const std::string& interface,
-    const std::map<std::string, nlohmann::json>& matches,
-    std::vector<std::optional<
-        boost::container::flat_map<std::string, BasicVariantType>>>& devices,
-    bool& foundProbe)
+bool probeDbus(const std::string& interface,
+               const std::map<std::string, nlohmann::json>& matches,
+               FoundDeviceT& devices, bool& foundProbe)
 {
     std::vector<boost::container::flat_map<std::string, BasicVariantType>>&
         dbusObject = DBUS_PROBE_OBJECTS[interface];
@@ -315,8 +315,8 @@ bool probeDbus(
 // call specific probe functions
 bool probe(
     const std::vector<std::string>& probeCommand,
-    std::vector<std::optional<
-        boost::container::flat_map<std::string, BasicVariantType>>>& foundDevs)
+    std::vector<boost::container::flat_map<std::string, BasicVariantType>>&
+        foundDevs)
 {
     const static std::regex command(R"(\((.*)\))");
     std::smatch match;
@@ -445,7 +445,8 @@ bool probe(
     // probe passed, but empty device
     if (ret && foundDevs.size() == 0)
     {
-        foundDevs.emplace_back(std::nullopt);
+        foundDevs.emplace_back(
+            boost::container::flat_map<std::string, BasicVariantType>{});
     }
     if (matchOne && ret)
     {
@@ -461,19 +462,15 @@ bool probe(
 struct PerformProbe : std::enable_shared_from_this<PerformProbe>
 {
 
-    PerformProbe(
-        const std::vector<std::string>& probeCommand,
-        std::function<void(std::vector<std::optional<boost::container::flat_map<
-                               std::string, BasicVariantType>>>&)>&& callback) :
+    PerformProbe(const std::vector<std::string>& probeCommand,
+                 std::function<void(FoundDeviceT&)>&& callback) :
         _probeCommand(probeCommand),
         _callback(std::move(callback))
     {
     }
     ~PerformProbe()
     {
-        std::vector<std::optional<
-            boost::container::flat_map<std::string, BasicVariantType>>>
-            foundDevs;
+        FoundDeviceT foundDevs;
         if (probe(_probeCommand, foundDevs))
         {
             _callback(foundDevs);
@@ -509,9 +506,7 @@ struct PerformProbe : std::enable_shared_from_this<PerformProbe>
         }
     }
     std::vector<std::string> _probeCommand;
-    std::function<void(std::vector<std::optional<boost::container::flat_map<
-                           std::string, BasicVariantType>>>&)>
-        _callback;
+    std::function<void(FoundDeviceT&)> _callback;
 };
 
 // writes output files to persist data
@@ -1246,170 +1241,156 @@ struct PerformScan : std::enable_shared_from_this<PerformScan>
             // store reference to this to children to makes sure we don't get
             // destroyed too early
             auto thisRef = shared_from_this();
-            auto p = std::make_shared<PerformProbe>(
-                probeCommand,
-                [&, recordPtr, probeName,
-                 thisRef](std::vector<std::optional<boost::container::flat_map<
-                              std::string, BasicVariantType>>>& foundDevices) {
-                    _passed = true;
+            auto p = std::make_shared<
+                PerformProbe>(probeCommand, [&, recordPtr, probeName, thisRef](
+                                                FoundDeviceT& foundDevices) {
+                _passed = true;
 
-                    PASSED_PROBES.push_back(probeName);
-                    size_t foundDeviceIdx = 1;
+                PASSED_PROBES.push_back(probeName);
+                size_t foundDeviceIdx = 1;
 
-                    for (auto& foundDevice : foundDevices)
+                for (auto& foundDevice : foundDevices)
+                {
+                    nlohmann::json record = *recordPtr;
+                    std::string recordName;
+                    size_t hash = 0;
+                    if (foundDevice.size())
                     {
-                        nlohmann::json record = *recordPtr;
-                        std::string recordName;
-                        size_t hash = 0;
-                        if (foundDevice)
+                        // use an array so alphabetical order from the
+                        // flat_map is maintained
+                        auto device = nlohmann::json::array();
+                        for (auto& devPair : foundDevice)
                         {
-                            // use an array so alphabetical order from the
-                            // flat_map is maintained
-                            auto device = nlohmann::json::array();
-                            for (auto& devPair : *foundDevice)
-                            {
-                                device.push_back(devPair.first);
-                                std::visit(
-                                    [&device](auto&& v) {
-                                        device.push_back(v);
-                                    },
-                                    devPair.second);
-                            }
-                            hash = std::hash<std::string>{}(probeName +
-                                                            device.dump());
-                            // hashes are hard to distinguish, use the
-                            // non-hashed version if we want debug
-                            if constexpr (DEBUG)
-                            {
-                                recordName = probeName + device.dump();
-                            }
-                            else
-                            {
-                                recordName = std::to_string(hash);
-                            }
+                            device.push_back(devPair.first);
+                            std::visit(
+                                [&device](auto&& v) { device.push_back(v); },
+                                devPair.second);
+                        }
+                        hash =
+                            std::hash<std::string>{}(probeName + device.dump());
+                        // hashes are hard to distinguish, use the
+                        // non-hashed version if we want debug
+                        if constexpr (DEBUG)
+                        {
+                            recordName = probeName + device.dump();
                         }
                         else
                         {
-                            recordName = probeName;
+                            recordName = std::to_string(hash);
                         }
+                    }
+                    else
+                    {
+                        recordName = probeName;
+                    }
 
-                        auto fromLastJson = lastJson.find(recordName);
-                        if (fromLastJson != lastJson.end())
-                        {
-                            // keep user changes
-                            _systemConfiguration[recordName] = *fromLastJson;
-                            continue;
-                        }
+                    auto fromLastJson = lastJson.find(recordName);
+                    if (fromLastJson != lastJson.end())
+                    {
+                        // keep user changes
+                        _systemConfiguration[recordName] = *fromLastJson;
+                        continue;
+                    }
 
-                        // insert into configuration temporarily to be able to
-                        // reference ourselves
+                    // insert into configuration temporarily to be able to
+                    // reference ourselves
 
+                    _systemConfiguration[recordName] = record;
+
+                    for (auto keyPair = record.begin(); keyPair != record.end();
+                         keyPair++)
+                    {
+                        templateCharReplace(keyPair, foundDevice,
+                                            foundDeviceIdx);
+                    }
+
+                    auto findExpose = record.find("Exposes");
+                    if (findExpose == record.end())
+                    {
                         _systemConfiguration[recordName] = record;
+                        logDeviceAdded(record);
+                        foundDeviceIdx++;
+                        continue;
+                    }
 
-                        if (foundDevice)
+                    for (auto& expose : *findExpose)
+                    {
+                        for (auto keyPair = expose.begin();
+                             keyPair != expose.end(); keyPair++)
                         {
-                            for (auto keyPair = record.begin();
-                                 keyPair != record.end(); keyPair++)
+
+                            templateCharReplace(keyPair, foundDevice,
+                                                foundDeviceIdx);
+
+                            // special case bind
+                            if (boost::starts_with(keyPair.key(), "Bind"))
                             {
-                                templateCharReplace(keyPair, *foundDevice,
-                                                    foundDeviceIdx);
-                            }
-                        }
-
-                        auto findExpose = record.find("Exposes");
-                        if (findExpose == record.end())
-                        {
-                            _systemConfiguration[recordName] = record;
-                            logDeviceAdded(record);
-                            foundDeviceIdx++;
-                            continue;
-                        }
-
-                        for (auto& expose : *findExpose)
-                        {
-                            for (auto keyPair = expose.begin();
-                                 keyPair != expose.end(); keyPair++)
-                            {
-
-                                // fill in template characters with devices
-                                // found
-                                if (foundDevice)
+                                if (keyPair.value().type() !=
+                                    nlohmann::json::value_t::string)
                                 {
-                                    templateCharReplace(keyPair, *foundDevice,
-                                                        foundDeviceIdx);
+                                    std::cerr << "bind_ value must be of "
+                                                 "type string "
+                                              << keyPair.key() << "\n";
+                                    continue;
                                 }
-                                // special case bind
-                                if (boost::starts_with(keyPair.key(), "Bind"))
+                                bool foundBind = false;
+                                std::string bind =
+                                    keyPair.key().substr(sizeof("Bind") - 1);
+
+                                for (auto& configurationPair :
+                                     _systemConfiguration.items())
                                 {
-                                    if (keyPair.value().type() !=
-                                        nlohmann::json::value_t::string)
+
+                                    auto configListFind =
+                                        configurationPair.value().find(
+                                            "Exposes");
+
+                                    if (configListFind ==
+                                            configurationPair.value().end() ||
+                                        configListFind->type() !=
+                                            nlohmann::json::value_t::array)
                                     {
-                                        std::cerr << "bind_ value must be of "
-                                                     "type string "
-                                                  << keyPair.key() << "\n";
                                         continue;
                                     }
-                                    bool foundBind = false;
-                                    std::string bind = keyPair.key().substr(
-                                        sizeof("Bind") - 1);
-
-                                    for (auto& configurationPair :
-                                         _systemConfiguration.items())
+                                    for (auto& exposedObject : *configListFind)
                                     {
-
-                                        auto configListFind =
-                                            configurationPair.value().find(
-                                                "Exposes");
-
-                                        if (configListFind ==
-                                                configurationPair.value()
-                                                    .end() ||
-                                            configListFind->type() !=
-                                                nlohmann::json::value_t::array)
+                                        std::string foundObjectName =
+                                            (exposedObject)["Name"];
+                                        if (boost::iequals(
+                                                foundObjectName,
+                                                keyPair.value()
+                                                    .get<std::string>()))
                                         {
-                                            continue;
-                                        }
-                                        for (auto& exposedObject :
-                                             *configListFind)
-                                        {
-                                            std::string foundObjectName =
-                                                (exposedObject)["Name"];
-                                            if (boost::iequals(
-                                                    foundObjectName,
-                                                    keyPair.value()
-                                                        .get<std::string>()))
-                                            {
-                                                exposedObject["Status"] =
-                                                    "okay";
-                                                expose[bind] = exposedObject;
+                                            exposedObject["Status"] = "okay";
+                                            expose[bind] = exposedObject;
 
-                                                foundBind = true;
-                                                break;
-                                            }
-                                        }
-                                        if (foundBind)
-                                        {
+                                            foundBind = true;
                                             break;
                                         }
                                     }
-                                    if (!foundBind)
+                                    if (foundBind)
                                     {
-                                        std::cerr << "configuration file "
-                                                     "dependency error, "
-                                                     "could not find bind "
-                                                  << keyPair.value() << "\n";
+                                        break;
                                     }
+                                }
+                                if (!foundBind)
+                                {
+                                    std::cerr << "configuration file "
+                                                 "dependency error, "
+                                                 "could not find bind "
+                                              << keyPair.value() << "\n";
                                 }
                             }
                         }
-                        // overwrite ourselves with cleaned up version
-                        _systemConfiguration[recordName] = record;
-
-                        logDeviceAdded(record);
-
-                        foundDeviceIdx++;
                     }
-                });
+                    // overwrite ourselves with cleaned up version
+                    _systemConfiguration[recordName] = record;
+
+                    logDeviceAdded(record);
+
+                    foundDeviceIdx++;
+                }
+            });
             p->run();
             it++;
         }
