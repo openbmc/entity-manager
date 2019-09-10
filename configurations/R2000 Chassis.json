@@ -191,6 +191,20 @@
             "Type": "FanRedundancy"
         },
         {
+            "Address": [
+                "0x50",
+                "0x51"
+            ],
+            "Bus": 7,
+            "Name": "PSU address",
+            "Type": "PSUPresence"
+        },
+        {
+            "Name": "Power Unit Redundancy",
+            "RedundantCount": 1,
+            "Type": "PURedundancy"
+        },
+        {
             "Class": "fan",
             "FFGainCoefficient": 1.0,
             "FFOffCoefficient": 0.0,
@@ -472,15 +486,6 @@
                 "Zone 5",
                 "Zone 6"
             ]
-        },
-        {
-            "Bus": 7,
-            "Address": [
-                "0x50",
-                "0x51"
-            ],
-            "Name": "PSU address",
-            "Type": "PSUPresence"
         }
     ],
     "Name": "R2000 Chassis",
