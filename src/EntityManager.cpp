@@ -1219,9 +1219,11 @@ struct PerformScan : std::enable_shared_from_this<PerformScan>
 {
 
     PerformScan(nlohmann::json& systemConfiguration,
+                nlohmann::json& missingConfigurations,
                 std::list<nlohmann::json>& configurations,
                 std::function<void(void)>&& callback) :
         _systemConfiguration(systemConfiguration),
+        _missingConfigurations(missingConfigurations),
         _configurations(configurations), _callback(std::move(callback))
     {
     }
@@ -1319,6 +1321,7 @@ struct PerformScan : std::enable_shared_from_this<PerformScan>
                     {
                         // keep user changes
                         _systemConfiguration[recordName] = *fromLastJson;
+                        _missingConfigurations.erase(recordName);
                         continue;
                     }
 
@@ -1338,7 +1341,6 @@ struct PerformScan : std::enable_shared_from_this<PerformScan>
                     if (findExpose == record.end())
                     {
                         _systemConfiguration[recordName] = record;
-                        logDeviceAdded(record);
                         foundDeviceIdx++;
                         continue;
                     }
@@ -1415,8 +1417,7 @@ struct PerformScan : std::enable_shared_from_this<PerformScan>
                     }
                     // overwrite ourselves with cleaned up version
                     _systemConfiguration[recordName] = record;
-
-                    logDeviceAdded(record);
+                    _missingConfigurations.erase(recordName);
 
                     foundDeviceIdx++;
                 }
@@ -1431,7 +1432,8 @@ struct PerformScan : std::enable_shared_from_this<PerformScan>
         if (_passed)
         {
             auto nextScan = std::make_shared<PerformScan>(
-                _systemConfiguration, _configurations, std::move(_callback));
+                _systemConfiguration, _missingConfigurations, _configurations,
+                std::move(_callback));
             nextScan->run();
         }
         else
@@ -1440,6 +1442,7 @@ struct PerformScan : std::enable_shared_from_this<PerformScan>
         }
     }
     nlohmann::json& _systemConfiguration;
+    nlohmann::json& _missingConfigurations;
     std::list<nlohmann::json> _configurations;
     std::function<void(void)> _callback;
     std::vector<std::shared_ptr<PerformProbe>> _probes;
@@ -1525,13 +1528,15 @@ void propertiesChangedCallback(
     sdbusplus::asio::object_server& objServer)
 {
     static boost::asio::deadline_timer timer(io);
-    static bool timerRunning;
+    static size_t instance = 0;
+    instance++;
+    size_t count = instance;
 
-    timerRunning = true;
-    timer.expires_from_now(boost::posix_time::seconds(1));
+    timer.expires_from_now(boost::posix_time::seconds(5));
 
     // setup an async wait as we normally get flooded with new requests
-    timer.async_wait([&](const boost::system::error_code& ec) {
+    timer.async_wait([&systemConfiguration, &dbusMatches, &io, &objServer,
+                      count](const boost::system::error_code& ec) {
         if (ec == boost::asio::error::operation_aborted)
         {
             // we were cancelled
@@ -1542,10 +1547,13 @@ void propertiesChangedCallback(
             std::cerr << "async wait error " << ec << "\n";
             return;
         }
-        timerRunning = false;
 
         nlohmann::json oldConfiguration = systemConfiguration;
+        auto missingConfigurations = std::make_shared<nlohmann::json>();
+        *missingConfigurations = systemConfiguration;
+
         DBUS_PROBE_OBJECTS.clear();
+        PASSED_PROBES.clear();
 
         std::list<nlohmann::json> configurations;
         if (!findJsonFiles(configurations))
@@ -1555,7 +1563,45 @@ void propertiesChangedCallback(
         }
 
         auto perfScan = std::make_shared<PerformScan>(
-            systemConfiguration, configurations, [&, oldConfiguration]() {
+            systemConfiguration, *missingConfigurations, configurations,
+            [&systemConfiguration, &io, &objServer, &dbusMatches, count,
+             oldConfiguration, missingConfigurations]() {
+                // this is something that since ac has been applied to the bmc
+                // we saw, and we no longer see it
+                bool powerOff = !isPowerOn();
+                for (const auto& item : missingConfigurations->items())
+                {
+                    bool isDetectedPowerOn = false;
+                    auto powerState = item.value().find("PowerState");
+                    if (powerState != item.value().end())
+                    {
+                        auto ptr = powerState->get_ptr<const std::string*>();
+                        if (ptr)
+                        {
+                            if (*ptr == "On" || *ptr == "BiosPost")
+                            {
+                                isDetectedPowerOn = true;
+                            }
+                        }
+                    }
+                    if (powerOff && isDetectedPowerOn)
+                    {
+                        // power not on yet, don't know if it's there or not
+                        continue;
+                    }
+                    std::string name = item.value()["Name"].get<std::string>();
+                    std::vector<
+                        std::shared_ptr<sdbusplus::asio::dbus_interface>>&
+                        ifaces = inventory[name];
+                    for (auto& iface : ifaces)
+                    {
+                        objServer.remove_interface(iface);
+                    }
+                    ifaces.clear();
+                    systemConfiguration.erase(item.key());
+                    logDeviceRemoved(item.value());
+                }
+
                 nlohmann::json newConfiguration = systemConfiguration;
                 for (auto it = newConfiguration.begin();
                      it != newConfiguration.end();)
@@ -1570,6 +1616,11 @@ void propertiesChangedCallback(
                         it++;
                     }
                 }
+                for (const auto& item : newConfiguration.items())
+                {
+                    logDeviceAdded(item.value());
+                }
+
                 registerCallbacks(io, dbusMatches, systemConfiguration,
                                   objServer);
                 io.post([&, newConfiguration]() {
@@ -1584,10 +1635,11 @@ void propertiesChangedCallback(
                     io.post([&, newConfiguration]() {
                         postToDbus(newConfiguration, systemConfiguration,
                                    objServer);
-                        if (!timerRunning)
+                        if (count != instance)
                         {
-                            startRemovedTimer(timer, systemConfiguration);
+                            return;
                         }
+                        startRemovedTimer(timer, systemConfiguration);
                     });
                 });
             });
