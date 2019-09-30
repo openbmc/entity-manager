@@ -257,6 +257,85 @@
             "Type": "Gpio"
         },
         {
+            "Address": "0x08",
+            "Class": "METemp",
+            "Name": "MB_PCH_TEMP",
+            "Thresholds": [
+                {
+                    "Direction": "greater than",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 82
+                }
+            ],
+            "Type": "IpmbSensor"
+        },
+        {
+            "Address": "0x8a",
+            "Class": "HSCBridge",
+            "Name": "MB_HSC_TEMP",
+            "OffsetValue": -759.0476,
+            "ScaleValue": 0.238,
+            "Type": "IpmbSensor"
+        },
+        {
+            "Address": "0x8a",
+            "Class": "HSCBridge",
+            "Name": "MB_HSC_OUT_CURR",
+            "OffsetValue": -95.8567,
+            "ScaleValue": 0.0468,
+            "SensorType": "current",
+            "Thresholds": [
+                {
+                    "Direction": "greater than",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 52.8
+                }
+            ],
+            "Type": "IpmbSensor"
+        },
+        {
+            "Address": "0x29",
+            "Class": "METemp",
+            "Name": "MB_HSC_IN_POWER",
+            "OffsetValue": 0,
+            "ScaleValue": 4,
+            "SensorType": "power",
+            "Thresholds": [
+                {
+                    "Direction": "greater than",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 792
+                }
+            ],
+            "Type": "IpmbSensor"
+        },
+        {
+            "Address": "0x2a",
+            "Class": "METemp",
+            "Name": "MB_HSC_IN_VOLT",
+            "OffsetValue": 9.4,
+            "ScaleValue": 0.02,
+            "SensorType": "voltage",
+            "Thresholds": [
+                {
+                    "Direction": "greater than",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 13.2
+                },
+                {
+                    "Direction": "less than",
+                    "Name": "lower critical",
+                    "Severity": 1,
+                    "Value": 10.8
+                }
+            ],
+            "Type": "IpmbSensor"
+        },
+        {
             "Class": "fan",
             "FFGainCoefficient": 1.0,
             "FFOffCoefficient": 0.0,
@@ -589,513 +668,49 @@
             ]
         },
         {
-            "Address": "0x48",
-            "Bus": 5,
-            "Name": "MB_VR_CPU0_VCCIN",
-            "Name1": "MB_VR_CPU0_VSA",
-            "Labels": [
-                "iout1", "iout2", "pout1", "pout2",
-                "vout1", "vout2", "temp1", "temp2"
-            ],
-            "Thresholds" : [
+            "Address": "0x4e",
+            "Bus": 6,
+            "Name": "MB_INLET_TEMP",
+            "Name1": "MB_INLET_REMOTE_TEMP",
+            "Thresholds": [
                 {
                     "Direction": "greater than",
-                    "Label": "vout1",
-                    "Name": "upper critical",
-                    "Severity": 1,
-                    "Value": 2.05
-                },
-                {
-                    "Direction": "less than",
-                    "Label": "vout1",
-                    "Name": "lower critical",
-                    "Severity": 0,
-                    "Value": 1.45
-                },
-                {
-                    "Direction": "greater than",
-                    "Label": "vout2",
-                    "Name": "upper critical",
-                    "Severity": 1,
-                    "Value": 1.2
-                },
-                {
-                    "Direction": "less than",
-                    "Label": "vout2",
-                    "Name": "lower critical",
-                    "Severity": 0,
-                    "Value": 0.45
-                },
-                {
-                    "Direction": "greater than",
-                    "Label": "iout1",
-                    "Name": "upper critical",
-                    "Severity": 1,
-                    "Value": 235
-                },
-                {
-                    "Direction": "greater than",
-                    "Label": "iout2",
-                    "Name": "upper critical",
-                    "Severity": 1,
-                    "Value": 20
-                },
-                {
-                    "Direction": "greater than",
-                    "Label": "pout1",
-                    "Name": "upper critical",
-                    "Severity": 1,
-                    "Value": 414
-                },
-                {
-                    "Direction": "greater than",
-                    "Label": "pout2",
-                    "Name": "upper critical",
-                    "Severity": 1,
-                    "Value": 25
-                },
-                {
-                    "Direction": "greater than",
-                    "Label": "temp1",
-                    "Name": "upper critical",
-                    "Severity": 1,
-                    "Value": 95
-                },
-                {
-                    "Direction": "greater than",
-                    "Label": "temp2",
-                    "Name": "upper critical",
-                    "Severity": 1,
-                    "Value": 95
-                }
-            ],
-            "Type": "pmbus"
-        },
-        {
-            "Address": "0x4a",
-            "Bus": 5,
-            "Name": "MB_VR_CPU0_VCCIO",
-            "Labels": ["iout1", "pout1", "vout1", "temp1"],
-            "Thresholds" : [
-                {
-                    "Direction": "greater than",
-                    "Label": "vout1",
-                    "Name": "upper critical",
-                    "Severity": 1,
-                    "Value": 1.2
-                },
-                {
-                    "Direction": "less than",
-                    "Label": "vout1",
-                    "Name": "lower critical",
-                    "Severity": 0,
-                    "Value": 0.8
-                },
-                {
-                    "Direction": "greater than",
-                    "Label": "iout1",
-                    "Name": "upper critical",
-                    "Severity": 1,
-                    "Value": 24
-                },
-                {
-                    "Direction": "greater than",
-                    "Label": "pout1",
-                    "Name": "upper critical",
-                    "Severity": 1,
-                    "Value": 32
-                },
-                {
-                    "Direction": "greater than",
-                    "Label": "temp1",
-                    "Name": "upper critical",
-                    "Severity": 1,
-                    "Value": 95
-                }
-            ],
-            "Type": "pmbus"
-        },
-        {
-            "Address": "0x50",
-            "Bus": 5,
-            "Name": "MB_VR_CPU1_VDDQ_GRPC",
-            "Labels": ["iout1", "pout1", "vout1", "temp1"],
-            "Thresholds" : [
-                {
-                    "Direction": "greater than",
-                    "Label": "vout1",
-                    "Name": "upper critical",
-                    "Severity": 1,
-                    "Value": 1.32
-                },
-                {
-                    "Direction": "less than",
-                    "Label": "vout1",
-                    "Name": "lower critical",
-                    "Severity": 0,
-                    "Value": 1.08
-                },
-                {
-                    "Direction": "greater than",
-                    "Label": "iout1",
                     "Name": "upper critical",
                     "Severity": 1,
                     "Value": 40
-                },
-                {
-                    "Direction": "greater than",
-                    "Label": "pout1",
-                    "Name": "upper critical",
-                    "Severity": 1,
-                    "Value": 66
-                },
-                {
-                    "Direction": "greater than",
-                    "Label": "temp1",
-                    "Name": "upper critical",
-                    "Severity": 1,
-                    "Value": 95
                 }
             ],
-            "Type": "pmbus"
+            "Type": "TMP421"
         },
         {
-            "Address": "0x52",
-            "Bus": 5,
-            "Name": "MB_VR_CPU1_VDDQ_GRPD",
-            "Labels": ["iout1", "pout1", "vout1", "temp1"],
-            "Thresholds" : [
+            "Address": "0x4f",
+            "Bus": 6,
+            "Name": "MB_OUTLET_TEMP",
+            "Name1": "MB_OUTLET_REMOTE_TEMP",
+            "Thresholds": [
                 {
                     "Direction": "greater than",
-                    "Label": "vout1",
                     "Name": "upper critical",
                     "Severity": 1,
-                    "Value": 1.32
-                },
-                {
-                    "Direction": "less than",
-                    "Label": "vout1",
-                    "Name": "lower critical",
-                    "Severity": 0,
-                    "Value": 1.08
-                },
-                {
-                    "Direction": "greater than",
-                    "Label": "iout1",
-                    "Name": "upper critical",
-                    "Severity": 1,
-                    "Value": 40
-                },
-                {
-                    "Direction": "greater than",
-                    "Label": "pout1",
-                    "Name": "upper critical",
-                    "Severity": 1,
-                    "Value": 66
-                },
-                {
-                    "Direction": "greater than",
-                    "Label": "temp1",
-                    "Name": "upper critical",
-                    "Severity": 1,
-                    "Value": 95
+                    "Value": 90
                 }
             ],
-            "Type": "pmbus"
+            "Type": "TMP421"
         },
         {
-            "Address": "0x58",
-            "Bus": 5,
-            "Name": "MB_VR_CPU1_VCCIN",
-            "Name1": "MB_VR_CPU1_VSA",
-            "Labels": [
-                "iout1", "iout2", "pout1", "pout2",
-                "vout1", "vout2", "temp1", "temp2"
-            ],
-            "Thresholds" : [
+            "Address": "0x1f",
+            "Bus": 8,
+            "Name": "MEZZ_SENSOR_REMOTE_TEMP",
+            "Name1": "MEZZ_SENSOR_TEMP",
+            "Thresholds": [
                 {
                     "Direction": "greater than",
-                    "Label": "vout1",
-                    "Name": "upper critical",
-                    "Severity": 1,
-                    "Value": 2.05
-                },
-                {
-                    "Direction": "less than",
-                    "Label": "vout1",
-                    "Name": "lower critical",
-                    "Severity": 0,
-                    "Value": 1.45
-                },
-                {
-                    "Direction": "greater than",
-                    "Label": "vout2",
-                    "Name": "upper critical",
-                    "Severity": 1,
-                    "Value": 1.2
-                },
-                {
-                    "Direction": "less than",
-                    "Label": "vout2",
-                    "Name": "lower critical",
-                    "Severity": 0,
-                    "Value": 0.45
-                },
-                {
-                    "Direction": "greater than",
-                    "Label": "iout1",
-                    "Name": "upper critical",
-                    "Severity": 1,
-                    "Value": 235
-                },
-                {
-                    "Direction": "greater than",
-                    "Label": "iout2",
-                    "Name": "upper critical",
-                    "Severity": 1,
-                    "Value": 20
-                },
-                {
-                    "Direction": "greater than",
-                    "Label": "pout1",
-                    "Name": "upper critical",
-                    "Severity": 1,
-                    "Value": 420
-                },
-                {
-                    "Direction": "greater than",
-                    "Label": "pout2",
-                    "Name": "upper critical",
-                    "Severity": 1,
-                    "Value": 25
-                },
-                {
-                    "Direction": "greater than",
-                    "Label": "temp1",
-                    "Name": "upper critical",
-                    "Severity": 1,
-                    "Value": 95
-                },
-                {
-                    "Direction": "greater than",
-                    "Label": "temp2",
                     "Name": "upper critical",
                     "Severity": 1,
                     "Value": 95
                 }
             ],
-            "Type": "pmbus"
-        },
-        {
-            "Address": "0x5a",
-            "Bus": 5,
-            "Name": "MB_VR_CPU1_VCCIO",
-            "Labels": ["iout1", "pout1", "vout1", "temp1"],
-            "Thresholds" : [
-                {
-                    "Direction": "greater than",
-                    "Label": "vout1",
-                    "Name": "upper critical",
-                    "Severity": 1,
-                    "Value": 1.2
-                },
-                {
-                    "Direction": "less than",
-                    "Label": "vout1",
-                    "Name": "lower critical",
-                    "Severity": 0,
-                    "Value": 0.8
-                },
-                {
-                    "Direction": "greater than",
-                    "Label": "iout1",
-                    "Name": "upper critical",
-                    "Severity": 1,
-                    "Value": 24
-                },
-                {
-                    "Direction": "greater than",
-                    "Label": "pout1",
-                    "Name": "upper critical",
-                    "Severity": 1,
-                    "Value": 32
-                },
-                {
-                    "Direction": "greater than",
-                    "Label": "temp1",
-                    "Name": "upper critical",
-                    "Severity": 1,
-                    "Value": 95
-                }
-            ],
-            "Type": "pmbus"
-        },
-        {
-            "Address": "0x68",
-            "Bus": 5,
-            "Name": "MB_VR_PCH_PVNN",
-            "Name1": "MB_VR_PCH_P1V05",
-            "Thresholds" : [
-                {
-                    "Direction": "greater than",
-                    "Label": "vout1",
-                    "Name": "upper critical",
-                    "Severity": 1,
-                    "Value": 1.1
-                },
-                {
-                    "Direction": "less than",
-                    "Label": "vout1",
-                    "Name": "lower critical",
-                    "Severity": 0,
-                    "Value": 0.76
-                },
-                {
-                    "Direction": "greater than",
-                    "Label": "vout2",
-                    "Name": "upper critical",
-                    "Severity": 1,
-                    "Value": 1.15
-                },
-                {
-                    "Direction": "less than",
-                    "Label": "vout2",
-                    "Name": "lower critical",
-                    "Severity": 0,
-                    "Value": 0.94
-                },
-                {
-                    "Direction": "greater than",
-                    "Label": "iout1",
-                    "Name": "upper critical",
-                    "Severity": 1,
-                    "Value": 23
-                },
-                {
-                    "Direction": "greater than",
-                    "Label": "iout2",
-                    "Name": "upper critical",
-                    "Severity": 1,
-                    "Value": 19
-                },
-                {
-                    "Direction": "greater than",
-                    "Label": "pout1",
-                    "Name": "upper critical",
-                    "Severity": 1,
-                    "Value": 28
-                },
-                {
-                    "Direction": "greater than",
-                    "Label": "pout2",
-                    "Name": "upper critical",
-                    "Severity": 1,
-                    "Value": 26
-                },
-                {
-                    "Direction": "greater than",
-                    "Label": "temp1",
-                    "Name": "upper critical",
-                    "Severity": 1,
-                    "Value": 95
-                },
-                {
-                    "Direction": "greater than",
-                    "Label": "temp2",
-                    "Name": "upper critical",
-                    "Severity": 1,
-                    "Value": 95
-                }
-            ],
-            "Type": "pmbus"
-        },
-        {
-            "Address": "0x70",
-            "Bus": 5,
-            "Name": "MB_VR_CPU0_VDDQ_GRPA",
-            "Labels": ["iout1", "pout1", "vout1", "temp1"],
-            "Thresholds" : [
-                {
-                    "Direction": "greater than",
-                    "Label": "vout1",
-                    "Name": "upper critical",
-                    "Severity": 1,
-                    "Value": 1.32
-                },
-                {
-                    "Direction": "less than",
-                    "Label": "vout1",
-                    "Name": "lower critical",
-                    "Severity": 0,
-                    "Value": 1.08
-                },
-                {
-                    "Direction": "greater than",
-                    "Label": "iout1",
-                    "Name": "upper critical",
-                    "Severity": 1,
-                    "Value": 40
-                },
-                {
-                    "Direction": "greater than",
-                    "Label": "pout1",
-                    "Name": "upper critical",
-                    "Severity": 1,
-                    "Value": 66
-                },
-                {
-                    "Direction": "greater than",
-                    "Label": "temp1",
-                    "Name": "upper critical",
-                    "Severity": 1,
-                    "Value": 95
-                }
-            ],
-            "Type": "pmbus"
-        },
-        {
-            "Address": "0x72",
-            "Bus": 5,
-            "Name": "MB_VR_CPU0_VDDQ_GRPB",
-            "Labels": ["iout1", "pout1", "vout1", "temp1"],
-            "Thresholds" : [
-                {
-                    "Direction": "greater than",
-                    "Label": "vout1",
-                    "Name": "upper critical",
-                    "Severity": 1,
-                    "Value": 1.32
-                },
-                {
-                    "Direction": "less than",
-                    "Label": "vout1",
-                    "Name": "lower critical",
-                    "Severity": 0,
-                    "Value": 1.08
-                },
-                {
-                    "Direction": "greater than",
-                    "Label": "iout1",
-                    "Name": "upper critical",
-                    "Severity": 1,
-                    "Value": 40
-                },
-                {
-                    "Direction": "greater than",
-                    "Label": "pout1",
-                    "Name": "upper critical",
-                    "Severity": 1,
-                    "Value": 66
-                },
-                {
-                    "Direction": "greater than",
-                    "Label": "temp1",
-                    "Name": "upper critical",
-                    "Severity": 1,
-                    "Value": 95
-                }
-            ],
-            "Type": "pmbus"
+            "Type": "TMP421"
         },
         {
             "Address": "0x48",
@@ -1182,286 +797,6 @@
             "Type": "TMP75"
         },
         {
-            "Address": "0x40",
-            "Bus": 19,
-            "CurrScaleFactor": 200,
-            "Name": "MB_C2_P12V_INA230",
-            "Labels": ["in1", "curr1", "power1"],
-            "PowerScaleFactor": 200000,
-            "Thresholds" : [
-                {
-                    "Direction": "greater than",
-                    "Label": "in1",
-                    "Name": "upper critical",
-                    "Severity": 1,
-                    "Value": 12.96
-                },
-                {
-                    "Direction": "less than",
-                    "Label": "in1",
-                    "Name": "lower critical",
-                    "Severity": 1,
-                    "Value": 11.04
-                },
-                {
-                    "Direction": "greater than",
-                    "Label": "curr1",
-                    "Name": "upper non critical",
-                    "Severity": 0,
-                    "Value": 5.5
-                },
-                {
-                    "Direction": "greater than",
-                    "Label": "power1",
-                    "Name": "upper critical",
-                    "Severity": 1,
-                    "Value": 75.0
-                }
-            ],
-            "Type": "pmbus"
-        },
-        {
-            "Address": "0x41",
-            "Bus": 19,
-            "CurrScaleFactor": 200,
-            "Name": "MB_C3_P12V_INA230",
-            "Labels": ["in1", "curr1", "power1"],
-            "PowerScaleFactor": 200000,
-            "Thresholds" : [
-                {
-                    "Direction": "greater than",
-                    "Label": "in1",
-                    "Name": "upper critical",
-                    "Severity": 1,
-                    "Value": 12.96
-                },
-                {
-                    "Direction": "less than",
-                    "Label": "in1",
-                    "Name": "lower critical",
-                    "Severity": 1,
-                    "Value": 11.04
-                },
-                {
-                    "Direction": "greater than",
-                    "Label": "curr1",
-                    "Name": "upper non critical",
-                    "Severity": 0,
-                    "Value": 5.5
-                },
-                {
-                    "Direction": "greater than",
-                    "Label": "power1",
-                    "Name": "upper critical",
-                    "Severity": 1,
-                    "Value": 75.0
-                }
-            ],
-            "Type": "pmbus"
-        },
-        {
-            "Address": "0x44",
-            "Bus": 19,
-            "CurrScaleFactor": 200,
-            "Name": "MB_C4_P12V_INA230",
-            "Labels": ["in1", "curr1", "power1"],
-            "PowerScaleFactor": 200000,
-            "Thresholds" : [
-                {
-                    "Direction": "greater than",
-                    "Label": "in1",
-                    "Name": "upper critical",
-                    "Severity": 1,
-                    "Value": 12.96
-                },
-                {
-                    "Direction": "less than",
-                    "Label": "in1",
-                    "Name": "lower critical",
-                    "Severity": 1,
-                    "Value": 11.04
-                },
-                {
-                    "Direction": "greater than",
-                    "Label": "curr1",
-                    "Name": "upper non critical",
-                    "Severity": 0,
-                    "Value": 5.5
-                },
-                {
-                    "Direction": "greater than",
-                    "Label": "power1",
-                    "Name": "upper critical",
-                    "Severity": 1,
-                    "Value": 75.0
-                }
-            ],
-            "Type": "pmbus"
-        },
-        {
-            "Address": "0x45",
-            "Bus": 19,
-            "CurrScaleFactor": 200,
-            "Name": "MB_CONN_P12V_INA230",
-            "Labels": ["in1", "curr1", "power1"],
-            "PowerScaleFactor": 200000,
-            "Thresholds" : [
-                {
-                    "Direction": "greater than",
-                    "Label": "in1",
-                    "Name": "upper critical",
-                    "Severity": 1,
-                    "Value": 12.96
-                },
-                {
-                    "Direction": "less than",
-                    "Label": "in1",
-                    "Name": "lower critical",
-                    "Severity": 1,
-                    "Value": 11.04
-                },
-                {
-                    "Direction": "greater than",
-                    "Label": "curr1",
-                    "Name": "upper non critical",
-                    "Severity": 0,
-                    "Value": 20.0
-                },
-                {
-                    "Direction": "greater than",
-                    "Label": "power1",
-                    "Name": "upper critical",
-                    "Severity": 1,
-                    "Value": 250.0
-                }
-            ],
-            "Type": "pmbus"
-        },
-        {
-            "Address": "0x4e",
-            "Bus": 6,
-            "Name": "MB_INLET_TEMP",
-            "Name1": "MB_INLET_REMOTE_TEMP",
-            "Thresholds": [
-                {
-                    "Direction": "greater than",
-                    "Name": "upper critical",
-                    "Severity": 1,
-                    "Value": 40
-                }
-            ],
-            "Type": "TMP421"
-        },
-        {
-            "Address": "0x4f",
-            "Bus": 6,
-            "Name": "MB_OUTLET_TEMP",
-            "Name1": "MB_OUTLET_REMOTE_TEMP",
-            "Thresholds": [
-                {
-                    "Direction": "greater than",
-                    "Name": "upper critical",
-                    "Severity": 1,
-                    "Value": 90
-                }
-            ],
-            "Type": "TMP421"
-        },
-        {
-            "Address": "0x1f",
-            "Bus": 8,
-            "Name": "MEZZ_SENSOR_REMOTE_TEMP",
-            "Name1": "MEZZ_SENSOR_TEMP",
-            "Thresholds": [
-                {
-                    "Direction": "greater than",
-                    "Name": "upper critical",
-                    "Severity": 1,
-                    "Value": 95
-                }
-            ],
-            "Type": "TMP421"
-        },
-        {
-            "Address": "0x08",
-            "Class": "METemp",
-            "Name": "MB_PCH_TEMP",
-            "Thresholds": [
-                {
-                    "Direction": "greater than",
-                    "Name": "upper critical",
-                    "Severity": 1,
-                    "Value": 82
-                }
-            ],
-            "Type": "IpmbSensor"
-        },
-        {
-            "Address": "0x8a",
-            "Class": "HSCBridge",
-            "Name": "MB_HSC_TEMP",
-            "OffsetValue": -759.0476,
-            "ScaleValue": 0.238,
-            "Type": "IpmbSensor"
-        },
-        {
-            "Address": "0x8a",
-            "Class": "HSCBridge",
-            "Name": "MB_HSC_OUT_CURR",
-            "OffsetValue": -95.8567,
-            "ScaleValue": 0.0468,
-            "SensorType": "current",
-            "Thresholds": [
-                {
-                    "Direction": "greater than",
-                    "Name": "upper critical",
-                    "Severity": 1,
-                    "Value": 52.8
-                }
-            ],
-            "Type": "IpmbSensor"
-        },
-        {
-            "Address": "0x29",
-            "Class": "METemp",
-            "Name": "MB_HSC_IN_POWER",
-            "OffsetValue": 0,
-            "ScaleValue": 4,
-            "SensorType": "power",
-            "Thresholds": [
-                {
-                    "Direction": "greater than",
-                    "Name": "upper critical",
-                    "Severity": 1,
-                    "Value": 792
-                }
-            ],
-            "Type": "IpmbSensor"
-        },
-        {
-            "Address": "0x2a",
-            "Class": "METemp",
-            "Name": "MB_HSC_IN_VOLT",
-            "OffsetValue": 9.4,
-            "ScaleValue": 0.02,
-            "SensorType": "voltage",
-            "Thresholds": [
-                {
-                    "Direction": "greater than",
-                    "Name": "upper critical",
-                    "Severity": 1,
-                    "Value": 13.2
-                },
-                {
-                    "Direction": "less than",
-                    "Name": "lower critical",
-                    "Severity": 1,
-                    "Value": 10.8
-                }
-            ],
-            "Type": "IpmbSensor"
-        },
-        {
             "Address": "0x30",
             "Bus": 0,
             "CpuID": 1,
@@ -1508,6 +843,729 @@
                 }
             ],
             "Type": "XeonCPU"
+        },
+        {
+            "Address": "0x48",
+            "Bus": 5,
+            "Labels": [
+                "iout1",
+                "iout2",
+                "pout1",
+                "pout2",
+                "vout1",
+                "vout2",
+                "temp1",
+                "temp2"
+            ],
+            "Name": "MB_VR_CPU0_VCCIN",
+            "Name1": "MB_VR_CPU0_VSA",
+            "Thresholds": [
+                {
+                    "Direction": "greater than",
+                    "Label": "vout1",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 2.05
+                },
+                {
+                    "Direction": "less than",
+                    "Label": "vout1",
+                    "Name": "lower critical",
+                    "Severity": 0,
+                    "Value": 1.45
+                },
+                {
+                    "Direction": "greater than",
+                    "Label": "vout2",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 1.2
+                },
+                {
+                    "Direction": "less than",
+                    "Label": "vout2",
+                    "Name": "lower critical",
+                    "Severity": 0,
+                    "Value": 0.45
+                },
+                {
+                    "Direction": "greater than",
+                    "Label": "iout1",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 235
+                },
+                {
+                    "Direction": "greater than",
+                    "Label": "iout2",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 20
+                },
+                {
+                    "Direction": "greater than",
+                    "Label": "pout1",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 414
+                },
+                {
+                    "Direction": "greater than",
+                    "Label": "pout2",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 25
+                },
+                {
+                    "Direction": "greater than",
+                    "Label": "temp1",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 95
+                },
+                {
+                    "Direction": "greater than",
+                    "Label": "temp2",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 95
+                }
+            ],
+            "Type": "pmbus"
+        },
+        {
+            "Address": "0x4a",
+            "Bus": 5,
+            "Labels": [
+                "iout1",
+                "pout1",
+                "vout1",
+                "temp1"
+            ],
+            "Name": "MB_VR_CPU0_VCCIO",
+            "Thresholds": [
+                {
+                    "Direction": "greater than",
+                    "Label": "vout1",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 1.2
+                },
+                {
+                    "Direction": "less than",
+                    "Label": "vout1",
+                    "Name": "lower critical",
+                    "Severity": 0,
+                    "Value": 0.8
+                },
+                {
+                    "Direction": "greater than",
+                    "Label": "iout1",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 24
+                },
+                {
+                    "Direction": "greater than",
+                    "Label": "pout1",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 32
+                },
+                {
+                    "Direction": "greater than",
+                    "Label": "temp1",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 95
+                }
+            ],
+            "Type": "pmbus"
+        },
+        {
+            "Address": "0x50",
+            "Bus": 5,
+            "Labels": [
+                "iout1",
+                "pout1",
+                "vout1",
+                "temp1"
+            ],
+            "Name": "MB_VR_CPU1_VDDQ_GRPC",
+            "Thresholds": [
+                {
+                    "Direction": "greater than",
+                    "Label": "vout1",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 1.32
+                },
+                {
+                    "Direction": "less than",
+                    "Label": "vout1",
+                    "Name": "lower critical",
+                    "Severity": 0,
+                    "Value": 1.08
+                },
+                {
+                    "Direction": "greater than",
+                    "Label": "iout1",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 40
+                },
+                {
+                    "Direction": "greater than",
+                    "Label": "pout1",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 66
+                },
+                {
+                    "Direction": "greater than",
+                    "Label": "temp1",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 95
+                }
+            ],
+            "Type": "pmbus"
+        },
+        {
+            "Address": "0x52",
+            "Bus": 5,
+            "Labels": [
+                "iout1",
+                "pout1",
+                "vout1",
+                "temp1"
+            ],
+            "Name": "MB_VR_CPU1_VDDQ_GRPD",
+            "Thresholds": [
+                {
+                    "Direction": "greater than",
+                    "Label": "vout1",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 1.32
+                },
+                {
+                    "Direction": "less than",
+                    "Label": "vout1",
+                    "Name": "lower critical",
+                    "Severity": 0,
+                    "Value": 1.08
+                },
+                {
+                    "Direction": "greater than",
+                    "Label": "iout1",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 40
+                },
+                {
+                    "Direction": "greater than",
+                    "Label": "pout1",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 66
+                },
+                {
+                    "Direction": "greater than",
+                    "Label": "temp1",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 95
+                }
+            ],
+            "Type": "pmbus"
+        },
+        {
+            "Address": "0x58",
+            "Bus": 5,
+            "Labels": [
+                "iout1",
+                "iout2",
+                "pout1",
+                "pout2",
+                "vout1",
+                "vout2",
+                "temp1",
+                "temp2"
+            ],
+            "Name": "MB_VR_CPU1_VCCIN",
+            "Name1": "MB_VR_CPU1_VSA",
+            "Thresholds": [
+                {
+                    "Direction": "greater than",
+                    "Label": "vout1",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 2.05
+                },
+                {
+                    "Direction": "less than",
+                    "Label": "vout1",
+                    "Name": "lower critical",
+                    "Severity": 0,
+                    "Value": 1.45
+                },
+                {
+                    "Direction": "greater than",
+                    "Label": "vout2",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 1.2
+                },
+                {
+                    "Direction": "less than",
+                    "Label": "vout2",
+                    "Name": "lower critical",
+                    "Severity": 0,
+                    "Value": 0.45
+                },
+                {
+                    "Direction": "greater than",
+                    "Label": "iout1",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 235
+                },
+                {
+                    "Direction": "greater than",
+                    "Label": "iout2",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 20
+                },
+                {
+                    "Direction": "greater than",
+                    "Label": "pout1",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 420
+                },
+                {
+                    "Direction": "greater than",
+                    "Label": "pout2",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 25
+                },
+                {
+                    "Direction": "greater than",
+                    "Label": "temp1",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 95
+                },
+                {
+                    "Direction": "greater than",
+                    "Label": "temp2",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 95
+                }
+            ],
+            "Type": "pmbus"
+        },
+        {
+            "Address": "0x5a",
+            "Bus": 5,
+            "Labels": [
+                "iout1",
+                "pout1",
+                "vout1",
+                "temp1"
+            ],
+            "Name": "MB_VR_CPU1_VCCIO",
+            "Thresholds": [
+                {
+                    "Direction": "greater than",
+                    "Label": "vout1",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 1.2
+                },
+                {
+                    "Direction": "less than",
+                    "Label": "vout1",
+                    "Name": "lower critical",
+                    "Severity": 0,
+                    "Value": 0.8
+                },
+                {
+                    "Direction": "greater than",
+                    "Label": "iout1",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 24
+                },
+                {
+                    "Direction": "greater than",
+                    "Label": "pout1",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 32
+                },
+                {
+                    "Direction": "greater than",
+                    "Label": "temp1",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 95
+                }
+            ],
+            "Type": "pmbus"
+        },
+        {
+            "Address": "0x68",
+            "Bus": 5,
+            "Name": "MB_VR_PCH_PVNN",
+            "Name1": "MB_VR_PCH_P1V05",
+            "Thresholds": [
+                {
+                    "Direction": "greater than",
+                    "Label": "vout1",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 1.1
+                },
+                {
+                    "Direction": "less than",
+                    "Label": "vout1",
+                    "Name": "lower critical",
+                    "Severity": 0,
+                    "Value": 0.76
+                },
+                {
+                    "Direction": "greater than",
+                    "Label": "vout2",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 1.15
+                },
+                {
+                    "Direction": "less than",
+                    "Label": "vout2",
+                    "Name": "lower critical",
+                    "Severity": 0,
+                    "Value": 0.94
+                },
+                {
+                    "Direction": "greater than",
+                    "Label": "iout1",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 23
+                },
+                {
+                    "Direction": "greater than",
+                    "Label": "iout2",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 19
+                },
+                {
+                    "Direction": "greater than",
+                    "Label": "pout1",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 28
+                },
+                {
+                    "Direction": "greater than",
+                    "Label": "pout2",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 26
+                },
+                {
+                    "Direction": "greater than",
+                    "Label": "temp1",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 95
+                },
+                {
+                    "Direction": "greater than",
+                    "Label": "temp2",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 95
+                }
+            ],
+            "Type": "pmbus"
+        },
+        {
+            "Address": "0x70",
+            "Bus": 5,
+            "Labels": [
+                "iout1",
+                "pout1",
+                "vout1",
+                "temp1"
+            ],
+            "Name": "MB_VR_CPU0_VDDQ_GRPA",
+            "Thresholds": [
+                {
+                    "Direction": "greater than",
+                    "Label": "vout1",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 1.32
+                },
+                {
+                    "Direction": "less than",
+                    "Label": "vout1",
+                    "Name": "lower critical",
+                    "Severity": 0,
+                    "Value": 1.08
+                },
+                {
+                    "Direction": "greater than",
+                    "Label": "iout1",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 40
+                },
+                {
+                    "Direction": "greater than",
+                    "Label": "pout1",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 66
+                },
+                {
+                    "Direction": "greater than",
+                    "Label": "temp1",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 95
+                }
+            ],
+            "Type": "pmbus"
+        },
+        {
+            "Address": "0x72",
+            "Bus": 5,
+            "Labels": [
+                "iout1",
+                "pout1",
+                "vout1",
+                "temp1"
+            ],
+            "Name": "MB_VR_CPU0_VDDQ_GRPB",
+            "Thresholds": [
+                {
+                    "Direction": "greater than",
+                    "Label": "vout1",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 1.32
+                },
+                {
+                    "Direction": "less than",
+                    "Label": "vout1",
+                    "Name": "lower critical",
+                    "Severity": 0,
+                    "Value": 1.08
+                },
+                {
+                    "Direction": "greater than",
+                    "Label": "iout1",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 40
+                },
+                {
+                    "Direction": "greater than",
+                    "Label": "pout1",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 66
+                },
+                {
+                    "Direction": "greater than",
+                    "Label": "temp1",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 95
+                }
+            ],
+            "Type": "pmbus"
+        },
+        {
+            "Address": "0x40",
+            "Bus": 19,
+            "CurrScaleFactor": 200,
+            "Labels": [
+                "in1",
+                "curr1",
+                "power1"
+            ],
+            "Name": "MB_C2_P12V_INA230",
+            "PowerScaleFactor": 200000,
+            "Thresholds": [
+                {
+                    "Direction": "greater than",
+                    "Label": "in1",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 12.96
+                },
+                {
+                    "Direction": "less than",
+                    "Label": "in1",
+                    "Name": "lower critical",
+                    "Severity": 1,
+                    "Value": 11.04
+                },
+                {
+                    "Direction": "greater than",
+                    "Label": "curr1",
+                    "Name": "upper non critical",
+                    "Severity": 0,
+                    "Value": 5.5
+                },
+                {
+                    "Direction": "greater than",
+                    "Label": "power1",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 75.0
+                }
+            ],
+            "Type": "pmbus"
+        },
+        {
+            "Address": "0x41",
+            "Bus": 19,
+            "CurrScaleFactor": 200,
+            "Labels": [
+                "in1",
+                "curr1",
+                "power1"
+            ],
+            "Name": "MB_C3_P12V_INA230",
+            "PowerScaleFactor": 200000,
+            "Thresholds": [
+                {
+                    "Direction": "greater than",
+                    "Label": "in1",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 12.96
+                },
+                {
+                    "Direction": "less than",
+                    "Label": "in1",
+                    "Name": "lower critical",
+                    "Severity": 1,
+                    "Value": 11.04
+                },
+                {
+                    "Direction": "greater than",
+                    "Label": "curr1",
+                    "Name": "upper non critical",
+                    "Severity": 0,
+                    "Value": 5.5
+                },
+                {
+                    "Direction": "greater than",
+                    "Label": "power1",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 75.0
+                }
+            ],
+            "Type": "pmbus"
+        },
+        {
+            "Address": "0x44",
+            "Bus": 19,
+            "CurrScaleFactor": 200,
+            "Labels": [
+                "in1",
+                "curr1",
+                "power1"
+            ],
+            "Name": "MB_C4_P12V_INA230",
+            "PowerScaleFactor": 200000,
+            "Thresholds": [
+                {
+                    "Direction": "greater than",
+                    "Label": "in1",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 12.96
+                },
+                {
+                    "Direction": "less than",
+                    "Label": "in1",
+                    "Name": "lower critical",
+                    "Severity": 1,
+                    "Value": 11.04
+                },
+                {
+                    "Direction": "greater than",
+                    "Label": "curr1",
+                    "Name": "upper non critical",
+                    "Severity": 0,
+                    "Value": 5.5
+                },
+                {
+                    "Direction": "greater than",
+                    "Label": "power1",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 75.0
+                }
+            ],
+            "Type": "pmbus"
+        },
+        {
+            "Address": "0x45",
+            "Bus": 19,
+            "CurrScaleFactor": 200,
+            "Labels": [
+                "in1",
+                "curr1",
+                "power1"
+            ],
+            "Name": "MB_CONN_P12V_INA230",
+            "PowerScaleFactor": 200000,
+            "Thresholds": [
+                {
+                    "Direction": "greater than",
+                    "Label": "in1",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 12.96
+                },
+                {
+                    "Direction": "less than",
+                    "Label": "in1",
+                    "Name": "lower critical",
+                    "Severity": 1,
+                    "Value": 11.04
+                },
+                {
+                    "Direction": "greater than",
+                    "Label": "curr1",
+                    "Name": "upper non critical",
+                    "Severity": 0,
+                    "Value": 20.0
+                },
+                {
+                    "Direction": "greater than",
+                    "Label": "power1",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 250.0
+                }
+            ],
+            "Type": "pmbus"
         }
     ],
     "Name": "TiogaPass Baseboard",

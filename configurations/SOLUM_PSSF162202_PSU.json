@@ -52,7 +52,7 @@
                 ],
                 "PCoefficient": 0.0,
                 "PositiveHysteresis": 0.0,
-               "SlewNeg": 0.0,
+                "SlewNeg": 0.0,
                 "SlewPos": 0.0,
                 "Type": "Pid",
                 "Zones": [
@@ -108,8 +108,6 @@
             {
                 "Address": "$ADDRESS % 4 + 88",
                 "Bus": "$bus",
-                "Name": "PSU$ADDRESS % 4 + 1",
-                "Name1": "PSU$ADDRESS % 4 + 1",
                 "Labels": [
                     "pin",
                     "pout1",
@@ -120,6 +118,8 @@
                     "fan1",
                     "fan2"
                 ],
+                "Name": "PSU$ADDRESS % 4 + 1",
+                "Name1": "PSU$ADDRESS % 4 + 1",
                 "Thresholds": [
                     {
                         "Direction": "greater than",

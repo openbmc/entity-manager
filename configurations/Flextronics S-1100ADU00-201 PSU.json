@@ -82,7 +82,6 @@
             {
                 "Address": "$ADDRESS % 4 + 88",
                 "Bus": "$bus",
-                "Name": "PSU$ADDRESS % 4 + 1",
                 "Labels": [
                     "pin",
                     "pout1",
@@ -92,6 +91,7 @@
                     "temp1",
                     "fan1"
                 ],
+                "Name": "PSU$ADDRESS % 4 + 1",
                 "Thresholds": [
                     {
                         "Direction": "greater than",
