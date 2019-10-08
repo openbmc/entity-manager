@@ -357,7 +357,7 @@ bool loadOverlays(const nlohmann::json& systemConfiguration)
     if (!findFiles(std::filesystem::path(TEMPLATE_DIR), R"(.*\.template)",
                    paths))
     {
-        std::cerr << "Unable to find any tempate files in " << TEMPLATE_DIR
+        std::cerr << "Unable to find any template files in " << TEMPLATE_DIR
                   << "\n";
         return false;
     }
@@ -405,7 +405,13 @@ bool loadOverlays(const nlohmann::json& systemConfiguration)
             if (device != devices::exportTemplates.end())
             {
                 exportDevice(type, device->second, configuration);
+                continue;
             }
+            
+            // To avoid this error message, add your device type to
+            // the exportTemplates array in the devices.hpp file.
+            std::cerr << "Device type " << type
+                      << " not found in export map whitelist\n";
         }
     }
 
