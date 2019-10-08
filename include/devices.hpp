@@ -75,5 +75,9 @@ const boost::container::flat_map<const char*, ExportTemplate, CmpStr>
                          "/sys/bus/i2c/devices/i2c-$Bus/new_device")},
          {"TMP112",
           ExportTemplate("tmp112 $Address",
-                         "/sys/bus/i2c/devices/i2c-$Bus/new_device")}}};
+                         "/sys/bus/i2c/devices/i2c-$Bus/new_device")},
+         {"ISL68137",
+          ExportTemplate("isl68137 $Address",
+                         "/sys/bus/i2c/devices/i2c-$Bus/new_device")},
+        }};
 } // namespace devices
