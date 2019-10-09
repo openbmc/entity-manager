@@ -1206,10 +1206,16 @@ int main()
                 std::variant<std::string, bool, int64_t, uint64_t, double>>
                 values;
             message.read(objectName, values);
-            auto findPgood = values.find("pgood");
-            if (findPgood != values.end())
+            auto findState = values.find("CurrentHostState");
+            bool on = false;
+            if (findState != values.end())
             {
+                on = boost::ends_with(std::get<std::string>(findState->second),
+                                      "Running");
+            }
 
+            if (on)
+            {
                 rescanBusses(io, busMap, dbusInterfaceMap, objServer);
             }
         };
@@ -1217,8 +1223,8 @@ int main()
     sdbusplus::bus::match::match powerMatch = sdbusplus::bus::match::match(
         static_cast<sdbusplus::bus::bus&>(*systemBus),
         "type='signal',interface='org.freedesktop.DBus.Properties',path='/xyz/"
-        "openbmc_project/Chassis/Control/"
-        "Power0',arg0='xyz.openbmc_project.Chassis.Control.Power'",
+        "openbmc_project/state/"
+        "host0',arg0='xyz.openbmc_project.State.Host'",
         eventHandler);
 
     int fd = inotify_init();
