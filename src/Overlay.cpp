@@ -38,6 +38,8 @@ constexpr const char* PLATFORM = "aspeed,ast2500";
 constexpr const char* I2C_DEVS_DIR = "/sys/bus/i2c/devices";
 constexpr const char* MUX_SYMLINK_DIR = "/dev/i2c-mux";
 
+constexpr const bool DEBUG = false;
+
 // some drivers need to be unbind / bind to load device tree changes
 static const boost::container::flat_map<std::string, std::string> FORCE_PROBES =
     {{"IntelFanConnector", "/sys/bus/platform/drivers/aspeed_pwm_tacho"}};
@@ -405,6 +407,17 @@ bool loadOverlays(const nlohmann::json& systemConfiguration)
             if (device != devices::exportTemplates.end())
             {
                 exportDevice(type, device->second, configuration);
+                continue;
+            }
+
+            // Because many devices are intentionally not exportable,
+            // this error message is not printed in all situations.
+            // If wondering why your device not appearing, add your type to
+            // the exportTemplates array in the devices.hpp file.
+            if constexpr (DEBUG)
+            {
+                std::cerr << "Device type " << type
+                          << " not found in export map whitelist\n";
             }
         }
     }
