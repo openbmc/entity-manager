@@ -57,6 +57,9 @@ const boost::container::flat_map<const char*, ExportTemplate, CmpStr>
         {"PCA9546Mux",
          ExportTemplate("pca9546 $Address",
                         "/sys/bus/i2c/devices/i2c-$Bus/new_device")},
+        {"PCA9547Mux",
+         ExportTemplate("pca9547 $Address",
+                        "/sys/bus/i2c/devices/i2c-$Bus/new_device")},
         {"MAX31725",
          ExportTemplate("max31725 $Address",
                         "/sys/bus/i2c/devices/i2c-$Bus/new_device")},
@@ -80,5 +83,7 @@ const boost::container::flat_map<const char*, ExportTemplate, CmpStr>
         {"ISL68137",
          ExportTemplate("isl68137 $Address",
                         "/sys/bus/i2c/devices/i2c-$Bus/new_device")},
-    }};
+        {"INA230",
+         ExportTemplate("ina230 $Address",
+                        "/sys/bus/i2c/devices/i2c-$Bus/new_device")}}};
 } // namespace devices
