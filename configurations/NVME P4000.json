@@ -40,10 +40,9 @@
             "Type": "NVME1000"
         }
     ],
-    "Index": "$index",
     "Name": "NVMe $index",
     "Probe": "xyz.openbmc_project.FruDevice({'PRODUCT_PRODUCT_NAME': 'P\\d{4}\\w?'})",
-    "Type": "Drive",
+    "Type": "NVMe",
     "xyz.openbmc_project.Inventory.Decorator.Asset": {
         "Manufacturer": "$PRODUCT_MANUFACTURER",
         "Model": "$PRODUCT_PRODUCT_NAME",
