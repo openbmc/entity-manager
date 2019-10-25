@@ -117,6 +117,19 @@ if (NOT YOCTO)
     target_link_libraries (entityManagerTests ${Boost_LIBRARIES})
     target_link_libraries (entityManagerTests sdbusplus)
 
+    find_package (PythonInterp REQUIRED)
+    find_package (Git REQUIRED)
+    execute_process (COMMAND ${PYTHON_EXECUTABLE}
+                             ${CMAKE_CURRENT_SOURCE_DIR}/scripts/autojson.py
+                             ${CMAKE_CURRENT_SOURCE_DIR}/configurations)
+    execute_process (COMMAND ${GIT_EXECUTABLE} -C ${CMAKE_CURRENT_SOURCE_DIR}
+                             diff
+                             --quiet configurations
+                     RESULT_VARIABLE ret)
+    if (ret EQUAL "1")
+        message (FATAL_ERROR
+                     "Invalid JSON Format, Please rerun scripts/autojson.")
+    endif ()
 endif ()
 
 add_definitions (-DBOOST_ERROR_CODE_HEADER_ONLY)
