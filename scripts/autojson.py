@@ -3,9 +3,18 @@
 # and attempted to be formatted alphabetically
 
 import json
+import os
 from sys import argv
 
-for file in argv[1:]:
+files = argv[1:]
+
+for file in files[:]:
+    if os.path.isdir(file):
+        files.remove(file)
+        for f in os.listdir(file):
+            files.append(os.path.join(file, f))
+
+for file in files:
     print("formatting file {}".format(file))
     with open(file) as f:
         j = json.load(f)
