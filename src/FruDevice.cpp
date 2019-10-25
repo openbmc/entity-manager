@@ -69,6 +69,10 @@ struct FindDevicesWithCallback;
 
 static BusMap busMap;
 
+static boost::container::flat_map<
+    std::pair<size_t, size_t>, std::shared_ptr<sdbusplus::asio::dbus_interface>>
+    foundDevices;
+
 boost::asio::io_service io;
 auto systemBus = std::make_shared<sdbusplus::asio::connection>(io);
 auto objServer = sdbusplus::asio::object_server(systemBus);
@@ -113,6 +117,27 @@ static bool isMuxBus(size_t bus)
 {
     return is_symlink(std::filesystem::path(
         "/sys/bus/i2c/devices/i2c-" + std::to_string(bus) + "/mux_device"));
+}
+
+static void makeProbeInterface(size_t bus, size_t address)
+{
+    if (isMuxBus(bus))
+    {
+        return; // the mux buses are random, no need to publish
+    }
+    auto [it, success] = foundDevices.emplace(
+        std::make_pair(bus, address),
+        objServer.add_interface(
+            "/xyz/openbmc_project/FruDevice/" + std::to_string(bus) + "_" +
+                std::to_string(address),
+            "xyz.openbmc_project.Inventory.Item.I2CDevice"));
+    if (!success)
+    {
+        return; // already added
+    }
+    it->second->register_property("Bus", bus);
+    it->second->register_property("Address", address);
+    it->second->initialize();
 }
 
 static int isDevice16Bit(int file)
@@ -412,6 +437,8 @@ int getBusFrus(int file, int first, int last, int bus,
                 std::cout << "something at bus " << bus << " addr " << ii
                           << "\n";
             }
+
+            makeProbeInterface(bus, ii);
 
             /* Check for Device type if it is 8 bit or 16 bit */
             int flag = isDevice16Bit(file);
@@ -1118,6 +1145,12 @@ void rescanBusses(
         }
 
         busmap.clear();
+        for (auto& [pair, interface] : foundDevices)
+        {
+            objServer.remove_interface(interface);
+        }
+        foundDevices.clear();
+
         auto scan =
             std::make_shared<FindDevicesWithCallback>(i2cBuses, busmap, [&]() {
                 for (auto& busIface : dbusInterfaceMap)
