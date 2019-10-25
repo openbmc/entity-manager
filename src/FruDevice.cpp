@@ -69,6 +69,10 @@ struct FindDevicesWithCallback;
 
 static BusMap busMap;
 
+boost::asio::io_service io;
+auto systemBus = std::make_shared<sdbusplus::asio::connection>(io);
+auto objServer = sdbusplus::asio::object_server(systemBus);
+
 // Given a bus/address, produce the path in sysfs for an eeprom.
 static std::string getEepromPath(size_t bus, size_t address)
 {
@@ -635,10 +639,10 @@ struct FindDevicesWithCallback
     : std::enable_shared_from_this<FindDevicesWithCallback>
 {
     FindDevicesWithCallback(const std::vector<fs::path>& i2cBuses,
-                            boost::asio::io_service& io, BusMap& busmap,
+                            BusMap& busmap,
                             std::function<void(void)>&& callback) :
         _i2cBuses(i2cBuses),
-        _io(io), _busMap(busmap), _callback(std::move(callback))
+        _busMap(busmap), _callback(std::move(callback))
     {
     }
     ~FindDevicesWithCallback()
@@ -651,7 +655,6 @@ struct FindDevicesWithCallback
     }
 
     const std::vector<fs::path>& _i2cBuses;
-    boost::asio::io_service& _io;
     BusMap& _busMap;
     std::function<void(void)> _callback;
 };
@@ -834,7 +837,7 @@ std::vector<uint8_t>& getFruInfo(const uint8_t& bus, const uint8_t& address)
 }
 
 void AddFruObjectToDbus(
-    std::vector<char>& device, sdbusplus::asio::object_server& objServer,
+    std::vector<char>& device,
     boost::container::flat_map<
         std::pair<size_t, size_t>,
         std::shared_ptr<sdbusplus::asio::dbus_interface>>& dbusInterfaceMap,
@@ -1089,11 +1092,10 @@ bool writeFru(uint8_t bus, uint8_t address, const std::vector<uint8_t>& fru)
 }
 
 void rescanBusses(
-    boost::asio::io_service& io, BusMap& busmap,
+    BusMap& busmap,
     boost::container::flat_map<
         std::pair<size_t, size_t>,
-        std::shared_ptr<sdbusplus::asio::dbus_interface>>& dbusInterfaceMap,
-    sdbusplus::asio::object_server& objServer)
+        std::shared_ptr<sdbusplus::asio::dbus_interface>>& dbusInterfaceMap)
 {
     static boost::asio::deadline_timer timer(io);
     timer.expires_from_now(boost::posix_time::seconds(1));
@@ -1116,8 +1118,8 @@ void rescanBusses(
         }
 
         busmap.clear();
-        auto scan = std::make_shared<FindDevicesWithCallback>(
-            i2cBuses, io, busmap, [&]() {
+        auto scan =
+            std::make_shared<FindDevicesWithCallback>(i2cBuses, busmap, [&]() {
                 for (auto& busIface : dbusInterfaceMap)
                 {
                     objServer.remove_interface(busIface.second);
@@ -1139,9 +1141,8 @@ void rescanBusses(
                 {
                     for (auto& device : *devicemap.second)
                     {
-                        AddFruObjectToDbus(device.second, objServer,
-                                           dbusInterfaceMap, devicemap.first,
-                                           device.first);
+                        AddFruObjectToDbus(device.second, dbusInterfaceMap,
+                                           devicemap.first, device.first);
                     }
                 }
             });
@@ -1164,9 +1165,6 @@ int main()
     // check for and load blacklist with initial buses.
     loadBlacklist(blacklistPath);
 
-    boost::asio::io_service io;
-    auto systemBus = std::make_shared<sdbusplus::asio::connection>(io);
-    auto objServer = sdbusplus::asio::object_server(systemBus);
     systemBus->request_name("xyz.openbmc_project.FruDevice");
 
     // this is a map with keys of pair(bus number, address) and values of
@@ -1179,9 +1177,8 @@ int main()
         objServer.add_interface("/xyz/openbmc_project/FruDevice",
                                 "xyz.openbmc_project.FruDeviceManager");
 
-    iface->register_method("ReScan", [&]() {
-        rescanBusses(io, busMap, dbusInterfaceMap, objServer);
-    });
+    iface->register_method("ReScan",
+                           [&]() { rescanBusses(busMap, dbusInterfaceMap); });
 
     iface->register_method("GetRawFru", getFruInfo);
 
@@ -1194,7 +1191,7 @@ int main()
             return;
         }
         // schedule rescan on success
-        rescanBusses(io, busMap, dbusInterfaceMap, objServer);
+        rescanBusses(busMap, dbusInterfaceMap);
     });
     iface->initialize();
 
@@ -1216,7 +1213,7 @@ int main()
 
             if (on)
             {
-                rescanBusses(io, busMap, dbusInterfaceMap, objServer);
+                rescanBusses(busMap, dbusInterfaceMap);
             }
         };
 
@@ -1265,7 +1262,7 @@ int main()
             }
             if (devChange)
             {
-                rescanBusses(io, busMap, dbusInterfaceMap, objServer);
+                rescanBusses(busMap, dbusInterfaceMap);
             }
 
             dirWatch.async_read_some(boost::asio::buffer(readBuffer),
@@ -1274,7 +1271,7 @@ int main()
 
     dirWatch.async_read_some(boost::asio::buffer(readBuffer), watchI2cBusses);
     // run the initial scan
-    rescanBusses(io, busMap, dbusInterfaceMap, objServer);
+    rescanBusses(busMap, dbusInterfaceMap);
 
     io.run();
     return 0;
