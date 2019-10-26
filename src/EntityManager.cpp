@@ -20,7 +20,6 @@
 
 #include <Overlay.hpp>
 #include <Utils.hpp>
-#include <VariantVisitors.hpp>
 #include <boost/algorithm/string/case_conv.hpp>
 #include <boost/algorithm/string/classification.hpp>
 #include <boost/algorithm/string/predicate.hpp>
