@@ -28,6 +28,7 @@
 #include <ctime>
 #include <filesystem>
 #include <fstream>
+#include <functional>
 #include <future>
 #include <iomanip>
 #include <iostream>
@@ -71,6 +72,15 @@ static std::set<size_t> busBlacklist;
 struct FindDevicesWithCallback;
 
 static BusMap busMap;
+
+using ReadBlockFunc = std::function<int(int flag, int fd, uint16_t offset,
+                                        uint8_t length, uint8_t* outBuf)>;
+
+// Read and validate FRU contents.
+std::vector<char> readFruContents(int flag, int fd, ReadBlockFunc readBlock)
+{
+    std::array<uint8_t, I2C_SMBUS_BLOCK_MAX> blockData;
+}
 
 // Given a bus/address, produce the path in sysfs for an eeprom.
 static std::string getEepromPath(size_t bus, size_t address)
