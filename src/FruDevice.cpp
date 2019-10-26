@@ -21,6 +21,7 @@
 #include <sys/inotify.h>
 #include <sys/ioctl.h>
 
+#include <array>
 #include <boost/algorithm/string/predicate.hpp>
 #include <boost/container/flat_map.hpp>
 #include <chrono>
@@ -39,6 +40,7 @@
 #include <string>
 #include <thread>
 #include <variant>
+#include <vector>
 
 extern "C" {
 #include <i2c/smbus.h>
