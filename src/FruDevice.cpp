@@ -93,8 +93,8 @@ static bool hasEepromFile(size_t bus, size_t address)
     }
 }
 
-static ssize_t readFromEeprom(int fd, uint16_t offset, uint8_t len,
-                              uint8_t* buf)
+static int readFromEeprom(int flag __attribute__((unused)), int fd,
+                          uint16_t offset, uint8_t len, uint8_t* buf)
 {
     auto result = lseek(fd, offset, SEEK_SET);
     if (result < 0)
@@ -103,7 +103,7 @@ static ssize_t readFromEeprom(int fd, uint16_t offset, uint8_t len,
         return -1;
     }
 
-    return read(fd, buf, len);
+    return static_cast<int>(read(fd, buf, len));
 }
 
 static bool isMuxBus(size_t bus)
@@ -221,7 +221,7 @@ static std::vector<char> processEeprom(int bus, int address)
         return device;
     }
 
-    ssize_t readBytes = readFromEeprom(file, 0, 0x8, blockData.data());
+    int readBytes = readFromEeprom(0, file, 0, 0x8, blockData.data());
     if (readBytes < 0)
     {
         std::cerr << "failed to read eeprom at " << bus << " address "
@@ -257,7 +257,7 @@ static std::vector<char> processEeprom(int bus, int address)
 
         areaOffset *= 8;
 
-        if (readFromEeprom(file, static_cast<uint16_t>(areaOffset), 0x2,
+        if (readFromEeprom(0, file, static_cast<uint16_t>(areaOffset), 0x2,
                            blockData.data()) < 0)
         {
             std::cerr << "failed to read bus " << bus << " address " << address
@@ -282,7 +282,7 @@ static std::vector<char> processEeprom(int bus, int address)
     {
         int requestLength = std::min(I2C_SMBUS_BLOCK_MAX, fruLength);
 
-        if (readFromEeprom(file, static_cast<uint16_t>(readOffset),
+        if (readFromEeprom(0, file, static_cast<uint16_t>(readOffset),
                            static_cast<uint8_t>(requestLength),
                            blockData.data()) < 0)
         {
