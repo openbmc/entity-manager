@@ -14,12 +14,13 @@
 // limitations under the License.
 */
 
+#include "Utils.hpp"
+
 #include <errno.h>
 #include <fcntl.h>
 #include <sys/inotify.h>
 #include <sys/ioctl.h>
 
-#include <Utils.hpp>
 #include <boost/algorithm/string/predicate.hpp>
 #include <boost/container/flat_map.hpp>
 #include <chrono>
