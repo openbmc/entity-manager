@@ -103,8 +103,8 @@ static bool hasEepromFile(size_t bus, size_t address)
     }
 }
 
-static int readFromEeprom(int flag __attribute__((unused)), int fd,
-                          uint16_t offset, uint8_t len, uint8_t* buf)
+static int64_t readFromEeprom(int flag __attribute__((unused)), int fd,
+                              uint16_t offset, uint8_t len, uint8_t* buf)
 {
     auto result = lseek(fd, offset, SEEK_SET);
     if (result < 0)
@@ -113,7 +113,7 @@ static int readFromEeprom(int flag __attribute__((unused)), int fd,
         return -1;
     }
 
-    return static_cast<int>(read(fd, buf, len));
+    return read(fd, buf, len);
 }
 
 static bool isMuxBus(size_t bus)
@@ -169,8 +169,8 @@ static int isDevice16Bit(int file)
     return 0;
 }
 
-static int readBlockData(int flag, int file, uint16_t offset, uint8_t len,
-                         uint8_t* buf)
+static int64_t readBlockData(int flag, int file, uint16_t offset, uint8_t len,
+                             uint8_t* buf)
 {
     uint8_t lowAddr = static_cast<uint8_t>(offset);
     uint8_t highAddr = static_cast<uint8_t>(offset >> 8);
@@ -252,7 +252,7 @@ static std::vector<char> processEeprom(int bus, int address)
         return device;
     }
 
-    int readBytes = readFromEeprom(0, file, 0, 0x8, blockData.data());
+    auto readBytes = readFromEeprom(0, file, 0, 0x8, blockData.data());
     if (readBytes < 0)
     {
         std::cerr << "failed to read eeprom at " << bus << " address "
