@@ -113,7 +113,7 @@ static int readFromEeprom(int flag __attribute__((unused)), int fd,
         return -1;
     }
 
-    return static_cast<int>(read(fd, buf, len));
+    return read(fd, buf, len);
 }
 
 static bool isMuxBus(size_t bus)
