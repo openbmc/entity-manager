@@ -346,7 +346,7 @@ bool probe(
                                    cmp_str>::const_iterator probeType;
 
         for (probeType = PROBE_TYPES.begin(); probeType != PROBE_TYPES.end();
-             probeType++)
+             ++probeType)
         {
             if (probe.find(probeType->first) != std::string::npos)
             {
@@ -499,7 +499,7 @@ struct PerformProbe : std::enable_shared_from_this<PerformProbe>
             boost::container::flat_map<const char*, probe_type_codes,
                                        cmp_str>::const_iterator probeType;
             for (probeType = PROBE_TYPES.begin();
-                 probeType != PROBE_TYPES.end(); probeType++)
+                 probeType != PROBE_TYPES.end(); ++probeType)
             {
                 if (probe.find(probeType->first) != std::string::npos)
                 {

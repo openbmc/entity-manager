@@ -666,7 +666,7 @@ bool formatFru(const std::vector<char>& fruBytes,
 
     for (const std::string& area : FRU_AREAS)
     {
-        fruAreaOffsetField++;
+        ++fruAreaOffsetField;
         if (fruAreaOffsetField >= fruBytes.end())
         {
             return false;
