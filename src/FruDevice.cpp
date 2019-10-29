@@ -32,6 +32,7 @@
 #include <future>
 #include <iomanip>
 #include <iostream>
+#include <limits>
 #include <nlohmann/json.hpp>
 #include <regex>
 #include <sdbusplus/asio/connection.hpp>
@@ -113,6 +114,7 @@ std::vector<char> readFruContents(int flag, int file, ReadBlockFunc readBlock,
     std::vector<char> device;
     device.insert(device.end(), blockData.begin(), blockData.begin() + 8);
 
+    bool hasMultiRecords = false;
     int fruLength = 0;
     for (size_t jj = 1; jj <= FRU_AREAS.size(); jj++)
     {
@@ -122,6 +124,14 @@ std::vector<char> readFruContents(int flag, int file, ReadBlockFunc readBlock,
         if (areaOffset == 0)
         {
             continue;
+        }
+
+        // MultiRecords are different.  jj is not tracking section, it's walking
+        // the common header.
+        if (std::string(FRU_AREAS[jj - 1]) == std::string("MULTIRECORD"))
+        {
+            hasMultiRecords = true;
+            break;
         }
 
         areaOffset *= 8;
@@ -137,6 +147,43 @@ std::vector<char> readFruContents(int flag, int file, ReadBlockFunc readBlock,
         int length = blockData[1] * 8;
         areaOffset += length;
         fruLength = (areaOffset > fruLength) ? areaOffset : fruLength;
+    }
+
+    if (hasMultiRecords)
+    {
+        // device[area count] is the index to the last area because the 0th
+        // entry is not an offset in the common header.
+        int areaOffset = device[FRU_AREAS.size()];
+        areaOffset *= 8;
+
+        // the multi-area record header is 5 bytes long.
+        constexpr int multiRecordHeaderSize = 5;
+        constexpr int multiRecordEndOfList = 0x80;
+
+        // Sanity hard-limit to 64KB.
+        while (areaOffset < std::numeric_limits<uint16_t>::max())
+        {
+            // In multi-area, the area offset points to the 0th record, each
+            // record has 3 bytes of the header we care about.
+            if (readBlock(flag, file, static_cast<uint16_t>(areaOffset), 0x3,
+                          blockData.data()) < 0)
+            {
+                std::cerr << "failed to read " << errorHelp << "\n";
+                return {};
+            }
+
+            // Ok, let's check the record length, which is in bytes (unsigned,
+            // up to 255, so blockData should hold uint8_t not char)
+            int recordLength = blockData[2];
+            areaOffset += (recordLength + multiRecordHeaderSize);
+            fruLength = (areaOffset > fruLength) ? areaOffset : fruLength;
+
+            // If this is the end of the list bail.
+            if ((blockData[1] & multiRecordEndOfList))
+            {
+                break;
+            }
+        }
     }
 
     // You already copied these first 8 bytes (the ipmi fru header size)
