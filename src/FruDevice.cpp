@@ -118,9 +118,8 @@ std::vector<char> readFruContents(int flag, int file, ReadBlockFunc readBlock,
     int fruLength = 0;
     for (size_t jj = 1; jj <= FRU_AREAS.size(); jj++)
     {
-        // TODO: offset can be 255, device is holding "chars" that's not
-        // good.
-        int areaOffset = device[jj];
+        // Offset value can be 255.
+        int areaOffset = static_cast<uint8_t>(device[jj]);
         if (areaOffset == 0)
         {
             continue;
@@ -143,7 +142,7 @@ std::vector<char> readFruContents(int flag, int file, ReadBlockFunc readBlock,
             return {};
         }
 
-        // Ignore data type.
+        // Ignore data type (blockData is already unsigned).
         int length = blockData[1] * 8;
         areaOffset += length;
         fruLength = (areaOffset > fruLength) ? areaOffset : fruLength;
@@ -153,7 +152,7 @@ std::vector<char> readFruContents(int flag, int file, ReadBlockFunc readBlock,
     {
         // device[area count] is the index to the last area because the 0th
         // entry is not an offset in the common header.
-        int areaOffset = device[FRU_AREAS.size()];
+        int areaOffset = static_cast<uint8_t>(device[FRU_AREAS.size()]);
         areaOffset *= 8;
 
         // the multi-area record header is 5 bytes long.
