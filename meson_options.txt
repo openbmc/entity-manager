@@ -1,0 +1,7 @@
+option(
+    'tests', type: 'feature', description: 'Build tests.',
+)
+option(
+    'use-overlays', type: 'boolean', value: true,
+     description: 'Enable Overlay Usage.',
+)
