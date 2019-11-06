@@ -1,0 +1,32 @@
+cpp_args = boost_args + ['-DPACKAGE_DIR="' + packagedir + '/"']
+
+executable(
+    'entity-manager',
+    'EntityManager.cpp',
+    'Overlay.cpp',
+    'Utils.cpp',
+    cpp_args: cpp_args + ['-DBOOST_ASIO_DISABLE_THREADS'],
+    dependencies: [
+        boost,
+        sdbusplus,
+    ],
+    implicit_include_directories: false,
+    include_directories: '../include',
+    install: true,
+)
+
+executable(
+    'fru-device',
+    'FruDevice.cpp',
+    'Utils.cpp',
+    cpp_args: cpp_args,
+    dependencies: [
+        boost,
+        i2c,
+        sdbusplus,
+        threads,
+    ],
+    implicit_include_directories: false,
+    include_directories: '../include',
+    install: true,
+)
