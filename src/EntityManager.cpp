@@ -129,41 +129,19 @@ static std::shared_ptr<sdbusplus::asio::dbus_interface>
 // calls the mapper to find all exposed objects of an interface type
 // and creates a vector<flat_map> that contains all the key value pairs
 // getManagedObjects
-void findDbusObjects(std::shared_ptr<PerformProbe> probe,
+void findDbusObjects(std::vector<std::shared_ptr<PerformProbe>>& probeVector,
                      std::shared_ptr<sdbusplus::asio::connection> connection,
-                     std::string& interface)
+                     boost::container::flat_set<std::string>& interfaces)
 {
-
-    // store reference to pending callbacks so we don't overwhelm services
-    static boost::container::flat_map<
-        std::string, std::vector<std::shared_ptr<PerformProbe>>>
-        pendingProbes;
-
-    if (DBUS_PROBE_OBJECTS[interface].size())
-    {
-        return;
-    }
-
-    // add shared_ptr to vector of Probes waiting for callback from a specific
-    // interface to keep alive while waiting for response
-    std::array<const char*, 1> objects = {interface.c_str()};
-    std::vector<std::shared_ptr<PerformProbe>>& pending =
-        pendingProbes[interface];
-    auto iter = pending.emplace(pending.end(), probe);
-    // only allow first call to run to not overwhelm processes
-    if (iter != pending.begin())
-    {
-        return;
-    }
 
     // find all connections in the mapper that expose a specific type
     connection->async_method_call(
-        [connection, interface, probe](boost::system::error_code& ec,
-                                       const GetSubTreeType& interfaceSubtree) {
+        [connection, interfaces, probeVector{std::move(probeVector)}](
+            boost::system::error_code& ec,
+            const GetSubTreeType& interfaceSubtree) {
             boost::container::flat_set<std::string> interfaceConnections;
             if (ec)
             {
-                pendingProbes[interface].clear();
                 if (ec.value() == ENOENT)
                 {
                     return; // wasn't found by mapper
@@ -173,59 +151,57 @@ void findDbusObjects(std::shared_ptr<PerformProbe> probe,
                 // if we can't communicate to the mapper something is very wrong
                 std::exit(EXIT_FAILURE);
             }
-            else
+
+            for (auto& object : interfaceSubtree)
             {
-                for (auto& object : interfaceSubtree)
+                for (auto& connPair : object.second)
                 {
-                    for (auto& connPair : object.second)
-                    {
-                        interfaceConnections.insert(connPair.first);
-                    }
+                    interfaceConnections.insert(connPair.first);
                 }
             }
+
             if (interfaceConnections.empty())
             {
-                pendingProbes[interface].clear();
                 return;
             }
             // get managed objects for all interfaces
             for (const auto& conn : interfaceConnections)
             {
                 connection->async_method_call(
-                    [conn,
-                     interface](boost::system::error_code& errc,
-                                const ManagedObjectType& managedInterface) {
+                    [conn, interfaces,
+                     probeVector](boost::system::error_code& errc,
+                                  const ManagedObjectType& managedInterface) {
                         if (errc)
                         {
                             std::cerr
                                 << "error getting managed object for device "
                                 << conn << "\n";
-                            pendingProbes[interface].clear();
                             return;
                         }
                         for (auto& interfaceManagedObj : managedInterface)
                         {
-                            auto ifaceObjFind =
-                                interfaceManagedObj.second.find(interface);
-                            if (ifaceObjFind !=
-                                interfaceManagedObj.second.end())
+                            // we could match multiple interfaces with one owner
+                            for (auto& [interface, object] :
+                                 interfaceManagedObj.second)
                             {
-                                std::vector<boost::container::flat_map<
-                                    std::string, BasicVariantType>>&
-                                    dbusObject = DBUS_PROBE_OBJECTS[interface];
-                                dbusObject.emplace_back(ifaceObjFind->second);
+                                auto ifaceObjFind = interfaces.find(interface);
+
+                                if (ifaceObjFind != interfaces.end())
+                                {
+                                    DBUS_PROBE_OBJECTS[interface].emplace_back(
+                                        object);
+                                }
                             }
                         }
-                        pendingProbes[interface].clear();
                     },
-                    conn.c_str(), "/", "org.freedesktop.DBus.ObjectManager",
+                    conn, "/", "org.freedesktop.DBus.ObjectManager",
                     "GetManagedObjects");
             }
         },
         "xyz.openbmc_project.ObjectMapper",
         "/xyz/openbmc_project/object_mapper",
         "xyz.openbmc_project.ObjectMapper", "GetSubTree", "/", MAX_MAPPER_DEPTH,
-        objects);
+        interfaces);
 }
 // probes dbus interface dictionary for a key with a value that matches a regex
 bool probeDbus(const std::string& interface,
@@ -487,35 +463,6 @@ struct PerformProbe : std::enable_shared_from_this<PerformProbe>
         if (probe(_probeCommand, foundDevs))
         {
             _callback(foundDevs);
-        }
-    }
-    void run()
-    {
-        // parse out dbus probes by discarding other probe types
-
-        for (std::string& probe : _probeCommand)
-        {
-            bool found = false;
-            boost::container::flat_map<const char*, probe_type_codes,
-                                       cmp_str>::const_iterator probeType;
-            for (probeType = PROBE_TYPES.begin();
-                 probeType != PROBE_TYPES.end(); ++probeType)
-            {
-                if (probe.find(probeType->first) != std::string::npos)
-                {
-                    found = true;
-                    break;
-                }
-            }
-            if (found)
-            {
-                continue;
-            }
-            // syntax requires probe before first open brace
-            auto findStart = probe.find("(");
-            std::string interface = probe.substr(0, findStart);
-
-            findDbusObjects(shared_from_this(), SYSTEM_BUS, interface);
         }
     }
     std::vector<std::string> _probeCommand;
@@ -1228,6 +1175,9 @@ struct PerformScan : std::enable_shared_from_this<PerformScan>
     }
     void run()
     {
+        boost::container::flat_set<std::string> dbusProbeInterfaces;
+        std::vector<std::shared_ptr<PerformProbe>> dbusProbePointers;
+
         for (auto it = _configurations.begin(); it != _configurations.end();)
         {
             auto findProbe = it->find("Probe");
@@ -1272,7 +1222,7 @@ struct PerformScan : std::enable_shared_from_this<PerformScan>
             // store reference to this to children to makes sure we don't get
             // destroyed too early
             auto thisRef = shared_from_this();
-            auto p = std::make_shared<
+            auto probePointer = std::make_shared<
                 PerformProbe>(probeCommand, [&, recordPtr, probeName, thisRef](
                                                 FoundDeviceT& foundDevices) {
                 _passed = true;
@@ -1421,9 +1371,39 @@ struct PerformScan : std::enable_shared_from_this<PerformScan>
                     foundDeviceIdx++;
                 }
             });
-            p->run();
+
+            // parse out dbus probes by discarding other probe types, store in a
+            // map
+            for (const std::string& probe : probeCommand)
+            {
+                bool found = false;
+                boost::container::flat_map<const char*, probe_type_codes,
+                                           cmp_str>::const_iterator probeType;
+                for (probeType = PROBE_TYPES.begin();
+                     probeType != PROBE_TYPES.end(); ++probeType)
+                {
+                    if (probe.find(probeType->first) != std::string::npos)
+                    {
+                        found = true;
+                        break;
+                    }
+                }
+                if (found)
+                {
+                    continue;
+                }
+                // syntax requires probe before first open brace
+                auto findStart = probe.find("(");
+                std::string interface = probe.substr(0, findStart);
+                dbusProbeInterfaces.emplace(interface);
+                dbusProbePointers.emplace_back(probePointer);
+            }
             it++;
         }
+
+        // probe vector stores a shared_ptr to each PerformProbe that cares
+        // about a dbus interface
+        findDbusObjects(dbusProbePointers, SYSTEM_BUS, dbusProbeInterfaces);
     }
 
     ~PerformScan()
@@ -1444,7 +1424,6 @@ struct PerformScan : std::enable_shared_from_this<PerformScan>
     nlohmann::json& _missingConfigurations;
     std::list<nlohmann::json> _configurations;
     std::function<void(void)> _callback;
-    std::vector<std::shared_ptr<PerformProbe>> _probes;
     bool _passed = false;
     bool powerWasOn = isPowerOn();
 };
@@ -1655,8 +1634,8 @@ void registerCallbacks(boost::asio::io_service& io,
 
     for (const auto& objectMap : DBUS_PROBE_OBJECTS)
     {
-        auto findObject = watchedObjects.find(objectMap.first);
-        if (findObject != watchedObjects.end())
+        auto [_, inserted] = watchedObjects.insert(objectMap.first);
+        if (!inserted)
         {
             continue;
         }
