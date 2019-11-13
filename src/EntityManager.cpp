@@ -55,8 +55,6 @@ struct cmp_str
     }
 };
 
-struct PerformProbe;
-
 // underscore T for collison with dbus c api
 enum class probe_type_codes
 {
@@ -91,8 +89,7 @@ using ManagedObjectType = boost::container::flat_map<
         std::string,
         boost::container::flat_map<std::string, BasicVariantType>>>;
 
-using FoundDeviceT =
-    std::vector<boost::container::flat_map<std::string, BasicVariantType>>;
+
 
 // store reference to all interfaces so we can destroy them later
 boost::container::flat_map<
@@ -455,29 +452,22 @@ bool probe(
     }
     return ret;
 }
-// this class finds the needed dbus fields and on destruction runs the probe
-struct PerformProbe : std::enable_shared_from_this<PerformProbe>
-{
 
-    PerformProbe(const std::vector<std::string>& probeCommand,
-                 std::shared_ptr<PerformScan>& scanPtr,
-                 std::function<void(FoundDeviceT&)>&& callback) :
-        _probeCommand(probeCommand),
-        scan(scanPtr), _callback(std::move(callback))
+PerformProbe::PerformProbe(const std::vector<std::string>& probeCommand,
+                           std::shared_ptr<PerformScan>& scanPtr,
+                           std::function<void(FoundDeviceT&)>&& callback) :
+    _probeCommand(probeCommand),
+    scan(scanPtr), _callback(std::move(callback))
+{
+}
+PerformProbe::~PerformProbe()
+{
+    FoundDeviceT foundDevs;
+    if (probe(_probeCommand, scan, foundDevs))
     {
+        _callback(foundDevs);
     }
-    ~PerformProbe()
-    {
-        FoundDeviceT foundDevs;
-        if (probe(_probeCommand, scan, foundDevs))
-        {
-            _callback(foundDevs);
-        }
-    }
-    std::vector<std::string> _probeCommand;
-    std::shared_ptr<PerformScan> scan;
-    std::function<void(FoundDeviceT&)> _callback;
-};
+}
 
 // writes output files to persist data
 bool writeJsonFiles(const nlohmann::json& systemConfiguration)
