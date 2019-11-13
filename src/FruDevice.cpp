@@ -78,6 +78,8 @@ static boost::container::flat_map<
     std::pair<size_t, size_t>, std::shared_ptr<sdbusplus::asio::dbus_interface>>
     foundDevices;
 
+static boost::container::flat_map<size_t, std::set<size_t>> failedAddresses;
+
 boost::asio::io_service io;
 auto systemBus = std::make_shared<sdbusplus::asio::connection>(io);
 auto objServer = sdbusplus::asio::object_server(systemBus);
@@ -246,6 +248,27 @@ static int64_t readFromEeprom(int flag __attribute__((unused)), int fd,
     }
 
     return read(fd, buf, len);
+}
+
+static int getRootBus(size_t bus)
+{
+    auto ec = std::error_code();
+    auto path = std::filesystem::read_symlink(
+        std::filesystem::path("/sys/bus/i2c/devices/i2c-" +
+                              std::to_string(bus) + "/mux_device"),
+        ec);
+    if (ec)
+    {
+        return -1;
+    }
+
+    std::string filename = path.filename();
+    auto findBus = filename.find("-");
+    if (findBus == std::string::npos)
+    {
+        return -1;
+    }
+    return std::stoi(filename.substr(0, findBus));
 }
 
 static bool isMuxBus(size_t bus)
@@ -467,6 +490,15 @@ int getBusFrus(int file, int first, int last, int bus,
 
         // Scan for i2c eeproms loaded on this bus.
         std::set<int> skipList = findI2CEeproms(bus, devices);
+        std::set<size_t>& failedItems = failedAddresses[bus];
+
+        std::set<size_t>* rootFailures = nullptr;
+        int rootBus = getRootBus(bus);
+
+        if (rootBus >= 0)
+        {
+            rootFailures = &(failedAddresses[rootBus]);
+        }
 
         for (int ii = first; ii <= last; ii++)
         {
@@ -496,12 +528,27 @@ int getBusFrus(int file, int first, int last, int bus,
 
             makeProbeInterface(bus, ii);
 
+            if (failedItems.find(ii) != failedItems.end())
+            {
+                // if we failed to read it once, unlikely we can read it later
+                continue;
+            }
+
+            if (rootFailures != nullptr)
+            {
+                if (rootFailures->find(ii) != rootFailures->end())
+                {
+                    continue;
+                }
+            }
+
             /* Check for Device type if it is 8 bit or 16 bit */
             int flag = isDevice16Bit(file);
             if (flag < 0)
             {
                 std::cerr << "failed to read bus " << bus << " address " << ii
                           << "\n";
+                failedItems.insert(ii);
                 continue;
             }
 
