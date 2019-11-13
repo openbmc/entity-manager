@@ -94,12 +94,6 @@ using ManagedObjectType = boost::container::flat_map<
 using FoundDeviceT =
     std::vector<boost::container::flat_map<std::string, BasicVariantType>>;
 
-boost::container::flat_map<
-    std::string,
-    std::vector<boost::container::flat_map<std::string, BasicVariantType>>>
-    DBUS_PROBE_OBJECTS;
-std::vector<std::string> PASSED_PROBES;
-
 // store reference to all interfaces so we can destroy them later
 boost::container::flat_map<
     std::string, std::vector<std::shared_ptr<sdbusplus::asio::dbus_interface>>>
@@ -115,7 +109,8 @@ const std::regex ILLEGAL_DBUS_MEMBER_REGEX("[^A-Za-z0-9_]");
 void registerCallbacks(boost::asio::io_service& io,
                        std::vector<sdbusplus::bus::match::match>& dbusMatches,
                        nlohmann::json& systemConfiguration,
-                       sdbusplus::asio::object_server& objServer);
+                       sdbusplus::asio::object_server& objServer,
+                       const DBusProbeObjectT& dbusProbeObjects);
 
 static std::shared_ptr<sdbusplus::asio::dbus_interface>
     createInterface(sdbusplus::asio::object_server& objServer,
@@ -131,14 +126,24 @@ static std::shared_ptr<sdbusplus::asio::dbus_interface>
 // getManagedObjects
 void findDbusObjects(std::vector<std::shared_ptr<PerformProbe>>& probeVector,
                      std::shared_ptr<sdbusplus::asio::connection> connection,
-                     boost::container::flat_set<std::string>& interfaces)
+                     boost::container::flat_set<std::string>& interfaces,
+                     std::shared_ptr<PerformScan> scan)
 {
+
+    for (const auto& [interface, _] : scan->dbusProbeObjects)
+    {
+        interfaces.erase(interface);
+    }
+    if (interfaces.empty())
+    {
+        return;
+    }
 
     // find all connections in the mapper that expose a specific type
     connection->async_method_call(
-        [connection, interfaces,
-         probeVector](boost::system::error_code& ec,
-                      const GetSubTreeType& interfaceSubtree) {
+        [connection, interfaces, probeVector,
+         scan](boost::system::error_code& ec,
+               const GetSubTreeType& interfaceSubtree) {
             boost::container::flat_set<std::string> interfaceConnections;
             if (ec)
             {
@@ -168,9 +173,9 @@ void findDbusObjects(std::vector<std::shared_ptr<PerformProbe>>& probeVector,
             for (const auto& conn : interfaceConnections)
             {
                 connection->async_method_call(
-                    [conn, interfaces,
-                     probeVector](boost::system::error_code& errc,
-                                  const ManagedObjectType& managedInterface) {
+                    [conn, interfaces, probeVector,
+                     scan](boost::system::error_code& errc,
+                           const ManagedObjectType& managedInterface) {
                         if (errc)
                         {
                             std::cerr
@@ -188,8 +193,8 @@ void findDbusObjects(std::vector<std::shared_ptr<PerformProbe>>& probeVector,
 
                                 if (ifaceObjFind != interfaces.end())
                                 {
-                                    DBUS_PROBE_OBJECTS[interface].emplace_back(
-                                        object);
+                                    scan->dbusProbeObjects[interface]
+                                        .emplace_back(object);
                                 }
                             }
                         }
@@ -206,10 +211,11 @@ void findDbusObjects(std::vector<std::shared_ptr<PerformProbe>>& probeVector,
 // probes dbus interface dictionary for a key with a value that matches a regex
 bool probeDbus(const std::string& interface,
                const std::map<std::string, nlohmann::json>& matches,
-               FoundDeviceT& devices, bool& foundProbe)
+               FoundDeviceT& devices, std::shared_ptr<PerformScan> scan,
+               bool& foundProbe)
 {
     std::vector<boost::container::flat_map<std::string, BasicVariantType>>&
-        dbusObject = DBUS_PROBE_OBJECTS[interface];
+        dbusObject = scan->dbusProbeObjects[interface];
     if (dbusObject.empty())
     {
         foundProbe = false;
@@ -304,6 +310,7 @@ bool probeDbus(const std::string& interface,
 // call specific probe functions
 bool probe(
     const std::vector<std::string>& probeCommand,
+    std::shared_ptr<PerformScan> scan,
     std::vector<boost::container::flat_map<std::string, BasicVariantType>>&
         foundDevs)
 {
@@ -368,8 +375,9 @@ bool probe(
                     }
                     std::string commandStr = *(match.begin() + 1);
                     boost::replace_all(commandStr, "'", "");
-                    cur = (std::find(PASSED_PROBES.begin(), PASSED_PROBES.end(),
-                                     commandStr) != PASSED_PROBES.end());
+                    cur = (std::find(scan->passedProbes.begin(),
+                                     scan->passedProbes.end(),
+                                     commandStr) != scan->passedProbes.end());
                     break;
                 }
                 default:
@@ -406,8 +414,8 @@ bool probe(
                 return false;
             }
             std::string probeInterface = probe.substr(0, findStart);
-            cur =
-                probeDbus(probeInterface, dbusProbeMap, foundDevs, foundProbe);
+            cur = probeDbus(probeInterface, dbusProbeMap, foundDevs, scan,
+                            foundProbe);
         }
 
         // some functions like AND and OR only take affect after the
@@ -452,20 +460,22 @@ struct PerformProbe : std::enable_shared_from_this<PerformProbe>
 {
 
     PerformProbe(const std::vector<std::string>& probeCommand,
+                 std::shared_ptr<PerformScan>& scanPtr,
                  std::function<void(FoundDeviceT&)>&& callback) :
         _probeCommand(probeCommand),
-        _callback(std::move(callback))
+        scan(scanPtr), _callback(std::move(callback))
     {
     }
     ~PerformProbe()
     {
         FoundDeviceT foundDevs;
-        if (probe(_probeCommand, foundDevs))
+        if (probe(_probeCommand, scan, foundDevs))
         {
             _callback(foundDevs);
         }
     }
     std::vector<std::string> _probeCommand;
+    std::shared_ptr<PerformScan> scan;
     std::function<void(FoundDeviceT&)> _callback;
 };
 
@@ -1161,73 +1171,68 @@ bool findJsonFiles(std::list<nlohmann::json>& configurations)
     return true;
 }
 
-struct PerformScan : std::enable_shared_from_this<PerformScan>
+PerformScan::PerformScan(
+    nlohmann::json& systemConfiguration, nlohmann::json& missingConfigurations,
+    std::list<nlohmann::json>& configurations,
+    std::function<void(const DBusProbeObjectT&)>&& callback) :
+    _systemConfiguration(systemConfiguration),
+    _missingConfigurations(missingConfigurations),
+    _configurations(configurations), _callback(std::move(callback))
 {
+}
+void PerformScan::run()
+{
+    boost::container::flat_set<std::string> dbusProbeInterfaces;
+    std::vector<std::shared_ptr<PerformProbe>> dbusProbePointers;
 
-    PerformScan(nlohmann::json& systemConfiguration,
-                nlohmann::json& missingConfigurations,
-                std::list<nlohmann::json>& configurations,
-                std::function<void(void)>&& callback) :
-        _systemConfiguration(systemConfiguration),
-        _missingConfigurations(missingConfigurations),
-        _configurations(configurations), _callback(std::move(callback))
+    for (auto it = _configurations.begin(); it != _configurations.end();)
     {
-    }
-    void run()
-    {
-        boost::container::flat_set<std::string> dbusProbeInterfaces;
-        std::vector<std::shared_ptr<PerformProbe>> dbusProbePointers;
+        auto findProbe = it->find("Probe");
+        auto findName = it->find("Name");
 
-        for (auto it = _configurations.begin(); it != _configurations.end();)
+        nlohmann::json probeCommand;
+        // check for poorly formatted fields, probe must be an array
+        if (findProbe == it->end())
         {
-            auto findProbe = it->find("Probe");
-            auto findName = it->find("Name");
+            std::cerr << "configuration file missing probe:\n " << *it << "\n";
+            it = _configurations.erase(it);
+            continue;
+        }
+        else if ((*findProbe).type() != nlohmann::json::value_t::array)
+        {
+            probeCommand = nlohmann::json::array();
+            probeCommand.push_back(*findProbe);
+        }
+        else
+        {
+            probeCommand = *findProbe;
+        }
 
-            nlohmann::json probeCommand;
-            // check for poorly formatted fields, probe must be an array
-            if (findProbe == it->end())
-            {
-                std::cerr << "configuration file missing probe:\n " << *it
-                          << "\n";
-                it = _configurations.erase(it);
-                continue;
-            }
-            else if ((*findProbe).type() != nlohmann::json::value_t::array)
-            {
-                probeCommand = nlohmann::json::array();
-                probeCommand.push_back(*findProbe);
-            }
-            else
-            {
-                probeCommand = *findProbe;
-            }
+        if (findName == it->end())
+        {
+            std::cerr << "configuration file missing name:\n " << *it << "\n";
+            it = _configurations.erase(it);
+            continue;
+        }
+        std::string probeName = *findName;
 
-            if (findName == it->end())
-            {
-                std::cerr << "configuration file missing name:\n " << *it
-                          << "\n";
-                it = _configurations.erase(it);
-                continue;
-            }
-            std::string probeName = *findName;
+        if (std::find(passedProbes.begin(), passedProbes.end(), probeName) !=
+            passedProbes.end())
+        {
+            it = _configurations.erase(it);
+            continue;
+        }
+        nlohmann::json* recordPtr = &(*it);
 
-            if (std::find(PASSED_PROBES.begin(), PASSED_PROBES.end(),
-                          probeName) != PASSED_PROBES.end())
-            {
-                it = _configurations.erase(it);
-                continue;
-            }
-            nlohmann::json* recordPtr = &(*it);
-
-            // store reference to this to children to makes sure we don't get
-            // destroyed too early
-            auto thisRef = shared_from_this();
-            auto probePointer = std::make_shared<
-                PerformProbe>(probeCommand, [&, recordPtr, probeName, thisRef](
-                                                FoundDeviceT& foundDevices) {
+        // store reference to this to children to makes sure we don't get
+        // destroyed too early
+        auto thisRef = shared_from_this();
+        auto probePointer = std::make_shared<PerformProbe>(
+            probeCommand, thisRef,
+            [&, recordPtr, probeName](FoundDeviceT& foundDevices) {
                 _passed = true;
 
-                PASSED_PROBES.push_back(probeName);
+                passedProbes.push_back(probeName);
                 size_t foundDeviceIdx = 1;
 
                 for (auto& foundDevice : foundDevices)
@@ -1372,61 +1377,57 @@ struct PerformScan : std::enable_shared_from_this<PerformScan>
                 }
             });
 
-            // parse out dbus probes by discarding other probe types, store in a
-            // map
-            for (const std::string& probe : probeCommand)
+        // parse out dbus probes by discarding other probe types, store in a
+        // map
+        for (const std::string& probe : probeCommand)
+        {
+            bool found = false;
+            boost::container::flat_map<const char*, probe_type_codes,
+                                       cmp_str>::const_iterator probeType;
+            for (probeType = PROBE_TYPES.begin();
+                 probeType != PROBE_TYPES.end(); ++probeType)
             {
-                bool found = false;
-                boost::container::flat_map<const char*, probe_type_codes,
-                                           cmp_str>::const_iterator probeType;
-                for (probeType = PROBE_TYPES.begin();
-                     probeType != PROBE_TYPES.end(); ++probeType)
+                if (probe.find(probeType->first) != std::string::npos)
                 {
-                    if (probe.find(probeType->first) != std::string::npos)
-                    {
-                        found = true;
-                        break;
-                    }
+                    found = true;
+                    break;
                 }
-                if (found)
-                {
-                    continue;
-                }
-                // syntax requires probe before first open brace
-                auto findStart = probe.find("(");
-                std::string interface = probe.substr(0, findStart);
-                dbusProbeInterfaces.emplace(interface);
-                dbusProbePointers.emplace_back(probePointer);
             }
-            it++;
+            if (found)
+            {
+                continue;
+            }
+            // syntax requires probe before first open brace
+            auto findStart = probe.find("(");
+            std::string interface = probe.substr(0, findStart);
+            dbusProbeInterfaces.emplace(interface);
+            dbusProbePointers.emplace_back(probePointer);
         }
-
-        // probe vector stores a shared_ptr to each PerformProbe that cares
-        // about a dbus interface
-        findDbusObjects(dbusProbePointers, SYSTEM_BUS, dbusProbeInterfaces);
+        it++;
     }
 
-    ~PerformScan()
+    // probe vector stores a shared_ptr to each PerformProbe that cares
+    // about a dbus interface
+    findDbusObjects(dbusProbePointers, SYSTEM_BUS, dbusProbeInterfaces,
+                    shared_from_this());
+}
+
+PerformScan::~PerformScan()
+{
+    if (_passed)
     {
-        if (_passed)
-        {
-            auto nextScan = std::make_shared<PerformScan>(
-                _systemConfiguration, _missingConfigurations, _configurations,
-                std::move(_callback));
-            nextScan->run();
-        }
-        else
-        {
-            _callback();
-        }
+        auto nextScan = std::make_shared<PerformScan>(
+            _systemConfiguration, _missingConfigurations, _configurations,
+            std::move(_callback));
+        nextScan->passedProbes = std::move(passedProbes);
+        nextScan->dbusProbeObjects = std::move(dbusProbeObjects);
+        nextScan->run();
     }
-    nlohmann::json& _systemConfiguration;
-    nlohmann::json& _missingConfigurations;
-    std::list<nlohmann::json> _configurations;
-    std::function<void(void)> _callback;
-    bool _passed = false;
-    bool powerWasOn = isPowerOn();
-};
+    else
+    {
+        _callback(dbusProbeObjects);
+    }
+}
 
 void startRemovedTimer(boost::asio::deadline_timer& timer,
                        nlohmann::json& systemConfiguration)
@@ -1530,9 +1531,6 @@ void propertiesChangedCallback(
         auto missingConfigurations = std::make_shared<nlohmann::json>();
         *missingConfigurations = systemConfiguration;
 
-        DBUS_PROBE_OBJECTS.clear();
-        PASSED_PROBES.clear();
-
         std::list<nlohmann::json> configurations;
         if (!findJsonFiles(configurations))
         {
@@ -1543,7 +1541,8 @@ void propertiesChangedCallback(
         auto perfScan = std::make_shared<PerformScan>(
             systemConfiguration, *missingConfigurations, configurations,
             [&systemConfiguration, &io, &objServer, &dbusMatches, count,
-             oldConfiguration, missingConfigurations]() {
+             oldConfiguration,
+             missingConfigurations](const DBusProbeObjectT& dbusProbeObjects) {
                 // this is something that since ac has been applied to the bmc
                 // we saw, and we no longer see it
                 bool powerOff = !isPowerOn();
@@ -1600,7 +1599,7 @@ void propertiesChangedCallback(
                 }
 
                 registerCallbacks(io, dbusMatches, systemConfiguration,
-                                  objServer);
+                                  objServer, dbusProbeObjects);
                 io.post([&, newConfiguration]() {
                     loadOverlays(newConfiguration);
 
@@ -1628,11 +1627,12 @@ void propertiesChangedCallback(
 void registerCallbacks(boost::asio::io_service& io,
                        std::vector<sdbusplus::bus::match::match>& dbusMatches,
                        nlohmann::json& systemConfiguration,
-                       sdbusplus::asio::object_server& objServer)
+                       sdbusplus::asio::object_server& objServer,
+                       const DBusProbeObjectT& dbusProbeObjects)
 {
     static boost::container::flat_set<std::string> watchedObjects;
 
-    for (const auto& objectMap : DBUS_PROBE_OBJECTS)
+    for (const auto& objectMap : dbusProbeObjects)
     {
         auto [_, inserted] = watchedObjects.insert(objectMap.first);
         if (!inserted)

@@ -16,11 +16,38 @@
 
 #pragma once
 
+#include "Utils.hpp"
+
 #include <systemd/sd-journal.h>
 
+#include <boost/container/flat_map.hpp>
 #include <iostream>
+#include <list>
 #include <nlohmann/json.hpp>
 #include <string>
+
+using DBusProbeObjectT = boost::container::flat_map<
+    std::string,
+    std::vector<boost::container::flat_map<std::string, BasicVariantType>>>;
+
+struct PerformScan : std::enable_shared_from_this<PerformScan>
+{
+
+    PerformScan(nlohmann::json& systemConfiguration,
+                nlohmann::json& missingConfigurations,
+                std::list<nlohmann::json>& configurations,
+                std::function<void(const DBusProbeObjectT&)>&& callback);
+    void run(void);
+    virtual ~PerformScan();
+    nlohmann::json& _systemConfiguration;
+    nlohmann::json& _missingConfigurations;
+    std::list<nlohmann::json> _configurations;
+    std::function<void(const DBusProbeObjectT&)> _callback;
+    bool _passed = false;
+    bool powerWasOn = isPowerOn();
+    DBusProbeObjectT dbusProbeObjects;
+    std::vector<std::string> passedProbes;
+};
 
 inline void logDeviceAdded(const nlohmann::json& record)
 {
