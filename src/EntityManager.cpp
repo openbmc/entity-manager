@@ -1831,24 +1831,11 @@ int main()
         objServer.add_interface("/xyz/openbmc_project/EntityManager",
                                 "xyz.openbmc_project.EntityManager");
 
-    std::shared_ptr<sdbusplus::asio::dbus_interface> inventoryIface =
-        objServer.add_interface("/xyz/openbmc_project/inventory",
-                                "xyz.openbmc_project.Inventory.Manager");
-
     // to keep reference to the match / filter objects so they don't get
     // destroyed
     std::vector<sdbusplus::bus::match::match> dbusMatches;
 
     nlohmann::json systemConfiguration = nlohmann::json::object();
-
-    inventoryIface->register_method(
-        "Notify",
-        [](const boost::container::flat_map<
-            std::string,
-            boost::container::flat_map<std::string, BasicVariantType>>&) {
-            return;
-        });
-    inventoryIface->initialize();
 
     io.post([&]() {
 #if OVERLAYS
