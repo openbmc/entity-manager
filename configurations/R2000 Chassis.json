@@ -2,7 +2,13 @@
     "Exposes": [
         {
             "BindConnector": "2U System Fan connector 1",
-            "BindPresence": "Fan 0 Present",
+            "Presence": {
+                "Direction": "Input",
+                "PinName": "FM_SYS_FAN0_PRSNT_D_N",
+                "Polarity": "Low",
+                "Status": "disabled",
+                "Type": "Gpio"
+            },
             "Index": 0,
             "MaxReading": 14000,
             "Name": "Fan 1",
@@ -24,7 +30,13 @@
         },
         {
             "BindConnector": "2U System Fan connector 2",
-            "BindPresence": "Fan 1 Present",
+            "Presence": {
+                "Direction": "Input",
+                "PinName": "FM_SYS_FAN1_PRSNT_D_N",
+                "Polarity": "Low",
+                "Status": "disabled",
+                "Type": "Gpio"
+            },
             "Index": 2,
             "MaxReading": 14000,
             "Name": "Fan 2",
@@ -46,7 +58,13 @@
         },
         {
             "BindConnector": "2U System Fan connector 3",
-            "BindPresence": "Fan 2 Present",
+            "Presence": {
+                "Direction": "Input",
+                "PinName": "FM_SYS_FAN2_PRSNT_D_N",
+                "Polarity": "Low",
+                "Status": "disabled",
+                "Type": "Gpio"
+            },
             "Index": 4,
             "MaxReading": 14000,
             "Name": "Fan 3",
@@ -68,7 +86,13 @@
         },
         {
             "BindConnector": "2U System Fan connector 4",
-            "BindPresence": "Fan 3 Present",
+            "Presence": {
+                "Direction": "Input",
+                "PinName": "FM_SYS_FAN3_PRSNT_D_N",
+                "Polarity": "Low",
+                "Status": "disabled",
+                "Type": "Gpio"
+            },
             "Index": 6,
             "MaxReading": 14000,
             "Name": "Fan 4",
@@ -90,7 +114,13 @@
         },
         {
             "BindConnector": "2U System Fan connector 5",
-            "BindPresence": "Fan 4 Present",
+            "Presence": {
+                "Direction": "Input",
+                "PinName": "FM_SYS_FAN4_PRSNT_D_N",
+                "Polarity": "Low",
+                "Status": "disabled",
+                "Type": "Gpio"
+            },
             "Index": 8,
             "MaxReading": 14000,
             "Name": "Fan 5",
@@ -112,7 +142,13 @@
         },
         {
             "BindConnector": "2U System Fan connector 6",
-            "BindPresence": "Fan 5 Present",
+            "Presence": {
+                "Direction": "Input",
+                "PinName": "FM_SYS_FAN5_PRSNT_D_N",
+                "Polarity": "Low",
+                "Status": "disabled",
+                "Type": "Gpio"
+            },
             "Index": 10,
             "MaxReading": 14000,
             "Name": "Fan 6",
