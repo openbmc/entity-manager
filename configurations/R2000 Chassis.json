@@ -2,10 +2,13 @@
     "Exposes": [
         {
             "BindConnector": "2U System Fan connector 1",
-            "BindPresence": "Fan 0 Present",
             "Index": 0,
             "MaxReading": 14000,
             "Name": "Fan 1",
+            "Presence": {
+                "PinName": "FM_SYS_FAN0_PRSNT_D_N",
+                "Polarity": "Low"
+            },
             "Thresholds": [
                 {
                     "Direction": "less than",
@@ -24,10 +27,13 @@
         },
         {
             "BindConnector": "2U System Fan connector 2",
-            "BindPresence": "Fan 1 Present",
             "Index": 2,
             "MaxReading": 14000,
             "Name": "Fan 2",
+            "Presence": {
+                "PinName": "FM_SYS_FAN1_PRSNT_D_N",
+                "Polarity": "Low"
+            },
             "Thresholds": [
                 {
                     "Direction": "less than",
@@ -46,10 +52,13 @@
         },
         {
             "BindConnector": "2U System Fan connector 3",
-            "BindPresence": "Fan 2 Present",
             "Index": 4,
             "MaxReading": 14000,
             "Name": "Fan 3",
+            "Presence": {
+                "PinName": "FM_SYS_FAN2_PRSNT_D_N",
+                "Polarity": "Low"
+            },
             "Thresholds": [
                 {
                     "Direction": "less than",
@@ -68,10 +77,13 @@
         },
         {
             "BindConnector": "2U System Fan connector 4",
-            "BindPresence": "Fan 3 Present",
             "Index": 6,
             "MaxReading": 14000,
             "Name": "Fan 4",
+            "Presence": {
+                "PinName": "FM_SYS_FAN3_PRSNT_D_N",
+                "Polarity": "Low"
+            },
             "Thresholds": [
                 {
                     "Direction": "less than",
@@ -90,10 +102,13 @@
         },
         {
             "BindConnector": "2U System Fan connector 5",
-            "BindPresence": "Fan 4 Present",
             "Index": 8,
             "MaxReading": 14000,
             "Name": "Fan 5",
+            "Presence": {
+                "PinName": "FM_SYS_FAN4_PRSNT_D_N",
+                "Polarity": "Low"
+            },
             "Thresholds": [
                 {
                     "Direction": "less than",
@@ -112,10 +127,13 @@
         },
         {
             "BindConnector": "2U System Fan connector 6",
-            "BindPresence": "Fan 5 Present",
             "Index": 10,
             "MaxReading": 14000,
             "Name": "Fan 6",
+            "Presence": {
+                "PinName": "FM_SYS_FAN5_PRSNT_D_N",
+                "Polarity": "Low"
+            },
             "Thresholds": [
                 {
                     "Direction": "less than",
