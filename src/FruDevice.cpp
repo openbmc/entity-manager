@@ -650,10 +650,17 @@ static void FindI2CDevices(const std::vector<fs::path>& i2cBuses,
         {
             busnum.erase(0, lastDash + 1);
         }
+
         auto bus = std::stoi(busnum);
         if (busBlacklist.find(bus) != busBlacklist.end())
         {
             continue; // skip previously failed busses
+        }
+
+        int rootBus = getRootBus(bus);
+        if (busBlacklist.find(rootBus) != busBlacklist.end())
+        {
+            continue;
         }
 
         auto file = open(i2cBus.c_str(), O_RDWR);
