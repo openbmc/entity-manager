@@ -15,6 +15,8 @@ for file in files[:]:
             files.append(os.path.join(file, f))
 
 for file in files:
+    if file[-5:] != '.json':
+        continue
     print("formatting file {}".format(file))
     with open(file) as f:
         j = json.load(f)
