@@ -513,17 +513,10 @@
             "Type": "ADC"
         },
         {
-            "BindGpioIntrusion": "Chassis Intrusion GPIO",
             "Class": "Gpio",
             "Name": "Chassis Intrusion Sensor",
+            "GpioPolarity": "Low",
             "Type": "ChassisIntrusionSensor"
-        },
-        {
-            "Direction": "Input",
-            "Index": 143,
-            "Name": "Chassis Intrusion GPIO",
-            "Polarity": "Low",
-            "Type": "Gpio"
         },
         {
             "Name": "4U System Fan connector 1",

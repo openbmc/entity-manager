@@ -1,6 +1,12 @@
 {
     "Exposes": [
         {
+            "Class": "Gpio",
+            "GpioPolarity": "Low",
+            "Name": "Chassis Intrusion Sensor",
+            "Type": "ChassisIntrusionSensor"
+        },
+        {
             "BindConnector": "2U System Fan connector 1",
             "Index": 0,
             "MaxReading": 14000,
