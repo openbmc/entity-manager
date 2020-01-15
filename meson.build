@@ -48,6 +48,14 @@ packagedir = join_paths(
     meson.project_name(),
 )
 threads = dependency('threads')
+if cpp.has_header('valijson/validator.hpp')
+    valijson = declare_dependency()
+else
+    subproject('valijson', required: false)
+    valijson = declare_dependency(
+        include_directories: 'subprojects/valijson/include'
+    )
+endif
 
 install_data('blacklist.json')
 
