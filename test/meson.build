@@ -10,6 +10,7 @@ test(
         dependencies: [
             boost,
             gtest,
+            nlohmann_json,
             sdbusplus,
         ],
         implicit_include_directories: false,
