@@ -8,6 +8,7 @@ executable(
     cpp_args: cpp_args + ['-DBOOST_ASIO_DISABLE_THREADS'],
     dependencies: [
         boost,
+        nlohmann_json,
         sdbusplus,
     ],
     implicit_include_directories: false,
@@ -23,6 +24,7 @@ executable(
     dependencies: [
         boost,
         i2c,
+        nlohmann_json,
         sdbusplus,
         threads,
     ],
