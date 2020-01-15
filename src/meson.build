@@ -7,6 +7,7 @@ executable(
     'Utils.cpp',
     cpp_args: cpp_args + ['-DBOOST_ASIO_DISABLE_THREADS'],
     dependencies: [
+        boost,
         sdbusplus,
     ],
     implicit_include_directories: false,
@@ -20,6 +21,7 @@ executable(
     'Utils.cpp',
     cpp_args: cpp_args,
     dependencies: [
+        boost,
         i2c,
         sdbusplus,
         threads,
