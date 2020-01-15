@@ -18,7 +18,13 @@ boost_args = [
     '-DBOOST_ALL_NO_LIB',
 ]
 build_tests = get_option('tests')
-boost = dependency('boost')
+boost = dependency('boost', required: false)
+if not boost.found()
+     subproject('boost', required: false)
+     boost = declare_dependency(
+         include_directories: 'subprojects/boost_1_71_0',
+     )
+endif
 i2c = meson.get_compiler('cpp').find_library('i2c')
 sdbusplus = dependency('sdbusplus')
 systemd = dependency('systemd')
