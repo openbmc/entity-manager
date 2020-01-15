@@ -6,7 +6,9 @@ test(
         'test_entity_manager',
         'test_entity-manager.cpp',
         '../src/Utils.cpp',
+        cpp_args: boost_args + ['-DBOOST_ASIO_DISABLE_THREADS'],
         dependencies: [
+            boost,
             gtest,
             sdbusplus,
         ],
