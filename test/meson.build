@@ -12,6 +12,7 @@ test(
             gtest,
             nlohmann_json,
             sdbusplus,
+            valijson,
         ],
         implicit_include_directories: false,
         include_directories: '../include',
