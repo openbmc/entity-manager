@@ -1677,9 +1677,6 @@ int main()
     inventoryIface->initialize();
 
     io.post([&]() {
-#if OVERLAYS
-        unloadAllOverlays();
-#endif
         propertiesChangedCallback(io, dbusMatches, systemConfiguration,
                                   objServer);
     });

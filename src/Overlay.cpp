@@ -33,7 +33,6 @@
 constexpr const char* DT_OVERLAY = "/usr/bin/dtoverlay";
 constexpr const char* DTC = "/usr/bin/dtc";
 constexpr const char* OUTPUT_DIR = "/tmp/overlays";
-constexpr const char* TEMPLATE_DIR = PACKAGE_DIR "overlay_templates";
 constexpr const char* TEMPLATE_CHAR = "$";
 constexpr const char* HEX_FORMAT_STR = "0x";
 constexpr const char* PLATFORM = "aspeed,ast2500";
@@ -50,12 +49,6 @@ std::regex ILLEGAL_NAME_REGEX("[^A-Za-z0-9_]");
 
 void createOverlay(const std::string& templatePath,
                    const nlohmann::json& configuration);
-
-void unloadAllOverlays(void)
-{
-    boost::process::child c(DT_OVERLAY, "-d", OUTPUT_DIR, "-R");
-    c.wait();
-}
 
 // this is hopefully temporary, but some drivers can't detect changes
 // without an unbind and bind so this function must exist for now
@@ -356,16 +349,6 @@ void createOverlay(const std::string& templatePath,
 
 bool loadOverlays(const nlohmann::json& systemConfiguration)
 {
-
-    std::vector<std::filesystem::path> paths;
-    if (!findFiles(std::filesystem::path(TEMPLATE_DIR), R"(.*\.template)",
-                   paths))
-    {
-        std::cerr << "Unable to find any template files in " << TEMPLATE_DIR
-                  << "\n";
-        return false;
-    }
-
     std::filesystem::create_directory(OUTPUT_DIR);
     for (auto entity = systemConfiguration.begin();
          entity != systemConfiguration.end(); entity++)
@@ -392,19 +375,6 @@ bool loadOverlays(const nlohmann::json& systemConfiguration)
                 continue;
             }
             std::string type = findType.value().get<std::string>();
-#if OVERLAYS
-
-            std::string typeFile = type + std::string(".template");
-            for (const auto& path : paths)
-            {
-                if (path.filename() != typeFile)
-                {
-                    continue;
-                }
-                createOverlay(path.string(), configuration);
-                break;
-            }
-#endif
             auto device = devices::exportTemplates.find(type.c_str());
             if (device != devices::exportTemplates.end())
             {
