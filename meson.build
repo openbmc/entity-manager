@@ -26,7 +26,9 @@ if not boost.found()
          include_directories: 'subprojects/boost_1_71_0',
      )
 endif
-i2c = cpp.find_library('i2c')
+if get_option('fru-device')
+    i2c = cpp.find_library('i2c')
+endif
 if cpp.has_header('nlohmann/json.hpp')
     nlohmann_json = declare_dependency()
 else
