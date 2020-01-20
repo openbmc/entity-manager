@@ -18,7 +18,9 @@ boost_args = [
     '-DBOOST_ALL_NO_LIB',
 ]
 build_tests = get_option('tests')
-i2c = meson.get_compiler('cpp').find_library('i2c')
+if get_option('fru-device')
+    i2c = meson.get_compiler('cpp').find_library('i2c')
+endif
 sdbusplus = dependency('sdbusplus')
 systemd = dependency('systemd')
 systemd_system_unit_dir = systemd.get_pkgconfig_variable(
