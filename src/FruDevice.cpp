@@ -86,17 +86,19 @@ auto objServer = sdbusplus::asio::object_server(systemBus);
 
 bool validateHeader(const std::array<uint8_t, I2C_SMBUS_BLOCK_MAX>& blockData);
 
-using ReadBlockFunc = std::function<int64_t(int flag, int file, uint16_t offset,
-                                            uint8_t length, uint8_t* outBuf)>;
+using ReadBlockFunc =
+    std::function<int64_t(int flag, int file, uint16_t address, uint16_t offset,
+                          uint8_t length, uint8_t* outBuf)>;
 
 // Read and validate FRU contents, given the flag required for raw i2c, the open
 // file handle, a read method, and a helper string for failures.
-std::vector<char> readFruContents(int flag, int file, ReadBlockFunc readBlock,
+std::vector<char> readFruContents(int flag, int file, uint16_t address,
+                                  ReadBlockFunc readBlock,
                                   const std::string& errorHelp)
 {
     std::array<uint8_t, I2C_SMBUS_BLOCK_MAX> blockData;
 
-    if (readBlock(flag, file, 0x0, 0x8, blockData.data()) < 0)
+    if (readBlock(flag, file, address, 0x0, 0x8, blockData.data()) < 0)
     {
         std::cerr << "failed to read " << errorHelp << "\n";
         return {};
@@ -137,8 +139,8 @@ std::vector<char> readFruContents(int flag, int file, ReadBlockFunc readBlock,
 
         areaOffset *= 8;
 
-        if (readBlock(flag, file, static_cast<uint16_t>(areaOffset), 0x2,
-                      blockData.data()) < 0)
+        if (readBlock(flag, file, address, static_cast<uint16_t>(areaOffset),
+                      0x2, blockData.data()) < 0)
         {
             std::cerr << "failed to read " << errorHelp << "\n";
             return {};
@@ -166,7 +168,8 @@ std::vector<char> readFruContents(int flag, int file, ReadBlockFunc readBlock,
         {
             // In multi-area, the area offset points to the 0th record, each
             // record has 3 bytes of the header we care about.
-            if (readBlock(flag, file, static_cast<uint16_t>(areaOffset), 0x3,
+            if (readBlock(flag, file, address,
+                          static_cast<uint16_t>(areaOffset), 0x3,
                           blockData.data()) < 0)
             {
                 std::cerr << "failed to read " << errorHelp << "\n";
@@ -196,7 +199,7 @@ std::vector<char> readFruContents(int flag, int file, ReadBlockFunc readBlock,
     {
         int requestLength = std::min(I2C_SMBUS_BLOCK_MAX, fruLength);
 
-        if (readBlock(flag, file, static_cast<uint16_t>(readOffset),
+        if (readBlock(flag, file, address, static_cast<uint16_t>(readOffset),
                       static_cast<uint8_t>(requestLength),
                       blockData.data()) < 0)
         {
@@ -238,6 +241,7 @@ static bool hasEepromFile(size_t bus, size_t address)
 }
 
 static int64_t readFromEeprom(int flag __attribute__((unused)), int fd,
+                              uint16_t address __attribute__((unused)),
                               uint16_t offset, uint8_t len, uint8_t* buf)
 {
     auto result = lseek(fd, offset, SEEK_SET);
@@ -324,27 +328,53 @@ static int isDevice16Bit(int file)
     return 0;
 }
 
-static int64_t readBlockData(int flag, int file, uint16_t offset, uint8_t len,
-                             uint8_t* buf)
+// Issue an I2C transaction to first write to_slave_buf_len bytes,then read
+// from_slave_buf_len bytes.
+static int i2c_smbus_write_then_read(int file, uint16_t address,
+                                     uint8_t* to_slave_buf,
+                                     uint8_t to_slave_buf_len,
+                                     uint8_t* from_slave_buf,
+                                     uint8_t from_slave_buf_len)
 {
-    uint8_t lowAddr = static_cast<uint8_t>(offset);
-    uint8_t highAddr = static_cast<uint8_t>(offset >> 8);
+    if (to_slave_buf == NULL || to_slave_buf_len == 0 ||
+        from_slave_buf == NULL || from_slave_buf_len == 0)
+    {
+        return -1;
+    }
 
+#define SMBUS_IOCTL_WRITE_THEN_READ_MSG_COUNT 2
+    struct i2c_msg msgs[SMBUS_IOCTL_WRITE_THEN_READ_MSG_COUNT];
+    struct i2c_rdwr_ioctl_data rdwr;
+
+    msgs[0].addr = address;
+    msgs[0].flags = 0;
+    msgs[0].len = to_slave_buf_len;
+    msgs[0].buf = to_slave_buf;
+    msgs[1].addr = address;
+    msgs[1].flags = I2C_M_RD;
+    msgs[1].len = from_slave_buf_len;
+    msgs[1].buf = from_slave_buf;
+
+    rdwr.msgs = msgs;
+    rdwr.nmsgs = SMBUS_IOCTL_WRITE_THEN_READ_MSG_COUNT;
+
+    int ret = ioctl(file, I2C_RDWR, &rdwr);
+
+    return (ret == SMBUS_IOCTL_WRITE_THEN_READ_MSG_COUNT) ? ret : -1;
+}
+
+static int64_t readBlockData(int flag, int file, uint16_t address,
+                             uint16_t offset, uint8_t len, uint8_t* buf)
+{
     if (flag == 0)
     {
-        return i2c_smbus_read_i2c_block_data(file, lowAddr, len, buf);
+        return i2c_smbus_read_i2c_block_data(file, static_cast<uint8_t>(offset),
+                                             len, buf);
     }
 
-    /* This is for 16 bit addressing EEPROM device. First an offset
-     * needs to be written before read data from a offset
-     */
-    int ret = i2c_smbus_write_byte_data(file, 0, lowAddr);
-    if (ret < 0)
-    {
-        return ret;
-    }
-
-    return i2c_smbus_read_i2c_block_data(file, highAddr, len, buf);
+    offset = htobe16(offset);
+    return i2c_smbus_write_then_read(
+        file, address, reinterpret_cast<uint8_t*>(&offset), 2, buf, len);
 }
 
 bool validateHeader(const std::array<uint8_t, I2C_SMBUS_BLOCK_MAX>& blockData)
@@ -406,8 +436,8 @@ static std::vector<char> processEeprom(int bus, int address)
 
     std::string errorMessage = "eeprom at " + std::to_string(bus) +
                                " address " + std::to_string(address);
-    std::vector<char> device =
-        readFruContents(0, file, readFromEeprom, errorMessage);
+    std::vector<char> device = readFruContents(
+        0, file, static_cast<uint16_t>(address), readFromEeprom, errorMessage);
 
     close(file);
     return device;
@@ -555,7 +585,8 @@ int getBusFrus(int file, int first, int last, int bus,
             std::string errorMessage =
                 "bus " + std::to_string(bus) + " address " + std::to_string(ii);
             std::vector<char> device =
-                readFruContents(flag, file, readBlockData, errorMessage);
+                readFruContents(flag, file, static_cast<uint16_t>(ii),
+                                readBlockData, errorMessage);
             if (device.empty())
             {
                 continue;
