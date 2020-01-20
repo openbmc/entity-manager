@@ -17,20 +17,22 @@ executable(
     install: true,
 )
 
-executable(
-    'fru-device',
-    'FruDevice.cpp',
-    'Utils.cpp',
-    cpp_args: cpp_args,
-    dependencies: [
-        boost,
-        i2c,
-        nlohmann_json,
-        sdbusplus,
-        threads,
-        valijson,
-    ],
-    implicit_include_directories: false,
-    include_directories: '../include',
-    install: true,
-)
+if get_option('fru-device')
+    executable(
+        'fru-device',
+        'FruDevice.cpp',
+        'Utils.cpp',
+        cpp_args: cpp_args,
+        dependencies: [
+            boost,
+            i2c,
+            nlohmann_json,
+            sdbusplus,
+            threads,
+            valijson,
+        ],
+        implicit_include_directories: false,
+        include_directories: '../include',
+        install: true,
+    )
+endif
