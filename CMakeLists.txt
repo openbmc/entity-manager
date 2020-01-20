@@ -43,7 +43,6 @@ set (CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wno-strict-aliasing -Wno-cast-align")
 set (CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -fno-rtti")
 
 option (YOCTO "Enable Building in Yocto" OFF)
-option (USE_OVERLAYS "Enable Overlay Usage" ON)
 
 if (NOT YOCTO)
     externalproject_add (
@@ -156,10 +155,6 @@ target_link_libraries (entity-manager -lsystemd)
 target_link_libraries (entity-manager stdc++fs)
 target_link_libraries (entity-manager ${Boost_LIBRARIES})
 target_link_libraries (entity-manager sdbusplus)
-if (USE_OVERLAYS) # overlays can be disabled because they require a kernel patch
-                  # as of today
-    target_compile_definitions (entity-manager PRIVATE OVERLAYS=1)
-endif ()
 
 if (NOT YOCTO)
     add_dependencies (entity-manager nlohmann-json)
@@ -186,7 +181,6 @@ target_compile_definitions (entity-manager PRIVATE PACKAGE_DIR="${PACKAGE_DIR}"
 target_compile_definitions (fru-device PRIVATE PACKAGE_DIR="${PACKAGE_DIR}")
 install (TARGETS fru-device entity-manager DESTINATION bin)
 install (DIRECTORY configurations DESTINATION ${PACKAGE_DIR})
-install (DIRECTORY overlay_templates DESTINATION ${PACKAGE_DIR})
 install (DIRECTORY schemas DESTINATION ${PACKAGE_DIR}/configurations)
 install (FILES ${SERVICE_FILES} DESTINATION /lib/systemd/system/)
 install (FILES blacklist.json DESTINATION ${PACKAGE_DIR})
