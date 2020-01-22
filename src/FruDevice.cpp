@@ -1164,6 +1164,51 @@ bool writeFru(uint8_t bus, uint8_t address, const std::vector<uint8_t>& fru)
     }
 }
 
+void rescanOneBus(
+    BusMap& busmap, uint8_t busNum,
+    boost::container::flat_map<
+        std::pair<size_t, size_t>,
+        std::shared_ptr<sdbusplus::asio::dbus_interface>>& dbusInterfaceMap)
+{
+    fs::path busPath = fs::path("/dev/i2c-" + std::to_string(busNum));
+    if (!fs::exists(busPath))
+    {
+        std::cerr << "Unable to access i2c bus " << static_cast<int>(busNum)
+                  << "\n";
+        return;
+    }
+
+    std::vector<fs::path> i2cBuses;
+    i2cBuses.emplace_back(busPath);
+
+    for (auto& [pair, interface] : foundDevices)
+    {
+        if (pair.first == static_cast<size_t>(busNum))
+        {
+            objServer.remove_interface(interface);
+            foundDevices.erase(pair);
+        }
+    }
+
+    auto scan = std::make_shared<FindDevicesWithCallback>(
+        i2cBuses, busmap, [busNum, &busmap, &dbusInterfaceMap]() {
+            for (auto& busIface : dbusInterfaceMap)
+            {
+                if (busIface.first.first == static_cast<size_t>(busNum))
+                {
+                    objServer.remove_interface(busIface.second);
+                }
+            }
+            auto& devicemap = busmap[busNum];
+            for (auto& device : *devicemap)
+            {
+                AddFruObjectToDbus(device.second, dbusInterfaceMap,
+                                   static_cast<uint32_t>(busNum), device.first);
+            }
+        });
+    scan->run();
+}
+
 void rescanBusses(
     BusMap& busmap,
     boost::container::flat_map<
@@ -1258,6 +1303,10 @@ int main()
 
     iface->register_method("ReScan",
                            [&]() { rescanBusses(busMap, dbusInterfaceMap); });
+
+    iface->register_method("ReScanBus", [&](uint8_t bus) {
+        rescanOneBus(busMap, bus, dbusInterfaceMap);
+    });
 
     iface->register_method("GetRawFru", getFruInfo);
 
