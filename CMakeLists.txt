@@ -58,7 +58,7 @@ if (NOT YOCTO)
 
     externalproject_add (
         nlohmann-json GIT_REPOSITORY "https://github.com/nlohmann/json.git"
-        GIT_TAG d2dd27dc3b8472dbaa7d66f83619b3ebcd9185fe SOURCE_DIR
+        GIT_TAG 456478b3c50d60100dbb1fb9bc931f370a2c1c28 SOURCE_DIR
         "${CMAKE_BINARY_DIR}/nlohmann-json-src" BINARY_DIR
         "${CMAKE_BINARY_DIR}/nlohmann-json-build" CONFIGURE_COMMAND ""
         BUILD_COMMAND "" INSTALL_COMMAND mkdir -p
