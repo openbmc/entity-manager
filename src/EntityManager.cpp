@@ -1296,64 +1296,102 @@ void PerformScan::run()
                             templateCharReplace(keyPair, foundDevice,
                                                 foundDeviceIdx);
 
-                            // special case bind
-                            if (boost::starts_with(keyPair.key(), "Bind"))
+                            bool isBind =
+                                boost::starts_with(keyPair.key(), "Bind");
+                            bool isDisable = keyPair.key() == "DisableNode";
+
+                            // special cases
+                            if (!(isBind || isDisable))
                             {
-                                if (keyPair.value().type() !=
-                                    nlohmann::json::value_t::string)
+                                continue;
+                            }
+
+                            if (keyPair.value().type() !=
+                                    nlohmann::json::value_t::string &&
+                                keyPair.value().type() !=
+                                    nlohmann::json::value_t::array)
+                            {
+                                std::cerr << "Value is invalid type "
+                                          << keyPair.key() << "\n";
+                                continue;
+                            }
+
+                            std::vector<std::string> matches;
+                            if (keyPair.value().type() ==
+                                nlohmann::json::value_t::string)
+                            {
+                                matches.emplace_back(keyPair.value());
+                            }
+                            else
+                            {
+                                for (const auto& value : keyPair.value())
                                 {
-                                    std::cerr << "bind_ value must be of "
-                                                 "type string "
-                                              << keyPair.key() << "\n";
+                                    if (value.type() !=
+                                        nlohmann::json::value_t::string)
+                                    {
+                                        std::cerr << "Value is invalid type "
+                                                  << value << "\n";
+                                        break;
+                                    }
+                                    matches.emplace_back(value);
+                                }
+                            }
+
+                            for (auto& configurationPair :
+                                 _systemConfiguration.items())
+                            {
+                                auto configListFind =
+                                    configurationPair.value().find("Exposes");
+
+                                if (configListFind ==
+                                        configurationPair.value().end() ||
+                                    configListFind->type() !=
+                                        nlohmann::json::value_t::array)
+                                {
                                     continue;
                                 }
-                                bool foundBind = false;
-                                std::string bind =
-                                    keyPair.key().substr(sizeof("Bind") - 1);
-
-                                for (auto& configurationPair :
-                                     _systemConfiguration.items())
+                                for (auto& exposedObject : *configListFind)
                                 {
-
-                                    auto configListFind =
-                                        configurationPair.value().find(
-                                            "Exposes");
-
-                                    if (configListFind ==
-                                            configurationPair.value().end() ||
-                                        configListFind->type() !=
-                                            nlohmann::json::value_t::array)
+                                    auto matchIt = std::find_if(
+                                        matches.begin(), matches.end(),
+                                        [name = (exposedObject)["Name"]
+                                                    .get<std::string>()](
+                                            const std::string& s) {
+                                            return s == name;
+                                        });
+                                    if (matchIt == matches.end())
                                     {
                                         continue;
                                     }
-                                    for (auto& exposedObject : *configListFind)
-                                    {
-                                        std::string foundObjectName =
-                                            (exposedObject)["Name"];
-                                        if (boost::iequals(
-                                                foundObjectName,
-                                                keyPair.value()
-                                                    .get<std::string>()))
-                                        {
-                                            exposedObject["Status"] = "okay";
-                                            expose[bind] = exposedObject;
 
-                                            foundBind = true;
-                                            break;
-                                        }
+                                    if (isBind)
+                                    {
+                                        std::string bind = keyPair.key().substr(
+                                            sizeof("Bind") - 1);
+
+                                        exposedObject["Status"] = "okay";
+                                        expose[bind] = exposedObject;
                                     }
-                                    if (foundBind)
+                                    else if (isDisable)
+                                    {
+                                        exposedObject["Status"] = "disabled";
+                                    }
+
+                                    matches.erase(matchIt);
+
+                                    if (matches.empty())
                                     {
                                         break;
                                     }
                                 }
-                                if (!foundBind)
-                                {
-                                    std::cerr << "configuration file "
-                                                 "dependency error, "
-                                                 "could not find bind "
-                                              << keyPair.value() << "\n";
-                                }
+                            }
+                            if (matches.size())
+                            {
+                                std::cerr << "configuration file "
+                                             "dependency error, "
+                                             "could not find "
+                                          << keyPair.key() << " "
+                                          << keyPair.value() << "\n";
                             }
                         }
                     }
