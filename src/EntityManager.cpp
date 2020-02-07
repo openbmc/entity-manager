@@ -25,6 +25,7 @@
 #include <boost/algorithm/string/predicate.hpp>
 #include <boost/algorithm/string/replace.hpp>
 #include <boost/algorithm/string/split.hpp>
+#include <boost/asio/io_context.hpp>
 #include <boost/container/flat_map.hpp>
 #include <boost/container/flat_set.hpp>
 #include <boost/range/iterator_range.hpp>
@@ -91,18 +92,19 @@ using ManagedObjectType = boost::container::flat_map<
 
 // store reference to all interfaces so we can destroy them later
 boost::container::flat_map<
-    std::string, std::vector<std::shared_ptr<sdbusplus::asio::dbus_interface>>>
+    std::string, std::vector<std::weak_ptr<sdbusplus::asio::dbus_interface>>>
     inventory;
 
 // todo: pass this through nicer
 std::shared_ptr<sdbusplus::asio::connection> SYSTEM_BUS;
 static nlohmann::json lastJson;
 
+boost::asio::io_context io;
+
 const std::regex ILLEGAL_DBUS_PATH_REGEX("[^A-Za-z0-9_.]");
 const std::regex ILLEGAL_DBUS_MEMBER_REGEX("[^A-Za-z0-9_]");
 
-void registerCallbacks(boost::asio::io_service& io,
-                       std::vector<sdbusplus::bus::match::match>& dbusMatches,
+void registerCallbacks(std::vector<sdbusplus::bus::match::match>& dbusMatches,
                        nlohmann::json& systemConfiguration,
                        sdbusplus::asio::object_server& objServer,
                        const DBusProbeObjectT& dbusProbeObjects);
@@ -110,10 +112,26 @@ void registerCallbacks(boost::asio::io_service& io,
 static std::shared_ptr<sdbusplus::asio::dbus_interface>
     createInterface(sdbusplus::asio::object_server& objServer,
                     const std::string& path, const std::string& interface,
-                    const std::string& parent)
+                    const std::string& parent, bool checkNull = false)
 {
-    return inventory[parent].emplace_back(
-        objServer.add_interface(path, interface));
+    // on first add we have no reason to check for null before add, as there
+    // won't be any. For dynamically added interfaces, we check for null so that
+    // a constant delete/add will not create a memory leak
+
+    auto ptr = objServer.add_interface(path, interface);
+    auto& dataVector = inventory[parent];
+    if (checkNull)
+    {
+        auto it = std::find_if(dataVector.begin(), dataVector.end(),
+                               [](const auto& p) { return p.expired(); });
+        if (it != dataVector.end())
+        {
+            *it = ptr;
+            return ptr;
+        }
+    }
+    dataVector.emplace_back(ptr);
+    return ptr;
 }
 
 // calls the mapper to find all exposed objects of an interface type
@@ -597,20 +615,19 @@ void createDeleteObjectMethod(
                 throw DBusInternalError();
             }
             nlohmann::json::json_pointer ptr(jsonPointerPath);
-            if (!objServer.remove_interface(dbusInterface))
-            {
-                std::cerr << "Can't delete interface " << jsonPointerPath
-                          << "\n";
-                throw DBusInternalError();
-            }
             systemConfiguration[ptr] = nullptr;
+
+            // todo(james): dig through sdbusplus to find out why we can't
+            // delete it in a method call
+            io.post([&objServer, dbusInterface]() mutable {
+                objServer.remove_interface(dbusInterface);
+            });
 
             if (!writeJsonFiles(systemConfiguration))
             {
                 std::cerr << "error setting json file\n";
                 throw DBusInternalError();
             }
-            return -1;
         });
 }
 
@@ -830,16 +847,28 @@ void createAddObjectMethod(const std::string& jsonPointerPath,
                 throw std::invalid_argument("Type and Name must be a string.");
             }
 
+            bool foundNull = false;
             size_t lastIndex = 0;
             // we add in the "exposes"
-            for (; lastIndex < findExposes->size(); lastIndex++)
+            for (const auto& expose : *findExposes)
             {
-                if (findExposes->at(lastIndex)["Name"] == *name &&
-                    findExposes->at(lastIndex)["Type"] == *type)
+                if (expose.is_null())
+                {
+                    foundNull = true;
+                    continue;
+                }
+
+                if (expose["Name"] == *name && expose["Type"] == *type)
                 {
                     throw std::invalid_argument(
                         "Field already in JSON, not adding");
                 }
+
+                if (foundNull)
+                {
+                    continue;
+                }
+
                 lastIndex++;
             }
 
@@ -864,8 +893,14 @@ void createAddObjectMethod(const std::string& jsonPointerPath,
             {
                 throw std::invalid_argument("Data does not match schema");
             }
-
-            findExposes->push_back(newData);
+            if (foundNull)
+            {
+                findExposes->at(lastIndex) = newData;
+            }
+            else
+            {
+                findExposes->push_back(newData);
+            }
             if (!writeJsonFiles(systemConfiguration))
             {
                 std::cerr << "Error writing json files\n";
@@ -879,7 +914,7 @@ void createAddObjectMethod(const std::string& jsonPointerPath,
             std::shared_ptr<sdbusplus::asio::dbus_interface> interface =
                 createInterface(objServer, path + "/" + dbusName,
                                 "xyz.openbmc_project.Configuration." + *type,
-                                board);
+                                board, true);
             // permission is read-write, as since we just created it, must be
             // runtime modifiable
             populateInterfaceFromJson(
@@ -1261,6 +1296,22 @@ void PerformScan::run()
                     auto fromLastJson = lastJson.find(recordName);
                     if (fromLastJson != lastJson.end())
                     {
+                        auto findExposes = fromLastJson->find("Exposes");
+                        // delete nulls from any updates
+                        if (findExposes != fromLastJson->end())
+                        {
+                            auto copy = nlohmann::json::array();
+                            for (auto& expose : *findExposes)
+                            {
+                                if (expose.is_null())
+                                {
+                                    continue;
+                                }
+                                copy.emplace_back(expose);
+                            }
+                            *findExposes = copy;
+                        }
+
                         // keep user changes
                         _systemConfiguration[recordName] = *fromLastJson;
                         _missingConfigurations.erase(recordName);
@@ -1530,7 +1581,6 @@ void startRemovedTimer(boost::asio::deadline_timer& timer,
 
 // main properties changed entry
 void propertiesChangedCallback(
-    boost::asio::io_service& io,
     std::vector<sdbusplus::bus::match::match>& dbusMatches,
     nlohmann::json& systemConfiguration,
     sdbusplus::asio::object_server& objServer)
@@ -1543,7 +1593,7 @@ void propertiesChangedCallback(
     timer.expires_from_now(boost::posix_time::seconds(5));
 
     // setup an async wait as we normally get flooded with new requests
-    timer.async_wait([&systemConfiguration, &dbusMatches, &io, &objServer,
+    timer.async_wait([&systemConfiguration, &dbusMatches, &objServer,
                       count](const boost::system::error_code& ec) {
         if (ec == boost::asio::error::operation_aborted)
         {
@@ -1569,7 +1619,7 @@ void propertiesChangedCallback(
 
         auto perfScan = std::make_shared<PerformScan>(
             systemConfiguration, *missingConfigurations, configurations,
-            [&systemConfiguration, &io, &objServer, &dbusMatches, count,
+            [&systemConfiguration, &objServer, &dbusMatches, count,
              oldConfiguration,
              missingConfigurations](const DBusProbeObjectT& dbusProbeObjects) {
                 // this is something that since ac has been applied to the bmc
@@ -1596,12 +1646,16 @@ void propertiesChangedCallback(
                         continue;
                     }
                     std::string name = item.value()["Name"].get<std::string>();
-                    std::vector<
-                        std::shared_ptr<sdbusplus::asio::dbus_interface>>&
+                    std::vector<std::weak_ptr<sdbusplus::asio::dbus_interface>>&
                         ifaces = inventory[name];
                     for (auto& iface : ifaces)
                     {
-                        objServer.remove_interface(iface);
+                        auto sharedPtr = iface.lock();
+                        if (!sharedPtr)
+                        {
+                            continue; // was already deleted elsewhere
+                        }
+                        objServer.remove_interface(sharedPtr);
                     }
                     ifaces.clear();
                     systemConfiguration.erase(item.key());
@@ -1627,8 +1681,8 @@ void propertiesChangedCallback(
                     logDeviceAdded(item.value());
                 }
 
-                registerCallbacks(io, dbusMatches, systemConfiguration,
-                                  objServer, dbusProbeObjects);
+                registerCallbacks(dbusMatches, systemConfiguration, objServer,
+                                  dbusProbeObjects);
                 io.post([&, newConfiguration]() {
                     loadOverlays(newConfiguration);
 
@@ -1653,8 +1707,7 @@ void propertiesChangedCallback(
     });
 }
 
-void registerCallbacks(boost::asio::io_service& io,
-                       std::vector<sdbusplus::bus::match::match>& dbusMatches,
+void registerCallbacks(std::vector<sdbusplus::bus::match::match>& dbusMatches,
                        nlohmann::json& systemConfiguration,
                        sdbusplus::asio::object_server& objServer,
                        const DBusProbeObjectT& dbusProbeObjects)
@@ -1672,8 +1725,8 @@ void registerCallbacks(boost::asio::io_service& io,
             eventHandler =
 
                 [&](sdbusplus::message::message&) {
-                    propertiesChangedCallback(io, dbusMatches,
-                                              systemConfiguration, objServer);
+                    propertiesChangedCallback(dbusMatches, systemConfiguration,
+                                              objServer);
                 };
 
         sdbusplus::bus::match::match match(
@@ -1688,7 +1741,6 @@ void registerCallbacks(boost::asio::io_service& io,
 int main()
 {
     // setup connection to dbus
-    boost::asio::io_service io;
     SYSTEM_BUS = std::make_shared<sdbusplus::asio::connection>(io);
     SYSTEM_BUS->request_name("xyz.openbmc_project.EntityManager");
 
@@ -1721,13 +1773,11 @@ int main()
 #if OVERLAYS
         unloadAllOverlays();
 #endif
-        propertiesChangedCallback(io, dbusMatches, systemConfiguration,
-                                  objServer);
+        propertiesChangedCallback(dbusMatches, systemConfiguration, objServer);
     });
 
     entityIface->register_method("ReScan", [&]() {
-        propertiesChangedCallback(io, dbusMatches, systemConfiguration,
-                                  objServer);
+        propertiesChangedCallback(dbusMatches, systemConfiguration, objServer);
     });
     entityIface->initialize();
 
