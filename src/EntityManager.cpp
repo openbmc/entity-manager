@@ -91,7 +91,7 @@ using ManagedObjectType = boost::container::flat_map<
 
 // store reference to all interfaces so we can destroy them later
 boost::container::flat_map<
-    std::string, std::vector<std::shared_ptr<sdbusplus::asio::dbus_interface>>>
+    std::string, std::vector<std::weak_ptr<sdbusplus::asio::dbus_interface>>>
     inventory;
 
 // todo: pass this through nicer
@@ -110,10 +110,26 @@ void registerCallbacks(boost::asio::io_service& io,
 static std::shared_ptr<sdbusplus::asio::dbus_interface>
     createInterface(sdbusplus::asio::object_server& objServer,
                     const std::string& path, const std::string& interface,
-                    const std::string& parent)
+                    const std::string& parent, bool checkNull = false)
 {
-    return inventory[parent].emplace_back(
-        objServer.add_interface(path, interface));
+    // on first add we have no reason to check for null before add, as there
+    // won't be any. For dynamically added interfaces, we check for null so that
+    // a constant delete/add will not create a memory leak
+
+    auto ptr = objServer.add_interface(path, interface);
+    auto& dataVector = inventory[parent];
+    if (checkNull)
+    {
+        auto it = std::find_if(dataVector.begin(), dataVector.end(),
+                               [](const auto& p) { return p.expired(); });
+        if (it != dataVector.end())
+        {
+            *it = ptr;
+            return ptr;
+        }
+    }
+    dataVector.emplace_back(ptr);
+    return ptr;
 }
 
 // calls the mapper to find all exposed objects of an interface type
@@ -879,7 +895,7 @@ void createAddObjectMethod(const std::string& jsonPointerPath,
             std::shared_ptr<sdbusplus::asio::dbus_interface> interface =
                 createInterface(objServer, path + "/" + dbusName,
                                 "xyz.openbmc_project.Configuration." + *type,
-                                board);
+                                board, true);
             // permission is read-write, as since we just created it, must be
             // runtime modifiable
             populateInterfaceFromJson(
@@ -1596,12 +1612,16 @@ void propertiesChangedCallback(
                         continue;
                     }
                     std::string name = item.value()["Name"].get<std::string>();
-                    std::vector<
-                        std::shared_ptr<sdbusplus::asio::dbus_interface>>&
+                    std::vector<std::weak_ptr<sdbusplus::asio::dbus_interface>>&
                         ifaces = inventory[name];
                     for (auto& iface : ifaces)
                     {
-                        objServer.remove_interface(iface);
+                        auto sharedPtr = iface.lock();
+                        if (!sharedPtr)
+                        {
+                            continue; // was already deleted elsewhere
+                        }
+                        objServer.remove_interface(sharedPtr);
                     }
                     ifaces.clear();
                     systemConfiguration.erase(item.key());
