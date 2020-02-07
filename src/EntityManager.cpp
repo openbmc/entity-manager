@@ -91,7 +91,7 @@ using ManagedObjectType = boost::container::flat_map<
 
 // store reference to all interfaces so we can destroy them later
 boost::container::flat_map<
-    std::string, std::vector<std::shared_ptr<sdbusplus::asio::dbus_interface>>>
+    std::string, std::vector<std::weak_ptr<sdbusplus::asio::dbus_interface>>>
     inventory;
 
 // todo: pass this through nicer
@@ -112,8 +112,9 @@ static std::shared_ptr<sdbusplus::asio::dbus_interface>
                     const std::string& path, const std::string& interface,
                     const std::string& parent)
 {
-    return inventory[parent].emplace_back(
-        objServer.add_interface(path, interface));
+    auto ptr = objServer.add_interface(path, interface);
+    inventory[parent].emplace_back(ptr);
+    return ptr;
 }
 
 // calls the mapper to find all exposed objects of an interface type
@@ -1596,12 +1597,16 @@ void propertiesChangedCallback(
                         continue;
                     }
                     std::string name = item.value()["Name"].get<std::string>();
-                    std::vector<
-                        std::shared_ptr<sdbusplus::asio::dbus_interface>>&
+                    std::vector<std::weak_ptr<sdbusplus::asio::dbus_interface>>&
                         ifaces = inventory[name];
                     for (auto& iface : ifaces)
                     {
-                        objServer.remove_interface(iface);
+                        auto sharedPtr = iface.lock();
+                        if (!sharedPtr)
+                        {
+                            continue; // was already deleted elsewhere
+                        }
+                        objServer.remove_interface(sharedPtr);
                     }
                     ifaces.clear();
                     systemConfiguration.erase(item.key());
