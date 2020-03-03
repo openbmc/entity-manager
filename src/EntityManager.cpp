@@ -1194,6 +1194,37 @@ bool findJsonFiles(std::list<nlohmann::json>& configurations)
     return true;
 }
 
+std::string getRecordName(
+    const boost::container::flat_map<std::string, BasicVariantType>& probe,
+    const std::string& probeName)
+{
+    if (probe.empty())
+    {
+        return probeName;
+    }
+
+    // use an array so alphabetical order from the
+    // flat_map is maintained
+    auto device = nlohmann::json::array();
+    for (auto& devPair : probe)
+    {
+        device.push_back(devPair.first);
+        std::visit([&device](auto&& v) { device.push_back(v); },
+                   devPair.second);
+    }
+    size_t hash = std::hash<std::string>{}(probeName + device.dump());
+    // hashes are hard to distinguish, use the
+    // non-hashed version if we want debug
+    if constexpr (DEBUG)
+    {
+        return probeName + device.dump();
+    }
+    else
+    {
+        return std::to_string(hash);
+    }
+}
+
 PerformScan::PerformScan(
     nlohmann::json& systemConfiguration, nlohmann::json& missingConfigurations,
     std::list<nlohmann::json>& configurations,
@@ -1256,42 +1287,18 @@ void PerformScan::run()
                 _passed = true;
 
                 passedProbes.push_back(probeName);
-                size_t foundDeviceIdx = 1;
+                std::list<size_t> indexes(foundDevices.size());
+                std::iota(indexes.begin(), indexes.end(), 1);
 
-                for (auto& foundDevice : foundDevices)
+                size_t indexIdx = probeName.find("$index");
+                bool hasIndex = (indexIdx != std::string::npos);
+
+                // copy over persisted configurations and make sure we remove
+                // indexes that are already used
+                for (auto itr = foundDevices.begin();
+                     itr != foundDevices.end();)
                 {
-                    nlohmann::json record = *recordPtr;
-                    std::string recordName;
-                    size_t hash = 0;
-                    if (foundDevice.size())
-                    {
-                        // use an array so alphabetical order from the
-                        // flat_map is maintained
-                        auto device = nlohmann::json::array();
-                        for (auto& devPair : foundDevice)
-                        {
-                            device.push_back(devPair.first);
-                            std::visit(
-                                [&device](auto&& v) { device.push_back(v); },
-                                devPair.second);
-                        }
-                        hash =
-                            std::hash<std::string>{}(probeName + device.dump());
-                        // hashes are hard to distinguish, use the
-                        // non-hashed version if we want debug
-                        if constexpr (DEBUG)
-                        {
-                            recordName = probeName + device.dump();
-                        }
-                        else
-                        {
-                            recordName = std::to_string(hash);
-                        }
-                    }
-                    else
-                    {
-                        recordName = probeName;
-                    }
+                    std::string recordName = getRecordName(*itr, probeName);
 
                     auto fromLastJson = lastJson.find(recordName);
                     if (fromLastJson != lastJson.end())
@@ -1315,9 +1322,40 @@ void PerformScan::run()
                         // keep user changes
                         _systemConfiguration[recordName] = *fromLastJson;
                         _missingConfigurations.erase(recordName);
+                        itr = foundDevices.erase(itr);
+                        if (hasIndex)
+                        {
+                            auto nameIt = fromLastJson->find("Name");
+                            if (nameIt == fromLastJson->end())
+                            {
+                                std::cerr << "Last JSON Illegal\n";
+                                continue;
+                            }
+
+                            int index = std::stoi(
+                                nameIt->get<std::string>().substr(indexIdx),
+                                nullptr, 0);
+                            auto usedIt = std::find(indexes.begin(),
+                                                    indexes.end(), index);
+
+                            if (usedIt == indexes.end())
+                            {
+                                continue; // less items now
+                            }
+                            indexes.erase(usedIt);
+                        }
+
                         continue;
                     }
-
+                    itr++;
+                }
+                for (auto& foundDevice : foundDevices)
+                {
+                    nlohmann::json record = *recordPtr;
+                    std::string recordName =
+                        getRecordName(foundDevice, probeName);
+                    size_t foundDeviceIdx = indexes.front();
+                    indexes.pop_front();
                     // insert into configuration temporarily to be able to
                     // reference ourselves
 
@@ -1334,7 +1372,6 @@ void PerformScan::run()
                     if (findExpose == record.end())
                     {
                         _systemConfiguration[recordName] = record;
-                        foundDeviceIdx++;
                         continue;
                     }
 
@@ -1452,8 +1489,6 @@ void PerformScan::run()
                     // overwrite ourselves with cleaned up version
                     _systemConfiguration[recordName] = record;
                     _missingConfigurations.erase(recordName);
-
-                    foundDeviceIdx++;
                 }
             });
 
