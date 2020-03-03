@@ -1256,10 +1256,11 @@ void PerformScan::run()
                 _passed = true;
 
                 passedProbes.push_back(probeName);
-                size_t foundDeviceIdx = 1;
+                size_t foundDeviceIdx = 0;
 
                 for (auto& foundDevice : foundDevices)
                 {
+                    foundDeviceIdx++;
                     nlohmann::json record = *recordPtr;
                     std::string recordName;
                     size_t hash = 0;
@@ -1334,7 +1335,6 @@ void PerformScan::run()
                     if (findExpose == record.end())
                     {
                         _systemConfiguration[recordName] = record;
-                        foundDeviceIdx++;
                         continue;
                     }
 
@@ -1452,8 +1452,6 @@ void PerformScan::run()
                     // overwrite ourselves with cleaned up version
                     _systemConfiguration[recordName] = record;
                     _missingConfigurations.erase(recordName);
-
-                    foundDeviceIdx++;
                 }
             });
 
