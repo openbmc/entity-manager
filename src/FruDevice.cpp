@@ -49,12 +49,17 @@ extern "C" {
 #include <linux/i2c-dev.h>
 }
 
+using PropertyMapType =
+    boost::container::flat_map<std::string, BasicVariantType>;
+std::unique_ptr<sdbusplus::bus::match::match> baseBoardUpdatedSignal;
+
 namespace fs = std::filesystem;
 static constexpr bool DEBUG = false;
 static size_t UNKNOWN_BUS_OBJECT_COUNT = 0;
-constexpr size_t MAX_FRU_SIZE = 512;
+static size_t MAX_FRU_SIZE = 512;
 constexpr size_t MAX_EEPROM_PAGE_INDEX = 255;
 constexpr size_t busTimeoutSeconds = 5;
+static bool isEpromBoard = false;
 
 constexpr const char* blacklistPath = PACKAGE_DIR "blacklist.json";
 
@@ -1079,6 +1084,104 @@ static bool readBaseboardFru(std::vector<char>& baseboardFru)
     return true;
 }
 
+static void checkBaseBoardPlatfom(const std::string& baseboardPath)
+{
+    // check baseboard fru is configured as EEPROM and get the Details.
+    systemBus->async_method_call(
+        [](boost::system::error_code ec, PropertyMapType& propMap) {
+            if (ec)
+            {
+                std::cerr << "\n dbus call failed " << ec.message();
+                return;
+            }
+            auto baseBoardName = std::get_if<std::string>(&propMap["Name"]);
+            auto boardType = std::get_if<std::string>(&propMap["Type"]);
+            if (baseBoardName->compare("Baseboard FRU") == 0 &&
+                boardType->compare("EEPROM") == 0)
+            {
+                auto epromSize = std::get_if<uint64_t>(&propMap["Size"]);
+                if (epromSize != NULL)
+                {
+                    MAX_FRU_SIZE = static_cast<uint32_t>(*epromSize);
+                }
+                isEpromBoard = true;
+                return;
+            }
+            else
+            {
+                isEpromBoard = false;
+                return;
+            }
+        },
+        "xyz.openbmc_project.EntityManager", baseboardPath,
+        "org.freedesktop.DBus.Properties", "GetAll",
+        "xyz.openbmc_project.Configuration.EEPROM");
+
+    return;
+}
+
+static void getEEPROMBoardDetails()
+{
+    namespace rules = sdbusplus::bus::match::rules;
+    const std::string filterStrPostIntfAdd =
+        rules::interfacesAdded() +
+        rules::argNpath(0, "/xyz/openbmc_project/inventory/system/board/");
+    const static constexpr char* baseBoardInterface =
+        "xyz.openbmc_project.Configuration.EEPROM";
+    const static constexpr char* baseBoardFruSubPath = "/Baseboard_FRU";
+
+    auto callback = [&](sdbusplus::message::message& m) {
+        sdbusplus::message::object_path objPath;
+        boost::container::flat_map<
+            std::string, boost::container::flat_map<
+                             std::string, std::variant<std::string, uint64_t>>>
+            msgData;
+        m.read(objPath, msgData);
+        // Check for xyz.openbmc_project.Configuration.EEPROM
+        // interface match
+        auto intfFound = msgData.find(baseBoardInterface);
+        if (msgData.end() != intfFound)
+        {
+            checkBaseBoardPlatfom(objPath.str);
+            return;
+        }
+    };
+    baseBoardUpdatedSignal = std::make_unique<sdbusplus::bus::match::match>(
+        static_cast<sdbusplus::bus::bus&>(*systemBus), filterStrPostIntfAdd,
+        callback);
+
+    systemBus->async_method_call(
+        [](boost::system::error_code ec, std::vector<std::string>& subtree) {
+            if (ec)
+            {
+                std::cerr << "\n dbus call failed " << ec.message();
+                return;
+            }
+            const std::string match = "board";
+            for (const std::string& objpath : subtree)
+            {
+                // Iterate over all retrieved ObjectPaths.
+                if (!boost::ends_with(objpath, match))
+                {
+                    // Just move to next path.
+                    continue;
+                }
+
+                // Baseboard object path found
+                checkBaseBoardPlatfom(objpath + baseBoardFruSubPath);
+                return;
+            }
+        },
+        "xyz.openbmc_project.ObjectMapper",
+        "/xyz/openbmc_project/object_mapper",
+        "xyz.openbmc_project.ObjectMapper", "GetSubTreePaths",
+        "/xyz/openbmc_project/inventory", 0,
+        std::array<const char*, 1>{
+            "xyz.openbmc_project.Inventory.Item.Board.Motherboard"});
+
+    return;
+}
+
 bool writeFru(uint8_t bus, uint8_t address, const std::vector<uint8_t>& fru)
 {
     boost::container::flat_map<std::string, std::string> tmp;
@@ -1094,7 +1197,7 @@ bool writeFru(uint8_t bus, uint8_t address, const std::vector<uint8_t>& fru)
         return false;
     }
     // baseboard fru
-    if (bus == 0 && address == 0)
+    if (bus == 0 && address == 0 && !(isEpromBoard))
     {
         std::ofstream file(BASEBOARD_FRU_LOCATION, std::ios_base::binary);
         if (!file.good())
@@ -1381,6 +1484,8 @@ int main()
         "openbmc_project/state/"
         "host0',arg0='xyz.openbmc_project.State.Host'",
         eventHandler);
+    // Set baseboard EEPROM FRU details, if applicable.
+    getEEPROMBoardDetails();
 
     int fd = inotify_init();
     inotify_add_watch(fd, I2C_DEV_LOCATION,
