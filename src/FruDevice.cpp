@@ -49,12 +49,17 @@ extern "C" {
 #include <linux/i2c-dev.h>
 }
 
+using PropertyMapType =
+    boost::container::flat_map<std::string, BasicVariantType>;
+std::unique_ptr<sdbusplus::bus::match::match> baseBoardUpdatedSignal;
+
 namespace fs = std::filesystem;
 static constexpr bool DEBUG = false;
 static size_t UNKNOWN_BUS_OBJECT_COUNT = 0;
-constexpr size_t MAX_FRU_SIZE = 512;
+static size_t MAX_FRU_SIZE = 512;
 constexpr size_t MAX_EEPROM_PAGE_INDEX = 255;
 constexpr size_t busTimeoutSeconds = 5;
+static bool isEpromBoard = false;
 
 constexpr const char* blacklistPath = PACKAGE_DIR "blacklist.json";
 
@@ -1079,6 +1084,45 @@ static bool readBaseboardFru(std::vector<char>& baseboardFru)
     return true;
 }
 
+static bool checkBaseBoardPlatfom(const std::string& baseboardPath)
+{
+    // check baseboard fru is configured as EEPROM and get the Details.
+    systemBus->async_method_call(
+        [](boost::system::error_code ec, PropertyMapType& propMap) {
+            if (ec)
+            {
+                std::cerr << "\nGet Base board EEPROM Configuration Details "
+                             "dbus call failed  "
+                          << ec.message();
+                return;
+            }
+            auto baseBoardName = std::get_if<std::string>(&propMap["Name"]);
+            auto boardType = std::get_if<std::string>(&propMap["Type"]);
+            if (baseBoardName->compare("Baseboard FRU") == 0 &&
+                boardType->compare("EEPROM") == 0)
+            {
+                auto epromSize = std::get_if<uint64_t>(&propMap["Size"]);
+                if (epromSize != NULL)
+                {
+                    MAX_FRU_SIZE = static_cast<uint32_t>(*epromSize);
+                }
+                isEpromBoard = true;
+                return;
+            }
+            else
+            {
+                std::cerr << "\n Base Board is Not a EEPROM based FRU";
+                isEpromBoard = false;
+                return;
+            }
+        },
+        "xyz.openbmc_project.EntityManager", baseboardPath,
+        "org.freedesktop.DBus.Properties", "GetAll",
+        "xyz.openbmc_project.Configuration.EEPROM");
+
+    return true;
+}
+
 bool writeFru(uint8_t bus, uint8_t address, const std::vector<uint8_t>& fru)
 {
     boost::container::flat_map<std::string, std::string> tmp;
@@ -1094,7 +1138,7 @@ bool writeFru(uint8_t bus, uint8_t address, const std::vector<uint8_t>& fru)
         return false;
     }
     // baseboard fru
-    if (bus == 0 && address == 0)
+    if (bus == 0 && address == 0 && !(isEpromBoard))
     {
         std::ofstream file(BASEBOARD_FRU_LOCATION, std::ios_base::binary);
         if (!file.good())
@@ -1381,6 +1425,37 @@ int main()
         "openbmc_project/state/"
         "host0',arg0='xyz.openbmc_project.State.Host'",
         eventHandler);
+
+    namespace rules = sdbusplus::bus::match::rules;
+    const std::string filterStrPostIntfAdd =
+        rules::interfacesAdded() +
+        rules::argNpath(0, "/xyz/openbmc_project/inventory/system/board/");
+    const static constexpr char* baseBoardInterface =
+        "xyz.openbmc_project.Configuration.EEPROM";
+
+    auto callback = [&](sdbusplus::message::message& m) {
+        sdbusplus::message::object_path objPath;
+        boost::container::flat_map<
+            std::string, boost::container::flat_map<
+                             std::string, std::variant<std::string, uint64_t>>>
+            msgData;
+        m.read(objPath, msgData);
+        // Check for xyz.openbmc_project.Configuration.EEPROM
+        // interface match
+        auto intfFound = msgData.find(baseBoardInterface);
+        if (msgData.end() != intfFound)
+        {
+            std::cerr << "\nInterfacesAdded callback  interface FOUND";
+            checkBaseBoardPlatfom(objPath.str);
+        }
+        else
+        {
+            std::cerr << "\nInterfacesAdded callback  interface NOT FOUND";
+        }
+    };
+    baseBoardUpdatedSignal = std::make_unique<sdbusplus::bus::match::match>(
+        static_cast<sdbusplus::bus::bus&>(*systemBus), filterStrPostIntfAdd,
+        callback);
 
     int fd = inotify_init();
     inotify_add_watch(fd, I2C_DEV_LOCATION,
