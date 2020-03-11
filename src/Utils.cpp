@@ -115,27 +115,41 @@ bool isPowerOn(void)
 
 void setupPowerMatch(const std::shared_ptr<sdbusplus::asio::connection>& conn)
 {
-    // create a match for powergood changes, first time do a method call to
-    // cache the correct value
-    std::function<void(sdbusplus::message::message & message)> eventHandler =
-        [](sdbusplus::message::message& message) {
-            std::string objectName;
-            boost::container::flat_map<std::string, std::variant<int32_t, bool>>
-                values;
-            message.read(objectName, values);
-            auto findPgood = values.find("pgood");
-            if (findPgood != values.end())
-            {
-                powerStatusOn = std::get<int32_t>(findPgood->second);
-            }
-        };
-
     powerMatch = std::make_unique<sdbusplus::bus::match::match>(
         static_cast<sdbusplus::bus::bus&>(*conn),
-        "type='signal',interface='org.freedesktop.DBus.Properties',path_"
-        "namespace='/xyz/openbmc_project/Chassis/Control/"
-        "Power0',arg0='xyz.openbmc_project.Chassis.Control.Power'",
-        eventHandler);
+        "type='signal',interface='" + std::string(properties::interface) +
+            "',path='" + std::string(power::path) + "',arg0='" +
+            std::string(power::interface) + "'",
+        [](sdbusplus::message::message& message) {
+            std::string objectName;
+            boost::container::flat_map<std::string, std::variant<std::string>>
+                values;
+            message.read(objectName, values);
+            auto findState = values.find(power::property);
+            if (findState != values.end())
+            {
+                bool on = boost::ends_with(
+                    std::get<std::string>(findState->second), "Running");
+                if (!on)
+                {
+                    powerStatusOn = false;
+                    return;
+                }
+            }
+        });
+
+    conn->async_method_call(
+        [](boost::system::error_code ec,
+           const std::variant<std::string>& state) {
+            if (ec)
+            {
+                return;
+            }
+            powerStatusOn =
+                boost::ends_with(std::get<std::string>(state), "Running");
+        },
+        power::busname, power::path, properties::interface, properties::get,
+        power::interface, power::property);
 }
 
 // finds the template character (currently set to $) and replaces the value with

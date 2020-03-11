@@ -41,6 +41,20 @@ enum class TemplateOperation
     modulo,
 };
 
+namespace properties
+{
+constexpr const char* interface = "org.freedesktop.DBus.Properties";
+constexpr const char* get = "Get";
+} // namespace properties
+
+namespace power
+{
+const static constexpr char* busname = "xyz.openbmc_project.State.Host";
+const static constexpr char* interface = "xyz.openbmc_project.State.Host";
+const static constexpr char* path = "/xyz/openbmc_project/state/host0";
+const static constexpr char* property = "CurrentHostState";
+} // namespace power
+
 bool findFiles(const std::filesystem::path& dirPath,
                const std::string& matchString,
                std::vector<std::filesystem::path>& foundPaths);
