@@ -150,31 +150,39 @@ void setupPowerMatch(const std::shared_ptr<sdbusplus::asio::connection>& conn)
 // finds the template character (currently set to $) and replaces the value with
 // the field found in a dbus object i.e. $ADDRESS would get populated with the
 // ADDRESS field from a object on dbus
-void templateCharReplace(
+std::optional<std::string> templateCharReplace(
     nlohmann::json::iterator& keyPair,
     const boost::container::flat_map<std::string, BasicVariantType>&
         foundDevice,
-    const size_t foundDeviceIdx)
+    const size_t foundDeviceIdx, const std::optional<std::string>& replaceStr)
 {
+    std::optional<std::string> ret = std::nullopt;
+
     if (keyPair.value().type() == nlohmann::json::value_t::object ||
         keyPair.value().type() == nlohmann::json::value_t::array)
     {
         for (auto nextLayer = keyPair.value().begin();
              nextLayer != keyPair.value().end(); nextLayer++)
         {
-            templateCharReplace(nextLayer, foundDevice, foundDeviceIdx);
+            templateCharReplace(nextLayer, foundDevice, foundDeviceIdx,
+                                replaceStr);
         }
-        return;
+        return ret;
     }
 
     std::string* strPtr = keyPair.value().get_ptr<std::string*>();
     if (strPtr == nullptr)
     {
-        return;
+        return ret;
     }
 
     boost::replace_all(*strPtr, std::string(templateChar) + "index",
                        std::to_string(foundDeviceIdx));
+    if (replaceStr)
+    {
+        boost::replace_all(*strPtr, *replaceStr,
+                           std::to_string(foundDeviceIdx));
+    }
 
     for (auto& foundDevicePair : foundDevice)
     {
@@ -193,7 +201,7 @@ void templateCharReplace(
             {
                 std::visit([&](auto&& val) { keyPair.value() = val; },
                            foundDevicePair.second);
-                return;
+                return {};
             }
             else if (nextItemIdx > strPtr->size() ||
                      std::find(mathChars.begin(), mathChars.end(),
@@ -315,7 +323,20 @@ void templateCharReplace(
                 }
                 isOperator = !isOperator;
             }
+
             std::string result = prefix + std::to_string(number);
+
+            std::string replaced(find.begin(), find.end());
+            for (auto it2 = split.begin(); it2 != split.end(); it2++)
+            {
+                replaced += " ";
+                replaced += *it2;
+                if (it2 == it)
+                {
+                    break;
+                }
+            }
+            ret = replaced;
 
             if (it != split.end())
             {
@@ -335,7 +356,7 @@ void templateCharReplace(
     strPtr = keyPair.value().get_ptr<std::string*>();
     if (strPtr == nullptr)
     {
-        return;
+        return ret;
     }
 
     // convert hex numbers to ints
@@ -369,4 +390,5 @@ void templateCharReplace(
         {
         }
     }
+    return ret;
 }
