@@ -1286,12 +1286,13 @@ void PerformScan::run()
             [&, recordPtr, probeName](FoundDeviceT& foundDevices) {
                 _passed = true;
 
+                std::set<nlohmann::json> usedNames;
                 passedProbes.push_back(probeName);
                 std::list<size_t> indexes(foundDevices.size());
                 std::iota(indexes.begin(), indexes.end(), 1);
 
-                size_t indexIdx = probeName.find("$index");
-                bool hasIndex = (indexIdx != std::string::npos);
+                size_t indexIdx = probeName.find("$");
+                bool hasTemplateName = (indexIdx != std::string::npos);
 
                 // copy over persisted configurations and make sure we remove
                 // indexes that are already used
@@ -1323,7 +1324,7 @@ void PerformScan::run()
                         _systemConfiguration[recordName] = *fromLastJson;
                         _missingConfigurations.erase(recordName);
                         itr = foundDevices.erase(itr);
-                        if (hasIndex)
+                        if (hasTemplateName)
                         {
                             auto nameIt = fromLastJson->find("Name");
                             if (nameIt == fromLastJson->end())
@@ -1335,6 +1336,7 @@ void PerformScan::run()
                             int index = std::stoi(
                                 nameIt->get<std::string>().substr(indexIdx),
                                 nullptr, 0);
+                            usedNames.insert(nameIt.value());
                             auto usedIt = std::find(indexes.begin(),
                                                     indexes.end(), index);
 
@@ -1349,6 +1351,9 @@ void PerformScan::run()
                     }
                     itr++;
                 }
+
+                std::optional<std::string> replaceStr;
+
                 for (auto& foundDevice : foundDevices)
                 {
                     nlohmann::json record = *recordPtr;
@@ -1356,17 +1361,58 @@ void PerformScan::run()
                         getRecordName(foundDevice, probeName);
                     size_t foundDeviceIdx = indexes.front();
                     indexes.pop_front();
-                    // insert into configuration temporarily to be able to
-                    // reference ourselves
 
-                    _systemConfiguration[recordName] = record;
+                    // check name first so we have no duplicate names
+                    auto getName = record.find("Name");
+                    if (getName == record.end())
+                    {
+                        std::cerr << "Record Missing Name! " << record.dump();
+                        continue; // this should be impossible at this level
+                    }
+
+                    nlohmann::json copyForName = {{"Name", getName.value()}};
+                    nlohmann::json::iterator copyIt = copyForName.begin();
+                    std::optional<std::string> replaceVal = templateCharReplace(
+                        copyIt, foundDevice, foundDeviceIdx, replaceStr);
+
+                    if (!replaceStr && replaceVal)
+                    {
+                        if (usedNames.find(copyIt.value()) != usedNames.end())
+                        {
+                            replaceStr = replaceVal;
+                            copyForName = {{"Name", getName.value()}};
+                            copyIt = copyForName.begin();
+                            templateCharReplace(copyIt, foundDevice,
+                                                foundDeviceIdx, replaceStr);
+                        }
+                    }
+
+                    if (replaceStr)
+                    {
+                        std::cerr << "Duplicates found, replacing "
+                                  << *replaceStr
+                                  << " with found device index.\n Consider "
+                                     "fixing template to not have duplicates\n";
+                    }
 
                     for (auto keyPair = record.begin(); keyPair != record.end();
                          keyPair++)
                     {
+                        if (keyPair.key() == "Name")
+                        {
+                            keyPair.value() = copyIt.value();
+                            usedNames.insert(copyIt.value());
+
+                            continue; // already covered above
+                        }
                         templateCharReplace(keyPair, foundDevice,
-                                            foundDeviceIdx);
+                                            foundDeviceIdx, replaceStr);
                     }
+
+                    // insert into configuration temporarily to be able to
+                    // reference ourselves
+
+                    _systemConfiguration[recordName] = record;
 
                     auto findExpose = record.find("Exposes");
                     if (findExpose == record.end())
@@ -1382,7 +1428,7 @@ void PerformScan::run()
                         {
 
                             templateCharReplace(keyPair, foundDevice,
-                                                foundDeviceIdx);
+                                                foundDeviceIdx, replaceStr);
 
                             bool isBind =
                                 boost::starts_with(keyPair.key(), "Bind");
