@@ -124,8 +124,9 @@ inline bool fwVersionIsSame(void)
     return false;
 }
 
-void templateCharReplace(
+std::optional<std::string> templateCharReplace(
     nlohmann::json::iterator& keyPair,
     const boost::container::flat_map<std::string, BasicVariantType>&
         foundDevice,
-    const size_t foundDeviceIdx);
+    const size_t foundDeviceIdx,
+    const std::optional<std::string>& replaceStr = std::nullopt);
