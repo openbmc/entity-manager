@@ -1838,9 +1838,6 @@ int main()
     nlohmann::json systemConfiguration = nlohmann::json::object();
 
     io.post([&]() {
-#if OVERLAYS
-        unloadAllOverlays();
-#endif
         propertiesChangedCallback(dbusMatches, systemConfiguration, objServer);
     });
 
