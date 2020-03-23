@@ -30,65 +30,15 @@
 #include <regex>
 #include <string>
 
-constexpr const char* DT_OVERLAY = "/usr/bin/dtoverlay";
-constexpr const char* DTC = "/usr/bin/dtc";
 constexpr const char* OUTPUT_DIR = "/tmp/overlays";
 constexpr const char* TEMPLATE_CHAR = "$";
 constexpr const char* HEX_FORMAT_STR = "0x";
-constexpr const char* PLATFORM = "aspeed,ast2500";
 constexpr const char* I2C_DEVS_DIR = "/sys/bus/i2c/devices";
 constexpr const char* MUX_SYMLINK_DIR = "/dev/i2c-mux";
 
 constexpr const bool DEBUG = false;
 
-// some drivers need to be unbind / bind to load device tree changes
-static const boost::container::flat_map<std::string, std::string> FORCE_PROBES =
-    {{"IntelFanConnector", "/sys/bus/platform/drivers/aspeed_pwm_tacho"}};
-
 std::regex ILLEGAL_NAME_REGEX("[^A-Za-z0-9_]");
-
-void createOverlay(const std::string& templatePath,
-                   const nlohmann::json& configuration);
-
-void unloadAllOverlays(void)
-{
-    boost::process::child c(DT_OVERLAY, "-d", OUTPUT_DIR, "-R");
-    c.wait();
-}
-
-// this is hopefully temporary, but some drivers can't detect changes
-// without an unbind and bind so this function must exist for now
-void forceProbe(const std::string& driver)
-{
-    std::ofstream driverUnbind(driver + "/unbind");
-    std::ofstream driverBind(driver + "/bind");
-    if (!driverUnbind.is_open())
-    {
-        std::cerr << "force probe error opening " << driver << "\n";
-        return;
-    }
-    if (!driverBind.is_open())
-    {
-        driverUnbind.close();
-        std::cerr << "force probe error opening " << driver << "\n";
-        return;
-    }
-
-    std::filesystem::path pathObj(driver);
-    for (auto& p : std::filesystem::directory_iterator(pathObj))
-    {
-        // symlinks are object names
-        if (is_symlink(p))
-        {
-            std::string driverName = p.path().filename();
-            driverUnbind << driverName;
-            driverBind << driverName;
-            break;
-        }
-    }
-    driverUnbind.close();
-    driverBind.close();
-}
 
 // helper function to make json types into string
 std::string jsonToString(const nlohmann::json& in)
@@ -251,105 +201,6 @@ void exportDevice(const std::string& type,
     {
         linkMux(name, static_cast<size_t>(*bus), static_cast<size_t>(*address),
                 *channels);
-    }
-}
-
-// this is now deprecated
-void createOverlay(const std::string& templatePath,
-                   const nlohmann::json& configuration)
-{
-    std::ifstream templateFile(templatePath);
-
-    if (!templateFile.is_open())
-    {
-        std::cerr << "createOverlay error opening " << templatePath << "\n";
-        return;
-    }
-    std::stringstream buff;
-    buff << templateFile.rdbuf();
-    std::string templateStr = buff.str();
-    std::string name = "unknown";
-    std::string type = configuration["Type"];
-    for (auto keyPair = configuration.begin(); keyPair != configuration.end();
-         keyPair++)
-    {
-        std::string subsituteString;
-
-        // device tree symbols are in decimal
-        if (keyPair.key() == "Bus" &&
-            keyPair.value().type() == nlohmann::json::value_t::string)
-        {
-            long unsigned int dec =
-                std::stoul(keyPair.value().get<std::string>(), nullptr, 16);
-            subsituteString = std::to_string(dec);
-        }
-        else if (keyPair.key() == "Name" &&
-                 keyPair.value().type() == nlohmann::json::value_t::string)
-        {
-            subsituteString = std::regex_replace(
-                keyPair.value().get<std::string>(), ILLEGAL_NAME_REGEX, "_");
-            name = subsituteString;
-        }
-        else if (keyPair.key() == "Address")
-        {
-            if (keyPair.value().type() == nlohmann::json::value_t::string)
-            {
-                subsituteString = keyPair.value().get<std::string>();
-                subsituteString.erase(
-                    0, subsituteString.find_first_not_of(HEX_FORMAT_STR));
-            }
-            else
-            {
-                std::ostringstream hex;
-                hex << std::hex << keyPair.value().get<unsigned int>();
-                subsituteString = hex.str();
-            }
-        }
-        else
-        {
-            subsituteString = jsonToString(keyPair.value());
-        }
-        boost::replace_all(templateStr, TEMPLATE_CHAR + keyPair.key(),
-                           subsituteString);
-    }
-    // todo: this is a lame way to fill in platform, but we only
-    // care about ast2500 right now
-    boost::replace_all(templateStr, TEMPLATE_CHAR + std::string("Platform"),
-                       PLATFORM);
-    std::string dtsFilename =
-        std::string(OUTPUT_DIR) + "/" + name + "_" + type + ".dts";
-    std::string dtboFilename =
-        std::string(OUTPUT_DIR) + "/" + name + "_" + type + ".dtbo";
-
-    std::ofstream out(dtsFilename);
-    if (!out.is_open())
-    {
-        std::cerr << "createOverlay error opening " << dtsFilename << "\n";
-        return;
-    }
-    out << templateStr;
-    out.close();
-
-    // compile dtbo and load overlay
-    boost::process::child c1(DTC, "-@", "-q", "-I", "dts", "-O", "dtb", "-o",
-                             dtboFilename, dtsFilename);
-    c1.wait();
-    if (c1.exit_code())
-    {
-        std::cerr << "DTC error with file " << dtsFilename << "\n";
-        return;
-    }
-    boost::process::child c2(DT_OVERLAY, "-d", OUTPUT_DIR, name + "_" + type);
-    c2.wait();
-    if (c2.exit_code())
-    {
-        std::cerr << "DTOverlay error with file " << dtboFilename << "\n";
-        return;
-    }
-    auto findForceProbe = FORCE_PROBES.find(type);
-    if (findForceProbe != FORCE_PROBES.end())
-    {
-        forceProbe(findForceProbe->second);
     }
 }
 
