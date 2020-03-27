@@ -89,7 +89,24 @@ boost::asio::io_service io;
 auto systemBus = std::make_shared<sdbusplus::asio::connection>(io);
 auto objServer = sdbusplus::asio::object_server(systemBus);
 
+static const std::vector<const char*> CHASSIS_FRU_AREAS = {
+    "PART_NUMBER", "SERIAL_NUMBER", "INFO_AM1", "INFO_AM2"};
+
+static const std::vector<const char*> BOARD_FRU_AREAS = {
+    "MANUFACTURER",   "PRODUCT_NAME", "SERIAL_NUMBER", "PART_NUMBER",
+    "FRU_VERSION_ID", "INFO_AM1",     "INFO_AM2"};
+
+static const std::vector<const char*> PRODUCT_FRU_AREAS = {
+    "MANUFACTURER", "PRODUCT_NAME",   "PART_NUMBER", "VERSION", "SERIAL_NUMBER",
+    "ASSET_TAG",    "FRU_VERSION_ID", "INFO_AM1",    "INFO_AM2"};
+
 bool validateHeader(const std::array<uint8_t, I2C_SMBUS_BLOCK_MAX>& blockData);
+bool updateFruProperty(
+    const std::string& assetTag, uint32_t bus, uint32_t address,
+    std::string propertyName,
+    boost::container::flat_map<
+        std::pair<size_t, size_t>,
+        std::shared_ptr<sdbusplus::asio::dbus_interface>>& dbusInterfaceMap);
 
 using ReadBlockFunc =
     std::function<int64_t(int flag, int file, uint16_t address, uint16_t offset,
@@ -912,18 +929,6 @@ static std::pair<DecodeState, std::string>
 bool formatFru(const std::vector<char>& fruBytes,
                boost::container::flat_map<std::string, std::string>& result)
 {
-    static const std::vector<const char*> CHASSIS_FRU_AREAS = {
-        "PART_NUMBER", "SERIAL_NUMBER", "INFO_AM1", "INFO_AM2"};
-
-    static const std::vector<const char*> BOARD_FRU_AREAS = {
-        "MANUFACTURER",   "PRODUCT_NAME", "SERIAL_NUMBER", "PART_NUMBER",
-        "FRU_VERSION_ID", "INFO_AM1",     "INFO_AM2"};
-
-    static const std::vector<const char*> PRODUCT_FRU_AREAS = {
-        "MANUFACTURER",   "PRODUCT_NAME",  "PART_NUMBER",
-        "VERSION",        "SERIAL_NUMBER", "ASSET_TAG",
-        "FRU_VERSION_ID", "INFO_AM1",      "INFO_AM2"};
-
     if (fruBytes.size() <= 8)
     {
         return false;
@@ -1151,13 +1156,38 @@ void AddFruObjectToDbus(
 
         std::regex_replace(property.second.begin(), property.second.begin(),
                            property.second.end(), NON_ASCII_REGEX, "_");
-        if (property.second.empty())
+        if (property.second.empty() && property.first != "PRODUCT_ASSET_TAG")
         {
             continue;
         }
         std::string key =
             std::regex_replace(property.first, NON_ASCII_REGEX, "_");
-        if (!iface->register_property(key, property.second + '\0'))
+
+        if (property.first == "PRODUCT_ASSET_TAG")
+        {
+            std::string propertyName = property.first;
+            iface->register_property(
+                key, property.second + '\0',
+                [bus, address, propertyName,
+                 &dbusInterfaceMap](const std::string& req, std::string& resp) {
+                    if (strcmp(req.c_str(), resp.c_str()))
+                    {
+                        // call the method which will update
+                        if (updateFruProperty(req, bus, address, propertyName,
+                                              dbusInterfaceMap))
+                        {
+                            resp = req;
+                        }
+                        else
+                        {
+                            throw std::invalid_argument(
+                                "Fru property update failed.");
+                        }
+                    }
+                    return 1;
+                });
+        }
+        else if (!iface->register_property(key, property.second + '\0'))
         {
             std::cerr << "illegal key: " << key << "\n";
         }
@@ -1421,6 +1451,240 @@ void rescanBusses(
             });
         scan->run();
     });
+}
+
+// Calculate new checksum for fru info area
+size_t calculateChecksum(std::vector<uint8_t>& fruAreaData)
+{
+    constexpr int checksumMod = 256;
+    constexpr uint8_t modVal = 0xFF;
+    int sum = std::accumulate(fruAreaData.begin(), fruAreaData.end(), 0);
+    return (checksumMod - sum) & modVal;
+}
+
+// Update new fru area length &
+// Update checksum at new checksum location
+static void updateFruAreaLenAndChecksum(std::vector<uint8_t>& fruData,
+                                        size_t fruAreaStartOffset,
+                                        size_t fruAreaNoMoreFieldOffset)
+{
+    constexpr size_t fruAreaMultipleBytes = 8;
+    size_t traverseFruAreaIndex = fruAreaNoMoreFieldOffset - fruAreaStartOffset;
+
+    // fill zeros for any remaining unused space
+    std::fill(fruData.begin() + fruAreaNoMoreFieldOffset, fruData.end(), 0);
+
+    size_t mod = traverseFruAreaIndex % fruAreaMultipleBytes;
+    size_t checksumLoc;
+    if (!mod)
+    {
+        traverseFruAreaIndex += (fruAreaMultipleBytes);
+        checksumLoc = fruAreaNoMoreFieldOffset + (fruAreaMultipleBytes - 1);
+    }
+    else
+    {
+        traverseFruAreaIndex += (fruAreaMultipleBytes - mod);
+        checksumLoc =
+            fruAreaNoMoreFieldOffset + (fruAreaMultipleBytes - mod - 1);
+    }
+
+    size_t newFruAreaLen = (traverseFruAreaIndex / fruAreaMultipleBytes) +
+                           ((traverseFruAreaIndex % fruAreaMultipleBytes) != 0);
+    size_t fruAreaLengthLoc = fruAreaStartOffset + 1;
+    fruData[fruAreaLengthLoc] = static_cast<uint8_t>(newFruAreaLen);
+
+    // Calculate new checksum
+    std::vector<uint8_t> finalFruData;
+    std::copy_n(fruData.begin() + fruAreaStartOffset,
+                checksumLoc - fruAreaStartOffset,
+                std::back_inserter(finalFruData));
+
+    size_t checksumVal = calculateChecksum(finalFruData);
+
+    fruData[checksumLoc] = static_cast<uint8_t>(checksumVal);
+}
+
+static size_t getTypeLength(uint8_t fruFieldTypeLenValue)
+{
+    constexpr uint8_t typeLenMask = 0x3F;
+    return fruFieldTypeLenValue & typeLenMask;
+}
+
+// Details with example of Asset Tag Update
+// To find location of Product Info Area asset tag as per FRU specification
+// 1. Find product Info area starting offset (*8 - as header will be in
+// multiple of 8 bytes).
+// 2. Skip 3 bytes of product info area (like format version, area length,
+// and language code).
+// 3. Traverse manufacturer name, product name, product version, & product
+// serial number, by reading type/length code to reach the Asset Tag.
+// 4. Update the Asset Tag, reposition the product Info area in multiple of
+// 8 bytes. Update the Product area length and checksum.
+
+bool updateFruProperty(
+    const std::string& updatePropertyReq, uint32_t bus, uint32_t address,
+    std::string propertyName,
+    boost::container::flat_map<
+        std::pair<size_t, size_t>,
+        std::shared_ptr<sdbusplus::asio::dbus_interface>>& dbusInterfaceMap)
+{
+    size_t updatePropertyReqLen = updatePropertyReq.length();
+    if (updatePropertyReqLen == 1 || updatePropertyReqLen > 63)
+    {
+        std::cerr
+            << "Fru field data cannot be of 1 char or more than 63 chars. "
+               "Invalid Length "
+            << updatePropertyReqLen << "\n";
+        return false;
+    }
+
+    std::vector<uint8_t> fruData;
+    try
+    {
+        fruData = getFruInfo(static_cast<uint8_t>(bus),
+                             static_cast<uint8_t>(address));
+    }
+    catch (std::invalid_argument& e)
+    {
+        std::cerr << "Failure getting Fru Info" << e.what() << "\n";
+        return false;
+    }
+
+    if (fruData.empty())
+    {
+        return false;
+    }
+
+    const std::vector<const char*>* fieldData;
+
+    constexpr size_t commonHeaderMultipleBytes = 8; // in multiple of 8 bytes
+    uint8_t fruAreaOffsetFieldValue = 1;
+    size_t offset = 0;
+
+    if (propertyName.find("CHASSIS") == 0)
+    {
+        constexpr size_t fruAreaOffsetField = 2;
+        fruAreaOffsetFieldValue = fruData[fruAreaOffsetField];
+
+        offset = 3; // chassis part number offset. Skip fixed first 3 bytes
+
+        fieldData = &CHASSIS_FRU_AREAS;
+    }
+    else if (propertyName.find("BOARD") == 0)
+    {
+        constexpr size_t fruAreaOffsetField = 3;
+        fruAreaOffsetFieldValue = fruData[fruAreaOffsetField];
+
+        offset = 6; // board manufacturer offset. Skip fixed first 6 bytes
+
+        fieldData = &BOARD_FRU_AREAS;
+    }
+    else if (propertyName.find("PRODUCT") == 0)
+    {
+        constexpr size_t fruAreaOffsetField = 4;
+        fruAreaOffsetFieldValue = fruData[fruAreaOffsetField];
+
+        offset = 3;
+        // Manufacturer name offset. Skip fixed first 3 product fru bytes i.e.
+        // version, area length and language code
+
+        fieldData = &PRODUCT_FRU_AREAS;
+    }
+    else
+    {
+        std::cerr << "ProperyName doesn't exist in Fru Area Vector \n";
+        return false;
+    }
+
+    size_t fruAreaStartOffset =
+        fruAreaOffsetFieldValue * commonHeaderMultipleBytes;
+    size_t fruDataIter = fruAreaStartOffset + offset;
+    size_t fruUpdateFieldLoc = 0;
+    size_t typeLength;
+    size_t skipToFruUpdateField = 0;
+
+    for (auto& field : *fieldData)
+    {
+        skipToFruUpdateField++;
+        if (propertyName.find(field) != std::string::npos)
+        {
+            break;
+        }
+    }
+
+    for (size_t i = 1; i < skipToFruUpdateField; i++)
+    {
+        typeLength = getTypeLength(fruData[fruDataIter]);
+        fruUpdateFieldLoc = fruDataIter + typeLength;
+        fruDataIter = ++fruUpdateFieldLoc;
+    }
+
+    // Push post update fru field bytes to a vector
+    typeLength = getTypeLength(fruData[fruUpdateFieldLoc]);
+    size_t postFruUpdateFieldLoc = fruUpdateFieldLoc + typeLength;
+    postFruUpdateFieldLoc++;
+    skipToFruUpdateField++;
+    fruDataIter = postFruUpdateFieldLoc;
+    size_t endLengthLoc = 0;
+    size_t fruFieldLoc = 0;
+    constexpr uint8_t endLength = 0xC1;
+    for (size_t i = fruDataIter; i < fruData.size(); i++)
+    {
+        typeLength = getTypeLength(fruData[fruDataIter]);
+        fruFieldLoc = fruDataIter + typeLength;
+        fruDataIter = ++fruFieldLoc;
+        if (fruData[fruDataIter] == endLength)
+        {
+            endLengthLoc = fruDataIter;
+            break;
+        }
+    }
+    endLengthLoc++;
+
+    std::vector<uint8_t> postUpdatedFruData;
+    std::copy_n(fruData.begin() + postFruUpdateFieldLoc,
+                endLengthLoc - postFruUpdateFieldLoc,
+                std::back_inserter(postUpdatedFruData));
+
+    // write new requested property field length and data
+    constexpr uint8_t newTypeLenMask = 0xC0;
+    fruData[fruUpdateFieldLoc] =
+        static_cast<uint8_t>(updatePropertyReqLen | newTypeLenMask);
+    fruUpdateFieldLoc++;
+    std::copy(updatePropertyReq.begin(), updatePropertyReq.end(),
+              fruData.begin() + fruUpdateFieldLoc);
+
+    // Copy remaining data to main fru area - post updated fru field vector
+    postFruUpdateFieldLoc = fruUpdateFieldLoc + updatePropertyReqLen;
+    size_t fruAreaEndOffset = postFruUpdateFieldLoc + postUpdatedFruData.size();
+    if (fruAreaEndOffset > fruData.size())
+    {
+        std::cerr << "Fru area offset: " << fruAreaEndOffset
+                  << "should not be greater than Fru data size: "
+                  << fruData.size() << std::endl;
+        throw std::invalid_argument(
+            "Fru area offset should not be greater than Fru data size");
+    }
+    std::copy(postUpdatedFruData.begin(), postUpdatedFruData.end(),
+              fruData.begin() + postFruUpdateFieldLoc);
+
+    // Update final fru with new fru area length and checksum
+    updateFruAreaLenAndChecksum(fruData, fruAreaStartOffset, fruAreaEndOffset);
+
+    if (fruData.empty())
+    {
+        return false;
+    }
+
+    if (!writeFru(static_cast<uint8_t>(bus), static_cast<uint8_t>(address),
+                  fruData))
+    {
+        return false;
+    }
+
+    // Rescan the bus so that GetRawFru dbus-call fetches updated values
+    rescanBusses(busMap, dbusInterfaceMap);
+    return true;
 }
 
 int main()
