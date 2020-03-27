@@ -85,6 +85,8 @@ auto systemBus = std::make_shared<sdbusplus::asio::connection>(io);
 auto objServer = sdbusplus::asio::object_server(systemBus);
 
 bool validateHeader(const std::array<uint8_t, I2C_SMBUS_BLOCK_MAX>& blockData);
+bool updateAssetTag(const std::string& assetTag, uint32_t bus,
+                    uint32_t address);
 
 using ReadBlockFunc =
     std::function<int64_t(int flag, int file, uint16_t address, uint16_t offset,
@@ -1043,9 +1045,27 @@ void AddFruObjectToDbus(
         }
         std::string key =
             std::regex_replace(property.first, NON_ASCII_REGEX, "_");
-        if (!iface->register_property(key, property.second + '\0'))
+
+        if (property.first == "PRODUCT_ASSET_TAG")
         {
-            std::cerr << "illegal key: " << key << "\n";
+            iface->register_property(
+                key, property.second + '\0',
+                [bus, address](const std::string& req, std::string& resp) {
+                    // call the method which will update
+                    if (updateAssetTag(req, bus, address))
+                    {
+                        resp = req;
+                        return 1;
+                    }
+                    return 0;
+                });
+        }
+        else
+        {
+            if (!iface->register_property(key, property.second + '\0'))
+            {
+                std::cerr << "illegal key: " << key << "\n";
+            }
         }
         if (DEBUG)
         {
@@ -1302,6 +1322,148 @@ void rescanBusses(
             });
         scan->run();
     });
+}
+
+// Calculate and write checksum at new checksum location and update product area
+// length
+static void calculateChecksum(std::vector<uint8_t>& fruData,
+                              unsigned int prodInfoArea)
+{
+    int sum = 0;
+    unsigned int checksumLoc, endLengthLoc = 0, traverseProdInfoAreaLoc = 1;
+    constexpr unsigned int prodAreaLenMultipleBytes = 8;
+    constexpr uint8_t endLength = 0xC1;
+    for (unsigned int i = prodInfoArea; i < fruData.size(); i++)
+    {
+        sum += fruData[i];
+        if (fruData[i] == endLength)
+        {
+            endLengthLoc = i;
+            break;
+        }
+        traverseProdInfoAreaLoc++;
+    }
+
+    unsigned int mod = traverseProdInfoAreaLoc % prodAreaLenMultipleBytes;
+    if (!mod)
+    {
+        for (unsigned int i = 1; i < prodAreaLenMultipleBytes; i++)
+        {
+            fruData[++endLengthLoc] = 0;
+            traverseProdInfoAreaLoc++;
+        }
+        checksumLoc = endLengthLoc + 1;
+    }
+    else
+    {
+        for (unsigned int i = 1; i < (prodAreaLenMultipleBytes - mod); i++)
+        {
+            fruData[++endLengthLoc] = 0;
+            traverseProdInfoAreaLoc++;
+        }
+        checksumLoc = endLengthLoc + 1;
+    }
+    unsigned int newProductAreaLen =
+        (traverseProdInfoAreaLoc / prodAreaLenMultipleBytes) +
+        ((traverseProdInfoAreaLoc % prodAreaLenMultipleBytes) != 0);
+    prodInfoArea++;
+    sum = sum - fruData[prodInfoArea] + newProductAreaLen;
+    fruData[prodInfoArea] = static_cast<uint8_t>(newProductAreaLen);
+    constexpr int checksumMod = 256;
+    constexpr uint8_t modVal = 0xFF;
+    size_t checksumVal = static_cast<uint8_t>((checksumMod - sum) & modVal);
+    fruData[checksumLoc] = static_cast<uint8_t>(checksumVal);
+}
+
+// To get appropriate location for writing AssetTag
+static unsigned int getLocationFromTypeLength(unsigned int index,
+                                              std::vector<uint8_t> fruData)
+{
+    constexpr uint8_t typeLenMask = 0x3F;
+    unsigned int typeLength =
+        static_cast<unsigned int>(fruData[index] & typeLenMask);
+    if (!typeLength)
+        typeLength++;
+    return index + typeLength;
+}
+
+bool updateAssetTag(const std::string& assetTag, uint32_t bus, uint32_t address)
+{
+    size_t assetTagLen = assetTag.length();
+    if (assetTagLen == 1 || assetTagLen > 63)
+    {
+        return false;
+    }
+
+    std::vector<uint8_t> fruData;
+    fruData =
+        getFruInfo(static_cast<uint8_t>(bus), static_cast<uint8_t>(address));
+    if (fruData.empty())
+    {
+        return false;
+    }
+
+    constexpr unsigned int prodInfoAreaStartOffset = 4;
+    uint8_t prodInfoAreaStartOffsetValue = fruData[prodInfoAreaStartOffset];
+    constexpr unsigned int commonHeaderMultipleBytes =
+        8; // in multiple of 8 bytes
+    constexpr unsigned int manfOffset =
+        3; // Manufacturer name. Skip fixed first 3 product fru bytes i.e.
+           // version, area length and language code
+
+    // To find location of Product Info Area asset tag as per FRU specification
+    // 1. Find product Info area starting offset (*8 - as header will be in
+    // multiple of 8 bytes).
+    // 2. Skip 3 bytes of product info area (like format version, area length,
+    // and language code).
+    // 3. Traverse manufacturer name, product name, product version, & product
+    // serial number, by reading type/length code to reach the Asset Tag.
+    // 4. Update the Asset Tag, reposition the product Info area in multiple of
+    // 8 bytes. Update the Product area length and checksum.
+
+    unsigned int prodInfoArea =
+        prodInfoAreaStartOffsetValue * commonHeaderMultipleBytes;
+    unsigned int indexToAssetTag = prodInfoArea + manfOffset;
+    unsigned int assetTagLoc, skipToAssetTag = 5;
+
+    for (unsigned int i = skipToAssetTag; i > 0; i--)
+    {
+        assetTagLoc = getLocationFromTypeLength(indexToAssetTag, fruData);
+        indexToAssetTag = ++assetTagLoc;
+    }
+
+    // Push post AssetTag bytes to a vector
+    unsigned int postAssetTagLoc =
+        getLocationFromTypeLength(assetTagLoc, fruData);
+    postAssetTagLoc++;
+    std::vector<uint8_t> postAssetTagData;
+    std::copy(fruData.begin() + postAssetTagLoc, fruData.end(),
+              std::back_inserter(postAssetTagData));
+
+    // write new AssetTag length and AssetTag
+    constexpr uint8_t newTypeLenMask = 0xC0;
+    fruData[assetTagLoc] = static_cast<uint8_t>(assetTagLen | newTypeLenMask);
+    assetTagLoc++;
+    std::copy(assetTag.begin(), assetTag.end(), fruData.begin() + assetTagLoc);
+
+    // Copy remaining data - post AssetTag vector
+    postAssetTagLoc = assetTagLoc + assetTagLen;
+    std::copy(postAssetTagData.begin(), postAssetTagData.end(),
+              fruData.begin() + postAssetTagLoc);
+
+    calculateChecksum(fruData, prodInfoArea);
+
+    if (fruData.empty())
+    {
+        return false;
+    }
+
+    if (!writeFru(static_cast<uint8_t>(bus), static_cast<uint8_t>(address),
+                  fruData))
+    {
+        return false;
+    }
+    return true;
 }
 
 int main()
