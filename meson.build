@@ -138,4 +138,6 @@ endforeach
 
 subdir('service_files')
 subdir('src')
-subdir('test')
+if not build_tests.disabled()
+  subdir('test')
+endif
