@@ -130,3 +130,20 @@ std::optional<std::string> templateCharReplace(
         foundDevice,
     const size_t foundDeviceIdx,
     const std::optional<std::string>& replaceStr = std::nullopt);
+
+inline bool deviceHasLogging(const nlohmann::json& json)
+{
+    auto logging = json.find("Logging");
+    if (logging != json.end())
+    {
+        auto ptr = logging->get_ptr<const std::string*>();
+        if (ptr)
+        {
+            if (*ptr == "Off")
+            {
+                return false;
+            }
+        }
+    }
+    return true;
+}

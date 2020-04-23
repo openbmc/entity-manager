@@ -68,6 +68,10 @@ struct PerformProbe : std::enable_shared_from_this<PerformProbe>
 inline void logDeviceAdded(const nlohmann::json& record)
 {
 
+    if (!deviceHasLogging(record))
+    {
+        return;
+    }
     auto findType = record.find("Type");
     auto findAsset =
         record.find("xyz.openbmc_project.Inventory.Decorator.Asset");
@@ -110,6 +114,10 @@ inline void logDeviceAdded(const nlohmann::json& record)
 
 inline void logDeviceRemoved(const nlohmann::json& record)
 {
+    if (!deviceHasLogging(record))
+    {
+        return;
+    }
     auto findType = record.find("Type");
     auto findAsset =
         record.find("xyz.openbmc_project.Inventory.Decorator.Asset");
