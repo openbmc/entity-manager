@@ -26,6 +26,7 @@
 #include <boost/algorithm/string/replace.hpp>
 #include <boost/algorithm/string/split.hpp>
 #include <boost/asio/io_context.hpp>
+#include <boost/asio/steady_timer.hpp>
 #include <boost/container/flat_map.hpp>
 #include <boost/container/flat_set.hpp>
 #include <boost/range/iterator_range.hpp>
@@ -37,7 +38,6 @@
 #include <sdbusplus/asio/connection.hpp>
 #include <sdbusplus/asio/object_server.hpp>
 #include <variant>
-
 constexpr const char* configurationDirectory = PACKAGE_DIR "configurations";
 constexpr const char* schemaDirectory = PACKAGE_DIR "configurations/schemas";
 constexpr const char* tempConfigDir = "/tmp/configuration/";
@@ -134,12 +134,56 @@ static std::shared_ptr<sdbusplus::asio::dbus_interface>
     return ptr;
 }
 
+void getInterfaces(
+    const std::tuple<std::string, std::string, std::string>& call,
+    const std::vector<std::shared_ptr<PerformProbe>>& probeVector,
+    std::shared_ptr<PerformScan> scan, size_t retries = 5)
+{
+    if (!retries)
+    {
+        std::cerr << "retries exhausted on " << std::get<0>(call) << " "
+                  << std::get<1>(call) << " " << std::get<2>(call) << "\n";
+        return;
+    }
+
+    SYSTEM_BUS->async_method_call(
+        [call, scan, probeVector, retries](
+            boost::system::error_code& errc,
+            const boost::container::flat_map<std::string, BasicVariantType>&
+                resp) {
+            if (errc)
+            {
+                std::cerr << "error calling getall on  " << std::get<0>(call)
+                          << " " << std::get<1>(call) << " "
+                          << std::get<2>(call) << "\n";
+
+                std::shared_ptr<boost::asio::steady_timer> timer =
+                    std::make_shared<boost::asio::steady_timer>(io);
+                timer->expires_after(std::chrono::seconds(2));
+
+                timer->async_wait([timer, call, scan, probeVector,
+                                   retries](const boost::system::error_code&) {
+                    getInterfaces(call, probeVector, scan, retries - 1);
+                });
+                return;
+            }
+
+            scan->dbusProbeObjects[std::get<2>(call)].emplace_back(resp);
+        },
+        std::get<0>(call), std::get<1>(call), "org.freedesktop.DBus.Properties",
+        "GetAll", std::get<2>(call));
+
+    if constexpr (DEBUG)
+    {
+        std::cerr << __func__ << " " << __LINE__ << "\n";
+    }
+}
+
 // calls the mapper to find all exposed objects of an interface type
 // and creates a vector<flat_map> that contains all the key value pairs
 // getManagedObjects
-void findDbusObjects(std::vector<std::shared_ptr<PerformProbe>>& probeVector,
-                     std::shared_ptr<sdbusplus::asio::connection> connection,
-                     boost::container::flat_set<std::string>& interfaces,
+void findDbusObjects(std::vector<std::shared_ptr<PerformProbe>>&& probeVector,
+                     boost::container::flat_set<std::string>&& interfaces,
                      std::shared_ptr<PerformScan> scan)
 {
 
@@ -153,11 +197,13 @@ void findDbusObjects(std::vector<std::shared_ptr<PerformProbe>>& probeVector,
     }
 
     // find all connections in the mapper that expose a specific type
-    connection->async_method_call(
-        [connection, interfaces, probeVector,
+    SYSTEM_BUS->async_method_call(
+        [interfaces{std::move(interfaces)}, probeVector{std::move(probeVector)},
          scan](boost::system::error_code& ec,
                const GetSubTreeType& interfaceSubtree) {
-            boost::container::flat_set<std::string> interfaceConnections;
+            boost::container::flat_set<
+                std::tuple<std::string, std::string, std::string>>
+                interfaceConnections;
             if (ec)
             {
                 if (ec.value() == ENOENT)
@@ -170,11 +216,19 @@ void findDbusObjects(std::vector<std::shared_ptr<PerformProbe>>& probeVector,
                 std::exit(EXIT_FAILURE);
             }
 
-            for (auto& object : interfaceSubtree)
+            for (auto& [path, object] : interfaceSubtree)
             {
-                for (auto& connPair : object.second)
+                for (auto& [busname, ifaces] : object)
                 {
-                    interfaceConnections.insert(connPair.first);
+                    for (const std::string& iface : ifaces)
+                    {
+                        auto ifaceObjFind = interfaces.find(iface);
+
+                        if (ifaceObjFind != interfaces.end())
+                        {
+                            interfaceConnections.emplace(busname, path, iface);
+                        }
+                    }
                 }
             }
 
@@ -182,45 +236,23 @@ void findDbusObjects(std::vector<std::shared_ptr<PerformProbe>>& probeVector,
             {
                 return;
             }
-            // get managed objects for all interfaces
-            for (const auto& conn : interfaceConnections)
-            {
-                connection->async_method_call(
-                    [conn, interfaces, probeVector,
-                     scan](boost::system::error_code& errc,
-                           const ManagedObjectType& managedInterface) {
-                        if (errc)
-                        {
-                            std::cerr
-                                << "error getting managed object for device "
-                                << conn << "\n";
-                            return;
-                        }
-                        for (auto& interfaceManagedObj : managedInterface)
-                        {
-                            // we could match multiple interfaces with one owner
-                            for (auto& [interface, object] :
-                                 interfaceManagedObj.second)
-                            {
-                                auto ifaceObjFind = interfaces.find(interface);
 
-                                if (ifaceObjFind != interfaces.end())
-                                {
-                                    scan->dbusProbeObjects[interface]
-                                        .emplace_back(object);
-                                }
-                            }
-                        }
-                    },
-                    conn, "/", "org.freedesktop.DBus.ObjectManager",
-                    "GetManagedObjects");
+            for (const auto& call : interfaceConnections)
+            {
+                getInterfaces(call, probeVector, scan);
             }
         },
         "xyz.openbmc_project.ObjectMapper",
         "/xyz/openbmc_project/object_mapper",
         "xyz.openbmc_project.ObjectMapper", "GetSubTree", "/", MAX_MAPPER_DEPTH,
         interfaces);
+
+    if constexpr (DEBUG)
+    {
+        std::cerr << __func__ << " " << __LINE__ << "\n";
+    }
 }
+
 // probes dbus interface dictionary for a key with a value that matches a regex
 bool probeDbus(const std::string& interface,
                const std::map<std::string, nlohmann::json>& matches,
@@ -1569,8 +1601,12 @@ void PerformScan::run()
 
     // probe vector stores a shared_ptr to each PerformProbe that cares
     // about a dbus interface
-    findDbusObjects(dbusProbePointers, SYSTEM_BUS, dbusProbeInterfaces,
-                    shared_from_this());
+    findDbusObjects(std::move(dbusProbePointers),
+                    std::move(dbusProbeInterfaces), shared_from_this());
+    if constexpr (DEBUG)
+    {
+        std::cerr << __func__ << " " << __LINE__ << "\n";
+    }
 }
 
 PerformScan::~PerformScan()
@@ -1583,14 +1619,24 @@ PerformScan::~PerformScan()
         nextScan->passedProbes = std::move(passedProbes);
         nextScan->dbusProbeObjects = std::move(dbusProbeObjects);
         nextScan->run();
+
+        if constexpr (DEBUG)
+        {
+            std::cerr << __func__ << " " << __LINE__ << "\n";
+        }
     }
     else
     {
         _callback(dbusProbeObjects);
+
+        if constexpr (DEBUG)
+        {
+            std::cerr << __func__ << " " << __LINE__ << "\n";
+        }
     }
 }
 
-void startRemovedTimer(boost::asio::deadline_timer& timer,
+void startRemovedTimer(boost::asio::steady_timer& timer,
                        nlohmann::json& systemConfiguration)
 {
     static bool scannedPowerOff = false;
@@ -1610,7 +1656,7 @@ void startRemovedTimer(boost::asio::deadline_timer& timer,
         return;
     }
 
-    timer.expires_from_now(boost::posix_time::seconds(10));
+    timer.expires_after(std::chrono::seconds(10));
     timer.async_wait(
         [&systemConfiguration](const boost::system::error_code& ec) {
             if (ec == boost::asio::error::operation_aborted)
@@ -1666,12 +1712,12 @@ void propertiesChangedCallback(
     nlohmann::json& systemConfiguration,
     sdbusplus::asio::object_server& objServer)
 {
-    static boost::asio::deadline_timer timer(io);
+    static boost::asio::steady_timer timer(io);
     static size_t instance = 0;
     instance++;
     size_t count = instance;
 
-    timer.expires_from_now(boost::posix_time::seconds(5));
+    timer.expires_after(std::chrono::seconds(5));
 
     // setup an async wait as we normally get flooded with new requests
     timer.async_wait([&systemConfiguration, &dbusMatches, &objServer,
