@@ -24,6 +24,7 @@
 #include <iostream>
 #include <list>
 #include <nlohmann/json.hpp>
+#include <sdbusplus/asio/object_server.hpp>
 #include <string>
 
 using DBusProbeObjectT = boost::container::flat_map<
@@ -39,12 +40,14 @@ struct PerformScan : std::enable_shared_from_this<PerformScan>
     PerformScan(nlohmann::json& systemConfiguration,
                 nlohmann::json& missingConfigurations,
                 std::list<nlohmann::json>& configurations,
+                sdbusplus::asio::object_server& objServer,
                 std::function<void(const DBusProbeObjectT&)>&& callback);
     void run(void);
     virtual ~PerformScan();
     nlohmann::json& _systemConfiguration;
     nlohmann::json& _missingConfigurations;
     std::list<nlohmann::json> _configurations;
+    sdbusplus::asio::object_server& objServer;
     std::function<void(const DBusProbeObjectT&)> _callback;
     bool _passed = false;
     bool powerWasOn = isPowerOn();
