@@ -1716,6 +1716,7 @@ void startRemovedTimer(boost::asio::steady_timer& timer,
 void propertiesChangedCallback(nlohmann::json& systemConfiguration,
                                sdbusplus::asio::object_server& objServer)
 {
+    static bool inProgress = false;
     static boost::asio::steady_timer timer(io);
     static size_t instance = 0;
     instance++;
@@ -1736,6 +1737,13 @@ void propertiesChangedCallback(nlohmann::json& systemConfiguration,
             std::cerr << "async wait error " << ec << "\n";
             return;
         }
+
+        if (inProgress)
+        {
+            propertiesChangedCallback(systemConfiguration, objServer);
+            return;
+        }
+        inProgress = true;
 
         nlohmann::json oldConfiguration = systemConfiguration;
         auto missingConfigurations = std::make_shared<nlohmann::json>();
@@ -1811,6 +1819,8 @@ void propertiesChangedCallback(nlohmann::json& systemConfiguration,
                 {
                     logDeviceAdded(item.value());
                 }
+
+                inProgress = false;
 
                 io.post([&, newConfiguration]() {
                     loadOverlays(newConfiguration);
