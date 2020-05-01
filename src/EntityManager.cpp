@@ -1716,6 +1716,7 @@ void startRemovedTimer(boost::asio::steady_timer& timer,
 void propertiesChangedCallback(nlohmann::json& systemConfiguration,
                                sdbusplus::asio::object_server& objServer)
 {
+    static bool inProgress = false;
     static boost::asio::steady_timer timer(io);
     static size_t instance = 0;
     instance++;
@@ -1737,6 +1738,13 @@ void propertiesChangedCallback(nlohmann::json& systemConfiguration,
             return;
         }
 
+        if (inProgress)
+        {
+            propertiesChangedCallback(systemConfiguration, objServer);
+            return;
+        }
+        inProgress = true;
+
         nlohmann::json oldConfiguration = systemConfiguration;
         auto missingConfigurations = std::make_shared<nlohmann::json>();
         *missingConfigurations = systemConfiguration;
@@ -1745,6 +1753,7 @@ void propertiesChangedCallback(nlohmann::json& systemConfiguration,
         if (!findJsonFiles(configurations))
         {
             std::cerr << "cannot find json files\n";
+            inProgress = false;
             return;
         }
 
@@ -1811,6 +1820,8 @@ void propertiesChangedCallback(nlohmann::json& systemConfiguration,
                 {
                     logDeviceAdded(item.value());
                 }
+
+                inProgress = false;
 
                 io.post([&, newConfiguration]() {
                     loadOverlays(newConfiguration);
