@@ -104,10 +104,9 @@ boost::asio::io_context io;
 const std::regex ILLEGAL_DBUS_PATH_REGEX("[^A-Za-z0-9_.]");
 const std::regex ILLEGAL_DBUS_MEMBER_REGEX("[^A-Za-z0-9_]");
 
-void registerCallbacks(std::vector<sdbusplus::bus::match::match>& dbusMatches,
-                       nlohmann::json& systemConfiguration,
-                       sdbusplus::asio::object_server& objServer,
-                       const DBusProbeObjectT& dbusProbeObjects);
+void registerCallback(nlohmann::json& systemConfiguration,
+                      sdbusplus::asio::object_server& objServer,
+                      const std::string& interfaces);
 
 static std::shared_ptr<sdbusplus::asio::dbus_interface>
     createInterface(sdbusplus::asio::object_server& objServer,
@@ -1260,10 +1259,12 @@ std::string getRecordName(
 PerformScan::PerformScan(
     nlohmann::json& systemConfiguration, nlohmann::json& missingConfigurations,
     std::list<nlohmann::json>& configurations,
-    std::function<void(const DBusProbeObjectT&)>&& callback) :
+    sdbusplus::asio::object_server& objServerIn,
+    std::function<void()>&& callback) :
     _systemConfiguration(systemConfiguration),
     _missingConfigurations(missingConfigurations),
-    _configurations(configurations), _callback(std::move(callback))
+    _configurations(configurations), objServer(objServerIn),
+    _callback(std::move(callback))
 {
 }
 void PerformScan::run()
@@ -1599,6 +1600,11 @@ void PerformScan::run()
         it++;
     }
 
+    for (const std::string& interface : dbusProbeInterfaces)
+    {
+        registerCallback(_systemConfiguration, objServer, interface);
+    }
+
     // probe vector stores a shared_ptr to each PerformProbe that cares
     // about a dbus interface
     findDbusObjects(std::move(dbusProbePointers),
@@ -1615,7 +1621,7 @@ PerformScan::~PerformScan()
     {
         auto nextScan = std::make_shared<PerformScan>(
             _systemConfiguration, _missingConfigurations, _configurations,
-            std::move(_callback));
+            objServer, std::move(_callback));
         nextScan->passedProbes = std::move(passedProbes);
         nextScan->dbusProbeObjects = std::move(dbusProbeObjects);
         nextScan->run();
@@ -1627,7 +1633,7 @@ PerformScan::~PerformScan()
     }
     else
     {
-        _callback(dbusProbeObjects);
+        _callback();
 
         if constexpr (DEBUG)
         {
@@ -1707,10 +1713,8 @@ void startRemovedTimer(boost::asio::steady_timer& timer,
 }
 
 // main properties changed entry
-void propertiesChangedCallback(
-    std::vector<sdbusplus::bus::match::match>& dbusMatches,
-    nlohmann::json& systemConfiguration,
-    sdbusplus::asio::object_server& objServer)
+void propertiesChangedCallback(nlohmann::json& systemConfiguration,
+                               sdbusplus::asio::object_server& objServer)
 {
     static boost::asio::steady_timer timer(io);
     static size_t instance = 0;
@@ -1720,7 +1724,7 @@ void propertiesChangedCallback(
     timer.expires_after(std::chrono::seconds(5));
 
     // setup an async wait as we normally get flooded with new requests
-    timer.async_wait([&systemConfiguration, &dbusMatches, &objServer,
+    timer.async_wait([&systemConfiguration, &objServer,
                       count](const boost::system::error_code& ec) {
         if (ec == boost::asio::error::operation_aborted)
         {
@@ -1746,9 +1750,9 @@ void propertiesChangedCallback(
 
         auto perfScan = std::make_shared<PerformScan>(
             systemConfiguration, *missingConfigurations, configurations,
-            [&systemConfiguration, &objServer, &dbusMatches, count,
-             oldConfiguration,
-             missingConfigurations](const DBusProbeObjectT& dbusProbeObjects) {
+            objServer,
+            [&systemConfiguration, &objServer, count, oldConfiguration,
+             missingConfigurations]() {
                 // this is something that since ac has been applied to the bmc
                 // we saw, and we no longer see it
                 bool powerOff = !isPowerOn();
@@ -1808,8 +1812,6 @@ void propertiesChangedCallback(
                     logDeviceAdded(item.value());
                 }
 
-                registerCallbacks(dbusMatches, systemConfiguration, objServer,
-                                  dbusProbeObjects);
                 io.post([&, newConfiguration]() {
                     loadOverlays(newConfiguration);
 
@@ -1834,35 +1836,29 @@ void propertiesChangedCallback(
     });
 }
 
-void registerCallbacks(std::vector<sdbusplus::bus::match::match>& dbusMatches,
-                       nlohmann::json& systemConfiguration,
-                       sdbusplus::asio::object_server& objServer,
-                       const DBusProbeObjectT& dbusProbeObjects)
+void registerCallback(nlohmann::json& systemConfiguration,
+                      sdbusplus::asio::object_server& objServer,
+                      const std::string& interface)
 {
-    static boost::container::flat_set<std::string> watchedObjects;
+    static boost::container::flat_map<std::string, sdbusplus::bus::match::match>
+        dbusMatches;
 
-    for (const auto& objectMap : dbusProbeObjects)
+    auto find = dbusMatches.find(interface);
+    if (find != dbusMatches.end())
     {
-        auto [_, inserted] = watchedObjects.insert(objectMap.first);
-        if (!inserted)
-        {
-            continue;
-        }
-        std::function<void(sdbusplus::message::message & message)>
-            eventHandler =
-
-                [&](sdbusplus::message::message&) {
-                    propertiesChangedCallback(dbusMatches, systemConfiguration,
-                                              objServer);
-                };
-
-        sdbusplus::bus::match::match match(
-            static_cast<sdbusplus::bus::bus&>(*SYSTEM_BUS),
-            "type='signal',member='PropertiesChanged',arg0='" +
-                objectMap.first + "'",
-            eventHandler);
-        dbusMatches.emplace_back(std::move(match));
+        return;
     }
+    std::function<void(sdbusplus::message::message & message)> eventHandler =
+
+        [&](sdbusplus::message::message&) {
+            propertiesChangedCallback(systemConfiguration, objServer);
+        };
+
+    sdbusplus::bus::match::match match(
+        static_cast<sdbusplus::bus::bus&>(*SYSTEM_BUS),
+        "type='signal',member='PropertiesChanged',arg0='" + interface + "'",
+        eventHandler);
+    dbusMatches.emplace(interface, std::move(match));
 }
 
 int main()
@@ -1879,16 +1875,14 @@ int main()
 
     // to keep reference to the match / filter objects so they don't get
     // destroyed
-    std::vector<sdbusplus::bus::match::match> dbusMatches;
 
     nlohmann::json systemConfiguration = nlohmann::json::object();
 
-    io.post([&]() {
-        propertiesChangedCallback(dbusMatches, systemConfiguration, objServer);
-    });
+    io.post(
+        [&]() { propertiesChangedCallback(systemConfiguration, objServer); });
 
     entityIface->register_method("ReScan", [&]() {
-        propertiesChangedCallback(dbusMatches, systemConfiguration, objServer);
+        propertiesChangedCallback(systemConfiguration, objServer);
     });
     entityIface->initialize();
 
