@@ -1,39 +1,7 @@
 {
     "$schema": "http://json-schema.org/draft-07/schema#",
-    "anyOf": [
-        {
-            "type": "array",
-            "items": {
-                "type": "object",
-                "properties": {
-                    "Exposes": {
-                        "type": "array",
-                        "items": {
-                            "$ref": "legacy.json#/definitions/Aggregate"
-                        }
-                    },
-                    "Name": {
-                        "type": "string"
-                    },
-                    "Probe": {
-                        "type": "string"
-                    },
-                    "Type": {
-                        "type": "string"
-                    },
-                    "xyz.openbmc_project.Inventory.Decorator.Asset": {
-                        "$ref": "openbmc-dbus.json#/definitions/xyz/openbmc_project/Inventory/Decorator/Asset"
-                    }
-                },
-                "required": [
-                    "Exposes",
-                    "Name",
-                    "Probe",
-                    "xyz.openbmc_project.Inventory.Decorator.Asset"
-                ]
-            }
-        },
-        {
+    "definitions": {
+        "EMConfig": {
             "type": "object",
             "properties": {
                 "Exposes": {
@@ -79,6 +47,17 @@
                 "Name",
                 "Probe"
             ]
+        }
+    },
+    "anyOf": [
+        {
+            "type": "array",
+            "items": {
+                "$ref": "#/definitions/EMConfig"
+            }
+        },
+        {
+            "$ref": "#/definitions/EMConfig"
         }
     ]
 }
