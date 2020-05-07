@@ -36,7 +36,12 @@
                     ]
                 },
                 "Type": {
-                    "type": "string"
+                    "enum": [
+                        "Board",
+                        "Chassis",
+                        "NVMe",
+                        "PowerSupply"
+                    ]
                 },
                 "xyz.openbmc_project.Inventory.Decorator.Asset": {
                     "$ref": "openbmc-dbus.json#/definitions/xyz/openbmc_project/Inventory/Decorator/Asset"
@@ -63,7 +68,8 @@
             "required": [
                 "Exposes",
                 "Name",
-                "Probe"
+                "Probe",
+                "Type"
             ]
         }
     },
