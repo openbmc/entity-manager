@@ -1,0 +1,478 @@
+{
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "definitions": {
+        "Aggregate": {
+            "properties": {
+                "Address": {
+                    "$ref": "#/definitions/Types/Address"
+                },
+                "AllowedFailures": {
+                    "$ref": "#/definitions/Types/AllowedFailures"
+                },
+                "AlphaF": {
+                    "$ref": "#/definitions/Types/AlphaF"
+                },
+                "AlphaS": {
+                    "$ref": "#/definitions/Types/AlphaS"
+                },
+                "BindConnector": {
+                    "$ref": "#/definitions/Types/BindConnector"
+                },
+                "BindPresence": {
+                    "$ref": "#/definitions/Types/BindPresence"
+                },
+                "BridgeGpio": {
+                    "$ref": "#/definitions/Types/BridgeGpio"
+                },
+                "Bus": {
+                    "$ref": "#/definitions/Types/Bus"
+                },
+                "C1": {
+                    "$ref": "#/definitions/Types/C1"
+                },
+                "C2": {
+                    "$ref": "#/definitions/Types/C2"
+                },
+                "ChannelNames": {
+                    "$ref": "#/definitions/Types/ChannelNames"
+                },
+                "Class": {
+                    "$ref": "#/definitions/Types/Class"
+                },
+                "Connector": {
+                    "$ref": "#/definitions/Types/Connector"
+                },
+                "CpuID": {
+                    "$ref": "#/definitions/Types/CpuID"
+                },
+                "Direction": {
+                    "$ref": "#/definitions/Types/Direction"
+                },
+                "DtsCritOffset": {
+                    "$ref": "#/definitions/Types/DtsCritOffset"
+                },
+                "FFGainCoefficient": {
+                    "$ref": "#/definitions/Types/FFGainCoefficient"
+                },
+                "FFOffCoefficient": {
+                    "$ref": "#/definitions/Types/FFOffCoefficient"
+                },
+                "FailSafePercent": {
+                    "$ref": "#/definitions/Types/FailSafePercent"
+                },
+                "FaultIndex": {
+                    "$ref": "#/definitions/Types/FaultIndex"
+                },
+                "FaultType": {
+                    "$ref": "#/definitions/Types/FaultType"
+                },
+                "GpioPins": {
+                    "$ref": "#/definitions/Types/GpioPins"
+                },
+                "ICoefficient": {
+                    "$ref": "#/definitions/Types/ICoefficient"
+                },
+                "ILimitMax": {
+                    "$ref": "#/definitions/Types/ILimitMax"
+                },
+                "ILimitMin": {
+                    "$ref": "#/definitions/Types/ILimitMin"
+                },
+                "Index": {
+                    "$ref": "#/definitions/Types/Index"
+                },
+                "Inputs": {
+                    "$ref": "#/definitions/Types/Inputs"
+                },
+                "Labels": {
+                    "$ref": "#/definitions/Types/Labels"
+                },
+                "LedGpioPins": {
+                    "$ref": "#/definitions/Types/LedGpioPins"
+                },
+                "MaxCFM": {
+                    "$ref": "#/definitions/Types/MaxCFM"
+                },
+                "MaxReading": {
+                    "$ref": "#/definitions/Types/MaxReading"
+                },
+                "MinThermalOutput": {
+                    "$ref": "#/definitions/Types/MinThermalOutput"
+                },
+                "Name": {
+                    "$ref": "#/definitions/Types/Name"
+                },
+                "Name1": {
+                    "$ref": "#/definitions/Types/Name1"
+                },
+                "NegativeHysteresis": {
+                    "$ref": "#/definitions/Types/NegativeHysteresis"
+                },
+                "OutLimitMax": {
+                    "$ref": "#/definitions/Types/OutLimitMax"
+                },
+                "OutLimitMin": {
+                    "$ref": "#/definitions/Types/OutLimitMin"
+                },
+                "Output": {
+                    "$ref": "#/definitions/Types/Output"
+                },
+                "Outputs": {
+                    "$ref": "#/definitions/Types/Outputs"
+                },
+                "PCoefficient": {
+                    "$ref": "#/definitions/Types/PCoefficient"
+                },
+                "Polarity": {
+                    "$ref": "#/definitions/Types/Polarity"
+                },
+                "PositiveHysteresis": {
+                    "$ref": "#/definitions/Types/PositiveHysteresis"
+                },
+                "PowerFactorMax": {
+                    "$ref": "#/definitions/Types/PowerFactorMax"
+                },
+                "PowerFactorMin": {
+                    "$ref": "#/definitions/Types/PowerFactorMin"
+                },
+                "PowerState": {
+                    "$ref": "#/definitions/Types/PowerState"
+                },
+                "PresenceGpio": {
+                    "$ref": "#/definitions/Types/PresenceGpio"
+                },
+                "Profiles": {
+                    "$ref": "#/definitions/Types/Profiles"
+                },
+                "Pwm": {
+                    "$ref": "#/definitions/Types/Pwm"
+                },
+                "QMax": {
+                    "$ref": "#/definitions/Types/QMax"
+                },
+                "QMin": {
+                    "$ref": "#/definitions/Types/QMin"
+                },
+                "Reading": {
+                    "$ref": "#/definitions/Types/Reading"
+                },
+                "ScaleFactor": {
+                    "$ref": "#/definitions/Types/ScaleFactor"
+                },
+                "SetPoint": {
+                    "$ref": "#/definitions/Types/SetPoint"
+                },
+                "SetPointOffset": {
+                    "$ref": "#/definitions/Types/SetPointOffset"
+                },
+                "SlewNeg": {
+                    "$ref": "#/definitions/Types/SlewNeg"
+                },
+                "SlewPos": {
+                    "$ref": "#/definitions/Types/SlewPos"
+                },
+                "Status": {
+                    "$ref": "#/definitions/Types/Status"
+                },
+                "TachMaxPercent": {
+                    "$ref": "#/definitions/Types/TachMaxPercent"
+                },
+                "TachMinPercent": {
+                    "$ref": "#/definitions/Types/TachMinPercent"
+                },
+                "Tachs": {
+                    "$ref": "#/definitions/Types/Tachs"
+                },
+                "Thresholds": {
+                    "$ref": "#/definitions/Types/Thresholds"
+                },
+                "Type": {
+                    "$ref": "#/definitions/Types/Type"
+                },
+                "Zones": {
+                    "$ref": "#/definitions/Types/Zones"
+                }
+            },
+            "required": [
+                "Name",
+                "Type"
+            ],
+            "type": "object"
+        },
+        "Types": {
+            "Address": {
+                "type": "string"
+            },
+            "AllowedFailures": {
+                "type": "number"
+            },
+            "AlphaF": {
+                "type": "number"
+            },
+            "AlphaS": {
+                "type": "number"
+            },
+            "BindConnector": {
+                "type": "string"
+            },
+            "BindPresence": {
+                "type": "string"
+            },
+            "BridgeGpio": {
+                "type": "number"
+            },
+            "Bus": {
+                "type": [
+                    "string",
+                    "number"
+                ]
+            },
+            "C1": {
+                "type": "number"
+            },
+            "C2": {
+                "type": "number"
+            },
+            "ChannelNames": {
+                "items": {
+                    "type": "string"
+                },
+                "type": "array"
+            },
+            "Class": {
+                "type": "string"
+            },
+            "Connector": {
+                "properties": {
+                    "Name": {
+                        "type": "string"
+                    },
+                    "Pwm": {
+                        "type": "number"
+                    },
+                    "Tachs": {
+                        "items": {
+                            "type": "number"
+                        },
+                        "type": "array"
+                    }
+                },
+                "required": [
+                    "Name",
+                    "Pwm",
+                    "Tachs"
+                ],
+                "type": "object"
+            },
+            "CpuID": {
+                "type": "number"
+            },
+            "Direction": {
+                "type": "string"
+            },
+            "DtsCritOffset": {
+                "type": "number"
+            },
+            "FFGainCoefficient": {
+                "type": "number"
+            },
+            "FFOffCoefficient": {
+                "type": "number"
+            },
+            "FailSafePercent": {
+                "type": "number"
+            },
+            "FaultIndex": {
+                "type": "number"
+            },
+            "FaultType": {
+                "type": "string"
+            },
+            "GpioPins": {
+                "items": {
+                    "type": "number"
+                },
+                "type": "array"
+            },
+            "ICoefficient": {
+                "type": "number"
+            },
+            "ILimitMax": {
+                "type": "number"
+            },
+            "ILimitMin": {
+                "type": "number"
+            },
+            "Index": {
+                "type": "number"
+            },
+            "Inputs": {
+                "items": {
+                    "type": "string"
+                },
+                "type": "array"
+            },
+            "Labels": {
+                "items": {
+                    "type": "string"
+                },
+                "type": "array"
+            },
+            "LedGpioPins": {
+                "items": {
+                    "type": "number"
+                },
+                "type": "array"
+            },
+            "MaxCFM": {
+                "type": "number"
+            },
+            "MaxReading": {
+                "type": "number"
+            },
+            "MinThermalOutput": {
+                "type": "number"
+            },
+            "Name": {
+                "type": "string"
+            },
+            "Name1": {
+                "type": "string"
+            },
+            "NegativeHysteresis": {
+                "type": "number"
+            },
+            "OutLimitMax": {
+                "type": "number"
+            },
+            "OutLimitMin": {
+                "type": "number"
+            },
+            "Output": {
+                "items": {
+                    "type": "number"
+                },
+                "type": "array"
+            },
+            "Outputs": {
+                "items": {
+                    "type": "string"
+                },
+                "type": "array"
+            },
+            "PCoefficient": {
+                "type": "number"
+            },
+            "Polarity": {
+                "type": "string"
+            },
+            "PositiveHysteresis": {
+                "type": "number"
+            },
+            "PowerFactorMax": {
+                "type": "number"
+            },
+            "PowerFactorMin": {
+                "type": "number"
+            },
+            "PowerState": {
+                "type": "string"
+            },
+            "PresenceGpio": {
+                "type": "number"
+            },
+            "Profiles": {
+                "items": {
+                    "type": "string"
+                },
+                "type": "array"
+            },
+            "Pwm": {
+                "type": "number"
+            },
+            "QMax": {
+                "type": "number"
+            },
+            "QMin": {
+                "type": "number"
+            },
+            "Reading": {
+                "items": {
+                    "type": "number"
+                },
+                "type": "array"
+            },
+            "ScaleFactor": {
+                "type": "number"
+            },
+            "SetPoint": {
+                "type": "number"
+            },
+            "SetPointOffset": {
+                "type": "string"
+            },
+            "SlewNeg": {
+                "type": "number"
+            },
+            "SlewPos": {
+                "type": "number"
+            },
+            "Status": {
+                "type": "string"
+            },
+            "TachMaxPercent": {
+                "type": "number"
+            },
+            "TachMinPercent": {
+                "type": "number"
+            },
+            "Tachs": {
+                "items": {
+                    "type": [
+                        "number",
+                        "string"
+                    ]
+                },
+                "type": "array"
+            },
+            "Thresholds": {
+                "items": {
+                    "properties": {
+                        "Direction": {
+                            "type": "string"
+                        },
+                        "Label": {
+                            "type": "string"
+                        },
+                        "Name": {
+                            "type": "string"
+                        },
+                        "Severity": {
+                            "type": "number"
+                        },
+                        "Value": {
+                            "type": "number"
+                        }
+                    },
+                    "required": [
+                        "Direction",
+                        "Name",
+                        "Severity",
+                        "Value"
+                    ],
+                    "type": "object"
+                },
+                "type": "array"
+            },
+            "Type": {
+                "type": "string"
+            },
+            "Zones": {
+                "items": {
+                    "type": "string"
+                },
+                "type": "array"
+            }
+        }
+    }
+}

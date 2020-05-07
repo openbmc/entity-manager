@@ -112,6 +112,7 @@ endforeach
 
 schemas = [
     'global.json',
+    'legacy.json',
     'Pid.json',
     'Pid.Zone.json',
     'Stepwise.json',
