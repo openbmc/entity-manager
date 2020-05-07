@@ -2,13 +2,22 @@
     "$schema": "http://json-schema.org/draft-07/schema#",
     "definitions": {
         "EMConfig": {
+            "additionalProperties": false,
             "type": "object",
             "properties": {
+                "Bus": {
+                    "type": "string"
+                },
                 "Exposes": {
                     "type": "array",
                     "items": {
                         "$ref": "legacy.json#/definitions/Aggregate"
                     }
+                },
+                "Logging": {
+                    "enum": [
+                        "Off"
+                    ]
                 },
                 "Name": {
                     "type": "string"
@@ -37,6 +46,15 @@
                 },
                 "xyz.openbmc_project.Inventory.Decorator.AssetTag": {
                     "$ref": "openbmc-dbus.json#/definitions/xyz/openbmc_project/Inventory/Decorator/AssetTag"
+                },
+                "xyz.openbmc_project.Inventory.Item.Board.Motherboard": {
+                    "$ref": "openbmc-dbus.json#/definitions/xyz/openbmc_project/Inventory/Item/Board/Motherboard"
+                },
+                "xyz.openbmc_project.Inventory.Item.Chassis": {
+                    "$ref": "openbmc-dbus.json#/definitions/xyz/openbmc_project/Inventory/Item/Chassis"
+                },
+                "xyz.openbmc_project.Inventory.Item.Panel": {
+                    "$ref": "openbmc-dbus.json#/definitions/xyz/openbmc_project/Inventory/Item/Panel"
                 },
                 "xyz.openbmc_project.Inventory.Item.System": {
                     "$ref": "openbmc-dbus.json#/definitions/xyz/openbmc_project/Inventory/Item/System"
