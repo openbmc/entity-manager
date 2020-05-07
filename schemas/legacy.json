@@ -201,7 +201,10 @@
         },
         "Types": {
             "Address": {
-                "type": "string"
+                "type": [
+                    "string",
+                    "array"
+                ]
             },
             "AllowedFailures": {
                 "type": "number"
@@ -219,7 +222,10 @@
                 "type": "string"
             },
             "BridgeGpio": {
-                "type": "number"
+                "type": [
+                    "number",
+                    "array"
+                ]
             },
             "Bus": {
                 "type": [
@@ -379,7 +385,10 @@
                 "type": "string"
             },
             "PresenceGpio": {
-                "type": "number"
+                "type": [
+                    "number",
+                    "array"
+                ]
             },
             "Profiles": {
                 "items": {
