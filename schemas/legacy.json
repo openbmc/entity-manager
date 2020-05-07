@@ -2,6 +2,11 @@
     "$schema": "http://json-schema.org/draft-07/schema#",
     "definitions": {
         "Aggregate": {
+            "description": [
+                "Don't add additional properties to this schema.  Consult ",
+                "README.schema for instructions on adding new Exposes element ",
+                "sub-schema."
+            ],
             "additionalProperties": false,
             "properties": {
                 "Address": {
