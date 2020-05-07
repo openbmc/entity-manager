@@ -44,6 +44,28 @@
                         }
                     },
                     "Item": {
+                        "Board": {
+                            "Motherboard": {
+                                "additionalProperties": false,
+                                "properties": {
+                                    "ProductId": {
+                                        "type": "number"
+                                    }
+                                },
+                                "required": [
+                                    "ProductId"
+                                ],
+                                "type": "object"
+                            }
+                        },
+                        "Chassis": {
+                            "additionalProperties": false,
+                            "type": "object"
+                        },
+                        "Panel": {
+                            "additionalProperties": false,
+                            "type": "object"
+                        },
                         "System": {
                             "additionalProperties": false,
                             "type": "object"
