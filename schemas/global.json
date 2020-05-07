@@ -22,27 +22,7 @@
                         "type": "string"
                     },
                     "xyz.openbmc_project.Inventory.Decorator.Asset": {
-                        "type": "object",
-                        "properties": {
-                            "Manufacturer": {
-                                "type": "string"
-                            },
-                            "Model": {
-                                "type": "string"
-                            },
-                            "PartNumber": {
-                                "type": "string"
-                            },
-                            "SerialNumber": {
-                                "type": "string"
-                            }
-                        },
-                        "required": [
-                            "Manufacturer",
-                            "Model",
-                            "PartNumber",
-                            "SerialNumber"
-                        ]
+                        "$ref": "openbmc-dbus.json#/definitions/xyz/openbmc_project/Inventory/Decorator/Asset"
                     }
                 },
                 "required": [
@@ -82,44 +62,16 @@
                     "type": "string"
                 },
                 "xyz.openbmc_project.Inventory.Decorator.Asset": {
-                    "type": "object",
-                    "properties": {
-                        "Manufacturer": {
-                            "type": "string"
-                        },
-                        "Model": {
-                            "type": "string"
-                        },
-                        "PartNumber": {
-                            "type": "string"
-                        },
-                        "SerialNumber": {
-                            "type": "string"
-                        }
-                    },
-                    "required": [
-                        "Manufacturer",
-                        "Model",
-                        "PartNumber",
-                        "SerialNumber"
-                    ]
+                    "$ref": "openbmc-dbus.json#/definitions/xyz/openbmc_project/Inventory/Decorator/Asset"
                 },
                 "ProductId": {
                     "type": "number"
                 },
                 "xyz.openbmc_project.Inventory.Decorator.AssetTag": {
-                    "type": "object",
-                    "properties": {
-                        "AssetTag": {
-                            "type": "string"
-                        }
-                    },
-                    "required": [
-                        "AssetTag"
-                    ]
+                    "$ref": "openbmc-dbus.json#/definitions/xyz/openbmc_project/Inventory/Decorator/AssetTag"
                 },
                 "xyz.openbmc_project.Inventory.Item.System": {
-                    "type": "object"
+                    "$ref": "openbmc-dbus.json#/definitions/xyz/openbmc_project/Inventory/Item/System"
                 }
             },
             "required": [
