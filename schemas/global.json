@@ -9,6 +9,15 @@
             ],
             "oneOf": [
                 {
+                    "$ref": "Pid.json#/definitions/Pid"
+                },
+                {
+                    "$ref": "Pid.Zone.json#/definitions/PidZone"
+                },
+                {
+                    "$ref": "Stepwise.json#/definitions/Stepwise"
+                },
+                {
                     "$ref": "legacy.json#/definitions/Aggregate"
                 },
                 {
