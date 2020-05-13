@@ -529,15 +529,22 @@ int getBusFrus(int file, int first, int last, int bus,
             rootFailures = &(failedAddresses[rootBus]);
         }
 
+        const int startSkipSlaveAddr = 0;
+        const int endSkipSlaveAddr = 9;
+
         for (int ii = first; ii <= last; ii++)
         {
             if (skipList.find(ii) != skipList.end())
             {
                 continue;
             }
-
+            // skypping since no device is present in this range
+            if (ii > startSkipSlaveAddr && ii <= endSkipSlaveAddr)
+            {
+                continue;
+            }
             // Set slave address
-            if (ioctl(file, I2C_SLAVE_FORCE, ii) < 0)
+            if (ioctl(file, I2C_SLAVE, ii) < 0)
             {
                 std::cerr << "device at bus " << bus << " register " << ii
                           << " busy\n";
