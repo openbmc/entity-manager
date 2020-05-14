@@ -75,8 +75,8 @@ const static boost::container::flat_map<const char*, probe_type_codes, cmp_str>
                  {"FOUND", probe_type_codes::FOUND},
                  {"MATCH_ONE", probe_type_codes::MATCH_ONE}}};
 
-static constexpr std::array<const char*, 5> settableInterfaces = {
-    "FanProfile", "Pid", "Pid.Zone", "Stepwise", "Thresholds"};
+static constexpr std::array<const char*, 6> settableInterfaces = {
+    "FanProfile", "Pid", "Pid.Zone", "Stepwise", "Thresholds", "Polling"};
 using JsonVariantType =
     std::variant<std::vector<std::string>, std::vector<double>, std::string,
                  int64_t, uint64_t, double, int32_t, uint32_t, int16_t,
