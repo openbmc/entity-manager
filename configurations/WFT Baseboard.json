@@ -528,6 +528,14 @@
             "Type": "ADC"
         },
         {
+            "Name": "Host CPU Utilization",
+            "Polling": {
+                "AveragingPeriod": 3000,
+                "Interval": 1000
+            },
+            "Type": "HostCpuUtilization"
+        },
+        {
             "Name": "1U System Fan connector 1",
             "Pwm": 0,
             "Status": "disabled",
