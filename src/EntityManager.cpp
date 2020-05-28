@@ -30,13 +30,14 @@
 #include <boost/container/flat_map.hpp>
 #include <boost/container/flat_set.hpp>
 #include <boost/range/iterator_range.hpp>
+#include <nlohmann/json.hpp>
+#include <sdbusplus/asio/connection.hpp>
+#include <sdbusplus/asio/object_server.hpp>
+
 #include <filesystem>
 #include <fstream>
 #include <iostream>
-#include <nlohmann/json.hpp>
 #include <regex>
-#include <sdbusplus/asio/connection.hpp>
-#include <sdbusplus/asio/object_server.hpp>
 #include <variant>
 constexpr const char* configurationDirectory = PACKAGE_DIR "configurations";
 constexpr const char* schemaDirectory = PACKAGE_DIR "configurations/schemas";
@@ -505,8 +506,7 @@ PerformProbe::PerformProbe(const std::vector<std::string>& probeCommand,
                            std::function<void(FoundDeviceT&)>&& callback) :
     _probeCommand(probeCommand),
     scan(scanPtr), _callback(std::move(callback))
-{
-}
+{}
 PerformProbe::~PerformProbe()
 {
     FoundDeviceT foundDevs;
@@ -1265,8 +1265,7 @@ PerformScan::PerformScan(nlohmann::json& systemConfiguration,
     _missingConfigurations(missingConfigurations),
     _configurations(configurations), objServer(objServerIn),
     _callback(std::move(callback))
-{
-}
+{}
 void PerformScan::run()
 {
     boost::container::flat_set<std::string> dbusProbeInterfaces;

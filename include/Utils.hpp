@@ -17,12 +17,13 @@
 #pragma once
 
 #include <boost/container/flat_map.hpp>
-#include <filesystem>
-#include <fstream>
-#include <iostream>
 #include <nlohmann/json.hpp>
 #include <sdbusplus/asio/connection.hpp>
 #include <sdbusplus/exception.hpp>
+
+#include <filesystem>
+#include <fstream>
+#include <iostream>
 
 constexpr const char* configurationOutDir = "/var/configuration/";
 constexpr const char* versionHashFile = "/var/configuration/version";

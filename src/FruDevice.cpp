@@ -21,9 +21,13 @@
 #include <sys/inotify.h>
 #include <sys/ioctl.h>
 
-#include <array>
 #include <boost/algorithm/string/predicate.hpp>
 #include <boost/container/flat_map.hpp>
+#include <nlohmann/json.hpp>
+#include <sdbusplus/asio/connection.hpp>
+#include <sdbusplus/asio/object_server.hpp>
+
+#include <array>
 #include <chrono>
 #include <ctime>
 #include <filesystem>
@@ -33,10 +37,7 @@
 #include <iomanip>
 #include <iostream>
 #include <limits>
-#include <nlohmann/json.hpp>
 #include <regex>
-#include <sdbusplus/asio/connection.hpp>
-#include <sdbusplus/asio/object_server.hpp>
 #include <set>
 #include <sstream>
 #include <string>
@@ -44,7 +45,8 @@
 #include <variant>
 #include <vector>
 
-extern "C" {
+extern "C"
+{
 #include <i2c/smbus.h>
 #include <linux/i2c-dev.h>
 }
@@ -745,16 +747,15 @@ static void FindI2CDevices(const std::vector<fs::path>& i2cBuses,
 }
 
 // this class allows an async response after all i2c devices are discovered
-struct FindDevicesWithCallback
-    : std::enable_shared_from_this<FindDevicesWithCallback>
+struct FindDevicesWithCallback :
+    std::enable_shared_from_this<FindDevicesWithCallback>
 {
     FindDevicesWithCallback(const std::vector<fs::path>& i2cBuses,
                             BusMap& busmap,
                             std::function<void(void)>&& callback) :
         _i2cBuses(i2cBuses),
         _busMap(busmap), _callback(std::move(callback))
-    {
-    }
+    {}
     ~FindDevicesWithCallback()
     {
         _callback();

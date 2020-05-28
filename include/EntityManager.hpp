@@ -21,10 +21,11 @@
 #include <systemd/sd-journal.h>
 
 #include <boost/container/flat_map.hpp>
-#include <iostream>
-#include <list>
 #include <nlohmann/json.hpp>
 #include <sdbusplus/asio/object_server.hpp>
+
+#include <iostream>
+#include <list>
 #include <string>
 
 using DBusProbeObjectT = boost::container::flat_map<
