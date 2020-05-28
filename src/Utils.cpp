@@ -25,14 +25,15 @@
 #include <boost/algorithm/string/split.hpp>
 #include <boost/container/flat_map.hpp>
 #include <boost/lexical_cast.hpp>
-#include <filesystem>
-#include <fstream>
-#include <regex>
 #include <sdbusplus/bus/match.hpp>
 #include <valijson/adapters/nlohmann_json_adapter.hpp>
 #include <valijson/schema.hpp>
 #include <valijson/schema_parser.hpp>
 #include <valijson/validator.hpp>
+
+#include <filesystem>
+#include <fstream>
+#include <regex>
 
 constexpr const char* templateChar = "$";
 
@@ -372,11 +373,9 @@ std::optional<std::string> templateCharReplace(
             }
         }
         catch (std::invalid_argument&)
-        {
-        }
+        {}
         catch (std::out_of_range&)
-        {
-        }
+        {}
     }
     // non-hex numbers
     else
@@ -387,8 +386,7 @@ std::optional<std::string> templateCharReplace(
             keyPair.value() = temp;
         }
         catch (boost::bad_lexical_cast&)
-        {
-        }
+        {}
     }
     return ret;
 }
