@@ -42,16 +42,8 @@ else
 endif
 sdbusplus = dependency('sdbusplus', required: false)
 if not sdbusplus.found()
-    subproject('sdbusplus', required: false)
-    run_command(find_program('build-sdbusplus.sh'), check: true)
-    sdbusplus = declare_dependency(
-        dependencies: dependency('libsystemd'),
-        include_directories: 'sdbusplus',
-        link_args: [
-            'sdbusplus/.libs/libsdbusplus.so',
-            '-Wl,-rpath,$ORIGIN/../sdbusplus/.libs'
-        ],
-    )
+    sdbusplus_proj = subproject('sdbusplus', required: true)
+    sdbusplus = sdbusplus_proj.get_variable('sdbusplus_dep')
 endif
 systemd = dependency('systemd')
 systemd_system_unit_dir = systemd.get_pkgconfig_variable(
