@@ -484,6 +484,87 @@
                 }
             ],
             "Type": "TMP421"
+        },
+        {
+            "Address": "0x40",
+            "Bus": 10,
+            "Labels": [
+                "vin",
+                "iout1",
+                "pin",
+                "temp1",
+                "maxvin",
+                "maxiout1",
+                "maxpin",
+                "maxtemp1"
+            ],
+            "Name": "SP_HSC",
+            "Thresholds": [
+                {
+                    "Direction": "greater than",
+                    "Label": "vin",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 13.75
+                },
+                {
+                    "Direction": "less than",
+                    "Label": "vin",
+                    "Name": "lower critical",
+                    "Severity": 0,
+                    "Value": 11.25
+                },
+                {
+                    "Direction": "greater than",
+                    "Label": "iout1",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 52
+                },
+                {
+                    "Direction": "greater than",
+                    "Label": "pin",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 625
+                },
+                {
+                    "Direction": "less than",
+                    "Label": "temp1",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 105
+                },
+                {
+                    "Direction": "less than",
+                    "Label": "peakvin",
+                    "Name": "lower critical",
+                    "Severity": 1,
+                    "Value": 0
+                },
+                {
+                    "Direction": "less than",
+                    "Label": "maxiout1",
+                    "Name": "lower critical",
+                    "Severity": 1,
+                    "Value": 0
+                },
+                {
+                    "Direction": "less than",
+                    "Label": "maxpin",
+                    "Name": "lower critical",
+                    "Severity": 1,
+                    "Value": 0
+                },
+                {
+                    "Direction": "less than",
+                    "Label": "maxtemp1",
+                    "Name": "lower critical",
+                    "Severity": 1,
+                    "Value": 0
+                }
+            ],
+            "Type": "pmbus"
         }
     ],
     "Name": "Yosemite V2 Baseboard",
