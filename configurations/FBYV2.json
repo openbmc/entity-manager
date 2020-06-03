@@ -484,6 +484,55 @@
                 }
             ],
             "Type": "TMP421"
+        },
+        {
+            "Address": "0x40",
+            "Bus": 10,
+            "Labels": [
+                "iout1",
+                "pin",
+                "vin",
+                "temp1"
+            ],
+            "Name": "SP_HSC_ADM1278",
+            "Thresholds": [
+                {
+                    "Direction": "greater than",
+                    "Label": "vin",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 13.75
+                },
+                {
+                    "Direction": "less than",
+                    "Label": "vin",
+                    "Name": "lower critical",
+                    "Severity": 1,
+                    "Value": 11.25
+                },
+                {
+                    "Direction": "greater than",
+                    "Label": "iout1",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 52
+                },
+                {
+                    "Direction": "greater than",
+                    "Label": "pin",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 625
+                },
+                {
+                    "Direction": "greater than",
+                    "Label": "temp1",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 105
+                }
+            ],
+            "Type": "pmbus"
         }
     ],
     "Name": "Yosemite V2 Baseboard",
