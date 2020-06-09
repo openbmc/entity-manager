@@ -42,6 +42,7 @@
 #include <sstream>
 #include <string>
 #include <thread>
+#include <utility>
 #include <variant>
 #include <vector>
 
@@ -785,6 +786,121 @@ static const std::tm intelEpoch(void)
     return val;
 }
 
+static char sixBitToChar(uint8_t val)
+{
+    return static_cast<char>((val & 0x3f) + ' ');
+}
+
+/* 0xd - 0xf are reserved values, but not fatal; use a placeholder char. */
+static const char bcdHighChars[] = {
+    ' ', '-', '.', 'X', 'X', 'X',
+};
+
+static char bcdPlusToChar(uint8_t val)
+{
+    val &= 0xf;
+    return (val < 10) ? static_cast<char>(val + '0') : bcdHighChars[val - 10];
+}
+
+enum class DecodeState
+{
+    ok,
+    end,
+    err,
+};
+
+enum FRUDataEncoding
+{
+    binary = 0x0,
+    bcdPlus = 0x1,
+    sixBitASCII = 0x2,
+    languageDependent = 0x3,
+};
+
+/* Decode FRU data into a std::string, given an input iterator and end. If the
+ * state returned is fruDataOk, then the resulting string is the decoded FRU
+ * data. The input iterator is advanced past the data consumed.
+ *
+ * On fruDataErr, we have lost synchronisation with the length bytes, so the
+ * iterator is no longer usable.
+ */
+static std::pair<DecodeState, std::string>
+    decodeFruData(std::vector<char>::const_iterator& iter,
+                  const std::vector<char>::const_iterator& end)
+{
+    std::string value;
+    unsigned int i;
+
+    /* we need at least one byte to decode the type/len header */
+    if (iter == end)
+    {
+        std::cerr << "Truncated FRU data\n";
+        return make_pair(DecodeState::err, value);
+    }
+
+    uint8_t c = *(iter++);
+
+    /* 0xc1 is the end marker */
+    if (c == 0xc1)
+    {
+        return make_pair(DecodeState::end, value);
+    }
+
+    /* decode type/len byte */
+    uint8_t type = static_cast<uint8_t>(c >> 6);
+    uint8_t len = static_cast<uint8_t>(c & 0x3f);
+
+    /* we should have at least len bytes of data available overall */
+    if (iter + len > end)
+    {
+        std::cerr << "FRU data field extends past end of FRU data\n";
+        return make_pair(DecodeState::err, value);
+    }
+
+    switch (type)
+    {
+        case FRUDataEncoding::binary:
+        case FRUDataEncoding::languageDependent:
+            /* For language-code dependent encodings, assume 8-bit ASCII */
+            value = std::string(iter, iter + len);
+            iter += len;
+            break;
+
+        case FRUDataEncoding::bcdPlus:
+            value = std::string();
+            for (i = 0; i < len; i++, iter++)
+            {
+                uint8_t val = static_cast<uint8_t>(*iter);
+                value.push_back(bcdPlusToChar(val >> 4));
+                value.push_back(bcdPlusToChar(val & 0xf));
+            }
+            break;
+
+        case FRUDataEncoding::sixBitASCII:
+        {
+            unsigned int accum;
+            unsigned int accumBitLen = 0;
+            value = std::string();
+            for (i = 0; i < len; i++, iter++)
+            {
+                /* we need to cast to unsigned before the promotion to
+                 * int, so we don't sign-extend. */
+                accum |= static_cast<unsigned char>(*iter) << accumBitLen;
+                accumBitLen += 8;
+                while (accumBitLen >= 6)
+                {
+                    value.push_back(sixBitToChar(accum & 0x3f));
+                    accum >>= 6;
+                    accumBitLen -= 6;
+                }
+            }
+        }
+        break;
+    }
+
+    return make_pair(DecodeState::ok, value);
+}
+
 bool formatFru(const std::vector<char>& fruBytes,
                boost::container::flat_map<std::string, std::string>& result)
 {
@@ -882,26 +998,20 @@ bool formatFru(const std::vector<char>& fruBytes,
             }
             for (auto& field : *fieldData)
             {
-                if (fruBytesIter >= fruBytes.end())
-                {
-                    return false;
-                }
+                auto res = decodeFruData(fruBytesIter, fruBytes.end());
+                std::string name = area + "_" + field;
 
-                /* Checking for last byte C1 to indicate that no more
-                 * field to be read */
-                if (static_cast<uint8_t>(*fruBytesIter) == 0xC1)
+                if (res.first == DecodeState::end)
                 {
                     break;
                 }
-
-                size_t length = *fruBytesIter & 0x3f;
-                fruBytesIter += 1;
-
-                if (fruBytesIter >= fruBytes.end())
+                else if (res.first == DecodeState::err)
                 {
+                    std::cerr << "Error while parsing " << name << "\n";
                     return false;
                 }
-                std::string value(fruBytesIter, fruBytesIter + length);
+
+                std::string value = res.second;
 
                 // Strip non null characters from the end
                 value.erase(std::find_if(value.rbegin(), value.rend(),
@@ -909,27 +1019,7 @@ bool formatFru(const std::vector<char>& fruBytes,
                                 .base(),
                             value.end());
 
-                result[area + "_" + field] = std::move(value);
-
-                fruBytesIter += length;
-                if (fruBytesIter >= fruBytes.end())
-                {
-                    std::cerr << "Warning Fru Length Mismatch:\n    ";
-                    for (auto& c : fruBytes)
-                    {
-                        std::cerr << c;
-                    }
-                    std::cerr << "\n";
-                    if (DEBUG)
-                    {
-                        for (auto& keyPair : result)
-                        {
-                            std::cerr << keyPair.first << " : "
-                                      << keyPair.second << "\n";
-                        }
-                    }
-                    return false;
-                }
+                result[name] = std::move(value);
             }
         }
     }
