@@ -76,6 +76,8 @@ struct FindDevicesWithCallback;
 
 static BusMap busMap;
 
+static bool powerIsOn = false;
+
 static boost::container::flat_map<
     std::pair<size_t, size_t>, std::shared_ptr<sdbusplus::asio::dbus_interface>>
     foundDevices;
@@ -586,7 +588,10 @@ int getBusFrus(int file, int first, int last, int bus,
             {
                 std::cerr << "failed to read bus " << bus << " address " << ii
                           << "\n";
-                failedItems.insert(ii);
+                if (powerIsOn)
+                {
+                    failedItems.insert(ii);
+                }
                 continue;
             }
 
@@ -609,7 +614,10 @@ int getBusFrus(int file, int first, int last, int bus,
     if (status == std::future_status::timeout)
     {
         std::cerr << "Error reading bus " << bus << "\n";
-        busBlacklist.insert(bus);
+        if (powerIsOn)
+        {
+            busBlacklist.insert(bus);
+        }
         close(file);
         return -1;
     }
@@ -1370,14 +1378,13 @@ int main()
                 values;
             message.read(objectName, values);
             auto findState = values.find("CurrentHostState");
-            bool on = false;
             if (findState != values.end())
             {
-                on = boost::ends_with(std::get<std::string>(findState->second),
-                                      "Running");
+                powerIsOn = boost::ends_with(
+                    std::get<std::string>(findState->second), "Running");
             }
 
-            if (on)
+            if (powerIsOn)
             {
                 rescanBusses(busMap, dbusInterfaceMap);
             }
