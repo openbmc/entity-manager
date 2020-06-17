@@ -86,32 +86,30 @@ baseboard".
             "Bus": 6,
             "Name": "Left Rear Temp",
             "Thresholds": [
-                [
-                    {
-                        "Direction": "greater than",
-                        "Name": "upper critical",
-                        "Severity": 1,
-                        "Value": 115
-                    },
-                    {
-                        "Direction": "greater than",
-                        "Name": "upper non critical",
-                        "Severity": 0,
-                        "Value": 110
-                    },
-                    {
-                        "Direction": "less than",
-                        "Name": "lower non critical",
-                        "Severity": 0,
-                        "Value": 5
-                    },
-                    {
-                        "Direction": "less than",
-                        "Name": "lower critical",
-                        "Severity": 1,
-                        "Value": 0
-                    }
-                ]
+                {
+                    "Direction": "greater than",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 115
+                },
+                {
+                    "Direction": "greater than",
+                    "Name": "upper non critical",
+                    "Severity": 0,
+                    "Value": 110
+                },
+                {
+                    "Direction": "less than",
+                    "Name": "lower non critical",
+                    "Severity": 0,
+                    "Value": 5
+                },
+                {
+                    "Direction": "less than",
+                    "Name": "lower critical",
+                    "Severity": 1,
+                    "Value": 0
+                }
             ],
             "Type": "TMP75"
         },
@@ -120,32 +118,30 @@ baseboard".
             "Bus": 6,
             "Name": "Voltage Regulator 1 Temp",
             "Thresholds": [
-                [
-                    {
-                        "Direction": "greater than",
-                        "Name": "upper critical",
-                        "Severity": 1,
-                        "Value": 115
-                    },
-                    {
-                        "Direction": "greater than",
-                        "Name": "upper non critical",
-                        "Severity": 0,
-                        "Value": 110
-                    },
-                    {
-                        "Direction": "less than",
-                        "Name": "lower non critical",
-                        "Severity": 0,
-                        "Value": 5
-                    },
-                    {
-                        "Direction": "less than",
-                        "Name": "lower critical",
-                        "Severity": 1,
-                        "Value": 0
-                    }
-                ]
+                {
+                    "Direction": "greater than",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 115
+                },
+                {
+                    "Direction": "greater than",
+                    "Name": "upper non critical",
+                    "Severity": 0,
+                    "Value": 110
+                },
+                {
+                    "Direction": "less than",
+                    "Name": "lower non critical",
+                    "Severity": 0,
+                    "Value": 5
+                },
+                {
+                    "Direction": "less than",
+                    "Name": "lower critical",
+                    "Severity": 1,
+                    "Value": 0
+                }
             ],
             "Type": "TMP75"
         }
@@ -175,20 +171,18 @@ together.
             "BindConnector": "1U System Fan connector 1",
             "Name": "Fan 1",
             "Thresholds": [
-                [
-                    {
-                        "Direction": "less than",
-                        "Name": "lower critical",
-                        "Severity": 1,
-                        "Value": 1750
-                    },
-                    {
-                        "Direction": "less than",
-                        "Name": "lower non critical",
-                        "Severity": 0,
-                        "Value": 2000
-                    }
-                ]
+                {
+                    "Direction": "less than",
+                    "Name": "lower critical",
+                    "Severity": 1,
+                    "Value": 1750
+                },
+                {
+                    "Direction": "less than",
+                    "Name": "lower non critical",
+                    "Severity": 0,
+                    "Value": 2000
+                }
             ],
             "Type": "AspeedFan"
         }
