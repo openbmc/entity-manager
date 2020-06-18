@@ -258,6 +258,16 @@ static int64_t readFromEeprom(int flag __attribute__((unused)), int fd,
     return read(fd, buf, len);
 }
 
+static int busStrToInt(const std::string& busName)
+{
+    auto findBus = busName.rfind("-");
+    if (findBus == std::string::npos)
+    {
+        return -1;
+    }
+    return std::stoi(busName.substr(findBus + 1));
+}
+
 static int getRootBus(size_t bus)
 {
     auto ec = std::error_code();
@@ -690,15 +700,13 @@ static void FindI2CDevices(const std::vector<fs::path>& i2cBuses,
 {
     for (auto& i2cBus : i2cBuses)
     {
-        auto busnum = i2cBus.string();
-        auto lastDash = busnum.rfind(std::string("-"));
-        // delete everything before dash inclusive
-        if (lastDash != std::string::npos)
-        {
-            busnum.erase(0, lastDash + 1);
-        }
+        int bus = busStrToInt(i2cBus);
 
-        auto bus = std::stoi(busnum);
+        if (bus < 0)
+        {
+            std::cerr << "Cannot translate " << i2cBus << " to int\n";
+            continue;
+        }
         if (busBlacklist.find(bus) != busBlacklist.end())
         {
             continue; // skip previously failed busses
@@ -1424,18 +1432,21 @@ int main()
                     case IN_CREATE:
                     case IN_MOVED_TO:
                     case IN_DELETE:
-                        if (boost::starts_with(std::string(iEvent->name),
-                                               "i2c"))
+                        std::string name(iEvent->name);
+                        if (boost::starts_with(name, "i2c"))
                         {
-                            devChange = true;
+                            int bus = busStrToInt(name);
+                            if (bus < 0)
+                            {
+                                std::cerr << "Could not parse bus " << name
+                                          << "\n";
+                                continue;
+                            }
+                            rescanOneBus(busMap, bus, dbusInterfaceMap);
                         }
                 }
 
                 pendingBuffer.erase(0, sizeof(inotify_event) + iEvent->len);
-            }
-            if (devChange)
-            {
-                rescanBusses(busMap, dbusInterfaceMap);
             }
 
             dirWatch.async_read_some(boost::asio::buffer(readBuffer),
