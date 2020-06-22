@@ -2,6 +2,7 @@
     "$schema": "http://json-schema.org/draft-07/schema#",
     "definitions": {
         "Aggregate": {
+            "additionalProperties": false,
             "properties": {
                 "Address": {
                     "$ref": "#/definitions/Types/Address"
@@ -33,6 +34,9 @@
                 "C2": {
                     "$ref": "#/definitions/Types/C2"
                 },
+                "CPURequired": {
+                    "$ref": "#/definitions/Types/CPURequired"
+                },
                 "ChannelNames": {
                     "$ref": "#/definitions/Types/ChannelNames"
                 },
@@ -44,6 +48,9 @@
                 },
                 "CpuID": {
                     "$ref": "#/definitions/Types/CpuID"
+                },
+                "CurrScaleFactor": {
+                    "$ref": "#/definitions/Types/CurrScaleFactor"
                 },
                 "Direction": {
                     "$ref": "#/definitions/Types/Direction"
@@ -68,6 +75,9 @@
                 },
                 "GpioPins": {
                     "$ref": "#/definitions/Types/GpioPins"
+                },
+                "GpioPolarity": {
+                    "$ref": "#/definitions/Types/GpioPolarity"
                 },
                 "ICoefficient": {
                     "$ref": "#/definitions/Types/ICoefficient"
@@ -108,6 +118,9 @@
                 "NegativeHysteresis": {
                     "$ref": "#/definitions/Types/NegativeHysteresis"
                 },
+                "OffsetValue": {
+                    "$ref": "#/definitions/Types/OffsetValue"
+                },
                 "OutLimitMax": {
                     "$ref": "#/definitions/Types/OutLimitMax"
                 },
@@ -126,6 +139,9 @@
                 "Polarity": {
                     "$ref": "#/definitions/Types/Polarity"
                 },
+                "Polling": {
+                    "$ref": "#/definitions/Types/Polling"
+                },
                 "PositiveHysteresis": {
                     "$ref": "#/definitions/Types/PositiveHysteresis"
                 },
@@ -135,8 +151,14 @@
                 "PowerFactorMin": {
                     "$ref": "#/definitions/Types/PowerFactorMin"
                 },
+                "PowerScaleFactor": {
+                    "$ref": "#/definitions/Types/PowerScaleFactor"
+                },
                 "PowerState": {
                     "$ref": "#/definitions/Types/PowerState"
+                },
+                "Presence": {
+                    "$ref": "#/definitions/Types/Presence"
                 },
                 "PresenceGpio": {
                     "$ref": "#/definitions/Types/PresenceGpio"
@@ -156,8 +178,17 @@
                 "Reading": {
                     "$ref": "#/definitions/Types/Reading"
                 },
+                "RedundantCount": {
+                    "$ref": "#/definitions/Types/RedundantCount"
+                },
                 "ScaleFactor": {
                     "$ref": "#/definitions/Types/ScaleFactor"
+                },
+                "ScaleValue": {
+                    "$ref": "#/definitions/Types/ScaleValue"
+                },
+                "SensorType": {
+                    "$ref": "#/definitions/Types/SensorType"
                 },
                 "SetPoint": {
                     "$ref": "#/definitions/Types/SetPoint"
@@ -239,6 +270,9 @@
             "C2": {
                 "type": "number"
             },
+            "CPURequired": {
+                "type": "number"
+            },
             "ChannelNames": {
                 "items": {
                     "type": "string"
@@ -273,6 +307,9 @@
             "CpuID": {
                 "type": "number"
             },
+            "CurrScaleFactor": {
+                "type": "number"
+            },
             "Direction": {
                 "type": "string"
             },
@@ -299,6 +336,11 @@
                     "type": "number"
                 },
                 "type": "array"
+            },
+            "GpioPolarity": {
+                "enum": [
+                    "Low"
+                ]
             },
             "ICoefficient": {
                 "type": "number"
@@ -348,6 +390,9 @@
             "NegativeHysteresis": {
                 "type": "number"
             },
+            "OffsetValue": {
+                "type": "number"
+            },
             "OutLimitMax": {
                 "type": "number"
             },
@@ -372,6 +417,9 @@
             "Polarity": {
                 "type": "string"
             },
+            "Polling": {
+                "type": "object"
+            },
             "PositiveHysteresis": {
                 "type": "number"
             },
@@ -381,8 +429,22 @@
             "PowerFactorMin": {
                 "type": "number"
             },
+            "PowerScaleFactor": {
+                "type": "number"
+            },
             "PowerState": {
                 "type": "string"
+            },
+            "Presence": {
+                "properties": {
+                    "PinName": {
+                        "type": "string"
+                    },
+                    "Polarity": {
+                        "enum": "Low"
+                    }
+                },
+                "type": "object"
             },
             "PresenceGpio": {
                 "type": [
@@ -411,8 +473,17 @@
                 },
                 "type": "array"
             },
+            "RedundantCount": {
+                "type": "number"
+            },
             "ScaleFactor": {
                 "type": "number"
+            },
+            "ScaleValue": {
+                "type": "number"
+            },
+            "SensorType": {
+                "type": "string"
             },
             "SetPoint": {
                 "type": "number"
