@@ -763,6 +763,8 @@ static void FindI2CDevices(const std::vector<fs::path>& i2cBuses,
     }
 }
 
+static bool findDevicesRunning = false;
+
 // this class allows an async response after all i2c devices are discovered
 struct FindDevicesWithCallback :
     std::enable_shared_from_this<FindDevicesWithCallback>
@@ -771,20 +773,33 @@ struct FindDevicesWithCallback :
                             BusMap& busmap,
                             std::function<void(void)>&& callback) :
         _i2cBuses(i2cBuses),
-        _busMap(busmap), _callback(std::move(callback))
+        _busMap(busmap), _callback(std::move(callback)), timer(io)
     {}
     ~FindDevicesWithCallback()
     {
         _callback();
+        findDevicesRunning = false;
     }
     void run()
     {
-        FindI2CDevices(_i2cBuses, _busMap);
+        if (findDevicesRunning)
+        {
+            timer.expires_after(std::chrono::seconds(1));
+
+            timer.async_wait([this, self = shared_from_this()](
+                                 const boost::system::error_code&) { run(); });
+        }
+        else
+        {
+            findDevicesRunning = true;
+            FindI2CDevices(_i2cBuses, _busMap);
+        }
     }
 
     const std::vector<fs::path>& _i2cBuses;
     BusMap& _busMap;
     std::function<void(void)> _callback;
+    boost::asio::steady_timer timer;
 };
 
 static const std::tm intelEpoch(void)
@@ -1364,8 +1379,8 @@ void rescanBusses(
         std::pair<size_t, size_t>,
         std::shared_ptr<sdbusplus::asio::dbus_interface>>& dbusInterfaceMap)
 {
-    static boost::asio::deadline_timer timer(io);
-    timer.expires_from_now(boost::posix_time::seconds(1));
+    static boost::asio::steady_timer timer(io);
+    timer.expires_after(std::chrono::seconds(1));
 
     // setup an async wait in case we get flooded with requests
     timer.async_wait([&](const boost::system::error_code&) {
