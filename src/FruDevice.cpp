@@ -1348,6 +1348,12 @@ void rescanOneBus(
                     objServer.remove_interface(busIface.second);
                 }
             }
+            if (auto found = busmap.find(busNum); found == busmap.end())
+            {
+                std::cerr << "Unable to find " << static_cast<int>(busNum)
+                          << " key in busmap\n";
+                return;
+            }
             auto& devicemap = busmap[busNum];
             for (auto& device : *devicemap)
             {
