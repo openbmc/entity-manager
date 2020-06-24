@@ -1348,8 +1348,12 @@ void rescanOneBus(
                     objServer.remove_interface(busIface.second);
                 }
             }
-            auto& devicemap = busmap[busNum];
-            for (auto& device : *devicemap)
+            auto found = busmap.find(busNum);
+            if (found == busmap.end() || found->second == nullptr)
+            {
+                return;
+            }
+            for (auto& device : *(found->second))
             {
                 AddFruObjectToDbus(device.second, dbusInterfaceMap,
                                    static_cast<uint32_t>(busNum), device.first);
