@@ -127,6 +127,7 @@ exposes :
             "key: {
                 "key2": "value"
             }
+        }
     }
 ]
 
