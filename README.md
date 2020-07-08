@@ -5,7 +5,7 @@ files (in JSON format) and attempts to detect the devices described by the
 configuration files. It also can, based on the configuration, attempt to load
 install devices into sysfs. It takes these configurations and produces a best
 representation of the files on dbus using the xyz.openbmc_project.Configuration
-namespace. It also produces a system.json file for persistance.
+namespace. It also produces a system.json file for persistence.
 
 ## Configuration Syntax
 
@@ -13,7 +13,7 @@ In most cases a server system is built with multiple hardware modules (circuit
 boards) such as baseboard, risers, and hot-swap backplanes. While it is
 perfectly legal to combine the JSON configuration information for all the
 hardware modules into a single file if desired, it is also possible to divide
-them into multilple configuration files. For example, there may be a baseboard
+them into multiple configuration files. For example, there may be a baseboard
 JSON file (describes all devices on the baseboard) and a chassis JSON file
 (describes devices attached to the chassis). When one of the hardware modules
 needs to be upgraded (e.g., a new temperature sensor), only such JSON
@@ -52,8 +52,8 @@ check out [My First Sensors](docs/my_first_sensors.md)
 
 Required fields are name, probe and exposes.
 
-The configuration JSON files attempt to model after actual hardware modules
-which made up a complete system. An example baseboard JSON file shown below
+The configuration JSON files attempt to model the actual hardware modules
+which make up a complete system. An example baseboard JSON file shown below
 defines two fan connectors and two temperature sensors of TMP75 type. These
 objects are considered valid by BMC when the probe command (reads and compares
 the product name in FRU) is successful and this baseboard is named as "WFP
