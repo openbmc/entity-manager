@@ -81,7 +81,7 @@ if (NOT YOCTO)
     externalproject_add (sdbusplus-project PREFIX
                          ${CMAKE_BINARY_DIR}/sdbusplus-project GIT_REPOSITORY
                          https://github.com/openbmc/sdbusplus.git GIT_TAG
-                         fa3137a78e952134559bf7c41c4f29fa4afabe02 SOURCE_DIR
+                         72f24b0773530b0404c2a20d06272c31d85923d8 SOURCE_DIR
                          ${CMAKE_BINARY_DIR}/sdbusplus-src BINARY_DIR
                          ${CMAKE_BINARY_DIR}/sdbusplus-build CONFIGURE_COMMAND
                          "" BUILD_COMMAND cd ${CMAKE_BINARY_DIR}/sdbusplus-src
