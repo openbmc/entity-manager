@@ -67,6 +67,14 @@ const static constexpr char* BASEBOARD_FRU_LOCATION =
 
 const static constexpr char* I2C_DEV_LOCATION = "/dev";
 
+enum
+{
+    FRU_AREA_INTERNAL = 1,
+    FRU_AREA_CHASSIS,
+    FRU_AREA_BOARD,
+    FRU_AREA_PRODUCT,
+    FRU_AREA_MULTIRECORD
+};
 static constexpr std::array<const char*, 5> FRU_AREAS = {
     "INTERNAL", "CHASSIS", "BOARD", "PRODUCT", "MULTIRECORD"};
 const static std::regex NON_ASCII_REGEX("[^\x01-\x7f]");
@@ -1481,14 +1489,17 @@ size_t calculateChecksum(std::vector<uint8_t>& fruAreaData)
 
 // Update new fru area length &
 // Update checksum at new checksum location
-static void updateFRUAreaLenAndChecksum(std::vector<uint8_t>& fruData,
-                                        size_t fruAreaStart,
-                                        size_t fruAreaEndOfFieldsOffset)
+// Return the offset of the area checksum byte
+static unsigned int updateFRUAreaLenAndChecksum(std::vector<uint8_t>& fruData,
+                                                size_t fruAreaStart,
+                                                size_t fruAreaEndOfFieldsOffset,
+                                                size_t fruAreaEndOffset)
 {
     size_t traverseFRUAreaIndex = fruAreaEndOfFieldsOffset - fruAreaStart;
 
     // fill zeros for any remaining unused space
-    std::fill(fruData.begin() + fruAreaEndOfFieldsOffset, fruData.end(), 0);
+    std::fill(fruData.begin() + fruAreaEndOfFieldsOffset,
+              fruData.begin() + fruAreaEndOffset, 0);
 
     size_t mod = traverseFRUAreaIndex % fruBlockSize;
     size_t checksumLoc;
@@ -1516,12 +1527,21 @@ static void updateFRUAreaLenAndChecksum(std::vector<uint8_t>& fruData,
     size_t checksumVal = calculateChecksum(finalFRUData);
 
     fruData[checksumLoc] = static_cast<uint8_t>(checksumVal);
+    return checksumLoc;
 }
 
-static size_t getFieldLength(uint8_t fruFieldTypeLenValue)
+static ssize_t getFieldLength(uint8_t fruFieldTypeLenValue)
 {
     constexpr uint8_t typeLenMask = 0x3F;
-    return fruFieldTypeLenValue & typeLenMask;
+    constexpr uint8_t endOfFields = 0xC1;
+    if (fruFieldTypeLenValue == endOfFields)
+    {
+        return -1;
+    }
+    else
+    {
+        return fruFieldTypeLenValue & typeLenMask;
+    }
 }
 
 // Details with example of Asset Tag Update
@@ -1571,7 +1591,7 @@ bool updateFRUProperty(
 
     const std::vector<const char*>* fruAreaFieldsNames;
 
-    uint8_t fruAreaOffsetFieldValue = 1;
+    uint8_t fruAreaOffsetFieldValue = 0;
     size_t offset = 0;
 
     if (propertyName.find("CHASSIS") == 0)
@@ -1605,15 +1625,23 @@ bool updateFRUProperty(
     }
     else
     {
-        std::cerr << "ProperyName doesn't exist in FRU Area Vector \n";
+        std::cerr << "Don't know how to handle property " << propertyName
+                  << " \n";
+        return false;
+    }
+    if (fruAreaOffsetFieldValue == 0)
+    {
+        std::cerr << "FRU Area for " << propertyName << " not present \n";
         return false;
     }
 
     size_t fruAreaStart = fruAreaOffsetFieldValue * fruBlockSize;
+    size_t fruAreaSize = fruData[fruAreaStart + 1] * fruBlockSize;
+    size_t fruAreaEnd = fruAreaStart + fruAreaSize;
     size_t fruDataIter = fruAreaStart + offset;
-    size_t fruUpdateFieldLoc = 0;
-    size_t fieldLength;
+    size_t fruUpdateFieldLoc = fruDataIter;
     size_t skipToFRUUpdateField = 0;
+    ssize_t fieldLength;
 
     for (auto& field : *fruAreaFieldsNames)
     {
@@ -1627,36 +1655,85 @@ bool updateFRUProperty(
     for (size_t i = 1; i < skipToFRUUpdateField; i++)
     {
         fieldLength = getFieldLength(fruData[fruDataIter]);
-        fruUpdateFieldLoc = fruDataIter + fieldLength;
-        fruDataIter = ++fruUpdateFieldLoc;
+        if (fieldLength < 0)
+        {
+            break;
+        }
+        fruDataIter += 1 + fieldLength;
     }
+    fruUpdateFieldLoc = fruDataIter;
 
     // Push post update fru field bytes to a vector
     fieldLength = getFieldLength(fruData[fruUpdateFieldLoc]);
-    size_t restFRUFieldsLoc = fruUpdateFieldLoc + fieldLength;
-    restFRUFieldsLoc++;
-    skipToFRUUpdateField++;
-    fruDataIter = restFRUFieldsLoc;
-    size_t endOfFieldsLoc = 0;
-    size_t fruFieldLoc = 0;
-    constexpr uint8_t endOfFields = 0xC1;
-    for (size_t i = fruDataIter; i < fruData.size(); i++)
+    if (fieldLength < 0)
     {
-        fieldLength = getFieldLength(fruData[fruDataIter]);
-        fruFieldLoc = fruDataIter + fieldLength;
-        fruDataIter = ++fruFieldLoc;
-        if (fruData[fruDataIter] == endOfFields)
+        std::cerr << "Property " << propertyName << " not present \n";
+        return false;
+    }
+    fruDataIter += 1 + fieldLength;
+    size_t restFRUFieldsLoc = fruDataIter;
+    size_t endOfFieldsLoc = 0;
+    while ((fieldLength = getFieldLength(fruData[fruDataIter])) >= 0)
+    {
+        if (fruDataIter >= (fruAreaStart + fruAreaSize))
         {
-            endOfFieldsLoc = fruDataIter;
+            fruDataIter = fruAreaStart + fruAreaSize;
             break;
         }
+        fruDataIter += 1 + fieldLength;
     }
-    endOfFieldsLoc++;
+    endOfFieldsLoc = fruDataIter;
 
     std::vector<uint8_t> restFRUAreaFieldsData;
     std::copy_n(fruData.begin() + restFRUFieldsLoc,
-                endOfFieldsLoc - restFRUFieldsLoc,
+                endOfFieldsLoc - restFRUFieldsLoc + 1,
                 std::back_inserter(restFRUAreaFieldsData));
+
+    // Push post update fru areas if any
+    unsigned int nextFRUAreaLoc = 0;
+    for (unsigned int nextFRUAreaOffsetField = FRU_AREA_INTERNAL;
+         nextFRUAreaOffsetField <= FRU_AREA_MULTIRECORD;
+         nextFRUAreaOffsetField++)
+    {
+        unsigned int fruAreaLoc =
+            fruData[nextFRUAreaOffsetField] * fruBlockSize;
+        if ((fruAreaLoc > endOfFieldsLoc) &&
+            ((nextFRUAreaLoc == 0) || (fruAreaLoc < nextFRUAreaLoc)))
+        {
+            nextFRUAreaLoc = fruAreaLoc;
+        }
+    }
+    std::vector<uint8_t> restFRUAreasData;
+    if (nextFRUAreaLoc)
+    {
+        std::copy_n(fruData.begin() + nextFRUAreaLoc,
+                    fruData.size() - nextFRUAreaLoc,
+                    std::back_inserter(restFRUAreasData));
+    }
+
+    // check FRU area size
+    size_t fruAreaDataSize =
+        ((fruUpdateFieldLoc - fruAreaStart + 1) + restFRUAreaFieldsData.size());
+    size_t fruAreaAvailableSize = fruAreaSize - fruAreaDataSize;
+    if ((updatePropertyReqLen + 1) > fruAreaAvailableSize)
+    {
+
+#ifdef ENABLE_FRU_AREA_RESIZE
+        size_t newFRUAreaSize = fruAreaDataSize + updatePropertyReqLen + 1;
+        // round size to 8-byte blocks
+        newFRUAreaSize =
+            ((newFRUAreaSize - 1) / fruBlockSize + 1) * fruBlockSize;
+        size_t newFRUDataSize = fruData.size() + newFRUAreaSize - fruAreaSize;
+        fruData.resize(newFRUDataSize);
+        fruAreaSize = newFRUAreaSize;
+        fruAreaEnd = fruAreaStart + fruAreaSize;
+#else
+        std::cerr << "FRU field length: " << updatePropertyReqLen + 1
+                  << " should not be greater than available FRU area size: "
+                  << fruAreaAvailableSize << "\n";
+        return false;
+#endif // ENABLE_FRU_AREA_RESIZE
+    }
 
     // write new requested property field length and data
     constexpr uint8_t newTypeLenMask = 0xC0;
@@ -1669,20 +1746,50 @@ bool updateFRUProperty(
     // Copy remaining data to main fru area - post updated fru field vector
     restFRUFieldsLoc = fruUpdateFieldLoc + updatePropertyReqLen;
     size_t fruAreaDataEnd = restFRUFieldsLoc + restFRUAreaFieldsData.size();
-    if (fruAreaDataEnd > fruData.size())
-    {
-        std::cerr << "FRU area offset: " << fruAreaDataEnd
-                  << "should not be greater than FRU data size: "
-                  << fruData.size() << std::endl;
-        throw std::invalid_argument(
-            "FRU area offset should not be greater than FRU data size");
-    }
     std::copy(restFRUAreaFieldsData.begin(), restFRUAreaFieldsData.end(),
               fruData.begin() + restFRUFieldsLoc);
 
     // Update final fru with new fru area length and checksum
-    updateFRUAreaLenAndChecksum(fruData, fruAreaStart, fruAreaDataEnd);
+    unsigned int nextFRUAreaNewLoc = updateFRUAreaLenAndChecksum(
+        fruData, fruAreaStart, fruAreaDataEnd, fruAreaEnd);
 
+#ifdef ENABLE_FRU_AREA_RESIZE
+    ++nextFRUAreaNewLoc;
+    ssize_t nextFRUAreaOffsetDiff =
+        (nextFRUAreaNewLoc - nextFRUAreaLoc) / fruBlockSize;
+    // Append rest FRU Areas if size changed and there were other sections after
+    // updated one
+    if (nextFRUAreaOffsetDiff && nextFRUAreaLoc)
+    {
+        std::copy(restFRUAreasData.begin(), restFRUAreasData.end(),
+                  fruData.begin() + nextFRUAreaNewLoc);
+        // Update Common Header
+        for (size_t fruAreaOffsetField = FRU_AREA_INTERNAL;
+             fruAreaOffsetField <= FRU_AREA_MULTIRECORD; fruAreaOffsetField++)
+        {
+            size_t curFRUAreaOffset = fruData[fruAreaOffsetField];
+            if (curFRUAreaOffset > fruAreaOffsetFieldValue)
+            {
+                fruData[fruAreaOffsetField] = static_cast<int8_t>(
+                    curFRUAreaOffset + nextFRUAreaOffsetDiff);
+            }
+        }
+        // Calculate new checksum
+        std::vector<uint8_t> headerFRUData;
+        std::copy_n(fruData.begin(), 7, std::back_inserter(headerFRUData));
+        size_t checksumVal = calculateChecksum(headerFRUData);
+        fruData[7] = static_cast<uint8_t>(checksumVal);
+        // fill zeros if FRU Area size decreased
+        if (nextFRUAreaOffsetDiff < 0)
+        {
+            std::fill(fruData.begin() + nextFRUAreaNewLoc +
+                          restFRUAreasData.size(),
+                      fruData.end(), 0);
+        }
+    }
+#else
+    (void)nextFRUAreaNewLoc;
+#endif // ENABLE_FRU_AREA_RESIZE
     if (fruData.empty())
     {
         return false;
