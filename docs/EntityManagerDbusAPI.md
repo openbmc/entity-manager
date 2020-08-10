@@ -124,7 +124,7 @@ exposes :
     {
         "name" : "front panel temp",
         "property": {
-            "key: {
+            "key": {
                 "key2": "value"
             }
         }
