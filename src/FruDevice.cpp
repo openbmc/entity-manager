@@ -903,7 +903,7 @@ static std::pair<DecodeState, std::string>
 
         case FRUDataEncoding::sixBitASCII:
         {
-            unsigned int accum;
+            unsigned int accum = 0;
             unsigned int accumBitLen = 0;
             value = std::string();
             for (i = 0; i < len; i++, iter++)
