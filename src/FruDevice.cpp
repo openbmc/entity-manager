@@ -885,6 +885,18 @@ static std::pair<DecodeState, std::string>
     switch (type)
     {
         case FRUDataEncoding::binary:
+        {
+            std::stringstream ss;
+            ss << "HEX:";
+            ss << std::hex << std::setfill('0') << std::setw(2);
+            for (i = 0; i < len; i++, iter++)
+            {
+                uint8_t val = static_cast<uint8_t>(*iter);
+                ss << std::setw(2) << static_cast<int>(val);
+            }
+            value = ss.str();
+            break;
+        }
         case FRUDataEncoding::languageDependent:
             /* For language-code dependent encodings, assume 8-bit ASCII */
             value = std::string(iter, iter + len);
