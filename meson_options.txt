@@ -4,3 +4,6 @@ option(
 option(
     'fru-device', type: 'boolean', description: 'Build fru-device.',
 )
+option(
+    'fru-device-resizefru', value : false, type: 'boolean', description: 'Allow FruDevice to resize FRU areas.',
+)
