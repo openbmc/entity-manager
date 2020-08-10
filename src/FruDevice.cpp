@@ -99,16 +99,18 @@ boost::asio::io_service io;
 auto systemBus = std::make_shared<sdbusplus::asio::connection>(io);
 auto objServer = sdbusplus::asio::object_server(systemBus);
 
-static const std::vector<const char*> CHASSIS_FRU_AREAS = {
-    "PART_NUMBER", "SERIAL_NUMBER", "INFO_AM1", "INFO_AM2"};
+static const std::vector<const char*> CHASSIS_FRU_AREAS = {"PART_NUMBER",
+                                                           "SERIAL_NUMBER"};
 
 static const std::vector<const char*> BOARD_FRU_AREAS = {
-    "MANUFACTURER",   "PRODUCT_NAME", "SERIAL_NUMBER", "PART_NUMBER",
-    "FRU_VERSION_ID", "INFO_AM1",     "INFO_AM2"};
+    "MANUFACTURER", "PRODUCT_NAME", "SERIAL_NUMBER", "PART_NUMBER",
+    "FRU_VERSION_ID"};
 
 static const std::vector<const char*> PRODUCT_FRU_AREAS = {
-    "MANUFACTURER", "PRODUCT_NAME",   "PART_NUMBER", "VERSION", "SERIAL_NUMBER",
-    "ASSET_TAG",    "FRU_VERSION_ID", "INFO_AM1",    "INFO_AM2"};
+    "MANUFACTURER",  "PRODUCT_NAME", "PART_NUMBER",   "VERSION",
+    "SERIAL_NUMBER", "ASSET_TAG",    "FRU_VERSION_ID"};
+
+static const std::string FRU_CUSTOM_FIELD_NAME = "INFO_AM";
 
 static inline unsigned int getHeaderAreaFieldOffset(int field)
 {
@@ -1036,16 +1038,29 @@ bool formatFRU(const std::vector<uint8_t>& fruBytes,
             {
                 continue;
             }
-            for (auto& field : *fruAreaFieldsNames)
+            size_t fieldIndex = 0;
+            DecodeState state = DecodeState::ok;
+            while (state == DecodeState::ok)
             {
                 auto res = decodeFRUData(fruBytesIter, fruBytes.end());
-                std::string name = area + "_" + field;
+                std::string name;
+                if (fieldIndex < fruAreaFieldsNames->size())
+                {
+                    name = area + "_" + fruAreaFieldsNames->at(fieldIndex);
+                }
+                else
+                {
+                    name = area + "_" + FRU_CUSTOM_FIELD_NAME +
+                           std::to_string(fieldIndex -
+                                          fruAreaFieldsNames->size() + 1);
+                }
 
-                if (res.first == DecodeState::end)
+                state = res.first;
+                if (state == DecodeState::end)
                 {
                     break;
                 }
-                else if (res.first == DecodeState::err)
+                else if (state == DecodeState::err)
                 {
                     std::cerr << "Error while parsing " << name << "\n";
                     return false;
@@ -1060,6 +1075,7 @@ bool formatFRU(const std::vector<uint8_t>& fruBytes,
                             value.end());
 
                 result[name] = std::move(value);
+                ++fieldIndex;
             }
         }
     }
@@ -1600,6 +1616,7 @@ bool updateFRUProperty(
     uint8_t fruAreaOffsetFieldValue = 0;
     size_t offset = 0;
     std::string areaName = propertyName.substr(0, propertyName.find("_"));
+    std::string propertyNamePrefix = areaName + "_";
     auto it = std::find(FRU_AREA_NAMES.begin(), FRU_AREA_NAMES.end(), areaName);
     if (it == FRU_AREA_NAMES.end())
     {
@@ -1645,13 +1662,35 @@ bool updateFRUProperty(
     size_t skipToFRUUpdateField = 0;
     ssize_t fieldLength;
 
+    bool found = false;
     for (auto& field : *fruAreaFieldsNames)
     {
         skipToFRUUpdateField++;
-        if (propertyName.find(field) != std::string::npos)
+        if (propertyName == propertyNamePrefix + field)
         {
+            found = true;
             break;
         }
+    }
+    if (!found)
+    {
+        std::size_t pos = propertyName.find(FRU_CUSTOM_FIELD_NAME);
+        if (pos == std::string::npos)
+        {
+            std::cerr << "PropertyName doesn't exist in FRU Area Vectors: "
+                      << propertyName << "\n";
+            return false;
+        }
+        std::string fieldNumStr =
+            propertyName.substr(pos + FRU_CUSTOM_FIELD_NAME.length());
+        size_t fieldNum = std::stoi(fieldNumStr);
+        if (fieldNum == 0)
+        {
+            std::cerr << "PropertyName not recognized: " << propertyName
+                      << "\n";
+            return false;
+        }
+        skipToFRUUpdateField += fieldNum;
     }
 
     for (size_t i = 1; i < skipToFRUUpdateField; i++)
