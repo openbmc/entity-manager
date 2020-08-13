@@ -89,7 +89,7 @@ if (NOT YOCTO)
                          build libsdbusplus.a INSTALL_COMMAND ""
                          LOG_DOWNLOAD ON)
 
-    include_directories (SYSTEM ${CMAKE_BINARY_DIR}/sdbusplus-src)
+    include_directories (SYSTEM ${CMAKE_BINARY_DIR}/sdbusplus-src/include)
     include_directories (SYSTEM ${CMAKE_BINARY_DIR}/nlohmann/include)
     include_directories (SYSTEM ${CMAKE_BINARY_DIR}/nlohmann/include/nlohmann)
     include_directories (SYSTEM ${CMAKE_BINARY_DIR}/valijson/include)
