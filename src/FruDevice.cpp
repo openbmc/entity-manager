@@ -883,7 +883,7 @@ static std::pair<DecodeState, std::string>
     /* we should have at least len bytes of data available overall */
     if (iter + len > end)
     {
-        std::cerr << "FRU data field extends past end of FRU data\n";
+        std::cerr << "FRU data field extends past end of FRU area data\n";
         return make_pair(DecodeState::err, value);
     }
 
@@ -966,10 +966,18 @@ bool formatFru(const std::vector<char>& fruBytes,
 
         if (offset > 1)
         {
-            // +2 to skip format and length
             std::vector<char>::const_iterator fruBytesIter =
-                fruBytes.begin() + offset + 2;
-
+                fruBytes.begin() + offset;
+            // check for format version 1
+            if ((*fruBytesIter != 0x01) && (area != "MULTIRECORD"))
+            {
+                std::cerr << "Unexpected version " << *fruBytesIter << "\n";
+                return false;
+            }
+            ++fruBytesIter;
+            std::vector<char>::const_iterator fruBytesIterEndArea =
+                fruBytes.begin() + offset + *fruBytesIter * fruBlockSize - 1;
+            ++fruBytesIter;
             if (fruBytesIter >= fruBytes.end())
             {
                 return false;
@@ -1026,10 +1034,12 @@ bool formatFru(const std::vector<char>& fruBytes,
                 continue;
             }
             size_t fieldIndex = 0;
-            DecodeState state = DecodeState::ok;
-            while (state == DecodeState::ok)
+            DecodeState state;
+            do
             {
-                auto res = decodeFruData(fruBytesIter, fruBytes.end());
+                auto res = decodeFruData(fruBytesIter, fruBytesIterEndArea);
+                state = res.first;
+                std::string value = res.second;
                 std::string name;
                 if (fieldIndex < fieldData->size())
                 {
@@ -1041,28 +1051,29 @@ bool formatFru(const std::vector<char>& fruBytes,
                            std::to_string(fieldIndex - fieldData->size() + 1);
                 }
 
-                state = res.first;
-                if (state == DecodeState::end)
+                if (state == DecodeState::ok)
                 {
-                    break;
+                    // Strip non null characters from the end
+                    value.erase(std::find_if(value.rbegin(), value.rend(),
+                                             [](char ch) { return ch != 0; })
+                                    .base(),
+                                value.end());
+
+                    result[name] = std::move(value);
+                    ++fieldIndex;
                 }
                 else if (state == DecodeState::err)
                 {
                     std::cerr << "Error while parsing " << name << "\n";
-                    return false;
+                    // Cancel decoding if failed to parse any of mandatory
+                    // fields
+                    if (fieldIndex < fieldData->size())
+                    {
+                        std::cerr << "Failed to parse mandatory field \n";
+                        return false;
+                    }
                 }
-
-                std::string value = res.second;
-
-                // Strip non null characters from the end
-                value.erase(std::find_if(value.rbegin(), value.rend(),
-                                         [](char ch) { return ch != 0; })
-                                .base(),
-                            value.end());
-
-                result[name] = std::move(value);
-                ++fieldIndex;
-            }
+            } while (state == DecodeState::ok);
         }
     }
 
