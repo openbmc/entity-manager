@@ -58,6 +58,7 @@ static size_t UNKNOWN_BUS_OBJECT_COUNT = 0;
 constexpr size_t MAX_FRU_SIZE = 512;
 constexpr size_t MAX_EEPROM_PAGE_INDEX = 255;
 constexpr size_t busTimeoutSeconds = 5;
+constexpr size_t fruBlockSize = 8; // in multiple of 8 bytes
 
 constexpr const char* blacklistPath = PACKAGE_DIR "blacklist.json";
 
@@ -141,11 +142,11 @@ std::vector<char> readFruContents(int flag, int file, uint16_t address,
     device.insert(device.end(), blockData.begin(), blockData.begin() + 8);
 
     bool hasMultiRecords = false;
-    int fruLength = 0;
+    size_t fruLength = 0;
     for (size_t jj = 1; jj <= FRU_AREAS.size(); jj++)
     {
         // Offset value can be 255.
-        int areaOffset = static_cast<uint8_t>(device[jj]);
+        size_t areaOffset = static_cast<uint8_t>(device[jj]);
         if (areaOffset == 0)
         {
             continue;
@@ -159,7 +160,7 @@ std::vector<char> readFruContents(int flag, int file, uint16_t address,
             break;
         }
 
-        areaOffset *= 8;
+        areaOffset *= fruBlockSize;
 
         if (readBlock(flag, file, address, static_cast<uint16_t>(areaOffset),
                       0x2, blockData.data()) < 0)
@@ -169,7 +170,7 @@ std::vector<char> readFruContents(int flag, int file, uint16_t address,
         }
 
         // Ignore data type (blockData is already unsigned).
-        int length = blockData[1] * 8;
+        size_t length = blockData[1] * fruBlockSize;
         areaOffset += length;
         fruLength = (areaOffset > fruLength) ? areaOffset : fruLength;
     }
@@ -178,12 +179,12 @@ std::vector<char> readFruContents(int flag, int file, uint16_t address,
     {
         // device[area count] is the index to the last area because the 0th
         // entry is not an offset in the common header.
-        int areaOffset = static_cast<uint8_t>(device[FRU_AREAS.size()]);
-        areaOffset *= 8;
+        size_t areaOffset = static_cast<uint8_t>(device[FRU_AREAS.size()]);
+        areaOffset *= fruBlockSize;
 
         // the multi-area record header is 5 bytes long.
-        constexpr int multiRecordHeaderSize = 5;
-        constexpr int multiRecordEndOfList = 0x80;
+        constexpr size_t multiRecordHeaderSize = 5;
+        constexpr size_t multiRecordEndOfList = 0x80;
 
         // Sanity hard-limit to 64KB.
         while (areaOffset < std::numeric_limits<uint16_t>::max())
@@ -200,7 +201,7 @@ std::vector<char> readFruContents(int flag, int file, uint16_t address,
 
             // Ok, let's check the record length, which is in bytes (unsigned,
             // up to 255, so blockData should hold uint8_t not char)
-            int recordLength = blockData[2];
+            size_t recordLength = blockData[2];
             areaOffset += (recordLength + multiRecordHeaderSize);
             fruLength = (areaOffset > fruLength) ? areaOffset : fruLength;
 
@@ -213,13 +214,14 @@ std::vector<char> readFruContents(int flag, int file, uint16_t address,
     }
 
     // You already copied these first 8 bytes (the ipmi fru header size)
-    fruLength -= 8;
+    fruLength -= fruBlockSize;
 
-    int readOffset = 8;
+    int readOffset = fruBlockSize;
 
     while (fruLength > 0)
     {
-        int requestLength = std::min(I2C_SMBUS_BLOCK_MAX, fruLength);
+        int requestLength =
+            std::min(I2C_SMBUS_BLOCK_MAX, static_cast<int>(fruLength));
 
         if (readBlock(flag, file, address, static_cast<uint16_t>(readOffset),
                       static_cast<uint8_t>(requestLength),
@@ -896,8 +898,8 @@ static std::pair<DecodeState, std::string>
             for (i = 0; i < len; i++, iter++)
             {
                 uint8_t val = static_cast<uint8_t>(*iter);
-                value.push_back(bcdPlusToChar(val >> 4));
-                value.push_back(bcdPlusToChar(val & 0xf));
+                value.push_back(bcdPlusToChar(static_cast<uint8_t>(val >> 4)));
+                value.push_back(bcdPlusToChar(static_cast<uint8_t>(val & 0xf)));
             }
             break;
 
@@ -929,7 +931,7 @@ static std::pair<DecodeState, std::string>
 bool formatFru(const std::vector<char>& fruBytes,
                boost::container::flat_map<std::string, std::string>& result)
 {
-    if (fruBytes.size() <= 8)
+    if (fruBytes.size() <= fruBlockSize)
     {
         return false;
     }
@@ -946,7 +948,7 @@ bool formatFru(const std::vector<char>& fruBytes,
         {
             return false;
         }
-        size_t offset = (*fruAreaOffsetField) * 8;
+        size_t offset = (*fruAreaOffsetField) * fruBlockSize;
 
         if (offset > 1)
         {
@@ -1472,28 +1474,26 @@ static void updateFruAreaLenAndChecksum(std::vector<uint8_t>& fruData,
                                         size_t fruAreaStartOffset,
                                         size_t fruAreaNoMoreFieldOffset)
 {
-    constexpr size_t fruAreaMultipleBytes = 8;
     size_t traverseFruAreaIndex = fruAreaNoMoreFieldOffset - fruAreaStartOffset;
 
     // fill zeros for any remaining unused space
     std::fill(fruData.begin() + fruAreaNoMoreFieldOffset, fruData.end(), 0);
 
-    size_t mod = traverseFruAreaIndex % fruAreaMultipleBytes;
+    size_t mod = traverseFruAreaIndex % fruBlockSize;
     size_t checksumLoc;
     if (!mod)
     {
-        traverseFruAreaIndex += (fruAreaMultipleBytes);
-        checksumLoc = fruAreaNoMoreFieldOffset + (fruAreaMultipleBytes - 1);
+        traverseFruAreaIndex += (fruBlockSize);
+        checksumLoc = fruAreaNoMoreFieldOffset + (fruBlockSize - 1);
     }
     else
     {
-        traverseFruAreaIndex += (fruAreaMultipleBytes - mod);
-        checksumLoc =
-            fruAreaNoMoreFieldOffset + (fruAreaMultipleBytes - mod - 1);
+        traverseFruAreaIndex += (fruBlockSize - mod);
+        checksumLoc = fruAreaNoMoreFieldOffset + (fruBlockSize - mod - 1);
     }
 
-    size_t newFruAreaLen = (traverseFruAreaIndex / fruAreaMultipleBytes) +
-                           ((traverseFruAreaIndex % fruAreaMultipleBytes) != 0);
+    size_t newFruAreaLen = (traverseFruAreaIndex / fruBlockSize) +
+                           ((traverseFruAreaIndex % fruBlockSize) != 0);
     size_t fruAreaLengthLoc = fruAreaStartOffset + 1;
     fruData[fruAreaLengthLoc] = static_cast<uint8_t>(newFruAreaLen);
 
@@ -1561,7 +1561,6 @@ bool updateFruProperty(
 
     const std::vector<const char*>* fieldData;
 
-    constexpr size_t commonHeaderMultipleBytes = 8; // in multiple of 8 bytes
     uint8_t fruAreaOffsetFieldValue = 1;
     size_t offset = 0;
 
@@ -1600,8 +1599,7 @@ bool updateFruProperty(
         return false;
     }
 
-    size_t fruAreaStartOffset =
-        fruAreaOffsetFieldValue * commonHeaderMultipleBytes;
+    size_t fruAreaStartOffset = fruAreaOffsetFieldValue * fruBlockSize;
     size_t fruDataIter = fruAreaStartOffset + offset;
     size_t fruUpdateFieldLoc = 0;
     size_t typeLength;
@@ -1629,25 +1627,25 @@ bool updateFruProperty(
     postFruUpdateFieldLoc++;
     skipToFruUpdateField++;
     fruDataIter = postFruUpdateFieldLoc;
-    size_t endLengthLoc = 0;
+    size_t endOfFieldsLoc = 0;
     size_t fruFieldLoc = 0;
-    constexpr uint8_t endLength = 0xC1;
+    constexpr uint8_t endOfFields = 0xC1;
     for (size_t i = fruDataIter; i < fruData.size(); i++)
     {
         typeLength = getTypeLength(fruData[fruDataIter]);
         fruFieldLoc = fruDataIter + typeLength;
         fruDataIter = ++fruFieldLoc;
-        if (fruData[fruDataIter] == endLength)
+        if (fruData[fruDataIter] == endOfFields)
         {
-            endLengthLoc = fruDataIter;
+            endOfFieldsLoc = fruDataIter;
             break;
         }
     }
-    endLengthLoc++;
+    endOfFieldsLoc++;
 
     std::vector<uint8_t> postUpdatedFruData;
     std::copy_n(fruData.begin() + postFruUpdateFieldLoc,
-                endLengthLoc - postFruUpdateFieldLoc,
+                endOfFieldsLoc - postFruUpdateFieldLoc,
                 std::back_inserter(postUpdatedFruData));
 
     // write new requested property field length and data
