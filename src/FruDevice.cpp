@@ -896,7 +896,7 @@ static std::pair<DecodeState, std::string>
     /* we should have at least len bytes of data available overall */
     if (iter + len > end)
     {
-        std::cerr << "FRU data field extends past end of FRU data\n";
+        std::cerr << "FRU data field extends past end of FRU area data\n";
         return make_pair(DecodeState::err, value);
     }
 
@@ -960,50 +960,57 @@ bool formatFRU(const std::vector<uint8_t>& fruBytes,
 {
     if (fruBytes.size() <= fruBlockSize)
     {
+        std::cerr << "Error: trying to parse empty FRU \n";
         return false;
     }
-    std::vector<uint8_t>::const_iterator fruAreaOffsetField = fruBytes.begin();
     result["Common_Format_Version"] =
-        std::to_string(static_cast<int>(*fruAreaOffsetField));
+        std::to_string(static_cast<int>(*fruBytes.begin()));
 
     const std::vector<const char*>* fruAreaFieldsNames;
 
-    for (const std::string& area : FRU_AREA_NAMES)
+    for (int area = FRU_AREA_CHASSIS; area <= FRU_AREA_PRODUCT; area++)
     {
-        ++fruAreaOffsetField;
-        if (fruAreaOffsetField >= fruBytes.end())
+
+        size_t offset = (*(fruBytes.begin() + getHeaderAreaFieldOffset(area)));
+        if (offset == 0)
         {
+            continue;
+        }
+        offset *= fruBlockSize;
+        std::vector<uint8_t>::const_iterator fruBytesIter =
+            fruBytes.begin() + offset;
+        if (fruBytesIter + fruBlockSize >= fruBytes.end())
+        {
+            std::cerr << "Not enough data to parse \n";
             return false;
         }
-        size_t offset = (*fruAreaOffsetField) * fruBlockSize;
-
-        if (offset > 1)
+        // check for format version 1
+        if (*fruBytesIter != 0x01)
         {
-            // +2 to skip format and length
-            std::vector<uint8_t>::const_iterator fruBytesIter =
-                fruBytes.begin() + offset + 2;
+            std::cerr << "Unexpected version " << *fruBytesIter << "\n";
+            return false;
+        }
+        ++fruBytesIter;
+        uint8_t fruAreaSize = *fruBytesIter * fruBlockSize;
+        std::vector<uint8_t>::const_iterator fruBytesIterEndArea =
+            fruBytes.begin() + offset + fruAreaSize - 1;
+        ++fruBytesIter;
 
-            if (fruBytesIter >= fruBytes.end())
-            {
-                return false;
-            }
-
-            if (area == "CHASSIS")
+        switch (area)
+        {
+            case FRU_AREA_CHASSIS:
             {
                 result["CHASSIS_TYPE"] =
                     std::to_string(static_cast<int>(*fruBytesIter));
                 fruBytesIter += 1;
                 fruAreaFieldsNames = &CHASSIS_FRU_AREAS;
+                break;
             }
-            else if (area == "BOARD")
+            case FRU_AREA_BOARD:
             {
                 result["BOARD_LANGUAGE_CODE"] =
                     std::to_string(static_cast<int>(*fruBytesIter));
                 fruBytesIter += 1;
-                if (fruBytesIter >= fruBytes.end())
-                {
-                    return false;
-                }
 
                 unsigned int minutes = *fruBytesIter |
                                        *(fruBytesIter + 1) << 8 |
@@ -1026,58 +1033,67 @@ bool formatFRU(const std::vector<uint8_t>& fruBytes,
                 result["BOARD_MANUFACTURE_DATE"] = std::string(timeString);
                 fruBytesIter += 3;
                 fruAreaFieldsNames = &BOARD_FRU_AREAS;
+                break;
             }
-            else if (area == "PRODUCT")
+            case FRU_AREA_PRODUCT:
             {
                 result["PRODUCT_LANGUAGE_CODE"] =
                     std::to_string(static_cast<int>(*fruBytesIter));
                 fruBytesIter += 1;
                 fruAreaFieldsNames = &PRODUCT_FRU_AREAS;
+                break;
             }
-            else
+            default:
             {
-                continue;
+                std::cerr << "Internal error: unexpected FRU area index: "
+                          << area << " \n";
+                return false;
+            }
             }
             size_t fieldIndex = 0;
-            DecodeState state = DecodeState::ok;
-            while (state == DecodeState::ok)
+            DecodeState state;
+            do
             {
-                auto res = decodeFRUData(fruBytesIter, fruBytes.end());
+                auto res = decodeFRUData(fruBytesIter, fruBytesIterEndArea);
+                state = res.first;
+                std::string value = res.second;
                 std::string name;
                 if (fieldIndex < fruAreaFieldsNames->size())
                 {
-                    name = area + "_" + fruAreaFieldsNames->at(fieldIndex);
+                    name = std::string(FRU_AREA_NAMES[area]) + "_" +
+                           fruAreaFieldsNames->at(fieldIndex);
                 }
                 else
                 {
-                    name = area + "_" + FRU_CUSTOM_FIELD_NAME +
+                    name = std::string(FRU_AREA_NAMES[area]) + "_" +
+                           FRU_CUSTOM_FIELD_NAME +
                            std::to_string(fieldIndex -
                                           fruAreaFieldsNames->size() + 1);
                 }
 
-                state = res.first;
-                if (state == DecodeState::end)
+                if (state == DecodeState::ok)
                 {
-                    break;
+                    // Strip non null characters from the end
+                    value.erase(std::find_if(value.rbegin(), value.rend(),
+                                             [](char ch) { return ch != 0; })
+                                    .base(),
+                                value.end());
+
+                    result[name] = std::move(value);
+                    ++fieldIndex;
                 }
                 else if (state == DecodeState::err)
                 {
                     std::cerr << "Error while parsing " << name << "\n";
-                    return false;
+                    // Cancel decoding if failed to parse any of mandatory
+                    // fields
+                    if (fieldIndex < fruAreaFieldsNames->size())
+                    {
+                        std::cerr << "Failed to parse mandatory field \n";
+                        return false;
+                    }
                 }
-
-                std::string value = res.second;
-
-                // Strip non null characters from the end
-                value.erase(std::find_if(value.rbegin(), value.rend(),
-                                         [](char ch) { return ch != 0; })
-                                .base(),
-                            value.end());
-
-                result[name] = std::move(value);
-                ++fieldIndex;
-            }
-        }
+            } while (state == DecodeState::ok);
     }
 
     return true;
