@@ -332,6 +332,7 @@ bool probeDbus(const std::string& interface,
                     {
                         std::cerr << "unexpected dbus probe type "
                                   << match.second.type_name() << "\n";
+                        deviceMatches = false;
                     }
                 }
             }
