@@ -69,7 +69,7 @@ const static constexpr char* I2C_DEV_LOCATION = "/dev";
 static constexpr std::array<const char*, 5> FRU_AREAS = {
     "INTERNAL", "CHASSIS", "BOARD", "PRODUCT", "MULTIRECORD"};
 const static std::regex NON_ASCII_REGEX("[^\x01-\x7f]");
-using DeviceMap = boost::container::flat_map<int, std::vector<char>>;
+using DeviceMap = boost::container::flat_map<int, std::vector<uint8_t>>;
 using BusMap = boost::container::flat_map<int, std::shared_ptr<DeviceMap>>;
 
 static std::set<size_t> busBlacklist;
@@ -114,9 +114,9 @@ using ReadBlockFunc =
 
 // Read and validate FRU contents, given the flag required for raw i2c, the open
 // file handle, a read method, and a helper string for failures.
-std::vector<char> readFruContents(int flag, int file, uint16_t address,
-                                  ReadBlockFunc readBlock,
-                                  const std::string& errorHelp)
+std::vector<uint8_t> readFruContents(int flag, int file, uint16_t address,
+                                     ReadBlockFunc readBlock,
+                                     const std::string& errorHelp)
 {
     std::array<uint8_t, I2C_SMBUS_BLOCK_MAX> blockData;
 
@@ -137,7 +137,7 @@ std::vector<char> readFruContents(int flag, int file, uint16_t address,
         return {};
     }
 
-    std::vector<char> device;
+    std::vector<uint8_t> device;
     device.insert(device.end(), blockData.begin(), blockData.begin() + 8);
 
     bool hasMultiRecords = false;
@@ -145,7 +145,7 @@ std::vector<char> readFruContents(int flag, int file, uint16_t address,
     for (size_t jj = 1; jj <= FRU_AREAS.size(); jj++)
     {
         // Offset value can be 255.
-        int areaOffset = static_cast<uint8_t>(device[jj]);
+        int areaOffset = device[jj];
         if (areaOffset == 0)
         {
             continue;
@@ -178,7 +178,7 @@ std::vector<char> readFruContents(int flag, int file, uint16_t address,
     {
         // device[area count] is the index to the last area because the 0th
         // entry is not an offset in the common header.
-        int areaOffset = static_cast<uint8_t>(device[FRU_AREAS.size()]);
+        int areaOffset = device[FRU_AREAS.size()];
         areaOffset *= 8;
 
         // the multi-area record header is 5 bytes long.
@@ -454,7 +454,7 @@ bool validateHeader(const std::array<uint8_t, I2C_SMBUS_BLOCK_MAX>& blockData)
 
 // TODO: This code is very similar to the non-eeprom version and can be merged
 // with some tweaks.
-static std::vector<char> processEeprom(int bus, int address)
+static std::vector<uint8_t> processEeprom(int bus, int address)
 {
     auto path = getEepromPath(bus, address);
 
@@ -467,7 +467,7 @@ static std::vector<char> processEeprom(int bus, int address)
 
     std::string errorMessage = "eeprom at " + std::to_string(bus) +
                                " address " + std::to_string(address);
-    std::vector<char> device = readFruContents(
+    std::vector<uint8_t> device = readFruContents(
         0, file, static_cast<uint16_t>(address), readFromEeprom, errorMessage);
 
     close(file);
@@ -525,7 +525,7 @@ std::set<int> findI2CEeproms(int i2cBus, std::shared_ptr<DeviceMap> devices)
         // contents, but we found it.
         foundList.insert(address);
 
-        std::vector<char> device = processEeprom(i2cBus, address);
+        std::vector<uint8_t> device = processEeprom(i2cBus, address);
         if (!device.empty())
         {
             devices->emplace(address, device);
@@ -625,7 +625,7 @@ int getBusFrus(int file, int first, int last, int bus,
 
             std::string errorMessage =
                 "bus " + std::to_string(bus) + " address " + std::to_string(ii);
-            std::vector<char> device =
+            std::vector<uint8_t> device =
                 readFruContents(flag, file, static_cast<uint16_t>(ii),
                                 readBlockData, errorMessage);
             if (device.empty())
@@ -850,8 +850,8 @@ enum FRUDataEncoding
  * iterator is no longer usable.
  */
 static std::pair<DecodeState, std::string>
-    decodeFruData(std::vector<char>::const_iterator& iter,
-                  const std::vector<char>::const_iterator& end)
+    decodeFruData(std::vector<uint8_t>::const_iterator& iter,
+                  const std::vector<uint8_t>::const_iterator& end)
 {
     std::string value;
     unsigned int i;
@@ -895,7 +895,7 @@ static std::pair<DecodeState, std::string>
             value = std::string();
             for (i = 0; i < len; i++, iter++)
             {
-                uint8_t val = static_cast<uint8_t>(*iter);
+                uint8_t val = *iter;
                 value.push_back(bcdPlusToChar(val >> 4));
                 value.push_back(bcdPlusToChar(val & 0xf));
             }
@@ -908,7 +908,7 @@ static std::pair<DecodeState, std::string>
             value = std::string();
             for (i = 0; i < len; i++, iter++)
             {
-                /* we need to cast to unsigned before the promotion to
+                /* we need to ensure it is unsigned before the promotion to
                  * int, so we don't sign-extend. */
                 accum |= static_cast<unsigned char>(*iter) << accumBitLen;
                 accumBitLen += 8;
@@ -926,14 +926,14 @@ static std::pair<DecodeState, std::string>
     return make_pair(DecodeState::ok, value);
 }
 
-bool formatFru(const std::vector<char>& fruBytes,
+bool formatFru(const std::vector<uint8_t>& fruBytes,
                boost::container::flat_map<std::string, std::string>& result)
 {
     if (fruBytes.size() <= 8)
     {
         return false;
     }
-    std::vector<char>::const_iterator fruAreaOffsetField = fruBytes.begin();
+    std::vector<uint8_t>::const_iterator fruAreaOffsetField = fruBytes.begin();
     result["Common_Format_Version"] =
         std::to_string(static_cast<int>(*fruAreaOffsetField));
 
@@ -951,7 +951,7 @@ bool formatFru(const std::vector<char>& fruBytes,
         if (offset > 1)
         {
             // +2 to skip format and length
-            std::vector<char>::const_iterator fruBytesIter =
+            std::vector<uint8_t>::const_iterator fruBytesIter =
                 fruBytes.begin() + offset + 2;
 
             if (fruBytesIter >= fruBytes.end())
@@ -1052,14 +1052,13 @@ std::vector<uint8_t>& getFruInfo(const uint8_t& bus, const uint8_t& address)
     {
         throw std::invalid_argument("Invalid Address.");
     }
-    std::vector<uint8_t>& ret =
-        reinterpret_cast<std::vector<uint8_t>&>(device->second);
+    std::vector<uint8_t>& ret = device->second;
 
     return ret;
 }
 
 void AddFruObjectToDbus(
-    std::vector<char>& device,
+    std::vector<uint8_t>& device,
     boost::container::flat_map<
         std::pair<size_t, size_t>,
         std::shared_ptr<sdbusplus::asio::dbus_interface>>& dbusInterfaceMap,
@@ -1204,7 +1203,7 @@ void AddFruObjectToDbus(
     iface->initialize();
 }
 
-static bool readBaseboardFru(std::vector<char>& baseboardFru)
+static bool readBaseboardFru(std::vector<uint8_t>& baseboardFru)
 {
     // try to read baseboard fru from file
     std::ifstream baseboardFruFile(BASEBOARD_FRU_LOCATION, std::ios::binary);
@@ -1214,7 +1213,8 @@ static bool readBaseboardFru(std::vector<char>& baseboardFru)
         size_t fileSize = static_cast<size_t>(baseboardFruFile.tellg());
         baseboardFru.resize(fileSize);
         baseboardFruFile.seekg(0, std::ios_base::beg);
-        baseboardFruFile.read(baseboardFru.data(), fileSize);
+        baseboardFruFile.read(reinterpret_cast<char*>(baseboardFru.data()),
+                              fileSize);
     }
     else
     {
@@ -1232,7 +1232,7 @@ bool writeFru(uint8_t bus, uint8_t address, const std::vector<uint8_t>& fru)
         return false;
     }
     // verify legal fru by running it through fru parsing logic
-    if (!formatFru(reinterpret_cast<const std::vector<char>&>(fru), tmp))
+    if (!formatFru(fru, tmp))
     {
         std::cerr << "Invalid fru format during writeFru\n";
         return false;
@@ -1436,10 +1436,10 @@ void rescanBusses(
                 UNKNOWN_BUS_OBJECT_COUNT = 0;
 
                 // todo, get this from a more sensable place
-                std::vector<char> baseboardFru;
+                std::vector<uint8_t> baseboardFru;
                 if (readBaseboardFru(baseboardFru))
                 {
-                    boost::container::flat_map<int, std::vector<char>>
+                    boost::container::flat_map<int, std::vector<uint8_t>>
                         baseboardDev;
                     baseboardDev.emplace(0, baseboardFru);
                     busmap[0] = std::make_shared<DeviceMap>(baseboardDev);
