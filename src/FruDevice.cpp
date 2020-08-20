@@ -70,15 +70,21 @@ const static constexpr char* BASEBOARD_FRU_LOCATION =
 
 const static constexpr char* I2C_DEV_LOCATION = "/dev";
 
-enum
+enum class fruAreas
 {
-    fruAreaInternal = 1,
+    fruAreaInternal = 0,
     fruAreaChassis,
     fruAreaBoard,
     fruAreaProduct,
     fruAreaMultirecord
 };
-static const std::array<std::string, 5> FRU_AREAS = {
+inline fruAreas operator++(fruAreas& x)
+{
+    return x = static_cast<fruAreas>(std::underlying_type<fruAreas>::type(x) +
+                                     1);
+}
+
+static const std::vector<std::string> FRU_AREA_NAMES = {
     "INTERNAL", "CHASSIS", "BOARD", "PRODUCT", "MULTIRECORD"};
 const static std::regex NON_ASCII_REGEX("[^\x01-\x7f]");
 using DeviceMap = boost::container::flat_map<int, std::vector<uint8_t>>;
@@ -112,6 +118,14 @@ static const std::vector<std::string> PRODUCT_FRU_AREAS = {
     "MANUFACTURER", "PRODUCT_NAME",   "PART_NUMBER", "VERSION", "SERIAL_NUMBER",
     "ASSET_TAG",    "FRU_VERSION_ID", "INFO_AM1",    "INFO_AM2"};
 
+static inline unsigned int getHeaderAreaFieldOffset(fruAreas area)
+{
+    return static_cast<unsigned int>(area) + 1;
+}
+static inline const std::string& getFruAreaName(fruAreas area)
+{
+    return FRU_AREA_NAMES[static_cast<unsigned int>(area)];
+}
 bool validateHeader(const std::array<uint8_t, I2C_SMBUS_BLOCK_MAX>& blockData);
 bool updateFRUProperty(
     const std::string& assetTag, uint32_t bus, uint32_t address,
@@ -154,18 +168,19 @@ std::vector<uint8_t> readFRUContents(int flag, int file, uint16_t address,
 
     bool hasMultiRecords = false;
     ssize_t fruLength = fruBlockSize; // At least FRU header is present
-    for (size_t jj = 1; jj <= FRU_AREAS.size(); jj++)
+    for (fruAreas area = fruAreas::fruAreaInternal;
+         area <= fruAreas::fruAreaMultirecord; ++area)
     {
         // Offset value can be 255.
-        unsigned int areaOffset = device[jj];
+        unsigned int areaOffset = device[getHeaderAreaFieldOffset(area)];
         if (areaOffset == 0)
         {
             continue;
         }
 
-        // MultiRecords are different.  jj is not tracking section, it's walking
-        // the common header.
-        if (std::string(FRU_AREAS[jj - 1]) == std::string("MULTIRECORD"))
+        // MultiRecords are different. area is not tracking section, it's
+        // walking the common header.
+        if (area == fruAreas::fruAreaMultirecord)
         {
             hasMultiRecords = true;
             break;
@@ -190,7 +205,8 @@ std::vector<uint8_t> readFRUContents(int flag, int file, uint16_t address,
     {
         // device[area count] is the index to the last area because the 0th
         // entry is not an offset in the common header.
-        unsigned int areaOffset = device[FRU_AREAS.size()];
+        unsigned int areaOffset =
+            device[getHeaderAreaFieldOffset(fruAreas::fruAreaMultirecord)];
         areaOffset *= fruBlockSize;
 
         // the multi-area record header is 5 bytes long.
@@ -961,7 +977,7 @@ bool formatFRU(const std::vector<uint8_t>& fruBytes,
 
     const std::vector<std::string>* fruAreaFieldNames;
 
-    for (const std::string& area : FRU_AREAS)
+    for (const std::string& area : FRU_AREA_NAMES)
     {
         ++fruAreaOffsetField;
         if (fruAreaOffsetField >= fruBytes.end())
@@ -1594,41 +1610,38 @@ bool updateFRUProperty(
 
     uint8_t fruAreaOffsetFieldValue = 0;
     size_t offset = 0;
-
-    if (propertyName.find("CHASSIS") == 0)
+    std::string areaName = propertyName.substr(0, propertyName.find("_"));
+    auto it = std::find(FRU_AREA_NAMES.begin(), FRU_AREA_NAMES.end(), areaName);
+    if (it == FRU_AREA_NAMES.end())
     {
-        constexpr size_t fruAreaOffsetField = 2;
-        fruAreaOffsetFieldValue = fruData[fruAreaOffsetField];
-
-        offset = 3; // chassis part number offset. Skip fixed first 3 bytes
-
-        fruAreaFieldNames = &CHASSIS_FRU_AREAS;
-    }
-    else if (propertyName.find("BOARD") == 0)
-    {
-        constexpr size_t fruAreaOffsetField = 3;
-        fruAreaOffsetFieldValue = fruData[fruAreaOffsetField];
-
-        offset = 6; // board manufacturer offset. Skip fixed first 6 bytes
-
-        fruAreaFieldNames = &BOARD_FRU_AREAS;
-    }
-    else if (propertyName.find("PRODUCT") == 0)
-    {
-        constexpr size_t fruAreaOffsetField = 4;
-        fruAreaOffsetFieldValue = fruData[fruAreaOffsetField];
-
-        offset = 3;
-        // Manufacturer name offset. Skip fixed first 3 product fru bytes i.e.
-        // version, area length and language code
-
-        fruAreaFieldNames = &PRODUCT_FRU_AREAS;
-    }
-    else
-    {
-        std::cerr << "Don't know how to handle property " << propertyName
+        std::cerr << "Can't parse area name for property " << propertyName
                   << " \n";
         return false;
+    }
+    fruAreas fruAreaToUpdate =
+        static_cast<fruAreas>(it - FRU_AREA_NAMES.begin());
+    fruAreaOffsetFieldValue =
+        fruData[getHeaderAreaFieldOffset(fruAreaToUpdate)];
+    switch (fruAreaToUpdate)
+    {
+        case fruAreas::fruAreaChassis:
+            offset = 3; // chassis part number offset. Skip fixed first 3 bytes
+            fruAreaFieldNames = &CHASSIS_FRU_AREAS;
+            break;
+        case fruAreas::fruAreaBoard:
+            offset = 6; // board manufacturer offset. Skip fixed first 6 bytes
+            fruAreaFieldNames = &BOARD_FRU_AREAS;
+            break;
+        case fruAreas::fruAreaProduct:
+            // Manufacturer name offset. Skip fixed first 3 product fru bytes
+            // i.e. version, area length and language code
+            offset = 3;
+            fruAreaFieldNames = &PRODUCT_FRU_AREAS;
+            break;
+        default:
+            std::cerr << "Don't know how to handle property " << propertyName
+                      << " \n";
+            return false;
     }
     if (fruAreaOffsetFieldValue == 0)
     {
@@ -1692,11 +1705,11 @@ bool updateFRUProperty(
 
     // Push post update fru areas if any
     unsigned int nextFRUAreaLoc = 0;
-    for (unsigned int nextFRUAreaOffsetField = fruAreaInternal;
-         nextFRUAreaOffsetField <= fruAreaMultirecord; nextFRUAreaOffsetField++)
+    for (fruAreas nextFRUArea = fruAreas::fruAreaInternal;
+         nextFRUArea <= fruAreas::fruAreaMultirecord; ++nextFRUArea)
     {
         unsigned int fruAreaLoc =
-            fruData[nextFRUAreaOffsetField] * fruBlockSize;
+            fruData[getHeaderAreaFieldOffset(nextFRUArea)] * fruBlockSize;
         if ((fruAreaLoc > endOfFieldsLoc) &&
             ((nextFRUAreaLoc == 0) || (fruAreaLoc < nextFRUAreaLoc)))
         {
@@ -1764,9 +1777,10 @@ bool updateFRUProperty(
         std::copy(restFRUAreasData.begin(), restFRUAreasData.end(),
                   fruData.begin() + nextFRUAreaNewLoc);
         // Update Common Header
-        for (size_t fruAreaOffsetField = FRU_AREA_INTERNAL;
-             fruAreaOffsetField <= FRU_AREA_MULTIRECORD; fruAreaOffsetField++)
+        for (int fruArea = fruAreaInternal; fruArea <= fruAreaMultirecord;
+             fruArea++)
         {
+            unsigned int fruAreaOffsetField = getHeaderAreaFieldOffset(fruArea);
             size_t curFRUAreaOffset = fruData[fruAreaOffsetField];
             if (curFRUAreaOffset > fruAreaOffsetFieldValue)
             {
