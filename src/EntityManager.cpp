@@ -278,64 +278,7 @@ bool probeDbus(const std::string& interface,
             auto deviceValue = device.find(match.first);
             if (deviceValue != device.end())
             {
-                switch (match.second.type())
-                {
-                    case nlohmann::json::value_t::string:
-                    {
-                        std::regex search(match.second.get<std::string>());
-                        std::smatch regMatch;
-
-                        // convert value to string respresentation
-                        std::string probeValue = std::visit(
-                            VariantToStringVisitor(), deviceValue->second);
-                        if (!std::regex_search(probeValue, regMatch, search))
-                        {
-                            deviceMatches = false;
-                            break;
-                        }
-                        break;
-                    }
-                    case nlohmann::json::value_t::boolean:
-                    case nlohmann::json::value_t::number_unsigned:
-                    {
-                        unsigned int probeValue = std::visit(
-                            VariantToUnsignedIntVisitor(), deviceValue->second);
-
-                        if (probeValue != match.second.get<unsigned int>())
-                        {
-                            deviceMatches = false;
-                        }
-                        break;
-                    }
-                    case nlohmann::json::value_t::number_integer:
-                    {
-                        int probeValue = std::visit(VariantToIntVisitor(),
-                                                    deviceValue->second);
-
-                        if (probeValue != match.second.get<int>())
-                        {
-                            deviceMatches = false;
-                        }
-                        break;
-                    }
-                    case nlohmann::json::value_t::number_float:
-                    {
-                        float probeValue = std::visit(VariantToFloatVisitor(),
-                                                      deviceValue->second);
-
-                        if (probeValue != match.second.get<float>())
-                        {
-                            deviceMatches = false;
-                        }
-                        break;
-                    }
-                    default:
-                    {
-                        std::cerr << "unexpected dbus probe type "
-                                  << match.second.type_name() << "\n";
-                        deviceMatches = false;
-                    }
-                }
+                deviceMatches = matchProbe(match.second, deviceValue->second);
             }
             else
             {

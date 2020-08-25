@@ -149,3 +149,9 @@ inline bool deviceHasLogging(const nlohmann::json& json)
     }
     return true;
 }
+
+/// \brief Match a Dbus property against a probe statement.
+/// \param probe the probe statement to match against.
+/// \param dbusValue the property value being matched to a probe.
+/// \return true if the dbusValue matched the probe otherwise false.
+bool matchProbe(const nlohmann::json& probe, const BasicVariantType& dbusValue);
