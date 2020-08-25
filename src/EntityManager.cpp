@@ -47,6 +47,7 @@ constexpr const char* lastConfiguration = "/tmp/configuration/last.json";
 constexpr const char* currentConfiguration = "/var/configuration/system.json";
 constexpr const char* globalSchema = "global.json";
 constexpr const int32_t MAX_MAPPER_DEPTH = 0;
+constexpr const char* foundObject = "FoundProbe";
 
 constexpr const bool DEBUG = false;
 
@@ -76,8 +77,9 @@ const static boost::container::flat_map<const char*, probe_type_codes, cmp_str>
                  {"FOUND", probe_type_codes::FOUND},
                  {"MATCH_ONE", probe_type_codes::MATCH_ONE}}};
 
-static constexpr std::array<const char*, 6> settableInterfaces = {
-    "FanProfile", "Pid", "Pid.Zone", "Stepwise", "Thresholds", "Polling"};
+static constexpr std::array<const char*, 7> settableInterfaces = {
+    "FanProfile", "Pid",     "Pid.Zone",   "Stepwise",
+    "Thresholds", "Polling", "FruSections"};
 using JsonVariantType =
     std::variant<std::vector<std::string>, std::vector<double>, std::string,
                  int64_t, uint64_t, double, int32_t, uint32_t, int16_t,
@@ -169,7 +171,10 @@ void getInterfaces(
                 return;
             }
 
-            scan->dbusProbeObjects[std::get<2>(call)].emplace_back(resp);
+            // Save the dbus info along with device info
+            scan->dbusProbeObjects[std::get<2>(call)].emplace_back(
+                std::make_tuple(resp, std::get<0>(call), std::get<1>(call),
+                                std::get<2>(call)));
         },
         std::get<0>(call), std::get<1>(call), "org.freedesktop.DBus.Properties",
         "GetAll", std::get<2>(call));
@@ -257,11 +262,10 @@ void findDbusObjects(std::vector<std::shared_ptr<PerformProbe>>&& probeVector,
 // probes dbus interface dictionary for a key with a value that matches a regex
 bool probeDbus(const std::string& interface,
                const std::map<std::string, nlohmann::json>& matches,
-               FoundDeviceT& devices, std::shared_ptr<PerformScan> scan,
+               FoundDeviceInfoT& devices, std::shared_ptr<PerformScan> scan,
                bool& foundProbe)
 {
-    std::vector<boost::container::flat_map<std::string, BasicVariantType>>&
-        dbusObject = scan->dbusProbeObjects[interface];
+    FoundDeviceInfoT& dbusObject = scan->dbusProbeObjects[interface];
     if (dbusObject.empty())
     {
         foundProbe = false;
@@ -270,8 +274,9 @@ bool probeDbus(const std::string& interface,
     foundProbe = true;
 
     bool foundMatch = false;
-    for (auto& device : dbusObject)
+    for (auto& deviceInfo : dbusObject)
     {
+        auto& device = std::get<0>(deviceInfo);
         bool deviceMatches = true;
         for (auto& match : matches)
         {
@@ -288,7 +293,7 @@ bool probeDbus(const std::string& interface,
         }
         if (deviceMatches)
         {
-            devices.emplace_back(device);
+            devices.emplace_back(deviceInfo);
             foundMatch = true;
             deviceMatches = false; // for next iteration
         }
@@ -298,11 +303,8 @@ bool probeDbus(const std::string& interface,
 
 // default probe entry point, iterates a list looking for specific types to
 // call specific probe functions
-bool probe(
-    const std::vector<std::string>& probeCommand,
-    std::shared_ptr<PerformScan> scan,
-    std::vector<boost::container::flat_map<std::string, BasicVariantType>>&
-        foundDevs)
+bool probe(const std::vector<std::string>& probeCommand,
+           std::shared_ptr<PerformScan> scan, FoundDeviceInfoT& foundDevs)
 {
     const static std::regex command(R"(\((.*)\))");
     std::smatch match;
@@ -432,8 +434,9 @@ bool probe(
     // probe passed, but empty device
     if (ret && foundDevs.size() == 0)
     {
-        foundDevs.emplace_back(
-            boost::container::flat_map<std::string, BasicVariantType>{});
+        foundDevs.emplace_back(std::make_tuple(
+            boost::container::flat_map<std::string, BasicVariantType>{},
+            std::string{}, std::string{}, std::string{}));
     }
     if (matchOne && ret)
     {
@@ -448,13 +451,13 @@ bool probe(
 
 PerformProbe::PerformProbe(const std::vector<std::string>& probeCommand,
                            std::shared_ptr<PerformScan>& scanPtr,
-                           std::function<void(FoundDeviceT&)>&& callback) :
+                           std::function<void(FoundDeviceInfoT&)>&& callback) :
     _probeCommand(probeCommand),
     scan(scanPtr), _callback(std::move(callback))
 {}
 PerformProbe::~PerformProbe()
 {
-    FoundDeviceT foundDevs;
+    FoundDeviceInfoT foundDevs;
     if (probe(_probeCommand, scan, foundDevs))
     {
         _callback(foundDevs);
@@ -539,6 +542,81 @@ void addArrayToDbus(const std::string& name, const nlohmann::json& array,
     }
 }
 
+// Returns true if the field pointed by jsonPointerString has
+// template string. The probe connection, path and interface will
+// get populated if it is true.
+bool configHasTemplate(const nlohmann::json& systemConfiguration,
+                       const std::string& jsonPointerString, std::string& conn,
+                       std::string& path, std::string& iface,
+                       std::string& tempName)
+{
+    size_t recordEndPos = jsonPointerString.find('/', 1);
+    const std::string recordName =
+        jsonPointerString.substr(1, recordEndPos - 1);
+    const std::string propPath = jsonPointerString.substr(recordEndPos);
+    auto found = systemConfiguration[recordName].find(foundObject);
+    if (found == systemConfiguration[recordName].end())
+    {
+        return false;
+    }
+    auto findSrc = found->find("ConfigFile");
+    if (findSrc == found->end())
+    {
+        return false;
+    }
+    const std::string* srcConfig = findSrc->get_ptr<const std::string*>();
+    if (srcConfig == nullptr)
+    {
+        return false;
+    }
+    std::ifstream jsonStream(srcConfig->c_str());
+    if (!jsonStream.good())
+    {
+        return false;
+    }
+    auto data = nlohmann::json::parse(jsonStream, nullptr, false);
+    if (data.is_discarded())
+    {
+        return false;
+    }
+    if (data.type() == nlohmann::json::value_t::array)
+    {
+        int index = (*found)["Index"];
+        data = data[index];
+    }
+    try
+    {
+        nlohmann::json::json_pointer ptr(propPath);
+        nlohmann::json ref = data[ptr];
+        auto type = ref.type();
+        if (type != nlohmann::json::value_t::string)
+        {
+            return false;
+        }
+        tempName = ref;
+    }
+    catch (const std::out_of_range&)
+    {
+        return false;
+    }
+    if (tempName.at(0) != '$')
+    {
+        return false;
+    }
+    tempName.erase(0, 1);
+    auto findConn = found->find("Connection");
+    auto findPath = found->find("Path");
+    auto findIface = found->find("Interface");
+    if (findConn != found->end() && findPath != found->end() &&
+        findIface != found->end())
+    {
+        conn = *findConn;
+        path = *findPath;
+        iface = *findIface;
+    }
+    return true;
+}
+
 template <typename PropertyType>
 void addProperty(const std::string& propertyName, const PropertyType& value,
                  sdbusplus::asio::dbus_interface* iface,
@@ -556,6 +634,23 @@ void addProperty(const std::string& propertyName, const PropertyType& value,
         [&systemConfiguration,
          jsonPointerString{std::string(jsonPointerString)}](
             const PropertyType& newVal, PropertyType& val) {
+            std::string conn, path, iface, tempName;
+            if (configHasTemplate(systemConfiguration, jsonPointerString, conn,
+                                  path, iface, tempName))
+            {
+                if (conn.empty() || path.empty() || iface.empty())
+                {
+                    return -1;
+                }
+                // Synchronous set to actual device before returning
+                auto msg = SYSTEM_BUS->new_method_call(
+                    conn.c_str(), path.c_str(),
+                    "org.freedesktop.DBus.Properties", "Set");
+                msg.append(iface.c_str(), tempName.c_str(),
+                           std::variant<PropertyType>(newVal));
+                SYSTEM_BUS->call(msg);
+                return 1;
+            }
             val = newVal;
             if (!setJsonFromPointer(jsonPointerString, val,
                                     systemConfiguration))
@@ -1156,15 +1251,21 @@ bool findJsonFiles(std::list<nlohmann::json>& configurations)
         }
         */
 
+        // Save the source config file of the configuration within the config
         if (data.type() == nlohmann::json::value_t::array)
         {
+            int index = 0;
             for (auto& d : data)
             {
+                d[foundObject]["ConfigFile"] = jsonPath.string();
+                d[foundObject]["Index"] = index;
+                index++;
                 configurations.emplace_back(d);
             }
         }
         else
         {
+            data[foundObject]["ConfigFile"] = jsonPath.string();
             configurations.emplace_back(data);
         }
     }
@@ -1261,7 +1362,7 @@ void PerformScan::run()
         auto thisRef = shared_from_this();
         auto probePointer = std::make_shared<PerformProbe>(
             probeCommand, thisRef,
-            [&, recordPtr, probeName](FoundDeviceT& foundDevices) {
+            [&, recordPtr, probeName](FoundDeviceInfoT& foundDevices) {
                 _passed = true;
 
                 std::set<nlohmann::json> usedNames;
@@ -1277,7 +1378,8 @@ void PerformScan::run()
                 for (auto itr = foundDevices.begin();
                      itr != foundDevices.end();)
                 {
-                    std::string recordName = getRecordName(*itr, probeName);
+                    std::string recordName =
+                        getRecordName(std::get<0>(*itr), probeName);
 
                     auto fromLastJson = lastJson.find(recordName);
                     if (fromLastJson != lastJson.end())
@@ -1332,8 +1434,9 @@ void PerformScan::run()
 
                 std::optional<std::string> replaceStr;
 
-                for (auto& foundDevice : foundDevices)
+                for (auto& foundDeviceInfo : foundDevices)
                 {
+                    auto& foundDevice = std::get<0>(foundDeviceInfo);
                     nlohmann::json record = *recordPtr;
                     std::string recordName =
                         getRecordName(foundDevice, probeName);
@@ -1364,6 +1467,13 @@ void PerformScan::run()
                                                 foundDeviceIdx, replaceStr);
                         }
                     }
+                    // Save the dbus connection, path and interface info
+                    // of the device that is used to create this config
+                    record[foundObject]["Connection"] =
+                        std::get<1>(foundDeviceInfo);
+                    record[foundObject]["Path"] = std::get<2>(foundDeviceInfo);
+                    record[foundObject]["Interface"] =
+                        std::get<3>(foundDeviceInfo);
 
                     if (replaceStr)
                     {
