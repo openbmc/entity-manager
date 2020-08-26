@@ -3,7 +3,6 @@
 #include <boost/container/flat_map.hpp>
 #include <nlohmann/json.hpp>
 
-#include <regex>
 #include <string>
 #include <variant>
 
@@ -253,21 +252,21 @@ TEST(MatchProbe, stringRegexError)
 {
     nlohmann::json j = R"("foo[")"_json;
     BasicVariantType v = "foobar"s;
-    EXPECT_THROW(matchProbe(j, v), std::regex_error);
+    EXPECT_FALSE(matchProbe(j, v));
 }
 
-TEST(MatchProbe, stringZeroEqFalse)
+TEST(MatchProbe, stringZeroNeqFalse)
 {
     nlohmann::json j = R"("0")"_json;
     BasicVariantType v = false;
-    EXPECT_TRUE(matchProbe(j, v));
+    EXPECT_FALSE(matchProbe(j, v));
 }
 
-TEST(MatchProbe, stringOneEqTrue)
+TEST(MatchProbe, stringOneNeqTrue)
 {
     nlohmann::json j = R"("1")"_json;
     BasicVariantType v = true;
-    EXPECT_TRUE(matchProbe(j, v));
+    EXPECT_FALSE(matchProbe(j, v));
 }
 
 TEST(MatchProbe, stringElevenNeqTrue)
@@ -298,11 +297,11 @@ TEST(MatchProbe, stringFalseNeqTrue)
     EXPECT_FALSE(matchProbe(j, v));
 }
 
-TEST(MatchProbe, stringEqUint8)
+TEST(MatchProbe, stringNeqUint8)
 {
     nlohmann::json j = R"("255")"_json;
     BasicVariantType v = uint8_t(255);
-    EXPECT_TRUE(matchProbe(j, v));
+    EXPECT_FALSE(matchProbe(j, v));
 }
 
 TEST(MatchProbe, stringNeqUint8Overflow)
@@ -326,39 +325,25 @@ TEST(MatchProbe, stringTrueNeqUint8Zero)
     EXPECT_FALSE(matchProbe(j, v));
 }
 
-TEST(MatchProbe, stringEqUint32)
+TEST(MatchProbe, stringNeqUint32)
 {
     nlohmann::json j = R"("11")"_json;
     BasicVariantType v = uint32_t(11);
-    EXPECT_TRUE(matchProbe(j, v));
-}
-
-TEST(MatchProbe, stringNeqUint32)
-{
-    nlohmann::json j = R"("12")"_json;
-    BasicVariantType v = uint32_t(11);
     EXPECT_FALSE(matchProbe(j, v));
-}
-
-TEST(MatchProbe, stringEqInt32)
-{
-    nlohmann::json j = R"("-11")"_json;
-    BasicVariantType v = int32_t(-11);
-    EXPECT_TRUE(matchProbe(j, v));
 }
 
 TEST(MatchProbe, stringNeqInt32)
 {
-    nlohmann::json j = R"("-12")"_json;
+    nlohmann::json j = R"("-11")"_json;
     BasicVariantType v = int32_t(-11);
     EXPECT_FALSE(matchProbe(j, v));
 }
 
-TEST(MatchProbe, stringRegexEqInt32)
+TEST(MatchProbe, stringRegexNeqInt32)
 {
     nlohmann::json j = R"("1*4")"_json;
     BasicVariantType v = int32_t(124);
-    EXPECT_TRUE(matchProbe(j, v));
+    EXPECT_FALSE(matchProbe(j, v));
 }
 
 TEST(MatchProbe, stringNeqUint64)
@@ -368,16 +353,9 @@ TEST(MatchProbe, stringNeqUint64)
     EXPECT_FALSE(matchProbe(j, v));
 }
 
-TEST(MatchProbe, stringEqDouble)
-{
-    nlohmann::json j = R"("123.4")"_json;
-    BasicVariantType v = double(123.4);
-    EXPECT_TRUE(matchProbe(j, v));
-}
-
 TEST(MatchProbe, stringNeqDouble)
 {
-    nlohmann::json j = R"("-123.4")"_json;
+    nlohmann::json j = R"("123.4")"_json;
     BasicVariantType v = double(123.4);
     EXPECT_FALSE(matchProbe(j, v));
 }
@@ -389,11 +367,11 @@ TEST(MatchProbe, stringNeqEmpty)
     EXPECT_FALSE(matchProbe(j, v));
 }
 
-TEST(MatchProbe, boolStringError)
+TEST(MatchProbe, boolNeqString)
 {
     nlohmann::json j = R"(false)"_json;
     BasicVariantType v = "false"s;
-    EXPECT_THROW(matchProbe(j, v), std::invalid_argument);
+    EXPECT_FALSE(matchProbe(j, v));
 }
 
 TEST(MatchProbe, trueEqTrue)
@@ -438,11 +416,11 @@ TEST(MatchProbe, falseNeqUint32One)
     EXPECT_FALSE(matchProbe(j, v));
 }
 
-TEST(MatchProbe, falseEqUint32Zero)
+TEST(MatchProbe, falseNeqUint32Zero)
 {
     nlohmann::json j = R"(false)"_json;
     BasicVariantType v = uint32_t(0);
-    EXPECT_TRUE(matchProbe(j, v));
+    EXPECT_FALSE(matchProbe(j, v));
 }
 
 TEST(MatchProbe, trueNeqDoubleNegativeOne)
@@ -452,11 +430,11 @@ TEST(MatchProbe, trueNeqDoubleNegativeOne)
     EXPECT_FALSE(matchProbe(j, v));
 }
 
-TEST(MatchProbe, trueEqDoubleOne)
+TEST(MatchProbe, trueNeqDoubleOne)
 {
     nlohmann::json j = R"(true)"_json;
     BasicVariantType v = double(1.0);
-    EXPECT_TRUE(matchProbe(j, v));
+    EXPECT_FALSE(matchProbe(j, v));
 }
 
 TEST(MatchProbe, falseNeqDoubleOne)
@@ -466,52 +444,45 @@ TEST(MatchProbe, falseNeqDoubleOne)
     EXPECT_FALSE(matchProbe(j, v));
 }
 
-TEST(MatchProbe, falseEqDoubleZero)
+TEST(MatchProbe, falseNeqDoubleZero)
 {
     nlohmann::json j = R"(false)"_json;
     BasicVariantType v = double(0.0);
-    EXPECT_TRUE(matchProbe(j, v));
+    EXPECT_FALSE(matchProbe(j, v));
 }
 
-TEST(MatchProbe, falseEmptyError)
+TEST(MatchProbe, falseNeqEmpty)
 {
     nlohmann::json j = R"(false)"_json;
     BasicVariantType v;
-    EXPECT_THROW(matchProbe(j, v), std::invalid_argument);
+    EXPECT_FALSE(matchProbe(j, v));
 }
 
-TEST(MatchProbe, trueEmptyError)
+TEST(MatchProbe, trueNeqEmpty)
 {
     nlohmann::json j = R"(true)"_json;
     BasicVariantType v;
-    EXPECT_THROW(matchProbe(j, v), std::invalid_argument);
+    EXPECT_FALSE(matchProbe(j, v));
 }
 
-TEST(MatchProbe, uintStringError)
+TEST(MatchProbe, uintNeqString)
 {
     nlohmann::json j = R"(11)"_json;
     BasicVariantType v = "11"s;
-    EXPECT_THROW(matchProbe(j, v), std::invalid_argument);
-}
-
-TEST(MatchProbe, uintEqTrue)
-{
-    nlohmann::json j = R"(1)"_json;
-    BasicVariantType v = true;
-    EXPECT_TRUE(matchProbe(j, v));
-}
-
-TEST(MatchProbe, uintEqFalse)
-{
-    nlohmann::json j = R"(0)"_json;
-    BasicVariantType v = false;
-    EXPECT_TRUE(matchProbe(j, v));
+    EXPECT_FALSE(matchProbe(j, v));
 }
 
 TEST(MatchProbe, uintNeqTrue)
 {
-    nlohmann::json j = R"(11)"_json;
+    nlohmann::json j = R"(1)"_json;
     BasicVariantType v = true;
+    EXPECT_FALSE(matchProbe(j, v));
+}
+
+TEST(MatchProbe, uintNeqFalse)
+{
+    nlohmann::json j = R"(0)"_json;
+    BasicVariantType v = false;
     EXPECT_FALSE(matchProbe(j, v));
 }
 
@@ -550,25 +521,25 @@ TEST(MatchProbe, uintEqDouble)
     EXPECT_TRUE(matchProbe(j, v));
 }
 
-TEST(MatchProbe, uintEqDoubleRound)
+TEST(MatchProbe, uintNeqDouble)
 {
     nlohmann::json j = R"(11)"_json;
     BasicVariantType v = double(11.7);
-    EXPECT_TRUE(matchProbe(j, v));
+    EXPECT_FALSE(matchProbe(j, v));
 }
 
-TEST(MatchProbe, uintEmptyError)
+TEST(MatchProbe, uintNeqEmpty)
 {
     nlohmann::json j = R"(11)"_json;
     BasicVariantType v;
-    EXPECT_THROW(matchProbe(j, v), std::invalid_argument);
+    EXPECT_FALSE(matchProbe(j, v));
 }
 
-TEST(MatchProbe, intStringError)
+TEST(MatchProbe, intNeqString)
 {
     nlohmann::json j = R"(-11)"_json;
     BasicVariantType v = "-11"s;
-    EXPECT_THROW(matchProbe(j, v), std::invalid_argument);
+    EXPECT_FALSE(matchProbe(j, v));
 }
 
 TEST(MatchProbe, intNeqTrue)
@@ -606,46 +577,39 @@ TEST(MatchProbe, intEqDouble)
     EXPECT_TRUE(matchProbe(j, v));
 }
 
-TEST(MatchProbe, intEqDoubleRound)
+TEST(MatchProbe, intNeqDoubleRound)
 {
     nlohmann::json j = R"(-11)"_json;
     BasicVariantType v = double(-11.7);
-    EXPECT_TRUE(matchProbe(j, v));
+    EXPECT_FALSE(matchProbe(j, v));
 }
 
-TEST(MatchProbe, intEmptyError)
+TEST(MatchProbe, intNeqEmpty)
 {
     nlohmann::json j = R"(-11)"_json;
     BasicVariantType v;
-    EXPECT_THROW(matchProbe(j, v), std::invalid_argument);
+    EXPECT_FALSE(matchProbe(j, v));
 }
 
-TEST(MatchProbe, doubleStringError)
+TEST(MatchProbe, doubleNeqString)
 {
     nlohmann::json j = R"(0.0)"_json;
     BasicVariantType v = "0.0"s;
-    EXPECT_THROW(matchProbe(j, v), std::invalid_argument);
+    EXPECT_FALSE(matchProbe(j, v));
 }
 
-TEST(MatchProbe, doubleEqFalse)
+TEST(MatchProbe, doubleNeqFalse)
 {
     nlohmann::json j = R"(0.0)"_json;
     BasicVariantType v = false;
-    EXPECT_TRUE(matchProbe(j, v));
+    EXPECT_FALSE(matchProbe(j, v));
 }
 
 TEST(MatchProbe, doubleNeqTrue)
 {
-    nlohmann::json j = R"(1.1)"_json;
-    BasicVariantType v = true;
-    EXPECT_FALSE(matchProbe(j, v));
-}
-
-TEST(MatchProbe, doubleEqTrue)
-{
     nlohmann::json j = R"(1.0)"_json;
     BasicVariantType v = true;
-    EXPECT_TRUE(matchProbe(j, v));
+    EXPECT_FALSE(matchProbe(j, v));
 }
 
 TEST(MatchProbe, doubleEqInt32)
@@ -682,11 +646,11 @@ TEST(MatchProbe, doubleNeqDouble)
     EXPECT_FALSE(matchProbe(j, v));
 }
 
-TEST(MatchProbe, doubleEmptyError)
+TEST(MatchProbe, doubleNeqEmpty)
 {
     nlohmann::json j = R"(-11.0)"_json;
     BasicVariantType v;
-    EXPECT_THROW(matchProbe(j, v), std::invalid_argument);
+    EXPECT_FALSE(matchProbe(j, v));
 }
 
 TEST(MatchProbe, arrayNeqString)
