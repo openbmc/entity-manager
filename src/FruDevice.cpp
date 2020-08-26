@@ -22,6 +22,8 @@
 #include <sys/ioctl.h>
 
 #include <boost/algorithm/string/predicate.hpp>
+#include <boost/asio/deadline_timer.hpp>
+#include <boost/asio/io_service.hpp>
 #include <boost/container/flat_map.hpp>
 #include <nlohmann/json.hpp>
 #include <sdbusplus/asio/connection.hpp>
