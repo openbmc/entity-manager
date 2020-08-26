@@ -3,9 +3,13 @@
 #include <boost/container/flat_map.hpp>
 #include <nlohmann/json.hpp>
 
+#include <regex>
+#include <string>
 #include <variant>
 
 #include "gtest/gtest.h"
+
+using namespace std::string_literals;
 
 TEST(TemplateCharReplace, replaceOneInt)
 {
@@ -222,4 +226,165 @@ TEST(TemplateCharReplace, singleHex)
 
     nlohmann::json expected = 84;
     EXPECT_EQ(expected, j["foo"]);
+}
+
+TEST(MatchProbe, stringEqString)
+{
+    nlohmann::json j = R"("foo")"_json;
+    BasicVariantType v = "foo"s;
+    EXPECT_TRUE(matchProbe(j, v));
+}
+
+TEST(MatchProbe, stringRegexEqString)
+{
+    nlohmann::json j = R"("foo*")"_json;
+    BasicVariantType v = "foobar"s;
+    EXPECT_TRUE(matchProbe(j, v));
+}
+
+TEST(MatchProbe, stringNeqString)
+{
+    nlohmann::json j = R"("foobar")"_json;
+    BasicVariantType v = "foo"s;
+    EXPECT_FALSE(matchProbe(j, v));
+}
+
+TEST(MatchProbe, stringRegexError)
+{
+    nlohmann::json j = R"("foo[")"_json;
+    BasicVariantType v = "foobar"s;
+    EXPECT_THROW(matchProbe(j, v), std::regex_error);
+}
+
+TEST(MatchProbe, stringZeroEqFalse)
+{
+    nlohmann::json j = R"("0")"_json;
+    BasicVariantType v = false;
+    EXPECT_TRUE(matchProbe(j, v));
+}
+
+TEST(MatchProbe, stringOneEqTrue)
+{
+    nlohmann::json j = R"("1")"_json;
+    BasicVariantType v = true;
+    EXPECT_TRUE(matchProbe(j, v));
+}
+
+TEST(MatchProbe, stringElevenNeqTrue)
+{
+    nlohmann::json j = R"("11")"_json;
+    BasicVariantType v = true;
+    EXPECT_FALSE(matchProbe(j, v));
+}
+
+TEST(MatchProbe, stringFalseNeqFalse)
+{
+    nlohmann::json j = R"("false")"_json;
+    BasicVariantType v = false;
+    EXPECT_FALSE(matchProbe(j, v));
+}
+
+TEST(MatchProbe, stringTrueNeqTrue)
+{
+    nlohmann::json j = R"("true")"_json;
+    BasicVariantType v = true;
+    EXPECT_FALSE(matchProbe(j, v));
+}
+
+TEST(MatchProbe, stringFalseNeqTrue)
+{
+    nlohmann::json j = R"("false")"_json;
+    BasicVariantType v = true;
+    EXPECT_FALSE(matchProbe(j, v));
+}
+
+TEST(MatchProbe, stringEqUint8)
+{
+    nlohmann::json j = R"("255")"_json;
+    BasicVariantType v = uint8_t(255);
+    EXPECT_TRUE(matchProbe(j, v));
+}
+
+TEST(MatchProbe, stringNeqUint8Overflow)
+{
+    nlohmann::json j = R"("65535")"_json;
+    BasicVariantType v = uint8_t(255);
+    EXPECT_FALSE(matchProbe(j, v));
+}
+
+TEST(MatchProbe, stringFalseNeqUint8Zero)
+{
+    nlohmann::json j = R"("false")"_json;
+    BasicVariantType v = uint8_t(0);
+    EXPECT_FALSE(matchProbe(j, v));
+}
+
+TEST(MatchProbe, stringTrueNeqUint8Zero)
+{
+    nlohmann::json j = R"("true")"_json;
+    BasicVariantType v = uint8_t(1);
+    EXPECT_FALSE(matchProbe(j, v));
+}
+
+TEST(MatchProbe, stringEqUint32)
+{
+    nlohmann::json j = R"("11")"_json;
+    BasicVariantType v = uint32_t(11);
+    EXPECT_TRUE(matchProbe(j, v));
+}
+
+TEST(MatchProbe, stringNeqUint32)
+{
+    nlohmann::json j = R"("12")"_json;
+    BasicVariantType v = uint32_t(11);
+    EXPECT_FALSE(matchProbe(j, v));
+}
+
+TEST(MatchProbe, stringEqInt32)
+{
+    nlohmann::json j = R"("-11")"_json;
+    BasicVariantType v = int32_t(-11);
+    EXPECT_TRUE(matchProbe(j, v));
+}
+
+TEST(MatchProbe, stringNeqInt32)
+{
+    nlohmann::json j = R"("-12")"_json;
+    BasicVariantType v = int32_t(-11);
+    EXPECT_FALSE(matchProbe(j, v));
+}
+
+TEST(MatchProbe, stringRegexEqInt32)
+{
+    nlohmann::json j = R"("1*4")"_json;
+    BasicVariantType v = int32_t(124);
+    EXPECT_TRUE(matchProbe(j, v));
+}
+
+TEST(MatchProbe, stringNeqUint64)
+{
+    nlohmann::json j = R"("foo")"_json;
+    BasicVariantType v = uint64_t(65535);
+    EXPECT_FALSE(matchProbe(j, v));
+}
+
+TEST(MatchProbe, stringEqDouble)
+{
+    nlohmann::json j = R"("123.4")"_json;
+    BasicVariantType v = double(123.4);
+    EXPECT_TRUE(matchProbe(j, v));
+}
+
+TEST(MatchProbe, stringNeqDouble)
+{
+    nlohmann::json j = R"("-123.4")"_json;
+    BasicVariantType v = double(123.4);
+    EXPECT_FALSE(matchProbe(j, v));
+}
+
+TEST(MatchProbe, stringNeqEmpty)
+{
+    nlohmann::json j = R"("-123.4")"_json;
+    BasicVariantType v;
+    EXPECT_FALSE(matchProbe(j, v));
 }
