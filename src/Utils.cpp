@@ -392,7 +392,77 @@ std::optional<std::string> templateCharReplace(
     return ret;
 }
 
+/// \brief JSON/DBus matching Callable for std::variant (visitor)
+///
+/// Default match JSON/DBus match implementation
+/// \tparam T The concrete DBus value type from BasicVariantType
+template <typename T>
+struct MatchProbe
+{
+    /// \param probe the probe statement to match against
+    /// \param value the property value being matched to a probe
+    /// \return true if the dbusValue matched the probe otherwise false
+    static bool match(const nlohmann::json& probe, const T& value)
+    {
+        return probe == value;
+    }
+};
+
+/// \brief JSON/DBus matching Callable for std::variant (visitor)
+///
+/// std::string specialization of MatchProbe enabling regex matching
+template <>
+struct MatchProbe<std::string>
+{
+    /// \param probe the probe statement to match against
+    /// \param value the string value being matched to a probe
+    /// \return true if the dbusValue matched the probe otherwise false
+    static bool match(const nlohmann::json& probe, const std::string& value)
+    {
+        if (probe.is_string())
+        {
+            try
+            {
+                std::regex search(probe);
+                std::smatch regMatch;
+                return std::regex_search(value, regMatch, search);
+            }
+            catch (const std::regex_error&)
+            {
+                std::cerr << "Syntax error in regular expression: "
+                    << probe << " will never match";
+            }
+        }
+
+        // Skip calling nlohmann here, since it will never match a non-string
+        // to a std::string
+        return false;
+    }
+};
+
+/// \brief Forwarding JSON/DBus matching Callable for std::variant (visitor)
+///
+/// Forward calls to the correct template instantiation of MatchProbe
+struct MatchProbeForwarder
+{
+    explicit MatchProbeForwarder(const nlohmann::json& probe) : probeRef(probe)
+    {}
+    const nlohmann::json& probeRef;
+
+    template <typename T>
+    bool operator()(const T& dbusValue) const
+    {
+        return MatchProbe<T>::match(probeRef, dbusValue);
+    }
+};
+
 bool matchProbe(const nlohmann::json& probe, const BasicVariantType& dbusValue)
+{
+    return std::visit(MatchProbeForwarder(probe), dbusValue);
+}
+
+bool matchProbeOld(const nlohmann::json& probe,
+                   const BasicVariantType& dbusValue)
 {
     bool deviceMatches = true;
 
