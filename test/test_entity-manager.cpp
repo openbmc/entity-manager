@@ -367,6 +367,13 @@ TEST(MatchProbe, stringNeqEmpty)
     EXPECT_FALSE(matchProbe(j, v));
 }
 
+TEST(MatchProbe, stringNeqArray)
+{
+    nlohmann::json j = R"("-123.4")"_json;
+    BasicVariantType v = std::vector<uint8_t>{1,2};
+    EXPECT_FALSE(matchProbe(j, v));
+}
+
 TEST(MatchProbe, boolNeqString)
 {
     nlohmann::json j = R"(false)"_json;
@@ -465,6 +472,13 @@ TEST(MatchProbe, trueNeqEmpty)
     EXPECT_FALSE(matchProbe(j, v));
 }
 
+TEST(MatchProbe, trueNeqArray)
+{
+    nlohmann::json j = R"(true)"_json;
+    BasicVariantType v = std::vector<uint8_t>{1,2};
+    EXPECT_FALSE(matchProbe(j, v));
+}
+
 TEST(MatchProbe, uintNeqString)
 {
     nlohmann::json j = R"(11)"_json;
@@ -535,6 +549,13 @@ TEST(MatchProbe, uintNeqEmpty)
     EXPECT_FALSE(matchProbe(j, v));
 }
 
+TEST(MatchProbe, uintNeqArray)
+{
+    nlohmann::json j = R"(11)"_json;
+    BasicVariantType v = std::vector<uint8_t>{11};
+    EXPECT_FALSE(matchProbe(j, v));
+}
+
 TEST(MatchProbe, intNeqString)
 {
     nlohmann::json j = R"(-11)"_json;
@@ -588,6 +609,13 @@ TEST(MatchProbe, intNeqEmpty)
 {
     nlohmann::json j = R"(-11)"_json;
     BasicVariantType v;
+    EXPECT_FALSE(matchProbe(j, v));
+}
+
+TEST(MatchProbe, intNeqArray)
+{
+    nlohmann::json j = R"(-11)"_json;
+    BasicVariantType v = std::vector<uint8_t>{11};
     EXPECT_FALSE(matchProbe(j, v));
 }
 
@@ -653,6 +681,13 @@ TEST(MatchProbe, doubleNeqEmpty)
     EXPECT_FALSE(matchProbe(j, v));
 }
 
+TEST(MatchProbe, doubleNeqArray)
+{
+    nlohmann::json j = R"(-11.2)"_json;
+    BasicVariantType v = std::vector<uint8_t>{11};
+    EXPECT_FALSE(matchProbe(j, v));
+}
+
 TEST(MatchProbe, arrayNeqString)
 {
     nlohmann::json j = R"([1, 2])"_json;
@@ -692,6 +727,48 @@ TEST(MatchProbe, arrayNeqDouble)
 {
     nlohmann::json j = R"([1, 2])"_json;
     BasicVariantType v = double(1.1);
+    EXPECT_FALSE(matchProbe(j, v));
+}
+
+TEST(MatchProbe, arrayEqArray)
+{
+    nlohmann::json j = R"([1, 2])"_json;
+    BasicVariantType v = std::vector<uint8_t>{1, 2};
+    EXPECT_TRUE(matchProbe(j, v));
+}
+
+TEST(MatchProbe, arrayNeqArrayDiffSize1)
+{
+    nlohmann::json j = R"([1, 2, 3])"_json;
+    BasicVariantType v = std::vector<uint8_t>{1, 2};
+    EXPECT_FALSE(matchProbe(j, v));
+}
+
+TEST(MatchProbe, arrayNeqArrayDiffSize2)
+{
+    nlohmann::json j = R"([1, 2])"_json;
+    BasicVariantType v = std::vector<uint8_t>{1, 2, 3};
+    EXPECT_FALSE(matchProbe(j, v));
+}
+
+TEST(MatchProbe, emptyArrayEqEmptyArray)
+{
+    nlohmann::json j = R"([])"_json;
+    BasicVariantType v = std::vector<uint8_t>{};
+    EXPECT_TRUE(matchProbe(j, v));
+}
+
+TEST(MatchProbe, emptyArrayNeqArray)
+{
+    nlohmann::json j = R"([])"_json;
+    BasicVariantType v = std::vector<uint8_t>{1};
+    EXPECT_FALSE(matchProbe(j, v));
+}
+
+TEST(MatchProbe, arrayNeqEmptyArray)
+{
+    nlohmann::json j = R"([1])"_json;
+    BasicVariantType v = std::vector<uint8_t>{};
     EXPECT_FALSE(matchProbe(j, v));
 }
 
@@ -737,6 +814,13 @@ TEST(MatchProbe, objNeqDouble)
     EXPECT_FALSE(matchProbe(j, v));
 }
 
+TEST(MatchProbe, objNeqArray)
+{
+    nlohmann::json j = R"({"foo": "bar"})"_json;
+    BasicVariantType v = std::vector<uint8_t>{1, 2};
+    EXPECT_FALSE(matchProbe(j, v));
+}
+
 TEST(MatchProbe, nullNeqString)
 {
     nlohmann::json j = R"(null)"_json;
@@ -776,5 +860,12 @@ TEST(MatchProbe, nullNeqDouble)
 {
     nlohmann::json j = R"(null)"_json;
     BasicVariantType v = double(1.1);
+    EXPECT_FALSE(matchProbe(j, v));
+}
+
+TEST(MatchProbe, nullNeqArray)
+{
+    nlohmann::json j = R"(null)"_json;
+    BasicVariantType v = std::vector<uint8_t>{};
     EXPECT_FALSE(matchProbe(j, v));
 }
