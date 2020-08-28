@@ -388,3 +388,101 @@ TEST(MatchProbe, stringNeqEmpty)
     BasicVariantType v;
     EXPECT_FALSE(matchProbe(j, v));
 }
+
+TEST(MatchProbe, boolStringError)
+{
+    nlohmann::json j = R"(false)"_json;
+    BasicVariantType v = "false"s;
+    EXPECT_THROW(matchProbe(j, v), std::invalid_argument);
+}
+
+TEST(MatchProbe, trueEqTrue)
+{
+    nlohmann::json j = R"(true)"_json;
+    BasicVariantType v = true;
+    EXPECT_TRUE(matchProbe(j, v));
+}
+
+TEST(MatchProbe, falseEqFalse)
+{
+    nlohmann::json j = R"(false)"_json;
+    BasicVariantType v = false;
+    EXPECT_TRUE(matchProbe(j, v));
+}
+
+TEST(MatchProbe, trueNeqFalse)
+{
+    nlohmann::json j = R"(true)"_json;
+    BasicVariantType v = false;
+    EXPECT_FALSE(matchProbe(j, v));
+}
+
+TEST(MatchProbe, trueNeqInt32Zero)
+{
+    nlohmann::json j = R"(true)"_json;
+    BasicVariantType v = int32_t(0);
+    EXPECT_FALSE(matchProbe(j, v));
+}
+
+TEST(MatchProbe, trueNeqInt32NegativeOne)
+{
+    nlohmann::json j = R"(true)"_json;
+    BasicVariantType v = int32_t(-1);
+    EXPECT_FALSE(matchProbe(j, v));
+}
+
+TEST(MatchProbe, falseNeqUint32One)
+{
+    nlohmann::json j = R"(false)"_json;
+    BasicVariantType v = uint32_t(1);
+    EXPECT_FALSE(matchProbe(j, v));
+}
+
+TEST(MatchProbe, falseEqUint32Zero)
+{
+    nlohmann::json j = R"(false)"_json;
+    BasicVariantType v = uint32_t(0);
+    EXPECT_TRUE(matchProbe(j, v));
+}
+
+TEST(MatchProbe, trueNeqDoubleNegativeOne)
+{
+    nlohmann::json j = R"(true)"_json;
+    BasicVariantType v = double(-1.1);
+    EXPECT_FALSE(matchProbe(j, v));
+}
+
+TEST(MatchProbe, trueEqDoubleOne)
+{
+    nlohmann::json j = R"(true)"_json;
+    BasicVariantType v = double(1.0);
+    EXPECT_TRUE(matchProbe(j, v));
+}
+
+TEST(MatchProbe, falseNeqDoubleOne)
+{
+    nlohmann::json j = R"(false)"_json;
+    BasicVariantType v = double(1.0);
+    EXPECT_FALSE(matchProbe(j, v));
+}
+
+TEST(MatchProbe, falseEqDoubleZero)
+{
+    nlohmann::json j = R"(false)"_json;
+    BasicVariantType v = double(0.0);
+    EXPECT_TRUE(matchProbe(j, v));
+}
+
+TEST(MatchProbe, falseEmptyError)
+{
+    nlohmann::json j = R"(false)"_json;
+    BasicVariantType v;
+    EXPECT_THROW(matchProbe(j, v), std::invalid_argument);
+}
+
+TEST(MatchProbe, trueEmptyError)
+{
+    nlohmann::json j = R"(true)"_json;
+    BasicVariantType v;
+    EXPECT_THROW(matchProbe(j, v), std::invalid_argument);
+}
