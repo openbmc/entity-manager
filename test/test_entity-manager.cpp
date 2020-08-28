@@ -730,3 +730,45 @@ TEST(MatchProbe, arrayNeqDouble)
     BasicVariantType v = double(1.1);
     EXPECT_FALSE(matchProbe(j, v));
 }
+
+TEST(MatchProbe, objNeqString)
+{
+    nlohmann::json j = R"({"foo": "bar"})"_json;
+    BasicVariantType v = "hello"s;
+    EXPECT_FALSE(matchProbe(j, v));
+}
+
+TEST(MatchProbe, objNeqFalse)
+{
+    nlohmann::json j = R"({"foo": "bar"})"_json;
+    BasicVariantType v = false;
+    EXPECT_FALSE(matchProbe(j, v));
+}
+
+TEST(MatchProbe, objNeqTrue)
+{
+    nlohmann::json j = R"({"foo": "bar"})"_json;
+    BasicVariantType v = true;
+    EXPECT_FALSE(matchProbe(j, v));
+}
+
+TEST(MatchProbe, objNeqUint8)
+{
+    nlohmann::json j = R"({"foo": "bar"})"_json;
+    BasicVariantType v = uint8_t(1);
+    EXPECT_FALSE(matchProbe(j, v));
+}
+
+TEST(MatchProbe, objNeqInt32)
+{
+    nlohmann::json j = R"({"foo": "bar"})"_json;
+    BasicVariantType v = int32_t(-1);
+    EXPECT_FALSE(matchProbe(j, v));
+}
+
+TEST(MatchProbe, objNeqDouble)
+{
+    nlohmann::json j = R"({"foo": "bar"})"_json;
+    BasicVariantType v = double(1.1);
+    EXPECT_FALSE(matchProbe(j, v));
+}
