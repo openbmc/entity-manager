@@ -772,3 +772,45 @@ TEST(MatchProbe, objNeqDouble)
     BasicVariantType v = double(1.1);
     EXPECT_FALSE(matchProbe(j, v));
 }
+
+TEST(MatchProbe, nullNeqString)
+{
+    nlohmann::json j = R"(null)"_json;
+    BasicVariantType v = "hello"s;
+    EXPECT_FALSE(matchProbe(j, v));
+}
+
+TEST(MatchProbe, nullNeqFalse)
+{
+    nlohmann::json j = R"(null)"_json;
+    BasicVariantType v = false;
+    EXPECT_FALSE(matchProbe(j, v));
+}
+
+TEST(MatchProbe, nullNeqTrue)
+{
+    nlohmann::json j = R"(null)"_json;
+    BasicVariantType v = true;
+    EXPECT_FALSE(matchProbe(j, v));
+}
+
+TEST(MatchProbe, nullNeqUint8)
+{
+    nlohmann::json j = R"(null)"_json;
+    BasicVariantType v = uint8_t(1);
+    EXPECT_FALSE(matchProbe(j, v));
+}
+
+TEST(MatchProbe, nullNeqInt32)
+{
+    nlohmann::json j = R"(null)"_json;
+    BasicVariantType v = int32_t(-1);
+    EXPECT_FALSE(matchProbe(j, v));
+}
+
+TEST(MatchProbe, nullNeqDouble)
+{
+    nlohmann::json j = R"(null)"_json;
+    BasicVariantType v = double(1.1);
+    EXPECT_FALSE(matchProbe(j, v));
+}
