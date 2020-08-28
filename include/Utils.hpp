@@ -32,7 +32,7 @@ constexpr const char* versionFile = "/etc/os-release";
 
 using BasicVariantType =
     std::variant<std::string, int64_t, uint64_t, double, int32_t, uint32_t,
-                 int16_t, uint16_t, uint8_t, bool>;
+                 int16_t, uint16_t, uint8_t, bool, std::vector<uint8_t>>;
 
 enum class TemplateOperation
 {
