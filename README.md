@@ -1,201 +1,121 @@
-# Entity Manager
+# Entity Manager #
 
-Entity manager is a runtime configuration application which parses configuration
-files (in JSON format) and attempts to detect the devices described by the
-configuration files. It also can, based on the configuration, attempt to load
-install devices into sysfs. It takes these configurations and produces a best
-representation of the files on dbus using the xyz.openbmc_project.Configuration
-namespace. It also produces a system.json file for persistence.
+Entity manager is a design for managing physical system components, and mapping
+them to software resources within the BMC.  Said resources are designed to allow
+the flexible adjustment of the system at runtime, as well as the reduction in
+the number of independent system configurations one needs to create.
 
-## Configuration Syntax
+## Definitions ##
 
-In most cases a server system is built with multiple hardware modules (circuit
-boards) such as baseboard, risers, and hot-swap backplanes. While it is
-perfectly legal to combine the JSON configuration information for all the
-hardware modules into a single file if desired, it is also possible to divide
-them into multiple configuration files. For example, there may be a baseboard
-JSON file (describes all devices on the baseboard) and a chassis JSON file
-(describes devices attached to the chassis). When one of the hardware modules
-needs to be upgraded (e.g., a new temperature sensor), only such JSON
-configuration file needs to be be updated.
+### Entity ###
+A server component that is physically separate, detectable through some means,
+and can be added or removed from a given OpenBMC system.  Said component can,
+and likely does contain multiple sub components, but the component itself as a
+whole is referred to as an entity.
 
-Within a configuration file, there is a JSON object which consists of multiple
-"string : value" pairs. This Entity Manager defines the following strings.
+Note, this term is needed because most other term that could've been used
+(Component, Field Replaceable Unit, or Assembly) are already overloaded in the
+industry, and have a distinct definition already, which is a subset of what an
+entity encompasses.
 
-| String    | Example Value                            | Description                              |
-| :-------- | ---------------------------------------- | ---------------------------------------- |
-| "Name"    | "X1000 1U Chassis"                       | Human readable name used for identification and sorting. |
-| "Probe"   | "xyz.openbmc_project.FruDevice({'BOARD_PRODUCT_NAME':'FFPANEL'})" | Statement which attempts to read from d-bus. The result determines if a configuration record should be applied. The value for probe can be set to “TRUE” in the case the record should always be applied, or set to more complex lookups, for instance a field in a FRU file that is exposed by the frudevice |
-| "Exposes" | [{"Name" : "CPU fan"}, ...]              | An array of JSON objects which are valid if the probe result is successful. These objects describe the devices BMC can interact. |
-| "Status"  | "disabled"                               | An indicator that allows for some records to be disabled by default. |
-| "Bind*"  | "2U System Fan connector 1"              | The record isn't complete and needs to be combined with another to be functional. The value is a unique reference to a record elsewhere. |
-| "DisableNode| "Fan 1" | Sets the status of another Entity to disabled. |
+### Exposes ###
+A particular feature of an Entity.  An Entity generally will have multiple
+exposes records for the various features that component supports.  Some examples
+of features include, LM75 sensors, PID control parameters, or CPU information.
 
-Template strings in the form of "$identifier" may be used in configuration
-files. The following table describes the template strings currently defined.
-
-| Template String | Description                              |
-| :-------------- | :--------------------------------------- |
-| "$bus"          | During a I2C bus scan and when the "probe" command is successful, this template string is substituted with the bus number to which the device is connected. |
-| "$address"   | When the "probe" is successful, this template string is substituted with the (7-bit) I2C address of the FRU device. |
-| "$index"        | A run-tim enumeration. This template string is substituted with a unique index value when the "probe" command is successful. This allows multiple identical devices (e.g., HSBPs) to exist in a system but each with a unique name. |
+### Probe ###
+A set of rules for detecting a given entity.  Said rules generally take the form
+of a DBus interface definition.
 
 
+## Goals ##
+Entity manager has the following goals (unless you can think of better ones):
 
-## Configuration HowTos
+1. Minimize the time and debugging required to "port" OpenBMC to new systems
+2. Reduce the amount of code that is different between platforms
+3. Create system level maintainability in the long term, across hundreds of
+   platforms and components, such that components interoperate as much as
+   physically possible.
 
-If you're just getting started and your goal is to add sensors dynamically,
-check out [My First Sensors](docs/my_first_sensors.md)
+## Implementation ##
+A full BMC setup using Entity Manager consists of a few parts:
 
+1. **A detection daemon**  This is something that can be used to detect
+   components at runtime.  The most common of these, Fru-Device, is included in
+   the Entity-Manager repo, and scans all available I2C buses IPMI FRU EEPROM
+   devices.  Other examples of detection daemons include:
+   **peci-pcie:**
+   A daemon that utilizes the CPU bus to read in a list of PCIe devices from
+   the processor.
+   **smbios-mdr:**
+   A daemon that utilizes the x86 SMBIOS table specification to detect the
+   available systems dependencies from BIOS.
 
-## Configuration Records - Baseboard Example
+   In many cases, the existing detection daemons are sufficient for a single
+   system, but in cases where there is a superseding inventory control system in
+   place (such as in a large datacenter) they can be replaced with application
+   specific daemons that speak the protocol information of their controller, and
+   expose the inventory information, such that failing devices can be detected
+   more readily, and system configurations can be "verified" rather than
+   detected.
 
-Required fields are name, probe and exposes.
+2. **An entity manager configuration file**  Entity manager configuration files
+   are located in the /configurations directory in the entity manager
+   repository, and include one file per device supported.  Entities are
+   detected based on the "Probe" key in the json file.  The intention is that
+   this folder contains all hardware configurations that OpenBMC supports, to
+   allows an easy answer to "Is X device supported".  An EM configuration
+   contains a number of exposes records that specify the specific features that
+   this Entity supports.  Once a component is detected, entity manager will
+   publish these exposes records to DBus.  In some cases, fields may be passed
+   through from the detection daemon to the entity manager DBus interface.
+   This is done for efficiency of DBus transactions and to avoid bugs creation
+   order issues, but ideally should be avoided if possible.
 
-The configuration JSON files attempt to model the actual hardware modules
-which make up a complete system. An example baseboard JSON file shown below
-defines two fan connectors and two temperature sensors of TMP75 type. These
-objects are considered valid by BMC when the probe command (reads and compares
-the product name in FRU) is successful and this baseboard is named as "WFP
-baseboard".
+3. **A reactor**  The reactors are things that take the entity manager
+   configurations, and use them to execute and enable the features that they
+   describe.  One example of this is dbus-sensors, which contains a suite of
+   applications that input the exposes records for sensor devices, then connect
+   to the filesystem to create the sensors and scan loops to scan sensors for
+   those devices.  Other examples of reactors could include: CPU management
+   daemons and Hot swap backplane management daemons, or drive daemons.
 
-```
-{
-    "Exposes": [
-        {
-            "Name": "1U System Fan connector 1",
-            "Pwm": 1,
-            "Status": "disabled",
-            "Tachs": [
-                1,
-                2
-            ],
-            "Type": "IntelFanConnector"
-        },
-        {
-            "Name": "2U System Fan connector 1",
-            "Pwm": 1,
-            "Status": "disabled",
-            "Tachs": [
-                1
-            ],
-            "Type": "IntelFanConnector"
-        },
-        {
-            "Address": "0x49",
-            "Bus": 6,
-            "Name": "Left Rear Temp",
-            "Thresholds": [
-                {
-                    "Direction": "greater than",
-                    "Name": "upper critical",
-                    "Severity": 1,
-                    "Value": 115
-                },
-                {
-                    "Direction": "greater than",
-                    "Name": "upper non critical",
-                    "Severity": 0,
-                    "Value": 110
-                },
-                {
-                    "Direction": "less than",
-                    "Name": "lower non critical",
-                    "Severity": 0,
-                    "Value": 5
-                },
-                {
-                    "Direction": "less than",
-                    "Name": "lower critical",
-                    "Severity": 1,
-                    "Value": 0
-                }
-            ],
-            "Type": "TMP75"
-        },
-        {
-            "Address": "0x48",
-            "Bus": 6,
-            "Name": "Voltage Regulator 1 Temp",
-            "Thresholds": [
-                {
-                    "Direction": "greater than",
-                    "Name": "upper critical",
-                    "Severity": 1,
-                    "Value": 115
-                },
-                {
-                    "Direction": "greater than",
-                    "Name": "upper non critical",
-                    "Severity": 0,
-                    "Value": 110
-                },
-                {
-                    "Direction": "less than",
-                    "Name": "lower non critical",
-                    "Severity": 0,
-                    "Value": 5
-                },
-                {
-                    "Direction": "less than",
-                    "Name": "lower critical",
-                    "Severity": 1,
-                    "Value": 0
-                }
-            ],
-            "Type": "TMP75"
-        }
-    ],
-    "Name": "WFP Baseboard",
-    "Probe": "xyz.openbmc_project.FruDevice({'BOARD_PRODUCT_NAME' : '.*WFT'})"
-}
-```
+**note:**  In some cases, a given daemon could be both a detection daemon and a
+reactor when architectures are multi-tiered.  An example of this might include a
+hot swap backplane daemon, which both reacts to the hot swap being detected, and
+also creates detection records of what drives are present.
 
-[Full Configuration](https://github.com/openbmc/entity-manager/blob/master/configurations/WFT%20Baseboard.json)
+## Requirements ##
+
+1. Entity manager shall support the dynamic discovery of hardware at runtime,
+   using inventory interfaces.  The types of devices include, but are not
+   limited to hard drives, hot swap backplanes, baseboards, power supplies,
+   CPUs, and PCIe Add-in-cards.
+
+2. Entity manager shall support the ability to add or remove support for
+   particular devices in a given binary image.  By default, entity manager will
+   support all available and known working devices for all platforms.
+
+3. Entity manager shall provide data to DBus about a particular device such that
+   other daemons can create instances of the features being exposed.
+
+4. Entity manager shall support multiple detection runs, and shall do the
+   minimal number of changes necessary when new components are detected or no
+   longer detected.  Some examples of re-detection events might include host
+   power on, drive plug/unplug, PSU plug/unplug.
+
+5. Entity manager shall have exactly one configuration file per supported device
+   model.  In some cases this will cause duplicated information between files,
+   but the ability to list and see all supported device models in a single
+   place, as well as maintenance when devices do differ in the future is
+   determined to be more important than duplication of configuration files.
 
 
-#### Configuration Records - Chassis Example
-
-Although fan connectors are considered a part of a baseboard, the physical fans
-themselves are considered as a part of a chassis. In order for a fan to be
-matched with a fan connector, the keyword "Bind" is used. The example below
-shows how a chassis fan named "Fan 1" is connected to the connector named "1U
-System Fan connector 1". When the probe command finds the correct product name
-in baseboard FRU, the fan and the connector are considered as being joined
-together.
-
-```
-{
-    "Exposes": [
-        {
-            "BindConnector": "1U System Fan connector 1",
-            "Name": "Fan 1",
-            "Thresholds": [
-                {
-                    "Direction": "less than",
-                    "Name": "lower critical",
-                    "Severity": 1,
-                    "Value": 1750
-                },
-                {
-                    "Direction": "less than",
-                    "Name": "lower non critical",
-                    "Severity": 0,
-                    "Value": 2000
-                }
-            ],
-            "Type": "AspeedFan"
-        }
-    ]
-}
-```
-
-## Enabling Sensors
-
-As daemons can trigger off of shared types, sometimes some handshaking will be
-needed to enable sensors. Using the TMP75 sensor as an example, when the sensor
-object is enabled, the device tree must be updated before scanning may begin.
-The entity-manager can key off of different types and export devices for
-specific configurations. Once this is done, the baseboard temperature sensor
-daemon can scan the sensors.
-
+### Explicitly out of scope ###
+1. Entity manager shall not directly participate in the detection of devices,
+   and instead will rely on other DBus applications to publish interfaces that
+   can be detected.
+2. Entity manager shall not directly participate in management of any specific
+   device.  This is requirement is intended to intentionally limit the size and
+   feature set of entity manager, to ensure it remains small, and effective to
+   all users. 
