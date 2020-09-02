@@ -129,6 +129,8 @@ static inline const std::string& getFruAreaName(fruAreas area)
     return FRU_AREA_NAMES[static_cast<unsigned int>(area)];
 }
 bool validateHeader(const std::array<uint8_t, I2C_SMBUS_BLOCK_MAX>& blockData);
+uint8_t calculateChecksum(std::vector<uint8_t>::const_iterator iter,
+                          std::vector<uint8_t>::const_iterator end);
 bool updateFRUProperty(
     const std::string& assetTag, uint32_t bus, uint32_t address,
     std::string propertyName,
@@ -966,6 +968,17 @@ static std::pair<DecodeState, std::string>
     return make_pair(DecodeState::ok, value);
 }
 
+static void checkLang(uint8_t lang)
+{
+    // If Lang is not English then the encoding is defined as 2-byte UNICODE,
+    // but we don't support that.
+    if (lang && lang != 25)
+    {
+        std::cerr << "Warning: language other then English is not "
+                     "supported \n";
+    }
+}
+
 bool formatFRU(const std::vector<uint8_t>& fruBytes,
                boost::container::flat_map<std::string, std::string>& result)
 {
@@ -996,7 +1009,7 @@ bool formatFRU(const std::vector<uint8_t>& fruBytes,
             std::cerr << "Not enough data to parse \n";
             return false;
         }
-        // check for format version 1
+        // check for format version 1 (not fatal error)
         if (*fruBytesIter != 0x01)
         {
             std::cerr << "Unexpected version " << *fruBytesIter << "\n";
@@ -1007,6 +1020,14 @@ bool formatFRU(const std::vector<uint8_t>& fruBytes,
         std::vector<uint8_t>::const_iterator fruBytesIterEndArea =
             fruBytes.begin() + offset + fruAreaSize - 1;
         ++fruBytesIter;
+
+        if (calculateChecksum(fruBytes.begin() + offset, fruBytesIterEndArea) !=
+            *fruBytesIterEndArea)
+        {
+            std::cerr << "Checksum error in FRU area " << getFruAreaName(area)
+                      << "\n";
+            return false;
+        }
 
         switch (area)
         {
@@ -1020,8 +1041,10 @@ bool formatFRU(const std::vector<uint8_t>& fruBytes,
             }
             case fruAreas::fruAreaBoard:
             {
+                uint8_t lang = *fruBytesIter;
                 result["BOARD_LANGUAGE_CODE"] =
-                    std::to_string(static_cast<int>(*fruBytesIter));
+                    std::to_string(static_cast<int>(lang));
+                checkLang(lang);
                 fruBytesIter += 1;
 
                 unsigned int minutes = *fruBytesIter |
@@ -1049,8 +1072,10 @@ bool formatFRU(const std::vector<uint8_t>& fruBytes,
             }
             case fruAreas::fruAreaProduct:
             {
+                uint8_t lang = *fruBytesIter;
                 result["PRODUCT_LANGUAGE_CODE"] =
-                    std::to_string(static_cast<int>(*fruBytesIter));
+                    std::to_string(static_cast<int>(lang));
+                checkLang(lang);
                 fruBytesIter += 1;
                 fruAreaFieldNames = &PRODUCT_FRU_AREAS;
                 break;
@@ -1105,7 +1130,26 @@ bool formatFRU(const std::vector<uint8_t>& fruBytes,
                     return false;
                 }
             }
+            else
+            {
+                if (fieldIndex < fruAreaFieldNames->size())
+                {
+                    std::cerr << "Mandatory fields absent in FRU area "
+                              << getFruAreaName(area) << " after " << name
+                              << "\n";
+                }
+            }
         } while (state == DecodeState::ok);
+        for (; fruBytesIter < fruBytesIterEndArea; fruBytesIter++)
+        {
+            uint8_t c = *fruBytesIter;
+            if (c)
+            {
+                std::cerr << "Non-zero byte after EndOfFields in FRU area "
+                          << getFruAreaName(area) << "\n";
+                break;
+            }
+        }
     }
 
     return true;
@@ -1529,12 +1573,18 @@ void rescanBusses(
 }
 
 // Calculate new checksum for fru info area
-size_t calculateChecksum(std::vector<uint8_t>& fruAreaData)
+uint8_t calculateChecksum(std::vector<uint8_t>::const_iterator iter,
+                          std::vector<uint8_t>::const_iterator end)
 {
     constexpr int checksumMod = 256;
     constexpr uint8_t modVal = 0xFF;
-    int sum = std::accumulate(fruAreaData.begin(), fruAreaData.end(), 0);
-    return (checksumMod - sum) & modVal;
+    int sum = std::accumulate(iter, end, 0);
+    int checksum = (checksumMod - sum) & modVal;
+    return static_cast<uint8_t>(checksum);
+}
+uint8_t calculateChecksum(std::vector<uint8_t>& fruAreaData)
+{
+    return calculateChecksum(fruAreaData.begin(), fruAreaData.end());
 }
 
 // Update new fru area length &
@@ -1574,9 +1624,7 @@ static unsigned int updateFRUAreaLenAndChecksum(std::vector<uint8_t>& fruData,
     std::copy_n(fruData.begin() + fruAreaStart, checksumLoc - fruAreaStart,
                 std::back_inserter(finalFRUData));
 
-    size_t checksumVal = calculateChecksum(finalFRUData);
-
-    fruData[checksumLoc] = static_cast<uint8_t>(checksumVal);
+    fruData[checksumLoc] = calculateChecksum(finalFRUData);
     return checksumLoc;
 }
 
