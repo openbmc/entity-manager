@@ -185,7 +185,7 @@ void getInterfaces(
 // getManagedObjects
 void findDbusObjects(std::vector<std::shared_ptr<PerformProbe>>&& probeVector,
                      boost::container::flat_set<std::string>&& interfaces,
-                     std::shared_ptr<PerformScan> scan)
+                     std::shared_ptr<PerformScan> scan, size_t retries = 5)
 {
 
     for (const auto& [interface, _] : scan->dbusProbeObjects)
@@ -200,8 +200,8 @@ void findDbusObjects(std::vector<std::shared_ptr<PerformProbe>>&& probeVector,
     // find all connections in the mapper that expose a specific type
     SYSTEM_BUS->async_method_call(
         [interfaces{std::move(interfaces)}, probeVector{std::move(probeVector)},
-         scan](boost::system::error_code& ec,
-               const GetSubTreeType& interfaceSubtree) {
+         scan, retries](boost::system::error_code& ec,
+                        const GetSubTreeType& interfaceSubtree) mutable {
             boost::container::flat_set<
                 std::tuple<std::string, std::string, std::string>>
                 interfaceConnections;
@@ -213,8 +213,25 @@ void findDbusObjects(std::vector<std::shared_ptr<PerformProbe>>&& probeVector,
                 }
                 std::cerr << "Error communicating to mapper.\n";
 
-                // if we can't communicate to the mapper something is very wrong
-                std::exit(EXIT_FAILURE);
+                if (!retries)
+                {
+                    // if we can't communicate to the mapper something is very
+                    // wrong
+                    std::exit(EXIT_FAILURE);
+                }
+                std::shared_ptr<boost::asio::steady_timer> timer =
+                    std::make_shared<boost::asio::steady_timer>(io);
+                timer->expires_after(std::chrono::seconds(10));
+
+                timer->async_wait(
+                    [timer, interfaces{std::move(interfaces)}, scan,
+                     probeVector{std::move(probeVector)},
+                     retries](const boost::system::error_code&) mutable {
+                        findDbusObjects(std::move(probeVector),
+                                        std::move(interfaces), scan,
+                                        retries - 1);
+                    });
+                return;
             }
 
             for (const auto& [path, object] : interfaceSubtree)
