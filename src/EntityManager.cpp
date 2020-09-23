@@ -1051,12 +1051,22 @@ void postToDbus(const nlohmann::json& newConfiguration,
                 if (objectPair.value().type() ==
                     nlohmann::json::value_t::object)
                 {
+                    std::string key = objectPair.key();
+                    std::string iface_name;
+                    if (key[0] == '.')
+                    {
+                        iface_name = key.substr(1);
+                    }
+                    else
+                    {
+                        iface_name = "xyz.openbmc_project.Configuration." +
+                                     itemType + "." + key;
+                    }
                     std::shared_ptr<sdbusplus::asio::dbus_interface>
-                        objectIface = createInterface(
-                            objServer, boardName + "/" + itemName,
-                            "xyz.openbmc_project.Configuration." + itemType +
-                                "." + objectPair.key(),
-                            boardKeyOrig);
+                        objectIface =
+                            createInterface(objServer,
+                                            boardName + "/" + itemName,
+                                            iface_name, boardKeyOrig);
 
                     populateInterfaceFromJson(systemConfiguration,
                                               jsonPointerPath, objectIface,
