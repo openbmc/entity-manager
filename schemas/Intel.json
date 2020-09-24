@@ -1,0 +1,37 @@
+{
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "definitions": {
+        "IntelFanConnector": {
+            "properties": {
+                "LED": {
+                    "type": "string"
+                },
+                "Name": {
+                    "type": "string"
+                },
+                "Pwm": {
+                    "type": "number"
+                },
+                "Tachs": {
+                    "items": {
+                        "type": "number"
+                    },
+                    "type": "array"
+                },
+                "Type": {
+                    "enum": [
+                        "IntelFanConnector"
+                    ]
+                }
+            },
+            "required": [
+                "Name",
+                "Type",
+                "Status",
+                "Pwm",
+                "Tachs"
+            ],
+            "type": "object"
+        }
+    }
+}
