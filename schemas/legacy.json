@@ -78,6 +78,10 @@
                 "Index": {
                     "$ref": "#/definitions/Types/Index"
                 },
+                "IntelFanConnector": {
+                    "$ref": "#/definitions/Types/Index"
+                },
+
                 "Labels": {
                     "$ref": "#/definitions/Types/Labels"
                 },
@@ -223,6 +227,9 @@
             },
             "Connector": {
                 "properties": {
+                    "LED": {
+                         "type": "string"
+                    },
                     "Name": {
                         "type": "string"
                     },
@@ -274,6 +281,31 @@
             },
             "Index": {
                 "type": "number"
+            },
+            "IntelFanConnector": {
+                "properties": {
+                    "LED": {
+                         "type": "string"
+                    },
+                    "Name": {
+                        "type": "string"
+                    },
+                    "Pwm": {
+                        "type": "number"
+                    },
+                    "Tachs": {
+                        "items": {
+                            "type": "number"
+                        },
+                        "type": "array"
+                    }
+                },
+                "required": [
+                    "Name",
+                    "Pwm",
+                    "Tachs"
+                ],
+                "type": "object"
             },
             "Labels": {
                 "items": {
