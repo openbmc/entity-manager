@@ -36,6 +36,24 @@
     },
     {
       "key": {
+        "uuid": "0ec5d843_7212539b",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 28,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2020-09-29T15:08:25Z",
+      "side": 1,
+      "message": "In my testing, it was about 12k for the full application.  I\u0027m not sure how much of that was spirit versus the parser itself, but it seems reasonable.\n\nIn theory, the compiler can see and optimize the full grammar as if you had hardcoded it by hand, so it should be roughly as complex as we make it.",
+      "parentUuid": "a40e4eb0_5938cc80",
+      "revId": "e7a083d6caf5b6c683ea3fec99c1282103423871",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "494fe710_0ceafc3e",
         "filename": "/COMMIT_MSG",
         "patchSetId": 1
@@ -50,6 +68,24 @@
       "revId": "e7a083d6caf5b6c683ea3fec99c1282103423871",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "d9b52524_99ad3856",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 39,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2020-09-29T15:08:25Z",
+      "side": 1,
+      "message": "In looking at integrating this, this might need to be a follow on goal.  As-is, entity-manager does multiple passes on the data, each time with different keys.  I suspect that can be refactored to do something cleaner, but it\u0027s might be outside the scope of this patch.  But we\u0027ll see as I dig in more.",
+      "parentUuid": "494fe710_0ceafc3e",
+      "revId": "e7a083d6caf5b6c683ea3fec99c1282103423871",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
     },
     {
       "key": {
@@ -70,6 +106,24 @@
     },
     {
       "key": {
+        "uuid": "72e00592_958a3697",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 42,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2020-09-29T15:08:25Z",
+      "side": 1,
+      "message": "The biggest thing is that Entity manager configs are supposed to be user-facing, and not contain implementation details.  Needing to do bitwise operators in a probe statement would generally be used for isolating fields in a binary blob, and somewhat speaks to the fact that those parameters should probably be broken out into full properties by the detecting daemon, rather than having EM operate on the binary data itself.\n\nWith that said, happy to discuss it.",
+      "parentUuid": "9d410abf_bee47bf8",
+      "revId": "e7a083d6caf5b6c683ea3fec99c1282103423871",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "deae1abe_dc881c4f",
         "filename": "/COMMIT_MSG",
         "patchSetId": 1
@@ -87,6 +141,24 @@
     },
     {
       "key": {
+        "uuid": "4e63db33_fada4143",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 46,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2020-09-29T15:08:25Z",
+      "side": 1,
+      "message": "Yup.  I guess I just assumed we\u0027d run the existing unit tests for the parser, possibly adding some new cases for oddities in the grammar (things like spaces in math expressions).\n\nI\u0027ve added a message about running the unit tests.",
+      "parentUuid": "deae1abe_dc881c4f",
+      "revId": "e7a083d6caf5b6c683ea3fec99c1282103423871",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "98bd855d_7439beca",
         "filename": "/COMMIT_MSG",
         "patchSetId": 1
@@ -101,6 +173,24 @@
       "revId": "e7a083d6caf5b6c683ea3fec99c1282103423871",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ccacbe00_ba4b127f",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 48,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2020-09-29T15:08:25Z",
+      "side": 1,
+      "message": "Agreed.  That would help a lot.  I\u0027ll add it to the (never-ending) list.",
+      "parentUuid": "98bd855d_7439beca",
+      "revId": "e7a083d6caf5b6c683ea3fec99c1282103423871",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
     }
   ]
 }
