@@ -1,0 +1,106 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "f456b41a_145d9b0f",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 23,
+      "author": {
+        "id": 1000002
+      },
+      "writtenOn": "2020-09-29T12:49:20Z",
+      "side": 1,
+      "message": "Regardless of implementation details, I think getting the logic factored out into a self contained thing is a great step forward for testing and maintainence.",
+      "revId": "e7a083d6caf5b6c683ea3fec99c1282103423871",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "a40e4eb0_5938cc80",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 28,
+      "author": {
+        "id": 1000002
+      },
+      "writtenOn": "2020-09-29T12:49:20Z",
+      "side": 1,
+      "message": "Glad to see an off the shelf solution being used.  Sort of curious what the storage footprint impact looks like with this tool.",
+      "revId": "e7a083d6caf5b6c683ea3fec99c1282103423871",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "494fe710_0ceafc3e",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 39,
+      "author": {
+        "id": 1000002
+      },
+      "writtenOn": "2020-09-29T12:49:20Z",
+      "side": 1,
+      "message": "This makes sense to me.  IMO implicit behavior such as this...just leads to bugs.",
+      "revId": "e7a083d6caf5b6c683ea3fec99c1282103423871",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9d410abf_bee47bf8",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 42,
+      "author": {
+        "id": 1000002
+      },
+      "writtenOn": "2020-09-29T12:49:20Z",
+      "side": 1,
+      "message": "The IBM VPD detection daemon publishes bytestrings (dbus type \u0027ay\u0027).  The \u0026/| operators would possibly help when writing probe statements.\n\nAlso - the \"against core principles\" statement left me confused - I\u0027m curious what use case of these operators would violate EM\u0027s core principles and which ones wouldn\u0027t?",
+      "revId": "e7a083d6caf5b6c683ea3fec99c1282103423871",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "deae1abe_dc881c4f",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 46,
+      "author": {
+        "id": 1000002
+      },
+      "writtenOn": "2020-09-29T12:49:20Z",
+      "side": 1,
+      "message": "Is it worth mentioning unit tests here?",
+      "revId": "e7a083d6caf5b6c683ea3fec99c1282103423871",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "98bd855d_7439beca",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 48,
+      "author": {
+        "id": 1000002
+      },
+      "writtenOn": "2020-09-29T12:49:20Z",
+      "side": 1,
+      "message": "Would be cool if this could happen automatically as a part of CI.  You could even do this before making any changes to easily validate that the new parser didn\u0027t regress anything.",
+      "revId": "e7a083d6caf5b6c683ea3fec99c1282103423871",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": false
+    }
+  ]
+}
