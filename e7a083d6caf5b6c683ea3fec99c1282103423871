@@ -142,6 +142,24 @@
     },
     {
       "key": {
+        "uuid": "833d0e96_474671d4",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 42,
+      "author": {
+        "id": 1000002
+      },
+      "writtenOn": "2020-09-29T18:16:47Z",
+      "side": 1,
+      "message": "\u003e Entity manager configs are supposed to be user-facing, and not contain implementation details. \n\nI\u0027m having trouble parsing what this means exactly.  Who is the user?  The system operator?  What would an example of something in an EM config that is an implementation detail be?\n\n\u003e  should probably be broken out into full properties by the detecting daemon\n\nThey are already broken out.  An illustrative example - we have a 4 byte property called CCIN or \"customer card identification number\".  This is roughly a part number (although we have those too - IBM hw will have 1-N part numbers for a given CCIN).  Given two hypothetical FRUs with CCINs 0xaaaaaabb and 0xaaaaaacc it would be nice to be able to probe match both (0xaaaaaa) without having to list each one.  It is the same thing as a wildcard match on a part number string.",
+      "parentUuid": "72e00592_958a3697",
+      "revId": "e7a083d6caf5b6c683ea3fec99c1282103423871",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "deae1abe_dc881c4f",
         "filename": "/COMMIT_MSG",
         "patchSetId": 1
