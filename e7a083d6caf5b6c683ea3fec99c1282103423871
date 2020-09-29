@@ -160,6 +160,24 @@
     },
     {
       "key": {
+        "uuid": "e733c053_887826b3",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 42,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2020-09-29T22:37:10Z",
+      "side": 1,
+      "message": "\u003e \u003e Entity manager configs are supposed to be user-facing, and not contain implementation details. \n\u003e \n\u003e I\u0027m having trouble parsing what this means exactly.  Who is the user?  The system operator?  What would an example of something in an EM config that is an implementation detail be?\n\nSomething like this, where we\u0027re hardcoding a specific dbus interface into a config file, and forwarding along specific property names through EM.  Ideally I\u0027d like to see that whole section go away in all the config files, and the user would have some way to say \"this is a power supply\", maybe based on folder structure?  At the time we wrote this, perfect was the enemy of good, so here we are.\n\nhttps://github.com/openbmc/entity-manager/blob/d7b6659944c3527622d454526509a0a8697ada0f/configurations/ASPOWER_U1A-D11200_PSU.json#L146\n\n\nOther examples of implementation details:  Take a look at the probe entry a couple lines up.  Knowing which entity/interface to match against would require a lot of documentation for a user, and something people are already struggling with.  This is an area that\u0027s ripe for simplification.\n\n\u003e \n\u003e \u003e  should probably be broken out into full properties by the detecting daemon\n\u003e \n\u003e They are already broken out.  An illustrative example - we have a 4 byte property called CCIN or \"customer card identification number\".  This is roughly a part number (although we have those too - IBM hw will have 1-N part numbers for a given CCIN).  Given two hypothetical FRUs with CCINs 0xaaaaaabb and 0xaaaaaacc it would be nice to be able to probe match both (0xaaaaaa) without having to list each one.  It is the same thing as a wildcard match on a part number string.\n\nIn that case, today you would just do an OR match between the two cards.  Similar to this:\nhttps://github.com/openbmc/entity-manager/blob/d7b6659944c3527622d454526509a0a8697ada0f/configurations/Intel%20Front%20Panel.json#L43\n\nI tend to prefer that, as it\u0027s a lot more obvious how many, and what cards this file supports than if you did it with a single match.  Also, when that one card needs its own config file because X manufacturer did Y thing wrong, it\u0027s much easier to extract.\n\nIt should be noted, the above is moot in the context of this patch, as the variable replacement parser doesn\u0027t work on Probe statements at all, given that you would have to know about the match to make the match, you get a chicken and egg problem.",
+      "parentUuid": "833d0e96_474671d4",
+      "revId": "e7a083d6caf5b6c683ea3fec99c1282103423871",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "deae1abe_dc881c4f",
         "filename": "/COMMIT_MSG",
         "patchSetId": 1
