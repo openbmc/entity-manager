@@ -232,6 +232,24 @@
     },
     {
       "key": {
+        "uuid": "934579fb_5481b83b",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 42,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2020-09-30T19:19:57Z",
+      "side": 1,
+      "message": "\u003e \u003e \"broken\" is a bit of a strong word \n\u003e \n\u003e sure - how about \"goes against entity-manager core principles\" ?\n\nThat\u0027s a fair statement.  I\u0027m conflicted on wildcard/regex matching in EM, because there are cases where it\u0027s useful, but the likelyhood that it gets abused in ways that cause cross platform dependencies (like using one config for 5 different systems) is really high.  I suspect there\u0027s a happy medium here, where we allow matching multiple platforms, but the MOMENT anything is different between them, they need moved to separate files.  At this point I\u0027m just thinking out loud;  This definitely could use some more thought.",
+      "parentUuid": "73451127_218dd91c",
+      "revId": "e7a083d6caf5b6c683ea3fec99c1282103423871",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "deae1abe_dc881c4f",
         "filename": "/COMMIT_MSG",
         "patchSetId": 1
