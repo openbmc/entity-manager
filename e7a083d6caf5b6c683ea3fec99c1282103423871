@@ -196,6 +196,24 @@
     },
     {
       "key": {
+        "uuid": "40426e5a_cb724ee6",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 42,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2020-09-30T15:09:24Z",
+      "side": 1,
+      "message": "\u003e \u003e In that case, today you would just do an OR match between the two cards.\n\u003e \n\u003e Right, this was my plan.  There are wildcard matches already though are there not?  Are those broken and need to be fixed?\n\u003e \n\u003e  \"Probe\": \"xyz.openbmc_project.FruDevice({\u0027PRODUCT_PRODUCT_NAME\u0027: \u0027.*WFT\u0027})\"\n\n\"broken\" is a bit of a strong word, but yeah, one could say they\u0027re sub-optimal.  That one above I\u0027m not even sure why it exists.  S2600WFT is I think what it should read on most platforms.  If anything it should be S2600WF? but I\u0027m not sure why this was chosen.\n\n\u003e \n\u003e How is this different?\n\nThan a bit shift operator in the variable replacement logic?  One is a regex, the other is replacing variables?  I\u0027m not sure I really understand\n\n\u003e \n\u003e \u003e  as the variable replacement parser doesn\u0027t work on Probe statements at all,\n\u003e \n\u003e I wondered about this.  It seems we have 3 contexts for replacing tokens in EM?\n\u003e \n\u003e 1 - probe statments\n\nProbe statements don\u0027t ever replace tokens, they only do wildcard matching.\n\n\u003e 2 - $address, $bus, $index\n\u003e 3 - the ones this parser targets?\n\u003e \n\u003e Is there a difference between 2 and 3?\n\nNo.  2 and 3 are intended to be this parser.\n\n\u003e Why do I find $address in some contexts but $ADDRESS in others?\n\nJust a guess, but it might be $address ends up as a numeric type on dbus (so you can pull it through as an int) and $ADDRESS ends up as a string type.  We should probably disambiguate the two if they are in fact different.",
+      "parentUuid": "3dff51ed_705eeddc",
+      "revId": "e7a083d6caf5b6c683ea3fec99c1282103423871",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "deae1abe_dc881c4f",
         "filename": "/COMMIT_MSG",
         "patchSetId": 1
