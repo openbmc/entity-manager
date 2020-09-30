@@ -178,6 +178,24 @@
     },
     {
       "key": {
+        "uuid": "3dff51ed_705eeddc",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 42,
+      "author": {
+        "id": 1000002
+      },
+      "writtenOn": "2020-09-30T11:22:07Z",
+      "side": 1,
+      "message": "\u003e In that case, today you would just do an OR match between the two cards.\n\nRight, this was my plan.  There are wildcard matches already though are there not?  Are those broken and need to be fixed?\n\n \"Probe\": \"xyz.openbmc_project.FruDevice({\u0027PRODUCT_PRODUCT_NAME\u0027: \u0027.*WFT\u0027})\"\n\nHow is this different?\n\n\u003e  as the variable replacement parser doesn\u0027t work on Probe statements at all,\n\nI wondered about this.  It seems we have 3 contexts for replacing tokens in EM?\n\n1 - probe statments\n2 - $address, $bus, $index\n3 - the ones this parser targets?\n\nIs there a difference between 2 and 3?  Why do I find $address in some contexts but $ADDRESS in others?",
+      "parentUuid": "e733c053_887826b3",
+      "revId": "e7a083d6caf5b6c683ea3fec99c1282103423871",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "deae1abe_dc881c4f",
         "filename": "/COMMIT_MSG",
         "patchSetId": 1
