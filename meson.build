@@ -9,6 +9,7 @@ project(
     license: 'Apache-2.0',
     version: '0.1',
 )
+add_project_arguments('-Wno-psabi', language: 'cpp')
 
 boost_args = [
     '-DBOOST_SYSTEM_NO_DEPRECATED',
