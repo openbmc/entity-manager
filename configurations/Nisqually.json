@@ -1,0 +1,16 @@
+{
+    "Exposes": [
+        {
+            "Name": "Power Supply Slot 0",
+            "Type": "IBMCFFPSConnector",
+            "I2CAddress": 104,
+            "I2CBus": 3,
+            "NamedPresenceGpio": "PS0_PRES_N"
+        }
+    ],
+    "Name": "Nisqually Backplane",
+    "Probe": [
+        "com.ibm.ipzvpd.VSBP({'IM': [80, 0, 16, 1]})"
+    ],
+    "Type": "Board"
+}
