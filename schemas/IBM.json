@@ -1,0 +1,53 @@
+{
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "definitions": {
+        "IBMCFFPSConnector": {
+            "title": "IBM Common Form Factor (CFF) Power Supply connectors",
+            "description": [
+                "A schema associating an I2C endpoint and a GPIO for IBM CFF",
+                "power supplies.  In the entity-manager",
+                "detector-configuration-reactor architecture, the daemon that",
+                "supports IBM CFFPS is both a detector and reactor.  It probes",
+                "the endpoints described by this schema (reactor) and publishes",
+                "the CFFPS FRU information (detector)."
+            ],
+            "type": "object",
+            "properties": {
+                "Name": {
+                    "type": "string"
+                },
+                "Type": {
+                    "enum": [
+                        "IBMCFFPSConnector"
+                    ]
+                },
+                "I2CBus": {
+                    "description": [
+                        "The I2C address on which to probe for a CFFPS."
+                    ],
+                    "type": "number"
+                },
+                "I2CAddress": {
+                    "description": [
+                        "The I2C bus number on which to probe for a CFFPS."
+                    ],
+                    "type": "number"
+                },
+                "NamedPresenceGpio": {
+                    "description": [
+                        "The name of the GPIO to monitor that indicates CFFPS",
+                        "plug state."
+                    ],
+                    "type": "string"
+                }
+            },
+            "required": [
+                "Name",
+                "Type",
+                "I2CBus",
+                "I2CAddress",
+                "NamedPresenceGpio"
+            ]
+        }
+    }
+}
