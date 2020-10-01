@@ -9,6 +9,9 @@
             ],
             "oneOf": [
                 {
+                    "$ref": "IBM.json#/definitions/IBMCFFPSConnector"
+                },
+                {
                     "$ref": "Intel.json#/definitions/IntelFanConnector"
                 },
                 {
