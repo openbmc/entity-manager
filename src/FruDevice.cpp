@@ -169,7 +169,7 @@ std::vector<uint8_t> readFRUContents(int flag, int file, uint16_t address,
     device.insert(device.end(), blockData.begin(), blockData.begin() + 8);
 
     bool hasMultiRecords = false;
-    ssize_t fruLength = fruBlockSize; // At least FRU header is present
+    size_t fruLength = fruBlockSize; // At least FRU header is present
     for (fruAreas area = fruAreas::fruAreaInternal;
          area <= fruAreas::fruAreaMultirecord; ++area)
     {
