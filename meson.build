@@ -124,6 +124,7 @@ schemas = [
     'legacy.json',
     'openbmc-dbus.json',
     'IBM.json',
+    'Intel.json',
     'Pid.json',
     'Pid.Zone.json',
     'Stepwise.json',
