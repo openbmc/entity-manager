@@ -169,7 +169,7 @@ std::vector<uint8_t> readFRUContents(int flag, int file, uint16_t address,
     device.insert(device.end(), blockData.begin(), blockData.begin() + 8);
 
     bool hasMultiRecords = false;
-    ssize_t fruLength = fruBlockSize; // At least FRU header is present
+    size_t fruLength = fruBlockSize; // At least FRU header is present
     for (fruAreas area = fruAreas::fruAreaInternal;
          area <= fruAreas::fruAreaMultirecord; ++area)
     {
@@ -243,14 +243,14 @@ std::vector<uint8_t> readFRUContents(int flag, int file, uint16_t address,
     }
 
     // You already copied these first 8 bytes (the ipmi fru header size)
-    fruLength -= fruBlockSize;
+    fruLength -= std::min(fruBlockSize, fruLength);
 
     int readOffset = fruBlockSize;
 
     while (fruLength > 0)
     {
-        int requestLength =
-            std::min(I2C_SMBUS_BLOCK_MAX, static_cast<int>(fruLength));
+        size_t requestLength =
+            std::min(static_cast<size_t>(I2C_SMBUS_BLOCK_MAX), fruLength);
 
         if (readBlock(flag, file, address, static_cast<uint16_t>(readOffset),
                       static_cast<uint8_t>(requestLength),
@@ -264,7 +264,7 @@ std::vector<uint8_t> readFRUContents(int flag, int file, uint16_t address,
                       blockData.begin() + requestLength);
 
         readOffset += requestLength;
-        fruLength -= requestLength;
+        fruLength -= std::min(requestLength, fruLength);
     }
 
     return device;
