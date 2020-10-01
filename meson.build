@@ -92,6 +92,7 @@ configs = [
     'FBYV2.json',
     'Flextronics S-1100ADU00-201 PSU.json',
     'Intel Front Panel.json',
+    'Nisqually.json',
     'NVME P4000.json',
     'PCIE SSD Retimer.json',
     'PSSF132202A.json',
