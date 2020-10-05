@@ -35,6 +35,7 @@
 #include <sdbusplus/asio/connection.hpp>
 #include <sdbusplus/asio/object_server.hpp>
 
+#include <charconv>
 #include <filesystem>
 #include <fstream>
 #include <iostream>
@@ -1347,10 +1348,15 @@ void PerformScan::run()
                                 std::cerr << "Last JSON Illegal\n";
                                 continue;
                             }
-
-                            int index = std::stoi(
-                                nameIt->get<std::string>().substr(indexIdx),
-                                nullptr, 0);
+                            int index = 0;
+                            auto str =
+                                nameIt->get<std::string>().substr(indexIdx);
+                            auto [p, ec] = std::from_chars(
+                                str.data(), str.data() + str.size(), index);
+                            if (ec != std::errc())
+                            {
+                                continue; // non-numeric replacement
+                            }
                             usedNames.insert(nameIt.value());
                             auto usedIt = std::find(indexes.begin(),
                                                     indexes.end(), index);
