@@ -1344,10 +1344,17 @@ void PerformScan::run()
                                 std::cerr << "Last JSON Illegal\n";
                                 continue;
                             }
-
-                            int index = std::stoi(
-                                nameIt->get<std::string>().substr(indexIdx),
-                                nullptr, 0);
+                            int index;
+                            try
+                            {
+                                index = std::stoi(
+                                    nameIt->get<std::string>().substr(indexIdx),
+                                    nullptr, 0);
+                            }
+                            catch (std::invalid_argument& ia)
+                            {
+                                continue; // non-numeric replacement
+                            }
                             usedNames.insert(nameIt.value());
                             auto usedIt = std::find(indexes.begin(),
                                                     indexes.end(), index);
