@@ -6,6 +6,27 @@
             "I2CAddress": 104,
             "I2CBus": 3,
             "NamedPresenceGpio": "PS0_PRES_N"
+        },
+        {
+            "Name": "Power Supply Slot 1",
+            "Type": "IBMCFFPSConnector",
+            "I2CAddress": 105,
+            "I2CBus": 3,
+            "NamedPresenceGpio": "PS1_PRES_N"
+        },
+        {
+            "Name": "Power Supply Slot 2",
+            "Type": "IBMCFFPSConnector",
+            "I2CAddress": 106,
+            "I2CBus": 3,
+            "NamedPresenceGpio": "PS2_PRES_N"
+        },
+        {
+            "Name": "Power Supply Slot 3",
+            "Type": "IBMCFFPSConnector",
+            "I2CAddress": 107,
+            "I2CBus": 3,
+            "NamedPresenceGpio": "PS3_PRES_N"
         }
     ],
     "Name": "Nisqually Backplane",
