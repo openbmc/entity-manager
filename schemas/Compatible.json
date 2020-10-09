@@ -1,0 +1,53 @@
+{
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "title": "Hardware database compatibility",
+    "description": [
+        "A schema for expressing devicetree-like compatibility strings.",
+        "",
+        "The strings should be used by applications to match the",
+        "entity with entries or configuration in a hardware database.",
+        "Strings appear in the list from most specific to most general.",
+        "This allows an entity to express compatibility with a family of",
+        "similar devices, in turn allowing an application to match a",
+        "variety of devices with a single Compatible entry.",
+        "",
+        "The recommended entry format is 'manufacturer,model' where",
+        "the manufacturer is a string describing the name of the",
+        "manufacturer and model specifies the model number."
+    ],
+    "definitions": {
+        "CompatibleSystem": {
+            "title": "System compatibility",
+            "description": [
+                "Devicetree-like compatibility strings for systems, where a",
+                "'system' is roughly defined as the combination of a chassis and a",
+                "mainboard."
+            ],
+            "type": "object",
+            "properties": {
+                "Name": {
+                    "type": "string"
+                },
+                "Type": {
+                    "enum": [
+                        "CompatibleSystem"
+                    ]
+                },
+                "CompatibleSystem": {
+                    "description": [
+                    ],
+                    "type": "array",
+                    "items": {
+                        "enum": [
+                        ]
+                    }
+                }
+            },
+            "required": [
+                "Name",
+                "Type",
+                "CompatibleSystem"
+            ]
+        }
+    }
+}

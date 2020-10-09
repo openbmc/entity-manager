@@ -123,6 +123,7 @@ schemas = [
     'global.json',
     'legacy.json',
     'openbmc-dbus.json',
+    'Compatible.json',
     'IBM.json',
     'Intel.json',
     'Pid.json',

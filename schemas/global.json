@@ -9,6 +9,9 @@
             ],
             "oneOf": [
                 {
+                    "$ref": "Compatible.json#/definitions/CompatibleSystem"
+                },
+                {
                     "$ref": "IBM.json#/definitions/IBMCFFPSConnector"
                 },
                 {
