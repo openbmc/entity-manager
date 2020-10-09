@@ -100,6 +100,8 @@ configs = [
     'PSSF162205A.json',
     'PSSF212201A.json',
     'PSSF222201A.json',
+    'Rainier 2U Chassis.json',
+    'Rainier 4U Chassis.json',
     'R1000 Chassis.json',
     'R2000 Chassis.json',
     'SAS Module.json',

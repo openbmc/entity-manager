@@ -1,0 +1,19 @@
+{
+    "Exposes": [
+        {
+            "Name": "Compatible System",
+            "Type": "IBMCompatibleSystem",
+            "Names": [
+                "ibm,rainier-2u",
+                "ibm,rainier"
+            ]
+        }
+    ],
+    "Name": "Rainier 2U Chassis",
+    "Probe": [
+        "com.ibm.ipzvpd.VSBP({'IM': [80, 0, 16, 1]})",
+        "OR",
+        "com.ibm.ipzvpd.VSBP({'IM': [80, 0, 16, 3]})"
+    ],
+    "Type": "Chassis"
+}
