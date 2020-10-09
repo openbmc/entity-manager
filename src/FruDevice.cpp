@@ -1022,11 +1022,19 @@ bool formatFRU(const std::vector<uint8_t>& fruBytes,
             fruBytes.begin() + offset + fruAreaSize - 1;
         ++fruBytesIter;
 
-        if (calculateChecksum(fruBytes.begin() + offset, fruBytesIterEndArea) !=
-            *fruBytesIterEndArea)
+        uint8_t fruComputedChecksum =
+            calculateChecksum(fruBytes.begin() + offset, fruBytesIterEndArea);
+        if (fruComputedChecksum != *fruBytesIterEndArea)
         {
-            std::cerr << "Checksum error in FRU area " << getFruAreaName(area)
+            std::stringstream ss;
+            ss << std::hex << std::setfill('0');
+            ss << "Checksum error in FRU area " << getFruAreaName(area)
                       << "\n";
+            ss << "\tComputed checksum: 0x" << std::setw(2)
+                      << static_cast<int>(fruComputedChecksum) << "\n";
+            ss << "\tThe read checksum: 0x" << std::setw(2)
+                      << static_cast<int>(*fruBytesIterEndArea) << "\n";
+            std::cerr << ss.str();
             return false;
         }
 
