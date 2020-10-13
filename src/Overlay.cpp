@@ -21,6 +21,8 @@
 #include "devices.hpp"
 
 #include <boost/algorithm/string/predicate.hpp>
+#include <boost/asio/io_context.hpp>
+#include <boost/asio/steady_timer.hpp>
 #include <boost/container/flat_map.hpp>
 #include <boost/container/flat_set.hpp>
 #include <boost/process/child.hpp>
@@ -31,6 +33,8 @@
 #include <iostream>
 #include <regex>
 #include <string>
+
+extern boost::asio::io_context io;
 
 constexpr const char* OUTPUT_DIR = "/tmp/overlays";
 constexpr const char* TEMPLATE_CHAR = "$";
@@ -113,16 +117,149 @@ void linkMux(const std::string& muxName, size_t busIndex, size_t address,
     }
 }
 
+static int deleteDevice(const std::string& devicePath,
+                        std::shared_ptr<uint64_t> address,
+                        const std::string& destructor)
+{
+    if (!address)
+    {
+        return -1;
+    }
+    std::filesystem::path deviceDestructor(devicePath);
+    deviceDestructor /= destructor;
+    std::ofstream deviceFile(deviceDestructor);
+    if (!deviceFile.good())
+    {
+        std::cerr << "Error writing " << deviceDestructor << "\n";
+        return -1;
+    }
+    deviceFile << std::to_string(*address);
+    deviceFile.close();
+    return 0;
+}
+
+static int createDevice(const std::string& devicePath,
+                        const std::string& parameters,
+                        const std::string& constructor)
+{
+    std::filesystem::path deviceConstructor(devicePath);
+    deviceConstructor /= constructor;
+    std::ofstream deviceFile(deviceConstructor);
+    if (!deviceFile.good())
+    {
+        std::cerr << "Error writing " << deviceConstructor << "\n";
+        return -1;
+    }
+    deviceFile << parameters;
+    deviceFile.close();
+
+    return 0;
+}
+
+static bool deviceIsCreated(const std::string& devicePath,
+                            std::shared_ptr<uint64_t> bus,
+                            std::shared_ptr<uint64_t> address,
+                            const bool retrying)
+{
+    // Prevent the device from being created a second time.
+    if (bus && address)
+    {
+        std::ostringstream hex;
+        hex << std::hex << *address;
+        std::string addressHex = hex.str();
+        std::string busStr = std::to_string(*bus);
+
+        if (std::filesystem::is_directory(devicePath))
+        {
+            for (const auto& path :
+                 std::filesystem::directory_iterator(devicePath))
+            {
+                if (!std::filesystem::is_directory(path))
+                {
+                    continue;
+                }
+
+                const std::string& directoryName = path.path().filename();
+                if (boost::starts_with(directoryName, busStr) &&
+                    boost::ends_with(directoryName, addressHex))
+                {
+                    if (retrying)
+                    {
+                        // subsequent attempts should find the hwmon subdir.
+                        std::filesystem::path hwmonDir(devicePath);
+                        hwmonDir /= directoryName;
+                        hwmonDir /= "hwmon";
+                        bool dirFound =
+                            (std::filesystem::is_directory(hwmonDir));
+                        return dirFound;
+                    }
+                    else
+                    {
+                        return true;
+                    }
+                }
+            }
+            return false;
+        }
+    }
+    return false;
+}
+
+constexpr size_t totalBuildDeviceRetries = 5;
+static int buildDevice(const std::string& devicePath,
+                       const std::string& parameters,
+                       std::shared_ptr<uint64_t> bus,
+                       std::shared_ptr<uint64_t> address,
+                       const std::string& constructor,
+                       const std::string& destructor, const bool createsHWMon,
+                       const size_t retries = totalBuildDeviceRetries)
+{
+    bool tryAgain = false;
+    if (!retries)
+    {
+        return -1;
+    }
+
+    if (!deviceIsCreated(devicePath, bus, address, false))
+    {
+        createDevice(devicePath, parameters, constructor);
+        tryAgain = true;
+    }
+    else if (createsHWMon && !deviceIsCreated(devicePath, bus, address, true))
+    {
+        // device is present, hwmon subdir missing
+        deleteDevice(devicePath, address, destructor);
+        tryAgain = true;
+    }
+
+    if (tryAgain)
+    {
+        std::shared_ptr<boost::asio::steady_timer> createTimer =
+            std::make_shared<boost::asio::steady_timer>(io);
+        createTimer->expires_after(std::chrono::milliseconds(500));
+        createTimer->async_wait([createTimer, devicePath, parameters, bus,
+                                 address, constructor, destructor, createsHWMon,
+                                 retries](const boost::system::error_code&) {
+            buildDevice(devicePath, parameters, bus, address, constructor,
+                        destructor, createsHWMon, retries - 1);
+        });
+    }
+    return 0;
+}
+
 void exportDevice(const std::string& type,
                   const devices::ExportTemplate& exportTemplate,
                   const nlohmann::json& configuration)
 {
 
     std::string parameters = exportTemplate.parameters;
-    std::string device = exportTemplate.device;
+    std::string devicePath = exportTemplate.devicePath;
+    std::string constructor = exportTemplate.add;
+    std::string destructor = exportTemplate.remove;
+    bool createsHWMon = exportTemplate.createsHWMon;
     std::string name = "unknown";
-    const uint64_t* bus = nullptr;
-    const uint64_t* address = nullptr;
+    std::shared_ptr<uint64_t> bus = nullptr;
+    std::shared_ptr<uint64_t> address = nullptr;
     const nlohmann::json::array_t* channels = nullptr;
 
     for (auto keyPair = configuration.begin(); keyPair != configuration.end();
@@ -144,11 +281,13 @@ void exportDevice(const std::string& type,
 
         if (keyPair.key() == "Bus")
         {
-            bus = keyPair.value().get_ptr<const uint64_t*>();
+            bus = std::make_shared<uint64_t>(
+                *keyPair.value().get_ptr<const uint64_t*>());
         }
         else if (keyPair.key() == "Address")
         {
-            address = keyPair.value().get_ptr<const uint64_t*>();
+            address = std::make_shared<uint64_t>(
+                *keyPair.value().get_ptr<const uint64_t*>());
         }
         else if (keyPair.key() == "ChannelNames")
         {
@@ -157,49 +296,14 @@ void exportDevice(const std::string& type,
         }
         boost::replace_all(parameters, TEMPLATE_CHAR + keyPair.key(),
                            subsituteString);
-        boost::replace_all(device, TEMPLATE_CHAR + keyPair.key(),
+        boost::replace_all(devicePath, TEMPLATE_CHAR + keyPair.key(),
                            subsituteString);
     }
 
-    // if we found bus and address we can attempt to prevent errors
-    if (bus != nullptr && address != nullptr)
-    {
-        std::ostringstream hex;
-        hex << std::hex << *address;
-        const std::string& addressHex = hex.str();
-        std::string busStr = std::to_string(*bus);
+    int err = buildDevice(devicePath, parameters, bus, address, constructor,
+                          destructor, createsHWMon);
 
-        std::filesystem::path devicePath(device);
-        std::filesystem::path parentPath = devicePath.parent_path();
-        if (std::filesystem::is_directory(parentPath))
-        {
-            for (const auto& path :
-                 std::filesystem::directory_iterator(parentPath))
-            {
-                if (!std::filesystem::is_directory(path))
-                {
-                    continue;
-                }
-
-                const std::string& directoryName = path.path().filename();
-                if (boost::starts_with(directoryName, busStr) &&
-                    boost::ends_with(directoryName, addressHex))
-                {
-                    return; // already exported
-                }
-            }
-        }
-    }
-
-    std::ofstream deviceFile(device);
-    if (!deviceFile.good())
-    {
-        std::cerr << "Error writing " << device << "\n";
-        return;
-    }
-    deviceFile << parameters;
-    deviceFile.close();
-    if (boost::ends_with(type, "Mux") && bus && address && channels)
+    if (!err && boost::ends_with(type, "Mux") && bus && address && channels)
     {
         linkMux(name, static_cast<size_t>(*bus), static_cast<size_t>(*address),
                 *channels);
