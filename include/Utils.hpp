@@ -30,6 +30,8 @@ constexpr const char* configurationOutDir = "/var/configuration/";
 constexpr const char* versionHashFile = "/var/configuration/version";
 constexpr const char* versionFile = "/etc/os-release";
 
+extern boost::asio::io_context io;
+
 using BasicVariantType =
     std::variant<std::string, int64_t, uint64_t, double, int32_t, uint32_t,
                  int16_t, uint16_t, uint8_t, bool, std::vector<uint8_t>>;
