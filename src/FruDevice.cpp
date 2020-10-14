@@ -611,7 +611,7 @@ int getBusFRUs(int file, int first, int last, int bus,
             // Set slave address
             if (ioctl(file, I2C_SLAVE, ii) < 0)
             {
-                std::cerr << "device at bus " << bus << " register " << ii
+                std::cerr << "device at bus " << bus << " address " << ii
                           << " busy\n";
                 continue;
             }
@@ -1189,9 +1189,11 @@ void AddFRUObjectToDbus(
     uint32_t bus, uint32_t address)
 {
     boost::container::flat_map<std::string, std::string> formattedFRU;
+    std::cerr << "parsing FRU for device at bus " << bus
+                << " address " << address << "\n";
     if (!formatFRU(device, formattedFRU))
     {
-        std::cerr << "failed to format fru for device at bus " << bus
+        std::cerr << "failed to format FRU for device at bus " << bus
                   << " address " << address << "\n";
         return;
     }
