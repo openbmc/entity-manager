@@ -70,6 +70,13 @@ const static constexpr char* BASEBOARD_FRU_LOCATION =
 
 const static constexpr char* I2C_DEV_LOCATION = "/dev";
 
+enum class resCodes
+{
+    resOK,
+    resWarn,
+    resErr
+};
+
 enum class fruAreas
 {
     fruAreaInternal = 0,
@@ -611,7 +618,7 @@ int getBusFRUs(int file, int first, int last, int bus,
             // Set slave address
             if (ioctl(file, I2C_SLAVE, ii) < 0)
             {
-                std::cerr << "device at bus " << bus << " register " << ii
+                std::cerr << "device at bus " << bus << " address " << ii
                           << " busy\n";
                 continue;
             }
@@ -979,13 +986,14 @@ static void checkLang(uint8_t lang)
     }
 }
 
-bool formatFRU(const std::vector<uint8_t>& fruBytes,
-               boost::container::flat_map<std::string, std::string>& result)
+resCodes formatFRU(const std::vector<uint8_t>& fruBytes,
+                   boost::container::flat_map<std::string, std::string>& result)
 {
+    resCodes ret = resCodes::resOK;
     if (fruBytes.size() <= fruBlockSize)
     {
         std::cerr << "Error: trying to parse empty FRU \n";
-        return false;
+        return resCodes::resErr;
     }
     result["Common_Format_Version"] =
         std::to_string(static_cast<int>(*fruBytes.begin()));
@@ -1008,13 +1016,13 @@ bool formatFRU(const std::vector<uint8_t>& fruBytes,
         if (fruBytesIter + fruBlockSize >= fruBytes.end())
         {
             std::cerr << "Not enough data to parse \n";
-            return false;
+            return resCodes::resErr;
         }
         // check for format version 1
         if (*fruBytesIter != 0x01)
         {
             std::cerr << "Unexpected version " << *fruBytesIter << "\n";
-            return false;
+            return resCodes::resErr;
         }
         ++fruBytesIter;
         uint8_t fruAreaSize = *fruBytesIter * fruBlockSize;
@@ -1034,7 +1042,7 @@ bool formatFRU(const std::vector<uint8_t>& fruBytes,
             ss << "\tThe read checksum: 0x" << std::setw(2)
                << static_cast<int>(*fruBytesIterEndArea) << "\n";
             std::cerr << ss.str();
-            return false;
+            ret = resCodes::resWarn;
         }
 
         switch (area)
@@ -1070,7 +1078,7 @@ bool formatFRU(const std::vector<uint8_t>& fruBytes,
                 if (bytes == 0)
                 {
                     std::cerr << "invalid time string encountered\n";
-                    return false;
+                    return resCodes::resErr;
                 }
 
                 result["BOARD_MANUFACTURE_DATE"] = std::string(timeString);
@@ -1092,7 +1100,7 @@ bool formatFRU(const std::vector<uint8_t>& fruBytes,
             {
                 std::cerr << "Internal error: unexpected FRU area index: "
                           << static_cast<int>(area) << " \n";
-                return false;
+                return resCodes::resErr;
             }
         }
         size_t fieldIndex = 0;
@@ -1130,12 +1138,13 @@ bool formatFRU(const std::vector<uint8_t>& fruBytes,
             else if (state == DecodeState::err)
             {
                 std::cerr << "Error while parsing " << name << "\n";
+                ret = resCodes::resWarn;
                 // Cancel decoding if failed to parse any of mandatory
                 // fields
                 if (fieldIndex < fruAreaFieldNames->size())
                 {
                     std::cerr << "Failed to parse mandatory field \n";
-                    return false;
+                    return resCodes::resErr;
                 }
             }
             else
@@ -1145,6 +1154,7 @@ bool formatFRU(const std::vector<uint8_t>& fruBytes,
                     std::cerr << "Mandatory fields absent in FRU area "
                               << getFruAreaName(area) << " after " << name
                               << "\n";
+                    ret = resCodes::resWarn;
                 }
             }
         } while (state == DecodeState::ok);
@@ -1155,12 +1165,13 @@ bool formatFRU(const std::vector<uint8_t>& fruBytes,
             {
                 std::cerr << "Non-zero byte after EndOfFields in FRU area "
                           << getFruAreaName(area) << "\n";
+                ret = resCodes::resWarn;
                 break;
             }
         }
     }
 
-    return true;
+    return ret;
 }
 
 std::vector<uint8_t>& getFRUInfo(const uint8_t& bus, const uint8_t& address)
@@ -1188,11 +1199,17 @@ void AddFRUObjectToDbus(
     uint32_t bus, uint32_t address)
 {
     boost::container::flat_map<std::string, std::string> formattedFRU;
-    if (!formatFRU(device, formattedFRU))
+    resCodes res = formatFRU(device, formattedFRU);
+    if (res == resCodes::resErr)
     {
-        std::cerr << "failed to format fru for device at bus " << bus
+        std::cerr << "failed to parse FRU for device at bus " << bus
                   << " address " << address << "\n";
         return;
+    }
+    else if (res == resCodes::resWarn)
+    {
+        std::cerr << "there were warnings while parsing FRU for device at bus "
+                  << bus << " address " << address << "\n";
     }
 
     auto productNameFind = formattedFRU.find("BOARD_PRODUCT_NAME");
@@ -1355,7 +1372,7 @@ bool writeFRU(uint8_t bus, uint8_t address, const std::vector<uint8_t>& fru)
         return false;
     }
     // verify legal fru by running it through fru parsing logic
-    if (!formatFRU(fru, tmp))
+    if (formatFRU(fru, tmp) != resCodes::resOK)
     {
         std::cerr << "Invalid fru format during writeFRU\n";
         return false;
