@@ -1,0 +1,967 @@
+{
+    "Exposes": [
+        {
+            "Address": "0x07",
+            "Bus": "$bus",
+            "Class": "twin_lake",
+            "PowerState": "Always",
+            "Name": "$bus + 1 MB_Outlet_Temp_T",
+            "Thresholds": [
+                {
+                    "Direction": "greater than",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 93
+                }
+            ],
+            "Type": "IpmbSensor"
+        },
+        {
+            "Address": "0x0D",
+            "Bus": "$bus",
+            "Class": "twin_lake",
+            "PowerState": "Always",
+            "Name": "$bus + 1 MB_Outlet_Temp_B",
+            "Thresholds": [
+                {
+                    "Direction": "greater than",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 93
+                }
+            ],
+            "Type": "IpmbSensor"
+        },
+        {
+            "Address": "0x01",
+            "Bus": "$bus",
+            "Class": "twin_lake",
+            "PowerState": "Always",
+            "Name": "$bus + 1 MB_Inlet_Temp",
+            "Thresholds": [
+                {
+                    "Direction": "greater than",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 93
+                }
+            ],
+            "Type": "IpmbSensor"
+        },
+        {
+            "Address": "0x08",
+            "Bus": "$bus",
+            "Class": "twin_lake",
+            "PowerState": "Always",
+            "Name": "$bus + 1 PCH_Temp",
+            "Thresholds": [
+                {
+                    "Direction": "greater than",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 93
+                }
+            ],
+            "Type": "IpmbSensor"
+        },
+        {
+            "Address": "0x05",
+            "Bus": "$bus",
+            "Class": "twin_lake",
+            "PowerState": "Always",
+            "Name": "$bus + 1 SOC_Temp",
+            "Thresholds": [
+                {
+                    "Direction": "greater than",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 84
+                }
+            ],
+            "Type": "IpmbSensor"
+        },
+        {
+            "Address": "0x09",
+            "Bus": "$bus",
+            "Class": "twin_lake",
+            "PowerState": "Always",
+            "Name": "$bus + 1 SOC_Therm_Margin",
+            "Thresholds": [
+                {
+                    "Direction": "greater than",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 0
+                }
+            ],
+            "Type": "IpmbSensor"
+        },
+        {
+            "Address": "0x30",
+            "Bus": "$bus",
+            "Class": "twin_lake",
+            "PowerState": "Always",
+            "Name": "$bus + 1 SOC_Tjmax",
+            "Type": "IpmbSensor"
+        },
+        {
+            "Address": "0xB4",
+            "Bus": "$bus",
+            "Class": "twin_lake",
+            "PowerState": "Always",
+            "Name": "$bus + 1 SOC_DIMMA0_Temp",
+            "Thresholds": [
+                {
+                    "Direction": "greater than",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 85
+                }
+            ],
+            "Type": "IpmbSensor"
+        },
+        {
+            "Address": "0xB5",
+            "Bus": "$bus",
+            "Class": "twin_lake",
+            "PowerState": "Always",
+            "Name": "$bus + 1 SOC_DIMMA1_Temp",
+            "Thresholds": [
+                {
+                    "Direction": "greater than",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 85
+                }
+            ],
+            "Type": "IpmbSensor"
+        },
+        {
+            "Address": "0xB6",
+            "Bus": "$bus",
+            "Class": "twin_lake",
+            "PowerState": "Always",
+            "Name": "$bus + 1 SOC_DIMMB0_Temp",
+            "Thresholds": [
+                {
+                    "Direction": "greater than",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 85
+                }
+            ],
+            "Type": "IpmbSensor"
+        },
+        {
+            "Address": "0xB7",
+            "Bus": "$bus",
+            "Class": "twin_lake",
+            "PowerState": "Always",
+            "Name": "$bus + 1 SOC_DIMMB1_Temp",
+            "Thresholds": [
+                {
+                    "Direction": "greater than",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 85
+                }
+            ],
+            "Type": "IpmbSensor"
+        },
+        {
+            "Address": "0xB8",
+            "Bus": "$bus",
+            "Class": "twin_lake",
+            "PowerState": "Always",
+            "Name": "$bus + 1 SOC_DIMMD0_Temp",
+            "Thresholds": [
+                {
+                    "Direction": "greater than",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 85
+                }
+            ],
+            "Type": "IpmbSensor"
+        },
+        {
+            "Address": "0xB9",
+            "Bus": "$bus",
+            "Class": "twin_lake",
+            "PowerState": "Always",
+            "Name": "$bus + 1 SOC_DIMMD1_Temp",
+            "Thresholds": [
+                {
+                    "Direction": "greater than",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 85
+                }
+            ],
+            "Type": "IpmbSensor"
+        },
+        {
+            "Address": "0xBA",
+            "Bus": "$bus",
+            "Class": "twin_lake",
+            "PowerState": "Always",
+            "Name": "$bus + 1 SOC_DIMME0_Temp",
+            "Thresholds": [
+                {
+                    "Direction": "greater than",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 85
+                }
+            ],
+            "Type": "IpmbSensor"
+        },
+        {
+            "Address": "0xBB",
+            "Bus": "$bus",
+            "Class": "twin_lake",
+            "PowerState": "Always",
+            "Name": "$bus + 1 SOC_DIMME1_Temp",
+            "Thresholds": [
+                {
+                    "Direction": "greater than",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 85
+                }
+            ],
+            "Type": "IpmbSensor"
+        },
+        {
+            "Address": "0x2C",
+            "Bus": "$bus",
+            "Class": "twin_lake",
+            "PowerState": "Always",
+            "Name": "$bus + 1 SOC_Package_Pwr",
+            "Type": "IpmbSensor"
+        },
+        {
+            "Address": "0x02",
+            "Bus": "$bus",
+            "Class": "twin_lake",
+            "PowerState": "Always",
+            "Name": "$bus + 1 PVCCIN_VR_Temp",
+            "Thresholds": [
+                {
+                    "Direction": "greater than",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 100
+                }
+            ],
+            "Type": "IpmbSensor"
+        },
+        {
+            "Address": "0x37",
+            "Bus": "$bus",
+            "Class": "twin_lake",
+            "PowerState": "Always",
+            "Name": "$bus + 1 PVCCIO_VR_Temp",
+            "Thresholds": [
+                {
+                    "Direction": "greater than",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 100
+                }
+            ],
+            "Type": "IpmbSensor"
+        },
+        {
+            "Address": "0x0E",
+            "Bus": "$bus",
+            "Class": "twin_lake",
+            "PowerState": "Always",
+            "Name": "$bus + 1 NVMe1_CTemp",
+            "Thresholds": [
+                {
+                    "Direction": "greater than",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 75
+                }
+            ],
+            "Type": "IpmbSensor"
+        },
+        {
+            "Address": "0x0F",
+            "Bus": "$bus",
+            "Class": "twin_lake",
+            "PowerState": "Always",
+            "Name": "$bus + 1 NVMe2_CTemp",
+            "Thresholds": [
+                {
+                    "Direction": "greater than",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 75
+                }
+            ],
+            "Type": "IpmbSensor"
+        },
+        {
+            "Address": "0x04",
+            "Bus": "$bus",
+            "Class": "twin_lake",
+            "PowerState": "Always",
+            "Name": "$bus + 1 P1V05PCH_VR_Temp",
+            "Thresholds": [
+                {
+                    "Direction": "greater than",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 100
+                }
+            ],
+            "Type": "IpmbSensor"
+        },
+        {
+            "Address": "0x06",
+            "Bus": "$bus",
+            "Class": "twin_lake",
+            "PowerState": "Always",
+            "Name": "$bus + 1 PVNN_PCH_VR_Temp",
+            "Thresholds": [
+                {
+                    "Direction": "greater than",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 100
+                }
+            ],
+            "Type": "IpmbSensor"
+        },
+        {
+            "Address": "0x0B",
+            "Bus": "$bus",
+            "Class": "twin_lake",
+            "PowerState": "Always",
+            "Name": "$bus + 1 PVDDQ_AB_VR_Temp",
+            "Thresholds": [
+                {
+                    "Direction": "greater than",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 100
+                }
+            ],
+            "Type": "IpmbSensor"
+        },
+        {
+            "Address": "0x0A",
+            "Bus": "$bus",
+            "Class": "twin_lake",
+            "PowerState": "Always",
+            "Name": "$bus + 1 PVDDQ_DE_VR_Temp",
+            "Thresholds": [
+                {
+                    "Direction": "greater than",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 100
+                }
+            ],
+            "Type": "IpmbSensor"
+        },
+        {
+            "Address": "0x03",
+            "Bus": "$bus",
+            "Class": "twin_lake",
+            "PowerState": "Always",
+            "Name": "$bus + 1 PVCCSA_VR_Temp",
+            "Thresholds": [
+                {
+                    "Direction": "greater than",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 100
+                }
+            ],
+            "Type": "IpmbSensor"
+        },
+        {
+            "Address": "0x24",
+            "Bus": "$bus",
+            "Class": "twin_lake",
+            "PowerState": "Always",
+            "Name": "$bus + 1 PVCCIN_VR_Vol",
+            "Thresholds": [
+                {
+                    "Direction": "greater than",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 2.05
+                },
+                {
+                    "Direction": "less than",
+                    "Name": "lower critical",
+                    "Severity": 1,
+                    "Value": 1.45
+                }
+            ],
+            "Type": "IpmbSensor"
+        },
+        {
+            "Address": "0x54",
+            "Bus": "$bus",
+            "Class": "twin_lake",
+            "PowerState": "Always",
+            "Name": "$bus + 1 PVCCIO_VR_Vol",
+            "Thresholds": [
+                {
+                    "Direction": "greater than",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 1.20
+                },
+                {
+                    "Direction": "less than",
+                    "Name": "lower critical",
+                    "Severity": 1,
+                    "Value": 0.85
+                }
+            ],
+            "Type": "IpmbSensor"
+        },
+        {
+            "Address": "0x36",
+            "Bus": "$bus",
+            "Class": "twin_lake",
+            "PowerState": "Always",
+            "Name": "$bus + 1 P1V05PCH_VR_Vol",
+            "Thresholds": [
+                {
+                    "Direction": "greater than",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 1.20
+                },
+                {
+                    "Direction": "less than",
+                    "Name": "lower critical",
+                    "Severity": 1,
+                    "Value": 0.94
+                }
+            ],
+            "Type": "IpmbSensor"
+        },
+        {
+            "Address": "0x55",
+            "Bus": "$bus",
+            "Class": "twin_lake",
+            "PowerState": "Always",
+            "Name": "$bus + 1 PVDDQ_AB_VR_Vol",
+            "Thresholds": [
+                {
+                    "Direction": "greater than",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 1.32
+                },
+                {
+                    "Direction": "less than",
+                    "Name": "lower critical",
+                    "Severity": 1,
+                    "Value": 1.08
+                }
+            ],
+            "Type": "IpmbSensor"
+        },
+        {
+            "Address": "0x34",
+            "Bus": "$bus",
+            "Class": "twin_lake",
+            "PowerState": "Always",
+            "Name": "$bus + 1 PVDDQ_DE_VR_Vol",
+            "Thresholds": [
+                {
+                    "Direction": "greater than",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 1.32
+                },
+                {
+                    "Direction": "less than",
+                    "Name": "lower critical",
+                    "Severity": 1,
+                    "Value": 1.08
+                }
+            ],
+            "Type": "IpmbSensor"
+        },
+        {
+            "Address": "0x4B",
+            "Bus": "$bus",
+            "Class": "twin_lake",
+            "PowerState": "Always",
+            "Name": "$bus + 1 PVCCSA_VR_Vol",
+            "Thresholds": [
+                {
+                    "Direction": "greater than",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 1.25
+                },
+                {
+                    "Direction": "less than",
+                    "Name": "lower critical",
+                    "Severity": 1,
+                    "Value": 0.36
+                }
+            ],
+            "Type": "IpmbSensor"
+        },
+        {
+            "Address": "0x23",
+            "Bus": "$bus",
+            "Class": "twin_lake",
+            "PowerState": "Always",
+            "Name": "$bus + 1 PVCCIN_VR_Curr",
+            "Thresholds": [
+                {
+                    "Direction": "greater than",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 175.50
+                }
+            ],
+            "Type": "IpmbSensor"
+        },
+        {
+            "Address": "0x20",
+            "Bus": "$bus",
+            "Class": "twin_lake",
+            "PowerState": "Always",
+            "Name": "$bus + 1 PVCCIO_VR_Curr",
+            "Thresholds": [
+                {
+                    "Direction": "greater than",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 11
+                }
+            ],
+            "Type": "IpmbSensor"
+        },
+        {
+            "Address": "0x35",
+            "Bus": "$bus",
+            "Class": "twin_lake",
+            "PowerState": "Always",
+            "Name": "$bus + 1 P1V05PCH_VR_Curr",
+            "Thresholds": [
+                {
+                    "Direction": "greater than",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 15
+                }
+            ],
+            "Type": "IpmbSensor"
+        },
+        {
+            "Address": "0x27",
+            "Bus": "$bus",
+            "Class": "twin_lake",
+            "PowerState": "Always",
+            "Name": "$bus + 1 PVNN_PCH_VR_Curr",
+            "Thresholds": [
+                {
+                    "Direction": "greater than",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 19.25
+                }
+            ],
+            "Type": "IpmbSensor"
+        },
+        {
+            "Address": "0x21",
+            "Bus": "$bus",
+            "Class": "twin_lake",
+            "PowerState": "Always",
+            "Name": "$bus + 1 PVDDQ_AB_VR_Curr",
+            "Thresholds": [
+                {
+                    "Direction": "greater than",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 31.50
+                }
+            ],
+            "Type": "IpmbSensor"
+        },
+        {
+            "Address": "0x33",
+            "Bus": "$bus",
+            "Class": "twin_lake",
+            "PowerState": "Always",
+            "Name": "$bus + 1 PVDDQ_DE_VR_Curr",
+            "Thresholds": [
+                {
+                    "Direction": "greater than",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 31.50
+                }
+            ],
+            "Type": "IpmbSensor"
+        },
+        {
+            "Address": "0x26",
+            "Bus": "$bus",
+            "Class": "twin_lake",
+            "PowerState": "Always",
+            "Name": "$bus + 1 PVCCSA_VR_Curr",
+            "Thresholds": [
+                {
+                    "Direction": "greater than",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 12
+                }
+            ],
+            "Type": "IpmbSensor"
+        },
+        {
+            "Address": "0x22",
+            "Bus": "$bus",
+            "Class": "twin_lake",
+            "PowerState": "Always",
+            "Name": "$bus + 1 PVCCIN_VR_Pout",
+            "Thresholds": [
+                {
+                    "Direction": "greater than",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 172
+                }
+            ],
+            "Type": "IpmbSensor"
+        },
+        {
+            "Address": "0x39",
+            "Bus": "$bus",
+            "Class": "twin_lake",
+            "PowerState": "Always",
+            "Name": "$bus + 1 PVCCIO_VR_Pout",
+            "Thresholds": [
+                {
+                    "Direction": "greater than",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 12.12
+                }
+            ],
+            "Type": "IpmbSensor"
+        },
+        {
+            "Address": "0x42",
+            "Bus": "$bus",
+            "Class": "twin_lake",
+            "PowerState": "Always",
+            "Name": "$bus + 1 P1V05PCH_VR_Pout",
+            "Thresholds": [
+                {
+                    "Direction": "greater than",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 16.38
+                }
+            ],
+            "Type": "IpmbSensor"
+        },
+        {
+            "Address": "0x3C",
+            "Bus": "$bus",
+            "Class": "twin_lake",
+            "PowerState": "Always",
+            "Name": "$bus + 1 PVNN_PCH_VR_Pout",
+            "Thresholds": [
+                {
+                    "Direction": "greater than",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 19.20
+                }
+            ],
+            "Type": "IpmbSensor"
+        },
+        {
+            "Address": "0x32",
+            "Bus": "$bus",
+            "Class": "twin_lake",
+            "PowerState": "Always",
+            "Name": "$bus + 1 PVDDQ_AB_VR_Pout",
+            "Thresholds": [
+                {
+                    "Direction": "greater than",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 41.25
+                }
+            ],
+            "Type": "IpmbSensor"
+        },
+        {
+            "Address": "0x3A",
+            "Bus": "$bus",
+            "Class": "twin_lake",
+            "PowerState": "Always",
+            "Name": "$bus + 1 PVDDQ_DE_VR_Pout",
+            "Thresholds": [
+                {
+                    "Direction": "greater than",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 41.25
+                }
+            ],
+            "Type": "IpmbSensor"
+        },
+        {
+            "Address": "0x38",
+            "Bus": "$bus",
+            "Class": "twin_lake",
+            "PowerState": "Always",
+            "Name": "$bus + 1 PVCCSA_VR_Pout",
+            "Thresholds": [
+                {
+                    "Direction": "greater than",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 14
+                }
+            ],
+            "Type": "IpmbSensor"
+        },
+        {
+            "Address": "0x29",
+            "Bus": "$bus",
+            "Class": "twin_lake",
+            "PowerState": "Always",
+            "Name": "$bus + 1 INA230_Power",
+            "Thresholds": [
+                {
+                    "Direction": "greater than",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 180
+                }
+            ],
+            "Type": "IpmbSensor"
+        },
+        {
+            "Address": "0x2A",
+            "Bus": "$bus",
+            "Class": "twin_lake",
+            "PowerState": "Always",
+            "Name": "$bus + 1 INA230_Voltage",
+            "Thresholds": [
+                {
+                    "Direction": "greater than",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 13.27
+                },
+                {
+                    "Direction": "less than",
+                    "Name": "lower critical",
+                    "Severity": 1,
+                    "Value": 10.74
+                }
+            ],
+            "Type": "IpmbSensor"
+        },
+        {
+            "Address": "0xD0",
+            "Bus": "$bus",
+            "Class": "twin_lake",
+            "PowerState": "Always",
+            "Name": "$bus + 1 P3V3_MB",
+            "Thresholds": [
+                {
+                    "Direction": "greater than",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 3.64
+                },
+                {
+                    "Direction": "less than",
+                    "Name": "lower critical",
+                    "Severity": 1,
+                    "Value": 2.97
+                }
+            ],
+            "Type": "IpmbSensor"
+        },
+        {
+            "Address": "0xD2",
+            "Bus": "$bus",
+            "Class": "twin_lake",
+            "PowerState": "Always",
+            "Name": "$bus + 1 P12V_STBY_MB",
+            "Thresholds": [
+                {
+                    "Direction": "greater than",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 13.18
+                },
+                {
+                    "Direction": "less than",
+                    "Name": "lower critical",
+                    "Severity": 1,
+                    "Value": 10.84
+                }
+            ],
+            "Type": "IpmbSensor"
+        },
+        {
+            "Address": "0xD3",
+            "Bus": "$bus",
+            "Class": "twin_lake",
+            "PowerState": "Always",
+            "Name": "$bus + 1 P1V05_PCH",
+            "Thresholds": [
+                {
+                    "Direction": "greater than",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 1.14
+                },
+                {
+                    "Direction": "less than",
+                    "Name": "lower critical",
+                    "Severity": 1,
+                    "Value": 0.94
+                }
+            ],
+            "Type": "IpmbSensor"
+        },
+        {
+            "Address": "0xD5",
+            "Bus": "$bus",
+            "Class": "twin_lake",
+            "PowerState": "Always",
+            "Name": "$bus + 1 P3V3_STBY_MB",
+            "Thresholds": [
+                {
+                    "Direction": "greater than",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 3.64
+                },
+                {
+                    "Direction": "less than",
+                    "Name": "lower critical",
+                    "Severity": 1,
+                    "Value": 2.97
+                }
+            ],
+            "Type": "IpmbSensor"
+        },
+        {
+            "Address": "0xD7",
+            "Bus": "$bus",
+            "Class": "twin_lake",
+            "PowerState": "Always",
+            "Name": "$bus + 1 PV_BAT",
+            "Thresholds": [
+                {
+                    "Direction": "greater than",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 3.63
+                },
+                {
+                    "Direction": "less than",
+                    "Name": "lower critical",
+                    "Severity": 1,
+                    "Value": 2.69
+                }
+            ],
+            "Type": "IpmbSensor"
+        },
+        {
+            "Address": "0xD8",
+            "Bus": "$bus",
+            "Class": "twin_lake",
+            "PowerState": "Always",
+            "Name": "$bus + 1 PVDDQ_AB",
+            "Thresholds": [
+                {
+                    "Direction": "greater than",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 1.32
+                },
+                {
+                    "Direction": "less than",
+                    "Name": "lower critical",
+                    "Severity": 1,
+                    "Value": 1.07
+                }
+            ],
+            "Type": "IpmbSensor"
+        },
+        {
+            "Address": "0xD6",
+            "Bus": "$bus",
+            "Class": "twin_lake",
+            "PowerState": "Always",
+            "Name": "$bus + 1 PVDDQ_DE",
+            "Thresholds": [
+                {
+                    "Direction": "greater than",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 1.32
+                },
+                {
+                    "Direction": "less than",
+                    "Name": "lower critical",
+                    "Severity": 1,
+                    "Value": 1.07
+                }
+            ],
+            "Type": "IpmbSensor"
+        },
+        {
+            "Address": "0xD9",
+            "Bus": "$bus",
+            "Class": "twin_lake",
+            "PowerState": "Always",
+            "Name": "$bus + 1 PVNNPCH",
+            "Thresholds": [
+                {
+                    "Direction": "greater than",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 1.10
+                },
+                {
+                    "Direction": "less than",
+                    "Name": "lower critical",
+                    "Severity": 1,
+                    "Value": 0.71
+                }
+            ],
+            "Type": "IpmbSensor"
+        }
+    ],
+    "Name": "Twin Lake $bus + 1",
+    "Probe": "xyz.openbmc_project.Ipmb.FruDevice({'PRODUCT_PRODUCT_NAME': 'Twin*'})",
+    "Type": "Board",
+    "xyz.openbmc_project.Inventory.Decorator.Asset": {
+        "Manufacturer": "$PRODUCT_MANUFACTURER",
+        "Model": "$PRODUCT_PRODUCT_NAME",
+        "PartNumber": "$PRODUCT_PART_NUMBER",
+        "SerialNumber": "$PRODUCT_SERIAL_NUMBER"
+    }
+}
