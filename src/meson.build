@@ -26,6 +26,7 @@ if get_option('fru-device')
         'fru-device',
         'FruDevice.cpp',
         'Utils.cpp',
+        'Common.cpp',
         cpp_args: cpp_args_fd,
         dependencies: [
             boost,
@@ -40,3 +41,22 @@ if get_option('fru-device')
         install: true,
     )
 endif
+
+executable(
+     'ipmb-fru-device',
+     'IpmbFruDevice.cpp',
+     'Utils.cpp',
+     'Common.cpp',
+      cpp_args: cpp_args,
+      dependencies: [
+            boost,
+            i2c,
+            nlohmann_json,
+            sdbusplus,
+            threads,
+            valijson,
+      ],
+      implicit_include_directories: false,
+      include_directories: '../include',
+      install: true,
+)
