@@ -34,6 +34,40 @@
       "revId": "26f77e59c2868cdc10da58cf3137305b624c8e25",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "84ebb26f_0e7953e4",
+        "filename": "meson_options.txt",
+        "patchSetId": 4
+      },
+      "lineNbr": 11,
+      "author": {
+        "id": 1000002
+      },
+      "writtenOn": "2020-10-28T13:26:44Z",
+      "side": 1,
+      "message": "Actually I think the more common pattern is to make this a feature and leave the default as auto.  I wasn\u0027t aware of that pattern when I added the fru-device option.",
+      "revId": "26f77e59c2868cdc10da58cf3137305b624c8e25",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3a0b4d60_df256231",
+        "filename": "service_files/xyz.openbmc_project.Ipmb.FruDevice.service",
+        "patchSetId": 4
+      },
+      "lineNbr": 10,
+      "author": {
+        "id": 1000002
+      },
+      "writtenOn": "2020-10-28T13:26:44Z",
+      "side": 1,
+      "message": "Why not default.target or multi-user?",
+      "revId": "26f77e59c2868cdc10da58cf3137305b624c8e25",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": false
     }
   ]
 }
