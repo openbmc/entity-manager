@@ -142,6 +142,24 @@
     },
     {
       "key": {
+        "uuid": "f3e56b65_05535ef9",
+        "filename": "src/IpmbFruDevice.cpp",
+        "patchSetId": 4
+      },
+      "lineNbr": 169,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2020-10-30T15:39:59Z",
+      "side": 1,
+      "message": "nullptr?  There are no pointers here?  Which pointer do you think should be checked?",
+      "parentUuid": "8c8dea4e_efa79b2a",
+      "revId": "26f77e59c2868cdc10da58cf3137305b624c8e25",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "526840b9_5528cbb7",
         "filename": "src/IpmbFruDevice.cpp",
         "patchSetId": 4
@@ -159,6 +177,23 @@
     },
     {
       "key": {
+        "uuid": "4e53df0a_b004aa6f",
+        "filename": "src/IpmbFruDevice.cpp",
+        "patchSetId": 4
+      },
+      "lineNbr": 546,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2020-10-30T15:39:59Z",
+      "side": 1,
+      "message": "This is a syncronous call being done in an async context.  Please use an async call.",
+      "revId": "26f77e59c2868cdc10da58cf3137305b624c8e25",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "b4c5efa8_83b7cd54",
         "filename": "src/IpmbFruDevice.cpp",
         "patchSetId": 4
@@ -170,6 +205,24 @@
       "writtenOn": "2020-10-30T15:31:29Z",
       "side": 1,
       "message": "No return value for int main(), it should be returning an int type value.",
+      "revId": "26f77e59c2868cdc10da58cf3137305b624c8e25",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "ea928b9f_f8690011",
+        "filename": "src/IpmbFruDevice.cpp",
+        "patchSetId": 4
+      },
+      "lineNbr": 1038,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2020-10-30T15:39:59Z",
+      "side": 1,
+      "message": "Bruce, this is a lambda within main()  It doesn\u0027t need to return an int.",
+      "parentUuid": "b4c5efa8_83b7cd54",
       "revId": "26f77e59c2868cdc10da58cf3137305b624c8e25",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
       "unresolved": true
