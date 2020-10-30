@@ -122,6 +122,57 @@
       "revId": "26f77e59c2868cdc10da58cf3137305b624c8e25",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "8c8dea4e_efa79b2a",
+        "filename": "src/IpmbFruDevice.cpp",
+        "patchSetId": 4
+      },
+      "lineNbr": 169,
+      "author": {
+        "id": 1000524
+      },
+      "writtenOn": "2020-10-30T15:31:29Z",
+      "side": 1,
+      "message": "Does iter need to be checked for nullptr?",
+      "revId": "26f77e59c2868cdc10da58cf3137305b624c8e25",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "526840b9_5528cbb7",
+        "filename": "src/IpmbFruDevice.cpp",
+        "patchSetId": 4
+      },
+      "lineNbr": 518,
+      "author": {
+        "id": 1000524
+      },
+      "writtenOn": "2020-10-30T15:31:29Z",
+      "side": 1,
+      "message": "This function is a void, would it be better if it returned a success or failure/error value back to the caller so the caller would know the results?",
+      "revId": "26f77e59c2868cdc10da58cf3137305b624c8e25",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "b4c5efa8_83b7cd54",
+        "filename": "src/IpmbFruDevice.cpp",
+        "patchSetId": 4
+      },
+      "lineNbr": 1038,
+      "author": {
+        "id": 1000524
+      },
+      "writtenOn": "2020-10-30T15:31:29Z",
+      "side": 1,
+      "message": "No return value for int main(), it should be returning an int type value.",
+      "revId": "26f77e59c2868cdc10da58cf3137305b624c8e25",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
     }
   ]
 }
