@@ -160,6 +160,24 @@
     },
     {
       "key": {
+        "uuid": "28e95505_d53fe005",
+        "filename": "src/IpmbFruDevice.cpp",
+        "patchSetId": 4
+      },
+      "lineNbr": 169,
+      "author": {
+        "id": 1000524
+      },
+      "writtenOn": "2020-10-30T15:58:35Z",
+      "side": 1,
+      "message": "Ed, isn\u0027t line 187 uint8_t c \u003d *(iter++); doing a dereference of iter?",
+      "parentUuid": "f3e56b65_05535ef9",
+      "revId": "26f77e59c2868cdc10da58cf3137305b624c8e25",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "526840b9_5528cbb7",
         "filename": "src/IpmbFruDevice.cpp",
         "patchSetId": 4
@@ -223,6 +241,24 @@
       "side": 1,
       "message": "Bruce, this is a lambda within main()  It doesn\u0027t need to return an int.",
       "parentUuid": "b4c5efa8_83b7cd54",
+      "revId": "26f77e59c2868cdc10da58cf3137305b624c8e25",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "140fdc0f_aceb12a6",
+        "filename": "src/IpmbFruDevice.cpp",
+        "patchSetId": 4
+      },
+      "lineNbr": 1038,
+      "author": {
+        "id": 1000524
+      },
+      "writtenOn": "2020-10-30T15:58:35Z",
+      "side": 1,
+      "message": "Then should line 1049 return 0; be returning Zero?  Does the return even need to exist?",
+      "parentUuid": "ea928b9f_f8690011",
       "revId": "26f77e59c2868cdc10da58cf3137305b624c8e25",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
       "unresolved": true
