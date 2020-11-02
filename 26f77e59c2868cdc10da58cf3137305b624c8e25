@@ -125,6 +125,143 @@
     },
     {
       "key": {
+        "uuid": "0b50c1e1_289b61c5",
+        "filename": "src/IpmbFruDevice.cpp",
+        "patchSetId": 4
+      },
+      "lineNbr": 67,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2020-11-02T21:44:04Z",
+      "side": 1,
+      "message": "There are a whole lot of tag strings in this file.  Should we make a set of \u0027constexpr char*\u0027 or \u0027constexpr string_view\u0027 for all the IPMI field tags?",
+      "range": {
+        "startLine": 67,
+        "startChar": 4,
+        "endLine": 67,
+        "endChar": 14
+      },
+      "revId": "26f77e59c2868cdc10da58cf3137305b624c8e25",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "755d2196_abdd8cd7",
+        "filename": "src/IpmbFruDevice.cpp",
+        "patchSetId": 4
+      },
+      "lineNbr": 68,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2020-11-02T21:44:04Z",
+      "side": 1,
+      "message": "Please don\u0027t use std::regex for something so trivial.  It is extremely inefficient both in speed and code-size.",
+      "revId": "26f77e59c2868cdc10da58cf3137305b624c8e25",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "a999e005_da79f0a8",
+        "filename": "src/IpmbFruDevice.cpp",
+        "patchSetId": 4
+      },
+      "lineNbr": 69,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2020-11-02T21:44:04Z",
+      "side": 1,
+      "message": "Is there strong value in using \u0027flat_map\u0027 throughout this code instead of \u0027std::unordered_map\u0027?",
+      "revId": "26f77e59c2868cdc10da58cf3137305b624c8e25",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "ca335af4_eda00494",
+        "filename": "src/IpmbFruDevice.cpp",
+        "patchSetId": 4
+      },
+      "lineNbr": 72,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2020-11-02T21:44:04Z",
+      "side": 1,
+      "message": "Maintainers ok having a global variable on this?",
+      "revId": "26f77e59c2868cdc10da58cf3137305b624c8e25",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "56dc5ad5_1da1361f",
+        "filename": "src/IpmbFruDevice.cpp",
+        "patchSetId": 4
+      },
+      "lineNbr": 78,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2020-11-02T21:44:04Z",
+      "side": 1,
+      "message": "Why can\u0027t these be std::array?",
+      "revId": "26f77e59c2868cdc10da58cf3137305b624c8e25",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "d362ca14_2cfd1ce4",
+        "filename": "src/IpmbFruDevice.cpp",
+        "patchSetId": 4
+      },
+      "lineNbr": 164,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2020-11-02T21:44:04Z",
+      "side": 1,
+      "message": "Generally you shouldn\u0027t need to pass iterators by reference and there is no need to put \u0027const\u0027 on the end iterator.  const parameters do not end up becoming part of the ABI anyhow and the iterator is already a const_iterator.",
+      "range": {
+        "startLine": 163,
+        "startChar": 0,
+        "endLine": 164,
+        "endChar": 66
+      },
+      "revId": "26f77e59c2868cdc10da58cf3137305b624c8e25",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "cab295a0_ea6574a0",
+        "filename": "src/IpmbFruDevice.cpp",
+        "patchSetId": 4
+      },
+      "lineNbr": 167,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2020-11-02T21:44:04Z",
+      "side": 1,
+      "message": "Please initialize variables.",
+      "range": {
+        "startLine": 166,
+        "startChar": 0,
+        "endLine": 167,
+        "endChar": 19
+      },
+      "revId": "26f77e59c2868cdc10da58cf3137305b624c8e25",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "8c8dea4e_efa79b2a",
         "filename": "src/IpmbFruDevice.cpp",
         "patchSetId": 4
@@ -178,6 +315,756 @@
     },
     {
       "key": {
+        "uuid": "292a85be_31075c03",
+        "filename": "src/IpmbFruDevice.cpp",
+        "patchSetId": 4
+      },
+      "lineNbr": 169,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2020-11-02T21:44:04Z",
+      "side": 1,
+      "message": "The STL might choose to implement an iterator as a pointer, but you shouldn\u0027t treat it as one in code.  It might be a class-acting-as-an-pointer.  \u0027operator*\u0027 and \u0027operator-\u003e\u0027 can be implemented on any class just like it would be for std::unique_ptr.",
+      "parentUuid": "28e95505_d53fe005",
+      "revId": "26f77e59c2868cdc10da58cf3137305b624c8e25",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "ebf3faf1_10347693",
+        "filename": "src/IpmbFruDevice.cpp",
+        "patchSetId": 4
+      },
+      "lineNbr": 173,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2020-11-02T21:44:04Z",
+      "side": 1,
+      "message": "Why not throw an exception rather than make up your own return code types?",
+      "revId": "26f77e59c2868cdc10da58cf3137305b624c8e25",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "0cbf4ec5_e4ef8732",
+        "filename": "src/IpmbFruDevice.cpp",
+        "patchSetId": 4
+      },
+      "lineNbr": 176,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2020-11-02T21:44:04Z",
+      "side": 1,
+      "message": "Can you use \u0027auto\u0027 on these instead of \u0027uint8_t\u0027?",
+      "range": {
+        "startLine": 176,
+        "startChar": 4,
+        "endLine": 176,
+        "endChar": 11
+      },
+      "revId": "26f77e59c2868cdc10da58cf3137305b624c8e25",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "9ab6ede4_47eb026d",
+        "filename": "src/IpmbFruDevice.cpp",
+        "patchSetId": 4
+      },
+      "lineNbr": 185,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2020-11-02T21:44:04Z",
+      "side": 1,
+      "message": "Why is the static_cast necessary?  If it is I\u0027d prefer \u0027decltype(c)\u0027 so you\u0027re certain these all match the same type.  As it is you\u0027ve had to write uint8_t 5 times in row here and I have to look around at various bits of code to determine if there is any unexpected casting going on.  This puts more work on future maintainers, in my opinion.",
+      "range": {
+        "startLine": 185,
+        "startChar": 19,
+        "endLine": 185,
+        "endChar": 40
+      },
+      "revId": "26f77e59c2868cdc10da58cf3137305b624c8e25",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "169f5933_482f284b",
+        "filename": "src/IpmbFruDevice.cpp",
+        "patchSetId": 4
+      },
+      "lineNbr": 202,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2020-11-02T21:44:04Z",
+      "side": 1,
+      "message": "I would tend to \u0027return\u0027 right from here.  It makes it clear that you\u0027re done with this token.\n\nIf you turn all \u0027cases\u0027 into an early return then the last return on 234 can actually be an error case.  This ensures you don\u0027t accidentally have a future case that isn\u0027t handled (since you have a missing \u0027default:\u0027) or if it is it becomes an error rather than a silent \u0027ok\u0027.",
+      "range": {
+        "startLine": 202,
+        "startChar": 0,
+        "endLine": 202,
+        "endChar": 18
+      },
+      "revId": "26f77e59c2868cdc10da58cf3137305b624c8e25",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "82f91bc3_bf90ff47",
+        "filename": "src/IpmbFruDevice.cpp",
+        "patchSetId": 4
+      },
+      "lineNbr": 238,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2020-11-02T21:44:04Z",
+      "side": 1,
+      "message": "I personally prefer you just return a boost::...::flat_map instead of having a filled-by-reference parameter and a secondary bool return code that might just be ignored.  It makes the code harder to call and more error prone because you\u0027re not actually requiring anyone to catch the return from \u0027formatFru\u0027.",
+      "range": {
+        "startLine": 237,
+        "startChar": 0,
+        "endLine": 238,
+        "endChar": 76
+      },
+      "revId": "26f77e59c2868cdc10da58cf3137305b624c8e25",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "19a6e2ab_cf3f5eee",
+        "filename": "src/IpmbFruDevice.cpp",
+        "patchSetId": 4
+      },
+      "lineNbr": 240,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2020-11-02T21:44:04Z",
+      "side": 1,
+      "message": "What is special about \u00278\u0027?  Add a constexpr?  Add some documentation?",
+      "revId": "26f77e59c2868cdc10da58cf3137305b624c8e25",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "a9129918_72dcd06d",
+        "filename": "src/IpmbFruDevice.cpp",
+        "patchSetId": 4
+      },
+      "lineNbr": 244,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2020-11-02T21:44:04Z",
+      "side": 1,
+      "message": "auto.",
+      "range": {
+        "startLine": 244,
+        "startChar": 4,
+        "endLine": 244,
+        "endChar": 40
+      },
+      "revId": "26f77e59c2868cdc10da58cf3137305b624c8e25",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "a1188b8e_9678933b",
+        "filename": "src/IpmbFruDevice.cpp",
+        "patchSetId": 4
+      },
+      "lineNbr": 245,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2020-11-02T21:44:04Z",
+      "side": 1,
+      "message": "Another constexpr tag rather than some random string buried in the code, please.",
+      "revId": "26f77e59c2868cdc10da58cf3137305b624c8e25",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "f003763d_79b22783",
+        "filename": "src/IpmbFruDevice.cpp",
+        "patchSetId": 4
+      },
+      "lineNbr": 246,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2020-11-02T21:44:04Z",
+      "side": 1,
+      "message": "Why is the cast necessary?",
+      "range": {
+        "startLine": 246,
+        "startChar": 23,
+        "endLine": 246,
+        "endChar": 39
+      },
+      "revId": "26f77e59c2868cdc10da58cf3137305b624c8e25",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "fa68291b_ae25382e",
+        "filename": "src/IpmbFruDevice.cpp",
+        "patchSetId": 4
+      },
+      "lineNbr": 248,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2020-11-02T21:44:04Z",
+      "side": 1,
+      "message": "Huh?  An uninitialized pointer to const vector of constant C-strings?  Can you find some C++ type to express whatever you\u0027re trying to achieve.\n\nI see later on these become a reference to constant vectors you\u0027ve defined above.  You might want a typedef or decltype to simplify this.\n\nAlso, please initialize all variables.",
+      "revId": "26f77e59c2868cdc10da58cf3137305b624c8e25",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "3a6afa0b_c6ec4fff",
+        "filename": "src/IpmbFruDevice.cpp",
+        "patchSetId": 4
+      },
+      "lineNbr": 250,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2020-11-02T21:44:04Z",
+      "side": 1,
+      "message": "auto?",
+      "range": {
+        "startLine": 250,
+        "startChar": 15,
+        "endLine": 250,
+        "endChar": 26
+      },
+      "revId": "26f77e59c2868cdc10da58cf3137305b624c8e25",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "275f6442_6bc56d0a",
+        "filename": "src/IpmbFruDevice.cpp",
+        "patchSetId": 4
+      },
+      "lineNbr": 252,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2020-11-02T21:44:04Z",
+      "side": 1,
+      "message": "Why?  This is not obvious.  It looks like it is because you already consumed the data on 246... so move the iterator there.",
+      "revId": "26f77e59c2868cdc10da58cf3137305b624c8e25",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "08b443b2_d9ac794f",
+        "filename": "src/IpmbFruDevice.cpp",
+        "patchSetId": 4
+      },
+      "lineNbr": 261,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2020-11-02T21:44:04Z",
+      "side": 1,
+      "message": "Why don\u0027t we need to look at those?",
+      "revId": "26f77e59c2868cdc10da58cf3137305b624c8e25",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "24cb00e0_09bbe5cf",
+        "filename": "src/IpmbFruDevice.cpp",
+        "patchSetId": 4
+      },
+      "lineNbr": 262,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2020-11-02T21:44:04Z",
+      "side": 1,
+      "message": "auto",
+      "range": {
+        "startLine": 262,
+        "startChar": 12,
+        "endLine": 262,
+        "endChar": 49
+      },
+      "revId": "26f77e59c2868cdc10da58cf3137305b624c8e25",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "1f9c87da_7497ea0a",
+        "filename": "src/IpmbFruDevice.cpp",
+        "patchSetId": 4
+      },
+      "lineNbr": 322,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2020-11-02T21:44:04Z",
+      "side": 1,
+      "message": "Suggest:\n\nauto [status, value] \u003d decodeFruData(...)",
+      "revId": "26f77e59c2868cdc10da58cf3137305b624c8e25",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "075b97ec_c0d80061",
+        "filename": "src/IpmbFruDevice.cpp",
+        "patchSetId": 4
+      },
+      "lineNbr": 328,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2020-11-02T21:44:04Z",
+      "side": 1,
+      "message": "Why doesn\u0027t this path require an std::cerr?",
+      "range": {
+        "startLine": 325,
+        "startChar": 0,
+        "endLine": 328,
+        "endChar": 17
+      },
+      "revId": "26f77e59c2868cdc10da58cf3137305b624c8e25",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "8f1d9ed8_890df1dc",
+        "filename": "src/IpmbFruDevice.cpp",
+        "patchSetId": 4
+      },
+      "lineNbr": 341,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2020-11-02T21:44:04Z",
+      "side": 1,
+      "message": "I have no understanding what this is doing.  If the string has no null characters isn\u0027t it deleting the entire contents of the string?\n\nIt might be more efficient to do:\n\nvalue.resize(std::distance(std::begin(value), std::find_if(...)))",
+      "range": {
+        "startLine": 337,
+        "startChar": 0,
+        "endLine": 341,
+        "endChar": 41
+      },
+      "revId": "26f77e59c2868cdc10da58cf3137305b624c8e25",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "0ef0c458_c36eb4c0",
+        "filename": "src/IpmbFruDevice.cpp",
+        "patchSetId": 4
+      },
+      "lineNbr": 343,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2020-11-02T21:44:04Z",
+      "side": 1,
+      "message": "👍 Nice use of std::move.",
+      "revId": "26f77e59c2868cdc10da58cf3137305b624c8e25",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "a7c92e83_cadc9c5c",
+        "filename": "src/IpmbFruDevice.cpp",
+        "patchSetId": 4
+      },
+      "lineNbr": 351,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2020-11-02T21:44:04Z",
+      "side": 1,
+      "message": "Why \u0027const uint8_t\u0026\u0027?  Just pass by value.\n\nI\u0027d suggest an \u0027auto\u0027 or \u0027decltype\u0027 for the return type also rather than spelling it out.",
+      "revId": "26f77e59c2868cdc10da58cf3137305b624c8e25",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "a56066fc_51f196bb",
+        "filename": "src/IpmbFruDevice.cpp",
+        "patchSetId": 4
+      },
+      "lineNbr": 365,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2020-11-02T21:44:04Z",
+      "side": 1,
+      "message": "Why not just \u0027return device-\u003esecond\u0027?",
+      "range": {
+        "startLine": 363,
+        "startChar": 0,
+        "endLine": 365,
+        "endChar": 15
+      },
+      "revId": "26f77e59c2868cdc10da58cf3137305b624c8e25",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "1105e120_93332492",
+        "filename": "src/IpmbFruDevice.cpp",
+        "patchSetId": 4
+      },
+      "lineNbr": 373,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2020-11-02T21:44:04Z",
+      "side": 1,
+      "message": "Why are these uint32_t when elsewhere you\u0027re treating them as / casting them to uint8_t?",
+      "range": {
+        "startLine": 373,
+        "startChar": 4,
+        "endLine": 373,
+        "endChar": 34
+      },
+      "revId": "26f77e59c2868cdc10da58cf3137305b624c8e25",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "c374f45c_ef7c462f",
+        "filename": "src/IpmbFruDevice.cpp",
+        "patchSetId": 4
+      },
+      "lineNbr": 377,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2020-11-02T21:44:04Z",
+      "side": 1,
+      "message": "This is an example of where these seems awkward to call \u0027formatFru\u0027.\n\nThe code below reads much clearer to me:\n\nauto formattedFrus \u003d formatFru(device);\nif (formattedFrus.empty())\n{\n   ...\n}",
+      "range": {
+        "startLine": 376,
+        "startChar": 0,
+        "endLine": 377,
+        "endChar": 41
+      },
+      "revId": "26f77e59c2868cdc10da58cf3137305b624c8e25",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "afdb3c10_fb9dc0f6",
+        "filename": "src/IpmbFruDevice.cpp",
+        "patchSetId": 4
+      },
+      "lineNbr": 385,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2020-11-02T21:44:04Z",
+      "side": 1,
+      "message": "Initialize your variables throughout, please.",
+      "revId": "26f77e59c2868cdc10da58cf3137305b624c8e25",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "558884c0_1cb94606",
+        "filename": "src/IpmbFruDevice.cpp",
+        "patchSetId": 4
+      },
+      "lineNbr": 398,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2020-11-02T21:44:04Z",
+      "side": 1,
+      "message": "Please use std::replace_if instead of a regex.",
+      "range": {
+        "startLine": 397,
+        "startChar": 0,
+        "endLine": 398,
+        "endChar": 74
+      },
+      "revId": "26f77e59c2868cdc10da58cf3137305b624c8e25",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "b56bcfae_5afaa6dd",
+        "filename": "src/IpmbFruDevice.cpp",
+        "patchSetId": 4
+      },
+      "lineNbr": 403,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2020-11-02T21:44:04Z",
+      "side": 1,
+      "message": "Why is this UPPER_SNAKE_CASE if it is a global variable?\n\nWhen, if ever, does this variable reset?",
+      "revId": "26f77e59c2868cdc10da58cf3137305b624c8e25",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "635b1689_0041438b",
+        "filename": "src/IpmbFruDevice.cpp",
+        "patchSetId": 4
+      },
+      "lineNbr": 406,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2020-11-02T21:44:04Z",
+      "side": 1,
+      "message": "Please pull this constant out of code.",
+      "range": {
+        "startLine": 406,
+        "startChar": 18,
+        "endLine": 406,
+        "endChar": 56
+      },
+      "revId": "26f77e59c2868cdc10da58cf3137305b624c8e25",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "1b52c554_19253c67",
+        "filename": "src/IpmbFruDevice.cpp",
+        "patchSetId": 4
+      },
+      "lineNbr": 408,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2020-11-02T21:44:04Z",
+      "side": 1,
+      "message": "Not obvious why \u0027bus 0\u0027 is special here.  I don\u0027t think it is special, so why add the extra logic.",
+      "revId": "26f77e59c2868cdc10da58cf3137305b624c8e25",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "54fdf0ae_b190e649",
+        "filename": "src/IpmbFruDevice.cpp",
+        "patchSetId": 4
+      },
+      "lineNbr": 410,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2020-11-02T21:44:04Z",
+      "side": 1,
+      "message": "ssize_t?  std::numeric_limits::min?",
+      "revId": "26f77e59c2868cdc10da58cf3137305b624c8e25",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "ca33f124_9be84c43",
+        "filename": "src/IpmbFruDevice.cpp",
+        "patchSetId": 4
+      },
+      "lineNbr": 416,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2020-11-02T21:44:04Z",
+      "side": 1,
+      "message": "auto?  auto\u0026?",
+      "revId": "26f77e59c2868cdc10da58cf3137305b624c8e25",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "a9575150_4c97427d",
+        "filename": "src/IpmbFruDevice.cpp",
+        "patchSetId": 4
+      },
+      "lineNbr": 420,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2020-11-02T21:44:04Z",
+      "side": 1,
+      "message": "Suggest short-circuit \u0027address \u003d\u003d busIface.first.second\u0027 before \u0027isMuxBus\u0027 because \u0027isMuxBus\u0027 requires examining sysfs (syscalls vs local data).",
+      "revId": "26f77e59c2868cdc10da58cf3137305b624c8e25",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "b196b789_c4dc70b9",
+        "filename": "src/IpmbFruDevice.cpp",
+        "patchSetId": 4
+      },
+      "lineNbr": 424,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2020-11-02T21:44:04Z",
+      "side": 1,
+      "message": "This is way too much casting and comparing and random feel getting without a single comment.  I\u0027m not even going to try to figure out what it is doing.",
+      "range": {
+        "startLine": 421,
+        "startChar": 0,
+        "endLine": 424,
+        "endChar": 64
+      },
+      "revId": "26f77e59c2868cdc10da58cf3137305b624c8e25",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "86c69307_f1366c33",
+        "filename": "src/IpmbFruDevice.cpp",
+        "patchSetId": 4
+      },
+      "lineNbr": 446,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2020-11-02T21:44:04Z",
+      "side": 1,
+      "message": "std::max(highest, value)",
+      "revId": "26f77e59c2868cdc10da58cf3137305b624c8e25",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "7f3345e3_b3403495",
+        "filename": "src/IpmbFruDevice.cpp",
+        "patchSetId": 4
+      },
+      "lineNbr": 458,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2020-11-02T21:44:04Z",
+      "side": 1,
+      "message": "This comment tells me nothing about why you\u0027re doing a \u0027++highest\u0027.  What about cases where found\u003d\u003dtrue and highest!\u003d0?",
+      "range": {
+        "startLine": 454,
+        "startChar": 0,
+        "endLine": 458,
+        "endChar": 9
+      },
+      "revId": "26f77e59c2868cdc10da58cf3137305b624c8e25",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "10c28a85_e21c3824",
+        "filename": "src/IpmbFruDevice.cpp",
+        "patchSetId": 4
+      },
+      "lineNbr": 469,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2020-11-02T21:44:04Z",
+      "side": 1,
+      "message": "replace_if can be used here.",
+      "range": {
+        "startLine": 468,
+        "startChar": 0,
+        "endLine": 469,
+        "endChar": 72
+      },
+      "revId": "26f77e59c2868cdc10da58cf3137305b624c8e25",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "d6416c09_f5b9f17d",
+        "filename": "src/IpmbFruDevice.cpp",
+        "patchSetId": 4
+      },
+      "lineNbr": 475,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2020-11-02T21:44:04Z",
+      "side": 1,
+      "message": "And replace_if here too.",
+      "range": {
+        "startLine": 474,
+        "startChar": 0,
+        "endLine": 475,
+        "endChar": 69
+      },
+      "revId": "26f77e59c2868cdc10da58cf3137305b624c8e25",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "a63e832e_8d3897e1",
+        "filename": "src/IpmbFruDevice.cpp",
+        "patchSetId": 4
+      },
+      "lineNbr": 481,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2020-11-02T21:44:04Z",
+      "side": 1,
+      "message": "Why do we have to add a random null terminator?",
+      "range": {
+        "startLine": 481,
+        "startChar": 21,
+        "endLine": 481,
+        "endChar": 43
+      },
+      "revId": "26f77e59c2868cdc10da58cf3137305b624c8e25",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "526840b9_5528cbb7",
         "filename": "src/IpmbFruDevice.cpp",
         "patchSetId": 4
@@ -206,6 +1093,29 @@
       "writtenOn": "2020-10-30T15:39:59Z",
       "side": 1,
       "message": "This is a syncronous call being done in an async context.  Please use an async call.",
+      "revId": "26f77e59c2868cdc10da58cf3137305b624c8e25",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "15598855_d35711e2",
+        "filename": "src/IpmbFruDevice.cpp",
+        "patchSetId": 4
+      },
+      "lineNbr": 1025,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2020-11-02T21:44:04Z",
+      "side": 1,
+      "message": "Where is this interface defined?  Please make changes to phosphor-dbus-interfaces.",
+      "range": {
+        "startLine": 1023,
+        "startChar": 0,
+        "endLine": 1025,
+        "endChar": 77
+      },
       "revId": "26f77e59c2868cdc10da58cf3137305b624c8e25",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
       "unresolved": true
