@@ -27,6 +27,24 @@
             "I2CAddress": 107,
             "I2CBus": 3,
             "NamedPresenceGpio": "PS3_PRES_N"
+        },
+        {
+            "Address": "0x48",
+            "Bus": 7,
+            "Name": "Ambient 0 Temp",
+            "Type": "TMP75"
+        },
+        {
+            "Address": "0x48",
+            "Bus": 8,
+            "Name": "PCIE 0 Temp",
+            "Type": "TMP75"
+        },
+        {
+            "Address": "0x4A",
+            "Bus": 8,
+            "Name": "PCIE 1 Temp",
+            "Type": "TMP75"
         }
     ],
     "Name": "Nisqually Backplane",
