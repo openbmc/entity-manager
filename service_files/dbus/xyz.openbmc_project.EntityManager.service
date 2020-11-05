@@ -1,0 +1,7 @@
+# SPDX-License-Identifier: Apache-2.0
+
+[D-BUS Service]
+Name=xyz.openbmc_project.EntityManager
+Exec=/bin/false
+User=root
+SystemdService=dbus-xyz.openbmc_project.EntityManager.service
