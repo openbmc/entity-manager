@@ -91,6 +91,24 @@
     },
     {
       "key": {
+        "uuid": "b5a57ac2_b9a40d2f",
+        "filename": "schemas/IBM.json",
+        "patchSetId": 1
+      },
+      "lineNbr": 167,
+      "author": {
+        "id": 1000008
+      },
+      "writtenOn": "2020-11-16T21:39:28Z",
+      "side": 1,
+      "message": "I am actually using phosphor-virtual-sensors to put a virtual ambient temperature sensor on dbus that is basically the median of a handful of other regular temp sensors, so dbus-sensors will not be involved with   reading these thresholds or setting the Alarm properties.\n\nI was then going to put this proposed JSON on our chassis, and have another application, probably over in phosphor-fan or phosphor-power, watch that virtual sensor and compare it to these values, and then do IBM\u0027s requirements of PLDM alerts, notifying the OCC, creating phosphor event logs, shutting down after 2 different timeouts (EPOW3 and EPOW4), etc.",
+      "parentUuid": "d57be480_3ac3c64c",
+      "revId": "66077db346a3e0ae24af7d498571f66dbd06ac4a",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "6a9bc2c3_4a1ad14f",
         "filename": "schemas/IBM.json",
         "patchSetId": 1
