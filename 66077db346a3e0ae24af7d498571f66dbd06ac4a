@@ -109,6 +109,24 @@
     },
     {
       "key": {
+        "uuid": "1960adcf_9aa8aa07",
+        "filename": "schemas/IBM.json",
+        "patchSetId": 1
+      },
+      "lineNbr": 167,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2020-11-16T21:46:13Z",
+      "side": 1,
+      "message": "\u003e I am actually using phosphor-virtual-sensors to put a virtual ambient temperature sensor on dbus that is basically the median of a handful of other regular temp sensors, so dbus-sensors will not be involved with   reading these thresholds or setting the Alarm properties.\n\u003e \n\u003e I was then going to put this proposed JSON on our chassis, and have another application, probably over in phosphor-fan or phosphor-power, watch that virtual sensor and compare it to these values, and then do IBM\u0027s requirements of PLDM alerts, notifying the OCC, creating phosphor event logs, shutting down after 2 different timeouts (EPOW3 and EPOW4), etc.\n\n\nAh, your problem makes a lot more sense now.  Sounds like phosphor-virtual-sensors needs EM support then.  It should be noted, I commented about this in the phosphor-virtual-sensors design review, to which the author said that it was designed for non-EM subscribers.  Which, fine by me, but it sounds like you\u0027re trying to do both.\n\nIMO, if you\u0027re going to combine phosphor-virtual-sensors with entity-manager, that\u0027s a much bigger discussion about \"static\" stacks, versus dynamic stacks, and we likely need to figure out where phosphor-virtual-sensor fits in cleanly (if at all).\n\nI\u0027d be against referencing any sensor name in a config that didn\u0027t have an associated entity-manager name, because it largely defeats the self-contained-config-file purpose of entity-manager to do so.  If you wanted to make phosphor-virtual-sensors entity-manager aware, that\u0027d probably be your path forward for something like that, although I realize that\u0027s a much bigger discussion than you were likely hoping for.",
+      "parentUuid": "b5a57ac2_b9a40d2f",
+      "revId": "66077db346a3e0ae24af7d498571f66dbd06ac4a",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "6a9bc2c3_4a1ad14f",
         "filename": "schemas/IBM.json",
         "patchSetId": 1
