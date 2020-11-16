@@ -95,6 +95,142 @@
                 "Type",
                 "Names"
             ]
+        },
+        "IBMAmbientTemp": {
+            "title": "Ambient temperature rules",
+            "description": [
+                "Contains the values for IBM's ambient temperature ",
+                "handling requirements, such as at which temperature ",
+                "to send an EPOW alert to the host."
+            ],
+            "type": "object",
+            "properties": {
+                "Name": {
+                    "type": "string"
+                },
+                "Type": {
+                    "enum": [
+                        "IBMAmbientTemp"
+                    ]
+                },
+                "SensorName": {
+                    "description": [
+                        "The name of the ambient temp sensor to watch."
+                    ],
+                    "type": "string"
+                },
+                "PerfLoss":
+                {
+                    "type": "object",
+                    "properties":
+                    {
+                        "Temp": {
+                            "description": [
+                                "The temperature at which there will be a ",
+                                "performance loss."
+                            ],
+                            "type": "number"
+                        },
+                        "TempReset": {
+                            "description": [
+                                "The temperature, when crossed when decreasing, ",
+                                "at which the performance loss stops."
+                            ],
+                            "type": "number"
+                        }
+                    },
+                    "required": ["Temp", "TempReset"]
+                },
+
+                "Warning":
+                {
+                    "type": "object",
+                    "properties":
+                    {
+                        "Temp": {
+                            "description": [
+                                "The temperature at which to create an event ",
+                                "log to warn of a high ambient temperature."
+                            ],
+                            "type": "number"
+                        },
+                        "TempReset": {
+                            "description": [
+                                "The temperature, when crossed when decreasing, ",
+                                "at which to create an event log indicating the ",
+                                "warning has passed. "
+                            ],
+                            "type": "number"
+                        }
+                    },
+                    "required": ["Temp", "TempReset"]
+                },
+
+                "EPOW3":
+                {
+                    "type": "object",
+                    "properties":
+                    {
+                        "Temp": {
+                            "description": [
+                                "The temperature at which to send an EPOW3 ",
+                                "alert and start a power off countdown. "
+                            ],
+                            "type": "number"
+                        },
+                        "TempReset": {
+                            "description": [
+                                "The temperature, when crossed when decreasing, ",
+                                "at which to clear the EPOW3 alert and stop the ",
+                                "countdown."
+                            ],
+                            "type": "number"
+                        },
+                        "Timer":
+                        {
+                            "description": [
+                                "The number of seconds the power off timer ",
+                                "will be set to."
+                            ],
+                            "type": "integer"
+                        }
+                    },
+                    "required": ["Temp", "TempReset", "Timer"]
+                },
+
+                "EPOW4":
+                {
+                    "type": "object",
+                    "properties":
+                    {
+                        "Temp": {
+                            "description": [
+                                "The temperature at which to send an EPOW4 ",
+                                "alert and start an uncancelable power off ",
+                                "countdown."
+                            ],
+                            "type": "number"
+                        },
+                        "Timer":
+                        {
+                            "description": [
+                                "The number of seconds the power off timer ",
+                                "will be set to."
+                            ],
+                            "type": "integer"
+                        }
+                    },
+                    "required": ["Temp", "Timer"]
+                }
+            },
+            "required": [
+                "Name",
+                "Type",
+                "SensorName",
+                "Warning",
+                "EPOW3",
+                "EPOW4"
+            ]
         }
     }
 }
