@@ -55,6 +55,24 @@
     },
     {
       "key": {
+        "uuid": "bf1968a9_b1f96d83",
+        "filename": "schemas/IBM.json",
+        "patchSetId": 1
+      },
+      "lineNbr": 167,
+      "author": {
+        "id": 1000008
+      },
+      "writtenOn": "2020-11-16T19:28:24Z",
+      "side": 1,
+      "message": "Say like for our EPOW3 section, the EPOW3 temp is 50, and the EPOW3 temp reset is 45.  So when the temperature is increasing, the EPOW3 handler doesn\u0027t do anything at all until it hits 50, then we\u0027ll stay in \u0027EPOW3\u0027 until it cools off past 45.\n\nI may be misunderstanding what \u0027lower critical\u0027 means, since isn\u0027t it the case that if I set lower critical to 45 then any temp under 45 is also critical?  How would I set up the existing interface to get the behavior I mentioned above?",
+      "parentUuid": "cfbe1b11_30856c70",
+      "revId": "66077db346a3e0ae24af7d498571f66dbd06ac4a",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "6a9bc2c3_4a1ad14f",
         "filename": "schemas/IBM.json",
         "patchSetId": 1
