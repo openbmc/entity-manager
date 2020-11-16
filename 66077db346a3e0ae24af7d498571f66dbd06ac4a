@@ -73,6 +73,24 @@
     },
     {
       "key": {
+        "uuid": "d57be480_3ac3c64c",
+        "filename": "schemas/IBM.json",
+        "patchSetId": 1
+      },
+      "lineNbr": 167,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2020-11-16T20:21:29Z",
+      "side": 1,
+      "message": "\u003e Say like for our EPOW3 section, the EPOW3 temp is 50, and the EPOW3 temp reset is 45.  So when the temperature is increasing, the EPOW3 handler doesn\u0027t do anything at all until it hits 50, then we\u0027ll stay in \u0027EPOW3\u0027 until it cools off past 45.\n\u003e \n\u003e I may be misunderstanding what \u0027lower critical\u0027 means, since isn\u0027t it the case that if I set lower critical to 45 then any temp under 45 is also critical?  How would I set up the existing interface to get the behavior I mentioned above?\n\nSomething like:\n\n{\n    \"Address\": \"0x4B\",\n    \"Bus\": 6,\n    \"Name\": \"IntakeAirTemp\",\n    \"Thresholds\": [\n        {\n            \"Direction\": \"greater than\",\n            \"Name\": \"upper critical\",\n            \"Severity\": 1,\n            \"Value\": 50\n        },\n        {\n            \"Direction\": \"greater than\",\n            \"Name\": \"upper non critical\",\n            \"Severity\": 0,\n            \"Value\": 45\n        },\n        {\n            \"Direction\": \"less than\",\n            \"Name\": \"lower non critical\",\n            \"Severity\": 0,\n            \"Value\": 5\n        },\n        {\n            \"Direction\": \"less than\",\n            \"Name\": \"lower critical\",\n            \"Severity\": 1,\n            \"Value\": 0\n        }\n    ],\n    \"Type\": \"TMP75\"\n},\n\nThen another exposes section with:\n\n{\n    \"Name\": \"Chassis Host Monitor\",\n    \"SensorsToWatch\": [\n        {\n            \"Name\": \"IntakeAirTemp\",\n            \"Hysteresis\": 5\n            // Maybe add a severity field here? or can we just assume to use all severity 1 events?  Probably worth discussion.\n        }\n    ],\n    \"Type\": \"HostShutdownMonitor\"\n},\n\n\nDepending on your use cases, the second exposes might need some modifications/extended actions that can be set.  We also might discuss if hysteresis is better added to the thresholds, moving it out of the reactors control, but thusfar, sensors tend to be very regular, and all sensors of a given type seem to have the same, or a calculable hysteresis that\u0027s reasonable.",
+      "parentUuid": "bf1968a9_b1f96d83",
+      "revId": "66077db346a3e0ae24af7d498571f66dbd06ac4a",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "6a9bc2c3_4a1ad14f",
         "filename": "schemas/IBM.json",
         "patchSetId": 1
