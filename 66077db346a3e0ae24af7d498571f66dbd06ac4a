@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "cb1d9dcf_8ee5652a",
+        "filename": "schemas/IBM.json",
+        "patchSetId": 1
+      },
+      "lineNbr": 167,
+      "author": {
+        "id": 1000008
+      },
+      "writtenOn": "2020-11-16T18:07:35Z",
+      "side": 1,
+      "message": "From an entity-manager JSON point of view, since the Thresholds array is basically just free format strings, theoretically I could have just encoded these values into that, using special string labels.  That really bypasses the added value a schema provides though.\n\nIn regards to using the actual Sensor.Threshold.Warning/Critical interfaces, I couldn\u0027t see how to make that work: \n1) I have 4 levels here, not just two.\n2) The \u0027WarningLow\u0027 parameter I suppose I could use as the TempReset value, but that isn\u0027t what it\u0027s defined to be used as.  Not sure if other code uses it that way.",
+      "parentUuid": "707a6a5f_dc89bc87",
+      "revId": "66077db346a3e0ae24af7d498571f66dbd06ac4a",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "6a9bc2c3_4a1ad14f",
         "filename": "schemas/IBM.json",
         "patchSetId": 1
@@ -30,6 +48,24 @@
       "writtenOn": "2020-11-16T16:51:17Z",
       "side": 1,
       "message": "How is the EPOW3 temperature different than the PerfLoss-\u003eTempReset temperature?",
+      "revId": "66077db346a3e0ae24af7d498571f66dbd06ac4a",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "c3d9a419_c0ac24eb",
+        "filename": "schemas/IBM.json",
+        "patchSetId": 1
+      },
+      "lineNbr": 199,
+      "author": {
+        "id": 1000008
+      },
+      "writtenOn": "2020-11-16T18:07:35Z",
+      "side": 1,
+      "message": "The perfLoss one is when our OCC starts throttling things, and that happens before it gets into EPOW conditions, which is where our operating systems are told about the alert and the impending shutdown.",
+      "parentUuid": "6a9bc2c3_4a1ad14f",
       "revId": "66077db346a3e0ae24af7d498571f66dbd06ac4a",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
       "unresolved": true
