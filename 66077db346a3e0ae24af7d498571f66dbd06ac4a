@@ -127,6 +127,24 @@
     },
     {
       "key": {
+        "uuid": "b38bc8f4_85bc1ae6",
+        "filename": "schemas/IBM.json",
+        "patchSetId": 1
+      },
+      "lineNbr": 167,
+      "author": {
+        "id": 1000008
+      },
+      "writtenOn": "2020-11-18T16:41:56Z",
+      "side": 1,
+      "message": "I can send a note to the list regarding virtual-sensors being able to read its config from entity-manager.\n\nThat leaves me with still needing some new threshold support that virtual sensors would make use of:\n\n1) Having 4 threshold levels/severities instead of just two\n2) Hysteresis\n\nWhat would you think of adding a new \u0027hysteresis\u0027 property to the existing threshold interfaces (and the new ones if you agree to those) and just default it to 0.  Support can then be added into dbus-sensors and phoshpor-hwmon later in the future if someone needs it there.\n\nI believe I would still need an IBMAmbientTemp schema to hold things like which power off delays to use for which thresholds.",
+      "parentUuid": "1960adcf_9aa8aa07",
+      "revId": "66077db346a3e0ae24af7d498571f66dbd06ac4a",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "6a9bc2c3_4a1ad14f",
         "filename": "schemas/IBM.json",
         "patchSetId": 1
