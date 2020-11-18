@@ -145,6 +145,24 @@
     },
     {
       "key": {
+        "uuid": "26056163_ee1d9abc",
+        "filename": "schemas/IBM.json",
+        "patchSetId": 1
+      },
+      "lineNbr": 167,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2020-11-18T16:59:11Z",
+      "side": 1,
+      "message": "\u003e I can send a note to the list regarding virtual-sensors being able to read its config from entity-manager.\n\u003e \n\u003e That leaves me with still needing some new threshold support that virtual sensors would make use of:\n\u003e \n\u003e 1) Having 4 threshold levels/severities instead of just two\n\nI think the current severity definition is just an int.  There might be changes to the consuming software to set it appropriately, but I think the config definition gets you what you need.\n\n\u003e 2) Hysteresis\n\nMore pointedly, hysteresis that\u0027s configurable by the user.  Is there a reason that the defaults won\u0027t work in most cases?  We have threshold hysteresis today, but it\u0027s not configurable, and it seems to be correct for most use cases.\n\n\u003e \n\u003e What would you think of adding a new \u0027hysteresis\u0027 property to the existing threshold interfaces (and the new ones if you agree to those) and just default it to 0.\n\nPlease default it to something that allows the sensor to define it so we don\u0027t break all the existing configs.  Maybe 0 makes sense as an \"implementation defined\" value, but lets make sure we document it that way.\n\n\u003e  Support can then be added into dbus-sensors and phoshpor-hwmon later in the future if someone needs it there.\n\nHow would you implement this without dbus-sensors?  I don\u0027t think phosphor-hwmon supports EM yet, so no worries there.  I would assume sensors would need to be aware of their threshold hysteresis to assert and deassert them appropriately.\n\n\u003e \n\u003e I believe I would still need an IBMAmbientTemp schema to hold things like which power off delays to use for which thresholds.\n\nI don\u0027t see anything ibm specific, and there\u0027s someone on the mailing list asking about doing exactly the same thing.  I\u0027d rather this just be a generic, non-IBM thing, unless there\u0027s something IBM specific about shutting down when overtemp?",
+      "parentUuid": "b38bc8f4_85bc1ae6",
+      "revId": "66077db346a3e0ae24af7d498571f66dbd06ac4a",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "6a9bc2c3_4a1ad14f",
         "filename": "schemas/IBM.json",
         "patchSetId": 1
