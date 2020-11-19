@@ -399,6 +399,39 @@
                 },
                 "type": "array"
             },
+            "ThresholdsWithHysteresis": {
+                "items": {
+                    "properties": {
+                        "Direction": {
+                            "type": "string"
+                        },
+                        "Label": {
+                            "type": "string"
+                        },
+                        "Name": {
+                            "type": "string"
+                        },
+                        "Severity": {
+                            "type": "number"
+                        },
+                        "Value": {
+                            "type": "number"
+                        },
+                        "Hysteresis": {
+                            "type": "number"
+                        }
+                    },
+                    "required": [
+                        "Direction",
+                        "Name",
+                        "Severity",
+                        "Value",
+                        "Hysteresis"
+                    ],
+                    "type": "object"
+                },
+                "type": "array"
+            },
             "Type": {
                 "type": "string"
             }
