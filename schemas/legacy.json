@@ -12,6 +12,9 @@
                 "Address": {
                     "$ref": "#/definitions/Types/Address"
                 },
+                "Size": {
+                    "$ref": "#/definitions/Types/Size"
+                },
                 "AllowedFailures": {
                     "$ref": "#/definitions/Types/AllowedFailures"
                 },
@@ -172,6 +175,9 @@
                     "string",
                     "array"
                 ]
+            },
+            "Size": {
+                "type": "string"
             },
             "AllowedFailures": {
                 "type": "number"
