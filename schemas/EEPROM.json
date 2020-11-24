@@ -1,0 +1,32 @@
+{
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "definitions": {
+        "EEPROM": {
+             "properties": {
+                "Address": {
+                    "type": "string"
+                },
+                "Bus": {
+                    "type": "string"
+                },
+                "Name": {
+                    "type": "string"
+                },
+                "Size": {
+                    "type": "number"
+                },
+                "Type": {
+                    "type": "string"
+                }
+            },
+            "required": [
+                "Name",
+                "Type",
+                "Size",
+                "Address",
+                "Bus"
+            ],
+            "type": "object"
+        }
+    }
+}
