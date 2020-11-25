@@ -2,6 +2,23 @@
   "comments": [
     {
       "key": {
+        "uuid": "493445ea_f35db575",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 4
+      },
+      "lineNbr": 10,
+      "author": {
+        "id": 1000002
+      },
+      "writtenOn": "2020-11-25T13:31:44Z",
+      "side": 1,
+      "message": "if we just instantiated the eeprom driver I don\u0027t think this would be necessary.  It sort of feels like we are re-inventing things that the kernel already handles for us...",
+      "revId": "3181dfe2d4fbe1d32453749c54712edd90d5aff7",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "a3f5c2d2_411371a6",
         "filename": "configurations/SOLUM_PSSF162202_PSU.json",
         "patchSetId": 4
@@ -25,6 +42,23 @@
     },
     {
       "key": {
+        "uuid": "3f10277c_a618ff15",
+        "filename": "schemas/EEPROM.json",
+        "patchSetId": 4
+      },
+      "lineNbr": 4,
+      "author": {
+        "id": 1000002
+      },
+      "writtenOn": "2020-11-25T13:31:44Z",
+      "side": 1,
+      "message": "It would be nice to have a title and description for this schema - something like like: https://github.com/openbmc/entity-manager/blob/master/schemas/IBM.json#L5",
+      "revId": "3181dfe2d4fbe1d32453749c54712edd90d5aff7",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "937e1e12_6ac31869",
         "filename": "schemas/EEPROM.json",
         "patchSetId": 4
@@ -39,6 +73,23 @@
       "revId": "3181dfe2d4fbe1d32453749c54712edd90d5aff7",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "80007e4c_2f9d2429",
+        "filename": "schemas/EEPROM.json",
+        "patchSetId": 4
+      },
+      "lineNbr": 19,
+      "author": {
+        "id": 1000002
+      },
+      "writtenOn": "2020-11-25T13:31:44Z",
+      "side": 1,
+      "message": "if you make this an enum with a single enum of type \"EEPROM\" this won\u0027t accidentally match something like Type: EPROM...",
+      "revId": "3181dfe2d4fbe1d32453749c54712edd90d5aff7",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": false
     },
     {
       "key": {
@@ -62,6 +113,23 @@
       "revId": "3181dfe2d4fbe1d32453749c54712edd90d5aff7",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "f4f22bc1_b49c40e4",
+        "filename": "schemas/EEPROM.json",
+        "patchSetId": 4
+      },
+      "lineNbr": 25,
+      "author": {
+        "id": 1000002
+      },
+      "writtenOn": "2020-11-25T13:31:44Z",
+      "side": 1,
+      "message": "+1 to making this optional.",
+      "revId": "3181dfe2d4fbe1d32453749c54712edd90d5aff7",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": false
     }
   ]
 }
