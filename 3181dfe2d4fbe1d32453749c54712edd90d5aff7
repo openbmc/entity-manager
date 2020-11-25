@@ -59,6 +59,24 @@
     },
     {
       "key": {
+        "uuid": "7b38405b_ce8b50bc",
+        "filename": "schemas/EEPROM.json",
+        "patchSetId": 4
+      },
+      "lineNbr": 4,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2020-11-25T16:58:24Z",
+      "side": 1,
+      "message": "+1",
+      "parentUuid": "3f10277c_a618ff15",
+      "revId": "3181dfe2d4fbe1d32453749c54712edd90d5aff7",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "937e1e12_6ac31869",
         "filename": "schemas/EEPROM.json",
         "patchSetId": 4
@@ -87,6 +105,24 @@
       "writtenOn": "2020-11-25T13:31:44Z",
       "side": 1,
       "message": "if you make this an enum with a single enum of type \"EEPROM\" this won\u0027t accidentally match something like Type: EPROM...",
+      "revId": "3181dfe2d4fbe1d32453749c54712edd90d5aff7",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "1280b836_567e4314",
+        "filename": "schemas/EEPROM.json",
+        "patchSetId": 4
+      },
+      "lineNbr": 19,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2020-11-25T16:58:24Z",
+      "side": 1,
+      "message": "+1",
+      "parentUuid": "80007e4c_2f9d2429",
       "revId": "3181dfe2d4fbe1d32453749c54712edd90d5aff7",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
       "unresolved": false
@@ -130,6 +166,30 @@
       "revId": "3181dfe2d4fbe1d32453749c54712edd90d5aff7",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "4bd26615_77f821e2",
+        "filename": "schemas/EEPROM.json",
+        "patchSetId": 4
+      },
+      "lineNbr": 25,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2020-11-25T16:58:24Z",
+      "side": 1,
+      "message": "Can you comment about a case where you wouldn\u0027t know the size?  Presumably the fru eeprom has a known size based on its physical part.  if I remember right, FruDevice just defaults to a size of 255 prior to this patch, so IMO this shouldn\u0027t be optional.  If you\u0027re unsure, it can be set to the smallest mod 2 size that would fit the fru that\u0027s already in the card.  Existing files can be set to 255 for backward compatibility.\n\nhttps://github.com/openbmc/entity-manager/blob/ef3cdc9a84f5dc806d2b10ad785f248f001244c3/src/FruDevice.cpp#L62\n\nIt\u0027s also easy enough to write a quick script to write bytes 1-infinity, and check where the writes stop getting acked to determine the size of an eeprom that you can\u0027t look at physically.\n\nFunctionally it\u0027s needed such that IPMI (and probably Redfish) can provide the difference between \"write failed\" and \"You tried to write beyond what the eeprom supported\" (I forget the exact error codes).",
+      "parentUuid": "5759ace3_e8fef7f5",
+      "range": {
+        "startLine": 25,
+        "startChar": 0,
+        "endLine": 25,
+        "endChar": 23
+      },
+      "revId": "3181dfe2d4fbe1d32453749c54712edd90d5aff7",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
     }
   ]
 }
