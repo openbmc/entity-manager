@@ -156,6 +156,9 @@
                 "Thresholds": {
                     "$ref": "#/definitions/Types/Thresholds"
                 },
+                "SMLinkIndex": {
+                    "$ref": "#/definitions/Types/SMLinkIndex"
+                },
                 "Type": {
                     "$ref": "#/definitions/Types/Type"
                 }
@@ -398,6 +401,9 @@
                     "type": "object"
                 },
                 "type": "array"
+            },
+            "SMLinkIndex": {
+                "type": "number"
             },
             "Type": {
                 "type": "string"
