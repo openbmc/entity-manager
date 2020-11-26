@@ -1,0 +1,38 @@
+{
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "definitions": {
+        "Ipmb": {
+             "properties": {
+                "Address": {
+                    "type": "string"
+                },
+                "Class": {
+                    "type": "string"
+                },
+                "Name": {
+                    "type": "string"
+                },
+                "SMLinkIndex": {
+                    "type": "number"
+                },
+                "PowerState": {
+                    "type": "string"
+                },
+               "SensorType": {
+                    "type": "string"
+                },
+                "Type": {
+                    "type": "string"
+                }
+            },
+            "required": [
+                "Class",
+                "Type",
+                "Name",
+                "Address"
+            ],
+            "type": "object"
+        }
+    }
+}
+
