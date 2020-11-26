@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "9e851a92_7dbd9688",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 4
+      },
+      "lineNbr": 10,
+      "author": {
+        "id": 1000904
+      },
+      "writtenOn": "2020-11-26T04:30:09Z",
+      "side": 1,
+      "message": "We need the size in the upper level such as IPMI command handler, to differentiate the error between writing failed and writing out of the range, and return the correct complete code.\nCurrent design could only ensure the writing will be fail when it\u0027s beyond the range, but could not tell the exact error code.",
+      "parentUuid": "493445ea_f35db575",
+      "revId": "3181dfe2d4fbe1d32453749c54712edd90d5aff7",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "a3f5c2d2_411371a6",
         "filename": "configurations/SOLUM_PSSF162202_PSU.json",
         "patchSetId": 4
