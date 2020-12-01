@@ -1,0 +1,199 @@
+{
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "definitions": {
+        "VirtualSensorConfig": {
+            "title": "phosphor-virtual-sensor configuration",
+            "description": [
+                "The configuration used by the virtual-sensor daemon",
+                "in the phosphor-virtual-sensor repository.  Virtual",
+                "sensors are xyz.openbmc_project.Sensor.Value D-Bus",
+                "objects that have sensors values that are calculated",
+                "by an exprtk math library expression.  That expression",
+                "may make use of numerical constants that are defined",
+                "here and may also be based on other sensor values."
+            ],
+            "type": "object",
+            "properties":
+            {
+                "Name": {
+                    "type": "string"
+                },
+                "Type": {
+                    "enum": [
+                        "VirtualSensor"
+                    ]
+                },
+                "VirtualSensorName":
+                {
+                    "description": [
+                        "The D-Bus name of the virtual sensor."
+                    ],
+                    "type": "string"
+                },
+                "VirtualSensorType":
+                {
+                    "$ref": "#/definitions/SensorType"
+                },
+                "Expression":
+                {
+                    "description": [
+                        "The exprtk expression used to calculate",
+                        "the sensor value."
+                    ],
+                    "type": "string"
+                },
+                "ConstParams":
+                {
+                    "description": [
+                        "Any constants used in the expression."
+                    ],
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/ConstParam"
+                    }
+                },
+                "DBusParams":
+                {
+                    "description": [
+                        "Any D-Bus sensor values used in the expression."
+                    ],
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/DBusParam"
+                    }
+                },
+                "Thresholds":
+                {
+                    "description": [
+                        "The thresholds for the virtual sensor."
+                    ],
+                    "type": "array",
+                    "items": {
+                        "$ref": "legacy.json#/definitions/ThresholdsWithHysteresis"
+                    }
+                }
+            },
+            "required": [
+                "Name", "Type", "VirtualSensorName",
+                "VirtualSensorType", "Expression"
+            ],
+            "examples": [
+                {
+                    "Name": "Fake sensor",
+                    "Type": "VirtualSensor",
+                    "VirtualSensorName": "LinearTemp",
+                    "VirtualSensorType": "temperature",
+                    "ConstParams": [
+                        {
+                            "Name": "offset",
+                            "Value": 1.5
+                        },
+                        {
+                            "Name": "slope",
+                            "Value": 4.0
+                        }
+                    ],
+                    "DBusParams": [
+                        {
+                            "Name": "X",
+                            "SensorName": "Board_Temp",
+                            "SensorType": "temperature"
+                        }
+                    ],
+                    "Expression": "slope * X + offset"
+                }
+            ]
+        },
+        "SensorType":
+        {
+            "description": [
+                "The sensor type, as it shows up in the D-Bus",
+                "object name."
+            ],
+            "type": "string",
+            "enum": [
+                "temperature",
+                "fan_tach",
+                "power",
+                "current",
+                "voltage"
+            ]
+        },
+        "ConstParam":
+        {
+            "description": [
+                "An expression constant."
+            ],
+            "type": "object",
+            "properties":
+            {
+                "Name":
+                {
+                    "description": [
+                        "The constant name as it is used in the expression."
+                    ],
+                    "type": "string"
+                },
+                "Value":
+                {
+                    "description": [
+                        "The constant's value"
+                    ],
+                    "type": "number"
+                }
+            },
+            "required": [
+                "Name", "Value"
+            ],
+            "examples": [
+                {
+                    "Name": "offset",
+                    "Value": 3.7
+                }
+            ]
+        },
+        "DBusParam":
+        {
+            "description": [
+                "An expression parameter that is based on a D-Bus",
+                "sensor value.  For example, a 'temp0' sensor value",
+                "could be used as variable 'T0' in the expression."
+            ],
+            "type": "object",
+            "properties":
+            {
+                "Name":
+                {
+                    "description": [
+                        "The variable name in the expression."
+                    ],
+                    "type": "string"
+                },
+                "SensorName":
+                {
+                    "description": [
+                        "The D-Bus sensor name, like 'temp0'."
+                    ],
+                    "type": "string"
+                },
+                "SensorType":
+                {
+                    "description": [
+                        "The sensor type."
+                    ],
+                    "$ref": "#/definitions/SensorType"
+                }
+            },
+            "required": [
+                "Name", "SensorName", "SensorType"
+            ],
+            "examples": [
+                {
+                    "Name": "T0",
+                    "SensorName": "Proc_Temp",
+                    "SensorType": "temperature"
+                }
+            ]
+        }
+    }
+}
