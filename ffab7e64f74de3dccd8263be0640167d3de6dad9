@@ -1,0 +1,113 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "8e375978_54d81cb5",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 11,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2020-12-01T19:55:31Z",
+      "side": 1,
+      "message": "Many of my thoughts on this were captured in the phosphor-virtual-sensors design review, which largely glossed over them under the thought that enity-manager systems were not a use case it was targettting.  I struggle to see the actual value in a generic, \"apply platform specific transfer function to sensor\" implementation, and have serious concerns about how errors are handled, or its ability to scale in the future.  With that said, if you have some real world use cases that aren\u0027t covered by something else, we sort through the performance impacts, and we have a good answer for how to handle errors in a practical way, lets get those sorted out and we\u0027ll see if we can figure out a way to get this in for the use cases you need it for  (see below about actually providing use cases).",
+      "range": {
+        "startLine": 9,
+        "startChar": 0,
+        "endLine": 11,
+        "endChar": 11
+      },
+      "revId": "ffab7e64f74de3dccd8263be0640167d3de6dad9",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "2a3d53bf_aae6d707",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 16,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2020-12-01T19:55:31Z",
+      "side": 1,
+      "message": "Please provide some actual use cases.  Arbitrary math expressions somewhat goes against the principals of entity-manager, as it moves easy individual math expression into the config language, which is the opposite of entity-manager design goal #2 \"Reduce the amount of code that is different between platforms\"\n\nI suspect that overall, theres going to be a subset of sensor actions that we\u0027ll need a library of, but I doubt that each platform needs an infinite ability to express arbitrary math equations.",
+      "revId": "ffab7e64f74de3dccd8263be0640167d3de6dad9",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "a67f161f_3bdaa37d",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 32,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2020-12-01T19:55:31Z",
+      "side": 1,
+      "message": "We already have mechanisms for changing the gain of an existing sensor (look at ADCsensor for an example) directly in the sensors themselves, which is more efficient.\n\nThe patch to add offset has been submitted, but thusfar nobody has found a use case that requires it, so it hasn\u0027t been merged yet.\n\nI would prefer we use the existing paradyms for these things, instead of inventing a generic catch all mechanism.",
+      "range": {
+        "startLine": 32,
+        "startChar": 0,
+        "endLine": 32,
+        "endChar": 21
+      },
+      "revId": "ffab7e64f74de3dccd8263be0640167d3de6dad9",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "744d2445_6a67a854",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 36,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2020-12-01T19:55:31Z",
+      "side": 1,
+      "message": "Entity-manager config files should have no knowledge of dbus.  If this ends up going through, this should be  changed to something like \"inputs\".  It would be good to model it after cfm sensor type or pid type, which is doing a very similar transform.",
+      "range": {
+        "startLine": 36,
+        "startChar": 0,
+        "endLine": 36,
+        "endChar": 19
+      },
+      "revId": "ffab7e64f74de3dccd8263be0640167d3de6dad9",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "58b9a859_8d0e69f1",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 40,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2020-12-01T19:55:31Z",
+      "side": 1,
+      "message": "Why does the config file need to state the input type?  This would be the only place where we require a type along with a sensor name, so we should be consistent.",
+      "range": {
+        "startLine": 40,
+        "startChar": 0,
+        "endLine": 40,
+        "endChar": 32
+      },
+      "revId": "ffab7e64f74de3dccd8263be0640167d3de6dad9",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    }
+  ]
+}
