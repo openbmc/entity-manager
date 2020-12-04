@@ -1851,6 +1851,18 @@ int main()
 
     nlohmann::json systemConfiguration = nlohmann::json::object();
 
+    // We need a poke from DBus for static providers that create all their
+    // objects prior to claiming a well-known name, and thus don't emit any
+    // org.freedesktop.DBus.Properties signals.  Similarly if a process exits
+    // for any reason, expected or otherwise, we'll need a poke to remove
+    // entities from DBus.
+    sdbusplus::bus::match::match nameOwnerChangedMatch(
+        static_cast<sdbusplus::bus::bus&>(*SYSTEM_BUS),
+        sdbusplus::bus::match::rules::nameOwnerChanged(),
+        [&](sdbusplus::message::message&) {
+            propertiesChangedCallback(systemConfiguration, objServer);
+        });
+
     io.post(
         [&]() { propertiesChangedCallback(systemConfiguration, objServer); });
 
