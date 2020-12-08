@@ -232,6 +232,30 @@
       "revId": "3181dfe2d4fbe1d32453749c54712edd90d5aff7",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "fcbd2625_6ae342f3",
+        "filename": "schemas/EEPROM.json",
+        "patchSetId": 4
+      },
+      "lineNbr": 25,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2020-12-08T18:11:29Z",
+      "side": 1,
+      "message": "This is linking to the eeprom type in the kernel I believe.\n\nWith that said, we already have a precedence of extending the types to include the specific variants of eeprom that could be bigger (see 24C02, and  24C64 respectively) we should be pulling the size out of those, unless there\u0027s a use case for declaring an eeprom size that\u0027s smaller than what\u0027s physically on the board?\n\nSo, we could roll that mechanism back and go with the \"size\" parameter instead, like this patch proposes, but I really like the concept of having the specific part number in there.  It makes building a config file from a schematic much easier, and the eeprom is just a catch for \"I don\u0027t know the exact model of eeprom\"",
+      "parentUuid": "c6c96988_cd49e234",
+      "range": {
+        "startLine": 25,
+        "startChar": 0,
+        "endLine": 25,
+        "endChar": 23
+      },
+      "revId": "3181dfe2d4fbe1d32453749c54712edd90d5aff7",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
     }
   ]
 }
