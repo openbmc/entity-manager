@@ -49,7 +49,11 @@
     ],
     "Name": "Nisqually Backplane",
     "Probe": [
-        "com.ibm.ipzvpd.VINI({'CC': [50, 69, 50, 68]})"
+        "com.ibm.ipzvpd.VINI({'CC': [50, 69, 50, 68]})",
+        "OR",
+        "com.ibm.ipzvpd.VINI({'CC': [50, 69, 50, 70]})",
+        "OR",
+        "com.ibm.ipzvpd.VINI({'CC': [50, 69, 52, 48]})"
     ],
     "Type": "Board"
 }
