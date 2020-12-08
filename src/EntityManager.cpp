@@ -1862,6 +1862,20 @@ int main()
         [&](sdbusplus::message::message&) {
             propertiesChangedCallback(systemConfiguration, objServer);
         });
+    // We also need a poke from DBus when new interfaces are created or
+    // destroyed.
+    sdbusplus::bus::match::match interfacesAddedMatch(
+        static_cast<sdbusplus::bus::bus&>(*SYSTEM_BUS),
+        sdbusplus::bus::match::rules::interfacesAdded(),
+        [&](sdbusplus::message::message&) {
+            propertiesChangedCallback(systemConfiguration, objServer);
+        });
+    sdbusplus::bus::match::match interfacesRemovedMatch(
+        static_cast<sdbusplus::bus::bus&>(*SYSTEM_BUS),
+        sdbusplus::bus::match::rules::interfacesRemoved(),
+        [&](sdbusplus::message::message&) {
+            propertiesChangedCallback(systemConfiguration, objServer);
+        });
 
     io.post(
         [&]() { propertiesChangedCallback(systemConfiguration, objServer); });
