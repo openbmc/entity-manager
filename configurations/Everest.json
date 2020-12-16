@@ -1,0 +1,16 @@
+{
+    "Exposes": [
+        {
+            "Name": "Compatible System",
+            "Type": "IBMCompatibleSystem",
+            "Names": [
+                "ibm,everest"
+            ]
+        }
+    ],
+    "Name": "Everest Chassis",
+    "Probe": [
+        "com.ibm.ipzvpd.VSBP({'IM': [80, 0, 48, 0]})"
+    ],
+    "Type": "Chassis"
+}
