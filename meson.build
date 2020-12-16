@@ -85,6 +85,7 @@ configs = [
     'Delta DPS-750XB PSU.json',
     'Delta_DPS-1600AB_PSU.json',
     'Delta_DPS-2000AB_PSU.json',
+    'Everest.json',
     'F1U12X25 HSBP.json',
     'F1U4X25 HSBP.json',
     'F2U12X35 HSBP.json',
