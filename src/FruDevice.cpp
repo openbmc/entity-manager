@@ -62,6 +62,7 @@ constexpr size_t MAX_FRU_SIZE = 512;
 constexpr size_t MAX_EEPROM_PAGE_INDEX = 255;
 constexpr size_t busTimeoutSeconds = 5;
 constexpr size_t fruBlockSize = 8; // FRU areas are measured in 8-byte blocks
+constexpr size_t fruVersion = 1;   // Current FRU spec version number is 1
 
 constexpr const char* blacklistPath = PACKAGE_DIR "blacklist.json";
 
@@ -451,14 +452,25 @@ static int64_t readBlockData(int flag, int file, uint16_t address,
 bool validateHeader(const std::array<uint8_t, I2C_SMBUS_BLOCK_MAX>& blockData)
 {
     // ipmi spec format version number is currently at 1, verify it
-    if (blockData[0] != 0x1)
+    if (blockData[0] != fruVersion)
     {
+        if (DEBUG)
+        {
+            std::cerr << "FRU spec version " << (int)(blockData[0])
+                      << " not supported. Supported version is "
+                      << (int)(fruVersion) << "\n";
+        }
         return false;
     }
 
     // verify pad is set to 0
     if (blockData[6] != 0x0)
     {
+        if (DEBUG)
+        {
+            std::cerr << "PAD value in header is non zero, value is "
+                      << (int)(blockData[6]) << "\n";
+        }
         return false;
     }
 
@@ -487,6 +499,12 @@ bool validateHeader(const std::array<uint8_t, I2C_SMBUS_BLOCK_MAX>& blockData)
 
     if (sum != blockData[7])
     {
+        if (DEBUG)
+        {
+            std::cerr << "Checksum " << (int)(blockData[7])
+                      << " is invalid. calculated checksum is " << (int)(sum)
+                      << "\n";
+        }
         return false;
     }
     return true;
