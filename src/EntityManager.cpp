@@ -50,6 +50,10 @@ constexpr const int32_t MAX_MAPPER_DEPTH = 0;
 
 constexpr const bool DEBUG = false;
 
+static std::string foundConn;
+static std::string foundPath;
+static std::string foundIntf;
+
 struct cmp_str
 {
     bool operator()(const char* a, const char* b) const
@@ -557,6 +561,22 @@ void addArrayToDbus(const std::string& name, const nlohmann::json& array,
 }
 
 template <typename PropertyType>
+void persistAssetTag(const PropertyType& newVal)
+{
+    SYSTEM_BUS->async_method_call(
+        [&newVal](const boost::system::error_code& ec) {
+            if (ec)
+            {
+                std::cerr << "Error setting AssetTag in FRU interface " << ec
+                          << "\n";
+            }
+        },
+        foundConn, foundPath, "org.freedesktop.DBus.Properties", "Set",
+        foundIntf, "PRODUCT_ASSET_TAG", std::variant<PropertyType>(newVal));
+}
+
+bool assetTagFlag = false;
+template <typename PropertyType>
 void addProperty(const std::string& propertyName, const PropertyType& value,
                  sdbusplus::asio::dbus_interface* iface,
                  nlohmann::json& systemConfiguration,
@@ -568,11 +588,21 @@ void addProperty(const std::string& propertyName, const PropertyType& value,
         iface->register_property(propertyName, value);
         return;
     }
+
+    if (propertyName == "AssetTag")
+    {
+        assetTagFlag = true;
+    }
+
     iface->register_property(
         propertyName, value,
         [&systemConfiguration,
          jsonPointerString{std::string(jsonPointerString)}](
             const PropertyType& newVal, PropertyType& val) {
+            if (assetTagFlag)
+            {
+                persistAssetTag(newVal);
+            }
             val = newVal;
             if (!setJsonFromPointer(jsonPointerString, val,
                                     systemConfiguration))
@@ -919,6 +949,23 @@ void createAddObjectMethod(const std::string& jsonPointerPath,
     iface->initialize();
 }
 
+void createAssociation(
+    std::shared_ptr<sdbusplus::asio::dbus_interface>& association,
+    const std::string& path, const std::string& boardKey,
+    const std::string& prodName)
+{
+    if (association)
+    {
+        std::filesystem::path p(path);
+
+        std::vector<Association> associations;
+        associations.push_back(
+            Association(boardKey, prodName, "/xyz/openbmc_project/FruDevice"));
+        association->register_property("Associations", associations);
+        association->initialize();
+    }
+}
+
 void postToDbus(const nlohmann::json& newConfiguration,
                 nlohmann::json& systemConfiguration,
                 sdbusplus::asio::object_server& objServer)
@@ -979,9 +1026,47 @@ void postToDbus(const nlohmann::json& newConfiguration,
                     createInterface(objServer, boardName, boardField.key(),
                                     boardKeyOrig);
 
-                populateInterfaceFromJson(systemConfiguration,
-                                          jsonPointerPath + boardField.key(),
-                                          iface, boardField.value(), objServer);
+                // just logging key-value to verify, will remove later
+                std::cerr << "\n boardField key : " << boardField.key();
+                std::cerr << "\n boardField value : " << boardField.value();
+
+                if (boardField.key() == "FoundProbe")
+                {
+                    foundConn = boardField.value()["Connection"];
+                    foundPath = boardField.value()["Path"];
+                    foundIntf = boardField.value()["Interface"];
+                }
+                if (boardField.key() ==
+                    "xyz.openbmc_project.Inventory.Decorator.AssetTag")
+                {
+                    std::size_t found = foundPath.find_last_of("/\\");
+                    std::string prodName = foundPath.substr(found + 1);
+
+                    // just logging prodName and boardName to verify, will
+                    // remove later
+                    std::cerr << "\n MANSI prod Name: " << prodName;
+                    std::cerr << "\n MANSI boardName: " << boardName;
+
+                    std::shared_ptr<sdbusplus::asio::dbus_interface>
+                        association = objServer.add_interface(
+                            boardName, association::interface);
+
+                    createAssociation(association,
+                                      "/xyz/openbmc_project/inventory/system/" +
+                                          boardtypeLower,
+                                      boardKey, prodName);
+
+                    populateInterfaceFromJson(
+                        systemConfiguration, jsonPointerPath + boardField.key(),
+                        iface, boardField.value(), objServer,
+                        sdbusplus::asio::PropertyPermission::readWrite);
+                }
+                else
+                {
+                    populateInterfaceFromJson(
+                        systemConfiguration, jsonPointerPath + boardField.key(),
+                        iface, boardField.value(), objServer);
+                }
             }
         }
 

@@ -36,6 +36,19 @@ using DBusProbeObjectT = boost::container::flat_map<
 using FoundDeviceT =
     std::vector<boost::container::flat_map<std::string, BasicVariantType>>;
 
+using Association = std::tuple<std::string, std::string, std::string>;
+
+void createAssociation(
+    std::shared_ptr<sdbusplus::asio::dbus_interface>& association,
+    const std::string& path, const std::string& boardKey,
+    const std::string& prodName);
+
+namespace association
+{
+const static constexpr char* interface =
+    "xyz.openbmc_project.Association.Definitions";
+} // namespace association
+
 struct PerformScan : std::enable_shared_from_this<PerformScan>
 {
 
