@@ -47,8 +47,14 @@ constexpr const char* lastConfiguration = "/tmp/configuration/last.json";
 constexpr const char* currentConfiguration = "/var/configuration/system.json";
 constexpr const char* globalSchema = "global.json";
 constexpr const int32_t MAX_MAPPER_DEPTH = 0;
+constexpr const char* foundObject = "FoundProbe";
 
 constexpr const bool DEBUG = false;
+
+static std::string foundConn;
+static std::string foundPath;
+static std::string foundIntf;
+static std::string deviceName;
 
 struct cmp_str
 {
@@ -169,7 +175,10 @@ void getInterfaces(
                 return;
             }
 
-            scan->dbusProbeObjects[std::get<2>(call)].emplace_back(resp);
+            // Save the dbus info along with device info
+            scan->dbusProbeObjects[std::get<2>(call)].emplace_back(
+                std::make_tuple(resp, std::get<0>(call), std::get<1>(call),
+                                std::get<2>(call)));
         },
         std::get<0>(call), std::get<1>(call), "org.freedesktop.DBus.Properties",
         "GetAll", std::get<2>(call));
@@ -274,11 +283,10 @@ void findDbusObjects(std::vector<std::shared_ptr<PerformProbe>>&& probeVector,
 // probes dbus interface dictionary for a key with a value that matches a regex
 bool probeDbus(const std::string& interface,
                const std::map<std::string, nlohmann::json>& matches,
-               FoundDeviceT& devices, std::shared_ptr<PerformScan> scan,
+               FoundDeviceInfoT& devices, std::shared_ptr<PerformScan> scan,
                bool& foundProbe)
 {
-    std::vector<boost::container::flat_map<std::string, BasicVariantType>>&
-        dbusObject = scan->dbusProbeObjects[interface];
+    FoundDeviceInfoT& dbusObject = scan->dbusProbeObjects[interface];
     if (dbusObject.empty())
     {
         foundProbe = false;
@@ -287,8 +295,9 @@ bool probeDbus(const std::string& interface,
     foundProbe = true;
 
     bool foundMatch = false;
-    for (auto& device : dbusObject)
+    for (auto& deviceInfo : dbusObject)
     {
+        auto& device = std::get<0>(deviceInfo);
         bool deviceMatches = true;
         for (auto& match : matches)
         {
@@ -305,7 +314,7 @@ bool probeDbus(const std::string& interface,
         }
         if (deviceMatches)
         {
-            devices.emplace_back(device);
+            devices.emplace_back(deviceInfo);
             foundMatch = true;
             deviceMatches = false; // for next iteration
         }
@@ -315,11 +324,8 @@ bool probeDbus(const std::string& interface,
 
 // default probe entry point, iterates a list looking for specific types to
 // call specific probe functions
-bool probe(
-    const std::vector<std::string>& probeCommand,
-    std::shared_ptr<PerformScan> scan,
-    std::vector<boost::container::flat_map<std::string, BasicVariantType>>&
-        foundDevs)
+bool probe(const std::vector<std::string>& probeCommand,
+           std::shared_ptr<PerformScan> scan, FoundDeviceInfoT& foundDevs)
 {
     const static std::regex command(R"(\((.*)\))");
     std::smatch match;
@@ -449,8 +455,9 @@ bool probe(
     // probe passed, but empty device
     if (ret && foundDevs.size() == 0)
     {
-        foundDevs.emplace_back(
-            boost::container::flat_map<std::string, BasicVariantType>{});
+        foundDevs.emplace_back(std::make_tuple(
+            boost::container::flat_map<std::string, BasicVariantType>{},
+            std::string{}, std::string{}, std::string{}));
     }
     if (matchOne && ret)
     {
@@ -465,13 +472,13 @@ bool probe(
 
 PerformProbe::PerformProbe(const std::vector<std::string>& probeCommand,
                            std::shared_ptr<PerformScan>& scanPtr,
-                           std::function<void(FoundDeviceT&)>&& callback) :
+                           std::function<void(FoundDeviceInfoT&)>&& callback) :
     _probeCommand(probeCommand),
     scan(scanPtr), _callback(std::move(callback))
 {}
 PerformProbe::~PerformProbe()
 {
-    FoundDeviceT foundDevs;
+    FoundDeviceInfoT foundDevs;
     if (probe(_probeCommand, scan, foundDevs))
     {
         _callback(foundDevs);
@@ -557,6 +564,22 @@ void addArrayToDbus(const std::string& name, const nlohmann::json& array,
 }
 
 template <typename PropertyType>
+void persistAssetTag(const PropertyType& newVal)
+{
+    SYSTEM_BUS->async_method_call(
+        [&newVal](const boost::system::error_code& ec) {
+            if (ec)
+            {
+                std::cerr << "Error setting AssetTag in FRU interface " << ec
+                          << "\n";
+            }
+        },
+        foundConn, "/xyz/openbmc_project/FruDevice/" + deviceName,
+        "org.freedesktop.DBus.Properties", "Set", foundIntf,
+        "PRODUCT_ASSET_TAG", std::variant<PropertyType>(newVal));
+}
+
+template <typename PropertyType>
 void addProperty(const std::string& propertyName, const PropertyType& value,
                  sdbusplus::asio::dbus_interface* iface,
                  nlohmann::json& systemConfiguration,
@@ -568,11 +591,17 @@ void addProperty(const std::string& propertyName, const PropertyType& value,
         iface->register_property(propertyName, value);
         return;
     }
+
     iface->register_property(
         propertyName, value,
-        [&systemConfiguration,
+        [propertyName, &systemConfiguration,
          jsonPointerString{std::string(jsonPointerString)}](
             const PropertyType& newVal, PropertyType& val) {
+            if (propertyName == "AssetTag")
+            {
+                persistAssetTag(newVal);
+            }
+
             val = newVal;
             if (!setJsonFromPointer(jsonPointerString, val,
                                     systemConfiguration))
@@ -979,9 +1008,29 @@ void postToDbus(const nlohmann::json& newConfiguration,
                     createInterface(objServer, boardName, boardField.key(),
                                     boardKeyOrig);
 
-                populateInterfaceFromJson(systemConfiguration,
-                                          jsonPointerPath + boardField.key(),
-                                          iface, boardField.value(), objServer);
+                if (boardField.key() == "FoundProbe")
+                {
+                    foundConn = boardField.value()["Connection"];
+                    foundPath = boardField.value()["Path"];
+                    foundIntf = boardField.value()["Interface"];
+                }
+                if (boardField.key() ==
+                    "xyz.openbmc_project.Inventory.Decorator.AssetTag")
+                {
+                    std::size_t found = foundPath.find_last_of("/\\");
+                    deviceName = foundPath.substr(found + 1);
+
+                    populateInterfaceFromJson(
+                        systemConfiguration, jsonPointerPath + boardField.key(),
+                        iface, boardField.value(), objServer,
+                        sdbusplus::asio::PropertyPermission::readWrite);
+                }
+                else
+                {
+                    populateInterfaceFromJson(
+                        systemConfiguration, jsonPointerPath + boardField.key(),
+                        iface, boardField.value(), objServer);
+                }
             }
         }
 
@@ -1278,7 +1327,7 @@ void PerformScan::run()
         auto thisRef = shared_from_this();
         auto probePointer = std::make_shared<PerformProbe>(
             probeCommand, thisRef,
-            [&, recordPtr, probeName](FoundDeviceT& foundDevices) {
+            [&, recordPtr, probeName](FoundDeviceInfoT& foundDevices) {
                 _passed = true;
 
                 std::set<nlohmann::json> usedNames;
@@ -1294,7 +1343,8 @@ void PerformScan::run()
                 for (auto itr = foundDevices.begin();
                      itr != foundDevices.end();)
                 {
-                    std::string recordName = getRecordName(*itr, probeName);
+                    std::string recordName =
+                        getRecordName(std::get<0>(*itr), probeName);
 
                     auto fromLastJson = lastJson.find(recordName);
                     if (fromLastJson != lastJson.end())
@@ -1328,6 +1378,15 @@ void PerformScan::run()
                                 continue;
                             }
 
+                            nlohmann::json recordVal = *recordPtr;
+                            // Save the dbus connection, path and interface info
+                            // of the device
+                            recordVal[foundObject]["Connection"] =
+                                std::get<1>(*itr);
+                            recordVal[foundObject]["Path"] = std::get<2>(*itr);
+                            recordVal[foundObject]["Interface"] =
+                                std::get<3>(*itr);
+
                             int index = std::stoi(
                                 nameIt->get<std::string>().substr(indexIdx),
                                 nullptr, 0);
@@ -1349,8 +1408,9 @@ void PerformScan::run()
 
                 std::optional<std::string> replaceStr;
 
-                for (auto& foundDevice : foundDevices)
+                for (auto& foundDeviceInfo : foundDevices)
                 {
+                    auto& foundDevice = std::get<0>(foundDeviceInfo);
                     nlohmann::json record = *recordPtr;
                     std::string recordName =
                         getRecordName(foundDevice, probeName);
@@ -1381,6 +1441,14 @@ void PerformScan::run()
                                                 foundDeviceIdx, replaceStr);
                         }
                     }
+
+                    // Save the dbus connection, path and interface info
+                    // of the device
+                    record[foundObject]["Connection"] =
+                        std::get<1>(foundDeviceInfo);
+                    record[foundObject]["Path"] = std::get<2>(foundDeviceInfo);
+                    record[foundObject]["Interface"] =
+                        std::get<3>(foundDeviceInfo);
 
                     if (replaceStr)
                     {

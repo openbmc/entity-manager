@@ -29,12 +29,15 @@
 #include <list>
 #include <string>
 
-using DBusProbeObjectT = boost::container::flat_map<
-    std::string,
-    std::vector<boost::container::flat_map<std::string, BasicVariantType>>>;
-
 using FoundDeviceT =
     std::vector<boost::container::flat_map<std::string, BasicVariantType>>;
+
+using FoundDeviceInfoT = std::vector<
+    std::tuple<boost::container::flat_map<std::string, BasicVariantType>,
+               std::string, std::string, std::string>>;
+
+using DBusProbeObjectT =
+    boost::container::flat_map<std::string, FoundDeviceInfoT>;
 
 struct PerformScan : std::enable_shared_from_this<PerformScan>
 {
@@ -62,12 +65,12 @@ struct PerformProbe : std::enable_shared_from_this<PerformProbe>
 {
     PerformProbe(const std::vector<std::string>& probeCommand,
                  std::shared_ptr<PerformScan>& scanPtr,
-                 std::function<void(FoundDeviceT&)>&& callback);
+                 std::function<void(FoundDeviceInfoT&)>&& callback);
     virtual ~PerformProbe();
 
     std::vector<std::string> _probeCommand;
     std::shared_ptr<PerformScan> scan;
-    std::function<void(FoundDeviceT&)> _callback;
+    std::function<void(FoundDeviceInfoT&)> _callback;
 };
 
 inline void logDeviceAdded(const nlohmann::json& record)
