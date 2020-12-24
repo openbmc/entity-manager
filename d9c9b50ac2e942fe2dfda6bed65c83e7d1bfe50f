@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "e1b97b6c_97763ce4",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 10,
+      "author": {
+        "id": 1000879
+      },
+      "writtenOn": "2020-12-24T09:23:19Z",
+      "side": 1,
+      "message": "Correct me if I\u0027m wrong, but validateHeader() used to probe FRU, so it\u0027s likely also called for non-fru eeproms. The purpose is to check if first data block looks like FRU header - so errors here is normal behaviour and that\u0027s why it is silent.\nIf you want to have logs here, it is better to hide them under if(DEBUG) statement.",
+      "revId": "d9c9b50ac2e942fe2dfda6bed65c83e7d1bfe50f",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    }
+  ]
+}
