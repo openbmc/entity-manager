@@ -96,6 +96,24 @@
                 "Name1": {
                     "$ref": "#/definitions/Types/Name1"
                 },
+                "Name2": {
+                    "$ref": "#/definitions/Types/Name2"
+                },
+                "Name3": {
+                    "$ref": "#/definitions/Types/Name3"
+                },
+                "Name4": {
+                    "$ref": "#/definitions/Types/Name4"
+                },
+                "Name5": {
+                    "$ref": "#/definitions/Types/Name5"
+                },
+                "Name6": {
+                    "$ref": "#/definitions/Types/Name6"
+                },
+                "Name7": {
+                    "$ref": "#/definitions/Types/Name7"
+                },
                 "OffsetValue": {
                     "$ref": "#/definitions/Types/OffsetValue"
                 },
@@ -161,6 +179,26 @@
                 },
                 "Type": {
                     "$ref": "#/definitions/Types/Type"
+                }
+            },
+            "patternProperties": {
+                "^pin+(_Max|_Min|_Scale)$": {
+                    "Type": "number"
+                },
+                "^pout[0-9]+(_Max|_Min|_Scale)$": {
+                    "Type": "number"
+                },
+                "^vin+(_Max|_Min|_Scale)$": {
+                    "Type": "number"
+                },
+                "^vout[0-9]+(_Max|_Min|_Scale)$": {
+                    "Type": "number"
+                },
+                "^iout[0-9]+(_Max|_Min|_Scale)$": {
+                    "Type": "number"
+                },
+                "^pin[0-9]+(_Max|_Min|_Scale)$": {
+                    "Type": "number"
                 }
             },
             "required": [
@@ -297,6 +335,24 @@
                 "type": "string"
             },
             "Name1": {
+                "type": "string"
+            },
+            "Name2": {
+                "type": "string"
+            },
+            "Name3": {
+                "type": "string"
+            },
+            "Name4": {
+                "type": "string"
+            },
+            "Name5": {
+                "type": "string"
+            },
+            "Name6": {
+                "type": "string"
+            },
+            "Name7": {
                 "type": "string"
             },
             "OffsetValue": {
