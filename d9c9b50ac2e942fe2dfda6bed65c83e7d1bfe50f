@@ -52,6 +52,24 @@
       "revId": "d9c9b50ac2e942fe2dfda6bed65c83e7d1bfe50f",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "f4531005_9ad21e21",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 10,
+      "author": {
+        "id": 1000271
+      },
+      "writtenOn": "2020-12-30T21:04:00Z",
+      "side": 1,
+      "message": "Then there would be no way to find if eeprom has correct fru content because we are identifying eeprom as fru device by verifying its fru header and we can\u0027t ever know if fru device eeprom has wrong header because we are marking them as non fru device.\n\nI would add my patch under debug as Andrei suggested.",
+      "parentUuid": "8d55dd28_2a5ae705",
+      "revId": "d9c9b50ac2e942fe2dfda6bed65c83e7d1bfe50f",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
     }
   ]
 }
