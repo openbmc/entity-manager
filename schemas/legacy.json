@@ -96,6 +96,24 @@
                 "Name1": {
                     "$ref": "#/definitions/Types/Name1"
                 },
+                "Name2": {
+                    "$ref": "#/definitions/Types/Name2"
+                },
+                "Name3": {
+                    "$ref": "#/definitions/Types/Name3"
+                },
+                "Name4": {
+                    "$ref": "#/definitions/Types/Name4"
+                },
+                "Name5": {
+                    "$ref": "#/definitions/Types/Name5"
+                },
+                "Name6": {
+                    "$ref": "#/definitions/Types/Name6"
+                },
+                "Name7": {
+                    "$ref": "#/definitions/Types/Name7"
+                },
                 "OffsetValue": {
                     "$ref": "#/definitions/Types/OffsetValue"
                 },
@@ -158,6 +176,96 @@
                 },
                 "HostSMbusIndex": {
                     "$ref": "#/definitions/Types/HostSMbusIndex"
+                },
+                "pin_Max": {
+                    "$ref": "#/definitions/Types/pin_Max"
+                },
+                "pin_Min": {
+                    "$ref": "#/definitions/Types/pin_Min"
+                },
+                "vin_Max": {
+                    "$ref": "#/definitions/Types/vin_Max"
+                },
+                "vin_Min": {
+                    "$ref": "#/definitions/Types/vin_Min"
+                },
+                "iout1_Max": {
+                    "$ref": "#/definitions/Types/iout1_Max"
+                },
+                "iout1_Min": {
+                    "$ref": "#/definitions/Types/iout1_Min"
+                },
+                "iout2_Max": {
+                    "$ref": "#/definitions/Types/iout2_Max"
+                },
+                "iout2_Min": {
+                    "$ref": "#/definitions/Types/iout2_Min"
+                },
+                "pout1_Max": {
+                    "$ref": "#/definitions/Types/pout1_Max"
+                },
+                "pout1_Min": {
+                    "$ref": "#/definitions/Types/pout1_Min"
+                },
+                "pout2_Max": {
+                    "$ref": "#/definitions/Types/pout2_Max"
+                },
+                "pout2_Min": {
+                    "$ref": "#/definitions/Types/pout2_Min"
+                },
+                "pout3_Max": {
+                    "$ref": "#/definitions/Types/pout3_Max"
+                },
+                "pout3_Min": {
+                    "$ref": "#/definitions/Types/pout3_Min"
+                },
+                "vout1_Max": {
+                    "$ref": "#/definitions/Types/vout1_Max"
+                },
+                "vout1_Min": {
+                    "$ref": "#/definitions/Types/vout1_Min"
+                },
+                "vout2_Max": {
+                    "$ref": "#/definitions/Types/vout2_Max"
+                },
+                "vout2_Min": {
+                    "$ref": "#/definitions/Types/vout2_Min"
+                },
+                "vout3_Max": {
+                    "$ref": "#/definitions/Types/vout3_Max"
+                },
+                "vout3_Min": {
+                    "$ref": "#/definitions/Types/vout3_Min"
+                },
+                "vout4_Max": {
+                    "$ref": "#/definitions/Types/vout4_Max"
+                },
+                "vout4_Min": {
+                    "$ref": "#/definitions/Types/vout4_Min"
+                },
+                "vout5_Max": {
+                    "$ref": "#/definitions/Types/vout5_Max"
+                },
+                "vout5_Min": {
+                    "$ref": "#/definitions/Types/vout5_Min"
+                },
+                "vout6_Max": {
+                    "$ref": "#/definitions/Types/vout6_Max"
+                },
+                "vout6_Min": {
+                    "$ref": "#/definitions/Types/vout6_Min"
+                },
+                "vout8_Max": {
+                    "$ref": "#/definitions/Types/vout8_Max"
+                },
+                "vout8_Min": {
+                    "$ref": "#/definitions/Types/vout8_Min"
+                },
+                "iout1_Offset": {
+                    "$ref": "#/definitions/Types/iout1_Offset"
+                },
+                "pout1_Offset": {
+                    "$ref": "#/definitions/Types/pout1_Offset"
                 },
                 "Type": {
                     "$ref": "#/definitions/Types/Type"
@@ -299,6 +407,24 @@
             "Name1": {
                 "type": "string"
             },
+            "Name2": {
+                "type": "string"
+            },
+            "Name3": {
+                "type": "string"
+            },
+            "Name4": {
+                "type": "string"
+            },
+            "Name5": {
+                "type": "string"
+            },
+            "Name6": {
+                "type": "string"
+            },
+            "Name7": {
+                "type": "string"
+            },
             "OffsetValue": {
                 "type": "number"
             },
@@ -403,6 +529,96 @@
                 "type": "array"
             },
             "HostSMbusIndex": {
+                "type": "number"
+            },
+            "pin_Max": {
+                "type": "number"
+            },
+            "pin_Min": {
+                "type": "number"
+            },
+            "vin_Max": {
+                "type": "number"
+            },
+            "vin_Min": {
+                "type": "number"
+            },
+            "iout1_Max": {
+                "type": "number"
+            },
+            "iout1_Min": {
+                "type": "number"
+            },
+            "iout2_Max": {
+                "type": "number"
+            },
+            "iout2_Min": {
+                "type": "number"
+            },
+            "pout1_Max": {
+                "type": "number"
+            },
+            "pout1_Min": {
+                "type": "number"
+            },
+            "pout2_Max": {
+                "type": "number"
+            },
+            "pout2_Min": {
+                "type": "number"
+            },
+            "pout3_Max": {
+                "type": "number"
+            },
+            "pout3_Min": {
+                "type": "number"
+            },
+            "vout1_Max": {
+                "type": "number"
+            },
+            "vout1_Min": {
+                "type": "number"
+            },
+            "vout2_Max": {
+                "type": "number"
+            },
+            "vout2_Min": {
+                "type": "number"
+            },
+            "vout3_Max": {
+                "type": "number"
+            },
+            "vout3_Min": {
+                "type": "number"
+            },
+            "vout4_Max": {
+                "type": "number"
+            },
+            "vout4_Min": {
+                "type": "number"
+            },
+            "vout5_Max": {
+                "type": "number"
+            },
+            "vout5_Min": {
+                "type": "number"
+            },
+            "vout6_Max": {
+                "type": "number"
+            },
+            "vout6_Min": {
+                "type": "number"
+            },
+            "vout8_Max": {
+                "type": "number"
+            },
+            "vout8_Min": {
+                "type": "number"
+            },
+            "iout1_Offset": {
+                "type": "number"
+            },
+            "pout1_Offset": {
                 "type": "number"
             },
             "Type": {
