@@ -16,6 +16,47 @@
       "revId": "99bb8d7fb5c4d7383fb3824e3ce8d0504effff51",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "f305d486_af68d06a",
+        "filename": "src/EntityManager.cpp",
+        "patchSetId": 1
+      },
+      "lineNbr": 565,
+      "author": {
+        "id": 1000168
+      },
+      "writtenOn": "2021-01-06T07:13:59Z",
+      "side": 1,
+      "message": "Yes Brad. Once Entity manager receives the data, it can do corresponding Set propery of the FRU daemon, which can be IPMI FRU / PLDM FRU.",
+      "parentUuid": "0139d531_772c6fb6",
+      "revId": "99bb8d7fb5c4d7383fb3824e3ce8d0504effff51",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "0b42b6f8_d2f36eca",
+        "filename": "src/EntityManager.cpp",
+        "patchSetId": 1
+      },
+      "lineNbr": 575,
+      "author": {
+        "id": 1000168
+      },
+      "writtenOn": "2021-01-06T07:13:59Z",
+      "side": 1,
+      "message": "Instead of hard-coding this one, the property name also needs to be tracked.",
+      "range": {
+        "startLine": 575,
+        "startChar": 19,
+        "endLine": 575,
+        "endChar": 38
+      },
+      "revId": "99bb8d7fb5c4d7383fb3824e3ce8d0504effff51",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
     }
   ]
 }
