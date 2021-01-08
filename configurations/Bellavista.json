@@ -1,0 +1,37 @@
+{
+    "Exposes": [
+        {
+            "Name": "Power Supply Slot 0",
+            "Type": "IBMCFFPSConnector",
+            "I2CAddress": 104,
+            "I2CBus": 3,
+            "NamedPresenceGpio": "presence-ps0"
+        },
+        {
+            "Name": "Power Supply Slot 1",
+            "Type": "IBMCFFPSConnector",
+            "I2CAddress": 105,
+            "I2CBus": 3,
+            "NamedPresenceGpio": "presence-ps1"
+        },
+        {
+            "Name": "Power Supply Slot 2",
+            "Type": "IBMCFFPSConnector",
+            "I2CAddress": 106,
+            "I2CBus": 3,
+            "NamedPresenceGpio": "presence-ps2"
+        },
+        {
+            "Name": "Power Supply Slot 3",
+            "Type": "IBMCFFPSConnector",
+            "I2CAddress": 107,
+            "I2CBus": 3,
+            "NamedPresenceGpio": "presence-ps3"
+        }
+    ],
+    "Name": "Bellavista Backplane",
+    "Probe": [
+        "com.ibm.ipzvpd.VINI({'CC': [50, 69, 51, 51]})"
+    ],
+    "Type": "Board"
+}
