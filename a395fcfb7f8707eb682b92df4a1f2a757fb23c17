@@ -2,6 +2,40 @@
   "comments": [
     {
       "key": {
+        "uuid": "ed0286d5_2465e491",
+        "filename": "schemas/legacy.json",
+        "patchSetId": 3
+      },
+      "lineNbr": 185,
+      "author": {
+        "id": 1000418
+      },
+      "writtenOn": "2021-01-10T16:23:21Z",
+      "side": 1,
+      "message": "I guess, + is not intended here. \nCorrect one is :\n\n  \"^pin(_Max|_Min|_Scale)$\": {",
+      "revId": "a395fcfb7f8707eb682b92df4a1f2a757fb23c17",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "212ca7ff_b974f1cc",
+        "filename": "schemas/legacy.json",
+        "patchSetId": 3
+      },
+      "lineNbr": 191,
+      "author": {
+        "id": 1000418
+      },
+      "writtenOn": "2021-01-10T16:23:21Z",
+      "side": 1,
+      "message": "I guess, + is not intended here. \nCorrect one is :\n\n  \"^vin(_Max|_Min|_Scale)$\": {\n\nYou will remove regex patterns if you address Ed\u0027s comments anyhow.",
+      "revId": "a395fcfb7f8707eb682b92df4a1f2a757fb23c17",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "865776f6_67f94bf7",
         "filename": "schemas/legacy.json",
         "patchSetId": 3
