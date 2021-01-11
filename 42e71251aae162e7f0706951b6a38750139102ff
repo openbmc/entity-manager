@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "6a95f314_8b9dd1c2",
+        "filename": "configurations/Bellavista.json",
+        "patchSetId": 1
+      },
+      "lineNbr": 34,
+      "author": {
+        "id": 1000318
+      },
+      "writtenOn": "2021-01-11T23:02:19Z",
+      "side": 1,
+      "message": "I probably missed or am forgetting some earlier discussion on this, but are we looking at the board CCIN here for this?  why that instead of the system IM keyword?  I get that the wiring is a function of the backplane, but this does mean that if they change the CCIN of the backplane, then we need another copy of this right?  I guess it\u0027s fine, as long as in mfg they make sure the correct FRUs are plugged in.  We\u0027d run into problems either way if the vpd is messed up.",
+      "revId": "42e71251aae162e7f0706951b6a38750139102ff",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "4475e560_916f2c73",
+        "filename": "configurations/Bellavista.json",
+        "patchSetId": 1
+      },
+      "lineNbr": 35,
+      "author": {
+        "id": 1000318
+      },
+      "writtenOn": "2021-01-11T23:02:19Z",
+      "side": 1,
+      "message": "the i2c busses/addresses look good, but what is the ccin of the backplane, it isn\u0027t in the system workbook (unless mine is downlevel)?",
+      "revId": "42e71251aae162e7f0706951b6a38750139102ff",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    }
+  ]
+}
