@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "12ac59d6_86bac523",
+        "filename": "configurations/Bellavista.json",
+        "patchSetId": 1
+      },
+      "lineNbr": 34,
+      "author": {
+        "id": 1000085
+      },
+      "writtenOn": "2021-01-12T00:31:06Z",
+      "side": 1,
+      "message": "I based this off of Nisqually.json, which does have multiple CCINs.\nThe IM keyword is tied with that IBMCompatibleSystem that is in Everest.json: https://github.com/openbmc/entity-manager/commit/c7c5de795cf672797ae35965e95642dd1fc39363",
+      "parentUuid": "6a95f314_8b9dd1c2",
+      "revId": "42e71251aae162e7f0706951b6a38750139102ff",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "4475e560_916f2c73",
         "filename": "configurations/Bellavista.json",
         "patchSetId": 1
@@ -30,6 +48,24 @@
       "writtenOn": "2021-01-11T23:02:19Z",
       "side": 1,
       "message": "the i2c busses/addresses look good, but what is the ccin of the backplane, it isn\u0027t in the system workbook (unless mine is downlevel)?",
+      "revId": "42e71251aae162e7f0706951b6a38750139102ff",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "91b82c34_5aa3a548",
+        "filename": "configurations/Bellavista.json",
+        "patchSetId": 1
+      },
+      "lineNbr": 35,
+      "author": {
+        "id": 1000085
+      },
+      "writtenOn": "2021-01-12T00:31:06Z",
+      "side": 1,
+      "message": "I think you may be looking at downlevel documentation.\n\nI hope my `man ascii` decoder to decimal worked: 2E33",
+      "parentUuid": "4475e560_916f2c73",
       "revId": "42e71251aae162e7f0706951b6a38750139102ff",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
       "unresolved": true
