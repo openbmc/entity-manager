@@ -25,6 +25,29 @@
     },
     {
       "key": {
+        "uuid": "9f372a36_b46a4b9f",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 10,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2021-01-12T16:51:54Z",
+      "side": 1,
+      "message": "The directtion we\u0027re going down is to create new threshold types:\n\nShutdownThreshold and HardShutdownThreshold, so sensors can assert that the system is too hot and should shut down:\n\nhttps://gerrit.openbmc-project.xyz/c/openbmc/phosphor-dbus-interfaces/+/38474\n\nThat is probably the best path forward here.",
+      "range": {
+        "startLine": 9,
+        "startChar": 0,
+        "endLine": 10,
+        "endChar": 36
+      },
+      "revId": "0a613cc982799081cda10ea900a7f3cc1d605c7b",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "8f3bf7b7_5abac4b2",
         "filename": "configurations/FBYV2.json",
         "patchSetId": 1
