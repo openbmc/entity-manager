@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "da5343ff_2422f2d6",
+        "filename": "src/FruDevice.cpp",
+        "patchSetId": 2
+      },
+      "lineNbr": 1587,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2021-01-12T17:39:28Z",
+      "side": 1,
+      "message": "This whole operation can be replaced with a single try_emplace call.\n\n\ncreated \u003d busmap.try_emplace(0, std::make_shared\u003cDeviceMap\u003e());\nif (created.first){\n    created.second-\u003eemplace(0, baseboardFRU);\n}",
+      "range": {
+        "startLine": 1582,
+        "startChar": 0,
+        "endLine": 1587,
+        "endChar": 21
+      },
+      "revId": "9cb100f9b86cf19027dd232fb56fb0f0b8b0b1c3",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    }
+  ]
+}
