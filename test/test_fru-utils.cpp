@@ -1,4 +1,6 @@
 #include "FruUtils.hpp"
+#include "FruDevice.hpp"
+#include "IpmbFruDevice.hpp"
 
 #include <array>
 
