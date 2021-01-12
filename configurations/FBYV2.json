@@ -567,6 +567,24 @@
             "Type": "pmbus"
         }
     ],
+    "Ipmb_channels": [
+    {
+      "type": "ipmb",
+      "devIndex": 0
+    },
+    {
+      "type": "ipmb",
+      "devIndex": 1
+    },
+    {
+      "type": "ipmb",
+      "devIndex": 2
+    },
+    {
+      "type": "ipmb",
+      "devIndex": 3
+    }
+    ],
     "Name": "Yosemite V2 Baseboard",
     "Probe": "xyz.openbmc_project.FruDevice({'PRODUCT_PRODUCT_NAME': '.*MP'})",
     "Type": "Board",
