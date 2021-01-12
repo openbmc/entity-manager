@@ -1,4 +1,6 @@
 #include "FruUtils.hpp"
+#include "FruDevice.hpp"
+#include "IpmbFruDevice.hpp"
 
 #include <array>
 
@@ -9,6 +11,8 @@ extern "C"
 // Include for I2C_SMBUS_BLOCK_MAX
 #include <linux/i2c.h>
 }
+
+BusMap busMap;
 
 TEST(ValidateHeaderTest, InvalidFruVersionReturnsFalse)
 {
