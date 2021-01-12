@@ -165,6 +165,8 @@ endforeach
 subdir('service_files')
 subdir('src')
 
+cpp_args = boost_args + ['-DPACKAGE_DIR="' + packagedir + '/"']
+
 if not build_tests.disabled()
     test_boost_args = boost_args + ['-DBOOST_ASIO_DISABLE_THREADS']
     gtest = dependency('gtest', main: true, disabler: true, required: false)
@@ -201,6 +203,8 @@ if not build_tests.disabled()
             'test_fru_utils',
             'test/test_fru-utils.cpp',
             'src/FruUtils.cpp',
+            'src/FruDevice.cpp',
+            'src/IpmbFruDevice.cpp',
             cpp_args: test_boost_args,
             dependencies: [
                 boost,
