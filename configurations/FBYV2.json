@@ -567,6 +567,30 @@
                 }
             ],
             "Type": "pmbus"
+        },
+        {
+           "Name": "IpmbBus1",
+           "Bus": "ipmb",
+           "Index": 0,
+           "Type": "IPMIChannels"
+        },
+        {
+           "Name": "IpmbBus2",
+           "Bus": "ipmb",
+           "Index": 1,
+           "Type": "IPMIChannels"
+        },
+        {
+           "Name": "IpmbBus3",
+           "Bus": "ipmb",
+           "Index": 2,
+           "Type": "IPMIChannels"
+        },
+        {
+           "Name": "IpmbBus4",
+           "Bus": "ipmb",
+           "Index": 3,
+           "Type": "IPMIChannels"
         }
     ],
     "Name": "Yosemite V2 Baseboard",
