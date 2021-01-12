@@ -62,6 +62,7 @@ static size_t UNKNOWN_BUS_OBJECT_COUNT = 0;
 constexpr size_t MAX_FRU_SIZE = 512;
 constexpr size_t MAX_EEPROM_PAGE_INDEX = 255;
 constexpr size_t busTimeoutSeconds = 5;
+constexpr size_t fruVersion = 1;
 
 constexpr const char* blacklistPath = PACKAGE_DIR "blacklist.json";
 
