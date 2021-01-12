@@ -1,0 +1,112 @@
+The File IpmbFruDevice.cpp produces the deamon "ipmb-fru-device" similar to the "fru-device" deamon.
+
+This "ipmb-fru-device" deamon is created for handling to read/write the FRU details from  ipmb interfaces.
+
+This deamon reads the ipmb devices list from the /usr/share/ipmbbridge/ipmb-channels.json
+Then scan the ipmb devices and send ipmb commands to read the all the FRU details and create a dbus objects 
+under xyz.openbmc_project.Ipmb.FruDevice the dbus service. 
+
+Similarly, using ipmb commands can write the fru details.
+
+If users want to use ipmb based fru to read the fru information, 
+they just need to add the ipmb channels info in the ipmb-chanels.json in the machine layers.
+This ipmb-chanels.json files is used in the ipmbbridged and ipmb-fru-device deamons.
+This will enable ipmb communication for the corresponding ipmi channel. 
+Also this will read/write the fru's info using ipmb-fru-device and create dbus-objects.
+
+Use case :
+   YosemiteV2 is multi host system. The BMC is connected with hosts with the ipmb interface. 
+The "ipmb-fru-device" deamon reads the ipmb channel list, scan the ipmb busses, 
+validate the FRU details and read/write the each host fru  details. 
+Finally produces the dbus-objects for the host FRU's.
+
+
+Example : 
+1. Sample ipmb-channels.json config file :
+
+{
+  "channels": [
+    {
+      "type": "ipmb",
+      "slave-path": "/dev/ipmb-1",
+      "bmc-addr": 32,
+      "remote-addr": 64,
+      "devIndex": 0
+    },
+    {
+      "type": "ipmb",
+      "slave-path": "/dev/ipmb-3",
+      "bmc-addr": 32,
+      "remote-addr": 64,
+      "devIndex": 1
+    },
+    {
+      "type": "ipmb",
+      "slave-path": "/dev/ipmb-5",
+      "bmc-addr": 32,
+      "remote-addr": 64,
+      "devIndex": 2
+    },
+    {
+      "type": "ipmb",
+      "slave-path": "/dev/ipmb-7",
+      "bmc-addr": 32,
+      "remote-addr": 64,
+      "devIndex": 3
+    }
+  ]
+}
+
+
+2. Sample host fru dbus-objects :
+
+root@yosemitev2:~# busctl tree xyz.openbmc_project.Ipmb.FruDevice
+  └─/xyz/openbmc_project
+    └─/xyz/openbmc_project/Ipmb
+      └─/xyz/openbmc_project/Ipmb/FruDevice
+        ├─/xyz/openbmc_project/Ipmb/FruDevice/Twin_Lakes_Passive_MP_0
+        ├─/xyz/openbmc_project/Ipmb/FruDevice/Twin_Lakes_Passive_MP_1
+        ├─/xyz/openbmc_project/Ipmb/FruDevice/Twin_Lakes_Passive_MP_2
+        └─/xyz/openbmc_project/Ipmb/FruDevice/Twin_Lakes_Passive_MP_3
+
+
+root@yosemitev2:~# busctl introspect xyz.openbmc_project.Ipmb.FruDevice /xyz/openbmc_project/Ipmb/FruDevice/Twin_Lakes_Passive_MP_0
+NAME                                TYPE      SIGNATURE RESULT/VALUE            FLAGS
+org.freedesktop.DBus.Introspectable interface -         -                       -
+.Introspect                         method    -         s                       -
+org.freedesktop.DBus.Peer           interface -         -                       -
+.GetMachineId                       method    -         s                       -
+.Ping                               method    -         -                       -
+org.freedesktop.DBus.Properties     interface -         -                       -
+.Get                                method    ss        v                       -
+.GetAll                             method    s         a{sv}                   -
+.Set                                method    ssv       -                       -
+.PropertiesChanged                  signal    sa{sv}as  -                       -
+xyz.openbmc_project.Ipmb.FruDevice  interface -         -                       -
+.ADDRESS                            property  u         0                       emits-change
+.BOARD_FRU_VERSION_ID               property  s         "FRU Ver 0.07"          emits-change
+.BOARD_INFO_AM1                     property  s         "02-000298"             emits-change
+.BOARD_INFO_AM2                     property  s         "31F09MB00D0"           emits-change
+.BOARD_LANGUAGE_CODE                property  s         "25"                    emits-change
+.BOARD_MANUFACTURER                 property  s         "Quanta"                emits-change
+.BOARD_MANUFACTURE_DATE             property  s         "2020-06-03 - 10:50:00" emits-change
+.BOARD_PART_NUMBER                  property  s         "12MBBZZ0227"           emits-change
+.BOARD_PRODUCT_NAME                 property  s         "Twin Lakes Passive MP" emits-change
+.BOARD_SERIAL_NUMBER                property  s         "HT101500756"           emits-change
+.BUS                                property  u         0                       emits-change
+.CHASSIS_INFO_AM1                   property  s         "70A84T4602543 "        emits-change
+.CHASSIS_SERIAL_NUMBER              property  s         "QCDF0920230737"        emits-change
+.CHASSIS_TYPE                       property  s         "23"                    emits-change
+.Common_Format_Version              property  s         "1"                     emits-change
+.PRODUCT_ASSET_TAG                  property  s         "9349835"               emits-change writable
+.PRODUCT_FRU_VERSION_ID             property  s         "N/A"                   emits-change
+.PRODUCT_INFO_AM1                   property  s         "01-003642"             emits-change
+.PRODUCT_INFO_AM2                   property  s         "MP"                    emits-change
+.PRODUCT_LANGUAGE_CODE              property  s         "25"                    emits-change
+.PRODUCT_MANUFACTURER               property  s         "Quanta"                emits-change
+.PRODUCT_PART_NUMBER                property  s         "01-003642-1"           emits-change
+.PRODUCT_PRODUCT_NAME               property  s         "Twin Lakes MP"         emits-change
+.PRODUCT_SERIAL_NUMBER              property  s         "HT101500756"           emits-change
+.PRODUCT_VERSION                    property  s         "YoTL02"                emits-change
+
+
