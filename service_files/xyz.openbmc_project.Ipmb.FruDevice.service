@@ -1,0 +1,12 @@
+[Unit]
+Description=Ipmb Fru Device
+StopWhenUnneeded=true
+Requires=xyz.openbmc_project.EntityManager.service
+After=xyz.openbmc_project.EntityManager.service xyz.openbmc_project.FruDevice.service xyz.openbmc_project.CloseMuxes.service dbus.service ipmb.service 
+
+[Service]
+ExecStart=/usr/bin/ipmb-fru-device
+Type=simple
+
+[Install]
+WantedBy=basic.target

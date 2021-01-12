@@ -7,3 +7,9 @@ option(
 option(
     'fru-device-resizefru', value : false, type: 'boolean', description: 'Allow FruDevice to resize FRU areas.',
 )
+option(
+    'ipmb-fru-device', type: 'boolean', description: 'Build ipmb-fru-device.',
+)
+option(
+    'ipmb-fru-device-resizefru', value : false, type: 'boolean', description: 'Allow FruDevice to resize FRU areas.',
+)

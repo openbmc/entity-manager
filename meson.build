@@ -201,6 +201,8 @@ if not build_tests.disabled()
             'test_fru_utils',
             'test/test_fru-utils.cpp',
             'src/FruUtils.cpp',
+            'src/FruDevice.cpp',
+            'src/IpmbFruDevice.cpp',
             cpp_args: test_boost_args,
             dependencies: [
                 boost,
