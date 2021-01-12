@@ -15,40 +15,12 @@
 */
 /// \file FruDevice.cpp
 
+#include "FruDevice.hpp"
+
 #include "FruUtils.hpp"
 #include "Utils.hpp"
 
-#include <fcntl.h>
-#include <sys/inotify.h>
-#include <sys/ioctl.h>
-
-#include <boost/algorithm/string/predicate.hpp>
-#include <boost/asio/deadline_timer.hpp>
-#include <boost/asio/io_service.hpp>
-#include <boost/container/flat_map.hpp>
-#include <nlohmann/json.hpp>
-#include <sdbusplus/asio/connection.hpp>
-#include <sdbusplus/asio/object_server.hpp>
-
-#include <array>
 #include <cerrno>
-#include <chrono>
-#include <ctime>
-#include <filesystem>
-#include <fstream>
-#include <functional>
-#include <future>
-#include <iomanip>
-#include <iostream>
-#include <limits>
-#include <regex>
-#include <set>
-#include <sstream>
-#include <string>
-#include <thread>
-#include <utility>
-#include <variant>
-#include <vector>
 
 extern "C"
 {
@@ -57,9 +29,7 @@ extern "C"
 }
 
 namespace fs = std::filesystem;
-static constexpr bool debug = false;
-static size_t unknownBusObjectCount = 0;
-constexpr size_t maxFruSize = 512;
+
 constexpr size_t maxEepromPageIndex = 255;
 constexpr size_t busTimeoutSeconds = 5;
 
@@ -70,34 +40,14 @@ const static constexpr char* baseboardFruLocation =
 
 const static constexpr char* i2CDevLocation = "/dev";
 
-using DeviceMap = boost::container::flat_map<int, std::vector<uint8_t>>;
-using BusMap = boost::container::flat_map<int, std::shared_ptr<DeviceMap>>;
-
 static std::set<size_t> busBlacklist;
 struct FindDevicesWithCallback;
-
-static BusMap busMap;
-
-static bool powerIsOn = false;
 
 static boost::container::flat_map<
     std::pair<size_t, size_t>, std::shared_ptr<sdbusplus::asio::dbus_interface>>
     foundDevices;
 
 static boost::container::flat_map<size_t, std::set<size_t>> failedAddresses;
-
-boost::asio::io_service io;
-auto systemBus = std::make_shared<sdbusplus::asio::connection>(io);
-auto objServer = sdbusplus::asio::object_server(systemBus);
-
-uint8_t calculateChecksum(std::vector<uint8_t>::const_iterator iter,
-                          std::vector<uint8_t>::const_iterator end);
-bool updateFRUProperty(
-    const std::string& assetTag, uint32_t bus, uint32_t address,
-    const std::string& propertyName,
-    boost::container::flat_map<
-        std::pair<size_t, size_t>,
-        std::shared_ptr<sdbusplus::asio::dbus_interface>>& dbusInterfaceMap);
 
 // Given a bus/address, produce the path in sysfs for an eeprom.
 static std::string getEepromPath(size_t bus, size_t address)
@@ -136,7 +86,7 @@ static int64_t readFromEeprom(int flag __attribute__((unused)), int fd,
     return read(fd, buf, len);
 }
 
-static int busStrToInt(const std::string& busName)
+int busStrToInt(const std::string& busName)
 {
     auto findBus = busName.rfind('-');
     if (findBus == std::string::npos)
@@ -167,13 +117,8 @@ static int getRootBus(size_t bus)
     return std::stoi(filename.substr(0, findBus));
 }
 
-static bool isMuxBus(size_t bus)
-{
-    return is_symlink(std::filesystem::path(
-        "/sys/bus/i2c/devices/i2c-" + std::to_string(bus) + "/mux_device"));
-}
-
-static void makeProbeInterface(size_t bus, size_t address)
+static void makeProbeInterface(size_t bus, size_t address,
+                               sdbusplus::asio::object_server& objServer)
 {
     if (isMuxBus(bus))
     {
@@ -289,8 +234,7 @@ static std::vector<uint8_t> processEeprom(int bus, int address)
     return device;
 }
 
-std::set<int> findI2CEeproms(int i2cBus,
-                             const std::shared_ptr<DeviceMap>& devices)
+std::set<int> findI2CEeproms(int i2cBus, std::shared_ptr<DeviceMap> devices)
 {
     std::set<int> foundList;
 
@@ -352,7 +296,8 @@ std::set<int> findI2CEeproms(int i2cBus,
 }
 
 int getBusFRUs(int file, int first, int last, int bus,
-               std::shared_ptr<DeviceMap> devices)
+               std::shared_ptr<DeviceMap> devices,
+               sdbusplus::asio::object_server& objServer)
 {
 
     std::future<int> future = std::async(std::launch::async, [&]() {
@@ -410,7 +355,7 @@ int getBusFRUs(int file, int first, int last, int bus,
                           << "\n";
             }
 
-            makeProbeInterface(bus, ii);
+            makeProbeInterface(bus, ii, objServer);
 
             if (failedItems.find(ii) != failedItems.end())
             {
@@ -530,7 +475,8 @@ void loadBlacklist(const char* path)
 }
 
 static void findI2CDevices(const std::vector<fs::path>& i2cBuses,
-                           BusMap& busmap)
+                           BusMap& busmap,
+                           sdbusplus::asio::object_server& objServer)
 {
     for (auto& i2cBus : i2cBuses)
     {
@@ -588,7 +534,7 @@ static void findI2CDevices(const std::vector<fs::path>& i2cBuses,
         }
 
         // fd is closed in this function in case the bus locks up
-        getBusFRUs(file, 0x03, 0x77, bus, device);
+        getBusFRUs(file, 0x03, 0x77, bus, device, objServer);
 
         if (debug)
         {
@@ -603,9 +549,10 @@ struct FindDevicesWithCallback :
 {
     FindDevicesWithCallback(const std::vector<fs::path>& i2cBuses,
                             BusMap& busmap,
+                            sdbusplus::asio::object_server& objServer,
                             std::function<void(void)>&& callback) :
         _i2cBuses(i2cBuses),
-        _busMap(busmap), _callback(std::move(callback))
+        _busMap(busmap), _objServer(objServer), _callback(std::move(callback))
     {}
     ~FindDevicesWithCallback()
     {
@@ -613,182 +560,14 @@ struct FindDevicesWithCallback :
     }
     void run()
     {
-        findI2CDevices(_i2cBuses, _busMap);
+        findI2CDevices(_i2cBuses, _busMap, _objServer);
     }
 
     const std::vector<fs::path>& _i2cBuses;
     BusMap& _busMap;
+    sdbusplus::asio::object_server& _objServer;
     std::function<void(void)> _callback;
 };
-
-std::vector<uint8_t>& getFRUInfo(const uint8_t& bus, const uint8_t& address)
-{
-    auto deviceMap = busMap.find(bus);
-    if (deviceMap == busMap.end())
-    {
-        throw std::invalid_argument("Invalid Bus.");
-    }
-    auto device = deviceMap->second->find(address);
-    if (device == deviceMap->second->end())
-    {
-        throw std::invalid_argument("Invalid Address.");
-    }
-    std::vector<uint8_t>& ret = device->second;
-
-    return ret;
-}
-
-void addFruObjectToDbus(
-    std::vector<uint8_t>& device,
-    boost::container::flat_map<
-        std::pair<size_t, size_t>,
-        std::shared_ptr<sdbusplus::asio::dbus_interface>>& dbusInterfaceMap,
-    uint32_t bus, uint32_t address)
-{
-    boost::container::flat_map<std::string, std::string> formattedFRU;
-    resCodes res = formatFRU(device, formattedFRU);
-    if (res == resCodes::resErr)
-    {
-        std::cerr << "failed to parse FRU for device at bus " << bus
-                  << " address " << address << "\n";
-        return;
-    }
-    if (res == resCodes::resWarn)
-    {
-        std::cerr << "there were warnings while parsing FRU for device at bus "
-                  << bus << " address " << address << "\n";
-    }
-
-    auto productNameFind = formattedFRU.find("BOARD_PRODUCT_NAME");
-    std::string productName;
-    // Not found under Board section or an empty string.
-    if (productNameFind == formattedFRU.end() ||
-        productNameFind->second.empty())
-    {
-        productNameFind = formattedFRU.find("PRODUCT_PRODUCT_NAME");
-    }
-    // Found under Product section and not an empty string.
-    if (productNameFind != formattedFRU.end() &&
-        !productNameFind->second.empty())
-    {
-        productName = productNameFind->second;
-        std::regex illegalObject("[^A-Za-z0-9_]");
-        productName = std::regex_replace(productName, illegalObject, "_");
-    }
-    else
-    {
-        productName = "UNKNOWN" + std::to_string(unknownBusObjectCount);
-        unknownBusObjectCount++;
-    }
-
-    productName = "/xyz/openbmc_project/FruDevice/" + productName;
-    // avoid duplicates by checking to see if on a mux
-    if (bus > 0)
-    {
-        int highest = -1;
-        bool found = false;
-
-        for (auto const& busIface : dbusInterfaceMap)
-        {
-            std::string path = busIface.second->get_object_path();
-            if (std::regex_match(path, std::regex(productName + "(_\\d+|)$")))
-            {
-                if (isMuxBus(bus) && address == busIface.first.second &&
-                    (getFRUInfo(static_cast<uint8_t>(busIface.first.first),
-                                static_cast<uint8_t>(busIface.first.second)) ==
-                     getFRUInfo(static_cast<uint8_t>(bus),
-                                static_cast<uint8_t>(address))))
-                {
-                    // This device is already added to the lower numbered bus,
-                    // do not replicate it.
-                    return;
-                }
-
-                // Check if the match named has extra information.
-                found = true;
-                std::smatch baseMatch;
-
-                bool match = std::regex_match(
-                    path, baseMatch, std::regex(productName + "_(\\d+)$"));
-                if (match)
-                {
-                    if (baseMatch.size() == 2)
-                    {
-                        std::ssub_match baseSubMatch = baseMatch[1];
-                        std::string base = baseSubMatch.str();
-
-                        int value = std::stoi(base);
-                        highest = (value > highest) ? value : highest;
-                    }
-                }
-            }
-        } // end searching objects
-
-        if (found)
-        {
-            // We found something with the same name.  If highest was still -1,
-            // it means this new entry will be _0.
-            productName += "_";
-            productName += std::to_string(++highest);
-        }
-    }
-
-    std::shared_ptr<sdbusplus::asio::dbus_interface> iface =
-        objServer.add_interface(productName, "xyz.openbmc_project.FruDevice");
-    dbusInterfaceMap[std::pair<size_t, size_t>(bus, address)] = iface;
-
-    for (auto& property : formattedFRU)
-    {
-
-        std::regex_replace(property.second.begin(), property.second.begin(),
-                           property.second.end(), nonAsciiRegex, "_");
-        if (property.second.empty() && property.first != "PRODUCT_ASSET_TAG")
-        {
-            continue;
-        }
-        std::string key =
-            std::regex_replace(property.first, nonAsciiRegex, "_");
-
-        if (property.first == "PRODUCT_ASSET_TAG")
-        {
-            std::string propertyName = property.first;
-            iface->register_property(
-                key, property.second + '\0',
-                [bus, address, propertyName,
-                 &dbusInterfaceMap](const std::string& req, std::string& resp) {
-                    if (strcmp(req.c_str(), resp.c_str()) != 0)
-                    {
-                        // call the method which will update
-                        if (updateFRUProperty(req, bus, address, propertyName,
-                                              dbusInterfaceMap))
-                        {
-                            resp = req;
-                        }
-                        else
-                        {
-                            throw std::invalid_argument(
-                                "FRU property update failed.");
-                        }
-                    }
-                    return 1;
-                });
-        }
-        else if (!iface->register_property(key, property.second + '\0'))
-        {
-            std::cerr << "illegal key: " << key << "\n";
-        }
-        if (debug)
-        {
-            std::cout << property.first << ": " << property.second << "\n";
-        }
-    }
-
-    // baseboard will be 0, 0
-    iface->register_property("BUS", bus);
-    iface->register_property("ADDRESS", address);
-
-    iface->initialize();
-}
 
 static bool readBaseboardFRU(std::vector<uint8_t>& baseboardFRU)
 {
@@ -926,7 +705,8 @@ void rescanOneBus(
     boost::container::flat_map<
         std::pair<size_t, size_t>,
         std::shared_ptr<sdbusplus::asio::dbus_interface>>& dbusInterfaceMap,
-    bool dbusCall)
+    bool dbusCall, sdbusplus::asio::object_server& objServer,
+    std::shared_ptr<sdbusplus::asio::connection>& systemBus)
 {
     for (auto& [pair, interface] : foundDevices)
     {
@@ -953,7 +733,8 @@ void rescanOneBus(
     i2cBuses.emplace_back(busPath);
 
     auto scan = std::make_shared<FindDevicesWithCallback>(
-        i2cBuses, busmap, [busNum, &busmap, &dbusInterfaceMap]() {
+        i2cBuses, busmap, objServer,
+        [busNum, &busmap, &dbusInterfaceMap, &objServer, &systemBus]() {
             for (auto& busIface : dbusInterfaceMap)
             {
                 if (busIface.first.first == static_cast<size_t>(busNum))
@@ -969,7 +750,8 @@ void rescanOneBus(
             for (auto& device : *(found->second))
             {
                 addFruObjectToDbus(device.second, dbusInterfaceMap,
-                                   static_cast<uint32_t>(busNum), device.first);
+                                   static_cast<uint32_t>(busNum), device.first,
+                                   objServer, false, systemBus);
             }
         });
     scan->run();
@@ -979,7 +761,9 @@ void rescanBusses(
     BusMap& busmap,
     boost::container::flat_map<
         std::pair<size_t, size_t>,
-        std::shared_ptr<sdbusplus::asio::dbus_interface>>& dbusInterfaceMap)
+        std::shared_ptr<sdbusplus::asio::dbus_interface>>& dbusInterfaceMap,
+    sdbusplus::asio::object_server& objServer,
+    std::shared_ptr<sdbusplus::asio::connection> systemBus)
 {
     static boost::asio::deadline_timer timer(io);
     timer.expires_from_now(boost::posix_time::seconds(1));
@@ -1008,8 +792,8 @@ void rescanBusses(
         }
         foundDevices.clear();
 
-        auto scan =
-            std::make_shared<FindDevicesWithCallback>(i2cBuses, busmap, [&]() {
+        auto scan = std::make_shared<FindDevicesWithCallback>(
+            i2cBuses, busmap, objServer, [&]() {
                 for (auto& busIface : dbusInterfaceMap)
                 {
                     objServer.remove_interface(busIface.second);
@@ -1032,7 +816,8 @@ void rescanBusses(
                     for (auto& device : *devicemap.second)
                     {
                         addFruObjectToDbus(device.second, dbusInterfaceMap,
-                                           devicemap.first, device.first);
+                                           devicemap.first, device.first,
+                                           objServer, false, systemBus);
                     }
                 }
             });

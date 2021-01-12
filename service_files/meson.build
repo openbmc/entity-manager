@@ -1,5 +1,6 @@
 unit_files = [
     ['xyz.openbmc_project.FruDevice.service', 'fru-device'],
+    ['xyz.openbmc_project.Ipmb.FruDevice.service', 'ipmb-fru-device'],
     ['xyz.openbmc_project.EntityManager.service', ''],
 ]
 
