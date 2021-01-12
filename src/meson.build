@@ -41,3 +41,29 @@ if get_option('fru-device')
         install: true,
     )
 endif
+
+
+if get_option('ipmb-fru-device')
+    cpp_args_fd = cpp_args
+    if get_option('ipmb-fru-device-resizefru')
+        cpp_args_fd = cpp_args_fd + ['-DENABLE_FRU_AREA_RESIZE']
+    endif
+executable(
+     'ipmb-fru-device',
+     'IpmbFruDevice.cpp',
+     'Utils.cpp',
+     'FruUtils.cpp',
+      cpp_args: cpp_args,
+      dependencies: [
+            boost,
+            i2c,
+            nlohmann_json,
+            sdbusplus,
+            threads,
+            valijson,
+      ],
+      implicit_include_directories: false,
+      include_directories: '../include',
+      install: true,
+)
+endif
