@@ -16,13 +16,38 @@
 /// \file FruUtils.hpp
 
 #pragma once
-#include <boost/container/flat_map.hpp>
 
+#include <fcntl.h>
+#include <sys/inotify.h>
+#include <sys/ioctl.h>
+
+#include <boost/algorithm/string/predicate.hpp>
+#include <boost/asio/deadline_timer.hpp>
+#include <boost/asio/io_service.hpp>
+#include <boost/container/flat_map.hpp>
+#include <nlohmann/json.hpp>
+#include <sdbusplus/asio/connection.hpp>
+#include <sdbusplus/asio/object_server.hpp>
+
+#include <array>
+#include <chrono>
 #include <cstdint>
+#include <ctime>
+#include <filesystem>
+#include <fstream>
 #include <functional>
+#include <future>
+#include <iomanip>
+#include <iostream>
+#include <limits>
+#include <numeric>
 #include <regex>
+#include <set>
+#include <sstream>
 #include <string>
+#include <thread>
 #include <utility>
+#include <variant>
 #include <vector>
 extern "C"
 {
@@ -30,7 +55,17 @@ extern "C"
 #include <linux/i2c.h>
 }
 
+extern size_t unknownBusObjectCount;
+
+constexpr bool debug = false;
+constexpr size_t maxFruSize = 512;
 constexpr size_t fruBlockSize = 8;
+
+const std::string fruDbusObject = "/xyz/openbmc_project/FruDevice/";
+const std::string fruDbusInterface = "xyz.openbmc_project.FruDevice";
+
+const std::string ipmbFruDbusObject = "/xyz/openbmc_project/Ipmb/FruDevice/";
+const std::string ipmbFruDbusInterface = "xyz.openbmc_project.Ipmb.FruDevice";
 
 enum class DecodeState
 {
@@ -98,6 +133,8 @@ const char bcdHighChars[] = {
 
 char bcdPlusToChar(uint8_t val);
 
+bool isMuxBus(size_t bus);
+
 bool verifyOffset(const std::vector<uint8_t>& fruBytes, fruAreas currentArea,
                   uint8_t len);
 
@@ -146,3 +183,33 @@ bool validateHeader(const std::array<uint8_t, I2C_SMBUS_BLOCK_MAX>& blockData);
 /// \param area - the area
 /// \return the field offset
 unsigned int getHeaderAreaFieldOffset(fruAreas area);
+
+std::vector<uint8_t>& getFRUInfo(const uint8_t& bus, const uint8_t& address);
+
+// Details with example of Asset Tag Update
+// To find location of Product Info Area asset tag as per FRU specification
+// 1. Find product Info area starting offset (*8 - as header will be in
+// multiple of 8 bytes).
+// 2. Skip 3 bytes of product info area (like format version, area length,
+// and language code).
+// 3. Traverse manufacturer name, product name, product version, & product
+// serial number, by reading type/length code to reach the Asset Tag.
+// 4. Update the Asset Tag, reposition the product Info area in multiple of
+// 8 bytes. Update the Product area length and checksum.
+
+bool updateFRUProperty(
+    const std::string& updatePropertyReq, uint32_t bus, uint32_t address,
+    const std::string& propertyName,
+    boost::container::flat_map<
+        std::pair<size_t, size_t>,
+        std::shared_ptr<sdbusplus::asio::dbus_interface>>& dbusInterfaceMap,
+    bool ipmbFlag, std::shared_ptr<sdbusplus::asio::connection> systemBus);
+
+void addFruObjectToDbus(
+    std::vector<uint8_t>& device,
+    boost::container::flat_map<
+        std::pair<size_t, size_t>,
+        std::shared_ptr<sdbusplus::asio::dbus_interface>>& dbusInterfaceMap,
+    uint32_t bus, uint32_t address, sdbusplus::asio::object_server& objServer,
+    bool ipmbFlag,
+    const std::shared_ptr<sdbusplus::asio::connection>& systemBus);
