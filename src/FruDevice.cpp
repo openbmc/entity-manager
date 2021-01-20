@@ -789,6 +789,51 @@ static void checkLang(uint8_t lang)
     }
 }
 
+/* This function verifies for other offsets to check if they are not
+ * falling under other field area
+ */
+static bool verifyOffset(const std::vector<uint8_t>& fruBytes,
+                         fruAreas currentArea, uint8_t len)
+{
+    // check if Fru data has at least 8 byte header
+    if (fruBytes.size() <= fruBlockSize)
+    {
+        std::cerr << "Error: trying to parse empty FRU \n";
+        return false;
+    }
+
+    unsigned int start = fruBytes[getHeaderAreaFieldOffset(currentArea)];
+    unsigned int end = start + len;
+
+    /* Verify each offset within the range of start and end */
+    for (fruAreas area = fruAreas::fruAreaInternal;
+         area <= fruAreas::fruAreaMultirecord; ++area)
+    {
+        // skip the current offset
+        if (area == currentArea)
+        {
+            continue;
+        }
+
+        unsigned int areaOffset = fruBytes[getHeaderAreaFieldOffset(area)];
+        // if areaOffset is 0 means this area is not available so skip
+        if (areaOffset == 0)
+        {
+            continue;
+        }
+
+        // check for overlapping of current offset with given areaoffset
+        if (areaOffset == start || (areaOffset > start && areaOffset < end))
+        {
+            std::cerr << getFruAreaName(currentArea)
+                      << " offset is overlapping with " << getFruAreaName(area)
+                      << " offset\n";
+            return false;
+        }
+    }
+    return true;
+}
+
 resCodes formatFRU(const std::vector<uint8_t>& fruBytes,
                    boost::container::flat_map<std::string, std::string>& result)
 {
@@ -828,6 +873,13 @@ resCodes formatFRU(const std::vector<uint8_t>& fruBytes,
             return resCodes::resErr;
         }
         ++fruBytesIter;
+
+        /* verify other area offset for overlap */
+        if (!verifyOffset(fruBytes, area, *fruBytesIter))
+        {
+            return resCodes::resErr;
+        }
+
         uint8_t fruAreaSize = *fruBytesIter * fruBlockSize;
         std::vector<uint8_t>::const_iterator fruBytesIterEndArea =
             fruBytes.begin() + offset + fruAreaSize - 1;
