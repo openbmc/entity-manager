@@ -789,6 +789,40 @@ static void checkLang(uint8_t lang)
     }
 }
 
+/* This function verifies for other offsets to check if they are not
+ * falling under other field area
+ */
+static bool verifyOffset(const std::vector<uint8_t>& fruBytes,
+                         fruAreas currentArea, uint8_t len)
+{
+    unsigned int start = fruBytes[getHeaderAreaFieldOffset(currentArea)];
+    unsigned int end = start + len;
+
+    /* Verify each offset within the range of start and end */
+    for (fruAreas area = fruAreas::fruAreaInternal;
+         area <= fruAreas::fruAreaMultirecord; ++area)
+    {
+        /* skip the current offset */
+        if (area == currentArea)
+        {
+            continue;
+        }
+
+        unsigned int areaOffset = fruBytes[getHeaderAreaFieldOffset(area)];
+        if (areaOffset == 0)
+        {
+            continue;
+        }
+
+        /* 2 offsets can't be same or can't overlap */
+        if (areaOffset == start || (areaOffset > start && areaOffset < end))
+        {
+            return false;
+        }
+    }
+    return true;
+}
+
 resCodes formatFRU(const std::vector<uint8_t>& fruBytes,
                    boost::container::flat_map<std::string, std::string>& result)
 {
@@ -828,6 +862,14 @@ resCodes formatFRU(const std::vector<uint8_t>& fruBytes,
             return resCodes::resErr;
         }
         ++fruBytesIter;
+
+        /* verify other area offset for overlap */
+        if (!verifyOffset(fruBytes, area, *fruBytesIter))
+        {
+            std::cerr << "Offsets are overlapping \n";
+            return resCodes::resErr;
+        }
+
         uint8_t fruAreaSize = *fruBytesIter * fruBlockSize;
         std::vector<uint8_t>::const_iterator fruBytesIterEndArea =
             fruBytes.begin() + offset + fruAreaSize - 1;
