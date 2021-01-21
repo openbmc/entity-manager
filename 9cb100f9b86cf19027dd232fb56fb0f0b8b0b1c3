@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "dc2e3d2a_a1ca93c9",
+        "filename": "src/FruDevice.cpp",
+        "patchSetId": 2
+      },
+      "lineNbr": 1587,
+      "author": {
+        "id": 1000559
+      },
+      "writtenOn": "2021-01-21T07:34:11Z",
+      "side": 1,
+      "message": "Will update",
+      "parentUuid": "da5343ff_2422f2d6",
+      "range": {
+        "startLine": 1582,
+        "startChar": 0,
+        "endLine": 1587,
+        "endChar": 21
+      },
+      "revId": "9cb100f9b86cf19027dd232fb56fb0f0b8b0b1c3",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "741e592b_44ce328e",
         "filename": "src/FruDevice.cpp",
         "patchSetId": 2
@@ -36,6 +60,24 @@
       "writtenOn": "2021-01-17T17:11:11Z",
       "side": 1,
       "message": "Will it ensure busmap[0] always contains baseboard FRU, not some other FRU found in bus-0 ?",
+      "revId": "9cb100f9b86cf19027dd232fb56fb0f0b8b0b1c3",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "ce4afabc_cc993145",
+        "filename": "src/FruDevice.cpp",
+        "patchSetId": 2
+      },
+      "lineNbr": 1588,
+      "author": {
+        "id": 1000559
+      },
+      "writtenOn": "2021-01-21T07:34:11Z",
+      "side": 1,
+      "message": "Baseboard is at bus0 - dev0, other bus0 devices have non zero address",
+      "parentUuid": "741e592b_44ce328e",
       "revId": "9cb100f9b86cf19027dd232fb56fb0f0b8b0b1c3",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
       "unresolved": true
