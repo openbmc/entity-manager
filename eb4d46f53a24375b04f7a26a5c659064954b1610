@@ -143,6 +143,30 @@
     },
     {
       "key": {
+        "uuid": "93aba6a3_2d7264df",
+        "filename": "src/FruDevice.cpp",
+        "patchSetId": 1
+      },
+      "lineNbr": 812,
+      "author": {
+        "id": 1000502
+      },
+      "writtenOn": "2021-01-21T22:24:50Z",
+      "side": 1,
+      "message": "This also incidentally makes overlap with the common header impossible.",
+      "parentUuid": "ee11536f_fecce7e3",
+      "range": {
+        "startLine": 812,
+        "startChar": 12,
+        "endLine": 812,
+        "endChar": 22
+      },
+      "revId": "eb4d46f53a24375b04f7a26a5c659064954b1610",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "9d31feca_4124506f",
         "filename": "src/FruDevice.cpp",
         "patchSetId": 1
@@ -261,6 +285,23 @@
     },
     {
       "key": {
+        "uuid": "d849e61b_839ee8e2",
+        "filename": "src/FruDevice.cpp",
+        "patchSetId": 1
+      },
+      "lineNbr": 841,
+      "author": {
+        "id": 1000502
+      },
+      "writtenOn": "2021-01-21T22:24:50Z",
+      "side": 1,
+      "message": "We\u0027re not calling verifyOffset() on the Internal Use Area or MultiRecord Area.\n\nI suppose the Internal Use Area is a bit tricky because it doesn\u0027t have a length field. The MultiRecord Area, on the other hand, needs to walk the linked list to get the full length.",
+      "revId": "eb4d46f53a24375b04f7a26a5c659064954b1610",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "d6bbb461_3773f1d6",
         "filename": "src/FruDevice.cpp",
         "patchSetId": 1
@@ -293,6 +334,23 @@
       "revId": "eb4d46f53a24375b04f7a26a5c659064954b1610",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "a67b2ac0_b3efa638",
+        "filename": "src/FruDevice.cpp",
+        "patchSetId": 1
+      },
+      "lineNbr": 867,
+      "author": {
+        "id": 1000502
+      },
+      "writtenOn": "2021-01-21T22:24:50Z",
+      "side": 1,
+      "message": "I don\u0027t understand the use of *fruBytesIter as the length.",
+      "revId": "eb4d46f53a24375b04f7a26a5c659064954b1610",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
     },
     {
       "key": {
