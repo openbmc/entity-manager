@@ -1382,10 +1382,7 @@ void rescanBusses(
                 std::vector<uint8_t> baseboardFRU;
                 if (readBaseboardFRU(baseboardFRU))
                 {
-                    boost::container::flat_map<int, std::vector<uint8_t>>
-                        baseboardDev;
-                    baseboardDev.emplace(0, baseboardFRU);
-                    busmap[0] = std::make_shared<DeviceMap>(baseboardDev);
+                    busmap[0]->emplace(0, baseboardFRU);
                 }
                 for (auto& devicemap : busmap)
                 {
