@@ -90,6 +90,18 @@
                 "MaxReading": {
                     "$ref": "#/definitions/Types/MaxReading"
                 },
+                "MaxValue": {
+                    "$ref": "#/definitions/Types/MaxValue"
+                },
+                "Measure": {
+                    "$ref": "#/definitions/Types/Measure"
+                },
+                "MinReading": {
+                    "$ref": "#/definitions/Types/MinReading"
+                },
+                "MinValue": {
+                    "$ref": "#/definitions/Types/MinValue"
+                },
                 "Name": {
                     "$ref": "#/definitions/Types/Name"
                 },
@@ -405,6 +417,18 @@
                 "type": "number"
             },
             "MaxReading": {
+                "type": "number"
+            },
+            "MaxValue": {
+                "type": "number"
+            },
+            "Measure": {
+                "type": "string"
+            },
+            "MinReading": {
+                "type": "number"
+            },
+            "MinValue": {
                 "type": "number"
             },
             "Name": {
