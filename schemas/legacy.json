@@ -267,6 +267,12 @@
                 "pout1_Offset": {
                     "$ref": "#/definitions/Types/pout1_Offset"
                 },
+                "iout1_Scale": {
+                    "$ref": "#/definitions/Types/iout1_Scale"
+                },
+                "PollRate": {
+                    "$ref": "#/definitions/Types/PollRate"
+                },
                 "Type": {
                     "$ref": "#/definitions/Types/Type"
                 }
@@ -621,9 +627,16 @@
             "pout1_Offset": {
                 "type": "number"
             },
+            "iout1_Scale": {
+                "type": "number"
+            },
+            "PollRate": {
+                "type": "number"
+            },
             "Type": {
                 "type": "string"
             }
         }
     }
 }
+
