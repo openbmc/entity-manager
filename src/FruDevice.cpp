@@ -90,6 +90,8 @@ static BusMap busMap;
 
 static bool powerIsOn = false;
 
+static bool isLangEng = true; // Only english language supported
+
 static boost::container::flat_map<
     std::pair<size_t, size_t>, std::shared_ptr<sdbusplus::asio::dbus_interface>>
     foundDevices;
@@ -743,6 +745,14 @@ static std::pair<DecodeState, std::string>
             /* For language-code dependent encodings, assume 8-bit ASCII */
             value = std::string(iter, iter + len);
             iter += len;
+
+            // Non english language is not supported currently
+            if (!isLangEng)
+            {
+                std::cerr << "Error: Non english string is not supported \n";
+                return make_pair(DecodeState::err, value);
+            }
+
             break;
 
         case FRUDataEncoding::bcdPlus:
@@ -784,8 +794,14 @@ static void checkLang(uint8_t lang)
     // but we don't support that.
     if (lang && lang != 25)
     {
-        std::cerr << "Warning: language other then English is not "
+        // Set language flag as non english
+        isLangEng = false;
+        std::cerr << "Warning: language other than English is not "
                      "supported \n";
+    }
+    else
+    {
+        isLangEng = true;
     }
 }
 
@@ -916,6 +932,11 @@ resCodes formatFRU(const std::vector<uint8_t>& fruBytes,
                     std::to_string(static_cast<int>(*fruBytesIter));
                 fruBytesIter += 1;
                 fruAreaFieldNames = &CHASSIS_FRU_AREAS;
+
+                /* Chassis area info will always be encoded as english language
+                 * as per section 10 in specification
+                 */
+                isLangEng = true;
                 break;
             }
             case fruAreas::fruAreaBoard:
