@@ -356,6 +356,24 @@
     },
     {
       "key": {
+        "uuid": "97c116b3_0eadb9c4",
+        "filename": "src/FruDevice.cpp",
+        "patchSetId": 1
+      },
+      "lineNbr": 841,
+      "author": {
+        "id": 1000502
+      },
+      "writtenOn": "2021-01-22T22:00:48Z",
+      "side": 1,
+      "message": "We caught up offline. Vijay\u0027s right; I had it backwards. I still thought there was a missing case e.g. Product Info Area from 80-120 and MultiRecord Area from 60-100. But section 17 of the spec implies that the areas do actually have a required order. So this problem can\u0027t happen.\n\nSolution: enforce that all the areas are in the order defined in section 17. Vijay will implement this in another patch.",
+      "parentUuid": "69645c39_1132c24e",
+      "revId": "eb4d46f53a24375b04f7a26a5c659064954b1610",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "d6bbb461_3773f1d6",
         "filename": "src/FruDevice.cpp",
         "patchSetId": 1
