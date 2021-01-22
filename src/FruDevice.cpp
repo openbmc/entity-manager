@@ -694,7 +694,8 @@ enum FRUDataEncoding
  */
 static std::pair<DecodeState, std::string>
     decodeFRUData(std::vector<uint8_t>::const_iterator& iter,
-                  const std::vector<uint8_t>::const_iterator& end)
+                  const std::vector<uint8_t>::const_iterator& end,
+                  bool isLangEng)
 {
     std::string value;
     unsigned int i;
@@ -743,6 +744,17 @@ static std::pair<DecodeState, std::string>
             /* For language-code dependent encodings, assume 8-bit ASCII */
             value = std::string(iter, iter + len);
             iter += len;
+
+            /* English text is encoded in 8-bit ASCII + Latin 1. All other
+             * languages are required to use 2-byte unicode. FruDevice does not
+             * handle unicode.
+             */
+            if (!isLangEng)
+            {
+                std::cerr << "Error: Non english string is not supported \n";
+                return make_pair(DecodeState::err, value);
+            }
+
             break;
 
         case FRUDataEncoding::bcdPlus:
@@ -778,14 +790,20 @@ static std::pair<DecodeState, std::string>
     return make_pair(DecodeState::ok, value);
 }
 
-static void checkLang(uint8_t lang)
+static bool checkLangEng(uint8_t lang)
 {
     // If Lang is not English then the encoding is defined as 2-byte UNICODE,
     // but we don't support that.
     if (lang && lang != 25)
     {
-        std::cerr << "Warning: language other then English is not "
-                     "supported \n";
+        std::cerr << "Warning: languages other than English is not "
+                     "supported\n";
+        // Return language flag as non english
+        return false;
+    }
+    else
+    {
+        return true;
     }
 }
 
@@ -908,6 +926,10 @@ resCodes formatFRU(const std::vector<uint8_t>& fruBytes,
             ret = resCodes::resWarn;
         }
 
+        /* Set default language flag to true as Chassis Fru area are always
+         * encoded in English defined in Section 10 of Fru specification
+         */
+        bool isLangEng = true;
         switch (area)
         {
             case fruAreas::fruAreaChassis:
@@ -923,7 +945,7 @@ resCodes formatFRU(const std::vector<uint8_t>& fruBytes,
                 uint8_t lang = *fruBytesIter;
                 result["BOARD_LANGUAGE_CODE"] =
                     std::to_string(static_cast<int>(lang));
-                checkLang(lang);
+                isLangEng = checkLangEng(lang);
                 fruBytesIter += 1;
 
                 unsigned int minutes = *fruBytesIter |
@@ -954,7 +976,7 @@ resCodes formatFRU(const std::vector<uint8_t>& fruBytes,
                 uint8_t lang = *fruBytesIter;
                 result["PRODUCT_LANGUAGE_CODE"] =
                     std::to_string(static_cast<int>(lang));
-                checkLang(lang);
+                isLangEng = checkLangEng(lang);
                 fruBytesIter += 1;
                 fruAreaFieldNames = &PRODUCT_FRU_AREAS;
                 break;
@@ -970,7 +992,8 @@ resCodes formatFRU(const std::vector<uint8_t>& fruBytes,
         DecodeState state;
         do
         {
-            auto res = decodeFRUData(fruBytesIter, fruBytesIterEndArea);
+            auto res =
+                decodeFRUData(fruBytesIter, fruBytesIterEndArea, isLangEng);
             state = res.first;
             std::string value = res.second;
             std::string name;
