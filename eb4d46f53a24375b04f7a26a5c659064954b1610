@@ -302,6 +302,24 @@
     },
     {
       "key": {
+        "uuid": "df02ba12_db708fbc",
+        "filename": "src/FruDevice.cpp",
+        "patchSetId": 1
+      },
+      "lineNbr": 841,
+      "author": {
+        "id": 1000271
+      },
+      "writtenOn": "2021-01-22T00:35:22Z",
+      "side": 1,
+      "message": "yes but we are checking them against all field areas. so this should be good.",
+      "parentUuid": "d849e61b_839ee8e2",
+      "revId": "eb4d46f53a24375b04f7a26a5c659064954b1610",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "d6bbb461_3773f1d6",
         "filename": "src/FruDevice.cpp",
         "patchSetId": 1
@@ -348,6 +366,24 @@
       "writtenOn": "2021-01-21T22:24:50Z",
       "side": 1,
       "message": "I don\u0027t understand the use of *fruBytesIter as the length.",
+      "revId": "eb4d46f53a24375b04f7a26a5c659064954b1610",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "619237d7_c6a4e889",
+        "filename": "src/FruDevice.cpp",
+        "patchSetId": 1
+      },
+      "lineNbr": 867,
+      "author": {
+        "id": 1000271
+      },
+      "writtenOn": "2021-01-22T00:35:22Z",
+      "side": 1,
+      "message": "fruBytesIter points to the length field, if you see following code, The calculation of length. And I am not using * multiples as both offsets and areas are being compared in it\u0027s original index before 8 byte multiplication.",
+      "parentUuid": "a67b2ac0_b3efa638",
       "revId": "eb4d46f53a24375b04f7a26a5c659064954b1610",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
       "unresolved": true
