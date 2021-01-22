@@ -320,6 +320,24 @@
     },
     {
       "key": {
+        "uuid": "e92131d0_05cd6360",
+        "filename": "src/FruDevice.cpp",
+        "patchSetId": 1
+      },
+      "lineNbr": 841,
+      "author": {
+        "id": 1000502
+      },
+      "writtenOn": "2021-01-22T01:41:51Z",
+      "side": 1,
+      "message": "verifyOffset() checks if the start of currentArea is within any of the others. This algorithm works, but only if if verifyOffset() is called for every area. Counter example: Product Info Area from bytes  80-120, MultiRecord Area from 100-200.",
+      "parentUuid": "df02ba12_db708fbc",
+      "revId": "eb4d46f53a24375b04f7a26a5c659064954b1610",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "d6bbb461_3773f1d6",
         "filename": "src/FruDevice.cpp",
         "patchSetId": 1
@@ -384,6 +402,24 @@
       "side": 1,
       "message": "fruBytesIter points to the length field, if you see following code, The calculation of length. And I am not using * multiples as both offsets and areas are being compared in it\u0027s original index before 8 byte multiplication.",
       "parentUuid": "a67b2ac0_b3efa638",
+      "revId": "eb4d46f53a24375b04f7a26a5c659064954b1610",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "b28a855c_500a66d7",
+        "filename": "src/FruDevice.cpp",
+        "patchSetId": 1
+      },
+      "lineNbr": 867,
+      "author": {
+        "id": 1000502
+      },
+      "writtenOn": "2021-01-22T01:41:51Z",
+      "side": 1,
+      "message": "I see now. Document this in the comment for verifyOffset().",
+      "parentUuid": "619237d7_c6a4e889",
       "revId": "eb4d46f53a24375b04f7a26a5c659064954b1610",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
       "unresolved": true
