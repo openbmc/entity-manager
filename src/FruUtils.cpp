@@ -122,6 +122,7 @@ std::vector<uint8_t> readFRUContents(int flag, int file, uint16_t address,
 
     bool hasMultiRecords = false;
     size_t fruLength = fruBlockSize; // At least FRU header is present
+    static unsigned int prevOffset = 0;
     for (fruAreas area = fruAreas::fruAreaInternal;
          area <= fruAreas::fruAreaMultirecord; ++area)
     {
@@ -131,6 +132,19 @@ std::vector<uint8_t> readFRUContents(int flag, int file, uint16_t address,
         {
             continue;
         }
+
+        /* Check for offset order, as per Section 17 of FRU specification, FRU
+         * information areas are required to be in order in FRU data layout
+         * which means all offset value should be in increasing order or can be
+         * 0 if that area is not present
+         */
+        if (areaOffset <= prevOffset)
+        {
+            std::cerr << "Fru area offsets are not in required order as per "
+                         "Section 17 of Fru specification\n";
+            return {};
+        }
+        prevOffset = areaOffset;
 
         // MultiRecords are different. area is not tracking section, it's
         // walking the common header.
