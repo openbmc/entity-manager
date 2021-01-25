@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "6fdd7938_3d567687",
+        "filename": "src/FruDevice.cpp",
+        "patchSetId": 3
+      },
+      "lineNbr": 805,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2021-01-25T21:31:30Z",
+      "side": 1,
+      "message": "This isn\u0027t an appropriate range check.  Check against the thing you\u0027re looking up (ie currentArea), not a constant that may or may not be within the range.",
+      "range": {
+        "startLine": 805,
+        "startChar": 4,
+        "endLine": 805,
+        "endChar": 40
+      },
+      "revId": "d5691a8ee36399f4591fbde873048473c1d4c53e",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    }
+  ]
+}
