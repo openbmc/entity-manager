@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "f3c2b031_725273d0",
+        "filename": "src/FruDevice.cpp",
+        "patchSetId": 2
+      },
+      "lineNbr": 93,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2021-01-25T21:30:04Z",
+      "side": 1,
+      "message": "Please don\u0027t use a global for this, especially for things that are not singletons.  Please put this in the appropriate context.",
+      "range": {
+        "startLine": 93,
+        "startChar": 0,
+        "endLine": 93,
+        "endChar": 64
+      },
+      "revId": "80af7da11e6acda87b310649ae9aa9a5c5cdc7d5",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    }
+  ]
+}
