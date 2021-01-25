@@ -66,6 +66,7 @@ else
 endif
 
 install_data('blacklist.json')
+install_data('fru_device_offset.json')
 
 configs = [
     '1Ux16 Riser.json',

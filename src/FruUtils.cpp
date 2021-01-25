@@ -20,8 +20,10 @@
 #include <array>
 #include <cstdint>
 #include <iostream>
+#include <map>
 #include <set>
 #include <string>
+#include <tuple>
 #include <vector>
 
 extern "C"
@@ -32,6 +34,42 @@ extern "C"
 
 static constexpr bool DEBUG = false;
 constexpr size_t fruVersion = 1; // Current FRU spec version number is 1
+
+using BusAddress = std::tuple<uint8_t, uint16_t>;
+static std::map<BusAddress, uint16_t> fruDeviceWithOffset;
+static std::map<BusAddress, bool> fruDeviceIs16Bit;
+
+void setFruDeviceOffset(uint8_t bus, uint16_t address, uint16_t offset)
+{
+    fruDeviceWithOffset.insert({{bus, address}, offset});
+}
+
+uint16_t getFruDeviceOffset(uint8_t bus, uint16_t address)
+{
+    BusAddress device{bus, address};
+    auto deviceIt = fruDeviceWithOffset.find(device);
+    if (deviceIt != fruDeviceWithOffset.end())
+    {
+        return deviceIt->second;
+    }
+    return 0;
+}
+
+void setFruDevice16Is16Bit(uint8_t bus, uint16_t address, bool flag)
+{
+    fruDeviceIs16Bit.insert({{bus, address}, flag});
+}
+
+bool is16BitFruDevice(uint8_t bus, uint16_t address)
+{
+    BusAddress device{bus, address};
+    auto deviceIt = fruDeviceIs16Bit.find(device);
+    if (deviceIt != fruDeviceIs16Bit.end())
+    {
+        return deviceIt->second;
+    }
+    return false;
+}
 
 bool validateHeader(const std::array<uint8_t, I2C_SMBUS_BLOCK_MAX>& blockData)
 {
@@ -94,13 +132,14 @@ bool validateHeader(const std::array<uint8_t, I2C_SMBUS_BLOCK_MAX>& blockData)
     return true;
 }
 
-std::vector<uint8_t> readFRUContents(int flag, int file, uint16_t address,
-                                     ReadBlockFunc readBlock,
+std::vector<uint8_t> readFRUContents(int flag, int file, uint8_t bus,
+                                     uint16_t address, ReadBlockFunc readBlock,
                                      const std::string& errorHelp)
 {
     std::array<uint8_t, I2C_SMBUS_BLOCK_MAX> blockData;
+    auto extraOffset = getFruDeviceOffset(bus, address);
 
-    if (readBlock(flag, file, address, 0x0, 0x8, blockData.data()) < 0)
+    if (readBlock(flag, file, address, extraOffset, 0x8, blockData.data()) < 0)
     {
         std::cerr << "failed to read " << errorHelp << "\n";
         return {};
@@ -142,8 +181,9 @@ std::vector<uint8_t> readFRUContents(int flag, int file, uint16_t address,
 
         areaOffset *= fruBlockSize;
 
-        if (readBlock(flag, file, address, static_cast<uint16_t>(areaOffset),
-                      0x2, blockData.data()) < 0)
+        if (readBlock(flag, file, address,
+                      static_cast<uint16_t>(areaOffset) + extraOffset, 0x2,
+                      blockData.data()) < 0)
         {
             std::cerr << "failed to read " << errorHelp << "\n";
             return {};
@@ -173,7 +213,7 @@ std::vector<uint8_t> readFRUContents(int flag, int file, uint16_t address,
             // In multi-area, the area offset points to the 0th record, each
             // record has 3 bytes of the header we care about.
             if (readBlock(flag, file, address,
-                          static_cast<uint16_t>(areaOffset), 0x3,
+                          static_cast<uint16_t>(areaOffset) + extraOffset, 0x3,
                           blockData.data()) < 0)
             {
                 std::cerr << "failed to read " << errorHelp << "\n";
@@ -204,7 +244,8 @@ std::vector<uint8_t> readFRUContents(int flag, int file, uint16_t address,
         size_t requestLength =
             std::min(static_cast<size_t>(I2C_SMBUS_BLOCK_MAX), fruLength);
 
-        if (readBlock(flag, file, address, static_cast<uint16_t>(readOffset),
+        if (readBlock(flag, file, address,
+                      static_cast<uint16_t>(readOffset) + extraOffset,
                       static_cast<uint8_t>(requestLength),
                       blockData.data()) < 0)
         {

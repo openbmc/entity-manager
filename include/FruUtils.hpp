@@ -56,8 +56,8 @@ using ReadBlockFunc =
 /// \param readBlock a read method
 /// \param errorHelp and a helper string for failures
 /// \return the FRU contents from the file
-std::vector<uint8_t> readFRUContents(int flag, int file, uint16_t address,
-                                     ReadBlockFunc readBlock,
+std::vector<uint8_t> readFRUContents(int flag, int file, uint8_t bus,
+                                     uint16_t address, ReadBlockFunc readBlock,
                                      const std::string& errorHelp);
 
 /// \brief Validate an IPMI FRU common header
@@ -69,3 +69,27 @@ bool validateHeader(const std::array<uint8_t, I2C_SMBUS_BLOCK_MAX>& blockData);
 /// \param area - the area
 /// \return the field offset
 unsigned int getHeaderAreaFieldOffset(fruAreas area);
+
+/// \brief Set extra offset for the fru device
+/// \param bus - the i2c bus
+/// \param address - the device address
+/// \param offset - the extra offset
+void setFruDeviceOffset(uint8_t bus, uint16_t address, uint16_t offset);
+
+/// \brief Get the extra offset of the fru device
+/// \param bus - the i2c bus
+/// \param address - the device address
+/// \return the extra ofset
+uint16_t getFruDeviceOffset(uint8_t bus, uint16_t address);
+
+/// \brief Set the fru device is 16 bit or not
+/// \param bus - the i2c bus
+/// \param address - the device address
+/// \param flag - true if the fru deivce is 16 bit
+void setFruDevice16Is16Bit(uint8_t bus, uint16_t address, bool flag);
+
+/// \brief Check if the fru device is 16 bit
+/// \param bus - the i2c bus
+/// \param address - the device address
+/// \return true if the fru device is 16 bit
+bool is16BitFruDevice(uint8_t bus, uint16_t address);
