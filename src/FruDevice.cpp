@@ -41,6 +41,7 @@
 #include <iomanip>
 #include <iostream>
 #include <limits>
+#include <optional>
 #include <regex>
 #include <set>
 #include <sstream>
@@ -64,6 +65,8 @@ constexpr size_t MAX_EEPROM_PAGE_INDEX = 255;
 constexpr size_t busTimeoutSeconds = 5;
 
 constexpr const char* blacklistPath = PACKAGE_DIR "blacklist.json";
+constexpr const char* fruDeiviceWithOffsetPath =
+    PACKAGE_DIR "fru_device_offset.json";
 
 const static constexpr char* BASEBOARD_FRU_LOCATION =
     "/etc/fru/baseboard.fru.bin";
@@ -311,7 +314,8 @@ static std::vector<uint8_t> processEeprom(int bus, int address)
     std::string errorMessage = "eeprom at " + std::to_string(bus) +
                                " address " + std::to_string(address);
     std::vector<uint8_t> device = readFRUContents(
-        0, file, static_cast<uint16_t>(address), readFromEeprom, errorMessage);
+        0, file, static_cast<uint8_t>(bus), static_cast<uint16_t>(address),
+        readFromEeprom, errorMessage);
 
     close(file);
     return device;
@@ -466,11 +470,14 @@ int getBusFRUs(int file, int first, int last, int bus,
                 continue;
             }
 
+            setFruDevice16Is16Bit(static_cast<uint8_t>(bus),
+                                  static_cast<uint16_t>(ii), flag);
+
             std::string errorMessage =
                 "bus " + std::to_string(bus) + " address " + std::to_string(ii);
-            std::vector<uint8_t> device =
-                readFRUContents(flag, file, static_cast<uint16_t>(ii),
-                                readBlockData, errorMessage);
+            std::vector<uint8_t> device = readFRUContents(
+                flag, file, static_cast<uint8_t>(bus),
+                static_cast<uint16_t>(ii), readBlockData, errorMessage);
             if (device.empty())
             {
                 continue;
@@ -497,21 +504,22 @@ int getBusFRUs(int file, int first, int last, int bus,
     return future.get();
 }
 
-void loadBlacklist(const char* path)
+static std::optional<nlohmann::json> loadJson(const char* path)
 {
     std::ifstream blacklistStream(path);
     if (!blacklistStream.good())
     {
         // File is optional.
-        std::cerr << "Cannot open blacklist file.\n\n";
-        return;
+        std::cerr << "Cannot open file: " << path << "\n\n";
+        return std::nullopt;
     }
 
     nlohmann::json data =
         nlohmann::json::parse(blacklistStream, nullptr, false);
     if (data.is_discarded())
     {
-        std::cerr << "Illegal blacklist file detected, cannot validate JSON, "
+        std::cerr << "Illegal JSON file detected: " << path
+                  << ", cannot validate JSON, "
                      "exiting\n";
         std::exit(EXIT_FAILURE);
     }
@@ -521,15 +529,49 @@ void loadBlacklist(const char* path)
     // such as specific addresses or ranges.
     if (data.type() != nlohmann::json::value_t::object)
     {
-        std::cerr << "Illegal blacklist, expected to read dictionary\n";
+        std::cerr << "Illegal JSON: " << path
+                  << ", expected to read dictionary\n";
         std::exit(EXIT_FAILURE);
     }
 
+    return data;
+}
+
+void loadFruDeviceWithOffsetList(const char* path)
+{
+    auto data = loadJson(path);
+    if (!data)
+    {
+        return;
+    }
+    auto devices = data->at("devices");
+    if (devices.type() != nlohmann::json::value_t::array)
+    {
+        std::cerr << "Invalid contents for devices field: " << path << "\n";
+        std::exit(EXIT_FAILURE);
+    }
+
+    for (const auto& device : devices)
+    {
+        uint8_t bus = device.at("bus");
+        uint16_t addr = device.at("address");
+        uint16_t offset = device.at("offset");
+        setFruDeviceOffset(bus, addr, offset);
+    }
+}
+
+void loadBlacklist(const char* path)
+{
+    auto data = loadJson(path);
+    if (!data)
+    {
+        return;
+    }
     // If buses field is missing, that's fine.
-    if (data.count("buses") == 1)
+    if (data->count("buses") == 1)
     {
         // Parse the buses array after a little validation.
-        auto buses = data.at("buses");
+        auto buses = data->at("buses");
         if (buses.type() != nlohmann::json::value_t::array)
         {
             // Buses field present but invalid, therefore this is an error.
@@ -1166,9 +1208,35 @@ static bool readBaseboardFRU(std::vector<uint8_t>& baseboardFRU)
     return true;
 }
 
+int i2cWriteByteData16Bit(int file, uint8_t address, uint16_t offset,
+                          uint8_t value)
+{
+    offset = htobe16(offset);
+    uint8_t buf[3] = {0};
+    std::memcpy(buf, &offset, 2);
+    buf[2] = value;
+
+    struct i2c_rdwr_ioctl_data rdwr;
+    struct i2c_msg msgs[1];
+
+    msgs[0].addr = address;
+    msgs[0].flags = 0;
+    msgs[0].len = 3;
+    msgs[0].buf = buf;
+    rdwr.msgs = msgs;
+    rdwr.nmsgs = 1;
+
+    int ret = ioctl(file, I2C_RDWR, &rdwr);
+
+    return (ret == 1) ? ret : -1;
+}
+
 bool writeFRU(uint8_t bus, uint8_t address, const std::vector<uint8_t>& fru)
 {
     boost::container::flat_map<std::string, std::string> tmp;
+    auto extraOffset = getFruDeviceOffset(bus, address);
+    auto is16Bit = is16BitFruDevice(bus, address);
+
     if (fru.size() > MAX_FRU_SIZE)
     {
         std::cerr << "Invalid fru.size() during writeFRU\n";
@@ -1205,6 +1273,17 @@ bool writeFRU(uint8_t bus, uint8_t address, const std::vector<uint8_t>& fru)
                 std::cerr << "unable to open i2c device " << path << "\n";
                 throw DBusInternalError();
                 return false;
+            }
+
+            if (extraOffset)
+            {
+                auto result = lseek(eeprom, extraOffset, SEEK_SET);
+                if (result < 0)
+                {
+                    std::cerr << "failed to seek " << path << "\n";
+                    close(eeprom);
+                    throw DBusInternalError();
+                }
             }
 
             ssize_t writtenBytes = write(eeprom, fru.data(), fru.size());
@@ -1256,8 +1335,20 @@ bool writeFRU(uint8_t bus, uint8_t address, const std::vector<uint8_t>& fru)
                 }
             }
 
-            if (i2c_smbus_write_byte_data(file, static_cast<uint8_t>(index),
-                                          fru[index]) < 0)
+            int ret = 0;
+            if (is16Bit)
+            {
+                ret = i2cWriteByteData16Bit(file, address, extraOffset + index,
+                                            fru[index]);
+            }
+            else
+            {
+                ret = i2c_smbus_write_byte_data(
+                    file, static_cast<uint8_t>(index + extraOffset),
+                    fru[index]);
+            }
+
+            if (ret < 0)
             {
                 if (!retries--)
                 {
@@ -1764,6 +1855,7 @@ int main()
 
     // check for and load blacklist with initial buses.
     loadBlacklist(blacklistPath);
+    loadFruDeviceWithOffsetList(fruDeiviceWithOffsetPath);
 
     systemBus->request_name("xyz.openbmc_project.FruDevice");
 
