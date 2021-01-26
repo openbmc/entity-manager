@@ -46,6 +46,30 @@
       "revId": "d5691a8ee36399f4591fbde873048473c1d4c53e",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "616e8218_0e3971f4",
+        "filename": "src/FruDevice.cpp",
+        "patchSetId": 3
+      },
+      "lineNbr": 805,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2021-01-26T01:38:00Z",
+      "side": 1,
+      "message": "I can call this function in a way that it seg faults.  A range check needs to prevent the following code from seg faulting and indexing outside the range.\n\nveifyOffset(std::vector\u003cuint8_t\u003e(), static_cast\u003cfruAreas\u003e(256), .....);",
+      "parentUuid": "49a700af_10d6fc2e",
+      "range": {
+        "startLine": 805,
+        "startChar": 4,
+        "endLine": 805,
+        "endChar": 40
+      },
+      "revId": "d5691a8ee36399f4591fbde873048473c1d4c53e",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
     }
   ]
 }
