@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "efd39ee7_366a0f1d",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 4
+      },
+      "lineNbr": 15,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2021-01-27T16:02:04Z",
+      "side": 1,
+      "message": "looking at your change, it doesn\u0027t look like it will persist correctly.  Please add a bmc reboot to your test, and subsequent read of the FRU data.",
+      "range": {
+        "startLine": 14,
+        "startChar": 0,
+        "endLine": 15,
+        "endChar": 51
+      },
+      "revId": "3406cd80c95892494402ac740f5e27a34aa0c6f5",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "3c670f05_86a46351",
+        "filename": "src/EntityManager.cpp",
+        "patchSetId": 4
+      },
+      "lineNbr": 1051,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2021-01-27T16:02:04Z",
+      "side": 1,
+      "message": "This interface isn\u0027t special, and shouldn\u0027t be hardcoded like this.",
+      "range": {
+        "startLine": 1050,
+        "startChar": 0,
+        "endLine": 1051,
+        "endChar": 71
+      },
+      "revId": "3406cd80c95892494402ac740f5e27a34aa0c6f5",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    }
+  ]
+}
