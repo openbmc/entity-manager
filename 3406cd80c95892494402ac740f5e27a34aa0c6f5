@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "a8c99212_cd7768c4",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 4
+      },
+      "lineNbr": 15,
+      "author": {
+        "id": 1000415
+      },
+      "writtenOn": "2021-01-27T16:56:43Z",
+      "side": 1,
+      "message": "Hi Ed, I have checked after bmc reboots also. It will persist the changed data correctly.",
+      "parentUuid": "efd39ee7_366a0f1d",
+      "range": {
+        "startLine": 14,
+        "startChar": 0,
+        "endLine": 15,
+        "endChar": 51
+      },
+      "revId": "3406cd80c95892494402ac740f5e27a34aa0c6f5",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "3c670f05_86a46351",
         "filename": "src/EntityManager.cpp",
         "patchSetId": 4
@@ -36,6 +60,30 @@
       "writtenOn": "2021-01-27T16:02:04Z",
       "side": 1,
       "message": "This interface isn\u0027t special, and shouldn\u0027t be hardcoded like this.",
+      "range": {
+        "startLine": 1050,
+        "startChar": 0,
+        "endLine": 1051,
+        "endChar": 71
+      },
+      "revId": "3406cd80c95892494402ac740f5e27a34aa0c6f5",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "3d2a0cf0_e9232773",
+        "filename": "src/EntityManager.cpp",
+        "patchSetId": 4
+      },
+      "lineNbr": 1051,
+      "author": {
+        "id": 1000415
+      },
+      "writtenOn": "2021-01-27T16:56:43Z",
+      "side": 1,
+      "message": "hi Ed, we have 2 decorator interfaces for Asset details. Decorator.Asset is already used in .hpp file, so similarly I used for Decorator.AssetTag. This is how it is picking from json files.\nPlease suggest me if it should be in different way. Thank you.",
+      "parentUuid": "3c670f05_86a46351",
       "range": {
         "startLine": 1050,
         "startChar": 0,
