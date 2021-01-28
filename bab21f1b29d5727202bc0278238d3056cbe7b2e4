@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "a43209c8_255b0662",
+        "filename": "configurations/Blyth.json",
+        "patchSetId": 1
+      },
+      "lineNbr": 5,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2021-01-28T23:52:11Z",
+      "side": 1,
+      "message": "I suspect this should be $bus, but I\u0027m not sure if com.ibm.ipzvpd.VINI wired that logic up in the way that EM expects.  one of the points of non-baseboard entities is they should be agnostic to what numbered bus they\u0027re connected to, making it more flexible to change if the hardware designers change their mind.",
+      "range": {
+        "startLine": 5,
+        "startChar": 19,
+        "endLine": 5,
+        "endChar": 20
+      },
+      "revId": "bab21f1b29d5727202bc0278238d3056cbe7b2e4",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    }
+  ]
+}
