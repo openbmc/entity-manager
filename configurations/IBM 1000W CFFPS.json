@@ -1,0 +1,11 @@
+{
+    "Exposes": [
+    ],
+    "Name": "IBM 1000W CFFPS $index",
+    "Probe": [
+        "xyz.openbmc_project.Inventory.Decorator.Asset({'Model': '2B1D'})",
+        "OR",
+        "xyz.openbmc_project.Inventory.Decorator.Asset({'Model': '51ED'})"
+    ],
+    "Type": "PowerSupply"
+}
