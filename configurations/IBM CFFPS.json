@@ -1,0 +1,32 @@
+[
+    {
+        "Exposes": [
+            {
+                "Labels": [
+                    "vin"
+                ],
+                "Name": "CFFPS $index",
+                "Thresholds": [
+                    {
+                        "Direction": "greater than",
+                        "Label": "vin",
+                        "Name": "upper critical",
+                        "Value": 240
+                    },
+                    {
+                        "Direction": "less than",
+                        "Label": "vin",
+                        "Name": "lower critical",
+                        "Value": 200
+                    }
+                ],
+                "Type": "pmbus"
+            }
+        ],
+        "Name": "IBM 2000W CFFPS $index",
+        "Probe": [
+            "com.ibm.ipzvpd.VINI({'CC': [53, 49, 69, 57]})"
+        ],
+        "Type": "PowerSupply"
+    }
+]
