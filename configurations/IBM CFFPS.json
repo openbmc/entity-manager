@@ -1,0 +1,49 @@
+[
+    {
+        "Exposes": [
+            {
+                "Name": "CFFPS Label",
+                "Type": "PowerSupplyLabel",
+                "MinInputVoltage": 100,
+                "MaxInputVoltage": 127
+            }
+        ],
+        "Name": "IBM 1000W CFFPS $index",
+        "Probe": [
+            "com.ibm.ipzvpd.VINI({'CC': [53, 49, 53, 53]})",
+            "OR",
+            "com.ibm.ipzvpd.VINI({'CC': [53, 49, 53, 54]})"
+        ],
+        "Type": "PowerSupply"
+    },
+    {
+        "Exposes": [
+            {
+                "Name": "CFFPS Label",
+                "Type": "PowerSupplyLabel",
+                "MinInputVoltage": 200,
+                "MaxInputVoltage": 240
+            }
+        ],
+        "Name": "IBM 1600W CFFPS $index",
+        "Probe": [
+            "com.ibm.ipzvpd.VINI({'CC': [53, 49, 69, 69]})"
+        ],
+        "Type": "PowerSupply"
+    },
+    {
+        "Exposes": [
+            {
+                "Name": "CFFPS Label",
+                "Type": "PowerSupplyLabel",
+                "MinInputVoltage": 200,
+                "MaxInputVoltage": 240
+            }
+        ],
+        "Name": "IBM 2000W CFFPS $index",
+        "Probe": [
+            "com.ibm.ipzvpd.VINI({'CC': [53, 49, 69, 57]})"
+        ],
+        "Type": "PowerSupply"
+    }
+]
