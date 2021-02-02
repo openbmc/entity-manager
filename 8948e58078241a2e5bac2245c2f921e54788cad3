@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "fb8176ec_407d9113",
+        "filename": "configurations/Rainier 2U Chassis.json",
+        "patchSetId": 1
+      },
+      "lineNbr": 13,
+      "author": {
+        "id": 1000318
+      },
+      "writtenOn": "2021-02-02T14:33:39Z",
+      "side": 1,
+      "message": "is \u0027MinCount\u0027 an existing property used for something?  I currently don\u0027t see a use for it, we\u0027ll eventually log an error based on the \u0027Redundant Count\u0027 below.  It\u0027s fine if we want to leave it in for potential future usage, but nothing comes to mind at this time.",
+      "revId": "8948e58078241a2e5bac2245c2f921e54788cad3",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "361ba9b1_d235bf46",
+        "filename": "configurations/Rainier 2U Chassis.json",
+        "patchSetId": 1
+      },
+      "lineNbr": 18,
+      "author": {
+        "id": 1000318
+      },
+      "writtenOn": "2021-02-02T14:33:39Z",
+      "side": 1,
+      "message": "Currently in the lab they are using the 51DE alpine-pdq 2000W ps.  I have not heard recently if  and when they will have enough of the new ones to replace all of the existings bup ps, we should check with Ruby what the current plans are (we don\u0027t want to log errors if we have to live with the 51DE ps for a while yet).",
+      "revId": "8948e58078241a2e5bac2245c2f921e54788cad3",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    }
+  ]
+}
