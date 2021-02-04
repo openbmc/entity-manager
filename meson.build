@@ -115,6 +115,7 @@ configs = [
     'SOLUM_PSSF162202_PSU.json',
     'STP Baseboard.json',
     'STP P4000 Chassis.json',
+    'Tyan_S7106_Baseboard.json',
     'WFT Baseboard.json',
 ]
 
