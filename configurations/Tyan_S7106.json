@@ -1,0 +1,216 @@
+{
+    "Exposes": [
+        {
+            "Index": 0,
+            "Name": "pvccp_p0",
+            "ScaleFactor": 1.3333,
+            "Type": "ADC"
+        },
+        {
+            "Index": 1,
+            "Name": "pvccio_p0",
+            "Type": "ADC"
+        },
+        {
+            "Index": 2,
+            "Name": "pvddq_p0",
+            "Type": "ADC"
+        },
+        {
+            "Index": 3,
+            "Name": "pvpp_p0",
+            "ScaleFactor": 1.8462,
+            "Type": "ADC"
+        },
+        {
+            "Index": 4,
+            "Name": "pvccp_p1",
+            "ScaleFactor": 1.3333,
+            "Type": "ADC"
+        },
+        {
+            "Index": 5,
+            "Name": "pvccio_p1",
+            "Type": "ADC"
+        },
+        {
+            "Index": 6,
+            "Name": "pvddq_p1",
+            "Type": "ADC"
+        },
+        {
+            "Index": 7,
+            "Name": "pvpp_p1",
+            "ScaleFactor": 1.8462,
+            "Type": "ADC"
+        },
+        {
+            "Index": 8,
+            "Name": "vcc12",
+            "ScaleFactor": 8.913,
+            "Type": "ADC"
+        },
+        {
+            "Index": 9,
+            "Name": "vcc5",
+            "ScaleFactor": 3.75,
+            "Type": "ADC"
+        },
+        {
+            "Index": 10,
+            "Name": "vcc3",
+            "ScaleFactor": 2.4677,
+            "Type": "ADC"
+        },
+        {
+            "Index": 11,
+            "Name": "vcc3_aux",
+            "ScaleFactor": 2.4677,
+            "Type": "ADC"
+        },
+        {
+            "Index": 12,
+            "Name": "p1v8_pch",
+            "ScaleFactor": 1.3333,
+            "Type": "ADC"
+        },
+        {
+            "Index": 13,
+            "Name": "pvnn_pch",
+            "Type": "ADC"
+        },
+        {
+            "Index": 14,
+            "Name": "p1v05_pch",
+            "Type": "ADC"
+        },
+        {
+            "Connector": {
+                "Name": "System Fan Connector 1",
+                "Pwm": 0,
+                "Tachs": [
+                    0
+                ]
+            },
+            "Index": 0,
+            "Name": "cpufan0",
+            "Type": "AspeedFan"
+        },
+        {
+            "Connector": {
+                "Name": "System Fan Connector 2",
+                "Pwm": 1,
+                "Tachs": [
+                    1
+                ]
+            },
+            "Index": 1,
+            "Name": "cpufan1",
+            "Type": "AspeedFan"
+        },
+        {
+            "Connector": {
+                "Name": "System Fan Connector 3",
+                "Pwm": 3,
+                "Tachs": [
+                    2
+                ]
+            },
+            "Index": 2,
+            "Name": "fan1",
+            "Type": "AspeedFan"
+        },
+        {
+            "Connector": {
+                "Name": "System Fan Connector 4",
+                "Pwm": 3,
+                "Tachs": [
+                    3
+                ]
+            },
+            "Index": 3,
+            "Name": "fan2",
+            "Type": "AspeedFan"
+        },
+        {
+            "Connector": {
+                "Name": "System Fan Connector 5",
+                "Pwm": 3,
+                "Tachs": [
+                    4
+                ]
+            },
+            "Index": 4,
+            "Name": "fan3",
+            "Type": "AspeedFan"
+        },
+        {
+            "Connector": {
+                "Name": "System Fan Connector 6",
+                "Pwm": 3,
+                "Tachs": [
+                    5
+                ]
+            },
+            "Index": 5,
+            "Name": "fan4",
+            "Type": "AspeedFan"
+        },
+        {
+            "Connector": {
+                "Name": "System Fan Connector 7",
+                "Pwm": 4,
+                "Tachs": [
+                    6
+                ]
+            },
+            "Index": 6,
+            "Name": "fan5",
+            "Type": "AspeedFan"
+        },
+        {
+            "Connector": {
+                "Name": "System Fan Connector 8",
+                "Pwm": 4,
+                "Tachs": [
+                    7
+                ]
+            },
+            "Index": 7,
+            "Name": "fan6",
+            "Type": "AspeedFan"
+        },
+        {
+            "Address": "0x28",
+            "Bus": 0,
+            "Name": "sys_air_inlet",
+            "Name1": "mb_air_inlet",
+            "Name2": "sys_air_outlet",
+            "Name3": "pch_temp",
+            "Type": "TMP421"
+        },
+        {
+            "Address": "0x58",
+            "Bus": 3,
+            "Name": "psu0",
+            "PowerScaleFactor": 1000000,
+            "Type": "pmbus"
+        },
+        {
+            "Address": "0x59",
+            "Bus": 3,
+            "Name": "psu1",
+            "PowerScaleFactor": 1000000,
+            "Type": "pmbus"
+        }
+    ],
+    "Name": "Tyan S7106 Baseboard",
+    "Probe": "xyz.openbmc_project.FruDevice({'BOARD_PRODUCT_NAME': 'S7106*'})",
+    "Type": "Board",
+    "xyz.openbmc_project.Inventory.Decorator.Asset": {
+        "Manufacturer": "$BOARD_MANUFACTURER",
+        "Model": "$BOARD_PRODUCT_NAME",
+        "PartNumber": "$BOARD_PART_NUMBER",
+        "SerialNumber": "$BOARD_SERIAL_NUMBER"
+    }
+}
