@@ -1,0 +1,47 @@
+{
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "definitions": {
+        "SupportedConfiguration": {
+            "title": "Supported configurations",
+            "description": [
+                "A schema to describe supported objects for this entity, such",
+                "as describing the various power supply models that a chassis",
+                "can have plugged in, or cards that a board supports."
+            ],
+            "type": "object",
+            "properties": {
+                "Name": {
+                    "type": "string"
+                },
+                "Type": {
+                    "enum": [
+                        "SupportedConfiguration"
+                    ]
+                },
+                "SupportedType": {
+                    "description": [
+                        "The entity-manager type of the supported object, ex:",
+                        "PowerSupply."
+                    ],
+                    "type": "string"
+                },
+                "SupportedModel": {
+                    "description": [
+                        "The value(s) of the Model property of the supported",
+                        "object(s)."
+                    ],
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    }
+                }
+            },
+            "required": [
+                "Name",
+                "Type",
+                "SupportedType",
+                "SupportedModel"
+            ]
+        }
+    }
+}
