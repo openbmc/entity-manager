@@ -141,6 +141,11 @@ schemas = [
     'Pid.Zone.json',
     'Stepwise.json',
 ]
+if get_option('supported-configuration').enabled()
+    schemas += [
+        'SupportedConfiguration.json',
+    ]
+endif
 
 foreach s : schemas
     install_data(

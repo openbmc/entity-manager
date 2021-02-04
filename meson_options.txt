@@ -7,3 +7,6 @@ option(
 option(
     'fru-device-resizefru', value : false, type: 'boolean', description: 'Allow FruDevice to resize FRU areas.',
 )
+option(
+    'supported-configuration', type: 'feature', description: 'Enable the Supported Configuration schema.',
+)

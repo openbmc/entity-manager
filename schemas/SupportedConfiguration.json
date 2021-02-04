@@ -1,0 +1,68 @@
+{
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "definitions": {
+        "SupportedConfiguration": {
+            "title": "Supported configurations",
+            "description": [
+                "A schema to describe supported objects for this entity, such",
+                "as describing the various power supply models that a chassis",
+                "can have plugged in, or cards that a board supports."
+            ],
+            "type": "object",
+            "properties": {
+                "Name": {
+                    "type": "string"
+                },
+                "Type": {
+                    "enum": [
+                        "SupportedConfiguration"
+                    ]
+                },
+                "Severity": {
+                    "enum": [
+                        "Info",
+                        "Error",
+                        "Critical"
+                    ]
+                },
+                "SupportedType": {
+                    "description": [
+                        "The entity-manager type of the supported object, ex:",
+                        "PowerSupply."
+                    ],
+                    "type": "string"
+                },
+                "SupportedModel": {
+                    "description": [
+                        "The value(s) of the Model property of the supported",
+                        "object(s)."
+                    ],
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    }
+                },
+                "RedundantCount": {
+                    "description": [
+                        "The required number of objects of this type to obtain",
+                        "redundancy."
+                    ],
+                    "type": "number"
+                },
+                "InputVoltage": {
+                    "description": [
+                        "The input voltage that this object supports."
+                    ],
+                    "type": "number"
+                }
+            },
+            "required": [
+                "Name",
+                "Type",
+                "Severity",
+                "SupportedType",
+                "SupportedModel"
+            ]
+        }
+    }
+}
