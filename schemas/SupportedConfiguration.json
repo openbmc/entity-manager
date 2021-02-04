@@ -1,0 +1,63 @@
+{
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "definitions": {
+        "SupportedConfiguration": {
+            "title": "Supported configurations",
+            "description": [
+                "A schema to describe a set of components that are supported",
+                "for this configuration. Each Supported set would include the",
+                "names of the components, duplicating them to match the number",
+                "of supported components. Example, a chassis that supports two",
+                "power supplies model PowerSupply-1 would specify the",
+                "Supported set as follows:",
+                "['My Chassis', 'PowerSupply-1', 'PowerSupply-1']."
+            ],
+            "type": "object",
+            "properties": {
+                "Name": {
+                    "type": "string"
+                },
+                "Type": {
+                    "enum": [
+                        "SupportedConfiguration"
+                    ]
+                },
+                "Supported": {
+                    "description": [
+                        "The set that describes the supported components for",
+                        "this configuration."
+                    ],
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    }
+                },
+                "Severity": {
+                    "description": [
+                        "Indicates if any action should be taken if the",
+                        "supported configuration set is not met."
+                    ],
+                    "enum": [
+                        "Info",
+                        "Error",
+                        "Critical"
+                    ]
+                },
+                "AllowExtraComponents": {
+                    "description": [
+                        "Flag to indicate if additional components would cause",
+                        "the specified supported configuration to fail."
+                    ],
+                    "type": "boolean"
+                }
+            },
+            "required": [
+                "Name",
+                "Type",
+                "Supported",
+                "Severity",
+                "AllowExtraComponents"
+            ]
+        }
+    }
+}
