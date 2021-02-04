@@ -1,0 +1,65 @@
+{
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "definitions": {
+        "AllowedConfiguration": {
+            "title": "Allowed configurations",
+            "description": [
+                "A schema to describe allowable objects for this entity, such",
+                "as describing the various power supply models that a chassis",
+                "can have plugged in."
+            ],
+            "type": "object",
+            "properties": {
+                "Name": {
+                    "type": "string"
+                },
+                "Type": {
+                    "enum": [
+                        "AllowedConfiguration"
+                    ]
+                },
+                "AllowedType": {
+                    "description": [
+                        "The entity-manager type of the allowable object, ex:",
+                        "PowerSupply."
+                    ],
+                    "type": "string"
+                },
+                "AllowedModel": {
+                    "description": [
+                        "The value(s) of the Model property of the allowable",
+                        "object(s), ex: Vendor-2000-Z99."
+                    ],
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    }
+                },
+                "MinCount": {
+                    "description": [
+                        "The minimum number of objects supported for this type."
+                    ],
+                    "type": "number"
+                },
+                "MaxCount": {
+                    "description": [
+                        "The maximum number of objects supported for this type."
+                    ],
+                    "type": "number"
+                },
+                "RedundantCount": {
+                    "description": [
+                        "The min number of objects to obtain redundancy."
+                    ],
+                    "type": "number"
+                }
+            },
+            "required": [
+                "Name",
+                "Type",
+                "AllowedType",
+                "AllowedModel"
+            ]
+        }
+    }
+}
