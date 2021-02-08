@@ -176,4 +176,20 @@ if not build_tests.disabled()
             include_directories: 'include',
         )
     )
+
+    test(
+        'test_fru_utils',
+        executable(
+            'test_fru_utils',
+            'test/test_fru-utils.cpp',
+            'src/FruUtils.cpp',
+            cpp_args: boost_args + ['-DBOOST_ASIO_DISABLE_THREADS'],
+            dependencies: [
+                boost,
+                gtest,
+            ],
+            implicit_include_directories: false,
+            include_directories: 'include',
+        )
+    )
 endif
