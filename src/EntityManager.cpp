@@ -1435,6 +1435,13 @@ void PerformScan::run()
 
                     for (auto& expose : *findExpose)
                     {
+                        std::string exposeType;
+                        auto findType = expose.find("Type");
+                        if (findType != expose.end())
+                        {
+                            exposeType = findType->get<std::string>();
+                        }
+
                         for (auto keyPair = expose.begin();
                              keyPair != expose.end(); keyPair++)
                         {
@@ -1444,10 +1451,13 @@ void PerformScan::run()
 
                             bool isBind =
                                 boost::starts_with(keyPair.key(), "Bind");
-                            bool isDisable = keyPair.key() == "DisableNode";
+                            bool isDisable = (keyPair.key() == "DisableNode") &&
+                                             (exposeType == "Disable");
+                            bool isEnable = (keyPair.key() == "EnableNode") &&
+                                            (exposeType == "Enable");
 
                             // special cases
-                            if (!(isBind || isDisable))
+                            if (!(isBind || isDisable || isEnable))
                             {
                                 continue;
                             }
@@ -1487,7 +1497,7 @@ void PerformScan::run()
                             for (auto& configurationPair :
                                  _systemConfiguration.items())
                             {
-                                if (isDisable)
+                                if (isDisable || isEnable)
                                 {
                                     // don't disable ourselves
                                     if (configurationPair.key() == recordName)
@@ -1531,6 +1541,10 @@ void PerformScan::run()
                                     else if (isDisable)
                                     {
                                         exposedObject["Status"] = "disabled";
+                                    }
+                                    else if (isEnable)
+                                    {
+                                        exposedObject["Status"] = "okay";
                                     }
                                 }
                             }
