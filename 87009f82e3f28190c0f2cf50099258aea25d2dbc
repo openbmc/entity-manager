@@ -16,6 +16,24 @@
       "revId": "87009f82e3f28190c0f2cf50099258aea25d2dbc",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "8e8292dc_48c0fbd8",
+        "filename": "configurations/IBM CFFPS.json",
+        "patchSetId": 2
+      },
+      "lineNbr": 33,
+      "author": {
+        "id": 1000003
+      },
+      "writtenOn": "2021-02-09T22:59:00Z",
+      "side": 1,
+      "message": "Yeah, one shared file. What I understand from Brad is that these power supplies have the special IBM CFF connector, otherwise we could just list them individually as VENDOR_PSU.json file like the others PSUs, but I\u0027ll let Brad confirm.\n\nWe can also specify the vendor in the name. Something like \"Delta 1600W CFFPS\" instead of \"IBM\"?\n\nTalking with Brad too, created a new type PowerSupplyLabel as pmbus is used mainly by the sensor application.",
+      "parentUuid": "329f0d7b_1071666f",
+      "revId": "87009f82e3f28190c0f2cf50099258aea25d2dbc",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
     }
   ]
 }
