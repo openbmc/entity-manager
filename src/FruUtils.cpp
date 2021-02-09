@@ -33,6 +33,19 @@ extern "C"
 static constexpr bool DEBUG = false;
 constexpr size_t fruVersion = 1; // Current FRU spec version number is 1
 
+std::string getFruAreaName(fruAreas area)
+{
+    // Check range of passed area value
+    if (static_cast<unsigned int>(area) >= FRU_AREA_NAMES.size())
+    {
+        std::cerr << "Error: Fru area is out of range\n";
+        const std::string empty = "";
+        return empty;
+    }
+
+    return FRU_AREA_NAMES[static_cast<unsigned int>(area)];
+}
+
 bool validateHeader(const std::array<uint8_t, I2C_SMBUS_BLOCK_MAX>& blockData)
 {
     // ipmi spec format version number is currently at 1, verify it
@@ -90,6 +103,81 @@ bool validateHeader(const std::array<uint8_t, I2C_SMBUS_BLOCK_MAX>& blockData)
                       << "\n";
         }
         return false;
+    }
+    return true;
+}
+
+/* This function verifies for other offsets to check if they are not
+ * falling under other field area
+ *
+ * fruBytes:    Start of Fru data
+ * currentArea: Index of current area offset to be compared against all area
+ *              offset and it is a multiple of 8 bytes as per specification
+ * len:         Length of current area space and it is a multiple of 8 bytes
+ *              as per specification
+ */
+bool verifyOffset(const std::vector<uint8_t>& fruBytes, fruAreas currentArea,
+                  uint8_t len)
+{
+
+    unsigned int fruBytesSize = fruBytes.size();
+
+    // check if Fru data has at least 8 byte header
+    if (fruBytesSize <= fruBlockSize)
+    {
+        std::cerr << "Error: trying to parse empty FRU\n";
+        return false;
+    }
+
+    // Check range of passed currentArea value
+    if (currentArea > fruAreas::fruAreaMultirecord)
+    {
+        std::cerr << "Error: Fru area is out of range\n";
+        return false;
+    }
+
+    unsigned int currentAreaIndex = getHeaderAreaFieldOffset(currentArea);
+    if (currentAreaIndex > fruBytesSize)
+    {
+        std::cerr << "Error: Fru area index is out of range\n";
+        return false;
+    }
+
+    unsigned int start = fruBytes[currentAreaIndex];
+    unsigned int end = start + len;
+
+    /* Verify each offset within the range of start and end */
+    for (fruAreas area = fruAreas::fruAreaInternal;
+         area <= fruAreas::fruAreaMultirecord; ++area)
+    {
+        // skip the current offset
+        if (area == currentArea)
+        {
+            continue;
+        }
+
+        unsigned int areaIndex = getHeaderAreaFieldOffset(area);
+        if (areaIndex > fruBytesSize)
+        {
+            std::cerr << "Error: Fru area index is out of range\n";
+            return false;
+        }
+
+        unsigned int areaOffset = fruBytes[areaIndex];
+        // if areaOffset is 0 means this area is not available so skip
+        if (areaOffset == 0)
+        {
+            continue;
+        }
+
+        // check for overlapping of current offset with given areaoffset
+        if (areaOffset == start || (areaOffset > start && areaOffset < end))
+        {
+            std::cerr << getFruAreaName(currentArea)
+                      << " offset is overlapping with " << getFruAreaName(area)
+                      << " offset\n";
+            return false;
+        }
     }
     return true;
 }
