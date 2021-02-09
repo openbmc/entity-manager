@@ -42,6 +42,9 @@ inline fruAreas operator++(fruAreas& x)
                                      1);
 }
 
+const std::vector<std::string> FRU_AREA_NAMES = {"INTERNAL", "CHASSIS", "BOARD",
+                                                 "PRODUCT", "MULTIRECORD"};
+
 inline constexpr size_t fruBlockSize =
     8; // FRU areas are measured in 8-byte blocks
 
@@ -69,3 +72,16 @@ bool validateHeader(const std::array<uint8_t, I2C_SMBUS_BLOCK_MAX>& blockData);
 /// \param area - the area
 /// \return the field offset
 unsigned int getHeaderAreaFieldOffset(fruAreas area);
+
+/// \brief Get name of FRU areas
+/// \param area - the area
+/// \return the name of Fru areas
+std::string getFruAreaName(fruAreas area);
+
+/// \brief verifies overlapping of other offsets against given offset area
+/// \param fruBytes Start of Fru data
+/// \param currentArea Index of current area offset to be compared
+/// \param len Length of current area space
+/// \return true on success
+bool verifyOffset(const std::vector<uint8_t>& fruBytes, fruAreas currentArea,
+                  uint8_t len);
