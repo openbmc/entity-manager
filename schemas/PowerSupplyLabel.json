@@ -1,0 +1,40 @@
+{
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "definitions": {
+        "PowerSupplyLabel": {
+            "title": "Power Supply Specifications Label",
+            "description": [
+                "A schema to describe Power Supply specifications."
+            ],
+            "type": "object",
+            "properties": {
+                "Name": {
+                    "type": "string"
+                },
+                "Type": {
+                    "enum": [
+                        "PowerSupplyLabel"
+                    ]
+                },
+                "MinInputVoltage": {
+                    "description": [
+                        "The lower end of the input voltage range that the",
+                        "power supply supports."
+                    ],
+                    "type": "number"
+                },
+                "MaxInputVoltage": {
+                    "description": [
+                        "The higher end of the input voltage range that the",
+                        "power supply supports."
+                    ],
+                    "type": "number"
+                }
+            },
+            "required": [
+                "Name",
+                "Type"
+            ]
+        }
+    }
+}

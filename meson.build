@@ -131,6 +131,7 @@ schemas = [
     'Intel.json',
     'Pid.json',
     'Pid.Zone.json',
+    'PowerSupplyLabel.json',
     'Stepwise.json',
 ]
 
