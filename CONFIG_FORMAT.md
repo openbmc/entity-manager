@@ -90,7 +90,8 @@ Within a configuration file, there is a JSON object which consists of multiple
 | "Exposes" | [{"Name" : "CPU fan"}, ...]              | An array of JSON objects which are valid if the probe result is successful. These objects describe the devices BMC can interact. |
 | "Status"  | "disabled"                               | An indicator that allows for some records to be disabled by default. |
 | "Bind*"  | "2U System Fan connector 1"              | The record isn't complete and needs to be combined with another to be functional. The value is a unique reference to a record elsewhere. |
-| "DisableNode| "Fan 1" | Sets the status of another Entity to disabled. |
+| "DisableNode" | "Fan 1" | Sets the status of another Entity to disabled. |
+| "EnableNode" | ["Fan 1","Fan 2"] | Sets the status of another Entity to enabled. |
 
 Template strings in the form of "$identifier" may be used in configuration
 files. The following table describes the template strings currently defined.

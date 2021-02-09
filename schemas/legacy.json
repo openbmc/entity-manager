@@ -60,8 +60,14 @@
                 "Direction": {
                     "$ref": "#/definitions/Types/Direction"
                 },
+                "DisableNode": {
+                    "$ref": "#/definitions/Types/DisableNode"
+                },
                 "DtsCritOffset": {
                     "$ref": "#/definitions/Types/DtsCritOffset"
+                },
+                "EnableNode": {
+                    "$ref": "#/definitions/Types/EnableNode"
                 },
                 "FaultIndex": {
                     "$ref": "#/definitions/Types/FaultIndex"
@@ -378,8 +384,20 @@
             "Direction": {
                 "type": "string"
             },
+            "DisableNode": {
+                "type": [
+                    "string",
+                    "array"
+                ]
+            },
             "DtsCritOffset": {
                 "type": "number"
+            },
+            "EnableNode": {
+                "type": [
+                    "string",
+                    "array"
+                ]
             },
             "FaultIndex": {
                 "type": "number"
