@@ -1137,6 +1137,26 @@ void postToDbus(const nlohmann::json& newConfiguration,
     }
 }
 
+void removeFromDbus(const std::string& configurationName,
+                    sdbusplus::asio::object_server& objServer)
+{
+    auto ifaces = inventory.find(configurationName);
+    if (ifaces == inventory.end())
+    {
+        return;
+    }
+    for (auto& iface : ifaces->second)
+    {
+        auto sharedPtr = iface.lock();
+        if (!sharedPtr)
+        {
+            continue; // was already deleted elsewhere
+        }
+        objServer.remove_interface(sharedPtr);
+    }
+    ifaces->second.clear();
+}
+
 // reads json files out of the filesystem
 bool findJsonFiles(std::list<nlohmann::json>& configurations)
 {
@@ -1783,19 +1803,12 @@ void propertiesChangedCallback(nlohmann::json& systemConfiguration,
                         // power not on yet, don't know if it's there or not
                         continue;
                     }
-                    std::string name = item.value()["Name"].get<std::string>();
-                    std::vector<std::weak_ptr<sdbusplus::asio::dbus_interface>>&
-                        ifaces = inventory[name];
-                    for (auto& iface : ifaces)
+                    auto findName = item.value().find("Name");
+                    if (findName != item.value().end())
                     {
-                        auto sharedPtr = iface.lock();
-                        if (!sharedPtr)
-                        {
-                            continue; // was already deleted elsewhere
-                        }
-                        objServer.remove_interface(sharedPtr);
+                        std::string name = findName->get<std::string>();
+                        removeFromDbus(name, objServer);
                     }
-                    ifaces.clear();
                     systemConfiguration.erase(item.key());
                     logDeviceRemoved(item.value());
                 }
@@ -1805,13 +1818,24 @@ void propertiesChangedCallback(nlohmann::json& systemConfiguration,
                      it != newConfiguration.end();)
                 {
                     auto findKey = oldConfiguration.find(it.key());
-                    if (findKey != oldConfiguration.end())
+                    if (findKey == oldConfiguration.end())
                     {
-                        it = newConfiguration.erase(it);
+                        it++;
+                    }
+                    else if (*findKey != *it)
+                    {
+                        // configuration changed, recreate dbus objects
+                        auto findName = it.value().find("Name");
+                        if (findName != it.value().end())
+                        {
+                            std::string name = findName->get<std::string>();
+                            removeFromDbus(name, objServer);
+                        }
+                        it++;
                     }
                     else
                     {
-                        it++;
+                        it = newConfiguration.erase(it);
                     }
                 }
                 for (const auto& item : newConfiguration.items())
