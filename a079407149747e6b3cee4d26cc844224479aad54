@@ -2,6 +2,29 @@
   "comments": [
     {
       "key": {
+        "uuid": "1b48e510_c1fd40ed",
+        "filename": "src/FruDevice.cpp",
+        "patchSetId": 1
+      },
+      "lineNbr": 1495,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2021-02-19T18:07:43Z",
+      "side": 1,
+      "message": "Remove this condition.",
+      "range": {
+        "startLine": 1495,
+        "startChar": 28,
+        "endLine": 1495,
+        "endChar": 29
+      },
+      "revId": "a079407149747e6b3cee4d26cc844224479aad54",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "110d9acf_b240a58e",
         "filename": "src/FruDevice.cpp",
         "patchSetId": 1
@@ -60,6 +83,30 @@
       "side": 1,
       "message": "This or line 1497 need to be done always, even when bus0.second is false, i.e. bus0 already had other device",
       "parentUuid": "b0a50e8f_608b5a9b",
+      "range": {
+        "startLine": 1499,
+        "startChar": 0,
+        "endLine": 1499,
+        "endChar": 56
+      },
+      "revId": "a079407149747e6b3cee4d26cc844224479aad54",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "c4461dac_56af713e",
+        "filename": "src/FruDevice.cpp",
+        "patchSetId": 1
+      },
+      "lineNbr": 1499,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2021-02-19T18:07:43Z",
+      "side": 1,
+      "message": "weird... a comment of mine didn\u0027t make it through.  I also suggested deleting the conditional on 1495.\n\nThis line is equivalent in function to the line on 1497.  The line on 1497 is better, so if it\u0027s dropped outside the conditional, this can be removed.",
+      "parentUuid": "5d5bf3cd_aa45e58e",
       "range": {
         "startLine": 1499,
         "startChar": 0,
