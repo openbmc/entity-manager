@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "50eb0209_3d353bfb",
+        "filename": "src/FruDevice.cpp",
+        "patchSetId": 2
+      },
+      "lineNbr": 1494,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2021-02-20T17:53:48Z",
+      "side": 1,
+      "message": "Please do what I asked for.  try_emplace returns a reference to the element that was just emplaced, there\u0027s no need to look it up again, just use the .first return on the try_emplace call.",
+      "range": {
+        "startLine": 1492,
+        "startChar": 0,
+        "endLine": 1494,
+        "endChar": 56
+      },
+      "revId": "6bd5281a54fc38475d4e99169f96ddebe847aa18",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    }
+  ]
+}
