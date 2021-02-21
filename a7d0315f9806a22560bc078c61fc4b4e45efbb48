@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "0ef48a95_5496795f",
+        "filename": "test/test_fru-utils.cpp",
+        "patchSetId": 2
+      },
+      "lineNbr": 45,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2021-02-21T20:51:56Z",
+      "side": 1,
+      "message": "nit: magic number?\n\nmaybe load into a variable first called \"areaIndexOutOfRange\"",
+      "range": {
+        "startLine": 45,
+        "startChar": 62,
+        "endLine": 45,
+        "endChar": 63
+      },
+      "revId": "a7d0315f9806a22560bc078c61fc4b4e45efbb48",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "c2c6e420_98b04dc9",
+        "filename": "test/test_fru-utils.cpp",
+        "patchSetId": 2
+      },
+      "lineNbr": 54,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2021-02-21T20:51:56Z",
+      "side": 1,
+      "message": "This doesn\u0027t seem like enough EXPECTS for this condition?  I\u0027d expect at least the 4 cases covered (overlapping both directions, completely covered, and not overlapping at all).",
+      "range": {
+        "startLine": 54,
+        "startChar": 4,
+        "endLine": 54,
+        "endChar": 70
+      },
+      "revId": "a7d0315f9806a22560bc078c61fc4b4e45efbb48",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    }
+  ]
+}
