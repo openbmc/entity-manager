@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "f41a86a9_cd27e214",
+        "filename": "src/FruUtils.cpp",
+        "patchSetId": 7
+      },
+      "lineNbr": 125,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2021-02-21T20:53:48Z",
+      "side": 1,
+      "message": "Please don\u0027t rely on static variables for this kind of thing.  They\u0027re effectively globals, and require a very specific ordering of code.  If you need extra state, track it in the calling scope and pass it in.",
+      "range": {
+        "startLine": 125,
+        "startChar": 4,
+        "endLine": 125,
+        "endChar": 11
+      },
+      "revId": "4d7beecaa0d8aebf5940707774e7002495ae6f18",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    }
+  ]
+}
