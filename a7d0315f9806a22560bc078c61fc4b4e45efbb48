@@ -93,6 +93,30 @@
       "revId": "a7d0315f9806a22560bc078c61fc4b4e45efbb48",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "0ce20606_6587bd2b",
+        "filename": "test/test_fru-utils.cpp",
+        "patchSetId": 2
+      },
+      "lineNbr": 54,
+      "author": {
+        "id": 1000271
+      },
+      "writtenOn": "2021-02-22T23:46:21Z",
+      "side": 1,
+      "message": "Added 2 more case, completely covered is not possible as we don\u0027t pass boundary for both as we only pass one variable and with len and check every other offset if they fall in this area. As len is not available for everyone at this moment.",
+      "parentUuid": "1da07850_6d9ea7bd",
+      "range": {
+        "startLine": 54,
+        "startChar": 4,
+        "endLine": 54,
+        "endChar": 70
+      },
+      "revId": "a7d0315f9806a22560bc078c61fc4b4e45efbb48",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": false
     }
   ]
 }
