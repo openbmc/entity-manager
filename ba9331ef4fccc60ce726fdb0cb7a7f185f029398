@@ -1,0 +1,349 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "433a371c_22158ccd",
+        "filename": "src/Overlay.cpp",
+        "patchSetId": 1
+      },
+      "lineNbr": 37,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2021-02-23T22:27:53Z",
+      "side": 1,
+      "message": "Please don\u0027t extern this.  Include the appropriate header or pass it through the layers.",
+      "range": {
+        "startLine": 37,
+        "startChar": 0,
+        "endLine": 37,
+        "endChar": 34
+      },
+      "revId": "ba9331ef4fccc60ce726fdb0cb7a7f185f029398",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "a0b9fe87_5f6d93d9",
+        "filename": "src/Overlay.cpp",
+        "patchSetId": 1
+      },
+      "lineNbr": 166,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2021-02-23T22:27:53Z",
+      "side": 1,
+      "message": "Please invert this check to save horizontal space.",
+      "range": {
+        "startLine": 165,
+        "startChar": 0,
+        "endLine": 166,
+        "endChar": 5
+      },
+      "revId": "ba9331ef4fccc60ce726fdb0cb7a7f185f029398",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "aeecd83a_04eb6b48",
+        "filename": "src/Overlay.cpp",
+        "patchSetId": 1
+      },
+      "lineNbr": 172,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2021-02-23T22:27:53Z",
+      "side": 1,
+      "message": "This isn\u0027t neccesary to check.  Just use the constructor of directory_iterator that takes and returns an error code.",
+      "range": {
+        "startLine": 172,
+        "startChar": 29,
+        "endLine": 172,
+        "endChar": 41
+      },
+      "revId": "ba9331ef4fccc60ce726fdb0cb7a7f185f029398",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "41a11a8e_b993d82d",
+        "filename": "src/Overlay.cpp",
+        "patchSetId": 1
+      },
+      "lineNbr": 175,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2021-02-23T22:27:53Z",
+      "side": 1,
+      "message": "Would recursive_directory_iterator make more sense here?  A lot of the things in these directories are symlinks, and recursive_directory_iterator can be set to follow them automatically rather than having two levels of loops.",
+      "range": {
+        "startLine": 175,
+        "startChar": 34,
+        "endLine": 175,
+        "endChar": 52
+      },
+      "revId": "ba9331ef4fccc60ce726fdb0cb7a7f185f029398",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "2846a54c_a3898226",
+        "filename": "src/Overlay.cpp",
+        "patchSetId": 1
+      },
+      "lineNbr": 182,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2021-02-23T22:27:53Z",
+      "side": 1,
+      "message": "undefined behavior.  You\u0027re capturing an rvalue by reference here.  filename() returns a value type, so you can\u0027t load it into a reference type and expect it to still be around after the intermediate has been destroyed.",
+      "range": {
+        "startLine": 182,
+        "startChar": 15,
+        "endLine": 182,
+        "endChar": 34
+      },
+      "revId": "ba9331ef4fccc60ce726fdb0cb7a7f185f029398",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "2bb2338b_6663d69c",
+        "filename": "src/Overlay.cpp",
+        "patchSetId": 1
+      },
+      "lineNbr": 184,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2021-02-23T22:27:53Z",
+      "side": 1,
+      "message": "Can you improve these checks please?  presumably 01_fooooobar_A2 shouldn\u0027t be an ok thing for this to match with.  Or I\u0027m not following what this is for.",
+      "range": {
+        "startLine": 183,
+        "startChar": 0,
+        "endLine": 184,
+        "endChar": 64
+      },
+      "revId": "ba9331ef4fccc60ce726fdb0cb7a7f185f029398",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "a780790e_4f2226bb",
+        "filename": "src/Overlay.cpp",
+        "patchSetId": 1
+      },
+      "lineNbr": 188,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2021-02-23T22:27:53Z",
+      "side": 1,
+      "message": "I\u0027m not quite following why retries are different than the base case here.  Can you elaborate a little?",
+      "range": {
+        "startLine": 188,
+        "startChar": 0,
+        "endLine": 188,
+        "endChar": 76
+      },
+      "revId": "ba9331ef4fccc60ce726fdb0cb7a7f185f029398",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "893a81c5_16dc61a0",
+        "filename": "src/Overlay.cpp",
+        "patchSetId": 1
+      },
+      "lineNbr": 193,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2021-02-23T22:27:53Z",
+      "side": 1,
+      "message": "nit: extra parens.\n\nNon-nit.  Use the error code overload of this.",
+      "range": {
+        "startLine": 193,
+        "startChar": 28,
+        "endLine": 193,
+        "endChar": 69
+      },
+      "revId": "ba9331ef4fccc60ce726fdb0cb7a7f185f029398",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "412cdabf_833766a8",
+        "filename": "src/Overlay.cpp",
+        "patchSetId": 1
+      },
+      "lineNbr": 196,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2021-02-23T22:27:53Z",
+      "side": 1,
+      "message": "You don\u0027t need an else after a return",
+      "range": {
+        "startLine": 194,
+        "startChar": 0,
+        "endLine": 196,
+        "endChar": 24
+      },
+      "revId": "ba9331ef4fccc60ce726fdb0cb7a7f185f029398",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "bb658c74_cfc608a3",
+        "filename": "src/Overlay.cpp",
+        "patchSetId": 1
+      },
+      "lineNbr": 212,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2021-02-23T22:27:53Z",
+      "side": 1,
+      "message": "unless I\u0027m missing something, I don\u0027t see anything taking ownership of these.  I suspect they can just be passed by value?\n\nAlso, as written, both of these would need to be checked for nullptr.",
+      "range": {
+        "startLine": 211,
+        "startChar": 0,
+        "endLine": 212,
+        "endChar": 57
+      },
+      "revId": "ba9331ef4fccc60ce726fdb0cb7a7f185f029398",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "1b85e842_4d4982c9",
+        "filename": "src/Overlay.cpp",
+        "patchSetId": 1
+      },
+      "lineNbr": 215,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2021-02-23T22:27:53Z",
+      "side": 1,
+      "message": "This is never called with anything but the default.  Please remove the param until it\u0027s needed.",
+      "range": {
+        "startLine": 215,
+        "startChar": 24,
+        "endLine": 215,
+        "endChar": 69
+      },
+      "revId": "ba9331ef4fccc60ce726fdb0cb7a7f185f029398",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "b824a8af_d3a80a9b",
+        "filename": "src/Overlay.cpp",
+        "patchSetId": 1
+      },
+      "lineNbr": 238,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2021-02-23T22:27:53Z",
+      "side": 1,
+      "message": "This causes the timer to implicitly own itself.  I suspect you need a higher level class that can own the timer, and own the retry count, so we\u0027re not instantiating a new timer every loop.\n\nWhat do you think?",
+      "range": {
+        "startLine": 237,
+        "startChar": 0,
+        "endLine": 238,
+        "endChar": 60
+      },
+      "revId": "ba9331ef4fccc60ce726fdb0cb7a7f185f029398",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "e7b3e23c_4dc371b5",
+        "filename": "src/Overlay.cpp",
+        "patchSetId": 1
+      },
+      "lineNbr": 239,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2021-02-23T22:27:53Z",
+      "side": 1,
+      "message": "Can you add a comment about how this number was chosen?",
+      "range": {
+        "startLine": 239,
+        "startChar": 61,
+        "endLine": 239,
+        "endChar": 64
+      },
+      "revId": "ba9331ef4fccc60ce726fdb0cb7a7f185f029398",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "36f9dea3_4e8a00ff",
+        "filename": "src/Overlay.cpp",
+        "patchSetId": 1
+      },
+      "lineNbr": 242,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2021-02-23T22:27:53Z",
+      "side": 1,
+      "message": "handle your errors please.  When and if this timer is canceled it will return an error.",
+      "range": {
+        "startLine": 242,
+        "startChar": 48,
+        "endLine": 242,
+        "endChar": 74
+      },
+      "revId": "ba9331ef4fccc60ce726fdb0cb7a7f185f029398",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "f41e3fc3_2a5c94a0",
+        "filename": "src/Overlay.cpp",
+        "patchSetId": 1
+      },
+      "lineNbr": 261,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2021-02-23T22:27:53Z",
+      "side": 1,
+      "message": "See above, these aren\u0027t used as anything except by value.  Shared_ptr seems like overkill.\n\nstd::optional\u003cuint64_t\u003e in this scope, then check for existence before you call your new function?",
+      "range": {
+        "startLine": 261,
+        "startChar": 4,
+        "endLine": 261,
+        "endChar": 19
+      },
+      "revId": "ba9331ef4fccc60ce726fdb0cb7a7f185f029398",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    }
+  ]
+}
