@@ -57,7 +57,7 @@ using ReadBlockFunc =
 /// \param errorHelp and a helper string for failures
 /// \return the FRU contents from the file
 std::vector<uint8_t> readFRUContents(int flag, int file, uint16_t address,
-                                     ReadBlockFunc readBlock,
+                                     const ReadBlockFunc& readBlock,
                                      const std::string& errorHelp);
 
 /// \brief Validate an IPMI FRU common header
