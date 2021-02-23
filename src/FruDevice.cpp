@@ -18,7 +18,6 @@
 #include "FruUtils.hpp"
 #include "Utils.hpp"
 
-#include <errno.h>
 #include <fcntl.h>
 #include <sys/inotify.h>
 #include <sys/ioctl.h>
@@ -32,6 +31,7 @@
 #include <sdbusplus/asio/object_server.hpp>
 
 #include <array>
+#include <cerrno>
 #include <chrono>
 #include <ctime>
 #include <filesystem>
@@ -57,18 +57,18 @@ extern "C"
 }
 
 namespace fs = std::filesystem;
-static constexpr bool DEBUG = false;
-static size_t UNKNOWN_BUS_OBJECT_COUNT = 0;
-constexpr size_t MAX_FRU_SIZE = 512;
-constexpr size_t MAX_EEPROM_PAGE_INDEX = 255;
+static constexpr bool debug = false;
+static size_t unknownBusObjectCount = 0;
+constexpr size_t maxFruSize = 512;
+constexpr size_t maxEepromPageIndex = 255;
 constexpr size_t busTimeoutSeconds = 5;
 
 constexpr const char* blacklistPath = PACKAGE_DIR "blacklist.json";
 
-const static constexpr char* BASEBOARD_FRU_LOCATION =
+const static constexpr char* baseboardFruLocation =
     "/etc/fru/baseboard.fru.bin";
 
-const static constexpr char* I2C_DEV_LOCATION = "/dev";
+const static constexpr char* i2CDevLocation = "/dev";
 
 using DeviceMap = boost::container::flat_map<int, std::vector<uint8_t>>;
 using BusMap = boost::container::flat_map<int, std::shared_ptr<DeviceMap>>;
@@ -94,7 +94,7 @@ uint8_t calculateChecksum(std::vector<uint8_t>::const_iterator iter,
                           std::vector<uint8_t>::const_iterator end);
 bool updateFRUProperty(
     const std::string& assetTag, uint32_t bus, uint32_t address,
-    std::string propertyName,
+    const std::string& propertyName,
     boost::container::flat_map<
         std::pair<size_t, size_t>,
         std::shared_ptr<sdbusplus::asio::dbus_interface>>& dbusInterfaceMap);
@@ -138,7 +138,7 @@ static int64_t readFromEeprom(int flag __attribute__((unused)), int fd,
 
 static int busStrToInt(const std::string& busName)
 {
-    auto findBus = busName.rfind("-");
+    auto findBus = busName.rfind('-');
     if (findBus == std::string::npos)
     {
         return -1;
@@ -159,7 +159,7 @@ static int getRootBus(size_t bus)
     }
 
     std::string filename = path.filename();
-    auto findBus = filename.find("-");
+    auto findBus = filename.find('-');
     if (findBus == std::string::npos)
     {
         return -1;
@@ -222,13 +222,12 @@ static int isDevice16Bit(int file)
 
 // Issue an I2C transaction to first write to_slave_buf_len bytes,then read
 // from_slave_buf_len bytes.
-static int i2c_smbus_write_then_read(int file, uint16_t address,
-                                     uint8_t* toSlaveBuf, uint8_t toSlaveBufLen,
-                                     uint8_t* fromSlaveBuf,
-                                     uint8_t fromSlaveBufLen)
+static int i2cSmbusWriteThenRead(int file, uint16_t address,
+                                 uint8_t* toSlaveBuf, uint8_t toSlaveBufLen,
+                                 uint8_t* fromSlaveBuf, uint8_t fromSlaveBufLen)
 {
-    if (toSlaveBuf == NULL || toSlaveBufLen == 0 || fromSlaveBuf == NULL ||
-        fromSlaveBufLen == 0)
+    if (toSlaveBuf == nullptr || toSlaveBufLen == 0 ||
+        fromSlaveBuf == nullptr || fromSlaveBufLen == 0)
     {
         return -1;
     }
@@ -264,7 +263,7 @@ static int64_t readBlockData(int flag, int file, uint16_t address,
     }
 
     offset = htobe16(offset);
-    return i2c_smbus_write_then_read(
+    return i2cSmbusWriteThenRead(
         file, address, reinterpret_cast<uint8_t*>(&offset), 2, buf, len);
 }
 
@@ -290,7 +289,8 @@ static std::vector<uint8_t> processEeprom(int bus, int address)
     return device;
 }
 
-std::set<int> findI2CEeproms(int i2cBus, std::shared_ptr<DeviceMap> devices)
+std::set<int> findI2CEeproms(int i2cBus,
+                             const std::shared_ptr<DeviceMap>& devices)
 {
     std::set<int> foundList;
 
@@ -399,12 +399,12 @@ int getBusFRUs(int file, int first, int last, int bus,
                 continue;
             }
             // probe
-            else if (i2c_smbus_read_byte(file) < 0)
+            if (i2c_smbus_read_byte(file) < 0)
             {
                 continue;
             }
 
-            if (DEBUG)
+            if (debug)
             {
                 std::cout << "something at bus " << bus << " addr " << ii
                           << "\n";
@@ -529,7 +529,7 @@ void loadBlacklist(const char* path)
     return;
 }
 
-static void FindI2CDevices(const std::vector<fs::path>& i2cBuses,
+static void findI2CDevices(const std::vector<fs::path>& i2cBuses,
                            BusMap& busmap)
 {
     for (auto& i2cBus : i2cBuses)
@@ -582,7 +582,7 @@ static void FindI2CDevices(const std::vector<fs::path>& i2cBuses,
         //  i2cdetect by default uses the range 0x03 to 0x77, as
         //  this is  what we have tested with, use this range. Could be
         //  changed in future.
-        if (DEBUG)
+        if (debug)
         {
             std::cerr << "Scanning bus " << bus << "\n";
         }
@@ -590,7 +590,7 @@ static void FindI2CDevices(const std::vector<fs::path>& i2cBuses,
         // fd is closed in this function in case the bus locks up
         getBusFRUs(file, 0x03, 0x77, bus, device);
 
-        if (DEBUG)
+        if (debug)
         {
             std::cerr << "Done scanning bus " << bus << "\n";
         }
@@ -613,7 +613,7 @@ struct FindDevicesWithCallback :
     }
     void run()
     {
-        FindI2CDevices(_i2cBuses, _busMap);
+        findI2CDevices(_i2cBuses, _busMap);
     }
 
     const std::vector<fs::path>& _i2cBuses;
@@ -638,7 +638,7 @@ std::vector<uint8_t>& getFRUInfo(const uint8_t& bus, const uint8_t& address)
     return ret;
 }
 
-void AddFRUObjectToDbus(
+void addFruObjectToDbus(
     std::vector<uint8_t>& device,
     boost::container::flat_map<
         std::pair<size_t, size_t>,
@@ -653,7 +653,7 @@ void AddFRUObjectToDbus(
                   << " address " << address << "\n";
         return;
     }
-    else if (res == resCodes::resWarn)
+    if (res == resCodes::resWarn)
     {
         std::cerr << "there were warnings while parsing FRU for device at bus "
                   << bus << " address " << address << "\n";
@@ -677,8 +677,8 @@ void AddFRUObjectToDbus(
     }
     else
     {
-        productName = "UNKNOWN" + std::to_string(UNKNOWN_BUS_OBJECT_COUNT);
-        UNKNOWN_BUS_OBJECT_COUNT++;
+        productName = "UNKNOWN" + std::to_string(unknownBusObjectCount);
+        unknownBusObjectCount++;
     }
 
     productName = "/xyz/openbmc_project/FruDevice/" + productName;
@@ -706,16 +706,16 @@ void AddFRUObjectToDbus(
 
                 // Check if the match named has extra information.
                 found = true;
-                std::smatch base_match;
+                std::smatch baseMatch;
 
                 bool match = std::regex_match(
-                    path, base_match, std::regex(productName + "_(\\d+)$"));
+                    path, baseMatch, std::regex(productName + "_(\\d+)$"));
                 if (match)
                 {
-                    if (base_match.size() == 2)
+                    if (baseMatch.size() == 2)
                     {
-                        std::ssub_match base_sub_match = base_match[1];
-                        std::string base = base_sub_match.str();
+                        std::ssub_match baseSubMatch = baseMatch[1];
+                        std::string base = baseSubMatch.str();
 
                         int value = std::stoi(base);
                         highest = (value > highest) ? value : highest;
@@ -741,13 +741,13 @@ void AddFRUObjectToDbus(
     {
 
         std::regex_replace(property.second.begin(), property.second.begin(),
-                           property.second.end(), NON_ASCII_REGEX, "_");
+                           property.second.end(), nonAsciiRegex, "_");
         if (property.second.empty() && property.first != "PRODUCT_ASSET_TAG")
         {
             continue;
         }
         std::string key =
-            std::regex_replace(property.first, NON_ASCII_REGEX, "_");
+            std::regex_replace(property.first, nonAsciiRegex, "_");
 
         if (property.first == "PRODUCT_ASSET_TAG")
         {
@@ -756,7 +756,7 @@ void AddFRUObjectToDbus(
                 key, property.second + '\0',
                 [bus, address, propertyName,
                  &dbusInterfaceMap](const std::string& req, std::string& resp) {
-                    if (strcmp(req.c_str(), resp.c_str()))
+                    if (strcmp(req.c_str(), resp.c_str()) != 0)
                     {
                         // call the method which will update
                         if (updateFRUProperty(req, bus, address, propertyName,
@@ -777,7 +777,7 @@ void AddFRUObjectToDbus(
         {
             std::cerr << "illegal key: " << key << "\n";
         }
-        if (DEBUG)
+        if (debug)
         {
             std::cout << property.first << ": " << property.second << "\n";
         }
@@ -793,7 +793,7 @@ void AddFRUObjectToDbus(
 static bool readBaseboardFRU(std::vector<uint8_t>& baseboardFRU)
 {
     // try to read baseboard fru from file
-    std::ifstream baseboardFRUFile(BASEBOARD_FRU_LOCATION, std::ios::binary);
+    std::ifstream baseboardFRUFile(baseboardFruLocation, std::ios::binary);
     if (baseboardFRUFile.good())
     {
         baseboardFRUFile.seekg(0, std::ios_base::end);
@@ -813,7 +813,7 @@ static bool readBaseboardFRU(std::vector<uint8_t>& baseboardFRU)
 bool writeFRU(uint8_t bus, uint8_t address, const std::vector<uint8_t>& fru)
 {
     boost::container::flat_map<std::string, std::string> tmp;
-    if (fru.size() > MAX_FRU_SIZE)
+    if (fru.size() > maxFruSize)
     {
         std::cerr << "Invalid fru.size() during writeFRU\n";
         return false;
@@ -827,102 +827,98 @@ bool writeFRU(uint8_t bus, uint8_t address, const std::vector<uint8_t>& fru)
     // baseboard fru
     if (bus == 0 && address == 0)
     {
-        std::ofstream file(BASEBOARD_FRU_LOCATION, std::ios_base::binary);
+        std::ofstream file(baseboardFruLocation, std::ios_base::binary);
         if (!file.good())
         {
-            std::cerr << "Error opening file " << BASEBOARD_FRU_LOCATION
-                      << "\n";
+            std::cerr << "Error opening file " << baseboardFruLocation << "\n";
             throw DBusInternalError();
             return false;
         }
         file.write(reinterpret_cast<const char*>(fru.data()), fru.size());
         return file.good();
     }
-    else
+
+    if (hasEepromFile(bus, address))
     {
-        if (hasEepromFile(bus, address))
+        auto path = getEepromPath(bus, address);
+        int eeprom = open(path.c_str(), O_RDWR | O_CLOEXEC);
+        if (eeprom < 0)
         {
-            auto path = getEepromPath(bus, address);
-            int eeprom = open(path.c_str(), O_RDWR | O_CLOEXEC);
-            if (eeprom < 0)
-            {
-                std::cerr << "unable to open i2c device " << path << "\n";
-                throw DBusInternalError();
-                return false;
-            }
+            std::cerr << "unable to open i2c device " << path << "\n";
+            throw DBusInternalError();
+            return false;
+        }
 
-            ssize_t writtenBytes = write(eeprom, fru.data(), fru.size());
-            if (writtenBytes < 0)
-            {
-                std::cerr << "unable to write to i2c device " << path << "\n";
-                close(eeprom);
-                throw DBusInternalError();
-                return false;
-            }
-
+        ssize_t writtenBytes = write(eeprom, fru.data(), fru.size());
+        if (writtenBytes < 0)
+        {
+            std::cerr << "unable to write to i2c device " << path << "\n";
             close(eeprom);
-            return true;
-        }
-
-        std::string i2cBus = "/dev/i2c-" + std::to_string(bus);
-
-        int file = open(i2cBus.c_str(), O_RDWR | O_CLOEXEC);
-        if (file < 0)
-        {
-            std::cerr << "unable to open i2c device " << i2cBus << "\n";
-            throw DBusInternalError();
-            return false;
-        }
-        if (ioctl(file, I2C_SLAVE_FORCE, address) < 0)
-        {
-            std::cerr << "unable to set device address\n";
-            close(file);
             throw DBusInternalError();
             return false;
         }
 
-        constexpr const size_t RETRY_MAX = 2;
-        uint16_t index = 0;
-        size_t retries = RETRY_MAX;
-        while (index < fru.size())
-        {
-            if ((index && ((index % (MAX_EEPROM_PAGE_INDEX + 1)) == 0)) &&
-                (retries == RETRY_MAX))
-            {
-                // The 4K EEPROM only uses the A2 and A1 device address bits
-                // with the third bit being a memory page address bit.
-                if (ioctl(file, I2C_SLAVE_FORCE, ++address) < 0)
-                {
-                    std::cerr << "unable to set device address\n";
-                    close(file);
-                    throw DBusInternalError();
-                    return false;
-                }
-            }
-
-            if (i2c_smbus_write_byte_data(file, static_cast<uint8_t>(index),
-                                          fru[index]) < 0)
-            {
-                if (!retries--)
-                {
-                    std::cerr << "error writing fru: " << strerror(errno)
-                              << "\n";
-                    close(file);
-                    throw DBusInternalError();
-                    return false;
-                }
-            }
-            else
-            {
-                retries = RETRY_MAX;
-                index++;
-            }
-            // most eeproms require 5-10ms between writes
-            std::this_thread::sleep_for(std::chrono::milliseconds(10));
-        }
-        close(file);
+        close(eeprom);
         return true;
     }
+
+    std::string i2cBus = "/dev/i2c-" + std::to_string(bus);
+
+    int file = open(i2cBus.c_str(), O_RDWR | O_CLOEXEC);
+    if (file < 0)
+    {
+        std::cerr << "unable to open i2c device " << i2cBus << "\n";
+        throw DBusInternalError();
+        return false;
+    }
+    if (ioctl(file, I2C_SLAVE_FORCE, address) < 0)
+    {
+        std::cerr << "unable to set device address\n";
+        close(file);
+        throw DBusInternalError();
+        return false;
+    }
+
+    constexpr const size_t retryMax = 2;
+    uint16_t index = 0;
+    size_t retries = retryMax;
+    while (index < fru.size())
+    {
+        if ((index && ((index % (maxEepromPageIndex + 1)) == 0)) &&
+            (retries == retryMax))
+        {
+            // The 4K EEPROM only uses the A2 and A1 device address bits
+            // with the third bit being a memory page address bit.
+            if (ioctl(file, I2C_SLAVE_FORCE, ++address) < 0)
+            {
+                std::cerr << "unable to set device address\n";
+                close(file);
+                throw DBusInternalError();
+                return false;
+            }
+        }
+
+        if (i2c_smbus_write_byte_data(file, static_cast<uint8_t>(index),
+                                      fru[index]) < 0)
+        {
+            if (!retries--)
+            {
+                std::cerr << "error writing fru: " << strerror(errno) << "\n";
+                close(file);
+                throw DBusInternalError();
+                return false;
+            }
+        }
+        else
+        {
+            retries = retryMax;
+            index++;
+        }
+        // most eeproms require 5-10ms between writes
+        std::this_thread::sleep_for(std::chrono::milliseconds(10));
+    }
+    close(file);
+    return true;
 }
 
 void rescanOneBus(
@@ -972,7 +968,7 @@ void rescanOneBus(
             }
             for (auto& device : *(found->second))
             {
-                AddFRUObjectToDbus(device.second, dbusInterfaceMap,
+                addFruObjectToDbus(device.second, dbusInterfaceMap,
                                    static_cast<uint32_t>(busNum), device.first);
             }
         });
@@ -1000,7 +996,7 @@ void rescanBusses(
             return;
         }
 
-        for (auto busPath : busPaths)
+        for (const auto& busPath : busPaths)
         {
             i2cBuses.emplace_back(busPath.second);
         }
@@ -1020,7 +1016,7 @@ void rescanBusses(
                 }
 
                 dbusInterfaceMap.clear();
-                UNKNOWN_BUS_OBJECT_COUNT = 0;
+                unknownBusObjectCount = 0;
 
                 // todo, get this from a more sensable place
                 std::vector<uint8_t> baseboardFRU;
@@ -1035,7 +1031,7 @@ void rescanBusses(
                 {
                     for (auto& device : *devicemap.second)
                     {
-                        AddFRUObjectToDbus(device.second, dbusInterfaceMap,
+                        addFruObjectToDbus(device.second, dbusInterfaceMap,
                                            devicemap.first, device.first);
                     }
                 }
@@ -1057,7 +1053,7 @@ void rescanBusses(
 
 bool updateFRUProperty(
     const std::string& updatePropertyReq, uint32_t bus, uint32_t address,
-    std::string propertyName,
+    const std::string& propertyName,
     boost::container::flat_map<
         std::pair<size_t, size_t>,
         std::shared_ptr<sdbusplus::asio::dbus_interface>>& dbusInterfaceMap)
@@ -1093,34 +1089,33 @@ bool updateFRUProperty(
 
     uint8_t fruAreaOffsetFieldValue = 0;
     size_t offset = 0;
-    std::string areaName = propertyName.substr(0, propertyName.find("_"));
+    std::string areaName = propertyName.substr(0, propertyName.find('_'));
     std::string propertyNamePrefix = areaName + "_";
-    auto it = std::find(FRU_AREA_NAMES.begin(), FRU_AREA_NAMES.end(), areaName);
-    if (it == FRU_AREA_NAMES.end())
+    auto it = std::find(fruAreaNames.begin(), fruAreaNames.end(), areaName);
+    if (it == fruAreaNames.end())
     {
         std::cerr << "Can't parse area name for property " << propertyName
                   << " \n";
         return false;
     }
-    fruAreas fruAreaToUpdate =
-        static_cast<fruAreas>(it - FRU_AREA_NAMES.begin());
+    fruAreas fruAreaToUpdate = static_cast<fruAreas>(it - fruAreaNames.begin());
     fruAreaOffsetFieldValue =
         fruData[getHeaderAreaFieldOffset(fruAreaToUpdate)];
     switch (fruAreaToUpdate)
     {
         case fruAreas::fruAreaChassis:
             offset = 3; // chassis part number offset. Skip fixed first 3 bytes
-            fruAreaFieldNames = &CHASSIS_FRU_AREAS;
+            fruAreaFieldNames = &chassisFruAreas;
             break;
         case fruAreas::fruAreaBoard:
             offset = 6; // board manufacturer offset. Skip fixed first 6 bytes
-            fruAreaFieldNames = &BOARD_FRU_AREAS;
+            fruAreaFieldNames = &boardFruAreas;
             break;
         case fruAreas::fruAreaProduct:
             // Manufacturer name offset. Skip fixed first 3 product fru bytes
             // i.e. version, area length and language code
             offset = 3;
-            fruAreaFieldNames = &PRODUCT_FRU_AREAS;
+            fruAreaFieldNames = &productFruAreas;
             break;
         default:
             std::cerr << "Don't know how to handle property " << propertyName
@@ -1137,7 +1132,6 @@ bool updateFRUProperty(
     size_t fruAreaSize = fruData[fruAreaStart + 1] * fruBlockSize;
     size_t fruAreaEnd = fruAreaStart + fruAreaSize;
     size_t fruDataIter = fruAreaStart + offset;
-    size_t fruUpdateFieldLoc = fruDataIter;
     size_t skipToFRUUpdateField = 0;
     ssize_t fieldLength;
 
@@ -1153,7 +1147,7 @@ bool updateFRUProperty(
     }
     if (!found)
     {
-        std::size_t pos = propertyName.find(FRU_CUSTOM_FIELD_NAME);
+        std::size_t pos = propertyName.find(fruCustomFieldName);
         if (pos == std::string::npos)
         {
             std::cerr << "PropertyName doesn't exist in FRU Area Vectors: "
@@ -1161,7 +1155,7 @@ bool updateFRUProperty(
             return false;
         }
         std::string fieldNumStr =
-            propertyName.substr(pos + FRU_CUSTOM_FIELD_NAME.length());
+            propertyName.substr(pos + fruCustomFieldName.length());
         size_t fieldNum = std::stoi(fieldNumStr);
         if (fieldNum == 0)
         {
@@ -1181,7 +1175,7 @@ bool updateFRUProperty(
         }
         fruDataIter += 1 + fieldLength;
     }
-    fruUpdateFieldLoc = fruDataIter;
+    size_t fruUpdateFieldLoc = fruDataIter;
 
     // Push post update fru field bytes to a vector
     fieldLength = getFieldLength(fruData[fruUpdateFieldLoc]);
@@ -1405,21 +1399,20 @@ int main()
         eventHandler);
 
     int fd = inotify_init();
-    inotify_add_watch(fd, I2C_DEV_LOCATION,
-                      IN_CREATE | IN_MOVED_TO | IN_DELETE);
+    inotify_add_watch(fd, i2CDevLocation, IN_CREATE | IN_MOVED_TO | IN_DELETE);
     std::array<char, 4096> readBuffer;
     std::string pendingBuffer;
     // monitor for new i2c devices
     boost::asio::posix::stream_descriptor dirWatch(io, fd);
     std::function<void(const boost::system::error_code, std::size_t)>
         watchI2cBusses = [&](const boost::system::error_code& ec,
-                             std::size_t bytes_transferred) {
+                             std::size_t bytesTransferred) {
             if (ec)
             {
                 std::cout << "Callback Error " << ec << "\n";
                 return;
             }
-            pendingBuffer += std::string(readBuffer.data(), bytes_transferred);
+            pendingBuffer += std::string(readBuffer.data(), bytesTransferred);
             while (pendingBuffer.size() > sizeof(inotify_event))
             {
                 const inotify_event* iEvent =

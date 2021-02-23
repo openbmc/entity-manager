@@ -55,22 +55,22 @@ enum class fruAreas
     fruAreaMultirecord
 };
 
-const std::vector<std::string> FRU_AREA_NAMES = {"INTERNAL", "CHASSIS", "BOARD",
-                                                 "PRODUCT", "MULTIRECORD"};
-const std::regex NON_ASCII_REGEX("[^\x01-\x7f]");
+const std::vector<std::string> fruAreaNames = {"INTERNAL", "CHASSIS", "BOARD",
+                                               "PRODUCT", "MULTIRECORD"};
+const std::regex nonAsciiRegex("[^\x01-\x7f]");
 
-const std::vector<std::string> CHASSIS_FRU_AREAS = {"PART_NUMBER",
-                                                    "SERIAL_NUMBER"};
+const std::vector<std::string> chassisFruAreas = {"PART_NUMBER",
+                                                  "SERIAL_NUMBER"};
 
-const std::vector<std::string> BOARD_FRU_AREAS = {
-    "MANUFACTURER", "PRODUCT_NAME", "SERIAL_NUMBER", "PART_NUMBER",
-    "FRU_VERSION_ID"};
+const std::vector<std::string> boardFruAreas = {"MANUFACTURER", "PRODUCT_NAME",
+                                                "SERIAL_NUMBER", "PART_NUMBER",
+                                                "FRU_VERSION_ID"};
 
-const std::vector<std::string> PRODUCT_FRU_AREAS = {
+const std::vector<std::string> productFruAreas = {
     "MANUFACTURER",  "PRODUCT_NAME", "PART_NUMBER",   "VERSION",
     "SERIAL_NUMBER", "ASSET_TAG",    "FRU_VERSION_ID"};
 
-const std::string FRU_CUSTOM_FIELD_NAME = "INFO_AM";
+const std::string fruCustomFieldName = "INFO_AM";
 
 inline fruAreas operator++(fruAreas& x)
 {
@@ -84,7 +84,7 @@ using ReadBlockFunc =
 
 inline const std::string& getFruAreaName(fruAreas area)
 {
-    return FRU_AREA_NAMES[static_cast<unsigned int>(area)];
+    return fruAreaNames[static_cast<unsigned int>(area)];
 }
 
 const std::tm intelEpoch(void);
@@ -134,7 +134,7 @@ ssize_t getFieldLength(uint8_t fruFieldTypeLenValue);
 /// \param errorHelp and a helper string for failures
 /// \return the FRU contents from the file
 std::vector<uint8_t> readFRUContents(int flag, int file, uint16_t address,
-                                     ReadBlockFunc readBlock,
+                                     const ReadBlockFunc& readBlock,
                                      const std::string& errorHelp);
 
 /// \brief Validate an IPMI FRU common header
