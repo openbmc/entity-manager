@@ -128,7 +128,7 @@ identified we know the address of the temperature sensor is 0x4c.
             "Address": "$address",
             "Bus": "$bus",
             "Name": "$bus great eeprom",
-            "Type": "24C02"
+            "Type": "EEPROM_24C02"
         },
         {
             "Address": "0x4c",
@@ -158,7 +158,11 @@ way.
 
 In our example we only care about the eeprom and the temperature sensor. The
 `Type` field is checked against a device export map and if it matches a known
-device, it'll attempt to install the device.
+device, it'll attempt to install the device. Be noticed that dbus only allows an
+interface name as an dot delimited string with each truncated substring starting
+with alphabets(a-z, A-Z). So the Type is intensionally renamed as EEPROM_24C02.
+It is safe to do so since Entity manager types are not required to be 1:1 with
+Linux types.
 
 For the card found on bus 18:
 
