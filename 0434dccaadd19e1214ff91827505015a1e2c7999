@@ -2,6 +2,92 @@
   "comments": [
     {
       "key": {
+        "uuid": "1d329af2_327c77bb",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 5
+      },
+      "lineNbr": 12,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2021-02-23T02:17:26Z",
+      "side": 1,
+      "message": "So redfish isn\u0027t currently implemented on this server?  Redfish schema as defined today doesn\u0027t allow for empty strings if things like the serial number is not required.",
+      "range": {
+        "startLine": 10,
+        "startChar": 36,
+        "endLine": 12,
+        "endChar": 0
+      },
+      "revId": "0434dccaadd19e1214ff91827505015a1e2c7999",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "faea36f5_ffc3c3fc",
+        "filename": "configurations/IBM CFFPS.json",
+        "patchSetId": 5
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2021-02-23T02:17:26Z",
+      "side": 1,
+      "message": "Please separate each of these into their own file.\n\nMultiple definitions in a single entity file is reserved for when a single power supply might \"look\" like different things dependent on the various forms.  We\u0027ve actually already covered that completely with the parser James wrote, so at some point in the future we might go back to single-entity per file.",
+      "revId": "0434dccaadd19e1214ff91827505015a1e2c7999",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "bcd5d0b5_14876968",
+        "filename": "configurations/IBM CFFPS.json",
+        "patchSetId": 5
+      },
+      "lineNbr": 12,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2021-02-23T02:17:26Z",
+      "side": 1,
+      "message": "These should be pulling from a FRU somewhere.",
+      "range": {
+        "startLine": 11,
+        "startChar": 0,
+        "endLine": 12,
+        "endChar": 28
+      },
+      "revId": "0434dccaadd19e1214ff91827505015a1e2c7999",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "e7a70512_5d91a74a",
+        "filename": "configurations/IBM CFFPS.json",
+        "patchSetId": 5
+      },
+      "lineNbr": 14,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2021-02-23T02:17:26Z",
+      "side": 1,
+      "message": "Why empty string on all these?  Normally the data would come from FruDevice, but because you don\u0027t seem to be using fru device in this case, I\u0027m not sure where the data is coming from, but it needs to come from somewhere.",
+      "range": {
+        "startLine": 13,
+        "startChar": 0,
+        "endLine": 14,
+        "endChar": 30
+      },
+      "revId": "0434dccaadd19e1214ff91827505015a1e2c7999",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "00b3f010_ab490968",
         "filename": "configurations/IBM CFFPS.json",
         "patchSetId": 5
@@ -31,6 +117,24 @@
       "side": 1,
       "message": "Let me check how the d-bus query would look like. Theoretically I believe it should work because there would be different objects because the Name is different, but the Model would be the same.",
       "parentUuid": "00b3f010_ab490968",
+      "revId": "0434dccaadd19e1214ff91827505015a1e2c7999",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "7806fc59_440d9397",
+        "filename": "configurations/IBM CFFPS.json",
+        "patchSetId": 5
+      },
+      "lineNbr": 57,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2021-02-23T02:17:26Z",
+      "side": 1,
+      "message": "Yes, 2 records will be created if there are two objects that match your probe.\n\nPlease keep the 1400W and 1600W PSUs separate in this context, as they are physically different PSUs in both form and function, but downstream code likely doesn\u0027t care about that.",
+      "parentUuid": "2c385efa_a6e32255",
       "revId": "0434dccaadd19e1214ff91827505015a1e2c7999",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
       "unresolved": true
