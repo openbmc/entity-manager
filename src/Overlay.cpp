@@ -34,15 +34,14 @@
 #include <regex>
 #include <string>
 
-constexpr const char* OUTPUT_DIR = "/tmp/overlays";
-constexpr const char* TEMPLATE_CHAR = "$";
-constexpr const char* HEX_FORMAT_STR = "0x";
-constexpr const char* I2C_DEVS_DIR = "/sys/bus/i2c/devices";
-constexpr const char* MUX_SYMLINK_DIR = "/dev/i2c-mux";
+constexpr const char* outputDir = "/tmp/overlays";
+constexpr const char* templateChar = "$";
+constexpr const char* i2CDevsDir = "/sys/bus/i2c/devices";
+constexpr const char* muxSymlinkDir = "/dev/i2c-mux";
 
-constexpr const bool DEBUG = false;
+constexpr const bool debug = false;
 
-std::regex ILLEGAL_NAME_REGEX("[^A-Za-z0-9_]");
+std::regex illegalNameRegex("[^A-Za-z0-9_]");
 
 // helper function to make json types into string
 std::string jsonToString(const nlohmann::json& in)
@@ -51,7 +50,7 @@ std::string jsonToString(const nlohmann::json& in)
     {
         return in.get<std::string>();
     }
-    else if (in.type() == nlohmann::json::value_t::array)
+    if (in.type() == nlohmann::json::value_t::array)
     {
         // remove brackets and comma from array
         std::string array = in.dump();
@@ -66,17 +65,17 @@ void linkMux(const std::string& muxName, size_t busIndex, size_t address,
              const nlohmann::json::array_t& channelNames)
 {
     std::error_code ec;
-    std::filesystem::path muxSymlinkDir(MUX_SYMLINK_DIR);
-    std::filesystem::create_directory(muxSymlinkDir, ec);
+    std::filesystem::path muxSymlinkDirPath(muxSymlinkDir);
+    std::filesystem::create_directory(muxSymlinkDirPath, ec);
     // ignore error codes here if the directory already exists
     ec.clear();
-    std::filesystem::path linkDir = muxSymlinkDir / muxName;
+    std::filesystem::path linkDir = muxSymlinkDirPath / muxName;
     std::filesystem::create_directory(linkDir, ec);
 
     std::ostringstream hexAddress;
     hexAddress << std::hex << std::setfill('0') << std::setw(4) << address;
 
-    std::filesystem::path devDir(I2C_DEVS_DIR);
+    std::filesystem::path devDir(i2CDevsDir);
     devDir /= std::to_string(busIndex) + "-" + hexAddress.str();
 
     for (std::size_t channelIndex = 0; channelIndex < channelNames.size();
@@ -296,7 +295,7 @@ void exportDevice(const std::string& type,
             keyPair.value().type() == nlohmann::json::value_t::string)
         {
             subsituteString = std::regex_replace(
-                keyPair.value().get<std::string>(), ILLEGAL_NAME_REGEX, "_");
+                keyPair.value().get<std::string>(), illegalNameRegex, "_");
             name = subsituteString;
         }
         else
@@ -319,9 +318,9 @@ void exportDevice(const std::string& type,
             channels =
                 keyPair.value().get_ptr<const nlohmann::json::array_t*>();
         }
-        boost::replace_all(parameters, TEMPLATE_CHAR + keyPair.key(),
+        boost::replace_all(parameters, templateChar + keyPair.key(),
                            subsituteString);
-        boost::replace_all(devicePath, TEMPLATE_CHAR + keyPair.key(),
+        boost::replace_all(devicePath, templateChar + keyPair.key(),
                            subsituteString);
     }
 
@@ -337,7 +336,7 @@ void exportDevice(const std::string& type,
 
 bool loadOverlays(const nlohmann::json& systemConfiguration)
 {
-    std::filesystem::create_directory(OUTPUT_DIR);
+    std::filesystem::create_directory(outputDir);
     for (auto entity = systemConfiguration.begin();
          entity != systemConfiguration.end(); entity++)
     {
@@ -374,7 +373,7 @@ bool loadOverlays(const nlohmann::json& systemConfiguration)
             // this error message is not printed in all situations.
             // If wondering why your device not appearing, add your type to
             // the exportTemplates array in the devices.hpp file.
-            if constexpr (DEBUG)
+            if constexpr (debug)
             {
                 std::cerr << "Device type " << type
                           << " not found in export map whitelist\n";

@@ -47,11 +47,11 @@ constexpr const char* tempConfigDir = "/tmp/configuration/";
 constexpr const char* lastConfiguration = "/tmp/configuration/last.json";
 constexpr const char* currentConfiguration = "/var/configuration/system.json";
 constexpr const char* globalSchema = "global.json";
-constexpr const int32_t MAX_MAPPER_DEPTH = 0;
+constexpr const int32_t maxMapperDepth = 0;
 
-constexpr const bool DEBUG = false;
+constexpr const bool debug = false;
 
-struct cmp_str
+struct CmpStr
 {
     bool operator()(const char* a, const char* b) const
     {
@@ -69,13 +69,13 @@ enum class probe_type_codes
     FOUND,
     MATCH_ONE
 };
-const static boost::container::flat_map<const char*, probe_type_codes, cmp_str>
-    PROBE_TYPES{{{"FALSE", probe_type_codes::FALSE_T},
-                 {"TRUE", probe_type_codes::TRUE_T},
-                 {"AND", probe_type_codes::AND},
-                 {"OR", probe_type_codes::OR},
-                 {"FOUND", probe_type_codes::FOUND},
-                 {"MATCH_ONE", probe_type_codes::MATCH_ONE}}};
+const static boost::container::flat_map<const char*, probe_type_codes, CmpStr>
+    probeTypes{{{"FALSE", probe_type_codes::FALSE_T},
+                {"TRUE", probe_type_codes::TRUE_T},
+                {"AND", probe_type_codes::AND},
+                {"OR", probe_type_codes::OR},
+                {"FOUND", probe_type_codes::FOUND},
+                {"MATCH_ONE", probe_type_codes::MATCH_ONE}}};
 
 static constexpr std::array<const char*, 6> settableInterfaces = {
     "FanProfile", "Pid", "Pid.Zone", "Stepwise", "Thresholds", "Polling"};
@@ -99,13 +99,13 @@ boost::container::flat_map<
     inventory;
 
 // todo: pass this through nicer
-std::shared_ptr<sdbusplus::asio::connection> SYSTEM_BUS;
+std::shared_ptr<sdbusplus::asio::connection> systemBus;
 static nlohmann::json lastJson;
 
 boost::asio::io_context io;
 
-const std::regex ILLEGAL_DBUS_PATH_REGEX("[^A-Za-z0-9_.]");
-const std::regex ILLEGAL_DBUS_MEMBER_REGEX("[^A-Za-z0-9_]");
+const std::regex illegalDbusPathRegex("[^A-Za-z0-9_.]");
+const std::regex illegalDbusMemberRegex("[^A-Za-z0-9_]");
 
 void registerCallback(nlohmann::json& systemConfiguration,
                       sdbusplus::asio::object_server& objServer,
@@ -139,7 +139,7 @@ static std::shared_ptr<sdbusplus::asio::dbus_interface>
 void getInterfaces(
     const std::tuple<std::string, std::string, std::string>& call,
     const std::vector<std::shared_ptr<PerformProbe>>& probeVector,
-    std::shared_ptr<PerformScan> scan, size_t retries = 5)
+    const std::shared_ptr<PerformScan>& scan, size_t retries = 5)
 {
     if (!retries)
     {
@@ -148,7 +148,7 @@ void getInterfaces(
         return;
     }
 
-    SYSTEM_BUS->async_method_call(
+    systemBus->async_method_call(
         [call, scan, probeVector, retries](
             boost::system::error_code& errc,
             const boost::container::flat_map<std::string, BasicVariantType>&
@@ -175,7 +175,7 @@ void getInterfaces(
         std::get<0>(call), std::get<1>(call), "org.freedesktop.DBus.Properties",
         "GetAll", std::get<2>(call));
 
-    if constexpr (DEBUG)
+    if constexpr (debug)
     {
         std::cerr << __func__ << " " << __LINE__ << "\n";
     }
@@ -185,7 +185,8 @@ void getInterfaces(
 // for the paths that own the interfaces passed in.
 void findDbusObjects(std::vector<std::shared_ptr<PerformProbe>>&& probeVector,
                      boost::container::flat_set<std::string>&& interfaces,
-                     std::shared_ptr<PerformScan> scan, size_t retries = 5)
+                     const std::shared_ptr<PerformScan>& scan,
+                     size_t retries = 5)
 {
     // Filter out interfaces already obtained.
     for (const auto& [path, probeInterfaces] : scan->dbusProbeObjects)
@@ -201,7 +202,7 @@ void findDbusObjects(std::vector<std::shared_ptr<PerformProbe>>&& probeVector,
     }
 
     // find all connections in the mapper that expose a specific type
-    SYSTEM_BUS->async_method_call(
+    systemBus->async_method_call(
         [interfaces, probeVector{std::move(probeVector)}, scan,
          retries](boost::system::error_code& ec,
                   const GetSubTreeType& interfaceSubtree) mutable {
@@ -273,10 +274,10 @@ void findDbusObjects(std::vector<std::shared_ptr<PerformProbe>>&& probeVector,
         },
         "xyz.openbmc_project.ObjectMapper",
         "/xyz/openbmc_project/object_mapper",
-        "xyz.openbmc_project.ObjectMapper", "GetSubTree", "/", MAX_MAPPER_DEPTH,
+        "xyz.openbmc_project.ObjectMapper", "GetSubTree", "/", maxMapperDepth,
         interfaces);
 
-    if constexpr (DEBUG)
+    if constexpr (debug)
     {
         std::cerr << __func__ << " " << __LINE__ << "\n";
     }
@@ -286,7 +287,7 @@ void findDbusObjects(std::vector<std::shared_ptr<PerformProbe>>&& probeVector,
 // When an interface passes a probe, also save its D-Bus path with it.
 bool probeDbus(const std::string& interface,
                const std::map<std::string, nlohmann::json>& matches,
-               FoundDeviceT& devices, std::shared_ptr<PerformScan> scan,
+               FoundDeviceT& devices, const std::shared_ptr<PerformScan>& scan,
                bool& foundProbe)
 {
     bool foundMatch = false;
@@ -323,7 +324,7 @@ bool probeDbus(const std::string& interface,
         }
         if (deviceMatches)
         {
-            if constexpr (DEBUG)
+            if constexpr (debug)
             {
                 std::cerr << "probeDBus: Found probe match on " << path << " "
                           << interface << "\n";
@@ -338,7 +339,7 @@ bool probeDbus(const std::string& interface,
 // default probe entry point, iterates a list looking for specific types to
 // call specific probe functions
 bool probe(const std::vector<std::string>& probeCommand,
-           std::shared_ptr<PerformScan> scan, FoundDeviceT& foundDevs)
+           const std::shared_ptr<PerformScan>& scan, FoundDeviceT& foundDevs)
 {
     const static std::regex command(R"(\((.*)\))");
     std::smatch match;
@@ -352,9 +353,9 @@ bool probe(const std::vector<std::string>& probeCommand,
     {
         bool foundProbe = false;
         boost::container::flat_map<const char*, probe_type_codes,
-                                   cmp_str>::const_iterator probeType;
+                                   CmpStr>::const_iterator probeType;
 
-        for (probeType = PROBE_TYPES.begin(); probeType != PROBE_TYPES.end();
+        for (probeType = probeTypes.begin(); probeType != probeTypes.end();
              ++probeType)
         {
             if (probe.find(probeType->first) != std::string::npos)
@@ -434,7 +435,7 @@ bool probe(const std::vector<std::string>& probeCommand,
             // does a regex
             std::map<std::string, nlohmann::json> dbusProbeMap =
                 json.get<std::map<std::string, nlohmann::json>>();
-            auto findStart = probe.find("(");
+            auto findStart = probe.find('(');
             if (findStart == std::string::npos)
             {
                 return false;
@@ -460,9 +461,8 @@ bool probe(const std::vector<std::string>& probeCommand,
             ret = cur;
             first = false;
         }
-        lastCommand = probeType != PROBE_TYPES.end()
-                          ? probeType->second
-                          : probe_type_codes::FALSE_T;
+        lastCommand = probeType != probeTypes.end() ? probeType->second
+                                                    : probe_type_codes::FALSE_T;
     }
 
     // probe passed, but empty device
@@ -923,7 +923,7 @@ void createAddObjectMethod(const std::string& jsonPointerPath,
             std::string dbusName = *name;
 
             std::regex_replace(dbusName.begin(), dbusName.begin(),
-                               dbusName.end(), ILLEGAL_DBUS_MEMBER_REGEX, "_");
+                               dbusName.end(), illegalDbusMemberRegex, "_");
 
             std::shared_ptr<sdbusplus::asio::dbus_interface> interface =
                 createInterface(objServer, path + "/" + dbusName,
@@ -961,7 +961,7 @@ void postToDbus(const nlohmann::json& newConfiguration,
         {
             boardType = findBoardType->get<std::string>();
             std::regex_replace(boardType.begin(), boardType.begin(),
-                               boardType.end(), ILLEGAL_DBUS_MEMBER_REGEX, "_");
+                               boardType.end(), illegalDbusMemberRegex, "_");
         }
         else
         {
@@ -972,9 +972,11 @@ void postToDbus(const nlohmann::json& newConfiguration,
         std::string boardtypeLower = boost::algorithm::to_lower_copy(boardType);
 
         std::regex_replace(boardKey.begin(), boardKey.begin(), boardKey.end(),
-                           ILLEGAL_DBUS_MEMBER_REGEX, "_");
-        std::string boardName = "/xyz/openbmc_project/inventory/system/" +
-                                boardtypeLower + "/" + boardKey;
+                           illegalDbusMemberRegex, "_");
+        std::string boardName = "/xyz/openbmc_project/inventory/system/";
+        boardName += boardtypeLower;
+        boardName += "/";
+        boardName += boardKey;
 
         std::shared_ptr<sdbusplus::asio::dbus_interface> inventoryIface =
             createInterface(objServer, boardName,
@@ -1044,8 +1046,7 @@ void postToDbus(const nlohmann::json& newConfiguration,
             {
                 itemType = findType->get<std::string>();
                 std::regex_replace(itemType.begin(), itemType.begin(),
-                                   itemType.end(), ILLEGAL_DBUS_PATH_REGEX,
-                                   "_");
+                                   itemType.end(), illegalDbusPathRegex, "_");
             }
             else
             {
@@ -1053,10 +1054,13 @@ void postToDbus(const nlohmann::json& newConfiguration,
             }
             std::string itemName = findName->get<std::string>();
             std::regex_replace(itemName.begin(), itemName.begin(),
-                               itemName.end(), ILLEGAL_DBUS_MEMBER_REGEX, "_");
+                               itemName.end(), illegalDbusMemberRegex, "_");
+            std::string ifacePath = boardName;
+            ifacePath += "/";
+            ifacePath += itemName;
 
             std::shared_ptr<sdbusplus::asio::dbus_interface> itemIface =
-                createInterface(objServer, boardName + "/" + itemName,
+                createInterface(objServer, ifacePath,
                                 "xyz.openbmc_project.Configuration." + itemType,
                                 boardKeyOrig);
 
@@ -1074,7 +1078,7 @@ void postToDbus(const nlohmann::json& newConfiguration,
                 {
                     std::shared_ptr<sdbusplus::asio::dbus_interface>
                         objectIface = createInterface(
-                            objServer, boardName + "/" + itemName,
+                            objServer, ifacePath,
                             "xyz.openbmc_project.Configuration." + itemType +
                                 "." + objectPair.key(),
                             boardKeyOrig);
@@ -1120,7 +1124,7 @@ void postToDbus(const nlohmann::json& newConfiguration,
 
                         std::shared_ptr<sdbusplus::asio::dbus_interface>
                             objectIface = createInterface(
-                                objServer, boardName + "/" + itemName,
+                                objServer, ifacePath,
                                 "xyz.openbmc_project.Configuration." +
                                     itemType + "." + objectPair.key() +
                                     std::to_string(index),
@@ -1230,7 +1234,7 @@ std::string getRecordName(
     size_t hash = std::hash<std::string>{}(probeName + device.dump());
     // hashes are hard to distinguish, use the
     // non-hashed version if we want debug
-    if constexpr (DEBUG)
+    if constexpr (debug)
     {
         return probeName + device.dump();
     }
@@ -1268,7 +1272,7 @@ void PerformScan::run()
             it = _configurations.erase(it);
             continue;
         }
-        else if ((*findProbe).type() != nlohmann::json::value_t::array)
+        if ((*findProbe).type() != nlohmann::json::value_t::array)
         {
             probeCommand = nlohmann::json::array();
             probeCommand.push_back(*findProbe);
@@ -1307,7 +1311,7 @@ void PerformScan::run()
                 std::list<size_t> indexes(foundDevices.size());
                 std::iota(indexes.begin(), indexes.end(), 1);
 
-                size_t indexIdx = probeName.find("$");
+                size_t indexIdx = probeName.find('$');
                 bool hasTemplateName = (indexIdx != std::string::npos);
 
                 // copy over persisted configurations and make sure we remove
@@ -1588,15 +1592,21 @@ void PerformScan::run()
 
         // parse out dbus probes by discarding other probe types, store in a
         // map
-        for (const std::string probe : probeCommand)
+        for (const nlohmann::json& probeJson : probeCommand)
         {
+            const std::string* probe = probeJson.get_ptr<const std::string*>();
+            if (probe == nullptr)
+            {
+                std::cerr << "Probe statement wasn't a string, can't parse";
+                continue;
+            }
             bool found = false;
             boost::container::flat_map<const char*, probe_type_codes,
-                                       cmp_str>::const_iterator probeType;
-            for (probeType = PROBE_TYPES.begin();
-                 probeType != PROBE_TYPES.end(); ++probeType)
+                                       CmpStr>::const_iterator probeType;
+            for (probeType = probeTypes.begin(); probeType != probeTypes.end();
+                 ++probeType)
             {
-                if (probe.find(probeType->first) != std::string::npos)
+                if (probe->find(probeType->first) != std::string::npos)
                 {
                     found = true;
                     break;
@@ -1607,8 +1617,8 @@ void PerformScan::run()
                 continue;
             }
             // syntax requires probe before first open brace
-            auto findStart = probe.find("(");
-            std::string interface = probe.substr(0, findStart);
+            auto findStart = probe->find('(');
+            std::string interface = probe->substr(0, findStart);
             dbusProbeInterfaces.emplace(interface);
             dbusProbePointers.emplace_back(probePointer);
         }
@@ -1619,7 +1629,7 @@ void PerformScan::run()
     // about a dbus interface
     findDbusObjects(std::move(dbusProbePointers),
                     std::move(dbusProbeInterfaces), shared_from_this());
-    if constexpr (DEBUG)
+    if constexpr (debug)
     {
         std::cerr << __func__ << " " << __LINE__ << "\n";
     }
@@ -1636,7 +1646,7 @@ PerformScan::~PerformScan()
         nextScan->dbusProbeObjects = std::move(dbusProbeObjects);
         nextScan->run();
 
-        if constexpr (DEBUG)
+        if constexpr (debug)
         {
             std::cerr << __func__ << " " << __LINE__ << "\n";
         }
@@ -1645,7 +1655,7 @@ PerformScan::~PerformScan()
     {
         _callback();
 
-        if constexpr (DEBUG)
+        if constexpr (debug)
         {
             std::cerr << __func__ << " " << __LINE__ << "\n";
         }
@@ -1742,7 +1752,7 @@ void propertiesChangedCallback(nlohmann::json& systemConfiguration,
             // we were cancelled
             return;
         }
-        else if (ec)
+        if (ec)
         {
             std::cerr << "async wait error " << ec << "\n";
             return;
@@ -1878,7 +1888,7 @@ void registerCallback(nlohmann::json& systemConfiguration,
         };
 
     sdbusplus::bus::match::match match(
-        static_cast<sdbusplus::bus::bus&>(*SYSTEM_BUS),
+        static_cast<sdbusplus::bus::bus&>(*systemBus),
         "type='signal',member='PropertiesChanged',path='" + path + "'",
         eventHandler);
     dbusMatches.emplace(path, std::move(match));
@@ -1887,10 +1897,10 @@ void registerCallback(nlohmann::json& systemConfiguration,
 int main()
 {
     // setup connection to dbus
-    SYSTEM_BUS = std::make_shared<sdbusplus::asio::connection>(io);
-    SYSTEM_BUS->request_name("xyz.openbmc_project.EntityManager");
+    systemBus = std::make_shared<sdbusplus::asio::connection>(io);
+    systemBus->request_name("xyz.openbmc_project.EntityManager");
 
-    sdbusplus::asio::object_server objServer(SYSTEM_BUS);
+    sdbusplus::asio::object_server objServer(systemBus);
 
     std::shared_ptr<sdbusplus::asio::dbus_interface> entityIface =
         objServer.add_interface("/xyz/openbmc_project/EntityManager",
@@ -1907,7 +1917,7 @@ int main()
     // for any reason, expected or otherwise, we'll need a poke to remove
     // entities from DBus.
     sdbusplus::bus::match::match nameOwnerChangedMatch(
-        static_cast<sdbusplus::bus::bus&>(*SYSTEM_BUS),
+        static_cast<sdbusplus::bus::bus&>(*systemBus),
         sdbusplus::bus::match::rules::nameOwnerChanged(),
         [&](sdbusplus::message::message&) {
             propertiesChangedCallback(systemConfiguration, objServer);
@@ -1915,13 +1925,13 @@ int main()
     // We also need a poke from DBus when new interfaces are created or
     // destroyed.
     sdbusplus::bus::match::match interfacesAddedMatch(
-        static_cast<sdbusplus::bus::bus&>(*SYSTEM_BUS),
+        static_cast<sdbusplus::bus::bus&>(*systemBus),
         sdbusplus::bus::match::rules::interfacesAdded(),
         [&](sdbusplus::message::message&) {
             propertiesChangedCallback(systemConfiguration, objServer);
         });
     sdbusplus::bus::match::match interfacesRemovedMatch(
-        static_cast<sdbusplus::bus::bus&>(*SYSTEM_BUS),
+        static_cast<sdbusplus::bus::bus&>(*systemBus),
         sdbusplus::bus::match::rules::interfacesRemoved(),
         [&](sdbusplus::message::message&) {
             propertiesChangedCallback(systemConfiguration, objServer);
@@ -1974,7 +1984,7 @@ int main()
 
     // some boards only show up after power is on, we want to not say they are
     // removed until the same state happens
-    setupPowerMatch(SYSTEM_BUS);
+    setupPowerMatch(systemBus);
 
     io.run();
 

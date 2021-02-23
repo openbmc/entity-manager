@@ -46,7 +46,9 @@ bool findFiles(const fs::path& dirPath, const std::string& matchString,
                std::vector<fs::path>& foundPaths)
 {
     if (!fs::exists(dirPath))
+    {
         return false;
+    }
 
     std::regex search(matchString);
     std::smatch match;
@@ -99,7 +101,7 @@ bool validateJson(const nlohmann::json& schemaFile, const nlohmann::json& input)
     parser.populateSchema(schemaAdapter, schema);
     valijson::Validator validator;
     valijson::adapters::NlohmannJsonAdapter targetAdapter(input);
-    if (!validator.validate(schema, targetAdapter, NULL))
+    if (!validator.validate(schema, targetAdapter, nullptr))
     {
         return false;
     }
@@ -227,9 +229,9 @@ std::optional<std::string> templateCharReplace(
                            foundDevicePair.second);
                 return ret;
             }
-            else if (nextItemIdx > strPtr->size() ||
-                     std::find(mathChars.begin(), mathChars.end(),
-                               strPtr->at(nextItemIdx)) == mathChars.end())
+            if (nextItemIdx > strPtr->size() ||
+                std::find(mathChars.begin(), mathChars.end(),
+                          strPtr->at(nextItemIdx)) == mathChars.end())
             {
                 std::string val = std::visit(VariantToStringVisitor(),
                                              foundDevicePair.second);
