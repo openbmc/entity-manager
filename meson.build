@@ -17,6 +17,7 @@ boost_args = [
     '-DBOOST_NO_RTTI',
     '-DBOOST_NO_TYPEID',
     '-DBOOST_ALL_NO_LIB',
+    '-DBOOST_ALLOW_DEPRECATED_HEADERS'
 ]
 build_tests = get_option('tests')
 cpp = meson.get_compiler('cpp')
@@ -26,6 +27,7 @@ if not boost.found()
      boost = declare_dependency(
          include_directories: 'subprojects/boost_1_71_0',
      )
+     boost = boost.as_system('system')
 endif
 if get_option('fru-device')
     i2c = cpp.find_library('i2c')
@@ -40,11 +42,13 @@ else
             'subprojects/nlohmann/single_include/nlohmann',
         ]
     )
+    nlohmann_json = nlohmann_json.as_system('system')
 endif
 sdbusplus = dependency('sdbusplus', required: false)
 if not sdbusplus.found()
     sdbusplus_proj = subproject('sdbusplus', required: true)
     sdbusplus = sdbusplus_proj.get_variable('sdbusplus_dep')
+    sdbusplus = sdbusplus.as_system('system')
 endif
 systemd = dependency('systemd')
 systemd_system_unit_dir = systemd.get_pkgconfig_variable(
@@ -63,6 +67,7 @@ else
     valijson = declare_dependency(
         include_directories: 'subprojects/valijson/include'
     )
+    valijson = valijson.as_system('system')
 endif
 
 install_data('blacklist.json')
