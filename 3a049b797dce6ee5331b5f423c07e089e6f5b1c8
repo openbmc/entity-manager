@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "f550bad9_5790a69d",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 16,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2021-02-23T22:04:08Z",
+      "side": 1,
+      "message": "Unfortunately, these go against entity-managers core principals, as this data is IPMI specific, therefore it shouldn\u0027t go into an EM config in its current form.\n\nThe $index parameter already exists to handle the EntityInstance param.  If you need more than it provides, please add more details in your commit about your use case, and we\u0027ll see if we can get it updated, but it\u0027s the parameter designed to implement this.\n\n\nEntityId needs to be determined from an equivalent dbus type, specified in phosphor-dbus-interfaces.",
+      "range": {
+        "startLine": 15,
+        "startChar": 0,
+        "endLine": 16,
+        "endChar": 29
+      },
+      "revId": "3a049b797dce6ee5331b5f423c07e089e6f5b1c8",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    }
+  ]
+}
