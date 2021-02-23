@@ -285,6 +285,12 @@
                 "PollRate": {
                     "$ref": "#/definitions/Types/PollRate"
                 },
+                "EntityId": {
+                    "$ref": "#/definitions/Types/EntityId"
+                },
+                "EntityInstance": {
+                    "$ref": "#/definitions/Types/EntityInstance"
+                },
                 "Type": {
                     "$ref": "#/definitions/Types/Type"
                 }
@@ -657,10 +663,21 @@
             "PollRate": {
                 "type": "number"
             },
+            "EntityId": {
+                "type": [
+                    "string",
+                    "number"
+                ]
+            },
+            "EntityInstance": {
+                "type": [
+                    "string",
+                    "number"
+                ]
+            },
             "Type": {
                 "type": "string"
             }
         }
     }
 }
-
