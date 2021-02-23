@@ -30,7 +30,7 @@ extern "C"
 #include <linux/i2c.h>
 }
 
-static constexpr bool DEBUG = false;
+static constexpr bool debug = false;
 constexpr size_t fruVersion = 1; // Current FRU spec version number is 1
 
 bool validateHeader(const std::array<uint8_t, I2C_SMBUS_BLOCK_MAX>& blockData)
@@ -38,7 +38,7 @@ bool validateHeader(const std::array<uint8_t, I2C_SMBUS_BLOCK_MAX>& blockData)
     // ipmi spec format version number is currently at 1, verify it
     if (blockData[0] != fruVersion)
     {
-        if (DEBUG)
+        if (debug)
         {
             std::cerr << "FRU spec version " << (int)(blockData[0])
                       << " not supported. Supported version is "
@@ -50,7 +50,7 @@ bool validateHeader(const std::array<uint8_t, I2C_SMBUS_BLOCK_MAX>& blockData)
     // verify pad is set to 0
     if (blockData[6] != 0x0)
     {
-        if (DEBUG)
+        if (debug)
         {
             std::cerr << "PAD value in header is non zero, value is "
                       << (int)(blockData[6]) << "\n";
@@ -83,7 +83,7 @@ bool validateHeader(const std::array<uint8_t, I2C_SMBUS_BLOCK_MAX>& blockData)
 
     if (sum != blockData[7])
     {
-        if (DEBUG)
+        if (debug)
         {
             std::cerr << "Checksum " << (int)(blockData[7])
                       << " is invalid. calculated checksum is " << (int)(sum)
@@ -95,7 +95,7 @@ bool validateHeader(const std::array<uint8_t, I2C_SMBUS_BLOCK_MAX>& blockData)
 }
 
 std::vector<uint8_t> readFRUContents(int flag, int file, uint16_t address,
-                                     ReadBlockFunc readBlock,
+                                     const ReadBlockFunc& readBlock,
                                      const std::string& errorHelp)
 {
     std::array<uint8_t, I2C_SMBUS_BLOCK_MAX> blockData;
@@ -109,7 +109,7 @@ std::vector<uint8_t> readFRUContents(int flag, int file, uint16_t address,
     // check the header checksum
     if (!validateHeader(blockData))
     {
-        if (DEBUG)
+        if (debug)
         {
             std::cerr << "Illegal header " << errorHelp << "\n";
         }
