@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "ad958a56_ceac26ea",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 5
+      },
+      "lineNbr": 12,
+      "author": {
+        "id": 1000003
+      },
+      "writtenOn": "2021-02-23T20:59:22Z",
+      "side": 1,
+      "message": "Removed the Model property. Brad clarified the json files should be \u0027empty\u0027.",
+      "parentUuid": "1d329af2_327c77bb",
+      "range": {
+        "startLine": 10,
+        "startChar": 36,
+        "endLine": 12,
+        "endChar": 0
+      },
+      "revId": "0434dccaadd19e1214ff91827505015a1e2c7999",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "faea36f5_ffc3c3fc",
         "filename": "configurations/IBM CFFPS.json",
         "patchSetId": 5
@@ -39,6 +63,24 @@
       "revId": "0434dccaadd19e1214ff91827505015a1e2c7999",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "c5f414db_9518b6d2",
+        "filename": "configurations/IBM CFFPS.json",
+        "patchSetId": 5
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 1000003
+      },
+      "writtenOn": "2021-02-23T20:59:22Z",
+      "side": 1,
+      "message": "Done. Created a json for each PS.",
+      "parentUuid": "faea36f5_ffc3c3fc",
+      "revId": "0434dccaadd19e1214ff91827505015a1e2c7999",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": false
     },
     {
       "key": {
@@ -65,6 +107,30 @@
     },
     {
       "key": {
+        "uuid": "a4d82274_99ab076f",
+        "filename": "configurations/IBM CFFPS.json",
+        "patchSetId": 5
+      },
+      "lineNbr": 12,
+      "author": {
+        "id": 1000003
+      },
+      "writtenOn": "2021-02-23T20:59:22Z",
+      "side": 1,
+      "message": "Removed the Decorator.Asset. The phosphor-psu-monitor already populates the Decorator.Asset as part of inventory.",
+      "parentUuid": "bcd5d0b5_14876968",
+      "range": {
+        "startLine": 11,
+        "startChar": 0,
+        "endLine": 12,
+        "endChar": 28
+      },
+      "revId": "0434dccaadd19e1214ff91827505015a1e2c7999",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "e7a70512_5d91a74a",
         "filename": "configurations/IBM CFFPS.json",
         "patchSetId": 5
@@ -76,6 +142,30 @@
       "writtenOn": "2021-02-23T02:17:26Z",
       "side": 1,
       "message": "Why empty string on all these?  Normally the data would come from FruDevice, but because you don\u0027t seem to be using fru device in this case, I\u0027m not sure where the data is coming from, but it needs to come from somewhere.",
+      "range": {
+        "startLine": 13,
+        "startChar": 0,
+        "endLine": 14,
+        "endChar": 30
+      },
+      "revId": "0434dccaadd19e1214ff91827505015a1e2c7999",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "61290d83_b1b2a6e5",
+        "filename": "configurations/IBM CFFPS.json",
+        "patchSetId": 5
+      },
+      "lineNbr": 14,
+      "author": {
+        "id": 1000003
+      },
+      "writtenOn": "2021-02-23T20:59:22Z",
+      "side": 1,
+      "message": "Yeah, got more clarification, these json files should be empty. These properties are already populated, and the Model can be used as the Probe. Updated that in the individual json files.",
+      "parentUuid": "e7a70512_5d91a74a",
       "range": {
         "startLine": 13,
         "startChar": 0,
@@ -138,6 +228,24 @@
       "revId": "0434dccaadd19e1214ff91827505015a1e2c7999",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "866fe609_25ef6336",
+        "filename": "configurations/IBM CFFPS.json",
+        "patchSetId": 5
+      },
+      "lineNbr": 57,
+      "author": {
+        "id": 1000003
+      },
+      "writtenOn": "2021-02-23T20:59:22Z",
+      "side": 1,
+      "message": "Done. Separated them in their own file.",
+      "parentUuid": "7806fc59_440d9397",
+      "revId": "0434dccaadd19e1214ff91827505015a1e2c7999",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": false
     }
   ]
 }
