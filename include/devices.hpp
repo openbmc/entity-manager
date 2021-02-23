@@ -39,10 +39,12 @@ struct ExportTemplate
 
 const boost::container::flat_map<const char*, ExportTemplate, CmpStr>
     exportTemplates{
-        {{"24C02", ExportTemplate("24c02 $Address",
-                                  "/sys/bus/i2c/devices/i2c-$Bus/new_device")},
-         {"24C64", ExportTemplate("24c64 $Address",
-                                  "/sys/bus/i2c/devices/i2c-$Bus/new_device")},
+        {{"EEPROM_24C02",
+          ExportTemplate("24c02 $Address",
+                         "/sys/bus/i2c/devices/i2c-$Bus/new_device")},
+         {"EEPROM_24C64",
+          ExportTemplate("24c64 $Address",
+                         "/sys/bus/i2c/devices/i2c-$Bus/new_device")},
          {"ADM1266",
           ExportTemplate("adm1266 $Address",
                          "/sys/bus/i2c/devices/i2c-$Bus/new_device")},
