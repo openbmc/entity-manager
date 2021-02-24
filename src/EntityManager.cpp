@@ -199,9 +199,9 @@ void findDbusObjects(std::vector<std::shared_ptr<PerformProbe>>&& probeVector,
 
     // find all connections in the mapper that expose a specific type
     SYSTEM_BUS->async_method_call(
-        [interfaces{std::move(interfaces)}, probeVector{std::move(probeVector)},
-         scan, retries](boost::system::error_code& ec,
-                        const GetSubTreeType& interfaceSubtree) mutable {
+        [interfaces, probeVector{std::move(probeVector)}, scan,
+         retries](boost::system::error_code& ec,
+                  const GetSubTreeType& interfaceSubtree) mutable {
             boost::container::flat_set<
                 std::tuple<std::string, std::string, std::string>>
                 interfaceConnections;
