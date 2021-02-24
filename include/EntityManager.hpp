@@ -29,12 +29,16 @@
 #include <list>
 #include <string>
 
+// paths - > interfaces -> properties
 using DBusProbeObjectT = boost::container::flat_map<
     std::string,
-    std::vector<boost::container::flat_map<std::string, BasicVariantType>>>;
+    boost::container::flat_map<
+        std::string,
+        boost::container::flat_map<std::string, BasicVariantType>>>;
 
-using FoundDeviceT =
-    std::vector<boost::container::flat_map<std::string, BasicVariantType>>;
+// vector of tuple<map<propertyName, variant>, D-Bus path>>
+using FoundDeviceT = std::vector<std::tuple<
+    boost::container::flat_map<std::string, BasicVariantType>, std::string>>;
 
 struct PerformScan : std::enable_shared_from_this<PerformScan>
 {
@@ -60,14 +64,15 @@ struct PerformScan : std::enable_shared_from_this<PerformScan>
 // this class finds the needed dbus fields and on destruction runs the probe
 struct PerformProbe : std::enable_shared_from_this<PerformProbe>
 {
-    PerformProbe(const std::vector<std::string>& probeCommand,
-                 std::shared_ptr<PerformScan>& scanPtr,
-                 std::function<void(FoundDeviceT&)>&& callback);
+    PerformProbe(
+        const std::vector<std::string>& probeCommand,
+        std::shared_ptr<PerformScan>& scanPtr,
+        std::function<void(FoundDeviceT&, const DBusProbeObjectT&)>&& callback);
     virtual ~PerformProbe();
 
     std::vector<std::string> _probeCommand;
     std::shared_ptr<PerformScan> scan;
-    std::function<void(FoundDeviceT&)> _callback;
+    std::function<void(FoundDeviceT&, const DBusProbeObjectT&)> _callback;
 };
 
 inline void logDeviceAdded(const nlohmann::json& record)
