@@ -149,6 +149,28 @@ void setupPowerMatch(const std::shared_ptr<sdbusplus::asio::connection>& conn)
         power::interface, power::property);
 }
 
+// Replaces the template character like the other version of this function,
+// but checks all properties on all interfaces provided to do the substitution
+// with.
+std::optional<std::string> templateCharReplace(
+    nlohmann::json::iterator& keyPair,
+    const boost::container::flat_map<
+        std::string, boost::container::flat_map<std::string, BasicVariantType>>&
+        allInterfaces,
+    const size_t foundDeviceIdx, const std::optional<std::string>& replaceStr)
+{
+    for (const auto& [interface, properties] : allInterfaces)
+    {
+        auto ret = templateCharReplace(keyPair, properties, foundDeviceIdx,
+                                       replaceStr);
+        if (ret)
+        {
+            return ret;
+        }
+    }
+    return std::nullopt;
+}
+
 // finds the template character (currently set to $) and replaces the value with
 // the field found in a dbus object i.e. $ADDRESS would get populated with the
 // ADDRESS field from a object on dbus
