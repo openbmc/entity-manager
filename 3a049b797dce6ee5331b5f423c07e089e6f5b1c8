@@ -22,6 +22,30 @@
       "revId": "3a049b797dce6ee5331b5f423c07e089e6f5b1c8",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "32f50670_807fc1db",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 16,
+      "author": {
+        "id": 1000835
+      },
+      "writtenOn": "2021-02-24T05:39:34Z",
+      "side": 1,
+      "message": "Hi Ed,\nIn my case, the BMC uses intel-ipmi-oem, entity-manager, and dbus-sensors to manage the motherboard\u0027s sensors. I intend to retrieve entityID and entityInstance via IPMI command, e.g., ipmitool sensor get \u003csensor name\u003e.\n\nHowever, intel-ipmi-oem always tries to find the sensor\u0027s \"entityID\" and \"entityInstance\" from its entity-manager entry. \n(please refer to:\nhttps://github.com/openbmc/intel-ipmi-oem/blob/09701efa93f2e9b25b19c4560db60c1878ef8a9c/include/sdrutils.hpp#L438 and\nhttps://github.com/openbmc/intel-ipmi-oem/blob/09701efa93f2e9b25b19c4560db60c1878ef8a9c/include/sdrutils.hpp#L470)\n\nIt seems like the source code of intel-ipmi-oem needs these two properties, but schema doesn\u0027t include them. I get confused about it. Is there any suggestion?",
+      "parentUuid": "f550bad9_5790a69d",
+      "range": {
+        "startLine": 15,
+        "startChar": 0,
+        "endLine": 16,
+        "endChar": 29
+      },
+      "revId": "3a049b797dce6ee5331b5f423c07e089e6f5b1c8",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
     }
   ]
 }
