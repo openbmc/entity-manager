@@ -128,6 +128,14 @@ inline bool fwVersionIsSame(void)
 
 std::optional<std::string> templateCharReplace(
     nlohmann::json::iterator& keyPair,
+    const boost::container::flat_map<
+        std::string, boost::container::flat_map<std::string, BasicVariantType>>&
+        allInterfaces,
+    const size_t foundDeviceIdx,
+    const std::optional<std::string>& replaceStr = std::nullopt);
+
+std::optional<std::string> templateCharReplace(
+    nlohmann::json::iterator& keyPair,
     const boost::container::flat_map<std::string, BasicVariantType>&
         foundDevice,
     const size_t foundDeviceIdx,
