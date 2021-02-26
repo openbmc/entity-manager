@@ -16,6 +16,47 @@
       "revId": "687a99e474759e011df91d8948631e51a8c8c8d7",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "2fb9ef55_b6bb4f62",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 14,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2021-02-26T19:49:24Z",
+      "side": 1,
+      "message": "If at all possible, I\u0027d really like to make this generic.  \"supported configurations\" have usefulness outside of just power supplies.",
+      "parentUuid": "5de12df9_b298f03c",
+      "revId": "687a99e474759e011df91d8948631e51a8c8c8d7",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "541942c7_57f2474d",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 27,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2021-02-26T19:49:24Z",
+      "side": 1,
+      "message": "Can add some details about behaviors here?  for example, what would this would do if it somehow found 3 power supplies?  What about if it found a power supply that isn\u0027t a delta-123?  What happens in the case where everything is good?  Why would I want to add this to my chassis config?\n\nI suspect I know some of the answers, but I\u0027d like to get that documented in the commit message for future users of this.\n\n\n\n\nOne thing that I\u0027d like to sort through in this is to figure out a way to impose new policies for these supported configurations.  For example, this param should really be modifying the required redundancy parameters on the chassis, not coming up with a new parameter for it.  We don\u0027t have to have code to do it, but I\u0027d like to at least make sure we have a path to get there that isn\u0027t in conflict with this.\n\nHow would this work for something like:\n\"If we are outside of a supported configuration, increase the fan speed to 50%\"\n\nWould we do that in configuration?  Code?\n\n\"If XYZ card is installed, increase the minimum fan floor to Y.\"\n\n\"If ABC fabric cable is installed on this chassis, decrease the exit air temp limit.\"\n\n\"If one power supply is installed, and we require 2, boost the fans\"\n\nThose are some other use cases I\u0027ve heard of for these \"supported\" configurations.  Can you theorize a little bit about how your supported configurations schema could handle some of these?",
+      "range": {
+        "startLine": 27,
+        "startChar": 5,
+        "endLine": 27,
+        "endChar": 13
+      },
+      "revId": "687a99e474759e011df91d8948631e51a8c8c8d7",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
     }
   ]
 }
