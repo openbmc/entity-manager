@@ -73,6 +73,7 @@ configs = [
     '8X25 HSBP.json',
     'A2UL16RISER.json',
     'A2UX8X4RISER.json',
+    'ACBELL_RICA_PSU.json',
     'AHW1UM2RISER.json',
     'ASPOWER_U1A-D10550_PSU.json',
     'ASPOWER_U1A-D10800_PSU.json',
