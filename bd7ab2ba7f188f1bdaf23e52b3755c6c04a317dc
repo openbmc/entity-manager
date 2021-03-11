@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "230b3616_ede47f1f",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 3
+      },
+      "lineNbr": 14,
+      "author": {
+        "id": 1000003
+      },
+      "writtenOn": "2021-03-11T21:14:58Z",
+      "side": 1,
+      "message": "Done. Going with specifying the properties to make make it standard what kind of information can be included.",
+      "parentUuid": "f4bebaa0_4a066ba5",
+      "revId": "bd7ab2ba7f188f1bdaf23e52b3755c6c04a317dc",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "5e225fb0_002ef5a9",
         "filename": "/COMMIT_MSG",
         "patchSetId": 3
@@ -39,6 +57,30 @@
       "revId": "bd7ab2ba7f188f1bdaf23e52b3755c6c04a317dc",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "b0a799d3_c0b3fcd0",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 3
+      },
+      "lineNbr": 40,
+      "author": {
+        "id": 1000003
+      },
+      "writtenOn": "2021-03-11T21:14:58Z",
+      "side": 1,
+      "message": "Done. Thanks.",
+      "parentUuid": "5e225fb0_002ef5a9",
+      "range": {
+        "startLine": 40,
+        "startChar": 2,
+        "endLine": 40,
+        "endChar": 8
+      },
+      "revId": "bd7ab2ba7f188f1bdaf23e52b3755c6c04a317dc",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": false
     },
     {
       "key": {
@@ -71,6 +113,24 @@
       "side": 1,
       "message": "Right. @Ed, is that what you meant by \"For example, this param should really be modifying the required redundancy parameters on the chassis, not coming up with a new parameter for it.\"? Or how do you imagine that this schema should look like?",
       "parentUuid": "80f0e079_4b18ef39",
+      "revId": "bd7ab2ba7f188f1bdaf23e52b3755c6c04a317dc",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "00c07826_bff43afe",
+        "filename": "schemas/SupportedConfiguration.json",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1000003
+      },
+      "writtenOn": "2021-03-11T21:14:58Z",
+      "side": 1,
+      "message": "Going back to specifying the properties to make it standard the information that a supported configuration schema will contain. Keeping the replacement of MaxCount with RedundantCount because that\u0027s more relevant for a power supply. For other object types, a Max/Min Count may apply and new properties can be added as they\u0027re needed.",
+      "parentUuid": "d3b246f7_c9efcf36",
       "revId": "bd7ab2ba7f188f1bdaf23e52b3755c6c04a317dc",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
       "unresolved": true
