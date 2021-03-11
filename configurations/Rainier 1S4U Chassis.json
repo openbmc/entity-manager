@@ -4,14 +4,14 @@
             "Name": "Compatible System",
             "Type": "IBMCompatibleSystem",
             "Names": [
-                "ibm,rainier-4u",
+                "ibm,rainier-1s4u",
                 "ibm,rainier"
             ]
         }
     ],
-    "Name": "Rainier 4U Chassis",
+    "Name": "Rainier 1S4U Chassis",
     "Probe": [
-        "com.ibm.ipzvpd.VSBP({'IM': [80, 0, 16, 0]})"
+        "com.ibm.ipzvpd.VSBP({'IM': [80, 0, 16, 2]})"
     ],
     "Type": "Chassis"
 }
