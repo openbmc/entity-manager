@@ -651,6 +651,7 @@ static const std::tm intelEpoch(void)
 {
     std::tm val = {};
     val.tm_year = 1996 - 1900;
+    val.tm_mday = 1;
     return val;
 }
 
