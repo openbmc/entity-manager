@@ -186,6 +186,9 @@
                 "Thresholds": {
                     "$ref": "#/definitions/Types/Thresholds"
                 },
+                "Timeout": {
+                    "$ref": "#/definitions/Types/Timeout"
+                },
                 "HostSMbusIndex": {
                     "$ref": "#/definitions/Types/HostSMbusIndex"
                 },
@@ -557,6 +560,9 @@
                     "type": "object"
                 },
                 "type": "array"
+            },
+            "Timeout": {
+                "type": "number"
             },
             "HostSMbusIndex": {
                 "type": "number"
