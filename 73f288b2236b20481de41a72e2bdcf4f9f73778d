@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "0b843533_9c8e6c89",
+        "filename": "include/devices.hpp",
+        "patchSetId": 4
+      },
+      "lineNbr": 50,
+      "author": {
+        "id": 1000879
+      },
+      "writtenOn": "2021-03-22T19:53:37Z",
+      "side": 1,
+      "message": "Are you sure this really works? Delete command should be just address without driver name, isn\u0027t?\nLike\n\u003e echo \"0x58\" \u003e /sys/bus/i2c/devices/i2c-7/delete_device\ninstead of \n\u003e echo \"0x58 pmbus\" \u003e /sys/bus/i2c/devices/i2c-7/delete_device\nOtherwise kernel returns \" write error: Invalid argument\"",
+      "range": {
+        "startLine": 49,
+        "startChar": 25,
+        "endLine": 50,
+        "endChar": 55
+      },
+      "revId": "73f288b2236b20481de41a72e2bdcf4f9f73778d",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    }
+  ]
+}
