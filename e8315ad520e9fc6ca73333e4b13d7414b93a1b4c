@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "2a23457c_75774b99",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 14
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 1000546
+      },
+      "writtenOn": "2021-03-23T10:27:51Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "b871e06f_5bae21b4",
+      "range": {
+        "startLine": 7,
+        "startChar": 0,
+        "endLine": 7,
+        "endChar": 73
+      },
+      "revId": "e8315ad520e9fc6ca73333e4b13d7414b93a1b4c",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "51bd2a93_b82922e8",
         "filename": "/COMMIT_MSG",
         "patchSetId": 14
@@ -45,6 +69,30 @@
       "revId": "e8315ad520e9fc6ca73333e4b13d7414b93a1b4c",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "7d663dd8_a869b5fe",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 14
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 1000546
+      },
+      "writtenOn": "2021-03-23T10:27:51Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "51bd2a93_b82922e8",
+      "range": {
+        "startLine": 9,
+        "startChar": 17,
+        "endLine": 9,
+        "endChar": 26
+      },
+      "revId": "e8315ad520e9fc6ca73333e4b13d7414b93a1b4c",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": false
     },
     {
       "key": {
@@ -82,6 +130,30 @@
       "writtenOn": "2021-03-23T10:25:25Z",
       "side": 1,
       "message": "+1 seems this is I2C specific. I\u0027d say it should be reimplemented as callback to bus-specific daemon.",
+      "parentUuid": "b9876340_83554a3e",
+      "range": {
+        "startLine": 90,
+        "startChar": 0,
+        "endLine": 90,
+        "endChar": 26
+      },
+      "revId": "e8315ad520e9fc6ca73333e4b13d7414b93a1b4c",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "621b0dd3_116d6c8f",
+        "filename": "include/FruUtils.hpp",
+        "patchSetId": 14
+      },
+      "lineNbr": 90,
+      "author": {
+        "id": 1000546
+      },
+      "writtenOn": "2021-03-23T10:27:51Z",
+      "side": 1,
+      "message": "This function is used in the below patch which is used to read/write FRU data using ipmb interface.\nhttps://gerrit.openbmc-project.xyz/c/openbmc/entity-manager/+/39593",
       "parentUuid": "b9876340_83554a3e",
       "range": {
         "startLine": 90,
