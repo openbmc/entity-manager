@@ -29,6 +29,12 @@
 #include <list>
 #include <string>
 
+extern std::shared_ptr<sdbusplus::asio::connection> SYSTEM_BUS;
+extern boost::asio::io_context io;
+extern nlohmann::json lastJson;
+constexpr const char* currentConfiguration = "/var/configuration/system.json";
+extern nlohmann::json lastJson;
+
 // paths - > interfaces -> properties
 using DBusProbeObjectT = boost::container::flat_map<
     std::string,
@@ -167,3 +173,6 @@ inline void logDeviceRemoved(const nlohmann::json& record)
                     "REDFISH_MESSAGE_ARGS=%s,%s,%s", model.c_str(),
                     type.c_str(), sn.c_str(), NULL);
 }
+
+void propertiesChangedCallback(nlohmann::json& systemConfiguration,
+                               sdbusplus::asio::object_server& objServer);
