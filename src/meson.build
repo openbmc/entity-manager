@@ -3,6 +3,7 @@ cpp_args = boost_args + ['-DPACKAGE_DIR="' + packagedir + '/"']
 executable(
     'entity-manager',
     'EntityManager.cpp',
+    'EntityManagerMain.cpp',
     'Overlay.cpp',
     'Utils.cpp',
     cpp_args: cpp_args + ['-DBOOST_ASIO_DISABLE_THREADS'],
