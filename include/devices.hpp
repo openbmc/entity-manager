@@ -154,5 +154,8 @@ const boost::container::flat_map<const char*, ExportTemplate, CmpStr>
                          "new_device", "delete_device", true)},
          {"TMP75",
           ExportTemplate("tmp75 $Address", "/sys/bus/i2c/devices/i2c-$Bus",
+                         "new_device", "delete_device", true)},
+         {"W83773G",
+          ExportTemplate("w83773g $Address", "/sys/bus/i2c/devices/i2c-$Bus",
                          "new_device", "delete_device", true)}}};
 } // namespace devices
