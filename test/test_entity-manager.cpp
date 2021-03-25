@@ -1,3 +1,4 @@
+#include "EntityManager.hpp"
 #include "Utils.hpp"
 
 #include <boost/container/flat_map.hpp>
@@ -9,6 +10,33 @@
 #include "gtest/gtest.h"
 
 using namespace std::string_literals;
+
+// Contains common data that probe() needs.
+class ProbeTest : public ::testing::Test
+{
+  public:
+    ProbeTest()
+    {
+        SYSTEM_BUS = std::make_shared<sdbusplus::asio::connection>(io);
+        objServer =
+            std::make_unique<sdbusplus::asio::object_server>(SYSTEM_BUS);
+        scan = std::make_shared<PerformScan>(systemConfig, missingConfig,
+                                             configs, *objServer, []() {});
+    }
+
+    ~ProbeTest()
+    {
+        // SYSTEM_BUS is a global so must be manually deleted
+        SYSTEM_BUS.reset();
+    }
+
+  protected:
+    std::unique_ptr<sdbusplus::asio::object_server> objServer;
+    std::shared_ptr<PerformScan> scan;
+    nlohmann::json systemConfig;
+    nlohmann::json missingConfig;
+    std::list<nlohmann::json> configs;
+};
 
 TEST(TemplateCharReplace, replaceOneInt)
 {
@@ -868,4 +896,196 @@ TEST(MatchProbe, nullNeqArray)
     nlohmann::json j = R"(null)"_json;
     BasicVariantType v = std::vector<uint8_t>{};
     EXPECT_FALSE(matchProbe(j, v));
+}
+
+using FoundDeviceEntry =
+    std::tuple<boost::container::flat_map<std::string, BasicVariantType>,
+               std::string>;
+
+TEST_F(ProbeTest, andProbes)
+{
+    // The D-Bus config:
+    scan->dbusProbeObjects = {
+        {"/xyz/a",
+         {{"xyz.openbmc_project.Foo", {{"Bar", true}}},
+          {"xyz.openbmc_project.FruDevice", {{"Device", "One"}}},
+          {"xyz.openbmc_project.PCIeDevice", {{"ID", "AA"}}},
+          {"xyz.openbmc_project.Inventory.Item",
+           {{"Name", "Test1"}, {"Date", "today"}}}}},
+
+        {"/xyz/b",
+         {{"xyz.openbmc_project.Foo", {{"Bar", true}}},
+          {"xyz.openbmc_project.FruDevice", {{"Device", "Two"}}},
+          {"xyz.openbmc_project.Inventory.Item", {{"Name", "Test2"}}}}}};
+
+    // A single AND across interfaces on the same path
+    {
+        std::vector<std::string> probeCommands{
+            "xyz.openbmc_project.FruDevice({'Device':'One'})", "AND",
+            "xyz.openbmc_project.Inventory.Item({'Name':'Test1'})"};
+
+        FoundDeviceT found;
+        EXPECT_TRUE(probe(probeCommands, scan, found));
+
+        FoundDeviceT expected{
+            FoundDeviceEntry{{{"Device", "One"}}, "/xyz/a"},
+            FoundDeviceEntry{{{"Date", "today"}, {"Name", "Test1"}}, "/xyz/a"}};
+
+        EXPECT_EQ(found, expected);
+    }
+
+    // A single AND on the same interface
+    {
+        std::vector<std::string> probeCommands{
+            "xyz.openbmc_project.Inventory.Item({'Date':'today'})"
+            "AND",
+            "xyz.openbmc_project.Inventory.Item({'Name':'Test1'})"};
+
+        FoundDeviceT found;
+        EXPECT_TRUE(probe(probeCommands, scan, found));
+
+        FoundDeviceT expected{
+            FoundDeviceEntry{{{"Date", "today"}, {"Name", "Test1"}}, "/xyz/a"}};
+
+        EXPECT_EQ(found, expected);
+    }
+
+    // A double AND
+    {
+        std::vector<std::string> probeCommands{
+            "xyz.openbmc_project.PCIeDevice({'ID':'AA'})", "AND",
+            "xyz.openbmc_project.Inventory.Item({'Name':'Test1'})", "AND",
+            "xyz.openbmc_project.FruDevice({'Device':'One'})"};
+
+        FoundDeviceT found;
+        EXPECT_TRUE(probe(probeCommands, scan, found));
+
+        FoundDeviceT expected{
+            FoundDeviceEntry{{{"ID", "AA"}}, "/xyz/a"},
+            FoundDeviceEntry{{{"Date", "today"}, {"Name", "Test1"}}, "/xyz/a"},
+            FoundDeviceEntry{{{"Device", "One"}}, "/xyz/a"}};
+
+        EXPECT_EQ(found, expected);
+    }
+
+    // An AND that fails
+    {
+        std::vector<std::string> probeCommands{
+            "xyz.openbmc_project.PCIeDevice({'ID':'AA'})", "AND",
+            "xyz.openbmc_project.Inventory.Item({'Name':'Test9'})"};
+
+        FoundDeviceT found;
+        EXPECT_FALSE(probe(probeCommands, scan, found));
+    }
+
+    // Also matches when spread across object paths.
+    {
+        // First match is on /xyz/a, second is on path /xyz/b
+        std::vector<std::string> probeCommands{
+            "xyz.openbmc_project.FruDevice({'Device':'One'})", "AND",
+            "xyz.openbmc_project.Inventory.Item({'Name':'Test2'})"};
+
+        FoundDeviceT found;
+
+        EXPECT_TRUE(probe(probeCommands, scan, found));
+
+        FoundDeviceT expected{
+            FoundDeviceEntry{{{"Device", "One"}}, "/xyz/a"},
+            FoundDeviceEntry{{{"Name", "Test2"}}, "/xyz/b"},
+        };
+    }
+
+    // When one of the interfaces matches on multiple paths this produces
+    // a result such that entity-manager will put 2 configuration paths
+    // on D-Bus.
+    {
+        // Here, the Foo interface is on /xyz/a and /xyz/b but
+        // Inventory.Item is only on /xyz/a.
+        std::vector<std::string> probeCommands{
+            "xyz.openbmc_project.Foo({'Bar':true})", "AND",
+            "xyz.openbmc_project.Inventory.Item({'Name':'Test1'})"};
+
+        FoundDeviceT found;
+        EXPECT_TRUE(probe(probeCommands, scan, found));
+
+        FoundDeviceT expected{
+            FoundDeviceEntry{{{"Bar", true}}, "/xyz/a"},
+            FoundDeviceEntry{{{"Bar", true}}, "/xyz/b"},
+            FoundDeviceEntry{{{"Date", "today"}, {"Name", "Test1"}}, "/xyz/a"}};
+
+        EXPECT_EQ(found, expected);
+    }
+}
+
+TEST_F(ProbeTest, orProbes)
+{
+    // The D-Bus config:
+    scan->dbusProbeObjects = {
+        {"/xyz/a",
+         {{"xyz.openbmc_project.Foo", {{"Bar", true}}},
+          {"xyz.openbmc_project.FruDevice", {{"Device", "One"}}},
+          {"xyz.openbmc_project.Inventory.Item", {{"Name", "Test"}}}}},
+        {"/xyz/b",
+         {{"xyz.openbmc_project.FruDevice", {{"Device", "Two"}}},
+          {"xyz.openbmc_project.Inventory.Item", {{"Name", "Test2"}}}}}};
+
+    // An OR where both operands match.  It also returns an interface
+    // on a different object path of the same type that matched on
+    // the original object path.
+    {
+        std::vector<std::string> probeCommands{
+            "xyz.openbmc_project.Foo({'Bar':true})", "OR",
+            "xyz.openbmc_project.Inventory.Item({'Name':'Test'})"};
+
+        FoundDeviceT found;
+        EXPECT_TRUE(probe(probeCommands, scan, found));
+
+        FoundDeviceT expected{FoundDeviceEntry{{{"Bar", true}}, "/xyz/a"},
+                              FoundDeviceEntry{{{"Name", "Test"}}, "/xyz/a"},
+                              FoundDeviceEntry{{{"Name", "Test2"}}, "/xyz/b"}};
+
+        EXPECT_EQ(found, expected);
+    }
+
+    // The same OR where 1 operand matches
+    {
+        std::vector<std::string> probeCommands{
+            "xyz.openbmc_project.Foo({'Bar':true})", "OR",
+            "xyz.openbmc_project.Inventory.Item({'Name':'No'})"};
+
+        FoundDeviceT found;
+        EXPECT_TRUE(probe(probeCommands, scan, found));
+
+        FoundDeviceT expected{FoundDeviceEntry{{{"Bar", true}}, "/xyz/a"}};
+
+        EXPECT_EQ(found, expected);
+    }
+
+    // An OR where nothing passes
+    {
+        std::vector<std::string> probeCommands{
+            "xyz.openbmc_project.Foo({'Bar':false})", "OR",
+            "xyz.openbmc_project.Inventory.Item({'Name':'New'})"};
+
+        FoundDeviceT found;
+        EXPECT_FALSE(probe(probeCommands, scan, found));
+    }
+
+    // A double OR where the middle item matches.
+    // It also returns the Inventory interface on the other
+    // object path.
+    {
+        std::vector<std::string> probeCommands{
+            "xyz.openbmc_project.Foo({'Bar':false})", "OR",
+            "xyz.openbmc_project.Inventory.Item({'Name':'Test'})", "OR",
+            "xyz.openbmc_project.FruDevice({'Device':'77'})"};
+
+        FoundDeviceT found;
+        EXPECT_TRUE(probe(probeCommands, scan, found));
+
+        FoundDeviceT expected{FoundDeviceEntry{{{"Name", "Test"}}, "/xyz/a"},
+                              FoundDeviceEntry{{{"Name", "Test2"}}, "/xyz/b"}};
+
+        EXPECT_EQ(found, expected);
+    }
 }
