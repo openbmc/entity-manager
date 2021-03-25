@@ -61,7 +61,6 @@ struct PerformScan : std::enable_shared_from_this<PerformScan>
     sdbusplus::asio::object_server& objServer;
     std::function<void()> _callback;
     bool _passed = false;
-    bool powerWasOn = isPowerOn();
     DBusProbeObjectT dbusProbeObjects;
     std::vector<std::string> passedProbes;
 };
