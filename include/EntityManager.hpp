@@ -175,3 +175,6 @@ inline void logDeviceRemoved(const nlohmann::json& record)
 
 void propertiesChangedCallback(nlohmann::json& systemConfiguration,
                                sdbusplus::asio::object_server& objServer);
+
+bool probe(const std::vector<std::string>& probeCommand,
+           std::shared_ptr<PerformScan> scan, FoundDeviceT& foundDevs);

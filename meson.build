@@ -157,6 +157,7 @@ subdir('src')
 
 if not build_tests.disabled()
     test_boost_args = boost_args + ['-DBOOST_ASIO_DISABLE_THREADS']
+    test_args = ['-DPACKAGE_DIR="' + packagedir + '/"']
     gtest = dependency('gtest', main: true, disabler: true, required: false)
     if not gtest.found() and build_tests.enabled()
         cmake = import('cmake')
@@ -171,8 +172,10 @@ if not build_tests.disabled()
         executable(
             'test_entity_manager',
             'test/test_entity-manager.cpp',
+            'src/EntityManager.cpp',
+            'src/Overlay.cpp',
             'src/Utils.cpp',
-            cpp_args: test_boost_args,
+            cpp_args: test_boost_args + test_args,
             dependencies: [
                 boost,
                 gtest,
