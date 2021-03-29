@@ -22,6 +22,30 @@
       "revId": "73f288b2236b20481de41a72e2bdcf4f9f73778d",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "657a687a_a6c8b757",
+        "filename": "include/devices.hpp",
+        "patchSetId": 4
+      },
+      "lineNbr": 50,
+      "author": {
+        "id": 1000278
+      },
+      "writtenOn": "2021-03-29T20:45:11Z",
+      "side": 1,
+      "message": "The code works as written.\n\nI tested removing a tmp75 device at address 0x48 using:\necho 72 \u003e/sys/bus/i2c/devices/i2c-4/delete-device\nI received:\n[ 1522.093323] i2c i2c-4: delete_device: Deleting device eeprom at 0x48\nand the device is removed from the sysfs filesystem.",
+      "parentUuid": "0b843533_9c8e6c89",
+      "range": {
+        "startLine": 49,
+        "startChar": 25,
+        "endLine": 50,
+        "endChar": 55
+      },
+      "revId": "73f288b2236b20481de41a72e2bdcf4f9f73778d",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
     }
   ]
 }
