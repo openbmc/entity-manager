@@ -46,6 +46,30 @@
       "revId": "cbd5286ffa7f1d3386360d1b02a390ad5e68321a",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "5e300e5e_6556dd67",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 4
+      },
+      "lineNbr": 10,
+      "author": {
+        "id": 1000869
+      },
+      "writtenOn": "2021-03-29T07:44:55Z",
+      "side": 1,
+      "message": "Twin lake is a removable host that can be plugged in to YV2 slots.\n\nWe are reading platform specific firmware versions for each host based on IPMB sendRequest and displaying the version in busctl. \n\nSensors can also be read in Twinlake, since we handled sensors reading dynamically using SDR, it is not present here.",
+      "parentUuid": "bee74dc2_5de1e7df",
+      "range": {
+        "startLine": 7,
+        "startChar": 0,
+        "endLine": 10,
+        "endChar": 20
+      },
+      "revId": "cbd5286ffa7f1d3386360d1b02a390ad5e68321a",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
     }
   ]
 }
