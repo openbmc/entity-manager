@@ -39,6 +39,21 @@ Probe
 The probe property describes the event which will cause entity manager to
 export the configuration to DBus, making it available to other applications.
 
+The operations that can be used in a probe statement are:
+
+Unary:
+TRUE - Always evaluates to true.
+FALSE - Always evaluates to false.
+FOUND - Evaluates to true if the specified configuration name was already
+        found.
+
+Binary:
+AND - Logically AND two or more interface probes.
+      Note: This is object path independent.
+OR - Logically OR two or more interface probes.
+      Note: This is object path independent.
+MATCH_ONE - I could use some help on this one.  I don't think I understand it well enough to explain it.
+
 Exposes
 ----------------------------------------
 The exposes property describes the configuration data at its most specific
