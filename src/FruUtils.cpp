@@ -404,6 +404,7 @@ resCodes formatFRU(const std::vector<uint8_t>& fruBytes,
                 name = std::string(getFruAreaName(area)) + "_" +
                        fruAreaFieldNames->at(fieldIndex);
             }
+            else
             {
                 name =
                     std::string(getFruAreaName(area)) + "_" +
