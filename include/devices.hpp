@@ -146,6 +146,9 @@ const boost::container::flat_map<const char*, ExportTemplate, CmpStr>
          {"TMP441",
           ExportTemplate("tmp441 $Address", "/sys/bus/i2c/devices/i2c-$Bus",
                          "new_device", "delete_device", true)},
+         {"LM75A",
+          ExportTemplate("lm75a $Address", "/sys/bus/i2c/devices/i2c-$Bus",
+                         "new_device", "delete_device", true)},
          {"TMP75",
           ExportTemplate("tmp75 $Address", "/sys/bus/i2c/devices/i2c-$Bus",
                          "new_device", "delete_device", true)}}};
