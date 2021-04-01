@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "30bae7db_83cb0c66",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 11,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2021-04-01T23:22:48Z",
+      "side": 1,
+      "message": "Haven\u0027t really read the patch, but I\u0027m a little worried about calling \"main\" from any sort of \"unit\" test.  Ideally we\u0027d be testing things as units, while mocking out the necessary resources (mostly dbus).\n\nI need to give this a think, and consolidate my thoughts on this.  I promise I\u0027m not ignoring it.",
+      "range": {
+        "startLine": 8,
+        "startChar": 0,
+        "endLine": 11,
+        "endChar": 62
+      },
+      "revId": "bc11ba4876f2ca20509a2c0c3655b9f54457a15e",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    }
+  ]
+}
