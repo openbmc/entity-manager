@@ -1300,7 +1300,6 @@ void PerformScan::run()
             [&, recordPtr, probeName](FoundDeviceT& foundDevices,
                                       const DBusProbeObjectT& allInterfaces) {
                 _passed = true;
-
                 std::set<nlohmann::json> usedNames;
                 passedProbes.push_back(probeName);
                 std::list<size_t> indexes(foundDevices.size());
@@ -1370,6 +1369,11 @@ void PerformScan::run()
 
                 std::optional<std::string> replaceStr;
 
+                DBusProbeObjectT::mapped_type emptyInterfaces;
+                boost::container::flat_map<std::string, BasicVariantType>
+                    emptyProps;
+                emptyInterfaces.emplace(std::string{}, emptyProps);
+
                 for (auto& foundDeviceAndPath : foundDevices)
                 {
                     const boost::container::flat_map<
@@ -1379,13 +1383,17 @@ void PerformScan::run()
 
                     // Need all interfaces on this path so that template
                     // substitutions can be done with any of the contained
-                    // properties.
-                    auto allInterfacesOnPath = allInterfaces.find(path);
-                    if (allInterfacesOnPath == allInterfaces.end())
+                    // properties.  If the probe that passed didn't use an
+                    // interface, such as if it was just TRUE, then
+                    // templateCharReplace will just get passed in an empty
+                    // map.
+                    const DBusProbeObjectT::mapped_type* allInterfacesOnPath =
+                        &emptyInterfaces;
+
+                    auto ifacesIt = allInterfaces.find(path);
+                    if (ifacesIt != allInterfaces.end())
                     {
-                        // Should be impossible at this point.
-                        std::cerr << "Unrecognized path " << path << "\n";
-                        continue;
+                        allInterfacesOnPath = &ifacesIt->second;
                     }
 
                     nlohmann::json record = *recordPtr;
@@ -1405,7 +1413,7 @@ void PerformScan::run()
                     nlohmann::json copyForName = {{"Name", getName.value()}};
                     nlohmann::json::iterator copyIt = copyForName.begin();
                     std::optional<std::string> replaceVal =
-                        templateCharReplace(copyIt, allInterfacesOnPath->second,
+                        templateCharReplace(copyIt, *allInterfacesOnPath,
                                             foundDeviceIdx, replaceStr);
 
                     if (!replaceStr && replaceVal)
@@ -1415,8 +1423,7 @@ void PerformScan::run()
                             replaceStr = replaceVal;
                             copyForName = {{"Name", getName.value()}};
                             copyIt = copyForName.begin();
-                            templateCharReplace(copyIt,
-                                                allInterfacesOnPath->second,
+                            templateCharReplace(copyIt, *allInterfacesOnPath,
                                                 foundDeviceIdx, replaceStr);
                         }
                     }
@@ -1439,8 +1446,7 @@ void PerformScan::run()
 
                             continue; // already covered above
                         }
-                        templateCharReplace(keyPair,
-                                            allInterfacesOnPath->second,
+                        templateCharReplace(keyPair, *allInterfacesOnPath,
                                             foundDeviceIdx, replaceStr);
                     }
 
@@ -1462,8 +1468,7 @@ void PerformScan::run()
                              keyPair != expose.end(); keyPair++)
                         {
 
-                            templateCharReplace(keyPair,
-                                                allInterfacesOnPath->second,
+                            templateCharReplace(keyPair, *allInterfacesOnPath,
                                                 foundDeviceIdx, replaceStr);
 
                             bool isBind =
