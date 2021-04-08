@@ -1379,13 +1379,18 @@ void PerformScan::run()
 
                     // Need all interfaces on this path so that template
                     // substitutions can be done with any of the contained
-                    // properties.
-                    auto allInterfacesOnPath = allInterfaces.find(path);
-                    if (allInterfacesOnPath == allInterfaces.end())
+                    // properties.  If the probe that passed didn't use an
+                    // interface, such as if it was just TRUE, then
+                    // templateCharReplace will just get passed in an empty
+                    // map.
+                    DBusProbeObjectT::mapped_type interfaces;
+                    const DBusProbeObjectT::mapped_type* allInterfacesOnPath =
+                        &interfaces;
+
+                    auto ifacesIt = allInterfaces.find(path);
+                    if (ifacesIt != allInterfaces.end())
                     {
-                        // Should be impossible at this point.
-                        std::cerr << "Unrecognized path " << path << "\n";
-                        continue;
+                        allInterfacesOnPath = &ifacesIt->second;
                     }
 
                     nlohmann::json record = *recordPtr;
@@ -1405,7 +1410,7 @@ void PerformScan::run()
                     nlohmann::json copyForName = {{"Name", getName.value()}};
                     nlohmann::json::iterator copyIt = copyForName.begin();
                     std::optional<std::string> replaceVal =
-                        templateCharReplace(copyIt, allInterfacesOnPath->second,
+                        templateCharReplace(copyIt, *allInterfacesOnPath,
                                             foundDeviceIdx, replaceStr);
 
                     if (!replaceStr && replaceVal)
@@ -1415,8 +1420,7 @@ void PerformScan::run()
                             replaceStr = replaceVal;
                             copyForName = {{"Name", getName.value()}};
                             copyIt = copyForName.begin();
-                            templateCharReplace(copyIt,
-                                                allInterfacesOnPath->second,
+                            templateCharReplace(copyIt, *allInterfacesOnPath,
                                                 foundDeviceIdx, replaceStr);
                         }
                     }
@@ -1439,8 +1443,7 @@ void PerformScan::run()
 
                             continue; // already covered above
                         }
-                        templateCharReplace(keyPair,
-                                            allInterfacesOnPath->second,
+                        templateCharReplace(keyPair, *allInterfacesOnPath,
                                             foundDeviceIdx, replaceStr);
                     }
 
@@ -1462,8 +1465,7 @@ void PerformScan::run()
                              keyPair != expose.end(); keyPair++)
                         {
 
-                            templateCharReplace(keyPair,
-                                                allInterfacesOnPath->second,
+                            templateCharReplace(keyPair, *allInterfacesOnPath,
                                                 foundDeviceIdx, replaceStr);
 
                             bool isBind =
