@@ -1,0 +1,67 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "3a65cf5b_334c1165",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 5
+      },
+      "lineNbr": 58,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2021-04-12T05:11:16Z",
+      "side": 1,
+      "message": "This seems really specific to power supplies, for something that I\u0027ve generally imagined implemented a a generalized feature.\n\nSome initial thoughts that I have.\n\nCouldn\u0027t the above two configurations be also be configured with something like \n{\nName:  \"1000W Rainier configuration\"\nSupported: [\n  \"Rainier 2U Chassis\",\n  \"Delta-890\",\n  \"Delta-890\",\n]\nAllowExtraComponents: True\n}\n\nThe above would be a set of components that are \"supported\" in this configuration.  Some key design points:\n1. The \"supported\" param is treated like a component \"set\" that is known to function.  This allows combining any number of configurations, and expands in the future if we wanted to say, have a configuration that required particular dimms, or specific CPU models.\n2. Redundancy count has been dropped in lieu of simply enumerating multiples of devices.  We already have a redundancy count object, so I\u0027m not sure how the one described above would\u0027ve interacted with the existing feature.  This way, we can easily just declare \"two of these are needed\", or if there\u0027s some odd mix of PSUs that was allowed, you could also model that without any trouble, as well as if a certain gpu needed a certain power supply.\n3. Input voltage seems like an odd thing to include, as it\u0027s a property of a given power supply model, right?  If a given PSU is present, that\u0027s all we really need to know about whether or not it\u0027s AC or DC?\n(note, I wrote the above, then re-read your comment.  I\u0027ll need to think through how to address this somewhat unique requirement).\n4. I\u0027ve strawmanned the \"AllowExtraComponents\" flag, which would be a \"strict\" check on whether or not extra components would cause this to fail the configuration.  This would allow system manufacturers to declare the actual models of configurations they ship.\n5. The Probe part from the proposal seems a little odd;  It\u0027s not clear what it would do, or how it would function, given that we have to enable these at compile time anyway, it would seem like you should just include the chassis in with the given components.  Any sort of detection, I\u0027d much rather have tied to the Entity name, rather than duplicating the probe statement.\n6. In theory, in this example you could have multiple overlapping supported configurations, for example, you could require that 2 power supplies are present to support 2 GPUs, and very separately, list the power supplies that this chassis supported.\n\n\nAdmittedly, this is a strawman, and has some issues, but it seems much more extensible than limiting to just power supplies and counts.",
+      "range": {
+        "startLine": 53,
+        "startChar": 0,
+        "endLine": 58,
+        "endChar": 73
+      },
+      "revId": "d7d64f21a4fa2639f355b48663c78e5f4dd30346",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "83098c6e_f34b8662",
+        "filename": "meson.build",
+        "patchSetId": 5
+      },
+      "lineNbr": 148,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2021-04-12T05:11:16Z",
+      "side": 1,
+      "message": "I suspect we don\u0027t need to hide this behind an option flag.  I could imagine adding new supported configurations at runtime.",
+      "range": {
+        "startLine": 144,
+        "startChar": 0,
+        "endLine": 148,
+        "endChar": 5
+      },
+      "revId": "d7d64f21a4fa2639f355b48663c78e5f4dd30346",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "89ddc163_5483b766",
+        "filename": "meson_options.txt",
+        "patchSetId": 5
+      },
+      "lineNbr": 11,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2021-04-12T05:11:16Z",
+      "side": 1,
+      "message": "This option isn\u0027t mentioned in the commit message, and doesn\u0027t really seem to change any behavior, aside from whether or not the new schema is allowed.  That seems odd;  I\u0027d be interested to know how this option optionally enables the actual supported configurations.  Would it be an install time thing?  runtime?",
+      "revId": "d7d64f21a4fa2639f355b48663c78e5f4dd30346",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    }
+  ]
+}
