@@ -19,6 +19,42 @@ TEST(ValidateHeaderTest, InvalidFruVersionReturnsFalse)
     EXPECT_FALSE(validateHeader(fru_header));
 }
 
+TEST(ValidateHeaderTest, InvalidReservedReturnsFalse)
+{
+    // Validates the reserved bit(7:4) of first bytes.
+    constexpr std::array<uint8_t, I2C_SMBUS_BLOCK_MAX> fru_header = {
+        0xf0, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00};
+
+    EXPECT_FALSE(validateHeader(fru_header));
+}
+
+TEST(ValidateHeaderTest, InvalidPaddingReturnsFalse)
+{
+    // Validates the padding byte (7th byte).
+    constexpr std::array<uint8_t, I2C_SMBUS_BLOCK_MAX> fru_header = {
+        0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x01, 0x00};
+
+    EXPECT_FALSE(validateHeader(fru_header));
+}
+
+TEST(ValidateHeaderTest, InvalidChecksumReturnsFalse)
+{
+    // Validates the checksum, check for incorrect value.
+    constexpr std::array<uint8_t, I2C_SMBUS_BLOCK_MAX> fru_header = {
+        0x01, 0x00, 0x01, 0x02, 0x03, 0x04, 0x00, 0x00};
+
+    EXPECT_FALSE(validateHeader(fru_header));
+}
+
+TEST(ValidateHeaderTest, ValidChecksumReturnsTrue)
+{
+    // Validates the checksum, check for correct value.
+    constexpr std::array<uint8_t, I2C_SMBUS_BLOCK_MAX> fru_header = {
+        0x01, 0x00, 0x01, 0x02, 0x03, 0x04, 0x00, 0xf5};
+
+    EXPECT_TRUE(validateHeader(fru_header));
+}
+
 TEST(VerifyOffsetTest, EmptyFruDataReturnsFalse)
 {
     // Validates the FruData size is checked for non empty.
