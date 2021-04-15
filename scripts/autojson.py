@@ -29,3 +29,4 @@ for file in files:
 
     with open(file, 'w') as f:
         f.write(json.dumps(j, indent=4, sort_keys=True, separators=(',', ': ')))
+        f.write('\n')
