@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "2b872140_52053756",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 5
+      },
+      "lineNbr": 58,
+      "author": {
+        "id": 1000003
+      },
+      "writtenOn": "2021-04-19T20:30:47Z",
+      "side": 1,
+      "message": "1. The Supported set is a pretty good idea, that way we can add a list of components without having to specify the number for each.\n\n2. Yep, removed the count and will just duplicate the component names as needed to indicate the number of supported ones.\n\n3. I\u0027m thinking of moving the input voltage into the power supply json file, and having 2 different json files, like: IBM_PS_1000W_110V.json and IBM_PS_1000W_220V.json, then the supported configuration set would specify the one that it supports.\n\n4. Nice. Added that flag.\n\n5. Yeah, changed it to add the SupportedConfiguration to an existing configuration json file.\n\n6. Yep, that\u0027d work.\n\nI think overall the points you made make it work for this initial use case and it\u0027s generic and flexible enough to add to it in the future.",
+      "parentUuid": "3a65cf5b_334c1165",
+      "range": {
+        "startLine": 53,
+        "startChar": 0,
+        "endLine": 58,
+        "endChar": 73
+      },
+      "revId": "d7d64f21a4fa2639f355b48663c78e5f4dd30346",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "83098c6e_f34b8662",
         "filename": "meson.build",
         "patchSetId": 5
@@ -48,6 +72,30 @@
     },
     {
       "key": {
+        "uuid": "df6ed7e7_a993404e",
+        "filename": "meson.build",
+        "patchSetId": 5
+      },
+      "lineNbr": 148,
+      "author": {
+        "id": 1000003
+      },
+      "writtenOn": "2021-04-19T20:30:47Z",
+      "side": 1,
+      "message": "Done. Yep, removed.",
+      "parentUuid": "83098c6e_f34b8662",
+      "range": {
+        "startLine": 144,
+        "startChar": 0,
+        "endLine": 148,
+        "endChar": 5
+      },
+      "revId": "d7d64f21a4fa2639f355b48663c78e5f4dd30346",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "89ddc163_5483b766",
         "filename": "meson_options.txt",
         "patchSetId": 5
@@ -62,6 +110,24 @@
       "revId": "d7d64f21a4fa2639f355b48663c78e5f4dd30346",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "a34cd093_4fc8d203",
+        "filename": "meson_options.txt",
+        "patchSetId": 5
+      },
+      "lineNbr": 11,
+      "author": {
+        "id": 1000003
+      },
+      "writtenOn": "2021-04-19T20:30:47Z",
+      "side": 1,
+      "message": "Done. Yeah, removed in favor of having the configuration added at runtime.",
+      "parentUuid": "89ddc163_5483b766",
+      "revId": "d7d64f21a4fa2639f355b48663c78e5f4dd30346",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": false
     }
   ]
 }
