@@ -27,13 +27,5 @@ for file in files:
     else:
         j["Exposes"] = sorted(j["Exposes"], key=lambda k: k["Type"])
 
-    nl = [s['Name'] for s in j['Exposes']]
-    ns = set(nl)
-    for n in ns:
-        t = nl.count(n)
-        if t != 1:
-            print('\033[1;35mthe %s appears %d times\033[0m!'%(n, t))
-            os._exit(-1)
-
     with open(file, 'w') as f:
         f.write(json.dumps(j, indent=4, sort_keys=True, separators=(',', ': ')))
