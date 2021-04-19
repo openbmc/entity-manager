@@ -1,44 +1,38 @@
 {
     "Exposes": [
         {
-            "Name": "Power Supply Slot 0",
-            "Type": "IBMCFFPSConnector",
             "I2CAddress": 104,
             "I2CBus": 3,
-            "NamedPresenceGpio": "presence-ps0"
+            "Name": "Power Supply Slot 0",
+            "NamedPresenceGpio": "presence-ps0",
+            "Type": "IBMCFFPSConnector"
         },
         {
-            "Name": "Power Supply Slot 1",
-            "Type": "IBMCFFPSConnector",
             "I2CAddress": 105,
             "I2CBus": 3,
-            "NamedPresenceGpio": "presence-ps1"
+            "Name": "Power Supply Slot 1",
+            "NamedPresenceGpio": "presence-ps1",
+            "Type": "IBMCFFPSConnector"
         },
         {
-            "Name": "Power Supply Slot 2",
-            "Type": "IBMCFFPSConnector",
             "I2CAddress": 106,
             "I2CBus": 3,
-            "NamedPresenceGpio": "presence-ps2"
+            "Name": "Power Supply Slot 2",
+            "NamedPresenceGpio": "presence-ps2",
+            "Type": "IBMCFFPSConnector"
         },
         {
-            "Name": "Power Supply Slot 3",
-            "Type": "IBMCFFPSConnector",
             "I2CAddress": 107,
             "I2CBus": 3,
-            "NamedPresenceGpio": "presence-ps3"
+            "Name": "Power Supply Slot 3",
+            "NamedPresenceGpio": "presence-ps3",
+            "Type": "IBMCFFPSConnector"
         },
         {
             "Address": "0x48",
             "Bus": 7,
             "Name": "Ambient 0 Temp",
             "Type": "TMP75"
-        },
-        {
-            "Address": "0x11",
-            "Bus": 8,
-            "Name": "UCD90320 Power Sequencer",
-            "Type": "UCD90320"
         },
         {
             "Address": "0x48",
@@ -51,6 +45,12 @@
             "Bus": 8,
             "Name": "PCIE 1 Temp",
             "Type": "TMP75"
+        },
+        {
+            "Address": "0x11",
+            "Bus": 8,
+            "Name": "UCD90320 Power Sequencer",
+            "Type": "UCD90320"
         }
     ],
     "Name": "Nisqually Backplane",
