@@ -265,6 +265,30 @@
       "revId": "687a99e474759e011df91d8948631e51a8c8c8d7",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "078664b5_896a2de5",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 27,
+      "author": {
+        "id": 1000502
+      },
+      "writtenOn": "2021-04-20T18:35:01Z",
+      "side": 1,
+      "message": "I don\u0027t have an opinion on matching mechanism, but I\u0027m interested in seeing support configurations handle:\n\n- Match the quantity of entities exactly (e.g. in Adriana\u0027s example, 3 power supplies should not match).\n- In the future, match based on location. There\u0027s been some talk of a slot abstraction to identify where an entity is located. Match X in slot 1, Y in slot 2 as supported but treat X in slot 2 and Y in slot 1 as unsupported.",
+      "parentUuid": "d550f1eb_1fcdd86d",
+      "range": {
+        "startLine": 27,
+        "startChar": 5,
+        "endLine": 27,
+        "endChar": 13
+      },
+      "revId": "687a99e474759e011df91d8948631e51a8c8c8d7",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
     }
   ]
 }
