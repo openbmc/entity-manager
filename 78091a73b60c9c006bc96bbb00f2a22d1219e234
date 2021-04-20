@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "33759117_83130c82",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 6
+      },
+      "lineNbr": 17,
+      "author": {
+        "id": 1000003
+      },
+      "writtenOn": "2021-04-20T18:24:34Z",
+      "side": 1,
+      "message": "Trying to understand how the probe should work, because even if components were missing, we still want the Supported d-bus object to show up since it\u0027s the list of expected components. Maybe some way to have a wildcard Probe that always makes the object show up, and add specific Supported configuration json files based on compile flags?",
+      "parentUuid": "4e69d0d8_d29389f4",
+      "range": {
+        "startLine": 16,
+        "startChar": 60,
+        "endLine": 17,
+        "endChar": 12
+      },
+      "revId": "78091a73b60c9c006bc96bbb00f2a22d1219e234",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "159a8c5c_a54539af",
         "filename": "/COMMIT_MSG",
         "patchSetId": 6
