@@ -217,6 +217,30 @@
       "revId": "687a99e474759e011df91d8948631e51a8c8c8d7",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "125ebf48_f519b11c",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 27,
+      "author": {
+        "id": 1000003
+      },
+      "writtenOn": "2021-04-20T15:17:48Z",
+      "side": 1,
+      "message": "Just some thoughts. In order to expose a set of entries, the Probe could have conditions ANDd together, such as \u0027chassis present AND GPU present AND power supply present\u0027. The Probe can be added to any configurations json file, not necessarily in a SupportedConfiguration standalone json, since the idea is that the SupportedConfigurations are a static list that tells you what the system supports, although it could also be implemented via a standalone \u0027supported\u0027 configurations json file.",
+      "parentUuid": "e4ccbc03_01600aac",
+      "range": {
+        "startLine": 27,
+        "startChar": 5,
+        "endLine": 27,
+        "endChar": 13
+      },
+      "revId": "687a99e474759e011df91d8948631e51a8c8c8d7",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
     }
   ]
 }

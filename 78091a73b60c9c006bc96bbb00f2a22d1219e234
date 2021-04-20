@@ -16,6 +16,24 @@
       "revId": "78091a73b60c9c006bc96bbb00f2a22d1219e234",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "45184c7c_9c5a3534",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 6
+      },
+      "lineNbr": 64,
+      "author": {
+        "id": 1000003
+      },
+      "writtenOn": "2021-04-20T15:17:48Z",
+      "side": 1,
+      "message": "My thought is that the power supply monitoring app for example, would read the model that\u0027s plugged in the system, then query the supported configurations to see which one (if any) had that model listed, then check the number of times listed to verify it has the right number of power supplies, therefore it wouldn\u0027t trigger the error on the 2000W config. If none match, yeah it\u0027s up to the app on what to do, like logging an error or failing, because it means the system is running in an unsupported configuration. Yeah, Critical is more severe than Error, just using the standard severities from syslog/logging which are also used in redfish.",
+      "parentUuid": "159a8c5c_a54539af",
+      "revId": "78091a73b60c9c006bc96bbb00f2a22d1219e234",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
     }
   ]
 }
