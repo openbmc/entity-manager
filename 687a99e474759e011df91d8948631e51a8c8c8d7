@@ -241,6 +241,30 @@
       "revId": "687a99e474759e011df91d8948631e51a8c8c8d7",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "d550f1eb_1fcdd86d",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 27,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2021-04-20T16:23:55Z",
+      "side": 1,
+      "message": "I\u0027d like to steer us away from the thought of using probes here, for a couple reasons.\nFirst, probes are designed to be a runtime-modifiable thing;  Considering that supported configurations are going to need to be build-time configurable (I think?) ie at build time I would like to enforce a given set of configurations, and warn if it\u0027s outside those sets, I\u0027m not sure how probes would mate up with that.  Just because someone is using an IBM chassis for example, doesn\u0027t necessarily mean they care about what IBM thinks is recommended, and in the case of second-hand hardware providers, they\u0027ll likely come up with their own supported configs against the same chassis.\n\nAlso, a Chassis is a mediocre way to detect whether or not you\u0027re on something that needs a supported configuration.  What if you have everything but the Chassis?  presumably you\u0027d still want to trigger a warning.",
+      "parentUuid": "125ebf48_f519b11c",
+      "range": {
+        "startLine": 27,
+        "startChar": 5,
+        "endLine": 27,
+        "endChar": 13
+      },
+      "revId": "687a99e474759e011df91d8948631e51a8c8c8d7",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
     }
   ]
 }

@@ -49,6 +49,30 @@
     },
     {
       "key": {
+        "uuid": "f34ea98e_478aecb6",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 5
+      },
+      "lineNbr": 58,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2021-04-20T16:23:55Z",
+      "side": 1,
+      "message": "\u003e 1. The Supported set is a pretty good idea, that way we can add a list of components without having to specify the number for each.\n\u003e \n\u003e 2. Yep, removed the count and will just duplicate the component names as needed to indicate the number of supported ones.\n\u003e \n\u003e 3. I\u0027m thinking of moving the input voltage into the power supply json file, and having 2 different json files, like: IBM_PS_1000W_110V.json and IBM_PS_1000W_220V.json, then the supported configuration set would specify the one that it supports.\n\nI still need to think through this one.  I\u0027m not really sure how to manage that in a reasonably generic way.  I\u0027m assuming that in practice, this would need to be grabbing the input voltage.  How do you manage the difference between a brown out (or unplug) and whether the system actually got connected to the wrong line.  What do we do when the PSU hasn\u0027t been initialized in a config yet.  What do we do when   a PSU is unplugged.  There seems to be a lot of corner cases that we\u0027d need to cover.\n\n\u003e \n\u003e 4. Nice. Added that flag.\n\u003e \n\u003e 5. Yeah, changed it to add the SupportedConfiguration to an existing configuration json file.\n\nNo, that\u0027s not quite what I meant.  Presumably the \"supportability\" of something really has nothing to do with the physical entity itself, that\u0027s somewhat why i worry about putting it in there.  For example, imagine another system starts using the Witherspoon chassis, and doesn\u0027t want to implement supported configurations, or wants different supported configs than IBM does.  We\u0027d have to invent another data structure for that.\n\n\u003e \n\u003e 6. Yep, that\u0027d work.\n\u003e \n\u003e I think overall the points you made make it work for this initial use case and it\u0027s generic and flexible enough to add to it in the future.",
+      "parentUuid": "2b872140_52053756",
+      "range": {
+        "startLine": 53,
+        "startChar": 0,
+        "endLine": 58,
+        "endChar": 73
+      },
+      "revId": "d7d64f21a4fa2639f355b48663c78e5f4dd30346",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "83098c6e_f34b8662",
         "filename": "meson.build",
         "patchSetId": 5

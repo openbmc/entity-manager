@@ -2,6 +2,29 @@
   "comments": [
     {
       "key": {
+        "uuid": "4e69d0d8_d29389f4",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 6
+      },
+      "lineNbr": 17,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2021-04-20T16:23:55Z",
+      "side": 1,
+      "message": "See previous comment.  I\u0027m not sure tying these to entities is going to work in the long run.  Entities are for specific devices, and supported configurations really feels like a non-entity thing, or its own entity that\u0027s standalone from the collection.  Said another way, a chassis itself doesn\u0027t not denote that it has a required supported config.  Especially as systems age, there will be those that want to reuse a chassis, but not require a supported configuration.\n\nThe supported config enforcement stuff probably needs to come from compile time, where you\u0027d basically say \"I\u0027d like to enforce supported configurations\", and the \"Supported\" list in your below somewhat becomes your probe.",
+      "range": {
+        "startLine": 16,
+        "startChar": 60,
+        "endLine": 17,
+        "endChar": 12
+      },
+      "revId": "78091a73b60c9c006bc96bbb00f2a22d1219e234",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "159a8c5c_a54539af",
         "filename": "/COMMIT_MSG",
         "patchSetId": 6
