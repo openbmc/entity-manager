@@ -49,6 +49,30 @@
     },
     {
       "key": {
+        "uuid": "01722120_e73dabc5",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 6
+      },
+      "lineNbr": 17,
+      "author": {
+        "id": 1000003
+      },
+      "writtenOn": "2021-04-21T17:31:54Z",
+      "side": 1,
+      "message": "We can probably do the Probe by OR\u0027ing each component, like \"Rainier chassis\" OR \"Power supply X\", then the configurations d-bus object would show up.\n\nFor enforcing the supported config at compile time, yeah i guess compiling the supported json files based on a compile flag, or perhaps adding a property to an existing configurations json file, like Supported\u003dTrue.",
+      "parentUuid": "33759117_83130c82",
+      "range": {
+        "startLine": 16,
+        "startChar": 60,
+        "endLine": 17,
+        "endChar": 12
+      },
+      "revId": "78091a73b60c9c006bc96bbb00f2a22d1219e234",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "159a8c5c_a54539af",
         "filename": "/COMMIT_MSG",
         "patchSetId": 6
@@ -96,6 +120,24 @@
       "side": 1,
       "message": "Ok, so you\u0027re imaging match based on entity and error based on quantity. That makes sense.\n\nWhat are your thoughts on more heterogeneous configurations? For example, if I have a system with 10 PCIe slots, I might support 1 X, 3 Y\u0027s, and 6 Z\u0027s?",
       "parentUuid": "45184c7c_9c5a3534",
+      "revId": "78091a73b60c9c006bc96bbb00f2a22d1219e234",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "ee9e98f2_5d429823",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 6
+      },
+      "lineNbr": 64,
+      "author": {
+        "id": 1000003
+      },
+      "writtenOn": "2021-04-21T17:31:54Z",
+      "side": 1,
+      "message": "I\u0027d say based on the latest feedback from Ed, the Supported set would look like:\n[\"X\", \"Y\", \"Y\", \"Y\", \"Z\", \"Z\", \"Z\", \"Z\", \"Z\", \"Z\"].",
+      "parentUuid": "9c0a3ca6_e370bdf9",
       "revId": "78091a73b60c9c006bc96bbb00f2a22d1219e234",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
       "unresolved": true
