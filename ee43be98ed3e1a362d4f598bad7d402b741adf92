@@ -73,6 +73,30 @@
     },
     {
       "key": {
+        "uuid": "56ef0866_f557084a",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 9
+      },
+      "lineNbr": 14,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2021-04-22T14:59:23Z",
+      "side": 1,
+      "message": "\u003e Ipmb-channels.json has ipmi device and channels information.\n\nipmb-channels.json is also compile time.  Because IPMB devices are very likely to show up at runtime on add-in-cards, that\u0027s not going to work in the long term.\n\nIdeally ipmi channels would\u0027ve put into entity-manager from the beginning, but IPMB predates entity-manager for the most part, and originally started as a hardcoded struct.\n\nI still think it\u0027s work that needs done.  entity-manager enabled applications should not be reading per-system configuration data from config files.",
+      "parentUuid": "a8e80ca1_d7e77159",
+      "range": {
+        "startLine": 14,
+        "startChar": 0,
+        "endLine": 14,
+        "endChar": 40
+      },
+      "revId": "ee43be98ed3e1a362d4f598bad7d402b741adf92",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "69f57ea2_57d420fd",
         "filename": "src/FruDevice.cpp",
         "patchSetId": 9
