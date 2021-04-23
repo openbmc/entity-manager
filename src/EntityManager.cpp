@@ -48,8 +48,16 @@ constexpr const char* lastConfiguration = "/tmp/configuration/last.json";
 constexpr const char* currentConfiguration = "/var/configuration/system.json";
 constexpr const char* globalSchema = "global.json";
 constexpr const int32_t MAX_MAPPER_DEPTH = 0;
+constexpr const char* foundObject = "FoundProbe";
 
 constexpr const bool DEBUG = false;
+
+using foundProbeData = std::map<std::string, std::string>;
+static foundProbeData foundData;
+static std::map<std::string, foundProbeData> mapFoundData;
+
+constexpr const char* fruConn = "xyz.openbmc_project.FruDevice";
+constexpr const char* fruIntf = "xyz.openbmc_project.FruDevice";
 
 struct cmp_str
 {
@@ -76,6 +84,13 @@ const static boost::container::flat_map<const char*, probe_type_codes, cmp_str>
                  {"OR", probe_type_codes::OR},
                  {"FOUND", probe_type_codes::FOUND},
                  {"MATCH_ONE", probe_type_codes::MATCH_ONE}}};
+
+const static std::unordered_map<std::string, std::string> FRU_PROPERTY_MAP{
+    {"AssetTag", "PRODUCT_ASSET_TAG"},
+    {"Manufacturer", "BOARD_MANUFACTURER"},
+    {"Model", "BOARD_PRODUCT_NAME"},
+    {"PartNumber", "BOARD_PART_NUMBER"},
+    {"SerialNumber", "BOARD_SERIAL_NUMBER"}};
 
 static constexpr std::array<const char*, 6> settableInterfaces = {
     "FanProfile", "Pid", "Pid.Zone", "Stepwise", "Thresholds", "Polling"};
@@ -577,6 +592,55 @@ void addArrayToDbus(const std::string& name, const nlohmann::json& array,
 }
 
 template <typename PropertyType>
+bool persistProperty(const std::string& propertyName,
+                     const PropertyType& newVal,
+                     const std::string& jsonPointerString)
+{
+    std::size_t found = jsonPointerString.find_last_of("/\\");
+    std::string jsonPointerPath = jsonPointerString.substr(0, found);
+
+    auto it = mapFoundData.find(jsonPointerPath);
+    if (it == mapFoundData.end())
+    {
+        std::cerr << "Error in finding jsonPointerPath in mapFoundData"
+                  << "\n";
+        return false;
+    }
+
+    foundProbeData& tmpMap = it->second;
+    auto foundPath = tmpMap.find("foundPath");
+    if (foundPath == tmpMap.end())
+    {
+        std::cerr << "No prob object data is avaliable in foundProbeData"
+                  << "\n";
+        return false;
+    }
+
+    auto fruProperty = FRU_PROPERTY_MAP.find(propertyName);
+    if (fruProperty != FRU_PROPERTY_MAP.end())
+    {
+        SYSTEM_BUS->async_method_call(
+            [propertyName](const boost::system::error_code& ec) {
+                if (ec)
+                {
+                    std::cerr << "Error setting property in FRU interface "
+                              << propertyName << "\n";
+                }
+            },
+            fruConn, foundPath->second, "org.freedesktop.DBus.Properties",
+            "Set", fruIntf, fruProperty->second,
+            std::variant<PropertyType>(newVal));
+    }
+    else
+    {
+        std::cerr << "No Property found " << propertyName << "\n";
+        return false;
+    }
+
+    return true;
+}
+
+template <typename PropertyType>
 void addProperty(const std::string& propertyName, const PropertyType& value,
                  sdbusplus::asio::dbus_interface* iface,
                  nlohmann::json& systemConfiguration,
@@ -590,9 +654,18 @@ void addProperty(const std::string& propertyName, const PropertyType& value,
     }
     iface->register_property(
         propertyName, value,
-        [&systemConfiguration,
+        [propertyName, &systemConfiguration,
          jsonPointerString{std::string(jsonPointerString)}](
             const PropertyType& newVal, PropertyType& val) {
+            if (propertyName == "AssetTag")
+            {
+                if (!persistProperty(propertyName, newVal, jsonPointerString))
+                {
+                    std::cerr << "error setting AssetTag in FRU interface\n";
+                    return -1;
+                }
+            }
+
             val = newVal;
             if (!setJsonFromPointer(jsonPointerString, val,
                                     systemConfiguration))
@@ -990,6 +1063,7 @@ void postToDbus(const nlohmann::json& newConfiguration,
         populateInterfaceFromJson(systemConfiguration, jsonPointerPath,
                                   boardIface, boardValues, objServer);
         jsonPointerPath += "/";
+        std::string foundPath;
         // iterate through board properties
         for (auto& boardField : boardValues.items())
         {
@@ -999,9 +1073,28 @@ void postToDbus(const nlohmann::json& newConfiguration,
                     createInterface(objServer, boardName, boardField.key(),
                                     boardKeyOrig);
 
-                populateInterfaceFromJson(systemConfiguration,
-                                          jsonPointerPath + boardField.key(),
-                                          iface, boardField.value(), objServer);
+                if (boardField.key() == "FoundProbe")
+                {
+                    foundPath = boardField.value()["Path"];
+                }
+                if (boardField.key() ==
+                    "xyz.openbmc_project.Inventory.Decorator.AssetTag")
+                {
+                    foundData["foundPath"] = foundPath;
+                    mapFoundData[jsonPointerPath + boardField.key()] =
+                        foundData;
+
+                    populateInterfaceFromJson(
+                        systemConfiguration, jsonPointerPath + boardField.key(),
+                        iface, boardField.value(), objServer,
+                        sdbusplus::asio::PropertyPermission::readWrite);
+                }
+                else
+                {
+                    populateInterfaceFromJson(
+                        systemConfiguration, jsonPointerPath + boardField.key(),
+                        iface, boardField.value(), objServer);
+                }
             }
         }
 
@@ -1348,6 +1441,7 @@ void PerformScan::run()
                                 std::cerr << "Last JSON Illegal\n";
                                 continue;
                             }
+
                             int index = 0;
                             auto str =
                                 nameIt->get<std::string>().substr(indexIdx);
@@ -1433,6 +1527,10 @@ void PerformScan::run()
                                                 foundDeviceIdx, replaceStr);
                         }
                     }
+
+                    // Save the dbus path info of the device
+                    record[foundObject]["Path"] =
+                        std::get<1>(foundDeviceAndPath);
 
                     if (replaceStr)
                     {
