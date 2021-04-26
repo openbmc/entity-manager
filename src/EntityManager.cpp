@@ -971,20 +971,23 @@ void postToDbus(const nlohmann::json& newConfiguration,
 
         std::regex_replace(boardKey.begin(), boardKey.begin(), boardKey.end(),
                            ILLEGAL_DBUS_MEMBER_REGEX, "_");
-        std::string boardName = "/xyz/openbmc_project/inventory/system/" +
-                                boardtypeLower + "/" + boardKey;
+
+        sdbusplus::message::object_path boardName =
+            "/xyz/openbmc_project/inventory/system";
+        boardName /= boardtypeLower;
+        boardName /= boardKey;
 
         std::shared_ptr<sdbusplus::asio::dbus_interface> inventoryIface =
-            createInterface(objServer, boardName,
+            createInterface(objServer, boardName.str,
                             "xyz.openbmc_project.Inventory.Item", boardKey);
 
         std::shared_ptr<sdbusplus::asio::dbus_interface> boardIface =
-            createInterface(objServer, boardName,
+            createInterface(objServer, boardName.str,
                             "xyz.openbmc_project.Inventory.Item." + boardType,
                             boardKeyOrig);
 
-        createAddObjectMethod(jsonPointerPath, boardName, systemConfiguration,
-                              objServer, boardKeyOrig);
+        createAddObjectMethod(jsonPointerPath, boardName.str,
+                              systemConfiguration, objServer, boardKeyOrig);
 
         populateInterfaceFromJson(systemConfiguration, jsonPointerPath,
                                   boardIface, boardValues, objServer);
@@ -995,7 +998,7 @@ void postToDbus(const nlohmann::json& newConfiguration,
             if (boardField.value().type() == nlohmann::json::value_t::object)
             {
                 std::shared_ptr<sdbusplus::asio::dbus_interface> iface =
-                    createInterface(objServer, boardName, boardField.key(),
+                    createInterface(objServer, boardName.str, boardField.key(),
                                     boardKeyOrig);
 
                 populateInterfaceFromJson(systemConfiguration,
