@@ -919,13 +919,11 @@ void createAddObjectMethod(const std::string& jsonPointerPath,
                 std::cerr << "Error writing json files\n";
                 throw DBusInternalError();
             }
-            std::string dbusName = *name;
 
-            std::regex_replace(dbusName.begin(), dbusName.begin(),
-                               dbusName.end(), ILLEGAL_DBUS_MEMBER_REGEX, "_");
-
+            sdbusplus::message::object_path dbusPath(path);
+            dbusPath /= *name;
             std::shared_ptr<sdbusplus::asio::dbus_interface> interface =
-                createInterface(objServer, path + "/" + dbusName,
+                createInterface(objServer, dbusPath,
                                 "xyz.openbmc_project.Configuration." + *type,
                                 board, true);
             // permission is read-write, as since we just created it, must be
@@ -959,8 +957,6 @@ void postToDbus(const nlohmann::json& newConfiguration,
             findBoardType->type() == nlohmann::json::value_t::string)
         {
             boardType = findBoardType->get<std::string>();
-            std::regex_replace(boardType.begin(), boardType.begin(),
-                               boardType.end(), ILLEGAL_DBUS_MEMBER_REGEX, "_");
         }
         else
         {
@@ -970,22 +966,22 @@ void postToDbus(const nlohmann::json& newConfiguration,
         }
         std::string boardtypeLower = boost::algorithm::to_lower_copy(boardType);
 
-        std::regex_replace(boardKey.begin(), boardKey.begin(), boardKey.end(),
-                           ILLEGAL_DBUS_MEMBER_REGEX, "_");
-        std::string boardName = "/xyz/openbmc_project/inventory/system/" +
-                                boardtypeLower + "/" + boardKey;
+        sdbusplus::message::object_path boardName(
+            "/xyz/openbmc_project/inventory/system");
+        boardName /= boardtypeLower;
+        boardName /= boardKey;
 
         std::shared_ptr<sdbusplus::asio::dbus_interface> inventoryIface =
-            createInterface(objServer, boardName,
+            createInterface(objServer, boardName.str,
                             "xyz.openbmc_project.Inventory.Item", boardKey);
 
         std::shared_ptr<sdbusplus::asio::dbus_interface> boardIface =
-            createInterface(objServer, boardName,
+            createInterface(objServer, boardName.str,
                             "xyz.openbmc_project.Inventory.Item." + boardType,
                             boardKeyOrig);
 
-        createAddObjectMethod(jsonPointerPath, boardName, systemConfiguration,
-                              objServer, boardKeyOrig);
+        createAddObjectMethod(jsonPointerPath, boardName.str,
+                              systemConfiguration, objServer, boardKeyOrig);
 
         populateInterfaceFromJson(systemConfiguration, jsonPointerPath,
                                   boardIface, boardValues, objServer);
@@ -996,7 +992,7 @@ void postToDbus(const nlohmann::json& newConfiguration,
             if (boardField.value().type() == nlohmann::json::value_t::object)
             {
                 std::shared_ptr<sdbusplus::asio::dbus_interface> iface =
-                    createInterface(objServer, boardName, boardField.key(),
+                    createInterface(objServer, boardName.str, boardField.key(),
                                     boardKeyOrig);
 
                 populateInterfaceFromJson(systemConfiguration,
@@ -1051,11 +1047,9 @@ void postToDbus(const nlohmann::json& newConfiguration,
                 itemType = "unknown";
             }
             std::string itemName = findName->get<std::string>();
-            std::regex_replace(itemName.begin(), itemName.begin(),
-                               itemName.end(), ILLEGAL_DBUS_MEMBER_REGEX, "_");
-
+            sdbusplus::message::object_path itemPath = boardName / itemName;
             std::shared_ptr<sdbusplus::asio::dbus_interface> itemIface =
-                createInterface(objServer, boardName + "/" + itemName,
+                createInterface(objServer, itemPath.str,
                                 "xyz.openbmc_project.Configuration." + itemType,
                                 boardKeyOrig);
 
@@ -1073,7 +1067,7 @@ void postToDbus(const nlohmann::json& newConfiguration,
                 {
                     std::shared_ptr<sdbusplus::asio::dbus_interface>
                         objectIface = createInterface(
-                            objServer, boardName + "/" + itemName,
+                            objServer, itemPath.str,
                             "xyz.openbmc_project.Configuration." + itemType +
                                 "." + objectPair.key(),
                             boardKeyOrig);
@@ -1119,7 +1113,7 @@ void postToDbus(const nlohmann::json& newConfiguration,
 
                         std::shared_ptr<sdbusplus::asio::dbus_interface>
                             objectIface = createInterface(
-                                objServer, boardName + "/" + itemName,
+                                objServer, itemPath.str,
                                 "xyz.openbmc_project.Configuration." +
                                     itemType + "." + objectPair.key() +
                                     std::to_string(index),
