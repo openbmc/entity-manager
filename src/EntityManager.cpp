@@ -1688,15 +1688,18 @@ void startRemovedTimer(boost::asio::steady_timer& timer,
                 {
                     bool isDetectedPowerOn = false;
                     auto powerState = item.value().find("PowerState");
-                    if (powerState != item.value().end())
+                    /* No PowerState in entity setting */
+                    if (powerState == item.value().end())
                     {
-                        auto ptr = powerState->get_ptr<const std::string*>();
-                        if (ptr)
+                        continue;
+                    }
+
+                    auto ptr = powerState->get_ptr<const std::string*>();
+                    if (ptr)
+                    {
+                        if (*ptr == "On" || *ptr == "BiosPost")
                         {
-                            if (*ptr == "On" || *ptr == "BiosPost")
-                            {
-                                isDetectedPowerOn = true;
-                            }
+                            isDetectedPowerOn = true;
                         }
                     }
                     if (powerOff && isDetectedPowerOn)
@@ -1778,17 +1781,21 @@ void propertiesChangedCallback(nlohmann::json& systemConfiguration,
                 {
                     bool isDetectedPowerOn = false;
                     auto powerState = item.value().find("PowerState");
-                    if (powerState != item.value().end())
+                    /* No PowerState in entity setting */
+                    if (powerState == item.value().end())
                     {
-                        auto ptr = powerState->get_ptr<const std::string*>();
-                        if (ptr)
+                        continue;
+                    }
+
+                    auto ptr = powerState->get_ptr<const std::string*>();
+                    if (ptr)
+                    {
+                        if (*ptr == "On" || *ptr == "BiosPost")
                         {
-                            if (*ptr == "On" || *ptr == "BiosPost")
-                            {
-                                isDetectedPowerOn = true;
-                            }
+                            isDetectedPowerOn = true;
                         }
                     }
+
                     if (powerOff && isDetectedPowerOn)
                     {
                         // power not on yet, don't know if it's there or not
