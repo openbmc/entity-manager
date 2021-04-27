@@ -84,6 +84,24 @@
     },
     {
       "key": {
+        "uuid": "2e6a9508_ca815471",
+        "filename": "include/EntityManager.hpp",
+        "patchSetId": 1
+      },
+      "lineNbr": 32,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2021-04-27T22:17:47Z",
+      "side": 1,
+      "message": "Can this get moved into a single header and CPP file so we\u0027re at least not externing it everywhere?\n\nSame goes for the io_context.",
+      "parentUuid": "8e24c03a_e29f2956",
+      "revId": "bc11ba4876f2ca20509a2c0c3655b9f54457a15e",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "8f80984c_7517be6b",
         "filename": "include/EntityManager.hpp",
         "patchSetId": 1
@@ -119,6 +137,30 @@
       "side": 1,
       "message": "These externs, such as lastJson, are used in both EntityManager.cpp and EntityManagerMain.cpp.  So that EntityManager.cpp can compile in a testcase where EntityManagerMain.cpp won\u0027t be, I made it an extern in this header, and then put the actual definition in EntityManager.cpp.\n\nDefinitely open to other methods here, it just has to build in both the testcase and regular app.",
       "parentUuid": "8f80984c_7517be6b",
+      "range": {
+        "startLine": 34,
+        "startChar": 0,
+        "endLine": 34,
+        "endChar": 31
+      },
+      "revId": "bc11ba4876f2ca20509a2c0c3655b9f54457a15e",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "7bf6f142_9bb808af",
+        "filename": "include/EntityManager.hpp",
+        "patchSetId": 1
+      },
+      "lineNbr": 34,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2021-04-27T22:17:47Z",
+      "side": 1,
+      "message": "Yeah, I didn\u0027t catch the fact that this was already a global... ug....\n\nLets get this one into its own header and cpp as well just to get this patchset moving, but we definitely will need to revisit this one.  This really shouldn\u0027t be a global.",
+      "parentUuid": "16897227_76c85bd1",
       "range": {
         "startLine": 34,
         "startChar": 0,
