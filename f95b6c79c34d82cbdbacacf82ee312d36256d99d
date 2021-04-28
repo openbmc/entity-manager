@@ -22,6 +22,30 @@
       "revId": "f95b6c79c34d82cbdbacacf82ee312d36256d99d",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "d6914d7a_8f4330c6",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 12,
+      "author": {
+        "id": 1000559
+      },
+      "writtenOn": "2021-04-28T17:29:20Z",
+      "side": 1,
+      "message": "\u003eAs the first look it seems to be wrong fix: absence of \"PowerState\" equals to \"PowerState\u003dAlways\", which means the entity always detectable and thus we remove it once it disappear regardless of power state.\n+1",
+      "parentUuid": "42fb71f2_d9c5b75c",
+      "range": {
+        "startLine": 9,
+        "startChar": 0,
+        "endLine": 12,
+        "endChar": 40
+      },
+      "revId": "f95b6c79c34d82cbdbacacf82ee312d36256d99d",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
     }
   ]
 }
