@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "42fb71f2_d9c5b75c",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 12,
+      "author": {
+        "id": 1000879
+      },
+      "writtenOn": "2021-04-28T11:31:03Z",
+      "side": 1,
+      "message": "Can you provide more details on usecase where you affected by this issue?\nAs the first look it seems to be wrong fix: absence of \"PowerState\" equals to \"PowerState\u003dAlways\", which means the entity always detectable and thus we remove it once it disappear regardless of power state.\n\nHowever I see other problem in the code: \"PowerState\u003dBiosPost\" may be potentially wrongly removed on boot stage... Probably, this should be noted in comments and investigated.",
+      "range": {
+        "startLine": 9,
+        "startChar": 0,
+        "endLine": 12,
+        "endChar": 40
+      },
+      "revId": "f95b6c79c34d82cbdbacacf82ee312d36256d99d",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    }
+  ]
+}
