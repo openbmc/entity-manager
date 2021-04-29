@@ -1,0 +1,9 @@
+#!/bin/sh
+
+set -euo
+
+set -x
+if [[ -v WORKSPACE ]]; then
+    $WORKSPACE/format-code.sh;
+fi;
+python3 scripts/autojson.py configurations
