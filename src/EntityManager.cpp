@@ -48,8 +48,14 @@ constexpr const char* lastConfiguration = "/tmp/configuration/last.json";
 constexpr const char* currentConfiguration = "/var/configuration/system.json";
 constexpr const char* globalSchema = "global.json";
 constexpr const int32_t MAX_MAPPER_DEPTH = 0;
+constexpr const char* probePath = "ProbePath";
 
 constexpr const bool DEBUG = false;
+
+constexpr const char* fruIface = "xyz.openbmc_project.FruDevice";
+constexpr const char* fruService = "xyz.openbmc_project.FruDevice";
+constexpr const char* associationfwdPath = "fruDevice";
+constexpr const char* associationRevsPath = "allFru";
 
 struct cmp_str
 {
@@ -77,8 +83,22 @@ const static boost::container::flat_map<const char*, probe_type_codes, cmp_str>
                  {"FOUND", probe_type_codes::FOUND},
                  {"MATCH_ONE", probe_type_codes::MATCH_ONE}}};
 
-static constexpr std::array<const char*, 6> settableInterfaces = {
-    "FanProfile", "Pid", "Pid.Zone", "Stepwise", "Thresholds", "Polling"};
+const static std::unordered_map<std::string, std::string> updatablePropertyMap{
+    {"AssetTag", "PRODUCT_ASSET_TAG"},
+    {"Manufacturer", "PRODUCT_MANUFACTURER"},
+    {"Model", "PRODUCT_PRODUCT_NAME"},
+    {"PartNumber", "PRODUCT_PART_NUMBER"},
+    {"SerialNumber", "PRODUCT_SERIAL_NUMBER"}};
+
+static constexpr std::array<const char*, 7> settableInterfaces = {
+    "FanProfile",
+    "Pid",
+    "Pid.Zone",
+    "Stepwise",
+    "Thresholds",
+    "Polling",
+    "xyz.openbmc_project.Inventory.Decorator.AssetTag"};
+
 using JsonVariantType =
     std::variant<std::vector<std::string>, std::vector<double>, std::string,
                  int64_t, uint64_t, double, int32_t, uint32_t, int16_t,
@@ -279,6 +299,20 @@ void findDbusObjects(std::vector<std::shared_ptr<PerformProbe>>&& probeVector,
     if constexpr (DEBUG)
     {
         std::cerr << __func__ << " " << __LINE__ << "\n";
+    }
+}
+
+void createAssociation(
+    std::shared_ptr<sdbusplus::asio::dbus_interface>& association,
+    const std::string& path, const std::string& boardKey,
+    const std::string& prodName)
+{
+    if (association)
+    {
+        std::vector<Association> associations;
+        associations.push_back(Association(boardKey, prodName, path));
+        association->register_property("Associations", associations);
+        association->initialize();
     }
 }
 
@@ -576,6 +610,150 @@ void addArrayToDbus(const std::string& name, const nlohmann::json& array,
     }
 }
 
+// Get the property value by providing service name, object path, interface and
+// property name
+template <typename Property>
+bool readPropertyValue(sdbusplus::bus::bus& bus, const std::string& service,
+                       const std::string& path, const std::string& interface,
+                       const std::string& property, Property& propertyVal)
+{
+    std::variant<Property> v;
+    try
+    {
+        auto msg =
+            bus.new_method_call(service.c_str(), path.c_str(),
+                                "org.freedesktop.DBus.Properties", "Get");
+
+        msg.append(interface.c_str(), property.c_str());
+        auto reply = bus.call(msg);
+
+        reply.read(v);
+    }
+    catch (const sdbusplus::exception::SdBusError& e)
+    {
+        std::cerr << "No property found " << property << "\n";
+        return false;
+    }
+
+    propertyVal = std::get<Property>(v);
+
+    return true;
+}
+
+// Set the property value by providing service name, object path, interface and
+// property name
+template <typename Property>
+bool updatePropertyValue(sdbusplus::bus::bus& bus, const std::string& service,
+                         const std::string& path, const std::string& interface,
+                         const std::string& property, Property& propertyValue)
+{
+    try
+    {
+        auto msg =
+            bus.new_method_call(service.c_str(), path.c_str(),
+                                "org.freedesktop.DBus.Properties", "Set");
+        msg.append(
+            interface.c_str(), property.c_str(),
+            std::variant<std::decay_t<decltype(propertyValue)>>(propertyValue));
+
+        auto reply = bus.call(msg);
+    }
+    catch (const sdbusplus::exception::SdBusError& e)
+    {
+        std::cerr << "Error in setting property " << property << "\n";
+        return false;
+    }
+    return true;
+}
+
+bool isPropertyUpdatable(std::string propertyName)
+{
+    return (updatablePropertyMap.find(propertyName) !=
+            updatablePropertyMap.end());
+}
+
+bool getSubTree(sdbusplus::bus::bus& bus,
+                boost::container::flat_set<std::string> interface,
+                GetSubTreeType& subTree)
+{
+    try
+    {
+        auto method_call = bus.new_method_call(
+            "xyz.openbmc_project.ObjectMapper",
+            "/xyz/openbmc_project/object_mapper",
+            "xyz.openbmc_project.ObjectMapper", "GetSubTree");
+
+        method_call.append("/");
+        method_call.append(MAX_MAPPER_DEPTH);
+        method_call.append(interface);
+
+        auto reply = bus.call(method_call);
+        reply.read(subTree);
+    }
+    catch (const sdbusplus::exception::SdBusError& e)
+    {
+        std::cerr << "Failed to get interface \n";
+        return false;
+    }
+
+    return true;
+}
+
+template <typename PropertyType>
+bool persistProperty(const std::string& propertyName,
+                     const PropertyType& newVal,
+                     const std::string& jsonPointerString)
+{
+    std::size_t found = jsonPointerString.find_last_of("/\\");
+    std::string jsonPointerPath = jsonPointerString.substr(0, found);
+
+    found = jsonPointerPath.find_last_of("/\\");
+    std::string iface =
+        jsonPointerPath.substr(found + 1, jsonPointerPath.length());
+
+    boost::container::flat_set<std::string> interface;
+    interface.emplace(iface);
+
+    // Get the object path
+    GetSubTreeType interfaceSubtree;
+    if (!getSubTree(static_cast<sdbusplus::bus::bus&>(*SYSTEM_BUS), interface,
+                    interfaceSubtree))
+    {
+        return false;
+    }
+
+    for (const auto& [path, object] : interfaceSubtree)
+    {
+        std::string objectPath = path + "/" + associationfwdPath;
+
+        std::vector<std::string> endPoints;
+        if (!readPropertyValue<std::vector<std::string>>(
+                static_cast<sdbusplus::bus::bus&>(*SYSTEM_BUS),
+                "xyz.openbmc_project.ObjectMapper", objectPath,
+                "xyz.openbmc_project.Association", "endpoints", endPoints))
+        {
+            std::cerr << "No Associated paths found for " << objectPath << "\n";
+            return false;
+        }
+
+        for (auto endPoint : endPoints)
+        {
+            auto fruProperty = updatablePropertyMap.find(propertyName);
+
+            if (!updatePropertyValue(
+                    static_cast<sdbusplus::bus::bus&>(*SYSTEM_BUS), fruService,
+                    endPoint, fruIface, fruProperty->second, (newVal)))
+            {
+                std::cerr << "Error setting property " << fruProperty->second
+                          << " in interface " << fruIface << "\n";
+                return false;
+            }
+        }
+    }
+
+    return true;
+}
+
 template <typename PropertyType>
 void addProperty(const std::string& propertyName, const PropertyType& value,
                  sdbusplus::asio::dbus_interface* iface,
@@ -590,9 +768,20 @@ void addProperty(const std::string& propertyName, const PropertyType& value,
     }
     iface->register_property(
         propertyName, value,
-        [&systemConfiguration,
+        [propertyName, &systemConfiguration,
          jsonPointerString{std::string(jsonPointerString)}](
             const PropertyType& newVal, PropertyType& val) {
+            if (isPropertyUpdatable(propertyName))
+            {
+                if (!persistProperty(propertyName, newVal, jsonPointerString))
+                {
+                    std::cerr << "Error in setting property " << propertyName
+                              << "\n";
+
+                    return -1;
+                }
+            }
+
             val = newVal;
             if (!setJsonFromPointer(jsonPointerString, val,
                                     systemConfiguration))
@@ -999,9 +1188,21 @@ void postToDbus(const nlohmann::json& newConfiguration,
                     createInterface(objServer, boardName, boardField.key(),
                                     boardKeyOrig);
 
+                if (boardField.key() == probePath)
+                {
+                    // Creating association between the entity manager object
+                    // path and probe Path(FRU Path)
+                    std::shared_ptr<sdbusplus::asio::dbus_interface>
+                        association = objServer.add_interface(
+                            boardName, association::interface);
+
+                    createAssociation(association, boardField.value()["Path"],
+                                      associationfwdPath, associationRevsPath);
+                }
                 populateInterfaceFromJson(systemConfiguration,
                                           jsonPointerPath + boardField.key(),
-                                          iface, boardField.value(), objServer);
+                                          iface, boardField.value(), objServer,
+                                          getPermission(boardField.key()));
             }
         }
 
@@ -1433,6 +1634,10 @@ void PerformScan::run()
                                                 foundDeviceIdx, replaceStr);
                         }
                     }
+
+                    // Save the dbus path of the device(Probe path)
+                    // This path is used while creating associations
+                    record[probePath]["Path"] = std::get<1>(foundDeviceAndPath);
 
                     if (replaceStr)
                     {
