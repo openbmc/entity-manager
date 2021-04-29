@@ -11,6 +11,7 @@ executable(
         nlohmann_json,
         sdbusplus,
         valijson,
+	threads,
     ],
     implicit_include_directories: false,
     include_directories: '../include',
