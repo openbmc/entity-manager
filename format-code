@@ -1,0 +1,11 @@
+#!/bin/sh
+
+set -euo
+
+set -x
+
+SCRIPT_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" &> /dev/null && pwd )"
+CLANG_FORMAT="${CLANG_FORMAT:-clang-format}"
+
+git -C "${SCRIPT_DIR}" ls-files | grep '\.[ch]pp$' | xargs "${CLANG_FORMAT}" -i
+python3 scripts/autojson.py configurations
