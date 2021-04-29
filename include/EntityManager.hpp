@@ -36,6 +36,14 @@ using DBusProbeObjectT = boost::container::flat_map<
         std::string,
         boost::container::flat_map<std::string, BasicVariantType>>>;
 
+namespace association
+{
+const static constexpr char* interface =
+    "xyz.openbmc_project.Association.Definitions";
+} // namespace association
+
+using Association = std::tuple<std::string, std::string, std::string>;
+
 // vector of tuple<map<propertyName, variant>, D-Bus path>>
 using FoundDeviceT = std::vector<std::tuple<
     boost::container::flat_map<std::string, BasicVariantType>, std::string>>;
