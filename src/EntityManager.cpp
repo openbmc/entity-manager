@@ -48,8 +48,13 @@ constexpr const char* lastConfiguration = "/tmp/configuration/last.json";
 constexpr const char* currentConfiguration = "/var/configuration/system.json";
 constexpr const char* globalSchema = "global.json";
 constexpr const int32_t MAX_MAPPER_DEPTH = 0;
+constexpr const char* probePath = "ProbePath";
 
 constexpr const bool DEBUG = false;
+
+constexpr const char* fruIface = "xyz.openbmc_project.FruDevice";
+constexpr const char* associationfwdPath = "fruDevice";
+constexpr const char* associationRevsPath = "allFru";
 
 struct cmp_str
 {
@@ -77,8 +82,22 @@ const static boost::container::flat_map<const char*, probe_type_codes, cmp_str>
                  {"FOUND", probe_type_codes::FOUND},
                  {"MATCH_ONE", probe_type_codes::MATCH_ONE}}};
 
-static constexpr std::array<const char*, 6> settableInterfaces = {
-    "FanProfile", "Pid", "Pid.Zone", "Stepwise", "Thresholds", "Polling"};
+const static std::unordered_map<std::string, std::string>
+    UPDATABLE_PROPERTY_MAP{{"AssetTag", "PRODUCT_ASSET_TAG"},
+                           {"Manufacturer", "PRODUCT_MANUFACTURER"},
+                           {"Model", "PRODUCT_PRODUCT_NAME"},
+                           {"PartNumber", "PRODUCT_PART_NUMBER"},
+                           {"SerialNumber", "PRODUCT_SERIAL_NUMBER"}};
+
+static constexpr std::array<const char*, 7> settableInterfaces = {
+    "FanProfile",
+    "Pid",
+    "Pid.Zone",
+    "Stepwise",
+    "Thresholds",
+    "Polling",
+    "xyz.openbmc_project.Inventory.Decorator.AssetTag"};
+
 using JsonVariantType =
     std::variant<std::vector<std::string>, std::vector<double>, std::string,
                  int64_t, uint64_t, double, int32_t, uint32_t, int16_t,
@@ -279,6 +298,20 @@ void findDbusObjects(std::vector<std::shared_ptr<PerformProbe>>&& probeVector,
     if constexpr (DEBUG)
     {
         std::cerr << __func__ << " " << __LINE__ << "\n";
+    }
+}
+
+void createAssociation(
+    std::shared_ptr<sdbusplus::asio::dbus_interface>& association,
+    const std::string& path, const std::string& boardKey,
+    const std::string& prodName)
+{
+    if (association)
+    {
+        std::vector<Association> associations;
+        associations.push_back(Association(boardKey, prodName, path));
+        association->register_property("Associations", associations);
+        association->initialize();
     }
 }
 
@@ -576,6 +609,115 @@ void addArrayToDbus(const std::string& name, const nlohmann::json& array,
     }
 }
 
+template <typename Property>
+static auto
+    readPropertyValue(sdbusplus::bus::bus& bus, const std::string& service,
+                      const std::string& path, const std::string& interface,
+                      const std::string& property)
+{
+    auto msg = bus.new_method_call(service.c_str(), path.c_str(),
+                                   "org.freedesktop.DBus.Properties", "Get");
+
+    msg.append(interface.c_str(), property.c_str());
+    auto reply = bus.call(msg);
+
+    std::variant<Property> v;
+    reply.read(v);
+    return std::get<Property>(v);
+}
+
+bool isPropertyUpdatable(std::string propertyName)
+{
+    return (UPDATABLE_PROPERTY_MAP.find(propertyName) !=
+            UPDATABLE_PROPERTY_MAP.end());
+}
+
+template <typename PropertyType>
+bool persistProperty(const std::string& propertyName,
+                     const PropertyType& newVal,
+                     const std::string& jsonPointerString, size_t retries = 5)
+{
+    std::size_t found = jsonPointerString.find_last_of("/\\");
+    std::string jsonPointerPath = jsonPointerString.substr(0, found);
+
+    found = jsonPointerPath.find_last_of("/\\");
+    std::string iface =
+        jsonPointerPath.substr(found + 1, jsonPointerPath.length());
+
+    boost::container::flat_set<std::string> interface;
+    interface.emplace(iface);
+
+    // Using the interface find the Object Path
+    SYSTEM_BUS->async_method_call(
+        [propertyName, newVal, jsonPointerString,
+         retries](const boost::system::error_code& ec,
+                  const GetSubTreeType& interfaceSubtree) mutable {
+            if (ec)
+            {
+                if (ec.value() == ENOENT)
+                {
+                    std::cerr << "Was not found by mapper \n";
+                    return;
+                }
+                if (!retries)
+                {
+                    // if we can't communicate to the mapper something is very
+                    // wrong
+                    std::cerr << "Error communicating to mapper.\n";
+                    std::exit(EXIT_FAILURE);
+                }
+                std::cerr << "Error communicating to mapper. Retrying after "
+                             "some time\n";
+
+                std::shared_ptr<boost::asio::steady_timer> timer =
+                    std::make_shared<boost::asio::steady_timer>(io);
+                timer->expires_after(std::chrono::seconds(10));
+
+                timer->async_wait(
+                    [timer, propertyName, newVal, jsonPointerString,
+                     retries](const boost::system::error_code&) mutable {
+                        persistProperty(propertyName, newVal, jsonPointerString,
+                                        retries - 1);
+                    });
+                return;
+            }
+
+            for (const auto& [path, object] : interfaceSubtree)
+            {
+                std::string objectPath = path + "/" + associationfwdPath;
+
+                auto endPoints = readPropertyValue<std::vector<std::string>>(
+                    static_cast<sdbusplus::bus::bus&>(*SYSTEM_BUS),
+                    "xyz.openbmc_project.ObjectMapper", objectPath,
+                    "xyz.openbmc_project.Association", "endpoints");
+
+                for (auto endPoint : endPoints)
+                {
+                    auto fruProperty =
+                        UPDATABLE_PROPERTY_MAP.find(propertyName);
+                    SYSTEM_BUS->async_method_call(
+                        [propertyName](const boost::system::error_code& ec) {
+                            if (ec)
+                            {
+                                std::cerr << "Error setting property in FRU "
+                                             "interface "
+                                          << propertyName << "\n";
+                            }
+                        },
+                        fruIface, endPoint, "org.freedesktop.DBus.Properties",
+                        "Set", fruIface, fruProperty->second,
+                        std::variant<PropertyType>(newVal));
+                }
+            }
+        },
+        "xyz.openbmc_project.ObjectMapper",
+        "/xyz/openbmc_project/object_mapper",
+        "xyz.openbmc_project.ObjectMapper", "GetSubTree", "/", MAX_MAPPER_DEPTH,
+        interface);
+
+    return true;
+}
+
 template <typename PropertyType>
 void addProperty(const std::string& propertyName, const PropertyType& value,
                  sdbusplus::asio::dbus_interface* iface,
@@ -590,9 +732,18 @@ void addProperty(const std::string& propertyName, const PropertyType& value,
     }
     iface->register_property(
         propertyName, value,
-        [&systemConfiguration,
+        [propertyName, &systemConfiguration,
          jsonPointerString{std::string(jsonPointerString)}](
             const PropertyType& newVal, PropertyType& val) {
+            if (isPropertyUpdatable(propertyName))
+            {
+                if (!persistProperty(propertyName, newVal, jsonPointerString))
+                {
+                    std::cerr << "error setting AssetTag in FRU interface\n";
+                    return -1;
+                }
+            }
+
             val = newVal;
             if (!setJsonFromPointer(jsonPointerString, val,
                                     systemConfiguration))
@@ -999,9 +1150,19 @@ void postToDbus(const nlohmann::json& newConfiguration,
                     createInterface(objServer, boardName, boardField.key(),
                                     boardKeyOrig);
 
+                if (boardField.key() == probePath)
+                {
+                    std::shared_ptr<sdbusplus::asio::dbus_interface>
+                        association = objServer.add_interface(
+                            boardName, association::interface);
+
+                    createAssociation(association, boardField.value()["Path"],
+                                      associationfwdPath, associationRevsPath);
+                }
                 populateInterfaceFromJson(systemConfiguration,
                                           jsonPointerPath + boardField.key(),
-                                          iface, boardField.value(), objServer);
+                                          iface, boardField.value(), objServer,
+                                          getPermission(boardField.key()));
             }
         }
 
@@ -1433,6 +1594,9 @@ void PerformScan::run()
                                                 foundDeviceIdx, replaceStr);
                         }
                     }
+
+                    // Save the dbus path of the device(Probe path)
+                    record[probePath]["Path"] = std::get<1>(foundDeviceAndPath);
 
                     if (replaceStr)
                     {
