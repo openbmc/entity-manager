@@ -1,0 +1,14 @@
+#!/bin/sh
+
+set -euo
+
+set -x
+
+if [[ -v 1 ]]; then
+    cd "$1";
+fi;
+
+if [[ -v WORKSPACE ]]; then
+    $WORKSPACE/format-code.sh;
+fi;
+python3 scripts/autojson.py configurations
