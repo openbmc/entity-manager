@@ -1,0 +1,10 @@
+#!/bin/sh
+
+set -euo
+
+set -x
+
+export CLANG_FORMAT="${CLANG_FORMAT:-clang-format}"
+
+git ls-files | grep '\.[ch]pp$' | xargs "${CLANG_FORMAT}" -i
+python3 scripts/autojson.py configurations
