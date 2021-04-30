@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "c48cd51a_9b61193f",
+        "filename": "schemas/README.schema",
+        "patchSetId": 2
+      },
+      "lineNbr": 49,
+      "author": {
+        "id": 1000008
+      },
+      "writtenOn": "2021-04-30T14:28:09Z",
+      "side": 1,
+      "message": "note to self, operations like:\n\n\"Probe\": \"xyz.openbmc_project.FruDevice({\u0027BOARD_PRODUCT_NAME\u0027: \u0027SP3RT040X16\u0027})\",\n\n\"Probe\": \"xyz.openbmc_project.FruDevice({\u0027PRODUCT_PRODUCT_NAME\u0027: \u0027PSSF162205A\u0027, \u0027ADDRESS\u0027: 80})\"\n\n\"Probe\": \"xyz.openbmc_project.FruDevice({\u0027PRODUCT_PRODUCT_NAME\u0027: \u0027.*BNP\u0027})\"",
+      "parentUuid": "9c4c9a14_683b85e4",
+      "revId": "52fcc4480a5d3ded34a92bc58143c25e4bd1c99f",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "758f0d3f_c6cf0cdb",
         "filename": "schemas/README.schema",
         "patchSetId": 2
@@ -30,6 +48,30 @@
       "writtenOn": "2021-04-29T15:15:32Z",
       "side": 1,
       "message": "FWIW, I\u0027d really like to change this some day to a normal language like we\u0027re planning on doing with the properties parser, but I have no problem documenting what we have.",
+      "range": {
+        "startLine": 51,
+        "startChar": 0,
+        "endLine": 55,
+        "endChar": 104
+      },
+      "revId": "52fcc4480a5d3ded34a92bc58143c25e4bd1c99f",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "723ec3de_24467f8e",
+        "filename": "schemas/README.schema",
+        "patchSetId": 2
+      },
+      "lineNbr": 55,
+      "author": {
+        "id": 1000008
+      },
+      "writtenOn": "2021-04-30T14:28:09Z",
+      "side": 1,
+      "message": "I see this used here:\n    \"Probe\": [\n        \"FOUND(\u0027WFP Baseboard\u0027)\",\n        \"AND\",\n        \"xyz.openbmc_project.FruDevice({\u0027BOARD_PRODUCT_NAME\u0027: \u0027F1UL16RISER\\\\d\u0027})\",\n        \"AND\",\n        \"xyz.openbmc_project.FruDevice({\u0027PRODUCT_PRODUCT_NAME\u0027: \u0027.*WFT\u0027})\",\n        \"MATCH_ONE\"\n    ],\n\n\nI\u0027m really not sure what this does though. I guess I need to study the code more.",
+      "parentUuid": "758f0d3f_c6cf0cdb",
       "range": {
         "startLine": 51,
         "startChar": 0,
