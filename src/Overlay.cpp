@@ -169,8 +169,14 @@ static bool deviceIsCreated(const std::string& devicePath,
     std::string addressHex = hex.str();
     std::string busStr = std::to_string(*bus);
 
-    for (auto path = std::filesystem::recursive_directory_iterator(devicePath);
-         path != std::filesystem::recursive_directory_iterator(); path++)
+    std::error_code ec;
+    auto path = std::filesystem::recursive_directory_iterator(devicePath, ec);
+    if (ec)
+    {
+        std::cerr << "Unable to open path " << devicePath << "\n";
+        return false;
+    }
+    for (; path != std::filesystem::recursive_directory_iterator(); path++)
     {
         if (!std::filesystem::is_directory(*path))
         {
