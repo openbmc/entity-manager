@@ -39,6 +39,14 @@
                         "plug state."
                     ],
                     "type": "string"
+                },
+                "DelayBind": {
+                    "description": [
+                        "The amount of time, in milliseconds, to delay before",
+                        "binding a device driver when the device goes from",
+                        "missing to present."
+                    ],
+                    "type": "number"
                 }
             },
             "required": [
