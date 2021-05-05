@@ -311,7 +311,7 @@ bool probeDbus(const std::string& interface,
             auto deviceValue = properties.find(matchProp);
             if (deviceValue != properties.end())
             {
-                deviceMatches = matchProbe(matchJSON, deviceValue->second);
+                deviceMatches = deviceMatches && matchProbe(matchJSON, deviceValue->second);
             }
             else
             {
