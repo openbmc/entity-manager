@@ -1832,16 +1832,18 @@ void propertiesChangedCallback(nlohmann::json& systemConfiguration,
 
                 inProgress = false;
 
-                io.post([&, newConfiguration]() {
+                io.post([count, newConfiguration, &systemConfiguration,
+                         &objServer]() {
                     loadOverlays(newConfiguration);
 
-                    io.post([&]() {
+                    io.post([&systemConfiguration]() {
                         if (!writeJsonFiles(systemConfiguration))
                         {
                             std::cerr << "Error writing json files\n";
                         }
                     });
-                    io.post([&, newConfiguration]() {
+                    io.post([count, newConfiguration, &systemConfiguration,
+                             &objServer]() {
                         postToDbus(newConfiguration, systemConfiguration,
                                    objServer);
                         if (count != instance)
