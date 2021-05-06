@@ -2,6 +2,29 @@
   "comments": [
     {
       "key": {
+        "uuid": "7c638468_6995f6d1",
+        "filename": "src/EntityManager.cpp",
+        "patchSetId": 2
+      },
+      "lineNbr": 57,
+      "author": {
+        "id": 1000900
+      },
+      "writtenOn": "2021-05-06T01:02:00Z",
+      "side": 1,
+      "message": "these names seem too generic",
+      "range": {
+        "startLine": 56,
+        "startChar": 22,
+        "endLine": 57,
+        "endChar": 41
+      },
+      "revId": "7e3d848972e409ecedc3adcfe7fd7470e6f43a5d",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "fda7c787_d9d595ab",
         "filename": "src/EntityManager.cpp",
         "patchSetId": 2
@@ -18,6 +41,29 @@
         "startChar": 4,
         "endLine": 86,
         "endChar": 26
+      },
+      "revId": "7e3d848972e409ecedc3adcfe7fd7470e6f43a5d",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "5d1375c6_43076f39",
+        "filename": "src/EntityManager.cpp",
+        "patchSetId": 2
+      },
+      "lineNbr": 312,
+      "author": {
+        "id": 1000900
+      },
+      "writtenOn": "2021-05-06T01:02:00Z",
+      "side": 1,
+      "message": "nit: prefer associations.emplace_back(boardKey, prodName, path)",
+      "range": {
+        "startLine": 312,
+        "startChar": 21,
+        "endLine": 312,
+        "endChar": 42
       },
       "revId": "7e3d848972e409ecedc3adcfe7fd7470e6f43a5d",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
@@ -48,6 +94,52 @@
     },
     {
       "key": {
+        "uuid": "275cb9d8_94840620",
+        "filename": "src/EntityManager.cpp",
+        "patchSetId": 2
+      },
+      "lineNbr": 629,
+      "author": {
+        "id": 1000900
+      },
+      "writtenOn": "2021-05-06T01:02:00Z",
+      "side": 1,
+      "message": "const std::string\u0026",
+      "range": {
+        "startLine": 629,
+        "startChar": 25,
+        "endLine": 629,
+        "endChar": 37
+      },
+      "revId": "7e3d848972e409ecedc3adcfe7fd7470e6f43a5d",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "4030372c_30793c4f",
+        "filename": "src/EntityManager.cpp",
+        "patchSetId": 2
+      },
+      "lineNbr": 632,
+      "author": {
+        "id": 1000900
+      },
+      "writtenOn": "2021-05-06T01:02:00Z",
+      "side": 1,
+      "message": "Shouldn\u0027t this be qualified by the interface name as well? Couldn\u0027t there be a Manufacturer or Model in another interface which we wouldn\u0027t want to be updatable?",
+      "range": {
+        "startLine": 631,
+        "startChar": 4,
+        "endLine": 632,
+        "endChar": 42
+      },
+      "revId": "7e3d848972e409ecedc3adcfe7fd7470e6f43a5d",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "8f98544d_17dd90f1",
         "filename": "src/EntityManager.cpp",
         "patchSetId": 2
@@ -71,6 +163,46 @@
     },
     {
       "key": {
+        "uuid": "9e77b04b_31f32257",
+        "filename": "src/EntityManager.cpp",
+        "patchSetId": 2
+      },
+      "lineNbr": 743,
+      "author": {
+        "id": 1000900
+      },
+      "writtenOn": "2021-05-06T01:02:00Z",
+      "side": 1,
+      "message": "This is supposed to be false to indicate failure. The other failure paths in the callback should be updated too.",
+      "range": {
+        "startLine": 743,
+        "startChar": 20,
+        "endLine": 743,
+        "endChar": 30
+      },
+      "revId": "7e3d848972e409ecedc3adcfe7fd7470e6f43a5d",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "cdbe591b_467b248f",
+        "filename": "src/EntityManager.cpp",
+        "patchSetId": 2
+      },
+      "lineNbr": 1153,
+      "author": {
+        "id": 1000900
+      },
+      "writtenOn": "2021-05-06T01:02:00Z",
+      "side": 1,
+      "message": "Seems like this new code should not be in this block. Do you really want to create a new interface called \"Probe\"? Shouldn\u0027t it be more like this?\n\n  if (type \u003d\u003d object)\n  {\n  ...\n  }\n  else if(boardField.key() \u003d\u003d probePath)\n  {\n     // do your new stuff\n  }",
+      "revId": "7e3d848972e409ecedc3adcfe7fd7470e6f43a5d",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "c991c3d4_423e42e4",
         "filename": "src/EntityManager.cpp",
         "patchSetId": 2
@@ -88,6 +220,23 @@
         "endLine": 1159,
         "endChar": 37
       },
+      "revId": "7e3d848972e409ecedc3adcfe7fd7470e6f43a5d",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "85850808_2a947daf",
+        "filename": "src/EntityManager.cpp",
+        "patchSetId": 2
+      },
+      "lineNbr": 1599,
+      "author": {
+        "id": 1000900
+      },
+      "writtenOn": "2021-05-06T01:02:00Z",
+      "side": 1,
+      "message": "Why is there an extra object level to this information instead of just this:\n\n  record[probePath] \u003d std::get\u003c1\u003e(foundDeviceAndPath)",
       "revId": "7e3d848972e409ecedc3adcfe7fd7470e6f43a5d",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
       "unresolved": true
