@@ -46,6 +46,30 @@
       "revId": "f95b6c79c34d82cbdbacacf82ee312d36256d99d",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "a3316a4a_98f97c8b",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 12,
+      "author": {
+        "id": 1000945
+      },
+      "writtenOn": "2021-05-06T06:58:43Z",
+      "side": 1,
+      "message": "Yes, you are right.\nI found the cause of issue. When I add option\nVIRTUAL-RUNTIME_obmc-inventory-manager ?\u003d \"entity-manager\"\nto machine configuration. When the host change from on to off. The object FruDevice is inactivated.\nThis cause the entity-manager detect the entity is inactive and remove the current configuration.\nI will abandon the patch. Thank for your comment.",
+      "parentUuid": "d6914d7a_8f4330c6",
+      "range": {
+        "startLine": 9,
+        "startChar": 0,
+        "endLine": 12,
+        "endChar": 40
+      },
+      "revId": "f95b6c79c34d82cbdbacacf82ee312d36256d99d",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
     }
   ]
 }
