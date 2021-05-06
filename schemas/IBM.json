@@ -49,6 +49,53 @@
                 "NamedPresenceGpio"
             ]
         },
+        "IBMCFFPSSupportedConfiguration": {
+            "title": "IBM Common Form Factor (CFF) Power Supply Configuration",
+            "description": [
+                "A schema describing the supported models and properties of",
+                "IBM Common Form Factor Power Supplies that a system supports."
+            ],
+            "type": "object",
+            "properties": {
+                "Name": {
+                    "type": "string"
+                },
+                "Type": {
+                    "enum": [
+                        "IBMCFFPSSupportedConfiguration"
+                    ]
+                },
+                "Count": {
+                    "description": [
+                        "The total number of IBM CFF Power Supplies expected",
+                        "for this configuration."
+                    ],
+                    "type": "number"
+                },
+                "Input": {
+                    "description": [
+                        "The input voltage in Volts of the IBM CFF Power",
+                        "Supplies required in this configuration."
+                    ],
+                    "type": "number"
+                },
+                "Models": {
+                    "description": [
+                        "The model name(s) of the IBM CFF Power Supplies that",
+                        "are supported in this configuration."
+                    ],
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    }
+                }
+            },
+            "required": [
+                "Count",
+                "Input",
+                "Models"
+            ]
+        },
         "IBMCompatibleSystem": {
             "title": "System compatibility",
             "description": [
