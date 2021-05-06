@@ -1,0 +1,228 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "883d3a87_ed92b3aa",
+        "filename": "src/EntityManager.cpp",
+        "patchSetId": 3
+      },
+      "lineNbr": 676,
+      "author": {
+        "id": 1000900
+      },
+      "writtenOn": "2021-05-06T19:49:36Z",
+      "side": 1,
+      "message": "probably should be const std::vector\u003cstd::string\u003e\u0026",
+      "range": {
+        "startLine": 676,
+        "startChar": 16,
+        "endLine": 676,
+        "endChar": 55
+      },
+      "revId": "8886f8116f46c95c33cc6af5cb54817a42a66cd8",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "b23c3207_b96ffdc6",
+        "filename": "src/EntityManager.cpp",
+        "patchSetId": 3
+      },
+      "lineNbr": 707,
+      "author": {
+        "id": 1000900
+      },
+      "writtenOn": "2021-05-06T19:49:36Z",
+      "side": 1,
+      "message": "why search for backslashes? the string should just have forward slashes, right?",
+      "range": {
+        "startLine": 707,
+        "startChar": 55,
+        "endLine": 707,
+        "endChar": 60
+      },
+      "revId": "8886f8116f46c95c33cc6af5cb54817a42a66cd8",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "b5e08fee_fdd4b466",
+        "filename": "src/EntityManager.cpp",
+        "patchSetId": 3
+      },
+      "lineNbr": 710,
+      "author": {
+        "id": 1000900
+      },
+      "writtenOn": "2021-05-06T19:49:36Z",
+      "side": 1,
+      "message": "might be easier to use std::filesystem utilities for parsing these strings",
+      "revId": "8886f8116f46c95c33cc6af5cb54817a42a66cd8",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "2df899a2_507860dc",
+        "filename": "src/EntityManager.cpp",
+        "patchSetId": 3
+      },
+      "lineNbr": 714,
+      "author": {
+        "id": 1000900
+      },
+      "writtenOn": "2021-05-06T19:49:36Z",
+      "side": 1,
+      "message": "this should probably just be a std::vector",
+      "range": {
+        "startLine": 714,
+        "startChar": 4,
+        "endLine": 714,
+        "endChar": 43
+      },
+      "revId": "8886f8116f46c95c33cc6af5cb54817a42a66cd8",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "cc2faf91_6f544fe3",
+        "filename": "src/EntityManager.cpp",
+        "patchSetId": 3
+      },
+      "lineNbr": 719,
+      "author": {
+        "id": 1000900
+      },
+      "writtenOn": "2021-05-06T19:49:36Z",
+      "side": 1,
+      "message": "nit: unnecessary cast, done in several places",
+      "range": {
+        "startLine": 719,
+        "startChar": 20,
+        "endLine": 719,
+        "endChar": 53
+      },
+      "revId": "8886f8116f46c95c33cc6af5cb54817a42a66cd8",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "45cecde2_b1bad1b7",
+        "filename": "src/EntityManager.cpp",
+        "patchSetId": 3
+      },
+      "lineNbr": 725,
+      "author": {
+        "id": 1000900
+      },
+      "writtenOn": "2021-05-06T19:49:36Z",
+      "side": 1,
+      "message": "I don\u0027t think \"object\" is a good name for this - I usually call it serviceMap.\n\nBut also doesn\u0027t look like it\u0027s used, so maybe you should just call GetObject instead of GetSubTree if you only need the object paths.\n\nAlso confused how we are processing multiple paths in a loop here. The user set AssetTag on a specific entity, but this loop is going to process all entities that implement Inventory.Decorator.Asset? How does this function restrict itself to the correct entity?",
+      "range": {
+        "startLine": 725,
+        "startChar": 28,
+        "endLine": 725,
+        "endChar": 34
+      },
+      "revId": "8886f8116f46c95c33cc6af5cb54817a42a66cd8",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "8a9e034b_03a6e247",
+        "filename": "src/EntityManager.cpp",
+        "patchSetId": 3
+      },
+      "lineNbr": 730,
+      "author": {
+        "id": 1000900
+      },
+      "writtenOn": "2021-05-06T19:49:36Z",
+      "side": 1,
+      "message": "shouldn\u0027t need to manually specify this template parameter",
+      "range": {
+        "startLine": 730,
+        "startChar": 30,
+        "endLine": 730,
+        "endChar": 56
+      },
+      "revId": "8886f8116f46c95c33cc6af5cb54817a42a66cd8",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "dc65b67f_ad18df8b",
+        "filename": "src/EntityManager.cpp",
+        "patchSetId": 3
+      },
+      "lineNbr": 738,
+      "author": {
+        "id": 1000900
+      },
+      "writtenOn": "2021-05-06T19:49:36Z",
+      "side": 1,
+      "message": "why do we bother looking this up, when we\u0027re the one who installed the association and already have that information ready?",
+      "range": {
+        "startLine": 730,
+        "startChar": 8,
+        "endLine": 738,
+        "endChar": 0
+      },
+      "revId": "8886f8116f46c95c33cc6af5cb54817a42a66cd8",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "fd74348b_71b54adc",
+        "filename": "src/EntityManager.cpp",
+        "patchSetId": 3
+      },
+      "lineNbr": 739,
+      "author": {
+        "id": 1000900
+      },
+      "writtenOn": "2021-05-06T19:49:36Z",
+      "side": 1,
+      "message": "const auto\u0026",
+      "range": {
+        "startLine": 739,
+        "startChar": 13,
+        "endLine": 739,
+        "endChar": 17
+      },
+      "revId": "8886f8116f46c95c33cc6af5cb54817a42a66cd8",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "fdc7c9c3_76104113",
+        "filename": "src/EntityManager.cpp",
+        "patchSetId": 3
+      },
+      "lineNbr": 751,
+      "author": {
+        "id": 1000900
+      },
+      "writtenOn": "2021-05-06T19:49:36Z",
+      "side": 1,
+      "message": "How can there be multiple endpoints? Did you actually test that?",
+      "range": {
+        "startLine": 739,
+        "startChar": 8,
+        "endLine": 751,
+        "endChar": 9
+      },
+      "revId": "8886f8116f46c95c33cc6af5cb54817a42a66cd8",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    }
+  ]
+}
