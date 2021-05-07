@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "0c9ae0dc_4bcdcbe8",
+        "filename": "docs/dynamic_mux.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 155,
+      "author": {
+        "id": 1000009
+      },
+      "writtenOn": "2021-05-07T01:28:54Z",
+      "side": 1,
+      "message": "How does this work at the kernel interface level? Are you proposing we use new_device and bind the i2c-mux-gpio driver to it? If so we need a mechanism to describe the GPIOs to the kernel. Or are you proposing handling this in userspace somehow?\n\nI feel this (again) starts us down the route of devicetree overlays or connectors.",
+      "range": {
+        "startLine": 150,
+        "startChar": 0,
+        "endLine": 155,
+        "endChar": 17
+      },
+      "revId": "6ce26789269908595d7bcd8c38a6c29da2499438",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    }
+  ]
+}
