@@ -1,0 +1,303 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "db51248a_606858a7",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 4
+      },
+      "lineNbr": 15,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2021-05-10T15:20:43Z",
+      "side": 1,
+      "message": "What does this mean?  I see no changes to entity-manager configs that would use this.",
+      "range": {
+        "startLine": 14,
+        "startChar": 0,
+        "endLine": 15,
+        "endChar": 24
+      },
+      "revId": "93e08e07b45cce7fb3e93c1755377963424989b2",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "54758453_954d13bd",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 4
+      },
+      "lineNbr": 17,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2021-05-10T15:20:43Z",
+      "side": 1,
+      "message": "more details here;  What is the association named?",
+      "range": {
+        "startLine": 16,
+        "startChar": 0,
+        "endLine": 17,
+        "endChar": 28
+      },
+      "revId": "93e08e07b45cce7fb3e93c1755377963424989b2",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "cb27917c_33997a32",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 4
+      },
+      "lineNbr": 19,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2021-05-10T15:20:43Z",
+      "side": 1,
+      "message": "How?  Through the existing config files?",
+      "range": {
+        "startLine": 18,
+        "startChar": 0,
+        "endLine": 19,
+        "endChar": 47
+      },
+      "revId": "93e08e07b45cce7fb3e93c1755377963424989b2",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "aa3ea145_2b02cd9a",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 4
+      },
+      "lineNbr": 21,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2021-05-10T15:20:43Z",
+      "side": 1,
+      "message": "This seems incorrect.  We should be basing this on the config files, not any sort of properties table.",
+      "range": {
+        "startLine": 20,
+        "startChar": 0,
+        "endLine": 21,
+        "endChar": 23
+      },
+      "revId": "93e08e07b45cce7fb3e93c1755377963424989b2",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "80761963_23580b6d",
+        "filename": "src/EntityManager.cpp",
+        "patchSetId": 4
+      },
+      "lineNbr": 91,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2021-05-10T15:20:43Z",
+      "side": 1,
+      "message": "This doesn\u0027t need to exist.  Please use the config parser data to determine this, as this mapping is different for every FRU, and this mapping can\u0027t be determined empirically.  Please add to your testing updating the part number of both a chassis and a baseboard.  Looking at this list, the chassis will fail to update properly, and will instead update the product section, which is wrong.",
+      "range": {
+        "startLine": 86,
+        "startChar": 0,
+        "endLine": 91,
+        "endChar": 47
+      },
+      "revId": "93e08e07b45cce7fb3e93c1755377963424989b2",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "3366c70d_e10bec05",
+        "filename": "src/EntityManager.cpp",
+        "patchSetId": 4
+      },
+      "lineNbr": 311,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2021-05-10T15:20:43Z",
+      "side": 1,
+      "message": "nit;  Please reverse this to \n\nif (!association){\n    // log\n    return;\n}",
+      "range": {
+        "startLine": 310,
+        "startChar": 0,
+        "endLine": 311,
+        "endChar": 5
+      },
+      "revId": "93e08e07b45cce7fb3e93c1755377963424989b2",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "acf2313c_106e4271",
+        "filename": "src/EntityManager.cpp",
+        "patchSetId": 4
+      },
+      "lineNbr": 313,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2021-05-10T15:20:43Z",
+      "side": 1,
+      "message": "This creates the association, but you don\u0027t seem to have code that removes the association when the entity is removed?",
+      "range": {
+        "startLine": 313,
+        "startChar": 0,
+        "endLine": 313,
+        "endChar": 60
+      },
+      "revId": "93e08e07b45cce7fb3e93c1755377963424989b2",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "b2a42a0b_dc961bab",
+        "filename": "src/EntityManager.cpp",
+        "patchSetId": 4
+      },
+      "lineNbr": 616,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2021-05-10T15:20:43Z",
+      "side": 1,
+      "message": "This method doesn\u0027t belong in entity-manager;  Luckily, this method essentially already exists in sdbusplus.  Please use the standard one.",
+      "range": {
+        "startLine": 616,
+        "startChar": 0,
+        "endLine": 616,
+        "endChar": 75
+      },
+      "revId": "93e08e07b45cce7fb3e93c1755377963424989b2",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "a7f95a78_0c2bbe4b",
+        "filename": "src/EntityManager.cpp",
+        "patchSetId": 4
+      },
+      "lineNbr": 628,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2021-05-10T15:20:43Z",
+      "side": 1,
+      "message": "Please don\u0027t use blocking calls in an async daemon.  use async_method_call or getProperty",
+      "range": {
+        "startLine": 628,
+        "startChar": 0,
+        "endLine": 628,
+        "endChar": 43
+      },
+      "revId": "93e08e07b45cce7fb3e93c1755377963424989b2",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "efe23278_c72de659",
+        "filename": "src/EntityManager.cpp",
+        "patchSetId": 4
+      },
+      "lineNbr": 646,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2021-05-10T15:20:43Z",
+      "side": 1,
+      "message": "This method suffers from the same issues as above.",
+      "range": {
+        "startLine": 646,
+        "startChar": 5,
+        "endLine": 646,
+        "endChar": 24
+      },
+      "revId": "93e08e07b45cce7fb3e93c1755377963424989b2",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "ab467eac_bd2a9d57",
+        "filename": "src/EntityManager.cpp",
+        "patchSetId": 4
+      },
+      "lineNbr": 675,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2021-05-10T15:20:43Z",
+      "side": 1,
+      "message": "entity-manager should not be enforcing this check.  If we don\u0027t want to allow setting a specific field, then FruDevice should be the one to enforce that, and entity-manager should simply propogate the appropriate error code back up the chain.",
+      "range": {
+        "startLine": 668,
+        "startChar": 0,
+        "endLine": 675,
+        "endChar": 1
+      },
+      "revId": "93e08e07b45cce7fb3e93c1755377963424989b2",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "83d3f381_b6c6060d",
+        "filename": "src/EntityManager.cpp",
+        "patchSetId": 4
+      },
+      "lineNbr": 677,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2021-05-10T15:20:43Z",
+      "side": 1,
+      "message": "nlohmann::json has a json_pointer class, please use it.",
+      "range": {
+        "startLine": 677,
+        "startChar": 51,
+        "endLine": 677,
+        "endChar": 68
+      },
+      "revId": "93e08e07b45cce7fb3e93c1755377963424989b2",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "51d6415d_3ca514b0",
+        "filename": "src/EntityManager.cpp",
+        "patchSetId": 4
+      },
+      "lineNbr": 680,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2021-05-10T15:20:43Z",
+      "side": 1,
+      "message": "nit, extra parens.",
+      "range": {
+        "startLine": 680,
+        "startChar": 11,
+        "endLine": 680,
+        "endChar": 44
+      },
+      "revId": "93e08e07b45cce7fb3e93c1755377963424989b2",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    }
+  ]
+}
