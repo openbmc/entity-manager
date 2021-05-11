@@ -1587,7 +1587,7 @@ void PerformScan::run()
 
         // parse out dbus probes by discarding other probe types, store in a
         // map
-        for (const std::string& probe : probeCommand)
+        for (const std::string probe : probeCommand)
         {
             bool found = false;
             boost::container::flat_map<const char*, probe_type_codes,
