@@ -37,6 +37,121 @@
     },
     {
       "key": {
+        "uuid": "52a92c58_60f3e44c",
+        "filename": "docs/dynamic_mux.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 8,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2021-05-11T16:51:33Z",
+      "side": 1,
+      "message": "nit:  Not really true.  It handles nested muxes today, just can\u0027t handle muxes within an entity, as that somewhat breaks the model a little.",
+      "range": {
+        "startLine": 8,
+        "startChar": 15,
+        "endLine": 8,
+        "endChar": 41
+      },
+      "revId": "6ce26789269908595d7bcd8c38a6c29da2499438",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "28ef9aaf_7f9f9a92",
+        "filename": "docs/dynamic_mux.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 17,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2021-05-11T16:51:33Z",
+      "side": 1,
+      "message": "This also means that muxes on add in cards can\u0027t be used, as add in cards could be detected dynamically.  That\u0027s not going to meet the overall needs.",
+      "range": {
+        "startLine": 16,
+        "startChar": 54,
+        "endLine": 17,
+        "endChar": 62
+      },
+      "revId": "6ce26789269908595d7bcd8c38a6c29da2499438",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "3136c2bf_f270598e",
+        "filename": "docs/dynamic_mux.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 21,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2021-05-11T16:51:33Z",
+      "side": 1,
+      "message": "This requires all downstream consumers to be \"mux aware\" as they\u0027ll need to look for both their normal config, and within a mux config.\n\nWe should be simply passing the calculated mux bus to the daemon, which already has a variable, we just need a new variable for each leg of the mux.",
+      "range": {
+        "startLine": 21,
+        "startChar": 31,
+        "endLine": 21,
+        "endChar": 57
+      },
+      "revId": "6ce26789269908595d7bcd8c38a6c29da2499438",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "5d4323d4_3a7b1103",
+        "filename": "docs/dynamic_mux.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 73,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2021-05-11T16:51:33Z",
+      "side": 1,
+      "message": "$index is already used to defined the instance of this device that was found, which doesn\u0027t really meet the intent of this.  You want the name to match the mux definition itself.\n\n\nthe \"name\" of the channel shouldn\u0027t include I2C.  That is implied.",
+      "range": {
+        "startLine": 73,
+        "startChar": 31,
+        "endLine": 73,
+        "endChar": 37
+      },
+      "revId": "6ce26789269908595d7bcd8c38a6c29da2499438",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "8c5d0b5f_757d89ef",
+        "filename": "docs/dynamic_mux.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 75,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2021-05-11T16:51:33Z",
+      "side": 1,
+      "message": "The mux channel itself shouldn\u0027t have a \"type\" of a thermal sensor.  There needs to be another TMP421 exposes node that fills in the $bus parameter.",
+      "range": {
+        "startLine": 75,
+        "startChar": 0,
+        "endLine": 75,
+        "endChar": 25
+      },
+      "revId": "6ce26789269908595d7bcd8c38a6c29da2499438",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "20c1320a_01c82c57",
         "filename": "docs/dynamic_mux.md",
         "patchSetId": 2
@@ -53,6 +168,53 @@
         "startChar": 17,
         "endLine": 107,
         "endChar": 30
+      },
+      "revId": "6ce26789269908595d7bcd8c38a6c29da2499438",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "a9bd053d_3f323867",
+        "filename": "docs/dynamic_mux.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 107,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2021-05-11T16:51:33Z",
+      "side": 1,
+      "message": "\u003e How it\u0027s being detected which Mux is it?\n\nSee line 109, which determines which mux it is, which is determined by the probe statement, which was omitted from this, because it\u0027s already well defined and documented elsewhere.\n\n\u003e How to differentiate between Mux and Switch?\n\nType would be the cannonical way to differentiate.\n\n\u003e They behaves differently, but have only one control register. How to differentiate between 4 and 8 channels muxes/switches?\n\nAlso type, like we already do for other muxes today.\n\n\u003e \n\u003e BTW, PCA9545 is a 4-channel switch.\n\n+1.  Seems like something to fix.",
+      "parentUuid": "20c1320a_01c82c57",
+      "range": {
+        "startLine": 107,
+        "startChar": 17,
+        "endLine": 107,
+        "endChar": 30
+      },
+      "revId": "6ce26789269908595d7bcd8c38a6c29da2499438",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "f1aa8497_ebcf43f4",
+        "filename": "docs/dynamic_mux.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 130,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2021-05-11T16:51:33Z",
+      "side": 1,
+      "message": "As I alluded to above, this somewhat breaks the exposes model.  an NVMe temp sensor module should not need to be aware of the mux at all, it should just be given a bus number and the mux handled transparently.",
+      "range": {
+        "startLine": 125,
+        "startChar": 0,
+        "endLine": 130,
+        "endChar": 9
       },
       "revId": "6ce26789269908595d7bcd8c38a6c29da2499438",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
