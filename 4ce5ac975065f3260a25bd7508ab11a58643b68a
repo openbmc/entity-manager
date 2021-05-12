@@ -73,6 +73,30 @@
     },
     {
       "key": {
+        "uuid": "cd4e5ce1_ab5196c1",
+        "filename": "configurations/FBYV2.json",
+        "patchSetId": 11
+      },
+      "lineNbr": 570,
+      "author": {
+        "id": 1000546
+      },
+      "writtenOn": "2021-05-12T11:12:23Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "24420d05_e4c4118f",
+      "range": {
+        "startLine": 570,
+        "startChar": 0,
+        "endLine": 570,
+        "endChar": 22
+      },
+      "revId": "4ce5ac975065f3260a25bd7508ab11a58643b68a",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "625ccc2f_54465ad7",
         "filename": "src/IpmbFruDevice.cpp",
         "patchSetId": 11
@@ -108,6 +132,30 @@
       "side": 1,
       "message": "Ack",
       "parentUuid": "625ccc2f_54465ad7",
+      "range": {
+        "startLine": 331,
+        "startChar": 0,
+        "endLine": 332,
+        "endChar": 62
+      },
+      "revId": "4ce5ac975065f3260a25bd7508ab11a58643b68a",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "715e10fd_8f43d768",
+        "filename": "src/IpmbFruDevice.cpp",
+        "patchSetId": 11
+      },
+      "lineNbr": 332,
+      "author": {
+        "id": 1000546
+      },
+      "writtenOn": "2021-05-12T11:12:23Z",
+      "side": 1,
+      "message": "Will fix this comment in the next patch set. For this, Planning to create a new file in dbus-sensors to create a dbus-interfaces for the IPMIChannels. From that dbus-interfaces to get the required IPMI Channel information.",
+      "parentUuid": "54753d48_e28d42cf",
       "range": {
         "startLine": 331,
         "startChar": 0,
