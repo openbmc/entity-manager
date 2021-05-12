@@ -390,6 +390,30 @@
     },
     {
       "key": {
+        "uuid": "3f5f8524_d2cd43c1",
+        "filename": "docs/dynamic_mux.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 130,
+      "author": {
+        "id": 1000271
+      },
+      "writtenOn": "2021-05-12T22:22:57Z",
+      "side": 1,
+      "message": "If we have mux driver added in dts then we can describe relations and code can find out. But we want to keep DTS as lean as possible and have multiple configuration for different board for same platform. There are some cards are dynamically detected as a riser card which may or may not available.\n\nBut I can add this approach also in the document, Thanks.",
+      "parentUuid": "f5e667a5_a725dd0f",
+      "range": {
+        "startLine": 125,
+        "startChar": 0,
+        "endLine": 130,
+        "endChar": 9
+      },
+      "revId": "6ce26789269908595d7bcd8c38a6c29da2499438",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "0c9ae0dc_4bcdcbe8",
         "filename": "docs/dynamic_mux.md",
         "patchSetId": 2
