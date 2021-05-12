@@ -60,6 +60,30 @@
     },
     {
       "key": {
+        "uuid": "0c59dc7b_1f85563e",
+        "filename": "docs/dynamic_mux.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 8,
+      "author": {
+        "id": 1000271
+      },
+      "writtenOn": "2021-05-12T00:13:14Z",
+      "side": 1,
+      "message": "mux under entity would turn out to be nested one. As currently we only support channels list under single mux but don\u0027t go further beyond channel.",
+      "parentUuid": "52a92c58_60f3e44c",
+      "range": {
+        "startLine": 8,
+        "startChar": 15,
+        "endLine": 8,
+        "endChar": 41
+      },
+      "revId": "6ce26789269908595d7bcd8c38a6c29da2499438",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "28ef9aaf_7f9f9a92",
         "filename": "docs/dynamic_mux.md",
         "patchSetId": 2
@@ -149,6 +173,30 @@
       "revId": "6ce26789269908595d7bcd8c38a6c29da2499438",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "547d23d3_32398b7f",
+        "filename": "docs/dynamic_mux.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 75,
+      "author": {
+        "id": 1000271
+      },
+      "writtenOn": "2021-05-12T00:13:14Z",
+      "side": 1,
+      "message": "either we can have under every mux channel, have an array of device nodes and each node can provide device details or we can copy channel number in each device node as many times each channel have only 1 device. That\u0027s why I didn\u0027t create another array here.",
+      "parentUuid": "8c5d0b5f_757d89ef",
+      "range": {
+        "startLine": 75,
+        "startChar": 0,
+        "endLine": 75,
+        "endChar": 25
+      },
+      "revId": "6ce26789269908595d7bcd8c38a6c29da2499438",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": false
     },
     {
       "key": {
@@ -247,6 +295,30 @@
     },
     {
       "key": {
+        "uuid": "0ba42311_e91e86dc",
+        "filename": "docs/dynamic_mux.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 107,
+      "author": {
+        "id": 1000271
+      },
+      "writtenOn": "2021-05-12T00:13:14Z",
+      "side": 1,
+      "message": "Yes this is just an example config for user to create board specific topology. And I will fix name as 4 channel mux.",
+      "parentUuid": "00a9989d_17d06009",
+      "range": {
+        "startLine": 107,
+        "startChar": 17,
+        "endLine": 107,
+        "endChar": 30
+      },
+      "revId": "6ce26789269908595d7bcd8c38a6c29da2499438",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "f1aa8497_ebcf43f4",
         "filename": "docs/dynamic_mux.md",
         "patchSetId": 2
@@ -258,6 +330,30 @@
       "writtenOn": "2021-05-11T16:51:33Z",
       "side": 1,
       "message": "As I alluded to above, this somewhat breaks the exposes model.  an NVMe temp sensor module should not need to be aware of the mux at all, it should just be given a bus number and the mux handled transparently.",
+      "range": {
+        "startLine": 125,
+        "startChar": 0,
+        "endLine": 130,
+        "endChar": 9
+      },
+      "revId": "6ce26789269908595d7bcd8c38a6c29da2499438",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "928b8d28_8de8d327",
+        "filename": "docs/dynamic_mux.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 130,
+      "author": {
+        "id": 1000271
+      },
+      "writtenOn": "2021-05-12T00:13:14Z",
+      "side": 1,
+      "message": "We must know what address and what channel number mux has this. Logical bus number would be defined by mux based on channel info.",
+      "parentUuid": "f1aa8497_ebcf43f4",
       "range": {
         "startLine": 125,
         "startChar": 0,
@@ -434,6 +530,30 @@
       "revId": "6ce26789269908595d7bcd8c38a6c29da2499438",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "dd8fd72c_e5ee4c20",
+        "filename": "docs/dynamic_mux.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 155,
+      "author": {
+        "id": 1000271
+      },
+      "writtenOn": "2021-05-12T00:13:14Z",
+      "side": 1,
+      "message": "Yes I agree and we will bind it same way as i2c mux, the first option.",
+      "parentUuid": "bb60000c_4c6fb55b",
+      "range": {
+        "startLine": 150,
+        "startChar": 0,
+        "endLine": 155,
+        "endChar": 17
+      },
+      "revId": "6ce26789269908595d7bcd8c38a6c29da2499438",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": false
     }
   ]
 }
