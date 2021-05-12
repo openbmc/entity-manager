@@ -366,6 +366,30 @@
     },
     {
       "key": {
+        "uuid": "f5e667a5_a725dd0f",
+        "filename": "docs/dynamic_mux.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 130,
+      "author": {
+        "id": 1000021
+      },
+      "writtenOn": "2021-05-12T01:15:56Z",
+      "side": 1,
+      "message": "Another approach is to describe the relationship between a known bus and the desired muxed bus, and then have the code find the parent bus from the parent and child port numbers.\n\nSimilar to that how USB sysfs device path is huba-port/hubb-port/device i believe the sysfs for i2c is bus/bus/bus/device with a description linking to the mux control.  So the code would walk sysfs to find the needed bus.",
+      "parentUuid": "928b8d28_8de8d327",
+      "range": {
+        "startLine": 125,
+        "startChar": 0,
+        "endLine": 130,
+        "endChar": 9
+      },
+      "revId": "6ce26789269908595d7bcd8c38a6c29da2499438",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "0c9ae0dc_4bcdcbe8",
         "filename": "docs/dynamic_mux.md",
         "patchSetId": 2
