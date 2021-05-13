@@ -722,6 +722,30 @@
       "revId": "6ce26789269908595d7bcd8c38a6c29da2499438",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "00fd3d49_2d4f6eee",
+        "filename": "docs/dynamic_mux.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 155,
+      "author": {
+        "id": 1000271
+      },
+      "writtenOn": "2021-05-13T00:59:33Z",
+      "side": 1,
+      "message": "Currently, I am not covering those with gpio driver. Only mux switch enabled/disabled by gpio is covered here. i2c-mux-gpio can be added through DTS currently. I am open for suggestions.\n\nSo current scope will cover PCAxxxx type and gpio based switch. This itself is going to be a big implementation and will add more enhancement slowly.",
+      "parentUuid": "32767fac_96a2422b",
+      "range": {
+        "startLine": 150,
+        "startChar": 0,
+        "endLine": 155,
+        "endChar": 17
+      },
+      "revId": "6ce26789269908595d7bcd8c38a6c29da2499438",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
     }
   ]
 }
