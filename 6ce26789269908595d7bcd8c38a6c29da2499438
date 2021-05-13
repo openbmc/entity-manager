@@ -582,6 +582,30 @@
     },
     {
       "key": {
+        "uuid": "eebb819a_48d8c55f",
+        "filename": "docs/dynamic_mux.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 130,
+      "author": {
+        "id": 1000021
+      },
+      "writtenOn": "2021-05-13T02:26:59Z",
+      "side": 1,
+      "message": "I think the point is we might consider a static setup to get a bus segment, but if you need to change the selectors then it needs to be done by the kernel so the normal drivers work.\n\nIt can be a driver for each topology like tv tuners or an new configurable generic one.",
+      "parentUuid": "894352a4_e2ed5d08",
+      "range": {
+        "startLine": 125,
+        "startChar": 0,
+        "endLine": 130,
+        "endChar": 9
+      },
+      "revId": "6ce26789269908595d7bcd8c38a6c29da2499438",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "0c9ae0dc_4bcdcbe8",
         "filename": "docs/dynamic_mux.md",
         "patchSetId": 2
