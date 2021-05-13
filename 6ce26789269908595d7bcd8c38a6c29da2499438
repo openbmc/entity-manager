@@ -84,6 +84,30 @@
     },
     {
       "key": {
+        "uuid": "c30108e0_74fc6ca3",
+        "filename": "docs/dynamic_mux.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 8,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2021-05-13T00:03:51Z",
+      "side": 1,
+      "message": "Right.... that\u0027s different than \"no support\"",
+      "parentUuid": "0c59dc7b_1f85563e",
+      "range": {
+        "startLine": 8,
+        "startChar": 15,
+        "endLine": 8,
+        "endChar": 41
+      },
+      "revId": "6ce26789269908595d7bcd8c38a6c29da2499438",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "28ef9aaf_7f9f9a92",
         "filename": "docs/dynamic_mux.md",
         "patchSetId": 2
@@ -197,6 +221,30 @@
       "revId": "6ce26789269908595d7bcd8c38a6c29da2499438",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "b7eac426_cac1e195",
+        "filename": "docs/dynamic_mux.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 75,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2021-05-13T00:03:51Z",
+      "side": 1,
+      "message": "Or.... we can simply enumerate the mux paths naming into the language parser, like we do with other things like bus, and forward the data onto the relevant daemons.",
+      "parentUuid": "547d23d3_32398b7f",
+      "range": {
+        "startLine": 75,
+        "startChar": 0,
+        "endLine": 75,
+        "endChar": 25
+      },
+      "revId": "6ce26789269908595d7bcd8c38a6c29da2499438",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
     },
     {
       "key": {
@@ -435,6 +483,30 @@
       "revId": "6ce26789269908595d7bcd8c38a6c29da2499438",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "025c8a7d_f72dea86",
+        "filename": "docs/dynamic_mux.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 130,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2021-05-13T00:03:51Z",
+      "side": 1,
+      "message": "\"We must know what address and what channel number mux has this. Logical bus number would be defined by mux based on channel info.\"\n\nThe NVME device doesn\u0027t know the address or channel number today.  It only needs to know the bus number, which we already have a mechanism for passing around in a dynamic way (using $bus)\n\n\nWhat Milton suggested is roughly what I would recommend as well.",
+      "parentUuid": "af4f470a_3c254aa1",
+      "range": {
+        "startLine": 125,
+        "startChar": 0,
+        "endLine": 130,
+        "endChar": 9
+      },
+      "revId": "6ce26789269908595d7bcd8c38a6c29da2499438",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
     },
     {
       "key": {
