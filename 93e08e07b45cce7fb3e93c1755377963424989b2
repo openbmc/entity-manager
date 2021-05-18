@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "7c66ca65_7291f5f7",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 4
+      },
+      "lineNbr": 15,
+      "author": {
+        "id": 1001077
+      },
+      "writtenOn": "2021-05-18T19:05:36Z",
+      "side": 1,
+      "message": "ProbePath is added to the compiled json file and is used while creating associations",
+      "parentUuid": "db51248a_606858a7",
+      "range": {
+        "startLine": 14,
+        "startChar": 0,
+        "endLine": 15,
+        "endChar": 24
+      },
+      "revId": "93e08e07b45cce7fb3e93c1755377963424989b2",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "54758453_954d13bd",
         "filename": "/COMMIT_MSG",
         "patchSetId": 4
@@ -71,6 +95,30 @@
     },
     {
       "key": {
+        "uuid": "a572639a_ed270ecd",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 4
+      },
+      "lineNbr": 19,
+      "author": {
+        "id": 1001077
+      },
+      "writtenOn": "2021-05-18T19:05:36Z",
+      "side": 1,
+      "message": "Made the changes to map properties through config files.",
+      "parentUuid": "cb27917c_33997a32",
+      "range": {
+        "startLine": 18,
+        "startChar": 0,
+        "endLine": 19,
+        "endChar": 47
+      },
+      "revId": "93e08e07b45cce7fb3e93c1755377963424989b2",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "aa3ea145_2b02cd9a",
         "filename": "/COMMIT_MSG",
         "patchSetId": 4
@@ -91,6 +139,30 @@
       "revId": "93e08e07b45cce7fb3e93c1755377963424989b2",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "c57bc07b_06f9da21",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 4
+      },
+      "lineNbr": 21,
+      "author": {
+        "id": 1001077
+      },
+      "writtenOn": "2021-05-18T19:05:36Z",
+      "side": 1,
+      "message": "Interfaces are made writable based on config files.",
+      "parentUuid": "aa3ea145_2b02cd9a",
+      "range": {
+        "startLine": 20,
+        "startChar": 0,
+        "endLine": 21,
+        "endChar": 23
+      },
+      "revId": "93e08e07b45cce7fb3e93c1755377963424989b2",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": false
     },
     {
       "key": {
@@ -117,6 +189,30 @@
     },
     {
       "key": {
+        "uuid": "f8b855bd_d0cab2a9",
+        "filename": "src/EntityManager.cpp",
+        "patchSetId": 4
+      },
+      "lineNbr": 91,
+      "author": {
+        "id": 1001077
+      },
+      "writtenOn": "2021-05-18T19:05:36Z",
+      "side": 1,
+      "message": "Determining the mapping based on config data.",
+      "parentUuid": "80761963_23580b6d",
+      "range": {
+        "startLine": 86,
+        "startChar": 0,
+        "endLine": 91,
+        "endChar": 47
+      },
+      "revId": "93e08e07b45cce7fb3e93c1755377963424989b2",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "3366c70d_e10bec05",
         "filename": "src/EntityManager.cpp",
         "patchSetId": 4
@@ -137,6 +233,30 @@
       "revId": "93e08e07b45cce7fb3e93c1755377963424989b2",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "97c5fced_965dda8a",
+        "filename": "src/EntityManager.cpp",
+        "patchSetId": 4
+      },
+      "lineNbr": 311,
+      "author": {
+        "id": 1001077
+      },
+      "writtenOn": "2021-05-18T19:05:36Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "3366c70d_e10bec05",
+      "range": {
+        "startLine": 310,
+        "startChar": 0,
+        "endLine": 311,
+        "endChar": 5
+      },
+      "revId": "93e08e07b45cce7fb3e93c1755377963424989b2",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": false
     },
     {
       "key": {
@@ -209,6 +329,30 @@
     },
     {
       "key": {
+        "uuid": "fa87a13e_1b177daf",
+        "filename": "src/EntityManager.cpp",
+        "patchSetId": 4
+      },
+      "lineNbr": 628,
+      "author": {
+        "id": 1001077
+      },
+      "writtenOn": "2021-05-18T19:05:36Z",
+      "side": 1,
+      "message": "To handle the fru updation failure, return value of the set property is required. Unable to get return value using async_method_call, so did synchronous call. Made necessary changes to make it asynchronous without calling async_method_call.",
+      "parentUuid": "a7f95a78_0c2bbe4b",
+      "range": {
+        "startLine": 628,
+        "startChar": 0,
+        "endLine": 628,
+        "endChar": 43
+      },
+      "revId": "93e08e07b45cce7fb3e93c1755377963424989b2",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "efe23278_c72de659",
         "filename": "src/EntityManager.cpp",
         "patchSetId": 4
@@ -232,6 +376,30 @@
     },
     {
       "key": {
+        "uuid": "ef50027a_e5236a7d",
+        "filename": "src/EntityManager.cpp",
+        "patchSetId": 4
+      },
+      "lineNbr": 646,
+      "author": {
+        "id": 1001077
+      },
+      "writtenOn": "2021-05-18T19:05:36Z",
+      "side": 1,
+      "message": "Addressed the issue.",
+      "parentUuid": "efe23278_c72de659",
+      "range": {
+        "startLine": 646,
+        "startChar": 5,
+        "endLine": 646,
+        "endChar": 24
+      },
+      "revId": "93e08e07b45cce7fb3e93c1755377963424989b2",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "ab467eac_bd2a9d57",
         "filename": "src/EntityManager.cpp",
         "patchSetId": 4
@@ -252,6 +420,30 @@
       "revId": "93e08e07b45cce7fb3e93c1755377963424989b2",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "4bceef89_beff72fd",
+        "filename": "src/EntityManager.cpp",
+        "patchSetId": 4
+      },
+      "lineNbr": 675,
+      "author": {
+        "id": 1001077
+      },
+      "writtenOn": "2021-05-18T19:05:36Z",
+      "side": 1,
+      "message": "Storing the writable interfaces by parsing the config data and using it.",
+      "parentUuid": "ab467eac_bd2a9d57",
+      "range": {
+        "startLine": 668,
+        "startChar": 0,
+        "endLine": 675,
+        "endChar": 1
+      },
+      "revId": "93e08e07b45cce7fb3e93c1755377963424989b2",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": false
     },
     {
       "key": {
@@ -298,6 +490,30 @@
       "revId": "93e08e07b45cce7fb3e93c1755377963424989b2",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "5db549b0_0b8bf7b5",
+        "filename": "src/EntityManager.cpp",
+        "patchSetId": 4
+      },
+      "lineNbr": 680,
+      "author": {
+        "id": 1001077
+      },
+      "writtenOn": "2021-05-18T19:05:36Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "51d6415d_3ca514b0",
+      "range": {
+        "startLine": 680,
+        "startChar": 11,
+        "endLine": 680,
+        "endChar": 44
+      },
+      "revId": "93e08e07b45cce7fb3e93c1755377963424989b2",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": false
     }
   ]
 }
