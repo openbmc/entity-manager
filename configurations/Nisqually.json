@@ -51,6 +51,22 @@
             "Bus": 8,
             "Name": "UCD90320 Power Sequencer",
             "Type": "UCD90320"
+        },
+        {
+            "__comment1__": "See here for Pressure Definitions:",
+            "__comment2__": "https://www.weather.gov/bou/pressure_definitions",
+            "__comment3__": "STATION PRESSURE: This is the pressure",
+            "__comment4__": "that is observed at a specific elevation",
+            "__comment5__": "and is the true barometric pressure of a",
+            "__comment6__": "location.  It is the pressure exerted by",
+            "__comment7__": "the atmosphere at a point as a result of",
+            "__comment8__": "gravity acting upon the column of air",
+            "__comment9__": "that lies directly above the point.",
+            "Address": "0x76",
+            "Bus": 7,
+            "Name": "Station Pressure",
+            "SensorType": "pressure",
+            "Type": "DPS310"
         }
     ],
     "Name": "Nisqually Backplane",
