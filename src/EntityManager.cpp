@@ -334,6 +334,22 @@ bool probeDbus(const std::string& interface,
     return foundMatch;
 }
 
+// Returns the regex string to match the probe keyword
+std::string probeTypeMatcher(const std::string& probeTypeStr)
+{
+    std::string matcher("(^");
+    if (probeTypeStr == "FOUND")
+    {
+        matcher += probeTypeStr + ")(\\((.*)\\))";
+    }
+    else
+    {
+        matcher += probeTypeStr + ")($)";
+    }
+
+    return matcher;
+}
+
 // default probe entry point, iterates a list looking for specific types to
 // call specific probe functions
 bool probe(const std::vector<std::string>& probeCommand,
@@ -356,7 +372,8 @@ bool probe(const std::vector<std::string>& probeCommand,
         for (probeType = PROBE_TYPES.begin(); probeType != PROBE_TYPES.end();
              ++probeType)
         {
-            if (probe.find(probeType->first) != std::string::npos)
+            if (std::regex_match(
+                    probe, std::regex(probeTypeMatcher(probeType->first))))
             {
                 foundProbe = true;
                 break;
