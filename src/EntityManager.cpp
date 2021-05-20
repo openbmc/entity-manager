@@ -358,10 +358,23 @@ bool probe(const std::vector<std::string>& probeCommand,
         for (probeType = probeTypes.begin(); probeType != probeTypes.end();
              ++probeType)
         {
-            if (probe.find(probeType->first) != std::string::npos)
+            std::string probeStr = probeType->first;
+            std::string matcher = "(^FOUND)(\\((.*)\\))";
+
+            if (boost::starts_with(probe, probeStr))
             {
-                foundProbe = true;
-                break;
+
+                if (!probeStr.compare("FOUND") &&
+                    std::regex_match(probe, std::regex(matcher)))
+                {
+                    foundProbe = true;
+                    break;
+                }
+                else if (boost::ends_with(probe, probeStr))
+                {
+                    foundProbe = true;
+                    break;
+                }
             }
         }
         if (foundProbe)
