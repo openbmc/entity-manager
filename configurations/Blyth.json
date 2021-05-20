@@ -1,0 +1,20 @@
+{
+    "Exposes": [
+        {
+            "Address": "0x76",
+            "Bus": 7,
+            "Name": "Station Pressure",
+            "Name1": "Ambient 1 Temp",
+            "Type": "DPS310"
+        }
+    ],
+    "Name": "Blyth",
+    "Probe": [
+        "com.ibm.ipzvpd.VINI({'CC': [50, 69, 50, 68]})",
+        "OR",
+        "com.ibm.ipzvpd.VINI({'CC': [50, 69, 50, 70]})",
+        "OR",
+        "com.ibm.ipzvpd.VINI({'CC': [50, 69, 52, 48]})"
+    ],
+    "Type": "Board"
+}
