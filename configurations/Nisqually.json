@@ -51,7 +51,96 @@
             "Bus": 8,
             "Name": "PCIE 1 Temp",
             "Type": "TMP75"
+        },
+        {
+            "Name": "Ambient_Virtual_Temp",
+            "Type" : "VirtualSensor",
+            "VirtualSensorName": "AmbientTemp",
+            "VirtualSensorType": "temperature",
+            "Expression": "modifiedMedian",
+            "Params": [
+                {
+                    "Name": "T0",
+                    "SensorName": "Ambient_0_Temp",
+                    "SensorType": "temperature"
+                },
+                {
+                    "Name": "T1",
+                    "SensorName": "Ambient_1_Temp",
+                    "SensorType": "temperature"
+                },
+                {
+                    "Name": "T2",
+                    "SensorName": "Ambient_2_Temp",
+                    "SensorType": "temperature"
+                }
+            ],
+            "Thresholds": [
+                {
+                    "Direction": "greater than",
+                    "Name": "HardShutdownHigh",
+                    "Severity": 4,
+                    "Value": 99
+                },
+                {
+                    "Direction": "less than",
+                    "Name": "HardShutdownLow",
+                    "Severity": 4,
+                    "Value": 1
+                },
+                {
+                    "Direction": "greater than",
+                    "Name": "SoftShutdownHigh",
+                    "Severity": 3,
+                    "Value": 95
+                },
+                {
+                    "Direction": "less than",
+                    "Name": "SoftShutdownLow",
+                    "Severity": 3,
+                    "Value": 5
+                },
+                {
+                    "Direction": "greater than",
+                    "Name": "CriticalHigh",
+                    "Severity": 2,
+                    "Value": 90
+                },
+                {
+                    "Direction": "less than",
+                    "Name": "CriticalLow",
+                    "Severity": 2,
+                    "Value": 10
+                },
+                {
+                    "Direction": "greater than",
+                    "Name": "WarningHigh",
+                    "Severity": 1,
+                    "Value": 85
+                },
+                {
+                    "Direction": "less than",
+                    "Name": "WarningLow",
+                    "Severity": 1,
+                    "Value": 15
+                },
+                {
+                    "Direction": "greater than",
+                    "Name": "PerformanceLossHigh",
+                    "Severity": 0,
+                    "Value": 80
+                },
+                {
+                    "Direction": "less than",
+                    "Name": "PerformanceLossLow",
+                    "Severity": 0,
+                    "Value": 20
+                }
+            ],
+            "MaxValidSensorValue": 100,
+            "MinValidSensorValue": 0
         }
+
     ],
     "Name": "Nisqually Backplane",
     "Probe": [
