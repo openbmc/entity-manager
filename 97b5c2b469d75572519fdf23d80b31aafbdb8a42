@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "97b4fa02_d10da09e",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 11,
+      "author": {
+        "id": 1001077
+      },
+      "writtenOn": "2021-05-21T16:27:03Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "fe7b0369_ada3e115",
+      "range": {
+        "startLine": 7,
+        "startChar": 0,
+        "endLine": 11,
+        "endChar": 0
+      },
+      "revId": "97b5c2b469d75572519fdf23d80b31aafbdb8a42",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "03348ed5_76f098bb",
         "filename": "/COMMIT_MSG",
         "patchSetId": 1
@@ -39,6 +63,24 @@
       "revId": "97b5c2b469d75572519fdf23d80b31aafbdb8a42",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "107167a0_e5f36c38",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 19,
+      "author": {
+        "id": 1001077
+      },
+      "writtenOn": "2021-05-21T16:27:03Z",
+      "side": 1,
+      "message": "Please refer to the example mentioned below:\n\n\"Probe\": [\n       \"xyz.openbmc_project.FruDevice({\u0027PRODUCT_PRODUCT_NAME\u0027: \u0027DOREMON.*\u0027})\",\n        \"AND\",\n        \"xyz.openbmc_project.FruDevice({\u0027PRODUCT_PRODUCT_NAME\u0027: \u0027.*MON\u0027})\"\n\t\t\n\t]\n\t\nNow while parsing the probe string \"xyz.openbmc_project.FruDevice({\u0027PRODUCT_PRODUCT_NAME\u0027: \u0027DOREMON.*})\" ,\nfind function (in line number 359 in current code) will find the probe keyword \"OR\".\nIt treats the current line as  probe type OR detected and continues to next line instead of evaluating the expression.\nDue to this even if FruDevice(PRODUCT_PRODUCT_NAME) \u003d\u003d DOREMON, current code failed to recognize the match and fails to load the JSON. \n\nSo I have added tighter regex check to identify the probe type keywords and normal probe statements correctly.",
+      "parentUuid": "03348ed5_76f098bb",
+      "revId": "97b5c2b469d75572519fdf23d80b31aafbdb8a42",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": false
     },
     {
       "key": {
