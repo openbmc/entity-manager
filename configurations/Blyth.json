@@ -5,6 +5,38 @@
             "Bus": 7,
             "Name": "Ambient 0 Temp",
             "Type": "TMP75"
+        },
+        {
+            "Name": "Ambient_Virtual_Temp",
+            "Type" : "modifiedMedian",
+            "Unit": "temperature",
+            "Sensors": [
+                "Ambient 0 Temp",
+                "Ambient 1 Temp",
+                "Ambient 2 Temp"
+            ],
+            "Thresholds": [
+                {
+                    "Direction": "greater than",
+                    "Name": "HardShutdown",
+                    "Severity": 4,
+                    "Value": 58
+                },
+                {
+                    "Direction": "greater than",
+                    "Name": "SoftShutdown",
+                    "Severity": 3,
+                    "Value": 53
+                },
+                {
+                    "Direction": "greater than",
+                    "Name": "Warning",
+                    "Severity": 1,
+                    "Value": 45
+                }
+            ],
+            "MaxValue": 100,
+            "MinValue": 0
         }
     ],
     "Name": "Blyth Panel",
