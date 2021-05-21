@@ -1,0 +1,118 @@
+{
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "definitions": {
+        "ConstParam": {
+            "description": [
+                "An expression constant."
+            ],
+            "type": "object",
+            "properties": {
+                "Name": {
+                    "description": [
+                        "The constant name as it is used in the calculation."
+                    ],
+                    "type": "string"
+                },
+                "Value": {
+                    "description": [
+                        "The constant's value"
+                    ],
+                    "type": "number"
+                }
+            },
+            "required": [
+                "Name",
+                "Value"
+            ]
+        },
+        "VirtualSensor": {
+            "title": "phosphor-virtual-sensor configuration",
+            "description": [
+                "The configuration used by the virtual-sensor daemon",
+                "in the phosphor-virtual-sensor repository.  Virtual",
+                "sensors are xyz.openbmc_project.Sensor.Value D-Bus",
+                "objects that have sensors values that are calculated.",
+                "That calculation uses values from D-Bus sensors listed",
+                "here and can also use numerical constants that are",
+                "defined here."
+            ],
+            "type": "object",
+            "properties": {
+                "ConstParams": {
+                    "description": [
+                        "Any constants used in the expression."
+                    ],
+                    "items": {
+                        "$ref": "#/definitions/ConstParam"
+                    },
+                    "type": "array"
+                },
+                "MaxValue": {
+                    "description": [
+                        "Maximum sensor value considered valid"
+                    ],
+                    "type": "number"
+                },
+                "MinValue": {
+                    "description": [
+                        "Minimum sensor value considered valid"
+                    ],
+                    "type": "number"
+                },
+                "Name": {
+                    "type": "string"
+                },
+                "Sensors": {
+                    "description": [
+                        "Any DBus sensors whose values are used to",
+                        "determine the value of the virtual sensor."
+                    ],
+                    "items": {
+                        "type": "string"
+                    },
+                    "type": "array"
+                },
+                "Thresholds": {
+                    "description": [
+                        "Threshold values used to set and clear alarms"
+                    ],
+                    "$ref": "legacy.json#/definitions/Types/Thresholds"
+                },
+                "Type": {
+                    "description": [
+                        "The type of calculation this sensor uses."
+                    ],
+                    "type": "string",
+                    "enum": [
+                        "modifiedMedian"
+                    ]
+                },
+                "Unit": {
+                    "description": [
+                        "The sensor type, as it shows up in the D-Bus",
+                        "object name."
+                    ],
+                    "type": "string",
+                    "enum": [
+                        "temperature",
+                        "fan_tach",
+                        "voltage",
+                        "altitude",
+                        "current",
+                        "power",
+                        "energy",
+                        "utilization",
+                        "airflow",
+                        "pressure"
+                    ]
+                }
+            },
+            "required": [
+                "Name",
+                "Sensors",
+                "Type",
+                "Unit"
+            ]
+        }
+    }
+}
