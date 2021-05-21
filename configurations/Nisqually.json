@@ -51,7 +51,55 @@
             "Bus": 8,
             "Name": "UCD90320 Power Sequencer",
             "Type": "UCD90320"
+        },
+        {
+            "Name": "Ambient_Virtual_Temp",
+            "Type" : "modifiedMedian",
+            "Unit": "temperature",
+            "Sensors": [
+                {
+                    "Name": "T0",
+                    "SensorName": "Ambient 0 Temp"
+                },
+                {
+                    "Name": "T1",
+                    "SensorName": "Ambient 1 Temp"
+                },
+                {
+                    "Name": "T2",
+                    "SensorName": "Ambient 2 Temp"
+                }
+            ],
+            "Thresholds": [
+                {
+                    "Direction": "greater than",
+                    "Name": "CriticalHigh",
+                    "Severity": 2,
+                    "Value": 90
+                },
+                {
+                    "Direction": "less than",
+                    "Name": "CriticalLow",
+                    "Severity": 2,
+                    "Value": 10
+                },
+                {
+                    "Direction": "greater than",
+                    "Name": "WarningHigh",
+                    "Severity": 1,
+                    "Value": 85
+                },
+                {
+                    "Direction": "less than",
+                    "Name": "WarningLow",
+                    "Severity": 1,
+                    "Value": 15
+                }
+            ],
+            "MaxValue": 100,
+            "MinValue": 0
         }
+
     ],
     "Name": "Nisqually Backplane",
     "Probe": [
