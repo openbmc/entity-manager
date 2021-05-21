@@ -1,0 +1,157 @@
+{
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "definitions": {
+        "VirtualSensor": {
+            "title": "phosphor-virtual-sensor configuration",
+            "description": [
+                "The configuration used by the virtual-sensor daemon",
+                "in the phosphor-virtual-sensor repository.  Virtual",
+                "sensors are xyz.openbmc_project.Sensor.Value D-Bus",
+                "objects that have sensors values that are calculated",
+                "by an exprtk math library expression.  That expression",
+                "may make use of numerical constants that are defined",
+                "here and may also be based on other sensor values."
+            ],
+            "type": "object",
+            "properties":
+            {
+                "Name": {
+                    "type": "string"
+                },
+                "Type": {
+                    "type": "string",
+                    "enum": [
+                        "modifiedMedian"
+                    ]
+                },
+                "VirtualSensorName":
+                {
+                    "description": [
+                        "The name of the virtual sensor."
+                    ],
+                    "type": "string"
+                },
+                "Unit":
+                {
+                    "description": [
+                        "The sensor type, as it shows up in the D-Bus",
+                        "object name."
+                    ],
+                    "type": "string",
+                    "enum": [
+                        "temperature",
+                        "fan_tach",
+                        "power",
+                        "current",
+                        "voltage"
+                    ]
+                },
+                "ConstParams":
+                {
+                    "description": [
+                        "Any constants used in the expression."
+                    ],
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/ConstParam"
+                    }
+                },
+                "Sensors":
+                {
+                    "description": [
+                        "Any sensor values used to determine the",
+                        "value of the virtual sensor."
+                    ],
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/Sensors"
+                    }
+                },
+                "Thresholds":
+                {
+                    "description": [
+                        "Threshold values used to set and clear alarms"
+                    ],
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/Types/Thresholds"
+                    }
+                },
+                "MaxValue":
+                {
+                  "description": [
+                    "Maximum sensor value considered valid"
+                  ],
+                  "type": "number"
+                },
+                "MinValue":
+                {
+                  "description": [
+                    "Minimum sensor value considered valid"
+                  ],
+                  "type": "number"
+                }
+            },
+            "required": [
+                "Name", "Type",
+                "VirtualSensorType", "Expression"
+            ]
+        },
+        "ConstParams":
+        {
+            "description": [
+                "An expression constant."
+            ],
+            "type": "object",
+            "properties":
+            {
+                "Name":
+                {
+                    "description": [
+                        "The constant name as it is used in the expression."
+                    ],
+                    "type": "string"
+                },
+                "Value":
+                {
+                    "description": [
+                        "The constant's value"
+                    ],
+                    "type": "number"
+                }
+            },
+            "required": [
+                "Name", "Value"
+            ]
+        },
+        "Sensors":
+        {
+            "description": [
+                "An expression parameter that is based on a D-Bus",
+                "sensor value.  For example, a 'temp0' sensor value",
+                "could be used as variable 'T0' in the expression."
+            ],
+            "type": "object",
+            "properties":
+            {
+                "Name":
+                {
+                    "description": [
+                        "The variable name in the expression."
+                    ],
+                    "type": "string"
+                },
+                "SensorName":
+                {
+                    "description": [
+                        "The D-Bus sensor name, like 'temp0'."
+                    ],
+                    "type": "string"
+                }
+            },
+            "required": [
+                "Name", "SensorName"
+            ]
+        }
+    }
+}
