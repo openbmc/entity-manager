@@ -140,6 +140,7 @@ schemas = [
     'Pid.json',
     'Pid.Zone.json',
     'Stepwise.json',
+    'VirtualSensor.json',
 ]
 
 foreach s : schemas
