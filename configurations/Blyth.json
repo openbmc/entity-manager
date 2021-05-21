@@ -5,6 +5,47 @@
             "Bus": 7,
             "Name": "Ambient 0 Temp",
             "Type": "TMP75"
+        },
+        {
+            "Name": "Ambient_Virtual_Temp",
+            "Type" : "modifiedMedian",
+            "Unit": "temperature",
+            "Sensors": [
+                {
+                    "Name": "T0",
+                    "SensorName": "Ambient 0 Temp"
+                },
+                {
+                    "Name": "T1",
+                    "SensorName": "Ambient 1 Temp"
+                },
+                {
+                    "Name": "T2",
+                    "SensorName": "Ambient 2 Temp"
+                }
+            ],
+            "Thresholds": [
+                {
+                    "Direction": "greater than",
+                    "Name": "upper critical",
+                    "Severity": 2,
+                    "Value": 58
+                },
+                {
+                    "Direction": "greater than",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 53
+                },
+                {
+                    "Direction": "greater than",
+                    "Name": "upper non critical",
+                    "Severity": 1,
+                    "Value": 45
+                }
+            ],
+            "MaxValue": 100,
+            "MinValue": 0
         }
     ],
     "Name": "Blyth Panel",
