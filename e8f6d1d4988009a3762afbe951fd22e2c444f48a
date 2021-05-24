@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "dc8da533_ca45187c",
+        "filename": "src/EntityManager.cpp",
+        "patchSetId": 3
+      },
+      "lineNbr": 1144,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2021-05-24T21:32:41Z",
+      "side": 1,
+      "message": "operator[] will create if something doesn\u0027t exist.  You likely wanted find here.",
+      "range": {
+        "startLine": 1144,
+        "startChar": 16,
+        "endLine": 1144,
+        "endChar": 37
+      },
+      "revId": "e8f6d1d4988009a3762afbe951fd22e2c444f48a",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "b34ca497_8e6f15f9",
+        "filename": "src/EntityManager.cpp",
+        "patchSetId": 3
+      },
+      "lineNbr": 1822,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2021-05-24T21:32:41Z",
+      "side": 1,
+      "message": "operator[] creates a default constructed key if the element doesn\u0027t exist.  That\u0027s surely not what we want here.",
+      "range": {
+        "startLine": 1822,
+        "startChar": 38,
+        "endLine": 1822,
+        "endChar": 46
+      },
+      "revId": "e8f6d1d4988009a3762afbe951fd22e2c444f48a",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    }
+  ]
+}
