@@ -46,6 +46,30 @@
       "revId": "c9f471b8c00e6e3bf2ad8ef033505854a7f4d004",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "fe45b367_08aaf437",
+        "filename": "src/EntityManager.cpp",
+        "patchSetId": 1
+      },
+      "lineNbr": 1845,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2021-05-24T21:27:01Z",
+      "side": 1,
+      "message": "Actually, that\u0027s a fair point, it\u0027s taken by copy in some places, and reference in others.   I guess the important part is that we\u0027re taking count by value on line 1773, which means that rest of these can all be by value?\n\nI really wish I understood how this works.",
+      "parentUuid": "e06aa0d1_294b1a09",
+      "range": {
+        "startLine": 1845,
+        "startChar": 29,
+        "endLine": 1845,
+        "endChar": 34
+      },
+      "revId": "c9f471b8c00e6e3bf2ad8ef033505854a7f4d004",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
     }
   ]
 }
