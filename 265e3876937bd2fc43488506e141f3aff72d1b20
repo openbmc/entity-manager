@@ -97,6 +97,30 @@
     },
     {
       "key": {
+        "uuid": "47cba3bf_85420e11",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 5
+      },
+      "lineNbr": 14,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2021-05-24T21:29:30Z",
+      "side": 1,
+      "message": "\u003e Sorry, I\u0027m bit lost, what exactly you want me to explain?\n\nNamely why the existing \"recommended\" and documented way of handling this doesn\u0027t work for you, and why this method of handling this is better and should also be supported in upstream.\n\n\u003e Our use case is having one big \"Board\" configuration file for board family which includes several similar boards who only differs (from EM point of view) by CPU sockets count and fan configuration and we have several \"Chassis\" configuration files that can control this entities according to actual server model.",
+      "parentUuid": "db96da5f_63f438b9",
+      "range": {
+        "startLine": 13,
+        "startChar": 0,
+        "endLine": 14,
+        "endChar": 65
+      },
+      "revId": "265e3876937bd2fc43488506e141f3aff72d1b20",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "ffae7c0c_9cc756ac",
         "filename": "/COMMIT_MSG",
         "patchSetId": 5
