@@ -1,0 +1,211 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "01bbc906_56f0b465",
+        "filename": "configurations/Nisqually.json",
+        "patchSetId": 1
+      },
+      "lineNbr": 57,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2021-05-24T23:08:11Z",
+      "side": 1,
+      "message": "Should type be Median here?",
+      "range": {
+        "startLine": 57,
+        "startChar": 22,
+        "endLine": 57,
+        "endChar": 35
+      },
+      "revId": "2448c30036b6bef5ce6252257c5e8ae364d1ca48",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "1ac6e5b5_27832d7c",
+        "filename": "configurations/Nisqually.json",
+        "patchSetId": 1
+      },
+      "lineNbr": 58,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2021-05-24T23:08:11Z",
+      "side": 1,
+      "message": "Why is this different than \"Name\"?",
+      "range": {
+        "startLine": 58,
+        "startChar": 0,
+        "endLine": 58,
+        "endChar": 47
+      },
+      "revId": "2448c30036b6bef5ce6252257c5e8ae364d1ca48",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "2e0fcecb_82839831",
+        "filename": "configurations/Nisqually.json",
+        "patchSetId": 1
+      },
+      "lineNbr": 59,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2021-05-24T23:08:11Z",
+      "side": 1,
+      "message": "\"Units\" should be the name of the param here, and it should follow something similar to what external sensor did where the user specifies the units of the sensor.  The actual type (ie the dbus path) is an internal detail that we don\u0027t want to expose the user to.",
+      "range": {
+        "startLine": 59,
+        "startChar": 0,
+        "endLine": 59,
+        "endChar": 47
+      },
+      "revId": "2448c30036b6bef5ce6252257c5e8ae364d1ca48",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "6a804cf2_f5e38bbc",
+        "filename": "configurations/Nisqually.json",
+        "patchSetId": 1
+      },
+      "lineNbr": 60,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2021-05-24T23:08:11Z",
+      "side": 1,
+      "message": "See above, I suspect this can just go into type, but if this stays here, we should come up with something better than \"Expression\"\n\nAlso, is there something more descriptive that we can use beyond \"modifiedMedian\".  It seems like we could better enumerate what is modified  in the name (although I don\u0027t know exactly how it differs, so I can\u0027t really make suggestions.)",
+      "range": {
+        "startLine": 60,
+        "startChar": 13,
+        "endLine": 60,
+        "endChar": 23
+      },
+      "revId": "2448c30036b6bef5ce6252257c5e8ae364d1ca48",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "882c361f_a60f02e1",
+        "filename": "configurations/Nisqually.json",
+        "patchSetId": 1
+      },
+      "lineNbr": 61,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2021-05-24T23:08:11Z",
+      "side": 1,
+      "message": "\"Params\" isn\u0027t very descriptive.  Please take a look at pid loops for how Entity-manager generally represents a list of sensors.  Something like\n\nSensors: [\n    \"Sensor1\"\n    \"Sensor2\",\n]",
+      "range": {
+        "startLine": 61,
+        "startChar": 0,
+        "endLine": 61,
+        "endChar": 23
+      },
+      "revId": "2448c30036b6bef5ce6252257c5e8ae364d1ca48",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "c69e565c_de8fe023",
+        "filename": "configurations/Nisqually.json",
+        "patchSetId": 1
+      },
+      "lineNbr": 64,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2021-05-24T23:08:11Z",
+      "side": 1,
+      "message": "This should be the same name as it shows up on line 34 (ie, remove the underscores).",
+      "range": {
+        "startLine": 64,
+        "startChar": 35,
+        "endLine": 64,
+        "endChar": 49
+      },
+      "revId": "2448c30036b6bef5ce6252257c5e8ae364d1ca48",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "7bdb7f76_bd4ee3c8",
+        "filename": "configurations/Nisqually.json",
+        "patchSetId": 1
+      },
+      "lineNbr": 65,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2021-05-24T23:08:11Z",
+      "side": 1,
+      "message": "This seems like an odd parameter to require at this level;  Why would a user set this to something other than temperature?  More generally, why would the user ever set this to something other than the type of the existing sensor?  If the answer is \"they wouldn\u0027t\" then it doesn\u0027t need to be a parameter here.",
+      "range": {
+        "startLine": 65,
+        "startChar": 0,
+        "endLine": 65,
+        "endChar": 47
+      },
+      "revId": "2448c30036b6bef5ce6252257c5e8ae364d1ca48",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "c866cad8_db267d16",
+        "filename": "configurations/Nisqually.json",
+        "patchSetId": 1
+      },
+      "lineNbr": 81,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2021-05-24T23:08:11Z",
+      "side": 1,
+      "message": "For these names, lets keep with the existing parameters naming scheme \"upper critical\", \"upper non critical\" ect, so we\u0027re consistent between config items.",
+      "range": {
+        "startLine": 81,
+        "startChar": 0,
+        "endLine": 81,
+        "endChar": 47
+      },
+      "revId": "2448c30036b6bef5ce6252257c5e8ae364d1ca48",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "6c9926bb_2bf9607e",
+        "filename": "configurations/Nisqually.json",
+        "patchSetId": 1
+      },
+      "lineNbr": 141,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2021-05-24T23:08:11Z",
+      "side": 1,
+      "message": "MaxReading and MinReading I think is what we use on other sensors, lets be consistent.",
+      "range": {
+        "startLine": 140,
+        "startChar": 0,
+        "endLine": 141,
+        "endChar": 36
+      },
+      "revId": "2448c30036b6bef5ce6252257c5e8ae364d1ca48",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    }
+  ]
+}
