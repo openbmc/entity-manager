@@ -165,6 +165,30 @@
     },
     {
       "key": {
+        "uuid": "4c0e6cb0_df91c9c4",
+        "filename": "configurations/Nisqually.json",
+        "patchSetId": 1
+      },
+      "lineNbr": 59,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2021-05-26T21:39:44Z",
+      "side": 1,
+      "message": "\u003e Might be a bit pedantic but would \"Measurement\" or \"Category\" be more appropriate than \"Units\"?\n\nPossibly, but the ideal time to discuss that was when external sensor merged, although I\u0027m happy to discuss changing both if that\u0027s something you\u0027d like to do, but I\u0027d like to do it outside the context of this patch.  Being consistent here is the most important.\n\nFWIW, I think Units is more descriptive, as it\u0027s directly relatable to dbus and indirectly relatable to redfish/ipmi (both of those call it units).\n\n\u003e This is specifying the type of what is being measured rather than the unit the measurement is in.\n\nI\u0027m not following what the difference is.  In our dbus APIs, the \"type\" is comparable 1:1 with the units being used (generally there\u0027s a lookup table between the two).",
+      "parentUuid": "50a80872_2d6f2c26",
+      "range": {
+        "startLine": 59,
+        "startChar": 0,
+        "endLine": 59,
+        "endChar": 47
+      },
+      "revId": "2448c30036b6bef5ce6252257c5e8ae364d1ca48",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "6a804cf2_f5e38bbc",
         "filename": "configurations/Nisqually.json",
         "patchSetId": 1
@@ -411,6 +435,30 @@
       "side": 1,
       "message": "Is {min,max}Reading preferred over {min,max}Value? They seem interchangable.",
       "parentUuid": "6c9926bb_2bf9607e",
+      "range": {
+        "startLine": 140,
+        "startChar": 0,
+        "endLine": 141,
+        "endChar": 36
+      },
+      "revId": "2448c30036b6bef5ce6252257c5e8ae364d1ca48",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "16c9fe20_8d913220",
+        "filename": "configurations/Nisqually.json",
+        "patchSetId": 1
+      },
+      "lineNbr": 141,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2021-05-26T21:39:44Z",
+      "side": 1,
+      "message": "We should be consistent;  Yes, MinReading is the Redfish term (which I mistakenly commented), I think MinValue is what we should use here.",
+      "parentUuid": "186ba043_b9306789",
       "range": {
         "startLine": 140,
         "startChar": 0,
