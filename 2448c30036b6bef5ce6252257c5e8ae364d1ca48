@@ -71,6 +71,30 @@
     },
     {
       "key": {
+        "uuid": "75f2eab2_cea4cfc6",
+        "filename": "configurations/Nisqually.json",
+        "patchSetId": 1
+      },
+      "lineNbr": 57,
+      "author": {
+        "id": 1000224
+      },
+      "writtenOn": "2021-05-28T06:57:32Z",
+      "side": 1,
+      "message": "That does seem more consistent with other sensors.",
+      "parentUuid": "01bbc906_56f0b465",
+      "range": {
+        "startLine": 57,
+        "startChar": 22,
+        "endLine": 57,
+        "endChar": 35
+      },
+      "revId": "2448c30036b6bef5ce6252257c5e8ae364d1ca48",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "1ac6e5b5_27832d7c",
         "filename": "configurations/Nisqually.json",
         "patchSetId": 1
@@ -189,6 +213,30 @@
     },
     {
       "key": {
+        "uuid": "f1fcbc5a_73279cbb",
+        "filename": "configurations/Nisqually.json",
+        "patchSetId": 1
+      },
+      "lineNbr": 59,
+      "author": {
+        "id": 1000224
+      },
+      "writtenOn": "2021-05-28T06:57:32Z",
+      "side": 1,
+      "message": "\u003e  Being consistent here is the most important.\nThat\u0027s fair. \n\n\u003e I\u0027m not following what the difference is. \nTo my brain there is quite a distinction between what we are measuring (temperature, fan tach, etc) and the units we measure in (Celcius, Fahrenheit, Kelvin, RPM, Hz etc). But if we are always using the same units for the type of measurement then I don\u0027t really care that much.",
+      "parentUuid": "4c0e6cb0_df91c9c4",
+      "range": {
+        "startLine": 59,
+        "startChar": 0,
+        "endLine": 59,
+        "endChar": 47
+      },
+      "revId": "2448c30036b6bef5ce6252257c5e8ae364d1ca48",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "6a804cf2_f5e38bbc",
         "filename": "configurations/Nisqually.json",
         "patchSetId": 1
@@ -200,6 +248,30 @@
       "writtenOn": "2021-05-24T23:08:11Z",
       "side": 1,
       "message": "See above, I suspect this can just go into type, but if this stays here, we should come up with something better than \"Expression\"\n\nAlso, is there something more descriptive that we can use beyond \"modifiedMedian\".  It seems like we could better enumerate what is modified  in the name (although I don\u0027t know exactly how it differs, so I can\u0027t really make suggestions.)",
+      "range": {
+        "startLine": 60,
+        "startChar": 13,
+        "endLine": 60,
+        "endChar": 23
+      },
+      "revId": "2448c30036b6bef5ce6252257c5e8ae364d1ca48",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "50dddfdf_432fbb19",
+        "filename": "configurations/Nisqually.json",
+        "patchSetId": 1
+      },
+      "lineNbr": 60,
+      "author": {
+        "id": 1000224
+      },
+      "writtenOn": "2021-05-28T06:57:32Z",
+      "side": 1,
+      "message": "It\u0027s essentially a median function except for if there are two valid values and then we use the higher value (one valid value: use it, two: use the higher value, three: use the middle value). I couldn\u0027t think of anything better than modifiedMedian, any suggestions?",
+      "parentUuid": "6a804cf2_f5e38bbc",
       "range": {
         "startLine": 60,
         "startChar": 13,
@@ -468,6 +540,30 @@
       "revId": "2448c30036b6bef5ce6252257c5e8ae364d1ca48",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "320c0b0f_ec6ccf00",
+        "filename": "configurations/Nisqually.json",
+        "patchSetId": 1
+      },
+      "lineNbr": 141,
+      "author": {
+        "id": 1000224
+      },
+      "writtenOn": "2021-05-28T06:57:32Z",
+      "side": 1,
+      "message": "Ok.",
+      "parentUuid": "16c9fe20_8d913220",
+      "range": {
+        "startLine": 140,
+        "startChar": 0,
+        "endLine": 141,
+        "endChar": 36
+      },
+      "revId": "2448c30036b6bef5ce6252257c5e8ae364d1ca48",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": false
     }
   ]
 }
