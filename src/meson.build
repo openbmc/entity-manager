@@ -1,4 +1,5 @@
 cpp_args = boost_args + ['-DPACKAGE_DIR="' + packagedir + '/"']
+cpp_args += ['-DSYSCONF_DIR="' + sysconfdir + '/"' ]
 
 executable(
     'entity-manager',

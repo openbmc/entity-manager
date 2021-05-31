@@ -55,6 +55,11 @@ packagedir = join_paths(
     get_option('datadir'),
     meson.project_name(),
 )
+sysconfdir = join_paths(
+    get_option('prefix'),
+    get_option('sysconfdir'),
+    meson.project_name(),
+)
 threads = dependency('threads')
 if cpp.has_header('valijson/validator.hpp')
     valijson = declare_dependency()

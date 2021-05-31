@@ -34,6 +34,7 @@
 
 #include <filesystem>
 #include <fstream>
+#include <map>
 #include <regex>
 
 constexpr const char* templateChar = "$";
@@ -59,6 +60,36 @@ bool findFiles(const fs::path& dirPath, const std::string& matchString,
         }
     }
     return true;
+}
+
+bool findFiles(const std::vector<fs::path>&& dirPaths,
+               const std::string& matchString,
+               std::vector<fs::path>& foundPaths)
+{
+    std::map<fs::path, fs::path> paths;
+    std::regex search(matchString);
+    std::smatch match;
+    for (const auto& dirPath : dirPaths)
+    {
+        if (!fs::exists(dirPath))
+            continue;
+
+        for (const auto& p : fs::directory_iterator(dirPath))
+        {
+            std::string path = p.path().string();
+            if (std::regex_search(path, match, search))
+            {
+                paths[p.path().filename()] = p.path();
+            }
+        }
+    }
+
+    for (const auto& [key, value] : paths)
+    {
+        foundPaths.emplace_back(value);
+    }
+
+    return !foundPaths.empty();
 }
 
 bool getI2cDevicePaths(const fs::path& dirPath,
