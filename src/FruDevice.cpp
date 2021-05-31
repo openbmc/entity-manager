@@ -41,6 +41,7 @@
 #include <iomanip>
 #include <iostream>
 #include <limits>
+#include <map>
 #include <regex>
 #include <set>
 #include <sstream>

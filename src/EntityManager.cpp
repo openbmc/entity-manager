@@ -42,6 +42,7 @@
 #include <map>
 #include <regex>
 #include <variant>
+constexpr const char* hostConfigurationDirectory = SYSCONF_DIR "configurations";
 constexpr const char* configurationDirectory = PACKAGE_DIR "configurations";
 constexpr const char* schemaDirectory = PACKAGE_DIR "configurations/schemas";
 constexpr const char* tempConfigDir = "/tmp/configuration/";
@@ -775,8 +776,10 @@ bool findJsonFiles(std::list<nlohmann::json>& configurations)
 {
     // find configuration files
     std::vector<std::filesystem::path> jsonPaths;
-    if (!findFiles(std::filesystem::path(configurationDirectory), R"(.*\.json)",
-                   jsonPaths))
+    if (!findFiles(
+            std::vector<std::filesystem::path>{configurationDirectory,
+                                               hostConfigurationDirectory},
+            R"(.*\.json)", jsonPaths))
     {
         std::cerr << "Unable to find any configuration files in "
                   << configurationDirectory << "\n";
