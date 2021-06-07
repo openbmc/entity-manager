@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "ec3dac1e_2ecaa27f",
+        "filename": "docs/dynamic_mux.md",
+        "patchSetId": 6
+      },
+      "lineNbr": 66,
+      "author": {
+        "id": 1000885
+      },
+      "writtenOn": "2021-06-07T23:52:18Z",
+      "side": 1,
+      "message": "Do we basically put an I²C topology for all the FRUs that has multiple I2C muxes and each of them will have fixed number of connections? Is this only for like sensors?\n\nWhat if we want to have dynamic connection like a FRU that has multiple slots that connects to more FURs. Will that work?\n\nWith that it is not guarantee that all the FRUs are connected. Those FRUs will be a board itself. Do we just want a mapping to the address/bus that we know... and then look at the actual FRU instead?",
+      "range": {
+        "startLine": 48,
+        "startChar": 0,
+        "endLine": 66,
+        "endChar": 27
+      },
+      "revId": "977ebf82a26379790f119b3686d6a4bdfd421216",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    }
+  ]
+}
