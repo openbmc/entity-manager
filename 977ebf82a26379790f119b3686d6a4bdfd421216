@@ -2,6 +2,23 @@
   "comments": [
     {
       "key": {
+        "uuid": "5ae985e1_7e8b9217",
+        "filename": "docs/dynamic_mux.md",
+        "patchSetId": 6
+      },
+      "lineNbr": 38,
+      "author": {
+        "id": 1000021
+      },
+      "writtenOn": "2021-06-08T04:44:44Z",
+      "side": 1,
+      "message": "can you give an explicit part number example here?   Not all PCA family are muxes.",
+      "revId": "977ebf82a26379790f119b3686d6a4bdfd421216",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "ec3dac1e_2ecaa27f",
         "filename": "docs/dynamic_mux.md",
         "patchSetId": 6
@@ -19,6 +36,40 @@
         "endLine": 66,
         "endChar": 27
       },
+      "revId": "977ebf82a26379790f119b3686d6a4bdfd421216",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "89278d2d_dddcf9f8",
+        "filename": "docs/dynamic_mux.md",
+        "patchSetId": 6
+      },
+      "lineNbr": 185,
+      "author": {
+        "id": 1000021
+      },
+      "writtenOn": "2021-06-08T04:44:44Z",
+      "side": 1,
+      "message": "That part is definitly a input pin controlled mux, with additional enable controls that is beyond the current mux framework that the i2c gpio mux driver uses, but could easily be extended to suppot.\n\nAre you trying to only use one channel of the above device to implement a switch?\n\nMaybe we need to split the two use cases.",
+      "revId": "977ebf82a26379790f119b3686d6a4bdfd421216",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "8c9ad95f_cb71a772",
+        "filename": "docs/dynamic_mux.md",
+        "patchSetId": 6
+      },
+      "lineNbr": 231,
+      "author": {
+        "id": 1000021
+      },
+      "writtenOn": "2021-06-08T04:44:44Z",
+      "side": 1,
+      "message": "I think we need a better statement of what benefits we are getting by not describing the mux to the kernel with a proper i2c mux driver.\n\nIf the only benefit is describing to entity manager what to probe on a given bus then lets clearly state that.",
       "revId": "977ebf82a26379790f119b3686d6a4bdfd421216",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
       "unresolved": true
