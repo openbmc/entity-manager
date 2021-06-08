@@ -33,6 +33,9 @@
                 "Bus": {
                     "$ref": "#/definitions/Types/Bus"
                 },
+                "ByteArray": {
+                    "$ref": "#/definitions/Types/ByteArray"
+                },
                 "C1": {
                     "$ref": "#/definitions/Types/C1"
                 },
@@ -332,7 +335,13 @@
                     "number"
                 ]
             },
-            "C1": {
+            "ByteArray": {
+                "type": [
+                    "string",
+                    "number"
+                ]
+            },
+             "C1": {
                 "type": "number"
             },
             "C2": {
