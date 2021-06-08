@@ -567,6 +567,16 @@
                 }
             ],
             "Type": "pmbus"
+        },
+        {
+            "Name": "timeManager",
+            "Bus": "0 4 8 12",
+            "Index": "56",
+            "C1": "2",
+            "Lun": "0",
+            "CmdData": "21 160 0 1 40 72",
+            "Interface": "Ipmb" ,
+            "Type": "IpmbSelInfo"
         }
     ],
     "Name": "Yosemite V2 Baseboard",
