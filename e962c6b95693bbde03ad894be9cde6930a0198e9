@@ -1,0 +1,55 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "a88db0fb_5532b2f1",
+        "filename": "schemas/IBM.json",
+        "patchSetId": 1
+      },
+      "lineNbr": 52,
+      "author": {
+        "id": 1000003
+      },
+      "writtenOn": "2021-06-09T15:45:56Z",
+      "side": 1,
+      "message": "This could be named \"SupportedConfiguration\" and have a \"SupportedType\" of \"PowerSupply\" to allow more than power supplies to be supported.",
+      "revId": "e962c6b95693bbde03ad894be9cde6930a0198e9",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "0cda04c6_d56b67ee",
+        "filename": "schemas/IBM.json",
+        "patchSetId": 1
+      },
+      "lineNbr": 75,
+      "author": {
+        "id": 1000003
+      },
+      "writtenOn": "2021-06-09T15:45:56Z",
+      "side": 1,
+      "message": "Per offline comment from Matt, the InputVoltage can be an array instead, since some power supplies support both 110V and 220V, to avoid having multiple almost identical configurations.",
+      "revId": "e962c6b95693bbde03ad894be9cde6930a0198e9",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "9e709e85_97b608d3",
+        "filename": "schemas/IBM.json",
+        "patchSetId": 1
+      },
+      "lineNbr": 82,
+      "author": {
+        "id": 1000003
+      },
+      "writtenOn": "2021-06-09T15:45:56Z",
+      "side": 1,
+      "message": "The Model can just be a string instead of an array  if we make the change above to have an array of input voltages.",
+      "revId": "e962c6b95693bbde03ad894be9cde6930a0198e9",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    }
+  ]
+}
