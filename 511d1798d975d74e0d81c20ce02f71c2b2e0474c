@@ -22,6 +22,30 @@
       "revId": "511d1798d975d74e0d81c20ce02f71c2b2e0474c",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "5df5d6d8_90522c03",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 6
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 1000085
+      },
+      "writtenOn": "2021-06-09T23:07:01Z",
+      "side": 1,
+      "message": "That surely is one possible way to do this.\n\nOriginally, there was no delay, and that worked with the supplies we originally worked with on Witherspoon. Then Rainier ended up needing a 500ms delay, that testing showed needed to be higher. I thought we could get by without the delay on some, but it is looking like a hardcoded delay of 1 second might just work.\n\nOver-engineered data-driven application design?",
+      "parentUuid": "7839b12c_fcc1de61",
+      "range": {
+        "startLine": 9,
+        "startChar": 11,
+        "endLine": 9,
+        "endChar": 69
+      },
+      "revId": "511d1798d975d74e0d81c20ce02f71c2b2e0474c",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
     }
   ]
 }
