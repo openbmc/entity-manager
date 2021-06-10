@@ -42,6 +42,30 @@
     },
     {
       "key": {
+        "uuid": "abc97a3e_09e79e25",
+        "filename": "src/Utils.cpp",
+        "patchSetId": 2
+      },
+      "lineNbr": 69,
+      "author": {
+        "id": 1000009
+      },
+      "writtenOn": "2021-06-10T23:54:37Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "905c6991_7a3e87d2",
+      "range": {
+        "startLine": 69,
+        "startChar": 9,
+        "endLine": 69,
+        "endChar": 12
+      },
+      "revId": "b7def8709d01e0aa708a47fdfd43edffe3761665",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "bf1f1307_44de6775",
         "filename": "src/Utils.cpp",
         "patchSetId": 2
@@ -65,6 +89,30 @@
     },
     {
       "key": {
+        "uuid": "e91893d3_5198d97c",
+        "filename": "src/Utils.cpp",
+        "patchSetId": 2
+      },
+      "lineNbr": 84,
+      "author": {
+        "id": 1000009
+      },
+      "writtenOn": "2021-06-10T23:54:37Z",
+      "side": 1,
+      "message": "I think it\u0027s easier not to because we\u0027re combining the search with prioritised deduplication (i.e. line 82).",
+      "parentUuid": "bf1f1307_44de6775",
+      "range": {
+        "startLine": 74,
+        "startChar": 0,
+        "endLine": 84,
+        "endChar": 9
+      },
+      "revId": "b7def8709d01e0aa708a47fdfd43edffe3761665",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "a1fb6b66_bb3f6c68",
         "filename": "src/Utils.cpp",
         "patchSetId": 2
@@ -76,6 +124,30 @@
       "writtenOn": "2021-06-10T21:23:33Z",
       "side": 1,
       "message": "The old method would only return false if the path didn\u0027t physically exist.  This is changing it to mean empty is a failure, which wasn\u0027t really the intent even if it works in this case.  empty is easy enough to check for if that\u0027s what a caller cares about.\n\nI suspect changing this to \"return true\" and line 75 to \"return false\" is what\u0027s needed here.",
+      "range": {
+        "startLine": 92,
+        "startChar": 11,
+        "endLine": 92,
+        "endChar": 31
+      },
+      "revId": "b7def8709d01e0aa708a47fdfd43edffe3761665",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "a46cd5ff_a59959cd",
+        "filename": "src/Utils.cpp",
+        "patchSetId": 2
+      },
+      "lineNbr": 92,
+      "author": {
+        "id": 1000009
+      },
+      "writtenOn": "2021-06-10T23:54:37Z",
+      "side": 1,
+      "message": "But we only care if no paths exist, as /etc is merely prioritised over /usr - we shouldn\u0027t fail if the /etc path doesn\u0027t exist.",
+      "parentUuid": "a1fb6b66_bb3f6c68",
       "range": {
         "startLine": 92,
         "startChar": 11,
