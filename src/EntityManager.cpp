@@ -41,6 +41,7 @@
 #include <iostream>
 #include <regex>
 #include <variant>
+#include <vector>
 constexpr const char* configurationDirectory = PACKAGE_DIR "configurations";
 constexpr const char* schemaDirectory = PACKAGE_DIR "configurations/schemas";
 constexpr const char* tempConfigDir = "/tmp/configuration/";
@@ -92,6 +93,8 @@ using ManagedObjectType = boost::container::flat_map<
     boost::container::flat_map<
         std::string,
         boost::container::flat_map<std::string, BasicVariantType>>>;
+using EntityNameMap = boost::container::flat_map<
+    uint8_t, boost::container::flat_map<uint8_t, std::string>>;
 
 // store reference to all interfaces so we can destroy them later
 boost::container::flat_map<
@@ -940,6 +943,94 @@ void createAddObjectMethod(const std::string& jsonPointerPath,
     iface->initialize();
 }
 
+void createEntityNameMap(const nlohmann::json& config,
+                         std::optional<EntityNameMap>* entityNameMap)
+{
+    static const boost::container::flat_map<std::string, uint8_t>
+        typeToEntityId{{"cpu", 0x03},
+                       {"storage_device", 0x04},
+                       {"system_management_module", 0x06},
+                       {"system_board", 0x07},
+                       {"memory_module", 0x08},
+                       {"add_in_card", 0x0B},
+                       {"power_system_board", 0x0E},
+                       {"system_internal_expansion_board", 0x10},
+                       {"other_system_board", 0x11},
+                       {"system_chassis", 0x17},
+                       {"fan", 0x1D},
+                       {"cooling_unit", 0x1E},
+                       {"memory_device", 0x20}};
+
+    static const std::vector<nlohmann::json> empty{};
+
+    std::vector<nlohmann::json> readings;
+    (*entityNameMap) = EntityNameMap();
+
+    auto& entityName = entityNameMap->value();
+    for (const auto& [type, id] : typeToEntityId)
+    {
+        readings = config.value(type, empty);
+
+        for (const auto& reading : readings)
+        {
+            uint8_t instance = reading.value("instance", 0);
+
+            // Instance of 0 is not allowed
+            if (!instance)
+            {
+                continue;
+            }
+
+            entityName[id][instance] = reading.value("name", "");
+        }
+    }
+}
+
+std::string getEntityName(std::uint8_t id, std::uint8_t instance)
+{
+    static std::optional<EntityNameMap> entityNameMap;
+
+    if (!entityNameMap.has_value())
+    {
+        try
+        {
+            std::ifstream jsonFile(
+                "/usr/share/entity-manager/entity-association/"
+                "entity_association_map.json");
+            if (!jsonFile.is_open())
+            {
+                return std::string();
+            }
+
+            auto entityConfig = nlohmann::json::parse(jsonFile, nullptr, false);
+            if (entityConfig.is_discarded())
+            {
+                return std::string();
+            }
+
+            createEntityNameMap(entityConfig, &entityNameMap);
+        }
+        catch (std::exception& e)
+        {
+            return std::string();
+        }
+    }
+
+    auto entityType = entityNameMap.value().find(id);
+    if (entityType == entityNameMap.value().end())
+    {
+        return std::string();
+    }
+
+    auto entityInstance = entityType->second.find(instance);
+    if (entityInstance == entityType->second.end())
+    {
+        return std::string();
+    }
+
+    return entityInstance->second;
+}
+
 void postToDbus(const nlohmann::json& newConfiguration,
                 nlohmann::json& systemConfiguration,
                 sdbusplus::asio::object_server& objServer)
@@ -999,6 +1090,43 @@ void postToDbus(const nlohmann::json& newConfiguration,
                 std::shared_ptr<sdbusplus::asio::dbus_interface> iface =
                     createInterface(objServer, boardName, boardField.key(),
                                     boardKeyOrig);
+
+                if (boardField.key() ==
+                    "xyz.openbmc_project.Inventory.Decorator.Ipmi")
+                {
+                    std::optional<uint64_t> id, instance;
+                    for (auto& dictPair : boardField.value().items())
+                    {
+                        if (dictPair.value().type() !=
+                            nlohmann::json::value_t::number_unsigned)
+                        {
+                            continue;
+                        };
+
+                        if (dictPair.key() == "EntityId")
+                        {
+                            id = dictPair.value().get<uint64_t>();
+                        }
+
+                        if (dictPair.key() == "EntityInstance")
+                        {
+                            instance = dictPair.value().get<uint64_t>();
+                        }
+                    }
+
+                    if (id.has_value() && instance.has_value())
+                    {
+                        std::string entityNameKey = "EntityName";
+                        std::string entityNameValue =
+                            getEntityName(id.value(), instance.value());
+
+                        if (!entityNameValue.empty())
+                        {
+                            iface.get()->register_property(entityNameKey,
+                                                           entityNameValue);
+                        }
+                    }
+                }
 
                 populateInterfaceFromJson(systemConfiguration,
                                           jsonPointerPath + boardField.key(),
