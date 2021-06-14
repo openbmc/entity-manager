@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "652e88df_4367775c",
+        "filename": "docs/dynamic_mux.md",
+        "patchSetId": 6
+      },
+      "lineNbr": 38,
+      "author": {
+        "id": 1000271
+      },
+      "writtenOn": "2021-06-14T23:48:41Z",
+      "side": 1,
+      "message": "Sure, we generally have all supported PCA muxes added in device.hpp file.",
+      "parentUuid": "5ae985e1_7e8b9217",
+      "revId": "977ebf82a26379790f119b3686d6a4bdfd421216",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "ec3dac1e_2ecaa27f",
         "filename": "docs/dynamic_mux.md",
         "patchSetId": 6
@@ -66,6 +84,30 @@
     },
     {
       "key": {
+        "uuid": "831ad83a_263e044d",
+        "filename": "docs/dynamic_mux.md",
+        "patchSetId": 6
+      },
+      "lineNbr": 66,
+      "author": {
+        "id": 1000271
+      },
+      "writtenOn": "2021-06-14T23:48:41Z",
+      "side": 1,
+      "message": "Let me clarify here, FRU is mainly used for detecting and probing to get a bus number. If you have bus number predefined and want to have different probing mechanism, entity manager doesn\u0027t care as long as probe returns true it will add the respective config file. And if any $bus or $address is used in that file it will be replaced by actual i2c bus number found by FRU interface.\n\nEach mapping is separate for each found card.",
+      "parentUuid": "02dc5e1b_4b3bd7af",
+      "range": {
+        "startLine": 48,
+        "startChar": 0,
+        "endLine": 66,
+        "endChar": 27
+      },
+      "revId": "977ebf82a26379790f119b3686d6a4bdfd421216",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "89278d2d_dddcf9f8",
         "filename": "docs/dynamic_mux.md",
         "patchSetId": 6
@@ -83,6 +125,24 @@
     },
     {
       "key": {
+        "uuid": "112452be_96cc56d2",
+        "filename": "docs/dynamic_mux.md",
+        "patchSetId": 6
+      },
+      "lineNbr": 185,
+      "author": {
+        "id": 1000271
+      },
+      "writtenOn": "2021-06-14T23:48:41Z",
+      "side": 1,
+      "message": "We can certainly add more support of kernel driver. Currently we are going to support pin controlled switch.",
+      "parentUuid": "89278d2d_dddcf9f8",
+      "revId": "977ebf82a26379790f119b3686d6a4bdfd421216",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "8c9ad95f_cb71a772",
         "filename": "docs/dynamic_mux.md",
         "patchSetId": 6
@@ -97,6 +157,24 @@
       "revId": "977ebf82a26379790f119b3686d6a4bdfd421216",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "3a7a1e20_bfb144b5",
+        "filename": "docs/dynamic_mux.md",
+        "patchSetId": 6
+      },
+      "lineNbr": 231,
+      "author": {
+        "id": 1000271
+      },
+      "writtenOn": "2021-06-14T23:48:41Z",
+      "side": 1,
+      "message": "We are getting a dynamic access to any add on card so we don\u0027t need to describe this in kernel earlier. It will eventually get added as soon as card is detected via entity manager configuration.",
+      "parentUuid": "8c9ad95f_cb71a772",
+      "revId": "977ebf82a26379790f119b3686d6a4bdfd421216",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": false
     }
   ]
 }
