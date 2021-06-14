@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "510caa18_73b542a7",
+        "filename": "configurations/Blyth.json",
+        "patchSetId": 14
+      },
+      "lineNbr": 12,
+      "author": {
+        "id": 1000008
+      },
+      "writtenOn": "2021-06-14T15:17:38Z",
+      "side": 1,
+      "message": "I had https://gerrit.openbmc-project.xyz/c/openbmc/entity-manager/+/39852 to put up a Blyth card, but got hung up on hardcoding the I2C bus number in case the card is shared across systems that have a different bus there.  I am still waiting on some code support to even handle that within the openpower-vpd repo.",
+      "parentUuid": "8c908254_718df22d",
+      "revId": "77c5e99b8c755c70facd73d6d05d66f800060768",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "2b576cc4_bf4c7e32",
         "filename": "configurations/Blyth.json",
         "patchSetId": 14
