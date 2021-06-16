@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "dc884282_2eca86c1",
+        "filename": "src/EntityManager.cpp",
+        "patchSetId": 7
+      },
+      "lineNbr": 767,
+      "author": {
+        "id": 1000900
+      },
+      "writtenOn": "2021-06-16T01:01:56Z",
+      "side": 1,
+      "message": "This is still just a blocking call then.\nI understand it needs to be blocking so you can get the return value for the D-Bus property set handler. I don\u0027t know the preferred solution here - either standard synchronous calls, or coroutines? - but this use of std::async doesn\u0027t make sense.",
+      "revId": "5fc1e0954d197e0485847a685ec9c111a8d0b5d7",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    }
+  ]
+}
