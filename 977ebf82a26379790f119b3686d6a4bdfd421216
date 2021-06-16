@@ -240,6 +240,24 @@
       "revId": "977ebf82a26379790f119b3686d6a4bdfd421216",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "640c478c_40c97829",
+        "filename": "docs/dynamic_mux.md",
+        "patchSetId": 6
+      },
+      "lineNbr": 231,
+      "author": {
+        "id": 1000271
+      },
+      "writtenOn": "2021-06-16T20:22:31Z",
+      "side": 1,
+      "message": "This gpio switch is on main board but it can be anywhere. It is completely dynamic and you define slot number based on gpio line combinations. So EM will set those gpio lines before accessing each slots card. a great example for that is battery sensors.\n\nUser space has to dynamically detect which card is connected and what all it has via configuration file. So kernel have no idea what card is connected in expansion slot until it\u0027s driver is initialized.",
+      "parentUuid": "14dba945_c1556eb8",
+      "revId": "977ebf82a26379790f119b3686d6a4bdfd421216",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": false
     }
   ]
 }
