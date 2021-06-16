@@ -198,6 +198,24 @@
       "revId": "977ebf82a26379790f119b3686d6a4bdfd421216",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "14dba945_c1556eb8",
+        "filename": "docs/dynamic_mux.md",
+        "patchSetId": 6
+      },
+      "lineNbr": 231,
+      "author": {
+        "id": 1000021
+      },
+      "writtenOn": "2021-06-16T00:04:40Z",
+      "side": 1,
+      "message": "Where are the gpio and isolator physically?\n\nYou said the gpios should be named why not describe the connection to the muxes?\n\nIf the gpios are on the support to the plug in card with different muxes on the card then this makes some sense.  However if they are on the same card, especially if you expect to have more than a static configuration once a set of cards are plugged, then it should be kernel controlled.\n\nI don\u0027t have a strong sense of how the userspace learns the content of the cards, other than it should be reasonably easy to describe and create by humans as well as machines.",
+      "parentUuid": "3a7a1e20_bfb144b5",
+      "revId": "977ebf82a26379790f119b3686d6a4bdfd421216",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
     }
   ]
 }
