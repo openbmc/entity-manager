@@ -41,3 +41,14 @@ if get_option('fru-device')
         install: true,
     )
 endif
+
+executable(
+    'entity-association',
+    'EntityAssociation.cpp',
+    dependencies: [
+        sdbusplus,
+    ],
+    implicit_include_directories: false,
+    include_directories: '../include',
+    install: true,
+)
