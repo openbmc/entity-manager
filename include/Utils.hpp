@@ -165,3 +165,30 @@ inline bool deviceHasLogging(const nlohmann::json& json)
 /// \param dbusValue the property value being matched to a probe.
 /// \return true if the dbusValue matched the probe otherwise false.
 bool matchProbe(const nlohmann::json& probe, const BasicVariantType& dbusValue);
+
+inline int getRootBus(size_t bus)
+{
+    auto ec = std::error_code();
+    auto path = std::filesystem::read_symlink(
+        std::filesystem::path("/sys/bus/i2c/devices/i2c-" +
+                              std::to_string(bus) + "/mux_device"),
+        ec);
+    if (ec)
+    {
+        return -1;
+    }
+
+    std::string filename = path.filename();
+    auto findBus = filename.find("-");
+    if (findBus == std::string::npos)
+    {
+        return -1;
+    }
+    return std::stoi(filename.substr(0, findBus));
+}
+
+inline bool isMuxBus(size_t bus)
+{
+    return is_symlink(std::filesystem::path(
+        "/sys/bus/i2c/devices/i2c-" + std::to_string(bus) + "/mux_device"));
+}
