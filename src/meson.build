@@ -1,11 +1,16 @@
 cpp_args = boost_args + ['-DPACKAGE_DIR="' + packagedir + '/"']
 
+cpp_args_em = cpp_args
+if get_option('entity-association-i2c')
+  cpp_args_em = cpp_args_em + ['-DENABLE_ENTITY_ASSOCIATION_I2C']
+endif
+
 executable(
     'entity-manager',
     'EntityManager.cpp',
     'Overlay.cpp',
     'Utils.cpp',
-    cpp_args: cpp_args + ['-DBOOST_ASIO_DISABLE_THREADS'],
+    cpp_args: cpp_args_em + ['-DBOOST_ASIO_DISABLE_THREADS'],
     dependencies: [
         boost,
         nlohmann_json,
