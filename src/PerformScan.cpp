@@ -293,6 +293,13 @@ void PerformScan::run()
             it = _configurations.erase(it);
             continue;
         }
+
+        // Use the I2C bus to mark entities if an I2C bus is probed.
+        if (it->find("Bus") == it->end())
+        {
+            it->update(R"( {"Bus": "$bus"} )"_json);
+        }
+
         nlohmann::json* recordPtr = &(*it);
 
         // store reference to this to children to makes sure we don't get
