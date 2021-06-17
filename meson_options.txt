@@ -7,3 +7,6 @@ option(
 option(
     'fru-device-resizefru', value : false, type: 'boolean', description: 'Allow FruDevice to resize FRU areas.',
 )
+option(
+    'entity-association-i2c', value : false, type: 'boolean', description: 'Allow EntityManager to construct entity association by I2C topology.',
+)
