@@ -41,3 +41,17 @@ if get_option('fru-device')
         install: true,
     )
 endif
+
+phosphor_dbus_interfaces = dependency('phosphor-dbus-interfaces')
+executable(
+    'entity-association',
+    'EntityAssociation.cpp',
+    cpp_args: '-Wno-unused-variable',
+    dependencies: [
+        sdbusplus,
+	phosphor_dbus_interfaces,
+    ],
+    implicit_include_directories: false,
+    include_directories: '../include',
+    install: true,
+)
