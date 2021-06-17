@@ -146,33 +146,6 @@ static int busStrToInt(const std::string& busName)
     return std::stoi(busName.substr(findBus + 1));
 }
 
-static int getRootBus(size_t bus)
-{
-    auto ec = std::error_code();
-    auto path = std::filesystem::read_symlink(
-        std::filesystem::path("/sys/bus/i2c/devices/i2c-" +
-                              std::to_string(bus) + "/mux_device"),
-        ec);
-    if (ec)
-    {
-        return -1;
-    }
-
-    std::string filename = path.filename();
-    auto findBus = filename.find("-");
-    if (findBus == std::string::npos)
-    {
-        return -1;
-    }
-    return std::stoi(filename.substr(0, findBus));
-}
-
-static bool isMuxBus(size_t bus)
-{
-    return is_symlink(std::filesystem::path(
-        "/sys/bus/i2c/devices/i2c-" + std::to_string(bus) + "/mux_device"));
-}
-
 static void makeProbeInterface(size_t bus, size_t address)
 {
     if (isMuxBus(bus))
