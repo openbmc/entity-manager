@@ -40,6 +40,7 @@
 #include <fstream>
 #include <iostream>
 #include <map>
+#include <queue>
 #include <regex>
 #include <variant>
 constexpr const char* hostConfigurationDirectory = SYSCONF_DIR "configurations";
@@ -573,6 +574,27 @@ void postToDbus(const nlohmann::json& newConfiguration,
                 sdbusplus::asio::object_server& objServer)
 
 {
+
+    // I2C bus -> {(entity path, entity name, entity type)}
+    // I2C bus is the entity EEPROM I2C bus that is usually probed from
+    // FruDevice service. If a entity is added in a machine through a connector
+    // with I2C pass-through and does not process an EEPROM, user can hardcode
+    // the I2C bus in the config.
+    using BusEntityPathName = boost::container::flat_map<
+        uint64_t,
+        std::vector<std::tuple<std::string, std::string, std::string>>>;
+
+    // I2C bus -> {(connector path, entity name,  entity type, label)}
+    // I2C bus is the bus passing though the connector. The bus is usually
+    // hardcoded in the config. Now it does not support bus behind a mux that
+    // determined in the runtime
+    using BusSlotProerties = boost::container::flat_map<
+        uint64_t, std::vector<std::tuple<std::string, std::string, std::string,
+                                         std::string>>>;
+
+    BusEntityPathName i2cEntities;
+    BusSlotProerties i2cSlots;
+
     // iterate through boards
     for (auto& boardPair : newConfiguration.items())
     {
@@ -620,6 +642,16 @@ void postToDbus(const nlohmann::json& newConfiguration,
 
         populateInterfaceFromJson(systemConfiguration, jsonPointerPath,
                                   boardIface, boardValues, objServer);
+
+        // Build I2C:Entity map
+        auto findBoardBus = boardValues.find("Bus");
+        if (findBoardBus != boardValues.end() &&
+            findBoardBus->type() == nlohmann::json::value_t::number_unsigned)
+        {
+            i2cEntities[findBoardBus->get<uint64_t>()].emplace_back(
+                std::make_tuple(boardName, boardKeyOrig, boardType));
+        }
+
         jsonPointerPath += "/";
         // iterate through board properties
         for (auto& boardField : boardValues.items())
@@ -687,11 +719,30 @@ void postToDbus(const nlohmann::json& newConfiguration,
             ifacePath += "/";
             ifacePath += itemName;
 
+            // The connector slot on board with an I2C bus pass-through is
+            // exposed a feature in the entity config. Now use an abstracted
+            // type including PCIE slots, IO ports, et.al. The same I2C
+            // bus would be seen in a connected downstream entity. That an
+            // I2C bus is observed in two entities indicates connectivity
+            // between those entities.
+            auto findBus = item.find("Bus");
+            if (itemType == "I2CConnector" && findBus != item.end() &&
+                findBus->type() == nlohmann::json::value_t::number_unsigned)
+            {
+                auto findLabel = item.find("Label");
+                if (findLabel != item.end())
+                {
+                    std::string itemLabel = findLabel->get<std::string>();
+                    i2cSlots[findBus->get<uint64_t>()].emplace_back(
+                        std::make_tuple(ifacePath, boardKeyOrig, boardType,
+                                        itemLabel));
+                }
+            }
+
             std::shared_ptr<sdbusplus::asio::dbus_interface> itemIface =
                 createInterface(objServer, ifacePath,
                                 "xyz.openbmc_project.Configuration." + itemType,
                                 boardKeyOrig);
-
             populateInterfaceFromJson(systemConfiguration, jsonPointerPath,
                                       itemIface, item, objServer,
                                       getPermission(itemType));
@@ -768,6 +819,184 @@ void postToDbus(const nlohmann::json& newConfiguration,
                 }
             }
         }
+    }
+
+    // All the DBus objects and interfaces are created. Try to construct entity
+    // inventory objects association based on I2C topology
+    // Node -> entity object path, entity name, entity type indicating entites
+    // Edge -> connector object path, entity name, entity type, connector
+    // label indicating connectors
+    using Node = std::tuple<std::string, std::string, std::string>;
+    using Edge = std::tuple<std::string, std::string, std::string, std::string>;
+    using Graph = boost::container::flat_map<
+        uint32_t, boost::container::flat_map<uint32_t, uint32_t>>;
+
+    // label the nodes and edges
+    uint32_t ndx = 0, egx = 0;
+    boost::container::flat_map<uint32_t, Node> indexNodeMap;
+    boost::container::flat_map<Node, uint32_t> nodeIndexMap;
+    boost::container::flat_map<uint32_t, Edge> indexEdgeMap;
+    boost::container::flat_map<Edge, uint32_t> edgeIndexMap;
+    Graph graph;
+    for (const auto& i2cEntity : i2cEntities)
+    {
+        auto i2c = i2cEntity.first;
+
+        // Check if the entity EEPROM I2C bus also points to a connector
+        while (i2cSlots.find(i2c) == i2cSlots.end() && isMuxBus(i2c))
+        {
+            auto rootBus = getRootBus(i2c);
+            if (rootBus < 0)
+            {
+                break;
+            }
+            i2c = rootBus;
+        }
+        if (i2cSlots.find(i2c) == i2cSlots.end())
+        {
+            continue;
+        }
+        for (const auto& entity : i2cEntity.second)
+        {
+            for (const auto& slot : i2cSlots[i2c])
+            {
+                auto slotPath = std::get<0>(slot);
+                auto entityPath =
+                    slotPath.substr(0, slotPath.find_last_of('/'));
+                Node connectedEntity = std::make_tuple(
+                    entityPath, std::get<1>(slot), std::get<2>(slot));
+
+                // no self-connection
+                if (connectedEntity != entity)
+                {
+                    uint32_t inNodeId, outNodeId, eId;
+                    if (nodeIndexMap.find(connectedEntity) !=
+                        nodeIndexMap.end())
+                    {
+                        inNodeId = nodeIndexMap[connectedEntity];
+                    }
+                    else
+                    {
+                        inNodeId = ndx++;
+                        nodeIndexMap.emplace(connectedEntity, inNodeId);
+                        indexNodeMap.emplace(inNodeId, connectedEntity);
+                    }
+
+                    if (nodeIndexMap.find(entity) != nodeIndexMap.end())
+                    {
+                        outNodeId = nodeIndexMap[entity];
+                    }
+                    else
+                    {
+                        outNodeId = ndx++;
+                        nodeIndexMap.emplace(entity, outNodeId);
+                        indexNodeMap.emplace(outNodeId, entity);
+                    }
+
+                    if (edgeIndexMap.find(slot) != edgeIndexMap.end())
+                    {
+                        eId = edgeIndexMap[slot];
+                    }
+                    else
+                    {
+                        eId = egx++;
+                        edgeIndexMap.emplace(slot, eId);
+                        indexEdgeMap.emplace(eId, slot);
+                    }
+                    graph[outNodeId].emplace(inNodeId, eId);
+                }
+            }
+        }
+    }
+
+    // Rebuild the graph using adjacent matrix. The graph is a DAG with a single
+    // sink -- the root chassis. Edge weight is 1.
+    std::vector<std::vector<bool>> matrix =
+        std::vector<std::vector<bool>>(ndx, std::vector<bool>(ndx, false));
+
+    // Out-degree of each node. Use it to find the sink of graph.
+    std::vector<uint32_t> out(ndx, 0);
+    for (const auto& edges : graph)
+    {
+        for (const auto& end : edges.second)
+        {
+            matrix[edges.first][end.first] = true;
+            out[edges.first]++;
+        }
+    }
+
+    // BFS. Find all desired edges to construct entity associations.
+    // If serial board connection exists like root -> board_1 -> board_2
+    // associate root with board_1,  also board1 with board2. In some user
+    // cases, board_1 and board_2 should be directly associated to root
+    std::queue<uint32_t> root;
+    std::vector<std::tuple<uint32_t, uint32_t, uint32_t>> associations;
+    for (uint32_t i = 0; i < out.size(); i++)
+    {
+        if (out[i] == 0)
+        {
+            root.push(i);
+        }
+    }
+    while (!root.empty())
+    {
+        auto nd = root.front();
+        for (size_t i = 0; i < ndx; i++)
+        {
+            if (!matrix[i][nd])
+            {
+                continue;
+            }
+            matrix[i][nd] = false;
+
+            // Only one edge between the node and sink. Add it to associations
+            if (--out[i] == 0)
+            {
+                associations.emplace_back(std::make_tuple(i, nd, graph[i][nd]));
+                root.push(i);
+            }
+        }
+        root.pop();
+    }
+
+    using Association = std::tuple<std::string, std::string, std::string>;
+    for (const auto& asso : associations)
+    {
+        Node outNode = indexNodeMap[std::get<0>(asso)];
+        Node inNode = indexNodeMap[std::get<1>(asso)];
+        Edge edge = indexEdgeMap[std::get<2>(asso)];
+
+        auto assoIntf =
+            createInterface(objServer, std::get<0>(outNode),
+                            "xyz.openbmc_project.Association.Definitions",
+                            std::get<1>(outNode));
+        std::string objectPath = std::get<0>(inNode);
+        std::vector<Association> assoProperty;
+
+        std::string upstreamEntityType = std::get<2>(inNode);
+        std::string downstreamEntityType = std::get<2>(outNode);
+
+        if (upstreamEntityType == "Board" && downstreamEntityType == "Board")
+        {
+            assoProperty.emplace_back("containedby", "contains", objectPath);
+        }
+
+        if (upstreamEntityType == "Board" &&
+            downstreamEntityType == "PowerSupply")
+        {
+            assoProperty.emplace_back("chassis", "poweredby", objectPath);
+        }
+
+        assoIntf->register_property("Associations", assoProperty);
+        assoIntf->initialize();
+
+        // We use the connector printted label as the enitiy location
+        auto locIntf = createInterface(
+            objServer, std::get<0>(outNode),
+            "xyz.openbmc_project.Inventory.Decorator.LocationCode",
+            std::get<1>(outNode));
+        locIntf->register_property("LocationCode", std::get<3>(edge));
+        locIntf->initialize();
     }
 }
 
