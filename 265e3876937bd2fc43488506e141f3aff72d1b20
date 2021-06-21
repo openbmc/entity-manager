@@ -121,6 +121,30 @@
     },
     {
       "key": {
+        "uuid": "8c3b44c7_844cfe20",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 5
+      },
+      "lineNbr": 14,
+      "author": {
+        "id": 1000879
+      },
+      "writtenOn": "2021-06-21T09:58:06Z",
+      "side": 1,
+      "message": "Well, actually my initial point was that upstream already have \"DisableNode\" ant this is logical to have opposite \"EnableNode\" too.\n\nWe use one config for whole product family just to simplify our development cycle: we don\u0027t need to care about keeping in sync all modifications but just to modify one.\nI actually though about \"include\" functionality which will handle this case better, but for now I had not time to implement this.",
+      "parentUuid": "47cba3bf_85420e11",
+      "range": {
+        "startLine": 13,
+        "startChar": 0,
+        "endLine": 14,
+        "endChar": 65
+      },
+      "revId": "265e3876937bd2fc43488506e141f3aff72d1b20",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "ffae7c0c_9cc756ac",
         "filename": "/COMMIT_MSG",
         "patchSetId": 5
