@@ -70,6 +70,24 @@
       "revId": "211ba7ea5bd1ed3aa5ccd8e2ad2c651bcd491478",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "bf75f824_5fad0ac2",
+        "filename": "configurations/Blyth.json",
+        "patchSetId": 1
+      },
+      "lineNbr": 12,
+      "author": {
+        "id": 1000524
+      },
+      "writtenOn": "2021-06-22T00:52:27Z",
+      "side": 1,
+      "message": "This is lines 23 through line 26 of https://gerrit.openbmc-project.xyz/c/openbmc/dbus-sensors/+/43410/33/src/IIOSensor.cpp\n\n// pollRates are expressed in seconds\nstatic constexpr float pollRateDefaultTemperature \u003d\n    0.997; // 3 msec less than 1 second\nstatic constexpr float pollRateDefaultPressure \u003d 7 * 60; // 7 minutes",
+      "parentUuid": "a2c39542_a223eca6",
+      "revId": "211ba7ea5bd1ed3aa5ccd8e2ad2c651bcd491478",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": false
     }
   ]
 }
