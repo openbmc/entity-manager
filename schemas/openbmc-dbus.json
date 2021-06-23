@@ -41,6 +41,40 @@
                                 "AssetTag"
                             ],
                             "type": "object"
+                        },
+                        "Dimension": {
+                            "additionalProperties": false,
+                            "properties": {
+                                "Height": {
+                                    "type": "number"
+                                },
+                                "Width": {
+                                    "type": "number"
+                                },
+                                "Depth": {
+                                    "type": "number"
+                                }
+                            },
+                            "required": [
+                                "Width",
+                                "Depth"
+                            ],
+                            "type": "object"
+                        },
+                        "PowerLimit": {
+                            "additionalProperties": false,
+                            "properties": {
+                                "MinPowerWatts": {
+                                    "type": "number"
+                                },
+                                "MaxPowerWatts": {
+                                    "type": "number"
+                                }
+                            },
+                            "required": [
+                                "MaxPowerWatts"
+                            ],
+                            "type": "object"
                         }
                     },
                     "Item": {
@@ -60,6 +94,11 @@
                         },
                         "Chassis": {
                             "additionalProperties": false,
+                                "properties": {
+                                    "ChassisType": {
+                                        "type": "string"
+                                    }
+                                },
                             "type": "object"
                         },
                         "Panel": {

@@ -154,6 +154,12 @@
                 },
                 "xyz.openbmc_project.Inventory.Item.System": {
                     "$ref": "openbmc-dbus.json#/definitions/xyz/openbmc_project/Inventory/Item/System"
+                },
+                "xyz.openbmc_project.Inventory.Decorator.Dimension": {
+                    "$ref": "openbmc-dbus.json#/definitions/xyz/openbmc_project/Inventory/Decorator/Dimension"
+                },
+                "xyz.openbmc_project.Inventory.Decorator.PowerLimit": {
+                    "$ref": "openbmc-dbus.json#/definitions/xyz/openbmc_project/Inventory/Decorator/PowerLimit"
                 }
             },
             "required": [
