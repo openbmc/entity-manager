@@ -227,6 +227,30 @@
     },
     {
       "key": {
+        "uuid": "cbf29394_2459bf39",
+        "filename": "docs/dynamic_mux.md",
+        "patchSetId": 6
+      },
+      "lineNbr": 110,
+      "author": {
+        "id": 1000632
+      },
+      "writtenOn": "2021-06-23T23:17:25Z",
+      "side": 1,
+      "message": "if you you have a nested device with Bus property \"$bus.Slot_1_0\", you might not find the logical bus number, as \"$bus.Slot_1\" might bot be unique. You need to know the address of \"$bus.Slot_1\" that is not shown the device properties.",
+      "parentUuid": "c348ebe5_3da9ae04",
+      "range": {
+        "startLine": 110,
+        "startChar": 16,
+        "endLine": 110,
+        "endChar": 27
+      },
+      "revId": "977ebf82a26379790f119b3686d6a4bdfd421216",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "89278d2d_dddcf9f8",
         "filename": "docs/dynamic_mux.md",
         "patchSetId": 6
