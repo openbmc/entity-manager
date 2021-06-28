@@ -566,6 +566,7 @@ static void FindI2CDevices(const std::vector<fs::path>& i2cBuses,
             std::cerr
                 << "Error: Could not get the adapter functionality matrix bus "
                 << bus << "\n";
+            close(file);
             continue;
         }
         if (!(funcs & I2C_FUNC_SMBUS_READ_BYTE) ||
