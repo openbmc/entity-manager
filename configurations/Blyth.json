@@ -24,24 +24,27 @@
                     "SensorName": "Ambient 2 Temp"
                 }
             ],
-            "Thresholds": [
+            "ThresholdsWithHysteresis": [
                 {
                     "Direction": "greater than",
                     "Name": "upper critical",
                     "Severity": 2,
-                    "Value": 58
+                    "Value": 58,
+                    "Hysteresis" : 3
                 },
                 {
                     "Direction": "greater than",
                     "Name": "upper critical",
                     "Severity": 1,
-                    "Value": 53
+                    "Value": 53,
+                    "Hysteresis" : 3
                 },
                 {
                     "Direction": "greater than",
                     "Name": "upper non critical",
                     "Severity": 1,
-                    "Value": 45
+                    "Value": 45,
+                    "Hysteresis" : 3
                 }
             ],
             "MaxValue": 100,
