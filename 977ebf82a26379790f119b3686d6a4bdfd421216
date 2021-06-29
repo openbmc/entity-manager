@@ -251,6 +251,30 @@
     },
     {
       "key": {
+        "uuid": "4f7c5145_bc04c92d",
+        "filename": "docs/dynamic_mux.md",
+        "patchSetId": 6
+      },
+      "lineNbr": 110,
+      "author": {
+        "id": 1000271
+      },
+      "writtenOn": "2021-06-29T22:09:46Z",
+      "side": 1,
+      "message": "logical bus number are directly mapped to channel names and are unique. So as soon as we see these channel names we will try to find its logical bus number and create a map. Then while parsing $bus.Slot_1_0 will be replaced accordingly. I am even thinking of keeping these as 2 separate field as I am finding difficult in parsing everything in the same property. I will update this as a next patch after verifying implementation.",
+      "parentUuid": "cbf29394_2459bf39",
+      "range": {
+        "startLine": 110,
+        "startChar": 16,
+        "endLine": 110,
+        "endChar": 27
+      },
+      "revId": "977ebf82a26379790f119b3686d6a4bdfd421216",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "89278d2d_dddcf9f8",
         "filename": "docs/dynamic_mux.md",
         "patchSetId": 6
