@@ -20,19 +20,22 @@
                     "Direction": "greater than",
                     "Name": "HardShutdown",
                     "Severity": 4,
-                    "Value": 58
+                    "Value": 58,
+                    "Hysteresis" : 3
                 },
                 {
                     "Direction": "greater than",
                     "Name": "SoftShutdown",
                     "Severity": 3,
-                    "Value": 53
+                    "Value": 53,
+                    "Hysteresis" : 3
                 },
                 {
                     "Direction": "greater than",
                     "Name": "Warning",
                     "Severity": 1,
-                    "Value": 45
+                    "Value": 45,
+                    "Hysteresis" : 3
                 }
             ],
             "MaxValue": 100,
