@@ -151,7 +151,7 @@ std::pair<DecodeState, std::string>
             value = std::string();
             for (i = 0; i < len; i++, iter++)
             {
-                accum |= *iter << accumBitLen;
+                accum |= static_cast<unsigned int>(*iter) << accumBitLen;
                 accumBitLen += 8;
                 while (accumBitLen >= 6)
                 {
