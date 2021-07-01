@@ -124,6 +124,7 @@ configs = [
     'R2000 Chassis.json',
     'SAS Module.json',
     'SOLUM_PSSF162202_PSU.json',
+    'Storm King.json',
     'STP Baseboard.json',
     'STP P4000 Chassis.json',
     'Tyan_S7106_Baseboard.json',
