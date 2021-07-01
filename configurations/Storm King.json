@@ -1,0 +1,20 @@
+{
+    "Exposes": [
+        {
+            "Address": "0x48",
+            "Bus": 29,
+            "Name": "Ambient 0 Temp",
+            "Type": "TMP75"
+        },
+        {
+            "Address": "0x76",
+            "Bus": 29,
+            "Name": "Station Pressure",
+            "Name1": "Ambient 1 Temp",
+            "Type": "DPS310"
+        }
+    ],
+    "Name": "Storm King Panel",
+    "Probe": "com.ibm.ipzvpd.VINI({'CC': [53, 49, 70, 52]})",
+    "Type": "Board"
+}
