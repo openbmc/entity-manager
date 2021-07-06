@@ -2,25 +2,25 @@
     "Exposes": [
         {
             "Address": "0x40",
-            "Bus": 7,
+            "Bus": 29,
             "Name": "Ambient 2 Temp",
             "Type": "SI7020"
         },
         {
             "Address": "0x48",
-            "Bus": 7,
+            "Bus": 29,
             "Name": "Ambient 0 Temp",
             "Type": "TMP75"
         },
         {
             "Address": "0x76",
-            "Bus": 7,
+            "Bus": 29,
             "Name": "Ambient 1 Temp",
             "Name1": "Station Pressure",
             "Type": "DPS310"
         }
     ],
-    "Name": "Blyth Panel",
-    "Probe": "com.ibm.ipzvpd.VINI({'CC': [54, 66, 56, 53]})",
+    "Name": "Storm King Panel",
+    "Probe": "com.ibm.ipzvpd.VINI({'CC': [53, 49, 70, 52]})",
     "Type": "Board"
 }
