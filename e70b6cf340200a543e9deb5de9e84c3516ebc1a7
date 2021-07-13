@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "2b2938f9_0bcbcb49",
+        "filename": "configurations/Blyth.json",
+        "patchSetId": 2
+      },
+      "lineNbr": 27,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2021-07-13T15:20:30Z",
+      "side": 1,
+      "message": "This generally isn\u0027t how we\u0027d represent this, as it changes the key name between with and without hysteresis.  I would expect us to use an optional hysteresis value here.  The only part where that gets complex is that some sensors will support hysteresis and some won\u0027t, so we\u0027ll need to figure out how to make that work in the schema, which the current patchsets don\u0027t look like they do.",
+      "range": {
+        "startLine": 27,
+        "startChar": 13,
+        "endLine": 27,
+        "endChar": 37
+      },
+      "revId": "e70b6cf340200a543e9deb5de9e84c3516ebc1a7",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    }
+  ]
+}
