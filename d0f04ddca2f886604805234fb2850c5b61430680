@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "1b8a3c60_3e31cbd1",
+        "filename": "src/EntityManager.cpp",
+        "patchSetId": 5
+      },
+      "lineNbr": 1111,
+      "author": {
+        "id": 1000233
+      },
+      "writtenOn": "2021-07-14T00:49:20Z",
+      "side": 1,
+      "message": "Since getEntityName will support entity-manager now, we shouldn\u0027t need to hard code entity instances at all. e-m (or dbus-sdr) can dynamically assign them and then we can look up the assignment when we have the name requested.\n\nMore generally, I think putting IPMI-specific functionality into e-m will be a hard sell with the community as they like to keep IPMI stuff out of the general purpose repos and instead in IPMI-specific ones.",
+      "revId": "d0f04ddca2f886604805234fb2850c5b61430680",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    }
+  ]
+}
