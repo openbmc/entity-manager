@@ -49,6 +49,30 @@
     },
     {
       "key": {
+        "uuid": "fdbeb669_131bdb7c",
+        "filename": "docs/EntityName.md",
+        "patchSetId": 4
+      },
+      "lineNbr": 52,
+      "author": {
+        "id": 1000233
+      },
+      "writtenOn": "2021-07-26T22:22:34Z",
+      "side": 1,
+      "message": "I\u0027d prefer the instance number to be chosen dynamically by entity-manager. That way we can handle variable numbers of entities (e.g., a bifurcated PCIe card[1]) and we could avoid IPMI-specific entries in the entity-manager JSON.\n\n[1] https://www.delock.com/produkt/89835/faq.html",
+      "parentUuid": "fca3288b_69d05f09",
+      "range": {
+        "startLine": 52,
+        "startChar": 10,
+        "endLine": 52,
+        "endChar": 22
+      },
+      "revId": "044b8de36d983f088150bf56a99d0a8d38a4315e",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "12fa67a9_652505ad",
         "filename": "docs/EntityName.md",
         "patchSetId": 4
