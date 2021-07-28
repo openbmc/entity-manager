@@ -1,0 +1,454 @@
+[
+    {
+        "Exposes":
+        [
+           {
+              "Address":"$address",
+              "Bus":"$bus",
+              "Name":"BMC FRU",
+              "Type":"EEPROM"
+           },
+           {
+              "Address":"0x59",
+              "Bus":14,
+              "PowerState":"Always",
+              "Name":"BMC_MAX34451",
+              "EntityID":"0x13",
+              "Labels":[
+                 "vout1",
+                 "vout2",
+                 "vout3",
+                 "vout5",
+                 "vout6",
+                 "vout10"
+              ],
+              "vout1_Name":"DC_P1V8",
+              "vout2_Name":"DC_P2V5",
+              "vout3_Name":"DC_P1V2",
+              "vout5_Name":"DC_3V3_STBY",
+              "vout6_Name":"DC_P1V175",
+              "vout10_Name":"DC_PVTT",
+              "vout1_Max":4,
+              "vout2_Max":3.5,
+              "vout3_Max":2.5,
+              "vout5_Max":5.8,
+              "vout6_Max":3,
+              "vout10_Max":4,
+              "Thresholds":[
+                 {
+                    "Direction":"greater than",
+                    "Name":"upper critical",
+                    "Label":"vout2",
+                    "Severity":1,
+                    "Value":2.754
+                 },
+                 {
+                    "Direction":"greater than",
+                    "Name":"upper non critical",
+                    "Label":"vout2",
+                    "Severity":0,
+                    "Value":2.617
+                 },
+                 {
+                    "Direction":"less than",
+                    "Name":"lower non critical",
+                    "Label":"vout2",
+                    "Severity":0,
+                    "Value":2.4
+                 },
+                 {
+                    "Direction":"less than",
+                    "Name":"lower critical",
+                    "Label":"vout2",
+                    "Severity":1,
+                    "Value":2.37
+                 },
+                 {
+                    "Direction":"greater than",
+                    "Name":"upper critical",
+                    "Label":"vout3",
+                    "Severity":1,
+                    "Value":1.313
+                 },
+                 {
+                    "Direction":"greater than",
+                    "Name":"upper non critical",
+                    "Label":"vout3",
+                    "Severity":0,
+                    "Value":1.215
+                 },
+                 {
+                    "Direction":"less than",
+                    "Name":"lower non critical",
+                    "Label":"vout3",
+                    "Severity":0,
+                    "Value":1.176
+                 },
+                 {
+                    "Direction":"less than",
+                    "Name":"lower critical",
+                    "Label":"vout3",
+                    "Severity":1,
+                    "Value":1.147
+                 },
+                 {
+                    "Direction":"greater than",
+                    "Name":"upper critical",
+                    "Label":"vout5",
+                    "Severity":1,
+                    "Value":3.609
+                 },
+                 {
+                    "Direction":"greater than",
+                    "Name":"upper non critical",
+                    "Label":"vout5",
+                    "Severity":0,
+                    "Value":3.382
+                 },
+                 {
+                    "Direction":"less than",
+                    "Name":"lower non critical",
+                    "Label":"vout5",
+                    "Severity":0,
+                    "Value":3.2
+                 },
+                 {
+                    "Direction":"less than",
+                    "Name":"lower critical",
+                    "Label":"vout5",
+                    "Severity":1,
+                    "Value":3.155
+                 },
+                 {
+                    "Direction":"greater than",
+                    "Name":"upper critical",
+                    "Label":"vout6",
+                    "Severity":1,
+                    "Value":1.286
+                 },
+                 {
+                    "Direction":"greater than",
+                    "Name":"upper non critical",
+                    "Label":"vout6",
+                    "Severity":0,
+                    "Value":1.227
+                 },
+                 {
+                    "Direction":"less than",
+                    "Name":"lower non critical",
+                    "Label":"vout6",
+                    "Severity":0,
+                    "Value":1.121
+                 },
+                 {
+                    "Direction":"less than",
+                    "Name":"lower critical",
+                    "Label":"vout6",
+                    "Severity":1,
+                    "Value":1.121
+                 },
+                 {
+                    "Direction":"greater than",
+                    "Name":"upper critical",
+                    "Label":"vout1",
+                    "Severity":1,
+                    "Value":1.978
+                 },
+                 {
+                    "Direction":"greater than",
+                    "Name":"upper non critical",
+                    "Label":"vout1",
+                    "Severity":0,
+                    "Value":1.884
+                 },
+                 {
+                    "Direction":"less than",
+                    "Name":"lower non critical",
+                    "Label":"vout1",
+                    "Severity":0,
+                    "Value":1.711
+                 },
+                 {
+                    "Direction":"less than",
+                    "Name":"lower critical",
+                    "Label":"vout1",
+                    "Severity":1,
+                    "Value":1.633
+                 },
+                 {
+                    "Direction":"greater than",
+                    "Name":"upper critical",
+                    "Label":"vout10",
+                    "Severity":1,
+                    "Value":0.659
+                 },
+                 {
+                    "Direction":"greater than",
+                    "Name":"upper non critical",
+                    "Label":"vout10",
+                    "Severity":0,
+                    "Value":0.628
+                 },
+                 {
+                    "Direction":"less than",
+                    "Name":"lower non critical",
+                    "Label":"vout10",
+                    "Severity":0,
+                    "Value":0.581
+                 },
+                 {
+                    "Direction":"less than",
+                    "Name":"lower critical",
+                    "Label":"vout10",
+                    "Severity":1,
+                    "Value":0.55
+                 }
+              ],
+              "Type":"MAX34451"
+           },
+           {
+              "Name":"DC_P2V5",
+              "Type":"MAX34451",
+              "EntityId":"0x13",
+              "EntityInstance":0
+           },
+           {
+              "Name":"DC_P1V2",
+              "Type":"MAX34451",
+              "EntityId":"0x13",
+              "EntityInstance":1
+           },
+           {
+              "Name":"DC_3V3_STBY",
+              "Type":"MAX34451",
+              "EntityId":"0x13",
+              "EntityInstance":3
+           },
+           {
+              "Name":"DC_P1V175",
+              "Type":"MAX34451",
+              "EntityId":"0x13",
+              "EntityInstance":4
+           },
+           {
+              "Name":"DC_P1V8",
+              "Type":"MAX34451",
+              "EntityId":"0x13",
+              "EntityInstance":2
+           },
+           {
+              "Name":"DC_PVTT",
+              "Type":"MAX34451",
+              "EntityId":"0x13",
+              "EntityInstance":5
+           }
+        ],
+        "Name":"Kudo_BMC",
+        "Probe":"xyz.openbmc_project.FruDevice({'BOARD_SERIAL_NUMBER': 'ACN*'})",
+        "Type":"Board",
+        "xyz.openbmc_project.Inventory.Decorator.Asset":{
+           "Manufacturer":"$BOARD_MANUFACTURER",
+           "Model":"$BOARD_PRODUCT_NAME",
+           "PartNumber":"$BOARD_PART_NUMBER",
+           "SerialNumber":"$BOARD_SERIAL_NUMBER"
+        },
+        "xyz.openbmc_project.Inventory.Decorator.FruDevice":{
+           "Bus":"$bus",
+           "Address":"$address"
+        },
+        "xyz.openbmc_project.Inventory.Decorator.Ipmi":{
+           "EntityId":"0x07",
+           "EntityInstance":0
+        }
+    },
+    {
+       "Exposes":
+       [
+          {
+             "Address":"$address",
+             "Bus":"$bus",
+             "Name":"MB FRU",
+             "Type":"EEPROM"
+          },
+          {
+             "Address":"0x48",
+             "Bus":42,
+             "Name":"Mobo_M2_ZONE_T",
+             "Thresholds":[
+                {
+                   "Direction":"greater than",
+                   "Name":"upper critical",
+                   "Severity":1,
+                   "Value":70
+                },
+                {
+                   "Direction":"greater than",
+                   "Name":"upper non critical",
+                   "Severity":0,
+                   "Value":60
+                }
+             ],
+             "Type":"TMP75",
+             "EntityId": "0x03",
+             "EntityInstance": 1
+          },
+          {
+             "Address":"0x49",
+             "Bus":43,
+             "Name":"Mobo_BATT_ZONE_T",
+             "Thresholds":[
+                {
+                   "Direction":"greater than",
+                   "Name":"upper critical",
+                   "Severity":1,
+                   "Value":70
+                },
+                {
+                   "Direction":"greater than",
+                   "Name":"upper non critical",
+                   "Severity":0,
+                   "Value":60
+                }
+             ],
+             "Type":"TMP75",
+             "EntityId": "0x03",
+             "EntityInstance": 2
+          },
+          {
+             "Address":"0x5c",
+             "Bus":20,
+             "Name":"Mobo_INLET1_T",
+             "Thresholds":[
+                {
+                   "Direction":"greater than",
+                   "Name":"upper critical",
+                   "Severity":1,
+                   "Value":46
+                },
+                {
+                   "Direction":"greater than",
+                   "Name":"upper non critical",
+                   "Severity":0,
+                   "Value":42
+                }
+             ],
+             "Type":"TMP75",
+             "EntityId": "0x03",
+             "EntityInstance": 5
+          },
+          {
+             "Address":"0x5c",
+             "Bus":21,
+             "Name":"Mobo_OUTLET1_T",
+             "Thresholds":[
+                {
+                   "Direction":"greater than",
+                   "Name":"upper critical",
+                   "Severity":1,
+                   "Value":85
+                },
+                {
+                   "Direction":"greater than",
+                   "Name":"upper non critical",
+                   "Severity":0,
+                   "Value":80
+                }
+             ],
+             "Type":"TMP75",
+             "EntityId": "0x03",
+             "EntityInstance": 6
+          },
+          {
+             "Address":"0x5c",
+             "Bus":22,
+             "Name":"Mobo_OUTLET2_T",
+             "Thresholds":[
+                {
+                   "Direction":"greater than",
+                   "Name":"upper critical",
+                   "Severity":1,
+                   "Value":85
+                },
+                {
+                   "Direction":"greater than",
+                   "Name":"upper non critical",
+                   "Severity":0,
+                   "Value":80
+                }
+             ],
+             "Type":"TMP75",
+             "EntityId": "0x03",
+             "EntityInstance": 7
+          },
+          {
+             "Address":"0x5c",
+             "Bus":23,
+             "Name":"Mobo_OUTLET3_T",
+             "Thresholds":[
+                {
+                   "Direction":"greater than",
+                   "Name":"upper critical",
+                   "Severity":1,
+                   "Value":85
+                },
+                {
+                   "Direction":"greater than",
+                   "Name":"upper non critical",
+                   "Severity":0,
+                   "Value":80
+                }
+             ],
+             "Type":"TMP75",
+             "EntityId": "0x03",
+             "EntityInstance": 8
+          },
+          {
+            "Address":"0x74",
+            "Bus":26,
+            "Name":"Mobo_STB_T",
+            "Labels":[
+                "temp1"
+            ],
+            "temp1_Name":"Mobo_STB_T",
+            "temp1_Max":255,
+            "Thresholds":[
+                {
+                    "Direction":"greater than",
+                    "Name":"upper critical",
+                    "Label":"temp1",
+                    "Severity":1,
+                    "Value":105
+                },
+                {
+                    "Direction":"greater than",
+                    "Name":"upper non critical",
+                    "Label":"temp1",
+                    "Severity":0,
+                    "Value":100
+                }
+            ],
+            "Type":"pmbus",
+            "EntityId": "0x03",
+            "EntityInstance": 9
+          }
+       ],
+       "Name":"Kudo_MB",
+       "Probe":"xyz.openbmc_project.FruDevice({'BOARD_SERIAL_NUMBER': 'MCN*'})",
+       "Type":"Board",
+       "xyz.openbmc_project.Inventory.Decorator.Asset":{
+          "Manufacturer":"$BOARD_MANUFACTURER",
+          "Model":"$BOARD_PRODUCT_NAME",
+          "PartNumber":"$BOARD_PART_NUMBER",
+          "SerialNumber":"$BOARD_SERIAL_NUMBER"
+       },
+       "xyz.openbmc_project.Inventory.Decorator.FruDevice":{
+          "Bus":"$bus",
+          "Address":"$address"
+       },
+       "xyz.openbmc_project.Inventory.Decorator.Ipmi": {
+         "EntityId": "0x07",
+         "EntityInstance": 1
+       }
+    }
+]
+
