@@ -107,6 +107,8 @@ configs = [
     'IBM 2000W CFFPS.json',
     'IBM 2300W CFFPS.json',
     'Intel Front Panel.json',
+    'Kudo_BMC.json',
+    'Kudo_Motherboard.json',
     'Nisqually.json',
     'NVME P4000.json',
     'PCIE SSD Retimer.json',
