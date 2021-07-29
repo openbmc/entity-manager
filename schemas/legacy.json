@@ -516,7 +516,19 @@
                 "type": "number"
             },
             "Units": {
-                "type": "string"
+                "type": "string",
+                "enum": [
+                    "DegreesC",
+                    "RPMS",
+                    "Volts",
+                    "Meters",
+                    "Amperes",
+                    "Watts",
+                    "Joules",
+                    "Percent",
+                    "CFM",
+                    "Pascals"
+                ]
             },
             "MinReading": {
                 "type": "number"
