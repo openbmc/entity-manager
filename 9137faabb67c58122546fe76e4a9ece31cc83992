@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "55deb487_a663b6c5",
+        "filename": "configurations/Blyth.json",
+        "patchSetId": 12
+      },
+      "lineNbr": 11,
+      "author": {
+        "id": 1000224
+      },
+      "writtenOn": "2021-07-29T08:45:00Z",
+      "side": 1,
+      "message": "I agree with you, however these are the values that the IBM engineers wanted to use to determine if we were going to use a sensor\u0027s reading.",
+      "parentUuid": "734f9b68_6e9fc264",
+      "range": {
+        "startLine": 10,
+        "startChar": 0,
+        "endLine": 11,
+        "endChar": 26
+      },
+      "revId": "9137faabb67c58122546fe76e4a9ece31cc83992",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "f7fd28fd_fd7daed5",
         "filename": "configurations/Blyth.json",
         "patchSetId": 12
@@ -36,6 +60,30 @@
       "writtenOn": "2021-07-28T16:35:50Z",
       "side": 1,
       "message": "Did we ever close on how thresholds beyond warning/critical are going to work in entity-manager?  This looks like you\u0027re relying on Name still, which is supposed to be an opaque field.  I know I mentioned that on the other review, but I\u0027ll mention it here as well just to provide context.\n\n\nI suspect for the moment dropping the Hard/Soft shutdown from this patchset, and moving it into a later patchset would help this merge faster, then we can discuss later in the greater context of entity-manager, because I suspect all the sensor daemons will need to agree on how we\u0027re going to handle these new config items.\n\nI\u0027ve seen proposed:\nChanging severity into an enum.\ndeclaring severities 3-5 for these new features.",
+      "range": {
+        "startLine": 21,
+        "startChar": 0,
+        "endLine": 21,
+        "endChar": 43
+      },
+      "revId": "9137faabb67c58122546fe76e4a9ece31cc83992",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "6a2c0092_d8899eb1",
+        "filename": "configurations/Blyth.json",
+        "patchSetId": 12
+      },
+      "lineNbr": 21,
+      "author": {
+        "id": 1000224
+      },
+      "writtenOn": "2021-07-29T08:45:00Z",
+      "side": 1,
+      "message": "I\u0027m not using the name field in code (using severity and direction). I took your previous comments to mean that it doesn\u0027t matter what the name field is and so put in names that I thought made it more obvious to someone reading the configuration what these thresholds are used for. I thought I had seen a configuration where names weren\u0027t upper/lower [non]critical, but I can\u0027t find that anymore so I might have been imagining things :)  \n\n\nI had assumed that because there were interfaces defined in phosphor-dbus-interfaces for Warning, Critical, PerformanceLoss, SoftShutdown and HardShutdown that we could just use them here. \n\nI\u0027ll change the names back, and add the Hard/Soft shutdowns in separate patches.",
+      "parentUuid": "f7fd28fd_fd7daed5",
       "range": {
         "startLine": 21,
         "startChar": 0,
@@ -68,6 +116,30 @@
       "revId": "9137faabb67c58122546fe76e4a9ece31cc83992",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "00f51ce7_651e4ad4",
+        "filename": "configurations/Blyth.json",
+        "patchSetId": 12
+      },
+      "lineNbr": 39,
+      "author": {
+        "id": 1000224
+      },
+      "writtenOn": "2021-07-29T08:45:00Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "48b12e81_fdd1cfa7",
+      "range": {
+        "startLine": 39,
+        "startChar": 21,
+        "endLine": 39,
+        "endChar": 32
+      },
+      "revId": "9137faabb67c58122546fe76e4a9ece31cc83992",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": false
     }
   ]
 }
