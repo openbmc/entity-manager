@@ -49,6 +49,30 @@
     },
     {
       "key": {
+        "uuid": "1e16e323_b4079df9",
+        "filename": "configurations/Blyth.json",
+        "patchSetId": 12
+      },
+      "lineNbr": 11,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2021-07-29T16:14:02Z",
+      "side": 1,
+      "message": "MaxValue and MinValue should drive the equivalent properties on Dbus (ie the reading range).  The values of what are \"valid\" probably need a different property?  Otherwise, these parameters will be doing double duty.",
+      "parentUuid": "55deb487_a663b6c5",
+      "range": {
+        "startLine": 10,
+        "startChar": 0,
+        "endLine": 11,
+        "endChar": 26
+      },
+      "revId": "9137faabb67c58122546fe76e4a9ece31cc83992",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "f7fd28fd_fd7daed5",
         "filename": "configurations/Blyth.json",
         "patchSetId": 12
@@ -84,6 +108,30 @@
       "side": 1,
       "message": "I\u0027m not using the name field in code (using severity and direction). I took your previous comments to mean that it doesn\u0027t matter what the name field is and so put in names that I thought made it more obvious to someone reading the configuration what these thresholds are used for. I thought I had seen a configuration where names weren\u0027t upper/lower [non]critical, but I can\u0027t find that anymore so I might have been imagining things :)  \n\n\nI had assumed that because there were interfaces defined in phosphor-dbus-interfaces for Warning, Critical, PerformanceLoss, SoftShutdown and HardShutdown that we could just use them here. \n\nI\u0027ll change the names back, and add the Hard/Soft shutdowns in separate patches.",
       "parentUuid": "f7fd28fd_fd7daed5",
+      "range": {
+        "startLine": 21,
+        "startChar": 0,
+        "endLine": 21,
+        "endChar": 43
+      },
+      "revId": "9137faabb67c58122546fe76e4a9ece31cc83992",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "24ed9e24_b99814bb",
+        "filename": "configurations/Blyth.json",
+        "patchSetId": 12
+      },
+      "lineNbr": 21,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2021-07-29T16:14:02Z",
+      "side": 1,
+      "message": "\u003e I\u0027m not using the name field in code (using severity and direction).\n\nOk, that\u0027s all I was worried about.  Feel free to leave the names the same if you\u0027d like.\n\n\u003e I took your previous comments to mean that it doesn\u0027t matter what the name field is and so put in names that I thought made it more obvious to someone reading the configuration what these thresholds are used for. I thought I had seen a configuration where names weren\u0027t upper/lower [non]critical, but I can\u0027t find that anymore so I might have been imagining things :)  \n\u003e \n\u003e \n\u003e I had assumed that because there were interfaces defined in phosphor-dbus-interfaces for Warning, Critical, PerformanceLoss, SoftShutdown and HardShutdown that we could just use them here. \n\u003e \n\u003e I\u0027ll change the names back, and add the Hard/Soft shutdowns in separate patches.",
+      "parentUuid": "6a2c0092_d8899eb1",
       "range": {
         "startLine": 21,
         "startChar": 0,
