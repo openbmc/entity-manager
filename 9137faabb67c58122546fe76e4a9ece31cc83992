@@ -121,6 +121,30 @@
     },
     {
       "key": {
+        "uuid": "b152766b_5a1a2098",
+        "filename": "configurations/Blyth.json",
+        "patchSetId": 12
+      },
+      "lineNbr": 11,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2021-07-31T17:19:35Z",
+      "side": 1,
+      "message": "\u003e It doesn\u0027t seem unreasonable to me to be able to clamp values in configuration for a sensor.\n\nIt doesn\u0027t seem unreasonable to me either, but the input limits need to be distinct from the output limits.  Ideally we\u0027d automatically generate the output limits based on our input sensors, but I get that\u0027s a few more lines of code you\u0027re not wanting to write.\n\n\n\nI would start by looking at if CFM and exit air sensor declare anything similar for input validation.  They\u0027re doing pretty similar transforms, so we should use the same naming if we can.\n\n\n\u003e Do you think MaxValidValue and MinValidValue would be appropriate names?\n\nI\u0027d prefer we add something about them being the input.  What about MaxValidInput and MinValidInput?  With that said, please do the above and look to see if exit air or cfm sensors have similar things, and use a similar naming scheme if they do.",
+      "parentUuid": "67a44844_d5a6136a",
+      "range": {
+        "startLine": 10,
+        "startChar": 0,
+        "endLine": 11,
+        "endChar": 26
+      },
+      "revId": "9137faabb67c58122546fe76e4a9ece31cc83992",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "f7fd28fd_fd7daed5",
         "filename": "configurations/Blyth.json",
         "patchSetId": 12
