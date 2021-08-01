@@ -216,7 +216,7 @@ It will look up the device on i2c and see there is a hwmon instance, and map
 `temp1_input` to `Name` and since there is also `Name1` it'll map `temp2_input`.
 
 ```
-~# busctl tree --no-pager Service xyz.openbmc_project.HwmonTempSensor
+~# busctl tree --no-pager xyz.openbmc_project.HwmonTempSensor
 `-/xyz
   `-/xyz/openbmc_project
     `-/xyz/openbmc_project/sensors
