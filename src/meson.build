@@ -10,10 +10,9 @@ executable(
         boost,
         nlohmann_json_dep,
         sdbusplus,
-        valijson,
     ],
     implicit_include_directories: false,
-    include_directories: '../include',
+    include_directories: [ '../include', valijson_includes ],
     install: true,
 )
 
@@ -37,7 +36,7 @@ if get_option('fru-device')
             valijson,
         ],
         implicit_include_directories: false,
-        include_directories: '../include',
+        include_directories: [ '../include', valijson_includes ],
         install: true,
     )
 endif

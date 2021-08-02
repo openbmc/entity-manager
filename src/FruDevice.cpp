@@ -18,6 +18,8 @@
 #include "FruUtils.hpp"
 #include "Utils.hpp"
 
+#include "wrap/nlohmann/json.hpp"
+
 #include <fcntl.h>
 #include <sys/inotify.h>
 #include <sys/ioctl.h>
@@ -26,7 +28,6 @@
 #include <boost/asio/deadline_timer.hpp>
 #include <boost/asio/io_service.hpp>
 #include <boost/container/flat_map.hpp>
-#include <nlohmann/json.hpp>
 #include <sdbusplus/asio/connection.hpp>
 #include <sdbusplus/asio/object_server.hpp>
 

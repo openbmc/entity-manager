@@ -18,7 +18,9 @@
 #pragma once
 
 #include <boost/container/flat_map.hpp>
-#include <nlohmann/json.hpp>
+
+#include "wrap/nlohmann/json.hpp"
+
 #include <sdbusplus/asio/connection.hpp>
 #include <sdbusplus/exception.hpp>
 
