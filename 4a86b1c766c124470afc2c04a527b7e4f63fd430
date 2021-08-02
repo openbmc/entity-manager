@@ -1,0 +1,96 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "d084bb29_e5aee08d",
+        "filename": "configurations/Kudo.json",
+        "patchSetId": 4
+      },
+      "lineNbr": 210,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2021-08-02T18:22:44Z",
+      "side": 1,
+      "message": "Same comment as below;  Can this use something like a model number, and be more specific in its regex?",
+      "range": {
+        "startLine": 210,
+        "startChar": 49,
+        "endLine": 210,
+        "endChar": 68
+      },
+      "revId": "4a86b1c766c124470afc2c04a527b7e4f63fd430",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "cf93e9b1_2d8ca316",
+        "filename": "configurations/Kudo.json",
+        "patchSetId": 4
+      },
+      "lineNbr": 218,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2021-08-02T18:22:44Z",
+      "side": 1,
+      "message": "Considering this is a separate physical board, please put this in its own file.  The \"multiple entities in a file\" behavior is reserved for when the same physical hardware can take on multiple modes (like power supplies that change addresses based on id pins).",
+      "range": {
+        "startLine": 2,
+        "startChar": 0,
+        "endLine": 218,
+        "endChar": 6
+      },
+      "revId": "4a86b1c766c124470afc2c04a527b7e4f63fd430",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "2b83eb81_1406bc5f",
+        "filename": "configurations/Kudo.json",
+        "patchSetId": 4
+      },
+      "lineNbr": 376,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2021-08-02T18:22:44Z",
+      "side": 1,
+      "message": "please spell out motherboard here.",
+      "range": {
+        "startLine": 376,
+        "startChar": 20,
+        "endLine": 376,
+        "endChar": 22
+      },
+      "revId": "4a86b1c766c124470afc2c04a527b7e4f63fd430",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "8712b53f_19ebf697",
+        "filename": "configurations/Kudo.json",
+        "patchSetId": 4
+      },
+      "lineNbr": 377,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2021-08-02T18:22:44Z",
+      "side": 1,
+      "message": "We\u0027re matching on serial number here?  that seems wrong.  Also, \"MCN*\" isn\u0027t a very specific identifier.  Can this instead use model number like everything else does.",
+      "range": {
+        "startLine": 377,
+        "startChar": 48,
+        "endLine": 377,
+        "endChar": 67
+      },
+      "revId": "4a86b1c766c124470afc2c04a527b7e4f63fd430",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    }
+  ]
+}
