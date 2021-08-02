@@ -33,18 +33,10 @@ endif
 if get_option('fru-device')
     i2c = cpp.find_library('i2c')
 endif
-if cpp.has_header('nlohmann/json.hpp')
-    nlohmann_json = declare_dependency()
-else
-    subproject('nlohmann', required: false)
-    nlohmann_json = declare_dependency(
-        include_directories: [
-            'subprojects/nlohmann/single_include',
-            'subprojects/nlohmann/single_include/nlohmann',
-        ]
-    )
-    nlohmann_json = nlohmann_json.as_system('system')
-endif
+
+nlohmann_json_dep = dependency('nlohmann_json',
+                               fallback: [ 'nlohmann_json', 'nlohmann_json_dep'])
+
 sdbusplus = dependency('sdbusplus', required: false)
 if not sdbusplus.found()
     sdbusplus_proj = subproject('sdbusplus', required: true)
@@ -217,7 +209,7 @@ if not build_tests.disabled()
             dependencies: [
                 boost,
                 gtest,
-                nlohmann_json,
+                nlohmann_json_dep,
                 sdbusplus,
                 valijson,
             ],
