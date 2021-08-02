@@ -9,9 +9,6 @@ project(
     license: 'Apache-2.0',
     version: '0.1',
 )
-
-cmake = import('cmake')
-
 add_project_arguments('-Wno-psabi', language: 'cpp')
 
 boost_args = [
@@ -35,10 +32,18 @@ endif
 if get_option('fru-device')
     i2c = cpp.find_library('i2c')
 endif
-
-nlohmann_json_dep = dependency('nlohmann_json',
-                               fallback: [ 'nlohmann_json', 'nlohmann_json_dep'])
-
+if cpp.has_header('nlohmann/json.hpp')
+    nlohmann_json = declare_dependency()
+else
+    subproject('nlohmann', required: false)
+    nlohmann_json = declare_dependency(
+        include_directories: [
+            'subprojects/nlohmann/single_include',
+            'subprojects/nlohmann/single_include/nlohmann',
+        ]
+    )
+    nlohmann_json = nlohmann_json.as_system('system')
+endif
 sdbusplus = dependency('sdbusplus', required: false)
 if not sdbusplus.found()
     sdbusplus_proj = subproject('sdbusplus', required: true)
@@ -55,17 +60,15 @@ packagedir = join_paths(
     meson.project_name(),
 )
 threads = dependency('threads')
-
-valijson_dep = dependency('valijson', required: false)
-if not valijson_dep.found()
-    valijson_opt = cmake.subproject_options()
-    valijson_opt.add_cmake_defines({'valijson_BUILD_TESTS': false,
-                                    'valijson_BUILD_EXAMPLES': false})
-    valijson_proj = cmake.subproject('valijson', options: valijson_opt)
-    valijson_dep = valijson_proj.dependency('valijson')
-    valijson = valijson_dep.partial_dependency(includes: true).as_system()
+if cpp.has_header('valijson/validator.hpp')
+    valijson = declare_dependency()
+else
+    subproject('valijson', required: false)
+    valijson = declare_dependency(
+        include_directories: 'subprojects/valijson/include'
+    )
+    valijson = valijson.as_system('system')
 endif
-valijson = valijson.partial_dependency(includes: true).as_system()
 
 install_data('blacklist.json')
 
@@ -163,6 +166,7 @@ if not build_tests.disabled()
     test_boost_args = boost_args + ['-DBOOST_ASIO_DISABLE_THREADS']
     gtest = dependency('gtest', main: true, disabler: true, required: false)
     if not gtest.found() and build_tests.enabled()
+        cmake = import('cmake')
         gtest_subproject = cmake.subproject('gtest')
         cm_gtest = gtest_subproject.dependency('gtest')
         cm_gtest_main = gtest_subproject.dependency('gtest_main')
@@ -179,7 +183,7 @@ if not build_tests.disabled()
             dependencies: [
                 boost,
                 gtest,
-                nlohmann_json_dep,
+                nlohmann_json,
                 sdbusplus,
                 valijson,
             ],

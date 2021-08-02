@@ -8,7 +8,7 @@ executable(
     cpp_args: cpp_args + ['-DBOOST_ASIO_DISABLE_THREADS'],
     dependencies: [
         boost,
-        nlohmann_json_dep,
+        nlohmann_json,
         sdbusplus,
         valijson,
     ],
@@ -31,7 +31,7 @@ if get_option('fru-device')
         dependencies: [
             boost,
             i2c,
-            nlohmann_json_dep,
+            nlohmann_json,
             sdbusplus,
             threads,
             valijson,
