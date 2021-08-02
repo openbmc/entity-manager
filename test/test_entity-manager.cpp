@@ -1,7 +1,8 @@
 #include "Utils.hpp"
 
+#include "wrap/nlohmann/json.hpp"
+
 #include <boost/container/flat_map.hpp>
-#include <nlohmann/json.hpp>
 
 #include <string>
 #include <variant>

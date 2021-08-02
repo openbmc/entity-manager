@@ -16,7 +16,8 @@
 /// \file Overlay.hpp
 
 #pragma once
-#include <nlohmann/json.hpp>
+
+#include "wrap/nlohmann/json.hpp"
 
 void unloadAllOverlays(void);
 bool loadOverlays(const nlohmann::json& systemConfiguration);
