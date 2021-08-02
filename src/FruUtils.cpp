@@ -464,10 +464,8 @@ uint8_t calculateChecksum(std::vector<uint8_t>::const_iterator iter,
                           std::vector<uint8_t>::const_iterator end)
 {
     constexpr int checksumMod = 256;
-    constexpr uint8_t modVal = 0xFF;
-    int sum = std::accumulate(iter, end, 0);
-    int checksum = (checksumMod - sum) & modVal;
-    return static_cast<uint8_t>(checksum);
+    uint8_t sum = std::accumulate(iter, end, static_cast<uint8_t>(0));
+    return (checksumMod - sum) % checksumMod;
 }
 
 uint8_t calculateChecksum(std::vector<uint8_t>& fruAreaData)
