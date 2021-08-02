@@ -100,3 +100,45 @@ TEST(VerifyOffsetTest, ValidInputDataNoOverlapReturnsTrue)
 
     EXPECT_TRUE(verifyOffset(fruData, fruAreas::fruAreaChassis, 1));
 }
+
+TEST(VerifyChecksumTest, EmptyInput)
+{
+    std::vector<uint8_t> data = {};
+
+    EXPECT_EQ(calculateChecksum(data), 0);
+}
+
+TEST(VerifyChecksumTest, SingleOneInput)
+{
+    std::vector<uint8_t> data(1, 1);
+
+    EXPECT_EQ(calculateChecksum(data), 255);
+}
+
+TEST(VerifyChecksumTest, AllOneInput)
+{
+    std::vector<uint8_t> data(256, 1);
+
+    EXPECT_EQ(calculateChecksum(data), 0);
+}
+
+TEST(VerifyChecksumTest, WrapBoundaryLow)
+{
+    std::vector<uint8_t> data = { 255, 0 };
+
+    EXPECT_EQ(calculateChecksum(data), 1);
+}
+
+TEST(VerifyChecksumTest, WrapBoundaryExact)
+{
+    std::vector<uint8_t> data = { 255, 1 };
+
+    EXPECT_EQ(calculateChecksum(data), 0);
+}
+
+TEST(VerifyChecksumTest, WrapBoundaryHigh)
+{
+    std::vector<uint8_t> data = { 255, 2 };
+
+    EXPECT_EQ(calculateChecksum(data), 255);
+}
