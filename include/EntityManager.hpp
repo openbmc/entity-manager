@@ -19,10 +19,11 @@
 
 #include "Utils.hpp"
 
+#include "wrap/nlohmann/json.hpp"
+
 #include <systemd/sd-journal.h>
 
 #include <boost/container/flat_map.hpp>
-#include <nlohmann/json.hpp>
 #include <sdbusplus/asio/object_server.hpp>
 
 #include <iostream>

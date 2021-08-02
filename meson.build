@@ -9,6 +9,9 @@ project(
     license: 'Apache-2.0',
     version: '0.1',
 )
+
+cmake = import('cmake')
+
 add_project_arguments('-Wno-psabi', language: 'cpp')
 
 boost_args = [
@@ -52,14 +55,19 @@ packagedir = join_paths(
     meson.project_name(),
 )
 threads = dependency('threads')
-if cpp.has_header('valijson/validator.hpp')
-    valijson = declare_dependency()
+
+valijson = dependency('valijson', required: false)
+if valijson.found()
+    valijson_includes = valijson.partial_dependency(includes: true)
 else
-    subproject('valijson', required: false)
-    valijson = declare_dependency(
-        include_directories: 'subprojects/valijson/include'
-    )
-    valijson = valijson.as_system('system')
+    valijson_opt = cmake.subproject_options()
+    valijson_opt.add_cmake_defines({'valijson_BUILD_TESTS': false,
+                                    'valijson_BUILD_EXAMPLES': false})
+    valijson_opt.set_override_option('warning_level', '1', target: 'valijson')
+    valijson_opt.set_override_option('werror', 'false', target: 'valijson')
+    valijson_proj = cmake.subproject('valijson', options: valijson_opt)
+    # Grab the headers from an example target
+    valijson_includes = valijson_proj.include_directories('valijson')
 endif
 
 install_data('blacklist.json')
@@ -177,10 +185,9 @@ if not build_tests.disabled()
                 gtest,
                 nlohmann_json_dep,
                 sdbusplus,
-                valijson,
             ],
             implicit_include_directories: false,
-            include_directories: 'include',
+            include_directories: [ 'include', valijson_includes ]
         )
     )
 
