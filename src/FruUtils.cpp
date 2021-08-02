@@ -304,7 +304,7 @@ resCodes formatFRU(const std::vector<uint8_t>& fruBytes,
             return resCodes::resErr;
         }
 
-        uint8_t fruAreaSize = *fruBytesIter * fruBlockSize;
+        size_t fruAreaSize = *fruBytesIter * fruBlockSize;
         std::vector<uint8_t>::const_iterator fruBytesIterEndArea =
             fruBytes.begin() + offset + fruAreaSize - 1;
         ++fruBytesIter;
