@@ -81,6 +81,24 @@
       "revId": "7e94b6ebdf55d882ebad80a756173840df374fd2",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "b56b789e_5978ef4b",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 7
+      },
+      "lineNbr": 18,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2021-08-04T19:42:23Z",
+      "side": 1,
+      "message": "\u003e What is adequate testing here? Giving a dbus-sensors app a config with a hysteresis and seeing that it doesn\u0027t error out? \n\nGood: it would error out, because you gave it a value it didn\u0027t allow in the config.  \nBetter: It would catch this at compile time because of it not being allowed in the schema.\nBest: Dbus-sensors just supported setting hyseresis.\n\nI don\u0027t have a strong opinion here on how far to go, I\u0027m happy to accept things as-is, but I want to understand the behavior, and make sure we\u0027re not causing a crash or something worse by allowing this schema change through for sensors that don\u0027t support it.\n\n\n\u003e \n\u003e From the looks of parseThresholdConfig() in dbus-sensors the Hysteresis field if supplied will be ignored. Happy to confirm that this is the case and make changes if it isn\u0027t, just want to be sure I\u0027m understanding you correctly :)\n\nI\u0027m not sure you need to explicitly test it, but it would be good if we updated that code to make something more obvious to the user that this sensor doesn\u0027t support the parameter that got allowed through the schema.",
+      "parentUuid": "646ca757_c629ffa9",
+      "revId": "7e94b6ebdf55d882ebad80a756173840df374fd2",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
     }
   ]
 }
