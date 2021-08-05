@@ -22,6 +22,30 @@
       "revId": "6a2ed72af68228c6cf9bf9191736cea872df1719",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "5949333f_cdda3765",
+        "filename": "configurations/Twinlake.json",
+        "patchSetId": 10
+      },
+      "lineNbr": 112,
+      "author": {
+        "id": 1000869
+      },
+      "writtenOn": "2021-08-05T11:43:46Z",
+      "side": 1,
+      "message": "This configuration file is probing \"xyz.openbmc_project.Ipmb.FruDevice\" service. Since\nIPMB FRU patch ( https://gerrit.openbmc-project.xyz/c/openbmc/entity-manager/+/39593 ) is not merged, this config file will not be used, eventhough we split this into another review.\n\nCan we follow this in single review?",
+      "parentUuid": "7d494373_bbf0633e",
+      "range": {
+        "startLine": 3,
+        "startChar": 0,
+        "endLine": 112,
+        "endChar": 9
+      },
+      "revId": "6a2ed72af68228c6cf9bf9191736cea872df1719",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
     }
   ]
 }
