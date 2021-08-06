@@ -518,16 +518,16 @@
             "Units": {
                 "type": "string",
                 "enum": [
-                    "DegreesC",
-                    "RPMS",
-                    "Volts",
-                    "Meters",
-                    "Amperes",
-                    "Watts",
-                    "Joules",
-                    "Percent",
-                    "CFM",
-                    "Pascals"
+                    "xyz.openbmc_project.Sensor.Value.Unit.DegreesC",
+                    "xyz.openbmc_project.Sensor.Value.Unit.RPMS",
+                    "xyz.openbmc_project.Sensor.Value.Unit.Volts",
+                    "xyz.openbmc_project.Sensor.Value.Unit.Meters",
+                    "xyz.openbmc_project.Sensor.Value.Unit.Amperes",
+                    "xyz.openbmc_project.Sensor.Value.Unit.Watts",
+                    "xyz.openbmc_project.Sensor.Value.Unit.Joules",
+                    "xyz.openbmc_project.Sensor.Value.Unit.Percent",
+                    "xyz.openbmc_project.Sensor.Value.Unit.CFM",
+                    "xyz.openbmc_project.Sensor.Value.Unit.Pascals"
                 ]
             },
             "MinReading": {
