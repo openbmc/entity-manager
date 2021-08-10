@@ -70,6 +70,30 @@
       "revId": "d4f39ebcc21446ba55e35c4cbb9e5a815e14d16a",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "9365be74_943c0401",
+        "filename": "schemas/legacy.json",
+        "patchSetId": 2
+      },
+      "lineNbr": 530,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2021-08-10T17:56:11Z",
+      "side": 1,
+      "message": "\u003e \u003e The config files shouldn\u0027t have anything dbus specific in them, and the old mechanisms for this were better\n\u003e \n\u003e Can you expand on why?  I don\u0027t agree on the surface.  I\u0027d like some more of your thoughts to back this up.  ie. why \"shouldn\u0027t\" and how was \"the old mechanism\" \"better\"?\n\nBecause the config files are designed to be used by an openbmc user, possibly a hardware person, not an openbmc developer.  In general, we shouldn\u0027t be exposing internal interface details on a user facing API.  For example, if we ever built a sensor subsystem that didn\u0027t use dbus at all (unlikely, but possible) the config files should be able to survive that without a backward compatibility issue.  If we ever dropped the prefix on the enum Units on dbus (also unlikely, but possible) that should also have a schema that can survive.\n\n\u003e \n\u003e It seems pointless to me to have this mapping spread around the code when we generate it already.  It isn\u0027t \"dbus specific\", it just happens to be the identifier scheme we\u0027ve come up with.\n\nIt\u0027s an identifier that\u0027s used on dbus and is specific to the sensor interface.  I don\u0027t think it\u0027s used anywhere outside of dbus today?",
+      "parentUuid": "af3f9dff_6aa5c724",
+      "range": {
+        "startLine": 521,
+        "startChar": 0,
+        "endLine": 530,
+        "endChar": 67
+      },
+      "revId": "d4f39ebcc21446ba55e35c4cbb9e5a815e14d16a",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
     }
   ]
 }
