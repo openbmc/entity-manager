@@ -46,6 +46,30 @@
       "revId": "d4f39ebcc21446ba55e35c4cbb9e5a815e14d16a",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "af3f9dff_6aa5c724",
+        "filename": "schemas/legacy.json",
+        "patchSetId": 2
+      },
+      "lineNbr": 530,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2021-08-10T10:37:20Z",
+      "side": 1,
+      "message": "\u003e The config files shouldn\u0027t have anything dbus specific in them, and the old mechanisms for this were better\n\nCan you expand on why?  I don\u0027t agree on the surface.  I\u0027d like some more of your thoughts to back this up.  ie. why \"shouldn\u0027t\" and how was \"the old mechanism\" \"better\"?\n\nIt seems pointless to me to have this mapping spread around the code when we generate it already.  It isn\u0027t \"dbus specific\", it just happens to be the identifier scheme we\u0027ve come up with.",
+      "parentUuid": "f25f4980_26363689",
+      "range": {
+        "startLine": 521,
+        "startChar": 0,
+        "endLine": 530,
+        "endChar": 67
+      },
+      "revId": "d4f39ebcc21446ba55e35c4cbb9e5a815e14d16a",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
     }
   ]
 }
