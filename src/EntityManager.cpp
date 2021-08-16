@@ -50,6 +50,8 @@ constexpr const char* tempConfigDir = "/tmp/configuration/";
 constexpr const char* lastConfiguration = "/tmp/configuration/last.json";
 constexpr const char* currentConfiguration = "/var/configuration/system.json";
 constexpr const char* globalSchema = "global.json";
+static std::string rootEntityObjPath;
+
 constexpr const bool debug = false;
 
 const boost::container::flat_map<const char*, probe_type_codes, CmpStr>
@@ -938,6 +940,13 @@ void postToDbus(const nlohmann::json& newConfiguration,
             root.push(i);
         }
     }
+
+    // The motherboard would be the root of I2C topology
+    if (root.size() == 1)
+    {
+        rootEntityObjPath = std::get<0>(indexNodeMap[root.front()]);
+    }
+
     while (!root.empty())
     {
         auto nd = root.front();
@@ -1325,8 +1334,9 @@ int main()
     io.post(
         [&]() { propertiesChangedCallback(systemConfiguration, objServer); });
 
-    entityIface->register_method("ReScan", [&]() {
+    entityIface->register_method("ReScan", [&]() -> std::string {
         propertiesChangedCallback(systemConfiguration, objServer);
+        return rootEntityObjPath;
     });
     entityIface->initialize();
 
