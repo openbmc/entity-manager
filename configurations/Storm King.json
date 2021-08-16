@@ -18,7 +18,45 @@
             "Bus": 29,
             "Name": "Ambient 0 Temp",
             "Type": "TMP75"
+        },
+        {
+            "MaxValidInput": 100,
+            "MaxValue": 128,
+            "MinValidInput": 0,
+            "MinValue": -127,
+            "Name": "Ambient Virtual Temp",
+            "Sensors": [
+                "Ambient 0 Temp",
+                "Ambient 1 Temp",
+                "Ambient 2 Temp"
+            ],
+            "Thresholds": [
+                {
+                    "Direction": "greater than",
+                    "Hysteresis": 3,
+                    "Name": "HardShutdown",
+                    "Severity": 4,
+                    "Value": 58
+                },
+                {
+                    "Direction": "greater than",
+                    "Hysteresis": 3,
+                    "Name": "SoftShutdown",
+                    "Severity": 3,
+                    "Value": 53
+                },
+                {
+                    "Direction": "greater than",
+                    "Hysteresis": 3,
+                    "Name": "Warning",
+                    "Severity": 0,
+                    "Value": 45
+                }
+            ],
+            "Type": "ModifiedMedian",
+            "Units": "DegreesC"
         }
+
     ],
     "Name": "Storm King Panel",
     "Probe": "com.ibm.ipzvpd.VINI({'CC': [53, 49, 70, 52]})",
