@@ -118,6 +118,30 @@
       "revId": "d4f39ebcc21446ba55e35c4cbb9e5a815e14d16a",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "5ed047c0_e854cdbb",
+        "filename": "schemas/legacy.json",
+        "patchSetId": 2
+      },
+      "lineNbr": 530,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2021-08-16T17:39:17Z",
+      "side": 1,
+      "message": "\u003e It would be nice if we could induce EM to do the transformation of these enumerations then so the transformation isn\u0027t spread around.\n\nI thought there was already a patchset to do that.\n\n\u003e \n\u003e Is there any good way to keep the Units-enum values here in sync with what is in PDI?\n\nRemove it entirely, and derive the units automatically as a combination of the input parameters?  At the very least allowing a default of \"same units as the first sensor in the list\" would cover 90+% of the cases where median is used.\n\nWith that said, open to other ideas here.   Ignoring downstream platforms, everyone adding a new exposes record will have to check into this repo anyway, so it\u0027s not a huge difference in effort having this desynced from PDI.  For downstream platforms, yeah, that\u0027ll be a pain because you\u0027ll have to maintain a patch against the schemas, but I\u0027m ok making downstream harder in this case.  Get your config files upstreamed.",
+      "parentUuid": "e8078574_407e194d",
+      "range": {
+        "startLine": 521,
+        "startChar": 0,
+        "endLine": 530,
+        "endChar": 67
+      },
+      "revId": "d4f39ebcc21446ba55e35c4cbb9e5a815e14d16a",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
     }
   ]
 }
