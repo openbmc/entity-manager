@@ -49,6 +49,7 @@ constexpr const char* lastConfiguration = "/tmp/configuration/last.json";
 constexpr const char* currentConfiguration = "/var/configuration/system.json";
 constexpr const char* globalSchema = "global.json";
 constexpr const int32_t maxMapperDepth = 0;
+std::string rootEntityObjPath;
 
 constexpr const bool debug = false;
 
@@ -1295,6 +1296,11 @@ void postToDbus(const nlohmann::json& newConfiguration,
             root.push(i);
         }
     }
+
+    if (root.size() == 1)
+    {
+        rootEntityObjPath = std::get<0>(idxNode[root.front()]);
+    }
     while (!root.empty())
     {
         auto nd = root.front();
@@ -2153,8 +2159,13 @@ int main()
     io.post(
         [&]() { propertiesChangedCallback(systemConfiguration, objServer); });
 
+#ifdef ENABLE_ENTITY_ASSOCIATION_I2C
+    entityIface->register_method("ReScan", [&]() -> std::string {
+#else
     entityIface->register_method("ReScan", [&]() {
+#endif
         propertiesChangedCallback(systemConfiguration, objServer);
+        return rootEntityObjPath;
     });
     entityIface->initialize();
 
