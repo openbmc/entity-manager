@@ -124,21 +124,21 @@ TEST(VerifyChecksumTest, AllOneInput)
 
 TEST(VerifyChecksumTest, WrapBoundaryLow)
 {
-    std::vector<uint8_t> data = { 255, 0 };
+    std::vector<uint8_t> data = {255, 0};
 
     EXPECT_EQ(calculateChecksum(data), 1);
 }
 
 TEST(VerifyChecksumTest, WrapBoundaryExact)
 {
-    std::vector<uint8_t> data = { 255, 1 };
+    std::vector<uint8_t> data = {255, 1};
 
     EXPECT_EQ(calculateChecksum(data), 0);
 }
 
 TEST(VerifyChecksumTest, WrapBoundaryHigh)
 {
-    std::vector<uint8_t> data = { 255, 2 };
+    std::vector<uint8_t> data = {255, 2};
 
     EXPECT_EQ(calculateChecksum(data), 255);
 }
