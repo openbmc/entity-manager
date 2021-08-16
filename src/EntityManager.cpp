@@ -1295,6 +1295,12 @@ void postToDbus(const nlohmann::json& newConfiguration,
             root.push(i);
         }
     }
+
+
+    if (root.size() == 1)
+    {
+        rootEntityObjPath = std::get<0>(idxNode[root.front()]);
+    }
     while (!root.empty())
     {
         auto nd = root.front();
@@ -2109,6 +2115,7 @@ void registerCallback(nlohmann::json& systemConfiguration,
 
 int main()
 {
+
     // setup connection to dbus
     systemBus = std::make_shared<sdbusplus::asio::connection>(io);
     systemBus->request_name("xyz.openbmc_project.EntityManager");
@@ -2123,6 +2130,7 @@ int main()
     // destroyed
 
     nlohmann::json systemConfiguration = nlohmann::json::object();
+    std::string rootEntityObjPath;
 
     // We need a poke from DBus for static providers that create all their
     // objects prior to claiming a well-known name, and thus don't emit any
@@ -2153,8 +2161,9 @@ int main()
     io.post(
         [&]() { propertiesChangedCallback(systemConfiguration, objServer); });
 
-    entityIface->register_method("ReScan", [&]() {
+    entityIface->register_method("ReScan", [&]() -> std::string {
         propertiesChangedCallback(systemConfiguration, objServer);
+        return rootEntityObjPath;
     });
     entityIface->initialize();
 
