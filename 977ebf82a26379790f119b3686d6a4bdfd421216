@@ -37,6 +37,23 @@
     },
     {
       "key": {
+        "uuid": "b62202cd_41162fd8",
+        "filename": "docs/dynamic_mux.md",
+        "patchSetId": 6
+      },
+      "lineNbr": 43,
+      "author": {
+        "id": 1000021
+      },
+      "writtenOn": "2021-08-17T17:14:40Z",
+      "side": 1,
+      "message": "I went back and read all the comment threads, and I think I understand where the contention is:\n\nThis paragraph says that Entity Manager is going to use GPIOs exposed by the platform to add logical busses.   To allow devices under more than one mux channel, the kernel needs to control the mux to allow proper access locking of the i2c bus.\n\nThe current kernel mux code has support for gpio control through the device tree, or through a configuration structure passed via platform data.   For a truly dynamic addition someone will need to add a kernel driver.\n\nIf the goal of these entity manager patches is just to describe which bus its on then I\u0027m ok with having it follow sysfs though the mux to find the i2c bus number assigned to the segment.  But if there is more than one segement that can have a device at a time, the kernel must be aware and in control.",
+      "revId": "977ebf82a26379790f119b3686d6a4bdfd421216",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "ec3dac1e_2ecaa27f",
         "filename": "docs/dynamic_mux.md",
         "patchSetId": 6
@@ -310,6 +327,24 @@
     },
     {
       "key": {
+        "uuid": "05de4a70_37fa1715",
+        "filename": "docs/dynamic_mux.md",
+        "patchSetId": 6
+      },
+      "lineNbr": 185,
+      "author": {
+        "id": 1000021
+      },
+      "writtenOn": "2021-08-17T17:14:40Z",
+      "side": 1,
+      "message": "I added a statement above at 43 in patch 6.  If its more than an off-off switch and you need devices on more than one channel, the kernel must control the mux.",
+      "parentUuid": "112452be_96cc56d2",
+      "revId": "977ebf82a26379790f119b3686d6a4bdfd421216",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "8c9ad95f_cb71a772",
         "filename": "docs/dynamic_mux.md",
         "patchSetId": 6
@@ -378,6 +413,41 @@
       "revId": "977ebf82a26379790f119b3686d6a4bdfd421216",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "40c53b4d_7215e619",
+        "filename": "docs/dynamic_mux.md",
+        "patchSetId": 6
+      },
+      "lineNbr": 231,
+      "author": {
+        "id": 1000021
+      },
+      "writtenOn": "2021-08-17T17:14:40Z",
+      "side": 1,
+      "message": "This is in alternatives considered, so we do not need to debate how user space control is a broken model.",
+      "parentUuid": "640c478c_40c97829",
+      "revId": "977ebf82a26379790f119b3686d6a4bdfd421216",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ebeb7601_3f43dc15",
+        "filename": "docs/dynamic_mux.md",
+        "patchSetId": 6
+      },
+      "lineNbr": 236,
+      "author": {
+        "id": 1000021
+      },
+      "writtenOn": "2021-08-17T17:14:40Z",
+      "side": 1,
+      "message": "If it resolves the bus number then state that.   But I don\u0027t understand why entity manager is involved more than a hotplug enable switch.   It can\u0027t be in control of the mux if there are sensors below, and any vpd has to be removed before changing the mux from userspace.",
+      "revId": "977ebf82a26379790f119b3686d6a4bdfd421216",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
     }
   ]
 }
