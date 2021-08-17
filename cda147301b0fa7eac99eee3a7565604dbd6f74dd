@@ -22,6 +22,30 @@
       "revId": "cda147301b0fa7eac99eee3a7565604dbd6f74dd",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "71877fea_c9e8060a",
+        "filename": "src/EntityManager.cpp",
+        "patchSetId": 3
+      },
+      "lineNbr": 359,
+      "author": {
+        "id": 1001077
+      },
+      "writtenOn": "2021-08-17T06:57:26Z",
+      "side": 0,
+      "message": "Committed changes for probe match using starts_with.\n\nThe format of probe string is same for all except FOUND. As FOUND is different from other probe strings, it requires regex to perfectly identify it.\n\nTo avoid error cases using ends_with with starts_with to identify Probe String.\n\nBelow are the changes without regex for Found Probe String\n\nstd::string probeStr \u003d probeType-\u003efirst;\nif (probeStr.compare(\"FOUND\") \u003d\u003d 0 \u0026\u0026 boost::starts_with(probe, probeStr))\n{\n     foundProbe \u003d true;\n     break;\n}\nif (probeStr.compare(probe) \u003d\u003d 0)\n{\n    foundProbe \u003d true;\n    break;\n}",
+      "parentUuid": "e56a9562_0ce65810",
+      "range": {
+        "startLine": 359,
+        "startChar": 16,
+        "endLine": 359,
+        "endChar": 26
+      },
+      "revId": "cda147301b0fa7eac99eee3a7565604dbd6f74dd",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
     }
   ]
 }
