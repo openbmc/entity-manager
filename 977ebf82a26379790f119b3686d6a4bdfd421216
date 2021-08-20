@@ -54,6 +54,24 @@
     },
     {
       "key": {
+        "uuid": "b45c3914_cfa16793",
+        "filename": "docs/dynamic_mux.md",
+        "patchSetId": 6
+      },
+      "lineNbr": 43,
+      "author": {
+        "id": 1000271
+      },
+      "writtenOn": "2021-08-20T19:10:19Z",
+      "side": 1,
+      "message": "Entity manager job is just to find logical bus number after mux driver gets initialized and map back to it\u0027s device configuration. None of devices are accessed without kernel driver so kernel will be aware of all of those operations.",
+      "parentUuid": "b62202cd_41162fd8",
+      "revId": "977ebf82a26379790f119b3686d6a4bdfd421216",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "ec3dac1e_2ecaa27f",
         "filename": "docs/dynamic_mux.md",
         "patchSetId": 6
@@ -345,6 +363,24 @@
     },
     {
       "key": {
+        "uuid": "4b495b36_42a43af5",
+        "filename": "docs/dynamic_mux.md",
+        "patchSetId": 6
+      },
+      "lineNbr": 185,
+      "author": {
+        "id": 1000271
+      },
+      "writtenOn": "2021-08-20T19:10:19Z",
+      "side": 1,
+      "message": "It is just a on/off switch to enable a particular device. Once device is enabled then its kernel driver will be initialized. For each board there will be one configuration which will expose certain channel. And it is one time, EM is not going to switch back and forth for controlling mux.",
+      "parentUuid": "05de4a70_37fa1715",
+      "revId": "977ebf82a26379790f119b3686d6a4bdfd421216",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "8c9ad95f_cb71a772",
         "filename": "docs/dynamic_mux.md",
         "patchSetId": 6
@@ -434,6 +470,24 @@
     },
     {
       "key": {
+        "uuid": "cb0bfc51_8c757fa4",
+        "filename": "docs/dynamic_mux.md",
+        "patchSetId": 6
+      },
+      "lineNbr": 231,
+      "author": {
+        "id": 1000271
+      },
+      "writtenOn": "2021-08-20T19:10:19Z",
+      "side": 1,
+      "message": "This dynamic model is provide a flexibility to configure a board with certain configuration.",
+      "parentUuid": "40c53b4d_7215e619",
+      "revId": "977ebf82a26379790f119b3686d6a4bdfd421216",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "ebeb7601_3f43dc15",
         "filename": "docs/dynamic_mux.md",
         "patchSetId": 6
@@ -448,6 +502,24 @@
       "revId": "977ebf82a26379790f119b3686d6a4bdfd421216",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "bd701b57_76b0f137",
+        "filename": "docs/dynamic_mux.md",
+        "patchSetId": 6
+      },
+      "lineNbr": 236,
+      "author": {
+        "id": 1000271
+      },
+      "writtenOn": "2021-08-20T19:10:19Z",
+      "side": 1,
+      "message": "EM is not controlling mux, it is detecting devices based on configuration and providing device details to other daemons.",
+      "parentUuid": "ebeb7601_3f43dc15",
+      "revId": "977ebf82a26379790f119b3686d6a4bdfd421216",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": false
     }
   ]
 }
