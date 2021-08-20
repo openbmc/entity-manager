@@ -72,6 +72,24 @@
     },
     {
       "key": {
+        "uuid": "b5740478_12123cff",
+        "filename": "docs/dynamic_mux.md",
+        "patchSetId": 6
+      },
+      "lineNbr": 43,
+      "author": {
+        "id": 1000021
+      },
+      "writtenOn": "2021-08-20T20:01:43Z",
+      "side": 1,
+      "message": "what do you mean by \"after initializing mux driver via entity manager\" ?\n\nI thought this was dynamically instantiating a mux driver.   If its just deferring instantiation of devices behind a planar mux I\u0027m ok but would like some wording changed.  (I don\u0027t see code upstream to supply a generic mux config via GPIO, but PCA muxes should self configure).\n\nYour text and examples below says you will set some gpios then call a kernel driver.  But you are showing conflicting states of those gpios and have not described any exclusion.",
+      "parentUuid": "b45c3914_cfa16793",
+      "revId": "977ebf82a26379790f119b3686d6a4bdfd421216",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "ec3dac1e_2ecaa27f",
         "filename": "docs/dynamic_mux.md",
         "patchSetId": 6
@@ -378,6 +396,24 @@
       "revId": "977ebf82a26379790f119b3686d6a4bdfd421216",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "a73c6f4a_6d15c6e3",
+        "filename": "docs/dynamic_mux.md",
+        "patchSetId": 6
+      },
+      "lineNbr": 185,
+      "author": {
+        "id": 1000021
+      },
+      "writtenOn": "2021-08-20T20:01:43Z",
+      "side": 1,
+      "message": "The part you showed can only enable one downstream segment, because the selectors are decoded and not one-hot enables.  So is entity manager also going to take care to unbind all switched deivices before allowing any other device to be selected?\n\nOtherwise we are back to needing a kernel driver for this mux application.\n\nYour example shows 2 TMP421 on different channels.",
+      "parentUuid": "4b495b36_42a43af5",
+      "revId": "977ebf82a26379790f119b3686d6a4bdfd421216",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
     },
     {
       "key": {
