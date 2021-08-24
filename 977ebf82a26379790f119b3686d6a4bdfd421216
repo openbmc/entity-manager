@@ -453,6 +453,24 @@
     },
     {
       "key": {
+        "uuid": "03c987fb_17d9e594",
+        "filename": "docs/dynamic_mux.md",
+        "patchSetId": 6
+      },
+      "lineNbr": 185,
+      "author": {
+        "id": 1000021
+      },
+      "writtenOn": "2021-08-24T01:39:48Z",
+      "side": 1,
+      "message": "So you are conceeding the limitations but they are not stated.\n\nA significant limitation is only one downstream port without a driver, and some method to enforce that only the first used is selected.\n\nAlternatively an appropriate driver removes the limitations but if you have both now you need to differentiate which applies.  An overlay as described sounds like a good plan (although I have not researched what is upstream vs popular downstream).\n\nIf you express the limitations here and how they are enforced I\u0027m ok with a tactical solution.",
+      "parentUuid": "8b4823c6_1137c08e",
+      "revId": "977ebf82a26379790f119b3686d6a4bdfd421216",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "8c9ad95f_cb71a772",
         "filename": "docs/dynamic_mux.md",
         "patchSetId": 6
