@@ -73,6 +73,30 @@
     },
     {
       "key": {
+        "uuid": "d90d0a1c_9478779e",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 7
+      },
+      "lineNbr": 17,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2021-08-24T18:06:31Z",
+      "side": 1,
+      "message": "\u003e I have a few questions around this. \n\u003e \n\u003e It seems that the IPMI spec allows for one positive and one negative hysteresis per sensor, not per threshold. What would you propose to return for the hysteresis values if a sensor has multiple thresholds with different hysteresises?\n\nThat seems like a limitation we should consider as part of this patch.  What behavior would you recommend?  Either we can move hysteresis up, such that each threshold doesn\u0027t get its own explicit hysteresis, or we can define some behavior (like 1st thresholds hysteresis wins).\n\n\u003e \n\u003e Secondly, are you asking for hysteresis values to be included in the get_sdr response or for the [get/set] hysteresis commands to be implemented?\n\nI\u0027m asking for the implementation to be \"correct\", in that, because the SDR commands already assume a hysteresis value, adding the parameter now makes it \"wrong\".  Assuming we have no ipmlementation for get/set hysteresis, I\u0027m fine not adding that.\n\nSaid another way, if I take in this patch, and I pull an SDR for this sensor, it\u0027s going to report a hysteresis of 1, which is wrong (but was correct before this patch).",
+      "parentUuid": "d4902b3a_95089292",
+      "range": {
+        "startLine": 16,
+        "startChar": 0,
+        "endLine": 17,
+        "endChar": 59
+      },
+      "revId": "7e94b6ebdf55d882ebad80a756173840df374fd2",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "1b484dae_3c315605",
         "filename": "/COMMIT_MSG",
         "patchSetId": 7
@@ -138,6 +162,24 @@
       "side": 1,
       "message": "\u003e I don\u0027t have a strong opinion here on how far to go, I\u0027m happy to accept things as-is, but I want to understand the behavior, and make sure we\u0027re not causing a crash or something worse by allowing this schema change through for sensors that don\u0027t support it.\n\nIt seems that we can add arbitrary fields to configs that don\u0027t make the validate-configs script fail. I can\u0027t see how to make hysteresis not allowed in the schema for dbus sensors. \n\n\u003e I\u0027m not sure you need to explicitly test it, but it would be good if we updated that code to make something more obvious to the user that this sensor doesn\u0027t support the parameter that got allowed through the schema.\n\nHow about this? \nhttps://gerrit.openbmc-project.xyz/c/openbmc/dbus-sensors/+/45986  I don\u0027t think that erroring out here makes sense, as we don\u0027t error out for malformed thresholds in configs.",
       "parentUuid": "b56b789e_5978ef4b",
+      "revId": "7e94b6ebdf55d882ebad80a756173840df374fd2",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "78be39ca_844f5074",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 7
+      },
+      "lineNbr": 18,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2021-08-24T18:06:31Z",
+      "side": 1,
+      "message": "\u003e \u003e I don\u0027t have a strong opinion here on how far to go, I\u0027m happy to accept things as-is, but I want to understand the behavior, and make sure we\u0027re not causing a crash or something worse by allowing this schema change through for sensors that don\u0027t support it.\n\u003e \n\u003e It seems that we can add arbitrary fields to configs that don\u0027t make the validate-configs script fail. I can\u0027t see how to make hysteresis not allowed in the schema for dbus sensors. \n\nThat\u0027s fine.  I need to make sure that the behavior makes sense if someone accidentally assumes (because of the schema) that hysteresis is supported on all sensors.\n\n\u003e \n\u003e \u003e I\u0027m not sure you need to explicitly test it, but it would be good if we updated that code to make something more obvious to the user that this sensor doesn\u0027t support the parameter that got allowed through the schema.\n\u003e \n\u003e How about this? \n\u003e https://gerrit.openbmc-project.xyz/c/openbmc/dbus-sensors/+/45986  I don\u0027t think that erroring out here makes sense, as we don\u0027t error out for malformed thresholds in configs.\n\nThat works for me.",
+      "parentUuid": "5a223de8_2921f4e2",
       "revId": "7e94b6ebdf55d882ebad80a756173840df374fd2",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
       "unresolved": true
