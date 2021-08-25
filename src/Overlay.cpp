@@ -38,10 +38,45 @@ constexpr const char* outputDir = "/tmp/overlays";
 constexpr const char* templateChar = "$";
 constexpr const char* i2CDevsDir = "/sys/bus/i2c/devices";
 constexpr const char* muxSymlinkDir = "/dev/i2c-mux";
+constexpr const char* idleModeAsIs = "-1";
+constexpr const char* idleModeDisconnect = "-2";
 
 constexpr const bool debug = false;
 
 std::regex illegalNameRegex("[^A-Za-z0-9_]");
+
+void setIdleMode(const std::string& muxName, size_t busIndex, size_t address,
+                 const std::string& idleMode)
+{
+    std::error_code ec;
+
+    std::ostringstream hexAddress;
+    hexAddress << std::hex << std::setfill('0') << std::setw(4) << address;
+
+    std::filesystem::path idlePath(i2CDevsDir);
+    idlePath /=
+        std::to_string(busIndex) + "-" + hexAddress.str() + "/idle_state";
+
+    std::string modeData =
+        (idleMode == "Disconnect") ? idleModeDisconnect : idleModeAsIs;
+
+    if (debug)
+    {
+        std::cerr << "Setting " << muxName << " idle state to " << modeData
+                  << " in " << idlePath << "\n";
+    }
+
+    std::ofstream idleFile(idlePath);
+    if (!idleFile.good())
+    {
+        std::cerr << "Can't set idle mode in " << idlePath << " for " << muxName
+                  << "\n";
+    }
+    else
+    {
+        idleFile << modeData;
+    }
+}
 
 // helper function to make json types into string
 std::string jsonToString(const nlohmann::json& in)
@@ -285,6 +320,7 @@ void exportDevice(const std::string& type,
     std::shared_ptr<uint64_t> bus = nullptr;
     std::shared_ptr<uint64_t> address = nullptr;
     const nlohmann::json::array_t* channels = nullptr;
+    std::string idleMode;
 
     for (auto keyPair = configuration.begin(); keyPair != configuration.end();
          keyPair++)
@@ -318,6 +354,11 @@ void exportDevice(const std::string& type,
             channels =
                 keyPair.value().get_ptr<const nlohmann::json::array_t*>();
         }
+        else if (keyPair.key() == "MuxIdleMode")
+        {
+            idleMode = keyPair.value().get<std::string>();
+        }
+
         boost::replace_all(parameters, templateChar + keyPair.key(),
                            subsituteString);
         boost::replace_all(devicePath, templateChar + keyPair.key(),
@@ -327,10 +368,18 @@ void exportDevice(const std::string& type,
     int err = buildDevice(devicePath, parameters, bus, address, constructor,
                           destructor, createsHWMon);
 
-    if (!err && boost::ends_with(type, "Mux") && bus && address && channels)
+    if (!err && boost::ends_with(type, "Mux") && bus && address)
     {
-        linkMux(name, static_cast<size_t>(*bus), static_cast<size_t>(*address),
-                *channels);
+        if (channels)
+        {
+            linkMux(name, static_cast<size_t>(*bus),
+                    static_cast<size_t>(*address), *channels);
+        }
+        if (!idleMode.empty())
+        {
+            setIdleMode(name, static_cast<size_t>(*bus),
+                        static_cast<size_t>(*address), idleMode);
+        }
     }
 }
 
