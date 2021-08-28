@@ -1,0 +1,55 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "099e136a_4b8ab996",
+        "filename": "docs/dynamic_mux.md",
+        "patchSetId": 7
+      },
+      "lineNbr": 181,
+      "author": {
+        "id": 1000021
+      },
+      "writtenOn": "2021-08-28T13:53:40Z",
+      "side": 1,
+      "message": "Current -\u003e the initial\n\nwill only support",
+      "revId": "c884ade9139b2ee6029c91ae2922c813acdbe983",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "6e33f4a0_486cd4e0",
+        "filename": "docs/dynamic_mux.md",
+        "patchSetId": 7
+      },
+      "lineNbr": 183,
+      "author": {
+        "id": 1000021
+      },
+      "writtenOn": "2021-08-28T13:53:40Z",
+      "side": 1,
+      "message": "No all devices won\u0027t be visible this is my point.\n\nYou must put code in entity manager to not consider other legs once one port has been selected with this design.",
+      "revId": "c884ade9139b2ee6029c91ae2922c813acdbe983",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "a6585f86_336c85b3",
+        "filename": "docs/dynamic_mux.md",
+        "patchSetId": 7
+      },
+      "lineNbr": 186,
+      "author": {
+        "id": 1000021
+      },
+      "writtenOn": "2021-08-28T13:53:40Z",
+      "side": 1,
+      "message": "An advanced design.\n\nCould iterate through the mux selects binding and unbinding all devices.\n\n\nThe preferred design installs and configures an i2c mux driver so the kernel will expose i2c bus segments for each select and control the mux dynamicly.",
+      "revId": "c884ade9139b2ee6029c91ae2922c813acdbe983",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    }
+  ]
+}
