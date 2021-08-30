@@ -16,6 +16,24 @@
       "revId": "aa786fc9ab1b848a0fb7590209ae8cde2a65b14c",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "231edaeb_9ea10e5a",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 4
+      },
+      "lineNbr": 15,
+      "author": {
+        "id": 1001151
+      },
+      "writtenOn": "2021-08-30T14:26:03Z",
+      "side": 1,
+      "message": "After this fix, Mux channel access becomes slow. The 2 operation process (selecting the mux channel and reading) will become 3 operations (selection, reading and disconnect). Hence this is made configurable to provide user a choice depends on use case.",
+      "parentUuid": "eb175025_d71a4a02",
+      "revId": "aa786fc9ab1b848a0fb7590209ae8cde2a65b14c",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
     }
   ]
 }
