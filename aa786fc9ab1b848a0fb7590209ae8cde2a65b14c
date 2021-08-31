@@ -34,6 +34,29 @@
       "revId": "aa786fc9ab1b848a0fb7590209ae8cde2a65b14c",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "3ec8c620_ae413b3c",
+        "filename": "src/Overlay.cpp",
+        "patchSetId": 4
+      },
+      "lineNbr": 70,
+      "author": {
+        "id": 1001049
+      },
+      "writtenOn": "2021-08-31T15:54:45Z",
+      "side": 1,
+      "message": "nit:\n1) You can use idleFile.bad()\n2) write() function of std::ofstream already is checking for good or bad. So this if condition is a redundant piece of code. \n\nstd::ofstream idleFile(idlePath);\nidleFile \u003c\u003c modeData;\n\nif(idleFile.bad())\n{\n// log error\n}\n\nNote: If you are deciding to log according to .good(), std::ostringstream also has .good (line 53).",
+      "range": {
+        "startLine": 70,
+        "startChar": 4,
+        "endLine": 70,
+        "endChar": 25
+      },
+      "revId": "aa786fc9ab1b848a0fb7590209ae8cde2a65b14c",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
     }
   ]
 }
