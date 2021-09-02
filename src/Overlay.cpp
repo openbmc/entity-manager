@@ -28,6 +28,7 @@
 #include <boost/process/child.hpp>
 #include <nlohmann/json.hpp>
 
+#include <charconv>
 #include <filesystem>
 #include <iomanip>
 #include <iostream>
@@ -42,6 +43,12 @@ constexpr const char* muxSymlinkDir = "/dev/i2c-mux";
 constexpr const bool debug = false;
 
 std::regex illegalNameRegex("[^A-Za-z0-9_]");
+
+// Map for slot name to logical bus number
+boost::container::flat_map<std::string, uint64_t> slotToBusMap;
+
+// Map for bus number to slot name
+boost::container::flat_map<uint64_t, std::string> busToSlotMap;
 
 // helper function to make json types into string
 std::string jsonToString(const nlohmann::json& in)
@@ -104,6 +111,17 @@ void linkMux(const std::string& muxName, size_t busIndex, size_t address,
 
         std::filesystem::path fp("/dev" / bus.filename());
         std::filesystem::path link(linkDir / *channelName);
+
+        // Get the logical bus number from channel link
+        std::string linkName = bus.filename();
+        if (boost::starts_with(linkName, "i2c-"))
+        {
+            int chNum = 0;
+            auto sub = linkName.substr(std::string("i2c-").size());
+            std::from_chars(sub.data(), sub.data() + sub.size(), chNum);
+            slotToBusMap[*channelName] = chNum;
+            busToSlotMap[chNum] = *channelName;
+        }
 
         std::filesystem::create_symlink(fp, link, ec);
         if (ec)
@@ -305,8 +323,29 @@ void exportDevice(const std::string& type,
 
         if (keyPair.key() == "Bus")
         {
-            bus = std::make_shared<uint64_t>(
-                *keyPair.value().get_ptr<const uint64_t*>());
+            // Check if bus is defined as a template variable
+            if (keyPair.value().type() == nlohmann::json::value_t::string)
+            {
+                std::string busName = keyPair.value().get<std::string>();
+                if (boost::starts_with(busName, "$") &&
+                    (slotToBusMap.find(busName.substr(1)) !=
+                     slotToBusMap.end()))
+                {
+                    bus = std::make_shared<uint64_t>(
+                        slotToBusMap[busName.substr(1)]);
+                }
+                else
+                {
+                    std::cout << "Template variable for " << busName
+                              << " not found\n";
+                    continue;
+                }
+            }
+            else
+            {
+                bus = std::make_shared<uint64_t>(
+                    *(keyPair.value().get_ptr<const uint64_t*>()));
+            }
         }
         else if (keyPair.key() == "Address")
         {
