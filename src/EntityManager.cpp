@@ -39,7 +39,9 @@
 #include <filesystem>
 #include <fstream>
 #include <iostream>
+#include <map>
 #include <regex>
+#include <tuple>
 #include <variant>
 constexpr const char* configurationDirectory = PACKAGE_DIR "configurations";
 constexpr const char* schemaDirectory = PACKAGE_DIR "configurations/schemas";
@@ -77,6 +79,39 @@ const static boost::container::flat_map<const char*, probe_type_codes, CmpStr>
                 {"FOUND", probe_type_codes::FOUND},
                 {"MATCH_ONE", probe_type_codes::MATCH_ONE}}};
 
+struct socketProbeUtility
+{
+    // Inferface of system objects such as
+    // xyz.openbmc_project.Inventory.Item.CPU and
+    // xyz.openbmc_project.Inventory.Item.Dimm
+    std::string probeInterface;
+
+    // Interface of socket
+    std::string propertyInterface;
+
+    // Socket Dbus propery
+    std::string propertyLabel;
+
+    // Association forward object path name when creating association betweeen
+    // system objects probably published by smbios-mdr and entity object
+    std::string forwardType;
+};
+
+// Cover CPUSocket, DIMMSocket and PCIESocket that are also present in SMBIOS.
+const static std::map<const std::string, const socketProbeUtility>
+    socketProbeTable = {
+        {"CPUSocket",
+         {"xyz.openbmc_project.Inventory.Item.Cpu",
+          "xyz.openbmc_project.Inventory.Item.Cpu", "Socket", "processors"}},
+        {"DIMMSocket",
+         {"xyz.openbmc_project.Inventory.Item.Dimm",
+          "xyz.openbmc_project.Inventory.Item.Dimm", "MemoryDeviceLocator",
+          "memories"}},
+        {"PCIESocket",
+         {"xyz.openbmc_project.Inventory.Item.PCIeSlot",
+          "xyz.openbmc_project.Inventory.Decorator.LocationCode",
+          "LocationCode", "pcie_slots"}}};
+
 static constexpr std::array<const char*, 6> settableInterfaces = {
     "FanProfile", "Pid", "Pid.Zone", "Stepwise", "Thresholds", "Polling"};
 using JsonVariantType =
@@ -93,10 +128,22 @@ using ManagedObjectType = boost::container::flat_map<
         std::string,
         boost::container::flat_map<std::string, BasicVariantType>>>;
 
+// Associations forward, reverse and object path
+using Association = std::tuple<std::string, std::string, std::string>;
+
 // store reference to all interfaces so we can destroy them later
 boost::container::flat_map<
     std::string, std::vector<std::weak_ptr<sdbusplus::asio::dbus_interface>>>
     inventory;
+
+//  board -> association interface
+boost::container::flat_map<std::string,
+                           std::shared_ptr<sdbusplus::asio::dbus_interface>>
+    association;
+
+// board -> association objects
+boost::container::flat_map<std::string, std::vector<Association>>
+    boardAssocTable;
 
 // todo: pass this through nicer
 std::shared_ptr<sdbusplus::asio::connection> systemBus;
@@ -134,6 +181,85 @@ static std::shared_ptr<sdbusplus::asio::dbus_interface>
     }
     dataVector.emplace_back(ptr);
     return ptr;
+}
+
+/* Associate entity with CPU, memory and PCIE slots that are installed on the
+ * entity and publish by other services like smbios-mdr.
+ * Expose all the socket labels in entity configuration. Then looks up if other
+ * DBus objects have such socket infomation. If so, create association.
+ */
+static void findAssocWithSystemObjects(
+    const socketProbeUtility& socketUtil,
+    const boost::container::flat_set<std::string>& socketLabels,
+    const std::string& boardKeyOrig)
+{
+    systemBus->async_method_call(
+        [socketUtil, socketLabels,
+         boardKeyOrig](const boost::system::error_code& ec,
+                       const GetSubTreeType& interfaceSubtree) {
+            if (ec)
+            {
+                std::cerr << "Error communicating to mapper0.\n";
+                return;
+            }
+
+            // Iterate over all retrieved ObjectPaths.
+            for (const std::pair<std::string,
+                                 std::vector<std::pair<
+                                     std::string, std::vector<std::string>>>>&
+                     object : interfaceSubtree)
+            {
+                const std::string& objPath = object.first;
+                const std::vector<
+                    std::pair<std::string, std::vector<std::string>>>&
+                    connectionNames = object.second;
+
+                if (connectionNames.size() < 1)
+                {
+                    std::cerr << "Got 0 services.\n";
+                    return;
+                }
+                const std::string& serviceName = connectionNames[0].first;
+                const std::vector<std::string>& interfaces =
+                    connectionNames[0].second;
+                if (std::find(interfaces.begin(), interfaces.end(),
+                              socketUtil.propertyInterface) != interfaces.end())
+                {
+                    systemBus->async_method_call(
+                        [socketUtil, socketLabels, boardKeyOrig,
+                         objPath](const boost::system::error_code& ec2,
+                                  const std::variant<std::string>& property) {
+                            if (ec2)
+                            {
+                                std::cerr
+                                    << "Error communicating to mapper1.\n";
+                                return;
+                            }
+                            const std::string* socketLabel =
+                                std::get_if<std::string>(&property);
+                            if (socketLabel == nullptr)
+                            {
+                                return;
+                            }
+                            if (socketLabels.find(*socketLabel) ==
+                                socketLabels.end())
+                            {
+                                return;
+                            }
+                            boardAssocTable[boardKeyOrig].emplace_back(
+                                socketUtil.forwardType, "chassis", objPath);
+                        },
+                        serviceName, objPath, "org.freedesktop.DBus.Properties",
+                        "Get", socketUtil.propertyInterface,
+                        socketUtil.propertyLabel);
+                }
+            }
+        },
+        "xyz.openbmc_project.ObjectMapper",
+        "/xyz/openbmc_project/object_mapper",
+        "xyz.openbmc_project.ObjectMapper", "GetSubTree",
+        "/xyz/openbmc_project/inventory", 0,
+        std::array<const std::string, 1>{socketUtil.probeInterface});
 }
 
 void getInterfaces(
@@ -945,9 +1071,29 @@ void postToDbus(const nlohmann::json& newConfiguration,
                 sdbusplus::asio::object_server& objServer)
 
 {
+    if (!boardAssocTable.empty())
+    {
+        for (const auto& boardAssoc : boardAssocTable)
+        {
+            auto it = association.find(boardAssoc.first);
+            if (it != association.end())
+            {
+                it->second->register_property("Associations",
+                                              boardAssoc.second);
+                it->second->initialize();
+            }
+        }
+
+        // Only build association when system configuration changes
+        boardAssocTable.clear();
+    }
+
     // iterate through boards
     for (auto& boardPair : newConfiguration.items())
     {
+        boost::container::flat_map<std::string,
+                                   boost::container::flat_set<std::string>>
+            boardSocketLabelMap;
         std::string boardKey = boardPair.value()["Name"];
         std::string boardKeyOrig = boardPair.value()["Name"];
         std::string jsonPointerPath = "/" + boardPair.key();
@@ -986,6 +1132,11 @@ void postToDbus(const nlohmann::json& newConfiguration,
             createInterface(objServer, boardName,
                             "xyz.openbmc_project.Inventory.Item." + boardType,
                             boardKeyOrig);
+        std::shared_ptr<sdbusplus::asio::dbus_interface> assoIface =
+            createInterface(objServer, boardName,
+                            "xyz.openbmc_project.Association.Definitions",
+                            boardKeyOrig);
+        association.emplace(boardKeyOrig, assoIface);
 
         createAddObjectMethod(jsonPointerPath, boardName, systemConfiguration,
                               objServer, boardKeyOrig);
@@ -1052,12 +1203,23 @@ void postToDbus(const nlohmann::json& newConfiguration,
             {
                 itemType = "unknown";
             }
+
             std::string itemName = findName->get<std::string>();
             std::regex_replace(itemName.begin(), itemName.begin(),
                                itemName.end(), illegalDbusMemberRegex, "_");
             std::string ifacePath = boardName;
             ifacePath += "/";
             ifacePath += itemName;
+
+            if (socketProbeTable.find(itemType) != socketProbeTable.end())
+            {
+                auto findLabel = item.find("Label");
+                if (findLabel != item.end())
+                {
+                    std::string itemLabel = findLabel->get<std::string>();
+                    boardSocketLabelMap[itemType].emplace(itemLabel);
+                }
+            }
 
             std::shared_ptr<sdbusplus::asio::dbus_interface> itemIface =
                 createInterface(objServer, ifacePath,
@@ -1139,6 +1301,22 @@ void postToDbus(const nlohmann::json& newConfiguration,
                     }
                 }
             }
+        }
+
+        if (boardSocketLabelMap.empty())
+        {
+            continue;
+        }
+
+        for (const auto& socketTypeLabels : boardSocketLabelMap)
+        {
+            auto it = socketProbeTable.find(socketTypeLabels.first);
+            if (it == socketProbeTable.end())
+            {
+                continue;
+            }
+            findAssocWithSystemObjects(it->second, socketTypeLabels.second,
+                                       boardKeyOrig);
         }
     }
 }
