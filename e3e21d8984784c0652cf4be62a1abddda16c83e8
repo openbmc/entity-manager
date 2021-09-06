@@ -1,0 +1,55 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "293a047e_28bde3a1",
+        "filename": "docs/dynamic_mux.md",
+        "patchSetId": 8
+      },
+      "lineNbr": 182,
+      "author": {
+        "id": 1000021
+      },
+      "writtenOn": "2021-09-06T05:46:46Z",
+      "side": 1,
+      "message": "support a single ... in a single configuration\nline and other devices won\u0027t be",
+      "revId": "e3e21d8984784c0652cf4be62a1abddda16c83e8",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "4f6c3930_b6a4283a",
+        "filename": "docs/dynamic_mux.md",
+        "patchSetId": 8
+      },
+      "lineNbr": 186,
+      "author": {
+        "id": 1000021
+      },
+      "writtenOn": "2021-09-06T05:46:46Z",
+      "side": 1,
+      "message": "Ok but perhaps binding, reading vpd, then unbinding.\nTo give a reason to do the extended version.\n\nAlso an advanced design",
+      "revId": "e3e21d8984784c0652cf4be62a1abddda16c83e8",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "625595ae_b4023480",
+        "filename": "docs/dynamic_mux.md",
+        "patchSetId": 8
+      },
+      "lineNbr": 190,
+      "author": {
+        "id": 1000021
+      },
+      "writtenOn": "2021-09-06T05:46:46Z",
+      "side": 1,
+      "message": "I don\u0027t understand what you are trying to convey with this paragraph.   As noted earlier that is clearly a mux with additional enable signal.   Multiple legs can not be selected because the select inputs are 2:4 decoded.\n\nUnless you want to expand on having an in kernel driver, this might be extraneous.",
+      "revId": "e3e21d8984784c0652cf4be62a1abddda16c83e8",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    }
+  ]
+}
