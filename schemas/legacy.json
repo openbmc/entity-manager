@@ -63,6 +63,12 @@
                 "DtsCritOffset": {
                     "$ref": "#/definitions/Types/DtsCritOffset"
                 },
+                "EntityId": {
+                    "$ref": "#/definitions/Types/EntityId"
+                },
+                "EntityInstance": {
+                    "$ref": "#/definitions/Types/EntityInstance"
+                },
                 "FaultIndex": {
                     "$ref": "#/definitions/Types/FaultIndex"
                 },
@@ -474,6 +480,12 @@
             "DtsCritOffset": {
                 "type": "number"
             },
+            "EntityId": {
+                "type": "number"
+            },
+            "EntityInstance": {
+                "type": "number"
+            },
             "FaultIndex": {
                 "type": "number"
             },
@@ -863,4 +875,3 @@
         }
     }
 }
-
