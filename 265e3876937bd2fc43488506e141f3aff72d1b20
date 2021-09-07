@@ -145,6 +145,30 @@
     },
     {
       "key": {
+        "uuid": "26cd773e_e5edd636",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 5
+      },
+      "lineNbr": 14,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2021-09-07T18:43:46Z",
+      "side": 1,
+      "message": "\u003e Well, actually my initial point was that upstream already have \"DisableNode\" ant this is logical to have opposite \"EnableNode\" too.\n\u003e \n\u003e We use one config for whole product family just to simplify our development cycle: we don\u0027t need to care about keeping in sync all modifications but just to modify one.\n\nThis is explicitly against the design of entity-manager configs.  In practice, individual products tend to start by looking similar, then diverge, which causes more breakages than just starting them separate from the beginning.  It also makes it much more clear which changes have been tested on which systems.\n\n\u003e I actually though about \"include\" functionality which will handle this case better, but for now I had not time to implement this.\n\nFor what it\u0027s worth, I would be against this.  The predecessor to entity-manager had #include capability, and it quickly became a maintenance nightmare, as systems of multiple generations would share config files.  Unless there\u0027s a specific upstream system that uses it, and we define very good rules for when the include functionality is allowed to be used, I would be against merging support for include.",
+      "parentUuid": "8c3b44c7_844cfe20",
+      "range": {
+        "startLine": 13,
+        "startChar": 0,
+        "endLine": 14,
+        "endChar": 65
+      },
+      "revId": "265e3876937bd2fc43488506e141f3aff72d1b20",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "ffae7c0c_9cc756ac",
         "filename": "/COMMIT_MSG",
         "patchSetId": 5
