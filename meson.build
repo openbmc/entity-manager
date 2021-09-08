@@ -79,6 +79,7 @@ configs = [
     'A2UL16RISER.json',
     'A2UX8X4RISER.json',
     'ACBELL_RICA_PSU.json',
+    'ASRock_E3C246D4I.json',
     'Blyth.json',
     'AHW1UM2RISER.json',
     'ASPOWER_U1A-D10550_PSU.json',
