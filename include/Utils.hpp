@@ -77,16 +77,21 @@ struct DBusInternalError final : public sdbusplus::exception_t
     const char* name() const noexcept override
     {
         return "org.freedesktop.DBus.Error.Failed";
-    };
+    }
     const char* description() const noexcept override
     {
         return "internal error";
-    };
+    }
     const char* what() const noexcept override
     {
         return "org.freedesktop.DBus.Error.Failed: "
                "internal error";
-    };
+    }
+
+    int get_errno() const noexcept override
+    {
+        return EACCES;
+    }
 };
 
 inline bool fwVersionIsSame(void)
