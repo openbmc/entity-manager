@@ -1,6 +1,5 @@
 [Unit]
 Description=Fru Device
-StopWhenUnneeded=true
 After=xyz.openbmc_project.CloseMuxes.service dbus.service
 
 [Service]
