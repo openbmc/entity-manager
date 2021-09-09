@@ -37,6 +37,24 @@
     },
     {
       "key": {
+        "uuid": "aabc9e87_e0ab41aa",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 4
+      },
+      "lineNbr": 15,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2021-09-09T23:22:31Z",
+      "side": 1,
+      "message": "Most systems already set this in the DTS though.  I\u0027m not sure this should be the default.  Lets just set it for all new muxes, and go from there.  If it needs to be configurable, we can ressurect this patch, but I don\u0027t think any of our dbus-sensors use cases are performance sensitive right now.",
+      "parentUuid": "231edaeb_9ea10e5a",
+      "revId": "aa786fc9ab1b848a0fb7590209ae8cde2a65b14c",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "36b47afd_eb3c54dc",
         "filename": "/COMMIT_MSG",
         "patchSetId": 4
