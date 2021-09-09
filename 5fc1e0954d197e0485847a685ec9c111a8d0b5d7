@@ -34,6 +34,24 @@
       "revId": "5fc1e0954d197e0485847a685ec9c111a8d0b5d7",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "e07870d1_a4c83512",
+        "filename": "src/EntityManager.cpp",
+        "patchSetId": 7
+      },
+      "lineNbr": 767,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2021-09-09T22:16:34Z",
+      "side": 1,
+      "message": "Instantiate a timer object, and set callbacks for both the timer expiring, and the call completing.  Today we don\u0027t use futures or std::launch async.  By using std::async, you\u0027re breaking multi-threaded locking by accessing a bunch of data structure from an un-mutexed thread.",
+      "parentUuid": "f691d3c8_7e6a8fd4",
+      "revId": "5fc1e0954d197e0485847a685ec9c111a8d0b5d7",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
     }
   ]
 }
