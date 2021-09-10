@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "08ac8a23_3e2fa275",
+        "filename": "docs/dynamic_mux.md",
+        "patchSetId": 9
+      },
+      "lineNbr": 184,
+      "author": {
+        "id": 1000021
+      },
+      "writtenOn": "2021-09-10T15:26:39Z",
+      "side": 1,
+      "message": "Can you point out this loadOverlays API ?   Is it upstream?\n\nI know the syntax and dtc compiler support has been around since 2018 and has been used in the raspberry pi community, but wasn\u0027t sure its available in the base kernel yet (the recent discussion on reserved devices seems to agree)\n\n\nOtherwise, I\u0027d propose:\nThe initial design will only support a single selection.   Once a port is selected for use other ports will not be selectable and thier devices won\u0027t be selectable.\n\nIf you are proposing dt overlays be loaded and its not upstream those should be moved to the alternatives considered.\n\nAs I\u0027ve said, describeing a mux that is always presnt is always desirable; it appears this design adds some userspace tooling to entity manager to help describing cards that may be plugged in.",
+      "revId": "2213b91d25225ce41414f478088ec30dac695e33",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "5cbb27d6_b924f759",
+        "filename": "docs/dynamic_mux.md",
+        "patchSetId": 9
+      },
+      "lineNbr": 236,
+      "author": {
+        "id": 1000021
+      },
+      "writtenOn": "2021-09-10T15:26:39Z",
+      "side": 1,
+      "message": "An advanced design",
+      "revId": "2213b91d25225ce41414f478088ec30dac695e33",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    }
+  ]
+}
