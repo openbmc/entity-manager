@@ -88,8 +88,22 @@ void linkMux(const std::string& muxName, size_t busIndex, size_t address,
     for (std::size_t channelIndex = 0; channelIndex < channelNames.size();
          channelIndex++)
     {
-        const std::string* channelName =
-            channelNames[channelIndex].get_ptr<const std::string*>();
+        const std::string* channelName;
+        const nlohmann::json slotObj = channelNames[channelIndex];
+        if (slotObj.type() == nlohmann::json::value_t::string)
+        {
+            channelName = slotObj.get_ptr<const std::string*>();
+        }
+        else if ((slotObj.type() == nlohmann::json::value_t::object) &&
+                 (slotObj.find("SlotName") != slotObj.end()))
+        {
+            channelName = slotObj["SlotName"].get_ptr<const std::string*>();
+        }
+        else
+        {
+            continue;
+        }
+
         if (channelName == nullptr)
         {
             continue;
