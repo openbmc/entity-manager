@@ -85,9 +85,9 @@ inline void logDeviceAdded(const nlohmann::json& record)
     auto findAsset =
         record.find("xyz.openbmc_project.Inventory.Decorator.Asset");
 
-    std::string model = "Unkown";
+    std::string model = "Unknown";
     std::string type = "Unknown";
-    std::string sn = "Unkown";
+    std::string sn = "Unknown";
 
     if (findType != record.end())
     {
@@ -131,9 +131,9 @@ inline void logDeviceRemoved(const nlohmann::json& record)
     auto findAsset =
         record.find("xyz.openbmc_project.Inventory.Decorator.Asset");
 
-    std::string model = "Unkown";
+    std::string model = "Unknown";
     std::string type = "Unknown";
-    std::string sn = "Unkown";
+    std::string sn = "Unknown";
 
     if (findType != record.end())
     {
