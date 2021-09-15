@@ -1845,7 +1845,7 @@ void propertiesChangedCallback(nlohmann::json& systemConfiguration,
 
                 io.post([count, newConfiguration, &systemConfiguration,
                          &objServer]() {
-                    loadOverlays(newConfiguration);
+                    loadOverlays(newConfiguration, objServer);
 
                     io.post([&systemConfiguration]() {
                         if (!writeJsonFiles(systemConfiguration))
