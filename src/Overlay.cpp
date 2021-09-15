@@ -50,6 +50,10 @@ boost::container::flat_map<std::string, uint64_t> slotToBusMap;
 // Map for bus number to slot name
 boost::container::flat_map<uint64_t, std::string> busToSlotMap;
 
+constexpr const char* slotPathPrefix = "/xyz/openbmc_project/inventory/";
+constexpr const char* slotTypePrefix =
+    "xyz.openbmc_project.Inventory.Item.PCIeSlot.SlotTypes.";
+
 // helper function to make json types into string
 std::string jsonToString(const nlohmann::json& in)
 {
@@ -69,7 +73,8 @@ std::string jsonToString(const nlohmann::json& in)
 }
 
 void linkMux(const std::string& muxName, size_t busIndex, size_t address,
-             const nlohmann::json::array_t& channelNames)
+             const nlohmann::json::array_t& channelNames,
+             sdbusplus::asio::object_server& objServer)
 {
     std::error_code ec;
     std::filesystem::path muxSymlinkDirPath(muxSymlinkDir);
@@ -89,6 +94,8 @@ void linkMux(const std::string& muxName, size_t busIndex, size_t address,
          channelIndex++)
     {
         const std::string* channelName;
+        std::string slotTypeName = "Unknown";
+
         const nlohmann::json slotObj = channelNames[channelIndex];
         if (slotObj.type() == nlohmann::json::value_t::string)
         {
@@ -98,6 +105,10 @@ void linkMux(const std::string& muxName, size_t busIndex, size_t address,
                  (slotObj.find("SlotName") != slotObj.end()))
         {
             channelName = slotObj["SlotName"].get_ptr<const std::string*>();
+            if (slotObj.find("SlotType") != slotObj.end())
+            {
+                slotTypeName = slotObj["SlotType"];
+            }
         }
         else
         {
@@ -136,6 +147,20 @@ void linkMux(const std::string& muxName, size_t busIndex, size_t address,
             slotToBusMap[*channelName] = chNum;
             busToSlotMap[chNum] = *channelName;
         }
+
+        std::string dbusPath = slotPathPrefix + *channelName;
+        std::shared_ptr<sdbusplus::asio::dbus_interface> slotIface;
+        slotIface = objServer.add_interface(
+            dbusPath, "xyz.openbmc_project.Inventory.Item.PCIeSlot");
+
+        if (slotTypeName != "U_2" || slotTypeName != "M_2")
+        {
+            slotTypeName = "Unknown";
+        }
+        std::string slotType = slotTypePrefix + slotTypeName;
+        slotIface->register_property("SlotType", slotType);
+
+        slotIface->initialize();
 
         std::filesystem::create_symlink(fp, link, ec);
         if (ec)
@@ -305,7 +330,8 @@ static int buildDevice(const std::string& devicePath,
 
 void exportDevice(const std::string& type,
                   const devices::ExportTemplate& exportTemplate,
-                  const nlohmann::json& configuration)
+                  const nlohmann::json& configuration,
+                  sdbusplus::asio::object_server& objServer)
 {
 
     std::string parameters = exportTemplate.parameters;
@@ -383,11 +409,12 @@ void exportDevice(const std::string& type,
     if (!err && boost::ends_with(type, "Mux") && bus && address && channels)
     {
         linkMux(name, static_cast<size_t>(*bus), static_cast<size_t>(*address),
-                *channels);
+                *channels, objServer);
     }
 }
 
-bool loadOverlays(const nlohmann::json& systemConfiguration)
+bool loadOverlays(const nlohmann::json& systemConfiguration,
+                  sdbusplus::asio::object_server& objServer)
 {
     std::filesystem::create_directory(outputDir);
     for (auto entity = systemConfiguration.begin();
@@ -418,7 +445,7 @@ bool loadOverlays(const nlohmann::json& systemConfiguration)
             auto device = devices::exportTemplates.find(type.c_str());
             if (device != devices::exportTemplates.end())
             {
-                exportDevice(type, device->second, configuration);
+                exportDevice(type, device->second, configuration, objServer);
                 continue;
             }
 

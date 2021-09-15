@@ -17,6 +17,7 @@
 
 #pragma once
 #include <nlohmann/json.hpp>
+#include <sdbusplus/asio/object_server.hpp>
 
 void unloadAllOverlays(void);
-bool loadOverlays(const nlohmann::json& systemConfiguration);
+bool loadOverlays(const nlohmann::json& systemConfiguration, sdbusplus::asio::object_server& objServer);
