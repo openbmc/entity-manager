@@ -104,7 +104,7 @@ bool verifyOffset(const std::vector<uint8_t>& fruBytes, fruAreas currentArea,
 std::pair<DecodeState, std::string>
     decodeFRUData(std::vector<uint8_t>::const_iterator& iter,
                   const std::vector<uint8_t>::const_iterator& end,
-                  bool isLangEng);
+                  bool isLangEng, bool isCtmField);
 
 bool checkLangEng(uint8_t lang);
 
