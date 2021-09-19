@@ -72,7 +72,7 @@ enum FRUDataEncoding
 std::pair<DecodeState, std::string>
     decodeFRUData(std::vector<uint8_t>::const_iterator& iter,
                   const std::vector<uint8_t>::const_iterator& end,
-                  bool isLangEng)
+                  bool isLangEng, bool isCtmField)
 {
     std::string value;
     unsigned int i;
@@ -87,7 +87,7 @@ std::pair<DecodeState, std::string>
     uint8_t c = *(iter++);
 
     /* 0xc1 is the end marker */
-    if (c == 0xc1)
+    if ((c == 0xc1) && (isCtmField))
     {
         return make_pair(DecodeState::end, value);
     }
@@ -392,7 +392,7 @@ resCodes formatFRU(const std::vector<uint8_t>& fruBytes,
         do
         {
             auto res =
-                decodeFRUData(fruBytesIter, fruBytesIterEndArea, isLangEng);
+                decodeFRUData(fruBytesIter, fruBytesIterEndArea, isLangEng, !(fieldIndex < fruAreaFieldNames->size()));
             state = res.first;
             std::string value = res.second;
             std::string name;
