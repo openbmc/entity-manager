@@ -46,6 +46,30 @@
       "revId": "b0321dc42429dc4d033c614a91c4b41e9be07163",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "6583829b_bc00cde5",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 3
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 1000879
+      },
+      "writtenOn": "2021-09-20T13:37:01Z",
+      "side": 1,
+      "message": "The field can\u0027t have len of 1 byte if it use \"8-bits ASCII\" charset (this is defined in chapter 13, exactly same as you reference to):\n\n\u003e 11 - Interpretation depends on Language Codes. 11b indicates 8-bit ASCII + Latin 1 (see below) if the Language Code is English for the area or record containing the field, or 2-byte UNICODE (least significant byte first) if the Language Code is not English. At least two bytes of data must be present when this type is used. Therefore, the length (number of data bytes) will always be \u003e1 if data is present, 0 if data is not present.\n\nSo this mean that the FRU record is invalid and should be fixed. To detect this kind of errors there is a check for \"Non-zero byte after EndOfFields in FRU area\" (see line 446).",
+      "parentUuid": "690c815a_7b5d1415",
+      "range": {
+        "startLine": 7,
+        "startChar": 5,
+        "endLine": 7,
+        "endChar": 65
+      },
+      "revId": "b0321dc42429dc4d033c614a91c4b41e9be07163",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
     }
   ]
 }
