@@ -22,6 +22,30 @@
       "revId": "b0321dc42429dc4d033c614a91c4b41e9be07163",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "690c815a_7b5d1415",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 3
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 1001198
+      },
+      "writtenOn": "2021-09-20T13:18:25Z",
+      "side": 1,
+      "message": "As defined in chapter 13 - Type/Length byte format of FRU specification, 2 bits 7:6 are used to indicate \"type code\" and 5 bits 5:0 are used to indicate the \"number of data byte\". In the predefined fields, if the \"type code\" is 11b (8-bits ASCII) and the \"number of data byte\" is 1, the value of this byte is 0xC1. But the 0xC1 value is equal to the \"End of fields\" byte. Therefore, if the software only checks the value of the \"type/length byte\" to indicate \"no more info field\" is the wrong action.\n\nFor example: in the Board Information Area, if the \"Board Part Number\" field has 1 byte of data and the \"code type\" is 11b then the value of Board Part Number type/length byte is 0xC1. In this case, the software made a mistake when detects this byte is \"End of fields\" and returns DecodeState::end. But the truth is Board Information Area has other fields which did not be scanned.\n\nMy solution is checking this field is a \"Custom field\" or not, if this is a \"Custom field\" and the type/length byte is 0xC1, the software shall return DecodeState::end to detect \"no more info field\".",
+      "parentUuid": "ad969ca4_794f3077",
+      "range": {
+        "startLine": 7,
+        "startChar": 5,
+        "endLine": 7,
+        "endChar": 65
+      },
+      "revId": "b0321dc42429dc4d033c614a91c4b41e9be07163",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
     }
   ]
 }
