@@ -15,14 +15,14 @@
                 "ILimitMax": 0.0,
                 "ILimitMin": 0.0,
                 "Inputs": [
-                    "PSU$ADDRESS % 4 + 1 Fan Speed 1"
+                    "$MUX PSU$ADDRESS % 4 + 1 Fan Speed 1"
                 ],
-                "Name": "PSU$ADDRESS % 4 + 1 Fan 1",
+                "Name": "$MUX PSU$ADDRESS % 4 + 1 Fan 1",
                 "NegativeHysteresis": 2.0,
                 "OutLimitMax": 100.0,
                 "OutLimitMin": 30.0,
                 "Outputs": [
-                    "Pwm PSU$ADDRESS % 4 + 1 Fan 1"
+                    "Pwm $MUX PSU$ADDRESS % 4 + 1 Fan 1"
                 ],
                 "PCoefficient": 0.0,
                 "PositiveHysteresis": 0.0,
@@ -30,7 +30,7 @@
                 "SlewPos": 0.0,
                 "Type": "Pid",
                 "Zones": [
-                    "PSU"
+                    "$MUX PSU"
                 ]
             },
             {
@@ -41,14 +41,14 @@
                 "ILimitMax": 0.0,
                 "ILimitMin": 0.0,
                 "Inputs": [
-                    "PSU$ADDRESS % 4 + 1 Fan Speed 2"
+                    "$MUX PSU$ADDRESS % 4 + 1 Fan Speed 2"
                 ],
-                "Name": "PSU$ADDRESS % 4 + 1 Fan 2",
+                "Name": "$MUX PSU$ADDRESS % 4 + 1 Fan 2",
                 "NegativeHysteresis": 2.0,
                 "OutLimitMax": 100.0,
                 "OutLimitMin": 30.0,
                 "Outputs": [
-                    "Pwm PSU$ADDRESS % 4 + 1 Fan 2"
+                    "Pwm $MUX PSU$ADDRESS % 4 + 1 Fan 2"
                 ],
                 "PCoefficient": 0.0,
                 "PositiveHysteresis": 0.0,
@@ -56,7 +56,7 @@
                 "SlewPos": 0.0,
                 "Type": "Pid",
                 "Zones": [
-                    "PSU"
+                    "$MUX PSU"
                 ]
             },
             {
@@ -67,9 +67,9 @@
                 "ILimitMax": 100,
                 "ILimitMin": 30,
                 "Inputs": [
-                    "PSU$ADDRESS % 4 + 1 Temperature"
+                    "$MUX PSU$ADDRESS % 4 + 1 Temperature"
                 ],
-                "Name": "PSU$ADDRESS % 4 + 1 Temperature",
+                "Name": "$MUX PSU$ADDRESS % 4 + 1 Temperature",
                 "NegativeHysteresis": 5.0,
                 "OutLimitMax": 100,
                 "OutLimitMin": 30,
@@ -81,15 +81,15 @@
                 "SlewPos": 0.0,
                 "Type": "Pid",
                 "Zones": [
-                    "PSU"
+                    "$MUX PSU"
                 ]
             },
             {
                 "Class": "Floor",
                 "Inputs": [
-                    "PSU$ADDRESS % 4 + 1 Temperature"
+                    "$MUX PSU$ADDRESS % 4 + 1 Temperature"
                 ],
-                "Name": "PSU$ADDRESS % 4 + 1 LCC",
+                "Name": "$MUX PSU$ADDRESS % 4 + 1 LCC",
                 "NegativeHysteresis": 2,
                 "Output": [
                     40.0,
@@ -102,8 +102,14 @@
                 ],
                 "Type": "Stepwise",
                 "Zones": [
-                    "PSU"
+                    "$MUX PSU"
                 ]
+            },
+            {
+                "FailSafePercent": 100,
+                "MinThermalOutput": 30,
+                "Name": "$MUX PSU",
+                "Type": "Pid.Zone"
             },
             {
                 "Address": "$ADDRESS % 4 + 88",
@@ -118,8 +124,8 @@
                     "fan1",
                     "fan2"
                 ],
-                "Name": "PSU$ADDRESS % 4 + 1",
-                "Name1": "PSU$ADDRESS % 4 + 1",
+                "Name": "$MUX PSU$ADDRESS % 4 + 1",
+                "Name1": "$MUX PSU$ADDRESS % 4 + 1",
                 "Thresholds": [
                     {
                         "Direction": "greater than",
@@ -167,7 +173,7 @@
                 "Type": "pmbus"
             }
         ],
-        "Name": "SOLUM CO IS162F22 PSU$ADDRESS % 4 + 1",
+        "Name": "$MUX SOLUM CO IS162F22 $ADDRESS % 4 + 1",
         "Probe": "xyz.openbmc_project.FruDevice({'PRODUCT_PRODUCT_NAME': 'IS162F22*'})",
         "Type": "PowerSupply",
         "xyz.openbmc_project.Inventory.Decorator.Asset": {
