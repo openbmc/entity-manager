@@ -25,6 +25,7 @@
 #include <boost/algorithm/string/predicate.hpp>
 #include <boost/algorithm/string/replace.hpp>
 #include <boost/algorithm/string/split.hpp>
+#include <boost/algorithm/string/trim_all.hpp>
 #include <boost/container/flat_map.hpp>
 #include <boost/lexical_cast.hpp>
 #include <sdbusplus/bus/match.hpp>
@@ -238,6 +239,7 @@ std::optional<std::string>
     {
         boost::replace_all(*strPtr, *replaceStr, std::to_string(index));
     }
+    boost::trim_all(*strPtr);
 
     for (auto& [propName, propValue] : interface)
     {
