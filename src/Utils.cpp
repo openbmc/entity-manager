@@ -24,6 +24,7 @@
 #include <boost/algorithm/string/predicate.hpp>
 #include <boost/algorithm/string/replace.hpp>
 #include <boost/algorithm/string/split.hpp>
+#include <boost/algorithm/string/trim_all.hpp>
 #include <boost/container/flat_map.hpp>
 #include <boost/lexical_cast.hpp>
 #include <sdbusplus/bus/match.hpp>
@@ -242,6 +243,7 @@ std::optional<std::string> templateCharReplace(
         boost::replace_all(*strPtr, *replaceStr,
                            std::to_string(foundDeviceIdx));
     }
+    boost::trim_all(*strPtr);
 
     for (auto& foundDevicePair : foundDevice)
     {
@@ -270,6 +272,7 @@ std::optional<std::string> templateCharReplace(
                                              foundDevicePair.second);
                 boost::ireplace_all(*strPtr,
                                     templateChar + foundDevicePair.first, val);
+                boost::trim_all(*strPtr);
                 continue;
             }
 
