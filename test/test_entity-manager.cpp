@@ -74,6 +74,47 @@ TEST(TemplateCharReplace, replaceLastStr)
     EXPECT_EQ(expected, j["foo"]);
 }
 
+TEST(TemplateCharReplace, replaceEmptyStr)
+{
+    nlohmann::json j = {{"foo", "the Test $TEST"}};
+    auto it = j.begin();
+    boost::container::flat_map<std::string, BasicVariantType> data;
+    data["TEST"] = "";
+
+    templateCharReplace(it, data, 0);
+
+    nlohmann::json expected = "the Test";
+    EXPECT_EQ(expected, j["foo"]);
+}
+
+TEST(TemplateCharReplace, replaceTwoEmptyStr)
+{
+    nlohmann::json j = {{"foo", "the Test $TEST $TEST2 end"}};
+    auto it = j.begin();
+    boost::container::flat_map<std::string, BasicVariantType> data;
+    data["TEST"] = "one";
+    data["TEST2"] = "two";
+
+    templateCharReplace(it, data, 0);
+
+    nlohmann::json expected = "the Test one two end";
+    EXPECT_EQ(expected, j["foo"]);
+}
+
+TEST(TemplateCharReplace, replaceTwoEmptyStr)
+{
+    nlohmann::json j = {{"foo", "the Test $TEST $EMPTY end"}};
+    auto it = j.begin();
+    boost::container::flat_map<std::string, BasicVariantType> data;
+    data["TEST"] = "one";
+    data["EMPTY"] = "";
+
+    templateCharReplace(it, data, 0);
+
+    nlohmann::json expected = "the Test one end";
+    EXPECT_EQ(expected, j["foo"]);
+}
+
 TEST(TemplateCharReplace, increment)
 {
     nlohmann::json j = {{"foo", "3 plus 1 equals $TEST + 1"}};

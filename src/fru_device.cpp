@@ -165,6 +165,31 @@ static bool isMuxBus(size_t bus)
         "/sys/bus/i2c/devices/i2c-" + std::to_string(bus) + "/mux_device"));
 }
 
+static std::optional<std::string> getMuxBusChannelName(size_t bus)
+{
+    if (!fs::exists("/dev/i2c-mux"))
+    {
+        return std::nullopt;
+    }
+
+    auto ec = std::error_code();
+    auto devName = "i2c-" + std::to_string(bus);
+    for (auto& mux : fs::recursive_directory_iterator("/dev/i2c-mux"))
+    {
+        auto channel = std::filesystem::read_symlink(mux, ec);
+        if (ec)
+        {
+            continue;
+        }
+
+        if (devName == channel.filename())
+        {
+            return mux.path().filename();
+        }
+    }
+    return std::nullopt;
+}
+
 static void makeProbeInterface(size_t bus, size_t address,
                                sdbusplus::asio::object_server& objServer)
 {
@@ -737,7 +762,7 @@ void addFruObjectToDbus(
     std::shared_ptr<sdbusplus::asio::dbus_interface> iface =
         objServer.add_interface(productName, "xyz.openbmc_project.FruDevice");
     dbusInterfaceMap[std::pair<size_t, size_t>(bus, address)] = iface;
-
+    auto muxChannel = getMuxBusChannelName(bus);
     for (auto& property : formattedFRU)
     {
 
@@ -790,6 +815,7 @@ void addFruObjectToDbus(
     // baseboard will be 0, 0
     iface->register_property("BUS", bus);
     iface->register_property("ADDRESS", address);
+    iface->register_property("CHAN_NAME", muxChannel.value_or("root"));
 
     iface->initialize();
 }
