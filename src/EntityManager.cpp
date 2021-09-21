@@ -51,6 +51,8 @@ constexpr const int32_t maxMapperDepth = 0;
 
 constexpr const bool debug = false;
 
+extern boost::container::flat_map<uint64_t, std::string> busToSlotMap;
+
 struct CmpStr
 {
     bool operator()(const char* a, const char* b) const
@@ -986,6 +988,32 @@ void postToDbus(const nlohmann::json& newConfiguration,
             createInterface(objServer, boardName,
                             "xyz.openbmc_project.Inventory.Item." + boardType,
                             boardKeyOrig);
+
+        // Find if bus is defined for this card.
+        auto findCardBus = boardValues.find("Bus");
+        if (findCardBus != boardValues.end() &&
+            findCardBus->type() != nlohmann::json::value_t::string)
+        {
+            auto cardBus = findCardBus->get<const uint64_t>();
+            // Find if there is any slot map available for this bus
+            if (busToSlotMap.find(cardBus) != busToSlotMap.end())
+            {
+                std::string slotName = busToSlotMap[cardBus];
+                std::filesystem::path p("/xyz/openbmc_project/inventory/" +
+                                        slotName);
+
+                // Associate this card to a slot
+                std::vector<std::tuple<std::string, std::string, std::string>>
+                    associations;
+                std::string objPath(p.parent_path().string());
+                associations.emplace_back("pcie_slots", "chassis", objPath);
+                std::shared_ptr<sdbusplus::asio::dbus_interface> association;
+                association = objServer.add_interface(
+                    boardName, "xyz.openbmc_project.Association.Definitions");
+                association->register_property("Associations", associations);
+                association->initialize();
+            }
+        }
 
         createAddObjectMethod(jsonPointerPath, boardName, systemConfiguration,
                               objServer, boardKeyOrig);
