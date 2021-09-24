@@ -84,6 +84,24 @@
     },
     {
       "key": {
+        "uuid": "f200890a_fd23553b",
+        "filename": "src/Overlay.cpp",
+        "patchSetId": 3
+      },
+      "lineNbr": 156,
+      "author": {
+        "id": 1000879
+      },
+      "writtenOn": "2021-09-24T09:18:15Z",
+      "side": 1,
+      "message": "On our system we also have normal PCIe slots (FullLength) and OCP3 slots (don\u0027t actually know small or large). I would definitely want to describe them too. Lets add all variants, provided by the interface from beginning.",
+      "parentUuid": "77a85158_a77319b0",
+      "revId": "d0ff946f86f0e5b6fce4b7c381c41919909e933d",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "83f2db5e_c78ebf02",
         "filename": "src/Overlay.cpp",
         "patchSetId": 3
@@ -95,6 +113,30 @@
       "writtenOn": "2021-09-21T11:13:37Z",
       "side": 1,
       "message": "Are we initializing even if slotTypeName is \"Unknown\"?",
+      "range": {
+        "startLine": 163,
+        "startChar": 8,
+        "endLine": 163,
+        "endChar": 32
+      },
+      "revId": "d0ff946f86f0e5b6fce4b7c381c41919909e933d",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "a20101de_319c4e28",
+        "filename": "src/Overlay.cpp",
+        "patchSetId": 3
+      },
+      "lineNbr": 163,
+      "author": {
+        "id": 1000879
+      },
+      "writtenOn": "2021-09-24T09:18:15Z",
+      "side": 1,
+      "message": "We definitely should initialize the interface if type is unknown: it is still slot, even we don\u0027t  know about its type.",
+      "parentUuid": "83f2db5e_c78ebf02",
       "range": {
         "startLine": 163,
         "startChar": 8,
