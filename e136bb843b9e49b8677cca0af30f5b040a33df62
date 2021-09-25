@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "0177de18_f03cd7c7",
+        "filename": "include/Utils.hpp",
+        "patchSetId": 13
+      },
+      "lineNbr": 194,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2021-09-25T17:56:31Z",
+      "side": 1,
+      "message": "Ignore, looks like the latest patchset moves this code.  Ideally you should move code in a separate commit from the code making functional changes.",
+      "parentUuid": "b4e54b05_6ff53e42",
+      "range": {
+        "startLine": 168,
+        "startChar": 0,
+        "endLine": 194,
+        "endChar": 1
+      },
+      "revId": "e136bb843b9e49b8677cca0af30f5b040a33df62",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "39db0abf_7a765f36",
         "filename": "meson_options.txt",
         "patchSetId": 13
@@ -36,6 +60,30 @@
       "writtenOn": "2021-09-25T17:55:24Z",
       "side": 1,
       "message": "Why does this need to be an option?  Would we ever want to not expose the topology?",
+      "range": {
+        "startLine": 9,
+        "startChar": 0,
+        "endLine": 12,
+        "endChar": 1
+      },
+      "revId": "e136bb843b9e49b8677cca0af30f5b040a33df62",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "210436cc_5fc61831",
+        "filename": "meson_options.txt",
+        "patchSetId": 13
+      },
+      "lineNbr": 12,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2021-09-25T17:56:31Z",
+      "side": 1,
+      "message": "Ignore.  Looks like the option was removed.",
+      "parentUuid": "39db0abf_7a765f36",
       "range": {
         "startLine": 9,
         "startChar": 0,
