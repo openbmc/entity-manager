@@ -1,0 +1,159 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "2a0b7f5a_e276a2ec",
+        "filename": "src/EntityManager.cpp",
+        "patchSetId": 19
+      },
+      "lineNbr": 1101,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2021-09-25T17:55:24Z",
+      "side": 1,
+      "message": "What is an I2cConnector?  I don\u0027t think that terminology is allowed in the schema.  Ideally we shouldn\u0027t be hardcoding this kind of thing at all.",
+      "range": {
+        "startLine": 1101,
+        "startChar": 28,
+        "endLine": 1101,
+        "endChar": 42
+      },
+      "revId": "fe96e55ab0c2b635161a91806e9127151b28bfca",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "cd146677_279ed1dd",
+        "filename": "src/EntityManager.cpp",
+        "patchSetId": 19
+      },
+      "lineNbr": 1102,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2021-09-25T17:55:24Z",
+      "side": 1,
+      "message": "Please use get_if to avoid a second type check.  Also, please use the unsigned visitor pattern we have elsewhere.",
+      "range": {
+        "startLine": 1102,
+        "startChar": 16,
+        "endLine": 1102,
+        "endChar": 74
+      },
+      "revId": "fe96e55ab0c2b635161a91806e9127151b28bfca",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "ec392087_d1389060",
+        "filename": "src/EntityManager.cpp",
+        "patchSetId": 19
+      },
+      "lineNbr": 1196,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2021-09-25T17:55:24Z",
+      "side": 1,
+      "message": "This is adding almost 200 lines to a function that is already too long.  Please break it up in a logical way, abstracting things as neeeded.",
+      "revId": "fe96e55ab0c2b635161a91806e9127151b28bfca",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "35a6dc02_04eb5922",
+        "filename": "src/EntityManager.cpp",
+        "patchSetId": 19
+      },
+      "lineNbr": 1204,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2021-09-25T17:55:24Z",
+      "side": 1,
+      "message": "Why uint32_t?",
+      "range": {
+        "startLine": 1204,
+        "startChar": 8,
+        "endLine": 1204,
+        "endChar": 16
+      },
+      "revId": "fe96e55ab0c2b635161a91806e9127151b28bfca",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "47dff251_55d52119",
+        "filename": "src/EntityManager.cpp",
+        "patchSetId": 19
+      },
+      "lineNbr": 1343,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2021-09-25T17:55:24Z",
+      "side": 1,
+      "message": "Is this new interface documented?",
+      "range": {
+        "startLine": 1343,
+        "startChar": 29,
+        "endLine": 1343,
+        "endChar": 72
+      },
+      "revId": "fe96e55ab0c2b635161a91806e9127151b28bfca",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "181d54ee_56491b66",
+        "filename": "src/EntityManager.cpp",
+        "patchSetId": 19
+      },
+      "lineNbr": 1351,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2021-09-25T17:55:24Z",
+      "side": 1,
+      "message": "Why are we hardcoding this type?  This whole set of checks seems out of place.",
+      "range": {
+        "startLine": 1351,
+        "startChar": 0,
+        "endLine": 1351,
+        "endChar": 77
+      },
+      "revId": "fe96e55ab0c2b635161a91806e9127151b28bfca",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "c0fd2fc4_039bf407",
+        "filename": "src/EntityManager.cpp",
+        "patchSetId": 19
+      },
+      "lineNbr": 1370,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2021-09-25T17:55:24Z",
+      "side": 1,
+      "message": "This should be done as part of the entity config file if needed.",
+      "range": {
+        "startLine": 1370,
+        "startChar": 8,
+        "endLine": 1370,
+        "endChar": 70
+      },
+      "revId": "fe96e55ab0c2b635161a91806e9127151b28bfca",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    }
+  ]
+}
