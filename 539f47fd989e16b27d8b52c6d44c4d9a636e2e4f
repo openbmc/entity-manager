@@ -2,6 +2,52 @@
   "comments": [
     {
       "key": {
+        "uuid": "ce07ae4e_15ac5dc3",
+        "filename": "src/EntityManager.cpp",
+        "patchSetId": 5
+      },
+      "lineNbr": 93,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2021-09-25T18:04:51Z",
+      "side": 1,
+      "message": "I\u0027m not following how this is expected to work.  Socket is the name of the socket type;  I\u0027m not really understanding why we would need this hardcoded map in entity-manager.",
+      "range": {
+        "startLine": 92,
+        "startChar": 0,
+        "endLine": 93,
+        "endChar": 30
+      },
+      "revId": "539f47fd989e16b27d8b52c6d44c4d9a636e2e4f",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "7bfc7086_6bb5252c",
+        "filename": "src/EntityManager.cpp",
+        "patchSetId": 5
+      },
+      "lineNbr": 100,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2021-09-25T18:04:51Z",
+      "side": 1,
+      "message": "not all systems support smbios;  This should be based on dbus interfaces.",
+      "range": {
+        "startLine": 100,
+        "startChar": 60,
+        "endLine": 100,
+        "endChar": 78
+      },
+      "revId": "539f47fd989e16b27d8b52c6d44c4d9a636e2e4f",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "643982d4_e6e9063b",
         "filename": "src/EntityManager.cpp",
         "patchSetId": 5
@@ -18,6 +64,76 @@
         "startChar": 0,
         "endLine": 101,
         "endChar": 72
+      },
+      "revId": "539f47fd989e16b27d8b52c6d44c4d9a636e2e4f",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "8ca834ec_39054aaa",
+        "filename": "src/EntityManager.cpp",
+        "patchSetId": 5
+      },
+      "lineNbr": 101,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2021-09-25T18:04:51Z",
+      "side": 1,
+      "message": "+1.  Generally we\u0027d make these kinds of things std::array, and use std::algorithms to search them, which takes up less memory at runtime.",
+      "parentUuid": "643982d4_e6e9063b",
+      "range": {
+        "startLine": 101,
+        "startChar": 0,
+        "endLine": 101,
+        "endChar": 72
+      },
+      "revId": "539f47fd989e16b27d8b52c6d44c4d9a636e2e4f",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "e67ce89c_644609b3",
+        "filename": "src/EntityManager.cpp",
+        "patchSetId": 5
+      },
+      "lineNbr": 202,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2021-09-25T18:04:51Z",
+      "side": 1,
+      "message": "This also isn\u0027t an error.",
+      "range": {
+        "startLine": 202,
+        "startChar": 0,
+        "endLine": 202,
+        "endChar": 65
+      },
+      "revId": "539f47fd989e16b27d8b52c6d44c4d9a636e2e4f",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "5c4eca89_8f9e215b",
+        "filename": "src/EntityManager.cpp",
+        "patchSetId": 5
+      },
+      "lineNbr": 219,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2021-09-25T18:04:51Z",
+      "side": 1,
+      "message": "This isn\u0027t an error.  it just means there weren\u0027t any probe interfaces.",
+      "range": {
+        "startLine": 219,
+        "startChar": 20,
+        "endLine": 219,
+        "endChar": 53
       },
       "revId": "539f47fd989e16b27d8b52c6d44c4d9a636e2e4f",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
@@ -59,6 +175,30 @@
       "writtenOn": "2021-09-21T11:39:53Z",
       "side": 1,
       "message": "Why cannot we use ec?",
+      "range": {
+        "startLine": 230,
+        "startChar": 67,
+        "endLine": 230,
+        "endChar": 70
+      },
+      "revId": "539f47fd989e16b27d8b52c6d44c4d9a636e2e4f",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "ef0ce262_1ee3f6b9",
+        "filename": "src/EntityManager.cpp",
+        "patchSetId": 5
+      },
+      "lineNbr": 230,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2021-09-25T18:04:51Z",
+      "side": 1,
+      "message": "-wshadow",
+      "parentUuid": "bfadad7a_7485732c",
       "range": {
         "startLine": 230,
         "startChar": 67,
@@ -134,6 +274,46 @@
         "endLine": 247,
         "endChar": 39
       },
+      "revId": "539f47fd989e16b27d8b52c6d44c4d9a636e2e4f",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "a9124438_5e3dff0f",
+        "filename": "src/EntityManager.cpp",
+        "patchSetId": 5
+      },
+      "lineNbr": 1087,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2021-09-25T18:04:51Z",
+      "side": 1,
+      "message": "I\u0027m not following this code.  Wont this result in the boardAssocTable getting rebuilt for every device on a plug/remove?  That doesn\u0027t seem right.",
+      "range": {
+        "startLine": 1086,
+        "startChar": 0,
+        "endLine": 1087,
+        "endChar": 32
+      },
+      "revId": "539f47fd989e16b27d8b52c6d44c4d9a636e2e4f",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "ffde3e9b_1190877e",
+        "filename": "src/EntityManager.cpp",
+        "patchSetId": 5
+      },
+      "lineNbr": 1235,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2021-09-25T18:04:51Z",
+      "side": 1,
+      "message": "nit: no need for extra whitespace changes.",
       "revId": "539f47fd989e16b27d8b52c6d44c4d9a636e2e4f",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
       "unresolved": true
