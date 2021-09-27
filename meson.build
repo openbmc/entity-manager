@@ -4,10 +4,11 @@ project(
     default_options: [
         'warning_level=3',
         'werror=true',
-        'cpp_std=c++17'
+        'cpp_std=c++20'
     ],
     license: 'Apache-2.0',
     version: '0.1',
+    meson_version: '>=0.57.0',
 )
 add_project_arguments('-Wno-psabi', language: 'cpp')
 
@@ -59,6 +60,11 @@ packagedir = join_paths(
     get_option('datadir'),
     meson.project_name(),
 )
+sysconfdir = join_paths(
+    get_option('prefix'),
+    get_option('sysconfdir'),
+    meson.project_name(),
+)
 threads = dependency('threads')
 if cpp.has_header('valijson/validator.hpp')
     valijson = declare_dependency()
@@ -80,6 +86,7 @@ configs = [
     'A2UX8X4RISER.json',
     'ACBELL_RICA_PSU.json',
     'ASRock_E3C246D4I.json',
+    'Bletchley.json',
     'Blyth.json',
     'AHW1UM2RISER.json',
     'ASPOWER_U1A-D10550_PSU.json',
@@ -110,6 +117,7 @@ configs = [
     'Intel Front Panel.json',
     'Kudo_BMC.json',
     'Kudo_Motherboard.json',
+    'Mt_Jade.json',
     'Nisqually.json',
     'NVME P4000.json',
     'PCIE SSD Retimer.json',
@@ -124,6 +132,7 @@ configs = [
     'R2000 Chassis.json',
     'SAS Module.json',
     'SOLUM_PSSF162202_PSU.json',
+    'Storm King.json',
     'STP Baseboard.json',
     'STP P4000 Chassis.json',
     'Tyan_S7106_Baseboard.json',
@@ -168,6 +177,7 @@ subdir('src')
 
 if not build_tests.disabled()
     test_boost_args = boost_args + ['-DBOOST_ASIO_DISABLE_THREADS']
+    test_boost_args = test_boost_args + ['-DPACKAGE_DIR="' + packagedir + '/"']
     gtest = dependency('gtest', main: true, disabler: true, required: false)
     if not gtest.found() and build_tests.enabled()
         cmake = import('cmake')
@@ -202,10 +212,16 @@ if not build_tests.disabled()
             'test_fru_utils',
             'test/test_fru-utils.cpp',
             'src/FruUtils.cpp',
+            'src/FruDevice.cpp',
+            'src/Utils.cpp',
             cpp_args: test_boost_args,
             dependencies: [
                 boost,
                 gtest,
+                i2c,
+                nlohmann_json,
+                sdbusplus,
+                valijson,
             ],
             implicit_include_directories: false,
             include_directories: 'include',
