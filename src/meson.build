@@ -23,10 +23,11 @@ if get_option('fru-device')
         cpp_args_fd = cpp_args_fd + ['-DENABLE_FRU_AREA_RESIZE']
     endif
     executable(
-        'fru-device',
+        'fru-device', 
+        'FruDeviceMain.cpp',
         'FruDevice.cpp',
-        'Utils.cpp',
         'FruUtils.cpp',
+        'Utils.cpp',
         cpp_args: cpp_args_fd,
         dependencies: [
             boost,
