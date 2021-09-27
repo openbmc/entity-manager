@@ -177,6 +177,7 @@ subdir('src')
 
 if not build_tests.disabled()
     test_boost_args = boost_args + ['-DBOOST_ASIO_DISABLE_THREADS']
+    test_boost_args = test_boost_args + ['-DPACKAGE_DIR="' + packagedir + '/"']
     gtest = dependency('gtest', main: true, disabler: true, required: false)
     if not gtest.found() and build_tests.enabled()
         cmake = import('cmake')
@@ -211,10 +212,16 @@ if not build_tests.disabled()
             'test_fru_utils',
             'test/test_fru-utils.cpp',
             'src/FruUtils.cpp',
+            'src/FruDevice.cpp',
+            'src/Utils.cpp',
             cpp_args: test_boost_args,
             dependencies: [
                 boost,
                 gtest,
+                i2c,
+                nlohmann_json,
+                sdbusplus,
+                valijson,
             ],
             implicit_include_directories: false,
             include_directories: 'include',
