@@ -1,4 +1,18 @@
 #include "FruUtils.hpp"
+#include "FruDevice.hpp"
+#include "Utils.hpp"
+
+#include <fcntl.h>
+#include <sys/inotify.h>
+#include <sys/ioctl.h>
+
+#include <boost/algorithm/string/predicate.hpp>
+#include <boost/asio/deadline_timer.hpp>
+#include <boost/asio/io_service.hpp>
+#include <boost/container/flat_map.hpp>
+#include <nlohmann/json.hpp>
+#include <sdbusplus/asio/connection.hpp>
+#include <sdbusplus/asio/object_server.hpp>
 
 #include <array>
 
@@ -7,8 +21,15 @@
 extern "C"
 {
 // Include for I2C_SMBUS_BLOCK_MAX
+#include <i2c/smbus.h>
+#include <linux/i2c-dev.h>
 #include <linux/i2c.h>
 }
+
+boost::asio::io_service io;
+
+bool powerIsOn = false;
+BusMap busMap;
 
 TEST(ValidateHeaderTest, InvalidFruVersionReturnsFalse)
 {
