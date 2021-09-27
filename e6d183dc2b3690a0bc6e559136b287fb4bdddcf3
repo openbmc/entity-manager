@@ -1,0 +1,165 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "c0e8154f_08c5c444",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 4
+      },
+      "lineNbr": 11,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2021-09-27T18:03:06Z",
+      "side": 1,
+      "message": "50/72 please.",
+      "range": {
+        "startLine": 9,
+        "startChar": 1,
+        "endLine": 11,
+        "endChar": 37
+      },
+      "revId": "e6d183dc2b3690a0bc6e559136b287fb4bdddcf3",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "7add2483_963fb44b",
+        "filename": "include/FruDevice.hpp",
+        "patchSetId": 4
+      },
+      "lineNbr": 29,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2021-09-27T18:03:06Z",
+      "side": 1,
+      "message": "Please don\u0027t extern variables like this.  Rearrange the definitions and headers such that they\u0027re not required.",
+      "range": {
+        "startLine": 26,
+        "startChar": 0,
+        "endLine": 29,
+        "endChar": 0
+      },
+      "revId": "e6d183dc2b3690a0bc6e559136b287fb4bdddcf3",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "5ca885de_bf5b995b",
+        "filename": "include/FruUtils.hpp",
+        "patchSetId": 4
+      },
+      "lineNbr": 30,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2021-09-27T18:03:06Z",
+      "side": 1,
+      "message": "I\u0027m not sure I\u0027m comfortable with the number of things we\u0027re pulling into FruUtils here.  FruUtils is largely supposed to be inoccuous IPMI-FRU manipulation routines, this looks like we\u0027re pulling in a number of dbus things.  I suspect we need two Utils things, FruUtils, and FruDbusUtils?",
+      "range": {
+        "startLine": 24,
+        "startChar": 0,
+        "endLine": 30,
+        "endChar": 43
+      },
+      "revId": "e6d183dc2b3690a0bc6e559136b287fb4bdddcf3",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "56d86e1d_83d8337c",
+        "filename": "include/FruUtils.hpp",
+        "patchSetId": 4
+      },
+      "lineNbr": 58,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2021-09-27T18:03:06Z",
+      "side": 1,
+      "message": "Please don\u0027t extern variables like this.  Rearrange your code and headers such that it\u0027s not required.",
+      "range": {
+        "startLine": 58,
+        "startChar": 0,
+        "endLine": 58,
+        "endChar": 36
+      },
+      "revId": "e6d183dc2b3690a0bc6e559136b287fb4bdddcf3",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "6007118b_1b66a24a",
+        "filename": "include/FruUtils.hpp",
+        "patchSetId": 4
+      },
+      "lineNbr": 68,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2021-09-27T18:03:06Z",
+      "side": 1,
+      "message": "These didn\u0027t exist in the old code, so please move to a separate patch for refactoring, and when you do, please use something that can be constexpr (generally const char[]).",
+      "range": {
+        "startLine": 63,
+        "startChar": 0,
+        "endLine": 68,
+        "endChar": 78
+      },
+      "revId": "e6d183dc2b3690a0bc6e559136b287fb4bdddcf3",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "f951955a_c53f881b",
+        "filename": "src/FruUtils.cpp",
+        "patchSetId": 4
+      },
+      "lineNbr": 1084,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2021-09-27T18:03:06Z",
+      "side": 1,
+      "message": "This code looks like it was modified from the old version..... Doing this in a single commit makes the code very.....very hard to review.  Please move the code in one commit, then refactor in another.  I know this change is innocuous, but I\u0027m not sure what other changes you\u0027ve made now.",
+      "range": {
+        "startLine": 1084,
+        "startChar": 0,
+        "endLine": 1084,
+        "endChar": 46
+      },
+      "revId": "e6d183dc2b3690a0bc6e559136b287fb4bdddcf3",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "e72ee122_563a8f3c",
+        "filename": "test/test_fru-utils.cpp",
+        "patchSetId": 4
+      },
+      "lineNbr": 16,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2021-09-27T18:03:06Z",
+      "side": 1,
+      "message": "Considering this file didn\u0027t change (except for the addition of io_service) we shouldn\u0027t need to add 14 new includes.  Please do a scrub of this and only include what this file uses.",
+      "range": {
+        "startLine": 9,
+        "startChar": 0,
+        "endLine": 16,
+        "endChar": 0
+      },
+      "revId": "e6d183dc2b3690a0bc6e559136b287fb4bdddcf3",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    }
+  ]
+}
