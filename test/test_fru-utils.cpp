@@ -7,8 +7,15 @@
 extern "C"
 {
 // Include for I2C_SMBUS_BLOCK_MAX
+#include <i2c/smbus.h>
+#include <linux/i2c-dev.h>
 #include <linux/i2c.h>
 }
+
+boost::asio::io_service io;
+
+bool powerIsOn = false;
+BusMap busMap;
 
 TEST(ValidateHeaderTest, InvalidFruVersionReturnsFalse)
 {
