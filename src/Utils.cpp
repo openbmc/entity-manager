@@ -373,9 +373,14 @@ std::optional<std::string> templateCharReplace(
             }
             keyPair.value() = result;
 
-            // We probably just invalidated the pointer above, so set it to null
+            // We probably just invalidated the pointer above, reset it
             strPtr = nullptr;
             break;
+            /* strPtr = keyPair.value().get_ptr<std::string*>();
+            if (strPtr == nullptr)
+            {
+                break;
+            }*/
         }
     }
 
