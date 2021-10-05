@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "51dfa825_05d7d40a",
+        "filename": "src/EntityManager.cpp",
+        "patchSetId": 5
+      },
+      "lineNbr": 52,
+      "author": {
+        "id": 1000632
+      },
+      "writtenOn": "2021-10-05T23:32:05Z",
+      "side": 1,
+      "message": "will refactor",
+      "parentUuid": "2b4d8fbe_9d003645",
+      "range": {
+        "startLine": 52,
+        "startChar": 0,
+        "endLine": 52,
+        "endChar": 37
+      },
+      "revId": "9349ab1219d1e83ffe3b100e53c3a09a78781a69",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "5de315ac_e00c8709",
         "filename": "src/EntityManager.cpp",
         "patchSetId": 5
@@ -36,6 +60,30 @@
       "writtenOn": "2021-09-25T17:49:03Z",
       "side": 1,
       "message": "You\u0027ve changed the interface of this method call, so anyone using it will now break (similar to if you\u0027d changed a library).  Have you gone through and updated all the code that calls this?",
+      "range": {
+        "startLine": 2187,
+        "startChar": 52,
+        "endLine": 2187,
+        "endChar": 63
+      },
+      "revId": "9349ab1219d1e83ffe3b100e53c3a09a78781a69",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "f3711cab_9f99e5c0",
+        "filename": "src/EntityManager.cpp",
+        "patchSetId": 5
+      },
+      "lineNbr": 2187,
+      "author": {
+        "id": 1000632
+      },
+      "writtenOn": "2021-10-05T23:32:05Z",
+      "side": 1,
+      "message": "I do not know any other codes use the method. I was wondering may be add a compiling flag here. So that this change will not block other users.\n\nThe objective of this change is to publish the motherboard among entities, so that cpu and memory objects created by smbios-mdr can be associated with the motherboard. Now it is derive the motherboard from i2c topology. An more straightforward way is to hardcode the motherboard with a property xyz.openbmc.Inventory.Item.Chassis.RackMount https://github.com/openbmc/phosphor-dbus-interfaces/blob/master/yaml/xyz/openbmc_project/Inventory/Item/Chassis.interface.yaml#L28  Let me your suggestions.",
+      "parentUuid": "5de315ac_e00c8709",
       "range": {
         "startLine": 2187,
         "startChar": 52,
