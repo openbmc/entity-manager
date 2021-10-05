@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "fb61b7c3_75ec7c8a",
+        "filename": "src/EntityManager.cpp",
+        "patchSetId": 19
+      },
+      "lineNbr": 1101,
+      "author": {
+        "id": 1000632
+      },
+      "writtenOn": "2021-10-05T23:22:04Z",
+      "side": 1,
+      "message": "It describe a generic connector with I2C bus number pass-through. It can be PCIE slots or proprietary slots. I2C bus pass through the connector and then can be detected on another entity. Witch such info, we can associate entities",
+      "parentUuid": "2a0b7f5a_e276a2ec",
+      "range": {
+        "startLine": 1101,
+        "startChar": 28,
+        "endLine": 1101,
+        "endChar": 42
+      },
+      "revId": "fe96e55ab0c2b635161a91806e9127151b28bfca",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "cd146677_279ed1dd",
         "filename": "src/EntityManager.cpp",
         "patchSetId": 19
@@ -65,6 +89,24 @@
     },
     {
       "key": {
+        "uuid": "62fe9555_7c9f1cd8",
+        "filename": "src/EntityManager.cpp",
+        "patchSetId": 19
+      },
+      "lineNbr": 1196,
+      "author": {
+        "id": 1000632
+      },
+      "writtenOn": "2021-10-05T23:22:04Z",
+      "side": 1,
+      "message": "will do.",
+      "parentUuid": "ec392087_d1389060",
+      "revId": "fe96e55ab0c2b635161a91806e9127151b28bfca",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "35a6dc02_04eb5922",
         "filename": "src/EntityManager.cpp",
         "patchSetId": 19
@@ -88,6 +130,30 @@
     },
     {
       "key": {
+        "uuid": "9d4018e4_a3a5fb04",
+        "filename": "src/EntityManager.cpp",
+        "patchSetId": 19
+      },
+      "lineNbr": 1204,
+      "author": {
+        "id": 1000632
+      },
+      "writtenOn": "2021-10-05T23:22:04Z",
+      "side": 1,
+      "message": "this number is just to label the entities and connectors. Can be any unsigned type.",
+      "parentUuid": "35a6dc02_04eb5922",
+      "range": {
+        "startLine": 1204,
+        "startChar": 8,
+        "endLine": 1204,
+        "endChar": 16
+      },
+      "revId": "fe96e55ab0c2b635161a91806e9127151b28bfca",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "47dff251_55d52119",
         "filename": "src/EntityManager.cpp",
         "patchSetId": 19
@@ -99,6 +165,30 @@
       "writtenOn": "2021-09-25T17:55:24Z",
       "side": 1,
       "message": "Is this new interface documented?",
+      "range": {
+        "startLine": 1343,
+        "startChar": 29,
+        "endLine": 1343,
+        "endChar": 72
+      },
+      "revId": "fe96e55ab0c2b635161a91806e9127151b28bfca",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "afaa842d_8d99c532",
+        "filename": "src/EntityManager.cpp",
+        "patchSetId": 19
+      },
+      "lineNbr": 1343,
+      "author": {
+        "id": 1000632
+      },
+      "writtenOn": "2021-10-05T23:22:04Z",
+      "side": 1,
+      "message": "yes. https://gerrit.openbmc-project.xyz/c/openbmc/phosphor-dbus-interfaces/+/46806",
+      "parentUuid": "47dff251_55d52119",
       "range": {
         "startLine": 1343,
         "startChar": 29,
@@ -134,6 +224,30 @@
     },
     {
       "key": {
+        "uuid": "c708b169_b6811e1e",
+        "filename": "src/EntityManager.cpp",
+        "patchSetId": 19
+      },
+      "lineNbr": 1351,
+      "author": {
+        "id": 1000632
+      },
+      "writtenOn": "2021-10-05T23:22:04Z",
+      "side": 1,
+      "message": "we want to expose the association to bmcweb. since board type in bmc is represented by Chassis Schema. So use contains and containedby ObjectMapper Association forward and reverse type.",
+      "parentUuid": "181d54ee_56491b66",
+      "range": {
+        "startLine": 1351,
+        "startChar": 0,
+        "endLine": 1351,
+        "endChar": 77
+      },
+      "revId": "fe96e55ab0c2b635161a91806e9127151b28bfca",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "c0fd2fc4_039bf407",
         "filename": "src/EntityManager.cpp",
         "patchSetId": 19
@@ -145,6 +259,30 @@
       "writtenOn": "2021-09-25T17:55:24Z",
       "side": 1,
       "message": "This should be done as part of the entity config file if needed.",
+      "range": {
+        "startLine": 1370,
+        "startChar": 8,
+        "endLine": 1370,
+        "endChar": 70
+      },
+      "revId": "fe96e55ab0c2b635161a91806e9127151b28bfca",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "d3cf6ef5_59629b6d",
+        "filename": "src/EntityManager.cpp",
+        "patchSetId": 19
+      },
+      "lineNbr": 1370,
+      "author": {
+        "id": 1000632
+      },
+      "writtenOn": "2021-10-05T23:22:04Z",
+      "side": 1,
+      "message": "Here our use case is to use the silkscreen name of connector as the LocationCode of connected entities. For example when a drive installed on a PCIe slots with silkscreen name \"PE0\" of motherboard, we want the LocationCode of the drive is \"PE0\". Also such connection can be dynamic so that can not be hardcoded in the entity config. I agree that this is not needed by all users. Might add a compiling flag here?",
+      "parentUuid": "c0fd2fc4_039bf407",
       "range": {
         "startLine": 1370,
         "startChar": 8,
