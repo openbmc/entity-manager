@@ -169,7 +169,7 @@ TEST(TemplateCharReplace, twoReplacements)
 
 TEST(TemplateCharReplace, twoReplacementsWithMath)
 {
-    nlohmann::json j = {{"foo", "4 / 2 equals $TEST / 2 $BAR"}};
+    nlohmann::json j = {{"foo", "4 / 2 sensor $TEST / 2 $BAR"}};
     auto it = j.begin();
     boost::container::flat_map<std::string, BasicVariantType> data;
     data["TEST"] = 4;
@@ -177,7 +177,7 @@ TEST(TemplateCharReplace, twoReplacementsWithMath)
 
     templateCharReplace(it, data, 0);
 
-    nlohmann::json expected = "4 / 2 equals 2 bar";
+    nlohmann::json expected = "4 / 2 sensor 2 bar";
     EXPECT_EQ(expected, j["foo"]);
 }
 
@@ -198,6 +198,28 @@ TEST(TemplateCharReplace, hexAndWrongCase)
     nlohmann::json expected = {{"Address", 84},
                                {"Bus", 15},
                                {"Name", "15 sensor 0"},
+                               {"Type", "SomeType"}};
+    EXPECT_EQ(expected, j);
+}
+
+TEST(TemplateCharReplace, twoReplacementsWithMath2)
+{
+    nlohmann::json j = {{"Address", "$address"},
+                        {"Bus", "$bus"},
+                        {"Name", "sensor $ADDRESS % 4 + 1 $BUS % 4"},
+                        {"Type", "SomeType"}};
+
+    boost::container::flat_map<std::string, BasicVariantType> data;
+    data["ADDRESS"] = 0x54;
+    data["BUS"] = 15;
+
+    for (auto it = j.begin(); it != j.end(); it++)
+    {
+        templateCharReplace(it, data, 0);
+    }
+    nlohmann::json expected = {{"Address", 84},
+                               {"Bus", 15},
+                               {"Name", "sensor 1 3"},
                                {"Type", "SomeType"}};
     EXPECT_EQ(expected, j);
 }
