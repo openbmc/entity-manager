@@ -178,6 +178,19 @@ TEST(TemplateCharReplace, twoReplacementsWithMath)
     templateCharReplace(it, data, 0);
 
     nlohmann::json expected = "4 / 2 equals 2 bar";
+}
+
+TEST(TemplateCharReplace, twoReplacementsWithMath2)
+{
+    nlohmann::json j = {{"foo", "4 / 2 equals $ADDRESS / 2 $BAR"}};
+    auto it = j.begin();
+    boost::container::flat_map<std::string, BasicVariantType> data;
+    data["ADDRESS"] = 4;
+    data["BAR"] = std::string("bar");
+
+    templateCharReplace(it, data, 0);
+
+    nlohmann::json expected = "4 / 2 equals 2 bar";
     EXPECT_EQ(expected, j["foo"]);
 }
 
