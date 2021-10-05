@@ -183,12 +183,13 @@ TEST(TemplateCharReplace, twoReplacementsWithMath)
 
 TEST(TemplateCharReplace, hexAndWrongCase)
 {
-    nlohmann::json j = {{"Address", "0x54"},
-                        {"Bus", 15},
-                        {"Name", "$bus sensor 0"},
+    nlohmann::json j = {{"Address", "$address"},
+                        {"Bus", "$bus"},
+                        {"Name", "sensor $ADDRESS % 4 + 1 $BUS"},
                         {"Type", "SomeType"}};
 
     boost::container::flat_map<std::string, BasicVariantType> data;
+    data["ADDRESS"] = 0x54;
     data["BUS"] = 15;
 
     for (auto it = j.begin(); it != j.end(); it++)
@@ -197,7 +198,7 @@ TEST(TemplateCharReplace, hexAndWrongCase)
     }
     nlohmann::json expected = {{"Address", 84},
                                {"Bus", 15},
-                               {"Name", "15 sensor 0"},
+                               {"Name", "sensor 1 15"},
                                {"Type", "SomeType"}};
     EXPECT_EQ(expected, j);
 }
