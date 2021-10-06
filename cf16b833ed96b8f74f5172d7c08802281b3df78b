@@ -2,6 +2,29 @@
   "comments": [
     {
       "key": {
+        "uuid": "37804350_b02e8269",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 4
+      },
+      "lineNbr": 14,
+      "author": {
+        "id": 1000632
+      },
+      "writtenOn": "2021-10-06T00:54:55Z",
+      "side": 1,
+      "message": "add your entity config as an example and dbus interface/porperty",
+      "range": {
+        "startLine": 12,
+        "startChar": 0,
+        "endLine": 14,
+        "endChar": 44
+      },
+      "revId": "cf16b833ed96b8f74f5172d7c08802281b3df78b",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "37c1ed37_b57fcb5c",
         "filename": "src/Overlay.cpp",
         "patchSetId": 4
@@ -46,6 +69,29 @@
       "revId": "cf16b833ed96b8f74f5172d7c08802281b3df78b",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9abdd3f2_951228c9",
+        "filename": "src/Overlay.cpp",
+        "patchSetId": 4
+      },
+      "lineNbr": 159,
+      "author": {
+        "id": 1000632
+      },
+      "writtenOn": "2021-10-06T00:54:55Z",
+      "side": 1,
+      "message": "To be consistent with entity manager code, the object path of slots exposed by an entity config should have the prefix of entity dbus object path.\n\nI also suggest to create the dbus objects in EntityManager.cpp.",
+      "range": {
+        "startLine": 159,
+        "startChar": 12,
+        "endLine": 159,
+        "endChar": 20
+      },
+      "revId": "cf16b833ed96b8f74f5172d7c08802281b3df78b",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
     }
   ]
 }
