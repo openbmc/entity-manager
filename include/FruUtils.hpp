@@ -126,6 +126,23 @@ unsigned int updateFRUAreaLenAndChecksum(std::vector<uint8_t>& fruData,
 
 ssize_t getFieldLength(uint8_t fruFieldTypeLenValue);
 
+/// \brief Find a FRU header.
+/// \param flag the flag required for raw i2c
+/// \param file the open file handle
+/// \param address the i2c device address
+/// \param readBlock a read method
+/// \param errorHelp and a helper string for failures
+/// \param blockData buffer to return the last read block
+/// \param baseOffset the offset to start the search at;
+///        set to 0 to perform search;
+///        returns the offset at which a header was found
+/// \return whether a header was found
+bool findFRUHeader(int flag, int file, uint16_t address,
+                   const ReadBlockFunc& readBlock,
+                   const std::string& errorHelp,
+                   std::array<uint8_t, I2C_SMBUS_BLOCK_MAX>& blockData,
+                   uint16_t& baseOffset);
+
 /// \brief Read and validate FRU contents.
 /// \param flag the flag required for raw i2c
 /// \param file the open file handle

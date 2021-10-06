@@ -586,26 +586,77 @@ bool validateHeader(const std::array<uint8_t, I2C_SMBUS_BLOCK_MAX>& blockData)
     return true;
 }
 
+// Checks if array a starts with the contents of array b.
+template<class T, std::size_t N, std::size_t M>
+bool arrayStartsWith(const std::array<T, N> a, const std::array<T, M> b) {
+    if (a.size() < b.size())
+    {
+        return false;
+    }
+
+    for (auto itA = a.begin(), itB = b.begin();
+         itA != a.end() && itB != b.end();
+         itA++, itB++)
+    {
+        if (*itA != *itB)
+        {
+            return false;
+        }
+    }
+
+    return true;
+}
+
+bool findFRUHeader(int flag, int file, uint16_t address,
+                   const ReadBlockFunc& readBlock,
+                   const std::string& errorHelp,
+                   std::array<uint8_t, I2C_SMBUS_BLOCK_MAX>& blockData,
+                   uint16_t& baseOffset)
+{
+    if (readBlock(flag, file, address, baseOffset, 0x8, blockData.data()) < 0)
+    {
+        std::cerr << "failed to read " << errorHelp << " base offset "
+            << baseOffset << "\n";
+        return false;
+    }
+
+    // check the header checksum
+    if (validateHeader(blockData))
+    {
+        return true;
+    }
+
+    // Only continue the search if we just looked at 0x0.
+    if (baseOffset != 0) {
+        return false;
+    }
+
+    // check for special cases where the IPMI data is at an offset
+    const std::array<uint8_t, 6> tyanHeader = {'$', 'T', 'Y', 'A', 'N', '$'};
+    if (arrayStartsWith(blockData, tyanHeader)) {
+        baseOffset = 0x6000;
+        return findFRUHeader(flag, file, address, readBlock, errorHelp,
+            blockData, baseOffset);
+    }
+
+    if (debug)
+    {
+        std::cerr << "Illegal header " << errorHelp << " base offset "
+            << baseOffset << "\n";
+    }
+
+    return false;
+}
+
 std::vector<uint8_t> readFRUContents(int flag, int file, uint16_t address,
                                      const ReadBlockFunc& readBlock,
                                      const std::string& errorHelp)
 {
     std::array<uint8_t, I2C_SMBUS_BLOCK_MAX> blockData;
+    uint16_t baseOffset = 0x0;
 
-    if (readBlock(flag, file, address, 0x0, 0x8, blockData.data()) < 0)
-    {
-        std::cerr << "failed to read " << errorHelp << "\n";
-        return {};
-    }
-
-    // check the header checksum
-    if (!validateHeader(blockData))
-    {
-        if (debug)
-        {
-            std::cerr << "Illegal header " << errorHelp << "\n";
-        }
-
+    if (!findFRUHeader(flag, file, address, readBlock, errorHelp,
+            blockData, baseOffset)) {
         return {};
     }
 
@@ -648,10 +699,12 @@ std::vector<uint8_t> readFRUContents(int flag, int file, uint16_t address,
 
         areaOffset *= fruBlockSize;
 
-        if (readBlock(flag, file, address, static_cast<uint16_t>(areaOffset),
+        if (readBlock(flag, file, address,
+                      baseOffset + static_cast<uint16_t>(areaOffset),
                       0x2, blockData.data()) < 0)
         {
-            std::cerr << "failed to read " << errorHelp << "\n";
+            std::cerr << "failed to read " << errorHelp << " base offset "
+                << baseOffset << "\n";
             return {};
         }
 
@@ -679,10 +732,11 @@ std::vector<uint8_t> readFRUContents(int flag, int file, uint16_t address,
             // In multi-area, the area offset points to the 0th record, each
             // record has 3 bytes of the header we care about.
             if (readBlock(flag, file, address,
-                          static_cast<uint16_t>(areaOffset), 0x3,
+                          baseOffset + static_cast<uint16_t>(areaOffset), 0x3,
                           blockData.data()) < 0)
             {
-                std::cerr << "failed to read " << errorHelp << "\n";
+                std::cerr << "failed to read " << errorHelp << " base offset "
+                    << baseOffset << "\n";
                 return {};
             }
 
@@ -710,11 +764,13 @@ std::vector<uint8_t> readFRUContents(int flag, int file, uint16_t address,
         size_t requestLength =
             std::min(static_cast<size_t>(I2C_SMBUS_BLOCK_MAX), fruLength);
 
-        if (readBlock(flag, file, address, static_cast<uint16_t>(readOffset),
+        if (readBlock(flag, file, address,
+                      baseOffset + static_cast<uint16_t>(readOffset),
                       static_cast<uint8_t>(requestLength),
                       blockData.data()) < 0)
         {
-            std::cerr << "failed to read " << errorHelp << "\n";
+            std::cerr << "failed to read " << errorHelp << " base offset "
+                << baseOffset << "\n";
             return {};
         }
 
