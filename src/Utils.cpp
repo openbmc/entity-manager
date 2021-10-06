@@ -309,7 +309,7 @@ std::optional<std::string> templateCharReplace(
                     {
                         constant = std::stoi(*it);
                     }
-                    catch (std::invalid_argument&)
+                    catch (const std::invalid_argument&)
                     {
                         std::cerr << "Parameter not supported for templates "
                                   << *it << "\n";
@@ -397,9 +397,9 @@ std::optional<std::string> templateCharReplace(
                 keyPair.value() = static_cast<uint64_t>(temp);
             }
         }
-        catch (std::invalid_argument&)
+        catch (const std::invalid_argument&)
         {}
-        catch (std::out_of_range&)
+        catch (const std::out_of_range&)
         {}
     }
     // non-hex numbers
@@ -410,7 +410,7 @@ std::optional<std::string> templateCharReplace(
             uint64_t temp = boost::lexical_cast<uint64_t>(*strPtr);
             keyPair.value() = temp;
         }
-        catch (boost::bad_lexical_cast&)
+        catch (const boost::bad_lexical_cast&)
         {}
     }
     return ret;

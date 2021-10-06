@@ -1074,7 +1074,7 @@ bool updateFRUProperty(
         fruData = getFRUInfo(static_cast<uint8_t>(bus),
                              static_cast<uint8_t>(address));
     }
-    catch (std::invalid_argument& e)
+    catch (const std::invalid_argument& e)
     {
         std::cerr << "Failure getting FRU Info" << e.what() << "\n";
         return false;
