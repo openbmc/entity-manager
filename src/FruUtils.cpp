@@ -586,26 +586,61 @@ bool validateHeader(const std::array<uint8_t, I2C_SMBUS_BLOCK_MAX>& blockData)
     return true;
 }
 
+bool findFRUHeader(int flag, int file, uint16_t address,
+                   const ReadBlockFunc& readBlock,
+                   const std::string& errorHelp,
+                   std::array<uint8_t, I2C_SMBUS_BLOCK_MAX>& blockData,
+                   uint16_t& baseOffset)
+{
+    if (readBlock(flag, file, address, baseOffset, 0x8, blockData.data()) < 0)
+    {
+        std::cerr << "failed to read " << errorHelp << " base offset "
+            << baseOffset << "\n";
+        return false;
+    }
+
+    // check the header checksum
+    if (validateHeader(blockData))
+    {
+        return true;
+    }
+
+    // only continue the search if we just looked at 0x0.
+    if (baseOffset != 0) {
+        return false;
+    }
+
+    // now check for special cases where the IPMI data is at an offset
+
+    // check if blockData starts with tyanHeader
+    const std::vector<uint8_t> tyanHeader = {'$', 'T', 'Y', 'A', 'N', '$'};
+    if (blockData.size() >= tyanHeader.size() &&
+        std::equal(tyanHeader.begin(), tyanHeader.end(), blockData.begin()))
+    {
+        // look for the FRU header at offset 0x6000
+        baseOffset = 0x6000;
+        return findFRUHeader(flag, file, address, readBlock, errorHelp,
+            blockData, baseOffset);
+    }
+
+    if (debug)
+    {
+        std::cerr << "Illegal header " << errorHelp << " base offset "
+            << baseOffset << "\n";
+    }
+
+    return false;
+}
+
 std::vector<uint8_t> readFRUContents(int flag, int file, uint16_t address,
                                      const ReadBlockFunc& readBlock,
                                      const std::string& errorHelp)
 {
     std::array<uint8_t, I2C_SMBUS_BLOCK_MAX> blockData;
+    uint16_t baseOffset = 0x0;
 
-    if (readBlock(flag, file, address, 0x0, 0x8, blockData.data()) < 0)
-    {
-        std::cerr << "failed to read " << errorHelp << "\n";
-        return {};
-    }
-
-    // check the header checksum
-    if (!validateHeader(blockData))
-    {
-        if (debug)
-        {
-            std::cerr << "Illegal header " << errorHelp << "\n";
-        }
-
+    if (!findFRUHeader(flag, file, address, readBlock, errorHelp,
+            blockData, baseOffset)) {
         return {};
     }
 
@@ -648,10 +683,12 @@ std::vector<uint8_t> readFRUContents(int flag, int file, uint16_t address,
 
         areaOffset *= fruBlockSize;
 
-        if (readBlock(flag, file, address, static_cast<uint16_t>(areaOffset),
+        if (readBlock(flag, file, address,
+                      baseOffset + static_cast<uint16_t>(areaOffset),
                       0x2, blockData.data()) < 0)
         {
-            std::cerr << "failed to read " << errorHelp << "\n";
+            std::cerr << "failed to read " << errorHelp << " base offset "
+                << baseOffset << "\n";
             return {};
         }
 
@@ -679,10 +716,11 @@ std::vector<uint8_t> readFRUContents(int flag, int file, uint16_t address,
             // In multi-area, the area offset points to the 0th record, each
             // record has 3 bytes of the header we care about.
             if (readBlock(flag, file, address,
-                          static_cast<uint16_t>(areaOffset), 0x3,
+                          baseOffset + static_cast<uint16_t>(areaOffset), 0x3,
                           blockData.data()) < 0)
             {
-                std::cerr << "failed to read " << errorHelp << "\n";
+                std::cerr << "failed to read " << errorHelp << " base offset "
+                    << baseOffset << "\n";
                 return {};
             }
 
@@ -710,11 +748,13 @@ std::vector<uint8_t> readFRUContents(int flag, int file, uint16_t address,
         size_t requestLength =
             std::min(static_cast<size_t>(I2C_SMBUS_BLOCK_MAX), fruLength);
 
-        if (readBlock(flag, file, address, static_cast<uint16_t>(readOffset),
+        if (readBlock(flag, file, address,
+                      baseOffset + static_cast<uint16_t>(readOffset),
                       static_cast<uint8_t>(requestLength),
                       blockData.data()) < 0)
         {
-            std::cerr << "failed to read " << errorHelp << "\n";
+            std::cerr << "failed to read " << errorHelp << " base offset "
+                << baseOffset << "\n";
             return {};
         }
 
