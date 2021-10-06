@@ -2,6 +2,29 @@
   "comments": [
     {
       "key": {
+        "uuid": "3a26f587_fa592482",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 5
+      },
+      "lineNbr": 11,
+      "author": {
+        "id": 1000879
+      },
+      "writtenOn": "2021-10-06T10:22:12Z",
+      "side": 1,
+      "message": "Why do you want to create this associations in EM? Why not from smbios daemon?\n\n@Ed, correct me, if I\u0027m wrong, but AFAIK EM supposed to be an generic configuration manager, which just expose hardware config to be used by reactors and initialize some drivers. Creating associations to 3rd-party daemons looks to be out of scope of EM and complicates it\u0027s logic.\n\nAnyway, it should not be CPU/DIMM specific - at least it should be configurable from JSON configuration.\n\nKeep in mind, EM already overburdened with dbus communication which makes system not responsible on some huge configuration updates, like BMC booting up and host powering - adding some new scans to EM will not make EM more responsible...",
+      "range": {
+        "startLine": 7,
+        "startChar": 0,
+        "endLine": 11,
+        "endChar": 26
+      },
+      "revId": "539f47fd989e16b27d8b52c6d44c4d9a636e2e4f",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "ce07ae4e_15ac5dc3",
         "filename": "src/EntityManager.cpp",
         "patchSetId": 5
