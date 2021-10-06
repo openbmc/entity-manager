@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "a02f06f0_e931a430",
+        "filename": "src/FruUtils.cpp",
+        "patchSetId": 1
+      },
+      "lineNbr": 609,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2021-10-06T20:33:09Z",
+      "side": 1,
+      "message": "If we used std::span for these, don\u0027t the default overloads for \u003d\u003d work to our favor and render this code unneeded?",
+      "range": {
+        "startLine": 589,
+        "startChar": 0,
+        "endLine": 609,
+        "endChar": 0
+      },
+      "revId": "63148b812d0f937a31f9f44838be577c75dfc56e",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "714e84c3_8a5f0b6e",
+        "filename": "test/test_fru-utils.cpp",
+        "patchSetId": 1
+      },
+      "lineNbr": 150,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2021-10-06T20:33:09Z",
+      "side": 1,
+      "message": "[[maybe_unused]] here please because.... something something, iso compliance 😊",
+      "range": {
+        "startLine": 150,
+        "startChar": 13,
+        "endLine": 150,
+        "endChar": 36
+      },
+      "revId": "63148b812d0f937a31f9f44838be577c75dfc56e",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    }
+  ]
+}
