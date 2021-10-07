@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "d4428609_edc53679",
+        "filename": "src/FruUtils.cpp",
+        "patchSetId": 1
+      },
+      "lineNbr": 609,
+      "author": {
+        "id": 1000265
+      },
+      "writtenOn": "2021-10-07T02:16:00Z",
+      "side": 1,
+      "message": "Ah yes, thanks for pointing that out! I should have done a bit more searching here. I forgot about std::equal which *almost* solves this issue. We also need to check for a being longer than b. I removed the code and folded it into findFRUHeader. I think it\u0027s readable \"enough\" like this. If not, we can move it back into an \"arrayStartsWith\" type function.",
+      "parentUuid": "a02f06f0_e931a430",
+      "range": {
+        "startLine": 589,
+        "startChar": 0,
+        "endLine": 609,
+        "endChar": 0
+      },
+      "revId": "63148b812d0f937a31f9f44838be577c75dfc56e",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "714e84c3_8a5f0b6e",
         "filename": "test/test_fru-utils.cpp",
         "patchSetId": 1
@@ -45,6 +69,30 @@
       "revId": "63148b812d0f937a31f9f44838be577c75dfc56e",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "150e1a03_23b7a216",
+        "filename": "test/test_fru-utils.cpp",
+        "patchSetId": 1
+      },
+      "lineNbr": 150,
+      "author": {
+        "id": 1000265
+      },
+      "writtenOn": "2021-10-07T02:16:00Z",
+      "side": 1,
+      "message": "Nice, thank you! I guess I need to learn C++17 ...\n\nFixed.",
+      "parentUuid": "714e84c3_8a5f0b6e",
+      "range": {
+        "startLine": 150,
+        "startChar": 13,
+        "endLine": 150,
+        "endChar": 36
+      },
+      "revId": "63148b812d0f937a31f9f44838be577c75dfc56e",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": false
     }
   ]
 }
