@@ -93,6 +93,30 @@
       "revId": "9349ab1219d1e83ffe3b100e53c3a09a78781a69",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "be0a33fb_7436f7cd",
+        "filename": "src/EntityManager.cpp",
+        "patchSetId": 5
+      },
+      "lineNbr": 2187,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2021-10-07T17:24:26Z",
+      "side": 1,
+      "message": "\u003e I do not know any other codes use the method. I was wondering may be add a compiling flag here. So that this change will not block other users.\n\nThis is a dbus-facing API.....  you can expect that others use it.  If they didn\u0027t, it wouldn\u0027t be here.\n\n\u003e \n\u003e The objective of this change is to publish the motherboard among entities, so that cpu and memory objects created by smbios-mdr can be associated with the motherboard.\n\nI\u0027m not sure why that would be part of the rescan event.  What if the motherboard gets scanned in on the first scan?\n\n\u003e Now it is derive the motherboard from i2c topology. An more straightforward way is to hardcode the motherboard with a property xyz.openbmc.Inventory.Item.Chassis.RackMount https://github.com/openbmc/phosphor-dbus-interfaces/blob/master/yaml/xyz/openbmc_project/Inventory/Item/Chassis.interface.yaml#L28  Let me your suggestions.\n\nI\u0027m not understanding the question.  A phosphor-dbus-interfaces \"Chassis\" is by definition rackmount.  If it were something else, it would have a different API.",
+      "parentUuid": "f3711cab_9f99e5c0",
+      "range": {
+        "startLine": 2187,
+        "startChar": 52,
+        "endLine": 2187,
+        "endChar": 63
+      },
+      "revId": "9349ab1219d1e83ffe3b100e53c3a09a78781a69",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
     }
   ]
 }
