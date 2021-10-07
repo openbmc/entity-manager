@@ -52,6 +52,7 @@ constexpr const int32_t maxMapperDepth = 0;
 constexpr const bool debug = false;
 
 extern boost::container::flat_map<uint64_t, std::string> busToSlotMap;
+extern boost::container::flat_map<std::string, uint64_t> slotToBusMap;
 
 struct CmpStr
 {
@@ -1413,6 +1414,13 @@ void PerformScan::run()
                     emptyProps;
                 emptyInterfaces.emplace(std::string{}, emptyProps);
 
+                boost::container::flat_map<std::string, BasicVariantType>
+                    slotMap;
+                for (auto const& [k, v] : slotToBusMap)
+                {
+                    slotMap[k] = v;
+                }
+
                 for (auto& foundDeviceAndPath : foundDevices)
                 {
                     const boost::container::flat_map<
@@ -1509,6 +1517,13 @@ void PerformScan::run()
 
                             templateCharReplace(keyPair, *allInterfacesOnPath,
                                                 foundDeviceIdx, replaceStr);
+
+                            // Check if slot to bus map available
+                            if (slotMap.begin() != slotMap.end())
+                            {
+                                templateCharReplace(keyPair, slotMap,
+                                                    foundDeviceIdx);
+                            }
 
                             bool isBind =
                                 boost::starts_with(keyPair.key(), "Bind");
