@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "92502435_b380fcfe",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 4
+      },
+      "lineNbr": 14,
+      "author": {
+        "id": 1000271
+      },
+      "writtenOn": "2021-10-07T20:01:36Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "37804350_b02e8269",
+      "range": {
+        "startLine": 12,
+        "startChar": 0,
+        "endLine": 14,
+        "endChar": 44
+      },
+      "revId": "cf16b833ed96b8f74f5172d7c08802281b3df78b",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "37c1ed37_b57fcb5c",
         "filename": "src/Overlay.cpp",
         "patchSetId": 4
@@ -92,6 +116,30 @@
       "revId": "cf16b833ed96b8f74f5172d7c08802281b3df78b",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "4ef0b801_252a300a",
+        "filename": "src/Overlay.cpp",
+        "patchSetId": 4
+      },
+      "lineNbr": 159,
+      "author": {
+        "id": 1000271
+      },
+      "writtenOn": "2021-10-07T20:01:36Z",
+      "side": 1,
+      "message": "all slots are enumerated here so it would be better to create dbus objects here only. And I didn\u0027t understand about prefix in object path. This will be associated with actual cards if any detected.",
+      "parentUuid": "9abdd3f2_951228c9",
+      "range": {
+        "startLine": 159,
+        "startChar": 12,
+        "endLine": 159,
+        "endChar": 20
+      },
+      "revId": "cf16b833ed96b8f74f5172d7c08802281b3df78b",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": false
     }
   ]
 }
