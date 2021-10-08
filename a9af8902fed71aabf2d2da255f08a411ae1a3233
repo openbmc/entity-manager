@@ -1,0 +1,142 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "3df4419c_40baa1e2",
+        "filename": "docs/dynamic_mux.md",
+        "patchSetId": 11
+      },
+      "lineNbr": 72,
+      "author": {
+        "id": 1000559
+      },
+      "writtenOn": "2021-10-08T21:12:45Z",
+      "side": 1,
+      "message": "I understand this is an example. But to wrap my head around the design, I am walking through the config file example below and expect to match the above topology. Please see my question below.",
+      "range": {
+        "startLine": 72,
+        "startChar": 13,
+        "endLine": 72,
+        "endChar": 64
+      },
+      "revId": "a9af8902fed71aabf2d2da255f08a411ae1a3233",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "17f925bc_d87f4def",
+        "filename": "docs/dynamic_mux.md",
+        "patchSetId": 11
+      },
+      "lineNbr": 91,
+      "author": {
+        "id": 1000559
+      },
+      "writtenOn": "2021-10-08T21:12:45Z",
+      "side": 1,
+      "message": "logic bus for this channel is 68",
+      "range": {
+        "startLine": 91,
+        "startChar": 13,
+        "endLine": 91,
+        "endChar": 20
+      },
+      "revId": "a9af8902fed71aabf2d2da255f08a411ae1a3233",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "6776caea_625b49ba",
+        "filename": "docs/dynamic_mux.md",
+        "patchSetId": 11
+      },
+      "lineNbr": 110,
+      "author": {
+        "id": 1000559
+      },
+      "writtenOn": "2021-10-08T21:12:45Z",
+      "side": 1,
+      "message": "This is at 68-0070 in i2c topology. $slot_1 translates to 68",
+      "range": {
+        "startLine": 109,
+        "startChar": 9,
+        "endLine": 110,
+        "endChar": 25
+      },
+      "revId": "a9af8902fed71aabf2d2da255f08a411ae1a3233",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "3cdfcd59_8a609118",
+        "filename": "docs/dynamic_mux.md",
+        "patchSetId": 11
+      },
+      "lineNbr": 114,
+      "author": {
+        "id": 1000559
+      },
+      "writtenOn": "2021-10-08T21:12:45Z",
+      "side": 1,
+      "message": "$slot_1_0 is logic bus 70",
+      "range": {
+        "startLine": 114,
+        "startChar": 12,
+        "endLine": 114,
+        "endChar": 23
+      },
+      "revId": "a9af8902fed71aabf2d2da255f08a411ae1a3233",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "1bf1661d_ab89d45c",
+        "filename": "docs/dynamic_mux.md",
+        "patchSetId": 11
+      },
+      "lineNbr": 134,
+      "author": {
+        "id": 1000559
+      },
+      "writtenOn": "2021-10-08T21:12:45Z",
+      "side": 1,
+      "message": "This should be $Slot_1 according to i2c topology line 59. am I missing anything?",
+      "range": {
+        "startLine": 134,
+        "startChar": 8,
+        "endLine": 134,
+        "endChar": 25
+      },
+      "revId": "a9af8902fed71aabf2d2da255f08a411ae1a3233",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "71fac717_49a1cc41",
+        "filename": "docs/dynamic_mux.md",
+        "patchSetId": 11
+      },
+      "lineNbr": 145,
+      "author": {
+        "id": 1000559
+      },
+      "writtenOn": "2021-10-08T21:12:45Z",
+      "side": 1,
+      "message": "Intuitively, these names would be Slot_1_0 to Slot_1_7. But that would be duplicating line 114-117.\nFrom the code review, I see channel names can not be duplicated. So maybe a different word or pattern can be used?\nSorry to picking on the details, but I think it is important for understanding the design proposal and for the feature to be used correctly by other people.",
+      "range": {
+        "startLine": 138,
+        "startChar": 12,
+        "endLine": 145,
+        "endChar": 22
+      },
+      "revId": "a9af8902fed71aabf2d2da255f08a411ae1a3233",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    }
+  ]
+}
