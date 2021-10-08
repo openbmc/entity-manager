@@ -46,6 +46,30 @@
       "revId": "d94e194fb8b18769fa3bb13c41471c20cbcd0a90",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "d0018e90_9ff8eeb6",
+        "filename": "src/FruUtils.cpp",
+        "patchSetId": 2
+      },
+      "lineNbr": 618,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2021-10-08T17:03:40Z",
+      "side": 1,
+      "message": "The advantage is that you don\u0027t have to rely on the size check, because std::equal\u003cstd::span\u003e already has that check in it, which would let you delete a line of code.\n\nBut again, the code here is clear enough, so it\u0027s fine.  Also, it turns out we don\u0027t have c++20 turned on for this repo yet, so my point is largely moot until that happens.",
+      "parentUuid": "74fa2fde_1da862e1",
+      "range": {
+        "startLine": 618,
+        "startChar": 8,
+        "endLine": 618,
+        "endChar": 18
+      },
+      "revId": "d94e194fb8b18769fa3bb13c41471c20cbcd0a90",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
     }
   ]
 }
