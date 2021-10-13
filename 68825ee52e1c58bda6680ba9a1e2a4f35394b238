@@ -191,6 +191,29 @@
     },
     {
       "key": {
+        "uuid": "48c00f84_5e93cc9e",
+        "filename": "src/Overlay.cpp",
+        "patchSetId": 3
+      },
+      "lineNbr": 343,
+      "author": {
+        "id": 1000559
+      },
+      "writtenOn": "2021-10-13T21:33:03Z",
+      "side": 1,
+      "message": "Is this still needed with this change: https://gerrit.openbmc-project.xyz/c/openbmc/entity-manager/+/47603 ?\nOn second thought, is it because \"nested\" mux, it needs to do the replace template in sort of \"recursive\" manner?",
+      "range": {
+        "startLine": 326,
+        "startChar": 12,
+        "endLine": 343,
+        "endChar": 13
+      },
+      "revId": "68825ee52e1c58bda6680ba9a1e2a4f35394b238",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "88c7b7a2_cffcda32",
         "filename": "src/Overlay.cpp",
         "patchSetId": 3
