@@ -73,6 +73,30 @@
     },
     {
       "key": {
+        "uuid": "aff45671_be1ef35e",
+        "filename": "src/Overlay.cpp",
+        "patchSetId": 3
+      },
+      "lineNbr": 122,
+      "author": {
+        "id": 1000559
+      },
+      "writtenOn": "2021-10-13T21:14:05Z",
+      "side": 1,
+      "message": "\u003cCurrently only unique channel name or slot name supported.\n1. Since the map is global. channelName needs to be unique across all configurations for a system. Please add a log message if duplicated channel name is found to aid debug.\n2. We already have configurations that have identical channel names. Use \"muxName+channelName\" in this map would solve the issue.",
+      "parentUuid": "0d813c5c_844fee61",
+      "range": {
+        "startLine": 122,
+        "startChar": 25,
+        "endLine": 122,
+        "endChar": 37
+      },
+      "revId": "68825ee52e1c58bda6680ba9a1e2a4f35394b238",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "dece9966_7a77d4c6",
         "filename": "src/Overlay.cpp",
         "patchSetId": 3
