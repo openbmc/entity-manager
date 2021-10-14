@@ -97,6 +97,30 @@
     },
     {
       "key": {
+        "uuid": "faf0e4ea_ae3819f5",
+        "filename": "src/Overlay.cpp",
+        "patchSetId": 3
+      },
+      "lineNbr": 122,
+      "author": {
+        "id": 1000271
+      },
+      "writtenOn": "2021-10-14T20:53:27Z",
+      "side": 1,
+      "message": "This can be done by user the way they want so they can provide same reference. This way they don\u0027t need to know what has been prefix into slot name.",
+      "parentUuid": "aff45671_be1ef35e",
+      "range": {
+        "startLine": 122,
+        "startChar": 25,
+        "endLine": 122,
+        "endChar": 37
+      },
+      "revId": "68825ee52e1c58bda6680ba9a1e2a4f35394b238",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "dece9966_7a77d4c6",
         "filename": "src/Overlay.cpp",
         "patchSetId": 3
@@ -202,6 +226,30 @@
       "writtenOn": "2021-10-13T21:33:03Z",
       "side": 1,
       "message": "Is this still needed with this change: https://gerrit.openbmc-project.xyz/c/openbmc/entity-manager/+/47603 ?\nOn second thought, is it because \"nested\" mux, it needs to do the replace template in sort of \"recursive\" manner?",
+      "range": {
+        "startLine": 326,
+        "startChar": 12,
+        "endLine": 343,
+        "endChar": 13
+      },
+      "revId": "68825ee52e1c58bda6680ba9a1e2a4f35394b238",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "37a7eb40_a88464f2",
+        "filename": "src/Overlay.cpp",
+        "patchSetId": 3
+      },
+      "lineNbr": 343,
+      "author": {
+        "id": 1000271
+      },
+      "writtenOn": "2021-10-14T20:53:27Z",
+      "side": 1,
+      "message": "it may take more iteration. So if it has not been replaced by the time it gets called then it will take care of this here rather than delaying.",
+      "parentUuid": "48c00f84_5e93cc9e",
       "range": {
         "startLine": 326,
         "startChar": 12,
