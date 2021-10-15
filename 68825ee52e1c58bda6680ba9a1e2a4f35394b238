@@ -121,6 +121,30 @@
     },
     {
       "key": {
+        "uuid": "bb063b99_52b7d91f",
+        "filename": "src/Overlay.cpp",
+        "patchSetId": 3
+      },
+      "lineNbr": 122,
+      "author": {
+        "id": 1000559
+      },
+      "writtenOn": "2021-10-15T17:18:35Z",
+      "side": 1,
+      "message": "Yes, user can chose to use unique channel names. But if mux name is added here, user will have the flexibility to choose from unique name or simple channel name that clearly describe the channel for all mux, e.g. slot1, slot2 etc.  The symlink names created below can also be much cleaner, eg /dev/i2c-mux/RiserMux/slot1 and /dev/i2c-mux/Riser2Mux/slot1",
+      "parentUuid": "faf0e4ea_ae3819f5",
+      "range": {
+        "startLine": 122,
+        "startChar": 25,
+        "endLine": 122,
+        "endChar": 37
+      },
+      "revId": "68825ee52e1c58bda6680ba9a1e2a4f35394b238",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "dece9966_7a77d4c6",
         "filename": "src/Overlay.cpp",
         "patchSetId": 3
