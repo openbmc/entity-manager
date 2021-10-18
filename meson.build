@@ -72,6 +72,7 @@ else
 endif
 
 install_data('blacklist.json')
+install_data('eeprom16Bitlist.json')
 
 configs = [
     '1Ux16 Riser.json',
