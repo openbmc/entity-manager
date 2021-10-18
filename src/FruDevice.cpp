@@ -64,6 +64,7 @@ constexpr size_t maxEepromPageIndex = 255;
 constexpr size_t busTimeoutSeconds = 5;
 
 constexpr const char* blacklistPath = PACKAGE_DIR "blacklist.json";
+constexpr const char* device16BitlistPath = PACKAGE_DIR "eeprom16Bitlist.json";
 
 const static constexpr char* baseboardFruLocation =
     "/etc/fru/baseboard.fru.bin";
@@ -82,7 +83,12 @@ static boost::container::flat_map<
     std::pair<size_t, size_t>, std::shared_ptr<sdbusplus::asio::dbus_interface>>
     foundDevices;
 
-static boost::container::flat_map<size_t, std::set<size_t>> failedAddresses;
+struct AddressStatus {
+    int is16Bit;
+    size_t rootFail;
+};
+using AddressMap = boost::container::flat_map<size_t, AddressStatus>;
+static boost::container::flat_map<size_t, AddressMap> devAddresses;
 
 boost::asio::io_service io;
 auto systemBus = std::make_shared<sdbusplus::asio::connection>(io);
@@ -366,14 +372,14 @@ int getBusFRUs(int file, int first, int last, int bus,
 
         // Scan for i2c eeproms loaded on this bus.
         std::set<int> skipList = findI2CEeproms(bus, devices);
-        std::set<size_t>& failedItems = failedAddresses[bus];
+        AddressMap& devItems = devAddresses[bus];
 
-        std::set<size_t>* rootFailures = nullptr;
+        AddressMap* rootStatus = nullptr;
         int rootBus = getRootBus(bus);
 
         if (rootBus >= 0)
         {
-            rootFailures = &(failedAddresses[rootBus]);
+            rootStatus = &(devAddresses[rootBus]);
         }
 
         constexpr int startSkipSlaveAddr = 0;
@@ -411,29 +417,57 @@ int getBusFRUs(int file, int first, int last, int bus,
 
             makeProbeInterface(bus, ii);
 
-            if (failedItems.find(ii) != failedItems.end())
+            if (devItems.find(ii) != devItems.end())
             {
                 // if we failed to read it once, unlikely we can read it later
-                continue;
-            }
-
-            if (rootFailures != nullptr)
-            {
-                if (rootFailures->find(ii) != rootFailures->end())
+                if (devItems[ii].rootFail == 1)
                 {
                     continue;
                 }
             }
 
+            if (rootStatus != nullptr)
+            {
+                if (rootStatus->find(ii) != rootStatus->end())
+                {
+                    if ((*rootStatus)[ii].rootFail == 1)
+                    {
+                        continue;
+                    }
+                }
+            }
+
             /* Check for Device type if it is 8 bit or 16 bit */
-            int flag = isDevice16Bit(file);
-            if (flag < 0)
+            int deviceIs16Bit = 0;
+            if(devItems.find(ii) != devItems.end() && devItems[ii].is16Bit == 1)
+            {
+                if (debug)
+                {
+                    std::cout << "Read bus: " << bus << " address: " << ii
+                            << " as 16bit EEPROM\n";
+                }
+                deviceIs16Bit = 1;
+            }
+            else
+            {
+                deviceIs16Bit = isDevice16Bit(file);
+            }
+
+            if (deviceIs16Bit < 0)
             {
                 std::cerr << "failed to read bus " << bus << " address " << ii
                           << "\n";
                 if (powerIsOn)
                 {
-                    failedItems.insert(ii);
+                    if (devItems.find(ii) != devItems.end())
+                    {
+                        devItems[ii].rootFail = 1;
+                    }
+                    else
+                    {
+                        AddressStatus status = {0, 1};
+                        devItems.emplace(std::pair<size_t, AddressStatus>(ii, status));
+                    }
                 }
                 continue;
             }
@@ -441,7 +475,7 @@ int getBusFRUs(int file, int first, int last, int bus,
             std::string errorMessage =
                 "bus " + std::to_string(bus) + " address " + std::to_string(ii);
             std::vector<uint8_t> device =
-                readFRUContents(flag, file, static_cast<uint16_t>(ii),
+                readFRUContents(deviceIs16Bit, file, static_cast<uint16_t>(ii),
                                 readBlockData, errorMessage);
             if (device.empty())
             {
@@ -526,6 +560,92 @@ void loadBlacklist(const char* path)
     }
 
     return;
+}
+
+void loadDevice16BitList(const std::filesystem::path& path)
+{
+    std::ifstream dev16BitlistStream(path);
+    if (!dev16BitlistStream.good())
+    {
+        // File is optional.
+        std::cerr << "Cannot open device16Bitlist file.\n\n";
+        return;
+    }
+
+    nlohmann::json data =
+        nlohmann::json::parse(dev16BitlistStream, nullptr, false);
+    if (data.is_discarded())
+    {
+        std::cerr << "Invalid eeprom16Bitlist json - parse failed\n";
+        return;
+    }
+
+    if (!data.contains("device16Bitlist"))
+    {
+        std::cerr << "Not Found device16Bitlist key in eeprom16Bitlist json\n";
+        return;
+    }
+    auto device16bitcfg = data.at("device16Bitlist");
+    for (const nlohmann::json& listConfigs : device16bitcfg)
+    {
+        auto buses = listConfigs.find("bus");
+        if (buses == listConfigs.end())
+        {
+            std::cerr << "Not found bus key." << std::endl;
+            return;
+        }
+        auto bus = (*buses).get_ptr<const int64_t*>();
+        if ((*bus) < 0)
+        {
+            std::cerr << "Invalid bus value : " << (*bus) << std::endl;
+            return;
+        }
+
+        auto addresses = listConfigs.find("address");
+        if (addresses == listConfigs.end())
+        {
+            std::cerr << "Not found address key." << std::endl;
+            return;
+        }
+        if (listConfigs["address"].size() == 0)
+        {
+            std::cerr << "Not found address property in json." << std::endl;
+            return;
+        }
+        auto dev16BitAddresses = listConfigs.at("address");
+        // Parse the address array after a little validation.
+        if (dev16BitAddresses.type() != nlohmann::json::value_t::array)
+        {
+            // Buses field present but invalid, therefore this is an error.
+            std::cerr << "Invalid contents for addresses field\n";
+            return;
+        }
+
+        AddressMap& addrItems = devAddresses[*bus];
+        // Catch exception here for type mis-match.
+        try
+        {
+            for (const auto& addr : dev16BitAddresses)
+            {
+                if (addrItems.find(addr) != addrItems.end())
+                {
+                    addrItems[addr].is16Bit = 1;
+                }
+                else
+                {
+                    AddressStatus status = {1, 0};
+                    addrItems.emplace(std::pair<size_t, AddressStatus>(addr, status));
+                }
+            }
+        }
+        catch (const nlohmann::detail::type_error& e)
+        {
+            // Type mis-match is a critical error.
+            std::cerr << "Invalid address type in bus " << (*bus)
+                << " when adding address status: " << e.what() << "\n";
+            return;
+        }
+    }
 }
 
 static void findI2CDevices(const std::vector<fs::path>& i2cBuses,
@@ -1346,6 +1466,9 @@ int main()
 
     // check for and load blacklist with initial buses.
     loadBlacklist(blacklistPath);
+
+    // load the pre-define 16bit EEPROM buses and addresses.
+    loadDevice16BitList(device16BitlistPath);
 
     systemBus->request_name("xyz.openbmc_project.FruDevice");
 
