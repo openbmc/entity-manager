@@ -64,6 +64,7 @@ constexpr size_t maxEepromPageIndex = 255;
 constexpr size_t busTimeoutSeconds = 5;
 
 constexpr const char* blacklistPath = PACKAGE_DIR "blacklist.json";
+constexpr const char* device16BitlistPath = PACKAGE_DIR "eeprom16Bitlist.json";
 
 const static constexpr char* baseboardFruLocation =
     "/etc/fru/baseboard.fru.bin";
@@ -85,6 +86,7 @@ static boost::container::flat_map<
     foundDevices;
 
 static boost::container::flat_map<size_t, std::set<size_t>> failedAddresses;
+static boost::container::flat_map<size_t, std::set<size_t>> dev16BitAddresses;
 
 boost::asio::io_service io;
 auto systemBus = std::make_shared<sdbusplus::asio::connection>(io);
@@ -366,8 +368,10 @@ int getBusFRUs(int file, int first, int last, int bus,
         // hexdumps of the eeprom later were successful.
 
         // Scan for i2c eeproms loaded on this bus.
+        int flag = 0;
         std::set<int> skipList = findI2CEeproms(bus, devices);
         std::set<size_t>& failedItems = failedAddresses[bus];
+        std::set<size_t>& dev16BitItems = dev16BitAddresses[bus];
 
         std::set<size_t>* rootFailures = nullptr;
         int rootBus = getRootBus(bus);
@@ -427,7 +431,20 @@ int getBusFRUs(int file, int first, int last, int bus,
             }
 
             /* Check for Device type if it is 8 bit or 16 bit */
-            int flag = isDevice16Bit(file);
+            if(dev16BitItems.find(ii) != dev16BitItems.end())
+            {
+                if (debug)
+                {
+                    std::cout << "Read bus: " << bus << " address: " << ii
+                            << " as 16bit EEPROM\n";
+                }
+                flag = 1;
+            }
+            else
+            {
+                flag = isDevice16Bit(file);
+            }
+
             if (flag < 0)
             {
                 std::cerr << "failed to read bus " << bus << " address " << ii
@@ -526,6 +543,74 @@ void loadBlacklist(const char* path)
         }
     }
 
+    return;
+}
+
+void loadDevice16Bitlist(const char* path)
+{
+    std::ifstream dev16BitlistStream(path);
+    if (!dev16BitlistStream.good())
+    {
+        // File is optional.
+        std::cerr << "Cannot open device16Bitlist file.\n\n";
+        return;
+    }
+
+    nlohmann::json data =
+        nlohmann::json::parse(dev16BitlistStream, nullptr, false);
+    if (data.is_discarded())
+    {
+        std::cerr << "Illegal Device16Bitlist file detected, cannot validate "
+                     "JSON\n";
+        return;
+    }
+
+    if (data.type() != nlohmann::json::value_t::object)
+    {
+        std::cerr << "Illegal blacklist, expected to read dictionary\n";
+        std::exit(EXIT_FAILURE);
+    }
+
+    auto device16bitcfg = data["device16bitlist"];
+    for (nlohmann::json& listConfigs : device16bitcfg)
+    {
+        if (!listConfigs.contains("bus"))
+        {
+            return;
+        }
+        auto buses = listConfigs.at("bus");
+        if (buses.type() != nlohmann::json::value_t::number_unsigned)
+        {
+            // bus field present but invalid, therefore this is an error.
+            std::cerr << "Invalid contents for listConfigs buses field\n";
+            return;
+        }
+        std::int32_t bus = listConfigs["bus"];
+        auto addresses = listConfigs.at("address");
+        // Parse the address array after a little validation.
+        if (addresses.type() != nlohmann::json::value_t::array)
+        {
+            // Buses field present but invalid, therefore this is an error.
+            std::cerr << "Invalid contents for addresses field\n";
+            return;
+        }
+
+        std::set<size_t>& addrItems = dev16BitAddresses[bus];
+        // Catch exception here for type mis-match.
+        try
+        {
+            for (const auto& addr : addresses)
+            {
+                addrItems.insert(addr.get<size_t>());
+            }
+        }
+        catch (const nlohmann::detail::type_error& e)
+        {
+            // Type mis-match is a critical error.
+            std::cerr << "Invalid bus type: " << e.what() << "\n";
+            return;
+        }
+    }
     return;
 }
 
@@ -1335,6 +1420,9 @@ int main()
 
     // check for and load blacklist with initial buses.
     loadBlacklist(blacklistPath);
+
+    // load the pre-define 16bit EEPROM buses and addresses.
+    loadDevice16Bitlist(device16BitlistPath);
 
     systemBus->request_name("xyz.openbmc_project.FruDevice");
 
