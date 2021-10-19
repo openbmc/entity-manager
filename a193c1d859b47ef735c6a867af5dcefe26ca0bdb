@@ -2,6 +2,115 @@
   "comments": [
     {
       "key": {
+        "uuid": "65306877_b20f0067",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 3
+      },
+      "lineNbr": 11,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2021-10-19T02:27:33Z",
+      "side": 1,
+      "message": "50/72 please.",
+      "range": {
+        "startLine": 9,
+        "startChar": 0,
+        "endLine": 11,
+        "endChar": 25
+      },
+      "revId": "a193c1d859b47ef735c6a867af5dcefe26ca0bdb",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "50c0525d_e5c37b24",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 3
+      },
+      "lineNbr": 20,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2021-10-19T02:27:33Z",
+      "side": 1,
+      "message": "More details here;  What are the parameters in the config file?  What do they control?  How do they relate to the other config files?  How is the dynamic selection obeyed?  Are the addresses 7 bit or 8 bit?  Does the config file accept hex strings or integers?  How does one declare a 16 bit address in an entity config file?\n\nPlease answer in your commit message.",
+      "revId": "a193c1d859b47ef735c6a867af5dcefe26ca0bdb",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "cc854e8f_2fd125cf",
+        "filename": "eeprom16Bitlist.json",
+        "patchSetId": 3
+      },
+      "lineNbr": 6,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2021-10-19T02:27:33Z",
+      "side": 1,
+      "message": "Should this list be flatter?  Something like\n\n\"device16bitlist\":[\n        {\n            \"bus\" : 0,\n            \"address\" : 65\n        },\n        {\n            \"bus\" : 42,\n            \"address\" : 102\n        },\n]",
+      "range": {
+        "startLine": 4,
+        "startChar": 0,
+        "endLine": 6,
+        "endChar": 13
+      },
+      "revId": "a193c1d859b47ef735c6a867af5dcefe26ca0bdb",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "423f3d69_145407fc",
+        "filename": "src/FruDevice.cpp",
+        "patchSetId": 3
+      },
+      "lineNbr": 89,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2021-10-19T02:27:33Z",
+      "side": 1,
+      "message": "Can this be done without yet another global?\n\nAlso, I realize the struct above does it, but mixing flat_map with std::set kinda defeats the purpose of using flattened structures in the first place.  I\u0027d recommend flat_map\u003csize_t, flat_set\u003csize_t\u003e\u003e\n\nAlso, please add a comment of what this map is.  Having two integer types is not very descriptive of what this contains.\n\nCould this be combined with the failedAddresses map, by creating something like\n\nstruct AddressStatus {\n    bool is16Bit;\n    size_t failureCount;\n}\nthen having\n\nflat_map\u003csize_t, flat_set\u003cAddressStatus\u003e\u003e?\n\nConsidering the only lookup to this structure is directly above failed addresses that seems like it would solve both problems at the same time.",
+      "range": {
+        "startLine": 89,
+        "startChar": 0,
+        "endLine": 89,
+        "endChar": 78
+      },
+      "revId": "a193c1d859b47ef735c6a867af5dcefe26ca0bdb",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "6053eb92_2abb5550",
+        "filename": "src/FruDevice.cpp",
+        "patchSetId": 3
+      },
+      "lineNbr": 371,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2021-10-19T02:27:33Z",
+      "side": 1,
+      "message": "Why does this need to be promoted to this scope?  Where it was previously defined looks like it should be fine?",
+      "range": {
+        "startLine": 371,
+        "startChar": 12,
+        "endLine": 371,
+        "endChar": 16
+      },
+      "revId": "a193c1d859b47ef735c6a867af5dcefe26ca0bdb",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "9fbaa850_a78e7eb3",
         "filename": "src/FruDevice.cpp",
         "patchSetId": 3
@@ -18,6 +127,75 @@
         "startChar": 5,
         "endLine": 549,
         "endChar": 24
+      },
+      "revId": "a193c1d859b47ef735c6a867af5dcefe26ca0bdb",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "9e682661_201d897f",
+        "filename": "src/FruDevice.cpp",
+        "patchSetId": 3
+      },
+      "lineNbr": 549,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2021-10-19T02:27:33Z",
+      "side": 1,
+      "message": "Prefer std::filesystem::path here.",
+      "range": {
+        "startLine": 549,
+        "startChar": 31,
+        "endLine": 549,
+        "endChar": 36
+      },
+      "revId": "a193c1d859b47ef735c6a867af5dcefe26ca0bdb",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "a8369c94_e51ab531",
+        "filename": "src/FruDevice.cpp",
+        "patchSetId": 3
+      },
+      "lineNbr": 572,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2021-10-19T02:27:33Z",
+      "side": 1,
+      "message": "This looks largely copied from elsewhere in this codebase.  Please make an attempt to abstract instead of copy/pasting.",
+      "range": {
+        "startLine": 551,
+        "startChar": 0,
+        "endLine": 572,
+        "endChar": 5
+      },
+      "revId": "a193c1d859b47ef735c6a867af5dcefe26ca0bdb",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "614aab35_6df4787c",
+        "filename": "src/FruDevice.cpp",
+        "patchSetId": 3
+      },
+      "lineNbr": 574,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2021-10-19T02:27:33Z",
+      "side": 1,
+      "message": "operator[] creates if this key doesn\u0027t exist, which is almost definitely not your intent.  Maybe you meant to loop over the keys?",
+      "range": {
+        "startLine": 574,
+        "startChar": 26,
+        "endLine": 574,
+        "endChar": 31
       },
       "revId": "a193c1d859b47ef735c6a867af5dcefe26ca0bdb",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
@@ -48,6 +226,145 @@
     },
     {
       "key": {
+        "uuid": "928267bc_66489f4d",
+        "filename": "src/FruDevice.cpp",
+        "patchSetId": 3
+      },
+      "lineNbr": 575,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2021-10-19T02:27:33Z",
+      "side": 1,
+      "message": "I prefer the explicit type here.",
+      "parentUuid": "d533acb7_57db6190",
+      "range": {
+        "startLine": 575,
+        "startChar": 39,
+        "endLine": 575,
+        "endChar": 53
+      },
+      "revId": "a193c1d859b47ef735c6a867af5dcefe26ca0bdb",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "fc3c90f0_0e80f9ca",
+        "filename": "src/FruDevice.cpp",
+        "patchSetId": 3
+      },
+      "lineNbr": 575,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2021-10-19T02:27:33Z",
+      "side": 1,
+      "message": "const please.",
+      "range": {
+        "startLine": 575,
+        "startChar": 9,
+        "endLine": 575,
+        "endChar": 24
+      },
+      "revId": "a193c1d859b47ef735c6a867af5dcefe26ca0bdb",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "f7794018_f55ce9e1",
+        "filename": "src/FruDevice.cpp",
+        "patchSetId": 3
+      },
+      "lineNbr": 577,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2021-10-19T02:27:33Z",
+      "side": 1,
+      "message": "Considering that bus is generally assigned dynamically, doesn\u0027t this need to have a second indirection against the actual bus list?  Otherwise, it will lead to hardcoding bus numbers, which is generally an anti-pattern, especially for add in cards.",
+      "range": {
+        "startLine": 577,
+        "startChar": 8,
+        "endLine": 577,
+        "endChar": 41
+      },
+      "revId": "a193c1d859b47ef735c6a867af5dcefe26ca0bdb",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "228f7e5e_da2abb1c",
+        "filename": "src/FruDevice.cpp",
+        "patchSetId": 3
+      },
+      "lineNbr": 581,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2021-10-19T02:27:33Z",
+      "side": 1,
+      "message": "this is essentially inventing nlohmann::json::find in a less efficient way, please just use find.",
+      "range": {
+        "startLine": 577,
+        "startChar": 0,
+        "endLine": 581,
+        "endChar": 43
+      },
+      "revId": "a193c1d859b47ef735c6a867af5dcefe26ca0bdb",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "833fb2da_7cfca395",
+        "filename": "src/FruDevice.cpp",
+        "patchSetId": 3
+      },
+      "lineNbr": 588,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2021-10-19T02:27:33Z",
+      "side": 1,
+      "message": "Please replace this with get_ptr\u003cint64_t\u003e and do appropriate range checks.",
+      "range": {
+        "startLine": 582,
+        "startChar": 0,
+        "endLine": 588,
+        "endChar": 46
+      },
+      "revId": "a193c1d859b47ef735c6a867af5dcefe26ca0bdb",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "a06c35a5_8e12fae0",
+        "filename": "src/FruDevice.cpp",
+        "patchSetId": 3
+      },
+      "lineNbr": 589,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2021-10-19T02:27:33Z",
+      "side": 1,
+      "message": "This will throw if the key doesn\u0027t exist.  Again, please use find and get_ptr.",
+      "range": {
+        "startLine": 589,
+        "startChar": 0,
+        "endLine": 589,
+        "endChar": 51
+      },
+      "revId": "a193c1d859b47ef735c6a867af5dcefe26ca0bdb",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "2bee6f3a_777a4968",
         "filename": "src/FruDevice.cpp",
         "patchSetId": 3
@@ -64,6 +381,52 @@
         "startChar": 36,
         "endLine": 602,
         "endChar": 45
+      },
+      "revId": "a193c1d859b47ef735c6a867af5dcefe26ca0bdb",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "17daf943_92a364b4",
+        "filename": "src/FruDevice.cpp",
+        "patchSetId": 3
+      },
+      "lineNbr": 611,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2021-10-19T02:27:33Z",
+      "side": 1,
+      "message": "Does this need to propagate the error code further?",
+      "range": {
+        "startLine": 611,
+        "startChar": 12,
+        "endLine": 611,
+        "endChar": 19
+      },
+      "revId": "a193c1d859b47ef735c6a867af5dcefe26ca0bdb",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "ad8f261f_bf4f7e8a",
+        "filename": "src/FruDevice.cpp",
+        "patchSetId": 3
+      },
+      "lineNbr": 614,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2021-10-19T02:27:33Z",
+      "side": 1,
+      "message": "This statement does nothing.  Please remove.",
+      "range": {
+        "startLine": 614,
+        "startChar": 0,
+        "endLine": 614,
+        "endChar": 11
       },
       "revId": "a193c1d859b47ef735c6a867af5dcefe26ca0bdb",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
