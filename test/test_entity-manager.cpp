@@ -153,6 +153,82 @@ TEST(TemplateCharReplace, multiMath)
     EXPECT_EQ(expected, j["foo"]);
 }
 
+TEST(TemplateCharReplace, multiMath1)
+{
+    nlohmann::json j = {{"Name", "PSU$ADDRESS % 4 + 1 FRU"}};
+    auto it = j.begin();
+    boost::container::flat_map<std::string, BasicVariantType> data;
+    data["ADDRESS"] = 80;
+
+    templateCharReplace(it, data, 0);
+
+    nlohmann::json expected = "PSU1 FRU";
+    EXPECT_EQ(expected, j["Name"]);
+}
+
+TEST(TemplateCharReplace, multiMath2)
+{
+    nlohmann::json j = {{"Name", "PSU$ADDRESS % 4 + 2 FAN 1"}};
+    auto it = j.begin();
+    boost::container::flat_map<std::string, BasicVariantType> data;
+    data["ADDRESS"] = 80;
+
+    templateCharReplace(it, data, 0);
+
+    nlohmann::json expected = "PSU2 FAN 1";
+    EXPECT_EQ(expected, j["Name"]);
+}
+
+TEST(TemplateCharReplace, index)
+{
+    nlohmann::json j = {{"Name", "PCIe Retimer $index Mux"}};
+    auto it = j.begin();
+    boost::container::flat_map<std::string, BasicVariantType> data;
+
+    templateCharReplace(it, data, 1);
+
+    nlohmann::json expected = "PCIe Retimer 1 Mux";
+    EXPECT_EQ(expected, j["Name"]);
+}
+
+TEST(TemplateCharReplace, indexWithMath)
+{
+    nlohmann::json j = {{"Name", "PCIe Retimer $index + 1 Mux"}};
+    auto it = j.begin();
+    boost::container::flat_map<std::string, BasicVariantType> data;
+
+    templateCharReplace(it, data, 1);
+
+    nlohmann::json expected = "PCIe Retimer 2 Mux";
+    EXPECT_EQ(expected, j["Name"]);
+}
+
+TEST(TemplateCharReplace, complexMath)
+{
+    nlohmann::json j = {{"Name", "PCIe Slot ($ADDRESS % 4) + $index Mux"}};
+    auto it = j.begin();
+    boost::container::flat_map<std::string, BasicVariantType> data;
+    data["ADDRESS"] = 80;
+
+    templateCharReplace(it, data, 1);
+
+    nlohmann::json expected = "PCIe Slot 1 Mux";
+    EXPECT_EQ(expected, j["Name"]);
+}
+
+TEST(TemplateCharReplace, complexMath1)
+{
+    nlohmann::json j = {{"Name", "PCIe Slot 2*($ADDRESS % 4) * 2 + $index Mux"}};
+    auto it = j.begin();
+    boost::container::flat_map<std::string, BasicVariantType> data;
+    data["ADDRESS"] = 83;
+
+    templateCharReplace(it, data, 1);
+
+    nlohmann::json expected = "PCIe Slot 13 Mux";
+    EXPECT_EQ(expected, j["Name"]);
+}
+
 TEST(TemplateCharReplace, twoReplacements)
 {
     nlohmann::json j = {{"foo", "$FOO $BAR"}};
