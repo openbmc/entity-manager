@@ -182,6 +182,7 @@ if not build_tests.disabled()
         executable(
             'test_entity_manager',
             'test/test_entity-manager.cpp',
+            'src/Parser.cpp',
             'src/Utils.cpp',
             cpp_args: test_boost_args,
             dependencies: [
