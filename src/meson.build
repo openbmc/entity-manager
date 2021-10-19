@@ -4,6 +4,7 @@ executable(
     'entity-manager',
     'EntityManager.cpp',
     'Overlay.cpp',
+    'Parser.cpp',
     'Utils.cpp',
     cpp_args: cpp_args + ['-DBOOST_ASIO_DISABLE_THREADS'],
     dependencies: [
@@ -25,6 +26,7 @@ if get_option('fru-device')
     executable(
         'fru-device',
         'FruDevice.cpp',
+        'Parser.cpp',
         'Utils.cpp',
         'FruUtils.cpp',
         cpp_args: cpp_args_fd,

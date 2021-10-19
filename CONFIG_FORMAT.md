@@ -101,6 +101,24 @@ files. The following table describes the template strings currently defined.
 | "$address"   | When the "probe" is successful, this template string is substituted with the (7-bit) I2C address of the FRU device. |
 | "$index"        | A run-tim enumeration. This template string is substituted with a unique index value when the "probe" command is successful. This allows multiple identical devices (e.g., HSBPs) to exist in a system but each with a unique name. |
 
+Template strings are also supported from properties defined in all interfaces
+which are detected after successful probe. All the properties are read from
+detected interfaces and replaced in any configuration defined with template
+character ('$').
+
+It also supports complex arithmetic expression and evaluate complete string with
+arithmetic operator. It also supports precedence of operator like 2 + 3 * 2 = 8.
+It can also calculate "PSU$ADDRESS % 4 + 1 Temperature" and many more complex
+expression. It also supports "(" in expressions. It does multiple string
+replacement in single line.
+
+Following is the list of example expressions
+1. PSU$ADDRESS % 4 + 1 Temperature = PSU1 (ADRESS=80)
+2. PSU $ADDRESS % 4 + 1 Temperature = PSU 2 (ADRESS=81)
+3. ($ADDRESS % 4 -1) / 2 = 1 (ADRESS=83)
+4. Name: $PRODUCT_NAME Slot $Slot = Name: Retimer Slot 3
+   (PRODUCT_NAME = Retimer, Slot=3)
+
 ## Configuration HowTos
 
 If you're just getting started and your goal is to add sensors dynamically,

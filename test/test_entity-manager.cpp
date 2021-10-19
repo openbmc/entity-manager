@@ -90,14 +90,14 @@ TEST(TemplateCharReplace, increment)
 
 TEST(TemplateCharReplace, decrement)
 {
-    nlohmann::json j = {{"foo", "3 minus 1 equals $TEST - 1 !"}};
+    nlohmann::json j = {{"foo", "3 minus 1 equals $TEST - 1 "}};
     auto it = j.begin();
     boost::container::flat_map<std::string, BasicVariantType> data;
     data["TEST"] = 3;
 
     templateCharReplace(it, data, 0);
 
-    nlohmann::json expected = "3 minus 1 equals 2 !";
+    nlohmann::json expected = "3 minus 1 equals 2 ";
     EXPECT_EQ(expected, j["foo"]);
 }
 
@@ -116,40 +116,40 @@ TEST(TemplateCharReplace, modulus)
 
 TEST(TemplateCharReplace, multiply)
 {
-    nlohmann::json j = {{"foo", "3 * 2 equals $TEST * 2"}};
+    nlohmann::json j = {{"foo", "3 multiply 2 equals $TEST * 2"}};
     auto it = j.begin();
     boost::container::flat_map<std::string, BasicVariantType> data;
     data["TEST"] = 3;
 
     templateCharReplace(it, data, 0);
 
-    nlohmann::json expected = "3 * 2 equals 6";
+    nlohmann::json expected = "3 multiply 2 equals 6";
     EXPECT_EQ(expected, j["foo"]);
 }
 
 TEST(TemplateCharReplace, divide)
 {
-    nlohmann::json j = {{"foo", "4 / 2 equals $TEST / 2"}};
+    nlohmann::json j = {{"foo", "4 divide 2 equals $TEST / 2"}};
     auto it = j.begin();
     boost::container::flat_map<std::string, BasicVariantType> data;
     data["TEST"] = 4;
 
     templateCharReplace(it, data, 0);
 
-    nlohmann::json expected = "4 / 2 equals 2";
+    nlohmann::json expected = "4 divide 2 equals 2";
     EXPECT_EQ(expected, j["foo"]);
 }
 
 TEST(TemplateCharReplace, multiMath)
 {
-    nlohmann::json j = {{"foo", "4 * 2 % 6 equals $TEST * 2 % 6"}};
+    nlohmann::json j = {{"foo", "4 multiply 2 mod 6 equals $TEST * 2 % 6"}};
     auto it = j.begin();
     boost::container::flat_map<std::string, BasicVariantType> data;
     data["TEST"] = 4;
 
     templateCharReplace(it, data, 0);
 
-    nlohmann::json expected = "4 * 2 % 6 equals 2";
+    nlohmann::json expected = "4 multiply 2 mod 6 equals 2";
     EXPECT_EQ(expected, j["foo"]);
 }
 
@@ -182,7 +182,7 @@ TEST(TemplateCharReplace, twoReplacementsWithMath)
 
 TEST(TemplateCharReplace, twoReplacementsWithMath2)
 {
-    nlohmann::json j = {{"foo", "4 / 2 equals $ADDRESS / 2 $BAR"}};
+    nlohmann::json j = {{"foo", "4 divide 2 equals $ADDRESS / 2 $BAR"}};
     auto it = j.begin();
     boost::container::flat_map<std::string, BasicVariantType> data;
     data["ADDRESS"] = 4;
@@ -190,7 +190,7 @@ TEST(TemplateCharReplace, twoReplacementsWithMath2)
 
     templateCharReplace(it, data, 0);
 
-    nlohmann::json expected = "4 / 2 equals 2 bar";
+    nlohmann::json expected = "4 divide 2 equals 2 bar";
     EXPECT_EQ(expected, j["foo"]);
 }
 
