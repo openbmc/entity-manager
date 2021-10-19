@@ -169,6 +169,30 @@
     },
     {
       "key": {
+        "uuid": "d53f7578_1b5bb5f2",
+        "filename": "src/Overlay.cpp",
+        "patchSetId": 3
+      },
+      "lineNbr": 122,
+      "author": {
+        "id": 1000559
+      },
+      "writtenOn": "2021-10-19T22:43:57Z",
+      "side": 1,
+      "message": "We already have duplicated channelNames in our config files, so the global construct slotToBusMap is not useful. But, I don\u0027t think this code will cause any bugs currently.\n\nAs long as there is a plan to make it work, I am OK with it. Please document this limitation somewhere - commit message, comments and/or log message when the map is overwritten because of duplicate channelName.",
+      "parentUuid": "f954f75a_3b4ca629",
+      "range": {
+        "startLine": 122,
+        "startChar": 25,
+        "endLine": 122,
+        "endChar": 37
+      },
+      "revId": "68825ee52e1c58bda6680ba9a1e2a4f35394b238",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "dece9966_7a77d4c6",
         "filename": "src/Overlay.cpp",
         "patchSetId": 3
