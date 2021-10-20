@@ -1,6 +1,16 @@
 {
     "Exposes": [
         {
+            "Address": "0x03",
+            "Bus": "$bus",
+            "Class": "twin_lake_gpio",
+            "SensorType": "ipmbGpioState",
+            "EntityId": 3,
+            "Index": 1,
+            "Name": "$bus + 1 CPU Good",
+            "Type": "IpmbSensor"
+        },
+        {
             "Address": "0x01",
             "Bus": "$bus",
             "Class": "twin_lake_version",
