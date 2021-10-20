@@ -1,0 +1,23 @@
+{
+    "Exposes": [
+        {
+            "Address": "0x03",
+            "Bus": "$bus",
+            "Class": "twin_lake_gpio",
+            "SensorType": "ipmbGpioState",
+            "EntityId": 3,
+            "Index": "0x01",
+            "Name": "$bus + 1 CPU Good",
+            "Type": "IpmbSensor"
+        }
+    ],
+    "Name": "Twin Lake $bus + 1",
+    "Probe": "xyz.openbmc_project.Ipmb.FruDevice({'PRODUCT_PRODUCT_NAME': 'Twin Lakes MP'})",
+    "Type": "Board",
+    "xyz.openbmc_project.Inventory.Decorator.Asset": {
+        "Manufacturer": "$PRODUCT_MANUFACTURER",
+        "Model": "$PRODUCT_PRODUCT_NAME",
+        "PartNumber": "$PRODUCT_PART_NUMBER",
+        "SerialNumber": "$PRODUCT_SERIAL_NUMBER"
+    }
+}
