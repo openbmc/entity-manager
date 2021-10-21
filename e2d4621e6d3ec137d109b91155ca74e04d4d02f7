@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "43339dd6_9e3cd5ee",
+        "filename": "test/test_entity-manager.cpp",
+        "patchSetId": 3
+      },
+      "lineNbr": 158,
+      "author": {
+        "id": 1000879
+      },
+      "writtenOn": "2021-10-21T05:46:18Z",
+      "side": 1,
+      "message": "How do you limit scope of the equitation? What if I want to get something like \"PSU1FRU\" without spaces - would \"PSU($ADDRESS % 4 + 1)FRU\" work? What if I want to have parenthesis as part of resulting string (like \"ASPOWER 1200W (PSU1)\")?\nWould be nice if we have scope limiting syntax like ${PSU$ADDRESS % 4 + 1} - it would more readable and easy to parse.",
+      "revId": "e2d4621e6d3ec137d109b91155ca74e04d4d02f7",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    }
+  ]
+}
