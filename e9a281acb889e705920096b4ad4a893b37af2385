@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "473d44ca_1db59d9d",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 18,
+      "author": {
+        "id": 1000271
+      },
+      "writtenOn": "2021-10-27T18:36:48Z",
+      "side": 1,
+      "message": "I mean by several layer of maths. Like current code doesn\u0027t do any random maths if it is not replacing string. Like is I have string like 3 + 7 + PSU $bus. Initial math has not been calculated. \n\nAnd it is very easy to add extra rules, may be 2 lines change. So for future it is easy to extend for larger expressions.",
+      "parentUuid": "3124cc1b_bd2aaf88",
+      "range": {
+        "startLine": 17,
+        "startChar": 42,
+        "endLine": 18,
+        "endChar": 5
+      },
+      "revId": "e9a281acb889e705920096b4ad4a893b37af2385",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "5daac7bd_89626d20",
         "filename": "src/Parser.cpp",
         "patchSetId": 2
@@ -45,6 +69,30 @@
       "revId": "e9a281acb889e705920096b4ad4a893b37af2385",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "4548dec9_987c7619",
+        "filename": "src/Parser.cpp",
+        "patchSetId": 2
+      },
+      "lineNbr": 266,
+      "author": {
+        "id": 1000271
+      },
+      "writtenOn": "2021-10-27T18:36:48Z",
+      "side": 1,
+      "message": "yes, I thought on that. I will update this. Will wait for more reviews.",
+      "parentUuid": "5daac7bd_89626d20",
+      "range": {
+        "startLine": 266,
+        "startChar": 12,
+        "endLine": 266,
+        "endChar": 26
+      },
+      "revId": "e9a281acb889e705920096b4ad4a893b37af2385",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": false
     }
   ]
 }
