@@ -164,6 +164,30 @@
       "revId": "cf16b833ed96b8f74f5172d7c08802281b3df78b",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "a3a239fc_031234e9",
+        "filename": "src/Overlay.cpp",
+        "patchSetId": 4
+      },
+      "lineNbr": 159,
+      "author": {
+        "id": 1000271
+      },
+      "writtenOn": "2021-11-02T21:59:56Z",
+      "side": 1,
+      "message": "I agree that not every channel or mux would be a slot, I guess I am adding as unknown slot type even though it is not even defined. So I should have dbus interface only if slot type is defined by user in config file. If it is simply defining channel name and not defining array of SlotName and SlotType then we will consider particular channel is not a slot. Please let me know if I add a follow patch or fix this patch. As it creates lots of issues modifying a patch in a series.",
+      "parentUuid": "208df481_12fc8db4",
+      "range": {
+        "startLine": 159,
+        "startChar": 12,
+        "endLine": 159,
+        "endChar": 20
+      },
+      "revId": "cf16b833ed96b8f74f5172d7c08802281b3df78b",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": false
     }
   ]
 }
