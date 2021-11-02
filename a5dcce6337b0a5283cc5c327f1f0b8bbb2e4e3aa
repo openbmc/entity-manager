@@ -46,6 +46,30 @@
       "revId": "a5dcce6337b0a5283cc5c327f1f0b8bbb2e4e3aa",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "cbb01748_57929f1c",
+        "filename": "src/Overlay.cpp",
+        "patchSetId": 4
+      },
+      "lineNbr": 92,
+      "author": {
+        "id": 1000879
+      },
+      "writtenOn": "2021-11-02T08:41:48Z",
+      "side": 1,
+      "message": "Why did you mark this as resolves, while it isn\u0027t? It should be something like\n\u003e const nlohmann::json \u0026slotObj \u003d channelNames[channelIndex];",
+      "parentUuid": "8927fe44_67d260ba",
+      "range": {
+        "startLine": 92,
+        "startChar": 7,
+        "endLine": 92,
+        "endChar": 29
+      },
+      "revId": "a5dcce6337b0a5283cc5c327f1f0b8bbb2e4e3aa",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
     }
   ]
 }
