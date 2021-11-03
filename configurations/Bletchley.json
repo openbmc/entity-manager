@@ -1,0 +1,247 @@
+{
+    "Exposes": [
+        {
+            "Index": 0,
+            "Name": "P12V_AUX",
+            "Type": "ADC"
+        },
+        {
+            "Index": 1,
+            "Name": "P3V3_AUX",
+            "Type": "ADC"
+        },
+        {
+            "Index": 2,
+            "Name": "P5V_AUX",
+            "Type": "ADC"
+        },
+        {
+            "Index": 3,
+            "Name": "P3V_BAT",
+            "Type": "ADC"
+        },
+        {
+            "Index": 4,
+            "Name": "P2V5_AUX",
+            "Type": "ADC"
+        },
+        {
+            "Index": 5,
+            "Name": "P1V8_AUX",
+            "Type": "ADC"
+        },
+        {
+            "Index": 6,
+            "Name": "P1V2_AUX",
+            "Type": "ADC"
+        },
+        {
+            "Index": 7,
+            "Name": "P1V0_AUX",
+            "Type": "ADC"
+        },
+        {
+            "Index": 8,
+            "Name": "IMON_FAN0",
+            "Type": "ADC"
+        },
+        {
+            "Index": 9,
+            "Name": "IMON_FAN1",
+            "Type": "ADC"
+        },
+        {
+            "Index": 10,
+            "Name": "IMON_FAN2",
+            "Type": "ADC"
+        },
+        {
+            "Index": 11,
+            "Name": "IMON_FAN3",
+            "Type": "ADC"
+        },
+        {
+            "Index": 12,
+            "Name": "P12V_FAN0",
+            "Type": "ADC"
+        },
+        {
+            "Index": 13,
+            "Name": "P12V_FAN1",
+            "Type": "ADC"
+        },
+        {
+            "Index": 14,
+            "Name": "P12V_FAN2",
+            "Type": "ADC"
+        },
+        {
+            "Index": 15,
+            "Name": "P12V_FAN3",
+            "Type": "ADC"
+        },
+        {
+            "Address": "0x4C",
+            "Bus": 12,
+            "Name": "MB_U73_THERM_LOCAL",
+            "Name1": "MB_U73_THERM_REMOTE",
+            "Type": "TMP421"
+        },
+        {
+            "Address": "0x4F",
+            "Bus": 12,
+            "Name": "MB_U72_THERM_LOCAL",
+            "Name1": "MB_U72_THERM_REMOTE",
+            "Type": "TMP421"
+        },
+        {
+            "Address": "0x40",
+            "Bus": 10,
+            "Name": "INLET_TEMP",
+            "Name1": "INLET_HUMIDITY",
+            "Type": "HDC1080"
+        },
+        {
+            "Address": "0x11",
+            "Bus": 12,
+            "Labels": [
+                "vin",
+                "vout1",
+                "iout1",
+                "pin"
+            ],
+            "Name": "P12V_AUX_HSC",
+            "Type": "ADM1278"
+        },
+        {
+            "Connector": {
+                "Name": "System Fan Connector 0",
+                "HwmonIndex": 3,
+                "Pwm": 0
+            },
+            "Index": 0,
+            "Name": "FAN0_TACH_IL",
+            "Type": "AspeedPWMFan"
+        },
+        {
+            "Connector": {
+                "Name": "System Fan Connector 0",
+                "HwmonIndex": 3,
+                "Pwm": 0
+            },
+            "Index": 1,
+            "Name": "FAN0_TACH_OL",
+            "Type": "AspeedPWMFan"
+        },
+        {
+            "Connector": {
+                "Name": "System Fan Connector 1",
+                "HwmonIndex": 4,
+                "Pwm": 1
+            },
+            "Index": 2,
+            "Name": "FAN1_TACH_IL",
+            "Type": "AspeedPWMFan"
+        },
+        {
+            "Connector": {
+                "Name": "System Fan Connector 1",
+                "HwmonIndex": 4,
+                "Pwm": 1
+            },
+            "Index": 3,
+            "Name": "FAN1_TACH_OL",
+            "Type": "AspeedPWMFan"
+        },
+        {
+            "Connector": {
+                "Name": "System Fan Connector 2",
+                "HwmonIndex": 5,
+                "Pwm": 2
+            },
+            "Index": 4,
+            "Name": "FAN2_TACH_IL",
+            "Type": "AspeedPWMFan"
+        },
+        {
+            "Connector": {
+                "Name": "System Fan Connector 2",
+                "HwmonIndex": 5,
+                "Pwm": 2
+            },
+            "Index": 5,
+            "Name": "FAN2_TACH_OL",
+            "Type": "AspeedPWMFan"
+        },
+        {
+            "Connector": {
+                "Name": "System Fan Connector 3",
+                "HwmonIndex": 6,
+                "Pwm": 3
+            },
+            "Index": 6,
+            "Name": "FAN3_TACH_IL",
+            "Type": "AspeedPWMFan"
+        },
+        {
+            "Connector": {
+                "Name": "System Fan Connector 3",
+                "HwmonIndex": 6,
+                "Pwm": 3
+            },
+            "Index": 7,
+            "Name": "FAN3_TACH_OL",
+            "Type": "AspeedPWMFan"
+        },
+        {
+            "Address": "0x4F",
+            "Bus": 0,
+            "Name": "SLED0_THERM_LOCAL",
+            "Name1": "SLED0_THERM_REMOTE",
+            "Type": "TMP421"
+        },
+        {
+            "Address": "0x4F",
+            "Bus": 1,
+            "Name": "SLED1_THERM_LOCAL",
+            "Name1": "SLED1_THERM_REMOTE",
+            "Type": "TMP421"
+        },
+        {
+            "Address": "0x4F",
+            "Bus": 2,
+            "Name": "SLED2_THERM_LOCAL",
+            "Name1": "SLED2_THERM_REMOTE",
+            "Type": "TMP421"
+        },
+        {
+            "Address": "0x4F",
+            "Bus": 3,
+            "Name": "SLED3_THERM_LOCAL",
+            "Name1": "SLED3_THERM_REMOTE",
+            "Type": "TMP421"
+        },
+        {
+            "Address": "0x4F",
+            "Bus": 4,
+            "Name": "SLED4_THERM_LOCAL",
+            "Name1": "SLED4_THERM_REMOTE",
+            "Type": "TMP421"
+        },
+        {
+            "Address": "0x4F",
+            "Bus": 5,
+            "Name": "SLED5_THERM_LOCAL",
+            "Name1": "SLED5_THERM_REMOTE",
+            "Type": "TMP421"
+        }
+    ],
+    "Name": "Bletchley Baseboard",
+    "Type": "Board",
+    "xyz.openbmc_project.Inventory.Decorator.Asset": {
+        "Manufacturer": "$PRODUCT_MANUFACTURER",
+        "Model": "$PRODUCT_PRODUCT_NAME",
+        "PartNumber": "$PRODUCT_PART_NUMBER",
+        "SerialNumber": "$PRODUCT_SERIAL_NUMBER"
+    }
+}
