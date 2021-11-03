@@ -99,6 +99,7 @@ configs = [
     'F1U4X25 HSBP.json',
     'F2U12X35 HSBP.json',
     'F2U8X25 HSBP.json',
+    'Bletchley.json',
     'FBTP.json',
     'FBYV2.json',
     'Flextronics S-1100ADU00-201 PSU.json',
