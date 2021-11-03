@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "4c26ac12_c0e80d02",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 3
+      },
+      "lineNbr": 11,
+      "author": {
+        "id": 1000847
+      },
+      "writtenOn": "2021-11-03T08:07:52Z",
+      "side": 1,
+      "message": "Done.",
+      "parentUuid": "65306877_b20f0067",
+      "range": {
+        "startLine": 9,
+        "startChar": 0,
+        "endLine": 11,
+        "endChar": 25
+      },
+      "revId": "a193c1d859b47ef735c6a867af5dcefe26ca0bdb",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "50c0525d_e5c37b24",
         "filename": "/COMMIT_MSG",
         "patchSetId": 3
@@ -39,6 +63,24 @@
       "revId": "a193c1d859b47ef735c6a867af5dcefe26ca0bdb",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "d6e7ba66_57edb03f",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 3
+      },
+      "lineNbr": 20,
+      "author": {
+        "id": 1000847
+      },
+      "writtenOn": "2021-11-03T08:07:52Z",
+      "side": 1,
+      "message": "Done.",
+      "parentUuid": "50c0525d_e5c37b24",
+      "revId": "a193c1d859b47ef735c6a867af5dcefe26ca0bdb",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": false
     },
     {
       "key": {
@@ -65,6 +107,30 @@
     },
     {
       "key": {
+        "uuid": "4abad9a4_cad91b0c",
+        "filename": "eeprom16Bitlist.json",
+        "patchSetId": 3
+      },
+      "lineNbr": 6,
+      "author": {
+        "id": 1000847
+      },
+      "writtenOn": "2021-11-03T08:07:52Z",
+      "side": 1,
+      "message": "This config is a default file like blacklist.json, so I think the address list should be empty that could ignore this config when user doesn\u0027t want to use this feature.",
+      "parentUuid": "cc854e8f_2fd125cf",
+      "range": {
+        "startLine": 4,
+        "startChar": 0,
+        "endLine": 6,
+        "endChar": 13
+      },
+      "revId": "a193c1d859b47ef735c6a867af5dcefe26ca0bdb",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "423f3d69_145407fc",
         "filename": "src/FruDevice.cpp",
         "patchSetId": 3
@@ -76,6 +142,30 @@
       "writtenOn": "2021-10-19T02:27:33Z",
       "side": 1,
       "message": "Can this be done without yet another global?\n\nAlso, I realize the struct above does it, but mixing flat_map with std::set kinda defeats the purpose of using flattened structures in the first place.  I\u0027d recommend flat_map\u003csize_t, flat_set\u003csize_t\u003e\u003e\n\nAlso, please add a comment of what this map is.  Having two integer types is not very descriptive of what this contains.\n\nCould this be combined with the failedAddresses map, by creating something like\n\nstruct AddressStatus {\n    bool is16Bit;\n    size_t failureCount;\n}\nthen having\n\nflat_map\u003csize_t, flat_set\u003cAddressStatus\u003e\u003e?\n\nConsidering the only lookup to this structure is directly above failed addresses that seems like it would solve both problems at the same time.",
+      "range": {
+        "startLine": 89,
+        "startChar": 0,
+        "endLine": 89,
+        "endChar": 78
+      },
+      "revId": "a193c1d859b47ef735c6a867af5dcefe26ca0bdb",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "b834d737_0136c6ac",
+        "filename": "src/FruDevice.cpp",
+        "patchSetId": 3
+      },
+      "lineNbr": 89,
+      "author": {
+        "id": 1000847
+      },
+      "writtenOn": "2021-11-03T08:07:52Z",
+      "side": 1,
+      "message": "I use two layers flat_map to save bus, address index, and use struct to save failed address and is16bit status. This can use map.find() function to find address status easily.",
+      "parentUuid": "423f3d69_145407fc",
       "range": {
         "startLine": 89,
         "startChar": 0,
@@ -108,6 +198,30 @@
       "revId": "a193c1d859b47ef735c6a867af5dcefe26ca0bdb",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "2cf1ddf3_1c721b0c",
+        "filename": "src/FruDevice.cpp",
+        "patchSetId": 3
+      },
+      "lineNbr": 371,
+      "author": {
+        "id": 1000847
+      },
+      "writtenOn": "2021-11-03T08:07:52Z",
+      "side": 1,
+      "message": "Move to original location.",
+      "parentUuid": "6053eb92_2abb5550",
+      "range": {
+        "startLine": 371,
+        "startChar": 12,
+        "endLine": 371,
+        "endChar": 16
+      },
+      "revId": "a193c1d859b47ef735c6a867af5dcefe26ca0bdb",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": false
     },
     {
       "key": {
@@ -157,6 +271,54 @@
     },
     {
       "key": {
+        "uuid": "c8be6313_c159380e",
+        "filename": "src/FruDevice.cpp",
+        "patchSetId": 3
+      },
+      "lineNbr": 549,
+      "author": {
+        "id": 1000847
+      },
+      "writtenOn": "2021-11-03T08:07:52Z",
+      "side": 1,
+      "message": "Done.",
+      "parentUuid": "9fbaa850_a78e7eb3",
+      "range": {
+        "startLine": 549,
+        "startChar": 5,
+        "endLine": 549,
+        "endChar": 24
+      },
+      "revId": "a193c1d859b47ef735c6a867af5dcefe26ca0bdb",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "6b15a268_701f78ec",
+        "filename": "src/FruDevice.cpp",
+        "patchSetId": 3
+      },
+      "lineNbr": 549,
+      "author": {
+        "id": 1000847
+      },
+      "writtenOn": "2021-11-03T08:07:52Z",
+      "side": 1,
+      "message": "Done.",
+      "parentUuid": "9e682661_201d897f",
+      "range": {
+        "startLine": 549,
+        "startChar": 31,
+        "endLine": 549,
+        "endChar": 36
+      },
+      "revId": "a193c1d859b47ef735c6a867af5dcefe26ca0bdb",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "a8369c94_e51ab531",
         "filename": "src/FruDevice.cpp",
         "patchSetId": 3
@@ -180,6 +342,30 @@
     },
     {
       "key": {
+        "uuid": "7cc3cbed_c028c60a",
+        "filename": "src/FruDevice.cpp",
+        "patchSetId": 3
+      },
+      "lineNbr": 572,
+      "author": {
+        "id": 1000847
+      },
+      "writtenOn": "2021-11-03T08:07:52Z",
+      "side": 1,
+      "message": "Hi Ed, I removed an if condition, added more detect key functions below, and modified some error logs. Does this change look better?",
+      "parentUuid": "a8369c94_e51ab531",
+      "range": {
+        "startLine": 551,
+        "startChar": 0,
+        "endLine": 572,
+        "endChar": 5
+      },
+      "revId": "a193c1d859b47ef735c6a867af5dcefe26ca0bdb",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "614aab35_6df4787c",
         "filename": "src/FruDevice.cpp",
         "patchSetId": 3
@@ -191,6 +377,30 @@
       "writtenOn": "2021-10-19T02:27:33Z",
       "side": 1,
       "message": "operator[] creates if this key doesn\u0027t exist, which is almost definitely not your intent.  Maybe you meant to loop over the keys?",
+      "range": {
+        "startLine": 574,
+        "startChar": 26,
+        "endLine": 574,
+        "endChar": 31
+      },
+      "revId": "a193c1d859b47ef735c6a867af5dcefe26ca0bdb",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "2027aec6_04832b7c",
+        "filename": "src/FruDevice.cpp",
+        "patchSetId": 3
+      },
+      "lineNbr": 574,
+      "author": {
+        "id": 1000847
+      },
+      "writtenOn": "2021-11-03T08:07:52Z",
+      "side": 1,
+      "message": "Hi Ed, I\u0027m not very understanding about your means. I add an if condition to detect the key \"device16bitlist\" exist or not.",
+      "parentUuid": "614aab35_6df4787c",
       "range": {
         "startLine": 574,
         "startChar": 26,
@@ -273,6 +483,30 @@
     },
     {
       "key": {
+        "uuid": "16f90076_eed1a07d",
+        "filename": "src/FruDevice.cpp",
+        "patchSetId": 3
+      },
+      "lineNbr": 575,
+      "author": {
+        "id": 1000847
+      },
+      "writtenOn": "2021-11-03T08:07:52Z",
+      "side": 1,
+      "message": "Done.",
+      "parentUuid": "fc3c90f0_0e80f9ca",
+      "range": {
+        "startLine": 575,
+        "startChar": 9,
+        "endLine": 575,
+        "endChar": 24
+      },
+      "revId": "a193c1d859b47ef735c6a867af5dcefe26ca0bdb",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "f7794018_f55ce9e1",
         "filename": "src/FruDevice.cpp",
         "patchSetId": 3
@@ -284,6 +518,30 @@
       "writtenOn": "2021-10-19T02:27:33Z",
       "side": 1,
       "message": "Considering that bus is generally assigned dynamically, doesn\u0027t this need to have a second indirection against the actual bus list?  Otherwise, it will lead to hardcoding bus numbers, which is generally an anti-pattern, especially for add in cards.",
+      "range": {
+        "startLine": 577,
+        "startChar": 8,
+        "endLine": 577,
+        "endChar": 41
+      },
+      "revId": "a193c1d859b47ef735c6a867af5dcefe26ca0bdb",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "49c3a59d_0454782b",
+        "filename": "src/FruDevice.cpp",
+        "patchSetId": 3
+      },
+      "lineNbr": 577,
+      "author": {
+        "id": 1000847
+      },
+      "writtenOn": "2021-11-03T08:07:52Z",
+      "side": 1,
+      "message": "According issue #14, #15 in entity-manager, there are some EEPROM that couldn\u0027t be detected via \"isDevice16Bit\" function, so we add this optional feature that could fix this problem if EEPROM is pre-defined in device tree.",
+      "parentUuid": "f7794018_f55ce9e1",
       "range": {
         "startLine": 577,
         "startChar": 8,
@@ -319,6 +577,30 @@
     },
     {
       "key": {
+        "uuid": "8927f0aa_00a279d9",
+        "filename": "src/FruDevice.cpp",
+        "patchSetId": 3
+      },
+      "lineNbr": 581,
+      "author": {
+        "id": 1000847
+      },
+      "writtenOn": "2021-11-03T08:07:52Z",
+      "side": 1,
+      "message": "Done.",
+      "parentUuid": "228f7e5e_da2abb1c",
+      "range": {
+        "startLine": 577,
+        "startChar": 0,
+        "endLine": 581,
+        "endChar": 43
+      },
+      "revId": "a193c1d859b47ef735c6a867af5dcefe26ca0bdb",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "833fb2da_7cfca395",
         "filename": "src/FruDevice.cpp",
         "patchSetId": 3
@@ -342,6 +624,30 @@
     },
     {
       "key": {
+        "uuid": "c7dfbf78_b50b6078",
+        "filename": "src/FruDevice.cpp",
+        "patchSetId": 3
+      },
+      "lineNbr": 588,
+      "author": {
+        "id": 1000847
+      },
+      "writtenOn": "2021-11-03T08:07:52Z",
+      "side": 1,
+      "message": "Done.",
+      "parentUuid": "833fb2da_7cfca395",
+      "range": {
+        "startLine": 582,
+        "startChar": 0,
+        "endLine": 588,
+        "endChar": 46
+      },
+      "revId": "a193c1d859b47ef735c6a867af5dcefe26ca0bdb",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "a06c35a5_8e12fae0",
         "filename": "src/FruDevice.cpp",
         "patchSetId": 3
@@ -353,6 +659,30 @@
       "writtenOn": "2021-10-19T02:27:33Z",
       "side": 1,
       "message": "This will throw if the key doesn\u0027t exist.  Again, please use find and get_ptr.",
+      "range": {
+        "startLine": 589,
+        "startChar": 0,
+        "endLine": 589,
+        "endChar": 51
+      },
+      "revId": "a193c1d859b47ef735c6a867af5dcefe26ca0bdb",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "e3e65704_e537b583",
+        "filename": "src/FruDevice.cpp",
+        "patchSetId": 3
+      },
+      "lineNbr": 589,
+      "author": {
+        "id": 1000847
+      },
+      "writtenOn": "2021-11-03T08:07:52Z",
+      "side": 1,
+      "message": "Maybe I make some mistake when I tested. \"address\" is a list array, so I couldn\u0027t use get_ptr to get value to input for loop(for (const auto\u0026 addr : dev16BitAddresses))",
+      "parentUuid": "a06c35a5_8e12fae0",
       "range": {
         "startLine": 589,
         "startChar": 0,
@@ -388,6 +718,30 @@
     },
     {
       "key": {
+        "uuid": "57008f2a_1a808d96",
+        "filename": "src/FruDevice.cpp",
+        "patchSetId": 3
+      },
+      "lineNbr": 602,
+      "author": {
+        "id": 1000847
+      },
+      "writtenOn": "2021-11-03T08:07:52Z",
+      "side": 1,
+      "message": "Done. Modified to another meaningful name.",
+      "parentUuid": "2bee6f3a_777a4968",
+      "range": {
+        "startLine": 602,
+        "startChar": 36,
+        "endLine": 602,
+        "endChar": 45
+      },
+      "revId": "a193c1d859b47ef735c6a867af5dcefe26ca0bdb",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "17daf943_92a364b4",
         "filename": "src/FruDevice.cpp",
         "patchSetId": 3
@@ -411,6 +765,30 @@
     },
     {
       "key": {
+        "uuid": "61468b36_053c8c1a",
+        "filename": "src/FruDevice.cpp",
+        "patchSetId": 3
+      },
+      "lineNbr": 611,
+      "author": {
+        "id": 1000847
+      },
+      "writtenOn": "2021-11-03T08:07:52Z",
+      "side": 1,
+      "message": "Modified to use std::exit(EXIT_FAILURE)",
+      "parentUuid": "17daf943_92a364b4",
+      "range": {
+        "startLine": 611,
+        "startChar": 12,
+        "endLine": 611,
+        "endChar": 19
+      },
+      "revId": "a193c1d859b47ef735c6a867af5dcefe26ca0bdb",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "ad8f261f_bf4f7e8a",
         "filename": "src/FruDevice.cpp",
         "patchSetId": 3
@@ -431,6 +809,30 @@
       "revId": "a193c1d859b47ef735c6a867af5dcefe26ca0bdb",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "84494c57_393c9564",
+        "filename": "src/FruDevice.cpp",
+        "patchSetId": 3
+      },
+      "lineNbr": 614,
+      "author": {
+        "id": 1000847
+      },
+      "writtenOn": "2021-11-03T08:07:52Z",
+      "side": 1,
+      "message": "Done.",
+      "parentUuid": "ad8f261f_bf4f7e8a",
+      "range": {
+        "startLine": 614,
+        "startChar": 0,
+        "endLine": 614,
+        "endChar": 11
+      },
+      "revId": "a193c1d859b47ef735c6a867af5dcefe26ca0bdb",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": false
     }
   ]
 }
