@@ -97,6 +97,30 @@
     },
     {
       "key": {
+        "uuid": "6a2c944e_87677c7d",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 7
+      },
+      "lineNbr": 17,
+      "author": {
+        "id": 1000224
+      },
+      "writtenOn": "2021-11-04T10:10:04Z",
+      "side": 1,
+      "message": "Sorry for the late reply!\n\n\u003e That seems like a limitation we should consider as part of this patch.  What behavior would you recommend?  Either we can move hysteresis up, such that each threshold doesn\u0027t get its own explicit hysteresis, or we can define some behavior (like 1st thresholds hysteresis wins).\n\nWe would like to keep the flexibility of having different hystereses per threshold, so lets go with the behaviour of 1st threshold hysteresis wins.\n\n\u003e Said another way, if I take in this patch, and I pull an SDR for this sensor, it\u0027s going to report a hysteresis of 1, which is wrong (but was correct before this patch).\n\nI didn\u0027t actually see this behaviour in my (very limited) tests -- I saw that the SDR output showed a hysteresis value of \"Unspecified\". From my understanding of the ipmi-host code I can\u0027t see this happening either. Do you know what sensors/platforms this might happen on?\n\nHave pushed some patches to show the correct hysteresis value from entity manager configs:\nhttps://gerrit.openbmc-project.xyz/c/openbmc/phosphor-host-ipmid/+/48616\nhttps://gerrit.openbmc-project.xyz/c/openbmc/phosphor-host-ipmid/+/48615",
+      "parentUuid": "d90d0a1c_9478779e",
+      "range": {
+        "startLine": 16,
+        "startChar": 0,
+        "endLine": 17,
+        "endChar": 59
+      },
+      "revId": "7e94b6ebdf55d882ebad80a756173840df374fd2",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "1b484dae_3c315605",
         "filename": "/COMMIT_MSG",
         "patchSetId": 7
@@ -183,6 +207,24 @@
       "revId": "7e94b6ebdf55d882ebad80a756173840df374fd2",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "2ce4f968_4f9920fb",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 7
+      },
+      "lineNbr": 18,
+      "author": {
+        "id": 1000224
+      },
+      "writtenOn": "2021-11-04T10:10:04Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "78be39ca_844f5074",
+      "revId": "7e94b6ebdf55d882ebad80a756173840df374fd2",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": false
     }
   ]
 }
