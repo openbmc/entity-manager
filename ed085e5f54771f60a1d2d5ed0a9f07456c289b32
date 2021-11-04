@@ -1,0 +1,159 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "dacc0cca_93177d52",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 3
+      },
+      "lineNbr": 13,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2021-11-04T20:40:54Z",
+      "side": 1,
+      "message": "50/72 please",
+      "range": {
+        "startLine": 9,
+        "startChar": 0,
+        "endLine": 13,
+        "endChar": 25
+      },
+      "revId": "ed085e5f54771f60a1d2d5ed0a9f07456c289b32",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "0202a881_4afbc1c7",
+        "filename": "include/Parser.hpp",
+        "patchSetId": 3
+      },
+      "lineNbr": 3,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2021-11-04T20:40:54Z",
+      "side": 1,
+      "message": "iostream doesn\u0027t look used here?",
+      "range": {
+        "startLine": 3,
+        "startChar": 0,
+        "endLine": 3,
+        "endChar": 19
+      },
+      "revId": "ed085e5f54771f60a1d2d5ed0a9f07456c289b32",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "1facd0c9_2e69f077",
+        "filename": "include/Parser.hpp",
+        "patchSetId": 3
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2021-11-04T20:40:54Z",
+      "side": 1,
+      "message": "missing \u003cutility\u003e",
+      "revId": "ed085e5f54771f60a1d2d5ed0a9f07456c289b32",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "e6fc3d50_a48cfe2f",
+        "filename": "src/Parser.cpp",
+        "patchSetId": 3
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2021-11-04T20:40:54Z",
+      "side": 1,
+      "message": "On the version of boost we\u0027re using, do we need this?",
+      "range": {
+        "startLine": 1,
+        "startChar": 0,
+        "endLine": 1,
+        "endChar": 43
+      },
+      "revId": "ed085e5f54771f60a1d2d5ed0a9f07456c289b32",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "90f5d5ba_5837a441",
+        "filename": "src/Parser.cpp",
+        "patchSetId": 3
+      },
+      "lineNbr": 49,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2021-11-04T20:40:54Z",
+      "side": 1,
+      "message": "Can we change this to \"NumericVariable\" given that it only represents ints?",
+      "range": {
+        "startLine": 49,
+        "startChar": 7,
+        "endLine": 49,
+        "endChar": 15
+      },
+      "revId": "ed085e5f54771f60a1d2d5ed0a9f07456c289b32",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "6a616b37_8aad5785",
+        "filename": "src/Parser.cpp",
+        "patchSetId": 3
+      },
+      "lineNbr": 55,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2021-11-04T20:40:54Z",
+      "side": 1,
+      "message": "std::vector is preferred here.",
+      "range": {
+        "startLine": 55,
+        "startChar": 9,
+        "endLine": 55,
+        "endChar": 13
+      },
+      "revId": "ed085e5f54771f60a1d2d5ed0a9f07456c289b32",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "e85ffe8a_60e8fcef",
+        "filename": "src/Parser.cpp",
+        "patchSetId": 3
+      },
+      "lineNbr": 190,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2021-11-04T20:40:54Z",
+      "side": 1,
+      "message": "Please avoid non const globals like this.  They can cause problems when methods are called repeatedly.\n\nSymbols is specific to the parse call being done, so therefore shouldn\u0027t be at global scope.",
+      "range": {
+        "startLine": 190,
+        "startChar": 0,
+        "endLine": 190,
+        "endChar": 32
+      },
+      "revId": "ed085e5f54771f60a1d2d5ed0a9f07456c289b32",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    }
+  ]
+}
