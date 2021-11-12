@@ -1,0 +1,119 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "a49af19e_53bd8520",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 8
+      },
+      "lineNbr": 10,
+      "author": {
+        "id": 1000559
+      },
+      "writtenOn": "2021-11-12T23:58:49Z",
+      "side": 1,
+      "message": "Why isDevice16bit fails to detecting these 16bit EEPROM? Can the function be updated so it works for these devices also?",
+      "range": {
+        "startLine": 9,
+        "startChar": 32,
+        "endLine": 10,
+        "endChar": 41
+      },
+      "revId": "5346a9d414472cb2468ccfc0593ad17ecb688789",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "66601c5c_800c8a09",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 8
+      },
+      "lineNbr": 19,
+      "author": {
+        "id": 1000559
+      },
+      "writtenOn": "2021-11-12T23:58:49Z",
+      "side": 1,
+      "message": "If the bus and address for these 16bit EEPROM is already known, why not just add them to DTS?",
+      "range": {
+        "startLine": 15,
+        "startChar": 0,
+        "endLine": 19,
+        "endChar": 62
+      },
+      "revId": "5346a9d414472cb2468ccfc0593ad17ecb688789",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "fff36ed4_439c0724",
+        "filename": "src/FruDevice.cpp",
+        "patchSetId": 8
+      },
+      "lineNbr": 648,
+      "author": {
+        "id": 1000559
+      },
+      "writtenOn": "2021-11-12T23:58:49Z",
+      "side": 1,
+      "message": "AddressStatus status \u003d {1, 0};",
+      "range": {
+        "startLine": 646,
+        "startChar": 20,
+        "endLine": 648,
+        "endChar": 40
+      },
+      "revId": "5346a9d414472cb2468ccfc0593ad17ecb688789",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "0362c534_8eb27f92",
+        "filename": "src/FruDevice.cpp",
+        "patchSetId": 8
+      },
+      "lineNbr": 649,
+      "author": {
+        "id": 1000559
+      },
+      "writtenOn": "2021-11-12T23:58:49Z",
+      "side": 1,
+      "message": "prefer emplace",
+      "range": {
+        "startLine": 649,
+        "startChar": 30,
+        "endLine": 649,
+        "endChar": 36
+      },
+      "revId": "5346a9d414472cb2468ccfc0593ad17ecb688789",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "46543091_570cd18e",
+        "filename": "src/FruDevice.cpp",
+        "patchSetId": 8
+      },
+      "lineNbr": 658,
+      "author": {
+        "id": 1000559
+      },
+      "writtenOn": "2021-11-12T23:58:49Z",
+      "side": 1,
+      "message": "I don\u0027t think we want exit here",
+      "range": {
+        "startLine": 658,
+        "startChar": 12,
+        "endLine": 658,
+        "endChar": 34
+      },
+      "revId": "5346a9d414472cb2468ccfc0593ad17ecb688789",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    }
+  ]
+}
