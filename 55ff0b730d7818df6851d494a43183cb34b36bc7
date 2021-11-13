@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "f05c8856_9dce2dbe",
+        "filename": "test/test_entity-manager.cpp",
+        "patchSetId": 6
+      },
+      "lineNbr": 166,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2021-11-13T18:25:48Z",
+      "side": 1,
+      "message": "This same pattern is now repeated \u003e10 times in this file.  Can it be simplified into a helper method?",
+      "range": {
+        "startLine": 158,
+        "startChar": 0,
+        "endLine": 166,
+        "endChar": 35
+      },
+      "revId": "55ff0b730d7818df6851d494a43183cb34b36bc7",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "35980900_89b33ae0",
+        "filename": "test/test_entity-manager.cpp",
+        "patchSetId": 6
+      },
+      "lineNbr": 178,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2021-11-13T18:25:48Z",
+      "side": 1,
+      "message": "Does this need to be a nlohmann object?  Could it just be \n\nEXPECT_EQ(\"PSU2 FAN 1\", j[\"Name\"]);",
+      "range": {
+        "startLine": 178,
+        "startChar": 30,
+        "endLine": 178,
+        "endChar": 42
+      },
+      "revId": "55ff0b730d7818df6851d494a43183cb34b36bc7",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    }
+  ]
+}
