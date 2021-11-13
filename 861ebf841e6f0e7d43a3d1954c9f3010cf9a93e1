@@ -1,0 +1,142 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "06a78d6d_640df5d1",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 10
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2021-11-13T19:07:03Z",
+      "side": 1,
+      "message": "Just looking at the stats for this patch, it\u0027s adding 200 lines of code, that doesn\u0027t seem right considering this is just moving things around.  Were there additions as well?",
+      "range": {
+        "startLine": 9,
+        "startChar": 0,
+        "endLine": 9,
+        "endChar": 5
+      },
+      "revId": "861ebf841e6f0e7d43a3d1954c9f3010cf9a93e1",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "77ae0ae9_c3321c1e",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 10
+      },
+      "lineNbr": 11,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2021-11-13T19:07:03Z",
+      "side": 1,
+      "message": "wrap 50/72 please",
+      "range": {
+        "startLine": 9,
+        "startChar": 2,
+        "endLine": 11,
+        "endChar": 24
+      },
+      "revId": "861ebf841e6f0e7d43a3d1954c9f3010cf9a93e1",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "ac6ed67b_faffab91",
+        "filename": "include/FruUtils.hpp",
+        "patchSetId": 10
+      },
+      "lineNbr": 53,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2021-11-13T19:07:03Z",
+      "side": 1,
+      "message": "Please scrub this list.  A majority of these includes are not used in this file.  Please #include the headers in the files you use them, instead of putting them all in one place.",
+      "range": {
+        "startLine": 20,
+        "startChar": 0,
+        "endLine": 53,
+        "endChar": 17
+      },
+      "revId": "861ebf841e6f0e7d43a3d1954c9f3010cf9a93e1",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "f511599f_580985c2",
+        "filename": "include/FruUtils.hpp",
+        "patchSetId": 10
+      },
+      "lineNbr": 60,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2021-11-13T19:07:03Z",
+      "side": 1,
+      "message": "A number of these globals have moved from an cpp file to a hpp file.  That seems like an anti pattern.  Also, I don\u0027t think inline is appropriate here.",
+      "range": {
+        "startLine": 60,
+        "startChar": 0,
+        "endLine": 60,
+        "endChar": 40
+      },
+      "revId": "861ebf841e6f0e7d43a3d1954c9f3010cf9a93e1",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "f5bed57b_82937e07",
+        "filename": "include/FruUtils.hpp",
+        "patchSetId": 10
+      },
+      "lineNbr": 67,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2021-11-13T19:07:03Z",
+      "side": 1,
+      "message": "These are new too?",
+      "range": {
+        "startLine": 66,
+        "startChar": 0,
+        "endLine": 67,
+        "endChar": 42
+      },
+      "revId": "861ebf841e6f0e7d43a3d1954c9f3010cf9a93e1",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "ea989aac_c6390db0",
+        "filename": "include/FruUtils.hpp",
+        "patchSetId": 10
+      },
+      "lineNbr": 69,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2021-11-13T19:07:03Z",
+      "side": 1,
+      "message": "These definitions look new.  Also, please use something that doesn\u0027t require a construction on boot and can be made constexpr.  Generally const char* or string_view.",
+      "range": {
+        "startLine": 69,
+        "startChar": 6,
+        "endLine": 69,
+        "endChar": 17
+      },
+      "revId": "861ebf841e6f0e7d43a3d1954c9f3010cf9a93e1",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    }
+  ]
+}
