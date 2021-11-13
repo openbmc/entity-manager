@@ -48,6 +48,30 @@
     },
     {
       "key": {
+        "uuid": "94faf6cd_261b2380",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 8
+      },
+      "lineNbr": 19,
+      "author": {
+        "id": 1000233
+      },
+      "writtenOn": "2021-11-13T00:13:12Z",
+      "side": 1,
+      "message": "Different boards with the same image may have EEPROMs in different locations. If they\u0027re all listed in the device tree, then the missing ones will fail to probe, delaying boot and printing extra error messages.\n\nWe can list all the possible 16 bit EEPROM locations here and have one image that supports boards with EEPROMs in any of those locations",
+      "parentUuid": "66601c5c_800c8a09",
+      "range": {
+        "startLine": 15,
+        "startChar": 0,
+        "endLine": 19,
+        "endChar": 62
+      },
+      "revId": "5346a9d414472cb2468ccfc0593ad17ecb688789",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "fff36ed4_439c0724",
         "filename": "src/FruDevice.cpp",
         "patchSetId": 8
