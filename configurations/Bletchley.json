@@ -1,0 +1,264 @@
+{
+    "Exposes": [
+        {
+            "Index": 0,
+            "Name": "P12V AUX",
+            "Type": "ADC"
+        },
+        {
+            "Index": 1,
+            "Name": "P3V3 AUX",
+            "Type": "ADC"
+        },
+        {
+            "Index": 2,
+            "Name": "P5V AUX",
+            "Type": "ADC"
+        },
+        {
+            "Index": 3,
+            "Name": "P3V BAT",
+            "Type": "ADC"
+        },
+        {
+            "Index": 4,
+            "Name": "P2V5 AUX",
+            "Type": "ADC"
+        },
+        {
+            "Index": 5,
+            "Name": "P1V8 AUX",
+            "Type": "ADC"
+        },
+        {
+            "Index": 6,
+            "Name": "P1V2 AUX",
+            "Type": "ADC"
+        },
+        {
+            "Index": 7,
+            "Name": "P1V0 AUX",
+            "Type": "ADC"
+        },
+        {
+            "Index": 8,
+            "Name": "IMON FAN0",
+            "Type": "ADC"
+        },
+        {
+            "Index": 9,
+            "Name": "IMON FAN1",
+            "Type": "ADC"
+        },
+        {
+            "Index": 10,
+            "Name": "IMON FAN2",
+            "Type": "ADC"
+        },
+        {
+            "Index": 11,
+            "Name": "IMON FAN3",
+            "Type": "ADC"
+        },
+        {
+            "Index": 12,
+            "Name": "P12V FAN0",
+            "Type": "ADC"
+        },
+        {
+            "Index": 13,
+            "Name": "P12V FAN1",
+            "Type": "ADC"
+        },
+        {
+            "Index": 14,
+            "Name": "P12V FAN2",
+            "Type": "ADC"
+        },
+        {
+            "Index": 15,
+            "Name": "P12V FAN3",
+            "Type": "ADC"
+        },
+        {
+            "Address": "0x4C",
+            "Bus": 12,
+            "Name": "MB U73 THERM LOCAL",
+            "Name1": "MB U73 THERM REMOTE",
+            "Type": "TMP421"
+        },
+        {
+            "Address": "0x4F",
+            "Bus": 12,
+            "Name": "MB U72 THERM LOCAL",
+            "Name1": "MB U72 THERM REMOTE",
+            "Type": "TMP421"
+        },
+        {
+            "Address": "0x4F",
+            "Bus": 9,
+            "Name": "MB U402 THERM LOCAL",
+            "Name1": "MB U402 THERM REMOTE",
+            "Type": "TMP421"
+        },
+        {
+            "Address": "0x11",
+            "Bus": 12,
+            "Labels": [
+                "vin",
+                "vout1",
+                "iout1",
+                "pin"
+            ],
+            "Name": "P12V AUX HSC",
+            "Type": "ADM1278"
+        },
+        {
+            "Address": "0x4F",
+            "Bus": 0,
+            "Name": "SLED0 THERM LOCAL",
+            "Name1": "SLED0 THERM REMOTE",
+            "Type": "TMP421"
+        },
+        {
+            "Address": "0x4F",
+            "Bus": 1,
+            "Name": "SLED1 THERM LOCAL",
+            "Name1": "SLED1 THERM REMOTE",
+            "Type": "TMP421"
+        },
+        {
+            "Address": "0x4F",
+            "Bus": 2,
+            "Name": "SLED2 THERM LOCAL",
+            "Name1": "SLED2 THERM REMOTE",
+            "Type": "TMP421"
+        },
+        {
+            "Address": "0x4F",
+            "Bus": 3,
+            "Name": "SLED3 THERM LOCAL",
+            "Name1": "SLED3 THERM REMOTE",
+            "Type": "TMP421"
+        },
+        {
+            "Address": "0x4F",
+            "Bus": 4,
+            "Name": "SLED4 THERM LOCAL",
+            "Name1": "SLED4 THERM REMOTE",
+            "Type": "TMP421"
+        },
+        {
+            "Address": "0x4F",
+            "Bus": 5,
+            "Name": "SLED5 THERM LOCAL",
+            "Name1": "SLED5 THERM REMOTE",
+            "Type": "TMP421"
+        },
+        {
+            "Address": "0x35",
+            "Bus": "0",
+            "Name": "SLED0 NVMe SSD",
+            "Type": "NVME1000"
+        },
+        {
+            "Address": "0x35",
+            "Bus": "1",
+            "Name": "SLED1 NVMe SSD",
+            "Type": "NVME1000"
+        },
+        {
+            "Address": "0x35",
+            "Bus": "2",
+            "Name": "SLED2 NVMe SSD",
+            "Type": "NVME1000"
+        },
+        {
+            "Address": "0x35",
+            "Bus": "3",
+            "Name": "SLED3 NVMe SSD",
+            "Type": "NVME1000"
+        },
+        {
+            "Address": "0x35",
+            "Bus": "4",
+            "Name": "SLED4 NVMe SSD",
+            "Type": "NVME1000"
+        },
+        {
+            "Address": "0x35",
+            "Bus": "5",
+            "Name": "SLED5 NVMe SSD",
+            "Type": "NVME1000"
+        },
+        {
+            "Address": "0x40",
+            "Bus": 0,
+            "Labels": [
+                "vin",
+                "vout1"
+            ],
+            "Name": "SLED0 HSC",
+            "Type": "pmbus"
+        },
+        {
+            "Address": "0x40",
+            "Bus": 1,
+            "Labels": [
+                "vin",
+                "vout1"
+            ],
+            "Name": "SLED1 HSC",
+            "Type": "pmbus"
+        },
+        {
+            "Address": "0x40",
+            "Bus": 2,
+            "Labels": [
+                "vin",
+                "vout1"
+            ],
+            "Name": "SLED2 HSC",
+            "Type": "pmbus"
+        },
+        {
+            "Address": "0x40",
+            "Bus": 3,
+            "Labels": [
+                "vin",
+                "vout1"
+            ],
+            "Name": "SLED3 HSC",
+            "Type": "pmbus"
+        },
+        {
+            "Address": "0x40",
+            "Bus": 4,
+            "Labels": [
+                "vin",
+                "vout1"
+            ],
+            "Name": "SLED4 HSC",
+            "Type": "pmbus"
+        },
+        {
+            "Address": "0x40",
+            "Bus": 5,
+            "Labels": [
+                "vin",
+                "vout1"
+            ],
+            "Name": "SLED5 HSC",
+            "Type": "pmbus"
+        }
+    ],
+    "Name": "Bletchley Baseboard",
+    "Probe": "xyz.openbmc_project.FruDevice({'PRODUCT_PRODUCT_NAME': '.*Bletchley*'})",
+    "Type": "Board",
+    "xyz.openbmc_project.Inventory.Decorator.Asset": {
+        "Manufacturer": "$PRODUCT_MANUFACTURER",
+        "Model": "$PRODUCT_PRODUCT_NAME",
+        "PartNumber": "$PRODUCT_PART_NUMBER",
+        "SerialNumber": "$PRODUCT_SERIAL_NUMBER"
+    }
+}
