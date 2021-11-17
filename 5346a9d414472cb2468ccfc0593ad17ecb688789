@@ -49,6 +49,30 @@
     },
     {
       "key": {
+        "uuid": "10c05e6e_fc81d67e",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 8
+      },
+      "lineNbr": 10,
+      "author": {
+        "id": 1000559
+      },
+      "writtenOn": "2021-11-17T15:30:43Z",
+      "side": 1,
+      "message": "I don\u0027t have the issue in my system. But looking at the code it depends on reading different values for 16bit eeprom. Just wondering why that would fail for certain parts. Just thought if that can be understood, make the auto detection work seems a bit cleaner solution.",
+      "parentUuid": "611bb8a6_56ed21cc",
+      "range": {
+        "startLine": 9,
+        "startChar": 32,
+        "endLine": 10,
+        "endChar": 41
+      },
+      "revId": "5346a9d414472cb2468ccfc0593ad17ecb688789",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "66601c5c_800c8a09",
         "filename": "/COMMIT_MSG",
         "patchSetId": 8
@@ -84,6 +108,30 @@
       "side": 1,
       "message": "Different boards with the same image may have EEPROMs in different locations. If they\u0027re all listed in the device tree, then the missing ones will fail to probe, delaying boot and printing extra error messages.\n\nWe can list all the possible 16 bit EEPROM locations here and have one image that supports boards with EEPROMs in any of those locations",
       "parentUuid": "66601c5c_800c8a09",
+      "range": {
+        "startLine": 15,
+        "startChar": 0,
+        "endLine": 19,
+        "endChar": 62
+      },
+      "revId": "5346a9d414472cb2468ccfc0593ad17ecb688789",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "a5363d1e_818780be",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 8
+      },
+      "lineNbr": 19,
+      "author": {
+        "id": 1000559
+      },
+      "writtenOn": "2021-11-17T15:30:43Z",
+      "side": 1,
+      "message": "That is fair. One more question though, theoretically, if this file is intend to have all possible locations listed, there is a risk on collision, i.e. a possible 16bit location actually has a 8bit part. Is that a concern in reality?",
+      "parentUuid": "94faf6cd_261b2380",
       "range": {
         "startLine": 15,
         "startChar": 0,
