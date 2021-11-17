@@ -8,6 +8,13 @@
                 "Type": "EEPROM"
             },
             {
+                "Address": "0x68",
+                "Bus": "$bus",
+                "Index": 1,
+                "Name": "HSBP 1",
+                "Type": "Intel HSBP CPLD"
+            },
+            {
                 "Address": "0x48",
                 "Bus": "$bus",
                 "Name": "HSBP1 Temp",
@@ -57,6 +64,13 @@
                 "Bus": "$bus",
                 "Name": "F2U8X25 HSBP2 FRU",
                 "Type": "EEPROM"
+            },
+            {
+                "Address": "0x69",
+                "Bus": "$bus",
+                "Index": 2,
+                "Name": "HSBP 2",
+                "Type": "Intel HSBP CPLD"
             },
             {
                 "Address": "0x4B",
