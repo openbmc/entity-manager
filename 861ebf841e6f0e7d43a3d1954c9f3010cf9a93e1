@@ -166,6 +166,30 @@
     },
     {
       "key": {
+        "uuid": "d6eb2bc6_5ab56fc3",
+        "filename": "include/FruUtils.hpp",
+        "patchSetId": 10
+      },
+      "lineNbr": 60,
+      "author": {
+        "id": 1000546
+      },
+      "writtenOn": "2021-11-18T14:31:48Z",
+      "side": 1,
+      "message": "Actually, I moved addFruObjectToDbus function from FruDevice.cpp to FruUtils.cpp.  The variable \"unknownBusObjectCount\" used in the  both FruDevice.cpp and FruUtils.cpp files.\n\nSo, I moved the variable \"unknownBusObjectCount\" declaration from .cpp to .hpp file and made a lnline variable.\n\nSince Entity-manager is not class based approach and it is method based approach. So, I used extern Earlier and you suggested to not use . So used inline variable now. \nAlternatively, I can think of use struct which has all the global variables, that struct should have const values only. \n\nCould you please suggest on this.",
+      "parentUuid": "f511599f_580985c2",
+      "range": {
+        "startLine": 60,
+        "startChar": 0,
+        "endLine": 60,
+        "endChar": 40
+      },
+      "revId": "861ebf841e6f0e7d43a3d1954c9f3010cf9a93e1",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "f5bed57b_82937e07",
         "filename": "include/FruUtils.hpp",
         "patchSetId": 10
