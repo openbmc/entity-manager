@@ -190,6 +190,30 @@
     },
     {
       "key": {
+        "uuid": "cad7033c_b523b2a9",
+        "filename": "include/FruUtils.hpp",
+        "patchSetId": 10
+      },
+      "lineNbr": 60,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2021-11-18T18:01:40Z",
+      "side": 1,
+      "message": "I suspect that it probably needs to be moved from being a global variable entirely now that we\u0027re going to be calling addFruObjectToDbus from multiple scopes.  Explicitly:\n\n1. Remove the global variable from line 61 of FruDevice.cpp\n2. Change line 1019 of FruDevice.cpp to be a variable declaration.  ie\nsize_t unknownBusObjectCount \u003d 0;\n3. Modify the addFruObjectToDbus method on line 641 to accept addFruObjectToDbus by a non-const reference.\n\n\nThis removes the need for the global entirely.  I suspect if you make this modification prior to doing your move, it will be easier for this case, given that you won\u0027t need to mess with global variables, but it\u0027s up to you which order you want to do it in.",
+      "parentUuid": "d6eb2bc6_5ab56fc3",
+      "range": {
+        "startLine": 60,
+        "startChar": 0,
+        "endLine": 60,
+        "endChar": 40
+      },
+      "revId": "861ebf841e6f0e7d43a3d1954c9f3010cf9a93e1",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "f5bed57b_82937e07",
         "filename": "include/FruUtils.hpp",
         "patchSetId": 10
@@ -225,6 +249,30 @@
       "side": 1,
       "message": "Yes. These are new constexpr, I have used to avoid Magic number.",
       "parentUuid": "f5bed57b_82937e07",
+      "range": {
+        "startLine": 66,
+        "startChar": 0,
+        "endLine": 67,
+        "endChar": 42
+      },
+      "revId": "861ebf841e6f0e7d43a3d1954c9f3010cf9a93e1",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "57b13652_eae7dbc5",
+        "filename": "include/FruUtils.hpp",
+        "patchSetId": 10
+      },
+      "lineNbr": 67,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2021-11-18T18:01:40Z",
+      "side": 1,
+      "message": "As stated earlier, please separate your cleanups from code moves.  it helps maintainers significantly to not have to sift through large patches that mostly contain already reviewed and correct code.",
+      "parentUuid": "17f1fc06_fe08133c",
       "range": {
         "startLine": 66,
         "startChar": 0,
