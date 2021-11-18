@@ -46,6 +46,30 @@
       "revId": "f7b8c6351ba9f3b6e73bcb62f6d0939b97b862f4",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "50feaee7_8607af06",
+        "filename": "test/test_entity-manager.cpp",
+        "patchSetId": 6
+      },
+      "lineNbr": 119,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2021-11-18T21:39:59Z",
+      "side": 0,
+      "message": "\u003e This is a sentence which turns into expression and we are not expecting to execute first part of this sentence that\u0027s why we are writing in actual english and executing second part to verify.\n\nThis doesn\u0027t explain the behavior.  A user should be able to type \"3 * 2\" and get 6.  \"3 multiply 2\" should compute to \"3 multiply 2\"\n\n\u003e It has been done in many other tests and it should be this way.\n\nNot according to the user documentation, or the examples of config files that we have in the repo.",
+      "parentUuid": "ce5b4c77_faa8b961",
+      "range": {
+        "startLine": 119,
+        "startChar": 35,
+        "endLine": 119,
+        "endChar": 36
+      },
+      "revId": "f7b8c6351ba9f3b6e73bcb62f6d0939b97b862f4",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
     }
   ]
 }
