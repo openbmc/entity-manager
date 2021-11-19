@@ -94,6 +94,30 @@
       "revId": "f7b8c6351ba9f3b6e73bcb62f6d0939b97b862f4",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "08ad8e4e_ec5974bf",
+        "filename": "test/test_entity-manager.cpp",
+        "patchSetId": 6
+      },
+      "lineNbr": 119,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2021-11-19T18:30:59Z",
+      "side": 0,
+      "message": "\u003e Is this change necessary because with the new real parser it will actually do the math and parse \" 3 * 2 \" to 6?\n\u003e I believe the existing templateCharReplace would leave \"3 * 2\" as is and only do math if it is an expression with template, i.e. $TEST + 3 * 2. \n\u003e \n\u003e I don\u0027t see any real requirement for parsing any valid math expression with no template char like \"3 * 2\". Having said that, I am not sure existing configurations actually have such expressions.\n\nNone of the existing expressions have that, so in terms of backward compatibility, we\u0027re there.  We could enforce that the math only operates on template expressions, but that seems like something arbitrary and a lot of work that doesn\u0027t have a net benefit, so I\u0027m fine the with behavior of \"3 * 2\" computes to 6.  What I don\u0027t want is to require \"3 multiply 2\" to compute to 6.  That seems messy and subtle.",
+      "parentUuid": "e7d2f064_509d8945",
+      "range": {
+        "startLine": 119,
+        "startChar": 35,
+        "endLine": 119,
+        "endChar": 36
+      },
+      "revId": "f7b8c6351ba9f3b6e73bcb62f6d0939b97b862f4",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
     }
   ]
 }
