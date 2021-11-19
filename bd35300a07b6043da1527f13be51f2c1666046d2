@@ -94,6 +94,30 @@
       "revId": "bd35300a07b6043da1527f13be51f2c1666046d2",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "98078b38_12ea80dd",
+        "filename": "configurations/Bletchley.json",
+        "patchSetId": 2
+      },
+      "lineNbr": 202,
+      "author": {
+        "id": 1001183
+      },
+      "writtenOn": "2021-11-19T02:36:50Z",
+      "side": 1,
+      "message": "I failed if I had the *_Name without threshold setting in config file.\nHowever, I don\u0027t have threshold setting for now and these names make CI test faile\ndd, so I removed them.\n\nWith my understanding, *_Name is optional for a PSU sensor.\nPSUSensorMain has a logic to handle if there is no *_Name to customize the sensor name.",
+      "parentUuid": "e23e73d9_9d6aaf20",
+      "range": {
+        "startLine": 201,
+        "startChar": 0,
+        "endLine": 202,
+        "endChar": 39
+      },
+      "revId": "bd35300a07b6043da1527f13be51f2c1666046d2",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": false
     }
   ]
 }
