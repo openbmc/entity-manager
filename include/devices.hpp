@@ -181,5 +181,8 @@ const boost::container::flat_map<const char*, ExportTemplate, CmpStr>
                          "new_device", "delete_device", true)},
          {"MAX31790",
           ExportTemplate("max31790 $Address", "/sys/bus/i2c/devices/i2c-$Bus",
+                         "new_device", "delete_device", true)},
+	 {"JC42",
+          ExportTemplate("jc42 $Address", "/sys/bus/i2c/devices/i2c-$Bus",
                          "new_device", "delete_device", true)}}};
 } // namespace devices
