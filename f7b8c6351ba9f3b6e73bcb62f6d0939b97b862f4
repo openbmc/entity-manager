@@ -118,6 +118,30 @@
       "revId": "f7b8c6351ba9f3b6e73bcb62f6d0939b97b862f4",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "35a66fdd_c4e23e9e",
+        "filename": "test/test_entity-manager.cpp",
+        "patchSetId": 6
+      },
+      "lineNbr": 119,
+      "author": {
+        "id": 1000271
+      },
+      "writtenOn": "2021-11-23T22:09:04Z",
+      "side": 0,
+      "message": "I guess we are not getting main point here. We are not asking to compute \"3 multiply 2\", it is a sentence and we don\u0027t want to compute this. We want to do computation on \"$Test * 2\" and final string should return back \" 3 multiply 2 equals 6\" if we pass \"3 * 2 equals $test * 2\" then it will return \"6 equals 6\" with new parser.\n\nSo in summary, current parser doesn\u0027t so \"3 multiply 2\", it is a just a sentence.",
+      "parentUuid": "08ad8e4e_ec5974bf",
+      "range": {
+        "startLine": 119,
+        "startChar": 35,
+        "endLine": 119,
+        "endChar": 36
+      },
+      "revId": "f7b8c6351ba9f3b6e73bcb62f6d0939b97b862f4",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": false
     }
   ]
 }
