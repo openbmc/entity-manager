@@ -145,7 +145,7 @@ const boost::container::flat_map<const char*, ExportTemplate, CmpStr>
                          "new_device", "delete_device", true)},
          {"PXE1610",
           ExportTemplate("pxe1610 $Address", "/sys/bus/i2c/devices/i2c-$Bus",
-                          "new_device", "delete_device", true)},
+                         "new_device", "delete_device", true)},
          {"XDPE12284",
           ExportTemplate("xdpe12284 $Address", "/sys/bus/i2c/devices/i2c-$Bus",
                          "new_device", "delete_device", true)},
@@ -181,5 +181,8 @@ const boost::container::flat_map<const char*, ExportTemplate, CmpStr>
                          "new_device", "delete_device", true)},
          {"MAX31790",
           ExportTemplate("max31790 $Address", "/sys/bus/i2c/devices/i2c-$Bus",
+                         "new_device", "delete_device", true)},
+         {"JC42",
+          ExportTemplate("jc42 $Address", "/sys/bus/i2c/devices/i2c-$Bus",
                          "new_device", "delete_device", true)}}};
 } // namespace devices
