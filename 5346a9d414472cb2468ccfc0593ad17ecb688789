@@ -73,6 +73,30 @@
     },
     {
       "key": {
+        "uuid": "ebacf0a9_a7187206",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 8
+      },
+      "lineNbr": 10,
+      "author": {
+        "id": 1000847
+      },
+      "writtenOn": "2021-11-25T07:57:19Z",
+      "side": 1,
+      "message": "I have a question about detecting 16bit eeprom.\nAccording comments(https://github.com/openbmc/entity-manager/blob/master/src/FruDevice.cpp#L205), if is 16bit, it will move to the next byte automatically after reading byte.\nIf isDevice16Bit function is fixed and there is a 16bit eeprom, but this eeprom is already read 256 or more times by another daemon before FruDevice, this means FruDevice cannot detect this 16bit eeprom possibly, right?",
+      "parentUuid": "10c05e6e_fc81d67e",
+      "range": {
+        "startLine": 9,
+        "startChar": 32,
+        "endLine": 10,
+        "endChar": 41
+      },
+      "revId": "5346a9d414472cb2468ccfc0593ad17ecb688789",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "66601c5c_800c8a09",
         "filename": "/COMMIT_MSG",
         "patchSetId": 8
@@ -132,6 +156,30 @@
       "side": 1,
       "message": "That is fair. One more question though, theoretically, if this file is intend to have all possible locations listed, there is a risk on collision, i.e. a possible 16bit location actually has a 8bit part. Is that a concern in reality?",
       "parentUuid": "94faf6cd_261b2380",
+      "range": {
+        "startLine": 15,
+        "startChar": 0,
+        "endLine": 19,
+        "endChar": 62
+      },
+      "revId": "5346a9d414472cb2468ccfc0593ad17ecb688789",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "c8fafff0_0fa40282",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 8
+      },
+      "lineNbr": 19,
+      "author": {
+        "id": 1000847
+      },
+      "writtenOn": "2021-11-25T07:57:19Z",
+      "side": 1,
+      "message": "That\u0027s a good point. But I don\u0027t have that situation in my system.\nI think it can be solved via modifying json file by user?",
+      "parentUuid": "a5363d1e_818780be",
       "range": {
         "startLine": 15,
         "startChar": 0,
