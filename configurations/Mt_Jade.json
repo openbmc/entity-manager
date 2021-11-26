@@ -1,0 +1,772 @@
+[
+    {
+        "Exposes": [
+            {
+                "Index": 0,
+                "Name": "3V3_SB",
+                "PollRate": 1,
+                "ScaleFactor": 0.3333,
+                "Thresholds": [
+                    {
+                        "Direction": "greater than",
+                        "Name": "upper critical",
+                        "Severity": 1,
+                        "Value": 3.96
+                    },
+                    {
+                        "Direction": "less than",
+                        "Name": "lower critical",
+                        "Severity": 1,
+                        "Value": 2.32
+                    }
+                ],
+                "Type": "ADC"
+            },
+            {
+                "BridgeGpio": [
+                    {
+                        "Name": "RTC_BAT_SEN_EN",
+                        "Polarity": "High"
+                    }
+                ],
+                "Index": 0,
+                "Name": "VBAT_RTC",
+                "PollRate": 86400,
+                "ScaleFactor": 0.3333,
+                "Thresholds": [
+                    {
+                        "Direction": "greater than",
+                        "Name": "upper critical",
+                        "Severity": 1,
+                        "Value": 3.564
+                    },
+                    {
+                        "Direction": "less than",
+                        "Name": "lower critical",
+                        "Severity": 1,
+                        "Value": 2.106
+                    }
+                ],
+                "Type": "ADC"
+            },
+            {
+                "Index": 0,
+                "Name": "S0_0V8_VDDC_SOC",
+                "PollRate": 1,
+                "PowerState": "On",
+                "ScaleFactor": 1,
+                "Thresholds": [
+                    {
+                        "Direction": "greater than",
+                        "Name": "upper critical",
+                        "Severity": 1,
+                        "Value": 0.96
+                    },
+                    {
+                        "Direction": "less than",
+                        "Name": "lower critical",
+                        "Severity": 1,
+                        "Value": 0.56
+                    }
+                ],
+                "Type": "ADC"
+            },
+            {
+                "Index": 1,
+                "Name": "S1_0V8_VDDC_SOC",
+                "PollRate": 1,
+                "PowerState": "On",
+                "ScaleFactor": 1,
+                "Thresholds": [
+                    {
+                        "Direction": "greater than",
+                        "Name": "upper critical",
+                        "Severity": 1,
+                        "Value": 0.96
+                    },
+                    {
+                        "Direction": "less than",
+                        "Name": "lower critical",
+                        "Severity": 1,
+                        "Value": 0.56
+                    }
+                ],
+                "Type": "ADC"
+            },
+            {
+                "Index": 2,
+                "Name": "S0_0V75_PCP",
+                "PollRate": 1,
+                "PowerState": "On",
+                "ScaleFactor": 1,
+                "Thresholds": [
+                    {
+                        "Direction": "greater than",
+                        "Name": "upper critical",
+                        "Severity": 1,
+                        "Value": 1.323
+                    },
+                    {
+                        "Direction": "less than",
+                        "Name": "lower critical",
+                        "Severity": 1,
+                        "Value": 0.504
+                    }
+                ],
+                "Type": "ADC"
+            },
+            {
+                "Index": 3,
+                "Name": "S1_0V75_PCP",
+                "PollRate": 1,
+                "PowerState": "On",
+                "ScaleFactor": 1,
+                "Thresholds": [
+                    {
+                        "Direction": "greater than",
+                        "Name": "upper critical",
+                        "Severity": 1,
+                        "Value": 1.323
+                    },
+                    {
+                        "Direction": "less than",
+                        "Name": "lower critical",
+                        "Severity": 1,
+                        "Value": 0.504
+                    }
+                ],
+                "Type": "ADC"
+            },
+            {
+                "Index": 4,
+                "Name": "S0_1V2_VDDQ0123",
+                "PollRate": 1,
+                "PowerState": "On",
+                "ScaleFactor": 1,
+                "Thresholds": [
+                    {
+                        "Direction": "greater than",
+                        "Name": "upper critical",
+                        "Severity": 1,
+                        "Value": 1.442
+                    },
+                    {
+                        "Direction": "less than",
+                        "Name": "lower critical",
+                        "Severity": 1,
+                        "Value": 0.84
+                    }
+                ],
+                "Type": "ADC"
+            },
+            {
+                "Index": 5,
+                "Name": "S1_1V2_VDDQ0123",
+                "PollRate": 1,
+                "PowerState": "On",
+                "ScaleFactor": 1,
+                "Thresholds": [
+                    {
+                        "Direction": "greater than",
+                        "Name": "upper critical",
+                        "Severity": 1,
+                        "Value": 1.442
+                    },
+                    {
+                        "Direction": "less than",
+                        "Name": "lower critical",
+                        "Severity": 1,
+                        "Value": 0.84
+                    }
+                ],
+                "Type": "ADC"
+            },
+            {
+                "Index": 6,
+                "Name": "S0_0V6_VTT0123",
+                "PollRate": 1,
+                "PowerState": "On",
+                "ScaleFactor": 1,
+                "Thresholds": [
+                    {
+                        "Direction": "greater than",
+                        "Name": "upper critical",
+                        "Severity": 1,
+                        "Value": 0.72
+                    },
+                    {
+                        "Direction": "less than",
+                        "Name": "lower critical",
+                        "Severity": 1,
+                        "Value": 0.42
+                    }
+                ],
+                "Type": "ADC"
+            },
+            {
+                "Index": 7,
+                "Name": "S1_0V6_VTT0123",
+                "PollRate": 1,
+                "PowerState": "On",
+                "ScaleFactor": 1,
+                "Thresholds": [
+                    {
+                        "Direction": "greater than",
+                        "Name": "upper critical",
+                        "Severity": 1,
+                        "Value": 0.72
+                    },
+                    {
+                        "Direction": "less than",
+                        "Name": "lower critical",
+                        "Severity": 1,
+                        "Value": 0.42
+                    }
+                ],
+                "Type": "ADC"
+            },
+            {
+                "Index": 8,
+                "Name": "S0_2V5_VPP0123",
+                "PollRate": 1,
+                "PowerState": "On",
+                "ScaleFactor": 0.5,
+                "Thresholds": [
+                    {
+                        "Direction": "greater than",
+                        "Name": "upper critical",
+                        "Severity": 1,
+                        "Value": 3.0
+                    },
+                    {
+                        "Direction": "less than",
+                        "Name": "lower critical",
+                        "Severity": 1,
+                        "Value": 1.755
+                    }
+                ],
+                "Type": "ADC"
+            },
+            {
+                "Index": 9,
+                "Name": "S1_2V5_VPP0123",
+                "PollRate": 1,
+                "PowerState": "On",
+                "ScaleFactor": 0.5,
+                "Thresholds": [
+                    {
+                        "Direction": "greater than",
+                        "Name": "upper critical",
+                        "Severity": 1,
+                        "Value": 3.0
+                    },
+                    {
+                        "Direction": "less than",
+                        "Name": "lower critical",
+                        "Severity": 1,
+                        "Value": 1.755
+                    }
+                ],
+                "Type": "ADC"
+            },
+            {
+                "Index": 10,
+                "Name": "S0_1V2_VDDQ4567",
+                "PollRate": 1,
+                "PowerState": "On",
+                "ScaleFactor": 1,
+                "Thresholds": [
+                    {
+                        "Direction": "greater than",
+                        "Name": "upper critical",
+                        "Severity": 1,
+                        "Value": 1.442
+                    },
+                    {
+                        "Direction": "less than",
+                        "Name": "lower critical",
+                        "Severity": 1,
+                        "Value": 0.84
+                    }
+                ],
+                "Type": "ADC"
+            },
+            {
+                "Index": 11,
+                "Name": "S1_1V2_VDDQ4567",
+                "PollRate": 1,
+                "PowerState": "On",
+                "ScaleFactor": 1,
+                "Thresholds": [
+                    {
+                        "Direction": "greater than",
+                        "Name": "upper critical",
+                        "Severity": 1,
+                        "Value": 1.442
+                    },
+                    {
+                        "Direction": "less than",
+                        "Name": "lower critical",
+                        "Severity": 1,
+                        "Value": 0.84
+                    }
+                ],
+                "Type": "ADC"
+            },
+            {
+                "Index": 12,
+                "Name": "S0_0V6_VTT4567",
+                "PollRate": 1,
+                "PowerState": "On",
+                "ScaleFactor": 1,
+                "Thresholds": [
+                    {
+                        "Direction": "greater than",
+                        "Name": "upper critical",
+                        "Severity": 1,
+                        "Value": 0.72
+                    },
+                    {
+                        "Direction": "less than",
+                        "Name": "lower critical",
+                        "Severity": 1,
+                        "Value": 0.42
+                    }
+                ],
+                "Type": "ADC"
+            },
+            {
+                "Index": 13,
+                "Name": "S1_0V6_VTT4567",
+                "PollRate": 1,
+                "PowerState": "On",
+                "ScaleFactor": 1,
+                "Thresholds": [
+                    {
+                        "Direction": "greater than",
+                        "Name": "upper critical",
+                        "Severity": 1,
+                        "Value": 0.72
+                    },
+                    {
+                        "Direction": "less than",
+                        "Name": "lower critical",
+                        "Severity": 1,
+                        "Value": 0.42
+                    }
+                ],
+                "Type": "ADC"
+            },
+            {
+                "Index": 14,
+                "Name": "S0_2V5_VPP4567",
+                "PollRate": 1,
+                "PowerState": "On",
+                "ScaleFactor": 0.5,
+                "Thresholds": [
+                    {
+                        "Direction": "greater than",
+                        "Name": "upper critical",
+                        "Severity": 1,
+                        "Value": 3.0
+                    },
+                    {
+                        "Direction": "less than",
+                        "Name": "lower critical",
+                        "Severity": 1,
+                        "Value": 1.755
+                    }
+                ],
+                "Type": "ADC"
+            },
+            {
+                "Index": 15,
+                "Name": "S1_2V5_VPP4567",
+                "PollRate": 1,
+                "PowerState": "On",
+                "ScaleFactor": 0.5,
+                "Thresholds": [
+                    {
+                        "Direction": "greater than",
+                        "Name": "upper critical",
+                        "Severity": 1,
+                        "Value": 3.0
+                    },
+                    {
+                        "Direction": "less than",
+                        "Name": "lower critical",
+                        "Severity": 1,
+                        "Value": 1.755
+                    }
+                ],
+                "Type": "ADC"
+            },
+            {
+                "Index": 16,
+                "Name": "S0_0V85_RCA",
+                "PollRate": 1,
+                "PowerState": "On",
+                "ScaleFactor": 1,
+                "Thresholds": [
+                    {
+                        "Direction": "greater than",
+                        "Name": "upper critical",
+                        "Severity": 1,
+                        "Value": 1.08
+                    },
+                    {
+                        "Direction": "less than",
+                        "Name": "lower critical",
+                        "Severity": 1,
+                        "Value": 0.63
+                    }
+                ],
+                "Type": "ADC"
+            },
+            {
+                "Index": 17,
+                "Name": "S1_0V85_RCA",
+                "PollRate": 1,
+                "PowerState": "On",
+                "ScaleFactor": 1,
+                "Thresholds": [
+                    {
+                        "Direction": "greater than",
+                        "Name": "upper critical",
+                        "Severity": 1,
+                        "Value": 1.08
+                    },
+                    {
+                        "Direction": "less than",
+                        "Name": "lower critical",
+                        "Severity": 1,
+                        "Value": 0.63
+                    }
+                ],
+                "Type": "ADC"
+            },
+            {
+                "Index": 18,
+                "Name": "S0_1V8_VDDH",
+                "PollRate": 1,
+                "PowerState": "On",
+                "ScaleFactor": 0.5,
+                "Thresholds": [
+                    {
+                        "Direction": "greater than",
+                        "Name": "upper critical",
+                        "Severity": 1,
+                        "Value": 2.156
+                    },
+                    {
+                        "Direction": "less than",
+                        "Name": "lower critical",
+                        "Severity": 1,
+                        "Value": 1.265
+                    }
+                ],
+                "Type": "ADC"
+            },
+            {
+                "Index": 19,
+                "Name": "S1_1V8_VDDH",
+                "PollRate": 1,
+                "PowerState": "On",
+                "ScaleFactor": 0.5,
+                "Thresholds": [
+                    {
+                        "Direction": "greater than",
+                        "Name": "upper critical",
+                        "Severity": 1,
+                        "Value": 2.156
+                    },
+                    {
+                        "Direction": "less than",
+                        "Name": "lower critical",
+                        "Severity": 1,
+                        "Value": 1.265
+                    }
+                ],
+                "Type": "ADC"
+            },
+            {
+                "Index": 20,
+                "Name": "S0_1V5_VDDH",
+                "PollRate": 1,
+                "PowerState": "On",
+                "ScaleFactor": 1,
+                "Thresholds": [
+                    {
+                        "Direction": "greater than",
+                        "Name": "upper critical",
+                        "Severity": 1,
+                        "Value": 1.8
+                    },
+                    {
+                        "Direction": "less than",
+                        "Name": "lower critical",
+                        "Severity": 1,
+                        "Value": 1.053
+                    }
+                ],
+                "Type": "ADC"
+            },
+            {
+                "Index": 21,
+                "Name": "S1_1V5_VDDH",
+                "PollRate": 1,
+                "PowerState": "On",
+                "ScaleFactor": 1,
+                "Thresholds": [
+                    {
+                        "Direction": "greater than",
+                        "Name": "upper critical",
+                        "Severity": 1,
+                        "Value": 1.8
+                    },
+                    {
+                        "Direction": "less than",
+                        "Name": "lower critical",
+                        "Severity": 1,
+                        "Value": 1.053
+                    }
+                ],
+                "Type": "ADC"
+            },
+            {
+                "Index": 22,
+                "Name": "S0_1V8_SOC",
+                "PollRate": 1,
+                "PowerState": "On",
+                "ScaleFactor": 0.5,
+                "Thresholds": [
+                    {
+                        "Direction": "greater than",
+                        "Name": "upper critical",
+                        "Severity": 1,
+                        "Value": 2.156
+                    },
+                    {
+                        "Direction": "less than",
+                        "Name": "lower critical",
+                        "Severity": 1,
+                        "Value": 1.265
+                    }
+                ],
+                "Type": "ADC"
+            },
+            {
+                "Index": 23,
+                "Name": "S1_1V8_SOC",
+                "PollRate": 1,
+                "PowerState": "On",
+                "ScaleFactor": 0.5,
+                "Thresholds": [
+                    {
+                        "Direction": "greater than",
+                        "Name": "upper critical",
+                        "Severity": 1,
+                        "Value": 2.156
+                    },
+                    {
+                        "Direction": "less than",
+                        "Name": "lower critical",
+                        "Severity": 1,
+                        "Value": 1.265
+                    }
+                ],
+                "Type": "ADC"
+            },
+            {
+                "Index": 24,
+                "Name": "S0_1V8_PCP",
+                "PollRate": 1,
+                "PowerState": "On",
+                "ScaleFactor": 0.5,
+                "Thresholds": [
+                    {
+                        "Direction": "greater than",
+                        "Name": "upper critical",
+                        "Severity": 1,
+                        "Value": 2.156
+                    },
+                    {
+                        "Direction": "less than",
+                        "Name": "lower critical",
+                        "Severity": 1,
+                        "Value": 1.265
+                    }
+                ],
+                "Type": "ADC"
+            },
+            {
+                "Index": 25,
+                "Name": "S1_1V8_PCP",
+                "PollRate": 1,
+                "PowerState": "On",
+                "ScaleFactor": 0.5,
+                "Thresholds": [
+                    {
+                        "Direction": "greater than",
+                        "Name": "upper critical",
+                        "Severity": 1,
+                        "Value": 2.156
+                    },
+                    {
+                        "Direction": "less than",
+                        "Name": "lower critical",
+                        "Severity": 1,
+                        "Value": 1.265
+                    }
+                ],
+                "Type": "ADC"
+            },
+            {
+                "Index": 26,
+                "Name": "S0_3V3_SOC",
+                "PollRate": 1,
+                "PowerState": "On",
+                "ScaleFactor": 0.3333,
+                "Thresholds": [
+                    {
+                        "Direction": "greater than",
+                        "Name": "upper critical",
+                        "Severity": 1,
+                        "Value": 3.96
+                    },
+                    {
+                        "Direction": "less than",
+                        "Name": "lower critical",
+                        "Severity": 1,
+                        "Value": 2.32
+                    }
+                ],
+                "Type": "ADC"
+            },
+            {
+                "Index": 27,
+                "Name": "S1_3V3_SOC",
+                "PollRate": 1,
+                "PowerState": "On",
+                "ScaleFactor": 0.3333,
+                "Thresholds": [
+                    {
+                        "Direction": "greater than",
+                        "Name": "upper critical",
+                        "Severity": 1,
+                        "Value": 3.96
+                    },
+                    {
+                        "Direction": "less than",
+                        "Name": "lower critical",
+                        "Severity": 1,
+                        "Value": 2.32
+                    }
+                ],
+                "Type": "ADC"
+            },
+            {
+                "Address": "$address",
+                "Bus": "$bus",
+                "Name": "MB FRU",
+                "Type": "EEPROM"
+            },
+            {
+                "Address": "0x28",
+                "Bus": 3,
+                "Name": "TS1_Temp",
+                "Thresholds": [
+                    {
+                        "Direction": "greater than",
+                        "Name": "upper critical",
+                        "Severity": 1,
+                        "Value": 65
+                    }
+                ],
+                "Type": "TMP175"
+            },
+            {
+                "Address": "0x29",
+                "Bus": 3,
+                "Name": "TS2_Temp",
+                "Thresholds": [
+                    {
+                        "Direction": "greater than",
+                        "Name": "upper critical",
+                        "Severity": 1,
+                        "Value": 65
+                    }
+                ],
+                "Type": "TMP175"
+            },
+            {
+                "Address": "0x2a",
+                "Bus": 3,
+                "Name": "TS3_Temp",
+                "Thresholds": [
+                    {
+                        "Direction": "greater than",
+                        "Name": "upper critical",
+                        "Severity": 1,
+                        "Value": 65
+                    }
+                ],
+                "Type": "TMP175"
+            },
+            {
+                "Address": "0x2b",
+                "Bus": 3,
+                "Name": "TS4_Temp",
+                "Thresholds": [
+                    {
+                        "Direction": "greater than",
+                        "Name": "upper critical",
+                        "Severity": 1,
+                        "Value": 50
+                    }
+                ],
+                "Type": "TMP175"
+            },
+            {
+                "Address": "0x2c",
+                "Bus": 3,
+                "Name": "TS5_Temp",
+                "Thresholds": [
+                    {
+                        "Direction": "greater than",
+                        "Name": "upper critical",
+                        "Severity": 1,
+                        "Value": 65
+                    }
+                ],
+                "Type": "TMP175"
+            },
+            {
+                "Address": "0x2d",
+                "Bus": 3,
+                "Name": "TS6_Temp",
+                "Thresholds": [
+                    {
+                        "Direction": "greater than",
+                        "Name": "upper critical",
+                        "Severity": 1,
+                        "Value": 65
+                    }
+                ],
+                "Type": "TMP175"
+            }
+        ],
+        "Name": "Mt.Jade",
+        "Probe": "xyz.openbmc_project.FruDevice({'PRODUCT_PRODUCT_NAME': '.*Mt.Jade'})",
+        "Type": "Chassis",
+        "xyz.openbmc_project.Inventory.Decorator.Asset": {
+            "Manufacturer": "$PRODUCT_MANUFACTURER",
+            "Model": "$PRODUCT_PRODUCT_NAME $PRODUCT_VERSION",
+            "PartNumber": "$PRODUCT_PART_NUMBER",
+            "SerialNumber": "$PRODUCT_SERIAL_NUMBER"
+        },
+        "xyz.openbmc_project.Inventory.Decorator.AssetTag": {
+            "AssetTag": "$PRODUCT_ASSET_TAG"
+        }
+    }
+]
