@@ -117,6 +117,7 @@ configs = [
     'Intel Front Panel.json',
     'Kudo_BMC.json',
     'Kudo_Motherboard.json',
+    'Mt_Jade.json',
     'Nisqually.json',
     'NVME P4000.json',
     'PCIE SSD Retimer.json',
