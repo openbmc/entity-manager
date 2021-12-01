@@ -47,10 +47,10 @@ constexpr const int32_t maxMapperDepth = 0;
 
 constexpr const bool debug = false;
 
-void getInterfaces(
-    const std::tuple<std::string, std::string, std::string>& call,
-    const std::vector<std::shared_ptr<PerformProbe>>& probeVector,
-    const std::shared_ptr<PerformScan>& scan, size_t retries = 5)
+static void
+    getInterfaces(const std::tuple<std::string, std::string, std::string>& call,
+                  const std::vector<std::shared_ptr<PerformProbe>>& probeVector,
+                  const std::shared_ptr<PerformScan>& scan, size_t retries = 5)
 {
     if (!retries)
     {
@@ -92,9 +92,9 @@ void getInterfaces(
     }
 }
 
-void registerCallback(nlohmann::json& systemConfiguration,
-                      sdbusplus::asio::object_server& objServer,
-                      const std::string& path)
+static void registerCallback(nlohmann::json& systemConfiguration,
+                             sdbusplus::asio::object_server& objServer,
+                             const std::string& path)
 {
     static boost::container::flat_map<std::string, sdbusplus::bus::match::match>
         dbusMatches;
@@ -119,10 +119,11 @@ void registerCallback(nlohmann::json& systemConfiguration,
 
 // Populates scan->dbusProbeObjects with all interfaces and properties
 // for the paths that own the interfaces passed in.
-void findDbusObjects(std::vector<std::shared_ptr<PerformProbe>>&& probeVector,
-                     boost::container::flat_set<std::string>&& interfaces,
-                     const std::shared_ptr<PerformScan>& scan,
-                     size_t retries = 5)
+static void
+    findDbusObjects(std::vector<std::shared_ptr<PerformProbe>>&& probeVector,
+                    boost::container::flat_set<std::string>&& interfaces,
+                    const std::shared_ptr<PerformScan>& scan,
+                    size_t retries = 5)
 {
     // Filter out interfaces already obtained.
     for (const auto& [path, probeInterfaces] : scan->dbusProbeObjects)
@@ -219,7 +220,7 @@ void findDbusObjects(std::vector<std::shared_ptr<PerformProbe>>&& probeVector,
     }
 }
 
-std::string getRecordName(
+static std::string getRecordName(
     const boost::container::flat_map<std::string, BasicVariantType>& probe,
     const std::string& probeName)
 {
