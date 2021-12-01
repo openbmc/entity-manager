@@ -4,6 +4,7 @@ executable(
     'entity-manager',
     'EntityManager.cpp',
     'PerformScan.cpp',
+    'PerformProbe.cpp',
     'Overlay.cpp',
     'Utils.cpp',
     cpp_args: cpp_args + ['-DBOOST_ASIO_DISABLE_THREADS'],
