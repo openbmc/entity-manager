@@ -33,10 +33,11 @@ static const boost::container::flat_map<const char*, probe_type_codes, CmpStr>
 
 // probes dbus interface dictionary for a key with a value that matches a regex
 // When an interface passes a probe, also save its D-Bus path with it.
-bool probeDbus(const std::string& interface,
-               const std::map<std::string, nlohmann::json>& matches,
-               FoundDeviceT& devices, const std::shared_ptr<PerformScan>& scan,
-               bool& foundProbe)
+static bool probeDbus(const std::string& interface,
+                      const std::map<std::string, nlohmann::json>& matches,
+                      FoundDeviceT& devices,
+                      const std::shared_ptr<PerformScan>& scan,
+                      bool& foundProbe)
 {
     bool foundMatch = false;
     foundProbe = false;
@@ -86,8 +87,9 @@ bool probeDbus(const std::string& interface,
 
 // default probe entry point, iterates a list looking for specific types to
 // call specific probe functions
-bool probe(const std::vector<std::string>& probeCommand,
-           const std::shared_ptr<PerformScan>& scan, FoundDeviceT& foundDevs)
+static bool probe(const std::vector<std::string>& probeCommand,
+                  const std::shared_ptr<PerformScan>& scan,
+                  FoundDeviceT& foundDevs)
 {
     const static std::regex command(R"(\((.*)\))");
     std::smatch match;
