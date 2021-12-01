@@ -22,15 +22,6 @@
 
 constexpr const bool debug = false;
 
-/* Keep this in sync with EntityManager.cpp */
-static const boost::container::flat_map<const char*, probe_type_codes, CmpStr>
-    probeTypes{{{"FALSE", probe_type_codes::FALSE_T},
-                {"TRUE", probe_type_codes::TRUE_T},
-                {"AND", probe_type_codes::AND},
-                {"OR", probe_type_codes::OR},
-                {"FOUND", probe_type_codes::FOUND},
-                {"MATCH_ONE", probe_type_codes::MATCH_ONE}}};
-
 // probes dbus interface dictionary for a key with a value that matches a regex
 // When an interface passes a probe, also save its D-Bus path with it.
 bool probeDbus(const std::string& interface,
@@ -99,22 +90,10 @@ bool probe(const std::vector<std::string>& probeCommand,
 
     for (auto& probe : probeCommand)
     {
-        bool foundProbe = false;
-        boost::container::flat_map<const char*, probe_type_codes,
-                                   CmpStr>::const_iterator probeType;
-
-        for (probeType = probeTypes.begin(); probeType != probeTypes.end();
-             ++probeType)
+        FoundProbeTypeT probeType = findProbeType(probe);
+        if (probeType)
         {
-            if (probe.find(probeType->first) != std::string::npos)
-            {
-                foundProbe = true;
-                break;
-            }
-        }
-        if (foundProbe)
-        {
-            switch (probeType->second)
+            switch ((*probeType)->second)
             {
                 case probe_type_codes::FALSE_T:
                 {
@@ -188,6 +167,7 @@ bool probe(const std::vector<std::string>& probeCommand,
             {
                 return false;
             }
+            bool foundProbe = !!probeType;
             std::string probeInterface = probe.substr(0, findStart);
             cur = probeDbus(probeInterface, dbusProbeMap, foundDevs, scan,
                             foundProbe);
@@ -209,8 +189,8 @@ bool probe(const std::vector<std::string>& probeCommand,
             ret = cur;
             first = false;
         }
-        lastCommand = probeType != probeTypes.end() ? probeType->second
-                                                    : probe_type_codes::FALSE_T;
+        lastCommand =
+            probeType ? (*probeType)->second : probe_type_codes::FALSE_T;
     }
 
     // probe passed, but empty device

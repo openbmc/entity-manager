@@ -30,15 +30,6 @@ extern void
     propertiesChangedCallback(nlohmann::json& systemConfiguration,
                               sdbusplus::asio::object_server& objServer);
 
-/* Keep this in sync with EntityManager.cpp */
-static const boost::container::flat_map<const char*, probe_type_codes, CmpStr>
-    probeTypes{{{"FALSE", probe_type_codes::FALSE_T},
-                {"TRUE", probe_type_codes::TRUE_T},
-                {"AND", probe_type_codes::AND},
-                {"OR", probe_type_codes::OR},
-                {"FOUND", probe_type_codes::FOUND},
-                {"MATCH_ONE", probe_type_codes::MATCH_ONE}}};
-
 using GetSubTreeType = std::vector<
     std::pair<std::string,
               std::vector<std::pair<std::string, std::vector<std::string>>>>>;
@@ -606,19 +597,7 @@ void PerformScan::run()
                 std::cerr << "Probe statement wasn't a string, can't parse";
                 continue;
             }
-            bool found = false;
-            boost::container::flat_map<const char*, probe_type_codes,
-                                       CmpStr>::const_iterator probeType;
-            for (probeType = probeTypes.begin(); probeType != probeTypes.end();
-                 ++probeType)
-            {
-                if (probe->find(probeType->first) != std::string::npos)
-                {
-                    found = true;
-                    break;
-                }
-            }
-            if (found)
+            if (findProbeType(probe->c_str()))
             {
                 continue;
             }
