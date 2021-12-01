@@ -32,7 +32,7 @@ __Example__:
 
 #### xyz.openbmc_project.{InventoryType}
 
-See [upstream types](https://github.com/openbmc/phosphor-dbus-interfaces/tree/master/xyz/openbmc_project/Inventory/Item)
+See [upstream types](https://github.com/openbmc/phosphor-dbus-interfaces/tree/master/yaml/xyz/openbmc_project/Inventory/Item)
 
 * BMC
 * Board
