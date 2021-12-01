@@ -39,6 +39,7 @@
 #include <filesystem>
 #include <fstream>
 #include <iostream>
+#include <map>
 #include <regex>
 #include <variant>
 constexpr const char* configurationDirectory = PACKAGE_DIR "configurations";
@@ -49,7 +50,7 @@ constexpr const char* currentConfiguration = "/var/configuration/system.json";
 constexpr const char* globalSchema = "global.json";
 constexpr const bool debug = false;
 
-static const boost::container::flat_map<const char*, probe_type_codes, CmpStr>
+const boost::container::flat_map<const char*, probe_type_codes, CmpStr>
     probeTypes{{{"FALSE", probe_type_codes::FALSE_T},
                 {"TRUE", probe_type_codes::TRUE_T},
                 {"AND", probe_type_codes::AND},
@@ -83,6 +84,22 @@ boost::asio::io_context io;
 
 const std::regex illegalDbusPathRegex("[^A-Za-z0-9_.]");
 const std::regex illegalDbusMemberRegex("[^A-Za-z0-9_]");
+
+FoundProbeTypeT findProbeType(const std::string& probe)
+{
+    boost::container::flat_map<const char*, probe_type_codes,
+                               CmpStr>::const_iterator probeType;
+    for (probeType = probeTypes.begin(); probeType != probeTypes.end();
+         ++probeType)
+    {
+        if (probe.find(probeType->first) != std::string::npos)
+        {
+            return probeType;
+        }
+    }
+
+    return std::nullopt;
+}
 
 static std::shared_ptr<sdbusplus::asio::dbus_interface>
     createInterface(sdbusplus::asio::object_server& objServer,

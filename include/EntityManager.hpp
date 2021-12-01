@@ -27,6 +27,7 @@
 
 #include <iostream>
 #include <list>
+#include <optional>
 #include <string>
 
 // paths - > interfaces -> properties
@@ -58,6 +59,11 @@ enum class probe_type_codes
     FOUND,
     MATCH_ONE
 };
+
+using FoundProbeTypeT =
+    std::optional<boost::container::flat_map<const char*, probe_type_codes,
+                                             CmpStr>::const_iterator>;
+FoundProbeTypeT findProbeType(const std::string& probe);
 
 struct PerformScan : std::enable_shared_from_this<PerformScan>
 {
