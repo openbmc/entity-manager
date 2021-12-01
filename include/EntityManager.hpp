@@ -40,6 +40,25 @@ using DBusProbeObjectT = boost::container::flat_map<
 using FoundDeviceT = std::vector<std::tuple<
     boost::container::flat_map<std::string, BasicVariantType>, std::string>>;
 
+struct CmpStr
+{
+    bool operator()(const char* a, const char* b) const
+    {
+        return std::strcmp(a, b) < 0;
+    }
+};
+
+// underscore T for collison with dbus c api
+enum class probe_type_codes
+{
+    FALSE_T,
+    TRUE_T,
+    AND,
+    OR,
+    FOUND,
+    MATCH_ONE
+};
+
 struct PerformScan : std::enable_shared_from_this<PerformScan>
 {
 
