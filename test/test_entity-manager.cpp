@@ -10,173 +10,116 @@
 
 using namespace std::string_literals;
 
+bool verifyTemplateCharReplace(
+    std::string inp, nlohmann::json out,
+    boost::container::flat_map<std::string, BasicVariantType> data)
+{
+    nlohmann::json j = {{"foo", inp}};
+    auto it = j.begin();
+    templateCharReplace(it, data, 0);
+    return (out == j["foo"]);
+}
+
 TEST(TemplateCharReplace, replaceOneInt)
 {
-    nlohmann::json j = {{"foo", "$bus"}};
-    auto it = j.begin();
-    boost::container::flat_map<std::string, BasicVariantType> data;
-    data["BUS"] = 23;
-
-    templateCharReplace(it, data, 0);
-
-    nlohmann::json expected = 23;
-    EXPECT_EQ(expected, j["foo"]);
+    boost::container::flat_map<std::string, BasicVariantType> data = {
+        {"BUS", 23}};
+    EXPECT_TRUE(verifyTemplateCharReplace("$bus", 23, data));
 }
 
 TEST(TemplateCharReplace, replaceOneStr)
 {
-    nlohmann::json j = {{"foo", "$TEST"}};
-    auto it = j.begin();
-    boost::container::flat_map<std::string, BasicVariantType> data;
-    data["TEST"] = std::string("Test");
-
-    templateCharReplace(it, data, 0);
-
-    nlohmann::json expected = "Test";
-    EXPECT_EQ(expected, j["foo"]);
+    boost::container::flat_map<std::string, BasicVariantType> data = {
+        {"TEST", "Test"}};
+    EXPECT_TRUE(verifyTemplateCharReplace("$TEST", "Test", data));
 }
 
 TEST(TemplateCharReplace, replaceSecondStr)
 {
-    nlohmann::json j = {{"foo", "the $TEST"}};
-    auto it = j.begin();
-    boost::container::flat_map<std::string, BasicVariantType> data;
-    data["TEST"] = std::string("Test");
-
-    templateCharReplace(it, data, 0);
-
-    nlohmann::json expected = "the Test";
-    EXPECT_EQ(expected, j["foo"]);
+    boost::container::flat_map<std::string, BasicVariantType> data = {
+        {"TEST", "Test"}};
+    EXPECT_TRUE(verifyTemplateCharReplace("the $TEST", "the Test", data));
 }
 
 TEST(TemplateCharReplace, replaceMiddleStr)
 {
-    nlohmann::json j = {{"foo", "the $TEST worked"}};
-    auto it = j.begin();
-    boost::container::flat_map<std::string, BasicVariantType> data;
-    data["TEST"] = std::string("Test");
-
-    templateCharReplace(it, data, 0);
-
-    nlohmann::json expected = "the Test worked";
-    EXPECT_EQ(expected, j["foo"]);
+    boost::container::flat_map<std::string, BasicVariantType> data = {
+        {"TEST", "Test"}};
+    EXPECT_TRUE(
+        verifyTemplateCharReplace("the $TEST worked", "the Test worked", data));
 }
 
 TEST(TemplateCharReplace, replaceLastStr)
 {
-    nlohmann::json j = {{"foo", "the Test $TEST"}};
-    auto it = j.begin();
-    boost::container::flat_map<std::string, BasicVariantType> data;
-    data["TEST"] = 23;
-
-    templateCharReplace(it, data, 0);
-
-    nlohmann::json expected = "the Test 23";
-    EXPECT_EQ(expected, j["foo"]);
+    boost::container::flat_map<std::string, BasicVariantType> data = {
+        {"TEST", 23}};
+    EXPECT_TRUE(
+        verifyTemplateCharReplace("the Test $TEST", "the Test 23", data));
 }
 
 TEST(TemplateCharReplace, increment)
 {
-    nlohmann::json j = {{"foo", "3 plus 1 equals $TEST + 1"}};
-    auto it = j.begin();
-    boost::container::flat_map<std::string, BasicVariantType> data;
-    data["TEST"] = 3;
-
-    templateCharReplace(it, data, 0);
-
-    nlohmann::json expected = "3 plus 1 equals 4";
-    EXPECT_EQ(expected, j["foo"]);
+    boost::container::flat_map<std::string, BasicVariantType> data = {
+        {"TEST", 3}};
+    EXPECT_TRUE(verifyTemplateCharReplace("3 plus 1 equals $TEST + 1",
+                                          "3 plus 1 equals 4", data));
 }
 
 TEST(TemplateCharReplace, decrement)
 {
-    nlohmann::json j = {{"foo", "3 minus 1 equals $TEST - 1 "}};
-    auto it = j.begin();
-    boost::container::flat_map<std::string, BasicVariantType> data;
-    data["TEST"] = 3;
-
-    templateCharReplace(it, data, 0);
-
-    nlohmann::json expected = "3 minus 1 equals 2 ";
-    EXPECT_EQ(expected, j["foo"]);
+    boost::container::flat_map<std::string, BasicVariantType> data = {
+        {"TEST", 3}};
+    EXPECT_TRUE(verifyTemplateCharReplace("3 minus 1 equals $TEST - 1",
+                                          "3 minus 1 equals 2", data));
 }
 
 TEST(TemplateCharReplace, modulus)
 {
-    nlohmann::json j = {{"foo", "3 mod 2 equals $TEST % 2"}};
-    auto it = j.begin();
-    boost::container::flat_map<std::string, BasicVariantType> data;
-    data["TEST"] = 3;
-
-    templateCharReplace(it, data, 0);
-
-    nlohmann::json expected = "3 mod 2 equals 1";
-    EXPECT_EQ(expected, j["foo"]);
+    boost::container::flat_map<std::string, BasicVariantType> data = {
+        {"TEST", 3}};
+    EXPECT_TRUE(verifyTemplateCharReplace("3 mod 2 equals $TEST % 2",
+                                          "3 mod 2 equals 1", data));
 }
 
 TEST(TemplateCharReplace, multiply)
 {
-    nlohmann::json j = {{"foo", "3 multiply 2 equals $TEST * 2"}};
-    auto it = j.begin();
-    boost::container::flat_map<std::string, BasicVariantType> data;
-    data["TEST"] = 3;
-
-    templateCharReplace(it, data, 0);
-
-    nlohmann::json expected = "3 multiply 2 equals 6";
-    EXPECT_EQ(expected, j["foo"]);
+    boost::container::flat_map<std::string, BasicVariantType> data = {
+        {"TEST", 3}};
+    EXPECT_TRUE(verifyTemplateCharReplace("3 multiply 2 equals $TEST * 2",
+                                          "3 multiply 2 equals 6", data));
 }
 
 TEST(TemplateCharReplace, divide)
 {
-    nlohmann::json j = {{"foo", "4 divide 2 equals $TEST / 2"}};
-    auto it = j.begin();
-    boost::container::flat_map<std::string, BasicVariantType> data;
-    data["TEST"] = 4;
-
-    templateCharReplace(it, data, 0);
-
-    nlohmann::json expected = "4 divide 2 equals 2";
-    EXPECT_EQ(expected, j["foo"]);
+    boost::container::flat_map<std::string, BasicVariantType> data = {
+        {"TEST", 4}};
+    EXPECT_TRUE(verifyTemplateCharReplace("4 divide 2 equals $TEST / 2",
+                                          "4 divide 2 equals 2", data));
 }
 
 TEST(TemplateCharReplace, multiMath)
 {
-    nlohmann::json j = {{"foo", "4 multiply 2 mod 6 equals $TEST * 2 % 6"}};
-    auto it = j.begin();
-    boost::container::flat_map<std::string, BasicVariantType> data;
-    data["TEST"] = 4;
-
-    templateCharReplace(it, data, 0);
-
-    nlohmann::json expected = "4 multiply 2 mod 6 equals 2";
-    EXPECT_EQ(expected, j["foo"]);
+    boost::container::flat_map<std::string, BasicVariantType> data = {
+        {"TEST", 4}};
+    EXPECT_TRUE(
+        verifyTemplateCharReplace("4 multiply 2 mod 6 equals $TEST * 2 % 6",
+                                  "4 multiply 2 mod 6 equals 2", data));
 }
 
 TEST(TemplateCharReplace, multiMath1)
 {
-    nlohmann::json j = {{"Name", "PSU$ADDRESS % 4 + 1 FRU"}};
-    auto it = j.begin();
-    boost::container::flat_map<std::string, BasicVariantType> data;
-    data["ADDRESS"] = 80;
-
-    templateCharReplace(it, data, 0);
-
-    nlohmann::json expected = "PSU1 FRU";
-    EXPECT_EQ(expected, j["Name"]);
+    boost::container::flat_map<std::string, BasicVariantType> data = {
+        {"ADDRESS", 80}};
+    EXPECT_TRUE(
+        verifyTemplateCharReplace("PSU$ADDRESS % 4 + 1 FRU", "PSU1 FRU", data));
 }
 
 TEST(TemplateCharReplace, multiMath2)
 {
-    nlohmann::json j = {{"Name", "PSU$ADDRESS % 4 + 2 FAN 1"}};
-    auto it = j.begin();
-    boost::container::flat_map<std::string, BasicVariantType> data;
-    data["ADDRESS"] = 80;
-
-    templateCharReplace(it, data, 0);
-
-    nlohmann::json expected = "PSU2 FAN 1";
-    EXPECT_EQ(expected, j["Name"]);
+    boost::container::flat_map<std::string, BasicVariantType> data = {
+        {"ADDRESS", 80}};
+    EXPECT_TRUE(verifyTemplateCharReplace("PSU$ADDRESS % 4 + 2 FAN 1",
+                                          "PSU2 FAN 1", data));
 }
 
 TEST(TemplateCharReplace, index)
@@ -218,7 +161,8 @@ TEST(TemplateCharReplace, complexMath)
 
 TEST(TemplateCharReplace, complexMath1)
 {
-    nlohmann::json j = {{"Name", "PCIe Slot 2*($ADDRESS % 4) * 2 + $index Mux"}};
+    nlohmann::json j = {
+        {"Name", "PCIe Slot 2*($ADDRESS % 4) * 2 + $index Mux"}};
     auto it = j.begin();
     boost::container::flat_map<std::string, BasicVariantType> data;
     data["ADDRESS"] = 83;
@@ -231,16 +175,9 @@ TEST(TemplateCharReplace, complexMath1)
 
 TEST(TemplateCharReplace, twoReplacements)
 {
-    nlohmann::json j = {{"foo", "$FOO $BAR"}};
-    auto it = j.begin();
-    boost::container::flat_map<std::string, BasicVariantType> data;
-    data["FOO"] = std::string("foo");
-    data["BAR"] = std::string("bar");
-
-    templateCharReplace(it, data, 0);
-
-    nlohmann::json expected = "foo bar";
-    EXPECT_EQ(expected, j["foo"]);
+    boost::container::flat_map<std::string, BasicVariantType> data = {
+        {"FOO", "foo"}, {"BAR", "bar"}};
+    EXPECT_TRUE(verifyTemplateCharReplace("$FOO $BAR", "foo bar", data));
 }
 
 TEST(TemplateCharReplace, twoReplacementsWithMath)
@@ -258,16 +195,10 @@ TEST(TemplateCharReplace, twoReplacementsWithMath)
 
 TEST(TemplateCharReplace, twoReplacementsWithMath2)
 {
-    nlohmann::json j = {{"foo", "4 divide 2 equals $ADDRESS / 2 $BAR"}};
-    auto it = j.begin();
-    boost::container::flat_map<std::string, BasicVariantType> data;
-    data["ADDRESS"] = 4;
-    data["BAR"] = std::string("bar");
-
-    templateCharReplace(it, data, 0);
-
-    nlohmann::json expected = "4 divide 2 equals 2 bar";
-    EXPECT_EQ(expected, j["foo"]);
+    boost::container::flat_map<std::string, BasicVariantType> data = {
+        {"Address", 4}, {"BAR", "bar"}};
+    EXPECT_TRUE(verifyTemplateCharReplace("4 divide 2 equals $ADDRESS / 2 $BAR",
+                                          "4 divide 2 equals 2 bar", data));
 }
 
 TEST(TemplateCharReplace, hexAndWrongCase)
