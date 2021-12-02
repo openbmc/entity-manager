@@ -1,8 +1,8 @@
 #include "FruUtils.hpp"
 
+#include <algorithm>
 #include <array>
-#include<algorithm>
-#include<iterator>
+#include <iterator>
 
 #include "gtest/gtest.h"
 
@@ -145,12 +145,10 @@ TEST(VerifyChecksumTest, WrapBoundaryHigh)
     EXPECT_EQ(calculateChecksum(data), 255);
 }
 
-int64_t getDataTempl(
-    const std::vector<uint8_t>& data,
-    [[maybe_unused]] int flag,
-    [[maybe_unused]] int file,
-    [[maybe_unused]] uint16_t address,
-    uint16_t offset, uint8_t length, uint8_t* outBuf)
+int64_t getDataTempl(const std::vector<uint8_t>& data,
+                     [[maybe_unused]] int flag, [[maybe_unused]] int file,
+                     [[maybe_unused]] uint16_t address, uint16_t offset,
+                     uint8_t length, uint8_t* outBuf)
 {
     if (offset >= data.size())
     {
@@ -158,8 +156,7 @@ int64_t getDataTempl(
     }
 
     uint16_t idx;
-    for (idx = offset;
-         idx < data.size() && idx < offset + length;
+    for (idx = offset; idx < data.size() && idx < offset + length;
          ++idx, ++outBuf)
     {
         *outBuf = data[idx];
@@ -173,8 +170,9 @@ TEST(FindFRUHeaderTest, InvalidHeader)
     const std::vector<uint8_t> data = {255, 16};
     uint16_t offset = 0;
     std::array<uint8_t, I2C_SMBUS_BLOCK_MAX> blockData;
-    auto getData = [&data](auto fl, auto fi, auto a, auto o, auto l,
-        auto* b) { return getDataTempl(data, fl, fi, a, o, l, b); };
+    auto getData = [&data](auto fl, auto fi, auto a, auto o, auto l, auto* b) {
+        return getDataTempl(data, fl, fi, a, o, l, b);
+    };
 
     EXPECT_FALSE(findFRUHeader(0, 0, 0, getData, "error", blockData, offset));
 }
@@ -184,20 +182,22 @@ TEST(FindFRUHeaderTest, NoData)
     const std::vector<uint8_t> data = {};
     uint16_t offset = 0;
     std::array<uint8_t, I2C_SMBUS_BLOCK_MAX> blockData;
-    auto getData = [&data](auto fl, auto fi, auto a, auto o, auto l,
-        auto* b) { return getDataTempl(data, fl, fi, a, o, l, b); };
+    auto getData = [&data](auto fl, auto fi, auto a, auto o, auto l, auto* b) {
+        return getDataTempl(data, fl, fi, a, o, l, b);
+    };
 
     EXPECT_FALSE(findFRUHeader(0, 0, 0, getData, "error", blockData, offset));
 }
 
 TEST(FindFRUHeaderTest, ValidHeader)
 {
-    const std::vector<uint8_t> data = {
-        0x01, 0x00, 0x01, 0x02, 0x03, 0x04, 0x00, 0xf5};
+    const std::vector<uint8_t> data = {0x01, 0x00, 0x01, 0x02,
+                                       0x03, 0x04, 0x00, 0xf5};
     uint16_t offset = 0;
     std::array<uint8_t, I2C_SMBUS_BLOCK_MAX> blockData;
-    auto getData = [&data](auto fl, auto fi, auto a, auto o, auto l,
-        auto* b) { return getDataTempl(data, fl, fi, a, o, l, b); };
+    auto getData = [&data](auto fl, auto fi, auto a, auto o, auto l, auto* b) {
+        return getDataTempl(data, fl, fi, a, o, l, b);
+    };
 
     EXPECT_TRUE(findFRUHeader(0, 0, 0, getData, "error", blockData, offset));
     EXPECT_EQ(0, offset);
@@ -209,8 +209,9 @@ TEST(FindFRUHeaderTest, TyanInvalidHeader)
     data.resize(0x6000 + I2C_SMBUS_BLOCK_MAX);
     uint16_t offset = 0;
     std::array<uint8_t, I2C_SMBUS_BLOCK_MAX> blockData;
-    auto getData = [&data](auto fl, auto fi, auto a, auto o, auto l,
-        auto* b) { return getDataTempl(data, fl, fi, a, o, l, b); };
+    auto getData = [&data](auto fl, auto fi, auto a, auto o, auto l, auto* b) {
+        return getDataTempl(data, fl, fi, a, o, l, b);
+    };
 
     EXPECT_FALSE(findFRUHeader(0, 0, 0, getData, "error", blockData, offset));
 }
@@ -220,8 +221,9 @@ TEST(FindFRUHeaderTest, TyanNoData)
     const std::vector<uint8_t> data = {'$', 'T', 'Y', 'A', 'N', '$', 0, 0};
     uint16_t offset = 0;
     std::array<uint8_t, I2C_SMBUS_BLOCK_MAX> blockData;
-    auto getData = [&data](auto fl, auto fi, auto a, auto o, auto l,
-        auto* b) { return getDataTempl(data, fl, fi, a, o, l, b); };
+    auto getData = [&data](auto fl, auto fi, auto a, auto o, auto l, auto* b) {
+        return getDataTempl(data, fl, fi, a, o, l, b);
+    };
 
     EXPECT_FALSE(findFRUHeader(0, 0, 0, getData, "error", blockData, offset));
 }
@@ -236,9 +238,108 @@ TEST(FindFRUHeaderTest, TyanValidHeader)
 
     uint16_t offset = 0;
     std::array<uint8_t, I2C_SMBUS_BLOCK_MAX> blockData;
-    auto getData = [&data](auto fl, auto fi, auto a, auto o, auto l,
-        auto* b) { return getDataTempl(data, fl, fi, a, o, l, b); };
+    auto getData = [&data](auto fl, auto fi, auto a, auto o, auto l, auto* b) {
+        return getDataTempl(data, fl, fi, a, o, l, b);
+    };
 
     EXPECT_TRUE(findFRUHeader(0, 0, 0, getData, "error", blockData, offset));
     EXPECT_EQ(0x6000, offset);
+}
+
+TEST(FormatFruTest, WrongSizeErr)
+{
+    const std::vector<uint8_t> fruData = {0x01, 0x00, 0x01, 0x02,
+                                          0x03, 0x04, 0x00};
+    boost::container::flat_map<std::string, std::string> formattedFRU;
+    resCodes res = formatFRU(fruData, formattedFRU);
+    EXPECT_EQ(res, resCodes::resErr);
+}
+
+TEST(FormatFruTest, WrongVersionErr)
+{
+    const std::vector<uint8_t> fruData = {0x01, 0x00, 0x01, 0x00, 0x00, 0x00,
+                                          0x00, 0x00, 0x00, 0x01, 0x02, 0x03,
+                                          0x04, 0x05, 0x06, 0x07, 0x08, 0x09};
+    boost::container::flat_map<std::string, std::string> formattedFRU;
+    resCodes res = formatFRU(fruData, formattedFRU);
+    EXPECT_EQ(res, resCodes::resErr);
+}
+
+TEST(FormatFruTest, ChassisWrongFieldDataSize)
+{
+    const std::vector<uint8_t> fruData = {0x01, 0x00, 0x01, 0x02, 0x03,
+                                          0x04, 0x00, 0x00, 0x00};
+    boost::container::flat_map<std::string, std::string> formattedFRU;
+    resCodes res = formatFRU(fruData, formattedFRU);
+    EXPECT_EQ(res, resCodes::resErr);
+}
+
+TEST(FormatFruTest, ChassisAreaChecksumWarn)
+{
+    const std::vector<uint8_t> fruData = {
+        0x02, 0x00, 0x01, 0x00, 0x00, 0x00, 0x00, 0x00, 0x01, 0x02, 0x02, 0x02,
+        0x02, 0x05, 0x02, 0x03, 0x05, 0xc1, 0x00, 0x00, 0x00, 0x00, 0x00, 0x09};
+    boost::container::flat_map<std::string, std::string> formattedFRU;
+    resCodes res = formatFRU(fruData, formattedFRU);
+    EXPECT_EQ(res, resCodes::resWarn);
+}
+
+TEST(FormatFruTest, ChassisAreaFieldAbsentWarn)
+{
+    const std::vector<uint8_t> fruData = {
+        0x02, 0x00, 0x01, 0x00, 0x00, 0x00, 0x00, 0x00, 0x01, 0x02, 0x02, 0x02,
+        0x02, 0x05, 0xc1, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x27};
+    boost::container::flat_map<std::string, std::string> formattedFRU;
+    resCodes res = formatFRU(fruData, formattedFRU);
+    EXPECT_EQ(res, resCodes::resWarn);
+}
+
+TEST(FormatFruTest, ChassisAreaDataOK)
+{
+    const std::vector<uint8_t> fruData = {
+        0x02, 0x00, 0x01, 0x00, 0x00, 0x00, 0x00, 0x00, 0x01, 0x02, 0x02, 0x02,
+        0x02, 0x05, 0x02, 0x03, 0x05, 0xc1, 0x00, 0x00, 0x00, 0x00, 0x00, 0x27};
+    boost::container::flat_map<std::string, std::string> formattedFRU;
+    resCodes res = formatFRU(fruData, formattedFRU);
+    EXPECT_EQ(res, resCodes::resOK);
+}
+
+TEST(FormatFruTest, ProductWrongFieldDataSize)
+{
+    const std::vector<uint8_t> fruData = {0x01, 0x00, 0x00, 0x00, 0x01,
+                                          0x04, 0x00, 0x00, 0x00};
+    boost::container::flat_map<std::string, std::string> formattedFRU;
+    resCodes res = formatFRU(fruData, formattedFRU);
+    EXPECT_EQ(res, resCodes::resErr);
+}
+
+TEST(FormatFruTest, ProductAreaChecksumWarn)
+{
+    const std::vector<uint8_t> fruData = {
+        0x02, 0x00, 0x00, 0x00, 0x01, 0x00, 0x00, 0x00, 0x01, 0x02, 0x00, 0x01,
+        0x03, 0x01, 0x02, 0x01, 0x05, 0x01, 0x07, 0x01, 0x08, 0x00, 0xc1, 0x27};
+    boost::container::flat_map<std::string, std::string> formattedFRU;
+    resCodes res = formatFRU(fruData, formattedFRU);
+    EXPECT_EQ(res, resCodes::resWarn);
+}
+
+TEST(FormatFruTest, ProductAreaFieldAbsentWarn)
+{
+    const std::vector<uint8_t> fruData = {
+        0x02, 0x00, 0x00, 0x00, 0x01, 0x00, 0x00, 0x00, 0x01, 0x02, 0x00, 0x01,
+        0x03, 0x01, 0x02, 0x01, 0x05, 0x01, 0x07, 0x01, 0x08, 0x00, 0xc1, 0x13};
+    boost::container::flat_map<std::string, std::string> formattedFRU;
+    resCodes res = formatFRU(fruData, formattedFRU);
+    EXPECT_EQ(res, resCodes::resWarn);
+}
+
+TEST(FormatFruTest, ProductAreaDataOK)
+{
+    const std::vector<uint8_t> fruData = {
+        0x02, 0x00, 0x00, 0x00, 0x01, 0x00, 0x00, 0x00, 0x01, 0x03, 0x00,
+        0x01, 0x83, 0x01, 0x92, 0x01, 0x85, 0x01, 0x87, 0x01, 0xa8, 0x01,
+        0xa6, 0x01, 0xb2, 0x00, 0x00, 0x00, 0x00, 0x00, 0xc1, 0x13};
+    boost::container::flat_map<std::string, std::string> formattedFRU;
+    resCodes res = formatFRU(fruData, formattedFRU);
+    EXPECT_EQ(res, resCodes::resOK);
 }
