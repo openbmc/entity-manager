@@ -57,6 +57,9 @@
                 "CurrScaleFactor": {
                     "$ref": "#/definitions/Types/CurrScaleFactor"
                 },
+                "DataOffset": {
+                    "$ref": "#/definitions/Types/DataOffset"
+                },
                 "Direction": {
                     "$ref": "#/definitions/Types/Direction"
                 },
@@ -80,6 +83,9 @@
                 },
                 "GpioPolarity": {
                     "$ref": "#/definitions/Types/GpioPolarity"
+                },
+                "I2cMode": {
+                    "$ref": "#/definitions/Types/I2cMode"
                 },
                 "Index": {
                     "$ref": "#/definitions/Types/Index"
@@ -200,6 +206,9 @@
                 },
                 "RedundantCount": {
                     "$ref": "#/definitions/Types/RedundantCount"
+                },
+                "Reg": {
+                    "$ref": "#/definitions/Types/Reg"
                 },
                 "ScaleFactor": {
                     "$ref": "#/definitions/Types/ScaleFactor"
@@ -474,6 +483,9 @@
             "CurrScaleFactor": {
                 "type": "number"
             },
+            "DataOffset": {
+                "type": "number"
+            },
             "Direction": {
                 "type": "string"
             },
@@ -502,6 +514,9 @@
                 "enum": [
                     "Low"
                 ]
+            },
+            "I2cMode": {
+                "type": "string"
             },
             "Index": {
                 "type": "number"
@@ -651,6 +666,12 @@
             },
             "RedundantCount": {
                 "type": "number"
+            },
+            "Reg": {
+                "type": [
+                    "string",
+                    "number"
+                ]
             },
             "ScaleFactor": {
                 "type": "number"
