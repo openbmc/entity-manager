@@ -27,6 +27,9 @@
                 "BindPresence": {
                     "$ref": "#/definitions/Types/BindPresence"
                 },
+                "BlockLength": {
+                    "$ref": "#/definitions/Types/BlockOffset"
+                },
                 "BridgeGpio": {
                     "$ref": "#/definitions/Types/BridgeGpio"
                 },
@@ -107,6 +110,9 @@
                 },
                 "MinValue": {
                     "$ref": "#/definitions/Types/MinValue"
+                },
+                "I2cMode": {
+                    "$ref": "#/definitions/Types/Mode"
                 },
                 "Name": {
                     "$ref": "#/definitions/Types/Name"
@@ -200,6 +206,9 @@
                 },
                 "RedundantCount": {
                     "$ref": "#/definitions/Types/RedundantCount"
+                },
+                "Reg": {
+                    "$ref": "#/definitions/Types/Reg"
                 },
                 "ScaleFactor": {
                     "$ref": "#/definitions/Types/ScaleFactor"
@@ -416,6 +425,9 @@
             "BindPresence": {
                 "type": "string"
             },
+            "BlockLength": {
+                "type": "number"
+            },
             "BridgeGpio": {
                 "type": [
                     "number",
@@ -548,6 +560,9 @@
             "MinValue": {
                 "type": "number"
             },
+            "I2cMode": {
+                "type": "string"
+            },
             "Name": {
                 "type": "string"
             },
@@ -651,6 +666,12 @@
             },
             "RedundantCount": {
                 "type": "number"
+            },
+            "Reg": {
+                "type": [
+                    "string",
+                    "number"
+                ]
             },
             "ScaleFactor": {
                 "type": "number"
