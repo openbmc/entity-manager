@@ -81,6 +81,9 @@
                 "GpioPolarity": {
                     "$ref": "#/definitions/Types/GpioPolarity"
                 },
+                "I2cMode": {
+                    "$ref": "#/definitions/Types/I2cMode"
+                },
                 "Index": {
                     "$ref": "#/definitions/Types/Index"
                 },
@@ -200,6 +203,9 @@
                 },
                 "RedundantCount": {
                     "$ref": "#/definitions/Types/RedundantCount"
+                },
+                "Reg": {
+                    "$ref": "#/definitions/Types/Reg"
                 },
                 "ScaleFactor": {
                     "$ref": "#/definitions/Types/ScaleFactor"
@@ -503,6 +509,12 @@
                     "Low"
                 ]
             },
+            "I2cMode": {
+                "enum": [
+                    "Byte",
+                    "Word"
+                ]
+            },
             "Index": {
                 "type": "number"
             },
@@ -651,6 +663,12 @@
             },
             "RedundantCount": {
                 "type": "number"
+            },
+            "Reg": {
+                "type": [
+                    "string",
+                    "number"
+                ]
             },
             "ScaleFactor": {
                 "type": "number"
