@@ -69,7 +69,7 @@ const static constexpr char* baseboardFruLocation =
 
 const static constexpr char* i2CDevLocation = "/dev";
 
-using DeviceMap = boost::container::flat_map<int, std::vector<uint8_t>>;
+using DeviceMap = boost::container::flat_map<int, FRUInfo>;
 using BusMap = boost::container::flat_map<int, std::shared_ptr<DeviceMap>>;
 
 static std::set<size_t> busBlacklist;
@@ -269,7 +269,7 @@ static int64_t readBlockData(int flag, int file, uint16_t address,
 
 // TODO: This code is very similar to the non-eeprom version and can be merged
 // with some tweaks.
-static std::vector<uint8_t> processEeprom(int bus, int address)
+static FRUInfo processEeprom(int bus, int address)
 {
     auto path = getEepromPath(bus, address);
 
@@ -282,7 +282,7 @@ static std::vector<uint8_t> processEeprom(int bus, int address)
 
     std::string errorMessage = "eeprom at " + std::to_string(bus) +
                                " address " + std::to_string(address);
-    std::vector<uint8_t> device = readFRUContents(
+    FRUInfo device = readFRUContents(
         0, file, static_cast<uint16_t>(address), readFromEeprom, errorMessage);
 
     close(file);
@@ -341,8 +341,8 @@ std::set<int> findI2CEeproms(int i2cBus,
         // contents, but we found it.
         foundList.insert(address);
 
-        std::vector<uint8_t> device = processEeprom(i2cBus, address);
-        if (!device.empty())
+        FRUInfo device = processEeprom(i2cBus, address);
+        if (!device.data.empty())
         {
             devices->emplace(address, device);
         }
@@ -441,10 +441,10 @@ int getBusFRUs(int file, int first, int last, int bus,
 
             std::string errorMessage =
                 "bus " + std::to_string(bus) + " address " + std::to_string(ii);
-            std::vector<uint8_t> device =
+            FRUInfo device =
                 readFRUContents(flag, file, static_cast<uint16_t>(ii),
                                 readBlockData, errorMessage);
-            if (device.empty())
+            if (device.data.empty())
             {
                 continue;
             }
@@ -621,7 +621,7 @@ struct FindDevicesWithCallback :
     std::function<void(void)> _callback;
 };
 
-std::vector<uint8_t>& getFRUInfo(const uint8_t& bus, const uint8_t& address)
+FRUInfo& getFRUInfo(const uint8_t& bus, const uint8_t& address)
 {
     auto deviceMap = busMap.find(bus);
     if (deviceMap == busMap.end())
@@ -633,20 +633,20 @@ std::vector<uint8_t>& getFRUInfo(const uint8_t& bus, const uint8_t& address)
     {
         throw std::invalid_argument("Invalid Address.");
     }
-    std::vector<uint8_t>& ret = device->second;
+    FRUInfo& ret = device->second;
 
     return ret;
 }
 
 void addFruObjectToDbus(
-    std::vector<uint8_t>& device,
+    FRUInfo& device,
     boost::container::flat_map<
         std::pair<size_t, size_t>,
         std::shared_ptr<sdbusplus::asio::dbus_interface>>& dbusInterfaceMap,
     uint32_t bus, uint32_t address, size_t& unknownBusObjectCount)
 {
     boost::container::flat_map<std::string, std::string> formattedFRU;
-    resCodes res = formatFRU(device, formattedFRU);
+    resCodes res = formatFRU(device.data, formattedFRU);
     if (res == resCodes::resErr)
     {
         std::cerr << "failed to parse FRU for device at bus " << bus
@@ -694,9 +694,9 @@ void addFruObjectToDbus(
             if (std::regex_match(path, std::regex(productName + "(_\\d+|)$")))
             {
                 if (isMuxBus(bus) && address == busIface.first.second &&
-                    (getFRUInfo(static_cast<uint8_t>(busIface.first.first),
+                    (getFRUData(static_cast<uint8_t>(busIface.first.first),
                                 static_cast<uint8_t>(busIface.first.second)) ==
-                     getFRUInfo(static_cast<uint8_t>(bus),
+                     getFRUData(static_cast<uint8_t>(bus),
                                 static_cast<uint8_t>(address))))
                 {
                     // This device is already added to the lower numbered bus,
@@ -789,6 +789,8 @@ void addFruObjectToDbus(
     iface->register_property("BUS", bus);
     iface->register_property("ADDRESS", address);
 
+    iface->register_property("Read_Only", device.readOnly);
+
     iface->initialize();
 }
 
@@ -815,6 +817,21 @@ static bool readBaseboardFRU(std::vector<uint8_t>& baseboardFRU)
 bool writeFRU(uint8_t bus, uint8_t address, const std::vector<uint8_t>& fru)
 {
     boost::container::flat_map<std::string, std::string> tmp;
+    try
+    {
+        if (getFRUInfo(bus, address).readOnly)
+        {
+            std::cerr << "writeFRU called on read-only FRU at address"
+                      << address << " on bus " << bus << "\n";
+            return false;
+        }
+    }
+    catch (const std::invalid_argument& e)
+    {
+        std::cerr << "No FRU at address " << address << " on  bus " << bus
+                  << " during writeFRU\n";
+        return false;
+    }
     if (fru.size() > maxFruSize)
     {
         std::cerr << "Invalid fru.size() during writeFRU\n";
@@ -1024,8 +1041,8 @@ void rescanBusses(
                 unknownBusObjectCount = 0;
 
                 // todo, get this from a more sensable place
-                std::vector<uint8_t> baseboardFRU;
-                if (readBaseboardFRU(baseboardFRU))
+                FRUInfo baseboardFRU;
+                if (readBaseboardFRU(baseboardFRU.data))
                 {
                     // If no device on i2c bus 0, the insertion will happen.
                     auto bus0 =
@@ -1075,10 +1092,10 @@ bool updateFRUProperty(
         return false;
     }
 
-    std::vector<uint8_t> fruData;
+    FRUInfo fruInfo;
     try
     {
-        fruData = getFRUInfo(static_cast<uint8_t>(bus),
+        fruInfo = getFRUInfo(static_cast<uint8_t>(bus),
                              static_cast<uint8_t>(address));
     }
     catch (const std::invalid_argument& e)
@@ -1087,7 +1104,9 @@ bool updateFRUProperty(
         return false;
     }
 
-    if (fruData.empty())
+    std::vector<uint8_t>& fruData = fruInfo.data;
+
+    if (fruInfo.readOnly || fruData.empty())
     {
         return false;
     }
@@ -1365,7 +1384,7 @@ int main()
                      unknownBusObjectCount);
     });
 
-    iface->register_method("GetRawFru", getFRUInfo);
+    iface->register_method("GetRawFru", getFRUData);
 
     iface->register_method("WriteFru", [&](const uint8_t bus,
                                            const uint8_t address,

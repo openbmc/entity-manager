@@ -632,19 +632,20 @@ bool findFRUHeader(int flag, int file, uint16_t address,
     return false;
 }
 
-std::vector<uint8_t> readFRUContents(int flag, int file, uint16_t address,
-                                     const ReadBlockFunc& readBlock,
-                                     const std::string& errorHelp)
+FRUInfo readFRUContents(int flag, int file, uint16_t address,
+                        const ReadBlockFunc& readBlock,
+                        const std::string& errorHelp)
 {
     std::array<uint8_t, I2C_SMBUS_BLOCK_MAX> blockData;
     uint16_t baseOffset = 0x0;
 
     if (!findFRUHeader(flag, file, address, readBlock, errorHelp,
             blockData, baseOffset)) {
-        return {};
+        return {{}, false};
     }
 
-    std::vector<uint8_t> device;
+    FRUInfo fruInfo = {{}, false};
+    std::vector<uint8_t>& device = fruInfo.data;
     device.insert(device.end(), blockData.begin(), blockData.begin() + 8);
 
     bool hasMultiRecords = false;
@@ -669,7 +670,7 @@ std::vector<uint8_t> readFRUContents(int flag, int file, uint16_t address,
         {
             std::cerr << "Fru area offsets are not in required order as per "
                          "Section 17 of Fru specification\n";
-            return {};
+            return {{}, false};
         }
         prevOffset = areaOffset;
 
@@ -689,7 +690,7 @@ std::vector<uint8_t> readFRUContents(int flag, int file, uint16_t address,
         {
             std::cerr << "failed to read " << errorHelp << " base offset "
                 << baseOffset << "\n";
-            return {};
+            return {{}, false};
         }
 
         // Ignore data type (blockData is already unsigned).
@@ -721,7 +722,7 @@ std::vector<uint8_t> readFRUContents(int flag, int file, uint16_t address,
             {
                 std::cerr << "failed to read " << errorHelp << " base offset "
                     << baseOffset << "\n";
-                return {};
+                return {{}, false};
             }
 
             // Ok, let's check the record length, which is in bytes (unsigned,
@@ -755,7 +756,7 @@ std::vector<uint8_t> readFRUContents(int flag, int file, uint16_t address,
         {
             std::cerr << "failed to read " << errorHelp << " base offset "
                 << baseOffset << "\n";
-            return {};
+            return {{}, false};
         }
 
         device.insert(device.end(), blockData.begin(),
@@ -765,7 +766,7 @@ std::vector<uint8_t> readFRUContents(int flag, int file, uint16_t address,
         fruLength -= std::min(requestLength, fruLength);
     }
 
-    return device;
+    return fruInfo;
 }
 
 unsigned int getHeaderAreaFieldOffset(fruAreas area)
