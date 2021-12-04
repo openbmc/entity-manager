@@ -112,7 +112,20 @@ resCodes
     formatFRU(const std::vector<uint8_t>& fruBytes,
               boost::container::flat_map<std::string, std::string>& result);
 
-std::vector<uint8_t>& getFRUInfo(const uint8_t& bus, const uint8_t& address);
+
+struct FRUInfo
+{
+    std::vector<uint8_t> data;
+    bool readOnly;
+};
+
+FRUInfo& getFRUInfo(const uint8_t& bus, const uint8_t& address);
+
+inline std::vector<uint8_t>& getFRUData(const uint8_t& bus,
+                                        const uint8_t& address)
+{
+    return getFRUInfo(bus, address).data;
+}
 
 uint8_t calculateChecksum(std::vector<uint8_t>::const_iterator iter,
                           std::vector<uint8_t>::const_iterator end);
@@ -149,10 +162,10 @@ bool findFRUHeader(int flag, int file, uint16_t address,
 /// \param address the i2c device address
 /// \param readBlock a read method
 /// \param errorHelp and a helper string for failures
-/// \return the FRU contents from the file
-std::vector<uint8_t> readFRUContents(int flag, int file, uint16_t address,
-                                     const ReadBlockFunc& readBlock,
-                                     const std::string& errorHelp);
+/// \return a FRUInfo from the file
+FRUInfo readFRUContents(int flag, int file, uint16_t address,
+                        const ReadBlockFunc& readBlock,
+                        const std::string& errorHelp);
 
 /// \brief Validate an IPMI FRU common header
 /// \param blockData the bytes comprising the common header
