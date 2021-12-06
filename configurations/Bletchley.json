@@ -2,110 +2,124 @@
     "Exposes": [
         {
             "Index": 0,
-            "Name": "P12V AUX",
+            "Name": "P12V_AUX",
+            "ScaleFactor": 0.11236,
             "Type": "ADC"
         },
         {
             "Index": 1,
-            "Name": "P3V3 AUX",
+            "Name": "P3V3_AUX",
+            "ScaleFactor": 0.410678,
             "Type": "ADC"
         },
         {
             "Index": 2,
-            "Name": "P5V AUX",
+            "Name": "P5V_AUX",
+            "ScaleFactor": 0.271739,
             "Type": "ADC"
         },
         {
             "Index": 3,
-            "Name": "P3V BAT",
+            "Name": "P3V_BAT",
+            "ScaleFactor": 0.332226,
             "Type": "ADC"
         },
         {
             "Index": 4,
-            "Name": "P2V5 AUX",
+            "Name": "P2V5_AUX",
+            "ScaleFactor": 0.542005,
             "Type": "ADC"
         },
         {
             "Index": 5,
-            "Name": "P1V8 AUX",
+            "Name": "P1V8_AUX",
+            "ScaleFactor": 0.750469,
             "Type": "ADC"
         },
         {
             "Index": 6,
-            "Name": "P1V2 AUX",
+            "Name": "P1V2_AUX",
+            "ScaleFactor": 1,
             "Type": "ADC"
         },
         {
             "Index": 7,
-            "Name": "P1V0 AUX",
+            "Name": "P1V0_AUX",
+            "ScaleFactor": 1,
             "Type": "ADC"
         },
         {
             "Index": 8,
-            "Name": "IMON FAN0",
+            "Name": "IMON_FAN0",
+            "ScaleFactor": 0.1,
             "Type": "ADC"
         },
         {
             "Index": 9,
-            "Name": "IMON FAN1",
+            "Name": "IMON_FAN1",
+            "ScaleFactor": 0.1,
             "Type": "ADC"
         },
         {
             "Index": 10,
-            "Name": "IMON FAN2",
+            "Name": "IMON_FAN2",
+            "ScaleFactor": 0.1,
             "Type": "ADC"
         },
         {
             "Index": 11,
-            "Name": "IMON FAN3",
+            "Name": "IMON_FAN3",
+            "ScaleFactor": 0.1,
             "Type": "ADC"
         },
         {
             "Index": 12,
-            "Name": "P12V FAN0",
+            "Name": "P12V_FAN0",
+            "ScaleFactor": 0.125,
             "Type": "ADC"
         },
         {
             "Index": 13,
-            "Name": "P12V FAN1",
+            "Name": "P12V_FAN1",
+            "ScaleFactor": 0.125,
             "Type": "ADC"
         },
         {
             "Index": 14,
-            "Name": "P12V FAN2",
+            "Name": "P12V_FAN2",
+            "ScaleFactor": 0.125,
             "Type": "ADC"
         },
         {
             "Index": 15,
-            "Name": "P12V FAN3",
+            "Name": "P12V_FAN3",
+            "ScaleFactor": 0.125,
             "Type": "ADC"
         },
         {
             "Address": "0x4C",
             "Bus": 12,
-            "Name": "MB U73 THERM LOCAL",
-            "Name1": "MB U73 THERM REMOTE",
+            "Name": "MB_U73_THERM_LOCAL",
+            "Name1": "MB_U73_THERM_REMOTE",
             "Type": "TMP421"
         },
         {
             "Address": "0x4D",
             "Bus": 12,
-            "Name": "MB U72 THERM LOCAL",
-            "Name1": "MB U72 THERM REMOTE",
+            "Name": "MB_U72_THERM_LOCAL",
+            "Name1": "MB_U72_THERM_REMOTE",
             "Type": "TMP421"
         },
         {
             "Address": "0x4F",
             "Bus": 9,
-            "Name": "MB U402 THERM LOCAL",
-            "Name1": "MB U402 THERM REMOTE",
+            "Name": "MB_U402_THERM_LOCAL",
             "Type": "TMP421"
         },
         {
             "Address": "0x4F",
             "Bus": 10,
-            "Name": "MB U19 THERM LOCAL",
-            "Name1": "MB U19 THERM REMOTE",
+            "Name": "MB_U19_THERM_LOCAL",
             "Type": "TMP421"
         },
         {
@@ -117,85 +131,165 @@
                 "iout1",
                 "pin"
             ],
-            "Name": "P12V AUX HSC",
+            "Name": "P12V_AUX_HSC",
             "Type": "ADM1278"
         },
         {
+            "Connector": {
+                "Name": "System Fan Connector 0",
+                "Pwmfan": 0
+            },
+            "Index": 0,
+            "PowerState": "Always",
+            "Name": "FAN0_TACH_IL",
+            "Type": "AspeedPWMFan"
+        },
+        {
+            "Connector": {
+                "Name": "System Fan Connector 0",
+                "Pwmfan": 0
+            },
+            "Index": 1,
+            "PowerState": "Always",
+            "Name": "FAN0_TACH_OL",
+            "Type": "AspeedPWMFan"
+        },
+        {
+            "Connector": {
+                "Name": "System Fan Connector 1",
+                "Pwmfan": 1
+            },
+            "Index": 2,
+            "PowerState": "Always",
+            "Name": "FAN1_TACH_IL",
+            "Type": "AspeedPWMFan"
+        },
+        {
+            "Connector": {
+                "Name": "System Fan Connector 1",
+                "Pwmfan": 1
+            },
+            "Index": 3,
+            "PowerState": "Always",
+            "Name": "FAN1_TACH_OL",
+            "Type": "AspeedPWMFan"
+        },
+        {
+            "Connector": {
+                "Name": "System Fan Connector 2",
+                "Pwmfan": 2
+            },
+            "Index": 4,
+            "PowerState": "Always",
+            "Name": "FAN2_TACH_IL",
+            "Type": "AspeedPWMFan"
+        },
+        {
+            "Connector": {
+                "Name": "System Fan Connector 2",
+                "Pwmfan": 2
+            },
+            "Index": 5,
+            "PowerState": "Always",
+            "Name": "FAN2_TACH_OL",
+            "Type": "AspeedPWMFan"
+        },
+        {
+            "Connector": {
+                "Name": "System Fan Connector 3",
+                "Pwmfan": 3
+            },
+            "Index": 6,
+            "PowerState": "Always",
+            "Name": "FAN3_TACH_IL",
+            "Type": "AspeedPWMFan"
+        },
+        {
+            "Connector": {
+                "Name": "System Fan Connector 3",
+                "Pwmfan": 3
+            },
+            "Index": 7,
+            "PowerState": "Always",
+            "Name": "FAN3_TACH_OL",
+            "Type": "AspeedPWMFan"
+        },
+        {
             "Address": "0x4F",
             "Bus": 0,
-            "Name": "SLED0 THERM LOCAL",
-            "Name1": "SLED0 THERM REMOTE",
+            "Name": "SLED0_THERM_LOCAL",
+            "Name1": "SLED0_THERM_REMOTE",
             "Type": "TMP421"
         },
         {
             "Address": "0x4F",
             "Bus": 1,
-            "Name": "SLED1 THERM LOCAL",
-            "Name1": "SLED1 THERM REMOTE",
+            "Name": "SLED1_THERM_LOCAL",
+            "Name1": "SLED1_THERM_REMOTE",
             "Type": "TMP421"
         },
         {
             "Address": "0x4F",
             "Bus": 2,
-            "Name": "SLED2 THERM LOCAL",
-            "Name1": "SLED2 THERM REMOTE",
+            "Name": "SLED2_THERM_LOCAL",
+            "Name1": "SLED2_THERM_REMOTE",
             "Type": "TMP421"
         },
         {
             "Address": "0x4F",
             "Bus": 3,
-            "Name": "SLED3 THERM LOCAL",
-            "Name1": "SLED3 THERM REMOTE",
+            "Name": "SLED3_THERM_LOCAL",
+            "Name1": "SLED3_THERM_REMOTE",
             "Type": "TMP421"
         },
         {
             "Address": "0x4F",
             "Bus": 4,
-            "Name": "SLED4 THERM LOCAL",
-            "Name1": "SLED4 THERM REMOTE",
+            "Name": "SLED4_THERM_LOCAL",
+            "Name1": "SLED4_THERM_REMOTE",
             "Type": "TMP421"
         },
         {
             "Address": "0x4F",
             "Bus": 5,
-            "Name": "SLED5 THERM LOCAL",
-            "Name1": "SLED5 THERM REMOTE",
+            "Name": "SLED5_THERM_LOCAL",
+            "Name1": "SLED5_THERM_REMOTE",
             "Type": "TMP421"
         },
         {
-            "Address": "0x35",
+            "Address": "0x6A",
             "Bus": "0",
-            "Name": "SLED0 NVMe SSD",
+            "Name": "SLED0_NVMe_SSD",
             "Type": "NVME1000"
         },
         {
-            "Address": "0x35",
+            "Address": "0x6A",
             "Bus": "1",
-            "Name": "SLED1 NVMe SSD",
+            "Name": "SLED1_NVMe_SSD",
             "Type": "NVME1000"
         },
         {
-            "Address": "0x35",
+            "Address": "0x6A",
             "Bus": "2",
-            "Name": "SLED2 NVMe SSD",
+            "Name": "SLED2_NVMe_SSD",
             "Type": "NVME1000"
         },
         {
-            "Address": "0x35",
+            "Address": "0x6A",
             "Bus": "3",
-            "Name": "SLED3 NVMe SSD",
+            "Name": "SLED3_NVMe_SSD",
             "Type": "NVME1000"
         },
         {
-            "Address": "0x35",
+            "Address": "0x6A",
             "Bus": "4",
-            "Name": "SLED4 NVMe SSD",
+            "Name": "SLED4_NVMe_SSD",
             "Type": "NVME1000"
         },
         {
-            "Address": "0x35",
+            "Address": "0x6A",
             "Bus": "5",
-            "Name": "SLED5 NVMe SSD",
+            "Name": "SLED5_NVMe_SSD",
             "Type": "NVME1000"
         },
         {
@@ -203,9 +297,15 @@
             "Bus": 0,
             "Labels": [
                 "vin",
-                "vout1"
+                "vout1",
+                "iout1",
+                "pin"
             ],
-            "Name": "SLED0 HSC",
+            "vin_Scale": 32000,
+            "vout1_Scale": 32000,
+            "iout1_Scale": 16000,
+            "pin_Scale": 1000000,
+            "Name": "SLED0_HSC",
             "Type": "pmbus"
         },
         {
@@ -213,9 +313,15 @@
             "Bus": 1,
             "Labels": [
                 "vin",
-                "vout1"
+                "vout1",
+                "iout1",
+                "pin"
             ],
-            "Name": "SLED1 HSC",
+            "vin_Scale": 32000,
+            "vout1_Scale": 32000,
+            "iout1_Scale": 16000,
+            "pin_Scale": 1000000,
+            "Name": "SLED1_HSC",
             "Type": "pmbus"
         },
         {
@@ -223,9 +329,15 @@
             "Bus": 2,
             "Labels": [
                 "vin",
-                "vout1"
+                "vout1",
+                "iout1",
+                "pin"
             ],
-            "Name": "SLED2 HSC",
+            "vin_Scale": 32000,
+            "vout1_Scale": 32000,
+            "iout1_Scale": 16000,
+            "pin_Scale": 1000000,
+            "Name": "SLED2_HSC",
             "Type": "pmbus"
         },
         {
@@ -233,9 +345,15 @@
             "Bus": 3,
             "Labels": [
                 "vin",
-                "vout1"
+                "vout1",
+                "iout1",
+                "pin"
             ],
-            "Name": "SLED3 HSC",
+            "vin_Scale": 32000,
+            "vout1_Scale": 32000,
+            "iout1_Scale": 16000,
+            "pin_Scale": 1000000,
+            "Name": "SLED3_HSC",
             "Type": "pmbus"
         },
         {
@@ -243,9 +361,15 @@
             "Bus": 4,
             "Labels": [
                 "vin",
-                "vout1"
+                "vout1",
+                "iout1",
+                "pin"
             ],
-            "Name": "SLED4 HSC",
+            "vin_Scale": 32000,
+            "vout1_Scale": 32000,
+            "iout1_Scale": 16000,
+            "pin_Scale": 1000000,
+            "Name": "SLED4_HSC",
             "Type": "pmbus"
         },
         {
@@ -253,9 +377,15 @@
             "Bus": 5,
             "Labels": [
                 "vin",
-                "vout1"
+                "vout1",
+                "iout1",
+                "pin"
             ],
-            "Name": "SLED5 HSC",
+            "vin_Scale": 32000,
+            "vout1_Scale": 32000,
+            "iout1_Scale": 16000,
+            "pin_Scale": 1000000,
+            "Name": "SLED5_HSC",
             "Type": "pmbus"
         }
     ],
