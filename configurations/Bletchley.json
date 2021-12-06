@@ -2,110 +2,370 @@
     "Exposes": [
         {
             "Index": 0,
-            "Name": "P12V AUX",
+            "Name": "P12V_AUX",
+            "ScaleFactor": 0.11236,
+            "Thresholds": [
+                {
+                    "Direction": "greater than",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 12.61
+                },
+                {
+                    "Direction": "less than",
+                    "Name": "lower critical",
+                    "Severity": 1,
+                    "Value": 11.39
+                }
+            ],
             "Type": "ADC"
         },
         {
             "Index": 1,
-            "Name": "P3V3 AUX",
+            "Name": "P3V3_AUX",
+            "ScaleFactor": 0.410678,
+            "Thresholds": [
+                {
+                    "Direction": "greater than",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 3.475
+                },
+                {
+                    "Direction": "less than",
+                    "Name": "lower critical",
+                    "Severity": 1,
+                    "Value": 3.125
+                }
+            ],
             "Type": "ADC"
         },
         {
             "Index": 2,
-            "Name": "P5V AUX",
+            "Name": "P5V_AUX",
+            "ScaleFactor": 0.271739,
+            "Thresholds": [
+                {
+                    "Direction": "greater than",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 5.26
+                },
+                {
+                    "Direction": "less than",
+                    "Name": "lower critical",
+                    "Severity": 1,
+                    "Value": 4.7
+                }
+            ],
             "Type": "ADC"
         },
         {
             "Index": 3,
-            "Name": "P3V BAT",
+            "Name": "P3V_BAT",
+            "ScaleFactor": 0.332226,
+            "Thresholds": [
+                {
+                    "Direction": "greater than",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 3.475
+                },
+                {
+                    "Direction": "less than",
+                    "Name": "lower critical",
+                    "Severity": 1,
+                    "Value": 1.99
+                }
+            ],
             "Type": "ADC"
         },
         {
             "Index": 4,
-            "Name": "P2V5 AUX",
+            "Name": "P2V5_AUX",
+            "ScaleFactor": 0.542005,
+            "Thresholds": [
+                {
+                    "Direction": "greater than",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 2.76
+                },
+                {
+                    "Direction": "less than",
+                    "Name": "lower critical",
+                    "Severity": 1,
+                    "Value": 2.365
+                }
+            ],
             "Type": "ADC"
         },
         {
             "Index": 5,
-            "Name": "P1V8 AUX",
+            "Name": "P1V8_AUX",
+            "ScaleFactor": 0.750469,
+            "Thresholds": [
+                {
+                    "Direction": "greater than",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 1.9
+                },
+                {
+                    "Direction": "less than",
+                    "Name": "lower critical",
+                    "Severity": 1,
+                    "Value": 1.7
+                }
+            ],
             "Type": "ADC"
         },
         {
             "Index": 6,
-            "Name": "P1V2 AUX",
+            "Name": "P1V2_AUX",
+            "Thresholds": [
+                {
+                    "Direction": "greater than",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 1.27
+                },
+                {
+                    "Direction": "less than",
+                    "Name": "lower critical",
+                    "Severity": 1,
+                    "Value": 1.13
+                }
+            ],
             "Type": "ADC"
         },
         {
             "Index": 7,
-            "Name": "P1V0 AUX",
+            "Name": "P1V0_AUX",
+            "Thresholds": [
+                {
+                    "Direction": "greater than",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 1.06
+                },
+                {
+                    "Direction": "less than",
+                    "Name": "lower critical",
+                    "Severity": 1,
+                    "Value": 0.94
+                }
+            ],
             "Type": "ADC"
         },
         {
             "Index": 8,
-            "Name": "IMON FAN0",
+            "Name": "IMON_FAN0",
+            "ScaleFactor": 0.1,
+            "Thresholds": [
+                {
+                    "Direction": "greater than",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 15.0
+                },
+                {
+                    "Direction": "greater than",
+                    "Name": "upper non critical",
+                    "Severity": 0,
+                    "Value": 10.0
+                }
+            ],
             "Type": "ADC"
         },
         {
             "Index": 9,
-            "Name": "IMON FAN1",
+            "Name": "IMON_FAN1",
+            "ScaleFactor": 0.1,
+            "Thresholds": [
+                {
+                    "Direction": "greater than",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 15.0
+                },
+                {
+                    "Direction": "greater than",
+                    "Name": "upper non critical",
+                    "Severity": 0,
+                    "Value": 10.0
+                }
+            ],
             "Type": "ADC"
         },
         {
             "Index": 10,
-            "Name": "IMON FAN2",
+            "Name": "IMON_FAN2",
+            "ScaleFactor": 0.1,
+            "Thresholds": [
+                {
+                    "Direction": "greater than",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 15.0
+                },
+                {
+                    "Direction": "greater than",
+                    "Name": "upper non critical",
+                    "Severity": 0,
+                    "Value": 10.0
+                }
+            ],
             "Type": "ADC"
         },
         {
             "Index": 11,
-            "Name": "IMON FAN3",
+            "Name": "IMON_FAN3",
+            "ScaleFactor": 0.1,
+            "Thresholds": [
+                {
+                    "Direction": "greater than",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 15.0
+                },
+                {
+                    "Direction": "greater than",
+                    "Name": "upper non critical",
+                    "Severity": 0,
+                    "Value": 10.0
+                }
+            ],
             "Type": "ADC"
         },
         {
             "Index": 12,
-            "Name": "P12V FAN0",
+            "Name": "P12V_FAN0",
+            "ScaleFactor": 0.125,
+            "Thresholds": [
+                {
+                    "Direction": "greater than",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 13.2
+                },
+                {
+                    "Direction": "greater than",
+                    "Name": "upper non critical",
+                    "Severity": 0,
+                    "Value": 13.0
+                },
+                {
+                    "Direction": "less than",
+                    "Name": "lower critical",
+                    "Severity": 1,
+                    "Value": 10.8
+                }
+            ],
             "Type": "ADC"
         },
         {
             "Index": 13,
-            "Name": "P12V FAN1",
+            "Name": "P12V_FAN1",
+            "ScaleFactor": 0.125,
+            "Thresholds": [
+                {
+                    "Direction": "greater than",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 13.2
+                },
+                {
+                    "Direction": "greater than",
+                    "Name": "upper non critical",
+                    "Severity": 0,
+                    "Value": 13.0
+                },
+                {
+                    "Direction": "less than",
+                    "Name": "lower critical",
+                    "Severity": 1,
+                    "Value": 10.8
+                }
+            ],
             "Type": "ADC"
         },
         {
             "Index": 14,
-            "Name": "P12V FAN2",
+            "Name": "P12V_FAN2",
+            "ScaleFactor": 0.125,
+            "Thresholds": [
+                {
+                    "Direction": "greater than",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 13.2
+                },
+                {
+                    "Direction": "greater than",
+                    "Name": "upper non critical",
+                    "Severity": 0,
+                    "Value": 13.0
+                },
+                {
+                    "Direction": "less than",
+                    "Name": "lower critical",
+                    "Severity": 1,
+                    "Value": 10.8
+                }
+            ],
             "Type": "ADC"
         },
         {
             "Index": 15,
-            "Name": "P12V FAN3",
+            "Name": "P12V_FAN3",
+            "ScaleFactor": 0.125,
+            "Thresholds": [
+                {
+                    "Direction": "greater than",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 13.2
+                },
+                {
+                    "Direction": "greater than",
+                    "Name": "upper non critical",
+                    "Severity": 0,
+                    "Value": 13.0
+                },
+                {
+                    "Direction": "less than",
+                    "Name": "lower critical",
+                    "Severity": 1,
+                    "Value": 10.8
+                }
+            ],
             "Type": "ADC"
         },
         {
             "Address": "0x4C",
             "Bus": 12,
-            "Name": "MB U73 THERM LOCAL",
-            "Name1": "MB U73 THERM REMOTE",
+            "Name": "MB_U73_THERM_LOCAL",
+            "Name1": "MB_U73_THERM_REMOTE",
             "Type": "TMP421"
         },
         {
             "Address": "0x4D",
             "Bus": 12,
-            "Name": "MB U72 THERM LOCAL",
-            "Name1": "MB U72 THERM REMOTE",
+            "Name": "MB_U72_THERM_LOCAL",
+            "Name1": "MB_U72_THERM_REMOTE",
             "Type": "TMP421"
         },
         {
             "Address": "0x4F",
             "Bus": 9,
-            "Name": "MB U402 THERM LOCAL",
-            "Name1": "MB U402 THERM REMOTE",
+            "Name": "MB_U402_THERM_LOCAL",
             "Type": "TMP421"
         },
         {
             "Address": "0x4F",
             "Bus": 10,
-            "Name": "MB U19 THERM LOCAL",
-            "Name1": "MB U19 THERM REMOTE",
+            "Name": "MB_U19_THERM_LOCAL",
             "Type": "TMP421"
         },
         {
@@ -117,146 +377,116 @@
                 "iout1",
                 "pin"
             ],
-            "Name": "P12V AUX HSC",
+            "Name": "P12V_AUX_HSC",
             "Type": "ADM1278"
         },
         {
             "Address": "0x4F",
             "Bus": 0,
-            "Name": "SLED0 THERM LOCAL",
-            "Name1": "SLED0 THERM REMOTE",
+            "Name": "SLED0_THERM_LOCAL",
             "Type": "TMP421"
         },
         {
             "Address": "0x4F",
             "Bus": 1,
-            "Name": "SLED1 THERM LOCAL",
-            "Name1": "SLED1 THERM REMOTE",
+            "Name": "SLED1_THERM_LOCAL",
             "Type": "TMP421"
         },
         {
             "Address": "0x4F",
             "Bus": 2,
-            "Name": "SLED2 THERM LOCAL",
-            "Name1": "SLED2 THERM REMOTE",
+            "Name": "SLED2_THERM_LOCAL",
             "Type": "TMP421"
         },
         {
             "Address": "0x4F",
             "Bus": 3,
-            "Name": "SLED3 THERM LOCAL",
-            "Name1": "SLED3 THERM REMOTE",
+            "Name": "SLED3_THERM_LOCAL",
             "Type": "TMP421"
         },
         {
             "Address": "0x4F",
             "Bus": 4,
-            "Name": "SLED4 THERM LOCAL",
-            "Name1": "SLED4 THERM REMOTE",
+            "Name": "SLED4_THERM_LOCAL",
             "Type": "TMP421"
         },
         {
             "Address": "0x4F",
             "Bus": 5,
-            "Name": "SLED5 THERM LOCAL",
-            "Name1": "SLED5 THERM REMOTE",
+            "Name": "SLED5_THERM_LOCAL",
             "Type": "TMP421"
-        },
-        {
-            "Address": "0x35",
-            "Bus": "0",
-            "Name": "SLED0 NVMe SSD",
-            "Type": "NVME1000"
-        },
-        {
-            "Address": "0x35",
-            "Bus": "1",
-            "Name": "SLED1 NVMe SSD",
-            "Type": "NVME1000"
-        },
-        {
-            "Address": "0x35",
-            "Bus": "2",
-            "Name": "SLED2 NVMe SSD",
-            "Type": "NVME1000"
-        },
-        {
-            "Address": "0x35",
-            "Bus": "3",
-            "Name": "SLED3 NVMe SSD",
-            "Type": "NVME1000"
-        },
-        {
-            "Address": "0x35",
-            "Bus": "4",
-            "Name": "SLED4 NVMe SSD",
-            "Type": "NVME1000"
-        },
-        {
-            "Address": "0x35",
-            "Bus": "5",
-            "Name": "SLED5 NVMe SSD",
-            "Type": "NVME1000"
         },
         {
             "Address": "0x40",
             "Bus": 0,
             "Labels": [
                 "vin",
-                "vout1"
+                "vout1",
+                "iout1",
+                "pin"
             ],
-            "Name": "SLED0 HSC",
-            "Type": "pmbus"
+            "Name": "SLED0_HSC",
+            "Type": "MP5023"
         },
         {
             "Address": "0x40",
             "Bus": 1,
             "Labels": [
                 "vin",
-                "vout1"
+                "vout1",
+                "iout1",
+                "pin"
             ],
-            "Name": "SLED1 HSC",
-            "Type": "pmbus"
+            "Name": "SLED1_HSC",
+            "Type": "MP5023"
         },
         {
             "Address": "0x40",
             "Bus": 2,
             "Labels": [
                 "vin",
-                "vout1"
+                "vout1",
+                "iout1",
+                "pin"
             ],
-            "Name": "SLED2 HSC",
-            "Type": "pmbus"
+            "Name": "SLED2_HSC",
+            "Type": "MP5023"
         },
         {
             "Address": "0x40",
             "Bus": 3,
             "Labels": [
                 "vin",
-                "vout1"
+                "vout1",
+                "iout1",
+                "pin"
             ],
-            "Name": "SLED3 HSC",
-            "Type": "pmbus"
+            "Name": "SLED3_HSC",
+            "Type": "MP5023"
         },
         {
             "Address": "0x40",
             "Bus": 4,
             "Labels": [
                 "vin",
-                "vout1"
+                "vout1",
+                "iout1",
+                "pin"
             ],
-            "Name": "SLED4 HSC",
-            "Type": "pmbus"
+            "Name": "SLED4_HSC",
+            "Type": "MP5023"
         },
         {
             "Address": "0x40",
             "Bus": 5,
             "Labels": [
                 "vin",
-                "vout1"
+                "vout1",
+                "iout1",
+                "pin"
             ],
-            "Name": "SLED5 HSC",
-            "Type": "pmbus"
+            "Name": "SLED5_HSC",
+            "Type": "MP5023"
         }
     ],
     "Name": "Bletchley Baseboard",
