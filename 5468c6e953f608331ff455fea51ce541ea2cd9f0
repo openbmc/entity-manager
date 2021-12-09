@@ -52,6 +52,24 @@
       "revId": "5468c6e953f608331ff455fea51ce541ea2cd9f0",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "b38ab170_7c40e6a8",
+        "filename": "configurations/Bletchley.json",
+        "patchSetId": 1
+      },
+      "lineNbr": 5,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2021-12-09T00:34:34Z",
+      "side": 0,
+      "message": "As currently written, they should be the same (bmcweb translates underscores to spaces today).  At some point in the future, they will actually turn to underscores in the bmcweb and ipmi names once we get the right encoding done.",
+      "parentUuid": "01a335cf_438a03c0",
+      "revId": "5468c6e953f608331ff455fea51ce541ea2cd9f0",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": false
     }
   ]
 }
