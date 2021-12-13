@@ -74,7 +74,9 @@ bool findFiles(const std::vector<fs::path>&& dirPaths,
     for (const auto& dirPath : dirPaths)
     {
         if (!fs::exists(dirPath))
+        {
             continue;
+        }
 
         for (const auto& p : fs::directory_iterator(dirPath))
         {
