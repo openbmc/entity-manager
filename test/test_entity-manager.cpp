@@ -9,6 +9,7 @@
 #include "gtest/gtest.h"
 
 using namespace std::string_literals;
+namespace fs = std::filesystem;
 
 TEST(TemplateCharReplace, replaceOneInt)
 {
@@ -881,4 +882,66 @@ TEST(MatchProbe, nullNeqArray)
     nlohmann::json j = R"(null)"_json;
     BasicVariantType v = std::vector<uint8_t>{};
     EXPECT_FALSE(matchProbe(j, v));
+}
+
+TEST(FindFiles, dirNotExist)
+{
+    fs::path tmpPath = fs::temp_directory_path();
+    fs::path testDir = tmpPath / "test";
+    std::vector<fs::path> jsonPaths;
+    EXPECT_FALSE(findFiles(testDir, R"(.*\.json)", jsonPaths));
+}
+
+TEST(FindFiles, dirExist)
+{
+    fs::path tmpPath = fs::temp_directory_path();
+    fs::path testDir = tmpPath / "test";
+    fs::create_directory(testDir);
+    fs::path tmpFile1 = testDir / "tempFile1.json";
+
+    std::ofstream file(tmpFile1.c_str());
+    std::vector<fs::path> jsonPaths;
+    auto ret = findFiles(testDir, R"(.*\.json)", jsonPaths);
+
+    fs::remove_all(testDir);
+    EXPECT_TRUE(ret);
+}
+
+TEST(FindFiles, fileFound)
+{
+    fs::path tmpPath = fs::temp_directory_path();
+    fs::path testDir = tmpPath / "test";
+    fs::create_directory(testDir);
+    fs::path tmpFile1 = testDir / "tempFile1.json";
+
+    std::ofstream file(tmpFile1.c_str());
+    std::vector<fs::path> jsonPaths;
+    findFiles(testDir, R"(.*\.json)", jsonPaths);
+
+    auto it = std::find(jsonPaths.begin(), jsonPaths.end(), tmpFile1);
+    fs::remove_all(testDir);
+    EXPECT_NE(it, jsonPaths.end());
+}
+
+TEST(GetI2cDevicePaths, dirNotExist)
+{
+    fs::path tmpPath = fs::temp_directory_path();
+    fs::path testDir = tmpPath / "test";
+    boost::container::flat_map<size_t, fs::path> busPaths;
+    EXPECT_FALSE(getI2cDevicePaths(testDir, busPaths));
+}
+
+TEST(GetI2cDevicePaths, foundI2cPath)
+{
+    fs::path tmpPath = fs::temp_directory_path();
+    fs::path testDir = tmpPath / "test";
+    fs::create_directory(testDir);
+    fs::create_directories(testDir / "i2c-4/4-0050");
+
+    boost::container::flat_map<size_t, fs::path> busPaths;
+    getI2cDevicePaths(testDir, busPaths);
+
+    fs::remove_all(testDir);
+    auto it = busPaths.find(4);
+    EXPECT_NE(it, busPaths.end());
 }
