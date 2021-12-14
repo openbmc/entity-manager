@@ -6,6 +6,16 @@
                 "ibm,everest"
             ],
             "Type": "IBMCompatibleSystem"
+        },
+        {
+            "Name": "Default Power Mode Properties",
+            "DefaultPowerMode": "MaximumPerformance",
+            "DefaultIdlePowerSaverEnabled": true,
+            "DefaultEnterUtilizationPercent": 8,
+            "DefaultEnterUtilizationDwellTime": 240,
+            "DefaultExitUtilizationPercent": 12,
+            "DefaultExitUtilizationDwellTime": 120,
+            "Type": "PowerModeProperties"
         }
     ],
     "Name": "Everest Chassis",
