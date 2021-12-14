@@ -9,6 +9,9 @@
             ],
             "oneOf": [
                 {
+                    "$ref": "IBM.json#/definitions/PowerModeProperties"
+                },
+                {
                     "$ref": "IBM.json#/definitions/IBMCompatibleSystem"
                 },
                 {
