@@ -7,6 +7,16 @@
                 "ibm,rainier"
             ],
             "Type": "IBMCompatibleSystem"
+        },
+        {
+            "EnterUtilizationDwellTime": 240,
+            "EnterUtilizationPercent": 8,
+            "ExitUtilizationDwellTime": 120,
+            "ExitUtilizationPercent": 12,
+            "IdlePowerSaverEnabled": true,
+            "PowerMode": "MaximumPerformance",
+            "Name": "Default Power Mode Properties",
+            "Type": "PowerModeProperties"
         }
     ],
     "Name": "Rainier 4U Chassis",

@@ -97,6 +97,76 @@
                 "Type",
                 "Names"
             ]
+        },
+        "PowerModeProperties": {
+            "title": "PowerMode Properties",
+            "description": [
+                "The default PowerMode properties for the system"
+            ],
+            "type": "object",
+            "properties": {
+                "PowerMode": {
+                    "description": [
+                        "The default PowerMode to use prior to being set by a user."
+                    ],
+                    "enum": [
+                        "Static",
+                        "PowerSaving",
+                        "MaximumPerformance"
+                    ]
+                },
+                "IdlePowerSaverEnabled": {
+                    "description": [
+                        "Default state of idle power saver mode.",
+                        "Setting to true will enable idle power saver."
+                    ],
+                    "type" : "boolean"
+                },
+                "EnterUtilizationPercent": {
+                    "description": [
+                        "The default percentage of utilization that the system shall",
+                        "be lower than to enter idle power save.",
+                        "The value is in integer percentage values (10 = 10%).",
+                        "EnterUtilizationPercent must be <= ExitUtilizationPercent"
+                    ],
+                    "type": "number",
+                    "minimum": 1,
+                    "maximum": 95
+                },
+                "EnterUtilizationDwellTime": {
+                    "description": [
+                        "The default duration in seconds that the system is below",
+                        "the EnterUtilizationPercent before idle power save is activated."
+                    ],
+                    "type": "number",
+                    "minimum": 10,
+                    "maximum": 600
+                },
+                "ExitUtilizationPercent": {
+                    "description": [
+                        "The default percentage of utilization that the system shall",
+                        "be above in order to exit idle power save.",
+                        "The value is in integer percentage values (10 = 10%).",
+                        "ExitUtilizationPercent must be >= EnterUtilizationPercent"
+                    ],
+                    "type": "number",
+                    "minimum": 5,
+                    "maximum": 95
+                },
+                "ExitUtilizationDwellTime": {
+                    "description": [
+                        "The default duration in seconds that the system is above",
+                        "the ExitUtilizationPercent before idle power save is deactivated."
+                    ],
+                    "type": "number",
+                    "minimum": 10,
+                    "maximum": 600
+                }
+            },
+            "required": [
+                "PowerMode",
+                "IdlePowerSaverEnabled"
+            ]
         }
     }
 }
