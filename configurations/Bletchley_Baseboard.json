@@ -362,6 +362,46 @@
             "Type": "HDC1080"
         },
         {
+            "LED": "fan0_fault",
+            "Name": "System Fan Connector 0",
+            "Pwm": 0,
+            "Tachs": [
+                0,
+                1
+            ],
+            "Type": "IntelFanConnector"
+        },
+        {
+            "LED": "fan1_fault",
+            "Name": "System Fan Connector 1",
+            "Pwm": 1,
+            "Tachs": [
+                2,
+                3
+            ],
+            "Type": "IntelFanConnector"
+        },
+        {
+            "LED": "fan2_fault",
+            "Name": "System Fan Connector 2",
+            "Pwm": 2,
+            "Tachs": [
+                4,
+                5
+            ],
+            "Type": "IntelFanConnector"
+        },
+        {
+            "LED": "fan3_fault",
+            "Name": "System Fan Connector 3",
+            "Pwm": 3,
+            "Tachs": [
+                6,
+                7
+            ],
+            "Type": "IntelFanConnector"
+        },
+        {
             "Address": "0x40",
             "Bus": 0,
             "Labels": [
