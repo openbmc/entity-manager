@@ -355,6 +355,230 @@
             "Type": "ADM1278"
         },
         {
+            "Connector": {
+                "Name": "System Fan Connector 0",
+                "Pwm": 0,
+                "Tachs": [
+                    0,
+                    1
+                ]
+            },
+            "Index": 0,
+            "Name": "FAN0_TACH_IL",
+            "PowerState": "Always",
+            "Thresholds": [
+                {
+                    "Direction": "greater than",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 13000
+                },
+                {
+                    "Direction": "less than",
+                    "Name": "lower critical",
+                    "Severity": 1,
+                    "Value": 1000
+                }
+            ],
+            "Type": "AspeedFan"
+        },
+        {
+            "Connector": {
+                "Name": "System Fan Connector 0",
+                "Pwm": 0,
+                "Tachs": [
+                    0,
+                    1
+                ]
+            },
+            "Index": 1,
+            "Name": "FAN0_TACH_OL",
+            "PowerState": "Always",
+            "Thresholds": [
+                {
+                    "Direction": "greater than",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 13000
+                },
+                {
+                    "Direction": "less than",
+                    "Name": "lower critical",
+                    "Severity": 1,
+                    "Value": 1000
+                }
+            ],
+            "Type": "AspeedFan"
+        },
+        {
+            "Connector": {
+                "Name": "System Fan Connector 1",
+                "Pwm": 1,
+                "Tachs": [
+                    2,
+                    3
+                ]
+            },
+            "Index": 2,
+            "Name": "FAN1_TACH_IL",
+            "PowerState": "Always",
+            "Thresholds": [
+                {
+                    "Direction": "greater than",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 13000
+                },
+                {
+                    "Direction": "less than",
+                    "Name": "lower critical",
+                    "Severity": 1,
+                    "Value": 1000
+                }
+            ],
+            "Type": "AspeedFan"
+        },
+        {
+            "Connector": {
+                "Name": "System Fan Connector 1",
+                "Pwm": 1,
+                "Tachs": [
+                    2,
+                    3
+                ]
+            },
+            "Index": 3,
+            "Name": "FAN1_TACH_OL",
+            "PowerState": "Always",
+            "Thresholds": [
+                {
+                    "Direction": "greater than",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 13000
+                },
+                {
+                    "Direction": "less than",
+                    "Name": "lower critical",
+                    "Severity": 1,
+                    "Value": 1000
+                }
+            ],
+            "Type": "AspeedFan"
+        },
+        {
+            "Connector": {
+                "Name": "System Fan Connector 2",
+                "Pwm": 2,
+                "Tachs": [
+                    4,
+                    5
+                ]
+            },
+            "Index": 4,
+            "Name": "FAN2_TACH_IL",
+            "PowerState": "Always",
+            "Thresholds": [
+                {
+                    "Direction": "greater than",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 13000
+                },
+                {
+                    "Direction": "less than",
+                    "Name": "lower critical",
+                    "Severity": 1,
+                    "Value": 1000
+                }
+            ],
+            "Type": "AspeedFan"
+        },
+        {
+            "Connector": {
+                "Name": "System Fan Connector 2",
+                "Pwm": 2,
+                "Tachs": [
+                    4,
+                    5
+                ]
+            },
+            "Index": 5,
+            "Name": "FAN2_TACH_OL",
+            "PowerState": "Always",
+            "Thresholds": [
+                {
+                    "Direction": "greater than",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 13000
+                },
+                {
+                    "Direction": "less than",
+                    "Name": "lower critical",
+                    "Severity": 1,
+                    "Value": 1000
+                }
+            ],
+            "Type": "AspeedFan"
+        },
+        {
+            "Connector": {
+                "Name": "System Fan Connector 3",
+                "Pwm": 3,
+                "Tachs": [
+                    6,
+                    7
+                ]
+            },
+            "Index": 6,
+            "Name": "FAN3_TACH_IL",
+            "PowerState": "Always",
+            "Thresholds": [
+                {
+                    "Direction": "greater than",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 13000
+                },
+                {
+                    "Direction": "less than",
+                    "Name": "lower critical",
+                    "Severity": 1,
+                    "Value": 1000
+                }
+            ],
+            "Type": "AspeedFan"
+        },
+        {
+            "Connector": {
+                "Name": "System Fan Connector 3",
+                "Pwm": 3,
+                "Tachs": [
+                    6,
+                    7
+                ]
+            },
+            "Index": 7,
+            "Name": "FAN3_TACH_OL",
+            "PowerState": "Always",
+            "Thresholds": [
+                {
+                    "Direction": "greater than",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 13000
+                },
+                {
+                    "Direction": "less than",
+                    "Name": "lower critical",
+                    "Severity": 1,
+                    "Value": 1000
+                }
+            ],
+            "Type": "AspeedFan"
+        },
+        {
             "Address": "0x40",
             "Bus": 0,
             "Labels": [
