@@ -48,6 +48,30 @@
     },
     {
       "key": {
+        "uuid": "0d5915ce_f3930d57",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 7
+      },
+      "lineNbr": 17,
+      "author": {
+        "id": 1000559
+      },
+      "writtenOn": "2021-12-16T01:47:55Z",
+      "side": 1,
+      "message": "I don\u0027t think it makes it required. At least the intention is to make MUX optional. \nIf it is not behind a MUX, then MUX property will not be created in the FRU objects. \nWhether to add $MUX in an entity\u0027s json config file is also optional.",
+      "parentUuid": "58a62a49_a05c642a",
+      "range": {
+        "startLine": 17,
+        "startChar": 0,
+        "endLine": 17,
+        "endChar": 8
+      },
+      "revId": "603bf04e1a536e02a05b4aac4701185be335f19e",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "b1b072b3_bbad812e",
         "filename": "/COMMIT_MSG",
         "patchSetId": 7
@@ -82,6 +106,30 @@
       "writtenOn": "2021-12-16T00:36:41Z",
       "side": 1,
       "message": "Do your PSUs still show up at different addresses?  If so, I suspect you can get the same result by simply declaring a new entity per address, the way these files were previously set up.",
+      "range": {
+        "startLine": 176,
+        "startChar": 40,
+        "endLine": 176,
+        "endChar": 56
+      },
+      "revId": "603bf04e1a536e02a05b4aac4701185be335f19e",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "9a867f6b_acb97ce0",
+        "filename": "configurations/SOLUM_PSSF162202_PSU.json",
+        "patchSetId": 7
+      },
+      "lineNbr": 176,
+      "author": {
+        "id": 1000559
+      },
+      "writtenOn": "2021-12-16T01:47:55Z",
+      "side": 1,
+      "message": "No the PSU will show up with same address from different mux channel.\nThe bus number can be different since it is the logical bus number.\nThe problem is that it is also dynamic.",
+      "parentUuid": "3327d300_d977c4bc",
       "range": {
         "startLine": 176,
         "startChar": 40,
