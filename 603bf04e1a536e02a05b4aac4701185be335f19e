@@ -1,0 +1,119 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "ff4b33b6_8111565d",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 7
+      },
+      "lineNbr": 15,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2021-12-16T00:36:41Z",
+      "side": 1,
+      "message": "The mux channel names were never meant to be user facing, and certainly arent escaped for users use (all the existing ones have underscores in them for example).  I worry that changing this will make a new set of problems.",
+      "range": {
+        "startLine": 15,
+        "startChar": 7,
+        "endLine": 15,
+        "endChar": 19
+      },
+      "revId": "603bf04e1a536e02a05b4aac4701185be335f19e",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "58a62a49_a05c642a",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 7
+      },
+      "lineNbr": 17,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2021-12-16T00:36:41Z",
+      "side": 1,
+      "message": "This violates a bunch of design principals in bmcweb.  The mux doesn\u0027t exist on the power supply, it exists on some other part.  Putting it into the power supply configuration would now REQUIRE that that that power supply show up behind a mux, which not all systems can gaurentee.",
+      "range": {
+        "startLine": 17,
+        "startChar": 0,
+        "endLine": 17,
+        "endChar": 8
+      },
+      "revId": "603bf04e1a536e02a05b4aac4701185be335f19e",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "b1b072b3_bbad812e",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 7
+      },
+      "lineNbr": 24,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2021-12-16T00:36:41Z",
+      "side": 1,
+      "message": "Looking at the patchset, I don\u0027t see how that could be the case.  At the very least, the extra space would be put ahead of PSU\u003cN\u003e",
+      "range": {
+        "startLine": 24,
+        "startChar": 0,
+        "endLine": 24,
+        "endChar": 66
+      },
+      "revId": "603bf04e1a536e02a05b4aac4701185be335f19e",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "3327d300_d977c4bc",
+        "filename": "configurations/SOLUM_PSSF162202_PSU.json",
+        "patchSetId": 7
+      },
+      "lineNbr": 176,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2021-12-16T00:36:41Z",
+      "side": 1,
+      "message": "Do your PSUs still show up at different addresses?  If so, I suspect you can get the same result by simply declaring a new entity per address, the way these files were previously set up.",
+      "range": {
+        "startLine": 176,
+        "startChar": 40,
+        "endLine": 176,
+        "endChar": 56
+      },
+      "revId": "603bf04e1a536e02a05b4aac4701185be335f19e",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "a3ba146c_5e6d1b02",
+        "filename": "src/FruDevice.cpp",
+        "patchSetId": 7
+      },
+      "lineNbr": 180,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2021-12-16T00:36:41Z",
+      "side": 1,
+      "message": "entity-manager writes these symlinks.  It should not write them, then read them back out to acquire the data it already has..  please keep the state within EM itself.",
+      "range": {
+        "startLine": 179,
+        "startChar": 4,
+        "endLine": 180,
+        "endChar": 5
+      },
+      "revId": "603bf04e1a536e02a05b4aac4701185be335f19e",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    }
+  ]
+}
