@@ -1,6 +1,13 @@
 {
     "Exposes": [
         {
+            "Address": "0x76",
+            "Bus": 29,
+            "Name": "Ambient 1 Temp",
+            "Name1": "Station Pressure",
+            "Type": "DPS310"
+        },
+        {
             "Address": "0x40",
             "Bus": 29,
             "Name": "Ambient 2 Temp",
@@ -11,13 +18,6 @@
             "Bus": 29,
             "Name": "Ambient 0 Temp",
             "Type": "TMP75"
-        },
-        {
-            "Address": "0x76",
-            "Bus": 29,
-            "Name": "Ambient 1 Temp",
-            "Name1": "Station Pressure",
-            "Type": "DPS310"
         }
     ],
     "Name": "Storm King Panel",

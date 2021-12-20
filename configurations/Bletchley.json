@@ -343,32 +343,6 @@
             "Type": "ADC"
         },
         {
-            "Address": "0x4C",
-            "Bus": 12,
-            "Name": "MB_U73_THERM_LOCAL",
-            "Name1": "MB_U73_THERM_REMOTE",
-            "Type": "TMP421"
-        },
-        {
-            "Address": "0x4D",
-            "Bus": 12,
-            "Name": "MB_U72_THERM_LOCAL",
-            "Name1": "MB_U72_THERM_REMOTE",
-            "Type": "TMP421"
-        },
-        {
-            "Address": "0x4F",
-            "Bus": 9,
-            "Name": "MB_U402_THERM_LOCAL",
-            "Type": "TMP421"
-        },
-        {
-            "Address": "0x4F",
-            "Bus": 10,
-            "Name": "MB_U19_THERM_LOCAL",
-            "Type": "TMP421"
-        },
-        {
             "Address": "0x11",
             "Bus": 12,
             "Labels": [
@@ -379,42 +353,6 @@
             ],
             "Name": "P12V_AUX_HSC",
             "Type": "ADM1278"
-        },
-        {
-            "Address": "0x4F",
-            "Bus": 0,
-            "Name": "SLED0_THERM_LOCAL",
-            "Type": "TMP421"
-        },
-        {
-            "Address": "0x4F",
-            "Bus": 1,
-            "Name": "SLED1_THERM_LOCAL",
-            "Type": "TMP421"
-        },
-        {
-            "Address": "0x4F",
-            "Bus": 2,
-            "Name": "SLED2_THERM_LOCAL",
-            "Type": "TMP421"
-        },
-        {
-            "Address": "0x4F",
-            "Bus": 3,
-            "Name": "SLED3_THERM_LOCAL",
-            "Type": "TMP421"
-        },
-        {
-            "Address": "0x4F",
-            "Bus": 4,
-            "Name": "SLED4_THERM_LOCAL",
-            "Type": "TMP421"
-        },
-        {
-            "Address": "0x4F",
-            "Bus": 5,
-            "Name": "SLED5_THERM_LOCAL",
-            "Type": "TMP421"
         },
         {
             "Address": "0x40",
@@ -487,6 +425,68 @@
             ],
             "Name": "SLED5_HSC",
             "Type": "MP5023"
+        },
+        {
+            "Address": "0x4C",
+            "Bus": 12,
+            "Name": "MB_U73_THERM_LOCAL",
+            "Name1": "MB_U73_THERM_REMOTE",
+            "Type": "TMP421"
+        },
+        {
+            "Address": "0x4D",
+            "Bus": 12,
+            "Name": "MB_U72_THERM_LOCAL",
+            "Name1": "MB_U72_THERM_REMOTE",
+            "Type": "TMP421"
+        },
+        {
+            "Address": "0x4F",
+            "Bus": 9,
+            "Name": "MB_U402_THERM_LOCAL",
+            "Type": "TMP421"
+        },
+        {
+            "Address": "0x4F",
+            "Bus": 10,
+            "Name": "MB_U19_THERM_LOCAL",
+            "Type": "TMP421"
+        },
+        {
+            "Address": "0x4F",
+            "Bus": 0,
+            "Name": "SLED0_THERM_LOCAL",
+            "Type": "TMP421"
+        },
+        {
+            "Address": "0x4F",
+            "Bus": 1,
+            "Name": "SLED1_THERM_LOCAL",
+            "Type": "TMP421"
+        },
+        {
+            "Address": "0x4F",
+            "Bus": 2,
+            "Name": "SLED2_THERM_LOCAL",
+            "Type": "TMP421"
+        },
+        {
+            "Address": "0x4F",
+            "Bus": 3,
+            "Name": "SLED3_THERM_LOCAL",
+            "Type": "TMP421"
+        },
+        {
+            "Address": "0x4F",
+            "Bus": 4,
+            "Name": "SLED4_THERM_LOCAL",
+            "Type": "TMP421"
+        },
+        {
+            "Address": "0x4F",
+            "Bus": 5,
+            "Name": "SLED5_THERM_LOCAL",
+            "Type": "TMP421"
         }
     ],
     "Name": "Bletchley Baseboard",

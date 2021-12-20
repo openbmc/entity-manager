@@ -1,28 +1,6 @@
 {
     "Exposes": [
         {
-            "Address": "0x4c",
-            "Bus": 1,
-            "Name": "MB",
-            "Name1": "MB_alt",
-            "Thresholds": [
-                {
-                    "Direction": "greater than",
-                    "Name": "upper critical",
-                    "Severity": 1,
-                    "Value": 55
-                },
-                {
-                    "Direction": "greater than",
-                    "Name": "upper non critical",
-                    "Severity": 0,
-                    "Value": 54
-                }
-            ],
-            "Type": "W83773G"
-        },
-
-        {
             "Index": 0,
             "Name": "3.3V Standby",
             "ScaleFactor": 0.5349,
@@ -63,7 +41,7 @@
                     "Direction": "greater than",
                     "Name": "upper critical",
                     "Severity": 1,
-                    "Value": 5.50
+                    "Value": 5.5
                 },
                 {
                     "Direction": "greater than",
@@ -81,7 +59,7 @@
                     "Direction": "less than",
                     "Name": "lower critical",
                     "Severity": 1,
-                    "Value": 4.50
+                    "Value": 4.5
                 }
             ],
             "Type": "ADC"
@@ -259,7 +237,7 @@
                     "Direction": "less than",
                     "Name": "lower non critical",
                     "Severity": 0,
-                    "Value": 2.40
+                    "Value": 2.4
                 },
                 {
                     "Direction": "less than",
@@ -271,10 +249,6 @@
             "Type": "ADC"
         },
         {
-            "Index": 9,
-            "Name": "VBAT",
-            "ScaleFactor": 0.3435,
-            "PollRate": 43200,
             "BridgeGpio": [
                 {
                     "Name": "HWM_BAT_EN",
@@ -282,30 +256,34 @@
                     "SetupTime": 0.5
                 }
             ],
+            "Index": 9,
+            "Name": "VBAT",
+            "PollRate": 43200,
+            "ScaleFactor": 0.3435,
             "Thresholds": [
                 {
                     "Direction": "greater than",
                     "Name": "upper critical",
                     "Severity": 1,
-                    "Value": 3.30
+                    "Value": 3.3
                 },
                 {
                     "Direction": "greater than",
                     "Name": "upper non critical",
                     "Severity": 0,
-                    "Value": 3.20
+                    "Value": 3.2
                 },
                 {
                     "Direction": "less than",
                     "Name": "lower non critical",
                     "Severity": 0,
-                    "Value": 2.80
+                    "Value": 2.8
                 },
                 {
                     "Direction": "less than",
                     "Name": "lower critical",
                     "Severity": 1,
-                    "Value": 2.70
+                    "Value": 2.7
                 }
             ],
             "Type": "ADC"
@@ -353,25 +331,25 @@
                     "Direction": "greater than",
                     "Name": "upper critical",
                     "Severity": 1,
-                    "Value": 5.50
+                    "Value": 5.5
                 },
                 {
                     "Direction": "greater than",
                     "Name": "upper non critical",
                     "Severity": 0,
-                    "Value": 5.30
+                    "Value": 5.3
                 },
                 {
                     "Direction": "less than",
                     "Name": "lower non critical",
                     "Severity": 0,
-                    "Value": 4.70
+                    "Value": 4.7
                 },
                 {
                     "Direction": "less than",
                     "Name": "lower critical",
                     "Severity": 1,
-                    "Value": 4.50
+                    "Value": 4.5
                 }
             ],
             "Type": "ADC"
@@ -386,30 +364,50 @@
                     "Direction": "greater than",
                     "Name": "upper critical",
                     "Severity": 1,
-                    "Value": 13.20
+                    "Value": 13.2
                 },
                 {
                     "Direction": "greater than",
                     "Name": "upper non critical",
                     "Severity": 0,
-                    "Value": 12.80
+                    "Value": 12.8
                 },
                 {
                     "Direction": "less than",
                     "Name": "lower non critical",
                     "Severity": 0,
-                    "Value": 11.20
+                    "Value": 11.2
                 },
                 {
                     "Direction": "less than",
                     "Name": "lower critical",
                     "Severity": 1,
-                    "Value": 10.80
+                    "Value": 10.8
                 }
             ],
             "Type": "ADC"
         },
-
+        {
+            "Address": "0x4c",
+            "Bus": 1,
+            "Name": "MB",
+            "Name1": "MB_alt",
+            "Thresholds": [
+                {
+                    "Direction": "greater than",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 55
+                },
+                {
+                    "Direction": "greater than",
+                    "Name": "upper non critical",
+                    "Severity": 0,
+                    "Value": 54
+                }
+            ],
+            "Type": "W83773G"
+        },
         {
             "Address": "0x30",
             "Bus": 0,

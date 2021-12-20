@@ -1,169 +1,168 @@
 [
     {
-       "Exposes":
-       [
-          {
-             "Address":"$address",
-             "Bus":"$bus",
-             "Name":"MB FRU",
-             "Type":"EEPROM"
-          },
-          {
-             "Address":"0x48",
-             "Bus":42,
-             "Name":"Mobo_M2_ZONE_T",
-             "Thresholds":[
-                {
-                   "Direction":"greater than",
-                   "Name":"upper critical",
-                   "Severity":1,
-                   "Value":70
-                },
-                {
-                   "Direction":"greater than",
-                   "Name":"upper non critical",
-                   "Severity":0,
-                   "Value":60
-                }
-             ],
-             "Type":"TMP75"
-          },
-          {
-             "Address":"0x49",
-             "Bus":43,
-             "Name":"Mobo_BATT_ZONE_T",
-             "Thresholds":[
-                {
-                   "Direction":"greater than",
-                   "Name":"upper critical",
-                   "Severity":1,
-                   "Value":70
-                },
-                {
-                   "Direction":"greater than",
-                   "Name":"upper non critical",
-                   "Severity":0,
-                   "Value":60
-                }
-             ],
-             "Type":"TMP75"
-          },
-          {
-             "Address":"0x5c",
-             "Bus":20,
-             "Name":"Mobo_INLET1_T",
-             "Thresholds":[
-                {
-                   "Direction":"greater than",
-                   "Name":"upper critical",
-                   "Severity":1,
-                   "Value":46
-                },
-                {
-                   "Direction":"greater than",
-                   "Name":"upper non critical",
-                   "Severity":0,
-                   "Value":42
-                }
-             ],
-             "Type":"TMP75"
-          },
-          {
-             "Address":"0x5c",
-             "Bus":21,
-             "Name":"Mobo_OUTLET1_T",
-             "Thresholds":[
-                {
-                   "Direction":"greater than",
-                   "Name":"upper critical",
-                   "Severity":1,
-                   "Value":85
-                },
-                {
-                   "Direction":"greater than",
-                   "Name":"upper non critical",
-                   "Severity":0,
-                   "Value":80
-                }
-             ],
-             "Type":"TMP75"
-          },
-          {
-             "Address":"0x5c",
-             "Bus":22,
-             "Name":"Mobo_OUTLET2_T",
-             "Thresholds":[
-                {
-                   "Direction":"greater than",
-                   "Name":"upper critical",
-                   "Severity":1,
-                   "Value":85
-                },
-                {
-                   "Direction":"greater than",
-                   "Name":"upper non critical",
-                   "Severity":0,
-                   "Value":80
-                }
-             ],
-             "Type":"TMP75"
-          },
-          {
-             "Address":"0x5c",
-             "Bus":23,
-             "Name":"Mobo_OUTLET3_T",
-             "Thresholds":[
-                {
-                   "Direction":"greater than",
-                   "Name":"upper critical",
-                   "Severity":1,
-                   "Value":85
-                },
-                {
-                   "Direction":"greater than",
-                   "Name":"upper non critical",
-                   "Severity":0,
-                   "Value":80
-                }
-             ],
-             "Type":"TMP75"
-          },
-          {
-            "Address":"0x74",
-            "Bus":26,
-            "Name":"Mobo_STB_T",
-            "Labels":[
-                "temp1"
-            ],
-            "Name1":"Mobo_STB_T",
-            "MaxValue" : 255,
-            "Thresholds":[
-                {
-                    "Direction":"greater than",
-                    "Name":"upper critical",
-                    "Label":"temp1",
-                    "Severity":1,
-                    "Value":105
-                },
-                {
-                    "Direction":"greater than",
-                    "Name":"upper non critical",
-                    "Label":"temp1",
-                    "Severity":0,
-                    "Value":100
-                }
-            ],
-            "Type":"pmbus"
-          }
-       ],
-       "Name":"Kudo_Motherboard",
-       "Probe":"xyz.openbmc_project.FruDevice({'BOARD_PART_NUMBER': '1103638-*'})",
-       "Type":"Board",
-       "xyz.openbmc_project.Inventory.Decorator.Asset": {
-          "Manufacturer":"$BOARD_MANUFACTURER",
-          "Model":"$BOARD_PRODUCT_NAME",
-          "PartNumber":"$BOARD_PART_NUMBER",
-          "SerialNumber":"$BOARD_SERIAL_NUMBER"
-       }
+        "Exposes": [
+            {
+                "Address": "$address",
+                "Bus": "$bus",
+                "Name": "MB FRU",
+                "Type": "EEPROM"
+            },
+            {
+                "Address": "0x48",
+                "Bus": 42,
+                "Name": "Mobo_M2_ZONE_T",
+                "Thresholds": [
+                    {
+                        "Direction": "greater than",
+                        "Name": "upper critical",
+                        "Severity": 1,
+                        "Value": 70
+                    },
+                    {
+                        "Direction": "greater than",
+                        "Name": "upper non critical",
+                        "Severity": 0,
+                        "Value": 60
+                    }
+                ],
+                "Type": "TMP75"
+            },
+            {
+                "Address": "0x49",
+                "Bus": 43,
+                "Name": "Mobo_BATT_ZONE_T",
+                "Thresholds": [
+                    {
+                        "Direction": "greater than",
+                        "Name": "upper critical",
+                        "Severity": 1,
+                        "Value": 70
+                    },
+                    {
+                        "Direction": "greater than",
+                        "Name": "upper non critical",
+                        "Severity": 0,
+                        "Value": 60
+                    }
+                ],
+                "Type": "TMP75"
+            },
+            {
+                "Address": "0x5c",
+                "Bus": 20,
+                "Name": "Mobo_INLET1_T",
+                "Thresholds": [
+                    {
+                        "Direction": "greater than",
+                        "Name": "upper critical",
+                        "Severity": 1,
+                        "Value": 46
+                    },
+                    {
+                        "Direction": "greater than",
+                        "Name": "upper non critical",
+                        "Severity": 0,
+                        "Value": 42
+                    }
+                ],
+                "Type": "TMP75"
+            },
+            {
+                "Address": "0x5c",
+                "Bus": 21,
+                "Name": "Mobo_OUTLET1_T",
+                "Thresholds": [
+                    {
+                        "Direction": "greater than",
+                        "Name": "upper critical",
+                        "Severity": 1,
+                        "Value": 85
+                    },
+                    {
+                        "Direction": "greater than",
+                        "Name": "upper non critical",
+                        "Severity": 0,
+                        "Value": 80
+                    }
+                ],
+                "Type": "TMP75"
+            },
+            {
+                "Address": "0x5c",
+                "Bus": 22,
+                "Name": "Mobo_OUTLET2_T",
+                "Thresholds": [
+                    {
+                        "Direction": "greater than",
+                        "Name": "upper critical",
+                        "Severity": 1,
+                        "Value": 85
+                    },
+                    {
+                        "Direction": "greater than",
+                        "Name": "upper non critical",
+                        "Severity": 0,
+                        "Value": 80
+                    }
+                ],
+                "Type": "TMP75"
+            },
+            {
+                "Address": "0x5c",
+                "Bus": 23,
+                "Name": "Mobo_OUTLET3_T",
+                "Thresholds": [
+                    {
+                        "Direction": "greater than",
+                        "Name": "upper critical",
+                        "Severity": 1,
+                        "Value": 85
+                    },
+                    {
+                        "Direction": "greater than",
+                        "Name": "upper non critical",
+                        "Severity": 0,
+                        "Value": 80
+                    }
+                ],
+                "Type": "TMP75"
+            },
+            {
+                "Address": "0x74",
+                "Bus": 26,
+                "Labels": [
+                    "temp1"
+                ],
+                "MaxValue": 255,
+                "Name": "Mobo_STB_T",
+                "Name1": "Mobo_STB_T",
+                "Thresholds": [
+                    {
+                        "Direction": "greater than",
+                        "Label": "temp1",
+                        "Name": "upper critical",
+                        "Severity": 1,
+                        "Value": 105
+                    },
+                    {
+                        "Direction": "greater than",
+                        "Label": "temp1",
+                        "Name": "upper non critical",
+                        "Severity": 0,
+                        "Value": 100
+                    }
+                ],
+                "Type": "pmbus"
+            }
+        ],
+        "Name": "Kudo_Motherboard",
+        "Probe": "xyz.openbmc_project.FruDevice({'BOARD_PART_NUMBER': '1103638-*'})",
+        "Type": "Board",
+        "xyz.openbmc_project.Inventory.Decorator.Asset": {
+            "Manufacturer": "$BOARD_MANUFACTURER",
+            "Model": "$BOARD_PRODUCT_NAME",
+            "PartNumber": "$BOARD_PART_NUMBER",
+            "SerialNumber": "$BOARD_SERIAL_NUMBER"
+        }
     }
 ]

@@ -1,18 +1,6 @@
 {
     "Exposes": [
         {
-            "Address": "0x40",
-            "Bus": 7,
-            "Name": "Ambient 2 Temp",
-            "Type": "SI7020"
-        },
-        {
-            "Address": "0x48",
-            "Bus": 7,
-            "Name": "Ambient 0 Temp",
-            "Type": "TMP75"
-        },
-        {
             "Address": "0x76",
             "Bus": 7,
             "Name": "Ambient 1 Temp",
@@ -52,6 +40,18 @@
             ],
             "Type": "ModifiedMedian",
             "Units": "DegreesC"
+        },
+        {
+            "Address": "0x40",
+            "Bus": 7,
+            "Name": "Ambient 2 Temp",
+            "Type": "SI7020"
+        },
+        {
+            "Address": "0x48",
+            "Bus": 7,
+            "Name": "Ambient 0 Temp",
+            "Type": "TMP75"
         }
     ],
     "Name": "Blyth Panel",
