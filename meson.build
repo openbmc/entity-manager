@@ -138,16 +138,32 @@ configs = [
     'Tyan_S7106_Baseboard.json',
     'WFT Baseboard.json',
 ]
-
+filepaths = []
 foreach c : configs
+    file = join_paths('configurations', c)
     install_data(
-        join_paths('configurations', c),
+        file,
         install_dir: join_paths(
             packagedir,
             'configurations',
         )
     )
+    filepaths += [file]
 endforeach
+
+validate_script = files('scripts/validate-configs.py')
+autojson = custom_target(
+  'check_syntax',
+  command: [
+    validate_script,
+    '-v',
+    '-k',
+  ],
+  depend_files: files(filepaths),
+  build_by_default: true,
+  capture: true,
+  output: 'validate_configs.log',
+)
 
 schemas = [
     'global.json',
