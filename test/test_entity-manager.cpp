@@ -1,3 +1,4 @@
+#include "Overlay.hpp"
 #include "Utils.hpp"
 
 #include <boost/container/flat_map.hpp>
@@ -10,6 +11,10 @@
 
 using namespace std::string_literals;
 namespace fs = std::filesystem;
+
+// This is a temporary definition until these definition are removed from main
+// source file and declared in seperate source file.
+boost::asio::io_context io;
 
 TEST(TemplateCharReplace, replaceOneInt)
 {
@@ -944,4 +949,71 @@ TEST(GetI2cDevicePaths, foundI2cPath)
     fs::remove_all(testDir);
     auto it = busPaths.find(4);
     EXPECT_NE(it, busPaths.end());
+}
+
+TEST(JsonToString, inputString)
+{
+    auto ret = jsonToString("foo");
+    EXPECT_EQ(ret, "foo");
+}
+
+TEST(JsonToString, inputArrayNum)
+{
+    auto ret = jsonToString({2,3,4});
+    EXPECT_EQ(ret, "2 3 4");
+}
+
+TEST(JsonToString, inputArrayStr)
+{
+    auto ret = jsonToString({"foo","foo1"});
+    EXPECT_EQ(ret, "\"foo\" \"foo1\"");
+}
+
+TEST(LinkMux, channelExist)
+{
+    linkMux("PciRetimer", 4, 0x50, {"slot1", "slot2"});
+}
+
+TEST(LoadOverlays, returnTrue)
+{
+
+  const nlohmann::json conf = R"({"retimer": {
+    "Exposes": [
+        {
+            "Address": 50,
+            "Bus": 6,
+            "Name": "Retimer FRU",
+            "Type": "EEPROM"
+        },
+        {
+            "Address": 75,
+            "Bus": 6,
+            "ChannelNames": [
+                {
+                    "SlotName": "Retimer_Slot1",
+                    "SlotType": "Unknown"
+                },
+                {
+                    "SlotName": "Retimer_Slot2",
+                    "SlotType": "Unknown"
+                },
+                {
+                    "SlotName": "Retimer_Slot3",
+                    "SlotType": "Unknown"
+                },
+                {
+                    "SlotName": "Retimer_Slot4",
+                    "SlotType": "Unknown"
+                }
+            ],
+            "Name": "Retimer Mux",
+            "Type": "PCA9544Mux"
+        }
+    ],
+    "Name":"OCP Retimer Card"
+    }
+})"_json;
+
+auto ret = loadOverlays(conf);
+EXPECT_TRUE(ret);
 }

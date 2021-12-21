@@ -192,6 +192,7 @@ if not build_tests.disabled()
             'test_entity_manager',
             'test/test_entity-manager.cpp',
             'src/Utils.cpp',
+	    'src/Overlay.cpp',
             cpp_args: test_boost_args,
             dependencies: [
                 boost,

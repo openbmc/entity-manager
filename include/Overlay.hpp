@@ -18,5 +18,7 @@
 #pragma once
 #include <nlohmann/json.hpp>
 
+std::string jsonToString(const nlohmann::json&);
+void linkMux(const std::string&, size_t, size_t, const nlohmann::json::array_t&);
 void unloadAllOverlays(void);
 bool loadOverlays(const nlohmann::json& systemConfiguration);
