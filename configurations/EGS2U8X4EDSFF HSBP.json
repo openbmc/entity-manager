@@ -1,0 +1,251 @@
+[
+    {
+        "Exposes": [
+            {
+                "Address": "$address",
+                "Bus": "$bus",
+                "Name": "EGS2U8X4EDSFF HSBP1 FRU",
+                "Type": "EEPROM"
+            },
+            {
+                "Address": "0x68",
+                "Bus": "$bus",
+                "Name": "HSBP 1",
+                "Type": "Intel HSBP CPLD"
+            },
+            {
+                "Address": "0x70",
+                "Bus": "$bus",
+                "ChannelNames": [
+                    "Drive_1",
+                    "Drive_2",
+                    "Drive_3",
+                    "Drive_4"
+                ],
+                "MuxIdleMode": "Disconnect",
+                "Name": "Drive Mux 1",
+                "Type": "PCA9546Mux"
+            },
+            {
+                "Address": "0x74",
+                "Bus": "$bus",
+                "ChannelNames": [
+                    "Drive_5",
+                    "Drive_6",
+                    "Drive_7",
+                    "Drive_8"
+                ],
+                "MuxIdleMode": "Disconnect",
+                "Name": "Drive Mux 2",
+                "Type": "PCA9546Mux"
+            },
+            {
+                "Address": "0x48",
+                "Bus": "$bus",
+                "Name": "HSBP1 Temp",
+                "Thresholds": [
+                    {
+                        "Direction": "greater than",
+                        "Name": "upper critical",
+                        "Severity": 1,
+                        "Value": 57
+                    },
+                    {
+                        "Direction": "greater than",
+                        "Name": "upper non critical",
+                        "Severity": 0,
+                        "Value": 52
+                    },
+                    {
+                        "Direction": "less than",
+                        "Name": "lower non critical",
+                        "Severity": 0,
+                        "Value": 12
+                    },
+                    {
+                        "Direction": "less than",
+                        "Name": "lower critical",
+                        "Severity": 1,
+                        "Value": 7
+                    }
+                ],
+                "Type": "TMP75"
+            }
+        ],
+        "Name": "EGS2U8X4EDSFF HSBP 1",
+        "Probe": "xyz.openbmc_project.FruDevice({'BOARD_PRODUCT_NAME': 'EGS2U8X4EDSFFPCIHSBP', 'ADDRESS': 84})",
+        "Type": "Board",
+        "xyz.openbmc_project.Inventory.Decorator.Asset": {
+            "Manufacturer": "$BOARD_MANUFACTURER",
+            "Model": "$BOARD_PRODUCT_NAME",
+            "PartNumber": "$BOARD_PART_NUMBER",
+            "SerialNumber": "$BOARD_SERIAL_NUMBER"
+        }
+    },
+    {
+        "Exposes": [
+            {
+                "Address": "$address",
+                "Bus": "$bus",
+                "Name": "EGS2U8X4EDSFF HSBP2 FRU",
+                "Type": "EEPROM"
+            },
+            {
+                "Address": "0x69",
+                "Bus": "$bus",
+                "Name": "HSBP 2",
+                "Type": "Intel HSBP CPLD"
+            },
+            {
+                "Address": "0x73",
+                "Bus": "$bus",
+                "ChannelNames": [
+                    "Drive_9",
+                    "Drive_10",
+                    "Drive_11",
+                    "Drive_12"
+                ],
+                "MuxIdleMode": "Disconnect",
+                "Name": "Drive Mux 3",
+                "Type": "PCA9546Mux"
+            },
+            {
+                "Address": "0x77",
+                "Bus": "$bus",
+                "ChannelNames": [
+                    "Drive_13",
+                    "Drive_14",
+                    "Drive_15",
+                    "Drive_16"
+                ],
+                "MuxIdleMode": "Disconnect",
+                "Name": "Drive Mux 4",
+                "Type": "PCA9546Mux"
+            },
+            {
+                "Address": "0x4B",
+                "Bus": "$bus",
+                "Name": "HSBP2 Temp",
+                "Thresholds": [
+                    {
+                        "Direction": "greater than",
+                        "Name": "upper critical",
+                        "Severity": 1,
+                        "Value": 57
+                    },
+                    {
+                        "Direction": "greater than",
+                        "Name": "upper non critical",
+                        "Severity": 0,
+                        "Value": 52
+                    },
+                    {
+                        "Direction": "less than",
+                        "Name": "lower non critical",
+                        "Severity": 0,
+                        "Value": 12
+                    },
+                    {
+                        "Direction": "less than",
+                        "Name": "lower critical",
+                        "Severity": 1,
+                        "Value": 7
+                    }
+                ],
+                "Type": "TMP75"
+            }
+        ],
+        "Name": "EGS2U8X4EDSFF HSBP 2",
+        "Probe": "xyz.openbmc_project.FruDevice({'BOARD_PRODUCT_NAME': 'EGS2U8X4EDSFFPCIHSBP', 'ADDRESS': 87})",
+        "Type": "Board",
+        "xyz.openbmc_project.Inventory.Decorator.Asset": {
+            "Manufacturer": "$BOARD_MANUFACTURER",
+            "Model": "$BOARD_PRODUCT_NAME",
+            "PartNumber": "$BOARD_PART_NUMBER",
+            "SerialNumber": "$BOARD_SERIAL_NUMBER"
+        }
+    },
+    {
+        "Exposes": [
+            {
+                "Address": "$address",
+                "Bus": "$bus",
+                "Name": "EGS2U8X4EDSFF HSBP3 FRU",
+                "Type": "EEPROM"
+            },
+            {
+                "Address": "0x6B",
+                "Bus": "$bus",
+                "Name": "HSBP 3",
+                "Type": "Intel HSBP CPLD"
+            },
+            {
+                "Address": "0x72",
+                "Bus": "$bus",
+                "ChannelNames": [
+                    "Drive_17",
+                    "Drive_18",
+                    "Drive_19",
+                    "Drive_20"
+                ],
+                "MuxIdleMode": "Disconnect",
+                "Name": "Drive Mux 5",
+                "Type": "PCA9546Mux"
+            },
+            {
+                "Address": "0x76",
+                "Bus": "$bus",
+                "ChannelNames": [
+                    "Drive_21",
+                    "Drive_22",
+                    "Drive_23",
+                    "Drive_24"
+                ],
+                "MuxIdleMode": "Disconnect",
+                "Name": "Drive Mux 6",
+                "Type": "PCA9546Mux"
+            },
+            {
+                "Address": "0x4A",
+                "Bus": "$bus",
+                "Name": "HSBP3 Temp",
+                "Thresholds": [
+                    {
+                        "Direction": "greater than",
+                        "Name": "upper critical",
+                        "Severity": 1,
+                        "Value": 57
+                    },
+                    {
+                        "Direction": "greater than",
+                        "Name": "upper non critical",
+                        "Severity": 0,
+                        "Value": 52
+                    },
+                    {
+                        "Direction": "less than",
+                        "Name": "lower non critical",
+                        "Severity": 0,
+                        "Value": 12
+                    },
+                    {
+                        "Direction": "less than",
+                        "Name": "lower critical",
+                        "Severity": 1,
+                        "Value": 7
+                    }
+                ],
+                "Type": "TMP75"
+            }
+        ],
+        "Name": "EGS2U8X4EDSFF HSBP 3",
+        "Probe": "xyz.openbmc_project.FruDevice({'BOARD_PRODUCT_NAME': 'EGS2U8X4EDSFFPCIHSBP', 'ADDRESS': 82})",
+        "Type": "Board",
+        "xyz.openbmc_project.Inventory.Decorator.Asset": {
+            "Manufacturer": "$BOARD_MANUFACTURER",
+            "Model": "$BOARD_PRODUCT_NAME",
+            "PartNumber": "$BOARD_PART_NUMBER",
+            "SerialNumber": "$BOARD_SERIAL_NUMBER"
+        }
+    }
+]
