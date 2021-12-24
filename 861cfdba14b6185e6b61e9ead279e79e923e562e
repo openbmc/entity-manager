@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "95d0a128_7aea595b",
+        "filename": "src/FruDevice.cpp",
+        "patchSetId": 3
+      },
+      "lineNbr": 1352,
+      "author": {
+        "id": 1000546
+      },
+      "writtenOn": "2021-12-24T11:23:13Z",
+      "side": 1,
+      "message": "objServer accepts only shared_ptr as parameter. \n\n\"object_server(const std::shared_ptr\u003csdbusplus::asio::connection\u003e\u0026 conn\" \n\nSo, we cannot use other than shared_ptr. \n\nI tried changing with unique_ptr getting compilation error.\n\nAlso, referred all *Main.Cpp files in dbus-sensors are using shared_ptr which were declared in local.",
+      "parentUuid": "ce0ded8d_64a231d2",
+      "range": {
+        "startLine": 1352,
+        "startChar": 21,
+        "endLine": 1352,
+        "endChar": 38
+      },
+      "revId": "861cfdba14b6185e6b61e9ead279e79e923e562e",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "f0fc1d46_8c046314",
         "filename": "src/FruDevice.cpp",
         "patchSetId": 3
@@ -45,6 +69,30 @@
       "revId": "861cfdba14b6185e6b61e9ead279e79e923e562e",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "194f9341_9227c8d8",
+        "filename": "src/FruDevice.cpp",
+        "patchSetId": 3
+      },
+      "lineNbr": 1353,
+      "author": {
+        "id": 1000546
+      },
+      "writtenOn": "2021-12-24T11:23:13Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "f0fc1d46_8c046314",
+      "range": {
+        "startLine": 1353,
+        "startChar": 4,
+        "endLine": 1353,
+        "endChar": 63
+      },
+      "revId": "861cfdba14b6185e6b61e9ead279e79e923e562e",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": false
     }
   ]
 }
