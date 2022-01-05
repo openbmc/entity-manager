@@ -36,6 +36,23 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "c36cbd83_24055fbe",
+        "filename": "meson.build",
+        "patchSetId": 1
+      },
+      "lineNbr": 158,
+      "author": {
+        "id": 1000188
+      },
+      "writtenOn": "2022-01-05T21:19:49Z",
+      "side": 1,
+      "message": "`find_program(\u0027python3\u0027, native: true)`",
+      "revId": "60b91c5aac64e18c57358f72da977d9fbe582739",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "10a694df_3d8dcad3",
@@ -102,6 +119,24 @@
       "side": 1,
       "message": "This was something I saw in the forums somewhere, that you need to \"invent\" a result file, because meson requires the parameter;  I just blindly followed that advice.  When I tried to omit it, meson fails with \"ERROR: Missing keyword argument \"output\"\"",
       "parentUuid": "4dc333dd_6274b585",
+      "revId": "60b91c5aac64e18c57358f72da977d9fbe582739",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ea1ccf32_37e4232a",
+        "filename": "meson.build",
+        "patchSetId": 1
+      },
+      "lineNbr": 165,
+      "author": {
+        "id": 1000188
+      },
+      "writtenOn": "2022-01-05T21:19:49Z",
+      "side": 1,
+      "message": "You could just capture the output, which is nothing, and have it write the result file.\n\n`capture: true`",
+      "parentUuid": "98ff586c_13e5d9e9",
       "revId": "60b91c5aac64e18c57358f72da977d9fbe582739",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
