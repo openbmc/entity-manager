@@ -193,6 +193,24 @@
       "parentUuid": "ea1ccf32_37e4232a",
       "revId": "60b91c5aac64e18c57358f72da977d9fbe582739",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4d3aa592_7464d095",
+        "filename": "meson.build",
+        "patchSetId": 1
+      },
+      "lineNbr": 165,
+      "author": {
+        "id": 1000188
+      },
+      "writtenOn": "2022-01-05T22:32:32Z",
+      "side": 1,
+      "message": "It\u0027s there, https://mesonbuild.com/Reference-manual_functions.html#custom_target\n\nIt captures the stdout and feeds it to `output`. Which would be empty but it would solve generating the file and keeping ninja happy.",
+      "parentUuid": "6f3e7806_06e3ce0c",
+      "revId": "60b91c5aac64e18c57358f72da977d9fbe582739",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }
