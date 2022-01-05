@@ -18,6 +18,24 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "98cace5e_011476d0",
+        "filename": "meson.build",
+        "patchSetId": 1
+      },
+      "lineNbr": 158,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2022-01-05T20:55:58Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "ff9b8224_f4a57150",
+      "revId": "60b91c5aac64e18c57358f72da977d9fbe582739",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "10a694df_3d8dcad3",
@@ -35,6 +53,24 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "5871fe51_85d4667b",
+        "filename": "meson.build",
+        "patchSetId": 1
+      },
+      "lineNbr": 159,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2022-01-05T20:55:58Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "10a694df_3d8dcad3",
+      "revId": "60b91c5aac64e18c57358f72da977d9fbe582739",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "4dc333dd_6274b585",
@@ -48,6 +84,24 @@
       "writtenOn": "2022-01-05T20:49:04Z",
       "side": 1,
       "message": "It doesn\u0027t look like you have a real \u0027result\u0027 file though?  I\u0027m surprised Meson doesn\u0027t get upset about that.",
+      "revId": "60b91c5aac64e18c57358f72da977d9fbe582739",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "98ff586c_13e5d9e9",
+        "filename": "meson.build",
+        "patchSetId": 1
+      },
+      "lineNbr": 165,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2022-01-05T20:55:58Z",
+      "side": 1,
+      "message": "This was something I saw in the forums somewhere, that you need to \"invent\" a result file, because meson requires the parameter;  I just blindly followed that advice.  When I tried to omit it, meson fails with \"ERROR: Missing keyword argument \"output\"\"",
+      "parentUuid": "4dc333dd_6274b585",
       "revId": "60b91c5aac64e18c57358f72da977d9fbe582739",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
