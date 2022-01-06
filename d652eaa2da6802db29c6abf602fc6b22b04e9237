@@ -52,6 +52,24 @@
       "parentUuid": "a723c784_c9b3377a",
       "revId": "d652eaa2da6802db29c6abf602fc6b22b04e9237",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8cc73565_6b9ab360",
+        "filename": "configurations/Bletchley.json",
+        "patchSetId": 5
+      },
+      "lineNbr": 413,
+      "author": {
+        "id": 1001264
+      },
+      "writtenOn": "2022-01-06T08:27:48Z",
+      "side": 1,
+      "message": "Each fan module has 2 tachs, and connect to same pwm.\n\nPWM_X\n |--\u003e FANX_TACH_IL\n |--\u003e FANX_TACH_OL",
+      "parentUuid": "501a8f11_2938cea9",
+      "revId": "d652eaa2da6802db29c6abf602fc6b22b04e9237",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }
