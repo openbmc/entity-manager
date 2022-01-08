@@ -97,6 +97,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "9c49c8ab_a921baf0",
+        "filename": "configurations/Bletchley.json",
+        "patchSetId": 7
+      },
+      "lineNbr": 377,
+      "author": {
+        "id": 1001264
+      },
+      "writtenOn": "2022-01-08T01:14:51Z",
+      "side": 1,
+      "message": "Thanks, I will add configuration for Chassis and move fan to there.",
+      "parentUuid": "18764cfd_6370c461",
+      "range": {
+        "startLine": 358,
+        "startChar": 0,
+        "endLine": 377,
+        "endChar": 10
+      },
+      "revId": "745e942edb33d86bb7195aa194f91b340fe01b53",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "2f4a9116_b998900a",
         "filename": "configurations/Bletchley.json",
         "patchSetId": 7
@@ -108,6 +132,30 @@
       "writtenOn": "2022-01-06T16:46:52Z",
       "side": 1,
       "message": "You\u0027re binding two different fans to the same connector?  That seems odd.  is there a good reason for that?",
+      "range": {
+        "startLine": 379,
+        "startChar": 0,
+        "endLine": 379,
+        "endChar": 54
+      },
+      "revId": "745e942edb33d86bb7195aa194f91b340fe01b53",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "dddede04_f8becccb",
+        "filename": "configurations/Bletchley.json",
+        "patchSetId": 7
+      },
+      "lineNbr": 379,
+      "author": {
+        "id": 1001264
+      },
+      "writtenOn": "2022-01-08T01:14:51Z",
+      "side": 1,
+      "message": "We total has 8 fan tachs reading(each fan module has 2 rotors) shared with 4 PWMs.\nI also found that there is similar setting in existing configurations.\n - configurations/R1000 Chassis.json (fan)\n - configurations/WFT Baseboard.json (connector)\n\nWill this setting can cause any problems? Any suggested method in this case?",
+      "parentUuid": "2f4a9116_b998900a",
       "range": {
         "startLine": 379,
         "startChar": 0,
