@@ -692,9 +692,22 @@
                             "type": "string"
                         },
                         "Severity": {
+                        "anyOf": [
+                          {
+                            "type": "string",
+                            "enum": [
+                              "Warning",
+                              "Critical",
+                              "PerformanceLoss",
+                              "SoftShutdown",
+                              "HardShutdown"
+                            ]
+                          },
+                          {
                             "type": "number",
                             "minimum": 0,
                             "maximum": 4
+                          }]
                         },
                         "Value": {
                             "type": "number"
