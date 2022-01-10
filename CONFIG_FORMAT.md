@@ -148,25 +148,25 @@ name in FRU) is successful and this baseboard is named as "WFP baseboard".
                 {
                     "Direction": "greater than",
                     "Name": "upper critical",
-                    "Severity": 1,
+                    "Severity":"Critical",
                     "Value": 115
                 },
                 {
                     "Direction": "greater than",
                     "Name": "upper non critical",
-                    "Severity": 0,
+                    "Severity": "Warning",
                     "Value": 110
                 },
                 {
                     "Direction": "less than",
                     "Name": "lower non critical",
-                    "Severity": 0,
+                    "Severity": "Warning",
                     "Value": 5
                 },
                 {
                     "Direction": "less than",
                     "Name": "lower critical",
-                    "Severity": 1,
+                    "Severity":"Critical",
                     "Value": 0
                 }
             ],
@@ -180,25 +180,25 @@ name in FRU) is successful and this baseboard is named as "WFP baseboard".
                 {
                     "Direction": "greater than",
                     "Name": "upper critical",
-                    "Severity": 1,
+                    "Severity":"Critical",
                     "Value": 115
                 },
                 {
                     "Direction": "greater than",
                     "Name": "upper non critical",
-                    "Severity": 0,
+                    "Severity": "Warning",
                     "Value": 110
                 },
                 {
                     "Direction": "less than",
                     "Name": "lower non critical",
-                    "Severity": 0,
+                    "Severity": "Warning",
                     "Value": 5
                 },
                 {
                     "Direction": "less than",
                     "Name": "lower critical",
-                    "Severity": 1,
+                    "Severity":"Critical",
                     "Value": 0
                 }
             ],
@@ -233,13 +233,13 @@ together.
                 {
                     "Direction": "less than",
                     "Name": "lower critical",
-                    "Severity": 1,
+                    "Severity":"Critical",
                     "Value": 1750
                 },
                 {
                     "Direction": "less than",
                     "Name": "lower non critical",
-                    "Severity": 0,
+                    "Severity": "Warning",
                     "Value": 2000
                 }
             ],
