@@ -140,7 +140,7 @@ inline void logDeviceAdded(const nlohmann::json& record)
         }
     }
 
-    sd_journal_send("MESSAGE=%s", "Inventory Added", "PRIORITY=%i", LOG_ERR,
+    sd_journal_send("MESSAGE=%s", "Inventory Added", "PRIORITY=%i", LOG_INFO,
                     "REDFISH_MESSAGE_ID=%s", "OpenBMC.0.1.InventoryAdded",
                     "REDFISH_MESSAGE_ARGS=%s,%s,%s", model.c_str(),
                     type.c_str(), sn.c_str(), NULL);
@@ -186,7 +186,7 @@ inline void logDeviceRemoved(const nlohmann::json& record)
         }
     }
 
-    sd_journal_send("MESSAGE=%s", "Inventory Removed", "PRIORITY=%i", LOG_ERR,
+    sd_journal_send("MESSAGE=%s", "Inventory Removed", "PRIORITY=%i", LOG_INFO,
                     "REDFISH_MESSAGE_ID=%s", "OpenBMC.0.1.InventoryRemoved",
                     "REDFISH_MESSAGE_ARGS=%s,%s,%s", model.c_str(),
                     type.c_str(), sn.c_str(), NULL);
