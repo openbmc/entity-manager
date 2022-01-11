@@ -136,6 +136,9 @@ configs = [
     'STP Baseboard.json',
     'STP P4000 Chassis.json',
     'Tyan_S7106_Baseboard.json',
+    'VEGMAN-N110-Baseboard.json',
+    'VEGMAN-Rx20-Baseboard.json',
+    'VEGMAN-Sx20-Baseboard.json',
     'WFT Baseboard.json',
 ]
 
