@@ -132,6 +132,9 @@ configs = [
     'STP P4000 Chassis.json',
     'Tyan_S7106_Baseboard.json',
     'Tyan_S8036_Baseboard.json',
+    'VEGMAN-N110-Baseboard.json',
+    'VEGMAN-Rx20-Baseboard.json',
+    'VEGMAN-Sx20-Baseboard.json',
     'WFT Baseboard.json',
 ]
 filepaths = []
