@@ -16,6 +16,24 @@
       "message": "@jason\n\nDoes the log level of these redfish messages matter?",
       "revId": "b1c882ecc749e3531902ad5bfdc7d273c3a275e0",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "04e22e9b_3ce5c7e2",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1000276
+      },
+      "writtenOn": "2022-01-11T19:43:15Z",
+      "side": 1,
+      "message": "Only in the journal.  The Redfish severity is defined in the MessageRegistry.  This log level just affects filtering using \u0027journalctl\u0027.",
+      "parentUuid": "fa26bf2c_a222b324",
+      "revId": "b1c882ecc749e3531902ad5bfdc7d273c3a275e0",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }
