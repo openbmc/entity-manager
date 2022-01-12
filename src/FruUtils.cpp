@@ -26,6 +26,8 @@
 #include <string>
 #include <vector>
 
+#include <boost/crc.hpp>
+
 extern "C"
 {
 // Include for I2C_SMBUS_BLOCK_MAX
@@ -586,6 +588,252 @@ bool validateHeader(const std::array<uint8_t, I2C_SMBUS_BLOCK_MAX>& blockData)
     return true;
 }
 
+static constexpr const size_t li1902DataSize = 256;
+static constexpr const size_t li1902CRC8Offset = 0xe2;
+
+// FRU-ish data from the LinkedIn/Open19 v2 EEPROM format
+struct LI1902FRUData
+{
+    // chassis
+    std::string assembly_number;
+    std::string system_manufacturer;
+    std::string system_manu_date;
+    std::string assembled;
+
+    // product
+    std::string product_name;
+    std::string product_number;
+    std::string product_state;
+    std::string product_version;
+    std::string product_subversion;
+    std::string product_serial;
+    std::string product_asset;
+
+    // board
+    std::string pcba_number;
+    std::string pcb_number;
+    std::string odm_pcba_number;
+    std::string odm_pcba_serial;
+    std::string pcb_manufacturer;
+};
+
+static uint8_t li1902ComputeCRC8(const uint8_t* buf, size_t len)
+{
+    return boost::crc<8, 0x07, 0, 0, false, false>(buf, len);
+}
+
+static void appendFRUString(std::vector<uint8_t>& vec, const std::string& str)
+{
+    bool ascii = true;
+    for (const char& c : str)
+    {
+        if (!isascii(c))
+        {
+            ascii = false;
+            break;
+        }
+    }
+
+    vec.push_back(((ascii && str.size() >= 2) ? 0xc0 : 0x00) | str.size());
+    vec.insert(vec.end(), str.begin(), str.end());
+}
+
+static void finishFRUArea(std::vector<uint8_t>& data)
+{
+    data.push_back(0xc1); // end of fields
+
+    // ensure adding the checksum byte puts us at a multiple of 8 bytes total
+    if (data.size() % fruBlockSize != fruBlockSize - 1)
+    {
+        data.resize(data.size() + (fruBlockSize - (data.size() % fruBlockSize) - 1), 0x00);
+    }
+
+    data.at(1) = (data.size() / fruBlockSize) + 1; // we haven't yet added the final byte, so +1
+    data.push_back(calculateChecksum(data));
+    assert(data.size() % fruBlockSize == 0);
+}
+
+static std::vector<uint8_t> li1902ChassisFRUData(const LI1902FRUData& fru)
+{
+    std::vector<uint8_t> data = {
+        0x01, // version
+        0x00, // length to be filled in later
+        0x17, // chassis type: rack mount
+    };
+
+    appendFRUString(data, fru.assembly_number); // chassis part number?
+    data.push_back(0x00); // chassis serial number not available
+
+    finishFRUArea(data);
+
+    return data;
+}
+
+static std::vector<uint8_t> li1902BoardFRUData(const LI1902FRUData& fru)
+{
+    std::vector<uint8_t> data = {
+        0x01, // version
+        0x00, // length to be filled in later
+        0x00, // language code: english
+        0x00, 0x00, 0x00, // mfg. date/time not available
+    };
+
+    appendFRUString(data, fru.pcb_manufacturer);
+    data.push_back(0x00); // board product name not available
+    appendFRUString(data, fru.odm_pcba_serial);
+    appendFRUString(data, fru.odm_pcba_number);
+    data.push_back(0x00); // no FRU file ID
+
+    finishFRUArea(data);
+
+    return data;
+}
+
+static std::vector<uint8_t> li1902ProductFRUData(const LI1902FRUData& fru)
+{
+    std::vector<uint8_t> data = {
+        0x01, // version
+        0x00, // length to be filled in later
+        0x00, // language code: english
+    };
+
+    data.push_back(0x00); // manufacturer name not available
+    appendFRUString(data, fru.product_name);
+    appendFRUString(data, fru.product_number);
+
+    // stitch together version & subversion into one string for product version
+    std::string tmp = fru.product_version + "." + fru.product_subversion;
+    appendFRUString(data, tmp);
+
+    appendFRUString(data, fru.product_serial);
+    appendFRUString(data, fru.product_asset);
+    data.push_back(0x00); // no FRU file ID
+
+    finishFRUArea(data);
+
+    return data;
+}
+
+static std::vector<uint8_t> li1902FRUBytes(const LI1902FRUData& fru)
+{
+    std::vector<uint8_t> chassis = li1902ChassisFRUData(fru);
+    std::vector<uint8_t> board = li1902BoardFRUData(fru);
+    std::vector<uint8_t> product = li1902ProductFRUData(fru);
+
+    uint8_t chassisOffset = 1;
+    uint8_t boardOffset = chassisOffset + (chassis.size() / fruBlockSize);
+    uint8_t productOffset = boardOffset + (board.size() / fruBlockSize);
+
+    std::vector<uint8_t> fruData = {
+        fruVersion,
+        0, // no internal use area
+        chassisOffset,
+        boardOffset,
+        productOffset,
+        0, // no multi-record area
+        0, // pad
+    };
+    fruData.push_back(calculateChecksum(fruData));
+
+    fruData.insert(fruData.end(), chassis.begin(), chassis.end());
+    fruData.insert(fruData.end(), board.begin(), board.end());
+    fruData.insert(fruData.end(), product.begin(), product.end());
+
+    return fruData;
+}
+
+static size_t fillStringField(std::string& str, const uint8_t* bytes, size_t max)
+{
+    str.clear();
+    for (size_t i = 0; i < max; i++)
+    {
+        if (bytes[i] == '\0')
+        {
+            break;
+        }
+        str.push_back(bytes[i]);
+    }
+    return max;
+}
+
+static bool fillLI1902FRUData(const std::array<uint8_t, li1902DataSize>& bytes, LI1902FRUData& data)
+{
+    std::string magic, version;
+    const uint8_t* p = bytes.data();
+
+    p += fillStringField(magic, p, 4);
+    p += fillStringField(version, p, 2);
+
+    if (magic != "LI19" || version != "02")
+    {
+        return false;
+    }
+
+    p += fillStringField(data.product_name, p, 16);
+    p += fillStringField(data.product_number, p, 16);
+    p += fillStringField(data.assembly_number, p, 12);
+    p += fillStringField(data.pcba_number, p, 14);
+    p += fillStringField(data.pcb_number, p, 14);
+    p += fillStringField(data.odm_pcba_number, p, 14);
+    p += fillStringField(data.odm_pcba_serial, p, 24);
+    p += fillStringField(data.product_state, p, 2);
+    p += fillStringField(data.product_version, p, 1);
+    p += fillStringField(data.product_subversion, p, 1);
+    p += fillStringField(data.product_serial, p, 28);
+    p += fillStringField(data.product_asset, p, 12);
+    p += fillStringField(data.system_manufacturer, p, 8);
+    p += fillStringField(data.system_manu_date, p, 8);
+    p += fillStringField(data.pcb_manufacturer, p, 8);
+    p += fillStringField(data.assembled, p, 8);
+
+    // skip: local mac, ext mac base, ext mac size, reserved
+    p += 12 + 12 + 2 + 8;
+
+    assert(p - bytes.data() == li1902CRC8Offset);
+    if (*p != li1902ComputeCRC8(bytes.data(), li1902CRC8Offset))
+    {
+        std::cerr << "LI1902 crc8 mismatch\n";
+        return false;
+    }
+
+    return true;
+}
+
+static FRUInfo readLI19FRUContents(int flag, int file, uint16_t address,
+                                   const ReadBlockFunc& readBlock,
+                                   const std::string& errorHelp)
+{
+    LI1902FRUData frudata;
+    std::array<uint8_t, li1902DataSize> data;
+    size_t bytesRead = 0;
+
+    while (bytesRead < data.size())
+    {
+        size_t toRead = std::min(data.size() - bytesRead,
+                                 (size_t)I2C_SMBUS_BLOCK_MAX);
+        if (readBlock(flag, file, address, bytesRead, toRead,
+                      data.data() + bytesRead) < 0)
+        {
+            std::cerr << "failed to (LI1902) read " << errorHelp << "\n";
+            return {};
+        }
+        bytesRead += toRead;
+    }
+
+    if (!fillLI1902FRUData(data, frudata))
+    {
+        if (debug)
+        {
+            std::cerr << errorHelp << " doesn't look like an LI1902 FRU\n";
+        }
+        return {};
+    }
+
+    // We don't want to mess with overwriting LI1902 FRUs, so mark them
+    // read-only
+    return {li1902FRUBytes(frudata), true};
+}
+
 bool findFRUHeader(int flag, int file, uint16_t address,
                    const ReadBlockFunc& readBlock,
                    const std::string& errorHelp,
@@ -641,7 +889,9 @@ FRUInfo readFRUContents(int flag, int file, uint16_t address,
 
     if (!findFRUHeader(flag, file, address, readBlock, errorHelp,
             blockData, baseOffset)) {
-        return {{}, false};
+        // If it doesn't look like a standard IPMI FRU, check for the LI1902
+        // format as a fallback
+        return readLI19FRUContents(flag, file, address, readBlock, errorHelp);
     }
 
     FRUInfo fruInfo = {{}, false};
