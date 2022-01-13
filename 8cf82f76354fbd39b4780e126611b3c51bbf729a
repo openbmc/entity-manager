@@ -26,6 +26,30 @@
     {
       "unresolved": false,
       "key": {
+        "uuid": "9f87a916_bc93d5b7",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 13,
+      "author": {
+        "id": 1000238
+      },
+      "writtenOn": "2022-01-13T22:45:18Z",
+      "side": 1,
+      "message": "These are intended to be set by the system architect for the specific system type.\nThese are all existing Redfish properties so I will add those details for reference.\nThe code using these settings (openpower-occ-control) is not committed because it depends on these values being there.\nI will add additional details to the commit message.",
+      "parentUuid": "8f397cd5_0828ead1",
+      "range": {
+        "startLine": 9,
+        "startChar": 0,
+        "endLine": 13,
+        "endChar": 0
+      },
+      "revId": "8cf82f76354fbd39b4780e126611b3c51bbf729a",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
         "uuid": "ea998571_bf380f72",
         "filename": "/PATCHSET_LEVEL",
         "patchSetId": 2
@@ -37,6 +61,23 @@
       "writtenOn": "2022-01-13T21:31:33Z",
       "side": 1,
       "message": "There\u0027s some minor things to cleanup, but the important part is lets get some more details here on what you\u0027re trying to accomplish.",
+      "revId": "8cf82f76354fbd39b4780e126611b3c51bbf729a",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "93f9c95a_9312d477",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1000238
+      },
+      "writtenOn": "2022-01-13T22:45:18Z",
+      "side": 1,
+      "message": "Thanks for the comments",
       "revId": "8cf82f76354fbd39b4780e126611b3c51bbf729a",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
@@ -64,6 +105,30 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "e9cb17a1_0881e87a",
+        "filename": "configurations/Everest.json",
+        "patchSetId": 2
+      },
+      "lineNbr": 12,
+      "author": {
+        "id": 1000238
+      },
+      "writtenOn": "2022-01-13T22:45:18Z",
+      "side": 1,
+      "message": "These are intended to be the factory default values as defined by the system architect. These would be the values that are only used the first time a system is powered on.\nDepending on the target customer for the system type, these values could be different.\nFor example, some systems may need specific values to comply with EnergyStar requirements.",
+      "parentUuid": "e7ba2a36_ad394569",
+      "range": {
+        "startLine": 12,
+        "startChar": 13,
+        "endLine": 12,
+        "endChar": 20
+      },
+      "revId": "8cf82f76354fbd39b4780e126611b3c51bbf729a",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "28641207_fb9e2869",
@@ -77,6 +142,30 @@
       "writtenOn": "2022-01-13T21:31:33Z",
       "side": 1,
       "message": "Can you explain in your commit why these are being added to the Chassis itself?  The Chassis is a piece of sheet metal, with no processor, VR or power system for which these parameters would effect, so it\u0027s a little odd that it would contain any mention of Utilization things.  It feels a little like this file is trying to tease at a collection of components being the \"platform\" but those patches haven\u0027t really been done yet, and the design docs never got fully realized, so I wonder if we\u0027re teasing out into the \"we need a new class of EM config file\" question again.\n\nMore details on what you\u0027re trying to accomplish here would be great.",
+      "range": {
+        "startLine": 18,
+        "startChar": 21,
+        "endLine": 18,
+        "endChar": 40
+      },
+      "revId": "8cf82f76354fbd39b4780e126611b3c51bbf729a",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "b5eac771_c3b1ef76",
+        "filename": "configurations/Everest.json",
+        "patchSetId": 2
+      },
+      "lineNbr": 18,
+      "author": {
+        "id": 1000238
+      },
+      "writtenOn": "2022-01-13T22:45:18Z",
+      "side": 1,
+      "message": "These are system wide settings that define the operation of that system related to power.\nThere is only one power mode for the entire system and having this in entity manager allows the system architect to define the default settings.\nThe customer can change the mode / IPS parameters based on their own needs.\nHaving these defaults also allow the customer to restore the settings back to their factory defaults.\nI will update the commit message with more details to hopefully clarify.",
+      "parentUuid": "28641207_fb9e2869",
       "range": {
         "startLine": 18,
         "startChar": 21,
