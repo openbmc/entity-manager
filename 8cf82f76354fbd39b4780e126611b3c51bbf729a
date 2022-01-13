@@ -1,0 +1,90 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8f397cd5_0828ead1",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 13,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2022-01-13T21:31:33Z",
+      "side": 1,
+      "message": "You\u0027ve copied and pasted the exact same data into 5 different config files, and each property is prefixed with \"Default\".  This kind of implies that this doesn\u0027t really need to be configurable at the level you\u0027re doing, and as it exists today, could be 100% covered by intelligent defaults.  I\u0027m open to some of this stuff needing to be non-default, and per-entity configurable, but lets evaluate this a bit, while at the same time adding more details to the commit message.  You\u0027ve added 6 new properties, and a new Type, with no definition, and no links to backends in review for consumption of this information.",
+      "range": {
+        "startLine": 9,
+        "startChar": 0,
+        "endLine": 13,
+        "endChar": 0
+      },
+      "revId": "8cf82f76354fbd39b4780e126611b3c51bbf729a",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "ea998571_bf380f72",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2022-01-13T21:31:33Z",
+      "side": 1,
+      "message": "There\u0027s some minor things to cleanup, but the important part is lets get some more details here on what you\u0027re trying to accomplish.",
+      "revId": "8cf82f76354fbd39b4780e126611b3c51bbf729a",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e7ba2a36_ad394569",
+        "filename": "configurations/Everest.json",
+        "patchSetId": 2
+      },
+      "lineNbr": 12,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2022-01-13T21:31:33Z",
+      "side": 1,
+      "message": "These shouldn\u0027t be prefixed with default.  Every parameter in entity-manager is a \"default\" for a given entity.",
+      "range": {
+        "startLine": 12,
+        "startChar": 13,
+        "endLine": 12,
+        "endChar": 20
+      },
+      "revId": "8cf82f76354fbd39b4780e126611b3c51bbf729a",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "28641207_fb9e2869",
+        "filename": "configurations/Everest.json",
+        "patchSetId": 2
+      },
+      "lineNbr": 18,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2022-01-13T21:31:33Z",
+      "side": 1,
+      "message": "Can you explain in your commit why these are being added to the Chassis itself?  The Chassis is a piece of sheet metal, with no processor, VR or power system for which these parameters would effect, so it\u0027s a little odd that it would contain any mention of Utilization things.  It feels a little like this file is trying to tease at a collection of components being the \"platform\" but those patches haven\u0027t really been done yet, and the design docs never got fully realized, so I wonder if we\u0027re teasing out into the \"we need a new class of EM config file\" question again.\n\nMore details on what you\u0027re trying to accomplish here would be great.",
+      "range": {
+        "startLine": 18,
+        "startChar": 21,
+        "endLine": 18,
+        "endChar": 40
+      },
+      "revId": "8cf82f76354fbd39b4780e126611b3c51bbf729a",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    }
+  ]
+}
