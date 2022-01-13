@@ -1,0 +1,487 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "be92ff1a_7fcdba94",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 4
+      },
+      "lineNbr": 11,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2022-01-13T18:20:54Z",
+      "side": 1,
+      "message": "This being the case, how do you know you got the format right?",
+      "range": {
+        "startLine": 10,
+        "startChar": 39,
+        "endLine": 11,
+        "endChar": 57
+      },
+      "revId": "14a35fba1deb2cd8a2a4412bb3d1c258855de689",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "619d021a_d9074b6d",
+        "filename": "src/FruUtils.cpp",
+        "patchSetId": 4
+      },
+      "lineNbr": 591,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2022-01-13T18:20:54Z",
+      "side": 1,
+      "message": "All of this li1902 specific stuff definitively deserves its own file.  Please keep only the reasonably generic things here.",
+      "range": {
+        "startLine": 591,
+        "startChar": 0,
+        "endLine": 591,
+        "endChar": 51
+      },
+      "revId": "14a35fba1deb2cd8a2a4412bb3d1c258855de689",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "df1accd8_6285a4e3",
+        "filename": "src/FruUtils.cpp",
+        "patchSetId": 4
+      },
+      "lineNbr": 595,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2022-01-13T18:20:54Z",
+      "side": 1,
+      "message": "In other places, we\u0027ve used dictionaries for this kind of thing, given that dictionaries are going to be needed anyway when this gets converted to dbus APIs.  I suspect we need to stick with that.",
+      "range": {
+        "startLine": 595,
+        "startChar": 0,
+        "endLine": 595,
+        "endChar": 20
+      },
+      "revId": "14a35fba1deb2cd8a2a4412bb3d1c258855de689",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "dbf22ea5_f1528e0c",
+        "filename": "src/FruUtils.cpp",
+        "patchSetId": 4
+      },
+      "lineNbr": 625,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2022-01-13T18:20:54Z",
+      "side": 1,
+      "message": "Same thing as below.  This looks like something that should be relatively generic, and deduplicated with the existing fru code.",
+      "range": {
+        "startLine": 625,
+        "startChar": 12,
+        "endLine": 625,
+        "endChar": 27
+      },
+      "revId": "14a35fba1deb2cd8a2a4412bb3d1c258855de689",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "01375238_4c850569",
+        "filename": "src/FruUtils.cpp",
+        "patchSetId": 4
+      },
+      "lineNbr": 635,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2022-01-13T18:20:54Z",
+      "side": 1,
+      "message": "This seems like a really odd test to be doing ourselves.  Can you explain the rationale for it?  Generally in specs, fields are either defined as ascii or binary.  Detecting the \"asciness\" of fru fields is not 100%, and we should be explicitly declaring a field binary, or ascii when we read it out.",
+      "range": {
+        "startLine": 628,
+        "startChar": 0,
+        "endLine": 635,
+        "endChar": 5
+      },
+      "revId": "14a35fba1deb2cd8a2a4412bb3d1c258855de689",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2f4f33f7_2aad4848",
+        "filename": "src/FruUtils.cpp",
+        "patchSetId": 4
+      },
+      "lineNbr": 637,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2022-01-13T18:20:54Z",
+      "side": 1,
+      "message": "This whole line is pretty confusing.  In the case where the string is too short, push back the str.size?  Can you please turn this into branches to make it more clear what\u0027s going on?",
+      "range": {
+        "startLine": 637,
+        "startChar": 61,
+        "endLine": 637,
+        "endChar": 72
+      },
+      "revId": "14a35fba1deb2cd8a2a4412bb3d1c258855de689",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "88492d25_f1323760",
+        "filename": "src/FruUtils.cpp",
+        "patchSetId": 4
+      },
+      "lineNbr": 637,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2022-01-13T18:20:54Z",
+      "side": 1,
+      "message": "This looks like we\u0027re trying to invent an IPMI FRU from this fru type?  I suspect we need to abstract out the \"set fru\" methods into something we can use directly.",
+      "range": {
+        "startLine": 637,
+        "startChar": 19,
+        "endLine": 637,
+        "endChar": 60
+      },
+      "revId": "14a35fba1deb2cd8a2a4412bb3d1c258855de689",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "38b586a9_1d9c3fba",
+        "filename": "src/FruUtils.cpp",
+        "patchSetId": 4
+      },
+      "lineNbr": 744,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2022-01-13T18:20:54Z",
+      "side": 1,
+      "message": "I said this elsewhere, but I\u0027ll reiterate, we should not be inventing an IPMI FRU from a LI1920 FRU.  To do that is a little odd, and means that we probably need to abstract the \"set a field name\" method on the lower levels such that we can directly set the dictionary items, rather than converting one binary format to another, then converting it to dbus.  Please take another look at this, refactor and simplify.",
+      "range": {
+        "startLine": 640,
+        "startChar": 0,
+        "endLine": 744,
+        "endChar": 0
+      },
+      "revId": "14a35fba1deb2cd8a2a4412bb3d1c258855de689",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "be78c7ba_749bef35",
+        "filename": "src/FruUtils.cpp",
+        "patchSetId": 4
+      },
+      "lineNbr": 745,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2022-01-13T18:20:54Z",
+      "side": 1,
+      "message": "nit, this would look better if you ordered the input params first, THEN the output param.",
+      "range": {
+        "startLine": 745,
+        "startChar": 30,
+        "endLine": 745,
+        "endChar": 46
+      },
+      "revId": "14a35fba1deb2cd8a2a4412bb3d1c258855de689",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e5162863_c69ed9b6",
+        "filename": "src/FruUtils.cpp",
+        "patchSetId": 4
+      },
+      "lineNbr": 745,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2022-01-13T18:20:54Z",
+      "side": 1,
+      "message": "Can this be deduplicated with the other string reading functions?  It doesn\u0027t look that unique.",
+      "range": {
+        "startLine": 745,
+        "startChar": 14,
+        "endLine": 745,
+        "endChar": 29
+      },
+      "revId": "14a35fba1deb2cd8a2a4412bb3d1c258855de689",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "48dbaaa0_16ae8d00",
+        "filename": "src/FruUtils.cpp",
+        "patchSetId": 4
+      },
+      "lineNbr": 747,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2022-01-13T18:20:54Z",
+      "side": 1,
+      "message": "We shouldn\u0027t need to clear a string before using it.",
+      "range": {
+        "startLine": 747,
+        "startChar": 0,
+        "endLine": 747,
+        "endChar": 16
+      },
+      "revId": "14a35fba1deb2cd8a2a4412bb3d1c258855de689",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "865a206c_87a6b9c0",
+        "filename": "src/FruUtils.cpp",
+        "patchSetId": 4
+      },
+      "lineNbr": 767,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2022-01-13T18:20:54Z",
+      "side": 1,
+      "message": "Considering this is essentially a single magic string, can we do this in one check against LI1902?  That would help to make this code more generic, similar to the tyan board.",
+      "range": {
+        "startLine": 767,
+        "startChar": 4,
+        "endLine": 767,
+        "endChar": 43
+      },
+      "revId": "14a35fba1deb2cd8a2a4412bb3d1c258855de689",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c335f60d_2a43af20",
+        "filename": "src/FruUtils.cpp",
+        "patchSetId": 4
+      },
+      "lineNbr": 770,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2022-01-13T18:20:54Z",
+      "side": 1,
+      "message": "This is basically easctly the same check being done here: \n\nhttps://github.com/openbmc/entity-manager/blob/bd4075f74380271e58d01097cd10c6e1e2c3b92d/src/FruUtils.cpp#L616\n\nPlease come up with a generic mechanism for this, as I suspect this kind of thing is going to come up repeatedly from time to time.",
+      "range": {
+        "startLine": 767,
+        "startChar": 0,
+        "endLine": 770,
+        "endChar": 5
+      },
+      "revId": "14a35fba1deb2cd8a2a4412bb3d1c258855de689",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "cfe5bb83_75b9d6ae",
+        "filename": "src/FruUtils.cpp",
+        "patchSetId": 4
+      },
+      "lineNbr": 785,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2022-01-13T18:20:54Z",
+      "side": 1,
+      "message": "manufacturing dates almost certainly need converted to an epoch value.",
+      "range": {
+        "startLine": 785,
+        "startChar": 0,
+        "endLine": 785,
+        "endChar": 54
+      },
+      "revId": "14a35fba1deb2cd8a2a4412bb3d1c258855de689",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e05c92d5_f5a36286",
+        "filename": "src/FruUtils.cpp",
+        "patchSetId": 4
+      },
+      "lineNbr": 793,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2022-01-13T18:20:54Z",
+      "side": 1,
+      "message": "Should we be checking this first, as part of the \"magic\" checking so we can fail earlier in the case it doesn\u0027t match?",
+      "range": {
+        "startLine": 793,
+        "startChar": 0,
+        "endLine": 793,
+        "endChar": 64
+      },
+      "revId": "14a35fba1deb2cd8a2a4412bb3d1c258855de689",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b11279a9_72187edd",
+        "filename": "src/FruUtils.cpp",
+        "patchSetId": 4
+      },
+      "lineNbr": 806,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2022-01-13T18:20:54Z",
+      "side": 1,
+      "message": "init your variables please.  Should just be a matter of adding {} to the end.",
+      "range": {
+        "startLine": 806,
+        "startChar": 0,
+        "endLine": 806,
+        "endChar": 26
+      },
+      "revId": "14a35fba1deb2cd8a2a4412bb3d1c258855de689",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "912e3c56_8a466777",
+        "filename": "src/FruUtils.cpp",
+        "patchSetId": 4
+      },
+      "lineNbr": 807,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2022-01-13T18:20:54Z",
+      "side": 1,
+      "message": "Same here.",
+      "range": {
+        "startLine": 807,
+        "startChar": 0,
+        "endLine": 807,
+        "endChar": 45
+      },
+      "revId": "14a35fba1deb2cd8a2a4412bb3d1c258855de689",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a2323414_15855de9",
+        "filename": "src/FruUtils.cpp",
+        "patchSetId": 4
+      },
+      "lineNbr": 818,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2022-01-13T18:20:54Z",
+      "side": 1,
+      "message": "This function can clearly fail, but doesn\u0027t really seem to be giving any indication in the API that it failed, instead returning a default constructed struct.  Please improve that with some status code returns such that the caller can differentiate failure types.",
+      "range": {
+        "startLine": 818,
+        "startChar": 0,
+        "endLine": 818,
+        "endChar": 22
+      },
+      "revId": "14a35fba1deb2cd8a2a4412bb3d1c258855de689",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "37c6bc0d_d0c4382b",
+        "filename": "src/FruUtils.cpp",
+        "patchSetId": 4
+      },
+      "lineNbr": 821,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2022-01-13T18:20:54Z",
+      "side": 1,
+      "message": "As written, this is duplicating the actual read operation of the first 8 bytes with findFRUHeader here:\n\nhttps://github.com/openbmc/entity-manager/blob/bd4075f74380271e58d01097cd10c6e1e2c3b92d/src/FruUtils.cpp#L595\n\nFor systems that don\u0027t have one of these devices installed, that\u0027s going to cause scanning performance problems.  As part of your refactoring effort asked for above, please fix that such that the first 8 bytes are only read once, similar to how the tyan board did it.",
+      "range": {
+        "startLine": 810,
+        "startChar": 0,
+        "endLine": 821,
+        "endChar": 5
+      },
+      "revId": "14a35fba1deb2cd8a2a4412bb3d1c258855de689",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3545fc64_55645331",
+        "filename": "src/FruUtils.cpp",
+        "patchSetId": 4
+      },
+      "lineNbr": 827,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2022-01-13T18:20:54Z",
+      "side": 1,
+      "message": "Please remove this.  Having Frus that AREN\u0027T LI1902 isn\u0027t an error, and shouldn\u0027t be filling up the logs.",
+      "range": {
+        "startLine": 827,
+        "startChar": 12,
+        "endLine": 827,
+        "endChar": 74
+      },
+      "revId": "14a35fba1deb2cd8a2a4412bb3d1c258855de689",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0f8151a2_f6c44d1a",
+        "filename": "src/FruUtils.cpp",
+        "patchSetId": 4
+      },
+      "lineNbr": 894,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2022-01-13T18:20:54Z",
+      "side": 1,
+      "message": "There\u0027s already a precedence for doing this kind of thing in the findFruHeader method.  I\u0027d like to see this moved there such that we\u0027re keeping all the custom-board fru parsing logic in one place.  Alternatively, we could move the tyan stuff here if it looks cleaner, but I\u0027d really like one place to look for all the \"check for custom magic string\" functions.",
+      "range": {
+        "startLine": 894,
+        "startChar": 15,
+        "endLine": 894,
+        "endChar": 34
+      },
+      "revId": "14a35fba1deb2cd8a2a4412bb3d1c258855de689",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    }
+  ]
+}
