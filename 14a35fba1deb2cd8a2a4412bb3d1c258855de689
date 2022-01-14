@@ -50,6 +50,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "2bb8c46c_c4331c2c",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 4
+      },
+      "lineNbr": 11,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2022-01-14T18:45:33Z",
+      "side": 1,
+      "message": "This is great detail, and should be in your commit message.",
+      "parentUuid": "f07246ef_06e22b82",
+      "range": {
+        "startLine": 10,
+        "startChar": 39,
+        "endLine": 11,
+        "endChar": 57
+      },
+      "revId": "14a35fba1deb2cd8a2a4412bb3d1c258855de689",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "619d021a_d9074b6d",
         "filename": "src/FruUtils.cpp",
         "patchSetId": 4
@@ -214,6 +238,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "4a889b70_c84cab15",
+        "filename": "src/FruUtils.cpp",
+        "patchSetId": 4
+      },
+      "lineNbr": 635,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2022-01-14T18:45:33Z",
+      "side": 1,
+      "message": "Could we just say that they\u0027re ascii, and if they\u0027re not, fail to push the key into the dictionary?  Having fields that dynamically change type dependent on the input gets a little error prone, and if we expect them all to be ascii, and the examples we have are ascii, lets just error on non-ascii until we have a use case.",
+      "parentUuid": "8c5187e2_f890aac4",
+      "range": {
+        "startLine": 628,
+        "startChar": 0,
+        "endLine": 635,
+        "endChar": 5
+      },
+      "revId": "14a35fba1deb2cd8a2a4412bb3d1c258855de689",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "2f4f33f7_2aad4848",
         "filename": "src/FruUtils.cpp",
         "patchSetId": 4
@@ -343,6 +391,30 @@
       "side": 1,
       "message": "\u003e Though perhaps we could have fru-device track which ones are of which type and just live with the constraint that those methods will only work on standard IPMI format FRUs...thoughts?\n\nHmm, though thinking about it a bit more I guess this approach would probably also mean that `ipmitool fru print 0` wouldn\u0027t work to retrieve baseboard FRU info, which would be unfortunate (at least for the AHE-50DC, which uses this format for its baseboard FRU eeprom).",
       "parentUuid": "3592f610_b03f540f",
+      "range": {
+        "startLine": 640,
+        "startChar": 0,
+        "endLine": 744,
+        "endChar": 0
+      },
+      "revId": "14a35fba1deb2cd8a2a4412bb3d1c258855de689",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f2865abf_160fb2a0",
+        "filename": "src/FruUtils.cpp",
+        "patchSetId": 4
+      },
+      "lineNbr": 744,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2022-01-14T18:45:33Z",
+      "side": 1,
+      "message": "\u003e FruDeviceManager interface\u0027s `GetRawFru` and `WriteFru` methods already expose the raw binary FRU data format via dbus\n\nGiven that those APIs are supposed to be exposing IPMI FRU payloads, it seems like we might need a new API for these?  I think the IPMI spec requires FRUs to follow the fru format, so if we had one that didn\u0027t, that\u0027s going to break ipmitool (which I think is what you pointed out).\n\n\n\u003e Though perhaps we could have fru-device track which ones are of which type and just live with the constraint that those methods will only work on standard IPMI format FRUs...thoughts?\n\nOn its nose this sounds reasonable.  Lets look at what it does to the code and interfaces and go from there.",
+      "parentUuid": "5516911a_300efe89",
       "range": {
         "startLine": 640,
         "startChar": 0,
@@ -601,6 +673,30 @@
       "side": 1,
       "message": "Given that the approach of this patch was to convert to the IPMI format and that this field didn\u0027t seem to correspond perfectly to any of its fields I just dropped it.  It appears to be a MMDDYYYY string though; in a dictionary-based version as you suggested should that be parsed \u0026 re-formatted?",
       "parentUuid": "cfe5bb83_75b9d6ae",
+      "range": {
+        "startLine": 785,
+        "startChar": 0,
+        "endLine": 785,
+        "endChar": 54
+      },
+      "revId": "14a35fba1deb2cd8a2a4412bb3d1c258855de689",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c9cbc93e_57a69e6c",
+        "filename": "src/FruUtils.cpp",
+        "patchSetId": 4
+      },
+      "lineNbr": 785,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2022-01-14T18:45:33Z",
+      "side": 1,
+      "message": "For some reason I thought IPMI FRUs had a manufacturing date that we turned into an EPOCH value..... Here\u0027s the code for it:\n\nhttps://github.com/openbmc/entity-manager/blob/bd4075f74380271e58d01097cd10c6e1e2c3b92d/src/FruUtils.cpp#L350\n\nLooks like we just turn it into a string though, so I was mistaken.",
+      "parentUuid": "8f1041ca_facc418a",
       "range": {
         "startLine": 785,
         "startChar": 0,
@@ -883,6 +979,30 @@
       "side": 1,
       "message": "This function should only be called as a fallback if findFRUHeader() fails, so this message should only ever be seen for a eeprom that\u0027s not recognized as standard IPMI, Tyan format, or LI1902 (and even then only if someone goes out of their way to set the `debug` flag).  Though given the amount of rewriting it looks like this patch is going to need this logic will probably all look fairly different anyway...",
       "parentUuid": "3545fc64_55645331",
+      "range": {
+        "startLine": 827,
+        "startChar": 12,
+        "endLine": 827,
+        "endChar": 74
+      },
+      "revId": "14a35fba1deb2cd8a2a4412bb3d1c258855de689",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d907a414_dc948bd8",
+        "filename": "src/FruUtils.cpp",
+        "patchSetId": 4
+      },
+      "lineNbr": 827,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2022-01-14T18:45:33Z",
+      "side": 1,
+      "message": "\u003e This function should only be called as a fallback if findFRUHeader() fails, so this message should only ever be seen for a eeprom that\u0027s not recognized as standard IPMI, Tyan format, or LI1902 (and even then only if someone goes out of their way to set the `debug` flag).\n\nWhat you described happens on almost every system.  There are lots of i2c devices that look like eeproms that we ignore.\n\n\n\u003e  Though given the amount of rewriting it looks like this patch is going to need this logic will probably all look fairly different anyway...\n\n+1",
+      "parentUuid": "ee25d14e_92981333",
       "range": {
         "startLine": 827,
         "startChar": 12,
