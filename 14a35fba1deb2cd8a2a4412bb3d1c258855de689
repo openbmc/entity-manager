@@ -72,6 +72,30 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "b3ef36be_8450eb04",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 4
+      },
+      "lineNbr": 11,
+      "author": {
+        "id": 1000733
+      },
+      "writtenOn": "2022-01-15T00:51:21Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "2bb8c46c_c4331c2c",
+      "range": {
+        "startLine": 10,
+        "startChar": 39,
+        "endLine": 11,
+        "endChar": 57
+      },
+      "revId": "14a35fba1deb2cd8a2a4412bb3d1c258855de689",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "619d021a_d9074b6d",
@@ -262,6 +286,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "d7d367b6_995290fb",
+        "filename": "src/FruUtils.cpp",
+        "patchSetId": 4
+      },
+      "lineNbr": 635,
+      "author": {
+        "id": 1000733
+      },
+      "writtenOn": "2022-01-15T00:51:21Z",
+      "side": 1,
+      "message": "Sure, that sounds reasonable.",
+      "parentUuid": "4a889b70_c84cab15",
+      "range": {
+        "startLine": 628,
+        "startChar": 0,
+        "endLine": 635,
+        "endChar": 5
+      },
+      "revId": "14a35fba1deb2cd8a2a4412bb3d1c258855de689",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "2f4f33f7_2aad4848",
         "filename": "src/FruUtils.cpp",
         "patchSetId": 4
@@ -415,6 +463,30 @@
       "side": 1,
       "message": "\u003e FruDeviceManager interface\u0027s `GetRawFru` and `WriteFru` methods already expose the raw binary FRU data format via dbus\n\nGiven that those APIs are supposed to be exposing IPMI FRU payloads, it seems like we might need a new API for these?  I think the IPMI spec requires FRUs to follow the fru format, so if we had one that didn\u0027t, that\u0027s going to break ipmitool (which I think is what you pointed out).\n\n\n\u003e Though perhaps we could have fru-device track which ones are of which type and just live with the constraint that those methods will only work on standard IPMI format FRUs...thoughts?\n\nOn its nose this sounds reasonable.  Lets look at what it does to the code and interfaces and go from there.",
       "parentUuid": "5516911a_300efe89",
+      "range": {
+        "startLine": 640,
+        "startChar": 0,
+        "endLine": 744,
+        "endChar": 0
+      },
+      "revId": "14a35fba1deb2cd8a2a4412bb3d1c258855de689",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2624b733_757a34f1",
+        "filename": "src/FruUtils.cpp",
+        "patchSetId": 4
+      },
+      "lineNbr": 744,
+      "author": {
+        "id": 1000733
+      },
+      "writtenOn": "2022-01-15T00:51:21Z",
+      "side": 1,
+      "message": "\u003e Given that those APIs are supposed to be exposing IPMI FRU payloads, it seems like we might need a new API for these?  I think the IPMI spec requires FRUs to follow the fru format, so if we had one that didn\u0027t, that\u0027s going to break ipmitool (which I think is what you pointed out).\n\nFrom a quick glance at the users of those methods via OpenGrok, it looks like maybe they only really exist to facilitate IPMI \"Read FRU Data\" and \"Write FRU Data\" commands?  In which case if we\u0027re going to support non-IPMI FRU data (without just doing a format translation), I\u0027m not sure what we\u0027d use a corresponding raw-binary-data dbus API for, exactly...\n\nIn an ideal world I\u0027d still like to be able to use `ipmitool fru print` to retrieve baseboard FRU data on this system (hence the implementation path I took here), but I realize there\u0027s a bit of a fundamental mismatch between that operation and the non-IPMI-formatted FRU data I\u0027ve got.  It seems like if that\u0027s going to be made to work, the only way to support it is by putting a format translation *somewhere*.  Am I wishing for the impossible here?",
+      "parentUuid": "f2865abf_160fb2a0",
       "range": {
         "startLine": 640,
         "startChar": 0,
@@ -1003,6 +1075,30 @@
       "side": 1,
       "message": "\u003e This function should only be called as a fallback if findFRUHeader() fails, so this message should only ever be seen for a eeprom that\u0027s not recognized as standard IPMI, Tyan format, or LI1902 (and even then only if someone goes out of their way to set the `debug` flag).\n\nWhat you described happens on almost every system.  There are lots of i2c devices that look like eeproms that we ignore.\n\n\n\u003e  Though given the amount of rewriting it looks like this patch is going to need this logic will probably all look fairly different anyway...\n\n+1",
       "parentUuid": "ee25d14e_92981333",
+      "range": {
+        "startLine": 827,
+        "startChar": 12,
+        "endLine": 827,
+        "endChar": 74
+      },
+      "revId": "14a35fba1deb2cd8a2a4412bb3d1c258855de689",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "b7a0be33_25ae4e4a",
+        "filename": "src/FruUtils.cpp",
+        "patchSetId": 4
+      },
+      "lineNbr": 827,
+      "author": {
+        "id": 1000733
+      },
+      "writtenOn": "2022-01-15T00:51:21Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "d907a414_dc948bd8",
       "range": {
         "startLine": 827,
         "startChar": 12,
