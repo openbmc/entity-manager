@@ -499,6 +499,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "bc1dbbbd_fd8f46f6",
+        "filename": "src/FruUtils.cpp",
+        "patchSetId": 4
+      },
+      "lineNbr": 744,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2022-01-24T19:37:33Z",
+      "side": 1,
+      "message": "\u003e \u003e Given that those APIs are supposed to be exposing IPMI FRU payloads, it seems like we might need a new API for these?  I think the IPMI spec requires FRUs to follow the fru format, so if we had one that didn\u0027t, that\u0027s going to break ipmitool (which I think is what you pointed out).\n\u003e \n\u003e From a quick glance at the users of those methods via OpenGrok, it looks like maybe they only really exist to facilitate IPMI \"Read FRU Data\" and \"Write FRU Data\" commands?\n\nBasically.\n\n\u003e  In which case if we\u0027re going to support non-IPMI FRU data (without just doing a format translation), I\u0027m not sure what we\u0027d use a corresponding raw-binary-data dbus API for, exactly...\n\nSure, I guess that\u0027s a fair point if you don\u0027t intend on every reading/writing these in their \"raw\" form.\n\n\u003e \n\u003e In an ideal world I\u0027d still like to be able to use `ipmitool fru print` to retrieve baseboard FRU data on this system (hence the implementation path I took here), but I realize there\u0027s a bit of a fundamental mismatch between that operation and the non-IPMI-formatted FRU data I\u0027ve got.  It seems like if that\u0027s going to be made to work, the only way to support it is by putting a format translation *somewhere*.\n\n\nipmitool is open source and can accept patches, you could add this new fru format to it if you wanted, and not do any translation at any level.  Whether or not you do it as part of the normal IPMI fru commands is something we should probably discuss on a larger forum somewhere.\n\n\u003e  Am I wishing for the impossible here?\n\nIn terms of translation, a little.  From where I sit it seems to be complexity for lack of wanting to modify ipmitool to support this new fru format, which doesn\u0027t seem great to me.",
+      "parentUuid": "2624b733_757a34f1",
+      "range": {
+        "startLine": 640,
+        "startChar": 0,
+        "endLine": 744,
+        "endChar": 0
+      },
+      "revId": "14a35fba1deb2cd8a2a4412bb3d1c258855de689",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "be78c7ba_749bef35",
         "filename": "src/FruUtils.cpp",
         "patchSetId": 4
