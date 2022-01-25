@@ -87,6 +87,16 @@
                         "$ref": "#/definitions/EMExposesElement"
                     }
                 },
+                "SubItems": {
+                    "description": [
+                        "Sub-inventory items. The items created will become children",
+                        "objects of this object."
+                    ],
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/EMExposesElement"
+                    }
+                },
                 "Logging": {
                     "enum": [
                         "Off"
@@ -119,6 +129,17 @@
                             "items": {
                                 "type": "string"
                             }
+                        }
+                    ]
+                },
+                "HasThisBMC": {
+                    "description": [
+                        "Indicates whether the BMC that is currently running OpenBMC",
+                        "is located on this board."
+                    ],
+                    "anyOf": [
+                        {
+                            "type": "string"
                         }
                     ]
                 },

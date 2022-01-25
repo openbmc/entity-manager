@@ -388,6 +388,10 @@
             "Type": "ADC"
         },
         {
+            "Name": "Method 1 for adding a BMC Item to the board JSON",
+            "Type": "BMC"
+        },
+        {
             "Address": "0x4c",
             "Bus": 1,
             "Name": "MB",
@@ -416,8 +420,15 @@
             "Type": "XeonCPU"
         }
     ],
+    "HasThisBMC": "TRUE",
     "Name": "ASRock E3C246D4I",
     "Probe": "xyz.openbmc_project.FruDevice({'BOARD_PRODUCT_NAME': 'E3C246D4I.*'})",
+    "SubItems": [
+        {
+            "Type": "Bmc",
+            "Name": "Method 3 for adding a BMC Item to the board JSON"
+        }
+    ],
     "Type": "Board",
     "xyz.openbmc_project.Inventory.Decorator.Asset": {
         "Manufacturer": "$PRODUCT_MANUFACTURER",
