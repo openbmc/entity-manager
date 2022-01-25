@@ -279,7 +279,8 @@ void populateInterfaceFromJson(
     std::shared_ptr<sdbusplus::asio::dbus_interface>& iface,
     nlohmann::json& dict, sdbusplus::asio::object_server& objServer,
     sdbusplus::asio::PropertyPermission permission =
-        sdbusplus::asio::PropertyPermission::readOnly)
+        sdbusplus::asio::PropertyPermission::readOnly,
+    const bool isExposedInventoryItem = false)
 {
     for (auto& dictPair : dict.items())
     {
@@ -412,9 +413,19 @@ void populateInterfaceFromJson(
                 }
                 else
                 {
-                    addProperty(
-                        dictPair.key(), dictPair.value().get<std::string>(),
-                        iface.get(), systemConfiguration, key, permission);
+                    std::string stringValue =
+                        dictPair.value().get<std::string>();
+                    if (isExposedInventoryItem)
+                    {
+                        if (dictPair.key() == "Type")
+                        {
+                            boost::algorithm::replace_first(
+                                stringValue,
+                                "xyz.openbmc_project.Inventory.Item.", "");
+                        }
+                    }
+                    addProperty(dictPair.key(), stringValue, iface.get(),
+                                systemConfiguration, key, permission);
                 }
                 break;
             }
@@ -568,10 +579,44 @@ void createAddObjectMethod(const std::string& jsonPointerPath,
     iface->initialize();
 }
 
+// Posts an "Inventory.Item" entry to DBus
+// The Item can be either a board on the root level or an exposed Inventory.Item
+// Input values can be:
+//
+// For a board on the root level:
+// boardName="/xyz/openbmc_project/inventory/system/board/Board"
+// boardKeyOrig="Board"
+// jsonPointerPath="/Board/"
+// values.size()=8
+//
+// For exposed Inventory.Item:
+// boardName="/xyz/openbmc_project/inventory/system/board/Board/Bmc"
+// boardKeyOrig="Bmc"
+// jsonPointerPath="/Board/Exposes/8"
+// value.size()=0
+void postValuesToDbus(nlohmann::json& systemConfiguration,
+                      nlohmann::json& values, const std::string& boardName,
+                      const std::string& boardKeyOrig,
+                      const std::string& jsonPointerPath,
+                      sdbusplus::asio::object_server& objServer)
+{
+    for (auto& field : values.items())
+    {
+        if (field.value().type() == nlohmann::json::value_t::object)
+        {
+            std::shared_ptr<sdbusplus::asio::dbus_interface> iface =
+                createInterface(objServer, boardName, field.key(),
+                                boardKeyOrig);
+            populateInterfaceFromJson(systemConfiguration,
+                                      jsonPointerPath + field.key(), iface,
+                                      field.value(), objServer);
+        }
+    }
+}
+
 void postToDbus(const nlohmann::json& newConfiguration,
                 nlohmann::json& systemConfiguration,
                 sdbusplus::asio::object_server& objServer)
-
 {
     // iterate through boards
     for (auto& boardPair : newConfiguration.items())
@@ -622,19 +667,8 @@ void postToDbus(const nlohmann::json& newConfiguration,
                                   boardIface, boardValues, objServer);
         jsonPointerPath += "/";
         // iterate through board properties
-        for (auto& boardField : boardValues.items())
-        {
-            if (boardField.value().type() == nlohmann::json::value_t::object)
-            {
-                std::shared_ptr<sdbusplus::asio::dbus_interface> iface =
-                    createInterface(objServer, boardName, boardField.key(),
-                                    boardKeyOrig);
-
-                populateInterfaceFromJson(systemConfiguration,
-                                          jsonPointerPath + boardField.key(),
-                                          iface, boardField.value(), objServer);
-            }
-        }
+        postValuesToDbus(systemConfiguration, boardValues, boardName,
+                         boardKeyOrig, jsonPointerPath, objServer);
 
         auto exposes = boardValues.find("Exposes");
         if (exposes == boardValues.end())
@@ -687,14 +721,40 @@ void postToDbus(const nlohmann::json& newConfiguration,
             ifacePath += "/";
             ifacePath += itemName;
 
-            std::shared_ptr<sdbusplus::asio::dbus_interface> itemIface =
-                createInterface(objServer, ifacePath,
-                                "xyz.openbmc_project.Configuration." + itemType,
-                                boardKeyOrig);
+            std::shared_ptr<sdbusplus::asio::dbus_interface> itemIface;
+
+            bool isInventoryItem = false;
+            if (boost::algorithm::starts_with(
+                    itemType, "xyz.openbmc_project.Inventory.Item"))
+            {
+                itemIface = createInterface(objServer, ifacePath, itemType,
+                                            boardKeyOrig);
+                isInventoryItem = true;
+            }
+            else
+            {
+                itemIface = createInterface(
+                    objServer, ifacePath,
+                    "xyz.openbmc_project.Configuration." + itemType,
+                    boardKeyOrig);
+            }
 
             populateInterfaceFromJson(systemConfiguration, jsonPointerPath,
                                       itemIface, item, objServer,
-                                      getPermission(itemType));
+                                      getPermission(itemType), isInventoryItem);
+
+            // If is Inventory.Item: treat similarly to root-level
+            // Inventory.Item's
+            if (isInventoryItem)
+            {
+                boardName += "/";
+                boardName += itemName;
+                postValuesToDbus(systemConfiguration,
+                                 systemConfiguration[itemName],
+                                 boardName, itemName,
+                                 jsonPointerPath, objServer);
+                continue;
+            }
 
             for (auto& objectPair : item.items())
             {
