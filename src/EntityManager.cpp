@@ -573,6 +573,7 @@ void postToDbus(const nlohmann::json& newConfiguration,
                 sdbusplus::asio::object_server& objServer)
 
 {
+    printf("[postToDbus]\n");
     // iterate through boards
     for (auto& boardPair : newConfiguration.items())
     {
@@ -605,6 +606,7 @@ void postToDbus(const nlohmann::json& newConfiguration,
         boardName += boardtypeLower;
         boardName += "/";
         boardName += boardKey;
+        printf("boardName=%s\n", boardName.c_str());
 
         std::shared_ptr<sdbusplus::asio::dbus_interface> inventoryIface =
             createInterface(objServer, boardName,
@@ -637,6 +639,7 @@ void postToDbus(const nlohmann::json& newConfiguration,
         }
 
         auto exposes = boardValues.find("Exposes");
+        printf("|exposes|=%u\n", exposes->size());
         if (exposes == boardValues.end())
         {
             continue;
@@ -687,10 +690,23 @@ void postToDbus(const nlohmann::json& newConfiguration,
             ifacePath += "/";
             ifacePath += itemName;
 
-            std::shared_ptr<sdbusplus::asio::dbus_interface> itemIface =
-                createInterface(objServer, ifacePath,
-                                "xyz.openbmc_project.Configuration." + itemType,
-                                boardKeyOrig);
+            std::shared_ptr<sdbusplus::asio::dbus_interface> itemIface;
+
+            if (boost::algorithm::starts_with(
+                    itemType, "xyz.openbmc_project.Inventory.Item"))
+            {
+                printf("Inventory here\n");
+                itemIface = createInterface(objServer, ifacePath, itemType,
+                                            boardKeyOrig);
+            }
+            else
+            {
+                printf("Non-inventory here\n");
+                itemIface = createInterface(
+                    objServer, ifacePath,
+                    "xyz.openbmc_project.Configuration." + itemType,
+                    boardKeyOrig);
+            }
 
             populateInterfaceFromJson(systemConfiguration, jsonPointerPath,
                                       itemIface, item, objServer,
@@ -928,6 +944,14 @@ void propertiesChangedCallback(nlohmann::json& systemConfiguration,
     // setup an async wait as we normally get flooded with new requests
     timer.async_wait([&systemConfiguration, &objServer,
                       count](const boost::system::error_code& ec) {
+        // DEBUG ONLY
+
+        if (instance == 10)
+        {
+            printf("[Debug] instance 10, skipping error code check\n");
+            goto HEY;
+        }
+
         if (ec == boost::asio::error::operation_aborted)
         {
             // we were cancelled
@@ -938,6 +962,8 @@ void propertiesChangedCallback(nlohmann::json& systemConfiguration,
             std::cerr << "async wait error " << ec << "\n";
             return;
         }
+
+    HEY:
 
         if (inProgress)
         {
@@ -963,6 +989,7 @@ void propertiesChangedCallback(nlohmann::json& systemConfiguration,
             objServer,
             [&systemConfiguration, &objServer, count, oldConfiguration,
              missingConfigurations]() {
+                printf("[perfScan]\n");
                 // this is something that since ac has been applied to the bmc
                 // we saw, and we no longer see it
                 bool powerOff = !isPowerOn();
@@ -1052,6 +1079,7 @@ void propertiesChangedCallback(nlohmann::json& systemConfiguration,
 
 int main()
 {
+    printf("Entity-manager started.\n");
     // setup connection to dbus
     systemBus = std::make_shared<sdbusplus::asio::connection>(io);
     systemBus->request_name("xyz.openbmc_project.EntityManager");
