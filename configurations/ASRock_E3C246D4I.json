@@ -414,8 +414,19 @@
             "CpuID": 1,
             "Name": "CPU 1",
             "Type": "XeonCPU"
+        },
+        {
+            "Type": "BMC",
+            "Name": "Method 1 for adding a BMC Item to the board JSON"
         }
     ],
+    "SubItems": [
+        {
+            "Type": "Bmc",
+            "Name": "Method 3 for adding a BMC Item to the board JSON"
+        }
+    ],
+    "HasThisBMC": "TRUE",
     "Name": "ASRock E3C246D4I",
     "Probe": "xyz.openbmc_project.FruDevice({'BOARD_PRODUCT_NAME': 'E3C246D4I.*'})",
     "Type": "Board",
