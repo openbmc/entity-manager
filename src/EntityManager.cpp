@@ -36,6 +36,7 @@
 #include <sdbusplus/asio/object_server.hpp>
 
 #include <charconv>
+#include <chrono>
 #include <filesystem>
 #include <fstream>
 #include <iostream>
@@ -50,6 +51,17 @@ constexpr const char* lastConfiguration = "/tmp/configuration/last.json";
 constexpr const char* currentConfiguration = "/var/configuration/system.json";
 constexpr const char* globalSchema = "global.json";
 constexpr const bool debug = false;
+
+std::chrono::time_point<std::chrono::steady_clock> g_timepoint0;
+float millis()
+{
+    std::chrono::time_point<std::chrono::steady_clock> n =
+        std::chrono::steady_clock::now();
+    return std::chrono::duration_cast<std::chrono::microseconds>(n -
+                                                                 g_timepoint0)
+               .count() /
+           1000.0f;
+}
 
 const boost::container::flat_map<const char*, probe_type_codes, CmpStr>
     probeTypes{{{"FALSE", probe_type_codes::FALSE_T},
@@ -279,10 +291,13 @@ void populateInterfaceFromJson(
     std::shared_ptr<sdbusplus::asio::dbus_interface>& iface,
     nlohmann::json& dict, sdbusplus::asio::object_server& objServer,
     sdbusplus::asio::PropertyPermission permission =
-        sdbusplus::asio::PropertyPermission::readOnly)
+        sdbusplus::asio::PropertyPermission::readOnly,
+    const bool isExposedInventoryItem = false)
 {
+    printf(">> populateInterfaceFromJson path=%s\n", jsonPointerPath.c_str());
     for (auto& dictPair : dict.items())
     {
+        printf("  dict key=%s\n", dictPair.key().c_str());
         auto type = dictPair.value().type();
         bool array = false;
         if (dictPair.value().type() == nlohmann::json::value_t::array)
@@ -310,6 +325,9 @@ void populateInterfaceFromJson(
         }
         if (type == nlohmann::json::value_t::object)
         {
+            // Can happen for entries like
+            // "xyz.openbmc_project.Inventory.Connector.Slot": {},
+
             continue; // handled elsewhere
         }
         std::string key = jsonPointerPath + "/" + dictPair.key();
@@ -412,9 +430,19 @@ void populateInterfaceFromJson(
                 }
                 else
                 {
-                    addProperty(
-                        dictPair.key(), dictPair.value().get<std::string>(),
-                        iface.get(), systemConfiguration, key, permission);
+                    std::string stringValue =
+                        dictPair.value().get<std::string>();
+                    if (isExposedInventoryItem)
+                    {
+                        if (dictPair.key() == "Type")
+                        {
+                            boost::algorithm::replace_first(
+                                stringValue,
+                                "xyz.openbmc_project.Inventory.Item.", "");
+                        }
+                    }
+                    addProperty(dictPair.key(), stringValue, iface.get(),
+                                systemConfiguration, key, permission);
                 }
                 break;
             }
@@ -568,73 +596,136 @@ void createAddObjectMethod(const std::string& jsonPointerPath,
     iface->initialize();
 }
 
+// Post the "board-level" information of the JSON config onto DBus
+std::vector<std::string> postBoardInfoToDbus(
+    const std::string& boardNamePrefix, std::string& boardKey,
+    const std::string& boardPairKey, nlohmann::json& systemConfiguration,
+    sdbusplus::asio::object_server& objServer, const bool isExposed)
+{
+
+    printf(">> postBoardInfoToDbus %s, %s, %s\n", boardNamePrefix.c_str(),
+           boardKey.c_str(), boardPairKey.c_str());
+
+    std::string boardKeyOrig = boardKey;
+
+    std::string jsonPointerPath = "/" + boardPairKey;
+    auto boardValues = systemConfiguration[boardPairKey];
+    auto findBoardType = boardValues.find("Type");
+    std::string boardType;
+    std::string boardName = boardNamePrefix;
+
+    if (findBoardType != boardValues.end() &&
+        findBoardType->type() == nlohmann::json::value_t::string)
+    {
+        boardType = findBoardType->get<std::string>();
+        std::regex_replace(boardType.begin(), boardType.begin(),
+                           boardType.end(), illegalDbusMemberRegex, "_");
+    }
+    else
+    {
+        std::cerr << "Unable to find type for " << boardKey
+                  << " reverting to Chassis.\n";
+        boardType = "Chassis";
+    }
+    std::string boardtypeLower = boost::algorithm::to_lower_copy(boardType);
+
+    std::regex_replace(boardKey.begin(), boardKey.begin(), boardKey.end(),
+                       illegalDbusMemberRegex, "_");
+
+    if (!isExposed)
+    {
+        boardName += boardtypeLower;
+        boardName += "/";
+        boardName += boardKey;
+    }
+
+    std::shared_ptr<sdbusplus::asio::dbus_interface> inventoryIface =
+        createInterface(objServer, boardName,
+                        "xyz.openbmc_project.Inventory.Item", boardKey);
+
+    std::shared_ptr<sdbusplus::asio::dbus_interface> boardIface =
+        createInterface(objServer, boardName,
+                        "xyz.openbmc_project.Inventory.Item." + boardType,
+                        boardKeyOrig);
+
+    printf(">> createInterface boardName=%s, boardKey=%s, boardType=%s, "
+           "boardKeyOrig=%s\n",
+           boardName.c_str(), boardKey.c_str(), boardType.c_str(),
+           boardKeyOrig.c_str());
+
+    createAddObjectMethod(jsonPointerPath, boardName, systemConfiguration,
+                          objServer, boardKeyOrig);
+
+    populateInterfaceFromJson(systemConfiguration, jsonPointerPath, boardIface,
+                              boardValues, objServer);
+    jsonPointerPath += "/";
+
+    return {boardName, jsonPointerPath};
+}
+
+// Posts an "Inventory.Item" entry to DBus
+// The Item can be either a board on the root level or an exposed Inventory.Item
+// Input values can be:
+//
+// For a board on the root level:
+// boardName="/xyz/openbmc_project/inventory/system/board/Board"
+// boardKeyOrig="Board"
+// jsonPointerPath="/Board/"
+// values.size()=8
+//
+// For exposed Inventory.Item:
+// boardName="/xyz/openbmc_project/inventory/system/board/Board/Bmc"
+// boardKeyOrig="Bmc"
+// jsonPointerPath="/Board/Exposes/8"
+// value.size()=0
+void postValuesToDbus(nlohmann::json& systemConfiguration,
+                      nlohmann::json& values, const std::string& boardName,
+                      const std::string& boardKeyOrig,
+                      const std::string& jsonPointerPath,
+                      sdbusplus::asio::object_server& objServer)
+{
+    for (auto& field : values.items())
+    {
+        if (field.value().type() == nlohmann::json::value_t::object)
+        {
+            std::shared_ptr<sdbusplus::asio::dbus_interface> iface =
+                createInterface(objServer, boardName, field.key(),
+                                boardKeyOrig);
+
+            populateInterfaceFromJson(systemConfiguration,
+                                      jsonPointerPath + field.key(), iface,
+                                      field.value(), objServer);
+        }
+    }
+}
+
 void postToDbus(const nlohmann::json& newConfiguration,
                 nlohmann::json& systemConfiguration,
                 sdbusplus::asio::object_server& objServer)
-
 {
     // iterate through boards
     for (auto& boardPair : newConfiguration.items())
     {
+        printf("boardPair.key() = %s\n", boardPair.key().c_str());
+
         std::string boardKey = boardPair.value()["Name"];
         std::string boardKeyOrig = boardPair.value()["Name"];
-        std::string jsonPointerPath = "/" + boardPair.key();
+
+        std::vector<std::string> ret = postBoardInfoToDbus(
+            "/xyz/openbmc_project/inventory/system/", boardKey, boardPair.key(),
+            systemConfiguration, objServer, false);
+
         // loop through newConfiguration, but use values from system
         // configuration to be able to modify via dbus later
+
+        std::string boardName = ret[0];
+        std::string jsonPointerPath = ret[1];
+
         auto boardValues = systemConfiguration[boardPair.key()];
-        auto findBoardType = boardValues.find("Type");
-        std::string boardType;
-        if (findBoardType != boardValues.end() &&
-            findBoardType->type() == nlohmann::json::value_t::string)
-        {
-            boardType = findBoardType->get<std::string>();
-            std::regex_replace(boardType.begin(), boardType.begin(),
-                               boardType.end(), illegalDbusMemberRegex, "_");
-        }
-        else
-        {
-            std::cerr << "Unable to find type for " << boardKey
-                      << " reverting to Chassis.\n";
-            boardType = "Chassis";
-        }
-        std::string boardtypeLower = boost::algorithm::to_lower_copy(boardType);
 
-        std::regex_replace(boardKey.begin(), boardKey.begin(), boardKey.end(),
-                           illegalDbusMemberRegex, "_");
-        std::string boardName = "/xyz/openbmc_project/inventory/system/";
-        boardName += boardtypeLower;
-        boardName += "/";
-        boardName += boardKey;
-
-        std::shared_ptr<sdbusplus::asio::dbus_interface> inventoryIface =
-            createInterface(objServer, boardName,
-                            "xyz.openbmc_project.Inventory.Item", boardKey);
-
-        std::shared_ptr<sdbusplus::asio::dbus_interface> boardIface =
-            createInterface(objServer, boardName,
-                            "xyz.openbmc_project.Inventory.Item." + boardType,
-                            boardKeyOrig);
-
-        createAddObjectMethod(jsonPointerPath, boardName, systemConfiguration,
-                              objServer, boardKeyOrig);
-
-        populateInterfaceFromJson(systemConfiguration, jsonPointerPath,
-                                  boardIface, boardValues, objServer);
-        jsonPointerPath += "/";
         // iterate through board properties
-        for (auto& boardField : boardValues.items())
-        {
-            if (boardField.value().type() == nlohmann::json::value_t::object)
-            {
-                std::shared_ptr<sdbusplus::asio::dbus_interface> iface =
-                    createInterface(objServer, boardName, boardField.key(),
-                                    boardKeyOrig);
-
-                populateInterfaceFromJson(systemConfiguration,
-                                          jsonPointerPath + boardField.key(),
-                                          iface, boardField.value(), objServer);
-            }
-        }
+        postValuesToDbus(systemConfiguration, boardValues, boardName,
+                         boardKeyOrig, jsonPointerPath, objServer);
 
         auto exposes = boardValues.find("Exposes");
         if (exposes == boardValues.end())
@@ -687,14 +778,42 @@ void postToDbus(const nlohmann::json& newConfiguration,
             ifacePath += "/";
             ifacePath += itemName;
 
-            std::shared_ptr<sdbusplus::asio::dbus_interface> itemIface =
-                createInterface(objServer, ifacePath,
-                                "xyz.openbmc_project.Configuration." + itemType,
-                                boardKeyOrig);
+            std::shared_ptr<sdbusplus::asio::dbus_interface> itemIface;
+
+            bool isInventoryItem = false;
+            if (boost::algorithm::starts_with(
+                    itemType, "xyz.openbmc_project.Inventory.Item"))
+            {
+                itemIface = createInterface(objServer, ifacePath, itemType,
+                                            boardKeyOrig);
+                isInventoryItem = true;
+            }
+            else
+            {
+                itemIface = createInterface(
+                    objServer, ifacePath,
+                    "xyz.openbmc_project.Configuration." + itemType,
+                    boardKeyOrig);
+            }
 
             populateInterfaceFromJson(systemConfiguration, jsonPointerPath,
                                       itemIface, item, objServer,
-                                      getPermission(itemType));
+                                      getPermission(itemType), isInventoryItem);
+
+            // If is Inventory.Item
+            if (isInventoryItem)
+            {
+                boardName += "/";
+                boardName += itemName;
+
+                // Post non-"object" types to dbus
+                postBoardInfoToDbus(boardName, itemName, itemName,
+                                    systemConfiguration, objServer, true);
+
+                postValuesToDbus(systemConfiguration, item, boardName, itemName,
+                                 jsonPointerPath + "/", objServer);
+                continue;
+            }
 
             for (auto& objectPair : item.items())
             {
@@ -928,15 +1047,18 @@ void propertiesChangedCallback(nlohmann::json& systemConfiguration,
     // setup an async wait as we normally get flooded with new requests
     timer.async_wait([&systemConfiguration, &objServer,
                       count](const boost::system::error_code& ec) {
-        if (ec == boost::asio::error::operation_aborted)
+        if (instance != 10)
         {
-            // we were cancelled
-            return;
-        }
-        if (ec)
-        {
-            std::cerr << "async wait error " << ec << "\n";
-            return;
+            if (ec == boost::asio::error::operation_aborted)
+            {
+                // we were cancelled
+                return;
+            }
+            if (ec)
+            {
+                std::cerr << "async wait error " << ec << "\n";
+                return;
+            }
         }
 
         if (inProgress)
