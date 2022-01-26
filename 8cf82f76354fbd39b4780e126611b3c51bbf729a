@@ -201,6 +201,30 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "17184f2f_96958cbb",
+        "filename": "configurations/Everest.json",
+        "patchSetId": 2
+      },
+      "lineNbr": 12,
+      "author": {
+        "id": 1000238
+      },
+      "writtenOn": "2022-01-26T19:04:14Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "582369cb_c36272d9",
+      "range": {
+        "startLine": 12,
+        "startChar": 13,
+        "endLine": 12,
+        "endChar": 20
+      },
+      "revId": "8cf82f76354fbd39b4780e126611b3c51bbf729a",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "28641207_fb9e2869",
@@ -262,6 +286,30 @@
       "side": 1,
       "message": "\u003e These are system wide settings that define the operation of that system related to power.\n\nThis file doesn\u0027t effect \"system wide\" settings, it literally effects the physical sheet metal of the chassis.  As pointed out in other reviews, we don\u0027t really have a \"platform\" level config file, although it\u0027s been suggested we need to add the concept of one for handling these kinds of \"platform\" things.  I wonder if this needs to tee into Anoos discussion of the \"supported config\" feature?\n\n\n\u003e The customer can change the mode / IPS parameters based on their own needs.\nHaving these defaults also allow the customer to restore the settings back to their factory defaults.\n\nBoth of these statements make sense, and basically describe every existing parameter in EM config files.",
       "parentUuid": "b5eac771_c3b1ef76",
+      "range": {
+        "startLine": 18,
+        "startChar": 21,
+        "endLine": 18,
+        "endChar": 40
+      },
+      "revId": "8cf82f76354fbd39b4780e126611b3c51bbf729a",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "33377a32_be6f56ae",
+        "filename": "configurations/Everest.json",
+        "patchSetId": 2
+      },
+      "lineNbr": 18,
+      "author": {
+        "id": 1000238
+      },
+      "writtenOn": "2022-01-26T19:04:14Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "54f6cef1_4f6aa70b",
       "range": {
         "startLine": 18,
         "startChar": 21,
