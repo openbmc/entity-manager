@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "50f33e5f_39f1cdf4",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 8
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2022-01-26T23:57:30Z",
+      "side": 1,
+      "message": "We\u0027re off to a good start with naming and documentation, so thanks for that.  We still need to figure out where these parameters really belong.  Fundamentally, a chassis doesn\u0027t really determine what the power state parameters should be for a given system.  For an absurd example, if I put a wolf pass board in an Everest Chassis, I wouldn\u0027t really expect to get the Everest power state configuration, given that\u0027s likely tied to the specific processor, which is tied to the baseboard, not the chassis.\n\nWhat this is somewhat leading to is the same thing we found with the \"supported components\" patches:  We need a place to put \"platform\" level policies, and come up with a way to detect and define what a \"platform\" is.  For example, a whitherspoon motherboard alone probably isn\u0027t a platform, but maybe a motherboard + a chassis + a power supply is enough to determine we\u0027re on a supported, and should be applying a certain level of configuration parameters to it?  I know Anoo had some mockups of doing this that I haven\u0027t heard from in a while, I wonder if we should revive those, and this would just be another node beneath \"supported configuration\"",
+      "revId": "c27c8ba2fe86de5d0cf99c11406cb107663aa333",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    }
+  ]
+}
