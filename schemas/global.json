@@ -157,6 +157,12 @@
                 },
                 "xyz.openbmc_project.Inventory.Item.System": {
                     "$ref": "openbmc-dbus.json#/definitions/xyz/openbmc_project/Inventory/Item/System"
+                },
+                "xyz.openbmc_project.Inventory.Decorator.I2CDevice": {
+                    "$ref": "openbmc-dbus.json#/definitions/xyz/openbmc_project/Inventory/Decorator/I2CDevice"
+                },
+                "xyz.openbmc_project.Inventory.Decorator.Ipmi": {
+                    "$ref": "openbmc-dbus.json#/definitions/xyz/openbmc_project/Inventory/Decorator/Ipmi"
                 }
             },
             "required": [

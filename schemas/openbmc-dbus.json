@@ -41,6 +41,42 @@
                                 "AssetTag"
                             ],
                             "type": "object"
+                        },
+                        "I2CDevice": {
+                            "additionalProperties": false,
+                            "properties": {
+                                "Address": {
+                                    "$ref": "legacy.json#/definitions/Types/Address"
+                                },
+                                "Bus": {
+                                    "$ref": "legacy.json#/definitions/Types/Bus"
+                                },
+                                "Name": {
+                                    "$ref": "legacy.json#/definitions/Types/Name"
+                                }
+                            },
+                            "required": [
+                                "Address",
+                                "Bus"
+                            ],
+                            "type": "object"
+
+                        },
+                        "Ipmi": {
+                            "additionalProperties": false,
+                            "properties": {
+                                "EntityId": {
+                                    "$ref": "legacy.json#/definitions/Types/EntityId"
+                                },
+                                "EntityInstance": {
+                                    "$ref": "legacy.json#/definitions/Types/EntityInstance"
+                                }
+                            },
+                            "required": [
+                                "EntityId",
+                                "EntityInstance"
+                            ],
+                            "type": "object"
                         }
                     },
                     "Item": {
