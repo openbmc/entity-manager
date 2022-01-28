@@ -8,6 +8,14 @@
                 "sub-schema."
             ],
             "additionalProperties": false,
+            "patternProperties": {
+                "(.*_Name$|^Name[0-9]*$)": {
+                    "$ref": "#/definitions/Types/Name"
+                },
+                "(iin|iout|pin|pout|power|vin|vout)[0-9]{0,2}_(Max|Min)": {
+                    "$ref": "#/definitions/Types/MaxMinType"
+                }
+            },
             "properties": {
                 "Address": {
                     "$ref": "#/definitions/Types/Address"
@@ -108,59 +116,8 @@
                 "MinValue": {
                     "$ref": "#/definitions/Types/MinValue"
                 },
-                "Name": {
-                    "$ref": "#/definitions/Types/Name"
-                },
-                "Name1": {
-                    "$ref": "#/definitions/Types/Name1"
-                },
-                "Name2": {
-                    "$ref": "#/definitions/Types/Name2"
-                },
-                "Name3": {
-                    "$ref": "#/definitions/Types/Name3"
-                },
-                "Name4": {
-                    "$ref": "#/definitions/Types/Name4"
-                },
-                "Name5": {
-                    "$ref": "#/definitions/Types/Name5"
-                },
-                "Name6": {
-                    "$ref": "#/definitions/Types/Name6"
-                },
-                "Name7": {
-                    "$ref": "#/definitions/Types/Name7"
-                },
-                "Name8": {
-                    "$ref": "#/definitions/Types/Name8"
-                },
-                "Name9": {
-                    "$ref": "#/definitions/Types/Name9"
-                },
-                "Name10": {
-                    "$ref": "#/definitions/Types/Name10"
-                },
-                "Name11": {
-                    "$ref": "#/definitions/Types/Name11"
-                },
-                "Name12": {
-                    "$ref": "#/definitions/Types/Name12"
-                },
-                "Name13": {
-                    "$ref": "#/definitions/Types/Name13"
-                },
-                "Name14": {
-                    "$ref": "#/definitions/Types/Name14"
-                },
-                "Name15": {
-                    "$ref": "#/definitions/Types/Name15"
-                },
-                "Name16": {
-                    "$ref": "#/definitions/Types/Name16"
-                },
-                "Name17": {
-                    "$ref": "#/definitions/Types/Name17"
+                "Mutable": {
+                    "$ref": "#/definitions/Types/Mutable"
                 },
                 "OffsetValue": {
                     "$ref": "#/definitions/Types/OffsetValue"
@@ -219,158 +176,20 @@
                 "Tachs": {
                     "$ref": "#/definitions/Types/Tachs"
                 },
+                "TempScaleFactor": {
+                    "$ref": "#/definitions/Types/TempScaleFactor"
+                },
                 "Thresholds": {
                     "$ref": "#/definitions/Types/Thresholds"
                 },
                 "Timeout": {
                     "$ref": "#/definitions/Types/Timeout"
                 },
+                "InScaleFactor": {
+                    "$ref": "#/definitions/Types/InScaleFactor"
+                },
                 "HostSMbusIndex": {
                     "$ref": "#/definitions/Types/HostSMbusIndex"
-                },
-                "pin_Max": {
-                    "$ref": "#/definitions/Types/pin_Max"
-                },
-                "pin_Min": {
-                    "$ref": "#/definitions/Types/pin_Min"
-                },
-                "vin_Max": {
-                    "$ref": "#/definitions/Types/vin_Max"
-                },
-                "vin_Min": {
-                    "$ref": "#/definitions/Types/vin_Min"
-                },
-                "iout1_Max": {
-                    "$ref": "#/definitions/Types/iout1_Max"
-                },
-                "iout1_Min": {
-                    "$ref": "#/definitions/Types/iout1_Min"
-                },
-                "iout2_Max": {
-                    "$ref": "#/definitions/Types/iout2_Max"
-                },
-                "iout2_Min": {
-                    "$ref": "#/definitions/Types/iout2_Min"
-                },
-                "pout1_Max": {
-                    "$ref": "#/definitions/Types/pout1_Max"
-                },
-                "pout1_Min": {
-                    "$ref": "#/definitions/Types/pout1_Min"
-                },
-                "pout2_Max": {
-                    "$ref": "#/definitions/Types/pout2_Max"
-                },
-                "pout2_Min": {
-                    "$ref": "#/definitions/Types/pout2_Min"
-                },
-                "pout3_Max": {
-                    "$ref": "#/definitions/Types/pout3_Max"
-                },
-                "pout3_Min": {
-                    "$ref": "#/definitions/Types/pout3_Min"
-                },
-                "vout1_Max": {
-                    "$ref": "#/definitions/Types/vout1_Max"
-                },
-                "vout1_Min": {
-                    "$ref": "#/definitions/Types/vout1_Min"
-                },
-                "vout2_Max": {
-                    "$ref": "#/definitions/Types/vout2_Max"
-                },
-                "vout2_Min": {
-                    "$ref": "#/definitions/Types/vout2_Min"
-                },
-                "vout3_Max": {
-                    "$ref": "#/definitions/Types/vout3_Max"
-                },
-                "vout3_Min": {
-                    "$ref": "#/definitions/Types/vout3_Min"
-                },
-                "vout4_Max": {
-                    "$ref": "#/definitions/Types/vout4_Max"
-                },
-                "vout4_Min": {
-                    "$ref": "#/definitions/Types/vout4_Min"
-                },
-                "vout5_Max": {
-                    "$ref": "#/definitions/Types/vout5_Max"
-                },
-                "vout5_Min": {
-                    "$ref": "#/definitions/Types/vout5_Min"
-                },
-                "vout6_Max": {
-                    "$ref": "#/definitions/Types/vout6_Max"
-                },
-                "vout6_Min": {
-                    "$ref": "#/definitions/Types/vout6_Min"
-                },
-                "vout7_Max": {
-                    "$ref": "#/definitions/Types/vout7_Max"
-                },
-                "vout7_Min": {
-                    "$ref": "#/definitions/Types/vout7_Min"
-                },
-                "vout8_Max": {
-                    "$ref": "#/definitions/Types/vout8_Max"
-                },
-                "vout8_Min": {
-                    "$ref": "#/definitions/Types/vout8_Min"
-                },
-                "vout9_Max": {
-                    "$ref": "#/definitions/Types/vout9_Max"
-                },
-                "vout9_Min": {
-                    "$ref": "#/definitions/Types/vout9_Min"
-                },
-                "vout10_Max": {
-                    "$ref": "#/definitions/Types/vout10_Max"
-                },
-                "vout10_Min": {
-                    "$ref": "#/definitions/Types/vout10_Min"
-                },
-                "vout11_Max": {
-                    "$ref": "#/definitions/Types/vout11_Max"
-                },
-                "vout11_Min": {
-                    "$ref": "#/definitions/Types/vout11_Min"
-                },
-                "vout12_Max": {
-                    "$ref": "#/definitions/Types/vout12_Max"
-                },
-                "vout12_Min": {
-                    "$ref": "#/definitions/Types/vout12_Min"
-                },
-                "vout13_Max": {
-                    "$ref": "#/definitions/Types/vout13_Max"
-                },
-                "vout13_Min": {
-                    "$ref": "#/definitions/Types/vout13_Min"
-                },
-                "vout14_Max": {
-                    "$ref": "#/definitions/Types/vout14_Max"
-                },
-                "vout14_Min": {
-                    "$ref": "#/definitions/Types/vout14_Min"
-                },
-                "vout15_Max": {
-                    "$ref": "#/definitions/Types/vout15_Max"
-                },
-                "vout15_Min": {
-                    "$ref": "#/definitions/Types/vout15_Min"
-                },
-                "vout16_Max": {
-                    "$ref": "#/definitions/Types/vout16_Max"
-                },
-                "vout16_Min": {
-                    "$ref": "#/definitions/Types/vout16_Min"
-                },
-                "vout17_Max": {
-                    "$ref": "#/definitions/Types/vout17_Max"
-                },
-                "vout17_Min": {
-                    "$ref": "#/definitions/Types/vout17_Min"
                 },
                 "iout1_Offset": {
                     "$ref": "#/definitions/Types/iout1_Offset"
@@ -527,6 +346,9 @@
             "MaxValue": {
                 "type": "number"
             },
+            "MaxMinType": {
+                "type": "number"
+            },
             "Units": {
                 "type": "string",
                 "enum": [
@@ -548,58 +370,10 @@
             "MinValue": {
                 "type": "number"
             },
+            "Mutable": {
+                "type": "boolean"
+            },
             "Name": {
-                "type": "string"
-            },
-            "Name1": {
-                "type": "string"
-            },
-            "Name2": {
-                "type": "string"
-            },
-            "Name3": {
-                "type": "string"
-            },
-            "Name4": {
-                "type": "string"
-            },
-            "Name5": {
-                "type": "string"
-            },
-            "Name6": {
-                "type": "string"
-            },
-            "Name7": {
-                "type": "string"
-            },
-            "Name8": {
-                "type": "string"
-            },
-            "Name9": {
-                "type": "string"
-            },
-            "Name10": {
-                "type": "string"
-            },
-            "Name11": {
-                "type": "string"
-            },
-            "Name12": {
-                "type": "string"
-            },
-            "Name13": {
-                "type": "string"
-            },
-            "Name14": {
-                "type": "string"
-            },
-            "Name15": {
-                "type": "string"
-            },
-            "Name16": {
-                "type": "string"
-            },
-            "Name17": {
                 "type": "string"
             },
             "OffsetValue": {
@@ -676,6 +450,9 @@
                 },
                 "type": "array"
             },
+            "TempScaleFactor": {
+                "type": "number"
+            },
             "Thresholds": {
                 "items": {
                     "properties": {
@@ -713,151 +490,10 @@
             "Timeout": {
                 "type": "number"
             },
+            "InScaleFactor": {
+                "type": "number"
+            },
             "HostSMbusIndex": {
-                "type": "number"
-            },
-            "pin_Max": {
-                "type": "number"
-            },
-            "pin_Min": {
-                "type": "number"
-            },
-            "vin_Max": {
-                "type": "number"
-            },
-            "vin_Min": {
-                "type": "number"
-            },
-            "iout1_Max": {
-                "type": "number"
-            },
-            "iout1_Min": {
-                "type": "number"
-            },
-            "iout2_Max": {
-                "type": "number"
-            },
-            "iout2_Min": {
-                "type": "number"
-            },
-            "pout1_Max": {
-                "type": "number"
-            },
-            "pout1_Min": {
-                "type": "number"
-            },
-            "pout2_Max": {
-                "type": "number"
-            },
-            "pout2_Min": {
-                "type": "number"
-            },
-            "pout3_Max": {
-                "type": "number"
-            },
-            "pout3_Min": {
-                "type": "number"
-            },
-            "vout1_Max": {
-                "type": "number"
-            },
-            "vout1_Min": {
-                "type": "number"
-            },
-            "vout2_Max": {
-                "type": "number"
-            },
-            "vout2_Min": {
-                "type": "number"
-            },
-            "vout3_Max": {
-                "type": "number"
-            },
-            "vout3_Min": {
-                "type": "number"
-            },
-            "vout4_Max": {
-                "type": "number"
-            },
-            "vout4_Min": {
-                "type": "number"
-            },
-            "vout5_Max": {
-                "type": "number"
-            },
-            "vout5_Min": {
-                "type": "number"
-            },
-            "vout6_Max": {
-                "type": "number"
-            },
-            "vout6_Min": {
-                "type": "number"
-            },
-            "vout7_Max": {
-                "type": "number"
-            },
-            "vout7_Min": {
-                "type": "number"
-            },
-            "vout8_Max": {
-                "type": "number"
-            },
-            "vout8_Min": {
-                "type": "number"
-            },
-            "vout9_Max": {
-                "type": "number"
-            },
-            "vout9_Min": {
-                "type": "number"
-            },
-            "vout10_Max": {
-                "type": "number"
-            },
-            "vout10_Min": {
-                "type": "number"
-            },
-            "vout11_Max": {
-                "type": "number"
-            },
-            "vout11_Min": {
-                "type": "number"
-            },
-            "vout12_Max": {
-                "type": "number"
-            },
-            "vout12_Min": {
-                "type": "number"
-            },
-            "vout13_Max": {
-                "type": "number"
-            },
-            "vout13_Min": {
-                "type": "number"
-            },
-            "vout14_Max": {
-                "type": "number"
-            },
-            "vout14_Min": {
-                "type": "number"
-            },
-            "vout15_Max": {
-                "type": "number"
-            },
-            "vout15_Min": {
-                "type": "number"
-            },
-            "vout16_Max": {
-                "type": "number"
-            },
-            "vout16_Min": {
-                "type": "number"
-            },
-            "vout17_Max": {
-                "type": "number"
-            },
-            "vout17_Min": {
                 "type": "number"
             },
             "iout1_Offset": {
