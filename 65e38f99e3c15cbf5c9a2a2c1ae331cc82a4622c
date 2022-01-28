@@ -24,6 +24,30 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "04c191f6_e2db71e4",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 10,
+      "author": {
+        "id": 1000590
+      },
+      "writtenOn": "2022-01-28T23:13:38Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "8aa075d0_eee84698",
+      "range": {
+        "startLine": 10,
+        "startChar": 0,
+        "endLine": 10,
+        "endChar": 1
+      },
+      "revId": "65e38f99e3c15cbf5c9a2a2c1ae331cc82a4622c",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "cb8cbe96_fa9114f7",
@@ -37,6 +61,30 @@
       "writtenOn": "2022-01-28T22:58:47Z",
       "side": 1,
       "message": "Why, and in its own patchset please.",
+      "range": {
+        "startLine": 20,
+        "startChar": 0,
+        "endLine": 20,
+        "endChar": 50
+      },
+      "revId": "65e38f99e3c15cbf5c9a2a2c1ae331cc82a4622c",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "c317bc1d_4aa39def",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 20,
+      "author": {
+        "id": 1000590
+      },
+      "writtenOn": "2022-01-28T23:13:38Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "cb8cbe96_fa9114f7",
       "range": {
         "startLine": 20,
         "startChar": 0,
@@ -87,6 +135,30 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "d0012127_aaf9254a",
+        "filename": "schemas/legacy.json",
+        "patchSetId": 1
+      },
+      "lineNbr": 15,
+      "author": {
+        "id": 1000590
+      },
+      "writtenOn": "2022-01-28T23:13:38Z",
+      "side": 1,
+      "message": "I saw properties without index in some configurations. Like vin_max. That\u0027s why set it to zero or more. \n\nlimited to 2 digits.",
+      "parentUuid": "7d44b902_19a516c1",
+      "range": {
+        "startLine": 15,
+        "startChar": 25,
+        "endLine": 15,
+        "endChar": 26
+      },
+      "revId": "65e38f99e3c15cbf5c9a2a2c1ae331cc82a4622c",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "c9f53d02_9a102e01",
@@ -106,6 +178,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "4dccba55_01e9a981",
+        "filename": "schemas/legacy.json",
+        "patchSetId": 1
+      },
+      "lineNbr": 35,
+      "author": {
+        "id": 1000590
+      },
+      "writtenOn": "2022-01-28T23:13:38Z",
+      "side": 1,
+      "message": "Changed it.\nAlso does the individual words needs to be in their own \"(\" ?\nI used \"(iin|iout|pin|pout|power|vin|vout)\"",
+      "parentUuid": "c9f53d02_9a102e01",
+      "revId": "65e38f99e3c15cbf5c9a2a2c1ae331cc82a4622c",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "8b16bd26_edced870",
         "filename": "schemas/legacy.json",
         "patchSetId": 1
@@ -117,6 +207,30 @@
       "writtenOn": "2022-01-28T22:58:47Z",
       "side": 1,
       "message": "The probably deserves its own patchset and discussion.  It\u0027s not clear why we would allow a string here.",
+      "range": {
+        "startLine": 322,
+        "startChar": 0,
+        "endLine": 322,
+        "endChar": 29
+      },
+      "revId": "65e38f99e3c15cbf5c9a2a2c1ae331cc82a4622c",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "7133690b_c4abd974",
+        "filename": "schemas/legacy.json",
+        "patchSetId": 1
+      },
+      "lineNbr": 322,
+      "author": {
+        "id": 1000590
+      },
+      "writtenOn": "2022-01-28T23:13:38Z",
+      "side": 1,
+      "message": "I saw some of the EntityId\u0027s in Google\u0027s Json using hex\n\"EntityId\": \"0x13\"\n\nIt is fine if this should only be number. We can change all those hex representation.",
+      "parentUuid": "8b16bd26_edced870",
       "range": {
         "startLine": 322,
         "startChar": 0,
