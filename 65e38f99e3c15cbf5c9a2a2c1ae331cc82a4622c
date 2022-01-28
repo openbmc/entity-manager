@@ -3,6 +3,52 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "8aa075d0_eee84698",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 10,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2022-01-28T22:58:47Z",
+      "side": 1,
+      "message": "tabs",
+      "range": {
+        "startLine": 10,
+        "startChar": 0,
+        "endLine": 10,
+        "endChar": 1
+      },
+      "revId": "65e38f99e3c15cbf5c9a2a2c1ae331cc82a4622c",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "cb8cbe96_fa9114f7",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 20,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2022-01-28T22:58:47Z",
+      "side": 1,
+      "message": "Why, and in its own patchset please.",
+      "range": {
+        "startLine": 20,
+        "startChar": 0,
+        "endLine": 20,
+        "endChar": 50
+      },
+      "revId": "65e38f99e3c15cbf5c9a2a2c1ae331cc82a4622c",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "edc40f2b_645b0878",
         "filename": "schemas/legacy.json",
         "patchSetId": 1
@@ -14,6 +60,69 @@
       "writtenOn": "2022-01-28T21:01:01Z",
       "side": 1,
       "message": "Is there a reason these properties are not using patternProperties currrently?",
+      "revId": "65e38f99e3c15cbf5c9a2a2c1ae331cc82a4622c",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7d44b902_19a516c1",
+        "filename": "schemas/legacy.json",
+        "patchSetId": 1
+      },
+      "lineNbr": 15,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2022-01-28T22:58:47Z",
+      "side": 1,
+      "message": "\"*\" is zero or more, which doesn\u0027t seem right here, given the number is required?  Lets explicitly limit this to {1-2} just for some sanity.",
+      "range": {
+        "startLine": 15,
+        "startChar": 25,
+        "endLine": 15,
+        "endChar": 26
+      },
+      "revId": "65e38f99e3c15cbf5c9a2a2c1ae331cc82a4622c",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c9f53d02_9a102e01",
+        "filename": "schemas/legacy.json",
+        "patchSetId": 1
+      },
+      "lineNbr": 35,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2022-01-28T22:58:47Z",
+      "side": 1,
+      "message": "Not required for this patchset, but could all of these be combined into a single regex?  something like\n\n((vin)|(vout)|(power).....)[0-9]{1-2}_(Max|Min)",
+      "revId": "65e38f99e3c15cbf5c9a2a2c1ae331cc82a4622c",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8b16bd26_edced870",
+        "filename": "schemas/legacy.json",
+        "patchSetId": 1
+      },
+      "lineNbr": 322,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2022-01-28T22:58:47Z",
+      "side": 1,
+      "message": "The probably deserves its own patchset and discussion.  It\u0027s not clear why we would allow a string here.",
+      "range": {
+        "startLine": 322,
+        "startChar": 0,
+        "endLine": 322,
+        "endChar": 29
+      },
       "revId": "65e38f99e3c15cbf5c9a2a2c1ae331cc82a4622c",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
