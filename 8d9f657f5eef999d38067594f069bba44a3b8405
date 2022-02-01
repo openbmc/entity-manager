@@ -26,6 +26,30 @@
     {
       "unresolved": false,
       "key": {
+        "uuid": "aa1690ca_c8ed334a",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 13
+      },
+      "lineNbr": 13,
+      "author": {
+        "id": 1000546
+      },
+      "writtenOn": "2022-02-01T06:57:31Z",
+      "side": 1,
+      "message": "Ack. I wrapped the text in PS13 as per your comment in PS10. \nI will update and make sure, text count should be in 50/72 in Future.",
+      "parentUuid": "d9b2db04_56b228b8",
+      "range": {
+        "startLine": 9,
+        "startChar": 0,
+        "endLine": 13,
+        "endChar": 0
+      },
+      "revId": "8d9f657f5eef999d38067594f069bba44a3b8405",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
         "uuid": "a00235ca_ef7b025a",
         "filename": "/PATCHSET_LEVEL",
         "patchSetId": 13
@@ -76,6 +100,59 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "a75a89a0_49fe0202",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 13
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1000546
+      },
+      "writtenOn": "2022-02-01T06:57:31Z",
+      "side": 1,
+      "message": "Hi All,\n\nCould you please review this patch and provide your comments if any.\n\nThanks,\nKumar.",
+      "revId": "8d9f657f5eef999d38067594f069bba44a3b8405",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "a488fe0d_8915f07e",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 13
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1000546
+      },
+      "writtenOn": "2022-02-01T06:57:31Z",
+      "side": 1,
+      "message": "\u003e I went to review this, and comments left previously have been ignored.  Please don\u0027t ping maintainers for a re-review until you\u0027ve addressed to responded to all the comments.\n\nSure.",
+      "parentUuid": "3b4ca31d_0c2faed4",
+      "revId": "8d9f657f5eef999d38067594f069bba44a3b8405",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "ba66dbe2_121c539b",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 13
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1000546
+      },
+      "writtenOn": "2022-02-01T06:57:31Z",
+      "side": 1,
+      "message": "Agree. Thanks for your response and suggestions.\n\nSure. I will review other people patches also. \n\nI already split the some minor patches and that has been merged. I will look into split further small patches and make it easier to review.",
+      "parentUuid": "15c4815a_043d2358",
+      "revId": "8d9f657f5eef999d38067594f069bba44a3b8405",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "ccc42990_6d1b08e0",
@@ -99,6 +176,30 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "142efb18_b52769ba",
+        "filename": "include/FruDevice.hpp",
+        "patchSetId": 13
+      },
+      "lineNbr": 34,
+      "author": {
+        "id": 1000546
+      },
+      "writtenOn": "2022-02-01T06:57:31Z",
+      "side": 1,
+      "message": "Ack. I will make it as local variable.",
+      "parentUuid": "ccc42990_6d1b08e0",
+      "range": {
+        "startLine": 34,
+        "startChar": 0,
+        "endLine": 34,
+        "endChar": 21
+      },
+      "revId": "8d9f657f5eef999d38067594f069bba44a3b8405",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "b8a1ed8a_77c4abaf",
@@ -112,6 +213,30 @@
       "writtenOn": "2022-01-31T20:52:27Z",
       "side": 1,
       "message": "There\u0027s a lot of #includes being added here that I don\u0027t see used in this file. Just looking at it\n\n\u003cboost/algorithm/string/predicate.hpp\u003e\n\nand fcntl, inotify, and ioctl don\u0027t look used?",
+      "range": {
+        "startLine": 22,
+        "startChar": 0,
+        "endLine": 32,
+        "endChar": 43
+      },
+      "revId": "8d9f657f5eef999d38067594f069bba44a3b8405",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "0d6d65d1_f1641c7f",
+        "filename": "include/FruUtils.hpp",
+        "patchSetId": 13
+      },
+      "lineNbr": 32,
+      "author": {
+        "id": 1000546
+      },
+      "writtenOn": "2022-02-01T06:57:31Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "b8a1ed8a_77c4abaf",
       "range": {
         "startLine": 22,
         "startChar": 0,

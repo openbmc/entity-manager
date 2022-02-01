@@ -119,6 +119,30 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "e3ac851e_92976795",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 10
+      },
+      "lineNbr": 11,
+      "author": {
+        "id": 1000546
+      },
+      "writtenOn": "2022-02-01T06:57:31Z",
+      "side": 1,
+      "message": "Ack. I wrapped/aligned commit msg in gerrit page itself in the latest patchset. In gerrit page text count is not showing. So, I missed to check the text count as 50/72.\n\nI will update and make sure in the upcoming PS.",
+      "parentUuid": "04e5f798_3890ad0e",
+      "range": {
+        "startLine": 9,
+        "startChar": 2,
+        "endLine": 11,
+        "endChar": 24
+      },
+      "revId": "861ebf841e6f0e7d43a3d1954c9f3010cf9a93e1",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "ac6ed67b_faffab91",
@@ -180,6 +204,30 @@
       "side": 1,
       "message": "This comment seems to have been ignored on the latest patch.",
       "parentUuid": "5e4873ee_8741101c",
+      "range": {
+        "startLine": 20,
+        "startChar": 0,
+        "endLine": 53,
+        "endChar": 17
+      },
+      "revId": "861ebf841e6f0e7d43a3d1954c9f3010cf9a93e1",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "ca881557_a0ca4278",
+        "filename": "include/FruUtils.hpp",
+        "patchSetId": 10
+      },
+      "lineNbr": 53,
+      "author": {
+        "id": 1000546
+      },
+      "writtenOn": "2022-02-01T06:57:31Z",
+      "side": 1,
+      "message": "Ack. I scrubbed the headers and removed unused header files in PS13 as per comment in PS10. I skipped the boost, sys, fcntl headers in PS13 as thought to used in the code. \n\nI will double check and ensure to remove the unused headers.",
+      "parentUuid": "dbf9099d_46c2447e",
       "range": {
         "startLine": 20,
         "startChar": 0,
