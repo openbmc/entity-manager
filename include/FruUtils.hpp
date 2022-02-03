@@ -32,6 +32,11 @@ extern "C"
 
 constexpr size_t fruBlockSize = 8;
 
+using DeviceMap = boost::container::flat_map<int, std::vector<uint8_t>>;
+using BusMap = boost::container::flat_map<int, std::shared_ptr<DeviceMap>>;
+
+inline BusMap busMap;
+
 enum class DecodeState
 {
     ok,
@@ -138,8 +143,7 @@ ssize_t getFieldLength(uint8_t fruFieldTypeLenValue);
 ///        returns the offset at which a header was found
 /// \return whether a header was found
 bool findFRUHeader(int flag, int file, uint16_t address,
-                   const ReadBlockFunc& readBlock,
-                   const std::string& errorHelp,
+                   const ReadBlockFunc& readBlock, const std::string& errorHelp,
                    std::array<uint8_t, I2C_SMBUS_BLOCK_MAX>& blockData,
                    uint16_t& baseOffset);
 
