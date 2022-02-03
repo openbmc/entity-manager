@@ -46,6 +46,30 @@
       },
       "revId": "feacade279e71e8e1791d00bcde7b7b2f102c90d",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "912f9986_56535155",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 12,
+      "author": {
+        "id": 1000590
+      },
+      "writtenOn": "2022-02-03T21:38:46Z",
+      "side": 1,
+      "message": "The usage is FRU\u0027s Address and Bus is used to map it with Entity ID and instance in the IPMI host.I have linked the code that uses it and more explanation to the commit. \nI initially misunderstood the usage as I2CDevice is just for the FRUs name and they can be pushed separately. But looking at the implementation I think they need to go together.",
+      "parentUuid": "ec27fc5c_9999a29d",
+      "range": {
+        "startLine": 8,
+        "startChar": 0,
+        "endLine": 12,
+        "endChar": 34
+      },
+      "revId": "feacade279e71e8e1791d00bcde7b7b2f102c90d",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }
