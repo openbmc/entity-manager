@@ -70,13 +70,8 @@ const static constexpr char* baseboardFruLocation =
 
 const static constexpr char* i2CDevLocation = "/dev";
 
-using DeviceMap = boost::container::flat_map<int, std::vector<uint8_t>>;
-using BusMap = boost::container::flat_map<int, std::shared_ptr<DeviceMap>>;
-
 static std::set<size_t> busBlacklist;
 struct FindDevicesWithCallback;
-
-static BusMap busMap;
 
 static boost::container::flat_map<
     std::pair<size_t, size_t>, std::shared_ptr<sdbusplus::asio::dbus_interface>>
@@ -629,8 +624,8 @@ struct FindDevicesWithCallback :
 
 std::vector<uint8_t>& getFRUInfo(const uint8_t& bus, const uint8_t& address)
 {
-    auto deviceMap = busMap.find(bus);
-    if (deviceMap == busMap.end())
+    auto deviceMap = fruUtilGlobalVar.busMap.find(bus);
+    if (deviceMap == fruUtilGlobalVar.busMap.end())
     {
         throw std::invalid_argument("Invalid Bus.");
     }
@@ -1342,7 +1337,7 @@ bool updateFRUProperty(
     }
 
     // Rescan the bus so that GetRawFru dbus-call fetches updated values
-    rescanBusses(busMap, dbusInterfaceMap, unknownBusObjectCount, powerIsOn,
+    rescanBusses(fruUtilGlobalVar.busMap, dbusInterfaceMap, unknownBusObjectCount, powerIsOn,
                  objServer, systemBus);
     return true;
 }
@@ -1380,12 +1375,12 @@ int main()
                                 "xyz.openbmc_project.FruDeviceManager");
 
     iface->register_method("ReScan", [&]() {
-        rescanBusses(busMap, dbusInterfaceMap, unknownBusObjectCount, powerIsOn,
+        rescanBusses(fruUtilGlobalVar.busMap, dbusInterfaceMap, unknownBusObjectCount, powerIsOn,
                      objServer, systemBus);
     });
 
     iface->register_method("ReScanBus", [&](uint8_t bus) {
-        rescanOneBus(busMap, bus, dbusInterfaceMap, true, unknownBusObjectCount,
+        rescanOneBus(fruUtilGlobalVar.busMap, bus, dbusInterfaceMap, true, unknownBusObjectCount,
                      powerIsOn, objServer, systemBus);
     });
 
@@ -1400,7 +1395,7 @@ int main()
             return;
         }
         // schedule rescan on success
-        rescanBusses(busMap, dbusInterfaceMap, unknownBusObjectCount, powerIsOn,
+        rescanBusses(fruUtilGlobalVar.busMap, dbusInterfaceMap, unknownBusObjectCount, powerIsOn,
                      objServer, systemBus);
     });
     iface->initialize();
@@ -1422,7 +1417,7 @@ int main()
 
             if (powerIsOn)
             {
-                rescanBusses(busMap, dbusInterfaceMap, unknownBusObjectCount,
+                rescanBusses(fruUtilGlobalVar.busMap, dbusInterfaceMap, unknownBusObjectCount,
                              powerIsOn, objServer, systemBus);
             }
         };
@@ -1469,7 +1464,7 @@ int main()
                                           << "\n";
                                 continue;
                             }
-                            rescanOneBus(busMap, static_cast<uint8_t>(bus),
+                            rescanOneBus(fruUtilGlobalVar.busMap, static_cast<uint8_t>(bus),
                                          dbusInterfaceMap, false,
                                          unknownBusObjectCount, powerIsOn,
                                          objServer, systemBus);
@@ -1485,7 +1480,7 @@ int main()
 
     dirWatch.async_read_some(boost::asio::buffer(readBuffer), watchI2cBusses);
     // run the initial scan
-    rescanBusses(busMap, dbusInterfaceMap, unknownBusObjectCount, powerIsOn,
+    rescanBusses(fruUtilGlobalVar.busMap, dbusInterfaceMap, unknownBusObjectCount, powerIsOn,
                  objServer, systemBus);
 
     io.run();
