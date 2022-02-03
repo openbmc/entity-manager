@@ -1,0 +1,44 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "f56ef464_2cde8add",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2022-02-03T20:37:06Z",
+      "side": 1,
+      "message": "Mostly minor things, but I\u0027d like to see a patch series that shows where this changeset is going with this.  I suspect we\u0027re attempting to make this a non-global, but it\u0027s not obvious to me how this is accomplishing that, and I don\u0027t see any decedent patchsets.",
+      "revId": "6e90585abafa1bdaf106f0f72d63ef8dcfa2968e",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "719c116d_f30c8965",
+        "filename": "include/Utils.hpp",
+        "patchSetId": 1
+      },
+      "lineNbr": 51,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2022-02-03T20:37:06Z",
+      "side": 1,
+      "message": "Why create a struct with a single item in it?  Is there another patchset that makes this make more sense?",
+      "range": {
+        "startLine": 51,
+        "startChar": 0,
+        "endLine": 51,
+        "endChar": 14
+      },
+      "revId": "6e90585abafa1bdaf106f0f72d63ef8dcfa2968e",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    }
+  ]
+}
