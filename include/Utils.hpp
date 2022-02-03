@@ -45,6 +45,16 @@ enum class TemplateOperation
     modulo,
 };
 
+using DeviceMap = boost::container::flat_map<int, std::vector<uint8_t>>;
+using BusMap = boost::container::flat_map<int, std::shared_ptr<DeviceMap>>;
+
+struct FruUtil
+{
+   BusMap busMap;
+};
+
+inline FruUtil fruUtilObj;
+
 namespace properties
 {
 constexpr const char* interface = "org.freedesktop.DBus.Properties";
