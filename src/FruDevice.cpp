@@ -70,13 +70,8 @@ const static constexpr char* baseboardFruLocation =
 
 const static constexpr char* i2CDevLocation = "/dev";
 
-using DeviceMap = boost::container::flat_map<int, std::vector<uint8_t>>;
-using BusMap = boost::container::flat_map<int, std::shared_ptr<DeviceMap>>;
-
 static std::set<size_t> busBlacklist;
 struct FindDevicesWithCallback;
-
-static BusMap busMap;
 
 static boost::container::flat_map<
     std::pair<size_t, size_t>, std::shared_ptr<sdbusplus::asio::dbus_interface>>
