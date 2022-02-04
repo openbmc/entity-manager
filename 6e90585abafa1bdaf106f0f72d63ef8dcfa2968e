@@ -18,6 +18,24 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "8210922f_e83ff889",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1000546
+      },
+      "writtenOn": "2022-02-04T08:31:43Z",
+      "side": 1,
+      "message": "Thanks for your response.\n\nThe reason behind moving busMap from FruDevice.cpp which is declared as static and also wanted to use the busMap in FruUtils.cpp. Because, planning to move some common functions from FruDevice.cpp to FruUtils.cpp for fru and ipmb-fru daemons usage. \n\nBecause of this only, I moved busMap variable to Utility struct.\n\nThis is patch for moving getFRUInfo to FruUtils.cpp. \nhttps://gerrit.openbmc-project.xyz/c/openbmc/entity-manager/+/50921",
+      "parentUuid": "f56ef464_2cde8add",
+      "revId": "6e90585abafa1bdaf106f0f72d63ef8dcfa2968e",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "719c116d_f30c8965",
@@ -55,6 +73,30 @@
       "side": 1,
       "message": "Also, \"Utility\" is almost definitely the wrong name for this type.",
       "parentUuid": "719c116d_f30c8965",
+      "range": {
+        "startLine": 51,
+        "startChar": 0,
+        "endLine": 51,
+        "endChar": 14
+      },
+      "revId": "6e90585abafa1bdaf106f0f72d63ef8dcfa2968e",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "43e1b1a6_adf54686",
+        "filename": "include/Utils.hpp",
+        "patchSetId": 1
+      },
+      "lineNbr": 51,
+      "author": {
+        "id": 1000546
+      },
+      "writtenOn": "2022-02-04T08:31:43Z",
+      "side": 1,
+      "message": "Ack. I will update the struct name with FruUtil. \n\nCould you please suggest the struct name if it is not OK ?\n\nWe can add more variables in the struct if we wanted to use in multiple files.\n\nThis is the one of the patch for moving common functions to FruUtils.cpp\nhttps://gerrit.openbmc-project.xyz/c/openbmc/entity-manager/+/50921\n\n\nWill submit another series of patchset of moving functions to FruUtils.cpp to make use of fru deamon and ipmb-fru deamon.\n\nAfter that planning to push ipmb-fru related patches.",
+      "parentUuid": "0cb007a0_0fbd655c",
       "range": {
         "startLine": 51,
         "startChar": 0,
