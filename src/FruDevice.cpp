@@ -622,23 +622,6 @@ struct FindDevicesWithCallback :
     std::function<void(void)> _callback;
 };
 
-std::vector<uint8_t>& getFRUInfo(const uint8_t& bus, const uint8_t& address)
-{
-    auto deviceMap = fruUtilGlobalVar.busMap.find(bus);
-    if (deviceMap == fruUtilGlobalVar.busMap.end())
-    {
-        throw std::invalid_argument("Invalid Bus.");
-    }
-    auto device = deviceMap->second->find(address);
-    if (device == deviceMap->second->end())
-    {
-        throw std::invalid_argument("Invalid Address.");
-    }
-    std::vector<uint8_t>& ret = device->second;
-
-    return ret;
-}
-
 void addFruObjectToDbus(
     std::vector<uint8_t>& device,
     boost::container::flat_map<

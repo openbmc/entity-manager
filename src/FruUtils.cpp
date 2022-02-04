@@ -16,6 +16,7 @@
 /// \file FruUtils.cpp
 
 #include "FruUtils.hpp"
+#include "Utils.hpp"
 
 #include <array>
 #include <cstdint>
@@ -771,4 +772,21 @@ std::vector<uint8_t> readFRUContents(int flag, int file, uint16_t address,
 unsigned int getHeaderAreaFieldOffset(fruAreas area)
 {
     return static_cast<unsigned int>(area) + 1;
+}
+
+std::vector<uint8_t>& getFRUInfo(const uint8_t& bus, const uint8_t& address)
+{
+    auto deviceMap = fruUtilGlobalVar.busMap.find(bus);
+    if (deviceMap == fruUtilGlobalVar.busMap.end())
+    {
+        throw std::invalid_argument("Invalid Bus.");
+    }
+    auto device = deviceMap->second->find(address);
+    if (device == deviceMap->second->end())
+    {
+        throw std::invalid_argument("Invalid Address.");
+    }
+    std::vector<uint8_t>& ret = device->second;
+
+    return ret;
 }
