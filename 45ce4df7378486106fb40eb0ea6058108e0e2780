@@ -1,0 +1,67 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5a789a9d_82e90c73",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2022-02-06T17:31:59Z",
+      "side": 1,
+      "message": "Lets get the extra interfaces moved to another patchset so we can discuss them, and get the bulk of this merged, then this patchset should be good to go.",
+      "revId": "45ce4df7378486106fb40eb0ea6058108e0e2780",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "82883328_7905957d",
+        "filename": "configurations/VEGMAN-Sx20-Baseboard.json",
+        "patchSetId": 2
+      },
+      "lineNbr": 771,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2022-02-06T17:31:59Z",
+      "side": 1,
+      "message": "This isn\u0027t a valid dbus interface.  Lets remove this for the moment, and get the rest of this file in place, and we\u0027ll go from there.\n\nThis comment applies to the other two boards as well.",
+      "range": {
+        "startLine": 769,
+        "startChar": 0,
+        "endLine": 771,
+        "endChar": 10
+      },
+      "revId": "45ce4df7378486106fb40eb0ea6058108e0e2780",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1121261c_3d742b4a",
+        "filename": "configurations/VEGMAN-Sx20-Baseboard.json",
+        "patchSetId": 2
+      },
+      "lineNbr": 772,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2022-02-06T17:31:59Z",
+      "side": 1,
+      "message": "Not sure why this is here.  Can you expand a bit on why this is needed.  I don\u0027t think any of the other systems have this?\n\nThis comment applies to the other two boards as well.",
+      "range": {
+        "startLine": 772,
+        "startChar": 0,
+        "endLine": 772,
+        "endChar": 55
+      },
+      "revId": "45ce4df7378486106fb40eb0ea6058108e0e2780",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    }
+  ]
+}
