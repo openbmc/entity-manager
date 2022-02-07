@@ -41,6 +41,30 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "17c28813_8f400df2",
+        "filename": "configurations/VEGMAN-Sx20-Baseboard.json",
+        "patchSetId": 2
+      },
+      "lineNbr": 771,
+      "author": {
+        "id": 1000879
+      },
+      "writtenOn": "2022-02-07T07:19:32Z",
+      "side": 1,
+      "message": "This came from Intel system an likely not needed anymore, will remove.",
+      "parentUuid": "82883328_7905957d",
+      "range": {
+        "startLine": 769,
+        "startChar": 0,
+        "endLine": 771,
+        "endChar": 10
+      },
+      "revId": "45ce4df7378486106fb40eb0ea6058108e0e2780",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "1121261c_3d742b4a",
@@ -54,6 +78,30 @@
       "writtenOn": "2022-02-06T17:31:59Z",
       "side": 1,
       "message": "Not sure why this is here.  Can you expand a bit on why this is needed.  I don\u0027t think any of the other systems have this?\n\nThis comment applies to the other two boards as well.",
+      "range": {
+        "startLine": 772,
+        "startChar": 0,
+        "endLine": 772,
+        "endChar": 55
+      },
+      "revId": "45ce4df7378486106fb40eb0ea6058108e0e2780",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2652b71d_44abe818",
+        "filename": "configurations/VEGMAN-Sx20-Baseboard.json",
+        "patchSetId": 2
+      },
+      "lineNbr": 772,
+      "author": {
+        "id": 1000879
+      },
+      "writtenOn": "2022-02-07T07:19:32Z",
+      "side": 1,
+      "message": "This one is used by bmcweb to expose some system details in redfish/v1/Systems/system endpoint (AssetTag, Manufacturer, Model, PartNumber, SerialNumber). This information then used in in webui.\nI not sure, how it supposed to work without this interface (didn\u0027t dig dip enough into bmcweb).",
+      "parentUuid": "1121261c_3d742b4a",
       "range": {
         "startLine": 772,
         "startChar": 0,
