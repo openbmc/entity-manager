@@ -98,6 +98,23 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "7ecf2985_e13b0980",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1000733
+      },
+      "writtenOn": "2022-02-12T01:00:43Z",
+      "side": 1,
+      "message": "Ed, I\u0027m currently looking at how to generalize this to more cleanly support multiple formats in an extensible, efficient way.\n\nThe rough idea I\u0027ve got at the moment (no real implementation work yet) is to have a set of supported formats (IPMI, Tyan, LI1902, perhaps JEDEC SPD in the future) each with a \"probe\" or matching function of some sort to answer the question \"does this EEPROM look like that format\".  I think that should address (at least part of) the extensibility requirement, but there\u0027s still the question of efficiency.\n\nThe various format matchers will presumably each have their own little section of the EEPROM they\u0027ll need to inspect, some of which will be at the same offset (e.g. IPMI and LI1902 both being at the start), but some may need to look elsewhere (e.g. TYAN checks at offset zero and then has to read more at offset 0x6000).  To support that in full generality (matchers wanting to look at arbitrary locations) we could certainly let each of them issue their own reads, but then we\u0027d be back in duplicated-I/O territory for the ones that do overlap as you pointed out here: https://gerrit.openbmc-project.xyz/c/openbmc/entity-manager/+/49341/comment/37c6bc0d_d0c4382b/\n\nSo to avoid that, we could introduce some little cache abstraction to store and regurgitate whatever bytes have already been read by an earlier matcher, perhaps as an offset:data map at some fixed granularity (blocks of 16 or 32 bytes or something, say).\n\nI\u0027m not opposed to implementing that and can go ahead with it if needed, but it\u0027s slightly more added complexity than I had initially been expecting this to incur.  Do you have any thoughts on the appropriateness of that, or any alternative approaches to consider?",
+      "revId": "14a35fba1deb2cd8a2a4412bb3d1c258855de689",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "619d021a_d9074b6d",
         "filename": "src/FruUtils.cpp",
         "patchSetId": 4
