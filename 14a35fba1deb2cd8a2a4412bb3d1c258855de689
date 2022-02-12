@@ -132,6 +132,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "32ce2779_c003e84d",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1000733
+      },
+      "writtenOn": "2022-02-12T01:27:33Z",
+      "side": 1,
+      "message": "I suppose one alternate possibility would be to unconditionally read in the first N bytes and pass that buffer to each matcher on the expectation that many/most of them will probably be interested in some bytes at the beginning of the EEPROM, and then also let them issue their own reads for any other areas they need to look at (at *some* risk of duplication, but presumably much less).",
+      "parentUuid": "7ecf2985_e13b0980",
+      "revId": "14a35fba1deb2cd8a2a4412bb3d1c258855de689",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "619d021a_d9074b6d",
         "filename": "src/FruUtils.cpp",
         "patchSetId": 4
