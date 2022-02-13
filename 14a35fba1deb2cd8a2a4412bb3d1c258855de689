@@ -150,6 +150,42 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "250ea7c5_8391392d",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2022-02-13T16:59:42Z",
+      "side": 1,
+      "message": "\u003e each with a \"probe\n\nIn practice, the probe statement tends to conflict heavily with actually reading the eeprom, and might require significant reading to determine if the device in question is of that type (not all devices have a nice header in the first 8 bytes).  At a high level (at least in how I imagine this) I wouldn\u0027t expect a separate probe statement, I\u0027d expect more of a\n\nif (attemptToReadIPMIFru(){\n   return;\n}\nif (attemptToReadLinkedinFru()){\n   return;\n}\n\nType logic.  (obviously if maps/arrays and loops are more appropriate feel free to use them.)\n\nEach individual function might include some kind of probe mechanic to return early.\n\nThe only advantage of the probe setup you suggest is that we can tell the difference between an invalid fru that has a header for something known, so we could print something like \"Invalid Linkedin FRU\".  Maybe that\u0027s important?\n\n\n\u003e So to avoid that, we could introduce some little cache abstraction to store and regurgitate whatever bytes have already been read by an earlier matcher, perhaps as an offset:data map at some fixed granularity (blocks of 16 or 32 bytes or something, say).\n\nYeah, lets do this.  To simplify it, we could also just always read the eeprom linearly, and just track how far we\u0027ve read into it to make the cache easier to code.  So if a \"driver\" requests bytes 20-28, but the cache contains 0-8, we would implicitly read 9-28 into the cache for completeness.  That I think simplifies the need for an offset:data map, and makes the payload just a vector of read bytes.\n\nMy my 2 cents.",
+      "parentUuid": "32ce2779_c003e84d",
+      "revId": "14a35fba1deb2cd8a2a4412bb3d1c258855de689",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b59a4301_86ef3731",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2022-02-13T16:59:42Z",
+      "side": 1,
+      "message": "There\u0027s already several efforts to restructure FRUDevice in review;  If you\u0027re interested in helping with the restructuring, I would definitely help review, and start with those to see what those people are trying to get out of a restructuring.\n\nI\u0027d love to entertain discussions about rust (I have some prototypes on my dev box as well) but we need to look at it holistically as a system, not in the context of RIIR, and definitely not in the context of adding linkedin FRU support.",
+      "parentUuid": "67eeeef1_59102aa3",
+      "revId": "14a35fba1deb2cd8a2a4412bb3d1c258855de689",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "619d021a_d9074b6d",
         "filename": "src/FruUtils.cpp",
         "patchSetId": 4
