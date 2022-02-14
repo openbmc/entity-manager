@@ -222,6 +222,42 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "b26dd6da_cb343a23",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1000733
+      },
+      "writtenOn": "2022-02-14T22:07:45Z",
+      "side": 1,
+      "message": "\u003e In practice, the probe statement tends to conflict heavily with actually reading the eeprom, and might require significant reading to determine if the device in question is of that type (not all devices have a nice header in the first 8 bytes).  At a high level (at least in how I imagine this) I wouldn\u0027t expect a separate probe statement,\n\nIf the distinction you\u0027re drawing here is between\n\n (a) having one strictly boolean function for checking for the presence of a given format and another to then go read and parse that format\n\nand\n\n (b) having a single combined function to attempt a read/parse and possibly fail\n\nthen yes, (b) certainly seems like the preferable approach.  I didn\u0027t mean to imply that I was really aiming for (a), though I see how it might\u0027ve read that way (I was intending the \"probe\" terminology more in the sense that it\u0027s used in kernel drivers, i.e. \"try to set up a device of a particular type at a given address\").\n\n(If I\u0027ve misunderstood and there\u0027s some other distinction you\u0027re getting at though, please correct as needed.)",
+      "parentUuid": "fb87598c_995595e3",
+      "revId": "14a35fba1deb2cd8a2a4412bb3d1c258855de689",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "97bb2be3_711dfb59",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1000733
+      },
+      "writtenOn": "2022-02-14T22:07:45Z",
+      "side": 1,
+      "message": "\u003e There\u0027s already several efforts to restructure FRUDevice in review\n\nI see https://gerrit.openbmc-project.xyz/c/openbmc/entity-manager/+/47246 as an open review and a couple other small refactorings (https://gerrit.openbmc-project.xyz/c/openbmc/entity-manager/+/50921, https://gerrit.openbmc-project.xyz/c/openbmc/entity-manager/+/50894); are there others underway that I\u0027ve missed?",
+      "parentUuid": "50b0904d_f8d736b1",
+      "revId": "14a35fba1deb2cd8a2a4412bb3d1c258855de689",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "619d021a_d9074b6d",
         "filename": "src/FruUtils.cpp",
         "patchSetId": 4
