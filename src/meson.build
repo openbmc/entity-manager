@@ -36,7 +36,6 @@ if get_option('fru-device')
             i2c,
             nlohmann_json,
             sdbusplus,
-            threads,
             valijson,
         ],
         implicit_include_directories: false,

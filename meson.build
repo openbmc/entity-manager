@@ -65,7 +65,6 @@ sysconfdir = join_paths(
     get_option('sysconfdir'),
     meson.project_name(),
 )
-threads = dependency('threads')
 if cpp.has_header('valijson/validator.hpp')
     valijson = declare_dependency()
 else
@@ -199,7 +198,7 @@ if not build_tests.disabled()
         gtest_subproject = cmake.subproject('gtest')
         cm_gtest = gtest_subproject.dependency('gtest')
         cm_gtest_main = gtest_subproject.dependency('gtest_main')
-        gtest = declare_dependency(dependencies: [cm_gtest, cm_gtest_main, threads])
+        gtest = declare_dependency(dependencies: [cm_gtest, cm_gtest_main])
     endif
 
     test(
