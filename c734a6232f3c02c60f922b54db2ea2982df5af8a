@@ -16,6 +16,41 @@
       "message": "HAH, James and I argued about this exactly thing in code review when he first did it.  Only took 4 years for me to be vindicated 😊\n\nThis is on my list to review (haven\u0027t done yet).  Given the possibilities of race conditions, testing this is going to be fun, but we\u0027ll get that figured out.",
       "revId": "c734a6232f3c02c60f922b54db2ea2982df5af8a",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "3c8c57ab_e053f476",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1000900
+      },
+      "writtenOn": "2022-02-15T22:20:20Z",
+      "side": 1,
+      "message": "B",
+      "revId": "c734a6232f3c02c60f922b54db2ea2982df5af8a",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "d522a96b_4181fac8",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1000900
+      },
+      "writtenOn": "2022-02-15T22:20:20Z",
+      "side": 1,
+      "message": "Yeah, async behavior is not obvious in these these case. When I initially read this code, I thought getBusFRUs would return and let the async thread keep running in the background (which would be bad). But then I tested out a simple example and saw that ~future() waits for the task to exit (and confirmed this behavior is documented on cppreference).\n\nI\u0027m just learning about fru-device and noticed this weird code, so I welcome any suggestions for testing it.",
+      "parentUuid": "a8d0eae7_f8a8adf2",
+      "revId": "c734a6232f3c02c60f922b54db2ea2982df5af8a",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }
