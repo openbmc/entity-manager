@@ -33,6 +33,24 @@
       "message": "This naming isn\u0027t ideal -- `$index` seems like the \"appropriate\" thing to use here, but there doesn\u0027t seem to be any guarantee on the order those index numbers get assigned.  The PSUs themselves live in slots numbered 1 through 6 (which are the numbers I\u0027d prefer this to use), so I\u0027ve used `$bus` here instead to at least get the naming consistent, since each slot has a bus dedicated to it; ideally there\u0027d be some way to statically express that mapping such that the one on bus X would always be named \"PSU Y\", but I don\u0027t know of any existing way to achieve that.",
       "revId": "788c6404367d052bdabf24a5f91a435b854e9b11",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b592c35a_eaef720a",
+        "filename": "configurations/Delta_AWF2DC3200W_PSU.json",
+        "patchSetId": 2
+      },
+      "lineNbr": 33,
+      "author": {
+        "id": 1000733
+      },
+      "writtenOn": "2022-02-15T01:03:31Z",
+      "side": 1,
+      "message": "Though I suppose that in turn is also a bit outside the scope of the PSU itself and more an aspect of the chassis -- mostly just wondering if anyone has any input on the \"right\" way to approach this.",
+      "parentUuid": "8be8c555_f12bb025",
+      "revId": "788c6404367d052bdabf24a5f91a435b854e9b11",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }
