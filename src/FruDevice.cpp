@@ -37,7 +37,6 @@
 #include <filesystem>
 #include <fstream>
 #include <functional>
-#include <future>
 #include <iomanip>
 #include <iostream>
 #include <limits>
@@ -46,7 +45,6 @@
 #include <set>
 #include <sstream>
 #include <string>
-#include <thread>
 #include <utility>
 #include <variant>
 #include <vector>
@@ -61,7 +59,7 @@ namespace fs = std::filesystem;
 static constexpr bool debug = false;
 constexpr size_t maxFruSize = 512;
 constexpr size_t maxEepromPageIndex = 255;
-constexpr size_t busTimeoutSeconds = 5;
+constexpr auto busTimeout = std::chrono::seconds(5);
 
 constexpr const char* blacklistPath = PACKAGE_DIR "blacklist.json";
 
@@ -351,124 +349,121 @@ std::set<int> findI2CEeproms(int i2cBus,
     return foundList;
 }
 
-int getBusFRUs(int file, int first, int last, int bus,
-               std::shared_ptr<DeviceMap> devices, const bool& powerIsOn,
-               sdbusplus::asio::object_server& objServer)
+void getBusFRUs(int file, int first, int last, int bus,
+                std::shared_ptr<DeviceMap> devices, const bool& powerIsOn,
+                sdbusplus::asio::object_server& objServer)
 {
+    // NOTE: When reading the devices raw on the bus, it can interfere with
+    // the driver's ability to operate, therefore read eeproms first before
+    // scanning for devices without drivers. Several experiments were run
+    // and it was determined that if there were any devices on the bus
+    // before the eeprom was hit and read, the eeprom driver wouldn't open
+    // while the bus device was open. An experiment was not performed to see
+    // if this issue was resolved if the i2c bus device was closed, but
+    // hexdumps of the eeprom later were successful.
 
-    std::future<int> future = std::async(std::launch::async, [&]() {
-        // NOTE: When reading the devices raw on the bus, it can interfere with
-        // the driver's ability to operate, therefore read eeproms first before
-        // scanning for devices without drivers. Several experiments were run
-        // and it was determined that if there were any devices on the bus
-        // before the eeprom was hit and read, the eeprom driver wouldn't open
-        // while the bus device was open. An experiment was not performed to see
-        // if this issue was resolved if the i2c bus device was closed, but
-        // hexdumps of the eeprom later were successful.
+    // Scan for i2c eeproms loaded on this bus.
+    std::set<int> skipList = findI2CEeproms(bus, devices);
+    std::set<size_t>& failedItems = failedAddresses[bus];
 
-        // Scan for i2c eeproms loaded on this bus.
-        std::set<int> skipList = findI2CEeproms(bus, devices);
-        std::set<size_t>& failedItems = failedAddresses[bus];
+    std::set<size_t>* rootFailures = nullptr;
+    int rootBus = getRootBus(bus);
 
-        std::set<size_t>* rootFailures = nullptr;
-        int rootBus = getRootBus(bus);
+    if (rootBus >= 0)
+    {
+        rootFailures = &(failedAddresses[rootBus]);
+    }
 
-        if (rootBus >= 0)
+    constexpr int startSkipSlaveAddr = 0;
+    constexpr int endSkipSlaveAddr = 12;
+
+    bool timedOut = false;
+    auto deadline = std::chrono::steady_clock::now() + busTimeout;
+
+    for (int ii = first; ii <= last; ii++)
+    {
+        if (std::chrono::steady_clock::now() >= deadline)
         {
-            rootFailures = &(failedAddresses[rootBus]);
+            timedOut = true;
+            break;
         }
 
-        constexpr int startSkipSlaveAddr = 0;
-        constexpr int endSkipSlaveAddr = 12;
-
-        for (int ii = first; ii <= last; ii++)
+        if (skipList.find(ii) != skipList.end())
         {
-            if (skipList.find(ii) != skipList.end())
-            {
-                continue;
-            }
-            // skipping since no device is present in this range
-            if (ii >= startSkipSlaveAddr && ii <= endSkipSlaveAddr)
-            {
-                continue;
-            }
-            // Set slave address
-            if (ioctl(file, I2C_SLAVE, ii) < 0)
-            {
-                std::cerr << "device at bus " << bus << " address " << ii
-                          << " busy\n";
-                continue;
-            }
-            // probe
-            if (i2c_smbus_read_byte(file) < 0)
-            {
-                continue;
-            }
-
-            if (debug)
-            {
-                std::cout << "something at bus " << bus << " addr " << ii
-                          << "\n";
-            }
-
-            makeProbeInterface(bus, ii, objServer);
-
-            if (failedItems.find(ii) != failedItems.end())
-            {
-                // if we failed to read it once, unlikely we can read it later
-                continue;
-            }
-
-            if (rootFailures != nullptr)
-            {
-                if (rootFailures->find(ii) != rootFailures->end())
-                {
-                    continue;
-                }
-            }
-
-            /* Check for Device type if it is 8 bit or 16 bit */
-            int flag = isDevice16Bit(file);
-            if (flag < 0)
-            {
-                std::cerr << "failed to read bus " << bus << " address " << ii
-                          << "\n";
-                if (powerIsOn)
-                {
-                    failedItems.insert(ii);
-                }
-                continue;
-            }
-
-            std::string errorMessage =
-                "bus " + std::to_string(bus) + " address " + std::to_string(ii);
-            std::vector<uint8_t> device =
-                readFRUContents(flag, file, static_cast<uint16_t>(ii),
-                                readBlockData, errorMessage);
-            if (device.empty())
-            {
-                continue;
-            }
-
-            devices->emplace(ii, device);
+            continue;
         }
-        return 1;
-    });
-    std::future_status status =
-        future.wait_for(std::chrono::seconds(busTimeoutSeconds));
-    if (status == std::future_status::timeout)
+        // skipping since no device is present in this range
+        if (ii >= startSkipSlaveAddr && ii <= endSkipSlaveAddr)
+        {
+            continue;
+        }
+        // Set slave address
+        if (ioctl(file, I2C_SLAVE, ii) < 0)
+        {
+            std::cerr << "device at bus " << bus << " address " << ii
+                      << " busy\n";
+            continue;
+        }
+        // probe
+        if (i2c_smbus_read_byte(file) < 0)
+        {
+            continue;
+        }
+
+        if (debug)
+        {
+            std::cout << "something at bus " << bus << " addr " << ii << "\n";
+        }
+
+        makeProbeInterface(bus, ii, objServer);
+
+        if (failedItems.find(ii) != failedItems.end())
+        {
+            // if we failed to read it once, unlikely we can read it later
+            continue;
+        }
+
+        if (rootFailures != nullptr)
+        {
+            if (rootFailures->find(ii) != rootFailures->end())
+            {
+                continue;
+            }
+        }
+
+        /* Check for Device type if it is 8 bit or 16 bit */
+        int flag = isDevice16Bit(file);
+        if (flag < 0)
+        {
+            std::cerr << "failed to read bus " << bus << " address " << ii
+                      << "\n";
+            if (powerIsOn)
+            {
+                failedItems.insert(ii);
+            }
+            continue;
+        }
+
+        std::string errorMessage =
+            "bus " + std::to_string(bus) + " address " + std::to_string(ii);
+        std::vector<uint8_t> device = readFRUContents(
+            flag, file, static_cast<uint16_t>(ii), readBlockData, errorMessage);
+        if (device.empty())
+        {
+            continue;
+        }
+
+        devices->emplace(ii, device);
+    }
+
+    if (timedOut)
     {
         std::cerr << "Error reading bus " << bus << "\n";
         if (powerIsOn)
         {
             busBlacklist.insert(bus);
         }
-        close(file);
-        return -1;
     }
-
-    close(file);
-    return future.get();
 }
 
 void loadBlacklist(const char* path)
@@ -589,8 +584,8 @@ static void findI2CDevices(const std::vector<fs::path>& i2cBuses,
             std::cerr << "Scanning bus " << bus << "\n";
         }
 
-        // fd is closed in this function in case the bus locks up
         getBusFRUs(file, 0x03, 0x77, bus, device, powerIsOn, objServer);
+        close(file);
 
         if (debug)
         {
