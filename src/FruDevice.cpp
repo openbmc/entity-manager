@@ -94,7 +94,7 @@ bool updateFRUProperty(
     boost::container::flat_map<
         std::pair<size_t, size_t>,
         std::shared_ptr<sdbusplus::asio::dbus_interface>>& dbusInterfaceMap,
-    size_t& unknownBusObjectCount, bool powerIsOn,
+    size_t& unknownBusObjectCount, const bool& powerIsOn,
     sdbusplus::asio::object_server& objServer,
     std::shared_ptr<sdbusplus::asio::connection>& systemBus);
 
@@ -352,7 +352,7 @@ std::set<int> findI2CEeproms(int i2cBus,
 }
 
 int getBusFRUs(int file, int first, int last, int bus,
-               std::shared_ptr<DeviceMap> devices, bool powerIsOn,
+               std::shared_ptr<DeviceMap> devices, const bool& powerIsOn,
                sdbusplus::asio::object_server& objServer)
 {
 
@@ -531,7 +531,7 @@ void loadBlacklist(const char* path)
 }
 
 static void findI2CDevices(const std::vector<fs::path>& i2cBuses,
-                           BusMap& busmap, bool powerIsOn,
+                           BusMap& busmap, const bool& powerIsOn,
                            sdbusplus::asio::object_server& objServer)
 {
     for (auto& i2cBus : i2cBuses)
@@ -604,7 +604,7 @@ struct FindDevicesWithCallback :
     std::enable_shared_from_this<FindDevicesWithCallback>
 {
     FindDevicesWithCallback(const std::vector<fs::path>& i2cBuses,
-                            BusMap& busmap, bool powerIsOn,
+                            BusMap& busmap, const bool& powerIsOn,
                             sdbusplus::asio::object_server& objServer,
                             std::function<void(void)>&& callback) :
         _i2cBuses(i2cBuses),
@@ -622,7 +622,7 @@ struct FindDevicesWithCallback :
 
     const std::vector<fs::path>& _i2cBuses;
     BusMap& _busMap;
-    bool _powerIsOn;
+    const bool& _powerIsOn;
     sdbusplus::asio::object_server& _objServer;
     std::function<void(void)> _callback;
 };
@@ -650,7 +650,7 @@ void addFruObjectToDbus(
         std::pair<size_t, size_t>,
         std::shared_ptr<sdbusplus::asio::dbus_interface>>& dbusInterfaceMap,
     uint32_t bus, uint32_t address, size_t& unknownBusObjectCount,
-    bool powerIsOn, sdbusplus::asio::object_server& objServer,
+    const bool& powerIsOn, sdbusplus::asio::object_server& objServer,
     std::shared_ptr<sdbusplus::asio::connection>& systemBus)
 {
     boost::container::flat_map<std::string, std::string> formattedFRU;
@@ -937,7 +937,7 @@ void rescanOneBus(
     boost::container::flat_map<
         std::pair<size_t, size_t>,
         std::shared_ptr<sdbusplus::asio::dbus_interface>>& dbusInterfaceMap,
-    bool dbusCall, size_t& unknownBusObjectCount, bool powerIsOn,
+    bool dbusCall, size_t& unknownBusObjectCount, const bool& powerIsOn,
     sdbusplus::asio::object_server& objServer,
     std::shared_ptr<sdbusplus::asio::connection>& systemBus)
 {
@@ -997,7 +997,7 @@ void rescanBusses(
     boost::container::flat_map<
         std::pair<size_t, size_t>,
         std::shared_ptr<sdbusplus::asio::dbus_interface>>& dbusInterfaceMap,
-    size_t& unknownBusObjectCount, bool powerIsOn,
+    size_t& unknownBusObjectCount, const bool& powerIsOn,
     sdbusplus::asio::object_server& objServer,
     std::shared_ptr<sdbusplus::asio::connection>& systemBus)
 {
@@ -1079,7 +1079,7 @@ bool updateFRUProperty(
     boost::container::flat_map<
         std::pair<size_t, size_t>,
         std::shared_ptr<sdbusplus::asio::dbus_interface>>& dbusInterfaceMap,
-    size_t& unknownBusObjectCount, bool powerIsOn,
+    size_t& unknownBusObjectCount, const bool& powerIsOn,
     sdbusplus::asio::object_server& objServer,
     std::shared_ptr<sdbusplus::asio::connection>& systemBus)
 {
