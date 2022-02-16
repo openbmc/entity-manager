@@ -95,6 +95,9 @@ const boost::container::flat_map<const char*, ExportTemplate, CmpStr>
          {"ISL69243",
           ExportTemplate("isl69243 $Address", "/sys/bus/i2c/devices/i2c-$Bus",
                          "new_device", "delete_device", true)},
+         {"ISL69260",
+          ExportTemplate("isl69260 $Address", "/sys/bus/i2c/devices/i2c-$Bus",
+                         "new_device", "delete_device", true)},
          {"MAX16601",
           ExportTemplate("max16601 $Address", "/sys/bus/i2c/devices/i2c-$Bus",
                          "new_device", "delete_device", true)},
@@ -187,5 +190,11 @@ const boost::container::flat_map<const char*, ExportTemplate, CmpStr>
                          "new_device", "delete_device", true)},
          {"JC42",
           ExportTemplate("jc42 $Address", "/sys/bus/i2c/devices/i2c-$Bus",
+                         "new_device", "delete_device", true)},
+         {"ADM1293",
+          ExportTemplate("adm1293 $Address", "/sys/bus/i2c/devices/i2c-$Bus",
+                         "new_device", "delete_device", true)},
+         {"INA219",
+          ExportTemplate("ina219 $Address", "/sys/bus/i2c/devices/i2c-$Bus",
                          "new_device", "delete_device", true)}}};
 } // namespace devices
