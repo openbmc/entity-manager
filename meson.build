@@ -136,6 +136,7 @@ configs = [
     'STP Baseboard.json',
     'STP P4000 Chassis.json',
     'Tyan_S7106_Baseboard.json',
+    'Tyan_S8036_Baseboard.json',
     'WFT Baseboard.json',
 ]
 filepaths = []
