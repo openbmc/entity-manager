@@ -33,6 +33,24 @@
       "message": "This code doesn\u0027t seem to compile.  Typically nobody is going to bother with a code review on something where Jenkins is failing, unless you explicitly comment why you are expecting Jenkins to fail.  Please take a look and what\u0027s going on here.",
       "revId": "b6ce13a9a09de9fba5c962a4d71a355fa2b5d933",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "9a504c81_fa28bff2",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1000546
+      },
+      "writtenOn": "2022-02-16T14:35:30Z",
+      "side": 1,
+      "message": "Yes Patrick. This code is not compiled separately. Actually I planned to add this patch as dependant patch for the below patch.\n\nhttps://gerrit.openbmc-project.xyz/c/openbmc/entity-manager/+/50894\n\nBut couldn\u0027t Rebase due to some merge conflicts. Once the above the patch get merged with master, then I will do Rebase and submit again. That will solve the issue. Until then I will move this patch as WIP. or I will rebase it manually and submit the patchset.",
+      "parentUuid": "f4235766_d3771491",
+      "revId": "b6ce13a9a09de9fba5c962a4d71a355fa2b5d933",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }
