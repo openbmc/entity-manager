@@ -258,6 +258,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "0838e302_7df4bef6",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2022-02-17T03:31:16Z",
+      "side": 1,
+      "message": "\u003e Wouldn\u0027t that lead to reading in a lot of excess unneeded data in the Tyan case though?\n\nYes, but keep in mind.... \"excess\" at this level is really not that much data (maybe 256 bytes?).  These are still eeproms that are quite small, and given that we parallelize the scan, I\u0027m betting it won\u0027t have any impact on the speed of the scan itself.\n\n\u003e If the distinction you\u0027re drawing here is between\n\nYes, essentially that was what I was pointing out.  With that said, if the model A works better in practice, I\u0027m fine with that too,",
+      "parentUuid": "b26dd6da_cb343a23",
+      "revId": "14a35fba1deb2cd8a2a4412bb3d1c258855de689",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "619d021a_d9074b6d",
         "filename": "src/FruUtils.cpp",
         "patchSetId": 4
