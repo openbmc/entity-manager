@@ -276,6 +276,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "f424bc2b_c3295f23",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1000733
+      },
+      "writtenOn": "2022-02-17T03:57:29Z",
+      "side": 1,
+      "message": "\u003e Yes, but keep in mind.... \"excess\" at this level is really not that much data (maybe 256 bytes?).  These are still eeproms that are quite small, and given that we parallelize the scan, I\u0027m betting it won\u0027t have any impact on the speed of the scan itself.\n\nUnless I\u0027m misunderstanding something, I think it would be 24KiB for the Tyan format?  It\u0027s not going to OOM the BMC, but at typical i2c transfer rates, perhaps a few solid seconds worth of heavy bus traffic...",
+      "parentUuid": "0838e302_7df4bef6",
+      "revId": "14a35fba1deb2cd8a2a4412bb3d1c258855de689",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "619d021a_d9074b6d",
         "filename": "src/FruUtils.cpp",
         "patchSetId": 4
