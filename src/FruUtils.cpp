@@ -256,8 +256,9 @@ bool verifyOffset(const std::vector<uint8_t>& fruBytes, fruAreas currentArea,
     return true;
 }
 
-resCodes formatFRU(const std::vector<uint8_t>& fruBytes,
-                   boost::container::flat_map<std::string, std::string>& result)
+resCodes
+    formatIPMIFRU(const std::vector<uint8_t>& fruBytes,
+                  boost::container::flat_map<std::string, std::string>& result)
 {
     resCodes ret = resCodes::resOK;
     if (fruBytes.size() <= fruBlockSize)

@@ -109,7 +109,7 @@ std::pair<DecodeState, std::string>
 bool checkLangEng(uint8_t lang);
 
 resCodes
-    formatFRU(const std::vector<uint8_t>& fruBytes,
+    formatIPMIFRU(const std::vector<uint8_t>& fruBytes,
               boost::container::flat_map<std::string, std::string>& result);
 
 std::vector<uint8_t>& getFRUInfo(const uint8_t& bus, const uint8_t& address);

@@ -654,7 +654,7 @@ void addFruObjectToDbus(
     std::shared_ptr<sdbusplus::asio::connection>& systemBus)
 {
     boost::container::flat_map<std::string, std::string> formattedFRU;
-    resCodes res = formatFRU(device, formattedFRU);
+    resCodes res = formatIPMIFRU(device, formattedFRU);
     if (res == resCodes::resErr)
     {
         std::cerr << "failed to parse FRU for device at bus " << bus
@@ -830,7 +830,7 @@ bool writeFRU(uint8_t bus, uint8_t address, const std::vector<uint8_t>& fru)
         return false;
     }
     // verify legal fru by running it through fru parsing logic
-    if (formatFRU(fru, tmp) != resCodes::resOK)
+    if (formatIPMIFRU(fru, tmp) != resCodes::resOK)
     {
         std::cerr << "Invalid fru format during writeFRU\n";
         return false;
