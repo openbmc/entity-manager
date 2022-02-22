@@ -1,8 +1,8 @@
 #include "FruUtils.hpp"
 
+#include <algorithm>
 #include <array>
-#include<algorithm>
-#include<iterator>
+#include <iterator>
 
 #include "gtest/gtest.h"
 
