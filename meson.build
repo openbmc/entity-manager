@@ -241,4 +241,19 @@ if not build_tests.disabled()
             include_directories: 'include',
         )
     )
+
+    test(
+        'test_spd',
+        executable(
+            'test_spd',
+            'test/test_spd.cpp',
+            'src/spd.cpp',
+            cpp_args: test_boost_args,
+            dependencies: [
+                gtest,
+            ],
+            implicit_include_directories: false,
+            include_directories: 'include',
+        )
+    )
 endif
