@@ -1,0 +1,158 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "16a2444a_e34bcecc",
+        "filename": "include/spd/spd.hpp",
+        "patchSetId": 2
+      },
+      "lineNbr": 15,
+      "author": {
+        "id": 1000733
+      },
+      "writtenOn": "2022-02-24T02:06:49Z",
+      "side": 1,
+      "message": "I don\u0027t think the style of prefixing enums/constants with `k` is used elsewhere in entity-manager (or OpenBMC AFAIK), so it looks a bit incongruous here.",
+      "revId": "799ffcac4ad04d3ab4913500561292a7d2b5e112",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "89f16c37_ea7bdd57",
+        "filename": "include/spd/spd.hpp",
+        "patchSetId": 2
+      },
+      "lineNbr": 22,
+      "author": {
+        "id": 1000733
+      },
+      "writtenOn": "2022-02-24T02:06:49Z",
+      "side": 1,
+      "message": "I guess the rest of the codebase is a bit inconsistent in this regard already (sometimes it\u0027s `Fru`, sometimes it\u0027s `FRU`), but personally I\u0027d prefer to keep acronyms in identifiers upper-cased, so e.g. `kTypeDDR3` instead of `kTypeDdr3` and such (as is also already the case with the ModuleType and EccType enums below).\n\nAnd likewise `s/Spd/SPD/`, `s/Ecc/ECC/`, etc. elsewhere.",
+      "range": {
+        "startLine": 16,
+        "startChar": 8,
+        "endLine": 22,
+        "endChar": 25
+      },
+      "revId": "799ffcac4ad04d3ab4913500561292a7d2b5e112",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "51bf56e6_f107ebdc",
+        "filename": "include/spd/spd.hpp",
+        "patchSetId": 2
+      },
+      "lineNbr": 81,
+      "author": {
+        "id": 1000733
+      },
+      "writtenOn": "2022-02-24T02:06:49Z",
+      "side": 1,
+      "message": "`cal` seems like a slightly odd abbreviation for `calculate` to me; I\u0027d find `calc` a lot clearer personally.",
+      "revId": "799ffcac4ad04d3ab4913500561292a7d2b5e112",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3b71cc0d_c81c2baa",
+        "filename": "include/spd/spd.hpp",
+        "patchSetId": 2
+      },
+      "lineNbr": 96,
+      "author": {
+        "id": 1000733
+      },
+      "writtenOn": "2022-02-24T02:06:49Z",
+      "side": 1,
+      "message": "Given that these are methods on the SPD class, having the `spd` prefix on them seems a bit redundant.",
+      "range": {
+        "startLine": 93,
+        "startChar": 4,
+        "endLine": 96,
+        "endChar": 44
+      },
+      "revId": "799ffcac4ad04d3ab4913500561292a7d2b5e112",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7b136cb3_78ce6023",
+        "filename": "include/spd/spd.hpp",
+        "patchSetId": 2
+      },
+      "lineNbr": 106,
+      "author": {
+        "id": 1000733
+      },
+      "writtenOn": "2022-02-24T02:06:49Z",
+      "side": 1,
+      "message": "Maybe create a struct with named `year` and `week` members instead of a generic std::pair?",
+      "revId": "799ffcac4ad04d3ab4913500561292a7d2b5e112",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9c6032df_046cc669",
+        "filename": "include/spd/spd.hpp",
+        "patchSetId": 2
+      },
+      "lineNbr": 109,
+      "author": {
+        "id": 1000733
+      },
+      "writtenOn": "2022-02-24T02:06:49Z",
+      "side": 1,
+      "message": "Not knowing anything offhand about the JEDEC SPD spec, are there any guarantees about the encoding of these fields?  (e.g. are they defined as ASCII or something?)  If so, we could perhaps use a slightly more specific datatype, though a raw byte array might be the best option if the spec doesn\u0027t dictate anything in particular.",
+      "range": {
+        "startLine": 108,
+        "startChar": 0,
+        "endLine": 109,
+        "endChar": 56
+      },
+      "revId": "799ffcac4ad04d3ab4913500561292a7d2b5e112",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "35fafad8_b6911437",
+        "filename": "include/spd/spd.hpp",
+        "patchSetId": 2
+      },
+      "lineNbr": 119,
+      "author": {
+        "id": 1000733
+      },
+      "writtenOn": "2022-02-24T02:06:49Z",
+      "side": 1,
+      "message": "Perhaps subsequent patches that I haven\u0027t seen yet will make this clear, but what\u0027s the purpose of these methods being (pure) virtual?  I would have thought that there would basically only be one real implementation of JEDEC SPD parsing; are there going to be multiple providers/concrete subclasses for some reason?",
+      "revId": "799ffcac4ad04d3ab4913500561292a7d2b5e112",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "49912e54_5775c89b",
+        "filename": "src/spd.cpp",
+        "patchSetId": 2
+      },
+      "lineNbr": 39,
+      "author": {
+        "id": 1000733
+      },
+      "writtenOn": "2022-02-24T02:06:49Z",
+      "side": 1,
+      "message": "I couldn\u0027t tell you the exact parameter configuration off the top of my head, but I suspect this could probably be done via boost::crc instead of having our own open-coded version of it.",
+      "revId": "799ffcac4ad04d3ab4913500561292a7d2b5e112",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    }
+  ]
+}
