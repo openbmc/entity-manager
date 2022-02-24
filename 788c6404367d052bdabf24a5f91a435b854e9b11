@@ -51,6 +51,24 @@
       "parentUuid": "8be8c555_f12bb025",
       "revId": "788c6404367d052bdabf24a5f91a435b854e9b11",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f198c959_ccf56df4",
+        "filename": "configurations/Delta_AWF2DC3200W_PSU.json",
+        "patchSetId": 2
+      },
+      "lineNbr": 33,
+      "author": {
+        "id": 1000733
+      },
+      "writtenOn": "2022-02-24T03:22:22Z",
+      "side": 1,
+      "message": "Hmm, I see the IBM Nisqually and Bellavista configs have statically-numbered IBMCFFPSConnector instances for the chassis-level PSU slots, which looks like it\u0027d solve essentially this problem, but I don\u0027t see any existing non-CFFPS PSU connector types currently defined -- would adding a generic PSUConnector schema be the way to go here?",
+      "parentUuid": "b592c35a_eaef720a",
+      "revId": "788c6404367d052bdabf24a5f91a435b854e9b11",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }
