@@ -20,6 +20,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "ce757715_28e1f394",
+        "filename": "configurations/Delta_AWF2DC3200W_PSU.json",
+        "patchSetId": 2
+      },
+      "lineNbr": 29,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2022-02-24T04:08:25Z",
+      "side": 1,
+      "message": "IMO, how I imagined this when dbus-sensors didn\u0027t even have a name yet, is we would dynamically, per-system, determine appropriate poll rates at runtime that optimized our bus usage until we took it to the tipping point, then back it off by 10%, so as a general rule, we would poll all sensors as fast as possible.\n\nUnfortunately, that\u0027s not how history played out, and people wanted explicit control of poll rate.  I still think there\u0027s some kind of \"auto\" mode that we could come up with that would be the default, and would remove the need for explicitly putting this here.\n\n\nWith that said, you\u0027re right, this isn\u0027t a property of the PSU, but it\u0027s what we have today.\n\nThe chassis or the baseboard in specific instances can use DisableNode to provide a different set of parameters here.",
+      "parentUuid": "a04e408f_0fb39bd7",
+      "revId": "788c6404367d052bdabf24a5f91a435b854e9b11",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "8be8c555_f12bb025",
         "filename": "configurations/Delta_AWF2DC3200W_PSU.json",
         "patchSetId": 2
@@ -67,6 +85,24 @@
       "side": 1,
       "message": "Hmm, I see the IBM Nisqually and Bellavista configs have statically-numbered IBMCFFPSConnector instances for the chassis-level PSU slots, which looks like it\u0027d solve essentially this problem, but I don\u0027t see any existing non-CFFPS PSU connector types currently defined -- would adding a generic PSUConnector schema be the way to go here?",
       "parentUuid": "b592c35a_eaef720a",
+      "revId": "788c6404367d052bdabf24a5f91a435b854e9b11",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "34757935_3c9ef4d8",
+        "filename": "configurations/Delta_AWF2DC3200W_PSU.json",
+        "patchSetId": 2
+      },
+      "lineNbr": 33,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2022-02-24T04:08:25Z",
+      "side": 1,
+      "message": "The intent is that the name is essentially just the dbus path, and the actual numbering, while might matter to humans, doesn\u0027t matter to computers.  For the systems we worked on, all the power supplies were on a common bus with different addresses, so the common mechanism was to use the address (and a math expression) to determine the index of the PSU.  In your case it looks like you have a mux, or separate channels, so we\u0027ll have to add support for that.\n\n\u003e would adding a generic PSUConnector schema be the way to go here?\n\nProbably.  Ideally we\u0027d follow the same pattern as the fan connector stuff to at least make it similar.\n\nZhikiu was working on a similar problem, you might want to talk to her and see if there\u0027s some commonality there.",
+      "parentUuid": "f198c959_ccf56df4",
       "revId": "788c6404367d052bdabf24a5f91a435b854e9b11",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
