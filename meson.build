@@ -226,11 +226,13 @@ if not build_tests.disabled()
         executable(
             'test_fru_utils',
             'test/test_fru-utils.cpp',
+            'src/FruDevice.cpp',
             'src/FruUtils.cpp',
             cpp_args: test_boost_args,
             dependencies: [
                 boost,
                 gtest,
+                sdbusplus,
             ],
             implicit_include_directories: false,
             include_directories: 'include',
