@@ -121,9 +121,7 @@ static bool hasEepromFile(size_t bus, size_t address)
     }
 }
 
-static int64_t readFromEeprom(int flag __attribute__((unused)), int fd,
-                              uint16_t address __attribute__((unused)),
-                              uint16_t offset, uint8_t len, uint8_t* buf)
+static int64_t readFromEeprom(int fd, uint16_t offset, uint8_t len, uint8_t* buf)
 {
     auto result = lseek(fd, offset, SEEK_SET);
     if (result < 0)
@@ -194,13 +192,13 @@ static void makeProbeInterface(size_t bus, size_t address,
     it->second->initialize();
 }
 
-static int isDevice16Bit(int file)
+static std::optional<bool> isDevice16Bit(int file)
 {
     /* Get first byte */
     int byte1 = i2c_smbus_read_byte_data(file, 0);
     if (byte1 < 0)
     {
-        return byte1;
+        return std::nullopt;
     }
     /* Read 7 more bytes, it will read same first byte in case of
      * 8 bit but it will read next byte in case of 16 bit
@@ -210,14 +208,14 @@ static int isDevice16Bit(int file)
         int byte2 = i2c_smbus_read_byte_data(file, 0);
         if (byte2 < 0)
         {
-            return byte2;
+            return std::nullopt;
         }
         if (byte2 != byte1)
         {
-            return 1;
+            return true;
         }
     }
-    return 0;
+    return false;
 }
 
 // Issue an I2C transaction to first write to_slave_buf_len bytes,then read
@@ -253,10 +251,10 @@ static int i2cSmbusWriteThenRead(int file, uint16_t address,
     return (ret == SMBUS_IOCTL_WRITE_THEN_READ_MSG_COUNT) ? ret : -1;
 }
 
-static int64_t readBlockData(int flag, int file, uint16_t address,
+static int64_t readBlockData(bool is16bit, int file, uint16_t address,
                              uint16_t offset, uint8_t len, uint8_t* buf)
 {
-    if (flag == 0)
+    if (!is16bit)
     {
         return i2c_smbus_read_i2c_block_data(file, static_cast<uint8_t>(offset),
                                              len, buf);
@@ -282,8 +280,11 @@ static std::vector<uint8_t> processEeprom(int bus, int address)
 
     std::string errorMessage = "eeprom at " + std::to_string(bus) +
                                " address " + std::to_string(address);
-    std::vector<uint8_t> device = readFRUContents(
-        0, file, static_cast<uint16_t>(address), readFromEeprom, errorMessage);
+    auto readFunc = [file](int64_t offset, uint8_t length, uint8_t* outbuf) {
+        return readFromEeprom(file, offset, length, outbuf);
+    };
+    CachingFRUReader reader(readFunc);
+    std::vector<uint8_t> device = readFRUContents(reader, errorMessage);
 
     close(file);
     return device;
@@ -428,8 +429,8 @@ int getBusFRUs(int file, int first, int last, int bus,
             }
 
             /* Check for Device type if it is 8 bit or 16 bit */
-            int flag = isDevice16Bit(file);
-            if (flag < 0)
+            std::optional<bool> is16bit = isDevice16Bit(file);
+            if (!is16bit.has_value())
             {
                 std::cerr << "failed to read bus " << bus << " address " << ii
                           << "\n";
@@ -440,11 +441,13 @@ int getBusFRUs(int file, int first, int last, int bus,
                 continue;
             }
 
+            auto readFunc = [is16bit, file, ii](int64_t offset, uint8_t length, uint8_t* outbuf) {
+                return readBlockData(is16bit.value(), file, ii, offset, length, outbuf);
+            };
+            CachingFRUReader reader(readFunc);
             std::string errorMessage =
                 "bus " + std::to_string(bus) + " address " + std::to_string(ii);
-            std::vector<uint8_t> device =
-                readFRUContents(flag, file, static_cast<uint16_t>(ii),
-                                readBlockData, errorMessage);
+            std::vector<uint8_t> device = readFRUContents(reader, errorMessage);
             if (device.empty())
             {
                 continue;
