@@ -54,6 +54,76 @@ char bcdPlusToChar(uint8_t val)
     return (val < 10) ? static_cast<char>(val + '0') : bcdHighChars[val - 10];
 }
 
+int64_t FRUReader::read(uint16_t start, uint8_t len, uint8_t* outbuf)
+{
+    size_t done = 0, remaining = len, cursor = start;
+    while (done < len) {
+        size_t toCopy;
+        if (eepromSize.has_value() && cursor >= eepromSize.value())
+        {
+            break;
+        }
+
+        const uint8_t* data;
+        size_t blk = cursor / cacheBlockSize;
+        size_t blkOffset = cursor % cacheBlockSize;
+        auto findBlk = cache.find(blk);
+        if (findBlk == cache.end())
+        {
+            // miss, populate cache
+            uint8_t* newdata = cache[blk].data();
+            int64_t ret = readFunc(blk * cacheBlockSize, cacheBlockSize, newdata);
+
+            // if we've reached the end of the eeprom, record its size
+            if (ret >= 0 && static_cast<size_t>(ret) < cacheBlockSize)
+            {
+                eepromSize = (blk * cacheBlockSize) + ret;
+            }
+
+            if (ret <= 0)
+            {
+                // don't leave empty blocks in the cache
+                cache.erase(blk);
+                return done ? done : ret;
+            }
+
+            data = newdata;
+            size_t populated = ret;
+            if (blkOffset >= populated)
+            {
+                // if the eeprom ended mid-block and we're trying to read from
+                // at or beyond that point, don't copy anything
+                toCopy = 0;
+            }
+            else
+            {
+                toCopy = std::min(populated - blkOffset, remaining);
+            }
+        }
+        else
+        {
+            // hit, use cached data
+            data = findBlk->second.data();
+            toCopy = std::min(cacheBlockSize - blkOffset, remaining);
+
+            // if the hit is to the block containing the (previously
+            // discovered on the miss that populated it) end of the eeprom,
+            // don't copy spurious bytes past the end
+            if (eepromSize.has_value() && (cursor + toCopy > eepromSize.value()))
+            {
+                toCopy = eepromSize.value() - cursor;
+            }
+        }
+
+        memcpy(outbuf + done, data + blkOffset, toCopy);
+        cursor += toCopy;
+        done += toCopy;
+        remaining -= toCopy;
+    }
+
+    return done;
+}
+
 enum FRUDataEncoding
 {
     binary = 0x0,
@@ -586,13 +656,12 @@ bool validateHeader(const std::array<uint8_t, I2C_SMBUS_BLOCK_MAX>& blockData)
     return true;
 }
 
-bool findFRUHeader(int flag, int file, uint16_t address,
-                   const ReadBlockFunc& readBlock,
+bool findFRUHeader(FRUReader& reader,
                    const std::string& errorHelp,
                    std::array<uint8_t, I2C_SMBUS_BLOCK_MAX>& blockData,
                    uint16_t& baseOffset)
 {
-    if (readBlock(flag, file, address, baseOffset, 0x8, blockData.data()) < 0)
+    if (reader.read(baseOffset, 0x8, blockData.data()) < 0)
     {
         std::cerr << "failed to read " << errorHelp << " base offset "
             << baseOffset << "\n";
@@ -619,8 +688,7 @@ bool findFRUHeader(int flag, int file, uint16_t address,
     {
         // look for the FRU header at offset 0x6000
         baseOffset = 0x6000;
-        return findFRUHeader(flag, file, address, readBlock, errorHelp,
-            blockData, baseOffset);
+        return findFRUHeader(reader, errorHelp, blockData, baseOffset);
     }
 
     if (debug)
@@ -632,15 +700,13 @@ bool findFRUHeader(int flag, int file, uint16_t address,
     return false;
 }
 
-std::vector<uint8_t> readFRUContents(int flag, int file, uint16_t address,
-                                     const ReadBlockFunc& readBlock,
+std::vector<uint8_t> readFRUContents(FRUReader& reader,
                                      const std::string& errorHelp)
 {
     std::array<uint8_t, I2C_SMBUS_BLOCK_MAX> blockData;
     uint16_t baseOffset = 0x0;
 
-    if (!findFRUHeader(flag, file, address, readBlock, errorHelp,
-            blockData, baseOffset)) {
+    if (!findFRUHeader(reader, errorHelp, blockData, baseOffset)) {
         return {};
     }
 
@@ -683,9 +749,8 @@ std::vector<uint8_t> readFRUContents(int flag, int file, uint16_t address,
 
         areaOffset *= fruBlockSize;
 
-        if (readBlock(flag, file, address,
-                      baseOffset + static_cast<uint16_t>(areaOffset),
-                      0x2, blockData.data()) < 0)
+        if (reader.read(baseOffset + static_cast<uint16_t>(areaOffset),
+                        0x2, blockData.data()) < 0)
         {
             std::cerr << "failed to read " << errorHelp << " base offset "
                 << baseOffset << "\n";
@@ -715,9 +780,8 @@ std::vector<uint8_t> readFRUContents(int flag, int file, uint16_t address,
         {
             // In multi-area, the area offset points to the 0th record, each
             // record has 3 bytes of the header we care about.
-            if (readBlock(flag, file, address,
-                          baseOffset + static_cast<uint16_t>(areaOffset), 0x3,
-                          blockData.data()) < 0)
+            if (reader.read(baseOffset + static_cast<uint16_t>(areaOffset), 0x3,
+                            blockData.data()) < 0)
             {
                 std::cerr << "failed to read " << errorHelp << " base offset "
                     << baseOffset << "\n";
@@ -748,10 +812,9 @@ std::vector<uint8_t> readFRUContents(int flag, int file, uint16_t address,
         size_t requestLength =
             std::min(static_cast<size_t>(I2C_SMBUS_BLOCK_MAX), fruLength);
 
-        if (readBlock(flag, file, address,
-                      baseOffset + static_cast<uint16_t>(readOffset),
-                      static_cast<uint8_t>(requestLength),
-                      blockData.data()) < 0)
+        if (reader.read(baseOffset + static_cast<uint16_t>(readOffset),
+                        static_cast<uint8_t>(requestLength),
+                        blockData.data()) < 0)
         {
             std::cerr << "failed to read " << errorHelp << " base offset "
                 << baseOffset << "\n";
