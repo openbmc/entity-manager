@@ -27,9 +27,10 @@ if get_option('fru-device')
     endif
     executable(
         'fru-device',
+        'FruDeviceMain.cpp',
         'FruDevice.cpp',
-        'Utils.cpp',
         'FruUtils.cpp',
+        'Utils.cpp',
         cpp_args: cpp_args_fd,
         dependencies: [
             boost,
