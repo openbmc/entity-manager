@@ -79,8 +79,25 @@ inline fruAreas operator++(fruAreas& x)
 }
 
 using ReadBlockFunc =
-    std::function<int64_t(int flag, int file, uint16_t address, uint16_t offset,
-                          uint8_t length, uint8_t* outBuf)>;
+    std::function<int64_t(uint16_t offset, uint8_t len, uint8_t* outbuf)>;
+
+// A caching wrapper around a ReadBlockFunc
+class FRUReader
+{
+public:
+    FRUReader(ReadBlockFunc readFunc) :
+        readFunc(readFunc) { }
+    int64_t read(uint16_t start, uint8_t len, uint8_t* outbuf);
+
+private:
+    static constexpr size_t CACHE_BLOCK_SIZE = 64;
+    typedef std::array<uint8_t, CACHE_BLOCK_SIZE> CacheBlock;
+
+    ReadBlockFunc readFunc;
+
+    // indexed by block number (byte number / block size)
+    boost::container::flat_map<uint32_t, CacheBlock> cache;
+};
 
 inline const std::string& getFruAreaName(fruAreas area)
 {
@@ -127,31 +144,23 @@ unsigned int updateFRUAreaLenAndChecksum(std::vector<uint8_t>& fruData,
 ssize_t getFieldLength(uint8_t fruFieldTypeLenValue);
 
 /// \brief Find a FRU header.
-/// \param flag the flag required for raw i2c
-/// \param file the open file handle
-/// \param address the i2c device address
-/// \param readBlock a read method
+/// \param reader the FRUReader to read via
 /// \param errorHelp and a helper string for failures
 /// \param blockData buffer to return the last read block
 /// \param baseOffset the offset to start the search at;
 ///        set to 0 to perform search;
 ///        returns the offset at which a header was found
 /// \return whether a header was found
-bool findFRUHeader(int flag, int file, uint16_t address,
-                   const ReadBlockFunc& readBlock,
+bool findFRUHeader(FRUReader& reader,
                    const std::string& errorHelp,
                    std::array<uint8_t, I2C_SMBUS_BLOCK_MAX>& blockData,
                    uint16_t& baseOffset);
 
 /// \brief Read and validate FRU contents.
-/// \param flag the flag required for raw i2c
-/// \param file the open file handle
-/// \param address the i2c device address
-/// \param readBlock a read method
+/// \param reader the FRUReader to read via
 /// \param errorHelp and a helper string for failures
 /// \return the FRU contents from the file
-std::vector<uint8_t> readFRUContents(int flag, int file, uint16_t address,
-                                     const ReadBlockFunc& readBlock,
+std::vector<uint8_t> readFRUContents(FRUReader& reader,
                                      const std::string& errorHelp);
 
 /// \brief Validate an IPMI FRU common header
