@@ -32,6 +32,7 @@ if get_option('fru-device')
         'fru_device.cpp',
         'utils.cpp',
         'fru_utils.cpp',
+        'fru_reader.cpp',
         cpp_args: cpp_args_fd,
         dependencies: [
             boost,
