@@ -83,16 +83,6 @@ boost::asio::io_service io;
 
 uint8_t calculateChecksum(std::vector<uint8_t>::const_iterator iter,
                           std::vector<uint8_t>::const_iterator end);
-bool updateFRUProperty(
-    const std::string& assetTag, uint32_t bus, uint32_t address,
-    const std::string& propertyName,
-    boost::container::flat_map<
-        std::pair<size_t, size_t>,
-        std::shared_ptr<sdbusplus::asio::dbus_interface>>& dbusInterfaceMap,
-    size_t& unknownBusObjectCount, bool powerIsOn,
-    sdbusplus::asio::object_server& objServer,
-    std::shared_ptr<sdbusplus::asio::connection>& systemBus);
-
 // Given a bus/address, produce the path in sysfs for an eeprom.
 static std::string getEepromPath(size_t bus, size_t address)
 {
@@ -159,12 +149,6 @@ static int getRootBus(size_t bus)
         return -1;
     }
     return std::stoi(filename.substr(0, findBus));
-}
-
-static bool isMuxBus(size_t bus)
-{
-    return is_symlink(std::filesystem::path(
-        "/sys/bus/i2c/devices/i2c-" + std::to_string(bus) + "/mux_device"));
 }
 
 static void makeProbeInterface(size_t bus, size_t address,
@@ -639,163 +623,6 @@ std::vector<uint8_t>& getFRUInfo(const uint8_t& bus, const uint8_t& address)
     return ret;
 }
 
-void addFruObjectToDbus(
-    std::vector<uint8_t>& device,
-    boost::container::flat_map<
-        std::pair<size_t, size_t>,
-        std::shared_ptr<sdbusplus::asio::dbus_interface>>& dbusInterfaceMap,
-    uint32_t bus, uint32_t address, size_t& unknownBusObjectCount,
-    bool powerIsOn, sdbusplus::asio::object_server& objServer,
-    std::shared_ptr<sdbusplus::asio::connection>& systemBus)
-{
-    boost::container::flat_map<std::string, std::string> formattedFRU;
-    resCodes res = formatFRU(device, formattedFRU);
-    if (res == resCodes::resErr)
-    {
-        std::cerr << "failed to parse FRU for device at bus " << bus
-                  << " address " << address << "\n";
-        return;
-    }
-    if (res == resCodes::resWarn)
-    {
-        std::cerr << "there were warnings while parsing FRU for device at bus "
-                  << bus << " address " << address << "\n";
-    }
-
-    auto productNameFind = formattedFRU.find("BOARD_PRODUCT_NAME");
-    std::string productName;
-    // Not found under Board section or an empty string.
-    if (productNameFind == formattedFRU.end() ||
-        productNameFind->second.empty())
-    {
-        productNameFind = formattedFRU.find("PRODUCT_PRODUCT_NAME");
-    }
-    // Found under Product section and not an empty string.
-    if (productNameFind != formattedFRU.end() &&
-        !productNameFind->second.empty())
-    {
-        productName = productNameFind->second;
-        std::regex illegalObject("[^A-Za-z0-9_]");
-        productName = std::regex_replace(productName, illegalObject, "_");
-    }
-    else
-    {
-        productName = "UNKNOWN" + std::to_string(unknownBusObjectCount);
-        unknownBusObjectCount++;
-    }
-
-    productName = "/xyz/openbmc_project/FruDevice/" + productName;
-    // avoid duplicates by checking to see if on a mux
-    if (bus > 0)
-    {
-        int highest = -1;
-        bool found = false;
-
-        for (auto const& busIface : dbusInterfaceMap)
-        {
-            std::string path = busIface.second->get_object_path();
-            if (std::regex_match(path, std::regex(productName + "(_\\d+|)$")))
-            {
-                if (isMuxBus(bus) && address == busIface.first.second &&
-                    (getFRUInfo(static_cast<uint8_t>(busIface.first.first),
-                                static_cast<uint8_t>(busIface.first.second)) ==
-                     getFRUInfo(static_cast<uint8_t>(bus),
-                                static_cast<uint8_t>(address))))
-                {
-                    // This device is already added to the lower numbered bus,
-                    // do not replicate it.
-                    return;
-                }
-
-                // Check if the match named has extra information.
-                found = true;
-                std::smatch baseMatch;
-
-                bool match = std::regex_match(
-                    path, baseMatch, std::regex(productName + "_(\\d+)$"));
-                if (match)
-                {
-                    if (baseMatch.size() == 2)
-                    {
-                        std::ssub_match baseSubMatch = baseMatch[1];
-                        std::string base = baseSubMatch.str();
-
-                        int value = std::stoi(base);
-                        highest = (value > highest) ? value : highest;
-                    }
-                }
-            }
-        } // end searching objects
-
-        if (found)
-        {
-            // We found something with the same name.  If highest was still -1,
-            // it means this new entry will be _0.
-            productName += "_";
-            productName += std::to_string(++highest);
-        }
-    }
-
-    std::shared_ptr<sdbusplus::asio::dbus_interface> iface =
-        objServer.add_interface(productName, "xyz.openbmc_project.FruDevice");
-    dbusInterfaceMap[std::pair<size_t, size_t>(bus, address)] = iface;
-
-    for (auto& property : formattedFRU)
-    {
-
-        std::regex_replace(property.second.begin(), property.second.begin(),
-                           property.second.end(), nonAsciiRegex, "_");
-        if (property.second.empty() && property.first != "PRODUCT_ASSET_TAG")
-        {
-            continue;
-        }
-        std::string key =
-            std::regex_replace(property.first, nonAsciiRegex, "_");
-
-        if (property.first == "PRODUCT_ASSET_TAG")
-        {
-            std::string propertyName = property.first;
-            iface->register_property(
-                key, property.second + '\0',
-                [bus, address, propertyName, &dbusInterfaceMap,
-                 &unknownBusObjectCount, &powerIsOn, &objServer,
-                 &systemBus](const std::string& req, std::string& resp) {
-                    if (strcmp(req.c_str(), resp.c_str()) != 0)
-                    {
-                        // call the method which will update
-                        if (updateFRUProperty(req, bus, address, propertyName,
-                                              dbusInterfaceMap,
-                                              unknownBusObjectCount, powerIsOn,
-                                              objServer, systemBus))
-                        {
-                            resp = req;
-                        }
-                        else
-                        {
-                            throw std::invalid_argument(
-                                "FRU property update failed.");
-                        }
-                    }
-                    return 1;
-                });
-        }
-        else if (!iface->register_property(key, property.second + '\0'))
-        {
-            std::cerr << "illegal key: " << key << "\n";
-        }
-        if (debug)
-        {
-            std::cout << property.first << ": " << property.second << "\n";
-        }
-    }
-
-    // baseboard will be 0, 0
-    iface->register_property("BUS", bus);
-    iface->register_property("ADDRESS", address);
-
-    iface->initialize();
-}
-
 static bool readBaseboardFRU(std::vector<uint8_t>& baseboardFRU)
 {
     // try to read baseboard fru from file
@@ -825,7 +652,7 @@ bool writeFRU(uint8_t bus, uint8_t address, const std::vector<uint8_t>& fru)
         return false;
     }
     // verify legal fru by running it through fru parsing logic
-    if (formatFRU(fru, tmp) != resCodes::resOK)
+    if (formatIPMIFRU(fru, tmp) != resCodes::resOK)
     {
         std::cerr << "Invalid fru format during writeFRU\n";
         return false;
