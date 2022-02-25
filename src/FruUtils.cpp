@@ -54,6 +54,77 @@ char bcdPlusToChar(uint8_t val)
     return (val < 10) ? static_cast<char>(val + '0') : bcdHighChars[val - 10];
 }
 
+ssize_t FRUReader::read(off_t start, size_t len, uint8_t* outbuf)
+{
+    size_t done = 0;
+    size_t remaining = len;
+    size_t cursor = start;
+    while (done < len)
+    {
+        if (eof.has_value() && cursor >= eof.value())
+        {
+            break;
+        }
+
+        const uint8_t* blkData;
+        size_t available;
+        size_t blk = cursor / cacheBlockSize;
+        size_t blkOffset = cursor % cacheBlockSize;
+        auto findBlk = cache.find(blk);
+        if (findBlk == cache.end())
+        {
+            // miss, populate cache
+            uint8_t* newData = cache[blk].data();
+            int64_t ret =
+                readFunc(blk * cacheBlockSize, cacheBlockSize, newData);
+
+            // if we've reached the end of the eeprom, record its size
+            if (ret >= 0 && static_cast<size_t>(ret) < cacheBlockSize)
+            {
+                eof = (blk * cacheBlockSize) + ret;
+            }
+
+            if (ret <= 0)
+            {
+                // don't leave empty blocks in the cache
+                cache.erase(blk);
+                return done ? done : ret;
+            }
+
+            blkData = newData;
+            available = ret;
+        }
+        else
+        {
+            // hit, use cached data
+            blkData = findBlk->second.data();
+
+            // if the hit is to the block containing the (previously
+            // discovered on the miss that populated it) end of the eeprom,
+            // don't copy spurious bytes past the end
+            if (eof.has_value() && (eof.value() / cacheBlockSize == blk))
+            {
+                available = eof.value() % cacheBlockSize;
+            }
+            else
+            {
+                available = cacheBlockSize;
+            }
+        }
+
+        size_t toCopy = (blkOffset >= available)
+                            ? 0
+                            : std::min(available - blkOffset, remaining);
+
+        memcpy(outbuf + done, blkData + blkOffset, toCopy);
+        cursor += toCopy;
+        done += toCopy;
+        remaining -= toCopy;
+    }
+
+    return done;
+}
+
 enum FRUDataEncoding
 {
     binary = 0x0,
@@ -587,12 +658,11 @@ bool validateHeader(const std::array<uint8_t, I2C_SMBUS_BLOCK_MAX>& blockData)
     return true;
 }
 
-bool findFRUHeader(int flag, int file, uint16_t address,
-                   const ReadBlockFunc& readBlock, const std::string& errorHelp,
+bool findFRUHeader(FRUReader& reader, const std::string& errorHelp,
                    std::array<uint8_t, I2C_SMBUS_BLOCK_MAX>& blockData,
                    off_t& baseOffset)
 {
-    if (readBlock(flag, file, address, baseOffset, 0x8, blockData.data()) < 0)
+    if (reader.read(baseOffset, 0x8, blockData.data()) < 0)
     {
         std::cerr << "failed to read " << errorHelp << " base offset "
                   << baseOffset << "\n";
@@ -620,8 +690,7 @@ bool findFRUHeader(int flag, int file, uint16_t address,
     {
         // look for the FRU header at offset 0x6000
         baseOffset = 0x6000;
-        return findFRUHeader(flag, file, address, readBlock, errorHelp,
-                             blockData, baseOffset);
+        return findFRUHeader(reader, errorHelp, blockData, baseOffset);
     }
 
     if (debug)
@@ -633,15 +702,13 @@ bool findFRUHeader(int flag, int file, uint16_t address,
     return false;
 }
 
-std::vector<uint8_t> readFRUContents(int flag, int file, uint16_t address,
-                                     const ReadBlockFunc& readBlock,
+std::vector<uint8_t> readFRUContents(FRUReader& reader,
                                      const std::string& errorHelp)
 {
     std::array<uint8_t, I2C_SMBUS_BLOCK_MAX> blockData;
     off_t baseOffset = 0x0;
 
-    if (!findFRUHeader(flag, file, address, readBlock, errorHelp, blockData,
-                       baseOffset))
+    if (!findFRUHeader(reader, errorHelp, blockData, baseOffset))
     {
         return {};
     }
@@ -685,8 +752,7 @@ std::vector<uint8_t> readFRUContents(int flag, int file, uint16_t address,
 
         areaOffset *= fruBlockSize;
 
-        if (readBlock(flag, file, address, baseOffset + areaOffset, 0x2,
-                      blockData.data()) < 0)
+        if (reader.read(baseOffset + areaOffset, 0x2, blockData.data()) < 0)
         {
             std::cerr << "failed to read " << errorHelp << " base offset "
                       << baseOffset << "\n";
@@ -716,8 +782,7 @@ std::vector<uint8_t> readFRUContents(int flag, int file, uint16_t address,
         {
             // In multi-area, the area offset points to the 0th record, each
             // record has 3 bytes of the header we care about.
-            if (readBlock(flag, file, address, baseOffset + areaOffset, 0x3,
-                          blockData.data()) < 0)
+            if (reader.read(baseOffset + areaOffset, 0x3, blockData.data()) < 0)
             {
                 std::cerr << "failed to read " << errorHelp << " base offset "
                           << baseOffset << "\n";
@@ -748,8 +813,8 @@ std::vector<uint8_t> readFRUContents(int flag, int file, uint16_t address,
         size_t requestLength =
             std::min(static_cast<size_t>(I2C_SMBUS_BLOCK_MAX), fruLength);
 
-        if (readBlock(flag, file, address, baseOffset + readOffset,
-                      requestLength, blockData.data()) < 0)
+        if (reader.read(baseOffset + readOffset, requestLength,
+                        blockData.data()) < 0)
         {
             std::cerr << "failed to read " << errorHelp << " base offset "
                       << baseOffset << "\n";
