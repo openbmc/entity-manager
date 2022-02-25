@@ -1287,10 +1287,13 @@ bool updateFRUProperty(
     std::copy(restFRUAreaFieldsData.begin(), restFRUAreaFieldsData.end(),
               fruData.begin() + restFRUFieldsLoc);
 
+#ifdef ENABLE_FRU_AREA_RESIZE
     // Update final fru with new fru area length and checksum
     unsigned int nextFRUAreaNewLoc = updateFRUAreaLenAndChecksum(
         fruData, fruAreaStart, fruAreaDataEnd, fruAreaEnd);
-
+#else
+    updateFRUAreaChecksum(fruData, fruAreaStart, fruAreaDataEnd, fruAreaEnd);
+#endif // ENABLE_FRU_AREA_RESIZE
 #ifdef ENABLE_FRU_AREA_RESIZE
     ++nextFRUAreaNewLoc;
     ssize_t nextFRUAreaOffsetDiff =
@@ -1326,9 +1329,6 @@ bool updateFRUProperty(
                       fruData.end(), 0);
         }
     }
-#else
-    // this is to avoid "unused variable" warning
-    (void)nextFRUAreaNewLoc;
 #endif // ENABLE_FRU_AREA_RESIZE
     if (fruData.empty())
     {

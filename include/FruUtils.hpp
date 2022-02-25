@@ -119,6 +119,10 @@ uint8_t calculateChecksum(std::vector<uint8_t>::const_iterator iter,
 
 uint8_t calculateChecksum(std::vector<uint8_t>& fruAreaData);
 
+void updateFRUAreaChecksum(std::vector<uint8_t>& fruData, size_t fruAreaStart,
+                           size_t fruAreaEndOfFieldsOffset,
+                           size_t fruAreaEndOffset);
+
 unsigned int updateFRUAreaLenAndChecksum(std::vector<uint8_t>& fruData,
                                          size_t fruAreaStart,
                                          size_t fruAreaEndOfFieldsOffset,

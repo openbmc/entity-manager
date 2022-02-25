@@ -473,6 +473,23 @@ uint8_t calculateChecksum(std::vector<uint8_t>& fruAreaData)
     return calculateChecksum(fruAreaData.begin(), fruAreaData.end());
 }
 
+void updateFRUAreaChecksum(std::vector<uint8_t>& fruData, size_t fruAreaStart,
+                           size_t fruAreaEndOfFieldsOffset,
+                           size_t fruAreaEndOffset)
+{
+    // fill zeros for any remaining unused space
+    std::fill(fruData.begin() + fruAreaEndOfFieldsOffset,
+              fruData.begin() + fruAreaEndOffset, 0);
+
+    size_t checksumLoc = fruAreaEndOffset - 1;
+    // Calculate new checksum
+    std::vector<uint8_t> finalFRUData;
+    std::copy_n(fruData.begin() + fruAreaStart, checksumLoc - fruAreaStart,
+                std::back_inserter(finalFRUData));
+
+    fruData[checksumLoc] = calculateChecksum(finalFRUData);
+}
+
 // Update new fru area length &
 // Update checksum at new checksum location
 // Return the offset of the area checksum byte
