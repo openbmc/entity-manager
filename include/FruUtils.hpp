@@ -17,6 +17,7 @@
 
 #pragma once
 #include <boost/container/flat_map.hpp>
+#include <sdbusplus/asio/object_server.hpp>
 
 #include <cstdint>
 #include <functional>
@@ -94,6 +95,8 @@ inline const std::string& getFruAreaName(fruAreas area)
 
 std::tm intelEpoch(void);
 
+bool isMuxBus(size_t bus);
+
 char sixBitToChar(uint8_t val);
 
 /* 0xd - 0xf are reserved values, but not fatal; use a placeholder char. */
@@ -167,3 +170,33 @@ bool validateHeader(const std::array<uint8_t, I2C_SMBUS_BLOCK_MAX>& blockData);
 /// \param area - the area
 /// \return the field offset
 unsigned int getHeaderAreaFieldOffset(fruAreas area);
+
+// Details with example of Asset Tag Update
+// To find location of Product Info Area asset tag as per FRU specification
+// 1. Find product Info area starting offset (*8 - as header will be in
+// multiple of 8 bytes).
+// 2. Skip 3 bytes of product info area (like format version, area length,
+// and language code).
+// 3. Traverse manufacturer name, product name, product version, & product
+// serial number, by reading type/length code to reach the Asset Tag.
+// 4. Update the Asset Tag, reposition the product Info area in multiple of
+// 8 bytes. Update the Product area length and checksum.
+
+bool updateFRUProperty(
+    const std::string& updatePropertyReq, uint32_t bus, uint32_t address,
+    const std::string& propertyName,
+    boost::container::flat_map<
+        std::pair<size_t, size_t>,
+        std::shared_ptr<sdbusplus::asio::dbus_interface>>& dbusInterfaceMap,
+    size_t& unknownBusObjectCount, const bool& powerIsOn,
+    sdbusplus::asio::object_server& objServer,
+    std::shared_ptr<sdbusplus::asio::connection>& systemBus);
+
+void addFruObjectToDbus(
+    std::vector<uint8_t>& device,
+    boost::container::flat_map<
+        std::pair<size_t, size_t>,
+        std::shared_ptr<sdbusplus::asio::dbus_interface>>& dbusInterfaceMap,
+    uint32_t bus, uint32_t address, size_t& unknownBusObjectCount,
+    const bool& powerIsOn, sdbusplus::asio::object_server& objServer,
+    std::shared_ptr<sdbusplus::asio::connection>& systemBus);
