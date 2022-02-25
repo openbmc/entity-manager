@@ -20,6 +20,7 @@
 
 #include <cstdint>
 #include <functional>
+#include <optional>
 #include <regex>
 #include <string>
 #include <utility>
@@ -83,9 +84,38 @@ inline fruAreas operator++(fruAreas& x)
                                      1);
 }
 
+// A function to read up to I2C_SMBUS_BLOCK_MAX bytes of FRU data.  Returns
+// negative on error, or the number of bytes read otherwise, which may be (but
+// is not guaranteed to be) less than len if the read would go beyond the end
+// of the FRU.
 using ReadBlockFunc =
-    std::function<ssize_t(int flag, int file, uint16_t address, off_t offset,
-                          size_t length, uint8_t* outBuf)>;
+    std::function<int64_t(off_t offset, size_t len, uint8_t* outbuf)>;
+
+// A caching wrapper around a ReadBlockFunc
+class FRUReader
+{
+  public:
+    FRUReader(ReadBlockFunc readFunc) : readFunc(std::move(readFunc))
+    {}
+    // The ::read() operation here is analogous to ReadBlockFunc (with the same
+    // return value semantics), but is not subject to SMBus block size
+    // limitations; it can read as much data as needed in a single call.
+    ssize_t read(off_t start, size_t len, uint8_t* outbuf);
+
+  private:
+    static constexpr size_t cacheBlockSize = 32;
+    static_assert(cacheBlockSize <= I2C_SMBUS_BLOCK_MAX);
+    using CacheBlock = std::array<uint8_t, cacheBlockSize>;
+
+    // indexed by block number (byte number / block size)
+    using Cache = std::unordered_map<uint32_t, CacheBlock>;
+
+    ReadBlockFunc readFunc;
+    Cache cache;
+
+    // byte offset of the end of the FRU (if readFunc has reported it)
+    std::optional<size_t> eof;
+};
 
 inline const std::string& getFruAreaName(fruAreas area)
 {
@@ -132,30 +162,22 @@ unsigned int updateFRUAreaLenAndChecksum(std::vector<uint8_t>& fruData,
 ssize_t getFieldLength(uint8_t fruFieldTypeLenValue);
 
 /// \brief Find a FRU header.
-/// \param flag the flag required for raw i2c
-/// \param file the open file handle
-/// \param address the i2c device address
-/// \param readBlock a read method
+/// \param reader the FRUReader to read via
 /// \param errorHelp and a helper string for failures
 /// \param blockData buffer to return the last read block
 /// \param baseOffset the offset to start the search at;
 ///        set to 0 to perform search;
 ///        returns the offset at which a header was found
 /// \return whether a header was found
-bool findFRUHeader(int flag, int file, uint16_t address,
-                   const ReadBlockFunc& readBlock, const std::string& errorHelp,
+bool findFRUHeader(FRUReader& reader, const std::string& errorHelp,
                    std::array<uint8_t, I2C_SMBUS_BLOCK_MAX>& blockData,
                    off_t& baseOffset);
 
 /// \brief Read and validate FRU contents.
-/// \param flag the flag required for raw i2c
-/// \param file the open file handle
-/// \param address the i2c device address
-/// \param readBlock a read method
+/// \param reader the FRUReader to read via
 /// \param errorHelp and a helper string for failures
 /// \return the FRU contents from the file
-std::vector<uint8_t> readFRUContents(int flag, int file, uint16_t address,
-                                     const ReadBlockFunc& readBlock,
+std::vector<uint8_t> readFRUContents(FRUReader& reader,
                                      const std::string& errorHelp);
 
 /// \brief Validate an IPMI FRU common header
