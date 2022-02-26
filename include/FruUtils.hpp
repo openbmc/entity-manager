@@ -82,11 +82,12 @@ inline fruAreas operator++(fruAreas& x)
 using ReadBlockFunc =
     std::function<int64_t(uint16_t offset, uint8_t len, uint8_t* outbuf)>;
 
-// A caching wrapper around a ReadBlockFunc
+// A (by default) caching wrapper around a readFunc
 class FRUReader
 {
 public:
-  FRUReader(ReadBlockFunc readFunc) : readFunc(std::move(readFunc))
+  FRUReader(ReadBlockFunc readFunc, bool noCache=false) : readFunc(std::move(readFunc)),
+                                                          noCache(noCache)
   {}
   int64_t read(uint16_t start, uint8_t len, uint8_t* outbuf);
   static constexpr size_t cacheBlockSize = 32;
@@ -96,6 +97,7 @@ private:
   using CacheBlock = std::array<uint8_t, cacheBlockSize>;
 
   ReadBlockFunc readFunc;
+  bool noCache;
 
   // byte offset of the end of the EEPROM (if we've found it)
   std::optional<size_t> eepromSize;
@@ -148,19 +150,6 @@ unsigned int updateFRUAreaLenAndChecksum(std::vector<uint8_t>& fruData,
 
 ssize_t getFieldLength(uint8_t fruFieldTypeLenValue);
 
-/// \brief Find a FRU header.
-/// \param reader the FRUReader to read via
-/// \param errorHelp and a helper string for failures
-/// \param blockData buffer to return the last read block
-/// \param baseOffset the offset to start the search at;
-///        set to 0 to perform search;
-///        returns the offset at which a header was found
-/// \return whether a header was found
-bool findFRUHeader(FRUReader& reader,
-                   const std::string& errorHelp,
-                   std::array<uint8_t, I2C_SMBUS_BLOCK_MAX>& blockData,
-                   uint16_t& baseOffset);
-
 /// \brief Read and validate FRU contents.
 /// \param reader the FRUReader to read via
 /// \param errorHelp and a helper string for failures
@@ -169,9 +158,9 @@ std::vector<uint8_t> readFRUContents(FRUReader& reader,
                                      const std::string& errorHelp);
 
 /// \brief Validate an IPMI FRU common header
-/// \param blockData the bytes comprising the common header
+/// \param hdr the bytes comprising the common header
 /// \return true if valid
-bool validateHeader(const std::array<uint8_t, I2C_SMBUS_BLOCK_MAX>& blockData);
+bool validateIPMIHeader(const std::vector<uint8_t>& hdr);
 
 /// \brief Get offset for a common header area
 /// \param area - the area
