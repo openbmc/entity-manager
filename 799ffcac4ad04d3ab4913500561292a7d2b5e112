@@ -36,6 +36,23 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "18a396a5_f33f036b",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2022-02-26T22:09:30Z",
+      "side": 1,
+      "message": "Haven\u0027t reviewed the full patch yet.",
+      "revId": "799ffcac4ad04d3ab4913500561292a7d2b5e112",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "16a2444a_e34bcecc",
@@ -66,6 +83,30 @@
       "writtenOn": "2022-02-24T02:06:49Z",
       "side": 1,
       "message": "I guess the rest of the codebase is a bit inconsistent in this regard already (sometimes it\u0027s `Fru`, sometimes it\u0027s `FRU`), but personally I\u0027d prefer to keep acronyms in identifiers upper-cased, so e.g. `kTypeDDR3` instead of `kTypeDdr3` and such (as is also already the case with the ModuleType and EccType enums below).\n\nAnd likewise `s/Spd/SPD/`, `s/Ecc/ECC/`, etc. elsewhere.",
+      "range": {
+        "startLine": 16,
+        "startChar": 8,
+        "endLine": 22,
+        "endChar": 25
+      },
+      "revId": "799ffcac4ad04d3ab4913500561292a7d2b5e112",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "076f8e15_e9c3f786",
+        "filename": "include/spd/spd.hpp",
+        "patchSetId": 2
+      },
+      "lineNbr": 22,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2022-02-26T22:09:30Z",
+      "side": 1,
+      "message": "This \"how do you capitalize shorthand in a camel cased variable\" problem been debated multiple times within the project.  I personally as a maintainer don\u0027t have a strong opinion here.  I find DDR just about as readable as Ddr, and given that we don\u0027t have a good way to lint for that kind of thing, I generally don\u0027t enforce it, but if the author wanted to make the change, I\u0027m fine either way.",
+      "parentUuid": "89f16c37_ea7bdd57",
       "range": {
         "startLine": 16,
         "startChar": 8,
@@ -118,6 +159,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "94150176_fbbc0dce",
+        "filename": "include/spd/spd.hpp",
+        "patchSetId": 2
+      },
+      "lineNbr": 96,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2022-02-26T22:09:30Z",
+      "side": 1,
+      "message": "+1",
+      "parentUuid": "3b71cc0d_c81c2baa",
+      "range": {
+        "startLine": 93,
+        "startChar": 4,
+        "endLine": 96,
+        "endChar": 44
+      },
+      "revId": "799ffcac4ad04d3ab4913500561292a7d2b5e112",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "7b136cb3_78ce6023",
         "filename": "include/spd/spd.hpp",
         "patchSetId": 2
@@ -129,6 +194,24 @@
       "writtenOn": "2022-02-24T02:06:49Z",
       "side": 1,
       "message": "Maybe create a struct with named `year` and `week` members instead of a generic std::pair?",
+      "revId": "799ffcac4ad04d3ab4913500561292a7d2b5e112",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "cc486007_f1dec187",
+        "filename": "include/spd/spd.hpp",
+        "patchSetId": 2
+      },
+      "lineNbr": 106,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2022-02-26T22:09:30Z",
+      "side": 1,
+      "message": "+1",
+      "parentUuid": "7b136cb3_78ce6023",
       "revId": "799ffcac4ad04d3ab4913500561292a7d2b5e112",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
@@ -158,6 +241,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "6d5ef727_6a4fb7d9",
+        "filename": "include/spd/spd.hpp",
+        "patchSetId": 2
+      },
+      "lineNbr": 109,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2022-02-26T22:09:30Z",
+      "side": 1,
+      "message": "Lets use std::string here.  vector\u003cuint8_t\u003e is a bit hard to use in most contexts.",
+      "parentUuid": "9c6032df_046cc669",
+      "range": {
+        "startLine": 108,
+        "startChar": 0,
+        "endLine": 109,
+        "endChar": 56
+      },
+      "revId": "799ffcac4ad04d3ab4913500561292a7d2b5e112",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "35fafad8_b6911437",
         "filename": "include/spd/spd.hpp",
         "patchSetId": 2
@@ -175,6 +282,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "c0915121_8807bf34",
+        "filename": "include/spd/spd.hpp",
+        "patchSetId": 2
+      },
+      "lineNbr": 119,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2022-02-26T22:09:30Z",
+      "side": 1,
+      "message": "+1.  Ideally this should be answered in your commit message.",
+      "parentUuid": "35fafad8_b6911437",
+      "revId": "799ffcac4ad04d3ab4913500561292a7d2b5e112",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "49912e54_5775c89b",
         "filename": "src/spd.cpp",
         "patchSetId": 2
@@ -186,6 +311,24 @@
       "writtenOn": "2022-02-24T02:06:49Z",
       "side": 1,
       "message": "I couldn\u0027t tell you the exact parameter configuration off the top of my head, but I suspect this could probably be done via boost::crc instead of having our own open-coded version of it.",
+      "revId": "799ffcac4ad04d3ab4913500561292a7d2b5e112",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "fc6bad2a_3a519eee",
+        "filename": "src/spd.cpp",
+        "patchSetId": 2
+      },
+      "lineNbr": 39,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2022-02-26T22:09:30Z",
+      "side": 1,
+      "message": "+1\n\nSomething like\n\ncrc_optimal\u003c16, 0x1021, 0, 0, true, true\u003e result;\nresult.process_bytes(data.data(), data.sizez());\nreturn result.checksum();\n\n\nmaybe?  That\u0027s a total guess, but I would assume it would look something similar to the above.\n\nhttps://www.boost.org/doc/libs/develop/doc/html/boost/crc_optimal.html",
+      "parentUuid": "49912e54_5775c89b",
       "revId": "799ffcac4ad04d3ab4913500561292a7d2b5e112",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
