@@ -12,49 +12,49 @@ extern "C"
 #include <linux/i2c.h>
 }
 
-TEST(ValidateHeaderTest, InvalidFruVersionReturnsFalse)
+TEST(ValidateIPMIHeaderTest, InvalidFruVersionReturnsFalse)
 {
     // Validates the FruVersion is checked for the only legal value.
-    constexpr std::array<uint8_t, I2C_SMBUS_BLOCK_MAX> fruHeader = {
+    const std::vector<uint8_t> fruHeader = {
         0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00};
 
-    EXPECT_FALSE(validateHeader(fruHeader));
+    EXPECT_FALSE(validateIPMIHeader(fruHeader));
 }
 
-TEST(ValidateHeaderTest, InvalidReservedReturnsFalse)
+TEST(ValidateIPMIHeaderTest, InvalidReservedReturnsFalse)
 {
     // Validates the reserved bit(7:4) of first bytes.
-    constexpr std::array<uint8_t, I2C_SMBUS_BLOCK_MAX> fruHeader = {
+    const std::vector<uint8_t> fruHeader = {
         0xf0, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00};
 
-    EXPECT_FALSE(validateHeader(fruHeader));
+    EXPECT_FALSE(validateIPMIHeader(fruHeader));
 }
 
-TEST(ValidateHeaderTest, InvalidPaddingReturnsFalse)
+TEST(ValidateIPMIHeaderTest, InvalidPaddingReturnsFalse)
 {
     // Validates the padding byte (7th byte).
-    constexpr std::array<uint8_t, I2C_SMBUS_BLOCK_MAX> fruHeader = {
+    const std::vector<uint8_t> fruHeader = {
         0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x01, 0x00};
 
-    EXPECT_FALSE(validateHeader(fruHeader));
+    EXPECT_FALSE(validateIPMIHeader(fruHeader));
 }
 
-TEST(ValidateHeaderTest, InvalidChecksumReturnsFalse)
+TEST(ValidateIPMIHeaderTest, InvalidChecksumReturnsFalse)
 {
     // Validates the checksum, check for incorrect value.
-    constexpr std::array<uint8_t, I2C_SMBUS_BLOCK_MAX> fruHeader = {
+    const std::vector<uint8_t> fruHeader = {
         0x01, 0x00, 0x01, 0x02, 0x03, 0x04, 0x00, 0x00};
 
-    EXPECT_FALSE(validateHeader(fruHeader));
+    EXPECT_FALSE(validateIPMIHeader(fruHeader));
 }
 
-TEST(ValidateHeaderTest, ValidChecksumReturnsTrue)
+TEST(ValidateIPMIHeaderTest, ValidChecksumReturnsTrue)
 {
     // Validates the checksum, check for correct value.
-    constexpr std::array<uint8_t, I2C_SMBUS_BLOCK_MAX> fruHeader = {
+    const std::vector<uint8_t> fruHeader = {
         0x01, 0x00, 0x01, 0x02, 0x03, 0x04, 0x00, 0xf5};
 
-    EXPECT_TRUE(validateHeader(fruHeader));
+    EXPECT_TRUE(validateIPMIHeader(fruHeader));
 }
 
 TEST(VerifyOffsetTest, EmptyFruDataReturnsFalse)
@@ -302,89 +302,100 @@ TEST(FRUReaderTest, ShrinkingEEPROM)
     EXPECT_EQ(reader.read(data.size() - 1, 2, rdbuf.data()), 1);
 }
 
-TEST(FindFRUHeaderTest, InvalidHeader)
+static constexpr auto testFRUData = std::to_array<uint8_t>({
+  0x01, 0x00, 0x01, 0x05, 0x0c, 0x00, 0x00, 0xed, 0x01, 0x04, 0x11, 0x8d,
+  0xaf, 0xd8, 0x8e, 0x3f, 0x5d, 0xce, 0xf4, 0x3f, 0xa2, 0xe1, 0x3c, 0xa7,
+  0x33, 0x85, 0x78, 0xae, 0x47, 0xd2, 0x04, 0xc1, 0x00, 0x00, 0x00, 0x00,
+  0x00, 0x00, 0x00, 0x89, 0x01, 0x07, 0x19, 0x9f, 0xe7, 0xd1, 0xcf, 0x4f,
+  0x70, 0x65, 0x6e, 0x42, 0x4d, 0x43, 0x20, 0x50, 0x72, 0x6f, 0x6a, 0x65,
+  0x63, 0x74, 0x8c, 0xaf, 0xd8, 0x8e, 0x3f, 0x5d, 0xce, 0xf4, 0x2f, 0xbe,
+  0xa1, 0x4c, 0x02, 0x85, 0xa1, 0x38, 0x42, 0x91, 0x04, 0x8a, 0xe2, 0x1b,
+  0xca, 0xe4, 0x0f, 0x87, 0x32, 0xed, 0xd6, 0x2d, 0xc0, 0xc1, 0x00, 0xe0,
+  0x01, 0x06, 0x19, 0xcf, 0x4f, 0x70, 0x65, 0x6e, 0x42, 0x4d, 0x43, 0x20,
+  0x50, 0x6f, 0x72, 0x6a, 0x65, 0x63, 0x74, 0x8d, 0xaf, 0xd8, 0x8e, 0x3f,
+  0x5d, 0xce, 0xf4, 0x0f, 0xcb, 0x2f, 0x59, 0x8f, 0x34, 0xc0, 0xc0, 0x42,
+  0x99, 0x99, 0xc0, 0xc0, 0xc1, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x5c,
+});
+
+TEST(ReadFRUContentsTest, InvalidHeader)
 {
     const std::vector<uint8_t> data = {255, 16};
-    uint16_t offset = 0;
-    std::array<uint8_t, I2C_SMBUS_BLOCK_MAX> blockData;
     auto getData = [&data](auto o, auto l, auto* b) {
         return getDataTempl(data, o, l, b);
     };
     FRUReader reader(getData);
 
-    EXPECT_FALSE(findFRUHeader(reader, "error", blockData, offset));
+    EXPECT_TRUE(readFRUContents(reader, "error").empty());
 }
 
-TEST(FindFRUHeaderTest, NoData)
+TEST(ReadFRUContentsTest, NoData)
 {
     const std::vector<uint8_t> data = {};
-    uint16_t offset = 0;
-    std::array<uint8_t, I2C_SMBUS_BLOCK_MAX> blockData;
     auto getData = [&data](auto o, auto l, auto* b) {
         return getDataTempl(data, o, l, b);
     };
     FRUReader reader(getData);
 
-    EXPECT_FALSE(findFRUHeader(reader, "error", blockData, offset));
+    EXPECT_TRUE(readFRUContents(reader, "error").empty());
 }
 
-TEST(FindFRUHeaderTest, ValidHeader)
+TEST(ReadFRUContentsTest, IPMIValidData)
 {
-    const std::vector<uint8_t> data = {
-        0x01, 0x00, 0x01, 0x02, 0x03, 0x04, 0x00, 0xf5};
-    uint16_t offset = 0;
-    std::array<uint8_t, I2C_SMBUS_BLOCK_MAX> blockData;
+    const std::vector<uint8_t> data(testFRUData.begin(), testFRUData.end());
     auto getData = [&data](auto o, auto l, auto* b) {
         return getDataTempl(data, o, l, b);
     };
     FRUReader reader(getData);
 
-    EXPECT_TRUE(findFRUHeader(reader, "error", blockData, offset));
-    EXPECT_EQ(0, offset);
+    EXPECT_FALSE(readFRUContents(reader, "error").empty());
 }
 
-TEST(FindFRUHeaderTest, TyanInvalidHeader)
+TEST(ReadFRUContentsTest, IPMIInalidData)
+{
+    std::vector<uint8_t> data(testFRUData.begin(), testFRUData.end());
+    // corrupt a byte to throw off the checksum
+    data[7] ^= 0xff;
+    auto getData = [&data](auto o, auto l, auto* b) {
+        return getDataTempl(data, o, l, b);
+    };
+    FRUReader reader(getData);
+
+    EXPECT_TRUE(readFRUContents(reader, "error").empty());
+}
+
+TEST(ReadFRUContentsTest, TyanInvalidHeader)
 {
     std::vector<uint8_t> data = {'$', 'T', 'Y', 'A', 'N', '$', 0, 0};
     data.resize(0x6000 + I2C_SMBUS_BLOCK_MAX);
-    uint16_t offset = 0;
-    std::array<uint8_t, I2C_SMBUS_BLOCK_MAX> blockData;
     auto getData = [&data](auto o, auto l, auto* b) {
         return getDataTempl(data, o, l, b);
     };
     FRUReader reader(getData);
 
-    EXPECT_FALSE(findFRUHeader(reader, "error", blockData, offset));
+    EXPECT_TRUE(readFRUContents(reader, "error").empty());
 }
 
-TEST(FindFRUHeaderTest, TyanNoData)
+TEST(ReadFRUContentsTest, TyanNoData)
 {
     const std::vector<uint8_t> data = {'$', 'T', 'Y', 'A', 'N', '$', 0, 0};
-    uint16_t offset = 0;
-    std::array<uint8_t, I2C_SMBUS_BLOCK_MAX> blockData;
     auto getData = [&data](auto o, auto l, auto* b) {
         return getDataTempl(data, o, l, b);
     };
     FRUReader reader(getData);
 
-    EXPECT_FALSE(findFRUHeader(reader, "error", blockData, offset));
+    EXPECT_TRUE(readFRUContents(reader, "error").empty());
 }
 
-TEST(FindFRUHeaderTest, TyanValidHeader)
+TEST(ReadFRUContentsTest, TyanValidData)
 {
     std::vector<uint8_t> data = {'$', 'T', 'Y', 'A', 'N', '$', 0, 0};
     data.resize(0x6000);
-    constexpr std::array<uint8_t, I2C_SMBUS_BLOCK_MAX> fruHeader = {
-        0x01, 0x00, 0x01, 0x02, 0x03, 0x04, 0x00, 0xf5};
-    copy(fruHeader.begin(), fruHeader.end(), back_inserter(data));
+    copy(testFRUData.begin(), testFRUData.end(), back_inserter(data));
 
-    uint16_t offset = 0;
-    std::array<uint8_t, I2C_SMBUS_BLOCK_MAX> blockData;
     auto getData = [&data](auto o, auto l, auto* b) {
         return getDataTempl(data, o, l, b);
     };
     FRUReader reader(getData);
 
-    EXPECT_TRUE(findFRUHeader(reader, "error", blockData, offset));
-    EXPECT_EQ(0x6000, offset);
+    EXPECT_FALSE(readFRUContents(reader, "error").empty());
 }
