@@ -6,57 +6,51 @@
 
 #include "gtest/gtest.h"
 
-extern "C"
-{
-// Include for I2C_SMBUS_BLOCK_MAX
-#include <linux/i2c.h>
-}
-
 static constexpr size_t blockSize = I2C_SMBUS_BLOCK_MAX;
 
-TEST(ValidateHeaderTest, InvalidFruVersionReturnsFalse)
+TEST(ValidateIPMIHeaderTest, InvalidFruVersionReturnsFalse)
 {
     // Validates the FruVersion is checked for the only legal value.
-    constexpr std::array<uint8_t, I2C_SMBUS_BLOCK_MAX> fruHeader = {
-        0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00};
+    const std::vector<uint8_t> fruHeader = {0x00, 0x00, 0x00, 0x00,
+                                            0x00, 0x00, 0x00, 0x00};
 
-    EXPECT_FALSE(validateHeader(fruHeader));
+    EXPECT_FALSE(validateIPMIHeader(fruHeader));
 }
 
-TEST(ValidateHeaderTest, InvalidReservedReturnsFalse)
+TEST(ValidateIPMIHeaderTest, InvalidReservedReturnsFalse)
 {
     // Validates the reserved bit(7:4) of first bytes.
-    constexpr std::array<uint8_t, I2C_SMBUS_BLOCK_MAX> fruHeader = {
-        0xf0, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00};
+    const std::vector<uint8_t> fruHeader = {0xf0, 0x00, 0x00, 0x00,
+                                            0x00, 0x00, 0x00, 0x00};
 
-    EXPECT_FALSE(validateHeader(fruHeader));
+    EXPECT_FALSE(validateIPMIHeader(fruHeader));
 }
 
-TEST(ValidateHeaderTest, InvalidPaddingReturnsFalse)
+TEST(ValidateIPMIHeaderTest, InvalidPaddingReturnsFalse)
 {
     // Validates the padding byte (7th byte).
-    constexpr std::array<uint8_t, I2C_SMBUS_BLOCK_MAX> fruHeader = {
-        0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x01, 0x00};
+    const std::vector<uint8_t> fruHeader = {0x00, 0x00, 0x00, 0x00,
+                                            0x00, 0x00, 0x01, 0x00};
 
-    EXPECT_FALSE(validateHeader(fruHeader));
+    EXPECT_FALSE(validateIPMIHeader(fruHeader));
 }
 
-TEST(ValidateHeaderTest, InvalidChecksumReturnsFalse)
+TEST(ValidateIPMIHeaderTest, InvalidChecksumReturnsFalse)
 {
     // Validates the checksum, check for incorrect value.
-    constexpr std::array<uint8_t, I2C_SMBUS_BLOCK_MAX> fruHeader = {
-        0x01, 0x00, 0x01, 0x02, 0x03, 0x04, 0x00, 0x00};
+    const std::vector<uint8_t> fruHeader = {0x01, 0x00, 0x01, 0x02,
+                                            0x03, 0x04, 0x00, 0x00};
 
-    EXPECT_FALSE(validateHeader(fruHeader));
+    EXPECT_FALSE(validateIPMIHeader(fruHeader));
 }
 
-TEST(ValidateHeaderTest, ValidChecksumReturnsTrue)
+TEST(ValidateIPMIHeaderTest, ValidChecksumReturnsTrue)
 {
     // Validates the checksum, check for correct value.
-    constexpr std::array<uint8_t, I2C_SMBUS_BLOCK_MAX> fruHeader = {
-        0x01, 0x00, 0x01, 0x02, 0x03, 0x04, 0x00, 0xf5};
+    const std::vector<uint8_t> fruHeader = {0x01, 0x00, 0x01, 0x02,
+                                            0x03, 0x04, 0x00, 0xf5};
 
-    EXPECT_TRUE(validateHeader(fruHeader));
+    EXPECT_TRUE(validateIPMIHeader(fruHeader));
 }
 
 TEST(VerifyOffsetTest, EmptyFruDataReturnsFalse)
@@ -301,89 +295,102 @@ TEST(FRUReaderTest, ShrinkingEEPROM)
     EXPECT_EQ(reader.read(data.size() - 1, 2, rdbuf.data()), 1);
 }
 
-TEST(FindFRUHeaderTest, InvalidHeader)
+static constexpr auto testFRUData = std::to_array<uint8_t>({
+    0x01, 0x00, 0x01, 0x05, 0x0d, 0x00, 0x00, 0xec, 0x01, 0x04, 0x11, 0xd1,
+    0x4f, 0x42, 0x4d, 0x43, 0x5f, 0x54, 0x45, 0x53, 0x54, 0x5f, 0x43, 0x48,
+    0x41, 0x53, 0x53, 0x49, 0x53, 0xc6, 0x58, 0x59, 0x5a, 0x31, 0x32, 0x33,
+    0xc1, 0x00, 0x00, 0xc4, 0x01, 0x08, 0x19, 0xd8, 0xe7, 0xd1, 0xcf, 0x4f,
+    0x70, 0x65, 0x6e, 0x42, 0x4d, 0x43, 0x20, 0x50, 0x72, 0x6f, 0x6a, 0x65,
+    0x63, 0x74, 0xcf, 0x4f, 0x42, 0x4d, 0x43, 0x5f, 0x54, 0x45, 0x53, 0x54,
+    0x5f, 0x42, 0x4f, 0x41, 0x52, 0x44, 0xc6, 0x41, 0x42, 0x43, 0x30, 0x31,
+    0x32, 0xcd, 0x42, 0x4f, 0x41, 0x52, 0x44, 0x5f, 0x50, 0x41, 0x52, 0x54,
+    0x4e, 0x55, 0x4d, 0xc0, 0xc1, 0x00, 0x00, 0x73, 0x01, 0x06, 0x19, 0xcf,
+    0x4f, 0x70, 0x65, 0x6e, 0x42, 0x4d, 0x43, 0x20, 0x50, 0x72, 0x6f, 0x6a,
+    0x65, 0x63, 0x74, 0xd1, 0x4f, 0x42, 0x4d, 0x43, 0x5f, 0x54, 0x45, 0x53,
+    0x54, 0x5f, 0x50, 0x52, 0x4f, 0x44, 0x55, 0x43, 0x54, 0xc0, 0xc0, 0xc4,
+    0x39, 0x39, 0x39, 0x39, 0xc0, 0xc0, 0xc1, 0x3c,
+});
+
+TEST(ReadFRUContentsTest, InvalidHeader)
 {
     const std::vector<uint8_t> data = {255, 16};
-    off_t offset = 0;
-    std::array<uint8_t, I2C_SMBUS_BLOCK_MAX> blockData;
     auto getData = [&data](auto o, auto l, auto* b) {
         return getDataTempl(data, o, l, b);
     };
     FRUReader reader(getData);
 
-    EXPECT_FALSE(findFRUHeader(reader, "error", blockData, offset));
+    EXPECT_TRUE(readFRUContents(reader, "error").empty());
 }
 
-TEST(FindFRUHeaderTest, NoData)
+TEST(ReadFRUContentsTest, NoData)
 {
     const std::vector<uint8_t> data = {};
-    off_t offset = 0;
-    std::array<uint8_t, I2C_SMBUS_BLOCK_MAX> blockData;
     auto getData = [&data](auto o, auto l, auto* b) {
         return getDataTempl(data, o, l, b);
     };
     FRUReader reader(getData);
 
-    EXPECT_FALSE(findFRUHeader(reader, "error", blockData, offset));
+    EXPECT_TRUE(readFRUContents(reader, "error").empty());
 }
 
-TEST(FindFRUHeaderTest, ValidHeader)
+TEST(ReadFRUContentsTest, IPMIValidData)
 {
-    const std::vector<uint8_t> data = {0x01, 0x00, 0x01, 0x02,
-                                       0x03, 0x04, 0x00, 0xf5};
-    off_t offset = 0;
-    std::array<uint8_t, I2C_SMBUS_BLOCK_MAX> blockData;
+    const std::vector<uint8_t> data(testFRUData.begin(), testFRUData.end());
     auto getData = [&data](auto o, auto l, auto* b) {
         return getDataTempl(data, o, l, b);
     };
     FRUReader reader(getData);
 
-    EXPECT_TRUE(findFRUHeader(reader, "error", blockData, offset));
-    EXPECT_EQ(0, offset);
+    EXPECT_EQ(readFRUContents(reader, "error"), data);
 }
 
-TEST(FindFRUHeaderTest, TyanInvalidHeader)
+TEST(ReadFRUContentsTest, IPMIInvalidData)
+{
+    std::vector<uint8_t> data(testFRUData.begin(), testFRUData.end());
+    // corrupt a byte to throw off the checksum
+    data[7] ^= 0xff;
+    auto getData = [&data](auto o, auto l, auto* b) {
+        return getDataTempl(data, o, l, b);
+    };
+    FRUReader reader(getData);
+
+    EXPECT_TRUE(readFRUContents(reader, "error").empty());
+}
+
+TEST(ReadFRUContentsTest, TyanInvalidHeader)
 {
     std::vector<uint8_t> data = {'$', 'T', 'Y', 'A', 'N', '$', 0, 0};
-    data.resize(0x6000 + I2C_SMBUS_BLOCK_MAX);
-    off_t offset = 0;
-    std::array<uint8_t, I2C_SMBUS_BLOCK_MAX> blockData;
+    data.resize(0x6000 + 32);
     auto getData = [&data](auto o, auto l, auto* b) {
         return getDataTempl(data, o, l, b);
     };
     FRUReader reader(getData);
 
-    EXPECT_FALSE(findFRUHeader(reader, "error", blockData, offset));
+    EXPECT_TRUE(readFRUContents(reader, "error").empty());
 }
 
-TEST(FindFRUHeaderTest, TyanNoData)
+TEST(ReadFRUContentsTest, TyanNoData)
 {
     const std::vector<uint8_t> data = {'$', 'T', 'Y', 'A', 'N', '$', 0, 0};
-    off_t offset = 0;
-    std::array<uint8_t, I2C_SMBUS_BLOCK_MAX> blockData;
     auto getData = [&data](auto o, auto l, auto* b) {
         return getDataTempl(data, o, l, b);
     };
     FRUReader reader(getData);
 
-    EXPECT_FALSE(findFRUHeader(reader, "error", blockData, offset));
+    EXPECT_TRUE(readFRUContents(reader, "error").empty());
 }
 
-TEST(FindFRUHeaderTest, TyanValidHeader)
+TEST(ReadFRUContentsTest, TyanValidData)
 {
     std::vector<uint8_t> data = {'$', 'T', 'Y', 'A', 'N', '$', 0, 0};
     data.resize(0x6000);
-    constexpr std::array<uint8_t, I2C_SMBUS_BLOCK_MAX> fruHeader = {
-        0x01, 0x00, 0x01, 0x02, 0x03, 0x04, 0x00, 0xf5};
-    copy(fruHeader.begin(), fruHeader.end(), back_inserter(data));
+    copy(testFRUData.begin(), testFRUData.end(), back_inserter(data));
 
-    off_t offset = 0;
-    std::array<uint8_t, I2C_SMBUS_BLOCK_MAX> blockData;
     auto getData = [&data](auto o, auto l, auto* b) {
         return getDataTempl(data, o, l, b);
     };
     FRUReader reader(getData);
 
-    EXPECT_TRUE(findFRUHeader(reader, "error", blockData, offset));
-    EXPECT_EQ(0x6000, offset);
+    std::vector<uint8_t> device = readFRUContents(reader, "error");
+    EXPECT_TRUE(std::equal(device.begin(), device.end(), testFRUData.begin()));
 }
