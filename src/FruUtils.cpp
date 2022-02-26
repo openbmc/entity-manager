@@ -26,12 +26,6 @@
 #include <string>
 #include <vector>
 
-extern "C"
-{
-// Include for I2C_SMBUS_BLOCK_MAX
-#include <linux/i2c.h>
-}
-
 static constexpr bool debug = false;
 constexpr size_t fruVersion = 1; // Current FRU spec version number is 1
 
@@ -609,14 +603,19 @@ ssize_t getFieldLength(uint8_t fruFieldTypeLenValue)
     return fruFieldTypeLenValue & typeLenMask;
 }
 
-bool validateHeader(const std::array<uint8_t, I2C_SMBUS_BLOCK_MAX>& blockData)
+bool validateIPMIHeader(const std::vector<uint8_t>& hdr)
 {
+    if (hdr.size() < 8)
+    {
+        return false;
+    }
+
     // ipmi spec format version number is currently at 1, verify it
-    if (blockData[0] != fruVersion)
+    if (hdr[0] != fruVersion)
     {
         if (debug)
         {
-            std::cerr << "FRU spec version " << (int)(blockData[0])
+            std::cerr << "FRU spec version " << (int)(hdr[0])
                       << " not supported. Supported version is "
                       << (int)(fruVersion) << "\n";
         }
@@ -624,12 +623,12 @@ bool validateHeader(const std::array<uint8_t, I2C_SMBUS_BLOCK_MAX>& blockData)
     }
 
     // verify pad is set to 0
-    if (blockData[6] != 0x0)
+    if (hdr[6] != 0x0)
     {
         if (debug)
         {
             std::cerr << "PAD value in header is non zero, value is "
-                      << (int)(blockData[6]) << "\n";
+                      << (int)(hdr[6]) << "\n";
         }
         return false;
     }
@@ -638,11 +637,11 @@ bool validateHeader(const std::array<uint8_t, I2C_SMBUS_BLOCK_MAX>& blockData)
     std::set<uint8_t> foundOffsets;
     for (int ii = 1; ii < 6; ii++)
     {
-        if (blockData[ii] == 0)
+        if (hdr[ii] == 0)
         {
             continue;
         }
-        auto inserted = foundOffsets.insert(blockData[ii]);
+        auto inserted = foundOffsets.insert(hdr[ii]);
         if (!inserted.second)
         {
             return false;
@@ -653,15 +652,15 @@ bool validateHeader(const std::array<uint8_t, I2C_SMBUS_BLOCK_MAX>& blockData)
     size_t sum = 0;
     for (int jj = 0; jj < 7; jj++)
     {
-        sum += blockData[jj];
+        sum += hdr[jj];
     }
     sum = (256 - sum) & 0xFF;
 
-    if (sum != blockData[7])
+    if (sum != hdr[7])
     {
         if (debug)
         {
-            std::cerr << "Checksum " << (int)(blockData[7])
+            std::cerr << "Checksum " << (int)(hdr[7])
                       << " is invalid. calculated checksum is " << (int)(sum)
                       << "\n";
         }
@@ -670,63 +669,25 @@ bool validateHeader(const std::array<uint8_t, I2C_SMBUS_BLOCK_MAX>& blockData)
     return true;
 }
 
-bool findFRUHeader(FRUReader& reader, const std::string& errorHelp,
-                   std::array<uint8_t, I2C_SMBUS_BLOCK_MAX>& blockData,
-                   off_t& baseOffset)
+static std::vector<uint8_t> readIPMIFRUContents(FRUReader& reader,
+                                                const std::string& errorHelp)
 {
-    if (reader.read(baseOffset, 0x8, blockData.data()) < 0)
+    std::vector<uint8_t> device(8);
+    int64_t ret = reader.read(0, device.size(), device.data());
+
+    if (ret != static_cast<int64_t>(device.size()))
     {
-        std::cerr << "failed to read " << errorHelp << " base offset "
-                  << baseOffset << "\n";
-        return false;
-    }
-
-    // check the header checksum
-    if (validateHeader(blockData))
-    {
-        return true;
-    }
-
-    // only continue the search if we just looked at 0x0.
-    if (baseOffset != 0)
-    {
-        return false;
-    }
-
-    // now check for special cases where the IPMI data is at an offset
-
-    // check if blockData starts with tyanHeader
-    const std::vector<uint8_t> tyanHeader = {'$', 'T', 'Y', 'A', 'N', '$'};
-    if (blockData.size() >= tyanHeader.size() &&
-        std::equal(tyanHeader.begin(), tyanHeader.end(), blockData.begin()))
-    {
-        // look for the FRU header at offset 0x6000
-        baseOffset = 0x6000;
-        return findFRUHeader(reader, errorHelp, blockData, baseOffset);
-    }
-
-    if (debug)
-    {
-        std::cerr << "Illegal header " << errorHelp << " base offset "
-                  << baseOffset << "\n";
-    }
-
-    return false;
-}
-
-std::vector<uint8_t> readFRUContents(FRUReader& reader,
-                                     const std::string& errorHelp)
-{
-    std::array<uint8_t, I2C_SMBUS_BLOCK_MAX> blockData;
-    off_t baseOffset = 0x0;
-
-    if (!findFRUHeader(reader, errorHelp, blockData, baseOffset))
-    {
+        if (ret < 0)
+        {
+            std::cerr << "failed to read " << errorHelp << "\n";
+        }
         return {};
     }
 
-    std::vector<uint8_t> device;
-    device.insert(device.end(), blockData.begin(), blockData.begin() + 8);
+    if (!validateIPMIHeader(device))
+    {
+        return {};
+    }
 
     bool hasMultiRecords = false;
     size_t fruLength = fruBlockSize; // At least FRU header is present
@@ -764,15 +725,16 @@ std::vector<uint8_t> readFRUContents(FRUReader& reader,
 
         areaOffset *= fruBlockSize;
 
-        if (reader.read(baseOffset + areaOffset, 0x2, blockData.data()) < 0)
+        std::array<uint8_t, 2> areaData;
+        if (reader.read(areaOffset, areaData.size(), areaData.data()) !=
+            static_cast<ssize_t>(areaData.size()))
         {
-            std::cerr << "failed to read " << errorHelp << " base offset "
-                      << baseOffset << "\n";
+            std::cerr << "failed to read " << errorHelp << "\n";
             return {};
         }
 
-        // Ignore data type (blockData is already unsigned).
-        size_t length = blockData[1] * fruBlockSize;
+        // Ignore data type (areaData is already unsigned).
+        size_t length = areaData[1] * fruBlockSize;
         areaOffset += length;
         fruLength = (areaOffset > fruLength) ? areaOffset : fruLength;
     }
@@ -794,21 +756,22 @@ std::vector<uint8_t> readFRUContents(FRUReader& reader,
         {
             // In multi-area, the area offset points to the 0th record, each
             // record has 3 bytes of the header we care about.
-            if (reader.read(baseOffset + areaOffset, 0x3, blockData.data()) < 0)
+            std::array<uint8_t, 3> areaData;
+            if (reader.read(areaOffset, areaData.size(), areaData.data()) !=
+                static_cast<ssize_t>(areaData.size()))
             {
-                std::cerr << "failed to read " << errorHelp << " base offset "
-                          << baseOffset << "\n";
+                std::cerr << "failed to read " << errorHelp << "\n";
                 return {};
             }
 
             // Ok, let's check the record length, which is in bytes (unsigned,
-            // up to 255, so blockData should hold uint8_t not char)
-            size_t recordLength = blockData[2];
+            // up to 255, so areaData should hold uint8_t not char)
+            size_t recordLength = areaData[2];
             areaOffset += (recordLength + multiRecordHeaderSize);
             fruLength = (areaOffset > fruLength) ? areaOffset : fruLength;
 
             // If this is the end of the list bail.
-            if ((blockData[1] & multiRecordEndOfListMask))
+            if ((areaData[1] & multiRecordEndOfListMask))
             {
                 break;
             }
@@ -817,30 +780,57 @@ std::vector<uint8_t> readFRUContents(FRUReader& reader,
 
     // You already copied these first 8 bytes (the ipmi fru header size)
     fruLength -= std::min(fruBlockSize, fruLength);
+    device.resize(device.size() + fruLength);
 
-    int readOffset = fruBlockSize;
-
-    while (fruLength > 0)
+    int64_t nread = reader.read(static_cast<uint16_t>(fruBlockSize),
+                                static_cast<uint8_t>(fruLength),
+                                device.data() + (device.size() - fruLength));
+    if (nread != static_cast<int64_t>(fruLength))
     {
-        size_t requestLength =
-            std::min(static_cast<size_t>(I2C_SMBUS_BLOCK_MAX), fruLength);
-
-        if (reader.read(baseOffset + readOffset, requestLength,
-                        blockData.data()) < 0)
-        {
-            std::cerr << "failed to read " << errorHelp << " base offset "
-                      << baseOffset << "\n";
-            return {};
-        }
-
-        device.insert(device.end(), blockData.begin(),
-                      blockData.begin() + requestLength);
-
-        readOffset += requestLength;
-        fruLength -= std::min(requestLength, fruLength);
+        std::cerr << "failed to read " << errorHelp << "\n";
+        return {};
     }
 
     return device;
+}
+
+static std::vector<uint8_t> readTyanFRUContents(FRUReader& reader,
+                                                const std::string& errorHelp)
+{
+    const std::array<uint8_t, 6> tyanMagic = {'$', 'T', 'Y', 'A', 'N', '$'};
+    std::array<uint8_t, tyanMagic.size()> magicBytes;
+
+    if (reader.read(0, magicBytes.size(), magicBytes.data()) !=
+            magicBytes.size() ||
+        magicBytes != tyanMagic)
+    {
+        return {};
+    }
+
+    FRUReader tyanReader(reader, 0x6000);
+
+    return readIPMIFRUContents(tyanReader, errorHelp);
+}
+
+std::vector<uint8_t> readFRUContents(FRUReader& reader,
+                                     const std::string& errorHelp)
+{
+    using FRUParser = std::vector<uint8_t> (*)(FRUReader&, const std::string&);
+    static constexpr auto fruParsers = std::to_array<FRUParser>({
+        readIPMIFRUContents,
+        readTyanFRUContents,
+    });
+
+    for (const auto& parser : fruParsers)
+    {
+        std::vector<uint8_t> data = parser(reader, errorHelp);
+        if (!data.empty())
+        {
+            return data;
+        }
+    }
+
+    return {};
 }
 
 unsigned int getHeaderAreaFieldOffset(fruAreas area)
