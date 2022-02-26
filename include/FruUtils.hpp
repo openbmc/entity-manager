@@ -114,6 +114,22 @@ private:
   boost::container::flat_map<uint32_t, CacheBlock> cache;
 };
 
+// A FRUReader wrapper that adds a fixed offset to all reads
+class OffsetFRUReader : public FRUReader
+{
+public:
+  OffsetFRUReader(FRUReader& inner, int16_t offset) : inner(inner), offset(offset)
+  {}
+
+  int64_t read(uint16_t start, uint8_t len, uint8_t* outbuf) override {
+      return inner.read(start + offset, len, outbuf);
+  }
+
+private:
+  FRUReader& inner;
+  int16_t offset;
+};
+
 inline const std::string& getFruAreaName(fruAreas area)
 {
     return fruAreaNames[static_cast<unsigned int>(area)];
@@ -158,19 +174,6 @@ unsigned int updateFRUAreaLenAndChecksum(std::vector<uint8_t>& fruData,
 
 ssize_t getFieldLength(uint8_t fruFieldTypeLenValue);
 
-/// \brief Find a FRU header.
-/// \param reader the FRUReader to read via
-/// \param errorHelp and a helper string for failures
-/// \param blockData buffer to return the last read block
-/// \param baseOffset the offset to start the search at;
-///        set to 0 to perform search;
-///        returns the offset at which a header was found
-/// \return whether a header was found
-bool findFRUHeader(FRUReader& reader,
-                   const std::string& errorHelp,
-                   std::array<uint8_t, I2C_SMBUS_BLOCK_MAX>& blockData,
-                   uint16_t& baseOffset);
-
 /// \brief Read and validate FRU contents.
 /// \param reader the FRUReader to read via
 /// \param errorHelp and a helper string for failures
@@ -179,9 +182,9 @@ std::vector<uint8_t> readFRUContents(FRUReader& reader,
                                      const std::string& errorHelp);
 
 /// \brief Validate an IPMI FRU common header
-/// \param blockData the bytes comprising the common header
+/// \param hdr the bytes comprising the common header
 /// \return true if valid
-bool validateHeader(const std::array<uint8_t, I2C_SMBUS_BLOCK_MAX>& blockData);
+bool validateIPMIHeader(const std::vector<uint8_t>& hdr);
 
 /// \brief Get offset for a common header area
 /// \param area - the area
