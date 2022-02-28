@@ -22,6 +22,30 @@
       },
       "revId": "cb76fe004a3427e78e09ea98d9d5ebc8fa48eaca",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5e7bd2a1_10282057",
+        "filename": "include/FruUtils.hpp",
+        "patchSetId": 4
+      },
+      "lineNbr": 92,
+      "author": {
+        "id": 1000265
+      },
+      "writtenOn": "2022-02-28T14:03:55Z",
+      "side": 1,
+      "message": "One idea: Maybe split the FruReader class into a base class that performs no caching and does not \"guarantee\" to read all requested bytes. And a child class \"CachedFruReader\" that does perform caching and does try to read all the bytes. With that, you could require the \"CachedFruReader\" to be used in the call to readIPMIFRUContents?",
+      "parentUuid": "c15079fc_fbe37645",
+      "range": {
+        "startLine": 92,
+        "startChar": 2,
+        "endLine": 92,
+        "endChar": 61
+      },
+      "revId": "cb76fe004a3427e78e09ea98d9d5ebc8fa48eaca",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }
