@@ -201,6 +201,9 @@
                 "RedundantCount": {
                     "$ref": "#/definitions/Types/RedundantCount"
                 },
+                "RemoteBus": {
+                    "$ref": "#/definitions/Types/RemoteBus"
+                },
                 "ScaleFactor": {
                     "$ref": "#/definitions/Types/ScaleFactor"
                 },
@@ -651,6 +654,12 @@
             },
             "RedundantCount": {
                 "type": "number"
+            },
+            "RemoteBus": {
+                "type": [
+                    "string",
+                    "number"
+                ]
             },
             "ScaleFactor": {
                 "type": "number"
