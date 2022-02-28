@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "718bbfc9_bfaaa0a1",
+        "filename": "src/FruDevice.cpp",
+        "patchSetId": 1
+      },
+      "lineNbr": 1324,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2022-02-28T19:02:25Z",
+      "side": 1,
+      "message": "I think the solution here is easier.  This section of code needs to move outside of the\n\n#ifdef ENABLE_FRU_AREA_RESIZE\n\nbracket, so that we properly pad zeros, and don\u0027t shrink the area if ENABLE_FRU_AREA_RESIZE is disabled, which seems in line with the behavior we want.",
+      "range": {
+        "startLine": 1324,
+        "startChar": 0,
+        "endLine": 1324,
+        "endChar": 48
+      },
+      "revId": "57ab27938421fb984045268021964970f1651edf",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    }
+  ]
+}
