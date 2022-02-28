@@ -1,5 +1,14 @@
 {
-    "Exposes": [],
+    "Exposes": [
+        {
+            "Address": "0x01",
+            "Bus": "$ipmbindex",
+            "Class": "IpmbDevice",
+            "Name": "$ipmbindex + 1 Twinlake Board",
+            "PowerState": "Always",
+            "Type": "IpmbDevice"
+        }
+    ],
     "Name": "Twin Lake $ipmbindex + 1",
     "Probe": "xyz.openbmc_project.Ipmb.FruDevice({'PRODUCT_PRODUCT_NAME': 'Twin Lakes .*'})",
     "Type": "Board",
