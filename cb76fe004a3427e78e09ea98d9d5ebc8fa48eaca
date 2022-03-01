@@ -46,6 +46,30 @@
       },
       "revId": "cb76fe004a3427e78e09ea98d9d5ebc8fa48eaca",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "88cde0a4_4f31e45d",
+        "filename": "include/FruUtils.hpp",
+        "patchSetId": 4
+      },
+      "lineNbr": 92,
+      "author": {
+        "id": 1000733
+      },
+      "writtenOn": "2022-03-01T00:15:09Z",
+      "side": 1,
+      "message": "\u003e With the current implementation, this method has two different semantics depending on whether noCache is set. As I understand, if noCache\u003d\u003dtrue the \"read\" method tries to get all the requested data, even if it requires multiple calls to readFunc. With noCache\u003d\u003dfalse, the \"read\" method will return whatever readFunc returns, even if it\u0027s fewer bytes than was requested.\n\nHmm, that\u0027s a good observation -- thanks for pointing it out.\n\nIn case it\u0027s not obvious (maybe I should\u0027ve stated it explicitly in a comment), I only added the `noCache` flag in this commit as an optimization for the Tyan path to avoid double-caching with a FRUReader stacked on top of another FRUReader -- I\u0027m pretty sure it should work fine to just accept the double-caching; it still shouldn\u0027t lead to any duplicated I/O, just a little more CPU time and (transient) memory consumption, and just seemed kind of inelegant.  That said, the `noCache` flag itself isn\u0027t exactly a thing of beauty either...your suggestion of separate classes for the cached and uncached versions would certainly be cleaner, and I sort of considered that while I was writing it, but decided it seemed a bit elaborate for my needs at the time -- though now I\u0027m reconsidering (it\u0027s a small enough class, anyway).\n\nGranted, it would still have the semantic mismatch between their respective `::read()` methods, but at least that would be distinguished by them being separate types, rather than just by the value of a runtime flag parameter.  And as long as the uncached version is only used as a layer stacked over a caching one, the stronger `::read()` semantics of the underlying one would sort of bubble up through it anyway.\n\nIt would also lead to the base class only really being useful as a wrapper around the derived class, which seems like a slightly funny arrangement to end up with, but [shrug]?  (I suppose we could also arrange the inheritance the other way around, which would avoid that particular weirdness at the cost of being weird in other ways...)\n\nAnyway, that\u0027s probably enough rambling/thinking-out-loud for the moment here; I\u0027ll draft up a new version with something like the above.",
+      "parentUuid": "5e7bd2a1_10282057",
+      "range": {
+        "startLine": 92,
+        "startChar": 2,
+        "endLine": 92,
+        "endChar": 61
+      },
+      "revId": "cb76fe004a3427e78e09ea98d9d5ebc8fa48eaca",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }
