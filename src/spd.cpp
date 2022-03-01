@@ -1,5 +1,7 @@
 #include "spd/spd.hpp"
 
+#include "spd/ddr5.hpp"
+
 #include <boost/crc.hpp>
 
 #include <iostream>
@@ -40,10 +42,11 @@ std::unique_ptr<SPD> SPD::getFromImage(std::span<const uint8_t> spdImage)
         case SPDType::spdTypeFBDIMM:
         case SPDType::spdTypeDDR3:
         case SPDType::spdTypeDDR4:
-        case SPDType::spdTypeDDR5:
             std::cerr << "Unsupported SPD type: 0x" << std::hex
                       << static_cast<uint8_t>(getSPDType(spdImage)) << "\n";
             return nullptr;
+        case SPDType::spdTypeDDR5:
+            return DDR5SPD::getFromImage(spdImage);
         default:
             std::cerr << "Unrecognized SPD type: 0x" << std::hex
                       << static_cast<uint8_t>(getSPDType(spdImage)) << "\n";

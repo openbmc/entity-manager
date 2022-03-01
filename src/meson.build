@@ -33,6 +33,7 @@ if get_option('fru-device')
         'Utils.cpp',
         'FruUtils.cpp',
         'spd.cpp',
+        'ddr5.cpp',
         cpp_args: cpp_args_fd,
         dependencies: [
             boost,
