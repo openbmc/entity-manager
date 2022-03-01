@@ -1,0 +1,165 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "dee23af0_3533a851",
+        "filename": "include/FruUtils.hpp",
+        "patchSetId": 12
+      },
+      "lineNbr": 83,
+      "author": {
+        "id": 1000265
+      },
+      "writtenOn": "2022-03-01T14:57:00Z",
+      "side": 1,
+      "message": "Please add a comment indicating what the return value means.",
+      "range": {
+        "startLine": 83,
+        "startChar": 18,
+        "endLine": 83,
+        "endChar": 25
+      },
+      "revId": "a6cb47510d8edec5598a1b7e5c90fe04ae783714",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "358e7bd7_b96a38cb",
+        "filename": "include/FruUtils.hpp",
+        "patchSetId": 12
+      },
+      "lineNbr": 88,
+      "author": {
+        "id": 1000265
+      },
+      "writtenOn": "2022-03-01T14:57:00Z",
+      "side": 1,
+      "message": "Can you please add a note on what the return value of read / ReadBlockFunc indicated? I.e. does either of which \"guarantee\" to read the requested len, or do they just read \"as much as possible\" and it might require subsequent calls to read?",
+      "range": {
+        "startLine": 88,
+        "startChar": 36,
+        "endLine": 88,
+        "endChar": 62
+      },
+      "revId": "a6cb47510d8edec5598a1b7e5c90fe04ae783714",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "bdb00896_866f0a01",
+        "filename": "include/FruUtils.hpp",
+        "patchSetId": 12
+      },
+      "lineNbr": 101,
+      "author": {
+        "id": 1000265
+      },
+      "writtenOn": "2022-03-01T14:57:00Z",
+      "side": 1,
+      "message": "Are the semantics of read different here? Please add a comment.",
+      "range": {
+        "startLine": 101,
+        "startChar": 2,
+        "endLine": 101,
+        "endChar": 14
+      },
+      "revId": "a6cb47510d8edec5598a1b7e5c90fe04ae783714",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "825ae8ec_5e117b8d",
+        "filename": "include/FruUtils.hpp",
+        "patchSetId": 12
+      },
+      "lineNbr": 102,
+      "author": {
+        "id": 1000265
+      },
+      "writtenOn": "2022-03-01T14:57:00Z",
+      "side": 1,
+      "message": "I\u0027m not sure about the usual style here, but I would have though that we\u0027d indicate that this is a constant somehow? When I just read the code that\u0027s using it, I was wondering whether this is a variable.",
+      "range": {
+        "startLine": 102,
+        "startChar": 26,
+        "endLine": 102,
+        "endChar": 40
+      },
+      "revId": "a6cb47510d8edec5598a1b7e5c90fe04ae783714",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2062edbb_ea82f5fc",
+        "filename": "include/FruUtils.hpp",
+        "patchSetId": 12
+      },
+      "lineNbr": 110,
+      "author": {
+        "id": 1000265
+      },
+      "writtenOn": "2022-03-01T14:57:00Z",
+      "side": 1,
+      "message": "This is the first time you mentioned \"EEPROM\" here. Should this be something like \"max offset available from ReadBlockFunc\"?",
+      "range": {
+        "startLine": 110,
+        "startChar": 35,
+        "endLine": 110,
+        "endChar": 41
+      },
+      "revId": "a6cb47510d8edec5598a1b7e5c90fe04ae783714",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2a57c934_ed6c55b5",
+        "filename": "src/FruDevice.cpp",
+        "patchSetId": 12
+      },
+      "lineNbr": 432,
+      "author": {
+        "id": 1000265
+      },
+      "writtenOn": "2022-03-01T14:57:00Z",
+      "side": 1,
+      "message": "This variable name makes me think this was true / false (!\u003d 0, \u003d\u003d 0), which is not the case. Maybe use a different name? \"maybeIs16Bit\"?",
+      "range": {
+        "startLine": 432,
+        "startChar": 16,
+        "endLine": 432,
+        "endChar": 23
+      },
+      "revId": "a6cb47510d8edec5598a1b7e5c90fe04ae783714",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "75bab01f_c81fc83f",
+        "filename": "src/FruUtils.cpp",
+        "patchSetId": 12
+      },
+      "lineNbr": 85,
+      "author": {
+        "id": 1000265
+      },
+      "writtenOn": "2022-03-01T14:57:00Z",
+      "side": 1,
+      "message": "Shouldn\u0027t we also set the eepromSize here? This would cover the case where the size of the EEPROM is divisible by the cacheBlockSize - which I think it\u0027s pretty likely. Otherwise we\u0027ll continue trying to read something that\u0027s not there, not taking advantage of eepromSize.",
+      "range": {
+        "startLine": 85,
+        "startChar": 16,
+        "endLine": 85,
+        "endChar": 56
+      },
+      "revId": "a6cb47510d8edec5598a1b7e5c90fe04ae783714",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    }
+  ]
+}
