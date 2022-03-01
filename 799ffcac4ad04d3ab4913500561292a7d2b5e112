@@ -72,6 +72,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "b847cb6e_ccc35ac6",
+        "filename": "include/spd/spd.hpp",
+        "patchSetId": 2
+      },
+      "lineNbr": 15,
+      "author": {
+        "id": 1000937
+      },
+      "writtenOn": "2022-03-01T16:23:54Z",
+      "side": 1,
+      "message": "I was following this(https://google.github.io/styleguide/cppguide.html#Enumerator_Names) to name the enum value.\nBut yea.. We should make it congruous, will change it.",
+      "parentUuid": "16a2444a_e34bcecc",
+      "revId": "799ffcac4ad04d3ab4913500561292a7d2b5e112",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "89f16c37_ea7bdd57",
         "filename": "include/spd/spd.hpp",
         "patchSetId": 2
@@ -183,6 +201,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "641ea6b2_96ecd1bb",
+        "filename": "include/spd/spd.hpp",
+        "patchSetId": 2
+      },
+      "lineNbr": 96,
+      "author": {
+        "id": 1000937
+      },
+      "writtenOn": "2022-03-01T16:23:54Z",
+      "side": 1,
+      "message": "I added the `spd` prefix because there is a similar variable called `dimmSize`. I want to clearly distinguish between these two.\nBut I am OK with removing the `spd` prefix if `totalSize`/`usedSize` is not ambiguous.",
+      "parentUuid": "94150176_fbbc0dce",
+      "range": {
+        "startLine": 93,
+        "startChar": 4,
+        "endLine": 96,
+        "endChar": 44
+      },
+      "revId": "799ffcac4ad04d3ab4913500561292a7d2b5e112",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "7b136cb3_78ce6023",
         "filename": "include/spd/spd.hpp",
         "patchSetId": 2
@@ -253,6 +295,30 @@
       "side": 1,
       "message": "Lets use std::string here.  vector\u003cuint8_t\u003e is a bit hard to use in most contexts.",
       "parentUuid": "9c6032df_046cc669",
+      "range": {
+        "startLine": 108,
+        "startChar": 0,
+        "endLine": 109,
+        "endChar": 56
+      },
+      "revId": "799ffcac4ad04d3ab4913500561292a7d2b5e112",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "eb3593da_567a058d",
+        "filename": "include/spd/spd.hpp",
+        "patchSetId": 2
+      },
+      "lineNbr": 109,
+      "author": {
+        "id": 1000937
+      },
+      "writtenOn": "2022-03-01T16:23:54Z",
+      "side": 1,
+      "message": "Part number shall be written in ASCII format while the serial number is not.\nActually in our case the serial number is not written in ASCII format.\nSo I think serial number should keep using `vector`.\n\nType of part number changed to `string`.",
+      "parentUuid": "6d5ef727_6a4fb7d9",
       "range": {
         "startLine": 108,
         "startChar": 0,
