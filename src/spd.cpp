@@ -1,5 +1,7 @@
 #include "spd/spd.hpp"
 
+#include "spd/ddr5.hpp"
+
 #include <boost/crc.hpp>
 
 #include <iostream>
@@ -50,7 +52,6 @@ std::unique_ptr<SPD> SPD::getFromImage(std::span<const uint8_t> spdImage)
         case DRAMType::dramTypeFBDIMM:
         case DRAMType::dramTypeDDR3:
         case DRAMType::dramTypeDDR4:
-        case DRAMType::dramTypeDDR5:
             if (debug)
             {
                 // std::cerr print uint8_t as an ASCII, so covert it to uint_32
@@ -59,6 +60,8 @@ std::unique_ptr<SPD> SPD::getFromImage(std::span<const uint8_t> spdImage)
                           << "\n";
             }
             return nullptr;
+        case DRAMType::dramTypeDDR5:
+            return DDR5SPD::getFromImage(spdImage);
         default:
             return nullptr;
     }

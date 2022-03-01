@@ -54,6 +54,15 @@ char bcdPlusToChar(uint8_t val)
     return (val < 10) ? static_cast<char>(val + '0') : bcdHighChars[val - 10];
 }
 
+std::optional<int8_t> bcdToInt8(uint8_t b) {
+	int8_t d1 = b & 0x0F;
+	int8_t d2 = (b >> 4) & 0x0F;
+	if (d1 > 9 || d2 > 9) {
+		return std::nullopt;
+	}
+	return d2 * 10 + d1;
+}
+
 enum FRUDataEncoding
 {
     binary = 0x0,

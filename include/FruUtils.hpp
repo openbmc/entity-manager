@@ -24,6 +24,8 @@
 #include <string>
 #include <utility>
 #include <vector>
+#include <optional>
+
 extern "C"
 {
 // Include for I2C_SMBUS_BLOCK_MAX
@@ -102,6 +104,8 @@ const char bcdHighChars[] = {
 };
 
 char bcdPlusToChar(uint8_t val);
+
+std::optional<int8_t> bcdToInt8(uint8_t b);
 
 bool verifyOffset(const std::vector<uint8_t>& fruBytes, fruAreas currentArea,
                   uint8_t len);
