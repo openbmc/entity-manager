@@ -201,6 +201,30 @@
       },
       "revId": "6e90585abafa1bdaf106f0f72d63ef8dcfa2968e",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7b033831_74854c6e",
+        "filename": "include/Utils.hpp",
+        "patchSetId": 1
+      },
+      "lineNbr": 51,
+      "author": {
+        "id": 1000546
+      },
+      "writtenOn": "2022-03-01T11:06:34Z",
+      "side": 1,
+      "message": "1. Yes. we can move to FruUtil.hpp as well. \n\nThe reason I keep this struct in the Utils.hpp is, if any Global or Common Variable is used for this entire repo, we can use that struct, that\u0027s why I named it as Utility. \n\nLater, Thought it is mostly used in fru-deamon and ipmb-fru deamon applications. We renamed it as FruUtilGlobalVar.\n\n2. Initially, I declared BusMap variable as Global variable since it is needed for both fru and ipmb-fru applications. Based on Ed suggestion, not to use Global variable and Create a Utility Class for that. \n\nPlease refer this patch review comments.\nhttps://gerrit.openbmc-project.xyz/c/openbmc/entity-manager/+/47246\n\n\nBackground :\n\nWe have a multi host system and we wanted to read the host FRU details which is ipmb based connection from BMC. So, created the below patch for adding support to read/write the host FRU details from the ipmb interface.\n\nhttps://gerrit.openbmc-project.xyz/c/openbmc/entity-manager/+/39593 \n\nImplemented a separate daemon \"ipmb-fru\"  to handle this FRU read/write.\nThis \"ipmb-fru\" daemon uses the existing functions \"getFRUInfo\", \"updateFRUProperty\", \"addFruObjectToDbus\" of FruDevice.cpp. \n\nSo, moving these functions to FruUtils.cpp to make use of the both fru and ipmb-fru daemons. Also, moved some variables to common file to used by these two deamons. Refactored the existing FruDevice.cpp file.\nAlso, splitting these patches into small patches into small patches for easy review.\n\nPlease find the below patches for these implementations.\nhttps://gerrit.openbmc-project.xyz/c/openbmc/entity-manager/+/49418 \nhttps://gerrit.openbmc-project.xyz/c/openbmc/entity-manager/+/49205\nhttps://gerrit.openbmc-project.xyz/c/openbmc/entity-manager/+/49076\nhttps://gerrit.openbmc-project.xyz/c/openbmc/entity-manager/+/39592 \nhttps://gerrit.openbmc-project.xyz/c/openbmc/entity-manager/+/47246 \nhttps://gerrit.openbmc-project.xyz/c/openbmc/entity-manager/+/50894 \nhttps://gerrit.openbmc-project.xyz/c/openbmc/entity-manager/+/50921 \nhttps://gerrit.openbmc-project.xyz/c/openbmc/entity-manager/+/51555.\n\nso, we can add the variables \"powerIsOn\", \"unknownBusObjectCount\" to this Struct \"FruUtilGlobalVar\".  I have moved these variables to local variables by passing parameters to the functions. These variables also used by both fru and ipmb-fru deamons. \n\nCould you please suggest, if we can move the variables \"powerIsOn\", \"unknownBusObjectCount\" or any other common variable used by both fru an ipmb-fru applications. to  this \"FruUtilGlobalVar\" Struct.\n \nor, Please suggest, If we can move this \"busMap\" variable to Global variable and can remove this Struct.",
+      "parentUuid": "1778bf8a_60cb6648",
+      "range": {
+        "startLine": 51,
+        "startChar": 0,
+        "endLine": 51,
+        "endChar": 14
+      },
+      "revId": "6e90585abafa1bdaf106f0f72d63ef8dcfa2968e",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }
