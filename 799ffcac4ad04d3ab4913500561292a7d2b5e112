@@ -364,6 +364,24 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "94b50191_2d482341",
+        "filename": "include/spd/spd.hpp",
+        "patchSetId": 2
+      },
+      "lineNbr": 119,
+      "author": {
+        "id": 1000937
+      },
+      "writtenOn": "2022-03-01T16:35:40Z",
+      "side": 1,
+      "message": "The reason for those virtual functions is to support different generations of DIMM SPD. Because the SPD format has some differences between generations. For example `spdUsedSize` and `spdTotalSize` are the same in DDR5 while it’s two different fields in DDR4.\n\nI also add them to commit message.",
+      "parentUuid": "c0915121_8807bf34",
+      "revId": "799ffcac4ad04d3ab4913500561292a7d2b5e112",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "49912e54_5775c89b",
