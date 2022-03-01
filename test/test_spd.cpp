@@ -1,3 +1,4 @@
+#include "spd/ddr5.hpp"
 #include "spd/spd.hpp"
 
 #include "gtest/gtest.h"
