@@ -152,6 +152,24 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "4a7e50ba_eadacc56",
+        "filename": "include/spd/spd.hpp",
+        "patchSetId": 2
+      },
+      "lineNbr": 81,
+      "author": {
+        "id": 1000937
+      },
+      "writtenOn": "2022-03-01T18:13:19Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "51bf56e6_f107ebdc",
+      "revId": "799ffcac4ad04d3ab4913500561292a7d2b5e112",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "3b71cc0d_c81c2baa",
@@ -254,6 +272,24 @@
       "side": 1,
       "message": "+1",
       "parentUuid": "7b136cb3_78ce6023",
+      "revId": "799ffcac4ad04d3ab4913500561292a7d2b5e112",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "f7c659b2_a25bb4b4",
+        "filename": "include/spd/spd.hpp",
+        "patchSetId": 2
+      },
+      "lineNbr": 106,
+      "author": {
+        "id": 1000937
+      },
+      "writtenOn": "2022-03-01T18:13:19Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "cc486007_f1dec187",
       "revId": "799ffcac4ad04d3ab4913500561292a7d2b5e112",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
@@ -431,6 +467,24 @@
       "side": 1,
       "message": "Actually, this might already be defined for us in boost.  try crc_ccitt_type",
       "parentUuid": "fc6bad2a_3a519eee",
+      "revId": "799ffcac4ad04d3ab4913500561292a7d2b5e112",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "8c9ebce4_1b639b9d",
+        "filename": "src/spd.cpp",
+        "patchSetId": 2
+      },
+      "lineNbr": 39,
+      "author": {
+        "id": 1000937
+      },
+      "writtenOn": "2022-03-01T18:13:19Z",
+      "side": 1,
+      "message": "Thanks for the information.\nAfter I tested I think `crc_xmodem_t` should be the correct one.\n\n\u003e //! Computation type for the actual XMODEM|ZMODEM|CRC-16/ACORN standard\n\u003e typedef crc_optimal\u003c16, 0x1021, 0, 0, false, false\u003e       crc_xmodem_t;",
+      "parentUuid": "ce4f6ab0_152b96f9",
       "revId": "799ffcac4ad04d3ab4913500561292a7d2b5e112",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
