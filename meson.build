@@ -193,16 +193,13 @@ subdir('src')
 
 if not build_tests.disabled()
     test_boost_args = boost_args + ['-DBOOST_ASIO_DISABLE_THREADS']
-    gtest = dependency('gtest', main: true, disabler: true, required: false)
-    gmock = dependency('gmock', disabler: true, required: false)
-    if (not gtest.found() or not gmock.found()) and build_tests.enabled()
-        cmake = import('cmake')
-        gtest_subproject = cmake.subproject('gtest')
-        cm_gtest = gtest_subproject.dependency('gtest')
-        cm_gtest_main = gtest_subproject.dependency('gtest_main')
-        gtest = declare_dependency(dependencies: [cm_gtest, cm_gtest_main, threads])
-        gmock = gtest_subproject.dependency('gmock')
-    endif
+    
+    cmake = import('cmake')
+    gtest_subproject = cmake.subproject('gtest')
+    cm_gtest = gtest_subproject.dependency('gtest')
+    cm_gtest_main = gtest_subproject.dependency('gtest_main')
+    gtest = declare_dependency(dependencies: [cm_gtest, cm_gtest_main, threads])
+    gmock = gtest_subproject.dependency('gmock')
 
     test(
         'test_entity_manager',
@@ -261,6 +258,7 @@ if not build_tests.disabled()
             'test_ddr5',
             'test/test_ddr5.cpp',
             'src/ddr5.cpp',
+            'src/spd.cpp',
             cpp_args: test_boost_args,
             dependencies: [
                 gtest,
