@@ -123,6 +123,24 @@
       "parentUuid": "34757935_3c9ef4d8",
       "revId": "788c6404367d052bdabf24a5f91a435b854e9b11",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "bf51eb16_d34e4c60",
+        "filename": "configurations/Delta_AWF2DC3200W_PSU.json",
+        "patchSetId": 2
+      },
+      "lineNbr": 33,
+      "author": {
+        "id": 1001252
+      },
+      "writtenOn": "2022-03-01T12:57:48Z",
+      "side": 1,
+      "message": "A possible workaround is to copy the configuration for 6 times, and for each one, add a fixed ‘BUS’ in the probe rule. For example, if your PSU1 is on i2c-11.\n\n  \"Name\": \"Delta AWF2DC3200W PSU 1\",\n  \"Probe\": \"xyz.openbmc_project.FruDevice({\u0027PRODUCT_PRODUCT_NAME\u0027: \u0027AWF2DC3200W\u0027, \u0027BUS\u0027: 11})\",\n\nThe \"F2U8x25 HSBP.json\" also uses this way. https://github.com/openbmc/entity-manager/blob/master/configurations/F2U8X25%20HSBP.json Seems it is the only possible solution for your use case for now, though it is not clean :(",
+      "parentUuid": "5dfc0367_4be069ee",
+      "revId": "788c6404367d052bdabf24a5f91a435b854e9b11",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }
