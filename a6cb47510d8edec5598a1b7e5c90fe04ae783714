@@ -24,6 +24,30 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "91f169d2_e9e32a71",
+        "filename": "include/FruUtils.hpp",
+        "patchSetId": 12
+      },
+      "lineNbr": 83,
+      "author": {
+        "id": 1000733
+      },
+      "writtenOn": "2022-03-01T21:15:50Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "dee23af0_3533a851",
+      "range": {
+        "startLine": 83,
+        "startChar": 18,
+        "endLine": 83,
+        "endChar": 25
+      },
+      "revId": "a6cb47510d8edec5598a1b7e5c90fe04ae783714",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "358e7bd7_b96a38cb",
@@ -37,6 +61,30 @@
       "writtenOn": "2022-03-01T14:57:00Z",
       "side": 1,
       "message": "Can you please add a note on what the return value of read / ReadBlockFunc indicated? I.e. does either of which \"guarantee\" to read the requested len, or do they just read \"as much as possible\" and it might require subsequent calls to read?",
+      "range": {
+        "startLine": 88,
+        "startChar": 36,
+        "endLine": 88,
+        "endChar": 62
+      },
+      "revId": "a6cb47510d8edec5598a1b7e5c90fe04ae783714",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "1b5e9567_5755dec7",
+        "filename": "include/FruUtils.hpp",
+        "patchSetId": 12
+      },
+      "lineNbr": 88,
+      "author": {
+        "id": 1000733
+      },
+      "writtenOn": "2022-03-01T21:15:50Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "358e7bd7_b96a38cb",
       "range": {
         "startLine": 88,
         "startChar": 36,
@@ -70,6 +118,30 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "f8f09c3c_a1fe276b",
+        "filename": "include/FruUtils.hpp",
+        "patchSetId": 12
+      },
+      "lineNbr": 101,
+      "author": {
+        "id": 1000733
+      },
+      "writtenOn": "2022-03-01T21:15:50Z",
+      "side": 1,
+      "message": "No, the intent is that all implementations of the FRUReader abstract base class will provide the same semantics for the `::read()` operation as described in the comment in the base class, so I didn\u0027t think it was necessary to duplicate it in the derived classes.",
+      "parentUuid": "bdb00896_866f0a01",
+      "range": {
+        "startLine": 101,
+        "startChar": 2,
+        "endLine": 101,
+        "endChar": 14
+      },
+      "revId": "a6cb47510d8edec5598a1b7e5c90fe04ae783714",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "825ae8ec_5e117b8d",
@@ -83,6 +155,30 @@
       "writtenOn": "2022-03-01T14:57:00Z",
       "side": 1,
       "message": "I\u0027m not sure about the usual style here, but I would have though that we\u0027d indicate that this is a constant somehow? When I just read the code that\u0027s using it, I was wondering whether this is a variable.",
+      "range": {
+        "startLine": 102,
+        "startChar": 26,
+        "endLine": 102,
+        "endChar": 40
+      },
+      "revId": "a6cb47510d8edec5598a1b7e5c90fe04ae783714",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "ca557305_45827526",
+        "filename": "include/FruUtils.hpp",
+        "patchSetId": 12
+      },
+      "lineNbr": 102,
+      "author": {
+        "id": 1000733
+      },
+      "writtenOn": "2022-03-01T21:15:50Z",
+      "side": 1,
+      "message": "That was my inclination too, but when I initially wrote it as CACHE_BLOCK_SIZE the CI style checks complained, so I changed it to match e.g. fruBlockSize, which I guess is the preferred style.",
+      "parentUuid": "825ae8ec_5e117b8d",
       "range": {
         "startLine": 102,
         "startChar": 26,
@@ -116,6 +212,30 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "b43a0ed0_2304ab1d",
+        "filename": "include/FruUtils.hpp",
+        "patchSetId": 12
+      },
+      "lineNbr": 110,
+      "author": {
+        "id": 1000733
+      },
+      "writtenOn": "2022-03-01T21:15:50Z",
+      "side": 1,
+      "message": "Yeah, I suppose that\u0027s perhaps a bit overly specific, I think I\u0027ll rename it to EOF as a slightly more generic alternative and avoid talking about EEPROMs entirely.",
+      "parentUuid": "2062edbb_ea82f5fc",
+      "range": {
+        "startLine": 110,
+        "startChar": 35,
+        "endLine": 110,
+        "endChar": 41
+      },
+      "revId": "a6cb47510d8edec5598a1b7e5c90fe04ae783714",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "2a57c934_ed6c55b5",
@@ -139,6 +259,30 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "32b8b284_5afb493c",
+        "filename": "src/FruDevice.cpp",
+        "patchSetId": 12
+      },
+      "lineNbr": 432,
+      "author": {
+        "id": 1000733
+      },
+      "writtenOn": "2022-03-01T21:15:50Z",
+      "side": 1,
+      "message": "`maybeIs16Bit` to me makes it sound like a true value would indicate that the device might be 16-bit but we don\u0027t really know, which seems more confusing to me.  Given that the following line handles the `\u003c 0` error case fairly unambiguously I thought it was reasonably clear (certainly more so than the completely non-descriptive name `flag`).  It\u0027s maybe getting a little further afield from the intent of this patch, but perhaps I\u0027ll change it to be a `std::optional\u003cbool\u003e`.",
+      "parentUuid": "2a57c934_ed6c55b5",
+      "range": {
+        "startLine": 432,
+        "startChar": 16,
+        "endLine": 432,
+        "endChar": 23
+      },
+      "revId": "a6cb47510d8edec5598a1b7e5c90fe04ae783714",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "75bab01f_c81fc83f",
@@ -152,6 +296,30 @@
       "writtenOn": "2022-03-01T14:57:00Z",
       "side": 1,
       "message": "Shouldn\u0027t we also set the eepromSize here? This would cover the case where the size of the EEPROM is divisible by the cacheBlockSize - which I think it\u0027s pretty likely. Otherwise we\u0027ll continue trying to read something that\u0027s not there, not taking advantage of eepromSize.",
+      "range": {
+        "startLine": 85,
+        "startChar": 16,
+        "endLine": 85,
+        "endChar": 56
+      },
+      "revId": "a6cb47510d8edec5598a1b7e5c90fe04ae783714",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "6334e43f_14bc41a6",
+        "filename": "src/FruUtils.cpp",
+        "patchSetId": 12
+      },
+      "lineNbr": 85,
+      "author": {
+        "id": 1000733
+      },
+      "writtenOn": "2022-03-01T21:15:50Z",
+      "side": 1,
+      "message": "The only cases where line 80 above won\u0027t set eepromSize are if the read fails entirely (ret \u003c 0) or if we get all the bytes we asked for (ret \u003d\u003d cacheBlockSize, in which case we don\u0027t know that it\u0027s EOF), so I think the preceding logic already takes care of that.",
+      "parentUuid": "75bab01f_c81fc83f",
       "range": {
         "startLine": 85,
         "startChar": 16,
