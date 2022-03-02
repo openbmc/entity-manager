@@ -482,7 +482,7 @@ void loadBlacklist(const char* path)
     }
 
     nlohmann::json data =
-        nlohmann::json::parse(blacklistStream, nullptr, false);
+        nlohmann::json::parse(blacklistStream, nullptr, false, true);
     if (data.is_discarded())
     {
         std::cerr << "Illegal blacklist file detected, cannot validate JSON, "
