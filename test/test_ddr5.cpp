@@ -142,5 +142,6 @@ TEST(ValidateDDR5SPDContentTest, ContentCorrect)
         EXPECT_EQ(ddr5SPD->ranks(), 2);
         EXPECT_EQ(ddr5SPD->width(), 4);
         EXPECT_EQ(ddr5SPD->checksum(), 0x4b5b);
+        EXPECT_TRUE(ddr5SPD->checkChecksum());
     }
 }

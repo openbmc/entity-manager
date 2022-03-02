@@ -98,4 +98,6 @@ class SPD
     virtual int32_t ranks() const = 0;
     virtual int32_t width() const = 0;
     virtual uint16_t checksum() const = 0; // Stored (not computed) checksum.
+    virtual bool checkChecksum()
+        const = 0; // Recalculate checksum then compare with stored checksum
 };

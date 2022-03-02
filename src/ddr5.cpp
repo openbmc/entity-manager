@@ -488,6 +488,17 @@ uint16_t DDR5SPD::checksum() const
     return (spd_->crc[1] << 8) | spd_->crc[0];
 }
 
+bool DDR5SPD::checkChecksum() const
+{
+    if (spdUsedSize() < 512)
+    {
+        return false;
+    }
+
+    return SPD::calcJedecCRC16(std::span<const uint8_t>{
+               spdBytes_.data(), kCRCCoverageBytes}) == checksum();
+}
+
 DDR5SPD::DDR5SPD(std::span<const uint8_t> spdBytes) :
     spdBytes_(spdBytes.begin(), spdBytes.end())
 {

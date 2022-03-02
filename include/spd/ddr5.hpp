@@ -12,6 +12,8 @@
 class DDR5SPD : public SPD
 {
   public:
+    static constexpr uint32_t kCRCCoverageBytes = 510;
+
     // Parses SPD information from the given source and returns a new SPD object
     // owned by the caller. Returns NULL on error or if the given SPD is not a
     // DDR5 SPD.
@@ -64,6 +66,7 @@ class DDR5SPD : public SPD
     int32_t ranks() const override;
     int32_t width() const override;
     uint16_t checksum() const override;
+    bool checkChecksum() const override;
 
     // Layout of fields in a DDR5 SPD.
     // Individual field descriptions are taken directly from the JEDEC spec.
