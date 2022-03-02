@@ -16,6 +16,24 @@
       "message": "Doesn\u0027t an \u0027inline\u0027 definition in a header file make for potential duplicate definitions of different variables for each compilation unit?",
       "revId": "5d39a45fa9f5e098c257addf5efcc6201c25a39b",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "5b37a575_f3fb8c9d",
+        "filename": "include/FruUtils.hpp",
+        "patchSetId": 4
+      },
+      "lineNbr": 43,
+      "author": {
+        "id": 1000546
+      },
+      "writtenOn": "2022-03-02T13:14:26Z",
+      "side": 1,
+      "message": "No. The inline variable is allowed to be defined in multiple translation units. It also follows the one definition rule. If this is defined more than one time, the compiler merges them all into a single object in final program.",
+      "parentUuid": "69afb93c_73ab6d1c",
+      "revId": "5d39a45fa9f5e098c257addf5efcc6201c25a39b",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }
