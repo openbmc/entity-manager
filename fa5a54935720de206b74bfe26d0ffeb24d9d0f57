@@ -16,6 +16,24 @@
       "message": "Not sure what you\u0027re trying to accomplish with pushing this, but the gtest version in CI is controlled from openbmc-build-scripts, not from the subproject files.",
       "revId": "fa5a54935720de206b74bfe26d0ffeb24d9d0f57",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "6a6cf49c_54e975fa",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1000937
+      },
+      "writtenOn": "2022-03-02T01:51:47Z",
+      "side": 1,
+      "message": "I pushed this test commit because I got an gmock error(in this commit https://gerrit.openbmc-project.xyz/c/openbmc/entity-manager/+/51649/8) that is not reproducible locally.\n\nSo I am trying to find out if the issue is caused by out-dated `gmock`.\nIn this test commit I force Jenkins to fetch `gmock` on github then use the `HEAD` as the reversion.\nThe error looks gone.",
+      "parentUuid": "9ab5690c_1ac8d642",
+      "revId": "fa5a54935720de206b74bfe26d0ffeb24d9d0f57",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }
