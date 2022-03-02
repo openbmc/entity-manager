@@ -245,7 +245,7 @@ static int i2cSmbusWriteThenRead(int file, uint16_t address,
 
     int ret = ioctl(file, I2C_RDWR, &rdwr);
 
-    return (ret == SMBUS_IOCTL_WRITE_THEN_READ_MSG_COUNT) ? ret : -1;
+    return (ret == SMBUS_IOCTL_WRITE_THEN_READ_MSG_COUNT) ? msgs[1].len : -1;
 }
 
 static int64_t readBlockData(int flag, int file, uint16_t address,
