@@ -22,6 +22,30 @@
       },
       "revId": "58df4b16e7ad5e67de30f87d95fa89e9655e828f",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "b84e8616_c16f7bc2",
+        "filename": "subprojects/gtest.wrap",
+        "patchSetId": 5
+      },
+      "lineNbr": 2,
+      "author": {
+        "id": 1000937
+      },
+      "writtenOn": "2022-03-03T07:36:48Z",
+      "side": 1,
+      "message": "\u003e We talked about this in email.  If you\u0027re changing the revision of gtest, you need to do it in openbmc-build-scripts, not here.\nYeah, so I abandoned this and submit another one. https://gerrit.openbmc-project.xyz/c/openbmc/openbmc-build-scripts/+/51678\n\n\u003e Also, you really should never use HEAD.  Always use an explicit sha1, and it should match openbmc-build-scripts.  You should update it here:\nI asked this question in the discord. They suggested me to update gtest to the same revision as yocto, which is `release-1.11.0`. Thanks for reminding me.",
+      "parentUuid": "c31e4fb7_8338a2a5",
+      "range": {
+        "startLine": 2,
+        "startChar": 0,
+        "endLine": 2,
+        "endChar": 15
+      },
+      "revId": "58df4b16e7ad5e67de30f87d95fa89e9655e828f",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }
