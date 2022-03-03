@@ -33,6 +33,42 @@
       "message": "I tested this and found that Jenkins still lint the `subprojects/gmock` codebase.\nLooks like it doesn’t get solved.\nhttps://jenkins.openbmc.org/job/ci-repository/38320/console\n",
       "revId": "bb5cd9818a1a434bc9162983a12df9b882b8adcf",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "09874c32_51465ee5",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2022-03-03T07:11:27Z",
+      "side": 1,
+      "message": "I\u0027m not sure what\u0027s going on with your patch, but for some reason, this patch isn\u0027t having the problem, and is the same pattern we use other places.  We\u0027ll triage the CI issue sson, but I\u0027m going to merge this patch in the meantime.",
+      "parentUuid": "d22e71cf_5ac8b08b",
+      "revId": "bb5cd9818a1a434bc9162983a12df9b882b8adcf",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "cc50edea_d5ad4598",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2022-03-03T07:11:27Z",
+      "side": 1,
+      "message": "No big deal.",
+      "parentUuid": "66cfba1d_655e3640",
+      "revId": "bb5cd9818a1a434bc9162983a12df9b882b8adcf",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }
