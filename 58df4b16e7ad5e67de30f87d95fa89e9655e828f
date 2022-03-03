@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c31e4fb7_8338a2a5",
+        "filename": "subprojects/gtest.wrap",
+        "patchSetId": 5
+      },
+      "lineNbr": 2,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2022-03-03T07:14:11Z",
+      "side": 1,
+      "message": "We talked about this in email.  If you\u0027re changing the revision of gtest, you need to do it in openbmc-build-scripts, not here.\n\nAlso, you really should never use HEAD.  Always use an explicit sha1, and it should match openbmc-build-scripts.  You should update it here:\n\nhttps://github.com/openbmc/openbmc-build-scripts/blob/5202d8ee73221210e8650fd779e02753bf8aeaba/scripts/build-unit-test-docker#L141",
+      "range": {
+        "startLine": 2,
+        "startChar": 0,
+        "endLine": 2,
+        "endChar": 15
+      },
+      "revId": "58df4b16e7ad5e67de30f87d95fa89e9655e828f",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    }
+  ]
+}
