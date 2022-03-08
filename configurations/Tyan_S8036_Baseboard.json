@@ -1,0 +1,236 @@
+{
+    "Exposes": [
+        {
+            "EntityId": 7,
+            "EntityInstance": 0,
+            "Index": 0,
+            "Name": "vcc5_aux",
+            "ScaleFactor": 0.2722063037,
+            "Type": "ADC"
+        },
+        {
+            "EntityId": 7,
+            "EntityInstance": 0,
+            "Index": 1,
+            "Name": "vcc3_aux",
+            "ScaleFactor": 0.4112554113,
+            "Type": "ADC"
+        },
+        {
+            "EntityId": 7,
+            "EntityInstance": 0,
+            "Index": 2,
+            "Name": "vcc12",
+            "ScaleFactor": 0.1126927639,
+            "Type": "ADC"
+        },
+        {
+            "EntityId": 7,
+            "EntityInstance": 0,
+            "Index": 3,
+            "Name": "vcc5",
+            "ScaleFactor": 0.2722063037,
+            "Type": "ADC"
+        },
+        {
+            "EntityId": 7,
+            "EntityInstance": 1,
+            "Index": 4,
+            "Name": "vcc3",
+            "ScaleFactor": 0.4112554113,
+            "Type": "ADC"
+        },
+        {
+            "EntityId": 3,
+            "EntityInstance": 1,
+            "Index": 5,
+            "Name": "pvpp_abcd",
+            "ScaleFactor": 0.5416191562,
+            "Type": "ADC"
+        },
+        {
+            "EntityId": 3,
+            "EntityInstance": 1,
+            "Index": 6,
+            "Name": "pvpp_efgh",
+            "ScaleFactor": 0.5416191562,
+            "Type": "ADC"
+        },
+        {
+            "EntityId": 3,
+            "EntityInstance": 1,
+            "Index": 7,
+            "Name": "p1v8_aux",
+            "ScaleFactor": 0.7503949447,
+            "Type": "ADC"
+        },
+        {
+            "EntityId": 3,
+            "EntityInstance": 0,
+            "Index": 8,
+            "Name": "p1v8",
+            "ScaleFactor": 0.7503949447,
+            "Type": "ADC"
+        },
+        {
+            "EntityId": 3,
+            "EntityInstance": 0,
+            "Index": 9,
+            "Name": "pvddcr_cpu",
+            "Type": "ADC"
+        },
+        {
+            "EntityId": 3,
+            "EntityInstance": 0,
+            "Index": 10,
+            "Name": "pvdd_soc",
+            "Type": "ADC"
+        },
+        {
+            "EntityId": 3,
+            "EntityInstance": 0,
+            "Index": 11,
+            "Name": "pvdd_soc_aud",
+            "Type": "ADC"
+        },
+        {
+            "EntityId": 3,
+            "EntityInstance": 0,
+            "Index": 12,
+            "Name": "pvddio_abcd",
+            "Type": "ADC"
+        },
+        {
+            "EntityId": 3,
+            "EntityInstance": 0,
+            "Index": 13,
+            "Name": "pvddio_efgh",
+            "Type": "ADC"
+        },
+        {
+            "EntityId": 7,
+            "EntityInstance": 0,
+            "Index": 15,
+            "Name": "rtc_bat",
+            "Type": "ADC"
+        },
+        {
+            "Connector": {
+                "Name": "CPU Fan Connector",
+                "Pwm": 0,
+                "Tachs": [
+                    0
+                ]
+            },
+            "EntityId": 3,
+            "EntityInstance": 0,
+            "Index": 0,
+            "Name": "cpufan0",
+            "Type": "AspeedFan"
+        },
+        {
+            "Connector": {
+                "Name": "System Fan Connector 1",
+                "Pwm": 3,
+                "Tachs": [
+                    2
+                ]
+            },
+            "EntityId": 7,
+            "EntityInstance": 0,
+            "Index": 2,
+            "Name": "fan1",
+            "Type": "AspeedFan"
+        },
+        {
+            "Connector": {
+                "Name": "System Fan Connector 2",
+                "Pwm": 3,
+                "Tachs": [
+                    3
+                ]
+            },
+            "EntityId": 7,
+            "EntityInstance": 0,
+            "Index": 3,
+            "Name": "fan2",
+            "Type": "AspeedFan"
+        },
+        {
+            "Connector": {
+                "Name": "System Fan Connector 3",
+                "Pwm": 3,
+                "Tachs": [
+                    4
+                ]
+            },
+            "EntityId": 7,
+            "EntityInstance": 0,
+            "Index": 4,
+            "Name": "fan3",
+            "Type": "AspeedFan"
+        },
+        {
+            "Connector": {
+                "Name": "System Fan Connector 4",
+                "Pwm": 3,
+                "Tachs": [
+                    5
+                ]
+            },
+            "EntityId": 7,
+            "EntityInstance": 0,
+            "Index": 5,
+            "Name": "fan4",
+            "Type": "AspeedFan"
+        },
+        {
+            "Connector": {
+                "Name": "System Fan Connector 5",
+                "Pwm": 4,
+                "Tachs": [
+                    6
+                ]
+            },
+            "EntityId": 7,
+            "EntityInstance": 0,
+            "Index": 6,
+            "Name": "fan5",
+            "Type": "AspeedFan"
+        },
+        {
+            "Connector": {
+                "Name": "System Fan Connector 6",
+                "Pwm": 4,
+                "Tachs": [
+                    7
+                ]
+            },
+            "EntityId": 7,
+            "EntityInstance": 0,
+            "Index": 7,
+            "Name": "fan6",
+            "Type": "AspeedFan"
+        },
+        {
+            "Address": "0x28",
+            "Bus": 5,
+            "EntityId": 7,
+            "EntityInstance": 0,
+            "Name": "sys_air_inlet",
+            "Name1": "mb_air_inlet",
+            "Name2": "sys_air_outlet",
+            "Name3": "mb_temp",
+            "Type": "NCT7802"
+        }
+    ],
+    "Name": "Tyan S8036 Baseboard",
+    "Probe": "xyz.openbmc_project.FruDevice({'BOARD_PRODUCT_NAME': 'S8036GM2NE*'})",
+    "Type": "Board",
+    "xyz.openbmc_project.Inventory.Decorator.Asset": {
+        "Manufacturer": "$BOARD_MANUFACTURER",
+        "Model": "$BOARD_PRODUCT_NAME",
+        "PartNumber": "$BOARD_PART_NUMBER",
+        "SerialNumber": "$BOARD_SERIAL_NUMBER"
+    }
+}

@@ -359,7 +359,67 @@
             "Bus": 10,
             "Name": "FRONT_PANEL_TEMP",
             "Name1": "FRONT_PANEL_HUMIDTY",
+            "Thresholds": [
+                {
+                    "Direction": "greater than",
+                    "Index": 1,
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 40.0
+                },
+                {
+                    "Direction": "less than",
+                    "Index": 1,
+                    "Name": "lower critical",
+                    "Severity": 1,
+                    "Value": 0
+                }
+            ],
             "Type": "HDC1080"
+        },
+        {
+            "LED": "fan0_fault",
+            "Name": "System Fan Connector 0",
+            "Pwm": 0,
+            "Status": "disabled",
+            "Tachs": [
+                0,
+                1
+            ],
+            "Type": "IntelFanConnector"
+        },
+        {
+            "LED": "fan1_fault",
+            "Name": "System Fan Connector 1",
+            "Pwm": 1,
+            "Status": "disabled",
+            "Tachs": [
+                2,
+                3
+            ],
+            "Type": "IntelFanConnector"
+        },
+        {
+            "LED": "fan2_fault",
+            "Name": "System Fan Connector 2",
+            "Pwm": 2,
+            "Status": "disabled",
+            "Tachs": [
+                4,
+                5
+            ],
+            "Type": "IntelFanConnector"
+        },
+        {
+            "LED": "fan3_fault",
+            "Name": "System Fan Connector 3",
+            "Pwm": 3,
+            "Status": "disabled",
+            "Tachs": [
+                6,
+                7
+            ],
+            "Type": "IntelFanConnector"
         },
         {
             "Address": "0x40",
@@ -438,6 +498,36 @@
             "Bus": 12,
             "Name": "MB_U73_THERM_LOCAL",
             "Name1": "MB_U73_THERM_REMOTE",
+            "Thresholds": [
+                {
+                    "Direction": "greater than",
+                    "Index": 1,
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 50.0
+                },
+                {
+                    "Direction": "less than",
+                    "Index": 1,
+                    "Name": "lower critical",
+                    "Severity": 1,
+                    "Value": 0
+                },
+                {
+                    "Direction": "greater than",
+                    "Index": 2,
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 50.0
+                },
+                {
+                    "Direction": "less than",
+                    "Index": 2,
+                    "Name": "lower critical",
+                    "Severity": 1,
+                    "Value": 0
+                }
+            ],
             "Type": "TMP421"
         },
         {
@@ -445,54 +535,196 @@
             "Bus": 12,
             "Name": "MB_U72_THERM_LOCAL",
             "Name1": "MB_U72_THERM_REMOTE",
+            "Thresholds": [
+                {
+                    "Direction": "greater than",
+                    "Index": 1,
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 50.0
+                },
+                {
+                    "Direction": "less than",
+                    "Index": 1,
+                    "Name": "lower critical",
+                    "Severity": 1,
+                    "Value": 0
+                },
+                {
+                    "Direction": "greater than",
+                    "Index": 2,
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 50.0
+                },
+                {
+                    "Direction": "less than",
+                    "Index": 2,
+                    "Name": "lower critical",
+                    "Severity": 1,
+                    "Value": 0
+                }
+            ],
             "Type": "TMP421"
         },
         {
             "Address": "0x4F",
             "Bus": 9,
             "Name": "MB_U402_THERM_LOCAL",
+            "Thresholds": [
+                {
+                    "Direction": "greater than",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 55.0
+                },
+                {
+                    "Direction": "less than",
+                    "Name": "lower critical",
+                    "Severity": 1,
+                    "Value": 0
+                }
+            ],
             "Type": "TMP421"
         },
         {
             "Address": "0x4F",
             "Bus": 10,
             "Name": "MB_U19_THERM_LOCAL",
+            "Thresholds": [
+                {
+                    "Direction": "greater than",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 55.0
+                },
+                {
+                    "Direction": "less than",
+                    "Name": "lower critical",
+                    "Severity": 1,
+                    "Value": 0
+                }
+            ],
             "Type": "TMP421"
         },
         {
             "Address": "0x4F",
             "Bus": 0,
             "Name": "SLED1_THERM_LOCAL",
+            "Thresholds": [
+                {
+                    "Direction": "greater than",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 54.0
+                },
+                {
+                    "Direction": "less than",
+                    "Name": "lower critical",
+                    "Severity": 1,
+                    "Value": 0
+                }
+            ],
             "Type": "TMP421"
         },
         {
             "Address": "0x4F",
             "Bus": 1,
             "Name": "SLED2_THERM_LOCAL",
+            "Thresholds": [
+                {
+                    "Direction": "greater than",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 54.0
+                },
+                {
+                    "Direction": "less than",
+                    "Name": "lower critical",
+                    "Severity": 1,
+                    "Value": 0
+                }
+            ],
             "Type": "TMP421"
         },
         {
             "Address": "0x4F",
             "Bus": 2,
             "Name": "SLED3_THERM_LOCAL",
+            "Thresholds": [
+                {
+                    "Direction": "greater than",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 54.0
+                },
+                {
+                    "Direction": "less than",
+                    "Name": "lower critical",
+                    "Severity": 1,
+                    "Value": 0
+                }
+            ],
             "Type": "TMP421"
         },
         {
             "Address": "0x4F",
             "Bus": 3,
             "Name": "SLED4_THERM_LOCAL",
+            "Thresholds": [
+                {
+                    "Direction": "greater than",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 54.0
+                },
+                {
+                    "Direction": "less than",
+                    "Name": "lower critical",
+                    "Severity": 1,
+                    "Value": 0
+                }
+            ],
             "Type": "TMP421"
         },
         {
             "Address": "0x4F",
             "Bus": 4,
             "Name": "SLED5_THERM_LOCAL",
+            "Thresholds": [
+                {
+                    "Direction": "greater than",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 54.0
+                },
+                {
+                    "Direction": "less than",
+                    "Name": "lower critical",
+                    "Severity": 1,
+                    "Value": 0
+                }
+            ],
             "Type": "TMP421"
         },
         {
             "Address": "0x4F",
             "Bus": 5,
             "Name": "SLED6_THERM_LOCAL",
+            "Thresholds": [
+                {
+                    "Direction": "greater than",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 54.0
+                },
+                {
+                    "Direction": "less than",
+                    "Name": "lower critical",
+                    "Severity": 1,
+                    "Value": 0
+                }
+            ],
             "Type": "TMP421"
         }
     ],

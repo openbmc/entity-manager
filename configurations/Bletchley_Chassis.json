@@ -1,0 +1,175 @@
+{
+    "Exposes": [
+        {
+            "BindConnector": "System Fan Connector 0",
+            "Index": 0,
+            "Name": "FAN0_TACH_IL",
+            "PowerState": "Always",
+            "Thresholds": [
+                {
+                    "Direction": "greater than",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 7920
+                },
+                {
+                    "Direction": "less than",
+                    "Name": "lower critical",
+                    "Severity": 1,
+                    "Value": 700
+                }
+            ],
+            "Type": "AspeedFan"
+        },
+        {
+            "BindConnector": "System Fan Connector 0",
+            "Index": 1,
+            "Name": "FAN0_TACH_OL",
+            "PowerState": "Always",
+            "Thresholds": [
+                {
+                    "Direction": "greater than",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 7920
+                },
+                {
+                    "Direction": "less than",
+                    "Name": "lower critical",
+                    "Severity": 1,
+                    "Value": 700
+                }
+            ],
+            "Type": "AspeedFan"
+        },
+        {
+            "BindConnector": "System Fan Connector 1",
+            "Index": 2,
+            "Name": "FAN1_TACH_IL",
+            "PowerState": "Always",
+            "Thresholds": [
+                {
+                    "Direction": "greater than",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 7920
+                },
+                {
+                    "Direction": "less than",
+                    "Name": "lower critical",
+                    "Severity": 1,
+                    "Value": 700
+                }
+            ],
+            "Type": "AspeedFan"
+        },
+        {
+            "BindConnector": "System Fan Connector 1",
+            "Index": 3,
+            "Name": "FAN1_TACH_OL",
+            "PowerState": "Always",
+            "Thresholds": [
+                {
+                    "Direction": "greater than",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 7920
+                },
+                {
+                    "Direction": "less than",
+                    "Name": "lower critical",
+                    "Severity": 1,
+                    "Value": 700
+                }
+            ],
+            "Type": "AspeedFan"
+        },
+        {
+            "BindConnector": "System Fan Connector 2",
+            "Index": 4,
+            "Name": "FAN2_TACH_IL",
+            "PowerState": "Always",
+            "Thresholds": [
+                {
+                    "Direction": "greater than",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 7920
+                },
+                {
+                    "Direction": "less than",
+                    "Name": "lower critical",
+                    "Severity": 1,
+                    "Value": 700
+                }
+            ],
+            "Type": "AspeedFan"
+        },
+        {
+            "BindConnector": "System Fan Connector 2",
+            "Index": 5,
+            "Name": "FAN2_TACH_OL",
+            "PowerState": "Always",
+            "Thresholds": [
+                {
+                    "Direction": "greater than",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 7920
+                },
+                {
+                    "Direction": "less than",
+                    "Name": "lower critical",
+                    "Severity": 1,
+                    "Value": 700
+                }
+            ],
+            "Type": "AspeedFan"
+        },
+        {
+            "BindConnector": "System Fan Connector 3",
+            "Index": 6,
+            "Name": "FAN3_TACH_IL",
+            "PowerState": "Always",
+            "Thresholds": [
+                {
+                    "Direction": "greater than",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 7920
+                },
+                {
+                    "Direction": "less than",
+                    "Name": "lower critical",
+                    "Severity": 1,
+                    "Value": 700
+                }
+            ],
+            "Type": "AspeedFan"
+        },
+        {
+            "BindConnector": "System Fan Connector 3",
+            "Index": 7,
+            "Name": "FAN3_TACH_OL",
+            "PowerState": "Always",
+            "Thresholds": [
+                {
+                    "Direction": "greater than",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 7920
+                },
+                {
+                    "Direction": "less than",
+                    "Name": "lower critical",
+                    "Severity": 1,
+                    "Value": 700
+                }
+            ],
+            "Type": "AspeedFan"
+        }
+    ],
+    "Name": "Bletchley Chassis",
+    "Probe": "FOUND('Bletchley Baseboard')",
+    "Type": "Chassis"
+}

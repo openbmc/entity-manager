@@ -49,7 +49,6 @@ constexpr const char* tempConfigDir = "/tmp/configuration/";
 constexpr const char* lastConfiguration = "/tmp/configuration/last.json";
 constexpr const char* currentConfiguration = "/var/configuration/system.json";
 constexpr const char* globalSchema = "global.json";
-constexpr const bool debug = false;
 
 const boost::container::flat_map<const char*, probe_type_codes, CmpStr>
     probeTypes{{{"FALSE", probe_type_codes::FALSE_T},
