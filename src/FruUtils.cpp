@@ -17,6 +17,7 @@
 
 #include "FruUtils.hpp"
 
+#include <algorithm>
 #include <array>
 #include <cstdint>
 #include <filesystem>
@@ -263,6 +264,24 @@ bool verifyOffset(const std::vector<uint8_t>& fruBytes, fruAreas currentArea,
         }
     }
     return true;
+}
+
+resCodes formatDIMMSPD(const std::vector<uint8_t>& spdBytes,
+                       std::unique_ptr<SPD>& spd)
+{
+    auto s = SPD::getFromImage(spdBytes);
+    if (s == nullptr)
+    {
+        std::cout << "Error: can not parse SPD \n";
+        return resCodes::resErr;
+    }
+    if (!s->checkChecksum())
+    {
+        std::cout << "Error: SPD checksum is incorrect \n";
+        return resCodes::resErr;
+    }
+    spd = std::move(s);
+    return resCodes::resOK;
 }
 
 resCodes
@@ -640,6 +659,49 @@ bool findFRUHeader(int flag, int file, uint16_t address,
     }
 
     return false;
+}
+
+std::vector<uint8_t> readSPDContents(int flag, int file, uint16_t address,
+                                     const ReadBlockFunc& readBlock,
+                                     const std::string& errorHelp)
+{
+    std::vector<uint8_t> device(I2C_SMBUS_BLOCK_MAX);
+    if (readBlock(flag, file, address, 0x00, SPD::kMinRequiredSPDSize, device.data()) < 0)
+    {
+        std::cerr << "failed to read " << errorHelp << " offset "
+                  << "0x00" << "\n";
+        return {};
+    }
+
+    if (SPD::getSPDType(device) == SPD::SPDType::spdTypeUnknown) {
+        std::cerr << "[spd] readSPDContents fails, spdTypeUnknown \n";
+        return {};
+    }
+
+    const int32_t spdSize = SPD::getSPDSize(device);
+    if (spdSize == -1) {
+        std::cerr << "[spd] getSPDSize fails, spdSize==-1 \n";
+        return {};
+    }
+
+    device.resize(spdSize);
+    size_t readOffset = SPD::kMinRequiredSPDSize;
+    size_t remainingSPDSize = static_cast<size_t>(spdSize) - SPD::kMinRequiredSPDSize;
+    while (remainingSPDSize > 0)
+    {
+        size_t requestLength = std::min(static_cast<size_t>(I2C_SMBUS_BLOCK_MAX), remainingSPDSize);
+
+        if (readBlock(flag, file, address, static_cast<uint16_t>(readOffset), static_cast<uint8_t>(requestLength), device.data() + readOffset) < 0)
+        {
+            std::cerr << "failed to read " << errorHelp << " offset " << readOffset << "\n";
+            return {};
+        }
+
+        readOffset += requestLength;
+        remainingSPDSize -= requestLength;
+    }
+
+    return device;
 }
 
 std::vector<uint8_t> readFRUContents(int flag, int file, uint16_t address,

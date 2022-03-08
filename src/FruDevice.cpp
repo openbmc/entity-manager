@@ -17,6 +17,8 @@
 
 #include "FruUtils.hpp"
 #include "Utils.hpp"
+#include "spd/spd.hpp"
+#include "spd/SpdDbus.hpp"
 
 #include <fcntl.h>
 #include <sys/inotify.h>
@@ -42,6 +44,7 @@
 #include <iostream>
 #include <limits>
 #include <map>
+#include <memory>
 #include <regex>
 #include <set>
 #include <sstream>
@@ -91,7 +94,8 @@ bool updateFRUProperty(
         std::shared_ptr<sdbusplus::asio::dbus_interface>>& dbusInterfaceMap,
     size_t& unknownBusObjectCount, const bool& powerIsOn,
     sdbusplus::asio::object_server& objServer,
-    std::shared_ptr<sdbusplus::asio::connection>& systemBus);
+    std::shared_ptr<sdbusplus::asio::connection>& systemBus,
+    boost::container::flat_map<std::pair<size_t, size_t>, std::shared_ptr<SpdDbus>>& dbusSPDObjMap);
 
 // Given a bus/address, produce the path in sysfs for an eeprom.
 static std::string getEepromPath(size_t bus, size_t address)
@@ -429,7 +433,7 @@ int getBusFRUs(int file, int first, int last, int bus,
                     continue;
                 }
             }
-
+    
             /* Check for Device type if it is 8 bit or 16 bit */
             int flag = isDevice16Bit(file);
             if (flag < 0)
@@ -448,9 +452,17 @@ int getBusFRUs(int file, int first, int last, int bus,
             std::vector<uint8_t> device =
                 readFRUContents(flag, file, static_cast<uint16_t>(ii),
                                 readBlockData, errorMessage);
-            if (device.empty())
-            {
-                continue;
+
+            if (device.empty()) {
+                device = readSPDContents(flag, file, static_cast<uint16_t>(ii), readBlockData, errorMessage);
+                if (device.empty()) {
+                    std::cerr << "[spd] readSPDContents empty, bus = " << bus << ", addr = " << ii << "\n";
+                    continue;
+                }
+
+                std::cerr << "[spd] readSPDContents add succeed, bus = " << bus << ", addr = " << ii << "\n";
+                std::cerr << "[spd] peak: " << (uint32_t) device[0] << " " << (uint32_t) device[1] << " " 
+                                            << (uint32_t) device[2] << " " << (uint32_t) device[3] << std::dec << "\n";
             }
 
             devices->emplace(ii, device);
@@ -637,8 +649,34 @@ void addFruObjectToDbus(
         std::shared_ptr<sdbusplus::asio::dbus_interface>>& dbusInterfaceMap,
     uint32_t bus, uint32_t address, size_t& unknownBusObjectCount,
     const bool& powerIsOn, sdbusplus::asio::object_server& objServer,
-    std::shared_ptr<sdbusplus::asio::connection>& systemBus)
+    std::shared_ptr<sdbusplus::asio::connection>& systemBus,
+    boost::container::flat_map<std::pair<size_t, size_t>, std::shared_ptr<SpdDbus>>& dbusSPDObjMap)
 {
+    std::unique_ptr<SPD> spdObj; 
+
+    std::cerr << "[spd] bus = " << bus << ", address = " << address << "\n";
+    std::cerr << "[spd] device = "
+              << (uint32_t) device[0] << " " << (uint32_t) device[1] << " "
+              << (uint32_t) device[2] << " " << (uint32_t) device[3] << "\n";
+
+    // Current naming for SPD object is "<SPDType>_<bus>_<address>"(e.g. DDR5_40_80, DDR5_41_80)
+    // Using "<SPDType>_<counter>"(e.g DDR5_0, DDR5_1) might be confusing because it may be different from the silkname.
+    // In this design the SPD won't have any duplicate nor unknown case because <SPDType> is reqired and {<bus>, <address>} is unique.
+    if (formatDIMMSPD(device, spdObj) == resCodes::resOK) {
+        // e.g. /xyz/openbmc_project/FruDevice/DDR5_40_80
+        std::string spdDbusObjName = "/xyz/openbmc_project/FruDevice/";
+        spdDbusObjName += SPD::spdTypeToStr(spdObj->type()) + "_" + std::to_string(bus) + "_" + std::to_string(address);
+
+        std::shared_ptr<SpdDbus> spdDbusObj = std::make_shared<SpdDbus>(
+            bus, address, static_cast<sdbusplus::bus::bus&>(*systemBus),
+            objServer, spdDbusObjName, spdObj);
+
+        dbusSPDObjMap[std::pair<size_t, size_t>(bus, address)] = spdDbusObj;
+
+        std::cerr << "[spd] dbusSPDObjMap added \n";
+        return;
+    }
+
     boost::container::flat_map<std::string, std::string> formattedFRU;
     resCodes res = formatIPMIFRU(device, formattedFRU);
     if (res == resCodes::resErr)
@@ -695,6 +733,8 @@ void addFruObjectToDbus(
                 {
                     // This device is already added to the lower numbered bus,
                     // do not replicate it.
+                    std::cerr << "[spd] same bus-addr 1) " << static_cast<uint32_t>(bus) << "_" << static_cast<uint32_t>(address) << "\n";
+                    std::cerr << "[spd] same bus-addr 2) " << static_cast<uint32_t>(busIface.first.first) << "_" << static_cast<uint32_t>(busIface.first.second) << "\n";
                     return;
                 }
 
@@ -750,14 +790,14 @@ void addFruObjectToDbus(
                 key, property.second + '\0',
                 [bus, address, propertyName, &dbusInterfaceMap,
                  &unknownBusObjectCount, &powerIsOn, &objServer,
-                 &systemBus](const std::string& req, std::string& resp) {
+                 &systemBus, &dbusSPDObjMap](const std::string& req, std::string& resp) {
                     if (strcmp(req.c_str(), resp.c_str()) != 0)
                     {
                         // call the method which will update
                         if (updateFRUProperty(req, bus, address, propertyName,
                                               dbusInterfaceMap,
                                               unknownBusObjectCount, powerIsOn,
-                                              objServer, systemBus))
+                                              objServer, systemBus, dbusSPDObjMap))
                         {
                             resp = req;
                         }
@@ -810,17 +850,22 @@ static bool readBaseboardFRU(std::vector<uint8_t>& baseboardFRU)
 bool writeFRU(uint8_t bus, uint8_t address, const std::vector<uint8_t>& fru)
 {
     boost::container::flat_map<std::string, std::string> tmp;
-    if (fru.size() > maxFruSize)
+    std::unique_ptr<SPD> tmp2;
+    if (formatDIMMSPD(fru, tmp2) == resCodes::resOK)
+    {}
+    else if (fru.size() > maxFruSize)
     {
         std::cerr << "Invalid fru.size() during writeFRU\n";
         return false;
     }
-    // verify legal fru by running it through fru parsing logic
-    if (formatIPMIFRU(fru, tmp) != resCodes::resOK)
+    else if (formatIPMIFRU(fru, tmp) !=
+             resCodes::resOK) // verify legal fru by running it through fru
+                              // parsing logic
     {
         std::cerr << "Invalid fru format during writeFRU\n";
         return false;
     }
+
     // baseboard fru
     if (bus == 0 && address == 0)
     {
@@ -925,7 +970,8 @@ void rescanOneBus(
         std::shared_ptr<sdbusplus::asio::dbus_interface>>& dbusInterfaceMap,
     bool dbusCall, size_t& unknownBusObjectCount, const bool& powerIsOn,
     sdbusplus::asio::object_server& objServer,
-    std::shared_ptr<sdbusplus::asio::connection>& systemBus)
+    std::shared_ptr<sdbusplus::asio::connection>& systemBus,
+    boost::container::flat_map<std::pair<size_t, size_t>, std::shared_ptr<SpdDbus>>& dbusSPDObjMap)
 {
     for (auto& [pair, interface] : foundDevices)
     {
@@ -954,14 +1000,27 @@ void rescanOneBus(
     auto scan = std::make_shared<FindDevicesWithCallback>(
         i2cBuses, busmap, powerIsOn, objServer,
         [busNum, &busmap, &dbusInterfaceMap, &unknownBusObjectCount, &powerIsOn,
-         &objServer, &systemBus]() {
+         &objServer, &systemBus, &dbusSPDObjMap]() {
+            bool maybeSPD = true;
             for (auto& busIface : dbusInterfaceMap)
             {
                 if (busIface.first.first == static_cast<size_t>(busNum))
                 {
                     objServer.remove_interface(busIface.second);
+                    maybeSPD = false;
                 }
             }
+            if (maybeSPD) {
+                for (auto& dbusSPDObj : dbusSPDObjMap)
+                {
+                    if (dbusSPDObj.first.first == static_cast<size_t>(busNum))
+                    {
+                        // TODO dbusSPDObjMap must be uniqued_ptr instead of shared_ptr!!!!!
+                        dbusSPDObj.second.reset();
+                    }
+                }
+            }
+
             auto found = busmap.find(busNum);
             if (found == busmap.end() || found->second == nullptr)
             {
@@ -972,7 +1031,7 @@ void rescanOneBus(
                 addFruObjectToDbus(device.second, dbusInterfaceMap,
                                    static_cast<uint32_t>(busNum), device.first,
                                    unknownBusObjectCount, powerIsOn, objServer,
-                                   systemBus);
+                                   systemBus, dbusSPDObjMap);
             }
         });
     scan->run();
@@ -985,7 +1044,8 @@ void rescanBusses(
         std::shared_ptr<sdbusplus::asio::dbus_interface>>& dbusInterfaceMap,
     size_t& unknownBusObjectCount, const bool& powerIsOn,
     sdbusplus::asio::object_server& objServer,
-    std::shared_ptr<sdbusplus::asio::connection>& systemBus)
+    std::shared_ptr<sdbusplus::asio::connection>& systemBus,
+    boost::container::flat_map<std::pair<size_t, size_t>, std::shared_ptr<SpdDbus>>& dbusSPDObjMap)
 {
     static boost::asio::deadline_timer timer(io);
     timer.expires_from_now(boost::posix_time::seconds(1));
@@ -1024,6 +1084,12 @@ void rescanBusses(
                 dbusInterfaceMap.clear();
                 unknownBusObjectCount = 0;
 
+                for (auto& dbusSPDObj : dbusSPDObjMap)
+                {
+                    dbusSPDObj.second.reset();
+                }
+                dbusSPDObjMap.clear();
+
                 // todo, get this from a more sensable place
                 std::vector<uint8_t> baseboardFRU;
                 if (readBaseboardFRU(baseboardFRU))
@@ -1040,7 +1106,7 @@ void rescanBusses(
                         addFruObjectToDbus(device.second, dbusInterfaceMap,
                                            devicemap.first, device.first,
                                            unknownBusObjectCount, powerIsOn,
-                                           objServer, systemBus);
+                                           objServer, systemBus, dbusSPDObjMap);
                     }
                 }
             });
@@ -1067,7 +1133,8 @@ bool updateFRUProperty(
         std::shared_ptr<sdbusplus::asio::dbus_interface>>& dbusInterfaceMap,
     size_t& unknownBusObjectCount, const bool& powerIsOn,
     sdbusplus::asio::object_server& objServer,
-    std::shared_ptr<sdbusplus::asio::connection>& systemBus)
+    std::shared_ptr<sdbusplus::asio::connection>& systemBus,
+    boost::container::flat_map<std::pair<size_t, size_t>, std::shared_ptr<SpdDbus>>& dbusSPDObjMap)
 {
     size_t updatePropertyReqLen = updatePropertyReq.length();
     if (updatePropertyReqLen == 1 || updatePropertyReqLen > 63)
@@ -1329,12 +1396,14 @@ bool updateFRUProperty(
 
     // Rescan the bus so that GetRawFru dbus-call fetches updated values
     rescanBusses(busMap, dbusInterfaceMap, unknownBusObjectCount, powerIsOn,
-                 objServer, systemBus);
+                 objServer, systemBus, dbusSPDObjMap);
     return true;
 }
 
 int main()
 {
+    std::cerr << "[spd] gpgpgp 18:19\n";
+
     auto systemBus = std::make_shared<sdbusplus::asio::connection>(io);
     sdbusplus::asio::object_server objServer(systemBus);
 
@@ -1361,18 +1430,20 @@ int main()
                                std::shared_ptr<sdbusplus::asio::dbus_interface>>
         dbusInterfaceMap;
 
+    boost::container::flat_map<std::pair<size_t, size_t>, std::shared_ptr<SpdDbus>> dbusSPDObjMap;
+
     std::shared_ptr<sdbusplus::asio::dbus_interface> iface =
         objServer.add_interface("/xyz/openbmc_project/FruDevice",
                                 "xyz.openbmc_project.FruDeviceManager");
 
     iface->register_method("ReScan", [&]() {
         rescanBusses(busMap, dbusInterfaceMap, unknownBusObjectCount, powerIsOn,
-                     objServer, systemBus);
+                     objServer, systemBus, dbusSPDObjMap);
     });
 
     iface->register_method("ReScanBus", [&](uint8_t bus) {
         rescanOneBus(busMap, bus, dbusInterfaceMap, true, unknownBusObjectCount,
-                     powerIsOn, objServer, systemBus);
+                     powerIsOn, objServer, systemBus, dbusSPDObjMap);
     });
 
     iface->register_method("GetRawFru", getFRUInfo);
@@ -1387,7 +1458,7 @@ int main()
         }
         // schedule rescan on success
         rescanBusses(busMap, dbusInterfaceMap, unknownBusObjectCount, powerIsOn,
-                     objServer, systemBus);
+                     objServer, systemBus, dbusSPDObjMap);
     });
     iface->initialize();
 
@@ -1409,7 +1480,7 @@ int main()
             if (powerIsOn)
             {
                 rescanBusses(busMap, dbusInterfaceMap, unknownBusObjectCount,
-                             powerIsOn, objServer, systemBus);
+                             powerIsOn, objServer, systemBus, dbusSPDObjMap);
             }
         };
 
@@ -1456,7 +1527,7 @@ int main()
                             rescanOneBus(busMap, static_cast<uint8_t>(bus),
                                          dbusInterfaceMap, false,
                                          unknownBusObjectCount, powerIsOn,
-                                         objServer, systemBus);
+                                         objServer, systemBus, dbusSPDObjMap);
                         }
                 }
                 index += sizeof(inotify_event) + iEvent->len;
@@ -1469,7 +1540,7 @@ int main()
     dirWatch.async_read_some(boost::asio::buffer(readBuffer), watchI2cBusses);
     // run the initial scan
     rescanBusses(busMap, dbusInterfaceMap, unknownBusObjectCount, powerIsOn,
-                 objServer, systemBus);
+                 objServer, systemBus, dbusSPDObjMap);
 
     io.run();
     return 0;
