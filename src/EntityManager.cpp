@@ -589,12 +589,21 @@ void postToDbus(const nlohmann::json& newConfiguration,
             boardType = findBoardType->get<std::string>();
             std::regex_replace(boardType.begin(), boardType.begin(),
                                boardType.end(), illegalDbusMemberRegex, "_");
+	    
+	    //skip chassis type
+	    if(boardType == "Chassis")
+	    {
+	        continue;
+	    }
         }
         else
         {
             std::cerr << "Unable to find type for " << boardKey
                       << " reverting to Chassis.\n";
             boardType = "Chassis";
+	    
+	    //skip chassis type
+	    continue;
         }
         std::string boardtypeLower = boost::algorithm::to_lower_copy(boardType);
 
