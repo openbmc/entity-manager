@@ -257,8 +257,9 @@ bool verifyOffset(const std::vector<uint8_t>& fruBytes, fruAreas currentArea,
     return true;
 }
 
-resCodes formatFRU(const std::vector<uint8_t>& fruBytes,
-                   boost::container::flat_map<std::string, std::string>& result)
+resCodes
+    formatIPMIFRU(const std::vector<uint8_t>& fruBytes,
+                  boost::container::flat_map<std::string, std::string>& result)
 {
     resCodes ret = resCodes::resOK;
     if (fruBytes.size() <= fruBlockSize)
@@ -776,8 +777,8 @@ unsigned int getHeaderAreaFieldOffset(fruAreas area)
 
 std::vector<uint8_t>& getFRUInfo(const uint8_t& bus, const uint8_t& address)
 {
-    auto deviceMap = utilObj.busMap.find(bus);
-    if (deviceMap == utilObj.busMap.end())
+    auto deviceMap = fruUtilGlobalVar.busMap.find(bus);
+    if (deviceMap == fruUtilGlobalVar.busMap.end())
     {
         throw std::invalid_argument("Invalid Bus.");
     }

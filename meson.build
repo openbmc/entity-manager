@@ -86,7 +86,8 @@ configs = [
     'A2UX8X4RISER.json',
     'ACBELL_RICA_PSU.json',
     'ASRock_E3C246D4I.json',
-    'Bletchley.json',
+    'Bletchley_Baseboard.json',
+    'Bletchley_Chassis.json',
     'Blyth.json',
     'AHW1UM2RISER.json',
     'ASPOWER_U1A-D10550_PSU.json',
@@ -98,6 +99,7 @@ configs = [
     'AXX2PRTHDHD.json',
     'BNP Baseboard.json',
     'Bellavista.json',
+    'Delta_AWF2DC3200W_PSU.json',
     'Delta DPS-750XB PSU.json',
     'Delta_DPS-1600AB_PSU.json',
     'Delta_DPS-2000AB_PSU.json',
@@ -136,6 +138,7 @@ configs = [
     'STP Baseboard.json',
     'STP P4000 Chassis.json',
     'Tyan_S7106_Baseboard.json',
+    'Tyan_S8036_Baseboard.json',
     'WFT Baseboard.json',
 ]
 filepaths = []

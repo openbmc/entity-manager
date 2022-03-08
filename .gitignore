@@ -1,5 +1,8 @@
 build*/*
-subprojects/*/
+subprojects/*
+!subprojects/*.wrap
+!subprojects/.clang-tidy
+!subprojects/.clang-format
 boost-src
 Boost-prefix
 CMakeFiles
