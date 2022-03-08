@@ -16,10 +16,13 @@
 /// \file FruUtils.hpp
 
 #pragma once
+#include "spd/spd.hpp"
+
 #include <boost/container/flat_map.hpp>
 
 #include <cstdint>
 #include <functional>
+#include <memory>
 #include <regex>
 #include <string>
 #include <utility>
@@ -113,6 +116,9 @@ std::pair<DecodeState, std::string>
 
 bool checkLangEng(uint8_t lang);
 
+resCodes formatDIMMSPD(const std::vector<uint8_t>& spdBytes,
+                       std::unique_ptr<SPD>& spd);
+
 resCodes
     formatIPMIFRU(const std::vector<uint8_t>& fruBytes,
                   boost::container::flat_map<std::string, std::string>& result);
@@ -155,6 +161,17 @@ bool findFRUHeader(int flag, int file, uint16_t address,
 /// \param errorHelp and a helper string for failures
 /// \return the FRU contents from the file
 std::vector<uint8_t> readFRUContents(int flag, int file, uint16_t address,
+                                     const ReadBlockFunc& readBlock,
+                                     const std::string& errorHelp);
+
+/// \brief Read and validate SPD contents.
+/// \param flag the flag required for raw i2c
+/// \param file the open file handle
+/// \param address the i2c device address
+/// \param readBlock a read method
+/// \param errorHelp and a helper string for failures
+/// \return the FRU contents from the file
+std::vector<uint8_t> readSPDContents(int flag, int file, uint16_t address,
                                      const ReadBlockFunc& readBlock,
                                      const std::string& errorHelp);
 
