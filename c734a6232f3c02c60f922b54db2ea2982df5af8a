@@ -51,6 +51,88 @@
       "parentUuid": "a8d0eae7_f8a8adf2",
       "revId": "c734a6232f3c02c60f922b54db2ea2982df5af8a",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "bc53d64d_1a7d96f5",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2022-03-08T15:45:23Z",
+      "side": 1,
+      "message": "I\u0027d probably start by reworking a board to lock up the i2c bus (grounding out a clock pin should be enough).",
+      "parentUuid": "d522a96b_4181fac8",
+      "revId": "c734a6232f3c02c60f922b54db2ea2982df5af8a",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "571ec4fa_b4306fe6",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2022-03-08T15:45:23Z",
+      "side": 1,
+      "message": "right, but keep in mind that ~future isn\u0027t called until this leaves scope, and I believe the timer executes as part of the future.  Ideally this would all move to asio stuff to be more \"normal\"",
+      "parentUuid": "d522a96b_4181fac8",
+      "revId": "c734a6232f3c02c60f922b54db2ea2982df5af8a",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "67b9b8c7_74e7cbfb",
+        "filename": "src/FruDevice.cpp",
+        "patchSetId": 2
+      },
+      "lineNbr": 62,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2022-03-08T15:45:23Z",
+      "side": 1,
+      "message": "Nit, if you\u0027re declaring the type anyway, could you just do\n\nconstexpr std::chrono::seconds busTimeout(5);\n\nand avoid auto entirely?",
+      "range": {
+        "startLine": 62,
+        "startChar": 0,
+        "endLine": 62,
+        "endChar": 52
+      },
+      "revId": "c734a6232f3c02c60f922b54db2ea2982df5af8a",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4c6daf89_4eeee88f",
+        "filename": "src/FruDevice.cpp",
+        "patchSetId": 2
+      },
+      "lineNbr": 386,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2022-03-08T15:45:23Z",
+      "side": 1,
+      "message": "For a timer, I don\u0027t think this works.  My understanding was that when this was written, the call on line 409 would block, essentially forever./  The ideal way would be to set up a boost::asio::steady_timer instance to close the FD if needed.  Even better than that would be reworking it so that we do non-blocking async_read calls using boost::asio::random_access_file, and then in the timer just call cancel() in the case of the timer expiring.",
+      "range": {
+        "startLine": 386,
+        "startChar": 0,
+        "endLine": 386,
+        "endChar": 57
+      },
+      "revId": "c734a6232f3c02c60f922b54db2ea2982df5af8a",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }
