@@ -76,6 +76,13 @@ else
     valijson = valijson.as_system('system')
 endif
 
+phosphor_dbus_interfaces = dependency('phosphor-dbus-interfaces', required : false)
+if not phosphor_dbus_interfaces.found()
+    phosphor_dbus_interfaces_proj = subproject('phosphor-dbus-interfaces', required: true)
+    phosphor_dbus_interfaces = phosphor_dbus_interfaces_proj.get_variable('phosphor_dbus_interfaces_dep')
+    phosphor_dbus_interfaces = phosphor_dbus_interfaces.as_system('system')
+endif
+
 install_data('blacklist.json')
 
 configs = [

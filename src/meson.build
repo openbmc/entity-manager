@@ -34,6 +34,7 @@ if get_option('fru-device')
         'FruUtils.cpp',
         'spd.cpp',
         'ddr5.cpp',
+        'SpdDbus.cpp',
         cpp_args: cpp_args_fd,
         dependencies: [
             boost,
@@ -42,6 +43,7 @@ if get_option('fru-device')
             sdbusplus,
             threads,
             valijson,
+            phosphor_dbus_interfaces,
         ],
         implicit_include_directories: false,
         include_directories: '../include',
