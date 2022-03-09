@@ -249,6 +249,30 @@
       },
       "revId": "6e90585abafa1bdaf106f0f72d63ef8dcfa2968e",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2824a1ca_09d12484",
+        "filename": "include/Utils.hpp",
+        "patchSetId": 1
+      },
+      "lineNbr": 51,
+      "author": {
+        "id": 1000559
+      },
+      "writtenOn": "2022-03-09T17:33:10Z",
+      "side": 1,
+      "message": "As for the variable, they don\u0027t seem to be logically related. I don\u0027t see the advantage of putting them into a generic named struct. I am ok with just leave them separated. Maybe add a namespace to avoid name collision, and add a little clarity.",
+      "parentUuid": "9f432e32_57d5b8a4",
+      "range": {
+        "startLine": 51,
+        "startChar": 0,
+        "endLine": 51,
+        "endChar": 14
+      },
+      "revId": "6e90585abafa1bdaf106f0f72d63ef8dcfa2968e",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }
