@@ -703,17 +703,33 @@ void postToDbus(const nlohmann::json& newConfiguration,
                 if (objectPair.value().type() ==
                     nlohmann::json::value_t::object)
                 {
-                    std::shared_ptr<sdbusplus::asio::dbus_interface>
-                        objectIface = createInterface(
-                            objServer, ifacePath,
-                            "xyz.openbmc_project.Configuration." + itemType +
-                                "." + objectPair.key(),
-                            boardKeyOrig);
+                    if (objectPair.key() == "Compatible")
+                    {
+                        std::shared_ptr<sdbusplus::asio::dbus_interface>
+                            objectIface =
+                                createInterface(objServer, ifacePath,
+                                                "xyz.openbmc_project.Inventory."
+                                                "Decorator.Compatible",
+                                                boardKeyOrig);
+                        populateInterfaceFromJson(
+                            systemConfiguration, jsonPointerPath, objectIface,
+                            objectPair.value(), objServer,
+                            getPermission(objectPair.key()));
+                    }
+                    else
+                    {
+                        std::shared_ptr<sdbusplus::asio::dbus_interface>
+                            objectIface = createInterface(
+                                objServer, ifacePath,
+                                "xyz.openbmc_project.Configuration." +
+                                    itemType + "." + objectPair.key(),
+                                boardKeyOrig);
 
-                    populateInterfaceFromJson(systemConfiguration,
-                                              jsonPointerPath, objectIface,
-                                              objectPair.value(), objServer,
-                                              getPermission(objectPair.key()));
+                        populateInterfaceFromJson(
+                            systemConfiguration, jsonPointerPath, objectIface,
+                            objectPair.value(), objServer,
+                            getPermission(objectPair.key()));
+                    }
                 }
                 else if (objectPair.value().type() ==
                          nlohmann::json::value_t::array)
@@ -748,7 +764,6 @@ void postToDbus(const nlohmann::json& newConfiguration,
 
                     for (auto& arrayItem : objectPair.value())
                     {
-
                         std::shared_ptr<sdbusplus::asio::dbus_interface>
                             objectIface = createInterface(
                                 objServer, ifacePath,
