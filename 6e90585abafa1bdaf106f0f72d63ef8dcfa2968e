@@ -297,6 +297,30 @@
       },
       "revId": "6e90585abafa1bdaf106f0f72d63ef8dcfa2968e",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "28a799e0_c02fc2cf",
+        "filename": "include/Utils.hpp",
+        "patchSetId": 1
+      },
+      "lineNbr": 51,
+      "author": {
+        "id": 1000559
+      },
+      "writtenOn": "2022-03-10T21:57:27Z",
+      "side": 1,
+      "message": "Thanks, focus on this review first then.\n\nFrom a reviewer perspective:\nI don\u0027t understand the question on global variable. I don\u0027t know how defining a struct affect the scope of the variable. What is the difference between: \n\ninline BusMap busMap;  vs  inline Utility utility; ?\n\nAlso inline does not change that the variable busMap or utility) is still global, right?",
+      "parentUuid": "600b69e8_89d0fc09",
+      "range": {
+        "startLine": 51,
+        "startChar": 0,
+        "endLine": 51,
+        "endChar": 14
+      },
+      "revId": "6e90585abafa1bdaf106f0f72d63ef8dcfa2968e",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }
