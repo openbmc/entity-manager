@@ -699,17 +699,32 @@ void postToDbus(const nlohmann::json& newConfiguration,
                     .append(name);
                 if (config.type() == nlohmann::json::value_t::object)
                 {
-                    std::string ifaceName =
-                        "xyz.openbmc_project.Configuration.";
-                    ifaceName.append(itemType).append(".").append(name);
+                    if (name == "Compatible")
+                    {
+                        std::shared_ptr<sdbusplus::asio::dbus_interface>
+                            objectIface =
+                                createInterface(objServer, ifacePath,
+                                                "xyz.openbmc_project.Inventory."
+                                                "Decorator.Compatible",
+                                                boardKeyOrig);
+                        populateInterfaceFromJson(
+                            systemConfiguration, jsonPointerPath, objectIface,
+                            config, objServer, getPermission(name));
+                    }
+                    else
+                    {
+                        std::string ifaceName =
+                            "xyz.openbmc_project.Configuration.";
+                        ifaceName.append(itemType).append(".").append(name);
 
-                    std::shared_ptr<sdbusplus::asio::dbus_interface>
-                        objectIface = createInterface(objServer, ifacePath,
-                                                      ifaceName, boardKeyOrig);
+                        std::shared_ptr<sdbusplus::asio::dbus_interface>
+                            objectIface = createInterface(
+                                objServer, ifacePath, ifaceName, boardKeyOrig);
 
-                    populateInterfaceFromJson(
-                        systemConfiguration, jsonPointerPath, objectIface,
-                        config, objServer, getPermission(name));
+                        populateInterfaceFromJson(
+                            systemConfiguration, jsonPointerPath, objectIface,
+                            config, objServer, getPermission(name));
+                    }
                 }
                 else if (config.type() == nlohmann::json::value_t::array)
                 {
