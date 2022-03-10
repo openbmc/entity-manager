@@ -273,6 +273,30 @@
       },
       "revId": "6e90585abafa1bdaf106f0f72d63ef8dcfa2968e",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "600b69e8_89d0fc09",
+        "filename": "include/Utils.hpp",
+        "patchSetId": 1
+      },
+      "lineNbr": 51,
+      "author": {
+        "id": 1000546
+      },
+      "writtenOn": "2022-03-10T08:47:25Z",
+      "side": 1,
+      "message": "This patch is the parent patch. \nFollowing patches are the dependent and follow up patches.\nhttps://gerrit.openbmc-project.xyz/c/openbmc/entity-manager/+/50921 \nhttps://gerrit.openbmc-project.xyz/c/openbmc/entity-manager/+/51555.\n\nEarlier busMap Variable was declared separately as global variable only. If MAINTAINERS/Reviewers are ok to keep this is as a global variable, I am fine with that. \n\nSo, Please confirm to keep it as the separate global variable.",
+      "parentUuid": "2824a1ca_09d12484",
+      "range": {
+        "startLine": 51,
+        "startChar": 0,
+        "endLine": 51,
+        "endChar": 14
+      },
+      "revId": "6e90585abafa1bdaf106f0f72d63ef8dcfa2968e",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }
