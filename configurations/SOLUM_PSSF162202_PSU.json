@@ -22,7 +22,7 @@
                 "OutLimitMax": 100.0,
                 "OutLimitMin": 30.0,
                 "Outputs": [
-                    "Pwm PSU$ADDRESS % 4 + 1 Fan 1"
+                    "PSU$ADDRESS % 4 Pwm + 1 Fan 1"
                 ],
                 "PCoefficient": 0.0,
                 "PositiveHysteresis": 0.0,
@@ -48,7 +48,7 @@
                 "OutLimitMax": 100.0,
                 "OutLimitMin": 30.0,
                 "Outputs": [
-                    "Pwm PSU$ADDRESS % 4 + 1 Fan 2"
+                    "PSU$ADDRESS % 4 Pwm + 1 Fan 2"
                 ],
                 "PCoefficient": 0.0,
                 "PositiveHysteresis": 0.0,
