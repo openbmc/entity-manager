@@ -321,6 +321,30 @@
       },
       "revId": "6e90585abafa1bdaf106f0f72d63ef8dcfa2968e",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "e882f139_d69cc425",
+        "filename": "include/Utils.hpp",
+        "patchSetId": 1
+      },
+      "lineNbr": 51,
+      "author": {
+        "id": 1000546
+      },
+      "writtenOn": "2022-03-11T06:25:34Z",
+      "side": 1,
+      "message": "Ack. Initially, I declared busMap as Global variable only and not with Class/Struct. After got the review comments as abstract it to utility class, Then I created a Struct to move that busMap into it.  \n\nI will revert the Struct changes and declare it as earlier.",
+      "parentUuid": "28a799e0_c02fc2cf",
+      "range": {
+        "startLine": 51,
+        "startChar": 0,
+        "endLine": 51,
+        "endChar": 14
+      },
+      "revId": "6e90585abafa1bdaf106f0f72d63ef8dcfa2968e",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }
