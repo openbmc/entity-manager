@@ -1,0 +1,400 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3a3a2126_0cf8a07c",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 8
+      },
+      "lineNbr": 12,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2022-03-12T17:46:21Z",
+      "side": 1,
+      "message": "In general we prefer composition to inheritance.  Also, given the differences, it\u0027s not clear how they would expose the same API.",
+      "range": {
+        "startLine": 10,
+        "startChar": 0,
+        "endLine": 12,
+        "endChar": 19
+      },
+      "revId": "1d53e2d2ca7772cee464c8c22b38b28a5561cbc2",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c597bab4_0e2a3c07",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 8
+      },
+      "lineNbr": 14,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2022-03-12T17:46:21Z",
+      "side": 1,
+      "message": "Your commit message should answer \"why\" which is a little difficult in this patchset because:\n1. There\u0027s no code actually reading this from a real i2c SPD.\n2. This publishes no interfaces to the greater system\n\nSo it\u0027s pretty difficult to understand how this SPD information is intended to be used, what APIs it\u0027s going to implement, ect, from how it\u0027s written.  I do appreciate you breaking this change up, but until the full series is available, it\u0027s difficult to verify that this patchset is correct.",
+      "revId": "1d53e2d2ca7772cee464c8c22b38b28a5561cbc2",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "9a5c9476_a6aa2b5a",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 8
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2022-03-12T17:46:21Z",
+      "side": 1,
+      "message": "This is a great start`",
+      "revId": "1d53e2d2ca7772cee464c8c22b38b28a5561cbc2",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "74c98957_cd8fa04b",
+        "filename": "include/spd/spd.hpp",
+        "patchSetId": 8
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2022-03-12T17:46:21Z",
+      "side": 1,
+      "message": "Please don\u0027t add virtualized inherited classes unless there are at least 3 users of said class.  Otherwise, it\u0027s just extra implementation complexity that is difficult to maintain.  I suspect in this case, given the very minor differences between the various spd types, a simple \"type\" flag that can be branched on in the 3 difference cases, using a common class would be sufficient.",
+      "range": {
+        "startLine": 9,
+        "startChar": 0,
+        "endLine": 9,
+        "endChar": 9
+      },
+      "revId": "1d53e2d2ca7772cee464c8c22b38b28a5561cbc2",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f674d94b_dfad2fdd",
+        "filename": "include/spd/spd.hpp",
+        "patchSetId": 8
+      },
+      "lineNbr": 12,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2022-03-12T17:46:21Z",
+      "side": 1,
+      "message": "It looks like in the spd spec, these are defined as 8 bit, should this be\n\nenum class SPDType: uint8_t",
+      "range": {
+        "startLine": 12,
+        "startChar": 15,
+        "endLine": 12,
+        "endChar": 22
+      },
+      "revId": "1d53e2d2ca7772cee464c8c22b38b28a5561cbc2",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0c917ad6_71353546",
+        "filename": "include/spd/spd.hpp",
+        "patchSetId": 8
+      },
+      "lineNbr": 12,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2022-03-12T17:46:21Z",
+      "side": 1,
+      "message": "Please declare outside the class if they are reused outside the class.",
+      "range": {
+        "startLine": 12,
+        "startChar": 0,
+        "endLine": 12,
+        "endChar": 22
+      },
+      "revId": "1d53e2d2ca7772cee464c8c22b38b28a5561cbc2",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "30a7944b_68d43c06",
+        "filename": "include/spd/spd.hpp",
+        "patchSetId": 8
+      },
+      "lineNbr": 14,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2022-03-12T17:46:21Z",
+      "side": 1,
+      "message": "Considering that these enums have gaps in them, and don\u0027t have a \"max\" field defined, I suspect you aren\u0027t range checking these appropriately.",
+      "revId": "1d53e2d2ca7772cee464c8c22b38b28a5561cbc2",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ae5afb3b_d24b3a5f",
+        "filename": "include/spd/spd.hpp",
+        "patchSetId": 8
+      },
+      "lineNbr": 25,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2022-03-12T17:46:21Z",
+      "side": 1,
+      "message": "typo",
+      "range": {
+        "startLine": 25,
+        "startChar": 18,
+        "endLine": 25,
+        "endChar": 25
+      },
+      "revId": "1d53e2d2ca7772cee464c8c22b38b28a5561cbc2",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "42128819_b66b4ae5",
+        "filename": "include/spd/spd.hpp",
+        "patchSetId": 8
+      },
+      "lineNbr": 40,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2022-03-12T17:46:21Z",
+      "side": 1,
+      "message": "Lets avoid inventing a new \"Date\" type, and prefer to convert to a type we already have (std::chrono::time_point probably)",
+      "range": {
+        "startLine": 36,
+        "startChar": 0,
+        "endLine": 40,
+        "endChar": 6
+      },
+      "revId": "1d53e2d2ca7772cee464c8c22b38b28a5561cbc2",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7c89c51b_589f7b5d",
+        "filename": "include/spd/spd.hpp",
+        "patchSetId": 8
+      },
+      "lineNbr": 44,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2022-03-12T17:46:21Z",
+      "side": 1,
+      "message": "Please make your enums the appropriate size, then use sizeof() for this, instead of hardcoding the number and adding a comment about why it\u0027s that way.\n\nAlso, this probably needs to be size_t, not uint32_t",
+      "range": {
+        "startLine": 44,
+        "startChar": 52,
+        "endLine": 44,
+        "endChar": 54
+      },
+      "revId": "1d53e2d2ca7772cee464c8c22b38b28a5561cbc2",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9b0fde36_2a349858",
+        "filename": "include/spd/spd.hpp",
+        "patchSetId": 8
+      },
+      "lineNbr": 64,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2022-03-12T17:46:21Z",
+      "side": 1,
+      "message": "Is there a way to avoid this race by constructing the object with its underlying structure?",
+      "range": {
+        "startLine": 63,
+        "startChar": 40,
+        "endLine": 64,
+        "endChar": 60
+      },
+      "revId": "1d53e2d2ca7772cee464c8c22b38b28a5561cbc2",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "53731b2e_116b9f71",
+        "filename": "include/spd/spd.hpp",
+        "patchSetId": 8
+      },
+      "lineNbr": 69,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2022-03-12T17:46:21Z",
+      "side": 1,
+      "message": "There are lots of functions in this class (this one included) that aren\u0027t used.  Please make sure that any code you\u0027re writing is actually used.",
+      "range": {
+        "startLine": 67,
+        "startChar": 0,
+        "endLine": 69,
+        "endChar": 0
+      },
+      "revId": "1d53e2d2ca7772cee464c8c22b38b28a5561cbc2",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "36135fec_3c37c2c1",
+        "filename": "include/spd/spd.hpp",
+        "patchSetId": 8
+      },
+      "lineNbr": 79,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2022-03-12T17:46:21Z",
+      "side": 1,
+      "message": "Please create an actual struct for this, not std::pair to ensure that it\u0027s obvious to the reader what each field means (which would also remove the need for the comment on line 78)",
+      "range": {
+        "startLine": 79,
+        "startChar": 12,
+        "endLine": 79,
+        "endChar": 37
+      },
+      "revId": "1d53e2d2ca7772cee464c8c22b38b28a5561cbc2",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2b0f9716_e3683e1b",
+        "filename": "include/spd/spd.hpp",
+        "patchSetId": 8
+      },
+      "lineNbr": 83,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2022-03-12T17:46:21Z",
+      "side": 1,
+      "message": "first off, this isn\u0027t a pair (maybe the comment is old?)  Second, these kind of comments shouldn\u0027t be required if the class is properly documented.  With that said, we shouldn\u0027t be producing dates as structs like this.  We should be producing dates as std::chrono::time_point.",
+      "range": {
+        "startLine": 82,
+        "startChar": 0,
+        "endLine": 83,
+        "endChar": 66
+      },
+      "revId": "1d53e2d2ca7772cee464c8c22b38b28a5561cbc2",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ad8000a0_7d1e8945",
+        "filename": "src/spd.cpp",
+        "patchSetId": 8
+      },
+      "lineNbr": 15,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2022-03-12T17:46:21Z",
+      "side": 1,
+      "message": "Static casting to an enum doesn\u0027t guarantee that the data is correct or in range.  This kind of conversion is done in several places that will need to be fixed.",
+      "range": {
+        "startLine": 15,
+        "startChar": 11,
+        "endLine": 15,
+        "endChar": 31
+      },
+      "revId": "1d53e2d2ca7772cee464c8c22b38b28a5561cbc2",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c38b6665_64090304",
+        "filename": "src/spd.cpp",
+        "patchSetId": 8
+      },
+      "lineNbr": 21,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2022-03-12T17:46:21Z",
+      "side": 1,
+      "message": "Please prefer to use explicit range checks for the things that are required.  In this case, you\u0027re indexing to zero, so you require that size \u003e 1, not 3",
+      "range": {
+        "startLine": 21,
+        "startChar": 26,
+        "endLine": 21,
+        "endChar": 45
+      },
+      "revId": "1d53e2d2ca7772cee464c8c22b38b28a5561cbc2",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "31a5e3a8_78b4d707",
+        "filename": "src/spd.cpp",
+        "patchSetId": 8
+      },
+      "lineNbr": 27,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2022-03-12T17:46:21Z",
+      "side": 1,
+      "message": "Magic numbers?",
+      "range": {
+        "startLine": 27,
+        "startChar": 4,
+        "endLine": 27,
+        "endChar": 43
+      },
+      "revId": "1d53e2d2ca7772cee464c8c22b38b28a5561cbc2",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b4753985_4ee78eef",
+        "filename": "src/spd.cpp",
+        "patchSetId": 8
+      },
+      "lineNbr": 50,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2022-03-12T17:46:21Z",
+      "side": 1,
+      "message": "Please recheck this.  As-written, this function returns nullptr in all cases, which I\u0027m fairly certain is not what you intended.",
+      "range": {
+        "startLine": 44,
+        "startChar": 0,
+        "endLine": 50,
+        "endChar": 27
+      },
+      "revId": "1d53e2d2ca7772cee464c8c22b38b28a5561cbc2",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    }
+  ]
+}
