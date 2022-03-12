@@ -1,0 +1,504 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d4260cd3_60fdbfd9",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 16
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2022-03-12T18:14:07Z",
+      "side": 1,
+      "message": "a single sentence is rarely enough detail, and certainly not enough for adding a major feature like this.  Please go a little deeper into \"why\" this change is useful in your commit message please.",
+      "range": {
+        "startLine": 9,
+        "startChar": 0,
+        "endLine": 9,
+        "endChar": 46
+      },
+      "revId": "c0a325984535b46f83d1c6a8983c3d6c0b382677",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e56b7ce2_07dd5279",
+        "filename": "include/spd/ddr5.hpp",
+        "patchSetId": 16
+      },
+      "lineNbr": 70,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2022-03-12T18:14:07Z",
+      "side": 1,
+      "message": "The endianness needs to be represented in the class, not just in a comment.",
+      "range": {
+        "startLine": 70,
+        "startChar": 4,
+        "endLine": 70,
+        "endChar": 44
+      },
+      "revId": "c0a325984535b46f83d1c6a8983c3d6c0b382677",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "137a461e_3e2d42b1",
+        "filename": "include/spd/ddr5.hpp",
+        "patchSetId": 16
+      },
+      "lineNbr": 233,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2022-03-12T18:14:07Z",
+      "side": 1,
+      "message": "Why not uint16_t?",
+      "range": {
+        "startLine": 233,
+        "startChar": 8,
+        "endLine": 233,
+        "endChar": 15
+      },
+      "revId": "c0a325984535b46f83d1c6a8983c3d6c0b382677",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "40f4faca_765daf7b",
+        "filename": "include/spd/ddr5.hpp",
+        "patchSetId": 16
+      },
+      "lineNbr": 236,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2022-03-12T18:14:07Z",
+      "side": 1,
+      "message": "Similar to how we pull the PCIe manufacturer ID tables, is this going to pull the JEDEC manufacturer tables?",
+      "range": {
+        "startLine": 236,
+        "startChar": 0,
+        "endLine": 236,
+        "endChar": 38
+      },
+      "revId": "c0a325984535b46f83d1c6a8983c3d6c0b382677",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7784e6c8_e16eb1b6",
+        "filename": "include/spd/ddr5.hpp",
+        "patchSetId": 16
+      },
+      "lineNbr": 262,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2022-03-12T18:14:07Z",
+      "side": 1,
+      "message": "Relying on packed encodings is error prone and in general is no prefered in openbmc, because it generally relies on explicit handling of endian values (through something like boost::endian::little_int32_buf_t for example)\n\nConsidering that a lot of these fields aren\u0027t in a representation we\u0027d want in the bmc anyway (partNumber should ideally be std::string, or std::string_view) I suspect we want to break this class up into a method that parses into a structure that the BMC can operate on.",
+      "range": {
+        "startLine": 262,
+        "startChar": 5,
+        "endLine": 262,
+        "endChar": 30
+      },
+      "revId": "c0a325984535b46f83d1c6a8983c3d6c0b382677",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "94bc2f2e_0f2d04e2",
+        "filename": "src/ddr5.cpp",
+        "patchSetId": 16
+      },
+      "lineNbr": 14,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2022-03-12T18:14:07Z",
+      "side": 1,
+      "message": "These things should be under if(debug) flags, otherwise they will print for a large number of frus that look like jedec, but aren\u0027t.",
+      "range": {
+        "startLine": 13,
+        "startChar": 8,
+        "endLine": 14,
+        "endChar": 76
+      },
+      "revId": "c0a325984535b46f83d1c6a8983c3d6c0b382677",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d82b2a52_e0074b27",
+        "filename": "src/ddr5.cpp",
+        "patchSetId": 16
+      },
+      "lineNbr": 20,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2022-03-12T18:14:07Z",
+      "side": 1,
+      "message": "Please use the appropiate types for these things such that static casts aren\u0027t required.",
+      "range": {
+        "startLine": 20,
+        "startChar": 23,
+        "endLine": 20,
+        "endChar": 44
+      },
+      "revId": "c0a325984535b46f83d1c6a8983c3d6c0b382677",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "72f1bac2_cbf4de05",
+        "filename": "src/ddr5.cpp",
+        "patchSetId": 16
+      },
+      "lineNbr": 20,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2022-03-12T18:14:07Z",
+      "side": 1,
+      "message": "nit, check against \u003c 0 please in case this function decides to return other negative values in the future.",
+      "range": {
+        "startLine": 20,
+        "startChar": 14,
+        "endLine": 20,
+        "endChar": 19
+      },
+      "revId": "c0a325984535b46f83d1c6a8983c3d6c0b382677",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9e84380d_acfae173",
+        "filename": "src/ddr5.cpp",
+        "patchSetId": 16
+      },
+      "lineNbr": 25,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2022-03-12T18:14:07Z",
+      "side": 1,
+      "message": "per our coding standard, new and delete shouldn\u0027t be used anymore.  make_unique should be prefered in these cases.",
+      "range": {
+        "startLine": 25,
+        "startChar": 36,
+        "endLine": 25,
+        "endChar": 39
+      },
+      "revId": "c0a325984535b46f83d1c6a8983c3d6c0b382677",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4a173c9b_344c618d",
+        "filename": "src/ddr5.cpp",
+        "patchSetId": 16
+      },
+      "lineNbr": 25,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2022-03-12T18:14:07Z",
+      "side": 1,
+      "message": "You\u0027re passing a non-owning span to a class that\u0027s being returned in a unique_ptr.  This pattern can VERY easily lead to lifetime issues.  I suspect that the interfaces need to be reworked to convey ownership of the buffer (probably handing ownership to the DDR5SPD class)",
+      "range": {
+        "startLine": 25,
+        "startChar": 48,
+        "endLine": 25,
+        "endChar": 56
+      },
+      "revId": "c0a325984535b46f83d1c6a8983c3d6c0b382677",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a6584a32_45161b32",
+        "filename": "src/ddr5.cpp",
+        "patchSetId": 16
+      },
+      "lineNbr": 30,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2022-03-12T18:14:07Z",
+      "side": 1,
+      "message": "please use array for values known at compile time.\n\nAlso, please cite the source for these values.",
+      "range": {
+        "startLine": 30,
+        "startChar": 15,
+        "endLine": 30,
+        "endChar": 21
+      },
+      "revId": "c0a325984535b46f83d1c6a8983c3d6c0b382677",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "babb9181_345bdd7d",
+        "filename": "src/ddr5.cpp",
+        "patchSetId": 16
+      },
+      "lineNbr": 47,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2022-03-12T18:14:07Z",
+      "side": 1,
+      "message": "Please use a real class for this.",
+      "range": {
+        "startLine": 47,
+        "startChar": 0,
+        "endLine": 47,
+        "endChar": 25
+      },
+      "revId": "c0a325984535b46f83d1c6a8983c3d6c0b382677",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9e752979_423b7f11",
+        "filename": "src/ddr5.cpp",
+        "patchSetId": 16
+      },
+      "lineNbr": 49,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2022-03-12T18:14:07Z",
+      "side": 1,
+      "message": "magic number?  This is somewhat pointing to what I pointed out earlier about using pragma(packed) to decode buffers being error prone.  Almost all places where this code calls into spd_-\u003e aren\u0027t range checked, and given that the buffer interfaces only enfoce a minimum size of 3, means that it would be pretty easy to write a buffer that would make this code seg fault.",
+      "range": {
+        "startLine": 49,
+        "startChar": 24,
+        "endLine": 49,
+        "endChar": 28
+      },
+      "revId": "c0a325984535b46f83d1c6a8983c3d6c0b382677",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "73958849_dd6bfd8c",
+        "filename": "src/ddr5.cpp",
+        "patchSetId": 16
+      },
+      "lineNbr": 51,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2022-03-12T18:14:07Z",
+      "side": 1,
+      "message": "Considering that a part could have negative values in this, do we want a better return type here?",
+      "range": {
+        "startLine": 51,
+        "startChar": 8,
+        "endLine": 51,
+        "endChar": 57
+      },
+      "revId": "c0a325984535b46f83d1c6a8983c3d6c0b382677",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b37435d6_cb0a91c5",
+        "filename": "src/ddr5.cpp",
+        "patchSetId": 16
+      },
+      "lineNbr": 75,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2022-03-12T18:14:07Z",
+      "side": 1,
+      "message": "Considering we have enums for other things, do we need an enum class for these?  (could be declared in this class if you wanted).",
+      "range": {
+        "startLine": 75,
+        "startChar": 13,
+        "endLine": 75,
+        "endChar": 17
+      },
+      "revId": "c0a325984535b46f83d1c6a8983c3d6c0b382677",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0222ea36_4144c16d",
+        "filename": "src/ddr5.cpp",
+        "patchSetId": 16
+      },
+      "lineNbr": 249,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2022-03-12T18:14:07Z",
+      "side": 1,
+      "message": "Why are we masking these here?  This seems like we should be checking against negative values?",
+      "range": {
+        "startLine": 249,
+        "startChar": 70,
+        "endLine": 249,
+        "endChar": 76
+      },
+      "revId": "c0a325984535b46f83d1c6a8983c3d6c0b382677",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b68afeb4_50f2c4ce",
+        "filename": "src/ddr5.cpp",
+        "patchSetId": 16
+      },
+      "lineNbr": 282,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2022-03-12T18:14:07Z",
+      "side": 1,
+      "message": "I mentioned on an earlier patch, but these should be:\n\nReturning a time_point\nneed range checks to ensure that the values are sane (ie, not negative or overflowing).",
+      "revId": "c0a325984535b46f83d1c6a8983c3d6c0b382677",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a6d57574_428ca020",
+        "filename": "src/ddr5.cpp",
+        "patchSetId": 16
+      },
+      "lineNbr": 290,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2022-03-12T18:14:07Z",
+      "side": 1,
+      "message": "prefer to use std::string here, considering that surely this has some rule about length that we should be enforcing here.  If these are truly fixed length, then we should be returning by std::array.",
+      "range": {
+        "startLine": 290,
+        "startChar": 0,
+        "endLine": 290,
+        "endChar": 21
+      },
+      "revId": "c0a325984535b46f83d1c6a8983c3d6c0b382677",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1242b37c_eea7b209",
+        "filename": "src/ddr5.cpp",
+        "patchSetId": 16
+      },
+      "lineNbr": 312,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2022-03-12T18:14:07Z",
+      "side": 1,
+      "message": "This has the potential to put null terminators (zeros) in the result, which is definitely now what you intended.\n\nie, an empty part number should return \"\", not \"\\x00\\x00\\x00...\"\n\nI dont know what the jedec spec requires for termination characters, but it should be handled here.",
+      "range": {
+        "startLine": 311,
+        "startChar": 0,
+        "endLine": 312,
+        "endChar": 68
+      },
+      "revId": "c0a325984535b46f83d1c6a8983c3d6c0b382677",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c439c80c_fc4d203c",
+        "filename": "src/ddr5.cpp",
+        "patchSetId": 16
+      },
+      "lineNbr": 351,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2022-03-12T18:14:07Z",
+      "side": 1,
+      "message": "the left shift logic looks duplicated between the branches, as is a bunch of the math (kprimaryBusWidthPerChannel/kWidth for example) can it be deduplicated?",
+      "range": {
+        "startLine": 350,
+        "startChar": 0,
+        "endLine": 351,
+        "endChar": 55
+      },
+      "revId": "c0a325984535b46f83d1c6a8983c3d6c0b382677",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0647d673_bafddcda",
+        "filename": "src/ddr5.cpp",
+        "patchSetId": 16
+      },
+      "lineNbr": 352,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2022-03-12T18:14:07Z",
+      "side": 1,
+      "message": "Don\u0027t duplicate this static cast, make another variable. for it.",
+      "range": {
+        "startLine": 352,
+        "startChar": 16,
+        "endLine": 352,
+        "endChar": 35
+      },
+      "revId": "c0a325984535b46f83d1c6a8983c3d6c0b382677",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "dc89a02e_b8e39515",
+        "filename": "src/ddr5.cpp",
+        "patchSetId": 16
+      },
+      "lineNbr": 369,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2022-03-12T18:14:07Z",
+      "side": 1,
+      "message": "This API should be returning an enum that\u0027s more useful.  You\u0027ve documented the things in a comment below, it just needs to be turned into an enum class.",
+      "range": {
+        "startLine": 369,
+        "startChar": 0,
+        "endLine": 369,
+        "endChar": 6
+      },
+      "revId": "c0a325984535b46f83d1c6a8983c3d6c0b382677",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    }
+  ]
+}
