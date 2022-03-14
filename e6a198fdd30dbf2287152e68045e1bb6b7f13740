@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "b8c8c6ad_9bb334bf",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1000559
+      },
+      "writtenOn": "2022-03-14T18:30:14Z",
+      "side": 1,
+      "message": "Please fix the build",
+      "revId": "e6a198fdd30dbf2287152e68045e1bb6b7f13740",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b258bc4e_e2901319",
+        "filename": "configurations/SOLUM_PSSF162202_PSU.json",
+        "patchSetId": 1
+      },
+      "lineNbr": 122,
+      "author": {
+        "id": 1000559
+      },
+      "writtenOn": "2022-03-14T18:30:14Z",
+      "side": 1,
+      "message": "Review this together with \nhttps://gerrit.openbmc-project.xyz/c/openbmc/dbus-sensors/+/51901\n\nMaybe add a Name here for pwm sensor that can be used by psusensors. \nAlso need to make sure it matches line51 for phosphor-pid-control to work.",
+      "revId": "e6a198fdd30dbf2287152e68045e1bb6b7f13740",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    }
+  ]
+}
