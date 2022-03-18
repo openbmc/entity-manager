@@ -33,6 +33,75 @@
       "message": "Ping...Ed, any thoughts on this?  (And the preceding https://gerrit.openbmc-project.xyz/c/openbmc/entity-manager/+/51548)",
       "revId": "d5d720bbea13f754b12ee023ff26b944b80607e4",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "44c16712_02138cd7",
+        "filename": "include/FruUtils.hpp",
+        "patchSetId": 6
+      },
+      "lineNbr": 121,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2022-03-18T17:01:14Z",
+      "side": 1,
+      "message": "This seems like overkill to have its own virtualized class for.  Could we just add this to fruReader, and in the common case, offset would be zero.  That seems way simpler to me.",
+      "range": {
+        "startLine": 121,
+        "startChar": 0,
+        "endLine": 121,
+        "endChar": 60
+      },
+      "revId": "d5d720bbea13f754b12ee023ff26b944b80607e4",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "afabdd38_df6bd368",
+        "filename": "include/FruUtils.hpp",
+        "patchSetId": 6
+      },
+      "lineNbr": 125,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2022-03-18T17:01:14Z",
+      "side": 1,
+      "message": "this seems like an odd type choice for an offset.  I would\u0027ve expected size_t.",
+      "range": {
+        "startLine": 125,
+        "startChar": 36,
+        "endLine": 125,
+        "endChar": 43
+      },
+      "revId": "d5d720bbea13f754b12ee023ff26b944b80607e4",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "fabc9eb2_c82367e8",
+        "filename": "src/FruUtils.cpp",
+        "patchSetId": 6
+      },
+      "lineNbr": 803,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2022-03-18T17:01:14Z",
+      "side": 1,
+      "message": "Please don\u0027t use both the non-template version of to_array AND auto in the same statement.  As the maintainer, I\u0027m left wondering \"what\u0027s the type of this object?\" which this code doesn\u0027t really answer.",
+      "range": {
+        "startLine": 803,
+        "startChar": 4,
+        "endLine": 803,
+        "endChar": 52
+      },
+      "revId": "d5d720bbea13f754b12ee023ff26b944b80607e4",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }
