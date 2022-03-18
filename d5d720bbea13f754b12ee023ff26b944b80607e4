@@ -78,6 +78,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "a7eca8d1_769e7a49",
+        "filename": "include/FruUtils.hpp",
+        "patchSetId": 6
+      },
+      "lineNbr": 121,
+      "author": {
+        "id": 1000733
+      },
+      "writtenOn": "2022-03-18T23:05:24Z",
+      "side": 1,
+      "message": "Ack -- this is perhaps a bit over-generalized (in nebulous anticipation of other FRUReader implementations that may very well never need to exist).",
+      "parentUuid": "44c16712_02138cd7",
+      "range": {
+        "startLine": 121,
+        "startChar": 0,
+        "endLine": 121,
+        "endChar": 60
+      },
+      "revId": "d5d720bbea13f754b12ee023ff26b944b80607e4",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "afabdd38_df6bd368",
         "filename": "include/FruUtils.hpp",
         "patchSetId": 6
@@ -89,6 +113,30 @@
       "writtenOn": "2022-03-18T17:01:14Z",
       "side": 1,
       "message": "this seems like an odd type choice for an offset.  I would\u0027ve expected size_t.",
+      "range": {
+        "startLine": 125,
+        "startChar": 36,
+        "endLine": 125,
+        "endChar": 43
+      },
+      "revId": "d5d720bbea13f754b12ee023ff26b944b80607e4",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "94a80176_8d139786",
+        "filename": "include/FruUtils.hpp",
+        "patchSetId": 6
+      },
+      "lineNbr": 125,
+      "author": {
+        "id": 1000733
+      },
+      "writtenOn": "2022-03-18T23:05:24Z",
+      "side": 1,
+      "message": "I think when I wrote it I was thinking in terms of the signedness of file offsets (loff_t and the like) for seeking and such, and the size of the type mirroring the uint16_t offset parameter of the existing ReadBlockFunc, but in this case I\u0027m having a hard time imagining a need for a negative offset, so yeah, size_t would probably make more sense.",
+      "parentUuid": "afabdd38_df6bd368",
       "range": {
         "startLine": 125,
         "startChar": 36,
@@ -112,6 +160,30 @@
       "writtenOn": "2022-03-18T17:01:14Z",
       "side": 1,
       "message": "Please don\u0027t use both the non-template version of to_array AND auto in the same statement.  As the maintainer, I\u0027m left wondering \"what\u0027s the type of this object?\" which this code doesn\u0027t really answer.",
+      "range": {
+        "startLine": 803,
+        "startChar": 4,
+        "endLine": 803,
+        "endChar": 52
+      },
+      "revId": "d5d720bbea13f754b12ee023ff26b944b80607e4",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "7b58aec4_a9b90d90",
+        "filename": "src/FruUtils.cpp",
+        "patchSetId": 6
+      },
+      "lineNbr": 803,
+      "author": {
+        "id": 1000733
+      },
+      "writtenOn": "2022-03-18T23:05:24Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "fabc9eb2_c82367e8",
       "range": {
         "startLine": 803,
         "startChar": 4,
