@@ -16,6 +16,224 @@
       "message": "LGTM, thank you!",
       "revId": "dd70df9265dec74a204635851b401880e18dac9a",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8ab7f6ea_436546f2",
+        "filename": "include/FruUtils.hpp",
+        "patchSetId": 13
+      },
+      "lineNbr": 100,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2022-03-18T16:24:09Z",
+      "side": 1,
+      "message": "As a design pattern, I very much prefer composition over inheritance, especially in cases where we\u0027re adding methods and overriding everything from the inherited class.",
+      "range": {
+        "startLine": 100,
+        "startChar": 0,
+        "endLine": 100,
+        "endChar": 41
+      },
+      "revId": "dd70df9265dec74a204635851b401880e18dac9a",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e1697ab4_3cbe4b40",
+        "filename": "include/FruUtils.hpp",
+        "patchSetId": 13
+      },
+      "lineNbr": 117,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2022-03-18T16:24:09Z",
+      "side": 1,
+      "message": "Considering that we\u0027re not going to iterate this, and don\u0027t care about order, would std::unordered_map be a better choice here?",
+      "range": {
+        "startLine": 117,
+        "startChar": 2,
+        "endLine": 117,
+        "endChar": 55
+      },
+      "revId": "dd70df9265dec74a204635851b401880e18dac9a",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "cf1b9488_8c664239",
+        "filename": "src/FruDevice.cpp",
+        "patchSetId": 13
+      },
+      "lineNbr": 195,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2022-03-18T16:24:09Z",
+      "side": 1,
+      "message": "Just FYI, we\u0027ve discussed before that this code doesn\u0027t actually work, and can likely be removed.  Not an issue with your patch, just so you\u0027re aware.",
+      "revId": "dd70df9265dec74a204635851b401880e18dac9a",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "bbdd7c4a_2629c39d",
+        "filename": "src/FruDevice.cpp",
+        "patchSetId": 13
+      },
+      "lineNbr": 285,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2022-03-18T16:24:09Z",
+      "side": 1,
+      "message": "Is there a reason that CachingFRUReader can\u0027t just call this directly?  Having a lambda being injected doesn\u0027t seem used anywhere, and adds complexity for something that doesn\u0027t seem like it needs to be extensible.",
+      "range": {
+        "startLine": 283,
+        "startChar": 0,
+        "endLine": 285,
+        "endChar": 6
+      },
+      "revId": "dd70df9265dec74a204635851b401880e18dac9a",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4b688eca_22d08bee",
+        "filename": "src/FruDevice.cpp",
+        "patchSetId": 13
+      },
+      "lineNbr": 286,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2022-03-18T16:24:09Z",
+      "side": 1,
+      "message": "This should be an rvalue (assuming it\u0027s still needed at all).",
+      "range": {
+        "startLine": 286,
+        "startChar": 28,
+        "endLine": 286,
+        "endChar": 36
+      },
+      "revId": "dd70df9265dec74a204635851b401880e18dac9a",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ab2f0517_7d4f03c2",
+        "filename": "src/FruUtils.cpp",
+        "patchSetId": 13
+      },
+      "lineNbr": 59,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2022-03-18T16:24:09Z",
+      "side": 1,
+      "message": "Why does the cursor variable need to exist at all?  start doesn\u0027t look modified or read after this point, so it\u0027 looks like just another name for start?  Same thing with len/remaining.",
+      "range": {
+        "startLine": 59,
+        "startChar": 38,
+        "endLine": 59,
+        "endChar": 52
+      },
+      "revId": "dd70df9265dec74a204635851b401880e18dac9a",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "953392c9_86ec3965",
+        "filename": "src/FruUtils.cpp",
+        "patchSetId": 13
+      },
+      "lineNbr": 59,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2022-03-18T16:24:09Z",
+      "side": 1,
+      "message": "Please declare each variable on its own line, as is done elsewhere.",
+      "range": {
+        "startLine": 59,
+        "startChar": 0,
+        "endLine": 59,
+        "endChar": 53
+      },
+      "revId": "dd70df9265dec74a204635851b401880e18dac9a",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "28960ceb_20c62a73",
+        "filename": "src/FruUtils.cpp",
+        "patchSetId": 13
+      },
+      "lineNbr": 67,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2022-03-18T16:24:09Z",
+      "side": 1,
+      "message": "init your variables.  There\u0027s lots that you\u0027ve failed to init, please fix all of them.",
+      "revId": "dd70df9265dec74a204635851b401880e18dac9a",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0c1749b6_40752c08",
+        "filename": "src/FruUtils.cpp",
+        "patchSetId": 13
+      },
+      "lineNbr": 96,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2022-03-18T16:24:09Z",
+      "side": 1,
+      "message": "Doesn\u0027t the logic in the else case produce zero as well without needing to special case this?",
+      "range": {
+        "startLine": 94,
+        "startChar": 15,
+        "endLine": 96,
+        "endChar": 27
+      },
+      "revId": "dd70df9265dec74a204635851b401880e18dac9a",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c97d1d45_8525e7bd",
+        "filename": "src/FruUtils.cpp",
+        "patchSetId": 13
+      },
+      "lineNbr": 115,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2022-03-18T16:24:09Z",
+      "side": 1,
+      "message": "Isn\u0027t this logic duplicated with the above flow?  eof gets set properly on the cache object on line 79, so in theory this logic could be used in both cases to delete a majority of the other logic?",
+      "range": {
+        "startLine": 107,
+        "startChar": 2,
+        "endLine": 115,
+        "endChar": 13
+      },
+      "revId": "dd70df9265dec74a204635851b401880e18dac9a",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }
