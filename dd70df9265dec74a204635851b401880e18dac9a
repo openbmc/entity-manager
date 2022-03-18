@@ -43,6 +43,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "552f6f1e_e91c8993",
+        "filename": "include/FruUtils.hpp",
+        "patchSetId": 13
+      },
+      "lineNbr": 100,
+      "author": {
+        "id": 1000733
+      },
+      "writtenOn": "2022-03-18T22:55:13Z",
+      "side": 1,
+      "message": "Okay, I\u0027ll look into that.",
+      "parentUuid": "8ab7f6ea_436546f2",
+      "range": {
+        "startLine": 100,
+        "startChar": 0,
+        "endLine": 100,
+        "endChar": 41
+      },
+      "revId": "dd70df9265dec74a204635851b401880e18dac9a",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "e1697ab4_3cbe4b40",
         "filename": "include/FruUtils.hpp",
         "patchSetId": 13
@@ -54,6 +78,30 @@
       "writtenOn": "2022-03-18T16:24:09Z",
       "side": 1,
       "message": "Considering that we\u0027re not going to iterate this, and don\u0027t care about order, would std::unordered_map be a better choice here?",
+      "range": {
+        "startLine": 117,
+        "startChar": 2,
+        "endLine": 117,
+        "endChar": 55
+      },
+      "revId": "dd70df9265dec74a204635851b401880e18dac9a",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "3ee1476f_f3c78de8",
+        "filename": "include/FruUtils.hpp",
+        "patchSetId": 13
+      },
+      "lineNbr": 117,
+      "author": {
+        "id": 1000733
+      },
+      "writtenOn": "2022-03-18T22:55:13Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "e1697ab4_3cbe4b40",
       "range": {
         "startLine": 117,
         "startChar": 2,
@@ -104,6 +152,30 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "eb061c0c_6035c84d",
+        "filename": "src/FruDevice.cpp",
+        "patchSetId": 13
+      },
+      "lineNbr": 285,
+      "author": {
+        "id": 1000733
+      },
+      "writtenOn": "2022-03-18T22:55:13Z",
+      "side": 1,
+      "message": "It\u0027s used to differentiate between the cases that call `readFromEeprom()` (reading from a kernel-provided sysfs file) and the ones that call `readBlockData()` to read via manual i2c-dev ioctls.  It\u0027s also a convenient way for the unit tests to plug in a read callback that just returns fixed test data without mucking around with doing actual I/O.",
+      "parentUuid": "bbdd7c4a_2629c39d",
+      "range": {
+        "startLine": 283,
+        "startChar": 0,
+        "endLine": 285,
+        "endChar": 6
+      },
+      "revId": "dd70df9265dec74a204635851b401880e18dac9a",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "4b688eca_22d08bee",
@@ -117,6 +189,30 @@
       "writtenOn": "2022-03-18T16:24:09Z",
       "side": 1,
       "message": "This should be an rvalue (assuming it\u0027s still needed at all).",
+      "range": {
+        "startLine": 286,
+        "startChar": 28,
+        "endLine": 286,
+        "endChar": 36
+      },
+      "revId": "dd70df9265dec74a204635851b401880e18dac9a",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1b341044_3ca7201a",
+        "filename": "src/FruDevice.cpp",
+        "patchSetId": 13
+      },
+      "lineNbr": 286,
+      "author": {
+        "id": 1000733
+      },
+      "writtenOn": "2022-03-18T22:55:13Z",
+      "side": 1,
+      "message": "Sorry, but I\u0027m afraid this may be running up against the limits of my C++ knowledge -- could you provide a link to some sort of reading material with a bit more explanation?  (Or just a bit more detail here.)  Web searches for \"C++ rvalue\" aren\u0027t turning up anything obviously relevant...",
+      "parentUuid": "4b688eca_22d08bee",
       "range": {
         "startLine": 286,
         "startChar": 28,
@@ -175,6 +271,54 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "7d328374_bc470c1f",
+        "filename": "src/FruUtils.cpp",
+        "patchSetId": 13
+      },
+      "lineNbr": 59,
+      "author": {
+        "id": 1000733
+      },
+      "writtenOn": "2022-03-18T22:55:13Z",
+      "side": 1,
+      "message": "`cursor` is the point from which it\u0027s currently reading, and while it starts out as `start`, it does get updated at the end of the loop after we\u0027ve successfully copied data to `outbuf` (`cursor +\u003d toCopy`).  `remaining` is likewise decremented at the same point.\n\nIt\u0027s probably possible to express the same logic with fewer book-keeping variables (and this function did turn out to be a good bit more intricate than I was expecting/hoping it would be), but with the various edge-cases that arose as I was writing it this was the clearest way I could come up with to do it -- there\u0027s an earlier incarnation of this logic in patchset 8, but I thought this was an improvement overall.",
+      "parentUuid": "ab2f0517_7d4f03c2",
+      "range": {
+        "startLine": 59,
+        "startChar": 38,
+        "endLine": 59,
+        "endChar": 52
+      },
+      "revId": "dd70df9265dec74a204635851b401880e18dac9a",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "86d94c47_434087f4",
+        "filename": "src/FruUtils.cpp",
+        "patchSetId": 13
+      },
+      "lineNbr": 59,
+      "author": {
+        "id": 1000733
+      },
+      "writtenOn": "2022-03-18T22:55:13Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "953392c9_86ec3965",
+      "range": {
+        "startLine": 59,
+        "startChar": 0,
+        "endLine": 59,
+        "endChar": 53
+      },
+      "revId": "dd70df9265dec74a204635851b401880e18dac9a",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "28960ceb_20c62a73",
         "filename": "src/FruUtils.cpp",
         "patchSetId": 13
@@ -186,6 +330,24 @@
       "writtenOn": "2022-03-18T16:24:09Z",
       "side": 1,
       "message": "init your variables.  There\u0027s lots that you\u0027ve failed to init, please fix all of them.",
+      "revId": "dd70df9265dec74a204635851b401880e18dac9a",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6cade41d_6d3b98dc",
+        "filename": "src/FruUtils.cpp",
+        "patchSetId": 13
+      },
+      "lineNbr": 67,
+      "author": {
+        "id": 1000733
+      },
+      "writtenOn": "2022-03-18T22:55:13Z",
+      "side": 1,
+      "message": "I guess there may be coding standards to adhere to in which case I can do so, but I\u0027m personally of the opinion that in cases like this it\u0027s actually counterproductive.  Currently it\u0027s:\n\n```\nuninitialized declaration of var;\nif (...)\n  var \u003d ...;\nelse\n  var \u003d ...;\nuse of var;\n```\n\nIf we change the declaration to include an initialization to some dummy value (zero, NULL, etc.) it doesn\u0027t hurt anything now (compiler elides the dead store in all likelihood), but if some later change unwittingly removes the assignment in one branch or the other of the if/else, then we end up with runtime misbehavior of some arbitrary nature (maybe a crash if we\u0027re lucky) instead of a compile-time warning about a use of an uninitialized variable.\n\nAs for there being lots, I see `data` and `toCopy` in this function (both of which are as described above); are there others I\u0027ve missed?",
+      "parentUuid": "28960ceb_20c62a73",
       "revId": "dd70df9265dec74a204635851b401880e18dac9a",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
@@ -213,6 +375,30 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "17760973_56617600",
+        "filename": "src/FruUtils.cpp",
+        "patchSetId": 13
+      },
+      "lineNbr": 96,
+      "author": {
+        "id": 1000733
+      },
+      "writtenOn": "2022-03-18T22:55:13Z",
+      "side": 1,
+      "message": "I think I had it that way at first, and that holds if `blkOffset \u003d\u003d populated`, but if `blkOffset \u003e populated`, then the subtraction in the `min()` call underflows to a large positive value and you end up with `remaining` instead of zero.  `blkOffset \u003e populated` probably shouldn\u0027t arise in any common cases, but could with an oddly-sized eeprom and an attempt to read a bit past the end of it.",
+      "parentUuid": "0c1749b6_40752c08",
+      "range": {
+        "startLine": 94,
+        "startChar": 15,
+        "endLine": 96,
+        "endChar": 27
+      },
+      "revId": "dd70df9265dec74a204635851b401880e18dac9a",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "c97d1d45_8525e7bd",
@@ -226,6 +412,30 @@
       "writtenOn": "2022-03-18T16:24:09Z",
       "side": 1,
       "message": "Isn\u0027t this logic duplicated with the above flow?  eof gets set properly on the cache object on line 79, so in theory this logic could be used in both cases to delete a majority of the other logic?",
+      "range": {
+        "startLine": 107,
+        "startChar": 2,
+        "endLine": 115,
+        "endChar": 13
+      },
+      "revId": "dd70df9265dec74a204635851b401880e18dac9a",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1b5a9594_a71c60d7",
+        "filename": "src/FruUtils.cpp",
+        "patchSetId": 13
+      },
+      "lineNbr": 115,
+      "author": {
+        "id": 1000733
+      },
+      "writtenOn": "2022-03-18T22:55:13Z",
+      "side": 1,
+      "message": "Perhaps so, I\u0027ll take a look at condensing the two branches together a bit.",
+      "parentUuid": "c97d1d45_8525e7bd",
       "range": {
         "startLine": 107,
         "startChar": 2,
