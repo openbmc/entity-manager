@@ -587,7 +587,7 @@ bool validateHeader(const std::array<uint8_t, I2C_SMBUS_BLOCK_MAX>& blockData)
     return true;
 }
 
-bool findFRUHeader(FRUReader& reader, const std::string& errorHelp,
+bool findFRUHeader(BaseFRUReader& reader, const std::string& errorHelp,
                    std::array<uint8_t, I2C_SMBUS_BLOCK_MAX>& blockData,
                    off_t& baseOffset)
 {
@@ -631,7 +631,7 @@ bool findFRUHeader(FRUReader& reader, const std::string& errorHelp,
     return false;
 }
 
-std::vector<uint8_t> readFRUContents(FRUReader& reader,
+std::vector<uint8_t> readFRUContents(BaseFRUReader& reader,
                                      const std::string& errorHelp)
 {
     std::array<uint8_t, I2C_SMBUS_BLOCK_MAX> blockData;

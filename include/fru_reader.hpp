@@ -35,28 +35,51 @@ extern "C"
 using ReadBlockFunc =
     std::function<int64_t(off_t offset, size_t len, uint8_t* outbuf)>;
 
-// A caching wrapper around a ReadBlockFunc
-class FRUReader
+class BaseFRUReader
 {
   public:
-    FRUReader(ReadBlockFunc readFunc) : readFunc(std::move(readFunc))
-    {}
     // The ::read() operation here is analogous to ReadBlockFunc (with the same
     // return value semantics), but is not subject to SMBus block size
     // limitations; it can read as much data as needed in a single call.
-    ssize_t read(off_t start, size_t len, uint8_t* outbuf);
+    virtual ssize_t read(off_t start, size_t len, uint8_t* outbuf) = 0;
+    virtual ~BaseFRUReader() = default;
+};
 
-  private:
+// A caching wrapper around a ReadBlockFunc
+class FRUReader : public BaseFRUReader
+{
+  public:
+    FRUReader(ReadBlockFunc readFunc) :
+        readFunc(std::move(readFunc)), cache(Cache()), eof(std::nullopt)
+    {}
+
     static constexpr size_t cacheBlockSize = 32;
     static_assert(cacheBlockSize <= I2C_SMBUS_BLOCK_MAX);
     using CacheBlock = std::array<uint8_t, cacheBlockSize>;
 
     // indexed by block number (byte number / block size)
-    using Cache = std::map<uint32_t, CacheBlock>;
+    using Cache = std::unordered_map<size_t, CacheBlock>;
 
     ReadBlockFunc readFunc;
     Cache cache;
 
     // byte offset of the end of the FRU (if readFunc has reported it)
     std::optional<size_t> eof;
+
+    ssize_t read(off_t start, size_t len, uint8_t* outbuf) override;
+};
+
+// wraps an existing BaseFRUReader and applies a fixed offset to all reads
+class OffsetFRUReader : public BaseFRUReader
+{
+  public:
+    OffsetFRUReader(BaseFRUReader& inner, off_t offset) :
+        inner(inner), offset(offset)
+    {}
+
+    ssize_t read(off_t start, size_t len, uint8_t* outbuf) override;
+
+  private:
+    BaseFRUReader& inner;
+    off_t offset;
 };
