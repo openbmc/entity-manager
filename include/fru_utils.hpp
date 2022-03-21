@@ -129,22 +129,22 @@ unsigned int updateFRUAreaLenAndChecksum(std::vector<uint8_t>& fruData,
 ssize_t getFieldLength(uint8_t fruFieldTypeLenValue);
 
 /// \brief Find a FRU header.
-/// \param reader the FRUReader to read via
+/// \param reader the BaseFRUReader to read via
 /// \param errorHelp and a helper string for failures
 /// \param blockData buffer to return the last read block
 /// \param baseOffset the offset to start the search at;
 ///        set to 0 to perform search;
 ///        returns the offset at which a header was found
 /// \return whether a header was found
-bool findFRUHeader(FRUReader& reader, const std::string& errorHelp,
+bool findFRUHeader(BaseFRUReader& reader, const std::string& errorHelp,
                    std::array<uint8_t, I2C_SMBUS_BLOCK_MAX>& blockData,
                    off_t& baseOffset);
 
 /// \brief Read and validate FRU contents.
-/// \param reader the FRUReader to read via
+/// \param reader the BaseFRUReader to read via
 /// \param errorHelp and a helper string for failures
 /// \return the FRU contents from the file
-std::vector<uint8_t> readFRUContents(FRUReader& reader,
+std::vector<uint8_t> readFRUContents(BaseFRUReader& reader,
                                      const std::string& errorHelp);
 
 /// \brief Validate an IPMI FRU common header

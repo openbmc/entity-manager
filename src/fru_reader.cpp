@@ -88,3 +88,8 @@ ssize_t FRUReader::read(off_t start, size_t len, uint8_t* outbuf)
 
     return done;
 }
+
+ssize_t OffsetFRUReader::read(off_t start, size_t len, uint8_t* outbuf)
+{
+    return inner.read(start + offset, len, outbuf);
+}
