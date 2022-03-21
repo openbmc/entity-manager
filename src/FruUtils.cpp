@@ -54,7 +54,7 @@ char bcdPlusToChar(uint8_t val)
     return (val < 10) ? static_cast<char>(val + '0') : bcdHighChars[val - 10];
 }
 
-int64_t FRUReader::read(uint16_t start, uint8_t len, uint8_t* outbuf)
+int64_t FRUReader::CachingReader::read(uint16_t start, uint8_t len, uint8_t* outbuf)
 {
     size_t done = 0;
     size_t remaining = len;
@@ -120,6 +120,17 @@ int64_t FRUReader::read(uint16_t start, uint8_t len, uint8_t* outbuf)
     }
 
     return done;
+}
+
+int64_t FRUReader::read(uint16_t start, uint8_t len, uint8_t* outbuf)
+{
+    OffsetReader* offsetReader = std::get_if<OffsetReader>(&impl);
+    if (offsetReader)
+    {
+        return offsetReader->inner.read(start + offsetReader->offset, len, outbuf);
+    }
+
+    return std::get<CachingReader>(impl).read(start, len, outbuf);
 }
 
 enum FRUDataEncoding

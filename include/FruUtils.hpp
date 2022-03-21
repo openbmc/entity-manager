@@ -24,6 +24,7 @@
 #include <regex>
 #include <string>
 #include <utility>
+#include <variant>
 #include <vector>
 extern "C"
 {
@@ -86,30 +87,45 @@ inline fruAreas operator++(fruAreas& x)
 using ReadBlockFunc =
     std::function<int64_t(uint16_t offset, uint8_t len, uint8_t* outbuf)>;
 
-// A caching wrapper around a ReadBlockFunc
 class FRUReader
 {
 public:
-  FRUReader(ReadBlockFunc readFunc) : readFunc(std::move(readFunc))
+  FRUReader(ReadBlockFunc readFunc) : impl(CachingReader{std::move(readFunc), CachingReader::Cache(), std::nullopt})
   {}
+  FRUReader(FRUReader& inner, size_t offset) : impl(OffsetReader{inner, offset})
+  {}
+
   // The ::read() operation here is analogous to ReadBlockFunc (with the same
   // return value semantics), but is not subject to SMBus block size
   // limitations; it can read as much data as needed in a single call.
   int64_t read(uint16_t start, uint8_t len, uint8_t* outbuf);
 
 private:
-  static constexpr size_t cacheBlockSize = 32;
-  static_assert(cacheBlockSize <= I2C_SMBUS_BLOCK_MAX);
-  using CacheBlock = std::array<uint8_t, cacheBlockSize>;
+  // wraps an existing FRUReader and applies a fixed offset to all reads
+  struct OffsetReader {
+    FRUReader& inner;
+    size_t offset;
+  };
 
-  // indexed by block number (byte number / block size)
-  using Cache = std::unordered_map<uint32_t, CacheBlock>;
+  // A caching wrapper around a ReadBlockFunc
+  struct CachingReader {
+    static constexpr size_t cacheBlockSize = 32;
+    static_assert(cacheBlockSize <= I2C_SMBUS_BLOCK_MAX);
+    using CacheBlock = std::array<uint8_t, cacheBlockSize>;
 
-  ReadBlockFunc readFunc;
-  Cache cache;
+    // indexed by block number (byte number / block size)
+    using Cache = std::unordered_map<size_t, CacheBlock>;
 
-  // byte offset of the end of the FRU (if readFunc has reported it)
-  std::optional<size_t> eof;
+    ReadBlockFunc readFunc;
+    Cache cache;
+
+    // byte offset of the end of the FRU (if readFunc has reported it)
+    std::optional<size_t> eof;
+
+    int64_t read(uint16_t start, uint8_t len, uint8_t* outbuf);
+  };
+
+  std::variant<CachingReader, OffsetReader> impl;
 };
 
 inline const std::string& getFruAreaName(fruAreas area)
