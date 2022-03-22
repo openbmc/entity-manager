@@ -84,8 +84,8 @@ inline fruAreas operator++(fruAreas& x)
 }
 
 using ReadBlockFunc =
-    std::function<int64_t(int flag, int file, uint16_t address, uint16_t offset,
-                          uint8_t length, uint8_t* outBuf)>;
+    std::function<ssize_t(int flag, int file, uint16_t address, off_t offset,
+                          size_t length, uint8_t* outBuf)>;
 
 inline const std::string& getFruAreaName(fruAreas area)
 {
@@ -145,7 +145,7 @@ ssize_t getFieldLength(uint8_t fruFieldTypeLenValue);
 bool findFRUHeader(int flag, int file, uint16_t address,
                    const ReadBlockFunc& readBlock, const std::string& errorHelp,
                    std::array<uint8_t, I2C_SMBUS_BLOCK_MAX>& blockData,
-                   uint16_t& baseOffset);
+                   off_t& baseOffset);
 
 /// \brief Read and validate FRU contents.
 /// \param flag the flag required for raw i2c

@@ -150,9 +150,9 @@ int64_t getDataTempl(
     [[maybe_unused]] int flag,
     [[maybe_unused]] int file,
     [[maybe_unused]] uint16_t address,
-    uint16_t offset, uint8_t length, uint8_t* outBuf)
+    off_t offset, size_t length, uint8_t* outBuf)
 {
-    if (offset >= data.size())
+    if (offset >= static_cast<off_t>(data.size()))
     {
         return 0;
     }
@@ -171,7 +171,7 @@ int64_t getDataTempl(
 TEST(FindFRUHeaderTest, InvalidHeader)
 {
     const std::vector<uint8_t> data = {255, 16};
-    uint16_t offset = 0;
+    off_t offset = 0;
     std::array<uint8_t, I2C_SMBUS_BLOCK_MAX> blockData;
     auto getData = [&data](auto fl, auto fi, auto a, auto o, auto l,
         auto* b) { return getDataTempl(data, fl, fi, a, o, l, b); };
@@ -182,7 +182,7 @@ TEST(FindFRUHeaderTest, InvalidHeader)
 TEST(FindFRUHeaderTest, NoData)
 {
     const std::vector<uint8_t> data = {};
-    uint16_t offset = 0;
+    off_t offset = 0;
     std::array<uint8_t, I2C_SMBUS_BLOCK_MAX> blockData;
     auto getData = [&data](auto fl, auto fi, auto a, auto o, auto l,
         auto* b) { return getDataTempl(data, fl, fi, a, o, l, b); };
@@ -194,7 +194,7 @@ TEST(FindFRUHeaderTest, ValidHeader)
 {
     const std::vector<uint8_t> data = {
         0x01, 0x00, 0x01, 0x02, 0x03, 0x04, 0x00, 0xf5};
-    uint16_t offset = 0;
+    off_t offset = 0;
     std::array<uint8_t, I2C_SMBUS_BLOCK_MAX> blockData;
     auto getData = [&data](auto fl, auto fi, auto a, auto o, auto l,
         auto* b) { return getDataTempl(data, fl, fi, a, o, l, b); };
@@ -207,7 +207,7 @@ TEST(FindFRUHeaderTest, TyanInvalidHeader)
 {
     std::vector<uint8_t> data = {'$', 'T', 'Y', 'A', 'N', '$', 0, 0};
     data.resize(0x6000 + I2C_SMBUS_BLOCK_MAX);
-    uint16_t offset = 0;
+    off_t offset = 0;
     std::array<uint8_t, I2C_SMBUS_BLOCK_MAX> blockData;
     auto getData = [&data](auto fl, auto fi, auto a, auto o, auto l,
         auto* b) { return getDataTempl(data, fl, fi, a, o, l, b); };
@@ -218,7 +218,7 @@ TEST(FindFRUHeaderTest, TyanInvalidHeader)
 TEST(FindFRUHeaderTest, TyanNoData)
 {
     const std::vector<uint8_t> data = {'$', 'T', 'Y', 'A', 'N', '$', 0, 0};
-    uint16_t offset = 0;
+    off_t offset = 0;
     std::array<uint8_t, I2C_SMBUS_BLOCK_MAX> blockData;
     auto getData = [&data](auto fl, auto fi, auto a, auto o, auto l,
         auto* b) { return getDataTempl(data, fl, fi, a, o, l, b); };
@@ -234,7 +234,7 @@ TEST(FindFRUHeaderTest, TyanValidHeader)
         0x01, 0x00, 0x01, 0x02, 0x03, 0x04, 0x00, 0xf5};
     copy(fruHeader.begin(), fruHeader.end(), back_inserter(data));
 
-    uint16_t offset = 0;
+    off_t offset = 0;
     std::array<uint8_t, I2C_SMBUS_BLOCK_MAX> blockData;
     auto getData = [&data](auto fl, auto fi, auto a, auto o, auto l,
         auto* b) { return getDataTempl(data, fl, fi, a, o, l, b); };
