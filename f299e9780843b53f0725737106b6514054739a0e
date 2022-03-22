@@ -48,6 +48,30 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "e5a887ef_23c67153",
+        "filename": "src/FruDevice.cpp",
+        "patchSetId": 14
+      },
+      "lineNbr": 124,
+      "author": {
+        "id": 1000733
+      },
+      "writtenOn": "2022-03-22T23:48:01Z",
+      "side": 1,
+      "message": "Now addressed in https://gerrit.openbmc-project.xyz/c/openbmc/entity-manager/+/52249",
+      "parentUuid": "ab53b92d_cd2e447d",
+      "range": {
+        "startLine": 124,
+        "startChar": 0,
+        "endLine": 124,
+        "endChar": 81
+      },
+      "revId": "f299e9780843b53f0725737106b6514054739a0e",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "749c8edb_682ec25b",
@@ -85,6 +109,30 @@
       "side": 1,
       "message": "Hmm, that\u0027s a good point -- it definitely seems to compile for me (and CI seems to agree), though I\u0027d agree that it\u0027s surprising that it isn\u0027t an error (but I\u0027ve never been terribly clear on what goes on with implicit type conversions in C++ anyway, sigh...).  I\u0027ll change this to be more self-consistent.",
       "parentUuid": "749c8edb_682ec25b",
+      "range": {
+        "startLine": 283,
+        "startChar": 27,
+        "endLine": 283,
+        "endChar": 57
+      },
+      "revId": "f299e9780843b53f0725737106b6514054739a0e",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "bde25844_f7e64fa2",
+        "filename": "src/FruDevice.cpp",
+        "patchSetId": 14
+      },
+      "lineNbr": 283,
+      "author": {
+        "id": 1000733
+      },
+      "writtenOn": "2022-03-22T23:48:01Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "dbbbef84_c740702b",
       "range": {
         "startLine": 283,
         "startChar": 27,
@@ -155,6 +203,30 @@
       "side": 1,
       "message": "Ack -- yeah, that sounds appropriate; I\u0027ll change it to that.",
       "parentUuid": "10d34268_75b3361a",
+      "range": {
+        "startLine": 57,
+        "startChar": 24,
+        "endLine": 57,
+        "endChar": 51
+      },
+      "revId": "f299e9780843b53f0725737106b6514054739a0e",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "cf97f229_4ae84e9a",
+        "filename": "src/FruUtils.cpp",
+        "patchSetId": 14
+      },
+      "lineNbr": 57,
+      "author": {
+        "id": 1000733
+      },
+      "writtenOn": "2022-03-22T23:48:01Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "d76eb1c3_c3dadcac",
       "range": {
         "startLine": 57,
         "startChar": 24,
