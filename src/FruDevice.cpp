@@ -116,9 +116,9 @@ static bool hasEepromFile(size_t bus, size_t address)
     }
 }
 
-static int64_t readFromEeprom(int flag __attribute__((unused)), int fd,
+static ssize_t readFromEeprom(int flag __attribute__((unused)), int fd,
                               uint16_t address __attribute__((unused)),
-                              uint16_t offset, uint8_t len, uint8_t* buf)
+                              off_t offset, size_t len, uint8_t* buf)
 {
     auto result = lseek(fd, offset, SEEK_SET);
     if (result < 0)
@@ -248,8 +248,8 @@ static int i2cSmbusWriteThenRead(int file, uint16_t address,
     return (ret == SMBUS_IOCTL_WRITE_THEN_READ_MSG_COUNT) ? msgs[1].len : -1;
 }
 
-static int64_t readBlockData(int flag, int file, uint16_t address,
-                             uint16_t offset, uint8_t len, uint8_t* buf)
+static ssize_t readBlockData(int flag, int file, uint16_t address, off_t offset,
+                             size_t len, uint8_t* buf)
 {
     if (flag == 0)
     {
