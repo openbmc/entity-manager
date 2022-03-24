@@ -838,19 +838,18 @@ bool findJsonFiles(std::list<nlohmann::json>& configurations)
 static bool deviceRequiresPowerOn(const nlohmann::json& entity)
 {
     auto powerState = entity.find("PowerState");
-    if (powerState != entity.end())
+    if (powerState == entity.end())
     {
-        auto ptr = powerState->get_ptr<const std::string*>();
-        if (ptr)
-        {
-            if (*ptr == "On" || *ptr == "BiosPost")
-            {
-                return true;
-            }
-        }
+        return false;
     }
 
-    return false;
+    auto ptr = powerState->get_ptr<const std::string*>();
+    if (!ptr)
+    {
+        return false;
+    }
+
+    return *ptr == "On" || *ptr == "BiosPost";
 }
 
 void startRemovedTimer(boost::asio::steady_timer& timer,
