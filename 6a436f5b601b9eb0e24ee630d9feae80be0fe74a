@@ -22,6 +22,30 @@
       },
       "revId": "6a436f5b601b9eb0e24ee630d9feae80be0fe74a",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "848053fa_d47891df",
+        "filename": "src/EntityManager.cpp",
+        "patchSetId": 1
+      },
+      "lineNbr": 1038,
+      "author": {
+        "id": 1000009
+      },
+      "writtenOn": "2022-03-24T23:31:48Z",
+      "side": 1,
+      "message": "I think the style in the patch is objectively better in this instance. Before the change we have:\n\n1. A comparison\n2. A negation of the comparison\n3. A conditional branch\n4. An explicit early function return\n5. The startRemovedTimer() function invocation\n6. The implicit function return\n\nAfter the patch we have:\n\n1. A comparison\n2. A conditional branch\n3. The startRemovedTimer() function invocation\n4. The implicit function return\n\nThe less mental gymnastics the better.",
+      "parentUuid": "bd60e52c_5083e028",
+      "range": {
+        "startLine": 1038,
+        "startChar": 0,
+        "endLine": 1038,
+        "endChar": 46
+      },
+      "revId": "6a436f5b601b9eb0e24ee630d9feae80be0fe74a",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }
