@@ -842,6 +842,24 @@ bool findJsonFiles(std::list<nlohmann::json>& configurations)
     return true;
 }
 
+static bool deviceRequiresPowerOn(const nlohmann::json& entity)
+{
+    auto powerState = entity.find("PowerState");
+    if (powerState != entity.end())
+    {
+        auto ptr = powerState->get_ptr<const std::string*>();
+        if (ptr)
+        {
+            if (*ptr == "On" || *ptr == "BiosPost")
+            {
+                return true;
+            }
+        }
+    }
+
+    return false;
+}
+
 void startRemovedTimer(boost::asio::steady_timer& timer,
                        nlohmann::json& systemConfiguration)
 {
@@ -877,19 +895,7 @@ void startRemovedTimer(boost::asio::steady_timer& timer,
                 if (systemConfiguration.find(item.key()) ==
                     systemConfiguration.end())
                 {
-                    bool isDetectedPowerOn = false;
-                    auto powerState = item.value().find("PowerState");
-                    if (powerState != item.value().end())
-                    {
-                        auto ptr = powerState->get_ptr<const std::string*>();
-                        if (ptr)
-                        {
-                            if (*ptr == "On" || *ptr == "BiosPost")
-                            {
-                                isDetectedPowerOn = true;
-                            }
-                        }
-                    }
+                    bool isDetectedPowerOn = deviceRequiresPowerOn(item.value());
                     if (powerOff && isDetectedPowerOn)
                     {
                         // power not on yet, don't know if it's there or not
@@ -967,20 +973,7 @@ void propertiesChangedCallback(nlohmann::json& systemConfiguration,
                 bool powerOff = !isPowerOn();
                 for (const auto& item : missingConfigurations->items())
                 {
-                    bool isDetectedPowerOn = false;
-                    auto powerState = item.value().find("PowerState");
-                    if (powerState != item.value().end())
-                    {
-                        auto ptr = powerState->get_ptr<const std::string*>();
-                        if (ptr)
-                        {
-                            if (*ptr == "On" || *ptr == "BiosPost")
-                            {
-                                isDetectedPowerOn = true;
-                            }
-                        }
-                    }
-                    if (powerOff && isDetectedPowerOn)
+                    if (powerOff && deviceRequiresPowerOn(item.value()))
                     {
                         // power not on yet, don't know if it's there or not
                         continue;
