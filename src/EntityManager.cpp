@@ -894,13 +894,13 @@ void startRemovedTimer(boost::asio::steady_timer& timer,
                 if (systemConfiguration.find(item.key()) ==
                     systemConfiguration.end())
                 {
-                    bool isDetectedPowerOn = deviceRequiresPowerOn(item.value());
-                    if (powerOff && isDetectedPowerOn)
+                    bool requirePowerOn = deviceRequiresPowerOn(item.value());
+                    if (powerOff && requirePowerOn)
                     {
                         // power not on yet, don't know if it's there or not
                         continue;
                     }
-                    if (!powerOff && scannedPowerOff && isDetectedPowerOn)
+                    if (!powerOff && scannedPowerOff && requirePowerOn)
                     {
                         // already logged it when power was off
                         continue;
