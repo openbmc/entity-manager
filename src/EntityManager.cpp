@@ -944,6 +944,23 @@ static void pruneConfiguration(nlohmann::json& systemConfiguration,
     logDeviceRemoved(device);
 }
 
+static void deriveNewConfiguration(const nlohmann::json& oldConfiguration,
+                                   nlohmann::json& newConfiguration)
+{
+    for (auto it = newConfiguration.begin(); it != newConfiguration.end();)
+    {
+        auto findKey = oldConfiguration.find(it.key());
+        if (findKey != oldConfiguration.end())
+        {
+            it = newConfiguration.erase(it);
+        }
+        else
+        {
+            it++;
+        }
+    }
+}
+
 // main properties changed entry
 void propertiesChangedCallback(nlohmann::json& systemConfiguration,
                                sdbusplus::asio::object_server& objServer)
@@ -1005,19 +1022,9 @@ void propertiesChangedCallback(nlohmann::json& systemConfiguration,
                 }
 
                 nlohmann::json newConfiguration = systemConfiguration;
-                for (auto it = newConfiguration.begin();
-                     it != newConfiguration.end();)
-                {
-                    auto findKey = oldConfiguration.find(it.key());
-                    if (findKey != oldConfiguration.end())
-                    {
-                        it = newConfiguration.erase(it);
-                    }
-                    else
-                    {
-                        it++;
-                    }
-                }
+
+                deriveNewConfiguration(oldConfiguration, newConfiguration);
+
                 for (const auto& [_, device] : newConfiguration.items())
                 {
                     logDeviceAdded(device);
