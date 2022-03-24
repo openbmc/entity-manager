@@ -971,6 +971,30 @@ static void deriveNewConfiguration(const nlohmann::json& oldConfiguration,
     }
 }
 
+static void publishNewConfiguration(const size_t& instance, const size_t count,
+                                    boost::asio::steady_timer& timer,
+                                    nlohmann::json& systemConfiguration,
+                                    const nlohmann::json& newConfiguration,
+                                    sdbusplus::asio::object_server& objServer)
+{
+    loadOverlays(newConfiguration);
+
+    io.post([systemConfiguration]() {
+        if (!writeJsonFiles(systemConfiguration))
+        {
+            std::cerr << "Error writing json files\n";
+        }
+    });
+
+    io.post([&instance, count, &timer, newConfiguration, &systemConfiguration, &objServer]() {
+        postToDbus(newConfiguration, systemConfiguration, objServer);
+        if (count == instance)
+        {
+            startRemovedTimer(timer, systemConfiguration);
+        }
+    });
+}
+
 // main properties changed entry
 void propertiesChangedCallback(nlohmann::json& systemConfiguration,
                                sdbusplus::asio::object_server& objServer)
@@ -1042,23 +1066,9 @@ void propertiesChangedCallback(nlohmann::json& systemConfiguration,
 
                 io.post([count, newConfiguration, &systemConfiguration,
                          &objServer]() {
-                    loadOverlays(newConfiguration);
-
-                    io.post([&systemConfiguration]() {
-                        if (!writeJsonFiles(systemConfiguration))
-                        {
-                            std::cerr << "Error writing json files\n";
-                        }
-                    });
-                    io.post([count, newConfiguration, &systemConfiguration,
-                             &objServer]() {
-                        postToDbus(newConfiguration, systemConfiguration,
-                                   objServer);
-                        if (count == instance)
-                        {
-                            startRemovedTimer(timer, systemConfiguration);
-                        }
-                    });
+                    publishNewConfiguration(instance, count, timer,
+                                            systemConfiguration,
+                                            newConfiguration, objServer);
                 });
             });
         perfScan->run();
