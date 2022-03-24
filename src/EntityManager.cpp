@@ -983,11 +983,10 @@ void propertiesChangedCallback(nlohmann::json& systemConfiguration,
                     for (auto& iface : ifaces)
                     {
                         auto sharedPtr = iface.lock();
-                        if (!sharedPtr)
+                        if (!!sharedPtr)
                         {
-                            continue; // was already deleted elsewhere
+                            objServer.remove_interface(sharedPtr);
                         }
-                        objServer.remove_interface(sharedPtr);
                     }
                     ifaces.clear();
                     systemConfiguration.erase(name);
