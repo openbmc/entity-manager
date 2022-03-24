@@ -1035,11 +1035,10 @@ void propertiesChangedCallback(nlohmann::json& systemConfiguration,
                              &objServer]() {
                         postToDbus(newConfiguration, systemConfiguration,
                                    objServer);
-                        if (count != instance)
+                        if (count == instance)
                         {
-                            return;
+                            startRemovedTimer(timer, systemConfiguration);
                         }
-                        startRemovedTimer(timer, systemConfiguration);
                     });
                 });
             });
