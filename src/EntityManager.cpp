@@ -859,6 +859,11 @@ static bool deviceRequiresPowerOn(const nlohmann::json& entity)
     return *ptr == "On" || *ptr == "BiosPost";
 }
 
+static bool isDevicePresent(const nlohmann::json& systemConfiguration, const std::string& name)
+{
+    return systemConfiguration.find(name) != systemConfiguration.end();
+}
+
 void startRemovedTimer(boost::asio::steady_timer& timer,
                        nlohmann::json& systemConfiguration)
 {
@@ -891,8 +896,7 @@ void startRemovedTimer(boost::asio::steady_timer& timer,
             bool powerOff = !isPowerOn();
             for (const auto& item : lastJson.items())
             {
-                if (systemConfiguration.find(item.key()) ==
-                    systemConfiguration.end())
+                if (!isDevicePresent(systemConfiguration, item.key()))
                 {
                     bool requirePowerOn = deviceRequiresPowerOn(item.value());
                     if (powerOff && requirePowerOn)
