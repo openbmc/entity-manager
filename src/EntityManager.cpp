@@ -912,6 +912,12 @@ void startRemovedTimer(boost::asio::steady_timer& timer,
         });
 }
 
+static std::vector<std::weak_ptr<sdbusplus::asio::dbus_interface>>&
+    getDeviceInterfaces(const nlohmann::json& device)
+{
+    return inventory[device["Name"].get<std::string>()];
+}
+
 // main properties changed entry
 void propertiesChangedCallback(nlohmann::json& systemConfiguration,
                                sdbusplus::asio::object_server& objServer)
@@ -972,9 +978,7 @@ void propertiesChangedCallback(nlohmann::json& systemConfiguration,
                         // power not on yet, don't know if it's there or not
                         continue;
                     }
-                    std::string name = item.value()["Name"].get<std::string>();
-                    std::vector<std::weak_ptr<sdbusplus::asio::dbus_interface>>&
-                        ifaces = inventory[name];
+                    auto& ifaces = getDeviceInterfaces(item.value());
                     for (auto& iface : ifaces)
                     {
                         auto sharedPtr = iface.lock();
