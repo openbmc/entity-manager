@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f97ef793_ef36ac45",
+        "filename": "src/EntityManager.cpp",
+        "patchSetId": 1
+      },
+      "lineNbr": 927,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2022-03-24T15:59:43Z",
+      "side": 1,
+      "message": "as a commentary, I really dislike that EM sends nlohmann objects around everywhere as a data structure because it makes it super convoluted what structures can contain what.  I\u0027d much rather be pulling the data bits that you need out in the calling scope, then pass std::string\u0026 around as needed because it keeps the json code in one spot, so you can kind of see intended schemas.\n\nWith that said, this is still cleaner, so 👍",
+      "range": {
+        "startLine": 927,
+        "startChar": 20,
+        "endLine": 927,
+        "endChar": 41
+      },
+      "revId": "b053643876310db367411be3466f963fa9a519d6",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    }
+  ]
+}
