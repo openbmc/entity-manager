@@ -873,17 +873,8 @@ static void pruneDevice(const nlohmann::json& systemConfiguration, const bool po
         return;
     }
 
-    bool requirePowerOn = deviceRequiresPowerOn(device);
-
-    if (powerOff && requirePowerOn)
+    if (deviceRequiresPowerOn(device) && (powerOff || scannedPowerOff))
     {
-        // power not on yet, don't know if it's there or not
-        return;
-    }
-
-    if (!powerOff && scannedPowerOff && requirePowerOn)
-    {
-        // already logged it when power was off
         return;
     }
 
