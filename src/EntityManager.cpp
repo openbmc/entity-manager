@@ -852,6 +852,32 @@ static bool deviceRequiresPowerOn(const nlohmann::json& entity)
     return *ptr == "On" || *ptr == "BiosPost";
 }
 
+static void pruneDevice(const nlohmann::json& systemConfiguration,
+                        const bool powerOff, const bool scannedPowerOff,
+                        const std::string& name, const nlohmann::json& device)
+{
+    if (systemConfiguration.contains(name))
+    {
+        return;
+    }
+
+    bool requirePowerOn = deviceRequiresPowerOn(device);
+
+    if (powerOff && requirePowerOn)
+    {
+        // power not on yet, don't know if it's there or not
+        return;
+    }
+
+    if (!powerOff && scannedPowerOff && requirePowerOn)
+    {
+        // already logged it when power was off
+        return;
+    }
+
+    logDeviceRemoved(device);
+}
+
 void startRemovedTimer(boost::asio::steady_timer& timer,
                        nlohmann::json& systemConfiguration)
 {
@@ -877,32 +903,16 @@ void startRemovedTimer(boost::asio::steady_timer& timer,
         [&systemConfiguration](const boost::system::error_code& ec) {
             if (ec == boost::asio::error::operation_aborted)
             {
-                // we were cancelled
                 return;
             }
 
             bool powerOff = !isPowerOn();
             for (const auto& [name, device] : lastJson.items())
             {
-                if (systemConfiguration.contains(name))
-                {
-                    continue;
-                }
-
-                bool requirePowerOn = deviceRequiresPowerOn(device);
-                if (powerOff && requirePowerOn)
-                {
-                    // power not on yet, don't know if it's there or not
-                    continue;
-                }
-                if (!powerOff && scannedPowerOff && requirePowerOn)
-                {
-                    // already logged it when power was off
-                    continue;
-                }
-
-                logDeviceRemoved(device);
+                pruneDevice(systemConfiguration, powerOff, scannedPowerOff,
+                            name, device);
             }
+
             scannedPowerOff = true;
             if (!powerOff)
             {
