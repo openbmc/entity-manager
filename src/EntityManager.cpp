@@ -884,8 +884,7 @@ void startRemovedTimer(boost::asio::steady_timer& timer,
             bool powerOff = !isPowerOn();
             for (const auto& item : lastJson.items())
             {
-                if (systemConfiguration.find(item.key()) ==
-                    systemConfiguration.end())
+                if (!systemConfiguration.contains(item.key()))
                 {
                     bool requirePowerOn = deviceRequiresPowerOn(item.value());
                     if (powerOff && requirePowerOn)
