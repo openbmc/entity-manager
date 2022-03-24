@@ -971,14 +971,15 @@ void propertiesChangedCallback(nlohmann::json& systemConfiguration,
                 // this is something that since ac has been applied to the bmc
                 // we saw, and we no longer see it
                 bool powerOff = !isPowerOn();
-                for (const auto& item : missingConfigurations->items())
+                for (const auto& [name, device] :
+                     missingConfigurations->items())
                 {
-                    if (powerOff && deviceRequiresPowerOn(item.value()))
+                    if (powerOff && deviceRequiresPowerOn(device))
                     {
                         // power not on yet, don't know if it's there or not
                         continue;
                     }
-                    auto& ifaces = getDeviceInterfaces(item.value());
+                    auto& ifaces = getDeviceInterfaces(device);
                     for (auto& iface : ifaces)
                     {
                         auto sharedPtr = iface.lock();
@@ -989,8 +990,8 @@ void propertiesChangedCallback(nlohmann::json& systemConfiguration,
                         objServer.remove_interface(sharedPtr);
                     }
                     ifaces.clear();
-                    systemConfiguration.erase(item.key());
-                    logDeviceRemoved(item.value());
+                    systemConfiguration.erase(name);
+                    logDeviceRemoved(device);
                 }
 
                 nlohmann::json newConfiguration = systemConfiguration;
