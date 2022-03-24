@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1e142c15_8cd0d8c8",
+        "filename": "src/EntityManager.cpp",
+        "patchSetId": 1
+      },
+      "lineNbr": 996,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2022-03-24T16:01:44Z",
+      "side": 1,
+      "message": "cppcoreguildelines would say that we shouldn\u0027t  be implicitly casting this to bool, so it should be something like sharedPtr !\u003d nullptr",
+      "range": {
+        "startLine": 996,
+        "startChar": 28,
+        "endLine": 996,
+        "endChar": 37
+      },
+      "revId": "ffa650ce88dd2e769a9b50f90e63a7f75665e800",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    }
+  ]
+}
