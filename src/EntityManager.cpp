@@ -38,6 +38,7 @@
 #include <charconv>
 #include <filesystem>
 #include <fstream>
+#include <functional>
 #include <iostream>
 #include <map>
 #include <regex>
@@ -961,6 +962,38 @@ static void deriveNewConfiguration(const nlohmann::json& oldConfiguration,
     }
 }
 
+static void publishNewConfiguration(
+    const size_t& instance, const size_t count,
+    boost::asio::steady_timer& timer, nlohmann::json& systemConfiguration,
+    // Gerrit discussion:
+    // https://gerrit.openbmc-project.xyz/c/openbmc/entity-manager/+/52316/6
+    //
+    // Discord discussion:
+    // https://discord.com/channels/775381525260664832/867820390406422538/958048437729910854
+    //
+    // NOLINTNEXTLINE(performance-unnecessary-value-param)
+    const nlohmann::json newConfiguration,
+    sdbusplus::asio::object_server& objServer)
+{
+    loadOverlays(newConfiguration);
+
+    io.post([systemConfiguration]() {
+        if (!writeJsonFiles(systemConfiguration))
+        {
+            std::cerr << "Error writing json files\n";
+        }
+    });
+
+    io.post([&instance, count, &timer, newConfiguration, &systemConfiguration,
+             &objServer]() {
+        postToDbus(newConfiguration, systemConfiguration, objServer);
+        if (count == instance)
+        {
+            startRemovedTimer(timer, systemConfiguration);
+        }
+    });
+}
+
 // main properties changed entry
 void propertiesChangedCallback(nlohmann::json& systemConfiguration,
                                sdbusplus::asio::object_server& objServer)
@@ -1032,26 +1065,10 @@ void propertiesChangedCallback(nlohmann::json& systemConfiguration,
 
                 inProgress = false;
 
-                io.post([count, newConfiguration, &systemConfiguration,
-                         &objServer]() {
-                    loadOverlays(newConfiguration);
-
-                    io.post([&systemConfiguration]() {
-                        if (!writeJsonFiles(systemConfiguration))
-                        {
-                            std::cerr << "Error writing json files\n";
-                        }
-                    });
-                    io.post([count, newConfiguration, &systemConfiguration,
-                             &objServer]() {
-                        postToDbus(newConfiguration, systemConfiguration,
-                                   objServer);
-                        if (count == instance)
-                        {
-                            startRemovedTimer(timer, systemConfiguration);
-                        }
-                    });
-                });
+                io.post(std::bind_front(
+                    publishNewConfiguration, std::ref(instance), count,
+                    std::ref(timer), std::ref(systemConfiguration),
+                    newConfiguration, std::ref(objServer)));
             });
         perfScan->run();
     });
