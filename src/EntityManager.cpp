@@ -1033,9 +1033,9 @@ void propertiesChangedCallback(nlohmann::json& systemConfiguration,
 
                 deriveNewConfiguration(oldConfiguration, newConfiguration);
 
-                for (const auto& item : newConfiguration.items())
+                for (const auto& [_, device] : newConfiguration.items())
                 {
-                    logDeviceAdded(item.value());
+                    logDeviceAdded(device);
                 }
 
                 inProgress = false;
