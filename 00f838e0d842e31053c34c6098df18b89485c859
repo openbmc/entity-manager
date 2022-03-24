@@ -1,0 +1,44 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "eca34316_d28a21b7",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2022-03-24T15:44:52Z",
+      "side": 1,
+      "message": "Overall, LGTM",
+      "revId": "00f838e0d842e31053c34c6098df18b89485c859",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0db795bd_7e1d3e67",
+        "filename": "src/EntityManager.cpp",
+        "patchSetId": 1
+      },
+      "lineNbr": 1069,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2022-03-24T15:44:52Z",
+      "side": 1,
+      "message": "What you did is still cleaner than what was there, and I\u0027m not going to bikeshed block this patch, but one step that would be even better would be rearranging the params on the callback slightly, and doing\n\nio.post(std::bind_front(publishNewConfiguration, instance, count, timer, std::ref(systemConfiguration), std::ref(newCOnfiguration), std::ref(objServer))\n\nIt gets rid of the lambda entirely, which I think is a lot less confusing as a pattern, and I\u0027ve been working on moving some bmcweb stuff over to that.",
+      "range": {
+        "startLine": 1069,
+        "startChar": 20,
+        "endLine": 1069,
+        "endChar": 43
+      },
+      "revId": "00f838e0d842e31053c34c6098df18b89485c859",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    }
+  ]
+}
