@@ -873,41 +873,41 @@ void startRemovedTimer(boost::asio::steady_timer& timer,
     }
 
     timer.expires_after(std::chrono::seconds(10));
-    timer.async_wait([&systemConfiguration](
-                         const boost::system::error_code& ec) {
-        if (ec == boost::asio::error::operation_aborted)
-        {
-            // we were cancelled
-            return;
-        }
-
-        bool powerOff = !isPowerOn();
-        for (const auto& item : lastJson.items())
-        {
-            if (systemConfiguration.find(item.key()) ==
-                systemConfiguration.end())
+    timer.async_wait(
+        [&systemConfiguration](const boost::system::error_code& ec) {
+            if (ec == boost::asio::error::operation_aborted)
             {
-                bool isDetectedPowerOn = deviceRequiresPowerOn(item.value());
-                if (powerOff && isDetectedPowerOn)
-                {
-                    // power not on yet, don't know if it's there or not
-                    continue;
-                }
-                if (!powerOff && scannedPowerOff && isDetectedPowerOn)
-                {
-                    // already logged it when power was off
-                    continue;
-                }
-
-                logDeviceRemoved(item.value());
+                // we were cancelled
+                return;
             }
-        }
-        scannedPowerOff = true;
-        if (!powerOff)
-        {
-            scannedPowerOn = true;
-        }
-    });
+
+            bool powerOff = !isPowerOn();
+            for (const auto& item : lastJson.items())
+            {
+                if (systemConfiguration.find(item.key()) ==
+                    systemConfiguration.end())
+                {
+                    bool requirePowerOn = deviceRequiresPowerOn(item.value());
+                    if (powerOff && requirePowerOn)
+                    {
+                        // power not on yet, don't know if it's there or not
+                        continue;
+                    }
+                    if (!powerOff && scannedPowerOff && requirePowerOn)
+                    {
+                        // already logged it when power was off
+                        continue;
+                    }
+
+                    logDeviceRemoved(item.value());
+                }
+            }
+            scannedPowerOff = true;
+            if (!powerOff)
+            {
+                scannedPowerOn = true;
+            }
+        });
 }
 
 // main properties changed entry
