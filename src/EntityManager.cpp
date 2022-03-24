@@ -884,22 +884,24 @@ void startRemovedTimer(boost::asio::steady_timer& timer,
             bool powerOff = !isPowerOn();
             for (const auto& item : lastJson.items())
             {
-                if (!systemConfiguration.contains(item.key()))
+                if (systemConfiguration.contains(item.key()))
                 {
-                    bool requirePowerOn = deviceRequiresPowerOn(item.value());
-                    if (powerOff && requirePowerOn)
-                    {
-                        // power not on yet, don't know if it's there or not
-                        continue;
-                    }
-                    if (!powerOff && scannedPowerOff && requirePowerOn)
-                    {
-                        // already logged it when power was off
-                        continue;
-                    }
-
-                    logDeviceRemoved(item.value());
+                    continue;
                 }
+
+                bool requirePowerOn = deviceRequiresPowerOn(item.value());
+                if (powerOff && requirePowerOn)
+                {
+                    // power not on yet, don't know if it's there or not
+                    continue;
+                }
+                if (!powerOff && scannedPowerOff && requirePowerOn)
+                {
+                    // already logged it when power was off
+                    continue;
+                }
+
+                logDeviceRemoved(item.value());
             }
             scannedPowerOff = true;
             if (!powerOff)
