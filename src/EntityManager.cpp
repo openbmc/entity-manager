@@ -929,6 +929,31 @@ getDeviceInterfaces(const nlohmann::json& device)
     return inventory[device["Name"].get<std::string>()];
 }
 
+static void pruneConfiguration(nlohmann::json& systemConfiguration,
+                               sdbusplus::asio::object_server& objServer, bool powerOff,
+                               const std::string& name, const nlohmann::json& device)
+{
+    if (powerOff && deviceRequiresPowerOn(device))
+    {
+        // power not on yet, don't know if it's there or not
+        return;
+    }
+
+    auto& ifaces = getDeviceInterfaces(device);
+    for (auto& iface : ifaces)
+    {
+        auto sharedPtr = iface.lock();
+        if (sharedPtr)
+        {
+            objServer.remove_interface(sharedPtr);
+        }
+    }
+
+    ifaces.clear();
+    systemConfiguration.erase(name);
+    logDeviceRemoved(device);
+}
+
 // main properties changed entry
 void propertiesChangedCallback(nlohmann::json& systemConfiguration,
                                sdbusplus::asio::object_server& objServer)
@@ -984,23 +1009,7 @@ void propertiesChangedCallback(nlohmann::json& systemConfiguration,
                 bool powerOff = !isPowerOn();
                 for (const auto& [name, device] : missingConfigurations->items())
                 {
-                    if (powerOff && deviceRequiresPowerOn(device))
-                    {
-                        // power not on yet, don't know if it's there or not
-                        continue;
-                    }
-                    auto& ifaces = getDeviceInterfaces(device);
-                    for (auto& iface : ifaces)
-                    {
-                        auto sharedPtr = iface.lock();
-                        if (sharedPtr)
-                        {
-                            objServer.remove_interface(sharedPtr);
-                        }
-                    }
-                    ifaces.clear();
-                    systemConfiguration.erase(name);
-                    logDeviceRemoved(device);
+                    pruneConfiguration(systemConfiguration, objServer, powerOff, name, device);
                 }
 
                 nlohmann::json newConfiguration = systemConfiguration;
