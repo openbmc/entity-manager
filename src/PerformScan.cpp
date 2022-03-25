@@ -521,22 +521,20 @@ void PerformScan::run()
                             }
 
                             std::set<std::string> foundMatches;
-                            for (auto& configurationPair :
+                            for (auto& [configId, config] :
                                  _systemConfiguration.items())
                             {
                                 if (isDisable)
                                 {
                                     // don't disable ourselves
-                                    if (configurationPair.key() == recordName)
+                                    if (configId == recordName)
                                     {
                                         continue;
                                     }
                                 }
-                                auto configListFind =
-                                    configurationPair.value().find("Exposes");
+                                auto configListFind = config.find("Exposes");
 
-                                if (configListFind ==
-                                        configurationPair.value().end() ||
+                                if (configListFind == config.end() ||
                                     configListFind->type() !=
                                         nlohmann::json::value_t::array)
                                 {
