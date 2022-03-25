@@ -64,6 +64,8 @@ constexpr size_t maxEepromPageIndex = 255;
 constexpr size_t busTimeoutSeconds = 5;
 
 constexpr const char* blacklistPath = PACKAGE_DIR "blacklist.json";
+constexpr const char* hostStateRunning =
+    "xyz.openbmc_project.State.Host.HostState.Running";
 
 const static constexpr char* baseboardFruLocation =
     "/etc/fru/baseboard.fru.bin";
@@ -947,11 +949,29 @@ void rescanOneBus(
         i2cBuses, busmap, powerIsOn, objServer,
         [busNum, &busmap, &dbusInterfaceMap, &unknownBusObjectCount, &powerIsOn,
          &objServer, &systemBus]() {
+            int rootBus = getRootBus(static_cast<size_t>(busNum));
             for (auto& busIface : dbusInterfaceMap)
             {
                 if (busIface.first.first == static_cast<size_t>(busNum))
                 {
                     objServer.remove_interface(busIface.second);
+                }
+                // In case device under mux not detected in root bus
+                // while rescanOneBus, updating dbusInterfaceMap along
+                // with busMap to avoid getFRUInfo of not available device
+                // and throw
+                if (busIface.first.first == static_cast<size_t>(rootBus))
+                {
+                    auto deviceMap = busmap.find(rootBus);
+                    if (deviceMap != busMap.end())
+                    {
+                        if (deviceMap->second->find(busIface.first.second) ==
+                            deviceMap->second->end())
+                        {
+                            objServer.remove_interface(busIface.second);
+                            dbusInterfaceMap.erase(busIface.first);
+                        }
+                    }
                 }
             }
             auto found = busmap.find(busNum);
@@ -1394,8 +1414,8 @@ int main()
             auto findState = values.find("CurrentHostState");
             if (findState != values.end())
             {
-                powerIsOn = boost::ends_with(
-                    std::get<std::string>(findState->second), "Running");
+                powerIsOn = std::get<std::string>(findState->second) ==
+                            hostStateRunning;
             }
 
             if (powerIsOn)
