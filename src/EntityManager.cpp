@@ -311,7 +311,7 @@ void populateInterfaceFromJson(
         {
             continue; // handled elsewhere
         }
-        std::string key = jsonPointerPath + "/" + dictPair.key();
+        std::string path = jsonPointerPath + "/" + dictPair.key();
         if (permission == sdbusplus::asio::PropertyPermission::readWrite)
         {
             // all setable numbers are doubles as it is difficult to always
@@ -340,13 +340,13 @@ void populateInterfaceFromJson(
                     // sdbusplus, change it to numbers
                     addArrayToDbus<uint64_t>(dictPair.key(), dictPair.value(),
                                              iface.get(), permission,
-                                             systemConfiguration, key);
+                                             systemConfiguration, path);
                 }
 
                 else
                 {
                     addProperty(dictPair.key(), dictPair.value().get<bool>(),
-                                iface.get(), systemConfiguration, key,
+                                iface.get(), systemConfiguration, path,
                                 permission);
                 }
                 break;
@@ -357,12 +357,12 @@ void populateInterfaceFromJson(
                 {
                     addArrayToDbus<int64_t>(dictPair.key(), dictPair.value(),
                                             iface.get(), permission,
-                                            systemConfiguration, key);
+                                            systemConfiguration, path);
                 }
                 else
                 {
                     addProperty(dictPair.key(), dictPair.value().get<int64_t>(),
-                                iface.get(), systemConfiguration, key,
+                                iface.get(), systemConfiguration, path,
                                 sdbusplus::asio::PropertyPermission::readOnly);
                 }
                 break;
@@ -373,13 +373,13 @@ void populateInterfaceFromJson(
                 {
                     addArrayToDbus<uint64_t>(dictPair.key(), dictPair.value(),
                                              iface.get(), permission,
-                                             systemConfiguration, key);
+                                             systemConfiguration, path);
                 }
                 else
                 {
                     addProperty(dictPair.key(),
                                 dictPair.value().get<uint64_t>(), iface.get(),
-                                systemConfiguration, key,
+                                systemConfiguration, path,
                                 sdbusplus::asio::PropertyPermission::readOnly);
                 }
                 break;
@@ -390,13 +390,13 @@ void populateInterfaceFromJson(
                 {
                     addArrayToDbus<double>(dictPair.key(), dictPair.value(),
                                            iface.get(), permission,
-                                           systemConfiguration, key);
+                                           systemConfiguration, path);
                 }
 
                 else
                 {
                     addProperty(dictPair.key(), dictPair.value().get<double>(),
-                                iface.get(), systemConfiguration, key,
+                                iface.get(), systemConfiguration, path,
                                 permission);
                 }
                 break;
@@ -407,13 +407,13 @@ void populateInterfaceFromJson(
                 {
                     addArrayToDbus<std::string>(
                         dictPair.key(), dictPair.value(), iface.get(),
-                        permission, systemConfiguration, key);
+                        permission, systemConfiguration, path);
                 }
                 else
                 {
                     addProperty(
                         dictPair.key(), dictPair.value().get<std::string>(),
-                        iface.get(), systemConfiguration, key, permission);
+                        iface.get(), systemConfiguration, path, permission);
                 }
                 break;
             }
