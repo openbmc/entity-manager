@@ -588,15 +588,14 @@ bool validateHeader(const std::array<uint8_t, I2C_SMBUS_BLOCK_MAX>& blockData)
 }
 
 bool findFRUHeader(int flag, int file, uint16_t address,
-                   const ReadBlockFunc& readBlock,
-                   const std::string& errorHelp,
+                   const ReadBlockFunc& readBlock, const std::string& errorHelp,
                    std::array<uint8_t, I2C_SMBUS_BLOCK_MAX>& blockData,
                    uint16_t& baseOffset)
 {
     if (readBlock(flag, file, address, baseOffset, 0x8, blockData.data()) < 0)
     {
         std::cerr << "failed to read " << errorHelp << " base offset "
-            << baseOffset << "\n";
+                  << baseOffset << "\n";
         return false;
     }
 
@@ -607,7 +606,8 @@ bool findFRUHeader(int flag, int file, uint16_t address,
     }
 
     // only continue the search if we just looked at 0x0.
-    if (baseOffset != 0) {
+    if (baseOffset != 0)
+    {
         return false;
     }
 
@@ -621,13 +621,13 @@ bool findFRUHeader(int flag, int file, uint16_t address,
         // look for the FRU header at offset 0x6000
         baseOffset = 0x6000;
         return findFRUHeader(flag, file, address, readBlock, errorHelp,
-            blockData, baseOffset);
+                             blockData, baseOffset);
     }
 
     if (debug)
     {
         std::cerr << "Illegal header " << errorHelp << " base offset "
-            << baseOffset << "\n";
+                  << baseOffset << "\n";
     }
 
     return false;
@@ -640,8 +640,9 @@ std::vector<uint8_t> readFRUContents(int flag, int file, uint16_t address,
     std::array<uint8_t, I2C_SMBUS_BLOCK_MAX> blockData;
     uint16_t baseOffset = 0x0;
 
-    if (!findFRUHeader(flag, file, address, readBlock, errorHelp,
-            blockData, baseOffset)) {
+    if (!findFRUHeader(flag, file, address, readBlock, errorHelp, blockData,
+                       baseOffset))
+    {
         return {};
     }
 
@@ -685,11 +686,11 @@ std::vector<uint8_t> readFRUContents(int flag, int file, uint16_t address,
         areaOffset *= fruBlockSize;
 
         if (readBlock(flag, file, address,
-                      baseOffset + static_cast<uint16_t>(areaOffset),
-                      0x2, blockData.data()) < 0)
+                      baseOffset + static_cast<uint16_t>(areaOffset), 0x2,
+                      blockData.data()) < 0)
         {
             std::cerr << "failed to read " << errorHelp << " base offset "
-                << baseOffset << "\n";
+                      << baseOffset << "\n";
             return {};
         }
 
@@ -721,7 +722,7 @@ std::vector<uint8_t> readFRUContents(int flag, int file, uint16_t address,
                           blockData.data()) < 0)
             {
                 std::cerr << "failed to read " << errorHelp << " base offset "
-                    << baseOffset << "\n";
+                          << baseOffset << "\n";
                 return {};
             }
 
@@ -755,7 +756,7 @@ std::vector<uint8_t> readFRUContents(int flag, int file, uint16_t address,
                       blockData.data()) < 0)
         {
             std::cerr << "failed to read " << errorHelp << " base offset "
-                << baseOffset << "\n";
+                      << baseOffset << "\n";
             return {};
         }
 
