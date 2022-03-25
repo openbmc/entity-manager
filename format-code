@@ -9,3 +9,4 @@ if [ -n "$1" ]; then
     cd "$1"
 fi
 python3 scripts/autojson.py configurations
+clang-format-13 -i -style=file $(bash -c "comm -23 <(git ls-files | grep -E '[.][chi](pp)?$' | sort) <(sort .clang-ignore)")
