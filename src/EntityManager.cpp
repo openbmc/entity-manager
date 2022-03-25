@@ -616,17 +616,17 @@ void postToDbus(const nlohmann::json& newConfiguration,
                                   boardIface, boardValues, objServer);
         jsonPointerPath += "/";
         // iterate through board properties
-        for (auto& boardField : boardValues.items())
+        for (auto& [propName, propValue] : boardValues.items())
         {
-            if (boardField.value().type() == nlohmann::json::value_t::object)
+            if (propValue.type() == nlohmann::json::value_t::object)
             {
                 std::shared_ptr<sdbusplus::asio::dbus_interface> iface =
-                    createInterface(objServer, boardName, boardField.key(),
+                    createInterface(objServer, boardName, propName,
                                     boardKeyOrig);
 
                 populateInterfaceFromJson(systemConfiguration,
-                                          jsonPointerPath + boardField.key(),
-                                          iface, boardField.value(), objServer);
+                                          jsonPointerPath + propName, iface,
+                                          propValue, objServer);
             }
         }
 
