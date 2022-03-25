@@ -395,7 +395,10 @@ int getBusFRUs(int file, int first, int last, int bus,
                 continue;
             }
             // probe
-            if (i2c_smbus_read_byte(file) < 0)
+            int res = (ii >= 0x30 && ii <= 0x37) || (ii >= 0x50 && ii <= 0x5F)
+                          ? i2c_smbus_read_byte(file)
+                          : i2c_smbus_write_quick(file, I2C_SMBUS_WRITE);
+            if (res < 0)
             {
                 continue;
             }
