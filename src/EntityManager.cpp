@@ -280,20 +280,20 @@ void populateInterfaceFromJson(
     sdbusplus::asio::PropertyPermission permission =
         sdbusplus::asio::PropertyPermission::readOnly)
 {
-    for (auto& dictPair : dict.items())
+    for (auto& [key, value] : dict.items())
     {
-        auto type = dictPair.value().type();
+        auto type = value.type();
         bool array = false;
-        if (dictPair.value().type() == nlohmann::json::value_t::array)
+        if (value.type() == nlohmann::json::value_t::array)
         {
             array = true;
-            if (!dictPair.value().size())
+            if (!value.size())
             {
                 continue;
             }
-            type = dictPair.value()[0].type();
+            type = value[0].type();
             bool isLegal = true;
-            for (const auto& arrayItem : dictPair.value())
+            for (const auto& arrayItem : value)
             {
                 if (arrayItem.type() != type)
                 {
@@ -303,7 +303,7 @@ void populateInterfaceFromJson(
             }
             if (!isLegal)
             {
-                std::cerr << "dbus format error" << dictPair.value() << "\n";
+                std::cerr << "dbus format error" << value << "\n";
                 continue;
             }
         }
@@ -311,7 +311,9 @@ void populateInterfaceFromJson(
         {
             continue; // handled elsewhere
         }
-        std::string path = jsonPointerPath + "/" + dictPair.key();
+
+        std::string path = jsonPointerPath;
+        path.append("/").append(key);
         if (permission == sdbusplus::asio::PropertyPermission::readWrite)
         {
             // all setable numbers are doubles as it is difficult to always
@@ -319,12 +321,12 @@ void populateInterfaceFromJson(
             // i.e. 1.0
             if (array)
             {
-                if (dictPair.value()[0].is_number())
+                if (value[0].is_number())
                 {
                     type = nlohmann::json::value_t::number_float;
                 }
             }
-            else if (dictPair.value().is_number())
+            else if (value.is_number())
             {
                 type = nlohmann::json::value_t::number_float;
             }
@@ -338,16 +340,15 @@ void populateInterfaceFromJson(
                 {
                     // todo: array of bool isn't detected correctly by
                     // sdbusplus, change it to numbers
-                    addArrayToDbus<uint64_t>(dictPair.key(), dictPair.value(),
-                                             iface.get(), permission,
-                                             systemConfiguration, path);
+                    addArrayToDbus<uint64_t>(key, value, iface.get(),
+                                             permission, systemConfiguration,
+                                             path);
                 }
 
                 else
                 {
-                    addProperty(dictPair.key(), dictPair.value().get<bool>(),
-                                iface.get(), systemConfiguration, path,
-                                permission);
+                    addProperty(key, value.get<bool>(), iface.get(),
+                                systemConfiguration, path, permission);
                 }
                 break;
             }
@@ -355,14 +356,13 @@ void populateInterfaceFromJson(
             {
                 if (array)
                 {
-                    addArrayToDbus<int64_t>(dictPair.key(), dictPair.value(),
-                                            iface.get(), permission,
+                    addArrayToDbus<int64_t>(key, value, iface.get(), permission,
                                             systemConfiguration, path);
                 }
                 else
                 {
-                    addProperty(dictPair.key(), dictPair.value().get<int64_t>(),
-                                iface.get(), systemConfiguration, path,
+                    addProperty(key, value.get<int64_t>(), iface.get(),
+                                systemConfiguration, path,
                                 sdbusplus::asio::PropertyPermission::readOnly);
                 }
                 break;
@@ -371,14 +371,13 @@ void populateInterfaceFromJson(
             {
                 if (array)
                 {
-                    addArrayToDbus<uint64_t>(dictPair.key(), dictPair.value(),
-                                             iface.get(), permission,
-                                             systemConfiguration, path);
+                    addArrayToDbus<uint64_t>(key, value, iface.get(),
+                                             permission, systemConfiguration,
+                                             path);
                 }
                 else
                 {
-                    addProperty(dictPair.key(),
-                                dictPair.value().get<uint64_t>(), iface.get(),
+                    addProperty(key, value.get<uint64_t>(), iface.get(),
                                 systemConfiguration, path,
                                 sdbusplus::asio::PropertyPermission::readOnly);
                 }
@@ -388,16 +387,14 @@ void populateInterfaceFromJson(
             {
                 if (array)
                 {
-                    addArrayToDbus<double>(dictPair.key(), dictPair.value(),
-                                           iface.get(), permission,
+                    addArrayToDbus<double>(key, value, iface.get(), permission,
                                            systemConfiguration, path);
                 }
 
                 else
                 {
-                    addProperty(dictPair.key(), dictPair.value().get<double>(),
-                                iface.get(), systemConfiguration, path,
-                                permission);
+                    addProperty(key, value.get<double>(), iface.get(),
+                                systemConfiguration, path, permission);
                 }
                 break;
             }
@@ -405,23 +402,21 @@ void populateInterfaceFromJson(
             {
                 if (array)
                 {
-                    addArrayToDbus<std::string>(
-                        dictPair.key(), dictPair.value(), iface.get(),
-                        permission, systemConfiguration, path);
+                    addArrayToDbus<std::string>(key, value, iface.get(),
+                                                permission, systemConfiguration,
+                                                path);
                 }
                 else
                 {
-                    addProperty(
-                        dictPair.key(), dictPair.value().get<std::string>(),
-                        iface.get(), systemConfiguration, path, permission);
+                    addProperty(key, value.get<std::string>(), iface.get(),
+                                systemConfiguration, path, permission);
                 }
                 break;
             }
             default:
             {
                 std::cerr << "Unexpected json type in system configuration "
-                          << dictPair.key() << ": "
-                          << dictPair.value().type_name() << "\n";
+                          << key << ": " << value.type_name() << "\n";
                 break;
             }
         }
