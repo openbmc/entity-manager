@@ -568,14 +568,14 @@ void postToDbus(const nlohmann::json& newConfiguration,
 
 {
     // iterate through boards
-    for (auto& boardPair : newConfiguration.items())
+    for (auto& [boardId, boardConfig] : newConfiguration.items())
     {
-        std::string boardKey = boardPair.value()["Name"];
-        std::string boardKeyOrig = boardPair.value()["Name"];
-        std::string jsonPointerPath = "/" + boardPair.key();
+        std::string boardKey = boardConfig["Name"];
+        std::string boardKeyOrig = boardConfig["Name"];
+        std::string jsonPointerPath = "/" + boardId;
         // loop through newConfiguration, but use values from system
         // configuration to be able to modify via dbus later
-        auto boardValues = systemConfiguration[boardPair.key()];
+        auto boardValues = systemConfiguration[boardId];
         auto findBoardType = boardValues.find("Type");
         std::string boardType;
         if (findBoardType != boardValues.end() &&
