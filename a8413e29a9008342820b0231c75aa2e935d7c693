@@ -22,6 +22,30 @@
       },
       "revId": "a8413e29a9008342820b0231c75aa2e935d7c693",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "563381cd_119edfe6",
+        "filename": "format-code",
+        "patchSetId": 2
+      },
+      "lineNbr": 12,
+      "author": {
+        "id": 1001252
+      },
+      "writtenOn": "2022-03-28T17:03:17Z",
+      "side": 1,
+      "message": "In openbmc-build-scripts, it already called clang-format before this script. Maybe the format here is not needed?\n\nhttps://github.com/openbmc/openbmc-build-scripts/blob/ac5915f07d3b796f224c85477763ca7fe893dcc2/scripts/format-code.sh#L130",
+      "parentUuid": "24fffa6f_7706ecf5",
+      "range": {
+        "startLine": 12,
+        "startChar": 12,
+        "endLine": 12,
+        "endChar": 15
+      },
+      "revId": "a8413e29a9008342820b0231c75aa2e935d7c693",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }
