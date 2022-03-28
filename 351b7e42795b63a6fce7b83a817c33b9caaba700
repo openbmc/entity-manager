@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "60e5ee7d_256f4ca6",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2022-03-28T20:20:28Z",
+      "side": 1,
+      "message": "Looks fine to me",
+      "revId": "351b7e42795b63a6fce7b83a817c33b9caaba700",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "0fbfa378_d9fab877",
+        "filename": "src/EntityManager.cpp",
+        "patchSetId": 2
+      },
+      "lineNbr": 314,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2022-03-28T20:20:28Z",
+      "side": 1,
+      "message": "Just an FYI, nlohmann has direct json_pointer support these days, so we could be passing this by nlohmann::json::json_pointer at some point in the future.",
+      "revId": "351b7e42795b63a6fce7b83a817c33b9caaba700",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    }
+  ]
+}
