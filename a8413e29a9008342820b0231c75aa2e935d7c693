@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "24fffa6f_7706ecf5",
+        "filename": "format-code",
+        "patchSetId": 2
+      },
+      "lineNbr": 12,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2022-03-28T16:25:41Z",
+      "side": 1,
+      "message": "Is there a way to avoid the duplication with the build-in scripts?  I\u0027m a little worried about having to modify this call every time we roll clang.\n\nI wonder if this whole script should\u0027ve been a run-ci script instead of a format-code script?  Or is there a way to check for and call the openbmc-build-scripts format-code?",
+      "range": {
+        "startLine": 12,
+        "startChar": 12,
+        "endLine": 12,
+        "endChar": 15
+      },
+      "revId": "a8413e29a9008342820b0231c75aa2e935d7c693",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    }
+  ]
+}
