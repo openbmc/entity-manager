@@ -118,6 +118,30 @@
       },
       "revId": "a8413e29a9008342820b0231c75aa2e935d7c693",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2dfc980c_702656f5",
+        "filename": "format-code",
+        "patchSetId": 2
+      },
+      "lineNbr": 12,
+      "author": {
+        "id": 1000009
+      },
+      "writtenOn": "2022-03-28T23:59:52Z",
+      "side": 1,
+      "message": "well, originally it was the use case from phosphor-mboxd where we had a mixed C and C++ codebase where the C followed kernel-style and the C++ followed the OpenBMC style. clang-format doesn\u0027t differentiate between formatting controls for C and C++, so we needed separate config files, and it was just easier to hijack the whole process rather than try to rely on openbmc-build-scripts providing some default behaviour (as clang-format\u0027s -style\u003dfile at the time didn\u0027t support any name for the formatting configuration file beyond .clang-format, which I still find incredible, and so we needed to symlink two different configurations into place and invoke clang-format twice).\n\nThat said we should probably have a discussion either in discord and/or the mailing list about how to resolve this more broadly.",
+      "parentUuid": "2edf2790_3f0fccec",
+      "range": {
+        "startLine": 12,
+        "startChar": 12,
+        "endLine": 12,
+        "endChar": 15
+      },
+      "revId": "a8413e29a9008342820b0231c75aa2e935d7c693",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }
