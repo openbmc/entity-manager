@@ -16,6 +16,24 @@
       "message": "Surely this isn\u0027t the only power supply file that now needs fixed with this change?  I would assume every instance of any PMBus device now needs this added?",
       "revId": "f15156c1b6c34065d2b38deef6d60dc3394b6b69",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a2bc324b_5d264892",
+        "filename": "configurations/SOLUM_PSSF162202_PSU.json",
+        "patchSetId": 3
+      },
+      "lineNbr": 98,
+      "author": {
+        "id": 1000559
+      },
+      "writtenOn": "2022-03-28T16:09:20Z",
+      "side": 1,
+      "message": "I assume this comment is for line 123\nhttps://gerrit.openbmc-project.xyz/c/openbmc/dbus-sensors/+/51901 preserves the existing naming if PwmName is not defined. So it is backwards compatible.\n \nStrictly speaking, this is not required either. But is good to have as an example.",
+      "parentUuid": "7150030e_36c4a22d",
+      "revId": "f15156c1b6c34065d2b38deef6d60dc3394b6b69",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }
