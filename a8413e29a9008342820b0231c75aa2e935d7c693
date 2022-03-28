@@ -46,6 +46,30 @@
       },
       "revId": "a8413e29a9008342820b0231c75aa2e935d7c693",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6cf726f1_369e4e2e",
+        "filename": "format-code",
+        "patchSetId": 2
+      },
+      "lineNbr": 12,
+      "author": {
+        "id": 1000009
+      },
+      "writtenOn": "2022-03-28T23:46:39Z",
+      "side": 1,
+      "message": "Okay, so I was going off my memory of some of the behaviour of openbmc-build-scripts here, given that I added the support for the in-repo format-code script initially.\n\nSo my memory was the formatting in openbmc-build-scripts was mutually exclusive with the presence of format-code in the target repo (i.e. if format-code existed in the target repo, it was run instead of the default formatting provided by openbmc-build-scripts). That mutual exclusion is implemented here:\n\nhttps://github.com/openbmc/openbmc-build-scripts/blob/0ea75ec9efb7ffacb88f63e38fa7823fe8b124a7/scripts/unit-test.py#L1215-L1226\n\nThis would explain why there were some formatting issues in the codebase.\n\nThe additional call to format-code at [1] doesn\u0027t seem sensible any more, I don\u0027t know why it\u0027s there.\n\n[1] https://github.com/openbmc/openbmc-build-scripts/blob/ac5915f07d3b796f224c85477763ca7fe893dcc2/scripts/format-code.sh#L136-L141",
+      "parentUuid": "563381cd_119edfe6",
+      "range": {
+        "startLine": 12,
+        "startChar": 12,
+        "endLine": 12,
+        "endChar": 15
+      },
+      "revId": "a8413e29a9008342820b0231c75aa2e935d7c693",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }
