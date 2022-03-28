@@ -1,6 +1,29 @@
 {
   "comments": [
     {
+      "unresolved": true,
+      "key": {
+        "uuid": "f559cfb7_f54d307d",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 30
+      },
+      "lineNbr": 11,
+      "author": {
+        "id": 1000559
+      },
+      "writtenOn": "2022-03-28T22:54:29Z",
+      "side": 1,
+      "message": "Have you done an analysis on what functions would be common between the (current) FruDevice and ipmb-fru? I expect the physical layer would be the difference. Some of the changes in this patch seems a bit surprising. Do you have a design doc to outline commonality and differences between the two services? That will be helpful for reviewing these changes. \n\nI did not read through all the comments for the past 30 patches. Sorry if it was already discussed.",
+      "range": {
+        "startLine": 9,
+        "startChar": 0,
+        "endLine": 11,
+        "endChar": 68
+      },
+      "revId": "fd8f3c9285d62b7b18bd5d29b48a6b16dd61da1a",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": false,
       "key": {
         "uuid": "5bcb18a0_8c7c771b",
