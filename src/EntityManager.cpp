@@ -765,7 +765,7 @@ void postToDbus(const nlohmann::json& newConfiguration,
 }
 
 // reads json files out of the filesystem
-bool findJsonFiles(std::list<nlohmann::json>& configurations)
+bool loadConfigurations(std::list<nlohmann::json>& configurations)
 {
     // find configuration files
     std::vector<std::filesystem::path> jsonPaths;
@@ -1032,9 +1032,9 @@ void propertiesChangedCallback(nlohmann::json& systemConfiguration,
         *missingConfigurations = systemConfiguration;
 
         std::list<nlohmann::json> configurations;
-        if (!findJsonFiles(configurations))
+        if (!loadConfigurations(configurations))
         {
-            std::cerr << "cannot find json files\n";
+            std::cerr << "Could not load configurations\n";
             inProgress = false;
             return;
         }
