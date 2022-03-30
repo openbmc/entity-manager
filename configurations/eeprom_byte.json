@@ -1,0 +1,18 @@
+{
+    "Exposes": [
+        {
+            "Address": "0x51",
+            "Bus": "12",
+            "Class": "$dataSize",
+            "Name": "eeprom-size",
+            "Type": "EEPROM"
+        }
+    ],
+    "Name": "EEPROM",
+    "Probe": [
+        "xyz.openbmc_project.Inventory.Decorator.I2CDevice({'DataSize': 1})",
+        "OR",
+        "xyz.openbmc_project.Inventory.Decorator.I2CDevice({'DataSize': 2})"
+    ],
+    "Type": "Board"
+}

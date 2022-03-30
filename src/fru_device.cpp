@@ -57,6 +57,12 @@ extern "C"
 #include <linux/i2c-dev.h>
 }
 
+using ManagedObjectType = boost::container::flat_map<
+    sdbusplus::message::object_path,
+    boost::container::flat_map<
+        std::string,
+        boost::container::flat_map<std::string, DBusValueVariant>>>;
+
 namespace fs = std::filesystem;
 static constexpr bool debug = false;
 constexpr size_t maxFruSize = 512;
@@ -294,7 +300,8 @@ static std::vector<uint8_t> processEeprom(int bus, int address)
 }
 
 std::set<int> findI2CEeproms(int i2cBus,
-                             const std::shared_ptr<DeviceMap>& devices)
+                             const std::shared_ptr<DeviceMap>& devices,
+                             std::string& nodePath)
 {
     std::set<int> foundList;
 
@@ -328,6 +335,7 @@ std::set<int> findI2CEeproms(int i2cBus,
         int address = std::stoi(addressString, &ignored, hexBase);
 
         const std::string eeprom = node + "/eeprom";
+        nodePath = eeprom;
 
         try
         {
@@ -355,9 +363,50 @@ std::set<int> findI2CEeproms(int i2cBus,
     return foundList;
 }
 
+uint64_t i2CEepromNic(std::shared_ptr<sdbusplus::asio::connection>& conn,
+                      const std::string& name)
+{
+    uint64_t result;
+    constexpr const char* eepromInterface =
+        "xyz.openbmc_project.Configuration.EEPROM";
+    if (!conn)
+    {
+        std::cerr << "Connection failed \n";
+        return -1;
+    }
+    auto method = conn->new_method_call(
+        "xyz.openbmc_project.EntityManager", "/",
+        "org.freedesktop.DBus.ObjectManager", "GetManagedObjects");
+
+    method.append();
+    auto reply = conn->call(method);
+    if (reply.is_method_error())
+    {
+        std::cerr << "Error contacting entity manager in find objects \n";
+        return -1;
+    }
+    ManagedObjectType resp;
+    reply.read(resp);
+
+    for (const auto& pathPair : resp)
+    {
+        for (const auto& entry : pathPair.second)
+        {
+            if (entry.first != eepromInterface)
+            {
+                continue;
+            }
+            result = loadVariant<uint64_t>(entry.second, name);
+            return result;
+        }
+    }
+    return -1;
+}
+
 int getBusFRUs(int file, int first, int last, int bus,
                std::shared_ptr<DeviceMap> devices, const bool& powerIsOn,
-               sdbusplus::asio::object_server& objServer)
+               sdbusplus::asio::object_server& objServer,
+               std::shared_ptr<sdbusplus::asio::connection>& systemBus)
 {
 
     std::future<int> future = std::async(std::launch::async, [&]() {
@@ -371,7 +420,8 @@ int getBusFRUs(int file, int first, int last, int bus,
         // hexdumps of the eeprom later were successful.
 
         // Scan for i2c eeproms loaded on this bus.
-        std::set<int> skipList = findI2CEeproms(bus, devices);
+        std::string eepromPath;
+        std::set<int> skipList = findI2CEeproms(bus, devices, eepromPath);
         std::set<size_t>& failedItems = failedAddresses[bus];
 
         std::set<size_t>* rootFailures = nullptr;
@@ -431,19 +481,37 @@ int getBusFRUs(int file, int first, int last, int bus,
                 }
             }
 
-            /* Check for Device type if it is 8 bit or 16 bit */
-            std::optional<bool> is16Bit = isDevice16Bit(file);
-            if (!is16Bit.has_value())
+            bool is16BitBool;
+            auto busNum = i2CEepromNic(systemBus, "Bus");
+            auto found = eepromPath.find(busNum);
+            if (found != std::string::npos)
             {
-                std::cerr << "failed to read bus " << bus << " address " << ii
-                          << "\n";
-                if (powerIsOn)
+                auto data = i2CEepromNic(systemBus, "Class");
+                if (data == 2)
                 {
-                    failedItems.insert(ii);
+                    is16BitBool = true;
                 }
-                continue;
+                else
+                {
+                    is16BitBool = false;
+                }
             }
-            bool is16BitBool{*is16Bit};
+            else
+            {
+                /* Check for Device type if it is 8 bit or 16 bit */
+                auto is16Bit = isDevice16Bit(file);
+                if (!is16Bit.has_value())
+                {
+                    std::cerr << "failed to read bus " << bus << " address "
+                              << ii << "\n";
+                    if (powerIsOn)
+                    {
+                        failedItems.insert(ii);
+                    }
+                    continue;
+                }
+                is16BitBool = *is16Bit;
+            }
 
             auto readFunc = [is16BitBool, file, ii](off_t offset, size_t length,
                                                     uint8_t* outbuf) {
@@ -539,9 +607,11 @@ void loadBlacklist(const char* path)
     return;
 }
 
-static void findI2CDevices(const std::vector<fs::path>& i2cBuses,
-                           BusMap& busmap, const bool& powerIsOn,
-                           sdbusplus::asio::object_server& objServer)
+static void
+    findI2CDevices(const std::vector<fs::path>& i2cBuses, BusMap& busmap,
+                   const bool& powerIsOn,
+                   sdbusplus::asio::object_server& objServer,
+                   std::shared_ptr<sdbusplus::asio::connection>& systemBus)
 {
     for (auto& i2cBus : i2cBuses)
     {
@@ -599,7 +669,8 @@ static void findI2CDevices(const std::vector<fs::path>& i2cBuses,
         }
 
         // fd is closed in this function in case the bus locks up
-        getBusFRUs(file, 0x03, 0x77, bus, device, powerIsOn, objServer);
+        getBusFRUs(file, 0x03, 0x77, bus, device, powerIsOn, objServer,
+                   systemBus);
 
         if (debug)
         {
@@ -612,13 +683,14 @@ static void findI2CDevices(const std::vector<fs::path>& i2cBuses,
 struct FindDevicesWithCallback :
     std::enable_shared_from_this<FindDevicesWithCallback>
 {
-    FindDevicesWithCallback(const std::vector<fs::path>& i2cBuses,
-                            BusMap& busmap, const bool& powerIsOn,
-                            sdbusplus::asio::object_server& objServer,
-                            std::function<void(void)>&& callback) :
+    FindDevicesWithCallback(
+        const std::vector<fs::path>& i2cBuses, BusMap& busmap,
+        const bool& powerIsOn, sdbusplus::asio::object_server& objServer,
+        std::shared_ptr<sdbusplus::asio::connection>& systemBus,
+        std::function<void(void)>&& callback) :
         _i2cBuses(i2cBuses),
         _busMap(busmap), _powerIsOn(powerIsOn), _objServer(objServer),
-        _callback(std::move(callback))
+        _sysBus(systemBus), _callback(std::move(callback))
     {}
     ~FindDevicesWithCallback()
     {
@@ -626,13 +698,14 @@ struct FindDevicesWithCallback :
     }
     void run()
     {
-        findI2CDevices(_i2cBuses, _busMap, _powerIsOn, _objServer);
+        findI2CDevices(_i2cBuses, _busMap, _powerIsOn, _objServer, _sysBus);
     }
 
     const std::vector<fs::path>& _i2cBuses;
     BusMap& _busMap;
     const bool& _powerIsOn;
     sdbusplus::asio::object_server& _objServer;
+    std::shared_ptr<sdbusplus::asio::connection>& _sysBus;
     std::function<void(void)> _callback;
 };
 
@@ -959,7 +1032,7 @@ void rescanOneBus(
     i2cBuses.emplace_back(busPath);
 
     auto scan = std::make_shared<FindDevicesWithCallback>(
-        i2cBuses, busmap, powerIsOn, objServer,
+        i2cBuses, busmap, powerIsOn, objServer, systemBus,
         [busNum, &busmap, &dbusInterfaceMap, &unknownBusObjectCount, &powerIsOn,
          &objServer, &systemBus]() {
             for (auto& busIface : dbusInterfaceMap)
@@ -1022,7 +1095,7 @@ void rescanBusses(
         foundDevices.clear();
 
         auto scan = std::make_shared<FindDevicesWithCallback>(
-            i2cBuses, busmap, powerIsOn, objServer, [&]() {
+            i2cBuses, busmap, powerIsOn, objServer, systemBus, [&]() {
                 for (auto& busIface : dbusInterfaceMap)
                 {
                     objServer.remove_interface(busIface.second);
@@ -1351,6 +1424,10 @@ int main()
     auto matchString = std::string(R"(i2c-\d+$)");
     std::vector<fs::path> i2cBuses;
 
+    constexpr const char* configInterface =
+        "xyz.openbmc_project.Configuration.EEPROM";
+    const constexpr char* inventoryPath = "/xyz/openbmc_project/inventory";
+
     if (!findFiles(devDir, matchString, i2cBuses))
     {
         std::cerr << "unable to find i2c devices\n";
@@ -1426,6 +1503,19 @@ int main()
         "openbmc_project/state/"
         "host0',arg0='xyz.openbmc_project.State.Host'",
         eventHandler);
+
+    std::function<void(sdbusplus::message::message&)> eepromHandler =
+        [&](sdbusplus::message::message&) {
+            rescanBusses(busMap, dbusInterfaceMap, unknownBusObjectCount,
+                         powerIsOn, objServer, systemBus);
+        };
+
+    sdbusplus::bus::match::match eepromMatch(
+        static_cast<sdbusplus::bus::bus&>(*systemBus),
+        "type='signal',member='PropertiesChanged',path_namespace='" +
+            std::string(inventoryPath) + "',arg0namespace='" + configInterface +
+            "'",
+        eepromHandler);
 
     int fd = inotify_init();
     inotify_add_watch(fd, i2CDevLocation, IN_CREATE | IN_MOVED_TO | IN_DELETE);

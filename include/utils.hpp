@@ -21,6 +21,7 @@
 #include <nlohmann/json.hpp>
 #include <sdbusplus/asio/connection.hpp>
 #include <sdbusplus/exception.hpp>
+#include <variant_visitors.hpp>
 
 #include <filesystem>
 #include <fstream>
@@ -91,6 +92,35 @@ struct DBusInternalError final : public sdbusplus::exception_t
         return EACCES;
     }
 };
+
+template <typename T>
+inline T loadVariant(
+    const boost::container::flat_map<std::string, DBusValueVariant>& data,
+    const std::string& key)
+{
+    auto it = data.find(key);
+    if (it == data.end())
+    {
+        std::cerr << "Configuration missing " << key << "\n";
+        throw std::invalid_argument("Key Missing");
+    }
+    if constexpr (std::is_same_v<T, double>)
+    {
+        return std::visit(VariantToDoubleVisitor(), it->second);
+    }
+    else if constexpr (std::is_unsigned_v<T>)
+    {
+        return std::visit(VariantToUnsignedIntVisitor(), it->second);
+    }
+    else if constexpr (std::is_same_v<T, std::string>)
+    {
+        return std::visit(VariantToStringVisitor(), it->second);
+    }
+    else
+    {
+        static_assert(!std::is_same_v<T, T>, "Type Not Implemented");
+    }
+}
 
 inline bool fwVersionIsSame(void)
 {
