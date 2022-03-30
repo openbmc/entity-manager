@@ -33,6 +33,7 @@
 #include <valijson/schema_parser.hpp>
 #include <valijson/validator.hpp>
 
+#include <charconv>
 #include <filesystem>
 #include <fstream>
 #include <map>
@@ -330,19 +331,24 @@ std::optional<std::string>
         return ret;
     }
 
-    try
+    std::string_view strView = *strPtr;
+    int base = 10;
+    if (boost::starts_with(strView, "0x"))
     {
-        size_t pos = 0;
-        int64_t temp = std::stoul(*strPtr, &pos, 0);
-        if (pos == strPtr->size())
+        strView.remove_prefix(2);
+        base = 16;
+    }
+
+    {
+        uint64_t temp = 0;
+        const char* strDataEndPtr = strView.data() + strView.size();
+        const std::from_chars_result res =
+            std::from_chars(strView.data(), strDataEndPtr, temp, base);
+        if (res.ec == std::errc{} && res.ptr == strDataEndPtr)
         {
-            keyPair.value() = static_cast<uint64_t>(temp);
+            keyPair.value() = temp;
         }
     }
-    catch (const std::invalid_argument&)
-    {}
-    catch (const std::out_of_range&)
-    {}
 
     return ret;
 }
