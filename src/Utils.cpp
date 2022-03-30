@@ -340,7 +340,7 @@ std::optional<std::string> templateCharReplace(
                     int constant = 0;
                     try
                     {
-                        constant = std::stoi(*it);
+                        constant = std::stoll(*it);
                     }
                     catch (const std::invalid_argument&)
                     {
@@ -428,7 +428,7 @@ std::optional<std::string> templateCharReplace(
         try
         {
             size_t pos = 0;
-            int64_t temp = std::stoul(*strPtr, &pos, 0);
+            int64_t temp = std::stoull(*strPtr, &pos, 0);
             if (pos == strPtr->size())
             {
                 keyPair.value() = static_cast<uint64_t>(temp);
