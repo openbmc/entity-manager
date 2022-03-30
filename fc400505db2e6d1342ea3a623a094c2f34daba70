@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f27055c3_e9c75764",
+        "filename": "include/FruUtils.hpp",
+        "patchSetId": 3
+      },
+      "lineNbr": 87,
+      "author": {
+        "id": 1000265
+      },
+      "writtenOn": "2022-03-30T12:44:58Z",
+      "side": 1,
+      "message": "Apologies for having been misleading in prior discussions.\n\nI just read up about the difference between size_t and off_t: \"size_t is part of the C++ (and C) standards, and refers to the type of a sizeof expression. off_t is defined by the Posix standard, and refers to the size of a file.\" and \"off_t is signed whereas size_t is unsigned\" (from https://stackoverflow.com/questions/10634629/what-are-the-usage-differences-between-size-t-and-off-t).\n\nAssuming this is true, I wonder if using size_t for both \"address\" and \"offset\" is really what we should be using? I noticed that there are a few \"uint8_t address\" declarations, which I assume relate to the i2c-device-address, but I\u0027d say that all declarions of \"uint16_t address\" and \"uint16_t offset\" should really be size_t.\n\nThoughts?",
+      "range": {
+        "startLine": 87,
+        "startChar": 64,
+        "endLine": 87,
+        "endChar": 69
+      },
+      "revId": "fc400505db2e6d1342ea3a623a094c2f34daba70",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    }
+  ]
+}
