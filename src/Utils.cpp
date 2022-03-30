@@ -32,10 +32,12 @@
 #include <valijson/schema_parser.hpp>
 #include <valijson/validator.hpp>
 
+#include <charconv>
 #include <filesystem>
 #include <fstream>
 #include <map>
 #include <regex>
+#include <iostream>
 
 constexpr const char* templateChar = "$";
 
@@ -337,12 +339,10 @@ std::optional<std::string> templateCharReplace(
                 }
                 else
                 {
-                    int constant = 0;
-                    try
-                    {
-                        constant = std::stoi(*it);
-                    }
-                    catch (const std::invalid_argument&)
+                    int64_t constant;
+                    const std::from_chars_result res = std::from_chars(
+                        it->data(), it->data() + it->size(), constant);
+                    if (res.ec != std::errc{})
                     {
                         std::cerr << "Parameter not supported for templates "
                                   << *it << "\n";
@@ -425,19 +425,13 @@ std::optional<std::string> templateCharReplace(
     // convert hex numbers to ints
     if (boost::starts_with(*strPtr, "0x"))
     {
-        try
+        uint64_t temp;
+        const std::from_chars_result res = std::from_chars(
+            strPtr->data() + 2, strPtr->data() + strPtr->size(), temp, 16);
+        if (res.ec == std::errc{})
         {
-            size_t pos = 0;
-            int64_t temp = std::stoul(*strPtr, &pos, 0);
-            if (pos == strPtr->size())
-            {
-                keyPair.value() = static_cast<uint64_t>(temp);
-            }
+            keyPair.value() = temp;
         }
-        catch (const std::invalid_argument&)
-        {}
-        catch (const std::out_of_range&)
-        {}
     }
     // non-hex numbers
     else
