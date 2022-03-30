@@ -330,13 +330,22 @@ std::optional<std::string>
         return ret;
     }
 
+    bool positiveOctOrHex = false;
+    if (boost::starts_with(*strPtr, "0"))
+    {
+        positiveOctOrHex = true;
+    }
+
     try
     {
         size_t pos = 0;
-        int64_t temp = std::stoul(*strPtr, &pos, 0);
+        auto temp = positiveOctOrHex ? std::stoull(*strPtr, &pos, 0)
+                                     : std::stoll(*strPtr, &pos, 0);
+        // Replace the value only when it's fully converted. If it met any
+        // unconverted character in string, leave the original string as is.
         if (pos == strPtr->size())
         {
-            keyPair.value() = static_cast<uint64_t>(temp);
+            keyPair.value() = temp;
         }
     }
     catch (const std::invalid_argument&)
