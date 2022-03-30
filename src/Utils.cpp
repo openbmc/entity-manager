@@ -333,7 +333,7 @@ std::optional<std::string>
     try
     {
         size_t pos = 0;
-        int64_t temp = std::stoul(*strPtr, &pos, 0);
+        int64_t temp = std::stoull(*strPtr, &pos, 0);
         if (pos == strPtr->size())
         {
             keyPair.value() = static_cast<uint64_t>(temp);
