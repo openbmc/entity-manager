@@ -1,0 +1,18 @@
+{
+    "Exposes" : [
+         {
+            "Address" : "0x51",
+            "Name" : "EEPROM_TYPE",
+            "Bus" : "12",
+            "Class" : "$EEPROM",
+            "Type" : "EEPROM"
+         }
+        ],
+        "Name" : "EEPROM",
+        "Probe": [
+           "xyz.openbmc_project.Network.NCSI({'EEPROM': 1})",
+           "OR",
+           "xyz.openbmc_project.Network.NCSI({'EEPROM': 2})"
+        ],
+        "Type" : "Board"
+}
