@@ -37,6 +37,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "9e7935c1_6be3846a",
+        "filename": "src/Utils.cpp",
+        "patchSetId": 1
+      },
+      "lineNbr": 343,
+      "author": {
+        "id": 1001397
+      },
+      "writtenOn": "2022-03-31T00:44:37Z",
+      "side": 1,
+      "message": "Ah, right. constant should be int64_t. Will fix it.",
+      "parentUuid": "1367c55f_26b079f9",
+      "revId": "8f234bbf6e1a415491cdc7c62c1944d216602e6e",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "178bbf76_2dac9c86",
         "filename": "src/Utils.cpp",
         "patchSetId": 1
@@ -48,6 +66,24 @@
       "writtenOn": "2022-03-31T00:39:05Z",
       "side": 1,
       "message": "This also looks a bit mismatched -- especially if we\u0027re just about to `static_cast` it to a uint64_t anyway, is there a particular reason to leave `temp` as an int64_t instead of having it just be a uint64_t to start with?\n\nThen there\u0027s the separate issue of explicitly-sized types like [u]int64_t vs. [unsigned] long long to match the signature of sto[u]ll...",
+      "revId": "8f234bbf6e1a415491cdc7c62c1944d216602e6e",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "82815e5a_497205c0",
+        "filename": "src/Utils.cpp",
+        "patchSetId": 1
+      },
+      "lineNbr": 431,
+      "author": {
+        "id": 1001397
+      },
+      "writtenOn": "2022-03-31T00:44:37Z",
+      "side": 1,
+      "message": "This is for parsing hex string which starts with 0x so the temp should be uint64_t. Thanks for your pointing out. Will fix it too.",
+      "parentUuid": "178bbf76_2dac9c86",
       "revId": "8f234bbf6e1a415491cdc7c62c1944d216602e6e",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
