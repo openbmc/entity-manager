@@ -321,6 +321,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "2d315751_9590d95c",
+        "filename": "src/FruDevice.cpp",
+        "patchSetId": 13
+      },
+      "lineNbr": 286,
+      "author": {
+        "id": 1000733
+      },
+      "writtenOn": "2022-03-31T09:22:36Z",
+      "side": 1,
+      "message": "Okay, thanks for clarifying -- in this case the FRUReader constructor already has a `std::move()` call in it though, so is there a benefit to also having a move at the call site?  (I\u0027m fairly hazy on these things, but I would have assumed that one was enough.)",
+      "parentUuid": "2b2cc433_ff696fd8",
+      "range": {
+        "startLine": 286,
+        "startChar": 28,
+        "endLine": 286,
+        "endChar": 36
+      },
+      "revId": "dd70df9265dec74a204635851b401880e18dac9a",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "ab2f0517_7d4f03c2",
         "filename": "src/FruUtils.cpp",
         "patchSetId": 13
