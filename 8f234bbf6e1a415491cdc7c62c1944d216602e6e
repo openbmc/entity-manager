@@ -16,6 +16,40 @@
       "message": "+ Graeme",
       "revId": "8f234bbf6e1a415491cdc7c62c1944d216602e6e",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1367c55f_26b079f9",
+        "filename": "src/Utils.cpp",
+        "patchSetId": 1
+      },
+      "lineNbr": 343,
+      "author": {
+        "id": 1000733
+      },
+      "writtenOn": "2022-03-31T00:39:05Z",
+      "side": 1,
+      "message": "Hmm, does this work as intended if `constant` remains an int?  I would have expected it to also be changed to `long long` to match.",
+      "revId": "8f234bbf6e1a415491cdc7c62c1944d216602e6e",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "178bbf76_2dac9c86",
+        "filename": "src/Utils.cpp",
+        "patchSetId": 1
+      },
+      "lineNbr": 431,
+      "author": {
+        "id": 1000733
+      },
+      "writtenOn": "2022-03-31T00:39:05Z",
+      "side": 1,
+      "message": "This also looks a bit mismatched -- especially if we\u0027re just about to `static_cast` it to a uint64_t anyway, is there a particular reason to leave `temp` as an int64_t instead of having it just be a uint64_t to start with?\n\nThen there\u0027s the separate issue of explicitly-sized types like [u]int64_t vs. [unsigned] long long to match the signature of sto[u]ll...",
+      "revId": "8f234bbf6e1a415491cdc7c62c1944d216602e6e",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }
