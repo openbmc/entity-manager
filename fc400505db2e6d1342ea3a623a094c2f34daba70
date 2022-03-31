@@ -22,6 +22,30 @@
       },
       "revId": "fc400505db2e6d1342ea3a623a094c2f34daba70",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "c73b9a1d_fdf13705",
+        "filename": "include/FruUtils.hpp",
+        "patchSetId": 3
+      },
+      "lineNbr": 87,
+      "author": {
+        "id": 1000733
+      },
+      "writtenOn": "2022-03-31T09:19:21Z",
+      "side": 1,
+      "message": "\u003e I wonder if using size_t for both \"address\" and \"offset\" is really what we should be using?\n\nYeah, the signedness of off_t is probably unnecessary for what we\u0027re likely to be doing with it, but given that it\u0027s got plenty of range for FRU EEPROM sized things I don\u0027t think it\u0027ll ever be a problem, and seems preferable to me in terms of communicating intent.\n\n\u003e I noticed that there are a few \"uint8_t address\" declarations, which I assume relate to the i2c-device-address, but I\u0027d say that all declarions of \"uint16_t address\" and \"uint16_t offset\" should really be size_t.\n\nAfter this patch I don\u0027t see any instances of `uint16_t offset` remaining, and I\u0027m pretty sure that all the remaining `uint16_t address` instances are I2C bus addresses -- I2C addresses are typically 8 bits (or 7 really I suppose) but can in some cases be 10 bits, so uint16_t seems like an appropriate type for them (and arguably the `uint8_t address` instances should be converted to it, but I\u0027ll leave that for another patchset).",
+      "parentUuid": "f27055c3_e9c75764",
+      "range": {
+        "startLine": 87,
+        "startChar": 64,
+        "endLine": 87,
+        "endChar": 69
+      },
+      "revId": "fc400505db2e6d1342ea3a623a094c2f34daba70",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }
