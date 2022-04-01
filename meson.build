@@ -86,6 +86,7 @@ configs = [
     'A2UX8X4RISER.json',
     'ACBELL_RICA_PSU.json',
     'ASRock_E3C246D4I.json',
+    'ASRock_ROMED8HM3.json',
     'Bletchley_Baseboard.json',
     'Bletchley_Chassis.json',
     'Blyth.json',
