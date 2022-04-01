@@ -191,6 +191,14 @@ static void makeProbeInterface(size_t bus, size_t address,
 
 static int isDevice16Bit(int file)
 {
+    // Set the higher data word address bits to 0. It's safe on 8-bit addressing
+    // EEPROMs because it doesn't write any actual data.
+    int ret = i2c_smbus_write_byte(file, 0);
+    if (ret < 0)
+    {
+        return ret;
+    }
+
     /* Get first byte */
     int byte1 = i2c_smbus_read_byte_data(file, 0);
     if (byte1 < 0)
