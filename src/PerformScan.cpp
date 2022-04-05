@@ -87,9 +87,9 @@ void getInterfaces(
     }
 }
 
-void registerCallback(nlohmann::json& systemConfiguration,
-                      sdbusplus::asio::object_server& objServer,
-                      const std::string& path)
+static void registerCallback(nlohmann::json& systemConfiguration,
+                             sdbusplus::asio::object_server& objServer,
+                             const std::string& path)
 {
     static boost::container::flat_map<std::string, sdbusplus::bus::match::match>
         dbusMatches;
