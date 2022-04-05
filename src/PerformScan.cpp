@@ -214,8 +214,7 @@ std::string getRecordName(const DBusInterface& probe,
         return probeName;
     }
 
-    // use an array so alphabetical order from the
-    // flat_map is maintained
+    // use an array so alphabetical order from the flat_map is maintained
     auto device = nlohmann::json::array();
     for (auto& devPair : probe)
     {
@@ -224,8 +223,8 @@ std::string getRecordName(const DBusInterface& probe,
                    devPair.second);
     }
     size_t hash = std::hash<std::string>{}(probeName + device.dump());
-    // hashes are hard to distinguish, use the
-    // non-hashed version if we want debug
+    // hashes are hard to distinguish, use the non-hashed version if we want
+    // debug
     if constexpr (debug)
     {
         return probeName + device.dump();
