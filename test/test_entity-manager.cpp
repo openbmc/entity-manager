@@ -1,6 +1,5 @@
 #include "Utils.hpp"
 
-#include <boost/container/flat_map.hpp>
 #include <nlohmann/json.hpp>
 
 #include <string>
@@ -14,7 +13,7 @@ TEST(TemplateCharReplace, replaceOneInt)
 {
     nlohmann::json j = {{"foo", "$bus"}};
     auto it = j.begin();
-    boost::container::flat_map<std::string, DBusValueVariant> data;
+    DBusInterface data;
     data["BUS"] = 23;
 
     templateCharReplace(it, data, 0);
@@ -27,7 +26,7 @@ TEST(TemplateCharReplace, replaceOneStr)
 {
     nlohmann::json j = {{"foo", "$TEST"}};
     auto it = j.begin();
-    boost::container::flat_map<std::string, DBusValueVariant> data;
+    DBusInterface data;
     data["TEST"] = std::string("Test");
 
     templateCharReplace(it, data, 0);
@@ -40,7 +39,7 @@ TEST(TemplateCharReplace, replaceSecondStr)
 {
     nlohmann::json j = {{"foo", "the $TEST"}};
     auto it = j.begin();
-    boost::container::flat_map<std::string, DBusValueVariant> data;
+    DBusInterface data;
     data["TEST"] = std::string("Test");
 
     templateCharReplace(it, data, 0);
@@ -53,7 +52,7 @@ TEST(TemplateCharReplace, replaceMiddleStr)
 {
     nlohmann::json j = {{"foo", "the $TEST worked"}};
     auto it = j.begin();
-    boost::container::flat_map<std::string, DBusValueVariant> data;
+    DBusInterface data;
     data["TEST"] = std::string("Test");
 
     templateCharReplace(it, data, 0);
@@ -66,7 +65,7 @@ TEST(TemplateCharReplace, replaceLastStr)
 {
     nlohmann::json j = {{"foo", "the Test $TEST"}};
     auto it = j.begin();
-    boost::container::flat_map<std::string, DBusValueVariant> data;
+    DBusInterface data;
     data["TEST"] = 23;
 
     templateCharReplace(it, data, 0);
@@ -79,7 +78,7 @@ TEST(TemplateCharReplace, increment)
 {
     nlohmann::json j = {{"foo", "3 plus 1 equals $TEST + 1"}};
     auto it = j.begin();
-    boost::container::flat_map<std::string, DBusValueVariant> data;
+    DBusInterface data;
     data["TEST"] = 3;
 
     templateCharReplace(it, data, 0);
@@ -92,7 +91,7 @@ TEST(TemplateCharReplace, decrement)
 {
     nlohmann::json j = {{"foo", "3 minus 1 equals $TEST - 1 !"}};
     auto it = j.begin();
-    boost::container::flat_map<std::string, DBusValueVariant> data;
+    DBusInterface data;
     data["TEST"] = 3;
 
     templateCharReplace(it, data, 0);
@@ -105,7 +104,7 @@ TEST(TemplateCharReplace, modulus)
 {
     nlohmann::json j = {{"foo", "3 mod 2 equals $TEST % 2"}};
     auto it = j.begin();
-    boost::container::flat_map<std::string, DBusValueVariant> data;
+    DBusInterface data;
     data["TEST"] = 3;
 
     templateCharReplace(it, data, 0);
@@ -118,7 +117,7 @@ TEST(TemplateCharReplace, multiply)
 {
     nlohmann::json j = {{"foo", "3 * 2 equals $TEST * 2"}};
     auto it = j.begin();
-    boost::container::flat_map<std::string, DBusValueVariant> data;
+    DBusInterface data;
     data["TEST"] = 3;
 
     templateCharReplace(it, data, 0);
@@ -131,7 +130,7 @@ TEST(TemplateCharReplace, divide)
 {
     nlohmann::json j = {{"foo", "4 / 2 equals $TEST / 2"}};
     auto it = j.begin();
-    boost::container::flat_map<std::string, DBusValueVariant> data;
+    DBusInterface data;
     data["TEST"] = 4;
 
     templateCharReplace(it, data, 0);
@@ -144,7 +143,7 @@ TEST(TemplateCharReplace, multiMath)
 {
     nlohmann::json j = {{"foo", "4 * 2 % 6 equals $TEST * 2 % 6"}};
     auto it = j.begin();
-    boost::container::flat_map<std::string, DBusValueVariant> data;
+    DBusInterface data;
     data["TEST"] = 4;
 
     templateCharReplace(it, data, 0);
@@ -157,7 +156,7 @@ TEST(TemplateCharReplace, twoReplacements)
 {
     nlohmann::json j = {{"foo", "$FOO $BAR"}};
     auto it = j.begin();
-    boost::container::flat_map<std::string, DBusValueVariant> data;
+    DBusInterface data;
     data["FOO"] = std::string("foo");
     data["BAR"] = std::string("bar");
 
@@ -171,7 +170,7 @@ TEST(TemplateCharReplace, twoReplacementsWithMath)
 {
     nlohmann::json j = {{"foo", "4 / 2 equals $TEST / 2 $BAR"}};
     auto it = j.begin();
-    boost::container::flat_map<std::string, DBusValueVariant> data;
+    DBusInterface data;
     data["TEST"] = 4;
     data["BAR"] = std::string("bar");
 
@@ -184,7 +183,7 @@ TEST(TemplateCharReplace, twoReplacementsWithMath2)
 {
     nlohmann::json j = {{"foo", "4 / 2 equals $ADDRESS / 2 $BAR"}};
     auto it = j.begin();
-    boost::container::flat_map<std::string, DBusValueVariant> data;
+    DBusInterface data;
     data["ADDRESS"] = 4;
     data["BAR"] = std::string("bar");
 
@@ -201,7 +200,7 @@ TEST(TemplateCharReplace, hexAndWrongCase)
                         {"Name", "$bus sensor 0"},
                         {"Type", "SomeType"}};
 
-    boost::container::flat_map<std::string, DBusValueVariant> data;
+    DBusInterface data;
     data["BUS"] = 15;
 
     for (auto it = j.begin(); it != j.end(); it++)
@@ -219,7 +218,7 @@ TEST(TemplateCharReplace, replaceSecondAsInt)
 {
     nlohmann::json j = {{"foo", "twelve is $TEST"}};
     auto it = j.begin();
-    boost::container::flat_map<std::string, DBusValueVariant> data;
+    DBusInterface data;
     data["test"] = 12;
 
     templateCharReplace(it, data, 0);
@@ -232,7 +231,7 @@ TEST(TemplateCharReplace, singleHex)
 {
     nlohmann::json j = {{"foo", "0x54"}};
     auto it = j.begin();
-    boost::container::flat_map<std::string, DBusValueVariant> data;
+    DBusInterface data;
 
     templateCharReplace(it, data, 0);
 
