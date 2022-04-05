@@ -392,13 +392,13 @@ void PerformScan::run()
                     // interface, such as if it was just TRUE, then
                     // templateCharReplace will just get passed in an empty
                     // map.
-                    const DBusSubtree::mapped_type* allInterfacesOnPath =
+                    const DBusSubtree::mapped_type* dbusObject =
                         &emptyInterfaces;
 
                     auto ifacesIt = allInterfaces.find(path);
                     if (ifacesIt != allInterfaces.end())
                     {
-                        allInterfacesOnPath = &ifacesIt->second;
+                        dbusObject = &ifacesIt->second;
                     }
 
                     nlohmann::json record = *recordPtr;
@@ -417,9 +417,8 @@ void PerformScan::run()
 
                     nlohmann::json copyForName = {{"Name", getName.value()}};
                     nlohmann::json::iterator copyIt = copyForName.begin();
-                    std::optional<std::string> replaceVal =
-                        templateCharReplace(copyIt, *allInterfacesOnPath,
-                                            foundDeviceIdx, replaceStr);
+                    std::optional<std::string> replaceVal = templateCharReplace(
+                        copyIt, *dbusObject, foundDeviceIdx, replaceStr);
 
                     if (!replaceStr && replaceVal)
                     {
@@ -428,7 +427,7 @@ void PerformScan::run()
                             replaceStr = replaceVal;
                             copyForName = {{"Name", getName.value()}};
                             copyIt = copyForName.begin();
-                            templateCharReplace(copyIt, *allInterfacesOnPath,
+                            templateCharReplace(copyIt, *dbusObject,
                                                 foundDeviceIdx, replaceStr);
                         }
                     }
@@ -451,7 +450,7 @@ void PerformScan::run()
 
                             continue; // already covered above
                         }
-                        templateCharReplace(keyPair, *allInterfacesOnPath,
+                        templateCharReplace(keyPair, *dbusObject,
                                             foundDeviceIdx, replaceStr);
                     }
 
@@ -473,7 +472,7 @@ void PerformScan::run()
                              keyPair != expose.end(); keyPair++)
                         {
 
-                            templateCharReplace(keyPair, *allInterfacesOnPath,
+                            templateCharReplace(keyPair, *dbusObject,
                                                 foundDeviceIdx, replaceStr);
 
                             bool isBind =
