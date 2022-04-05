@@ -53,7 +53,7 @@ void getInterfaces(
     systemBus->async_method_call(
         [call, scan, probeVector, retries](
             boost::system::error_code& errc,
-            const boost::container::flat_map<std::string, BasicVariantType>&
+            const boost::container::flat_map<std::string, DBusValueVariant>&
                 resp) {
             if (errc)
             {
@@ -211,7 +211,7 @@ void findDbusObjects(std::vector<std::shared_ptr<PerformProbe>>&& probeVector,
 }
 
 std::string getRecordName(
-    const boost::container::flat_map<std::string, BasicVariantType>& probe,
+    const boost::container::flat_map<std::string, DBusValueVariant>& probe,
     const std::string& probeName)
 {
     if (probe.empty())
@@ -379,14 +379,14 @@ void PerformScan::run()
                 std::optional<std::string> replaceStr;
 
                 MapperGetSubTreeResponse::mapped_type emptyInterfaces;
-                boost::container::flat_map<std::string, BasicVariantType>
+                boost::container::flat_map<std::string, DBusValueVariant>
                     emptyProps;
                 emptyInterfaces.emplace(std::string{}, emptyProps);
 
                 for (auto& foundDeviceAndPath : foundDevices)
                 {
                     const boost::container::flat_map<
-                        std::string, BasicVariantType>& foundDevice =
+                        std::string, DBusValueVariant>& foundDevice =
                         std::get<0>(foundDeviceAndPath);
                     const std::string& path = std::get<1>(foundDeviceAndPath);
 
