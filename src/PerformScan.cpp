@@ -187,11 +187,6 @@ void findDbusObjects(std::vector<std::shared_ptr<PerformProbe>>&& probeVector,
                                  path);
             }
 
-            if (interfaceConnections.empty())
-            {
-                return;
-            }
-
             for (const auto& call : interfaceConnections)
             {
                 getInterfaces(call, probeVector, scan);
