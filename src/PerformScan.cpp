@@ -106,6 +106,42 @@ void registerCallback(nlohmann::json& systemConfiguration,
     dbusMatches.emplace(path, std::move(match));
 }
 
+static void
+    processDbusObjects(std::vector<std::shared_ptr<PerformProbe>>& probeVector,
+                       const std::shared_ptr<PerformScan>& scan,
+                       const GetSubTreeType& interfaceSubtree)
+{
+    boost::container::flat_set<
+        std::tuple<std::string, std::string, std::string>>
+        interfaceConnections;
+
+    for (const auto& [path, object] : interfaceSubtree)
+    {
+        for (const auto& [busname, ifaces] : object)
+        {
+            for (const std::string& iface : ifaces)
+            {
+                // The 3 default org.freedeskstop interfaces (Peer,
+                // Introspectable, and Properties) are returned by
+                // the mapper but don't have properties, so don't bother
+                // with the GetAll call to save some cycles.
+                if (!boost::algorithm::starts_with(iface, "org.freedesktop"))
+                {
+                    interfaceConnections.emplace(busname, path, iface);
+                }
+            }
+        }
+
+        // Get a PropertiesChanged callback for all interfaces on this path.
+        registerCallback(scan->_systemConfiguration, scan->objServer, path);
+    }
+
+    for (const auto& call : interfaceConnections)
+    {
+        getInterfaces(call, probeVector, scan);
+    }
+}
+
 // Populates scan->dbusProbeObjects with all interfaces and properties
 // for the paths that own the interfaces passed in.
 void findDbusObjects(std::vector<std::shared_ptr<PerformProbe>>&& probeVector,
@@ -131,9 +167,6 @@ void findDbusObjects(std::vector<std::shared_ptr<PerformProbe>>&& probeVector,
         [interfaces, probeVector{std::move(probeVector)}, scan,
          retries](boost::system::error_code& ec,
                   const GetSubTreeType& interfaceSubtree) mutable {
-            boost::container::flat_set<
-                std::tuple<std::string, std::string, std::string>>
-                interfaceConnections;
             if (ec)
             {
                 if (ec.value() == ENOENT)
@@ -163,34 +196,7 @@ void findDbusObjects(std::vector<std::shared_ptr<PerformProbe>>&& probeVector,
                 return;
             }
 
-            for (const auto& [path, object] : interfaceSubtree)
-            {
-                for (const auto& [busname, ifaces] : object)
-                {
-                    for (const std::string& iface : ifaces)
-                    {
-                        // The 3 default org.freedeskstop interfaces (Peer,
-                        // Introspectable, and Properties) are returned by
-                        // the mapper but don't have properties, so don't bother
-                        // with the GetAll call to save some cycles.
-                        if (!boost::algorithm::starts_with(iface,
-                                                           "org.freedesktop"))
-                        {
-                            interfaceConnections.emplace(busname, path, iface);
-                        }
-                    }
-                }
-
-                // Get a PropertiesChanged callback for all
-                // interfaces on this path.
-                registerCallback(scan->_systemConfiguration, scan->objServer,
-                                 path);
-            }
-
-            for (const auto& call : interfaceConnections)
-            {
-                getInterfaces(call, probeVector, scan);
-            }
+            processDbusObjects(probeVector, scan, interfaceSubtree);
         },
         "xyz.openbmc_project.ObjectMapper",
         "/xyz/openbmc_project/object_mapper",
