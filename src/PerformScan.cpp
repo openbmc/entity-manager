@@ -39,7 +39,7 @@ constexpr const int32_t maxMapperDepth = 0;
 constexpr const bool debug = false;
 
 void getInterfaces(
-    const std::tuple<std::string, std::string, std::string>& call,
+    const std::tuple<std::string, std::string, std::string> call,
     const std::vector<std::shared_ptr<PerformProbe>>& probeVector,
     const std::shared_ptr<PerformScan>& scan, size_t retries = 5)
 {
@@ -111,12 +111,11 @@ static void
                        const std::shared_ptr<PerformScan>& scan,
                        const GetSubTreeType& interfaceSubtree)
 {
-    boost::container::flat_set<
-        std::tuple<std::string, std::string, std::string>>
-        interfaceConnections;
-
     for (const auto& [path, object] : interfaceSubtree)
     {
+        // Get a PropertiesChanged callback for all interfaces on this path.
+        registerCallback(scan->_systemConfiguration, scan->objServer, path);
+
         for (const auto& [busname, ifaces] : object)
         {
             for (const std::string& iface : ifaces)
@@ -127,18 +126,10 @@ static void
                 // with the GetAll call to save some cycles.
                 if (!boost::algorithm::starts_with(iface, "org.freedesktop"))
                 {
-                    interfaceConnections.emplace(busname, path, iface);
+                    getInterfaces({busname, path, iface}, probeVector, scan);
                 }
             }
         }
-
-        // Get a PropertiesChanged callback for all interfaces on this path.
-        registerCallback(scan->_systemConfiguration, scan->objServer, path);
-    }
-
-    for (const auto& call : interfaceConnections)
-    {
-        getInterfaces(call, probeVector, scan);
     }
 }
 
