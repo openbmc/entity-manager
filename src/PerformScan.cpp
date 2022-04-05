@@ -230,10 +230,8 @@ std::string getRecordName(const DBusInterface& probe,
     {
         return probeName + device.dump();
     }
-    else
-    {
-        return std::to_string(hash);
-    }
+
+    return std::to_string(hash);
 }
 
 PerformScan::PerformScan(nlohmann::json& systemConfiguration,
