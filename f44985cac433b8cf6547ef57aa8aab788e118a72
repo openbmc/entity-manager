@@ -24,6 +24,30 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "b52ed059_4519f2a0",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 31
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 1000546
+      },
+      "writtenOn": "2022-04-05T13:07:17Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "d6e763a4_3f8a2060",
+      "range": {
+        "startLine": 9,
+        "startChar": 0,
+        "endLine": 9,
+        "endChar": 5
+      },
+      "revId": "f44985cac433b8cf6547ef57aa8aab788e118a72",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "5be85c4e_ead60b5c",
@@ -37,6 +61,30 @@
       "writtenOn": "2022-04-05T01:22:29Z",
       "side": 1,
       "message": "daemon",
+      "range": {
+        "startLine": 11,
+        "startChar": 0,
+        "endLine": 11,
+        "endChar": 6
+      },
+      "revId": "f44985cac433b8cf6547ef57aa8aab788e118a72",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "682848b4_4ce87174",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 31
+      },
+      "lineNbr": 11,
+      "author": {
+        "id": 1000546
+      },
+      "writtenOn": "2022-04-05T13:07:17Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "5be85c4e_ead60b5c",
       "range": {
         "startLine": 11,
         "startChar": 0,
@@ -70,6 +118,30 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "b9b71c50_05307ec9",
+        "filename": "include/FruUtils.hpp",
+        "patchSetId": 31
+      },
+      "lineNbr": 221,
+      "author": {
+        "id": 1000546
+      },
+      "writtenOn": "2022-04-05T13:07:17Z",
+      "side": 1,
+      "message": "Ack. These functions were not moved to FruUtils. These functions called from FruDeviceMain.cpp file. So, Added function prototype declarations in this header file. \n\nNow, Removed the function prototype declarations in header file and added function prototype declarations in FruDeviceMain.cpp file itself.",
+      "parentUuid": "9fc11ba0_79311bf9",
+      "range": {
+        "startLine": 204,
+        "startChar": 0,
+        "endLine": 221,
+        "endChar": 0
+      },
+      "revId": "f44985cac433b8cf6547ef57aa8aab788e118a72",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "133ee1e7_f0e4cd12",
@@ -83,6 +155,30 @@
       "writtenOn": "2022-04-05T01:22:29Z",
       "side": 1,
       "message": "I don\u0027t see new test cases, so this new dependency does not make sense to me.\nIs it because FruUtils.cpp now depend on FruDevice.cpp? So maybe more things need to be moved to FruUtils?",
+      "range": {
+        "startLine": 234,
+        "startChar": 0,
+        "endLine": 235,
+        "endChar": 32
+      },
+      "revId": "f44985cac433b8cf6547ef57aa8aab788e118a72",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "a1666bee_caad4143",
+        "filename": "meson.build",
+        "patchSetId": 31
+      },
+      "lineNbr": 235,
+      "author": {
+        "id": 1000546
+      },
+      "writtenOn": "2022-04-05T13:07:17Z",
+      "side": 1,
+      "message": "Yes. FruUtils is depends on FruDevice. Especially in test_fru_utils.\n\nSome of the test cases in test_fru_utils calling the function of FruDevice from FruUtils.\n\nLot of things needs to moved to FruUtils to make not dependent with FruDevice. \n\nBut these things are not used by ipmb-fru daemon. I think, no need to move to FruUitls since it is common to both fru and ipmb-fru daemons.\n\nCould you please suggest on this.",
+      "parentUuid": "133ee1e7_f0e4cd12",
       "range": {
         "startLine": 234,
         "startChar": 0,
@@ -116,6 +212,30 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "526a9990_f04c3dc5",
+        "filename": "src/FruDevice.cpp",
+        "patchSetId": 31
+      },
+      "lineNbr": 128,
+      "author": {
+        "id": 1000546
+      },
+      "writtenOn": "2022-04-05T13:07:17Z",
+      "side": 1,
+      "message": "This busStrToInt is not used by both fru and ipmb-fru daemons. So not moving to FruUtils.cpp. Also, This function is called by both files FruDeviceMain.cpp and FruDevice.cpp. That\u0027s the reason, I kept this file in FruDevice.cpp with non static.",
+      "parentUuid": "25e4c37c_06f388c0",
+      "range": {
+        "startLine": 119,
+        "startChar": 0,
+        "endLine": 128,
+        "endChar": 0
+      },
+      "revId": "f44985cac433b8cf6547ef57aa8aab788e118a72",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "c2ba52b0_7f1c559a",
@@ -129,6 +249,30 @@
       "writtenOn": "2022-04-05T01:22:29Z",
       "side": 1,
       "message": "Should these be in FruUtils also?",
+      "range": {
+        "startLine": 42,
+        "startChar": 0,
+        "endLine": 47,
+        "endChar": 0
+      },
+      "revId": "f44985cac433b8cf6547ef57aa8aab788e118a72",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "700f9c01_8779cc04",
+        "filename": "src/FruDeviceMain.cpp",
+        "patchSetId": 31
+      },
+      "lineNbr": 47,
+      "author": {
+        "id": 1000546
+      },
+      "writtenOn": "2022-04-05T13:07:17Z",
+      "side": 1,
+      "message": "I think, not required. These functions \"loadBlacklist\", \"busStrToInt\", \"writeFRU\" are using by fru daemon only and not used by ipmb-fru daemon. Also, these functions are calling from FruDevice.cpp and FruDeviceMain.cpp only.",
+      "parentUuid": "c2ba52b0_7f1c559a",
       "range": {
         "startLine": 42,
         "startChar": 0,

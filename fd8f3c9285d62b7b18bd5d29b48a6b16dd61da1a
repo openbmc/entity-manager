@@ -74,6 +74,30 @@
     {
       "unresolved": false,
       "key": {
+        "uuid": "fb95d605_b2c1a6f7",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 30
+      },
+      "lineNbr": 11,
+      "author": {
+        "id": 1000546
+      },
+      "writtenOn": "2022-04-05T13:07:17Z",
+      "side": 1,
+      "message": "Yes. FruDeviceMain and FruDevice only be used by Fru-Device daemon. \n\nFruUtils is only going to be shared by both Fru-device daemon and fru-ipmb daemon.\n\nRight now, FruUtils is depends on FruDevice since some of the functions of FruDevice are calling from FruUtils.  \n\nOtherwise, lot of functions from FruDevice needs to be moved to FruUtils.\nPlease suggest on this.",
+      "parentUuid": "b9772504_2f78252e",
+      "range": {
+        "startLine": 9,
+        "startChar": 0,
+        "endLine": 11,
+        "endChar": 68
+      },
+      "revId": "fd8f3c9285d62b7b18bd5d29b48a6b16dd61da1a",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
         "uuid": "5bcb18a0_8c7c771b",
         "filename": "/PATCHSET_LEVEL",
         "patchSetId": 30
