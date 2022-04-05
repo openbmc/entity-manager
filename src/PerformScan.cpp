@@ -99,8 +99,8 @@ static void registerCallback(nlohmann::json& systemConfiguration,
     {
         return;
     }
-    std::function<void(sdbusplus::message::message & message)> eventHandler =
 
+    std::function<void(sdbusplus::message::message & message)> eventHandler =
         [&](sdbusplus::message::message&) {
             propertiesChangedCallback(systemConfiguration, objServer);
         };
