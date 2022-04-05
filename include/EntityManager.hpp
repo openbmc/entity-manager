@@ -30,13 +30,6 @@
 #include <optional>
 #include <string>
 
-using DBusPropertyName = std::string;
-using DBusInterface = boost::container::flat_map<DBusPropertyName, DBusValue>;
-using DBusInterfaceName = std::string;
-using DBusObject = boost::container::flat_map<DBusInterfaceName, DBusInterface>;
-using DBusPath = std::string;
-using DBusSubtree = boost::container::flat_map<DBusPath, DBusObject>;
-
 using FoundDeviceT = std::vector<std::tuple<DBusInterface, DBusPath>>;
 
 struct CmpStr
