@@ -38,42 +38,49 @@ constexpr const int32_t maxMapperDepth = 0;
 
 constexpr const bool debug = false;
 
+struct DBusInterfaceInstance
+{
+    std::string busName;
+    std::string path;
+    std::string interface;
+};
+
 void getInterfaces(
-    const std::tuple<std::string, std::string, std::string>& call,
+    const DBusInterfaceInstance& instance,
     const std::vector<std::shared_ptr<PerformProbe>>& probeVector,
     const std::shared_ptr<PerformScan>& scan, size_t retries = 5)
 {
     if (!retries)
     {
-        std::cerr << "retries exhausted on " << std::get<0>(call) << " "
-                  << std::get<1>(call) << " " << std::get<2>(call) << "\n";
+        std::cerr << "retries exhausted on " << instance.busName << " "
+                  << instance.path << " " << instance.interface << "\n";
         return;
     }
 
     systemBus->async_method_call(
-        [call, scan, probeVector, retries](boost::system::error_code& errc,
-                                           const DBusInterface& resp) {
+        [instance, scan, probeVector, retries](boost::system::error_code& errc,
+                                               const DBusInterface& resp) {
             if (errc)
             {
-                std::cerr << "error calling getall on  " << std::get<0>(call)
-                          << " " << std::get<1>(call) << " "
-                          << std::get<2>(call) << "\n";
+                std::cerr << "error calling getall on  " << instance.busName
+                          << " " << instance.path << " "
+                          << instance.interface << "\n";
 
                 std::shared_ptr<boost::asio::steady_timer> timer =
                     std::make_shared<boost::asio::steady_timer>(io);
                 timer->expires_after(std::chrono::seconds(2));
 
-                timer->async_wait([timer, call, scan, probeVector,
+                timer->async_wait([timer, instance, scan, probeVector,
                                    retries](const boost::system::error_code&) {
-                    getInterfaces(call, probeVector, scan, retries - 1);
+                    getInterfaces(instance, probeVector, scan, retries - 1);
                 });
                 return;
             }
 
-            scan->dbusProbeObjects[std::get<1>(call)][std::get<2>(call)] = resp;
+            scan->dbusProbeObjects[instance.path][instance.interface] = resp;
         },
-        std::get<0>(call), std::get<1>(call), "org.freedesktop.DBus.Properties",
-        "GetAll", std::get<2>(call));
+        instance.busName, instance.path, "org.freedesktop.DBus.Properties",
+        "GetAll", instance.interface);
 
     if constexpr (debug)
     {
