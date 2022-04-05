@@ -51,9 +51,8 @@ void getInterfaces(
     }
 
     systemBus->async_method_call(
-        [call, scan, probeVector, retries](
-            boost::system::error_code& errc,
-            const boost::container::flat_map<std::string, DBusValue>& resp) {
+        [call, scan, probeVector, retries](boost::system::error_code& errc,
+                                           const DBusInterface& resp) {
             if (errc)
             {
                 std::cerr << "error calling getall on  " << std::get<0>(call)
@@ -209,9 +208,8 @@ void findDbusObjects(std::vector<std::shared_ptr<PerformProbe>>&& probeVector,
     }
 }
 
-std::string getRecordName(
-    const boost::container::flat_map<std::string, DBusValue>& probe,
-    const std::string& probeName)
+std::string getRecordName(const DBusInterface& probe,
+                          const std::string& probeName)
 {
     if (probe.empty())
     {
