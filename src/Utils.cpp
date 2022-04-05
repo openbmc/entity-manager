@@ -187,17 +187,14 @@ void setupPowerMatch(const std::shared_ptr<sdbusplus::asio::connection>& conn)
 // Replaces the template character like the other version of this function,
 // but checks all properties on all interfaces provided to do the substitution
 // with.
-std::optional<std::string> templateCharReplace(
-    nlohmann::json::iterator& keyPair,
-    const boost::container::flat_map<
-        std::string, boost::container::flat_map<std::string, DBusValueVariant>>&
-        allInterfaces,
-    const size_t foundDeviceIdx, const std::optional<std::string>& replaceStr)
+std::optional<std::string>
+    templateCharReplace(nlohmann::json::iterator& keyPair,
+                        const DBusObject& object, const size_t index,
+                        const std::optional<std::string>& replaceStr)
 {
-    for (const auto& [interface, properties] : allInterfaces)
+    for (const auto& [_, interface] : object)
     {
-        auto ret = templateCharReplace(keyPair, properties, foundDeviceIdx,
-                                       replaceStr);
+        auto ret = templateCharReplace(keyPair, interface, index, replaceStr);
         if (ret)
         {
             return ret;
@@ -209,11 +206,10 @@ std::optional<std::string> templateCharReplace(
 // finds the template character (currently set to $) and replaces the value with
 // the field found in a dbus object i.e. $ADDRESS would get populated with the
 // ADDRESS field from a object on dbus
-std::optional<std::string> templateCharReplace(
-    nlohmann::json::iterator& keyPair,
-    const boost::container::flat_map<std::string, DBusValueVariant>&
-        foundDevice,
-    const size_t foundDeviceIdx, const std::optional<std::string>& replaceStr)
+std::optional<std::string>
+    templateCharReplace(nlohmann::json::iterator& keyPair,
+                        const DBusInterface& interface, const size_t index,
+                        const std::optional<std::string>& replaceStr)
 {
     std::optional<std::string> ret = std::nullopt;
 
@@ -223,8 +219,7 @@ std::optional<std::string> templateCharReplace(
         for (auto nextLayer = keyPair.value().begin();
              nextLayer != keyPair.value().end(); nextLayer++)
         {
-            templateCharReplace(nextLayer, foundDevice, foundDeviceIdx,
-                                replaceStr);
+            templateCharReplace(nextLayer, interface, index, replaceStr);
         }
         return ret;
     }
@@ -236,16 +231,15 @@ std::optional<std::string> templateCharReplace(
     }
 
     boost::replace_all(*strPtr, std::string(templateChar) + "index",
-                       std::to_string(foundDeviceIdx));
+                       std::to_string(index));
     if (replaceStr)
     {
-        boost::replace_all(*strPtr, *replaceStr,
-                           std::to_string(foundDeviceIdx));
+        boost::replace_all(*strPtr, *replaceStr, std::to_string(index));
     }
 
-    for (auto& foundDevicePair : foundDevice)
+    for (auto& propertyPair : interface)
     {
-        std::string templateName = templateChar + foundDevicePair.first;
+        std::string templateName = templateChar + propertyPair.first;
         boost::iterator_range<std::string::const_iterator> find =
             boost::ifind_first(*strPtr, templateName);
         if (find)
@@ -259,17 +253,17 @@ std::optional<std::string> templateCharReplace(
             if (!start && find.end() == strPtr->end())
             {
                 std::visit([&](auto&& val) { keyPair.value() = val; },
-                           foundDevicePair.second);
+                           propertyPair.second);
                 return ret;
             }
             if (nextItemIdx > strPtr->size() ||
                 std::find(mathChars.begin(), mathChars.end(),
                           strPtr->at(nextItemIdx)) == mathChars.end())
             {
-                std::string val = std::visit(VariantToStringVisitor(),
-                                             foundDevicePair.second);
-                boost::ireplace_all(*strPtr,
-                                    templateChar + foundDevicePair.first, val);
+                std::string val =
+                    std::visit(VariantToStringVisitor(), propertyPair.second);
+                boost::ireplace_all(*strPtr, templateChar + propertyPair.first,
+                                    val);
                 continue;
             }
 
@@ -298,8 +292,7 @@ std::optional<std::string> templateCharReplace(
             // we assume that the replacement is a number, because we can
             // only do math on numbers.. we might concatenate strings in the
             // future, but thats later
-            int number =
-                std::visit(VariantToIntVisitor(), foundDevicePair.second);
+            int number = std::visit(VariantToIntVisitor(), propertyPair.second);
 
             bool isOperator = true;
             TemplateOperation next = TemplateOperation::addition;

@@ -35,6 +35,10 @@ extern boost::asio::io_context io;
 using DBusValueVariant =
     std::variant<std::string, int64_t, uint64_t, double, int32_t, uint32_t,
                  int16_t, uint16_t, uint8_t, bool, std::vector<uint8_t>>;
+using DBusInterface = boost::container::flat_map<std::string, DBusValueVariant>;
+using DBusObject = boost::container::flat_map<std::string, DBusInterface>;
+using MapperGetSubTreeResponse =
+    boost::container::flat_map<std::string, DBusObject>;
 
 enum class TemplateOperation
 {
@@ -137,18 +141,13 @@ inline bool fwVersionIsSame(void)
 }
 
 std::optional<std::string> templateCharReplace(
-    nlohmann::json::iterator& keyPair,
-    const boost::container::flat_map<
-        std::string, boost::container::flat_map<std::string, DBusValueVariant>>&
-        allInterfaces,
-    const size_t foundDeviceIdx,
+    nlohmann::json::iterator& keyPair, const DBusObject& object,
+    const size_t index,
     const std::optional<std::string>& replaceStr = std::nullopt);
 
 std::optional<std::string> templateCharReplace(
-    nlohmann::json::iterator& keyPair,
-    const boost::container::flat_map<std::string, DBusValueVariant>&
-        foundDevice,
-    const size_t foundDeviceIdx,
+    nlohmann::json::iterator& keyPair, const DBusInterface& interface,
+    const size_t index,
     const std::optional<std::string>& replaceStr = std::nullopt);
 
 inline bool deviceHasLogging(const nlohmann::json& json)

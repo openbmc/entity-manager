@@ -51,10 +51,8 @@ void getInterfaces(
     }
 
     systemBus->async_method_call(
-        [call, scan, probeVector, retries](
-            boost::system::error_code& errc,
-            const boost::container::flat_map<std::string, DBusValueVariant>&
-                resp) {
+        [call, scan, probeVector, retries](boost::system::error_code& errc,
+                                           const DBusInterface& resp) {
             if (errc)
             {
                 std::cerr << "error calling getall on  " << std::get<0>(call)
@@ -210,9 +208,8 @@ void findDbusObjects(std::vector<std::shared_ptr<PerformProbe>>&& probeVector,
     }
 }
 
-std::string getRecordName(
-    const boost::container::flat_map<std::string, DBusValueVariant>& probe,
-    const std::string& probeName)
+std::string getRecordName(const DBusInterface& probe,
+                          const std::string& probeName)
 {
     if (probe.empty())
     {
@@ -379,14 +376,12 @@ void PerformScan::run()
                 std::optional<std::string> replaceStr;
 
                 MapperGetSubTreeResponse::mapped_type emptyInterfaces;
-                boost::container::flat_map<std::string, DBusValueVariant>
-                    emptyProps;
-                emptyInterfaces.emplace(std::string{}, emptyProps);
+                DBusInterface emptyInterface;
+                emptyInterfaces.emplace(std::string{}, emptyInterface);
 
                 for (auto& foundDeviceAndPath : foundDevices)
                 {
-                    const boost::container::flat_map<
-                        std::string, DBusValueVariant>& foundDevice =
+                    const DBusInterface& foundDevice =
                         std::get<0>(foundDeviceAndPath);
                     const std::string& path = std::get<1>(foundDeviceAndPath);
 

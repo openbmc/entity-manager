@@ -30,16 +30,8 @@
 #include <optional>
 #include <string>
 
-// paths - > interfaces -> properties
-using MapperGetSubTreeResponse = boost::container::flat_map<
-    std::string,
-    boost::container::flat_map<
-        std::string,
-        boost::container::flat_map<std::string, DBusValueVariant>>>;
-
-// vector of tuple<map<propertyName, variant>, D-Bus path>>
-using FoundDeviceT = std::vector<std::tuple<
-    boost::container::flat_map<std::string, DBusValueVariant>, std::string>>;
+// The string is the path to the object hosting the interface
+using FoundDeviceT = std::vector<std::tuple<DBusInterface, std::string>>;
 
 struct CmpStr
 {
