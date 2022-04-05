@@ -66,11 +66,6 @@ using JsonVariantType =
                  int64_t, uint64_t, double, int32_t, uint32_t, int16_t,
                  uint16_t, uint8_t, bool>;
 
-using ManagedObjectType = boost::container::flat_map<
-    sdbusplus::message::object_path,
-    boost::container::flat_map<
-        std::string, boost::container::flat_map<std::string, DBusValue>>>;
-
 // store reference to all interfaces so we can destroy them later
 boost::container::flat_map<
     std::string, std::vector<std::weak_ptr<sdbusplus::asio::dbus_interface>>>
