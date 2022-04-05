@@ -377,14 +377,14 @@ void PerformScan::run()
                 std::optional<std::string> replaceStr;
 
                 DBusSubtree::mapped_type emptyInterfaces;
-                boost::container::flat_map<std::string, DBusValue> emptyProps;
-                emptyInterfaces.emplace(std::string{}, emptyProps);
+                DBusInterface emptyInterface;
+                emptyInterfaces.emplace(DBusInterfaceName{}, emptyInterface);
 
                 for (auto& foundDeviceAndPath : foundDevices)
                 {
-                    const boost::container::flat_map<std::string, DBusValue>&
-                        foundDevice = std::get<0>(foundDeviceAndPath);
-                    const std::string& path = std::get<1>(foundDeviceAndPath);
+                    const DBusInterface& foundDevice =
+                        std::get<0>(foundDeviceAndPath);
+                    const DBusPath& path = std::get<1>(foundDeviceAndPath);
 
                     // Need all interfaces on this path so that template
                     // substitutions can be done with any of the contained

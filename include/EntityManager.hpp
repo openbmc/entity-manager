@@ -30,16 +30,14 @@
 #include <optional>
 #include <string>
 
-// paths - > interfaces -> properties
-using DBusSubtree = boost::container::flat_map<
-    std::string,
-    boost::container::flat_map<
-        std::string, boost::container::flat_map<std::string, DBusValue>>>;
+using DBusPropertyName = std::string;
+using DBusInterface = boost::container::flat_map<DBusPropertyName, DBusValue>;
+using DBusInterfaceName = std::string;
+using DBusObject = boost::container::flat_map<DBusInterfaceName, DBusInterface>;
+using DBusPath = std::string;
+using DBusSubtree = boost::container::flat_map<DBusPath, DBusObject>;
 
-// vector of tuple<map<propertyName, variant>, D-Bus path>>
-using FoundDeviceT =
-    std::vector<std::tuple<boost::container::flat_map<std::string, DBusValue>,
-                           std::string>>;
+using FoundDeviceT = std::vector<std::tuple<DBusInterface, DBusPath>>;
 
 struct CmpStr
 {
