@@ -222,7 +222,7 @@ std::string getRecordName(const DBusInterface& probe,
         std::visit([&device](auto&& v) { device.push_back(v); },
                    devPair.second);
     }
-    size_t hash = std::hash<std::string>{}(probeName + device.dump());
+
     // hashes are hard to distinguish, use the non-hashed version if we want
     // debug
     if constexpr (debug)
@@ -230,7 +230,7 @@ std::string getRecordName(const DBusInterface& probe,
         return probeName + device.dump();
     }
 
-    return std::to_string(hash);
+    return std::to_string(std::hash<std::string>{}(probeName + device.dump()));
 }
 
 PerformScan::PerformScan(nlohmann::json& systemConfiguration,
