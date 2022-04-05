@@ -66,8 +66,7 @@ void getInterfaces(
                           << " " << instance.path << " "
                           << instance.interface << "\n";
 
-                std::shared_ptr<boost::asio::steady_timer> timer =
-                    std::make_shared<boost::asio::steady_timer>(io);
+                auto timer = std::make_shared<boost::asio::steady_timer>(io);
                 timer->expires_after(std::chrono::seconds(2));
 
                 timer->async_wait([timer, instance, scan, probeVector,
@@ -179,8 +178,8 @@ void findDbusObjects(std::vector<std::shared_ptr<PerformProbe>>&& probeVector,
                     // wrong
                     std::exit(EXIT_FAILURE);
                 }
-                std::shared_ptr<boost::asio::steady_timer> timer =
-                    std::make_shared<boost::asio::steady_timer>(io);
+
+                auto timer = std::make_shared<boost::asio::steady_timer>(io);
                 timer->expires_after(std::chrono::seconds(10));
 
                 timer->async_wait(
