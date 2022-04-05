@@ -35,11 +35,11 @@ using DBusSubtree = boost::container::flat_map<
     std::string,
     boost::container::flat_map<
         std::string,
-        boost::container::flat_map<std::string, BasicVariantType>>>;
+        boost::container::flat_map<std::string, DBusValueVariant>>>;
 
 // vector of tuple<map<propertyName, variant>, D-Bus path>>
 using FoundDeviceT = std::vector<std::tuple<
-    boost::container::flat_map<std::string, BasicVariantType>, std::string>>;
+    boost::container::flat_map<std::string, DBusValueVariant>, std::string>>;
 
 struct CmpStr
 {

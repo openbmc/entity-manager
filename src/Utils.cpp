@@ -190,7 +190,7 @@ void setupPowerMatch(const std::shared_ptr<sdbusplus::asio::connection>& conn)
 std::optional<std::string> templateCharReplace(
     nlohmann::json::iterator& keyPair,
     const boost::container::flat_map<
-        std::string, boost::container::flat_map<std::string, BasicVariantType>>&
+        std::string, boost::container::flat_map<std::string, DBusValueVariant>>&
         allInterfaces,
     const size_t foundDeviceIdx, const std::optional<std::string>& replaceStr)
 {
@@ -211,7 +211,7 @@ std::optional<std::string> templateCharReplace(
 // ADDRESS field from a object on dbus
 std::optional<std::string> templateCharReplace(
     nlohmann::json::iterator& keyPair,
-    const boost::container::flat_map<std::string, BasicVariantType>&
+    const boost::container::flat_map<std::string, DBusValueVariant>&
         foundDevice,
     const size_t foundDeviceIdx, const std::optional<std::string>& replaceStr)
 {
@@ -456,7 +456,7 @@ std::optional<std::string> templateCharReplace(
 /// \brief JSON/DBus matching Callable for std::variant (visitor)
 ///
 /// Default match JSON/DBus match implementation
-/// \tparam T The concrete DBus value type from BasicVariantType
+/// \tparam T The concrete DBus value type from DBusValueVariant
 template <typename T>
 struct MatchProbe
 {
@@ -517,7 +517,7 @@ struct MatchProbeForwarder
     }
 };
 
-bool matchProbe(const nlohmann::json& probe, const BasicVariantType& dbusValue)
+bool matchProbe(const nlohmann::json& probe, const DBusValueVariant& dbusValue)
 {
     return std::visit(MatchProbeForwarder(probe), dbusValue);
 }

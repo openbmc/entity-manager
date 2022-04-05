@@ -43,7 +43,7 @@ bool probeDbus(const std::string& interface,
         foundProbe = true;
 
         bool deviceMatches = true;
-        const boost::container::flat_map<std::string, BasicVariantType>&
+        const boost::container::flat_map<std::string, DBusValueVariant>&
             properties = it->second;
 
         for (const auto& [matchProp, matchJSON] : matches)
@@ -197,7 +197,7 @@ bool probe(const std::vector<std::string>& probeCommand,
     if (ret && foundDevs.size() == 0)
     {
         foundDevs.emplace_back(
-            boost::container::flat_map<std::string, BasicVariantType>{},
+            boost::container::flat_map<std::string, DBusValueVariant>{},
             std::string{});
     }
     if (matchOne && ret)

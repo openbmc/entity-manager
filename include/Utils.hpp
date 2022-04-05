@@ -32,7 +32,7 @@ constexpr const char* versionFile = "/etc/os-release";
 
 extern boost::asio::io_context io;
 
-using BasicVariantType =
+using DBusValueVariant =
     std::variant<std::string, int64_t, uint64_t, double, int32_t, uint32_t,
                  int16_t, uint16_t, uint8_t, bool, std::vector<uint8_t>>;
 
@@ -139,14 +139,14 @@ inline bool fwVersionIsSame(void)
 std::optional<std::string> templateCharReplace(
     nlohmann::json::iterator& keyPair,
     const boost::container::flat_map<
-        std::string, boost::container::flat_map<std::string, BasicVariantType>>&
+        std::string, boost::container::flat_map<std::string, DBusValueVariant>>&
         allInterfaces,
     const size_t foundDeviceIdx,
     const std::optional<std::string>& replaceStr = std::nullopt);
 
 std::optional<std::string> templateCharReplace(
     nlohmann::json::iterator& keyPair,
-    const boost::container::flat_map<std::string, BasicVariantType>&
+    const boost::container::flat_map<std::string, DBusValueVariant>&
         foundDevice,
     const size_t foundDeviceIdx,
     const std::optional<std::string>& replaceStr = std::nullopt);
@@ -172,4 +172,4 @@ inline bool deviceHasLogging(const nlohmann::json& json)
 /// \param probe the probe statement to match against.
 /// \param dbusValue the property value being matched to a probe.
 /// \return true if the dbusValue matched the probe otherwise false.
-bool matchProbe(const nlohmann::json& probe, const BasicVariantType& dbusValue);
+bool matchProbe(const nlohmann::json& probe, const DBusValueVariant& dbusValue);
