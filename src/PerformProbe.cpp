@@ -214,7 +214,7 @@ bool probe(const std::vector<std::string>& probeCommand,
 PerformProbe::PerformProbe(
     const std::vector<std::string>& probeCommand,
     std::shared_ptr<PerformScan>& scanPtr,
-    std::function<void(FoundDeviceT&, const DBusProbeObjectT&)>&& callback) :
+    std::function<void(FoundDeviceT&, const DBusSubtree&)>&& callback) :
     _probeCommand(probeCommand),
     scan(scanPtr), _callback(std::move(callback))
 {}

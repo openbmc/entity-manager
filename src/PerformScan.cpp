@@ -301,7 +301,7 @@ void PerformScan::run()
         auto probePointer = std::make_shared<PerformProbe>(
             probeCommand, thisRef,
             [&, recordPtr, probeName](FoundDeviceT& foundDevices,
-                                      const DBusProbeObjectT& allInterfaces) {
+                                      const DBusSubtree& allInterfaces) {
                 _passed = true;
                 std::set<nlohmann::json> usedNames;
                 passedProbes.push_back(probeName);
@@ -377,7 +377,7 @@ void PerformScan::run()
 
                 std::optional<std::string> replaceStr;
 
-                DBusProbeObjectT::mapped_type emptyInterfaces;
+                DBusSubtree::mapped_type emptyInterfaces;
                 boost::container::flat_map<std::string, BasicVariantType>
                     emptyProps;
                 emptyInterfaces.emplace(std::string{}, emptyProps);
@@ -395,7 +395,7 @@ void PerformScan::run()
                     // interface, such as if it was just TRUE, then
                     // templateCharReplace will just get passed in an empty
                     // map.
-                    const DBusProbeObjectT::mapped_type* allInterfacesOnPath =
+                    const DBusSubtree::mapped_type* allInterfacesOnPath =
                         &emptyInterfaces;
 
                     auto ifacesIt = allInterfaces.find(path);

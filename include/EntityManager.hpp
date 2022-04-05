@@ -31,7 +31,7 @@
 #include <string>
 
 // paths - > interfaces -> properties
-using DBusProbeObjectT = boost::container::flat_map<
+using DBusSubtree = boost::container::flat_map<
     std::string,
     boost::container::flat_map<
         std::string,
@@ -81,7 +81,7 @@ struct PerformScan : std::enable_shared_from_this<PerformScan>
     sdbusplus::asio::object_server& objServer;
     std::function<void()> _callback;
     bool _passed = false;
-    DBusProbeObjectT dbusProbeObjects;
+    DBusSubtree dbusProbeObjects;
     std::vector<std::string> passedProbes;
 };
 
@@ -91,12 +91,12 @@ struct PerformProbe : std::enable_shared_from_this<PerformProbe>
     PerformProbe(
         const std::vector<std::string>& probeCommand,
         std::shared_ptr<PerformScan>& scanPtr,
-        std::function<void(FoundDeviceT&, const DBusProbeObjectT&)>&& callback);
+        std::function<void(FoundDeviceT&, const DBusSubtree&)>&& callback);
     virtual ~PerformProbe();
 
     std::vector<std::string> _probeCommand;
     std::shared_ptr<PerformScan> scan;
-    std::function<void(FoundDeviceT&, const DBusProbeObjectT&)> _callback;
+    std::function<void(FoundDeviceT&, const DBusSubtree&)> _callback;
 };
 
 inline void logDeviceAdded(const nlohmann::json& record)
