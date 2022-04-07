@@ -263,7 +263,7 @@ std::optional<std::string>
                       strPtr->at(nextItemIdx)) == mathChars.end())
         {
             std::string val = std::visit(VariantToStringVisitor(), propValue);
-            boost::ireplace_all(*strPtr, templateChar + propName, val);
+            boost::ireplace_all(*strPtr, templateName, val);
             continue;
         }
 
