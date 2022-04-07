@@ -479,23 +479,14 @@ void PerformScan::run()
                                 continue;
                             }
 
-                            if (keyPair.value().type() !=
-                                    nlohmann::json::value_t::string &&
-                                keyPair.value().type() !=
-                                    nlohmann::json::value_t::array)
-                            {
-                                std::cerr << "Value is invalid type "
-                                          << keyPair.key() << "\n";
-                                continue;
-                            }
-
                             std::vector<std::string> matches;
                             if (keyPair.value().type() ==
                                 nlohmann::json::value_t::string)
                             {
                                 matches.emplace_back(keyPair.value());
                             }
-                            else
+                            else if (keyPair.value().type() ==
+                                     nlohmann::json::value_t::array)
                             {
                                 for (const auto& value : keyPair.value())
                                 {
@@ -508,6 +499,12 @@ void PerformScan::run()
                                     }
                                     matches.emplace_back(value);
                                 }
+                            }
+                            else
+                            {
+                                std::cerr << "Value is invalid type "
+                                          << keyPair.key() << "\n";
+                                continue;
                             }
 
                             std::set<std::string> foundMatches;
