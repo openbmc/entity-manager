@@ -39,15 +39,6 @@ using DBusInterface = boost::container::flat_map<std::string, DBusValueVariant>;
 using DBusObject = boost::container::flat_map<std::string, DBusInterface>;
 using DBusSubtree = boost::container::flat_map<std::string, DBusObject>;
 
-enum class TemplateOperation
-{
-    addition,
-    division,
-    multiplication,
-    subtraction,
-    modulo,
-};
-
 namespace properties
 {
 constexpr const char* interface = "org.freedesktop.DBus.Properties";

@@ -4,6 +4,7 @@ cpp_args += ['-DSYSCONF_DIR="' + sysconfdir + '/"' ]
 executable(
     'entity-manager',
     'EntityManager.cpp',
+    'Expression.cpp',
     'PerformScan.cpp',
     'PerformProbe.cpp',
     'Overlay.cpp',
@@ -27,6 +28,7 @@ if get_option('fru-device')
     endif
     executable(
         'fru-device',
+        'Expression.cpp',
         'FruDevice.cpp',
         'Utils.cpp',
         'FruUtils.cpp',
