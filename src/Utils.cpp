@@ -304,14 +304,10 @@ std::optional<std::string>
         std::string result = prefix + std::to_string(number);
 
         std::string replaced(find.begin(), find.end());
-        for (auto it2 = split.begin(); it2 != split.end(); it2++)
+        for (auto it2 = split.begin(); it2 != it; it2++)
         {
             replaced += " ";
             replaced += *it2;
-            if (it2 == it)
-            {
-                break;
-            }
         }
         ret = replaced;
 
