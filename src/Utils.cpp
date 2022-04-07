@@ -306,15 +306,13 @@ std::optional<std::string>
         std::string replaced(find.begin(), find.end());
         while (exprBegin != exprEnd)
         {
-            replaced += " ";
-            replaced += *exprBegin++;
+            replaced.append(" ").append(*exprBegin++);
         }
-
         ret = replaced;
 
         while (exprEnd != split.end())
         {
-            result += " " + *exprEnd++;
+            result.append(" ").append(*exprEnd++);
         }
         keyPair.value() = result;
 
