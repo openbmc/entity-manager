@@ -247,10 +247,7 @@ std::optional<std::string>
             continue;
         }
 
-        constexpr const std::array<char, 5> mathChars = {'+', '-', '%', '*',
-                                                         '/'};
         size_t start = find.begin() - strPtr->begin();
-        size_t nextItemIdx = start + templateName.size() + 1;
 
         // check for additional operations
         if (!start && find.end() == strPtr->end())
@@ -258,6 +255,11 @@ std::optional<std::string>
             std::visit([&](auto&& val) { keyPair.value() = val; }, propValue);
             return ret;
         }
+
+        constexpr const std::array<char, 5> mathChars = {'+', '-', '%', '*',
+                                                         '/'};
+        size_t nextItemIdx = start + templateName.size() + 1;
+
         if (nextItemIdx > strPtr->size() ||
             std::find(mathChars.begin(), mathChars.end(),
                       strPtr->at(nextItemIdx)) == mathChars.end())
