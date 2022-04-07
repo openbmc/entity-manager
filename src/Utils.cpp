@@ -292,30 +292,31 @@ std::optional<std::string>
             continue;
         }
 
-        auto it = split.begin();
-
         // we assume that the replacement is a number, because we can
         // only do math on numbers.. we might concatenate strings in the
         // future, but thats later
         int number = std::visit(VariantToIntVisitor(), propValue);
+        auto exprBegin = split.begin();
+        auto exprEnd = split.end();
 
-        number = expression::evaluate(number, it, split.end());
+        number = expression::evaluate(number, exprBegin, exprEnd);
 
         std::string result = prefix + std::to_string(number);
 
         std::string replaced(find.begin(), find.end());
-        for (auto it2 = split.begin(); it2 != it; it2++)
+        while (exprBegin != exprEnd)
         {
             replaced += " ";
-            replaced += *it2;
+            replaced += *exprBegin++;
         }
+
         ret = replaced;
 
-        if (it != split.end())
+        if (exprEnd != split.end())
         {
-            for (; it != split.end(); it++)
+            while (exprEnd != split.end())
             {
-                result += " " + *it;
+                result += " " + *exprEnd++;
             }
         }
         keyPair.value() = result;
