@@ -17,6 +17,7 @@
 
 #include "Expression.hpp"
 
+#include <iostream>
 #include <stdexcept>
 
 namespace expression
@@ -75,5 +76,41 @@ int evaluate(int a, Operation op, int b)
         default:
             throw std::invalid_argument("Unrecognised operation");
     }
+}
+
+int evaluate(int substitute, std::vector<std::string>::iterator& curr,
+             std::vector<std::string>::iterator&& end)
+{
+    bool isOperator = true;
+    std::optional<Operation> next = Operation::addition;
+
+    for (; curr != end; curr++)
+    {
+        if (isOperator)
+        {
+            next = expression::parseOperation(*curr);
+            if (!next)
+            {
+                break;
+            }
+        }
+        else
+        {
+            try
+            {
+                int constant = std::stoi(*curr);
+                substitute = evaluate(substitute, *next, constant);
+            }
+            catch (const std::invalid_argument&)
+            {
+                std::cerr << "Parameter not supported for templates " << *curr
+                          << "\n";
+                continue;
+            }
+        }
+        isOperator = !isOperator;
+    }
+
+    return substitute;
 }
 } // namespace expression
