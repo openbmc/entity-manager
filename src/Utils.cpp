@@ -306,10 +306,8 @@ std::optional<std::string>
         std::string replaced(find.begin(), find.end());
         while (exprBegin != exprEnd)
         {
-            replaced += " ";
-            replaced += *exprBegin++;
+            replaced += " " + *exprBegin++;
         }
-
         ret = replaced;
 
         while (exprEnd != split.end())
