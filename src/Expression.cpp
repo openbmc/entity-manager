@@ -78,8 +78,8 @@ int evaluate(int a, Operation op, int b)
     }
 }
 
-int evaluate(int substitute, std::vector<std::string>::iterator& curr,
-             std::vector<std::string>::iterator&& end)
+int evaluate(int substitute, std::vector<std::string>::iterator curr,
+             std::vector<std::string>::iterator& end)
 {
     bool isOperator = true;
     std::optional<Operation> next = Operation::addition;
@@ -111,6 +111,7 @@ int evaluate(int substitute, std::vector<std::string>::iterator& curr,
         isOperator = !isOperator;
     }
 
+    end = curr;
     return substitute;
 }
 } // namespace expression

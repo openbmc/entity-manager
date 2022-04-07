@@ -34,6 +34,6 @@ enum class Operation
 
 std::optional<Operation> parseOperation(std::string& op);
 int evaluate(int a, Operation op, int b);
-int evaluate(int substitute, std::vector<std::string>::iterator& curr,
-             std::vector<std::string>::iterator&& end);
+int evaluate(int substitute, std::vector<std::string>::iterator curr,
+             std::vector<std::string>::iterator& end);
 } // namespace expression
