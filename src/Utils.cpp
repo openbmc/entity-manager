@@ -292,43 +292,14 @@ std::optional<std::string>
             continue;
         }
 
+        auto it = split.begin();
+
         // we assume that the replacement is a number, because we can
         // only do math on numbers.. we might concatenate strings in the
         // future, but thats later
         int number = std::visit(VariantToIntVisitor(), propValue);
 
-        bool isOperator = true;
-        std::optional<expression::Operation> next =
-            expression::Operation::addition;
-
-        auto it = split.begin();
-
-        for (; it != split.end(); it++)
-        {
-            if (isOperator)
-            {
-                next = expression::parseOperation(*it);
-                if (!next)
-                {
-                    break;
-                }
-            }
-            else
-            {
-                try
-                {
-                    int constant = std::stoi(*it);
-                    number = expression::evaluate(number, *next, constant);
-                }
-                catch (const std::invalid_argument&)
-                {
-                    std::cerr << "Parameter not supported for templates " << *it
-                              << "\n";
-                    continue;
-                }
-            }
-            isOperator = !isOperator;
-        }
+        number = expression::evaluate(number, it, split.end());
 
         std::string result = prefix + std::to_string(number);
 
