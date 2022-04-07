@@ -17,6 +17,7 @@
 
 #include "Utils.hpp"
 
+#include "Expression.hpp"
 #include "VariantVisitors.hpp"
 
 #include <boost/algorithm/string/classification.hpp>
@@ -297,7 +298,8 @@ std::optional<std::string>
         int number = std::visit(VariantToIntVisitor(), propValue);
 
         bool isOperator = true;
-        TemplateOperation next = TemplateOperation::addition;
+        std::optional<expression::Operation> next =
+            expression::Operation::addition;
 
         auto it = split.begin();
 
@@ -305,74 +307,24 @@ std::optional<std::string>
         {
             if (isOperator)
             {
-                if (*it == "+")
-                {
-                    next = TemplateOperation::addition;
-                }
-                else if (*it == "-")
-                {
-                    next = TemplateOperation::subtraction;
-                }
-                else if (*it == "*")
-                {
-                    next = TemplateOperation::multiplication;
-                }
-                else if (*it == R"(%)")
-                {
-                    next = TemplateOperation::modulo;
-                }
-                else if (*it == R"(/)")
-                {
-                    next = TemplateOperation::division;
-                }
-                else
+                next = expression::parseOperation(*it);
+                if (!next)
                 {
                     break;
                 }
             }
             else
             {
-                int constant = 0;
                 try
                 {
-                    constant = std::stoi(*it);
+                    int constant = std::stoi(*it);
+                    number = expression::evaluate(number, *next, constant);
                 }
                 catch (const std::invalid_argument&)
                 {
                     std::cerr << "Parameter not supported for templates " << *it
                               << "\n";
                     continue;
-                }
-                switch (next)
-                {
-                    case TemplateOperation::addition:
-                    {
-                        number += constant;
-                        break;
-                    }
-                    case TemplateOperation::subtraction:
-                    {
-                        number -= constant;
-                        break;
-                    }
-                    case TemplateOperation::multiplication:
-                    {
-                        number *= constant;
-                        break;
-                    }
-                    case TemplateOperation::division:
-                    {
-                        number /= constant;
-                        break;
-                    }
-                    case TemplateOperation::modulo:
-                    {
-                        number = number % constant;
-                        break;
-                    }
-
-                    default:
-                        break;
                 }
             }
             isOperator = !isOperator;
