@@ -237,9 +237,9 @@ std::optional<std::string>
         boost::replace_all(*strPtr, *replaceStr, std::to_string(index));
     }
 
-    for (auto& propertyPair : interface)
+    for (auto& [propName, propValue] : interface)
     {
-        std::string templateName = templateChar + propertyPair.first;
+        std::string templateName = templateChar + propName;
         boost::iterator_range<std::string::const_iterator> find =
             boost::ifind_first(*strPtr, templateName);
         if (!find)
@@ -255,18 +255,15 @@ std::optional<std::string>
         // check for additional operations
         if (!start && find.end() == strPtr->end())
         {
-            std::visit([&](auto&& val) { keyPair.value() = val; },
-                       propertyPair.second);
+            std::visit([&](auto&& val) { keyPair.value() = val; }, propValue);
             return ret;
         }
         if (nextItemIdx > strPtr->size() ||
             std::find(mathChars.begin(), mathChars.end(),
                       strPtr->at(nextItemIdx)) == mathChars.end())
         {
-            std::string val =
-                std::visit(VariantToStringVisitor(), propertyPair.second);
-            boost::ireplace_all(*strPtr, templateChar + propertyPair.first,
-                                val);
+            std::string val = std::visit(VariantToStringVisitor(), propValue);
+            boost::ireplace_all(*strPtr, templateChar + propName, val);
             continue;
         }
 
@@ -295,7 +292,7 @@ std::optional<std::string>
         // we assume that the replacement is a number, because we can
         // only do math on numbers.. we might concatenate strings in the
         // future, but thats later
-        int number = std::visit(VariantToIntVisitor(), propertyPair.second);
+        int number = std::visit(VariantToIntVisitor(), propValue);
 
         bool isOperator = true;
         TemplateOperation next = TemplateOperation::addition;
