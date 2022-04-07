@@ -339,34 +339,20 @@ std::optional<std::string>
         return ret;
     }
 
-    // convert hex numbers to ints
-    if (boost::starts_with(*strPtr, "0x"))
+    try
     {
-        try
+        size_t pos = 0;
+        int64_t temp = std::stoul(*strPtr, &pos, 0);
+        if (pos == strPtr->size())
         {
-            size_t pos = 0;
-            int64_t temp = std::stoul(*strPtr, &pos, 0);
-            if (pos == strPtr->size())
-            {
-                keyPair.value() = static_cast<uint64_t>(temp);
-            }
+            keyPair.value() = static_cast<uint64_t>(temp);
         }
-        catch (const std::invalid_argument&)
-        {}
-        catch (const std::out_of_range&)
-        {}
     }
-    // non-hex numbers
-    else
-    {
-        try
-        {
-            uint64_t temp = boost::lexical_cast<uint64_t>(*strPtr);
-            keyPair.value() = temp;
-        }
-        catch (const boost::bad_lexical_cast&)
-        {}
-    }
+    catch (const std::invalid_argument&)
+    {}
+    catch (const std::out_of_range&)
+    {}
+
     return ret;
 }
 
