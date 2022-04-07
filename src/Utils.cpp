@@ -242,170 +242,172 @@ std::optional<std::string>
         std::string templateName = templateChar + propertyPair.first;
         boost::iterator_range<std::string::const_iterator> find =
             boost::ifind_first(*strPtr, templateName);
-        if (find)
+        if (!find)
         {
-            constexpr const std::array<char, 5> mathChars = {'+', '-', '%', '*',
-                                                             '/'};
-            size_t start = find.begin() - strPtr->begin();
-            size_t nextItemIdx = start + templateName.size() + 1;
+            continue;
+        }
 
-            // check for additional operations
-            if (!start && find.end() == strPtr->end())
+        constexpr const std::array<char, 5> mathChars = {'+', '-', '%', '*',
+                                                         '/'};
+        size_t start = find.begin() - strPtr->begin();
+        size_t nextItemIdx = start + templateName.size() + 1;
+
+        // check for additional operations
+        if (!start && find.end() == strPtr->end())
+        {
+            std::visit([&](auto&& val) { keyPair.value() = val; },
+                       propertyPair.second);
+            return ret;
+        }
+        if (nextItemIdx > strPtr->size() ||
+            std::find(mathChars.begin(), mathChars.end(),
+                      strPtr->at(nextItemIdx)) == mathChars.end())
+        {
+            std::string val =
+                std::visit(VariantToStringVisitor(), propertyPair.second);
+            boost::ireplace_all(*strPtr, templateChar + propertyPair.first,
+                                val);
+            continue;
+        }
+
+        // save the prefix
+        std::string prefix = strPtr->substr(0, start);
+
+        // operate on the rest
+        std::string end = strPtr->substr(nextItemIdx);
+
+        std::vector<std::string> split;
+        boost::split(split, end, boost::is_any_of(" "));
+
+        // need at least 1 operation and number
+        if (split.size() < 2)
+        {
+            std::cerr << "Syntax error on template replacement of " << *strPtr
+                      << "\n";
+            for (const std::string& data : split)
             {
-                std::visit([&](auto&& val) { keyPair.value() = val; },
-                           propertyPair.second);
-                return ret;
+                std::cerr << data << " ";
             }
-            if (nextItemIdx > strPtr->size() ||
-                std::find(mathChars.begin(), mathChars.end(),
-                          strPtr->at(nextItemIdx)) == mathChars.end())
+            std::cerr << "\n";
+            continue;
+        }
+
+        // we assume that the replacement is a number, because we can
+        // only do math on numbers.. we might concatenate strings in the
+        // future, but thats later
+        int number = std::visit(VariantToIntVisitor(), propertyPair.second);
+
+        bool isOperator = true;
+        TemplateOperation next = TemplateOperation::addition;
+
+        auto it = split.begin();
+
+        for (; it != split.end(); it++)
+        {
+            if (isOperator)
             {
-                std::string val =
-                    std::visit(VariantToStringVisitor(), propertyPair.second);
-                boost::ireplace_all(*strPtr, templateChar + propertyPair.first,
-                                    val);
-                continue;
-            }
-
-            // save the prefix
-            std::string prefix = strPtr->substr(0, start);
-
-            // operate on the rest
-            std::string end = strPtr->substr(nextItemIdx);
-
-            std::vector<std::string> split;
-            boost::split(split, end, boost::is_any_of(" "));
-
-            // need at least 1 operation and number
-            if (split.size() < 2)
-            {
-                std::cerr << "Syntax error on template replacement of "
-                          << *strPtr << "\n";
-                for (const std::string& data : split)
+                if (*it == "+")
                 {
-                    std::cerr << data << " ";
+                    next = TemplateOperation::addition;
                 }
-                std::cerr << "\n";
-                continue;
-            }
-
-            // we assume that the replacement is a number, because we can
-            // only do math on numbers.. we might concatenate strings in the
-            // future, but thats later
-            int number = std::visit(VariantToIntVisitor(), propertyPair.second);
-
-            bool isOperator = true;
-            TemplateOperation next = TemplateOperation::addition;
-
-            auto it = split.begin();
-
-            for (; it != split.end(); it++)
-            {
-                if (isOperator)
+                else if (*it == "-")
                 {
-                    if (*it == "+")
-                    {
-                        next = TemplateOperation::addition;
-                    }
-                    else if (*it == "-")
-                    {
-                        next = TemplateOperation::subtraction;
-                    }
-                    else if (*it == "*")
-                    {
-                        next = TemplateOperation::multiplication;
-                    }
-                    else if (*it == R"(%)")
-                    {
-                        next = TemplateOperation::modulo;
-                    }
-                    else if (*it == R"(/)")
-                    {
-                        next = TemplateOperation::division;
-                    }
-                    else
-                    {
-                        break;
-                    }
+                    next = TemplateOperation::subtraction;
+                }
+                else if (*it == "*")
+                {
+                    next = TemplateOperation::multiplication;
+                }
+                else if (*it == R"(%)")
+                {
+                    next = TemplateOperation::modulo;
+                }
+                else if (*it == R"(/)")
+                {
+                    next = TemplateOperation::division;
                 }
                 else
-                {
-                    int constant = 0;
-                    try
-                    {
-                        constant = std::stoi(*it);
-                    }
-                    catch (const std::invalid_argument&)
-                    {
-                        std::cerr << "Parameter not supported for templates "
-                                  << *it << "\n";
-                        continue;
-                    }
-                    switch (next)
-                    {
-                        case TemplateOperation::addition:
-                        {
-                            number += constant;
-                            break;
-                        }
-                        case TemplateOperation::subtraction:
-                        {
-                            number -= constant;
-                            break;
-                        }
-                        case TemplateOperation::multiplication:
-                        {
-                            number *= constant;
-                            break;
-                        }
-                        case TemplateOperation::division:
-                        {
-                            number /= constant;
-                            break;
-                        }
-                        case TemplateOperation::modulo:
-                        {
-                            number = number % constant;
-                            break;
-                        }
-
-                        default:
-                            break;
-                    }
-                }
-                isOperator = !isOperator;
-            }
-
-            std::string result = prefix + std::to_string(number);
-
-            std::string replaced(find.begin(), find.end());
-            for (auto it2 = split.begin(); it2 != split.end(); it2++)
-            {
-                replaced += " ";
-                replaced += *it2;
-                if (it2 == it)
                 {
                     break;
                 }
             }
-            ret = replaced;
-
-            if (it != split.end())
+            else
             {
-                for (; it != split.end(); it++)
+                int constant = 0;
+                try
                 {
-                    result += " " + *it;
+                    constant = std::stoi(*it);
+                }
+                catch (const std::invalid_argument&)
+                {
+                    std::cerr << "Parameter not supported for templates " << *it
+                              << "\n";
+                    continue;
+                }
+                switch (next)
+                {
+                    case TemplateOperation::addition:
+                    {
+                        number += constant;
+                        break;
+                    }
+                    case TemplateOperation::subtraction:
+                    {
+                        number -= constant;
+                        break;
+                    }
+                    case TemplateOperation::multiplication:
+                    {
+                        number *= constant;
+                        break;
+                    }
+                    case TemplateOperation::division:
+                    {
+                        number /= constant;
+                        break;
+                    }
+                    case TemplateOperation::modulo:
+                    {
+                        number = number % constant;
+                        break;
+                    }
+
+                    default:
+                        break;
                 }
             }
-            keyPair.value() = result;
+            isOperator = !isOperator;
+        }
 
-            // We probably just invalidated the pointer abovei,
-            // reset and continue to handle multiple templates
-            strPtr = keyPair.value().get_ptr<std::string*>();
-            if (strPtr == nullptr)
+        std::string result = prefix + std::to_string(number);
+
+        std::string replaced(find.begin(), find.end());
+        for (auto it2 = split.begin(); it2 != split.end(); it2++)
+        {
+            replaced += " ";
+            replaced += *it2;
+            if (it2 == it)
             {
                 break;
             }
+        }
+        ret = replaced;
+
+        if (it != split.end())
+        {
+            for (; it != split.end(); it++)
+            {
+                result += " " + *it;
+            }
+        }
+        keyPair.value() = result;
+
+        // We probably just invalidated the pointer abovei,
+        // reset and continue to handle multiple templates
+        strPtr = keyPair.value().get_ptr<std::string*>();
+        if (strPtr == nullptr)
+        {
+            break;
         }
     }
 
