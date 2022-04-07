@@ -301,8 +301,6 @@ std::optional<std::string>
 
         number = expression::evaluate(number, exprBegin, exprEnd);
 
-        std::string result = prefix + std::to_string(number);
-
         std::string replaced(find.begin(), find.end());
         while (exprBegin != exprEnd)
         {
@@ -310,6 +308,7 @@ std::optional<std::string>
         }
         ret = replaced;
 
+        std::string result = prefix + std::to_string(number);
         while (exprEnd != split.end())
         {
             result += " " + *exprEnd++;
