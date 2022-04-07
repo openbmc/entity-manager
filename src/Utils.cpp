@@ -312,12 +312,9 @@ std::optional<std::string>
 
         ret = replaced;
 
-        if (exprEnd != split.end())
+        while (exprEnd != split.end())
         {
-            while (exprEnd != split.end())
-            {
-                result += " " + *exprEnd++;
-            }
+            result += " " + *exprEnd++;
         }
         keyPair.value() = result;
 
