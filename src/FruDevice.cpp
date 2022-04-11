@@ -1423,7 +1423,6 @@ int main()
     int fd = inotify_init();
     inotify_add_watch(fd, i2CDevLocation, IN_CREATE | IN_MOVED_TO | IN_DELETE);
     std::array<char, 4096> readBuffer;
-    std::string pendingBuffer;
     // monitor for new i2c devices
     boost::asio::posix::stream_descriptor dirWatch(io, fd);
     std::function<void(const boost::system::error_code, std::size_t)>
@@ -1434,12 +1433,11 @@ int main()
                 std::cout << "Callback Error " << ec << "\n";
                 return;
             }
-            pendingBuffer += std::string(readBuffer.data(), bytesTransferred);
-            while (pendingBuffer.size() > sizeof(inotify_event))
+            size_t index = 0;
+            while ((index + sizeof(inotify_event)) <= bytesTransferred)
             {
                 const inotify_event* iEvent =
-                    reinterpret_cast<const inotify_event*>(
-                        pendingBuffer.data());
+                    reinterpret_cast<const inotify_event*>(&readBuffer[index]);
                 switch (iEvent->mask)
                 {
                     case IN_CREATE:
@@ -1461,8 +1459,7 @@ int main()
                                          objServer, systemBus);
                         }
                 }
-
-                pendingBuffer.erase(0, sizeof(inotify_event) + iEvent->len);
+                index += sizeof(inotify_event) + iEvent->len;
             }
 
             dirWatch.async_read_some(boost::asio::buffer(readBuffer),
