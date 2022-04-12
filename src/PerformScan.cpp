@@ -374,12 +374,8 @@ void PerformScan::run()
                 DBusInterface emptyInterface;
                 emptyInterfaces.emplace(std::string{}, emptyInterface);
 
-                for (auto& foundDeviceAndPath : foundDevices)
+                for (const auto& [foundDevice, path] : foundDevices)
                 {
-                    const DBusInterface& foundDevice =
-                        foundDeviceAndPath.interface;
-                    const std::string& path = foundDeviceAndPath.path;
-
                     // Need all interfaces on this path so that template
                     // substitutions can be done with any of the contained
                     // properties.  If the probe that passed didn't use an
