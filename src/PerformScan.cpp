@@ -382,10 +382,10 @@ void PerformScan::run()
                     // interface, such as if it was just TRUE, then
                     // templateCharReplace will just get passed in an empty
                     // map.
-                    auto ifacesIt = dbusSubtree.find(path);
+                    auto objectIt = dbusSubtree.find(path);
                     const DBusObject& dbusObject =
-                        (ifacesIt == dbusSubtree.end()) ? emptyObject
-                                                        : ifacesIt->second;
+                        (objectIt == dbusSubtree.end()) ? emptyObject
+                                                        : objectIt->second;
 
                     nlohmann::json record = *recordPtr;
                     std::string recordName =
