@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c21de0d3_eabdac3d",
+        "filename": "src/Utils.cpp",
+        "patchSetId": 1
+      },
+      "lineNbr": 309,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2022-04-12T02:41:41Z",
+      "side": 1,
+      "message": "Technically I think this is worse, because it requires constructing the intermediate string (\" \" + *exprBegin++) before it can be appended.  clang-tidy has a check for this that some day it\u0027d be nice to turn on:\n\nhttps://clang.llvm.org/extra/clang-tidy/checks/performance-inefficient-string-concatenation.html",
+      "range": {
+        "startLine": 309,
+        "startChar": 12,
+        "endLine": 309,
+        "endChar": 43
+      },
+      "revId": "280fc55cdb878a3eba0a904386968ea7c9b5687e",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    }
+  ]
+}
