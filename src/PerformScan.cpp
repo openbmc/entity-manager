@@ -426,18 +426,17 @@ void PerformScan::run()
                                      "fixing template to not have duplicates\n";
                     }
 
+                    getName.value() = copyIt.value();
+                    usedNames.insert(copyIt.value());
+
                     for (auto keyPair = record.begin(); keyPair != record.end();
                          keyPair++)
                     {
-                        if (keyPair.key() == "Name")
+                        if (keyPair.key() != "Name")
                         {
-                            keyPair.value() = copyIt.value();
-                            usedNames.insert(copyIt.value());
-
-                            continue; // already covered above
+                            templateCharReplace(keyPair, dbusObject,
+                                                foundDeviceIdx, replaceStr);
                         }
-                        templateCharReplace(keyPair, dbusObject, foundDeviceIdx,
-                                            replaceStr);
                     }
 
                     // insert into configuration temporarily to be able to
