@@ -30,8 +30,13 @@
 #include <optional>
 #include <string>
 
-// The string is the path to the object hosting the interface
-using FoundDeviceT = std::vector<std::tuple<DBusInterface, std::string>>;
+struct DBusDeviceDescriptor
+{
+    DBusInterface interface;
+    std::string path;
+};
+
+using FoundDevices = std::vector<DBusDeviceDescriptor>;
 
 struct CmpStr
 {
@@ -83,13 +88,13 @@ struct PerformProbe : std::enable_shared_from_this<PerformProbe>
     PerformProbe(
         const std::vector<std::string>& probeCommand,
         std::shared_ptr<PerformScan>& scanPtr,
-        std::function<void(FoundDeviceT&, const MapperGetSubTreeResponse&)>&&
+        std::function<void(FoundDevices&, const MapperGetSubTreeResponse&)>&&
             callback);
     virtual ~PerformProbe();
 
     std::vector<std::string> _probeCommand;
     std::shared_ptr<PerformScan> scan;
-    std::function<void(FoundDeviceT&, const MapperGetSubTreeResponse&)>
+    std::function<void(FoundDevices&, const MapperGetSubTreeResponse&)>
         _callback;
 };
 
