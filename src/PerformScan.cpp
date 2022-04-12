@@ -370,7 +370,7 @@ void PerformScan::run()
 
                 std::optional<std::string> replaceStr;
 
-                MapperGetSubTreeResponse::mapped_type emptyInterfaces;
+                DBusObject emptyInterfaces;
                 DBusInterface emptyInterface;
                 emptyInterfaces.emplace(std::string{}, emptyInterface);
 
@@ -382,8 +382,7 @@ void PerformScan::run()
                     // interface, such as if it was just TRUE, then
                     // templateCharReplace will just get passed in an empty
                     // map.
-                    const MapperGetSubTreeResponse::mapped_type* dbusObject =
-                        &emptyInterfaces;
+                    const DBusObject* dbusObject = &emptyInterfaces;
 
                     auto ifacesIt = allInterfaces.find(path);
                     if (ifacesIt != allInterfaces.end())
