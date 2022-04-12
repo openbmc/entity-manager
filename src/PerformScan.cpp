@@ -448,7 +448,6 @@ void PerformScan::run()
                     auto findExpose = record.find("Exposes");
                     if (findExpose == record.end())
                     {
-                        _systemConfiguration[recordName] = record;
                         continue;
                     }
 
