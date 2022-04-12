@@ -98,6 +98,30 @@
     {
       "unresolved": false,
       "key": {
+        "uuid": "9f40cb6a_6e45c987",
+        "filename": "include/EntityManager.hpp",
+        "patchSetId": 1
+      },
+      "lineNbr": 33,
+      "author": {
+        "id": 1000009
+      },
+      "writtenOn": "2022-04-12T23:44:46Z",
+      "side": 1,
+      "message": "Ack.\n\nI had another thought on what might be contributing to issues here:\n\nDBus concepts, especially interfaces, are well-defined in the sense that a given interface definition has a closed set of properties (and their types). In a frictionless vacuum, an interface would map to a specific struct with appropriate members. Again in the frictionless vacuum, the results from the mapper could be represented by a variant of all the possible interface structs. However we\u0027re not in the frictionless vacuum and that approach feels impractical, instead we\u0027re collapsing the (open) set of all possible interfaces into a type - a map - and thus we\u0027re forced to divorce the name of the interface from the interface itself (the set of properties and their values). And from there we get the weird \"interface name\" vs \"interface\" distinction that I\u0027m addressing here, and a host of other issues.",
+      "parentUuid": "55b2e9a5_44245d21",
+      "range": {
+        "startLine": 33,
+        "startChar": 0,
+        "endLine": 33,
+        "endChar": 37
+      },
+      "revId": "0d5935a38568c948de1f43debeaff7b363e6f9bd",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
         "uuid": "69a72b45_d2a87ce4",
         "filename": "include/EntityManager.hpp",
         "patchSetId": 1
