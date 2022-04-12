@@ -56,6 +56,24 @@
       "message": "Given the call site I\u0027m guessing this one probably should be DBusInterface though?",
       "revId": "0d5935a38568c948de1f43debeaff7b363e6f9bd",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7663b4a0_1a786e46",
+        "filename": "src/PerformScan.cpp",
+        "patchSetId": 1
+      },
+      "lineNbr": 213,
+      "author": {
+        "id": 1000733
+      },
+      "writtenOn": "2022-04-12T02:20:42Z",
+      "side": 1,
+      "message": "Oh, except I see now both this and the one above are taken care of in https://gerrit.openbmc-project.xyz/c/openbmc/entity-manager/+/52819 -- any particular reason not to fold those into this same patch?",
+      "parentUuid": "17bfa17e_27bdbe77",
+      "revId": "0d5935a38568c948de1f43debeaff7b363e6f9bd",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }
