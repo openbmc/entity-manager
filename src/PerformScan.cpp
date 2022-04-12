@@ -382,13 +382,10 @@ void PerformScan::run()
                     // interface, such as if it was just TRUE, then
                     // templateCharReplace will just get passed in an empty
                     // map.
-                    const DBusObject* dbusObject = &emptyObject;
-
                     auto ifacesIt = dbusSubtree.find(path);
-                    if (ifacesIt != dbusSubtree.end())
-                    {
-                        dbusObject = &ifacesIt->second;
-                    }
+                    const DBusObject& dbusObject =
+                        (ifacesIt == dbusSubtree.end()) ? emptyObject
+                                                        : ifacesIt->second;
 
                     nlohmann::json record = *recordPtr;
                     std::string recordName =
@@ -407,7 +404,7 @@ void PerformScan::run()
                     nlohmann::json copyForName = {{"Name", getName.value()}};
                     nlohmann::json::iterator copyIt = copyForName.begin();
                     std::optional<std::string> replaceVal = templateCharReplace(
-                        copyIt, *dbusObject, foundDeviceIdx, replaceStr);
+                        copyIt, dbusObject, foundDeviceIdx, replaceStr);
 
                     if (!replaceStr && replaceVal)
                     {
@@ -416,7 +413,7 @@ void PerformScan::run()
                             replaceStr = replaceVal;
                             copyForName = {{"Name", getName.value()}};
                             copyIt = copyForName.begin();
-                            templateCharReplace(copyIt, *dbusObject,
+                            templateCharReplace(copyIt, dbusObject,
                                                 foundDeviceIdx, replaceStr);
                         }
                     }
@@ -439,8 +436,8 @@ void PerformScan::run()
 
                             continue; // already covered above
                         }
-                        templateCharReplace(keyPair, *dbusObject,
-                                            foundDeviceIdx, replaceStr);
+                        templateCharReplace(keyPair, dbusObject, foundDeviceIdx,
+                                            replaceStr);
                     }
 
                     // insert into configuration temporarily to be able to
@@ -461,7 +458,7 @@ void PerformScan::run()
                              keyPair != expose.end(); keyPair++)
                         {
 
-                            templateCharReplace(keyPair, *dbusObject,
+                            templateCharReplace(keyPair, dbusObject,
                                                 foundDeviceIdx, replaceStr);
 
                             bool isBind =
