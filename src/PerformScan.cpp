@@ -293,7 +293,7 @@ void PerformScan::run()
         auto probePointer = std::make_shared<PerformProbe>(
             probeCommand, thisRef,
             [&, recordPtr,
-             probeName](FoundDeviceT& foundDevices,
+             probeName](FoundDevices& foundDevices,
                         const MapperGetSubTreeResponse& allInterfaces) {
                 _passed = true;
                 std::set<nlohmann::json> usedNames;
@@ -310,7 +310,7 @@ void PerformScan::run()
                      itr != foundDevices.end();)
                 {
                     std::string recordName =
-                        getRecordName(std::get<0>(*itr), probeName);
+                        getRecordName(itr->interface, probeName);
 
                     auto fromLastJson = lastJson.find(recordName);
                     if (fromLastJson != lastJson.end())
@@ -377,8 +377,8 @@ void PerformScan::run()
                 for (auto& foundDeviceAndPath : foundDevices)
                 {
                     const DBusInterface& foundDevice =
-                        std::get<0>(foundDeviceAndPath);
-                    const std::string& path = std::get<1>(foundDeviceAndPath);
+                        foundDeviceAndPath.interface;
+                    const std::string& path = foundDeviceAndPath.path;
 
                     // Need all interfaces on this path so that template
                     // substitutions can be done with any of the contained
