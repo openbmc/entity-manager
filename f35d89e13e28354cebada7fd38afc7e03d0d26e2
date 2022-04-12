@@ -1,0 +1,44 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6d5a33ae_8c02effa",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 1000733
+      },
+      "writtenOn": "2022-04-12T02:09:03Z",
+      "side": 1,
+      "message": "s/strtoul/stoul/ to match the code?  (C habits, I suppose...)",
+      "revId": "f35d89e13e28354cebada7fd38afc7e03d0d26e2",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "fd34074e_98007f12",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 1000733
+      },
+      "writtenOn": "2022-04-12T02:09:03Z",
+      "side": 1,
+      "message": "I assume this is referring to the \"looks like hex\" test and the false (`else`) branch lacking of a check corresponding to the `pos \u003d\u003d strPtr-\u003esize()` check in the true case?  If so, I guess maybe boost::lexical_cast rejects anything with trailing garbage even if the initial prefix is valid?  (Though I don\u0027t see a definitive answer in https://www.boost.org/doc/libs/1_78_0/doc/html/boost_lexical_cast.html, so shrug.)",
+      "range": {
+        "startLine": 9,
+        "startChar": 13,
+        "endLine": 9,
+        "endChar": 23
+      },
+      "revId": "f35d89e13e28354cebada7fd38afc7e03d0d26e2",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    }
+  ]
+}
