@@ -370,9 +370,9 @@ void PerformScan::run()
 
                 std::optional<std::string> replaceStr;
 
-                DBusObject emptyInterfaces;
+                DBusObject emptyObject;
                 DBusInterface emptyInterface;
-                emptyInterfaces.emplace(std::string{}, emptyInterface);
+                emptyObject.emplace(std::string{}, emptyInterface);
 
                 for (const auto& [foundDevice, path] : foundDevices)
                 {
@@ -382,7 +382,7 @@ void PerformScan::run()
                     // interface, such as if it was just TRUE, then
                     // templateCharReplace will just get passed in an empty
                     // map.
-                    const DBusObject* dbusObject = &emptyInterfaces;
+                    const DBusObject* dbusObject = &emptyObject;
 
                     auto ifacesIt = allInterfaces.find(path);
                     if (ifacesIt != allInterfaces.end())
