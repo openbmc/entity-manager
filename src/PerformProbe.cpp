@@ -24,9 +24,9 @@ constexpr const bool debug = false;
 
 // probes dbus interface dictionary for a key with a value that matches a regex
 // When an interface passes a probe, also save its D-Bus path with it.
-bool probeDbus(const std::string& interface,
+bool probeDbus(const std::string& interfaceName,
                const std::map<std::string, nlohmann::json>& matches,
-               FoundDeviceT& devices, const std::shared_ptr<PerformScan>& scan,
+               FoundDevices& devices, const std::shared_ptr<PerformScan>& scan,
                bool& foundProbe)
 {
     bool foundMatch = false;
@@ -34,7 +34,7 @@ bool probeDbus(const std::string& interface,
 
     for (const auto& [path, interfaces] : scan->dbusProbeObjects)
     {
-        auto it = interfaces.find(interface);
+        auto it = interfaces.find(interfaceName);
         if (it == interfaces.end())
         {
             continue;
@@ -43,13 +43,12 @@ bool probeDbus(const std::string& interface,
         foundProbe = true;
 
         bool deviceMatches = true;
-        const boost::container::flat_map<std::string, DBusValueVariant>&
-            properties = it->second;
+        const DBusInterface& interface = it->second;
 
         for (const auto& [matchProp, matchJSON] : matches)
         {
-            auto deviceValue = properties.find(matchProp);
-            if (deviceValue != properties.end())
+            auto deviceValue = interface.find(matchProp);
+            if (deviceValue != interface.end())
             {
                 deviceMatches =
                     deviceMatches && matchProbe(matchJSON, deviceValue->second);
@@ -66,9 +65,13 @@ bool probeDbus(const std::string& interface,
             if constexpr (debug)
             {
                 std::cerr << "probeDBus: Found probe match on " << path << " "
-                          << interface << "\n";
+                          << interfaceName << "\n";
             }
-            devices.emplace_back(properties, path);
+            // Use emplace back when clang implements
+            // http://www.open-std.org/jtc1/sc22/wg21/docs/papers/2019/p0960r3.html
+            //
+            // https://en.cppreference.com/w/cpp/compiler_support/20
+            devices.push_back({interface, path});
             foundMatch = true;
         }
     }
@@ -78,7 +81,7 @@ bool probeDbus(const std::string& interface,
 // default probe entry point, iterates a list looking for specific types to
 // call specific probe functions
 bool probe(const std::vector<std::string>& probeCommand,
-           const std::shared_ptr<PerformScan>& scan, FoundDeviceT& foundDevs)
+           const std::shared_ptr<PerformScan>& scan, FoundDevices& foundDevs)
 {
     const static std::regex command(R"(\((.*)\))");
     std::smatch match;
@@ -196,9 +199,13 @@ bool probe(const std::vector<std::string>& probeCommand,
     // probe passed, but empty device
     if (ret && foundDevs.size() == 0)
     {
-        foundDevs.emplace_back(
-            boost::container::flat_map<std::string, DBusValueVariant>{},
-            std::string{});
+        // Use emplace back when clang implements
+        // http://www.open-std.org/jtc1/sc22/wg21/docs/papers/2019/p0960r3.html
+        //
+        // https://en.cppreference.com/w/cpp/compiler_support/20
+        foundDevs.push_back(
+            {boost::container::flat_map<std::string, DBusValueVariant>{},
+             std::string{}});
     }
     if (matchOne && ret)
     {
@@ -214,14 +221,14 @@ bool probe(const std::vector<std::string>& probeCommand,
 PerformProbe::PerformProbe(
     const std::vector<std::string>& probeCommand,
     std::shared_ptr<PerformScan>& scanPtr,
-    std::function<void(FoundDeviceT&, const MapperGetSubTreeResponse&)>&&
+    std::function<void(FoundDevices&, const MapperGetSubTreeResponse&)>&&
         callback) :
     _probeCommand(probeCommand),
     scan(scanPtr), _callback(std::move(callback))
 {}
 PerformProbe::~PerformProbe()
 {
-    FoundDeviceT foundDevs;
+    FoundDevices foundDevs;
     if (probe(_probeCommand, scan, foundDevs))
     {
         _callback(foundDevs, scan->dbusProbeObjects);
