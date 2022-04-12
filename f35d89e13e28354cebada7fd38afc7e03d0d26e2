@@ -39,6 +39,30 @@
       },
       "revId": "f35d89e13e28354cebada7fd38afc7e03d0d26e2",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4bb3cf7a_43a7c805",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2022-04-12T02:36:32Z",
+      "side": 1,
+      "message": "Boost lexical cast drags the world with it and compiles kinda big.  It wouldn\u0027t be my first choice.  For modern code, I personally find that std::from_chars to be a better fit for the security conscious individual, as it properly handles unsigned/signed and ranges on whatever int-like type you give it.\n\nWith that said, in the context of this patch, this is in fact better, so I\u0027m ok with it.",
+      "parentUuid": "fd34074e_98007f12",
+      "range": {
+        "startLine": 9,
+        "startChar": 13,
+        "endLine": 9,
+        "endChar": 23
+      },
+      "revId": "f35d89e13e28354cebada7fd38afc7e03d0d26e2",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }
