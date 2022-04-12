@@ -24,6 +24,30 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": true,
+      "key": {
+        "uuid": "d24755b4_95873fed",
+        "filename": "include/EntityManager.hpp",
+        "patchSetId": 1
+      },
+      "lineNbr": 33,
+      "author": {
+        "id": 1000009
+      },
+      "writtenOn": "2022-04-12T04:37:22Z",
+      "side": 1,
+      "message": "\u003e This seems like one step too far.  Inventing a using definition that\u0027s longer than the original name\n\nThe purpose wasn\u0027t to end up with something with less characters, rather it was to have something more descriptive. A bunch of maps keyed by a string made it harder to keep track of what the keys _meant_.\n\nThis made it easier for me but if you\u0027re set on it then I\u0027ll discard the std::string aliases.\n\n\u003e The rest seems fine though.  FWIW I just finished getting the bmcweb versions of these in order, and I landed on vector\u003cpair\u003cstr, str\u003e\u003e being a better fit in these cases.\n\nOkay, however I\u0027d like to keep any changes to the data structures separate, this was just a patch to make what\u0027s already here easier to think about.",
+      "parentUuid": "96b615d8_475755e8",
+      "range": {
+        "startLine": 33,
+        "startChar": 0,
+        "endLine": 33,
+        "endChar": 37
+      },
+      "revId": "0d5935a38568c948de1f43debeaff7b363e6f9bd",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": false,
       "key": {
         "uuid": "69a72b45_d2a87ce4",
@@ -66,6 +90,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "9632420e_aa914389",
+        "filename": "src/PerformScan.cpp",
+        "patchSetId": 1
+      },
+      "lineNbr": 56,
+      "author": {
+        "id": 1000009
+      },
+      "writtenOn": "2022-04-12T04:37:22Z",
+      "side": 1,
+      "message": "I may have converted it in a later patch.",
+      "parentUuid": "3dc9356e_14574380",
+      "revId": "0d5935a38568c948de1f43debeaff7b363e6f9bd",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "17bfa17e_27bdbe77",
         "filename": "src/PerformScan.cpp",
         "patchSetId": 1
@@ -99,6 +141,24 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": true,
+      "key": {
+        "uuid": "d7bda905_8251820f",
+        "filename": "src/PerformScan.cpp",
+        "patchSetId": 1
+      },
+      "lineNbr": 213,
+      "author": {
+        "id": 1000009
+      },
+      "writtenOn": "2022-04-12T04:37:22Z",
+      "side": 1,
+      "message": "I can squash them all down, just thought it might be easier to review if I broke them up a bit.",
+      "parentUuid": "7663b4a0_1a786e46",
+      "revId": "0d5935a38568c948de1f43debeaff7b363e6f9bd",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": false,
       "key": {
         "uuid": "6ad807ff_ecf88c7b",
@@ -112,6 +172,30 @@
       "writtenOn": "2022-04-12T02:57:16Z",
       "side": 1,
       "message": "I guess this is a `DBusObject`?",
+      "range": {
+        "startLine": 379,
+        "startChar": 16,
+        "endLine": 379,
+        "endChar": 40
+      },
+      "revId": "0d5935a38568c948de1f43debeaff7b363e6f9bd",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "41bdc132_8c0051c0",
+        "filename": "src/PerformScan.cpp",
+        "patchSetId": 1
+      },
+      "lineNbr": 379,
+      "author": {
+        "id": 1000009
+      },
+      "writtenOn": "2022-04-12T04:37:22Z",
+      "side": 1,
+      "message": "Right. I was on the fence about changing it, what do you think? The code might be easier to follow if we change it.",
+      "parentUuid": "6ad807ff_ecf88c7b",
       "range": {
         "startLine": 379,
         "startChar": 16,
