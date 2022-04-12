@@ -206,8 +206,8 @@ void findDbusObjects(std::vector<std::shared_ptr<PerformProbe>>&& probeVector,
     }
 }
 
-std::string getRecordName(const DBusInterface& probe,
-                          const std::string& probeName)
+static std::string getRecordName(const DBusInterface& probe,
+                                 const std::string& probeName)
 {
     if (probe.empty())
     {
