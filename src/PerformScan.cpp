@@ -294,7 +294,7 @@ void PerformScan::run()
             probeCommand, thisRef,
             [&, recordPtr,
              probeName](FoundDevices& foundDevices,
-                        const MapperGetSubTreeResponse& allInterfaces) {
+                        const MapperGetSubTreeResponse& dbusSubtree) {
                 _passed = true;
                 std::set<nlohmann::json> usedNames;
                 passedProbes.push_back(probeName);
@@ -384,8 +384,8 @@ void PerformScan::run()
                     // map.
                     const DBusObject* dbusObject = &emptyObject;
 
-                    auto ifacesIt = allInterfaces.find(path);
-                    if (ifacesIt != allInterfaces.end())
+                    auto ifacesIt = dbusSubtree.find(path);
+                    if (ifacesIt != dbusSubtree.end())
                     {
                         dbusObject = &ifacesIt->second;
                     }
