@@ -24,6 +24,29 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "69a72b45_d2a87ce4",
+        "filename": "include/EntityManager.hpp",
+        "patchSetId": 1
+      },
+      "lineNbr": 38,
+      "author": {
+        "id": 1000500
+      },
+      "writtenOn": "2022-04-12T02:57:16Z",
+      "side": 1,
+      "message": "I tried to wrap my head around the various types and their friends and it turns out some are from `org.freedesktop.DBus.Properties` and some are from `xyz.openbmc_project.ObjectMapper`:\n\n```\nDBus type     EntityManager  bmcweb                       DBus method\na{sa{sas}}    DBusSubtree    MapperGetAncestorsResponse   (1)\n   a{sas}     DBusObject     MapperGetObject              (2)\n      \n     {sv}     DBusInterface  DBusPropertiesMap            (3)\n```\n\n(1) GetAncestors or GetSubTree\n(2) GetObject, or sub-results of GetAncesotrs \u0026 GetSubTree\n(3) Properties.GetAll\n\nIt seems bmcweb binds std::vector to a dictionary type (and some other code I saw also does this), I looked it up again and it seems they really are associative arrays.",
+      "range": {
+        "startLine": 38,
+        "startChar": 68,
+        "endLine": 38,
+        "endChar": 69
+      },
+      "revId": "0d5935a38568c948de1f43debeaff7b363e6f9bd",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "3dc9356e_14574380",
@@ -72,6 +95,29 @@
       "side": 1,
       "message": "Oh, except I see now both this and the one above are taken care of in https://gerrit.openbmc-project.xyz/c/openbmc/entity-manager/+/52819 -- any particular reason not to fold those into this same patch?",
       "parentUuid": "17bfa17e_27bdbe77",
+      "revId": "0d5935a38568c948de1f43debeaff7b363e6f9bd",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "6ad807ff_ecf88c7b",
+        "filename": "src/PerformScan.cpp",
+        "patchSetId": 1
+      },
+      "lineNbr": 379,
+      "author": {
+        "id": 1000500
+      },
+      "writtenOn": "2022-04-12T02:57:16Z",
+      "side": 1,
+      "message": "I guess this is a `DBusObject`?",
+      "range": {
+        "startLine": 379,
+        "startChar": 16,
+        "endLine": 379,
+        "endChar": 40
+      },
       "revId": "0d5935a38568c948de1f43debeaff7b363e6f9bd",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
