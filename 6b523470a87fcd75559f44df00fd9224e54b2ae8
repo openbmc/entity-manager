@@ -1,6 +1,29 @@
 {
   "comments": [
     {
+      "unresolved": true,
+      "key": {
+        "uuid": "73f072af_85311daf",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 18,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2022-04-12T16:26:58Z",
+      "side": 1,
+      "message": "Lets split these into 2 patches please.  I suspect the second one can merge pretty quickly, but considering that the new properties don\u0027t have implementations that I can find, I suspect they\u0027re going to need more detailed commit messages, and examples of use, which are better put in another patch.",
+      "range": {
+        "startLine": 9,
+        "startChar": 0,
+        "endLine": 18,
+        "endChar": 14
+      },
+      "revId": "6b523470a87fcd75559f44df00fd9224e54b2ae8",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": false,
       "key": {
         "uuid": "5036c145_e2da2b6b",
@@ -14,6 +37,52 @@
       "writtenOn": "2022-02-17T01:32:32Z",
       "side": 1,
       "message": "Hi Ed, \nCan you review now? I have fixed the previous comments. ",
+      "revId": "6b523470a87fcd75559f44df00fd9224e54b2ae8",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "81fde724_755dbf5c",
+        "filename": "schemas/legacy.json",
+        "patchSetId": 2
+      },
+      "lineNbr": 180,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2022-04-12T16:26:58Z",
+      "side": 1,
+      "message": "?  Not sure what this does and how it relates to ScaleFactor?  I don\u0027t see mention of it in dbus-sensors.",
+      "range": {
+        "startLine": 180,
+        "startChar": 0,
+        "endLine": 180,
+        "endChar": 65
+      },
+      "revId": "6b523470a87fcd75559f44df00fd9224e54b2ae8",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "813d9de3_26c2083d",
+        "filename": "schemas/legacy.json",
+        "patchSetId": 2
+      },
+      "lineNbr": 190,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2022-04-12T16:26:58Z",
+      "side": 1,
+      "message": "Same here.",
+      "range": {
+        "startLine": 188,
+        "startChar": 0,
+        "endLine": 190,
+        "endChar": 18
+      },
       "revId": "6b523470a87fcd75559f44df00fd9224e54b2ae8",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
