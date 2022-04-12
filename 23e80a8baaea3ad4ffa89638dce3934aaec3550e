@@ -50,6 +50,121 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "5d67fa61_585fc19b",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 7
+      },
+      "lineNbr": 16,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2022-04-12T20:19:21Z",
+      "side": 1,
+      "message": "Please add more details on how this change effects all platforms (ideally making the required changes to the config files for the mainboards effected).  Considering that EVERY system has a BMC, how would a user use this?  Where would the user add it?  How does it get used by other services?",
+      "range": {
+        "startLine": 14,
+        "startChar": 0,
+        "endLine": 16,
+        "endChar": 19
+      },
+      "revId": "23e80a8baaea3ad4ffa89638dce3934aaec3550e",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d584cb0a_438b7949",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 7
+      },
+      "lineNbr": 19,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2022-04-12T20:19:21Z",
+      "side": 1,
+      "message": "Can you please check a \"full\" example, including a baseboard, dcscm module, and this content into an EM review somewhere.  It doesn\u0027t have to be complete, but given that this is non-trivial, we need to figure out how to model it.",
+      "range": {
+        "startLine": 19,
+        "startChar": 0,
+        "endLine": 19,
+        "endChar": 50
+      },
+      "revId": "23e80a8baaea3ad4ffa89638dce3934aaec3550e",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "08f1e1ae_e6a3cc7a",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 7
+      },
+      "lineNbr": 27,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2022-04-12T20:19:21Z",
+      "side": 1,
+      "message": "I\u0027m not sure what the FRU EEPROM has to do with things?",
+      "range": {
+        "startLine": 22,
+        "startChar": 0,
+        "endLine": 27,
+        "endChar": 10
+      },
+      "revId": "23e80a8baaea3ad4ffa89638dce3934aaec3550e",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a79ba343_eb87964e",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 7
+      },
+      "lineNbr": 30,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2022-04-12T20:19:21Z",
+      "side": 1,
+      "message": "Type, as a field should not include the dbus interface.  If you look at the dbus interface this produces, this would produce something like:\n\nxyz.openbmc_project.Configuration.xyz.openbmc_project.Inventory.Item.BMC, which is I don\u0027t think it what you intended.",
+      "range": {
+        "startLine": 30,
+        "startChar": 20,
+        "endLine": 30,
+        "endChar": 58
+      },
+      "revId": "23e80a8baaea3ad4ffa89638dce3934aaec3550e",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2c2bdfad_1760d353",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 7
+      },
+      "lineNbr": 31,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2022-04-12T20:19:21Z",
+      "side": 1,
+      "message": "I\u0027m not sure what this is trying to represent.  The BMC is not on a slot, and on the DC-SCM system you\u0027re working on, I would expect the \"BMC\" node to be on the DC-SCM board itself, not on the \"superboard\"",
+      "range": {
+        "startLine": 31,
+        "startChar": 0,
+        "endLine": 31,
+        "endChar": 63
+      },
+      "revId": "23e80a8baaea3ad4ffa89638dce3934aaec3550e",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "82b0595b_2299c216",
         "filename": "/COMMIT_MSG",
         "patchSetId": 7
@@ -114,6 +229,138 @@
         "startChar": 0,
         "endLine": 32,
         "endChar": 25
+      },
+      "revId": "23e80a8baaea3ad4ffa89638dce3934aaec3550e",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "84051115_4be0433a",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 7
+      },
+      "lineNbr": 39,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2022-04-12T20:19:21Z",
+      "side": 1,
+      "message": "Exposes record in an exposes record?  Please takea  look, this doesn\u0027t seem like it\u0027s what you intended, and I can\u0027t tell if it\u0027s just a copy/paste error or what the deal is.  I\u0027m would assume a name of \"Invalid\" isn\u0027t what you intended.",
+      "range": {
+        "startLine": 33,
+        "startChar": 0,
+        "endLine": 39,
+        "endChar": 13
+      },
+      "revId": "23e80a8baaea3ad4ffa89638dce3934aaec3550e",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "aa5ac1af_9daf2e6d",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 7
+      },
+      "lineNbr": 45,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2022-04-12T20:19:21Z",
+      "side": 1,
+      "message": "????",
+      "range": {
+        "startLine": 45,
+        "startChar": 0,
+        "endLine": 45,
+        "endChar": 16
+      },
+      "revId": "23e80a8baaea3ad4ffa89638dce3934aaec3550e",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a0a13116_5a5bbd64",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 7
+      },
+      "lineNbr": 91,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2022-04-12T20:19:21Z",
+      "side": 1,
+      "message": "?  The nested field shouldn\u0027t really exist.  We have patterns for having \"sub\" objects using the Found() probe type, that lets us split stuff up.  This looks like it\u0027s duplicating that?",
+      "range": {
+        "startLine": 91,
+        "startChar": 0,
+        "endLine": 91,
+        "endChar": 73
+      },
+      "revId": "23e80a8baaea3ad4ffa89638dce3934aaec3550e",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "97fd887c_c7243e12",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 7
+      },
+      "lineNbr": 112,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2022-04-12T20:19:21Z",
+      "side": 1,
+      "message": "One thing I wonder a little is if we can automatically detect any of this.  Presumably, everything running OpenBMC has a BMC, so does it make sense to make edits to every single mainboard file to add a BMC inventory item?",
+      "revId": "23e80a8baaea3ad4ffa89638dce3934aaec3550e",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "578645cf_942f9fc7",
+        "filename": "src/EntityManager.cpp",
+        "patchSetId": 7
+      },
+      "lineNbr": 283,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2022-04-12T20:19:21Z",
+      "side": 1,
+      "message": "Please avoid default parameters in this case, it makes it less clear what all the other calling code does.",
+      "range": {
+        "startLine": 283,
+        "startChar": 40,
+        "endLine": 283,
+        "endChar": 45
+      },
+      "revId": "23e80a8baaea3ad4ffa89638dce3934aaec3550e",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2a7b8829_a3d66206",
+        "filename": "src/EntityManager.cpp",
+        "patchSetId": 7
+      },
+      "lineNbr": 739,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2022-04-12T20:19:21Z",
+      "side": 1,
+      "message": "I\u0027d really prefer we not special case hardcoded names in the config.  This makes me wonder if we modeled the config files properly.",
+      "range": {
+        "startLine": 725,
+        "startChar": 0,
+        "endLine": 739,
+        "endChar": 13
       },
       "revId": "23e80a8baaea3ad4ffa89638dce3934aaec3550e",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
