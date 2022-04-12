@@ -24,6 +24,30 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "dd47630e_bc7d15ed",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 7
+      },
+      "lineNbr": 10,
+      "author": {
+        "id": 1000500
+      },
+      "writtenOn": "2022-04-12T00:48:31Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "4b8e9cc2_1bd8a590",
+      "range": {
+        "startLine": 10,
+        "startChar": 44,
+        "endLine": 10,
+        "endChar": 46
+      },
+      "revId": "23e80a8baaea3ad4ffa89638dce3934aaec3550e",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "82b0595b_2299c216",
@@ -61,6 +85,30 @@
       "side": 1,
       "message": "Something like that would be nice, since \"CCC\" is meant to be a property under the Item.Bmc interface.",
       "parentUuid": "82b0595b_2299c216",
+      "range": {
+        "startLine": 30,
+        "startChar": 0,
+        "endLine": 32,
+        "endChar": 25
+      },
+      "revId": "23e80a8baaea3ad4ffa89638dce3934aaec3550e",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "259a1b6b_7d7f60fa",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 7
+      },
+      "lineNbr": 32,
+      "author": {
+        "id": 1000500
+      },
+      "writtenOn": "2022-04-12T00:48:31Z",
+      "side": 1,
+      "message": "Added a code path to allow an entry like this in the Exposes directive:\n```\n{\n  \"T\": {\n    \"Key1\": \"Value1\",\n    \"Key2\": \"Value2\",\n    ...\n  }\n}\n```\n\nIt\u0027s essentially identical to the following:\n```\n{\n  \"Type\": \"T\",\n  \"Key1\": \"Value1\",\n  \"Key2\": \"Value2\",\n  ...\n}\n```\n(Notably, the type of \"Exposes\" is a json::array so each entry has to be its own object, thus the \"dictionary in dictionary\" in the new method)",
+      "parentUuid": "06823cc8_f34549dd",
       "range": {
         "startLine": 30,
         "startChar": 0,
