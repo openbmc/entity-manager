@@ -340,7 +340,11 @@ void PerformScan::run()
                         // keep user changes
                         _systemConfiguration[recordName] = *fromLastJson;
                         _missingConfigurations.erase(recordName);
+
+                        // We've processed the device, remove it and advance the
+                        // iterator
                         itr = foundDevices.erase(itr);
+
                         if (hasTemplateName)
                         {
                             auto nameIt = fromLastJson->find("Name");
