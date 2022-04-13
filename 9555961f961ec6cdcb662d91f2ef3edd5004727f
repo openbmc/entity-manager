@@ -16,6 +16,24 @@
       "message": "This patch makes my head hurt in a \"I can\u0027t verify by just looking at the patch that it didn\u0027t break anything\" way.  I\u0027ll get back to it at some point some morning when I\u0027ve had my coffee.",
       "revId": "9555961f961ec6cdcb662d91f2ef3edd5004727f",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6edf89b3_2371b3af",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1000009
+      },
+      "writtenOn": "2022-04-13T20:27:45Z",
+      "side": 1,
+      "message": "To be fair it has zero commit message and zero in-code documentation. I\u0027ll do better, but I think it makes the result *way* easier to read (especially after the subsequent three patches are applied).\n\nPart of the problem is understanding what the original code was trying to do with the iterators.",
+      "parentUuid": "bcf392fa_0468d51d",
+      "revId": "9555961f961ec6cdcb662d91f2ef3edd5004727f",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }
