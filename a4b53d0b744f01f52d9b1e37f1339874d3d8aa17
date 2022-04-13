@@ -70,6 +70,30 @@
       },
       "revId": "a4b53d0b744f01f52d9b1e37f1339874d3d8aa17",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "b0586636_7a9b2eff",
+        "filename": "include/EntityManager.hpp",
+        "patchSetId": 1
+      },
+      "lineNbr": 34,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2022-04-13T15:43:50Z",
+      "side": 1,
+      "message": "I\u0027m not quite following your statement, are you suggesting that it\u0027s not good that we have \"MapperGet\" because it implies how the data was grabbed, instead of what it represents?  I could see that argument holding water.  Lets just merge whats here, and we can discuss more if there\u0027s a better pattern for this (also happy to change bmcweb as well).",
+      "parentUuid": "d99df5f9_b989d7bc",
+      "range": {
+        "startLine": 34,
+        "startChar": 6,
+        "endLine": 34,
+        "endChar": 17
+      },
+      "revId": "a4b53d0b744f01f52d9b1e37f1339874d3d8aa17",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }
