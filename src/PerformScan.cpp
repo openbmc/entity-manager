@@ -244,10 +244,10 @@ PerformScan::PerformScan(nlohmann::json& systemConfiguration,
     _callback(std::move(callback))
 {}
 
-static void pruneRecordExposes(nlohmann::json& fromLastJson)
+static void pruneRecordExposes(nlohmann::json& record)
 {
-    auto findExposes = fromLastJson.find("Exposes");
-    if (findExposes != fromLastJson.end())
+    auto findExposes = record.find("Exposes");
+    if (findExposes != record.end())
     {
         auto copy = nlohmann::json::array();
         for (auto& expose : *findExposes)
