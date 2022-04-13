@@ -243,6 +243,25 @@ PerformScan::PerformScan(nlohmann::json& systemConfiguration,
     _configurations(configurations), objServer(objServerIn),
     _callback(std::move(callback))
 {}
+
+static void pruneRecordExposes(nlohmann::json& fromLastJson)
+{
+    auto findExposes = fromLastJson.find("Exposes");
+    if (findExposes != fromLastJson.end())
+    {
+        auto copy = nlohmann::json::array();
+        for (auto& expose : *findExposes)
+        {
+            if (expose.is_null())
+            {
+                continue;
+            }
+            copy.emplace_back(expose);
+        }
+        *findExposes = copy;
+    }
+}
+
 void PerformScan::run()
 {
     boost::container::flat_set<std::string> dbusProbeInterfaces;
@@ -315,21 +334,7 @@ void PerformScan::run()
                     auto fromLastJson = lastJson.find(recordName);
                     if (fromLastJson != lastJson.end())
                     {
-                        auto findExposes = fromLastJson->find("Exposes");
-                        // delete nulls from any updates
-                        if (findExposes != fromLastJson->end())
-                        {
-                            auto copy = nlohmann::json::array();
-                            for (auto& expose : *findExposes)
-                            {
-                                if (expose.is_null())
-                                {
-                                    continue;
-                                }
-                                copy.emplace_back(expose);
-                            }
-                            *findExposes = copy;
-                        }
+                        pruneRecordExposes(*fromLastJson);
 
                         // keep user changes
                         _systemConfiguration[recordName] = *fromLastJson;
