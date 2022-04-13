@@ -373,6 +373,9 @@ void PerformScan::run()
 
                     pruneRecordExposes(*fromLastJson);
 
+                    recordDiscoveredIdentifiers(usedNames, indexes, probeName,
+                                                *fromLastJson);
+
                     // keep user changes
                     _systemConfiguration[recordName] = *fromLastJson;
                     _missingConfigurations.erase(recordName);
@@ -380,9 +383,6 @@ void PerformScan::run()
                     // We've processed the device, remove it and advance the
                     // iterator
                     itr = foundDevices.erase(itr);
-
-                    recordDiscoveredIdentifiers(usedNames, indexes, probeName,
-                                                *fromLastJson);
                 }
 
                 std::optional<std::string> replaceStr;
