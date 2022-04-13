@@ -266,7 +266,7 @@ static void pruneRecordExposes(nlohmann::json& record)
 static void recordDiscoveredIdentifiers(std::set<nlohmann::json>& usedNames,
                                         std::list<size_t>& indexes,
                                         const std::string& probeName,
-                                        const nlohmann::json& fromLastJson)
+                                        const nlohmann::json& record)
 {
     size_t indexIdx = probeName.find('$');
     if (indexIdx != std::string::npos)
@@ -274,8 +274,8 @@ static void recordDiscoveredIdentifiers(std::set<nlohmann::json>& usedNames,
         return;
     }
 
-    auto nameIt = fromLastJson.find("Name");
-    if (nameIt == fromLastJson.end())
+    auto nameIt = record.find("Name");
+    if (nameIt == record.end())
     {
         std::cerr << "Last JSON Illegal\n";
         return;
