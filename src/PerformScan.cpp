@@ -374,11 +374,10 @@ void PerformScan::run()
                     auto usedIt =
                         std::find(indexes.begin(), indexes.end(), index);
 
-                    if (usedIt == indexes.end())
+                    if (usedIt != indexes.end())
                     {
-                        continue; // less items now
+                        indexes.erase(usedIt);
                     }
-                    indexes.erase(usedIt);
                 }
 
                 std::optional<std::string> replaceStr;
