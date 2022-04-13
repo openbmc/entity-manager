@@ -255,11 +255,10 @@ static void pruneRecordExposes(nlohmann::json& record)
     auto copy = nlohmann::json::array();
     for (auto& expose : *findExposes)
     {
-        if (expose.is_null())
+        if (!expose.is_null())
         {
-            continue;
+            copy.emplace_back(expose);
         }
-        copy.emplace_back(expose);
     }
     *findExposes = copy;
 }
