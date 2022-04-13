@@ -46,6 +46,30 @@
       },
       "revId": "fc400505db2e6d1342ea3a623a094c2f34daba70",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "0869e397_1ca9276f",
+        "filename": "include/FruUtils.hpp",
+        "patchSetId": 3
+      },
+      "lineNbr": 87,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2022-04-13T19:26:18Z",
+      "side": 1,
+      "message": "Rule of thumb is:\n\nIs this going to be used to index into an stl container (vector, array) or buffer?  Use size_t\n\nIs this going to be used on a hardware interface that has a hard limit or signeness imposed by the standard (ie, i2c only has 7/11 bits of address fields), use the type that best fits the case, or match the type that the underlying sysfs API uses.\n\nIn this case, address is limited to 11 unsigned bits by the standard, so uint16_t makes sense there.  offset is almost certainly going to be used to directly index or slice into some kind of buffer (ie buffer[offset]) so it should probably be size_t.\n\n\nWith the above said, we\u0027re wildly inconsistent here.   I do think off_t is the wrong thing to be using when we\u0027re not operating on a file.\n\n\n\u003eYeah, the signedness of off_t is probably unnecessary for what we\u0027re likely to be doing with it, but given that it\u0027s got plenty of range for FRU EEPROM sized things I don\u0027t think it\u0027ll ever be a problem, and seems preferable to me in terms of communicating intent.\n\nThe problem becomes when you try to use it on a buffer, now every time you want to do;\n\nbuffer[myOffT], you have to do two range checks, one for \u003c 0 and one for \u003e buffer.size(), and with the compiler options, you have to do a static_cast\u003csize_t\u003e(myOffT) to make the compiler happy with you.  That ends up being kinda messy.",
+      "parentUuid": "c73b9a1d_fdf13705",
+      "range": {
+        "startLine": 87,
+        "startChar": 64,
+        "endLine": 87,
+        "endChar": 69
+      },
+      "revId": "fc400505db2e6d1342ea3a623a094c2f34daba70",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }
