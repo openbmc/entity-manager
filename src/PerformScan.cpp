@@ -247,19 +247,21 @@ PerformScan::PerformScan(nlohmann::json& systemConfiguration,
 static void pruneRecordExposes(nlohmann::json& record)
 {
     auto findExposes = record.find("Exposes");
-    if (findExposes != record.end())
+    if (findExposes == record.end())
     {
-        auto copy = nlohmann::json::array();
-        for (auto& expose : *findExposes)
-        {
-            if (expose.is_null())
-            {
-                continue;
-            }
-            copy.emplace_back(expose);
-        }
-        *findExposes = copy;
+        return;
     }
+
+    auto copy = nlohmann::json::array();
+    for (auto& expose : *findExposes)
+    {
+        if (expose.is_null())
+        {
+            continue;
+        }
+        copy.emplace_back(expose);
+    }
+    *findExposes = copy;
 }
 
 void PerformScan::run()
