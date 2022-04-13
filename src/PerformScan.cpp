@@ -333,49 +333,48 @@ void PerformScan::run()
                         getRecordName(itr->interface, probeName);
 
                     auto fromLastJson = lastJson.find(recordName);
-                    if (fromLastJson != lastJson.end())
+                    if (fromLastJson == lastJson.end())
                     {
-                        pruneRecordExposes(*fromLastJson);
-
-                        // keep user changes
-                        _systemConfiguration[recordName] = *fromLastJson;
-                        _missingConfigurations.erase(recordName);
-
-                        // We've processed the device, remove it and advance the
-                        // iterator
-                        itr = foundDevices.erase(itr);
-
-                        if (hasTemplateName)
-                        {
-                            auto nameIt = fromLastJson->find("Name");
-                            if (nameIt == fromLastJson->end())
-                            {
-                                std::cerr << "Last JSON Illegal\n";
-                                continue;
-                            }
-                            int index = 0;
-                            auto str =
-                                nameIt->get<std::string>().substr(indexIdx);
-                            auto [p, ec] = std::from_chars(
-                                str.data(), str.data() + str.size(), index);
-                            if (ec != std::errc())
-                            {
-                                continue; // non-numeric replacement
-                            }
-                            usedNames.insert(nameIt.value());
-                            auto usedIt = std::find(indexes.begin(),
-                                                    indexes.end(), index);
-
-                            if (usedIt == indexes.end())
-                            {
-                                continue; // less items now
-                            }
-                            indexes.erase(usedIt);
-                        }
-
+                        itr++;
                         continue;
                     }
-                    itr++;
+
+                    pruneRecordExposes(*fromLastJson);
+
+                    // keep user changes
+                    _systemConfiguration[recordName] = *fromLastJson;
+                    _missingConfigurations.erase(recordName);
+
+                    // We've processed the device, remove it and advance the
+                    // iterator
+                    itr = foundDevices.erase(itr);
+
+                    if (hasTemplateName)
+                    {
+                        auto nameIt = fromLastJson->find("Name");
+                        if (nameIt == fromLastJson->end())
+                        {
+                            std::cerr << "Last JSON Illegal\n";
+                            continue;
+                        }
+                        int index = 0;
+                        auto str = nameIt->get<std::string>().substr(indexIdx);
+                        auto [p, ec] = std::from_chars(
+                            str.data(), str.data() + str.size(), index);
+                        if (ec != std::errc())
+                        {
+                            continue; // non-numeric replacement
+                        }
+                        usedNames.insert(nameIt.value());
+                        auto usedIt =
+                            std::find(indexes.begin(), indexes.end(), index);
+
+                        if (usedIt == indexes.end())
+                        {
+                            continue; // less items now
+                        }
+                        indexes.erase(usedIt);
+                    }
                 }
 
                 std::optional<std::string> replaceStr;
