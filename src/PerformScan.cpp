@@ -263,6 +263,43 @@ static void pruneRecordExposes(nlohmann::json& record)
     *findExposes = copy;
 }
 
+static void recordDiscoveredIdentifiers(std::set<nlohmann::json>& usedNames,
+                                        std::list<size_t>& indexes,
+                                        const std::string& probeName,
+                                        const nlohmann::json& fromLastJson)
+{
+    size_t indexIdx = probeName.find('$');
+    bool hasTemplateName = (indexIdx != std::string::npos);
+
+    if (!hasTemplateName)
+    {
+        return;
+    }
+
+    auto nameIt = fromLastJson.find("Name");
+    if (nameIt == fromLastJson.end())
+    {
+        std::cerr << "Last JSON Illegal\n";
+        return;
+    }
+
+    int index = 0;
+    auto str = nameIt->get<std::string>().substr(indexIdx);
+    auto [p, ec] = std::from_chars(str.data(), str.data() + str.size(), index);
+    if (ec != std::errc())
+    {
+        return; // non-numeric replacement
+    }
+
+    usedNames.insert(nameIt.value());
+
+    auto usedIt = std::find(indexes.begin(), indexes.end(), index);
+    if (usedIt != indexes.end())
+    {
+        indexes.erase(usedIt);
+    }
+}
+
 void PerformScan::run()
 {
     boost::container::flat_set<std::string> dbusProbeInterfaces;
@@ -321,9 +358,6 @@ void PerformScan::run()
                 std::list<size_t> indexes(foundDevices.size());
                 std::iota(indexes.begin(), indexes.end(), 1);
 
-                size_t indexIdx = probeName.find('$');
-                bool hasTemplateName = (indexIdx != std::string::npos);
-
                 // copy over persisted configurations and make sure we remove
                 // indexes that are already used
                 for (auto itr = foundDevices.begin();
@@ -349,35 +383,8 @@ void PerformScan::run()
                     // iterator
                     itr = foundDevices.erase(itr);
 
-                    if (!hasTemplateName)
-                    {
-                        continue;
-                    }
-
-                    auto nameIt = fromLastJson->find("Name");
-                    if (nameIt == fromLastJson->end())
-                    {
-                        std::cerr << "Last JSON Illegal\n";
-                        continue;
-                    }
-
-                    int index = 0;
-                    auto str = nameIt->get<std::string>().substr(indexIdx);
-                    auto [p, ec] = std::from_chars(
-                        str.data(), str.data() + str.size(), index);
-                    if (ec != std::errc())
-                    {
-                        continue; // non-numeric replacement
-                    }
-
-                    usedNames.insert(nameIt.value());
-                    auto usedIt =
-                        std::find(indexes.begin(), indexes.end(), index);
-
-                    if (usedIt != indexes.end())
-                    {
-                        indexes.erase(usedIt);
-                    }
+                    recordDiscoveredIdentifiers(usedNames, indexes, probeName,
+                                                *fromLastJson);
                 }
 
                 std::optional<std::string> replaceStr;
