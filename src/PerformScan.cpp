@@ -269,9 +269,7 @@ static void recordDiscoveredIdentifiers(std::set<nlohmann::json>& usedNames,
                                         const nlohmann::json& fromLastJson)
 {
     size_t indexIdx = probeName.find('$');
-    bool hasTemplateName = (indexIdx != std::string::npos);
-
-    if (!hasTemplateName)
+    if (indexIdx != std::string::npos)
     {
         return;
     }
