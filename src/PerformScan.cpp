@@ -367,9 +367,9 @@ static void applyDisableExposeAction(nlohmann::json& exposedObject,
 static void applyConfigExposeActions(std::vector<std::string>& matches,
                                      nlohmann::json& expose,
                                      const std::string& propertyName,
-                                     nlohmann::json& configList)
+                                     nlohmann::json& configExposes)
 {
-    for (auto& exposedObject : configList)
+    for (auto& exposedObject : configExposes)
     {
         auto match = findExposeActionRecord(matches, exposedObject);
         if (match)
