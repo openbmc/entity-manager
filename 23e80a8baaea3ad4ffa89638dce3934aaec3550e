@@ -189,6 +189,30 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "7542f19c_f9c893ed",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 7
+      },
+      "lineNbr": 27,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2022-04-14T21:16:40Z",
+      "side": 1,
+      "message": "Gotcha.  Lets omit it for the moment.",
+      "parentUuid": "c57f523f_407f0a14",
+      "range": {
+        "startLine": 22,
+        "startChar": 0,
+        "endLine": 27,
+        "endChar": 10
+      },
+      "revId": "23e80a8baaea3ad4ffa89638dce3934aaec3550e",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "a79ba343_eb87964e",
@@ -238,6 +262,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "15c454c2_4b8831b1",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 7
+      },
+      "lineNbr": 30,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2022-04-14T21:16:40Z",
+      "side": 1,
+      "message": "Type: \"BMC\"\n\nwould be generally how we would model it.",
+      "parentUuid": "004a17e3_4d59dc47",
+      "range": {
+        "startLine": 30,
+        "startChar": 20,
+        "endLine": 30,
+        "endChar": 58
+      },
+      "revId": "23e80a8baaea3ad4ffa89638dce3934aaec3550e",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "2c2bdfad_1760d353",
         "filename": "/COMMIT_MSG",
         "patchSetId": 7
@@ -273,6 +321,30 @@
       "side": 1,
       "message": "This line is purely for showing that \"a property can be added to the exposed `Inventory.Item` object and its contents do not carry any meaning.",
       "parentUuid": "2c2bdfad_1760d353",
+      "range": {
+        "startLine": 31,
+        "startChar": 0,
+        "endLine": 31,
+        "endChar": 63
+      },
+      "revId": "23e80a8baaea3ad4ffa89638dce3934aaec3550e",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "004adbeb_d540463a",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 7
+      },
+      "lineNbr": 31,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2022-04-14T21:16:40Z",
+      "side": 1,
+      "message": "Lets just omit this for the moment.  As-written, it doesn\u0027t look right for any system, and I suspect that will confuse people.",
+      "parentUuid": "f0934005_11a0c54d",
       "range": {
         "startLine": 31,
         "startChar": 0,
@@ -403,6 +475,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "d386b41f_cb68a4b6",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 7
+      },
+      "lineNbr": 39,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2022-04-14T21:16:40Z",
+      "side": 1,
+      "message": "In examples, lets try to focus on things that we would expect to see.  Yes, error handling is important, but lets keep the error handling examples relegated to unit tests if we can, so people don\u0027t make the same mistake I did and think they\u0027re a valid example.",
+      "parentUuid": "66907425_bc04a681",
+      "range": {
+        "startLine": 33,
+        "startChar": 0,
+        "endLine": 39,
+        "endChar": 13
+      },
+      "revId": "23e80a8baaea3ad4ffa89638dce3934aaec3550e",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "aa5ac1af_9daf2e6d",
         "filename": "/COMMIT_MSG",
         "patchSetId": 7
@@ -497,6 +593,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "d46ac671_6cad5457",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 7
+      },
+      "lineNbr": 91,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2022-04-14T21:16:40Z",
+      "side": 1,
+      "message": "\u003e probe are on the same level (board/boardA and board/boardB, rather than \"board/boardA/boardB\").\n\nYou mean the dbus interfaces?  Yes, all entities are flat on dbus;  That\u0027s the intent so that entities can be removed and added without their child objects being added or removed.\n\n\n\u003e The intent of Exposing an Inventory.Item does not supersede the practice of splitting items into multiple .json files, for example in the intended use case, the Exposed item (BMC) usually cannot be split from its board using regular methods.\n\nThis detail would\u0027ve been really helpful in your commit message.",
+      "parentUuid": "d443b913_d4d13ceb",
+      "range": {
+        "startLine": 91,
+        "startChar": 0,
+        "endLine": 91,
+        "endChar": 73
+      },
+      "revId": "23e80a8baaea3ad4ffa89638dce3934aaec3550e",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "97fd887c_c7243e12",
         "filename": "/COMMIT_MSG",
         "patchSetId": 7
@@ -526,6 +646,24 @@
       "side": 1,
       "message": "I think it depends on the viewpoint.\nFrom the conciseness point of view, editing every file is too redundant and doesn\u0027t make sense.\nFrom the completeness point of view, we\u0027re just describing the boards in a bit more detail, so it makes sense.\n\nI think if the BMC cannot autonomously determine its physical location (I am not sure with my current knowledge), this information needs to be injected in some form, maybe by adding a BMC entry to the .json configs or some other methods.",
       "parentUuid": "97fd887c_c7243e12",
+      "revId": "23e80a8baaea3ad4ffa89638dce3934aaec3550e",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "162a30f0_0277cbd7",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 7
+      },
+      "lineNbr": 112,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2022-04-14T21:16:40Z",
+      "side": 1,
+      "message": "\u003e I think it depends on the viewpoint.\n\u003e From the conciseness point of view, editing every file is too redundant and doesn\u0027t make sense.\n\u003e From the completeness point of view, we\u0027re just describing the boards in a bit more detail, so it makes sense.\n\u003e \n\u003e I think if the BMC cannot autonomously determine its physical location (I am not sure with my current knowledge), this information needs to be injected in some form, maybe by adding a BMC entry to the .json configs or some other methods.\n\nAgreed.  I wonder if we need to promote \"This is the config this bmc lives on\" to a higher scope so we can do stuff like this without having to edit every baseboard file.",
+      "parentUuid": "937c6aab_b2920ed2",
       "revId": "23e80a8baaea3ad4ffa89638dce3934aaec3550e",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
@@ -614,6 +752,30 @@
       "side": 1,
       "message": "How about:\n\n1. Add a new flag \"HasBMC\" for board .json\u0027s that indicate the board has a BMC on it (it effectively replaces the \"Exposes:[{\"Type\":\"Bmc\",\"Name\":\"Bmc\"}]\" snippet in the Exposes field)\n\n2. Add a new flag \"SubItems\" to differentiate from the \"Exposes\" field (all objects in SubItems are prepended with \"xyz.openbmc_project.Inventory.Item.\" while all objects in Exposes are still prepended with \"xyz.openbmc_project.Configuration.\"",
       "parentUuid": "2a7b8829_a3d66206",
+      "range": {
+        "startLine": 725,
+        "startChar": 0,
+        "endLine": 739,
+        "endChar": 13
+      },
+      "revId": "23e80a8baaea3ad4ffa89638dce3934aaec3550e",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "dceaf2f4_236e4155",
+        "filename": "src/EntityManager.cpp",
+        "patchSetId": 7
+      },
+      "lineNbr": 739,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2022-04-14T21:16:40Z",
+      "side": 1,
+      "message": "\u003e How about:\n\u003e \n\u003e 1. Add a new flag \"HasBMC\" for board .json\u0027s that indicate the board has a BMC on it (it effectively replaces the \"Exposes:[{\"Type\":\"Bmc\",\"Name\":\"Bmc\"}]\" snippet in the Exposes field)\n\nCan you post an example somewhere?  Also, can we make the parameter \"HasThisBMC\" or something that indicates that it\u0027s not just \"a\" bmc, but literally the bmc we\u0027re running on (systems commonly have multiple bmcs).\n\nAssuming I\u0027m visualizing what you\u0027re talking about, this seems like the way I would go.\n\n\u003e \n\u003e 2. Add a new flag \"SubItems\" to differentiate from the \"Exposes\" field (all objects in SubItems are prepended with \"xyz.openbmc_project.Inventory.Item.\" while all objects in Exposes are still prepended with \"xyz.openbmc_project.Configuration.\"\n\nIf this is a route you want to go down, lets talk through it, but it seems like a case where we would want multiple files (or maybe multiple definitions in one file) with associations between them to denote their connectedness, but, lets scope out what you\u0027re thinking and see if we can come to something similar.",
+      "parentUuid": "a0c5a956_74a0fdd3",
       "range": {
         "startLine": 725,
         "startChar": 0,
