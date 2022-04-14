@@ -301,17 +301,17 @@ static void recordDiscoveredIdentifiers(std::set<nlohmann::json>& usedNames,
 static bool extractExposeActionRecordNames(std::vector<std::string>& matches,
                                            nlohmann::json::iterator& keyPair)
 {
-    if (keyPair.value().type() == nlohmann::json::value_t::string)
+    if (keyPair.value().is_string())
     {
         matches.emplace_back(keyPair.value());
         return true;
     }
 
-    if (keyPair.value().type() == nlohmann::json::value_t::array)
+    if (keyPair.value().is_array())
     {
         for (const auto& value : keyPair.value())
         {
-            if (value.type() != nlohmann::json::value_t::string)
+            if (!value.is_string())
             {
                 std::cerr << "Value is invalid type " << value << "\n";
                 break;
