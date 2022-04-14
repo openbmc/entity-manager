@@ -518,13 +518,10 @@ void PerformScan::run()
                             for (auto& [configId, config] :
                                  _systemConfiguration.items())
                             {
-                                if (isDisable)
+                                // don't disable ourselves
+                                if (isDisable && configId == recordName)
                                 {
-                                    // don't disable ourselves
-                                    if (configId == recordName)
-                                    {
-                                        continue;
-                                    }
+                                    continue;
                                 }
                                 auto configListFind = config.find("Exposes");
 
