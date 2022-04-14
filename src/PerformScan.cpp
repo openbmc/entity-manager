@@ -381,6 +381,57 @@ static void applyConfigExposeActions(std::vector<std::string>& matches,
     }
 }
 
+static void applyExposeActions(nlohmann::json& systemConfiguration,
+                               const std::string& recordName,
+                               nlohmann::json& expose,
+                               nlohmann::json::iterator& keyPair)
+{
+    bool isBind = boost::starts_with(keyPair.key(), "Bind");
+    bool isDisable = keyPair.key() == "DisableNode";
+    bool isExposeAction = isBind || isDisable;
+
+    if (!isExposeAction)
+    {
+        return;
+    }
+
+    std::vector<std::string> matches;
+
+    if (!extractExposeActionRecordNames(matches, keyPair))
+    {
+        return;
+    }
+
+    for (auto& [configId, config] : systemConfiguration.items())
+    {
+        // don't disable ourselves
+        if (isDisable && configId == recordName)
+        {
+            continue;
+        }
+
+        auto configListFind = config.find("Exposes");
+        if (configListFind == config.end())
+        {
+            continue;
+        }
+
+        if (!configListFind->is_array())
+        {
+            continue;
+        }
+
+        applyConfigExposeActions(matches, expose, keyPair.key(),
+                                 *configListFind);
+    }
+
+    if (!matches.empty())
+    {
+        std::cerr << "configuration file dependency error, could not find "
+                  << keyPair.key() << " " << keyPair.value() << "\n";
+    }
+}
+
 void PerformScan::run()
 {
     boost::container::flat_set<std::string> dbusProbeInterfaces;
@@ -559,55 +610,8 @@ void PerformScan::run()
                             templateCharReplace(keyPair, dbusObject,
                                                 foundDeviceIdx, replaceStr);
 
-                            bool isBind =
-                                boost::starts_with(keyPair.key(), "Bind");
-                            bool isDisable = keyPair.key() == "DisableNode";
-                            bool isExposeAction = isBind || isDisable;
-
-                            if (!isExposeAction)
-                            {
-                                continue;
-                            }
-
-                            std::vector<std::string> matches;
-                            if (!extractExposeActionRecordNames(matches,
-                                                                keyPair))
-                            {
-                                continue;
-                            }
-
-                            for (auto& [configId, config] :
-                                 _systemConfiguration.items())
-                            {
-                                // don't disable ourselves
-                                if (isDisable && configId == recordName)
-                                {
-                                    continue;
-                                }
-
-                                auto configListFind = config.find("Exposes");
-                                if (configListFind == config.end())
-                                {
-                                    continue;
-                                }
-
-                                if (!configListFind->is_array())
-                                {
-                                    continue;
-                                }
-
-                                applyConfigExposeActions(matches, expose,
-                                                         keyPair.key(),
-                                                         *configListFind);
-                            }
-                            if (!matches.empty())
-                            {
-                                std::cerr << "configuration file "
-                                             "dependency error, "
-                                             "could not find "
-                                          << keyPair.key() << " "
-                                          << keyPair.value() << "\n";
-                            }
+                            applyExposeActions(_systemConfiguration, recordName,
+                                               expose, keyPair);
                         }
                     }
                     // overwrite ourselves with cleaned up version
