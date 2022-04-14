@@ -331,10 +331,9 @@ static std::optional<std::vector<std::string>::iterator>
     findExposeActionRecord(std::vector<std::string>& matches,
                            const nlohmann::json& record)
 {
-    auto matchIt =
-        std::find_if(matches.begin(), matches.end(),
-                     [name = (record)["Name"].get<std::string>()](
-                         const std::string& s) { return s == name; });
+    const auto& name = (record)["Name"].get_ref<const std::string&>();
+    auto compare = [&name](const std::string& s) { return s == name; };
+    auto matchIt = std::find_if(matches.begin(), matches.end(), compare);
 
     if (matchIt == matches.end())
     {
