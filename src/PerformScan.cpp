@@ -343,6 +343,27 @@ static std::optional<std::vector<std::string>::iterator>
     return matchIt;
 }
 
+static void applyBindExposeAction(nlohmann::json& exposedObject,
+                                  nlohmann::json& expose,
+                                  const std::string& propertyName)
+{
+    if (boost::starts_with(propertyName, "Bind"))
+    {
+        std::string bind = propertyName.substr(sizeof("Bind") - 1);
+        exposedObject["Status"] = "okay";
+        expose[bind] = exposedObject;
+    }
+}
+
+static void applyDisableExposeAction(nlohmann::json& exposedObject,
+                                     const std::string& propertyName)
+{
+    if (propertyName == "DisableNode")
+    {
+        exposedObject["Status"] = "disabled";
+    }
+}
+
 void PerformScan::run()
 {
     boost::container::flat_set<std::string> dbusProbeInterfaces;
@@ -570,18 +591,10 @@ void PerformScan::run()
 
                                     foundMatches.insert(**match);
 
-                                    if (isBind)
-                                    {
-                                        std::string bind = keyPair.key().substr(
-                                            sizeof("Bind") - 1);
-
-                                        exposedObject["Status"] = "okay";
-                                        expose[bind] = exposedObject;
-                                    }
-                                    else if (isDisable)
-                                    {
-                                        exposedObject["Status"] = "disabled";
-                                    }
+                                    applyBindExposeAction(exposedObject, expose,
+                                                          keyPair.key());
+                                    applyDisableExposeAction(exposedObject,
+                                                             keyPair.key());
                                 }
                             }
                             if (foundMatches.size() != matches.size())
