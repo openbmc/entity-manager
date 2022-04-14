@@ -364,6 +364,26 @@ static void applyDisableExposeAction(nlohmann::json& exposedObject,
     }
 }
 
+static void applyConfigExposeActions(std::vector<std::string>& matches,
+                                     nlohmann::json& expose,
+                                     const std::string& propertyName,
+                                     nlohmann::json& configList)
+{
+    for (auto& exposedObject : configList)
+    {
+        auto match = findExposeActionRecord(matches, exposedObject);
+        if (!match)
+        {
+            continue;
+        }
+
+        matches.erase(*match);
+
+        applyBindExposeAction(exposedObject, expose, propertyName);
+        applyDisableExposeAction(exposedObject, propertyName);
+    }
+}
+
 void PerformScan::run()
 {
     boost::container::flat_set<std::string> dbusProbeInterfaces;
@@ -579,22 +599,9 @@ void PerformScan::run()
                                     continue;
                                 }
 
-                                for (auto& exposedObject : *configListFind)
-                                {
-                                    auto match = findExposeActionRecord(
-                                        matches, exposedObject);
-                                    if (!match)
-                                    {
-                                        continue;
-                                    }
-
-                                    matches.erase(*match);
-
-                                    applyBindExposeAction(exposedObject, expose,
-                                                          keyPair.key());
-                                    applyDisableExposeAction(exposedObject,
-                                                             keyPair.key());
-                                }
+                                applyConfigExposeActions(matches, expose,
+                                                         keyPair.key(),
+                                                         *configListFind);
                             }
                             if (!matches.empty())
                             {
