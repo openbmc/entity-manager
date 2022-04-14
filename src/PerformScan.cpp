@@ -298,6 +298,35 @@ static void recordDiscoveredIdentifiers(std::set<nlohmann::json>& usedNames,
     }
 }
 
+static bool extractExposeActionRecordNames(std::vector<std::string>& matches,
+                                           nlohmann::json::iterator& keyPair)
+{
+    if (keyPair.value().type() == nlohmann::json::value_t::string)
+    {
+        matches.emplace_back(keyPair.value());
+    }
+    else if (keyPair.value().type() == nlohmann::json::value_t::array)
+    {
+        for (const auto& value : keyPair.value())
+        {
+            if (value.type() != nlohmann::json::value_t::string)
+            {
+                std::cerr << "Value is invalid type " << value << "\n";
+                break;
+            }
+            matches.emplace_back(value);
+        }
+    }
+    else
+    {
+        std::cerr << "Value is invalid type " << keyPair.key() << "\n";
+
+        return false;
+    }
+
+    return true;
+}
+
 void PerformScan::run()
 {
     boost::container::flat_set<std::string> dbusProbeInterfaces;
@@ -487,30 +516,9 @@ void PerformScan::run()
                             }
 
                             std::vector<std::string> matches;
-                            if (keyPair.value().type() ==
-                                nlohmann::json::value_t::string)
+                            if (!extractExposeActionRecordNames(matches,
+                                                                keyPair))
                             {
-                                matches.emplace_back(keyPair.value());
-                            }
-                            else if (keyPair.value().type() ==
-                                     nlohmann::json::value_t::array)
-                            {
-                                for (const auto& value : keyPair.value())
-                                {
-                                    if (value.type() !=
-                                        nlohmann::json::value_t::string)
-                                    {
-                                        std::cerr << "Value is invalid type "
-                                                  << value << "\n";
-                                        break;
-                                    }
-                                    matches.emplace_back(value);
-                                }
-                            }
-                            else
-                            {
-                                std::cerr << "Value is invalid type "
-                                          << keyPair.key() << "\n";
                                 continue;
                             }
 
