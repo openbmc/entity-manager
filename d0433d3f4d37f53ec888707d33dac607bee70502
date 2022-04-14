@@ -22,6 +22,30 @@
       },
       "revId": "d0433d3f4d37f53ec888707d33dac607bee70502",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c74c4be1_acae7aab",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 18,
+      "author": {
+        "id": 1000338
+      },
+      "writtenOn": "2022-04-14T18:29:57Z",
+      "side": 1,
+      "message": "I took 5s and tripled it, but no other particular reason. We have been hitting this issue on our systems when the BMC reboots with the Host still up and the rogue host application sending down error logs every 1s.\n\nSince the host can timeout waiting for the BMC, I tried to use a time much lesser than that timeout.",
+      "parentUuid": "f71d69ef_050a556c",
+      "range": {
+        "startLine": 18,
+        "startChar": 40,
+        "endLine": 18,
+        "endChar": 43
+      },
+      "revId": "d0433d3f4d37f53ec888707d33dac607bee70502",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }
