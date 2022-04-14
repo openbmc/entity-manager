@@ -364,20 +364,20 @@ void PerformScan::run()
                     std::string recordName =
                         getRecordName(itr->interface, probeName);
 
-                    auto fromLastJson = lastJson.find(recordName);
-                    if (fromLastJson == lastJson.end())
+                    auto record = lastJson.find(recordName);
+                    if (record == lastJson.end())
                     {
                         itr++;
                         continue;
                     }
 
-                    pruneRecordExposes(*fromLastJson);
+                    pruneRecordExposes(*record);
 
                     recordDiscoveredIdentifiers(usedNames, indexes, probeName,
-                                                *fromLastJson);
+                                                *record);
 
                     // keep user changes
-                    _systemConfiguration[recordName] = *fromLastJson;
+                    _systemConfiguration[recordName] = *record;
                     _missingConfigurations.erase(recordName);
 
                     // We've processed the device, remove it and advance the
