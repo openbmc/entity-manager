@@ -71,6 +71,30 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "52ad3dd0_f5f62761",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 7
+      },
+      "lineNbr": 16,
+      "author": {
+        "id": 1000500
+      },
+      "writtenOn": "2022-04-14T17:25:00Z",
+      "side": 1,
+      "message": "Added some more description.",
+      "parentUuid": "5d67fa61_585fc19b",
+      "range": {
+        "startLine": 14,
+        "startChar": 0,
+        "endLine": 16,
+        "endChar": 19
+      },
+      "revId": "23e80a8baaea3ad4ffa89638dce3934aaec3550e",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "d584cb0a_438b7949",
@@ -84,6 +108,30 @@
       "writtenOn": "2022-04-12T20:19:21Z",
       "side": 1,
       "message": "Can you please check a \"full\" example, including a baseboard, dcscm module, and this content into an EM review somewhere.  It doesn\u0027t have to be complete, but given that this is non-trivial, we need to figure out how to model it.",
+      "range": {
+        "startLine": 19,
+        "startChar": 0,
+        "endLine": 19,
+        "endChar": 50
+      },
+      "revId": "23e80a8baaea3ad4ffa89638dce3934aaec3550e",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1ad515b1_e50fbf9e",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 7
+      },
+      "lineNbr": 19,
+      "author": {
+        "id": 1000500
+      },
+      "writtenOn": "2022-04-14T17:25:00Z",
+      "side": 1,
+      "message": "Ack\n\nWill also try to come up with some example that cover the different possible fields (\"HasBMC\", \"SubItem\")",
+      "parentUuid": "d584cb0a_438b7949",
       "range": {
         "startLine": 19,
         "startChar": 0,
@@ -117,6 +165,30 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "c57f523f_407f0a14",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 7
+      },
+      "lineNbr": 27,
+      "author": {
+        "id": 1000500
+      },
+      "writtenOn": "2022-04-14T17:25:00Z",
+      "side": 1,
+      "message": "They are only included here to show that existing Configurations can be exposed together with the newly-introduced Inventory.Item\u0027s.",
+      "parentUuid": "08f1e1ae_e6a3cc7a",
+      "range": {
+        "startLine": 22,
+        "startChar": 0,
+        "endLine": 27,
+        "endChar": 10
+      },
+      "revId": "23e80a8baaea3ad4ffa89638dce3934aaec3550e",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "a79ba343_eb87964e",
@@ -140,6 +212,30 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "004a17e3_4d59dc47",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 7
+      },
+      "lineNbr": 30,
+      "author": {
+        "id": 1000500
+      },
+      "writtenOn": "2022-04-14T17:25:00Z",
+      "side": 1,
+      "message": "This change allows a user to expose a `Configuration` as well as an `Item` and requires the user to fully-qualify the `Item` (thus the check in line 727.)\n\nI\u0027m not sure about what a better solution should look like ..",
+      "parentUuid": "a79ba343_eb87964e",
+      "range": {
+        "startLine": 30,
+        "startChar": 20,
+        "endLine": 30,
+        "endChar": 58
+      },
+      "revId": "23e80a8baaea3ad4ffa89638dce3934aaec3550e",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "2c2bdfad_1760d353",
@@ -153,6 +249,30 @@
       "writtenOn": "2022-04-12T20:19:21Z",
       "side": 1,
       "message": "I\u0027m not sure what this is trying to represent.  The BMC is not on a slot, and on the DC-SCM system you\u0027re working on, I would expect the \"BMC\" node to be on the DC-SCM board itself, not on the \"superboard\"",
+      "range": {
+        "startLine": 31,
+        "startChar": 0,
+        "endLine": 31,
+        "endChar": 63
+      },
+      "revId": "23e80a8baaea3ad4ffa89638dce3934aaec3550e",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "f0934005_11a0c54d",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 7
+      },
+      "lineNbr": 31,
+      "author": {
+        "id": 1000500
+      },
+      "writtenOn": "2022-04-14T17:25:00Z",
+      "side": 1,
+      "message": "This line is purely for showing that \"a property can be added to the exposed `Inventory.Item` object and its contents do not carry any meaning.",
+      "parentUuid": "2c2bdfad_1760d353",
       "range": {
         "startLine": 31,
         "startChar": 0,
@@ -257,6 +377,30 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "66907425_bc04a681",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 7
+      },
+      "lineNbr": 39,
+      "author": {
+        "id": 1000500
+      },
+      "writtenOn": "2022-04-14T17:25:00Z",
+      "side": 1,
+      "message": "This is just a contrived wrong configuration for showing that such configurations are rejected by the code in this change list.",
+      "parentUuid": "84051115_4be0433a",
+      "range": {
+        "startLine": 33,
+        "startChar": 0,
+        "endLine": 39,
+        "endChar": 13
+      },
+      "revId": "23e80a8baaea3ad4ffa89638dce3934aaec3550e",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "aa5ac1af_9daf2e6d",
@@ -270,6 +414,30 @@
       "writtenOn": "2022-04-12T20:19:21Z",
       "side": 1,
       "message": "????",
+      "range": {
+        "startLine": 45,
+        "startChar": 0,
+        "endLine": 45,
+        "endChar": 16
+      },
+      "revId": "23e80a8baaea3ad4ffa89638dce3934aaec3550e",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "74f51c02_4109962a",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 7
+      },
+      "lineNbr": 45,
+      "author": {
+        "id": 1000500
+      },
+      "writtenOn": "2022-04-14T17:25:00Z",
+      "side": 1,
+      "message": "This is a random property for showing the existing functionality of E-M works normally. It\u0027s now removed to avoid confusion.",
+      "parentUuid": "aa5ac1af_9daf2e6d",
       "range": {
         "startLine": 45,
         "startChar": 0,
@@ -303,6 +471,30 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "d443b913_d4d13ceb",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 7
+      },
+      "lineNbr": 91,
+      "author": {
+        "id": 1000500
+      },
+      "writtenOn": "2022-04-14T17:25:00Z",
+      "side": 1,
+      "message": "It looks like the Found() probe type doesn\u0027t create sub-objects; the object created and the object that serves as the Found() probe are on the same level (board/boardA and board/boardB, rather than \"board/boardA/boardB\").\n\nThe intent of Exposing an Inventory.Item does not supersede the practice of splitting items into multiple .json files, for example in the intended use case, the Exposed item (BMC) usually cannot be split from its board using regular methods.",
+      "parentUuid": "a0a13116_5a5bbd64",
+      "range": {
+        "startLine": 91,
+        "startChar": 0,
+        "endLine": 91,
+        "endChar": 73
+      },
+      "revId": "23e80a8baaea3ad4ffa89638dce3934aaec3550e",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "97fd887c_c7243e12",
@@ -316,6 +508,24 @@
       "writtenOn": "2022-04-12T20:19:21Z",
       "side": 1,
       "message": "One thing I wonder a little is if we can automatically detect any of this.  Presumably, everything running OpenBMC has a BMC, so does it make sense to make edits to every single mainboard file to add a BMC inventory item?",
+      "revId": "23e80a8baaea3ad4ffa89638dce3934aaec3550e",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "937c6aab_b2920ed2",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 7
+      },
+      "lineNbr": 112,
+      "author": {
+        "id": 1000500
+      },
+      "writtenOn": "2022-04-14T17:25:00Z",
+      "side": 1,
+      "message": "I think it depends on the viewpoint.\nFrom the conciseness point of view, editing every file is too redundant and doesn\u0027t make sense.\nFrom the completeness point of view, we\u0027re just describing the boards in a bit more detail, so it makes sense.\n\nI think if the BMC cannot autonomously determine its physical location (I am not sure with my current knowledge), this information needs to be injected in some form, maybe by adding a BMC entry to the .json configs or some other methods.",
+      "parentUuid": "97fd887c_c7243e12",
       "revId": "23e80a8baaea3ad4ffa89638dce3934aaec3550e",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
@@ -343,6 +553,30 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "67c57db4_54742f8d",
+        "filename": "src/EntityManager.cpp",
+        "patchSetId": 7
+      },
+      "lineNbr": 283,
+      "author": {
+        "id": 1000500
+      },
+      "writtenOn": "2022-04-14T17:25:00Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "578645cf_942f9fc7",
+      "range": {
+        "startLine": 283,
+        "startChar": 40,
+        "endLine": 283,
+        "endChar": 45
+      },
+      "revId": "23e80a8baaea3ad4ffa89638dce3934aaec3550e",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "2a7b8829_a3d66206",
@@ -356,6 +590,30 @@
       "writtenOn": "2022-04-12T20:19:21Z",
       "side": 1,
       "message": "I\u0027d really prefer we not special case hardcoded names in the config.  This makes me wonder if we modeled the config files properly.",
+      "range": {
+        "startLine": 725,
+        "startChar": 0,
+        "endLine": 739,
+        "endChar": 13
+      },
+      "revId": "23e80a8baaea3ad4ffa89638dce3934aaec3550e",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a0c5a956_74a0fdd3",
+        "filename": "src/EntityManager.cpp",
+        "patchSetId": 7
+      },
+      "lineNbr": 739,
+      "author": {
+        "id": 1000500
+      },
+      "writtenOn": "2022-04-14T17:25:00Z",
+      "side": 1,
+      "message": "How about:\n\n1. Add a new flag \"HasBMC\" for board .json\u0027s that indicate the board has a BMC on it (it effectively replaces the \"Exposes:[{\"Type\":\"Bmc\",\"Name\":\"Bmc\"}]\" snippet in the Exposes field)\n\n2. Add a new flag \"SubItems\" to differentiate from the \"Exposes\" field (all objects in SubItems are prepended with \"xyz.openbmc_project.Inventory.Item.\" while all objects in Exposes are still prepended with \"xyz.openbmc_project.Configuration.\"",
+      "parentUuid": "2a7b8829_a3d66206",
       "range": {
         "startLine": 725,
         "startChar": 0,
