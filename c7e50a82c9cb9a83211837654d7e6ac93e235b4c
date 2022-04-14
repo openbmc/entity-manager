@@ -1,0 +1,96 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6525f79c_d30f8b78",
+        "filename": "src/Utils.cpp",
+        "patchSetId": 5
+      },
+      "lineNbr": 337,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2022-04-14T15:20:29Z",
+      "side": 1,
+      "message": "please make this a string_view, and use remove_prefix(2).",
+      "range": {
+        "startLine": 337,
+        "startChar": 8,
+        "endLine": 337,
+        "endChar": 19
+      },
+      "revId": "c7e50a82c9cb9a83211837654d7e6ac93e235b4c",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8a47dafe_16701fd0",
+        "filename": "src/Utils.cpp",
+        "patchSetId": 5
+      },
+      "lineNbr": 340,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2022-04-14T15:20:29Z",
+      "side": 1,
+      "message": "per the previous, shouldn\u0027t this be int (ie signed)?",
+      "range": {
+        "startLine": 340,
+        "startChar": 4,
+        "endLine": 340,
+        "endChar": 12
+      },
+      "revId": "c7e50a82c9cb9a83211837654d7e6ac93e235b4c",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "bb0f8320_6a001438",
+        "filename": "src/Utils.cpp",
+        "patchSetId": 5
+      },
+      "lineNbr": 343,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2022-04-14T15:20:29Z",
+      "side": 1,
+      "message": "Please don\u0027t use a terinary for this.  Set a variable for \"base\" and have it set to something different in the branch on line 335",
+      "range": {
+        "startLine": 343,
+        "startChar": 8,
+        "endLine": 343,
+        "endChar": 29
+      },
+      "revId": "c7e50a82c9cb9a83211837654d7e6ac93e235b4c",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "560aa930_c21f2d15",
+        "filename": "src/Utils.cpp",
+        "patchSetId": 5
+      },
+      "lineNbr": 344,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2022-04-14T15:20:29Z",
+      "side": 1,
+      "message": "You also need to check that you read into the end of the range you expected.",
+      "range": {
+        "startLine": 344,
+        "startChar": 8,
+        "endLine": 344,
+        "endChar": 29
+      },
+      "revId": "c7e50a82c9cb9a83211837654d7e6ac93e235b4c",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    }
+  ]
+}

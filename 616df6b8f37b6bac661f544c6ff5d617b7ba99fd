@@ -16,6 +16,24 @@
       "message": "Tried using of \u0027std::from_chars()\u0027 but it\u0027s a low-level API which can\u0027t cover all test cases so came back to the way in the first patch, \u0027stoull\u0027.\n\nPlease see the test failure details when it uses std::from_chars():\nhttps://jenkins.openbmc.org/job/ci-repository/41191/console",
       "revId": "616df6b8f37b6bac661f544c6ff5d617b7ba99fd",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "dc7cf419_26bdc563",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 6
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2022-04-14T15:20:29Z",
+      "side": 1,
+      "message": "It looks like there were some errors that didn\u0027t get handled.",
+      "parentUuid": "3ac27920_0da1ca3a",
+      "revId": "616df6b8f37b6bac661f544c6ff5d617b7ba99fd",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }
