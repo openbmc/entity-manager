@@ -327,6 +327,23 @@ static bool extractExposeActionRecordNames(std::vector<std::string>& matches,
     return false;
 }
 
+static std::optional<std::vector<std::string>::iterator>
+    findExposeActionRecord(std::vector<std::string>& matches,
+                           const nlohmann::json& exposedObject)
+{
+    auto matchIt =
+        std::find_if(matches.begin(), matches.end(),
+                     [name = (exposedObject)["Name"].get<std::string>()](
+                         const std::string& s) { return s == name; });
+
+    if (matchIt == matches.end())
+    {
+        return std::nullopt;
+    }
+
+    return matchIt;
+}
+
 void PerformScan::run()
 {
     boost::container::flat_set<std::string> dbusProbeInterfaces;
@@ -545,18 +562,14 @@ void PerformScan::run()
 
                                 for (auto& exposedObject : *configListFind)
                                 {
-                                    auto matchIt = std::find_if(
-                                        matches.begin(), matches.end(),
-                                        [name = (exposedObject)["Name"]
-                                                    .get<std::string>()](
-                                            const std::string& s) {
-                                            return s == name;
-                                        });
-                                    if (matchIt == matches.end())
+                                    auto match = findExposeActionRecord(
+                                        matches, exposedObject);
+                                    if (!match)
                                     {
                                         continue;
                                     }
-                                    foundMatches.insert(*matchIt);
+
+                                    foundMatches.insert(**match);
 
                                     if (isBind)
                                     {
