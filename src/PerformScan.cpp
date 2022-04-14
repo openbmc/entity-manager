@@ -523,13 +523,18 @@ void PerformScan::run()
                                 {
                                     continue;
                                 }
-                                auto configListFind = config.find("Exposes");
 
-                                if (configListFind == config.end() ||
-                                    !configListFind->is_array())
+                                auto configListFind = config.find("Exposes");
+                                if (configListFind == config.end())
                                 {
                                     continue;
                                 }
+
+                                if (!configListFind->is_array())
+                                {
+                                    continue;
+                                }
+
                                 for (auto& exposedObject : *configListFind)
                                 {
                                     auto matchIt = std::find_if(
