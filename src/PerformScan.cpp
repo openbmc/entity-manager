@@ -526,8 +526,7 @@ void PerformScan::run()
                                 auto configListFind = config.find("Exposes");
 
                                 if (configListFind == config.end() ||
-                                    configListFind->type() !=
-                                        nlohmann::json::value_t::array)
+                                    !configListFind->is_array())
                                 {
                                     continue;
                                 }
