@@ -304,8 +304,10 @@ static bool extractExposeActionRecordNames(std::vector<std::string>& matches,
     if (keyPair.value().type() == nlohmann::json::value_t::string)
     {
         matches.emplace_back(keyPair.value());
+        return true;
     }
-    else if (keyPair.value().type() == nlohmann::json::value_t::array)
+
+    if (keyPair.value().type() == nlohmann::json::value_t::array)
     {
         for (const auto& value : keyPair.value())
         {
@@ -316,15 +318,13 @@ static bool extractExposeActionRecordNames(std::vector<std::string>& matches,
             }
             matches.emplace_back(value);
         }
-    }
-    else
-    {
-        std::cerr << "Value is invalid type " << keyPair.key() << "\n";
 
-        return false;
+        return true;
     }
 
-    return true;
+    std::cerr << "Value is invalid type " << keyPair.key() << "\n";
+
+    return false;
 }
 
 void PerformScan::run()
