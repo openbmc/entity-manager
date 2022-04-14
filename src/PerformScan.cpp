@@ -559,7 +559,6 @@ void PerformScan::run()
                                 continue;
                             }
 
-                            std::set<std::string> foundMatches;
                             for (auto& [configId, config] :
                                  _systemConfiguration.items())
                             {
@@ -589,7 +588,7 @@ void PerformScan::run()
                                         continue;
                                     }
 
-                                    foundMatches.insert(**match);
+                                    matches.erase(*match);
 
                                     applyBindExposeAction(exposedObject, expose,
                                                           keyPair.key());
@@ -597,7 +596,7 @@ void PerformScan::run()
                                                              keyPair.key());
                                 }
                             }
-                            if (foundMatches.size() != matches.size())
+                            if (!matches.empty())
                             {
                                 std::cerr << "configuration file "
                                              "dependency error, "
