@@ -372,15 +372,12 @@ static void applyConfigExposeActions(std::vector<std::string>& matches,
     for (auto& exposedObject : configList)
     {
         auto match = findExposeActionRecord(matches, exposedObject);
-        if (!match)
+        if (match)
         {
-            continue;
+            matches.erase(*match);
+            applyBindExposeAction(exposedObject, expose, propertyName);
+            applyDisableExposeAction(exposedObject, propertyName);
         }
-
-        matches.erase(*match);
-
-        applyBindExposeAction(exposedObject, expose, propertyName);
-        applyDisableExposeAction(exposedObject, propertyName);
     }
 }
 
