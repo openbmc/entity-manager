@@ -479,9 +479,9 @@ void PerformScan::run()
                             bool isBind =
                                 boost::starts_with(keyPair.key(), "Bind");
                             bool isDisable = keyPair.key() == "DisableNode";
+                            bool isExposeAction = isBind || isDisable;
 
-                            // special cases
-                            if (!(isBind || isDisable))
+                            if (!isExposeAction)
                             {
                                 continue;
                             }
