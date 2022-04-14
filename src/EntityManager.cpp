@@ -36,6 +36,7 @@
 #include <sdbusplus/asio/object_server.hpp>
 
 #include <charconv>
+#include <chrono>
 #include <filesystem>
 #include <fstream>
 #include <functional>
@@ -997,18 +998,30 @@ void propertiesChangedCallback(nlohmann::json& systemConfiguration,
     static size_t instance = 0;
     instance++;
     size_t count = instance;
+    static auto startTime = std::chrono::time_point_cast<std::chrono::seconds>(
+        std::chrono::steady_clock::now());
 
-    timer.expires_after(std::chrono::seconds(5));
+    if (0 == timer.expires_after(std::chrono::seconds(5)))
+    {
+        // Reset start time if there were no async waits queued
+        startTime = std::chrono::time_point_cast<std::chrono::seconds>(
+            std::chrono::steady_clock::now());
+    }
 
     // setup an async wait as we normally get flooded with new requests
     timer.async_wait([&systemConfiguration, &objServer,
                       count](const boost::system::error_code& ec) {
-        if (ec == boost::asio::error::operation_aborted)
+        auto endTime = std::chrono::time_point_cast<std::chrono::seconds>(
+            std::chrono::steady_clock::now());
+        std::chrono::duration<int> elapsed = endTime - startTime;
+
+        if ((ec == boost::asio::error::operation_aborted) &&
+            elapsed < std::chrono::seconds(15))
         {
             // we were cancelled
             return;
         }
-        if (ec)
+        if (ec && ec != boost::asio::error::operation_aborted)
         {
             std::cerr << "async wait error " << ec << "\n";
             return;
@@ -1020,6 +1033,10 @@ void propertiesChangedCallback(nlohmann::json& systemConfiguration,
             return;
         }
         inProgress = true;
+
+        // Reset start time when we get a chance to run
+        startTime = std::chrono::time_point_cast<std::chrono::seconds>(
+            std::chrono::steady_clock::now());
 
         nlohmann::json oldConfiguration = systemConfiguration;
         auto missingConfigurations = std::make_shared<nlohmann::json>();
