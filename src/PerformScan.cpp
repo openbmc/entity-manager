@@ -329,11 +329,11 @@ static bool extractExposeActionRecordNames(std::vector<std::string>& matches,
 
 static std::optional<std::vector<std::string>::iterator>
     findExposeActionRecord(std::vector<std::string>& matches,
-                           const nlohmann::json& exposedObject)
+                           const nlohmann::json& record)
 {
     auto matchIt =
         std::find_if(matches.begin(), matches.end(),
-                     [name = (exposedObject)["Name"].get<std::string>()](
+                     [name = (record)["Name"].get<std::string>()](
                          const std::string& s) { return s == name; });
 
     if (matchIt == matches.end())
