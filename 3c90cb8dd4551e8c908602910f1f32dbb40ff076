@@ -1,6 +1,23 @@
 {
   "comments": [
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "8aba3bb4_e6498e55",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 7
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1001397
+      },
+      "writtenOn": "2022-04-15T16:13:08Z",
+      "side": 1,
+      "message": "Okay. Probably, I could bring the std::from_chars back in the next patch. Will submit a new patch soon.",
+      "revId": "3c90cb8dd4551e8c908602910f1f32dbb40ff076",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "7bfe0916_3b7af6f1",
@@ -14,6 +31,30 @@
       "writtenOn": "2022-04-14T15:20:29Z",
       "side": 1,
       "message": "?  We should not support octal in this api.  That\u0027s not something that I think would be helpful here.",
+      "range": {
+        "startLine": 336,
+        "startChar": 8,
+        "endLine": 336,
+        "endChar": 24
+      },
+      "revId": "3c90cb8dd4551e8c908602910f1f32dbb40ff076",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "15039b71_7bcfa3cd",
+        "filename": "src/Utils.cpp",
+        "patchSetId": 7
+      },
+      "lineNbr": 336,
+      "author": {
+        "id": 1001397
+      },
+      "writtenOn": "2022-04-15T16:13:08Z",
+      "side": 1,
+      "message": "stoull supports octal conversion as well so I added this checking to cover both hexa and octal. Though, obviously we would not use octal values in configuration so we could skip conversion when the string is in octal pattern which has a leading \u00270\u0027 character but not \u0027x\u0027 or \u0027X\u0027 as the next. Do yo want to skip the octal conversion?",
+      "parentUuid": "7bfe0916_3b7af6f1",
       "range": {
         "startLine": 336,
         "startChar": 8,
