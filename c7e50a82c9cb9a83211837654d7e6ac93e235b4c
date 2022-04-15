@@ -48,6 +48,30 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "8b8cb4b9_5520c05f",
+        "filename": "src/Utils.cpp",
+        "patchSetId": 5
+      },
+      "lineNbr": 337,
+      "author": {
+        "id": 1001397
+      },
+      "writtenOn": "2022-04-15T17:07:18Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "3636738f_da7ffcfa",
+      "range": {
+        "startLine": 337,
+        "startChar": 8,
+        "endLine": 337,
+        "endChar": 19
+      },
+      "revId": "c7e50a82c9cb9a83211837654d7e6ac93e235b4c",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "8a47dafe_16701fd0",
@@ -85,6 +109,30 @@
       "side": 1,
       "message": "Previous code makes a same result either when temp is unit64_t and int64_t because it will be eventually cast to uint64_t in previous code.\n\nFor an example in previous code, if string is \"-1\", it will be converted to 4294967295 even when temp is defined as int64_t because stoul doesn\u0027t return a out_of_range error when an input sting has negative value. Instead, stoul converts the sting to wrap-around value of -1 in unsinged long which is 0xffffffff (4294967295). In this case, if temp is declared as int32_t, the result will be stored as -1 but it\u0027s declared as int64_t, the result will be stored as 0x00000000ffffffff which is positive value. Anyways, it will be cast again to uint64_t when the code replaces keyPair.value() with temp in prev code, and this flow can be observed as the same  even when temp is declared as uint64_t.",
       "parentUuid": "8a47dafe_16701fd0",
+      "range": {
+        "startLine": 340,
+        "startChar": 4,
+        "endLine": 340,
+        "endChar": 12
+      },
+      "revId": "c7e50a82c9cb9a83211837654d7e6ac93e235b4c",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "70b9f06f_0ca014e9",
+        "filename": "src/Utils.cpp",
+        "patchSetId": 5
+      },
+      "lineNbr": 340,
+      "author": {
+        "id": 1001397
+      },
+      "writtenOn": "2022-04-15T17:07:18Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "019a3794_3a90f72f",
       "range": {
         "startLine": 340,
         "startChar": 4,
@@ -142,6 +190,30 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "78fb4684_5a862482",
+        "filename": "src/Utils.cpp",
+        "patchSetId": 5
+      },
+      "lineNbr": 343,
+      "author": {
+        "id": 1001397
+      },
+      "writtenOn": "2022-04-15T17:07:18Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "cb039035_12d82e39",
+      "range": {
+        "startLine": 343,
+        "startChar": 8,
+        "endLine": 343,
+        "endChar": 29
+      },
+      "revId": "c7e50a82c9cb9a83211837654d7e6ac93e235b4c",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "560aa930_c21f2d15",
@@ -179,6 +251,30 @@
       "side": 1,
       "message": "Yeah, it gives me a clue why patchset5 didn\u0027t pass the unit test. Will fix it. Thanks!",
       "parentUuid": "560aa930_c21f2d15",
+      "range": {
+        "startLine": 344,
+        "startChar": 8,
+        "endLine": 344,
+        "endChar": 29
+      },
+      "revId": "c7e50a82c9cb9a83211837654d7e6ac93e235b4c",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "69e2e06c_fa05672c",
+        "filename": "src/Utils.cpp",
+        "patchSetId": 5
+      },
+      "lineNbr": 344,
+      "author": {
+        "id": 1001397
+      },
+      "writtenOn": "2022-04-15T17:07:18Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "88274117_98d067e4",
       "range": {
         "startLine": 344,
         "startChar": 8,
