@@ -284,6 +284,30 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "bd08c874_8595989d",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 7
+      },
+      "lineNbr": 30,
+      "author": {
+        "id": 1000500
+      },
+      "writtenOn": "2022-04-18T20:41:38Z",
+      "side": 1,
+      "message": "I see, so with the current code structure, checking the name \"BMC\" would be in step 6) of the traversal process with some refactoring in this change due to how 6) calls the other 2 functions (populateInterfaceFromJson and postValuesToDbus):\n\n```\n1) postToDBus\n2) for (auto\u0026 [boardId, boardConfig] : newConfiguration.items())\n3)   populateInterfaceFromJson populates json::{number,string}\n4)   postValuesToDbus populates json::object\n5)     for (auto\u0026 item : *exposes)\n6)       postExposedItemToDbus\n7)         (If applicable to the \"expose an Inventory.Item\" hack)\n8)           populateInterfaceFromJson populates json::{number, string}\n9)           postValuesToDbus populates json::object\n10)        (Otherwise, treat as exposing a Configuration)\n11)          populateInterfaceFromJson populates json::{number, string}\n  \n```\n\nFor \"HasThisBMC\", it would be inserted to 3) as it is a property of the board .json.\n\nThis is assuming most of the possibilities fall into the scope of the postToDBus function.\n\n(note: phosphor-dbus-interfaces uses \"Bmc\" rather than \"BMC\")",
+      "parentUuid": "15c454c2_4b8831b1",
+      "range": {
+        "startLine": 30,
+        "startChar": 20,
+        "endLine": 30,
+        "endChar": 58
+      },
+      "revId": "23e80a8baaea3ad4ffa89638dce3934aaec3550e",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "2c2bdfad_1760d353",
@@ -345,6 +369,30 @@
       "side": 1,
       "message": "Lets just omit this for the moment.  As-written, it doesn\u0027t look right for any system, and I suspect that will confuse people.",
       "parentUuid": "f0934005_11a0c54d",
+      "range": {
+        "startLine": 31,
+        "startChar": 0,
+        "endLine": 31,
+        "endChar": 63
+      },
+      "revId": "23e80a8baaea3ad4ffa89638dce3934aaec3550e",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "af93048e_a394f64c",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 7
+      },
+      "lineNbr": 31,
+      "author": {
+        "id": 1000500
+      },
+      "writtenOn": "2022-04-18T20:41:38Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "004adbeb_d540463a",
       "range": {
         "startLine": 31,
         "startChar": 0,
@@ -497,6 +545,30 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "135deef7_36e3eba1",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 7
+      },
+      "lineNbr": 39,
+      "author": {
+        "id": 1000500
+      },
+      "writtenOn": "2022-04-18T20:41:38Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "d386b41f_cb68a4b6",
+      "range": {
+        "startLine": 33,
+        "startChar": 0,
+        "endLine": 39,
+        "endChar": 13
+      },
+      "revId": "23e80a8baaea3ad4ffa89638dce3934aaec3550e",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "aa5ac1af_9daf2e6d",
@@ -615,6 +687,30 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "9a992372_4a071b6c",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 7
+      },
+      "lineNbr": 91,
+      "author": {
+        "id": 1000500
+      },
+      "writtenOn": "2022-04-18T20:41:38Z",
+      "side": 1,
+      "message": "Added to the commit message (difference between this change and splitting into 2 json files).",
+      "parentUuid": "d46ac671_6cad5457",
+      "range": {
+        "startLine": 91,
+        "startChar": 0,
+        "endLine": 91,
+        "endChar": 73
+      },
+      "revId": "23e80a8baaea3ad4ffa89638dce3934aaec3550e",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "97fd887c_c7243e12",
@@ -664,6 +760,24 @@
       "side": 1,
       "message": "\u003e I think it depends on the viewpoint.\n\u003e From the conciseness point of view, editing every file is too redundant and doesn\u0027t make sense.\n\u003e From the completeness point of view, we\u0027re just describing the boards in a bit more detail, so it makes sense.\n\u003e \n\u003e I think if the BMC cannot autonomously determine its physical location (I am not sure with my current knowledge), this information needs to be injected in some form, maybe by adding a BMC entry to the .json configs or some other methods.\n\nAgreed.  I wonder if we need to promote \"This is the config this bmc lives on\" to a higher scope so we can do stuff like this without having to edit every baseboard file.",
       "parentUuid": "937c6aab_b2920ed2",
+      "revId": "23e80a8baaea3ad4ffa89638dce3934aaec3550e",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "217fcf9a_9145c632",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 7
+      },
+      "lineNbr": 112,
+      "author": {
+        "id": 1000500
+      },
+      "writtenOn": "2022-04-18T20:41:38Z",
+      "side": 1,
+      "message": "To avoid having to edit every baseboard file, it would be good if the BMC has some way to localize itself. A few ways that I know about:\n\nOne possibility is to examine the existing association graph. I took a look at some existing systems, this method doesn\u0027t guarantee a 100% precise result, since it appears association edges may be arbitrarily specified:\n\n* For some platform without a DC-SCM module that comes with multiple boards: the board that has the BMC also has a few BMC margin sensors associated with it, while the other boards do not.\n\n* For some platform with a DC-SCM module: A sensor appears to be including the DC-SCM module\u0027s name and \"bmc\" (the snapshot was obtained a while back, I\u0027m not sure the meaning in the names ..)\n\nAnother possibility ... if the BMC can tell the interface used by the BMC\u003c-\u003ehost IPMI communication, it may be easier to guess which inventory the BMC is contained in. \"ipmipci\" probably indicates the BMC is on a DC-SCM module; \"ipmilpc\" probably indicates the BMC is on the motherboard. This, plus the association graph, may give some heuristics for the BMC to figure out its own location.\n\nSo the conclusion is I don\u0027t yet have a very good idea on how to enable the BMC to localize itself with what I currently know, but I can take a closer look at the \"association graphs\" or add a small program to test the \"heuristics\".",
+      "parentUuid": "162a30f0_0277cbd7",
       "revId": "23e80a8baaea3ad4ffa89638dce3934aaec3550e",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
@@ -776,6 +890,30 @@
       "side": 1,
       "message": "\u003e How about:\n\u003e \n\u003e 1. Add a new flag \"HasBMC\" for board .json\u0027s that indicate the board has a BMC on it (it effectively replaces the \"Exposes:[{\"Type\":\"Bmc\",\"Name\":\"Bmc\"}]\" snippet in the Exposes field)\n\nCan you post an example somewhere?  Also, can we make the parameter \"HasThisBMC\" or something that indicates that it\u0027s not just \"a\" bmc, but literally the bmc we\u0027re running on (systems commonly have multiple bmcs).\n\nAssuming I\u0027m visualizing what you\u0027re talking about, this seems like the way I would go.\n\n\u003e \n\u003e 2. Add a new flag \"SubItems\" to differentiate from the \"Exposes\" field (all objects in SubItems are prepended with \"xyz.openbmc_project.Inventory.Item.\" while all objects in Exposes are still prepended with \"xyz.openbmc_project.Configuration.\"\n\nIf this is a route you want to go down, lets talk through it, but it seems like a case where we would want multiple files (or maybe multiple definitions in one file) with associations between them to denote their connectedness, but, lets scope out what you\u0027re thinking and see if we can come to something similar.",
       "parentUuid": "a0c5a956_74a0fdd3",
+      "range": {
+        "startLine": 725,
+        "startChar": 0,
+        "endLine": 739,
+        "endChar": 13
+      },
+      "revId": "23e80a8baaea3ad4ffa89638dce3934aaec3550e",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "eabd2192_ba8766d8",
+        "filename": "src/EntityManager.cpp",
+        "patchSetId": 7
+      },
+      "lineNbr": 739,
+      "author": {
+        "id": 1000500
+      },
+      "writtenOn": "2022-04-18T20:41:38Z",
+      "side": 1,
+      "message": "I added the following snippets in the JSON file \"ASRock_E3C246D4I\" as an example for the different ways to add a BMC:\n\n* Method 1: An \"xyz.openbmc_project.Inventory.Item\" entry in the \"Exposes\" stanza (this is going to be removed per the comments ..)\n* Method 2: A \"HasThisBMC\" flag in the board JSON\n* Method 3: A \"SubItems\" stanza allowing the user to create sub-items that exist as children DBus objects. Same as Exposes except that all items created will be Inventory.Item\u0027s rather than Configurations.\n\nI\u0027m not sure which one is the best or if this change is to be considered together with other proposals such as 52487 (association interfaces for cables), and the discussion on Discord on April 15 (PhysicalLocation\u0027s). Please advise?",
+      "parentUuid": "dceaf2f4_236e4155",
       "range": {
         "startLine": 725,
         "startChar": 0,
