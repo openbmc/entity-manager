@@ -471,27 +471,16 @@ void PerformScan::run()
 
     for (auto it = _configurations.begin(); it != _configurations.end();)
     {
-        auto findProbe = it->find("Probe");
-        auto findName = it->find("Name");
-
-        nlohmann::json probeCommand;
         // check for poorly formatted fields, probe must be an array
+        auto findProbe = it->find("Probe");
         if (findProbe == it->end())
         {
             std::cerr << "configuration file missing probe:\n " << *it << "\n";
             it = _configurations.erase(it);
             continue;
         }
-        if ((*findProbe).type() != nlohmann::json::value_t::array)
-        {
-            probeCommand = nlohmann::json::array();
-            probeCommand.push_back(*findProbe);
-        }
-        else
-        {
-            probeCommand = *findProbe;
-        }
 
+        auto findName = it->find("Name");
         if (findName == it->end())
         {
             std::cerr << "configuration file missing name:\n " << *it << "\n";
@@ -506,7 +495,18 @@ void PerformScan::run()
             it = _configurations.erase(it);
             continue;
         }
+
         nlohmann::json* recordPtr = &(*it);
+        nlohmann::json probeCommand;
+        if ((*findProbe).type() != nlohmann::json::value_t::array)
+        {
+            probeCommand = nlohmann::json::array();
+            probeCommand.push_back(*findProbe);
+        }
+        else
+        {
+            probeCommand = *findProbe;
+        }
 
         // store reference to this to children to makes sure we don't get
         // destroyed too early
