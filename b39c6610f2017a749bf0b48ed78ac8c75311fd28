@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c9c49d7c_d2ba033f",
+        "filename": "src/EntityManager.cpp",
+        "patchSetId": 4
+      },
+      "lineNbr": 713,
+      "author": {
+        "id": 1000521
+      },
+      "writtenOn": "2022-04-19T17:32:14Z",
+      "side": 1,
+      "message": "I\u0027m wondering if we really need this logic.\n\nIs it possible to accomplish the same thing by just using the already supported decorators?\n\n(https://github.com/openbmc/entity-manager/blob/master/configurations/NVME%20P4000.json#L47)\n\nIn other words, pretend we have device A. Would we not just create a json that looks something like this (greatly simplified)\n\n\n{\n\"Exposes\":[],\n\"Name\": \"Device A\",\n\"Probe\":\"TRUE\",\n\"Type\": \"SomeDevice\",\n\"xyz.openbmc_project.Inventory.Decorator.Compatible\":\n{\n\"Names\":[\"deviceAType\"]\n}\n}",
+      "range": {
+        "startLine": 702,
+        "startChar": 17,
+        "endLine": 713,
+        "endChar": 21
+      },
+      "revId": "b39c6610f2017a749bf0b48ed78ac8c75311fd28",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    }
+  ]
+}
