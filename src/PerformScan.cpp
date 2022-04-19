@@ -432,6 +432,38 @@ static void applyExposeActions(nlohmann::json& systemConfiguration,
     }
 }
 
+static std::string generateDeviceName(const std::set<nlohmann::json>& usedNames,
+                                      const DBusObject& dbusObject,
+                                      size_t foundDeviceIdx,
+                                      const std::string& nameTemplate,
+                                      std::optional<std::string>& replaceStr)
+{
+    nlohmann::json copyForName = {{"Name", nameTemplate}};
+    nlohmann::json::iterator copyIt = copyForName.begin();
+    std::optional<std::string> replaceVal =
+        templateCharReplace(copyIt, dbusObject, foundDeviceIdx, replaceStr);
+
+    if (!replaceStr && replaceVal)
+    {
+        if (usedNames.find(copyIt.value()) != usedNames.end())
+        {
+            replaceStr = replaceVal;
+            copyForName = {{"Name", nameTemplate}};
+            copyIt = copyForName.begin();
+            templateCharReplace(copyIt, dbusObject, foundDeviceIdx, replaceStr);
+        }
+    }
+
+    if (replaceStr)
+    {
+        std::cerr << "Duplicates found, replacing " << *replaceStr
+                  << " with found device index.\n Consider "
+                     "fixing template to not have duplicates\n";
+    }
+
+    return copyIt.value();
+}
+
 void PerformScan::run()
 {
     boost::container::flat_set<std::string> dbusProbeInterfaces;
@@ -552,33 +584,11 @@ void PerformScan::run()
                         continue; // this should be impossible at this level
                     }
 
-                    nlohmann::json copyForName = {{"Name", getName.value()}};
-                    nlohmann::json::iterator copyIt = copyForName.begin();
-                    std::optional<std::string> replaceVal = templateCharReplace(
-                        copyIt, dbusObject, foundDeviceIdx, replaceStr);
-
-                    if (!replaceStr && replaceVal)
-                    {
-                        if (usedNames.find(copyIt.value()) != usedNames.end())
-                        {
-                            replaceStr = replaceVal;
-                            copyForName = {{"Name", getName.value()}};
-                            copyIt = copyForName.begin();
-                            templateCharReplace(copyIt, dbusObject,
-                                                foundDeviceIdx, replaceStr);
-                        }
-                    }
-
-                    if (replaceStr)
-                    {
-                        std::cerr << "Duplicates found, replacing "
-                                  << *replaceStr
-                                  << " with found device index.\n Consider "
-                                     "fixing template to not have duplicates\n";
-                    }
-
-                    getName.value() = copyIt.value();
-                    usedNames.insert(copyIt.value());
+                    std::string deviceName = generateDeviceName(
+                        usedNames, dbusObject, foundDeviceIdx, getName.value(),
+                        replaceStr);
+                    getName.value() = deviceName;
+                    usedNames.insert(deviceName);
 
                     for (auto keyPair = record.begin(); keyPair != record.end();
                          keyPair++)
