@@ -1,0 +1,96 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "324601e5_56f702ee",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 3
+      },
+      "lineNbr": 19,
+      "author": {
+        "id": 1000559
+      },
+      "writtenOn": "2022-04-19T22:06:53Z",
+      "side": 1,
+      "message": "I am not sure this is needed. Reading the problem statement, I think we just need to perform the scan if the constant reschedule has been happening longer than 15 seconds. In other words, if the system has been quiet for longer than 15seconds and a flood of message starts, we still want to wait for the end of it and run the scan once. With this change, the scan will run twice, which is slightly less efficient.",
+      "range": {
+        "startLine": 19,
+        "startChar": 41,
+        "endLine": 19,
+        "endChar": 60
+      },
+      "revId": "de5d71dd9ab5ebaddb27816cf1823cad1d539d2a",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3f6d7b18_84b2de45",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 3
+      },
+      "lineNbr": 23,
+      "author": {
+        "id": 1000559
+      },
+      "writtenOn": "2022-04-19T22:06:53Z",
+      "side": 1,
+      "message": "How long does it typically take to complete the scan?",
+      "range": {
+        "startLine": 22,
+        "startChar": 0,
+        "endLine": 23,
+        "endChar": 43
+      },
+      "revId": "de5d71dd9ab5ebaddb27816cf1823cad1d539d2a",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3b0faab9_bc1883f9",
+        "filename": "src/EntityManager.cpp",
+        "patchSetId": 3
+      },
+      "lineNbr": 1019,
+      "author": {
+        "id": 1000559
+      },
+      "writtenOn": "2022-04-19T22:06:53Z",
+      "side": 1,
+      "message": "Please add an constexpr for this, and also for the 5s as an improvement",
+      "range": {
+        "startLine": 1019,
+        "startChar": 43,
+        "endLine": 1019,
+        "endChar": 45
+      },
+      "revId": "de5d71dd9ab5ebaddb27816cf1823cad1d539d2a",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9debf57c_3911884c",
+        "filename": "src/EntityManager.cpp",
+        "patchSetId": 3
+      },
+      "lineNbr": 1028,
+      "author": {
+        "id": 1000559
+      },
+      "writtenOn": "2022-04-19T22:06:53Z",
+      "side": 1,
+      "message": "nit: it would be slightly easier to follow if this is moved before line 1018.",
+      "range": {
+        "startLine": 1024,
+        "startChar": 0,
+        "endLine": 1028,
+        "endChar": 9
+      },
+      "revId": "de5d71dd9ab5ebaddb27816cf1823cad1d539d2a",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    }
+  ]
+}
