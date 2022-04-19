@@ -496,7 +496,7 @@ void PerformScan::run()
             continue;
         }
 
-        nlohmann::json* recordPtr = &(*it);
+        nlohmann::json& recordRef = *it;
         nlohmann::json probeCommand;
         if ((*findProbe).type() != nlohmann::json::value_t::array)
         {
@@ -513,7 +513,7 @@ void PerformScan::run()
         auto thisRef = shared_from_this();
         auto probePointer = std::make_shared<PerformProbe>(
             probeCommand, thisRef,
-            [&, recordPtr,
+            [&, recordRef,
              probeName](FoundDevices& foundDevices,
                         const MapperGetSubTreeResponse& dbusSubtree) {
                 _passed = true;
@@ -570,7 +570,7 @@ void PerformScan::run()
                         (objectIt == dbusSubtree.end()) ? emptyObject
                                                         : objectIt->second;
 
-                    nlohmann::json record = *recordPtr;
+                    nlohmann::json record = recordRef;
                     std::string recordName =
                         getRecordName(foundDevice, probeName);
                     size_t foundDeviceIdx = indexes.front();
