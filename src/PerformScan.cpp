@@ -464,6 +464,119 @@ static std::string generateDeviceName(const std::set<nlohmann::json>& usedNames,
     return copyIt.value();
 }
 
+void PerformScan::updateSystemConfiguration(
+    const nlohmann::json& recordRef, const std::string& probeName,
+    FoundDevices& foundDevices, const MapperGetSubTreeResponse& dbusSubtree)
+{
+    _passed = true;
+    passedProbes.push_back(probeName);
+
+    std::set<nlohmann::json> usedNames;
+    std::list<size_t> indexes(foundDevices.size());
+    std::iota(indexes.begin(), indexes.end(), 1);
+
+    // copy over persisted configurations and make sure we remove
+    // indexes that are already used
+    for (auto itr = foundDevices.begin(); itr != foundDevices.end();)
+    {
+        std::string recordName = getRecordName(itr->interface, probeName);
+
+        auto record = lastJson.find(recordName);
+        if (record == lastJson.end())
+        {
+            itr++;
+            continue;
+        }
+
+        pruneRecordExposes(*record);
+
+        recordDiscoveredIdentifiers(usedNames, indexes, probeName, *record);
+
+        // keep user changes
+        _systemConfiguration[recordName] = *record;
+        _missingConfigurations.erase(recordName);
+
+        // We've processed the device, remove it and advance the
+        // iterator
+        itr = foundDevices.erase(itr);
+    }
+
+    std::optional<std::string> replaceStr;
+
+    DBusObject emptyObject;
+    DBusInterface emptyInterface;
+    emptyObject.emplace(std::string{}, emptyInterface);
+
+    for (const auto& [foundDevice, path] : foundDevices)
+    {
+        // Need all interfaces on this path so that template
+        // substitutions can be done with any of the contained
+        // properties.  If the probe that passed didn't use an
+        // interface, such as if it was just TRUE, then
+        // templateCharReplace will just get passed in an empty
+        // map.
+        auto objectIt = dbusSubtree.find(path);
+        const DBusObject& dbusObject =
+            (objectIt == dbusSubtree.end()) ? emptyObject : objectIt->second;
+
+        nlohmann::json record = recordRef;
+        std::string recordName = getRecordName(foundDevice, probeName);
+        size_t foundDeviceIdx = indexes.front();
+        indexes.pop_front();
+
+        // check name first so we have no duplicate names
+        auto getName = record.find("Name");
+        if (getName == record.end())
+        {
+            std::cerr << "Record Missing Name! " << record.dump();
+            continue; // this should be impossible at this level
+        }
+
+        std::string deviceName = generateDeviceName(
+            usedNames, dbusObject, foundDeviceIdx, getName.value(), replaceStr);
+        getName.value() = deviceName;
+        usedNames.insert(deviceName);
+
+        for (auto keyPair = record.begin(); keyPair != record.end(); keyPair++)
+        {
+            if (keyPair.key() != "Name")
+            {
+                templateCharReplace(keyPair, dbusObject, foundDeviceIdx,
+                                    replaceStr);
+            }
+        }
+
+        // insert into configuration temporarily to be able to
+        // reference ourselves
+
+        _systemConfiguration[recordName] = record;
+
+        auto findExpose = record.find("Exposes");
+        if (findExpose == record.end())
+        {
+            continue;
+        }
+
+        for (auto& expose : *findExpose)
+        {
+            for (auto keyPair = expose.begin(); keyPair != expose.end();
+                 keyPair++)
+            {
+
+                templateCharReplace(keyPair, dbusObject, foundDeviceIdx,
+                                    replaceStr);
+
+                applyExposeActions(_systemConfiguration, recordName, expose,
+                                   keyPair);
+            }
+        }
+
+        // overwrite ourselves with cleaned up version
+        _systemConfiguration[recordName] = record;
+        _missingConfigurations.erase(recordName);
+    }
+}
+
 void PerformScan::run()
 {
     boost::container::flat_set<std::string> dbusProbeInterfaces;
@@ -513,121 +626,11 @@ void PerformScan::run()
         auto thisRef = shared_from_this();
         auto probePointer = std::make_shared<PerformProbe>(
             probeCommand, thisRef,
-            [&, recordRef,
+            [thisRef, recordRef,
              probeName](FoundDevices& foundDevices,
                         const MapperGetSubTreeResponse& dbusSubtree) {
-                _passed = true;
-                std::set<nlohmann::json> usedNames;
-                passedProbes.push_back(probeName);
-                std::list<size_t> indexes(foundDevices.size());
-                std::iota(indexes.begin(), indexes.end(), 1);
-
-                // copy over persisted configurations and make sure we remove
-                // indexes that are already used
-                for (auto itr = foundDevices.begin();
-                     itr != foundDevices.end();)
-                {
-                    std::string recordName =
-                        getRecordName(itr->interface, probeName);
-
-                    auto record = lastJson.find(recordName);
-                    if (record == lastJson.end())
-                    {
-                        itr++;
-                        continue;
-                    }
-
-                    pruneRecordExposes(*record);
-
-                    recordDiscoveredIdentifiers(usedNames, indexes, probeName,
-                                                *record);
-
-                    // keep user changes
-                    _systemConfiguration[recordName] = *record;
-                    _missingConfigurations.erase(recordName);
-
-                    // We've processed the device, remove it and advance the
-                    // iterator
-                    itr = foundDevices.erase(itr);
-                }
-
-                std::optional<std::string> replaceStr;
-
-                DBusObject emptyObject;
-                DBusInterface emptyInterface;
-                emptyObject.emplace(std::string{}, emptyInterface);
-
-                for (const auto& [foundDevice, path] : foundDevices)
-                {
-                    // Need all interfaces on this path so that template
-                    // substitutions can be done with any of the contained
-                    // properties.  If the probe that passed didn't use an
-                    // interface, such as if it was just TRUE, then
-                    // templateCharReplace will just get passed in an empty
-                    // map.
-                    auto objectIt = dbusSubtree.find(path);
-                    const DBusObject& dbusObject =
-                        (objectIt == dbusSubtree.end()) ? emptyObject
-                                                        : objectIt->second;
-
-                    nlohmann::json record = recordRef;
-                    std::string recordName =
-                        getRecordName(foundDevice, probeName);
-                    size_t foundDeviceIdx = indexes.front();
-                    indexes.pop_front();
-
-                    // check name first so we have no duplicate names
-                    auto getName = record.find("Name");
-                    if (getName == record.end())
-                    {
-                        std::cerr << "Record Missing Name! " << record.dump();
-                        continue; // this should be impossible at this level
-                    }
-
-                    std::string deviceName = generateDeviceName(
-                        usedNames, dbusObject, foundDeviceIdx, getName.value(),
-                        replaceStr);
-                    getName.value() = deviceName;
-                    usedNames.insert(deviceName);
-
-                    for (auto keyPair = record.begin(); keyPair != record.end();
-                         keyPair++)
-                    {
-                        if (keyPair.key() != "Name")
-                        {
-                            templateCharReplace(keyPair, dbusObject,
-                                                foundDeviceIdx, replaceStr);
-                        }
-                    }
-
-                    // insert into configuration temporarily to be able to
-                    // reference ourselves
-
-                    _systemConfiguration[recordName] = record;
-
-                    auto findExpose = record.find("Exposes");
-                    if (findExpose == record.end())
-                    {
-                        continue;
-                    }
-
-                    for (auto& expose : *findExpose)
-                    {
-                        for (auto keyPair = expose.begin();
-                             keyPair != expose.end(); keyPair++)
-                        {
-
-                            templateCharReplace(keyPair, dbusObject,
-                                                foundDeviceIdx, replaceStr);
-
-                            applyExposeActions(_systemConfiguration, recordName,
-                                               expose, keyPair);
-                        }
-                    }
-                    // overwrite ourselves with cleaned up version
-                    _systemConfiguration[recordName] = record;
-                    _missingConfigurations.erase(recordName);
-                }
+                thisRef->updateSystemConfiguration(recordRef, probeName,
+                                                   foundDevices, dbusSubtree);
             });
 
         // parse out dbus probes by discarding other probe types, store in a

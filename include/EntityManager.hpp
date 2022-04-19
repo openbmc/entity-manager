@@ -70,6 +70,10 @@ struct PerformScan : std::enable_shared_from_this<PerformScan>
                 std::list<nlohmann::json>& configurations,
                 sdbusplus::asio::object_server& objServer,
                 std::function<void()>&& callback);
+    void updateSystemConfiguration(const nlohmann::json& recordRef,
+                                   const std::string& probeName,
+                                   FoundDevices& foundDevices,
+                                   const MapperGetSubTreeResponse& dbusSubtree);
     void run(void);
     virtual ~PerformScan();
     nlohmann::json& _systemConfiguration;
