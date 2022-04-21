@@ -625,13 +625,7 @@ void PerformScan::run()
         // destroyed too early
         auto thisRef = shared_from_this();
         auto probePointer = std::make_shared<PerformProbe>(
-            probeCommand, thisRef,
-            [thisRef, recordRef,
-             probeName](FoundDevices& foundDevices,
-                        const MapperGetSubTreeResponse& dbusSubtree) {
-                thisRef->updateSystemConfiguration(recordRef, probeName,
-                                                   foundDevices, dbusSubtree);
-            });
+            recordRef, probeCommand, probeName, thisRef);
 
         // parse out dbus probes by discarding other probe types, store in a
         // map

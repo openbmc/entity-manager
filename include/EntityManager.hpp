@@ -89,17 +89,15 @@ struct PerformScan : std::enable_shared_from_this<PerformScan>
 // this class finds the needed dbus fields and on destruction runs the probe
 struct PerformProbe : std::enable_shared_from_this<PerformProbe>
 {
-    PerformProbe(
-        const std::vector<std::string>& probeCommand,
-        std::shared_ptr<PerformScan>& scanPtr,
-        std::function<void(FoundDevices&, const MapperGetSubTreeResponse&)>&&
-            callback);
+    PerformProbe(nlohmann::json& recordRef,
+                 const std::vector<std::string>& probeCommand,
+                 std::string probeName, std::shared_ptr<PerformScan>& scanPtr);
     virtual ~PerformProbe();
 
+    nlohmann::json& recordRef;
     std::vector<std::string> _probeCommand;
+    std::string probeName;
     std::shared_ptr<PerformScan> scan;
-    std::function<void(FoundDevices&, const MapperGetSubTreeResponse&)>
-        _callback;
 };
 
 inline void logDeviceAdded(const nlohmann::json& record)
