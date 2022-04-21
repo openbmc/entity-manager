@@ -231,7 +231,6 @@ PerformProbe::~PerformProbe()
     FoundDevices foundDevs;
     if (probe(_probeCommand, scan, foundDevs))
     {
-        scan->updateSystemConfiguration(recordRef, probeName, foundDevs,
-                                        scan->dbusProbeObjects);
+        scan->updateSystemConfiguration(recordRef, probeName, foundDevs);
     }
 }
