@@ -624,6 +624,54 @@
                 }
             ],
             "Type": "W83773G"
+        },
+
+        {
+            "Address": "0x2d",
+            "Bus": 1,
+            "Name": "SYSTIN",
+            "Name1": "CPUTIN",
+            "Name2": "AUXTIN0",
+            "Name3": "AUXTIN1",
+            "Name4": "AUXTIN2",
+            "Name5": "AUXTIN3",
+            "Name6": "PCH_CHIP_CPU_MAX_TEMP",
+            "Name7": "PCH_CHIP_TEMP",
+            "Name8": "PCH_CPU_TEMP",
+            "Name9": "PCH_MCH_TEMP",
+            "Name10": "TSI0_TEMP",
+            "PowerState": "On",
+            "Thresholds": [
+                {
+                    "Direction": "greater than",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 90,
+                    "Index": 11
+                },
+                {
+                    "Direction": "greater than",
+                    "Name": "upper non critical",
+                    "Severity": 0,
+                    "Value": 80,
+                    "Index": 11
+                },
+                {
+                    "Direction": "less than",
+                    "Name": "lower non critical",
+                    "Severity": 0,
+                    "Value": 5,
+                    "Index": 11
+                },
+                {
+                    "Direction": "less than",
+                    "Name": "lower critical",
+                    "Severity": 1,
+                    "Value": 0,
+                    "Index": 11
+                }
+            ],
+            "Type": "NCT6779"
         }
     ],
     "Name": "ASRock ROMED8HM3",
