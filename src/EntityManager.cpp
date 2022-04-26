@@ -18,6 +18,7 @@
 #include "EntityManager.hpp"
 
 #include "Overlay.hpp"
+#include "Topology.hpp"
 #include "Utils.hpp"
 #include "VariantVisitors.hpp"
 
@@ -604,6 +605,12 @@ void postToDbus(const nlohmann::json& newConfiguration,
                             "xyz.openbmc_project.Inventory.Item." + boardType,
                             boardKeyOrig);
 
+        std::shared_ptr<sdbusplus::asio::dbus_interface> assocIface =
+            createInterface(objServer, boardName,
+                            "xyz.openbmc_project.Association.Definitions",
+                            boardKeyOrig);
+
+
         createAddObjectMethod(jsonPointerPath, boardName, systemConfiguration,
                               objServer, boardKeyOrig);
 
@@ -624,6 +631,12 @@ void postToDbus(const nlohmann::json& newConfiguration,
                                           propValue, objServer);
             }
         }
+
+        Topology topology(boardName);
+        addProperty(std::string("Associations"), topology.dbusProp(), assocIface.get(),
+                    systemConfiguration, jsonPointerPath,
+                    sdbusplus::asio::PropertyPermission::readOnly);
+        assocIface->initialize();
 
         auto exposes = boardValues.find("Exposes");
         if (exposes == boardValues.end())
