@@ -191,6 +191,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "71252b85_e7c76812",
+        "filename": "meson.build",
+        "patchSetId": 31
+      },
+      "lineNbr": 235,
+      "author": {
+        "id": 1000559
+      },
+      "writtenOn": "2022-05-03T22:35:42Z",
+      "side": 1,
+      "message": "Probably need to refactor the functions to remove the dependency.",
+      "parentUuid": "a1666bee_caad4143",
+      "range": {
+        "startLine": 234,
+        "startChar": 0,
+        "endLine": 235,
+        "endChar": 32
+      },
+      "revId": "f44985cac433b8cf6547ef57aa8aab788e118a72",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "25e4c37c_06f388c0",
         "filename": "src/FruDevice.cpp",
         "patchSetId": 31
@@ -226,6 +250,30 @@
       "side": 1,
       "message": "This busStrToInt is not used by both fru and ipmb-fru daemons. So not moving to FruUtils.cpp. Also, This function is called by both files FruDeviceMain.cpp and FruDevice.cpp. That\u0027s the reason, I kept this file in FruDevice.cpp with non static.",
       "parentUuid": "25e4c37c_06f388c0",
+      "range": {
+        "startLine": 119,
+        "startChar": 0,
+        "endLine": 128,
+        "endChar": 0
+      },
+      "revId": "f44985cac433b8cf6547ef57aa8aab788e118a72",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "f68f9adf_1df3cbba",
+        "filename": "src/FruDevice.cpp",
+        "patchSetId": 31
+      },
+      "lineNbr": 128,
+      "author": {
+        "id": 1000559
+      },
+      "writtenOn": "2022-05-03T22:35:42Z",
+      "side": 1,
+      "message": "ACK",
+      "parentUuid": "526a9990_f04c3dc5",
       "range": {
         "startLine": 119,
         "startChar": 0,
@@ -273,6 +321,30 @@
       "side": 1,
       "message": "I think, not required. These functions \"loadBlacklist\", \"busStrToInt\", \"writeFRU\" are using by fru daemon only and not used by ipmb-fru daemon. Also, these functions are calling from FruDevice.cpp and FruDeviceMain.cpp only.",
       "parentUuid": "c2ba52b0_7f1c559a",
+      "range": {
+        "startLine": 42,
+        "startChar": 0,
+        "endLine": 47,
+        "endChar": 0
+      },
+      "revId": "f44985cac433b8cf6547ef57aa8aab788e118a72",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "cff34ccd_b5a2d3e8",
+        "filename": "src/FruDeviceMain.cpp",
+        "patchSetId": 31
+      },
+      "lineNbr": 47,
+      "author": {
+        "id": 1000559
+      },
+      "writtenOn": "2022-05-03T22:35:42Z",
+      "side": 1,
+      "message": "ACK",
+      "parentUuid": "700f9c01_8779cc04",
       "range": {
         "startLine": 42,
         "startChar": 0,

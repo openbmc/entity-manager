@@ -96,6 +96,30 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": true,
+      "key": {
+        "uuid": "de213114_8c8712dc",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 30
+      },
+      "lineNbr": 11,
+      "author": {
+        "id": 1000559
+      },
+      "writtenOn": "2022-05-03T22:35:42Z",
+      "side": 1,
+      "message": "\u003e Right now, FruUtils is depends on FruDevice since some of the functions of FruDevice are calling from FruUtils.\n\n\nI think these functions need to be refactored so the common functions do not depend on more specific functions in FruDevice or fru-ipmb",
+      "parentUuid": "fb95d605_b2c1a6f7",
+      "range": {
+        "startLine": 9,
+        "startChar": 0,
+        "endLine": 11,
+        "endChar": 68
+      },
+      "revId": "fd8f3c9285d62b7b18bd5d29b48a6b16dd61da1a",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": false,
       "key": {
         "uuid": "5bcb18a0_8c7c771b",

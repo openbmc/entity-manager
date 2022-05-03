@@ -137,6 +137,76 @@
       },
       "revId": "b1ca3c9f403e2eacb16f17164e4737db5efb28e5",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c21c4f84_35b4381c",
+        "filename": "src/FruUtils.cpp",
+        "patchSetId": 35
+      },
+      "lineNbr": 83,
+      "author": {
+        "id": 1000559
+      },
+      "writtenOn": "2022-05-03T22:35:42Z",
+      "side": 1,
+      "message": "+1",
+      "parentUuid": "624fb6fc_77f8596e",
+      "range": {
+        "startLine": 77,
+        "startChar": 0,
+        "endLine": 83,
+        "endChar": 0
+      },
+      "revId": "b1ca3c9f403e2eacb16f17164e4737db5efb28e5",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "144f2706_fd346f48",
+        "filename": "src/FruUtils.cpp",
+        "patchSetId": 35
+      },
+      "lineNbr": 1190,
+      "author": {
+        "id": 1000559
+      },
+      "writtenOn": "2022-05-03T22:35:42Z",
+      "side": 1,
+      "message": "This relates i2c bus and address, need to factor it out for the common function",
+      "range": {
+        "startLine": 1142,
+        "startChar": 4,
+        "endLine": 1190,
+        "endChar": 5
+      },
+      "revId": "b1ca3c9f403e2eacb16f17164e4737db5efb28e5",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d7881174_85eb838f",
+        "filename": "src/FruUtils.cpp",
+        "patchSetId": 35
+      },
+      "lineNbr": 1247,
+      "author": {
+        "id": 1000559
+      },
+      "writtenOn": "2022-05-03T22:35:42Z",
+      "side": 1,
+      "message": "Here too, BUS and ADDRESS are for i2c device only?",
+      "range": {
+        "startLine": 1245,
+        "startChar": 4,
+        "endLine": 1247,
+        "endChar": 49
+      },
+      "revId": "b1ca3c9f403e2eacb16f17164e4737db5efb28e5",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }
