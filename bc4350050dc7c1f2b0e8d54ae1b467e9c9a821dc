@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "b63c0b23_5fa818c4",
+        "filename": "src/PerformScan.cpp",
+        "patchSetId": 2
+      },
+      "lineNbr": 533,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2022-05-03T21:55:15Z",
+      "side": 1,
+      "message": "in a perfect world, this code should be something like\n\nnlohmann::json::array_t* asArray \u003d configListFind.get_ptr\u003cnlohmann::json::array_t*\u003e();\nif (asArray \u003d\u003d nullptr){\n    continue;\n}\n\nfor (auto\u0026 exposedObject: *asArray)\n\nBecause it avoids having to do the \"is_array()\" branch twice, and from what I can tell, not having to rely on iteration_proxy seems to generate trivially smaller code, because array_t is just a std::map.\n\nWith that said, what\u0027s here is fine.",
+      "range": {
+        "startLine": 528,
+        "startChar": 0,
+        "endLine": 533,
+        "endChar": 0
+      },
+      "revId": "bc4350050dc7c1f2b0e8d54ae1b467e9c9a821dc",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    }
+  ]
+}
