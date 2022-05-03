@@ -16,6 +16,24 @@
       "message": "Given the (I think) unrelatedness and lack of mention in the commit message, and the granularity of the patches in this series, I\u0027m guessing this rename and some of the other changes in this file weren\u0027t meant to be part of this patch?",
       "revId": "7c56829488167d08bc5edcec9ddaaa4516a0b05c",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "940a0486_4f24664b",
+        "filename": "src/PerformProbe.cpp",
+        "patchSetId": 2
+      },
+      "lineNbr": 27,
+      "author": {
+        "id": 1000009
+      },
+      "writtenOn": "2022-05-03T00:02:47Z",
+      "side": 1,
+      "message": "Right, maybe I could have done the rename of what was the \u0027properties\u0027 variable on line 46/47 in an earlier patch. But you\u0027ve also suggested squashing the rename patches into the code motion patches. If I\u0027m going to do that I think we keep this one as is? If we s/properties/interface/ below then we need to s/interface/interfaceName/ here.\n\npush_back() vs emplace_back() is a problem with constructors on the POD type and we can\u0027t avoid that unless we do something else entirely.",
+      "parentUuid": "941b6d45_2ed7974d",
+      "revId": "7c56829488167d08bc5edcec9ddaaa4516a0b05c",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }
