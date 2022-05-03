@@ -70,6 +70,30 @@
       },
       "revId": "ee35b37ac9ac98303b0c0e4b870963b16721610d",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3816e8c2_aabc430d",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 1000009
+      },
+      "writtenOn": "2022-05-03T23:58:46Z",
+      "side": 1,
+      "message": "Yes, I use the same reasoning as Zev here - if it\u0027s static I know that I don\u0027t need to look anywhere else for its uses.\n\nHowever, it\u0027s also beneficial for optimisation when compiling the TU for the same reason: The compiler knows that the symbol isn\u0027t visible outside of the TU and can inline as it has global knowledge of the function\u0027s use.\n\nShould I outline that in the commit message?",
+      "parentUuid": "df83c269_a3257a07",
+      "range": {
+        "startLine": 7,
+        "startChar": 0,
+        "endLine": 7,
+        "endChar": 40
+      },
+      "revId": "ee35b37ac9ac98303b0c0e4b870963b16721610d",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }
