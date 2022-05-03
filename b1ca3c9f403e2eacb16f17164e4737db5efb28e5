@@ -1,0 +1,142 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "21574e0a_d9bfcff0",
+        "filename": "include/FruUtils.hpp",
+        "patchSetId": 35
+      },
+      "lineNbr": 202,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2022-05-03T17:34:43Z",
+      "side": 1,
+      "message": "This seems like the wrong place to be putting these, considering they\u0027re very specific to one implementation of the FRU, and is going to force dependencies on the common library, as you\u0027ve seen.",
+      "range": {
+        "startLine": 174,
+        "startChar": 0,
+        "endLine": 202,
+        "endChar": 61
+      },
+      "revId": "b1ca3c9f403e2eacb16f17164e4737db5efb28e5",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2c5cd19a_3151d1da",
+        "filename": "meson.build",
+        "patchSetId": 35
+      },
+      "lineNbr": 200,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2022-05-03T17:34:43Z",
+      "side": 1,
+      "message": "?  Not mentioned in your commit message, and it\u0027s not immediately clear why this is needed.",
+      "range": {
+        "startLine": 200,
+        "startChar": 0,
+        "endLine": 200,
+        "endChar": 79
+      },
+      "revId": "b1ca3c9f403e2eacb16f17164e4737db5efb28e5",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f8fa19d5_b386ca5f",
+        "filename": "meson.build",
+        "patchSetId": 35
+      },
+      "lineNbr": 246,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2022-05-03T17:34:43Z",
+      "side": 1,
+      "message": "These look like dependencies that you\u0027ve added to fru utils, not test_fru_utils.\n\nAlso, we need to have a discussion about this.  Having a common library that has this many dependencies makes it far less useful.  I would not expect a generic reusable library to take a dependency on any of these.",
+      "range": {
+        "startLine": 243,
+        "startChar": 0,
+        "endLine": 246,
+        "endChar": 25
+      },
+      "revId": "b1ca3c9f403e2eacb16f17164e4737db5efb28e5",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6cbc8de0_26dd1a38",
+        "filename": "src/FruDeviceMain.cpp",
+        "patchSetId": 35
+      },
+      "lineNbr": 64,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2022-05-03T17:34:43Z",
+      "side": 1,
+      "message": "Generally when you need to forward declare methods like this implies that they need to be in an appropriate header.",
+      "range": {
+        "startLine": 41,
+        "startChar": 0,
+        "endLine": 64,
+        "endChar": 61
+      },
+      "revId": "b1ca3c9f403e2eacb16f17164e4737db5efb28e5",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4e463782_f8b30faf",
+        "filename": "src/FruUtils.cpp",
+        "patchSetId": 35
+      },
+      "lineNbr": 47,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2022-05-03T17:34:43Z",
+      "side": 1,
+      "message": "This is I think the 3rd place that this method has been forward declared.  Please don\u0027t do that.",
+      "range": {
+        "startLine": 39,
+        "startChar": 0,
+        "endLine": 47,
+        "endChar": 0
+      },
+      "revId": "b1ca3c9f403e2eacb16f17164e4737db5efb28e5",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "624fb6fc_77f8596e",
+        "filename": "src/FruUtils.cpp",
+        "patchSetId": 35
+      },
+      "lineNbr": 83,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2022-05-03T17:34:43Z",
+      "side": 1,
+      "message": "Considering this is VERY specific to a fru that exists on i2c, I wouldn\u0027t really expect this to be in a common class.  I suspect we need to refactor things a bit.",
+      "range": {
+        "startLine": 77,
+        "startChar": 0,
+        "endLine": 83,
+        "endChar": 0
+      },
+      "revId": "b1ca3c9f403e2eacb16f17164e4737db5efb28e5",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    }
+  ]
+}
