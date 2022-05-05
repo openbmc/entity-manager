@@ -24,6 +24,30 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "14480546_7a807864",
+        "filename": "include/FruUtils.hpp",
+        "patchSetId": 35
+      },
+      "lineNbr": 202,
+      "author": {
+        "id": 1000546
+      },
+      "writtenOn": "2022-05-05T16:00:53Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "21574e0a_d9bfcff0",
+      "range": {
+        "startLine": 174,
+        "startChar": 0,
+        "endLine": 202,
+        "endChar": 61
+      },
+      "revId": "b1ca3c9f403e2eacb16f17164e4737db5efb28e5",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "2c5cd19a_3151d1da",
@@ -37,6 +61,30 @@
       "writtenOn": "2022-05-03T17:34:43Z",
       "side": 1,
       "message": "?  Not mentioned in your commit message, and it\u0027s not immediately clear why this is needed.",
+      "range": {
+        "startLine": 200,
+        "startChar": 0,
+        "endLine": 200,
+        "endChar": 79
+      },
+      "revId": "b1ca3c9f403e2eacb16f17164e4737db5efb28e5",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "40ec59a3_82e05f23",
+        "filename": "meson.build",
+        "patchSetId": 35
+      },
+      "lineNbr": 200,
+      "author": {
+        "id": 1000546
+      },
+      "writtenOn": "2022-05-05T16:00:53Z",
+      "side": 1,
+      "message": "packagedir is needed by test_fru_utils. That is the reason added with test_boost_args. Without this packagdir, CI failed for test_fru_utils.I will update this in commit message.",
+      "parentUuid": "2c5cd19a_3151d1da",
       "range": {
         "startLine": 200,
         "startChar": 0,
@@ -70,6 +118,30 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "bf23e35a_5ced28ce",
+        "filename": "meson.build",
+        "patchSetId": 35
+      },
+      "lineNbr": 246,
+      "author": {
+        "id": 1000546
+      },
+      "writtenOn": "2022-05-05T16:00:53Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "f8fa19d5_b386ca5f",
+      "range": {
+        "startLine": 243,
+        "startChar": 0,
+        "endLine": 246,
+        "endChar": 25
+      },
+      "revId": "b1ca3c9f403e2eacb16f17164e4737db5efb28e5",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "6cbc8de0_26dd1a38",
@@ -93,6 +165,30 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "849d8a45_0d6aa1c9",
+        "filename": "src/FruDeviceMain.cpp",
+        "patchSetId": 35
+      },
+      "lineNbr": 64,
+      "author": {
+        "id": 1000546
+      },
+      "writtenOn": "2022-05-05T16:00:53Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "6cbc8de0_26dd1a38",
+      "range": {
+        "startLine": 41,
+        "startChar": 0,
+        "endLine": 64,
+        "endChar": 61
+      },
+      "revId": "b1ca3c9f403e2eacb16f17164e4737db5efb28e5",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "4e463782_f8b30faf",
@@ -106,6 +202,30 @@
       "writtenOn": "2022-05-03T17:34:43Z",
       "side": 1,
       "message": "This is I think the 3rd place that this method has been forward declared.  Please don\u0027t do that.",
+      "range": {
+        "startLine": 39,
+        "startChar": 0,
+        "endLine": 47,
+        "endChar": 0
+      },
+      "revId": "b1ca3c9f403e2eacb16f17164e4737db5efb28e5",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "634da061_371dd6dc",
+        "filename": "src/FruUtils.cpp",
+        "patchSetId": 35
+      },
+      "lineNbr": 47,
+      "author": {
+        "id": 1000546
+      },
+      "writtenOn": "2022-05-05T16:00:53Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "4e463782_f8b30faf",
       "range": {
         "startLine": 39,
         "startChar": 0,
@@ -163,6 +283,30 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "ce603166_6fc825d2",
+        "filename": "src/FruUtils.cpp",
+        "patchSetId": 35
+      },
+      "lineNbr": 83,
+      "author": {
+        "id": 1000546
+      },
+      "writtenOn": "2022-05-05T16:00:53Z",
+      "side": 1,
+      "message": "Ack. Working on Refactoring the code.",
+      "parentUuid": "c21c4f84_35b4381c",
+      "range": {
+        "startLine": 77,
+        "startChar": 0,
+        "endLine": 83,
+        "endChar": 0
+      },
+      "revId": "b1ca3c9f403e2eacb16f17164e4737db5efb28e5",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "144f2706_fd346f48",
@@ -210,6 +354,30 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "27d59c81_b5c1bfb9",
+        "filename": "src/FruUtils.cpp",
+        "patchSetId": 35
+      },
+      "lineNbr": 1190,
+      "author": {
+        "id": 1000546
+      },
+      "writtenOn": "2022-05-05T16:00:53Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "6f6d62dd_918a75e6",
+      "range": {
+        "startLine": 1142,
+        "startChar": 4,
+        "endLine": 1190,
+        "endChar": 5
+      },
+      "revId": "b1ca3c9f403e2eacb16f17164e4737db5efb28e5",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "d7881174_85eb838f",
@@ -247,6 +415,30 @@
       "side": 1,
       "message": "+1",
       "parentUuid": "d7881174_85eb838f",
+      "range": {
+        "startLine": 1245,
+        "startChar": 4,
+        "endLine": 1247,
+        "endChar": 49
+      },
+      "revId": "b1ca3c9f403e2eacb16f17164e4737db5efb28e5",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "5ac5aaab_38da4104",
+        "filename": "src/FruUtils.cpp",
+        "patchSetId": 35
+      },
+      "lineNbr": 1247,
+      "author": {
+        "id": 1000546
+      },
+      "writtenOn": "2022-05-05T16:00:53Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "1da346d4_5335fd70",
       "range": {
         "startLine": 1245,
         "startChar": 4,
