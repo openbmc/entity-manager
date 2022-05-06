@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "9e801b2c_befef6ff",
+        "filename": "src/PerformScan.cpp",
+        "patchSetId": 4
+      },
+      "lineNbr": 310,
+      "author": {
+        "id": 1000500
+      },
+      "writtenOn": "2022-05-06T06:53:53Z",
+      "side": 1,
+      "message": "I guess in some very rare, extreme cases, perhaps combinations of some obscure SIMD/SIMT machines and compilers, the code for \"if{..} else if{..}\" and \"if{..} else {..}\" may result in slightly different behavior, but it should be okay here, so this change looks good to me.",
+      "range": {
+        "startLine": 310,
+        "startChar": 4,
+        "endLine": 310,
+        "endChar": 5
+      },
+      "revId": "66cf57cc81c2c6fd15f7b464da5d0c3823e666d6",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    }
+  ]
+}
