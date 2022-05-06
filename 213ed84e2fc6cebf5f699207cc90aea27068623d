@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "e8eec7e2_08dcd539",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1000500
+      },
+      "writtenOn": "2022-05-06T07:10:02Z",
+      "side": 1,
+      "message": "I guess one might say vector::erase takes O(n) time so the entire loop takes O(n^2) after the change instead of O(n), but this should not matter if the list is typically small enough, so this change looks good to me.",
+      "revId": "213ed84e2fc6cebf5f699207cc90aea27068623d",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    }
+  ]
+}
