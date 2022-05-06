@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "42cfd608_083388db",
+        "filename": "src/PerformScan.cpp",
+        "patchSetId": 4
+      },
+      "lineNbr": 330,
+      "author": {
+        "id": 1000500
+      },
+      "writtenOn": "2022-05-06T07:01:19Z",
+      "side": 1,
+      "message": "Just curious: is there any consideration in not returning an std::vector\u003cstd::string\u003e::iterator and using the same \"matchIt \u003d\u003d matches.end()\" check, but rather use an std::optional?",
+      "range": {
+        "startLine": 330,
+        "startChar": 7,
+        "endLine": 330,
+        "endChar": 55
+      },
+      "revId": "a1f9f2fc521ed819d053ee232663c87a605c0e14",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    }
+  ]
+}
