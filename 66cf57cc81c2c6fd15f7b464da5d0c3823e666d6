@@ -22,6 +22,30 @@
       },
       "revId": "66cf57cc81c2c6fd15f7b464da5d0c3823e666d6",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "3c340c10_4b809b59",
+        "filename": "src/PerformScan.cpp",
+        "patchSetId": 4
+      },
+      "lineNbr": 310,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2022-05-06T21:09:11Z",
+      "side": 1,
+      "message": "Pretty much every compiler I\u0027m aware of \"normalizes\" the ast before applying optimizations, so I\u0027d be really surprised if this generated different code on any modern compiler.\n\nEven if it did, they would still both be semantically the same, so I think we\u0027re fine here.",
+      "parentUuid": "9e801b2c_befef6ff",
+      "range": {
+        "startLine": 310,
+        "startChar": 4,
+        "endLine": 310,
+        "endChar": 5
+      },
+      "revId": "66cf57cc81c2c6fd15f7b464da5d0c3823e666d6",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }
