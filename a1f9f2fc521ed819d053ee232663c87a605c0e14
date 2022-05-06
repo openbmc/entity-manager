@@ -22,6 +22,53 @@
       },
       "revId": "a1f9f2fc521ed819d053ee232663c87a605c0e14",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "ab635cbb_30d1605a",
+        "filename": "src/PerformScan.cpp",
+        "patchSetId": 4
+      },
+      "lineNbr": 330,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2022-05-06T21:29:32Z",
+      "side": 1,
+      "message": "We could do that, but then it gets subtle about what you\u0027re supposed to compare the result to.  Granted, that\u0027s kinda how std::find works, so maybe it\u0027s not that bad?",
+      "parentUuid": "42cfd608_083388db",
+      "range": {
+        "startLine": 330,
+        "startChar": 7,
+        "endLine": 330,
+        "endChar": 55
+      },
+      "revId": "a1f9f2fc521ed819d053ee232663c87a605c0e14",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "0d9b2347_87fcd67a",
+        "filename": "src/PerformScan.cpp",
+        "patchSetId": 4
+      },
+      "lineNbr": 336,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2022-05-06T21:29:32Z",
+      "side": 1,
+      "message": "I\u0027d really prefer we do this with something like\n\nstd::string\u0026 name \u003d (exposedObject)[\"Name\"].get_ref\u003cstd::string\u003e();\n\n[\u0026name] (std:::string\u0026 s)...\n\nJust so we\u0027re not making any copies of the string, with that said, the old code did it this way, so it\u0027s fine.",
+      "range": {
+        "startLine": 336,
+        "startChar": 29,
+        "endLine": 336,
+        "endChar": 71
+      },
+      "revId": "a1f9f2fc521ed819d053ee232663c87a605c0e14",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }
