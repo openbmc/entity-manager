@@ -1420,7 +1420,7 @@ int main()
         "host0',arg0='xyz.openbmc_project.State.Host'",
         eventHandler);
 
-    int fd = inotify_init();
+    int fd = inotify_init1(IN_NONBLOCK);
     inotify_add_watch(fd, i2CDevLocation, IN_CREATE | IN_MOVED_TO | IN_DELETE);
     std::array<char, 4096> readBuffer;
     // monitor for new i2c devices
