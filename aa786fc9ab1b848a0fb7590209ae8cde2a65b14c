@@ -1,6 +1,7 @@
 {
   "comments": [
     {
+      "unresolved": true,
       "key": {
         "uuid": "eb175025_d71a4a02",
         "filename": "/COMMIT_MSG",
@@ -14,10 +15,10 @@
       "side": 1,
       "message": "Why does this need to be configurable?  I\u0027d assume we\u0027d want disconnect on all muxes?  Is there a mux use case where we wouldn\u0027t want disconnect?",
       "revId": "aa786fc9ab1b848a0fb7590209ae8cde2a65b14c",
-      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
-      "unresolved": true
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": true,
       "key": {
         "uuid": "231edaeb_9ea10e5a",
         "filename": "/COMMIT_MSG",
@@ -32,10 +33,10 @@
       "message": "After this fix, Mux channel access becomes slow. The 2 operation process (selecting the mux channel and reading) will become 3 operations (selection, reading and disconnect). Hence this is made configurable to provide user a choice depends on use case.",
       "parentUuid": "eb175025_d71a4a02",
       "revId": "aa786fc9ab1b848a0fb7590209ae8cde2a65b14c",
-      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
-      "unresolved": true
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": true,
       "key": {
         "uuid": "aabc9e87_e0ab41aa",
         "filename": "/COMMIT_MSG",
@@ -50,10 +51,10 @@
       "message": "Most systems already set this in the DTS though.  I\u0027m not sure this should be the default.  Lets just set it for all new muxes, and go from there.  If it needs to be configurable, we can ressurect this patch, but I don\u0027t think any of our dbus-sensors use cases are performance sensitive right now.",
       "parentUuid": "231edaeb_9ea10e5a",
       "revId": "aa786fc9ab1b848a0fb7590209ae8cde2a65b14c",
-      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
-      "unresolved": true
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": true,
       "key": {
         "uuid": "af24e843_cc8c82d7",
         "filename": "/COMMIT_MSG",
@@ -68,10 +69,46 @@
       "message": "I don\u0027t understand. Will this overwrite DTS\u0027 setting, for example, DTS defines Idle Mode to be \"As Is\" and EM use \"Disconnect\" as default, will the mux idle mode be changed to disconnect?",
       "parentUuid": "aabc9e87_e0ab41aa",
       "revId": "aa786fc9ab1b848a0fb7590209ae8cde2a65b14c",
-      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
-      "unresolved": true
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": true,
+      "key": {
+        "uuid": "a4bb5898_697bf404",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 4
+      },
+      "lineNbr": 15,
+      "author": {
+        "id": 1001252
+      },
+      "writtenOn": "2022-05-09T06:04:59Z",
+      "side": 1,
+      "message": "For mux devices defined in entity-manager, typically it is not defined in dts file.  And its driver is not loaded on kernel startup, instead, it is loaded by entity-manager in its buildDevice() function. Defining the mux both in DTS and EM json causes conflict, it should only be defined in either one of it.\n\nThe PCA954x kernel driver sets the default idle mode to MUX_IDLE_AS_IS (keep the last channel seleted). https://github.com/torvalds/linux/blob/master/drivers/i2c/muxes/i2c-mux-pca954x.c#L469-L473. MUX_IDLE_DISCONNECT needs to be manually specified, either by defining it in dts on driver load, or setting the idle_mode in sysfs to -2 at runtime.",
+      "parentUuid": "af24e843_cc8c82d7",
+      "revId": "aa786fc9ab1b848a0fb7590209ae8cde2a65b14c",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6cadf321_0eabf7f0",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 4
+      },
+      "lineNbr": 15,
+      "author": {
+        "id": 1001252
+      },
+      "writtenOn": "2022-05-09T06:04:59Z",
+      "side": 1,
+      "message": "No, when entity-manager tries to load driver for mux in buildDevice(), it gives EBUSY -16 error if device has already in use (driver already loaded). As DTS settings loads driver at kernel boot, long before entity-manager starts, this will always happen. The setIdleMode() is only called on buildDevice() success.\n\nIn fact, it causes conflict a mux in both DTS and entity-manager json as both will try to load driver for it. It should either be defined in DTS or EM json, not both places.",
+      "parentUuid": "af24e843_cc8c82d7",
+      "revId": "aa786fc9ab1b848a0fb7590209ae8cde2a65b14c",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
       "key": {
         "uuid": "36b47afd_eb3c54dc",
         "filename": "/COMMIT_MSG",
@@ -85,10 +122,10 @@
       "side": 1,
       "message": "What would be the default MUX mode if not configured?",
       "revId": "aa786fc9ab1b848a0fb7590209ae8cde2a65b14c",
-      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
-      "unresolved": true
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": true,
       "key": {
         "uuid": "311cbc11_59452cd5",
         "filename": "/COMMIT_MSG",
@@ -103,10 +140,10 @@
       "message": "The default MUX mode will be as it is. the selected channel won\u0027t be disconnected.",
       "parentUuid": "36b47afd_eb3c54dc",
       "revId": "aa786fc9ab1b848a0fb7590209ae8cde2a65b14c",
-      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
-      "unresolved": true
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": true,
       "key": {
         "uuid": "092b0199_991b17a7",
         "filename": "src/Overlay.cpp",
@@ -126,10 +163,10 @@
         "endChar": 43
       },
       "revId": "aa786fc9ab1b848a0fb7590209ae8cde2a65b14c",
-      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
-      "unresolved": true
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": true,
       "key": {
         "uuid": "3ec8c620_ae413b3c",
         "filename": "src/Overlay.cpp",
@@ -149,8 +186,7 @@
         "endChar": 25
       },
       "revId": "aa786fc9ab1b848a0fb7590209ae8cde2a65b14c",
-      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
-      "unresolved": true
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }
