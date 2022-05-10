@@ -16,6 +16,24 @@
       "message": "I guess one might say vector::erase takes O(n) time so the entire loop takes O(n^2) after the change instead of O(n), but this should not matter if the list is typically small enough, so this change looks good to me.",
       "revId": "213ed84e2fc6cebf5f699207cc90aea27068623d",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "3e2ded1f_6b4a4156",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1000009
+      },
+      "writtenOn": "2022-05-10T00:57:14Z",
+      "side": 1,
+      "message": "I guess, yes, O(n^2) computationally, but it improves memory efficiency over what was there by a factor of 2, avoiding whatever allocations were required for maintaining the second vector.\n\nMaybe we could switch to using a std::set and achieve O(log(n)) computational complexity?",
+      "parentUuid": "e8eec7e2_08dcd539",
+      "revId": "213ed84e2fc6cebf5f699207cc90aea27068623d",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }
