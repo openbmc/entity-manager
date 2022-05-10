@@ -795,7 +795,11 @@
         }
     ],
     "Name": "Bletchley Baseboard",
-    "Probe": "xyz.openbmc_project.FruDevice({'BOARD_PRODUCT_NAME': '.*Bletchley.*'})",
+    "Probe": [
+        "xyz.openbmc_project.FruDevice({'BOARD_PRODUCT_NAME': 'Bletchley -Class 1', 'PRODUCT_PRODUCT_NAME' : 'Bletchley EVT'})",
+        "OR",
+        "xyz.openbmc_project.FruDevice({'BOARD_PRODUCT_NAME': '.*Bletchley Chassis Controller.*'})"
+    ],
     "Type": "Board",
     "xyz.openbmc_project.Inventory.Decorator.Asset": {
         "Manufacturer": "$PRODUCT_MANUFACTURER",
