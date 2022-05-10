@@ -34,6 +34,24 @@
       "parentUuid": "cbae4ae7_9e63906e",
       "revId": "9d0f73dc239e1407dfa9fdd1de777582a750dbe8",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "99b77421_525a4317",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1000009
+      },
+      "writtenOn": "2022-05-10T00:48:05Z",
+      "side": 1,
+      "message": "I guess the over-arching idea of the series is to introduce free functions or member functions that do one thing in a way that is easy to reason about and then composing them to perform more abstract behaviours. Doing multiple things in one function like you\u0027re suggesting has the same uncomfortable feeling for me as doing multiple things in a single commit - doing so makes it harder to reason about and harder to accept.",
+      "parentUuid": "8419bc87_6b926542",
+      "revId": "9d0f73dc239e1407dfa9fdd1de777582a750dbe8",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }
