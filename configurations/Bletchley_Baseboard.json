@@ -795,7 +795,7 @@
         }
     ],
     "Name": "Bletchley Baseboard",
-    "Probe": "xyz.openbmc_project.FruDevice({'BOARD_PRODUCT_NAME': '.*Bletchley.*'})",
+    "Probe": "xyz.openbmc_project.FruDevice({'BOARD_PRODUCT_NAME': '.*Bletchley.*', 'ADDRESS' : 84, 'BUS' : 7})",
     "Type": "Board",
     "xyz.openbmc_project.Inventory.Decorator.Asset": {
         "Manufacturer": "$PRODUCT_MANUFACTURER",
