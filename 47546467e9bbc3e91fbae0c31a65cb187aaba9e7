@@ -22,6 +22,30 @@
       },
       "revId": "47546467e9bbc3e91fbae0c31a65cb187aaba9e7",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3199edec_bce13d08",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 10,
+      "author": {
+        "id": 1001252
+      },
+      "writtenOn": "2022-05-10T15:51:02Z",
+      "side": 1,
+      "message": "I checked the implementation of boost::asio, when performing async_read_some(), it calls set_internal_non_blocking() to set the fd to non-blocking mode via FIONBIO ioctl. So setting IN_NONBLOCK flag seems to make no difference here as we never calls the synchronous read_some() in FruDevice (it uses read() or readv() syscall).\n\nhttps://github.com/boostorg/asio/blob/a7db875e4e23d711194bcbcb88510ee298ea2931/include/boost/asio/detail/reactive_descriptor_service.hpp#L450\nhttps://github.com/boostorg/asio/blob/a7db875e4e23d711194bcbcb88510ee298ea2931/include/boost/asio/detail/impl/reactive_descriptor_service.ipp#L204\n\nShould I abandon this patch?",
+      "parentUuid": "8671d42f_3c269aee",
+      "range": {
+        "startLine": 8,
+        "startChar": 0,
+        "endLine": 10,
+        "endChar": 30
+      },
+      "revId": "47546467e9bbc3e91fbae0c31a65cb187aaba9e7",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }
