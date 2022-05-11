@@ -94,6 +94,30 @@
       },
       "revId": "47546467e9bbc3e91fbae0c31a65cb187aaba9e7",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c7b3e5bf_c9cb6059",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 10,
+      "author": {
+        "id": 1001252
+      },
+      "writtenOn": "2022-05-11T04:17:21Z",
+      "side": 1,
+      "message": "I made it to watch subdir changes in my local change, it addes subdir to inotify by calling inotify_add_watch() on subdir creation, sometimes the inotify event right after creating subdir are missed, using IN_NONBLOCK seems to fixed that issue.\n\nSince such change will never be upstreamed, this change is not necessary.",
+      "parentUuid": "ae6c92ca_38a73000",
+      "range": {
+        "startLine": 8,
+        "startChar": 0,
+        "endLine": 10,
+        "endChar": 30
+      },
+      "revId": "47546467e9bbc3e91fbae0c31a65cb187aaba9e7",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }
