@@ -210,7 +210,7 @@ name in FRU) is successful and this baseboard is named as "WFP baseboard".
 }
 ```
 
-[Full Configuration](https://github.com/openbmc/entity-manager/blob/master/configurations/WFT%20Baseboard.json)
+[Full Configuration](https://github.com/openbmc/entity-manager/blob/master/configurations/WFT_Baseboard.json)
 
 
 #### Configuration Records - Chassis Example
