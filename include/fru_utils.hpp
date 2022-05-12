@@ -167,3 +167,8 @@ bool validateHeader(const std::array<uint8_t, I2C_SMBUS_BLOCK_MAX>& blockData);
 /// \param area - the area
 /// \return the field offset
 unsigned int getHeaderAreaFieldOffset(fruAreas area);
+
+/// \brief Remove trailing spaces
+/// \param s - string
+/// \return the trimed trailing spaces string
+std::string rtrim(std::string& s);
