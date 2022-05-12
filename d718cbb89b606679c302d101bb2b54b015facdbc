@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "53476b3b_6c478e81",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2022-05-12T15:46:48Z",
+      "side": 1,
+      "message": "Should we really be covering up the error in that case?  A little more detail here on the tradeoffs of making this change would be good.  This means that if we write the same value to a field, the actual fru content of the field would change.  That might have user impacts, and given that the FRU spec has a size in it, FRU eeproms that have trailing spaces are arguably incorrect.\n\nIf we decide this is needed, are there any other characters that need trimmed?  null?  unprintable characters?",
+      "range": {
+        "startLine": 9,
+        "startChar": 0,
+        "endLine": 9,
+        "endChar": 63
+      },
+      "revId": "d718cbb89b606679c302d101bb2b54b015facdbc",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "aa4d6d33_a9eea88e",
+        "filename": "src/FruDevice.cpp",
+        "patchSetId": 1
+      },
+      "lineNbr": 745,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2022-05-12T15:46:48Z",
+      "side": 1,
+      "message": "Please don\u0027t use regex for this.  While it\u0027s slightly more complex, it\u0027s easier code to reason about and unit test if we just do this using std::algorithms.  Something like\n\nstatic inline void rtrim(std::string \u0026s) {\n    s.erase(std::find_if(s.rbegin(), s.rend(), [](unsigned char ch) {\n        return !std::isspace(ch);\n    }).base(), s.end());\n}\n\nSeems better to me.",
+      "range": {
+        "startLine": 745,
+        "startChar": 0,
+        "endLine": 745,
+        "endChar": 42
+      },
+      "revId": "d718cbb89b606679c302d101bb2b54b015facdbc",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    }
+  ]
+}
