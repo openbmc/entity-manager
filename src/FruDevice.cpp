@@ -742,12 +742,15 @@ void addFruObjectToDbus(
         }
         std::string key =
             std::regex_replace(property.first, nonAsciiRegex, "_");
+        std::regex trailingSpace("\\s+$");
+        std::string keyValue =
+            std::regex_replace(property.second, trailingSpace, "");
 
         if (property.first == "PRODUCT_ASSET_TAG")
         {
             std::string propertyName = property.first;
             iface->register_property(
-                key, property.second + '\0',
+                key, keyValue,
                 [bus, address, propertyName, &dbusInterfaceMap,
                  &unknownBusObjectCount, &powerIsOn, &objServer,
                  &systemBus](const std::string& req, std::string& resp) {
@@ -770,7 +773,7 @@ void addFruObjectToDbus(
                     return 1;
                 });
         }
-        else if (!iface->register_property(key, property.second + '\0'))
+        else if (!iface->register_property(key, keyValue))
         {
             std::cerr << "illegal key: " << key << "\n";
         }
