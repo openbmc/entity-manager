@@ -26,6 +26,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "e3b5bf62_c8ee9acc",
+        "filename": "configurations/Bletchley_Baseboard.json",
+        "patchSetId": 3
+      },
+      "lineNbr": 799,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2022-05-12T16:23:11Z",
+      "side": 1,
+      "message": "I think the EVT match is desired in order to not-match on any DVT boards that might have already been produced and haven\u0027t been reprogrammed yet, since the DVT interposers, which are not reprogrammed, would match the \"Bletchley -Class 1\" portion.\n\nIn a few months we\u0027ll probably drop all support for the EVT boards and remove this entirely.",
+      "parentUuid": "d387b8b4_1cfdc401",
+      "range": {
+        "startLine": 799,
+        "startChar": 40,
+        "endLine": 799,
+        "endChar": 124
+      },
+      "revId": "e374e20307a384bdd04fb4b88a2930f05e857697",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "3fa81eca_14ce93d1",
         "filename": "configurations/Bletchley_Baseboard.json",
         "patchSetId": 3
@@ -37,6 +61,30 @@
       "writtenOn": "2022-05-12T15:48:32Z",
       "side": 1,
       "message": "Considering that this already caused problems, can the .* here be made more specific?  Presumably there is a more refined list of things that this fru field can contain.",
+      "range": {
+        "startLine": 801,
+        "startChar": 63,
+        "endLine": 801,
+        "endChar": 65
+      },
+      "revId": "e374e20307a384bdd04fb4b88a2930f05e857697",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "bcfc0de6_4784306b",
+        "filename": "configurations/Bletchley_Baseboard.json",
+        "patchSetId": 3
+      },
+      "lineNbr": 801,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2022-05-12T16:23:11Z",
+      "side": 1,
+      "message": "I think the pre-wildcard could be removed but the post-wildcard is probably still needed.  I think the board product will still include the \"-Class 1\" portion in DVT.",
+      "parentUuid": "3fa81eca_14ce93d1",
       "range": {
         "startLine": 801,
         "startChar": 63,
