@@ -751,23 +751,23 @@ void addFruObjectToDbus(
                 [bus, address, propertyName, &dbusInterfaceMap,
                  &unknownBusObjectCount, &powerIsOn, &objServer,
                  &systemBus](const std::string& req, std::string& resp) {
-                    if (strcmp(req.c_str(), resp.c_str()) != 0)
+                if (strcmp(req.c_str(), resp.c_str()) != 0)
+                {
+                    // call the method which will update
+                    if (updateFRUProperty(req, bus, address, propertyName,
+                                          dbusInterfaceMap,
+                                          unknownBusObjectCount, powerIsOn,
+                                          objServer, systemBus))
                     {
-                        // call the method which will update
-                        if (updateFRUProperty(req, bus, address, propertyName,
-                                              dbusInterfaceMap,
-                                              unknownBusObjectCount, powerIsOn,
-                                              objServer, systemBus))
-                        {
-                            resp = req;
-                        }
-                        else
-                        {
-                            throw std::invalid_argument(
-                                "FRU property update failed.");
-                        }
+                        resp = req;
                     }
-                    return 1;
+                    else
+                    {
+                        throw std::invalid_argument(
+                            "FRU property update failed.");
+                    }
+                }
+                return 1;
                 });
         }
         else if (!iface->register_property(key, property.second + '\0'))
@@ -955,25 +955,25 @@ void rescanOneBus(
         i2cBuses, busmap, powerIsOn, objServer,
         [busNum, &busmap, &dbusInterfaceMap, &unknownBusObjectCount, &powerIsOn,
          &objServer, &systemBus]() {
-            for (auto& busIface : dbusInterfaceMap)
+        for (auto& busIface : dbusInterfaceMap)
+        {
+            if (busIface.first.first == static_cast<size_t>(busNum))
             {
-                if (busIface.first.first == static_cast<size_t>(busNum))
-                {
-                    objServer.remove_interface(busIface.second);
-                }
+                objServer.remove_interface(busIface.second);
             }
-            auto found = busmap.find(busNum);
-            if (found == busmap.end() || found->second == nullptr)
-            {
-                return;
-            }
-            for (auto& device : *(found->second))
-            {
-                addFruObjectToDbus(device.second, dbusInterfaceMap,
-                                   static_cast<uint32_t>(busNum), device.first,
-                                   unknownBusObjectCount, powerIsOn, objServer,
-                                   systemBus);
-            }
+        }
+        auto found = busmap.find(busNum);
+        if (found == busmap.end() || found->second == nullptr)
+        {
+            return;
+        }
+        for (auto& device : *(found->second))
+        {
+            addFruObjectToDbus(device.second, dbusInterfaceMap,
+                               static_cast<uint32_t>(busNum), device.first,
+                               unknownBusObjectCount, powerIsOn, objServer,
+                               systemBus);
+        }
         });
     scan->run();
 }
@@ -1377,9 +1377,9 @@ int main()
 
     iface->register_method("GetRawFru", getFRUInfo);
 
-    iface->register_method("WriteFru", [&](const uint8_t bus,
-                                           const uint8_t address,
-                                           const std::vector<uint8_t>& data) {
+    iface->register_method("WriteFru",
+                           [&](const uint8_t bus, const uint8_t address,
+                               const std::vector<uint8_t>& data) {
         if (!writeFRU(bus, address, data))
         {
             throw std::invalid_argument("Invalid Arguments.");
@@ -1393,25 +1393,25 @@ int main()
 
     std::function<void(sdbusplus::message::message & message)> eventHandler =
         [&](sdbusplus::message::message& message) {
-            std::string objectName;
-            boost::container::flat_map<
-                std::string,
-                std::variant<std::string, bool, int64_t, uint64_t, double>>
-                values;
-            message.read(objectName, values);
-            auto findState = values.find("CurrentHostState");
-            if (findState != values.end())
-            {
-                powerIsOn = boost::ends_with(
-                    std::get<std::string>(findState->second), "Running");
-            }
+        std::string objectName;
+        boost::container::flat_map<
+            std::string,
+            std::variant<std::string, bool, int64_t, uint64_t, double>>
+            values;
+        message.read(objectName, values);
+        auto findState = values.find("CurrentHostState");
+        if (findState != values.end())
+        {
+            powerIsOn = boost::ends_with(
+                std::get<std::string>(findState->second), "Running");
+        }
 
-            if (powerIsOn)
-            {
-                rescanBusses(busMap, dbusInterfaceMap, unknownBusObjectCount,
-                             powerIsOn, objServer, systemBus);
-            }
-        };
+        if (powerIsOn)
+        {
+            rescanBusses(busMap, dbusInterfaceMap, unknownBusObjectCount,
+                         powerIsOn, objServer, systemBus);
+        }
+    };
 
     sdbusplus::bus::match::match powerMatch = sdbusplus::bus::match::match(
         static_cast<sdbusplus::bus::bus&>(*systemBus),

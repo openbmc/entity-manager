@@ -60,23 +60,22 @@ void getInterfaces(
     systemBus->async_method_call(
         [instance, scan, probeVector, retries](boost::system::error_code& errc,
                                                const DBusInterface& resp) {
-            if (errc)
-            {
-                std::cerr << "error calling getall on  " << instance.busName
-                          << " " << instance.path << " "
-                          << instance.interface << "\n";
+        if (errc)
+        {
+            std::cerr << "error calling getall on  " << instance.busName << " "
+                      << instance.path << " " << instance.interface << "\n";
 
-                auto timer = std::make_shared<boost::asio::steady_timer>(io);
-                timer->expires_after(std::chrono::seconds(2));
+            auto timer = std::make_shared<boost::asio::steady_timer>(io);
+            timer->expires_after(std::chrono::seconds(2));
 
-                timer->async_wait([timer, instance, scan, probeVector,
-                                   retries](const boost::system::error_code&) {
-                    getInterfaces(instance, probeVector, scan, retries - 1);
-                });
-                return;
-            }
+            timer->async_wait([timer, instance, scan, probeVector,
+                               retries](const boost::system::error_code&) {
+                getInterfaces(instance, probeVector, scan, retries - 1);
+            });
+            return;
+        }
 
-            scan->dbusProbeObjects[instance.path][instance.interface] = resp;
+        scan->dbusProbeObjects[instance.path][instance.interface] = resp;
         },
         instance.busName, instance.path, "org.freedesktop.DBus.Properties",
         "GetAll", instance.interface);
@@ -102,8 +101,8 @@ static void registerCallback(nlohmann::json& systemConfiguration,
 
     std::function<void(sdbusplus::message::message & message)> eventHandler =
         [&](sdbusplus::message::message&) {
-            propertiesChangedCallback(systemConfiguration, objServer);
-        };
+        propertiesChangedCallback(systemConfiguration, objServer);
+    };
 
     sdbusplus::bus::match::match match(
         static_cast<sdbusplus::bus::bus&>(*systemBus),
@@ -164,36 +163,34 @@ void findDbusObjects(std::vector<std::shared_ptr<PerformProbe>>&& probeVector,
         [interfaces, probeVector{std::move(probeVector)}, scan,
          retries](boost::system::error_code& ec,
                   const GetSubTreeType& interfaceSubtree) mutable {
-            if (ec)
+        if (ec)
+        {
+            if (ec.value() == ENOENT)
             {
-                if (ec.value() == ENOENT)
-                {
-                    return; // wasn't found by mapper
-                }
-                std::cerr << "Error communicating to mapper.\n";
+                return; // wasn't found by mapper
+            }
+            std::cerr << "Error communicating to mapper.\n";
 
-                if (!retries)
-                {
-                    // if we can't communicate to the mapper something is very
-                    // wrong
-                    std::exit(EXIT_FAILURE);
-                }
-
-                auto timer = std::make_shared<boost::asio::steady_timer>(io);
-                timer->expires_after(std::chrono::seconds(10));
-
-                timer->async_wait(
-                    [timer, interfaces{std::move(interfaces)}, scan,
-                     probeVector{std::move(probeVector)},
-                     retries](const boost::system::error_code&) mutable {
-                        findDbusObjects(std::move(probeVector),
-                                        std::move(interfaces), scan,
-                                        retries - 1);
-                    });
-                return;
+            if (!retries)
+            {
+                // if we can't communicate to the mapper something is very
+                // wrong
+                std::exit(EXIT_FAILURE);
             }
 
-            processDbusObjects(probeVector, scan, interfaceSubtree);
+            auto timer = std::make_shared<boost::asio::steady_timer>(io);
+            timer->expires_after(std::chrono::seconds(10));
+
+            timer->async_wait([timer, interfaces{std::move(interfaces)}, scan,
+                               probeVector{std::move(probeVector)}, retries](
+                                  const boost::system::error_code&) mutable {
+                findDbusObjects(std::move(probeVector), std::move(interfaces),
+                                scan, retries - 1);
+            });
+            return;
+        }
+
+        processDbusObjects(probeVector, scan, interfaceSubtree);
         },
         "xyz.openbmc_project.ObjectMapper",
         "/xyz/openbmc_project/object_mapper",

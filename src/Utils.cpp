@@ -160,27 +160,27 @@ void setupPowerMatch(const std::shared_ptr<sdbusplus::asio::connection>& conn)
             "',path='" + std::string(power::path) + "',arg0='" +
             std::string(power::interface) + "'",
         [](sdbusplus::message::message& message) {
-            std::string objectName;
-            boost::container::flat_map<std::string, std::variant<std::string>>
-                values;
-            message.read(objectName, values);
-            auto findState = values.find(power::property);
-            if (findState != values.end())
-            {
-                powerStatusOn = boost::ends_with(
-                    std::get<std::string>(findState->second), "Running");
-            }
+        std::string objectName;
+        boost::container::flat_map<std::string, std::variant<std::string>>
+            values;
+        message.read(objectName, values);
+        auto findState = values.find(power::property);
+        if (findState != values.end())
+        {
+            powerStatusOn = boost::ends_with(
+                std::get<std::string>(findState->second), "Running");
+        }
         });
 
     conn->async_method_call(
         [](boost::system::error_code ec,
            const std::variant<std::string>& state) {
-            if (ec)
-            {
-                return;
-            }
-            powerStatusOn =
-                boost::ends_with(std::get<std::string>(state), "Running");
+        if (ec)
+        {
+            return;
+        }
+        powerStatusOn =
+            boost::ends_with(std::get<std::string>(state), "Running");
         },
         power::busname, power::path, properties::interface, properties::get,
         power::interface, power::property);
