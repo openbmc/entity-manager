@@ -26,6 +26,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "770e92ff_29bd83a1",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 8
+      },
+      "lineNbr": 12,
+      "author": {
+        "id": 1000937
+      },
+      "writtenOn": "2022-05-18T13:50:37Z",
+      "side": 1,
+      "message": "\u003e In general we prefer composition to inheritance.\nSome fields in SPD will change in different generations.\nFor example\n- range expanded\n- formula changed \n- fields become mandatory.\nBut from an external point of view they are still the same field, which is why I chose to use inheritance.\n\n\u003e it\u0027s not clear how they would expose the same API.\nMost of the essential parameters of DIMM exist in any generation of SPD (dimm type, dimm speed, dimm size etc), these are the APIs I intend to expose in this base class.",
+      "parentUuid": "3a3a2126_0cf8a07c",
+      "range": {
+        "startLine": 10,
+        "startChar": 0,
+        "endLine": 12,
+        "endChar": 19
+      },
+      "revId": "1d53e2d2ca7772cee464c8c22b38b28a5561cbc2",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "c597bab4_0e2a3c07",
         "filename": "/COMMIT_MSG",
         "patchSetId": 8
@@ -37,6 +61,24 @@
       "writtenOn": "2022-03-12T17:46:21Z",
       "side": 1,
       "message": "Your commit message should answer \"why\" which is a little difficult in this patchset because:\n1. There\u0027s no code actually reading this from a real i2c SPD.\n2. This publishes no interfaces to the greater system\n\nSo it\u0027s pretty difficult to understand how this SPD information is intended to be used, what APIs it\u0027s going to implement, ect, from how it\u0027s written.  I do appreciate you breaking this change up, but until the full series is available, it\u0027s difficult to verify that this patchset is correct.",
+      "revId": "1d53e2d2ca7772cee464c8c22b38b28a5561cbc2",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "abae09bd_8120fc62",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 8
+      },
+      "lineNbr": 14,
+      "author": {
+        "id": 1000937
+      },
+      "writtenOn": "2022-05-18T13:50:37Z",
+      "side": 1,
+      "message": "I just submitted all the patchset to gerrit for visibility. Currently it works but has bugs in it. I am still working on it.\nI will rephrase my commit log once the CLs are ready.",
+      "parentUuid": "c597bab4_0e2a3c07",
       "revId": "1d53e2d2ca7772cee464c8c22b38b28a5561cbc2",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
@@ -136,6 +178,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "d4e5a3e5_c1ed8fe0",
+        "filename": "include/spd/spd.hpp",
+        "patchSetId": 8
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 1000937
+      },
+      "writtenOn": "2022-05-18T13:50:37Z",
+      "side": 1,
+      "message": "\u003e Please don\u0027t add virtualized inherited classes unless there are at least 3 users of said class.\nI planned to support DDR5 for now, and might support DDR4 afterwards as well since DDR4 is now widely used.\nMeanwhile, the DDR generation is also keeping updating(DDR6 is in the planning phase). I believe this virtual class can accommodate the later DDR generation. So I think the users of this virtual class will keep increasing.\n\n\u003e given the very minor differences between the various spd types, a simple \"type\" flag that can be branched on in the 3 difference cases, using a common class would be sufficient.\nThe differences between DDR4 and DDR5 might be minor. However I compared DDR1/2 with DDR4 and the differences are huge.\nI know this comparison might not be fair since DDR1/2 is a historical product. But I want to make it as flexible as possible since the DDR generation keeps updating (at a fast speed).",
+      "parentUuid": "74c98957_cd8fa04b",
+      "range": {
+        "startLine": 9,
+        "startChar": 0,
+        "endLine": 9,
+        "endChar": 9
+      },
+      "revId": "1d53e2d2ca7772cee464c8c22b38b28a5561cbc2",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "f674d94b_dfad2fdd",
         "filename": "include/spd/spd.hpp",
         "patchSetId": 8
@@ -180,6 +246,54 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "0b5b26a0_d0c82cb5",
+        "filename": "include/spd/spd.hpp",
+        "patchSetId": 8
+      },
+      "lineNbr": 12,
+      "author": {
+        "id": 1000937
+      },
+      "writtenOn": "2022-05-18T13:50:37Z",
+      "side": 1,
+      "message": "Done. I also changed `ModuleType` to 8 bits. Most of the type in SPD spec are 8 bits.",
+      "parentUuid": "f674d94b_dfad2fdd",
+      "range": {
+        "startLine": 12,
+        "startChar": 15,
+        "endLine": 12,
+        "endChar": 22
+      },
+      "revId": "1d53e2d2ca7772cee464c8c22b38b28a5561cbc2",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "70f2eda8_df286242",
+        "filename": "include/spd/spd.hpp",
+        "patchSetId": 8
+      },
+      "lineNbr": 12,
+      "author": {
+        "id": 1000937
+      },
+      "writtenOn": "2022-05-18T13:50:37Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "0c917ad6_71353546",
+      "range": {
+        "startLine": 12,
+        "startChar": 0,
+        "endLine": 12,
+        "endChar": 22
+      },
+      "revId": "1d53e2d2ca7772cee464c8c22b38b28a5561cbc2",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "30a7944b_68d43c06",
@@ -193,6 +307,24 @@
       "writtenOn": "2022-03-12T17:46:21Z",
       "side": 1,
       "message": "Considering that these enums have gaps in them, and don\u0027t have a \"max\" field defined, I suspect you aren\u0027t range checking these appropriately.",
+      "revId": "1d53e2d2ca7772cee464c8c22b38b28a5561cbc2",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "e2ad2af0_88f02f36",
+        "filename": "include/spd/spd.hpp",
+        "patchSetId": 8
+      },
+      "lineNbr": 14,
+      "author": {
+        "id": 1000937
+      },
+      "writtenOn": "2022-05-18T13:50:37Z",
+      "side": 1,
+      "message": "Right, range checking will not work. So I use enumeration checking instead.\nSee https://gerrit.openbmc-project.xyz/c/openbmc/entity-manager/+/51435/8..9/src/spd.cpp#36",
+      "parentUuid": "30a7944b_68d43c06",
       "revId": "1d53e2d2ca7772cee464c8c22b38b28a5561cbc2",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
@@ -220,6 +352,30 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "a7d0ae83_fc23d147",
+        "filename": "include/spd/spd.hpp",
+        "patchSetId": 8
+      },
+      "lineNbr": 25,
+      "author": {
+        "id": 1000937
+      },
+      "writtenOn": "2022-05-18T13:50:37Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "ae5afb3b_d24b3a5f",
+      "range": {
+        "startLine": 25,
+        "startChar": 18,
+        "endLine": 25,
+        "endChar": 25
+      },
+      "revId": "1d53e2d2ca7772cee464c8c22b38b28a5561cbc2",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "42128819_b66b4ae5",
@@ -233,6 +389,30 @@
       "writtenOn": "2022-03-12T17:46:21Z",
       "side": 1,
       "message": "Lets avoid inventing a new \"Date\" type, and prefer to convert to a type we already have (std::chrono::time_point probably)",
+      "range": {
+        "startLine": 36,
+        "startChar": 0,
+        "endLine": 40,
+        "endChar": 6
+      },
+      "revId": "1d53e2d2ca7772cee464c8c22b38b28a5561cbc2",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "dd9a3474_1968c855",
+        "filename": "include/spd/spd.hpp",
+        "patchSetId": 8
+      },
+      "lineNbr": 40,
+      "author": {
+        "id": 1000937
+      },
+      "writtenOn": "2022-05-18T13:50:37Z",
+      "side": 1,
+      "message": "Done.\nNote: `std::chrono::time_point` doesn\u0027t have `weeks of a year`.\nSo it needs a conversion.",
+      "parentUuid": "42128819_b66b4ae5",
       "range": {
         "startLine": 36,
         "startChar": 0,
@@ -268,6 +448,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "b7f4117a_386423b9",
+        "filename": "include/spd/spd.hpp",
+        "patchSetId": 8
+      },
+      "lineNbr": 44,
+      "author": {
+        "id": 1000937
+      },
+      "writtenOn": "2022-05-18T13:50:37Z",
+      "side": 1,
+      "message": "\u003e Please make your enums the appropriate size, then use sizeof() for this\nI can’t do it in the current design. Because the actual DIMM struct is defined in ddr\u003cx\u003e.h instead of here.\n\n\u003e Also, this probably needs to be size_t, not uint32_t\nDone.",
+      "parentUuid": "7c89c51b_589f7b5d",
+      "range": {
+        "startLine": 44,
+        "startChar": 52,
+        "endLine": 44,
+        "endChar": 54
+      },
+      "revId": "1d53e2d2ca7772cee464c8c22b38b28a5561cbc2",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "9b0fde36_2a349858",
         "filename": "include/spd/spd.hpp",
         "patchSetId": 8
@@ -279,6 +483,30 @@
       "writtenOn": "2022-03-12T17:46:21Z",
       "side": 1,
       "message": "Is there a way to avoid this race by constructing the object with its underlying structure?",
+      "range": {
+        "startLine": 63,
+        "startChar": 40,
+        "endLine": 64,
+        "endChar": 60
+      },
+      "revId": "1d53e2d2ca7772cee464c8c22b38b28a5561cbc2",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "544091f9_76861d48",
+        "filename": "include/spd/spd.hpp",
+        "patchSetId": 8
+      },
+      "lineNbr": 64,
+      "author": {
+        "id": 1000937
+      },
+      "writtenOn": "2022-05-18T13:50:37Z",
+      "side": 1,
+      "message": "Sorry for the misleading. There shouldn\u0027t have any race because `getFromImage` is the only way to create an instance of `SPD`.\nSo `type()` function will only be called after `getFromImage` creates an instance successfully.",
+      "parentUuid": "9b0fde36_2a349858",
       "range": {
         "startLine": 63,
         "startChar": 40,
@@ -302,6 +530,30 @@
       "writtenOn": "2022-03-12T17:46:21Z",
       "side": 1,
       "message": "There are lots of functions in this class (this one included) that aren\u0027t used.  Please make sure that any code you\u0027re writing is actually used.",
+      "range": {
+        "startLine": 67,
+        "startChar": 0,
+        "endLine": 69,
+        "endChar": 0
+      },
+      "revId": "1d53e2d2ca7772cee464c8c22b38b28a5561cbc2",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "3f108746_2c41aa52",
+        "filename": "include/spd/spd.hpp",
+        "patchSetId": 8
+      },
+      "lineNbr": 69,
+      "author": {
+        "id": 1000937
+      },
+      "writtenOn": "2022-05-18T13:50:37Z",
+      "side": 1,
+      "message": "Noticed.\nAll the functions should be call by the dbus in this CL. https://gerrit.openbmc-project.xyz/c/openbmc/entity-manager/+/53605/1",
+      "parentUuid": "53731b2e_116b9f71",
       "range": {
         "startLine": 67,
         "startChar": 0,
@@ -348,6 +600,30 @@
       "writtenOn": "2022-03-12T17:46:21Z",
       "side": 1,
       "message": "first off, this isn\u0027t a pair (maybe the comment is old?)  Second, these kind of comments shouldn\u0027t be required if the class is properly documented.  With that said, we shouldn\u0027t be producing dates as structs like this.  We should be producing dates as std::chrono::time_point.",
+      "range": {
+        "startLine": 82,
+        "startChar": 0,
+        "endLine": 83,
+        "endChar": 66
+      },
+      "revId": "1d53e2d2ca7772cee464c8c22b38b28a5561cbc2",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "eaf88b74_d1a5142e",
+        "filename": "include/spd/spd.hpp",
+        "patchSetId": 8
+      },
+      "lineNbr": 83,
+      "author": {
+        "id": 1000937
+      },
+      "writtenOn": "2022-05-18T13:50:37Z",
+      "side": 1,
+      "message": "Changed to `std::chrono::time_point`",
+      "parentUuid": "2b0f9716_e3683e1b",
       "range": {
         "startLine": 82,
         "startChar": 0,
