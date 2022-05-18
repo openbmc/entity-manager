@@ -683,6 +683,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "0e76604e_77d86e78",
+        "filename": "src/spd.cpp",
+        "patchSetId": 8
+      },
+      "lineNbr": 15,
+      "author": {
+        "id": 1000937
+      },
+      "writtenOn": "2022-05-18T15:03:26Z",
+      "side": 1,
+      "message": "I will add an inline functoin to convert `SPDType\u003c-\u003ebyte`",
+      "parentUuid": "ad8000a0_7d1e8945",
+      "range": {
+        "startLine": 15,
+        "startChar": 11,
+        "endLine": 15,
+        "endChar": 31
+      },
+      "revId": "1d53e2d2ca7772cee464c8c22b38b28a5561cbc2",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "c38b6665_64090304",
         "filename": "src/spd.cpp",
         "patchSetId": 8
@@ -694,6 +718,30 @@
       "writtenOn": "2022-03-12T17:46:21Z",
       "side": 1,
       "message": "Please prefer to use explicit range checks for the things that are required.  In this case, you\u0027re indexing to zero, so you require that size \u003e 1, not 3",
+      "range": {
+        "startLine": 21,
+        "startChar": 26,
+        "endLine": 21,
+        "endChar": 45
+      },
+      "revId": "1d53e2d2ca7772cee464c8c22b38b28a5561cbc2",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "944b296a_44019a28",
+        "filename": "src/spd.cpp",
+        "patchSetId": 8
+      },
+      "lineNbr": 21,
+      "author": {
+        "id": 1000937
+      },
+      "writtenOn": "2022-05-18T15:03:26Z",
+      "side": 1,
+      "message": "Ack. Directly change to `1` will make it become another magic number.\nLet me think of it.",
+      "parentUuid": "c38b6665_64090304",
       "range": {
         "startLine": 21,
         "startChar": 26,
@@ -729,6 +777,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "fa3d43f3_5e2705cf",
+        "filename": "src/spd.cpp",
+        "patchSetId": 8
+      },
+      "lineNbr": 27,
+      "author": {
+        "id": 1000937
+      },
+      "writtenOn": "2022-05-18T15:03:26Z",
+      "side": 1,
+      "message": "It\u0027s the range of the SPD size defined in SPD spec.\nhttps://gerrit.openbmc-project.xyz/c/openbmc/entity-manager/+/51649/17/src/ddr5.cpp#210\n\nI didn\u0027t give these upper/lower bound a name because almost every fields have limited range. Naming all of them might not a good idea.\nFor example:\n`busWidth` must be 0~3 https://gerrit.openbmc-project.xyz/c/openbmc/entity-manager/+/51649/17/src/ddr5.cpp#138\n`diePerPackage` must be 0~5 https://gerrit.openbmc-project.xyz/c/openbmc/entity-manager/+/51649/17/src/ddr5.cpp#166",
+      "parentUuid": "31a5e3a8_78b4d707",
+      "range": {
+        "startLine": 27,
+        "startChar": 4,
+        "endLine": 27,
+        "endChar": 43
+      },
+      "revId": "1d53e2d2ca7772cee464c8c22b38b28a5561cbc2",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "b4753985_4ee78eef",
         "filename": "src/spd.cpp",
         "patchSetId": 8
@@ -740,6 +812,30 @@
       "writtenOn": "2022-03-12T17:46:21Z",
       "side": 1,
       "message": "Please recheck this.  As-written, this function returns nullptr in all cases, which I\u0027m fairly certain is not what you intended.",
+      "range": {
+        "startLine": 44,
+        "startChar": 0,
+        "endLine": 50,
+        "endChar": 27
+      },
+      "revId": "1d53e2d2ca7772cee464c8c22b38b28a5561cbc2",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "48f03056_8c3da0bb",
+        "filename": "src/spd.cpp",
+        "patchSetId": 8
+      },
+      "lineNbr": 50,
+      "author": {
+        "id": 1000937
+      },
+      "writtenOn": "2022-05-18T15:03:26Z",
+      "side": 1,
+      "message": "It\u0027s expected. Since none of the implementation is done in this CL.\nreturn value will be changed once a DDR\u003cx\u003e implementation is done.\nhttps://gerrit.openbmc-project.xyz/c/openbmc/entity-manager/+/51649/17/src/spd.cpp#49",
+      "parentUuid": "b4753985_4ee78eef",
       "range": {
         "startLine": 44,
         "startChar": 0,
