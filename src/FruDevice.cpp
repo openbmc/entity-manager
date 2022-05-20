@@ -687,7 +687,8 @@ void addFruObjectToDbus(
             std::string path = busIface.second->get_object_path();
             if (std::regex_match(path, std::regex(productName + "(_\\d+|)$")))
             {
-                if (isMuxBus(bus) && address == busIface.first.second &&
+                if (isMuxBus(bus) && bus != busIface.first.first &&
+                    address == busIface.first.second &&
                     (getFRUInfo(static_cast<uint8_t>(busIface.first.first),
                                 static_cast<uint8_t>(busIface.first.second)) ==
                      getFRUInfo(static_cast<uint8_t>(bus),
