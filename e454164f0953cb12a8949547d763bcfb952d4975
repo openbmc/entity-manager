@@ -70,6 +70,24 @@
       "parentUuid": "071d719d_45d1d1ca",
       "revId": "e454164f0953cb12a8949547d763bcfb952d4975",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "870d5d66_b2ef629c",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1000009
+      },
+      "writtenOn": "2022-05-20T03:24:00Z",
+      "side": 1,
+      "message": "My two half-baked thoughts were:\n\n1. Segregate configurations into vendor-specific directories, no spaces in config names: ibm/Storm_King.json\n\nor\n\n2. Use devicetree-compatible-like file names, e.g. ibm,storm-king.json\n\n2 pushes people towards more consistency (file name has a crude grammar, all lower case, dashes) though might become unwieldy with lots of configs (though no more than what we currently have). 1 gives less consistency than 2 without further rules around capitalisation and dash-vs-underscore, but would help alleviate the lots-of-configs-in-one-directory (future) problem.",
+      "parentUuid": "08c4f746_38f9d651",
+      "revId": "e454164f0953cb12a8949547d763bcfb952d4975",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }
