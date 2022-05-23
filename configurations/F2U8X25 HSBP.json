@@ -44,6 +44,37 @@
                     }
                 ],
                 "Type": "TMP75"
+            },
+            {
+                "Class": "Floor",
+                "Inputs": [
+                    "NVMe_HSBP_1_Drive_1_Temp",
+                    "NVMe_HSBP_1_Drive_2_Temp",
+                    "NVMe_HSBP_1_Drive_3_Temp",
+                    "NVMe_HSBP_1_Drive_4_Temp",
+                    "NVMe_HSBP_1_Drive_5_Temp",
+                    "NVMe_HSBP_1_Drive_6_Temp",
+                    "NVMe_HSBP_1_Drive_7_Temp",
+                    "NVMe_HSBP_1_Drive_8_Temp"
+                ],
+                "Name": "HSBP1 LCC",
+                "NegativeHysteresis": 2,
+                "Output": [
+                    20.0,
+                    50.0,
+                    100.0
+                ],
+                "PositiveHysteresis": 0,
+                "Reading": [
+                    55.0,
+                    75.0,
+                    95.0
+                ],
+                "Type": "Stepwise",
+                "Zones": [
+                    "Left",
+                    "Right"
+                ]
             }
         ],
         "Name": "F2U8X25 HSBP",
@@ -101,6 +132,37 @@
                     }
                 ],
                 "Type": "TMP75"
+            },
+            {
+                "Class": "Floor",
+                "Inputs": [
+                    "NVMe_HSBP_2_Drive_9_Temp",
+                    "NVMe_HSBP_2_Drive_10_Temp",
+                    "NVMe_HSBP_2_Drive_11_Temp",
+                    "NVMe_HSBP_2_Drive_12_Temp",
+                    "NVMe_HSBP_2_Drive_13_Temp",
+                    "NVMe_HSBP_2_Drive_14_Temp",
+                    "NVMe_HSBP_2_Drive_15_Temp",
+                    "NVMe_HSBP_2_Drive_16_Temp"
+                ],
+                "Name": "HSBP2 LCC",
+                "NegativeHysteresis": 2,
+                "Output": [
+                    20.0,
+                    50.0,
+                    100.0
+                ],
+                "PositiveHysteresis": 0,
+                "Reading": [
+                    55.0,
+                    75.0,
+                    95.0
+                ],
+                "Type": "Stepwise",
+                "Zones": [
+                    "Left",
+                    "Right"
+                ]
             }
         ],
         "Name": "F2U8X25 HSBP",
@@ -158,6 +220,37 @@
                     }
                 ],
                 "Type": "TMP75"
+            },
+            {
+                "Class": "Floor",
+                "Inputs": [
+                    "NVMe_HSBP_3_Drive_17_Temp",
+                    "NVMe_HSBP_3_Drive_18_Temp",
+                    "NVMe_HSBP_3_Drive_19_Temp",
+                    "NVMe_HSBP_3_Drive_20_Temp",
+                    "NVMe_HSBP_3_Drive_21_Temp",
+                    "NVMe_HSBP_3_Drive_22_Temp",
+                    "NVMe_HSBP_3_Drive_23_Temp",
+                    "NVMe_HSBP_3_Drive_24_Temp"
+                ],
+                "Name": "HSBP3 LCC",
+                "NegativeHysteresis": 2,
+                "Output": [
+                    20.0,
+                    50.0,
+                    100.0
+                ],
+                "PositiveHysteresis": 0,
+                "Reading": [
+                    55.0,
+                    75.0,
+                    95.0
+                ],
+                "Type": "Stepwise",
+                "Zones": [
+                    "Left",
+                    "Right"
+                ]
             }
         ],
         "Name": "F2U8X25 HSBP",
