@@ -13,8 +13,8 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 */
-/// \file PerformProbe.cpp
-#include "EntityManager.hpp"
+/// \file perform_probe.cpp
+#include "entity_manager.hpp"
 
 #include <boost/algorithm/string/replace.hpp>
 

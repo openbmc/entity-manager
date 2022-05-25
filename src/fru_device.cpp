@@ -13,10 +13,10 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 */
-/// \file FruDevice.cpp
+/// \file fru_device.cpp
 
-#include "FruUtils.hpp"
-#include "Utils.hpp"
+#include "fru_utils.hpp"
+#include "utils.hpp"
 
 #include <fcntl.h>
 #include <sys/inotify.h>

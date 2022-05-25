@@ -13,12 +13,12 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 */
-/// \file Utils.cpp
+/// \file utils.cpp
 
-#include "Utils.hpp"
+#include "utils.hpp"
 
-#include "Expression.hpp"
-#include "VariantVisitors.hpp"
+#include "expression.hpp"
+#include "variant_visitors.hpp"
 
 #include <boost/algorithm/string/classification.hpp>
 #include <boost/algorithm/string/find.hpp>

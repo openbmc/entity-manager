@@ -13,13 +13,13 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 */
-/// \file EntityManager.cpp
+/// \file entity_manager.cpp
 
-#include "EntityManager.hpp"
+#include "entity_manager.hpp"
 
-#include "Overlay.hpp"
-#include "Utils.hpp"
-#include "VariantVisitors.hpp"
+#include "overlay.hpp"
+#include "utils.hpp"
+#include "variant_visitors.hpp"
 
 #include <boost/algorithm/string/case_conv.hpp>
 #include <boost/algorithm/string/classification.hpp>

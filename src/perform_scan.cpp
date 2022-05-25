@@ -13,8 +13,8 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 */
-/// \file PerformScan.cpp
-#include "EntityManager.hpp"
+/// \file perform_scan.cpp
+#include "entity_manager.hpp"
 
 #include <boost/algorithm/string/predicate.hpp>
 #include <boost/asio/steady_timer.hpp>
@@ -23,7 +23,7 @@
 
 #include <charconv>
 
-/* Hacks from splitting EntityManager.cpp */
+/* Hacks from splitting entity_manager.cpp */
 extern std::shared_ptr<sdbusplus::asio::connection> systemBus;
 extern nlohmann::json lastJson;
 extern void

@@ -13,11 +13,11 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 */
-/// \file EntityManager.hpp
+/// \file entity_manager.hpp
 
 #pragma once
 
-#include "Utils.hpp"
+#include "utils.hpp"
 
 #include <systemd/sd-journal.h>
 

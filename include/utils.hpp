@@ -13,7 +13,7 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 */
-/// \file Utils.hpp
+/// \file utils.hpp
 
 #pragma once
 

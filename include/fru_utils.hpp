@@ -13,7 +13,7 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 */
-/// \file FruUtils.hpp
+/// \file fru_utils.hpp
 
 #pragma once
 #include <boost/container/flat_map.hpp>

@@ -203,8 +203,8 @@ if not build_tests.disabled()
         executable(
             'test_entity_manager',
             'test/test_entity-manager.cpp',
-            'src/Expression.cpp',
-            'src/Utils.cpp',
+            'src/expression.cpp',
+            'src/utils.cpp',
             cpp_args: test_boost_args,
             dependencies: [
                 boost,
@@ -223,7 +223,7 @@ if not build_tests.disabled()
         executable(
             'test_fru_utils',
             'test/test_fru-utils.cpp',
-            'src/FruUtils.cpp',
+            'src/fru_utils.cpp',
             cpp_args: test_boost_args,
             dependencies: [
                 boost,

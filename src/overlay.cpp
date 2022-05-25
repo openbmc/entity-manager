@@ -13,11 +13,11 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 */
-/// \file Overlay.cpp
+/// \file overlay.cpp
 
-#include "Overlay.hpp"
+#include "overlay.hpp"
 
-#include "Utils.hpp"
+#include "utils.hpp"
 #include "devices.hpp"
 
 #include <boost/algorithm/string/predicate.hpp>

@@ -3,12 +3,12 @@ cpp_args += ['-DSYSCONF_DIR="' + sysconfdir + '/"' ]
 
 executable(
     'entity-manager',
-    'EntityManager.cpp',
-    'Expression.cpp',
-    'PerformScan.cpp',
-    'PerformProbe.cpp',
-    'Overlay.cpp',
-    'Utils.cpp',
+    'entity_manager.cpp',
+    'expression.cpp',
+    'perform_scan.cpp',
+    'perform_probe.cpp',
+    'overlay.cpp',
+    'utils.cpp',
     cpp_args: cpp_args + ['-DBOOST_ASIO_DISABLE_THREADS'],
     dependencies: [
         boost,
@@ -28,10 +28,10 @@ if get_option('fru-device')
     endif
     executable(
         'fru-device',
-        'Expression.cpp',
-        'FruDevice.cpp',
-        'Utils.cpp',
-        'FruUtils.cpp',
+        'expression.cpp',
+        'fru_device.cpp',
+        'utils.cpp',
+        'fru_utils.cpp',
         cpp_args: cpp_args_fd,
         dependencies: [
             boost,
