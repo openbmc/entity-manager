@@ -110,6 +110,30 @@
       },
       "revId": "45ce4df7378486106fb40eb0ea6058108e0e2780",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0b87c590_16fbdcba",
+        "filename": "configurations/VEGMAN-Sx20-Baseboard.json",
+        "patchSetId": 2
+      },
+      "lineNbr": 772,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2022-05-25T00:52:00Z",
+      "side": 1,
+      "message": "?  There is not matches that I can find of xyz.openbmc_project.Inventory.Item.System in bmcweb.\n\nI suspect you\u0027re on an old version, without this commit?  https://github.com/openbmc/bmcweb/commit/8f1ac8e9248d464f8533e89bb7c249932ba9ce59",
+      "parentUuid": "2652b71d_44abe818",
+      "range": {
+        "startLine": 772,
+        "startChar": 0,
+        "endLine": 772,
+        "endChar": 55
+      },
+      "revId": "45ce4df7378486106fb40eb0ea6058108e0e2780",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }
