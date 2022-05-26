@@ -9,28 +9,28 @@
             ],
             "oneOf": [
                 {
-                    "$ref": "IBM.json#/definitions/IBMCompatibleSystem"
+                    "$ref": "ibm.json#/definitions/IBMCompatibleSystem"
                 },
                 {
-                    "$ref": "IBM.json#/definitions/IBMCFFPSConnector"
+                    "$ref": "ibm.json#/definitions/IBMCFFPSConnector"
                 },
                 {
-                    "$ref": "Intel.json#/definitions/IntelFanConnector"
+                    "$ref": "intel.json#/definitions/IntelFanConnector"
                 },
                 {
-                    "$ref": "Pid.json#/definitions/Pid"
+                    "$ref": "pid.json#/definitions/Pid"
                 },
                 {
-                    "$ref": "Pid.Zone.json#/definitions/PidZone"
+                    "$ref": "pid_zone.json#/definitions/PidZone"
                 },
                 {
-                    "$ref": "Stepwise.json#/definitions/Stepwise"
+                    "$ref": "stepwise.json#/definitions/Stepwise"
                 },
                 {
                     "$ref": "legacy.json#/definitions/Aggregate"
                 },
                 {
-                    "$ref": "VirtualSensor.json#/definitions/VirtualSensor"
+                    "$ref": "virtual_sensor.json#/definitions/VirtualSensor"
                 },
                 {
                     "description": [

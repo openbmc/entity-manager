@@ -165,12 +165,12 @@ schemas = [
     'global.json',
     'legacy.json',
     'openbmc-dbus.json',
-    'IBM.json',
-    'Intel.json',
-    'Pid.json',
-    'Pid.Zone.json',
-    'Stepwise.json',
-    'VirtualSensor.json',
+    'ibm.json',
+    'intel.json',
+    'pid.json',
+    'pid_zone.json',
+    'stepwise.json',
+    'virtual_sensor.json',
 ]
 
 foreach s : schemas
