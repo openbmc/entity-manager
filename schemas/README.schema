@@ -11,6 +11,10 @@ configuration data for an entire platform or set of platforms can be expressed
 in a single file, or can be organized into several smaller files.  Thus, the
 top most schema describes a single object or an array of objects.
 
+To remain consistent with the OpenBMC CPP source code file name guidelines,
+entity manager configuration file and schema file names must be
+lower_snake_case.
+
 A single entity manager configuration
 ----------------------------------------
 At its core entity manager simply exports objects onto DBus when a specific
