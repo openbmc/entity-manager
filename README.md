@@ -124,6 +124,6 @@ entity-manager to produce a Redfish compliant REST API.
 that utilize Entity Manager as the source of information.
 
 ## Additional Documentation
-1. **[Entity Manager DBus API](https://github.com/openbmc/entity-manager/blob/master/docs/EntityManagerDbusAPI.md)**
+1. **[Entity Manager DBus API](https://github.com/openbmc/entity-manager/blob/master/docs/entity_manager_dbus_api.md)**
 2. **[My First Sensor Example](https://github.com/openbmc/entity-manager/blob/master/docs/my_first_sensors.md)**
 3. **[Configuration File Schema](https://github.com/openbmc/entity-manager/tree/master/schemas)**
