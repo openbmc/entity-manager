@@ -147,7 +147,7 @@ foreach c : configs
     filepaths += [file]
 endforeach
 
-validate_script = files('scripts/validate-configs.py')
+validate_script = files('scripts/validate_configs.py')
 autojson = custom_target(
   'check_syntax',
   command: [
