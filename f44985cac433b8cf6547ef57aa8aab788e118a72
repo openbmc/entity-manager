@@ -237,6 +237,30 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "8ea4ea6d_7b32779a",
+        "filename": "meson.build",
+        "patchSetId": 31
+      },
+      "lineNbr": 235,
+      "author": {
+        "id": 1000546
+      },
+      "writtenOn": "2022-05-27T13:18:34Z",
+      "side": 1,
+      "message": "In this patch, Two major functions addFruObjectToDbus and updateFRUProperty are moved from fru_device.cpp to fru_utils.cpp. These two functions calling other functions like rescanBusses, writeFRU, hasEepromFile, getEepromPath, readBaseboardFRU , isMuxBus of fru_device.cpp from fru_util.cpp.  \n\nSo, that\u0027s why fru_utils is depends on fru_device.\n\nEven if we split and refactor of these two functions, That is anyway depends on fru_device.\n\nPossible Solutions :\n1. If we don\u0027t want any dependency with fru_device, we have to move these functions rescanBusses, writeFRU, hasEepromFile, getEepromPath, readBaseboardFRU, isMuxBus to fru_utils.cpp. So we can avoid these dependency. \n\nBut, Some of I2C and fru_device specific functions like isMuxBus, rescanBusses, writeFRU, hasEepromFile, getEepromPath, readBaseboardFRU has to be moved to common fru_utils.cpp.  \n\n2. In another review comment, not suggested to move these I2C and fru_device specific functions to move common file fru_utils library. \n\nAs per my understanding, we can follow either one approach only. \nIf we dont\u0027 want dependency of fru_device, we have to move those functions to fru_utils.\n\nIf we don\u0027t want to move these I2C and fru_device specific functions to fru_utils, fru_utils will depends on fru_device.\n\nSo, Could you please suggest the best approach for this.",
+      "parentUuid": "28b41c31_7b463c1d",
+      "range": {
+        "startLine": 234,
+        "startChar": 0,
+        "endLine": 235,
+        "endChar": 32
+      },
+      "revId": "f44985cac433b8cf6547ef57aa8aab788e118a72",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "25e4c37c_06f388c0",

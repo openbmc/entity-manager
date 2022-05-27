@@ -48,6 +48,30 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "a64eb1f8_2237555c",
+        "filename": "include/FruUtils.hpp",
+        "patchSetId": 35
+      },
+      "lineNbr": 202,
+      "author": {
+        "id": 1000546
+      },
+      "writtenOn": "2022-05-27T13:18:34Z",
+      "side": 1,
+      "message": "Physical layer is only difference in the ipmb-fru implementation.\nIn Fru implementation, the fru data is getting using I2C where as in ipmb-fru getting fru data using IPMB devices.\n\nSo, The common functionalities like FRU formatting, FRU Validation and displaying in dbus and all same for both implementations.\n\nSo, updateFRUProperty function is used by both fru and ipmb-fru implementations.\nThat\u0027s why kept in common file to avoid code duplication.",
+      "parentUuid": "14480546_7a807864",
+      "range": {
+        "startLine": 174,
+        "startChar": 0,
+        "endLine": 202,
+        "endChar": 61
+      },
+      "revId": "b1ca3c9f403e2eacb16f17164e4737db5efb28e5",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "2c5cd19a_3151d1da",
@@ -307,6 +331,30 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "a8c72341_09b55dc9",
+        "filename": "src/FruUtils.cpp",
+        "patchSetId": 35
+      },
+      "lineNbr": 83,
+      "author": {
+        "id": 1000546
+      },
+      "writtenOn": "2022-05-27T13:18:34Z",
+      "side": 1,
+      "message": "Done. Moved this function to FruDevice.cpp",
+      "parentUuid": "ce603166_6fc825d2",
+      "range": {
+        "startLine": 77,
+        "startChar": 0,
+        "endLine": 83,
+        "endChar": 0
+      },
+      "revId": "b1ca3c9f403e2eacb16f17164e4737db5efb28e5",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "144f2706_fd346f48",
@@ -378,6 +426,30 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "493f61b7_819bc7c3",
+        "filename": "src/FruUtils.cpp",
+        "patchSetId": 35
+      },
+      "lineNbr": 1190,
+      "author": {
+        "id": 1000546
+      },
+      "writtenOn": "2022-05-27T13:18:34Z",
+      "side": 1,
+      "message": "Done. Some lines of code and functions Specific to Fru_device is calling based on the IpmbIndex \u003d\u003d -1.\n\nIpmbIndex \u003d -1 - Single host, which is I2C based Fru.\nIpmbIdex 0 to 3 - Ipmb-Fru based, used for multi hosts machines.",
+      "parentUuid": "27d59c81_b5c1bfb9",
+      "range": {
+        "startLine": 1142,
+        "startChar": 4,
+        "endLine": 1190,
+        "endChar": 5
+      },
+      "revId": "b1ca3c9f403e2eacb16f17164e4737db5efb28e5",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "d7881174_85eb838f",
@@ -439,6 +511,30 @@
       "side": 1,
       "message": "Ack",
       "parentUuid": "1da346d4_5335fd70",
+      "range": {
+        "startLine": 1245,
+        "startChar": 4,
+        "endLine": 1247,
+        "endChar": 49
+      },
+      "revId": "b1ca3c9f403e2eacb16f17164e4737db5efb28e5",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "ff974870_3cdefbea",
+        "filename": "src/FruUtils.cpp",
+        "patchSetId": 35
+      },
+      "lineNbr": 1247,
+      "author": {
+        "id": 1000546
+      },
+      "writtenOn": "2022-05-27T13:18:34Z",
+      "side": 1,
+      "message": "Done.",
+      "parentUuid": "5ac5aaab_38da4104",
       "range": {
         "startLine": 1245,
         "startChar": 4,
