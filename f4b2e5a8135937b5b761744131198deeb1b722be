@@ -123,6 +123,24 @@
       "parentUuid": "fcbea107_cbb3d57c",
       "revId": "f4b2e5a8135937b5b761744131198deeb1b722be",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2d4b03f1_7f92ab26",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2022-05-27T17:08:20Z",
+      "side": 1,
+      "message": "I would rather snake case, it\u0027s consistent with the rest of the codebase, and with other projects, and with cpp files.\n\n\u003e  There were some opinions expressed on discord (mine among them) that the latter has a slight advantage in ease of typing (no shift chording needed) on common keyboards.\n\nFWIW, when I make changes for stuff like this, I optimize for someone reading the code, grepping it, or otherwise interacting with the codebase.  A programmer will hit the shift key once while typing the name.  Programmers will read the line thousands of times over the life of the project.  As a rule, I will always optimize for the later.",
+      "parentUuid": "a2e9ae92_6f9136fe",
+      "revId": "f4b2e5a8135937b5b761744131198deeb1b722be",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }
