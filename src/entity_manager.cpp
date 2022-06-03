@@ -557,6 +557,8 @@ void createAddObjectMethod(const std::string& jsonPointerPath,
     iface->initialize();
 }
 
+using Association = std::tuple<std::string, std::string, std::string>;
+
 void postToDbus(const nlohmann::json& newConfiguration,
                 nlohmann::json& systemConfiguration,
                 sdbusplus::asio::object_server& objServer)
@@ -683,7 +685,23 @@ void postToDbus(const nlohmann::json& newConfiguration,
 
             populateInterfaceFromJson(systemConfiguration, jsonPointerPath,
                                       itemIface, item, objServer,
-                                      getPermission(itemType));
+                                       getPermission(itemType));
+
+            if (itemType == "Association")
+            {
+                auto findAssociated = item.find("Associated");
+                if (findAssociated != item.end()) {
+                    auto assoIntf = createInterface(objServer, boardName,
+                                                   "xyz.openbmc_project.Association.Definitions",
+                                                   boardKey);
+                    std::string associatedPath = "/xyz/openbmc_project/inventory/system/board/" +
+                                                 findAssociated->get<std::string>();
+                    std::vector<Association> associations;
+                    associations.emplace_back("chassis", itemName, associatedPath);
+                    assoIntf->register_property("Associations", associations);
+                    assoIntf->initialize();
+                }
+            }
 
             for (auto& [name, config] : item.items())
             {
