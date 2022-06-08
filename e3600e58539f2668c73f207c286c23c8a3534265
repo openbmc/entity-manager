@@ -26,6 +26,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "1985f92d_5ac84a59",
+        "filename": "include/fru_utils.hpp",
+        "patchSetId": 6
+      },
+      "lineNbr": 138,
+      "author": {
+        "id": 1000733
+      },
+      "writtenOn": "2022-06-08T19:57:47Z",
+      "side": 1,
+      "message": "My aim was to have the parsing code be able to stack an offset reader on top of a caching reader so as to avoid double-caching or having to muck around with stateful modifications to an offset setting that\u0027d then need to be un-done before returning  and moving on to another format parser that didn\u0027t want the offset applied (so that the application of the offset would just be scoped to the format parser that wanted it, without affecting anything else).",
+      "parentUuid": "84a1007e_660e3528",
+      "range": {
+        "startLine": 138,
+        "startChar": 0,
+        "endLine": 138,
+        "endChar": 51
+      },
+      "revId": "e3600e58539f2668c73f207c286c23c8a3534265",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "113c62ab_5dbb3301",
         "filename": "src/fru_utils.cpp",
         "patchSetId": 6
@@ -37,6 +61,30 @@
       "writtenOn": "2022-06-08T19:36:35Z",
       "side": 1,
       "message": "We\u0027d normally use std::visit for this kind of thing, to avoid the case where someone adds a new variant type, but forgets to add a case statement here.  With that said, I\u0027d really like to see offset reader not be variant based, and just use a switch statement.  There\u0027s only one function we\u0027re switching on here, maybe there\u0027s a good reason for the variant I\u0027m not seeing?",
+      "range": {
+        "startLine": 130,
+        "startChar": 1,
+        "endLine": 137,
+        "endChar": 66
+      },
+      "revId": "e3600e58539f2668c73f207c286c23c8a3534265",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "119a1255_6a824cfe",
+        "filename": "src/fru_utils.cpp",
+        "patchSetId": 6
+      },
+      "lineNbr": 137,
+      "author": {
+        "id": 1000733
+      },
+      "writtenOn": "2022-06-08T19:57:47Z",
+      "side": 1,
+      "message": "I had initially approached this via inheritance, with CachingReader and OffsetReader inheriting from a common base class, but after a comment of yours on a previous iteration discouraging the use of inheritance (https://gerrit.openbmc.org/c/openbmc/entity-manager/+/51548/13/include/FruUtils.hpp#100\u003d) I rearranged it this way instead (though TBH it seems like it just ends up being kind of a manual reimplementation of something approximating inheritance anyway, I guess).",
+      "parentUuid": "113c62ab_5dbb3301",
       "range": {
         "startLine": 130,
         "startChar": 1,
