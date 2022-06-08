@@ -1,0 +1,96 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a7732e26_bfc99885",
+        "filename": "include/fru_utils.hpp",
+        "patchSetId": 19
+      },
+      "lineNbr": 95,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2022-06-08T19:29:05Z",
+      "side": 1,
+      "message": "Does this class definition and implementation deserve its own file?",
+      "range": {
+        "startLine": 95,
+        "startChar": 6,
+        "endLine": 95,
+        "endChar": 15
+      },
+      "revId": "28f63d779dfab4f17756e3cccb24f940b7527f7b",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e2fcf7d3_4f0a9f72",
+        "filename": "include/fru_utils.hpp",
+        "patchSetId": 19
+      },
+      "lineNbr": 111,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2022-06-08T19:29:05Z",
+      "side": 1,
+      "message": "std::hash\u003cuint32_t\u003e is the identity function, which means this api is going to produce REALLY bad hash values.\n\nI realize this is a super subtle data structure thing, but I suspect this is a case where we should be using std::map, because there is *some* ordering to our cache.",
+      "range": {
+        "startLine": 111,
+        "startChar": 37,
+        "endLine": 111,
+        "endChar": 45
+      },
+      "revId": "28f63d779dfab4f17756e3cccb24f940b7527f7b",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3fe739ea_7d6da617",
+        "filename": "src/fru_device.cpp",
+        "patchSetId": 19
+      },
+      "lineNbr": 436,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2022-06-08T19:29:05Z",
+      "side": 1,
+      "message": "Generally for these apis we just do if (!is16Bit)\n\n\nSuper nitpicky, fix if you want.",
+      "range": {
+        "startLine": 436,
+        "startChar": 24,
+        "endLine": 436,
+        "endChar": 36
+      },
+      "revId": "28f63d779dfab4f17756e3cccb24f940b7527f7b",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "bc66e27d_16f90b5d",
+        "filename": "src/fru_device.cpp",
+        "patchSetId": 19
+      },
+      "lineNbr": 447,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2022-06-08T19:29:05Z",
+      "side": 1,
+      "message": "can we do something like is16BitBool{*is16Bit} here;  Technically from the lambda context you should be doing a safety check, but if you do the deference in the calling scope, static analyzers won\u0027t care.",
+      "range": {
+        "startLine": 447,
+        "startChar": 29,
+        "endLine": 447,
+        "endChar": 36
+      },
+      "revId": "28f63d779dfab4f17756e3cccb24f940b7527f7b",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    }
+  ]
+}
