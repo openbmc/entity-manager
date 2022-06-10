@@ -94,6 +94,30 @@
       },
       "revId": "9485ab810284456f5b3e11f7532c5903cd41d0fe",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "520bb871_dfcdf9ca",
+        "filename": "configurations/VEGMAN-N110-Baseboard.json",
+        "patchSetId": 3
+      },
+      "lineNbr": 527,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2022-06-10T16:03:45Z",
+      "side": 1,
+      "message": "Yes, but considering that the redfish odata.id is not supposed to be used for anything except walking the redfish tree, that should be fine.  If you have redfish clients that have hardcoded that name, they have a bug that should be fixed.  Those names will change in the near future.",
+      "parentUuid": "ebc2c272_fe096d54",
+      "range": {
+        "startLine": 527,
+        "startChar": 17,
+        "endLine": 527,
+        "endChar": 26
+      },
+      "revId": "9485ab810284456f5b3e11f7532c5903cd41d0fe",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }
