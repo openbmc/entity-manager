@@ -89,6 +89,23 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "a543550b_4b9486ca",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1000900
+      },
+      "writtenOn": "2022-06-10T01:08:44Z",
+      "side": 1,
+      "message": "After looking at this more, I can see that the existing code does work because we are able to abort an hung ioctl() call by closing the fd when the future times out. There is no simple way to achieve the same thing without using multiple threads as the future/async is doing. What I considered:\n\n1. This change. Doesn\u0027t work b/c it doesn\u0027t abort the ioctl()\n2. ASIO-based solutions as suggested by Ed. We need to use ioctl() so async_read-type solutions won\u0027t help. Using a timer to close the fd doesn\u0027t work while we\u0027re stuck in the kernel.\n3. Using the I2C_TIMEOUT ioctl() beforehand to prevent things from hanging for so long. This may work well but it\u0027s a global operation on the i2c adapter properties so I\u0027m wary of doing it just for fru-device.\n\nSo I\u0027m going to abandon this change.",
+      "revId": "c734a6232f3c02c60f922b54db2ea2982df5af8a",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "67b9b8c7_74e7cbfb",
