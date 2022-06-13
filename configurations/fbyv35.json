@@ -239,6 +239,34 @@
                 }
             ],
             "Type": "ADC"
+        },
+        {
+            "Address": "0x4e",
+            "Bus": 12,
+            "Name": "BMC_INLET_TEMP",
+            "Thresholds": [
+                {
+                    "Direction": "greater than",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 50
+                }
+            ],
+            "Type": "TMP75"
+        },
+        {
+            "Address": "0x4f",
+            "Bus": 12,
+            "Name": "BMC_OUTLET_TEMP",
+            "Thresholds": [
+                {
+                    "Direction": "greater than",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 55
+                }
+            ],
+            "Type": "TMP75"
         }
     ],
     "Name": "Yosemite V3P5 Baseboard",
