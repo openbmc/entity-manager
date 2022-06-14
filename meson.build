@@ -69,6 +69,7 @@ else
 endif
 
 install_data('blacklist.json')
+install_data('config.json')
 
 configs = [
     '1ux16_riser.json',
