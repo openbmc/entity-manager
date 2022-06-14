@@ -50,6 +50,7 @@ constexpr const char* tempConfigDir = "/tmp/configuration/";
 constexpr const char* lastConfiguration = "/tmp/configuration/last.json";
 constexpr const char* currentConfiguration = "/var/configuration/system.json";
 constexpr const char* globalSchema = "global.json";
+constexpr const char* configPath = PACKAGE_DIR "config.json";
 
 const boost::container::flat_map<const char*, probe_type_codes, CmpStr>
     probeTypes{{{"FALSE", probe_type_codes::FALSE_T},
@@ -74,6 +75,8 @@ boost::container::flat_map<
 // todo: pass this through nicer
 std::shared_ptr<sdbusplus::asio::connection> systemBus;
 nlohmann::json lastJson;
+const nlohmann::json emptyJson{};
+const nlohmann::json defaultEntries = {""};
 
 boost::asio::io_context io;
 
@@ -991,6 +994,26 @@ static void publishNewConfiguration(
     });
 }
 
+auto loadConfig(const std::filesystem::path& path)
+{
+    if (!std::filesystem::exists(path))
+    {
+        std::cerr << path << "is not existing." << std::endl;
+        return emptyJson;
+    }
+    std::ifstream jsonFile(path);
+    auto datas = nlohmann::json::parse(jsonFile, nullptr, false);
+    if (datas.is_discarded())
+    {
+        std::cerr << "Parsing eid to String Map config file failed, FILE="
+                    << path;
+        std::abort();
+        return emptyJson;
+    }
+
+    return datas;
+}
+
 // main properties changed entry
 void propertiesChangedCallback(nlohmann::json& systemConfiguration,
                                sdbusplus::asio::object_server& objServer)
@@ -1077,6 +1100,7 @@ int main()
     systemBus = std::make_shared<sdbusplus::asio::connection>(io);
     systemBus->request_name("xyz.openbmc_project.EntityManager");
 
+    std::vector<std::unique_ptr<sdbusplus::bus::match::match>> matches;
     sdbusplus::asio::object_server objServer(systemBus);
 
     std::shared_ptr<sdbusplus::asio::dbus_interface> entityIface =
@@ -1088,31 +1112,72 @@ int main()
 
     nlohmann::json systemConfiguration = nlohmann::json::object();
 
+    auto configDatas = loadConfig(configPath);
+
     // We need a poke from DBus for static providers that create all their
     // objects prior to claiming a well-known name, and thus don't emit any
     // org.freedesktop.DBus.Properties signals.  Similarly if a process exits
     // for any reason, expected or otherwise, we'll need a poke to remove
     // entities from DBus.
-    sdbusplus::bus::match_t nameOwnerChangedMatch(
-        static_cast<sdbusplus::bus_t&>(*systemBus),
-        sdbusplus::bus::match::rules::nameOwnerChanged(),
-        [&](sdbusplus::message_t&) {
-            propertiesChangedCallback(systemConfiguration, objServer);
-        });
+    auto entries = configDatas.value("nameOwnerChangedMatches", defaultEntries);
+    std::string matchStr;
+    for (const auto& entry : entries)
+    {
+        if (entry.empty())
+        {
+            matchStr = sdbusplus::bus::match::rules::nameOwnerChanged();
+        }
+        else
+        {
+            matchStr = sdbusplus::bus::match::rules::nameOwnerChanged(entry);
+        }
+        auto match = std::make_unique<sdbusplus::bus::match::match>(
+            static_cast<sdbusplus::bus::bus&>(*systemBus), matchStr,
+            [&](sdbusplus::message::message&) {
+                propertiesChangedCallback(systemConfiguration, objServer);
+            });
+        matches.emplace_back(std::move(match));
+    }
+
     // We also need a poke from DBus when new interfaces are created or
     // destroyed.
-    sdbusplus::bus::match_t interfacesAddedMatch(
-        static_cast<sdbusplus::bus_t&>(*systemBus),
-        sdbusplus::bus::match::rules::interfacesAdded(),
-        [&](sdbusplus::message_t&) {
-            propertiesChangedCallback(systemConfiguration, objServer);
-        });
-    sdbusplus::bus::match_t interfacesRemovedMatch(
-        static_cast<sdbusplus::bus_t&>(*systemBus),
-        sdbusplus::bus::match::rules::interfacesRemoved(),
-        [&](sdbusplus::message_t&) {
-            propertiesChangedCallback(systemConfiguration, objServer);
-        });
+    entries = configDatas.value("interfacesAddedMatches", defaultEntries);
+    for (const auto& entry : entries)
+    {
+        if (entry.empty())
+        {
+            matchStr = sdbusplus::bus::match::rules::interfacesAdded();
+        }
+        else
+        {
+            matchStr = sdbusplus::bus::match::rules::interfacesAdded(entry);
+        }
+        auto match = std::make_unique<sdbusplus::bus::match::match>(
+            static_cast<sdbusplus::bus::bus&>(*systemBus), matchStr,
+            [&](sdbusplus::message::message&) {
+                propertiesChangedCallback(systemConfiguration, objServer);
+            });
+        matches.emplace_back(std::move(match));
+    }
+
+    entries = configDatas.value("interfacesRemovedMatches", defaultEntries);
+    for (const auto& entry : entries)
+    {
+        if (entry.empty())
+        {
+            matchStr = sdbusplus::bus::match::rules::interfacesRemoved();
+        }
+        else
+        {
+            matchStr = sdbusplus::bus::match::rules::interfacesRemoved(entry);
+        }
+        auto match = std::make_unique<sdbusplus::bus::match::match>(
+            static_cast<sdbusplus::bus::bus&>(*systemBus), matchStr,
+            [&](sdbusplus::message::message&) {
+                propertiesChangedCallback(systemConfiguration, objServer);
+            });
+        matches.emplace_back(std::move(match));
+    }
 
     io.post(
         [&]() { propertiesChangedCallback(systemConfiguration, objServer); });
