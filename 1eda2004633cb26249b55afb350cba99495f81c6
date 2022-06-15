@@ -46,6 +46,30 @@
       },
       "revId": "1eda2004633cb26249b55afb350cba99495f81c6",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "48180b3f_5b28bd4c",
+        "filename": "configurations/fbyv35.json",
+        "patchSetId": 3
+      },
+      "lineNbr": 389,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2022-06-15T12:27:04Z",
+      "side": 1,
+      "message": "Ok, I see patch set 2.  I\u0027m not really understanding what the issue was and would suggest reverting to the match we had in PS2.\n\nEd, can you clarify what the issue was?  There is more to the product name than just \".*\".  It is matching on \"Yosemite V3.5 \" first.  The rest of it is the revision.\n\nIn bletchley we do have a differentiation between some revisions because there are some board differences between EVT and DVT that needed to be compensated for, but otherwise, this seems to match the pattern of the `fby2.json` and `fbtp.json`.",
+      "parentUuid": "f6745849_0d72e146",
+      "range": {
+        "startLine": 389,
+        "startChar": 83,
+        "endLine": 389,
+        "endChar": 88
+      },
+      "revId": "1eda2004633cb26249b55afb350cba99495f81c6",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }
