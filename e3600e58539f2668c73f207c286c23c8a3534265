@@ -141,6 +141,30 @@
       },
       "revId": "e3600e58539f2668c73f207c286c23c8a3534265",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f0149894_370a6c64",
+        "filename": "src/fru_utils.cpp",
+        "patchSetId": 6
+      },
+      "lineNbr": 137,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2022-06-19T18:03:39Z",
+      "side": 1,
+      "message": "Something like\n\nswitch (type):\ncase (backend1):\n   readFromBackend1();\n   break;\ncase (backend2):\n    readFromBackend2();\n    break;\n    \nthat makes it a lot more clear what the options are for any given option, and things like the cache layer don\u0027t end up as a differen type.",
+      "parentUuid": "60311b0d_12e59787",
+      "range": {
+        "startLine": 130,
+        "startChar": 1,
+        "endLine": 137,
+        "endChar": 66
+      },
+      "revId": "e3600e58539f2668c73f207c286c23c8a3534265",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }
