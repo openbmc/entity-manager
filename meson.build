@@ -104,6 +104,7 @@ configs = [
     'fbtp.json',
     'fbyv2.json',
     'fbyv35.json',
+    'fbyv35_nic_mellanox.json',
     'flextronics_s-1100adu00-201_psu.json',
     'ibm_1000w_cffps.json',
     'ibm_1400w_cffps.json',

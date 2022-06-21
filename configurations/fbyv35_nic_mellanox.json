@@ -1,0 +1,21 @@
+{
+    "Exposes": [
+        {
+            "Address": "0x1f",
+            "Bus": 8,
+            "Name": "NIC_SENSOR_TEMP",
+            "Thresholds": [
+                {
+                    "Direction": "greater than",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 105
+                }
+            ],
+            "Type": "TMP421"
+        }
+    ],
+    "Name": "Yosemite V3P5 NIC Mellanox",
+    "Probe": "FOUND('Yosemite V3P5 Baseboard')",
+    "Type": "Board"
+}
