@@ -458,6 +458,20 @@
             "Type": "ADM1278"
         },
         {
+            "Address": "0x1f",
+            "Bus": 8,
+            "Name": "NIC_SENSOR_TEMP",
+            "Thresholds": [
+                {
+                    "Direction": "greater than",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 105
+                }
+            ],
+            "Type": "TMP421"
+        },
+        {
             "Address": "0x4e",
             "Bus": 12,
             "Name": "BMC_INLET_TEMP",
