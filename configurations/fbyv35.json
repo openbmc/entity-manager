@@ -411,6 +411,79 @@
                 }
             ],
             "Type": "TMP75"
+        },
+        {
+            "Address": "0x40",
+            "Bus": 11,
+            "Labels": [
+                "vin",
+                "temp1",
+                "iout1",
+                "maxiout1",
+                "pin",
+                "pin1",
+                "maxpin"
+            ],
+            "Name": "HSC",
+            "Thresholds": [
+                {
+                    "Direction": "greater than",
+                    "Label": "vin",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 13.32
+                },
+                {
+                    "Direction": "greater than",
+                    "Label": "vin",
+                    "Name": "upper non critical",
+                    "Severity": 0,
+                    "Value": 13.2
+                },
+                {
+                    "Direction": "less than",
+                    "Label": "vin",
+                    "Name": "lower non critical",
+                    "Severity": 0,
+                    "Value": 10.8
+                },
+                {
+                    "Direction": "less than",
+                    "Label": "vin",
+                    "Name": "lower critical",
+                    "Severity": 0,
+                    "Value": 10.68
+                },
+                {
+                    "Direction": "less than",
+                    "Label": "temp1",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 55
+                },
+                {
+                    "Direction": "greater than",
+                    "Label": "iout1",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 23
+                },
+                {
+                    "Direction": "greater than",
+                    "Label": "pin",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 287.5
+                },
+                {
+                    "Direction": "greater than",
+                    "Label": "pin1",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 287.5
+                }
+            ],
+            "Type": "ADM1278"
         }
     ],
     "Name": "Yosemite V3P5 Baseboard",
