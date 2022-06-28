@@ -468,6 +468,242 @@
             "Type": "ADM1278"
         },
         {
+            "Connector": {
+                "Name": "System Fan Connector 1",
+                "Pwm": 0,
+                "Tachs": [
+                    0
+                ]
+            },
+            "Index": 0,
+            "Name": "BMC_SENSOR_FAN0_TACH",
+            "PowerState": "Always",
+            "Thresholds": [
+                {
+                    "Direction": "greater than",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 13500
+                },
+                {
+                    "Direction": "greater than",
+                    "Name": "upper non critical",
+                    "Severity": 0,
+                    "Value": 10200
+                },
+                {
+                    "Direction": "less than",
+                    "Name": "lower critical",
+                    "Severity": 1,
+                    "Value": 500
+                }
+            ],
+            "Type": "AspeedFan"
+        },
+        {
+            "Index": 1,
+            "Name": "BMC_SENSOR_FAN1_TACH",
+            "PowerState": "Always",
+            "Thresholds": [
+                {
+                    "Direction": "greater than",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 13500
+                },
+                {
+                    "Direction": "greater than",
+                    "Name": "upper non critical",
+                    "Severity": 0,
+                    "Value": 10200
+                },
+                {
+                    "Direction": "less than",
+                    "Name": "lower critical",
+                    "Severity": 1,
+                    "Value": 500
+                }
+            ],
+            "Type": "AspeedFan"
+        },
+        {
+            "Connector": {
+                "Name": "System Fan Connector 2",
+                "Pwm": 1,
+                "Tachs": [
+                    1
+                ]
+            },
+            "Index": 2,
+            "Name": "BMC_SENSOR_FAN2_TACH",
+            "PowerState": "Always",
+            "Thresholds": [
+                {
+                    "Direction": "greater than",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 13500
+                },
+                {
+                    "Direction": "greater than",
+                    "Name": "upper non critical",
+                    "Severity": 0,
+                    "Value": 10200
+                },
+                {
+                    "Direction": "less than",
+                    "Name": "lower critical",
+                    "Severity": 1,
+                    "Value": 500
+                }
+            ],
+            "Type": "AspeedFan"
+        },
+        {
+            "Index": 3,
+            "Name": "BMC_SENSOR_FAN3_TACH",
+            "PowerState": "Always",
+            "Thresholds": [
+                {
+                    "Direction": "greater than",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 13500
+                },
+                {
+                    "Direction": "greater than",
+                    "Name": "upper non critical",
+                    "Severity": 0,
+                    "Value": 10200
+                },
+                {
+                    "Direction": "less than",
+                    "Name": "lower critical",
+                    "Severity": 1,
+                    "Value": 500
+                }
+            ],
+            "Type": "AspeedFan"
+        },
+        {
+            "Connector": {
+                "Name": "System Fan Connector 3",
+                "Pwm": 2,
+                "Tachs": [
+                    2
+                ]
+            },
+            "Index": 4,
+            "Name": "BMC_SENSOR_FAN4_TACH",
+            "PowerState": "Always",
+            "Thresholds": [
+                {
+                    "Direction": "greater than",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 13500
+                },
+                {
+                    "Direction": "greater than",
+                    "Name": "upper non critical",
+                    "Severity": 0,
+                    "Value": 10200
+                },
+                {
+                    "Direction": "less than",
+                    "Name": "lower critical",
+                    "Severity": 1,
+                    "Value": 500
+                }
+            ],
+            "Type": "AspeedFan"
+        },
+        {
+            "Index": 5,
+            "Name": "BMC_SENSOR_FAN5_TACH",
+            "PowerState": "Always",
+            "Thresholds": [
+                {
+                    "Direction": "greater than",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 13500
+                },
+                {
+                    "Direction": "greater than",
+                    "Name": "upper non critical",
+                    "Severity": 0,
+                    "Value": 10200
+                },
+                {
+                    "Direction": "less than",
+                    "Name": "lower critical",
+                    "Severity": 1,
+                    "Value": 500
+                }
+            ],
+            "Type": "AspeedFan"
+        },
+        {
+            "Connector": {
+                "Name": "System Fan Connector 4",
+                "Pwm": 3,
+                "Tachs": [
+                    3
+                ]
+            },
+            "Index": 6,
+            "Name": "BMC_SENSOR_FAN6_TACH",
+            "PowerState": "Always",
+            "Thresholds": [
+                {
+                    "Direction": "greater than",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 13500
+                },
+                {
+                    "Direction": "greater than",
+                    "Name": "upper non critical",
+                    "Severity": 0,
+                    "Value": 10200
+                },
+                {
+                    "Direction": "less than",
+                    "Name": "lower critical",
+                    "Severity": 1,
+                    "Value": 500
+                }
+            ],
+            "Type": "AspeedFan"
+        },
+        {
+            "Index": 7,
+            "Name": "BMC_SENSOR_FAN7_TACH",
+            "PowerState": "Always",
+            "Thresholds": [
+                {
+                    "Direction": "greater than",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 13500
+                },
+                {
+                    "Direction": "greater than",
+                    "Name": "upper non critical",
+                    "Severity": 0,
+                    "Value": 10200
+                },
+                {
+                    "Direction": "less than",
+                    "Name": "lower critical",
+                    "Severity": 1,
+                    "Value": 500
+                }
+            ],
+            "Type": "AspeedFan"
+        },
+        {
             "Address": "0x4e",
             "Bus": 12,
             "Name": "BMC_INLET_TEMP",
