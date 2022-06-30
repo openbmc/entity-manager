@@ -1,6 +1,16 @@
 {
     "Exposes": [
         {
+            "Address": "0x03",
+            "Bus": "$ipmbindex",
+            "ChannelNames": [
+                "CPU Good"
+            ],
+            "Class": "twin_lake",
+            "Name": "$ipmbindex + 1 Twinlake",
+            "Type": "HostController"
+        },
+        {
             "Address": "0x01",
             "Bus": "$ipmbindex",
             "Class": "IpmbDevice",
