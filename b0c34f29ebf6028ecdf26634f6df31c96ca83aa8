@@ -16,6 +16,41 @@
       "message": "Will defer to Matt if this and the storm_king patch are still needed.",
       "revId": "b0c34f29ebf6028ecdf26634f6df31c96ca83aa8",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9c164d16_2ae62047",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 11
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1000008
+      },
+      "writtenOn": "2022-06-30T18:39:48Z",
+      "side": 1,
+      "message": "Yea we may as well have this upstream as I think all the support is in.",
+      "parentUuid": "3a258576_403a0efd",
+      "revId": "b0c34f29ebf6028ecdf26634f6df31c96ca83aa8",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "495fa4c2_17ccabb8",
+        "filename": "configurations/blyth.json",
+        "patchSetId": 11
+      },
+      "lineNbr": 24,
+      "author": {
+        "id": 1000008
+      },
+      "writtenOn": "2022-06-30T18:39:48Z",
+      "side": 1,
+      "message": "We want the hard shutdown to non-cancelable. The plan was to do that with a large hysteresis value to guarantee it won\u0027t recover before the ~15s we have until the shutdown occurs (and to allow other users still have it cancelable if they desire).\n\nSo could you make this something outlandish, like say 50?",
+      "revId": "b0c34f29ebf6028ecdf26634f6df31c96ca83aa8",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }
