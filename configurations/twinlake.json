@@ -7,6 +7,13 @@
             "Name": "$ipmbindex + 1 Twinlake Board",
             "PowerState": "Always",
             "Type": "IpmbDevice"
+        },
+        {
+            "Address": "0x03",
+            "Bus": "$ipmbindex",
+            "Class": "twin_lake",
+            "Name": "$ipmbindex + 1 Twinlake",
+            "Type": "HostController"
         }
     ],
     "Name": "Twin Lake $ipmbindex + 1",
