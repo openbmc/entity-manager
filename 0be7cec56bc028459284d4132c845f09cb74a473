@@ -41,6 +41,30 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "b231cc6f_b9d4a097",
+        "filename": "include/fru_device.hpp",
+        "patchSetId": 42
+      },
+      "lineNbr": 16,
+      "author": {
+        "id": 1000546
+      },
+      "writtenOn": "2022-07-01T12:43:43Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "c175593c_04d21fcd",
+      "range": {
+        "startLine": 16,
+        "startChar": 0,
+        "endLine": 16,
+        "endChar": 23
+      },
+      "revId": "0be7cec56bc028459284d4132c845f09cb74a473",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "9a4e91df_1e04e264",
@@ -58,6 +82,24 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "6fd04a0b_f5d84e48",
+        "filename": "include/fru_device.hpp",
+        "patchSetId": 42
+      },
+      "lineNbr": 19,
+      "author": {
+        "id": 1000546
+      },
+      "writtenOn": "2022-07-01T12:43:43Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "9a4e91df_1e04e264",
+      "revId": "0be7cec56bc028459284d4132c845f09cb74a473",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "5bceaa62_da5f7c33",
@@ -71,6 +113,30 @@
       "writtenOn": "2022-07-01T01:10:01Z",
       "side": 1,
       "message": "How does this work if it is ipmb FRU?",
+      "range": {
+        "startLine": 822,
+        "startChar": 2,
+        "endLine": 823,
+        "endChar": 60
+      },
+      "revId": "0be7cec56bc028459284d4132c845f09cb74a473",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "2b79721a_0a36f203",
+        "filename": "src/fru_utils.cpp",
+        "patchSetId": 42
+      },
+      "lineNbr": 823,
+      "author": {
+        "id": 1000546
+      },
+      "writtenOn": "2022-07-01T12:43:43Z",
+      "side": 1,
+      "message": "Both FRU and Ipmb FRU has common IPMI format. FRU has I2C bus number and address, Fru data has been fetched using this bus and address. \n\nWhereas, IPMB FRU has the hostid as 0, 1, 2, 3 etc..  This hostId is mapped with this bus parameter. Address part is not used here and it will be always 0. \n\nEx: If we want to get first host FRU data, then need to pass the hostid as 0 for bus parameter and address parameter is passed always 0 for IPMB FRU.",
+      "parentUuid": "5bceaa62_da5f7c33",
       "range": {
         "startLine": 822,
         "startChar": 2,
@@ -104,6 +170,30 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "2e1a1930_e0d5babd",
+        "filename": "src/fru_utils.cpp",
+        "patchSetId": 42
+      },
+      "lineNbr": 1095,
+      "author": {
+        "id": 1000546
+      },
+      "writtenOn": "2022-07-01T12:43:43Z",
+      "side": 1,
+      "message": "Ack. Almost all the possible separations are done in other places. These are mostly mandatory lines in this func for both fru\u0027s. I will try to separate the common parts as helper functions.",
+      "parentUuid": "db5a3030_2e5ff013",
+      "range": {
+        "startLine": 1087,
+        "startChar": 0,
+        "endLine": 1095,
+        "endChar": 18
+      },
+      "revId": "0be7cec56bc028459284d4132c845f09cb74a473",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "7f8cbec6_62d8d9f5",
@@ -117,6 +207,30 @@
       "writtenOn": "2022-07-01T01:10:01Z",
       "side": 1,
       "message": "why special case ipmbIndex 0?",
+      "range": {
+        "startLine": 1138,
+        "startChar": 69,
+        "endLine": 1138,
+        "endChar": 75
+      },
+      "revId": "0be7cec56bc028459284d4132c845f09cb74a473",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "08a9d93f_ad2200b6",
+        "filename": "src/fru_utils.cpp",
+        "patchSetId": 42
+      },
+      "lineNbr": 1138,
+      "author": {
+        "id": 1000546
+      },
+      "writtenOn": "2022-07-01T12:43:43Z",
+      "side": 1,
+      "message": "If More than one dbus objects are present in the service which represents multi hosts, then can append with _0, _1, _2, _3, etc..\n\nEx :\n\nroot@yosemitev2:~# busctl tree xyz.openbmc_project.Ipmb.FruDevice\n└─/xyz\n  └─/xyz/openbmc_project\n    └─/xyz/openbmc_project/Ipmb\n      └─/xyz/openbmc_project/Ipmb/FruDevice\n        ├─/xyz/openbmc_project/Ipmb/FruDevice/Twin_Lakes_Passive_MP_0\n        ├─/xyz/openbmc_project/Ipmb/FruDevice/Twin_Lakes_Passive_MP_1\n        ├─/xyz/openbmc_project/Ipmb/FruDevice/Twin_Lakes_Passive_MP_2\n        └─/xyz/openbmc_project/Ipmb/FruDevice/Twin_Lakes_Passive_MP_3.\n\nThat is the reason added _0.",
+      "parentUuid": "7f8cbec6_62d8d9f5",
       "range": {
         "startLine": 1138,
         "startChar": 69,
@@ -150,6 +264,30 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "a5bd0ce7_bba42de0",
+        "filename": "src/fru_utils.cpp",
+        "patchSetId": 42
+      },
+      "lineNbr": 1204,
+      "author": {
+        "id": 1000546
+      },
+      "writtenOn": "2022-07-01T12:43:43Z",
+      "side": 1,
+      "message": "These lines are needed for both FRU implementations except below few lines \n\n\"\n  if (isMuxBus(bus) \u0026\u0026 address \u003d\u003d busIface.first.second \u0026\u0026\n     (getFRUInfo(\n      static_cast\u003cuint8_t\u003e(busIface.first.first),\n      static_cast\u003cuint8_t\u003e(busIface.first.second)) \u003d\u003d\n      getFRUInfo(static_cast\u003cuint8_t\u003e(bus),\n      static_cast\u003cuint8_t\u003e(address))))\n      {\n            // This device is already added to the lower numbered\n            // bus, do not replicate it.\n            return;\n      }\n                   \n\"\n\nThe above lines of the code is needed for only i2c based fru. So skipped with IpmbFlag. Other than these lines are needed for both FRU implementations.\n\nWithout this block of code in IPMB FRU, it does not generates the dbus object. Mainly these codes does the fru dbus object generation.",
+      "parentUuid": "c36a8ce6_ac4298c3",
+      "range": {
+        "startLine": 1150,
+        "startChar": 1,
+        "endLine": 1204,
+        "endChar": 5
+      },
+      "revId": "0be7cec56bc028459284d4132c845f09cb74a473",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "01ee30bd_4d09049a",
@@ -163,6 +301,30 @@
       "writtenOn": "2022-07-01T01:10:01Z",
       "side": 1,
       "message": "what is the bus and address for ipmb fru?",
+      "range": {
+        "startLine": 1218,
+        "startChar": 47,
+        "endLine": 1218,
+        "endChar": 59
+      },
+      "revId": "0be7cec56bc028459284d4132c845f09cb74a473",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "4d6d9a2f_45d501b6",
+        "filename": "src/fru_utils.cpp",
+        "patchSetId": 42
+      },
+      "lineNbr": 1218,
+      "author": {
+        "id": 1000546
+      },
+      "writtenOn": "2022-07-01T12:43:43Z",
+      "side": 1,
+      "message": "IPMB FRU has the hostid as 0, 1, 2, 3 etc..  \n\nThis hostId is mapped with this bus parameter as 0, 1, 2, 3. Address part is not used here and it will be always 0.",
+      "parentUuid": "01ee30bd_4d09049a",
       "range": {
         "startLine": 1218,
         "startChar": 47,
