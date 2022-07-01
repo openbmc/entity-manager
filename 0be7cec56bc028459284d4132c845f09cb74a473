@@ -16,6 +16,161 @@
       "message": "Could you please provide your comments if any.",
       "revId": "0be7cec56bc028459284d4132c845f09cb74a473",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c175593c_04d21fcd",
+        "filename": "include/fru_device.hpp",
+        "patchSetId": 42
+      },
+      "lineNbr": 16,
+      "author": {
+        "id": 1000559
+      },
+      "writtenOn": "2022-07-01T01:10:01Z",
+      "side": 1,
+      "message": "fru_device.hpp",
+      "range": {
+        "startLine": 16,
+        "startChar": 0,
+        "endLine": 16,
+        "endChar": 23
+      },
+      "revId": "0be7cec56bc028459284d4132c845f09cb74a473",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9a4e91df_1e04e264",
+        "filename": "include/fru_device.hpp",
+        "patchSetId": 42
+      },
+      "lineNbr": 19,
+      "author": {
+        "id": 1000559
+      },
+      "writtenOn": "2022-07-01T01:10:01Z",
+      "side": 1,
+      "message": "missing include here",
+      "revId": "0be7cec56bc028459284d4132c845f09cb74a473",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5bceaa62_da5f7c33",
+        "filename": "src/fru_utils.cpp",
+        "patchSetId": 42
+      },
+      "lineNbr": 823,
+      "author": {
+        "id": 1000559
+      },
+      "writtenOn": "2022-07-01T01:10:01Z",
+      "side": 1,
+      "message": "How does this work if it is ipmb FRU?",
+      "range": {
+        "startLine": 822,
+        "startChar": 2,
+        "endLine": 823,
+        "endChar": 60
+      },
+      "revId": "0be7cec56bc028459284d4132c845f09cb74a473",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "db5a3030_2e5ff013",
+        "filename": "src/fru_utils.cpp",
+        "patchSetId": 42
+      },
+      "lineNbr": 1095,
+      "author": {
+        "id": 1000559
+      },
+      "writtenOn": "2022-07-01T01:10:01Z",
+      "side": 1,
+      "message": "feels like this can still use some clean up, separate the common part between ipmb and i2c eeprom fru instead of just add parameters for both and do if statement multiple times",
+      "range": {
+        "startLine": 1087,
+        "startChar": 0,
+        "endLine": 1095,
+        "endChar": 18
+      },
+      "revId": "0be7cec56bc028459284d4132c845f09cb74a473",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7f8cbec6_62d8d9f5",
+        "filename": "src/fru_utils.cpp",
+        "patchSetId": 42
+      },
+      "lineNbr": 1138,
+      "author": {
+        "id": 1000559
+      },
+      "writtenOn": "2022-07-01T01:10:01Z",
+      "side": 1,
+      "message": "why special case ipmbIndex 0?",
+      "range": {
+        "startLine": 1138,
+        "startChar": 69,
+        "endLine": 1138,
+        "endChar": 75
+      },
+      "revId": "0be7cec56bc028459284d4132c845f09cb74a473",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c36a8ce6_ac4298c3",
+        "filename": "src/fru_utils.cpp",
+        "patchSetId": 42
+      },
+      "lineNbr": 1204,
+      "author": {
+        "id": 1000559
+      },
+      "writtenOn": "2022-07-01T01:10:01Z",
+      "side": 1,
+      "message": "This can be skipped when ipmbFlag is true, right?\n\nThis can be a helper function by itself",
+      "range": {
+        "startLine": 1150,
+        "startChar": 1,
+        "endLine": 1204,
+        "endChar": 5
+      },
+      "revId": "0be7cec56bc028459284d4132c845f09cb74a473",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "01ee30bd_4d09049a",
+        "filename": "src/fru_utils.cpp",
+        "patchSetId": 42
+      },
+      "lineNbr": 1218,
+      "author": {
+        "id": 1000559
+      },
+      "writtenOn": "2022-07-01T01:10:01Z",
+      "side": 1,
+      "message": "what is the bus and address for ipmb fru?",
+      "range": {
+        "startLine": 1218,
+        "startChar": 47,
+        "endLine": 1218,
+        "endChar": 59
+      },
+      "revId": "0be7cec56bc028459284d4132c845f09cb74a473",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }
