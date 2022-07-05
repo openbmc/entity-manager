@@ -5,10 +5,11 @@
 #include <cmath>
 #include <optional>
 
+#include "gmock/gmock.h"
 #include "gtest/gtest.h"
 
-using testing::ElementsAre;
-using testing::Pair;
+using ::testing::ElementsAre;
+using ::testing::Pair;
 
 TEST(ValidateSPDContentTest, CheckSizeIsSupported)
 {

@@ -251,6 +251,7 @@ if not build_tests.disabled()
             dependencies: [
                 boost,
                 gtest,
+                gmock,
                 phosphor_dbus_interfaces,
             ],
             implicit_include_directories: false,
