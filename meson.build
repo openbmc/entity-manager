@@ -37,6 +37,7 @@ endif
 nlohmann_json_dep = dependency('nlohmann_json',
                                fallback: [ 'nlohmann_json', 'nlohmann_json_dep'])
 
+phosphor_dbus_interfaces = dependency('phosphor-dbus-interfaces', required : false)
 sdbusplus = dependency('sdbusplus', required: false)
 if not sdbusplus.found()
     sdbusplus_proj = subproject('sdbusplus', required: true)
@@ -201,6 +202,7 @@ if not build_tests.disabled()
         cm_gtest = gtest_subproject.dependency('gtest')
         cm_gtest_main = gtest_subproject.dependency('gtest_main')
         gtest = declare_dependency(dependencies: [cm_gtest, cm_gtest_main, threads])
+        gmock = gtest_subproject.dependency('gmock')
     endif
 
     test(
@@ -234,6 +236,24 @@ if not build_tests.disabled()
             dependencies: [
                 boost,
                 gtest,
+            ],
+            implicit_include_directories: false,
+            include_directories: 'include',
+        )
+    )
+
+    test(
+        'test_spd',
+        executable(
+            'test_spd',
+            'test/test_spd.cpp',
+            'src/spd.cpp',
+            cpp_args: test_boost_args,
+            dependencies: [
+                boost,
+                gtest,
+                gmock,
+                phosphor_dbus_interfaces,
             ],
             implicit_include_directories: false,
             include_directories: 'include',
