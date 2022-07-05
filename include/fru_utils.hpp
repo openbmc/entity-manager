@@ -17,10 +17,12 @@
 
 #pragma once
 #include "fru_reader.hpp"
+
 #include <boost/container/flat_map.hpp>
 
 #include <cstdint>
 #include <functional>
+#include <optional>
 #include <regex>
 #include <string>
 #include <utility>
@@ -99,6 +101,8 @@ const char bcdHighChars[] = {
 };
 
 char bcdPlusToChar(uint8_t val);
+
+std::optional<int8_t> bcdToInt8(uint8_t b);
 
 bool verifyOffset(const std::vector<uint8_t>& fruBytes, fruAreas currentArea,
                   uint8_t len);
