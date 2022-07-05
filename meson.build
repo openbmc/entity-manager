@@ -37,6 +37,7 @@ endif
 nlohmann_json_dep = dependency('nlohmann_json',
                                fallback: [ 'nlohmann_json', 'nlohmann_json_dep'])
 
+phosphor_dbus_interfaces = dependency('phosphor-dbus-interfaces', required : false)
 sdbusplus = dependency('sdbusplus', required: false)
 if not sdbusplus.found()
     sdbusplus_proj = subproject('sdbusplus', required: true)
@@ -195,12 +196,14 @@ subdir('src')
 if not build_tests.disabled()
     test_boost_args = boost_args + ['-DBOOST_ASIO_DISABLE_THREADS']
     gtest = dependency('gtest', main: true, disabler: true, required: false)
+    gmock = dependency('gmock', disabler: true, required: false)
     if not gtest.found() and build_tests.enabled()
         cmake = import('cmake')
         gtest_subproject = cmake.subproject('gtest')
         cm_gtest = gtest_subproject.dependency('gtest')
         cm_gtest_main = gtest_subproject.dependency('gtest_main')
         gtest = declare_dependency(dependencies: [cm_gtest, cm_gtest_main, threads])
+        gmock = gtest_subproject.dependency('gmock')
     endif
 
     test(
@@ -234,6 +237,26 @@ if not build_tests.disabled()
             dependencies: [
                 boost,
                 gtest,
+            ],
+            implicit_include_directories: false,
+            include_directories: 'include',
+        )
+    )
+
+    test(
+        'test_spd',
+        executable(
+            'test_spd',
+            'test/test_spd.cpp',
+            'src/spd.cpp',
+            'src/fru_utils.cpp',
+            'src/fru_reader.cpp',
+            cpp_args: test_boost_args,
+            dependencies: [
+                boost,
+                gtest,
+                gmock,
+                phosphor_dbus_interfaces,
             ],
             implicit_include_directories: false,
             include_directories: 'include',
