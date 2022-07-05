@@ -253,5 +253,5 @@ const boost::container::flat_map<const char*, ExportTemplate, CmpStr>
                          "new_device", "delete_device", true)},
          {"HDC1080",
           ExportTemplate("hdc1080 $Address", "/sys/bus/i2c/devices/i2c-$Bus",
-                         "new_device", "delete_device", true)}}};
+                         "new_device", "delete_device", false)}}};
 } // namespace devices
