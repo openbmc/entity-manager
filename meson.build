@@ -37,6 +37,7 @@ endif
 nlohmann_json_dep = dependency('nlohmann_json',
                                fallback: [ 'nlohmann_json', 'nlohmann_json_dep'])
 
+phosphor_dbus_interfaces = dependency('phosphor-dbus-interfaces', required : false)
 sdbusplus = dependency('sdbusplus', required: false)
 if not sdbusplus.found()
     sdbusplus_proj = subproject('sdbusplus', required: true)
