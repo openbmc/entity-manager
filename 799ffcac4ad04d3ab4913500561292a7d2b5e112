@@ -283,6 +283,30 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "fd73d3b7_047ca13c",
+        "filename": "include/spd/spd.hpp",
+        "patchSetId": 2
+      },
+      "lineNbr": 96,
+      "author": {
+        "id": 1000937
+      },
+      "writtenOn": "2022-07-06T05:50:43Z",
+      "side": 1,
+      "message": "I removed all the `spd` prefix on all the methods except `spdSize()` because spdSize is the spd eeprom size. I want to differentiate it from `dimmDize`",
+      "parentUuid": "641ea6b2_96ecd1bb",
+      "range": {
+        "startLine": 93,
+        "startChar": 4,
+        "endLine": 96,
+        "endChar": 44
+      },
+      "revId": "799ffcac4ad04d3ab4913500561292a7d2b5e112",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "7b136cb3_78ce6023",
@@ -397,6 +421,30 @@
       "side": 1,
       "message": "Part number shall be written in ASCII format while the serial number is not.\nActually in our case the serial number is not written in ASCII format.\nSo I think serial number should keep using `vector`.\n\nType of part number changed to `string`.",
       "parentUuid": "6d5ef727_6a4fb7d9",
+      "range": {
+        "startLine": 108,
+        "startChar": 0,
+        "endLine": 109,
+        "endChar": 56
+      },
+      "revId": "799ffcac4ad04d3ab4913500561292a7d2b5e112",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "3348cb27_3d136830",
+        "filename": "include/spd/spd.hpp",
+        "patchSetId": 2
+      },
+      "lineNbr": 109,
+      "author": {
+        "id": 1000937
+      },
+      "writtenOn": "2022-07-06T05:50:43Z",
+      "side": 1,
+      "message": "Both changed to std::string.",
+      "parentUuid": "eb3593da_567a058d",
       "range": {
         "startLine": 108,
         "startChar": 0,

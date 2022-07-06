@@ -48,6 +48,30 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "9e2b2698_260a09b2",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 8
+      },
+      "lineNbr": 12,
+      "author": {
+        "id": 1000937
+      },
+      "writtenOn": "2022-07-06T05:50:43Z",
+      "side": 1,
+      "message": "Inheritance removed.",
+      "parentUuid": "770e92ff_29bd83a1",
+      "range": {
+        "startLine": 10,
+        "startChar": 0,
+        "endLine": 12,
+        "endChar": 19
+      },
+      "revId": "1d53e2d2ca7772cee464c8c22b38b28a5561cbc2",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "c597bab4_0e2a3c07",
@@ -190,6 +214,30 @@
       "side": 1,
       "message": "\u003e Please don\u0027t add virtualized inherited classes unless there are at least 3 users of said class.\nI planned to support DDR5 for now, and might support DDR4 afterwards as well since DDR4 is now widely used.\nMeanwhile, the DDR generation is also keeping updating(DDR6 is in the planning phase). I believe this virtual class can accommodate the later DDR generation. So I think the users of this virtual class will keep increasing.\n\n\u003e given the very minor differences between the various spd types, a simple \"type\" flag that can be branched on in the 3 difference cases, using a common class would be sufficient.\nThe differences between DDR4 and DDR5 might be minor. However I compared DDR1/2 with DDR4 and the differences are huge.\nI know this comparison might not be fair since DDR1/2 is a historical product. But I want to make it as flexible as possible since the DDR generation keeps updating (at a fast speed).",
       "parentUuid": "74c98957_cd8fa04b",
+      "range": {
+        "startLine": 9,
+        "startChar": 0,
+        "endLine": 9,
+        "endChar": 9
+      },
+      "revId": "1d53e2d2ca7772cee464c8c22b38b28a5561cbc2",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "7515cac5_114228bd",
+        "filename": "include/spd/spd.hpp",
+        "patchSetId": 8
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 1000937
+      },
+      "writtenOn": "2022-07-06T05:50:43Z",
+      "side": 1,
+      "message": "Inheritance removed.",
+      "parentUuid": "d4e5a3e5_c1ed8fe0",
       "range": {
         "startLine": 9,
         "startChar": 0,
@@ -470,6 +518,30 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "14663e92_bdb51411",
+        "filename": "include/spd/spd.hpp",
+        "patchSetId": 8
+      },
+      "lineNbr": 44,
+      "author": {
+        "id": 1000937
+      },
+      "writtenOn": "2022-07-06T05:50:43Z",
+      "side": 1,
+      "message": "changed to `sizeof(SPDKeyFields);`",
+      "parentUuid": "b7f4117a_386423b9",
+      "range": {
+        "startLine": 44,
+        "startChar": 52,
+        "endLine": 44,
+        "endChar": 54
+      },
+      "revId": "1d53e2d2ca7772cee464c8c22b38b28a5561cbc2",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "9b0fde36_2a349858",
@@ -705,6 +777,30 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "f80b2ac8_2362cd7e",
+        "filename": "src/spd.cpp",
+        "patchSetId": 8
+      },
+      "lineNbr": 15,
+      "author": {
+        "id": 1000937
+      },
+      "writtenOn": "2022-07-06T05:50:43Z",
+      "side": 1,
+      "message": "I used flat_map to replace the enum class so that we don\u0027t need to static_cast.",
+      "parentUuid": "0e76604e_77d86e78",
+      "range": {
+        "startLine": 15,
+        "startChar": 11,
+        "endLine": 15,
+        "endChar": 31
+      },
+      "revId": "1d53e2d2ca7772cee464c8c22b38b28a5561cbc2",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "c38b6665_64090304",
@@ -752,6 +848,30 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "41fa212f_d69ad9e4",
+        "filename": "src/spd.cpp",
+        "patchSetId": 8
+      },
+      "lineNbr": 21,
+      "author": {
+        "id": 1000937
+      },
+      "writtenOn": "2022-07-06T05:50:43Z",
+      "side": 1,
+      "message": "I restructed the code. No this kind of issue anymore.",
+      "parentUuid": "944b296a_44019a28",
+      "range": {
+        "startLine": 21,
+        "startChar": 26,
+        "endLine": 21,
+        "endChar": 45
+      },
+      "revId": "1d53e2d2ca7772cee464c8c22b38b28a5561cbc2",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "31a5e3a8_78b4d707",
@@ -789,6 +909,30 @@
       "side": 1,
       "message": "It\u0027s the range of the SPD size defined in SPD spec.\nhttps://gerrit.openbmc-project.xyz/c/openbmc/entity-manager/+/51649/17/src/ddr5.cpp#210\n\nI didn\u0027t give these upper/lower bound a name because almost every fields have limited range. Naming all of them might not a good idea.\nFor example:\n`busWidth` must be 0~3 https://gerrit.openbmc-project.xyz/c/openbmc/entity-manager/+/51649/17/src/ddr5.cpp#138\n`diePerPackage` must be 0~5 https://gerrit.openbmc-project.xyz/c/openbmc/entity-manager/+/51649/17/src/ddr5.cpp#166",
       "parentUuid": "31a5e3a8_78b4d707",
+      "range": {
+        "startLine": 27,
+        "startChar": 4,
+        "endLine": 27,
+        "endChar": 43
+      },
+      "revId": "1d53e2d2ca7772cee464c8c22b38b28a5561cbc2",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "5fba05f0_582b97ce",
+        "filename": "src/spd.cpp",
+        "patchSetId": 8
+      },
+      "lineNbr": 27,
+      "author": {
+        "id": 1000937
+      },
+      "writtenOn": "2022-07-06T05:50:43Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "fa3d43f3_5e2705cf",
       "range": {
         "startLine": 27,
         "startChar": 4,
