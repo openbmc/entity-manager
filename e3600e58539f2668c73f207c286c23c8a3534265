@@ -213,6 +213,30 @@
       },
       "revId": "e3600e58539f2668c73f207c286c23c8a3534265",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2e40f2e6_c186e89b",
+        "filename": "src/fru_utils.cpp",
+        "patchSetId": 6
+      },
+      "lineNbr": 137,
+      "author": {
+        "id": 1000733
+      },
+      "writtenOn": "2022-07-07T00:32:47Z",
+      "side": 1,
+      "message": "\u003e I guess from my perspective \"Caching reader\" and \"offset reader\" are two completely different classes of reader,\n\nAs in, should be entirely distinct, incompatible types?  A major part of my aim here was that they would be compatible so that you could transparently pass an offset reader to the regular IPMI format parsing code in order to handle cases like the Tyan format and have that code accept either without having to care which it was.  (Hence initially taking the inheritance-based approach so that it could just accept the base class that both the caching and offset readers derive from.)\n\n\u003e transforms that should be applied ahead of calling the backend\n\nStill a bit uncertain what exactly you\u0027re referring to as a \"backend\" here -- do you mean the underlying ReadBlockFunc I/O routine, i.e. `readFromEeprom()` or `readBlockData()`?  If so, I thought the existing implementations would satisfy that criterion (though in the offset case the immediate backend is in turn a caching reader).\n\n\u003e and caching reader could just be aware of the backends and call them directly\n\nSo the caching reader would have to be aware of what type of eeprom it was reading from and explicitly call different functions depending on that?  I\u0027m not sure I see the advantage over the ReadBlockFunc callback-based approach we\u0027ve already got...\n\n\u003e Still would like other maintainers opinion on this here.\n\nYeah...Jae, Vernon -- any thoughts?",
+      "parentUuid": "68f738f6_2425f5a9",
+      "range": {
+        "startLine": 130,
+        "startChar": 1,
+        "endLine": 137,
+        "endChar": 66
+      },
+      "revId": "e3600e58539f2668c73f207c286c23c8a3534265",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }
