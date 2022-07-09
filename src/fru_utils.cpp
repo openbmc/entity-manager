@@ -18,6 +18,7 @@
 #include "fru_utils.hpp"
 
 #include <array>
+#include <cstddef>
 #include <cstdint>
 #include <filesystem>
 #include <iostream>
@@ -75,7 +76,7 @@ std::pair<DecodeState, std::string>
                   bool isLangEng)
 {
     std::string value;
-    unsigned int i;
+    unsigned int i = 0;
 
     /* we need at least one byte to decode the type/len header */
     if (iter == end)
@@ -171,7 +172,7 @@ bool checkLangEng(uint8_t lang)
 {
     // If Lang is not English then the encoding is defined as 2-byte UNICODE,
     // but we don't support that.
-    if (lang && lang != 25)
+    if ((lang != 0U) && lang != 25)
     {
         std::cerr << "Warning: languages other than English is not "
                      "supported\n";
@@ -269,7 +270,7 @@ resCodes
     result["Common_Format_Version"] =
         std::to_string(static_cast<int>(*fruBytes.begin()));
 
-    const std::vector<std::string>* fruAreaFieldNames;
+    const std::vector<std::string>* fruAreaFieldNames = nullptr;
 
     // Don't parse Internal and Multirecord areas
     for (fruAreas area = fruAreas::fruAreaChassis;
@@ -353,12 +354,12 @@ resCodes
                                        *(fruBytesIter + 2) << 16;
                 std::tm fruTime = intelEpoch();
                 std::time_t timeValue = std::mktime(&fruTime);
-                timeValue += minutes * 60;
+                timeValue += static_cast<long>(minutes) * 60;
                 fruTime = *std::gmtime(&timeValue);
 
                 // Tue Nov 20 23:08:00 2018
-                char timeString[32] = {0};
-                auto bytes = std::strftime(timeString, sizeof(timeString),
+                std::array<char, 32> timeString = {};
+                auto bytes = std::strftime(timeString.data(), timeString.size(),
                                            "%Y-%m-%d - %H:%M:%S", &fruTime);
                 if (bytes == 0)
                 {
@@ -366,7 +367,8 @@ resCodes
                     return resCodes::resErr;
                 }
 
-                result["BOARD_MANUFACTURE_DATE"] = std::string(timeString);
+                result["BOARD_MANUFACTURE_DATE"] =
+                    std::string_view(timeString.data(), bytes);
                 fruBytesIter += 3;
                 fruAreaFieldNames = &boardFruAreas;
                 break;
@@ -389,7 +391,7 @@ resCodes
             }
         }
         size_t fieldIndex = 0;
-        DecodeState state;
+        DecodeState state = DecodeState::ok;
         do
         {
             auto res =
@@ -447,7 +449,7 @@ resCodes
         for (; fruBytesIter < fruBytesIterEndArea; fruBytesIter++)
         {
             uint8_t c = *fruBytesIter;
-            if (c)
+            if (c != 0U)
             {
                 std::cerr << "Non-zero byte after EndOfFields in FRU area "
                           << getFruAreaName(area) << "\n";
@@ -489,8 +491,8 @@ unsigned int updateFRUAreaLenAndChecksum(std::vector<uint8_t>& fruData,
               fruData.begin() + fruAreaEndOffset, 0);
 
     size_t mod = traverseFRUAreaIndex % fruBlockSize;
-    size_t checksumLoc;
-    if (!mod)
+    size_t checksumLoc = 0;
+    if (mod == 0U)
     {
         traverseFRUAreaIndex += (fruBlockSize);
         checksumLoc = fruAreaEndOfFieldsOffset + (fruBlockSize - 1);
@@ -501,8 +503,9 @@ unsigned int updateFRUAreaLenAndChecksum(std::vector<uint8_t>& fruData,
         checksumLoc = fruAreaEndOfFieldsOffset + (fruBlockSize - mod - 1);
     }
 
-    size_t newFRUAreaLen = (traverseFRUAreaIndex / fruBlockSize) +
-                           ((traverseFRUAreaIndex % fruBlockSize) != 0);
+    size_t newFRUAreaLen =
+        (traverseFRUAreaIndex / fruBlockSize) +
+        static_cast<unsigned long>((traverseFRUAreaIndex % fruBlockSize) != 0);
     size_t fruAreaLengthLoc = fruAreaStart + 1;
     fruData[fruAreaLengthLoc] = static_cast<uint8_t>(newFRUAreaLen);
 
@@ -634,7 +637,7 @@ bool findFRUHeader(FRUReader& reader, const std::string& errorHelp,
 std::vector<uint8_t> readFRUContents(FRUReader& reader,
                                      const std::string& errorHelp)
 {
-    std::array<uint8_t, I2C_SMBUS_BLOCK_MAX> blockData;
+    std::array<uint8_t, I2C_SMBUS_BLOCK_MAX> blockData{};
     off_t baseOffset = 0x0;
 
     if (!findFRUHeader(reader, errorHelp, blockData, baseOffset))
@@ -725,7 +728,7 @@ std::vector<uint8_t> readFRUContents(FRUReader& reader,
             fruLength = (areaOffset > fruLength) ? areaOffset : fruLength;
 
             // If this is the end of the list bail.
-            if ((blockData[1] & multiRecordEndOfListMask))
+            if ((blockData[1] & multiRecordEndOfListMask) != 0)
             {
                 break;
             }

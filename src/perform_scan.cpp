@@ -50,7 +50,7 @@ void getInterfaces(
     const std::vector<std::shared_ptr<PerformProbe>>& probeVector,
     const std::shared_ptr<PerformScan>& scan, size_t retries = 5)
 {
-    if (!retries)
+    if (retries == 0U)
     {
         std::cerr << "retries exhausted on " << instance.busName << " "
                   << instance.path << " " << instance.interface << "\n";
@@ -83,7 +83,7 @@ void getInterfaces(
 
     if constexpr (debug)
     {
-        std::cerr << __func__ << " " << __LINE__ << "\n";
+        std::cerr << __LINE__ << "\n";
     }
 }
 
@@ -172,7 +172,7 @@ void findDbusObjects(std::vector<std::shared_ptr<PerformProbe>>&& probeVector,
                 }
                 std::cerr << "Error communicating to mapper.\n";
 
-                if (!retries)
+                if (retries == 0U)
                 {
                     // if we can't communicate to the mapper something is very
                     // wrong
@@ -202,7 +202,7 @@ void findDbusObjects(std::vector<std::shared_ptr<PerformProbe>>&& probeVector,
 
     if constexpr (debug)
     {
-        std::cerr << __func__ << " " << __LINE__ << "\n";
+        std::cerr << __LINE__ << "\n";
     }
 }
 
@@ -216,7 +216,7 @@ static std::string getRecordName(const DBusInterface& probe,
 
     // use an array so alphabetical order from the flat_map is maintained
     auto device = nlohmann::json::array();
-    for (auto& devPair : probe)
+    for (const auto& devPair : probe)
     {
         device.push_back(devPair.first);
         std::visit([&device](auto&& v) { device.push_back(v); },
@@ -283,7 +283,9 @@ static void recordDiscoveredIdentifiers(std::set<nlohmann::json>& usedNames,
 
     int index = 0;
     auto str = nameIt->get<std::string>().substr(indexIdx);
-    auto [p, ec] = std::from_chars(str.data(), str.data() + str.size(), index);
+    // NOLINTNEXTLINE(cppcoreguidelines-pro-bounds-pointer-arithmetic)
+    const char* endPtr = str.data() + str.size();
+    auto [p, ec] = std::from_chars(str.data(), endPtr, index);
     if (ec != std::errc())
     {
         return; // non-numeric replacement
@@ -638,7 +640,7 @@ void PerformScan::run()
                 std::cerr << "Probe statement wasn't a string, can't parse";
                 continue;
             }
-            if (findProbeType(probe->c_str()))
+            if (findProbeType(*probe))
             {
                 continue;
             }
@@ -657,7 +659,7 @@ void PerformScan::run()
                     std::move(dbusProbeInterfaces), shared_from_this());
     if constexpr (debug)
     {
-        std::cerr << __func__ << " " << __LINE__ << "\n";
+        std::cerr << __LINE__ << "\n";
     }
 }
 
@@ -674,7 +676,7 @@ PerformScan::~PerformScan()
 
         if constexpr (debug)
         {
-            std::cerr << __func__ << " " << __LINE__ << "\n";
+            std::cerr << __LINE__ << "\n";
         }
     }
     else
@@ -683,7 +685,7 @@ PerformScan::~PerformScan()
 
         if constexpr (debug)
         {
-            std::cerr << __func__ << " " << __LINE__ << "\n";
+            std::cerr << __LINE__ << "\n";
         }
     }
 }

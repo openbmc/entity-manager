@@ -17,8 +17,8 @@
 
 #include "overlay.hpp"
 
-#include "utils.hpp"
 #include "devices.hpp"
+#include "utils.hpp"
 
 #include <boost/algorithm/string/predicate.hpp>
 #include <boost/asio/io_context.hpp>
@@ -233,7 +233,7 @@ static int buildDevice(const std::string& devicePath,
                        const size_t retries = 5)
 {
     bool tryAgain = false;
-    if (!retries)
+    if (retries == 0U)
     {
         return -1;
     }
@@ -327,7 +327,8 @@ void exportDevice(const std::string& type,
     int err = buildDevice(devicePath, parameters, bus, address, constructor,
                           destructor, createsHWMon);
 
-    if (!err && boost::ends_with(type, "Mux") && bus && address && channels)
+    if ((err == 0) && boost::ends_with(type, "Mux") && bus && address &&
+        (channels != nullptr))
     {
         linkMux(name, static_cast<size_t>(*bus), static_cast<size_t>(*address),
                 *channels);
@@ -347,7 +348,7 @@ bool loadOverlays(const nlohmann::json& systemConfiguration)
             continue;
         }
 
-        for (auto& configuration : *findExposes)
+        for (const auto& configuration : *findExposes)
         {
             auto findStatus = configuration.find("Status");
             // status missing is assumed to be 'okay'

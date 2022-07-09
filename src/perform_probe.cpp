@@ -92,7 +92,7 @@ bool probe(const std::vector<std::string>& probeCommand,
     probe_type_codes lastCommand = probe_type_codes::FALSE_T;
     bool first = true;
 
-    for (auto& probe : probeCommand)
+    for (const auto& probe : probeCommand)
     {
         FoundProbeTypeT probeType = findProbeType(probe);
         if (probeType)
@@ -198,7 +198,7 @@ bool probe(const std::vector<std::string>& probeCommand,
     }
 
     // probe passed, but empty device
-    if (ret && foundDevs.size() == 0)
+    if (ret && foundDevs.empty())
     {
         // Use emplace back when clang implements
         // http://www.open-std.org/jtc1/sc22/wg21/docs/papers/2019/p0960r3.html
