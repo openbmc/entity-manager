@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "682e5ab3_94806765",
+        "filename": "configurations/twinlake.json",
+        "patchSetId": 8
+      },
+      "lineNbr": 8,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2022-07-09T06:14:27Z",
+      "side": 1,
+      "message": "How can these be determined from the schematic?  I suspect these channel names are specific to twinlake, and just need to go in the c++ code for this.\n\nAsked another way, why would anyone want to change these names on a per platform basis?",
+      "range": {
+        "startLine": 6,
+        "startChar": 0,
+        "endLine": 8,
+        "endChar": 14
+      },
+      "revId": "857a62e268f1b6cf4fa66f9d59a3ff5f245b27a7",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1f63a6fa_030849e0",
+        "filename": "configurations/twinlake.json",
+        "patchSetId": 8
+      },
+      "lineNbr": 11,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2022-07-09T06:14:27Z",
+      "side": 1,
+      "message": "I reviewed the backend patch for this.  Both \"Class\" and SensorType look like they don\u0027t belong here, and are being used to match in ways we shouldn\u0027t be.\n\nI would expect this stanza to be just bus and address.",
+      "range": {
+        "startLine": 9,
+        "startChar": 0,
+        "endLine": 11,
+        "endChar": 42
+      },
+      "revId": "857a62e268f1b6cf4fa66f9d59a3ff5f245b27a7",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    }
+  ]
+}
