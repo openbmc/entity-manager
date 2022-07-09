@@ -17,6 +17,7 @@
 
 #pragma once
 #include "fru_reader.hpp"
+
 #include <boost/container/flat_map.hpp>
 
 #include <cstdint>
@@ -94,7 +95,7 @@ std::tm intelEpoch(void);
 char sixBitToChar(uint8_t val);
 
 /* 0xd - 0xf are reserved values, but not fatal; use a placeholder char. */
-const char bcdHighChars[] = {
+constexpr std::array<char, 6> bcdHighChars = {
     ' ', '-', '.', 'X', 'X', 'X',
 };
 
