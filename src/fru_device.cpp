@@ -32,6 +32,7 @@
 
 #include <array>
 #include <cerrno>
+#include <charconv>
 #include <chrono>
 #include <ctime>
 #include <filesystem>
@@ -81,10 +82,8 @@ static boost::container::flat_map<size_t, std::set<size_t>> failedAddresses;
 
 boost::asio::io_service io;
 
-uint8_t calculateChecksum(std::vector<uint8_t>::const_iterator iter,
-                          std::vector<uint8_t>::const_iterator end);
 bool updateFRUProperty(
-    const std::string& assetTag, uint32_t bus, uint32_t address,
+    const std::string& updatePropertyReq, uint32_t bus, uint32_t address,
     const std::string& propertyName,
     boost::container::flat_map<
         std::pair<size_t, size_t>,
@@ -128,14 +127,17 @@ static int64_t readFromEeprom(int fd, off_t offset, size_t len, uint8_t* buf)
     return read(fd, buf, len);
 }
 
-static int busStrToInt(const std::string& busName)
+static int busStrToInt(const std::string_view busName)
 {
     auto findBus = busName.rfind('-');
     if (findBus == std::string::npos)
     {
         return -1;
     }
-    return std::stoi(busName.substr(findBus + 1));
+    std::string_view num = busName.substr(findBus + 1);
+    int val = 0;
+    std::from_chars(num.data(), num.data() + num.size(), val);
+    return val;
 }
 
 static int getRootBus(size_t bus)
@@ -233,9 +235,10 @@ static int i2cSmbusWriteThenRead(int file, uint16_t address,
         return -1;
     }
 
-#define SMBUS_IOCTL_WRITE_THEN_READ_MSG_COUNT 2
-    struct i2c_msg msgs[SMBUS_IOCTL_WRITE_THEN_READ_MSG_COUNT];
-    struct i2c_rdwr_ioctl_data rdwr;
+    constexpr size_t smbusWriteThenReadMsgCount = 2;
+    std::array<struct i2c_msg, smbusWriteThenReadMsgCount> msgs{};
+    struct i2c_rdwr_ioctl_data rdwr
+    {};
 
     msgs[0].addr = address;
     msgs[0].flags = 0;
@@ -246,12 +249,12 @@ static int i2cSmbusWriteThenRead(int file, uint16_t address,
     msgs[1].len = fromSlaveBufLen;
     msgs[1].buf = fromSlaveBuf;
 
-    rdwr.msgs = msgs;
-    rdwr.nmsgs = SMBUS_IOCTL_WRITE_THEN_READ_MSG_COUNT;
+    rdwr.msgs = msgs.data();
+    rdwr.nmsgs = msgs.size();
 
     int ret = ioctl(file, I2C_RDWR, &rdwr);
 
-    return (ret == SMBUS_IOCTL_WRITE_THEN_READ_MSG_COUNT) ? msgs[1].len : -1;
+    return (ret == msgs.size()) ? msgs[1].len : -1;
 }
 
 static int64_t readBlockData(bool is16bit, int file, uint16_t address,
@@ -264,8 +267,9 @@ static int64_t readBlockData(bool is16bit, int file, uint16_t address,
     }
 
     offset = htobe16(offset);
-    return i2cSmbusWriteThenRead(
-        file, address, reinterpret_cast<uint8_t*>(&offset), 2, buf, len);
+    // NOLINTNEXTLINE(cppcoreguidelines-pro-type-reinterpret-cast)
+    uint8_t* u8Offset = reinterpret_cast<uint8_t*>(&offset);
+    return i2cSmbusWriteThenRead(file, address, u8Offset, 2, buf, len);
 }
 
 // TODO: This code is very similar to the non-eeprom version and can be merged
@@ -323,7 +327,7 @@ std::set<int> findI2CEeproms(int i2cBus,
         std::ssub_match subMatch = m[1];
         std::string addressString = subMatch.str();
 
-        std::size_t ignored;
+        std::size_t ignored = 0;
         const int hexBase = 16;
         int address = std::stoi(addressString, &ignored, hexBase);
 
@@ -535,17 +539,15 @@ void loadBlacklist(const char* path)
             std::exit(EXIT_FAILURE);
         }
     }
-
-    return;
 }
 
 static void findI2CDevices(const std::vector<fs::path>& i2cBuses,
                            BusMap& busmap, const bool& powerIsOn,
                            sdbusplus::asio::object_server& objServer)
 {
-    for (auto& i2cBus : i2cBuses)
+    for (const auto& i2cBus : i2cBuses)
     {
-        int bus = busStrToInt(i2cBus);
+        int bus = busStrToInt(i2cBus.string());
 
         if (bus < 0)
         {
@@ -580,8 +582,8 @@ static void findI2CDevices(const std::vector<fs::path>& i2cBuses,
             close(file);
             continue;
         }
-        if (!(funcs & I2C_FUNC_SMBUS_READ_BYTE) ||
-            !(I2C_FUNC_SMBUS_READ_I2C_BLOCK))
+        if (((funcs & I2C_FUNC_SMBUS_READ_BYTE) == 0U) ||
+            ((I2C_FUNC_SMBUS_READ_I2C_BLOCK) == 0))
         {
             std::cerr << "Error: Can't use SMBus Receive Byte command bus "
                       << bus << "\n";
@@ -804,8 +806,9 @@ static bool readBaseboardFRU(std::vector<uint8_t>& baseboardFRU)
         size_t fileSize = static_cast<size_t>(baseboardFRUFile.tellg());
         baseboardFRU.resize(fileSize);
         baseboardFRUFile.seekg(0, std::ios_base::beg);
-        baseboardFRUFile.read(reinterpret_cast<char*>(baseboardFRU.data()),
-                              fileSize);
+        // NOLINTNEXTLINE(cppcoreguidelines-pro-type-reinterpret-cast)
+        char* charOffset = reinterpret_cast<char*>(baseboardFRU.data());
+        baseboardFRUFile.read(charOffset, fileSize);
     }
     else
     {
@@ -838,7 +841,9 @@ bool writeFRU(uint8_t bus, uint8_t address, const std::vector<uint8_t>& fru)
             throw DBusInternalError();
             return false;
         }
-        file.write(reinterpret_cast<const char*>(fru.data()), fru.size());
+        // NOLINTNEXTLINE(cppcoreguidelines-pro-type-reinterpret-cast)
+        const char* charOffset = reinterpret_cast<const char*>(fru.data());
+        file.write(charOffset, fru.size());
         return file.good();
     }
 
@@ -888,7 +893,7 @@ bool writeFRU(uint8_t bus, uint8_t address, const std::vector<uint8_t>& fru)
     size_t retries = retryMax;
     while (index < fru.size())
     {
-        if ((index && ((index % (maxEepromPageIndex + 1)) == 0)) &&
+        if (((index != 0U) && ((index % (maxEepromPageIndex + 1)) == 0)) &&
             (retries == retryMax))
         {
             // The 4K EEPROM only uses the A2 and A1 device address bits
@@ -905,7 +910,7 @@ bool writeFRU(uint8_t bus, uint8_t address, const std::vector<uint8_t>& fru)
         if (i2c_smbus_write_byte_data(file, static_cast<uint8_t>(index),
                                       fru[index]) < 0)
         {
-            if (!retries--)
+            if ((retries--) == 0U)
             {
                 std::cerr << "error writing fru: " << strerror(errno) << "\n";
                 close(file);
@@ -1103,7 +1108,7 @@ bool updateFRUProperty(
         return false;
     }
 
-    const std::vector<std::string>* fruAreaFieldNames;
+    const std::vector<std::string>* fruAreaFieldNames = nullptr;
 
     uint8_t fruAreaOffsetFieldValue = 0;
     size_t offset = 0;
@@ -1151,10 +1156,10 @@ bool updateFRUProperty(
     size_t fruAreaEnd = fruAreaStart + fruAreaSize;
     size_t fruDataIter = fruAreaStart + offset;
     size_t skipToFRUUpdateField = 0;
-    ssize_t fieldLength;
+    ssize_t fieldLength = 0;
 
     bool found = false;
-    for (auto& field : *fruAreaFieldNames)
+    for (const auto& field : *fruAreaFieldNames)
     {
         skipToFRUUpdateField++;
         if (propertyName == propertyNamePrefix + field)
@@ -1235,7 +1240,7 @@ bool updateFRUProperty(
         }
     }
     std::vector<uint8_t> restFRUAreasData;
-    if (nextFRUAreaLoc)
+    if (nextFRUAreaLoc != 0U)
     {
         std::copy_n(fruData.begin() + nextFRUAreaLoc,
                     fruData.size() - nextFRUAreaLoc,
@@ -1429,7 +1434,7 @@ int main()
 
     int fd = inotify_init();
     inotify_add_watch(fd, i2CDevLocation, IN_CREATE | IN_MOVED_TO | IN_DELETE);
-    std::array<char, 4096> readBuffer;
+    std::array<char, 4096> readBuffer{};
     // monitor for new i2c devices
     boost::asio::posix::stream_descriptor dirWatch(io, fd);
     std::function<void(const boost::system::error_code, std::size_t)>
@@ -1443,14 +1448,15 @@ int main()
             size_t index = 0;
             while ((index + sizeof(inotify_event)) <= bytesTransferred)
             {
-                const inotify_event* iEvent =
-                    reinterpret_cast<const inotify_event*>(&readBuffer[index]);
+                const char* p = &readBuffer[index];
+                // NOLINTNEXTLINE(cppcoreguidelines-pro-type-reinterpret-cast)
+                const auto* iEvent = reinterpret_cast<const inotify_event*>(p);
                 switch (iEvent->mask)
                 {
                     case IN_CREATE:
                     case IN_MOVED_TO:
                     case IN_DELETE:
-                        std::string name(iEvent->name);
+                        std::string_view name(&iEvent->name[0], iEvent->len);
                         if (boost::starts_with(name, "i2c"))
                         {
                             int bus = busStrToInt(name);

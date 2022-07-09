@@ -39,7 +39,7 @@ using ReadBlockFunc =
 class FRUReader
 {
   public:
-    FRUReader(ReadBlockFunc readFunc) : readFunc(std::move(readFunc))
+    explicit FRUReader(ReadBlockFunc readFunc) : readFunc(std::move(readFunc))
     {}
     // The ::read() operation here is analogous to ReadBlockFunc (with the same
     // return value semantics), but is not subject to SMBus block size

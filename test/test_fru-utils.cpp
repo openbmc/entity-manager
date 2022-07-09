@@ -155,9 +155,9 @@ int64_t getDataTempl(const std::vector<uint8_t>& data, off_t offset,
         return 0;
     }
 
-    uint16_t idx;
-    for (idx = offset; idx < data.size() && idx < offset + length;
-         ++idx, ++outBuf)
+    uint16_t idx = offset;
+    // NOLINTNEXTLINE(cppcoreguidelines-pro-bounds-pointer-arithmetic)
+    for (; idx < std::min(data.size(), offset + length); ++idx, ++outBuf)
     {
         *outBuf = data[idx];
     }
@@ -172,7 +172,7 @@ TEST(FRUReaderTest, ReadData)
     {
         data.push_back(i);
     }
-    std::array<uint8_t, blockSize * 2> rdbuf;
+    std::array<uint8_t, blockSize * 2> rdbuf{};
     auto getData = [&data](auto o, auto l, auto* b) {
         return getDataTempl(data, o, l, b);
     };
@@ -206,7 +206,7 @@ TEST(FRUReaderTest, StartPastKnownEOF)
 {
     std::vector<uint8_t> data = {};
     data.resize(blockSize / 2);
-    std::array<uint8_t, blockSize> blockData;
+    std::array<uint8_t, blockSize> blockData{};
     auto getData = [&data](auto o, auto l, auto* b) {
         return getDataTempl(data, o, l, b);
     };
@@ -238,7 +238,8 @@ TEST(FRUReaderTest, DecreasingEOF)
 TEST(FRUReaderTest, CacheHit)
 {
     std::vector<uint8_t> data = {'X'};
-    std::array<uint8_t, blockSize> read1, read2;
+    std::array<uint8_t, blockSize> read1{};
+    std::array<uint8_t, blockSize> read2{};
     auto getData = [&data](auto o, auto l, auto* b) {
         return getDataTempl(data, o, l, b);
     };
@@ -255,7 +256,7 @@ TEST(FRUReaderTest, CacheHit)
 TEST(FRUReaderTest, ReadPastKnownEnd)
 {
     const std::vector<uint8_t> data = {'X', 'Y'};
-    std::array<uint8_t, blockSize> rdbuf;
+    std::array<uint8_t, blockSize> rdbuf{};
     auto getData = [&data](auto o, auto l, auto* b) {
         return getDataTempl(data, o, l, b);
     };
@@ -275,7 +276,7 @@ TEST(FRUReaderTest, MultiBlockRead)
     std::vector<uint8_t> data = {};
     data.resize(blockSize, 'X');
     data.resize(2 * blockSize, 'Y');
-    std::array<uint8_t, 2 * blockSize> rdbuf;
+    std::array<uint8_t, 2 * blockSize> rdbuf{};
     auto getData = [&data](auto o, auto l, auto* b) {
         return getDataTempl(data, o, l, b);
     };
@@ -290,7 +291,7 @@ TEST(FRUReaderTest, ShrinkingEEPROM)
 {
     std::vector<uint8_t> data = {};
     data.resize(3 * blockSize, 'X');
-    std::array<uint8_t, blockSize> rdbuf;
+    std::array<uint8_t, blockSize> rdbuf{};
     auto getData = [&data](auto o, auto l, auto* b) {
         return getDataTempl(data, o, l, b);
     };
@@ -305,7 +306,7 @@ TEST(FindFRUHeaderTest, InvalidHeader)
 {
     const std::vector<uint8_t> data = {255, 16};
     off_t offset = 0;
-    std::array<uint8_t, I2C_SMBUS_BLOCK_MAX> blockData;
+    std::array<uint8_t, I2C_SMBUS_BLOCK_MAX> blockData{};
     auto getData = [&data](auto o, auto l, auto* b) {
         return getDataTempl(data, o, l, b);
     };
@@ -318,7 +319,7 @@ TEST(FindFRUHeaderTest, NoData)
 {
     const std::vector<uint8_t> data = {};
     off_t offset = 0;
-    std::array<uint8_t, I2C_SMBUS_BLOCK_MAX> blockData;
+    std::array<uint8_t, I2C_SMBUS_BLOCK_MAX> blockData{};
     auto getData = [&data](auto o, auto l, auto* b) {
         return getDataTempl(data, o, l, b);
     };
@@ -332,7 +333,7 @@ TEST(FindFRUHeaderTest, ValidHeader)
     const std::vector<uint8_t> data = {0x01, 0x00, 0x01, 0x02,
                                        0x03, 0x04, 0x00, 0xf5};
     off_t offset = 0;
-    std::array<uint8_t, I2C_SMBUS_BLOCK_MAX> blockData;
+    std::array<uint8_t, I2C_SMBUS_BLOCK_MAX> blockData{};
     auto getData = [&data](auto o, auto l, auto* b) {
         return getDataTempl(data, o, l, b);
     };
@@ -347,7 +348,7 @@ TEST(FindFRUHeaderTest, TyanInvalidHeader)
     std::vector<uint8_t> data = {'$', 'T', 'Y', 'A', 'N', '$', 0, 0};
     data.resize(0x6000 + I2C_SMBUS_BLOCK_MAX);
     off_t offset = 0;
-    std::array<uint8_t, I2C_SMBUS_BLOCK_MAX> blockData;
+    std::array<uint8_t, I2C_SMBUS_BLOCK_MAX> blockData{};
     auto getData = [&data](auto o, auto l, auto* b) {
         return getDataTempl(data, o, l, b);
     };
@@ -360,7 +361,7 @@ TEST(FindFRUHeaderTest, TyanNoData)
 {
     const std::vector<uint8_t> data = {'$', 'T', 'Y', 'A', 'N', '$', 0, 0};
     off_t offset = 0;
-    std::array<uint8_t, I2C_SMBUS_BLOCK_MAX> blockData;
+    std::array<uint8_t, I2C_SMBUS_BLOCK_MAX> blockData{};
     auto getData = [&data](auto o, auto l, auto* b) {
         return getDataTempl(data, o, l, b);
     };
@@ -378,7 +379,7 @@ TEST(FindFRUHeaderTest, TyanValidHeader)
     copy(fruHeader.begin(), fruHeader.end(), back_inserter(data));
 
     off_t offset = 0;
-    std::array<uint8_t, I2C_SMBUS_BLOCK_MAX> blockData;
+    std::array<uint8_t, I2C_SMBUS_BLOCK_MAX> blockData{};
     auto getData = [&data](auto o, auto l, auto* b) {
         return getDataTempl(data, o, l, b);
     };
