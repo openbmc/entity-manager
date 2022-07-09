@@ -132,22 +132,20 @@ inline bool fwVersionIsSame(void)
 }
 
 std::optional<std::string> templateCharReplace(
-    nlohmann::json::iterator& keyPair, const DBusObject& object,
-    const size_t index,
+    nlohmann::json::iterator& keyPair, const DBusObject& object, size_t index,
     const std::optional<std::string>& replaceStr = std::nullopt);
 
 std::optional<std::string> templateCharReplace(
     nlohmann::json::iterator& keyPair, const DBusInterface& interface,
-    const size_t index,
-    const std::optional<std::string>& replaceStr = std::nullopt);
+    size_t index, const std::optional<std::string>& replaceStr = std::nullopt);
 
 inline bool deviceHasLogging(const nlohmann::json& json)
 {
     auto logging = json.find("Logging");
     if (logging != json.end())
     {
-        auto ptr = logging->get_ptr<const std::string*>();
-        if (ptr)
+        const auto* ptr = logging->get_ptr<const std::string*>();
+        if (ptr != nullptr)
         {
             if (*ptr == "Off")
             {

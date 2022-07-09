@@ -136,11 +136,7 @@ bool validateJson(const nlohmann::json& schemaFile, const nlohmann::json& input)
     parser.populateSchema(schemaAdapter, schema);
     valijson::Validator validator;
     valijson::adapters::NlohmannJsonAdapter targetAdapter(input);
-    if (!validator.validate(schema, targetAdapter, nullptr))
-    {
-        return false;
-    }
-    return true;
+    return validator.validate(schema, targetAdapter, nullptr);
 }
 
 bool isPowerOn(void)
@@ -239,7 +235,7 @@ std::optional<std::string>
         boost::replace_all(*strPtr, *replaceStr, std::to_string(index));
     }
 
-    for (auto& [propName, propValue] : interface)
+    for (const auto& [propName, propValue] : interface)
     {
         std::string templateName = templateChar + propName;
         boost::iterator_range<std::string::const_iterator> find =
@@ -252,7 +248,7 @@ std::optional<std::string>
         size_t start = find.begin() - strPtr->begin();
 
         // check for additional operations
-        if (!start && find.end() == strPtr->end())
+        if ((start == 0U) && find.end() == strPtr->end())
         {
             std::visit([&](auto&& val) { keyPair.value() = val; }, propValue);
             return ret;

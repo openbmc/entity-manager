@@ -30,8 +30,8 @@ ssize_t FRUReader::read(off_t start, size_t len, uint8_t* outbuf)
             break;
         }
 
-        const uint8_t* blkData;
-        size_t available;
+        const uint8_t* blkData = nullptr;
+        size_t available = 0;
         size_t blk = cursor / cacheBlockSize;
         size_t blkOffset = cursor % cacheBlockSize;
         auto findBlk = cache.find(blk);
@@ -52,7 +52,7 @@ ssize_t FRUReader::read(off_t start, size_t len, uint8_t* outbuf)
             {
                 // don't leave empty blocks in the cache
                 cache.erase(blk);
-                return done ? done : ret;
+                return done != 0U ? done : ret;
             }
 
             blkData = newData;
@@ -80,6 +80,7 @@ ssize_t FRUReader::read(off_t start, size_t len, uint8_t* outbuf)
                             ? 0
                             : std::min(available - blkOffset, remaining);
 
+        // NOLINTNEXTLINE(cppcoreguidelines-pro-bounds-pointer-arithmetic)
         memcpy(outbuf + done, blkData + blkOffset, toCopy);
         cursor += toCopy;
         done += toCopy;

@@ -200,7 +200,7 @@ void addArrayToDbus(const std::string& name, const nlohmann::json& array,
 }
 
 template <typename PropertyType>
-void addProperty(const std::string& propertyName, const PropertyType& value,
+void addProperty(const std::string& name, const PropertyType& value,
                  sdbusplus::asio::dbus_interface* iface,
                  nlohmann::json& systemConfiguration,
                  const std::string& jsonPointerString,
@@ -208,11 +208,11 @@ void addProperty(const std::string& propertyName, const PropertyType& value,
 {
     if (permission == sdbusplus::asio::PropertyPermission::readOnly)
     {
-        iface->register_property(propertyName, value);
+        iface->register_property(name, value);
         return;
     }
     iface->register_property(
-        propertyName, value,
+        name, value,
         [&systemConfiguration,
          jsonPointerString{std::string(jsonPointerString)}](
             const PropertyType& newVal, PropertyType& val) {
@@ -282,7 +282,7 @@ void populateInterfaceFromJson(
         if (value.type() == nlohmann::json::value_t::array)
         {
             array = true;
-            if (!value.size())
+            if (value.empty())
             {
                 continue;
             }
@@ -461,8 +461,11 @@ void createAddObjectMethod(const std::string& jsonPointerPath,
             for (const auto& item : data)
             {
                 nlohmann::json& newJson = newData[item.first];
-                std::visit([&newJson](auto&& val) { newJson = std::move(val); },
-                           item.second);
+                std::visit(
+                    [&newJson](auto&& val) {
+                        newJson = std::forward<decltype(val)>(val);
+                    },
+                    item.second);
             }
 
             auto findName = newData.find("Name");
@@ -708,7 +711,7 @@ void postToDbus(const nlohmann::json& newConfiguration,
                 else if (config.type() == nlohmann::json::value_t::array)
                 {
                     size_t index = 0;
-                    if (!config.size())
+                    if (config.empty())
                     {
                         continue;
                     }
@@ -838,8 +841,8 @@ static bool deviceRequiresPowerOn(const nlohmann::json& entity)
         return false;
     }
 
-    auto ptr = powerState->get_ptr<const std::string*>();
-    if (!ptr)
+    const auto* ptr = powerState->get_ptr<const std::string*>();
+    if (ptr == nullptr)
     {
         return false;
     }
