@@ -31,13 +31,13 @@ struct CmpStr
 
 struct ExportTemplate
 {
-    ExportTemplate(const char* params, const char* dev, const char* constructor,
+    ExportTemplate(const char* params, const char* bus, const char* constructor,
                    const char* destructor, bool createsHWMon) :
         parameters(params),
-        devicePath(dev), add(constructor), remove(destructor),
+        busPath(bus), add(constructor), remove(destructor),
         createsHWMon(createsHWMon){};
     const char* parameters;
-    const char* devicePath;
+    const char* busPath;
     const char* add;
     const char* remove;
     bool createsHWMon;
