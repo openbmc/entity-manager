@@ -114,7 +114,7 @@ void linkMux(const std::string& muxName, size_t busIndex, size_t address,
     }
 }
 
-static int deleteDevice(const std::string& devicePath,
+static int deleteDevice(const std::string& busPath,
                         const std::shared_ptr<uint64_t>& address,
                         const std::string& destructor)
 {
@@ -122,7 +122,7 @@ static int deleteDevice(const std::string& devicePath,
     {
         return -1;
     }
-    std::filesystem::path deviceDestructor(devicePath);
+    std::filesystem::path deviceDestructor(busPath);
     deviceDestructor /= destructor;
     std::ofstream deviceFile(deviceDestructor);
     if (!deviceFile.good())
@@ -135,11 +135,11 @@ static int deleteDevice(const std::string& devicePath,
     return 0;
 }
 
-static int createDevice(const std::string& devicePath,
+static int createDevice(const std::string& busPath,
                         const std::string& parameters,
                         const std::string& constructor)
 {
-    std::filesystem::path deviceConstructor(devicePath);
+    std::filesystem::path deviceConstructor(busPath);
     deviceConstructor /= constructor;
     std::ofstream deviceFile(deviceConstructor);
     if (!deviceFile.good())
@@ -153,7 +153,7 @@ static int createDevice(const std::string& devicePath,
     return 0;
 }
 
-static bool deviceIsCreated(const std::string& devicePath,
+static bool deviceIsCreated(const std::string& busPath,
                             const std::shared_ptr<uint64_t>& bus,
                             const std::shared_ptr<uint64_t>& address,
                             const bool retrying)
@@ -169,10 +169,10 @@ static bool deviceIsCreated(const std::string& devicePath,
     std::string busStr = std::to_string(*bus);
 
     std::error_code ec;
-    auto path = std::filesystem::recursive_directory_iterator(devicePath, ec);
+    auto path = std::filesystem::recursive_directory_iterator(busPath, ec);
     if (ec)
     {
-        std::cerr << "Unable to open path " << devicePath << "\n";
+        std::cerr << "Unable to open path " << busPath << "\n";
         return false;
     }
     for (; path != std::filesystem::recursive_directory_iterator(); path++)
@@ -212,7 +212,7 @@ static bool deviceIsCreated(const std::string& devicePath,
             if (retrying)
             {
                 std::error_code ec;
-                std::filesystem::path hwmonDir(devicePath);
+                std::filesystem::path hwmonDir(busPath);
                 hwmonDir /= directoryName;
                 hwmonDir /= "hwmon";
                 return std::filesystem::is_directory(hwmonDir, ec);
@@ -224,7 +224,7 @@ static bool deviceIsCreated(const std::string& devicePath,
     return false;
 }
 
-static int buildDevice(const std::string& devicePath,
+static int buildDevice(const std::string& busPath,
                        const std::string& parameters,
                        const std::shared_ptr<uint64_t>& bus,
                        const std::shared_ptr<uint64_t>& address,
@@ -238,15 +238,15 @@ static int buildDevice(const std::string& devicePath,
         return -1;
     }
 
-    if (!deviceIsCreated(devicePath, bus, address, false))
+    if (!deviceIsCreated(busPath, bus, address, false))
     {
-        createDevice(devicePath, parameters, constructor);
+        createDevice(busPath, parameters, constructor);
         tryAgain = true;
     }
-    else if (createsHWMon && !deviceIsCreated(devicePath, bus, address, true))
+    else if (createsHWMon && !deviceIsCreated(busPath, bus, address, true))
     {
         // device is present, hwmon subdir missing
-        deleteDevice(devicePath, address, destructor);
+        deleteDevice(busPath, address, destructor);
         tryAgain = true;
     }
 
@@ -255,7 +255,7 @@ static int buildDevice(const std::string& devicePath,
         std::shared_ptr<boost::asio::steady_timer> createTimer =
             std::make_shared<boost::asio::steady_timer>(io);
         createTimer->expires_after(std::chrono::milliseconds(500));
-        createTimer->async_wait([createTimer, devicePath, parameters, bus,
+        createTimer->async_wait([createTimer, busPath, parameters, bus,
                                  address, constructor, destructor, createsHWMon,
                                  retries](const boost::system::error_code& ec) {
             if (ec)
@@ -263,7 +263,7 @@ static int buildDevice(const std::string& devicePath,
                 std::cerr << "Timer error: " << ec << "\n";
                 return -2;
             }
-            return buildDevice(devicePath, parameters, bus, address,
+            return buildDevice(busPath, parameters, bus, address,
                                constructor, destructor, createsHWMon,
                                retries - 1);
         });
@@ -277,7 +277,7 @@ void exportDevice(const std::string& type,
 {
 
     std::string parameters = exportTemplate.parameters;
-    std::string devicePath = exportTemplate.devicePath;
+    std::string busPath = exportTemplate.busPath;
     std::string constructor = exportTemplate.add;
     std::string destructor = exportTemplate.remove;
     bool createsHWMon = exportTemplate.createsHWMon;
@@ -320,11 +320,11 @@ void exportDevice(const std::string& type,
         }
         boost::replace_all(parameters, templateChar + keyPair.key(),
                            subsituteString);
-        boost::replace_all(devicePath, templateChar + keyPair.key(),
+        boost::replace_all(busPath, templateChar + keyPair.key(),
                            subsituteString);
     }
 
-    int err = buildDevice(devicePath, parameters, bus, address, constructor,
+    int err = buildDevice(busPath, parameters, bus, address, constructor,
                           destructor, createsHWMon);
 
     if (!err && boost::ends_with(type, "Mux") && bus && address && channels)
