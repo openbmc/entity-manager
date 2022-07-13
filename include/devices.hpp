@@ -254,4 +254,21 @@ const boost::container::flat_map<const char*, ExportTemplate, CmpStr>
          {"HDC1080",
           ExportTemplate("hdc1080 $Address", "/sys/bus/i2c/devices/i2c-$Bus",
                          "new_device", "delete_device", false)}}};
+
+// A concrete instantiation of an ExportTemplate for a particular device
+struct ExportParameters {
+    ExportParameters(const ExportTemplate& tmpl, const nlohmann::json& config);
+
+    struct OpParams {
+        std::filesystem::path path;
+        std::string data;
+    };
+
+    OpParams construct;
+    OpParams destroy;
+    std::filesystem::path presentPath;
+};
+
+ExportParameters* getExportParameters(const nlohmann::json& config);
+
 } // namespace devices

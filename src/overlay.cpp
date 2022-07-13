@@ -35,6 +35,8 @@
 #include <regex>
 #include <string>
 
+using ExportParameters = devices::ExportParameters;
+
 constexpr const char* outputDir = "/tmp/overlays";
 constexpr const char* templateChar = "$";
 constexpr const char* i2CDevsDir = "/sys/bus/i2c/devices";
@@ -119,73 +121,40 @@ void linkMux(const std::string& muxName, size_t busIndex, size_t address,
     }
 }
 
-static int deleteDevice(const std::string& busPath,
-                        const std::shared_ptr<uint64_t>& address,
-                        const std::string& destructor)
+static int deleteDevice(const std::shared_ptr<ExportParameters>& params)
 {
-    if (!address)
-    {
-        return -1;
-    }
-    std::filesystem::path deviceDestructor(busPath);
-    deviceDestructor /= destructor;
-    std::ofstream deviceFile(deviceDestructor);
+    std::ofstream deviceFile(params->destroy.path);
     if (!deviceFile.good())
     {
-        std::cerr << "Error writing " << deviceDestructor << "\n";
+        std::cerr << "Error writing " << params->destroy.path << "\n";
         return -1;
     }
-    deviceFile << std::to_string(*address);
+    deviceFile << params->destroy.data;
     deviceFile.close();
     return 0;
 }
 
-static int createDevice(const std::string& busPath,
-                        const std::string& parameters,
-                        const std::string& constructor)
+static int createDevice(const std::shared_ptr<ExportParameters>& params)
 {
-    std::filesystem::path deviceConstructor(busPath);
-    deviceConstructor /= constructor;
-    std::ofstream deviceFile(deviceConstructor);
+    std::ofstream deviceFile(params->construct.path);
     if (!deviceFile.good())
     {
-        std::cerr << "Error writing " << deviceConstructor << "\n";
+        std::cerr << "Error writing " << params->construct.path << "\n";
         return -1;
     }
-    deviceFile << parameters;
+    deviceFile << params->construct.data;
     deviceFile.close();
-
     return 0;
 }
 
-static bool deviceIsCreated(const std::string& busPath,
-                            const std::shared_ptr<uint64_t>& bus,
-                            const std::shared_ptr<uint64_t>& address,
-                            const bool createsHWMon)
+static bool deviceIsCreated(const std::shared_ptr<ExportParameters>& params)
 {
-    if (!bus || !address)
-    {
-        return false;
-    }
-
-    std::filesystem::path dirPath = busPath;
-    dirPath /= deviceDirName(*bus, *address);
-    if (createsHWMon)
-    {
-        dirPath /= "hwmon";
-    }
-
     std::error_code ec;
     // Ignore errors; anything but a clean 'true' is just fine as 'false'
-    return std::filesystem::exists(dirPath, ec);
+    return std::filesystem::exists(params->presentPath, ec);
 }
 
-static int buildDevice(const std::string& busPath,
-                       const std::string& parameters,
-                       const std::shared_ptr<uint64_t>& bus,
-                       const std::shared_ptr<uint64_t>& address,
-                       const std::string& constructor,
-                       const std::string& destructor, const bool createsHWMon,
+static int buildDevice(const std::shared_ptr<ExportParameters>& params,
                        const size_t retries = 5)
 {
     if (!retries)
@@ -194,49 +163,126 @@ static int buildDevice(const std::string& busPath,
     }
 
     // If it's already instantiated, there's nothing we need to do.
-    if (deviceIsCreated(busPath, bus, address, createsHWMon))
+    if (deviceIsCreated(params))
     {
         return 0;
     }
 
     // Try to create the device
-    createDevice(busPath, parameters, constructor);
+    createDevice(params);
 
     // If it didn't work, delete it and try again in 500ms
-    if (!deviceIsCreated(busPath, bus, address, createsHWMon))
+    if (!deviceIsCreated(params))
     {
-        deleteDevice(busPath, address, destructor);
+        deleteDevice(params);
 
         std::shared_ptr<boost::asio::steady_timer> createTimer =
             std::make_shared<boost::asio::steady_timer>(io);
         createTimer->expires_after(std::chrono::milliseconds(500));
-        createTimer->async_wait([createTimer, busPath, parameters, bus,
-                                 address, constructor, destructor, createsHWMon,
-                                 retries](const boost::system::error_code& ec) {
+        createTimer->async_wait([createTimer, params, retries]
+                                 (const boost::system::error_code& ec) {
             if (ec)
             {
                 std::cerr << "Timer error: " << ec << "\n";
                 return -2;
             }
-            return buildDevice(busPath, parameters, bus, address,
-                               constructor, destructor, createsHWMon,
-                               retries - 1);
+            return buildDevice(params, retries - 1);
         });
     }
 
     return 0;
 }
 
+ExportParameters::ExportParameters(const devices::ExportTemplate& exportTemplate,
+                                   const nlohmann::json& configuration)
+{
+    std::string parameters = exportTemplate.parameters;
+    std::string busPath = exportTemplate.busPath;
+    std::string addressStr = "";
+    std::string name = "unknown";
+    std::optional<uint64_t> bus = std::nullopt;
+    std::optional<uint64_t> address = std::nullopt;
+
+    for (auto keyPair = configuration.begin(); keyPair != configuration.end();
+         keyPair++)
+    {
+        std::string subsituteString;
+
+        if (keyPair.key() == "Name" &&
+            keyPair.value().type() == nlohmann::json::value_t::string)
+        {
+            subsituteString = std::regex_replace(
+                keyPair.value().get<std::string>(), illegalNameRegex, "_");
+            name = subsituteString;
+        }
+        else
+        {
+            subsituteString = jsonToString(keyPair.value());
+        }
+
+        if (keyPair.key() == "Bus")
+        {
+            bus = keyPair.value().get<uint64_t>();
+        }
+        else if (keyPair.key() == "Address")
+        {
+            address = keyPair.value().get<uint64_t>();
+            addressStr = jsonToString(keyPair.value());
+        }
+
+        boost::replace_all(parameters, templateChar + keyPair.key(),
+                           subsituteString);
+        boost::replace_all(busPath, templateChar + keyPair.key(),
+                           subsituteString);
+    }
+
+    std::filesystem::path ctorPath(busPath);
+    ctorPath /= exportTemplate.add;
+
+    std::filesystem::path dtorPath(busPath);
+    dtorPath /= exportTemplate.remove;
+
+    construct = OpParams{ctorPath, parameters};
+    destroy = OpParams{dtorPath, addressStr};
+
+    if (!bus.has_value() || !address.has_value())
+    {
+        presentPath = "";
+    }
+    else
+    {
+        presentPath = busPath;
+        presentPath /= deviceDirName(bus.value(), address.value());
+        if (exportTemplate.createsHWMon)
+        {
+            presentPath /= "hwmon";
+        }
+    }
+}
+
+ExportParameters* devices::getExportParameters(const nlohmann::json& config)
+{
+    auto findType = config.find("Type");
+    if (findType == config.end() ||
+        findType->type() != nlohmann::json::value_t::string)
+    {
+        return nullptr;
+    }
+    std::string type = findType.value().get<std::string>();
+    auto device = devices::exportTemplates.find(type.c_str());
+    if (device == devices::exportTemplates.end())
+    {
+        return nullptr;
+    }
+
+    return new ExportParameters(device->second, config);
+}
+
 void exportDevice(const std::string& type,
                   const devices::ExportTemplate& exportTemplate,
                   const nlohmann::json& configuration)
 {
-
-    std::string parameters = exportTemplate.parameters;
-    std::string busPath = exportTemplate.busPath;
-    std::string constructor = exportTemplate.add;
-    std::string destructor = exportTemplate.remove;
-    bool createsHWMon = exportTemplate.createsHWMon;
+    ExportParameters params(exportTemplate, configuration);
     std::string name = "unknown";
     std::shared_ptr<uint64_t> bus = nullptr;
     std::shared_ptr<uint64_t> address = nullptr;
@@ -274,14 +320,9 @@ void exportDevice(const std::string& type,
             channels =
                 keyPair.value().get_ptr<const nlohmann::json::array_t*>();
         }
-        boost::replace_all(parameters, templateChar + keyPair.key(),
-                           subsituteString);
-        boost::replace_all(busPath, templateChar + keyPair.key(),
-                           subsituteString);
     }
 
-    int err = buildDevice(busPath, parameters, bus, address, constructor,
-                          destructor, createsHWMon);
+    int err = buildDevice(std::make_shared<ExportParameters>(params));
 
     if (!err && boost::ends_with(type, "Mux") && bus && address && channels)
     {

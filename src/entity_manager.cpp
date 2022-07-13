@@ -17,6 +17,7 @@
 
 #include "entity_manager.hpp"
 
+#include "devices.hpp"
 #include "overlay.hpp"
 #include "utils.hpp"
 #include "variant_visitors.hpp"
@@ -416,6 +417,26 @@ void populateInterfaceFromJson(
             }
         }
     }
+
+    if (isClientManaged(dict))
+    {
+        devices::ExportParameters* exportParams = devices::getExportParameters(dict);
+        if (exportParams != nullptr)
+        {
+            constexpr sdbusplus::asio::PropertyPermission ro = sdbusplus::asio::PropertyPermission::readOnly;
+            addProperty("ConstructorPath", exportParams->construct.path.string(),
+                        iface.get(), systemConfiguration, jsonPointerPath, ro);
+            addProperty("ConstructorData", exportParams->construct.data,
+                        iface.get(), systemConfiguration, jsonPointerPath, ro);
+            addProperty("DestructorPath", exportParams->destroy.path.string(),
+                        iface.get(), systemConfiguration, jsonPointerPath, ro);
+            addProperty("DestructorData", exportParams->destroy.data,
+                        iface.get(), systemConfiguration, jsonPointerPath, ro);
+            addProperty("PresentPath", exportParams->presentPath.string(),
+                        iface.get(), systemConfiguration, jsonPointerPath, ro);
+        }
+    }
+
     if (permission == sdbusplus::asio::PropertyPermission::readWrite)
     {
         createDeleteObjectMethod(jsonPointerPath, iface, objServer,
