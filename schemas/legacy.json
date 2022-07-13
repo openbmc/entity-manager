@@ -39,6 +39,9 @@
                 "C2": {
                     "$ref": "#/definitions/Types/C2"
                 },
+                "ClientManaged": {
+                    "$ref": "#/definitions/Types/ClientManaged"
+                },
                 "CPURequired": {
                     "$ref": "#/definitions/Types/CPURequired"
                 },
@@ -433,6 +436,9 @@
             },
             "C2": {
                 "type": "number"
+            },
+            "ClientManaged": {
+                "type": "boolean"
             },
             "CPURequired": {
                 "type": "number"

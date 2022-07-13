@@ -17,6 +17,7 @@
 
 #include "overlay.hpp"
 
+#include "entity_manager.hpp"
 #include "utils.hpp"
 #include "devices.hpp"
 
@@ -307,6 +308,10 @@ bool loadOverlays(const nlohmann::json& systemConfiguration)
             auto findStatus = configuration.find("Status");
             // status missing is assumed to be 'okay'
             if (findStatus != configuration.end() && *findStatus == "disabled")
+            {
+                continue;
+            }
+            if (isClientManaged(configuration))
             {
                 continue;
             }

@@ -191,3 +191,11 @@ inline void logDeviceRemoved(const nlohmann::json& record)
                     "REDFISH_MESSAGE_ARGS=%s,%s,%s", model.c_str(),
                     type.c_str(), sn.c_str(), NULL);
 }
+
+inline bool isClientManaged(const nlohmann::json& object)
+{
+    auto found = object.find("ClientManaged");
+    return found != object.end() &&
+        found->type() == nlohmann::json::value_t::boolean &&
+        found.value().get<bool>();
+}
