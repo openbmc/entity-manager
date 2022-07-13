@@ -61,6 +61,13 @@ std::string jsonToString(const nlohmann::json& in)
     return in.dump();
 }
 
+static std::string deviceDirName(uint64_t bus, uint64_t address)
+{
+    std::ostringstream name;
+    name << bus << "-" << std::hex << std::setw(4) << std::setfill('0') << address;
+    return name.str();
+}
+
 void linkMux(const std::string& muxName, size_t busIndex, size_t address,
              const nlohmann::json::array_t& channelNames)
 {
@@ -72,11 +79,8 @@ void linkMux(const std::string& muxName, size_t busIndex, size_t address,
     std::filesystem::path linkDir = muxSymlinkDirPath / muxName;
     std::filesystem::create_directory(linkDir, ec);
 
-    std::ostringstream hexAddress;
-    hexAddress << std::hex << std::setfill('0') << std::setw(4) << address;
-
     std::filesystem::path devDir(i2CDevsDir);
-    devDir /= std::to_string(busIndex) + "-" + hexAddress.str();
+    devDir /= deviceDirName(busIndex, address);
 
     for (std::size_t channelIndex = 0; channelIndex < channelNames.size();
          channelIndex++)
@@ -163,10 +167,7 @@ static bool deviceIsCreated(const std::string& busPath,
         return false;
     }
 
-    std::ostringstream hex;
-    hex << std::hex << std::setw(4) << std::setfill('0') << *address;
-    std::string addressHex = hex.str();
-    std::string busStr = std::to_string(*bus);
+    std::string dirName = deviceDirName(*bus, *address);
 
     std::error_code ec;
     auto path = std::filesystem::recursive_directory_iterator(busPath, ec);
@@ -182,11 +183,8 @@ static bool deviceIsCreated(const std::string& busPath,
             continue;
         }
 
-        const std::string directoryName = path->path().filename();
-        std::string name = busStr;
-        name += "-";
-        name += addressHex;
-        if (directoryName == name)
+        const std::string foundName = path->path().filename();
+        if (foundName == dirName)
         {
             // The first time the BMC boots the kernel has creates a
             // filesystem enumerating the I2C devices. The I2C device has not
@@ -213,7 +211,7 @@ static bool deviceIsCreated(const std::string& busPath,
             {
                 std::error_code ec;
                 std::filesystem::path hwmonDir(busPath);
-                hwmonDir /= directoryName;
+                hwmonDir /= dirName;
                 hwmonDir /= "hwmon";
                 return std::filesystem::is_directory(hwmonDir, ec);
             }
