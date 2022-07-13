@@ -100,6 +100,30 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "9466759f_edc297e2",
+        "filename": "include/fru_device.hpp",
+        "patchSetId": 42
+      },
+      "lineNbr": 16,
+      "author": {
+        "id": 1000546
+      },
+      "writtenOn": "2022-07-13T06:19:17Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "b231cc6f_b9d4a097",
+      "range": {
+        "startLine": 16,
+        "startChar": 0,
+        "endLine": 16,
+        "endChar": 23
+      },
+      "revId": "0be7cec56bc028459284d4132c845f09cb74a473",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "9a4e91df_1e04e264",
@@ -131,6 +155,24 @@
       "side": 1,
       "message": "Ack",
       "parentUuid": "9a4e91df_1e04e264",
+      "revId": "0be7cec56bc028459284d4132c845f09cb74a473",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "0146e44c_7951d3f6",
+        "filename": "include/fru_device.hpp",
+        "patchSetId": 42
+      },
+      "lineNbr": 19,
+      "author": {
+        "id": 1000546
+      },
+      "writtenOn": "2022-07-13T06:19:17Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "6fd04a0b_f5d84e48",
       "revId": "0be7cec56bc028459284d4132c845f09cb74a473",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
@@ -219,6 +261,30 @@
       "side": 1,
       "message": "Ack. Almost all the possible separations are done in other places. These are mostly mandatory lines in this func for both fru\u0027s. I will try to separate the common parts as helper functions.",
       "parentUuid": "db5a3030_2e5ff013",
+      "range": {
+        "startLine": 1087,
+        "startChar": 0,
+        "endLine": 1095,
+        "endChar": 18
+      },
+      "revId": "0be7cec56bc028459284d4132c845f09cb74a473",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "79ad8def_2978bf04",
+        "filename": "src/fru_utils.cpp",
+        "patchSetId": 42
+      },
+      "lineNbr": 1095,
+      "author": {
+        "id": 1000546
+      },
+      "writtenOn": "2022-07-13T06:19:17Z",
+      "side": 1,
+      "message": "Done. I have separated the common parts between ipmb and i2c eeprom fru.",
+      "parentUuid": "2e1a1930_e0d5babd",
       "range": {
         "startLine": 1087,
         "startChar": 0,
