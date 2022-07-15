@@ -1,6 +1,6 @@
 [Unit]
 Description=Fru Device
-After=xyz.openbmc_project.CloseMuxes.service dbus.service
+After=dbus.service
 
 [Service]
 ExecStart=/usr/bin/fru-device
