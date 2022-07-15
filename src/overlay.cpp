@@ -167,40 +167,15 @@ static bool deviceIsCreated(const std::string& busPath,
         return false;
     }
 
-    std::string dirName = deviceDirName(*bus, *address);
+    std::filesystem::path dirPath = busPath;
+    dirPath /= deviceDirName(*bus, *address);
+    if (createsHWMon)
+    {
+        dirPath /= "hwmon";
+    }
 
     std::error_code ec;
-    auto path = std::filesystem::recursive_directory_iterator(busPath, ec);
-    if (ec)
-    {
-        std::cerr << "Unable to open path " << busPath << "\n";
-        return false;
-    }
-    for (; path != std::filesystem::recursive_directory_iterator(); path++)
-    {
-        if (!std::filesystem::is_directory(*path))
-        {
-            continue;
-        }
-
-        const std::string foundName = path->path().filename();
-        if (foundName == dirName)
-        {
-            // Look for a .../hwmon subdirectory for devices that are expected
-            // to have one.
-            if (createsHWMon)
-            {
-                std::error_code ec;
-                std::filesystem::path hwmonDir(busPath);
-                hwmonDir /= dirName;
-                hwmonDir /= "hwmon";
-                return std::filesystem::is_directory(hwmonDir, ec);
-            }
-            return true;
-        }
-        path.disable_recursion_pending();
-    }
-    return false;
+    return std::filesystem::exists(dirPath);
 }
 
 static int buildDevice(const std::string& busPath,
