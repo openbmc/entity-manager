@@ -160,7 +160,7 @@ static int createDevice(const std::string& busPath,
 static bool deviceIsCreated(const std::string& busPath,
                             const std::shared_ptr<uint64_t>& bus,
                             const std::shared_ptr<uint64_t>& address,
-                            const bool retrying)
+                            const bool createsHWMon)
 {
     if (!bus || !address)
     {
@@ -186,28 +186,9 @@ static bool deviceIsCreated(const std::string& busPath,
         const std::string foundName = path->path().filename();
         if (foundName == dirName)
         {
-            // The first time the BMC boots the kernel has creates a
-            // filesystem enumerating the I2C devices. The I2C device has not
-            // been initialized for use. This requires a call to a device
-            // node, such as "new_device". The first pass through this
-            // function is only confirming the filesystem contains the device
-            // entry of interest (i.e. i2c4-0050).
-            //
-            // An upper level function performs the device creation
-            // action. This action may fail. The device driver (dd) used to
-            // create the I2C filesystem substructure eats any error codes,
-            // and always returns 0. This is by design. It is also possible
-            // for the new_device action to fail because the device is not
-            // actually in the system, i.e. optional equipment.
-            //
-            // The 'retrying' pass of this function is used to confirm the
-            // 'dd' device driver succeeded. Success is measured by finding
-            // the 'hwmon' subdirectory in the filesystem. The first attempt
-            // is delayed by an arbitrary amount, in order to permit the
-            // kernel time to create the filesystem entries. The upper level
-            // function determines the number of times to retry calling this
-            // function.
-            if (retrying)
+            // Look for a .../hwmon subdirectory for devices that are expected
+            // to have one.
+            if (createsHWMon)
             {
                 std::error_code ec;
                 std::filesystem::path hwmonDir(busPath);
@@ -230,26 +211,25 @@ static int buildDevice(const std::string& busPath,
                        const std::string& destructor, const bool createsHWMon,
                        const size_t retries = 5)
 {
-    bool tryAgain = false;
     if (!retries)
     {
         return -1;
     }
 
-    if (!deviceIsCreated(busPath, bus, address, false))
+    // If it's already instantiated, there's nothing we need to do.
+    if (deviceIsCreated(busPath, bus, address, createsHWMon))
     {
-        createDevice(busPath, parameters, constructor);
-        tryAgain = true;
-    }
-    else if (createsHWMon && !deviceIsCreated(busPath, bus, address, true))
-    {
-        // device is present, hwmon subdir missing
-        deleteDevice(busPath, address, destructor);
-        tryAgain = true;
+        return 0;
     }
 
-    if (tryAgain)
+    // Try to create the device
+    createDevice(busPath, parameters, constructor);
+
+    // If it didn't work, delete it and try again in 500ms
+    if (!deviceIsCreated(busPath, bus, address, createsHWMon))
     {
+        deleteDevice(busPath, address, destructor);
+
         std::shared_ptr<boost::asio::steady_timer> createTimer =
             std::make_shared<boost::asio::steady_timer>(io);
         createTimer->expires_after(std::chrono::milliseconds(500));
@@ -266,6 +246,7 @@ static int buildDevice(const std::string& busPath,
                                retries - 1);
         });
     }
+
     return 0;
 }
 
