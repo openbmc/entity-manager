@@ -96,7 +96,7 @@ void linkMux(const std::string& muxName, size_t busIndex, size_t address,
             devDir / ("channel-" + std::to_string(channelIndex));
         if (!is_symlink(channelPath))
         {
-            std::cerr << channelPath << "for mux channel " << *channelName
+            std::cerr << channelPath << " for mux channel " << *channelName
                       << " doesn't exist!\n";
             continue;
         }
