@@ -16,6 +16,24 @@
       "message": "this looks right, but have you tested it on something representative?",
       "revId": "5bf02e1eaef1f9a4542c50613b2606ef6bc391f1",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b62c3f63_8e3d7291",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 14,
+      "author": {
+        "id": 1000733
+      },
+      "writtenOn": "2022-07-16T05:50:44Z",
+      "side": 1,
+      "message": "It seems to work as intended on my romed8hm3 port, but (as discussed a bit on discord) I\u0027m not 100% clear on exactly what systems/scenarios the existing logic was intended to handle, so I was hoping Johnathan could test on whatever system(s) he has that led to the introduction of that logic (in commit 9b86787adea3f8f29fac2acbb9fa0f48fbcf244a) and confirm it doesn\u0027t break things there.",
+      "parentUuid": "bb49c212_c0a54322",
+      "revId": "5bf02e1eaef1f9a4542c50613b2606ef6bc391f1",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }
