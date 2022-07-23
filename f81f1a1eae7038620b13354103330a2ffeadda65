@@ -16,6 +16,224 @@
       "message": "Looks good to me.",
       "revId": "f81f1a1eae7038620b13354103330a2ffeadda65",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "549d83cf_bd19b8b1",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 43
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1000559
+      },
+      "writtenOn": "2022-07-23T01:23:24Z",
+      "side": 1,
+      "message": "The number of parameters have to be passed around in these util functions still seem large. I realize that maybe multiple but smaller changes maybe needed to get to a better cleaner design. For easier review, it could mean submit separate patches to change the functions in place (same file) and then move them into different files.",
+      "revId": "f81f1a1eae7038620b13354103330a2ffeadda65",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0557b7e6_dbacdee5",
+        "filename": "src/fru_utils.cpp",
+        "patchSetId": 43
+      },
+      "lineNbr": 807,
+      "author": {
+        "id": 1000559
+      },
+      "writtenOn": "2022-07-23T01:23:24Z",
+      "side": 1,
+      "message": "This is a huge function The middle part where it is just processing the fru data can be factored out. It does not care about the most parameters can be factored out",
+      "range": {
+        "startLine": 799,
+        "startChar": 1,
+        "endLine": 807,
+        "endChar": 75
+      },
+      "revId": "f81f1a1eae7038620b13354103330a2ffeadda65",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f4b9713d_642f195c",
+        "filename": "src/fru_utils.cpp",
+        "patchSetId": 43
+      },
+      "lineNbr": 1087,
+      "author": {
+        "id": 1000559
+      },
+      "writtenOn": "2022-07-23T01:23:24Z",
+      "side": 1,
+      "message": "return optional productName",
+      "range": {
+        "startLine": 1087,
+        "startChar": 0,
+        "endLine": 1087,
+        "endChar": 4
+      },
+      "revId": "f81f1a1eae7038620b13354103330a2ffeadda65",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d5017837_f1033651",
+        "filename": "src/fru_utils.cpp",
+        "patchSetId": 43
+      },
+      "lineNbr": 1136,
+      "author": {
+        "id": 1000559
+      },
+      "writtenOn": "2022-07-23T01:23:24Z",
+      "side": 1,
+      "message": "i2c bus can be 0",
+      "revId": "f81f1a1eae7038620b13354103330a2ffeadda65",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9956a704_0ff788c3",
+        "filename": "src/fru_utils.cpp",
+        "patchSetId": 43
+      },
+      "lineNbr": 1147,
+      "author": {
+        "id": 1000559
+      },
+      "writtenOn": "2022-07-23T01:23:24Z",
+      "side": 1,
+      "message": "address \u003d\u003d 0 probably implies it is a IPMB FRU. Avoid one extra parameter",
+      "range": {
+        "startLine": 1146,
+        "startChar": 0,
+        "endLine": 1147,
+        "endChar": 23
+      },
+      "revId": "f81f1a1eae7038620b13354103330a2ffeadda65",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "30c5fbd7_1c433d0f",
+        "filename": "src/fru_utils.cpp",
+        "patchSetId": 43
+      },
+      "lineNbr": 1158,
+      "author": {
+        "id": 1000559
+      },
+      "writtenOn": "2022-07-23T01:23:24Z",
+      "side": 1,
+      "message": "FRU on a mux leg should not get added to the root bus. In theory, there could be same FRUs are on root bus and a muxed leg from the same root bus. In practice, it might be unlikely that a system would have such a topology. But, I can\u0027t think of any reason why we would want to add FRU to the root bus if it is not on the root bus.",
+      "range": {
+        "startLine": 1156,
+        "startChar": 0,
+        "endLine": 1158,
+        "endChar": 31
+      },
+      "revId": "f81f1a1eae7038620b13354103330a2ffeadda65",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "81fc0dbc_29afab43",
+        "filename": "src/fru_utils.cpp",
+        "patchSetId": 43
+      },
+      "lineNbr": 1188,
+      "author": {
+        "id": 1000559
+      },
+      "writtenOn": "2022-07-23T01:23:24Z",
+      "side": 1,
+      "message": "I am wondering if we can simplify to always use productName_bus_address. Then we can get rid of this function. Maybe not in this patch.",
+      "range": {
+        "startLine": 1182,
+        "startChar": 0,
+        "endLine": 1188,
+        "endChar": 9
+      },
+      "revId": "f81f1a1eae7038620b13354103330a2ffeadda65",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "497c6a72_8597741a",
+        "filename": "src/fru_utils.cpp",
+        "patchSetId": 43
+      },
+      "lineNbr": 1200,
+      "author": {
+        "id": 1000559
+      },
+      "writtenOn": "2022-07-23T01:23:24Z",
+      "side": 1,
+      "message": "I was a little surprised that this is not a simple loop through the formattedFRU and register_property for each field. I see the main reason is to support update PRODUCT_ASSET_TAG. Maybe it can be refactored into a class or struct, so we don\u0027t have to carry and pass so many parameters through several layer of call stack.",
+      "range": {
+        "startLine": 1193,
+        "startChar": 0,
+        "endLine": 1200,
+        "endChar": 59
+      },
+      "revId": "f81f1a1eae7038620b13354103330a2ffeadda65",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "bd429827_46f3258c",
+        "filename": "src/fru_utils.cpp",
+        "patchSetId": 43
+      },
+      "lineNbr": 1265,
+      "author": {
+        "id": 1000559
+      },
+      "writtenOn": "2022-07-23T01:23:24Z",
+      "side": 1,
+      "message": "check for error in device (if getIpmiFru return error) productName is empty, return here.\nOption to make formatFRUFind return std::option\u003cstd::string\u003e productName.",
+      "range": {
+        "startLine": 1264,
+        "startChar": 4,
+        "endLine": 1265,
+        "endChar": 31
+      },
+      "revId": "f81f1a1eae7038620b13354103330a2ffeadda65",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "34302508_57c9c09d",
+        "filename": "src/fru_utils.cpp",
+        "patchSetId": 43
+      },
+      "lineNbr": 1276,
+      "author": {
+        "id": 1000559
+      },
+      "writtenOn": "2022-07-23T01:23:24Z",
+      "side": 1,
+      "message": "why no + \"_\" + toString(ipmbIndex) here?",
+      "range": {
+        "startLine": 1276,
+        "startChar": 67,
+        "endLine": 1276,
+        "endChar": 78
+      },
+      "revId": "f81f1a1eae7038620b13354103330a2ffeadda65",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }
