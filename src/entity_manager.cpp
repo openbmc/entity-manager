@@ -1090,24 +1090,24 @@ int main()
     // org.freedesktop.DBus.Properties signals.  Similarly if a process exits
     // for any reason, expected or otherwise, we'll need a poke to remove
     // entities from DBus.
-    sdbusplus::bus::match::match nameOwnerChangedMatch(
-        static_cast<sdbusplus::bus::bus&>(*systemBus),
+    sdbusplus::bus::match_t nameOwnerChangedMatch(
+        static_cast<sdbusplus::bus_t&>(*systemBus),
         sdbusplus::bus::match::rules::nameOwnerChanged(),
-        [&](sdbusplus::message::message&) {
+        [&](sdbusplus::message_t&) {
             propertiesChangedCallback(systemConfiguration, objServer);
         });
     // We also need a poke from DBus when new interfaces are created or
     // destroyed.
-    sdbusplus::bus::match::match interfacesAddedMatch(
-        static_cast<sdbusplus::bus::bus&>(*systemBus),
+    sdbusplus::bus::match_t interfacesAddedMatch(
+        static_cast<sdbusplus::bus_t&>(*systemBus),
         sdbusplus::bus::match::rules::interfacesAdded(),
-        [&](sdbusplus::message::message&) {
+        [&](sdbusplus::message_t&) {
             propertiesChangedCallback(systemConfiguration, objServer);
         });
-    sdbusplus::bus::match::match interfacesRemovedMatch(
-        static_cast<sdbusplus::bus::bus&>(*systemBus),
+    sdbusplus::bus::match_t interfacesRemovedMatch(
+        static_cast<sdbusplus::bus_t&>(*systemBus),
         sdbusplus::bus::match::rules::interfacesRemoved(),
-        [&](sdbusplus::message::message&) {
+        [&](sdbusplus::message_t&) {
             propertiesChangedCallback(systemConfiguration, objServer);
         });
 

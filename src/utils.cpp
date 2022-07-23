@@ -43,7 +43,7 @@ constexpr const char* templateChar = "$";
 
 namespace fs = std::filesystem;
 static bool powerStatusOn = false;
-static std::unique_ptr<sdbusplus::bus::match::match> powerMatch = nullptr;
+static std::unique_ptr<sdbusplus::bus::match_t> powerMatch = nullptr;
 
 bool findFiles(const fs::path& dirPath, const std::string& matchString,
                std::vector<fs::path>& foundPaths)
@@ -154,12 +154,12 @@ bool isPowerOn(void)
 
 void setupPowerMatch(const std::shared_ptr<sdbusplus::asio::connection>& conn)
 {
-    powerMatch = std::make_unique<sdbusplus::bus::match::match>(
-        static_cast<sdbusplus::bus::bus&>(*conn),
+    powerMatch = std::make_unique<sdbusplus::bus::match_t>(
+        static_cast<sdbusplus::bus_t&>(*conn),
         "type='signal',interface='" + std::string(properties::interface) +
             "',path='" + std::string(power::path) + "',arg0='" +
             std::string(power::interface) + "'",
-        [](sdbusplus::message::message& message) {
+        [](sdbusplus::message_t& message) {
             std::string objectName;
             boost::container::flat_map<std::string, std::variant<std::string>>
                 values;

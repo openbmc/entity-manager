@@ -1398,8 +1398,8 @@ int main()
     });
     iface->initialize();
 
-    std::function<void(sdbusplus::message::message & message)> eventHandler =
-        [&](sdbusplus::message::message& message) {
+    std::function<void(sdbusplus::message_t & message)> eventHandler =
+        [&](sdbusplus::message_t& message) {
             std::string objectName;
             boost::container::flat_map<
                 std::string,
@@ -1420,8 +1420,8 @@ int main()
             }
         };
 
-    sdbusplus::bus::match::match powerMatch = sdbusplus::bus::match::match(
-        static_cast<sdbusplus::bus::bus&>(*systemBus),
+    sdbusplus::bus::match_t powerMatch = sdbusplus::bus::match_t(
+        static_cast<sdbusplus::bus_t&>(*systemBus),
         "type='signal',interface='org.freedesktop.DBus.Properties',path='/xyz/"
         "openbmc_project/state/"
         "host0',arg0='xyz.openbmc_project.State.Host'",

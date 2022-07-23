@@ -91,7 +91,7 @@ static void registerCallback(nlohmann::json& systemConfiguration,
                              sdbusplus::asio::object_server& objServer,
                              const std::string& path)
 {
-    static boost::container::flat_map<std::string, sdbusplus::bus::match::match>
+    static boost::container::flat_map<std::string, sdbusplus::bus::match_t>
         dbusMatches;
 
     auto find = dbusMatches.find(path);
@@ -100,13 +100,13 @@ static void registerCallback(nlohmann::json& systemConfiguration,
         return;
     }
 
-    std::function<void(sdbusplus::message::message & message)> eventHandler =
-        [&](sdbusplus::message::message&) {
+    std::function<void(sdbusplus::message_t & message)> eventHandler =
+        [&](sdbusplus::message_t&) {
             propertiesChangedCallback(systemConfiguration, objServer);
         };
 
-    sdbusplus::bus::match::match match(
-        static_cast<sdbusplus::bus::bus&>(*systemBus),
+    sdbusplus::bus::match_t match(
+        static_cast<sdbusplus::bus_t&>(*systemBus),
         "type='signal',member='PropertiesChanged',path='" + path + "'",
         eventHandler);
     dbusMatches.emplace(path, std::move(match));
