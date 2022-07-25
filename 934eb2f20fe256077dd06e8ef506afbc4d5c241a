@@ -18,6 +18,24 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "57460291_b097f6dd",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1000733
+      },
+      "writtenOn": "2022-07-25T19:06:05Z",
+      "side": 1,
+      "message": "This sub-branch of development is basically dead, I\u0027ll mark it abandoned shortly -- the active approach (working toward multi-format FRU support) is in https://gerrit.openbmc.org/c/openbmc/entity-manager/+/52214 and https://gerrit.openbmc.org/c/openbmc/entity-manager/+/51580, though those also seem to have stalled out.",
+      "parentUuid": "f0a3875b_afac1783",
+      "revId": "934eb2f20fe256077dd06e8ef506afbc4d5c241a",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "aff3fa2a_61ecc786",
@@ -54,6 +72,30 @@
       "writtenOn": "2022-07-25T16:18:10Z",
       "side": 1,
       "message": "This isn\u0027t how you declare a read_only property on dbus, nor does it match the naming convention even if we did.  Look at the property interfaces in sdbusplus, they have fields for declaring read only properties (which is the default)  for example, bus and Address are both read only.",
+      "range": {
+        "startLine": 801,
+        "startChar": 30,
+        "endLine": 801,
+        "endChar": 39
+      },
+      "revId": "934eb2f20fe256077dd06e8ef506afbc4d5c241a",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "d5d07b62_35d29bd4",
+        "filename": "src/FruDevice.cpp",
+        "patchSetId": 3
+      },
+      "lineNbr": 801,
+      "author": {
+        "id": 1000733
+      },
+      "writtenOn": "2022-07-25T19:06:05Z",
+      "side": 1,
+      "message": "FWIW the intent here was to signal that the FRU EEPROM itself is read-only, not anything about the actual dbus properties.",
+      "parentUuid": "3fe8067b_e15e7c6d",
       "range": {
         "startLine": 801,
         "startChar": 30,
