@@ -142,6 +142,30 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "7336e7ff_94d83ecd",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 7
+      },
+      "lineNbr": 19,
+      "author": {
+        "id": 1000500
+      },
+      "writtenOn": "2022-07-26T00:35:17Z",
+      "side": 1,
+      "message": "Updated an example in change 55907.",
+      "parentUuid": "1ad515b1_e50fbf9e",
+      "range": {
+        "startLine": 19,
+        "startChar": 0,
+        "endLine": 19,
+        "endChar": 50
+      },
+      "revId": "23e80a8baaea3ad4ffa89638dce3934aaec3550e",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "08f1e1ae_e6a3cc7a",
@@ -784,6 +808,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "c66bc51c_d6faaa4f",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 7
+      },
+      "lineNbr": 112,
+      "author": {
+        "id": 1000500
+      },
+      "writtenOn": "2022-07-26T00:35:17Z",
+      "side": 1,
+      "message": "If there are no existing mechanisms (like a function call) to do this, this becomes a research question, in my understanding.",
+      "parentUuid": "217fcf9a_9145c632",
+      "revId": "23e80a8baaea3ad4ffa89638dce3934aaec3550e",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "578645cf_942f9fc7",
         "filename": "src/EntityManager.cpp",
         "patchSetId": 7
@@ -914,6 +956,30 @@
       "side": 1,
       "message": "I added the following snippets in the JSON file \"ASRock_E3C246D4I\" as an example for the different ways to add a BMC:\n\n* Method 1: An \"xyz.openbmc_project.Inventory.Item\" entry in the \"Exposes\" stanza (this is going to be removed per the comments ..)\n* Method 2: A \"HasThisBMC\" flag in the board JSON\n* Method 3: A \"SubItems\" stanza allowing the user to create sub-items that exist as children DBus objects. Same as Exposes except that all items created will be Inventory.Item\u0027s rather than Configurations.\n\nI\u0027m not sure which one is the best or if this change is to be considered together with other proposals such as 52487 (association interfaces for cables), and the discussion on Discord on April 15 (PhysicalLocation\u0027s). Please advise?",
       "parentUuid": "dceaf2f4_236e4155",
+      "range": {
+        "startLine": 725,
+        "startChar": 0,
+        "endLine": 739,
+        "endChar": 13
+      },
+      "revId": "23e80a8baaea3ad4ffa89638dce3934aaec3550e",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "3ad241ee_da64e035",
+        "filename": "src/EntityManager.cpp",
+        "patchSetId": 7
+      },
+      "lineNbr": 739,
+      "author": {
+        "id": 1000500
+      },
+      "writtenOn": "2022-07-26T00:35:17Z",
+      "side": 1,
+      "message": "I separated this change and moved the sample JSON change to change 55907.",
+      "parentUuid": "eabd2192_ba8766d8",
       "range": {
         "startLine": 725,
         "startChar": 0,
