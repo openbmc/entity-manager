@@ -698,13 +698,18 @@
                         },
                         "Value": {
                             "type": "number"
+                        },
+                        "ThresholdLabelSuffix": {
+                            "type": "string"
+                        },
+                        "ScaleFactor": {
+                            "type": "number"
                         }
                     },
                     "required": [
                         "Direction",
                         "Name",
-                        "Severity",
-                        "Value"
+                        "Severity"
                     ],
                     "type": "object"
                 },
