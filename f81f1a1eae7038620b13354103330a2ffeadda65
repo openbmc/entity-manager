@@ -35,6 +35,24 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "7d4ef189_1ea63e12",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 43
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1000546
+      },
+      "writtenOn": "2022-07-27T03:42:23Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "549d83cf_bd19b8b1",
+      "revId": "f81f1a1eae7038620b13354103330a2ffeadda65",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "0557b7e6_dbacdee5",
@@ -48,6 +66,30 @@
       "writtenOn": "2022-07-23T01:23:24Z",
       "side": 1,
       "message": "This is a huge function The middle part where it is just processing the fru data can be factored out. It does not care about the most parameters can be factored out",
+      "range": {
+        "startLine": 799,
+        "startChar": 1,
+        "endLine": 807,
+        "endChar": 75
+      },
+      "revId": "f81f1a1eae7038620b13354103330a2ffeadda65",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "2879d247_3d8d4cd0",
+        "filename": "src/fru_utils.cpp",
+        "patchSetId": 43
+      },
+      "lineNbr": 807,
+      "author": {
+        "id": 1000546
+      },
+      "writtenOn": "2022-07-27T03:42:23Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "0557b7e6_dbacdee5",
       "range": {
         "startLine": 799,
         "startChar": 1,
@@ -83,6 +125,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "14136ef5_af1c3def",
+        "filename": "src/fru_utils.cpp",
+        "patchSetId": 43
+      },
+      "lineNbr": 1087,
+      "author": {
+        "id": 1000546
+      },
+      "writtenOn": "2022-07-27T03:42:23Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "f4b9713d_642f195c",
+      "range": {
+        "startLine": 1087,
+        "startChar": 0,
+        "endLine": 1087,
+        "endChar": 4
+      },
+      "revId": "f81f1a1eae7038620b13354103330a2ffeadda65",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "d5017837_f1033651",
         "filename": "src/fru_utils.cpp",
         "patchSetId": 43
@@ -94,6 +160,24 @@
       "writtenOn": "2022-07-23T01:23:24Z",
       "side": 1,
       "message": "i2c bus can be 0",
+      "revId": "f81f1a1eae7038620b13354103330a2ffeadda65",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "4641b5ef_5922aaf4",
+        "filename": "src/fru_utils.cpp",
+        "patchSetId": 43
+      },
+      "lineNbr": 1136,
+      "author": {
+        "id": 1000546
+      },
+      "writtenOn": "2022-07-27T03:42:23Z",
+      "side": 1,
+      "message": "Agree. I2c bus started with 0. But here, I think duplicate bus is present or not it is checking. That\u0027s why bus \u003e 0 is added.  \n\nAlso, I didn\u0027t change any design logic and implementation. This is existing logic.",
+      "parentUuid": "d5017837_f1033651",
       "revId": "f81f1a1eae7038620b13354103330a2ffeadda65",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
@@ -111,6 +195,30 @@
       "writtenOn": "2022-07-23T01:23:24Z",
       "side": 1,
       "message": "address \u003d\u003d 0 probably implies it is a IPMB FRU. Avoid one extra parameter",
+      "range": {
+        "startLine": 1146,
+        "startChar": 0,
+        "endLine": 1147,
+        "endChar": 23
+      },
+      "revId": "f81f1a1eae7038620b13354103330a2ffeadda65",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1c642da5_1627b261",
+        "filename": "src/fru_utils.cpp",
+        "patchSetId": 43
+      },
+      "lineNbr": 1147,
+      "author": {
+        "id": 1000546
+      },
+      "writtenOn": "2022-07-27T03:42:23Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "9956a704_0ff788c3",
       "range": {
         "startLine": 1146,
         "startChar": 0,
@@ -146,6 +254,54 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "fbcd1cfd_2ce89357",
+        "filename": "src/fru_utils.cpp",
+        "patchSetId": 43
+      },
+      "lineNbr": 1158,
+      "author": {
+        "id": 1000546
+      },
+      "writtenOn": "2022-07-27T03:42:23Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "30c5fbd7_1c433d0f",
+      "range": {
+        "startLine": 1156,
+        "startChar": 0,
+        "endLine": 1158,
+        "endChar": 31
+      },
+      "revId": "f81f1a1eae7038620b13354103330a2ffeadda65",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "c6fc9860_b3ddf5f5",
+        "filename": "src/fru_utils.cpp",
+        "patchSetId": 43
+      },
+      "lineNbr": 1158,
+      "author": {
+        "id": 1000546
+      },
+      "writtenOn": "2022-07-27T03:42:23Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "30c5fbd7_1c433d0f",
+      "range": {
+        "startLine": 1156,
+        "startChar": 0,
+        "endLine": 1158,
+        "endChar": 31
+      },
+      "revId": "f81f1a1eae7038620b13354103330a2ffeadda65",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "81fc0dbc_29afab43",
         "filename": "src/fru_utils.cpp",
         "patchSetId": 43
@@ -157,6 +313,30 @@
       "writtenOn": "2022-07-23T01:23:24Z",
       "side": 1,
       "message": "I am wondering if we can simplify to always use productName_bus_address. Then we can get rid of this function. Maybe not in this patch.",
+      "range": {
+        "startLine": 1182,
+        "startChar": 0,
+        "endLine": 1188,
+        "endChar": 9
+      },
+      "revId": "f81f1a1eae7038620b13354103330a2ffeadda65",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "022d88cb_5485d8d2",
+        "filename": "src/fru_utils.cpp",
+        "patchSetId": 43
+      },
+      "lineNbr": 1188,
+      "author": {
+        "id": 1000546
+      },
+      "writtenOn": "2022-07-27T03:42:23Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "81fc0dbc_29afab43",
       "range": {
         "startLine": 1182,
         "startChar": 0,
@@ -192,6 +372,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "cf377178_4584e476",
+        "filename": "src/fru_utils.cpp",
+        "patchSetId": 43
+      },
+      "lineNbr": 1200,
+      "author": {
+        "id": 1000546
+      },
+      "writtenOn": "2022-07-27T03:42:23Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "497c6a72_8597741a",
+      "range": {
+        "startLine": 1193,
+        "startChar": 0,
+        "endLine": 1200,
+        "endChar": 59
+      },
+      "revId": "f81f1a1eae7038620b13354103330a2ffeadda65",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "bd429827_46f3258c",
         "filename": "src/fru_utils.cpp",
         "patchSetId": 43
@@ -215,6 +419,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "f716a327_6d7fab50",
+        "filename": "src/fru_utils.cpp",
+        "patchSetId": 43
+      },
+      "lineNbr": 1265,
+      "author": {
+        "id": 1000546
+      },
+      "writtenOn": "2022-07-27T03:42:23Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "bd429827_46f3258c",
+      "range": {
+        "startLine": 1264,
+        "startChar": 4,
+        "endLine": 1265,
+        "endChar": 31
+      },
+      "revId": "f81f1a1eae7038620b13354103330a2ffeadda65",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "34302508_57c9c09d",
         "filename": "src/fru_utils.cpp",
         "patchSetId": 43
@@ -226,6 +454,30 @@
       "writtenOn": "2022-07-23T01:23:24Z",
       "side": 1,
       "message": "why no + \"_\" + toString(ipmbIndex) here?",
+      "range": {
+        "startLine": 1276,
+        "startChar": 67,
+        "endLine": 1276,
+        "endChar": 78
+      },
+      "revId": "f81f1a1eae7038620b13354103330a2ffeadda65",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "8bb05bca_6479514b",
+        "filename": "src/fru_utils.cpp",
+        "patchSetId": 43
+      },
+      "lineNbr": 1276,
+      "author": {
+        "id": 1000546
+      },
+      "writtenOn": "2022-07-27T03:42:23Z",
+      "side": 1,
+      "message": "Else case, It refers I2C/EEPROM based baord /NIC  Fru. Also it used for read the baseboard FRU/NIC FRU information from eeprom via I2c. So, it requires only one dbus path.\n\nI2c fru : \n\nbusctl tree xyz.openbmc_project.FruDevice\n`-/xyz\n  `-/xyz/openbmc_project\n    `-/xyz/openbmc_project/FruDevice\n      |-/xyz/openbmc_project/FruDevice/13_39\n      |-/xyz/openbmc_project/FruDevice/13_48\n      |-/xyz/openbmc_project/FruDevice/1_32\n      |-/xyz/openbmc_project/FruDevice/3_32\n      |-/xyz/openbmc_project/FruDevice/5_32\n      |-/xyz/openbmc_project/FruDevice/7_32\n      |-/xyz/openbmc_project/FruDevice/9_32\n      `-/xyz/openbmc_project/FruDevice/Mellanox_ConnectX_4_Lx\n      \nHere, the dbus objects are unique. That\u0027s why \"_0\" is not added.",
+      "parentUuid": "34302508_57c9c09d",
       "range": {
         "startLine": 1276,
         "startChar": 67,
