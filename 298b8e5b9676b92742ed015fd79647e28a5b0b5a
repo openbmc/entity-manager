@@ -16,6 +16,23 @@
       "message": "Moral support +1",
       "revId": "298b8e5b9676b92742ed015fd79647e28a5b0b5a",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "ab63c8d8_f3d88145",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1000278
+      },
+      "writtenOn": "2022-07-28T15:36:58Z",
+      "side": 1,
+      "message": "This appears to be performing the same functionality as the original. I was hoping to test this to confirm it against the original failing condition. I have been unable to get a contemporary system to fail in the mode that originated the first submission.\n\nAt the same time, there is an error in the devices.hpp that activates the retry code. The retry code in this commit behaves correctly, and attempts to recreate the missing \u0027hwmon\u0027 subdir.\n\nI\u0027m going to approve this, and the supporting commit as being functionally equivalent, yet a much cleaner implementation.",
+      "revId": "298b8e5b9676b92742ed015fd79647e28a5b0b5a",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }
