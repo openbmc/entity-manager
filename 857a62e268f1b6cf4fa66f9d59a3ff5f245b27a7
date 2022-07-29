@@ -26,6 +26,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "1796fb52_f0351ef6",
+        "filename": "configurations/twinlake.json",
+        "patchSetId": 8
+      },
+      "lineNbr": 8,
+      "author": {
+        "id": 1001135
+      },
+      "writtenOn": "2022-07-29T13:01:21Z",
+      "side": 1,
+      "message": "There are around 30 gpios as a part of twinlake host controller. The configs under the channelName represent the name of the host ipmb gpio states.\nso the idea is to keep the gpios state name that needs to monitored under this array.\nonly specified host ipmb gpio state name under the config are monitored.",
+      "parentUuid": "682e5ab3_94806765",
+      "range": {
+        "startLine": 6,
+        "startChar": 0,
+        "endLine": 8,
+        "endChar": 14
+      },
+      "revId": "857a62e268f1b6cf4fa66f9d59a3ff5f245b27a7",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "1f63a6fa_030849e0",
         "filename": "configurations/twinlake.json",
         "patchSetId": 8
@@ -37,6 +61,30 @@
       "writtenOn": "2022-07-09T06:14:27Z",
       "side": 1,
       "message": "I reviewed the backend patch for this.  Both \"Class\" and SensorType look like they don\u0027t belong here, and are being used to match in ways we shouldn\u0027t be.\n\nI would expect this stanza to be just bus and address.",
+      "range": {
+        "startLine": 9,
+        "startChar": 0,
+        "endLine": 11,
+        "endChar": 42
+      },
+      "revId": "857a62e268f1b6cf4fa66f9d59a3ff5f245b27a7",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1ca7be30_43fc199d",
+        "filename": "configurations/twinlake.json",
+        "patchSetId": 8
+      },
+      "lineNbr": 11,
+      "author": {
+        "id": 1001135
+      },
+      "writtenOn": "2022-07-29T13:01:21Z",
+      "side": 1,
+      "message": "okay, SensorType is an excessive one that can be removed, but class is a platform identification it will be used if other platforms have included it.",
+      "parentUuid": "1f63a6fa_030849e0",
       "range": {
         "startLine": 9,
         "startChar": 0,
