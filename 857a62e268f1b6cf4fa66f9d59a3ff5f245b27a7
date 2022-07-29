@@ -50,6 +50,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "64604d45_5639d762",
+        "filename": "configurations/twinlake.json",
+        "patchSetId": 8
+      },
+      "lineNbr": 8,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2022-07-29T18:23:24Z",
+      "side": 1,
+      "message": "\u003e There are around 30 gpios as a part of twinlake host controller.\n\u003e The configs under the channelName represent the name of the host ipmb gpio states.\n\u003e so the idea is to keep the gpios state name that needs to monitored under this array.\n\u003e only specified host ipmb gpio state name under the config are monitored.\n\n\nI suspect they need to go into the implementation.  Would you ever have a \"TwinLake controller\" type that didn\u0027t have these GPIOs?  I suspect this doesn\u0027t need configured per platform.\n\n\nAlso, if you\u0027re abstracting your code, and not putting GPIOs on dbus, these names can\u0027t be freeform.  Your implementation needs to know which GPIO signal matches to which host signal to properly expose a host state interface.",
+      "parentUuid": "1796fb52_f0351ef6",
+      "range": {
+        "startLine": 6,
+        "startChar": 0,
+        "endLine": 8,
+        "endChar": 14
+      },
+      "revId": "857a62e268f1b6cf4fa66f9d59a3ff5f245b27a7",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "1f63a6fa_030849e0",
         "filename": "configurations/twinlake.json",
         "patchSetId": 8
@@ -85,6 +109,30 @@
       "side": 1,
       "message": "okay, SensorType is an excessive one that can be removed, but class is a platform identification it will be used if other platforms have included it.",
       "parentUuid": "1f63a6fa_030849e0",
+      "range": {
+        "startLine": 9,
+        "startChar": 0,
+        "endLine": 11,
+        "endChar": 42
+      },
+      "revId": "857a62e268f1b6cf4fa66f9d59a3ff5f245b27a7",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "bd192af9_95ff4389",
+        "filename": "configurations/twinlake.json",
+        "patchSetId": 8
+      },
+      "lineNbr": 11,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2022-07-29T18:23:24Z",
+      "side": 1,
+      "message": "So you\u0027re saying there will be \"TwinLakeHostControllers\" that don\u0027t use \"twin_lake_gpio\"?\n\nI suspect your other systems need a new type here, and class can be removed.",
+      "parentUuid": "1ca7be30_43fc199d",
       "range": {
         "startLine": 9,
         "startChar": 0,
