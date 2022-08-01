@@ -46,6 +46,30 @@
       },
       "revId": "d2dec9e13f66df6fc4fbdbf5c67452b0469c887b",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b36628ca_3468c8ec",
+        "filename": "src/entity_manager.cpp",
+        "patchSetId": 1
+      },
+      "lineNbr": 438,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2022-08-01T22:19:26Z",
+      "side": 1,
+      "message": "I re-read your message.  I read this part:\n\" E-M publishes on dbus the information needed to instantiate the device\"\nAnd totally missed this:\n\"(a template-substituted version of ExportTemplate, basically)\"\n\n\nMy bad for leading you down the wrong path.  Ultimately, in the end state I would like entity-manager to know nothing about devicetree, and push that all into the individual daemons.  I think duplicating some of the code gets us to that result faster, otherwise we go\n\ninvent dbus interface\nget things working with interface\ncopy code over and remove interface from dbus-sensors\ndelete interface from entity-manager.\n\nThat seems like way more work to me, and the dt instantiation code isn\u0027t that big.",
+      "parentUuid": "d8b1c9c0_7252470b",
+      "range": {
+        "startLine": 421,
+        "startChar": 0,
+        "endLine": 438,
+        "endChar": 5
+      },
+      "revId": "d2dec9e13f66df6fc4fbdbf5c67452b0469c887b",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }
