@@ -22,6 +22,30 @@
       },
       "revId": "d2dec9e13f66df6fc4fbdbf5c67452b0469c887b",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d8b1c9c0_7252470b",
+        "filename": "src/entity_manager.cpp",
+        "patchSetId": 1
+      },
+      "lineNbr": 438,
+      "author": {
+        "id": 1000733
+      },
+      "writtenOn": "2022-08-01T19:27:15Z",
+      "side": 1,
+      "message": "Okay...this is the approach I tried to sketch out a description of on discord the other day (https://discord.com/channels/775381525260664832/867820390406422538/996582047650959372), maybe I didn\u0027t go into enough detail there?\n\nAnyway, alright -- I\u0027ll rearrange it to build the ctor/dtor data directly into dbus-sensors instead.",
+      "parentUuid": "6412f683_b4a82e90",
+      "range": {
+        "startLine": 421,
+        "startChar": 0,
+        "endLine": 438,
+        "endChar": 5
+      },
+      "revId": "d2dec9e13f66df6fc4fbdbf5c67452b0469c887b",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }
