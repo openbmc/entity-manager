@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "add2d133_662de393",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2022-08-01T14:15:21Z",
+      "side": 1,
+      "message": "This shouldn\u0027t be in the control of the platform config.\n\nIf we\u0027re moving control of the creation/destruction to the service (which IMO is the right thing to do) we need to just do it on a type by type basis.  I can\u0027t see a reason why a platform would choose to have entity-manager create/destroy the device if the daemon itself can do it.",
+      "range": {
+        "startLine": 7,
+        "startChar": 0,
+        "endLine": 7,
+        "endChar": 44
+      },
+      "revId": "e5bc11bad2b74552437e0212224f00f74a8c0c01",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    }
+  ]
+}
