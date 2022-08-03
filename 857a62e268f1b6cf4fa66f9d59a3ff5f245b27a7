@@ -74,6 +74,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "4998fbbf_0da88820",
+        "filename": "configurations/twinlake.json",
+        "patchSetId": 8
+      },
+      "lineNbr": 8,
+      "author": {
+        "id": 1001135
+      },
+      "writtenOn": "2022-08-03T05:55:34Z",
+      "side": 1,
+      "message": "The Ipmbpowerstate file in dbussensor(in review) has a map to identify the respective host state interface.",
+      "parentUuid": "64604d45_5639d762",
+      "range": {
+        "startLine": 6,
+        "startChar": 0,
+        "endLine": 8,
+        "endChar": 14
+      },
+      "revId": "857a62e268f1b6cf4fa66f9d59a3ff5f245b27a7",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "1f63a6fa_030849e0",
         "filename": "configurations/twinlake.json",
         "patchSetId": 8
@@ -133,6 +157,30 @@
       "side": 1,
       "message": "So you\u0027re saying there will be \"TwinLakeHostControllers\" that don\u0027t use \"twin_lake_gpio\"?\n\nI suspect your other systems need a new type here, and class can be removed.",
       "parentUuid": "1ca7be30_43fc199d",
+      "range": {
+        "startLine": 9,
+        "startChar": 0,
+        "endLine": 11,
+        "endChar": 42
+      },
+      "revId": "857a62e268f1b6cf4fa66f9d59a3ff5f245b27a7",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "721f5887_533cd7d1",
+        "filename": "configurations/twinlake.json",
+        "patchSetId": 8
+      },
+      "lineNbr": 11,
+      "author": {
+        "id": 1001135
+      },
+      "writtenOn": "2022-08-03T05:55:34Z",
+      "side": 1,
+      "message": "there can be different host controllers for different BMC platforms,\nex., twinlake, deltalake, or any other OEM-specific host controllers, which have IPMB based host state.\nso only host controller systems may change, the functionality is only to get ipmb Gpio states.",
+      "parentUuid": "bd192af9_95ff4389",
       "range": {
         "startLine": 9,
         "startChar": 0,
