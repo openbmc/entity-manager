@@ -113,6 +113,7 @@ inline void logDeviceAdded(const nlohmann::json& record)
     std::string model = "Unknown";
     std::string type = "Unknown";
     std::string sn = "Unknown";
+    std::string name = "Unknown";
 
     if (findType != record.end())
     {
@@ -140,10 +141,17 @@ inline void logDeviceAdded(const nlohmann::json& record)
         }
     }
 
-    sd_journal_send("MESSAGE=%s", "Inventory Added", "PRIORITY=%i", LOG_INFO,
-                    "REDFISH_MESSAGE_ID=%s", "OpenBMC.0.1.InventoryAdded",
+    auto findName = record.find("Name");
+    if (findName != record.end())
+    {
+        name = findName->get<std::string>();
+    }
+
+    sd_journal_send("MESSAGE=Inventory Added: %s", name.c_str(), "PRIORITY=%i",
+                    LOG_INFO, "REDFISH_MESSAGE_ID=%s",
+                    "OpenBMC.0.1.InventoryAdded",
                     "REDFISH_MESSAGE_ARGS=%s,%s,%s", model.c_str(),
-                    type.c_str(), sn.c_str(), NULL);
+                    type.c_str(), sn.c_str(), "NAME=%s", name.c_str(), NULL);
 }
 
 inline void logDeviceRemoved(const nlohmann::json& record)
@@ -159,6 +167,7 @@ inline void logDeviceRemoved(const nlohmann::json& record)
     std::string model = "Unknown";
     std::string type = "Unknown";
     std::string sn = "Unknown";
+    std::string name = "Unknown";
 
     if (findType != record.end())
     {
@@ -186,8 +195,15 @@ inline void logDeviceRemoved(const nlohmann::json& record)
         }
     }
 
-    sd_journal_send("MESSAGE=%s", "Inventory Removed", "PRIORITY=%i", LOG_INFO,
-                    "REDFISH_MESSAGE_ID=%s", "OpenBMC.0.1.InventoryRemoved",
+    auto findName = record.find("Name");
+    if (findName != record.end())
+    {
+        name = findName->get<std::string>();
+    }
+
+    sd_journal_send("MESSAGE=Inventory Removed: %s", name.c_str(),
+                    "PRIORITY=%i", LOG_INFO, "REDFISH_MESSAGE_ID=%s",
+                    "OpenBMC.0.1.InventoryRemoved",
                     "REDFISH_MESSAGE_ARGS=%s,%s,%s", model.c_str(),
-                    type.c_str(), sn.c_str(), NULL);
+                    type.c_str(), sn.c_str(), "NAME=%s", name.c_str(), NULL);
 }
