@@ -139,14 +139,18 @@
                         "Direction": "greater than",
                         "Label": "iout1",
                         "Name": "upper critical",
+                        "ScaleFactor": 0.001,
                         "Severity": 1,
+                        "ThresholdLabel": "iout_oc_warn_limit",
                         "Value": 122
                     },
                     {
                         "Direction": "greater than",
                         "Label": "iout1",
                         "Name": "upper non critical",
+                        "ScaleFactor": 0.00091,
                         "Severity": 0,
+                        "ThresholdLabel": "iout_oc_warn_limit",
                         "Value": 100
                     },
                     {
