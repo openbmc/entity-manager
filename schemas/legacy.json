@@ -698,6 +698,14 @@
                         },
                         "Value": {
                             "type": "number"
+                        },
+                        "ThresholdLabel": {
+                            "enum": [
+                                "iout_oc_warn_limit"
+                            ]
+                        },
+                        "ScaleFactor": {
+                            "type": "number"
                         }
                     },
                     "required": [
