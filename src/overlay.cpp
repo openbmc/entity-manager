@@ -64,7 +64,8 @@ std::string jsonToString(const nlohmann::json& in)
 static std::string deviceDirName(uint64_t bus, uint64_t address)
 {
     std::ostringstream name;
-    name << bus << "-" << std::hex << std::setw(4) << std::setfill('0') << address;
+    name << bus << "-" << std::hex << std::setw(4) << std::setfill('0')
+         << address;
     return name.str();
 }
 
@@ -160,7 +161,7 @@ static int createDevice(const std::string& busPath,
 static bool deviceIsCreated(const std::string& busPath,
                             const std::shared_ptr<uint64_t>& bus,
                             const std::shared_ptr<uint64_t>& address,
-                            const bool createsHWMon)
+                            const devices::createsHWMon hasHWMonDir)
 {
     if (!bus || !address)
     {
@@ -169,7 +170,7 @@ static bool deviceIsCreated(const std::string& busPath,
 
     std::filesystem::path dirPath = busPath;
     dirPath /= deviceDirName(*bus, *address);
-    if (createsHWMon)
+    if (hasHWMonDir == devices::createsHWMon::hasHWMonDir)
     {
         dirPath /= "hwmon";
     }
@@ -184,7 +185,8 @@ static int buildDevice(const std::string& busPath,
                        const std::shared_ptr<uint64_t>& bus,
                        const std::shared_ptr<uint64_t>& address,
                        const std::string& constructor,
-                       const std::string& destructor, const bool createsHWMon,
+                       const std::string& destructor,
+                       const devices::createsHWMon hasHWMonDir,
                        const size_t retries = 5)
 {
     if (retries == 0U)
@@ -193,7 +195,7 @@ static int buildDevice(const std::string& busPath,
     }
 
     // If it's already instantiated, there's nothing we need to do.
-    if (deviceIsCreated(busPath, bus, address, createsHWMon))
+    if (deviceIsCreated(busPath, bus, address, hasHWMonDir))
     {
         return 0;
     }
@@ -202,24 +204,23 @@ static int buildDevice(const std::string& busPath,
     createDevice(busPath, parameters, constructor);
 
     // If it didn't work, delete it and try again in 500ms
-    if (!deviceIsCreated(busPath, bus, address, createsHWMon))
+    if (!deviceIsCreated(busPath, bus, address, hasHWMonDir))
     {
         deleteDevice(busPath, address, destructor);
 
         std::shared_ptr<boost::asio::steady_timer> createTimer =
             std::make_shared<boost::asio::steady_timer>(io);
         createTimer->expires_after(std::chrono::milliseconds(500));
-        createTimer->async_wait([createTimer, busPath, parameters, bus,
-                                 address, constructor, destructor, createsHWMon,
+        createTimer->async_wait([createTimer, busPath, parameters, bus, address,
+                                 constructor, destructor, hasHWMonDir,
                                  retries](const boost::system::error_code& ec) {
             if (ec)
             {
                 std::cerr << "Timer error: " << ec << "\n";
                 return -2;
             }
-            return buildDevice(busPath, parameters, bus, address,
-                               constructor, destructor, createsHWMon,
-                               retries - 1);
+            return buildDevice(busPath, parameters, bus, address, constructor,
+                               destructor, hasHWMonDir, retries - 1);
         });
     }
 
@@ -235,7 +236,7 @@ void exportDevice(const std::string& type,
     std::string busPath = exportTemplate.busPath;
     std::string constructor = exportTemplate.add;
     std::string destructor = exportTemplate.remove;
-    bool createsHWMon = exportTemplate.createsHWMon;
+    devices::createsHWMon hasHWMonDir = exportTemplate.hasHWMonDir;
     std::string name = "unknown";
     std::shared_ptr<uint64_t> bus = nullptr;
     std::shared_ptr<uint64_t> address = nullptr;
@@ -280,7 +281,7 @@ void exportDevice(const std::string& type,
     }
 
     int err = buildDevice(busPath, parameters, bus, address, constructor,
-                          destructor, createsHWMon);
+                          destructor, hasHWMonDir);
 
     if ((err == 0) && boost::ends_with(type, "Mux") && bus && address &&
         (channels != nullptr))
