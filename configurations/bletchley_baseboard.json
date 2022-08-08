@@ -61,8 +61,16 @@
             "Type": "ADC"
         },
         {
+            "BridgeGpio": [
+                {
+                    "Name": "BAT_DETECT",
+                    "Polarity": "High",
+                    "SetupTime": 1
+                }
+            ],
             "Index": 3,
             "Name": "P3V_BAT",
+            "PollRate": 86400,
             "ScaleFactor": 0.332226,
             "Thresholds": [
                 {
