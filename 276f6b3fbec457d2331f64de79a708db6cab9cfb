@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a0791e68_d5004abb",
+        "filename": "include/devices.hpp",
+        "patchSetId": 1
+      },
+      "lineNbr": 51,
+      "author": {
+        "id": 1000559
+      },
+      "writtenOn": "2022-08-09T22:02:31Z",
+      "side": 1,
+      "message": "nit: hasHWMonDir\nMy first thought is that hasHWMonDir makes is more obvious and works well with noHWMon. But I do see that hasHWMon is also a good name for the parameters below @ line57 etc.\nI am ok with the current name.",
+      "range": {
+        "startLine": 51,
+        "startChar": 4,
+        "endLine": 51,
+        "endChar": 12
+      },
+      "revId": "276f6b3fbec457d2331f64de79a708db6cab9cfb",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5843659c_886ef6a7",
+        "filename": "src/overlay.cpp",
+        "patchSetId": 1
+      },
+      "lineNbr": 284,
+      "author": {
+        "id": 1000559
+      },
+      "writtenOn": "2022-08-09T22:02:31Z",
+      "side": 1,
+      "message": "nit: we can keep the rest of the code same by using (hasHWMonDir \u003d\u003d HWMonDir).",
+      "range": {
+        "startLine": 284,
+        "startChar": 38,
+        "endLine": 284,
+        "endChar": 49
+      },
+      "revId": "276f6b3fbec457d2331f64de79a708db6cab9cfb",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    }
+  ]
+}
