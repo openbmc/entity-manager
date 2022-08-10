@@ -646,40 +646,17 @@ void addFruObjectToDbus(
     std::shared_ptr<sdbusplus::asio::connection>& systemBus)
 {
     boost::container::flat_map<std::string, std::string> formattedFRU;
-    resCodes res = formatIPMIFRU(device, formattedFRU);
-    if (res == resCodes::resErr)
+
+    std::optional<std::string> optionalProductName = formatFRUFind(
+        device, formattedFRU, bus, address, unknownBusObjectCount);
+    if (!optionalProductName)
     {
-        std::cerr << "failed to parse FRU for device at bus " << bus
-                  << " address " << address << "\n";
+        std::cerr << " FormatFRUFind failed. product Name is empty. "
+                  << std::endl;
         return;
     }
-    if (res == resCodes::resWarn)
-    {
-        std::cerr << "there were warnings while parsing FRU for device at bus "
-                  << bus << " address " << address << "\n";
-    }
 
-    auto productNameFind = formattedFRU.find("BOARD_PRODUCT_NAME");
-    std::string productName;
-    // Not found under Board section or an empty string.
-    if (productNameFind == formattedFRU.end() ||
-        productNameFind->second.empty())
-    {
-        productNameFind = formattedFRU.find("PRODUCT_PRODUCT_NAME");
-    }
-    // Found under Product section and not an empty string.
-    if (productNameFind != formattedFRU.end() &&
-        !productNameFind->second.empty())
-    {
-        productName = productNameFind->second;
-        std::regex illegalObject("[^A-Za-z0-9_]");
-        productName = std::regex_replace(productName, illegalObject, "_");
-    }
-    else
-    {
-        productName = "UNKNOWN" + std::to_string(unknownBusObjectCount);
-        unknownBusObjectCount++;
-    }
+    std::string productName = optionalProductName.value();
 
     productName = "/xyz/openbmc_project/FruDevice/" + productName;
     // avoid duplicates by checking to see if on a mux
