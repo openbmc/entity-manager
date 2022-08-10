@@ -17,6 +17,7 @@
 
 #pragma once
 #include "fru_reader.hpp"
+
 #include <boost/container/flat_map.hpp>
 
 #include <cstdint>
@@ -156,3 +157,8 @@ bool validateHeader(const std::array<uint8_t, I2C_SMBUS_BLOCK_MAX>& blockData);
 /// \param area - the area
 /// \return the field offset
 unsigned int getHeaderAreaFieldOffset(fruAreas area);
+
+std::optional<std::string> formatFRUFind(
+    std::vector<uint8_t>& device,
+    boost::container::flat_map<std::string, std::string>& formattedFRU,
+    uint32_t bus, uint32_t address, size_t& unknownBusObjectCount);
