@@ -177,3 +177,16 @@ bool findFruAreaLocationAndField(std::vector<uint8_t>& fruData,
                                  const std::string& propertyName,
                                  struct FruArea& fruAreaParams,
                                  size_t& fruDataIter);
+
+/// \brief It does format fru data and find productName in the formatted
+/// fru data and return productName.
+/// \param device - vector that contains device list
+/// \param formattedFRU - map that contains formatted FRU data
+/// \param bus - bus number of the device
+/// \param address - address of the device
+/// \param unknownBusObjectCount - Unknown Bus object counter variable
+/// \return optional string. it returns productName or NULL
+std::optional<std::string> getProductName(
+    std::vector<uint8_t>& device,
+    boost::container::flat_map<std::string, std::string>& formattedFRU,
+    uint32_t bus, uint32_t address, size_t& unknownBusObjectCount);
