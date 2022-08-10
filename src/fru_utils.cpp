@@ -987,3 +987,50 @@ std::optional<int> findIndexForFRU(
     }
     return highest;
 }
+
+// This function does format fru data as per IPMI format and find the
+// productName in the formatted fru data, get that productName and return
+// productName if found or return NULL.
+
+std::optional<std::string> getProductName(
+    std::vector<uint8_t>& device,
+    boost::container::flat_map<std::string, std::string>& formattedFRU,
+    uint32_t bus, uint32_t address, size_t& unknownBusObjectCount)
+{
+    std::string productName;
+
+    resCodes res = formatIPMIFRU(device, formattedFRU);
+    if (res == resCodes::resErr)
+    {
+        std::cerr << "failed to parse FRU for device at bus " << bus
+                  << " address " << address << "\n";
+        return std::nullopt;
+    }
+    if (res == resCodes::resWarn)
+    {
+        std::cerr << "Warnings while parsing FRU for device at bus " << bus
+                  << " address " << address << "\n";
+    }
+
+    auto productNameFind = formattedFRU.find("BOARD_PRODUCT_NAME");
+    // Not found under Board section or an empty string.
+    if (productNameFind == formattedFRU.end() ||
+        productNameFind->second.empty())
+    {
+        productNameFind = formattedFRU.find("PRODUCT_PRODUCT_NAME");
+    }
+    // Found under Product section and not an empty string.
+    if (productNameFind != formattedFRU.end() &&
+        !productNameFind->second.empty())
+    {
+        productName = productNameFind->second;
+        std::regex illegalObject("[^A-Za-z0-9_]");
+        productName = std::regex_replace(productName, illegalObject, "_");
+    }
+    else
+    {
+        productName = "UNKNOWN" + std::to_string(unknownBusObjectCount);
+        unknownBusObjectCount++;
+    }
+    return productName;
+}
