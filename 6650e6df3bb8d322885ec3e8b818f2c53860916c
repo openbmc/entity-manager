@@ -37,6 +37,24 @@
     {
       "unresolved": false,
       "key": {
+        "uuid": "535d3726_3f3c15a9",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1000733
+      },
+      "writtenOn": "2022-08-11T09:53:03Z",
+      "side": 1,
+      "message": "Thanks Ed, hadn\u0027t been aware of this patch.",
+      "parentUuid": "5186047e_aac5cce2",
+      "revId": "6650e6df3bb8d322885ec3e8b818f2c53860916c",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
         "uuid": "eceb9c72_c875ea5f",
         "filename": "include/devices.hpp",
         "patchSetId": 2
@@ -48,6 +66,24 @@
       "writtenOn": "2022-08-11T04:45:04Z",
       "side": 1,
       "message": "This is sooooo much better.",
+      "revId": "6650e6df3bb8d322885ec3e8b818f2c53860916c",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "4951ec8e_959114ef",
+        "filename": "include/devices.hpp",
+        "patchSetId": 2
+      },
+      "lineNbr": 47,
+      "author": {
+        "id": 1000733
+      },
+      "writtenOn": "2022-08-11T09:53:03Z",
+      "side": 1,
+      "message": "Agreed, exportTemplates is a lot more self-explanatory this way, definite clarity win.",
+      "parentUuid": "eceb9c72_c875ea5f",
       "revId": "6650e6df3bb8d322885ec3e8b818f2c53860916c",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
@@ -71,6 +107,47 @@
         "endLine": 50,
         "endChar": 14
       },
+      "revId": "6650e6df3bb8d322885ec3e8b818f2c53860916c",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8f3be789_62143100",
+        "filename": "include/devices.hpp",
+        "patchSetId": 2
+      },
+      "lineNbr": 50,
+      "author": {
+        "id": 1000733
+      },
+      "writtenOn": "2022-08-11T09:53:03Z",
+      "side": 1,
+      "message": "The potential UB being that the value for hasHWMonDir would then be \"true + 1\", exceeding the range of the bool type assigned for the enum, or something more subtle?\n\nIn any case, while I\u0027m not a C++ expert, C at least guarantees that in the absence of an explicitly-provided value enums will start from zero, and I\u0027d be fairly surprised if C++ diverged from that...",
+      "parentUuid": "c5506cb9_31272a7c",
+      "range": {
+        "startLine": 50,
+        "startChar": 4,
+        "endLine": 50,
+        "endChar": 14
+      },
+      "revId": "6650e6df3bb8d322885ec3e8b818f2c53860916c",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "25636991_57738f4e",
+        "filename": "src/overlay.cpp",
+        "patchSetId": 2
+      },
+      "lineNbr": 239,
+      "author": {
+        "id": 1000733
+      },
+      "writtenOn": "2022-08-11T09:53:03Z",
+      "side": 1,
+      "message": "This part (and similar changes in the callee functions) I\u0027m slightly less enthused about -- the variable name still sort of sounds like it\u0027s a boolean, but it no longer really is, or at least can\u0027t (comfortably, IMO) be used as one even if that\u0027s the underlying type of the enum.\n\nIn the exportTemplates map the booleans do get sorta lost amongst all the other stuff and end up a lot less readable and a lot more error-prone, so I do think this is a good change to make there.  I don\u0027t think the existing overlay.cpp code has any of the same clarity problems though, so propagating the enum through these paths seems like added verbosity for slightly less overall readability IMO.  (Perhaps this is the same thing Zhikui commented on previously?)\n\nOne possibility that occurs to me would be to expand the enum to something like\n\n```\nenum DeviceKind\n{\n  hwmon,\n  iio,\n  mux,\n  eeprom,\n  gpio,\n};\n```\n\nand then just pass that through and have the code that cares about it do `if (kind \u003d\u003d DeviceKind::hwmon) path /\u003d \"hwmon\"`.  Arguably overkill if there\u0027s currently really only one kind we ultimately care about though...I dunno.\n\nAnyway, with all that said it\u0027s not a strenuous objection, so I\u0027ll leave it up to the author \u0026 maintainers.",
       "revId": "6650e6df3bb8d322885ec3e8b818f2c53860916c",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
