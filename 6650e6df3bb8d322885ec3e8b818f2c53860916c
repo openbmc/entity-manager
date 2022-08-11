@@ -16,6 +16,63 @@
       "message": "LGTM",
       "revId": "6650e6df3bb8d322885ec3e8b818f2c53860916c",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "5186047e_aac5cce2",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2022-08-11T04:45:04Z",
+      "side": 1,
+      "message": "Adding Zev, who\u0027s looking at porting this stuff out of EM.  Giving him some time to review.",
+      "revId": "6650e6df3bb8d322885ec3e8b818f2c53860916c",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "eceb9c72_c875ea5f",
+        "filename": "include/devices.hpp",
+        "patchSetId": 2
+      },
+      "lineNbr": 47,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2022-08-11T04:45:04Z",
+      "side": 1,
+      "message": "This is sooooo much better.",
+      "revId": "6650e6df3bb8d322885ec3e8b818f2c53860916c",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c5506cb9_31272a7c",
+        "filename": "include/devices.hpp",
+        "patchSetId": 2
+      },
+      "lineNbr": 50,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2022-08-11T04:45:04Z",
+      "side": 1,
+      "message": "seems unlikely that a compiler would start with true, but should we do \u003d false here just to be explicit and not have technical UB?",
+      "range": {
+        "startLine": 50,
+        "startChar": 4,
+        "endLine": 50,
+        "endChar": 14
+      },
+      "revId": "6650e6df3bb8d322885ec3e8b818f2c53860916c",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }
