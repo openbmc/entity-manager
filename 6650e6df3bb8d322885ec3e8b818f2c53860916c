@@ -202,6 +202,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "7403a8d6_7e01f0a4",
+        "filename": "include/devices.hpp",
+        "patchSetId": 2
+      },
+      "lineNbr": 50,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2022-08-15T16:17:46Z",
+      "side": 1,
+      "message": "As a preface, my opinion here is very weak, and what you have is fine.\n\nTo the above, I would argue that the enumeration values themselves provide the complete information on what this is intended to be used for.  inheriting from bool implies that there is a case where the user might do a static_cast\u003cbool\u003e() to get a boolean value out of the enum, which in this case they shouldn\u0027t do.\n\nAgain, what\u0027s there is fine if you don\u0027t want to change it.",
+      "parentUuid": "36a199ed_eecb1166",
+      "range": {
+        "startLine": 50,
+        "startChar": 4,
+        "endLine": 50,
+        "endChar": 14
+      },
+      "revId": "6650e6df3bb8d322885ec3e8b818f2c53860916c",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "25636991_57738f4e",
         "filename": "src/overlay.cpp",
         "patchSetId": 2
@@ -231,6 +255,24 @@
       "side": 1,
       "message": "I gave this idea some consideration prior to submitting the first commit. My main reason for not doing something like this is there has been no evidence of a similar failure in another device driver. \n\nDoing what you suggest is additional work that appears to have limited payoff. As the author I am obligated to iterate \u003e70 template entries and categorize the type of each only for the work to devolve to \"HWMon\"/\"noHWMON\". I\u0027m not enthusiastic about expending time to do that.\n\nThe enum you suggest is a little weird. What kind of device is a \"hwmon\"? Is it better to enumerate on device type, or sensor initialization model? Presently it\u0027s the model. The device type, at this stage, only cares about temperature devices.\nPerhaps this model works:\nenum sensorInitRequirment {\n  norequirement,            // mux, eeprom, gpio, etc...\n  temperatureWithHWMon,     // the one we need to retry\n  temperatureWithoutHWMon,  // author considered init rqmt\n};\n\nThis covers the current situation without undue burden in updating the Export table. It still leaves room for handling undiscovered initialization problems.",
       "parentUuid": "25636991_57738f4e",
+      "revId": "6650e6df3bb8d322885ec3e8b818f2c53860916c",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "af00789d_635d2f20",
+        "filename": "src/overlay.cpp",
+        "patchSetId": 2
+      },
+      "lineNbr": 239,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2022-08-15T16:17:46Z",
+      "side": 1,
+      "message": "\u003e enum DeviceKind\n\u003e {\n\u003e   hwmon,\n\u003e   iio,\n\u003e   mux,\n\u003e   eeprom,\n\u003e   gpio,\n\u003e };\n\nI like this as a concept, but in the efforts to keep THIS patch small, self contained, and an incremental improvement, lets push the above to a later patchset.\n\n\u003e I gave this idea some consideration prior to submitting the first commit. My main reason for not doing something like this is there has been no evidence of a similar failure in another device driver. \n\u003e \n\u003e Doing what you suggest is additional work that appears to have limited payoff. As the author I am obligated to iterate \u003e70 template entries and categorize the type of each only for the work to devolve to \"HWMon\"/\"noHWMON\". I\u0027m not enthusiastic about expending time to do that.\n\nSure.  Considering the old code didn\u0027t do that, it seems reasonable, although I do think in the end we will need something closer to what Zev is proposing, but I don\u0027t think anyone is requiring that you be the one to do it.\n\n\u003e \n\u003e The enum you suggest is a little weird. What kind of device is a \"hwmon\"? Is it better to enumerate on device type, or sensor initialization model? Presently it\u0027s the model. The device type, at this stage, only cares about temperature devices.\n\u003e Perhaps this model works:\n\u003e enum sensorInitRequirment {\n\u003e   norequirement,            // mux, eeprom, gpio, etc...\n\u003e   temperatureWithHWMon,     // the one we need to retry\n\u003e   temperatureWithoutHWMon,  // author considered init rqmt\n\u003e };\n\u003e \n\u003e This covers the current situation without undue burden in updating the Export table. It still leaves room for handling undiscovered initialization problems.\n\n\n\nAs written, IMO, this patchset has hit the barrier to merge in that it\u0027s:\n1. Incrementally better\n2. Self contained in that it follow the \"spirit\" of the old code (which was a bool)\n3. Tested.\n4. Doesn\u0027t actively make the above suggestion more difficult to execute on in the future.\n\nI\u0027m happy to discuss other possible changes to this enum either in other patches, the mailing list, or on discord, and I definitely think there\u0027s a lot of improvement to happen there, but in terms of this patch, I think we\u0027ve hit escape velocity.",
+      "parentUuid": "9c78148b_92d63c9d",
       "revId": "6650e6df3bb8d322885ec3e8b818f2c53860916c",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
