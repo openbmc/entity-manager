@@ -55,6 +55,23 @@
     {
       "unresolved": false,
       "key": {
+        "uuid": "b184cea5_13ceeb2a",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1000278
+      },
+      "writtenOn": "2022-08-15T15:54:42Z",
+      "side": 1,
+      "message": "My observations.",
+      "revId": "6650e6df3bb8d322885ec3e8b818f2c53860916c",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
         "uuid": "eceb9c72_c875ea5f",
         "filename": "include/devices.hpp",
         "patchSetId": 2
@@ -161,6 +178,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "36a199ed_eecb1166",
+        "filename": "include/devices.hpp",
+        "patchSetId": 2
+      },
+      "lineNbr": 50,
+      "author": {
+        "id": 1000278
+      },
+      "writtenOn": "2022-08-15T15:54:42Z",
+      "side": 1,
+      "message": "One of my significant problems with programming in C++, is determining what kind of data the code is working on. Any time I can be explicit about the data type I\u0027m going to apply that information for the unfortunate soul following after me (which may be me for all I know). I understand \"auto\" helps the compiler generate code that is more likely to follow C++ rules, and in theory be correct. It doesn\u0027t, OTOH, help the programmer determine what kind of \"thing\" \"var\" refers. I find this especially frustrating with async D-Bus calls. Thus if I can provide even a Burma Shave signpost guidance I\u0027m going to favor doing so.",
+      "parentUuid": "b9015f6a_ee21a50a",
+      "range": {
+        "startLine": 50,
+        "startChar": 4,
+        "endLine": 50,
+        "endChar": 14
+      },
+      "revId": "6650e6df3bb8d322885ec3e8b818f2c53860916c",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "25636991_57738f4e",
         "filename": "src/overlay.cpp",
         "patchSetId": 2
@@ -172,6 +213,24 @@
       "writtenOn": "2022-08-11T09:53:03Z",
       "side": 1,
       "message": "This part (and similar changes in the callee functions) I\u0027m slightly less enthused about -- the variable name still sort of sounds like it\u0027s a boolean, but it no longer really is, or at least can\u0027t (comfortably, IMO) be used as one even if that\u0027s the underlying type of the enum.\n\nIn the exportTemplates map the booleans do get sorta lost amongst all the other stuff and end up a lot less readable and a lot more error-prone, so I do think this is a good change to make there.  I don\u0027t think the existing overlay.cpp code has any of the same clarity problems though, so propagating the enum through these paths seems like added verbosity for slightly less overall readability IMO.  (Perhaps this is the same thing Zhikui commented on previously?)\n\nOne possibility that occurs to me would be to expand the enum to something like\n\n```\nenum DeviceKind\n{\n  hwmon,\n  iio,\n  mux,\n  eeprom,\n  gpio,\n};\n```\n\nand then just pass that through and have the code that cares about it do `if (kind \u003d\u003d DeviceKind::hwmon) path /\u003d \"hwmon\"`.  Arguably overkill if there\u0027s currently really only one kind we ultimately care about though...I dunno.\n\nAnyway, with all that said it\u0027s not a strenuous objection, so I\u0027ll leave it up to the author \u0026 maintainers.",
+      "revId": "6650e6df3bb8d322885ec3e8b818f2c53860916c",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9c78148b_92d63c9d",
+        "filename": "src/overlay.cpp",
+        "patchSetId": 2
+      },
+      "lineNbr": 239,
+      "author": {
+        "id": 1000278
+      },
+      "writtenOn": "2022-08-15T15:54:42Z",
+      "side": 1,
+      "message": "I gave this idea some consideration prior to submitting the first commit. My main reason for not doing something like this is there has been no evidence of a similar failure in another device driver. \n\nDoing what you suggest is additional work that appears to have limited payoff. As the author I am obligated to iterate \u003e70 template entries and categorize the type of each only for the work to devolve to \"HWMon\"/\"noHWMON\". I\u0027m not enthusiastic about expending time to do that.\n\nThe enum you suggest is a little weird. What kind of device is a \"hwmon\"? Is it better to enumerate on device type, or sensor initialization model? Presently it\u0027s the model. The device type, at this stage, only cares about temperature devices.\nPerhaps this model works:\nenum sensorInitRequirment {\n  norequirement,            // mux, eeprom, gpio, etc...\n  temperatureWithHWMon,     // the one we need to retry\n  temperatureWithoutHWMon,  // author considered init rqmt\n};\n\nThis covers the current situation without undue burden in updating the Export table. It still leaves room for handling undiscovered initialization problems.",
+      "parentUuid": "25636991_57738f4e",
       "revId": "6650e6df3bb8d322885ec3e8b818f2c53860916c",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
