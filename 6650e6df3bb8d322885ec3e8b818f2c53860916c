@@ -137,6 +137,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "b9015f6a_ee21a50a",
+        "filename": "include/devices.hpp",
+        "patchSetId": 2
+      },
+      "lineNbr": 50,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2022-08-15T14:42:42Z",
+      "side": 1,
+      "message": "\u003e The potential UB being that the value for hasHWMonDir would then be \"true + 1\", exceeding the range of the bool type assigned for the enum, or something more subtle?\n\u003e \n\u003e In any case, while I\u0027m not a C++ expert, C at least guarantees that in the absence of an explicitly-provided value enums will start from zero, and I\u0027d be fairly surprised if C++ diverged from that...\n\n\nFound this in the standard:\n\"If the first enumerator has no initializer, the value of the corresponding constant is zero. An enumerator-definition without an initializer gives the enumerator the value obtained by increasing the value of the previous enumerator by one.\"\n\nTIL.\n\nWith that said.....  As I look at this again, there\u0027s nowhere it\u0027s used as a static_cast\u003cbool\u003e so it should be fine as-written.  I think the ideal case would be to remove the \" : bool\" from the class, and just let the compiler pick the type, but that\u0027s not that important.",
+      "parentUuid": "8f3be789_62143100",
+      "range": {
+        "startLine": 50,
+        "startChar": 4,
+        "endLine": 50,
+        "endChar": 14
+      },
+      "revId": "6650e6df3bb8d322885ec3e8b818f2c53860916c",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "25636991_57738f4e",
         "filename": "src/overlay.cpp",
         "patchSetId": 2
