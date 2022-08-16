@@ -47,7 +47,7 @@ constexpr const char* hostConfigurationDirectory = SYSCONF_DIR "configurations";
 constexpr const char* configurationDirectory = PACKAGE_DIR "configurations";
 constexpr const char* schemaDirectory = PACKAGE_DIR "configurations/schemas";
 constexpr const char* tempConfigDir = "/tmp/configuration/";
-constexpr const char* lastConfiguration = "/tmp/configuration/last.json";
+constexpr const char* lastConfiguration = "/var/configuration/last.json";
 constexpr const char* currentConfiguration = "/var/configuration/system.json";
 constexpr const char* globalSchema = "global.json";
 
@@ -126,6 +126,23 @@ bool writeJsonFiles(const nlohmann::json& systemConfiguration)
 {
     std::filesystem::create_directory(configurationOutDir);
     std::ofstream output(currentConfiguration);
+    if (!output.good())
+    {
+        return false;
+    }
+    output << systemConfiguration.dump(4);
+    output.close();
+    return true;
+}
+
+// writes file to persist data
+bool writeJson2File(const char* fileName,
+                     const nlohmann::json& systemConfiguration)
+{
+    std::filesystem::remove(fileName);
+
+    std::filesystem::create_directory(configurationOutDir);
+    std::ofstream output(fileName);
     if (!output.good())
     {
         return false;
@@ -226,6 +243,12 @@ void addProperty(const std::string& name, const PropertyType& value,
             if (!writeJsonFiles(systemConfiguration))
             {
                 std::cerr << "error setting json file\n";
+                return -1;
+            }
+            if (!writeJson2File(lastConfiguration, systemConfiguration))
+            {
+                std::cerr << "error setting json file:" << lastConfiguration
+                          << std::endl;
                 return -1;
             }
             return 1;
@@ -1127,9 +1150,6 @@ int main()
         if (std::filesystem::is_regular_file(currentConfiguration))
         {
             // this file could just be deleted, but it's nice for debug
-            std::filesystem::create_directory(tempConfigDir);
-            std::filesystem::remove(lastConfiguration);
-            std::filesystem::copy(currentConfiguration, lastConfiguration);
             std::filesystem::remove(currentConfiguration);
 
             std::ifstream jsonStream(lastConfiguration);
