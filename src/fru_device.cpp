@@ -254,7 +254,7 @@ static int i2cSmbusWriteThenRead(int file, uint16_t address,
 
     int ret = ioctl(file, I2C_RDWR, &rdwr);
 
-    return (ret == msgs.size()) ? msgs[1].len : -1;
+    return (ret == static_cast<int>(msgs.size())) ? msgs[1].len : -1;
 }
 
 static int64_t readBlockData(bool is16bit, int file, uint16_t address,
