@@ -18,6 +18,24 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "2b87a110_9d624000",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1000546
+      },
+      "writtenOn": "2022-08-19T09:52:32Z",
+      "side": 1,
+      "message": "Yes. This is an incremental patch toseparate the common FRU data parsing function from i2c device handling code.",
+      "parentUuid": "c35109f6_7368ff8c",
+      "revId": "d1f2915187224e1478189524320ab15f20b815d5",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "aacaf162_7e0281b9",
@@ -31,6 +49,30 @@
       "writtenOn": "2022-08-19T04:49:32Z",
       "side": 1,
       "message": "\\n\";",
+      "range": {
+        "startLine": 654,
+        "startChar": 68,
+        "endLine": 655,
+        "endChar": 31
+      },
+      "revId": "d1f2915187224e1478189524320ab15f20b815d5",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "026a8c52_1a37182f",
+        "filename": "src/fru_device.cpp",
+        "patchSetId": 1
+      },
+      "lineNbr": 655,
+      "author": {
+        "id": 1000546
+      },
+      "writtenOn": "2022-08-19T09:52:32Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "aacaf162_7e0281b9",
       "range": {
         "startLine": 654,
         "startChar": 68,
