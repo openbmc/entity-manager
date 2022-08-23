@@ -1344,6 +1344,7 @@ int main()
 {
     auto systemBus = std::make_shared<sdbusplus::asio::connection>(io);
     sdbusplus::asio::object_server objServer(systemBus);
+    objServer.add_manager("/xyz/openbmc_project/FruDevice");
 
     static size_t unknownBusObjectCount = 0;
     static bool powerIsOn = false;
