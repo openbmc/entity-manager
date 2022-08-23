@@ -26,6 +26,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "62ae135f_b5e8e338",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 3
+      },
+      "lineNbr": 11,
+      "author": {
+        "id": 1001104
+      },
+      "writtenOn": "2022-08-23T07:32:01Z",
+      "side": 1,
+      "message": "\u003e what causes this?Are modified threshold not persist with current code? Or it is lost sometimes?\n\nWhen I send a command to set the threshold, I will catch this。\nModified threshold not persist with current code ! It will be lost every time.\n\nI think it may be the IPMI command that caused this.\nEach IPMI command is triggered twice or more(NameOwnerChanged).\n\nThe following is my test command:\n1：dbus-monitor --system member\u003dNameOwnerChanged\u0026\n2：ipmitool sensor thresh SYS_5V ucr 9\n3：ipmitool mc info\n\n\nHere are my test results：\nroot@NULL:~# dbus-monitor --system member\u003dNameOwnerChanged\u0026\n[1] 512\nroot@NULL:~# signal time\u003d478.247598 sender\u003dorg.freedesktop.DBus -\u003e destination\u003d:1.104 serial\u003d4294967295 path\u003d/org/freedesktop/DBus; interface\u003dorg.freedesktop.DBus; member\u003dNameAcquired\n   string \":1.104\"\nsignal time\u003d478.249468 sender\u003dorg.freedesktop.DBus -\u003e destination\u003d:1.104 serial\u003d4294967295 path\u003d/org/freedesktop/DBus; interface\u003dorg.freedesktop.DBus; member\u003dNameLost\n   string \":1.104\"\n\n\nroot@NULL:~# ipmitool sensor thresh SYS_5V ucr 9\nsignal time\u003d487.629464 sender\u003dorg.freedesktop.DBus -\u003e destination\u003d(null destination) serial\u003d4294967295 path\u003d/org/freedesktop/DBus; interface\u003dorg.freedesktop.DBus; member\u003dNameOwnerChanged\n   string \":1.105\"\n   string \"\"\n   string \":1.105\"\nLocating sensor record \u0027SYS_5V\u0027...\nSetting sensor \"SYS_5V\" Upper Critical threshold to 9.000\nroot@NULL:~# signal time\u003d488.358398 sender\u003dorg.freedesktop.DBus -\u003e destination\u003d(null destination) serial\u003d4294967295 path\u003d/org/freedesktop/DBus; interface\u003dorg.freedesktop.DBus; member\u003dNameOwnerChanged\n   string \":1.105\"\n   string \":1.105\"\n   string \"\"\n\nroot@NULL:~# \nroot@NULL:~# ipmitool mc info                   \nsignal time\u003d917.930562 sender\u003dorg.freedesktop.DBus -\u003e destination\u003d(null destination) serial\u003d4294967295 path\u003d/org/freedesktop/DBus; interface\u003dorg.freedesktop.DBus; member\u003dNameOwnerChanged\n   string \":1.108\"\n   string \"\"\n   string \":1.108\"\nDevice ID                 : 0\nDevice Revision           : 0\nFirmware Revision         : 0.00\nIPMI Version              : 2.0\nManufacturer ID           : 51850\nManufacturer Name         : Unknown (0xCA8A)\nProduct ID                : 123 (0x007b)\nProduct Name              : Unknown (0x7B)\nDevice Available          : yes\nProvides Device SDRs      : yes\nAdditional Device Support :\n    Sensor Device\n    SDR Repository Device\n    SEL Device\n    FRU Inventory Device\n    IPMB Event Receiver\n    IPMB Event Generator\n    Chassis Device\nAux Firmware Rev Info     : \n    0x00\n    0x00\n    0x20\n    0x00\nroot@NULL:~# signal time\u003d917.971908 sender\u003dorg.freedesktop.DBus -\u003e destination\u003d(null destination) serial\u003d4294967295 path\u003d/org/freedesktop/DBus; interface\u003dorg.freedesktop.DBus; member\u003dNameOwnerChanged\n   string \":1.108\"\n   string \":1.108\"\n   string \"\"\nsignal time\u003d921.201810 sender\u003dorg.freedesktop.DBus -\u003e destination\u003d(null destination) serial\u003d4294967295 path\u003d/org/freedesktop/DBus; interface\u003dorg.freedesktop.DBus; member\u003dNameOwnerChanged\n   string \"org.freedesktop.hostname1\"",
+      "parentUuid": "1f3fde35_34c76f20",
+      "range": {
+        "startLine": 11,
+        "startChar": 34,
+        "endLine": 11,
+        "endChar": 66
+      },
+      "revId": "66585a48083aa5bdbe298d31bb701c311b60d8e0",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "21329f29_fcf84568",
         "filename": "/COMMIT_MSG",
         "patchSetId": 3
@@ -37,6 +61,30 @@
       "writtenOn": "2022-08-19T01:00:54Z",
       "side": 1,
       "message": "Please wrap lines at 72",
+      "range": {
+        "startLine": 7,
+        "startChar": 0,
+        "endLine": 17,
+        "endChar": 0
+      },
+      "revId": "66585a48083aa5bdbe298d31bb701c311b60d8e0",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "af7ced19_a51b40b3",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 3
+      },
+      "lineNbr": 17,
+      "author": {
+        "id": 1001104
+      },
+      "writtenOn": "2022-08-23T07:32:01Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "21329f29_fcf84568",
       "range": {
         "startLine": 7,
         "startChar": 0,
