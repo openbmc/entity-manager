@@ -230,6 +230,7 @@ if not build_tests.disabled()
             'test/test_fru-utils.cpp',
             'src/fru_utils.cpp',
             'src/fru_reader.cpp',
+            'src/fru_device.cpp',
             cpp_args: test_boost_args,
             dependencies: [
                 boost,
