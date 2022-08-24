@@ -692,46 +692,14 @@ void addFruObjectToDbus(
         unknownBusObjectCount++;
     }
 
-    productName = "/xyz/openbmc_project/FruDevice/" + productName;
-    // avoid duplicates by checking to see if on a mux
-    if (bus > 0)
+    std::optional<int> index = findIndexForFRU(dbusInterfaceMap, productName);
+    if (index.has_value())
     {
-        int highest = -1;
-        bool found = false;
-
-        for (auto const& busIface : dbusInterfaceMap)
-        {
-            std::string path = busIface.second->get_object_path();
-            if (std::regex_match(path, std::regex(productName + "(_\\d+|)$")))
-            {
-                // Check if the match named has extra information.
-                found = true;
-                std::smatch baseMatch;
-
-                bool match = std::regex_match(
-                    path, baseMatch, std::regex(productName + "_(\\d+)$"));
-                if (match)
-                {
-                    if (baseMatch.size() == 2)
-                    {
-                        std::ssub_match baseSubMatch = baseMatch[1];
-                        std::string base = baseSubMatch.str();
-
-                        int value = std::stoi(base);
-                        highest = (value > highest) ? value : highest;
-                    }
-                }
-            }
-        } // end searching objects
-
-        if (found)
-        {
-            // We found something with the same name.  If highest was still -1,
-            // it means this new entry will be _0.
-            productName += "_";
-            productName += std::to_string(++highest);
-        }
+        productName += "_";
+        productName += std::to_string(++(*index));
     }
+
+    productName = "/xyz/openbmc_project/FruDevice/" + productName;
 
     std::shared_ptr<sdbusplus::asio::dbus_interface> iface =
         objServer.add_interface(productName, "xyz.openbmc_project.FruDevice");
