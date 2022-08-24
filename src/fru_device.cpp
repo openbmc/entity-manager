@@ -161,12 +161,6 @@ static int getRootBus(size_t bus)
     return std::stoi(filename.substr(0, findBus));
 }
 
-static bool isMuxBus(size_t bus)
-{
-    return is_symlink(std::filesystem::path(
-        "/sys/bus/i2c/devices/i2c-" + std::to_string(bus) + "/mux_device"));
-}
-
 static void makeProbeInterface(size_t bus, size_t address,
                                sdbusplus::asio::object_server& objServer)
 {
@@ -683,58 +677,9 @@ void addFruObjectToDbus(
         unknownBusObjectCount++;
     }
 
+    searchFRUDbusObjects(bus, address, dbusInterfaceMap, productName);
+
     productName = "/xyz/openbmc_project/FruDevice/" + productName;
-    // avoid duplicates by checking to see if on a mux
-    if (bus > 0)
-    {
-        int highest = -1;
-        bool found = false;
-
-        for (auto const& busIface : dbusInterfaceMap)
-        {
-            std::string path = busIface.second->get_object_path();
-            if (std::regex_match(path, std::regex(productName + "(_\\d+|)$")))
-            {
-                if (isMuxBus(bus) && bus != busIface.first.first &&
-                    address == busIface.first.second &&
-                    (getFRUInfo(static_cast<uint8_t>(busIface.first.first),
-                                static_cast<uint8_t>(busIface.first.second)) ==
-                     getFRUInfo(static_cast<uint8_t>(bus),
-                                static_cast<uint8_t>(address))))
-                {
-                    // This device is already added to the lower numbered bus,
-                    // do not replicate it.
-                    return;
-                }
-
-                // Check if the match named has extra information.
-                found = true;
-                std::smatch baseMatch;
-
-                bool match = std::regex_match(
-                    path, baseMatch, std::regex(productName + "_(\\d+)$"));
-                if (match)
-                {
-                    if (baseMatch.size() == 2)
-                    {
-                        std::ssub_match baseSubMatch = baseMatch[1];
-                        std::string base = baseSubMatch.str();
-
-                        int value = std::stoi(base);
-                        highest = (value > highest) ? value : highest;
-                    }
-                }
-            }
-        } // end searching objects
-
-        if (found)
-        {
-            // We found something with the same name.  If highest was still -1,
-            // it means this new entry will be _0.
-            productName += "_";
-            productName += std::to_string(++highest);
-        }
-    }
 
     std::shared_ptr<sdbusplus::asio::dbus_interface> iface =
         objServer.add_interface(productName, "xyz.openbmc_project.FruDevice");

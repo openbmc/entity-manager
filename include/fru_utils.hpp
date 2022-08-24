@@ -19,6 +19,7 @@
 #include "fru_reader.hpp"
 
 #include <boost/container/flat_map.hpp>
+#include <sdbusplus/asio/object_server.hpp>
 
 #include <cstdint>
 #include <functional>
@@ -90,6 +91,8 @@ inline const std::string& getFruAreaName(fruAreas area)
     return fruAreaNames[static_cast<unsigned int>(area)];
 }
 
+bool isMuxBus(size_t bus);
+
 std::tm intelEpoch(void);
 
 char sixBitToChar(uint8_t val);
@@ -157,3 +160,10 @@ bool validateHeader(const std::array<uint8_t, I2C_SMBUS_BLOCK_MAX>& blockData);
 /// \param area - the area
 /// \return the field offset
 unsigned int getHeaderAreaFieldOffset(fruAreas area);
+
+void searchFRUDbusObjects(
+    uint32_t bus, uint32_t address,
+    boost::container::flat_map<
+        std::pair<size_t, size_t>,
+        std::shared_ptr<sdbusplus::asio::dbus_interface>>& dbusInterfaceMap,
+    std::string& productName);
