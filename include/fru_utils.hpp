@@ -19,6 +19,7 @@
 #include "fru_reader.hpp"
 
 #include <boost/container/flat_map.hpp>
+#include <sdbusplus/asio/object_server.hpp>
 
 #include <cstdint>
 #include <functional>
@@ -194,3 +195,18 @@ bool copyRestFRUArea(std::vector<uint8_t>& fruData,
                      const std::string& propertyName,
                      struct FruArea& fruAreaParams,
                      std::vector<uint8_t>& restFRUAreaFieldsData);
+
+/// \brief Get all device dbus path and match path with product name using
+/// regular expression and find the device index for all devices.
+/// \param bus - I2C Bus number of the fru device.
+/// \param address - I2C Bus address of the fru device.
+/// \param dbusInterfaceMap - Map to store fru device dbus path and interface
+/// \param productName - fru device product name.
+/// \return optional<int> highest index for fru device on success, return
+/// nullopt on failure.
+std::optional<int> findIndexForFRU(
+    uint32_t bus, uint32_t address,
+    boost::container::flat_map<
+        std::pair<size_t, size_t>,
+        std::shared_ptr<sdbusplus::asio::dbus_interface>>& dbusInterfaceMap,
+    std::string& productName);
