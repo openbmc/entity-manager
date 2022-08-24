@@ -19,6 +19,7 @@
 #include "fru_reader.hpp"
 
 #include <boost/container/flat_map.hpp>
+#include <sdbusplus/asio/object_server.hpp>
 
 #include <cstdint>
 #include <functional>
@@ -97,6 +98,8 @@ inline const std::string& getFruAreaName(fruAreas area)
 {
     return fruAreaNames[static_cast<unsigned int>(area)];
 }
+
+bool isMuxBus(size_t bus);
 
 std::tm intelEpoch(void);
 
@@ -177,3 +180,10 @@ bool findFruAreaLocationAndField(std::vector<uint8_t>& fruData,
                                  const std::string& propertyName,
                                  struct FruArea& fruAreaParams,
                                  size_t& fruDataIter);
+
+std::optional<int> findIndexForFRU(
+    uint32_t bus, uint32_t address,
+    boost::container::flat_map<
+        std::pair<size_t, size_t>,
+        std::shared_ptr<sdbusplus::asio::dbus_interface>>& dbusInterfaceMap,
+    std::string& productName);
