@@ -941,3 +941,49 @@ bool copyRestFRUArea(std::vector<uint8_t>& fruData,
 
     return true;
 }
+
+// Get all device dbus path and match path with product name using
+// regular expression and find the device index for all devices.
+
+std::optional<int> findIndexForFRU(
+    boost::container::flat_map<
+        std::pair<size_t, size_t>,
+        std::shared_ptr<sdbusplus::asio::dbus_interface>>& dbusInterfaceMap,
+    std::string& productName)
+{
+
+    int highest = -1;
+    bool found = false;
+
+    for (auto const& busIface : dbusInterfaceMap)
+    {
+        std::string path = busIface.second->get_object_path();
+        if (std::regex_match(path, std::regex(productName + "(_\\d+|)$")))
+        {
+
+            // Check if the match named has extra information.
+            found = true;
+            std::smatch baseMatch;
+
+            bool match = std::regex_match(path, baseMatch,
+                                          std::regex(productName + "_(\\d+)$"));
+            if (match)
+            {
+                if (baseMatch.size() == 2)
+                {
+                    std::ssub_match baseSubMatch = baseMatch[1];
+                    std::string base = baseSubMatch.str();
+
+                    int value = std::stoi(base);
+                    highest = (value > highest) ? value : highest;
+                }
+            }
+        }
+    } // end searching objects
+
+    if (!found)
+    {
+        return std::nullopt;
+    }
+    return highest;
+}
