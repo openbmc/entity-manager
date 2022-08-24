@@ -36,6 +36,12 @@ extern "C"
 static constexpr bool debug = false;
 constexpr size_t fruVersion = 1; // Current FRU spec version number is 1
 
+bool isMuxBus(size_t bus)
+{
+    return is_symlink(std::filesystem::path(
+        "/sys/bus/i2c/devices/i2c-" + std::to_string(bus) + "/mux_device"));
+}
+
 std::tm intelEpoch(void)
 {
     std::tm val = {};
@@ -783,4 +789,58 @@ std::vector<uint8_t>& getFRUInfo(const uint8_t& bus, const uint8_t& address)
     std::vector<uint8_t>& ret = device->second;
 
     return ret;
+}
+
+std::optional<int> findIndexForFRU(
+    uint32_t bus, uint32_t address,
+    boost::container::flat_map<
+        std::pair<size_t, size_t>,
+        std::shared_ptr<sdbusplus::asio::dbus_interface>>& dbusInterfaceMap,
+    std::string& productName)
+{
+
+    // avoid duplicates by checking to see if on a mux
+    int highest = -1;
+
+    for (auto const& busIface : dbusInterfaceMap)
+    {
+        std::string path = busIface.second->get_object_path();
+        if (std::regex_match(path, std::regex(productName + "(_\\d+|)$")))
+        {
+            if (isMuxBus(bus) && bus != busIface.first.first &&
+                address == busIface.first.second &&
+                (getFRUInfo(static_cast<uint8_t>(busIface.first.first),
+                            static_cast<uint8_t>(busIface.first.second)) ==
+                 getFRUInfo(static_cast<uint8_t>(bus),
+                            static_cast<uint8_t>(address))))
+            {
+                // This device is already added to the lower numbered bus,
+                // do not replicate it.
+                return std::nullopt;
+            }
+
+            // Check if the match named has extra information.
+            std::smatch baseMatch;
+
+            bool match = std::regex_match(path, baseMatch,
+                                          std::regex(productName + "_(\\d+)$"));
+            if (match)
+            {
+                if (baseMatch.size() == 2)
+                {
+                    std::ssub_match baseSubMatch = baseMatch[1];
+                    std::string base = baseSubMatch.str();
+
+                    int value = std::stoi(base);
+                    highest = (value > highest) ? value : highest;
+                }
+            }
+        }
+    } // end searching objects
+
+    if (highest == -1)
+    {
+        return std::nullopt;
+    }
+    return highest;
 }
