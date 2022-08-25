@@ -1415,8 +1415,11 @@ int main()
             auto findState = values.find("CurrentHostState");
             if (findState != values.end())
             {
-                powerIsOn = boost::ends_with(
-                    std::get<std::string>(findState->second), "Running");
+                if (std::get<std::string>(findState->second) ==
+                    "xyz.openbmc_project.State.Host.HostState.Running")
+                {
+                    powerIsOn = true;
+                }
             }
 
             if (powerIsOn)
