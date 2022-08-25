@@ -628,6 +628,26 @@ void postToDbus(const nlohmann::json& newConfiguration,
             }
         }
 
+        // "ContainsThisBMC"
+        auto findHasThisBMC = boardValues.find("ContainsThisBMC");
+        if (findHasThisBMC != boardValues.end())
+        {
+            // Create a "BMC" sub-item with an
+            // xyz.openbmc_project.Inventory.Item.Bmc interface
+            std::shared_ptr<sdbusplus::asio::dbus_interface> bmcIface =
+                createInterface(objServer, boardName + "/BMC",
+                                "xyz.openbmc_project.Inventory.Item.Bmc",
+                                boardName);
+
+            // Populate an "xyz.openbmc_project.Bmc" interface for this sub-item
+            // Do not write system JSON since this interface is generated
+            // on-the-fly
+            bmcIface->register_property(
+                "Type", std::string("xyz.openbmc_project.Inventory.Item.Bmc"));
+            bmcIface->register_property("Name", std::string("BMC"));
+            bmcIface->initialize();
+        }
+
         auto exposes = boardValues.find("Exposes");
         if (exposes == boardValues.end())
         {
