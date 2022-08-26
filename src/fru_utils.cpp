@@ -784,3 +784,19 @@ std::vector<uint8_t>& getFRUInfo(const uint8_t& bus, const uint8_t& address)
 
     return ret;
 }
+
+bool getFruData(std::vector<uint8_t>& fruData, uint32_t bus, uint32_t address)
+{
+    try
+    {
+        fruData = getFRUInfo(static_cast<uint8_t>(bus),
+                             static_cast<uint8_t>(address));
+    }
+    catch (const std::invalid_argument& e)
+    {
+        std::cerr << "Failure getting FRU Info" << e.what() << "\n";
+        return false;
+    }
+
+    return !fruData.empty();
+}
