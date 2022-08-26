@@ -177,3 +177,5 @@ bool findFruAreaLocationAndField(std::vector<uint8_t>& fruData,
                                  const std::string& propertyName,
                                  struct FruArea& fruAreaParams,
                                  size_t& fruDataIter);
+
+bool getFruData(std::vector<uint8_t>& fruData, uint32_t bus, uint32_t address);
