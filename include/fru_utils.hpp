@@ -207,3 +207,5 @@ std::optional<int> findIndexForFRU(
         std::pair<size_t, size_t>,
         std::shared_ptr<sdbusplus::asio::dbus_interface>>& dbusInterfaceMap,
     std::string& productName);
+
+bool getFruData(std::vector<uint8_t>& fruData, uint32_t bus, uint32_t address);
