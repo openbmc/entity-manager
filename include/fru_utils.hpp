@@ -194,3 +194,5 @@ bool copyRestFRUArea(std::vector<uint8_t>& fruData,
                      const std::string& propertyName,
                      struct FruArea& fruAreaParams,
                      std::vector<uint8_t>& restFRUAreaFieldsData);
+
+bool getFruData(std::vector<uint8_t>& fruData, uint32_t bus, uint32_t address);
