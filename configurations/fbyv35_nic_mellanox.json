@@ -3,13 +3,22 @@
         {
             "Address": "0x1f",
             "Bus": 8,
-            "Name": "NIC_SENSOR_TEMP",
+            "Name": "NIC_SENSOR_REMOTE_TEMP",
+            "Name1": "NIC_SENSOR_TEMP",
             "Thresholds": [
                 {
                     "Direction": "greater than",
+                    "Index": 2,
                     "Name": "upper critical",
                     "Severity": 1,
                     "Value": 105
+                },
+                {
+                    "Direction": "greater than",
+                    "Index": 2,
+                    "Name": "upper non recoverable",
+                    "Severity": 4,
+                    "Value": 120
                 }
             ],
             "Type": "TMP421"
