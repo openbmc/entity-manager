@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "78542cf1_34fc7282",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 3
+      },
+      "lineNbr": 16,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2022-08-28T18:11:14Z",
+      "side": 1,
+      "message": "I\u0027m quite confused, you start with \"we use it to map ipmi parameters\" (paraphrasing)\n\nThen you have this sentence on I2CDevice, which isn\u0027t an IPMI parameter that I\u0027m aware of, so I\u0027m a little confused.\n\nAlso, and more importantly, an entity is not in itself an i2c device.  Entities in many cases are a COLLECTION of i2c devices, so this information needs to drop down to the next level, and get attached to each individual sensor.  Most of the dbus-sensors instances already have this information (bus + address), so it should be pretty trivial to just make dbus-sensors include this information by default, with no configuration needed at all.\n\nWith that said, I\u0027m still not sure WHY it\u0027s needed after reading this message, so lets regroup and figure that out.\n\nDecorator.IPMI might have the same issue, although to a lesser extent?",
+      "range": {
+        "startLine": 15,
+        "startChar": 0,
+        "endLine": 16,
+        "endChar": 36
+      },
+      "revId": "3069d721118ab22135582b06cdf005ed7c24572f",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2334713b_fd9419df",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 3
+      },
+      "lineNbr": 32,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2022-08-28T18:11:14Z",
+      "side": 1,
+      "message": "?????  This makes no sense.  EntityInstance is supposed to be the one indexed instance of a particular device.  Unless you\u0027re doing math on your bus, it\u0027s unlikely that $BUS is going to point to 1, 2, 3, and it\u0027s certainly not gauranteed.  Please talk this through in your commit message.",
+      "range": {
+        "startLine": 32,
+        "startChar": 0,
+        "endLine": 32,
+        "endChar": 32
+      },
+      "revId": "3069d721118ab22135582b06cdf005ed7c24572f",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    }
+  ]
+}
