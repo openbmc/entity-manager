@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "a28d3d1e_ea37342d",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2022-08-28T17:44:50Z",
+      "side": 1,
+      "message": "Overall, I\u0027m in line with the goals of this patch.  My only issues are:\n\nAs-written, it\u0027s duplicating information.  The information for which matches we need are already present in the EM config files, which are already parsed at startup.  There is no need for a second config file.\n\nHave a config file with DBus specific information breaks the \"Config files should be able to be written by users with no knowledge of dbus\" guideline.\n\nSo, get this being read from the existing probe statements, and not require a special config file, then I think I\u0027m fine with this behavior.",
+      "revId": "4aee987281886c09d00b2ac0b2cfbd1169b2c8cd",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    }
+  ]
+}
