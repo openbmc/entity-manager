@@ -62,6 +62,16 @@ enum class fruAreas
     fruAreaMultirecord
 };
 
+struct FruArea
+{
+    ssize_t Length;
+    size_t FieldLoc;
+    size_t Start;
+    size_t Size;
+    size_t End;
+    size_t fruDataIter;
+};
+
 const std::vector<std::string> fruAreaNames = {"INTERNAL", "CHASSIS", "BOARD",
                                                "PRODUCT", "MULTIRECORD"};
 const std::regex nonAsciiRegex("[^\x01-\x7f]");
@@ -157,3 +167,7 @@ bool validateHeader(const std::array<uint8_t, I2C_SMBUS_BLOCK_MAX>& blockData);
 /// \param area - the area
 /// \return the field offset
 unsigned int getHeaderAreaFieldOffset(fruAreas area);
+
+bool updateFRUArea(std::vector<uint8_t>& fruData,
+                   const std::string& propertyName,
+                   struct FruArea fruAreaParams);

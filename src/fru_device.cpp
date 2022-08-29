@@ -1108,118 +1108,37 @@ bool updateFRUProperty(
         return false;
     }
 
-    const std::vector<std::string>* fruAreaFieldNames = nullptr;
+    struct FruArea fruAreaParams;
 
-    uint8_t fruAreaOffsetFieldValue = 0;
-    size_t offset = 0;
-    std::string areaName = propertyName.substr(0, propertyName.find('_'));
-    std::string propertyNamePrefix = areaName + "_";
-    auto it = std::find(fruAreaNames.begin(), fruAreaNames.end(), areaName);
-    if (it == fruAreaNames.end())
+    if (!updateFRUArea(fruData, propertyName, fruAreaParams))
     {
-        std::cerr << "Can't parse area name for property " << propertyName
-                  << " \n";
+        std::cerr << "fruAreaUpdate failed \n";
         return false;
     }
-    fruAreas fruAreaToUpdate = static_cast<fruAreas>(it - fruAreaNames.begin());
-    fruAreaOffsetFieldValue =
-        fruData[getHeaderAreaFieldOffset(fruAreaToUpdate)];
-    switch (fruAreaToUpdate)
-    {
-        case fruAreas::fruAreaChassis:
-            offset = 3; // chassis part number offset. Skip fixed first 3 bytes
-            fruAreaFieldNames = &chassisFruAreas;
-            break;
-        case fruAreas::fruAreaBoard:
-            offset = 6; // board manufacturer offset. Skip fixed first 6 bytes
-            fruAreaFieldNames = &boardFruAreas;
-            break;
-        case fruAreas::fruAreaProduct:
-            // Manufacturer name offset. Skip fixed first 3 product fru bytes
-            // i.e. version, area length and language code
-            offset = 3;
-            fruAreaFieldNames = &productFruAreas;
-            break;
-        default:
-            std::cerr << "Don't know how to handle property " << propertyName
-                      << " \n";
-            return false;
-    }
-    if (fruAreaOffsetFieldValue == 0)
-    {
-        std::cerr << "FRU Area for " << propertyName << " not present \n";
-        return false;
-    }
-
-    size_t fruAreaStart = fruAreaOffsetFieldValue * fruBlockSize;
-    size_t fruAreaSize = fruData[fruAreaStart + 1] * fruBlockSize;
-    size_t fruAreaEnd = fruAreaStart + fruAreaSize;
-    size_t fruDataIter = fruAreaStart + offset;
-    size_t skipToFRUUpdateField = 0;
-    ssize_t fieldLength = 0;
-
-    bool found = false;
-    for (const auto& field : *fruAreaFieldNames)
-    {
-        skipToFRUUpdateField++;
-        if (propertyName == propertyNamePrefix + field)
-        {
-            found = true;
-            break;
-        }
-    }
-    if (!found)
-    {
-        std::size_t pos = propertyName.find(fruCustomFieldName);
-        if (pos == std::string::npos)
-        {
-            std::cerr << "PropertyName doesn't exist in FRU Area Vectors: "
-                      << propertyName << "\n";
-            return false;
-        }
-        std::string fieldNumStr =
-            propertyName.substr(pos + fruCustomFieldName.length());
-        size_t fieldNum = std::stoi(fieldNumStr);
-        if (fieldNum == 0)
-        {
-            std::cerr << "PropertyName not recognized: " << propertyName
-                      << "\n";
-            return false;
-        }
-        skipToFRUUpdateField += fieldNum;
-    }
-
-    for (size_t i = 1; i < skipToFRUUpdateField; i++)
-    {
-        fieldLength = getFieldLength(fruData[fruDataIter]);
-        if (fieldLength < 0)
-        {
-            break;
-        }
-        fruDataIter += 1 + fieldLength;
-    }
-    size_t fruUpdateFieldLoc = fruDataIter;
 
     // Push post update fru field bytes to a vector
-    fieldLength = getFieldLength(fruData[fruUpdateFieldLoc]);
-    if (fieldLength < 0)
+    fruAreaParams.Length = getFieldLength(fruData[fruAreaParams.FieldLoc]);
+    if (fruAreaParams.Length < 0)
     {
         std::cerr << "Property " << propertyName << " not present \n";
         return false;
     }
-    fruDataIter += 1 + fieldLength;
-    size_t restFRUFieldsLoc = fruDataIter;
+    fruAreaParams.fruDataIter += 1 + fruAreaParams.Length;
+    size_t restFRUFieldsLoc = fruAreaParams.fruDataIter;
     size_t endOfFieldsLoc = 0;
-    while ((fieldLength = getFieldLength(fruData[fruDataIter])) >= 0)
+    while ((fruAreaParams.Length =
+                getFieldLength(fruData[fruAreaParams.fruDataIter])) >= 0)
     {
-        if (fruDataIter >= (fruAreaStart + fruAreaSize))
+        if (fruAreaParams.fruDataIter >=
+            (fruAreaParams.Start + fruAreaParams.Size))
         {
-            fruDataIter = fruAreaStart + fruAreaSize;
+            fruAreaParams.fruDataIter =
+                fruAreaParams.Start + fruAreaParams.Size;
             break;
         }
-        fruDataIter += 1 + fieldLength;
+        fruAreaParams.fruDataIter += 1 + fruAreaParams.Length;
     }
-    endOfFieldsLoc = fruDataIter;
+    endOfFieldsLoc = fruAreaParams.fruDataIter;
 
     std::vector<uint8_t> restFRUAreaFieldsData;
     std::copy_n(fruData.begin() + restFRUFieldsLoc,
@@ -1249,8 +1168,9 @@ bool updateFRUProperty(
 
     // check FRU area size
     size_t fruAreaDataSize =
-        ((fruUpdateFieldLoc - fruAreaStart + 1) + restFRUAreaFieldsData.size());
-    size_t fruAreaAvailableSize = fruAreaSize - fruAreaDataSize;
+        ((fruAreaParams.FieldLoc - fruAreaParams.Start + 1) +
+         restFRUAreaFieldsData.size());
+    size_t fruAreaAvailableSize = fruAreaParams.Size - fruAreaDataSize;
     if ((updatePropertyReqLen + 1) > fruAreaAvailableSize)
     {
 
@@ -1259,10 +1179,11 @@ bool updateFRUProperty(
         // round size to 8-byte blocks
         newFRUAreaSize =
             ((newFRUAreaSize - 1) / fruBlockSize + 1) * fruBlockSize;
-        size_t newFRUDataSize = fruData.size() + newFRUAreaSize - fruAreaSize;
+        size_t newFRUDataSize =
+            fruData.size() + newFRUAreaSize - fruAreaParams.Size;
         fruData.resize(newFRUDataSize);
-        fruAreaSize = newFRUAreaSize;
-        fruAreaEnd = fruAreaStart + fruAreaSize;
+        fruAreaParams.Size = newFRUAreaSize;
+        fruAreaParams.End = fruAreaParams.Start + fruAreaParams.Size;
 #else
         std::cerr << "FRU field length: " << updatePropertyReqLen + 1
                   << " should not be greater than available FRU area size: "
@@ -1273,21 +1194,21 @@ bool updateFRUProperty(
 
     // write new requested property field length and data
     constexpr uint8_t newTypeLenMask = 0xC0;
-    fruData[fruUpdateFieldLoc] =
+    fruData[fruAreaParams.FieldLoc] =
         static_cast<uint8_t>(updatePropertyReqLen | newTypeLenMask);
-    fruUpdateFieldLoc++;
+    fruAreaParams.FieldLoc++;
     std::copy(updatePropertyReq.begin(), updatePropertyReq.end(),
-              fruData.begin() + fruUpdateFieldLoc);
+              fruData.begin() + fruAreaParams.FieldLoc);
 
     // Copy remaining data to main fru area - post updated fru field vector
-    restFRUFieldsLoc = fruUpdateFieldLoc + updatePropertyReqLen;
+    restFRUFieldsLoc = fruAreaParams.FieldLoc + updatePropertyReqLen;
     size_t fruAreaDataEnd = restFRUFieldsLoc + restFRUAreaFieldsData.size();
     std::copy(restFRUAreaFieldsData.begin(), restFRUAreaFieldsData.end(),
               fruData.begin() + restFRUFieldsLoc);
 
     // Update final fru with new fru area length and checksum
     unsigned int nextFRUAreaNewLoc = updateFRUAreaLenAndChecksum(
-        fruData, fruAreaStart, fruAreaDataEnd, fruAreaEnd);
+        fruData, fruAreaParams.Start, fruAreaDataEnd, fruAreaParams.End);
 
 #ifdef ENABLE_FRU_AREA_RESIZE
     ++nextFRUAreaNewLoc;
