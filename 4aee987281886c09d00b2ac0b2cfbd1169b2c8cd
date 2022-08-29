@@ -20,6 +20,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "2e2fa4a7_c3b05b10",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1000945
+      },
+      "writtenOn": "2022-08-29T05:48:54Z",
+      "side": 1,
+      "message": "For nameOwnerChangedMatches we can D-Bus object service in probe configuration.\n\"Probe\": \"xyz.openbmc_project.FruDevice({\u0027PRODUCT_PRODUCT_NAME\u0027: \u0027.*STB\u0027})\",\nBut for interfaceAdded and interfaceRemoved, we need the object path which are not available in entity-manager configuration.",
+      "parentUuid": "a28d3d1e_ea37342d",
+      "revId": "4aee987281886c09d00b2ac0b2cfbd1169b2c8cd",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "e81220e9_493ad3db",
         "filename": "config.json",
         "patchSetId": 4
@@ -37,6 +55,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "ce06142f_6d04634d",
+        "filename": "config.json",
+        "patchSetId": 4
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 1000945
+      },
+      "writtenOn": "2022-08-29T05:48:54Z",
+      "side": 1,
+      "message": "No, it will not. Config empty string mean match all interfaces.",
+      "parentUuid": "e81220e9_493ad3db",
+      "revId": "4aee987281886c09d00b2ac0b2cfbd1169b2c8cd",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "b2babd0d_3a80b748",
         "filename": "config.json",
         "patchSetId": 4
@@ -48,6 +84,30 @@
       "writtenOn": "2022-08-28T17:46:54Z",
       "side": 1,
       "message": "Why empty string?",
+      "range": {
+        "startLine": 4,
+        "startChar": 8,
+        "endLine": 4,
+        "endChar": 10
+      },
+      "revId": "4aee987281886c09d00b2ac0b2cfbd1169b2c8cd",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5abf6cf8_6d9bfaed",
+        "filename": "config.json",
+        "patchSetId": 4
+      },
+      "lineNbr": 4,
+      "author": {
+        "id": 1000945
+      },
+      "writtenOn": "2022-08-29T05:48:54Z",
+      "side": 1,
+      "message": "We have three case in the configuration of one match type:\n1. Ignore one match type: by configure empty match interfaces array for that match type.\n2. Match all interfaces for one match type: by config empty match string in match interfaces array.\n3. Match specific interfaces by configuring those interfaces in match arrays.\nThat why I use Empty string. We can update it to \"Match all\" if need.",
+      "parentUuid": "b2babd0d_3a80b748",
       "range": {
         "startLine": 4,
         "startChar": 8,
