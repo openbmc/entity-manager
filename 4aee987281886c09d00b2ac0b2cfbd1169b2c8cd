@@ -38,6 +38,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "4e55c05a_388170c4",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2022-08-29T17:03:41Z",
+      "side": 1,
+      "message": "\u003e we need the object path\n\nThat\u0027s a fair point.  In terms of tradeoffs though, from my perspective, the complexity of every user understanding, on a per-system basis, what a dbus object_path, interfaces added, and match expression are isn\u0027t worth the complexity compared to what we have today.\n\nWe should look into if there\u0027s a way to do a more specific match using arg1namespace, relying on the recent changes being made to stabilize the object paths for inventory that aren\u0027t yet complete.",
+      "parentUuid": "2e2fa4a7_c3b05b10",
+      "revId": "4aee987281886c09d00b2ac0b2cfbd1169b2c8cd",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "e81220e9_493ad3db",
         "filename": "config.json",
         "patchSetId": 4
@@ -67,6 +85,24 @@
       "side": 1,
       "message": "No, it will not. Config empty string mean match all interfaces.",
       "parentUuid": "e81220e9_493ad3db",
+      "revId": "4aee987281886c09d00b2ac0b2cfbd1169b2c8cd",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "91af3d74_94cbc66a",
+        "filename": "config.json",
+        "patchSetId": 4
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2022-08-29T17:03:41Z",
+      "side": 1,
+      "message": "That is not clear at all in the commit message.",
+      "parentUuid": "ce06142f_6d04634d",
       "revId": "4aee987281886c09d00b2ac0b2cfbd1169b2c8cd",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
@@ -108,6 +144,30 @@
       "side": 1,
       "message": "We have three case in the configuration of one match type:\n1. Ignore one match type: by configure empty match interfaces array for that match type.\n2. Match all interfaces for one match type: by config empty match string in match interfaces array.\n3. Match specific interfaces by configuring those interfaces in match arrays.\nThat why I use Empty string. We can update it to \"Match all\" if need.",
       "parentUuid": "b2babd0d_3a80b748",
+      "range": {
+        "startLine": 4,
+        "startChar": 8,
+        "endLine": 4,
+        "endChar": 10
+      },
+      "revId": "4aee987281886c09d00b2ac0b2cfbd1169b2c8cd",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "11103c79_7a4e6c87",
+        "filename": "config.json",
+        "patchSetId": 4
+      },
+      "lineNbr": 4,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2022-08-29T17:03:41Z",
+      "side": 1,
+      "message": "this this is all great detail that should ideally be in your commit message.",
+      "parentUuid": "5abf6cf8_6d9bfaed",
       "range": {
         "startLine": 4,
         "startChar": 8,
