@@ -784,3 +784,103 @@ std::vector<uint8_t>& getFRUInfo(const uint8_t& bus, const uint8_t& address)
 
     return ret;
 }
+
+bool fruAreaUpdate(std::vector<uint8_t>& fruData,
+                   const std::string& propertyName)
+{
+    const std::vector<std::string>* fruAreaFieldNames = nullptr;
+
+    uint8_t fruAreaOffsetFieldValue = 0;
+    size_t offset = 0;
+    std::string areaName = propertyName.substr(0, propertyName.find('_'));
+    std::string propertyNamePrefix = areaName + "_";
+    auto it = std::find(fruAreaNames.begin(), fruAreaNames.end(), areaName);
+    if (it == fruAreaNames.end())
+    {
+        std::cerr << "Can't parse area name for property " << propertyName
+                  << " \n";
+        return false;
+    }
+    fruAreas fruAreaToUpdate = static_cast<fruAreas>(it - fruAreaNames.begin());
+    fruAreaOffsetFieldValue =
+        fruData[getHeaderAreaFieldOffset(fruAreaToUpdate)];
+    switch (fruAreaToUpdate)
+    {
+        case fruAreas::fruAreaChassis:
+            offset = 3; // chassis part number offset. Skip fixed first 3 bytes
+            fruAreaFieldNames = &chassisFruAreas;
+            break;
+        case fruAreas::fruAreaBoard:
+            offset = 6; // board manufacturer offset. Skip fixed first 6 bytes
+            fruAreaFieldNames = &boardFruAreas;
+            break;
+        case fruAreas::fruAreaProduct:
+            // Manufacturer name offset. Skip fixed first 3 product fru bytes
+            // i.e. version, area length and language code
+            offset = 3;
+            fruAreaFieldNames = &productFruAreas;
+            break;
+        default:
+            std::cerr << "Don't know how to handle property " << propertyName
+                      << " \n";
+            return false;
+    }
+    if (fruAreaOffsetFieldValue == 0)
+    {
+        std::cerr << "FRU Area for " << propertyName << " not present \n";
+        return false;
+    }
+
+    fruAreaParams.fruAreaStart = fruAreaOffsetFieldValue * fruBlockSize;
+    fruAreaParams.fruAreaSize =
+        fruData[fruAreaParams.fruAreaStart + 1] * fruBlockSize;
+    fruAreaParams.fruAreaEnd =
+        fruAreaParams.fruAreaStart + fruAreaParams.fruAreaSize;
+    fruAreaParams.fruDataIter = fruAreaParams.fruAreaStart + offset;
+    size_t skipToFRUUpdateField = 0;
+
+    bool found = false;
+    for (const auto& field : *fruAreaFieldNames)
+    {
+        skipToFRUUpdateField++;
+        if (propertyName == propertyNamePrefix + field)
+        {
+            found = true;
+            break;
+        }
+    }
+    if (!found)
+    {
+        std::size_t pos = propertyName.find(fruCustomFieldName);
+        if (pos == std::string::npos)
+        {
+            std::cerr << "PropertyName doesn't exist in FRU Area Vectors: "
+                      << propertyName << "\n";
+            return false;
+        }
+        std::string fieldNumStr =
+            propertyName.substr(pos + fruCustomFieldName.length());
+        size_t fieldNum = std::stoi(fieldNumStr);
+        if (fieldNum == 0)
+        {
+            std::cerr << "PropertyName not recognized: " << propertyName
+                      << "\n";
+            return false;
+        }
+        skipToFRUUpdateField += fieldNum;
+    }
+
+    for (size_t i = 1; i < skipToFRUUpdateField; i++)
+    {
+        fruAreaParams.fieldLength =
+            getFieldLength(fruData[fruAreaParams.fruDataIter]);
+        if (fruAreaParams.fieldLength < 0)
+        {
+            break;
+        }
+        fruAreaParams.fruDataIter += 1 + fruAreaParams.fieldLength;
+    }
+    fruAreaParams.fruUpdateFieldLoc = fruAreaParams.fruDataIter;
+
+    return true;
+}
