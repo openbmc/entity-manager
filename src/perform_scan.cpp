@@ -483,19 +483,22 @@ void PerformScan::updateSystemConfiguration(const nlohmann::json& recordRef,
     {
         std::string recordName = getRecordName(itr->interface, probeName);
 
-        auto record = lastJson.find(recordName);
-        if (record == lastJson.end())
+        auto record = _systemConfiguration.find(recordName);
+        if (record == _systemConfiguration.end())
         {
-            itr++;
-            continue;
+            record = lastJson.find(recordName);
+            if (record == lastJson.end())
+            {
+                itr++;
+                continue;
+            }
+
+            pruneRecordExposes(*record);
+
+            recordDiscoveredIdentifiers(usedNames, indexes, probeName, *record);
+
+            _systemConfiguration[recordName] = *record;
         }
-
-        pruneRecordExposes(*record);
-
-        recordDiscoveredIdentifiers(usedNames, indexes, probeName, *record);
-
-        // keep user changes
-        _systemConfiguration[recordName] = *record;
         _missingConfigurations.erase(recordName);
 
         // We've processed the device, remove it and advance the
