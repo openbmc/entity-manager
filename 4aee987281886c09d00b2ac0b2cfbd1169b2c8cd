@@ -74,6 +74,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "53666c6c_8b2d5ead",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1000945
+      },
+      "writtenOn": "2022-08-30T00:47:49Z",
+      "side": 1,
+      "message": "The primary thing is how can we create the D-Bus sensors early. Becase\nwhen the BMC boot up with the host is On, the other thermal control services such as phosphor-fan will detect the existing of fan sensors. Without fan sensors it can turn off the host because no ways to cool down system it need. Currently, Entity-manager and dbus-sensor will not work with phosphor-fan-presence because fan sensors is created late.\n\nThe idea is only watch the necessary signal in this case can be FruDevice. It can be any object path but not only FruDevice.\n\nI\u0027m quite not sure what is the problem of this patch set.\n+ It gives the user one option to speed up creating sensors in D-Bus sensors but still not break the current behavior of entity-manager and dbus-sensor when users do not update config.json.\n+ It improves the way entity-manager and dbus-sensors work.\n\nAbout FruDevice does not support ObjectManager yet, as my opinion, it should  support that. Because D-Bus interface should create the corresponding signals with the changing on the interface. Without the signal, there is noway to other services know about that changing.",
+      "parentUuid": "40c53ec5_4b83ce49",
+      "revId": "4aee987281886c09d00b2ac0b2cfbd1169b2c8cd",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "e81220e9_493ad3db",
         "filename": "config.json",
         "patchSetId": 4
@@ -121,6 +139,24 @@
       "side": 1,
       "message": "That is not clear at all in the commit message.",
       "parentUuid": "ce06142f_6d04634d",
+      "revId": "4aee987281886c09d00b2ac0b2cfbd1169b2c8cd",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "9e70f87a_4967fc17",
+        "filename": "config.json",
+        "patchSetId": 4
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 1000945
+      },
+      "writtenOn": "2022-08-30T00:47:49Z",
+      "side": 1,
+      "message": "Updated.",
+      "parentUuid": "91af3d74_94cbc66a",
       "revId": "4aee987281886c09d00b2ac0b2cfbd1169b2c8cd",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
@@ -186,6 +222,30 @@
       "side": 1,
       "message": "this this is all great detail that should ideally be in your commit message.",
       "parentUuid": "5abf6cf8_6d9bfaed",
+      "range": {
+        "startLine": 4,
+        "startChar": 8,
+        "endLine": 4,
+        "endChar": 10
+      },
+      "revId": "4aee987281886c09d00b2ac0b2cfbd1169b2c8cd",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "868fd721_269d72e8",
+        "filename": "config.json",
+        "patchSetId": 4
+      },
+      "lineNbr": 4,
+      "author": {
+        "id": 1000945
+      },
+      "writtenOn": "2022-08-30T00:47:49Z",
+      "side": 1,
+      "message": "Updated.",
+      "parentUuid": "11103c79_7a4e6c87",
       "range": {
         "startLine": 4,
         "startChar": 8,
