@@ -24,6 +24,30 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "cd7d7772_dd00aa16",
+        "filename": "src/fru_device.cpp",
+        "patchSetId": 2
+      },
+      "lineNbr": 1102,
+      "author": {
+        "id": 1000546
+      },
+      "writtenOn": "2022-08-30T05:13:13Z",
+      "side": 1,
+      "message": "This getFruData function code is part of updateFRUProperty function. updateFRUProperty function is common for all the fru related daemons(fru, ipmb based fru). That\u0027s why created a small helper function and moved to fru_utils.cpp.",
+      "parentUuid": "561434d2_0ba1d9c7",
+      "range": {
+        "startLine": 1096,
+        "startChar": 4,
+        "endLine": 1102,
+        "endChar": 0
+      },
+      "revId": "30dfcc1c6f9b1082284c2d174d1a2a5e5430c88e",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "47fa92b2_33257424",
@@ -37,6 +61,30 @@
       "writtenOn": "2022-08-29T21:28:58Z",
       "side": 1,
       "message": "remove",
+      "range": {
+        "startLine": 801,
+        "startChar": 0,
+        "endLine": 804,
+        "endChar": 5
+      },
+      "revId": "30dfcc1c6f9b1082284c2d174d1a2a5e5430c88e",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "d153635c_8b72a1ac",
+        "filename": "src/fru_utils.cpp",
+        "patchSetId": 2
+      },
+      "lineNbr": 804,
+      "author": {
+        "id": 1000546
+      },
+      "writtenOn": "2022-08-30T05:13:13Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "47fa92b2_33257424",
       "range": {
         "startLine": 801,
         "startChar": 0,
