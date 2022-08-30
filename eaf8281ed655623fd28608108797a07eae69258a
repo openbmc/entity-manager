@@ -26,6 +26,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "1c73cd83_fd1bcc11",
+        "filename": "src/fru_device.cpp",
+        "patchSetId": 9
+      },
+      "lineNbr": 680,
+      "author": {
+        "id": 1000546
+      },
+      "writtenOn": "2022-08-30T12:58:56Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "19920e5b_bc9436ab",
+      "range": {
+        "startLine": 680,
+        "startChar": 4,
+        "endLine": 680,
+        "endChar": 70
+      },
+      "revId": "eaf8281ed655623fd28608108797a07eae69258a",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "4796eee4_6bc19555",
         "filename": "src/fru_utils.cpp",
         "patchSetId": 9
@@ -37,6 +61,30 @@
       "writtenOn": "2022-08-29T21:19:19Z",
       "side": 1,
       "message": "This function finds the next index if the same FRU already exists. The function name does not describe it. \nCreate a function\n\nstd::optional\u003cint\u003e findIndexForFRU()\n{\n....\n\nif (highest \u003d\u003d -1) \n{\nreturn std::nullopt;\n}\nelse\n{\nreturn highest;\n}\n}",
+      "range": {
+        "startLine": 794,
+        "startChar": 5,
+        "endLine": 794,
+        "endChar": 25
+      },
+      "revId": "eaf8281ed655623fd28608108797a07eae69258a",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "34c7f89c_6c2e6785",
+        "filename": "src/fru_utils.cpp",
+        "patchSetId": 9
+      },
+      "lineNbr": 794,
+      "author": {
+        "id": 1000546
+      },
+      "writtenOn": "2022-08-30T12:58:56Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "4796eee4_6bc19555",
       "range": {
         "startLine": 794,
         "startChar": 5,
@@ -72,6 +120,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "ac6c0a4e_83938c60",
+        "filename": "src/fru_utils.cpp",
+        "patchSetId": 9
+      },
+      "lineNbr": 803,
+      "author": {
+        "id": 1000546
+      },
+      "writtenOn": "2022-08-30T12:58:56Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "f1cfbb1e_cfb0f2a1",
+      "range": {
+        "startLine": 803,
+        "startChar": 4,
+        "endLine": 803,
+        "endChar": 16
+      },
+      "revId": "eaf8281ed655623fd28608108797a07eae69258a",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "7a99d3a0_7afb51d9",
         "filename": "src/fru_utils.cpp",
         "patchSetId": 9
@@ -83,6 +155,30 @@
       "writtenOn": "2022-08-29T21:19:19Z",
       "side": 1,
       "message": "This is existing code, but I do see a bug in this logic. If identical FRUs are connected to the same address onto different legs of the mux, it does not increment the index as it should. \nThis can be addressed in a separate review. except that isMuxBus does not need to be moved if the issue is fixed first.",
+      "range": {
+        "startLine": 813,
+        "startChar": 1,
+        "endLine": 818,
+        "endChar": 64
+      },
+      "revId": "eaf8281ed655623fd28608108797a07eae69258a",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "23bc8420_c203366e",
+        "filename": "src/fru_utils.cpp",
+        "patchSetId": 9
+      },
+      "lineNbr": 818,
+      "author": {
+        "id": 1000546
+      },
+      "writtenOn": "2022-08-30T12:58:56Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "7a99d3a0_7afb51d9",
       "range": {
         "startLine": 813,
         "startChar": 1,
