@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4ddcad24_cfc35b19",
+        "filename": "src/fru_device.cpp",
+        "patchSetId": 3
+      },
+      "lineNbr": 1096,
+      "author": {
+        "id": 1000907
+      },
+      "writtenOn": "2022-08-30T13:25:14Z",
+      "side": 1,
+      "message": "Where else this function would be required ?\n\ndo we need to move it to a function if the call is only form a single place given that we already have getFRUInfo function in place",
+      "range": {
+        "startLine": 1096,
+        "startChar": 9,
+        "endLine": 1096,
+        "endChar": 19
+      },
+      "revId": "9376dc2cb87116483aba7b434edaf4bb37c924f7",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "adad79f3_471801b7",
+        "filename": "src/fru_utils.cpp",
+        "patchSetId": 3
+      },
+      "lineNbr": 792,
+      "author": {
+        "id": 1000907
+      },
+      "writtenOn": "2022-08-30T13:25:14Z",
+      "side": 1,
+      "message": "I see that we already have getFRUInfo function.\nWhat is the advantage of having this wrapper which returns true/false.\n\ni understand we are trying to have the try catch block in this function instead of duplicating this code everywhere... But just trying to understand other use cases",
+      "range": {
+        "startLine": 792,
+        "startChar": 18,
+        "endLine": 792,
+        "endChar": 28
+      },
+      "revId": "9376dc2cb87116483aba7b434edaf4bb37c924f7",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    }
+  ]
+}
