@@ -24,6 +24,30 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "fb69f10d_d53ebeec",
+        "filename": "src/fru_device.cpp",
+        "patchSetId": 3
+      },
+      "lineNbr": 1096,
+      "author": {
+        "id": 1000546
+      },
+      "writtenOn": "2022-08-30T14:01:01Z",
+      "side": 1,
+      "message": "The plan is create a new daemon (ipmb-fru-device) to add support for read/write the host FRU details from the ipmb interface.\n\nPhysical layer is the only difference between i2c based fru-device and ipmb based fru device. All the Fru handling, fru formatting and other FRU related functionalities and displaying in dbus parts can be common for both daemons.\n\nSo, These functions addFruObjectToDbus, updateFRUProperty has to be moved to fru_utils.cpp as it is common for both fru-device and ipmb-fru-device deamons.\n\nThis getFruData function code is part of updateFRUProperty function. So, getFruData function is also common for all the fru related daemons(fru-device, ipmb-fru-device). Both daemons used these functions.\n\nI am submitting incremental patches to refactor(moving addFruObjectToDbus, updateFRUProperty functions) in fru code.\n\nThat\u0027s why created a small helper/wrapper function and moved to fru_utils.cpp for easy review.\n\nPlease refer the below patches for your reference.\nhttps://gerrit.openbmc.org/c/openbmc/entity-manager/+/39593\nhttps://gerrit.openbmc.org/c/openbmc/entity-manager/+/51555",
+      "parentUuid": "4ddcad24_cfc35b19",
+      "range": {
+        "startLine": 1096,
+        "startChar": 9,
+        "endLine": 1096,
+        "endChar": 19
+      },
+      "revId": "9376dc2cb87116483aba7b434edaf4bb37c924f7",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "adad79f3_471801b7",
@@ -37,6 +61,30 @@
       "writtenOn": "2022-08-30T13:25:14Z",
       "side": 1,
       "message": "I see that we already have getFRUInfo function.\nWhat is the advantage of having this wrapper which returns true/false.\n\ni understand we are trying to have the try catch block in this function instead of duplicating this code everywhere... But just trying to understand other use cases",
+      "range": {
+        "startLine": 792,
+        "startChar": 18,
+        "endLine": 792,
+        "endChar": 28
+      },
+      "revId": "9376dc2cb87116483aba7b434edaf4bb37c924f7",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "422256cf_25f02656",
+        "filename": "src/fru_utils.cpp",
+        "patchSetId": 3
+      },
+      "lineNbr": 792,
+      "author": {
+        "id": 1000546
+      },
+      "writtenOn": "2022-08-30T14:01:01Z",
+      "side": 1,
+      "message": "I think, I have explained with details in the above comment.",
+      "parentUuid": "adad79f3_471801b7",
       "range": {
         "startLine": 792,
         "startChar": 18,
