@@ -74,6 +74,17 @@
                 "Bus": {
                     "type": "string"
                 },
+                "ContainsThisBMC": {
+                    "description": [
+                        "Indicates whether the board contains the BMC that is ",
+                        "running the current OpenBMC instance."
+                    ],
+                    "anyOf": [
+                        {
+                            "type": "string"
+                        }
+                    ]
+                },
                 "Exposes": {
                     "description": [
                         "The schema for the exposes property.  The exposes ",
