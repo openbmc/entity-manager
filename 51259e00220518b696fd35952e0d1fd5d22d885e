@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "31da51cf_448dd134",
+        "filename": "configurations/asrock_e3c246d4i.json",
+        "patchSetId": 5
+      },
+      "lineNbr": 2,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2022-09-02T00:48:57Z",
+      "side": 1,
+      "message": "I suspect this should be an exposes record.  There are other daemons that might want information from this, and putting it in the exposes record allows that to happen.\n\nAlso, it means that we can have more consistent rules.  The \"BMC\" is something than an object can expose, similar to if the object had a TMP75.",
+      "range": {
+        "startLine": 2,
+        "startChar": 0,
+        "endLine": 2,
+        "endChar": 28
+      },
+      "revId": "51259e00220518b696fd35952e0d1fd5d22d885e",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    }
+  ]
+}
