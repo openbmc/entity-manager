@@ -166,6 +166,16 @@ autojson = custom_target(
   output: 'validate_configs.log',
 )
 
+conf_data = configuration_data()
+
+conf_data.set('FIRST_PROBE_ADDRESS',get_option('first-probe-address'))
+conf_data.set('LAST_PROBE_ADDRESS',get_option('last-probe-address'))
+
+conf_h = configure_file(
+  input: 'config.h.in',
+  output: 'config.h',
+  configuration: conf_data)
+
 schemas = [
     'global.json',
     'legacy.json',
