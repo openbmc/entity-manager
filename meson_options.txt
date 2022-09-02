@@ -7,3 +7,5 @@ option(
 option(
     'fru-device-resizefru', value : false, type: 'boolean', description: 'Allow FruDevice to resize FRU areas.',
 )
+option('first-probe-address', type: 'integer', min:0x3, max:0x77, description: 'First address to probe from in fru-device.', value:0x03)
+option('last-probe-address', type: 'integer', min:0x3, max:0x77, description: 'Last address to probe to in fru-device.', value:0x77)

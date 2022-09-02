@@ -33,6 +33,7 @@ if get_option('fru-device')
         'utils.cpp',
         'fru_utils.cpp',
         'fru_reader.cpp',
+        conf_h,
         cpp_args: cpp_args_fd,
         dependencies: [
             boost,
@@ -43,7 +44,7 @@ if get_option('fru-device')
             valijson,
         ],
         implicit_include_directories: false,
-        include_directories: '../include',
+        include_directories: ['../include', '..'],
         install: true,
     )
 endif
