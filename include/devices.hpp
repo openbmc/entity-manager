@@ -268,8 +268,17 @@ const boost::container::flat_map<const char*, ExportTemplate, CmpStr>
           ExportTemplate("raa229126 $Address", "/sys/bus/i2c/devices/i2c-$Bus",
                          "new_device", "delete_device",
                          createsHWMon::hasHWMonDir)},
+<<<<<<< PATCH SET (e02467 devices: add RAA229620 and RAA229621 support)
+         {"RAA229620",
+          ExportTemplate("raa229620 $Address", "/sys/bus/i2c/devices/i2c-$Bus",
+                         "new_device", "delete_device",
+                         createsHWMon::hasHWMonDir)},
+         {"RAA229621",
+          ExportTemplate("raa229621 $Address", "/sys/bus/i2c/devices/i2c-$Bus",
+=======
          {"TPS53679",
           ExportTemplate("tps53679 $Address", "/sys/bus/i2c/devices/i2c-$Bus",
+>>>>>>> BASE      (9d6f59 Add a helper function getFruData to updateFRUProperty)
                          "new_device", "delete_device",
                          createsHWMon::hasHWMonDir)},
          {"MP2971",
