@@ -236,8 +236,13 @@ const boost::container::flat_map<const char*, ExportTemplate, CmpStr>
           ExportTemplate("pxe1610 $Address", "/sys/bus/i2c/devices/i2c-$Bus",
                          "new_device", "delete_device",
                          createsHWMon::hasHWMonDir)},
+<<<<<<< PATCH SET (d52469 devices: add U50SU4P162 support)
+         {"U50SU4P162",
+          ExportTemplate("u50su4p162 $Address", "/sys/bus/i2c/devices/i2c-$Bus",
+=======
          {"Q50SN12072",
           ExportTemplate("q50sn12072 $Address", "/sys/bus/i2c/devices/i2c-$Bus",
+>>>>>>> BASE      (2eb6c6 Error handling for modulo operation)
                          "new_device", "delete_device",
                          createsHWMon::hasHWMonDir)},
          {"XDPE12284",
