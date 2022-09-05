@@ -7,6 +7,12 @@
             "Thresholds": [
                 {
                     "Direction": "greater than",
+                    "Name": "upper non recoverable",
+                    "Severity": 3,
+                    "Value": 5.65
+                },
+                {
+                    "Direction": "greater than",
                     "Name": "upper critical",
                     "Severity": 1,
                     "Value": 5.55
@@ -28,6 +34,12 @@
                     "Name": "lower critical",
                     "Severity": 1,
                     "Value": 4.45
+                },
+                {
+                    "Direction": "less than",
+                    "Name": "lower non-recoverable",
+                    "Severity": 3,
+                    "Value": 4.15
                 }
             ],
             "Type": "ADC"
@@ -37,6 +49,12 @@
             "Name": "BMC_SENSOR_P12V",
             "ScaleFactor": 0.115,
             "Thresholds": [
+                {
+                    "Direction": "greater than",
+                    "Name": "upper non recoverable",
+                    "Severity": 3,
+                    "Value": 14.333
+                },
                 {
                     "Direction": "greater than",
                     "Name": "upper critical",
@@ -60,6 +78,12 @@
                     "Name": "lower critical",
                     "Severity": 1,
                     "Value": 10.68
+                },
+                {
+                    "Direction": "less than",
+                    "Name": "lower non recoverable",
+                    "Severity": 3,
+                    "Value": 10.091
                 }
             ],
             "Type": "ADC"
@@ -69,6 +93,12 @@
             "Name": "BMC_SENSOR_P3V3_STBY",
             "ScaleFactor": 0.4205,
             "Thresholds": [
+                {
+                    "Direction": "greater than",
+                    "Name": "upper non recoverable",
+                    "Severity": 3,
+                    "Value": 3.729
+                },
                 {
                     "Direction": "greater than",
                     "Name": "upper critical",
@@ -92,6 +122,12 @@
                     "Name": "lower critical",
                     "Severity": 1,
                     "Value": 3.036
+                },
+                {
+                    "Direction": "less than",
+                    "Name": "lower non recoverable",
+                    "Severity": 3,
+                    "Value": 2.739
                 }
             ],
             "Type": "ADC"
@@ -135,6 +171,12 @@
             "Thresholds": [
                 {
                     "Direction": "greater than",
+                    "Name": "upper non recoverable",
+                    "Severity": 3,
+                    "Value": 5.65
+                },
+                {
+                    "Direction": "greater than",
                     "Name": "upper critical",
                     "Severity": 1,
                     "Value": 5.4
@@ -156,6 +198,12 @@
                     "Name": "lower critical",
                     "Severity": 1,
                     "Value": 4.6
+                },
+                {
+                    "Direction": "less than",
+                    "Name": "lower non recoverable",
+                    "Severity": 3,
+                    "Value": 4.15
                 }
             ],
             "Type": "ADC"
@@ -199,6 +247,12 @@
             "Thresholds": [
                 {
                     "Direction": "greater than",
+                    "Name": "upper non recoverable",
+                    "Severity": 3,
+                    "Value": 1.356
+                },
+                {
+                    "Direction": "greater than",
                     "Name": "upper critical",
                     "Severity": 1,
                     "Value": 1.296
@@ -220,6 +274,12 @@
                     "Name": "lower critical",
                     "Severity": 1,
                     "Value": 1.104
+                },
+                {
+                    "Direction": "less than",
+                    "Name": "lower non recoverable",
+                    "Severity": 3,
+                    "Value": 0.996
                 }
             ],
             "Type": "ADC"
@@ -229,6 +289,12 @@
             "Name": "BMC_SENSOR_P1V0_STBY",
             "ScaleFactor": 0.512,
             "Thresholds": [
+                {
+                    "Direction": "greater than",
+                    "Name": "upper non recoverable",
+                    "Severity": 3,
+                    "Value": 1.13
+                },
                 {
                     "Direction": "greater than",
                     "Name": "upper critical",
@@ -252,6 +318,12 @@
                     "Name": "lower critical",
                     "Severity": 1,
                     "Value": 0.92
+                },
+                {
+                    "Direction": "less than",
+                    "Name": "lower non recoverable",
+                    "Severity": 3,
+                    "Value": 0.83
                 }
             ],
             "Type": "ADC"
@@ -305,6 +377,12 @@
             "Thresholds": [
                 {
                     "Direction": "greater than",
+                    "Name": "upper non recoverable",
+                    "Severity": 3,
+                    "Value": 14.91
+                },
+                {
+                    "Direction": "greater than",
                     "Name": "upper critical",
                     "Severity": 1,
                     "Value": 13.32
@@ -326,6 +404,12 @@
                     "Name": "lower critical",
                     "Severity": 1,
                     "Value": 10.68
+                },
+                {
+                    "Direction": "less than",
+                    "Name": "lower non recoverable",
+                    "Severity": 3,
+                    "Value": 10.17
                 }
             ],
             "Type": "ADC"
@@ -335,6 +419,7 @@
             "Name": "BMC_SENSOR_P3V3_RGM_STBY",
             "ScaleFactor": 0.4205,
             "Thresholds": [
+
                 {
                     "Direction": "greater than",
                     "Name": "upper critical",
@@ -369,6 +454,12 @@
             "Thresholds": [
                 {
                     "Direction": "greater than",
+                    "Name": "upper non recoverable",
+                    "Severity": 3,
+                    "Value": 3.729
+                },
+                {
+                    "Direction": "greater than",
                     "Name": "upper critical",
                     "Severity": 1,
                     "Value": 3.63
@@ -390,6 +481,12 @@
                     "Name": "lower critical",
                     "Severity": 1,
                     "Value": 2.97
+                },
+                {
+                    "Direction": "less than",
+                    "Name": "lower non recoverable",
+                    "Severity": 3,
+                    "Value": 2.95
                 }
             ],
             "Type": "ADC"
@@ -710,6 +807,12 @@
             "Thresholds": [
                 {
                     "Direction": "greater than",
+                    "Name": "upper non recoverable",
+                    "Severity": 3,
+                    "Value": 150
+                },
+                {
+                    "Direction": "greater than",
                     "Name": "upper critical",
                     "Severity": 1,
                     "Value": 50
@@ -722,6 +825,12 @@
             "Bus": 12,
             "Name": "BMC_OUTLET_TEMP",
             "Thresholds": [
+                {
+                    "Direction": "greater than",
+                    "Name": "upper non recoverable",
+                    "Severity": 3,
+                    "Value": 150
+                },
                 {
                     "Direction": "greater than",
                     "Name": "upper critical",
