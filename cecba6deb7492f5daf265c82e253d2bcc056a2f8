@@ -1,6 +1,23 @@
 {
   "comments": [
     {
+      "unresolved": true,
+      "key": {
+        "uuid": "5ad790df_e42b7c29",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 16,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2022-09-06T15:23:55Z",
+      "side": 1,
+      "message": "Per the design of EM, this would go into the config files, not as a configure time option.  Take a look at benjamins design doc, which proposes the idea of a \"port\" abstraction for a given i2c bus.  That\u0027s the object that would take in a list of addresses to poll.",
+      "revId": "cecba6deb7492f5daf265c82e253d2bcc056a2f8",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": false,
       "key": {
         "uuid": "5adb8037_3eb313fe",
@@ -14,6 +31,46 @@
       "writtenOn": "2022-09-06T02:53:28Z",
       "side": 1,
       "message": "LGTM",
+      "revId": "cecba6deb7492f5daf265c82e253d2bcc056a2f8",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "e4296032_45fe2f4c",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2022-09-06T15:23:55Z",
+      "side": 1,
+      "message": "This seems like an excellent starting point for a discussion around how to make this work, but as written, I don\u0027t think is expressive enough to solve the generalized problem except in a few very unique circumstances.  Lets discuss and see if there\u0027s a solution that solves all the cases.",
+      "revId": "cecba6deb7492f5daf265c82e253d2bcc056a2f8",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "942f4e77_372e32b4",
+        "filename": "config.h.in",
+        "patchSetId": 2
+      },
+      "lineNbr": 5,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2022-09-06T15:23:55Z",
+      "side": 1,
+      "message": "As-written, this is an excellent start, but is nowhere near expressive enough to meet the needs.  Some things it\u0027s missing:\n\n1. Per bus addresses\n2. multiple Address ranges\n3. Single addresses.",
+      "range": {
+        "startLine": 4,
+        "startChar": 0,
+        "endLine": 5,
+        "endChar": 60
+      },
       "revId": "cecba6deb7492f5daf265c82e253d2bcc056a2f8",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
