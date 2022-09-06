@@ -214,6 +214,30 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "a4b6ffa5_b8feb497",
+        "filename": "src/fru_utils.cpp",
+        "patchSetId": 9
+      },
+      "lineNbr": 803,
+      "author": {
+        "id": 1000559
+      },
+      "writtenOn": "2022-09-06T21:11:04Z",
+      "side": 1,
+      "message": "This is checking for duplicated FRU, which can be on different address, but same bus",
+      "parentUuid": "fa7348b3_9fbf5e3f",
+      "range": {
+        "startLine": 803,
+        "startChar": 4,
+        "endLine": 803,
+        "endChar": 16
+      },
+      "revId": "eaf8281ed655623fd28608108797a07eae69258a",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "7a99d3a0_7afb51d9",
@@ -299,6 +323,30 @@
       "side": 1,
       "message": "We Will discuss separately on this. How to find the mux leg number here ?",
       "parentUuid": "0ccb4703_4ec6d60e",
+      "range": {
+        "startLine": 813,
+        "startChar": 1,
+        "endLine": 818,
+        "endChar": 64
+      },
+      "revId": "eaf8281ed655623fd28608108797a07eae69258a",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "34dd7490_4bd42fc8",
+        "filename": "src/fru_utils.cpp",
+        "patchSetId": 9
+      },
+      "lineNbr": 818,
+      "author": {
+        "id": 1000559
+      },
+      "writtenOn": "2022-09-06T21:11:04Z",
+      "side": 1,
+      "message": "I agree a separate patch for this specific issue is good. At the same time, I would like to avoid moving isMuxBus() into the common code since I think it is an i2c eeprom fru specific function. Can you please add a comment here to indicate that isMuxBus can be moved back to fru-device when it is not used here?",
+      "parentUuid": "6a1101dc_b3bc1534",
       "range": {
         "startLine": 813,
         "startChar": 1,
