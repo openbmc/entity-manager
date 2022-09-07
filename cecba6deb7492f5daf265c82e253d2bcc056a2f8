@@ -18,6 +18,24 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": true,
+      "key": {
+        "uuid": "50a79b84_31132567",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 16,
+      "author": {
+        "id": 1001087
+      },
+      "writtenOn": "2022-09-07T02:28:37Z",
+      "side": 1,
+      "message": "Thanks for the feedback!\n\n\u003e Per the design of EM, this would go into the config files, not as a configure time option.\n\nAssuming you meant it\u0027s preferred using runtime config files instead of compile time config. I will move this to use runtime config.\n\n\u003e Take a look at benjamins design doc, which proposes the idea of a \"port\" abstraction for a given i2c bus.  That\u0027s the object that would take in a list of addresses to poll.\n\nJust to ensure I check the right one as you mentioned. Is it https://gerrit.openbmc.org/c/openbmc/docs/+/54205?\n\nI took a quick look and have a question: Would that be described in board json files? I mean that we don\u0027t know which board config to be used when we are at probing addresses stage in fru-device.cpp. Such that, I don\u0027t understand how do we know the bus/address to be probed if the abstraction is decribed in board config files. Could you maybe shed some lights on this? Thanks!",
+      "parentUuid": "5ad790df_e42b7c29",
+      "revId": "cecba6deb7492f5daf265c82e253d2bcc056a2f8",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": false,
       "key": {
         "uuid": "5adb8037_3eb313fe",
@@ -65,6 +83,30 @@
       "writtenOn": "2022-09-06T15:23:55Z",
       "side": 1,
       "message": "As-written, this is an excellent start, but is nowhere near expressive enough to meet the needs.  Some things it\u0027s missing:\n\n1. Per bus addresses\n2. multiple Address ranges\n3. Single addresses.",
+      "range": {
+        "startLine": 4,
+        "startChar": 0,
+        "endLine": 5,
+        "endChar": 60
+      },
+      "revId": "cecba6deb7492f5daf265c82e253d2bcc056a2f8",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "15ab4e24_7506e55f",
+        "filename": "config.h.in",
+        "patchSetId": 2
+      },
+      "lineNbr": 5,
+      "author": {
+        "id": 1001087
+      },
+      "writtenOn": "2022-09-07T02:28:37Z",
+      "side": 1,
+      "message": "To meet these requirements, I guess it can be handled by an allow list that defined the bus and addresses as key value pairs to probe the address. In the code, we transform that in to a hash map and run the loop base on the map.\n\nThe config would look like:\n```\n{3, 80-87}, {5, 0x40-0x40}, {*, 55-66}, {8, *}\n```\nAnd this would be parsed to be:\n- bus 3, address from 80 to 87.\n- bus 5, address from 64 to 64.\n- all the buses, address from 55 to 56.\n- bus 8, address from 3 to 119. \n\nAnd then being transfromed to be a `vector\u003cset\u003cpair\u003cint, int\u003e\u003e\u003e` map. Also, we can handle the overlap issues in this step if needed.\n\nDoes this sonud good to you?",
+      "parentUuid": "942f4e77_372e32b4",
       "range": {
         "startLine": 4,
         "startChar": 0,
