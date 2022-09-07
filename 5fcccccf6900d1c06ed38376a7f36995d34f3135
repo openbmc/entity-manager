@@ -33,6 +33,24 @@
       "message": "One nice thing about this file is that one can easily tell what devices are supported by entity-manager",
       "revId": "5fcccccf6900d1c06ed38376a7f36995d34f3135",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "e1392701_1758df54",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1000733
+      },
+      "writtenOn": "2022-09-07T00:57:44Z",
+      "side": 1,
+      "message": "Yeah; once this restructuring is propagated through all the other dbus-sensors daemons it\u0027ll be a matter of determining which daemon is the relevant one for a given sensor and looking there.\n\nThough at the same time, I think arguably with the old way entity-manager \"supporting\" a given device type didn\u0027t really mean much beyond passing its config through to dbus-sensors, and the dbus-sensors daemons had to also have a similar hard-coded list of supported devices, so at least this way adding a new device type can be done in one place instead of requiring modifications to both.",
+      "parentUuid": "bb28f216_aacf718f",
+      "revId": "5fcccccf6900d1c06ed38376a7f36995d34f3135",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }
