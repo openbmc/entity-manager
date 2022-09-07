@@ -1,0 +1,73 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "de349ce1_8b1210ab",
+        "filename": "include/fru_utils.hpp",
+        "patchSetId": 2
+      },
+      "lineNbr": 72,
+      "author": {
+        "id": 1000559
+      },
+      "writtenOn": "2022-09-07T00:09:19Z",
+      "side": 1,
+      "message": "could probably just use length, field, start, size and end etc.\nWhen reading the code in the function, it is hard to read with fruArea duplicated many times in one line of the code.",
+      "range": {
+        "startLine": 67,
+        "startChar": 1,
+        "endLine": 72,
+        "endChar": 23
+      },
+      "revId": "3115e2dbc3b99000a13e324dd8e5e279a26098e7",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d5c0c3e8_eb5a44d0",
+        "filename": "include/fru_utils.hpp",
+        "patchSetId": 2
+      },
+      "lineNbr": 75,
+      "author": {
+        "id": 1000559
+      },
+      "writtenOn": "2022-09-07T00:09:19Z",
+      "side": 1,
+      "message": "Why a global object? Is it replacing a bunch of global variable?",
+      "range": {
+        "startLine": 75,
+        "startChar": 22,
+        "endLine": 75,
+        "endChar": 35
+      },
+      "revId": "3115e2dbc3b99000a13e324dd8e5e279a26098e7",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c74f6cc5_5d7bbed0",
+        "filename": "include/fru_utils.hpp",
+        "patchSetId": 2
+      },
+      "lineNbr": 173,
+      "author": {
+        "id": 1000559
+      },
+      "writtenOn": "2022-09-07T00:09:19Z",
+      "side": 1,
+      "message": "nit:updateFRUArea",
+      "range": {
+        "startLine": 173,
+        "startChar": 5,
+        "endLine": 173,
+        "endChar": 18
+      },
+      "revId": "3115e2dbc3b99000a13e324dd8e5e279a26098e7",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    }
+  ]
+}
