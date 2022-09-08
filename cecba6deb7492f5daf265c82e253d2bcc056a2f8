@@ -36,6 +36,24 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": true,
+      "key": {
+        "uuid": "71aab3b0_fc8ff72c",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 16,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2022-09-08T15:32:57Z",
+      "side": 1,
+      "message": "\u003e Thanks for the feedback!\n\u003e \n\u003e \u003e Per the design of EM, this would go into the config files, not as a configure time option.\n\u003e \n\u003e Assuming you meant it\u0027s preferred using runtime config files instead of compile time config. I will move this to use runtime config.\n\nNot quite, what I mean is that this is not a global firmware policy, but a policy based on what hardware you\u0027re on, which means it needs to go into the config files.\n\n\u003e \n\u003e \u003e Take a look at benjamins design doc, which proposes the idea of a \"port\" abstraction for a given i2c bus.  That\u0027s the object that would take in a list of addresses to poll.\n\u003e \n\u003e Just to ensure I check the right one as you mentioned. Is it https://gerrit.openbmc.org/c/openbmc/docs/+/54205?\n\nYou got it.  This data might be attached to the port object.\n\n\u003e \n\u003e I took a quick look and have a question: Would that be described in board json files?\n\nAssuming the port you\u0027re trying to limit is on the board, yes.\n\n\u003e I mean that we don\u0027t know which board config to be used when we are at probing addresses stage in fru-device.cpp. Such that, I don\u0027t understand how do we know the bus/address to be probed if the abstraction is decribed in board config files. Could you maybe shed some lights on this? Thanks!\n\nYou\u0027ve seen this feature?\n\nhttps://github.com/openbmc/entity-manager/blob/3b13fb4b7f6b3dee5db2966b444d61c11f84153a/src/fru_device.cpp#L487",
+      "parentUuid": "50a79b84_31132567",
+      "revId": "cecba6deb7492f5daf265c82e253d2bcc056a2f8",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": false,
       "key": {
         "uuid": "5adb8037_3eb313fe",
