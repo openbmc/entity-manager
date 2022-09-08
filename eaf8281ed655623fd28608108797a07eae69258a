@@ -238,6 +238,30 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "1f0950aa_d1721ec0",
+        "filename": "src/fru_utils.cpp",
+        "patchSetId": 9
+      },
+      "lineNbr": 803,
+      "author": {
+        "id": 1000546
+      },
+      "writtenOn": "2022-09-08T10:06:49Z",
+      "side": 1,
+      "message": "Done. Removed if(bus \u003e 0). Now, bus can be 0.",
+      "parentUuid": "a4b6ffa5_b8feb497",
+      "range": {
+        "startLine": 803,
+        "startChar": 4,
+        "endLine": 803,
+        "endChar": 16
+      },
+      "revId": "eaf8281ed655623fd28608108797a07eae69258a",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "7a99d3a0_7afb51d9",
@@ -347,6 +371,30 @@
       "side": 1,
       "message": "I agree a separate patch for this specific issue is good. At the same time, I would like to avoid moving isMuxBus() into the common code since I think it is an i2c eeprom fru specific function. Can you please add a comment here to indicate that isMuxBus can be moved back to fru-device when it is not used here?",
       "parentUuid": "6a1101dc_b3bc1534",
+      "range": {
+        "startLine": 813,
+        "startChar": 1,
+        "endLine": 818,
+        "endChar": 64
+      },
+      "revId": "eaf8281ed655623fd28608108797a07eae69258a",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "a9490d13_fa2cf95d",
+        "filename": "src/fru_utils.cpp",
+        "patchSetId": 9
+      },
+      "lineNbr": 818,
+      "author": {
+        "id": 1000546
+      },
+      "writtenOn": "2022-09-08T10:06:49Z",
+      "side": 1,
+      "message": "Agree. isMuxBus(bus) function is i2c eeprom fru specific.\nBut the reason is moving isMuxBus(bus) function to fru_utils.cpp file is,\n1. isMuxBus(bus) function is calling from fru_utils.cpp (Refer this patch)\n2. test_fru_utils test getting failed when we keep isMuxBus(bus) function in fru_device.cpp file.\n3. Have to add dependencies like i2c, sdbusplus in test_fru_utils.\nhttps://gerrit.openbmc.org/c/openbmc/entity-manager/+/51555/43/meson.build#240\n4. Have to add dependency files in test_fru_utils. \nhttps://gerrit.openbmc.org/c/openbmc/entity-manager/+/51555/43/meson.build#231\n\nSo, avoid these changes, moving isMuxBus(bus) function to fru_utils.cpp",
+      "parentUuid": "34dd7490_4bd42fc8",
       "range": {
         "startLine": 813,
         "startChar": 1,
