@@ -195,12 +195,15 @@ subdir('src')
 if not build_tests.disabled()
     test_boost_args = boost_args + ['-DBOOST_ASIO_DISABLE_THREADS']
     gtest = dependency('gtest', main: true, disabler: true, required: false)
-    if not gtest.found() and build_tests.enabled()
+    gmock = dependency('gmock', disabler: true, required: false)
+    if not (gtest.found() and gmock.found()) and build_tests.enabled()
         cmake = import('cmake')
         gtest_subproject = cmake.subproject('gtest')
         cm_gtest = gtest_subproject.dependency('gtest')
         cm_gtest_main = gtest_subproject.dependency('gtest_main')
         gtest = declare_dependency(dependencies: [cm_gtest, cm_gtest_main, threads])
+        gmock = gtest_subproject.dependency('gmock')
+
     endif
 
     test(
@@ -234,6 +237,22 @@ if not build_tests.disabled()
             dependencies: [
                 boost,
                 gtest,
+            ],
+            implicit_include_directories: false,
+            include_directories: 'include',
+        )
+    )
+
+    test(
+        'test_topology',
+        executable(
+            'test_topology',
+            'test/test_topology.cpp',
+            'src/topology.cpp',
+            cpp_args: test_boost_args,
+            dependencies: [
+                gtest,
+                gmock,
             ],
             implicit_include_directories: false,
             include_directories: 'include',
