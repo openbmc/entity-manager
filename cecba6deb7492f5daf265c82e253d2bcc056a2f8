@@ -54,6 +54,24 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": true,
+      "key": {
+        "uuid": "cf761036_672ff26b",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 16,
+      "author": {
+        "id": 1001087
+      },
+      "writtenOn": "2022-09-12T10:32:19Z",
+      "side": 1,
+      "message": "Thanks for shedding the light on! However, I still have a question and I put it with other replies below.\n\n\u003e Not quite, what I mean is that this is not a global firmware policy, but a policy based on what hardware you\u0027re on, which means it needs to go into the config files.\n\nI see. So, we want something similar to `blacklist.json` since we would like a run time config if possible.\n\n\u003e You\u0027ve seen this feature?\n\u003e https://github.com/openbmc/entity-manager/blob/3b13fb4b7f6b3dee5db2966b444d61c11f84153a/src/fru_device.cpp#L487\n\nGot it. I want something simliar to blacklist. In my case, I might want to have an opposite approach (an allow list or an allow map). So that we can only probe the addresses per bus based on the map.\n\n\u003e \u003e Just to ensure I check the right one as you mentioned. Is it https://gerrit.openbmc.org/c/openbmc/docs/+/54205?\n\u003e You got it.  This data might be attached to the port object.\n\u003e \u003e I took a quick look and have a question: Would that be described in board json files?\n\u003e Assuming the port you\u0027re trying to limit is on the board, yes.\n\nI still have a question: fru-device starts from probing the devices to see if there are FRU devices. Then, entity-manager determines which config to use base on the results.\n\nIn my case, I want to restrict the probing addresses in fru-device (at that moment, entity-manager doesn\u0027t know which board configs to use). In this case, I don\u0027t understand how does port object decribed in board configs fit into my case. One way is to parse all the board configs before starting probing the addresses per bus in fru-device. So that we know which addresses can be probed from the board configs. However, I am not so sure if it\u0027s the right direction.\n \nI guess I might misunstand something. Could you help to elaborate on that?",
+      "parentUuid": "71aab3b0_fc8ff72c",
+      "revId": "cecba6deb7492f5daf265c82e253d2bcc056a2f8",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": false,
       "key": {
         "uuid": "5adb8037_3eb313fe",
@@ -125,6 +143,30 @@
       "side": 1,
       "message": "To meet these requirements, I guess it can be handled by an allow list that defined the bus and addresses as key value pairs to probe the address. In the code, we transform that in to a hash map and run the loop base on the map.\n\nThe config would look like:\n```\n{3, 80-87}, {5, 0x40-0x40}, {*, 55-66}, {8, *}\n```\nAnd this would be parsed to be:\n- bus 3, address from 80 to 87.\n- bus 5, address from 64 to 64.\n- all the buses, address from 55 to 56.\n- bus 8, address from 3 to 119. \n\nAnd then being transfromed to be a `vector\u003cset\u003cpair\u003cint, int\u003e\u003e\u003e` map. Also, we can handle the overlap issues in this step if needed.\n\nDoes this sonud good to you?",
       "parentUuid": "942f4e77_372e32b4",
+      "range": {
+        "startLine": 4,
+        "startChar": 0,
+        "endLine": 5,
+        "endChar": 60
+      },
+      "revId": "cecba6deb7492f5daf265c82e253d2bcc056a2f8",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c5b135f1_ee3ab42b",
+        "filename": "config.h.in",
+        "patchSetId": 2
+      },
+      "lineNbr": 5,
+      "author": {
+        "id": 1001087
+      },
+      "writtenOn": "2022-09-12T10:32:19Z",
+      "side": 1,
+      "message": "If this becomes something similar to blacklist.json, the example would be like:\n```\n// allowList.json\n{\n  \"addresses\":\n  [\n    {\n      \"bus\": 3,\n      \"fromAddress\": 80,\n      \"toAddress\": 87,\n    },\n    {\n      \"bus\": 5,\n      \"fromAddress\": 40,\n      \"toAddress\": 40,\n    },\n    {\n      \"bus\": *,\n      \"fromAddress\": 55,\n      \"toAddress\": 66,\n    },\n    {\n      \"bus\": 8,\n      \"fromAddress\": 3,\n      \"toAddress\": 119,\n    }\n  ]\n}\n```",
+      "parentUuid": "15ab4e24_7506e55f",
       "range": {
         "startLine": 4,
         "startChar": 0,
