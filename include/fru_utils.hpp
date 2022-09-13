@@ -70,6 +70,8 @@ struct FruArea
     size_t Size;
     size_t End;
     size_t fruDataIter;
+    size_t restFRUFieldsLoc;
+    size_t endOfFieldsLoc;
 };
 
 const std::vector<std::string> fruAreaNames = {"INTERNAL", "CHASSIS", "BOARD",
@@ -171,3 +173,8 @@ unsigned int getHeaderAreaFieldOffset(fruAreas area);
 bool updateFRUArea(std::vector<uint8_t>& fruData,
                    const std::string& propertyName,
                    struct FruArea& fruAreaParams);
+
+bool pushUpdateFruFields(std::vector<uint8_t>& fruData,
+                         const std::string& propertyName,
+                         struct FruArea& fruAreaParams,
+                         std::vec tor<uint8_t>& restFRUAreaFieldsData);

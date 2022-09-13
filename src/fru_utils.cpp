@@ -882,3 +882,40 @@ bool updateFRUArea(std::vector<uint8_t>& fruData,
 
     return true;
 }
+
+bool pushUpdateFruFields(std::vector<uint8_t>& fruData,
+                         const std::string& propertyName,
+                         struct FruArea& fruAreaParams,
+                         std::vector<uint8_t>& restFRUAreaFieldsData)
+{
+    // Push post update fru field bytes to a vector
+    fruAreaParams.Length = getFieldLength(fruData[fruAreaParams.FieldLoc]);
+    if (fruAreaParams.Length < 0)
+    {
+        std::cerr << "Property " << propertyName << " not present \n";
+        return false;
+    }
+    fruAreaParams.fruDataIter += 1 + fruAreaParams.Length;
+    fruAreaParams.restFRUFieldsLoc = fruAreaParams.fruDataIter;
+    fruAreaParams.endOfFieldsLoc = 0;
+    while ((fruAreaParams.Length =
+                getFieldLength(fruData[fruAreaParams.fruDataIter])) >= 0)
+    {
+        if (fruAreaParams.fruDataIter >=
+            (fruAreaParams.Start + fruAreaParams.Size))
+        {
+            fruAreaParams.fruDataIter =
+                fruAreaParams.Start + fruAreaParams.Size;
+            break;
+        }
+        fruAreaParams.fruDataIter += 1 + fruAreaParams.Length;
+    }
+    fruAreaParams.endOfFieldsLoc = fruAreaParams.fruDataIter;
+
+    std::copy_n(fruData.begin() + fruAreaParams.restFRUFieldsLoc,
+                fruAreaParams.endOfFieldsLoc - fruAreaParams.restFRUFieldsLoc +
+                    1,
+                std::back_inserter(restFRUAreaFieldsData));
+
+    return true;
+}
