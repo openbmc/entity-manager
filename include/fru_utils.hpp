@@ -68,6 +68,8 @@ struct FruArea
     size_t size;           // Fru Area Size
     size_t end;            // Fru Area end offset
     size_t updateFieldLoc; // Fru Area update Field Location
+    size_t restFieldsLoc;  // Starting location of restFRUArea data
+    size_t restFieldsEnd;  // Ending location of restFRUArea data
 };
 
 const std::vector<std::string> fruAreaNames = {"INTERNAL", "CHASSIS", "BOARD",
@@ -170,10 +172,25 @@ unsigned int getHeaderAreaFieldOffset(fruAreas area);
 /// properties
 /// \param fruData - vector to store fru data
 /// \param propertyName - fru property Name
-/// \param fruAreaParams - struct to have fru Area paramteters like length,
-/// size. \return true if fru field is found, fruAreaParams are updated with
-/// fruArea and field info.
+/// \param fruAreaParams - struct to have fru Area parameters like length,
+/// size.
+/// \return true if fru field is found, fruAreaParams like updateFieldLoc,
+/// Start, Size, End are updated with fruArea and field info.
 bool findFruAreaLocationAndField(std::vector<uint8_t>& fruData,
                                  const std::string& propertyName,
-                                 struct FruArea& fruAreaParams,
-                                 size_t& fruDataIter);
+                                 struct FruArea& fruAreaParams);
+
+/// \brief Copy the fru Area fields and properties into restFRUAreaFieldsData.
+/// restFRUAreaField is the rest of the fields in FRU area after the field that
+/// is being updated.
+/// \param fruData - vector to store fru data
+/// \param propertyName - fru property Name
+/// \param fruAreaParams - struct to have fru Area parameters like length
+/// \param restFRUAreaFieldsData - vector to store fru Area Fields and
+/// properties.
+/// \return true on success false on failure. restFieldLoc and restFieldEnd
+/// are updated.
+bool copyRestFRUArea(std::vector<uint8_t>& fruData,
+                     const std::string& propertyName,
+                     struct FruArea& fruAreaParams,
+                     std::vector<uint8_t>& restFRUAreaFieldsData);
