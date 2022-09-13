@@ -1118,33 +1118,13 @@ bool updateFRUProperty(
         return false;
     }
 
-    ssize_t fieldLength = 0;
-
-    // Push post update fru field bytes to a vector
-    fieldLength = getFieldLength(fruData[fruAreaParams.updateFieldLoc]);
-    if (fieldLength < 0)
+    std::vector<uint8_t> restFRUAreaFieldsData;
+    if (!copyRestFRUArea(fruData, propertyName, fruAreaParams,
+                         restFRUAreaFieldsData, fruDataIter))
     {
-        std::cerr << "Property " << propertyName << " not present \n";
+        std::cerr << "copyRestFRUArea failed \n";
         return false;
     }
-    fruDataIter += 1 + fieldLength;
-    size_t restFRUFieldsLoc = fruDataIter;
-    size_t endOfFieldsLoc = 0;
-    while ((fieldLength = getFieldLength(fruData[fruDataIter])) >= 0)
-    {
-        if (fruDataIter >= (fruAreaParams.start + fruAreaParams.size))
-        {
-            fruDataIter = fruAreaParams.start + fruAreaParams.size;
-            break;
-        }
-        fruDataIter += 1 + fieldLength;
-    }
-    endOfFieldsLoc = fruDataIter;
-
-    std::vector<uint8_t> restFRUAreaFieldsData;
-    std::copy_n(fruData.begin() + restFRUFieldsLoc,
-                endOfFieldsLoc - restFRUFieldsLoc + 1,
-                std::back_inserter(restFRUAreaFieldsData));
 
     // Push post update fru areas if any
     unsigned int nextFRUAreaLoc = 0;
@@ -1153,7 +1133,7 @@ bool updateFRUProperty(
     {
         unsigned int fruAreaLoc =
             fruData[getHeaderAreaFieldOffset(nextFRUArea)] * fruBlockSize;
-        if ((fruAreaLoc > endOfFieldsLoc) &&
+        if ((fruAreaLoc > fruAreaParams.restFieldsEnd) &&
             ((nextFRUAreaLoc == 0) || (fruAreaLoc < nextFRUAreaLoc)))
         {
             nextFRUAreaLoc = fruAreaLoc;
@@ -1202,10 +1182,13 @@ bool updateFRUProperty(
               fruData.begin() + fruAreaParams.updateFieldLoc);
 
     // Copy remaining data to main fru area - post updated fru field vector
-    restFRUFieldsLoc = fruAreaParams.updateFieldLoc + updatePropertyReqLen;
-    size_t fruAreaDataEnd = restFRUFieldsLoc + restFRUAreaFieldsData.size();
+    fruAreaParams.restFieldsLoc =
+        fruAreaParams.updateFieldLoc + updatePropertyReqLen;
+    size_t fruAreaDataEnd =
+        fruAreaParams.restFieldsLoc + restFRUAreaFieldsData.size();
+
     std::copy(restFRUAreaFieldsData.begin(), restFRUAreaFieldsData.end(),
-              fruData.begin() + restFRUFieldsLoc);
+              fruData.begin() + fruAreaParams.restFieldsLoc);
 
     // Update final fru with new fru area length and checksum
     unsigned int nextFRUAreaNewLoc = updateFRUAreaLenAndChecksum(
