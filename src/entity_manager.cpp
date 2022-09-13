@@ -18,6 +18,7 @@
 #include "entity_manager.hpp"
 
 #include "overlay.hpp"
+#include "topology.hpp"
 #include "utils.hpp"
 #include "variant_visitors.hpp"
 
@@ -565,6 +566,8 @@ void postToDbus(const nlohmann::json& newConfiguration,
                 sdbusplus::asio::object_server& objServer)
 
 {
+    Topology topology;
+
     // iterate through boards
     for (const auto& [boardId, boardConfig] : newConfiguration.items())
     {
@@ -644,6 +647,8 @@ void postToDbus(const nlohmann::json& newConfiguration,
             exposesIndex++;
             jsonPointerPath = jsonPointerPathBoard;
             jsonPointerPath += std::to_string(exposesIndex);
+
+            topology.addBoard(boardName, boardType, item);
 
             auto findName = item.find("Name");
             if (findName == item.end())
@@ -758,6 +763,15 @@ void postToDbus(const nlohmann::json& newConfiguration,
                 }
             }
         }
+    }
+
+    for (const auto& boardAssoc : topology.getAssocs())
+    {
+        auto ifacePtr = objServer.add_interface(boardAssoc.first,
+                                                "xyz.openbmc_project.Association.Definitions");
+
+        ifacePtr->register_property("Associations", boardAssoc.second);
+        ifacePtr->initialize();
     }
 }
 
