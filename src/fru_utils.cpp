@@ -892,3 +892,57 @@ bool findFruAreaLocationAndField(std::vector<uint8_t>& fruData,
 
     return true;
 }
+
+// Copy the FRU Area fields and properties into restFRUAreaFieldsData vector.
+// Return true for success and false for failure.
+
+bool copyRestFRUArea(std::vector<uint8_t>& fruData,
+                     const std::string& propertyName,
+                     struct FruArea& fruAreaParams,
+                     std::vector<uint8_t>& restFRUAreaFieldsData,
+                     size_t& fruDataIter)
+{
+    size_t fieldLoc = fruAreaParams.updateFieldLoc;
+    size_t start = fruAreaParams.start;
+    size_t fruAreaSize = fruAreaParams.size;
+    size_t restFRUFieldsLoc = 0;
+    size_t endOfFieldsLoc = 0;
+    ssize_t fieldLength = 0;
+
+    // Push post update fru field bytes to a vector
+    fieldLength = getFieldLength(fruData[fieldLoc]);
+    if (fieldLength < 0)
+    {
+        std::cerr << "Property " << propertyName << " not present \n";
+        return false;
+    }
+    fruDataIter += 1 + fieldLength;
+    restFRUFieldsLoc = fruDataIter;
+    endOfFieldsLoc = 0;
+
+    if (fruDataIter < fruData.size())
+    {
+        while ((fieldLength = getFieldLength(fruData[fruDataIter])) >= 0)
+        {
+            if (fruDataIter >= (start + fruAreaSize))
+            {
+                fruDataIter = start + fruAreaSize;
+                break;
+            }
+            fruDataIter += 1 + fieldLength;
+        }
+        endOfFieldsLoc = fruDataIter;
+    }
+
+    std::copy_n(fruData.begin() + restFRUFieldsLoc,
+                endOfFieldsLoc - restFRUFieldsLoc + 1,
+                std::back_inserter(restFRUAreaFieldsData));
+
+    fruAreaParams.start = start;
+    fruAreaParams.size = fruAreaSize;
+    fruAreaParams.updateFieldLoc = fieldLoc;
+    fruAreaParams.restFieldsLoc = restFRUFieldsLoc;
+    fruAreaParams.restFieldsEnd = endOfFieldsLoc;
+
+    return true;
+}

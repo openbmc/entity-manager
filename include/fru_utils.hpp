@@ -68,6 +68,8 @@ struct FruArea
     size_t size;           // Fru Area Size
     size_t end;            // Fru Area end offset
     size_t updateFieldLoc; // Fru Area update Field Location
+    size_t restFieldsLoc;  // Starting location of restFRUArea data
+    size_t restFieldsEnd;  // Ending location of restFRUArea data
 };
 
 const std::vector<std::string> fruAreaNames = {"INTERNAL", "CHASSIS", "BOARD",
@@ -171,9 +173,24 @@ unsigned int getHeaderAreaFieldOffset(fruAreas area);
 /// \param fruData - vecotr to store fru data
 /// \param propertyName - Fru property Name
 /// \param fruAreaParams - struct to have fru Area paramteters like length,
-/// size. \return true if fru field is found, fruAreaParams are updated with
+/// size.
+/// \return true if fru field is found, fruAreaParams are updated with
 /// fruArea and field info.
 bool findFruAreaLocationAndField(std::vector<uint8_t>& fruData,
                                  const std::string& propertyName,
                                  struct FruArea& fruAreaParams,
                                  size_t& fruDataIter);
+
+/// \brief Copy the FRU Area fields and properties into restFRUAreaFieldsData.
+/// \param fruData - vecotr to store fru data
+/// \param propertyName - Fru property Name
+/// \param fruAreaParams - struct to have fru Area paramteters like length
+/// \param restFRUAreaFieldsData - vector to store Fru Area Fields and
+/// properties.
+/// \param fruDataIter - Interator for fruData.
+/// \return true on success false on failure.
+bool copyRestFRUArea(std::vector<uint8_t>& fruData,
+                     const std::string& propertyName,
+                     struct FruArea& fruAreaParams,
+                     std::vector<uint8_t>& restFRUAreaFieldsData,
+                     size_t& fruDataIter);
