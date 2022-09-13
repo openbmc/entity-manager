@@ -684,6 +684,14 @@ void postToDbus(const nlohmann::json& newConfiguration,
                                 "xyz.openbmc_project.Configuration." + itemType,
                                 boardKeyOrig);
 
+            if (itemType == "BMC") {
+                std::shared_ptr<sdbusplus::asio::dbus_interface> bmcIface =
+                    createInterface(objServer, ifacePath,
+                    "xyz.openbmc_project.Inventory.Item.Bmc", boardKeyOrig);
+                populateInterfaceFromJson(systemConfiguration, jsonPointerPath,
+                    bmcIface, item, objServer, getPermission(itemType));
+            }
+
             populateInterfaceFromJson(systemConfiguration, jsonPointerPath,
                                       itemIface, item, objServer,
                                       getPermission(itemType));
@@ -1073,6 +1081,7 @@ void propertiesChangedCallback(nlohmann::json& systemConfiguration,
 
 int main()
 {
+    printf("Hey!\n");
     // setup connection to dbus
     systemBus = std::make_shared<sdbusplus::asio::connection>(io);
     systemBus->request_name("xyz.openbmc_project.EntityManager");
