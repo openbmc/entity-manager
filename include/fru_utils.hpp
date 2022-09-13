@@ -64,12 +64,14 @@ enum class fruAreas
 
 struct FruArea
 {
-    ssize_t length;     // Fru Area field Length
-    size_t fieldLoc;    // Fru Area update Field Location
-    size_t start;       // Fru Area Start offset
-    size_t size;        // Fru Area Size
-    size_t end;         // Fru Area end offset
-    size_t fruDataIter; // Iterator for Fru Data
+    ssize_t length;          // Fru Area field Length
+    size_t fieldLoc;         // Fru Area update Field Location
+    size_t start;            // Fru Area Start offset
+    size_t size;             // Fru Area Size
+    size_t end;              // Fru Area end offset
+    size_t fruDataIter;      // Iterator for Fru Data
+    size_t restFRUFieldsLoc; // Starting location of restFRUArea data
+    size_t endOfFieldsLoc;   // Ending location of restFRUArea data
 };
 
 const std::vector<std::string> fruAreaNames = {"INTERNAL", "CHASSIS", "BOARD",
@@ -172,8 +174,20 @@ unsigned int getHeaderAreaFieldOffset(fruAreas area);
 /// properties
 /// \param fruData - vecotr to store fru data
 /// \param propertyName - Fru property Name
-/// \param fruAreaParams - struct to have fru Area paramteters like length, size.
+/// \param fruAreaParams - struct to have fru Area paramteters like length
 /// \return true if fruArealocation and fruAreaFields found.
 bool findFruAreaLocationAndField(std::vector<uint8_t>& fruData,
                                  const std::string& propertyName,
                                  struct FruArea& fruAreaParams);
+
+/// \brief Copy the FRU Area fields and properties into restFRUAreaFieldsData.
+/// \param fruData - vecotr to store fru data
+/// \param propertyName - Fru property Name
+/// \param fruAreaParams - struct to have fru Area paramteters like length
+/// \param restFRUAreaFieldsData - vector to store Fru Area Fields and
+/// properties.
+/// \return true on success false on failure.
+bool copyRestFRUArea(std::vector<uint8_t>& fruData,
+                     const std::string& propertyName,
+                     struct FruArea& fruAreaParams,
+                     std::vector<uint8_t>& restFRUAreaFieldsData);
