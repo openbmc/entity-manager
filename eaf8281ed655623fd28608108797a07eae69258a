@@ -427,6 +427,30 @@
       },
       "revId": "eaf8281ed655623fd28608108797a07eae69258a",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "715149ee_5e2e210a",
+        "filename": "src/fru_utils.cpp",
+        "patchSetId": 9
+      },
+      "lineNbr": 818,
+      "author": {
+        "id": 1000546
+      },
+      "writtenOn": "2022-09-14T14:50:04Z",
+      "side": 1,
+      "message": "Is #1 the root reason for #2-4?  \n\nyes. for #2-#4 issues only, moved isMuxBus(bus) function to fru-utils.cpp.\n\nif (with a separate change) checking duplicate FRU is fixed, i.e. the high lighted block is no longer needed, are #2-4 still required?\n\nYou mean the below highlighted part can be removed ?\n\n```\n     if (isMuxBus(bus) \u0026\u0026 bus !\u003d busIface.first.first \u0026\u0026\n                    address \u003d\u003d busIface.first.second \u0026\u0026\n                    (getFRUInfo(static_cast\u003cuint8_t\u003e(busIface.first.first),\n                                static_cast\u003cuint8_t\u003e(busIface.first.second)) \u003d\u003d\n                     getFRUInfo(static_cast\u003cuint8_t\u003e(bus),\n                                static_cast\u003cuint8_t\u003e(address))))\n```\n\nIf we remove this part, then isMuxBus(bus) function also removed. So, #2-#4 issues will be resolved.",
+      "parentUuid": "abd54619_bae4db92",
+      "range": {
+        "startLine": 813,
+        "startChar": 1,
+        "endLine": 818,
+        "endChar": 64
+      },
+      "revId": "eaf8281ed655623fd28608108797a07eae69258a",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }
