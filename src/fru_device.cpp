@@ -167,11 +167,105 @@ static bool isMuxBus(size_t bus)
         "/sys/bus/i2c/devices/i2c-" + std::to_string(bus) + "/mux_device"));
 }
 
+static void makeMuxProbeInterface(size_t bus, size_t address,
+                               sdbusplus::asio::object_server& objServer)
+{
+    constexpr const char* i2CDevsDir = "/sys/bus/i2c/devices";
+    fs::path muxDir(i2CDevsDir);
+    muxDir /= "i2c-" + std::to_string(bus) + "/mux_device";
+
+    fs::path devicePath = fs::read_symlink(muxDir);
+    std::string deviceName = devicePath.filename();
+    std::cerr << "MUX found at " << devicePath.string() << " mux " << deviceName <<"\n";
+
+    auto findHyphen = deviceName.find('-');
+    if (findHyphen == std::string::npos)
+    {
+        std::cerr << "found bad device " << deviceName << "\n";
+        return;
+    }
+
+    std::string rootStr = deviceName.substr(0, findHyphen);
+    std::string addrStr = deviceName.substr(findHyphen + 1);
+
+    uint64_t root = 0;
+    uint64_t addr = 0;
+    std::from_chars_result res{};
+    res = std::from_chars(rootStr.data(), rootStr.data() + rootStr.size(), root);
+    if (res.ec != std::errc{})
+    {
+        return;
+    }
+    res = std::from_chars(addrStr.data(),
+                                  addrStr.data() + addrStr.size(), addr, 16);
+    if (res.ec != std::errc{})
+    {
+        return;
+    }
+    std::cerr << "MUX found at " << devicePath.string() << " root " << root << " address " << address << "\n";
+
+
+    fs::path devDir(i2CDevsDir);
+    devDir /= deviceName;
+
+    bool match = false;
+    uint64_t channelIndex = 0;
+    for (; channelIndex < 8; channelIndex++)
+    {
+        fs::path channelPath =
+            devDir / ("channel-" + std::to_string(channelIndex));
+        if (!is_symlink(channelPath))
+        {
+            break;
+        }
+        std::filesystem::path i2cBus = std::filesystem::read_symlink(channelPath);
+        std::string busName = i2cBus.filename();
+
+        std::string busStr = busName.substr(4);
+        size_t channelBus = 0;
+        res = std::from_chars(busStr.data(), busStr.data() + busStr.size(),
+                              channelBus);
+        if (res.ec != std::errc{})
+        {
+            break;
+        }
+        if (channelBus == bus)
+        {
+            match = true;
+            break;
+        }
+    }
+
+    if (!match)
+    {
+        std::cerr << "Did not find matching channel index " << devDir.string() <<"\n";
+        return;
+    }
+
+    auto [it, success] = foundDevices.emplace(
+        std::make_pair(bus, address),
+        objServer.add_interface(
+            "/xyz/openbmc_project/FruDevice/Mux_" + std::to_string(root) + "_" +
+                std::to_string(address) + "_" + std::to_string(channelIndex),
+            "xyz.openbmc_project.Inventory.Item.MuxBus"));
+    if (!success)
+    {
+        return; // already added
+    }
+    it->second->register_property("Root", root);
+    it->second->register_property("Address", address);
+    it->second->register_property("Bus", bus);
+    it->second->register_property("Channel", channelIndex);
+    it->second->initialize();
+}
+
 static void makeProbeInterface(size_t bus, size_t address,
                                sdbusplus::asio::object_server& objServer)
 {
     if (isMuxBus(bus))
     {
+        std::cerr << "make Mux Probe interface " << bus << "\n";
+        makeMuxProbeInterface(bus, address, objServer);
         return; // the mux buses are random, no need to publish
     }
     auto [it, success] = foundDevices.emplace(
