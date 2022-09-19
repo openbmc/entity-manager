@@ -10,6 +10,8 @@
             {
                 "Address": "0x48",
                 "Bus": 42,
+		"EntityId": 3,
+		"EntityInstance": 1,
                 "Name": "Mobo_M2_ZONE_T",
                 "Thresholds": [
                     {
@@ -30,6 +32,8 @@
             {
                 "Address": "0x49",
                 "Bus": 43,
+		"EntityId": 3,
+		"EntityInstance": 2,
                 "Name": "Mobo_BATT_ZONE_T",
                 "Thresholds": [
                     {
@@ -50,6 +54,8 @@
             {
                 "Address": "0x5c",
                 "Bus": 20,
+		"EntityId": 3,
+		"EntityInstance": 5,
                 "Name": "Mobo_INLET1_T",
                 "Thresholds": [
                     {
@@ -70,6 +76,8 @@
             {
                 "Address": "0x5c",
                 "Bus": 21,
+		"EntityId": 3,
+		"EntityInstance": 6,
                 "Name": "Mobo_OUTLET1_T",
                 "Thresholds": [
                     {
@@ -90,6 +98,8 @@
             {
                 "Address": "0x5c",
                 "Bus": 22,
+		"EntityId": 3,
+		"EntityInstance": 7,
                 "Name": "Mobo_OUTLET2_T",
                 "Thresholds": [
                     {
@@ -110,6 +120,8 @@
             {
                 "Address": "0x5c",
                 "Bus": 23,
+		"EntityId": 3,
+		"EntityInstance": 8,
                 "Name": "Mobo_OUTLET3_T",
                 "Thresholds": [
                     {
@@ -128,14 +140,33 @@
                 "Type": "TMP75"
             },
             {
+                "Address": "0x48",
+                "Bus": 44,
+		"EntityId": 3,
+		"EntityInstance": 3,
+                "Name": "CPU0_NBM_ZONE_T",
+                "Thresholds": [
+                    {
+                        "Direction": "greater than",
+                        "Name": "upper critical",
+                        "Severity": 1,
+                        "Value": 80
+                    },
+                    {
+                        "Direction": "greater than",
+                        "Name": "upper non critical",
+                        "Severity": 0,
+                        "Value": 75
+                    }
+                ],
+                "Type": "TMP75"
+            },
+            {
                 "Address": "0x74",
                 "Bus": 26,
-                "Labels": [
-                    "temp1"
-                ],
-                "MaxValue": 255,
+		"EntityId": 3,
+		"EntityInstance": 9,
                 "Name": "Mobo_STB_T",
-                "Name1": "Mobo_STB_T",
                 "Thresholds": [
                     {
                         "Direction": "greater than",
@@ -156,7 +187,15 @@
             }
         ],
         "Name": "Kudo_Motherboard",
-        "Probe": "xyz.openbmc_project.FruDevice({'BOARD_PART_NUMBER': '1103638-*'})",
+        "Probe": [
+            "xyz.openbmc_project.FruDevice({'BOARD_PART_NUMBER': '1103636*'})",
+            "OR",
+            "xyz.openbmc_project.FruDevice({'BOARD_PART_NUMBER': '1103638*'})",
+            "OR",
+            "xyz.openbmc_project.FruDevice({'BOARD_PART_NUMBER': '1106624*'})",
+            "OR",
+            "xyz.openbmc_project.FruDevice({'BOARD_PART_NUMBER': '1118803*'})"
+        ],
         "Type": "Board",
         "xyz.openbmc_project.Inventory.Decorator.Asset": {
             "Manufacturer": "$BOARD_MANUFACTURER",
