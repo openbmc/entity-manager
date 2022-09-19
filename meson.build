@@ -113,7 +113,6 @@ configs = [
     'ibm_2300w_cffps.json',
     'intel_front_panel.json',
     'kudo_bmc.json',
-    'kudo_motherboard.json',
     'mt_jade.json',
     'nisqually.json',
     'nvme_p4000.json',
