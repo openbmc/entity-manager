@@ -25,7 +25,9 @@
                         "Value": 60
                     }
                 ],
-                "Type": "TMP75"
+                "Type": "TMP75",
+		"EntityId": 3,
+		"EntityInstance": 1
             },
             {
                 "Address": "0x49",
@@ -45,7 +47,9 @@
                         "Value": 60
                     }
                 ],
-                "Type": "TMP75"
+                "Type": "TMP75",
+		"EntityId": 3,
+		"EntityInstance": 2
             },
             {
                 "Address": "0x5c",
@@ -65,7 +69,9 @@
                         "Value": 42
                     }
                 ],
-                "Type": "TMP75"
+                "Type": "TMP75",
+		"EntityId": 3,
+		"EntityInstance": 5
             },
             {
                 "Address": "0x5c",
@@ -85,7 +91,9 @@
                         "Value": 80
                     }
                 ],
-                "Type": "TMP75"
+                "Type": "TMP75",
+		"EntityId": 3,
+		"EntityInstance": 6
             },
             {
                 "Address": "0x5c",
@@ -105,7 +113,9 @@
                         "Value": 80
                     }
                 ],
-                "Type": "TMP75"
+                "Type": "TMP75",
+		"EntityId": 3,
+		"EntityInstance": 7
             },
             {
                 "Address": "0x5c",
@@ -125,38 +135,67 @@
                         "Value": 80
                     }
                 ],
-                "Type": "TMP75"
+                "Type": "TMP75",
+		"EntityId": 3,
+		"EntityInstance": 8
             },
             {
                 "Address": "0x74",
                 "Bus": 26,
-                "Labels": [
-                    "temp1"
-                ],
-                "MaxValue": 255,
                 "Name": "Mobo_STB_T",
-                "Name1": "Mobo_STB_T",
                 "Thresholds": [
                     {
                         "Direction": "greater than",
-                        "Label": "temp1",
                         "Name": "upper critical",
+                        "Label": "temp1",
                         "Severity": 1,
                         "Value": 105
                     },
                     {
                         "Direction": "greater than",
-                        "Label": "temp1",
                         "Name": "upper non critical",
+                        "Label": "temp1",
                         "Severity": 0,
                         "Value": 100
                     }
                 ],
-                "Type": "pmbus"
+                "Type": "pmbus",
+		"EntityId": 3,
+		"EntityInstance": 9
+            },
+            {
+                "Address": "0x48",
+                "Bus": 44,
+                "Name": "CPU0_NBM_ZONE_T",
+                "Thresholds": [
+                    {
+                        "Direction": "greater than",
+                        "Name": "upper critical",
+                        "Severity": 1,
+                        "Value": 80
+                    },
+                    {
+                        "Direction": "greater than",
+                        "Name": "upper non critical",
+                        "Severity": 0,
+                        "Value": 75
+                    }
+                ],
+                "Type": "TMP75",
+		"EntityId": 3,
+		"EntityInstance": 3
             }
         ],
         "Name": "Kudo_Motherboard",
-        "Probe": "xyz.openbmc_project.FruDevice({'BOARD_PART_NUMBER': '1103638-*'})",
+        "Probe": [
+            "xyz.openbmc_project.FruDevice({'BOARD_PART_NUMBER': '1103636*'})",
+            "OR",
+            "xyz.openbmc_project.FruDevice({'BOARD_PART_NUMBER': '1103638*'})",
+            "OR",
+            "xyz.openbmc_project.FruDevice({'BOARD_PART_NUMBER': '1106624*'})",
+            "OR",
+            "xyz.openbmc_project.FruDevice({'BOARD_PART_NUMBER': '1118803*'})"
+        ],
         "Type": "Board",
         "xyz.openbmc_project.Inventory.Decorator.Asset": {
             "Manufacturer": "$BOARD_MANUFACTURER",
@@ -165,4 +204,4 @@
             "SerialNumber": "$BOARD_SERIAL_NUMBER"
         }
     }
-]
+  ]
