@@ -137,7 +137,7 @@
                         "Label": "vout6",
                         "Name": "lower critical",
                         "Severity": 1,
-                        "Value": 1.121
+                        "Value": 1.062
                     },
                     {
                         "Direction": "greater than",
@@ -203,10 +203,46 @@
                 "vout3_Max": 2.5,
                 "vout5_Max": 5.8,
                 "vout6_Max": 3
+            },
+            {
+                "EntityId": 19,
+                "EntityInstance": 0,
+                "Name": "DC_P2V5",
+                "Type": "MAX34451"
+            },
+            {
+                "EntityId": 19,
+                "EntityInstance": 1,
+                "Name": "DC_P1V2",
+                "Type": "MAX34451"
+            },
+            {
+                "EntityId": 19,
+                "EntityInstance": 3,
+                "Name": "DC_3V3_STBY",
+                "Type": "MAX34451"
+            },
+            {
+                "EntityId": 19,
+                "EntityInstance": 4,
+                "Name": "DC_P1V175",
+                "Type": "MAX34451"
+            },
+            {
+                "EntityId": 19,
+                "EntityInstance": 2,
+                "Name": "DC_P1V8",
+                "Type": "MAX34451"
+            },
+            {
+                "EntityId": 19,
+                "EntityInstance": 5,
+                "Name": "DC_PVTT",
+                "Type": "MAX34451"
             }
         ],
         "Name": "Kudo_BMC",
-        "Probe": "xyz.openbmc_project.FruDevice({'BOARD_PART_NUMBER': '1093695-*'})",
+        "Probe": "xyz.openbmc_project.FruDevice({'BOARD_PART_NUMBER': '1093695*'})",
         "Type": "Board",
         "xyz.openbmc_project.Inventory.Decorator.Asset": {
             "Manufacturer": "$BOARD_MANUFACTURER",
