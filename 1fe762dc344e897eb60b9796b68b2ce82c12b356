@@ -1,0 +1,73 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f7fe9a63_822012cf",
+        "filename": "include/fru_utils.hpp",
+        "patchSetId": 5
+      },
+      "lineNbr": 68,
+      "author": {
+        "id": 1000559
+      },
+      "writtenOn": "2022-09-20T00:52:55Z",
+      "side": 1,
+      "message": "please add description for these fields. It is not obvious what the difference between length and size is. Same thing for fieldLoc and fruDataIter.",
+      "range": {
+        "startLine": 67,
+        "startChar": 0,
+        "endLine": 68,
+        "endChar": 20
+      },
+      "revId": "1fe762dc344e897eb60b9796b68b2ce82c12b356",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "64ddc64e_15587eae",
+        "filename": "include/fru_utils.hpp",
+        "patchSetId": 5
+      },
+      "lineNbr": 173,
+      "author": {
+        "id": 1000559
+      },
+      "writtenOn": "2022-09-20T00:52:55Z",
+      "side": 1,
+      "message": "Please add brief description of the functionality and input and output parameter",
+      "range": {
+        "startLine": 171,
+        "startChar": 0,
+        "endLine": 173,
+        "endChar": 50
+      },
+      "revId": "1fe762dc344e897eb60b9796b68b2ce82c12b356",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "157e68a0_1c5b89c9",
+        "filename": "src/fru_utils.cpp",
+        "patchSetId": 5
+      },
+      "lineNbr": 790,
+      "author": {
+        "id": 1000559
+      },
+      "writtenOn": "2022-09-20T00:52:55Z",
+      "side": 1,
+      "message": "After reading this function and original code couple times, I realize that this function does not actually update the FRUArea. Instead, it iterate through the area and field to find the location and size of property field.\nPlease add description of the function in the header and rename the function to describe the code better.",
+      "range": {
+        "startLine": 788,
+        "startChar": 0,
+        "endLine": 790,
+        "endChar": 49
+      },
+      "revId": "1fe762dc344e897eb60b9796b68b2ce82c12b356",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    }
+  ]
+}
