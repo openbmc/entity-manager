@@ -1077,7 +1077,15 @@ int main()
     systemBus = std::make_shared<sdbusplus::asio::connection>(io);
     systemBus->request_name("xyz.openbmc_project.EntityManager");
 
-    sdbusplus::asio::object_server objServer(systemBus);
+    // The EntityManager object itself doesn't expose any properties.
+    // No need to set up ObjectManager for the |EntityManager| object.
+    sdbusplus::asio::object_server objServer(systemBus, /*skipManager=*/true);
+
+    // All other objects that EntityManager currently support are under the
+    // inventory subtree.
+    // See the discussion at
+    // https://discord.com/channels/775381525260664832/1018929092009144380
+    objServer.add_manager("/xyz/openbmc_project/inventory");
 
     std::shared_ptr<sdbusplus::asio::dbus_interface> entityIface =
         objServer.add_interface("/xyz/openbmc_project/EntityManager",
