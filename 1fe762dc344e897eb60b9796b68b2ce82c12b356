@@ -24,6 +24,30 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "0dd504b4_1be3dd81",
+        "filename": "include/fru_utils.hpp",
+        "patchSetId": 5
+      },
+      "lineNbr": 68,
+      "author": {
+        "id": 1000546
+      },
+      "writtenOn": "2022-09-20T10:21:44Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "f7fe9a63_822012cf",
+      "range": {
+        "startLine": 67,
+        "startChar": 0,
+        "endLine": 68,
+        "endChar": 20
+      },
+      "revId": "1fe762dc344e897eb60b9796b68b2ce82c12b356",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "64ddc64e_15587eae",
@@ -47,6 +71,30 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "b63c3e12_f4f2217f",
+        "filename": "include/fru_utils.hpp",
+        "patchSetId": 5
+      },
+      "lineNbr": 173,
+      "author": {
+        "id": 1000546
+      },
+      "writtenOn": "2022-09-20T10:21:44Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "64ddc64e_15587eae",
+      "range": {
+        "startLine": 171,
+        "startChar": 0,
+        "endLine": 173,
+        "endChar": 50
+      },
+      "revId": "1fe762dc344e897eb60b9796b68b2ce82c12b356",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "157e68a0_1c5b89c9",
@@ -60,6 +108,30 @@
       "writtenOn": "2022-09-20T00:52:55Z",
       "side": 1,
       "message": "After reading this function and original code couple times, I realize that this function does not actually update the FRUArea. Instead, it iterate through the area and field to find the location and size of property field.\nPlease add description of the function in the header and rename the function to describe the code better.",
+      "range": {
+        "startLine": 788,
+        "startChar": 0,
+        "endLine": 790,
+        "endChar": 49
+      },
+      "revId": "1fe762dc344e897eb60b9796b68b2ce82c12b356",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "fa30fff1_4573cb31",
+        "filename": "src/fru_utils.cpp",
+        "patchSetId": 5
+      },
+      "lineNbr": 790,
+      "author": {
+        "id": 1000546
+      },
+      "writtenOn": "2022-09-20T10:21:44Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "157e68a0_1c5b89c9",
       "range": {
         "startLine": 788,
         "startChar": 0,
