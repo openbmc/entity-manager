@@ -24,6 +24,30 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "3931ceb6_638ccd14",
+        "filename": "include/fru_utils.hpp",
+        "patchSetId": 4
+      },
+      "lineNbr": 74,
+      "author": {
+        "id": 1000546
+      },
+      "writtenOn": "2022-09-20T14:19:51Z",
+      "side": 1,
+      "message": "1. Isn\u0027t this: fieldLoc + length?\n   No. restFRUFieldsLoc is starting offset/location of the restFRU field data.\n2. what is the difference between endofFieldsLoc and end?\n   endofFieldsLoc is ending offset/location of restFRU field data.\n   end refers here is fruAreaEnd. end offset/location of fruArea.\n  \n   Done.",
+      "parentUuid": "c9e5dc34_fdc29d97",
+      "range": {
+        "startLine": 73,
+        "startChar": 0,
+        "endLine": 74,
+        "endChar": 26
+      },
+      "revId": "5a630b3face5936fcc43e19feeeb66b7ebc542ee",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "c2fc6dce_61762dd8",
@@ -47,6 +71,30 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "7f49b8e4_5b35dda4",
+        "filename": "include/fru_utils.hpp",
+        "patchSetId": 4
+      },
+      "lineNbr": 177,
+      "author": {
+        "id": 1000546
+      },
+      "writtenOn": "2022-09-20T14:19:51Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "c2fc6dce_61762dd8",
+      "range": {
+        "startLine": 177,
+        "startChar": 5,
+        "endLine": 177,
+        "endChar": 24
+      },
+      "revId": "5a630b3face5936fcc43e19feeeb66b7ebc542ee",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "cb958d4d_b30009ef",
@@ -60,6 +108,30 @@
       "writtenOn": "2022-09-20T01:07:49Z",
       "side": 1,
       "message": "Similar to https://gerrit.openbmc.org/c/openbmc/entity-manager/+/56838 comment, please add brief description, input output definition",
+      "range": {
+        "startLine": 177,
+        "startChar": 0,
+        "endLine": 181,
+        "endChar": 0
+      },
+      "revId": "5a630b3face5936fcc43e19feeeb66b7ebc542ee",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "0a25ee89_9f59f8f6",
+        "filename": "include/fru_utils.hpp",
+        "patchSetId": 4
+      },
+      "lineNbr": 181,
+      "author": {
+        "id": 1000546
+      },
+      "writtenOn": "2022-09-20T14:19:51Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "cb958d4d_b30009ef",
       "range": {
         "startLine": 177,
         "startChar": 0,
