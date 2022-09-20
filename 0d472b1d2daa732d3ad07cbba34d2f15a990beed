@@ -1,0 +1,90 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "b657b0df_5403f69f",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 8
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1000559
+      },
+      "writtenOn": "2022-09-20T23:08:53Z",
+      "side": 1,
+      "message": "Thanks for adding the comments. Only couple suggestions on the comments, otherwise it looks good to me.",
+      "revId": "0d472b1d2daa732d3ad07cbba34d2f15a990beed",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8729455b_69f72e7c",
+        "filename": "include/fru_utils.hpp",
+        "patchSetId": 8
+      },
+      "lineNbr": 176,
+      "author": {
+        "id": 1000559
+      },
+      "writtenOn": "2022-09-20T23:08:53Z",
+      "side": 1,
+      "message": "fru field is found, fruAreaParams are updated with fruArea and field info",
+      "range": {
+        "startLine": 176,
+        "startChar": 20,
+        "endLine": 176,
+        "endChar": 53
+      },
+      "revId": "0d472b1d2daa732d3ad07cbba34d2f15a990beed",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3708932c_ee0dfdbe",
+        "filename": "src/fru_utils.cpp",
+        "patchSetId": 8
+      },
+      "lineNbr": 788,
+      "author": {
+        "id": 1000559
+      },
+      "writtenOn": "2022-09-20T23:08:53Z",
+      "side": 1,
+      "message": "start and size of the fru area that contains the propertyName and the field start location for the property.\n(Specify the four values gets updated/returned if successful).",
+      "range": {
+        "startLine": 788,
+        "startChar": 34,
+        "endLine": 788,
+        "endChar": 49
+      },
+      "revId": "0d472b1d2daa732d3ad07cbba34d2f15a990beed",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "81493902_3f40317d",
+        "filename": "src/fru_utils.cpp",
+        "patchSetId": 8
+      },
+      "lineNbr": 790,
+      "author": {
+        "id": 1000559
+      },
+      "writtenOn": "2022-09-20T23:08:53Z",
+      "side": 1,
+      "message": "this part can be removed.",
+      "range": {
+        "startLine": 789,
+        "startChar": 15,
+        "endLine": 790,
+        "endChar": 57
+      },
+      "revId": "0d472b1d2daa732d3ad07cbba34d2f15a990beed",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    }
+  ]
+}
