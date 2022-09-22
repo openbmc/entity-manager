@@ -1,6 +1,46 @@
 {
   "comments": [
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "4be33b6e_fa6a932e",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1000276
+      },
+      "writtenOn": "2022-09-22T18:58:24Z",
+      "side": 1,
+      "message": "Looks good to me if we only need the name in the journal logs.  If we want the name in Redfish, we\u0027ll need to add it in the MessageRegistry (https://github.com/openbmc/bmcweb/blob/master/redfish-core/include/registries/openbmc_message_registry.hpp#L590).",
+      "revId": "b49ebdd3829b8198bcc7a0a884ba5e18042e9d54",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2ed3508a_ca813ea2",
+        "filename": "include/entity_manager.hpp",
+        "patchSetId": 2
+      },
+      "lineNbr": 154,
+      "author": {
+        "id": 1000276
+      },
+      "writtenOn": "2022-09-22T18:58:24Z",
+      "side": 1,
+      "message": "If we want the name to show up in Redfish, we will need to add another parameter in the registry (https://github.com/openbmc/bmcweb/blob/master/redfish-core/include/registries/openbmc_message_registry.hpp#L590) and include name in the `REDFISH_MESSAGE_ARGS` list here.",
+      "range": {
+        "startLine": 153,
+        "startChar": 0,
+        "endLine": 154,
+        "endChar": 77
+      },
+      "revId": "b49ebdd3829b8198bcc7a0a884ba5e18042e9d54",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "09fec277_b6360ef3",
@@ -110,6 +150,30 @@
       "side": 1,
       "message": "\u003e it looks like it gets the message registry key from the \"OpenBMC.0.1.InventoryRemoved\" string, so I don\u0027t think the journal MESSAGE field matters.\n\nRight, but now we have logging where the message no longer matches the redfish-built message.  Maybe that\u0027s ok?",
       "parentUuid": "8791c516_af875241",
+      "range": {
+        "startLine": 204,
+        "startChar": 0,
+        "endLine": 204,
+        "endChar": 66
+      },
+      "revId": "b49ebdd3829b8198bcc7a0a884ba5e18042e9d54",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "64d04528_6e299aa1",
+        "filename": "include/entity_manager.hpp",
+        "patchSetId": 2
+      },
+      "lineNbr": 204,
+      "author": {
+        "id": 1000276
+      },
+      "writtenOn": "2022-09-22T18:58:24Z",
+      "side": 1,
+      "message": "The Redfish Message contents come directly from the MessageRegistry based on the `REDFISH_MESSAGE_ID` metadata.  The MESSAGE metadata is for what we want to see in the journal and doesn\u0027t need to match what is in Redfish.",
+      "parentUuid": "9bf6615f_d3d342c2",
       "range": {
         "startLine": 204,
         "startChar": 0,
