@@ -75,8 +75,6 @@ boost::container::flat_map<
 std::shared_ptr<sdbusplus::asio::connection> systemBus;
 nlohmann::json lastJson;
 
-boost::asio::io_context io;
-
 const std::regex illegalDbusPathRegex("[^A-Za-z0-9_.]");
 const std::regex illegalDbusMemberRegex("[^A-Za-z0-9_]");
 
@@ -1073,6 +1071,7 @@ void propertiesChangedCallback(nlohmann::json& systemConfiguration,
 
 int main()
 {
+    boost::asio::io_context io;
     // setup connection to dbus
     systemBus = std::make_shared<sdbusplus::asio::connection>(io);
     systemBus->request_name("xyz.openbmc_project.EntityManager");
