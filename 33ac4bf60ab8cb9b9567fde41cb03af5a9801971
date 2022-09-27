@@ -16,6 +16,24 @@
       "message": "I\u0027m expecting tidy to fail with a clang-analyzer-core.CallAndMessage in boost with this change.",
       "revId": "33ac4bf60ab8cb9b9567fde41cb03af5a9801971",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "6ffa86d8_d1b417fd",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1000002
+      },
+      "writtenOn": "2022-09-27T16:56:50Z",
+      "side": 1,
+      "message": "darn.  both fru_device and EM include utils.hpp with an extern reference to the global, so this experiment won\u0027t work.",
+      "parentUuid": "ee16ca55_4bfa4d4c",
+      "revId": "33ac4bf60ab8cb9b9567fde41cb03af5a9801971",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }
