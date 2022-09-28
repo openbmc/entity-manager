@@ -72,6 +72,24 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": true,
+      "key": {
+        "uuid": "50536e2c_30e0a055",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 16,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2022-09-28T18:08:20Z",
+      "side": 1,
+      "message": "\u003e I see. So, we want something similar to `blacklist.json` since we would like a run time config if possible.\n\nblacklist.json lists specific bus numbers tied to the DTS.  What is proposed above would be in the EM config files, which would have similar information, but wouldn\u0027t have a fixed set of bus numbers.\n\n\u003e  In my case, I might want to have an opposite approach (an allow list or an allow map)\n\nHappy to have a discussion about how that would work.\n\n\u003e (at that moment, entity-manager doesn\u0027t know which board configs to use). \n\nThis is the key thing that needs solved here, and I think part of it would involve adding a feature to Probe that allows for compile time selection of a baseboard file, in the cases where you know what baseboard you\u0027re on.  Something like Probe MachineType EQUALS my_machine.\n\n\u003e One way is to parse all the board configs before starting probing the addresses per bus in fru-device.\n\nYep, I think this is the right approach.",
+      "parentUuid": "cf761036_672ff26b",
+      "revId": "cecba6deb7492f5daf265c82e253d2bcc056a2f8",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": false,
       "key": {
         "uuid": "5adb8037_3eb313fe",
@@ -167,6 +185,30 @@
       "side": 1,
       "message": "If this becomes something similar to blacklist.json, the example would be like:\n```\n// allowList.json\n{\n  \"addresses\":\n  [\n    {\n      \"bus\": 3,\n      \"fromAddress\": 80,\n      \"toAddress\": 87,\n    },\n    {\n      \"bus\": 5,\n      \"fromAddress\": 40,\n      \"toAddress\": 40,\n    },\n    {\n      \"bus\": *,\n      \"fromAddress\": 55,\n      \"toAddress\": 66,\n    },\n    {\n      \"bus\": 8,\n      \"fromAddress\": 3,\n      \"toAddress\": 119,\n    }\n  ]\n}\n```",
       "parentUuid": "15ab4e24_7506e55f",
+      "range": {
+        "startLine": 4,
+        "startChar": 0,
+        "endLine": 5,
+        "endChar": 60
+      },
+      "revId": "cecba6deb7492f5daf265c82e253d2bcc056a2f8",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b414fc75_6635d3b8",
+        "filename": "config.h.in",
+        "patchSetId": 2
+      },
+      "lineNbr": 5,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2022-09-28T18:08:20Z",
+      "side": 1,
+      "message": "I don\u0027t think a fixed allowlist solves the generalized problem.",
+      "parentUuid": "c5b135f1_ee3ab42b",
       "range": {
         "startLine": 4,
         "startChar": 0,
