@@ -172,7 +172,7 @@ unsigned int getHeaderAreaFieldOffset(fruAreas area);
 /// properties
 /// \param fruData - vector to store fru data
 /// \param propertyName - fru property Name
-/// \param fruAreaParams - struct to have fru Area paramteters like length,
+/// \param fruAreaParams - struct to have fru Area parameters like length,
 /// size.
 /// \return true if fru field is found, fruAreaParams are updated with
 /// fruArea and field info.
@@ -181,11 +181,11 @@ bool findFruAreaLocationAndField(std::vector<uint8_t>& fruData,
                                  struct FruArea& fruAreaParams,
                                  size_t& fruDataIter);
 
-/// \brief Copy the FRU Area fields and properties into restFRUAreaFieldsData.
-/// \param fruData - vecotr to store fru data
-/// \param propertyName - Fru property Name
-/// \param fruAreaParams - struct to have fru Area paramteters like length
-/// \param restFRUAreaFieldsData - vector to store Fru Area Fields and
+/// \brief Copy the fru Area fields and properties into restFRUAreaFieldsData.
+/// \param fruData - vector to store fru data
+/// \param propertyName - fru property Name
+/// \param fruAreaParams - struct to have fru Area parameters like length
+/// \param restFRUAreaFieldsData - vector to store fru Area Fields and
 /// properties.
 /// \param fruDataIter - Interator for fruData.
 /// \return true on success false on failure.
