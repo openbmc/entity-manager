@@ -58,6 +58,30 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "0a90b0b4_01aef4bd",
+        "filename": "include/fru_utils.hpp",
+        "patchSetId": 11
+      },
+      "lineNbr": 171,
+      "author": {
+        "id": 1000546
+      },
+      "writtenOn": "2022-09-28T08:15:11Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "16ba2da0_086cf6e7",
+      "range": {
+        "startLine": 171,
+        "startChar": 21,
+        "endLine": 171,
+        "endChar": 27
+      },
+      "revId": "24c69bce9dafb948b924ccfe29091f902730f3cb",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "115d69ce_15272462",
@@ -81,6 +105,30 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "bd59fba8_16f8c10a",
+        "filename": "include/fru_utils.hpp",
+        "patchSetId": 11
+      },
+      "lineNbr": 172,
+      "author": {
+        "id": 1000546
+      },
+      "writtenOn": "2022-09-28T08:15:11Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "115d69ce_15272462",
+      "range": {
+        "startLine": 172,
+        "startChar": 26,
+        "endLine": 172,
+        "endChar": 29
+      },
+      "revId": "24c69bce9dafb948b924ccfe29091f902730f3cb",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "2c8df7d9_6eba3230",
@@ -94,6 +142,24 @@
       "writtenOn": "2022-09-28T00:53:54Z",
       "side": 1,
       "message": "What about the case where data is stored in the multi-record area of the FRU?  On YV3.5, FRU data is planned to be stored in the MRA.",
+      "revId": "24c69bce9dafb948b924ccfe29091f902730f3cb",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "71d235fa_b8d0d01e",
+        "filename": "src/fru_utils.cpp",
+        "patchSetId": 11
+      },
+      "lineNbr": 830,
+      "author": {
+        "id": 1000546
+      },
+      "writtenOn": "2022-09-28T08:15:11Z",
+      "side": 1,
+      "message": "fruAreaInternal\n fruAreaChassis,\n fruAreaBoard,\n fruAreaProduct,\n fruAreaMultirecord\n\nWe have a support for the above fruAreas. \n\nBut in this case, Chassis, Board and Product only handled. If needed, can add multi-record area case and define the appropriate offsets.",
+      "parentUuid": "2c8df7d9_6eba3230",
       "revId": "24c69bce9dafb948b924ccfe29091f902730f3cb",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
