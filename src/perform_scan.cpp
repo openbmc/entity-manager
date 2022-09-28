@@ -404,7 +404,7 @@ static void applyExposeActions(nlohmann::json& systemConfiguration,
         return;
     }
 
-    for (auto& [configId, config] : systemConfiguration.items())
+    for (const auto& [configId, config] : systemConfiguration.items())
     {
         // don't disable ourselves
         if (isDisable && configId == recordName)

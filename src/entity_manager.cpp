@@ -275,7 +275,7 @@ void populateInterfaceFromJson(
     sdbusplus::asio::PropertyPermission permission =
         sdbusplus::asio::PropertyPermission::readOnly)
 {
-    for (auto& [key, value] : dict.items())
+    for (const auto& [key, value] : dict.items())
     {
         auto type = value.type();
         bool array = false;
@@ -566,7 +566,7 @@ void postToDbus(const nlohmann::json& newConfiguration,
 
 {
     // iterate through boards
-    for (auto& [boardId, boardConfig] : newConfiguration.items())
+    for (const auto& [boardId, boardConfig] : newConfiguration.items())
     {
         std::string boardKey = boardConfig["Name"];
         std::string boardKeyOrig = boardConfig["Name"];
@@ -614,7 +614,7 @@ void postToDbus(const nlohmann::json& newConfiguration,
                                   boardIface, boardValues, objServer);
         jsonPointerPath += "/";
         // iterate through board properties
-        for (auto& [propName, propValue] : boardValues.items())
+        for (const auto& [propName, propValue] : boardValues.items())
         {
             if (propValue.type() == nlohmann::json::value_t::object)
             {
@@ -688,7 +688,7 @@ void postToDbus(const nlohmann::json& newConfiguration,
                                       itemIface, item, objServer,
                                       getPermission(itemType));
 
-            for (auto& [name, config] : item.items())
+            for (const auto& [name, config] : item.items())
             {
                 jsonPointerPath = jsonPointerPathBoard;
                 jsonPointerPath.append(std::to_string(exposesIndex))
