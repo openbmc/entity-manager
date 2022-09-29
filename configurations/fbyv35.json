@@ -2,7 +2,7 @@
     "Exposes": [
         {
             "Index": 0,
-            "Name": "BMC_SENSOR_P5V",
+            "Name": "BB_P5V_VOLT_V",
             "ScaleFactor": 0.2782,
             "Thresholds": [
                 {
@@ -46,7 +46,7 @@
         },
         {
             "Index": 1,
-            "Name": "BMC_SENSOR_P12V",
+            "Name": "BB_P12V_VOLT_V",
             "ScaleFactor": 0.115,
             "Thresholds": [
                 {
@@ -90,7 +90,7 @@
         },
         {
             "Index": 2,
-            "Name": "BMC_SENSOR_P3V3_STBY",
+            "Name": "BB_P3V3_STBY_VOLT_V",
             "ScaleFactor": 0.4205,
             "Thresholds": [
                 {
@@ -134,7 +134,7 @@
         },
         {
             "Index": 3,
-            "Name": "BMC_SENSOR_P2V5_STBY",
+            "Name": "BB_P2V5_STBY_VOLT_V",
             "ScaleFactor": 0.555,
             "Thresholds": [
                 {
@@ -166,7 +166,7 @@
         },
         {
             "Index": 4,
-            "Name": "BMC_SENSOR_P5V_USB",
+            "Name": "BB_ADC_P5V_USB_VOLT_V",
             "ScaleFactor": 0.2782,
             "Thresholds": [
                 {
@@ -210,7 +210,7 @@
         },
         {
             "Index": 5,
-            "Name": "BMC_SENSOR_P1V8_STBY",
+            "Name": "BB_P1V8_STBY_VOLT_V",
             "ScaleFactor": 0.512,
             "Thresholds": [
                 {
@@ -242,7 +242,7 @@
         },
         {
             "Index": 6,
-            "Name": "BMC_SENSOR_P1V2_STBY",
+            "Name": "BB_P1V2_STBY_VOLT_V",
             "ScaleFactor": 0.512,
             "Thresholds": [
                 {
@@ -286,7 +286,7 @@
         },
         {
             "Index": 7,
-            "Name": "BMC_SENSOR_P1V0_STBY",
+            "Name": "BB_ADC_P1V0_STBY_VOLT_V",
             "ScaleFactor": 0.512,
             "Thresholds": [
                 {
@@ -330,7 +330,7 @@
         },
         {
             "Index": 8,
-            "Name": "BMC_SENSOR_P0V6_STBY",
+            "Name": "BB_ADC_P0V6_STBY_VOLT_V",
             "ScaleFactor": 0.512,
             "Thresholds": [
                 {
@@ -372,7 +372,7 @@
         },
         {
             "Index": 12,
-            "Name": "BMC_SENSOR_NIC_P12V",
+            "Name": "BB_ADC_NIC_P12V_VOLT_V",
             "ScaleFactor": 0.115,
             "Thresholds": [
                 {
@@ -416,7 +416,7 @@
         },
         {
             "Index": 13,
-            "Name": "BMC_SENSOR_P3V3_RGM_STBY",
+            "Name": "BB_ADC_P3V3_RGM_STBY_VOLT_V",
             "ScaleFactor": 0.4205,
             "Thresholds": [
                 {
@@ -448,7 +448,7 @@
         },
         {
             "Index": 14,
-            "Name": "BMC_SENSOR_P3V3_NIC",
+            "Name": "BB_ADC_P3V3_NIC_VOLT_V",
             "ScaleFactor": 0.4205,
             "Thresholds": [
                 {
@@ -572,7 +572,7 @@
                 ]
             },
             "Index": 0,
-            "Name": "BMC_SENSOR_FAN0_TACH",
+            "Name": "BB_FAN0_TACH_RPM",
             "PowerState": "Always",
             "Thresholds": [
                 {
@@ -598,7 +598,7 @@
         },
         {
             "Index": 1,
-            "Name": "BMC_SENSOR_FAN1_TACH",
+            "Name": "BB_FAN1_TACH_RPM",
             "PowerState": "Always",
             "Thresholds": [
                 {
@@ -631,7 +631,7 @@
                 ]
             },
             "Index": 2,
-            "Name": "BMC_SENSOR_FAN2_TACH",
+            "Name": "BB_FAN2_TACH_RPM",
             "PowerState": "Always",
             "Thresholds": [
                 {
@@ -657,7 +657,7 @@
         },
         {
             "Index": 3,
-            "Name": "BMC_SENSOR_FAN3_TACH",
+            "Name": "BB_FAN3_TACH_RPM",
             "PowerState": "Always",
             "Thresholds": [
                 {
@@ -690,7 +690,7 @@
                 ]
             },
             "Index": 4,
-            "Name": "BMC_SENSOR_FAN4_TACH",
+            "Name": "BB_FAN4_TACH_RPM",
             "PowerState": "Always",
             "Thresholds": [
                 {
@@ -716,7 +716,7 @@
         },
         {
             "Index": 5,
-            "Name": "BMC_SENSOR_FAN5_TACH",
+            "Name": "BB_FAN5_TACH_RPM",
             "PowerState": "Always",
             "Thresholds": [
                 {
@@ -749,7 +749,7 @@
                 ]
             },
             "Index": 6,
-            "Name": "BMC_SENSOR_FAN6_TACH",
+            "Name": "BB_FAN6_TACH_RPM",
             "PowerState": "Always",
             "Thresholds": [
                 {
@@ -775,7 +775,7 @@
         },
         {
             "Index": 7,
-            "Name": "BMC_SENSOR_FAN7_TACH",
+            "Name": "BB_FAN7_TACH_RPM",
             "PowerState": "Always",
             "Thresholds": [
                 {
@@ -802,7 +802,7 @@
         {
             "Address": "0x4e",
             "Bus": 12,
-            "Name": "BMC_INLET_TEMP",
+            "Name": "BB_INLET_TEMP_C",
             "Thresholds": [
                 {
                     "Direction": "greater than",
@@ -822,7 +822,7 @@
         {
             "Address": "0x4f",
             "Bus": 12,
-            "Name": "BMC_OUTLET_TEMP",
+            "Name": "BB_OUTLET_TEMP_C",
             "Thresholds": [
                 {
                     "Direction": "greater than",
