@@ -800,6 +800,30 @@
             "Type": "AspeedFan"
         },
         {
+            "Bus": "ipmb",
+            "Index": 0,
+            "Name": "IpmbBus1",
+            "Type": "IPMIChannels"
+        },
+        {
+            "Bus": "ipmb",
+            "Index": 1,
+            "Name": "IpmbBus2",
+            "Type": "IPMIChannels"
+        },
+        {
+            "Bus": "ipmb",
+            "Index": 2,
+            "Name": "IpmbBus3",
+            "Type": "IPMIChannels"
+        },
+        {
+            "Bus": "ipmb",
+            "Index": 3,
+            "Name": "IpmbBus4",
+            "Type": "IPMIChannels"
+        },
+        {
             "Address": "0x4e",
             "Bus": 12,
             "Name": "BMC_INLET_TEMP",

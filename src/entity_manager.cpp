@@ -1104,7 +1104,16 @@ int main()
     sdbusplus::bus::match_t nameOwnerChangedMatch(
         static_cast<sdbusplus::bus_t&>(*systemBus),
         sdbusplus::bus::match::rules::nameOwnerChanged(),
-        [&](sdbusplus::message_t&) {
+        [&](sdbusplus::message_t& m) {
+            auto [name, oldOwner, newOwner] =
+                m.unpack<std::string, std::string, std::string>();
+
+            if (name.starts_with(':'))
+            {
+                // We should do nothing with unique-name connections.
+                return;
+            }
+
             propertiesChangedCallback(systemConfiguration, objServer);
         });
     // We also need a poke from DBus when new interfaces are created or
