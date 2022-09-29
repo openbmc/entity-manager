@@ -30,10 +30,12 @@ if get_option('fru-device')
     executable(
         'fru-device',
         'expression.cpp',
+        'fru_device_main.cpp',
         'fru_device.cpp',
         'utils.cpp',
         'fru_utils.cpp',
         'fru_reader.cpp',
+        'ipmb_fru_device.cpp',
         cpp_args: cpp_args_fd,
         dependencies: [
             boost,
@@ -46,5 +48,34 @@ if get_option('fru-device')
         implicit_include_directories: false,
         include_directories: '../include',
         install: true,
+    )
+endif
+
+
+if get_option('ipmb-fru-device')
+    cpp_args_fd = cpp_args
+    if get_option('ipmb-fru-device-resizefru')
+        cpp_args_fd = cpp_args_fd + ['-DENABLE_FRU_AREA_RESIZE']
+    endif
+    executable(
+        'ipmb-fru-device',
+        'ipmb_fru_device_main.cpp',
+        'expression.cpp',
+        'ipmb_fru_device.cpp',
+        'utils.cpp',
+        'fru_utils.cpp',
+        'fru_reader.cpp',
+        'fru_device.cpp',
+        cpp_args: cpp_args,
+        dependencies: [
+            boost,
+            i2c,
+            sdbusplus,
+            threads,
+            valijson,
+      ],
+      implicit_include_directories: false,
+      include_directories: '../include',
+      install: true,
     )
 endif
