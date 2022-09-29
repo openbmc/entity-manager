@@ -33,6 +33,13 @@ struct VariantToIntVisitor
     }
 };
 
+
+using VariantToFloatVisitor = details::VariantToNumericVisitor<float>;
+using VariantToIntVisitor = details::VariantToNumericVisitor<int>;
+using VariantToUnsignedIntVisitor =
+    details::VariantToNumericVisitor<unsigned int>;
+using VariantToDoubleVisitor = details::VariantToNumericVisitor<double>;
+
 struct VariantToStringVisitor
 {
     template <typename T>
