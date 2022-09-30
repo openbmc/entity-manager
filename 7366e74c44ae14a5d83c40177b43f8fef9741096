@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4d1fb453_04448d2c",
+        "filename": "meson.build",
+        "patchSetId": 1
+      },
+      "lineNbr": 84,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2022-09-30T16:53:31Z",
+      "side": 1,
+      "message": "Please don\u0027t add this dependency in the context of adding SPD support.  I\u0027m happy to have a discussion around adding a PDI dependency, but it should start by porting some old portion of the code to PDI, then showing that it either makes the code simpler, more correct, or more maintainable.",
+      "range": {
+        "startLine": 79,
+        "startChar": 0,
+        "endLine": 84,
+        "endChar": 5
+      },
+      "revId": "7366e74c44ae14a5d83c40177b43f8fef9741096",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    }
+  ]
+}
