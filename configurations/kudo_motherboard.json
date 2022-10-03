@@ -1527,5 +1527,45 @@
             "PartNumber": "$BOARD_PART_NUMBER",
             "SerialNumber": "$BOARD_SERIAL_NUMBER"
         }
+    },
+    {
+        "Exposes": [
+            {
+                "EntityId": 19,
+                "EntityInstance": 72,
+                "Index": 8,
+                "MaxValue": 4.04,
+                "MinValue": 0,
+                "Name": "CPU0_NBM2G_TMP_V",
+                "Type": "ADC"
+            }
+        ],
+        "Name": "NBM2G",
+        "Probe": [
+            "xyz.openbmc_project.FruDevice({'BOARD_PART_NUMBER': '1103636*'})",
+            "OR",
+            "xyz.openbmc_project.FruDevice({'BOARD_PART_NUMBER': '1103638*'})",
+            "OR",
+            "xyz.openbmc_project.FruDevice({'BOARD_PART_NUMBER': '1106624*'})"
+        ],
+        "Type": "Board"
+    },
+    {
+        "Exposes": [
+            {
+                "EntityId": 19,
+                "EntityInstance": 72,
+                "Index": 8,
+                "MaxValue": 4.04,
+                "MinValue": 0,
+                "Name": "CPU0_NBM4G_TMP_V",
+                "Type": "ADC"
+            }
+        ],
+        "Name": "NBM4G",
+        "Probe": [
+            "xyz.openbmc_project.FruDevice({'BOARD_PART_NUMBER': '1118803*'})"
+        ],
+        "Type": "Board"
     }
 ]
