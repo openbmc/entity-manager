@@ -1031,6 +1031,20 @@
                     }
                 ],
                 "Type": "pmbus"
+            },
+            {
+                "EntityId": 30,
+                "EntityInstance": 0,
+                "MaxValue": 127.0,
+                "MinValue": -128.0,
+                "Name": "thermal_zone0",
+                "Type": "ExternalSensor",
+                "Units": "DegreesC"
+            },
+            {
+                "EntityId": 3,
+                "EntityInstance": 44,
+                "Name": "zone0_temp"
             }
         ],
         "Name": "Kudo_Motherboard",
