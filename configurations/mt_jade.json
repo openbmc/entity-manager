@@ -666,6 +666,341 @@
                 "Type": "ADC"
             },
             {
+                "Connector": {
+                    "Name": "Fan Connector 1",
+                    "Pwm": 2,
+                    "PwmName": "PWM3",
+                    "Tachs": [
+                        4
+                    ]
+                },
+                "Index": 4,
+                "Name": "FAN3_1",
+                "Thresholds": [
+                    {
+                        "Direction": "less than",
+                        "Name": "lower critical",
+                        "Severity": 1,
+                        "Value": 500
+                    },
+                    {
+                        "Direction": "greater than",
+                        "Name": "upper critical",
+                        "Severity": 1,
+                        "Value": 23100
+                    }
+                ],
+                "Type": "AspeedFan"
+            },
+            {
+                "Connector": {
+                    "Name": "Fan Connector 2",
+                    "Pwm": 2,
+                    "PwmName": "PWM3",
+                    "Tachs": [
+                        5
+                    ]
+                },
+                "Index": 5,
+                "MaxReading": 23100,
+                "Name": "FAN3_2",
+                "Thresholds": [
+                    {
+                        "Direction": "less than",
+                        "Name": "lower critical",
+                        "Severity": 1,
+                        "Value": 500
+                    },
+                    {
+                        "Direction": "greater than",
+                        "Name": "upper critical",
+                        "Severity": 1,
+                        "Value": 23100
+                    }
+                ],
+                "Type": "AspeedFan"
+            },
+            {
+                "Connector": {
+                    "Name": "Fan Connector 3",
+                    "Pwm": 3,
+                    "PwmName": "PWM4",
+                    "Tachs": [
+                        6
+                    ]
+                },
+                "Index": 6,
+                "MaxReading": 23100,
+                "Name": "FAN4_1",
+                "Thresholds": [
+                    {
+                        "Direction": "less than",
+                        "Name": "lower critical",
+                        "Severity": 1,
+                        "Value": 500
+                    },
+                    {
+                        "Direction": "greater than",
+                        "Name": "upper critical",
+                        "Severity": 1,
+                        "Value": 23100
+                    }
+                ],
+                "Type": "AspeedFan"
+            },
+            {
+                "Connector": {
+                    "Name": "Fan Connector 4",
+                    "Pwm": 3,
+                    "PwmName": "PWM4",
+                    "Tachs": [
+                        7
+                    ]
+                },
+                "Index": 7,
+                "MaxReading": 23100,
+                "Name": "FAN4_2",
+                "Thresholds": [
+                    {
+                        "Direction": "less than",
+                        "Name": "lower critical",
+                        "Severity": 1,
+                        "Value": 500
+                    },
+                    {
+                        "Direction": "greater than",
+                        "Name": "upper critical",
+                        "Severity": 1,
+                        "Value": 23100
+                    }
+                ],
+                "Type": "AspeedFan"
+            },
+            {
+                "Connector": {
+                    "Name": "Fan Connector 5",
+                    "Pwm": 4,
+                    "PwmName": "PWM5",
+                    "Tachs": [
+                        8
+                    ]
+                },
+                "Index": 8,
+                "MaxReading": 23100,
+                "Name": "FAN5_1",
+                "Thresholds": [
+                    {
+                        "Direction": "less than",
+                        "Name": "lower critical",
+                        "Severity": 1,
+                        "Value": 500
+                    },
+                    {
+                        "Direction": "greater than",
+                        "Name": "upper critical",
+                        "Severity": 1,
+                        "Value": 23100
+                    }
+                ],
+                "Type": "AspeedFan"
+            },
+            {
+                "Connector": {
+                    "Name": "Fan Connector 6",
+                    "Pwm": 4,
+                    "PwmName": "PWM5",
+                    "Tachs": [
+                        9
+                    ]
+                },
+                "Index": 9,
+                "MaxReading": 23100,
+                "Name": "FAN5_2",
+                "Thresholds": [
+                    {
+                        "Direction": "less than",
+                        "Name": "lower critical",
+                        "Severity": 1,
+                        "Value": 500
+                    },
+                    {
+                        "Direction": "greater than",
+                        "Name": "upper critical",
+                        "Severity": 1,
+                        "Value": 23100
+                    }
+                ],
+                "Type": "AspeedFan"
+            },
+            {
+                "Connector": {
+                    "Name": "Fan Connector 7",
+                    "Pwm": 5,
+                    "PwmName": "PWM6",
+                    "Tachs": [
+                        10
+                    ]
+                },
+                "Index": 10,
+                "MaxReading": 23100,
+                "Name": "FAN6_1",
+                "Thresholds": [
+                    {
+                        "Direction": "less than",
+                        "Name": "lower critical",
+                        "Severity": 1,
+                        "Value": 500
+                    },
+                    {
+                        "Direction": "greater than",
+                        "Name": "upper critical",
+                        "Severity": 1,
+                        "Value": 23100
+                    }
+                ],
+                "Type": "AspeedFan"
+            },
+            {
+                "Connector": {
+                    "Name": "Fan Connector 8",
+                    "Pwm": 5,
+                    "PwmName": "PWM6",
+                    "Tachs": [
+                        11
+                    ]
+                },
+                "Index": 11,
+                "MaxReading": 23100,
+                "Name": "FAN6_2",
+                "Thresholds": [
+                    {
+                        "Direction": "less than",
+                        "Name": "lower critical",
+                        "Severity": 1,
+                        "Value": 500
+                    },
+                    {
+                        "Direction": "greater than",
+                        "Name": "upper critical",
+                        "Severity": 1,
+                        "Value": 23100
+                    }
+                ],
+                "Type": "AspeedFan"
+            },
+            {
+                "Connector": {
+                    "Name": "Fan Connector 9",
+                    "Pwm": 6,
+                    "PwmName": "PWM7",
+                    "Tachs": [
+                        12
+                    ]
+                },
+                "Index": 12,
+                "MaxReading": 23100,
+                "Name": "FAN7_1",
+                "Thresholds": [
+                    {
+                        "Direction": "less than",
+                        "Name": "lower critical",
+                        "Severity": 1,
+                        "Value": 500
+                    },
+                    {
+                        "Direction": "greater than",
+                        "Name": "upper critical",
+                        "Severity": 1,
+                        "Value": 23100
+                    }
+                ],
+                "Type": "AspeedFan"
+            },
+            {
+                "Connector": {
+                    "Name": "Fan Connector 10",
+                    "Pwm": 6,
+                    "PwmName": "PWM7",
+                    "Tachs": [
+                        13
+                    ]
+                },
+                "Index": 13,
+                "MaxReading": 23100,
+                "Name": "FAN7_2",
+                "Thresholds": [
+                    {
+                        "Direction": "less than",
+                        "Name": "lower critical",
+                        "Severity": 1,
+                        "Value": 500
+                    },
+                    {
+                        "Direction": "greater than",
+                        "Name": "upper critical",
+                        "Severity": 1,
+                        "Value": 23100
+                    }
+                ],
+                "Type": "AspeedFan"
+            },
+            {
+                "Connector": {
+                    "Name": "Fan Connector 11",
+                    "Pwm": 7,
+                    "PwmName": "PWM8",
+                    "Tachs": [
+                        14
+                    ]
+                },
+                "Index": 14,
+                "MaxReading": 23100,
+                "Name": "FAN8_1",
+                "Thresholds": [
+                    {
+                        "Direction": "less than",
+                        "Name": "lower critical",
+                        "Severity": 1,
+                        "Value": 500
+                    },
+                    {
+                        "Direction": "greater than",
+                        "Name": "upper critical",
+                        "Severity": 1,
+                        "Value": 23100
+                    }
+                ],
+                "Type": "AspeedFan"
+            },
+            {
+                "Connector": {
+                    "Name": "Fan Connector 12",
+                    "Pwm": 7,
+                    "PwmName": "PWM8",
+                    "Tachs": [
+                        15
+                    ]
+                },
+                "Index": 15,
+                "MaxReading": 23100,
+                "Name": "FAN8_2",
+                "Thresholds": [
+                    {
+                        "Direction": "less than",
+                        "Name": "lower critical",
+                        "Severity": 1,
+                        "Value": 500
+                    },
+                    {
+                        "Direction": "greater than",
+                        "Name": "upper critical",
+                        "Severity": 1,
+                        "Value": 23100
+                    }
+                ],
+                "Type": "AspeedFan"
+            },
+            {
                 "Address": "$address",
                 "Bus": "$bus",
                 "Name": "MB FRU",
@@ -754,6 +1089,72 @@
                     }
                 ],
                 "Type": "TMP175"
+            },
+            {
+                "Address": "0x58",
+                "Bus": 6,
+                "Labels": [
+                    "temp1",
+                    "fan1",
+                    "pin",
+                    "pout1",
+                    "vin",
+                    "vout1",
+                    "iin",
+                    "iout1"
+                ],
+                "Name": "PSU0",
+                "PollRate": 10,
+                "Thresholds": [
+                    {
+                        "Direction": "greater than",
+                        "Label": "temp1",
+                        "Name": "upper critical",
+                        "Severity": 1,
+                        "Value": 64
+                    },
+                    {
+                        "Direction": "greater than",
+                        "Label": "fan1",
+                        "Name": "upper critical",
+                        "Severity": 1,
+                        "Value": 20300
+                    }
+                ],
+                "Type": "pmbus"
+            },
+            {
+                "Address": "0x59",
+                "Bus": 6,
+                "Labels": [
+                    "temp1",
+                    "fan1",
+                    "pin",
+                    "pout1",
+                    "vin",
+                    "vout1",
+                    "iin",
+                    "iout1"
+                ],
+                "Name": "PSU1",
+                "PollRate": 10,
+                "Thresholds": [
+                    {
+                        "Direction": "greater than",
+                        "Label": "temp1",
+                        "Name": "upper critical",
+                        "Severity": 1,
+                        "Value": 64
+                    },
+                    {
+                        "Direction": "greater than",
+                        "Label": "fan1",
+                        "Name": "upper critical",
+                        "Severity": 1,
+                        "Value": 20300
+                    }
+                ],
+                "Type": "pmbus"
             }
         ],
         "Name": "Mt.Jade",
