@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "30845faa_231f9fd7",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 6
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1000945
+      },
+      "writtenOn": "2022-10-05T02:26:41Z",
+      "side": 1,
+      "message": "I did more researching on using the probe D-Bus interface in entity-manager configuration as addition filter in added/removed_interface signal. From the probe D-Bus interface we can find the D-Bus services which create that D-Bus interface. Then we can use those service as sender filter for added/removed_interface signal. But there is one issue that matching signal is created when we start entity-manager, but at that time the source service of the D-Bus interface of the Probe configuration is not available. So we can\u0027t find the service name.\nUsing the service name configuration still is required.",
+      "revId": "eff9432133e9e42bbe1af058bc537c8cf2db32d3",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    }
+  ]
+}
