@@ -32,7 +32,7 @@ enum class Operation
     modulo,
 };
 
-std::optional<Operation> parseOperation(std::string& op);
+std::optional<Operation> parseOperation(const std::string& op);
 int evaluate(int a, Operation op, int b);
 int evaluate(int substitute, std::vector<std::string>::iterator curr,
              std::vector<std::string>::iterator& end);
