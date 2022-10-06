@@ -1,0 +1,55 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "8952f6d9_6d3e0a42",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1001292
+      },
+      "writtenOn": "2022-10-06T15:13:37Z",
+      "side": 1,
+      "message": "A couple of questions about the HSC sensor name and NIC json file definition.",
+      "revId": "35ae0b30bee7df59658e4233abcb82022f505e78",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "347b29ae_a73857b8",
+        "filename": "configurations/greatlakes.json",
+        "patchSetId": 1
+      },
+      "lineNbr": 422,
+      "author": {
+        "id": 1001292
+      },
+      "writtenOn": "2022-10-06T15:13:37Z",
+      "side": 1,
+      "message": "This name doesn\u0027t appear to be correct as it doesn\u0027t follow our naming standards.",
+      "revId": "35ae0b30bee7df59658e4233abcb82022f505e78",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7f912180_9745f1d9",
+        "filename": "meson.build",
+        "patchSetId": 1
+      },
+      "lineNbr": 110,
+      "author": {
+        "id": 1001292
+      },
+      "writtenOn": "2022-10-06T15:13:37Z",
+      "side": 1,
+      "message": "Is this common for both NICs or will we need to create a separate JSON file for each NIC vendor used in Great Lakes?",
+      "revId": "35ae0b30bee7df59658e4233abcb82022f505e78",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    }
+  ]
+}
