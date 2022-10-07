@@ -37,6 +37,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "979d5c74_553f0ddb",
+        "filename": "configurations/greatlakes.json",
+        "patchSetId": 1
+      },
+      "lineNbr": 422,
+      "author": {
+        "id": 1001618
+      },
+      "writtenOn": "2022-10-07T06:44:41Z",
+      "side": 1,
+      "message": "Modified to BB_HSC. The HSC sensors\u0027 names cannot follow naming standard. The PSU dbus sensor sevice is coded with fixed name. Therefore, the sensors\u0027 names will be like BB_HSC_Output_Current, BB_HSC_Input_voltage...  We will need to modify the PSU dbus sensor service to follow the naming standard.",
+      "parentUuid": "347b29ae_a73857b8",
+      "revId": "35ae0b30bee7df59658e4233abcb82022f505e78",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "7f912180_9745f1d9",
         "filename": "meson.build",
         "patchSetId": 1
@@ -48,6 +66,24 @@
       "writtenOn": "2022-10-06T15:13:37Z",
       "side": 1,
       "message": "Is this common for both NICs or will we need to create a separate JSON file for each NIC vendor used in Great Lakes?",
+      "revId": "35ae0b30bee7df59658e4233abcb82022f505e78",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ca7d9ef6_92c0e893",
+        "filename": "meson.build",
+        "patchSetId": 1
+      },
+      "lineNbr": 110,
+      "author": {
+        "id": 1001618
+      },
+      "writtenOn": "2022-10-07T06:44:41Z",
+      "side": 1,
+      "message": "Modified to \u0027greatlakes_nic_mellanox.json\u0027",
+      "parentUuid": "7f912180_9745f1d9",
       "revId": "35ae0b30bee7df59658e4233abcb82022f505e78",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
