@@ -90,6 +90,24 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": true,
+      "key": {
+        "uuid": "97f16b70_ffca1bc1",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 16,
+      "author": {
+        "id": 1001087
+      },
+      "writtenOn": "2022-10-12T20:09:19Z",
+      "side": 1,
+      "message": "\u003e This is the key thing that needs solved here, and I think part of it would involve adding a feature to Probe that allows for compile time selection of a baseboard file, in the cases where you know what baseboard you\u0027re on.  Something like Probe MachineType EQUALS my_machine.\n\nI might misunderstand something still. Only knowing what baseboard I am on and what can be the connected boards might still be not enough. Since there are boards which might be or might not be connected, we still need to find the fru for all the addresses and buses. Unless, we decribe this information on the baseboard. However, I am not sure if we should decribe this on the baseboard or the possible connected board seperately. \n\nI am thinking if this could be something like:\n- For each board config file, there is attribute/field to describe its adderss and/or possible buses.\n- In fru_device code, we check all the board config files first to get the possible buses and addresses. Then, instead of iterating all addresses (0x03~0x77) for all buses, we iterate the possible bues and addresses only.",
+      "parentUuid": "50536e2c_30e0a055",
+      "revId": "cecba6deb7492f5daf265c82e253d2bcc056a2f8",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": false,
       "key": {
         "uuid": "5adb8037_3eb313fe",
