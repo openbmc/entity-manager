@@ -33,6 +33,8 @@ extern "C"
 }
 
 constexpr size_t fruBlockSize = 8;
+#define uuidDataLength 16
+#define multiRecordHeaderLen 5
 
 using DeviceMap = boost::container::flat_map<int, std::vector<uint8_t>>;
 using BusMap = boost::container::flat_map<int, std::shared_ptr<DeviceMap>>;
@@ -177,3 +179,7 @@ bool findFruAreaLocationAndField(std::vector<uint8_t>& fruData,
                                  const std::string& propertyName,
                                  struct FruArea& fruAreaParams,
                                  size_t& fruDataIter);
+
+void parserUuidMultirecord(std::vector<uint8_t> device,
+                           boost::container::flat_map<std::string,
+                           std::string>& result);
