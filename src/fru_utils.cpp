@@ -63,6 +63,32 @@ enum FRUDataEncoding
     languageDependent = 0x3,
 };
 
+enum MultiRecordType
+{
+    powerSupInfo = 0x00,
+    dcOut = 0x01,
+    dcLoad = 0x02,
+    managementAccessRecord = 0x03,
+    baseCompatibilityRecord = 0x04,
+    extendedCompatibilityRecord = 0x05,
+    resAsfSMBusDeviceRecord = 0x06,
+    resAsfLegacyDeviceAlerts = 0x07,
+    resAsfRemoteControl = 0x08,
+    extendedDCOutput = 0x09,
+    extendedDCLoad = 0x0A
+};
+
+enum SubManagementAccessRecord
+{
+    systemManagementURL = 0x01,
+    systemName = 0x02,
+    systemPingAddress = 0x03,
+    componentManagementURL = 0x04,
+    componentName = 0x05,
+    componentPingAddress = 0x06,
+    systemUniqueID = 0x07
+};
+
 /* Decode FRU data into a std::string, given an input iterator and end. If the
  * state returned is fruDataOk, then the resulting string is the decoded FRU
  * data. The input iterator is advanced past the data consumed.
@@ -459,7 +485,83 @@ resCodes
         }
     }
 
+    /* Parsing the UUID multirecord */
+    parserUuidMultirecord(fruBytes, result);
+
     return ret;
+}
+
+void parserUuidMultirecord(std::vector<uint8_t> device,
+                           boost::container::flat_map<std::string,
+                           std::string>& result)
+{
+    char hexString[20];
+    std::string uuidStr;
+    const unsigned char* uuidBin = nullptr;
+    unsigned int areaOffset =
+        device[getHeaderAreaFieldOffset(fruAreas::fruAreaMultirecord)];
+    areaOffset *= fruBlockSize;
+    constexpr uint8_t multiRecordEndOfListMask = 0x80;
+    unsigned char uuidReorder[uuidDataLength] = {};
+    const unsigned char uuidCharOrder[uuidDataLength] =
+        {3, 2, 1, 0, 5, 4, 7, 6, 8,
+        9, 15, 14, 13, 12, 11, 10};
+
+    if (device[5] != 0)
+    {
+        while (areaOffset < device.size())
+        {
+            int recordLength = device[areaOffset + 2];
+            if ((int)device[areaOffset] ==
+                (int)MultiRecordType::managementAccessRecord)
+            {
+                if ((int)device[areaOffset + multiRecordHeaderLen] ==
+                    (int)SubManagementAccessRecord::systemUniqueID)
+                {
+                    /*
+                     * Layout of UUID:
+                     * source: https://www.ietf.org/rfc/rfc4122.txt
+                     *
+                     * UUID binary format (16 bytes):
+                     *
+                     * 4B-2B-2B-2B-6B (big endian)
+                     *
+                     * UUID string is 36 length of characters (36 bytes):
+                     *
+                     * 0        9    14   19   24
+                     * xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx
+                     *    be     be   be   be       be
+                     * be means it should be converted to big endian.
+                     */
+                    /* Reformat the UUID data folow the RFC4122 */
+                    for(int i = 0; i < uuidDataLength; i++)
+                    {
+                        uuidReorder[i] =
+                            device[areaOffset + 6 + uuidCharOrder[i]];
+                    }
+                    uuidBin = (unsigned char*)uuidReorder;
+                    /* Get UUID bytes to UUID string */
+                    for(int i = 0; i < uuidDataLength; i++)
+                    {
+                        sprintf(hexString, "%02x", uuidBin[i]);
+                        uuidStr += hexString;
+                    }
+                    result["MULTIRECORD_UUID"] = uuidStr.substr(0,8) + '-' +
+                                                 uuidStr.substr(8,4) + '-' +
+                                                 uuidStr.substr(12,4) + '-' +
+                                                 uuidStr.substr(16,4) + '-' +
+                                                 uuidStr.substr(20,12);
+                    break;
+                }
+            }
+            if ((device[areaOffset + 1] & multiRecordEndOfListMask) != 0)
+            {
+                break;
+            }
+
+            areaOffset = areaOffset + recordLength + multiRecordHeaderLen;
+        }
+    }
 }
 
 // Calculate new checksum for fru info area
