@@ -26,6 +26,8 @@
 #include <set>
 #include <string>
 #include <vector>
+#include <iomanip>
+#include <sstream>
 
 extern "C"
 {
@@ -61,6 +63,32 @@ enum FRUDataEncoding
     bcdPlus = 0x1,
     sixBitASCII = 0x2,
     languageDependent = 0x3,
+};
+
+enum MultiRecordType
+{
+    powerSupplyInfo = 0x00,
+    dcOutput = 0x01,
+    dcLoad = 0x02,
+    managementAccessRecord = 0x03,
+    baseCompatibilityRecord = 0x04,
+    extendedCompatibilityRecord = 0x05,
+    resvASFSMBusDeviceRecord = 0x06,
+    resvASFLegacyDeviceAlerts = 0x07,
+    resvASFRemoteControl = 0x08,
+    extendedDCOutput = 0x09,
+    extendedDCLoad = 0x0A
+};
+
+enum SubManagementAccessRecord
+{
+    systemManagementURL = 0x01,
+    systemName = 0x02,
+    systemPingAddress = 0x03,
+    componentManagementURL = 0x04,
+    componentName = 0x05,
+    componentPingAddress = 0x06,
+    systemUniqueID = 0x07
 };
 
 /* Decode FRU data into a std::string, given an input iterator and end. If the
@@ -255,6 +283,79 @@ bool verifyOffset(const std::vector<uint8_t>& fruBytes, fruAreas currentArea,
         }
     }
     return true;
+}
+
+void parseMultirecordUUID(std::vector<uint8_t> device,
+    boost::container::flat_map<std::string, std::string>& result)
+{
+    constexpr size_t uuidDataLen = 16;
+    constexpr size_t multiRecordHeaderLen = 5;
+    /* UUID record data, plus one to skip past the sub-record type byte */
+    constexpr size_t uuidRecordData = multiRecordHeaderLen + 1;
+    constexpr size_t multiRecordEndOfListMask = 0x80;
+    uint32_t areaOffset =
+        device[getHeaderAreaFieldOffset(fruAreas::fruAreaMultirecord)];
+    std::vector <uint8_t> uuidReorder(uuidDataLen);
+    /* The UUID {00112233-4455-6677-8899-AABBCCDDEEFF} would thus be represented as:
+     * 0x33 0x22 0x11 0x00 0x55 0x44 0x77 0x66 0x88 0x99 0xAA 0xBB 0xCC 0xDD 0xEE 0xFF
+     */
+    std::vector <uint8_t> uuidCharOrder = {3, 2, 1, 0, 5, 4, 7, 6, 8,
+                                           9, 10, 11, 12, 13, 14, 15};
+
+    if (areaOffset != 0)
+    {
+        areaOffset *= fruBlockSize;
+        while (areaOffset < device.size())
+        {
+            uint8_t uuidRecordLen = device[areaOffset + 2];
+            if (device[areaOffset] ==
+                (uint8_t)MultiRecordType::managementAccessRecord)
+            {
+                if (device[areaOffset + multiRecordHeaderLen] ==
+                    (uint8_t)SubManagementAccessRecord::systemUniqueID)
+                {
+                    /* Layout of UUID:
+                     * source: https://www.ietf.org/rfc/rfc4122.txt
+                     *
+                     * UUID binary format (16 bytes):
+                     * 4B-2B-2B-2B-6B (big endian)
+                     *
+                     * UUID string is 36 length of characters (36 bytes):
+                     * 0        9    14   19   24
+                     * xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx
+                     *    be     be   be   be       be
+                     * be means it should be converted to big endian.
+                     */
+                    /* Reformat the UUID data folow the RFC4122 */
+                    for(size_t i = 0; i < uuidDataLen; i++)
+                    {
+                        uuidReorder[i] =
+                            device[areaOffset + uuidRecordData + uuidCharOrder[i]];
+                    }
+                    /* Get UUID bytes to UUID string */
+                    std::stringstream tmp;
+                    for(size_t i = 0; i < uuidDataLen; i++)
+                    {
+                        tmp << std::hex << std::setfill('0') <<
+                            std::setw(sizeof(uint8_t) * 2) <<
+                            (uint16_t)uuidReorder[i];
+                    }
+                    std::string uuidStr = tmp.str();
+                    result["MULTIRECORD_UUID"] = uuidStr.substr(0,8) + '-' +
+                                                 uuidStr.substr(8,4) + '-' +
+                                                 uuidStr.substr(12,4) + '-' +
+                                                 uuidStr.substr(16,4) + '-' +
+                                                 uuidStr.substr(20,12);
+                    break;
+                }
+            }
+            if ((device[areaOffset + 1] & multiRecordEndOfListMask) != 0)
+            {
+                break;
+            }
+            areaOffset = areaOffset + uuidRecordLen + multiRecordHeaderLen;
+        }
+    }
 }
 
 resCodes
@@ -458,6 +559,9 @@ resCodes
             }
         }
     }
+
+    /* Parsing the Multirecord UUID */
+    parseMultirecordUUID(fruBytes, result);
 
     return ret;
 }
