@@ -177,3 +177,6 @@ bool findFruAreaLocationAndField(std::vector<uint8_t>& fruData,
                                  const std::string& propertyName,
                                  struct FruArea& fruAreaParams,
                                  size_t& fruDataIter);
+
+void parserUuidMultirecord(std::vector<uint8_t> device,
+    boost::container::flat_map<std::string, std::string>& result);
