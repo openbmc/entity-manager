@@ -16,6 +16,29 @@
       "message": "Gentle remainder for review.",
       "revId": "458093653093751968819f13c1115a755eaca579",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "62da68aa_567b2b1d",
+        "filename": "include/fru_utils.hpp",
+        "patchSetId": 4
+      },
+      "lineNbr": 181,
+      "author": {
+        "id": 1000559
+      },
+      "writtenOn": "2022-10-17T19:06:38Z",
+      "side": 1,
+      "message": "nit: What does this function do? It is hard to see from the function name. Looks like it returns product name. Please add comments and possibly use a more descriptive function name.",
+      "range": {
+        "startLine": 181,
+        "startChar": 27,
+        "endLine": 181,
+        "endChar": 40
+      },
+      "revId": "458093653093751968819f13c1115a755eaca579",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }
