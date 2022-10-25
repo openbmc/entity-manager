@@ -16,6 +16,24 @@
       "message": "Zev, any input here?",
       "revId": "53e2d48ababf0e345e6db0eac5eb072fae393587",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "ee055d12_0f111b93",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1000733
+      },
+      "writtenOn": "2022-10-25T20:58:19Z",
+      "side": 1,
+      "message": "The adm1275 driver (which also handles the adm1293) is a hwmon driver, so that one certainly appears to make sense.\n\nI\u0027m slightly confused about our ina219 support though -- grepping the dbus-sensors tree it looks like that device is handled by the psusensor daemon, which I had thought was intended to handle pmbus devices (which from its datasheet it doesn\u0027t appear to be).  Looking at the kernel tree, I see both a non-pmbus hwmon driver (drivers/hwmon/ina2xx.c) and an IIO driver (drivers/iio/adc/ina2xx-adc.c), both of which have \"ti,ina219\" in their of_device_id tables and \"ina219\" in their i2c_device_id tables (Kconfig indicates that they\u0027re mutually exclusive).  Given the change in this patch I assume it\u0027s meant to be used with the former, though I suppose there\u0027s also the iio-hwmon \"adapter\" driver which could potentially be in play?\n\nAnyway, upshot is that I don\u0027t see a problem with it, I\u0027m just kind of curious (a) which driver this is meant to be used with in openbmc, and (b) why/how psusensor is apparently handling non-pmbus devices.",
+      "parentUuid": "40b8efcd_781c5f68",
+      "revId": "53e2d48ababf0e345e6db0eac5eb072fae393587",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }
