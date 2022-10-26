@@ -43,6 +43,7 @@
 #include <iostream>
 #include <limits>
 #include <map>
+#include <optional>
 #include <regex>
 #include <set>
 #include <sstream>
@@ -71,7 +72,8 @@ const static constexpr char* baseboardFruLocation =
 
 const static constexpr char* i2CDevLocation = "/dev";
 
-static std::set<size_t> busBlacklist;
+static boost::container::flat_map<size_t, std::optional<std::set<size_t>>>
+    busBlacklist;
 struct FindDevicesWithCallback;
 
 static boost::container::flat_map<
@@ -320,10 +322,10 @@ static std::vector<uint8_t> processEeprom(int bus, int address)
     return pair.first;
 }
 
-std::set<int> findI2CEeproms(int i2cBus,
-                             const std::shared_ptr<DeviceMap>& devices)
+std::set<size_t> findI2CEeproms(int i2cBus,
+                                const std::shared_ptr<DeviceMap>& devices)
 {
-    std::set<int> foundList;
+    std::set<size_t> foundList;
 
     std::string path = "/sys/bus/i2c/devices/i2c-" + std::to_string(i2cBus);
 
@@ -355,10 +357,11 @@ std::set<int> findI2CEeproms(int i2cBus,
 
         std::ssub_match subMatch = m[1];
         std::string addressString = subMatch.str();
+        std::string_view addressStringView(addressString);
 
-        std::size_t ignored = 0;
-        const int hexBase = 16;
-        int address = std::stoi(addressString, &ignored, hexBase);
+        size_t address = 0;
+        std::from_chars(addressStringView.begin(), addressStringView.end(),
+                        address, 16);
 
         const std::string eeprom = node + "/eeprom";
 
@@ -403,16 +406,39 @@ int getBusFRUs(int file, int first, int last, int bus,
         // hexdumps of the eeprom later were successful.
 
         // Scan for i2c eeproms loaded on this bus.
-        std::set<int> skipList = findI2CEeproms(bus, devices);
+        std::set<size_t> skipList = findI2CEeproms(bus, devices);
         std::set<size_t>& failedItems = failedAddresses[bus];
         std::set<size_t>& foundItems = fruAddresses[bus];
         foundItems.clear();
+
+        auto busFind = busBlacklist.find(bus);
+        if (busFind != busBlacklist.end())
+        {
+            if (busFind->second != std::nullopt)
+            {
+                for (const auto& address : *(busFind->second))
+                {
+                    skipList.insert(address);
+                }
+            }
+        }
 
         std::set<size_t>* rootFailures = nullptr;
         int rootBus = getRootBus(bus);
 
         if (rootBus >= 0)
         {
+            auto rootBusFind = busBlacklist.find(rootBus);
+            if (rootBusFind != busBlacklist.end())
+            {
+                if (rootBusFind->second != std::nullopt)
+                {
+                    for (const auto& rootAddress : *(rootBusFind->second))
+                    {
+                        skipList.insert(rootAddress);
+                    }
+                }
+            }
             rootFailures = &(failedAddresses[rootBus]);
             foundItems = fruAddresses[rootBus];
         }
@@ -528,7 +554,7 @@ int getBusFRUs(int file, int first, int last, int bus,
         std::cerr << "Error reading bus " << bus << "\n";
         if (powerIsOn)
         {
-            busBlacklist.insert(bus);
+            busBlacklist[bus] = std::nullopt;
         }
         close(file);
         return -1;
@@ -581,9 +607,32 @@ void loadBlacklist(const char* path)
         // Catch exception here for type mis-match.
         try
         {
-            for (const auto& bus : buses)
+            for (const auto& busIterator : buses)
             {
-                busBlacklist.insert(bus.get<size_t>());
+                // If bus and addresses field are missing, that's fine.
+                if (busIterator.contains("bus") &&
+                    busIterator.contains("addresses"))
+                {
+                    auto busData = busIterator.at("bus");
+                    auto bus = busData.get<size_t>();
+
+                    auto addressData = busIterator.at("addresses");
+                    auto addresses =
+                        addressData.get<std::set<std::string_view>>();
+
+                    busBlacklist[bus].emplace();
+                    for (const auto& address : addresses)
+                    {
+                        size_t addressInt = 0;
+                        std::from_chars(address.begin() + 2, address.end(),
+                                        addressInt, 16);
+                        busBlacklist[bus]->insert(addressInt);
+                    }
+                }
+                else
+                {
+                    busBlacklist[busIterator.get<size_t>()] = std::nullopt;
+                }
             }
         }
         catch (const nlohmann::detail::type_error& e)
@@ -608,15 +657,22 @@ static void findI2CDevices(const std::vector<fs::path>& i2cBuses,
             std::cerr << "Cannot translate " << i2cBus << " to int\n";
             continue;
         }
-        if (busBlacklist.find(bus) != busBlacklist.end())
+        auto busFind = busBlacklist.find(bus);
+        if (busFind != busBlacklist.end())
         {
-            continue; // skip previously failed busses
+            if (busFind->second == std::nullopt)
+            {
+                continue; // Skip blocked busses.
+            }
         }
-
         int rootBus = getRootBus(bus);
-        if (busBlacklist.find(rootBus) != busBlacklist.end())
+        auto rootBusFind = busBlacklist.find(rootBus);
+        if (rootBusFind != busBlacklist.end())
         {
-            continue;
+            if (rootBusFind->second == std::nullopt)
+            {
+                continue;
+            }
         }
 
         auto file = open(i2cBus.c_str(), O_RDWR);
