@@ -71,7 +71,7 @@ const static constexpr char* baseboardFruLocation =
 
 const static constexpr char* i2CDevLocation = "/dev";
 
-static std::set<size_t> busBlacklist;
+static boost::container::flat_map<size_t, std::set<size_t>> busBlacklist;
 struct FindDevicesWithCallback;
 
 static boost::container::flat_map<
@@ -377,6 +377,7 @@ int getBusFRUs(int file, int first, int last, int bus,
         // Scan for i2c eeproms loaded on this bus.
         std::set<int> skipList = findI2CEeproms(bus, devices);
         std::set<size_t>& failedItems = failedAddresses[bus];
+        std::set<size_t>& blockItems = busBlacklist[bus];
 
         std::set<size_t>* rootFailures = nullptr;
         int rootBus = getRootBus(bus);
@@ -393,6 +394,12 @@ int getBusFRUs(int file, int first, int last, int bus,
         {
             if (skipList.find(ii) != skipList.end())
             {
+                continue;
+            }
+            if (blockItems.find(ii) != blockItems.end())
+            {
+                // Skip blocked address.
+                std::cerr << "skip address " << ii << " on bus " << bus << "\n";
                 continue;
             }
             // skipping since no device is present in this range
@@ -474,7 +481,7 @@ int getBusFRUs(int file, int first, int last, int bus,
         std::cerr << "Error reading bus " << bus << "\n";
         if (powerIsOn)
         {
-            busBlacklist.insert(bus);
+            busBlacklist[bus];
         }
         close(file);
         return -1;
@@ -527,9 +534,49 @@ void loadBlacklist(const char* path)
         // Catch exception here for type mis-match.
         try
         {
-            for (const auto& bus : buses)
+            for (const auto& busIterator : buses)
             {
-                busBlacklist.insert(bus.get<size_t>());
+                int bus;
+
+                // If bus and addresses field are missing, that's fine.
+                if (busIterator.contains("bus") &&
+                        busIterator.contains("addresses"))
+                {
+                    std::set<std::string> addresses;
+
+                    auto busFind = busIterator.find("bus");
+                    if (busFind != busIterator.end())
+                    {
+                        busFind->get_to(bus);
+                    }
+                    else
+                    {
+                        std::cerr << "Cannot find bus\n";
+                    }
+
+                    auto addressFind = busIterator.find("addresses");
+                    if (addressFind != busIterator.end())
+                    {
+                        addressFind->get_to(addresses);
+                    }
+                    else
+                    {
+                        std::cerr << "Cannot find address\n";
+                    }
+
+                    const int hexbase = 16;
+                    for (auto& address : addresses)
+                    {
+                        int addressInt =
+                            std::stoi(address, nullptr, hexbase);
+                        busBlacklist[bus].insert(addressInt);
+                    }
+                }
+                else
+                {
+                    bus = busIterator.get<size_t>();
+                    busBlacklist[bus];
+                }
             }
         }
         catch (const nlohmann::detail::type_error& e)
@@ -556,7 +603,11 @@ static void findI2CDevices(const std::vector<fs::path>& i2cBuses,
         }
         if (busBlacklist.find(bus) != busBlacklist.end())
         {
-            continue; // skip previously failed busses
+            if (busBlacklist[bus].empty())
+            {
+                std::cerr << "skip bus " << bus << "\n";
+                continue; // Skip blocked busses.
+            }
         }
 
         int rootBus = getRootBus(bus);
