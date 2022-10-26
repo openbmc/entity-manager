@@ -71,7 +71,8 @@ const static constexpr char* baseboardFruLocation =
 
 const static constexpr char* i2CDevLocation = "/dev";
 
-static std::set<size_t> busBlacklist;
+static boost::container::flat_map<size_t, std::set<size_t>> busBlacklist;
+
 struct FindDevicesWithCallback;
 
 static boost::container::flat_map<
@@ -378,6 +379,14 @@ int getBusFRUs(int file, int first, int last, int bus,
         std::set<int> skipList = findI2CEeproms(bus, devices);
         std::set<size_t>& failedItems = failedAddresses[bus];
 
+        if (busBlacklist.contains(bus))
+        {
+            for (const auto& addresses : busBlacklist[bus])
+            {
+                skipList.insert(addresses);
+            }
+        }
+
         std::set<size_t>* rootFailures = nullptr;
         int rootBus = getRootBus(bus);
 
@@ -474,7 +483,7 @@ int getBusFRUs(int file, int first, int last, int bus,
         std::cerr << "Error reading bus " << bus << "\n";
         if (powerIsOn)
         {
-            busBlacklist.insert(bus);
+            busBlacklist[bus];
         }
         close(file);
         return -1;
@@ -527,9 +536,40 @@ void loadBlacklist(const char* path)
         // Catch exception here for type mis-match.
         try
         {
-            for (const auto& bus : buses)
+            for (const auto& busIterator : buses)
             {
-                busBlacklist.insert(bus.get<size_t>());
+                // If bus and addresses field are missing, that's fine.
+                if (busIterator.contains("bus") &&
+                        busIterator.contains("addresses"))
+                {
+                    auto busData = busIterator.at("bus");
+                    auto bus = busData.get<size_t>();
+
+                    if (bus.empty())
+                    {
+                        continue;
+                    }
+
+                    auto addressData = busIterator.at("addresses");
+                    auto addresses = addressData.get<
+                        std::set<std::string>>();
+
+                    if (addresses.empty())
+                    {
+                        continue;
+                    }
+
+                    for (const auto& address : addresses)
+                    {
+                        int addressInt =
+                            std::stoi(address, nullptr, 16);
+                        busBlacklist[bus].insert(addressInt);
+                    }
+                }
+                else
+                {
+                    busBlacklist[busIterator.get<size_t>()];
+                }
             }
         }
         catch (const nlohmann::detail::type_error& e)
@@ -554,9 +594,13 @@ static void findI2CDevices(const std::vector<fs::path>& i2cBuses,
             std::cerr << "Cannot translate " << i2cBus << " to int\n";
             continue;
         }
-        if (busBlacklist.find(bus) != busBlacklist.end())
+
+        if (busBlacklist.contains(bus))
         {
-            continue; // skip previously failed busses
+            if (busBlacklist[bus].empty())
+            {
+                continue; // Skip blocked busses.
+            }
         }
 
         int rootBus = getRootBus(bus);
@@ -1108,20 +1152,100 @@ bool updateFRUProperty(
         return false;
     }
 
-    struct FruArea fruAreaParams{};
-    size_t fruDataIter = 0;
+    const std::vector<std::string>* fruAreaFieldNames = nullptr;
 
-    if (!findFruAreaLocationAndField(fruData, propertyName, fruAreaParams,
-                                     fruDataIter))
+    uint8_t fruAreaOffsetFieldValue = 0;
+    size_t offset = 0;
+    std::string areaName = propertyName.substr(0, propertyName.find('_'));
+    std::string propertyNamePrefix = areaName + "_";
+    auto it = std::find(fruAreaNames.begin(), fruAreaNames.end(), areaName);
+    if (it == fruAreaNames.end())
     {
-        std::cerr << "findFruAreaLocationAndField failed \n";
+        std::cerr << "Can't parse area name for property " << propertyName
+                  << " \n";
+        return false;
+    }
+    fruAreas fruAreaToUpdate = static_cast<fruAreas>(it - fruAreaNames.begin());
+    fruAreaOffsetFieldValue =
+        fruData[getHeaderAreaFieldOffset(fruAreaToUpdate)];
+    switch (fruAreaToUpdate)
+    {
+        case fruAreas::fruAreaChassis:
+            offset = 3; // chassis part number offset. Skip fixed first 3 bytes
+            fruAreaFieldNames = &chassisFruAreas;
+            break;
+        case fruAreas::fruAreaBoard:
+            offset = 6; // board manufacturer offset. Skip fixed first 6 bytes
+            fruAreaFieldNames = &boardFruAreas;
+            break;
+        case fruAreas::fruAreaProduct:
+            // Manufacturer name offset. Skip fixed first 3 product fru bytes
+            // i.e. version, area length and language code
+            offset = 3;
+            fruAreaFieldNames = &productFruAreas;
+            break;
+        default:
+            std::cerr << "Don't know how to handle property " << propertyName
+                      << " \n";
+            return false;
+    }
+    if (fruAreaOffsetFieldValue == 0)
+    {
+        std::cerr << "FRU Area for " << propertyName << " not present \n";
         return false;
     }
 
+    size_t fruAreaStart = fruAreaOffsetFieldValue * fruBlockSize;
+    size_t fruAreaSize = fruData[fruAreaStart + 1] * fruBlockSize;
+    size_t fruAreaEnd = fruAreaStart + fruAreaSize;
+    size_t fruDataIter = fruAreaStart + offset;
+    size_t skipToFRUUpdateField = 0;
     ssize_t fieldLength = 0;
 
+    bool found = false;
+    for (const auto& field : *fruAreaFieldNames)
+    {
+        skipToFRUUpdateField++;
+        if (propertyName == propertyNamePrefix + field)
+        {
+            found = true;
+            break;
+        }
+    }
+    if (!found)
+    {
+        std::size_t pos = propertyName.find(fruCustomFieldName);
+        if (pos == std::string::npos)
+        {
+            std::cerr << "PropertyName doesn't exist in FRU Area Vectors: "
+                      << propertyName << "\n";
+            return false;
+        }
+        std::string fieldNumStr =
+            propertyName.substr(pos + fruCustomFieldName.length());
+        size_t fieldNum = std::stoi(fieldNumStr);
+        if (fieldNum == 0)
+        {
+            std::cerr << "PropertyName not recognized: " << propertyName
+                      << "\n";
+            return false;
+        }
+        skipToFRUUpdateField += fieldNum;
+    }
+
+    for (size_t i = 1; i < skipToFRUUpdateField; i++)
+    {
+        fieldLength = getFieldLength(fruData[fruDataIter]);
+        if (fieldLength < 0)
+        {
+            break;
+        }
+        fruDataIter += 1 + fieldLength;
+    }
+    size_t fruUpdateFieldLoc = fruDataIter;
+
     // Push post update fru field bytes to a vector
-    fieldLength = getFieldLength(fruData[fruAreaParams.updateFieldLoc]);
+    fieldLength = getFieldLength(fruData[fruUpdateFieldLoc]);
     if (fieldLength < 0)
     {
         std::cerr << "Property " << propertyName << " not present \n";
@@ -1132,9 +1256,9 @@ bool updateFRUProperty(
     size_t endOfFieldsLoc = 0;
     while ((fieldLength = getFieldLength(fruData[fruDataIter])) >= 0)
     {
-        if (fruDataIter >= (fruAreaParams.start + fruAreaParams.size))
+        if (fruDataIter >= (fruAreaStart + fruAreaSize))
         {
-            fruDataIter = fruAreaParams.start + fruAreaParams.size;
+            fruDataIter = fruAreaStart + fruAreaSize;
             break;
         }
         fruDataIter += 1 + fieldLength;
@@ -1169,9 +1293,8 @@ bool updateFRUProperty(
 
     // check FRU area size
     size_t fruAreaDataSize =
-        ((fruAreaParams.updateFieldLoc - fruAreaParams.start + 1) +
-         restFRUAreaFieldsData.size());
-    size_t fruAreaAvailableSize = fruAreaParams.size - fruAreaDataSize;
+        ((fruUpdateFieldLoc - fruAreaStart + 1) + restFRUAreaFieldsData.size());
+    size_t fruAreaAvailableSize = fruAreaSize - fruAreaDataSize;
     if ((updatePropertyReqLen + 1) > fruAreaAvailableSize)
     {
 
@@ -1180,11 +1303,10 @@ bool updateFRUProperty(
         // round size to 8-byte blocks
         newFRUAreaSize =
             ((newFRUAreaSize - 1) / fruBlockSize + 1) * fruBlockSize;
-        size_t newFRUDataSize =
-            fruData.size() + newFRUAreaSize - fruAreaParams.size;
+        size_t newFRUDataSize = fruData.size() + newFRUAreaSize - fruAreaSize;
         fruData.resize(newFRUDataSize);
-        fruAreaParams.size = newFRUAreaSize;
-        fruAreaParams.end = fruAreaParams.start + fruAreaParams.size;
+        fruAreaSize = newFRUAreaSize;
+        fruAreaEnd = fruAreaStart + fruAreaSize;
 #else
         std::cerr << "FRU field length: " << updatePropertyReqLen + 1
                   << " should not be greater than available FRU area size: "
@@ -1195,21 +1317,21 @@ bool updateFRUProperty(
 
     // write new requested property field length and data
     constexpr uint8_t newTypeLenMask = 0xC0;
-    fruData[fruAreaParams.updateFieldLoc] =
+    fruData[fruUpdateFieldLoc] =
         static_cast<uint8_t>(updatePropertyReqLen | newTypeLenMask);
-    fruAreaParams.updateFieldLoc++;
+    fruUpdateFieldLoc++;
     std::copy(updatePropertyReq.begin(), updatePropertyReq.end(),
-              fruData.begin() + fruAreaParams.updateFieldLoc);
+              fruData.begin() + fruUpdateFieldLoc);
 
     // Copy remaining data to main fru area - post updated fru field vector
-    restFRUFieldsLoc = fruAreaParams.updateFieldLoc + updatePropertyReqLen;
+    restFRUFieldsLoc = fruUpdateFieldLoc + updatePropertyReqLen;
     size_t fruAreaDataEnd = restFRUFieldsLoc + restFRUAreaFieldsData.size();
     std::copy(restFRUAreaFieldsData.begin(), restFRUAreaFieldsData.end(),
               fruData.begin() + restFRUFieldsLoc);
 
     // Update final fru with new fru area length and checksum
     unsigned int nextFRUAreaNewLoc = updateFRUAreaLenAndChecksum(
-        fruData, fruAreaParams.start, fruAreaDataEnd, fruAreaParams.end);
+        fruData, fruAreaStart, fruAreaDataEnd, fruAreaEnd);
 
 #ifdef ENABLE_FRU_AREA_RESIZE
     ++nextFRUAreaNewLoc;
