@@ -91,6 +91,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "11c479ad_6197c825",
+        "filename": "configurations/greatlakes.json",
+        "patchSetId": 1
+      },
+      "lineNbr": 422,
+      "author": {
+        "id": 1001618
+      },
+      "writtenOn": "2022-10-27T03:39:48Z",
+      "side": 1,
+      "message": "We found out that PSU dbus sensor service has custom naming function. However, the entity-manager schema don\u0027t allow us to use. The patch below need to be merged first.\nhttps://gerrit.openbmc.org/c/openbmc/entity-manager/+/58224",
+      "parentUuid": "e97f51b2_6b43b774",
+      "revId": "35ae0b30bee7df59658e4233abcb82022f505e78",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "7f912180_9745f1d9",
         "filename": "meson.build",
         "patchSetId": 1
