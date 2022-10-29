@@ -1,0 +1,233 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "26eacc00_661087d2",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1000733
+      },
+      "writtenOn": "2022-10-29T00:36:30Z",
+      "side": 1,
+      "message": "A number of mostly pretty minor things...looks alright overall though.",
+      "revId": "56e364a33e2d936c64d36f81e75d730e5583d74f",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0402b209_1ba07d34",
+        "filename": "include/fru_utils.hpp",
+        "patchSetId": 2
+      },
+      "lineNbr": 37,
+      "author": {
+        "id": 1000733
+      },
+      "writtenOn": "2022-10-29T00:36:30Z",
+      "side": 1,
+      "message": "Is there any particular reason to have these as macros?  Seems like we might as well stick with the existing style of `constexpr size_t` instead.",
+      "revId": "56e364a33e2d936c64d36f81e75d730e5583d74f",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "432184f1_81be81c0",
+        "filename": "include/fru_utils.hpp",
+        "patchSetId": 2
+      },
+      "lineNbr": 183,
+      "author": {
+        "id": 1000733
+      },
+      "writtenOn": "2022-10-29T00:36:30Z",
+      "side": 1,
+      "message": "This function name seems a little awkward to me ; I\u0027d suggest `parseMultirecordUUID()` instead.",
+      "range": {
+        "startLine": 183,
+        "startChar": 5,
+        "endLine": 183,
+        "endChar": 26
+      },
+      "revId": "56e364a33e2d936c64d36f81e75d730e5583d74f",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6192bf77_dfeb7eb0",
+        "filename": "src/fru_utils.cpp",
+        "patchSetId": 2
+      },
+      "lineNbr": 69,
+      "author": {
+        "id": 1000733
+      },
+      "writtenOn": "2022-10-29T00:36:30Z",
+      "side": 1,
+      "message": "Given that the other names of the elements in this enum are written out in full, seems like we might as well expand \"Sup\" to \"Supply\" and \"Out\" to \"Output\" here.",
+      "range": {
+        "startLine": 68,
+        "startChar": 0,
+        "endLine": 69,
+        "endChar": 17
+      },
+      "revId": "56e364a33e2d936c64d36f81e75d730e5583d74f",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "44bf77a6_cad719a8",
+        "filename": "src/fru_utils.cpp",
+        "patchSetId": 2
+      },
+      "lineNbr": 76,
+      "author": {
+        "id": 1000733
+      },
+      "writtenOn": "2022-10-29T00:36:30Z",
+      "side": 1,
+      "message": "Nit: I think it\u0027d be slightly clearer to use `resv` as an abbreviated prefix for \"reserved\" instead of just `res` (which by appearance I\u0027d be more likely to interpret as meaning \"resource\" or something).  Also, I\u0027d suggest putting \"ASF\" part in all-caps.",
+      "range": {
+        "startLine": 74,
+        "startChar": 0,
+        "endLine": 76,
+        "endChar": 31
+      },
+      "revId": "56e364a33e2d936c64d36f81e75d730e5583d74f",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "aeb57f1a_a3392fe3",
+        "filename": "src/fru_utils.cpp",
+        "patchSetId": 2
+      },
+      "lineNbr": 496,
+      "author": {
+        "id": 1000733
+      },
+      "writtenOn": "2022-10-29T00:36:30Z",
+      "side": 1,
+      "message": "Formatting here looks a bit off (perhaps that why CI complained, though at this point unfortunately the jenkins link is a 404).",
+      "range": {
+        "startLine": 495,
+        "startChar": 27,
+        "endLine": 496,
+        "endChar": 48
+      },
+      "revId": "56e364a33e2d936c64d36f81e75d730e5583d74f",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "18a68f50_33d62675",
+        "filename": "src/fru_utils.cpp",
+        "patchSetId": 2
+      },
+      "lineNbr": 510,
+      "author": {
+        "id": 1000733
+      },
+      "writtenOn": "2022-10-29T00:36:30Z",
+      "side": 1,
+      "message": "Is there a symbolic name we could use for this magic index?  (Or if not, should we create one?)  If I\u0027m reading things right though, I think 5 would be the value returned by the getHeaderAreaFieldOffset() call above, so maybe just `if (areaOffset !\u003d 0)` instead...?",
+      "revId": "56e364a33e2d936c64d36f81e75d730e5583d74f",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "717183f6_ddf49f2d",
+        "filename": "src/fru_utils.cpp",
+        "patchSetId": 2
+      },
+      "lineNbr": 516,
+      "author": {
+        "id": 1000733
+      },
+      "writtenOn": "2022-10-29T00:36:30Z",
+      "side": 1,
+      "message": "Is there a particular reason to cast both operands to int instead of just casting managementAccessRecord to uint8_t?",
+      "range": {
+        "startLine": 515,
+        "startChar": 16,
+        "endLine": 516,
+        "endChar": 61
+      },
+      "revId": "56e364a33e2d936c64d36f81e75d730e5583d74f",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7096edb3_94a9785c",
+        "filename": "src/fru_utils.cpp",
+        "patchSetId": 2
+      },
+      "lineNbr": 519,
+      "author": {
+        "id": 1000733
+      },
+      "writtenOn": "2022-10-29T00:36:30Z",
+      "side": 1,
+      "message": "Likewise here.\n\nAlso, should we check recordLength as well?  (i.e. just to check for corrupt/malformed FRU data.)",
+      "range": {
+        "startLine": 518,
+        "startChar": 20,
+        "endLine": 519,
+        "endChar": 66
+      },
+      "revId": "56e364a33e2d936c64d36f81e75d730e5583d74f",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "fac65eac_edb5f84e",
+        "filename": "src/fru_utils.cpp",
+        "patchSetId": 2
+      },
+      "lineNbr": 540,
+      "author": {
+        "id": 1000733
+      },
+      "writtenOn": "2022-10-29T00:36:30Z",
+      "side": 1,
+      "message": "I\u0027m guessing the hard-coded 6 here is essentially multiRecordHeaderLen plus one to skip past the sub-record type byte?  Assuming so, it would be good to make that a little clearer.",
+      "range": {
+        "startLine": 540,
+        "startChar": 48,
+        "endLine": 540,
+        "endChar": 49
+      },
+      "revId": "56e364a33e2d936c64d36f81e75d730e5583d74f",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "202f5895_4091826c",
+        "filename": "src/fru_utils.cpp",
+        "patchSetId": 2
+      },
+      "lineNbr": 542,
+      "author": {
+        "id": 1000733
+      },
+      "writtenOn": "2022-10-29T00:36:30Z",
+      "side": 1,
+      "message": "What purpose does the uuidBin variable serve here?  It looks like it could be removed and you could just use the uuidReorder buffer directly instead.",
+      "revId": "56e364a33e2d936c64d36f81e75d730e5583d74f",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    }
+  ]
+}
