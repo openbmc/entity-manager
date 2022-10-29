@@ -66,6 +66,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "64121619_3bafff73",
+        "filename": "src/fru_device.cpp",
+        "patchSetId": 7
+      },
+      "lineNbr": 398,
+      "author": {
+        "id": 1000733
+      },
+      "writtenOn": "2022-10-29T02:02:04Z",
+      "side": 1,
+      "message": "Or since `bus` is loop invariant and `busBlacklist[bus]` is currently looked up multiple times on each iteration, maybe just assign `busBlacklist.find(bus)` to a variable outside the loop once and use that instead?",
+      "parentUuid": "a41d4ec5_71787f4a",
+      "range": {
+        "startLine": 398,
+        "startChar": 0,
+        "endLine": 398,
+        "endChar": 61
+      },
+      "revId": "19fcee1024c4c6f6ae86182c14070f4afdc347ce",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "8c377260_0f58adda",
         "filename": "src/fru_device.cpp",
         "patchSetId": 7
@@ -225,6 +249,23 @@
       "writtenOn": "2022-10-28T11:56:36Z",
       "side": 1,
       "message": "Why are we getting one type (size_t) but storing into another type (bus)?",
+      "revId": "19fcee1024c4c6f6ae86182c14070f4afdc347ce",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "67dd9e4b_a2b20f1c",
+        "filename": "src/fru_device.cpp",
+        "patchSetId": 7
+      },
+      "lineNbr": 609,
+      "author": {
+        "id": 1000733
+      },
+      "writtenOn": "2022-10-29T02:02:04Z",
+      "side": 1,
+      "message": "The \"empty means everything\" encoding is a bit counter-intuitive; I\u0027d suggest at least putting a comment explaining it on the declaration of busBlacklist.\n\nIt also means that you\u0027ll end up with some pretty surprising results if someone does e.g.\n\n```\n{\n  \"buses\": [\n    ...\n    {\n      \"bus\": 3,\n      \"addresses\": []\n    },\n    ...\n  ]\n}\n```\n\nThe obvious reading of that is that no addresses on bus 3 should be skipped, but it\u0027ll end up skipping the entire bus instead.  I might argue for a slightly more explicit representation in the busBlacklist data structure, perhaps something like map\u003cint, optional\u003cset\u003cint\u003e\u003e\u003e, using nullopt to signal \"all addresses\" and leaving an empty set meaning the natural obvious thing (\"no addresses\").",
       "revId": "19fcee1024c4c6f6ae86182c14070f4afdc347ce",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
