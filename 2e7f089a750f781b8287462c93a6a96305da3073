@@ -1,0 +1,95 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "26857303_d4d31d85",
+        "filename": "docs/blacklist_configuration.md",
+        "patchSetId": 11
+      },
+      "lineNbr": 2,
+      "author": {
+        "id": 1000733
+      },
+      "writtenOn": "2022-10-31T20:26:22Z",
+      "side": 1,
+      "message": "Please wrap this line.  Also, I think it should be worded a little more strongly, something like \"should not be scanned\" instead of \"don\u0027t need to be scan[ned]\".\n\nWhile it can sort of be inferred from the content, I think it would be good to mention explicitly somewhere in this document that a bare-integer entry blocks an entire bus from being scanned, while a bus/addresses object can be used for more fine-grained control to block specific addresses but allow scanning other addresses on the same bus.",
+      "revId": "2e7f089a750f781b8287462c93a6a96305da3073",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "fe691e0e_8502807e",
+        "filename": "docs/blacklist_configuration.md",
+        "patchSetId": 11
+      },
+      "lineNbr": 19,
+      "author": {
+        "id": 1000733
+      },
+      "writtenOn": "2022-10-31T20:26:22Z",
+      "side": 1,
+      "message": "Missing comma",
+      "revId": "2e7f089a750f781b8287462c93a6a96305da3073",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "624ee1cf_7afbd1e6",
+        "filename": "docs/blacklist_configuration.md",
+        "patchSetId": 11
+      },
+      "lineNbr": 32,
+      "author": {
+        "id": 1000733
+      },
+      "writtenOn": "2022-10-31T20:26:22Z",
+      "side": 1,
+      "message": "This should specify that the address strings should be in hex.  (Too bad json doesn\u0027t support it natively, sigh...)",
+      "revId": "2e7f089a750f781b8287462c93a6a96305da3073",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ca2eaa59_953f9e34",
+        "filename": "docs/blacklist_configuration.md",
+        "patchSetId": 11
+      },
+      "lineNbr": 41,
+      "author": {
+        "id": 1000733
+      },
+      "writtenOn": "2022-10-31T20:26:22Z",
+      "side": 1,
+      "message": "Missing comma",
+      "revId": "2e7f089a750f781b8287462c93a6a96305da3073",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b35f6579_4d661ae1",
+        "filename": "src/fru_device.cpp",
+        "patchSetId": 11
+      },
+      "lineNbr": 559,
+      "author": {
+        "id": 1000733
+      },
+      "writtenOn": "2022-10-31T20:26:22Z",
+      "side": 1,
+      "message": "Okay, so I guess this is the fix to prevent an empty addresses array from being treated as a whole-bus block, though I have to say it seems like a bit of a hack (and also fairly non-obvious to a casual reader, especially given the continuing lack of explanatory comments).\n\nLooking back at it, I\u0027d be strongly in favor of a more explicit representation in the datatype used for `busBlacklist` (e.g. the std::optional\u003c\u003e-based approach I suggested) -- that would obviate the need for this surprising little edge-case entirely.",
+      "range": {
+        "startLine": 556,
+        "startChar": 0,
+        "endLine": 559,
+        "endChar": 21
+      },
+      "revId": "2e7f089a750f781b8287462c93a6a96305da3073",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    }
+  ]
+}
