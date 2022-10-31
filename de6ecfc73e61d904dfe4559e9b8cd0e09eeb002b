@@ -33,6 +33,24 @@
       "message": "Are you going to use all these newly added fields ?\n\nCan we use the existing property names if possible ?\n\nIf needed, we can some minimum field names. I think these many fields are not required. ",
       "revId": "de6ecfc73e61d904dfe4559e9b8cd0e09eeb002b",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "1f320b19_6e6b224f",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1001618
+      },
+      "writtenOn": "2022-10-31T06:09:06Z",
+      "side": 1,
+      "message": "Right now, the schema doesn\u0027t contain any \"label_Name\" property for custom PSU sensor name. \n\nHowever, it does have \"label_Max\" and \"label_Min\" properties for PSUSensor.\n\nWe added an additional name property on every single label_* in case people, who using these properties, can now customize sensors\u0027 name.",
+      "parentUuid": "e67b9642_4b92d650",
+      "revId": "de6ecfc73e61d904dfe4559e9b8cd0e09eeb002b",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }
