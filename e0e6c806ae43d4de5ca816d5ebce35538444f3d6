@@ -98,6 +98,24 @@
       "message": "soft reminder: We did find out that the IPMB messages are limited to 32-bytes total. There should be no response of request data with 49 counts to read.",
       "revId": "e0e6c806ae43d4de5ca816d5ebce35538444f3d6",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "3fc026b3_54c892a3",
+        "filename": "src/IpmbFruDevice.cpp",
+        "patchSetId": 34
+      },
+      "lineNbr": 215,
+      "author": {
+        "id": 1000546
+      },
+      "writtenOn": "2022-11-01T06:44:02Z",
+      "side": 1,
+      "message": "There is an IPMB command to get the fru data and response has 255 bytes of data. but, we can be able to read 50 bytes of data at the time. So reading 50 bytes data(0 - 49 offset) in each iteration. Likewise it reads full response data. - This is for YV2 fru data handling.\n\nfor greatlakes, It can be read only 32 bytes of data. So, we will need to have a common offset to read the fru response data bytes.",
+      "parentUuid": "fda2318d_0cad9d57",
+      "revId": "e0e6c806ae43d4de5ca816d5ebce35538444f3d6",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }
