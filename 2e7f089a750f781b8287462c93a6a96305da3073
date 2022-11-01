@@ -90,6 +90,30 @@
       },
       "revId": "2e7f089a750f781b8287462c93a6a96305da3073",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e9978e01_00fe842e",
+        "filename": "src/fru_device.cpp",
+        "patchSetId": 11
+      },
+      "lineNbr": 559,
+      "author": {
+        "id": 1001618
+      },
+      "writtenOn": "2022-11-01T09:11:29Z",
+      "side": 1,
+      "message": "We have been working on std::optional and want to clarify a thing. When user put:\n{\n  \"buses\": [\n    ...\n    {\n      \"bus\": 3,\n      \"addresses\": []\n    },\n    ...\n  ]\n}\nBecause this is a blocklist, we should assume that user want to block addresses on bus 3. If someone leaves addresses data empty, should we block an entire bus for the safety? In case someone just forgot to put addresses data.",
+      "parentUuid": "b35f6579_4d661ae1",
+      "range": {
+        "startLine": 556,
+        "startChar": 0,
+        "endLine": 559,
+        "endChar": 21
+      },
+      "revId": "2e7f089a750f781b8287462c93a6a96305da3073",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }
