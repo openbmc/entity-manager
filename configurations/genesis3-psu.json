@@ -1,0 +1,276 @@
+[
+  {
+    "Exposes": [
+        {
+            "Address": "0x5f",
+            "Bus": 34,
+            "Labels": [
+                "iin2",
+                "iout2",
+                "vin2",
+                "vout2",
+                "pin2",
+                "pout2",
+                "temp1"
+            ],
+            "Name1": "BCM0",
+            "PowerState": "Always",
+            "Name": "BCM0_TEMP",
+            "Thresholds": [
+                {
+                    "Direction": "greater than",
+                    "Label": "vin2",
+                    "Name": "upper critical",
+                    "Value": 480.96,
+                    "Severity": 1
+                },
+                {
+                    "Direction": "less than",
+                    "Label": "vin2",
+                    "Name": "lower critical",
+                    "Severity": 1,
+                    "Value": 260
+                },
+                {
+                    "Direction": "greater than",
+                    "Label": "temp1",
+                    "Name": "upper critical",
+                    "Value": 125.0,
+                    "Severity": 1
+                },
+                {
+                    "Direction": "greater than",
+                    "Label": "iout2",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 68
+                }
+            ],
+            "Type": "pli1209bc",
+            "PollRate": 5.0
+        }
+    ],
+    "Name": "Vicor BCM 6123 750W 1",
+    "Probe": "FOUND('IBM Genesis3 Baseboard')",
+    "Type": "PowerSupply",
+    "ProductId": "1",
+    "xyz.openbmc_project.Inventory.Decorator.Asset": {
+        "Manufacturer": "Vicor",
+        "Model": "BCM 6123",
+        "PartNumber": "BCM6123TD1E1368T01"
+    },
+    "xyz.openbmc_project.Inventory.Decorator.Replaceable": {
+        "FieldReplaceable": false
+    },
+    "xyz.openbmc_project.Inventory.Item": {
+        "Present": true
+    }
+  },
+  {
+    "Exposes": [
+        {
+            "Address": "0x5f",
+            "Bus": 35,
+            "Labels": [
+                "iin2",
+                "iout2",
+                "vin2",
+                "vout2",
+                "pin2",
+                "pout2",
+                "temp1"
+            ],
+            "Name1": "BCM1",
+            "PowerState": "Always",
+            "Name": "BCM1_TEMP",
+            "Thresholds": [
+                {
+                    "Direction": "greater than",
+                    "Label": "vin2",
+                    "Name": "upper critical",
+                    "Value": 480.96,
+                    "Severity": 1
+                },
+                {
+                    "Direction": "less than",
+                    "Label": "vin2",
+                    "Name": "lower critical",
+                    "Severity": 1,
+                    "Value": 260
+                },
+                {
+                    "Direction": "greater than",
+                    "Label": "temp1",
+                    "Name": "upper critical",
+                    "Value": 125.0,
+                    "Severity": 1
+                },
+                {
+                    "Direction": "greater than",
+                    "Label": "iout2",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 68
+                }
+            ],
+            "Type": "pli1209bc",
+            "PollRate": 5.0
+        }
+    ],
+    "Name": "Vicor BCM 6123 750W 2",
+    "Probe": "FOUND('IBM Genesis3 Baseboard')",
+    "Type": "PowerSupply",
+    "ProductId": "2",
+    "xyz.openbmc_project.Inventory.Decorator.Asset": {
+        "Manufacturer": "Vicor",
+        "Model": "BCM 6123",
+        "PartNumber": "BCM6123TD1E1368T01"
+    },
+    "xyz.openbmc_project.Inventory.Item": {
+        "Present": true
+    },
+    "xyz.openbmc_project.Inventory.Decorator.Replaceable": {
+        "FieldReplaceable": false
+    }
+  },
+  {
+    "Exposes": [
+        {
+            "Address": "0x5f",
+            "Bus": 36,
+            "Labels": [
+                "iin2",
+                "iout2",
+                "vin2",
+                "vout2",
+                "pin2",
+                "pout2",
+                "temp1"
+            ],
+            "Name1": "BCM2",
+            "PowerState": "Always",
+            "Name": "BCM2_TEMP",
+            "Thresholds": [
+                {
+                    "Direction": "greater than",
+                    "Label": "vin2",
+                    "Name": "upper critical",
+                    "Value": 480.96,
+                    "Severity": 1
+                },
+                {
+                    "Direction": "less than",
+                    "Label": "vin2",
+                    "Name": "lower critical",
+                    "Severity": 1,
+                    "Value": 260
+                },
+                {
+                    "Direction": "greater than",
+                    "Label": "temp1",
+                    "Name": "upper critical",
+                    "Value": 125.0,
+                    "Severity": 1
+                },
+                {
+                    "Direction": "greater than",
+                    "Label": "iout2",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 68
+                }
+            ],
+            "Type": "pli1209bc",
+            "PollRate": 5.0
+        }
+    ],
+    "Name": "Vicor BCM 6123 750W 3",
+    "Probe": "FOUND('IBM Genesis3 Baseboard')",
+    "Type": "PowerSupply",
+    "ProductId": "3",
+    "xyz.openbmc_project.Inventory.Decorator.Asset": {
+        "Manufacturer": "Vicor",
+        "Model": "BCM 6123",
+        "PartNumber": "BCM6123TD1E1368T01"
+    },
+    "xyz.openbmc_project.Inventory.Item": {
+        "PrettyName": "Vicor BCM 6123",
+        "Present": true
+    },
+    "xyz.openbmc_project.Inventory.Decorator.Replaceable": {
+        "FieldReplaceable": false
+    },
+    "xyz.openbmc_project.Inventory.Decorator.LocationCode": {
+        "LocationCode": "Embedded"
+    }
+  },
+  {
+    "Exposes": [
+        {
+            "Address": "0x5f",
+            "Bus": 37,
+            "Labels": [
+                "iin2",
+                "iout2",
+                "vin2",
+                "vout2",
+                "pin2",
+                "pout2",
+                "temp1"
+            ],
+            "Name1": "BCM3",
+            "PowerState": "Always",
+            "Name": "BCM3_TEMP",
+            "Thresholds": [
+                {
+                    "Direction": "greater than",
+                    "Label": "vin2",
+                    "Name": "upper critical",
+                    "Value": 480.96,
+                    "Severity": 1
+                },
+                {
+                        "Direction": "less than",
+                        "Label": "vin2",
+                        "Name": "lower critical",
+                        "Severity": 1,
+                        "Value": 260
+                },
+                {
+                    "Direction": "greater than",
+                    "Label": "temp1",
+                    "Name": "upper critical",
+                    "Value": 125.0,
+                    "Severity": 1
+                },
+                {
+                    "Direction": "greater than",
+                    "Label": "iout2",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 68
+                }
+            ],
+            "Type": "pli1209bc",
+	    "PollRate": 5.0
+        }
+    ],
+    "Name": "Vicor BCM 6123 750W 4",
+    "Probe": "FOUND('IBM Genesis3 Baseboard')",
+    "Type": "PowerSupply",
+    "ProductId": "4",
+    "xyz.openbmc_project.Inventory.Decorator.Asset": {
+        "Manufacturer": "Vicor",
+        "Model": "BCM 6123",
+        "PartNumber": "BCM6123TD1E1368T01"
+    },
+    "xyz.openbmc_project.Inventory.Item": {
+        "PrettyName": "Vicor BCM 6123",
+        "Present": true
+    },
+    "xyz.openbmc_project.Inventory.Decorator.Replaceable": {
+        "FieldReplaceable": false
+    }
+  }
+]
+
