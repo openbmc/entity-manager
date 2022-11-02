@@ -507,7 +507,7 @@ void createAddObjectMethod(const std::string& jsonPointerPath,
             }
 
             std::ifstream schemaFile(std::string(schemaDirectory) + "/" +
-                                     *type + ".json");
+                                     boost::to_lower_copy(*type) + ".json");
             // todo(james) we might want to also make a list of 'can add'
             // interfaces but for now I think the assumption if there is a
             // schema avaliable that it is allowed to update is fine
