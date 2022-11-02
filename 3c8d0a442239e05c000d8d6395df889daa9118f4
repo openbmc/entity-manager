@@ -88,6 +88,24 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "fe68a7df_46d30ee7",
+        "filename": "src/topology.cpp",
+        "patchSetId": 2
+      },
+      "lineNbr": 54,
+      "author": {
+        "id": 1000233
+      },
+      "writtenOn": "2022-11-02T21:05:26Z",
+      "side": 1,
+      "message": "Removed the TODO",
+      "parentUuid": "6e569bc6_c7ee5b0e",
+      "revId": "3c8d0a442239e05c000d8d6395df889daa9118f4",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "b2890fa8_12bf207d",
@@ -101,6 +119,30 @@
       "writtenOn": "2022-09-15T22:32:25Z",
       "side": 1,
       "message": "Do you also plan to support \"Board\" types as \"Chassis\" types?  BMCWeb will represent both types of inventory objects as Chassis resources.",
+      "range": {
+        "startLine": 55,
+        "startChar": 20,
+        "endLine": 55,
+        "endChar": 92
+      },
+      "revId": "3c8d0a442239e05c000d8d6395df889daa9118f4",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "56224ddd_fbf58d6d",
+        "filename": "src/topology.cpp",
+        "patchSetId": 2
+      },
+      "lineNbr": 55,
+      "author": {
+        "id": 1000233
+      },
+      "writtenOn": "2022-11-02T21:05:26Z",
+      "side": 1,
+      "message": "The current version supports Board and Chassis as upstream types and anything as a downstream type.",
+      "parentUuid": "b2890fa8_12bf207d",
       "range": {
         "startLine": 55,
         "startChar": 20,
