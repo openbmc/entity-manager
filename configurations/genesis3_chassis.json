@@ -1,0 +1,983 @@
+{
+    "Exposes": [
+        {
+            "Address": "0x2e",
+            "BindConnector": "Fan01 connector",
+            "Bus": "166",
+            "Index": 0,
+            "MaxReading": 0,
+            "Name": "Fan01_in",
+            "PowerState": "Always",
+            "Presence": {
+                "PinName": "PLUG_DETECT_FAN_ASM01",
+                "Polarity": "Low"
+            },
+            "Type": "I2CFan"
+        },
+        {
+            "Address": "0x2e",
+            "BindConnector": "Fan02 connector",
+            "Bus": "167",
+            "Index": 0,
+            "MaxReading": 0,
+            "Name": "Fan02_in",
+            "PowerState": "Always",
+            "Type": "I2CFan"
+        },
+        {
+            "Address": "0x2e",
+            "BindConnector": "Fan03 connector",
+            "Bus": "168",
+            "Index": 0,
+            "MaxReading": 0,
+            "Name": "Fan03_in",
+            "PowerState": "Always",
+            "Presence": {
+                "PinName": "PLUG_DETECT_FAN_ASM02",
+                "Polarity": "Low"
+            },
+            "Type": "I2CFan"
+        },
+        {
+            "Address": "0x2e",
+            "BindConnector": "Fan04 connector",
+            "Bus": "169",
+            "Index": 0,
+            "MaxReading": 0,
+            "Name": "Fan04_in",
+            "PowerState": "Always",
+            "Type": "I2CFan"
+        },
+        {
+            "Address": "0x2e",
+            "BindConnector": "Fan05 connector",
+            "Bus": "170",
+            "Index": 0,
+            "MaxReading": 0,
+            "Name": "Fan05_in",
+            "PowerState": "Always",
+            "Presence": {
+                "PinName": "PLUG_DETECT_FAN_ASM03",
+                "Polarity": "Low"
+            },
+            "Type": "I2CFan"
+        },
+        {
+            "Address": "0x2e",
+            "BindConnector": "Fan06 connector",
+            "Bus": "171",
+            "Index": 0,
+            "MaxReading": 0,
+            "Name": "Fan06_in",
+            "PowerState": "Always",
+            "Type": "I2CFan"
+        },
+        {
+            "Address": "0x2e",
+            "BindConnector": "Fan07 connector",
+            "Bus": "172",
+            "Index": 0,
+            "MaxReading": 0,
+            "Name": "Fan07_in",
+            "PowerState": "Always",
+            "Presence": {
+                "PinName": "PLUG_DETECT_FAN_ASM04",
+                "Polarity": "Low"
+            },
+            "Type": "I2CFan"
+        },
+        {
+            "Address": "0x2e",
+            "BindConnector": "Fan08 connector",
+            "Bus": "173",
+            "Index": 0,
+            "MaxReading": 0,
+            "Name": "Fan08_in",
+            "PowerState": "Always",
+            "Type": "I2CFan"
+        },
+        {
+            "Address": "0x2e",
+            "BindConnector": "Fan09 connector",
+            "Bus": "174",
+            "Index": 0,
+            "MaxReading": 0,
+            "Name": "Fan09_in",
+            "PowerState": "Always",
+            "Presence": {
+                "PinName": "PLUG_DETECT_FAN_ASM05",
+                "Polarity": "Low"
+            },
+            "Type": "I2CFan"
+        },
+        {
+            "Address": "0x2e",
+            "BindConnector": "Fan10 connector",
+            "Bus": "175",
+            "Index": 0,
+            "MaxReading": 0,
+            "Name": "Fan10_in",
+            "PowerState": "Always",
+            "Type": "I2CFan"
+        },
+        {
+            "Address": "0x2e",
+            "BindConnector": "Fan11 connector",
+            "Bus": "176",
+            "Index": 0,
+            "MaxReading": 0,
+            "Name": "Fan11_in",
+            "PowerState": "Always",
+            "Presence": {
+                "PinName": "PLUG_DETECT_FAN_ASM06",
+                "Polarity": "Low"
+            },
+            "Type": "I2CFan"
+        },
+        {
+            "Address": "0x2e",
+            "BindConnector": "Fan12 connector",
+            "Bus": "177",
+            "Index": 0,
+            "MaxReading": 0,
+            "Name": "Fan12_in",
+            "PowerState": "Always",
+            "Type": "I2CFan"
+        },
+        {
+            "Address": "0x2e",
+            "BindConnector": "Fan13 connector",
+            "Bus": "178",
+            "Index": 0,
+            "MaxReading": 0,
+            "Name": "Fan13_in",
+            "PowerState": "Always",
+            "Presence": {
+                "PinName": "PLUG_DETECT_FAN_ASM07",
+                "Polarity": "Low"
+            },
+            "Type": "I2CFan"
+        },
+        {
+            "Address": "0x2e",
+            "BindConnector": "Fan14 connector",
+            "Bus": "179",
+            "Index": 0,
+            "MaxReading": 0,
+            "Name": "Fan14_in",
+            "PowerState": "Always",
+            "Type": "I2CFan"
+        },
+        {
+            "Address": "0x2e",
+            "BindConnector": "Fan15 connector",
+            "Bus": "180",
+            "Index": 0,
+            "MaxReading": 0,
+            "Name": "Fan15_in",
+            "PowerState": "Always",
+            "Presence": {
+                "PinName": "PLUG_DETECT_FAN_ASM08",
+                "Polarity": "Low"
+            },
+            "Type": "I2CFan"
+        },
+        {
+            "Address": "0x2e",
+            "BindConnector": "Fan16 connector",
+            "Bus": "181",
+            "Index": 0,
+            "MaxReading": 0,
+            "Name": "Fan16_in",
+            "PowerState": "Always",
+            "Type": "I2CFan"
+        },
+        {
+            "Address": "0x2e",
+            "BindConnector": "Fan17 connector",
+            "Bus": "182",
+            "Index": 0,
+            "MaxReading": 0,
+            "Name": "Fan17_in",
+            "PowerState": "Always",
+            "Presence": {
+                "PinName": "PLUG_DETECT_FAN_ASM09",
+                "Polarity": "Low"
+            },
+            "Type": "I2CFan"
+        },
+        {
+            "Address": "0x2e",
+            "BindConnector": "Fan18 connector",
+            "Bus": "183",
+            "Index": 0,
+            "MaxReading": 0,
+            "Name": "Fan18_in",
+            "PowerState": "Always",
+            "Type": "I2CFan"
+        },
+        {
+            "Address": "0x2e",
+            "BindConnector": "Fan19 connector",
+            "Bus": "184",
+            "Index": 0,
+            "MaxReading": 0,
+            "Name": "Fan19_in",
+            "PowerState": "Always",
+            "Presence": {
+                "PinName": "PLUG_DETECT_FAN_ASM10",
+                "Polarity": "Low"
+            },
+            "Type": "I2CFan"
+        },
+        {
+            "Address": "0x2e",
+            "BindConnector": "Fan20 connector",
+            "Bus": "185",
+            "Index": 0,
+            "MaxReading": 0,
+            "Name": "Fan20_in",
+            "PowerState": "Always",
+            "Type": "I2CFan"
+        },
+        {
+            "Address": "0x2e",
+            "BindConnector": "Fan21 connector",
+            "Bus": "186",
+            "Index": 0,
+            "MaxReading": 0,
+            "Name": "Fan21_in",
+            "PowerState": "Always",
+            "Presence": {
+                "PinName": "PLUG_DETECT_FAN_ASM11",
+                "Polarity": "Low"
+            },
+            "Type": "I2CFan"
+        },
+        {
+            "Address": "0x2e",
+            "BindConnector": "Fan22 connector",
+            "Bus": "187",
+            "Index": 0,
+            "MaxReading": 0,
+            "Name": "Fan22_in",
+            "PowerState": "Always",
+            "Type": "I2CFan"
+        },
+        {
+            "Address": "0x2e",
+            "BindConnector": "Fan23 connector",
+            "Bus": "188",
+            "Index": 0,
+            "MaxReading": 0,
+            "Name": "Fan23_in",
+            "PowerState": "Always",
+            "Presence": {
+                "PinName": "PLUG_DETECT_FAN_ASM12",
+                "Polarity": "Low"
+            },
+            "Type": "I2CFan"
+        },
+        {
+            "Address": "0x2e",
+            "BindConnector": "Fan24 connector",
+            "Bus": "189",
+            "Index": 0,
+            "MaxReading": 0,
+            "Name": "Fan24_in",
+            "PowerState": "Always",
+            "Type": "I2CFan"
+        },
+        {
+            "Class": "fan",
+            "FFGainCoefficient": 0.0079,
+            "FFOffCoefficient": 0,
+            "ICoefficient": 0,
+            "ILimitMax": 0,
+            "ILimitMin": 0,
+            "Inputs": [
+                "Fan01_in"
+            ],
+            "Name": "Fan01_PID",
+            "NegativeHysteresis": 0,
+            "OutLimitMax": 100,
+            "OutLimitMin": 18,
+            "Outputs": [
+                "Fan01_Pwm"
+            ],
+            "PCoefficient": 0.0026,
+            "PositiveHysteresis": 0,
+            "SetPoint": 70,
+            "SlewNeg": 0,
+            "SlewPos": 0,
+            "Type": "Pid",
+            "Zones": [
+                "PSU"
+            ]
+        },
+        {
+            "Class": "fan",
+            "FFGainCoefficient": 0.0079,
+            "FFOffCoefficient": 0,
+            "ICoefficient": 0,
+            "ILimitMax": 0,
+            "ILimitMin": 0,
+            "Inputs": [
+                "Fan02_in"
+            ],
+            "Name": "Fan02_PID",
+            "NegativeHysteresis": 0,
+            "OutLimitMax": 100,
+            "OutLimitMin": 18,
+            "Outputs": [
+                "Fan02_Pwm"
+            ],
+            "PCoefficient": 0.0026,
+            "PositiveHysteresis": 0,
+            "SetPoint": 70,
+            "SlewNeg": 0,
+            "SlewPos": 0,
+            "Type": "Pid",
+            "Zones": [
+                "PSU"
+            ]
+        },
+        {
+            "Class": "fan",
+            "FFGainCoefficient": 0.0079,
+            "FFOffCoefficient": 0,
+            "ICoefficient": 0,
+            "ILimitMax": 0,
+            "ILimitMin": 0,
+            "Inputs": [
+                "Fan03_in"
+            ],
+            "Name": "Fan03_PID",
+            "NegativeHysteresis": 0,
+            "OutLimitMax": 100,
+            "OutLimitMin": 18,
+            "Outputs": [
+                "Fan03_Pwm"
+            ],
+            "PCoefficient": 0.0026,
+            "PositiveHysteresis": 0,
+            "SetPoint": 70,
+            "SlewNeg": 0,
+            "SlewPos": 0,
+            "Type": "Pid",
+            "Zones": [
+                "PSU"
+            ]
+        },
+        {
+            "Class": "fan",
+            "FFGainCoefficient": 0.0079,
+            "FFOffCoefficient": 0,
+            "ICoefficient": 0,
+            "ILimitMax": 0,
+            "ILimitMin": 0,
+            "Inputs": [
+                "Fan04_in"
+            ],
+            "Name": "Fan04_PID",
+            "NegativeHysteresis": 0,
+            "OutLimitMax": 100,
+            "OutLimitMin": 18,
+            "Outputs": [
+                "Fan04_Pwm"
+            ],
+            "PCoefficient": 0.0026,
+            "PositiveHysteresis": 0,
+            "SetPoint": 70,
+            "SlewNeg": 0,
+            "SlewPos": 0,
+            "Type": "Pid",
+            "Zones": [
+                "PSU"
+            ]
+        },
+        {
+            "Class": "fan",
+            "FFGainCoefficient": 0.0079,
+            "FFOffCoefficient": 0,
+            "ICoefficient": 0,
+            "ILimitMax": 0,
+            "ILimitMin": 0,
+            "Inputs": [
+                "Fan05_in"
+            ],
+            "Name": "Fan05_PID",
+            "NegativeHysteresis": 0,
+            "OutLimitMax": 100,
+            "OutLimitMin": 18,
+            "Outputs": [
+                "Fan05_Pwm"
+            ],
+            "PCoefficient": 0.0026,
+            "PositiveHysteresis": 0,
+            "SetPoint": 70,
+            "SlewNeg": 0,
+            "SlewPos": 0,
+            "Type": "Pid",
+            "Zones": [
+                "PSU"
+            ]
+        },
+        {
+            "Class": "fan",
+            "FFGainCoefficient": 0.0079,
+            "FFOffCoefficient": 0,
+            "ICoefficient": 0,
+            "ILimitMax": 0,
+            "ILimitMin": 0,
+            "Inputs": [
+                "Fan06_in"
+            ],
+            "Name": "Fan06_PID",
+            "NegativeHysteresis": 0,
+            "OutLimitMax": 100,
+            "OutLimitMin": 18,
+            "Outputs": [
+                "Fan06_Pwm"
+            ],
+            "PCoefficient": 0.0026,
+            "PositiveHysteresis": 0,
+            "SetPoint": 70,
+            "SlewNeg": 0,
+            "SlewPos": 0,
+            "Type": "Pid",
+            "Zones": [
+                "PSU"
+            ]
+        },
+        {
+            "Class": "fan",
+            "FFGainCoefficient": 0.0079,
+            "FFOffCoefficient": 0,
+            "ICoefficient": 0,
+            "ILimitMax": 0,
+            "ILimitMin": 0,
+            "Inputs": [
+                "Fan07_in"
+            ],
+            "Name": "Fan07_PID",
+            "NegativeHysteresis": 0,
+            "OutLimitMax": 100,
+            "OutLimitMin": 18,
+            "Outputs": [
+                "Fan07_Pwm"
+            ],
+            "PCoefficient": 0.0026,
+            "PositiveHysteresis": 0,
+            "SetPoint": 70,
+            "SlewNeg": 0,
+            "SlewPos": 0,
+            "Type": "Pid",
+            "Zones": [
+                "PSU"
+            ]
+        },
+        {
+            "Class": "fan",
+            "FFGainCoefficient": 0.0079,
+            "FFOffCoefficient": 0,
+            "ICoefficient": 0,
+            "ILimitMax": 0,
+            "ILimitMin": 0,
+            "Inputs": [
+                "Fan08_in"
+            ],
+            "Name": "Fan08_PID",
+            "NegativeHysteresis": 0,
+            "OutLimitMax": 100,
+            "OutLimitMin": 18,
+            "Outputs": [
+                "Fan08_Pwm"
+            ],
+            "PCoefficient": 0.0026,
+            "PositiveHysteresis": 0,
+            "SetPoint": 70,
+            "SlewNeg": 0,
+            "SlewPos": 0,
+            "Type": "Pid",
+            "Zones": [
+                "PSU"
+            ]
+        },
+        {
+            "Class": "fan",
+            "FFGainCoefficient": 0.0079,
+            "FFOffCoefficient": 0,
+            "ICoefficient": 0,
+            "ILimitMax": 0,
+            "ILimitMin": 0,
+            "Inputs": [
+                "Fan09_in"
+            ],
+            "Name": "Fan09_PID",
+            "NegativeHysteresis": 0,
+            "OutLimitMax": 100,
+            "OutLimitMin": 18,
+            "Outputs": [
+                "Fan09_Pwm"
+            ],
+            "PCoefficient": 0.0026,
+            "PositiveHysteresis": 0,
+            "SetPoint": 70,
+            "SlewNeg": 0,
+            "SlewPos": 0,
+            "Type": "Pid",
+            "Zones": [
+                "PSU"
+            ]
+        },
+        {
+            "Class": "fan",
+            "FFGainCoefficient": 0.0079,
+            "FFOffCoefficient": 0,
+            "ICoefficient": 0,
+            "ILimitMax": 0,
+            "ILimitMin": 0,
+            "Inputs": [
+                "Fan10_in"
+            ],
+            "Name": "Fan10_PID",
+            "NegativeHysteresis": 0,
+            "OutLimitMax": 100,
+            "OutLimitMin": 18,
+            "Outputs": [
+                "Fan10_Pwm"
+            ],
+            "PCoefficient": 0.0026,
+            "PositiveHysteresis": 0,
+            "SetPoint": 70,
+            "SlewNeg": 0,
+            "SlewPos": 0,
+            "Type": "Pid",
+            "Zones": [
+                "PSU"
+            ]
+        },
+        {
+            "Class": "fan",
+            "FFGainCoefficient": 0.0079,
+            "FFOffCoefficient": 0,
+            "ICoefficient": 0,
+            "ILimitMax": 0,
+            "ILimitMin": 0,
+            "Inputs": [
+                "Fan11_in"
+            ],
+            "Name": "Fan11_PID",
+            "NegativeHysteresis": 0,
+            "OutLimitMax": 100,
+            "OutLimitMin": 18,
+            "Outputs": [
+                "Fan11_Pwm"
+            ],
+            "PCoefficient": 0.0026,
+            "PositiveHysteresis": 0,
+            "SetPoint": 70,
+            "SlewNeg": 0,
+            "SlewPos": 0,
+            "Type": "Pid",
+            "Zones": [
+                "PSU"
+            ]
+        },
+        {
+            "Class": "fan",
+            "FFGainCoefficient": 0.0079,
+            "FFOffCoefficient": 0,
+            "ICoefficient": 0,
+            "ILimitMax": 0,
+            "ILimitMin": 0,
+            "Inputs": [
+                "Fan12_in"
+            ],
+            "Name": "Fan12_PID",
+            "NegativeHysteresis": 0,
+            "OutLimitMax": 100,
+            "OutLimitMin": 18,
+            "Outputs": [
+                "Fan12_Pwm"
+            ],
+            "PCoefficient": 0.0026,
+            "PositiveHysteresis": 0,
+            "SetPoint": 70,
+            "SlewNeg": 0,
+            "SlewPos": 0,
+            "Type": "Pid",
+            "Zones": [
+                "PSU"
+            ]
+        },
+        {
+            "Class": "fan",
+            "FFGainCoefficient": 0.0079,
+            "FFOffCoefficient": 0,
+            "ICoefficient": 0,
+            "ILimitMax": 0,
+            "ILimitMin": 0,
+            "Inputs": [
+                "Fan13_in"
+            ],
+            "Name": "Fan13_PID",
+            "NegativeHysteresis": 0,
+            "OutLimitMax": 100,
+            "OutLimitMin": 18,
+            "Outputs": [
+                "Fan13_Pwm"
+            ],
+            "PCoefficient": 0.0026,
+            "PositiveHysteresis": 0,
+            "SetPoint": 70,
+            "SlewNeg": 0,
+            "SlewPos": 0,
+            "Type": "Pid",
+            "Zones": [
+                "PSU"
+            ]
+        },
+        {
+            "Class": "fan",
+            "FFGainCoefficient": 0.0079,
+            "FFOffCoefficient": 0,
+            "ICoefficient": 0,
+            "ILimitMax": 0,
+            "ILimitMin": 0,
+            "Inputs": [
+                "Fan14_in"
+            ],
+            "Name": "Fan14_PID",
+            "NegativeHysteresis": 0,
+            "OutLimitMax": 100,
+            "OutLimitMin": 18,
+            "Outputs": [
+                "Fan14_Pwm"
+            ],
+            "PCoefficient": 0.0026,
+            "PositiveHysteresis": 0,
+            "SetPoint": 70,
+            "SlewNeg": 0,
+            "SlewPos": 0,
+            "Type": "Pid",
+            "Zones": [
+                "PSU"
+            ]
+        },
+        {
+            "Class": "fan",
+            "FFGainCoefficient": 0.0079,
+            "FFOffCoefficient": 0,
+            "ICoefficient": 0,
+            "ILimitMax": 0,
+            "ILimitMin": 0,
+            "Inputs": [
+                "Fan15_in"
+            ],
+            "Name": "Fan15_PID",
+            "NegativeHysteresis": 0,
+            "OutLimitMax": 100,
+            "OutLimitMin": 18,
+            "Outputs": [
+                "Fan15_Pwm"
+            ],
+            "PCoefficient": 0.0026,
+            "PositiveHysteresis": 0,
+            "SetPoint": 70,
+            "SlewNeg": 0,
+            "SlewPos": 0,
+            "Type": "Pid",
+            "Zones": [
+                "PSU"
+            ]
+        },
+        {
+            "Class": "fan",
+            "FFGainCoefficient": 0.0079,
+            "FFOffCoefficient": 0,
+            "ICoefficient": 0,
+            "ILimitMax": 0,
+            "ILimitMin": 0,
+            "Inputs": [
+                "Fan16_in"
+            ],
+            "Name": "Fan16_PID",
+            "NegativeHysteresis": 0,
+            "OutLimitMax": 100,
+            "OutLimitMin": 18,
+            "Outputs": [
+                "Fan16_Pwm"
+            ],
+            "PCoefficient": 0.0026,
+            "PositiveHysteresis": 0,
+            "SetPoint": 70,
+            "SlewNeg": 0,
+            "SlewPos": 0,
+            "Type": "Pid",
+            "Zones": [
+                "PSU"
+            ]
+        },
+        {
+            "Class": "fan",
+            "FFGainCoefficient": 0.0079,
+            "FFOffCoefficient": 0,
+            "ICoefficient": 0,
+            "ILimitMax": 0,
+            "ILimitMin": 0,
+            "Inputs": [
+                "Fan17_in"
+            ],
+            "Name": "Fan17_PID",
+            "NegativeHysteresis": 0,
+            "OutLimitMax": 100,
+            "OutLimitMin": 18,
+            "Outputs": [
+                "Fan17_Pwm"
+            ],
+            "PCoefficient": 0.0026,
+            "PositiveHysteresis": 0,
+            "SetPoint": 70,
+            "SlewNeg": 0,
+            "SlewPos": 0,
+            "Type": "Pid",
+            "Zones": [
+                "PSU"
+            ]
+        },
+        {
+            "Class": "fan",
+            "FFGainCoefficient": 0.0079,
+            "FFOffCoefficient": 0,
+            "ICoefficient": 0,
+            "ILimitMax": 0,
+            "ILimitMin": 0,
+            "Inputs": [
+                "Fan18_in"
+            ],
+            "Name": "Fan18_PID",
+            "NegativeHysteresis": 0,
+            "OutLimitMax": 100,
+            "OutLimitMin": 18,
+            "Outputs": [
+                "Fan18_Pwm"
+            ],
+            "PCoefficient": 0.0026,
+            "PositiveHysteresis": 0,
+            "SetPoint": 70,
+            "SlewNeg": 0,
+            "SlewPos": 0,
+            "Type": "Pid",
+            "Zones": [
+                "PSU"
+            ]
+        },
+        {
+            "Class": "fan",
+            "FFGainCoefficient": 0.0079,
+            "FFOffCoefficient": 0,
+            "ICoefficient": 0,
+            "ILimitMax": 0,
+            "ILimitMin": 0,
+            "Inputs": [
+                "Fan19_in"
+            ],
+            "Name": "Fan19_PID",
+            "NegativeHysteresis": 0,
+            "OutLimitMax": 100,
+            "OutLimitMin": 18,
+            "Outputs": [
+                "Fan19_Pwm"
+            ],
+            "PCoefficient": 0.0026,
+            "PositiveHysteresis": 0,
+            "SetPoint": 70,
+            "SlewNeg": 0,
+            "SlewPos": 0,
+            "Type": "Pid",
+            "Zones": [
+                "PSU"
+            ]
+        },
+        {
+            "Class": "fan",
+            "FFGainCoefficient": 0.0079,
+            "FFOffCoefficient": 0,
+            "ICoefficient": 0,
+            "ILimitMax": 0,
+            "ILimitMin": 0,
+            "Inputs": [
+                "Fan20_in"
+            ],
+            "Name": "Fan20_PID",
+            "NegativeHysteresis": 0,
+            "OutLimitMax": 100,
+            "OutLimitMin": 18,
+            "Outputs": [
+                "Fan20_Pwm"
+            ],
+            "PCoefficient": 0.0026,
+            "PositiveHysteresis": 0,
+            "SetPoint": 70,
+            "SlewNeg": 0,
+            "SlewPos": 0,
+            "Type": "Pid",
+            "Zones": [
+                "PSU"
+            ]
+        },
+        {
+            "Class": "fan",
+            "FFGainCoefficient": 0.0079,
+            "FFOffCoefficient": 0,
+            "ICoefficient": 0,
+            "ILimitMax": 0,
+            "ILimitMin": 0,
+            "Inputs": [
+                "Fan21_in"
+            ],
+            "Name": "Fan21_PID",
+            "NegativeHysteresis": 0,
+            "OutLimitMax": 100,
+            "OutLimitMin": 18,
+            "Outputs": [
+                "Fan21_Pwm"
+            ],
+            "PCoefficient": 0.0026,
+            "PositiveHysteresis": 0,
+            "SetPoint": 70,
+            "SlewNeg": 0,
+            "SlewPos": 0,
+            "Type": "Pid",
+            "Zones": [
+                "PSU"
+            ]
+        },
+        {
+            "Class": "fan",
+            "FFGainCoefficient": 0.0079,
+            "FFOffCoefficient": 0,
+            "ICoefficient": 0,
+            "ILimitMax": 0,
+            "ILimitMin": 0,
+            "Inputs": [
+                "Fan22_in"
+            ],
+            "Name": "Fan22_PID",
+            "NegativeHysteresis": 0,
+            "OutLimitMax": 100,
+            "OutLimitMin": 18,
+            "Outputs": [
+                "Fan22_Pwm"
+            ],
+            "PCoefficient": 0.0026,
+            "PositiveHysteresis": 0,
+            "SetPoint": 70,
+            "SlewNeg": 0,
+            "SlewPos": 0,
+            "Type": "Pid",
+            "Zones": [
+                "PSU"
+            ]
+        },
+        {
+            "Class": "fan",
+            "FFGainCoefficient": 0.0079,
+            "FFOffCoefficient": 0,
+            "ICoefficient": 0,
+            "ILimitMax": 0,
+            "ILimitMin": 0,
+            "Inputs": [
+                "Fan23_in"
+            ],
+            "Name": "Fan23_PID",
+            "NegativeHysteresis": 0,
+            "OutLimitMax": 100,
+            "OutLimitMin": 18,
+            "Outputs": [
+                "Fan23_Pwm"
+            ],
+            "PCoefficient": 0.0026,
+            "PositiveHysteresis": 0,
+            "SetPoint": 70,
+            "SlewNeg": 0,
+            "SlewPos": 0,
+            "Type": "Pid",
+            "Zones": [
+                "PSU"
+            ]
+        },
+        {
+            "Class": "fan",
+            "FFGainCoefficient": 0.0079,
+            "FFOffCoefficient": 0,
+            "ICoefficient": 0,
+            "ILimitMax": 0,
+            "ILimitMin": 0,
+            "Inputs": [
+                "Fan24_in"
+            ],
+            "Name": "Fan24_PID",
+            "NegativeHysteresis": 0,
+            "OutLimitMax": 100,
+            "OutLimitMin": 18,
+            "Outputs": [
+                "Fan24_Pwm"
+            ],
+            "PCoefficient": 0.0026,
+            "PositiveHysteresis": 0,
+            "SetPoint": 70,
+            "SlewNeg": 0,
+            "SlewPos": 0,
+            "Type": "Pid",
+            "Zones": [
+                "PSU"
+            ]
+        },
+        {
+            "Class": "temp",
+            "FFGainCoefficient": 0,
+            "FFOffCoefficient": 0,
+            "ICoefficient": -9.2,
+            "ILimitMax": 32000,
+            "ILimitMin": 2500,
+            "Inputs": [
+                "BCM0_TEMP Temperature",
+                "BCM1_TEMP Temperature",
+                "BCM2_TEMP Temperature",
+                "BCM3_TEMP Temperature"
+            ],
+            "Name": "PSU Temperature",
+            "NegativeHysteresis": 5,
+            "OutLimitMax": 32000,
+            "OutLimitMin": 2500,
+            "Outputs": [],
+            "PCoefficient": -536,
+            "PositiveHysteresis": 0,
+            "SetPoint": 55,
+            "SlewNeg": 0,
+            "SlewPos": 0,
+            "Type": "Pid",
+            "Zones": [
+                "PSU"
+            ]
+        },
+        {
+            "FailSafePercent": 100,
+            "MinThermalOutput": 2500,
+            "Name": "PSU",
+            "Type": "Pid.Zone"
+        }
+    ],
+    "Name": "chassis",
+    "Probe": "xyz.openbmc_project.FruDevice({'BOARD_PRODUCT_NAME': '.*Genesis3'})",
+    "Type": "Chassis",
+    "xyz.openbmc_project.Inventory.Decorator.Asset": {
+        "Manufacturer": "$PRODUCT_MANUFACTURER",
+        "Model": "$PRODUCT_PRODUCT_NAME",
+        "PartNumber": "$CHASSIS_PART_NUMBER",
+        "SerialNumber": "$CHASSIS_SERIAL_NUMBER"
+    }
+}
