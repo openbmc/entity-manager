@@ -54,6 +54,24 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "7df757b6_764fc178",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 7
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1000869
+      },
+      "writtenOn": "2022-11-02T12:03:58Z",
+      "side": 1,
+      "message": "Split the patch and submitted a new patch for board in gerrit.\nhttps://gerrit.openbmc.org/c/openbmc/entity-manager/+/58408",
+      "parentUuid": "3f883f47_d0d43f62",
+      "revId": "1952825f184fb2dfbb6230b84bc4ce4598193127",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "796f4387_8a3d777d",
@@ -91,6 +109,30 @@
       "side": 1,
       "message": "This variable is coming from IPMB FRU property. This implementation is under review in gerrit. IPMBINDEX will provide the bus number for each IPMB device.\n\nhttps://gerrit.openbmc.org/c/openbmc/entity-manager/+/57534/7/src/fru_utils.cpp#1302",
       "parentUuid": "796f4387_8a3d777d",
+      "range": {
+        "startLine": 7,
+        "startChar": 22,
+        "endLine": 7,
+        "endChar": 31
+      },
+      "revId": "1952825f184fb2dfbb6230b84bc4ce4598193127",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "bcfd35df_8bafd2eb",
+        "filename": "configurations/twinlake.json",
+        "patchSetId": 7
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 1000869
+      },
+      "writtenOn": "2022-11-02T12:03:58Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "84b73299_3e13bfc6",
       "range": {
         "startLine": 7,
         "startChar": 22,
