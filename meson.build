@@ -107,6 +107,7 @@ configs = [
     'fbyv35.json',
     'fbyv35_nic_mellanox.json',
     'flextronics_s-1100adu00-201_psu.json',
+    'genesis3.json',
     'greatlakes.json',
     'greatlakes_nic_mellanox.json',
     'ibm_1000w_cffps.json',
