@@ -18,6 +18,24 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "287e2cec_8bd916e8",
+        "filename": "docs/blacklist_configuration.md",
+        "patchSetId": 11
+      },
+      "lineNbr": 2,
+      "author": {
+        "id": 1001618
+      },
+      "writtenOn": "2022-11-02T02:49:11Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "26857303_d4d31d85",
+      "revId": "2e7f089a750f781b8287462c93a6a96305da3073",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "fe691e0e_8502807e",
@@ -31,6 +49,24 @@
       "writtenOn": "2022-10-31T20:26:22Z",
       "side": 1,
       "message": "Missing comma",
+      "revId": "2e7f089a750f781b8287462c93a6a96305da3073",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "04577b07_244eb0fd",
+        "filename": "docs/blacklist_configuration.md",
+        "patchSetId": 11
+      },
+      "lineNbr": 19,
+      "author": {
+        "id": 1001618
+      },
+      "writtenOn": "2022-11-02T02:49:11Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "fe691e0e_8502807e",
       "revId": "2e7f089a750f781b8287462c93a6a96305da3073",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
@@ -52,6 +88,24 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "524ba188_7215caee",
+        "filename": "docs/blacklist_configuration.md",
+        "patchSetId": 11
+      },
+      "lineNbr": 32,
+      "author": {
+        "id": 1001618
+      },
+      "writtenOn": "2022-11-02T02:49:11Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "624ee1cf_7afbd1e6",
+      "revId": "2e7f089a750f781b8287462c93a6a96305da3073",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "ca2eaa59_953f9e34",
@@ -65,6 +119,24 @@
       "writtenOn": "2022-10-31T20:26:22Z",
       "side": 1,
       "message": "Missing comma",
+      "revId": "2e7f089a750f781b8287462c93a6a96305da3073",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "71faae29_6e86b135",
+        "filename": "docs/blacklist_configuration.md",
+        "patchSetId": 11
+      },
+      "lineNbr": 41,
+      "author": {
+        "id": 1001618
+      },
+      "writtenOn": "2022-11-02T02:49:11Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "ca2eaa59_953f9e34",
       "revId": "2e7f089a750f781b8287462c93a6a96305da3073",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
@@ -130,6 +202,30 @@
       "side": 1,
       "message": "For the approach I\u0027m suggesting, an entry like that (with an empty \"addresses\" array), would be equivalent to no entry at all -- it\u0027s saying \"block no addresses on bus 3\".  Yes, someone might have forgotten to add the address entries, but they could just as easily forget an entire bus entry as well, and I don\u0027t think we should be in the business of trying to guess at what someone *might* have meant if we think maybe they messed up.  I think we should define and implement explicit, clear, simple semantics and avoid magic special cases, so that things end up doing what they look like they say.",
       "parentUuid": "e9978e01_00fe842e",
+      "range": {
+        "startLine": 556,
+        "startChar": 0,
+        "endLine": 559,
+        "endChar": 21
+      },
+      "revId": "2e7f089a750f781b8287462c93a6a96305da3073",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "0e7690fc_1c1a0081",
+        "filename": "src/fru_device.cpp",
+        "patchSetId": 11
+      },
+      "lineNbr": 559,
+      "author": {
+        "id": 1001618
+      },
+      "writtenOn": "2022-11-02T02:49:11Z",
+      "side": 1,
+      "message": "Thank you. We update a new patch for using the data type std::optional",
+      "parentUuid": "21b735fd_c34abe30",
       "range": {
         "startLine": 556,
         "startChar": 0,
