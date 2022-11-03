@@ -18,6 +18,24 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "d5dba6a4_426e5dad",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 10,
+      "author": {
+        "id": 1001264
+      },
+      "writtenOn": "2022-11-03T01:42:41Z",
+      "side": 1,
+      "message": "Hi Ed, This is a bug that bmcweb \u0026 EM use inconsistent string for object type.\n\nhttps://github.com/openbmc/bmcweb/blob/master/redfish-core/lib/managers.hpp#L1070\nIn bmcweb, managers.hpp, line 1070\nbmcweb assign string \"Stepwise\" as Object \"Type\", then call EM\u0027s AddObject method.\n\nhttps://github.com/openbmc/entity-manager/blob/master/src/entity_manager.cpp#L509-L510\nIn EM AddObject method, EM retrieve \"Type\" value from input and use it for searching schema if exist.\n\nhttps://github.com/openbmc/entity-manager/commit/7d05ee59a5d7ab93bdc1cc97de3906baf63d31a1\nI notice there is a commit for switching filename to lower case few months ago, and I think this is the root cause.\n\nCommit message updated as well.",
+      "parentUuid": "7da25a0c_625e3029",
+      "revId": "f2b820254ffd149965ff3ff97326fbbe33fa3960",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "c2c00962_7b238c67",
@@ -31,6 +49,24 @@
       "writtenOn": "2022-11-02T15:56:50Z",
       "side": 1,
       "message": "Tested?",
+      "revId": "f2b820254ffd149965ff3ff97326fbbe33fa3960",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "0509704e_5346d8a4",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 11,
+      "author": {
+        "id": 1001264
+      },
+      "writtenOn": "2022-11-03T01:42:41Z",
+      "side": 1,
+      "message": "Commit message updated.",
+      "parentUuid": "c2c00962_7b238c67",
       "revId": "f2b820254ffd149965ff3ff97326fbbe33fa3960",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
