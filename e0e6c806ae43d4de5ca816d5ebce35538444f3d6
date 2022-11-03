@@ -116,6 +116,24 @@
       "parentUuid": "fda2318d_0cad9d57",
       "revId": "e0e6c806ae43d4de5ca816d5ebce35538444f3d6",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "68f3d8f0_3806ae7e",
+        "filename": "src/IpmbFruDevice.cpp",
+        "patchSetId": 34
+      },
+      "lineNbr": 215,
+      "author": {
+        "id": 1001618
+      },
+      "writtenOn": "2022-11-03T01:50:50Z",
+      "side": 1,
+      "message": "IPMI Specification, V2.0, Rev. 1.1 in section 34.2.\nThis section shows that if we follow the IPMI standard, the IPMB message should be limited to 32-bytes total. We should follow specification on every single project. \n\nIs there any efficiency issue on YV2 that it MUST read more than 32-bytes per IPMB command?\n\nFrom Meta openbmc perspective, we read 32-bytes data per IPMB command on YV2, YV3 and YV3.5 platform.",
+      "parentUuid": "3fc026b3_54c892a3",
+      "revId": "e0e6c806ae43d4de5ca816d5ebce35538444f3d6",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }
