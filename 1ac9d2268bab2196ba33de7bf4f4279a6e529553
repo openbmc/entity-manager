@@ -24,6 +24,30 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "338021b4_68fde57c",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 3
+      },
+      "lineNbr": 13,
+      "author": {
+        "id": 1001104
+      },
+      "writtenOn": "2022-11-04T01:38:52Z",
+      "side": 1,
+      "message": "OK, thank you for your information. I\u0027ll go and learn about it.",
+      "parentUuid": "a4f2102e_4360fb3c",
+      "range": {
+        "startLine": 12,
+        "startChar": 0,
+        "endLine": 13,
+        "endChar": 16
+      },
+      "revId": "1ac9d2268bab2196ba33de7bf4f4279a6e529553",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "4ed18255_a6dfaedd",
@@ -37,6 +61,30 @@
       "writtenOn": "2022-11-03T16:52:44Z",
       "side": 1,
       "message": "I don\u0027t think this accomplishes that behavior, if your goal is to filter the sensor list?  As written, this looks like all 24 drives will show up, in addition max drive.  Also, FWIW, most implementations I\u0027m aware of DO want to know all nvme temperatures, given that they will be applied to different zones.",
+      "range": {
+        "startLine": 15,
+        "startChar": 0,
+        "endLine": 15,
+        "endChar": 64
+      },
+      "revId": "1ac9d2268bab2196ba33de7bf4f4279a6e529553",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "3c4d4a53_8cfe9f84",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 3
+      },
+      "lineNbr": 15,
+      "author": {
+        "id": 1001104
+      },
+      "writtenOn": "2022-11-04T01:38:52Z",
+      "side": 1,
+      "message": "It can meet my needs。\n\nMy biggest requirement is that the ipmitool sensor list only displays one NVMe sensor per zone.\n\nI think the ipmitool sensor list is determined by xxx-ipmi-sensors.yaml.\n\nIn EM, all sensors need to be configured, because EM decides whether to read from physical devices.Therefore, 24 hard disks and 2 maximum values need to be both configured in entity-manager/baseboard.json。\n\nThe phosphor-virtual-sensor can also be configured with multiple temperature sensors to obtain the maximum value. The configuration in entity-manager is mainly because Threshold can be managed in the same place. For example, save to a file or restore the default value.\n\n\nIf want to know all nvme temperatures,may need to call the methods in dbus-sensors instead of ipmitool。",
+      "parentUuid": "4ed18255_a6dfaedd",
       "range": {
         "startLine": 15,
         "startChar": 0,
