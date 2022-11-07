@@ -36,6 +36,24 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "0fcc0088_84225b10",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 10,
+      "author": {
+        "id": 1000559
+      },
+      "writtenOn": "2022-11-07T22:51:50Z",
+      "side": 1,
+      "message": "\u003e https://github.com/openbmc/bmcweb/blob/master/redfish-core/lib/managers.hpp#L1070\n\u003e In bmcweb, managers.hpp, line 1070\n\u003e bmcweb assign string \"Stepwise\" as Object \"Type\", then call EM\u0027s AddObject method.\n\nAlternatively, bmcweb can be change to set Type to \"stepwise\", right? If the type is used to match filenames, shouldn\u0027t same naming convention used for \"Type\" string value?",
+      "parentUuid": "d5dba6a4_426e5dad",
+      "revId": "f2b820254ffd149965ff3ff97326fbbe33fa3960",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "c2c00962_7b238c67",
