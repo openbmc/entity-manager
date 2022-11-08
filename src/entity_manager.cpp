@@ -211,25 +211,52 @@ void addProperty(const std::string& name, const PropertyType& value,
         iface->register_property(name, value);
         return;
     }
-    iface->register_property(
-        name, value,
-        [&systemConfiguration,
-         jsonPointerString{std::string(jsonPointerString)}](
-            const PropertyType& newVal, PropertyType& val) {
-            val = newVal;
-            if (!setJsonFromPointer(jsonPointerString, val,
-                                    systemConfiguration))
-            {
-                std::cerr << "error setting json field\n";
-                return -1;
-            }
-            if (!writeJsonFiles(systemConfiguration))
-            {
-                std::cerr << "error setting json file\n";
-                return -1;
-            }
-            return 1;
-        });
+
+    if (name == "Value")
+    {
+        iface->register_property_rw(
+            name, value, sdbusplus::vtable::common_::unprivileged,
+            [&systemConfiguration,
+             jsonPointerString{std::string(jsonPointerString)}](
+                const PropertyType& newVal, PropertyType& val) {
+                val = newVal;
+                if (!setJsonFromPointer(jsonPointerString, val,
+                                        systemConfiguration))
+                {
+                    std::cerr << "error setting json field\n";
+                    return -1;
+                }
+                if (!writeJsonFiles(systemConfiguration))
+                {
+                    std::cerr << "error setting json file\n";
+                    return -1;
+                }
+                return 1;
+            },
+            [value = value](const PropertyType&) { return value; });
+    }
+    else
+    {
+        iface->register_property(
+            name, value,
+            [&systemConfiguration,
+             jsonPointerString{std::string(jsonPointerString)}](
+                const PropertyType& newVal, PropertyType& val) {
+                val = newVal;
+                if (!setJsonFromPointer(jsonPointerString, val,
+                                        systemConfiguration))
+                {
+                    std::cerr << "error setting json field\n";
+                    return -1;
+                }
+                if (!writeJsonFiles(systemConfiguration))
+                {
+                    std::cerr << "error setting json file\n";
+                    return -1;
+                }
+                return 1;
+            });
+    }
 }
 
 void createDeleteObjectMethod(
