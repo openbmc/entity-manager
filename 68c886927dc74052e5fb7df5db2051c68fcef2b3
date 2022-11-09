@@ -16,6 +16,63 @@
       "message": "Hi Zev,\n\nThanks for your review. I have updated it. Please help review.",
       "revId": "68c886927dc74052e5fb7df5db2051c68fcef2b3",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "be1c65b3_98d8852a",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1000733
+      },
+      "writtenOn": "2022-11-09T23:35:55Z",
+      "side": 1,
+      "message": "Still some minor formatting issues; you\u0027ll need to get approved for CI to get coverage on this (which will also run clang-format to point out all the necessary formatting changes to make).",
+      "revId": "68c886927dc74052e5fb7df5db2051c68fcef2b3",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3d980396_47431c2a",
+        "filename": "src/fru_utils.cpp",
+        "patchSetId": 3
+      },
+      "lineNbr": 496,
+      "author": {
+        "id": 1000733
+      },
+      "writtenOn": "2022-11-09T23:35:55Z",
+      "side": 1,
+      "message": "As suggested above, looks like this could be static (and moved before formatIPMIFRU() in the file to avoid the need for a separate declaration).",
+      "revId": "68c886927dc74052e5fb7df5db2051c68fcef2b3",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1f8a8890_62b727c1",
+        "filename": "src/fru_utils.cpp",
+        "patchSetId": 3
+      },
+      "lineNbr": 552,
+      "author": {
+        "id": 1000733
+      },
+      "writtenOn": "2022-11-09T23:35:55Z",
+      "side": 1,
+      "message": "Rather than starting over with a new stringstream and appending it to uuidStr on each iteration of the loop, I think it\u0027d be a bit more direct and efficient to have a single stringstream and call `.str()` on it once after the loop terminates, e.g. something like:\n\n```\nstringstream tmp;\nfor (...)\n{\n  tmp \u003c\u003c stuff \u003c\u003c ...;\n}\nstring uuidStr \u003d tmp.str();\n```",
+      "range": {
+        "startLine": 544,
+        "startChar": 20,
+        "endLine": 552,
+        "endChar": 21
+      },
+      "revId": "68c886927dc74052e5fb7df5db2051c68fcef2b3",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }
