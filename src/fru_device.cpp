@@ -928,7 +928,7 @@ bool writeFRU(uint8_t bus, uint8_t address, const std::vector<uint8_t>& fru)
 }
 
 void rescanOneBus(
-    BusMap& busmap, uint8_t busNum,
+    BusMap& busmap, uint16_t busNum,
     boost::container::flat_map<
         std::pair<size_t, size_t>,
         std::shared_ptr<sdbusplus::asio::dbus_interface>>& dbusInterfaceMap,
@@ -1091,7 +1091,7 @@ bool updateFRUProperty(
     std::vector<uint8_t> fruData;
     try
     {
-        fruData = getFRUInfo(static_cast<uint8_t>(bus),
+        fruData = getFRUInfo(static_cast<uint16_t>(bus),
                              static_cast<uint8_t>(address));
     }
     catch (const std::invalid_argument& e)
@@ -1302,14 +1302,14 @@ int main()
                      objServer, systemBus);
     });
 
-    iface->register_method("ReScanBus", [&](uint8_t bus) {
+    iface->register_method("ReScanBus", [&](uint16_t bus) {
         rescanOneBus(busMap, bus, dbusInterfaceMap, true, unknownBusObjectCount,
                      powerIsOn, objServer, systemBus);
     });
 
     iface->register_method("GetRawFru", getFRUInfo);
 
-    iface->register_method("WriteFru", [&](const uint8_t bus,
+    iface->register_method("WriteFru", [&](const uint16_t bus,
                                            const uint8_t address,
                                            const std::vector<uint8_t>& data) {
         if (!writeFRU(bus, address, data))
@@ -1389,7 +1389,7 @@ int main()
                                           << "\n";
                                 continue;
                             }
-                            rescanOneBus(busMap, static_cast<uint8_t>(bus),
+                            rescanOneBus(busMap, static_cast<uint16_t>(bus),
                                          dbusInterfaceMap, false,
                                          unknownBusObjectCount, powerIsOn,
                                          objServer, systemBus);
