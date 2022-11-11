@@ -1,0 +1,44 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f5f6b294_c9e010dd",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 5
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1000733
+      },
+      "writtenOn": "2022-11-11T00:01:55Z",
+      "side": 1,
+      "message": "After some discussion on discord, the CI/clang-format thing is a semi-known problem; hopefully it\u0027ll get fixed before too long, but in the meantime you can try running clang-format-15 locally (with the .clang-format config file in the repo).  In case you\u0027re not set up to do that easily, here are the changes I got from running it myself: https://gist.github.com/zevweiss/6818b351a6d850ad0b72b25e89a36c1e",
+      "revId": "5740ff87f065a60c4c81bffaac48b5f8ca22f991",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c8caf4b5_17fd7f09",
+        "filename": "src/fru_utils.cpp",
+        "patchSetId": 5
+      },
+      "lineNbr": 342,
+      "author": {
+        "id": 1000733
+      },
+      "writtenOn": "2022-11-11T00:01:55Z",
+      "side": 1,
+      "message": "One other little tidy-up while taking care of the formatting issues -- the formatting directives (hex, setfill, setw) don\u0027t need to be re-applied on every iteration, so this would be cleaner as just:\n\n```\ntmp \u003c\u003c hex \u003c\u003c setfill(\u00270\u0027) \u003c\u003c setw(2);\nfor (...)\n{\n  tmp \u003c\u003c uuidReorder[i];\n}\n```\n\n(Also, I\u0027d suggest simplifying `sizeof(uint8_t) * 2` to just `2`.)",
+      "range": {
+        "startLine": 337,
+        "startChar": 0,
+        "endLine": 342,
+        "endChar": 21
+      },
+      "revId": "5740ff87f065a60c4c81bffaac48b5f8ca22f991",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    }
+  ]
+}
