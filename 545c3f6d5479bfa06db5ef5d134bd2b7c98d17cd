@@ -16,6 +16,167 @@
       "message": "Hi Zev,\n\nI have updated it. Please help review.",
       "revId": "545c3f6d5479bfa06db5ef5d134bd2b7c98d17cd",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "fae8839a_031a18ad",
+        "filename": "src/fru_utils.cpp",
+        "patchSetId": 6
+      },
+      "lineNbr": 290,
+      "author": {
+        "id": 1000559
+      },
+      "writtenOn": "2022-11-13T19:17:10Z",
+      "side": 1,
+      "message": "verify checksum of the area/record is missing",
+      "range": {
+        "startLine": 288,
+        "startChar": 0,
+        "endLine": 290,
+        "endChar": 65
+      },
+      "revId": "545c3f6d5479bfa06db5ef5d134bd2b7c98d17cd",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9639d3f3_09996d0d",
+        "filename": "src/fru_utils.cpp",
+        "patchSetId": 6
+      },
+      "lineNbr": 299,
+      "author": {
+        "id": 1000559
+      },
+      "writtenOn": "2022-11-13T19:17:10Z",
+      "side": 1,
+      "message": "move before use",
+      "range": {
+        "startLine": 299,
+        "startChar": 4,
+        "endLine": 299,
+        "endChar": 50
+      },
+      "revId": "545c3f6d5479bfa06db5ef5d134bd2b7c98d17cd",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8e3d0123_8750549e",
+        "filename": "src/fru_utils.cpp",
+        "patchSetId": 6
+      },
+      "lineNbr": 305,
+      "author": {
+        "id": 1000559
+      },
+      "writtenOn": "2022-11-13T19:17:10Z",
+      "side": 1,
+      "message": "const",
+      "range": {
+        "startLine": 304,
+        "startChar": 0,
+        "endLine": 305,
+        "endChar": 72
+      },
+      "revId": "545c3f6d5479bfa06db5ef5d134bd2b7c98d17cd",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b5ad9334_a67bfbf7",
+        "filename": "src/fru_utils.cpp",
+        "patchSetId": 6
+      },
+      "lineNbr": 307,
+      "author": {
+        "id": 1000559
+      },
+      "writtenOn": "2022-11-13T19:17:10Z",
+      "side": 1,
+      "message": "if (areaOffset \u003d\u003d 0) return;",
+      "range": {
+        "startLine": 307,
+        "startChar": 4,
+        "endLine": 307,
+        "endChar": 24
+      },
+      "revId": "545c3f6d5479bfa06db5ef5d134bd2b7c98d17cd",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "42edb9b8_da0eab38",
+        "filename": "src/fru_utils.cpp",
+        "patchSetId": 6
+      },
+      "lineNbr": 312,
+      "author": {
+        "id": 1000559
+      },
+      "writtenOn": "2022-11-13T19:17:10Z",
+      "side": 1,
+      "message": "potential out of bounds",
+      "range": {
+        "startLine": 312,
+        "startChar": 43,
+        "endLine": 312,
+        "endChar": 57
+      },
+      "revId": "545c3f6d5479bfa06db5ef5d134bd2b7c98d17cd",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8c89dd7f_a5894bdf",
+        "filename": "src/fru_utils.cpp",
+        "patchSetId": 6
+      },
+      "lineNbr": 312,
+      "author": {
+        "id": 1000559
+      },
+      "writtenOn": "2022-11-13T19:17:10Z",
+      "side": 1,
+      "message": "uuidRecordLen is misleading. use recordLen",
+      "range": {
+        "startLine": 312,
+        "startChar": 20,
+        "endLine": 312,
+        "endChar": 33
+      },
+      "revId": "545c3f6d5479bfa06db5ef5d134bd2b7c98d17cd",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2a688fd1_68a4ec41",
+        "filename": "src/fru_utils.cpp",
+        "patchSetId": 6
+      },
+      "lineNbr": 316,
+      "author": {
+        "id": 1000559
+      },
+      "writtenOn": "2022-11-13T19:17:10Z",
+      "side": 1,
+      "message": "potential out of bounds",
+      "range": {
+        "startLine": 316,
+        "startChar": 27,
+        "endLine": 316,
+        "endChar": 60
+      },
+      "revId": "545c3f6d5479bfa06db5ef5d134bd2b7c98d17cd",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }
