@@ -43,6 +43,52 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "6f394286_17537fa6",
+        "filename": "src/fru_device.cpp",
+        "patchSetId": 15
+      },
+      "lineNbr": 387,
+      "author": {
+        "id": 1000733
+      },
+      "writtenOn": "2022-11-14T23:38:21Z",
+      "side": 1,
+      "message": "This is three lookups in busBlacklist; it\u0027d be nicer to do it with one lookup using the return value of `busBlacklist.find()` instead.",
+      "range": {
+        "startLine": 383,
+        "startChar": 0,
+        "endLine": 387,
+        "endChar": 64
+      },
+      "revId": "9bf77e75d576ab5810238c7b6be663ed4bf9789c",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8b9eef82_abd9aee6",
+        "filename": "src/fru_device.cpp",
+        "patchSetId": 15
+      },
+      "lineNbr": 547,
+      "author": {
+        "id": 1000733
+      },
+      "writtenOn": "2022-11-14T23:38:21Z",
+      "side": 1,
+      "message": "Formatting looks a bit off here; until CI gets fixed to do it automatically, can you run clang-format on this?",
+      "range": {
+        "startLine": 546,
+        "startChar": 0,
+        "endLine": 547,
+        "endChar": 58
+      },
+      "revId": "9bf77e75d576ab5810238c7b6be663ed4bf9789c",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "09a17a0b_3032451e",
         "filename": "src/fru_device.cpp",
         "patchSetId": 15
@@ -59,6 +105,29 @@
         "startChar": 27,
         "endLine": 560,
         "endChar": 38
+      },
+      "revId": "9bf77e75d576ab5810238c7b6be663ed4bf9789c",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a3b72851_78694c54",
+        "filename": "src/fru_device.cpp",
+        "patchSetId": 15
+      },
+      "lineNbr": 594,
+      "author": {
+        "id": 1000733
+      },
+      "writtenOn": "2022-11-14T23:38:21Z",
+      "side": 1,
+      "message": "Double-lookup again here; `.find()` could be used to do it with one.",
+      "range": {
+        "startLine": 592,
+        "startChar": 0,
+        "endLine": 594,
+        "endChar": 50
       },
       "revId": "9bf77e75d576ab5810238c7b6be663ed4bf9789c",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
