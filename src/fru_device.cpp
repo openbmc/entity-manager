@@ -79,6 +79,7 @@ static boost::container::flat_map<
     foundDevices;
 
 static boost::container::flat_map<size_t, std::set<size_t>> failedAddresses;
+static boost::container::flat_map<size_t, std::set<size_t>> fruAddresses;
 
 boost::asio::io_service io;
 
@@ -377,6 +378,8 @@ int getBusFRUs(int file, int first, int last, int bus,
         // Scan for i2c eeproms loaded on this bus.
         std::set<int> skipList = findI2CEeproms(bus, devices);
         std::set<size_t>& failedItems = failedAddresses[bus];
+        std::set<size_t>& foundItems = fruAddresses[bus];
+        foundItems.clear();
 
         std::set<size_t>* rootFailures = nullptr;
         int rootBus = getRootBus(bus);
@@ -384,6 +387,7 @@ int getBusFRUs(int file, int first, int last, int bus,
         if (rootBus >= 0)
         {
             rootFailures = &(failedAddresses[rootBus]);
+            foundItems = fruAddresses[rootBus];
         }
 
         constexpr int startSkipSlaveAddr = 0;
@@ -391,6 +395,10 @@ int getBusFRUs(int file, int first, int last, int bus,
 
         for (int ii = first; ii <= last; ii++)
         {
+            if (foundItems.find(ii) != foundItems.end())
+            {
+                continue;
+            }
             if (skipList.find(ii) != skipList.end())
             {
                 continue;
@@ -464,6 +472,7 @@ int getBusFRUs(int file, int first, int last, int bus,
             }
 
             devices->emplace(ii, device);
+            fruAddresses[bus].insert(ii);
         }
         return 1;
     });
@@ -704,7 +713,8 @@ void addFruObjectToDbus(
                 {
                     // This device is already added to the lower numbered bus,
                     // do not replicate it.
-                    return;
+                    std::cerr << "Found duplicated fru at bus " << (int)bus
+                              << " address " << (int)address << "\n";
                 }
 
                 // Check if the match named has extra information.
@@ -1108,7 +1118,8 @@ bool updateFRUProperty(
         return false;
     }
 
-    struct FruArea fruAreaParams{};
+    struct FruArea fruAreaParams
+    {};
     size_t fruDataIter = 0;
 
     if (!findFruAreaLocationAndField(fruData, propertyName, fruAreaParams,
