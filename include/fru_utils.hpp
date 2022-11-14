@@ -85,6 +85,9 @@ const std::vector<std::string> productFruAreas = {
     "MANUFACTURER",  "PRODUCT_NAME", "PART_NUMBER",   "VERSION",
     "SERIAL_NUMBER", "ASSET_TAG",    "FRU_VERSION_ID"};
 
+const std::vector<std::string> oemMultiRecordFruAreas = {"COMPONENT",
+                                                         "PART_NUMBER"};
+
 const std::string fruCustomFieldName = "INFO_AM";
 
 inline fruAreas operator++(fruAreas& x)

@@ -274,7 +274,7 @@ resCodes
 
     // Don't parse Internal and Multirecord areas
     for (fruAreas area = fruAreas::fruAreaChassis;
-         area <= fruAreas::fruAreaProduct; ++area)
+         area <= fruAreas::fruAreaMultirecord; ++area)
     {
 
         size_t offset = *(fruBytes.begin() + getHeaderAreaFieldOffset(area));
@@ -381,6 +381,14 @@ resCodes
                 isLangEng = checkLangEng(lang);
                 fruBytesIter += 1;
                 fruAreaFieldNames = &productFruAreas;
+                break;
+            }
+            case fruAreas::fruAreaMultirecord:
+            {
+                result["RECORD_TYPE_ID"] =
+                    std::to_string(static_cast<int>(*fruBytesIter));
+                fruBytesIter += 1;
+                fruAreaFieldNames = &oemMultiRecordFruAreas;
                 break;
             }
             default:
@@ -826,6 +834,10 @@ bool findFruAreaLocationAndField(std::vector<uint8_t>& fruData,
             // i.e. version, area length and language code
             offset = 3;
             fruAreaFieldNames = &productFruAreas;
+            break;
+        case fruAreas::fruAreaMultirecord:
+            offset = 3;
+            fruAreaFieldNames = &oemMultiRecordFruAreas;
             break;
         default:
             std::cerr << "Invalid PropertyName " << propertyName << " \n";
