@@ -63,6 +63,30 @@
       },
       "revId": "5740ff87f065a60c4c81bffaac48b5f8ca22f991",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5e0fcade_2d8f4872",
+        "filename": "src/fru_utils.cpp",
+        "patchSetId": 5
+      },
+      "lineNbr": 342,
+      "author": {
+        "id": 1000733
+      },
+      "writtenOn": "2022-11-15T01:09:34Z",
+      "side": 1,
+      "message": "Ah yes, I see now that std::setw() gets reset after you use it (once), even though the others (hex, setfill) remain in effect.  Ugh, what a mess of a stdlib I/O mechanism...anyway, with that in mind it could at least be trimmed down to:\n\n```\nstd::stringstream tmp;\ntmp \u003c\u003c std::hex \u003c\u003c std::setfill(\u00270\u0027);\nfor (...)\n{\n    tmp \u003c\u003c std::setw(2) \u003c\u003c (uint16_t)bytes[i];\n}\n```",
+      "parentUuid": "856b14f7_52762d31",
+      "range": {
+        "startLine": 337,
+        "startChar": 0,
+        "endLine": 342,
+        "endChar": 21
+      },
+      "revId": "5740ff87f065a60c4c81bffaac48b5f8ca22f991",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }
