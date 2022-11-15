@@ -2,7 +2,7 @@
     {
         "Exposes": [
             {
-                "Index": 0,
+                "Index": 28,
                 "Name": "3V3_SB",
                 "PollRate": 1,
                 "ScaleFactor": 0.3333,
@@ -25,11 +25,11 @@
             {
                 "BridgeGpio": [
                     {
-                        "Name": "RTC_BAT_SEN_EN",
+                        "Name": "rtc-battery-voltage-read-enable",
                         "Polarity": "High"
                     }
                 ],
-                "Index": 0,
+                "Index": 29,
                 "Name": "VBAT_RTC",
                 "PollRate": 86400,
                 "ScaleFactor": 0.3333,
@@ -53,7 +53,7 @@
                 "Index": 0,
                 "Name": "S0_0V8_VDDC_SOC",
                 "PollRate": 1,
-                "PowerState": "On",
+                "PowerState": "ChassisOn",
                 "ScaleFactor": 1,
                 "Thresholds": [
                     {
@@ -75,7 +75,7 @@
                 "Index": 1,
                 "Name": "S1_0V8_VDDC_SOC",
                 "PollRate": 1,
-                "PowerState": "On",
+                "PowerState": "ChassisOn",
                 "ScaleFactor": 1,
                 "Thresholds": [
                     {
@@ -141,7 +141,7 @@
                 "Index": 4,
                 "Name": "S0_1V2_VDDQ0123",
                 "PollRate": 1,
-                "PowerState": "On",
+                "PowerState": "ChassisOn",
                 "ScaleFactor": 1,
                 "Thresholds": [
                     {
@@ -163,7 +163,7 @@
                 "Index": 5,
                 "Name": "S1_1V2_VDDQ0123",
                 "PollRate": 1,
-                "PowerState": "On",
+                "PowerState": "ChassisOn",
                 "ScaleFactor": 1,
                 "Thresholds": [
                     {
@@ -185,7 +185,7 @@
                 "Index": 6,
                 "Name": "S0_0V6_VTT0123",
                 "PollRate": 1,
-                "PowerState": "On",
+                "PowerState": "ChassisOn",
                 "ScaleFactor": 1,
                 "Thresholds": [
                     {
@@ -207,7 +207,7 @@
                 "Index": 7,
                 "Name": "S1_0V6_VTT0123",
                 "PollRate": 1,
-                "PowerState": "On",
+                "PowerState": "ChassisOn",
                 "ScaleFactor": 1,
                 "Thresholds": [
                     {
@@ -229,7 +229,7 @@
                 "Index": 8,
                 "Name": "S0_2V5_VPP0123",
                 "PollRate": 1,
-                "PowerState": "On",
+                "PowerState": "ChassisOn",
                 "ScaleFactor": 0.5,
                 "Thresholds": [
                     {
@@ -251,7 +251,7 @@
                 "Index": 9,
                 "Name": "S1_2V5_VPP0123",
                 "PollRate": 1,
-                "PowerState": "On",
+                "PowerState": "ChassisOn",
                 "ScaleFactor": 0.5,
                 "Thresholds": [
                     {
@@ -273,7 +273,7 @@
                 "Index": 10,
                 "Name": "S0_1V2_VDDQ4567",
                 "PollRate": 1,
-                "PowerState": "On",
+                "PowerState": "ChassisOn",
                 "ScaleFactor": 1,
                 "Thresholds": [
                     {
@@ -295,7 +295,7 @@
                 "Index": 11,
                 "Name": "S1_1V2_VDDQ4567",
                 "PollRate": 1,
-                "PowerState": "On",
+                "PowerState": "ChassisOn",
                 "ScaleFactor": 1,
                 "Thresholds": [
                     {
@@ -317,7 +317,7 @@
                 "Index": 12,
                 "Name": "S0_0V6_VTT4567",
                 "PollRate": 1,
-                "PowerState": "On",
+                "PowerState": "ChassisOn",
                 "ScaleFactor": 1,
                 "Thresholds": [
                     {
@@ -339,7 +339,7 @@
                 "Index": 13,
                 "Name": "S1_0V6_VTT4567",
                 "PollRate": 1,
-                "PowerState": "On",
+                "PowerState": "ChassisOn",
                 "ScaleFactor": 1,
                 "Thresholds": [
                     {
@@ -361,7 +361,7 @@
                 "Index": 14,
                 "Name": "S0_2V5_VPP4567",
                 "PollRate": 1,
-                "PowerState": "On",
+                "PowerState": "ChassisOn",
                 "ScaleFactor": 0.5,
                 "Thresholds": [
                     {
@@ -383,7 +383,7 @@
                 "Index": 15,
                 "Name": "S1_2V5_VPP4567",
                 "PollRate": 1,
-                "PowerState": "On",
+                "PowerState": "ChassisOn",
                 "ScaleFactor": 0.5,
                 "Thresholds": [
                     {
@@ -405,7 +405,7 @@
                 "Index": 16,
                 "Name": "S0_0V85_RCA",
                 "PollRate": 1,
-                "PowerState": "On",
+                "PowerState": "ChassisOn",
                 "ScaleFactor": 1,
                 "Thresholds": [
                     {
@@ -427,7 +427,7 @@
                 "Index": 17,
                 "Name": "S1_0V85_RCA",
                 "PollRate": 1,
-                "PowerState": "On",
+                "PowerState": "ChassisOn",
                 "ScaleFactor": 1,
                 "Thresholds": [
                     {
@@ -449,7 +449,7 @@
                 "Index": 18,
                 "Name": "S0_1V8_VDDH",
                 "PollRate": 1,
-                "PowerState": "On",
+                "PowerState": "ChassisOn",
                 "ScaleFactor": 0.5,
                 "Thresholds": [
                     {
@@ -471,7 +471,7 @@
                 "Index": 19,
                 "Name": "S1_1V8_VDDH",
                 "PollRate": 1,
-                "PowerState": "On",
+                "PowerState": "ChassisOn",
                 "ScaleFactor": 0.5,
                 "Thresholds": [
                     {
@@ -493,7 +493,7 @@
                 "Index": 20,
                 "Name": "S0_1V5_VDDH",
                 "PollRate": 1,
-                "PowerState": "On",
+                "PowerState": "ChassisOn",
                 "ScaleFactor": 1,
                 "Thresholds": [
                     {
@@ -515,7 +515,7 @@
                 "Index": 21,
                 "Name": "S1_1V5_VDDH",
                 "PollRate": 1,
-                "PowerState": "On",
+                "PowerState": "ChassisOn",
                 "ScaleFactor": 1,
                 "Thresholds": [
                     {
@@ -537,7 +537,7 @@
                 "Index": 22,
                 "Name": "S0_1V8_SOC",
                 "PollRate": 1,
-                "PowerState": "On",
+                "PowerState": "ChassisOn",
                 "ScaleFactor": 0.5,
                 "Thresholds": [
                     {
@@ -559,7 +559,7 @@
                 "Index": 23,
                 "Name": "S1_1V8_SOC",
                 "PollRate": 1,
-                "PowerState": "On",
+                "PowerState": "ChassisOn",
                 "ScaleFactor": 0.5,
                 "Thresholds": [
                     {
@@ -625,7 +625,7 @@
                 "Index": 26,
                 "Name": "S0_3V3_SOC",
                 "PollRate": 1,
-                "PowerState": "On",
+                "PowerState": "ChassisOn",
                 "ScaleFactor": 0.3333,
                 "Thresholds": [
                     {
@@ -647,7 +647,7 @@
                 "Index": 27,
                 "Name": "S1_3V3_SOC",
                 "PollRate": 1,
-                "PowerState": "On",
+                "PowerState": "ChassisOn",
                 "ScaleFactor": 0.3333,
                 "Thresholds": [
                     {
@@ -675,7 +675,9 @@
                     ]
                 },
                 "Index": 4,
+                "MaxReading": 23100,
                 "Name": "FAN3_1",
+                "PowerState": "On",
                 "Thresholds": [
                     {
                         "Direction": "less than",
@@ -704,6 +706,7 @@
                 "Index": 5,
                 "MaxReading": 23100,
                 "Name": "FAN3_2",
+                "PowerState": "On",
                 "Thresholds": [
                     {
                         "Direction": "less than",
@@ -732,6 +735,7 @@
                 "Index": 6,
                 "MaxReading": 23100,
                 "Name": "FAN4_1",
+                "PowerState": "On",
                 "Thresholds": [
                     {
                         "Direction": "less than",
@@ -760,6 +764,7 @@
                 "Index": 7,
                 "MaxReading": 23100,
                 "Name": "FAN4_2",
+                "PowerState": "On",
                 "Thresholds": [
                     {
                         "Direction": "less than",
@@ -788,6 +793,7 @@
                 "Index": 8,
                 "MaxReading": 23100,
                 "Name": "FAN5_1",
+                "PowerState": "On",
                 "Thresholds": [
                     {
                         "Direction": "less than",
@@ -816,6 +822,7 @@
                 "Index": 9,
                 "MaxReading": 23100,
                 "Name": "FAN5_2",
+                "PowerState": "On",
                 "Thresholds": [
                     {
                         "Direction": "less than",
@@ -844,6 +851,7 @@
                 "Index": 10,
                 "MaxReading": 23100,
                 "Name": "FAN6_1",
+                "PowerState": "On",
                 "Thresholds": [
                     {
                         "Direction": "less than",
@@ -872,6 +880,7 @@
                 "Index": 11,
                 "MaxReading": 23100,
                 "Name": "FAN6_2",
+                "PowerState": "On",
                 "Thresholds": [
                     {
                         "Direction": "less than",
@@ -900,6 +909,7 @@
                 "Index": 12,
                 "MaxReading": 23100,
                 "Name": "FAN7_1",
+                "PowerState": "On",
                 "Thresholds": [
                     {
                         "Direction": "less than",
@@ -928,6 +938,7 @@
                 "Index": 13,
                 "MaxReading": 23100,
                 "Name": "FAN7_2",
+                "PowerState": "On",
                 "Thresholds": [
                     {
                         "Direction": "less than",
@@ -956,6 +967,7 @@
                 "Index": 14,
                 "MaxReading": 23100,
                 "Name": "FAN8_1",
+                "PowerState": "On",
                 "Thresholds": [
                     {
                         "Direction": "less than",
@@ -984,6 +996,7 @@
                 "Index": 15,
                 "MaxReading": 23100,
                 "Name": "FAN8_2",
+                "PowerState": "On",
                 "Thresholds": [
                     {
                         "Direction": "less than",
@@ -2001,16 +2014,17 @@
             }
         ],
         "Name": "Mt.Jade",
-        "Probe": "xyz.openbmc_project.FruDevice({'PRODUCT_PRODUCT_NAME': '.*Mt.Jade'})",
+        "Probe": "xyz.openbmc_project.FruDevice({'PRODUCT_PRODUCT_NAME': 'Mt.Jade Server System'})",
         "Type": "Chassis",
         "xyz.openbmc_project.Inventory.Decorator.Asset": {
             "Manufacturer": "$PRODUCT_MANUFACTURER",
             "Model": "$PRODUCT_PRODUCT_NAME $PRODUCT_VERSION",
-            "PartNumber": "$PRODUCT_PART_NUMBER",
-            "SerialNumber": "$PRODUCT_SERIAL_NUMBER"
+            "PartNumber": "$CHASSIS_PART_NUMBER",
+            "SerialNumber": "$CHASSIS_SERIAL_NUMBER"
         },
         "xyz.openbmc_project.Inventory.Decorator.AssetTag": {
             "AssetTag": "$PRODUCT_ASSET_TAG"
-        }
+        },
+        "xyz.openbmc_project.Inventory.Item.System": {}
     }
 ]
