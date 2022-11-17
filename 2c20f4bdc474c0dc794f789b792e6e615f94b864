@@ -52,6 +52,24 @@
       "parentUuid": "1f1db50d_cfd5f79f",
       "revId": "2c20f4bdc474c0dc794f789b792e6e615f94b864",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "fa7df59c_019c9bf6",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1000559
+      },
+      "writtenOn": "2022-11-17T04:38:32Z",
+      "side": 1,
+      "message": "So the issue is caused by the sensor gets destroyed and re-created when the threshold value changes. This patch will \"silently\" update the threshold value. I am wondering if there are other code/packages that depend on the threshold value change signal. \nWas the double signal causing any issues aside from maybe effciency?",
+      "parentUuid": "adacd8c0_49112ad3",
+      "revId": "2c20f4bdc474c0dc794f789b792e6e615f94b864",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }
