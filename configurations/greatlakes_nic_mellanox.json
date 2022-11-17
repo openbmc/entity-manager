@@ -1,0 +1,30 @@
+{
+    "Exposes": [
+        {
+            "Address": "0x1f",
+            "Bus": 8,
+            "Name": "NIC_REMOTE_TEMP_C",
+            "Name1": "NIC_TEMP_C",
+            "Thresholds": [
+                {
+                    "Direction": "greater than",
+                    "Index": 2,
+                    "Name": "upper non recoverable",
+                    "Severity": 4,
+                    "Value": 120
+                },
+                {
+                    "Direction": "greater than",
+                    "Index": 2,
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 105
+                }
+            ],
+            "Type": "TMP421"
+        }
+    ],
+    "Name": "Great Lakes NIC",
+    "Probe": "FOUND('Great Lakes Baseboard')",
+    "Type": "Board"
+}
