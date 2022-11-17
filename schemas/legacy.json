@@ -84,6 +84,9 @@
                 "Index": {
                     "$ref": "#/definitions/Types/Index"
                 },
+                "InScaleFactor": {
+                    "$ref": "#/definitions/Types/InScaleFactor"
+                },
                 "Labels": {
                     "$ref": "#/definitions/Types/Labels"
                 },
@@ -240,6 +243,18 @@
                 "vin_Min": {
                     "$ref": "#/definitions/Types/vin_Min"
                 },
+                "vin_Name": {
+                    "$ref": "#/definitions/Types/vin_Name"
+                },
+                "in1_Name": {
+                    "$ref": "#/definitions/Types/in1_Name"
+                },
+                "in2_Name": {
+                    "$ref": "#/definitions/Types/in2_Name"
+                },
+                "curr1_Name": {
+                    "$ref": "#/definitions/Types/curr1_Name"
+                },
                 "iout1_Max": {
                     "$ref": "#/definitions/Types/iout1_Max"
                 },
@@ -269,6 +284,15 @@
                 },
                 "pout3_Min": {
                     "$ref": "#/definitions/Types/pout3_Min"
+                },
+                "pout3_Name": {
+                    "$ref": "#/definitions/Types/pout3_Name"
+                },
+                "power1_Name": {
+                    "$ref": "#/definitions/Types/power1_Name"
+                },
+                "temp1_Name": {
+                    "$ref": "#/definitions/Types/temp1_Name"
                 },
                 "vout1_Max": {
                     "$ref": "#/definitions/Types/vout1_Max"
@@ -506,6 +530,9 @@
             "Index": {
                 "type": "number"
             },
+            "InScaleFactor": {
+                "type": "number"
+            },
             "Labels": {
                 "items": {
                     "type": "string"
@@ -728,6 +755,18 @@
             "vin_Min": {
                 "type": "number"
             },
+            "vin_Name": {
+                "type": "string"
+            },
+            "in1_Name": {
+                "type": "string"
+            },
+            "in2_Name": {
+                "type": "string"
+            },
+            "curr1_Name": {
+                "type": "string"
+            },
             "iout1_Max": {
                 "type": "number"
             },
@@ -757,6 +796,15 @@
             },
             "pout3_Min": {
                 "type": "number"
+            },
+            "pout3_Name": {
+                "type": "string"
+            },
+            "power1_Name": {
+                "type": "string"
+            },
+            "temp1_Name": {
+                "type": "string"
             },
             "vout1_Max": {
                 "type": "number"
