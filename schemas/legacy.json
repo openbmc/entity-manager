@@ -84,6 +84,9 @@
                 "Index": {
                     "$ref": "#/definitions/Types/Index"
                 },
+                "InScaleFactor": {
+                    "$ref": "#/definitions/Types/InScaleFactor"
+                },
                 "Labels": {
                     "$ref": "#/definitions/Types/Labels"
                 },
@@ -234,11 +237,26 @@
                 "pin_Min": {
                     "$ref": "#/definitions/Types/pin_Min"
                 },
+                "pin_Name": {
+                    "$ref": "#/definitions/Types/pin_Name"
+                },
                 "vin_Max": {
                     "$ref": "#/definitions/Types/vin_Max"
                 },
                 "vin_Min": {
                     "$ref": "#/definitions/Types/vin_Min"
+                },
+                "vin_Name": {
+                    "$ref": "#/definitions/Types/vin_Name"
+                },
+                "in1_Name": {
+                    "$ref": "#/definitions/Types/in1_Name"
+                },
+                "in2_Name": {
+                    "$ref": "#/definitions/Types/in2_Name"
+                },
+                "curr1_Name": {
+                    "$ref": "#/definitions/Types/curr1_Name"
                 },
                 "iout1_Max": {
                     "$ref": "#/definitions/Types/iout1_Max"
@@ -246,11 +264,17 @@
                 "iout1_Min": {
                     "$ref": "#/definitions/Types/iout1_Min"
                 },
+                "iout1_Name": {
+                    "$ref": "#/definitions/Types/iout1_Name"
+                },
                 "iout2_Max": {
                     "$ref": "#/definitions/Types/iout2_Max"
                 },
                 "iout2_Min": {
                     "$ref": "#/definitions/Types/iout2_Min"
+                },
+                "iout2_Name": {
+                    "$ref": "#/definitions/Types/iout2_Name"
                 },
                 "pout1_Max": {
                     "$ref": "#/definitions/Types/pout1_Max"
@@ -258,11 +282,17 @@
                 "pout1_Min": {
                     "$ref": "#/definitions/Types/pout1_Min"
                 },
+                "pout1_Name": {
+                    "$ref": "#/definitions/Types/pout1_Name"
+                },
                 "pout2_Max": {
                     "$ref": "#/definitions/Types/pout2_Max"
                 },
                 "pout2_Min": {
                     "$ref": "#/definitions/Types/pout2_Min"
+                },
+                "pout2_Name": {
+                    "$ref": "#/definitions/Types/pout2_Name"
                 },
                 "pout3_Max": {
                     "$ref": "#/definitions/Types/pout3_Max"
@@ -270,11 +300,23 @@
                 "pout3_Min": {
                     "$ref": "#/definitions/Types/pout3_Min"
                 },
+                "pout3_Name": {
+                    "$ref": "#/definitions/Types/pout3_Name"
+                },
+                "power1_Name": {
+                    "$ref": "#/definitions/Types/power1_Name"
+                },
+                "temp1_Name": {
+                    "$ref": "#/definitions/Types/temp1_Name"
+                },
                 "vout1_Max": {
                     "$ref": "#/definitions/Types/vout1_Max"
                 },
                 "vout1_Min": {
                     "$ref": "#/definitions/Types/vout1_Min"
+                },
+                "vout1_Name": {
+                    "$ref": "#/definitions/Types/vout1_Name"
                 },
                 "vout2_Max": {
                     "$ref": "#/definitions/Types/vout2_Max"
@@ -282,11 +324,17 @@
                 "vout2_Min": {
                     "$ref": "#/definitions/Types/vout2_Min"
                 },
+                "vout2_Name": {
+                    "$ref": "#/definitions/Types/vout2_Name"
+                },
                 "vout3_Max": {
                     "$ref": "#/definitions/Types/vout3_Max"
                 },
                 "vout3_Min": {
                     "$ref": "#/definitions/Types/vout3_Min"
+                },
+                "vout3_Name": {
+                    "$ref": "#/definitions/Types/vout3_Name"
                 },
                 "vout4_Max": {
                     "$ref": "#/definitions/Types/vout4_Max"
@@ -294,11 +342,17 @@
                 "vout4_Min": {
                     "$ref": "#/definitions/Types/vout4_Min"
                 },
+                "vout4_Name": {
+                    "$ref": "#/definitions/Types/vout4_Name"
+                },
                 "vout5_Max": {
                     "$ref": "#/definitions/Types/vout5_Max"
                 },
                 "vout5_Min": {
                     "$ref": "#/definitions/Types/vout5_Min"
+                },
+                "vout5_Name": {
+                    "$ref": "#/definitions/Types/vout5_Name"
                 },
                 "vout6_Max": {
                     "$ref": "#/definitions/Types/vout6_Max"
@@ -306,11 +360,17 @@
                 "vout6_Min": {
                     "$ref": "#/definitions/Types/vout6_Min"
                 },
+                "vout6_Name": {
+                    "$ref": "#/definitions/Types/vout6_Name"
+                },
                 "vout7_Max": {
                     "$ref": "#/definitions/Types/vout7_Max"
                 },
                 "vout7_Min": {
                     "$ref": "#/definitions/Types/vout7_Min"
+                },
+                "vout7_Name": {
+                    "$ref": "#/definitions/Types/vout7_Name"
                 },
                 "vout8_Max": {
                     "$ref": "#/definitions/Types/vout8_Max"
@@ -318,11 +378,17 @@
                 "vout8_Min": {
                     "$ref": "#/definitions/Types/vout8_Min"
                 },
+                "vout8_Name": {
+                    "$ref": "#/definitions/Types/vout8_Name"
+                },
                 "vout9_Max": {
                     "$ref": "#/definitions/Types/vout9_Max"
                 },
                 "vout9_Min": {
                     "$ref": "#/definitions/Types/vout9_Min"
+                },
+                "vout9_Name": {
+                    "$ref": "#/definitions/Types/vout9_Name"
                 },
                 "vout10_Max": {
                     "$ref": "#/definitions/Types/vout10_Max"
@@ -330,11 +396,17 @@
                 "vout10_Min": {
                     "$ref": "#/definitions/Types/vout10_Min"
                 },
+                "vout10_Name": {
+                    "$ref": "#/definitions/Types/vout10_Name"
+                },
                 "vout11_Max": {
                     "$ref": "#/definitions/Types/vout11_Max"
                 },
                 "vout11_Min": {
                     "$ref": "#/definitions/Types/vout11_Min"
+                },
+                "vout11_Name": {
+                    "$ref": "#/definitions/Types/vout11_Name"
                 },
                 "vout12_Max": {
                     "$ref": "#/definitions/Types/vout12_Max"
@@ -342,11 +414,17 @@
                 "vout12_Min": {
                     "$ref": "#/definitions/Types/vout12_Min"
                 },
+                "vout12_Name": {
+                    "$ref": "#/definitions/Types/vout12_Name"
+                },
                 "vout13_Max": {
                     "$ref": "#/definitions/Types/vout13_Max"
                 },
                 "vout13_Min": {
                     "$ref": "#/definitions/Types/vout13_Min"
+                },
+                "vout13_Name": {
+                    "$ref": "#/definitions/Types/vout13_Name"
                 },
                 "vout14_Max": {
                     "$ref": "#/definitions/Types/vout14_Max"
@@ -354,11 +432,17 @@
                 "vout14_Min": {
                     "$ref": "#/definitions/Types/vout14_Min"
                 },
+                "vout14_Name": {
+                    "$ref": "#/definitions/Types/vout14_Name"
+                },
                 "vout15_Max": {
                     "$ref": "#/definitions/Types/vout15_Max"
                 },
                 "vout15_Min": {
                     "$ref": "#/definitions/Types/vout15_Min"
+                },
+                "vout15_Name": {
+                    "$ref": "#/definitions/Types/vout15_Name"
                 },
                 "vout16_Max": {
                     "$ref": "#/definitions/Types/vout16_Max"
@@ -366,11 +450,17 @@
                 "vout16_Min": {
                     "$ref": "#/definitions/Types/vout16_Min"
                 },
+                "vout16_Name": {
+                    "$ref": "#/definitions/Types/vout16_Name"
+                },
                 "vout17_Max": {
                     "$ref": "#/definitions/Types/vout17_Max"
                 },
                 "vout17_Min": {
                     "$ref": "#/definitions/Types/vout17_Min"
+                },
+                "vout17_Name": {
+                    "$ref": "#/definitions/Types/vout17_Name"
                 },
                 "iout1_Offset": {
                     "$ref": "#/definitions/Types/iout1_Offset"
@@ -504,6 +594,9 @@
                 ]
             },
             "Index": {
+                "type": "number"
+            },
+            "InScaleFactor": {
                 "type": "number"
             },
             "Labels": {
@@ -722,11 +815,26 @@
             "pin_Min": {
                 "type": "number"
             },
+            "pin_Name": {
+                "type": "string"
+            },
             "vin_Max": {
                 "type": "number"
             },
             "vin_Min": {
                 "type": "number"
+            },
+            "vin_Name": {
+                "type": "string"
+            },
+            "in1_Name": {
+                "type": "string"
+            },
+            "in2_Name": {
+                "type": "string"
+            },
+            "curr1_Name": {
+                "type": "string"
             },
             "iout1_Max": {
                 "type": "number"
@@ -734,11 +842,17 @@
             "iout1_Min": {
                 "type": "number"
             },
+            "iout1_Name": {
+                "type": "string"
+            },
             "iout2_Max": {
                 "type": "number"
             },
             "iout2_Min": {
                 "type": "number"
+            },
+            "iout2_Name": {
+                "type": "string"
             },
             "pout1_Max": {
                 "type": "number"
@@ -746,11 +860,17 @@
             "pout1_Min": {
                 "type": "number"
             },
+            "pout1_Name": {
+                "type": "string"
+            },
             "pout2_Max": {
                 "type": "number"
             },
             "pout2_Min": {
                 "type": "number"
+            },
+            "pout2_Name": {
+                "type": "string"
             },
             "pout3_Max": {
                 "type": "number"
@@ -758,11 +878,23 @@
             "pout3_Min": {
                 "type": "number"
             },
+            "pout3_Name": {
+                "type": "string"
+            },
+            "power1_Name": {
+                "type": "string"
+            },
+            "temp1_Name": {
+                "type": "string"
+            },
             "vout1_Max": {
                 "type": "number"
             },
             "vout1_Min": {
                 "type": "number"
+            },
+            "vout1_Name": {
+                "type": "string"
             },
             "vout2_Max": {
                 "type": "number"
@@ -770,11 +902,17 @@
             "vout2_Min": {
                 "type": "number"
             },
+            "vout2_Name": {
+                "type": "string"
+            },
             "vout3_Max": {
                 "type": "number"
             },
             "vout3_Min": {
                 "type": "number"
+            },
+            "vout3_Name": {
+                "type": "string"
             },
             "vout4_Max": {
                 "type": "number"
@@ -782,11 +920,17 @@
             "vout4_Min": {
                 "type": "number"
             },
+            "vout4_Name": {
+                "type": "string"
+            },
             "vout5_Max": {
                 "type": "number"
             },
             "vout5_Min": {
                 "type": "number"
+            },
+            "vout5_Name": {
+                "type": "string"
             },
             "vout6_Max": {
                 "type": "number"
@@ -794,11 +938,17 @@
             "vout6_Min": {
                 "type": "number"
             },
+            "vout6_Name": {
+                "type": "string"
+            },
             "vout7_Max": {
                 "type": "number"
             },
             "vout7_Min": {
                 "type": "number"
+            },
+            "vout7_Name": {
+                "type": "string"
             },
             "vout8_Max": {
                 "type": "number"
@@ -806,11 +956,17 @@
             "vout8_Min": {
                 "type": "number"
             },
+            "vout8_Name": {
+                "type": "string"
+            },
             "vout9_Max": {
                 "type": "number"
             },
             "vout9_Min": {
                 "type": "number"
+            },
+            "vout9_Name": {
+                "type": "string"
             },
             "vout10_Max": {
                 "type": "number"
@@ -818,11 +974,17 @@
             "vout10_Min": {
                 "type": "number"
             },
+            "vout10_Name": {
+                "type": "string"
+            },
             "vout11_Max": {
                 "type": "number"
             },
             "vout11_Min": {
                 "type": "number"
+            },
+            "vout11_Name": {
+                "type": "string"
             },
             "vout12_Max": {
                 "type": "number"
@@ -830,11 +992,17 @@
             "vout12_Min": {
                 "type": "number"
             },
+            "vout12_Name": {
+                "type": "string"
+            },
             "vout13_Max": {
                 "type": "number"
             },
             "vout13_Min": {
                 "type": "number"
+            },
+            "vout13_Name": {
+                "type": "string"
             },
             "vout14_Max": {
                 "type": "number"
@@ -842,11 +1010,17 @@
             "vout14_Min": {
                 "type": "number"
             },
+            "vout14_Name": {
+                "type": "string"
+            },
             "vout15_Max": {
                 "type": "number"
             },
             "vout15_Min": {
                 "type": "number"
+            },
+            "vout15_Name": {
+                "type": "string"
             },
             "vout16_Max": {
                 "type": "number"
@@ -854,11 +1028,17 @@
             "vout16_Min": {
                 "type": "number"
             },
+            "vout16_Name": {
+                "type": "string"
+            },
             "vout17_Max": {
                 "type": "number"
             },
             "vout17_Min": {
                 "type": "number"
+            },
+            "vout17_Name": {
+                "type": "string"
             },
             "iout1_Offset": {
                 "type": "number"
