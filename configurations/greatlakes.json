@@ -1,0 +1,123 @@
+{
+    "Exposes": [
+        {
+            "Address": "0x44",
+            "Bus": 11,
+            "CurrScaleFactor": 164,
+            "InScaleFactor": 3938,
+            "Labels": [
+                "power1",
+                "in1",
+                "in2",
+                "curr1"
+            ],
+            "Name": "BB_MEDUSA",
+            "PowerScaleFactor": 10,
+            "Thresholds": [
+                {
+                    "Direction": "greater than",
+                    "Label": "power1",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 1800
+                },
+                {
+                    "Direction": "greater than",
+                    "Label": "in1",
+                    "Name": "upper non recoverable",
+                    "Severity": 4,
+                    "Value": 13.9
+                },
+                {
+                    "Direction": "greater than",
+                    "Label": "in1",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 13.875
+                },
+                {
+                    "Direction": "greater than",
+                    "Label": "in1",
+                    "Name": "upper non critical",
+                    "Severity": 0,
+                    "Value": 13.75
+                },
+                {
+                    "Direction": "less than",
+                    "Label": "in1",
+                    "Name": "lower non critical",
+                    "Severity": 0,
+                    "Value": 11.25
+                },
+                {
+                    "Direction": "less than",
+                    "Label": "in1",
+                    "Name": "lower critical",
+                    "Severity": 1,
+                    "Value": 11.125
+                },
+                {
+                    "Direction": "less than",
+                    "Label": "in1",
+                    "Name": "lower non recoverable",
+                    "Severity": 4,
+                    "Value": 9.25
+                },
+                {
+                    "Direction": "greater than",
+                    "Label": "in2",
+                    "Name": "upper non recoverable",
+                    "Severity": 4,
+                    "Value": 13.9
+                },
+                {
+                    "Direction": "greater than",
+                    "Label": "in2",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 13.875
+                },
+                {
+                    "Direction": "greater than",
+                    "Label": "in2",
+                    "Name": "upper non critical",
+                    "Severity": 0,
+                    "Value": 13.75
+                },
+                {
+                    "Direction": "less than",
+                    "Label": "in2",
+                    "Name": "lower non critical",
+                    "Severity": 0,
+                    "Value": 11.25
+                },
+                {
+                    "Direction": "less than",
+                    "Label": "in2",
+                    "Name": "lower critical",
+                    "Severity": 1,
+                    "Value": 11.125
+                },
+                {
+                    "Direction": "less than",
+                    "Label": "in2",
+                    "Name": "lower non recoverable",
+                    "Severity": 4,
+                    "Value": 9.25
+                },
+                {
+                    "Direction": "greater than",
+                    "Label": "curr1",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 144
+                }
+            ],
+            "Type": "LTC4282",
+            "curr1_Name": "BB_MEDUSA_CURR_A",
+            "in1_Name": "BB_MEDUSA_INPUT_VOLT_V",
+            "in2_Name": "BB_MEDUSA_OUTPUT_VOLT_V",
+            "power1_Name": "BB_MEDUSA_PWR_W"
+        }
+    ]
+}
