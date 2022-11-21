@@ -495,8 +495,6 @@ void PerformScan::updateSystemConfiguration(const nlohmann::json& recordRef,
 
             pruneRecordExposes(*record);
 
-            recordDiscoveredIdentifiers(usedNames, indexes, probeName, *record);
-
             _systemConfiguration[recordName] = *record;
         }
         _missingConfigurations.erase(recordName);
@@ -504,6 +502,7 @@ void PerformScan::updateSystemConfiguration(const nlohmann::json& recordRef,
         // We've processed the device, remove it and advance the
         // iterator
         itr = foundDevices.erase(itr);
+        recordDiscoveredIdentifiers(usedNames, indexes, probeName, *record);
     }
 
     std::optional<std::string> replaceStr;
