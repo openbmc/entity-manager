@@ -504,6 +504,7 @@ void PerformScan::updateSystemConfiguration(const nlohmann::json& recordRef,
         // We've processed the device, remove it and advance the
         // iterator
         itr = foundDevices.erase(itr);
+        recordDiscoveredIdentifiers(usedNames, indexes, probeName, *record);
     }
 
     std::optional<std::string> replaceStr;
