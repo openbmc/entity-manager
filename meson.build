@@ -92,6 +92,7 @@ configs = [
     'axx2prthdhd.json',
     'bnp_baseboard.json',
     'bellavista.json',
+    'delta_ahe50dc.json',
     'delta_awf2dc3200w_psu.json',
     'delta_dps-750xb_psu.json',
     'delta_dps-1600ab_psu.json',
