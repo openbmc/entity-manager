@@ -16,6 +16,23 @@
       "message": "CI of course isn\u0027t going to accept this as-is due to the formatting...\n\nWith the uniformity of the efuse entries, having each one be a single line like this makes it a *lot* easier to eyeball and verify that things are all consistent and any changes have been applied the same way across all of them; do the maintainers feel that\u0027s a strong enough reason to make an exception to the usual formatting rules?\n\n(If so, there\u0027s the separate follow-on question of if there\u0027s a easy way to manually override the automation in this particular care -- lacking comments I dunno if json has any real way to insert \"pragma\"-like directives.)",
       "revId": "1d5b5ae2672abf51af951fb2581cd7cb7fbaaf99",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "59cb7027_00ef4ddd",
+        "filename": "configurations/delta_ahe50dc.json",
+        "patchSetId": 1
+      },
+      "lineNbr": 83,
+      "author": {
+        "id": 1000733
+      },
+      "writtenOn": "2022-11-22T23:05:46Z",
+      "side": 1,
+      "message": "Also, I\u0027ll note that this matching depends on my current implementation (still out-of-tree) of supporting the LI1902 FRU format in fru-device, so there\u0027s a chance this might need to change when an upstream version of that eventually happens, but if so hopefully only slightly (and maybe not at all depending on exactly how it shakes out).",
+      "revId": "1d5b5ae2672abf51af951fb2581cd7cb7fbaaf99",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }
