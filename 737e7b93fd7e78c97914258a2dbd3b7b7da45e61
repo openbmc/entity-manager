@@ -16,6 +16,24 @@
       "message": "Bonnie,\n\nAre you working on resolving this build error?\n\n```\nformatting file configurations/greatlakes.json\nTraceback (most recent call last):\n  File \"/data0/jenkins/workspace/ci-repository/openbmc/entity-manager/scripts/autojson.py\", line 22, in \u003cmodule\u003e\n    j \u003d json.load(f)\n  File \"/usr/lib/python3.10/json/__init__.py\", line 293, in load\n    return loads(fp.read(),\n  File \"/usr/lib/python3.10/json/__init__.py\", line 346, in loads\n    return _default_decoder.decode(s)\n  File \"/usr/lib/python3.10/json/decoder.py\", line 337, in decode\n    obj, end \u003d self.raw_decode(s, idx\u003d_w(s, 0).end())\n  File \"/usr/lib/python3.10/json/decoder.py\", line 353, in raw_decode\n    obj, end \u003d self.scan_once(s, idx)\njson.decoder.JSONDecodeError: Expecting property name enclosed in double quotes: line 488 column 9 (char 15382)\n```",
       "revId": "737e7b93fd7e78c97914258a2dbd3b7b7da45e61",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "e38a713b_34c171e4",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 9
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1001618
+      },
+      "writtenOn": "2022-11-23T01:11:47Z",
+      "side": 1,
+      "message": "We use label_Name(e.g. vin_Name) for custom psu sensor name. However, the schema of entity-manager is not having any label_Name property. We have another patch for adding those properties.\nhttps://gerrit.openbmc.org/c/openbmc/entity-manager/+/58224",
+      "parentUuid": "6c398531_cf1aaa46",
+      "revId": "737e7b93fd7e78c97914258a2dbd3b7b7da45e61",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }
