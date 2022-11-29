@@ -943,7 +943,18 @@ void rescanBusses(
     timer.expires_from_now(boost::posix_time::seconds(1));
 
     // setup an async wait in case we get flooded with requests
-    timer.async_wait([&](const boost::system::error_code&) {
+    timer.async_wait([&](const boost::system::error_code& ec) {
+        if (ec == boost::asio::error::operation_aborted)
+        {
+            return;
+        }
+
+        if (ec)
+        {
+            std::cerr << "Error in timer: " << ec.message() << "\n";
+            return;
+        }
+
         auto devDir = fs::path("/dev/");
         std::vector<fs::path> i2cBuses;
 
