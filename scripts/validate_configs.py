@@ -43,7 +43,7 @@ def main():
             source_dir = os.path.realpath(__file__).split(os.sep)[:-2]
             schema_file = os.sep + os.path.join(
                 *source_dir, 'schemas', DEFAULT_SCHEMA_FILENAME)
-        except Exception as e:
+        except Exception:
             sys.stderr.write(
                 "Could not guess location of {}\n".format(
                     DEFAULT_SCHEMA_FILENAME))
@@ -53,7 +53,7 @@ def main():
     try:
         with open(schema_file) as fd:
             schema = json.load(fd)
-    except FileNotFoundError as e:
+    except FileNotFoundError:
         sys.stderr.write(
             "Could not read schema file '{}'\n".format(schema_file))
         sys.exit(2)
@@ -68,7 +68,7 @@ def main():
                 for f in files:
                     if f.endswith('.json'):
                         config_files.append(os.path.join(root, f))
-        except Exception as e:
+        except Exception:
             sys.stderr.write(
                 "Could not guess location of configurations\n")
             sys.exit(2)
@@ -78,7 +78,7 @@ def main():
         try:
             with open(config_file) as fd:
                 configs.append(json.load(fd))
-        except FileNotFoundError as e:
+        except FileNotFoundError:
             sys.stderr.write(
                     "Could not parse config file '{}'\n".format(config_file))
             sys.exit(2)
@@ -89,7 +89,7 @@ def main():
             with open(args.expected_fails) as fd:
                 for line in fd:
                     expected_fails.append(line.strip())
-        except Exception as e:
+        except Exception:
             sys.stderr.write(
                     "Could not read expected fails file '{}'\n".format(
                         args.expected_fails))

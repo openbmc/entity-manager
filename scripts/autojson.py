@@ -15,7 +15,7 @@ for file in files[:]:
             files.append(os.path.join(file, f))
 
 for file in files:
-    if not file.endswith('.json'):
+    if not file.endswith(".json"):
         continue
     print("formatting file {}".format(file))
     with open(file) as f:
@@ -27,6 +27,8 @@ for file in files:
     else:
         j["Exposes"] = sorted(j["Exposes"], key=lambda k: k["Type"])
 
-    with open(file, 'w') as f:
-        f.write(json.dumps(j, indent=4, sort_keys=True, separators=(',', ': ')))
-        f.write('\n')
+    with open(file, "w") as f:
+        f.write(
+            json.dumps(j, indent=4, sort_keys=True, separators=(",", ": "))
+        )
+        f.write("\n")
