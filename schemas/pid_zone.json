@@ -4,6 +4,12 @@
         "PidZone": {
             "type": "object",
             "properties": {
+                "AccumulateSetPoint": {
+                    "type": "boolean"
+                },
+                "CycleIntervalTimeMS": {
+                    "type": "number"
+                },
                 "FailSafePercent": {
                     "type": "number"
                 },
@@ -15,6 +21,9 @@
                 },
                 "Type": {
                     "type": "string"
+                },
+                "UpdateThermalsTimeMS": {
+                    "type": "number"
                 }
             },
             "required": [
