@@ -110,6 +110,7 @@ configs = [
     'flextronics_s-1100adu00-201_psu.json',
     'greatlakes.json',
     'greatlakes_nic_mellanox.json',
+    'hpe_dl360g10_baseboard.json',
     'ibm_1000w_cffps.json',
     'ibm_1400w_cffps.json',
     'ibm_1600w_cffps.json',
