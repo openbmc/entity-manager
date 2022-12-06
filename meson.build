@@ -117,6 +117,7 @@ configs = [
     'gospower_g1136-1300wna_psu.json',
     'greatlakes.json',
     'greatlakes_nic_mellanox.json',
+	'hpe_dl360g11_baseboard.json',
     'ibm_tacoma_rack_controller.json',
     'intel_front_panel.json',
     'kudo_bmc.json',
