@@ -7,6 +7,9 @@
                 "Class": {
                     "type": "string"
                 },
+                "DCoefficient": {
+                    "type": "number"
+                },
                 "FFGainCoefficient": {
                     "type": "number"
                 },
@@ -76,6 +79,7 @@
             },
             "required": [
                 "Class",
+                "DCoefficient",
                 "FFGainCoefficient",
                 "FFOffCoefficient",
                 "ICoefficient",
