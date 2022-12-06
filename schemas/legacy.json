@@ -265,6 +265,32 @@
             "required": ["Name", "Type", "Connector"],
             "type": "object"
         },
+        "HPEFan": {
+            "additionalProperties": false,
+            "properties": {
+                "Index": {
+                    "$ref": "#/$defs/Types/Index"
+                },
+                "Connector": {
+                    "$ref": "#/$defs/Types/Connector"
+                },
+                "Presence": {
+                    "$ref": "#/$defs/Types/Presence"
+                },
+                "MaxReading": {
+                    "$ref": "#/$defs/Types/MaxReading"
+                },
+                "Name": {
+                    "$ref": "#/$defs/Types/Name"
+                },
+                "Type": {
+                    "type": "string",
+                    "const": "HPEFan"
+                }
+            },
+            "required": ["Name", "Type", "Connector"],
+            "type": "object"
+        },
         "XeonCPU": {
             "description": "implemented in dbus-sensors: IntelCPUSensor",
             "additionalProperties": false,
