@@ -1,0 +1,354 @@
+{
+    "Exposes": [
+        {
+            "Connector": {
+                "Name": "Fan Connector 1",
+                "Pwm": 0,
+                "Tachs": []
+            },
+            "Index": 0,
+            "Name": "Fan 1",
+            "Type": "HPEFan"
+        },
+        {
+            "Connector": {
+                "Name": "Fan Connector 2",
+                "Pwm": 1,
+                "Tachs": []
+            },
+            "Index": 1,
+            "Name": "Fan 2",
+            "Type": "HPEFan"
+        },
+        {
+            "Connector": {
+                "Name": "Fan Connector 3",
+                "Pwm": 2,
+                "Tachs": []
+            },
+            "Index": 2,
+            "Name": "Fan 3",
+            "Type": "HPEFan"
+        },
+        {
+            "Connector": {
+                "Name": "Fan Connector 4",
+                "Pwm": 3,
+                "Tachs": []
+            },
+            "Index": 3,
+            "Name": "Fan 4",
+            "Type": "HPEFan"
+        },
+        {
+            "Connector": {
+                "Name": "Fan Connector 5",
+                "Pwm": 4,
+                "Tachs": []
+            },
+            "Index": 4,
+            "Name": "Fan 5",
+            "Type": "HPEFan"
+        },
+        {
+            "Connector": {
+                "Name": "Fan Connector 6",
+                "Pwm": 5,
+                "Tachs": []
+            },
+            "Index": 5,
+            "Name": "Fan 6",
+            "Type": "HPEFan"
+        },
+        {
+            "Connector": {
+                "Name": "Fan Connector 7",
+                "Pwm": 6,
+                "Tachs": []
+            },
+            "Index": 6,
+            "Name": "Fan 7",
+            "Type": "HPEFan"
+        },
+        {
+            "Class": "fan",
+            "FFGainCoefficient": 1,
+            "FFOffCoefficient": 0,
+            "ICoefficient": 0,
+            "ILimitMax": 0,
+            "ILimitMin": 0,
+            "Inputs": [
+                "Fan 1",
+                "Fan 2",
+                "Fan 3",
+                "Fan 4",
+                "Fan 5",
+                "Fan 6",
+                "Fan 7"
+            ],
+            "Name": "Fan 1-7",
+            "NegativeHysteresis": 0,
+            "OutLimitMax": 100,
+            "OutLimitMin": 30,
+            "Outputs": [
+                "Pwm 0",
+                "Pwm 1",
+                "Pwm 2",
+                "Pwm 3",
+                "Pwm 4",
+                "Pwm 5",
+                "Pwm 6"
+            ],
+            "PCoefficient": 0,
+            "PositiveHysteresis": 0,
+            "SlewNeg": 0,
+            "SlewPos": 0,
+            "Type": "Pid",
+            "Zones": [
+                "Zone 1"
+            ]
+        },
+        {
+            "Class": "temp",
+            "FFGainCoefficient": 0,
+            "FFOffCoefficient": 0,
+            "ICoefficient": -4.64,
+            "ILimitMax": 100,
+            "ILimitMin": 30,
+            "Inputs": [
+                "DTS CPU1"
+            ],
+            "Name": "DTS CPU1",
+            "NegativeHysteresis": 5,
+            "OutLimitMax": 100,
+            "OutLimitMin": 30,
+            "Outputs": [],
+            "PCoefficient": -0.15,
+            "PositiveHysteresis": 0,
+            "SetPoint": -25,
+            "SetPointOffset": "WarningHigh",
+            "SlewNeg": -1,
+            "SlewPos": 0,
+            "Type": "Pid",
+            "Zones": [
+                "Zone 1"
+            ]
+        },
+        {
+            "Class": "temp",
+            "FFGainCoefficient": 0,
+            "FFOffCoefficient": 0,
+            "ICoefficient": -0.2,
+            "ILimitMax": 70,
+            "ILimitMin": 10,
+            "Inputs": [
+                "Ambient Temp"
+            ],
+            "Name": "Ambient Temp",
+            "OutLimitMax": 70,
+            "OutLimitMin": 10,
+            "Outputs": [],
+            "PCoefficient": -3,
+            "SetPoint": 25,
+            "SlewNeg": -1,
+            "SlewPos": 0,
+            "Type": "Pid",
+            "Zones": [
+                "Zone 1"
+            ]
+        },
+        {
+            "FailSafePercent": 100,
+            "MinThermalOutput": 10,
+            "Name": "Zone 1",
+            "Type": "Pid.Zone"
+        },
+        {
+            "Address": "0x49",
+            "Bus": "50",
+            "Name": "Board Exhaust 1",
+            "Thresholds": [
+                {
+                    "Direction": "greater than",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 80
+                },
+                {
+                    "Direction": "greater than",
+                    "Name": "upper non critical",
+                    "Severity": 0,
+                    "Value": 75
+                },
+                {
+                    "Direction": "less than",
+                    "Name": "lower non critical",
+                    "Severity": 0,
+                    "Value": 5
+                },
+                {
+                    "Direction": "less than",
+                    "Name": "lower critical",
+                    "Severity": 1,
+                    "Value": 0
+                }
+            ],
+            "Type": "TMP1075"
+        },
+        {
+            "Address": "0x4c",
+            "Bus": "50",
+            "Name": "Board Exhaust 4",
+            "PowerState": "On",
+            "Thresholds": [
+                {
+                    "Direction": "greater than",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 80
+                },
+                {
+                    "Direction": "greater than",
+                    "Name": "upper non critical",
+                    "Severity": 0,
+                    "Value": 75
+                },
+                {
+                    "Direction": "less than",
+                    "Name": "lower non critical",
+                    "Severity": 0,
+                    "Value": 5
+                },
+                {
+                    "Direction": "less than",
+                    "Name": "lower critical",
+                    "Severity": 1,
+                    "Value": 0
+                }
+            ],
+            "Type": "TMP1075"
+        },
+        {
+            "Address": "0x48",
+            "Bus": "50",
+            "Name": "PSU Zone",
+            "PowerState": "On",
+            "Thresholds": [
+                {
+                    "Direction": "greater than",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 80
+                },
+                {
+                    "Direction": "greater than",
+                    "Name": "upper non critical",
+                    "Severity": 0,
+                    "Value": 75
+                },
+                {
+                    "Direction": "less than",
+                    "Name": "lower non critical",
+                    "Severity": 0,
+                    "Value": 5
+                },
+                {
+                    "Direction": "less than",
+                    "Name": "lower critical",
+                    "Severity": 1,
+                    "Value": 0
+                }
+            ],
+            "Type": "TMP1075"
+        },
+        {
+            "Address": "0x4c",
+            "Bus": "49",
+            "Name": "Board Inlet",
+            "PowerState": "On",
+            "Thresholds": [
+                {
+                    "Direction": "greater than",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 80
+                },
+                {
+                    "Direction": "greater than",
+                    "Name": "upper non critical",
+                    "Severity": 0,
+                    "Value": 75
+                },
+                {
+                    "Direction": "less than",
+                    "Name": "lower non critical",
+                    "Severity": 0,
+                    "Value": 5
+                },
+                {
+                    "Direction": "less than",
+                    "Name": "lower critical",
+                    "Severity": 1,
+                    "Value": 0
+                }
+            ],
+            "Type": "TMP411"
+        },
+        {
+            "Address": "0x30",
+            "Bus": 0,
+            "CpuID": 1,
+            "DtsCritOffset": -2,
+            "Name": "CPU 1",
+            "Thresholds": [
+                {
+                    "Direction": "greater than",
+                    "Label": "DIMM",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 99
+                },
+                {
+                    "Direction": "greater than",
+                    "Label": "DIMM",
+                    "Name": "upper non critical",
+                    "Severity": 0,
+                    "Value": 89
+                }
+            ],
+            "Type": "XeonCPU"
+        },
+        {
+            "Address": "0x31",
+            "Bus": 0,
+            "CpuID": 2,
+            "DtsCritOffset": -2,
+            "Name": "CPU 2",
+            "Thresholds": [
+                {
+                    "Direction": "greater than",
+                    "Label": "DIMM",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 99
+                },
+                {
+                    "Direction": "greater than",
+                    "Label": "DIMM",
+                    "Name": "upper non critical",
+                    "Severity": 0,
+                    "Value": 89
+                }
+            ],
+            "Type": "XeonCPU"
+        }
+    ],
+    "Name": "HPE DL360 G12 Server",
+    "Probe": [
+        "xyz.openbmc_project.Inventory.Decorator.Asset({'Model': 'HPE-PCA-8675'})"
+    ],
+    "Type": "Chassis",
+    "xyz.openbmc_project.Inventory.Decorator.AssetTag": {
+        "AssetTag": "$PRODUCT_ASSET_TAG"
+    }
+}
