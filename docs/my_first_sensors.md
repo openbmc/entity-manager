@@ -9,7 +9,7 @@ For the sake of this example, let's pretend there is a PCIe card that exposes an
 24c02 eeprom and a tmp441 sensor. The PCIe slots are behind an smbus mux on the
 motherboard and are in a device-tree such as this:
 
-```
+```dts
 aliases {
         i2c16 = &i2c_pe0;
         i2c17 = &i2c_pe1;
@@ -56,7 +56,7 @@ The first daemon of interest that will run is the FruDevice portion of
 Entity-Manager. The exact layout of a FRU is beyond the scope of this guide, but
 assume the PCIe card's eeprom holds the following information:
 
-```
+```text
 Product:
   MANUFACTURER  "Awesome"
   PART_NUMBER   "12345"
@@ -71,7 +71,7 @@ found two of the cards. One at bus 18 and the other at 19.
 
 The dbus tree for this will look like: ```
 
-```
+```sh
 ~# busctl tree --no-pager xyz.openbmc_project.FruDevice
 `-/xyz
   `-/xyz/openbmc_project
@@ -83,7 +83,7 @@ The dbus tree for this will look like: ```
 The dbus path for each instance is unimportant beyond needing to be unique.
 Digging into one of these FRUs we see:
 
-```
+```sh
 ~# busctl introspect --no-pager xyz.openbmc_project.FruDevice \
  /xyz/openbmc_project/FruDevice/Super_Great
 
@@ -121,26 +121,26 @@ sensor available.
 We start with a simple hardware profile. We know that if the card's bus is
 identified we know the address of the temperature sensor is 0x4c.
 
-```
+```json
 {
-    "Exposes": [
-       {
-            "Address": "$address",
-            "Bus": "$bus",
-            "Name": "$bus great eeprom",
-            "Type": "EEPROM_24C02"
-        },
-        {
-            "Address": "0x4c",
-            "Bus": "$bus",
-            "Name": "$bus great local",
-            "Name1": "$bus great ext",
-            "Type": "TMP441"
-        }
-    ],
-    "Name": "$bus Great Card",
-    "Probe": "xyz.openbmc_project.FruDevice({'PRODUCT_PRODUCT_NAME': 'Super Great'})",
-    "Type": "Board"
+  "Exposes": [
+    {
+      "Address": "$address",
+      "Bus": "$bus",
+      "Name": "$bus great eeprom",
+      "Type": "EEPROM_24C02"
+    },
+    {
+      "Address": "0x4c",
+      "Bus": "$bus",
+      "Name": "$bus great local",
+      "Name1": "$bus great ext",
+      "Type": "TMP441"
+    }
+  ],
+  "Name": "$bus Great Card",
+  "Probe": "xyz.openbmc_project.FruDevice({'PRODUCT_PRODUCT_NAME': 'Super Great'})",
+  "Type": "Board"
 }
 ```
 
@@ -166,14 +166,14 @@ Linux types.
 
 For the card found on bus 18:
 
-```
+```sh
 echo "24c02 0x50 > /sys/bus/i2c/devices/i2c-18/new_device"
 echo "tmp441 0x4c > /sys/bus/i2c/devices/i2c-18/new_device"
 ```
 
 Beyond this, it also publishes to dbus a configuration:
 
-```
+```sh
 ~# busctl tree --no-pager xyz.openbmc_project.EntityManager
 `-/xyz
   `-/xyz/openbmc_project
@@ -215,7 +215,7 @@ configuration interface: `xyz.openbmc_project.Configuration.TMP441`.
 It will look up the device on i2c and see there is a hwmon instance, and map
 `temp1_input` to `Name` and since there is also `Name1` it'll map `temp2_input`.
 
-```
+```sh
 ~# busctl tree --no-pager xyz.openbmc_project.HwmonTempSensor
 `-/xyz
   `-/xyz/openbmc_project

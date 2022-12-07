@@ -1,8 +1,8 @@
-## Entity manager configuration file schema
+# Entity manager configuration file schema
 
 Entity manager configuration files are JSON documents and can be validated with
-a JSON schema[1]. This document provides an overview of the general structure of
-an entity manager configuration file.
+a [JSON schema][1]. This document provides an overview of the general structure
+of an entity manager configuration file.
 
 An entity manager configuration file consists of one or more entity manager
 configurations. This provides flexibility for system designers - the
@@ -12,7 +12,7 @@ most schema describes a single object or an array of objects.
 
 To remain consistent with the OpenBMC CPP source code file name guidelines,
 entity manager configuration file and schema file names must be
-lower_snake_case.
+`lower_snake_case`.
 
 ## A single entity manager configuration
 
@@ -26,16 +26,16 @@ with four properties.
 
 The type property identifies the type of the configuration. When exported,
 configuration data will be instantiated as grandchildren of
-/xyz/openbmc_project/inventory/system/<Type>. For a comprehensive list of
+`/xyz/openbmc_project/inventory/system/<Type>`. For a comprehensive list of
 supported types, consult the schema (global.json).
 
 ## Name
 
 The name property identifies the name of the configuration. When exported,
 configuration data will be instantiated as children of
-/xyz/openbmc_project/inventory/system/<Type>/<Name>. Additionally, any DBus
+`/xyz/openbmc_project/inventory/system/<Type>/<Name>`. Additionally, any DBus
 interfaces listed in openbmc-dbus.json will be added on
-/xyz/openbmc_project/inventory/system/<Type>/<Name>.
+`/xyz/openbmc_project/inventory/system/<Type>/<Name>`.
 
 ## Probe
 
@@ -52,9 +52,9 @@ confused with the Type and Name properties of the parent JSON object) property
 since entity manager will construct the Dbus interface name and object path
 based on those properties:
 
-/xyz/openbmc_project/inventory/system/Board/RiserCard1/<Name>:
-xyz.openbmc_project.Configuration.<Type>:
-<remaining properties defined by exposes subschema>
+`/xyz/openbmc_project/inventory/system/Board/RiserCard1/<Name>`:
+`xyz.openbmc_project.Configuration.<Type>`:
+`<remaining properties defined by exposes subschema>`
 
 ## Adding new exposes property subschema
 
@@ -70,4 +70,4 @@ To export new interfaces on the configuration parent object e.g.:
 /xyz/openbmc_project/inventory/system/Board/RiserCard1 add additional subschema
 to openbmc-dbus.json.
 
-[1] https://json-schema.org/
+[1]: https://json-schema.org/

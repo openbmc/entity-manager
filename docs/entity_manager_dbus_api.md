@@ -8,15 +8,15 @@ is not a description of the internal workings.
 
 ## DBus Object
 
-### Object Paths:
+### Object Paths
 
-#### Entities: /xyz/openbmc_project/Inventory/Item/{Entity Type}/{Entity Name}
+#### Entities: `/xyz/openbmc_project/Inventory/Item/{Entity Type}/{Entity Name}`
 
 Entities are top level json objects that describe a piece of hardware. They are
 groups of configurations with few properties of their own, they are a container
 type for most pratical purposes.
 
-#### Devices : /xyz/openbmc_project/Inventory/Item/{Entity Type}/{Entity Name}/{Configuration}
+#### Devices: `/xyz/openbmc_project/Inventory/Item/{Entity Type}/{Entity Name}/{Configuration}`
 
 Configurations are components that are exposed when an entity is added to the
 "global" system configuration. An example would be a TMP75 sensor that is
@@ -24,13 +24,13 @@ exposed when the front panel is detected.
 
 **Example**:
 
-```
+```text
 /xyz/openbmc_project/Inventory/Item/Board/Intel_Front_Panel/Front_Panel_Temp
 ```
 
-### Interfaces :
+### Interfaces
 
-#### xyz.openbmc_project.{InventoryType}
+#### `xyz.openbmc_project.{InventoryType}`
 
 See
 [upstream types](https://github.com/openbmc/phosphor-dbus-interfaces/tree/master/yaml/xyz/openbmc_project/Inventory/Item)
@@ -45,23 +45,23 @@ These types closely align with Redfish types.
 
 Entity objects describe pieces of physical hardware.
 
-##### Properties:
+##### Properties
 
-unsigned int: num_children: Number of configurations under this entity.
+`unsigned int num_children`: Number of configurations under this entity.
 
-std::string name: name of the inventory item
+`std::string name`: name of the inventory item
 
-#### xyz.openbmc_project.Configuration
+#### `xyz.openbmc_project.Configuration`
 
 Configuration objects describe components owned by the Entity.
 
-##### Properties:
+##### Properties
 
 Properties will contain all non-objects (simple types) exposed by the JSON.
 
 **Example**:
 
-```
+```text
 path: /xyz/openbmc_project/Inventory/Item/Board/Intel_Front_Panel/Front_Panel_Temp
 Interface: xyz.openbmc_project.Configuration
     string name = "front panel temp"
@@ -69,20 +69,20 @@ Interface: xyz.openbmc_project.Configuration
     string "bus" = "1"
 ```
 
-#### xyz.openbmc_project.Device.{Object}.{index}
+#### `xyz.openbmc_project.Device.{Object}.{index}`
 
 {Object}s are members of the parent device that were originally described as
 dictionaries. This allows for creating more complex types, while still being
 able to get a picture of the entire system when doing a get managed objects
 method call. Array objects will be indexed zero based.
 
-##### Properties:
+##### Properties
 
 All members of the dictonary.
 
 **Example**:
 
-```
+```text
 path: /xyz/openbmc_project/Inventory/Item/Board/Intel_Front_Panel/Front_Panel_Temp
 Interface: xyz.openbmc_project.Device.threshold.0
     string direction = "greater than"
@@ -91,7 +91,7 @@ Interface: xyz.openbmc_project.Device.threshold.0
 
 ## JSON Requirements
 
-### JSON syntax requirements:
+### JSON syntax requirements
 
 Based on the above DBus object, there is an implicit requirement that device
 objects may not have more than one level deep of dictionary or list of
@@ -105,7 +105,7 @@ complexity will be avoided until proven needed.
 
 Legal:
 
-```
+```text
 exposes :
 [
     {
@@ -117,7 +117,7 @@ exposes :
 
 Not Legal:
 
-```
+```text
 exposes :
 [
     {
@@ -129,5 +129,4 @@ exposes :
         }
     }
 ]
-
 ```

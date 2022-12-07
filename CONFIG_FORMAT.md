@@ -86,14 +86,14 @@ power supplies, fans, and PCIe add in cards.
 Within a configuration file, there is a JSON object which consists of multiple
 "string : value" pairs. This Entity Manager defines the following strings.
 
-| String        | Example Value                                                     | Description                                                                                                                                                                                                                                                                                                   |
-| :------------ | ----------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| "Name"        | "X1000 1U Chassis"                                                | Human readable name used for identification and sorting.                                                                                                                                                                                                                                                      |
-| "Probe"       | "xyz.openbmc_project.FruDevice({'BOARD_PRODUCT_NAME':'FFPANEL'})" | Statement which attempts to read from d-bus. The result determines if a configuration record should be applied. The value for probe can be set to “TRUE” in the case the record should always be applied, or set to more complex lookups, for instance a field in a FRU file that is exposed by the frudevice |
-| "Exposes"     | [{"Name" : "CPU fan"}, ...]                                       | An array of JSON objects which are valid if the probe result is successful. These objects describe the devices BMC can interact.                                                                                                                                                                              |
-| "Status"      | "disabled"                                                        | An indicator that allows for some records to be disabled by default.                                                                                                                                                                                                                                          |
-| "Bind\*"      | "2U System Fan connector 1"                                       | The record isn't complete and needs to be combined with another to be functional. The value is a unique reference to a record elsewhere.                                                                                                                                                                      |
-| "DisableNode" | "Fan 1"                                                           | Sets the status of another Entity to disabled.                                                                                                                                                                                                                                                                |
+| String        | Example Value                                                       | Description                                                                                                                                                                                                                                                                                                   |
+| :------------ | ------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| "Name"        | `"X1000 1U Chassis"`                                                | Human readable name used for identification and sorting.                                                                                                                                                                                                                                                      |
+| "Probe"       | `"xyz.openbmc_project.FruDevice({'BOARD_PRODUCT_NAME':'FFPANEL'})"` | Statement which attempts to read from d-bus. The result determines if a configuration record should be applied. The value for probe can be set to “TRUE” in the case the record should always be applied, or set to more complex lookups, for instance a field in a FRU file that is exposed by the frudevice |
+| "Exposes"     | `[{"Name" : "CPU fan"}, ...]`                                       | An array of JSON objects which are valid if the probe result is successful. These objects describe the devices BMC can interact.                                                                                                                                                                              |
+| "Status"      | `"disabled"`                                                        | An indicator that allows for some records to be disabled by default.                                                                                                                                                                                                                                          |
+| "Bind\*"      | `"2U System Fan connector 1"`                                       | The record isn't complete and needs to be combined with another to be functional. The value is a unique reference to a record elsewhere.                                                                                                                                                                      |
+| "DisableNode" | `"Fan 1"`                                                           | Sets the status of another Entity to disabled.                                                                                                                                                                                                                                                                |
 
 Template strings in the form of "$identifier" may be used in configuration
 files. The following table describes the template strings currently defined.
@@ -121,101 +121,96 @@ two fan connectors and two temperature sensors of TMP75 type. These objects are
 considered valid by BMC when the probe command (reads and compares the product
 name in FRU) is successful and this baseboard is named as "WFP baseboard".
 
-```
+```json
 {
-    "Exposes": [
+  "Exposes": [
+    {
+      "Name": "1U System Fan connector 1",
+      "Pwm": 1,
+      "Status": "disabled",
+      "Tachs": [1, 2],
+      "Type": "IntelFanConnector"
+    },
+    {
+      "Name": "2U System Fan connector 1",
+      "Pwm": 1,
+      "Status": "disabled",
+      "Tachs": [1],
+      "Type": "IntelFanConnector"
+    },
+    {
+      "Address": "0x49",
+      "Bus": 6,
+      "Name": "Left Rear Temp",
+      "Thresholds": [
         {
-            "Name": "1U System Fan connector 1",
-            "Pwm": 1,
-            "Status": "disabled",
-            "Tachs": [
-                1,
-                2
-            ],
-            "Type": "IntelFanConnector"
+          "Direction": "greater than",
+          "Name": "upper critical",
+          "Severity": 1,
+          "Value": 115
         },
         {
-            "Name": "2U System Fan connector 1",
-            "Pwm": 1,
-            "Status": "disabled",
-            "Tachs": [
-                1
-            ],
-            "Type": "IntelFanConnector"
+          "Direction": "greater than",
+          "Name": "upper non critical",
+          "Severity": 0,
+          "Value": 110
         },
         {
-            "Address": "0x49",
-            "Bus": 6,
-            "Name": "Left Rear Temp",
-            "Thresholds": [
-                {
-                    "Direction": "greater than",
-                    "Name": "upper critical",
-                    "Severity": 1,
-                    "Value": 115
-                },
-                {
-                    "Direction": "greater than",
-                    "Name": "upper non critical",
-                    "Severity": 0,
-                    "Value": 110
-                },
-                {
-                    "Direction": "less than",
-                    "Name": "lower non critical",
-                    "Severity": 0,
-                    "Value": 5
-                },
-                {
-                    "Direction": "less than",
-                    "Name": "lower critical",
-                    "Severity": 1,
-                    "Value": 0
-                }
-            ],
-            "Type": "TMP75"
+          "Direction": "less than",
+          "Name": "lower non critical",
+          "Severity": 0,
+          "Value": 5
         },
         {
-            "Address": "0x48",
-            "Bus": 6,
-            "Name": "Voltage Regulator 1 Temp",
-            "Thresholds": [
-                {
-                    "Direction": "greater than",
-                    "Name": "upper critical",
-                    "Severity": 1,
-                    "Value": 115
-                },
-                {
-                    "Direction": "greater than",
-                    "Name": "upper non critical",
-                    "Severity": 0,
-                    "Value": 110
-                },
-                {
-                    "Direction": "less than",
-                    "Name": "lower non critical",
-                    "Severity": 0,
-                    "Value": 5
-                },
-                {
-                    "Direction": "less than",
-                    "Name": "lower critical",
-                    "Severity": 1,
-                    "Value": 0
-                }
-            ],
-            "Type": "TMP75"
+          "Direction": "less than",
+          "Name": "lower critical",
+          "Severity": 1,
+          "Value": 0
         }
-    ],
-    "Name": "WFP Baseboard",
-    "Probe": "xyz.openbmc_project.FruDevice({'BOARD_PRODUCT_NAME' : '.*WFT'})"
+      ],
+      "Type": "TMP75"
+    },
+    {
+      "Address": "0x48",
+      "Bus": 6,
+      "Name": "Voltage Regulator 1 Temp",
+      "Thresholds": [
+        {
+          "Direction": "greater than",
+          "Name": "upper critical",
+          "Severity": 1,
+          "Value": 115
+        },
+        {
+          "Direction": "greater than",
+          "Name": "upper non critical",
+          "Severity": 0,
+          "Value": 110
+        },
+        {
+          "Direction": "less than",
+          "Name": "lower non critical",
+          "Severity": 0,
+          "Value": 5
+        },
+        {
+          "Direction": "less than",
+          "Name": "lower critical",
+          "Severity": 1,
+          "Value": 0
+        }
+      ],
+      "Type": "TMP75"
+    }
+  ],
+  "Name": "WFP Baseboard",
+  "Probe": "xyz.openbmc_project.FruDevice({'BOARD_PRODUCT_NAME' : '.*WFT'})"
 }
 ```
 
 [Full Configuration](https://github.com/openbmc/entity-manager/blob/master/configurations/WFT_Baseboard.json)
 
-#### Configuration Records - Chassis Example
+## Configuration Records - Chassis Example
 
 Although fan connectors are considered a part of a baseboard, the physical fans
 themselves are considered as a part of a chassis. In order for a fan to be
@@ -225,29 +220,29 @@ System Fan connector 1". When the probe command finds the correct product name
 in baseboard FRU, the fan and the connector are considered as being joined
 together.
 
-```
+```json
 {
-    "Exposes": [
+  "Exposes": [
+    {
+      "BindConnector": "1U System Fan connector 1",
+      "Name": "Fan 1",
+      "Thresholds": [
         {
-            "BindConnector": "1U System Fan connector 1",
-            "Name": "Fan 1",
-            "Thresholds": [
-                {
-                    "Direction": "less than",
-                    "Name": "lower critical",
-                    "Severity": 1,
-                    "Value": 1750
-                },
-                {
-                    "Direction": "less than",
-                    "Name": "lower non critical",
-                    "Severity": 0,
-                    "Value": 2000
-                }
-            ],
-            "Type": "AspeedFan"
+          "Direction": "less than",
+          "Name": "lower critical",
+          "Severity": 1,
+          "Value": 1750
+        },
+        {
+          "Direction": "less than",
+          "Name": "lower non critical",
+          "Severity": 0,
+          "Value": 2000
         }
-    ]
+      ],
+      "Type": "AspeedFan"
+    }
+  ]
 }
 ```
 
