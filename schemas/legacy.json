@@ -388,18 +388,12 @@
                     "$ref": "#/definitions/Types/Type"
                 }
             },
-            "required": [
-                "Name",
-                "Type"
-            ],
+            "required": ["Name", "Type"],
             "type": "object"
         },
         "Types": {
             "Address": {
-                "type": [
-                    "string",
-                    "array"
-                ]
+                "type": ["string", "array"]
             },
             "AllowedFailures": {
                 "type": "number"
@@ -417,16 +411,10 @@
                 "type": "string"
             },
             "BridgeGpio": {
-                "type": [
-                    "number",
-                    "array"
-                ]
+                "type": ["number", "array"]
             },
             "Bus": {
-                "type": [
-                    "string",
-                    "number"
-                ]
+                "type": ["string", "number"]
             },
             "C1": {
                 "type": "number"
@@ -461,11 +449,7 @@
                         "type": "array"
                     }
                 },
-                "required": [
-                    "Name",
-                    "Pwm",
-                    "Tachs"
-                ],
+                "required": ["Name", "Pwm", "Tachs"],
                 "type": "object"
             },
             "CpuID": {
@@ -499,9 +483,7 @@
                 "type": "array"
             },
             "GpioPolarity": {
-                "enum": [
-                    "Low"
-                ]
+                "enum": ["Low"]
             },
             "Index": {
                 "type": "number"
@@ -635,10 +617,7 @@
                 "type": "object"
             },
             "PresenceGpio": {
-                "type": [
-                    "number",
-                    "array"
-                ]
+                "type": ["number", "array"]
             },
             "Pwm": {
                 "type": "number"
@@ -669,10 +648,7 @@
             },
             "Tachs": {
                 "items": {
-                    "type": [
-                        "number",
-                        "string"
-                    ]
+                    "type": ["number", "string"]
                 },
                 "type": "array"
             },
@@ -700,12 +676,7 @@
                             "type": "number"
                         }
                     },
-                    "required": [
-                        "Direction",
-                        "Name",
-                        "Severity",
-                        "Value"
-                    ],
+                    "required": ["Direction", "Name", "Severity", "Value"],
                     "type": "object"
                 },
                 "type": "array"

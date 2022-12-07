@@ -38,9 +38,7 @@
                         "when an element does not define a type property."
                     ],
                     "not": {
-                        "required": [
-                            "Type"
-                        ]
+                        "required": ["Type"]
                     },
                     "title": "Missing Type"
                 },
@@ -50,9 +48,7 @@
                         "when an element does not define a name property."
                     ],
                     "not": {
-                        "required": [
-                            "Name"
-                        ]
+                        "required": ["Name"]
                     },
                     "title": "Missing Name"
                 }
@@ -88,9 +84,7 @@
                     }
                 },
                 "Logging": {
-                    "enum": [
-                        "Off"
-                    ]
+                    "enum": ["Off"]
                 },
                 "Name": {
                     "description": [
@@ -130,12 +124,7 @@
                         "configurations will be instantiated as children of: ",
                         "/xyz/openbmc_project/configuration/<Type>"
                     ],
-                    "enum": [
-                        "Board",
-                        "Chassis",
-                        "NVMe",
-                        "PowerSupply"
-                    ]
+                    "enum": ["Board", "Chassis", "NVMe", "PowerSupply"]
                 },
                 "xyz.openbmc_project.Inventory.Decorator.Asset": {
                     "$ref": "openbmc-dbus.json#/definitions/xyz/openbmc_project/Inventory/Decorator/Asset"
@@ -159,12 +148,7 @@
                     "$ref": "openbmc-dbus.json#/definitions/xyz/openbmc_project/Inventory/Item/System"
                 }
             },
-            "required": [
-                "Exposes",
-                "Name",
-                "Probe",
-                "Type"
-            ]
+            "required": ["Exposes", "Name", "Probe", "Type"]
         }
     },
     "title": "Entity Manager Configuration File",

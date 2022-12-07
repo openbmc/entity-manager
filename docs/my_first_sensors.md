@@ -2,12 +2,12 @@
 
 This document is meant to bring you from nothing to using Entity-Manager with
 Dbus-Sensors to populate a plug-in card's sensor values on dbus. Once the sensor
-values are on dbus, they can be read via IPMI or Redfish (doing so is beyond
-the scope of this guide).
+values are on dbus, they can be read via IPMI or Redfish (doing so is beyond the
+scope of this guide).
 
-For the sake of this example, let's pretend there is a PCIe card that exposes
-an 24c02 eeprom and a tmp441 sensor. The PCIe slots are behind an smbus mux on
-the motherboard and are in a device-tree such as this:
+For the sake of this example, let's pretend there is a PCIe card that exposes an
+24c02 eeprom and a tmp441 sensor. The PCIe slots are behind an smbus mux on the
+motherboard and are in a device-tree such as this:
 
 ```
 aliases {
@@ -53,8 +53,8 @@ aliases {
 ```
 
 The first daemon of interest that will run is the FruDevice portion of
-Entity-Manager. The exact layout of a FRU is beyond the scope of this guide,
-but assume the PCIe card's eeprom holds the following information:
+Entity-Manager. The exact layout of a FRU is beyond the scope of this guide, but
+assume the PCIe card's eeprom holds the following information:
 
 ```
 Product:
@@ -252,5 +252,5 @@ xyz.openbmc_project.Sensor.Value    interface -         -                       
 There you are! You now have the two sensors from the two card instances on dbus.
 
 This can be more complex, for instance if your card has a mux you can add it to
-the configuration, which will trigger FruDevice to scan those new buses for
-more devices.
+the configuration, which will trigger FruDevice to scan those new buses for more
+devices.

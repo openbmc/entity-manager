@@ -10,7 +10,7 @@ is not a description of the internal workings.
 
 ### Object Paths:
 
-#### Entities:  /xyz/openbmc_project/Inventory/Item/{Entity Type}/{Entity Name}
+#### Entities: /xyz/openbmc_project/Inventory/Item/{Entity Type}/{Entity Name}
 
 Entities are top level json objects that describe a piece of hardware. They are
 groups of configurations with few properties of their own, they are a container
@@ -22,7 +22,7 @@ Configurations are components that are exposed when an entity is added to the
 "global" system configuration. An example would be a TMP75 sensor that is
 exposed when the front panel is detected.
 
-__Example__:
+**Example**:
 
 ```
 /xyz/openbmc_project/Inventory/Item/Board/Intel_Front_Panel/Front_Panel_Temp
@@ -32,13 +32,14 @@ __Example__:
 
 #### xyz.openbmc_project.{InventoryType}
 
-See [upstream types](https://github.com/openbmc/phosphor-dbus-interfaces/tree/master/yaml/xyz/openbmc_project/Inventory/Item)
+See
+[upstream types](https://github.com/openbmc/phosphor-dbus-interfaces/tree/master/yaml/xyz/openbmc_project/Inventory/Item)
 
-* BMC
-* Board
-* Chassis
-* CPU
-* ...
+- BMC
+- Board
+- Chassis
+- CPU
+- ...
 
 These types closely align with Redfish types.
 
@@ -50,7 +51,6 @@ unsigned int: num_children: Number of configurations under this entity.
 
 std::string name: name of the inventory item
 
-
 #### xyz.openbmc_project.Configuration
 
 Configuration objects describe components owned by the Entity.
@@ -59,7 +59,7 @@ Configuration objects describe components owned by the Entity.
 
 Properties will contain all non-objects (simple types) exposed by the JSON.
 
- __Example__:
+**Example**:
 
 ```
 path: /xyz/openbmc_project/Inventory/Item/Board/Intel_Front_Panel/Front_Panel_Temp
@@ -80,7 +80,7 @@ method call. Array objects will be indexed zero based.
 
 All members of the dictonary.
 
-__Example__:
+**Example**:
 
 ```
 path: /xyz/openbmc_project/Inventory/Item/Board/Intel_Front_Panel/Front_Panel_Temp
@@ -97,11 +97,11 @@ Based on the above DBus object, there is an implicit requirement that device
 objects may not have more than one level deep of dictionary or list of
 dictionary. It is possible to extend in the future to allow nearly infinite
 levels deep of dictonary with extending the
-__xyz.openbmc_project.Device.{Object}__ to allow
-__xyz.openbmc_project.Device.{Object}.{SubObject}.{SubObject}__ but that
+**xyz.openbmc_project.Device.{Object}** to allow
+**xyz.openbmc_project.Device.{Object}.{SubObject}.{SubObject}** but that
 complexity will be avoided until proven needed.
 
-__Example__:
+**Example**:
 
 Legal:
 

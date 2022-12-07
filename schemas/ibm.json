@@ -17,9 +17,7 @@
                     "type": "string"
                 },
                 "Type": {
-                    "enum": [
-                        "IBMCFFPSConnector"
-                    ]
+                    "enum": ["IBMCFFPSConnector"]
                 },
                 "I2CBus": {
                     "description": [
@@ -67,7 +65,6 @@
                 "The recommended entry format is 'manufacturer,model' where",
                 "the manufacturer is a string describing the name of the",
                 "manufacturer and model specifies the model number."
-
             ],
             "type": "object",
             "properties": {
@@ -75,9 +72,7 @@
                     "type": "string"
                 },
                 "Type": {
-                    "enum": [
-                        "IBMCompatibleSystem"
-                    ]
+                    "enum": ["IBMCompatibleSystem"]
                 },
                 "Names": {
                     "type": "array",
@@ -92,11 +87,7 @@
                     }
                 }
             },
-            "required": [
-                "Name",
-                "Type",
-                "Names"
-            ]
+            "required": ["Name", "Type", "Names"]
         }
     }
 }

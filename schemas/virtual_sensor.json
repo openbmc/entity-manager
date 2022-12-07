@@ -13,27 +13,19 @@
             "type": "object",
             "properties": {
                 "MaxValidInput": {
-                    "description": [
-                        "Maximum valid value of an input sensor"
-                    ],
+                    "description": ["Maximum valid value of an input sensor"],
                     "type": "number"
                 },
                 "MaxValue": {
-                    "description": [
-                        "Maximum sensor value"
-                    ],
+                    "description": ["Maximum sensor value"],
                     "$ref": "legacy.json#/definitions/Types/MaxValue"
                 },
                 "MinValidInput": {
-                    "description": [
-                        "Miniumum valid value of an input sensor"
-                    ],
+                    "description": ["Miniumum valid value of an input sensor"],
                     "type": "number"
                 },
                 "MinValue": {
-                    "description": [
-                        "Minimum sensor value"
-                    ],
+                    "description": ["Minimum sensor value"],
                     "$ref": "legacy.json#/definitions/Types/MinValue"
                 },
                 "Name": {
@@ -60,9 +52,7 @@
                         "The type of calculation this sensor uses."
                     ],
                     "type": "string",
-                    "enum": [
-                        "ModifiedMedian"
-                    ]
+                    "enum": ["ModifiedMedian"]
                 },
                 "Units": {
                     "description": [
@@ -72,12 +62,7 @@
                     "$ref": "legacy.json#/definitions/Types/Units"
                 }
             },
-            "required": [
-                "Name",
-                "Sensors",
-                "Type",
-                "Units"
-            ]
+            "required": ["Name", "Sensors", "Type", "Units"]
         }
     }
 }

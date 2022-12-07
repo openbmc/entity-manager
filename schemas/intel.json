@@ -19,18 +19,10 @@
                     "type": "array"
                 },
                 "Type": {
-                    "enum": [
-                        "IntelFanConnector"
-                    ]
+                    "enum": ["IntelFanConnector"]
                 }
             },
-            "required": [
-                "Name",
-                "Type",
-                "Status",
-                "Pwm",
-                "Tachs"
-            ],
+            "required": ["Name", "Type", "Status", "Pwm", "Tachs"],
             "type": "object"
         }
     }
