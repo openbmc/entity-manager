@@ -33,6 +33,23 @@
       "message": "Hi Zev Weiss, Zhikui Ren\nFriendly ping.",
       "revId": "2e7c83034b7ead16b54b7b9a3d30ba10a25df9ce",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1a49981e_c7a622d9",
+        "filename": "src/fru_utils.cpp",
+        "patchSetId": 7
+      },
+      "lineNbr": 319,
+      "author": {
+        "id": 1000559
+      },
+      "writtenOn": "2022-12-09T23:07:13Z",
+      "side": 1,
+      "message": "To test all access (like line344) within the loop is not going to be out of bound of device:\nareaOffset + uuidRecordData + uuidDataLen \u003c device.size()",
+      "revId": "2e7c83034b7ead16b54b7b9a3d30ba10a25df9ce",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }
