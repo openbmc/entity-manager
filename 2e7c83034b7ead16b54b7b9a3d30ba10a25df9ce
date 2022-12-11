@@ -37,6 +37,120 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "7c3a682e_faf3ed20",
+        "filename": "src/fru_utils.cpp",
+        "patchSetId": 7
+      },
+      "lineNbr": 68,
+      "author": {
+        "id": 1000929
+      },
+      "writtenOn": "2022-12-11T14:00:39Z",
+      "side": 1,
+      "message": "nit MultiRecordType:uint8_t",
+      "revId": "2e7c83034b7ead16b54b7b9a3d30ba10a25df9ce",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8010f67b_68d78391",
+        "filename": "src/fru_utils.cpp",
+        "patchSetId": 7
+      },
+      "lineNbr": 83,
+      "author": {
+        "id": 1000929
+      },
+      "writtenOn": "2022-12-11T14:00:39Z",
+      "side": 1,
+      "message": "nit: MultiRecordType:uint8_t",
+      "revId": "2e7c83034b7ead16b54b7b9a3d30ba10a25df9ce",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "07f79ded_f781436c",
+        "filename": "src/fru_utils.cpp",
+        "patchSetId": 7
+      },
+      "lineNbr": 289,
+      "author": {
+        "id": 1000929
+      },
+      "writtenOn": "2022-12-11T14:00:39Z",
+      "side": 1,
+      "message": "we can use const std::vector\u003cuint8_t\u003e\u0026 device",
+      "revId": "2e7c83034b7ead16b54b7b9a3d30ba10a25df9ce",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d6fa1778_d0072cd8",
+        "filename": "src/fru_utils.cpp",
+        "patchSetId": 7
+      },
+      "lineNbr": 298,
+      "author": {
+        "id": 1000929
+      },
+      "writtenOn": "2022-12-11T14:00:39Z",
+      "side": 1,
+      "message": "to avoid out-of-boundary scenario, we can use device.at(getHeaderAreaFieldOffset)",
+      "revId": "2e7c83034b7ead16b54b7b9a3d30ba10a25df9ce",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4bedadb2_9f93fbe6",
+        "filename": "src/fru_utils.cpp",
+        "patchSetId": 7
+      },
+      "lineNbr": 303,
+      "author": {
+        "id": 1000929
+      },
+      "writtenOn": "2022-12-11T14:00:39Z",
+      "side": 1,
+      "message": "nit: std::array\u003cuint8_t,uuidDatalen\u003e",
+      "range": {
+        "startLine": 303,
+        "startChar": 15,
+        "endLine": 303,
+        "endChar": 21
+      },
+      "revId": "2e7c83034b7ead16b54b7b9a3d30ba10a25df9ce",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "62bd7c3a_14605976",
+        "filename": "src/fru_utils.cpp",
+        "patchSetId": 7
+      },
+      "lineNbr": 304,
+      "author": {
+        "id": 1000929
+      },
+      "writtenOn": "2022-12-11T14:00:39Z",
+      "side": 1,
+      "message": "nit: we can move this above line no 297",
+      "range": {
+        "startLine": 303,
+        "startChar": 4,
+        "endLine": 304,
+        "endChar": 78
+      },
+      "revId": "2e7c83034b7ead16b54b7b9a3d30ba10a25df9ce",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "1a49981e_c7a622d9",
         "filename": "src/fru_utils.cpp",
         "patchSetId": 7
@@ -48,6 +162,80 @@
       "writtenOn": "2022-12-09T23:07:13Z",
       "side": 1,
       "message": "To test all access (like line344) within the loop is not going to be out of bound of device:\nareaOffset + uuidRecordData + uuidDataLen \u003c device.size()",
+      "revId": "2e7c83034b7ead16b54b7b9a3d30ba10a25df9ce",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4ba3c3a6_ae3784f6",
+        "filename": "src/fru_utils.cpp",
+        "patchSetId": 7
+      },
+      "lineNbr": 325,
+      "author": {
+        "id": 1000929
+      },
+      "writtenOn": "2022-12-11T14:00:39Z",
+      "side": 1,
+      "message": "[] operator doent do boundary check , consider using .at()\n\nother places too",
+      "revId": "2e7c83034b7ead16b54b7b9a3d30ba10a25df9ce",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8be1feda_467ec72d",
+        "filename": "src/fru_utils.cpp",
+        "patchSetId": 7
+      },
+      "lineNbr": 345,
+      "author": {
+        "id": 1000929
+      },
+      "writtenOn": "2022-12-11T14:00:39Z",
+      "side": 1,
+      "message": "accessing 2 arrays , we need some size check here to perevent ou-of-boundary issue",
+      "revId": "2e7c83034b7ead16b54b7b9a3d30ba10a25df9ce",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0003e690_8b5eecb7",
+        "filename": "src/fru_utils.cpp",
+        "patchSetId": 7
+      },
+      "lineNbr": 352,
+      "author": {
+        "id": 1000929
+      },
+      "writtenOn": "2022-12-11T14:00:39Z",
+      "side": 1,
+      "message": "can we re-write this as  tmp \u003c\u003c std::setw(2) \u003c\u003cdevice[areaOffset + uuidRecordData +\n                                            uuidCharOrder[i]] ;\n                                            \nin this case we can avoid a loop and an extra variable",
+      "range": {
+        "startLine": 352,
+        "startChar": 53,
+        "endLine": 352,
+        "endChar": 64
+      },
+      "revId": "2e7c83034b7ead16b54b7b9a3d30ba10a25df9ce",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c4fd00f6_2450b1b4",
+        "filename": "src/fru_utils.cpp",
+        "patchSetId": 7
+      },
+      "lineNbr": 366,
+      "author": {
+        "id": 1000929
+      },
+      "writtenOn": "2022-12-11T14:00:39Z",
+      "side": 1,
+      "message": "nit: directly use device[areaOffset + 2] instead of using extra variable",
       "revId": "2e7c83034b7ead16b54b7b9a3d30ba10a25df9ce",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
