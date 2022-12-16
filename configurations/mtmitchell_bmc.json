@@ -1,0 +1,27 @@
+{
+    "Exposes": [
+        {
+            "Address": "0x35",
+            "Bus": 14,
+            "Name": "AST2600CPUTemp",
+            "Thresholds": [
+                {
+                    "Direction": "greater than",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 65
+                }
+            ],
+            "Type": "TMP175"
+        }
+    ],
+    "Name": "Mt.Mitchell_BMC",
+    "Probe": "xyz.openbmc_project.FruDevice({'BOARD_PRODUCT_NAME': '.*Mitchell BMC non DC-SCM.*'})",
+    "Type": "Board",
+    "xyz.openbmc_project.Inventory.Decorator.Asset": {
+        "Manufacturer": "$BOARD_MANUFACTURER",
+        "Model": "$BOARD_PRODUCT_NAME",
+        "PartNumber": "$BOARD_PART_NUMBER",
+        "SerialNumber": "$BOARD_SERIAL_NUMBER"
+    }
+}
