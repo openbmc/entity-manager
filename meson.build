@@ -121,6 +121,8 @@ configs = [
     'kudo_bmc.json',
     'kudo_motherboard.json',
     'mt_jade.json',
+    'mtmitchell_bmc.json',
+    'mtmitchell_mb.json',
     'nisqually.json',
     'nvme_p4000.json',
     'pcie_ssd_retimer.json',
