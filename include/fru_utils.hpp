@@ -242,3 +242,26 @@ void rescanBusses(
     size_t& unknownBusObjectCount, const bool& powerIsOn,
     sdbusplus::asio::object_server& objServer,
     std::shared_ptr<sdbusplus::asio::connection>& systemBus);
+
+/// \brief Find location of product area info, offset and update fru properties
+/// like manufacturer name, product name, product version, & product
+/// serial number and Asset tag.
+/// \param updatePropertyReq - string to store update property request.
+/// \param bus - I2C bus number of fru device.
+/// \param address - I2C bus address of bus for fru device.
+/// \param propertyName - string to store property name.
+/// \param dbusInterfaceMap - Map to store fru device and dbus objects.
+/// \param unknownBusObjectCount - count to store unknown bus objects
+/// \param powerIsOn - bool variable to check whether power On or Off.
+/// \param objServer - sdbusplus asio object server for dbus objects
+/// \param systemBus - sdbusplus asio connection for dbus service
+/// \return true on success false on failure.
+bool updateFRUProperty(
+    const std::string& updatePropertyReq, uint32_t bus, uint32_t address,
+    const std::string& propertyName,
+    boost::container::flat_map<
+        std::pair<size_t, size_t>,
+        std::shared_ptr<sdbusplus::asio::dbus_interface>>& dbusInterfaceMap,
+    size_t& unknownBusObjectCount, const bool& powerIsOn,
+    sdbusplus::asio::object_server& objServer,
+    std::shared_ptr<sdbusplus::asio::connection>& systemBus);
