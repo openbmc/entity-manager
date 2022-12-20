@@ -17,6 +17,8 @@
 
 #include "fru_utils.hpp"
 
+#include "fru_device.hpp"
+
 #include <array>
 #include <cstddef>
 #include <cstdint>
@@ -940,4 +942,19 @@ bool copyRestFRUArea(std::vector<uint8_t>& fruData,
     fruAreaParams.restFieldsEnd = endOfFieldsLoc;
 
     return true;
+}
+
+// Scan the I2c and Ipmb busses and get the fru device details.
+// Return void
+void rescanBusses(
+    BusMap& busmap,
+    boost::container::flat_map<
+        std::pair<size_t, size_t>,
+        std::shared_ptr<sdbusplus::asio::dbus_interface>>& dbusInterfaceMap,
+    size_t& unknownBusObjectCount, const bool& powerIsOn,
+    sdbusplus::asio::object_server& objServer,
+    std::shared_ptr<sdbusplus::asio::connection>& systemBus)
+{
+    rescanI2cBusses(busmap, dbusInterfaceMap, unknownBusObjectCount, powerIsOn,
+                    objServer, systemBus);
 }

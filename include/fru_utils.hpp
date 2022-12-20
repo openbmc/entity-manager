@@ -18,7 +18,10 @@
 #pragma once
 #include "fru_reader.hpp"
 
+#include <boost/asio/io_service.hpp>
 #include <boost/container/flat_map.hpp>
+#include <sdbusplus/asio/connection.hpp>
+#include <sdbusplus/asio/object_server.hpp>
 
 #include <cstdint>
 #include <functional>
@@ -194,3 +197,20 @@ bool copyRestFRUArea(std::vector<uint8_t>& fruData,
                      const std::string& propertyName,
                      struct FruArea& fruAreaParams,
                      std::vector<uint8_t>& restFRUAreaFieldsData);
+
+/// \brief Scan the I2c and Ipmb busses and get the fru device details.
+/// \param busmap - Map of bus and fru devices.
+/// \param dbusInterfaceMap - Map to store fru device and dbus objects.
+/// \param unknownBusObjectCount - count to store unknown bus objects
+/// \param powerIsOn - bool variable to check whether power On or Off.
+/// \param objServer - sdbusplus asio object server for dbus objects
+/// \param systemBus - sdbusplus asio connection for dbus service
+/// \return void.
+void rescanBusses(
+    BusMap& busmap,
+    boost::container::flat_map<
+        std::pair<size_t, size_t>,
+        std::shared_ptr<sdbusplus::asio::dbus_interface>>& dbusInterfaceMap,
+    size_t& unknownBusObjectCount, const bool& powerIsOn,
+    sdbusplus::asio::object_server& objServer,
+    std::shared_ptr<sdbusplus::asio::connection>& systemBus);
