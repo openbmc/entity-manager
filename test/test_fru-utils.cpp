@@ -1,4 +1,9 @@
 #include "fru_utils.hpp"
+#include "utils.hpp"
+
+#include <boost/asio/io_service.hpp>
+#include <sdbusplus/asio/connection.hpp>
+#include <sdbusplus/asio/object_server.hpp>
 
 #include <algorithm>
 #include <array>
@@ -13,6 +18,7 @@ extern "C"
 }
 
 static constexpr size_t blockSize = I2C_SMBUS_BLOCK_MAX;
+boost::asio::io_service io;
 
 TEST(ValidateHeaderTest, InvalidFruVersionReturnsFalse)
 {

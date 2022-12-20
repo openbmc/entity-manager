@@ -28,6 +28,7 @@ if get_option('fru-device')
     endif
     executable(
         'fru-device',
+        'fru_device_main.cpp',
         'expression.cpp',
         'fru_device.cpp',
         'utils.cpp',
