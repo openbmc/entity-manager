@@ -230,7 +230,9 @@ if not build_tests.disabled()
         executable(
             'test_fru_utils',
             'test/test_fru-utils.cpp',
+            'src/expression.cpp',
             'src/fru_utils.cpp',
+            'src/fru_device.cpp',
             'src/fru_reader.cpp',
             cpp_args: test_boost_args,
             dependencies: [
