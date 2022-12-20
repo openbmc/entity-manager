@@ -13,6 +13,7 @@ extern "C"
 }
 
 static constexpr size_t blockSize = I2C_SMBUS_BLOCK_MAX;
+boost::asio::io_service io;
 
 TEST(ValidateHeaderTest, InvalidFruVersionReturnsFalse)
 {
