@@ -31,7 +31,7 @@
                 ],
                 "Index": 29,
                 "Name": "VBAT_RTC",
-                "PollRate": 86400,
+                "PollRate": 10,
                 "ScaleFactor": 0.3333,
                 "Thresholds": [
                     {
@@ -1052,835 +1052,199 @@
                 "Type": "EEPROM"
             },
             {
+                "Name": "nvme_bp_max",
+                "Sensors": [
+                    "nvme0",
+                    "nvme1",
+                    "nvme2",
+                    "nvme3",
+                    "nvme4",
+                    "nvme5",
+                    "nvme6",
+                    "nvme7",
+                    "nvme8",
+                    "nvme9",
+                    "nvme10",
+                    "nvme11",
+                    "nvme12",
+                    "nvme13",
+                    "nvme14",
+                    "nvme15",
+                    "nvme16",
+                    "nvme17",
+                    "nvme18",
+                    "nvme19",
+                    "nvme20",
+                    "nvme21",
+                    "nvme22",
+                    "nvme23"
+                ],
+                "Type": "Maximum",
+                "Units": "DegreesC"
+            },
+            {
+                "Name": "nvme_m2_max",
+                "Sensors": [
+                    "nvme24",
+                    "nvme25"
+                ],
+                "Type": "Maximum",
+                "Units": "DegreesC"
+            },
+            {
                 "Address": "0x6a",
                 "Bus": "50",
                 "Name": "nvme0",
-                "Thresholds": [
-                    {
-                        "Direction": "greater than",
-                        "Name": "upper critical",
-                        "Severity": 1,
-                        "Value": 80
-                    },
-                    {
-                        "Direction": "greater than",
-                        "Name": "upper non critical",
-                        "Severity": 0,
-                        "Value": 70
-                    },
-                    {
-                        "Direction": "less than",
-                        "Name": "lower non critical",
-                        "Severity": 0,
-                        "Value": 5
-                    },
-                    {
-                        "Direction": "less than",
-                        "Name": "lower critical",
-                        "Severity": 1,
-                        "Value": 0
-                    }
-                ],
                 "Type": "NVME1000"
             },
             {
                 "Address": "0x6a",
                 "Bus": "51",
                 "Name": "nvme1",
-                "Thresholds": [
-                    {
-                        "Direction": "greater than",
-                        "Name": "upper critical",
-                        "Severity": 1,
-                        "Value": 80
-                    },
-                    {
-                        "Direction": "greater than",
-                        "Name": "upper non critical",
-                        "Severity": 0,
-                        "Value": 70
-                    },
-                    {
-                        "Direction": "less than",
-                        "Name": "lower non critical",
-                        "Severity": 0,
-                        "Value": 5
-                    },
-                    {
-                        "Direction": "less than",
-                        "Name": "lower critical",
-                        "Severity": 1,
-                        "Value": 0
-                    }
-                ],
                 "Type": "NVME1000"
             },
             {
                 "Address": "0x6a",
                 "Bus": "52",
                 "Name": "nvme2",
-                "Thresholds": [
-                    {
-                        "Direction": "greater than",
-                        "Name": "upper critical",
-                        "Severity": 1,
-                        "Value": 80
-                    },
-                    {
-                        "Direction": "greater than",
-                        "Name": "upper non critical",
-                        "Severity": 0,
-                        "Value": 70
-                    },
-                    {
-                        "Direction": "less than",
-                        "Name": "lower non critical",
-                        "Severity": 0,
-                        "Value": 5
-                    },
-                    {
-                        "Direction": "less than",
-                        "Name": "lower critical",
-                        "Severity": 1,
-                        "Value": 0
-                    }
-                ],
                 "Type": "NVME1000"
             },
             {
                 "Address": "0x6a",
                 "Bus": "53",
                 "Name": "nvme3",
-                "Thresholds": [
-                    {
-                        "Direction": "greater than",
-                        "Name": "upper critical",
-                        "Severity": 1,
-                        "Value": 80
-                    },
-                    {
-                        "Direction": "greater than",
-                        "Name": "upper non critical",
-                        "Severity": 0,
-                        "Value": 70
-                    },
-                    {
-                        "Direction": "less than",
-                        "Name": "lower non critical",
-                        "Severity": 0,
-                        "Value": 5
-                    },
-                    {
-                        "Direction": "less than",
-                        "Name": "lower critical",
-                        "Severity": 1,
-                        "Value": 0
-                    }
-                ],
                 "Type": "NVME1000"
             },
             {
                 "Address": "0x6a",
                 "Bus": "54",
                 "Name": "nvme4",
-                "Thresholds": [
-                    {
-                        "Direction": "greater than",
-                        "Name": "upper critical",
-                        "Severity": 1,
-                        "Value": 80
-                    },
-                    {
-                        "Direction": "greater than",
-                        "Name": "upper non critical",
-                        "Severity": 0,
-                        "Value": 70
-                    },
-                    {
-                        "Direction": "less than",
-                        "Name": "lower non critical",
-                        "Severity": 0,
-                        "Value": 5
-                    },
-                    {
-                        "Direction": "less than",
-                        "Name": "lower critical",
-                        "Severity": 1,
-                        "Value": 0
-                    }
-                ],
                 "Type": "NVME1000"
             },
             {
                 "Address": "0x6a",
                 "Bus": "55",
                 "Name": "nvme5",
-                "Thresholds": [
-                    {
-                        "Direction": "greater than",
-                        "Name": "upper critical",
-                        "Severity": 1,
-                        "Value": 80
-                    },
-                    {
-                        "Direction": "greater than",
-                        "Name": "upper non critical",
-                        "Severity": 0,
-                        "Value": 70
-                    },
-                    {
-                        "Direction": "less than",
-                        "Name": "lower non critical",
-                        "Severity": 0,
-                        "Value": 5
-                    },
-                    {
-                        "Direction": "less than",
-                        "Name": "lower critical",
-                        "Severity": 1,
-                        "Value": 0
-                    }
-                ],
                 "Type": "NVME1000"
             },
             {
                 "Address": "0x6a",
                 "Bus": "56",
                 "Name": "nvme6",
-                "Thresholds": [
-                    {
-                        "Direction": "greater than",
-                        "Name": "upper critical",
-                        "Severity": 1,
-                        "Value": 80
-                    },
-                    {
-                        "Direction": "greater than",
-                        "Name": "upper non critical",
-                        "Severity": 0,
-                        "Value": 70
-                    },
-                    {
-                        "Direction": "less than",
-                        "Name": "lower non critical",
-                        "Severity": 0,
-                        "Value": 5
-                    },
-                    {
-                        "Direction": "less than",
-                        "Name": "lower critical",
-                        "Severity": 1,
-                        "Value": 0
-                    }
-                ],
                 "Type": "NVME1000"
             },
             {
                 "Address": "0x6a",
                 "Bus": "57",
                 "Name": "nvme7",
-                "Thresholds": [
-                    {
-                        "Direction": "greater than",
-                        "Name": "upper critical",
-                        "Severity": 1,
-                        "Value": 80
-                    },
-                    {
-                        "Direction": "greater than",
-                        "Name": "upper non critical",
-                        "Severity": 0,
-                        "Value": 70
-                    },
-                    {
-                        "Direction": "less than",
-                        "Name": "lower non critical",
-                        "Severity": 0,
-                        "Value": 5
-                    },
-                    {
-                        "Direction": "less than",
-                        "Name": "lower critical",
-                        "Severity": 1,
-                        "Value": 0
-                    }
-                ],
                 "Type": "NVME1000"
             },
             {
                 "Address": "0x6a",
                 "Bus": "60",
                 "Name": "nvme8",
-                "Thresholds": [
-                    {
-                        "Direction": "greater than",
-                        "Name": "upper critical",
-                        "Severity": 1,
-                        "Value": 80
-                    },
-                    {
-                        "Direction": "greater than",
-                        "Name": "upper non critical",
-                        "Severity": 0,
-                        "Value": 70
-                    },
-                    {
-                        "Direction": "less than",
-                        "Name": "lower non critical",
-                        "Severity": 0,
-                        "Value": 5
-                    },
-                    {
-                        "Direction": "less than",
-                        "Name": "lower critical",
-                        "Severity": 1,
-                        "Value": 0
-                    }
-                ],
                 "Type": "NVME1000"
             },
             {
                 "Address": "0x6a",
                 "Bus": "61",
                 "Name": "nvme9",
-                "Thresholds": [
-                    {
-                        "Direction": "greater than",
-                        "Name": "upper critical",
-                        "Severity": 1,
-                        "Value": 80
-                    },
-                    {
-                        "Direction": "greater than",
-                        "Name": "upper non critical",
-                        "Severity": 0,
-                        "Value": 70
-                    },
-                    {
-                        "Direction": "less than",
-                        "Name": "lower non critical",
-                        "Severity": 0,
-                        "Value": 5
-                    },
-                    {
-                        "Direction": "less than",
-                        "Name": "lower critical",
-                        "Severity": 1,
-                        "Value": 0
-                    }
-                ],
                 "Type": "NVME1000"
             },
             {
                 "Address": "0x6a",
                 "Bus": "62",
                 "Name": "nvme10",
-                "Thresholds": [
-                    {
-                        "Direction": "greater than",
-                        "Name": "upper critical",
-                        "Severity": 1,
-                        "Value": 80
-                    },
-                    {
-                        "Direction": "greater than",
-                        "Name": "upper non critical",
-                        "Severity": 0,
-                        "Value": 70
-                    },
-                    {
-                        "Direction": "less than",
-                        "Name": "lower non critical",
-                        "Severity": 0,
-                        "Value": 5
-                    },
-                    {
-                        "Direction": "less than",
-                        "Name": "lower critical",
-                        "Severity": 1,
-                        "Value": 0
-                    }
-                ],
                 "Type": "NVME1000"
             },
             {
                 "Address": "0x6a",
                 "Bus": "63",
                 "Name": "nvme11",
-                "Thresholds": [
-                    {
-                        "Direction": "greater than",
-                        "Name": "upper critical",
-                        "Severity": 1,
-                        "Value": 80
-                    },
-                    {
-                        "Direction": "greater than",
-                        "Name": "upper non critical",
-                        "Severity": 0,
-                        "Value": 70
-                    },
-                    {
-                        "Direction": "less than",
-                        "Name": "lower non critical",
-                        "Severity": 0,
-                        "Value": 5
-                    },
-                    {
-                        "Direction": "less than",
-                        "Name": "lower critical",
-                        "Severity": 1,
-                        "Value": 0
-                    }
-                ],
                 "Type": "NVME1000"
             },
             {
                 "Address": "0x6a",
                 "Bus": "64",
                 "Name": "nvme12",
-                "Thresholds": [
-                    {
-                        "Direction": "greater than",
-                        "Name": "upper critical",
-                        "Severity": 1,
-                        "Value": 80
-                    },
-                    {
-                        "Direction": "greater than",
-                        "Name": "upper non critical",
-                        "Severity": 0,
-                        "Value": 70
-                    },
-                    {
-                        "Direction": "less than",
-                        "Name": "lower non critical",
-                        "Severity": 0,
-                        "Value": 5
-                    },
-                    {
-                        "Direction": "less than",
-                        "Name": "lower critical",
-                        "Severity": 1,
-                        "Value": 0
-                    }
-                ],
                 "Type": "NVME1000"
             },
             {
                 "Address": "0x6a",
                 "Bus": "65",
                 "Name": "nvme13",
-                "Thresholds": [
-                    {
-                        "Direction": "greater than",
-                        "Name": "upper critical",
-                        "Severity": 1,
-                        "Value": 80
-                    },
-                    {
-                        "Direction": "greater than",
-                        "Name": "upper non critical",
-                        "Severity": 0,
-                        "Value": 70
-                    },
-                    {
-                        "Direction": "less than",
-                        "Name": "lower non critical",
-                        "Severity": 0,
-                        "Value": 5
-                    },
-                    {
-                        "Direction": "less than",
-                        "Name": "lower critical",
-                        "Severity": 1,
-                        "Value": 0
-                    }
-                ],
                 "Type": "NVME1000"
             },
             {
                 "Address": "0x6a",
                 "Bus": "66",
                 "Name": "nvme14",
-                "Thresholds": [
-                    {
-                        "Direction": "greater than",
-                        "Name": "upper critical",
-                        "Severity": 1,
-                        "Value": 80
-                    },
-                    {
-                        "Direction": "greater than",
-                        "Name": "upper non critical",
-                        "Severity": 0,
-                        "Value": 70
-                    },
-                    {
-                        "Direction": "less than",
-                        "Name": "lower non critical",
-                        "Severity": 0,
-                        "Value": 5
-                    },
-                    {
-                        "Direction": "less than",
-                        "Name": "lower critical",
-                        "Severity": 1,
-                        "Value": 0
-                    }
-                ],
                 "Type": "NVME1000"
             },
             {
                 "Address": "0x6a",
                 "Bus": "67",
                 "Name": "nvme15",
-                "Thresholds": [
-                    {
-                        "Direction": "greater than",
-                        "Name": "upper critical",
-                        "Severity": 1,
-                        "Value": 80
-                    },
-                    {
-                        "Direction": "greater than",
-                        "Name": "upper non critical",
-                        "Severity": 0,
-                        "Value": 70
-                    },
-                    {
-                        "Direction": "less than",
-                        "Name": "lower non critical",
-                        "Severity": 0,
-                        "Value": 5
-                    },
-                    {
-                        "Direction": "less than",
-                        "Name": "lower critical",
-                        "Severity": 1,
-                        "Value": 0
-                    }
-                ],
                 "Type": "NVME1000"
             },
             {
                 "Address": "0x6a",
                 "Bus": "70",
                 "Name": "nvme16",
-                "Thresholds": [
-                    {
-                        "Direction": "greater than",
-                        "Name": "upper critical",
-                        "Severity": 1,
-                        "Value": 80
-                    },
-                    {
-                        "Direction": "greater than",
-                        "Name": "upper non critical",
-                        "Severity": 0,
-                        "Value": 70
-                    },
-                    {
-                        "Direction": "less than",
-                        "Name": "lower non critical",
-                        "Severity": 0,
-                        "Value": 5
-                    },
-                    {
-                        "Direction": "less than",
-                        "Name": "lower critical",
-                        "Severity": 1,
-                        "Value": 0
-                    }
-                ],
                 "Type": "NVME1000"
             },
             {
                 "Address": "0x6a",
                 "Bus": "71",
                 "Name": "nvme17",
-                "Thresholds": [
-                    {
-                        "Direction": "greater than",
-                        "Name": "upper critical",
-                        "Severity": 1,
-                        "Value": 80
-                    },
-                    {
-                        "Direction": "greater than",
-                        "Name": "upper non critical",
-                        "Severity": 0,
-                        "Value": 70
-                    },
-                    {
-                        "Direction": "less than",
-                        "Name": "lower non critical",
-                        "Severity": 0,
-                        "Value": 5
-                    },
-                    {
-                        "Direction": "less than",
-                        "Name": "lower critical",
-                        "Severity": 1,
-                        "Value": 0
-                    }
-                ],
                 "Type": "NVME1000"
             },
             {
                 "Address": "0x6a",
                 "Bus": "72",
                 "Name": "nvme18",
-                "Thresholds": [
-                    {
-                        "Direction": "greater than",
-                        "Name": "upper critical",
-                        "Severity": 1,
-                        "Value": 80
-                    },
-                    {
-                        "Direction": "greater than",
-                        "Name": "upper non critical",
-                        "Severity": 0,
-                        "Value": 70
-                    },
-                    {
-                        "Direction": "less than",
-                        "Name": "lower non critical",
-                        "Severity": 0,
-                        "Value": 5
-                    },
-                    {
-                        "Direction": "less than",
-                        "Name": "lower critical",
-                        "Severity": 1,
-                        "Value": 0
-                    }
-                ],
                 "Type": "NVME1000"
             },
             {
                 "Address": "0x6a",
                 "Bus": "73",
                 "Name": "nvme19",
-                "Thresholds": [
-                    {
-                        "Direction": "greater than",
-                        "Name": "upper critical",
-                        "Severity": 1,
-                        "Value": 80
-                    },
-                    {
-                        "Direction": "greater than",
-                        "Name": "upper non critical",
-                        "Severity": 0,
-                        "Value": 70
-                    },
-                    {
-                        "Direction": "less than",
-                        "Name": "lower non critical",
-                        "Severity": 0,
-                        "Value": 5
-                    },
-                    {
-                        "Direction": "less than",
-                        "Name": "lower critical",
-                        "Severity": 1,
-                        "Value": 0
-                    }
-                ],
                 "Type": "NVME1000"
             },
             {
                 "Address": "0x6a",
                 "Bus": "74",
                 "Name": "nvme20",
-                "Thresholds": [
-                    {
-                        "Direction": "greater than",
-                        "Name": "upper critical",
-                        "Severity": 1,
-                        "Value": 80
-                    },
-                    {
-                        "Direction": "greater than",
-                        "Name": "upper non critical",
-                        "Severity": 0,
-                        "Value": 70
-                    },
-                    {
-                        "Direction": "less than",
-                        "Name": "lower non critical",
-                        "Severity": 0,
-                        "Value": 5
-                    },
-                    {
-                        "Direction": "less than",
-                        "Name": "lower critical",
-                        "Severity": 1,
-                        "Value": 0
-                    }
-                ],
                 "Type": "NVME1000"
             },
             {
                 "Address": "0x6a",
                 "Bus": "75",
                 "Name": "nvme21",
-                "Thresholds": [
-                    {
-                        "Direction": "greater than",
-                        "Name": "upper critical",
-                        "Severity": 1,
-                        "Value": 80
-                    },
-                    {
-                        "Direction": "greater than",
-                        "Name": "upper non critical",
-                        "Severity": 0,
-                        "Value": 70
-                    },
-                    {
-                        "Direction": "less than",
-                        "Name": "lower non critical",
-                        "Severity": 0,
-                        "Value": 5
-                    },
-                    {
-                        "Direction": "less than",
-                        "Name": "lower critical",
-                        "Severity": 1,
-                        "Value": 0
-                    }
-                ],
                 "Type": "NVME1000"
             },
             {
                 "Address": "0x6a",
                 "Bus": "76",
                 "Name": "nvme22",
-                "Thresholds": [
-                    {
-                        "Direction": "greater than",
-                        "Name": "upper critical",
-                        "Severity": 1,
-                        "Value": 80
-                    },
-                    {
-                        "Direction": "greater than",
-                        "Name": "upper non critical",
-                        "Severity": 0,
-                        "Value": 70
-                    },
-                    {
-                        "Direction": "less than",
-                        "Name": "lower non critical",
-                        "Severity": 0,
-                        "Value": 5
-                    },
-                    {
-                        "Direction": "less than",
-                        "Name": "lower critical",
-                        "Severity": 1,
-                        "Value": 0
-                    }
-                ],
                 "Type": "NVME1000"
             },
             {
                 "Address": "0x6a",
                 "Bus": "77",
                 "Name": "nvme23",
-                "Thresholds": [
-                    {
-                        "Direction": "greater than",
-                        "Name": "upper critical",
-                        "Severity": 1,
-                        "Value": 80
-                    },
-                    {
-                        "Direction": "greater than",
-                        "Name": "upper non critical",
-                        "Severity": 0,
-                        "Value": 70
-                    },
-                    {
-                        "Direction": "less than",
-                        "Name": "lower non critical",
-                        "Severity": 0,
-                        "Value": 5
-                    },
-                    {
-                        "Direction": "less than",
-                        "Name": "lower critical",
-                        "Severity": 1,
-                        "Value": 0
-                    }
-                ],
                 "Type": "NVME1000"
             },
             {
                 "Address": "0x6a",
                 "Bus": "80",
                 "Name": "nvme24",
-                "Thresholds": [
-                    {
-                        "Direction": "greater than",
-                        "Name": "upper critical",
-                        "Severity": 1,
-                        "Value": 80
-                    },
-                    {
-                        "Direction": "greater than",
-                        "Name": "upper non critical",
-                        "Severity": 0,
-                        "Value": 70
-                    },
-                    {
-                        "Direction": "less than",
-                        "Name": "lower non critical",
-                        "Severity": 0,
-                        "Value": 5
-                    },
-                    {
-                        "Direction": "less than",
-                        "Name": "lower critical",
-                        "Severity": 1,
-                        "Value": 0
-                    }
-                ],
                 "Type": "NVME1000"
             },
             {
                 "Address": "0x6a",
                 "Bus": "81",
                 "Name": "nvme25",
-                "Thresholds": [
-                    {
-                        "Direction": "greater than",
-                        "Name": "upper critical",
-                        "Severity": 1,
-                        "Value": 80
-                    },
-                    {
-                        "Direction": "greater than",
-                        "Name": "upper non critical",
-                        "Severity": 0,
-                        "Value": 70
-                    },
-                    {
-                        "Direction": "less than",
-                        "Name": "lower non critical",
-                        "Severity": 0,
-                        "Value": 5
-                    },
-                    {
-                        "Direction": "less than",
-                        "Name": "lower critical",
-                        "Severity": 1,
-                        "Value": 0
-                    }
-                ],
                 "Type": "NVME1000"
             },
             {
@@ -1996,16 +1360,17 @@
                         "Name": "upper critical",
                         "Severity": 1,
                         "Value": 64
-                    },
-                    {
-                        "Direction": "greater than",
-                        "Label": "fan1",
-                        "Name": "upper critical",
-                        "Severity": 1,
-                        "Value": 20300
                     }
                 ],
-                "Type": "pmbus"
+                "Type": "pmbus",
+                "fan1_Name": "PSU0_fan1",
+                "iin_Name": "PSU0_IINPUT",
+                "iout1_Name": "PSU0_IOUTPUT",
+                "pin_Name": "PSU0_PINPUT",
+                "pout1_Name": "PSU0_POUTPUT",
+                "temp1_Name": "PSU0_TEMP",
+                "vin_Name": "PSU0_VINPUT",
+                "vout1_Name": "PSU0_VOUTPUT"
             },
             {
                 "Address": "0x59",
@@ -2029,16 +1394,17 @@
                         "Name": "upper critical",
                         "Severity": 1,
                         "Value": 64
-                    },
-                    {
-                        "Direction": "greater than",
-                        "Label": "fan1",
-                        "Name": "upper critical",
-                        "Severity": 1,
-                        "Value": 20300
                     }
                 ],
-                "Type": "pmbus"
+                "Type": "pmbus",
+                "fan1_Name": "PSU1_fan1",
+                "iin_Name": "PSU1_IINPUT",
+                "iout1_Name": "PSU1_IOUTPUT",
+                "pin_Name": "PSU1_PINPUT",
+                "pout1_Name": "PSU1_POUTPUT",
+                "temp1_Name": "PSU1_TEMP",
+                "vin_Name": "PSU1_VINPUT",
+                "vout1_Name": "PSU1_VOUTPUT"
             }
         ],
         "Name": "Mt.Jade",
