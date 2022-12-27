@@ -265,3 +265,23 @@ bool updateFRUProperty(
     size_t& unknownBusObjectCount, const bool& powerIsOn,
     sdbusplus::asio::object_server& objServer,
     std::shared_ptr<sdbusplus::asio::connection>& systemBus);
+
+/// \brief format the fru data, get the product name of the fru, find the
+/// index of the fru and update the fru properties
+/// \param device - vector of devices to store fru device info.
+/// \param dbusInterfaceMap - Map to store fru device and dbus objects.
+/// \param bus - I2C bus number of fru device.
+/// \param address - I2C bus address of bus for fru device.
+/// \param unknownBusObjectCount - count to store unknown bus objects
+/// \param powerIsOn - bool variable to check whether power On or Off.
+/// \param objServer - sdbusplus asio object server for dbus objects
+/// \param systemBus - sdbusplus asio connection for dbus service
+/// \return void.
+void addFruObjectToDbus(
+    std::vector<uint8_t>& device,
+    boost::container::flat_map<
+        std::pair<size_t, size_t>,
+        std::shared_ptr<sdbusplus::asio::dbus_interface>>& dbusInterfaceMap,
+    uint32_t bus, uint32_t address, size_t& unknownBusObjectCount,
+    const bool& powerIsOn, sdbusplus::asio::object_server& objServer,
+    std::shared_ptr<sdbusplus::asio::connection>& systemBus);
