@@ -666,7 +666,8 @@ void addFruObjectToDbus(
         return;
     }
 
-    std::string productName = optionalProductName.value();
+    std::string productName
+        = "/xyz/openbmc_project/FruDevice/" + optionalProductName.value();
 
     std::optional<int> index = findIndexForFRU(dbusInterfaceMap, productName);
     if (index.has_value())
@@ -674,8 +675,6 @@ void addFruObjectToDbus(
         productName += "_";
         productName += std::to_string(++(*index));
     }
-
-    productName = "/xyz/openbmc_project/FruDevice/" + productName;
 
     std::shared_ptr<sdbusplus::asio::dbus_interface> iface =
         objServer.add_interface(productName, "xyz.openbmc_project.FruDevice");
