@@ -33,15 +33,8 @@ extern "C"
 }
 
 namespace fs = std::filesystem;
-static constexpr bool debug = false;
-constexpr size_t maxFruSize = 512;
-constexpr size_t maxEepromPageIndex = 255;
-constexpr size_t busTimeoutSeconds = 5;
 
 constexpr const char* blacklistPath = PACKAGE_DIR "blacklist.json";
-
-const static constexpr char* baseboardFruLocation =
-    "/etc/fru/baseboard.fru.bin";
 
 const static constexpr char* i2CDevLocation = "/dev";
 

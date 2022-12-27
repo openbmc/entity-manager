@@ -1250,3 +1250,96 @@ bool updateFRUProperty(
                  objServer, systemBus);
     return true;
 }
+
+// Format the fru data, get the product name of the fru, find the index of
+// the fru and update the fru properties and display the fru device on
+// dbus and return void
+
+void addFruObjectToDbus(
+    std::vector<uint8_t>& device,
+    boost::container::flat_map<
+        std::pair<size_t, size_t>,
+        std::shared_ptr<sdbusplus::asio::dbus_interface>>& dbusInterfaceMap,
+    uint32_t bus, uint32_t address, size_t& unknownBusObjectCount,
+    const bool& powerIsOn, sdbusplus::asio::object_server& objServer,
+    std::shared_ptr<sdbusplus::asio::connection>& systemBus)
+{
+    boost::container::flat_map<std::string, std::string> formattedFRU;
+
+    std::optional<std::string> optionalProductName = getProductName(
+        device, formattedFRU, bus, address, unknownBusObjectCount);
+    if (!optionalProductName)
+    {
+        std::cerr << "getProductName failed. product name is empty.\n";
+        return;
+    }
+
+    std::string productName =
+        "/xyz/openbmc_project/FruDevice/" + optionalProductName.value();
+
+    std::optional<int> index = findIndexForFRU(dbusInterfaceMap, productName);
+    if (index.has_value())
+    {
+        productName += "_";
+        productName += std::to_string(++(*index));
+    }
+
+    std::shared_ptr<sdbusplus::asio::dbus_interface> iface =
+        objServer.add_interface(productName, "xyz.openbmc_project.FruDevice");
+    dbusInterfaceMap[std::pair<size_t, size_t>(bus, address)] = iface;
+
+    for (auto& property : formattedFRU)
+    {
+
+        std::regex_replace(property.second.begin(), property.second.begin(),
+                           property.second.end(), nonAsciiRegex, "_");
+        if (property.second.empty() && property.first != "PRODUCT_ASSET_TAG")
+        {
+            continue;
+        }
+        std::string key =
+            std::regex_replace(property.first, nonAsciiRegex, "_");
+
+        if (property.first == "PRODUCT_ASSET_TAG")
+        {
+            std::string propertyName = property.first;
+            iface->register_property(
+                key, property.second + '\0',
+                [bus, address, propertyName, &dbusInterfaceMap,
+                 &unknownBusObjectCount, &powerIsOn, &objServer,
+                 &systemBus](const std::string& req, std::string& resp) {
+                    if (strcmp(req.c_str(), resp.c_str()) != 0)
+                    {
+                        // call the method which will update
+                        if (updateFRUProperty(req, bus, address, propertyName,
+                                              dbusInterfaceMap,
+                                              unknownBusObjectCount, powerIsOn,
+                                              objServer, systemBus))
+                        {
+                            resp = req;
+                        }
+                        else
+                        {
+                            throw std::invalid_argument(
+                                "FRU property update failed.");
+                        }
+                    }
+                    return 1;
+                });
+        }
+        else if (!iface->register_property(key, property.second + '\0'))
+        {
+            std::cerr << "illegal key: " << key << "\n";
+        }
+        if (debug)
+        {
+            std::cout << property.first << ": " << property.second << "\n";
+        }
+    }
+
+    // baseboard will be 0, 0
+    iface->register_property("BUS", bus);
+    iface->register_property("ADDRESS", address);
+
+    iface->initialize();
+}
