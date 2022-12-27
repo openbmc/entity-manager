@@ -1250,3 +1250,153 @@ bool updateFRUProperty(
                  objServer, systemBus);
     return true;
 }
+
+// Format the fru data, get the product name of the fru, find the index of
+// the fru and update the fru properties and display the fru device on
+// dbus and return void
+
+void addFruObjectToDbus(
+    std::vector<uint8_t>& device,
+    boost::container::flat_map<
+        std::pair<size_t, size_t>,
+        std::shared_ptr<sdbusplus::asio::dbus_interface>>& dbusInterfaceMap,
+    uint32_t bus, uint32_t address, size_t& unknownBusObjectCount,
+    const bool& powerIsOn, sdbusplus::asio::object_server& objServer,
+    std::shared_ptr<sdbusplus::asio::connection>& systemBus)
+{
+    boost::container::flat_map<std::string, std::string> formattedFRU;
+    resCodes res = formatIPMIFRU(device, formattedFRU);
+    if (res == resCodes::resErr)
+    {
+        std::cerr << "failed to parse FRU for device at bus " << bus
+                  << " address " << address << "\n";
+        return;
+    }
+    if (res == resCodes::resWarn)
+    {
+        std::cerr << "there were warnings while parsing FRU for device at bus "
+                  << bus << " address " << address << "\n";
+    }
+
+    auto productNameFind = formattedFRU.find("BOARD_PRODUCT_NAME");
+    std::string productName;
+    // Not found under Board section or an empty string.
+    if (productNameFind == formattedFRU.end() ||
+        productNameFind->second.empty())
+    {
+        productNameFind = formattedFRU.find("PRODUCT_PRODUCT_NAME");
+    }
+    // Found under Product section and not an empty string.
+    if (productNameFind != formattedFRU.end() &&
+        !productNameFind->second.empty())
+    {
+        productName = productNameFind->second;
+        std::regex illegalObject("[^A-Za-z0-9_]");
+        productName = std::regex_replace(productName, illegalObject, "_");
+    }
+    else
+    {
+        productName = "UNKNOWN" + std::to_string(unknownBusObjectCount);
+        unknownBusObjectCount++;
+    }
+
+    productName = "/xyz/openbmc_project/FruDevice/" + productName;
+    // avoid duplicates by checking to see if on a mux
+    if (bus > 0)
+    {
+        int highest = -1;
+        bool found = false;
+
+        for (auto const& busIface : dbusInterfaceMap)
+        {
+            std::string path = busIface.second->get_object_path();
+            if (std::regex_match(path, std::regex(productName + "(_\\d+|)$")))
+            {
+                // Check if the match named has extra information.
+                found = true;
+                std::smatch baseMatch;
+
+                bool match = std::regex_match(
+                    path, baseMatch, std::regex(productName + "_(\\d+)$"));
+                if (match)
+                {
+                    if (baseMatch.size() == 2)
+                    {
+                        std::ssub_match baseSubMatch = baseMatch[1];
+                        std::string base = baseSubMatch.str();
+
+                        int value = std::stoi(base);
+                        highest = (value > highest) ? value : highest;
+                    }
+                }
+            }
+        } // end searching objects
+
+        if (found)
+        {
+            // We found something with the same name.  If highest was still -1,
+            // it means this new entry will be _0.
+            productName += "_";
+            productName += std::to_string(++highest);
+        }
+    }
+
+    std::shared_ptr<sdbusplus::asio::dbus_interface> iface =
+        objServer.add_interface(productName, "xyz.openbmc_project.FruDevice");
+    dbusInterfaceMap[std::pair<size_t, size_t>(bus, address)] = iface;
+
+    for (auto& property : formattedFRU)
+    {
+
+        std::regex_replace(property.second.begin(), property.second.begin(),
+                           property.second.end(), nonAsciiRegex, "_");
+        if (property.second.empty() && property.first != "PRODUCT_ASSET_TAG")
+        {
+            continue;
+        }
+        std::string key =
+            std::regex_replace(property.first, nonAsciiRegex, "_");
+
+        if (property.first == "PRODUCT_ASSET_TAG")
+        {
+            std::string propertyName = property.first;
+            iface->register_property(
+                key, property.second + '\0',
+                [bus, address, propertyName, &dbusInterfaceMap,
+                 &unknownBusObjectCount, &powerIsOn, &objServer,
+                 &systemBus](const std::string& req, std::string& resp) {
+                    if (strcmp(req.c_str(), resp.c_str()) != 0)
+                    {
+                        // call the method which will update
+                        if (updateFRUProperty(req, bus, address, propertyName,
+                                              dbusInterfaceMap,
+                                              unknownBusObjectCount, powerIsOn,
+                                              objServer, systemBus))
+                        {
+                            resp = req;
+                        }
+                        else
+                        {
+                            throw std::invalid_argument(
+                                "FRU property update failed.");
+                        }
+                    }
+                    return 1;
+                });
+        }
+        else if (!iface->register_property(key, property.second + '\0'))
+        {
+            std::cerr << "illegal key: " << key << "\n";
+        }
+        if (debug)
+        {
+            std::cout << property.first << ": " << property.second << "\n";
+        }
+    }
+
+    // baseboard will be 0, 0
+    iface->register_property("BUS", bus);
+    iface->register_property("ADDRESS", address);
+
+    iface->initialize();
+}
