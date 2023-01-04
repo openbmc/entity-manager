@@ -1,5 +1,6 @@
 # Entity Manager
 
+
 Entity manager is a design for managing physical system components, and mapping
 them to software resources within the BMC. Said resources are designed to allow
 the flexible adjustment of the system at runtime, as well as the reduction in
