@@ -16,6 +16,24 @@
       "message": "It\u0027s got an unrelated failure now:\n\n```\n    Running flake8                                                                                       \nscripts/validate_configs.py:63:9: F841 local variable \u0027e\u0027 is assigned to but never used                  \n        except Exception as e:                                                                           \n        ^                                                                                                \nscripts/validate_configs.py:75:5: F841 local variable \u0027e\u0027 is assigned to but never used                  \n    except FileNotFoundError as e:                                                                       \n    ^                                                                                                    \nscripts/validate_configs.py:91:9: F841 local variable \u0027e\u0027 is assigned to but never used                  \n        except Exception as e:                                                                           \n        ^                                                                                                \nscripts/validate_configs.py:100:9: F841 local variable \u0027e\u0027 is assigned to but never used                 \n        except FileNotFoundError as e:                                                                   \n        ^                                                                                                \nscripts/validate_configs.py:112:9: F841 local variable \u0027e\u0027 is assigned to but never used                 \n        except Exception as e:                                                                           \n        ^         \n```\n\nI\u0027ll fix it in a parent patch",
       "revId": "3fe0efbb9e4c24f71234fe5aae7de53fde3d7970",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "c499b0b4_a6c670f2",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 6
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1000233
+      },
+      "writtenOn": "2023-01-09T11:20:41Z",
+      "side": 1,
+      "message": "Oh, nevermind. Looks like it was already fixed and just needed another rebase",
+      "parentUuid": "7f59d4cb_e881adb8",
+      "revId": "3fe0efbb9e4c24f71234fe5aae7de53fde3d7970",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }
