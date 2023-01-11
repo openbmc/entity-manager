@@ -46,6 +46,30 @@
       },
       "revId": "cb95ed2fea30690279e263897b4dcd453eb15368",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "85d169af_94b0a92a",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 1000940
+      },
+      "writtenOn": "2023-01-11T14:32:47Z",
+      "side": 1,
+      "message": "With current dbus-sensor implementation:\n- PowerState : On - maps to Host State ON.\n- PowerState: ChassisOn - maps to Power state ON.\n\nSome sensors that just be available after Host state on can use PowerState: On, while other sensors like voltage regulators can use PowerState: ChassisOn. We would like to have their sensor values reported even when the Host boots fail. And these sensors should be n/a when the Host power is OFF.",
+      "parentUuid": "0a741c4d_72fc1467",
+      "range": {
+        "startLine": 7,
+        "startChar": 26,
+        "endLine": 7,
+        "endChar": 35
+      },
+      "revId": "cb95ed2fea30690279e263897b4dcd453eb15368",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }
