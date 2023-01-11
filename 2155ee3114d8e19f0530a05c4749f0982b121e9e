@@ -22,6 +22,30 @@
       },
       "revId": "2155ee3114d8e19f0530a05c4749f0982b121e9e",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "a30be274_d470fc02",
+        "filename": "src/fru_utils.cpp",
+        "patchSetId": 6
+      },
+      "lineNbr": 49,
+      "author": {
+        "id": 1000546
+      },
+      "writtenOn": "2023-01-11T11:32:05Z",
+      "side": 1,
+      "message": "These two functions(rescanBusses and writeFRU) are present in fru_device.cpp and calling from fru_utils.cpp file. To know the function signatures and avoid undefined reference of these functions, it is added here.",
+      "parentUuid": "4d00bcad_801b1ae6",
+      "range": {
+        "startLine": 38,
+        "startChar": 0,
+        "endLine": 49,
+        "endChar": 0
+      },
+      "revId": "2155ee3114d8e19f0530a05c4749f0982b121e9e",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }
