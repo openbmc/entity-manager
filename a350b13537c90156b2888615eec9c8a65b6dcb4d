@@ -24,6 +24,30 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "f9ebd226_d202fb48",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 11
+      },
+      "lineNbr": 11,
+      "author": {
+        "id": 1000546
+      },
+      "writtenOn": "2023-01-12T14:05:39Z",
+      "side": 1,
+      "message": "The goal is move the functions updateFRUProperty and addFruObjectToDbus from fru_device.cpp to fru_utils.cpp file as these are the common functions which is used for fru-device and ipmb-fru-device daemons.\n\nWhile moving updateFRUProperty function to fru_utils.cpp file, this function calling lot of functions of fru_device.cpp like rescanBusses, rescanOneBus etc., from fru_utils.cpp. This move makes some undefined reference errors as those functions in fru_device and test_fru_utils.\n\nSo, fru_device.cpp file is added in test_fru_utils to avoid these CI issues and main function is moved to fru_device_main.cpp",
+      "parentUuid": "12800692_5c77f7d6",
+      "range": {
+        "startLine": 9,
+        "startChar": 0,
+        "endLine": 11,
+        "endChar": 54
+      },
+      "revId": "a350b13537c90156b2888615eec9c8a65b6dcb4d",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "0d897be7_8c755d7e",
@@ -37,6 +61,30 @@
       "writtenOn": "2023-01-07T04:57:14Z",
       "side": 1,
       "message": "Can you explain what CI issue is and how does this change address CI issue?",
+      "range": {
+        "startLine": 13,
+        "startChar": 0,
+        "endLine": 14,
+        "endChar": 25
+      },
+      "revId": "a350b13537c90156b2888615eec9c8a65b6dcb4d",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "3cbb0726_3810065e",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 11
+      },
+      "lineNbr": 14,
+      "author": {
+        "id": 1000546
+      },
+      "writtenOn": "2023-01-12T14:05:39Z",
+      "side": 1,
+      "message": "While moving updateFRUProperty function to fru_utils.cpp file, this function calling functions of fru_device.cpp like rescanBusses, rescanOneBus etc., from fru_utils.cpp. This creates CI issues like undefined reference of functions rescanBusses, rescanOneBus. \n\nAlso, test_fru_utils functions also called some fru_device functions. because of this move, getting undefined reference error. \n\nSo, to resolve those issues, In meson.build, added fru_device.cpp, fru_utils.cpp, utils.cpp under test_fru_utils executable. And fru_device.cpp already has main file. So we can\u0027t move to test_fru_utils. So, moved main function straightly to seperate new file(fru_device_main.cpp) file. \n\nThese changes resolves all those issues.\nPlease let me know if you need more clarifications.",
+      "parentUuid": "0d897be7_8c755d7e",
       "range": {
         "startLine": 13,
         "startChar": 0,
@@ -70,6 +118,30 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "b6cbb84a_d8c72790",
+        "filename": "include/fru_device.hpp",
+        "patchSetId": 11
+      },
+      "lineNbr": 22,
+      "author": {
+        "id": 1000546
+      },
+      "writtenOn": "2023-01-12T14:05:39Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "f9d9b37a_3a278d65",
+      "range": {
+        "startLine": 21,
+        "startChar": 0,
+        "endLine": 22,
+        "endChar": 40
+      },
+      "revId": "a350b13537c90156b2888615eec9c8a65b6dcb4d",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "14056fa6_2c74419a",
@@ -93,6 +165,78 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "3d556afa_d71da402",
+        "filename": "meson.build",
+        "patchSetId": 11
+      },
+      "lineNbr": 239,
+      "author": {
+        "id": 1000546
+      },
+      "writtenOn": "2023-01-12T14:05:39Z",
+      "side": 1,
+      "message": "Done. Removed duplicate.",
+      "parentUuid": "14056fa6_2c74419a",
+      "range": {
+        "startLine": 238,
+        "startChar": 0,
+        "endLine": 239,
+        "endChar": 33
+      },
+      "revId": "a350b13537c90156b2888615eec9c8a65b6dcb4d",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "126117a7_d29b0a7f",
+        "filename": "meson.build",
+        "patchSetId": 11
+      },
+      "lineNbr": 239,
+      "author": {
+        "id": 1000546
+      },
+      "writtenOn": "2023-01-12T14:05:39Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "14056fa6_2c74419a",
+      "range": {
+        "startLine": 238,
+        "startChar": 0,
+        "endLine": 239,
+        "endChar": 33
+      },
+      "revId": "a350b13537c90156b2888615eec9c8a65b6dcb4d",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "a2fcf58c_9eb9b5ff",
+        "filename": "meson.build",
+        "patchSetId": 11
+      },
+      "lineNbr": 239,
+      "author": {
+        "id": 1000546
+      },
+      "writtenOn": "2023-01-12T14:05:39Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "14056fa6_2c74419a",
+      "range": {
+        "startLine": 238,
+        "startChar": 0,
+        "endLine": 239,
+        "endChar": 33
+      },
+      "revId": "a350b13537c90156b2888615eec9c8a65b6dcb4d",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "81d0507f_5ea0d554",
@@ -106,6 +250,30 @@
       "writtenOn": "2023-01-07T04:57:14Z",
       "side": 1,
       "message": "why are these needed here?",
+      "range": {
+        "startLine": 29,
+        "startChar": 0,
+        "endLine": 34,
+        "endChar": 0
+      },
+      "revId": "a350b13537c90156b2888615eec9c8a65b6dcb4d",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "6b6c7b87_6f366f34",
+        "filename": "src/fru_device_main.cpp",
+        "patchSetId": 11
+      },
+      "lineNbr": 34,
+      "author": {
+        "id": 1000546
+      },
+      "writtenOn": "2023-01-12T14:05:39Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "81d0507f_5ea0d554",
       "range": {
         "startLine": 29,
         "startChar": 0,
