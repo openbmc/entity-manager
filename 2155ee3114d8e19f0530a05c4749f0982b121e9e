@@ -46,6 +46,30 @@
       },
       "revId": "2155ee3114d8e19f0530a05c4749f0982b121e9e",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e3500cd8_20a311fe",
+        "filename": "src/fru_utils.cpp",
+        "patchSetId": 6
+      },
+      "lineNbr": 49,
+      "author": {
+        "id": 1000559
+      },
+      "writtenOn": "2023-01-16T22:42:30Z",
+      "side": 1,
+      "message": "The dependency does not make sense: a util function, which is common between ipmb-fru-device and fru-device, call specific functions in fru-device. I suspect a little refactor is needed to abstract the commonality and move that into fru_utils.hpp/cpp",
+      "parentUuid": "a30be274_d470fc02",
+      "range": {
+        "startLine": 38,
+        "startChar": 0,
+        "endLine": 49,
+        "endChar": 0
+      },
+      "revId": "2155ee3114d8e19f0530a05c4749f0982b121e9e",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }
