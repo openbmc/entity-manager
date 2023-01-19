@@ -66,6 +66,11 @@ int evaluate(int a, Operation op, int b)
         }
         case Operation::division:
         {
+            if (b == 0)
+            {
+                throw std::runtime_error(
+                    "Math error: Attempted to divide by Zero\n");
+            }
             return a / b;
         }
         case Operation::modulo:
