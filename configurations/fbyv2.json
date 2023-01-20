@@ -465,33 +465,6 @@
             "Type": "TMP421"
         },
         {
-            "Address": "0x1f",
-            "Bus": 11,
-            "Name": "MEZZ_SENSOR_REMOTE_TEMP",
-            "Name1": "MEZZ_SENSOR_TEMP",
-            "Thresholds": [
-                {
-                    "Direction": "greater than",
-                    "Name": "upper critical",
-                    "Severity": 1,
-                    "Value": 105
-                },
-                {
-                    "Direction": "greater than",
-                    "Name": "upper non critical",
-                    "Severity": 0,
-                    "Value": 95
-                },
-                {
-                    "Direction": "greater than",
-                    "Name": "upper non recoverable",
-                    "Severity": 4,
-                    "Value": 120
-                }
-            ],
-            "Type": "TMP421"
-        },
-        {
             "Address": "0x40",
             "Bus": 10,
             "Labels": [
