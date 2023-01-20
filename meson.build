@@ -104,6 +104,7 @@ configs = [
     'f2u8x25_hsbp.json',
     'fbtp.json',
     'fbyv2.json',
+    'fbyv2_mellanox_nic.json',
     'fbyv35.json',
     'fbyv35_nic_mellanox.json',
     'flextronics_s-1100adu00-201_psu.json',
