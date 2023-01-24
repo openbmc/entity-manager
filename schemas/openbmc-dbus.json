@@ -62,6 +62,16 @@
                             "additionalProperties": false,
                             "type": "object"
                         },
+                        "PCIeSlot": {
+                            "additionalProperties": false,
+                            "properties": {
+                                "HotPluggable": {
+                                    "type": "boolean"
+                                }
+                            },
+                            "required": ["HotPluggable"],
+                            "type": "object"
+                        },
                         "System": {
                             "additionalProperties": false,
                             "type": "object"
