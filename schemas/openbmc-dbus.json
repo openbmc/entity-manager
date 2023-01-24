@@ -56,6 +56,12 @@
                         },
                         "Chassis": {
                             "additionalProperties": false,
+                            "properties": {
+                                "ChassisType": {
+                                    "type": "string"
+                                }
+                            },
+                            "required": ["ChassisType"],
                             "type": "object"
                         },
                         "Panel": {
