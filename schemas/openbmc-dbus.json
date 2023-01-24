@@ -45,9 +45,12 @@
                             "properties": {
                                 "FieldReplaceable": {
                                     "type": "boolean"
+                                },
+                                "HotPluggable": {
+                                    "type": "boolean"
                                 }
                             },
-                            "required": ["FieldReplaceable"],
+                            "required": ["FieldReplaceable", "HotPluggable"],
                             "type": "object"
                         }
                     },
