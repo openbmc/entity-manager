@@ -1,0 +1,67 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "c0d54d0c_7a2daf27",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 19
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1000559
+      },
+      "writtenOn": "2023-01-24T21:18:35Z",
+      "side": 1,
+      "message": "Overall, I think refactor needs to be done first to abstract the common functionality.",
+      "revId": "62156d2b556835aa4a01946e690de5780bfbaac2",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "af10a464_6da277e6",
+        "filename": "src/fru_device.cpp",
+        "patchSetId": 19
+      },
+      "lineNbr": 1184,
+      "author": {
+        "id": 1000559
+      },
+      "writtenOn": "2023-01-24T21:18:35Z",
+      "side": 1,
+      "message": "Does this call make sense for ipmi_fru? Consider factor it out. See my other comments.",
+      "range": {
+        "startLine": 1182,
+        "startChar": 0,
+        "endLine": 1184,
+        "endChar": 39
+      },
+      "revId": "62156d2b556835aa4a01946e690de5780bfbaac2",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "88312067_549367d9",
+        "filename": "src/fru_utils.cpp",
+        "patchSetId": 19
+      },
+      "lineNbr": 1068,
+      "author": {
+        "id": 1000559
+      },
+      "writtenOn": "2023-01-24T21:18:35Z",
+      "side": 1,
+      "message": "this function wrapper here does not make sense. rescanBusses was designed for fru_device on i2c bus. The question needs to be answered first is: does ipmi_fru need rescanBusses(). If not, then it should not be in this function. If yes, what should it do and how is it different than fru_device.",
+      "range": {
+        "startLine": 1067,
+        "startChar": 0,
+        "endLine": 1068,
+        "endChar": 42
+      },
+      "revId": "62156d2b556835aa4a01946e690de5780bfbaac2",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    }
+  ]
+}
