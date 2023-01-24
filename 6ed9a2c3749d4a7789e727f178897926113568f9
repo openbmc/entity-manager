@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9fccfc54_726d4db9",
+        "filename": "configurations/twinlake.json",
+        "patchSetId": 2
+      },
+      "lineNbr": 30,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2023-01-24T19:33:15Z",
+      "side": 1,
+      "message": "I\u0027m a bit confused by this.  Twinlake isn\u0027t a PCIeSlot itself.  Are we representing a slot on the Twinlake card?  Shouldn\u0027t that be a different inventory item?\n\nOr are we saying that Twinlake is HotPluggable?  If so, please don\u0027t use PCIeSlot here.  There are a few properties on this interface that you\u0027re _not_ implementing, which is error prone for others.",
+      "range": {
+        "startLine": 28,
+        "startChar": 0,
+        "endLine": 30,
+        "endChar": 5
+      },
+      "revId": "6ed9a2c3749d4a7789e727f178897926113568f9",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    }
+  ]
+}
