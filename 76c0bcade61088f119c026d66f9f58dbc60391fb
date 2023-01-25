@@ -20,6 +20,23 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "6127a5be_e42d77f7",
+        "filename": "configurations/fbyv2.json",
+        "patchSetId": 3
+      },
+      "lineNbr": 585,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2023-01-25T04:03:20Z",
+      "side": 1,
+      "message": "Seems like you could make the same argument here about \"why do you have a chassis and a board\".  Again the chassis + board serial are the same and contained on the same EEPROM (the board is simply screwed into the sheet metal to make a chassis).\n\nThe Yv2 baseboard contains the EEPROM, which contains the serial number.  By nature of it being a baseboard we can assume it is also screwed into a chassis.  Are you suggesting we need a separate path?",
+      "revId": "76c0bcade61088f119c026d66f9f58dbc60391fb",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "b0b48ebc_f981fa5c",
         "filename": "configurations/twinlake.json",
         "patchSetId": 3
