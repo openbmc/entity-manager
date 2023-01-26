@@ -16,6 +16,24 @@
       "message": "Still failing the build",
       "revId": "073eb891d73db4d7638a09b1eec3b1fd457629a3",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "bced66f0_54eef6f6",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 5
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1001354
+      },
+      "writtenOn": "2023-01-26T19:48:25Z",
+      "side": 1,
+      "message": "I\u0027ve been learning how to use a local copy of the CI to fix the code-format errors, and hopefully my latest upload will go through.\n\nThanks for the help the other day with getting the CI to check my changes after I (guess?) I stalled it out, BTW! 👍 \n\nI assume the \u0027stall\u0027 happened because I rebased my code to master on my machine, then pushed the amend to Gerrit while this review was marked as \"work in progress.\" I changed the review status back to \u0027active\u0027 after uploading, but seems like the CI wasn\u0027t checking the code when I did things that way. \n\nAm I right to think that you fixed the issue just by running \u0027rebase\u0027 to Master from the Gerrit page here?",
+      "parentUuid": "8fa83dd7_0869352b",
+      "revId": "073eb891d73db4d7638a09b1eec3b1fd457629a3",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }
