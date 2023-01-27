@@ -17,8 +17,6 @@ executable(
         sdbusplus,
         valijson,
     ],
-    implicit_include_directories: false,
-    include_directories: '../include',
     install: true,
 )
 
@@ -39,8 +37,6 @@ if get_option('fru-device')
             threads,
             valijson,
         ],
-        implicit_include_directories: false,
-        include_directories: '../include',
         install: true,
     )
 endif

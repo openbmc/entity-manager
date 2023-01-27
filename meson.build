@@ -225,8 +225,7 @@ if not build_tests.disabled()
                 sdbusplus,
                 valijson,
             ],
-            implicit_include_directories: false,
-            include_directories: 'include',
+            include_directories: 'src',
         )
     )
 
@@ -243,8 +242,7 @@ if not build_tests.disabled()
                 gtest,
                 sdbusplus,
             ],
-            implicit_include_directories: false,
-            include_directories: 'include',
+            include_directories: 'src',
         )
     )
 
@@ -259,8 +257,7 @@ if not build_tests.disabled()
                 gtest,
                 gmock,
             ],
-            implicit_include_directories: false,
-            include_directories: 'include',
+            include_directories: 'src',
         )
     )
 endif
