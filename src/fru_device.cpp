@@ -1096,22 +1096,10 @@ bool updateFRUProperty(
     if ((updatePropertyReqLen + 1) > fruAreaAvailableSize)
     {
 
-#ifdef ENABLE_FRU_AREA_RESIZE
-        size_t newFRUAreaSize = fruAreaDataSize + updatePropertyReqLen + 1;
-        // round size to 8-byte blocks
-        newFRUAreaSize =
-            ((newFRUAreaSize - 1) / fruBlockSize + 1) * fruBlockSize;
-        size_t newFRUDataSize =
-            fruData.size() + newFRUAreaSize - fruAreaParams.size;
-        fruData.resize(newFRUDataSize);
-        fruAreaParams.size = newFRUAreaSize;
-        fruAreaParams.end = fruAreaParams.start + fruAreaParams.size;
-#else
         std::cerr << "FRU field length: " << updatePropertyReqLen + 1
                   << " should not be greater than available FRU area size: "
                   << fruAreaAvailableSize << "\n";
         return false;
-#endif // ENABLE_FRU_AREA_RESIZE
     }
 
     // write new requested property field length and data
@@ -1132,48 +1120,9 @@ bool updateFRUProperty(
               fruData.begin() + fruAreaParams.restFieldsLoc);
 
     // Update final fru with new fru area length and checksum
-    unsigned int nextFRUAreaNewLoc = updateFRUAreaLenAndChecksum(
-        fruData, fruAreaParams.start, fruAreaDataEnd, fruAreaParams.end);
+    updateFRUAreaLenAndChecksum(fruData, fruAreaParams.start, fruAreaDataEnd,
+                                fruAreaParams.end);
 
-#ifdef ENABLE_FRU_AREA_RESIZE
-    ++nextFRUAreaNewLoc;
-    ssize_t nextFRUAreaOffsetDiff =
-        (nextFRUAreaNewLoc - nextFRUAreaLoc) / fruBlockSize;
-    // Append rest FRU Areas if size changed and there were other sections after
-    // updated one
-    if (nextFRUAreaOffsetDiff && nextFRUAreaLoc)
-    {
-        std::copy(restFRUAreasData.begin(), restFRUAreasData.end(),
-                  fruData.begin() + nextFRUAreaNewLoc);
-        // Update Common Header
-        for (int fruArea = fruAreaInternal; fruArea <= fruAreaMultirecord;
-             fruArea++)
-        {
-            unsigned int fruAreaOffsetField = getHeaderAreaFieldOffset(fruArea);
-            size_t curFRUAreaOffset = fruData[fruAreaOffsetField];
-            if (curFRUAreaOffset > fruAreaOffsetFieldValue)
-            {
-                fruData[fruAreaOffsetField] = static_cast<int8_t>(
-                    curFRUAreaOffset + nextFRUAreaOffsetDiff);
-            }
-        }
-        // Calculate new checksum
-        std::vector<uint8_t> headerFRUData;
-        std::copy_n(fruData.begin(), 7, std::back_inserter(headerFRUData));
-        size_t checksumVal = calculateChecksum(headerFRUData);
-        fruData[7] = static_cast<uint8_t>(checksumVal);
-        // fill zeros if FRU Area size decreased
-        if (nextFRUAreaOffsetDiff < 0)
-        {
-            std::fill(fruData.begin() + nextFRUAreaNewLoc +
-                          restFRUAreasData.size(),
-                      fruData.end(), 0);
-        }
-    }
-#else
-    // this is to avoid "unused variable" warning
-    (void)nextFRUAreaNewLoc;
-#endif // ENABLE_FRU_AREA_RESIZE
     if (fruData.empty())
     {
         return false;

@@ -23,10 +23,6 @@ executable(
 )
 
 if get_option('fru-device')
-    cpp_args_fd = cpp_args
-    if get_option('fru-device-resizefru')
-        cpp_args_fd = cpp_args_fd + ['-DENABLE_FRU_AREA_RESIZE']
-    endif
     executable(
         'fru-device',
         'expression.cpp',
@@ -34,7 +30,7 @@ if get_option('fru-device')
         'utils.cpp',
         'fru_utils.cpp',
         'fru_reader.cpp',
-        cpp_args: cpp_args_fd,
+        cpp_args: cpp_args,
         dependencies: [
             boost,
             i2c,
