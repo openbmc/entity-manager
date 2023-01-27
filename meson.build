@@ -242,6 +242,7 @@ if not build_tests.disabled()
             dependencies: [
                 boost,
                 gtest,
+                sdbusplus,
             ],
             include_directories: 'src',
         )
