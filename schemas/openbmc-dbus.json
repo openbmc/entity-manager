@@ -39,6 +39,16 @@
                             },
                             "required": ["AssetTag"],
                             "type": "object"
+                        },
+                        "Replaceable": {
+                            "additionalProperties": false,
+                            "properties": {
+                                "FieldReplaceable": {
+                                    "type": "boolean"
+                                }
+                            },
+                            "required": ["FieldReplaceable"],
+                            "type": "object"
                         }
                     },
                     "Item": {
