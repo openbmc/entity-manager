@@ -57,6 +57,30 @@
       },
       "revId": "e8b0538c947e754be94283b070735f90fa635fc2",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "4f2365b4_a216410b",
+        "filename": "configurations/fbyv2_mellanox_nic.json",
+        "patchSetId": 2
+      },
+      "lineNbr": 5,
+      "author": {
+        "id": 1000869
+      },
+      "writtenOn": "2023-01-31T07:42:04Z",
+      "side": 1,
+      "message": "Both FRU and sensor have same bus on this NIC card. In FRU, \"BUS\" value is incremented by 1, therefore, it is decremented by 1 here.",
+      "parentUuid": "08f5f7a6_37051533",
+      "range": {
+        "startLine": 5,
+        "startChar": 20,
+        "endLine": 5,
+        "endChar": 28
+      },
+      "revId": "e8b0538c947e754be94283b070735f90fa635fc2",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }
