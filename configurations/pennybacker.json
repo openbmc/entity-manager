@@ -1,0 +1,29 @@
+{
+    "Exposes": [
+        {
+            "I2CAddress": 88,
+            "I2CBus": 3,
+            "Name": "Power Supply Slot 0",
+            "NamedPresenceGpio": "presence-ps0",
+            "Type": "IBMCFFPSConnector"
+        },
+        {
+            "I2CAddress": 89,
+            "I2CBus": 3,
+            "Name": "Power Supply Slot 1",
+            "NamedPresenceGpio": "presence-ps1",
+            "Type": "IBMCFFPSConnector"
+        },
+        {
+            "Address": "0x64",
+            "Bus": 2,
+            "Name": "UCD90160 Power Sequencer",
+            "Type": "UCD90160"
+        }
+    ],
+    "Name": "Pennybacker Backplane",
+    "Probe": [
+        "com.ibm.ipzvpd.VINI({'CC': [50, 69, 52, 52]})"
+    ],
+    "Type": "Board"
+}
