@@ -1,0 +1,16 @@
+{
+    "Exposes": [
+        {
+            "Name": "Compatible System",
+            "Names": [
+                "ibm,bonnell"
+            ],
+            "Type": "IBMCompatibleSystem"
+        }
+    ],
+    "Name": "Bonnell Chassis",
+    "Probe": [
+        "com.ibm.ipzvpd.VSBP({'IM': [80, 0, 64, 0]})"
+    ],
+    "Type": "Chassis"
+}

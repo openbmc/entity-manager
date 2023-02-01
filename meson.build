@@ -83,6 +83,7 @@ configs = [
     'bletchley_chassis.json',
     'bletchley_frontpanel.json',
     'blyth.json',
+    'bonnell.json',
     'ahw1um2riser.json',
     'aspower_u1a-d10550_psu.json',
     'aspower_u1a-d10800_psu.json',
