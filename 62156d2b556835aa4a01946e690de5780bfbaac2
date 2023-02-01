@@ -41,6 +41,54 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "a5dc8477_e26e0ff0",
+        "filename": "src/fru_device.cpp",
+        "patchSetId": 19
+      },
+      "lineNbr": 1184,
+      "author": {
+        "id": 1000546
+      },
+      "writtenOn": "2023-02-01T14:14:21Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "af10a464_6da277e6",
+      "range": {
+        "startLine": 1182,
+        "startChar": 0,
+        "endLine": 1184,
+        "endChar": 39
+      },
+      "revId": "62156d2b556835aa4a01946e690de5780bfbaac2",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "175b625d_76a99724",
+        "filename": "src/fru_device.cpp",
+        "patchSetId": 19
+      },
+      "lineNbr": 1184,
+      "author": {
+        "id": 1000546
+      },
+      "writtenOn": "2023-02-01T14:14:21Z",
+      "side": 1,
+      "message": "Ack. Working on it",
+      "parentUuid": "af10a464_6da277e6",
+      "range": {
+        "startLine": 1182,
+        "startChar": 0,
+        "endLine": 1184,
+        "endChar": 39
+      },
+      "revId": "62156d2b556835aa4a01946e690de5780bfbaac2",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "88312067_549367d9",
@@ -54,6 +102,30 @@
       "writtenOn": "2023-01-24T21:18:35Z",
       "side": 1,
       "message": "this function wrapper here does not make sense. rescanBusses was designed for fru_device on i2c bus. The question needs to be answered first is: does ipmi_fru need rescanBusses(). If not, then it should not be in this function. If yes, what should it do and how is it different than fru_device.",
+      "range": {
+        "startLine": 1067,
+        "startChar": 0,
+        "endLine": 1068,
+        "endChar": 42
+      },
+      "revId": "62156d2b556835aa4a01946e690de5780bfbaac2",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "8cb4c516_baf91c85",
+        "filename": "src/fru_utils.cpp",
+        "patchSetId": 19
+      },
+      "lineNbr": 1068,
+      "author": {
+        "id": 1000546
+      },
+      "writtenOn": "2023-02-01T14:14:21Z",
+      "side": 1,
+      "message": "Ack. Working on it",
+      "parentUuid": "88312067_549367d9",
       "range": {
         "startLine": 1067,
         "startChar": 0,
