@@ -10,7 +10,10 @@ executable(
     'overlay.cpp',
     'topology.cpp',
     'utils.cpp',
-    cpp_args: cpp_args + ['-DBOOST_ASIO_DISABLE_THREADS'],
+    cpp_args: cpp_args + [
+        '-DBOOST_ASIO_DISABLE_THREADS',
+        '-DDEVICE_INDEX=' + get_option('device-index').to_string()
+    ],
     dependencies: [
         boost,
         nlohmann_json_dep,

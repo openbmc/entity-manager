@@ -475,7 +475,7 @@ void PerformScan::updateSystemConfiguration(const nlohmann::json& recordRef,
 
     std::set<nlohmann::json> usedNames;
     std::list<size_t> indexes(foundDevices.size());
-    std::iota(indexes.begin(), indexes.end(), 1);
+    std::iota(indexes.begin(), indexes.end(), DEVICE_INDEX);
 
     // copy over persisted configurations and make sure we remove
     // indexes that are already used
