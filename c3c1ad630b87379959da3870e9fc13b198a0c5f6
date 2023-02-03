@@ -1,0 +1,101 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7f119584_ab75731d",
+        "filename": "src/entity_manager.cpp",
+        "patchSetId": 2
+      },
+      "lineNbr": 1115,
+      "author": {
+        "id": 1000009
+      },
+      "writtenOn": "2023-02-03T00:10:44Z",
+      "side": 1,
+      "message": "Isn\u0027t this an infinite loop as we increment it on 1148 rather than in the loop header?",
+      "revId": "c3c1ad630b87379959da3870e9fc13b198a0c5f6",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "96b9b503_f74df370",
+        "filename": "src/entity_manager.cpp",
+        "patchSetId": 2
+      },
+      "lineNbr": 1146,
+      "author": {
+        "id": 1000009
+      },
+      "writtenOn": "2023-02-03T00:10:44Z",
+      "side": 1,
+      "message": "I don\u0027t like that we\u0027re spreading parsing gunk through the code-base any more than we are, but it\u0027s a bit of a technical debt thing to clean up. Probably find for now as it\u0027s pretty easy to grep for when we do clean it up.",
+      "range": {
+        "startLine": 1143,
+        "startChar": 1,
+        "endLine": 1146,
+        "endChar": 42
+      },
+      "revId": "c3c1ad630b87379959da3870e9fc13b198a0c5f6",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b8a4a92c_ac1d05af",
+        "filename": "src/entity_manager.cpp",
+        "patchSetId": 2
+      },
+      "lineNbr": 1155,
+      "author": {
+        "id": 1000009
+      },
+      "writtenOn": "2023-02-03T00:10:44Z",
+      "side": 1,
+      "message": "static",
+      "revId": "c3c1ad630b87379959da3870e9fc13b198a0c5f6",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1990cae3_1ef48d5e",
+        "filename": "src/entity_manager.cpp",
+        "patchSetId": 2
+      },
+      "lineNbr": 1170,
+      "author": {
+        "id": 1000009
+      },
+      "writtenOn": "2023-02-03T00:10:44Z",
+      "side": 1,
+      "message": "Can we do a set intersection instead?",
+      "range": {
+        "startLine": 1163,
+        "startChar": 0,
+        "endLine": 1170,
+        "endChar": 5
+      },
+      "revId": "c3c1ad630b87379959da3870e9fc13b198a0c5f6",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2af7722f_b3857a4e",
+        "filename": "src/entity_manager.cpp",
+        "patchSetId": 2
+      },
+      "lineNbr": 1176,
+      "author": {
+        "id": 1000009
+      },
+      "writtenOn": "2023-02-03T00:10:44Z",
+      "side": 1,
+      "message": "static",
+      "revId": "c3c1ad630b87379959da3870e9fc13b198a0c5f6",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    }
+  ]
+}

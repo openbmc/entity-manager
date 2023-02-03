@@ -1,0 +1,72 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "dd449685_d4a2bc24",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1000009
+      },
+      "writtenOn": "2023-02-03T00:10:44Z",
+      "side": 1,
+      "message": "Couple of minor comments.",
+      "revId": "c82f3b51765026edea378daba608ab1f900f7794",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ff288af3_399128a2",
+        "filename": "src/entity_manager.cpp",
+        "patchSetId": 1
+      },
+      "lineNbr": 1100,
+      "author": {
+        "id": 1000009
+      },
+      "writtenOn": "2023-02-03T00:10:44Z",
+      "side": 1,
+      "message": "Make this static",
+      "revId": "c82f3b51765026edea378daba608ab1f900f7794",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c4b23d43_f1f9dd66",
+        "filename": "src/entity_manager.cpp",
+        "patchSetId": 1
+      },
+      "lineNbr": 1159,
+      "author": {
+        "id": 1000009
+      },
+      "writtenOn": "2023-02-03T00:10:44Z",
+      "side": 1,
+      "message": "Is `DBusObject` the right type here?",
+      "revId": "c82f3b51765026edea378daba608ab1f900f7794",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f336b16e_611ec1e6",
+        "filename": "src/entity_manager.cpp",
+        "patchSetId": 1
+      },
+      "lineNbr": 1180,
+      "author": {
+        "id": 1000009
+      },
+      "writtenOn": "2023-02-03T00:10:44Z",
+      "side": 1,
+      "message": "I suspect this type is what we want above?\n\nAlso can we read the interfaces into a std::set? that way we could test for a non-empty set intersection rather than iterating over the interfaces like we do below.",
+      "revId": "c82f3b51765026edea378daba608ab1f900f7794",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    }
+  ]
+}
