@@ -18,6 +18,24 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "39299398_4ef68a83",
+        "filename": "src/entity_manager.cpp",
+        "patchSetId": 2
+      },
+      "lineNbr": 1115,
+      "author": {
+        "id": 1000008
+      },
+      "writtenOn": "2023-02-03T20:14:47Z",
+      "side": 1,
+      "message": "heh, that bug has definitely been around awhile here https://github.com/openbmc/entity-manager/blob/master/src/perform_scan.cpp#L596\n\nI can put up a commit for that fix.",
+      "parentUuid": "7f119584_ab75731d",
+      "revId": "c3c1ad630b87379959da3870e9fc13b198a0c5f6",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "96b9b503_f74df370",
@@ -31,6 +49,30 @@
       "writtenOn": "2023-02-03T00:10:44Z",
       "side": 1,
       "message": "I don\u0027t like that we\u0027re spreading parsing gunk through the code-base any more than we are, but it\u0027s a bit of a technical debt thing to clean up. Probably find for now as it\u0027s pretty easy to grep for when we do clean it up.",
+      "range": {
+        "startLine": 1143,
+        "startChar": 1,
+        "endLine": 1146,
+        "endChar": 42
+      },
+      "revId": "c3c1ad630b87379959da3870e9fc13b198a0c5f6",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "04c60a79_4d3a292a",
+        "filename": "src/entity_manager.cpp",
+        "patchSetId": 2
+      },
+      "lineNbr": 1146,
+      "author": {
+        "id": 1000008
+      },
+      "writtenOn": "2023-02-03T20:14:47Z",
+      "side": 1,
+      "message": "yea, there\u0027s probably some room for improvement here.",
+      "parentUuid": "96b9b503_f74df370",
       "range": {
         "startLine": 1143,
         "startChar": 1,
@@ -58,6 +100,24 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "7c65a4ba_0641ac74",
+        "filename": "src/entity_manager.cpp",
+        "patchSetId": 2
+      },
+      "lineNbr": 1155,
+      "author": {
+        "id": 1000008
+      },
+      "writtenOn": "2023-02-03T20:14:47Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "b8a4a92c_ac1d05af",
+      "revId": "c3c1ad630b87379959da3870e9fc13b198a0c5f6",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "1990cae3_1ef48d5e",
@@ -81,6 +141,30 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "55d574d8_91e234af",
+        "filename": "src/entity_manager.cpp",
+        "patchSetId": 2
+      },
+      "lineNbr": 1170,
+      "author": {
+        "id": 1000008
+      },
+      "writtenOn": "2023-02-03T20:14:47Z",
+      "side": 1,
+      "message": "Yea, though I need to put the map keys into something else first.",
+      "parentUuid": "1990cae3_1ef48d5e",
+      "range": {
+        "startLine": 1163,
+        "startChar": 0,
+        "endLine": 1170,
+        "endChar": 5
+      },
+      "revId": "c3c1ad630b87379959da3870e9fc13b198a0c5f6",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "2af7722f_b3857a4e",
@@ -94,6 +178,24 @@
       "writtenOn": "2023-02-03T00:10:44Z",
       "side": 1,
       "message": "static",
+      "revId": "c3c1ad630b87379959da3870e9fc13b198a0c5f6",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "431bf1e5_232c87b4",
+        "filename": "src/entity_manager.cpp",
+        "patchSetId": 2
+      },
+      "lineNbr": 1176,
+      "author": {
+        "id": 1000008
+      },
+      "writtenOn": "2023-02-03T20:14:47Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "2af7722f_b3857a4e",
       "revId": "c3c1ad630b87379959da3870e9fc13b198a0c5f6",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
