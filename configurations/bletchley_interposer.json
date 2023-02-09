@@ -1,0 +1,72 @@
+{
+    "Exposes": [
+        {
+            "Address": "0x45",
+            "Bus": "$bus",
+            "Labels": [
+                "in1",
+                "curr1",
+                "power1"
+            ],
+            "Name": "SLED$bus + 1 INA230",
+            "Type": "INA230"
+        },
+        {
+            "Address": "0x40",
+            "Bus": "$bus",
+            "Labels": [
+                "vin",
+                "vout1",
+                "iout1",
+                "pin"
+            ],
+            "Name": "SLED$bus + 1 HSC",
+            "Type": "MP5023"
+        },
+        {
+            "Address": "0x4F",
+            "Bus": "$bus",
+            "Name": "SLED$bus + 1 THERM LOCAL",
+            "Thresholds": [
+                {
+                    "Direction": "greater than",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 54.0
+                },
+                {
+                    "Direction": "greater than",
+                    "Name": "upper non critical",
+                    "Severity": 0,
+                    "Value": 53.0
+                },
+                {
+                    "Direction": "less than",
+                    "Name": "lower non critical",
+                    "Severity": 0,
+                    "Value": 1
+                },
+                {
+                    "Direction": "less than",
+                    "Name": "lower critical",
+                    "Severity": 1,
+                    "Value": 0
+                }
+            ],
+            "Type": "TMP421"
+        }
+    ],
+    "Name": "Bletchley Interposer$bus + 1",
+    "Probe": [
+        "FOUND('Bletchley Baseboard')",
+        "AND",
+        "xyz.openbmc_project.FruDevice({'BOARD_PRODUCT_NAME': 'Bletchley Interposer.*'})"
+    ],
+    "Type": "Board",
+    "xyz.openbmc_project.Inventory.Decorator.Asset": {
+        "Manufacturer": "$PRODUCT_MANUFACTURER",
+        "Model": "$PRODUCT_PRODUCT_NAME",
+        "PartNumber": "$PRODUCT_PART_NUMBER",
+        "SerialNumber": "$PRODUCT_SERIAL_NUMBER"
+    }
+}
