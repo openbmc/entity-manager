@@ -24,6 +24,30 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "55f8bd0a_11a6e93a",
+        "filename": "src/fru_device.cpp",
+        "patchSetId": 23
+      },
+      "lineNbr": 334,
+      "author": {
+        "id": 1001618
+      },
+      "writtenOn": "2023-02-09T08:11:53Z",
+      "side": 1,
+      "message": "It seems like it works with std::string_view. The \u0027subMatch.str()\u0027 returned a temporary string and it needed extra string to keep the return value. If we make string_view point directly to \u0027subMatch.str()\u0027, it will make the pointer held by string_view becomes dangling pointer.",
+      "parentUuid": "128d71c0_b164edb6",
+      "range": {
+        "startLine": 334,
+        "startChar": 24,
+        "endLine": 334,
+        "endChar": 60
+      },
+      "revId": "9206d14930e98bb37e0444b0806d95c227c475ed",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "0342fec4_6bfd667a",
@@ -37,6 +61,30 @@
       "writtenOn": "2023-02-08T00:27:00Z",
       "side": 1,
       "message": "why hard coded position here? use begin and end instead?",
+      "range": {
+        "startLine": 579,
+        "startChar": 40,
+        "endLine": 579,
+        "endChar": 64
+      },
+      "revId": "9206d14930e98bb37e0444b0806d95c227c475ed",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "7833d487_e68a44e6",
+        "filename": "src/fru_device.cpp",
+        "patchSetId": 23
+      },
+      "lineNbr": 579,
+      "author": {
+        "id": 1001618
+      },
+      "writtenOn": "2023-02-09T08:11:53Z",
+      "side": 1,
+      "message": "Changed string to string_view. from_chars doesn\u0027t recognize the prefix \u00270x\u0027 or \u00270X\u0027, so it has to start the convertion at begin()+2.",
+      "parentUuid": "0342fec4_6bfd667a",
       "range": {
         "startLine": 579,
         "startChar": 40,
