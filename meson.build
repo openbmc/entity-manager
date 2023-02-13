@@ -200,6 +200,7 @@ subdir('src')
 
 if not build_tests.disabled()
     test_boost_args = boost_args + ['-DBOOST_ASIO_DISABLE_THREADS']
+    test_boost_args = test_boost_args + ['-DPACKAGE_DIR="' + packagedir + '/"']
     gtest = dependency('gtest', main: true, disabler: true, required: false)
     gmock = dependency('gmock', disabler: true, required: false)
     if not (gtest.found() and gmock.found()) and build_tests.enabled()
@@ -238,11 +239,13 @@ if not build_tests.disabled()
             'test_fru_utils',
             'test/test_fru-utils.cpp',
             'src/fru_utils.cpp',
+            'src/fru_device.cpp',
             'src/fru_reader.cpp',
             cpp_args: test_boost_args,
             dependencies: [
                 boost,
                 gtest,
+                sdbusplus,
             ],
             implicit_include_directories: false,
             include_directories: 'include',
