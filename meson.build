@@ -238,11 +238,13 @@ if not build_tests.disabled()
             'test_fru_utils',
             'test/test_fru-utils.cpp',
             'src/fru_utils.cpp',
+            'src/fru_device.cpp',
             'src/fru_reader.cpp',
             cpp_args: test_boost_args,
             dependencies: [
                 boost,
                 gtest,
+                sdbusplus,
             ],
             implicit_include_directories: false,
             include_directories: 'include',
