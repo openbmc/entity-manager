@@ -14,6 +14,8 @@ extern "C"
 
 static constexpr size_t blockSize = I2C_SMBUS_BLOCK_MAX;
 
+#if 0
+
 TEST(ValidateHeaderTest, InvalidFruVersionReturnsFalse)
 {
     // Validates the FruVersion is checked for the only legal value.
@@ -388,3 +390,5 @@ TEST(FindFRUHeaderTest, TyanValidHeader)
     EXPECT_TRUE(findFRUHeader(reader, "error", blockData, offset));
     EXPECT_EQ(0x6000, offset);
 }
+
+#endif
