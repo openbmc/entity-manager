@@ -1146,12 +1146,13 @@ bool updateFRUProperty(
         std::copy(restFRUAreasData.begin(), restFRUAreasData.end(),
                   fruData.begin() + nextFRUAreaNewLoc);
         // Update Common Header
-        for (int fruArea = fruAreaInternal; fruArea <= fruAreaMultirecord;
-             fruArea++)
+        for (fruAreas nextFRUArea = fruAreas::fruAreaInternal;
+             nextFRUArea <= fruAreas::fruAreaMultirecord; ++nextFRUArea)
         {
-            unsigned int fruAreaOffsetField = getHeaderAreaFieldOffset(fruArea);
+            unsigned int fruAreaOffsetField =
+                getHeaderAreaFieldOffset(nextFRUArea);
             size_t curFRUAreaOffset = fruData[fruAreaOffsetField];
-            if (curFRUAreaOffset > fruAreaOffsetFieldValue)
+            if (curFRUAreaOffset > fruAreaParams.end)
             {
                 fruData[fruAreaOffsetField] = static_cast<int8_t>(
                     curFRUAreaOffset + nextFRUAreaOffsetDiff);
