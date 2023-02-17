@@ -1,0 +1,23 @@
+{
+    "Exposes": [
+        {
+            "Name": "Compatible System",
+            "Names": [
+                "ibm,rainier"
+            ],
+            "Type": "IBMCompatibleSystem"
+        },
+        {
+            "AuthType": "None",
+            "Hostname": "",
+            "Name": "aggregated0",
+            "Port": 443,
+            "Type": "SatelliteController"
+        }
+    ],
+    "Name": "Tacoma Rack Controller",
+    "Probe": [
+        "xyz.openbmc_project.Inventory.Decorator.Asset({'PartNumber': '03FL073'})"
+    ],
+    "Type": "Chassis"
+}
