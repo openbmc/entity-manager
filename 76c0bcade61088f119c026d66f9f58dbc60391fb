@@ -37,6 +37,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "f26523ba_8032a91d",
+        "filename": "configurations/fbyv2.json",
+        "patchSetId": 3
+      },
+      "lineNbr": 585,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2023-02-17T18:36:08Z",
+      "side": 1,
+      "message": "\u003e Seems like you could make the same argument here about \"why do you have a chassis and a board\".  Again the chassis + board serial are the same and contained on the same EEPROM (the board is simply screwed into the sheet metal to make a chassis).\n\u003e \n\u003e The Yv2 baseboard contains the EEPROM, which contains the serial number.  By nature of it being a baseboard we can assume it is also screwed into a chassis.  Are you suggesting we need a separate path?\n\nYes.  In the simplest example, the serial number of the chassis is not the same as the serial number of the motherboard, so they need separate paths to represent the components (even if you might not have the chassis serial number available).",
+      "parentUuid": "6127a5be_e42d77f7",
+      "revId": "76c0bcade61088f119c026d66f9f58dbc60391fb",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "b0b48ebc_f981fa5c",
         "filename": "configurations/twinlake.json",
         "patchSetId": 3
@@ -72,6 +90,30 @@
       "side": 1,
       "message": "Do we need it to generate as separate path for the Chassis itself then?  There isn\u0027t any identifying information (FRU) for the Chassis, really and I\u0027m not sure if you would call the bits of plastic much of a Chassis anyhow.\n\n\nTwinlakes is a compute card which plugs into a Yv2.  It is a board but it also acts as a sub-chassis (blade).  I\u0027m not sure the best way to model that.",
       "parentUuid": "b0b48ebc_f981fa5c",
+      "range": {
+        "startLine": 21,
+        "startChar": 13,
+        "endLine": 21,
+        "endChar": 18
+      },
+      "revId": "76c0bcade61088f119c026d66f9f58dbc60391fb",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5f48f303_81b0b36e",
+        "filename": "configurations/twinlake.json",
+        "patchSetId": 3
+      },
+      "lineNbr": 21,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2023-02-17T18:36:08Z",
+      "side": 1,
+      "message": "\u003e Do we need it to generate as separate path for the Chassis itself then?  There isn\u0027t any identifying information (FRU) for the Chassis, really and I\u0027m not sure if you would call the bits of plastic much of a Chassis anyhow.\n\nYes.  If you can hold something in your hand separately, then it gets its own file.  Just because it\u0027s not FRU detectable doesn\u0027t change that.  There are probe statements designed for \"I know this thing is present, so I know this other thing is present as well\" (ie, the present probe type).\n\n\u003e \n\u003e \n\u003e Twinlakes is a compute card which plugs into a Yv2.  It is a board but it also acts as a sub-chassis (blade).  I\u0027m not sure the best way to model that.\n\nTwo files, one for the motherboard itself, and one for the sub chassis.  If the sub chassis isn\u0027t detectable through a field on the IPMI eeprom FRU (usually chassis section vs board section), then just probe on the motherboard existing.",
+      "parentUuid": "8317af31_24150ad3",
       "range": {
         "startLine": 21,
         "startChar": 13,
