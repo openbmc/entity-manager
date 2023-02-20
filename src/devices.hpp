@@ -291,5 +291,9 @@ const boost::container::flat_map<const char*, ExportTemplate, CmpStr>
          {"MP2973",
           ExportTemplate("mp2973 $Address", "/sys/bus/i2c/devices/i2c-$Bus",
                          "new_device", "delete_device",
+                         createsHWMon::hasHWMonDir)},
+         {"MP2975",
+          ExportTemplate("mp2975 $Address", "/sys/bus/i2c/devices/i2c-$Bus",
+                         "new_device", "delete_device",
                          createsHWMon::hasHWMonDir)}}};
 } // namespace devices
