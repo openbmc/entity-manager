@@ -1,0 +1,39 @@
+{
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "definitions": {
+        "SatelliteController": {
+            "title": "satellite controller configuration",
+            "description": [
+                "The configuration used to add remote BMCs to a system"
+            ],
+            "type": "object",
+            "properties": {
+                "Hostname": {
+                    "description": ["Hostname or IP of satellite controller"],
+                    "type": "string"
+                },
+                "Port": {
+                    "description": [
+                        "Network port to connect to satellite controller"
+                    ],
+                    "type": "number"
+                },
+                "AuthType": {
+                    "description": [
+                        "Type of authorization to use with satellite controller"
+                    ],
+                    "enum": ["None"]
+                },
+                "Name": {
+                    "description": ["The name of the object"],
+                    "type": "string"
+                },
+                "Type": {
+                    "description": ["The type of satellite controller"],
+                    "enum": ["SatelliteController"]
+                }
+            },
+            "required": ["Hostname", "Port", "AuthType", "Name", "Type"]
+        }
+    }
+}
