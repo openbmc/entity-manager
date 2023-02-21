@@ -182,6 +182,7 @@ schemas = [
     'pid_zone.json',
     'stepwise.json',
     'virtual_sensor.json',
+    'satellite_controller.json',
 ]
 
 foreach s : schemas
