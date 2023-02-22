@@ -31,6 +31,15 @@
                         "type": "string"
                     }
                 },
+                "InputUnavailableAsFailed": {
+                    "type": "boolean"
+                },
+                "MissingIsAcceptable": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    }
+                },
                 "Name": {
                     "type": "string"
                 },
@@ -60,6 +69,12 @@
                 },
                 "SlewPos": {
                     "type": "number"
+                },
+                "TempToMargin": {
+                    "type": "array",
+                    "items": {
+                        "type": "number"
+                    }
                 },
                 "Type": {
                     "type": "string"
