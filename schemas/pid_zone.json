@@ -24,6 +24,9 @@
                 },
                 "UpdateThermalsTimeMS": {
                     "type": "number"
+                },
+                "ZoneIndex": {
+                    "type": "number"
                 }
             },
             "required": ["FailSafePercent", "MinThermalOutput", "Name", "Type"]
