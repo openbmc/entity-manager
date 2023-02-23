@@ -1,6 +1,28 @@
 {
     "Exposes": [
         {
+            "BridgeGpio": [
+                {
+                    "Name": "rtc-battery-voltage-read-enable",
+                    "Polarity": "High"
+                }
+            ],
+            "DevName": "iio-hwmon-battery",
+            "Index": 0,
+            "Name": "Battery Voltage",
+            "PollRate": 86400,
+            "ScaleFactor": 0.4348,
+            "Thresholds": [
+                {
+                    "Direction": "less than",
+                    "Name": "lower critical",
+                    "Severity": 1,
+                    "Value": 2.45
+                }
+            ],
+            "Type": "ADC"
+        },
+        {
             "I2CAddress": 88,
             "I2CBus": 3,
             "Name": "Power Supply Slot 0",
