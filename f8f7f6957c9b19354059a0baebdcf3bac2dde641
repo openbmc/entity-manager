@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2886b710_436e7749",
+        "filename": "schemas/satellite_controller.json",
+        "patchSetId": 6
+      },
+      "lineNbr": 34,
+      "author": {
+        "id": 1001303
+      },
+      "writtenOn": "2023-02-23T18:28:58Z",
+      "side": 1,
+      "message": "Should this be an enum like AuthType is since a specific value is expected?\n\nOn the bmcwb side we\u0027re expecting this value to be \"SatelliteController\" https://github.com/openbmc/bmcweb/blob/master/redfish-core/include/redfish_aggregator.hpp#L301-L303",
+      "range": {
+        "startLine": 31,
+        "startChar": 0,
+        "endLine": 34,
+        "endChar": 17
+      },
+      "revId": "f8f7f6957c9b19354059a0baebdcf3bac2dde641",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    }
+  ]
+}
