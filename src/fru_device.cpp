@@ -23,8 +23,8 @@
 #include <sys/ioctl.h>
 
 #include <boost/algorithm/string/predicate.hpp>
-#include <boost/asio/deadline_timer.hpp>
 #include <boost/asio/io_context.hpp>
+#include <boost/asio/steady_timer.hpp>
 #include <boost/container/flat_map.hpp>
 #include <nlohmann/json.hpp>
 #include <sdbusplus/asio/connection.hpp>
@@ -939,8 +939,8 @@ void rescanBusses(
     sdbusplus::asio::object_server& objServer,
     std::shared_ptr<sdbusplus::asio::connection>& systemBus)
 {
-    static boost::asio::deadline_timer timer(io);
-    timer.expires_from_now(boost::posix_time::seconds(1));
+    static boost::asio::steady_timer timer(io);
+    timer.expires_from_now(std::chrono::seconds(1));
 
     // setup an async wait in case we get flooded with requests
     timer.async_wait([&](const boost::system::error_code& ec) {
