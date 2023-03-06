@@ -24,7 +24,7 @@
 
 #include <boost/algorithm/string/predicate.hpp>
 #include <boost/asio/deadline_timer.hpp>
-#include <boost/asio/io_service.hpp>
+#include <boost/asio/io_context.hpp>
 #include <boost/container/flat_map.hpp>
 #include <nlohmann/json.hpp>
 #include <sdbusplus/asio/connection.hpp>
@@ -81,7 +81,7 @@ static boost::container::flat_map<
 static boost::container::flat_map<size_t, std::set<size_t>> failedAddresses;
 static boost::container::flat_map<size_t, std::set<size_t>> fruAddresses;
 
-boost::asio::io_service io;
+boost::asio::io_context io;
 
 bool updateFRUProperty(
     const std::string& updatePropertyReq, uint32_t bus, uint32_t address,
