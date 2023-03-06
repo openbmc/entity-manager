@@ -28,6 +28,7 @@
 #include <boost/algorithm/string/replace.hpp>
 #include <boost/algorithm/string/split.hpp>
 #include <boost/asio/io_context.hpp>
+#include <boost/asio/post.hpp>
 #include <boost/asio/steady_timer.hpp>
 #include <boost/container/flat_map.hpp>
 #include <boost/container/flat_set.hpp>
@@ -256,7 +257,7 @@ void createDeleteObjectMethod(
 
             // todo(james): dig through sdbusplus to find out why we can't
             // delete it in a method call
-            io.post([&objServer, dbusInterface]() mutable {
+            boost::asio::post(io, [&objServer, dbusInterface]() mutable {
                 objServer.remove_interface(dbusInterface);
             });
 
@@ -999,15 +1000,15 @@ static void publishNewConfiguration(
 {
     loadOverlays(newConfiguration);
 
-    io.post([systemConfiguration]() {
+    boost::asio::post(io, [systemConfiguration]() {
         if (!writeJsonFiles(systemConfiguration))
         {
             std::cerr << "Error writing json files\n";
         }
     });
 
-    io.post([&instance, count, &timer, newConfiguration, &systemConfiguration,
-             &objServer]() {
+    boost::asio::post(io, [&instance, count, &timer, newConfiguration,
+                           &systemConfiguration, &objServer]() {
         postToDbus(newConfiguration, systemConfiguration, objServer);
         if (count == instance)
         {
@@ -1087,10 +1088,11 @@ void propertiesChangedCallback(nlohmann::json& systemConfiguration,
 
                 inProgress = false;
 
-                io.post(std::bind_front(
-                    publishNewConfiguration, std::ref(instance), count,
-                    std::ref(timer), std::ref(systemConfiguration),
-                    newConfiguration, std::ref(objServer)));
+                boost::asio::post(
+                    io, std::bind_front(
+                            publishNewConfiguration, std::ref(instance), count,
+                            std::ref(timer), std::ref(systemConfiguration),
+                            newConfiguration, std::ref(objServer)));
             });
         perfScan->run();
     });
@@ -1156,8 +1158,9 @@ int main()
             propertiesChangedCallback(systemConfiguration, objServer);
         });
 
-    io.post(
-        [&]() { propertiesChangedCallback(systemConfiguration, objServer); });
+    boost::asio::post(io, [&]() {
+        propertiesChangedCallback(systemConfiguration, objServer);
+    });
 
     entityIface->register_method("ReScan", [&]() {
         propertiesChangedCallback(systemConfiguration, objServer);
