@@ -46,6 +46,30 @@
       },
       "revId": "2e1c2add2157ea21c3413a63e63fca16f893e237",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4631d666_44e70ded",
+        "filename": "schemas/satellite_controller.json",
+        "patchSetId": 7
+      },
+      "lineNbr": 19,
+      "author": {
+        "id": 1001303
+      },
+      "writtenOn": "2023-03-07T17:45:31Z",
+      "side": 1,
+      "message": "In bmcweb we already attempt to parse this value as a uint64_t https://github.com/openbmc/bmcweb/blob/master/redfish-core/include/redfish_aggregator.hpp#L350.  It should be fine if we want to use a uint64 instead of string for the \"type\".  I also verified with local testing that aggregation still works if the \"type\" for \"Port\" is a uint64.\n\nIf we want to be really specific, ports can only be represented by a uint16.  Entity-manager seems to expose positive numbers as uint64 so that\u0027s why in bmcweb we first parse the number as a uint64_t and then later make sure it can be represented as a uint16_t https://github.com/openbmc/bmcweb/blob/master/redfish-core/include/redfish_aggregator.hpp#L357.  Based on that I don\u0027t know how specific we can be in defining the type of uint to use.",
+      "parentUuid": "03a67b73_a4441b82",
+      "range": {
+        "startLine": 19,
+        "startChar": 29,
+        "endLine": 19,
+        "endChar": 35
+      },
+      "revId": "2e1c2add2157ea21c3413a63e63fca16f893e237",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }
