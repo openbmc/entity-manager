@@ -698,6 +698,17 @@ void postToDbus(const nlohmann::json& newConfiguration,
                                           getPermission(itemType));
             }
 
+            if (itemType == "System")
+            {
+                std::shared_ptr<sdbusplus::asio::dbus_interface> systemIface =
+                    createInterface(objServer, ifacePath,
+                                    "xyz.openbmc_project.Inventory.Item.System",
+                                    boardKeyOrig);
+                populateInterfaceFromJson(systemConfiguration, jsonPointerPath,
+                                          systemIface, item, objServer,
+                                          getPermission(itemType));
+            }
+
             populateInterfaceFromJson(systemConfiguration, jsonPointerPath,
                                       itemIface, item, objServer,
                                       getPermission(itemType));
