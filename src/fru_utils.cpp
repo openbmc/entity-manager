@@ -73,96 +73,116 @@ enum FRUDataEncoding
 std::pair<DecodeState, std::string>
     decodeFRUData(std::vector<uint8_t>::const_iterator& iter,
                   const std::vector<uint8_t>::const_iterator& end,
-                  bool isLangEng)
+                  bool isLangEng, fruAreas area)
 {
     std::string value;
     unsigned int i = 0;
-
-    /* we need at least one byte to decode the type/len header */
-    if (iter == end)
+    if (area != fruAreas::fruAreaMultirecord)
     {
-        std::cerr << "Truncated FRU data\n";
-        return make_pair(DecodeState::err, value);
-    }
-
-    uint8_t c = *(iter++);
-
-    /* 0xc1 is the end marker */
-    if (c == 0xc1)
-    {
-        return make_pair(DecodeState::end, value);
-    }
-
-    /* decode type/len byte */
-    uint8_t type = static_cast<uint8_t>(c >> 6);
-    uint8_t len = static_cast<uint8_t>(c & 0x3f);
-
-    /* we should have at least len bytes of data available overall */
-    if (iter + len > end)
-    {
-        std::cerr << "FRU data field extends past end of FRU area data\n";
-        return make_pair(DecodeState::err, value);
-    }
-
-    switch (type)
-    {
-        case FRUDataEncoding::binary:
+        /* we need at least one byte to decode the type/len header */
+        if (iter == end)
         {
-            std::stringstream ss;
-            ss << std::hex << std::setfill('0');
-            for (i = 0; i < len; i++, iter++)
-            {
-                uint8_t val = static_cast<uint8_t>(*iter);
-                ss << std::setw(2) << static_cast<int>(val);
-            }
-            value = ss.str();
-            break;
+            std::cerr << "Truncated FRU data\n";
+            return make_pair(DecodeState::err, value);
         }
-        case FRUDataEncoding::languageDependent:
-            /* For language-code dependent encodings, assume 8-bit ASCII */
-            value = std::string(iter, iter + len);
-            iter += len;
 
-            /* English text is encoded in 8-bit ASCII + Latin 1. All other
-             * languages are required to use 2-byte unicode. FruDevice does not
-             * handle unicode.
-             */
-            if (!isLangEng)
-            {
-                std::cerr << "Error: Non english string is not supported \n";
-                return make_pair(DecodeState::err, value);
-            }
+        uint8_t c = *(iter++);
 
-            break;
-
-        case FRUDataEncoding::bcdPlus:
-            value = std::string();
-            for (i = 0; i < len; i++, iter++)
-            {
-                uint8_t val = *iter;
-                value.push_back(bcdPlusToChar(val >> 4));
-                value.push_back(bcdPlusToChar(val & 0xf));
-            }
-            break;
-
-        case FRUDataEncoding::sixBitASCII:
+        /* 0xc1 is the end marker */
+        if (c == 0xc1)
         {
-            unsigned int accum = 0;
-            unsigned int accumBitLen = 0;
-            value = std::string();
-            for (i = 0; i < len; i++, iter++)
+            return make_pair(DecodeState::end, value);
+        }
+
+        /* decode type/len byte */
+        uint8_t type = static_cast<uint8_t>(c >> 6);
+        uint8_t len = static_cast<uint8_t>(c & 0x3f);
+
+        /* we should have at least len bytes of data available overall */
+        if (iter + len > end)
+        {
+            std::cerr << "FRU data field extends past end of FRU area data\n";
+            return make_pair(DecodeState::err, value);
+        }
+
+        switch (type)
+        {
+            case FRUDataEncoding::binary:
             {
-                accum |= *iter << accumBitLen;
-                accumBitLen += 8;
-                while (accumBitLen >= 6)
+                std::stringstream ss;
+                ss << std::hex << std::setfill('0');
+                for (i = 0; i < len; i++, iter++)
                 {
-                    value.push_back(sixBitToChar(accum & 0x3f));
-                    accum >>= 6;
-                    accumBitLen -= 6;
+                    uint8_t val = static_cast<uint8_t>(*iter);
+                    ss << std::setw(2) << static_cast<int>(val);
+                }
+                value = ss.str();
+                break;
+            }
+            case FRUDataEncoding::languageDependent:
+                /* For language-code dependent encodings, assume 8-bit ASCII */
+                value = std::string(iter, iter + len);
+                iter += len;
+
+                /* English text is encoded in 8-bit ASCII + Latin 1. All other
+                 * languages are required to use 2-byte unicode. FruDevice does
+                 * not handle unicode.
+                 */
+                if (!isLangEng)
+                {
+                    std::cerr
+                        << "Error: Non english string is not supported \n";
+                    return make_pair(DecodeState::err, value);
+                }
+
+                break;
+
+            case FRUDataEncoding::bcdPlus:
+                value = std::string();
+                for (i = 0; i < len; i++, iter++)
+                {
+                    uint8_t val = *iter;
+                    value.push_back(bcdPlusToChar(val >> 4));
+                    value.push_back(bcdPlusToChar(val & 0xf));
+                }
+                break;
+
+            case FRUDataEncoding::sixBitASCII:
+            {
+                unsigned int accum = 0;
+                unsigned int accumBitLen = 0;
+                value = std::string();
+                for (i = 0; i < len; i++, iter++)
+                {
+                    accum |= *iter << accumBitLen;
+                    accumBitLen += 8;
+                    while (accumBitLen >= 6)
+                    {
+                        value.push_back(sixBitToChar(accum & 0x3f));
+                        accum >>= 6;
+                        accumBitLen -= 6;
+                    }
                 }
             }
+            break;
         }
-        break;
+    }
+    else
+    {
+        if (iter == end)
+        {
+
+            return make_pair(DecodeState::end, value);
+        }
+        uint8_t len = *(++iter);
+        if (iter + len > end)
+        {
+            std::cerr << "FRU data field extends past end of FRU area data\n";
+            return make_pair(DecodeState::err, value);
+        }
+        ++iter;
+        value = std::string(iter, iter + len);
+        iter += len;
     }
 
     return make_pair(DecodeState::ok, value);
@@ -272,9 +292,9 @@ resCodes
 
     const std::vector<std::string>* fruAreaFieldNames = nullptr;
 
-    // Don't parse Internal and Multirecord areas
+    // Don't parse Internal
     for (fruAreas area = fruAreas::fruAreaChassis;
-         area <= fruAreas::fruAreaProduct; ++area)
+         area <= fruAreas::fruAreaMultirecord; ++area)
     {
 
         size_t offset = *(fruBytes.begin() + getHeaderAreaFieldOffset(area));
@@ -290,175 +310,289 @@ resCodes
             std::cerr << "Not enough data to parse \n";
             return resCodes::resErr;
         }
-        // check for format version 1
-        if (*fruBytesIter != 0x01)
+        if (area == fruAreas::fruAreaMultirecord)
         {
-            std::cerr << "Unexpected version " << *fruBytesIter << "\n";
-            return resCodes::resErr;
-        }
-        ++fruBytesIter;
-
-        /* Verify other area offset for overlap with current area by passing
-         * length of current area offset pointed by *fruBytesIter
-         */
-        if (!verifyOffset(fruBytes, area, *fruBytesIter))
-        {
-            return resCodes::resErr;
-        }
-
-        size_t fruAreaSize = *fruBytesIter * fruBlockSize;
-        std::vector<uint8_t>::const_iterator fruBytesIterEndArea =
-            fruBytes.begin() + offset + fruAreaSize - 1;
-        ++fruBytesIter;
-
-        uint8_t fruComputedChecksum =
-            calculateChecksum(fruBytes.begin() + offset, fruBytesIterEndArea);
-        if (fruComputedChecksum != *fruBytesIterEndArea)
-        {
-            std::stringstream ss;
-            ss << std::hex << std::setfill('0');
-            ss << "Checksum error in FRU area " << getFruAreaName(area) << "\n";
-            ss << "\tComputed checksum: 0x" << std::setw(2)
-               << static_cast<int>(fruComputedChecksum) << "\n";
-            ss << "\tThe read checksum: 0x" << std::setw(2)
-               << static_cast<int>(*fruBytesIterEndArea) << "\n";
-            std::cerr << ss.str();
-            ret = resCodes::resWarn;
-        }
-
-        /* Set default language flag to true as Chassis Fru area are always
-         * encoded in English defined in Section 10 of Fru specification
-         */
-
-        bool isLangEng = true;
-        switch (area)
-        {
-            case fruAreas::fruAreaChassis:
+            constexpr uint8_t multiRecordEndOfListMask = 0x82;
+            constexpr size_t multiRecordHeaderSize = 5;
+            int recordId = *fruBytesIter;
+            if (recordId >= 0xc0 && recordId <= 0xff)
             {
-                result["CHASSIS_TYPE"] =
-                    std::to_string(static_cast<int>(*fruBytesIter));
-                fruBytesIter += 1;
-                fruAreaFieldNames = &chassisFruAreas;
-                break;
-            }
-            case fruAreas::fruAreaBoard:
-            {
-                uint8_t lang = *fruBytesIter;
-                result["BOARD_LANGUAGE_CODE"] =
-                    std::to_string(static_cast<int>(lang));
-                isLangEng = checkLangEng(lang);
-                fruBytesIter += 1;
-
-                unsigned int minutes = *fruBytesIter |
-                                       *(fruBytesIter + 1) << 8 |
-                                       *(fruBytesIter + 2) << 16;
-                std::tm fruTime = intelEpoch();
-                std::time_t timeValue = std::mktime(&fruTime);
-                timeValue += static_cast<long>(minutes) * 60;
-                fruTime = *std::gmtime(&timeValue);
-
-                // Tue Nov 20 23:08:00 2018
-                std::array<char, 32> timeString = {};
-                auto bytes = std::strftime(timeString.data(), timeString.size(),
-                                           "%Y-%m-%d - %H:%M:%S", &fruTime);
-                if (bytes == 0)
+                ++fruBytesIter;
+                if (*fruBytesIter != multiRecordEndOfListMask)
                 {
-                    std::cerr << "invalid time string encountered\n";
+                    printf("End of list : %x", *fruBytesIter);
                     return resCodes::resErr;
                 }
+                ++fruBytesIter;
+                if (!verifyOffset(fruBytes, area, *fruBytesIter))
+                {
+                    std::cerr << "offset failed \n";
+                    return resCodes::resErr;
+                }
+                size_t fruAreaSize = *fruBytesIter;
+                std::vector<uint8_t>::const_iterator fruBytesIterEndArea =
+                    fruBytes.begin() + offset + fruAreaSize +
+                    multiRecordHeaderSize;
+                ++fruBytesIter;
+                uint8_t recordChecksum = calculateChecksum(
+                    fruBytes.begin() + offset + multiRecordHeaderSize,
+                    fruBytesIterEndArea);
+                if (recordChecksum != *fruBytesIter)
+                {
+                    std::stringstream ss;
+                    ss << std::hex << std::setfill('0');
+                    ss << "Record Checksum error in FRU area "
+                       << getFruAreaName(area) << "\n";
+                    ss << "\tRecord checksum: 0x" << std::setw(2)
+                       << static_cast<int>(recordChecksum) << "\n";
+                    ss << "\tThe read checksum: 0x" << std::setw(2)
+                       << static_cast<int>(*fruBytesIter) << "\n";
+                    std::cerr << ss.str();
+                    ret = resCodes::resWarn;
+                }
+                ++fruBytesIter;
+                uint8_t headerChecksum =
+                    calculateChecksum(fruBytes.begin() + offset, fruBytesIter);
+                if (headerChecksum != *fruBytesIter)
+                {
+                    std::stringstream ss;
+                    ss << std::hex << std::setfill('0');
+                    ss << "Header Checksum error in FRU area "
+                       << getFruAreaName(area) << "\n";
+                    ss << "\tHeader checksum: 0x" << std::setw(2)
+                       << static_cast<int>(headerChecksum) << "\n";
+                    ss << "\tThe header checksum: 0x" << std::setw(2)
+                       << static_cast<int>(*fruBytesIter) << "\n";
+                    std::cerr << ss.str();
+                    ret = resCodes::resWarn;
+                }
+                ++fruBytesIter;
+                bool isLangEng = true;
+                size_t fieldIndex = 0;
+                DecodeState state = DecodeState::ok;
+                do
+                {
+                    auto res = decodeFRUData(fruBytesIter, fruBytesIterEndArea,
+                                             isLangEng, area);
+                    state = res.first;
+                    std::string value = res.second;
+                    std::string name;
+                    name = std::string(getFruAreaName(area)) + "_" +
+                           oemMultiRecordFruAreas +
+                           std::to_string(fieldIndex + 1);
 
-                result["BOARD_MANUFACTURE_DATE"] =
-                    std::string_view(timeString.data(), bytes);
-                fruBytesIter += 3;
-                fruAreaFieldNames = &boardFruAreas;
-                break;
-            }
-            case fruAreas::fruAreaProduct:
-            {
-                uint8_t lang = *fruBytesIter;
-                result["PRODUCT_LANGUAGE_CODE"] =
-                    std::to_string(static_cast<int>(lang));
-                isLangEng = checkLangEng(lang);
-                fruBytesIter += 1;
-                fruAreaFieldNames = &productFruAreas;
-                break;
-            }
-            default:
-            {
-                std::cerr << "Internal error: unexpected FRU area index: "
-                          << static_cast<int>(area) << " \n";
-                return resCodes::resErr;
-            }
-        }
-        size_t fieldIndex = 0;
-        DecodeState state = DecodeState::ok;
-        do
-        {
-            auto res =
-                decodeFRUData(fruBytesIter, fruBytesIterEndArea, isLangEng);
-            state = res.first;
-            std::string value = res.second;
-            std::string name;
-            if (fieldIndex < fruAreaFieldNames->size())
-            {
-                name = std::string(getFruAreaName(area)) + "_" +
-                       fruAreaFieldNames->at(fieldIndex);
-            }
-            else
-            {
-                name =
-                    std::string(getFruAreaName(area)) + "_" +
-                    fruCustomFieldName +
-                    std::to_string(fieldIndex - fruAreaFieldNames->size() + 1);
-            }
-
-            if (state == DecodeState::ok)
-            {
-                // Strip non null characters from the end
-                value.erase(std::find_if(value.rbegin(), value.rend(),
+                    if (state == DecodeState::ok)
+                    {
+                        // Strip non null characters from the end
+                        value.erase(
+                            std::find_if(value.rbegin(), value.rend(),
                                          [](char ch) { return ch != 0; })
                                 .base(),
                             value.end());
 
-                result[name] = std::move(value);
-                ++fieldIndex;
-            }
-            else if (state == DecodeState::err)
-            {
-                std::cerr << "Error while parsing " << name << "\n";
-                ret = resCodes::resWarn;
-                // Cancel decoding if failed to parse any of mandatory
-                // fields
-                if (fieldIndex < fruAreaFieldNames->size())
+                        result[name] = std::move(value);
+                        ++fieldIndex;
+                    }
+                    if (state == DecodeState::err)
+                    {
+                        std::cerr << "Error while parsing " << name << "\n";
+                        std::cerr << "Failed to parse mandatory field \n";
+                        return resCodes::resErr;
+                    }
+
+                } while (state == DecodeState::ok);
+                for (; fruBytesIter < fruBytesIterEndArea; fruBytesIter++)
                 {
-                    std::cerr << "Failed to parse mandatory field \n";
+                    uint8_t c = *fruBytesIter;
+                    if (c != 0U)
+                    {
+                        std::cerr
+                            << "Non-zero byte after EndOfFields in FRU area "
+                            << getFruAreaName(area) << "\n";
+                        ret = resCodes::resWarn;
+                        break;
+                    }
+                }
+            }
+            if (recordId < 0xc0)
+            {
+                std::cerr << "Record is not an OEM type \n";
+                return resCodes::resErr;
+            }
+        }
+        else
+        {
+            // check for format version 1
+            if (*fruBytesIter != 0x01)
+            {
+                std::cerr << "Unexpected version " << *fruBytesIter << "\n";
+                return resCodes::resErr;
+            }
+            ++fruBytesIter;
+
+            /* Verify other area offset for overlap with current area by passing
+             * length of current area offset pointed by *fruBytesIter
+             */
+            if (!verifyOffset(fruBytes, area, *fruBytesIter))
+            {
+                return resCodes::resErr;
+            }
+
+            size_t fruAreaSize = *fruBytesIter * fruBlockSize;
+            std::vector<uint8_t>::const_iterator fruBytesIterEndArea =
+                fruBytes.begin() + offset + fruAreaSize - 1;
+            ++fruBytesIter;
+
+            uint8_t fruComputedChecksum = calculateChecksum(
+                fruBytes.begin() + offset, fruBytesIterEndArea);
+            if (fruComputedChecksum != *fruBytesIterEndArea)
+            {
+                std::stringstream ss;
+                ss << std::hex << std::setfill('0');
+                ss << "Checksum error in FRU area " << getFruAreaName(area)
+                   << "\n";
+                ss << "\tComputed checksum: 0x" << std::setw(2)
+                   << static_cast<int>(fruComputedChecksum) << "\n";
+                ss << "\tThe read checksum: 0x" << std::setw(2)
+                   << static_cast<int>(*fruBytesIterEndArea) << "\n";
+                std::cerr << ss.str();
+                ret = resCodes::resWarn;
+            }
+
+            /* Set default language flag to true as Chassis Fru area are always
+             * encoded in English defined in Section 10 of Fru specification
+             */
+
+            bool isLangEng = true;
+            switch (area)
+            {
+                case fruAreas::fruAreaChassis:
+                {
+                    result["CHASSIS_TYPE"] =
+                        std::to_string(static_cast<int>(*fruBytesIter));
+                    fruBytesIter += 1;
+                    fruAreaFieldNames = &chassisFruAreas;
+                    break;
+                }
+                case fruAreas::fruAreaBoard:
+                {
+                    uint8_t lang = *fruBytesIter;
+                    result["BOARD_LANGUAGE_CODE"] =
+                        std::to_string(static_cast<int>(lang));
+                    isLangEng = checkLangEng(lang);
+                    fruBytesIter += 1;
+
+                    unsigned int minutes = *fruBytesIter |
+                                           *(fruBytesIter + 1) << 8 |
+                                           *(fruBytesIter + 2) << 16;
+                    std::tm fruTime = intelEpoch();
+                    std::time_t timeValue = std::mktime(&fruTime);
+                    timeValue += static_cast<long>(minutes) * 60;
+                    fruTime = *std::gmtime(&timeValue);
+
+                    // Tue Nov 20 23:08:00 2018
+                    std::array<char, 32> timeString = {};
+                    auto bytes =
+                        std::strftime(timeString.data(), timeString.size(),
+                                      "%Y-%m-%d - %H:%M:%S", &fruTime);
+                    if (bytes == 0)
+                    {
+                        std::cerr << "invalid time string encountered\n";
+                        return resCodes::resErr;
+                    }
+
+                    result["BOARD_MANUFACTURE_DATE"] =
+                        std::string_view(timeString.data(), bytes);
+                    fruBytesIter += 3;
+                    fruAreaFieldNames = &boardFruAreas;
+                    break;
+                }
+                case fruAreas::fruAreaProduct:
+                {
+                    uint8_t lang = *fruBytesIter;
+                    result["PRODUCT_LANGUAGE_CODE"] =
+                        std::to_string(static_cast<int>(lang));
+                    isLangEng = checkLangEng(lang);
+                    fruBytesIter += 1;
+                    fruAreaFieldNames = &productFruAreas;
+                    break;
+                }
+                default:
+                {
+                    std::cerr << "Internal error: unexpected FRU area index: "
+                              << static_cast<int>(area) << " \n";
                     return resCodes::resErr;
                 }
             }
-            else
+            size_t fieldIndex = 0;
+            DecodeState state = DecodeState::ok;
+            do
             {
+                auto res = decodeFRUData(fruBytesIter, fruBytesIterEndArea,
+                                         isLangEng, area);
+                state = res.first;
+                std::string value = res.second;
+                std::string name;
                 if (fieldIndex < fruAreaFieldNames->size())
                 {
-                    std::cerr << "Mandatory fields absent in FRU area "
-                              << getFruAreaName(area) << " after " << name
-                              << "\n";
-                    ret = resCodes::resWarn;
+                    name = std::string(getFruAreaName(area)) + "_" +
+                           fruAreaFieldNames->at(fieldIndex);
                 }
-            }
-        } while (state == DecodeState::ok);
-        for (; fruBytesIter < fruBytesIterEndArea; fruBytesIter++)
-        {
-            uint8_t c = *fruBytesIter;
-            if (c != 0U)
+                else
+                {
+                    name = std::string(getFruAreaName(area)) + "_" +
+                           fruCustomFieldName +
+                           std::to_string(fieldIndex -
+                                          fruAreaFieldNames->size() + 1);
+                }
+
+                if (state == DecodeState::ok)
+                {
+                    // Strip non null characters from the end
+                    value.erase(std::find_if(value.rbegin(), value.rend(),
+                                             [](char ch) { return ch != 0; })
+                                    .base(),
+                                value.end());
+
+                    result[name] = std::move(value);
+                    ++fieldIndex;
+                }
+                else if (state == DecodeState::err)
+                {
+                    std::cerr << "Error while parsing " << name << "\n";
+                    ret = resCodes::resWarn;
+                    // Cancel decoding if failed to parse any of mandatory
+                    // fields
+                    if (fieldIndex < fruAreaFieldNames->size())
+                    {
+                        std::cerr << "Failed to parse mandatory field \n";
+                        return resCodes::resErr;
+                    }
+                }
+                else
+                {
+                    if (fieldIndex < fruAreaFieldNames->size())
+                    {
+                        std::cerr << "Mandatory fields absent in FRU area "
+                                  << getFruAreaName(area) << " after " << name
+                                  << "\n";
+                        ret = resCodes::resWarn;
+                    }
+                }
+            } while (state == DecodeState::ok);
+            for (; fruBytesIter < fruBytesIterEndArea; fruBytesIter++)
             {
-                std::cerr << "Non-zero byte after EndOfFields in FRU area "
-                          << getFruAreaName(area) << "\n";
-                ret = resCodes::resWarn;
-                break;
+                uint8_t c = *fruBytesIter;
+                if (c != 0U)
+                {
+                    std::cerr << "Non-zero byte after EndOfFields in FRU area "
+                              << getFruAreaName(area) << "\n";
+                    ret = resCodes::resWarn;
+                    break;
+                }
             }
         }
     }
-
     return ret;
 }
 
@@ -707,7 +841,7 @@ std::vector<uint8_t> readFRUContents(FRUReader& reader,
 
         // the multi-area record header is 5 bytes long.
         constexpr size_t multiRecordHeaderSize = 5;
-        constexpr uint8_t multiRecordEndOfListMask = 0x80;
+        constexpr uint8_t multiRecordEndOfListMask = 0x82;
 
         // Sanity hard-limit to 64KB.
         while (areaOffset < std::numeric_limits<uint16_t>::max())
