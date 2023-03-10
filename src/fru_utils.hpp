@@ -90,6 +90,8 @@ const std::vector<std::string> productFruAreas = {
 
 const std::string fruCustomFieldName = "INFO_AM";
 
+const std::string oemMultiRecordFruAreas = "PART_NUMBER";
+
 inline fruAreas operator++(fruAreas& x)
 {
     return x = static_cast<fruAreas>(std::underlying_type<fruAreas>::type(x) +
@@ -118,7 +120,7 @@ bool verifyOffset(const std::vector<uint8_t>& fruBytes, fruAreas currentArea,
 std::pair<DecodeState, std::string>
     decodeFRUData(std::vector<uint8_t>::const_iterator& iter,
                   const std::vector<uint8_t>::const_iterator& end,
-                  bool isLangEng);
+                  bool isLangEng, fruAreas area);
 
 bool checkLangEng(uint8_t lang);
 
