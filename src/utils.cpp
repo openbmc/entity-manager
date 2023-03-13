@@ -222,33 +222,34 @@ std::optional<std::string>
         return ret;
     }
 
-    std::string* strPtr = keyPair.value().get_ptr<std::string*>();
-    if (strPtr == nullptr)
+    // Don't perform substitution on non-strings
+    if (!keyPair.value().is_string())
     {
         return ret;
     }
+    std::string str = keyPair.value();
 
-    boost::replace_all(*strPtr, std::string(templateChar) + "index",
+    boost::replace_all(str, std::string(templateChar) + "index",
                        std::to_string(index));
     if (replaceStr)
     {
-        boost::replace_all(*strPtr, *replaceStr, std::to_string(index));
+        boost::replace_all(str, *replaceStr, std::to_string(index));
     }
 
     for (const auto& [propName, propValue] : interface)
     {
         std::string templateName = templateChar + propName;
         boost::iterator_range<std::string::const_iterator> find =
-            boost::ifind_first(*strPtr, templateName);
+            boost::ifind_first(str, templateName);
         if (!find)
         {
             continue;
         }
 
-        size_t start = find.begin() - strPtr->begin();
+        size_t start = find.begin() - str.begin();
 
         // check for additional operations
-        if ((start == 0U) && find.end() == strPtr->end())
+        if ((start == 0U) && find.end() == str.end())
         {
             std::visit([&](auto&& val) { keyPair.value() = val; }, propValue);
             return ret;
@@ -258,20 +259,20 @@ std::optional<std::string>
                                                          '/'};
         size_t nextItemIdx = start + templateName.size() + 1;
 
-        if (nextItemIdx > strPtr->size() ||
+        if (nextItemIdx > str.size() ||
             std::find(mathChars.begin(), mathChars.end(),
-                      strPtr->at(nextItemIdx)) == mathChars.end())
+                      str.at(nextItemIdx)) == mathChars.end())
         {
             std::string val = std::visit(VariantToStringVisitor(), propValue);
-            boost::ireplace_all(*strPtr, templateName, val);
+            boost::ireplace_all(str, templateName, val);
             continue;
         }
 
         // save the prefix
-        std::string prefix = strPtr->substr(0, start);
+        std::string prefix = str.substr(0, start);
 
         // operate on the rest
-        std::string end = strPtr->substr(nextItemIdx);
+        std::string end = str.substr(nextItemIdx);
 
         std::vector<std::string> split;
         boost::split(split, end, boost::is_any_of(" "));
@@ -279,14 +280,14 @@ std::optional<std::string>
         // need at least 1 operation and number
         if (split.size() < 2)
         {
-            std::cerr << "Syntax error on template replacement of " << *strPtr
+            std::cerr << "Syntax error on template replacement of " << str
                       << "\n";
             for (const std::string& data : split)
             {
                 std::cerr << data << " ";
             }
             std::cerr << "\n";
-            continue;
+            return std::nullopt;
         }
 
         // we assume that the replacement is a number, because we can
@@ -310,24 +311,10 @@ std::optional<std::string>
         {
             result.append(" ").append(*exprEnd++);
         }
-        keyPair.value() = result;
-
-        // We probably just invalidated the pointer abovei,
-        // reset and continue to handle multiple templates
-        strPtr = keyPair.value().get_ptr<std::string*>();
-        if (strPtr == nullptr)
-        {
-            break;
-        }
+        str = result;
     }
 
-    strPtr = keyPair.value().get_ptr<std::string*>();
-    if (strPtr == nullptr)
-    {
-        return ret;
-    }
-
-    std::string_view strView = *strPtr;
+    std::string_view strView = str;
     int base = 10;
     if (boost::starts_with(strView, "0x"))
     {
@@ -342,6 +329,10 @@ std::optional<std::string>
     if (res.ec == std::errc{} && res.ptr == strDataEndPtr)
     {
         keyPair.value() = temp;
+    }
+    else
+    {
+        keyPair.value() = str;
     }
 
     return ret;
