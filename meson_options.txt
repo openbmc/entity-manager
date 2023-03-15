@@ -5,5 +5,11 @@ option(
     'fru-device', type: 'boolean', description: 'Build fru-device.',
 )
 option(
+    'usb-device', type: 'boolean', description: 'Build usb-device.',
+)
+option(
+    'usb-device-config', type: 'string', value: '/usr/share/usb-device/config.json', description: 'USB Devicee configuration json file.',
+)
+option(
     'fru-device-resizefru', value : false, type: 'boolean', description: 'Allow FruDevice to resize FRU areas.',
 )

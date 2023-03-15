@@ -44,3 +44,28 @@ if get_option('fru-device')
         install: true,
     )
 endif
+
+if get_option('usb-device')
+    conf_data = configuration_data()
+    conf_data.set_quoted('USB_DEVICE_CONFIG', get_option('usb-device-config'))
+    conf_h = configure_file(
+        output: 'config.h',
+        configuration: conf_data)
+    executable(
+        'usb-device',
+        'usb_device.cpp',
+        conf_h,
+        cpp_args: cpp_args,
+        dependencies: [
+            boost,
+            nlohmann_json_dep,
+            sdbusplus,
+            threads,
+            dependency('stdplus'),
+        ],
+        link_args : ['-ludev'],
+        implicit_include_directories: false,
+        include_directories: include_directories('.'),
+        install: true,
+    )
+endif

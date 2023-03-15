@@ -1,0 +1,10 @@
+[Unit]
+Description=USB Device
+
+[Service]
+ExecStart=/usr/bin/usb-device
+Restart=always
+Type=simple
+
+[Install]
+WantedBy=multi-user.target
