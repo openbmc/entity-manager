@@ -44,3 +44,22 @@ if get_option('fru-device')
         install: true,
     )
 endif
+
+if get_option('usb-device')
+    cpp_args_fd = cpp_args
+    executable(
+            'usb-device',
+            'usb_device.cpp',
+            cpp_args: cpp_args,
+            dependencies: [
+                boost,
+                nlohmann_json_dep,
+                sdbusplus,
+                threads,
+                valijson,
+            ],
+            link_args : ['-ludev'],
+            implicit_include_directories: false,
+            install: true,
+        )
+endif

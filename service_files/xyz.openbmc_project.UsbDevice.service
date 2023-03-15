@@ -1,0 +1,11 @@
+[Unit]
+Description=USB Device
+After=rded.service
+
+[Service]
+ExecStart=/usr/bin/usb-device
+Restart=always
+Type=simple
+
+[Install]
+WantedBy=multi-user.target
