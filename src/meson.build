@@ -15,3 +15,7 @@ endif
 if get_option('gpio-presence')
     subdir('gpio-presence')
 endif
+
+#if get_option('usb-device')
+    subdir('usb_device')
+#endif

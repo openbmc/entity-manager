@@ -1,5 +1,6 @@
 unit_files = [
     ['xyz.openbmc_project.FruDevice.service', 'fru-device'],
+    ['xyz.openbmc_project.UsbDevice.service', 'usb-device'],
     ['xyz.openbmc_project.EntityManager.service', ''],
     ['devicetree-vpd-parser.service', 'devicetree-vpd'],
     ['xyz.openbmc_project.gpiopresence.service', 'gpio-presence'],
