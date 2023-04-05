@@ -88,6 +88,24 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "d313191a_000c4b62",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1000008
+      },
+      "writtenOn": "2023-04-05T21:11:49Z",
+      "side": 1,
+      "message": "Oh actually if https://gerrit.openbmc.org/c/openbmc/entity-manager/+/60594 makes it in then we may not need this, since EM would only restart the timer and process new interfaces if it has probes for them.",
+      "parentUuid": "4a5dabb6_6beb43e7",
+      "revId": "de5d71dd9ab5ebaddb27816cf1823cad1d539d2a",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "3b0faab9_bc1883f9",
