@@ -34,6 +34,40 @@
       "parentUuid": "177b0002_4bf28d80",
       "revId": "d66baec709eb851ed6714d1a50021f0385d6b434",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5b9b6562_67958142",
+        "filename": "schemas/satellite_controller.json",
+        "patchSetId": 8
+      },
+      "lineNbr": 20,
+      "author": {
+        "id": 1000163
+      },
+      "writtenOn": "2023-04-10T22:37:23Z",
+      "side": 1,
+      "message": "Hostname and port imply an IP connection (TCP or UDP). This does not specify which one.\n\nIf an I3C connection (or some other type of connection) is needed in the future, how will this schema be extended? I am in favor of a connect style string that is more future proof:\n\n\"Connect\" : \"protocol:hostname:port\"\n\"Connect\" : \"tcp:10.1.1.71:443\"\n\"Connect\" : \"i3c:6:0x24\" /* (bus type, bus number, bus address) */\n\nSomething like that. Just a thought.",
+      "revId": "d66baec709eb851ed6714d1a50021f0385d6b434",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "16096e69_8d366b82",
+        "filename": "schemas/satellite_controller.json",
+        "patchSetId": 8
+      },
+      "lineNbr": 25,
+      "author": {
+        "id": 1000163
+      },
+      "writtenOn": "2023-04-10T22:37:23Z",
+      "side": 1,
+      "message": "Is the plan to add more authentication types as they come up?",
+      "revId": "d66baec709eb851ed6714d1a50021f0385d6b434",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }
