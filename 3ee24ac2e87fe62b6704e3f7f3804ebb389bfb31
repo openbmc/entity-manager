@@ -33,6 +33,24 @@
       "message": "What does an empty hostname mean? There is a port set below, so is this localhost?",
       "revId": "3ee24ac2e87fe62b6704e3f7f3804ebb389bfb31",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "b008219b_fe71e5ee",
+        "filename": "configurations/ibm_tacoma_rack_controller.json",
+        "patchSetId": 8
+      },
+      "lineNbr": 12,
+      "author": {
+        "id": 1000004
+      },
+      "writtenOn": "2023-04-11T13:49:54Z",
+      "side": 1,
+      "message": "This tacoma system is just a bringup vehicle for some of this aggregation work. Long term the goal is to host this object outside of entity-manager because the satellite BMC\u0027s will be dynamically discovered (so we can\u0027t statically put them into this config file). I put this data in this file mostly as a test case and an easy avenue to override in my testing. If the bmcweb code doesn\u0027t see a valid Hostname property then it ignores aggregation which is the default I want for this system.",
+      "parentUuid": "b6f20aa9_f1ff6453",
+      "revId": "3ee24ac2e87fe62b6704e3f7f3804ebb389bfb31",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }
