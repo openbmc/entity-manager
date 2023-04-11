@@ -72,6 +72,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "0ee74353_22450a86",
+        "filename": "schemas/satellite_controller.json",
+        "patchSetId": 8
+      },
+      "lineNbr": 20,
+      "author": {
+        "id": 1000004
+      },
+      "writtenOn": "2023-04-11T13:46:12Z",
+      "side": 1,
+      "message": "Yeah, valid point. I know our future system designs are all just tcp based, and it looks like the only other current interested party, google, is also just tcp based. The code that utilizes this framework has already been written in bmcweb (https://github.com/openbmc/bmcweb/blob/master/AGGREGATION.md), I\u0027m just trying to get the EM structure defined that the code already expects. Changing this would require changes to the bmcweb code that Carson has been writing. My vote would be we just go with this and if a change is needed in the future, it will just have to be coordinated.",
+      "parentUuid": "5b9b6562_67958142",
+      "revId": "d66baec709eb851ed6714d1a50021f0385d6b434",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "16096e69_8d366b82",
         "filename": "schemas/satellite_controller.json",
         "patchSetId": 8
@@ -83,6 +101,24 @@
       "writtenOn": "2023-04-10T22:37:23Z",
       "side": 1,
       "message": "Is the plan to add more authentication types as they come up?",
+      "revId": "d66baec709eb851ed6714d1a50021f0385d6b434",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "7e035bb4_bb82204a",
+        "filename": "schemas/satellite_controller.json",
+        "patchSetId": 8
+      },
+      "lineNbr": 25,
+      "author": {
+        "id": 1000004
+      },
+      "writtenOn": "2023-04-11T13:46:12Z",
+      "side": 1,
+      "message": "Yep, coming soon hopefully.",
+      "parentUuid": "16096e69_8d366b82",
       "revId": "d66baec709eb851ed6714d1a50021f0385d6b434",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
