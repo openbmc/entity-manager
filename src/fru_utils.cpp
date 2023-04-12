@@ -353,7 +353,7 @@ resCodes
                                        *(fruBytesIter + 1) << 8 |
                                        *(fruBytesIter + 2) << 16;
                 std::tm fruTime = intelEpoch();
-                std::time_t timeValue = std::mktime(&fruTime);
+                std::time_t timeValue = timegm(&fruTime);
                 timeValue += static_cast<long>(minutes) * 60;
                 fruTime = *std::gmtime(&timeValue);
 
