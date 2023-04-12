@@ -459,14 +459,14 @@ resCodes
                                        *(fruBytesIter + 1) << 8 |
                                        *(fruBytesIter + 2) << 16;
                 std::tm fruTime = intelEpoch();
-                std::time_t timeValue = std::mktime(&fruTime);
+                std::time_t timeValue = timegm(&fruTime);
                 timeValue += static_cast<long>(minutes) * 60;
                 fruTime = *std::gmtime(&timeValue);
 
                 // Tue Nov 20 23:08:00 2018
                 std::array<char, 32> timeString = {};
                 auto bytes = std::strftime(timeString.data(), timeString.size(),
-                                           "%Y-%m-%d - %H:%M:%S", &fruTime);
+                                           "%Y-%m-%d - %H:%M:%S UTC", &fruTime);
                 if (bytes == 0)
                 {
                     std::cerr << "invalid time string encountered\n";
