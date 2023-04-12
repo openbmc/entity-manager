@@ -8,7 +8,7 @@ project(
     ],
     license: 'Apache-2.0',
     version: '0.1',
-    meson_version: '>=0.57.0',
+    meson_version: '>=0.58.0',
 )
 add_project_arguments('-Wno-psabi', language: 'cpp')
 
@@ -44,9 +44,9 @@ if not sdbusplus.found()
     sdbusplus = sdbusplus.as_system('system')
 endif
 systemd = dependency('systemd')
-systemd_system_unit_dir = systemd.get_pkgconfig_variable(
+systemd_system_unit_dir = systemd.get_variable(
     'systemdsystemunitdir',
-    define_variable: ['prefix', get_option('prefix')])
+    pkgconfig_define: ['prefix', get_option('prefix')])
 packagedir = join_paths(
     get_option('prefix'),
     get_option('datadir'),
