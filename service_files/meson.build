@@ -15,7 +15,7 @@ foreach u : unit_files
     endif
 endforeach
 
-dbus_system_bus_services_dir = dependency('dbus-1').get_pkgconfig_variable(
+dbus_system_bus_services_dir = dependency('dbus-1').get_variable(
     'system_bus_services_dir',
     define_variable: ['prefix', get_option('prefix')])
 install_data(
