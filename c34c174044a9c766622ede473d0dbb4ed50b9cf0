@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "85885774_71fd46c5",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 10
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1001354
+      },
+      "writtenOn": "2023-04-13T16:49:41Z",
+      "side": 1,
+      "message": "The DL360 config file now uses type:HPEFan instead of Type:GxpFan to match with existing naming conventions. This change is also reflected in the dbus-sensor code that keys off this field.\n\nChange disussion can be found here:\nhttps://gerrit.openbmc.org/c/openbmc/dbus-sensors/+/62008/6..8/src/FanMain.cpp#b45",
+      "revId": "c34c174044a9c766622ede473d0dbb4ed50b9cf0",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    }
+  ]
+}
