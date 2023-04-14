@@ -743,15 +743,15 @@ bool findFRUHeader(FRUReader& reader, const std::string& errorHelp,
     return false;
 }
 
-std::vector<uint8_t> readFRUContents(FRUReader& reader,
-                                     const std::string& errorHelp)
+std::pair<std::vector<uint8_t>, bool>
+    readFRUContents(FRUReader& reader, const std::string& errorHelp)
 {
     std::array<uint8_t, I2C_SMBUS_BLOCK_MAX> blockData{};
     off_t baseOffset = 0x0;
 
     if (!findFRUHeader(reader, errorHelp, blockData, baseOffset))
     {
-        return {};
+        return {{}, false};
     }
 
     std::vector<uint8_t> device;
@@ -779,7 +779,7 @@ std::vector<uint8_t> readFRUContents(FRUReader& reader,
         {
             std::cerr << "Fru area offsets are not in required order as per "
                          "Section 17 of Fru specification\n";
-            return {};
+            return {{}, true};
         }
         prevOffset = areaOffset;
 
@@ -797,7 +797,7 @@ std::vector<uint8_t> readFRUContents(FRUReader& reader,
         {
             std::cerr << "failed to read " << errorHelp << " base offset "
                       << baseOffset << "\n";
-            return {};
+            return {{}, true};
         }
 
         // Ignore data type (blockData is already unsigned).
@@ -827,7 +827,7 @@ std::vector<uint8_t> readFRUContents(FRUReader& reader,
             {
                 std::cerr << "failed to read " << errorHelp << " base offset "
                           << baseOffset << "\n";
-                return {};
+                return {{}, true};
             }
 
             // Ok, let's check the record length, which is in bytes (unsigned,
@@ -859,7 +859,7 @@ std::vector<uint8_t> readFRUContents(FRUReader& reader,
         {
             std::cerr << "failed to read " << errorHelp << " base offset "
                       << baseOffset << "\n";
-            return {};
+            return {{}, true};
         }
 
         device.insert(device.end(), blockData.begin(),
@@ -869,7 +869,7 @@ std::vector<uint8_t> readFRUContents(FRUReader& reader,
         fruLength -= std::min(requestLength, fruLength);
     }
 
-    return device;
+    return {device, true};
 }
 
 unsigned int getHeaderAreaFieldOffset(fruAreas area)

@@ -258,13 +258,30 @@ static int i2cSmbusWriteThenRead(int file, uint16_t address,
     return (ret == static_cast<int>(msgs.size())) ? msgs[1].len : -1;
 }
 
-static int64_t readBlockData(bool is16bit, int file, uint16_t address,
-                             off_t offset, size_t len, uint8_t* buf)
+static int64_t readData(bool is16bit, bool isBytewise, int file,
+                        uint16_t address, off_t offset, size_t len,
+                        uint8_t* buf)
 {
     if (!is16bit)
     {
-        return i2c_smbus_read_i2c_block_data(file, static_cast<uint8_t>(offset),
-                                             len, buf);
+        if (!isBytewise)
+        {
+            return i2c_smbus_read_i2c_block_data(
+                file, static_cast<uint8_t>(offset), len, buf);
+        }
+
+        std::span<uint8_t> bufspan{buf, len};
+        for (size_t i = 0; i < len; i++)
+        {
+            int byte = i2c_smbus_read_byte_data(
+                file, static_cast<uint8_t>(offset + i));
+            if (byte < 0)
+            {
+                return static_cast<int64_t>(byte);
+            }
+            bufspan[i] = static_cast<uint8_t>(byte);
+        }
+        return static_cast<int64_t>(len);
     }
 
     offset = htobe16(offset);
@@ -292,10 +309,11 @@ static std::vector<uint8_t> processEeprom(int bus, int address)
         return readFromEeprom(file, offset, length, outbuf);
     };
     FRUReader reader(std::move(readFunc));
-    std::vector<uint8_t> device = readFRUContents(reader, errorMessage);
+    std::pair<std::vector<uint8_t>, bool> pair = readFRUContents(reader,
+                                                                 errorMessage);
 
     close(file);
-    return device;
+    return pair.first;
 }
 
 std::set<int> findI2CEeproms(int i2cBus,
@@ -458,19 +476,37 @@ int getBusFRUs(int file, int first, int last, int bus,
 
             auto readFunc = [is16BitBool, file, ii](off_t offset, size_t length,
                                                     uint8_t* outbuf) {
-                return readBlockData(is16BitBool, file, ii, offset, length,
-                                     outbuf);
+                return readData(is16BitBool, false, file, ii, offset, length,
+                                outbuf);
             };
             FRUReader reader(std::move(readFunc));
             std::string errorMessage = "bus " + std::to_string(bus) +
                                        " address " + std::to_string(ii);
-            std::vector<uint8_t> device = readFRUContents(reader, errorMessage);
-            if (device.empty())
+            std::pair<std::vector<uint8_t>, bool> pair =
+                readFRUContents(reader, errorMessage);
+            const bool foundHeader = pair.second;
+
+            if (!foundHeader && !is16BitBool)
+            {
+                // certain FRU eeproms require bytewise reading.
+                // otherwise garbage is read. e.g. SuperMicro PWS 920P-SQ
+
+                auto readFunc = [is16BitBool, file, ii](off_t offset,
+                                                        size_t length,
+                                                        uint8_t* outbuf) {
+                    return readData(is16BitBool, true, file, ii, offset, length,
+                                    outbuf);
+                };
+                FRUReader readerBytewise(std::move(readFunc));
+                pair = readFRUContents(readerBytewise, errorMessage);
+            }
+
+            if (pair.first.empty())
             {
                 continue;
             }
 
-            devices->emplace(ii, device);
+            devices->emplace(ii, pair.first);
             fruAddresses[bus].insert(ii);
         }
         return 1;
