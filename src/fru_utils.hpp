@@ -155,9 +155,11 @@ bool findFRUHeader(FRUReader& reader, const std::string& errorHelp,
 /// \brief Read and validate FRU contents.
 /// \param reader the FRUReader to read via
 /// \param errorHelp and a helper string for failures
+/// \param foundHeader if the FRU Header was found
 /// \return the FRU contents from the file
 std::vector<uint8_t> readFRUContents(FRUReader& reader,
-                                     const std::string& errorHelp);
+                                     const std::string& errorHelp,
+                                     std::optional<bool*> foundHeader);
 
 /// \brief Validate an IPMI FRU common header
 /// \param blockData the bytes comprising the common header
