@@ -744,15 +744,20 @@ bool findFRUHeader(FRUReader& reader, const std::string& errorHelp,
 }
 
 std::vector<uint8_t> readFRUContents(FRUReader& reader,
-                                     const std::string& errorHelp)
+                                     const std::string& errorHelp,
+                                     std::optional<bool*> foundHeader)
 {
     std::array<uint8_t, I2C_SMBUS_BLOCK_MAX> blockData{};
     off_t baseOffset = 0x0;
+    if (foundHeader.has_value())
+        *(*foundHeader) = false;
 
     if (!findFRUHeader(reader, errorHelp, blockData, baseOffset))
     {
         return {};
     }
+    if (foundHeader)
+        *(*foundHeader) = true;
 
     std::vector<uint8_t> device;
     device.insert(device.end(), blockData.begin(), blockData.begin() + 8);
