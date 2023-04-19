@@ -69,7 +69,7 @@ static std::string deviceDirName(uint64_t bus, uint64_t address)
     return name.str();
 }
 
-void linkMux(const std::string& muxName, size_t busIndex, size_t address,
+void linkMux(const std::string& muxName, uint64_t busIndex, uint64_t address,
              const nlohmann::json::array_t& channelNames)
 {
     std::error_code ec;
@@ -119,14 +119,9 @@ void linkMux(const std::string& muxName, size_t busIndex, size_t address,
     }
 }
 
-static int deleteDevice(const std::string& busPath,
-                        const std::shared_ptr<uint64_t>& address,
+static int deleteDevice(const std::string& busPath, uint64_t address,
                         const std::string& destructor)
 {
-    if (!address)
-    {
-        return -1;
-    }
     std::filesystem::path deviceDestructor(busPath);
     deviceDestructor /= destructor;
     std::ofstream deviceFile(deviceDestructor);
@@ -135,7 +130,7 @@ static int deleteDevice(const std::string& busPath,
         std::cerr << "Error writing " << deviceDestructor << "\n";
         return -1;
     }
-    deviceFile << std::to_string(*address);
+    deviceFile << std::to_string(address);
     deviceFile.close();
     return 0;
 }
@@ -158,18 +153,12 @@ static int createDevice(const std::string& busPath,
     return 0;
 }
 
-static bool deviceIsCreated(const std::string& busPath,
-                            const std::shared_ptr<uint64_t>& bus,
-                            const std::shared_ptr<uint64_t>& address,
+static bool deviceIsCreated(const std::string& busPath, uint64_t bus,
+                            uint64_t address,
                             const devices::createsHWMon hasHWMonDir)
 {
-    if (!bus || !address)
-    {
-        return false;
-    }
-
     std::filesystem::path dirPath = busPath;
-    dirPath /= deviceDirName(*bus, *address);
+    dirPath /= deviceDirName(bus, address);
     if (hasHWMonDir == devices::createsHWMon::hasHWMonDir)
     {
         dirPath /= "hwmon";
@@ -181,10 +170,8 @@ static bool deviceIsCreated(const std::string& busPath,
 }
 
 static int buildDevice(const std::string& busPath,
-                       const std::string& parameters,
-                       const std::shared_ptr<uint64_t>& bus,
-                       const std::shared_ptr<uint64_t>& address,
-                       const std::string& constructor,
+                       const std::string& parameters, uint64_t bus,
+                       uint64_t address, const std::string& constructor,
                        const std::string& destructor,
                        const devices::createsHWMon hasHWMonDir,
                        const size_t retries = 5)
@@ -237,8 +224,8 @@ void exportDevice(const std::string& type,
     std::string destructor = exportTemplate.remove;
     devices::createsHWMon hasHWMonDir = exportTemplate.hasHWMonDir;
     std::string name = "unknown";
-    std::shared_ptr<uint64_t> bus = nullptr;
-    std::shared_ptr<uint64_t> address = nullptr;
+    std::optional<uint64_t> bus;
+    std::optional<uint64_t> address;
     const nlohmann::json::array_t* channels = nullptr;
 
     for (auto keyPair = configuration.begin(); keyPair != configuration.end();
@@ -260,13 +247,11 @@ void exportDevice(const std::string& type,
 
         if (keyPair.key() == "Bus")
         {
-            bus = std::make_shared<uint64_t>(
-                *keyPair.value().get_ptr<const uint64_t*>());
+            bus = keyPair.value().get<uint64_t>();
         }
         else if (keyPair.key() == "Address")
         {
-            address = std::make_shared<uint64_t>(
-                *keyPair.value().get_ptr<const uint64_t*>());
+            address = keyPair.value().get<uint64_t>();
         }
         else if (keyPair.key() == "ChannelNames")
         {
@@ -279,14 +264,18 @@ void exportDevice(const std::string& type,
                            subsituteString);
     }
 
-    int err = buildDevice(busPath, parameters, bus, address, constructor,
+    if (!bus || !address)
+    {
+        createDevice(busPath, parameters, constructor);
+        return;
+    }
+
+    int err = buildDevice(busPath, parameters, *bus, *address, constructor,
                           destructor, hasHWMonDir);
 
-    if ((err == 0) && boost::ends_with(type, "Mux") && bus && address &&
-        (channels != nullptr))
+    if ((err == 0) && boost::ends_with(type, "Mux") && (channels != nullptr))
     {
-        linkMux(name, static_cast<size_t>(*bus), static_cast<size_t>(*address),
-                *channels);
+        linkMux(name, *bus, *address, *channels);
     }
 }
 
