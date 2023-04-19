@@ -162,7 +162,7 @@ static bool deviceIsCreated(const std::string& busPath, uint64_t bus,
 static void buildDevice(std::function<bool()> deviceExistsFn,
                         std::function<void()> createDeviceFn,
                         std::function<void()> deleteDeviceFn,
-                        std::function<void()> linkMuxFn,
+                        std::function<void()> postCreateFn,
                         const size_t retries = 5)
 {
     if (retries == 0U)
@@ -191,20 +191,87 @@ static void buildDevice(std::function<bool()> deviceExistsFn,
             [createTimer, deviceExistsFn(std::move(deviceExistsFn)),
              createDeviceFn(std::move(createDeviceFn)),
              deleteDeviceFn(std::move(deleteDeviceFn)),
-             linkMuxFn(std::move(linkMuxFn)),
+             postCreateFn(std::move(postCreateFn)),
              retries](const boost::system::error_code& ec) mutable {
             if (ec)
             {
                 std::cerr << "Timer error: " << ec << "\n";
             }
             buildDevice(std::move(deviceExistsFn), std::move(createDeviceFn),
-                        std::move(deleteDeviceFn), std::move(linkMuxFn),
+                        std::move(deleteDeviceFn), std::move(postCreateFn),
                         retries - 1);
         });
         return;
     }
 
-    linkMuxFn();
+    postCreateFn();
+}
+
+std::map<std::string, std::string> parseJSONInit(const nlohmann::json& config)
+{
+    std::map<std::string, std::string> hwmonInit;
+
+    if (!config.is_object())
+    {
+        return hwmonInit;
+    }
+
+    for (const auto& [key, value] : config.items())
+    {
+        // value might be a string or uint64_t (or some other type)
+        // but they all need to be converted to a string to be written to the
+        // sysfs file.
+        hwmonInit[key] = jsonToString(value);
+    }
+
+    return hwmonInit;
+}
+
+void initHwmonDevice(const std::string& busPath, uint64_t bus, uint64_t address,
+                     const std::map<std::string, std::string>& hwmonInit)
+{
+    // Make sure we have a "hwmon" dir under the i2c device
+    std::filesystem::path hwmonDir = busPath;
+    hwmonDir /= deviceDirName(bus, address);
+    hwmonDir /= "hwmon";
+
+    if (!std::filesystem::is_directory(hwmonDir))
+    {
+        return;
+    }
+
+    // Search for the first hwmonN subdir
+    bool found = false;
+    for (const auto& dirEntry : std::filesystem::directory_iterator(hwmonDir))
+    {
+        if (dirEntry.path().filename().string().starts_with("hwmon"))
+        {
+            found = true;
+            hwmonDir = dirEntry.path();
+            break;
+        }
+    }
+    if (!found)
+    {
+        return;
+    }
+
+    for (const auto& [attribute, value] : hwmonInit)
+    {
+        std::filesystem::path attributeFile = hwmonDir / attribute;
+        if (!std::filesystem::exists(attributeFile))
+        {
+            std::cerr << "Invalid hwmon init config " << attribute << '\n';
+            continue;
+        }
+        std::ofstream writeStream(attributeFile);
+        if (!writeStream.good())
+        {
+            std::cerr << "Error writing " << attributeFile << '\n';
+            continue;
+        }
+        writeStream << value;
+    }
 }
 
 void exportDevice(const std::string& type,
@@ -220,6 +287,7 @@ void exportDevice(const std::string& type,
     std::optional<uint64_t> bus;
     std::optional<uint64_t> address;
     std::vector<std::string> channels;
+    std::map<std::string, std::string> hwmonInit;
 
     for (auto keyPair = configuration.begin(); keyPair != configuration.end();
          keyPair++)
@@ -250,6 +318,11 @@ void exportDevice(const std::string& type,
         {
             channels = keyPair.value().get<std::vector<std::string>>();
         }
+        else if (keyPair.key() == "Init" &&
+                 hasHWMonDir == devices::createsHWMon::hasHWMonDir)
+        {
+            hwmonInit = parseJSONInit(keyPair.value());
+        }
         boost::replace_all(parameters, templateChar + keyPair.key(),
                            subsituteString);
         boost::replace_all(busPath, templateChar + keyPair.key(),
@@ -266,17 +339,23 @@ void exportDevice(const std::string& type,
                                           *address, hasHWMonDir);
     auto createDeviceFn = std::bind_front(createDevice, busPath, parameters,
                                           std::move(constructor));
-    auto deleteDeviceFn = std::bind_front(deleteDevice, std::move(busPath),
-                                          *address, std::move(destructor));
-    std::function<void()> linkMuxFn = []() {};
-    if (!channels.empty())
-    {
-        linkMuxFn = std::bind_front(linkMux, std::move(name), *bus, *address,
-                                    std::move(channels));
-    }
+    auto deleteDeviceFn = std::bind_front(deleteDevice, busPath, *address,
+                                          std::move(destructor));
+    auto postCreateFn = [channels(std::move(channels)), name(std::move(name)),
+                         bus(*bus), address(*address),
+                         hwmonInit(std::move(hwmonInit)), busPath]() {
+        if (!channels.empty())
+        {
+            linkMux(name, bus, address, channels);
+        }
+        if (!hwmonInit.empty())
+        {
+            initHwmonDevice(busPath, bus, address, hwmonInit);
+        }
+    };
 
     buildDevice(std::move(deviceExistsFn), std::move(createDeviceFn),
-                std::move(deleteDeviceFn), std::move(linkMuxFn));
+                std::move(deleteDeviceFn), std::move(postCreateFn));
 }
 
 bool loadOverlays(const nlohmann::json& systemConfiguration)
