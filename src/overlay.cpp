@@ -70,7 +70,7 @@ static std::string deviceDirName(uint64_t bus, uint64_t address)
 }
 
 void linkMux(const std::string& muxName, uint64_t busIndex, uint64_t address,
-             const nlohmann::json::array_t& channelNames)
+             const std::vector<std::string>& channelNames)
 {
     std::error_code ec;
     std::filesystem::path muxSymlinkDirPath(muxSymlinkDir);
@@ -86,13 +86,8 @@ void linkMux(const std::string& muxName, uint64_t busIndex, uint64_t address,
     for (std::size_t channelIndex = 0; channelIndex < channelNames.size();
          channelIndex++)
     {
-        const std::string* channelName =
-            channelNames[channelIndex].get_ptr<const std::string*>();
-        if (channelName == nullptr)
-        {
-            continue;
-        }
-        if (channelName->empty())
+        const std::string& channelName = channelNames[channelIndex];
+        if (channelName.empty())
         {
             continue;
         }
@@ -101,14 +96,14 @@ void linkMux(const std::string& muxName, uint64_t busIndex, uint64_t address,
             devDir / ("channel-" + std::to_string(channelIndex));
         if (!is_symlink(channelPath))
         {
-            std::cerr << channelPath << " for mux channel " << *channelName
+            std::cerr << channelPath << " for mux channel " << channelName
                       << " doesn't exist!\n";
             continue;
         }
         std::filesystem::path bus = std::filesystem::read_symlink(channelPath);
 
         std::filesystem::path fp("/dev" / bus.filename());
-        std::filesystem::path link(linkDir / *channelName);
+        std::filesystem::path link(linkDir / channelName);
 
         std::filesystem::create_symlink(fp, link, ec);
         if (ec)
@@ -169,11 +164,12 @@ static bool deviceIsCreated(const std::string& busPath, uint64_t bus,
     return std::filesystem::exists(dirPath, ec);
 }
 
-static int buildDevice(const std::string& busPath,
+static int buildDevice(const std::string& name, const std::string& busPath,
                        const std::string& parameters, uint64_t bus,
                        uint64_t address, const std::string& constructor,
                        const std::string& destructor,
                        const devices::createsHWMon hasHWMonDir,
+                       std::vector<std::string> channelNames,
                        const size_t retries = 5)
 {
     if (retries == 0U)
@@ -181,34 +177,42 @@ static int buildDevice(const std::string& busPath,
         return -1;
     }
 
-    // If it's already instantiated, there's nothing we need to do.
-    if (deviceIsCreated(busPath, bus, address, hasHWMonDir))
-    {
-        return 0;
-    }
-
-    // Try to create the device
-    createDevice(busPath, parameters, constructor);
-
-    // If it didn't work, delete it and try again in 500ms
+    // If it's already instantiated, we don't need to create it again.
     if (!deviceIsCreated(busPath, bus, address, hasHWMonDir))
     {
-        deleteDevice(busPath, address, destructor);
+        // Try to create the device
+        createDevice(busPath, parameters, constructor);
 
-        std::shared_ptr<boost::asio::steady_timer> createTimer =
-            std::make_shared<boost::asio::steady_timer>(io);
-        createTimer->expires_after(std::chrono::milliseconds(500));
-        createTimer->async_wait([createTimer, busPath, parameters, bus, address,
-                                 constructor, destructor, hasHWMonDir,
-                                 retries](const boost::system::error_code& ec) {
-            if (ec)
-            {
-                std::cerr << "Timer error: " << ec << "\n";
-                return -2;
-            }
-            return buildDevice(busPath, parameters, bus, address, constructor,
-                               destructor, hasHWMonDir, retries - 1);
-        });
+        // If it didn't work, delete it and try again in 500ms
+        if (!deviceIsCreated(busPath, bus, address, hasHWMonDir))
+        {
+            deleteDevice(busPath, address, destructor);
+
+            std::shared_ptr<boost::asio::steady_timer> createTimer =
+                std::make_shared<boost::asio::steady_timer>(io);
+            createTimer->expires_after(std::chrono::milliseconds(500));
+            createTimer->async_wait(
+                [createTimer, name, busPath, parameters, bus, address,
+                 constructor, destructor, hasHWMonDir,
+                 channelNames(std::move(channelNames)),
+                 retries](const boost::system::error_code& ec) mutable {
+                if (ec)
+                {
+                    std::cerr << "Timer error: " << ec << "\n";
+                    return -2;
+                }
+                return buildDevice(name, busPath, parameters, bus, address,
+                                   constructor, destructor, hasHWMonDir,
+                                   std::move(channelNames), retries - 1);
+            });
+            return -1;
+        }
+    }
+
+    // Link the mux channels if needed once the device is created.
+    if (!channelNames.empty())
+    {
+        linkMux(name, bus, address, channelNames);
     }
 
     return 0;
@@ -226,7 +230,7 @@ void exportDevice(const std::string& type,
     std::string name = "unknown";
     std::optional<uint64_t> bus;
     std::optional<uint64_t> address;
-    const nlohmann::json::array_t* channels = nullptr;
+    std::vector<std::string> channels;
 
     for (auto keyPair = configuration.begin(); keyPair != configuration.end();
          keyPair++)
@@ -253,10 +257,9 @@ void exportDevice(const std::string& type,
         {
             address = keyPair.value().get<uint64_t>();
         }
-        else if (keyPair.key() == "ChannelNames")
+        else if (keyPair.key() == "ChannelNames" && type.ends_with("Mux"))
         {
-            channels =
-                keyPair.value().get_ptr<const nlohmann::json::array_t*>();
+            channels = keyPair.value().get<std::vector<std::string>>();
         }
         boost::replace_all(parameters, templateChar + keyPair.key(),
                            subsituteString);
@@ -270,13 +273,8 @@ void exportDevice(const std::string& type,
         return;
     }
 
-    int err = buildDevice(busPath, parameters, *bus, *address, constructor,
-                          destructor, hasHWMonDir);
-
-    if ((err == 0) && boost::ends_with(type, "Mux") && (channels != nullptr))
-    {
-        linkMux(name, *bus, *address, *channels);
-    }
+    buildDevice(name, busPath, parameters, *bus, *address, constructor,
+                destructor, hasHWMonDir, std::move(channels));
 }
 
 bool loadOverlays(const nlohmann::json& systemConfiguration)
