@@ -114,8 +114,8 @@ void linkMux(const std::string& muxName, uint64_t busIndex, uint64_t address,
     }
 }
 
-static int deleteDevice(const std::string& busPath, uint64_t address,
-                        const std::string& destructor)
+static void deleteDevice(const std::string& busPath, uint64_t address,
+                         const std::string& destructor)
 {
     std::filesystem::path deviceDestructor(busPath);
     deviceDestructor /= destructor;
@@ -123,16 +123,15 @@ static int deleteDevice(const std::string& busPath, uint64_t address,
     if (!deviceFile.good())
     {
         std::cerr << "Error writing " << deviceDestructor << "\n";
-        return -1;
+        return;
     }
     deviceFile << std::to_string(address);
     deviceFile.close();
-    return 0;
 }
 
-static int createDevice(const std::string& busPath,
-                        const std::string& parameters,
-                        const std::string& constructor)
+static void createDevice(const std::string& busPath,
+                         const std::string& parameters,
+                         const std::string& constructor)
 {
     std::filesystem::path deviceConstructor(busPath);
     deviceConstructor /= constructor;
@@ -140,12 +139,10 @@ static int createDevice(const std::string& busPath,
     if (!deviceFile.good())
     {
         std::cerr << "Error writing " << deviceConstructor << "\n";
-        return -1;
+        return;
     }
     deviceFile << parameters;
     deviceFile.close();
-
-    return 0;
 }
 
 static bool deviceIsCreated(const std::string& busPath, uint64_t bus,
@@ -164,58 +161,51 @@ static bool deviceIsCreated(const std::string& busPath, uint64_t bus,
     return std::filesystem::exists(dirPath, ec);
 }
 
-static int buildDevice(const std::string& name, const std::string& busPath,
-                       const std::string& parameters, uint64_t bus,
-                       uint64_t address, const std::string& constructor,
-                       const std::string& destructor,
-                       const devices::createsHWMon hasHWMonDir,
-                       std::vector<std::string> channelNames,
-                       const size_t retries = 5)
+static void buildDevice(std::function<bool()> deviceExistsFn,
+                        std::function<void()> createDeviceFn,
+                        std::function<void()> deleteDeviceFn,
+                        std::function<void()> linkMuxFn,
+                        const size_t retries = 5)
 {
     if (retries == 0U)
     {
-        return -1;
+        return;
     }
 
     // If it's already instantiated, we don't need to create it again.
-    if (!deviceIsCreated(busPath, bus, address, hasHWMonDir))
+    if (!deviceExistsFn())
     {
         // Try to create the device
-        createDevice(busPath, parameters, constructor);
+        createDeviceFn();
 
         // If it didn't work, delete it and try again in 500ms
-        if (!deviceIsCreated(busPath, bus, address, hasHWMonDir))
+        if (!deviceExistsFn())
         {
-            deleteDevice(busPath, address, destructor);
+            deleteDeviceFn();
 
             std::shared_ptr<boost::asio::steady_timer> createTimer =
                 std::make_shared<boost::asio::steady_timer>(io);
             createTimer->expires_after(std::chrono::milliseconds(500));
             createTimer->async_wait(
-                [createTimer, name, busPath, parameters, bus, address,
-                 constructor, destructor, hasHWMonDir,
-                 channelNames(std::move(channelNames)),
+                [createTimer, deviceExistsFn(std::move(deviceExistsFn)),
+                 createDeviceFn(std::move(createDeviceFn)),
+                 deleteDeviceFn(std::move(deleteDeviceFn)),
+                 linkMuxFn(std::move(linkMuxFn)),
                  retries](const boost::system::error_code& ec) mutable {
                 if (ec)
                 {
                     std::cerr << "Timer error: " << ec << "\n";
-                    return -2;
                 }
-                return buildDevice(name, busPath, parameters, bus, address,
-                                   constructor, destructor, hasHWMonDir,
-                                   std::move(channelNames), retries - 1);
+                buildDevice(std::move(deviceExistsFn),
+                            std::move(createDeviceFn),
+                            std::move(deleteDeviceFn), std::move(linkMuxFn),
+                            retries - 1);
             });
-            return -1;
+            return;
         }
     }
 
-    // Link the mux channels if needed once the device is created.
-    if (!channelNames.empty())
-    {
-        linkMux(name, bus, address, channelNames);
-    }
-
-    return 0;
+    linkMuxFn();
 }
 
 void exportDevice(const std::string& type,
@@ -273,8 +263,21 @@ void exportDevice(const std::string& type,
         return;
     }
 
-    buildDevice(name, busPath, parameters, *bus, *address, constructor,
-                destructor, hasHWMonDir, std::move(channels));
+    auto deviceExistsFn = std::bind_front(deviceIsCreated, busPath, *bus,
+                                          *address, hasHWMonDir);
+    auto createDeviceFn = std::bind_front(createDevice, busPath, parameters,
+                                          std::move(constructor));
+    auto deleteDeviceFn = std::bind_front(deleteDevice, std::move(busPath),
+                                          *address, std::move(destructor));
+    std::function<void()> linkMuxFn = []() {};
+    if (!channels.empty())
+    {
+        linkMuxFn = std::bind_front(linkMux, std::move(name), *bus, *address,
+                                    std::move(channels));
+    }
+
+    buildDevice(std::move(deviceExistsFn), std::move(createDeviceFn),
+                std::move(deleteDeviceFn), std::move(linkMuxFn));
 }
 
 bool loadOverlays(const nlohmann::json& systemConfiguration)
