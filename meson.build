@@ -260,6 +260,7 @@ if not build_tests.disabled()
             dependencies: [
                 gtest,
                 gmock,
+                nlohmann_json_dep,
             ],
             include_directories: 'src',
         )
