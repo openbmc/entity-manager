@@ -986,6 +986,7 @@ static void pruneConfiguration(nlohmann::json& systemConfiguration,
     ifaces.clear();
     systemConfiguration.erase(name);
     topology.remove(device["Name"].get<std::string>());
+    unloadOverlay(device);
     logDeviceRemoved(device);
 }
 
