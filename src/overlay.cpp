@@ -69,8 +69,10 @@ static std::string deviceDirName(uint64_t bus, uint64_t address)
     return name.str();
 }
 
-void linkMux(const std::string& muxName, uint64_t busIndex, uint64_t address,
-             const nlohmann::json::array_t& channelNames)
+void linkOrUnlinkMux(const std::string& muxName, uint64_t busIndex,
+                     uint64_t address,
+                     const nlohmann::json::array_t& channelNames,
+                     const bool create)
 {
     std::error_code ec;
     std::filesystem::path muxSymlinkDirPath(muxSymlinkDir);
@@ -110,11 +112,22 @@ void linkMux(const std::string& muxName, uint64_t busIndex, uint64_t address,
         std::filesystem::path fp("/dev" / bus.filename());
         std::filesystem::path link(linkDir / *channelName);
 
-        std::filesystem::create_symlink(fp, link, ec);
-        if (ec)
+        if (create)
         {
-            std::cerr << "Failure creating symlink for " << fp << " to " << link
-                      << "\n";
+            std::filesystem::create_symlink(fp, link, ec);
+            if (ec)
+            {
+                std::cerr << "Failure creating symlink for " << fp << " to "
+                          << link << "\n";
+            }
+        }
+        else
+        {
+            std::filesystem::remove(link, ec);
+            if (ec)
+            {
+                std::cerr << "Failure deleteting symlink for " << link << "\n";
+            }
         }
     }
 }
@@ -214,9 +227,10 @@ static int buildDevice(const std::string& busPath,
     return 0;
 }
 
-void exportDevice(const std::string& type,
-                  const devices::ExportTemplate& exportTemplate,
-                  const nlohmann::json& configuration)
+void exportOrRemoveDevice(const std::string& type,
+                          const devices::ExportTemplate& exportTemplate,
+                          const nlohmann::json& configuration,
+                          const bool expose)
 {
     std::string parameters = exportTemplate.parameters;
     std::string busPath = exportTemplate.busPath;
@@ -270,12 +284,18 @@ void exportDevice(const std::string& type,
         return;
     }
 
-    int err = buildDevice(busPath, parameters, *bus, *address, constructor,
-                          destructor, hasHWMonDir);
-
-    if ((err == 0) && boost::ends_with(type, "Mux") && (channels != nullptr))
+    if (expose)
     {
-        linkMux(name, *bus, *address, *channels);
+        int err = buildDevice(busPath, parameters, *bus, *address, constructor,
+                              destructor, hasHWMonDir);
+        if (err != 0)
+        {
+            return;
+        }
+    }
+    if (boost::ends_with(type, "Mux") && (channels != nullptr))
+    {
+        linkOrUnlinkMux(name, *bus, *address, *channels, expose);
     }
 }
 
@@ -310,7 +330,7 @@ bool loadOverlays(const nlohmann::json& systemConfiguration)
             auto device = devices::exportTemplates.find(type.c_str());
             if (device != devices::exportTemplates.end())
             {
-                exportDevice(type, device->second, configuration);
+                exportOrRemoveDevice(type, device->second, configuration, true);
                 continue;
             }
 
@@ -327,4 +347,49 @@ bool loadOverlays(const nlohmann::json& systemConfiguration)
     }
 
     return true;
+}
+
+void unloadOverlay(const nlohmann::json& entity)
+{
+    std::filesystem::create_directory(outputDir);
+
+    auto findExposes = entity.find("Exposes");
+    if (findExposes == entity.end() ||
+        findExposes->type() != nlohmann::json::value_t::array)
+    {
+        return;
+    }
+
+    for (const auto& configuration : *findExposes)
+    {
+        auto findStatus = configuration.find("Status");
+        // status missing is assumed to be 'okay'
+        if (findStatus != configuration.end() && *findStatus == "disabled")
+        {
+            continue;
+        }
+        auto findType = configuration.find("Type");
+        if (findType == configuration.end() ||
+            findType->type() != nlohmann::json::value_t::string)
+        {
+            continue;
+        }
+        std::string type = findType.value().get<std::string>();
+        auto device = devices::exportTemplates.find(type.c_str());
+        if (device != devices::exportTemplates.end())
+        {
+            exportOrRemoveDevice(type, device->second, configuration, false);
+            continue;
+        }
+
+        // Because many devices are intentionally not exportable,
+        // this error message is not printed in all situations.
+        // If wondering why your device not appearing, add your type to
+        // the exportTemplates array in the devices.hpp file.
+        if constexpr (debug)
+        {
+            std::cerr << "Device type " << type
+                      << " not found in export map whitelist\n";
+        }
+    }
 }
