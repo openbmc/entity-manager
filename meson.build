@@ -120,6 +120,7 @@ configs = [
     'kudo_bmc.json',
     'kudo_motherboard.json',
     'mori_bmc.json',
+    'mori_motherboard.json',
     'mtjade.json',
     'mtmitchell_bmc.json',
     'mtmitchell_mb.json',
