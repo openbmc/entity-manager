@@ -119,6 +119,7 @@ configs = [
     'intel_front_panel.json',
     'kudo_bmc.json',
     'kudo_motherboard.json',
+    'mori_motherboard.json',
     'mt_jade.json',
     'nisqually.json',
     'nvme_p4000.json',
