@@ -805,6 +805,84 @@
                 "Units": "DegreesC"
             },
             {
+                "Address": "0x2c",
+                "Bus": 35,
+                "Connector": {
+                    "Name": "REAR_FAN0_SPEED",
+                    "Pwm": 0,
+                    "PwmName": "REAR_FAN0_PWM",
+                    "Tachs": [
+                        0
+                    ]
+                },
+                "EntityId": 29,
+                "EntityInstance": 0,
+                "Index": 0,
+                "MaxReading": 25500,
+                "Name": "REAR_FAN0_SPEED",
+                "PowerState": "Always",
+                "Thresholds": [
+                    {
+                        "Direction": "less than",
+                        "Name": "lower non critical",
+                        "Severity": 0,
+                        "Value": 2000
+                    },
+                    {
+                        "Direction": "less than",
+                        "Name": "lower critical",
+                        "Severity": 1,
+                        "Value": 1000
+                    }
+                ],
+                "Type": "I2CFan"
+            },
+            {
+                "EntityId": 29,
+                "EntityInstance": 0,
+                "Name": "REAR_FAN0_PWM",
+                "Type": "I2CFan"
+            },
+            {
+                "Address": "0x2c",
+                "Bus": 35,
+                "Connector": {
+                    "Name": "REAR_FAN1_SPEED",
+                    "Pwm": 1,
+                    "PwmName": "REAR_FAN1_PWM",
+                    "Tachs": [
+                        0
+                    ]
+                },
+                "EntityId": 29,
+                "EntityInstance": 1,
+                "Index": 1,
+                "MaxReading": 25500,
+                "Name": "REAR_FAN1_SPEED",
+                "PowerState": "Always",
+                "Thresholds": [
+                    {
+                        "Direction": "less than",
+                        "Name": "lower non critical",
+                        "Severity": 0,
+                        "Value": 2000
+                    },
+                    {
+                        "Direction": "less than",
+                        "Name": "lower critical",
+                        "Severity": 1,
+                        "Value": 1000
+                    }
+                ],
+                "Type": "I2CFan"
+            },
+            {
+                "EntityId": 29,
+                "EntityInstance": 1,
+                "Name": "REAR_FAN1_PWM",
+                "Type": "I2CFan"
+            },
+            {
                 "Address": "0x54",
                 "Bus": 33,
                 "EntityId": 7,
