@@ -642,6 +642,111 @@
                 "Type": "ADM1266"
             },
             {
+                "Address": "0x1f",
+                "Bus": 25,
+                "Labels": [
+                    "vin",
+                    "iout1",
+                    "pin",
+                    "temp1"
+                ],
+                "Name": "psu0",
+                "Thresholds": [
+                    {
+                        "Direction": "greater than",
+                        "Label": "iout1",
+                        "Name": "upper critical",
+                        "Severity": 1,
+                        "Value": 46
+                    },
+                    {
+                        "Direction": "greater than",
+                        "Label": "iout1",
+                        "Name": "upper non critical",
+                        "Severity": 0,
+                        "Value": 44
+                    },
+                    {
+                        "Direction": "greater than",
+                        "Label": "pin",
+                        "Name": "upper critical",
+                        "Severity": 1,
+                        "Value": 2507
+                    },
+                    {
+                        "Direction": "greater than",
+                        "Label": "pin",
+                        "Name": "upper non critical",
+                        "Severity": 0,
+                        "Value": 2398
+                    },
+                    {
+                        "Direction": "greater than",
+                        "Label": "vin",
+                        "Name": "upper critical",
+                        "Severity": 1,
+                        "Value": 62
+                    },
+                    {
+                        "Direction": "greater than",
+                        "Label": "vin",
+                        "Name": "upper non critical",
+                        "Severity": 0,
+                        "Value": 60.8
+                    },
+                    {
+                        "Direction": "less than",
+                        "Label": "vin",
+                        "Name": "lower non critical",
+                        "Severity": 0,
+                        "Value": 36.8
+                    },
+                    {
+                        "Direction": "less than",
+                        "Label": "vin",
+                        "Name": "lower critical",
+                        "Severity": 1,
+                        "Value": 34.8
+                    }
+                ],
+                "Type": "ADM1272",
+                "iout1_Max": 51.0,
+                "iout1_Min": 0.0,
+                "iout1_Name": "psu0_iout",
+                "iout1_Scale": 1020,
+                "pin_Max": 2779.5,
+                "pin_Min": 0,
+                "pin_Name": "psu0_pin",
+                "temp1_Name": "psu0_temp",
+                "vin_Max": 102.0,
+                "vin_Min": 0.0,
+                "vin_Name": "psu0_vin"
+            },
+            {
+                "EntityId": 10,
+                "EntityInstance": 0,
+                "Name": "psu0_iout",
+                "Type": "ADM1272"
+            },
+            {
+                "EntityId": 10,
+                "EntityInstance": 0,
+                "Name": "psu0_pin",
+                "Type": "ADM1272"
+            },
+            {
+                "EntityId": 10,
+                "EntityInstance": 0,
+                "Name": "psu0_vin",
+                "Type": "ADM1272"
+            },
+            {
+                "EntityId": 10,
+                "EntityInstance": 0,
+                "Name": "psu0_temp",
+                "Type": "ADM1272"
+            },
+            {
                 "Address": "0x50",
                 "Bus": 4,
                 "Name": "Motherboard FRU",
