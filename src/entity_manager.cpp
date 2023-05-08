@@ -702,6 +702,34 @@ void postToDbus(const nlohmann::json& newConfiguration,
                                       itemIface, item, objServer,
                                       getPermission(itemType));
 
+            auto findAssociations = item.find("Associations");
+            if (findAssociations != item.end() &&
+                findAssociations->type() == nlohmann::json::value_t::array)
+            {
+                std::vector<Association> associations;
+                for (auto& association : *findAssociations)
+                {
+                    auto findForward = association.find("Forward");
+                    auto findReverse = association.find("Reverse");
+                    auto findPath = association.find("Path");
+                    if (findForward != association.end() &&
+                        findReverse != association.end() &&
+                        findPath != association.end())
+                    {
+                        associations.emplace_back(
+                            findForward->get<std::string>(),
+                            findReverse->get<std::string>(),
+                            findPath->get<std::string>());
+                    }
+                }
+
+                auto ifacePtr = objServer.add_interface(
+                    ifacePath, "xyz.openbmc_project.Association.Definitions");
+
+                ifacePtr->register_property("Associations", associations);
+                ifacePtr->initialize();
+            }
+
             for (const auto& [name, config] : item.items())
             {
                 jsonPointerPath = jsonPointerPathBoard;
@@ -750,7 +778,6 @@ void postToDbus(const nlohmann::json& newConfiguration,
                         std::cerr << "dbus format error" << config << "\n";
                         break;
                     }
-
                     for (auto& arrayItem : config)
                     {
                         std::string ifaceName =
