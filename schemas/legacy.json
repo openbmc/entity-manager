@@ -468,6 +468,9 @@
                 "vout17_Name": {
                     "$ref": "#/definitions/Types/vout17_Name"
                 },
+                "fan1_Name": {
+                    "$ref": "#/definitions/Types/fan1_Name"
+                },
                 "iout1_Offset": {
                     "$ref": "#/definitions/Types/iout1_Offset"
                 },
@@ -1021,6 +1024,9 @@
                 "type": "number"
             },
             "vout17_Name": {
+                "type": "string"
+            },
+            "fan1_Name": {
                 "type": "string"
             },
             "iout1_Offset": {
