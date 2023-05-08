@@ -9,6 +9,9 @@
             ],
             "oneOf": [
                 {
+                    "$ref": "exposes.json#/definitions/ExposesElementWithAssociation"
+                },
+                {
                     "$ref": "ibm.json#/definitions/IBMCompatibleSystem"
                 },
                 {
