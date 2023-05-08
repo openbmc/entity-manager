@@ -1,0 +1,38 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "definitions": {
+      "ExposesElementWithAssociation": {
+          "properties": {
+              "Associations": {
+                  "items": {
+                    "$ref": "#/definitions/Association"
+                  },
+                  "type": "array"
+              },
+              "Name": {
+                  "type": "string"
+              },
+              "Type": {
+                  "type": "string"
+              }
+          },
+          "required": ["Name", "Type"],
+          "type": "object"
+      },
+      "Association": {
+          "properties": {
+              "Forward": {
+                  "type": "string"
+              },
+              "Path": {
+                "type": "string"
+              },
+              "Reverse": {
+                "type": "string"
+              }
+          },
+          "required": ["Forward", "Path", "Reverse"],
+          "type": "object"
+      }
+  }
+}
