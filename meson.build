@@ -73,6 +73,7 @@ install_data('blacklist.json')
 configs = [
     '1ux16_riser.json',
     '2ux8_riser.json',
+    '3ypower_vast2112_psu.json',
     '8x25_hsbp.json',
     'a2ul16riser.json',
     'a2ux8x4riser.json',
