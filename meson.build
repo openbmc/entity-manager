@@ -8,7 +8,7 @@ project(
     ],
     license: 'Apache-2.0',
     version: '0.1',
-    meson_version: '>=0.58.0',
+    meson_version: '>=0.57.0',
 )
 add_project_arguments('-Wno-psabi', language: 'cpp')
 
@@ -44,9 +44,9 @@ if not sdbusplus.found()
     sdbusplus = sdbusplus.as_system('system')
 endif
 systemd = dependency('systemd')
-systemd_system_unit_dir = systemd.get_variable(
+systemd_system_unit_dir = systemd.get_pkgconfig_variable(
     'systemdsystemunitdir',
-    pkgconfig_define: ['prefix', get_option('prefix')])
+    define_variable: ['prefix', get_option('prefix')])
 packagedir = join_paths(
     get_option('prefix'),
     get_option('datadir'),
@@ -73,6 +73,7 @@ install_data('blacklist.json')
 configs = [
     '1ux16_riser.json',
     '2ux8_riser.json',
+    '3ypower_vast2112_psu.json',
     '8x25_hsbp.json',
     'a2ul16riser.json',
     'a2ux8x4riser.json',
@@ -93,7 +94,6 @@ configs = [
     'axx2prthdhd.json',
     'bnp_baseboard.json',
     'bellavista.json',
-    'bonnell.json',
     'delta_awf2dc3200w_psu.json',
     'delta_dps-750xb_psu.json',
     'delta_dps-1600ab_psu.json',
@@ -115,7 +115,6 @@ configs = [
     'ibm_1600w_cffps.json',
     'ibm_2000w_cffps.json',
     'ibm_2300w_cffps.json',
-    'ibm_tacoma_rack_controller.json',
     'intel_front_panel.json',
     'kudo_bmc.json',
     'kudo_motherboard.json',
@@ -123,7 +122,6 @@ configs = [
     'nisqually.json',
     'nvme_p4000.json',
     'pcie_ssd_retimer.json',
-    'pennybacker.json',
     'pssf132202a.json',
     'pssf162205a.json',
     'pssf212201a.json',
@@ -183,7 +181,6 @@ schemas = [
     'pid_zone.json',
     'stepwise.json',
     'virtual_sensor.json',
-    'satellite_controller.json',
 ]
 
 foreach s : schemas
@@ -203,15 +200,12 @@ subdir('src')
 if not build_tests.disabled()
     test_boost_args = boost_args + ['-DBOOST_ASIO_DISABLE_THREADS']
     gtest = dependency('gtest', main: true, disabler: true, required: false)
-    gmock = dependency('gmock', disabler: true, required: false)
-    if not (gtest.found() and gmock.found()) and build_tests.enabled()
+    if not gtest.found() and build_tests.enabled()
         cmake = import('cmake')
         gtest_subproject = cmake.subproject('gtest')
         cm_gtest = gtest_subproject.dependency('gtest')
         cm_gtest_main = gtest_subproject.dependency('gtest_main')
         gtest = declare_dependency(dependencies: [cm_gtest, cm_gtest_main, threads])
-        gmock = gtest_subproject.dependency('gmock')
-
     endif
 
     test(
@@ -229,7 +223,8 @@ if not build_tests.disabled()
                 sdbusplus,
                 valijson,
             ],
-            include_directories: 'src',
+            implicit_include_directories: false,
+            include_directories: 'include',
         )
     )
 
@@ -244,25 +239,9 @@ if not build_tests.disabled()
             dependencies: [
                 boost,
                 gtest,
-                sdbusplus,
             ],
-            include_directories: 'src',
-        )
-    )
-
-    test(
-        'test_topology',
-        executable(
-            'test_topology',
-            'test/test_topology.cpp',
-            'src/topology.cpp',
-            cpp_args: test_boost_args,
-            dependencies: [
-                gtest,
-                gmock,
-                nlohmann_json_dep,
-            ],
-            include_directories: 'src',
+            implicit_include_directories: false,
+            include_directories: 'include',
         )
     )
 endif
