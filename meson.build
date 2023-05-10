@@ -99,6 +99,7 @@ configs = [
     'delta_dps-750xb_psu.json',
     'delta_dps-1600ab_psu.json',
     'delta_dps-2000ab_psu.json',
+    'supermicro-pws-920p-sq_psu.json',
     'everest.json',
     'f1u12x25_hsbp.json',
     'f1u4x25_hsbp.json',
