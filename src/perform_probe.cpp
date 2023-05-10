@@ -51,8 +51,8 @@ bool probeDbus(const std::string& interfaceName,
             auto deviceValue = interface.find(matchProp);
             if (deviceValue != interface.end())
             {
-                deviceMatches =
-                    deviceMatches && matchProbe(matchJSON, deviceValue->second);
+                deviceMatches = deviceMatches &&
+                                matchProbe(matchJSON, deviceValue->second);
             }
             else
             {
@@ -193,8 +193,8 @@ bool probe(const std::vector<std::string>& probeCommand,
             ret = cur;
             first = false;
         }
-        lastCommand =
-            probeType ? (*probeType)->second : probe_type_codes::FALSE_T;
+        lastCommand = probeType ? (*probeType)->second
+                                : probe_type_codes::FALSE_T;
     }
 
     // probe passed, but empty device
