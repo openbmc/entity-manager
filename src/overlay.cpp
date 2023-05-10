@@ -231,7 +231,6 @@ void exportDevice(const std::string& type,
                   const devices::ExportTemplate& exportTemplate,
                   const nlohmann::json& configuration)
 {
-
     std::string parameters = exportTemplate.parameters;
     std::string busPath = exportTemplate.busPath;
     std::string constructor = exportTemplate.add;

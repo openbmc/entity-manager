@@ -194,7 +194,6 @@ bool checkLangEng(uint8_t lang)
 bool verifyOffset(const std::vector<uint8_t>& fruBytes, fruAreas currentArea,
                   uint8_t len)
 {
-
     unsigned int fruBytesSize = fruBytes.size();
 
     // check if Fru data has at least 8 byte header
@@ -276,15 +275,14 @@ resCodes
     for (fruAreas area = fruAreas::fruAreaChassis;
          area <= fruAreas::fruAreaProduct; ++area)
     {
-
         size_t offset = *(fruBytes.begin() + getHeaderAreaFieldOffset(area));
         if (offset == 0)
         {
             continue;
         }
         offset *= fruBlockSize;
-        std::vector<uint8_t>::const_iterator fruBytesIter =
-            fruBytes.begin() + offset;
+        std::vector<uint8_t>::const_iterator fruBytesIter = fruBytes.begin() +
+                                                            offset;
         if (fruBytesIter + fruBlockSize >= fruBytes.end())
         {
             std::cerr << "Not enough data to parse \n";
@@ -394,8 +392,8 @@ resCodes
         DecodeState state = DecodeState::ok;
         do
         {
-            auto res =
-                decodeFRUData(fruBytesIter, fruBytesIterEndArea, isLangEng);
+            auto res = decodeFRUData(fruBytesIter, fruBytesIterEndArea,
+                                     isLangEng);
             state = res.first;
             std::string value = res.second;
             std::string name;
@@ -951,16 +949,14 @@ std::optional<int> findIndexForFRU(
         std::shared_ptr<sdbusplus::asio::dbus_interface>>& dbusInterfaceMap,
     std::string& productName)
 {
-
     int highest = -1;
     bool found = false;
 
-    for (auto const& busIface : dbusInterfaceMap)
+    for (const auto& busIface : dbusInterfaceMap)
     {
         std::string path = busIface.second->get_object_path();
         if (std::regex_match(path, std::regex(productName + "(_\\d+|)$")))
         {
-
             // Check if the match named has extra information.
             found = true;
             std::smatch baseMatch;

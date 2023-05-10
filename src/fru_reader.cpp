@@ -39,8 +39,8 @@ ssize_t FRUReader::read(off_t start, size_t len, uint8_t* outbuf)
         {
             // miss, populate cache
             uint8_t* newData = cache[blk].data();
-            int64_t ret =
-                readFunc(blk * cacheBlockSize, cacheBlockSize, newData);
+            int64_t ret = readFunc(blk * cacheBlockSize, cacheBlockSize,
+                                   newData);
 
             // if we've reached the end of the eeprom, record its size
             if (ret >= 0 && static_cast<size_t>(ret) < cacheBlockSize)
