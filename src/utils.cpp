@@ -239,79 +239,78 @@ std::optional<std::string>
     for (const auto& [propName, propValue] : interface)
     {
         std::string templateName = templateChar + propName;
-        boost::iterator_range<std::string::const_iterator> find =
-            boost::ifind_first(str, templateName);
-        if (!find)
+        boost::iterator_range<std::string::const_iterator> find;
+        while ((find = boost::ifind_first(str, templateName)))
         {
-            continue;
-        }
+            size_t start = find.begin() - str.begin();
 
-        size_t start = find.begin() - str.begin();
-
-        // check for additional operations
-        if ((start == 0U) && find.end() == str.end())
-        {
-            std::visit([&](auto&& val) { keyPair.value() = val; }, propValue);
-            return ret;
-        }
-
-        constexpr const std::array<char, 5> mathChars = {'+', '-', '%', '*',
-                                                         '/'};
-        size_t nextItemIdx = start + templateName.size() + 1;
-
-        if (nextItemIdx > str.size() ||
-            std::find(mathChars.begin(), mathChars.end(),
-                      str.at(nextItemIdx)) == mathChars.end())
-        {
-            std::string val = std::visit(VariantToStringVisitor(), propValue);
-            boost::ireplace_all(str, templateName, val);
-            continue;
-        }
-
-        // save the prefix
-        std::string prefix = str.substr(0, start);
-
-        // operate on the rest
-        std::string end = str.substr(nextItemIdx);
-
-        std::vector<std::string> split;
-        boost::split(split, end, boost::is_any_of(" "));
-
-        // need at least 1 operation and number
-        if (split.size() < 2)
-        {
-            std::cerr << "Syntax error on template replacement of " << str
-                      << "\n";
-            for (const std::string& data : split)
+            // check for additional operations
+            if ((start == 0U) && find.end() == str.end())
             {
-                std::cerr << data << " ";
+                std::visit([&](auto&& val) { keyPair.value() = val; },
+                           propValue);
+                return ret;
             }
-            std::cerr << "\n";
-            return std::nullopt;
+
+            constexpr const std::array<char, 5> mathChars = {'+', '-', '%', '*',
+                                                             '/'};
+            size_t nextItemIdx = start + templateName.size() + 1;
+
+            if (nextItemIdx > str.size() ||
+                std::find(mathChars.begin(), mathChars.end(),
+                          str.at(nextItemIdx)) == mathChars.end())
+            {
+                std::string val =
+                    std::visit(VariantToStringVisitor(), propValue);
+                boost::ireplace_all(str, templateName, val);
+                continue;
+            }
+
+            // save the prefix
+            std::string prefix = str.substr(0, start);
+
+            // operate on the rest
+            std::string end = str.substr(nextItemIdx);
+
+            std::vector<std::string> split;
+            boost::split(split, end, boost::is_any_of(" "));
+
+            // need at least 1 operation and number
+            if (split.size() < 2)
+            {
+                std::cerr << "Syntax error on template replacement of " << str
+                          << "\n";
+                for (const std::string& data : split)
+                {
+                    std::cerr << data << " ";
+                }
+                std::cerr << "\n";
+                return std::nullopt;
+            }
+
+            // we assume that the replacement is a number, because we can
+            // only do math on numbers.. we might concatenate strings in the
+            // future, but thats later
+            int number = std::visit(VariantToIntVisitor(), propValue);
+            auto exprBegin = split.begin();
+            auto exprEnd = split.end();
+
+            number = expression::evaluate(number, exprBegin, exprEnd);
+
+            std::string replaced(find.begin(), find.end());
+            while (exprBegin != exprEnd)
+            {
+                replaced.append(" ").append(*exprBegin++);
+            }
+            ret = replaced;
+
+            std::string result = prefix + std::to_string(number);
+            while (exprEnd != split.end())
+            {
+                result.append(" ").append(*exprEnd++);
+            }
+            str = result;
         }
-
-        // we assume that the replacement is a number, because we can
-        // only do math on numbers.. we might concatenate strings in the
-        // future, but thats later
-        int number = std::visit(VariantToIntVisitor(), propValue);
-        auto exprBegin = split.begin();
-        auto exprEnd = split.end();
-
-        number = expression::evaluate(number, exprBegin, exprEnd);
-
-        std::string replaced(find.begin(), find.end());
-        while (exprBegin != exprEnd)
-        {
-            replaced.append(" ").append(*exprBegin++);
-        }
-        ret = replaced;
-
-        std::string result = prefix + std::to_string(number);
-        while (exprEnd != split.end())
-        {
-            result.append(" ").append(*exprEnd++);
-        }
-        str = result;
     }
 
     std::string_view strView = str;
