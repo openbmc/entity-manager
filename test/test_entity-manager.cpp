@@ -227,6 +227,33 @@ TEST(TemplateCharReplace, replaceSecondAsInt)
     EXPECT_EQ(expected, j["foo"]);
 }
 
+TEST(TemplateCharReplace, replaceRepeatingKeys)
+{
+    nlohmann::json j = {{"foo", "this is $TEST and this is $TEST"}};
+    auto it = j.begin();
+    DBusInterface data;
+    data["test"] = "bar"s;
+
+    templateCharReplace(it, data, 0);
+
+    nlohmann::json expected = "this is bar and this is bar";
+    EXPECT_EQ(expected, j["foo"]);
+}
+
+TEST(TemplateCharReplace, replaceRepeatingKeysWithMath)
+{
+    nlohmann::json j = {
+        {"foo", "eleven is $x * 2 + 3 and fourteen is $x * 3 + 2"}};
+    auto it = j.begin();
+    DBusInterface data;
+    data["x"] = 4;
+
+    templateCharReplace(it, data, 0);
+
+    nlohmann::json expected = "eleven is 11 and fourteen is 14";
+    EXPECT_EQ(expected, j["foo"]);
+}
+
 TEST(TemplateCharReplace, singleHex)
 {
     nlohmann::json j = {{"foo", "0x54"}};
