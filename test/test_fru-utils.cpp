@@ -150,14 +150,15 @@ TEST(VerifyChecksumTest, WrapBoundaryHigh)
 int64_t getDataTempl(const std::vector<uint8_t>& data, off_t offset,
                      size_t length, uint8_t* outBuf)
 {
-    if (offset >= static_cast<off_t>(data.size()))
+    const off_t size = data.size();
+    if (offset >= size)
     {
         return 0;
     }
 
     uint16_t idx = offset;
     // NOLINTNEXTLINE(cppcoreguidelines-pro-bounds-pointer-arithmetic)
-    for (; idx < std::min(data.size(), offset + length); ++idx, ++outBuf)
+    for (; idx < std::min(size, offset + length); ++idx, ++outBuf)
     {
         *outBuf = data[idx];
     }
