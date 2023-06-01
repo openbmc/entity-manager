@@ -1316,15 +1316,6 @@ int main()
                                           << "\n";
                                 continue;
                             }
-                            int rootBus = getRootBus(bus);
-                            if (rootBus >= 0)
-                            {
-                                rescanOneBus(busMap,
-                                             static_cast<uint16_t>(rootBus),
-                                             dbusInterfaceMap, false,
-                                             unknownBusObjectCount, powerIsOn,
-                                             objServer, systemBus);
-                            }
                             rescanOneBus(busMap, static_cast<uint16_t>(bus),
                                          dbusInterfaceMap, false,
                                          unknownBusObjectCount, powerIsOn,
