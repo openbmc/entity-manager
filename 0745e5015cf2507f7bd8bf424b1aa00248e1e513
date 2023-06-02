@@ -36,6 +36,24 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": true,
+      "key": {
+        "uuid": "20c9d1bc_9b15b7bb",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2023-06-02T12:09:11Z",
+      "side": 1,
+      "message": "Your link is to a private repository that no one here has access to.\n\nHow did you expect anyone to know your rationale based on your commit message?  At a minimum you need to rewrite your commit message such that someone is able to review this code on its own merits (especially since no one here has the ability to see the code you are attempting to link to).",
+      "parentUuid": "635d94ba_7c1bce59",
+      "revId": "0745e5015cf2507f7bd8bf424b1aa00248e1e513",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": false,
       "key": {
         "uuid": "feba3a44_cf030c55",
@@ -83,6 +101,24 @@
       "writtenOn": "2023-06-01T09:40:42Z",
       "side": 1,
       "message": "Please let\u0027s know your feedback. Thanks.",
+      "revId": "0745e5015cf2507f7bd8bf424b1aa00248e1e513",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "ef9c99fc_c589e4b0",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2023-06-02T12:09:11Z",
+      "side": 1,
+      "message": "I\u0027m going to guess that the 3 different posts of this are due to a Gerrit issue.\n\nIt really isn\u0027t necessary to post this kind of message, especially only 10 minutes after you originally pushed your code to Gerrit.  By submitting to Gerrit there is an implied \"I\u0027d like to get this reviewed and merged\" unless you explicitly add a WIP state.  (Work In Progress)",
+      "parentUuid": "feba3a44_cf030c55",
       "revId": "0745e5015cf2507f7bd8bf424b1aa00248e1e513",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
