@@ -16,6 +16,24 @@
       "message": "I see some people are already adding the system interface straight in the JSON:\n\n \"xyz.openbmc_project.Inventory.Item.System\": {}\n\nYou\u0027d prefer your commit because it puts it on a new object path?",
       "revId": "78418bd27c4ae5d8dd23ddab2e77355bd0c27381",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "8b223d6f_b34cc184",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 7
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1001584
+      },
+      "writtenOn": "2023-06-08T16:48:56Z",
+      "side": 1,
+      "message": "Yes and specifically because it\u0027s parent object path is the chassis. Both the BMC and Systems are on the Chassis, so I thought it would make sense for both to be exposeable and DBus objects created as a child path of the Item.Chassis.",
+      "parentUuid": "85cc6fe9_a4637b34",
+      "revId": "78418bd27c4ae5d8dd23ddab2e77355bd0c27381",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }
