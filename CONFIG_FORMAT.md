@@ -111,7 +111,7 @@ check out [My First Sensors](docs/my_first_sensors.md)
 
 ## Configuration schema
 
-The config schema is documented in [README.md](schemas/README.schema)
+The config schema is documented in [README.md](schemas/README.md)
 
 ## Configuration Records - Baseboard Example
 
