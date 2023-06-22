@@ -16,6 +16,24 @@
       "message": "I think this goes against the intended spirit of entity-manager configurations in that it exposes D-Bus internals in the config files, assuming this is something we still want to enforce.",
       "revId": "b47bd6a4e6d10f67e6c30041a1f3b95f9fc6e4e5",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "8c83ded3_b586ca4f",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 8
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1001584
+      },
+      "writtenOn": "2023-06-22T16:30:17Z",
+      "side": 1,
+      "message": "I believe Associations arent D-Bus internals but rather a D-Bus feature.\n\nThe problem I run into without any way to generate associations through user-facing configs is this:\n\nIn a multi-host system, we dont neccesarily know where the Item.System objects are going to be created as there is not standardized assumption or place for it to be done. This means that if we want to associate objects to this multi-host system, then it would require constant changes to every daemon to hardcode in the Item.System object it associates with. Populating these objects through EM would allow it to generate any associations and Item.System objects and make it client-configurable. It allows us to change what associations are being made if the Item.System object is different across systems and allows us to update associations without any changes to code.",
+      "parentUuid": "18d213e2_9e9efbd5",
+      "revId": "b47bd6a4e6d10f67e6c30041a1f3b95f9fc6e4e5",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }
