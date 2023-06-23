@@ -34,6 +34,24 @@
       "parentUuid": "18d213e2_9e9efbd5",
       "revId": "b47bd6a4e6d10f67e6c30041a1f3b95f9fc6e4e5",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "60b3b70c_0ff5bbe3",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 8
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1000008
+      },
+      "writtenOn": "2023-06-23T14:45:47Z",
+      "side": 1,
+      "message": "There\u0027s nothing wrong with associations, hardcoding d-bus paths is the issue.  In fact further down in that same function the code is already creating associations, which would actually crash your daemon with a FileExists exception the way you have it coded now if you also wanted those containing/contained_by on the same card.\n\nIs the association you have in your example the actual one you\u0027re trying to create?  Because that already wouldn\u0027t work if the entity can plug into more than 1 slot as you couldn\u0027t hardcode the target object path, and I would be surprised if the $variable substitution worked inside JSON objects.",
+      "parentUuid": "8c83ded3_b586ca4f",
+      "revId": "b47bd6a4e6d10f67e6c30041a1f3b95f9fc6e4e5",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }
