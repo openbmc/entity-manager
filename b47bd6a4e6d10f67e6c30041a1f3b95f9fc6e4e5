@@ -142,6 +142,24 @@
       "parentUuid": "12c10e3d_68e4dd48",
       "revId": "b47bd6a4e6d10f67e6c30041a1f3b95f9fc6e4e5",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "98e6980f_6f8f1edb",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 8
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1000008
+      },
+      "writtenOn": "2023-06-26T16:59:25Z",
+      "side": 1,
+      "message": "What\u0027s the actual use for this association? You\u0027re writing some bmcweb code that has to tie together a host state object with a system inventory object?  Is it something you plan to upstream?\n\nWhat I\u0027m getting at is if this is something that everyone could use I think it would be better if entity-manager would just automatically create the association between the System and a host state object so that the code works for everyone, like how dbus-sensors automatically creates associations between sensors and the inventory object.\n\nThis probably means that there would have to be some sort of instance number in the JSON so that it would know which state object to associate with, like \"SystemInstance\".  In your case you could hardcode it, but for systems like in my example it would probably have to be filled in with a $variable like:  \"SystemInstance\": \"$SysInstance\".\n\nAlso I think that association names need to be reviewed first somewhere in phosphor-dbus-interfaces, so you may want to start looking into that too.",
+      "parentUuid": "65509ee7_0b07449b",
+      "revId": "b47bd6a4e6d10f67e6c30041a1f3b95f9fc6e4e5",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }
