@@ -4,6 +4,8 @@ After=dbus.service
 
 [Service]
 ExecStart=/usr/bin/fru-device
+Restart=always
+RestartSec=5
 Type=simple
 
 [Install]
