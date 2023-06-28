@@ -50,6 +50,75 @@
       "message": "Thank @Matt Spinler for your review.\n\nHi @Zev Weiss, @Zhikui Ren, please help review. Let me know if there is anything that needs to be changed.",
       "revId": "66f45e18a1420c239cbbec16a997e01a7e26c09f",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "25c4e8d8_19c42bbc",
+        "filename": "src/fru_utils.cpp",
+        "patchSetId": 14
+      },
+      "lineNbr": 321,
+      "author": {
+        "id": 1000559
+      },
+      "writtenOn": "2023-06-28T04:54:04Z",
+      "side": 1,
+      "message": "should this be (areaOffset \u003c device.size())?",
+      "range": {
+        "startLine": 321,
+        "startChar": 13,
+        "endLine": 321,
+        "endChar": 48
+      },
+      "revId": "66f45e18a1420c239cbbec16a997e01a7e26c09f",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c2a27ab1_e25859a5",
+        "filename": "src/fru_utils.cpp",
+        "patchSetId": 14
+      },
+      "lineNbr": 325,
+      "author": {
+        "id": 1000559
+      },
+      "writtenOn": "2023-06-28T04:54:04Z",
+      "side": 1,
+      "message": "should this be (areaOffset + multiRecordHeaderLen)?",
+      "range": {
+        "startLine": 325,
+        "startChar": 17,
+        "endLine": 325,
+        "endChar": 59
+      },
+      "revId": "66f45e18a1420c239cbbec16a997e01a7e26c09f",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "51993441_4133277e",
+        "filename": "src/fru_utils.cpp",
+        "patchSetId": 14
+      },
+      "lineNbr": 325,
+      "author": {
+        "id": 1000559
+      },
+      "writtenOn": "2023-06-28T04:54:04Z",
+      "side": 1,
+      "message": "\u003c",
+      "range": {
+        "startLine": 325,
+        "startChar": 59,
+        "endLine": 325,
+        "endChar": 61
+      },
+      "revId": "66f45e18a1420c239cbbec16a997e01a7e26c09f",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }
