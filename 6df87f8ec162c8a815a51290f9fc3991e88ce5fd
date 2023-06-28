@@ -16,6 +16,24 @@
       "message": "maybe its needed for ina219 which is not known from devicetree?\n\nbut if its in entity-manager, then it can also be in devicetree right?\n\nif you have full devicetree, this feature is not needed as the shunt_resistor seems to be able to be set in devicetree.\n\nDocumentation/devicetree/bindings/hwmon/ti,ina2xx.yaml \n\nexamples:\n  - |\n    i2c {\n        #address-cells \u003d \u003c1\u003e;\n        #size-cells \u003d \u003c0\u003e;\n\n        power-sensor@44 {\n            compatible \u003d \"ti,ina220\";\n            reg \u003d \u003c0x44\u003e;\n            shunt-resistor \u003d \u003c1000\u003e;\n        };\n    };\n\n------------------------------\napologies if i misunderstood anything. i dont have experience with this sensor.",
       "revId": "6df87f8ec162c8a815a51290f9fc3991e88ce5fd",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "61ee9c58_4a9e77dc",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 5
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1000559
+      },
+      "writtenOn": "2023-06-28T05:06:14Z",
+      "side": 1,
+      "message": "This device is not in device tree. Entity Manager support discover hardware at run time dynamically and binds the device driver after successfully probe.",
+      "parentUuid": "bdf3c155_53388dab",
+      "revId": "6df87f8ec162c8a815a51290f9fc3991e88ce5fd",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }
