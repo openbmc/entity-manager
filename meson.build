@@ -125,7 +125,7 @@ configs = [
     'kudo_bmc.json',
     'kudo_motherboard.json',
     'mori_bmc.json',
-    'mt_jade.json',
+    'mtjade.json',
     'mtmitchell_bmc.json',
     'mtmitchell_mb.json',
     'nisqually.json',
