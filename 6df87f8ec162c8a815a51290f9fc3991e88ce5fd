@@ -52,6 +52,24 @@
       "parentUuid": "61ee9c58_4a9e77dc",
       "revId": "6df87f8ec162c8a815a51290f9fc3991e88ce5fd",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "3b0d5a19_903e807c",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 5
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1000900
+      },
+      "writtenOn": "2023-07-12T00:22:18Z",
+      "side": 1,
+      "message": "Yes, as Zhikui explained, this whole subsystem of Entity Manager is to support devices that need to be dynamically added because they don\u0027t exist when the BMC powers up for whatever reason. As far as I could tell, there is no way to merge attributes from the devicetree with dynamically added devices at the same address (i.e. it would be nice to describe this sensor in the devicetree like you mention and then have the shunt-resistor automatically applied when EM binds the device - but I don\u0027t think that\u0027s possible). So I think we still need this patch.",
+      "parentUuid": "eca44650_e85aa0cb",
+      "revId": "6df87f8ec162c8a815a51290f9fc3991e88ce5fd",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }
