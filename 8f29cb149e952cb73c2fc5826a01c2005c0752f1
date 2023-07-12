@@ -33,6 +33,29 @@
       "message": "LGTM, though I don\u0027t know if there are any implications.",
       "revId": "8f29cb149e952cb73c2fc5826a01c2005c0752f1",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "184379be_7c6077e0",
+        "filename": "src/fru_device.cpp",
+        "patchSetId": 1
+      },
+      "lineNbr": 65,
+      "author": {
+        "id": 1000559
+      },
+      "writtenOn": "2023-07-12T01:06:39Z",
+      "side": 1,
+      "message": "How was 10 seconds chosen. Do we have any idea on how close to point of failure?\nI would like to see some data on how long does it to read the eeprom in your test case",
+      "range": {
+        "startLine": 65,
+        "startChar": 36,
+        "endLine": 65,
+        "endChar": 40
+      },
+      "revId": "8f29cb149e952cb73c2fc5826a01c2005c0752f1",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }
