@@ -56,6 +56,30 @@
       },
       "revId": "8f29cb149e952cb73c2fc5826a01c2005c0752f1",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ba5cd4ec_c76bc0d7",
+        "filename": "src/fru_device.cpp",
+        "patchSetId": 1
+      },
+      "lineNbr": 65,
+      "author": {
+        "id": 1001322
+      },
+      "writtenOn": "2023-07-13T06:21:28Z",
+      "side": 1,
+      "message": "10 sec was added, based on the logs we captured on BMC. The time difference between the below two logs is 5 sec. Which means it needs more than 5 sec to read and not timeout, hence 10 sec was added. Also, after adding this change we are not observing the missing fru or the error in reading the bus.\n\nJun 29 07:32:33 avc1-bmc fru-device[308]: device at bus 52 address 117 busy\n\nJun 29 07:32:38 avc1-bmc fru-device[308]: Error reading bus 53",
+      "parentUuid": "184379be_7c6077e0",
+      "range": {
+        "startLine": 65,
+        "startChar": 36,
+        "endLine": 65,
+        "endChar": 40
+      },
+      "revId": "8f29cb149e952cb73c2fc5826a01c2005c0752f1",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }
