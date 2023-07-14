@@ -16,6 +16,24 @@
       "message": "Unfortunately, the cache is needed so properties changed by users like thresholds are persisted.\n\nI may be missing something, but if you can come up with a method of saving those outside of the JSON then I think we could get rid of the JSON file altogether.",
       "revId": "7bf78c246c49399263057e2ec6eb97cd3154a98b",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "398c49d1_300c9b66",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 3
+      },
+      "lineNbr": 10,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2023-07-14T14:54:24Z",
+      "side": 1,
+      "message": "what is the usecase for users changing thresholds via dbus and such?\n\nthresholds are provided in the configuration for PSU, Board, Chassis\nthere is no need to edit the configuration for thresholds as it is already present.\n\nusers can also edit the configuration files in /usr/share/entity-manager/configurations/  and restart the service. the changes will be applied and persisted.\n\nthere is no need to have separate mechanism to change the configuration. one mechanism is enough.\n\nthe current behavior is confusing and inconsistent. users expect a systemd service to reload all its configuration when it is restarted.",
+      "parentUuid": "e180c2e7_26e9a7a5",
+      "revId": "7bf78c246c49399263057e2ec6eb97cd3154a98b",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }
