@@ -70,6 +70,24 @@
       "parentUuid": "eca44650_e85aa0cb",
       "revId": "6df87f8ec162c8a815a51290f9fc3991e88ce5fd",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "b794d952_20da0fe7",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 5
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2023-07-14T10:07:52Z",
+      "side": 1,
+      "message": "what about devicetree overlays ? isn\u0027t that a better way to go about dynamically adding devices? the ways in which devices can be added via sysfs are quite limited and not all properties which are in devicetree are configurable via sysfs. adding devices via EM would be duplicating that effort, and could never go as far.\n\nEM will never have as much control over the devices as the kernel. why can\u0027t EM just load a devicetree overlay whenever host is powered on, for example?",
+      "parentUuid": "3b0d5a19_903e807c",
+      "revId": "6df87f8ec162c8a815a51290f9fc3991e88ce5fd",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }
