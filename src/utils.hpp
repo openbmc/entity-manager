@@ -27,6 +27,7 @@
 #include <iostream>
 
 constexpr const char* configurationOutDir = "/var/configuration/";
+constexpr const char* runtimeConfigAppliedFile = "/var/configuration/runtimeConfigApplied";
 constexpr const char* versionHashFile = "/var/configuration/version";
 constexpr const char* versionFile = "/etc/os-release";
 
@@ -91,6 +92,11 @@ struct DBusInternalError final : public sdbusplus::exception_t
         return EACCES;
     }
 };
+
+inline bool hasRuntimeConfig(void)
+{
+    return std::filesystem::exists(runtimeConfigAppliedFile);
+}
 
 inline bool fwVersionIsSame(void)
 {

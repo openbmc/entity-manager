@@ -123,8 +123,9 @@ static std::shared_ptr<sdbusplus::asio::dbus_interface>
     return ptr;
 }
 
-// writes output files to persist data
-bool writeJsonFiles(const nlohmann::json& systemConfiguration)
+// writes output files to persist data.
+// in case of runtime mods, creates a file to mark that runtime mods were persisted.
+bool writeJsonFiles(const nlohmann::json& systemConfiguration, bool isRuntimeMod)
 {
     std::filesystem::create_directory(configurationOutDir);
     std::ofstream output(currentConfiguration);
@@ -134,6 +135,21 @@ bool writeJsonFiles(const nlohmann::json& systemConfiguration)
     }
     output << systemConfiguration.dump(4);
     output.close();
+
+    if (!isRuntimeMod)
+    {
+        return true;
+    }
+
+    std::ofstream runtimeMod(runtimeConfigAppliedFile);
+    if (!runtimeMod)
+    {
+        return false;
+    }
+    runtimeMod.close();
+
+    std::cout << "persisted runtime configuration." << std::endl;
+
     return true;
 }
 
@@ -191,7 +207,7 @@ void addArrayToDbus(const std::string& name, const nlohmann::json& array,
                 std::cerr << "error setting json field\n";
                 return -1;
             }
-            if (!writeJsonFiles(systemConfiguration))
+            if (!writeJsonFiles(systemConfiguration, false))
             {
                 std::cerr << "error setting json file\n";
                 return -1;
@@ -224,7 +240,7 @@ void addProperty(const std::string& name, const PropertyType& value,
             std::cerr << "error setting json field\n";
             return -1;
         }
-        if (!writeJsonFiles(systemConfiguration))
+        if (!writeJsonFiles(systemConfiguration, true))
         {
             std::cerr << "error setting json file\n";
             return -1;
@@ -260,7 +276,7 @@ void createDeleteObjectMethod(
             objServer.remove_interface(dbusInterface);
         });
 
-        if (!writeJsonFiles(systemConfiguration))
+        if (!writeJsonFiles(systemConfiguration, true))
         {
             std::cerr << "error setting json file\n";
             throw DBusInternalError();
@@ -536,7 +552,7 @@ void createAddObjectMethod(const std::string& jsonPointerPath,
         {
             findExposes->push_back(newData);
         }
-        if (!writeJsonFiles(systemConfiguration))
+        if (!writeJsonFiles(systemConfiguration, true))
         {
             std::cerr << "Error writing json files\n";
             throw DBusInternalError();
@@ -1010,7 +1026,7 @@ static void publishNewConfiguration(
     loadOverlays(newConfiguration);
 
     boost::asio::post(io, [systemConfiguration]() {
-        if (!writeJsonFiles(systemConfiguration))
+        if (!writeJsonFiles(systemConfiguration, false))
         {
             std::cerr << "Error writing json files\n";
         }
@@ -1282,7 +1298,7 @@ int main()
     });
     entityIface->initialize();
 
-    if (fwVersionIsSame())
+    if (fwVersionIsSame() && hasRuntimeConfig())
     {
         if (std::filesystem::is_regular_file(currentConfiguration))
         {
