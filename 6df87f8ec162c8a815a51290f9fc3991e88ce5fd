@@ -88,6 +88,24 @@
       "parentUuid": "3b0d5a19_903e807c",
       "revId": "6df87f8ec162c8a815a51290f9fc3991e88ce5fd",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "5c1b1b05_f135b8c4",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 5
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1000900
+      },
+      "writtenOn": "2023-07-14T19:32:46Z",
+      "side": 1,
+      "message": "Just did some searching about this, and it seems that\u0027s exactly what EM used to do. (Hence the name of this file `overlay.cpp`.) However, it was removed and replaced with sysfs binding because there is no support in the kernel for userspace to trigger the overlay loading. I guess OpenBMC previously was carrying some patches to provide that userspace DTS overlay interface, but we didn\u0027t want to carry that any more.\n\nIn fact I found in discord that someone else wanted to configure the INA219 shunt_resistor (https://discord.com/channels/775381525260664832/819741065531359263/837777465932906546). I will explore using PowerScaleFactor instead of this change to see if it works well enough.",
+      "parentUuid": "b794d952_20da0fe7",
+      "revId": "6df87f8ec162c8a815a51290f9fc3991e88ce5fd",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }
