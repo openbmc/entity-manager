@@ -34,6 +34,24 @@
       "parentUuid": "e180c2e7_26e9a7a5",
       "revId": "7bf78c246c49399263057e2ec6eb97cd3154a98b",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ee60379c_e7e47204",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 3
+      },
+      "lineNbr": 10,
+      "author": {
+        "id": 1000008
+      },
+      "writtenOn": "2023-07-14T15:13:50Z",
+      "side": 1,
+      "message": "Our systems have never used it so I\u0027m not intimately familiar, but there\u0027s just a few writable properties which are specified here: https://github.com/openbmc/entity-manager/blob/a591d6c0b144ebc81e8175651364b2fa29f05cc8/src/entity_manager.cpp#L64\n\nI don\u0027t really know why fan properties need to be persisted, @Zhikui do you know? I think there are probably redfish interfaces for fan tuning.\n\nAs for the thresholds I think there are external interfaces to modify them via Redfish and IPMI and they are then saved here.\n\nWhen EM was first written, or maybe when it was ported over from Intel\u0027s world, it didn\u0027t even put anything on D-Bus and just saved everything in system.json which is why it even exists in the first place.\n\nI would be all for moving away from it, we just don\u0027t want to break the people that need the persistence.",
+      "parentUuid": "398c49d1_300c9b66",
+      "revId": "7bf78c246c49399263057e2ec6eb97cd3154a98b",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }
