@@ -48,8 +48,6 @@
 constexpr const char* hostConfigurationDirectory = SYSCONF_DIR "configurations";
 constexpr const char* configurationDirectory = PACKAGE_DIR "configurations";
 constexpr const char* schemaDirectory = PACKAGE_DIR "configurations/schemas";
-constexpr const char* tempConfigDir = "/tmp/configuration/";
-constexpr const char* lastConfiguration = "/tmp/configuration/last.json";
 constexpr const char* currentConfiguration = "/var/configuration/system.json";
 constexpr const char* globalSchema = "global.json";
 
@@ -1282,42 +1280,10 @@ int main()
     });
     entityIface->initialize();
 
-    if (fwVersionIsSame())
-    {
-        if (std::filesystem::is_regular_file(currentConfiguration))
-        {
-            // this file could just be deleted, but it's nice for debug
-            std::filesystem::create_directory(tempConfigDir);
-            std::filesystem::remove(lastConfiguration);
-            std::filesystem::copy(currentConfiguration, lastConfiguration);
-            std::filesystem::remove(currentConfiguration);
-
-            std::ifstream jsonStream(lastConfiguration);
-            if (jsonStream.good())
-            {
-                auto data = nlohmann::json::parse(jsonStream, nullptr, false);
-                if (data.is_discarded())
-                {
-                    std::cerr << "syntax error in " << lastConfiguration
-                              << "\n";
-                }
-                else
-                {
-                    lastJson = std::move(data);
-                }
-            }
-            else
-            {
-                std::cerr << "unable to open " << lastConfiguration << "\n";
-            }
-        }
-    }
-    else
-    {
-        // not an error, just logging at this level to make it in the journal
-        std::cerr << "Clearing previous configuration\n";
-        std::filesystem::remove(currentConfiguration);
-    }
+    // not an error, just logging at this level to make it in the journal
+    std::cerr << "Clearing previous configuration at " << currentConfiguration
+              << std::endl;
+    std::filesystem::remove(currentConfiguration);
 
     // some boards only show up after power is on, we want to not say they are
     // removed until the same state happens
