@@ -92,44 +92,6 @@ struct DBusInternalError final : public sdbusplus::exception_t
     }
 };
 
-inline bool fwVersionIsSame(void)
-{
-    std::ifstream version(versionFile);
-    if (!version.good())
-    {
-        std::cerr << "Can't read " << versionFile << "\n";
-        return false;
-    }
-
-    std::string versionData;
-    std::string line;
-    while (std::getline(version, line))
-    {
-        versionData += line;
-    }
-
-    std::string expectedHash =
-        std::to_string(std::hash<std::string>{}(versionData));
-
-    std::filesystem::create_directory(configurationOutDir);
-    std::ifstream hashFile(versionHashFile);
-    if (hashFile.good())
-    {
-        std::string hashString;
-        hashFile >> hashString;
-
-        if (expectedHash == hashString)
-        {
-            return true;
-        }
-        hashFile.close();
-    }
-
-    std::ofstream output(versionHashFile);
-    output << expectedHash;
-    return false;
-}
-
 std::optional<std::string> templateCharReplace(
     nlohmann::json::iterator& keyPair, const DBusObject& object, size_t index,
     const std::optional<std::string>& replaceStr = std::nullopt);
