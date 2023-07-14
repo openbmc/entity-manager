@@ -77,6 +77,30 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "4a5b4af0_dddac7a0",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 3
+      },
+      "lineNbr": 11,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2023-07-14T16:11:37Z",
+      "side": 1,
+      "message": "updated the commit message.",
+      "parentUuid": "a3b3aead_2173f70c",
+      "range": {
+        "startLine": 10,
+        "startChar": 26,
+        "endLine": 11,
+        "endChar": 17
+      },
+      "revId": "7bf78c246c49399263057e2ec6eb97cd3154a98b",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "f2043497_f365a8e3",
@@ -90,6 +114,24 @@
       "writtenOn": "2023-07-14T15:26:25Z",
       "side": 1,
       "message": "Please detect that the detection of new devices works properly.  I suspect that it doesn\u0027t anymore, because this mechanism was how it functioned.",
+      "revId": "7bf78c246c49399263057e2ec6eb97cd3154a98b",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "526c79f5_eb431af5",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 3
+      },
+      "lineNbr": 13,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2023-07-14T16:11:37Z",
+      "side": 1,
+      "message": "detection of new devices still works for me. calling ReScan method on FruDevice and EntityManager results in updated dbus tree when e.g. a PSU is added to the system.",
+      "parentUuid": "f2043497_f365a8e3",
       "revId": "7bf78c246c49399263057e2ec6eb97cd3154a98b",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
