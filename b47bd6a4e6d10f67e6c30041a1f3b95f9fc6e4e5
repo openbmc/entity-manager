@@ -196,6 +196,24 @@
       "parentUuid": "396c5273_90c13429",
       "revId": "b47bd6a4e6d10f67e6c30041a1f3b95f9fc6e4e5",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "50b74afb_a0730230",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 8
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1000008
+      },
+      "writtenOn": "2023-07-17T21:55:01Z",
+      "side": 1,
+      "message": "Sounds doable.  First I would put up a commit to define the association like https://github.com/openbmc/phosphor-dbus-interfaces/blob/2117deabad40f9ac63815f3338e7ac3e1e3fe397/yaml/xyz/openbmc_project/Led/Group.interface.yaml#L10  on one of the endpoint interfaces so that everyone can agree on the association names.\n\nThen you could write EM code to look up the interface on the other end with the mapper, identifying it by the instance or whatever, and creating the association definition.",
+      "parentUuid": "41bdeaad_723d752f",
+      "revId": "b47bd6a4e6d10f67e6c30041a1f3b95f9fc6e4e5",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }
