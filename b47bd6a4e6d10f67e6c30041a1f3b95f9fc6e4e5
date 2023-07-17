@@ -250,6 +250,24 @@
       "parentUuid": "a6d22023_4484d941",
       "revId": "b47bd6a4e6d10f67e6c30041a1f3b95f9fc6e4e5",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "863481c1_d08dced3",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 8
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1001584
+      },
+      "writtenOn": "2023-07-17T22:24:07Z",
+      "side": 1,
+      "message": "Yes I see what you mean by SystemInstance. So that means the host suffix on the power control variable is fixed and we require the dbus object to be in the correct naming format for the association to be created. Would we run into issues if this could somehow not be the case? Bad naming of power control dbus objects could cause issues here?\n\nIs the assumption of power control dbus object naming format an assumption I can make for all systems of openbmc?",
+      "parentUuid": "a416d62b_e29332fe",
+      "revId": "b47bd6a4e6d10f67e6c30041a1f3b95f9fc6e4e5",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }
