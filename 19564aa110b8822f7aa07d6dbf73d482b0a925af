@@ -34,6 +34,46 @@
       "parentUuid": "4dc6cc8b_90e28fb1",
       "revId": "19564aa110b8822f7aa07d6dbf73d482b0a925af",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "72e9501a_c5bc8162",
+        "filename": "src/fru_device.cpp",
+        "patchSetId": 4
+      },
+      "lineNbr": 488,
+      "author": {
+        "id": 1000559
+      },
+      "writtenOn": "2023-07-17T21:34:16Z",
+      "side": 1,
+      "message": "limit to is16BitBool \u003d\u003d false",
+      "revId": "19564aa110b8822f7aa07d6dbf73d482b0a925af",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7eb8710e_3330a442",
+        "filename": "src/fru_utils.cpp",
+        "patchSetId": 4
+      },
+      "lineNbr": 752,
+      "author": {
+        "id": 1000559
+      },
+      "writtenOn": "2023-07-17T21:34:16Z",
+      "side": 1,
+      "message": "be consistent with line 761, just do if(foundHeader)",
+      "range": {
+        "startLine": 752,
+        "startChar": 0,
+        "endLine": 752,
+        "endChar": 32
+      },
+      "revId": "19564aa110b8822f7aa07d6dbf73d482b0a925af",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }
