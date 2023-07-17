@@ -178,6 +178,24 @@
       "parentUuid": "98e6980f_6f8f1edb",
       "revId": "b47bd6a4e6d10f67e6c30041a1f3b95f9fc6e4e5",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "41bdeaad_723d752f",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 8
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1001584
+      },
+      "writtenOn": "2023-07-17T21:42:18Z",
+      "side": 1,
+      "message": "The use case is to associate a Item.System object with its respective power control object. The problem that I am running into is that I dont want to hardcode any associations in any codebase because that will just result in changes everytime a dbus object differs from expectation. I wanted associations between system and power control to be configurable using a config file which is what the code above is for.\n\n\u003eThis probably means that there would have to be some sort of instance number in the JSON so that it would know which state object to associate with, like \"SystemInstance\". In your case you could hardcode it, but for systems like in my example it would probably have to be filled in with a $variable like: \"SystemInstance\": \"$SysInstance\".\n\nThis could happen yes. I think making it such that the config file contains variables that can be filled in by EM\u0027s code would be a great idea. I just want some way to configure associations between system and power control since any other daemon cant create an association as the associated objects could be changing per system, but the configurability using EM\u0027s config files allows it to be system-agnostic.",
+      "parentUuid": "396c5273_90c13429",
+      "revId": "b47bd6a4e6d10f67e6c30041a1f3b95f9fc6e4e5",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }
