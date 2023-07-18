@@ -268,6 +268,24 @@
       "parentUuid": "a416d62b_e29332fe",
       "revId": "b47bd6a4e6d10f67e6c30041a1f3b95f9fc6e4e5",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "680f2f15_bf097ece",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 8
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1000008
+      },
+      "writtenOn": "2023-07-18T21:17:09Z",
+      "side": 1,
+      "message": "I\u0027m not sure if there would ever be a case where an entity-manager System config would be used across multiple power control implementations.\n\nI guess another way to do is by adding a new property (and interface if necessary) on the power control side of things to match things up.",
+      "parentUuid": "863481c1_d08dced3",
+      "revId": "b47bd6a4e6d10f67e6c30041a1f3b95f9fc6e4e5",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }
