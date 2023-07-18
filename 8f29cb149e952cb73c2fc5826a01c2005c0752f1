@@ -104,6 +104,30 @@
       },
       "revId": "8f29cb149e952cb73c2fc5826a01c2005c0752f1",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b7dfd68f_950d7a80",
+        "filename": "src/fru_device.cpp",
+        "patchSetId": 1
+      },
+      "lineNbr": 65,
+      "author": {
+        "id": 1001322
+      },
+      "writtenOn": "2023-07-18T04:32:50Z",
+      "side": 1,
+      "message": "It is based on the observation that 5 sec was not enough and received a read error. So, doubling the existing timeout value and testing it resolved the issue. hence, I added 10 s as the timeout duration.\n\nMoreover, I did a test by adding the timeout value to 6s. and tested. The issue is not seen with 6s. So, the read takes between 5-6 seconds. To have a buffer in read time, we can keep as 10 sec. Let me know your thoughts.\n\n-constexpr size_t busTimeoutSeconds \u003d 5;\n+//constexpr size_t busTimeoutSeconds \u003d 5;\n+constexpr size_t busTimeoutSeconds \u003d 6;",
+      "parentUuid": "0084face_fc43ec08",
+      "range": {
+        "startLine": 65,
+        "startChar": 36,
+        "endLine": 65,
+        "endChar": 40
+      },
+      "revId": "8f29cb149e952cb73c2fc5826a01c2005c0752f1",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }
