@@ -787,6 +787,7 @@ void addFruObjectToDbus(
 
     for (auto& property : formattedFRU)
     {
+devi
         std::regex_replace(property.second.begin(), property.second.begin(),
                            property.second.end(), nonAsciiRegex, "_");
         if (property.second.empty() && property.first != "PRODUCT_ASSET_TAG")
@@ -795,12 +796,15 @@ void addFruObjectToDbus(
         }
         std::string key = std::regex_replace(property.first, nonAsciiRegex,
                                              "_");
-
+        std::string value = property.second;
+        // Remove the spaces from the end of the key string
+        value.erase(std::find_if(value.rbegin(), value.rend(), 
+            [](unsigned char ch) {return !std::isspace(ch);}).base(), value.end());
         if (property.first == "PRODUCT_ASSET_TAG")
         {
             std::string propertyName = property.first;
             iface->register_property(
-                key, property.second + '\0',
+                key, value + '\0',
                 [bus, address, propertyName, &dbusInterfaceMap,
                  &unknownBusObjectCount, &powerIsOn, &objServer,
                  &systemBus](const std::string& req, std::string& resp) {
@@ -829,7 +833,7 @@ void addFruObjectToDbus(
         }
         if (debug)
         {
-            std::cout << property.first << ": " << property.second << "\n";
+            std::cout << property.first << ": " << value << "\n";
         }
     }
 
