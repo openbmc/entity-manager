@@ -725,6 +725,20 @@
                     },
                     {
                         "Direction": "greater than",
+                        "Label": "temp1",
+                        "Name": "upper critical",
+                        "Severity": 1,
+                        "Value": 120
+                    },
+                    {
+                        "Direction": "greater than",
+                        "Label": "temp1",
+                        "Name": "upper non critical",
+                        "Severity": 0,
+                        "Value": 105
+                    },
+                    {
+                        "Direction": "greater than",
                         "Label": "vin",
                         "Name": "upper critical",
                         "Severity": 1,
@@ -801,6 +815,7 @@
                 "MaxValue": 127.0,
                 "MinValue": -128.0,
                 "Name": "THERMAL_ZONE0_T",
+                "Timeout": 5,
                 "Type": "ExternalSensor",
                 "Units": "DegreesC"
             },
