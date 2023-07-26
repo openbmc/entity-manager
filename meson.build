@@ -113,6 +113,7 @@ configs = [
     'genesis3_psu.json',
     'genesis3_baseboard.json',
     'genesis3_chassis.json',
+    'gospower_g1136-1300wna_psu.json',
     'greatlakes.json',
     'greatlakes_nic_mellanox.json',
     'ibm_tacoma_rack_controller.json',
