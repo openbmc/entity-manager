@@ -1,0 +1,90 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1f7379e2_089e07ff",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 7
+      },
+      "lineNbr": 10,
+      "author": {
+        "id": 1000559
+      },
+      "writtenOn": "2023-07-29T01:40:52Z",
+      "side": 1,
+      "message": "nit: remove empty line",
+      "revId": "87c92ec42e22ef8edc2d109b3d59883f4d06c927",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1fde31bf_bf647080",
+        "filename": "src/fru_device.cpp",
+        "patchSetId": 7
+      },
+      "lineNbr": 262,
+      "author": {
+        "id": 1000559
+      },
+      "writtenOn": "2023-07-29T01:40:52Z",
+      "side": 1,
+      "message": "nit: can we re-order the parameter so the \"mode\" ones are together, example\n(bool is16bit, bool isByteWise, int file, uint16_t address, off_t offset,  size_t len, uint8_t* buf)",
+      "range": {
+        "startLine": 261,
+        "startChar": 24,
+        "endLine": 262,
+        "endChar": 63
+      },
+      "revId": "87c92ec42e22ef8edc2d109b3d59883f4d06c927",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f9e9e389_6f4f6966",
+        "filename": "src/fru_utils.cpp",
+        "patchSetId": 7
+      },
+      "lineNbr": 764,
+      "author": {
+        "id": 1000559
+      },
+      "writtenOn": "2023-07-29T01:40:52Z",
+      "side": 1,
+      "message": "I don\u0027t see a big advantage of using std::optional over just always pass in bool*\nAnd this section can be:\n\n\\*foundHeader \u003d findFRUHeader(...);\nif ( !(\\*foundHeader)) \n{\nreturn {};\n}\n\nwhich is simpler.\n\nA better option is to change readFRUContents to return std::optional \u003cstd::vector\u003e\n\nso above can become:\n\nif (!findFRUHeader(...))\n{\nreturn std::nullopt;\n}",
+      "range": {
+        "startLine": 752,
+        "startChar": 0,
+        "endLine": 764,
+        "endChar": 5
+      },
+      "revId": "87c92ec42e22ef8edc2d109b3d59883f4d06c927",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b12e2f70_6e220be2",
+        "filename": "src/fru_utils.hpp",
+        "patchSetId": 7
+      },
+      "lineNbr": 160,
+      "author": {
+        "id": 1000559
+      },
+      "writtenOn": "2023-07-29T01:40:52Z",
+      "side": 1,
+      "message": "I think we can make the return to be optional to indicate foundHeader.\n(see my other comment)\nI am ok to make it a follow up clean up and refactor",
+      "range": {
+        "startLine": 160,
+        "startChar": 0,
+        "endLine": 160,
+        "endChar": 21
+      },
+      "revId": "87c92ec42e22ef8edc2d109b3d59883f4d06c927",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    }
+  ]
+}
