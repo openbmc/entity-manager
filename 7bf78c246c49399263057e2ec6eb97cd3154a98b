@@ -146,6 +146,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "f0ae86e8_6251bac1",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 3
+      },
+      "lineNbr": 10,
+      "author": {
+        "id": 1000559
+      },
+      "writtenOn": "2023-07-31T23:33:28Z",
+      "side": 1,
+      "message": "I have been thinking along the same line, that is whether we can create and save the \"patch\" config and apply them after entity-manager discovered \"base(build in)\" config, similar to systemd supports customize service file. \nBut, at the same time, I also think maybe we can improve and fwVersionIsSame() https://github.com/openbmc/entity-manager/blob/master/src/utils.hpp#L95. work correctly, i.e. detect the configuration/...json files have been updated.",
+      "parentUuid": "10964609_aec02bbe",
+      "revId": "7bf78c246c49399263057e2ec6eb97cd3154a98b",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "a3b3aead_2173f70c",
         "filename": "/COMMIT_MSG",
         "patchSetId": 3
