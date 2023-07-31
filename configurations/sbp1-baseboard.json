@@ -1,0 +1,2665 @@
+{
+    "Exposes": [
+        {
+            "Index": 0,
+            "Name": "P12V",
+            "PowerState": "Always",
+            "ScaleFactor": 1.0,
+            "Thresholds": [
+                {
+                    "Direction": "greater than",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 13.0
+                },
+                {
+                    "Direction": "greater than",
+                    "Name": "upper non critical",
+                    "Severity": 0,
+                    "Value": 12.8
+                },
+                {
+                    "Direction": "less than",
+                    "Name": "lower non critical",
+                    "Severity": 0,
+                    "Value": 11.2
+                },
+                {
+                    "Direction": "less than",
+                    "Name": "lower critical",
+                    "Severity": 1,
+                    "Value": 11.0
+                }
+            ],
+            "Type": "ADC"
+        },
+        {
+            "Index": 1,
+            "Name": "P5V_AUX_ADC",
+            "PowerState": "Always",
+            "ScaleFactor": 1.0,
+            "Thresholds": [
+                {
+                    "Direction": "greater than",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 5.25
+                },
+                {
+                    "Direction": "greater than",
+                    "Name": "upper non critical",
+                    "Severity": 0,
+                    "Value": 5.15
+                },
+                {
+                    "Direction": "less than",
+                    "Name": "lower non critical",
+                    "Severity": 0,
+                    "Value": 4.85
+                },
+                {
+                    "Direction": "less than",
+                    "Name": "lower critical",
+                    "Severity": 1,
+                    "Value": 4.75
+                }
+            ],
+            "Type": "ADC"
+        },
+        {
+            "Index": 2,
+            "Name": "P5V_BMC_AUX_ADC",
+            "PowerState": "Always",
+            "ScaleFactor": 1.0,
+            "Thresholds": [
+                {
+                    "Direction": "greater than",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 5.25
+                },
+                {
+                    "Direction": "greater than",
+                    "Name": "upper non critical",
+                    "Severity": 0,
+                    "Value": 5.15
+                },
+                {
+                    "Direction": "less than",
+                    "Name": "lower non critical",
+                    "Severity": 0,
+                    "Value": 4.85
+                },
+                {
+                    "Direction": "less than",
+                    "Name": "lower critical",
+                    "Severity": 1,
+                    "Value": 4.75
+                }
+            ],
+            "Type": "ADC"
+        },
+        {
+            "Index": 3,
+            "Name": "P3V3_AUX_ADC",
+            "PowerState": "Always",
+            "ScaleFactor": 1.0,
+            "Thresholds": [
+                {
+                    "Direction": "greater than",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 3.465
+                },
+                {
+                    "Direction": "greater than",
+                    "Name": "upper non critical",
+                    "Severity": 0,
+                    "Value": 3.399
+                },
+                {
+                    "Direction": "less than",
+                    "Name": "lower non critical",
+                    "Severity": 0,
+                    "Value": 3.201
+                },
+                {
+                    "Direction": "less than",
+                    "Name": "lower critical",
+                    "Severity": 1,
+                    "Value": 3.135
+                }
+            ],
+            "Type": "ADC"
+        },
+        {
+            "Index": 4,
+            "Name": "P3V3_BMC_AUX",
+            "PowerState": "Always",
+            "ScaleFactor": 1.0,
+            "Thresholds": [
+                {
+                    "Direction": "greater than",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 3.465
+                },
+                {
+                    "Direction": "greater than",
+                    "Name": "upper non critical",
+                    "Severity": 0,
+                    "Value": 3.399
+                },
+                {
+                    "Direction": "less than",
+                    "Name": "lower non critical",
+                    "Severity": 0,
+                    "Value": 3.201
+                },
+                {
+                    "Direction": "less than",
+                    "Name": "lower critical",
+                    "Severity": 1,
+                    "Value": 3.135
+                }
+            ],
+            "Type": "ADC"
+        },
+        {
+            "Index": 5,
+            "Name": "P1V8_BMC_AUX",
+            "PowerState": "Always",
+            "ScaleFactor": 1.0,
+            "Thresholds": [
+                {
+                    "Direction": "greater than",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 1.89
+                },
+                {
+                    "Direction": "greater than",
+                    "Name": "upper non critical",
+                    "Severity": 0,
+                    "Value": 1.854
+                },
+                {
+                    "Direction": "less than",
+                    "Name": "lower non critical",
+                    "Severity": 0,
+                    "Value": 1.746
+                },
+                {
+                    "Direction": "less than",
+                    "Name": "lower critical",
+                    "Severity": 1,
+                    "Value": 1.71
+                }
+            ],
+            "Type": "ADC"
+        },
+        {
+            "Index": 6,
+            "Name": "P1V2_BMC_AUX",
+            "PowerState": "Always",
+            "ScaleFactor": 1.0,
+            "Thresholds": [
+                {
+                    "Direction": "greater than",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 1.26
+                },
+                {
+                    "Direction": "greater than",
+                    "Name": "upper non critical",
+                    "Severity": 0,
+                    "Value": 1.236
+                },
+                {
+                    "Direction": "less than",
+                    "Name": "lower non critical",
+                    "Severity": 0,
+                    "Value": 1.164
+                },
+                {
+                    "Direction": "less than",
+                    "Name": "lower critical",
+                    "Severity": 1,
+                    "Value": 1.14
+                }
+            ],
+            "Type": "ADC"
+        },
+        {
+            "Index": 7,
+            "Name": "P1V2_PHY1_LDO",
+            "PowerState": "Always",
+            "ScaleFactor": 1.0,
+            "Thresholds": [
+                {
+                    "Direction": "greater than",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 1.26
+                },
+                {
+                    "Direction": "greater than",
+                    "Name": "upper non critical",
+                    "Severity": 0,
+                    "Value": 1.236
+                },
+                {
+                    "Direction": "less than",
+                    "Name": "lower non critical",
+                    "Severity": 0,
+                    "Value": 1.164
+                },
+                {
+                    "Direction": "less than",
+                    "Name": "lower critical",
+                    "Severity": 1,
+                    "Value": 1.14
+                }
+            ],
+            "Type": "ADC"
+        },
+        {
+            "Index": 8,
+            "Name": "P1V2_PHY2_LDO",
+            "PowerState": "Always",
+            "ScaleFactor": 1.0,
+            "Thresholds": [
+                {
+                    "Direction": "greater than",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 1.26
+                },
+                {
+                    "Direction": "greater than",
+                    "Name": "upper non critical",
+                    "Severity": 0,
+                    "Value": 1.236
+                },
+                {
+                    "Direction": "less than",
+                    "Name": "lower non critical",
+                    "Severity": 0,
+                    "Value": 1.164
+                },
+                {
+                    "Direction": "less than",
+                    "Name": "lower critical",
+                    "Severity": 1,
+                    "Value": 1.14
+                }
+            ],
+            "Type": "ADC"
+        },
+        {
+            "Index": 9,
+            "Name": "P2V5_AUX",
+            "PowerState": "Always",
+            "ScaleFactor": 1.0,
+            "Thresholds": [
+                {
+                    "Direction": "greater than",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 2.625
+                },
+                {
+                    "Direction": "greater than",
+                    "Name": "upper non critical",
+                    "Severity": 0,
+                    "Value": 2.575
+                },
+                {
+                    "Direction": "less than",
+                    "Name": "lower non critical",
+                    "Severity": 0,
+                    "Value": 2.425
+                },
+                {
+                    "Direction": "less than",
+                    "Name": "lower critical",
+                    "Severity": 1,
+                    "Value": 2.375
+                }
+            ],
+            "Type": "ADC"
+        },
+        {
+            "Name": "Fan01 connector",
+            "Pwm": 0,
+            "PwmName": "Fan01_Pwm",
+            "Status": "disabled",
+            "Type": "IntelFanConnector",
+            "Tachs": [
+                0
+            ]
+        },
+        {
+            "Name": "Fan02 connector",
+            "Pwm": 0,
+            "PwmName": "Fan02_Pwm",
+            "Status": "disabled",
+            "Type": "IntelFanConnector",
+            "Tachs": [
+                0
+            ]
+        },
+        {
+            "Name": "Fan03 connector",
+            "Pwm": 0,
+            "PwmName": "Fan03_Pwm",
+            "Status": "disabled",
+            "Type": "IntelFanConnector",
+            "Tachs": [
+                0
+            ]
+        },
+        {
+            "Name": "Fan04 connector",
+            "Pwm": 0,
+            "PwmName": "Fan04_Pwm",
+            "Status": "disabled",
+            "Type": "IntelFanConnector",
+            "Tachs": [
+                0
+            ]
+        },
+        {
+            "Name": "Fan05 connector",
+            "Pwm": 0,
+            "PwmName": "Fan05_Pwm",
+            "Status": "disabled",
+            "Type": "IntelFanConnector",
+            "Tachs": [
+                0
+            ]
+        },
+        {
+            "Name": "Fan06 connector",
+            "Pwm": 0,
+            "PwmName": "Fan06_Pwm",
+            "Status": "disabled",
+            "Type": "IntelFanConnector",
+            "Tachs": [
+                0
+            ]
+        },
+        {
+            "Name": "Fan07 connector",
+            "Pwm": 0,
+            "PwmName": "Fan07_Pwm",
+            "Status": "disabled",
+            "Type": "IntelFanConnector",
+            "Tachs": [
+                0
+            ]
+        },
+        {
+            "Name": "Fan08 connector",
+            "Pwm": 0,
+            "PwmName": "Fan08_Pwm",
+            "Status": "disabled",
+            "Type": "IntelFanConnector",
+            "Tachs": [
+                0
+            ]
+        },
+        {
+            "Name": "Fan09 connector",
+            "Pwm": 0,
+            "PwmName": "Fan09_Pwm",
+            "Status": "disabled",
+            "Type": "IntelFanConnector",
+            "Tachs": [
+                0
+            ]
+        },
+        {
+            "Name": "Fan10 connector",
+            "Pwm": 0,
+            "PwmName": "Fan10_Pwm",
+            "Status": "disabled",
+            "Type": "IntelFanConnector",
+            "Tachs": [
+                0
+            ]
+        },
+        {
+            "Name": "Fan11 connector",
+            "Pwm": 0,
+            "PwmName": "Fan11_Pwm",
+            "Status": "disabled",
+            "Type": "IntelFanConnector",
+            "Tachs": [
+                0
+            ]
+        },
+        {
+            "Name": "Fan12 connector",
+            "Pwm": 0,
+            "PwmName": "Fan12_Pwm",
+            "Status": "disabled",
+            "Type": "IntelFanConnector",
+            "Tachs": [
+                0
+            ]
+        },
+        {
+            "Name": "Fan13 connector",
+            "Pwm": 0,
+            "PwmName": "Fan13_Pwm",
+            "Status": "disabled",
+            "Type": "IntelFanConnector",
+            "Tachs": [
+                0
+            ]
+        },
+        {
+            "Name": "Fan14 connector",
+            "Pwm": 0,
+            "PwmName": "Fan14_Pwm",
+            "Status": "disabled",
+            "Type": "IntelFanConnector",
+            "Tachs": [
+                0
+            ]
+        },
+        {
+            "Name": "Fan15 connector",
+            "Pwm": 0,
+            "PwmName": "Fan15_Pwm",
+            "Status": "disabled",
+            "Type": "IntelFanConnector",
+            "Tachs": [
+                0
+            ]
+        },
+        {
+            "Name": "Fan16 connector",
+            "Pwm": 0,
+            "PwmName": "Fan16_Pwm",
+            "Status": "disabled",
+            "Type": "IntelFanConnector",
+            "Tachs": [
+                0
+            ]
+        },
+        {
+            "Name": "Fan17 connector",
+            "Pwm": 0,
+            "PwmName": "Fan17_Pwm",
+            "Status": "disabled",
+            "Type": "IntelFanConnector",
+            "Tachs": [
+                0
+            ]
+        },
+        {
+            "Name": "Fan18 connector",
+            "Pwm": 0,
+            "PwmName": "Fan18_Pwm",
+            "Status": "disabled",
+            "Type": "IntelFanConnector",
+            "Tachs": [
+                0
+            ]
+        },
+        {
+            "Name": "Fan19 connector",
+            "Pwm": 0,
+            "PwmName": "Fan19_Pwm",
+            "Status": "disabled",
+            "Type": "IntelFanConnector",
+            "Tachs": [
+                0
+            ]
+        },
+        {
+            "Name": "Fan20 connector",
+            "Pwm": 0,
+            "PwmName": "Fan20_Pwm",
+            "Status": "disabled",
+            "Type": "IntelFanConnector",
+            "Tachs": [
+                0
+            ]
+        },
+        {
+            "Name": "Fan21 connector",
+            "Pwm": 0,
+            "PwmName": "Fan21_Pwm",
+            "Status": "disabled",
+            "Type": "IntelFanConnector",
+            "Tachs": [
+                0
+            ]
+        },
+        {
+            "Name": "Fan22 connector",
+            "Pwm": 0,
+            "PwmName": "Fan22_Pwm",
+            "Status": "disabled",
+            "Type": "IntelFanConnector",
+            "Tachs": [
+                0
+            ]
+        },
+        {
+            "Name": "Fan23 connector",
+            "Pwm": 0,
+            "PwmName": "Fan23_Pwm",
+            "Status": "disabled",
+            "Type": "IntelFanConnector",
+            "Tachs": [
+                0
+            ]
+        },
+        {
+            "Name": "Fan24 connector",
+            "Pwm": 0,
+            "PwmName": "Fan24_Pwm",
+            "Status": "disabled",
+            "Type": "IntelFanConnector",
+            "Tachs": [
+                0
+            ]
+        },
+        {
+            "Address": "0x40",
+            "Bus": "98",
+            "Labels": [
+                "iout1",
+                "iin",
+                "vin",
+                "pin",
+                "vout1",
+                "pout1",
+                "temp1"
+            ],
+            "Name": "PVNN_MAIN_CPU0",
+            "PollRate": 5.0,
+            "PowerState": "Always",
+            "Thresholds": [
+                {
+                    "Direction": "greater than",
+                    "Label": "iout1",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 8.0
+                },
+                {
+                    "Direction": "greater than",
+                    "Label": "iout1",
+                    "Name": "upper non critical",
+                    "Severity": 0,
+                    "Value": 0.52
+                },
+                {
+                    "Direction": "greater than",
+                    "Label": "vout1",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 1.03
+                },
+                {
+                    "Direction": "less than",
+                    "Label": "vout1",
+                    "Name": "lower critical",
+                    "Severity": 1,
+                    "Value": 0.97
+                },
+                {
+                    "Direction": "greater than",
+                    "Label": "vin",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 17.0
+                },
+                {
+                    "Direction": "greater than",
+                    "Label": "temp1",
+                    "Name": "upper non critical",
+                    "Severity": 0,
+                    "Value": 120.0
+                },
+                {
+                    "Direction": "greater than",
+                    "Label": "temp1",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 140.0
+                }
+            ],
+            "Type": "TDA38640"
+        },
+        {
+            "Address": "0x40",
+            "Bus": "90",
+            "Labels": [
+                "iout1",
+                "iin",
+                "vin",
+                "pin",
+                "vout1",
+                "pout1",
+                "temp1"
+            ],
+            "Name": "PVNN_MAIN_CPU3",
+            "PollRate": 5.0,
+            "PowerState": "Always",
+            "Thresholds": [
+                {
+                    "Direction": "greater than",
+                    "Label": "iout1",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 8.0
+                },
+                {
+                    "Direction": "greater than",
+                    "Label": "iout1",
+                    "Name": "upper non critical",
+                    "Severity": 0,
+                    "Value": 0.52
+                },
+                {
+                    "Direction": "greater than",
+                    "Label": "vout1",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 1.03
+                },
+                {
+                    "Direction": "less than",
+                    "Label": "vout1",
+                    "Name": "lower critical",
+                    "Severity": 1,
+                    "Value": 0.97
+                },
+                {
+                    "Direction": "greater than",
+                    "Label": "vin",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 17.0
+                },
+                {
+                    "Direction": "greater than",
+                    "Label": "temp1",
+                    "Name": "upper non critical",
+                    "Severity": 0,
+                    "Value": 120.0
+                },
+                {
+                    "Direction": "greater than",
+                    "Label": "temp1",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 140.0
+                }
+            ],
+            "Type": "TDA38640"
+        },
+        {
+            "Address": "0x40",
+            "Bus": "74",
+            "Labels": [
+                "iout1",
+                "iin",
+                "vin",
+                "pin",
+                "vout1",
+                "pout1",
+                "temp1"
+            ],
+            "Name": "PVNN_MAIN_CPU1",
+            "PollRate": 5.0,
+            "PowerState": "Always",
+            "Thresholds": [
+                {
+                    "Direction": "greater than",
+                    "Label": "iout1",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 8.0
+                },
+                {
+                    "Direction": "greater than",
+                    "Label": "iout1",
+                    "Name": "upper non critical",
+                    "Severity": 0,
+                    "Value": 0.52
+                },
+                {
+                    "Direction": "greater than",
+                    "Label": "vout1",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 1.03
+                },
+                {
+                    "Direction": "less than",
+                    "Label": "vout1",
+                    "Name": "lower critical",
+                    "Severity": 1,
+                    "Value": 0.97
+                },
+                {
+                    "Direction": "greater than",
+                    "Label": "vin",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 17.0
+                },
+                {
+                    "Direction": "greater than",
+                    "Label": "temp1",
+                    "Name": "upper non critical",
+                    "Severity": 0,
+                    "Value": 120.0
+                },
+                {
+                    "Direction": "greater than",
+                    "Label": "temp1",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 140.0
+                }
+            ],
+            "Type": "TDA38640"
+        },
+        {
+            "Address": "0x40",
+            "Bus": "66",
+            "Labels": [
+                "iout1",
+                "iin",
+                "vin",
+                "pin",
+                "vout1",
+                "pout1",
+                "temp1"
+            ],
+            "Name": "PVNN_MAIN_CPU2",
+            "PollRate": 5.0,
+            "PowerState": "Always",
+            "Thresholds": [
+                {
+                    "Direction": "greater than",
+                    "Label": "iout1",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 8.0
+                },
+                {
+                    "Direction": "greater than",
+                    "Label": "iout1",
+                    "Name": "upper non critical",
+                    "Severity": 0,
+                    "Value": 0.52
+                },
+                {
+                    "Direction": "greater than",
+                    "Label": "vout1",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 1.03
+                },
+                {
+                    "Direction": "less than",
+                    "Label": "vout1",
+                    "Name": "lower critical",
+                    "Severity": 1,
+                    "Value": 0.97
+                },
+                {
+                    "Direction": "greater than",
+                    "Label": "vin",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 17.0
+                },
+                {
+                    "Direction": "greater than",
+                    "Label": "temp1",
+                    "Name": "upper non critical",
+                    "Severity": 0,
+                    "Value": 120.0
+                },
+                {
+                    "Direction": "greater than",
+                    "Label": "temp1",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 140.0
+                }
+            ],
+            "Type": "TDA38640"
+        },
+        {
+            "Address": "0x40",
+            "Bus": "93",
+            "Labels": [
+                "iout1",
+                "iin",
+                "vin",
+                "pin",
+                "vout1",
+                "pout1",
+                "temp1"
+            ],
+            "Name": "PVPP_HBM_CPU3",
+            "PollRate": 5.0,
+            "PowerState": "Always",
+            "Thresholds": [
+                {
+                    "Direction": "greater than",
+                    "Label": "iout1",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 8.0
+                },
+                {
+                    "Direction": "greater than",
+                    "Label": "vout1",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 2.7
+                },
+                {
+                    "Direction": "greater than",
+                    "Label": "vin",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 17.0
+                },
+                {
+                    "Direction": "greater than",
+                    "Label": "temp1",
+                    "Name": "upper non critical",
+                    "Severity": 0,
+                    "Value": 120.0
+                },
+                {
+                    "Direction": "greater than",
+                    "Label": "temp1",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 140.0
+                }
+            ],
+            "Type": "TDA38640"
+        },
+        {
+            "Address": "0x40",
+            "Bus": "77",
+            "Labels": [
+                "iout1",
+                "iin",
+                "vin",
+                "pin",
+                "vout1",
+                "pout1",
+                "temp1"
+            ],
+            "Name": "PVPP_HBM_CPU1",
+            "PollRate": 5.0,
+            "PowerState": "Always",
+            "Thresholds": [
+                {
+                    "Direction": "greater than",
+                    "Label": "iout1",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 8.0
+                },
+                {
+                    "Direction": "greater than",
+                    "Label": "vout1",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 2.7
+                },
+                {
+                    "Direction": "greater than",
+                    "Label": "vin",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 17.0
+                },
+                {
+                    "Direction": "greater than",
+                    "Label": "temp1",
+                    "Name": "upper non critical",
+                    "Severity": 0,
+                    "Value": 120.0
+                },
+                {
+                    "Direction": "greater than",
+                    "Label": "temp1",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 140.0
+                }
+            ],
+            "Type": "TDA38640"
+        },
+        {
+            "Address": "0x40",
+            "Bus": "69",
+            "Labels": [
+                "iout1",
+                "iin",
+                "vin",
+                "pin",
+                "vout1",
+                "pout1",
+                "temp1"
+            ],
+            "Name": "PVPP_HBM_CPU2",
+            "PollRate": 5.0,
+            "PowerState": "Always",
+            "Thresholds": [
+                {
+                    "Direction": "greater than",
+                    "Label": "iout1",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 8.0
+                },
+                {
+                    "Direction": "greater than",
+                    "Label": "vout1",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 2.7
+                },
+                {
+                    "Direction": "greater than",
+                    "Label": "vin",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 17.0
+                },
+                {
+                    "Direction": "greater than",
+                    "Label": "temp1",
+                    "Name": "upper non critical",
+                    "Severity": 0,
+                    "Value": 120.0
+                },
+                {
+                    "Direction": "greater than",
+                    "Label": "temp1",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 140.0
+                }
+            ],
+            "Type": "TDA38640"
+        },
+        {
+            "Address": "0x40",
+            "Bus": "101",
+            "Labels": [
+                "iout1",
+                "iin",
+                "vin",
+                "pin",
+                "vout1",
+                "pout1",
+                "temp1"
+            ],
+            "Name": "PVPP_HBM_CPU0",
+            "PollRate": 5.0,
+            "PowerState": "Always",
+            "Thresholds": [
+                {
+                    "Direction": "greater than",
+                    "Label": "iout1",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 8.0
+                },
+                {
+                    "Direction": "greater than",
+                    "Label": "vout1",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 2.7
+                },
+                {
+                    "Direction": "greater than",
+                    "Label": "vin",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 17.0
+                },
+                {
+                    "Direction": "greater than",
+                    "Label": "temp1",
+                    "Name": "upper non critical",
+                    "Severity": 0,
+                    "Value": 120.0
+                },
+                {
+                    "Direction": "greater than",
+                    "Label": "temp1",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 140.0
+                }
+            ],
+            "Type": "TDA38640"
+        },
+        {
+            "Address": "0x40",
+            "Bus": "92",
+            "Labels": [
+                "iout1",
+                "iin",
+                "vin",
+                "pin",
+                "vout1",
+                "pout1",
+                "temp1"
+            ],
+            "Name": "PVCDD_HV_CPU3",
+            "PollRate": 5.0,
+            "PowerState": "Always",
+            "Thresholds": [
+                {
+                    "Direction": "greater than",
+                    "Label": "iout1",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 55.0
+                },
+                {
+                    "Direction": "greater than",
+                    "Label": "iout1",
+                    "Name": "upper non critical",
+                    "Severity": 0,
+                    "Value": 25.0
+                },
+                {
+                    "Direction": "greater than",
+                    "Label": "vin",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 17.0
+                },
+                {
+                    "Direction": "greater than",
+                    "Label": "vout1",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 1.2
+                },
+                {
+                    "Direction": "greater than",
+                    "Label": "temp1",
+                    "Name": "upper non critical",
+                    "Severity": 0,
+                    "Value": 120.0
+                },
+                {
+                    "Direction": "greater than",
+                    "Label": "temp1",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 140.0
+                }
+            ],
+            "Type": "TDA38640"
+        },
+        {
+            "Address": "0x40",
+            "Bus": "76",
+            "Labels": [
+                "iout1",
+                "iin",
+                "vin",
+                "pin",
+                "vout1",
+                "pout1",
+                "temp1"
+            ],
+            "Name": "PVCDD_HV_CPU1",
+            "PollRate": 5.0,
+            "PowerState": "Always",
+            "Thresholds": [
+                {
+                    "Direction": "greater than",
+                    "Label": "iout1",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 55.0
+                },
+                {
+                    "Direction": "greater than",
+                    "Label": "iout1",
+                    "Name": "upper non critical",
+                    "Severity": 0,
+                    "Value": 25.0
+                },
+                {
+                    "Direction": "greater than",
+                    "Label": "vin",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 17.0
+                },
+                {
+                    "Direction": "greater than",
+                    "Label": "vout1",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 1.2
+                },
+                {
+                    "Direction": "greater than",
+                    "Label": "temp1",
+                    "Name": "upper non critical",
+                    "Severity": 0,
+                    "Value": 120.0
+                },
+                {
+                    "Direction": "greater than",
+                    "Label": "temp1",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 140.0
+                }
+            ],
+            "Type": "TDA38640"
+        },
+        {
+            "Address": "0x40",
+            "Bus": "68",
+            "Labels": [
+                "iout1",
+                "iin",
+                "vin",
+                "pin",
+                "vout1",
+                "pout1",
+                "temp1"
+            ],
+            "Name": "PVCDD_HV_CPU2",
+            "PollRate": 5.0,
+            "PowerState": "Always",
+            "Thresholds": [
+                {
+                    "Direction": "greater than",
+                    "Label": "iout1",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 55.0
+                },
+                {
+                    "Direction": "greater than",
+                    "Label": "iout1",
+                    "Name": "upper non critical",
+                    "Severity": 0,
+                    "Value": 25.0
+                },
+                {
+                    "Direction": "greater than",
+                    "Label": "vin",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 17.0
+                },
+                {
+                    "Direction": "greater than",
+                    "Label": "vout1",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 1.2
+                },
+                {
+                    "Direction": "greater than",
+                    "Label": "temp1",
+                    "Name": "upper non critical",
+                    "Severity": 0,
+                    "Value": 120.0
+                },
+                {
+                    "Direction": "greater than",
+                    "Label": "temp1",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 140.0
+                }
+            ],
+            "Type": "TDA38640"
+        },
+        {
+            "Address": "0x40",
+            "Bus": "100",
+            "Labels": [
+                "iout1",
+                "iin",
+                "vin",
+                "pin",
+                "vout1",
+                "pout1",
+                "temp1"
+            ],
+            "Name": "PVCDD_HV_CPU0",
+            "PollRate": 5.0,
+            "PowerState": "Always",
+            "Thresholds": [
+                {
+                    "Direction": "greater than",
+                    "Label": "iout1",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 55.0
+                },
+                {
+                    "Direction": "greater than",
+                    "Label": "iout1",
+                    "Name": "upper non critical",
+                    "Severity": 0,
+                    "Value": 25.0
+                },
+                {
+                    "Direction": "greater than",
+                    "Label": "vin",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 17.0
+                },
+                {
+                    "Direction": "greater than",
+                    "Label": "vout1",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 1.2
+                },
+                {
+                    "Direction": "greater than",
+                    "Label": "temp1",
+                    "Name": "upper non critical",
+                    "Severity": 0,
+                    "Value": 120.0
+                },
+                {
+                    "Direction": "greater than",
+                    "Label": "temp1",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 140.0
+                }
+            ],
+            "Type": "TDA38640"
+        },
+        {
+            "Address": "0x40",
+            "Bus": "33",
+            "Labels": [
+                "iout1",
+                "vin",
+                "vout1",
+                "pout1",
+                "temp1"
+            ],
+            "Name": "P5V_AUX",
+            "PollRate": 5.0,
+            "PowerState": "Always",
+            "Thresholds": [
+                {
+                    "Direction": "greater than",
+                    "Label": "iout1",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 16.0
+                },
+                {
+                    "Direction": "greater than",
+                    "Label": "vin",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 16.0
+                },
+                {
+                    "Direction": "less than",
+                    "Label": "vin",
+                    "Name": "lower critical",
+                    "Severity": 1,
+                    "Value": 5.714
+                },
+                {
+                    "Direction": "greater than",
+                    "Label": "vout1",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 5.3
+                },
+                {
+                    "Direction": "less than",
+                    "Label": "vout1",
+                    "Name": "lower critical",
+                    "Severity": 1,
+                    "Value": 4.5
+                },
+                {
+                    "Direction": "greater than",
+                    "Label": "temp1",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 125.0
+                }
+            ],
+            "Type": "IR38263"
+        },
+        {
+            "Address": "0x40",
+            "Bus": "24",
+            "Labels": [
+                "iout1",
+                "vin",
+                "vout1",
+                "pout1",
+                "temp1"
+            ],
+            "Name": "P3V3_AUX",
+            "PollRate": 5.0,
+            "PowerState": "Always",
+            "Thresholds": [
+                {
+                    "Direction": "greater than",
+                    "Label": "iout1",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 24.0
+                },
+                {
+                    "Direction": "greater than",
+                    "Label": "vin",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 16.0
+                },
+                {
+                    "Direction": "less than",
+                    "Label": "vin",
+                    "Name": "lower critical",
+                    "Severity": 1,
+                    "Value": 3.77
+                },
+                {
+                    "Direction": "greater than",
+                    "Label": "vout1",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 3.7
+                },
+                {
+                    "Direction": "less than",
+                    "Label": "vout1",
+                    "Name": "lower critical",
+                    "Severity": 1,
+                    "Value": 2.8
+                },
+                {
+                    "Direction": "greater than",
+                    "Label": "temp1",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 125.0
+                }
+            ],
+            "Type": "IR38263"
+        },
+        {
+            "Address": "0x40",
+            "Bus": "42",
+            "Labels": [
+                "iout1",
+                "vin",
+                "vout1",
+                "pout1",
+                "temp1"
+            ],
+            "Name": "PVCORE_NIC2",
+            "PollRate": 5.0,
+            "PowerState": "Always",
+            "Thresholds": [
+                {
+                    "Direction": "greater than",
+                    "Label": "iout1",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 20.0
+                },
+                {
+                    "Direction": "greater than",
+                    "Label": "iout1",
+                    "Name": "upper non critical",
+                    "Severity": 0,
+                    "Value": 16.0
+                },
+                {
+                    "Direction": "greater than",
+                    "Label": "vin",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 16.0
+                },
+                {
+                    "Direction": "less than",
+                    "Label": "vin",
+                    "Name": "lower critical",
+                    "Severity": 1,
+                    "Value": 1.14
+                },
+                {
+                    "Direction": "greater than",
+                    "Label": "vout1",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 1.05
+                },
+                {
+                    "Direction": "less than",
+                    "Label": "vout1",
+                    "Name": "lower critical",
+                    "Severity": 1,
+                    "Value": 0.85
+                },
+                {
+                    "Direction": "greater than",
+                    "Label": "temp1",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 125.0
+                }
+            ],
+            "Type": "IR38263"
+        },
+        {
+            "Address": "0x40",
+            "Bus": "43",
+            "Labels": [
+                "iout1",
+                "vin",
+                "vout1",
+                "pout1",
+                "temp1"
+            ],
+            "Name": "PVCORE_NIC1",
+            "PollRate": 5.0,
+            "PowerState": "Always",
+            "Thresholds": [
+                {
+                    "Direction": "greater than",
+                    "Label": "iout1",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 20.0
+                },
+                {
+                    "Direction": "greater than",
+                    "Label": "iout1",
+                    "Name": "upper non critical",
+                    "Severity": 0,
+                    "Value": 16.0
+                },
+                {
+                    "Direction": "greater than",
+                    "Label": "vin",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 16.0
+                },
+                {
+                    "Direction": "less than",
+                    "Label": "vin",
+                    "Name": "lower critical",
+                    "Severity": 1,
+                    "Value": 1.14
+                },
+                {
+                    "Direction": "greater than",
+                    "Label": "vout1",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 1.05
+                },
+                {
+                    "Direction": "less than",
+                    "Label": "vout1",
+                    "Name": "lower critical",
+                    "Severity": 1,
+                    "Value": 0.85
+                },
+                {
+                    "Direction": "greater than",
+                    "Label": "temp1",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 125.0
+                }
+            ],
+            "Type": "IR38263"
+        },
+        {
+            "Address": "0x40",
+            "Bus": "45",
+            "Labels": [
+                "iout1",
+                "vin",
+                "vout1",
+                "pout1",
+                "temp1"
+            ],
+            "Name": "P3V3_NIC",
+            "PollRate": 5.0,
+            "PowerState": "Always",
+            "Thresholds": [
+                {
+                    "Direction": "greater than",
+                    "Label": "iout1",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 16.0
+                },
+                {
+                    "Direction": "greater than",
+                    "Label": "iout1",
+                    "Name": "upper non critical",
+                    "Severity": 0,
+                    "Value": 11.0
+                },
+                {
+                    "Direction": "greater than",
+                    "Label": "vin",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 16.0
+                },
+                {
+                    "Direction": "less than",
+                    "Label": "vin",
+                    "Name": "lower critical",
+                    "Severity": 1,
+                    "Value": 3.771
+                },
+                {
+                    "Direction": "greater than",
+                    "Label": "vout1",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 3.7
+                },
+                {
+                    "Direction": "less than",
+                    "Label": "vout1",
+                    "Name": "lower critical",
+                    "Severity": 1,
+                    "Value": 2.8
+                },
+                {
+                    "Direction": "greater than",
+                    "Label": "temp1",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 125.0
+                }
+            ],
+            "Type": "IR38263"
+        },
+        {
+            "Address": "0x40",
+            "Bus": "46",
+            "Labels": [
+                "iout1",
+                "vin",
+                "vout1",
+                "pout1",
+                "temp1"
+            ],
+            "Name": "P1V2_NIC",
+            "PollRate": 5.0,
+            "PowerState": "Always",
+            "Thresholds": [
+                {
+                    "Direction": "greater than",
+                    "Label": "iout1",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 16.0
+                },
+                {
+                    "Direction": "greater than",
+                    "Label": "iout1",
+                    "Name": "upper non critical",
+                    "Severity": 0,
+                    "Value": 12.0
+                },
+                {
+                    "Direction": "greater than",
+                    "Label": "vin",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 16.0
+                },
+                {
+                    "Direction": "less than",
+                    "Label": "vin",
+                    "Name": "lower critical",
+                    "Severity": 1,
+                    "Value": 1.371
+                },
+                {
+                    "Direction": "greater than",
+                    "Label": "vout1",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 1.35
+                },
+                {
+                    "Direction": "less than",
+                    "Label": "vout1",
+                    "Name": "lower critical",
+                    "Severity": 1,
+                    "Value": 0.5
+                },
+                {
+                    "Direction": "greater than",
+                    "Label": "temp1",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 125.0
+                }
+            ],
+            "Type": "IR38263"
+        },
+        {
+            "Address": "0x40",
+            "Bus": "47",
+            "Labels": [
+                "iout1",
+                "vin",
+                "vout1",
+                "pout1",
+                "temp1"
+            ],
+            "Name": "P1V8_NIC",
+            "PollRate": 5.0,
+            "PowerState": "Always",
+            "Thresholds": [
+                {
+                    "Direction": "greater than",
+                    "Label": "iout1",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 32.0
+                },
+                {
+                    "Direction": "greater than",
+                    "Label": "iout1",
+                    "Name": "upper non critical",
+                    "Severity": 0,
+                    "Value": 26.0
+                },
+                {
+                    "Direction": "greater than",
+                    "Label": "vin",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 16.0
+                },
+                {
+                    "Direction": "less than",
+                    "Label": "vin",
+                    "Name": "lower critical",
+                    "Severity": 1,
+                    "Value": 2.05
+                },
+                {
+                    "Direction": "greater than",
+                    "Label": "vout1",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 2.0
+                },
+                {
+                    "Direction": "less than",
+                    "Label": "vout1",
+                    "Name": "lower critical",
+                    "Severity": 1,
+                    "Value": 0.5
+                },
+                {
+                    "Direction": "greater than",
+                    "Label": "temp1",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 125.0
+                }
+            ],
+            "Type": "IR38263"
+        },
+        {
+            "Address": "0x40",
+            "Bus": "57",
+            "Labels": [
+                "iout1",
+                "vin",
+                "vout1",
+                "pout1",
+                "temp1"
+            ],
+            "Name": "P1V05_PCH_AUX",
+            "PollRate": 5.0,
+            "PowerState": "Always",
+            "Thresholds": [
+                {
+                    "Direction": "greater than",
+                    "Label": "iout1",
+                    "Name": "upper non critical",
+                    "Severity": 0,
+                    "Value": 17.0
+                },
+                {
+                    "Direction": "greater than",
+                    "Label": "iout1",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 24.0
+                },
+                {
+                    "Direction": "greater than",
+                    "Label": "vin",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 16.0
+                },
+                {
+                    "Direction": "less than",
+                    "Label": "vin",
+                    "Name": "lower critical",
+                    "Severity": 1,
+                    "Value": 1.2
+                },
+                {
+                    "Direction": "greater than",
+                    "Label": "vout1",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 1.075
+                },
+                {
+                    "Direction": "less than",
+                    "Label": "vout1",
+                    "Name": "lower critical",
+                    "Severity": 1,
+                    "Value": 1.025
+                },
+                {
+                    "Direction": "greater than",
+                    "Label": "temp1",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 125.0
+                }
+            ],
+            "Type": "IR38263"
+        },
+        {
+            "Address": "0x40",
+            "Bus": "58",
+            "Labels": [
+                "iout1",
+                "vin",
+                "vout1",
+                "pout1",
+                "temp1"
+            ],
+            "Name": "P1V8_PCH_AUX",
+            "PollRate": 5.0,
+            "PowerState": "Always",
+            "Thresholds": [
+                {
+                    "Direction": "greater than",
+                    "Label": "iout1",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 6.0
+                },
+                {
+                    "Direction": "greater than",
+                    "Label": "iout1",
+                    "Name": "upper non critical",
+                    "Severity": 0,
+                    "Value": 4.0
+                },
+                {
+                    "Direction": "greater than",
+                    "Label": "vin",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 15.0
+                },
+                {
+                    "Direction": "greater than",
+                    "Label": "vout1",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 1.827
+                },
+                {
+                    "Direction": "less than",
+                    "Label": "vout1",
+                    "Name": "lower critical",
+                    "Severity": 1,
+                    "Value": 1.791
+                },
+                {
+                    "Direction": "greater than",
+                    "Label": "temp1",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 125.0
+                }
+            ],
+            "Type": "IR38060"
+        },
+        {
+            "Address": "0x58",
+            "Bus": "99",
+            "Labels": [
+                "iin",
+                "iout1",
+                "iout2",
+                "vin",
+                "vout1",
+                "vout2",
+                "pin",
+                "pout1",
+                "pout2",
+                "temp1"
+            ],
+            "Name": "PVCCFA_EHV_FIRA_CPU0",
+            "Name1": "PVCCIN_CPU0",
+            "PollRate": 5.0,
+            "PowerState": "Always",
+            "Thresholds": [
+                {
+                    "Direction": "greater than",
+                    "Label": "vin",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 15.0
+                },
+                {
+                    "Direction": "greater than",
+                    "Label": "temp1",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 150.0
+                },
+                {
+                    "Direction": "greater than",
+                    "Label": "vout1",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 1.864
+                },
+                {
+                    "Direction": "less than",
+                    "Label": "vout1",
+                    "Name": "lower critical",
+                    "Severity": 1,
+                    "Value": 1.72
+                },
+                {
+                    "Direction": "greater than",
+                    "Label": "iout1",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 164
+                },
+                {
+                    "Direction": "greater than",
+                    "Label": "iout1",
+                    "Name": "upper non critical",
+                    "Severity": 0,
+                    "Value": 102
+                },
+                {
+                    "Direction": "greater than",
+                    "Label": "vout2",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 1.852
+                },
+                {
+                    "Direction": "less than",
+                    "Label": "vout2",
+                    "Name": "lower critical",
+                    "Severity": 1,
+                    "Value": 1.778
+                },
+                {
+                    "Direction": "greater than",
+                    "Label": "iout2",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 550.0
+                },
+                {
+                    "Direction": "greater than",
+                    "Label": "iout2",
+                    "Name": "upper non critical",
+                    "Severity": 0,
+                    "Value": 634.0
+                }
+            ],
+            "Type": "MP2973"
+        },
+        {
+            "Address": "0x58",
+            "Bus": "75",
+            "Labels": [
+                "iin",
+                "iout1",
+                "iout2",
+                "vin",
+                "vout1",
+                "vout2",
+                "pin",
+                "pout1",
+                "pout2",
+                "temp1"
+            ],
+            "Name": "PVCCFA_EHV_FIRA_CPU1",
+            "Name1": "PVCCIN_CPU1",
+            "PollRate": 5.0,
+            "PowerState": "Always",
+            "Thresholds": [
+                {
+                    "Direction": "greater than",
+                    "Label": "vin",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 15.0
+                },
+                {
+                    "Direction": "greater than",
+                    "Label": "temp1",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 150.0
+                },
+                {
+                    "Direction": "greater than",
+                    "Label": "vout1",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 1.864
+                },
+                {
+                    "Direction": "less than",
+                    "Label": "vout1",
+                    "Name": "lower critical",
+                    "Severity": 1,
+                    "Value": 1.72
+                },
+                {
+                    "Direction": "greater than",
+                    "Label": "iout1",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 164
+                },
+                {
+                    "Direction": "greater than",
+                    "Label": "iout1",
+                    "Name": "upper non critical",
+                    "Severity": 0,
+                    "Value": 102
+                },
+                {
+                    "Direction": "greater than",
+                    "Label": "vout2",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 1.852
+                },
+                {
+                    "Direction": "less than",
+                    "Label": "vout2",
+                    "Name": "lower critical",
+                    "Severity": 1,
+                    "Value": 1.778
+                },
+                {
+                    "Direction": "greater than",
+                    "Label": "iout2",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 550.0
+                },
+                {
+                    "Direction": "greater than",
+                    "Label": "iout2",
+                    "Name": "upper non critical",
+                    "Severity": 0,
+                    "Value": 634.0
+                }
+            ],
+            "Type": "MP2973"
+        },
+        {
+            "Address": "0x58",
+            "Bus": "67",
+            "Labels": [
+                "iin",
+                "iout1",
+                "iout2",
+                "vin",
+                "vout1",
+                "vout2",
+                "pin",
+                "pout1",
+                "pout2",
+                "temp1"
+            ],
+            "Name": "PVCCFA_EHV_FIRA_CPU2",
+            "Name1": "PVCCIN_CPU2",
+            "PollRate": 5.0,
+            "PowerState": "Always",
+            "Thresholds": [
+                {
+                    "Direction": "greater than",
+                    "Label": "vin",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 15.0
+                },
+                {
+                    "Direction": "greater than",
+                    "Label": "temp1",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 150.0
+                },
+                {
+                    "Direction": "greater than",
+                    "Label": "vout1",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 1.864
+                },
+                {
+                    "Direction": "less than",
+                    "Label": "vout1",
+                    "Name": "lower critical",
+                    "Severity": 1,
+                    "Value": 1.72
+                },
+                {
+                    "Direction": "greater than",
+                    "Label": "iout1",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 164
+                },
+                {
+                    "Direction": "greater than",
+                    "Label": "iout1",
+                    "Name": "upper non critical",
+                    "Severity": 0,
+                    "Value": 102
+                },
+                {
+                    "Direction": "greater than",
+                    "Label": "vout2",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 1.852
+                },
+                {
+                    "Direction": "less than",
+                    "Label": "vout2",
+                    "Name": "lower critical",
+                    "Severity": 1,
+                    "Value": 1.778
+                },
+                {
+                    "Direction": "greater than",
+                    "Label": "iout2",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 550.0
+                },
+                {
+                    "Direction": "greater than",
+                    "Label": "iout2",
+                    "Name": "upper non critical",
+                    "Severity": 0,
+                    "Value": 634.0
+                }
+            ],
+            "Type": "MP2973"
+        },
+        {
+            "Address": "0x58",
+            "Bus": "91",
+            "Labels": [
+                "iin",
+                "iout1",
+                "iout2",
+                "vin",
+                "vout1",
+                "vout2",
+                "pin",
+                "pout1",
+                "pout2",
+                "temp1"
+            ],
+            "Name": "PVCCFA_EHV_FIRA_CPU3",
+            "Name1": "PVCCIN_CPU3",
+            "PollRate": 5.0,
+            "PowerState": "Always",
+            "Thresholds": [
+                {
+                    "Direction": "greater than",
+                    "Label": "vin",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 15.0
+                },
+                {
+                    "Direction": "greater than",
+                    "Label": "temp1",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 150.0
+                },
+                {
+                    "Direction": "greater than",
+                    "Label": "vout1",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 1.864
+                },
+                {
+                    "Direction": "less than",
+                    "Label": "vout1",
+                    "Name": "lower critical",
+                    "Severity": 1,
+                    "Value": 1.72
+                },
+                {
+                    "Direction": "greater than",
+                    "Label": "iout1",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 164
+                },
+                {
+                    "Direction": "greater than",
+                    "Label": "iout1",
+                    "Name": "upper non critical",
+                    "Severity": 0,
+                    "Value": 102
+                },
+                {
+                    "Direction": "greater than",
+                    "Label": "vout2",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 1.852
+                },
+                {
+                    "Direction": "less than",
+                    "Label": "vout2",
+                    "Name": "lower critical",
+                    "Severity": 1,
+                    "Value": 1.778
+                },
+                {
+                    "Direction": "greater than",
+                    "Label": "iout2",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 550.0
+                },
+                {
+                    "Direction": "greater than",
+                    "Label": "iout2",
+                    "Name": "upper non critical",
+                    "Severity": 0,
+                    "Value": 634.0
+                }
+            ],
+            "Type": "MP2973"
+        },
+        {
+            "Address": "0x58",
+            "Bus": "98",
+            "Labels": [
+                "iin",
+                "iout1",
+                "iout2",
+                "vin",
+                "vout1",
+                "vout2",
+                "pin",
+                "pout1",
+                "pout2",
+                "temp1"
+            ],
+            "Name": "PVCCFA_EHV_CPU0",
+            "Name1": "PVCCINFAON_CPU0",
+            "PollRate": 5.0,
+            "PowerState": "Always",
+            "Thresholds": [
+                {
+                    "Direction": "greater than",
+                    "Label": "vin",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 15.0
+                },
+                {
+                    "Direction": "greater than",
+                    "Label": "temp1",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 150.0
+                },
+                {
+                    "Direction": "greater than",
+                    "Label": "vout2",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 1.835
+                },
+                {
+                    "Direction": "less than",
+                    "Label": "vout2",
+                    "Name": "lower critical",
+                    "Severity": 1,
+                    "Value": 1.753
+                },
+                {
+                    "Direction": "greater than",
+                    "Label": "iout2",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 15
+                },
+                {
+                    "Direction": "greater than",
+                    "Label": "iout2",
+                    "Name": "upper non critical",
+                    "Severity": 0,
+                    "Value": 6.25
+                },
+                {
+                    "Direction": "greater than",
+                    "Label": "vout1",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 1.03
+                },
+                {
+                    "Direction": "less than",
+                    "Label": "vout1",
+                    "Name": "lower critical",
+                    "Severity": 1,
+                    "Value": 0.9
+                },
+                {
+                    "Direction": "greater than",
+                    "Label": "iout1",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 52
+                },
+                {
+                    "Direction": "greater than",
+                    "Label": "iout1",
+                    "Name": "upper non critical",
+                    "Severity": 0,
+                    "Value": 46
+                }
+            ],
+            "Type": "MP2971"
+        },
+        {
+            "Address": "0x58",
+            "Bus": "74",
+            "Labels": [
+                "iin",
+                "iout1",
+                "iout2",
+                "vin",
+                "vout1",
+                "vout2",
+                "pin",
+                "pout1",
+                "pout2",
+                "temp1"
+            ],
+            "Name": "PVCCFA_EHV_CPU1",
+            "Name1": "PVCCINFAON_CPU1",
+            "PollRate": 5.0,
+            "PowerState": "Always",
+            "Thresholds": [
+                {
+                    "Direction": "greater than",
+                    "Label": "vin",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 15.0
+                },
+                {
+                    "Direction": "greater than",
+                    "Label": "temp1",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 150.0
+                },
+                {
+                    "Direction": "greater than",
+                    "Label": "vout2",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 1.835
+                },
+                {
+                    "Direction": "less than",
+                    "Label": "vout2",
+                    "Name": "lower critical",
+                    "Severity": 1,
+                    "Value": 1.753
+                },
+                {
+                    "Direction": "greater than",
+                    "Label": "iout2",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 15
+                },
+                {
+                    "Direction": "greater than",
+                    "Label": "iout2",
+                    "Name": "upper non critical",
+                    "Severity": 0,
+                    "Value": 6.25
+                },
+                {
+                    "Direction": "greater than",
+                    "Label": "vout1",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 1.03
+                },
+                {
+                    "Direction": "less than",
+                    "Label": "vout1",
+                    "Name": "lower critical",
+                    "Severity": 1,
+                    "Value": 0.9
+                },
+                {
+                    "Direction": "greater than",
+                    "Label": "iout1",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 52
+                },
+                {
+                    "Direction": "greater than",
+                    "Label": "iout1",
+                    "Name": "upper non critical",
+                    "Severity": 0,
+                    "Value": 46
+                }
+            ],
+            "Type": "MP2971"
+        },
+        {
+            "Address": "0x58",
+            "Bus": "66",
+            "Labels": [
+                "iin",
+                "iout1",
+                "iout2",
+                "vin",
+                "vout1",
+                "vout2",
+                "pin",
+                "pout1",
+                "pout2",
+                "temp1"
+            ],
+            "Name": "PVCCFA_EHV_CPU2",
+            "Name1": "PVCCINFAON_CPU2",
+            "PollRate": 5.0,
+            "PowerState": "Always",
+            "Thresholds": [
+                {
+                    "Direction": "greater than",
+                    "Label": "vin",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 15.0
+                },
+                {
+                    "Direction": "greater than",
+                    "Label": "temp1",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 150.0
+                },
+                {
+                    "Direction": "greater than",
+                    "Label": "vout2",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 1.835
+                },
+                {
+                    "Direction": "less than",
+                    "Label": "vout2",
+                    "Name": "lower critical",
+                    "Severity": 1,
+                    "Value": 1.753
+                },
+                {
+                    "Direction": "greater than",
+                    "Label": "iout2",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 15
+                },
+                {
+                    "Direction": "greater than",
+                    "Label": "iout2",
+                    "Name": "upper non critical",
+                    "Severity": 0,
+                    "Value": 6.25
+                },
+                {
+                    "Direction": "greater than",
+                    "Label": "vout1",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 1.03
+                },
+                {
+                    "Direction": "less than",
+                    "Label": "vout1",
+                    "Name": "lower critical",
+                    "Severity": 1,
+                    "Value": 0.9
+                },
+                {
+                    "Direction": "greater than",
+                    "Label": "iout1",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 52
+                },
+                {
+                    "Direction": "greater than",
+                    "Label": "iout1",
+                    "Name": "upper non critical",
+                    "Severity": 0,
+                    "Value": 46
+                }
+            ],
+            "Type": "MP2971"
+        },
+        {
+            "Address": "0x58",
+            "Bus": "90",
+            "Labels": [
+                "iin",
+                "iout1",
+                "iout2",
+                "vin",
+                "vout1",
+                "vout2",
+                "pin",
+                "pout1",
+                "pout2",
+                "temp1"
+            ],
+            "Name": "PVCCFA_EHV_CPU3",
+            "Name1": "PVCCINFAON_CPU3",
+            "PollRate": 5.0,
+            "PowerState": "Always",
+            "Thresholds": [
+                {
+                    "Direction": "greater than",
+                    "Label": "vin",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 15.0
+                },
+                {
+                    "Direction": "greater than",
+                    "Label": "temp1",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 150.0
+                },
+                {
+                    "Direction": "greater than",
+                    "Label": "vout2",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 1.835
+                },
+                {
+                    "Direction": "less than",
+                    "Label": "vout2",
+                    "Name": "lower critical",
+                    "Severity": 1,
+                    "Value": 1.753
+                },
+                {
+                    "Direction": "greater than",
+                    "Label": "iout2",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 15
+                },
+                {
+                    "Direction": "greater than",
+                    "Label": "iout2",
+                    "Name": "upper non critical",
+                    "Severity": 0,
+                    "Value": 6.25
+                },
+                {
+                    "Direction": "greater than",
+                    "Label": "vout1",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 1.03
+                },
+                {
+                    "Direction": "less than",
+                    "Label": "vout1",
+                    "Name": "lower critical",
+                    "Severity": 1,
+                    "Value": 0.9
+                },
+                {
+                    "Direction": "greater than",
+                    "Label": "iout1",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 52
+                },
+                {
+                    "Direction": "greater than",
+                    "Label": "iout1",
+                    "Name": "upper non critical",
+                    "Severity": 0,
+                    "Value": 46
+                }
+            ],
+            "Type": "MP2971"
+        },
+        {
+            "Address": "0x30",
+            "Bus": 0,
+            "CpuID": 1,
+            "Name": "CPU 0",
+            "Type": "XeonCPU"
+        },
+        {
+            "Address": "0x31",
+            "Bus": 0,
+            "CpuID": 2,
+            "Name": "CPU 1",
+            "Type": "XeonCPU"
+        },
+        {
+            "Address": "0x32",
+            "Bus": 0,
+            "CpuID": 3,
+            "Name": "CPU 2",
+            "Type": "XeonCPU"
+        },
+        {
+            "Address": "0x33",
+            "Bus": 0,
+            "CpuID": 4,
+            "Name": "CPU 3",
+            "Type": "XeonCPU"
+        }
+    ],
+    "Name": "IBM SBP1 Baseboard",
+    "Probe": "xyz.openbmc_project.FruDevice({'BOARD_PRODUCT_NAME': '.*SBP1'})",
+    "ProductId": 0,
+    "Type": "Board",
+    "xyz.openbmc_project.Inventory.Decorator.Asset": {
+        "Manufacturer": "$BOARD_MANUFACTURER",
+        "Model": "$BOARD_PRODUCT_NAME",
+        "PartNumber": "$BOARD_PART_NUMBER",
+        "SerialNumber": "$BOARD_SERIAL_NUMBER"
+    },
+    "xyz.openbmc_project.Inventory.Decorator.AssetTag": {
+        "AssetTag": "$PRODUCT_ASSET_TAG"
+    },
+    "xyz.openbmc_project.Inventory.Item.System": {}
+}
