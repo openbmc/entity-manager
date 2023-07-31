@@ -18,6 +18,24 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "0341c211_8c03d7ef",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 7
+      },
+      "lineNbr": 10,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2023-07-31T09:15:10Z",
+      "side": 1,
+      "message": "done",
+      "parentUuid": "1f7379e2_089e07ff",
+      "revId": "87c92ec42e22ef8edc2d109b3d59883f4d06c927",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "1fde31bf_bf647080",
@@ -31,6 +49,30 @@
       "writtenOn": "2023-07-29T01:40:52Z",
       "side": 1,
       "message": "nit: can we re-order the parameter so the \"mode\" ones are together, example\n(bool is16bit, bool isByteWise, int file, uint16_t address, off_t offset,  size_t len, uint8_t* buf)",
+      "range": {
+        "startLine": 261,
+        "startChar": 24,
+        "endLine": 262,
+        "endChar": 63
+      },
+      "revId": "87c92ec42e22ef8edc2d109b3d59883f4d06c927",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "d57aaeb9_d3eb378c",
+        "filename": "src/fru_device.cpp",
+        "patchSetId": 7
+      },
+      "lineNbr": 262,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2023-07-31T09:15:10Z",
+      "side": 1,
+      "message": "yes",
+      "parentUuid": "1fde31bf_bf647080",
       "range": {
         "startLine": 261,
         "startChar": 24,
@@ -64,6 +106,30 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "c8505b44_486e8a7b",
+        "filename": "src/fru_utils.cpp",
+        "patchSetId": 7
+      },
+      "lineNbr": 764,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2023-07-31T09:15:10Z",
+      "side": 1,
+      "message": "i dont see std::optional as the best option, since \nthere is a difference in why readFRUContents did not succeed.\n\nReturning std::nullopt only for header not found would be confusing.\n\nPeople would expect it to be std::nullopt in all error cases.\n\nMy newest patchset uses std::pair\u003cstd::vector\u003cuint8_t\u003e,bool\u003e\n\nto indicate if the header was found or not. The caller can then\ndecide for themselves to handle the new info or not.\n\nAlways passing bool* would also produce an unused variable at the other call site.",
+      "parentUuid": "f9e9e389_6f4f6966",
+      "range": {
+        "startLine": 752,
+        "startChar": 0,
+        "endLine": 764,
+        "endChar": 5
+      },
+      "revId": "87c92ec42e22ef8edc2d109b3d59883f4d06c927",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "b12e2f70_6e220be2",
@@ -77,6 +143,30 @@
       "writtenOn": "2023-07-29T01:40:52Z",
       "side": 1,
       "message": "I think we can make the return to be optional to indicate foundHeader.\n(see my other comment)\nI am ok to make it a follow up clean up and refactor",
+      "range": {
+        "startLine": 160,
+        "startChar": 0,
+        "endLine": 160,
+        "endChar": 21
+      },
+      "revId": "87c92ec42e22ef8edc2d109b3d59883f4d06c927",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "be12cde9_0cf4e154",
+        "filename": "src/fru_utils.hpp",
+        "patchSetId": 7
+      },
+      "lineNbr": 160,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2023-07-31T09:15:10Z",
+      "side": 1,
+      "message": "Thanks for your feedback. Replied on the signature in the other comment.\n\nI have no problem in cleaning up now, for the code that is touched by the changes.",
+      "parentUuid": "b12e2f70_6e220be2",
       "range": {
         "startLine": 160,
         "startChar": 0,
