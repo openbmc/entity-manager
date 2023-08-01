@@ -1,0 +1,100 @@
+{
+    "Exposes": [
+        {
+            "Address": "$address",
+            "Bus": "$bus",
+            "Name": "PSU$ADDRESS % 4 + 1 FRU",
+            "Type": "EEPROM"
+        },
+        {
+            "Address": "$address",
+            "Bus": "$bus",
+            "Name": "PSU$address % 4 + 1 ADDR",
+            "Type": "PSUPresence"
+        },
+        {
+            "Address": "$ADDRESS - 24",
+            "Bus": "$bus",
+            "Labels": [
+                "temp1",
+                "pin",
+                "iin",
+                "vin",
+                "fan1",
+                "pout1"
+            ],
+            "Name": "PSU$ADDRESS % 4 + 1",
+            "Thresholds": [
+                {
+                    "Direction": "greater than",
+                    "Label": "pin",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 1200
+                },
+                {
+                    "Direction": "greater than",
+                    "Label": "pout1",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 1200
+                },
+                {
+                    "Direction": "less than",
+                    "Label": "vin",
+                    "Name": "lower critical",
+                    "Severity": 1,
+                    "Value": 90
+                },
+                {
+                    "Direction": "greater than",
+                    "Label": "vin",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 264
+                },
+                {
+                    "Direction": "greater than",
+                    "Label": "iin",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 8
+                },
+                {
+                    "Direction": "less than",
+                    "Label": "temp1",
+                    "Name": "lower critical",
+                    "Severity": 1,
+                    "Value": 0
+                },
+                {
+                    "Direction": "greater than",
+                    "Label": "temp1",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 100
+                },
+                {
+                    "Direction": "greater than",
+                    "Label": "fan1",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 10000
+                }
+            ],
+            "Type": "cffps"
+        }
+    ],
+    "Name": "ACBEL RICA PSU$ADDRESS % 4 + 1",
+    "Probe": "xyz.openbmc_project.FruDevice({'PRODUCT_PRODUCT_NAME': 'R1CA2122A*'})",
+    "Type": "PowerSupply",
+    "xyz.openbmc_project.Inventory.Decorator.Asset": {
+        "Manufacturer": "$PRODUCT_MANUFACTURER",
+        "Model": "$PRODUCT_PRODUCT_NAME",
+        "PartNumber": "$PRODUCT_PART_NUMBER",
+        "SerialNumber": "$PRODUCT_SERIAL_NUMBER"
+    },
+    "xyz.openbmc_project.Inventory.Decorator.AssetTag": {
+        "AssetTag": "$PRODUCT_ASSET_TAG"
+    }
+}
