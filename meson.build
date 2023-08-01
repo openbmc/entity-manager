@@ -78,6 +78,7 @@ configs = [
     'a2ul16riser.json',
     'a2ux8x4riser.json',
     'acbell_rica_psu.json',
+    'acbel_r1ca2122a_psu.json',
     'asrock_e3c246d4i.json',
     'asrock_romed8hm3.json',
     'bletchley_baseboard.json',
