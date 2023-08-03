@@ -41,6 +41,8 @@
 
 constexpr const char* templateChar = "$";
 
+const char* configHash = "/var/configuration/configHash.txt";
+
 namespace fs = std::filesystem;
 static bool powerStatusOn = false;
 static std::unique_ptr<sdbusplus::bus::match_t> powerMatch = nullptr;
@@ -414,4 +416,49 @@ struct MatchProbeForwarder
 bool matchProbe(const nlohmann::json& probe, const DBusValueVariant& dbusValue)
 {
     return std::visit(MatchProbeForwarder(probe), dbusValue);
+}
+
+bool isCurrentConfigStale(const char* configurationDirectory)
+{
+    std::ifstream configHashFile(configHash);
+    if (!configHashFile)
+    {
+        return true;
+    }
+
+    uint64_t actualHash = 0;
+    configHashFile >> actualHash;
+
+    const uint64_t expectedHash = getConfigHash(configurationDirectory);
+
+    return actualHash != expectedHash;
+}
+
+uint64_t getConfigHash(const char* configurationDirectory)
+{
+    std::hash<std::string> hashFn;
+    uint64_t combinedHash = 0;
+
+    for (const auto& entry : fs::directory_iterator(configurationDirectory))
+    {
+        if (fs::is_regular_file(entry))
+        {
+            std::ifstream file(entry.path(), std::ios::binary);
+            if (file)
+            {
+                std::string contents((std::istreambuf_iterator<char>(file)),
+                                     std::istreambuf_iterator<char>());
+                combinedHash ^= hashFn(contents);
+            }
+        }
+    }
+
+    return combinedHash;
+}
+
+void writeConfigHash(const char* configurationDirectory)
+{
+    std::ofstream configHashFile(configHash);
+    configHashFile << getConfigHash(configurationDirectory) << std::endl;
+    ;
 }
