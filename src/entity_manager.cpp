@@ -1282,7 +1282,10 @@ int main()
     });
     entityIface->initialize();
 
-    if (fwVersionIsSame())
+    const uint64_t oldConfigHash = getOldConfigHash();
+    const uint64_t configHash = getConfigHash(configurationDirectory);
+
+    if (fwVersionIsSame() && oldConfigHash == configHash)
     {
         if (std::filesystem::is_regular_file(currentConfiguration))
         {
@@ -1317,6 +1320,8 @@ int main()
         // not an error, just logging at this level to make it in the journal
         std::cerr << "Clearing previous configuration\n";
         std::filesystem::remove(currentConfiguration);
+        // new config will use current configuration files
+        writeConfigHash(configHash);
     }
 
     // some boards only show up after power is on, we want to not say they are

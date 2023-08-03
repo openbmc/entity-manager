@@ -160,3 +160,8 @@ inline bool deviceHasLogging(const nlohmann::json& json)
 /// \param dbusValue the property value being matched to a probe.
 /// \return true if the dbusValue matched the probe otherwise false.
 bool matchProbe(const nlohmann::json& probe, const DBusValueVariant& dbusValue);
+
+uint64_t getConfigHash(std::string_view configurationDirectory);
+uint64_t getOldConfigHash();
+
+void writeConfigHash(uint64_t configHash);
