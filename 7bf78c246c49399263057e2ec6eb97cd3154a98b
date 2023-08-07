@@ -234,6 +234,24 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "7f50063a_03817d67",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 3
+      },
+      "lineNbr": 10,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2023-08-07T08:55:39Z",
+      "side": 1,
+      "message": "i did not put measurements into the code.\n\nHowever \u0027systemctl status\u0027 shows \u0027CPU Time\u0027 metric which is about 13s some time after interactive shell is available, on 1st boot.\n\n2nd boot it was 10.6 seconds, \n3rd boot it was 8.8 seconds.\n\nOn another boot without this change, it was 12.5 seconds with system.json already in place. \n\nSo the measurement is inaccurate, but it suggest that the  hashing does not consume an excessive amount of cpu time. \n\n\nPeople who care about performance simply remove the configuration files which are not needed.",
+      "parentUuid": "afdbfa53_86fef9be",
+      "revId": "7bf78c246c49399263057e2ec6eb97cd3154a98b",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "a3b3aead_2173f70c",
