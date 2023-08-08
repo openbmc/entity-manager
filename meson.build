@@ -157,6 +157,9 @@ configs = [
     'vegman_sx20_baseboard.json',
     'wft_baseboard.json',
     'yosemite4_fanboard.json',
+    'yosemite4.json',
+    'yosemite4_medusaboard.json',
+    'yosemite4_spiderboard.json',
 ]
 filepaths = []
 foreach c : configs
@@ -196,6 +199,7 @@ schemas = [
     'stepwise.json',
     'virtual_sensor.json',
     'satellite_controller.json',
+    'customize_scalefactor.json',
 ]
 
 foreach s : schemas
