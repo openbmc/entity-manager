@@ -163,6 +163,9 @@ configs = [
     'yosemite4_sentineldome.json',
     'yosemite4_floatingfalls.json',
     'yosemite4_wailuafalls.json',
+    'yosemite4.json',
+    'yosemite4_medusaboard.json',
+    'yosemite4_spiderboard.json',
 ]
 filepaths = []
 foreach c : configs
