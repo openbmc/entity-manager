@@ -159,6 +159,9 @@ configs = [
     'vegman_sx20_baseboard.json',
     'wft_baseboard.json',
     'yosemite4_fanboard.json',
+    'yosemite4.json',
+    'yosemite4_medusaboard.json',
+    'yosemite4_spiderboard.json',
 ]
 filepaths = []
 foreach c : configs
