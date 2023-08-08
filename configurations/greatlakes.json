@@ -760,7 +760,7 @@
     "Probe": [
         "xyz.openbmc_project.FruDevice({'BOARD_PRODUCT_NAME': 'Management Board wBMC'})",
         "AND",
-        "xyz.openbmc_project.FruDevice({'PRODUCT_PRODUCT_NAME': 'Great Lakes*'})",
+        "xyz.openbmc_project.FruDevice({'PRODUCT_PRODUCT_NAME': 'Great Lakes .*'})",
         "MATCH_ONE"
     ],
     "Type": "Board",
