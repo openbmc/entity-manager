@@ -757,12 +757,7 @@
         }
     ],
     "Name": "Great Lakes Baseboard",
-    "Probe": [
-        "xyz.openbmc_project.FruDevice({'BOARD_PRODUCT_NAME': 'Management Board wBMC'})",
-        "AND",
-        "xyz.openbmc_project.FruDevice({'PRODUCT_PRODUCT_NAME': 'Great Lakes*'})",
-        "MATCH_ONE"
-    ],
+    "Probe": "xyz.openbmc_project.FruDevice({'PRODUCT_PRODUCT_NAME': 'Great Lakes .*'})",
     "Type": "Board",
     "xyz.openbmc_project.Inventory.Decorator.Asset": {
         "Manufacturer": "$PRODUCT_MANUFACTURER",
