@@ -39,6 +39,9 @@
                     "$ref": "virtual_sensor.json#/definitions/VirtualSensor"
                 },
                 {
+                    "$ref": "customize_scalefactor.json#/definitions/CustomizedScaleFactor"
+                },
+                {
                     "description": [
                         "Ensure the parent oneOf schema does not validate ",
                         "when an element does not define a type property."
