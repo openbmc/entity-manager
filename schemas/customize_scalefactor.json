@@ -1,0 +1,45 @@
+{
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "definitions": {
+        "CustomizedScaleFactor": {
+            "title": "Customized scalefactor used for dbus-sensors",
+            "type": "object",
+            "properties": {
+                "in0_Name": {
+                    "type": "string"
+                },
+                "in1_Name": {
+                    "type": "string"
+                },
+                "in2_Name": {
+                    "type": "string"
+                },
+                "in3_Name": {
+                    "type": "string"
+                },
+                "in0_Scale": {
+                    "type": "number"
+                },
+                "in1_Scale": {
+                    "type": "number"
+                },
+                "in2_Scale": {
+                    "type": "number"
+                },
+                "in3_Scale": {
+                    "type": "number"
+                }
+            },
+            "required": [
+                "in0_Name",
+                "in1_Name",
+                "in2_Name",
+                "in3_Name",
+                "in0_Scale",
+                "in1_Scale",
+                "in2_Scale",
+                "in3_Scale"
+            ]
+        }
+    }
+}
