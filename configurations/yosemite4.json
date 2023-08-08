@@ -1,0 +1,89 @@
+{
+    "Exposes": [
+        {
+            "Index": 0,
+            "Name": "MGNT_P12V_VOLT_V",
+            "ScaleFactor": 0.1124,
+            "Type": "ADC"
+        },
+        {
+            "Index": 1,
+            "Name": "MGNT_P5V_VOLT_V",
+            "ScaleFactor": 0.2717,
+            "Type": "ADC"
+        },
+        {
+            "Index": 2,
+            "Name": "MGNT_P3V3_VOLT_V",
+            "ScaleFactor": 0.4107,
+            "Type": "ADC"
+        },
+        {
+            "Index": 3,
+            "Name": "MGNT_P2V5_VOLT_V",
+            "ScaleFactor": 0.542,
+            "Type": "ADC"
+        },
+        {
+            "Index": 4,
+            "Name": "MGNT_P1V8_VOLT_V",
+            "ScaleFactor": 1,
+            "Type": "ADC"
+        },
+        {
+            "Index": 5,
+            "Name": "MGNT_P3V3_RGM_VOLT_V",
+            "ScaleFactor": 0.4107,
+            "Type": "ADC"
+        },
+        {
+            "Index": 6,
+            "Name": "MGNT_P1V2_VOLT_V",
+            "ScaleFactor": 1,
+            "Type": "ADC"
+        },
+        {
+            "Index": 7,
+            "Name": "MGNT_P0V6_VOLT_V",
+            "ScaleFactor": 1,
+            "Type": "ADC"
+        },
+        {
+            "Index": 8,
+            "Name": "MGNT_P1V0_VOLT_V",
+            "ScaleFactor": 1,
+            "Type": "ADC"
+        },
+        {
+            "Index": 9,
+            "Name": "MGNT_P5V_USB_VOLT_V",
+            "ScaleFactor": 0.2717,
+            "Type": "ADC"
+        },
+        {
+            "Index": 10,
+            "Name": "MGNT_P3V_BAT_VOLT_V",
+            "ScaleFactor": 0.3333,
+            "Type": "ADC"
+        },
+        {
+            "Address": "0x48",
+            "Bus": 12,
+            "Name": "MGNT_TEMP_C",
+            "Type": "TMP75"
+        }
+    ],
+    "Name": "Yosemite 4 Management Board",
+    "Probe": [
+        "xyz.openbmc_project.FruDevice({'BOARD_PRODUCT_NAME': 'Management Board wBMC'})",
+        "AND",
+        "xyz.openbmc_project.FruDevice({'PRODUCT_PRODUCT_NAME': 'Yosemite V4 .*'})",
+    ],
+    "Type": "Board",
+    "xyz.openbmc_project.Inventory.Decorator.Asset": {
+        "Manufacturer": "$PRODUCT_MANUFACTURER",
+        "Model": "$PRODUCT_PRODUCT_NAME",
+        "PartNumber": "$PRODUCT_PART_NUMBER",
+        "SerialNumber": "$PRODUCT_SERIAL_NUMBER"
+    }
+}
