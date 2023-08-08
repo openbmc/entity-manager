@@ -1,0 +1,36 @@
+{
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "definitions": {
+        "CustomizedScaleFactor": {
+            "title": "Customized scale factor",
+            "type": "object",
+            "properties": {
+                "in0_Scale": {
+                    "type": "number"
+                },
+                "in1_Scale": {
+                    "type": "number"
+                },
+                "in2_Scale": {
+                    "type": "number"
+                },
+                "in3_Scale": {
+                    "type": "number"
+                },
+                "in4_Scale": {
+                    "type": "number"
+                },
+                "in5_Scale": {
+                    "type": "number"
+                },
+                "in6_Scale": {
+                    "type": "number"
+                },
+                "in7_Scale": {
+                    "type": "number"
+                }
+            },
+            "required": ["in0_Scale"]
+        }
+    }
+}
