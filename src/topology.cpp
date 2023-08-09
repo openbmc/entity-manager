@@ -55,8 +55,26 @@ std::unordered_map<std::string, std::vector<Association>> Topology::getAssocs()
             {
                 for (const Path& downstream : downstreamMatch->second)
                 {
-                    result[downstream].emplace_back("contained_by",
-                                                    "containing", upstream);
+                    // Chassis containing/contained_by relationships should only
+                    // be established when they are Chassis/Board <->
+                    // Chassis/Board relationships
+                    if (boardTypes[downstream] == "Chassis" ||
+                        boardTypes[downstream] == "Board")
+                    {
+
+                        result[downstream].emplace_back("contained_by",
+                                                        "containing", upstream);
+                        continue;
+                    }
+
+                    // Chassis/Board <-> Component relationships are assembly
+                    // associations
+                    if (boardTypes[downstream] == "Component")
+                    {
+                        result[downstream].emplace_back("chassis", "assembly",
+                                                        upstream);
+                        continue;
+                    }
                 }
             }
         }
