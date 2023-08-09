@@ -3,6 +3,74 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "fc9223c8_9fb028cb",
+        "filename": "configurations/yosemite4-medusaboard.json",
+        "patchSetId": 8
+      },
+      "lineNbr": 197,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2023-08-09T21:12:52Z",
+      "side": 1,
+      "message": "Why don\u0027t these have real EEPROM-based probes?",
+      "revId": "ed5beb8e7e3ed10f1cd69a39c180f4a4e74bbf1f",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d2929422_1b0bb938",
+        "filename": "configurations/yosemite4-medusaboard.json",
+        "patchSetId": 8
+      },
+      "lineNbr": 199,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2023-08-09T21:12:52Z",
+      "side": 1,
+      "message": "Are the inventory assets to come later?",
+      "revId": "ed5beb8e7e3ed10f1cd69a39c180f4a4e74bbf1f",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "573d0fe9_3c47e236",
+        "filename": "configurations/yosemite4-spiderboard.json",
+        "patchSetId": 8
+      },
+      "lineNbr": 17,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2023-08-09T21:12:52Z",
+      "side": 1,
+      "message": "Real probe needed?",
+      "revId": "ed5beb8e7e3ed10f1cd69a39c180f4a4e74bbf1f",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d723b906_595c9cd3",
+        "filename": "configurations/yosemite4-spiderboard.json",
+        "patchSetId": 8
+      },
+      "lineNbr": 19,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2023-08-09T21:12:52Z",
+      "side": 1,
+      "message": "Are the inventory assets to come later?",
+      "revId": "ed5beb8e7e3ed10f1cd69a39c180f4a4e74bbf1f",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "9c720451_f5ab57f1",
         "filename": "configurations/yosemite4.json",
         "patchSetId": 8
@@ -19,6 +87,29 @@
         "startChar": 31,
         "endLine": 5,
         "endChar": 37
+      },
+      "revId": "ed5beb8e7e3ed10f1cd69a39c180f4a4e74bbf1f",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5f11b208_63d64478",
+        "filename": "configurations/yosemite4.json",
+        "patchSetId": 8
+      },
+      "lineNbr": 77,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2023-08-09T21:12:52Z",
+      "side": 1,
+      "message": "This should be a BOARD_PRODUCT_NAME probe and not a PRODUCT_PRODUCT name.  We need to match off the specific board we\u0027ve identified and not the overall system product.",
+      "range": {
+        "startLine": 77,
+        "startChar": 4,
+        "endLine": 77,
+        "endChar": 88
       },
       "revId": "ed5beb8e7e3ed10f1cd69a39c180f4a4e74bbf1f",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
