@@ -16,6 +16,24 @@
       "message": "Something is wrong here.  We should not be dropping the BOARD identifier probes.",
       "revId": "f60262d50b6629dbd19bc7e7c55f6442401242e4",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6c461254_4769a323",
+        "filename": "configurations/greatlakes.json",
+        "patchSetId": 2
+      },
+      "lineNbr": 761,
+      "author": {
+        "id": 1001618
+      },
+      "writtenOn": "2023-08-10T03:53:09Z",
+      "side": 0,
+      "message": "The setting before this change will set config repeatedly in any other project unit when FRU\u0027s \u0027BOARD_PRODUCT_NAME\u0027 \u003d \"Management Board wBMC\"\n\nThank you for the correction, I\u0027ll try to revise the condition to probe the json config only when all condition matches.",
+      "parentUuid": "09dfbb36_7d7114a5",
+      "revId": "f60262d50b6629dbd19bc7e7c55f6442401242e4",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }
