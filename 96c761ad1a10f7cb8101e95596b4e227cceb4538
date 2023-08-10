@@ -1,6 +1,40 @@
 {
   "comments": [
     {
+      "unresolved": true,
+      "key": {
+        "uuid": "fd3ce15a_8758845c",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 3
+      },
+      "lineNbr": 42,
+      "author": {
+        "id": 1000020
+      },
+      "writtenOn": "2023-08-10T17:55:13Z",
+      "side": 1,
+      "message": "Can you add the association being used?",
+      "revId": "96c761ad1a10f7cb8101e95596b4e227cceb4538",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1b0e3423_70b83ef6",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 3
+      },
+      "lineNbr": 45,
+      "author": {
+        "id": 1000020
+      },
+      "writtenOn": "2023-08-10T17:55:13Z",
+      "side": 1,
+      "message": "With which bmcweb commit? I don\u0027t see support on master yet for Assemblies",
+      "revId": "96c761ad1a10f7cb8101e95596b4e227cceb4538",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": false,
       "key": {
         "uuid": "2b8f1975_72c98d69",
@@ -14,6 +48,29 @@
       "writtenOn": "2023-08-10T13:56:02Z",
       "side": 1,
       "message": "There\u0027s a schema update needed here to, to add it to the list of allowed Types",
+      "revId": "96c761ad1a10f7cb8101e95596b4e227cceb4538",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "54b9e1dc_02fe4d44",
+        "filename": "src/topology.cpp",
+        "patchSetId": 3
+      },
+      "lineNbr": 69,
+      "author": {
+        "id": 1000020
+      },
+      "writtenOn": "2023-08-10T17:55:13Z",
+      "side": 1,
+      "message": "Boards are Redfish chassis and have assemblies under them?",
+      "range": {
+        "startLine": 69,
+        "startChar": 31,
+        "endLine": 69,
+        "endChar": 37
+      },
       "revId": "96c761ad1a10f7cb8101e95596b4e227cceb4538",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
@@ -55,6 +112,30 @@
       "side": 1,
       "message": "Maybe we can just add the containing/contained_by for every type of entity, as we know it\u0027s contained because the connectors match up.",
       "parentUuid": "13097d34_3bd8babd",
+      "range": {
+        "startLine": 73,
+        "startChar": 68,
+        "endLine": 73,
+        "endChar": 76
+      },
+      "revId": "96c761ad1a10f7cb8101e95596b4e227cceb4538",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e09a8915_62a696a2",
+        "filename": "src/topology.cpp",
+        "patchSetId": 3
+      },
+      "lineNbr": 73,
+      "author": {
+        "id": 1000020
+      },
+      "writtenOn": "2023-08-10T17:55:13Z",
+      "side": 1,
+      "message": "\u003e Looks like the plan is to use contained_by/containing for assemblies too: https://gerrit.openbmc.org/c/openbmc/phosphor-dbus-interfaces/+/64544\n\n+1",
+      "parentUuid": "acf1322f_5b3544a1",
       "range": {
         "startLine": 73,
         "startChar": 68,
