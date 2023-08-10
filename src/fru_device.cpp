@@ -164,8 +164,16 @@ static int getRootBus(size_t bus)
 
 static bool isMuxBus(size_t bus)
 {
-    return is_symlink(std::filesystem::path(
-        "/sys/bus/i2c/devices/i2c-" + std::to_string(bus) + "/mux_device"));
+    auto ec = std::error_code();
+    auto isSymlink =
+        is_symlink(std::filesystem::path("/sys/bus/i2c/devices/i2c-" +
+                                         std::to_string(bus) + "/mux_device"),
+                   ec);
+    if (ec || !isSymlink)
+    {
+        return false;
+    }
+    return true;
 }
 
 static void makeProbeInterface(size_t bus, size_t address,
@@ -308,8 +316,14 @@ std::set<int> findI2CEeproms(int i2cBus,
     // For each file listed under the i2c device
     // NOTE: This should be faster than just checking for each possible address
     // path.
-    for (const auto& p : fs::directory_iterator(path))
+    auto ec = std::error_code();
+    for (const auto& p : fs::directory_iterator(path, ec))
     {
+        if (ec)
+        {
+            std::cerr << "directory_iterator err " << ec.message() << "\n";
+            break;
+        }
         const std::string node = p.path().string();
         std::smatch m;
         bool found = std::regex_match(node, m,
