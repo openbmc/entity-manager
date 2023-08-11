@@ -18,6 +18,24 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "cc5281bf_772d4d1a",
+        "filename": "configurations/yosemite4-medusaboard.json",
+        "patchSetId": 8
+      },
+      "lineNbr": 197,
+      "author": {
+        "id": 1001618
+      },
+      "writtenOn": "2023-08-11T07:42:39Z",
+      "side": 1,
+      "message": "Added with name which is referencing other board\u0027s FRU format.\nThank you for the correction.",
+      "parentUuid": "fc9223c8_9fb028cb",
+      "revId": "ed5beb8e7e3ed10f1cd69a39c180f4a4e74bbf1f",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "d2929422_1b0bb938",
@@ -31,6 +49,24 @@
       "writtenOn": "2023-08-09T21:12:52Z",
       "side": 1,
       "message": "Are the inventory assets to come later?",
+      "revId": "ed5beb8e7e3ed10f1cd69a39c180f4a4e74bbf1f",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "f45549d4_1f9c0fbf",
+        "filename": "configurations/yosemite4-medusaboard.json",
+        "patchSetId": 8
+      },
+      "lineNbr": 199,
+      "author": {
+        "id": 1001618
+      },
+      "writtenOn": "2023-08-11T07:42:39Z",
+      "side": 1,
+      "message": "The inventory assets was added.\nThank you for the correction.",
+      "parentUuid": "d2929422_1b0bb938",
       "revId": "ed5beb8e7e3ed10f1cd69a39c180f4a4e74bbf1f",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
@@ -52,6 +88,24 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "070c323d_58ce5758",
+        "filename": "configurations/yosemite4-spiderboard.json",
+        "patchSetId": 8
+      },
+      "lineNbr": 17,
+      "author": {
+        "id": 1001618
+      },
+      "writtenOn": "2023-08-11T07:42:39Z",
+      "side": 1,
+      "message": "Added with name which is referencing other board\u0027s FRU format.\nThank you for the correction.",
+      "parentUuid": "573d0fe9_3c47e236",
+      "revId": "ed5beb8e7e3ed10f1cd69a39c180f4a4e74bbf1f",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "d723b906_595c9cd3",
@@ -65,6 +119,24 @@
       "writtenOn": "2023-08-09T21:12:52Z",
       "side": 1,
       "message": "Are the inventory assets to come later?",
+      "revId": "ed5beb8e7e3ed10f1cd69a39c180f4a4e74bbf1f",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "8933b011_68df706b",
+        "filename": "configurations/yosemite4-spiderboard.json",
+        "patchSetId": 8
+      },
+      "lineNbr": 19,
+      "author": {
+        "id": 1001618
+      },
+      "writtenOn": "2023-08-11T07:42:39Z",
+      "side": 1,
+      "message": "The inventory assets was added.\nThank you for the correction.",
+      "parentUuid": "d723b906_595c9cd3",
       "revId": "ed5beb8e7e3ed10f1cd69a39c180f4a4e74bbf1f",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
@@ -92,6 +164,30 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "75a79620_3e2085d6",
+        "filename": "configurations/yosemite4.json",
+        "patchSetId": 8
+      },
+      "lineNbr": 5,
+      "author": {
+        "id": 1001618
+      },
+      "writtenOn": "2023-08-11T07:42:39Z",
+      "side": 1,
+      "message": "Thank you for suggestion.\n\nWould you please to tell if there some concoerns about adding the unit?\nor I prefer to let voltage sensor follow the naming rule same with other sensors, which has been commonly used in former Meta platform.",
+      "parentUuid": "9c720451_f5ab57f1",
+      "range": {
+        "startLine": 5,
+        "startChar": 31,
+        "endLine": 5,
+        "endChar": 37
+      },
+      "revId": "ed5beb8e7e3ed10f1cd69a39c180f4a4e74bbf1f",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "5f11b208_63d64478",
@@ -105,6 +201,30 @@
       "writtenOn": "2023-08-09T21:12:52Z",
       "side": 1,
       "message": "This should be a BOARD_PRODUCT_NAME probe and not a PRODUCT_PRODUCT name.  We need to match off the specific board we\u0027ve identified and not the overall system product.",
+      "range": {
+        "startLine": 77,
+        "startChar": 4,
+        "endLine": 77,
+        "endChar": 88
+      },
+      "revId": "ed5beb8e7e3ed10f1cd69a39c180f4a4e74bbf1f",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "76f9c778_8a4a6e7d",
+        "filename": "configurations/yosemite4.json",
+        "patchSetId": 8
+      },
+      "lineNbr": 77,
+      "author": {
+        "id": 1001618
+      },
+      "writtenOn": "2023-08-11T07:42:39Z",
+      "side": 1,
+      "message": "This change has been revised.\nThe board config will be probed only when both BOARD_PRODUCT_NAME and PRODUCT_PRODUCT_NAME meets.\nThank you for the correction.",
+      "parentUuid": "5f11b208_63d64478",
       "range": {
         "startLine": 77,
         "startChar": 4,
