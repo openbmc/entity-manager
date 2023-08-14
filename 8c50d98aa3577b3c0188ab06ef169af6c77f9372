@@ -48,6 +48,30 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "f6a46177_43d8a3e9",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 1000559
+      },
+      "writtenOn": "2023-08-14T22:21:03Z",
+      "side": 1,
+      "message": "This is the place to go for the design doc review. Looking forward to it",
+      "parentUuid": "72722043_b748d383",
+      "range": {
+        "startLine": 7,
+        "startChar": 0,
+        "endLine": 7,
+        "endChar": 52
+      },
+      "revId": "8c50d98aa3577b3c0188ab06ef169af6c77f9372",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "9271918a_650899cd",
@@ -85,6 +109,30 @@
       "side": 1,
       "message": "The uBoot code HPE has for creating FRU data files based on FRU data copied into RAM during boot will be open sourced.\n\nThat said, this feature should work with any setup that writes FRU data to the file system. One property/field per file is the current expectation.",
       "parentUuid": "9271918a_650899cd",
+      "range": {
+        "startLine": 17,
+        "startChar": 0,
+        "endLine": 19,
+        "endChar": 45
+      },
+      "revId": "8c50d98aa3577b3c0188ab06ef169af6c77f9372",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3ff73e40_943a5617",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 19,
+      "author": {
+        "id": 1000559
+      },
+      "writtenOn": "2023-08-14T22:21:03Z",
+      "side": 1,
+      "message": "ACK",
+      "parentUuid": "b3d4bcbd_55c80e87",
       "range": {
         "startLine": 17,
         "startChar": 0,
@@ -220,6 +268,30 @@
       "side": 1,
       "message": "The current setup is intended to allow \u0027anyone\u0027 to create a new \u0027managedFRUDirectories newManagedPaths,\u0027 populate it with relevant paths for their device, then set \u0027managedFRUs[managedFRUType::NewDevice] \u003d newManagedPaths;\u0027\n\nI definitely like the idea of having this info read in from data JSON config files, but haven\u0027t researched how much new structure will be required for that yet.\n\nHow comfortable would you be with a \u0027get paths from JSON\u0027 feature being added as as add-on (separate dependent Gerrit review) to this one?",
       "parentUuid": "0e7cd0dd_703d2903",
+      "range": {
+        "startLine": 1381,
+        "startChar": 0,
+        "endLine": 1425,
+        "endChar": 0
+      },
+      "revId": "8c50d98aa3577b3c0188ab06ef169af6c77f9372",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1c879c41_6dc6a0fa",
+        "filename": "src/fru_device.cpp",
+        "patchSetId": 1
+      },
+      "lineNbr": 1425,
+      "author": {
+        "id": 1000559
+      },
+      "writtenOn": "2023-08-14T22:21:03Z",
+      "side": 1,
+      "message": "I lean towards get these into json to start with. So system only need to look for the path that are relevant. For example platforms that do not have the ManagedFru do not have to walk through this list at all and HPE system only needs to look for the directories that are valid for HPE.",
+      "parentUuid": "9fbfe455_2ee90eea",
       "range": {
         "startLine": 1381,
         "startChar": 0,
