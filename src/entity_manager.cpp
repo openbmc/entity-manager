@@ -76,6 +76,7 @@ boost::container::flat_map<
 // todo: pass this through nicer
 std::shared_ptr<sdbusplus::asio::connection> systemBus;
 nlohmann::json lastJson;
+Topology topology;
 
 boost::asio::io_context io;
 
@@ -566,7 +567,7 @@ void postToDbus(const nlohmann::json& newConfiguration,
                 sdbusplus::asio::object_server& objServer)
 
 {
-    Topology topology;
+    std::map<std::string, std::string> newBoards; // path -> name
 
     // iterate through boards
     for (const auto& [boardId, boardConfig] : newConfiguration.items())
@@ -782,16 +783,26 @@ void postToDbus(const nlohmann::json& newConfiguration,
                 }
             }
 
-            topology.addBoard(boardPath, boardType, item);
+            topology.addBoard(boardPath, boardType, boardNameOrig, item);
         }
+
+        newBoards.emplace(boardPath, boardNameOrig);
     }
 
-    for (const auto& boardAssoc : topology.getAssocs())
+    for (const auto& [assocPath, assocPropValue] :
+         topology.getAssocs(newBoards))
     {
-        auto ifacePtr = objServer.add_interface(
-            boardAssoc.first, "xyz.openbmc_project.Association.Definitions");
+        auto findBoard = newBoards.find(assocPath);
+        if (findBoard == newBoards.end())
+        {
+            continue;
+        }
 
-        ifacePtr->register_property("Associations", boardAssoc.second);
+        auto ifacePtr = createInterface(
+            objServer, assocPath, "xyz.openbmc_project.Association.Definitions",
+            findBoard->second);
+
+        ifacePtr->register_property("Associations", assocPropValue);
         ifacePtr->initialize();
     }
 }
@@ -974,6 +985,7 @@ static void pruneConfiguration(nlohmann::json& systemConfiguration,
 
     ifaces.clear();
     systemConfiguration.erase(name);
+    topology.remove(device["Name"].get<std::string>());
     logDeviceRemoved(device);
 }
 
