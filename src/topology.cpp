@@ -3,6 +3,7 @@
 #include <iostream>
 
 void Topology::addBoard(const std::string& path, const std::string& boardType,
+                        const std::string& boardName,
                         const nlohmann::json& exposesItem)
 {
     auto findType = exposesItem.find("Type");
@@ -10,6 +11,9 @@ void Topology::addBoard(const std::string& path, const std::string& boardType,
     {
         return;
     }
+
+    boardNames.try_emplace(boardName, path);
+
     PortType exposesType = findType->get<std::string>();
 
     if (exposesType == "DownstreamPort")
@@ -33,7 +37,8 @@ void Topology::addBoard(const std::string& path, const std::string& boardType,
     }
 }
 
-std::unordered_map<std::string, std::vector<Association>> Topology::getAssocs()
+std::unordered_map<std::string, std::vector<Association>>
+    Topology::getAssocs(const std::map<Path, BoardName>& boards)
 {
     std::unordered_map<std::string, std::vector<Association>> result;
 
@@ -55,12 +60,70 @@ std::unordered_map<std::string, std::vector<Association>> Topology::getAssocs()
             {
                 for (const Path& downstream : downstreamMatch->second)
                 {
-                    result[downstream].emplace_back("contained_by",
-                                                    "containing", upstream);
+                    // The downstream path must be one we care about.
+                    if (boards.find(downstream) != boards.end())
+                    {
+                        result[downstream].emplace_back("contained_by",
+                                                        "containing", upstream);
+                    }
                 }
             }
         }
     }
 
     return result;
+}
+
+void Topology::remove(const std::string& boardName)
+{
+    // Remove the board from boardNames, and then using the path
+    // found in boardNames remove it from upstreamPorts and
+    // downstreamPorts.
+    auto boardFind = boardNames.find(boardName);
+    if (boardFind == boardNames.end())
+    {
+        return;
+    }
+
+    std::string boardPath = boardFind->second;
+
+    boardNames.erase(boardFind);
+
+    for (auto it = upstreamPorts.begin(); it != upstreamPorts.end();)
+    {
+        auto pathIt = std::find(it->second.begin(), it->second.end(),
+                                boardPath);
+        if (pathIt != it->second.end())
+        {
+            it->second.erase(pathIt);
+        }
+
+        if (it->second.empty())
+        {
+            it = upstreamPorts.erase(it);
+        }
+        else
+        {
+            ++it;
+        }
+    }
+
+    for (auto it = downstreamPorts.begin(); it != downstreamPorts.end();)
+    {
+        auto pathIt = std::find(it->second.begin(), it->second.end(),
+                                boardPath);
+        if (pathIt != it->second.end())
+        {
+            it->second.erase(pathIt);
+        }
+
+        if (it->second.empty())
+        {
+            it = downstreamPorts.erase(it);
+        }
+        else
+        {
+            ++it;
+        }
+    }
 }
