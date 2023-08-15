@@ -300,6 +300,30 @@
       },
       "revId": "8c50d98aa3577b3c0188ab06ef169af6c77f9372",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "cda54ae5_ee0de81c",
+        "filename": "src/fru_device.cpp",
+        "patchSetId": 1
+      },
+      "lineNbr": 1425,
+      "author": {
+        "id": 1001354
+      },
+      "writtenOn": "2023-08-15T21:58:43Z",
+      "side": 1,
+      "message": "A point in favor of using JSON configs as an add-on feature:\n\nPart of the issue we\u0027re solving is that there\u0027s currently no way (that I\u0027m aware of) for Entity Manager probes to identify HPE systems, since the FRUDevice data typically used for device ID is not available over the standard I2C channels that Entity Manager currently scans for that data.\n\nMy understanding is that we\u0027re going to have to check the filesystem for the existence of specific Managed FRU directories regardless of where the filepaths are defined- but this is intended as a one-off process at Entity Manager startup, and we can limit the number of checks done (ie stop checking for a given FRU type at the first missing directory).\n\nMoving [FRU Type]-\u003e[file path list]definitions to JSON configs could make it simpler to add arbitrary new \u0027Managed FRUs\u0027 directories and files to scan (this additionally could be used as a way to move arbitrary data from the filesystem to D-Bus under a \u0027FRU Device\u0027 interface), but I feel like it\u0027s more of a \"nice to have\" feature unless the list of supported devices and directories starts to really expand.\n\nThoughts?",
+      "parentUuid": "1c879c41_6dc6a0fa",
+      "range": {
+        "startLine": 1381,
+        "startChar": 0,
+        "endLine": 1425,
+        "endChar": 0
+      },
+      "revId": "8c50d98aa3577b3c0188ab06ef169af6c77f9372",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }
