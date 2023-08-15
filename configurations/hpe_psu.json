@@ -1,0 +1,154 @@
+[
+    {
+        "Exposes": [
+            {
+		"Address": "$PSU_ID + 87" ,
+		"Bus": "$PSU_ID + 14",
+		"Labels": [
+		        "temp1",
+		        "fan1",
+		        "power1",
+		        "power2",
+		        "curr1",
+		        "curr2",
+		        "iout1",
+		        "vout1",
+		        "pout1",
+			"vin1",
+		        "in1",
+		        "in2"
+	        ],
+		"Name": "PSU$PSU_ID",
+		"PollRate": 10,
+		"CurrScaleFactor": 64,
+		"InScaleFactor": 32,
+		"PowerScaleFactor" : 1,
+		"TempScaleFactor" : 64,
+		"Thresholds": [
+		{
+                        "Direction": "greater than",
+                        "Label": "vin1",
+                        "Name": "upper critical",
+                        "Severity": 1,
+                        "Value": 240
+                },
+		{
+                       "Direction": "less than",
+                       "Label": "vin1",
+                       "Name": "lower critical",
+                       "Severity": 1,
+                       "Value": 90
+                },
+		{
+                        "Direction": "greater than",
+                        "Label": "iout1",
+                        "Name": "upper critical",
+                        "Severity": 1,
+                        "Value": 66.7
+                },
+		{
+                        "Direction": "greater than",
+                        "Label": "iout1",
+                        "Name": "upper non critical",
+                        "Severity": 0,
+                        "Value": 60
+                },
+		{
+                        "Direction": "greater than",
+                        "Label": "pout1",
+                        "Name": "upper critical",
+                        "Severity": 1,
+                        "Value": 800
+                },
+                {
+                        "Direction": "greater than",
+                        "Label": "pout1",
+                        "Name": "upper non critical",
+                        "Severity": 0,
+                        "Value": 720 
+                },
+		{
+			"Direction": "greater than",
+			"Label": "vout1",
+			"Name": "upper critical",
+			"Severity": 1,
+			"Value": 14
+		},
+		{
+	               "Direction": "less than",
+	               "Label": "vout1",
+	               "Name": "lower non critical",
+	               "Severity": 0,
+	               "Value": 11.5
+		},
+		{
+	               "Direction": "less than",
+	               "Label": "vout1",
+	               "Name": "lower critical",
+	               "Severity": 1,
+	               "Value": 11
+		},
+		{
+	               "Direction": "greater than",
+	               "Label": "temp1",
+	               "Name": "upper critical",
+	               "Severity": 1,
+	               "Value": 80
+		},
+		{
+	               "Direction": "greater than",
+	               "Label": "temp1",
+	               "Name": "upper non critical",
+	               "Severity": 0,
+	               "Value": 75
+       		},
+                {
+	               "Direction": "less than",
+	               "Label": "temp1",
+	               "Name": "lower non critical",
+	               "Severity": 0,
+	               "Value": 5
+		},
+		{
+	               "Direction": "less than",
+	               "Label": "temp1",
+	               "Name": "lower critical",
+	               "Severity": 1,
+	               "Value": 0
+       		},
+		{
+	               "Direction": "greater than",
+	               "Label": "fan1",
+	               "Name": "upper critical",
+	               "Severity": 1,
+	               "Value": 20300
+       		}
+        	],
+	        "Type": "PowerSupply",
+	        "fan1_Name": "PSU$PSU_ID_FAN1",
+	        "temp1_Name": "PSU$PSU_ID_TEMP",
+	        "power1_Name": "PSU$PSU_ID_PINPUT",
+	        "power2_Name": "PSU$PSU_ID_POUTPUT",
+	        "curr1_Name": "PSU$PSU_ID_IINPUT",
+	        "curr2_Name": "PSU$PSU_ID_IOUTPUT",
+	        "in1_Name": "PSU$PSU_ID_VINPUT",
+	        "in2_Name": "PSU$PSU_ID_VOUTPUT",
+		"PresenceGpio": [
+                    {
+                        "Name": "PSU$PSU_ID_INST",
+                        "Polarity": "Low"
+                    }
+                ]
+	}
+	],
+        "Name": "HPE POWER SUPPLY $PSU_ID",
+        "Probe": "xyz.openbmc_project.FruDevice({'PRODUCT_PART_NUMBER': '866793-001'})",
+        "Type": "PowerSupply",
+        "xyz.openbmc_project.Inventory.Decorator.Asset": {
+            "Manufacturer": "$PRODUCT_MANUFACTURER",
+            "Model": "$PRODUCT_DESCRIPTION",
+            "PartNumber": "$PRODUCT_PART_NUMBER",
+            "SerialNumber": "$PRODUCT_SERIAL_NUMBER"
+        }
+    }
+]

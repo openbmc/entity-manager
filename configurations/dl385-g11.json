@@ -1,0 +1,374 @@
+{
+  "Exposes": [
+    {
+      "Address": "0x50",
+      "Bus": 11,
+      "Name": "P2 DIMM 0",
+      "PowerState": "On",
+      "Type": "SPD5118"
+    },
+    {
+      "Address": "0x50",
+      "Bus": 9,
+      "Name": "P1 DIMM 0",
+      "PowerState": "On",
+      "Type": "SPD5118"
+    },
+    {
+      "Address": "0x50",
+      "Bus": 12,
+      "Name": "P2 DIMM 6",
+      "PowerState": "On",
+      "Type": "SPD5118"
+    },
+    {
+      "Address": "0x50",
+      "Bus": 10,
+      "Name": "P1 DIMM 6",
+      "PowerState": "On",
+      "Type": "SPD5118"
+    },
+    {
+      "Address": "0x51",
+      "Bus": 12,
+      "Name": "P2 DIMM 7",
+      "PowerState": "On",
+      "Type": "SPD5118"
+    },
+    {
+      "Address": "0x51",
+      "Bus": 10,
+      "Name": "P1 DIMM 7",
+      "PowerState": "On",
+      "Type": "SPD5118"
+    },
+    {
+      "Address": "0x51",
+      "Bus": 11,
+      "Name": "P2 DIMM 1",
+      "PowerState": "On",
+      "Type": "SPD5118"
+    },
+    {
+      "Address": "0x51",
+      "Bus": 9,
+      "Name": "P1 DIMM 1",
+      "PowerState": "On",
+      "Type": "SPD5118"
+    },
+    {
+      "Address": "0x52",
+      "Bus": 11,
+      "Name": "P2 DIMM 2",
+      "PowerState": "On",
+      "Type": "SPD5118"
+    },
+    {
+      "Address": "0x52",
+      "Bus": 9,
+      "Name": "P1 DIMM 2",
+      "PowerState": "On",
+      "Type": "SPD5118"
+    },
+    {
+      "Address": "0x52",
+      "Bus": 12,
+      "Name": "P2 DIMM 8",
+      "PowerState": "On",
+      "Type": "SPD5118"
+    },
+    {
+      "Address": "0x52",
+      "Bus": 10,
+      "Name": "P1 DIMM 8",
+      "PowerState": "On",
+      "Type": "SPD5118"
+    },
+    {
+      "Address": "0x53",
+      "Bus": 11,
+      "Name": "P2 DIMM 3",
+      "PowerState": "On",
+      "Type": "SPD5118"
+    },
+    {
+      "Address": "0x53",
+      "Bus": 9,
+      "Name": "P1 DIMM 3",
+      "PowerState": "On",
+      "Type": "SPD5118"
+    },
+    {
+      "Address": "0x53",
+      "Bus": 12,
+      "Name": "P2 DIMM 9",
+      "PowerState": "On",
+      "Type": "SPD5118"
+    },
+    {
+      "Address": "0x53",
+      "Bus": 10,
+      "Name": "P1 DIMM 9",
+      "PowerState": "On",
+      "Type": "SPD5118"
+    },
+    {
+      "Address": "0x54",
+      "Bus": 11,
+      "Name": "P2 DIMM 4",
+      "PowerState": "On",
+      "Type": "SPD5118"
+    },
+    {
+      "Address": "0x54",
+      "Bus": 9,
+      "Name": "P1 DIMM 4",
+      "PowerState": "On",
+      "Type": "SPD5118"
+    },
+    {
+      "Address": "0x54",
+      "Bus": 12,
+      "Name": "P2 DIMM 10",
+      "PowerState": "On",
+      "Type": "SPD5118"
+    },
+    {
+      "Address": "0x54",
+      "Bus": 10,
+      "Name": "P1 DIMM 10",
+      "PowerState": "On",
+      "Type": "SPD5118"
+    },
+    {
+      "Address": "0x55",
+      "Bus": 11,
+      "Name": "P2 DIMM 5",
+      "PowerState": "On",
+      "Type": "SPD5118"
+    },
+    {
+      "Address": "0x55",
+      "Bus": 9,
+      "Name": "P1 DIMM 5",
+      "PowerState": "On",
+      "Type": "SPD5118"
+    },
+    {
+      "Address": "0x55",
+      "Bus": 12,
+      "Name": "P2 DIMM 11",
+      "PowerState": "On",
+      "Type": "SPD5118"
+    },
+    {
+      "Address": "0x55",
+      "Bus": 10,
+      "Name": "P1 DIMM 11",
+      "PowerState": "On",
+      "Type": "SPD5118"
+    },
+    {
+      "Address": "0x4c",
+      "Bus": 13,
+      "CpuID": 1,
+      "DtsCritOffset": -2,
+      "Name": "CPU 1",
+      "PowerState": "On",
+      "TempScaleFactor": 0.001,
+      "PresenceGpioName": "CPU1_PRSNT",
+      "PresenceGpioPolarity" : "High",
+      "Thresholds": [
+        {
+          "Direction": "greater than",
+          "Label": "CPU 1 Temp",
+          "Name": "upper critical",
+          "Severity": 1,
+          "Value": 99
+        },
+        {
+          "Direction": "greater than",
+          "Label": "CPU 1 Temp",
+          "Name": "upper non critical",
+          "Severity": 0,
+          "Value": 90
+        }
+      ],
+      "Type": "SBTSI"
+    },
+    {
+      "Address": "0x48",
+      "Bus": 14,
+      "CpuID": 2,
+      "DtsCritOffset": -2,
+      "Name": "CPU 2",
+      "PowerState": "On",
+      "TempScaleFactor": 0.001,
+      "PresenceGpioName": "CPU2_PRSNT",
+      "PresenceGpioPolarity" : "High",
+      "Thresholds": [
+        {
+          "Direction": "greater than",
+          "Label": "CPU 2 Temp",
+          "Name": "upper critical",
+          "Severity": 1,
+          "Value": 99
+        },
+        {
+          "Direction": "greater than",
+          "Label": "CPU 2 Temp",
+          "Name": "upper non critical",
+          "Severity": 0,
+          "Value": 90
+        }
+      ],
+      "Type": "SBTSI"
+    },
+    {
+      "Name": "GXP Temp",
+      "Thresholds": [
+        {
+          "Direction": "greater than",
+          "Name": "upper critical",
+          "Severity": 1,
+          "Value": 80
+        },
+        {
+          "Direction": "greater than",
+          "Name": "upper non critical",
+          "Severity": 0,
+          "Value": 75
+        },
+        {
+          "Direction": "less than",
+          "Name": "lower non critical",
+          "Severity": 0,
+          "Value": 5
+        },
+        {
+          "Direction": "less than",
+          "Name": "lower critical",
+          "Severity": 1,
+          "Value": 0
+        }
+      ],
+      "Type": "GxpTempSensor"
+    },
+    {
+      "Address": "0x4c",
+      "Bus": "5",
+      "Name": "Board Temp",
+      "Name1": "Ambient Temp",
+      "PowerState": "On",
+      "Thresholds": [
+        {
+          "Direction": "greater than",
+          "Name": "upper critical",
+          "Severity": 1,
+          "Value": 80
+        },
+        {
+          "Direction": "greater than",
+          "Name": "upper non critical",
+          "Severity": 0,
+          "Value": 75
+        },
+        {
+          "Direction": "less than",
+          "Name": "lower non critical",
+          "Severity": 0,
+          "Value": 5
+        },
+        {
+          "Direction": "less than",
+          "Name": "lower critical",
+          "Severity": 1,
+          "Value": 0
+        }
+      ],
+      "Type": "EMC1412"
+    },
+    {
+      "Connector": {
+        "Fail": "FAN1_FAIL",
+        "Inst": "FAN1_INST",
+        "Name": "Fan Connector 1",
+        "Pwm": 0
+      },
+      "Name": "Fan 1",
+      "Type": "GxpFan"
+    },
+    {
+      "Connector": {
+        "Fail": "FAN2_FAIL",
+        "Inst": "FAN2_INST",
+        "Name": "Fan Connector 2",
+        "Pwm": 1
+      },
+      "Name": "Fan 2",
+      "Type": "GxpFan"
+    },
+    {
+      "Connector": {
+        "Fail": "FAN3_FAIL",
+        "Inst": "FAN3_INST",
+        "Name": "Fan Connector 3",
+        "Pwm": 2
+      },
+      "Name": "Fan 3",
+      "Type": "GxpFan"
+    },
+    {
+      "Connector": {
+        "Fail": "FAN4_FAIL",
+        "Inst": "FAN4_INST",
+        "Name": "Fan Connector 4",
+        "Pwm": 3
+      },
+      "Name": "Fan 4",
+      "Type": "GxpFan"
+    },
+    {
+      "Connector": {
+        "Fail": "FAN5_FAIL",
+        "Inst": "FAN5_INST",
+        "Name": "Fan Connector 5",
+        "Pwm": 4
+      },
+      "Name": "Fan 5",
+      "Type": "GxpFan"
+    },
+    {
+      "Connector": {
+        "Fail": "FAN7_FAIL",
+        "Inst": "FAN7_INST",
+        "Name": "Fan Connector 6",
+        "Pwm": 6
+      },
+      "Name": "Fan 6",
+      "Type": "GxpFan"
+    }
+  ],
+  "Name": "chassis",
+  "Probe": "xyz.openbmc_project.FruDevice({'SERVER_ID': '0x0243'})",
+  "Type": "Chassis",
+  "xyz.openbmc_project.Inventory.Decorator.Asset": {
+    "Manufacturer": "HPE",
+    "Model": "DL385 Gen11",
+    "PartNumber": "$PRODUCT_PART_NUMBER",
+    "SerialNumber": "$PRODUCT_SERIAL_NUMBER"
+  },
+  "xyz.openbmc_project.Inventory.Decorator.AssetTag": {
+    "AssetTag": "HPE-OBMC-001"
+  },
+  "xyz.openbmc_project.Inventory.Item": {
+    "PrettyName": "DL385 Gen11"
+  },
+  "xyz.openbmc_project.Inventory.Item.Board.Motherboard": {
+    "ProductId": "0x243"
+  },
+  "xyz.openbmc_project.Inventory.Item.System": {
+    "PartNumber": "$PRODUCT_PART_NUMBER",
+    "SerialNumber": "$PRODUCT_SERIAL_NUMBER"
+  }
+}
