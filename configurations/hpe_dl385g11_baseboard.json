@@ -1,0 +1,161 @@
+{
+  "Exposes": [
+    {
+      "Address": "0x4c",
+      "Bus": 13,
+      "CpuID": 1,
+      "DtsCritOffset": -2,
+      "Name": "CPU 1",
+      "PowerState": "On",
+      "TempScaleFactor": 0.001,
+      "PresenceGpioName": "CPU1_PRSNT",
+      "PresenceGpioPolarity" : "High",
+      "Thresholds": [
+        {
+          "Direction": "greater than",
+          "Label": "CPU 1 Temp",
+          "Name": "upper critical",
+          "Severity": 1,
+          "Value": 99
+        },
+        {
+          "Direction": "greater than",
+          "Label": "CPU 1 Temp",
+          "Name": "upper non critical",
+          "Severity": 0,
+          "Value": 90
+        }
+      ],
+      "Type": "SBTSI"
+    },
+    {
+      "Address": "0x48",
+      "Bus": 14,
+      "CpuID": 2,
+      "DtsCritOffset": -2,
+      "Name": "CPU 2",
+      "PowerState": "On",
+      "TempScaleFactor": 0.001,
+      "PresenceGpioName": "CPU2_PRSNT",
+      "PresenceGpioPolarity" : "High",
+      "Thresholds": [
+        {
+          "Direction": "greater than",
+          "Label": "CPU 2 Temp",
+          "Name": "upper critical",
+          "Severity": 1,
+          "Value": 99
+        },
+        {
+          "Direction": "greater than",
+          "Label": "CPU 2 Temp",
+          "Name": "upper non critical",
+          "Severity": 0,
+          "Value": 90
+        }
+      ],
+      "Type": "SBTSI"
+    },
+    {
+      "Address": "0x4c",
+      "Bus": "5",
+      "Name": "Board Temp",
+      "Name1": "Ambient Temp",
+      "PowerState": "On",
+      "Thresholds": [
+        {
+          "Direction": "greater than",
+          "Name": "upper critical",
+          "Severity": 1,
+          "Value": 80
+        },
+        {
+          "Direction": "greater than",
+          "Name": "upper non critical",
+          "Severity": 0,
+          "Value": 75
+        },
+        {
+          "Direction": "less than",
+          "Name": "lower non critical",
+          "Severity": 0,
+          "Value": 5
+        },
+        {
+          "Direction": "less than",
+          "Name": "lower critical",
+          "Severity": 1,
+          "Value": 0
+        }
+      ],
+      "Type": "EMC1412"
+    },
+    {
+      "Connector": {
+        "Name": "Fan Connector 1",
+        "Pwm": 0
+      },
+      "Name": "Fan 1",
+      "Type": "HpeFan"
+    },
+    {
+      "Connector": {
+        "Name": "Fan Connector 2",
+        "Pwm": 1
+      },
+      "Name": "Fan 2",
+      "Type": "HpeFan"
+    },
+    {
+      "Connector": {
+        "Name": "Fan Connector 3",
+        "Pwm": 2
+      },
+      "Name": "Fan 3",
+      "Type": "HpeFan"
+    },
+    {
+      "Connector": {
+        "Name": "Fan Connector 4",
+        "Pwm": 3
+      },
+      "Name": "Fan 4",
+      "Type": "HpeFan"
+    },
+    {
+      "Connector": {
+        "Name": "Fan Connector 5",
+        "Pwm": 4
+      },
+      "Name": "Fan 5",
+      "Type": "HpeFan"
+    },
+    {
+      "Connector": {
+        "Name": "Fan Connector 6",
+        "Pwm": 6
+      },
+      "Name": "Fan 6",
+      "Type": "HpeFan"
+    }
+  ],
+  "Name": "chassis",
+  "Probe": "xyz.openbmc_project.uBootHWID({'SERVER_ID': '0x0243'})",
+  "Type": "Chassis",
+  "xyz.openbmc_project.Inventory.Decorator.Asset": {
+    "Manufacturer": "HPE",
+    "Model": "DL385 Gen11",
+    "PartNumber": "$PRODUCT_PART_NUMBER",
+    "SerialNumber": "$PRODUCT_SERIAL_NUMBER"
+  },
+  "xyz.openbmc_project.Inventory.Decorator.AssetTag": {
+    "AssetTag": "$PRODUCT_ASSET_TAG"
+  },
+  "xyz.openbmc_project.Inventory.Item": {
+    "PrettyName": "DL385 Gen11"
+  },
+  "xyz.openbmc_project.Inventory.Item.System": {
+    "PartNumber": "$PRODUCT_PART_NUMBER",
+    "SerialNumber": "$PRODUCT_SERIAL_NUMBER"
+  }
+}
