@@ -16,6 +16,167 @@
       "message": "Sorry missed this one.",
       "revId": "80b28b41031110bc9cbc534c91505e5ee269eac9",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "43fca606_048a7c38",
+        "filename": "configurations/hpe_dl360g10_baseboard.json",
+        "patchSetId": 13
+      },
+      "lineNbr": 40,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2023-08-16T19:20:31Z",
+      "side": 1,
+      "message": "To be clear, these are PCIe sensors on the physical mainboard, or on a riser?  If they\u0027re on a riser, they need put in their own EM config file.",
+      "range": {
+        "startLine": 40,
+        "startChar": 1,
+        "endLine": 40,
+        "endChar": 39
+      },
+      "revId": "80b28b41031110bc9cbc534c91505e5ee269eac9",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "96dd535a_26dec80c",
+        "filename": "configurations/hpe_dl360g10_baseboard.json",
+        "patchSetId": 13
+      },
+      "lineNbr": 101,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2023-08-16T19:20:31Z",
+      "side": 1,
+      "message": "This type doesn\u0027t exist that I can find in the project.  Please remove this config stanza until after the dbus sensors thing is in place.  I really suspect this is going to be specified to be something like \"BMC temp\" as a generalized, non-SOC specific type, because the SOC type doesn\u0027t matter in this context.",
+      "range": {
+        "startLine": 101,
+        "startChar": 0,
+        "endLine": 101,
+        "endChar": 35
+      },
+      "revId": "80b28b41031110bc9cbc534c91505e5ee269eac9",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0f47a7df_f8054324",
+        "filename": "configurations/hpe_dl360g10_baseboard.json",
+        "patchSetId": 13
+      },
+      "lineNbr": 107,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2023-08-16T19:20:31Z",
+      "side": 1,
+      "message": "You have a fan with no Tachs?",
+      "range": {
+        "startLine": 107,
+        "startChar": 0,
+        "endLine": 107,
+        "endChar": 27
+      },
+      "revId": "80b28b41031110bc9cbc534c91505e5ee269eac9",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6f9c72a4_56615941",
+        "filename": "configurations/hpe_dl360g10_baseboard.json",
+        "patchSetId": 13
+      },
+      "lineNbr": 111,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2023-08-16T19:20:31Z",
+      "side": 1,
+      "message": "This is going to be a type that\u0027s specific to the SOC, so GXEFan, although we really should make that generic at some point.\n\nAgain, I don\u0027t see implementations of HPEFan anywhere, so please remove until those are done.",
+      "range": {
+        "startLine": 111,
+        "startChar": 21,
+        "endLine": 111,
+        "endChar": 27
+      },
+      "revId": "80b28b41031110bc9cbc534c91505e5ee269eac9",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "610c03b3_e7c0e269",
+        "filename": "configurations/hpe_dl360g10_baseboard.json",
+        "patchSetId": 13
+      },
+      "lineNbr": 318,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2023-08-16T19:20:31Z",
+      "side": 1,
+      "message": "SERVER_ID doesn\u0027t match any IPMI formatted FRU fields, which would lead me to beleive this needs to be put in an HPE specific interface namespace.",
+      "range": {
+        "startLine": 318,
+        "startChar": 41,
+        "endLine": 318,
+        "endChar": 50
+      },
+      "revId": "80b28b41031110bc9cbc534c91505e5ee269eac9",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1f3aed57_2f07212b",
+        "filename": "configurations/hpe_dl360g10_baseboard.json",
+        "patchSetId": 13
+      },
+      "lineNbr": 324,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2023-08-16T19:20:31Z",
+      "side": 1,
+      "message": "Same thing here.  PCA_PART_NUMBER isn\u0027t in the FRU device interface.  This would be in an HP specific API, or more than likely mapped to the appropriate fru device fields.",
+      "range": {
+        "startLine": 324,
+        "startChar": 24,
+        "endLine": 324,
+        "endChar": 39
+      },
+      "revId": "80b28b41031110bc9cbc534c91505e5ee269eac9",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e22f4a92_95590e1c",
+        "filename": "configurations/hpe_dl360g10_baseboard.json",
+        "patchSetId": 13
+      },
+      "lineNbr": 328,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2023-08-16T19:20:31Z",
+      "side": 1,
+      "message": "All systems have an asset tag of 001?  I\u0027m almost certain this is wrong?",
+      "range": {
+        "startLine": 328,
+        "startChar": 21,
+        "endLine": 328,
+        "endChar": 33
+      },
+      "revId": "80b28b41031110bc9cbc534c91505e5ee269eac9",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }
