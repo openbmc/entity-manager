@@ -348,6 +348,30 @@
       },
       "revId": "8c50d98aa3577b3c0188ab06ef169af6c77f9372",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8ccc75e3_88fae65b",
+        "filename": "src/fru_device.cpp",
+        "patchSetId": 1
+      },
+      "lineNbr": 1425,
+      "author": {
+        "id": 1001354
+      },
+      "writtenOn": "2023-08-16T18:46:28Z",
+      "side": 1,
+      "message": "My understanding is that that functionality would be useful in setups that write a standard FRU data blob to the filesystem, but it won\u0027t solve for HPE\u0027s case for two layers of reasons:\n\n\t1) The uBoot code HPE is working with writes the FRU data to disk as individual files for each property (generally as strings) instead of as a standard FRU blob\n\n\t2) The underlying data is being parsed from a non-standard format at boot, so dumping a data blob wouldn\u0027t work cleanly here.\n\nI\u0027m going to make note of that existing functionality in the design doc I\u0027m polishing up, since it would be useful for anyone with a standard FRU blob in the filesystem instead of individual property files.",
+      "parentUuid": "abedbf80_029be694",
+      "range": {
+        "startLine": 1381,
+        "startChar": 0,
+        "endLine": 1425,
+        "endChar": 0
+      },
+      "revId": "8c50d98aa3577b3c0188ab06ef169af6c77f9372",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }
