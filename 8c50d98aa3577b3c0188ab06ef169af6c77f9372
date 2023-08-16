@@ -280,6 +280,121 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "1adbcc02_98a2c48d",
+        "filename": "src/fru_device.cpp",
+        "patchSetId": 1
+      },
+      "lineNbr": 1323,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2023-08-16T19:10:37Z",
+      "side": 1,
+      "message": "This is also incorrect, it\u0027s going to register properties like \"serial_number\" which doesn\u0027t match the existing API.  Please validate that your DBus API matches what exists.",
+      "range": {
+        "startLine": 1323,
+        "startChar": 8,
+        "endLine": 1323,
+        "endChar": 31
+      },
+      "revId": "8c50d98aa3577b3c0188ab06ef169af6c77f9372",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8de6b675_cdd18215",
+        "filename": "src/fru_device.cpp",
+        "patchSetId": 1
+      },
+      "lineNbr": 1338,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2023-08-16T19:10:37Z",
+      "side": 1,
+      "message": "This seems kind of unintentionally confrontational.  Are you saying no manufacturer except HPe can use this file format?  Presumably we want to read this string out of the FRU somewhere?",
+      "range": {
+        "startLine": 1338,
+        "startChar": 0,
+        "endLine": 1338,
+        "endChar": 56
+      },
+      "revId": "8c50d98aa3577b3c0188ab06ef169af6c77f9372",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "747848be_46b88e02",
+        "filename": "src/fru_device.cpp",
+        "patchSetId": 1
+      },
+      "lineNbr": 1343,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2023-08-16T19:10:37Z",
+      "side": 1,
+      "message": "This seems ill advised as a path name.",
+      "range": {
+        "startLine": 1343,
+        "startChar": 29,
+        "endLine": 1343,
+        "endChar": 36
+      },
+      "revId": "8c50d98aa3577b3c0188ab06ef169af6c77f9372",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2f5e3ffb_5dcabc8e",
+        "filename": "src/fru_device.cpp",
+        "patchSetId": 1
+      },
+      "lineNbr": 1349,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2023-08-16T19:10:37Z",
+      "side": 1,
+      "message": "Why are these being put in their own namespace?  Seems like these are FRU entries, and should go in the same namespace as the other entries?",
+      "range": {
+        "startLine": 1348,
+        "startChar": 32,
+        "endLine": 1349,
+        "endChar": 49
+      },
+      "revId": "8c50d98aa3577b3c0188ab06ef169af6c77f9372",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "002a4737_252f133a",
+        "filename": "src/fru_device.cpp",
+        "patchSetId": 1
+      },
+      "lineNbr": 1352,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2023-08-16T19:10:37Z",
+      "side": 1,
+      "message": "Naming convention on this is wrong, doesn\u0027t match anything that exists.  Please follow the existing APIs.",
+      "range": {
+        "startLine": 1352,
+        "startChar": 30,
+        "endLine": 1352,
+        "endChar": 50
+      },
+      "revId": "8c50d98aa3577b3c0188ab06ef169af6c77f9372",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "f912df5f_a8e9f69a",
         "filename": "src/fru_device.cpp",
         "patchSetId": 1
@@ -337,6 +452,24 @@
       "writtenOn": "2023-08-10T19:57:23Z",
       "side": 1,
       "message": "The below comment outlines the current process for supporting a new Managed FRU Device.\n\nIn the future, I think it makes sense to move these path/property name/file format definitions into .JSON config files, but I haven\u0027t looked into what that will take yet.",
+      "revId": "8c50d98aa3577b3c0188ab06ef169af6c77f9372",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "11999105_eda395b6",
+        "filename": "src/fru_device.cpp",
+        "patchSetId": 1
+      },
+      "lineNbr": 1400,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2023-08-16T19:10:37Z",
+      "side": 1,
+      "message": "At a file-format level is this configurable?  I suspect it doesn\u0027t need changed on a per-system basis.",
+      "parentUuid": "eae970e1_80d804cb",
       "revId": "8c50d98aa3577b3c0188ab06ef169af6c77f9372",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
