@@ -1,0 +1,146 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "ef0b21b2_d54af3ee",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1000008
+      },
+      "writtenOn": "2023-08-16T14:48:51Z",
+      "side": 1,
+      "message": "These need to be added to the meson.build.",
+      "revId": "bd371ed5787b29e4d92b56166eea23397eb85e75",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c45319f0_8efdadea",
+        "filename": "configurations/dl385-g11.json",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1000008
+      },
+      "writtenOn": "2023-08-16T14:48:51Z",
+      "side": 1,
+      "message": "nit: other files use underscores in the name",
+      "revId": "bd371ed5787b29e4d92b56166eea23397eb85e75",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "daea143b_068a82c9",
+        "filename": "configurations/dl385-g11.json",
+        "patchSetId": 1
+      },
+      "lineNbr": 255,
+      "author": {
+        "id": 1000008
+      },
+      "writtenOn": "2023-08-16T14:48:51Z",
+      "side": 1,
+      "message": "What reads this? I don\u0027t see it in dbus-sensors?",
+      "range": {
+        "startLine": 255,
+        "startChar": 14,
+        "endLine": 255,
+        "endChar": 28
+      },
+      "revId": "bd371ed5787b29e4d92b56166eea23397eb85e75",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "dd009299_c620f7f6",
+        "filename": "configurations/dl385-g11.json",
+        "patchSetId": 1
+      },
+      "lineNbr": 293,
+      "author": {
+        "id": 1000008
+      },
+      "writtenOn": "2023-08-16T14:48:51Z",
+      "side": 1,
+      "message": "I don\u0027t see Fail or Inst in any of the schema files, or anyone else using it.",
+      "revId": "bd371ed5787b29e4d92b56166eea23397eb85e75",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "07cde8ce_4ae090b9",
+        "filename": "configurations/dl385-g11.json",
+        "patchSetId": 1
+      },
+      "lineNbr": 364,
+      "author": {
+        "id": 1000008
+      },
+      "writtenOn": "2023-08-16T14:48:51Z",
+      "side": 1,
+      "message": "This interface is supposed to be created automatically here but there is a bug so it isn\u0027t: https://github.com/openbmc/entity-manager/blob/master/src/entity_manager.cpp#L604\n\nI have it on my todo list to fix but just haven\u0027t gotten to it yet.",
+      "revId": "bd371ed5787b29e4d92b56166eea23397eb85e75",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "74876fb4_8b445b7c",
+        "filename": "configurations/dl385-g11.json",
+        "patchSetId": 1
+      },
+      "lineNbr": 367,
+      "author": {
+        "id": 1000008
+      },
+      "writtenOn": "2023-08-16T14:48:51Z",
+      "side": 1,
+      "message": "this interface doesn\u0027t have a ProductId property: https://github.com/openbmc/phosphor-dbus-interfaces/blob/master/yaml/xyz/openbmc_project/Inventory/Item/Board/Motherboard.interface.yaml",
+      "revId": "bd371ed5787b29e4d92b56166eea23397eb85e75",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "10191668_634c68f6",
+        "filename": "configurations/dl385-g11.json",
+        "patchSetId": 1
+      },
+      "lineNbr": 370,
+      "author": {
+        "id": 1000008
+      },
+      "writtenOn": "2023-08-16T14:48:51Z",
+      "side": 1,
+      "message": "this interface also doesn\u0027t have any properties on it: https://github.com/openbmc/phosphor-dbus-interfaces/blob/master/yaml/xyz/openbmc_project/Inventory/Item/System.interface.yaml",
+      "revId": "bd371ed5787b29e4d92b56166eea23397eb85e75",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a745362a_898a0a12",
+        "filename": "configurations/hpe_psu.json",
+        "patchSetId": 1
+      },
+      "lineNbr": 5,
+      "author": {
+        "id": 1000008
+      },
+      "writtenOn": "2023-08-16T14:48:51Z",
+      "side": 1,
+      "message": "tabs...",
+      "revId": "bd371ed5787b29e4d92b56166eea23397eb85e75",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    }
+  ]
+}
