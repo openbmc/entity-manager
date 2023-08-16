@@ -74,6 +74,29 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "39b95472_01276025",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 11,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2023-08-16T18:51:27Z",
+      "side": 1,
+      "message": "Please wrap your commit message properly.",
+      "range": {
+        "startLine": 9,
+        "startChar": 0,
+        "endLine": 11,
+        "endChar": 33
+      },
+      "revId": "8c50d98aa3577b3c0188ab06ef169af6c77f9372",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "9271918a_650899cd",
         "filename": "/COMMIT_MSG",
         "patchSetId": 1
@@ -133,6 +156,30 @@
       "side": 1,
       "message": "ACK",
       "parentUuid": "b3d4bcbd_55c80e87",
+      "range": {
+        "startLine": 17,
+        "startChar": 0,
+        "endLine": 19,
+        "endChar": 45
+      },
+      "revId": "8c50d98aa3577b3c0188ab06ef169af6c77f9372",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "45bed513_9d3de6fe",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 19,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2023-08-16T18:51:27Z",
+      "side": 1,
+      "message": "\u003e The uBoot code HPE has.\n\nplease provide a pointer to this code traceable back to:\nhttps://github.com/openbmc/u-boot\n\nIf it\u0027s not present, this discussion on this patch is a little premature.  Having u-boot directly write the filesystem is a little worrisome as a design, and we need to make sure it\u0027s handled appropriately.\n\nFor sending data from u-boot to openbmc userspace, we already have https://github.com/openbmc/phosphor-u-boot-env-mgr that should be used, unless there\u0027s some technical reason why that doesn\u0027t work, but a patchset isn\u0027t the right place to have that discussion, a design doc is.",
+      "parentUuid": "3ff73e40_943a5617",
       "range": {
         "startLine": 17,
         "startChar": 0,
