@@ -261,6 +261,69 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": true,
+      "key": {
+        "uuid": "abbedb28_f460a2ac",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2023-08-16T19:03:07Z",
+      "side": 1,
+      "message": "Overall, this patchset and design chooses to rewrite functionality that already exists, but doesn\u0027t really justify why it\u0027s doing so.  That explanation of \"why this is special and different than what\u0027s already in the project\" needs a lot more discussion, including references to the existing code that communicates with u-boot.\n\nIf this design goes forward, this really feels like it needs its own daemon, because it\u0027s completely changing the transport (filesystem instead of i2ctools) but lets cross that bridge when we get there.",
+      "revId": "8c50d98aa3577b3c0188ab06ef169af6c77f9372",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f912df5f_a8e9f69a",
+        "filename": "src/fru_device.cpp",
+        "patchSetId": 1
+      },
+      "lineNbr": 1386,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2023-08-16T19:03:07Z",
+      "side": 1,
+      "message": "Why static?  either it\u0027s:\n1. Const, in which case, use a constexpr data structure, like array\n2. Non const, in which was use a non static stack variable.\n\nI suspect it\u0027s #1",
+      "range": {
+        "startLine": 1386,
+        "startChar": 4,
+        "endLine": 1386,
+        "endChar": 10
+      },
+      "revId": "8c50d98aa3577b3c0188ab06ef169af6c77f9372",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7695b3bb_1a05c7d8",
+        "filename": "src/fru_device.cpp",
+        "patchSetId": 1
+      },
+      "lineNbr": 1393,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2023-08-16T19:03:07Z",
+      "side": 1,
+      "message": "Where are these paths referenced from?  Can you add a comment with the link to the code that this needs to stay aligned with?",
+      "range": {
+        "startLine": 1387,
+        "startChar": 0,
+        "endLine": 1393,
+        "endChar": 58
+      },
+      "revId": "8c50d98aa3577b3c0188ab06ef169af6c77f9372",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": false,
       "key": {
         "uuid": "eae970e1_80d804cb",
@@ -423,6 +486,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "c0985255_56d86193",
+        "filename": "src/fru_device.cpp",
+        "patchSetId": 1
+      },
+      "lineNbr": 1425,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2023-08-16T19:03:07Z",
+      "side": 1,
+      "message": "IMO, this is an EM reactor, and should be reading from EM config files.  If we need to add a new \"GXP\" type to the types we already have, so be it, but we really need to not invent yet another config file format.",
+      "parentUuid": "8ccc75e3_88fae65b",
+      "range": {
+        "startLine": 1381,
+        "startChar": 0,
+        "endLine": 1425,
+        "endChar": 0
+      },
+      "revId": "8c50d98aa3577b3c0188ab06ef169af6c77f9372",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "4b282c01_3c973c16",
         "filename": "src/fru_device.cpp",
         "patchSetId": 1
@@ -434,6 +521,29 @@
       "writtenOn": "2023-08-16T18:55:38Z",
       "side": 1,
       "message": "Overall, I really feel like this code belongs in https://github.com/openbmc/phosphor-u-boot-env-mgr\n\nand considering that addManagedFRUDevices takes no dependencies on existing code inside fru-device, that tracks as this not being the right place to put this code.\n\nFru-device ultimately is for reading i2c eeproms and eeprom-like devices.  The fact that it reads one file from the filesystem is an architectural hiccup that because of the tiny amount of code it imposes, we live with.  It is not a good place for putting what amounts to u-boot communication code that is already covered in other places using other mechanisms.",
+      "revId": "8c50d98aa3577b3c0188ab06ef169af6c77f9372",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ce7e9640_1422ef58",
+        "filename": "src/fru_device.cpp",
+        "patchSetId": 1
+      },
+      "lineNbr": 1577,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2023-08-16T19:03:07Z",
+      "side": 1,
+      "message": "nit, I see no \"instead of\" implemented here.  This appears to be in addition to.",
+      "range": {
+        "startLine": 1577,
+        "startChar": 29,
+        "endLine": 1577,
+        "endChar": 36
+      },
       "revId": "8c50d98aa3577b3c0188ab06ef169af6c77f9372",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
