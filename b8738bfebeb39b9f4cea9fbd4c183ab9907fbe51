@@ -24,6 +24,30 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": true,
+      "key": {
+        "uuid": "6a0a4f9e_ee845e2f",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 12
+      },
+      "lineNbr": 10,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2023-08-17T15:22:48Z",
+      "side": 1,
+      "message": "To add more, there should be no scenario where we add config templates at runtime, and hashing all the files at startup has the potential to be fairly expensive on the startup times.",
+      "parentUuid": "40a1234c_69bfe2d0",
+      "range": {
+        "startLine": 9,
+        "startChar": 0,
+        "endLine": 10,
+        "endChar": 52
+      },
+      "revId": "b8738bfebeb39b9f4cea9fbd4c183ab9907fbe51",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": false,
       "key": {
         "uuid": "0edb1948_2066c9a8",
@@ -37,6 +61,98 @@
       "writtenOn": "2023-08-17T12:35:03Z",
       "side": 1,
       "message": "i only re-based but seem to have lost the votes :( \nmaybe because the commit message was also changed.",
+      "revId": "b8738bfebeb39b9f4cea9fbd4c183ab9907fbe51",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "acd7b51c_bb8bbc6b",
+        "filename": "src/utils.cpp",
+        "patchSetId": 12
+      },
+      "lineNbr": 430,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2023-08-17T15:22:48Z",
+      "side": 1,
+      "message": "Would it be safer to write the file as a hex encoded ascii string?  That might also give us an opportunity for error handling. As written, this doesn\u0027t check that we\u0027ve reached the end of the file.",
+      "range": {
+        "startLine": 430,
+        "startChar": 0,
+        "endLine": 430,
+        "endChar": 33
+      },
+      "revId": "b8738bfebeb39b9f4cea9fbd4c183ab9907fbe51",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c46a3da5_085b4c61",
+        "filename": "src/utils.cpp",
+        "patchSetId": 12
+      },
+      "lineNbr": 445,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2023-08-17T15:22:48Z",
+      "side": 1,
+      "message": "Please don\u0027t write this yourself.  findFiles does this.  As written, you will hash things that shouldn\u0027t be hashed.",
+      "range": {
+        "startLine": 442,
+        "startChar": 0,
+        "endLine": 445,
+        "endChar": 9
+      },
+      "revId": "b8738bfebeb39b9f4cea9fbd4c183ab9907fbe51",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8a8955b3_a5f3049e",
+        "filename": "src/utils.cpp",
+        "patchSetId": 12
+      },
+      "lineNbr": 446,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2023-08-17T15:22:48Z",
+      "side": 1,
+      "message": "This is going to duplicate opening and reading in all the files at startup.  Can this just be added to loadConfigurations() https://github.com/openbmc/entity-manager/blob/719432e941fd31d0e9bedb91fcfc2034f2fd64a7/src/entity_manager.cpp#L800C6-L800C24\n\nIt seems like calling std::hash\u003cnlohmann::json\u003e on the resulting content would be better, as it would avoid minor whitespace changes, and wouldn\u0027t require us to load the file twice.",
+      "range": {
+        "startLine": 446,
+        "startChar": 0,
+        "endLine": 446,
+        "endChar": 63
+      },
+      "revId": "b8738bfebeb39b9f4cea9fbd4c183ab9907fbe51",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "917d555e_a0f7e001",
+        "filename": "src/utils.hpp",
+        "patchSetId": 12
+      },
+      "lineNbr": 164,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2023-08-17T15:22:48Z",
+      "side": 1,
+      "message": "Nit, please pass by string_view to avoid possible null injection.",
+      "range": {
+        "startLine": 164,
+        "startChar": 26,
+        "endLine": 164,
+        "endChar": 37
+      },
       "revId": "b8738bfebeb39b9f4cea9fbd4c183ab9907fbe51",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
