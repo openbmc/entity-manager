@@ -50,6 +50,30 @@
     {
       "unresolved": false,
       "key": {
+        "uuid": "ee9c582c_e90a252e",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 12
+      },
+      "lineNbr": 10,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2023-08-18T07:28:34Z",
+      "side": 1,
+      "message": "I do change config templates at runtime fairly often during development. I can imagine others do so and also regular users who do not want to do an entire firmware upgrade just to add a sensor.\n\nThe hashing is expensive but i did go through a few different patch-sets where different options were discussed. I am open to better ideas, provided it has the potential to be merged.\n\nIn my opinion it is also a waste how currently all the configuration is put into the image by default. There should only be baseboard + maybe a few chassis and all the PSUs.\n\nEven if we would hash at compile time, it would all have to be hashed again at runtime anyways, to verify that up to date configuration is used.",
+      "parentUuid": "6a0a4f9e_ee845e2f",
+      "range": {
+        "startLine": 9,
+        "startChar": 0,
+        "endLine": 10,
+        "endChar": 52
+      },
+      "revId": "b8738bfebeb39b9f4cea9fbd4c183ab9907fbe51",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
         "uuid": "0edb1948_2066c9a8",
         "filename": "/PATCHSET_LEVEL",
         "patchSetId": 12
@@ -88,6 +112,30 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "ff5ff60d_b765de52",
+        "filename": "src/utils.cpp",
+        "patchSetId": 12
+      },
+      "lineNbr": 430,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2023-08-18T07:28:34Z",
+      "side": 1,
+      "message": "does the encoding make a difference for the contents? Suppose we do not reach the end of the file and the value that is read is different from the calculated hash.\n\nMaybe due to filesystem errors.\nIn that case the configuration would have to be regenerated also, since we do not know if it is up to date. Or should there be a different behavior in the error case?",
+      "parentUuid": "acd7b51c_bb8bbc6b",
+      "range": {
+        "startLine": 430,
+        "startChar": 0,
+        "endLine": 430,
+        "endChar": 33
+      },
+      "revId": "b8738bfebeb39b9f4cea9fbd4c183ab9907fbe51",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "c46a3da5_085b4c61",
@@ -101,6 +149,30 @@
       "writtenOn": "2023-08-17T15:22:48Z",
       "side": 1,
       "message": "Please don\u0027t write this yourself.  findFiles does this.  As written, you will hash things that shouldn\u0027t be hashed.",
+      "range": {
+        "startLine": 442,
+        "startChar": 0,
+        "endLine": 445,
+        "endChar": 9
+      },
+      "revId": "b8738bfebeb39b9f4cea9fbd4c183ab9907fbe51",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "afa290f7_58cb8e23",
+        "filename": "src/utils.cpp",
+        "patchSetId": 12
+      },
+      "lineNbr": 445,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2023-08-18T07:28:34Z",
+      "side": 1,
+      "message": "True. Using the findFiles with json pattern for the next patchset.",
+      "parentUuid": "c46a3da5_085b4c61",
       "range": {
         "startLine": 442,
         "startChar": 0,
@@ -136,6 +208,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "7a303b9c_9fd45570",
+        "filename": "src/utils.cpp",
+        "patchSetId": 12
+      },
+      "lineNbr": 446,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2023-08-18T07:28:34Z",
+      "side": 1,
+      "message": "Using loadConfigurations() would be nice but i do not have a good understanding of boost async and its use in entity-manager.\n\nIf i would implement it there, would it be called under all circumstances?\nAnd only once and not multiple times?\n\nThe decision to delete the system.json is made before loadConfigurations is called.\n\nBut you are right, reading everything twice is not good.",
+      "parentUuid": "8a8955b3_a5f3049e",
+      "range": {
+        "startLine": 446,
+        "startChar": 0,
+        "endLine": 446,
+        "endChar": 63
+      },
+      "revId": "b8738bfebeb39b9f4cea9fbd4c183ab9907fbe51",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "917d555e_a0f7e001",
         "filename": "src/utils.hpp",
         "patchSetId": 12
@@ -147,6 +243,30 @@
       "writtenOn": "2023-08-17T15:22:48Z",
       "side": 1,
       "message": "Nit, please pass by string_view to avoid possible null injection.",
+      "range": {
+        "startLine": 164,
+        "startChar": 26,
+        "endLine": 164,
+        "endChar": 37
+      },
+      "revId": "b8738bfebeb39b9f4cea9fbd4c183ab9907fbe51",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "3c99f332_5bdb7f8a",
+        "filename": "src/utils.hpp",
+        "patchSetId": 12
+      },
+      "lineNbr": 164,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2023-08-18T07:28:34Z",
+      "side": 1,
+      "message": "Yes, fixing that in next patchset.",
+      "parentUuid": "917d555e_a0f7e001",
       "range": {
         "startLine": 164,
         "startChar": 26,
