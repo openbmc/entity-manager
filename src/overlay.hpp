@@ -20,3 +20,4 @@
 
 void unloadAllOverlays(void);
 bool loadOverlays(const nlohmann::json& systemConfiguration);
+void unloadOverlay(const nlohmann::json& entity);
