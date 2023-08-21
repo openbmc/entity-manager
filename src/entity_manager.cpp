@@ -974,6 +974,7 @@ static void pruneConfiguration(nlohmann::json& systemConfiguration,
 
     ifaces.clear();
     systemConfiguration.erase(name);
+    unloadOverlay(device);
     logDeviceRemoved(device);
 }
 
