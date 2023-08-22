@@ -72,6 +72,30 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": true,
+      "key": {
+        "uuid": "39d3c4d8_300b0415",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 12
+      },
+      "lineNbr": 10,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2023-08-22T17:33:52Z",
+      "side": 1,
+      "message": "\u003e I do change config templates at runtime fairly often during development.\n\nSure, but in development it\u0027s trivial to do a reset.\n\n\u003e also regular users who do not want to do an entire firmware upgrade just to add a sensor.\n\nThere\u0027s no way for a user to adjust these over any public API, so I don\u0027t think this is in scope?\n\n\u003e In my opinion it is also a waste how currently all the configuration is put into the image by default.\n\nThis is a very intentional design decision, and the \"waste\" is measured to be relatively small, and could be made even smaller pretty trivially.  Hardware should be supported by default.\n\n\u003e Even if we would hash at compile time, it would all have to be hashed again at runtime anyways, to verify that up to date configuration is used.\n\nI\u0027m not following.  This assumes the configs change at runtime, which there isn\u0027t really an API to do, and if you\u0027re doing it as part of development, it\u0027s pretty trivial to just clear the flags.",
+      "parentUuid": "ee9c582c_e90a252e",
+      "range": {
+        "startLine": 9,
+        "startChar": 0,
+        "endLine": 10,
+        "endChar": 52
+      },
+      "revId": "b8738bfebeb39b9f4cea9fbd4c183ab9907fbe51",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": false,
       "key": {
         "uuid": "0edb1948_2066c9a8",
@@ -126,6 +150,30 @@
       "side": 1,
       "message": "does the encoding make a difference for the contents? Suppose we do not reach the end of the file and the value that is read is different from the calculated hash.\n\nMaybe due to filesystem errors.\nIn that case the configuration would have to be regenerated also, since we do not know if it is up to date. Or should there be a different behavior in the error case?",
       "parentUuid": "acd7b51c_bb8bbc6b",
+      "range": {
+        "startLine": 430,
+        "startChar": 0,
+        "endLine": 430,
+        "endChar": 33
+      },
+      "revId": "b8738bfebeb39b9f4cea9fbd4c183ab9907fbe51",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d97fe0fb_16e7c108",
+        "filename": "src/utils.cpp",
+        "patchSetId": 12
+      },
+      "lineNbr": 430,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2023-08-22T17:33:52Z",
+      "side": 1,
+      "message": "\u003e does the encoding make a difference for the contents?\n\nIt allows for handling errors, so yes.  I\u0027m not sure I understand what you\u0027re asking.\n\nIt also allows for easier inspectability if anything goes wrong.  This isn\u0027t a design point I\u0027m going to make a big deal of though.",
+      "parentUuid": "ff5ff60d_b765de52",
       "range": {
         "startLine": 430,
         "startChar": 0,
@@ -220,6 +268,30 @@
       "side": 1,
       "message": "Using loadConfigurations() would be nice but i do not have a good understanding of boost async and its use in entity-manager.\n\nIf i would implement it there, would it be called under all circumstances?\nAnd only once and not multiple times?\n\nThe decision to delete the system.json is made before loadConfigurations is called.\n\nBut you are right, reading everything twice is not good.",
       "parentUuid": "8a8955b3_a5f3049e",
+      "range": {
+        "startLine": 446,
+        "startChar": 0,
+        "endLine": 446,
+        "endChar": 63
+      },
+      "revId": "b8738bfebeb39b9f4cea9fbd4c183ab9907fbe51",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d3ffa899_68122efd",
+        "filename": "src/utils.cpp",
+        "patchSetId": 12
+      },
+      "lineNbr": 446,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2023-08-22T17:33:52Z",
+      "side": 1,
+      "message": "\u003e Using loadConfigurations() would be nice but i do not have a good understanding of boost async and its use in entity-manager.\n\nCan you elaborate on what moving the code into the existing function has to do with boost async?  I\u0027m not sure I understand.\n\n\u003e would it be called under all circumstances?\n\nThese are best answered by the code, but I think it\u0027s called when you\u0027d want to hash.",
+      "parentUuid": "7a303b9c_9fd45570",
       "range": {
         "startLine": 446,
         "startChar": 0,
