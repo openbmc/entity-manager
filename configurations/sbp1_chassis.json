@@ -1878,6 +1878,58 @@
             ]
         },
         {
+            "Class": "temp",
+            "FFGainCoefficient": 0,
+            "FFOffCoefficient": 0,
+            "ICoefficient": -4.6,
+            "ILimitMax": 32000,
+            "ILimitMin": 2500,
+            "Inputs": [
+                "P1V05_PCH_AUX Temperature",
+                "P1V8_PCH_AUX Temperature"
+            ],
+            "Name": "PCH VR Temperature",
+            "NegativeHysteresis": 0,
+            "OutLimitMax": 32000,
+            "OutLimitMin": 2500,
+            "Outputs": [],
+            "PCoefficient": -536,
+            "PositiveHysteresis": 0,
+            "SetPoint": 60,
+            "SlewNeg": 0,
+            "SlewPos": 0,
+            "Type": "Pid",
+            "Zones": [
+                "PSU"
+            ]
+        },
+        {
+            "Class": "temp",
+            "FFGainCoefficient": 0,
+            "FFOffCoefficient": 0,
+            "ICoefficient": -4.6,
+            "ILimitMax": 32000,
+            "ILimitMin": 2500,
+            "Inputs": [
+                "P5V_AUX Temperature",
+                "P3V3_AUX Temperature"
+            ],
+            "Name": "AUX VR Temperature",
+            "NegativeHysteresis": 0,
+            "OutLimitMax": 32000,
+            "OutLimitMin": 2500,
+            "Outputs": [],
+            "PCoefficient": -536,
+            "PositiveHysteresis": 0,
+            "SetPoint": 60,
+            "SlewNeg": 0,
+            "SlewPos": 0,
+            "Type": "Pid",
+            "Zones": [
+                "PSU"
+            ]
+        },
+        {
             "FailSafePercent": 100,
             "MinThermalOutput": 2500,
             "Name": "PSU",
