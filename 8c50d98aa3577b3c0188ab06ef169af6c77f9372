@@ -96,6 +96,30 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "77965bd3_63e2c622",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 1001354
+      },
+      "writtenOn": "2023-09-07T16:08:42Z",
+      "side": 1,
+      "message": "A new design document to replace that one has been uploaded for review @ https://gerrit.openbmc.org/c/openbmc/docs/+/66369\n\nInstead of a \u0027general\u0027 solution relying on Entity-Manager\u0027s fru_device daemon to transfer arbitrary HW ID data from filesystem to D-Bus, the new doc discusses relying on phosphor-u-boot-env-mgr to transfer HPE-specific HW ID data from u-boot environmental variables to D-Bus without the filesystem, and without needing extra additions to EM\u0027s fru_device daemon.",
+      "parentUuid": "81936452_e5083ac3",
+      "range": {
+        "startLine": 7,
+        "startChar": 0,
+        "endLine": 7,
+        "endChar": 52
+      },
+      "revId": "8c50d98aa3577b3c0188ab06ef169af6c77f9372",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "39b95472_01276025",
