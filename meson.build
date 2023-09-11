@@ -143,6 +143,7 @@ configs = [
     'sas_module.json',
     'sbp1_baseboard.json',
     'sbp1_chassis.json',
+    'sbp1_nvme.json',
     'sbp1_psu.json',
     'system1_baseboard.json',
     'solum_pssf162202_psu.json',
