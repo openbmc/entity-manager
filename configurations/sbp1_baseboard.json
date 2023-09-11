@@ -1217,6 +1217,1726 @@
             "Type": "IpmbSensor"
         },
         {
+            "Address": "0x3a",
+            "Bus": "51",
+            "Name": "SSB_SSD1",
+            "PollRate": 5.0,
+            "PowerState": "On",
+            "Thresholds": [
+                {
+                    "Direction": "greater than",
+                    "Label": "iout1",
+                    "Name": "upper non critical",
+                    "Severity": 0,
+                    "Value": 2.0
+                },
+                {
+                    "Direction": "greater than",
+                    "Label": "iout1",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 2.5
+                },
+                {
+                    "Direction": "less than",
+                    "Label": "vout1",
+                    "Name": "lower non critical",
+                    "Severity": 0,
+                    "Value": 3.14
+                },
+                {
+                    "Direction": "greater than",
+                    "Label": "vout1",
+                    "Name": "upper non critical",
+                    "Severity": 0,
+                    "Value": 3.47
+                },
+                {
+                    "Direction": "less than",
+                    "Label": "vout1",
+                    "Name": "lower critical",
+                    "Severity": 1,
+                    "Value": 2.97
+                },
+                {
+                    "Direction": "greater than",
+                    "Label": "vout1",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 3.63
+                }
+            ],
+            "Type": "MAX5970"
+        },
+        {
+            "Address": "0x3a",
+            "Bus": "53",
+            "Name": "SSB_SSD2",
+            "PollRate": 5.0,
+            "PowerState": "On",
+            "Thresholds": [
+                {
+                    "Direction": "greater than",
+                    "Label": "iout1",
+                    "Name": "upper non critical",
+                    "Severity": 0,
+                    "Value": 2.0
+                },
+                {
+                    "Direction": "greater than",
+                    "Label": "iout1",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 2.5
+                },
+                {
+                    "Direction": "less than",
+                    "Label": "vout1",
+                    "Name": "lower non critical",
+                    "Severity": 0,
+                    "Value": 3.14
+                },
+                {
+                    "Direction": "greater than",
+                    "Label": "vout1",
+                    "Name": "upper non critical",
+                    "Severity": 0,
+                    "Value": 3.47
+                },
+                {
+                    "Direction": "less than",
+                    "Label": "vout1",
+                    "Name": "lower critical",
+                    "Severity": 1,
+                    "Value": 2.97
+                },
+                {
+                    "Direction": "greater than",
+                    "Label": "vout1",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 3.63
+                }
+            ],
+            "Type": "MAX5970"
+        },
+        {
+            "Address": "0x3a",
+            "Bus": "35",
+            "Labels": [
+                "in0",
+                "in1",
+                "curr1",
+                "curr2"
+            ],
+            "Name": "SSB_AUX",
+            "PollRate": 5.0,
+            "PowerState": "On",
+            "Thresholds": [
+                {
+                    "Direction": "greater than",
+                    "Label": "curr2",
+                    "Name": "upper non critical",
+                    "Severity": 0,
+                    "Value": 2.0
+                },
+                {
+                    "Direction": "greater than",
+                    "Label": "curr2",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 3.0
+                },
+                {
+                    "Direction": "greater than",
+                    "Label": "curr1",
+                    "Name": "upper non critical",
+                    "Severity": 0,
+                    "Value": 2.8
+                },
+                {
+                    "Direction": "greater than",
+                    "Label": "curr1",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 3.4
+                },
+                {
+                    "Direction": "less than",
+                    "Label": "in1",
+                    "Name": "lower non critical",
+                    "Severity": 0,
+                    "Value": 3.18
+                },
+                {
+                    "Direction": "greater than",
+                    "Label": "in1",
+                    "Name": "upper non critical",
+                    "Severity": 0,
+                    "Value": 3.51
+                },
+                {
+                    "Direction": "less than",
+                    "Label": "in1",
+                    "Name": "lower critical",
+                    "Severity": 1,
+                    "Value": 3.01
+                },
+                {
+                    "Direction": "greater than",
+                    "Label": "in1",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 3.68
+                },
+                {
+                    "Direction": "less than",
+                    "Label": "in0",
+                    "Name": "lower non critical",
+                    "Severity": 0,
+                    "Value": 3.13
+                },
+                {
+                    "Direction": "greater than",
+                    "Label": "in0",
+                    "Name": "upper non critical",
+                    "Severity": 0,
+                    "Value": 3.46
+                },
+                {
+                    "Direction": "less than",
+                    "Label": "in0",
+                    "Name": "lower critical",
+                    "Severity": 1,
+                    "Value": 2.97
+                },
+                {
+                    "Direction": "greater than",
+                    "Label": "in0",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 3.63
+                }
+            ],
+            "Type": "MAX5970",
+            "curr1_Name": "SSB_AUX PVDRV Output Current",
+            "curr2_Name": "SSB_AUX P3V3_PCH Output Current",
+            "in0_Name": "SSB_AUX PVDRV Output Voltage",
+            "in1_Name": "SSB_AUX P3V3_PCH Output Voltage"
+        },
+        {
+            "Address": "0x3a",
+            "Bus": "168",
+            "Name": "SSB_FAN1",
+            "PollRate": 5.0,
+            "PowerState": "Always",
+            "Thresholds": [
+                {
+                    "Direction": "greater than",
+                    "Label": "curr1",
+                    "Name": "upper non critical",
+                    "Severity": 0,
+                    "Value": 3.0
+                },
+                {
+                    "Direction": "greater than",
+                    "Label": "curr1",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 4.0
+                },
+                {
+                    "Direction": "less than",
+                    "Label": "in0",
+                    "Name": "lower non critical",
+                    "Severity": 0,
+                    "Value": 11.68
+                },
+                {
+                    "Direction": "greater than",
+                    "Label": "in0",
+                    "Name": "upper non critical",
+                    "Severity": 0,
+                    "Value": 12.8
+                },
+                {
+                    "Direction": "less than",
+                    "Label": "in0",
+                    "Name": "lower critical",
+                    "Severity": 1,
+                    "Value": 11.08
+                },
+                {
+                    "Direction": "greater than",
+                    "Label": "in0",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 13.3
+                }
+            ],
+            "Type": "MAX5970"
+        },
+        {
+            "Address": "0x3a",
+            "Bus": "169",
+            "Name": "SSB_FAN3",
+            "PollRate": 5.0,
+            "PowerState": "Always",
+            "Thresholds": [
+                {
+                    "Direction": "greater than",
+                    "Label": "curr1",
+                    "Name": "upper non critical",
+                    "Severity": 0,
+                    "Value": 3.0
+                },
+                {
+                    "Direction": "greater than",
+                    "Label": "curr1",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 4.0
+                },
+                {
+                    "Direction": "less than",
+                    "Label": "in0",
+                    "Name": "lower non critical",
+                    "Severity": 0,
+                    "Value": 11.68
+                },
+                {
+                    "Direction": "greater than",
+                    "Label": "in0",
+                    "Name": "upper non critical",
+                    "Severity": 0,
+                    "Value": 12.8
+                },
+                {
+                    "Direction": "less than",
+                    "Label": "in0",
+                    "Name": "lower critical",
+                    "Severity": 1,
+                    "Value": 11.08
+                },
+                {
+                    "Direction": "greater than",
+                    "Label": "in0",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 13.3
+                }
+            ],
+            "Type": "MAX5970"
+        },
+        {
+            "Address": "0x3a",
+            "Bus": "170",
+            "Name": "SSB_FAN5",
+            "PollRate": 5.0,
+            "PowerState": "Always",
+            "Thresholds": [
+                {
+                    "Direction": "greater than",
+                    "Label": "curr1",
+                    "Name": "upper non critical",
+                    "Severity": 0,
+                    "Value": 3.0
+                },
+                {
+                    "Direction": "greater than",
+                    "Label": "curr1",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 4.0
+                },
+                {
+                    "Direction": "less than",
+                    "Label": "in0",
+                    "Name": "lower non critical",
+                    "Severity": 0,
+                    "Value": 11.68
+                },
+                {
+                    "Direction": "greater than",
+                    "Label": "in0",
+                    "Name": "upper non critical",
+                    "Severity": 0,
+                    "Value": 12.8
+                },
+                {
+                    "Direction": "less than",
+                    "Label": "in0",
+                    "Name": "lower critical",
+                    "Severity": 1,
+                    "Value": 11.08
+                },
+                {
+                    "Direction": "greater than",
+                    "Label": "in0",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 13.3
+                }
+            ],
+            "Type": "MAX5970"
+        },
+        {
+            "Address": "0x3a",
+            "Bus": "171",
+            "Name": "SSB_FAN7",
+            "PollRate": 5.0,
+            "PowerState": "Always",
+            "Thresholds": [
+                {
+                    "Direction": "greater than",
+                    "Label": "curr1",
+                    "Name": "upper non critical",
+                    "Severity": 0,
+                    "Value": 3.0
+                },
+                {
+                    "Direction": "greater than",
+                    "Label": "curr1",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 4.0
+                },
+                {
+                    "Direction": "less than",
+                    "Label": "in0",
+                    "Name": "lower non critical",
+                    "Severity": 0,
+                    "Value": 11.68
+                },
+                {
+                    "Direction": "greater than",
+                    "Label": "in0",
+                    "Name": "upper non critical",
+                    "Severity": 0,
+                    "Value": 12.8
+                },
+                {
+                    "Direction": "less than",
+                    "Label": "in0",
+                    "Name": "lower critical",
+                    "Severity": 1,
+                    "Value": 11.08
+                },
+                {
+                    "Direction": "greater than",
+                    "Label": "in0",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 13.3
+                }
+            ],
+            "Type": "MAX5970"
+        },
+        {
+            "Address": "0x3a",
+            "Bus": "172",
+            "Name": "SSB_FAN9",
+            "PollRate": 5.0,
+            "PowerState": "Always",
+            "Thresholds": [
+                {
+                    "Direction": "greater than",
+                    "Label": "curr1",
+                    "Name": "upper non critical",
+                    "Severity": 0,
+                    "Value": 3.0
+                },
+                {
+                    "Direction": "greater than",
+                    "Label": "curr1",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 4.0
+                },
+                {
+                    "Direction": "less than",
+                    "Label": "in0",
+                    "Name": "lower non critical",
+                    "Severity": 0,
+                    "Value": 11.68
+                },
+                {
+                    "Direction": "greater than",
+                    "Label": "in0",
+                    "Name": "upper non critical",
+                    "Severity": 0,
+                    "Value": 12.8
+                },
+                {
+                    "Direction": "less than",
+                    "Label": "in0",
+                    "Name": "lower critical",
+                    "Severity": 1,
+                    "Value": 11.08
+                },
+                {
+                    "Direction": "greater than",
+                    "Label": "in0",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 13.3
+                }
+            ],
+            "Type": "MAX5970"
+        },
+        {
+            "Address": "0x3a",
+            "Bus": "173",
+            "Name": "SSB_FAN11",
+            "PollRate": 5.0,
+            "PowerState": "Always",
+            "Thresholds": [
+                {
+                    "Direction": "greater than",
+                    "Label": "curr1",
+                    "Name": "upper non critical",
+                    "Severity": 0,
+                    "Value": 3.0
+                },
+                {
+                    "Direction": "greater than",
+                    "Label": "curr1",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 4.0
+                },
+                {
+                    "Direction": "less than",
+                    "Label": "in0",
+                    "Name": "lower non critical",
+                    "Severity": 0,
+                    "Value": 11.68
+                },
+                {
+                    "Direction": "greater than",
+                    "Label": "in0",
+                    "Name": "upper non critical",
+                    "Severity": 0,
+                    "Value": 12.8
+                },
+                {
+                    "Direction": "less than",
+                    "Label": "in0",
+                    "Name": "lower critical",
+                    "Severity": 1,
+                    "Value": 11.08
+                },
+                {
+                    "Direction": "greater than",
+                    "Label": "in0",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 13.3
+                }
+            ],
+            "Type": "MAX5970"
+        },
+        {
+            "Address": "0x3a",
+            "Bus": "174",
+            "Name": "SSB_FAN13",
+            "PollRate": 5.0,
+            "PowerState": "Always",
+            "Thresholds": [
+                {
+                    "Direction": "greater than",
+                    "Label": "curr1",
+                    "Name": "upper non critical",
+                    "Severity": 0,
+                    "Value": 3.0
+                },
+                {
+                    "Direction": "greater than",
+                    "Label": "curr1",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 4.0
+                },
+                {
+                    "Direction": "less than",
+                    "Label": "in0",
+                    "Name": "lower non critical",
+                    "Severity": 0,
+                    "Value": 11.68
+                },
+                {
+                    "Direction": "greater than",
+                    "Label": "in0",
+                    "Name": "upper non critical",
+                    "Severity": 0,
+                    "Value": 12.8
+                },
+                {
+                    "Direction": "less than",
+                    "Label": "in0",
+                    "Name": "lower critical",
+                    "Severity": 1,
+                    "Value": 11.08
+                },
+                {
+                    "Direction": "greater than",
+                    "Label": "in0",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 13.3
+                }
+            ],
+            "Type": "MAX5970"
+        },
+        {
+            "Address": "0x3a",
+            "Bus": "175",
+            "Name": "SSB_FAN15",
+            "PollRate": 5.0,
+            "PowerState": "Always",
+            "Thresholds": [
+                {
+                    "Direction": "greater than",
+                    "Label": "curr1",
+                    "Name": "upper non critical",
+                    "Severity": 0,
+                    "Value": 3.0
+                },
+                {
+                    "Direction": "greater than",
+                    "Label": "curr1",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 4.0
+                },
+                {
+                    "Direction": "less than",
+                    "Label": "in0",
+                    "Name": "lower non critical",
+                    "Severity": 0,
+                    "Value": 11.68
+                },
+                {
+                    "Direction": "greater than",
+                    "Label": "in0",
+                    "Name": "upper non critical",
+                    "Severity": 0,
+                    "Value": 12.8
+                },
+                {
+                    "Direction": "less than",
+                    "Label": "in0",
+                    "Name": "lower critical",
+                    "Severity": 1,
+                    "Value": 11.08
+                },
+                {
+                    "Direction": "greater than",
+                    "Label": "in0",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 13.3
+                }
+            ],
+            "Type": "MAX5970"
+        },
+        {
+            "Address": "0x3a",
+            "Bus": "176",
+            "Name": "SSB_FAN17",
+            "PollRate": 5.0,
+            "PowerState": "Always",
+            "Thresholds": [
+                {
+                    "Direction": "greater than",
+                    "Label": "curr1",
+                    "Name": "upper non critical",
+                    "Severity": 0,
+                    "Value": 3.0
+                },
+                {
+                    "Direction": "greater than",
+                    "Label": "curr1",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 4.0
+                },
+                {
+                    "Direction": "less than",
+                    "Label": "in0",
+                    "Name": "lower non critical",
+                    "Severity": 0,
+                    "Value": 11.68
+                },
+                {
+                    "Direction": "greater than",
+                    "Label": "in0",
+                    "Name": "upper non critical",
+                    "Severity": 0,
+                    "Value": 12.8
+                },
+                {
+                    "Direction": "less than",
+                    "Label": "in0",
+                    "Name": "lower critical",
+                    "Severity": 1,
+                    "Value": 11.08
+                },
+                {
+                    "Direction": "greater than",
+                    "Label": "in0",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 13.3
+                }
+            ],
+            "Type": "MAX5970"
+        },
+        {
+            "Address": "0x3a",
+            "Bus": "177",
+            "Name": "SSB_FAN19",
+            "PollRate": 5.0,
+            "PowerState": "Always",
+            "Thresholds": [
+                {
+                    "Direction": "greater than",
+                    "Label": "curr1",
+                    "Name": "upper non critical",
+                    "Severity": 0,
+                    "Value": 3.0
+                },
+                {
+                    "Direction": "greater than",
+                    "Label": "curr1",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 4.0
+                },
+                {
+                    "Direction": "less than",
+                    "Label": "in0",
+                    "Name": "lower non critical",
+                    "Severity": 0,
+                    "Value": 11.68
+                },
+                {
+                    "Direction": "greater than",
+                    "Label": "in0",
+                    "Name": "upper non critical",
+                    "Severity": 0,
+                    "Value": 12.8
+                },
+                {
+                    "Direction": "less than",
+                    "Label": "in0",
+                    "Name": "lower critical",
+                    "Severity": 1,
+                    "Value": 11.08
+                },
+                {
+                    "Direction": "greater than",
+                    "Label": "in0",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 13.3
+                }
+            ],
+            "Type": "MAX5970"
+        },
+        {
+            "Address": "0x3a",
+            "Bus": "178",
+            "Name": "SSB_FAN21",
+            "PollRate": 5.0,
+            "PowerState": "Always",
+            "Thresholds": [
+                {
+                    "Direction": "greater than",
+                    "Label": "curr1",
+                    "Name": "upper non critical",
+                    "Severity": 0,
+                    "Value": 3.0
+                },
+                {
+                    "Direction": "greater than",
+                    "Label": "curr1",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 4.0
+                },
+                {
+                    "Direction": "less than",
+                    "Label": "in0",
+                    "Name": "lower non critical",
+                    "Severity": 0,
+                    "Value": 11.68
+                },
+                {
+                    "Direction": "greater than",
+                    "Label": "in0",
+                    "Name": "upper non critical",
+                    "Severity": 0,
+                    "Value": 12.8
+                },
+                {
+                    "Direction": "less than",
+                    "Label": "in0",
+                    "Name": "lower critical",
+                    "Severity": 1,
+                    "Value": 11.08
+                },
+                {
+                    "Direction": "greater than",
+                    "Label": "in0",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 13.3
+                }
+            ],
+            "Type": "MAX5970"
+        },
+        {
+            "Address": "0x3a",
+            "Bus": "179",
+            "Name": "SSB_FAN23",
+            "PollRate": 5.0,
+            "PowerState": "Always",
+            "Thresholds": [
+                {
+                    "Direction": "greater than",
+                    "Label": "curr1",
+                    "Name": "upper non critical",
+                    "Severity": 0,
+                    "Value": 3.0
+                },
+                {
+                    "Direction": "greater than",
+                    "Label": "curr1",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 4.0
+                },
+                {
+                    "Direction": "less than",
+                    "Label": "in0",
+                    "Name": "lower non critical",
+                    "Severity": 0,
+                    "Value": 11.68
+                },
+                {
+                    "Direction": "greater than",
+                    "Label": "in0",
+                    "Name": "upper non critical",
+                    "Severity": 0,
+                    "Value": 12.8
+                },
+                {
+                    "Direction": "less than",
+                    "Label": "in0",
+                    "Name": "lower critical",
+                    "Severity": 1,
+                    "Value": 11.08
+                },
+                {
+                    "Direction": "greater than",
+                    "Label": "in0",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 13.3
+                }
+            ],
+            "Type": "MAX5970"
+        },
+        {
+            "Address": "0x3a",
+            "Bus": "180",
+            "Name": "SSB_FAN2",
+            "PollRate": 5.0,
+            "PowerState": "Always",
+            "Thresholds": [
+                {
+                    "Direction": "greater than",
+                    "Label": "curr1",
+                    "Name": "upper non critical",
+                    "Severity": 0,
+                    "Value": 3.0
+                },
+                {
+                    "Direction": "greater than",
+                    "Label": "curr1",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 4.0
+                },
+                {
+                    "Direction": "less than",
+                    "Label": "in0",
+                    "Name": "lower non critical",
+                    "Severity": 0,
+                    "Value": 11.68
+                },
+                {
+                    "Direction": "greater than",
+                    "Label": "in0",
+                    "Name": "upper non critical",
+                    "Severity": 0,
+                    "Value": 12.8
+                },
+                {
+                    "Direction": "less than",
+                    "Label": "in0",
+                    "Name": "lower critical",
+                    "Severity": 1,
+                    "Value": 11.08
+                },
+                {
+                    "Direction": "greater than",
+                    "Label": "in0",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 13.3
+                }
+            ],
+            "Type": "MAX5970"
+        },
+        {
+            "Address": "0x3a",
+            "Bus": "181",
+            "Name": "SSB_FAN4",
+            "PollRate": 5.0,
+            "PowerState": "Always",
+            "Thresholds": [
+                {
+                    "Direction": "greater than",
+                    "Label": "curr1",
+                    "Name": "upper non critical",
+                    "Severity": 0,
+                    "Value": 3.0
+                },
+                {
+                    "Direction": "greater than",
+                    "Label": "curr1",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 4.0
+                },
+                {
+                    "Direction": "less than",
+                    "Label": "in0",
+                    "Name": "lower non critical",
+                    "Severity": 0,
+                    "Value": 11.68
+                },
+                {
+                    "Direction": "greater than",
+                    "Label": "in0",
+                    "Name": "upper non critical",
+                    "Severity": 0,
+                    "Value": 12.8
+                },
+                {
+                    "Direction": "less than",
+                    "Label": "in0",
+                    "Name": "lower critical",
+                    "Severity": 1,
+                    "Value": 11.08
+                },
+                {
+                    "Direction": "greater than",
+                    "Label": "in0",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 13.3
+                }
+            ],
+            "Type": "MAX5970"
+        },
+        {
+            "Address": "0x3a",
+            "Bus": "182",
+            "Name": "SSB_FAN6",
+            "PollRate": 5.0,
+            "PowerState": "Always",
+            "Thresholds": [
+                {
+                    "Direction": "greater than",
+                    "Label": "curr1",
+                    "Name": "upper non critical",
+                    "Severity": 0,
+                    "Value": 3.0
+                },
+                {
+                    "Direction": "greater than",
+                    "Label": "curr1",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 4.0
+                },
+                {
+                    "Direction": "less than",
+                    "Label": "in0",
+                    "Name": "lower non critical",
+                    "Severity": 0,
+                    "Value": 11.68
+                },
+                {
+                    "Direction": "greater than",
+                    "Label": "in0",
+                    "Name": "upper non critical",
+                    "Severity": 0,
+                    "Value": 12.8
+                },
+                {
+                    "Direction": "less than",
+                    "Label": "in0",
+                    "Name": "lower critical",
+                    "Severity": 1,
+                    "Value": 11.08
+                },
+                {
+                    "Direction": "greater than",
+                    "Label": "in0",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 13.3
+                }
+            ],
+            "Type": "MAX5970"
+        },
+        {
+            "Address": "0x3a",
+            "Bus": "183",
+            "Name": "SSB_FAN8",
+            "PollRate": 5.0,
+            "PowerState": "Always",
+            "Thresholds": [
+                {
+                    "Direction": "greater than",
+                    "Label": "curr1",
+                    "Name": "upper non critical",
+                    "Severity": 0,
+                    "Value": 3.0
+                },
+                {
+                    "Direction": "greater than",
+                    "Label": "curr1",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 4.0
+                },
+                {
+                    "Direction": "less than",
+                    "Label": "in0",
+                    "Name": "lower non critical",
+                    "Severity": 0,
+                    "Value": 11.68
+                },
+                {
+                    "Direction": "greater than",
+                    "Label": "in0",
+                    "Name": "upper non critical",
+                    "Severity": 0,
+                    "Value": 12.8
+                },
+                {
+                    "Direction": "less than",
+                    "Label": "in0",
+                    "Name": "lower critical",
+                    "Severity": 1,
+                    "Value": 11.08
+                },
+                {
+                    "Direction": "greater than",
+                    "Label": "in0",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 13.3
+                }
+            ],
+            "Type": "MAX5970"
+        },
+        {
+            "Address": "0x3a",
+            "Bus": "184",
+            "Name": "SSB_FAN10",
+            "PollRate": 5.0,
+            "PowerState": "Always",
+            "Thresholds": [
+                {
+                    "Direction": "greater than",
+                    "Label": "curr1",
+                    "Name": "upper non critical",
+                    "Severity": 0,
+                    "Value": 3.0
+                },
+                {
+                    "Direction": "greater than",
+                    "Label": "curr1",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 4.0
+                },
+                {
+                    "Direction": "less than",
+                    "Label": "in0",
+                    "Name": "lower non critical",
+                    "Severity": 0,
+                    "Value": 11.68
+                },
+                {
+                    "Direction": "greater than",
+                    "Label": "in0",
+                    "Name": "upper non critical",
+                    "Severity": 0,
+                    "Value": 12.8
+                },
+                {
+                    "Direction": "less than",
+                    "Label": "in0",
+                    "Name": "lower critical",
+                    "Severity": 1,
+                    "Value": 11.08
+                },
+                {
+                    "Direction": "greater than",
+                    "Label": "in0",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 13.3
+                }
+            ],
+            "Type": "MAX5970"
+        },
+        {
+            "Address": "0x3a",
+            "Bus": "185",
+            "Name": "SSB_FAN12",
+            "PollRate": 5.0,
+            "PowerState": "Always",
+            "Thresholds": [
+                {
+                    "Direction": "greater than",
+                    "Label": "curr1",
+                    "Name": "upper non critical",
+                    "Severity": 0,
+                    "Value": 3.0
+                },
+                {
+                    "Direction": "greater than",
+                    "Label": "curr1",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 4.0
+                },
+                {
+                    "Direction": "less than",
+                    "Label": "in0",
+                    "Name": "lower non critical",
+                    "Severity": 0,
+                    "Value": 11.68
+                },
+                {
+                    "Direction": "greater than",
+                    "Label": "in0",
+                    "Name": "upper non critical",
+                    "Severity": 0,
+                    "Value": 12.8
+                },
+                {
+                    "Direction": "less than",
+                    "Label": "in0",
+                    "Name": "lower critical",
+                    "Severity": 1,
+                    "Value": 11.08
+                },
+                {
+                    "Direction": "greater than",
+                    "Label": "in0",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 13.3
+                }
+            ],
+            "Type": "MAX5970"
+        },
+        {
+            "Address": "0x3a",
+            "Bus": "186",
+            "Name": "SSB_FAN14",
+            "PollRate": 5.0,
+            "PowerState": "Always",
+            "Thresholds": [
+                {
+                    "Direction": "greater than",
+                    "Label": "curr1",
+                    "Name": "upper non critical",
+                    "Severity": 0,
+                    "Value": 3.0
+                },
+                {
+                    "Direction": "greater than",
+                    "Label": "curr1",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 4.0
+                },
+                {
+                    "Direction": "less than",
+                    "Label": "in0",
+                    "Name": "lower non critical",
+                    "Severity": 0,
+                    "Value": 11.68
+                },
+                {
+                    "Direction": "greater than",
+                    "Label": "in0",
+                    "Name": "upper non critical",
+                    "Severity": 0,
+                    "Value": 12.8
+                },
+                {
+                    "Direction": "less than",
+                    "Label": "in0",
+                    "Name": "lower critical",
+                    "Severity": 1,
+                    "Value": 11.08
+                },
+                {
+                    "Direction": "greater than",
+                    "Label": "in0",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 13.3
+                }
+            ],
+            "Type": "MAX5970"
+        },
+        {
+            "Address": "0x3a",
+            "Bus": "187",
+            "Name": "SSB_FAN16",
+            "PollRate": 5.0,
+            "PowerState": "Always",
+            "Thresholds": [
+                {
+                    "Direction": "greater than",
+                    "Label": "curr1",
+                    "Name": "upper non critical",
+                    "Severity": 0,
+                    "Value": 3.0
+                },
+                {
+                    "Direction": "greater than",
+                    "Label": "curr1",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 4.0
+                },
+                {
+                    "Direction": "less than",
+                    "Label": "in0",
+                    "Name": "lower non critical",
+                    "Severity": 0,
+                    "Value": 11.68
+                },
+                {
+                    "Direction": "greater than",
+                    "Label": "in0",
+                    "Name": "upper non critical",
+                    "Severity": 0,
+                    "Value": 12.8
+                },
+                {
+                    "Direction": "less than",
+                    "Label": "in0",
+                    "Name": "lower critical",
+                    "Severity": 1,
+                    "Value": 11.08
+                },
+                {
+                    "Direction": "greater than",
+                    "Label": "in0",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 13.3
+                }
+            ],
+            "Type": "MAX5970"
+        },
+        {
+            "Address": "0x3a",
+            "Bus": "188",
+            "Name": "SSB_FAN18",
+            "PollRate": 5.0,
+            "PowerState": "Always",
+            "Thresholds": [
+                {
+                    "Direction": "greater than",
+                    "Label": "curr1",
+                    "Name": "upper non critical",
+                    "Severity": 0,
+                    "Value": 3.0
+                },
+                {
+                    "Direction": "greater than",
+                    "Label": "curr1",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 4.0
+                },
+                {
+                    "Direction": "less than",
+                    "Label": "in0",
+                    "Name": "lower non critical",
+                    "Severity": 0,
+                    "Value": 11.68
+                },
+                {
+                    "Direction": "greater than",
+                    "Label": "in0",
+                    "Name": "upper non critical",
+                    "Severity": 0,
+                    "Value": 12.8
+                },
+                {
+                    "Direction": "less than",
+                    "Label": "in0",
+                    "Name": "lower critical",
+                    "Severity": 1,
+                    "Value": 11.08
+                },
+                {
+                    "Direction": "greater than",
+                    "Label": "in0",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 13.3
+                }
+            ],
+            "Type": "MAX5970"
+        },
+        {
+            "Address": "0x3a",
+            "Bus": "189",
+            "Name": "SSB_FAN20",
+            "PollRate": 5.0,
+            "PowerState": "Always",
+            "Thresholds": [
+                {
+                    "Direction": "greater than",
+                    "Label": "curr1",
+                    "Name": "upper non critical",
+                    "Severity": 0,
+                    "Value": 3.0
+                },
+                {
+                    "Direction": "greater than",
+                    "Label": "curr1",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 4.0
+                },
+                {
+                    "Direction": "less than",
+                    "Label": "in0",
+                    "Name": "lower non critical",
+                    "Severity": 0,
+                    "Value": 11.68
+                },
+                {
+                    "Direction": "greater than",
+                    "Label": "in0",
+                    "Name": "upper non critical",
+                    "Severity": 0,
+                    "Value": 12.8
+                },
+                {
+                    "Direction": "less than",
+                    "Label": "in0",
+                    "Name": "lower critical",
+                    "Severity": 1,
+                    "Value": 11.08
+                },
+                {
+                    "Direction": "greater than",
+                    "Label": "in0",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 13.3
+                }
+            ],
+            "Type": "MAX5970"
+        },
+        {
+            "Address": "0x3a",
+            "Bus": "190",
+            "Name": "SSB_FAN22",
+            "PollRate": 5.0,
+            "PowerState": "Always",
+            "Thresholds": [
+                {
+                    "Direction": "greater than",
+                    "Label": "curr1",
+                    "Name": "upper non critical",
+                    "Severity": 0,
+                    "Value": 3.0
+                },
+                {
+                    "Direction": "greater than",
+                    "Label": "curr1",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 4.0
+                },
+                {
+                    "Direction": "less than",
+                    "Label": "in0",
+                    "Name": "lower non critical",
+                    "Severity": 0,
+                    "Value": 11.68
+                },
+                {
+                    "Direction": "greater than",
+                    "Label": "in0",
+                    "Name": "upper non critical",
+                    "Severity": 0,
+                    "Value": 12.8
+                },
+                {
+                    "Direction": "less than",
+                    "Label": "in0",
+                    "Name": "lower critical",
+                    "Severity": 1,
+                    "Value": 11.08
+                },
+                {
+                    "Direction": "greater than",
+                    "Label": "in0",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 13.3
+                }
+            ],
+            "Type": "MAX5970"
+        },
+        {
+            "Address": "0x3a",
+            "Bus": "191",
+            "Name": "SSB_FAN24",
+            "PollRate": 5.0,
+            "PowerState": "Always",
+            "Thresholds": [
+                {
+                    "Direction": "greater than",
+                    "Label": "curr1",
+                    "Name": "upper non critical",
+                    "Severity": 0,
+                    "Value": 3.0
+                },
+                {
+                    "Direction": "greater than",
+                    "Label": "curr1",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 4.0
+                },
+                {
+                    "Direction": "less than",
+                    "Label": "in0",
+                    "Name": "lower non critical",
+                    "Severity": 0,
+                    "Value": 11.68
+                },
+                {
+                    "Direction": "greater than",
+                    "Label": "in0",
+                    "Name": "upper non critical",
+                    "Severity": 0,
+                    "Value": 12.8
+                },
+                {
+                    "Direction": "less than",
+                    "Label": "in0",
+                    "Name": "lower critical",
+                    "Severity": 1,
+                    "Value": 11.08
+                },
+                {
+                    "Direction": "greater than",
+                    "Label": "in0",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 13.3
+                }
+            ],
+            "Type": "MAX5970"
+        },
+        {
+            "Address": "0x2e",
+            "Bus": "105",
+            "Labels": [
+                "temp1"
+            ],
+            "Name": "Fan01 Temperature",
+            "PollRate": 5.0,
+            "PowerState": "Always",
+            "Type": "MAX6639"
+        },
+        {
+            "Address": "0x2e",
+            "Bus": "118",
+            "Labels": [
+                "temp1"
+            ],
+            "Name": "Fan02 Temperature",
+            "PollRate": 5.0,
+            "PowerState": "Always",
+            "Type": "MAX6639"
+        },
+        {
+            "Address": "0x2e",
+            "Bus": "106",
+            "Labels": [
+                "temp1"
+            ],
+            "Name": "Fan03 Temperature",
+            "PollRate": 5.0,
+            "PowerState": "Always",
+            "Type": "MAX6639"
+        },
+        {
+            "Address": "0x2e",
+            "Bus": "119",
+            "Labels": [
+                "temp1"
+            ],
+            "Name": "Fan04 Temperature",
+            "PollRate": 5.0,
+            "PowerState": "Always",
+            "Type": "MAX6639"
+        },
+        {
+            "Address": "0x2e",
+            "Bus": "107",
+            "Labels": [
+                "temp1"
+            ],
+            "Name": "Fan05 Temperature",
+            "PollRate": 5.0,
+            "PowerState": "Always",
+            "Type": "MAX6639"
+        },
+        {
+            "Address": "0x2e",
+            "Bus": "120",
+            "Labels": [
+                "temp1"
+            ],
+            "Name": "Fan06 Temperature",
+            "PollRate": 5.0,
+            "PowerState": "Always",
+            "Type": "MAX6639"
+        },
+        {
+            "Address": "0x2e",
+            "Bus": "108",
+            "Labels": [
+                "temp1"
+            ],
+            "Name": "Fan07 Temperature",
+            "PollRate": 5.0,
+            "PowerState": "Always",
+            "Type": "MAX6639"
+        },
+        {
+            "Address": "0x2e",
+            "Bus": "121",
+            "Labels": [
+                "temp1"
+            ],
+            "Name": "Fan08 Temperature",
+            "PollRate": 5.0,
+            "PowerState": "Always",
+            "Type": "MAX6639"
+        },
+        {
+            "Address": "0x2e",
+            "Bus": "109",
+            "Labels": [
+                "temp1"
+            ],
+            "Name": "Fan09 Temperature",
+            "PollRate": 5.0,
+            "PowerState": "Always",
+            "Type": "MAX6639"
+        },
+        {
+            "Address": "0x2e",
+            "Bus": "123",
+            "Labels": [
+                "temp1"
+            ],
+            "Name": "Fan10 Temperature",
+            "PollRate": 5.0,
+            "PowerState": "Always",
+            "Type": "MAX6639"
+        },
+        {
+            "Address": "0x2e",
+            "Bus": "110",
+            "Labels": [
+                "temp1"
+            ],
+            "Name": "Fan11 Temperature",
+            "PollRate": 5.0,
+            "PowerState": "Always",
+            "Type": "MAX6639"
+        },
+        {
+            "Address": "0x2e",
+            "Bus": "124",
+            "Labels": [
+                "temp1"
+            ],
+            "Name": "Fan12 Temperature",
+            "PollRate": 5.0,
+            "PowerState": "Always",
+            "Type": "MAX6639"
+        },
+        {
+            "Address": "0x2e",
+            "Bus": "111",
+            "Labels": [
+                "temp1"
+            ],
+            "Name": "Fan13 Temperature",
+            "PollRate": 5.0,
+            "PowerState": "Always",
+            "Type": "MAX6639"
+        },
+        {
+            "Address": "0x2e",
+            "Bus": "125",
+            "Labels": [
+                "temp1"
+            ],
+            "Name": "Fan14 Temperature",
+            "PollRate": 5.0,
+            "PowerState": "Always",
+            "Type": "MAX6639"
+        },
+        {
+            "Address": "0x2e",
+            "Bus": "112",
+            "Labels": [
+                "temp1"
+            ],
+            "Name": "Fan15 Temperature",
+            "PollRate": 5.0,
+            "PowerState": "Always",
+            "Type": "MAX6639"
+        },
+        {
+            "Address": "0x2e",
+            "Bus": "126",
+            "Labels": [
+                "temp1"
+            ],
+            "Name": "Fan16 Temperature",
+            "PollRate": 5.0,
+            "PowerState": "Always",
+            "Type": "MAX6639"
+        },
+        {
+            "Address": "0x2e",
+            "Bus": "114",
+            "Labels": [
+                "temp1"
+            ],
+            "Name": "Fan17 Temperature",
+            "PollRate": 5.0,
+            "PowerState": "Always",
+            "Type": "MAX6639"
+        },
+        {
+            "Address": "0x2e",
+            "Bus": "127",
+            "Labels": [
+                "temp1"
+            ],
+            "Name": "Fan18 Temperature",
+            "PollRate": 5.0,
+            "PowerState": "Always",
+            "Type": "MAX6639"
+        },
+        {
+            "Address": "0x2e",
+            "Bus": "115",
+            "Labels": [
+                "temp1"
+            ],
+            "Name": "Fan19 Temperature",
+            "PollRate": 5.0,
+            "PowerState": "Always",
+            "Type": "MAX6639"
+        },
+        {
+            "Address": "0x2e",
+            "Bus": "128",
+            "Labels": [
+                "temp1"
+            ],
+            "Name": "Fan20 Temperature",
+            "PollRate": 5.0,
+            "PowerState": "Always",
+            "Type": "MAX6639"
+        },
+        {
+            "Address": "0x2e",
+            "Bus": "116",
+            "Labels": [
+                "temp1"
+            ],
+            "Name": "Fan21 Temperature",
+            "PollRate": 5.0,
+            "PowerState": "Always",
+            "Type": "MAX6639"
+        },
+        {
+            "Address": "0x2e",
+            "Bus": "129",
+            "Labels": [
+                "temp1"
+            ],
+            "Name": "Fan22 Temperature",
+            "PollRate": 5.0,
+            "PowerState": "Always",
+            "Type": "MAX6639"
+        },
+        {
+            "Address": "0x2e",
+            "Bus": "117",
+            "Labels": [
+                "temp1"
+            ],
+            "Name": "Fan23 Temperature",
+            "PollRate": 5.0,
+            "PowerState": "Always",
+            "Type": "MAX6639"
+        },
+        {
+            "Address": "0x2e",
+            "Bus": "130",
+            "Labels": [
+                "temp1"
+            ],
+            "Name": "Fan24 Temperature",
+            "PollRate": 5.0,
+            "PowerState": "Always",
+            "Type": "MAX6639"
+        },
+        {
             "Address": "0x58",
             "Bus": "98",
             "Labels": [
