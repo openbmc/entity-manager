@@ -1217,6 +1217,808 @@
             "Type": "IpmbSensor"
         },
         {
+            "Address": "0x3a",
+            "Bus": "51",
+            "Name": "SSB_SSD1",
+            "PollRate": 5.0,
+            "PowerState": "Always",
+            "Type": "MAX5970"
+        },
+        {
+            "Address": "0x3a",
+            "Bus": "53",
+            "Name": "SSB_SSD2",
+            "PollRate": 5.0,
+            "PowerState": "Always",
+            "Type": "MAX5970"
+        },
+        {
+            "Address": "0x3a",
+            "Bus": "35",
+            "Labels": [
+                "in0",
+                "in1",
+                "curr1",
+                "curr2"
+            ],
+            "Name": "SSB_AUX",
+            "PollRate": 5.0,
+            "PowerState": "Always",
+            "Type": "MAX5970",
+            "curr1_Name": "SSB_AUX PVDRV Output Current",
+            "curr2_Name": "SSB_AUX P3V3_PCH Output Current",
+            "in0_Name": "SSB_AUX PVDRV Output Voltage",
+            "in1_Name": "SSB_AUX P3V3_PCH Output Voltage"
+        },
+        {
+            "Address": "0x3a",
+            "Bus": "132",
+            "Labels": [
+                "in0",
+                "in1",
+                "curr1",
+                "curr2"
+            ],
+            "Name": "SSB_RSSD03",
+            "PollRate": 5.0,
+            "PowerState": "Always",
+            "Type": "MAX5970",
+            "curr1_Name": "SSB_RSSD03 P12V Output Current",
+            "curr2_Name": "SSB_RSSD03 P3V3 Output Current",
+            "in0_Name": "SSB_RSSD03 P12V Output Voltage",
+            "in1_Name": "SSB_RSSD03 P3V3 Output Voltage"
+        },
+        {
+            "Address": "0x3a",
+            "Bus": "133",
+            "Labels": [
+                "in0",
+                "in1",
+                "curr1",
+                "curr2"
+            ],
+            "Name": "SSB_RSSD02",
+            "PollRate": 5.0,
+            "PowerState": "Always",
+            "Type": "MAX5970",
+            "curr1_Name": "SSB_RSSD02 P12V Output Current",
+            "curr2_Name": "SSB_RSSD02 P3V3 Output Current",
+            "in0_Name": "SSB_RSSD02 P12V Output Voltage",
+            "in1_Name": "SSB_RSSD02 P3V3 Output Voltage"
+        },
+        {
+            "Address": "0x3a",
+            "Bus": "134",
+            "Labels": [
+                "in0",
+                "in1",
+                "curr1",
+                "curr2"
+            ],
+            "Name": "SSB_RSSD01",
+            "PollRate": 5.0,
+            "PowerState": "Always",
+            "Type": "MAX5970",
+            "curr1_Name": "SSB_RSSD01 P12V Output Current",
+            "curr2_Name": "SSB_RSSD01 P3V3 Output Current",
+            "in0_Name": "SSB_RSSD01 P12V Output Voltage",
+            "in1_Name": "SSB_RSSD01 P3V3 Output Voltage"
+        },
+        {
+            "Address": "0x3a",
+            "Bus": "135",
+            "Labels": [
+                "in0",
+                "in1",
+                "curr1",
+                "curr2"
+            ],
+            "Name": "SSB_RSSD04",
+            "PollRate": 5.0,
+            "PowerState": "Always",
+            "Type": "MAX5970",
+            "curr1_Name": "SSB_RSSD04 P12V Output Current",
+            "curr2_Name": "SSB_RSSD03 P3V3 Output Current",
+            "in0_Name": "SSB_RSSD04 P12V Output Voltage",
+            "in1_Name": "SSB_RSSD03 P3V3 Output Voltage"
+        },
+        {
+            "Address": "0x3a",
+            "Bus": "136",
+            "Labels": [
+                "in0",
+                "in1",
+                "curr1",
+                "curr2"
+            ],
+            "Name": "SSB_RSSD05",
+            "PollRate": 5.0,
+            "PowerState": "Always",
+            "Type": "MAX5970",
+            "curr1_Name": "SSB_RSSD05 P12V Output Current",
+            "curr2_Name": "SSB_RSSD05 P3V3 Output Current",
+            "in0_Name": "SSB_RSSD05 P12V Output Voltage",
+            "in1_Name": "SSB_RSSD05 P3V3 Output Voltage"
+        },
+        {
+            "Address": "0x3a",
+            "Bus": "137",
+            "Labels": [
+                "in0",
+                "in1",
+                "curr1",
+                "curr2"
+            ],
+            "Name": "SSB_RSSD08",
+            "PollRate": 5.0,
+            "PowerState": "Always",
+            "Type": "MAX5970",
+            "curr1_Name": "SSB_RSSD08 P12V Output Current",
+            "curr2_Name": "SSB_RSSD08 P3V3 Output Current",
+            "in0_Name": "SSB_RSSD08 P12V Output Voltage",
+            "in1_Name": "SSB_RSSD08 P3V3 Output Voltage"
+        },
+        {
+            "Address": "0x3a",
+            "Bus": "138",
+            "Labels": [
+                "in0",
+                "in1",
+                "curr1",
+                "curr2"
+            ],
+            "Name": "SSB_RSSD07",
+            "PollRate": 5.0,
+            "PowerState": "Always",
+            "Type": "MAX5970",
+            "curr1_Name": "SSB_RSSD07 P12V Output Current",
+            "curr2_Name": "SSB_RSSD07 P3V3 Output Current",
+            "in0_Name": "SSB_RSSD07 P12V Output Voltage",
+            "in1_Name": "SSB_RSSD07 P3V3 Output Voltage"
+        },
+        {
+            "Address": "0x3a",
+            "Bus": "139",
+            "Labels": [
+                "in0",
+                "in1",
+                "curr1",
+                "curr2"
+            ],
+            "Name": "SSB_RSSD06",
+            "PollRate": 5.0,
+            "PowerState": "Always",
+            "Type": "MAX5970",
+            "curr1_Name": "SSB_RSSD06 P12V Output Current",
+            "curr2_Name": "SSB_RSSD06 P3V3 Output Current",
+            "in0_Name": "SSB_RSSD06 P12V Output Voltage",
+            "in1_Name": "SSB_RSSD06 P3V3 Output Voltage"
+        },
+        {
+            "Address": "0x3a",
+            "Bus": "141",
+            "Labels": [
+                "in0",
+                "in1",
+                "curr1",
+                "curr2"
+            ],
+            "Name": "SSB_RSSD14",
+            "PollRate": 5.0,
+            "PowerState": "Always",
+            "Type": "MAX5970",
+            "curr1_Name": "SSB_RSSD14 P12V Output Current",
+            "curr2_Name": "SSB_RSSD14 P3V3 Output Current",
+            "in0_Name": "SSB_RSSD14 P12V Output Voltage",
+            "in1_Name": "SSB_RSSD14 P3V3 Output Voltage"
+        },
+        {
+            "Address": "0x3a",
+            "Bus": "142",
+            "Labels": [
+                "in0",
+                "in1",
+                "curr1",
+                "curr2"
+            ],
+            "Name": "SSB_RSSD13",
+            "PollRate": 5.0,
+            "PowerState": "Always",
+            "Type": "MAX5970",
+            "curr1_Name": "SSB_RSSD13 P12V Output Current",
+            "curr2_Name": "SSB_RSSD13 P3V3 Output Current",
+            "in0_Name": "SSB_RSSD13 P12V Output Voltage",
+            "in1_Name": "SSB_RSSD13 P3V3 Output Voltage"
+        },
+        {
+            "Address": "0x3a",
+            "Bus": "143",
+            "Labels": [
+                "in0",
+                "in1",
+                "curr1",
+                "curr2"
+            ],
+            "Name": "SSB_RSSD12",
+            "PollRate": 5.0,
+            "PowerState": "Always",
+            "Type": "MAX5970",
+            "curr1_Name": "SSB_RSSD12 P12V Output Current",
+            "curr2_Name": "SSB_RSSD12 P3V3 Output Current",
+            "in0_Name": "SSB_RSSD12 P12V Output Voltage",
+            "in1_Name": "SSB_RSSD12 P3V3 Output Voltage"
+        },
+        {
+            "Address": "0x3a",
+            "Bus": "144",
+            "Labels": [
+                "in0",
+                "in1",
+                "curr1",
+                "curr2"
+            ],
+            "Name": "SSB_RSSD11",
+            "PollRate": 5.0,
+            "PowerState": "Always",
+            "Type": "MAX5970",
+            "curr1_Name": "SSB_RSSD11 P12V Output Current",
+            "curr2_Name": "SSB_RSSD11 P3V3 Output Current",
+            "in0_Name": "SSB_RSSD11 P12V Output Voltage",
+            "in1_Name": "SSB_RSSD11 P3V3 Output Voltage"
+        },
+        {
+            "Address": "0x3a",
+            "Bus": "145",
+            "Labels": [
+                "in0",
+                "in1",
+                "curr1",
+                "curr2"
+            ],
+            "Name": "SSB_RSSD10",
+            "PollRate": 5.0,
+            "PowerState": "Always",
+            "Type": "MAX5970",
+            "curr1_Name": "SSB_RSSD10 P12V Output Current",
+            "curr2_Name": "SSB_RSSD10 P3V3 Output Current",
+            "in0_Name": "SSB_RSSD10 P12V Output Voltage",
+            "in1_Name": "SSB_RSSD10 P3V3 Output Voltage"
+        },
+        {
+            "Address": "0x3a",
+            "Bus": "146",
+            "Labels": [
+                "in0",
+                "in1",
+                "curr1",
+                "curr2"
+            ],
+            "Name": "SSB_RSSD09",
+            "PollRate": 5.0,
+            "PowerState": "Always",
+            "Type": "MAX5970",
+            "curr1_Name": "SSB_RSSD09 P12V Output Current",
+            "curr2_Name": "SSB_RSSD09 P3V3 Output Current",
+            "in0_Name": "SSB_RSSD09 P12V Output Voltage",
+            "in1_Name": "SSB_RSSD09 P3V3 Output Voltage"
+        },
+        {
+            "Address": "0x3a",
+            "Bus": "147",
+            "Labels": [
+                "in0",
+                "in1",
+                "curr1",
+                "curr2"
+            ],
+            "Name": "SSB_RSSD15",
+            "PollRate": 5.0,
+            "PowerState": "Always",
+            "Type": "MAX5970",
+            "curr1_Name": "SSB_RSSD15 P12V Output Current",
+            "curr2_Name": "SSB_RSSD15 P3V3 Output Current",
+            "in0_Name": "SSB_RSSD15 P12V Output Voltage",
+            "in1_Name": "SSB_RSSD15 P3V3 Output Voltage"
+        },
+        {
+            "Address": "0x3a",
+            "Bus": "148",
+            "Labels": [
+                "in0",
+                "in1",
+                "curr1",
+                "curr2"
+            ],
+            "Name": "SSB_RSSD16",
+            "PollRate": 5.0,
+            "PowerState": "Always",
+            "Type": "MAX5970",
+            "curr1_Name": "SSB_RSSD16 P12V Output Current",
+            "curr2_Name": "SSB_RSSD16 P3V3 Output Current",
+            "in0_Name": "SSB_RSSD16 P12V Output Voltage",
+            "in1_Name": "SSB_RSSD16 P3V3 Output Voltage"
+        },
+        {
+            "Address": "0x3a",
+            "Bus": "168",
+            "Name": "SSB_FAN1",
+            "PollRate": 5.0,
+            "PowerState": "Always",
+            "Type": "MAX5970"
+        },
+        {
+            "Address": "0x3a",
+            "Bus": "169",
+            "Name": "SSB_FAN3",
+            "PollRate": 5.0,
+            "PowerState": "Always",
+            "Type": "MAX5970"
+        },
+        {
+            "Address": "0x3a",
+            "Bus": "170",
+            "Name": "SSB_FAN5",
+            "PollRate": 5.0,
+            "PowerState": "Always",
+            "Type": "MAX5970"
+        },
+        {
+            "Address": "0x3a",
+            "Bus": "171",
+            "Name": "SSB_FAN7",
+            "PollRate": 5.0,
+            "PowerState": "Always",
+            "Type": "MAX5970"
+        },
+        {
+            "Address": "0x3a",
+            "Bus": "172",
+            "Name": "SSB_FAN9",
+            "PollRate": 5.0,
+            "PowerState": "Always",
+            "Type": "MAX5970"
+        },
+        {
+            "Address": "0x3a",
+            "Bus": "173",
+            "Name": "SSB_FAN11",
+            "PollRate": 5.0,
+            "PowerState": "Always",
+            "Type": "MAX5970"
+        },
+        {
+            "Address": "0x3a",
+            "Bus": "174",
+            "Name": "SSB_FAN13",
+            "PollRate": 5.0,
+            "PowerState": "Always",
+            "Type": "MAX5970"
+        },
+        {
+            "Address": "0x3a",
+            "Bus": "175",
+            "Name": "SSB_FAN15",
+            "PollRate": 5.0,
+            "PowerState": "Always",
+            "Type": "MAX5970"
+        },
+        {
+            "Address": "0x3a",
+            "Bus": "176",
+            "Name": "SSB_FAN17",
+            "PollRate": 5.0,
+            "PowerState": "Always",
+            "Type": "MAX5970"
+        },
+        {
+            "Address": "0x3a",
+            "Bus": "177",
+            "Name": "SSB_FAN19",
+            "PollRate": 5.0,
+            "PowerState": "Always",
+            "Type": "MAX5970"
+        },
+        {
+            "Address": "0x3a",
+            "Bus": "178",
+            "Name": "SSB_FAN21",
+            "PollRate": 5.0,
+            "PowerState": "Always",
+            "Type": "MAX5970"
+        },
+        {
+            "Address": "0x3a",
+            "Bus": "179",
+            "Name": "SSB_FAN23",
+            "PollRate": 5.0,
+            "PowerState": "Always",
+            "Type": "MAX5970"
+        },
+        {
+            "Address": "0x3a",
+            "Bus": "180",
+            "Name": "SSB_FAN2",
+            "PollRate": 5.0,
+            "PowerState": "Always",
+            "Type": "MAX5970"
+        },
+        {
+            "Address": "0x3a",
+            "Bus": "181",
+            "Name": "SSB_FAN4",
+            "PollRate": 5.0,
+            "PowerState": "Always",
+            "Type": "MAX5970"
+        },
+        {
+            "Address": "0x3a",
+            "Bus": "182",
+            "Name": "SSB_FAN6",
+            "PollRate": 5.0,
+            "PowerState": "Always",
+            "Type": "MAX5970"
+        },
+        {
+            "Address": "0x3a",
+            "Bus": "183",
+            "Name": "SSB_FAN8",
+            "PollRate": 5.0,
+            "PowerState": "Always",
+            "Type": "MAX5970"
+        },
+        {
+            "Address": "0x3a",
+            "Bus": "184",
+            "Name": "SSB_FAN10",
+            "PollRate": 5.0,
+            "PowerState": "Always",
+            "Type": "MAX5970"
+        },
+        {
+            "Address": "0x3a",
+            "Bus": "185",
+            "Name": "SSB_FAN12",
+            "PollRate": 5.0,
+            "PowerState": "Always",
+            "Type": "MAX5970"
+        },
+        {
+            "Address": "0x3a",
+            "Bus": "186",
+            "Name": "SSB_FAN14",
+            "PollRate": 5.0,
+            "PowerState": "Always",
+            "Type": "MAX5970"
+        },
+        {
+            "Address": "0x3a",
+            "Bus": "187",
+            "Name": "SSB_FAN16",
+            "PollRate": 5.0,
+            "PowerState": "Always",
+            "Type": "MAX5970"
+        },
+        {
+            "Address": "0x3a",
+            "Bus": "188",
+            "Name": "SSB_FAN18",
+            "PollRate": 5.0,
+            "PowerState": "Always",
+            "Type": "MAX5970"
+        },
+        {
+            "Address": "0x3a",
+            "Bus": "189",
+            "Name": "SSB_FAN20",
+            "PollRate": 5.0,
+            "PowerState": "Always",
+            "Type": "MAX5970"
+        },
+        {
+            "Address": "0x3a",
+            "Bus": "190",
+            "Name": "SSB_FAN22",
+            "PollRate": 5.0,
+            "PowerState": "Always",
+            "Type": "MAX5970"
+        },
+        {
+            "Address": "0x3a",
+            "Bus": "191",
+            "Name": "SSB_FAN24",
+            "PollRate": 5.0,
+            "PowerState": "Always",
+            "Type": "MAX5970"
+        },
+        {
+            "Address": "0x3a",
+            "Bus": "192",
+            "Labels": [
+                "in0",
+                "in1",
+                "curr1",
+                "curr2"
+            ],
+            "Name": "SSB_RSSD19",
+            "PollRate": 5.0,
+            "PowerState": "Always",
+            "Type": "MAX5970",
+            "curr1_Name": "SSB_RSSD19 P12V Output Current",
+            "curr2_Name": "SSB_RSSD19 P3V3 Output Current",
+            "in0_Name": "SSB_RSSD19 P12V Output Voltage",
+            "in1_Name": "SSB_RSSD19 P3V3 Output Voltage"
+        },
+        {
+            "Address": "0x3a",
+            "Bus": "193",
+            "Labels": [
+                "in0",
+                "in1",
+                "curr1",
+                "curr2"
+            ],
+            "Name": "SSB_RSSD18",
+            "PollRate": 5.0,
+            "PowerState": "Always",
+            "Type": "MAX5970",
+            "curr1_Name": "SSB_RSSD18 P12V Output Current",
+            "curr2_Name": "SSB_RSSD18 P3V3 Output Current",
+            "in0_Name": "SSB_RSSD18 P12V Output Voltage",
+            "in1_Name": "SSB_RSSD18 P3V3 Output Voltage"
+        },
+        {
+            "Address": "0x3a",
+            "Bus": "194",
+            "Labels": [
+                "in0",
+                "in1",
+                "curr1",
+                "curr2"
+            ],
+            "Name": "SSB_RSSD17",
+            "PollRate": 5.0,
+            "PowerState": "Always",
+            "Type": "MAX5970",
+            "curr1_Name": "SSB_RSSD17 P12V Output Current",
+            "curr2_Name": "SSB_RSSD17 P3V3 Output Current",
+            "in0_Name": "SSB_RSSD17 P12V Output Voltage",
+            "in1_Name": "SSB_RSSD17 P3V3 Output Voltage"
+        },
+        {
+            "Address": "0x3a",
+            "Bus": "195",
+            "Labels": [
+                "in0",
+                "in1",
+                "curr1",
+                "curr2"
+            ],
+            "Name": "SSB_RSSD20",
+            "PollRate": 5.0,
+            "PowerState": "Always",
+            "Type": "MAX5970",
+            "curr1_Name": "SSB_RSSD20 P12V Output Current",
+            "curr2_Name": "SSB_RSSD20 P3V3 Output Current",
+            "in0_Name": "SSB_RSSD20 P12V Output Voltage",
+            "in1_Name": "SSB_RSSD20 P3V3 Output Voltage"
+        },
+        {
+            "Address": "0x3a",
+            "Bus": "196",
+            "Labels": [
+                "in0",
+                "in1",
+                "curr1",
+                "curr2"
+            ],
+            "Name": "SSB_RSSD21",
+            "PollRate": 5.0,
+            "PowerState": "Always",
+            "Type": "MAX5970",
+            "curr1_Name": "SSB_RSSD21 P12V Output Current",
+            "curr2_Name": "SSB_RSSD21 P3V3 Output Current",
+            "in0_Name": "SSB_RSSD21 P12V Output Voltage",
+            "in1_Name": "SSB_RSSD21 P3V3 Output Voltage"
+        },
+        {
+            "Address": "0x3a",
+            "Bus": "197",
+            "Labels": [
+                "in0",
+                "in1",
+                "curr1",
+                "curr2"
+            ],
+            "Name": "SSB_RSSD22",
+            "PollRate": 5.0,
+            "PowerState": "Always",
+            "Type": "MAX5970",
+            "curr1_Name": "SSB_RSSD22 P12V Output Current",
+            "curr2_Name": "SSB_RSSD22 P3V3 Output Current",
+            "in0_Name": "SSB_RSSD22 P12V Output Voltage",
+            "in1_Name": "SSB_RSSD22 P3V3 Output Voltage"
+        },
+        {
+            "Address": "0x3a",
+            "Bus": "198",
+            "Labels": [
+                "in0",
+                "in1",
+                "curr1",
+                "curr2"
+            ],
+            "Name": "SSB_RSSD24",
+            "PollRate": 5.0,
+            "PowerState": "Always",
+            "Type": "MAX5970",
+            "curr1_Name": "SSB_RSSD24 P12V Output Current",
+            "curr2_Name": "SSB_RSSD24 P3V3 Output Current",
+            "in0_Name": "SSB_RSSD24 P12V Output Voltage",
+            "in1_Name": "SSB_RSSD24 P3V3 Output Voltage"
+        },
+        {
+            "Address": "0x3a",
+            "Bus": "199",
+            "Labels": [
+                "in0",
+                "in1",
+                "curr1",
+                "curr2"
+            ],
+            "Name": "SSB_RSSD23",
+            "PollRate": 5.0,
+            "PowerState": "Always",
+            "Type": "MAX5970",
+            "curr1_Name": "SSB_RSSD23 P12V Output Current",
+            "curr2_Name": "SSB_RSSD23 P3V3 Output Current",
+            "in0_Name": "SSB_RSSD23 P12V Output Voltage",
+            "in1_Name": "SSB_RSSD23 P3V3 Output Voltage"
+        },
+        {
+            "Address": "0x3a",
+            "Bus": "200",
+            "Labels": [
+                "in0",
+                "in1",
+                "curr1",
+                "curr2"
+            ],
+            "Name": "SSB_RSSD25",
+            "PollRate": 5.0,
+            "PowerState": "Always",
+            "Type": "MAX5970",
+            "curr1_Name": "SSB_RSSD25 P12V Output Current",
+            "curr2_Name": "SSB_RSSD25 P3V3 Output Current",
+            "in0_Name": "SSB_RSSD25 P12V Output Voltage",
+            "in1_Name": "SSB_RSSD25 P3V3 Output Voltage"
+        },
+        {
+            "Address": "0x3a",
+            "Bus": "201",
+            "Labels": [
+                "in0",
+                "in1",
+                "curr1",
+                "curr2"
+            ],
+            "Name": "SSB_RSSD26",
+            "PollRate": 5.0,
+            "PowerState": "Always",
+            "Type": "MAX5970",
+            "curr1_Name": "SSB_RSSD26 P12V Output Current",
+            "curr2_Name": "SSB_RSSD26 P3V3 Output Current",
+            "in0_Name": "SSB_RSSD26 P12V Output Voltage",
+            "in1_Name": "SSB_RSSD26 P3V3 Output Voltage"
+        },
+        {
+            "Address": "0x3a",
+            "Bus": "202",
+            "Labels": [
+                "in0",
+                "in1",
+                "curr1",
+                "curr2"
+            ],
+            "Name": "SSB_RSSD27",
+            "PollRate": 5.0,
+            "PowerState": "Always",
+            "Type": "MAX5970",
+            "curr1_Name": "SSB_RSSD27 P12V Output Current",
+            "curr2_Name": "SSB_RSSD27 P3V3 Output Current",
+            "in0_Name": "SSB_RSSD27 P12V Output Voltage",
+            "in1_Name": "SSB_RSSD27 P3V3 Output Voltage"
+        },
+        {
+            "Address": "0x3a",
+            "Bus": "203",
+            "Labels": [
+                "in0",
+                "in1",
+                "curr1",
+                "curr2"
+            ],
+            "Name": "SSB_RSSD32",
+            "PollRate": 5.0,
+            "PowerState": "Always",
+            "Type": "MAX5970",
+            "curr1_Name": "SSB_RSSD32 P12V Output Current",
+            "curr2_Name": "SSB_RSSD32 P3V3 Output Current",
+            "in0_Name": "SSB_RSSD32 P12V Output Voltage",
+            "in1_Name": "SSB_RSSD32 P3V3 Output Voltage"
+        },
+        {
+            "Address": "0x3a",
+            "Bus": "204",
+            "Labels": [
+                "in0",
+                "in1",
+                "curr1",
+                "curr2"
+            ],
+            "Name": "SSB_RSSD31",
+            "PollRate": 5.0,
+            "PowerState": "Always",
+            "Type": "MAX5970",
+            "curr1_Name": "SSB_RSSD31 P12V Output Current",
+            "curr2_Name": "SSB_RSSD31 P3V3 Output Current",
+            "in0_Name": "SSB_RSSD31 P12V Output Voltage",
+            "in1_Name": "SSB_RSSD31 P3V3 Output Voltage"
+        },
+        {
+            "Address": "0x3a",
+            "Bus": "205",
+            "Labels": [
+                "in0",
+                "in1",
+                "curr1",
+                "curr2"
+            ],
+            "Name": "SSB_RSSD30",
+            "PollRate": 5.0,
+            "PowerState": "Always",
+            "Type": "MAX5970",
+            "curr1_Name": "SSB_RSSD30 P12V Output Current",
+            "curr2_Name": "SSB_RSSD30 P3V3 Output Current",
+            "in0_Name": "SSB_RSSD30 P12V Output Voltage",
+            "in1_Name": "SSB_RSSD30 P3V3 Output Voltage"
+        },
+        {
+            "Address": "0x3a",
+            "Bus": "206",
+            "Labels": [
+                "in0",
+                "in1",
+                "curr1",
+                "curr2"
+            ],
+            "Name": "SSB_RSSD29",
+            "PollRate": 5.0,
+            "PowerState": "Always",
+            "Type": "MAX5970",
+            "curr1_Name": "SSB_RSSD29 P12V Output Current",
+            "curr2_Name": "SSB_RSSD29 P3V3 Output Current",
+            "in0_Name": "SSB_RSSD29 P12V Output Voltage",
+            "in1_Name": "SSB_RSSD29 P3V3 Output Voltage"
+        },
+        {
+            "Address": "0x3a",
+            "Bus": "207",
+            "Labels": [
+                "in0",
+                "in1",
+                "curr1",
+                "curr2"
+            ],
+            "Name": "SSB_RSSD28",
+            "PollRate": 5.0,
+            "PowerState": "Always",
+            "Type": "MAX5970",
+            "curr1_Name": "SSB_RSSD28 P12V Output Current",
+            "curr2_Name": "SSB_RSSD28 P3V3 Output Current",
+            "in0_Name": "SSB_RSSD28 P12V Output Voltage",
+            "in1_Name": "SSB_RSSD28 P3V3 Output Voltage"
+        },
+        {
             "Address": "0x58",
             "Bus": "98",
             "Labels": [
