@@ -1986,6 +1986,32 @@
             ]
         },
         {
+            "Class": "temp",
+            "FFGainCoefficient": 0,
+            "FFOffCoefficient": 0,
+            "ICoefficient": -4.6,
+            "ILimitMax": 32000,
+            "ILimitMin": 2500,
+            "Inputs": [
+                "M2 SSD1 Temperature",
+                "M2 SSD2 Temperature"
+            ],
+            "Name": "M2 SSD Temperature",
+            "NegativeHysteresis": 0,
+            "OutLimitMax": 32000,
+            "OutLimitMin": 2500,
+            "Outputs": [],
+            "PCoefficient": -536,
+            "PositiveHysteresis": 0,
+            "SetPoint": 80,
+            "SlewNeg": 0,
+            "SlewPos": 0,
+            "Type": "Pid",
+            "Zones": [
+                "PSU"
+            ]
+        },
+        {
             "FailSafePercent": 100,
             "MinThermalOutput": 2500,
             "Name": "PSU",
