@@ -1,0 +1,20 @@
+{
+    "Exposes": [
+        {
+            "Address": "0x6a",
+            "Bus": "50",
+            "Name": "M2 SSD1 Temperature",
+            "Type": "NVME1000"
+        },
+        {
+            "Address": "0x6a",
+            "Bus": "52",
+            "Name": "M2 SSD2 Temperature",
+            "Type": "NVME1000"
+        }
+    ],
+    "Name": "SBP1 NVMe",
+    "Probe": "xyz.openbmc_project.FruDevice({'BOARD_PRODUCT_NAME': '.*SBP1'})",
+    "ProductId": 0,
+    "Type": "NVMe"
+}
