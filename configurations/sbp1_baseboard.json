@@ -330,6 +330,48 @@
             ],
             "Type": "ADC"
         },
+	{
+            "BridgeGpio": [
+                {
+                    "Name": "RTC_BATT_TEST",
+                    "Polarity": "High",
+                    "SetupTime": 0.125
+                }
+            ],
+            "Index": 10,
+            "MaxValue": 3.57,
+            "MinValue": 0,
+            "Name": "VBAT_RTC",
+            "PollRate": 86400,
+            "ScaleFactor": 1.0,
+            "Thresholds": [
+                {
+                    "Direction": "greater than",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 3.556
+                },
+                {
+                    "Direction": "greater than",
+                    "Name": "upper non critical",
+                    "Severity": 0,
+                    "Value": 3.458
+                },
+                {
+                    "Direction": "less than",
+                    "Name": "lower critical",
+                    "Severity": 1,
+                    "Value": 2.212
+                },
+                {
+                    "Direction": "less than",
+                    "Name": "lower non critical",
+                    "Severity": 0,
+                    "Value": 2.31
+                }
+            ],
+            "Type": "ADC"
+        },
         {
             "Address": "0x40",
             "Bus": "58",
