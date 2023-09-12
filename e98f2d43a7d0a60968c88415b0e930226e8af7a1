@@ -48,6 +48,30 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "18a85367_feb8b358",
+        "filename": "configurations/yosemite4_fanboard_0.json",
+        "patchSetId": 2
+      },
+      "lineNbr": 438,
+      "author": {
+        "id": 1001618
+      },
+      "writtenOn": "2023-09-12T06:43:19Z",
+      "side": 1,
+      "message": "Combined the two json into one.",
+      "parentUuid": "9a77444c_363be5f2",
+      "range": {
+        "startLine": 438,
+        "startChar": 8,
+        "endLine": 438,
+        "endChar": 53
+      },
+      "revId": "e98f2d43a7d0a60968c88415b0e930226e8af7a1",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "fb16e2ea_3bfd3f14",
@@ -61,6 +85,30 @@
       "writtenOn": "2023-09-06T17:44:36Z",
       "side": 1,
       "message": "I\u0027ve never used this, what does the MATCH_ONE do here?",
+      "range": {
+        "startLine": 443,
+        "startChar": 7,
+        "endLine": 443,
+        "endChar": 18
+      },
+      "revId": "e98f2d43a7d0a60968c88415b0e930226e8af7a1",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "1053a3b7_5f48504f",
+        "filename": "configurations/yosemite4_fanboard_0.json",
+        "patchSetId": 2
+      },
+      "lineNbr": 443,
+      "author": {
+        "id": 1001618
+      },
+      "writtenOn": "2023-09-12T06:43:19Z",
+      "side": 1,
+      "message": "If EntityManager found more than one device with same probe condition that contain \"MATCH_ONE\", it would only probe the last device.",
+      "parentUuid": "fb16e2ea_3bfd3f14",
       "range": {
         "startLine": 443,
         "startChar": 7,
