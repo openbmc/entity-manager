@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "129e50b0_7fea3825",
+        "filename": "configurations/sbp1_baseboard.json",
+        "patchSetId": 1
+      },
+      "lineNbr": 3435,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2023-09-19T19:23:17Z",
+      "side": 1,
+      "message": "THis needs their own file.  An NVMe drive isn\u0027t physically on the motherboard, it is its own component.  You can use a FOUND() probe to ensure that it\u0027s always installed, but if it\u0027s physically separable, it needs to go in its own file.",
+      "range": {
+        "startLine": 3424,
+        "startChar": 0,
+        "endLine": 3435,
+        "endChar": 10
+      },
+      "revId": "25069700ef079a43722d5bd2ef84ee32d9b59582",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    }
+  ]
+}
