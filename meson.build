@@ -121,6 +121,7 @@ configs = [
     'intel_front_panel.json',
     'kudo_bmc.json',
     'kudo_motherboard.json',
+    'micron_7450.json',
     'mori_bmc.json',
     'mori_motherboard.json',
     'mtjade.json',

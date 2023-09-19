@@ -1,0 +1,28 @@
+{
+    "Bus": "$bus",
+    "Exposes": [
+        {
+            "Address": "$address",
+            "Bus": "$bus",
+            "Name": "NVMe $index FRU",
+            "Type": "EEPROM"
+        },
+        {
+            "Address": "0x6a",
+            "Bus": "$bus",
+            "Name": "NVMe $index Temp",
+            "Type": "NVME1000"
+        }
+    ],
+    "Logging": "Off",
+    "Name": "NVMe $index",
+    "Probe": "xyz.openbmc_project.FruDevice({'PRODUCT_PART_NUMBER': '^Micron_7450_.*'})",
+    "Type": "NVMe",
+    "xyz.openbmc_project.Inventory.Decorator.Asset": {
+        "Manufacturer": "$PRODUCT_MANUFACTURER",
+        "Model": "7450",
+        "PartNumber": "$PRODUCT_PART_NUMBER",
+        "SerialNumber": "$PRODUCT_SERIAL_NUMBER"
+    },
+    "xyz.openbmc_project.Inventory.Item.Chassis": {}
+}
