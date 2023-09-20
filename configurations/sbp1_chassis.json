@@ -1697,6 +1697,32 @@
             "ILimitMax": 18000,
             "ILimitMin": 2500,
             "Inputs": [
+                "NIC1 Temperature",
+                "NIC2 Temperature"
+            ],
+            "Name": "NIC Temperature",
+            "NegativeHysteresis": 0,
+            "OutLimitMax": 18000,
+            "OutLimitMin": 2500,
+            "Outputs": [],
+            "PCoefficient": -500,
+            "PositiveHysteresis": 0,
+            "SetPoint": 85,
+            "SlewNeg": 0,
+            "SlewPos": 0,
+            "Type": "Pid",
+            "Zones": [
+                "PSU"
+            ]
+        },
+        {
+            "Class": "temp",
+            "FFGainCoefficient": 0,
+            "FFOffCoefficient": 0,
+            "ICoefficient": -5,
+            "ILimitMax": 18000,
+            "ILimitMin": 2500,
+            "Inputs": [
                 "DIMM_A1_CPU1",
                 "DIMM_A2_CPU1",
                 "DIMM_B1_CPU1",
