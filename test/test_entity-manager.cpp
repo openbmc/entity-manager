@@ -267,6 +267,15 @@ TEST(MatchProbe, stringRegexError)
     EXPECT_FALSE(matchProbe(j, v));
 }
 
+TEST(MatchProbe, stringRegexNotPrefix)
+{
+    nlohmann::json j = R"("foo(?!bar)...foo")"_json;
+    DBusValueVariant v1 = "foobarfoo"s;
+    DBusValueVariant v2 = "foofoofoo"s;
+    EXPECT_FALSE(matchProbe(j, v1));
+    EXPECT_TRUE(matchProbe(j, v2));
+}
+
 TEST(MatchProbe, stringZeroNeqFalse)
 {
     nlohmann::json j = R"("0")"_json;
