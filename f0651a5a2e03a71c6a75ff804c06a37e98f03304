@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4fde0d08_7d1772c9",
+        "filename": "configurations/hpe_dl385g11_baseboard.json",
+        "patchSetId": 5
+      },
+      "lineNbr": 149,
+      "author": {
+        "id": 1001354
+      },
+      "writtenOn": "2023-09-22T19:02:17Z",
+      "side": 1,
+      "message": "The \u0027uBootHWid\u0027 interface name used here is still up for debate @ https://gerrit.openbmc.org/c/openbmc/docs/+/65678\n\nthe namespace and interface name may change in the future depending on how the discussion there goes, but this name is being used in internal test code.\n\nIf we want to hold off on releasing a ,JSON config that relies on an interface that isn\u0027t defined yet, we can just +1 this review if it looks good to everyone, then return to it once the HW detection interface stuff is settled out.",
+      "revId": "f0651a5a2e03a71c6a75ff804c06a37e98f03304",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    }
+  ]
+}
