@@ -65,6 +65,62 @@
             "Bus": 12,
             "Name": "MGNT_TEMP_C",
             "Type": "TMP75"
+        },
+        {
+            "Address": "0x20",
+            "Bus": 0,
+            "EndpointIds": [10, 11 ,12 ,13, 14, 15],
+            "Name": "MCTP_BRIDGE_1",
+            "Type": "MctpDevice"
+        },
+        {
+            "Address": "0x20",
+            "Bus": 1,
+            "EndpointIds": [20, 21 ,22 ,23, 24, 25],
+            "Name": "MCTP_BRIDGE_2",
+            "Type": "MctpDevice"
+        },
+        {
+            "Address": "0x20",
+            "Bus": 2,
+            "EndpointIds": [30, 31 ,32 ,33, 34, 35],
+            "Name": "MCTP_BRIDGE_3",
+            "Type": "MctpDevice"
+        },
+        {
+            "Address": "0x20",
+            "Bus": 3,
+            "EndpointIds": [40, 41 ,42 ,43, 44, 45],
+            "Name": "MCTP_BRIDGE_4",
+            "Type": "MctpDevice"
+        },
+        {
+            "Address": "0x20",
+            "Bus": 4,
+            "EndpointIds": [50, 51 ,52 ,53, 54, 55],
+            "Name": "MCTP_BRIDGE_5",
+            "Type": "MctpDevice"
+        },
+        {
+            "Address": "0x20",
+            "Bus": 5,
+            "EndpointIds": [60, 61 ,62 ,63, 64, 65],
+            "Name": "MCTP_BRIDGE_6",
+            "Type": "MctpDevice"
+        },
+        {
+            "Address": "0x20",
+            "Bus": 6,
+            "EndpointIds": [70, 71 ,72 ,73, 74, 75],
+            "Name": "MCTP_BRIDGE_7",
+            "Type": "MctpDevice"
+        },
+        {
+            "Address": "0x20",
+            "Bus": 7,
+            "EndpointIds": [80, 81 ,82 ,83, 84, 85],
+            "Name": "MCTP_BRIDGE_8",
+            "Type": "MctpDevice"
         }
     ],
     "Name": "Yosemite 4 Management Board",
