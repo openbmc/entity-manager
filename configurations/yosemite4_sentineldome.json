@@ -1,5 +1,13 @@
 {
-    "Exposes": [],
+    "Exposes": [
+        {
+            "Address": "0x20",
+            "Bus": "$bus % 16",
+            "EndpointId": "$bus % 15 * 10",
+            "Name": "BIC",
+            "Type": "MCTPEndpoint"
+        }
+    ],
     "Name": "Yosemite 4 Sentinel Dome Slot $bus % 15",
     "Probe": "xyz.openbmc_project.FruDevice({'BOARD_PRODUCT_NAME': 'Sentinel Dome', 'PRODUCT_PRODUCT_NAME': 'Yosemite V4'})",
     "Type": "Board",
