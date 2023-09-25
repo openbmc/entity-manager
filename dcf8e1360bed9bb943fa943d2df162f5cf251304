@@ -24,6 +24,30 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "d296c966_24cdc083",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 10
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 1001422
+      },
+      "writtenOn": "2023-09-25T10:14:35Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "a78f44f3_2dbb2c94",
+      "range": {
+        "startLine": 9,
+        "startChar": 0,
+        "endLine": 9,
+        "endChar": 53
+      },
+      "revId": "dcf8e1360bed9bb943fa943d2df162f5cf251304",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "1b30dea8_e3d618c9",
@@ -37,6 +61,30 @@
       "writtenOn": "2023-09-21T22:44:51Z",
       "side": 1,
       "message": "In principle this is reasonable. In practice, what is the use case, hot-pluggable items?",
+      "range": {
+        "startLine": 12,
+        "startChar": 1,
+        "endLine": 13,
+        "endChar": 11
+      },
+      "revId": "dcf8e1360bed9bb943fa943d2df162f5cf251304",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "bdf8cc38_98f39cc3",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 10
+      },
+      "lineNbr": 13,
+      "author": {
+        "id": 1001422
+      },
+      "writtenOn": "2023-09-25T10:14:35Z",
+      "side": 1,
+      "message": "Not only hot-pluggable items, but pluggable items.\n\nWhen any FRU device (that does not have a IPMI compatible FRU EERPROM) is replaced when the host is off the drivers will still hold the cached information.\nFor EEPROM like devices, as the driver isn\u0027t unloaded, it will keep advertising the cached information to userspace.",
+      "parentUuid": "1b30dea8_e3d618c9",
       "range": {
         "startLine": 12,
         "startChar": 1,
@@ -72,6 +120,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "d8f572ea_e9f93c39",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 10
+      },
+      "lineNbr": 14,
+      "author": {
+        "id": 1001422
+      },
+      "writtenOn": "2023-09-25T10:14:35Z",
+      "side": 1,
+      "message": "Using drivers on top of hardware that has been removed or have been powered off doesn\u0027t seem to be a good alternative.",
+      "parentUuid": "81fc9662_b940567e",
+      "range": {
+        "startLine": 13,
+        "startChar": 12,
+        "endLine": 14,
+        "endChar": 56
+      },
+      "revId": "dcf8e1360bed9bb943fa943d2df162f5cf251304",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "89923639_12dc6747",
         "filename": "src/overlay.cpp",
         "patchSetId": 10
@@ -83,6 +155,30 @@
       "writtenOn": "2023-09-21T22:44:51Z",
       "side": 1,
       "message": "This is almost identical to block 291-295, then can be combined\nlinkOrUnlinkMux(name, *bus, *address, *channels, expose);",
+      "range": {
+        "startLine": 299,
+        "startChar": 0,
+        "endLine": 302,
+        "endChar": 9
+      },
+      "revId": "dcf8e1360bed9bb943fa943d2df162f5cf251304",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "d2d3847d_1667477e",
+        "filename": "src/overlay.cpp",
+        "patchSetId": 10
+      },
+      "lineNbr": 302,
+      "author": {
+        "id": 1001422
+      },
+      "writtenOn": "2023-09-25T10:14:35Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "89923639_12dc6747",
       "range": {
         "startLine": 299,
         "startChar": 0,
