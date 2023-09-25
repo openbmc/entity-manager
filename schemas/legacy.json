@@ -69,6 +69,12 @@
                 "EntityInstance": {
                     "$ref": "#/definitions/Types/EntityInstance"
                 },
+                "EndpointIds": {
+                    "$ref": "#/definitions/Types/EndpointIds"
+                },
+                "EndpointNames": {
+                    "$ref": "#/definitions/Types/EndpointNames"
+                },
                 "FaultIndex": {
                     "$ref": "#/definitions/Types/FaultIndex"
                 },
@@ -568,6 +574,18 @@
             },
             "EntityInstance": {
                 "type": "number"
+            },
+            "EndpointIds": {
+                "items": {
+                    "type": "number"
+                },
+                "type": "array"
+            },
+            "EndpointNames": {
+                "items": {
+                    "type": "string"
+                },
+                "type": "array"
             },
             "FaultIndex": {
                 "type": "number"
