@@ -16,6 +16,24 @@
       "message": "Can you add in here what (redfish?) code is going to look at this?\n\nThings are going to get interesting, because we (IBM) are going to only need the location code interface on the upstream connector/slot. For example we\u0027ll need to associate a slot with its fault LED right next to the connector and be able to light it based on the location code even if the slot is empty, like for a missing DIMM that should be present.\n\n(Our location codes are also hierarchical, and built up as segments based on the plugging, so eventually I\u0027ll need to add in code here to handle that as well.)",
       "revId": "2c8ac414981deae20141c993b0414f049f3afd08",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5a882bf6_b0ccd7fb",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 4
+      },
+      "lineNbr": 11,
+      "author": {
+        "id": 1000885
+      },
+      "writtenOn": "2023-09-29T20:24:27Z",
+      "side": 1,
+      "message": "It will used by something like\n- https://gerrit.openbmc.org/c/openbmc/bmcweb/+/50016\n- https://gerrit.openbmc.org/c/openbmc/bmcweb/+/51879\n\nIn our usecase, the device itself will have the LocationCode directly. It won\u0027t look at the upstream connector for it. That is don\u0027t because there can be multiple devices connect to the same slot, so this way we can uniquely identify the downstream ports instead of all of them having the upstream ports\u0027 location.",
+      "parentUuid": "05f2eca7_7c47d0bd",
+      "revId": "2c8ac414981deae20141c993b0414f049f3afd08",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }
