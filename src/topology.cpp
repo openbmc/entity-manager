@@ -1,6 +1,7 @@
 #include "topology.hpp"
 
 #include <iostream>
+#include <optional>
 
 void Topology::addBoard(const std::string& path, const std::string& boardType,
                         const std::string& boardName,
@@ -34,6 +35,13 @@ void Topology::addBoard(const std::string& path, const std::string& boardType,
     {
         upstreamPorts[exposesType].emplace_back(path);
         boardTypes[path] = boardType;
+
+        auto findLocationCode = exposesItem.find("Label");
+        if (findLocationCode != exposesItem.end())
+        {
+            locationCodes[exposesType][path] =
+                findLocationCode->get<std::string>();
+        }
     }
 }
 
@@ -65,6 +73,53 @@ std::unordered_map<std::string, std::vector<Association>>
                     {
                         result[downstream].emplace_back("contained_by",
                                                         "containing", upstream);
+                    }
+                }
+            }
+        }
+    }
+
+    return result;
+}
+
+std::unordered_map<std::string, std::optional<std::string>>
+    Topology::getLocationCodes(const std::map<std::string, std::string>& boards)
+{
+    std::unordered_map<std::string, std::optional<std::string>> result;
+
+    // look at each upstream port type
+    for (const auto& upstreamPortPair : upstreamPorts)
+    {
+        auto downstreamMatch = downstreamPorts.find(upstreamPortPair.first);
+
+        if (downstreamMatch == downstreamPorts.end())
+        {
+            // no match
+            continue;
+        }
+        auto locationCodeMatch = locationCodes.find(upstreamPortPair.first);
+        if (locationCodeMatch == locationCodes.end())
+        {
+            // no match
+            continue;
+        }
+
+        for (const Path& upstream : upstreamPortPair.second)
+        {
+            if (boardTypes[upstream] == "Chassis" ||
+                boardTypes[upstream] == "Board")
+            {
+                for (const Path& downstream : downstreamMatch->second)
+                {
+                    // The downstream path must be one we care about.
+                    if (boards.find(downstream) != boards.end())
+                    {
+                        auto findLocationCode =
+                            locationCodeMatch->second.find(upstream);
+                        if (findLocationCode != locationCodeMatch->second.end())
+                        {
+                            result[downstream] = findLocationCode->second;
+                        }
                     }
                 }
             }
