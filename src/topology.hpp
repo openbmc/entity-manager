@@ -2,7 +2,9 @@
 
 #include <nlohmann/json.hpp>
 
+#include <optional>
 #include <set>
+#include <string>
 #include <unordered_map>
 
 using Association = std::tuple<std::string, std::string, std::string>;
@@ -17,16 +19,23 @@ class Topology
                   const nlohmann::json& exposesItem);
     std::unordered_map<std::string, std::vector<Association>>
         getAssocs(const std::map<std::string, std::string>& boards);
+
+    std::unordered_map<std::string, std::optional<std::string>>
+        getLocationCodes(const std::map<std::string, std::string>& boards);
+
     void remove(const std::string& boardName);
 
   private:
     using Path = std::string;
     using BoardType = std::string;
+    using LocationCode = std::string;
     using BoardName = std::string;
     using PortType = std::string;
 
     std::unordered_map<PortType, std::vector<Path>> upstreamPorts;
     std::unordered_map<PortType, std::vector<Path>> downstreamPorts;
     std::unordered_map<Path, BoardType> boardTypes;
+    std::unordered_map<PortType, std::unordered_map<Path, LocationCode>>
+        locationCodes;
     std::unordered_map<BoardName, Path> boardNames;
 };
