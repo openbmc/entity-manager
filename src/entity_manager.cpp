@@ -43,6 +43,7 @@
 #include <functional>
 #include <iostream>
 #include <map>
+#include <optional>
 #include <regex>
 #include <variant>
 constexpr const char* hostConfigurationDirectory = SYSCONF_DIR "configurations";
@@ -804,6 +805,23 @@ void postToDbus(const nlohmann::json& newConfiguration,
 
         ifacePtr->register_property("Associations", assocPropValue);
         ifacePtr->initialize();
+    }
+
+    for (const auto& [locationPath, locationPathValue] :
+         topology.getLocationCodes(newBoards))
+    {
+        auto findBoard = newBoards.find(locationPath);
+        if (findBoard == newBoards.end() || locationPathValue == std::nullopt)
+        {
+            continue;
+        }
+
+        auto locIntf = createInterface(
+            objServer, locationPath,
+            "xyz.openbmc_project.Inventory.Decorator.LocationCode",
+            findBoard->second);
+        locIntf->register_property("LocationCode", locationPathValue.value());
+        locIntf->initialize();
     }
 }
 
