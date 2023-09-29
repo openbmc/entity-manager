@@ -144,6 +144,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "40f32a7f_70f2045b",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 10
+      },
+      "lineNbr": 14,
+      "author": {
+        "id": 1000559
+      },
+      "writtenOn": "2023-09-29T22:23:13Z",
+      "side": 1,
+      "message": "Not disagree with this. But it has been the way the code is running. My concern is that this would break some services that are not designed to handle drives gets unloaded unexpectedly. In reality i don\u0027t how we can identify these, if any, services need to be fixed before making this change.",
+      "parentUuid": "d8f572ea_e9f93c39",
+      "range": {
+        "startLine": 13,
+        "startChar": 12,
+        "endLine": 14,
+        "endChar": 56
+      },
+      "revId": "dcf8e1360bed9bb943fa943d2df162f5cf251304",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "89923639_12dc6747",
         "filename": "src/overlay.cpp",
         "patchSetId": 10
