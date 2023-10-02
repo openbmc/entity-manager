@@ -36,6 +36,24 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "903906ce_8fc980f6",
+        "filename": "0001-Add-mgnt-spider-medusa-board-sensors-for-Yosemite-4.patch",
+        "patchSetId": 30
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1001618
+      },
+      "writtenOn": "2023-10-02T05:31:20Z",
+      "side": 1,
+      "message": "Removed, thank you for the correction",
+      "parentUuid": "9265c32f_d99c0eb1",
+      "revId": "932c756ed24efd0092a1d0e50bf09e4f6156e423",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "5f3a3b97_b3450915",
@@ -49,6 +67,30 @@
       "writtenOn": "2023-09-28T20:44:49Z",
       "side": 1,
       "message": "are these needed?",
+      "range": {
+        "startLine": 8,
+        "startChar": 1,
+        "endLine": 31,
+        "endChar": 18
+      },
+      "revId": "932c756ed24efd0092a1d0e50bf09e4f6156e423",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "5b2e2746_b23506e9",
+        "filename": "schemas/customize_scalefactor.json",
+        "patchSetId": 30
+      },
+      "lineNbr": 31,
+      "author": {
+        "id": 1001618
+      },
+      "writtenOn": "2023-10-02T05:31:20Z",
+      "side": 1,
+      "message": "Yes, We\u0027ll use it for sensors\u0027 custmized scale factor in dbus-sensors:\nhttps://gerrit.openbmc.org/c/openbmc/dbus-sensors/+/66372",
+      "parentUuid": "5f3a3b97_b3450915",
       "range": {
         "startLine": 8,
         "startChar": 1,

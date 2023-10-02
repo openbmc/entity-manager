@@ -54,6 +54,24 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "b47d9af5_e21754c7",
+        "filename": "schemas/customize_scalefactor.json",
+        "patchSetId": 23
+      },
+      "lineNbr": 5,
+      "author": {
+        "id": 1001618
+      },
+      "writtenOn": "2023-10-02T05:31:20Z",
+      "side": 1,
+      "message": "The description has been revised, thank you for the suggestion",
+      "parentUuid": "7c0c0efd_c8bb440a",
+      "revId": "1b83d0770d465a0bc7539f929e50720fe3a1af56",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "f434bb03_14b41ab2",
@@ -115,6 +133,30 @@
       "side": 1,
       "message": "Maybe all the inx_Name can be moved into the same place as \" in1_Name\"\nI am also thinking scalefactor can be added into the same file also.",
       "parentUuid": "42b5b07f_7f6fb03e",
+      "range": {
+        "startLine": 11,
+        "startChar": 16,
+        "endLine": 13,
+        "endChar": 18
+      },
+      "revId": "1b83d0770d465a0bc7539f929e50720fe3a1af56",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "5cac8400_8c488650",
+        "filename": "schemas/customize_scalefactor.json",
+        "patchSetId": 23
+      },
+      "lineNbr": 13,
+      "author": {
+        "id": 1001618
+      },
+      "writtenOn": "2023-10-02T05:31:20Z",
+      "side": 1,
+      "message": "The reason I didn\u0027t add them in same place is that the drscription of legacy.json shows that: \"Don\u0027t add additional properties to this schema\".\n\nIt seems like be more reasonable that added into a new json conf as some former commits.",
+      "parentUuid": "d6a05601_046d0f5a",
       "range": {
         "startLine": 11,
         "startChar": 16,
