@@ -16,6 +16,24 @@
       "message": "No mention whatsoever of this schema change in the commit message.  I\u0027m guessing this needs its own commit and explanation.  dbus-sensors is a whole bunch of applications, this looks like it\u0027s just for PSUsensor, and probably should go with the other definitions for similar (vin_scale) types, not in its own file.",
       "revId": "dc9d4118cc8eae877ccb1ee0066f6fbeeca4c5e5",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "e7590d22_e9ad495d",
+        "filename": "schemas/customize_scalefactor.json",
+        "patchSetId": 28
+      },
+      "lineNbr": 5,
+      "author": {
+        "id": 1001618
+      },
+      "writtenOn": "2023-10-02T05:42:32Z",
+      "side": 1,
+      "message": "I can seperate the commit to platform json config and schema change if needed.\n\nI\u0027m confused that even these are similar to \"InScaleFactor\" or \"iout1_Scale\", the description of legacy.json didn\u0027t allow to add new properties in future development, the only way I can add addtional item is searching appropriate json which has been existed or creating a new one.",
+      "parentUuid": "9fe129a1_3ae79d24",
+      "revId": "dc9d4118cc8eae877ccb1ee0066f6fbeeca4c5e5",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }
