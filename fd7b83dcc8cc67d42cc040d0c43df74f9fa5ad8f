@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "20792b1c_97fa6773",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1000008
+      },
+      "writtenOn": "2023-10-09T14:43:17Z",
+      "side": 1,
+      "message": "There is code that made a half-hearted attempt to create the inventory.item interface on every single entity here: https://github.com/openbmc/entity-manager/blob/master/src/entity_manager.cpp#L605\n\nHowever, it doesn\u0027t add any properties to that interface, nor call initialize() to actually put it on D-Bus.  It would be pretty easy to just fix up that and then every entity gets that interface.  Frankly I\u0027m surprised that isn\u0027t actually needed by redfish code already, but I guess it isn\u0027t.\n\nSo I\u0027m not sure if it would be better to add it for everyone, or for just the people that need it like you did.",
+      "revId": "fd7b83dcc8cc67d42cc040d0c43df74f9fa5ad8f",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    }
+  ]
+}
