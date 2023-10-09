@@ -55,6 +55,15 @@
                         }
                     },
                     "Item": {
+                        "additionalProperties": false,
+                        "properties": {
+                            "Presence": {
+                                "type": "boolean"
+                            },
+                            "PrettyName": {
+                                "type": "string"
+                            }
+                        },
                         "Board": {
                             "Motherboard": {
                                 "additionalProperties": false,
@@ -78,7 +87,9 @@
                         "System": {
                             "additionalProperties": false,
                             "type": "object"
-                        }
+                        },
+                        "required": ["Presence", "PrettyName"],
+                        "type": "object"
                     }
                 }
             }
