@@ -155,6 +155,9 @@
                 },
                 "xyz.openbmc_project.Inventory.Item.System": {
                     "$ref": "openbmc-dbus.json#/definitions/xyz/openbmc_project/Inventory/Item/System"
+                },
+                "xyz.openbmc_project.Inventory.Item": {
+                    "$ref": "openbmc-dbus.json#/definitions/xyz/openbmc_project/Inventory/Item"
                 }
             },
             "required": ["Exposes", "Name", "Probe", "Type"]
