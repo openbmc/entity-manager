@@ -23,14 +23,42 @@
                         "Label": "vin2",
                         "Name": "upper critical",
                         "Severity": 1,
-                        "Value": 480.96
+                        "Value": 410
                     },
                     {
                         "Direction": "less than",
                         "Label": "vin2",
                         "Name": "lower critical",
                         "Severity": 1,
-                        "Value": 260
+                        "Value": 370
+                    },
+                    {
+                        "Direction": "greater than",
+                        "Label": "vin2",
+                        "Name": "upper non critical",
+                        "Severity": 0,
+                        "Value": 395
+                    },
+                    {
+                        "Direction": "less than",
+                        "Label": "vin2",
+                        "Name": "lower non critical",
+                        "Severity": 0,
+                        "Value": 385
+                    },
+                    {
+                        "Direction": "greater than",
+                        "Label": "iin2",
+                        "Name": "upper critical",
+                        "Severity": 1,
+                        "Value": 5.5
+                    },
+                    {
+                        "Direction": "greater than",
+                        "Label": "iin2",
+                        "Name": "upper non critical",
+                        "Severity": 0,
+                        "Value": 5
                     },
                     {
                         "Direction": "greater than",
@@ -45,6 +73,34 @@
                         "Name": "upper critical",
                         "Severity": 1,
                         "Value": 68
+                    },
+                    {
+                        "Direction": "greater than",
+                        "Label": "vout2",
+                        "Name": "upper critical",
+                        "Severity": 1,
+                        "Value": 12.8
+                    },
+                    {
+                        "Direction": "less than",
+                        "Label": "vout2",
+                        "Name": "lower critical",
+                        "Severity": 1,
+                        "Value": 11.08
+                    },
+                    {
+                        "Direction": "greater than",
+                        "Label": "vout2",
+                        "Name": "upper non critical",
+                        "Severity": 0,
+                        "Value": 12.33
+                    },
+                    {
+                        "Direction": "less than",
+                        "Label": "vout2",
+                        "Name": "lower non critical",
+                        "Severity": 0,
+                        "Value": 11.68
                     }
                 ],
                 "Type": "PLI1209BC"
@@ -82,21 +138,49 @@
                 "Name": "BCM1_TEMP",
                 "Name1": "BCM1",
                 "PollRate": 5.0,
-                "PowerState": "Always",
+                "PowerState": "On",
                 "Thresholds": [
                     {
                         "Direction": "greater than",
                         "Label": "vin2",
                         "Name": "upper critical",
                         "Severity": 1,
-                        "Value": 480.96
+                        "Value": 410
                     },
                     {
                         "Direction": "less than",
                         "Label": "vin2",
                         "Name": "lower critical",
                         "Severity": 1,
-                        "Value": 260
+                        "Value": 370
+                    },
+                    {
+                        "Direction": "greater than",
+                        "Label": "vin2",
+                        "Name": "upper non critical",
+                        "Severity": 0,
+                        "Value": 395
+                    },
+                    {
+                        "Direction": "less than",
+                        "Label": "vin2",
+                        "Name": "lower non critical",
+                        "Severity": 0,
+                        "Value": 385
+                    },
+                    {
+                        "Direction": "greater than",
+                        "Label": "iin2",
+                        "Name": "upper critical",
+                        "Severity": 1,
+                        "Value": 5.5
+                    },
+                    {
+                        "Direction": "greater than",
+                        "Label": "iin2",
+                        "Name": "upper non critical",
+                        "Severity": 0,
+                        "Value": 5
                     },
                     {
                         "Direction": "greater than",
@@ -111,6 +195,34 @@
                         "Name": "upper critical",
                         "Severity": 1,
                         "Value": 68
+                    },
+                    {
+                        "Direction": "greater than",
+                        "Label": "vout2",
+                        "Name": "upper critical",
+                        "Severity": 1,
+                        "Value": 12.8
+                    },
+                    {
+                        "Direction": "less than",
+                        "Label": "vout2",
+                        "Name": "lower critical",
+                        "Severity": 1,
+                        "Value": 11.08
+                    },
+                    {
+                        "Direction": "greater than",
+                        "Label": "vout2",
+                        "Name": "upper non critical",
+                        "Severity": 0,
+                        "Value": 12.33
+                    },
+                    {
+                        "Direction": "less than",
+                        "Label": "vout2",
+                        "Name": "lower non critical",
+                        "Severity": 0,
+                        "Value": 11.68
                     }
                 ],
                 "Type": "PLI1209BC"
@@ -148,21 +260,49 @@
                 "Name": "BCM2_TEMP",
                 "Name1": "BCM2",
                 "PollRate": 5.0,
-                "PowerState": "Always",
+                "PowerState": "On",
                 "Thresholds": [
                     {
                         "Direction": "greater than",
                         "Label": "vin2",
                         "Name": "upper critical",
                         "Severity": 1,
-                        "Value": 480.96
+                        "Value": 410
                     },
                     {
                         "Direction": "less than",
                         "Label": "vin2",
                         "Name": "lower critical",
                         "Severity": 1,
-                        "Value": 260
+                        "Value": 370
+                    },
+                    {
+                        "Direction": "greater than",
+                        "Label": "vin2",
+                        "Name": "upper non critical",
+                        "Severity": 0,
+                        "Value": 395
+                    },
+                    {
+                        "Direction": "less than",
+                        "Label": "vin2",
+                        "Name": "lower non critical",
+                        "Severity": 0,
+                        "Value": 385
+                    },
+                    {
+                        "Direction": "greater than",
+                        "Label": "iin2",
+                        "Name": "upper critical",
+                        "Severity": 1,
+                        "Value": 5.5
+                    },
+                    {
+                        "Direction": "greater than",
+                        "Label": "iin2",
+                        "Name": "upper non critical",
+                        "Severity": 0,
+                        "Value": 5
                     },
                     {
                         "Direction": "greater than",
@@ -177,6 +317,34 @@
                         "Name": "upper critical",
                         "Severity": 1,
                         "Value": 68
+                    },
+                    {
+                        "Direction": "greater than",
+                        "Label": "vout2",
+                        "Name": "upper critical",
+                        "Severity": 1,
+                        "Value": 12.8
+                    },
+                    {
+                        "Direction": "less than",
+                        "Label": "vout2",
+                        "Name": "lower critical",
+                        "Severity": 1,
+                        "Value": 11.08
+                    },
+                    {
+                        "Direction": "greater than",
+                        "Label": "vout2",
+                        "Name": "upper non critical",
+                        "Severity": 0,
+                        "Value": 12.33
+                    },
+                    {
+                        "Direction": "less than",
+                        "Label": "vout2",
+                        "Name": "lower non critical",
+                        "Severity": 0,
+                        "Value": 11.68
                     }
                 ],
                 "Type": "PLI1209BC"
@@ -214,21 +382,49 @@
                 "Name": "BCM3_TEMP",
                 "Name1": "BCM3",
                 "PollRate": 5.0,
-                "PowerState": "Always",
+                "PowerState": "On",
                 "Thresholds": [
                     {
                         "Direction": "greater than",
                         "Label": "vin2",
                         "Name": "upper critical",
                         "Severity": 1,
-                        "Value": 480.96
+                        "Value": 410
                     },
                     {
                         "Direction": "less than",
                         "Label": "vin2",
                         "Name": "lower critical",
                         "Severity": 1,
-                        "Value": 260
+                        "Value": 370
+                    },
+                    {
+                        "Direction": "greater than",
+                        "Label": "vin2",
+                        "Name": "upper non critical",
+                        "Severity": 0,
+                        "Value": 395
+                    },
+                    {
+                        "Direction": "less than",
+                        "Label": "vin2",
+                        "Name": "lower non critical",
+                        "Severity": 0,
+                        "Value": 385
+                    },
+                    {
+                        "Direction": "greater than",
+                        "Label": "iin2",
+                        "Name": "upper critical",
+                        "Severity": 1,
+                        "Value": 5.5
+                    },
+                    {
+                        "Direction": "greater than",
+                        "Label": "iin2",
+                        "Name": "upper non critical",
+                        "Severity": 0,
+                        "Value": 5
                     },
                     {
                         "Direction": "greater than",
@@ -243,6 +439,34 @@
                         "Name": "upper critical",
                         "Severity": 1,
                         "Value": 68
+                    },
+                    {
+                        "Direction": "greater than",
+                        "Label": "vout2",
+                        "Name": "upper critical",
+                        "Severity": 1,
+                        "Value": 12.8
+                    },
+                    {
+                        "Direction": "less than",
+                        "Label": "vout2",
+                        "Name": "lower critical",
+                        "Severity": 1,
+                        "Value": 11.08
+                    },
+                    {
+                        "Direction": "greater than",
+                        "Label": "vout2",
+                        "Name": "upper non critical",
+                        "Severity": 0,
+                        "Value": 12.33
+                    },
+                    {
+                        "Direction": "less than",
+                        "Label": "vout2",
+                        "Name": "lower non critical",
+                        "Severity": 0,
+                        "Value": 11.68
                     }
                 ],
                 "Type": "PLI1209BC"
