@@ -126,6 +126,7 @@ configs = [
     'mtjade.json',
     'mtmitchell_bmc.json',
     'mtmitchell_mb.json',
+    'mudflap.json',
     'nisqually.json',
     'nvme_p4000.json',
     'pcie_ssd_retimer.json',
