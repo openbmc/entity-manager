@@ -130,6 +130,7 @@ configs = [
     'mudflap.json',
     'nisqually.json',
     'nvme_p4000.json',
+    'nvme_p4510.json',
     'pcie_ssd_retimer.json',
     'pennybacker.json',
     'pssf132202a.json',
