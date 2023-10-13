@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0753326e_d238d959",
+        "filename": "configurations/mudflap.json",
+        "patchSetId": 2
+      },
+      "lineNbr": 24,
+      "author": {
+        "id": 1000008
+      },
+      "writtenOn": "2023-10-13T13:58:14Z",
+      "side": 1,
+      "message": "The sensor-monitor app from phosphor-fan is what looks at these shutdown thresholds.  Do you plan on using that?  If not, could just remove these, and then probably even remove this virtual sensor.",
+      "range": {
+        "startLine": 24,
+        "startChar": 29,
+        "endLine": 24,
+        "endChar": 41
+      },
+      "revId": "8f7a0c6eedba4ff33a90ee67049705af58d2f55e",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    }
+  ]
+}
