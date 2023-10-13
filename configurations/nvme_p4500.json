@@ -8,7 +8,7 @@
             "Type": "EEPROM"
         },
         {
-            "Address": "0x53",
+            "Address": "0x6a",
             "Bus": "$bus",
             "Name": "NVMe $index Temp",
             "Thresholds": [
@@ -42,7 +42,7 @@
     ],
     "Logging": "Off",
     "Name": "NVMe $index",
-    "Probe": "xyz.openbmc_project.FruDevice({'PRODUCT_PRODUCT_NAME': 'P(31|33|35|36|37|41|43|44|46|48|53|55|56|58)\\d\\d\\w?', 'PRODUCT_MANUFACTURER': '(Intel|INTEL).*'})",
+    "Probe": "xyz.openbmc_project.FruDevice({'PRODUCT_PRODUCT_NAME': 'P45\\d\\d\\w?', 'PRODUCT_MANUFACTURER': '(Intel|INTEL).*'})",
     "Type": "NVMe",
     "xyz.openbmc_project.Inventory.Decorator.Asset": {
         "Manufacturer": "$PRODUCT_MANUFACTURER",
