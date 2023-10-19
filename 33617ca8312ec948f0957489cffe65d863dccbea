@@ -73,6 +73,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "a5c13c67_f296e8ef",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 7
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1000016
+      },
+      "writtenOn": "2023-10-19T03:08:11Z",
+      "side": 1,
+      "message": "Yep, these should be tracked with the rest of the config structure.\n\nAlternatively, we could make a policy that the EM config types don\u0027t leak out to other projects (or at least those we have input on), and provide a more \"generic\" configuration mechanism for mctpd.",
+      "parentUuid": "446aec27_deec8479",
+      "revId": "33617ca8312ec948f0957489cffe65d863dccbea",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "11167bb1_f45128ae",
         "filename": "configurations/yosemite4.json",
         "patchSetId": 7
