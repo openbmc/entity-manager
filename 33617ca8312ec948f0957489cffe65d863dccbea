@@ -156,6 +156,70 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "e090fc0d_4b774404",
+        "filename": "configurations/yosemite4.json",
+        "patchSetId": 7
+      },
+      "lineNbr": 98,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2023-10-19T22:37:06Z",
+      "side": 1,
+      "message": "+1.  These look like devices that could be plugged into Yosemite, which I\u0027m guessing based on some of them being called \"CXL\" (hard to know for sure based on names).\n\nIf these are things that are physically not on the yosemite baseboard, they need put into another file, which also implies that this schema needs changed to something like:\n\n{\n   \"Type\": \"MCTPI2cDevice\"\n   \"Address\": \"\u003caddress\u003e\"\n   \"Bus\": \"\u003cbus\u003e\"\n   \"Name\": MCTP_BRIDGE2\n\n}\n\n\nThen in the file for each add in card itself, there would be\n\n{\n    \"Type\": \"MCTPEndpoint\",\n    \"Id\": 20\n}",
+      "parentUuid": "b5e43e0f_9b7bba06",
+      "range": {
+        "startLine": 77,
+        "startChar": 0,
+        "endLine": 98,
+        "endChar": 10
+      },
+      "revId": "33617ca8312ec948f0957489cffe65d863dccbea",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "661b9472_34b9bd4c",
+        "filename": "configurations/yosemite4.json",
+        "patchSetId": 7
+      },
+      "lineNbr": 108,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2023-10-19T22:37:06Z",
+      "side": 1,
+      "message": "Based on a schematic, how are these determined?  I\u0027m assuming based on them being incrementing, they really look like software-defined IDs rather than hardware defined, which would imply that they don\u0027t go into an EM config file, and would either be generated or hardcoded in the MCTP interface stack itself.\n\nIf these are BMC-wide Ids, we\u0027re going to get conflicts if we hardcode them in the config file, and someone plugs in two of the same card.",
+      "range": {
+        "startLine": 103,
+        "startChar": 0,
+        "endLine": 108,
+        "endChar": 18
+      },
+      "revId": "33617ca8312ec948f0957489cffe65d863dccbea",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "45b67abc_3e22e534",
+        "filename": "configurations/yosemite4.json",
+        "patchSetId": 7
+      },
+      "lineNbr": 119,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2023-10-19T22:37:06Z",
+      "side": 1,
+      "message": "As far as a user is concerned, does MCTP itself functionally mean anything?  I\u0027m going to guess that this actually needs to be RDEDevice, PLDMDevice, CXLDevice, or NVMeDevice dependent on what you\u0027re implementing.  MCTP as a transport would just be assumed on those types.\n\nUnless there are use cases that JUST involve MCTP?  My understanding of the protocol was that some other protocol had to ride on top.",
+      "revId": "33617ca8312ec948f0957489cffe65d863dccbea",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "0b8cb929_2de919d4",
         "filename": "schemas/legacy.json",
         "patchSetId": 7
