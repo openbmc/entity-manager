@@ -91,6 +91,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "8a9a8fcb_8a391223",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 7
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2023-10-19T22:27:02Z",
+      "side": 1,
+      "message": "\u003e @edtanous - opinions?\n\nThe problem is that EM isn\u0027t currently capable of publishing consistent schemas to dbus.  There\u0027s some variability between a field type possibly being uintX_t, double, or a string dependent on what the config file the person actually wrote and how the macro \"language\" (if you can call it that) produces the result.\n\nWe could document the \"idealized\" interfaces, but I\u0027ve been hesitant to because it would lead to people building reactors that worked on one system and quietly broke on another because of the type mismatch (I think omnisensor has this problem today).  Right now, the current state of the art is to do reactor-daemon side coercion of the parameters into the expected type.  That obviously sucks from an interface perspective, but it\u0027s what we have today.\n\nFWIW, I\u0027ve spent a little time trying to fix this in the EM code, and the problem is that EM doesn\u0027t have a direct EntityType + FieldName -\u003e dbus type conversion table anywhere.  We could add one, but we\u0027re then going to break every downstream system that\u0027s added something manufacturer specific, or gone outside the superset of configs that\u0027s in upstream.  Whether or not it\u0027s ok to break those use cases, or if there\u0027s some kind of \"fail into the old way\" that\u0027s possible is probably a discussion we could have at some point.\n\nTL; DR, I fully support anyone that want\u0027s to try to solve this, but it\u0027s a deeper problem than just not having things documented.",
+      "parentUuid": "a5c13c67_f296e8ef",
+      "revId": "33617ca8312ec948f0957489cffe65d863dccbea",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "11167bb1_f45128ae",
         "filename": "configurations/yosemite4.json",
         "patchSetId": 7
