@@ -68,11 +68,7 @@ bool probeDbus(const std::string& interfaceName,
                 std::cerr << "probeDBus: Found probe match on " << path << " "
                           << interfaceName << "\n";
             }
-            // Use emplace back when clang implements
-            // http://www.open-std.org/jtc1/sc22/wg21/docs/papers/2019/p0960r3.html
-            //
-            // https://en.cppreference.com/w/cpp/compiler_support/20
-            devices.push_back({interface, path});
+            devices.emplace_back(DBusDeviceDescriptor{interface, path});
             foundMatch = true;
         }
     }
