@@ -166,7 +166,7 @@ void setupPowerMatch(const std::shared_ptr<sdbusplus::asio::connection>& conn)
             powerStatusOn = boost::ends_with(
                 std::get<std::string>(findState->second), "Running");
         }
-        });
+    });
 
     conn->async_method_call(
         [](boost::system::error_code ec,
@@ -177,7 +177,7 @@ void setupPowerMatch(const std::shared_ptr<sdbusplus::asio::connection>& conn)
         }
         powerStatusOn = boost::ends_with(std::get<std::string>(state),
                                          "Running");
-        },
+    },
         power::busname, power::path, properties::interface, properties::get,
         power::interface, power::property);
 }

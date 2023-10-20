@@ -198,7 +198,7 @@ void addArrayToDbus(const std::string& name, const nlohmann::json& array,
                 return -1;
             }
             return 1;
-            });
+        });
     }
 }
 
@@ -231,7 +231,7 @@ void addProperty(const std::string& name, const PropertyType& value,
             return -1;
         }
         return 1;
-        });
+    });
 }
 
 void createDeleteObjectMethod(
@@ -466,7 +466,7 @@ void createAddObjectMethod(const std::string& jsonPointerPath,
             std::visit(
                 [&newJson](auto&& val) {
                 newJson = std::forward<decltype(val)>(val);
-                },
+            },
                 item.second);
         }
 
@@ -558,7 +558,7 @@ void createAddObjectMethod(const std::string& jsonPointerPath,
             jsonPointerPath + "/Exposes/" + std::to_string(lastIndex),
             interface, newData, objServer,
             sdbusplus::asio::PropertyPermission::readWrite);
-        });
+    });
     iface->initialize();
 }
 
@@ -1113,7 +1113,7 @@ void propertiesChangedCallback(nlohmann::json& systemConfiguration,
                                     count, std::ref(timer),
                                     std::ref(systemConfiguration),
                                     newConfiguration, std::ref(objServer)));
-            });
+        });
         perfScan->run();
     });
 }
@@ -1263,7 +1263,7 @@ int main()
         }
 
         propertiesChangedCallback(systemConfiguration, objServer);
-        });
+    });
     // We also need a poke from DBus when new interfaces are created or
     // destroyed.
     sdbusplus::bus::match_t interfacesAddedMatch(
@@ -1274,7 +1274,7 @@ int main()
         {
             propertiesChangedCallback(systemConfiguration, objServer);
         }
-        });
+    });
     sdbusplus::bus::match_t interfacesRemovedMatch(
         static_cast<sdbusplus::bus_t&>(*systemBus),
         sdbusplus::bus::match::rules::interfacesRemoved(),
@@ -1283,7 +1283,7 @@ int main()
         {
             propertiesChangedCallback(systemConfiguration, objServer);
         }
-        });
+    });
 
     boost::asio::post(io, [&]() {
         propertiesChangedCallback(systemConfiguration, objServer);

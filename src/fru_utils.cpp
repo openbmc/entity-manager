@@ -522,8 +522,9 @@ resCodes
             {
                 // Strip non null characters from the end
                 value.erase(std::find_if(value.rbegin(), value.rend(),
-                                         [](char ch) { return ch != 0; })
-                                .base(),
+                                         [](char ch) {
+                    return ch != 0;
+                }).base(),
                             value.end());
 
                 result[name] = std::move(value);
