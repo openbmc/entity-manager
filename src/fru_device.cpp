@@ -817,7 +817,7 @@ void addFruObjectToDbus(
                     }
                 }
                 return 1;
-                });
+            });
         }
         else if (!iface->register_property(key, property.second + '\0'))
         {
@@ -1026,7 +1026,7 @@ void rescanOneBus(
                                unknownBusObjectCount, powerIsOn, objServer,
                                systemBus);
         }
-        });
+    });
     scan->run();
 }
 
@@ -1079,34 +1079,34 @@ void rescanBusses(
 
         auto scan = std::make_shared<FindDevicesWithCallback>(
             i2cBuses, busmap, powerIsOn, objServer, [&]() {
-                for (auto& busIface : dbusInterfaceMap)
-                {
-                    objServer.remove_interface(busIface.second);
-                }
+            for (auto& busIface : dbusInterfaceMap)
+            {
+                objServer.remove_interface(busIface.second);
+            }
 
-                dbusInterfaceMap.clear();
-                unknownBusObjectCount = 0;
+            dbusInterfaceMap.clear();
+            unknownBusObjectCount = 0;
 
-                // todo, get this from a more sensable place
-                std::vector<uint8_t> baseboardFRU;
-                if (readBaseboardFRU(baseboardFRU))
+            // todo, get this from a more sensable place
+            std::vector<uint8_t> baseboardFRU;
+            if (readBaseboardFRU(baseboardFRU))
+            {
+                // If no device on i2c bus 0, the insertion will happen.
+                auto bus0 = busmap.try_emplace(0,
+                                               std::make_shared<DeviceMap>());
+                bus0.first->second->emplace(0, baseboardFRU);
+            }
+            for (auto& devicemap : busmap)
+            {
+                for (auto& device : *devicemap.second)
                 {
-                    // If no device on i2c bus 0, the insertion will happen.
-                    auto bus0 =
-                        busmap.try_emplace(0, std::make_shared<DeviceMap>());
-                    bus0.first->second->emplace(0, baseboardFRU);
+                    addFruObjectToDbus(device.second, dbusInterfaceMap,
+                                       devicemap.first, device.first,
+                                       unknownBusObjectCount, powerIsOn,
+                                       objServer, systemBus);
                 }
-                for (auto& devicemap : busmap)
-                {
-                    for (auto& device : *devicemap.second)
-                    {
-                        addFruObjectToDbus(device.second, dbusInterfaceMap,
-                                           devicemap.first, device.first,
-                                           unknownBusObjectCount, powerIsOn,
-                                           objServer, systemBus);
-                    }
-                }
-            });
+            }
+        });
         scan->run();
     });
 }
@@ -1387,9 +1387,8 @@ int main()
     // monitor for new i2c devices
     boost::asio::posix::stream_descriptor dirWatch(io, fd);
     std::function<void(const boost::system::error_code, std::size_t)>
-        watchI2cBusses =
-            [&](const boost::system::error_code& ec,
-                std::size_t bytesTransferred) {
+        watchI2cBusses = [&](const boost::system::error_code& ec,
+                             std::size_t bytesTransferred) {
         if (ec)
         {
             std::cout << "Callback Error " << ec << "\n";
