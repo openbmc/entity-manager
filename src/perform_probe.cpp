@@ -68,11 +68,7 @@ bool probeDbus(const std::string& interfaceName,
                 std::cerr << "probeDBus: Found probe match on " << path << " "
                           << interfaceName << "\n";
             }
-            // Use emplace back when clang implements
-            // http://www.open-std.org/jtc1/sc22/wg21/docs/papers/2019/p0960r3.html
-            //
-            // https://en.cppreference.com/w/cpp/compiler_support/20
-            devices.push_back({interface, path});
+            devices.emplace_back(interface, path);
             foundMatch = true;
         }
     }
@@ -200,13 +196,9 @@ bool probe(const std::vector<std::string>& probeCommand,
     // probe passed, but empty device
     if (ret && foundDevs.empty())
     {
-        // Use emplace back when clang implements
-        // http://www.open-std.org/jtc1/sc22/wg21/docs/papers/2019/p0960r3.html
-        //
-        // https://en.cppreference.com/w/cpp/compiler_support/20
-        foundDevs.push_back(
-            {boost::container::flat_map<std::string, DBusValueVariant>{},
-             std::string{}});
+        foundDevs.emplace_back(
+            boost::container::flat_map<std::string, DBusValueVariant>{},
+            std::string{});
     }
     if (matchOne && ret)
     {
