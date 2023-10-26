@@ -423,7 +423,15 @@ void populateInterfaceFromJson(
         createDeleteObjectMethod(jsonPointerPath, iface, objServer,
                                  systemConfiguration);
     }
-    iface->initialize();
+    try
+    {
+        iface->initialize();
+    }
+    catch (std::exception& e)
+    {
+        std::cerr << "Unable to initialize dbus interface : " << e.what()
+                  << std::endl;
+    }
 }
 
 sdbusplus::asio::PropertyPermission getPermission(const std::string& interface)
