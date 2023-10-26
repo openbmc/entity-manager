@@ -119,6 +119,7 @@ configs = [
     'greatlakes_nic_mellanox.json',
     'ibm_tacoma_rack_controller.json',
     'intel_front_panel.json',
+    'ironhide.json',
     'kudo_bmc.json',
     'kudo_motherboard.json',
     'micron_7450.json',
