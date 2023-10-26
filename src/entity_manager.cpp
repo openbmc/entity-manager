@@ -83,6 +83,18 @@ boost::asio::io_context io;
 const std::regex illegalDbusPathRegex("[^A-Za-z0-9_.]");
 const std::regex illegalDbusMemberRegex("[^A-Za-z0-9_]");
 
+void tryIfaceInitialize(std::shared_ptr<sdbusplus::asio::dbus_interface>& iface)
+{
+    try
+    {
+        iface->initialize();
+    }
+    catch (...)
+    {
+        std::cerr << "Unable to initialize dbus interface" << std::endl;
+    }
+}
+
 FoundProbeTypeT findProbeType(const std::string& probe)
 {
     boost::container::flat_map<const char*, probe_type_codes,
@@ -423,7 +435,7 @@ void populateInterfaceFromJson(
         createDeleteObjectMethod(jsonPointerPath, iface, objServer,
                                  systemConfiguration);
     }
-    iface->initialize();
+    tryIfaceInitialize(iface);
 }
 
 sdbusplus::asio::PropertyPermission getPermission(const std::string& interface)
@@ -559,7 +571,7 @@ void createAddObjectMethod(const std::string& jsonPointerPath,
             interface, newData, objServer,
             sdbusplus::asio::PropertyPermission::readWrite);
     });
-    iface->initialize();
+    tryIfaceInitialize(iface);
 }
 
 void postToDbus(const nlohmann::json& newConfiguration,
@@ -803,7 +815,7 @@ void postToDbus(const nlohmann::json& newConfiguration,
             findBoard->second);
 
         ifacePtr->register_property("Associations", assocPropValue);
-        ifacePtr->initialize();
+        tryIfaceInitialize(ifacePtr);
     }
 }
 
@@ -1292,7 +1304,7 @@ int main()
     entityIface->register_method("ReScan", [&]() {
         propertiesChangedCallback(systemConfiguration, objServer);
     });
-    entityIface->initialize();
+    tryIfaceInitialize(entityIface);
 
     if (fwVersionIsSame())
     {
