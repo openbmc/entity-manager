@@ -1012,6 +1012,7 @@ void rescanOneBus(
             if (busIface.first.first == static_cast<size_t>(busNum))
             {
                 objServer.remove_interface(busIface.second);
+                dbusInterfaceMap.erase(busIface.first);
             }
         }
         auto found = busmap.find(busNum);
