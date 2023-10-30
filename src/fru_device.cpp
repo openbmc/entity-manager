@@ -979,12 +979,17 @@ void rescanOneBus(
     sdbusplus::asio::object_server& objServer,
     std::shared_ptr<sdbusplus::asio::connection>& systemBus)
 {
-    for (auto& [pair, interface] : foundDevices)
+    for (auto busIface = foundDevices.begin();
+             busIface != foundDevices.end();)
     {
-        if (pair.first == static_cast<size_t>(busNum))
+        if (busIface->first.first == static_cast<size_t>(busNum))
         {
-            objServer.remove_interface(interface);
-            foundDevices.erase(pair);
+            objServer.remove_interface(busIface->second);
+            busIface = foundDevices.erase(busIface);
+        }
+        else
+        {
+            busIface++;
         }
     }
 
@@ -1007,11 +1012,17 @@ void rescanOneBus(
         i2cBuses, busmap, powerIsOn, objServer,
         [busNum, &busmap, &dbusInterfaceMap, &unknownBusObjectCount, &powerIsOn,
          &objServer, &systemBus]() {
-        for (auto& busIface : dbusInterfaceMap)
+        for (auto busIface = dbusInterfaceMap.begin();
+             busIface != dbusInterfaceMap.end();)
         {
-            if (busIface.first.first == static_cast<size_t>(busNum))
+            if (busIface->first.first == static_cast<size_t>(busNum))
             {
-                objServer.remove_interface(busIface.second);
+                objServer.remove_interface(busIface->second);
+                busIface = dbusInterfaceMap.erase(busIface);
+            }
+            else
+            {
+                busIface++;
             }
         }
         auto found = busmap.find(busNum);
