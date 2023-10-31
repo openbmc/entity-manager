@@ -52,6 +52,24 @@
       "parentUuid": "a2c43032_9888e61b",
       "revId": "5a06d6ab64d2211f7ea71717c4e05bc72c8cb1af",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "127f2420_1d3e264a",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1001526
+      },
+      "writtenOn": "2023-10-31T07:36:08Z",
+      "side": 1,
+      "message": "If we use inventory.item.board, phosphor-fan-presence then does GetSubTreePaths for inventory.item.board and inventory.item.chassis interfaces and uses the file_name of the paths achieved to look for configs? That results in the sub-folder name also being the name of the board configured in Name. That wouldn\u0027t depend on PDI because we just get the file_name of the path, right?. However, I\u0027m thinking if there\u0027s any case that we might not want it that way.\n\nLet\u0027s say in IBM case, the name you configure for Rainier 4U is \"Rainier 4U Chassis\" and the sub-folder for fan configs is \"ibm,rainier-4u\" or \"ibm,rainier\".\n\nIn Ampere with platform-based fan config selection support in the future, we might have cases that we set the same string in Name for different configuration files. \nLet\u0027s say we want the same Motherboard installed on different SKUs (with different number of NVMes and backplanes etc...) to have different EntityManager config files (Motherboard_SKU1.json, Motherboard_SKU2.json,... because they have a field in FRU that separates them) but have the same Name exposed on DBus and Redfish (MotherBoard - because they don\u0027t necessarily appear with different names - this is not concrete and just optional), in this case, the two use different fan configs but phosphor-fan can\u0027t tell them apart if we use Name.\n\nAnother case is when users configure different Name(s) for different boards in EM but want them to share the same fan config set, using Name to find config causes them to hold different sub-folders with the same content.\n\nBut if we still want to use PrettyName, I think there\u0027s still a need for enabling users to configure another PrettyName other than using Name, given that it\u0027s \"Prettier\" than Name (which is suitable for a sub-folder) and there\u0027s no use of exposing another interface into an object path when it only provides the property value that is the same as the object path\u0027s name.\n\nThose are just cases I think of but might be bias. I really appreciate your feedback and hope to hear your thoughts.",
+      "parentUuid": "669ac4b3_c2f34aed",
+      "revId": "5a06d6ab64d2211f7ea71717c4e05bc72c8cb1af",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }
