@@ -1,0 +1,60 @@
+{
+    "Exposes": [
+        {
+            "Address": "0x45",
+            "Bus": 29,
+            "Labels": [
+                "in1",
+                "curr1",
+                "power1"
+            ],
+            "Name": "NIC_MEZZ",
+            "Thresholds": [
+                {
+                    "Direction": "greater than",
+                    "Label": "in1",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 13.2
+                },
+                {
+                    "Direction": "less than",
+                    "Label": "in1",
+                    "Name": "lower critical",
+                    "Severity": 1,
+                    "Value": 10.8
+                }
+            ],
+            "Type": "INA230",
+            "curr1_Name": "NIC_MEZZ_P12V_CURR_A",
+            "in1_Name": "NIC_MEZZ_P12V_VOLT_V",
+            "power1_Name": "NIC_MEZZ_P12V_PWR_W"
+        },
+        {
+            "Address": "0x1f",
+            "Bus": 1,
+            "Name": "NIC_MEZZ_REMOTE_TEMP_C",
+            "Name1": "NIC_MEZZ_TEMP_C",
+            "Thresholds": [
+                {
+                    "Direction": "less than",
+                    "Index": 2,
+                    "Name": "lower critical",
+                    "Severity": 1,
+                    "Value": 5
+                },
+                {
+                    "Direction": "greater than",
+                    "Index": 2,
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 105
+                }
+            ],
+            "Type": "TMP421"
+        }
+    ],
+    "Name": "Minerva Harma NIC",
+    "Probe": "FOUND('Minerva Harma SCM')",
+    "Type": "Board"
+}
