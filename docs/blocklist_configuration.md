@@ -1,6 +1,6 @@
-﻿# Blacklist Configuration
+﻿# Blocklist Configuration
 
-The blacklist.json in package directory can determine i2c buses and addresses
+The blocklist.json in package directory can determine i2c buses and addresses
 that should not be scanned by FruDevice. An integer blocks an entire bus from
 being scanned. A bus/addresses object can block specific addresses on the bus
 while allowing scanning others addresses on the same bus.

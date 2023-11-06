@@ -321,7 +321,7 @@ bool loadOverlays(const nlohmann::json& systemConfiguration)
             if constexpr (debug)
             {
                 std::cerr << "Device type " << type
-                          << " not found in export map whitelist\n";
+                          << " not found in export map allowlist\n";
             }
         }
     }
