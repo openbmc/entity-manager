@@ -68,7 +68,7 @@ else
     valijson = valijson.as_system('system')
 endif
 
-install_data('blacklist.json')
+install_data('blocklist.json')
 
 configs = [
     '1ux16_riser.json',
