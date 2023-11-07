@@ -81,6 +81,7 @@ configs = [
     'acbel_r1ca2122a_psu.json',
     'asrock_e3c246d4i.json',
     'asrock_romed8hm3.json',
+    'asrock_spc621d8hm3.json',
     'bletchley_baseboard.json',
     'bletchley_chassis.json',
     'bletchley_frontpanel.json',
