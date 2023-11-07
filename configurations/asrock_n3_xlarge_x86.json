@@ -1,0 +1,119 @@
+{
+    "Exposes": [
+        {
+            "BindConnector": "FAN1",
+            "Index": 0,
+            "Name": "Rear Fan 1",
+            "PowerState": "On",
+            "Thresholds": [
+                {
+                    "Direction": "less than",
+                    "Name": "lower non critical",
+                    "Severity": 0,
+                    "Value": 100
+                }
+            ],
+            "Type": "AspeedFan"
+        },
+        {
+            "BindConnector": "FAN2",
+            "Index": 2,
+            "Name": "Front Fan 1",
+            "PowerState": "On",
+            "Thresholds": [
+                {
+                    "Direction": "less than",
+                    "Name": "lower non critical",
+                    "Severity": 0,
+                    "Value": 100
+                }
+            ],
+            "Type": "AspeedFan"
+        },
+        {
+            "BindConnector": "FAN3",
+            "Index": 3,
+            "Name": "Front Fan 2",
+            "PowerState": "On",
+            "Thresholds": [
+                {
+                    "Direction": "less than",
+                    "Name": "lower non critical",
+                    "Severity": 0,
+                    "Value": 100
+                }
+            ],
+            "Type": "AspeedFan"
+        },
+        {
+            "BindConnector": "FAN4",
+            "Index": 4,
+            "Name": "Rear Fan 2",
+            "PowerState": "On",
+            "Thresholds": [
+                {
+                    "Direction": "less than",
+                    "Name": "lower non critical",
+                    "Severity": 0,
+                    "Value": 100
+                }
+            ],
+            "Type": "AspeedFan"
+        },
+        {
+            "Address": "0x40",
+            "Bus": 2,
+            "Labels": [
+                "iin",
+                "vin",
+                "vmon",
+                "vout1",
+                "pin",
+                "temp1"
+            ],
+            "Name": "12V_IPB_Regulator",
+            "Type": "LM25066"
+        },
+        {
+            "Address": "0x41",
+            "Bus": 2,
+            "Labels": [
+                "iin",
+                "vin",
+                "vmon",
+                "vout1",
+                "pin",
+                "temp1"
+            ],
+            "Name": "12VSB_Regulator",
+            "Type": "LM25066"
+        },
+        {
+            "Address": "0x4c",
+            "Bus": 6,
+            "Name": "Inlet",
+            "Name1": "Inlet_alt",
+            "Type": "W83773G"
+        },
+        {
+            "Address": "0x4c",
+            "Bus": 2,
+            "Name": "IPB",
+            "Name1": "IPB_alt",
+            "Type": "W83773G"
+        }
+    ],
+    "Name": "ASRock n3.xlarge.x86",
+    "Probe": "xyz.openbmc_project.FruDevice({'PRODUCT_PRODUCT_NAME': 'n3.x?large.x86'})",
+    "Type": "Chassis",
+    "xyz.openbmc_project.Inventory.Decorator.Asset": {
+        "Manufacturer": "$PRODUCT_MANUFACTURER",
+        "Model": "$PRODUCT_PRODUCT_NAME",
+        "PartNumber": "$PRODUCT_PART_NUMBER",
+        "SerialNumber": "$PRODUCT_SERIAL_NUMBER"
+    },
+    "xyz.openbmc_project.Inventory.Decorator.AssetTag": {
+        "AssetTag": "$PRODUCT_ASSET_TAG"
+    },
+    "xyz.openbmc_project.Inventory.Item.System": {}
+}

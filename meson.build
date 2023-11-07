@@ -80,6 +80,7 @@ configs = [
     'acbell_rica_psu.json',
     'acbel_r1ca2122a_psu.json',
     'asrock_e3c246d4i.json',
+    'asrock_n3_xlarge_x86.json',
     'asrock_romed8hm3.json',
     'asrock_spc621d8hm3.json',
     'bletchley_baseboard.json',
