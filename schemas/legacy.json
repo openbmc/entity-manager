@@ -261,6 +261,33 @@
                 "curr1_Name": {
                     "$ref": "#/definitions/Types/curr1_Name"
                 },
+                "iin1_Max": {
+                    "$ref": "#/definitions/Types/iin1_Max"
+                },
+                "iin1_Min": {
+                    "$ref": "#/definitions/Types/iin1_Min"
+                },
+                "iin1_Name": {
+                    "$ref": "#/definitions/Types/iin1_Name"
+                },
+                "iin2_Max": {
+                    "$ref": "#/definitions/Types/iin2_Max"
+                },
+                "iin2_Min": {
+                    "$ref": "#/definitions/Types/iin2_Min"
+                },
+                "iin2_Name": {
+                    "$ref": "#/definitions/Types/iin2_Name"
+                },
+                "iin3_Max": {
+                    "$ref": "#/definitions/Types/iin3_Max"
+                },
+                "iin3_Min": {
+                    "$ref": "#/definitions/Types/iin3_Min"
+                },
+                "iin3_Name": {
+                    "$ref": "#/definitions/Types/iin3_Name"
+                },
                 "iout1_Max": {
                     "$ref": "#/definitions/Types/iout1_Max"
                 },
@@ -281,6 +308,42 @@
                 },
                 "iout2_Name": {
                     "$ref": "#/definitions/Types/iout2_Name"
+                },
+                "iout3_Max": {
+                    "$ref": "#/definitions/Types/iout3_Max"
+                },
+                "iout3_Min": {
+                    "$ref": "#/definitions/Types/iout3_Min"
+                },
+                "iout3_Name": {
+                    "$ref": "#/definitions/Types/iout3_Name"
+                },
+                "pin1_Max": {
+                    "$ref": "#/definitions/Types/pin1_Max"
+                },
+                "pin1_Min": {
+                    "$ref": "#/definitions/Types/pin1_Min"
+                },
+                "pin1_Name": {
+                    "$ref": "#/definitions/Types/pin1_Name"
+                },
+                "pin2_Max": {
+                    "$ref": "#/definitions/Types/pin2_Max"
+                },
+                "pin2_Min": {
+                    "$ref": "#/definitions/Types/pin2_Min"
+                },
+                "pin2_Name": {
+                    "$ref": "#/definitions/Types/pin2_Name"
+                },
+                "pin3_Max": {
+                    "$ref": "#/definitions/Types/pin3_Max"
+                },
+                "pin3_Min": {
+                    "$ref": "#/definitions/Types/pin3_Min"
+                },
+                "pin3_Name": {
+                    "$ref": "#/definitions/Types/pin3_Name"
                 },
                 "pout1_Max": {
                     "$ref": "#/definitions/Types/pout1_Max"
@@ -314,6 +377,15 @@
                 },
                 "temp1_Name": {
                     "$ref": "#/definitions/Types/temp1_Name"
+                },
+                "temp2_Name": {
+                    "$ref": "#/definitions/Types/temp2_Name"
+                },
+                "temp3_Name": {
+                    "$ref": "#/definitions/Types/temp3_Name"
+                },
+                "temp4_Name": {
+                    "$ref": "#/definitions/Types/temp4_Name"
                 },
                 "vout1_Max": {
                     "$ref": "#/definitions/Types/vout1_Max"
@@ -819,6 +891,33 @@
             "curr1_Name": {
                 "type": "string"
             },
+            "iin1_Max": {
+                "type": "number"
+            },
+            "iin1_Min": {
+                "type": "number"
+            },
+            "iin1_Name": {
+                "type": "string"
+            },
+            "iin2_Max": {
+                "type": "number"
+            },
+            "iin2_Min": {
+                "type": "number"
+            },
+            "iin2_Name": {
+                "type": "string"
+            },
+            "iin3_Max": {
+                "type": "number"
+            },
+            "iin3_Min": {
+                "type": "number"
+            },
+            "iin3_Name": {
+                "type": "string"
+            },
             "iout1_Max": {
                 "type": "number"
             },
@@ -838,6 +937,42 @@
                 "type": "number"
             },
             "iout2_Name": {
+                "type": "string"
+            },
+            "iout3_Max": {
+                "type": "number"
+            },
+            "iout3_Min": {
+                "type": "number"
+            },
+            "iout3_Name": {
+                "type": "string"
+            },
+            "pin1_Max": {
+                "type": "number"
+            },
+            "pin1_Min": {
+                "type": "number"
+            },
+            "pin1_Name": {
+                "type": "string"
+            },
+            "pin2_Max": {
+                "type": "number"
+            },
+            "pin2_Min": {
+                "type": "number"
+            },
+            "pin2_Name": {
+                "type": "string"
+            },
+            "pin3_Max": {
+                "type": "number"
+            },
+            "pin3_Min": {
+                "type": "number"
+            },
+            "pin3_Name": {
                 "type": "string"
             },
             "pout1_Max": {
@@ -871,6 +1006,15 @@
                 "type": "string"
             },
             "temp1_Name": {
+                "type": "string"
+            },
+            "temp2_Name": {
+                "type": "string"
+            },
+            "temp3_Name": {
+                "type": "string"
+            },
+            "temp4_Name": {
                 "type": "string"
             },
             "vout1_Max": {
