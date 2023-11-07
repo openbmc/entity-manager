@@ -1,0 +1,221 @@
+{
+    "Exposes": [
+        {
+            "Address": "0x02",
+            "Bus": 7,
+            "Index": 8,
+            "Name": "Fan 1",
+            "PowerState": "On",
+            "Thresholds": [
+                {
+                    "Direction": "less than",
+                    "Name": "lower non critical",
+                    "Severity": 0,
+                    "Value": 2500
+                },
+                {
+                    "Direction": "greater than",
+                    "Name": "upper non critical",
+                    "Severity": 0,
+                    "Value": 27000
+                },
+                {
+                    "Direction": "greater than",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 28000
+                }
+            ],
+            "Type": "I2CFan"
+        },
+        {
+            "Address": "0x02",
+            "Bus": 7,
+            "Index": 10,
+            "Name": "Fan 2",
+            "PowerState": "On",
+            "Thresholds": [
+                {
+                    "Direction": "less than",
+                    "Name": "lower non critical",
+                    "Severity": 0,
+                    "Value": 2500
+                },
+                {
+                    "Direction": "greater than",
+                    "Name": "upper non critical",
+                    "Severity": 0,
+                    "Value": 27000
+                },
+                {
+                    "Direction": "greater than",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 28000
+                }
+            ],
+            "Type": "I2CFan"
+        },
+        {
+            "Address": "0x02",
+            "Bus": 7,
+            "Index": 12,
+            "Name": "Fan 3",
+            "PowerState": "On",
+            "Thresholds": [
+                {
+                    "Direction": "less than",
+                    "Name": "lower non critical",
+                    "Severity": 0,
+                    "Value": 2500
+                },
+                {
+                    "Direction": "greater than",
+                    "Name": "upper non critical",
+                    "Severity": 0,
+                    "Value": 27000
+                },
+                {
+                    "Direction": "greater than",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 28000
+                }
+            ],
+            "Type": "I2CFan"
+        },
+        {
+            "Address": "0x02",
+            "Bus": 7,
+            "Index": 14,
+            "Name": "Fan 4",
+            "PowerState": "On",
+            "Thresholds": [
+                {
+                    "Direction": "less than",
+                    "Name": "lower non critical",
+                    "Severity": 0,
+                    "Value": 2500
+                },
+                {
+                    "Direction": "greater than",
+                    "Name": "upper non critical",
+                    "Severity": 0,
+                    "Value": 27000
+                },
+                {
+                    "Direction": "greater than",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 28000
+                }
+            ],
+            "Type": "I2CFan"
+        },
+        {
+            "Address": "0x40",
+            "Bus": 7,
+            "Labels": [
+                "iin",
+                "vin",
+                "vmon",
+                "vout1",
+                "pin",
+                "temp1"
+            ],
+            "Name": "12V_IPB_Regulator",
+            "Type": "LM25066"
+        },
+        {
+            "Address": "0x41",
+            "Bus": 7,
+            "Labels": [
+                "iin",
+                "vin",
+                "vmon",
+                "vout1",
+                "pin",
+                "temp1"
+            ],
+            "Name": "12VSB_Regulator",
+            "Type": "LM25066"
+        },
+        {
+            "Address": "0x4c",
+            "Bus": 4,
+            "Name": "Inlet",
+            "Name1": "Inlet_alt",
+            "PowerState": "On",
+            "Thresholds": [
+                {
+                    "Direction": "greater than",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 65.0
+                },
+                {
+                    "Direction": "greater than",
+                    "Name": "upper non critical",
+                    "Severity": 0,
+                    "Value": 50.0
+                }
+            ],
+            "Type": "W83773G"
+        },
+        {
+            "Address": "0x4c",
+            "Bus": 21,
+            "Name": "OCP_Side",
+            "Thresholds": [
+                {
+                    "Direction": "greater than",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 104.0
+                },
+                {
+                    "Direction": "greater than",
+                    "Name": "upper non critical",
+                    "Severity": 0,
+                    "Value": 80.0
+                }
+            ],
+            "Type": "W83773G"
+        },
+        {
+            "Address": "0x4c",
+            "Bus": 7,
+            "Name": "IPB",
+            "Name1": "IPB_alt",
+            "Name2": "IPB_alt2",
+            "Thresholds": [
+                {
+                    "Direction": "greater than",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 54.0
+                },
+                {
+                    "Direction": "greater than",
+                    "Name": "upper non critical",
+                    "Severity": 0,
+                    "Value": 45.0
+                }
+            ],
+            "Type": "W83773G"
+        }
+    ],
+    "Name": "ASRock m3.small.x86",
+    "Probe": "xyz.openbmc_project.FruDevice({'PRODUCT_PRODUCT_NAME': 'm3.small.x86'})",
+    "Type": "Chassis",
+    "xyz.openbmc_project.Inventory.Decorator.Asset": {
+        "Manufacturer": "$PRODUCT_MANUFACTURER",
+        "Model": "$PRODUCT_PRODUCT_NAME",
+        "PartNumber": "$PRODUCT_PART_NUMBER",
+        "SerialNumber": "$PRODUCT_SERIAL_NUMBER"
+    },
+    "xyz.openbmc_project.Inventory.Decorator.AssetTag": {
+        "AssetTag": "$PRODUCT_ASSET_TAG"
+    },
+    "xyz.openbmc_project.Inventory.Item.System": {}
+}
