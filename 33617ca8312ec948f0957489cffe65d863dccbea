@@ -178,6 +178,30 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "63d7e76e_7b81da78",
+        "filename": "configurations/yosemite4.json",
+        "patchSetId": 7
+      },
+      "lineNbr": 98,
+      "author": {
+        "id": 1001618
+      },
+      "writtenOn": "2023-11-08T08:45:40Z",
+      "side": 1,
+      "message": "We put them into separate files.\n\nSince we have all eeproms connected to the BMC, we should be able to split these configuration into corresponding file.",
+      "parentUuid": "e090fc0d_4b774404",
+      "range": {
+        "startLine": 77,
+        "startChar": 0,
+        "endLine": 98,
+        "endChar": 10
+      },
+      "revId": "33617ca8312ec948f0957489cffe65d863dccbea",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "661b9472_34b9bd4c",
@@ -191,6 +215,30 @@
       "writtenOn": "2023-10-19T22:37:06Z",
       "side": 1,
       "message": "Based on a schematic, how are these determined?  I\u0027m assuming based on them being incrementing, they really look like software-defined IDs rather than hardware defined, which would imply that they don\u0027t go into an EM config file, and would either be generated or hardcoded in the MCTP interface stack itself.\n\nIf these are BMC-wide Ids, we\u0027re going to get conflicts if we hardcode them in the config file, and someone plugs in two of the same card.",
+      "range": {
+        "startLine": 103,
+        "startChar": 0,
+        "endLine": 108,
+        "endChar": 18
+      },
+      "revId": "33617ca8312ec948f0957489cffe65d863dccbea",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "1d21112e_d18526af",
+        "filename": "configurations/yosemite4.json",
+        "patchSetId": 7
+      },
+      "lineNbr": 108,
+      "author": {
+        "id": 1001618
+      },
+      "writtenOn": "2023-11-08T08:45:40Z",
+      "side": 1,
+      "message": "We changed this calculating by the physical bus it located.",
+      "parentUuid": "661b9472_34b9bd4c",
       "range": {
         "startLine": 103,
         "startChar": 0,
@@ -218,6 +266,24 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "e89fcab8_08391bfe",
+        "filename": "configurations/yosemite4.json",
+        "patchSetId": 7
+      },
+      "lineNbr": 119,
+      "author": {
+        "id": 1001618
+      },
+      "writtenOn": "2023-11-08T08:45:40Z",
+      "side": 1,
+      "message": "We changed it to `MCTPEndpoint`.",
+      "parentUuid": "45b67abc_3e22e534",
+      "revId": "33617ca8312ec948f0957489cffe65d863dccbea",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "0b8cb929_2de919d4",
@@ -231,6 +297,30 @@
       "writtenOn": "2023-09-28T23:47:57Z",
       "side": 1,
       "message": "Please also mention this change in commit message",
+      "range": {
+        "startLine": 578,
+        "startChar": 0,
+        "endLine": 589,
+        "endChar": 14
+      },
+      "revId": "33617ca8312ec948f0957489cffe65d863dccbea",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "b776f827_172bcb68",
+        "filename": "schemas/legacy.json",
+        "patchSetId": 7
+      },
+      "lineNbr": 589,
+      "author": {
+        "id": 1001618
+      },
+      "writtenOn": "2023-11-08T08:45:40Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "0b8cb929_2de919d4",
       "range": {
         "startLine": 578,
         "startChar": 0,
