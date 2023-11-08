@@ -12,6 +12,13 @@
             "Bus": "$bus",
             "Name": "Ambient 0 Temp",
             "Type": "TMP75"
+        },
+        {
+            "Address": "0x40",
+            "Bus": "$bus",
+            "Name": "Ambient 2 Temp",
+            "Name1": "Humidity",
+            "Type": "HDC1080"
         }
     ],
     "Name": "Mudflap Panel",
