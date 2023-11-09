@@ -65,7 +65,7 @@ constexpr size_t maxFruSize = 512;
 constexpr size_t maxEepromPageIndex = 255;
 constexpr size_t busTimeoutSeconds = 10;
 
-constexpr const char* blacklistPath = PACKAGE_DIR "blacklist.json";
+constexpr const char* blocklistPath = PACKAGE_DIR "blacklist.json";
 
 const static constexpr char* baseboardFruLocation =
     "/etc/fru/baseboard.fru.bin";
@@ -73,7 +73,7 @@ const static constexpr char* baseboardFruLocation =
 const static constexpr char* i2CDevLocation = "/dev";
 
 static boost::container::flat_map<size_t, std::optional<std::set<size_t>>>
-    busBlacklist;
+    busBlocklist;
 struct FindDevicesWithCallback;
 
 static boost::container::flat_map<
@@ -230,14 +230,15 @@ static std::optional<bool> isDevice16Bit(int file)
     return false;
 }
 
-// Issue an I2C transaction to first write to_slave_buf_len bytes,then read
-// from_slave_buf_len bytes.
+// Issue an I2C transaction to first write to_target_buf_len bytes,then read
+// from_target_buf_len bytes.
 static int i2cSmbusWriteThenRead(int file, uint16_t address,
-                                 uint8_t* toSlaveBuf, uint8_t toSlaveBufLen,
-                                 uint8_t* fromSlaveBuf, uint8_t fromSlaveBufLen)
+                                 uint8_t* toTargetBuf, uint8_t toTargetBufLen,
+                                 uint8_t* fromTargetBuf,
+                                 uint8_t fromTargetBufLen)
 {
-    if (toSlaveBuf == nullptr || toSlaveBufLen == 0 ||
-        fromSlaveBuf == nullptr || fromSlaveBufLen == 0)
+    if (toTargetBuf == nullptr || toTargetBufLen == 0 ||
+        fromTargetBuf == nullptr || fromTargetBufLen == 0)
     {
         return -1;
     }
@@ -249,12 +250,12 @@ static int i2cSmbusWriteThenRead(int file, uint16_t address,
 
     msgs[0].addr = address;
     msgs[0].flags = 0;
-    msgs[0].len = toSlaveBufLen;
-    msgs[0].buf = toSlaveBuf;
+    msgs[0].len = toTargetBufLen;
+    msgs[0].buf = toTargetBuf;
     msgs[1].addr = address;
     msgs[1].flags = I2C_M_RD;
-    msgs[1].len = fromSlaveBufLen;
-    msgs[1].buf = fromSlaveBuf;
+    msgs[1].len = fromTargetBufLen;
+    msgs[1].buf = fromTargetBuf;
 
     rdwr.msgs = msgs.data();
     rdwr.nmsgs = msgs.size();
@@ -411,8 +412,8 @@ int getBusFRUs(int file, int first, int last, int bus,
         std::set<size_t>& foundItems = fruAddresses[bus];
         foundItems.clear();
 
-        auto busFind = busBlacklist.find(bus);
-        if (busFind != busBlacklist.end())
+        auto busFind = busBlocklist.find(bus);
+        if (busFind != busBlocklist.end())
         {
             if (busFind->second != std::nullopt)
             {
@@ -428,8 +429,8 @@ int getBusFRUs(int file, int first, int last, int bus,
 
         if (rootBus >= 0)
         {
-            auto rootBusFind = busBlacklist.find(rootBus);
-            if (rootBusFind != busBlacklist.end())
+            auto rootBusFind = busBlocklist.find(rootBus);
+            if (rootBusFind != busBlocklist.end())
             {
                 if (rootBusFind->second != std::nullopt)
                 {
@@ -443,8 +444,8 @@ int getBusFRUs(int file, int first, int last, int bus,
             foundItems = fruAddresses[rootBus];
         }
 
-        constexpr int startSkipSlaveAddr = 0;
-        constexpr int endSkipSlaveAddr = 12;
+        constexpr int startSkipTargetAddr = 0;
+        constexpr int endSkipTargetAddr = 12;
 
         for (int ii = first; ii <= last; ii++)
         {
@@ -457,11 +458,11 @@ int getBusFRUs(int file, int first, int last, int bus,
                 continue;
             }
             // skipping since no device is present in this range
-            if (ii >= startSkipSlaveAddr && ii <= endSkipSlaveAddr)
+            if (ii >= startSkipTargetAddr && ii <= endSkipTargetAddr)
             {
                 continue;
             }
-            // Set slave address
+            // Set target address
             if (ioctl(file, I2C_SLAVE, ii) < 0)
             {
                 std::cerr << "device at bus " << bus << " address " << ii
@@ -554,7 +555,7 @@ int getBusFRUs(int file, int first, int last, int bus,
         std::cerr << "Error reading bus " << bus << "\n";
         if (powerIsOn)
         {
-            busBlacklist[bus] = std::nullopt;
+            busBlocklist[bus] = std::nullopt;
         }
         close(file);
         return -1;
@@ -564,21 +565,21 @@ int getBusFRUs(int file, int first, int last, int bus,
     return future.get();
 }
 
-void loadBlacklist(const char* path)
+void loadBlocklist(const char* path)
 {
-    std::ifstream blacklistStream(path);
-    if (!blacklistStream.good())
+    std::ifstream blocklistStream(path);
+    if (!blocklistStream.good())
     {
         // File is optional.
-        std::cerr << "Cannot open blacklist file.\n\n";
+        std::cerr << "Cannot open blocklist file.\n\n";
         return;
     }
 
-    nlohmann::json data = nlohmann::json::parse(blacklistStream, nullptr,
+    nlohmann::json data = nlohmann::json::parse(blocklistStream, nullptr,
                                                 false);
     if (data.is_discarded())
     {
-        std::cerr << "Illegal blacklist file detected, cannot validate JSON, "
+        std::cerr << "Illegal blocklist file detected, cannot validate JSON, "
                      "exiting\n";
         std::exit(EXIT_FAILURE);
     }
@@ -588,7 +589,7 @@ void loadBlacklist(const char* path)
     // such as specific addresses or ranges.
     if (data.type() != nlohmann::json::value_t::object)
     {
-        std::cerr << "Illegal blacklist, expected to read dictionary\n";
+        std::cerr << "Illegal blocklist, expected to read dictionary\n";
         std::exit(EXIT_FAILURE);
     }
 
@@ -600,7 +601,7 @@ void loadBlacklist(const char* path)
         if (buses.type() != nlohmann::json::value_t::array)
         {
             // Buses field present but invalid, therefore this is an error.
-            std::cerr << "Invalid contents for blacklist buses field\n";
+            std::cerr << "Invalid contents for blocklist buses field\n";
             std::exit(EXIT_FAILURE);
         }
 
@@ -620,18 +621,18 @@ void loadBlacklist(const char* path)
                     auto addresses =
                         addressData.get<std::set<std::string_view>>();
 
-                    busBlacklist[bus].emplace();
+                    busBlocklist[bus].emplace();
                     for (const auto& address : addresses)
                     {
                         size_t addressInt = 0;
                         std::from_chars(address.begin() + 2, address.end(),
                                         addressInt, 16);
-                        busBlacklist[bus]->insert(addressInt);
+                        busBlocklist[bus]->insert(addressInt);
                     }
                 }
                 else
                 {
-                    busBlacklist[busIterator.get<size_t>()] = std::nullopt;
+                    busBlocklist[busIterator.get<size_t>()] = std::nullopt;
                 }
             }
         }
@@ -657,8 +658,8 @@ static void findI2CDevices(const std::vector<fs::path>& i2cBuses,
             std::cerr << "Cannot translate " << i2cBus << " to int\n";
             continue;
         }
-        auto busFind = busBlacklist.find(bus);
-        if (busFind != busBlacklist.end())
+        auto busFind = busBlocklist.find(bus);
+        if (busFind != busBlocklist.end())
         {
             if (busFind->second == std::nullopt)
             {
@@ -666,8 +667,8 @@ static void findI2CDevices(const std::vector<fs::path>& i2cBuses,
             }
         }
         int rootBus = getRootBus(bus);
-        auto rootBusFind = busBlacklist.find(rootBus);
-        if (rootBusFind != busBlacklist.end())
+        auto rootBusFind = busBlocklist.find(rootBus);
+        if (rootBusFind != busBlocklist.end())
         {
             if (rootBusFind->second == std::nullopt)
             {
@@ -1318,8 +1319,8 @@ int main()
         return 1;
     }
 
-    // check for and load blacklist with initial buses.
-    loadBlacklist(blacklistPath);
+    // check for and load blocklist with initial buses.
+    loadBlocklist(blocklistPath);
 
     systemBus->request_name("xyz.openbmc_project.FruDevice");
 
