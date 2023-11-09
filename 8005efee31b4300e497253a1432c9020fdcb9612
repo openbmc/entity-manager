@@ -16,6 +16,29 @@
       "message": "Support for MAX5970 was merged into dbus-sensors here: https://gerrit.openbmc.org/c/openbmc/dbus-sensors/+/67549",
       "revId": "8005efee31b4300e497253a1432c9020fdcb9612",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "69a754cf_5e3e0be8",
+        "filename": "configurations/sbp1_baseboard.json",
+        "patchSetId": 6
+      },
+      "lineNbr": 1224,
+      "author": {
+        "id": 1001422
+      },
+      "writtenOn": "2023-11-09T08:44:01Z",
+      "side": 1,
+      "message": "when the x86 is powered off some of the max5970 are off (RSSD, M.2, ...), thus \"PowerState\": \"On\" should be used.\nHow to handle the case where a rulerdrive slot is empty, but the x86 is powered on?\nThe sensor would read as critical as there\u0027s no rulerdrive, and thus not power being enabled to that slot, but that\u0027s a totally fine state.",
+      "range": {
+        "startLine": 1224,
+        "startChar": 27,
+        "endLine": 1224,
+        "endChar": 33
+      },
+      "revId": "8005efee31b4300e497253a1432c9020fdcb9612",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }
