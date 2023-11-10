@@ -39,6 +39,30 @@
       },
       "revId": "8005efee31b4300e497253a1432c9020fdcb9612",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "37272551_d4fe9dfb",
+        "filename": "configurations/sbp1_baseboard.json",
+        "patchSetId": 6
+      },
+      "lineNbr": 1224,
+      "author": {
+        "id": 1001422
+      },
+      "writtenOn": "2023-11-10T12:21:37Z",
+      "side": 1,
+      "message": "Every single MAX5970 should not be part of the baseboard, but have it\u0027s own probe condition:\n```\n{\n    \"Exposes\": [\n        {\n            \"Address\": \"0x3a\",\n            \"Bus\": \"204\",\n            \"Labels\": [\n                \"in0\",\n                \"in1\",\n                \"curr1\",\n                \"curr2\"\n            ],\n            \"Name\": \"SSB_RSSD31\",\n            \"PollRate\": 5.0,\n            \"PowerState\": \"Always\",\n            \"Type\": \"MAX5970\",\n            \"curr1_Name\": \"SSB_RSSD31 P12V Output Current\",\n            \"curr2_Name\": \"SSB_RSSD31 P3V3 Output Current\",\n            \"in0_Name\": \"SSB_RSSD31 P12V Output Voltage\",\n            \"in1_Name\": \"SSB_RSSD31 P3V3 Output Voltage\"\n        }\n    ],\n    \"Name\": \"RSSD31\",\n    \"Probe\": [\n        \"xyz.openbmc_project.FruDevice({\u0027BOARD_PRODUCT_NAME\u0027: \u0027.*SBP1\u0027})\",\n        \"AND\",\n        \"xyz.openbmc_project.Inventory.Item({\u0027PrettyName\u0027: \u0027RSSD31\u0027, \u0027Present\u0027: true})\",\n        \"MATCH_ONE\"\n    ],\n    \"Type\": \"Chassis\"\n}\n```",
+      "parentUuid": "69a754cf_5e3e0be8",
+      "range": {
+        "startLine": 1224,
+        "startChar": 27,
+        "endLine": 1224,
+        "endChar": 33
+      },
+      "revId": "8005efee31b4300e497253a1432c9020fdcb9612",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }
