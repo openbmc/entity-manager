@@ -150,6 +150,7 @@ configs = [
     'sbp1_psu.json',
     'sbp1_rssd.json',
     'system1_baseboard.json',
+    'system1_chassis.json',
     'solum_pssf162202_psu.json',
     'storm_king.json',
     'stp_baseboard.json',

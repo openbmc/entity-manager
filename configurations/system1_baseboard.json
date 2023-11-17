@@ -357,6 +357,81 @@
             "Name": "Power Supply Slot 3",
             "NamedPresenceGpio": "presence-ps3",
             "Type": "IBMCFFPSConnector"
+        },
+        {
+            "Name": "Fan1 connector",
+            "Pwm": 0,
+            "PwmName": "Fan1_Pwm",
+            "Status": "disabled",
+            "Tachs": [
+                0,
+                1
+            ],
+            "Type": "IntelFanConnector"
+        },
+        {
+            "Name": "Fan2 connector",
+            "Pwm": 1,
+            "PwmName": "Fan2_Pwm",
+            "Status": "disabled",
+            "Tachs": [
+                2,
+                3
+            ],
+            "Type": "IntelFanConnector"
+        },
+        {
+            "Name": "Fan3 connector",
+            "Pwm": 2,
+            "PwmName": "Fan3_Pwm",
+            "Status": "disabled",
+            "Tachs": [
+                4,
+                5
+            ],
+            "Type": "IntelFanConnector"
+        },
+        {
+            "Name": "Fan4 connector",
+            "Pwm": 3,
+            "PwmName": "Fan4_Pwm",
+            "Status": "disabled",
+            "Tachs": [
+                6,
+                7
+            ],
+            "Type": "IntelFanConnector"
+        },
+        {
+            "Name": "Fan5 connector",
+            "Pwm": 4,
+            "PwmName": "Fan5_Pwm",
+            "Status": "disabled",
+            "Tachs": [
+                8,
+                9
+            ],
+            "Type": "IntelFanConnector"
+        },
+        {
+            "Name": "Fan6 connector",
+            "Pwm": 0,
+            "PwmName": "Fan6_Pwm",
+            "Status": "disabled",
+            "Tachs": [
+                0
+            ],
+            "Type": "IntelFanConnector"
+        },
+        {
+            "Name": "Fan7 connector",
+            "Pwm": 1,
+            "PwmName": "Fan7_Pwm",
+            "Status": "disabled",
+            "Tachs": [
+                1
+            ],
+            "Type": "IntelFanConnector"
         }
     ],
     "Name": "IBM System1 Baseboard",
