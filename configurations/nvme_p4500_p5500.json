@@ -42,7 +42,7 @@
     ],
     "Logging": "Off",
     "Name": "NVMe $index",
-    "Probe": "xyz.openbmc_project.FruDevice({'PRODUCT_PRODUCT_NAME': 'P45\\d\\d\\w?', 'PRODUCT_MANUFACTURER': '(Intel|INTEL).*'})",
+    "Probe": "xyz.openbmc_project.FruDevice({'PRODUCT_PRODUCT_NAME': 'P(45|55)\\d\\d\\w?', 'PRODUCT_MANUFACTURER': '(Intel|INTEL).*'})",
     "Type": "NVMe",
     "xyz.openbmc_project.Inventory.Decorator.Asset": {
         "Manufacturer": "$PRODUCT_MANUFACTURER",
