@@ -1,0 +1,131 @@
+{
+    "Exposes": [
+        {
+            "BridgeGpio": [
+                {
+                    "Name": "BAT_DETECT",
+                    "Polarity": "High",
+                    "SetupTime": 1
+                }
+            ],
+            "Index": 7,
+            "Name": "CMM_P3V_BAT_VOLT_V",
+            "PollRate": 86400,
+            "ScaleFactor": 0.333333,
+            "Type": "ADC"
+        },
+        {
+            "Address": "0x40",
+            "Bus": 0,
+            "Labels": [
+                "in1",
+                "curr1",
+                "power1"
+            ],
+            "Name": "CMM_PMON_P24V",
+            "Type": "INA230",
+            "curr1_Name": "CMM_PMON_P24V_CURR_A",
+            "in1_Name": "CMM_PMON_P24V_VOLT_V",
+            "power1_Name": "CMM_PMON_P24V_PWR_W"
+        },
+        {
+            "Address": "0x41",
+            "Bus": 0,
+            "Labels": [
+                "in1",
+                "curr1",
+                "power1"
+            ],
+            "Name": "CMM_PMON_P12V",
+            "Type": "INA230",
+            "curr1_Name": "CMM_PMON_P12V_CURR_A",
+            "in1_Name": "CMM_PMON_P12V_VOLT_V",
+            "power1_Name": "CMM_PMON_P12V_PWR_W"
+        },
+        {
+            "Address": "0x67",
+            "Bus": 0,
+            "Labels": [
+                "in1",
+                "curr1",
+                "power1"
+            ],
+            "Name": "CMM_PMON_P48V_SENSE",
+            "Type": "LTC2945",
+            "curr1_Name": "CMM_PMON_P48V_SENSE_CURR_A",
+            "in1_Name": "CMM_PMON_P48V_SENSE_VOLT_V",
+            "power1_Name": "CMM_PMON_P48V_SENSE_PWR_W"
+        },
+        {
+            "Address": "0x68",
+            "Bus": 0,
+            "Labels": [
+                "in1",
+                "curr1",
+                "power1"
+            ],
+            "Name": "CMM_PMON_GND_SENSE",
+            "Type": "LTC2945",
+            "curr1_Name": "CMM_PMON_GND_SENSE_CURR_A",
+            "in1_Name": "CMM_PMON_GND_SENSE_VOLT_V",
+            "power1_Name": "CMM_PMON_GND_SENSE_PWR_W"
+        },
+        {
+            "Address": "0x44",
+            "Bus": 0,
+            "Labels": [
+                "vin",
+                "vout1",
+                "iout1",
+                "pin"
+            ],
+            "Name": "CMM_HSC",
+            "Type": "LTC4287",
+            "iout1_Name": "CMM_HSC_CURR_A",
+            "pin_Name": "CMM_HSC_PWR_W",
+            "vin_Name": "CMM_HSC_VIN_VOLT_V",
+            "vout1_Name": "CMM_HSC_VOUT_VOLT_V"
+        },
+        {
+            "Address": "0x48",
+            "Bus": 1,
+            "Name": "CMM_OUTLET_TEMP_C",
+            "Thresholds": [
+                {
+                    "Direction": "greater than",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 80
+                },
+                {
+                    "Direction": "greater than",
+                    "Name": "upper non critical",
+                    "Severity": 0,
+                    "Value": 75
+                },
+                {
+                    "Direction": "less than",
+                    "Name": "lower non critical",
+                    "Severity": 0,
+                    "Value": 5
+                },
+                {
+                    "Direction": "less than",
+                    "Name": "lower critical",
+                    "Severity": 1,
+                    "Value": 0
+                }
+            ],
+            "Type": "TMP75"
+        }
+    ],
+    "Name": "Minerva CMM",
+    "Probe": "xyz.openbmc_project.FruDevice({'BOARD_PRODUCT_NAME': 'Minerva CMM .*'})",
+    "Type": "Board",
+    "xyz.openbmc_project.Inventory.Decorator.Asset": {
+        "Manufacturer": "$PRODUCT_MANUFACTURER",
+        "Model": "$PRODUCT_PRODUCT_NAME",
+        "PartNumber": "$PRODUCT_PART_NUMBER",
+        "SerialNumber": "$PRODUCT_SERIAL_NUMBER"
+    }
+}
