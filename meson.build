@@ -161,6 +161,7 @@ configs = [
     'sas_module.json',
     'sbp1_baseboard.json',
     'sbp1_chassis.json',
+    'sbp1_hbm.json',
     'sbp1_nvme.json',
     'sbp1_psu.json',
     'sbp1_rssd.json',
