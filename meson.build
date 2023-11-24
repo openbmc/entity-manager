@@ -169,6 +169,7 @@ configs = [
     'sbp1_nvme.json',
     'sbp1_psu.json',
     'sbp1_rssd.json',
+    'sbp1_hbm.json',
     'system1_baseboard.json',
     'system1_chassis.json',
     'solum_pssf162202_psu.json',
