@@ -1,0 +1,135 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a8b390a6_1cf6d229",
+        "filename": "configurations/minerva_fanboard.json",
+        "patchSetId": 14
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2023-11-28T15:29:05Z",
+      "side": 1,
+      "message": "This file has no Harma identifier.",
+      "revId": "da3013ab1959149b56bb6ff4188ef1acf49c0a3b",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "39118bf1_854d1591",
+        "filename": "configurations/minerva_fanboard.json",
+        "patchSetId": 14
+      },
+      "lineNbr": 381,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2023-11-28T15:29:05Z",
+      "side": 1,
+      "message": "Why don\u0027t we have an EEPROM for the Fan Board?  Or at least some kind of detection mechanism.\n\nIn theory you could have a Harma card in a freestanding configuration in a lab where the fan board is not available, right?",
+      "revId": "da3013ab1959149b56bb6ff4188ef1acf49c0a3b",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ac8e2220_4eef4867",
+        "filename": "configurations/minerva_harma_mb.json",
+        "patchSetId": 14
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2023-11-28T15:29:05Z",
+      "side": 1,
+      "message": "Lets remove Minerva from the name on all the files.\n\nMinerva is the chassis.  Harma is the board.  There could be a future program where Harma or Minerva are used without each other.",
+      "revId": "da3013ab1959149b56bb6ff4188ef1acf49c0a3b",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9e4dd4e0_5590f77c",
+        "filename": "configurations/minerva_harma_mb.json",
+        "patchSetId": 14
+      },
+      "lineNbr": 426,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2023-11-28T15:29:05Z",
+      "side": 1,
+      "message": "Probably remove Minerva from this?",
+      "range": {
+        "startLine": 426,
+        "startChar": 13,
+        "endLine": 426,
+        "endChar": 20
+      },
+      "revId": "da3013ab1959149b56bb6ff4188ef1acf49c0a3b",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1a46dff8_1d134cad",
+        "filename": "configurations/minerva_harma_mb.json",
+        "patchSetId": 14
+      },
+      "lineNbr": 427,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2023-11-28T15:29:05Z",
+      "side": 1,
+      "message": "Do we want this to be a .*?  I\u0027m fine with it being Minerva, since many of the thresholds are going to be dependent on it being used in a Minerva chassis, but also fine if we want to make this a wild-card for consistency in avoiding \"minerva\" in any of these files.",
+      "range": {
+        "startLine": 427,
+        "startChar": 68,
+        "endLine": 427,
+        "endChar": 75
+      },
+      "revId": "da3013ab1959149b56bb6ff4188ef1acf49c0a3b",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "425418c2_e1108115",
+        "filename": "configurations/minerva_harma_nic.json",
+        "patchSetId": 14
+      },
+      "lineNbr": 58,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2023-11-28T15:29:05Z",
+      "side": 1,
+      "message": "This probe seems unusual.  We should really also be detecting one of the NIC cards, by it\u0027s EEPROM, right?\n\nI\u0027m fine with this being added for now since this really seems to be a NIC Mezz, but we should identify it as the NIC Mezz and not the NIC.  Is there not an EEPROM on the Mezz?",
+      "revId": "da3013ab1959149b56bb6ff4188ef1acf49c0a3b",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7dd8a225_f4e0968b",
+        "filename": "configurations/minerva_harma_pttv.json",
+        "patchSetId": 14
+      },
+      "lineNbr": 145,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2023-11-28T15:29:05Z",
+      "side": 1,
+      "message": "Should we add a comment to these files to define some of these acronyms?  \"PTTV\" is unusual to me.",
+      "revId": "da3013ab1959149b56bb6ff4188ef1acf49c0a3b",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    }
+  ]
+}
