@@ -20,6 +20,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "02edb0af_4de016a3",
+        "filename": "configurations/minerva_fanboard.json",
+        "patchSetId": 14
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1001264
+      },
+      "writtenOn": "2023-11-29T15:48:47Z",
+      "side": 1,
+      "message": "Initially I call it minerva_fanboard.json because fanboards are not part of computing card.\n\nBut I think minerva_fanboard.json might causing confusion with CMC\u0027s config, so rename it to harma_fanboard.json.",
+      "parentUuid": "a8b390a6_1cf6d229",
+      "revId": "da3013ab1959149b56bb6ff4188ef1acf49c0a3b",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "39118bf1_854d1591",
         "filename": "configurations/minerva_fanboard.json",
         "patchSetId": 14
@@ -31,6 +49,24 @@
       "writtenOn": "2023-11-28T15:29:05Z",
       "side": 1,
       "message": "Why don\u0027t we have an EEPROM for the Fan Board?  Or at least some kind of detection mechanism.\n\nIn theory you could have a Harma card in a freestanding configuration in a lab where the fan board is not available, right?",
+      "revId": "da3013ab1959149b56bb6ff4188ef1acf49c0a3b",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c6b85b40_b3a5fad2",
+        "filename": "configurations/minerva_fanboard.json",
+        "patchSetId": 14
+      },
+      "lineNbr": 381,
+      "author": {
+        "id": 1001264
+      },
+      "writtenOn": "2023-11-29T15:48:47Z",
+      "side": 1,
+      "message": "We don\u0027t have fanboard\u0027s EEPROM access from Harma card at moment, and fanboard CPLD has size limitation needs to work on.",
+      "parentUuid": "39118bf1_854d1591",
       "revId": "da3013ab1959149b56bb6ff4188ef1acf49c0a3b",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
@@ -52,6 +88,24 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "3dc0263d_46c00b66",
+        "filename": "configurations/minerva_harma_mb.json",
+        "patchSetId": 14
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1001264
+      },
+      "writtenOn": "2023-11-29T15:48:47Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "ac8e2220_4eef4867",
+      "revId": "da3013ab1959149b56bb6ff4188ef1acf49c0a3b",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "9e4dd4e0_5590f77c",
@@ -65,6 +119,30 @@
       "writtenOn": "2023-11-28T15:29:05Z",
       "side": 1,
       "message": "Probably remove Minerva from this?",
+      "range": {
+        "startLine": 426,
+        "startChar": 13,
+        "endLine": 426,
+        "endChar": 20
+      },
+      "revId": "da3013ab1959149b56bb6ff4188ef1acf49c0a3b",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "9608baf9_eb6e6c27",
+        "filename": "configurations/minerva_harma_mb.json",
+        "patchSetId": 14
+      },
+      "lineNbr": 426,
+      "author": {
+        "id": 1001264
+      },
+      "writtenOn": "2023-11-29T15:48:47Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "9e4dd4e0_5590f77c",
       "range": {
         "startLine": 426,
         "startChar": 13,
@@ -98,6 +176,30 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "b59c31c3_f0c60760",
+        "filename": "configurations/minerva_harma_mb.json",
+        "patchSetId": 14
+      },
+      "lineNbr": 427,
+      "author": {
+        "id": 1001264
+      },
+      "writtenOn": "2023-11-29T15:48:47Z",
+      "side": 1,
+      "message": "Done, apply for all configs.",
+      "parentUuid": "1a46dff8_1d134cad",
+      "range": {
+        "startLine": 427,
+        "startChar": 68,
+        "endLine": 427,
+        "endChar": 75
+      },
+      "revId": "da3013ab1959149b56bb6ff4188ef1acf49c0a3b",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "425418c2_e1108115",
@@ -117,6 +219,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "3af9bb45_da5e9709",
+        "filename": "configurations/minerva_harma_nic.json",
+        "patchSetId": 14
+      },
+      "lineNbr": 58,
+      "author": {
+        "id": 1001264
+      },
+      "writtenOn": "2023-11-29T15:48:47Z",
+      "side": 1,
+      "message": "I am not sure NIC card\u0027s FRU format at moment, I can add probe condition base on NIC\u0027s fru contain once we have the information.",
+      "parentUuid": "425418c2_e1108115",
+      "revId": "da3013ab1959149b56bb6ff4188ef1acf49c0a3b",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "7dd8a225_f4e0968b",
         "filename": "configurations/minerva_harma_pttv.json",
         "patchSetId": 14
@@ -128,6 +248,24 @@
       "writtenOn": "2023-11-28T15:29:05Z",
       "side": 1,
       "message": "Should we add a comment to these files to define some of these acronyms?  \"PTTV\" is unusual to me.",
+      "revId": "da3013ab1959149b56bb6ff4188ef1acf49c0a3b",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a433346f_c237f267",
+        "filename": "configurations/minerva_harma_pttv.json",
+        "patchSetId": 14
+      },
+      "lineNbr": 145,
+      "author": {
+        "id": 1001264
+      },
+      "writtenOn": "2023-11-29T15:48:47Z",
+      "side": 1,
+      "message": "It seems like adding c-style comment into config file is not support, it require source code and python script changes.\n\nI update more information in commit message for now.",
+      "parentUuid": "7dd8a225_f4e0968b",
       "revId": "da3013ab1959149b56bb6ff4188ef1acf49c0a3b",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
