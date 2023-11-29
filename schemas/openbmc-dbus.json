@@ -40,6 +40,19 @@
                             "required": ["AssetTag"],
                             "type": "object"
                         },
+                        "Compatible": {
+                            "additionalProperties": false,
+                            "properties": {
+                                "Names": {
+                                    "type": "array",
+                                    "items": {
+                                        "type": "string"
+                                    }
+                                }
+                            },
+                            "required": ["Names"],
+                            "type": "object"
+                        },
                         "Replaceable": {
                             "additionalProperties": false,
                             "properties": {
