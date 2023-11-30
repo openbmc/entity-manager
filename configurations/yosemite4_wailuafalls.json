@@ -1,0 +1,12 @@
+{
+    "Exposes": [],
+    "Name": "Yosemite 4 Wailua Falls Slot $bus % 15",
+    "Probe": "xyz.openbmc_project.FruDevice({'BOARD_PRODUCT_NAME': 'Wailua Falls', 'PRODUCT_PRODUCT_NAME': 'Yosemite V4'})",
+    "Type": "Board",
+    "xyz.openbmc_project.Inventory.Decorator.Asset": {
+        "Manufacturer": "$PRODUCT_MANUFACTURER",
+        "Model": "$PRODUCT_PRODUCT_NAME",
+        "PartNumber": "$PRODUCT_PART_NUMBER",
+        "SerialNumber": "$PRODUCT_SERIAL_NUMBER"
+    }
+}
