@@ -24,6 +24,30 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "b066f2df_f12c03d7",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 11
+      },
+      "lineNbr": 15,
+      "author": {
+        "id": 1001618
+      },
+      "writtenOn": "2023-12-01T06:11:54Z",
+      "side": 1,
+      "message": "Since we want to calculate the value by $bus, the formula is recognized as a string in JSON.",
+      "parentUuid": "d6a59e9c_590aaec6",
+      "range": {
+        "startLine": 15,
+        "startChar": 0,
+        "endLine": 15,
+        "endChar": 58
+      },
+      "revId": "a5117e747e323cba0d856fed3cb38d34fee9464a",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "d9dc28fc_b5fac609",
@@ -47,6 +71,30 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "6d1c2fe4_67c9a1e0",
+        "filename": "configurations/yosemite4_floatingfalls.json",
+        "patchSetId": 11
+      },
+      "lineNbr": 5,
+      "author": {
+        "id": 1001618
+      },
+      "writtenOn": "2023-12-01T06:11:54Z",
+      "side": 1,
+      "message": "\u003e Why % 16?\n\nWe have eeproms on bus 16 - 23, but our BICs are on bus 0 - 7.\n\n\u003e i2c busses should be numbers, not strings. remove \"mctpi2c\"\n\nDone.",
+      "parentUuid": "d9dc28fc_b5fac609",
+      "range": {
+        "startLine": 5,
+        "startChar": 27,
+        "endLine": 5,
+        "endChar": 36
+      },
+      "revId": "a5117e747e323cba0d856fed3cb38d34fee9464a",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "514364f6_2a58efab",
@@ -60,6 +108,30 @@
       "writtenOn": "2023-11-30T19:53:59Z",
       "side": 1,
       "message": "How is the endpointId of this device dependent on which bus it was found on?  That seems really odd that a device would know what slot it was plugged into.",
+      "range": {
+        "startLine": 6,
+        "startChar": 0,
+        "endLine": 6,
+        "endChar": 47
+      },
+      "revId": "a5117e747e323cba0d856fed3cb38d34fee9464a",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "15d0f7b6_59ee8cf8",
+        "filename": "configurations/yosemite4_floatingfalls.json",
+        "patchSetId": 11
+      },
+      "lineNbr": 6,
+      "author": {
+        "id": 1001618
+      },
+      "writtenOn": "2023-12-01T06:11:54Z",
+      "side": 1,
+      "message": "Our BICs are able to know what slot it was plugged into by GPIOs. Ths `$bus % 15` result is slot index, and we do some further calculation for our EIDs mapping.",
+      "parentUuid": "514364f6_2a58efab",
       "range": {
         "startLine": 6,
         "startChar": 0,
