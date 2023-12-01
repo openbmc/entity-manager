@@ -12,12 +12,23 @@ const std::string superchassisPath =
 
 const Association subchassisAssoc =
     std::make_tuple("contained_by", "containing", superchassisPath);
+const Association powerAssoc =
+    std::make_tuple("powered_by", "powering", subchassisPath);
 
 const nlohmann::json subchassisExposesItem = nlohmann::json::parse(R"(
     {
         "ConnectsToType": "BackplanePort",
         "Name": "MyDownstreamPort",
         "Type": "DownstreamPort"
+    }
+)");
+
+const nlohmann::json powerExposesItem = nlohmann::json::parse(R"(
+    {
+        "ConnectsToType": "BackplanePort",
+        "Name": "MyDownstreamPort",
+        "Type": "DownstreamPort",
+        "PowerPort": true
     }
 )");
 
@@ -136,6 +147,24 @@ TEST(Topology, Basic)
     EXPECT_EQ(assocs.size(), 1);
     EXPECT_EQ(assocs[subchassisPath].size(), 1);
     EXPECT_EQ(assocs[subchassisPath][0], subchassisAssoc);
+}
+
+TEST(Topology, BasicPower)
+{
+    Topology topo;
+    BoardMap boards{{subchassisPath, "BoardA"}, {superchassisPath, "BoardB"}};
+
+    topo.addBoard(subchassisPath, "Chassis", "BoardA", powerExposesItem);
+    topo.addBoard(superchassisPath, "Chassis", "BoardB",
+                  superchassisExposesItem);
+
+    auto assocs = topo.getAssocs(boards);
+
+    EXPECT_EQ(assocs.size(), 2);
+    EXPECT_EQ(assocs[subchassisPath].size(), 1);
+    EXPECT_EQ(assocs[subchassisPath][0], subchassisAssoc);
+    EXPECT_EQ(assocs[superchassisPath].size(), 1);
+    EXPECT_EQ(assocs[superchassisPath][0], powerAssoc);
 }
 
 TEST(Topology, NoNewBoards)
