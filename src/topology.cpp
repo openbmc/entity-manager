@@ -30,6 +30,20 @@ void Topology::addBoard(const std::string& path, const std::string& boardType,
         downstreamPorts[connectsTo].emplace_back(path);
         boardTypes[path] = boardType;
     }
+    else if (exposesType == "PoweredPort")
+    {
+        auto findPoweredByType = exposesItem.find("PoweredByType");
+        if (findPoweredByType == exposesItem.end())
+        {
+            std::cerr << "Board at path " << path
+                      << " is missing PoweredByType\n";
+            return;
+        }
+        PortType poweredBy = findPoweredByType->get<std::string>();
+
+        poweredByPorts[poweredBy].emplace_back(path);
+        boardTypes[path] = boardType;
+    }
     else if (exposesType.ends_with("Port"))
     {
         upstreamPorts[exposesType].emplace_back(path);
@@ -46,8 +60,10 @@ std::unordered_map<std::string, std::vector<Association>>
     for (const auto& upstreamPortPair : upstreamPorts)
     {
         auto downstreamMatch = downstreamPorts.find(upstreamPortPair.first);
+        auto poweredMath = poweredByPorts.find(upstreamPortPair.first);
 
-        if (downstreamMatch == downstreamPorts.end())
+        if (downstreamMatch == downstreamPorts.end() &&
+            poweredMath == poweredByPorts.end())
         {
             // no match
             continue;
@@ -58,13 +74,27 @@ std::unordered_map<std::string, std::vector<Association>>
             if (boardTypes[upstream] == "Chassis" ||
                 boardTypes[upstream] == "Board")
             {
-                for (const Path& downstream : downstreamMatch->second)
+                if (downstreamMatch != downstreamPorts.end())
                 {
-                    // The downstream path must be one we care about.
-                    if (boards.find(downstream) != boards.end())
+                    for (const Path& downstream : downstreamMatch->second)
                     {
-                        result[downstream].emplace_back("contained_by",
-                                                        "containing", upstream);
+                        // The downstream path must be one we care about.
+                        if (boards.find(downstream) != boards.end())
+                        {
+                            result[downstream].emplace_back(
+                                "contained_by", "containing", upstream);
+                        }
+                    }
+                }
+                if (poweredMath != poweredByPorts.end())
+                {
+                    for (const Path& powered : poweredMath->second)
+                    {
+                        if (boards.find(powered) != boards.end())
+                        {
+                            result[powered].emplace_back("powered_by",
+                                                         "powering", upstream);
+                        }
                     }
                 }
             }
