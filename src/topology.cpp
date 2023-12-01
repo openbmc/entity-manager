@@ -29,6 +29,11 @@ void Topology::addBoard(const std::string& path, const std::string& boardType,
 
         downstreamPorts[connectsTo].emplace_back(path);
         boardTypes[path] = boardType;
+        auto findPoweredBy = exposesItem.find("PowerPort");
+        if (findPoweredBy != exposesItem.end())
+        {
+            powerPaths.insert(path);
+        }
     }
     else if (exposesType.ends_with("Port"))
     {
@@ -65,6 +70,11 @@ std::unordered_map<std::string, std::vector<Association>>
                     {
                         result[downstream].emplace_back("contained_by",
                                                         "containing", upstream);
+                        if (powerPaths.find(downstream) != powerPaths.end())
+                        {
+                            result[upstream].emplace_back("powered_by",
+                                                          "powering", downstream);
+                        }
                     }
                 }
             }
