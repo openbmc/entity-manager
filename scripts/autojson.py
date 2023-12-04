@@ -2,9 +2,10 @@
 # all arguments to this script are considered as json files
 # and attempted to be formatted alphabetically
 
-import json
 import os
 from sys import argv
+
+import json5
 
 files = argv[1:]
 
@@ -19,7 +20,7 @@ for file in files:
         continue
     print("formatting file {}".format(file))
     with open(file) as f:
-        j = json.load(f)
+        j = json5.load(f)
 
     if isinstance(j, list):
         for item in j:
@@ -29,6 +30,13 @@ for file in files:
 
     with open(file, "w") as f:
         f.write(
-            json.dumps(j, indent=4, sort_keys=True, separators=(",", ": "))
+            json5.dumps(
+                j,
+                indent=4,
+                sort_keys=True,
+                separators=(",", ": "),
+                quote_keys=True,
+                trailing_commas=False,
+            )
         )
         f.write("\n")

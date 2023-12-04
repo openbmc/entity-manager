@@ -534,7 +534,7 @@ void createAddObjectMethod(const std::string& jsonPointerPath,
                 "No schema avaliable, cannot validate.");
         }
         nlohmann::json schema = nlohmann::json::parse(schemaFile, nullptr,
-                                                      false);
+                                                      false, true);
         if (schema.is_discarded())
         {
             std::cerr << "Schema not legal" << *type << ".json\n";
@@ -846,7 +846,8 @@ bool loadConfigurations(std::list<nlohmann::json>& configurations)
         std::exit(EXIT_FAILURE);
         return false;
     }
-    nlohmann::json schema = nlohmann::json::parse(schemaStream, nullptr, false);
+    nlohmann::json schema = nlohmann::json::parse(schemaStream, nullptr, false,
+                                                  true);
     if (schema.is_discarded())
     {
         std::cerr
@@ -863,7 +864,7 @@ bool loadConfigurations(std::list<nlohmann::json>& configurations)
             std::cerr << "unable to open " << jsonPath.string() << "\n";
             continue;
         }
-        auto data = nlohmann::json::parse(jsonStream, nullptr, false);
+        auto data = nlohmann::json::parse(jsonStream, nullptr, false, true);
         if (data.is_discarded())
         {
             std::cerr << "syntax error in " << jsonPath.string() << "\n";
