@@ -152,7 +152,7 @@ bool probe(const std::vector<std::string>& probeCommand,
             // convert single ticks and single slashes into legal json
             boost::replace_all(commandStr, "'", "\"");
             boost::replace_all(commandStr, R"(\)", R"(\\)");
-            auto json = nlohmann::json::parse(commandStr, nullptr, false);
+            auto json = nlohmann::json::parse(commandStr, nullptr, false, true);
             if (json.is_discarded())
             {
                 std::cerr << "dbus command syntax error " << commandStr << "\n";
