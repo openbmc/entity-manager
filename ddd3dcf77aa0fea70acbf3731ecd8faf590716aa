@@ -16,6 +16,23 @@
       "message": "Hi EM maintainers, I am using json5 python module for adding C-style comment support, but the CI is failing due to json5 is not python native module. I am not sure how to add json5 module support, are there any example for adding new python module? Thank you.",
       "revId": "ddd3dcf77aa0fea70acbf3731ecd8faf590716aa",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "74facfb0_5fcfb755",
+        "filename": "scripts/autojson.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 8,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2023-12-04T20:01:47Z",
+      "side": 1,
+      "message": "This is going to impose a new dependency on all developers building locally, whereas previously we only used stock python.  This is also why your build failed.\n\nIs there any way to accomplish this without using a json5 dependency?\n\nI also worry a little that json5 is different than nlohmann::json with comments.  Aren\u0027t they following different specifications?",
+      "revId": "ddd3dcf77aa0fea70acbf3731ecd8faf590716aa",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }
