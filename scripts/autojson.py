@@ -4,7 +4,20 @@
 
 import json
 import os
+import re
 from sys import argv
+
+def remove_c_comments(string):
+    # first group captures quoted strings (double or single)
+    # second group captures comments (//single-line or /* multi-line */)
+    pattern = r"(\".*?(?<!\\)\"|\'.*?(?<!\\)\')|(/\*.*?\*/|//[^\r\n]*$)"
+    regex = re.compile(pattern, re.MULTILINE|re.DOTALL)
+    def _replacer(match):
+        if match.group(2) is not None:
+            return ""
+        else:
+            return match.group(1)
+    return regex.sub(_replacer, string)
 
 files = argv[1:]
 
@@ -19,7 +32,7 @@ for file in files:
         continue
     print("formatting file {}".format(file))
     with open(file) as f:
-        j = json.load(f)
+        j = json.loads(remove_c_comments(f.read()))
 
     if isinstance(j, list):
         for item in j:
