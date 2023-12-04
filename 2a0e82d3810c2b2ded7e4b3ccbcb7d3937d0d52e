@@ -16,6 +16,24 @@
       "message": "would this just always follow the upstream port?  If so, we could just combine it into the upstream one with a new bool property, like \u0027ProvidesPower: true\u0027 or something like that.\n\nI suppose that would require that the PSs always connect to the chassis...",
       "revId": "2a0e82d3810c2b2ded7e4b3ccbcb7d3937d0d52e",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "cfe6f005_62ca0a4a",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 3
+      },
+      "lineNbr": 38,
+      "author": {
+        "id": 1000008
+      },
+      "writtenOn": "2023-12-04T23:11:07Z",
+      "side": 1,
+      "message": "Another way to do it is to just identify an entity as a power provider, and then the code could follow the physical topology and create the associations on the path up, like PS -\u003e power-dist-board -\u003e chassis, or more likely I suppose PS -\u003e chassis.\n\nI have a long term goal of having the Topology class actually build a tree of objects that follows the upstream/downstream connectors, so it\u0027d be easy to traverse.",
+      "parentUuid": "b9ee1b80_506e7a03",
+      "revId": "2a0e82d3810c2b2ded7e4b3ccbcb7d3937d0d52e",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }
