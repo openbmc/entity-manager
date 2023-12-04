@@ -4,7 +4,7 @@
 A tool for validating entity manager configurations.
 """
 import argparse
-import json
+import json5
 import os
 import sys
 
@@ -72,7 +72,7 @@ def main():
     schema = {}
     try:
         with open(schema_file) as fd:
-            schema = json.load(fd)
+            schema = json5.load(fd)
     except FileNotFoundError:
         sys.stderr.write(
             "Could not read schema file '{}'\n".format(schema_file)
@@ -97,7 +97,7 @@ def main():
     for config_file in config_files:
         try:
             with open(config_file) as fd:
-                configs.append(json.load(fd))
+                configs.append(json5.load(fd))
         except FileNotFoundError:
             sys.stderr.write(
                 "Could not parse config file '{}'\n".format(config_file)
