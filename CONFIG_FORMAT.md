@@ -254,3 +254,40 @@ object is enabled, the device tree must be updated before scanning may begin.
 The entity-manager can key off of different types and export devices for
 specific configurations. Once this is done, the baseboard temperature sensor
 daemon can scan the sensors.
+
+## C-Style Comments Support
+
+The configuration JSON file supports c-style comments base on the rules as
+below:
+
+- Single-line style comments (//) can be on a new line or at the end of a line
+  with contents.
+
+```json5
+{
+  // Single-line style comment (new line)
+  Key: "Value", // Single-line comment (end of content)
+}
+```
+
+- Multi-line style comments (/\* \*/) use the must be free-standing.
+
+```json5
+{
+  /* Multi-line style comment */
+  /*
+   * Multi-line style comments
+   */
+}
+```
+
+- When running autojson.py on a configuration JSON file, the comments will be
+  removed first and then get inserted back into the file in the line they came
+  from. If keys are resorted or the number of lines change, all bets for
+  correctness are off.
+
+- No attempts to re-indent multi-line comments will be made.
+
+In light of this, it is highly recommended to use a JSON formatter such as
+prettier before using this script and planning to move multi-line comments
+around after key resorting.
