@@ -34,6 +34,24 @@
       "parentUuid": "b9ee1b80_506e7a03",
       "revId": "2a0e82d3810c2b2ded7e4b3ccbcb7d3937d0d52e",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "91ff50da_99d888ca",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 3
+      },
+      "lineNbr": 38,
+      "author": {
+        "id": 1000934
+      },
+      "writtenOn": "2023-12-05T10:58:19Z",
+      "side": 1,
+      "message": "\u003ewould this just always follow the upstream port? If so, we could just combine it into the upstream one with a new bool property, like \u0027ProvidesPower: true\u0027 or something like that.\n\u003e\n\u003eI suppose that would require that the PSs always connect to the chassis...\n\nYeah, that was what I implement at first because our platform only have one power supply per chassis, so we can use a variable to record the board path of power supply to create powered_by association.\n\nBut I think it might be better to make more flexible to push to upstream, so that people can easily create the complex association as there requirement.\n\nThis patch can make the power association not to forcely bind to upstream port.\n\n\u003eAnother way to do it is to just identify an entity as a power provider, and then the code could follow the physical topology and create the associations on the path up, like PS -\u003e power-dist-board -\u003e chassis, or more likely I suppose PS -\u003e chassis.\n\nIt sounds like use a special json to define pysical topology and the write new code to create new topology.\nI suspect this might have lot of duplicate code with topology today.\n\n\u003eI have a long term goal of having the Topology class actually build a tree of objects that follows the upstream/downstream connectors, so it\u0027d be easy to traverse.\n\nI think the connectors is not that complex for now to require a tree, but maybe it is a good try.",
+      "parentUuid": "cfe6f005_62ca0a4a",
+      "revId": "2a0e82d3810c2b2ded7e4b3ccbcb7d3937d0d52e",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }
