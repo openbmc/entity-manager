@@ -51,6 +51,24 @@
       "message": "Since gtest/gmock have the disabler, I\u0027m not sure if we should leave this one as enabled or allowed.  I\u0027ll ask wak to weigh in.",
       "revId": "d47d8df5660cd003eb3e77cfbaffe41aa519a37b",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ec5dc2ac_fc3c6938",
+        "filename": "meson.build",
+        "patchSetId": 2
+      },
+      "lineNbr": 222,
+      "author": {
+        "id": 1000021
+      },
+      "writtenOn": "2023-12-05T05:16:52Z",
+      "side": 1,
+      "message": "since this is under if not disabled of build tests this third term seems redundant,\nbut it should be simplified above.\n\nbut I don\u0027t know if the dusabler argument applies; the other two terms are the disablers",
+      "parentUuid": "1dd75dad_c0c4540a",
+      "revId": "d47d8df5660cd003eb3e77cfbaffe41aa519a37b",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }
