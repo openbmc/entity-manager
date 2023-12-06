@@ -25,5 +25,11 @@
         "OR",
         "com.ibm.ipzvpd.VSBP({'IM': [80, 0, 16, 3]})"
     ],
-    "Type": "Chassis"
+    "Type": "Chassis",
+    "xyz.openbmc_project.Inventory.Decorator.Compatible": {
+        "Names": [
+            "com.ibm.Hardware.Chassis.Model.Rainier2U",
+            "com.ibm.Hardware.Chassis.Model.Rainier"
+        ]
+    }
 }
