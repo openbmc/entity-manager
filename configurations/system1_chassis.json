@@ -9,6 +9,7 @@
             "Name": "Fan1a_in",
             "PowerState": "Always",
             "Presence": {
+                "MonitorType": "Polling",
                 "PinName": "FAN0_PRESENCE_R_N",
                 "Polarity": "Low"
             },
@@ -48,6 +49,11 @@
             "MaxReading": 0,
             "Name": "Fan1b_in",
             "PowerState": "Always",
+            "Presence": {
+                "MonitorType": "Polling",
+                "PinName": "FAN0_PRESENCE_R_N",
+                "Polarity": "Low"
+            },
             "Thresholds": [
                 {
                     "Direction": "less than",
@@ -85,6 +91,7 @@
             "Name": "Fan2a_in",
             "PowerState": "Always",
             "Presence": {
+                "MonitorType": "Polling",
                 "PinName": "FAN1_PRESENCE_R_N",
                 "Polarity": "Low"
             },
@@ -124,6 +131,11 @@
             "MaxReading": 0,
             "Name": "Fan2b_in",
             "PowerState": "Always",
+            "Presence": {
+                "MonitorType": "Polling",
+                "PinName": "FAN1_PRESENCE_R_N",
+                "Polarity": "Low"
+            },
             "Thresholds": [
                 {
                     "Direction": "less than",
@@ -161,6 +173,7 @@
             "Name": "Fan3a_in",
             "PowerState": "Always",
             "Presence": {
+                "MonitorType": "Polling",
                 "PinName": "FAN2_PRESENCE_R_N",
                 "Polarity": "Low"
             },
@@ -200,6 +213,11 @@
             "MaxReading": 0,
             "Name": "Fan3b_in",
             "PowerState": "Always",
+            "Presence": {
+                "MonitorType": "Polling",
+                "PinName": "FAN2_PRESENCE_R_N",
+                "Polarity": "Low"
+            },
             "Thresholds": [
                 {
                     "Direction": "less than",
@@ -237,6 +255,7 @@
             "Name": "Fan4a_in",
             "PowerState": "Always",
             "Presence": {
+                "MonitorType": "Polling",
                 "PinName": "FAN3_PRESENCE_R_N",
                 "Polarity": "Low"
             },
@@ -276,6 +295,11 @@
             "MaxReading": 0,
             "Name": "Fan4b_in",
             "PowerState": "Always",
+            "Presence": {
+                "MonitorType": "Polling",
+                "PinName": "FAN3_PRESENCE_R_N",
+                "Polarity": "Low"
+            },
             "Thresholds": [
                 {
                     "Direction": "less than",
@@ -313,6 +337,7 @@
             "Name": "Fan5a_in",
             "PowerState": "Always",
             "Presence": {
+                "MonitorType": "Polling",
                 "PinName": "FAN4_PRESENCE_R_N",
                 "Polarity": "Low"
             },
@@ -352,6 +377,11 @@
             "MaxReading": 0,
             "Name": "Fan5b_in",
             "PowerState": "Always",
+            "Presence": {
+                "MonitorType": "Polling",
+                "PinName": "FAN4_PRESENCE_R_N",
+                "Polarity": "Low"
+            },
             "Thresholds": [
                 {
                     "Direction": "less than",
@@ -389,6 +419,7 @@
             "Name": "Fan6_in",
             "PowerState": "Always",
             "Presence": {
+                "MonitorType": "Polling",
                 "PinName": "FAN5_PRESENCE_N",
                 "Polarity": "Low"
             },
@@ -429,6 +460,7 @@
             "Name": "Fan7_in",
             "PowerState": "Always",
             "Presence": {
+                "MonitorType": "Polling",
                 "PinName": "FAN6_PRESENCE_N",
                 "Polarity": "Low"
             },
