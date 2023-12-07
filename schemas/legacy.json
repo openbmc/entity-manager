@@ -829,6 +829,9 @@
             },
             "Presence": {
                 "properties": {
+                    "MonitorType": {
+                        "enum": ["Polling"]
+                    },
                     "PinName": {
                         "type": "string"
                     },
