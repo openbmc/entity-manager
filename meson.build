@@ -34,8 +34,7 @@ if get_option('fru-device')
     i2c = cpp.find_library('i2c')
 endif
 
-nlohmann_json_dep = dependency('nlohmann_json',
-                               fallback: [ 'nlohmann_json', 'nlohmann_json_dep'])
+nlohmann_json_dep = dependency('nlohmann_json')
 
 sdbusplus = dependency('sdbusplus', required: false)
 if not sdbusplus.found()
