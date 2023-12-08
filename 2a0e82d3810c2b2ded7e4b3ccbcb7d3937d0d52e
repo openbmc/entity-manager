@@ -24,6 +24,30 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "4851caaf_8e7b6f6f",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 3
+      },
+      "lineNbr": 22,
+      "author": {
+        "id": 1000934
+      },
+      "writtenOn": "2023-12-08T10:22:25Z",
+      "side": 1,
+      "message": "I update the config as following:\nIn mobo json:\n```\n        {\n            \"Name\": \"MOBO Port\",\n            \"Type\": \"MOBO Port\"\n        },\n        {\n            \"PoweredByType\": \"PSU Port\",\n            \"Name\": \"MOBO to PSU Port\",\n            \"Type\": \"PoweredPort\"\n        },\n```\nIn PSU json:\n```\n        {\n            \"ConnectsToType\": \"MOBO Port\",\n            \"Name\": \"PSU to MOBO Port\",\n            \"Type\": \"DownstreamPort\"\n        },\n        {\n            \"Name\": \"PSU Port\",\n            \"Type\": \"PSU Port\"\n        },\n```\nAnd the result is not change.",
+      "parentUuid": "e9c857bb_0163de24",
+      "range": {
+        "startLine": 21,
+        "startChar": 0,
+        "endLine": 22,
+        "endChar": 31
+      },
+      "revId": "2a0e82d3810c2b2ded7e4b3ccbcb7d3937d0d52e",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "b9ee1b80_506e7a03",
@@ -91,6 +115,24 @@
       "side": 1,
       "message": "Same here, have the Type and Name the same here is confusing. Is this a new Type that needs to be added to one of the schema?",
       "parentUuid": "91ff50da_99d888ca",
+      "revId": "2a0e82d3810c2b2ded7e4b3ccbcb7d3937d0d52e",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "69a7e1e8_c76affa7",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 3
+      },
+      "lineNbr": 38,
+      "author": {
+        "id": 1000934
+      },
+      "writtenOn": "2023-12-08T10:22:25Z",
+      "side": 1,
+      "message": "The string of the \"Type\" for topology is not a fixed name, this Type only required to be equal to the string in \"ConnectsToType\" in specific config.\n\nI think it might be better to do what Matt mentioned in previous commit that add some label like ```\u0027ProvidesPower: true\u0027 ``` with ConnectsToType to achieve our purpose.\n\nI will work on it.",
+      "parentUuid": "34d9a740_f3cc0fe7",
       "revId": "2a0e82d3810c2b2ded7e4b3ccbcb7d3937d0d52e",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
