@@ -135,6 +135,24 @@
       "parentUuid": "34d9a740_f3cc0fe7",
       "revId": "2a0e82d3810c2b2ded7e4b3ccbcb7d3937d0d52e",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "933e2bdb_e6c34e80",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 3
+      },
+      "lineNbr": 38,
+      "author": {
+        "id": 1000008
+      },
+      "writtenOn": "2023-12-11T16:31:51Z",
+      "side": 1,
+      "message": "I was thinking about this some more, and am OK with either way.\n\nWe had a system from a previous generation where there was a manager chassis and a compute chassis which is what had the power supplies.  So there was a cable from the compute chassis to the  manager chassis to power it, meaning the power didn\u0027t follow the typical connector plugging topology unless something new was invented for cables.  So just having the ports like you did in this commit would work easier there (not that we need to support that exact system anymore of course).",
+      "parentUuid": "69a7e1e8_c76affa7",
+      "revId": "2a0e82d3810c2b2ded7e4b3ccbcb7d3937d0d52e",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }
