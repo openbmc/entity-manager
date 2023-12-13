@@ -141,6 +141,30 @@
       },
       "revId": "4431508e64d25d8d5a18b0c369f33d48e83a6f82",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "76bfb358_c546e857",
+        "filename": "configurations/sbp1_baseboard.json",
+        "patchSetId": 3
+      },
+      "lineNbr": 3315,
+      "author": {
+        "id": 1000559
+      },
+      "writtenOn": "2023-12-13T16:53:17Z",
+      "side": 1,
+      "message": "Properly detect HBM present or not is a different issue than managing the PowerState for these sensors. I think it should go into a separate patch. This patch looks good for correctly specify the PowerState for the existing sensors.",
+      "parentUuid": "ca4c8537_7d236849",
+      "range": {
+        "startLine": 3315,
+        "startChar": 27,
+        "endLine": 3315,
+        "endChar": 29
+      },
+      "revId": "4431508e64d25d8d5a18b0c369f33d48e83a6f82",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }
