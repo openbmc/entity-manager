@@ -142,6 +142,30 @@
       },
       "revId": "b78d0f4430ff987fd9bdc2bb88e01d47e0631a98",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "96626fee_e83c0140",
+        "filename": "configurations/nvme_p4000.json",
+        "patchSetId": 4
+      },
+      "lineNbr": 45,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2023-12-14T19:48:59Z",
+      "side": 1,
+      "message": "\u003e Maybe we add another constraint like Manufacture \u003d\u003e INTEL CORPORATION\n\nYes, we should\u0027ve done this originally.\n\nFirst hit on google returns this:\n\nhttps://en.wikipedia.org/wiki/List_of_Intel_SSDs\n\nIt needs filtered just for NVMe drives, but should be a good start.",
+      "parentUuid": "5a88b0cc_1752ee18",
+      "range": {
+        "startLine": 45,
+        "startChar": 74,
+        "endLine": 45,
+        "endChar": 78
+      },
+      "revId": "b78d0f4430ff987fd9bdc2bb88e01d47e0631a98",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }
