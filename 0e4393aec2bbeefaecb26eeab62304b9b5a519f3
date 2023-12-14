@@ -20,6 +20,24 @@
     {
       "unresolved": false,
       "key": {
+        "uuid": "40f6cd63_aad10c9d",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 12
+      },
+      "lineNbr": 34,
+      "author": {
+        "id": 1001264
+      },
+      "writtenOn": "2023-12-14T07:35:58Z",
+      "side": 1,
+      "message": "Testd on harma system with manual applied a patch.\nCommit message updated.",
+      "parentUuid": "989805f9_2433d2f2",
+      "revId": "0e4393aec2bbeefaecb26eeab62304b9b5a519f3",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
         "uuid": "f324199f_0ea8a06f",
         "filename": "/PATCHSET_LEVEL",
         "patchSetId": 12
@@ -58,6 +76,30 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "bc22b5ff_e2553227",
+        "filename": "CONFIG_FORMAT.md",
+        "patchSetId": 12
+      },
+      "lineNbr": 284,
+      "author": {
+        "id": 1001264
+      },
+      "writtenOn": "2023-12-14T07:35:58Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "123438a6_f68ec592",
+      "range": {
+        "startLine": 284,
+        "startChar": 2,
+        "endLine": 284,
+        "endChar": 33
+      },
+      "revId": "0e4393aec2bbeefaecb26eeab62304b9b5a519f3",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "cb422335_0cb9df4b",
@@ -71,6 +113,24 @@
       "writtenOn": "2023-12-13T18:41:03Z",
       "side": 1,
       "message": "Is comments in schema supported? Please add in commit message to make it clear.",
+      "revId": "0e4393aec2bbeefaecb26eeab62304b9b5a519f3",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "66c8e6d4_0e5e7cc0",
+        "filename": "scripts/validate_configs.py",
+        "patchSetId": 12
+      },
+      "lineNbr": 91,
+      "author": {
+        "id": 1001264
+      },
+      "writtenOn": "2023-12-14T07:35:58Z",
+      "side": 1,
+      "message": "Thanks for the notice.\nBecause this patch only intend to add C-style comment support on configuration JSON file, I rollback the changes on schema file loading.",
+      "parentUuid": "cb422335_0cb9df4b",
       "revId": "0e4393aec2bbeefaecb26eeab62304b9b5a519f3",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
