@@ -190,6 +190,30 @@
       },
       "revId": "b78d0f4430ff987fd9bdc2bb88e01d47e0631a98",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e0ad2b04_fc035ca9",
+        "filename": "configurations/nvme_p4000.json",
+        "patchSetId": 4
+      },
+      "lineNbr": 45,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2023-12-15T19:08:13Z",
+      "side": 1,
+      "message": "For all the drives that you don\u0027t know, just keep the old behavior.  For the drives that you know have the different address, change it.\n\nIf a drive that you haven\u0027t tested is already broken with this config, we can\u0027t break it any worse, and if any of those drives are broken, folks can always just fix them.",
+      "parentUuid": "e546c447_ea811df5",
+      "range": {
+        "startLine": 45,
+        "startChar": 74,
+        "endLine": 45,
+        "endChar": 78
+      },
+      "revId": "b78d0f4430ff987fd9bdc2bb88e01d47e0631a98",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }
