@@ -126,7 +126,7 @@ configs = [
     'kudo_motherboard.json',
     'micron_7450.json',
     'minerva_cmm.json',
-    'minerva_scm.json',
+    'minerva_cmm_scm.json',
     'mori_bmc.json',
     'mori_motherboard.json',
     'mtjade.json',
