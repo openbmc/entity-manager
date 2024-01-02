@@ -16,6 +16,24 @@
       "message": "We don\u0027t need wildcards at the end of these?  Where do we keep the \"EVT\", \"DVT\", etc.?",
       "revId": "e7cea0c68f0642c6a59d890b61dd3146c81f24c0",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "cdc190a4_da9536a9",
+        "filename": "configurations/harma_mb.json",
+        "patchSetId": 27
+      },
+      "lineNbr": 494,
+      "author": {
+        "id": 1001264
+      },
+      "writtenOn": "2024-01-02T13:59:21Z",
+      "side": 1,
+      "message": "Hi Patrick, we will add stage at end of board_product_name.\nI notice that entity-manager can probe the config without wildcards at begin or end.\n\nFor example, I assign \"Minerva Harma MB PO\" to Harma MB board_product_name and entity-manager still can probe successfully.\n```\nroot@harma:~# busctl get-property xyz.openbmc_project.FruDevice /xyz/openbmc_project/FruDevice/Minerva_Harma_MB_PO xyz.openbmc_project.FruDevice BOARD_PRODUCT_NAME\ns \"Minerva Harma MB PO\"\n```\n```\nroot@harma:~# cat /var/configuration/system.json | grep \"Harma MB\"\n        \"Name\": \"Harma MB\",\n        \"Probe\": \"xyz.openbmc_project.FruDevice({\u0027BOARD_PRODUCT_NAME\u0027: \u0027Harma MB\u0027})\",\n```",
+      "parentUuid": "0faa82bd_d3a09682",
+      "revId": "e7cea0c68f0642c6a59d890b61dd3146c81f24c0",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }
