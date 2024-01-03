@@ -127,6 +127,7 @@ configs = [
     'micron_7450.json',
     'minerva_cmm.json',
     'minerva_scm.json',
+    'minerva_fanboard.json',
     'mori_bmc.json',
     'mori_motherboard.json',
     'mtjade.json',
