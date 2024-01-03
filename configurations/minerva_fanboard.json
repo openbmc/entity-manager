@@ -1,0 +1,791 @@
+[
+    {
+        "Exposes": [
+            {
+                "Address": "$address",
+                "Bus": "$bus",
+                "Name": "Top Fan Board $bus * -1 + 17 FRU",
+                "Type": "EEPROM"
+            },
+            {
+                "Address": "0x5e",
+                "Bus": "$bus",
+                "Connector": {
+                    "LED": "fan_fault",
+                    "Pwm": 2,
+                    "PwmName": "FCB_TOP_$bus * -1 + 17 FAN_PWM"
+                },
+                "Index": 0,
+                "Name": "FCB_TOP_$bus * -1 + 17 FAN0_TACH",
+                "PowerState": "Always",
+                "Tachs": [
+                    0
+                ],
+                "Thresholds": [
+                    {
+                        "Direction": "greater than",
+                        "Name": "upper critical",
+                        "Severity": 1,
+                        "Value": 20000
+                    },
+                    {
+                        "Direction": "less than",
+                        "Name": "lower critical",
+                        "Severity": 1,
+                        "Value": 800
+                    }
+                ],
+                "Type": "I2CFan"
+            },
+            {
+                "Address": "0x5e",
+                "Bus": "$bus",
+                "Connector": {
+                    "LED": "fan_fault",
+                    "Pwm": 2,
+                    "PwmName": "FCB_TOP_$bus * -1 + 17 FAN_PWM"
+                },
+                "Index": 1,
+                "Name": "FCB_TOP_$bus * -1 + 17 FAN1_TACH",
+                "PowerState": "Always",
+                "Tachs": [
+                    1
+                ],
+                "Thresholds": [
+                    {
+                        "Direction": "greater than",
+                        "Name": "upper critical",
+                        "Severity": 1,
+                        "Value": 20000
+                    },
+                    {
+                        "Direction": "less than",
+                        "Name": "lower critical",
+                        "Severity": 1,
+                        "Value": 800
+                    }
+                ],
+                "Type": "I2CFan"
+            },
+            {
+                "Address": "0x5e",
+                "Bus": "$bus",
+                "Connector": {
+                    "LED": "fan_fault",
+                    "Pwm": 2,
+                    "PwmName": "FCB_TOP_$bus * -1 + 17 FAN_PWM"
+                },
+                "Index": 2,
+                "Name": "FCB_TOP_$bus * -1 + 17 FAN2_TACH",
+                "PowerState": "Always",
+                "Tachs": [
+                    2
+                ],
+                "Thresholds": [
+                    {
+                        "Direction": "greater than",
+                        "Name": "upper critical",
+                        "Severity": 1,
+                        "Value": 20000
+                    },
+                    {
+                        "Direction": "less than",
+                        "Name": "lower critical",
+                        "Severity": 1,
+                        "Value": 800
+                    }
+                ],
+                "Type": "I2CFan"
+            },
+            {
+                "Address": "0x5e",
+                "Bus": "$bus",
+                "Connector": {
+                    "LED": "fan_fault",
+                    "Pwm": 2,
+                    "PwmName": "FCB_TOP_$bus * -1 + 17 FAN_PWM"
+                },
+                "Index": 3,
+                "Name": "FCB_TOP_$bus * -1 + 17 FAN3_TACH",
+                "PowerState": "Always",
+                "Tachs": [
+                    3
+                ],
+                "Thresholds": [
+                    {
+                        "Direction": "greater than",
+                        "Name": "upper critical",
+                        "Severity": 1,
+                        "Value": 20000
+                    },
+                    {
+                        "Direction": "less than",
+                        "Name": "lower critical",
+                        "Severity": 1,
+                        "Value": 800
+                    }
+                ],
+                "Type": "I2CFan"
+            },
+            {
+                "Address": "0x5e",
+                "Bus": "$bus",
+                "Connector": {
+                    "LED": "fan_fault",
+                    "Pwm": 2,
+                    "PwmName": "FCB_TOP_$bus * -1 + 17 FAN_PWM"
+                },
+                "Index": 4,
+                "Name": "FCB_TOP_$bus * -1 + 17 FAN4_TACH",
+                "PowerState": "Always",
+                "Tachs": [
+                    4
+                ],
+                "Thresholds": [
+                    {
+                        "Direction": "greater than",
+                        "Name": "upper critical",
+                        "Severity": 1,
+                        "Value": 20000
+                    },
+                    {
+                        "Direction": "less than",
+                        "Name": "lower critical",
+                        "Severity": 1,
+                        "Value": 800
+                    }
+                ],
+                "Type": "I2CFan"
+            },
+            {
+                "Address": "0x5e",
+                "Bus": "$bus",
+                "Connector": {
+                    "LED": "fan_fault",
+                    "Pwm": 2,
+                    "PwmName": "FCB_TOP_$bus * -1 + 17 FAN_PWM"
+                },
+                "Index": 5,
+                "Name": "FCB_TOP_$bus * -1 + 17 FAN5_TACH",
+                "PowerState": "Always",
+                "Tachs": [
+                    5
+                ],
+                "Thresholds": [
+                    {
+                        "Direction": "greater than",
+                        "Name": "upper critical",
+                        "Severity": 1,
+                        "Value": 20000
+                    },
+                    {
+                        "Direction": "less than",
+                        "Name": "lower critical",
+                        "Severity": 1,
+                        "Value": 800
+                    }
+                ],
+                "Type": "I2CFan"
+            },
+            {
+                "Address": "0x5e",
+                "Bus": "$bus",
+                "Connector": {
+                    "LED": "fan_fault",
+                    "Pwm": 2,
+                    "PwmName": "FCB_TOP_$bus * -1 + 17 FAN_PWM"
+                },
+                "Index": 6,
+                "Name": "FCB_TOP_$bus * -1 + 17 FAN6_TACH",
+                "PowerState": "Always",
+                "Tachs": [
+                    6
+                ],
+                "Thresholds": [
+                    {
+                        "Direction": "greater than",
+                        "Name": "upper critical",
+                        "Severity": 1,
+                        "Value": 20000
+                    },
+                    {
+                        "Direction": "less than",
+                        "Name": "lower critical",
+                        "Severity": 1,
+                        "Value": 800
+                    }
+                ],
+                "Type": "I2CFan"
+            },
+            {
+                "Address": "0x5e",
+                "Bus": "$bus",
+                "Connector": {
+                    "LED": "fan_fault",
+                    "Pwm": 2,
+                    "PwmName": "FCB_TOP_$bus * -1 + 17 FAN_PWM"
+                },
+                "Index": 7,
+                "Name": "FCB_TOP_$bus * -1 + 17 FAN7_TACH",
+                "PowerState": "Always",
+                "Tachs": [
+                    7
+                ],
+                "Thresholds": [
+                    {
+                        "Direction": "greater than",
+                        "Name": "upper critical",
+                        "Severity": 1,
+                        "Value": 20000
+                    },
+                    {
+                        "Direction": "less than",
+                        "Name": "lower critical",
+                        "Severity": 1,
+                        "Value": 800
+                    }
+                ],
+                "Type": "I2CFan"
+            }
+        ],
+        "Name": "Minerva Top Fan Board $bus * -1 + 17",
+        "Probe": [
+            "xyz.openbmc_project.FruDevice({'BOARD_PRODUCT_NAME': 'Minerva Fan Board.*', 'BUS': 16})",
+            "OR",
+            "xyz.openbmc_project.FruDevice({'BOARD_PRODUCT_NAME': 'Minerva Fan Board.*', 'BUS': 17})"
+        ],
+        "Type": "Board",
+        "xyz.openbmc_project.Inventory.Decorator.Asset": {
+            "Manufacturer": "$PRODUCT_MANUFACTURER",
+            "Model": "$PRODUCT_PRODUCT_NAME",
+            "PartNumber": "$PRODUCT_PART_NUMBER",
+            "SerialNumber": "$PRODUCT_SERIAL_NUMBER"
+        }
+    },
+    {
+        "Exposes": [
+            {
+                "Address": "$address",
+                "Bus": "$bus",
+                "Name": "Middle Fan Board $bus * -1 + 19 FRU",
+                "Type": "EEPROM"
+            },
+            {
+                "Address": "0x5e",
+                "Bus": "$bus",
+                "Connector": {
+                    "LED": "fan_fault",
+                    "Pwm": 2,
+                    "PwmName": "FCB_MID_$bus * -1 + 19 FAN_PWM"
+                },
+                "Index": 0,
+                "Name": "FCB_MID_$bus * -1 + 19 FAN0_TACH",
+                "PowerState": "Always",
+                "Tachs": [
+                    0
+                ],
+                "Thresholds": [
+                    {
+                        "Direction": "greater than",
+                        "Name": "upper critical",
+                        "Severity": 1,
+                        "Value": 20000
+                    },
+                    {
+                        "Direction": "less than",
+                        "Name": "lower critical",
+                        "Severity": 1,
+                        "Value": 800
+                    }
+                ],
+                "Type": "I2CFan"
+            },
+            {
+                "Address": "0x5e",
+                "Bus": "$bus",
+                "Connector": {
+                    "LED": "fan_fault",
+                    "Pwm": 2,
+                    "PwmName": "FCB_MID_$bus * -1 + 19 FAN_PWM"
+                },
+                "Index": 1,
+                "Name": "FCB_MID_$bus * -1 + 19 FAN1_TACH",
+                "PowerState": "Always",
+                "Tachs": [
+                    1
+                ],
+                "Thresholds": [
+                    {
+                        "Direction": "greater than",
+                        "Name": "upper critical",
+                        "Severity": 1,
+                        "Value": 20000
+                    },
+                    {
+                        "Direction": "less than",
+                        "Name": "lower critical",
+                        "Severity": 1,
+                        "Value": 800
+                    }
+                ],
+                "Type": "I2CFan"
+            },
+            {
+                "Address": "0x5e",
+                "Bus": "$bus",
+                "Connector": {
+                    "LED": "fan_fault",
+                    "Pwm": 2,
+                    "PwmName": "FCB_MID_$bus * -1 + 19 FAN_PWM"
+                },
+                "Index": 2,
+                "Name": "FCB_MID_$bus * -1 + 19 FAN2_TACH",
+                "PowerState": "Always",
+                "Tachs": [
+                    2
+                ],
+                "Thresholds": [
+                    {
+                        "Direction": "greater than",
+                        "Name": "upper critical",
+                        "Severity": 1,
+                        "Value": 20000
+                    },
+                    {
+                        "Direction": "less than",
+                        "Name": "lower critical",
+                        "Severity": 1,
+                        "Value": 800
+                    }
+                ],
+                "Type": "I2CFan"
+            },
+            {
+                "Address": "0x5e",
+                "Bus": "$bus",
+                "Connector": {
+                    "LED": "fan_fault",
+                    "Pwm": 2,
+                    "PwmName": "FCB_MID_$bus * -1 + 19 FAN_PWM"
+                },
+                "Index": 3,
+                "Name": "FCB_MID_$bus * -1 + 19 FAN3_TACH",
+                "PowerState": "Always",
+                "Tachs": [
+                    3
+                ],
+                "Thresholds": [
+                    {
+                        "Direction": "greater than",
+                        "Name": "upper critical",
+                        "Severity": 1,
+                        "Value": 20000
+                    },
+                    {
+                        "Direction": "less than",
+                        "Name": "lower critical",
+                        "Severity": 1,
+                        "Value": 800
+                    }
+                ],
+                "Type": "I2CFan"
+            },
+            {
+                "Address": "0x5e",
+                "Bus": "$bus",
+                "Connector": {
+                    "LED": "fan_fault",
+                    "Pwm": 2,
+                    "PwmName": "FCB_MID_$bus * -1 + 19 FAN_PWM"
+                },
+                "Index": 4,
+                "Name": "FCB_MID_$bus * -1 + 19 FAN4_TACH",
+                "PowerState": "Always",
+                "Tachs": [
+                    4
+                ],
+                "Thresholds": [
+                    {
+                        "Direction": "greater than",
+                        "Name": "upper critical",
+                        "Severity": 1,
+                        "Value": 20000
+                    },
+                    {
+                        "Direction": "less than",
+                        "Name": "lower critical",
+                        "Severity": 1,
+                        "Value": 800
+                    }
+                ],
+                "Type": "I2CFan"
+            },
+            {
+                "Address": "0x5e",
+                "Bus": "$bus",
+                "Connector": {
+                    "LED": "fan_fault",
+                    "Pwm": 2,
+                    "PwmName": "FCB_MID_$bus * -1 + 19 FAN_PWM"
+                },
+                "Index": 5,
+                "Name": "FCB_MID_$bus * -1 + 19 FAN5_TACH",
+                "PowerState": "Always",
+                "Tachs": [
+                    5
+                ],
+                "Thresholds": [
+                    {
+                        "Direction": "greater than",
+                        "Name": "upper critical",
+                        "Severity": 1,
+                        "Value": 20000
+                    },
+                    {
+                        "Direction": "less than",
+                        "Name": "lower critical",
+                        "Severity": 1,
+                        "Value": 800
+                    }
+                ],
+                "Type": "I2CFan"
+            },
+            {
+                "Address": "0x5e",
+                "Bus": "$bus",
+                "Connector": {
+                    "LED": "fan_fault",
+                    "Pwm": 2,
+                    "PwmName": "FCB_MID_$bus * -1 + 19 FAN_PWM"
+                },
+                "Index": 6,
+                "Name": "FCB_MID_$bus * -1 + 19 FAN6_TACH",
+                "PowerState": "Always",
+                "Tachs": [
+                    6
+                ],
+                "Thresholds": [
+                    {
+                        "Direction": "greater than",
+                        "Name": "upper critical",
+                        "Severity": 1,
+                        "Value": 20000
+                    },
+                    {
+                        "Direction": "less than",
+                        "Name": "lower critical",
+                        "Severity": 1,
+                        "Value": 800
+                    }
+                ],
+                "Type": "I2CFan"
+            },
+            {
+                "Address": "0x5e",
+                "Bus": "$bus",
+                "Connector": {
+                    "LED": "fan_fault",
+                    "Pwm": 2,
+                    "PwmName": "FCB_MID_$bus * -1 + 19 FAN_PWM"
+                },
+                "Index": 7,
+                "Name": "FCB_MID_$bus * -1 + 19 FAN7_TACH",
+                "PowerState": "Always",
+                "Tachs": [
+                    7
+                ],
+                "Thresholds": [
+                    {
+                        "Direction": "greater than",
+                        "Name": "upper critical",
+                        "Severity": 1,
+                        "Value": 20000
+                    },
+                    {
+                        "Direction": "less than",
+                        "Name": "lower critical",
+                        "Severity": 1,
+                        "Value": 800
+                    }
+                ],
+                "Type": "I2CFan"
+            }
+        ],
+        "Name": "Minerva Middle Fan Board $bus * -1 + 19",
+        "Probe": [
+            "xyz.openbmc_project.FruDevice({'BOARD_PRODUCT_NAME': 'Minerva Fan Board.*', 'BUS': 18})",
+            "OR",
+            "xyz.openbmc_project.FruDevice({'BOARD_PRODUCT_NAME': 'Minerva Fan Board.*', 'BUS': 19})"
+        ],
+        "Type": "Board",
+        "xyz.openbmc_project.Inventory.Decorator.Asset": {
+            "Manufacturer": "$PRODUCT_MANUFACTURER",
+            "Model": "$PRODUCT_PRODUCT_NAME",
+            "PartNumber": "$PRODUCT_PART_NUMBER",
+            "SerialNumber": "$PRODUCT_SERIAL_NUMBER"
+        }
+    },
+    {
+        "Exposes": [
+            {
+                "Address": "$address",
+                "Bus": "$bus",
+                "Name": "Bottom Fan Board $bus * -1 + 21 FRU",
+                "Type": "EEPROM"
+            },
+            {
+                "Address": "0x5e",
+                "Bus": "$bus",
+                "Connector": {
+                    "LED": "fan_fault",
+                    "Pwm": 2,
+                    "PwmName": "FCB_BOT_$bus * -1 + 21 FAN_PWM"
+                },
+                "Index": 0,
+                "Name": "FCB_BOT_$bus * -1 + 21 FAN0_TACH",
+                "PowerState": "Always",
+                "Tachs": [
+                    0
+                ],
+                "Thresholds": [
+                    {
+                        "Direction": "greater than",
+                        "Name": "upper critical",
+                        "Severity": 1,
+                        "Value": 20000
+                    },
+                    {
+                        "Direction": "less than",
+                        "Name": "lower critical",
+                        "Severity": 1,
+                        "Value": 800
+                    }
+                ],
+                "Type": "I2CFan"
+            },
+            {
+                "Address": "0x5e",
+                "Bus": "$bus",
+                "Connector": {
+                    "LED": "fan_fault",
+                    "Pwm": 2,
+                    "PwmName": "FCB_BOT_$bus * -1 + 21 FAN_PWM"
+                },
+                "Index": 1,
+                "Name": "FCB_BOT_$bus * -1 + 21 FAN1_TACH",
+                "PowerState": "Always",
+                "Tachs": [
+                    1
+                ],
+                "Thresholds": [
+                    {
+                        "Direction": "greater than",
+                        "Name": "upper critical",
+                        "Severity": 1,
+                        "Value": 20000
+                    },
+                    {
+                        "Direction": "less than",
+                        "Name": "lower critical",
+                        "Severity": 1,
+                        "Value": 800
+                    }
+                ],
+                "Type": "I2CFan"
+            },
+            {
+                "Address": "0x5e",
+                "Bus": "$bus",
+                "Connector": {
+                    "LED": "fan_fault",
+                    "Pwm": 2,
+                    "PwmName": "FCB_BOT_$bus * -1 + 21 FAN_PWM"
+                },
+                "Index": 2,
+                "Name": "FCB_BOT_$bus * -1 + 21 FAN2_TACH",
+                "PowerState": "Always",
+                "Tachs": [
+                    2
+                ],
+                "Thresholds": [
+                    {
+                        "Direction": "greater than",
+                        "Name": "upper critical",
+                        "Severity": 1,
+                        "Value": 20000
+                    },
+                    {
+                        "Direction": "less than",
+                        "Name": "lower critical",
+                        "Severity": 1,
+                        "Value": 800
+                    }
+                ],
+                "Type": "I2CFan"
+            },
+            {
+                "Address": "0x5e",
+                "Bus": "$bus",
+                "Connector": {
+                    "LED": "fan_fault",
+                    "Pwm": 2,
+                    "PwmName": "FCB_BOT_$bus * -1 + 21 FAN_PWM"
+                },
+                "Index": 3,
+                "Name": "FCB_BOT_$bus * -1 + 21 FAN3_TACH",
+                "PowerState": "Always",
+                "Tachs": [
+                    3
+                ],
+                "Thresholds": [
+                    {
+                        "Direction": "greater than",
+                        "Name": "upper critical",
+                        "Severity": 1,
+                        "Value": 20000
+                    },
+                    {
+                        "Direction": "less than",
+                        "Name": "lower critical",
+                        "Severity": 1,
+                        "Value": 800
+                    }
+                ],
+                "Type": "I2CFan"
+            },
+            {
+                "Address": "0x5e",
+                "Bus": "$bus",
+                "Connector": {
+                    "LED": "fan_fault",
+                    "Pwm": 2,
+                    "PwmName": "FCB_BOT_$bus * -1 + 21 FAN_PWM"
+                },
+                "Index": 4,
+                "Name": "FCB_BOT_$bus * -1 + 21 FAN4_TACH",
+                "PowerState": "Always",
+                "Tachs": [
+                    4
+                ],
+                "Thresholds": [
+                    {
+                        "Direction": "greater than",
+                        "Name": "upper critical",
+                        "Severity": 1,
+                        "Value": 20000
+                    },
+                    {
+                        "Direction": "less than",
+                        "Name": "lower critical",
+                        "Severity": 1,
+                        "Value": 800
+                    }
+                ],
+                "Type": "I2CFan"
+            },
+            {
+                "Address": "0x5e",
+                "Bus": "$bus",
+                "Connector": {
+                    "LED": "fan_fault",
+                    "Pwm": 2,
+                    "PwmName": "FCB_BOT_$bus * -1 + 21 FAN_PWM"
+                },
+                "Index": 5,
+                "Name": "FCB_BOT_$bus * -1 + 21 FAN5_TACH",
+                "PowerState": "Always",
+                "Tachs": [
+                    5
+                ],
+                "Thresholds": [
+                    {
+                        "Direction": "greater than",
+                        "Name": "upper critical",
+                        "Severity": 1,
+                        "Value": 20000
+                    },
+                    {
+                        "Direction": "less than",
+                        "Name": "lower critical",
+                        "Severity": 1,
+                        "Value": 800
+                    }
+                ],
+                "Type": "I2CFan"
+            },
+            {
+                "Address": "0x5e",
+                "Bus": "$bus",
+                "Connector": {
+                    "LED": "fan_fault",
+                    "Pwm": 2,
+                    "PwmName": "FCB_BOT_$bus * -1 + 21 FAN_PWM"
+                },
+                "Index": 6,
+                "Name": "FCB_BOT_$bus * -1 + 21 FAN6_TACH",
+                "PowerState": "Always",
+                "Tachs": [
+                    6
+                ],
+                "Thresholds": [
+                    {
+                        "Direction": "greater than",
+                        "Name": "upper critical",
+                        "Severity": 1,
+                        "Value": 20000
+                    },
+                    {
+                        "Direction": "less than",
+                        "Name": "lower critical",
+                        "Severity": 1,
+                        "Value": 800
+                    }
+                ],
+                "Type": "I2CFan"
+            },
+            {
+                "Address": "0x5e",
+                "Bus": "$bus",
+                "Connector": {
+                    "LED": "fan_fault",
+                    "Pwm": 2,
+                    "PwmName": "FCB_BOT_$bus * -1 + 21 FAN_PWM"
+                },
+                "Index": 7,
+                "Name": "FCB_BOT_$bus * -1 + 21 FAN7_TACH",
+                "PowerState": "Always",
+                "Tachs": [
+                    7
+                ],
+                "Thresholds": [
+                    {
+                        "Direction": "greater than",
+                        "Name": "upper critical",
+                        "Severity": 1,
+                        "Value": 20000
+                    },
+                    {
+                        "Direction": "less than",
+                        "Name": "lower critical",
+                        "Severity": 1,
+                        "Value": 800
+                    }
+                ],
+                "Type": "I2CFan"
+            }
+        ],
+        "Name": "Minerva Bottom Fan Board $bus * -1 + 21",
+        "Probe": [
+            "xyz.openbmc_project.FruDevice({'BOARD_PRODUCT_NAME': 'Minerva Fan Board.*', 'BUS': 20})",
+            "OR",
+            "xyz.openbmc_project.FruDevice({'BOARD_PRODUCT_NAME': 'Minerva Fan Board.*', 'BUS': 21})"
+        ],
+        "Type": "Board",
+        "xyz.openbmc_project.Inventory.Decorator.Asset": {
+            "Manufacturer": "$PRODUCT_MANUFACTURER",
+            "Model": "$PRODUCT_PRODUCT_NAME",
+            "PartNumber": "$PRODUCT_PART_NUMBER",
+            "SerialNumber": "$PRODUCT_SERIAL_NUMBER"
+        }
+    }
+]
