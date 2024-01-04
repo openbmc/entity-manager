@@ -25,6 +25,10 @@ if get_option('fru-device')
     if get_option('fru-device-resizefru')
         cpp_args_fd = cpp_args_fd + ['-DENABLE_FRU_AREA_RESIZE']
     endif
+    first_addr = get_option('fru-device-first-address')
+    last_addr = get_option('fru-device-last-address')
+    cpp_args_fd = cpp_args_fd + ['-DFRU_DEVICE_FIRST_ADDRESS=' + first_addr.to_string()]
+    cpp_args_fd = cpp_args_fd + ['-DFRU_DEVICE_LAST_ADDRESS=' + last_addr.to_string()]
     executable(
         'fru-device',
         'expression.cpp',

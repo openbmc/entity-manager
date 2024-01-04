@@ -712,7 +712,8 @@ static void findI2CDevices(const std::vector<fs::path>& i2cBuses,
         }
 
         // fd is closed in this function in case the bus locks up
-        getBusFRUs(file, 0x03, 0x77, bus, device, powerIsOn, objServer);
+        getBusFRUs(file, FRU_DEVICE_FIRST_ADDRESS, FRU_DEVICE_LAST_ADDRESS, bus,
+                   device, powerIsOn, objServer);
 
         if (debug)
         {
