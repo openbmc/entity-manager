@@ -7,3 +7,9 @@ option(
 option(
     'fru-device-resizefru', value : false, type: 'boolean', description: 'Allow FruDevice to resize FRU areas.',
 )
+option(
+    'fru-device-first-address', type: 'integer', min: 3, max: 119, value: 3, description: 'Scan FruDevice first slave address',
+)
+option(
+    'fru-device-last-address', type: 'integer', min: 3, max: 119, value: 119, description: 'Scan FruDevice first slave address',
+)
