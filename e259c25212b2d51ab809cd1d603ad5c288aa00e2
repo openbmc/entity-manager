@@ -52,6 +52,24 @@
       "parentUuid": "be47ac75_9e7a0a03",
       "revId": "e259c25212b2d51ab809cd1d603ad5c288aa00e2",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "cca13587_250a94f7",
+        "filename": "schemas/openbmc-dbus.json",
+        "patchSetId": 2
+      },
+      "lineNbr": 73,
+      "author": {
+        "id": 1001618
+      },
+      "writtenOn": "2024-01-05T01:40:40Z",
+      "side": 1,
+      "message": "Yes, since we use ```$bus``` to evaluate the slot number, EM will treat the property as a string.",
+      "parentUuid": "f2f7348a_04f6c2b8",
+      "revId": "e259c25212b2d51ab809cd1d603ad5c288aa00e2",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }
