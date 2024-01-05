@@ -29,6 +29,21 @@ void Topology::addBoard(const std::string& path, const std::string& boardType,
 
         downstreamPorts[connectsTo].emplace_back(path);
         boardTypes[path] = boardType;
+
+        auto findDownstreamAlias = exposesItem.find("DownstreamAlias");
+        auto findUpstreamAlias = exposesItem.find("UpstreamAlias");
+        if (findDownstreamAlias != exposesItem.end() &&
+            findUpstreamAlias != exposesItem.end())
+        {
+            std::string downstreamAlias =
+                findDownstreamAlias->get<std::string>();
+            std::string upstreamAlias = findUpstreamAlias->get<std::string>();
+
+            if (downstreamAlias != "" && upstreamAlias != "")
+            {
+                aliases[path] = std::make_pair(downstreamAlias, upstreamAlias);
+            }
+        }
     }
     else if (exposesType.ends_with("Port"))
     {
@@ -65,6 +80,12 @@ std::unordered_map<std::string, std::vector<Association>>
                     {
                         result[downstream].emplace_back("contained_by",
                                                         "containing", upstream);
+                        auto findAlias = aliases.find(downstream);
+                        if (findAlias != aliases.end())
+                        {
+                            result[downstream].emplace_back(
+                                findAlias->first, findAlias->second, upstream);
+                        }
                     }
                 }
             }
