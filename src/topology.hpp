@@ -24,9 +24,12 @@ class Topology
     using BoardType = std::string;
     using BoardName = std::string;
     using PortType = std::string;
+    using Alias =
+        std::pair</*downstream*/ std::string, /*upstream*/ std::string>;
 
     std::unordered_map<PortType, std::vector<Path>> upstreamPorts;
     std::unordered_map<PortType, std::vector<Path>> downstreamPorts;
     std::unordered_map<Path, BoardType> boardTypes;
     std::unordered_map<BoardName, Path> boardNames;
+    std::unordered_map<BoardName, Alias> aliases;
 };
