@@ -88,6 +88,24 @@
       "parentUuid": "cca13587_250a94f7",
       "revId": "e259c25212b2d51ab809cd1d603ad5c288aa00e2",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "2f5c64ff_1391d435",
+        "filename": "schemas/openbmc-dbus.json",
+        "patchSetId": 2
+      },
+      "lineNbr": 73,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2024-01-12T15:19:33Z",
+      "side": 1,
+      "message": "I think we need a way to coerce EM to turn this into a number (at a dbus level).  Maybe that is a code change...  The json schema is still probably a string though because you need a string to hold the formulas.",
+      "parentUuid": "09b06c3c_63503796",
+      "revId": "e259c25212b2d51ab809cd1d603ad5c288aa00e2",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }
