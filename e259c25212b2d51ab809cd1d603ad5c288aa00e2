@@ -124,6 +124,24 @@
       "parentUuid": "2f5c64ff_1391d435",
       "revId": "e259c25212b2d51ab809cd1d603ad5c288aa00e2",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6d3ff127_a8f6a02d",
+        "filename": "schemas/openbmc-dbus.json",
+        "patchSetId": 2
+      },
+      "lineNbr": 73,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2024-01-12T15:56:47Z",
+      "side": 1,
+      "message": ":person_shrugging:\n\n\"The contents of the string are only digits, so hoist it to dbus as a number\"?\n\nI think there is a good amount of work necessary in general to get EM to align with the PDI specs.  I don\u0027t think we can solve that all with this commit.",
+      "parentUuid": "4f7badb0_36cebaaf",
+      "revId": "e259c25212b2d51ab809cd1d603ad5c288aa00e2",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }
