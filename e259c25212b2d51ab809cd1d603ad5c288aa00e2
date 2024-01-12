@@ -70,6 +70,24 @@
       "parentUuid": "f2f7348a_04f6c2b8",
       "revId": "e259c25212b2d51ab809cd1d603ad5c288aa00e2",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "09b06c3c_63503796",
+        "filename": "schemas/openbmc-dbus.json",
+        "patchSetId": 2
+      },
+      "lineNbr": 73,
+      "author": {
+        "id": 1000008
+      },
+      "writtenOn": "2024-01-12T15:13:21Z",
+      "side": 1,
+      "message": "Not sure of  the best way forward here.  I think that EM and the PDI yaml should agree.  Also a property called \u0027SlotNumber\u0027 should probably be a number.  So many a different interface?",
+      "parentUuid": "cca13587_250a94f7",
+      "revId": "e259c25212b2d51ab809cd1d603ad5c288aa00e2",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }
