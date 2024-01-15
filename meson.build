@@ -132,6 +132,7 @@ configs = [
     'kudo_motherboard.json',
     'micron_7450.json',
     'minerva_cmm.json',
+    'minerva_cmm_bsm.json',
     'minerva_fanboard.json',
     'minerva_pdb.json',
     'minerva_pttv.json',
