@@ -5,6 +5,22 @@
             "Bus": 7,
             "Name": "Ambient 1 Temp",
             "Name1": "Station Pressure",
+            "Thresholds": [
+                {
+                    "Direction": "greater than",
+                    "Index": 1,
+                    "Name": "Ambient Upper Critical",
+                    "Severity": 0,
+                    "Value": 100
+                },
+                {
+                    "Direction": "less than",
+                    "Index": 1,
+                    "Name": "Ambient Lower Critical",
+                    "Severity": 0,
+                    "Value": 0
+                }
+            ],
             "Type": "DPS310"
         },
         {
@@ -49,12 +65,43 @@
             "Bus": 7,
             "Name": "Ambient 2 Temp",
             "Name1": "Relative Humidity",
+            "Thresholds": [
+                {
+                    "Direction": "greater than",
+                    "Index": 1,
+                    "Name": "Ambient Upper Critical",
+                    "Severity": 0,
+                    "Value": 100
+                },
+                {
+                    "Direction": "less than",
+                    "Index": 1,
+                    "Name": "Ambient Lower Critical",
+                    "Severity": 0,
+                    "Value": 0
+                }
+            ],
             "Type": "SI7020"
         },
         {
             "Address": "0x48",
             "Bus": 7,
             "Name": "Ambient 0 Temp",
+            "PollRate": 1,
+            "Thresholds": [
+                {
+                    "Direction": "greater than",
+                    "Name": "Ambient Upper Critical",
+                    "Severity": 0,
+                    "Value": 100
+                },
+                {
+                    "Direction": "less than",
+                    "Name": "Ambient Lower Critical",
+                    "Severity": 0,
+                    "Value": 0
+                }
+            ],
             "Type": "TMP75"
         }
     ],
