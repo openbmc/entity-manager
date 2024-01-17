@@ -126,6 +126,7 @@ configs = [
     'harma_nic.json',
     'harma_scm.json',
     'ibm_tacoma_rack_controller.json',
+    'ingraham.json',
     'intel_front_panel.json',
     'kudo_bmc.json',
     'kudo_motherboard.json',
