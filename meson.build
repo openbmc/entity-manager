@@ -96,6 +96,7 @@ configs = [
     'aspower_u1d-d10800_psu.json',
     'axx1p100hssi_aic.json',
     'axx2prthdhd.json',
+    'bmc_storage_module.json',
     'bnp_baseboard.json',
     'bellavista.json',
     'bonnell.json',
