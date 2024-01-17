@@ -1,0 +1,28 @@
+{
+    "Exposes": [
+        {
+            "BridgeGpio": [
+                {
+                    "Name": "rtc-battery-voltage-read-enable",
+                    "Polarity": "High"
+                }
+            ],
+            "Index": 0,
+            "Name": "Battery Voltage",
+            "PollRate": 86400,
+            "ScaleFactor": 0.4348,
+            "Thresholds": [
+                {
+                    "Direction": "less than",
+                    "Name": "lower critical",
+                    "Severity": 1,
+                    "Value": 2.45
+                }
+            ],
+            "Type": "ADC"
+        }
+    ],
+    "Name": "Tola Board",
+    "Probe": "com.ibm.ipzvpd.VINI({'CC': [50, 69, 51, 53]})",
+    "Type": "Board"
+}
