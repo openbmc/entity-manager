@@ -181,6 +181,7 @@ configs = [
     'yosemite4.json',
     'yosemite4_medusaboard.json',
     'yosemite4_spiderboard.json',
+    'bmc_storage_module.json',
 ]
 filepaths = []
 foreach c : configs
