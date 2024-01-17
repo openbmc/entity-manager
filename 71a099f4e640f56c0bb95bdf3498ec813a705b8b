@@ -22,6 +22,30 @@
       },
       "revId": "71a099f4e640f56c0bb95bdf3498ec813a705b8b",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ee9b00eb_2d0af7f1",
+        "filename": "src/overlay.cpp",
+        "patchSetId": 6
+      },
+      "lineNbr": 216,
+      "author": {
+        "id": 1000900
+      },
+      "writtenOn": "2024-01-17T01:24:17Z",
+      "side": 1,
+      "message": "Mostly, I\u0027m trying to keep the logic the same as the previous code. If `deviceIsCreated` was `true`, then `buildDevice` returns 0 and then `linkMux` runs. Similarly, if `deviceIsCreated` was `false` but `createDevice` worked, then `buildDevice` still returns 0 and `linkMux` runs. The only difference introduced is the path where `createDevice` gets tried again. So any path where the device exists at the end should run `linkMux` (according to my common sense reading of the code but I could be convinced this change is wrong).",
+      "parentUuid": "a805602a_3c4aee2e",
+      "range": {
+        "startLine": 212,
+        "startChar": 0,
+        "endLine": 216,
+        "endChar": 5
+      },
+      "revId": "71a099f4e640f56c0bb95bdf3498ec813a705b8b",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }
