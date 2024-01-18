@@ -57,6 +57,9 @@
                 "CurrScaleFactor": {
                     "$ref": "#/definitions/Types/CurrScaleFactor"
                 },
+                "DelayMs": {
+                    "$ref": "#/definitions/Types/DelayMs"
+                },
                 "Direction": {
                     "$ref": "#/definitions/Types/Direction"
                 },
@@ -720,6 +723,9 @@
                 "type": "number"
             },
             "CurrScaleFactor": {
+                "type": "number"
+            },
+            "DelayMs": {
                 "type": "number"
             },
             "Direction": {
