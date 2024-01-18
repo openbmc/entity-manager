@@ -216,6 +216,9 @@
                 "SensorType": {
                     "$ref": "#/definitions/Types/SensorType"
                 },
+                "StartupDelay": {
+                    "$ref": "#/definitions/Types/StartupDelay"
+                },
                 "TachMaxPercent": {
                     "$ref": "#/definitions/Types/TachMaxPercent"
                 },
@@ -909,6 +912,9 @@
             },
             "SensorType": {
                 "type": "string"
+            },
+            "StartupDelay": {
+                "type": "number"
             },
             "TachMaxPercent": {
                 "type": "number"
