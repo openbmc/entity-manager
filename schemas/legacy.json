@@ -189,6 +189,9 @@
                 "PowerState": {
                     "$ref": "#/definitions/Types/PowerState"
                 },
+                "PowerStatePost": {
+                    "$ref": "#/definitions/Types/PowerStatePost"
+                },
                 "Presence": {
                     "$ref": "#/definitions/Types/Presence"
                 },
@@ -874,6 +877,9 @@
             },
             "PowerState": {
                 "type": "string"
+            },
+            "PowerStatePost": {
+                "type": "number"
             },
             "Presence": {
                 "properties": {
