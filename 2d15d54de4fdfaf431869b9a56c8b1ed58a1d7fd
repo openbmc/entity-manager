@@ -24,6 +24,30 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "22f9526a_b4364d22",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 1001198
+      },
+      "writtenOn": "2024-01-19T05:27:44Z",
+      "side": 1,
+      "message": "Updated it to \"StartupDelay\"",
+      "parentUuid": "1cbb1fda_f54cbabf",
+      "range": {
+        "startLine": 7,
+        "startChar": 4,
+        "endLine": 7,
+        "endChar": 11
+      },
+      "revId": "2d15d54de4fdfaf431869b9a56c8b1ed58a1d7fd",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "544d8361_5c8c0b92",
@@ -37,6 +61,30 @@
       "writtenOn": "2024-01-18T18:59:10Z",
       "side": 1,
       "message": "Can we name this something more descriptive.  Something like \"StartupDelay\"?\n\nWhat values do you expect to go in here?  Is it something that we could just have as the default?  A second or two might be reasonable, or is it longer than that?",
+      "range": {
+        "startLine": 14,
+        "startChar": 17,
+        "endLine": 14,
+        "endChar": 24
+      },
+      "revId": "2d15d54de4fdfaf431869b9a56c8b1ed58a1d7fd",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "d25be8a0_341c3a1f",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 14,
+      "author": {
+        "id": 1001198
+      },
+      "writtenOn": "2024-01-19T05:27:44Z",
+      "side": 1,
+      "message": "Updated it to \"StartupDelay\", beside that, I updated commit message to indicate the units of this property is milliseconds. The delay duration should be depended on the sensor\u0027s datasheet, we should not add a default for this property.",
+      "parentUuid": "544d8361_5c8c0b92",
       "range": {
         "startLine": 14,
         "startChar": 17,
