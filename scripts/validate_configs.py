@@ -157,7 +157,7 @@ def main():
             if not expect_fail:
                 results["invalid"].append(name)
                 if args.verbose:
-                    print(e)
+                    sys.stderr.write(str(e) + "\n")
             if expect_fail or getattr(args, "continue"):
                 continue
             break
@@ -167,16 +167,18 @@ def main():
         exit_status = 1
         unexpected_pass_suffix = " **"
         show_suffix_explanation = False
-        print("results:")
+        sys.stderr.write("results:\n")
         for f in config_files:
             if any([x in f for x in results["unexpected_pass"]]):
                 show_suffix_explanation = True
-                print("  '{}' passed!{}".format(f, unexpected_pass_suffix))
+                sys.stderr.write(
+                    "  '{}' passed!{}\n".format(f, unexpected_pass_suffix)
+                )
             if any([x in f for x in results["invalid"]]):
-                print("  '{}' failed!".format(f))
+                sys.stderr.write("  '{}' failed!\n".format(f))
 
         if show_suffix_explanation:
-            print("\n** configuration expected to fail")
+            sys.stderr.write("\n** configuration expected to fail\n")
 
     sys.exit(exit_status)
 
