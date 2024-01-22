@@ -881,13 +881,16 @@
                         "type": "string"
                     },
                     "Polarity": {
-                        "enum": "Low"
+                        "$ref": "#/definitions/Types/PresencePolarity"
                     }
                 },
                 "type": "object"
             },
             "PresenceGpio": {
                 "type": ["number", "array"]
+            },
+            "PresencePolarity": {
+                "enum": "Low"
             },
             "Pwm": {
                 "type": "number"
