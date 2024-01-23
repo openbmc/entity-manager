@@ -22,6 +22,30 @@
       },
       "revId": "b0ccdc4e958397277bfc5d5d5771f71568348485",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "28682520_fd1c16d9",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 3
+      },
+      "lineNbr": 12,
+      "author": {
+        "id": 1001198
+      },
+      "writtenOn": "2024-01-23T02:53:05Z",
+      "side": 1,
+      "message": "I created new commits to handle new `StartupDelay` property. https://gerrit.openbmc.org/c/openbmc/dbus-sensors/+/68873\n\nAbout https://github.com/openbmc/dbus-sensors/blob/master/src/ADCSensor.cpp#L235, this line of code is used to add 5s delay when turn off the power to ensure that the lower threshold event will be not logged during Chassis\u0027s state changed from On to Off.\n\nThe `StartupDelay` property is used to add a small delay after Chassis is On or Host is Running.",
+      "parentUuid": "9b085942_97e067dc",
+      "range": {
+        "startLine": 9,
+        "startChar": 0,
+        "endLine": 12,
+        "endChar": 57
+      },
+      "revId": "b0ccdc4e958397277bfc5d5d5771f71568348485",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }
