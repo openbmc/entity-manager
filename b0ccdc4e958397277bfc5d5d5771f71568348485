@@ -94,6 +94,30 @@
       },
       "revId": "b0ccdc4e958397277bfc5d5d5771f71568348485",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "72ddeda7_4c9c4f5d",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 3
+      },
+      "lineNbr": 12,
+      "author": {
+        "id": 1000559
+      },
+      "writtenOn": "2024-01-24T20:37:54Z",
+      "side": 1,
+      "message": "\u003e This commit add \"StartupDelay\" to legacy json to add a small delay after\nChassis is On\n\nIf more than 10 seconds is needed, it is not necessarily a small delay. \n\nWould PowerState::POST be more appropriate? \nI am not against adding the support to specify a delay. Just trying to understand the issue it is intended to address. The name StartupDelay is little vague.",
+      "parentUuid": "1d04c17d_4118fd98",
+      "range": {
+        "startLine": 9,
+        "startChar": 0,
+        "endLine": 12,
+        "endChar": 57
+      },
+      "revId": "b0ccdc4e958397277bfc5d5d5771f71568348485",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }
