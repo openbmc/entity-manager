@@ -1064,7 +1064,7 @@ void propertiesChangedCallback(nlohmann::json& systemConfiguration,
     instance++;
     size_t count = instance;
 
-    timer.expires_after(std::chrono::seconds(5));
+    timer.expires_after(std::chrono::milliseconds(500));
 
     // setup an async wait as we normally get flooded with new requests
     timer.async_wait([&systemConfiguration, &objServer,
