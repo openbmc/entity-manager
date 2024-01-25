@@ -110,6 +110,9 @@
                 "MinValue": {
                     "$ref": "#/$defs/Types/MinValue"
                 },
+                "MuxChannel": {
+                    "$ref": "#/definitions/Types/MuxChannel"
+                },
                 "Name": {
                     "$ref": "#/$defs/Types/Name"
                 },
@@ -1080,6 +1083,18 @@
             },
             "MinValue": {
                 "type": "number"
+            },
+            "MuxChannel": {
+                "properties": {
+                    "MuxName": {
+                        "type": "string"
+                    },
+                    "ChannelName": {
+                        "type": "string"
+                    }
+                },
+                "required": ["MuxName", "ChannelName"],
+                "type": "object"
             },
             "Name": {
                 "type": "string"
