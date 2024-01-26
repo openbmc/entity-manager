@@ -22,6 +22,30 @@
       },
       "revId": "0808f9fd28ee00fd0d914538bf47c3a0e3a3e5e5",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "27b58706_9b0fbc40",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 12,
+      "author": {
+        "id": 1001526
+      },
+      "writtenOn": "2024-01-26T02:46:56Z",
+      "side": 1,
+      "message": "I have seen no application using those symlinks. Because devices mostly have FRUs (e.g NVME), EM will probe bus numbers for them without them having to do anything to be aware of the bus nums. Otherwise, platforms will choose to config muxes in dts so the channel nums can be statically alias. I think therefore, there\u0027s currently no service utilizing the symlinks. But the commit (https://github.com/openbmc/entity-manager/commit/286babcaa540a930126aa73b1ceccbca799d895c) supporting this said that those are to aid other applications. I\u0027m planning to let dbus-sensors i2c sensor daemons use this. From my example in the commit msg, nvmesensor will implement code to read the symlink.",
+      "parentUuid": "0d981fdf_e1b92fd5",
+      "range": {
+        "startLine": 10,
+        "startChar": 64,
+        "endLine": 12,
+        "endChar": 20
+      },
+      "revId": "0808f9fd28ee00fd0d914538bf47c3a0e3a3e5e5",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }
