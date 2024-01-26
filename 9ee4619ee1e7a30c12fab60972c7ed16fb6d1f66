@@ -22,6 +22,30 @@
       },
       "revId": "9ee4619ee1e7a30c12fab60972c7ed16fb6d1f66",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7149745c_790df147",
+        "filename": "configurations/harma_nic.json",
+        "patchSetId": 3
+      },
+      "lineNbr": 61,
+      "author": {
+        "id": 1001264
+      },
+      "writtenOn": "2024-01-26T09:12:08Z",
+      "side": 1,
+      "message": "@Patrick, if we create a JSON file for each NIC (ex: nvidia_cx7.json), then I need to add \"$bus\" into Name like below to distinguish multiple NICs on system and sensor name as well.\n- Board Name\n```\n{\n    \"Exposes\": [\n        ......\n    ],\n    \"Name\": \"NIC Mezz $bus\",\n    ......\n}\n```\n- Sensor Name\n```\n{\n    \"Address\": \"0x1f\",\n    \"Bus\": 1,\n    ......\n    \"Name\": \"NIC$bus_MEZZ_REMOTE_TEMP_C\",\n    \"Name1\": \"NIC$bus_MEZZ_TEMP_C\",\n    \"Type\": \"TMP421\"\n}\n```\n\nI am not sure is this looks ok for you because we use to have a continuous index for NICs (ex: NIC0, NIC1, NIC2, ...) in Meta\u0027s system.\n\nI also tried \"$index\", but the index is runtime generated, the NIC index mapping will changed if there is a NIC not presented, so I guess this won\u0027t be a option for us.",
+      "parentUuid": "0b6a2630_c0318c06",
+      "range": {
+        "startLine": 61,
+        "startChar": 0,
+        "endLine": 61,
+        "endChar": 112
+      },
+      "revId": "9ee4619ee1e7a30c12fab60972c7ed16fb6d1f66",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }
