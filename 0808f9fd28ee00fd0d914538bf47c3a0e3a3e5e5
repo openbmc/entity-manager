@@ -87,6 +87,24 @@
       "message": "Looks good to me, though I\u0027m not all that familiar with how the mux channels are used. Others can weigh in.",
       "revId": "0808f9fd28ee00fd0d914538bf47c3a0e3a3e5e5",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "dd63bfea_8c08e2d6",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1000940
+      },
+      "writtenOn": "2024-01-28T04:09:23Z",
+      "side": 1,
+      "message": "Just want to clarify about the use of MuxChannel from this commit.\nCurrently we need to add I2C mux configuration from device tree like https://github.com/openbmc/linux/blob/8ae3366e3417677c299f548541e561324be4b536/arch/arm/boot/dts/aspeed/aspeed-bmc-ampere-mtjade.dts#L437.\nWhen having this support, we will be no longer need to have this definition in device tree but just in entity-manager. Is it right, Chau?",
+      "parentUuid": "246847d4_9ee2a155",
+      "revId": "0808f9fd28ee00fd0d914538bf47c3a0e3a3e5e5",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }
