@@ -94,6 +94,30 @@
       },
       "revId": "9ee4619ee1e7a30c12fab60972c7ed16fb6d1f66",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "559293bd_8db60bdf",
+        "filename": "configurations/harma_nic.json",
+        "patchSetId": 3
+      },
+      "lineNbr": 61,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2024-01-29T17:12:59Z",
+      "side": 1,
+      "message": "+1 to patricks ask.  I really suspect that Broadcom and Nvidia don\u0027t make the same physical NIC card.  Maybe the config is similar, but if they\u0027re distinct cards, they should have their own files, by convention.  Also, if we ever get to the point where we\u0027re directly interacting with the cards silicon, we\u0027ll need to be able to know which silicon we\u0027re talking to.\n\nIn addition, this probe should really be relying on model fields from the FRU.  I\u0027m fairly certain that broadcom and/or Nvidia is going to continue making cards, some of which might slot into this.  We don\u0027t want to assume that all future Broadcom cards will follow this same hardware config.",
+      "parentUuid": "ead26a5a_f95f5f4f",
+      "range": {
+        "startLine": 61,
+        "startChar": 0,
+        "endLine": 61,
+        "endChar": 112
+      },
+      "revId": "9ee4619ee1e7a30c12fab60972c7ed16fb6d1f66",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }
