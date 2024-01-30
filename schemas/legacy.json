@@ -204,6 +204,9 @@
                 "QMin": {
                     "$ref": "#/definitions/Types/QMin"
                 },
+                "Rearm": {
+                    "$ref": "#/definitions/Types/Rearm"
+                },
                 "RedundantCount": {
                     "$ref": "#/definitions/Types/RedundantCount"
                 },
@@ -897,6 +900,9 @@
             },
             "QMin": {
                 "type": "number"
+            },
+            "Rearm": {
+                "enum": ["Automatic", "Manual"]
             },
             "RedundantCount": {
                 "type": "number"
