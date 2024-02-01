@@ -1661,6 +1661,70 @@
             "vout1_Name": "MEDUSA_12VEFFUSE_OUTPUT_VOLT_V"
         },
         {
+            "Address": "0x41",
+            "Bus": 11,
+            "Labels": [
+                "vout1"
+            ],
+            "Name": "MEDUSA_ADC_GND_SENSE",
+            "Type": "INA233",
+            "vout1_Name": "MEDUSA_ADC_GND_SENSE_VOLT_V"
+        },
+        {
+            "Address": "0x44",
+            "Bus": 11,
+            "Labels": [
+                "in1"
+            ],
+            "Name": "MEDUSA_ADC_48V_SENSE",
+            "Thresholds": [
+                {
+                    "Direction": "greater than",
+                    "Label": "in1",
+                    "Name": "upper non recoverable",
+                    "Severity": 4,
+                    "Value": 60
+                },
+                {
+                    "Direction": "greater than",
+                    "Label": "in1",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 53.28
+                },
+                {
+                    "Direction": "greater than",
+                    "Label": "in1",
+                    "Name": "upper non critical",
+                    "Severity": 0,
+                    "Value": 52.8
+                },
+                {
+                    "Direction": "less than",
+                    "Label": "in1",
+                    "Name": "lower non critical",
+                    "Severity": 0,
+                    "Value": 43.2
+                },
+                {
+                    "Direction": "less than",
+                    "Label": "in1",
+                    "Name": "lower critical",
+                    "Severity": 1,
+                    "Value": 42.72
+                },
+                {
+                    "Direction": "less than",
+                    "Label": "in1",
+                    "Name": "lower non recoverable",
+                    "Severity": 4,
+                    "Value": 40
+                }
+            ],
+            "Type": "INA238",
+            "in1_Name": "MEDUSA_ADC_48V_SENSE_VOLT_V"
+        },
+        {
             "Address": "0x48",
             "Bus": 11,
             "Name": "MEDUSA_TEMP0_C",
