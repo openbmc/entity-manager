@@ -1,0 +1,362 @@
+{
+    "Exposes": [
+        {
+            "AllowedFailures": 0,
+            "Name": "FanRedundancy",
+            "Type": "FanRedundancy"
+        },
+        {
+            "Address": "0x22",
+            "Bus": 8,
+            "Connector": {
+                "Name": "System Fan0_0",
+                "Pwm": 2,
+                "PwmName": "pwm1",
+                "Tachs": [
+                    0
+                ]
+            },
+            "Index": 4,
+            "MaxReading": 25000,
+            "Name": "fan0_0",
+            "PowerState": "Always",
+            "Presence": {
+                "PinName": "FAN_PRSNT0_D_N",
+                "Polarity": "Low"
+            },
+            "Thresholds": [
+                {
+                    "Direction": "less than",
+                    "Name": "lower critical",
+                    "Severity": 1,
+                    "Value": 0
+                }
+            ],
+            "Type": "I2CFan"
+        },
+        {
+            "Address": "0x22",
+            "Bus": 8,
+            "Connector": {
+                "Name": "System Fan0_1",
+                "Pwm": 2,
+                "PwmName": "pwm1",
+                "Tachs": [
+                    0
+                ]
+            },
+            "Index": 5,
+            "MaxReading": 25000,
+            "Name": "fan0_1",
+            "PowerState": "Always",
+            "Presence": {
+                "PinName": "FAN_PRSNT0_D_N",
+                "Polarity": "Low"
+            },
+            "Thresholds": [
+                {
+                    "Direction": "less than",
+                    "Name": "lower critical",
+                    "Severity": 1,
+                    "Value": 0
+                }
+            ],
+            "Type": "I2CFan"
+        },
+        {
+            "Address": "0x22",
+            "Bus": 8,
+            "Connector": {
+                "Name": "System Fan1_0",
+                "Pwm": 1,
+                "PwmName": "pwm2",
+                "Tachs": [
+                    0
+                ]
+            },
+            "Index": 2,
+            "MaxReading": 25000,
+            "Name": "fan1_0",
+            "PowerState": "Always",
+            "Presence": {
+                "PinName": "FAN_PRSNT1_D_N",
+                "Polarity": "Low"
+            },
+            "Thresholds": [
+                {
+                    "Direction": "less than",
+                    "Name": "lower critical",
+                    "Severity": 1,
+                    "Value": 0
+                }
+            ],
+            "Type": "I2CFan"
+        },
+        {
+            "Address": "0x22",
+            "Bus": 8,
+            "Connector": {
+                "Name": "System Fan1_1",
+                "Pwm": 1,
+                "PwmName": "pwm2",
+                "Tachs": [
+                    0
+                ]
+            },
+            "Index": 3,
+            "MaxReading": 25000,
+            "Name": "fan1_1",
+            "PowerState": "Always",
+            "Presence": {
+                "PinName": "FAN_PRSNT1_D_N",
+                "Polarity": "Low"
+            },
+            "Thresholds": [
+                {
+                    "Direction": "less than",
+                    "Name": "lower critical",
+                    "Severity": 1,
+                    "Value": 0
+                }
+            ],
+            "Type": "I2CFan"
+        },
+        {
+            "Address": "0x22",
+            "Bus": 8,
+            "Connector": {
+                "Name": "System Fan2_0",
+                "Pwm": 0,
+                "PwmName": "pwm3",
+                "Tachs": [
+                    0
+                ]
+            },
+            "Index": 0,
+            "MaxReading": 25000,
+            "Name": "fan2_0",
+            "PowerState": "Always",
+            "Presence": {
+                "PinName": "FAN_PRSNT2_D_N",
+                "Polarity": "Low"
+            },
+            "Thresholds": [
+                {
+                    "Direction": "less than",
+                    "Name": "lower critical",
+                    "Severity": 1,
+                    "Value": 0
+                }
+            ],
+            "Type": "I2CFan"
+        },
+        {
+            "Address": "0x22",
+            "Bus": 8,
+            "Connector": {
+                "Name": "System Fan2_1",
+                "Pwm": 0,
+                "PwmName": "pwm3",
+                "Tachs": [
+                    0
+                ]
+            },
+            "Index": 1,
+            "MaxReading": 25000,
+            "Name": "fan2_1",
+            "PowerState": "Always",
+            "Presence": {
+                "PinName": "FAN_PRSNT2_D_N",
+                "Polarity": "Low"
+            },
+            "Thresholds": [
+                {
+                    "Direction": "less than",
+                    "Name": "lower critical",
+                    "Severity": 1,
+                    "Value": 0
+                }
+            ],
+            "Type": "I2CFan"
+        },
+        {
+            "Address": "0x20",
+            "Bus": 8,
+            "Connector": {
+                "Name": "System Fan3_0",
+                "Pwm": 2,
+                "PwmName": "pwm4",
+                "Tachs": [
+                    0
+                ]
+            },
+            "Index": 4,
+            "MaxReading": 25000,
+            "Name": "fan3_0",
+            "PowerState": "Always",
+            "Presence": {
+                "PinName": "FAN_PRSNT3_D_N",
+                "Polarity": "Low"
+            },
+            "Thresholds": [
+                {
+                    "Direction": "less than",
+                    "Name": "lower critical",
+                    "Severity": 1,
+                    "Value": 0
+                }
+            ],
+            "Type": "I2CFan"
+        },
+        {
+            "Address": "0x20",
+            "Bus": 8,
+            "Connector": {
+                "Name": "System Fan3_1",
+                "Pwm": 2,
+                "PwmName": "pwm4",
+                "Tachs": [
+                    0
+                ]
+            },
+            "Index": 5,
+            "MaxReading": 25000,
+            "Name": "fan3_1",
+            "PowerState": "Always",
+            "Presence": {
+                "PinName": "FAN_PRSNT3_D_N",
+                "Polarity": "Low"
+            },
+            "Thresholds": [
+                {
+                    "Direction": "less than",
+                    "Name": "lower critical",
+                    "Severity": 1,
+                    "Value": 0
+                }
+            ],
+            "Type": "I2CFan"
+        },
+        {
+            "Address": "0x20",
+            "Bus": 8,
+            "Connector": {
+                "Name": "System Fan4_0",
+                "Pwm": 1,
+                "PwmName": "pwm5",
+                "Tachs": [
+                    0
+                ]
+            },
+            "Index": 2,
+            "MaxReading": 25000,
+            "Name": "fan4_0",
+            "PowerState": "Always",
+            "Presence": {
+                "PinName": "FAN_PRSNT4_D_N",
+                "Polarity": "Low"
+            },
+            "Thresholds": [
+                {
+                    "Direction": "less than",
+                    "Name": "lower critical",
+                    "Severity": 1,
+                    "Value": 0
+                }
+            ],
+            "Type": "I2CFan"
+        },
+        {
+            "Address": "0x20",
+            "Bus": 8,
+            "Connector": {
+                "Name": "System Fan4_1",
+                "Pwm": 1,
+                "PwmName": "pwm5",
+                "Tachs": [
+                    0
+                ]
+            },
+            "Index": 3,
+            "MaxReading": 25000,
+            "Name": "fan4_1",
+            "PowerState": "Always",
+            "Presence": {
+                "PinName": "FAN_PRSNT4_D_N",
+                "Polarity": "Low"
+            },
+            "Thresholds": [
+                {
+                    "Direction": "less than",
+                    "Name": "lower critical",
+                    "Severity": 1,
+                    "Value": 0
+                }
+            ],
+            "Type": "I2CFan"
+        },
+        {
+            "Address": "0x20",
+            "Bus": 8,
+            "Connector": {
+                "Name": "System Fan5_0",
+                "Pwm": 0,
+                "PwmName": "pwm6",
+                "Tachs": [
+                    0
+                ]
+            },
+            "Index": 0,
+            "MaxReading": 25000,
+            "Name": "fan5_0",
+            "PowerState": "Always",
+            "Presence": {
+                "PinName": "FAN_PRSNT5_D_N",
+                "Polarity": "Low"
+            },
+            "Thresholds": [
+                {
+                    "Direction": "less than",
+                    "Name": "lower critical",
+                    "Severity": 1,
+                    "Value": 0
+                }
+            ],
+            "Type": "I2CFan"
+        },
+        {
+            "Address": "0x20",
+            "Bus": 8,
+            "Connector": {
+                "Name": "System Fan5_1",
+                "Pwm": 0,
+                "PwmName": "pwm6",
+                "Tachs": [
+                    0
+                ]
+            },
+            "Index": 1,
+            "MaxReading": 25000,
+            "Name": "fan5_1",
+            "PowerState": "Always",
+            "Presence": {
+                "PinName": "FAN_PRSNT5_D_N",
+                "Polarity": "Low"
+            },
+            "Thresholds": [
+                {
+                    "Direction": "less than",
+                    "Name": "lower critical",
+                    "Severity": 1,
+                    "Value": 0
+                }
+            ],
+            "Type": "I2CFan"
+        }
+    ],
+    "Name": "FP5280G3 Fan Board",
+    "Probe": [
+        "com.ibm.ipzvpd.VSYS({'TM': [70, 80, 53, 50, 56, 48, 71, 51]})"
+    ],
+    "Type": "Board"
+}
