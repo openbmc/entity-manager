@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3e065561_22373690",
+        "filename": "configurations/nvme_p4000.json",
+        "patchSetId": 1
+      },
+      "lineNbr": 46,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2024-02-08T16:42:49Z",
+      "side": 1,
+      "message": "Can we just make this regex\n\nP(31|33|35|36)\\d\\d\n\n\nSeparating this out in this way seems like an anti pattern when we have regex support here that can match on words.\n\nNote, that we already use that support in the PRODUCT_MANUFACTURER field to match on Intel or INTEL, so it seems like it should be possible to do the same here?",
+      "range": {
+        "startLine": 46,
+        "startChar": 65,
+        "endLine": 46,
+        "endChar": 68
+      },
+      "revId": "a9fcde343bd016bb4f0497bac5cfea1fab0975f6",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    }
+  ]
+}
