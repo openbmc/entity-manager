@@ -24,6 +24,30 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "c3189948_497dc2e6",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 5
+      },
+      "lineNbr": 23,
+      "author": {
+        "id": 1001932
+      },
+      "writtenOn": "2024-02-13T04:05:50Z",
+      "side": 1,
+      "message": "I took possibly very small number to check as soon as EM comes up it publishes probe interfaces on DBus, with this other applications waiting for these interfaces can get it. \nI don\u0027t see any issue with choosing this time interval, let me know if have any specific concern with this time and reason for the same.",
+      "parentUuid": "cef09f58_aacff9ed",
+      "range": {
+        "startLine": 21,
+        "startChar": 0,
+        "endLine": 23,
+        "endChar": 25
+      },
+      "revId": "0cee8a3aaf38125def898a5c0eeca854e96941f9",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "abd8b3bb_d5d58f5c",
@@ -37,6 +61,24 @@
       "writtenOn": "2024-02-08T22:36:05Z",
       "side": 1,
       "message": "Missing test section",
+      "revId": "0cee8a3aaf38125def898a5c0eeca854e96941f9",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "167cd0fd_f8261715",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 5
+      },
+      "lineNbr": 27,
+      "author": {
+        "id": 1001932
+      },
+      "writtenOn": "2024-02-13T04:05:50Z",
+      "side": 1,
+      "message": "With the change I have observed EM is started fine and publishes all its probed interfaces, observed no issue in the EM and also other services are up and working on reboot.\n\nShall I mention same thing in the commit. ?",
+      "parentUuid": "abd8b3bb_d5d58f5c",
       "revId": "0cee8a3aaf38125def898a5c0eeca854e96941f9",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
