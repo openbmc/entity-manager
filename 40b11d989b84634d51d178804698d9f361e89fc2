@@ -16,6 +16,52 @@
       "message": "Deepak - Would you want anyone from NV to weigh in on this?  I don\u0027t know if we need to have any more specifics to differentiate from other variants of CX7.",
       "revId": "40b11d989b84634d51d178804698d9f361e89fc2",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8f3b96d8_facf1969",
+        "filename": "configurations/cx7.json",
+        "patchSetId": 2
+      },
+      "lineNbr": 15,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2024-02-15T15:41:29Z",
+      "side": 1,
+      "message": "Any reason we\u0027re not making human readable names here?\n\nAt the very least you can remove \"TEMP_C\" the units and type are already specified in a different interface that you get by default with TMP421",
+      "range": {
+        "startLine": 15,
+        "startChar": 21,
+        "endLine": 15,
+        "endChar": 36
+      },
+      "revId": "40b11d989b84634d51d178804698d9f361e89fc2",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8dff1cef_9b582b25",
+        "filename": "configurations/cx7.json",
+        "patchSetId": 2
+      },
+      "lineNbr": 37,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2024-02-15T15:41:29Z",
+      "side": 1,
+      "message": "Presumably we need a manufacturer match here as well?   I would assume that the PCIe add in card ConnectX-7 has the same model as the mezz card, but they need different entity files (given they\u0027re physically different formfactors).",
+      "range": {
+        "startLine": 37,
+        "startChar": 67,
+        "endLine": 37,
+        "endChar": 78
+      },
+      "revId": "40b11d989b84634d51d178804698d9f361e89fc2",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }
