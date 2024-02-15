@@ -60,6 +60,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "3676abd8_a73d7074",
+        "filename": "configurations/cx7.json",
+        "patchSetId": 2
+      },
+      "lineNbr": 15,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2024-02-15T16:22:04Z",
+      "side": 1,
+      "message": "For better or worse, at Meta we have a \"common sensor naming\" schema that we\u0027d like to continue to follow, which puts units like this in the names.  I foresee this being a problem when we have non-Meta devices (like this CX7) that other people decide they want a _different_ sensor naming schema on.  I\u0027m sort of kicking that can down the road for a few months (~6).",
+      "parentUuid": "8f3b96d8_facf1969",
+      "range": {
+        "startLine": 15,
+        "startChar": 21,
+        "endLine": 15,
+        "endChar": 36
+      },
+      "revId": "40b11d989b84634d51d178804698d9f361e89fc2",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "904eabd4_a015469c",
         "filename": "configurations/cx7.json",
         "patchSetId": 2
@@ -77,6 +101,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "300eb5d7_e0c9ad23",
+        "filename": "configurations/cx7.json",
+        "patchSetId": 2
+      },
+      "lineNbr": 30,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2024-02-15T16:22:04Z",
+      "side": 1,
+      "message": "Yeah, this is exactly my concerns.  There are different form factors of CX7 cards.  The one you linked to here is listed as an OSFP form factor, but I\u0027m pretty sure ours are an OCP form factor (https://www.servethehome.com/ocp-nic-3-0-form-factors-quick-guide-intel-broadcom-nvidia-meta-inspur-dell-emc-hpe-lenovo-gigabyte-supermicro/).  I don\u0027t know what in the EEPROM identifies the form-factor, but we probably need to get that figured out and add it to this JSON.\n\nI found this when I searched for \"cx7 ocp nic\":\nhttps://docs.nvidia.com/networking/display/connectx7vpiocp3",
+      "parentUuid": "904eabd4_a015469c",
+      "revId": "40b11d989b84634d51d178804698d9f361e89fc2",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "8dff1cef_9b582b25",
         "filename": "configurations/cx7.json",
         "patchSetId": 2
@@ -88,6 +130,30 @@
       "writtenOn": "2024-02-15T15:41:29Z",
       "side": 1,
       "message": "Presumably we need a manufacturer match here as well?   I would assume that the PCIe add in card ConnectX-7 has the same model as the mezz card, but they need different entity files (given they\u0027re physically different formfactors).",
+      "range": {
+        "startLine": 37,
+        "startChar": 67,
+        "endLine": 37,
+        "endChar": 78
+      },
+      "revId": "40b11d989b84634d51d178804698d9f361e89fc2",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f7c0b087_8bd18c6a",
+        "filename": "configurations/cx7.json",
+        "patchSetId": 2
+      },
+      "lineNbr": 37,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2024-02-15T16:22:04Z",
+      "side": 1,
+      "message": "@PL can you elaborate on the form factor here?  You\u0027ve used the word \"mezz\", which to me indicates a riser card of some sort, but a riser doesn\u0027t have the temperature sensor (the NIC itself does).  Isn\u0027t this just an OCP NIC form factor card?\n\nhttps://www.servethehome.com/ocp-nic-3-0-form-factors-quick-guide-intel-broadcom-nvidia-meta-inspur-dell-emc-hpe-lenovo-gigabyte-supermicro/",
+      "parentUuid": "8dff1cef_9b582b25",
       "range": {
         "startLine": 37,
         "startChar": 67,
