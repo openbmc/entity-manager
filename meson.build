@@ -100,6 +100,7 @@ configs = [
     'bnp_baseboard.json',
     'bellavista.json',
     'bonnell.json',
+    'cx7_ocp.json',
     'delta_awf2dc3200w_psu.json',
     'delta_dps-750xb_psu.json',
     'delta_dps-1600ab_psu.json',
