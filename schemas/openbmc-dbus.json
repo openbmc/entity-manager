@@ -65,6 +65,16 @@
                             },
                             "required": ["FieldReplaceable", "HotPluggable"],
                             "type": "object"
+                        },
+                        "Slot": {
+                            "additionalProperties": false,
+                            "properties": {
+                                "SlotNumber": {
+                                    "type": ["string", "number"]
+                                }
+                            },
+                            "required": ["SlotNumber"],
+                            "type": "object"
                         }
                     },
                     "Item": {
