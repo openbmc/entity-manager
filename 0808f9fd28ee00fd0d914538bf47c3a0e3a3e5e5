@@ -146,6 +146,30 @@
     {
       "unresolved": false,
       "key": {
+        "uuid": "cb245fe3_29a5d4f7",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 12,
+      "author": {
+        "id": 1000940
+      },
+      "writtenOn": "2024-02-17T03:30:30Z",
+      "side": 1,
+      "message": "As NVMEs are pluggable devices, I don\u0027t expect they are all plugged.\nWhen no drive is plugged on a certain slot, no /sys/class/hwmon is created so no Temp sensor is created.",
+      "parentUuid": "e30bda59_d8cf03f4",
+      "range": {
+        "startLine": 10,
+        "startChar": 64,
+        "endLine": 12,
+        "endChar": 20
+      },
+      "revId": "0808f9fd28ee00fd0d914538bf47c3a0e3a3e5e5",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
         "uuid": "246847d4_9ee2a155",
         "filename": "/PATCHSET_LEVEL",
         "patchSetId": 1
