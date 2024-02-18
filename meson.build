@@ -117,6 +117,7 @@ configs = [
     'fbyv35.json',
     'fbyv35_nic_mellanox.json',
     'flextronics_s-1100adu00-201_psu.json',
+    'fp5280g3_chassis.json',
     'fp5280g3_fanboard.json',
     'genesis3_psu.json',
     'genesis3_baseboard.json',
