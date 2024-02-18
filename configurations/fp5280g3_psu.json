@@ -1,0 +1,233 @@
+{
+    "Exposes": [
+        {
+            "Direction": "Out",
+            "Index": 175,
+            "Name": "PSU0",
+            "Polarity": "High",
+            "Type": "Gpio"
+        },
+        {
+            "Direction": "Out",
+            "Index": 173,
+            "Name": "PSU1",
+            "Polarity": "High",
+            "Type": "Gpio"
+        },
+        {
+            "Name": "PSU_Inlet_Temp",
+            "Sensors": [
+                "PSU0_Temp",
+                "PSU1_Temp"
+            ],
+            "Thresholds": [
+                {
+                    "Direction": "greater than",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 75
+                },
+                {
+                    "Direction": "greater than",
+                    "Name": "upper non critical",
+                    "Severity": 0,
+                    "Value": 60
+                }
+            ],
+            "Type": "Maximum",
+            "Units": "DegreesC"
+        },
+        {
+            "Name": "PSU_HotSpot_T",
+            "Sensors": [
+                "PSU0HS_Temp",
+                "PSU1HS_Temp"
+            ],
+            "Thresholds": [
+                {
+                    "Direction": "greater than",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 130
+                },
+                {
+                    "Direction": "greater than",
+                    "Name": "upper non critical",
+                    "Severity": 0,
+                    "Value": 100
+                }
+            ],
+            "Type": "Maximum",
+            "Units": "DegreesC"
+        },
+        {
+            "Name": "PSU_Pri_HS_T",
+            "Sensors": [
+                "PSU0PS_Temp",
+                "PSU1PS_Temp"
+            ],
+            "Thresholds": [
+                {
+                    "Direction": "greater than",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 125
+                },
+                {
+                    "Direction": "greater than",
+                    "Name": "upper non critical",
+                    "Severity": 0,
+                    "Value": 100
+                }
+            ],
+            "Type": "Maximum",
+            "Units": "DegreesC"
+        },
+        {
+            "Address": "0x58",
+            "Bus": "11",
+            "Labels": [
+                "pin",
+                "pout1",
+                "vin",
+                "vout1",
+                "temp1",
+                "temp2",
+                "temp3",
+                "iin",
+                "iout1"
+            ],
+            "Name": "PSU1",
+            "Thresholds": [
+                {
+                    "Direction": "greater than",
+                    "Label": "temp1",
+                    "Name": "upper non critical",
+                    "Severity": 0,
+                    "Value": 60
+                },
+                {
+                    "Direction": "greater than",
+                    "Label": "temp1",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 75
+                },
+                {
+                    "Direction": "greater than",
+                    "Label": "temp2",
+                    "Name": "upper non critical",
+                    "Severity": 0,
+                    "Value": 100
+                },
+                {
+                    "Direction": "greater than",
+                    "Label": "temp2",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 130
+                },
+                {
+                    "Direction": "greater than",
+                    "Label": "temp3",
+                    "Name": "upper non critical",
+                    "Severity": 0,
+                    "Value": 100
+                },
+                {
+                    "Direction": "greater than",
+                    "Label": "temp3",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 130
+                }
+            ],
+            "Type": "pmbus",
+            "iin_Name": "PSU1_IIN",
+            "iout1_Name": "PSU1_IOUT",
+            "pin_Name": "PSU1_PIN",
+            "pout1_Name": "PSU1_POUT",
+            "temp1_Name": "PSU1_Temp",
+            "temp2_Name": "PSU1HS_Temp",
+            "temp3_Name": "PSU1PS_Temp",
+            "vin_Name": "PSU1_VIN",
+            "vout1_Name": "PSU1_VOUT"
+        },
+        {
+            "Address": "0x59",
+            "Bus": "11",
+            "Labels": [
+                "pin",
+                "pout1",
+                "vin",
+                "vout1",
+                "temp1",
+                "temp2",
+                "temp3",
+                "iin",
+                "iout1"
+            ],
+            "Name": "PSU0",
+            "Thresholds": [
+                {
+                    "Direction": "greater than",
+                    "Label": "temp1",
+                    "Name": "upper non critical",
+                    "Severity": 0,
+                    "Value": 60
+                },
+                {
+                    "Direction": "greater than",
+                    "Label": "temp1",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 75
+                },
+                {
+                    "Direction": "greater than",
+                    "Label": "temp2",
+                    "Name": "upper non critical",
+                    "Severity": 0,
+                    "Value": 100
+                },
+                {
+                    "Direction": "greater than",
+                    "Label": "temp2",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 130
+                },
+                {
+                    "Direction": "greater than",
+                    "Label": "temp3",
+                    "Name": "upper non critical",
+                    "Severity": 0,
+                    "Value": 100
+                },
+                {
+                    "Direction": "greater than",
+                    "Label": "temp3",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 130
+                }
+            ],
+            "Type": "pmbus",
+            "iin_Name": "PSU0_IIN",
+            "iout1_Name": "PSU0_IOUT",
+            "pin_Name": "PSU0_PIN",
+            "pout1_Name": "PSU0_POUT",
+            "temp1_Name": "PSU0_Temp",
+            "temp2_Name": "PSU0HS_Temp",
+            "temp3_Name": "PSU0PS_Temp",
+            "vin_Name": "PSU0_VIN",
+            "vout1_Name": "PSU0_VOUT"
+        }
+    ],
+    "Logging": "Off",
+    "Name": "FP5280G3 PSU",
+    "Probe": [
+        "com.ibm.ipzvpd.VSYS({'TM': [70, 80, 53, 50, 56, 48, 71, 51]})"
+    ],
+    "Type": "PowerSupply"
+}
