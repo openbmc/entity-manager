@@ -3,16 +3,16 @@
         {
             "Address": "0x20",
             "Bus": "$bus % 16",
-            "EndpointId": "$bus % 15 * 10 + 1",
             "Name": "BIC",
-            "Type": "MCTPEndpoint"
+            "StaticEndpointID": "$bus % 15 * 10 + 1",
+            "Type": "MCTPI2CTarget"
         },
         {
             "Address": "0x20",
             "Bus": "$bus % 16",
-            "EndpointId": "$bus % 15 * 10 + 3",
             "Name": "CXL",
-            "Type": "MCTPEndpoint"
+            "StaticEndpointID": "$bus % 15 * 10 + 3",
+            "Type": "MCTPI2CTarget"
         }
     ],
     "Name": "Yosemite 4 Floating Falls Slot $bus % 15",

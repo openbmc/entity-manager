@@ -3,23 +3,23 @@
         {
             "Address": "0x20",
             "Bus": "$bus % 16",
-            "EndpointId": "$bus % 15 * 10 + 2",
             "Name": "BIC",
-            "Type": "MCTPEndpoint"
+            "StaticEndpointID": "$bus % 15 * 10 + 2",
+            "Type": "MCTPI2CTarget"
         },
         {
             "Address": "0x20",
             "Bus": "$bus % 16",
-            "EndpointId": "$bus % 15 * 10 + 4",
             "Name": "CXL1",
-            "Type": "MCTPEndpoint"
+            "StaticEndpointID": "$bus % 15 * 10 + 4",
+            "Type": "MCTPI2CTarget"
         },
         {
             "Address": "0x20",
             "Bus": "$bus % 16",
-            "EndpointId": "$bus % 15 * 10 + 5",
             "Name": "CXL2",
-            "Type": "MCTPEndpoint"
+            "StaticEndpointID": "$bus % 15 * 10 + 5",
+            "Type": "MCTPI2CTarget"
         }
     ],
     "Name": "Yosemite 4 Wailua Falls Slot $bus % 15",
