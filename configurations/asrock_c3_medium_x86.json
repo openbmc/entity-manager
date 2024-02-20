@@ -1,0 +1,362 @@
+{
+    "Exposes": [
+        {
+            "BindConnector": "FAN1",
+            "Index": 3,
+            "Name": "Fan_1a",
+            "PowerState": "On",
+            "Thresholds": [
+                {
+                    "Direction": "less than",
+                    "Name": "lower non critical",
+                    "Severity": 0,
+                    "Value": 2500
+                },
+                {
+                    "Direction": "greater than",
+                    "Name": "higher non critical",
+                    "Severity": 0,
+                    "Value": 23000
+                },
+                {
+                    "Direction": "greater than",
+                    "Name": "higher critical",
+                    "Severity": 1,
+                    "Value": 24000
+                }
+            ],
+            "Type": "AspeedFan"
+        },
+        {
+            "BindConnector": "FAN1",
+            "Index": 11,
+            "Name": "Fan_1b",
+            "PowerState": "On",
+            "Thresholds": [
+                {
+                    "Direction": "less than",
+                    "Name": "lower non critical",
+                    "Severity": 0,
+                    "Value": 2000
+                },
+                {
+                    "Direction": "greater than",
+                    "Name": "higher non critical",
+                    "Severity": 0,
+                    "Value": 20000
+                },
+                {
+                    "Direction": "greater than",
+                    "Name": "higher critical",
+                    "Severity": 1,
+                    "Value": 21000
+                }
+            ],
+            "Type": "AspeedFan"
+        },
+        {
+            "BindConnector": "FAN2",
+            "Index": 4,
+            "Name": "Fan_2a",
+            "PowerState": "On",
+            "Thresholds": [
+                {
+                    "Direction": "less than",
+                    "Name": "lower non critical",
+                    "Severity": 0,
+                    "Value": 2500
+                },
+                {
+                    "Direction": "greater than",
+                    "Name": "higher non critical",
+                    "Severity": 0,
+                    "Value": 23000
+                },
+                {
+                    "Direction": "greater than",
+                    "Name": "higher critical",
+                    "Severity": 1,
+                    "Value": 24000
+                }
+            ],
+            "Type": "AspeedFan"
+        },
+        {
+            "BindConnector": "FAN2",
+            "Index": 12,
+            "Name": "Fan_2b",
+            "PowerState": "On",
+            "Thresholds": [
+                {
+                    "Direction": "less than",
+                    "Name": "lower non critical",
+                    "Severity": 0,
+                    "Value": 2000
+                },
+                {
+                    "Direction": "greater than",
+                    "Name": "higher non critical",
+                    "Severity": 0,
+                    "Value": 20000
+                },
+                {
+                    "Direction": "greater than",
+                    "Name": "higher critical",
+                    "Severity": 1,
+                    "Value": 21000
+                }
+            ],
+            "Type": "AspeedFan"
+        },
+        {
+            "BindConnector": "FAN3",
+            "Index": 5,
+            "Name": "Fan_3a",
+            "PowerState": "On",
+            "Thresholds": [
+                {
+                    "Direction": "less than",
+                    "Name": "lower non critical",
+                    "Severity": 0,
+                    "Value": 2500
+                },
+                {
+                    "Direction": "greater than",
+                    "Name": "higher non critical",
+                    "Severity": 0,
+                    "Value": 23000
+                },
+                {
+                    "Direction": "greater than",
+                    "Name": "higher critical",
+                    "Severity": 1,
+                    "Value": 24000
+                }
+            ],
+            "Type": "AspeedFan"
+        },
+        {
+            "BindConnector": "FAN3",
+            "Index": 13,
+            "Name": "Fan_3b",
+            "PowerState": "On",
+            "Thresholds": [
+                {
+                    "Direction": "less than",
+                    "Name": "lower non critical",
+                    "Severity": 0,
+                    "Value": 2000
+                },
+                {
+                    "Direction": "greater than",
+                    "Name": "higher non critical",
+                    "Severity": 0,
+                    "Value": 20000
+                },
+                {
+                    "Direction": "greater than",
+                    "Name": "higher critical",
+                    "Severity": 1,
+                    "Value": 21000
+                }
+            ],
+            "Type": "AspeedFan"
+        },
+        {
+            "BindConnector": "FAN4",
+            "Index": 6,
+            "Name": "Fan_4a",
+            "PowerState": "On",
+            "Thresholds": [
+                {
+                    "Direction": "less than",
+                    "Name": "lower non critical",
+                    "Severity": 0,
+                    "Value": 2500
+                },
+                {
+                    "Direction": "greater than",
+                    "Name": "higher non critical",
+                    "Severity": 0,
+                    "Value": 23000
+                },
+                {
+                    "Direction": "greater than",
+                    "Name": "higher critical",
+                    "Severity": 1,
+                    "Value": 24000
+                }
+            ],
+            "Type": "AspeedFan"
+        },
+        {
+            "BindConnector": "FAN4",
+            "Index": 14,
+            "Name": "Fan_4b",
+            "PowerState": "On",
+            "Thresholds": [
+                {
+                    "Direction": "less than",
+                    "Name": "lower non critical",
+                    "Severity": 0,
+                    "Value": 2000
+                },
+                {
+                    "Direction": "greater than",
+                    "Name": "higher non critical",
+                    "Severity": 0,
+                    "Value": 20000
+                },
+                {
+                    "Direction": "greater than",
+                    "Name": "higher critical",
+                    "Severity": 1,
+                    "Value": 21000
+                }
+            ],
+            "Type": "AspeedFan"
+        },
+        {
+            "Address": "0x40",
+            "Bus": 2,
+            "Labels": [
+                "iin",
+                "vin",
+                "vmon",
+                "vout1",
+                "pin",
+                "temp1"
+            ],
+            "Name": "12V_IPB_Regulator",
+            "Type": "LM25066"
+        },
+        {
+            "Address": "0x41",
+            "Bus": 2,
+            "Labels": [
+                "iin",
+                "vin",
+                "vmon",
+                "vout1",
+                "pin",
+                "temp1"
+            ],
+            "Name": "12VSB_Regulator",
+            "Type": "LM25066"
+        },
+        {
+            "Address": "0x4c",
+            "Bus": 0,
+            "Name": "Inlet",
+            "Name1": "Inlet_alt",
+            "Thresholds": [
+                {
+                    "Direction": "greater than",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 115
+                },
+                {
+                    "Direction": "greater than",
+                    "Name": "upper non critical",
+                    "Severity": 0,
+                    "Value": 110
+                },
+                {
+                    "Direction": "less than",
+                    "Name": "lower non critical",
+                    "Severity": 0,
+                    "Value": 5
+                },
+                {
+                    "Direction": "less than",
+                    "Name": "lower critical",
+                    "Severity": 1,
+                    "Value": 0
+                }
+            ],
+            "Type": "W83773G"
+        },
+        {
+            "Address": "0x4c",
+            "Bus": 2,
+            "Name": "IPB",
+            "Name1": "IPB_alt",
+            "Name2": "IPB_alt2",
+            "Thresholds": [
+                {
+                    "Direction": "greater than",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 115
+                },
+                {
+                    "Direction": "greater than",
+                    "Name": "upper non critical",
+                    "Severity": 0,
+                    "Value": 110
+                },
+                {
+                    "Direction": "less than",
+                    "Name": "lower non critical",
+                    "Severity": 0,
+                    "Value": 5
+                },
+                {
+                    "Direction": "less than",
+                    "Name": "lower critical",
+                    "Severity": 1,
+                    "Value": 0
+                }
+            ],
+            "Type": "W83773G"
+        },
+        {
+            "Address": "0x4c",
+            "Bus": 5,
+            "Name": "Backplane",
+            "Name1": "Backplane_alt",
+            "PowerState": "On",
+            "Thresholds": [
+                {
+                    "Direction": "greater than",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 115
+                },
+                {
+                    "Direction": "greater than",
+                    "Name": "upper non critical",
+                    "Severity": 0,
+                    "Value": 110
+                },
+                {
+                    "Direction": "less than",
+                    "Name": "lower non critical",
+                    "Severity": 0,
+                    "Value": 5
+                },
+                {
+                    "Direction": "less than",
+                    "Name": "lower critical",
+                    "Severity": 1,
+                    "Value": 0
+                }
+            ],
+            "Type": "W83773G"
+        }
+    ],
+    "Name": "ASRock c3.medium.x86/m3.large.x86",
+    "Probe": "xyz.openbmc_project.FruDevice({'PRODUCT_PRODUCT_NAME': '(c3.medium.x86|m3.large.x86)'})",
+    "Type": "Chassis",
+    "xyz.openbmc_project.Inventory.Decorator.Asset": {
+        "Manufacturer": "$PRODUCT_MANUFACTURER",
+        "Model": "$PRODUCT_PRODUCT_NAME",
+        "PartNumber": "$PRODUCT_PART_NUMBER",
+        "SerialNumber": "$PRODUCT_SERIAL_NUMBER"
+    },
+    "xyz.openbmc_project.Inventory.Decorator.AssetTag": {
+        "AssetTag": "$PRODUCT_ASSET_TAG"
+    },
+    "xyz.openbmc_project.Inventory.Item.System": {}
+}
