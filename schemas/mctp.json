@@ -1,0 +1,89 @@
+{
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "definitions": {
+        "MCTPInterface": {
+            "properties": {
+                "BusOwner": {
+                    "description": ["The address of the MCTP bus owner device"],
+                    "type": "string"
+                },
+                "MTU": {
+                    "description": [
+                        "The MTU for the interface's link. Note that this is",
+                        "the MTU for the BMC-side of the exchange, and is",
+                        "separate from any peripheral device's MTU. A",
+                        "peripheral device's MTU must be configured via",
+                        "upper-layer protocols running atop MCTP and cannot be",
+                        "described in MCTPDevice."
+                    ],
+                    "type": "number"
+                },
+                "Name": {
+                    "description": ["The name of the interface"],
+                    "type": "string"
+                },
+                "Network": {
+                    "description": [
+                        "The MCTP network of in which the interface",
+                        "participates. If no network is specified the interface",
+                        "will participate in the default network"
+                    ]
+                },
+                "Transport": {
+                    "description": [
+                        "The physical transport backing the interface.",
+                        "See Table 3 of DSP0239 v1.10.0. The value of",
+                        "BusOwner and MCTPDevice's Address property must be",
+                        "interpreted in the context of the value of its",
+                        "interface's Transport."
+                    ],
+                    "type": "string",
+                    "enum": ["SMBus"]
+                },
+                "Type": {
+                    "type": "string",
+                    "enum": ["MCTPInterface"]
+                }
+            },
+            "required": ["Name", "Transport", "Type"],
+            "type": "object"
+        },
+        "MCTPDevice": {
+            "properties": {
+                "Address": {
+                    "description": [
+                        "The physical address for the device on the bus."
+                    ],
+                    "type": "string"
+                },
+                "Interface": {
+                    "description": [
+                        "The name of the MCTP interface exposed by the kernel",
+                        "to which the device is connected"
+                    ],
+                    "type": "string"
+                },
+                "Name": {
+                    "description": ["A recognisable name for the device"],
+                    "type": "string"
+                },
+                "StaticEndpointID": {
+                    "description": [
+                        "Assign the provided endpoint ID to the device",
+                        "and exclude the EID from the dynamic allocation pool.",
+                        "If StaticEndpointID is not defined then the device",
+                        "will be allocated an endpoint ID from the dynamic",
+                        "pool."
+                    ],
+                    "type": "string"
+                },
+                "Type": {
+                    "type": "string",
+                    "enum": ["MCTPDevice"]
+                }
+            },
+            "required": ["Address", "Interface", "Name", "Type"],
+            "type": "object"
+        }
+    }
+}
