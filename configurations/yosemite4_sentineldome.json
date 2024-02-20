@@ -3,9 +3,9 @@
         {
             "Address": "0x20",
             "Bus": "$bus % 16",
-            "EndpointId": "$bus % 15 * 10",
             "Name": "BIC",
-            "Type": "MCTPEndpoint"
+            "StaticEndpointID": "$bus % 15 * 10",
+            "Type": "MCTPI2CTarget"
         }
     ],
     "Name": "Yosemite 4 Sentinel Dome Slot $bus % 15",

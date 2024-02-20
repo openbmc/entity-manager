@@ -1,0 +1,31 @@
+{
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "definitions": {
+        "MCTPI2CTarget": {
+            "properties": {
+                "Address": {
+                    "description": "The physical address for the device on the I2C bus.",
+                    "type": "string"
+                },
+                "Bus": {
+                    "description": "The bus index to which the device is attached",
+                    "type": "string"
+                },
+                "Name": {
+                    "description": "A recognisable name for the device",
+                    "type": "string"
+                },
+                "StaticEndpointID": {
+                    "description": "Assign the provided endpoint ID to the peripheral device and exclude the EID from the dynamic allocation pool. If StaticEndpointID is not defined then the device will be allocated an endpoint ID from the dynamic pool.",
+                    "type": "string"
+                },
+                "Type": {
+                    "type": "string",
+                    "enum": ["MCTPI2CTarget"]
+                }
+            },
+            "required": ["Address", "Bus", "Name", "Type"],
+            "type": "object"
+        }
+    }
+}
