@@ -103,6 +103,18 @@
                             "type": "object"
                         }
                     }
+                },
+                "Common": {
+                    "UUID": {
+                        "additionalProperties": false,
+                        "properties": {
+                            "UUID": {
+                                "type": "string"
+                            }
+                        },
+                        "required": ["UUID"],
+                        "type": "object"
+                    }
                 }
             }
         }
