@@ -501,32 +501,44 @@
             "Type": "BMC"
         },
         {
-            "Address": "0x40",
-            "Bus": 2,
-            "Labels": [
-                "iin",
-                "vin",
-                "vmon",
-                "vout1",
-                "pin",
-                "temp1"
+            "Name": "FAN1",
+            "Pwm": 3,
+            "Status": "disabled",
+            "Tachs": [
+                4,
+                12
             ],
-            "Name": "12V_IPB_Regulator",
-            "Type": "LM25066"
+            "Type": "IntelFanConnector"
         },
         {
-            "Address": "0x41",
-            "Bus": 2,
-            "Labels": [
-                "iin",
-                "vin",
-                "vmon",
-                "vout1",
-                "pin",
-                "temp1"
+            "Name": "FAN2",
+            "Pwm": 4,
+            "Status": "disabled",
+            "Tachs": [
+                5,
+                13
             ],
-            "Name": "12VSB_Regulator",
-            "Type": "LM25066"
+            "Type": "IntelFanConnector"
+        },
+        {
+            "Name": "FAN3",
+            "Pwm": 5,
+            "Status": "disabled",
+            "Tachs": [
+                6,
+                14
+            ],
+            "Type": "IntelFanConnector"
+        },
+        {
+            "Name": "FAN4",
+            "Pwm": 6,
+            "Status": "disabled",
+            "Tachs": [
+                7,
+                15
+            ],
+            "Type": "IntelFanConnector"
         },
         {
             "Address": "0x2d",
@@ -574,107 +586,6 @@
                 }
             ],
             "Type": "NCT6779"
-        },
-        {
-            "Address": "0x4c",
-            "Bus": 0,
-            "Name": "Inlet",
-            "Name1": "Inlet_alt",
-            "Thresholds": [
-                {
-                    "Direction": "greater than",
-                    "Name": "upper critical",
-                    "Severity": 1,
-                    "Value": 115
-                },
-                {
-                    "Direction": "greater than",
-                    "Name": "upper non critical",
-                    "Severity": 0,
-                    "Value": 110
-                },
-                {
-                    "Direction": "less than",
-                    "Name": "lower non critical",
-                    "Severity": 0,
-                    "Value": 5
-                },
-                {
-                    "Direction": "less than",
-                    "Name": "lower critical",
-                    "Severity": 1,
-                    "Value": 0
-                }
-            ],
-            "Type": "W83773G"
-        },
-        {
-            "Address": "0x4c",
-            "Bus": 2,
-            "Name": "IPB",
-            "Name1": "IPB_alt",
-            "Name2": "IPB_alt2",
-            "Thresholds": [
-                {
-                    "Direction": "greater than",
-                    "Name": "upper critical",
-                    "Severity": 1,
-                    "Value": 115
-                },
-                {
-                    "Direction": "greater than",
-                    "Name": "upper non critical",
-                    "Severity": 0,
-                    "Value": 110
-                },
-                {
-                    "Direction": "less than",
-                    "Name": "lower non critical",
-                    "Severity": 0,
-                    "Value": 5
-                },
-                {
-                    "Direction": "less than",
-                    "Name": "lower critical",
-                    "Severity": 1,
-                    "Value": 0
-                }
-            ],
-            "Type": "W83773G"
-        },
-        {
-            "Address": "0x4c",
-            "Bus": 5,
-            "Name": "Backplane",
-            "Name1": "Backplane_alt",
-            "PowerState": "On",
-            "Thresholds": [
-                {
-                    "Direction": "greater than",
-                    "Name": "upper critical",
-                    "Severity": 1,
-                    "Value": 115
-                },
-                {
-                    "Direction": "greater than",
-                    "Name": "upper non critical",
-                    "Severity": 0,
-                    "Value": 110
-                },
-                {
-                    "Direction": "less than",
-                    "Name": "lower non critical",
-                    "Severity": 0,
-                    "Value": 5
-                },
-                {
-                    "Direction": "less than",
-                    "Name": "lower critical",
-                    "Severity": 1,
-                    "Value": 0
-                }
-            ],
-            "Type": "W83773G"
         }
     ],
     "Name": "ASRock ROMED8HM3",
