@@ -22,6 +22,30 @@
       },
       "revId": "ba12ca6feda0864f92b05f718808d8410c6a68f1",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "1516705a_f4f39999",
+        "filename": "configurations/cx7_ocp.json",
+        "patchSetId": 3
+      },
+      "lineNbr": 30,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2024-02-21T18:03:57Z",
+      "side": 1,
+      "message": "Replied elsewhere.\n\nI _do_ think it is possible that we end up having system-specific valid temperature ranges for hardware, like this.  I don\u0027t know how to reconcile that yet with EM, but I guess we cross that bridge when we get there.\n\nAs an example one system might have a heat diffuser on the NIC that allows the temperature at this sensor to be pushed higher, or someone else might want a more conservative setting.  Right now this number is really \"Meta wants to run their configuration of CX7 on the Harma system at up to 105C\".",
+      "parentUuid": "8562f32d_984b130d",
+      "range": {
+        "startLine": 30,
+        "startChar": 29,
+        "endLine": 30,
+        "endChar": 32
+      },
+      "revId": "ba12ca6feda0864f92b05f718808d8410c6a68f1",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }
