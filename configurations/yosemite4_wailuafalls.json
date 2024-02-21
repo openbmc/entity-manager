@@ -1,25 +1,28 @@
 {
     "Exposes": [
         {
+            "TransportBinding": "SMBus",
+            "Interface": "mctpi2c$bus % 16",
             "Address": "0x20",
-            "Bus": "$bus % 16",
-            "EndpointId": "$bus % 15 * 10 + 2",
+            "StaticEndpointID": "$bus % 15 * 10 + 2",
             "Name": "BIC",
-            "Type": "MCTPEndpoint"
+            "Type": "MCTPDevice"
         },
         {
+            "TransportBinding": "SMBus",
+            "Interface": "mctpi2c$bus % 16",
             "Address": "0x20",
-            "Bus": "$bus % 16",
-            "EndpointId": "$bus % 15 * 10 + 4",
+            "StaticEndpointID": "$bus % 15 * 10 + 4",
             "Name": "CXL1",
-            "Type": "MCTPEndpoint"
+            "Type": "MCTPDevice"
         },
         {
+            "TransportBinding": "SMBus",
+            "Interface": "mctpi2c$bus % 16",
             "Address": "0x20",
-            "Bus": "$bus % 16",
-            "EndpointId": "$bus % 15 * 10 + 5",
+            "StaticEndpointID": "$bus % 15 * 10 + 5",
             "Name": "CXL2",
-            "Type": "MCTPEndpoint"
+            "Type": "MCTPDevice"
         }
     ],
     "Name": "Yosemite 4 Wailua Falls Slot $bus % 15",

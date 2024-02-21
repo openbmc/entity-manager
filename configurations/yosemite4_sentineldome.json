@@ -1,11 +1,12 @@
 {
     "Exposes": [
         {
+            "TransportBinding": "SMBus",
+            "Interface": "mctpi2c$bus % 16",
             "Address": "0x20",
-            "Bus": "$bus % 16",
-            "EndpointId": "$bus % 15 * 10",
+            "StaticEndpointID": "$bus % 15 * 10",
             "Name": "BIC",
-            "Type": "MCTPEndpoint"
+            "Type": "MCTPDevice"
         }
     ],
     "Name": "Yosemite 4 Sentinel Dome Slot $bus % 15",
