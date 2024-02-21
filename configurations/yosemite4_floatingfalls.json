@@ -2,17 +2,17 @@
     "Exposes": [
         {
             "Address": "0x20",
-            "Bus": "$bus % 16",
-            "EndpointId": "$bus % 15 * 10 + 1",
+            "Interface": "mctpi2c$bus % 16",
             "Name": "BIC",
-            "Type": "MCTPEndpoint"
+            "StaticEndpointID": "$bus % 15 * 10 + 1",
+            "Type": "MCTPDevice"
         },
         {
             "Address": "0x20",
-            "Bus": "$bus % 16",
-            "EndpointId": "$bus % 15 * 10 + 3",
+            "Interface": "mctpi2c$bus % 16",
             "Name": "CXL",
-            "Type": "MCTPEndpoint"
+            "StaticEndpointID": "$bus % 15 * 10 + 3",
+            "Type": "MCTPDevice"
         }
     ],
     "Name": "Yosemite 4 Floating Falls Slot $bus % 15",

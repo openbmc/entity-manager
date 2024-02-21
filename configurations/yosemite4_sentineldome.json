@@ -2,10 +2,10 @@
     "Exposes": [
         {
             "Address": "0x20",
-            "Bus": "$bus % 16",
-            "EndpointId": "$bus % 15 * 10",
+            "Interface": "mctpi2c$bus % 16",
             "Name": "BIC",
-            "Type": "MCTPEndpoint"
+            "StaticEndpointID": "$bus % 15 * 10",
+            "Type": "MCTPDevice"
         }
     ],
     "Name": "Yosemite 4 Sentinel Dome Slot $bus % 15",
