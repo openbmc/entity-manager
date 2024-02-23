@@ -52,6 +52,24 @@
       "parentUuid": "d17790a7_04a9a77b",
       "revId": "c2828b8f05abd540d3cc2adf9554876728c6f65c",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "fd8dd8fa_48f87916",
+        "filename": "schemas/openbmc-dbus.json",
+        "patchSetId": 1
+      },
+      "lineNbr": 102,
+      "author": {
+        "id": 1000940
+      },
+      "writtenOn": "2024-02-23T04:21:12Z",
+      "side": 1,
+      "message": "Yes, we can hardcode or map the Multirecord UUID in FRU to this field, like below:\n\n        \"xyz.openbmc_project.Common.UUID\": {\n            \"UUID\": \"$MULTIRECORD_UUID\"\n        },",
+      "parentUuid": "3c42ee94_5236582d",
+      "revId": "c2828b8f05abd540d3cc2adf9554876728c6f65c",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }
