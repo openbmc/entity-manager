@@ -16,6 +16,98 @@
       "message": "If this is the reactor that is hardcoded to look at EM, why isn\u0027t it under openbmc? (I\u0027m sure there\u0027s a reason, I\u0027ve just been out of the loop)",
       "revId": "8116de14089785f9cd933068a5752cdfd2680319",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7ee9b7f3_1c5b8997",
+        "filename": "schemas/mctp.json",
+        "patchSetId": 3
+      },
+      "lineNbr": 16,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2024-03-05T15:51:24Z",
+      "side": 1,
+      "message": "This would go into the Type field.\n\nType: \"SmbusMCTPInterface\"\nType: \"SerialMCTPInterface\"",
+      "range": {
+        "startLine": 10,
+        "startChar": 17,
+        "endLine": 16,
+        "endChar": 48
+      },
+      "revId": "8116de14089785f9cd933068a5752cdfd2680319",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "acc15219_39f2ec0c",
+        "filename": "schemas/mctp.json",
+        "patchSetId": 3
+      },
+      "lineNbr": 39,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2024-03-05T15:51:24Z",
+      "side": 1,
+      "message": "Kernel specific parameters don\u0027t go in EM.  As an example, if I handed you a GPU, with all the specs for what its interfaces supported, there\u0027d be no way to fill this out without knowing what BMC it was being loaded on.\n\nTherefore, this kind of information goes in the reactor app, not in an EM config.\n\nIn addition, including it here has a huge potential for conflicts.  What if two devices put mctp0 here?  Which one do we merge?",
+      "range": {
+        "startLine": 39,
+        "startChar": 0,
+        "endLine": 39,
+        "endChar": 79
+      },
+      "revId": "8116de14089785f9cd933068a5752cdfd2680319",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "342dcfc5_e19fd7be",
+        "filename": "schemas/mctp.json",
+        "patchSetId": 3
+      },
+      "lineNbr": 50,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2024-03-05T15:51:24Z",
+      "side": 1,
+      "message": "How would this work in practice?  This seems like an interface that would just allow people to hardcode addresses/IDs for every possible device, and not have to support dynamic detection at all?  Why use EM then?",
+      "range": {
+        "startLine": 50,
+        "startChar": 0,
+        "endLine": 50,
+        "endChar": 76
+      },
+      "revId": "8116de14089785f9cd933068a5752cdfd2680319",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2256e4e6_df6e3ca6",
+        "filename": "schemas/mctp.json",
+        "patchSetId": 3
+      },
+      "lineNbr": 60,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2024-03-05T15:51:24Z",
+      "side": 1,
+      "message": "What is the difference between an \"MCTPDevice\" and an \"MCTPInterface\"?\n\nAren\u0027t all things Devices that just happen to have an interface?  I\u0027m not sure I understand the distinction.",
+      "range": {
+        "startLine": 60,
+        "startChar": 30,
+        "endLine": 60,
+        "endChar": 40
+      },
+      "revId": "8116de14089785f9cd933068a5752cdfd2680319",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }
