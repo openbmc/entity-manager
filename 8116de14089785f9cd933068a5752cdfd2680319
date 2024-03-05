@@ -20,6 +20,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "23b546ac_44a53858",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 3
+      },
+      "lineNbr": 22,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2024-03-05T21:44:08Z",
+      "side": 1,
+      "message": "Last I heard the EM-\u003emctpd reactor was going in dbus-sensors.  This is just the generic MCTPd",
+      "parentUuid": "ef17cd11_9231a3cf",
+      "revId": "8116de14089785f9cd933068a5752cdfd2680319",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "7ee9b7f3_1c5b8997",
         "filename": "schemas/mctp.json",
         "patchSetId": 3
@@ -124,6 +142,30 @@
       "writtenOn": "2024-03-05T15:51:24Z",
       "side": 1,
       "message": "What is the difference between an \"MCTPDevice\" and an \"MCTPInterface\"?\n\nAren\u0027t all things Devices that just happen to have an interface?  I\u0027m not sure I understand the distinction.",
+      "range": {
+        "startLine": 60,
+        "startChar": 30,
+        "endLine": 60,
+        "endChar": 40
+      },
+      "revId": "8116de14089785f9cd933068a5752cdfd2680319",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "d13acc1e_13c492f6",
+        "filename": "schemas/mctp.json",
+        "patchSetId": 3
+      },
+      "lineNbr": 60,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2024-03-05T21:44:08Z",
+      "side": 1,
+      "message": "Closing. I answered my own question by looking at later patches.",
+      "parentUuid": "2256e4e6_df6e3ca6",
       "range": {
         "startLine": 60,
         "startChar": 30,
