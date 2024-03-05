@@ -7,27 +7,41 @@
             "Thresholds": [
                 {
                     "Direction": "greater than",
+                    "Label": "vout1",
+                    "Name": "upper non recoverable",
+                    "Severity": 4,
+                    "Value": 13.74
+                },
+                {
+                    "Direction": "greater than",
                     "Name": "upper critical",
                     "Severity": 1,
-                    "Value": 13.5
+                    "Value": 13.176
                 },
                 {
                     "Direction": "greater than",
                     "Name": "upper non critical",
                     "Severity": 0,
-                    "Value": 13.375
+                    "Value": 13.054
                 },
                 {
                     "Direction": "less than",
                     "Name": "lower non critical",
                     "Severity": 0,
-                    "Value": 11.625
+                    "Value": 11.346
                 },
                 {
                     "Direction": "less than",
                     "Name": "lower critical",
                     "Severity": 1,
-                    "Value": 11.5
+                    "Value": 11.224
+                },
+                {
+                    "Direction": "less than",
+                    "Label": "vin",
+                    "Name": "lower non recoverable",
+                    "Severity": 4,
+                    "Value": 10.32
                 }
             ],
             "Type": "ADC"
@@ -37,6 +51,12 @@
             "Name": "MGNT_P5V_VOLT_V",
             "ScaleFactor": 0.2717,
             "Thresholds": [
+                {
+                    "Direction": "greater than",
+                    "Name": "upper non recoverable",
+                    "Severity": 4,
+                    "Value": 5.65
+                },
                 {
                     "Direction": "greater than",
                     "Name": "upper critical",
@@ -60,6 +80,12 @@
                     "Name": "lower critical",
                     "Severity": 1,
                     "Value": 4.45
+                },
+                {
+                    "Direction": "less than",
+                    "Name": "lower non recoverable",
+                    "Severity": 4,
+                    "Value": 4.15
                 }
             ],
             "Type": "ADC"
@@ -69,6 +95,12 @@
             "Name": "MGNT_P3V3_VOLT_V",
             "ScaleFactor": 0.4107,
             "Thresholds": [
+                {
+                    "Direction": "greater than",
+                    "Name": "upper non recoverable",
+                    "Severity": 4,
+                    "Value": 3.729
+                },
                 {
                     "Direction": "greater than",
                     "Name": "upper critical",
@@ -92,6 +124,12 @@
                     "Name": "lower critical",
                     "Severity": 1,
                     "Value": 3.036
+                },
+                {
+                    "Direction": "less than",
+                    "Name": "lower non recoverable",
+                    "Severity": 4,
+                    "Value": 2.739
                 }
             ],
             "Type": "ADC"
@@ -199,6 +237,12 @@
             "Thresholds": [
                 {
                     "Direction": "greater than",
+                    "Name": "upper non recoverable",
+                    "Severity": 4,
+                    "Value": 1.356
+                },
+                {
+                    "Direction": "greater than",
                     "Name": "upper critical",
                     "Severity": 1,
                     "Value": 1.296
@@ -220,6 +264,12 @@
                     "Name": "lower critical",
                     "Severity": 1,
                     "Value": 1.104
+                },
+                {
+                    "Direction": "less than",
+                    "Name": "lower non recoverable",
+                    "Severity": 4,
+                    "Value": 0.996
                 }
             ],
             "Type": "ADC"
@@ -263,6 +313,12 @@
             "Thresholds": [
                 {
                     "Direction": "greater than",
+                    "Name": "upper non recoverable",
+                    "Severity": 4,
+                    "Value": 1.13
+                },
+                {
+                    "Direction": "greater than",
                     "Name": "upper critical",
                     "Severity": 1,
                     "Value": 1.08
@@ -284,6 +340,12 @@
                     "Name": "lower critical",
                     "Severity": 1,
                     "Value": 0.92
+                },
+                {
+                    "Direction": "less than",
+                    "Name": "lower non recoverable",
+                    "Severity": 4,
+                    "Value": 0.83
                 }
             ],
             "Type": "ADC"
@@ -293,6 +355,12 @@
             "Name": "MGNT_P5V_USB_VOLT_V",
             "ScaleFactor": 0.2717,
             "Thresholds": [
+                {
+                    "Direction": "greater than",
+                    "Name": "upper non recoverable",
+                    "Severity": 4,
+                    "Value": 5.5
+                },
                 {
                     "Direction": "greater than",
                     "Name": "upper critical",
@@ -316,6 +384,12 @@
                     "Name": "lower critical",
                     "Severity": 1,
                     "Value": 4.6
+                },
+                {
+                    "Direction": "less than",
+                    "Name": "lower non recoverable",
+                    "Severity": 4,
+                    "Value": 4.15
                 }
             ],
             "Type": "ADC"
