@@ -43,6 +43,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "ac90027a_2b031430",
+        "filename": "schemas/mctp.json",
+        "patchSetId": 3
+      },
+      "lineNbr": 16,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2024-03-05T16:05:40Z",
+      "side": 1,
+      "message": "I looked at more examples, and I\u0027m very confused.\n\nTo support a piece of mctp hardware, you should write an EM config file for it, and that single EM config should contain all information required to instantiate the device.  This interface seems to require an author write BOTH an MCTPInterface on their baseboard definition, AND and MCTPDevice definition in the EM file, and that they have to match.\nThe Micron drive example in later patches shows the issue with this approach, in that it requires mapping an MCTPInterface name to a baseboard with a specific name.  That micron device could show up on essentially any baseboard in EM with an M.2 slot.  It doesn\u0027t seem like adding MCTPInterface definitions to every baseboard with an M.2 slot is worthwhile or wise.",
+      "parentUuid": "7ee9b7f3_1c5b8997",
+      "range": {
+        "startLine": 10,
+        "startChar": 17,
+        "endLine": 16,
+        "endChar": 48
+      },
+      "revId": "8116de14089785f9cd933068a5752cdfd2680319",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "acc15219_39f2ec0c",
         "filename": "schemas/mctp.json",
         "patchSetId": 3
