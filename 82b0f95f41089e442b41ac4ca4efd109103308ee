@@ -26,6 +26,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "fbb85aca_22c6590a",
+        "filename": "configurations/yosemite4.json",
+        "patchSetId": 3
+      },
+      "lineNbr": 407,
+      "author": {
+        "id": 1000009
+      },
+      "writtenOn": "2024-03-06T02:38:11Z",
+      "side": 1,
+      "message": "As it stands this is used to associate the the `Transport` value to the interface name, so that the reactor implementation knows how to encode the `Address` value from the `MCTPDevice` schema for the call to `mctpd`\u0027s `SetupEndpoint`. That was a rationalisation to avoid specifying `Transport` in the `MCTPDevice` schema, as it\u0027s implied by the interface the device can be reached through. However, in the future the `MCTPInterface` schema could specify properties such as `MTU` and `BusOwner` to define behaviours for management of the associated MCTP networks, along with their instantiation. At the moment we still rely on the `mctp-local` systemd target for both. Generally a script is run in that target to configure the interfaces, but it has no tie-in to the platform configuration logic of EM.",
+      "parentUuid": "ee8cac9a_70473bc0",
+      "range": {
+        "startLine": 363,
+        "startChar": 0,
+        "endLine": 407,
+        "endChar": 10
+      },
+      "revId": "82b0f95f41089e442b41ac4ca4efd109103308ee",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "2469ad7c_918e9122",
         "filename": "configurations/yosemite4_wailuafalls.json",
         "patchSetId": 3
@@ -37,6 +61,30 @@
       "writtenOn": "2024-03-05T16:16:53Z",
       "side": 1,
       "message": "Why \"StaticEndpointId\" instead of \"EndpointId\"?  Does adding \"Static\" convey something useful in the name?\n\nNot that I\u0027m against the change;  I\u0027m not sure one is better than the other, just curious why it\u0027s changing.",
+      "range": {
+        "startLine": 21,
+        "startChar": 13,
+        "endLine": 21,
+        "endChar": 29
+      },
+      "revId": "82b0f95f41089e442b41ac4ca4efd109103308ee",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "552a95f6_680b3d60",
+        "filename": "configurations/yosemite4_wailuafalls.json",
+        "patchSetId": 3
+      },
+      "lineNbr": 21,
+      "author": {
+        "id": 1000009
+      },
+      "writtenOn": "2024-03-06T02:38:11Z",
+      "side": 1,
+      "message": "It felt more meaningful at the time, but I\u0027m not too fussed. There\u0027s probably a discussion to be had about whether static endpoint IDs should be assigned or assumed configured into the device, and whether we need `mctpd`\u0027s `AssignEndpointStatic` vs just `LearnEndpoint`. Some indication needs to be given to the reactor though - it needs to pick whether to issue `SetupEndpoint` or `LearnEndpoint` (or `AssignEndpointStatic`).\n\nThose D-Bus methods are documented here:\n\nhttps://github.com/CodeConstruct/mctp/blob/main/docs/mctpd.md",
+      "parentUuid": "2469ad7c_918e9122",
       "range": {
         "startLine": 21,
         "startChar": 13,
