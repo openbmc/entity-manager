@@ -153,6 +153,24 @@
       "parentUuid": "69a7e1e8_c76affa7",
       "revId": "2a0e82d3810c2b2ded7e4b3ccbcb7d3937d0d52e",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "651d35bc_53496903",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 3
+      },
+      "lineNbr": 38,
+      "author": {
+        "id": 1000934
+      },
+      "writtenOn": "2024-03-08T07:42:06Z",
+      "side": 1,
+      "message": "\u003e I was thinking about this some more, and am OK with either way.\n\u003e \n\u003e We had a system from a previous generation where there was a manager chassis and a compute chassis which is what had the power supplies.  So there was a cable from the compute chassis to the  manager chassis to power it, meaning the power didn\u0027t follow the typical connector plugging topology unless something new was invented for cables.  So just having the ports like you did in this commit would work easier there (not that we need to support that exact system anymore of course).\n\nSorry for the late and thanks for the information!\n\nI think it might be better to let the people who have this kind of machine to update the code because they can test it in real machine with complex topology.\nThus, I update the code as previous discussion.",
+      "parentUuid": "933e2bdb_e6c34e80",
+      "revId": "2a0e82d3810c2b2ded7e4b3ccbcb7d3937d0d52e",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }
