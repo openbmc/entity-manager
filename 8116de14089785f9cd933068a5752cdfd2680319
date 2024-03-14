@@ -127,6 +127,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "d34aeb30_90260a36",
+        "filename": "schemas/mctp.json",
+        "patchSetId": 3
+      },
+      "lineNbr": 16,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2024-03-14T16:39:31Z",
+      "side": 1,
+      "message": "\u003e \u003e  It doesn\u0027t seem like adding MCTPInterface definitions to every baseboard with an M.2 slot is worthwhile or wise.\n\u003e \n\u003e It\u0027s not required that we do, but the consequence is that you can\u0027t talk MCTP to that device in the current schema. The current implementation of the reactor only configures the device if it has both the configuration for the device and the interface it\u0027s connected through.\n\nBut.... that\u0027s something that\u0027s implemented, and can be changed?  I\u0027m not really following the above;  Is there a reason it REQUIRES both pieces of information?\n\n\u003e It\u0027s not an error to not provide one or both pieces (unless you require the MCTP functionality).\n\u003e \n\u003e Anyway, see the conversation below for how we might be able to avoid coupling `MCTPInterface` and `MCTPDevice` in the configs.",
+      "parentUuid": "358d85f0_0d72f868",
+      "range": {
+        "startLine": 10,
+        "startChar": 17,
+        "endLine": 16,
+        "endChar": 48
+      },
+      "revId": "8116de14089785f9cd933068a5752cdfd2680319",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "56ceb637_6210c81f",
         "filename": "schemas/mctp.json",
         "patchSetId": 3
@@ -227,6 +251,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "61b4ff1e_d90efc0b",
+        "filename": "schemas/mctp.json",
+        "patchSetId": 3
+      },
+      "lineNbr": 39,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2024-03-14T16:39:31Z",
+      "side": 1,
+      "message": "\u003e \u003e In addition, including it here has a huge potential for conflicts. What if two devices put mctp0 here? Which one do we merge?\n\u003e \n\u003e Does your change in understanding in your comments on line 60 address your question?\n\n\nI\u0027m assuming you meant 50?  It doesn\u0027t quite help, but it starts to add context.\n\n\u003e \n\u003e \u003e Therefore, this kind of information goes in the reactor app, not in an EM config.\n\u003e \n\u003e Perhaps there\u0027s an opportunity for that.\n\u003e \n\u003e \u003e  As an example, if I handed you a GPU, with all the specs for what its interfaces supported, there\u0027d be no way to fill this out without knowing what BMC it was being loaded on.\n\u003e \n\u003e Well, yes and no. For example, the kernel will name all I2C/SMBus MCTP interfaces as `mctpi2cX` where `X` is the bus index. So configs can specify `Interface: \"mctpi2c$bus\"` and mostly expect correct behaviour.\n\nIf the kernel defines a naming scheme, why do we need \"mctpi2c\" in the config file?  Just expose the bus number as the bus (Like I think we already do in the existing interface), and we\u0027re done.\n\nI think my above point still stands.  There\u0027s no physical/software property of the Card that specifies \"MCTPi2c\", so it doesn\u0027t belong in a config file.\n\n\u003e However, it does get murky with interface renaming via udev. I\u0027m not aware of anyone doing that yet.\n\u003e \n\u003e The reactor needs to know the interface name,\n\nCan it not go look it up based on the bus using sysfs?\n\n\u003e as specifying this [is a requirement for invoking `SetupEndpoint`](https://github.com/CodeConstruct/mctp/blob/main/docs/mctpd.md#setupendpoint) on `mctpd`\u0027s `/xyz/openbmc_project/mctp` object via the `au.com.CodeConstruct.MCTP` interface. \n\nRight, so just have the daemon assign them mctpi2c(1-N) as the devices detect?\n\n\u003eFurther, it needs to know the transport backing the interface as we need to encode the address into the byte array required by the `hwaddr` parameter of `SetupEndpoint`.\n\n\"Type\": \"SMBusMCTPDevice\"\n\nIt think would support that still?  SMBusMCTPDevice maps to the smbus type?\n\n\u003e \n\u003e Perhaps a different approach is to specify the bus index and the transport type. For instance, we could specify this instead:\n\u003e \n\u003e ```\n\u003e {\n\u003e     \"Address\": \"0x1d\",\n\u003e     \"Bus\": \"$bus\",\n\u003e     \"Transport\": \"SMBus\",\n\u003e     \"Type\": \"MCTPDevice\"\n\u003e }\n\u003e ```\n\n\nThe problem with the above is that defining say, a serial port would look like:\n\n {\n    \"ID\": // Something to identify the port\n    \"Transport\": \"Serial\",\n     \"Type\": \"MCTPDevice\"\n }\n \n and now Address and bus have to be optional in schema.  If we separate out SMBusMCTPDevice and SerialMCTPDevice, we can make the required properties for each interface actually required.\n\n\u003e \n\u003e \n\u003e For example, using the `Bus` value of `14` the reactor can construct a sysfs path to map to a netdev interface name associated with the bus:\n\u003e \n\u003e ```\n\u003e # ls /sys/bus/i2c/devices/i2c-14/net/\n\u003e mctpi2c14\n\u003e ```\n\u003e or\n\u003e ```\n\u003e # ( . /sys/bus/i2c/devices/i2c-14/net/*/uevent ; echo $INTERFACE )\n\u003e mctpi2c14\n\u003e ```\n\u003e \n\u003e Accounting for your feedback on the `MCTPInterface` schema above, we could perhaps merge `Transport` into the `Type` value:\n\u003e \n\u003e ```\n\u003e {\n\u003e     \"Address\": \"0x1d\"\n\u003e     \"Bus\": \"$bus\"\n\u003e     \"Type\": \"SMBusMCTPDevice\"\n\u003e }\n\u003e ```\n\u003e \n\u003e Perhaps this would allow us to do away with `MCTPInterface` for now, but MCTP netdev interfaces do need explicit setup. Child busses of I2C muxes on detected cards for instance: The i2c-dev for each mux leg must be configured as its own MCTP netdev interface.\n\nRight, but what I don\u0027t understand is why we can\u0027t do logic of:\n\nif (mctp device detected):\n   set up mctp lane on that bus\n   \nin the reactor.",
+      "parentUuid": "7a7acb9c_05bc06b5",
+      "range": {
+        "startLine": 39,
+        "startChar": 0,
+        "endLine": 39,
+        "endChar": 79
+      },
+      "revId": "8116de14089785f9cd933068a5752cdfd2680319",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "342dcfc5_e19fd7be",
         "filename": "schemas/mctp.json",
         "patchSetId": 3
@@ -262,6 +310,30 @@
       "side": 1,
       "message": "I think there\u0027s a middle ground. Using it for hot-pluggable devices is questionable. However, it could be used to provide deterministic addresses for devices on the BMC card or the main planar. Essentially, in the tree of the MCTP bus topology, things that are closer to the root (BMC) could exploit it. EM is used to dynamically detect all the cards including main planar. Encoding some platform policy in the main planar config file doesn\u0027t feel unreasonable to me. But as mentioned it\u0027s way more questionable to do something like that in the config for e.g. the Micron drive.",
       "parentUuid": "342dcfc5_e19fd7be",
+      "range": {
+        "startLine": 50,
+        "startChar": 0,
+        "endLine": 50,
+        "endChar": 76
+      },
+      "revId": "8116de14089785f9cd933068a5752cdfd2680319",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "11949715_de442df6",
+        "filename": "schemas/mctp.json",
+        "patchSetId": 3
+      },
+      "lineNbr": 50,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2024-03-14T16:39:31Z",
+      "side": 1,
+      "message": "\u003e I think there\u0027s a middle ground. Using it for hot-pluggable devices is questionable.\n\nI made no mention of hot plug (Plugging in a device while the system is on).  What I\u0027m worried about are devices that you didn\u0027t explicitly expect to be plugged in, which is really the whole point of entity-manager.  Devices that might:\n1. Have multiple devices that plug into the same port.\n2. Have multiple ports on multiple boards that accept the same class of device\n3. Have the same device that plugs into multiple baseboards (ie, a normal PCIe card).\n\n\u003e However, it could be used to provide deterministic addresses for devices on the BMC card or the main planar.\n\nWhat is a \"Deterministic address\"?  A physical card doesn\u0027t have a deterministic address, and attempting to put it into a config file doesn\u0027t make sense.  For things like dynamic-sensors in ipmi, we get semi-determinism by allocating lanes based on hashes, and only moving them in the case of collisions (which would have been non-deterministic anyway).  Could we do something similar here?\n\n\u003e Essentially, in the tree of the MCTP bus topology, things that are closer to the root (BMC) could exploit it. EM is used to dynamically detect all the cards including main planar. Encoding some platform policy in the main planar config file doesn\u0027t feel unreasonable to me.  But as mentioned it\u0027s way more questionable to do something like that in the config for e.g. the Micron drive.\n\nI\u0027m really not understanding what\u0027s being encoded in the main planar?",
+      "parentUuid": "3f979a2c_6222dbda",
       "range": {
         "startLine": 50,
         "startChar": 0,
