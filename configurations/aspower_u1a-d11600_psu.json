@@ -140,7 +140,11 @@
             }
         ],
         "Name": "ASPOWER 1600W PSU $ADDRESS % 4 + 1",
-        "Probe": "xyz.openbmc_project.FruDevice({'PRODUCT_PRODUCT_NAME': 'U1A-D11600-DRB'})",
+        "Probe": [
+            "xyz.openbmc_project.FruDevice({'PRODUCT_PRODUCT_NAME': 'U1A-D11600-DRB'})",
+            "OR",
+            "xyz.openbmc_project.FruDevice({'PRODUCT_PRODUCT_NAME': 'U1A-D1600-G-11'})"
+        ],
         "Type": "PowerSupply",
         "xyz.openbmc_project.Inventory.Decorator.Asset": {
             "Manufacturer": "$PRODUCT_MANUFACTURER",
