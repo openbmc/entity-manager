@@ -151,6 +151,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "f3f3d7cf_34ba3dc8",
+        "filename": "schemas/mctp.json",
+        "patchSetId": 3
+      },
+      "lineNbr": 16,
+      "author": {
+        "id": 1000009
+      },
+      "writtenOn": "2024-03-14T23:53:47Z",
+      "side": 1,
+      "message": "\u003e But.... that\u0027s something that\u0027s implemented, and can be changed? I\u0027m not really following the above; Is there a reason it REQUIRES both pieces of information?\n\nIt doesn\u0027t - at the end of my reply above I wrote:\n\n\u003e Anyway, see the conversation below for how we might be able to avoid coupling MCTPInterface and MCTPDevice in the configs.\n\nSo it was coupled in the original patch, but I made some alternative proposals that don\u0027t require both pieces of information. I\u0027m not sure how else to communicate that.\n\nI want to go ahead with the (`\"Type\": \"SMBusMCTPDevice\"`) alternative where it\u0027s not coupled, but I\u0027m looking to tie up the loose ends of the conversation before doing so.",
+      "parentUuid": "d34aeb30_90260a36",
+      "range": {
+        "startLine": 10,
+        "startChar": 17,
+        "endLine": 16,
+        "endChar": 48
+      },
+      "revId": "8116de14089785f9cd933068a5752cdfd2680319",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "56ceb637_6210c81f",
         "filename": "schemas/mctp.json",
         "patchSetId": 3
@@ -275,6 +299,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "fadbb0dd_2c5d7050",
+        "filename": "schemas/mctp.json",
+        "patchSetId": 3
+      },
+      "lineNbr": 39,
+      "author": {
+        "id": 1000009
+      },
+      "writtenOn": "2024-03-14T23:53:47Z",
+      "side": 1,
+      "message": "I\u0027m largely going to draw a line under this thread with consensus on the `\"Type\": \"SMBusMCTPDevice\"` approach from my alternatives above.\n\n\u003e why we can\u0027t do logic of:\n\u003e\n\u003e if (mctp device detected):\n\u003e set up mctp lane on that bus\n\u003e\n\u003e in the reactor.\n\nYes, we can do that. However it\u0027s still necessary to specify necessary additional details for the interface (\"mctp lane on that bus\"), such as the link MTU (separate from the device MTU), whether or not the BMC should consider itself the bus owner for the interface or act as a peripheral or a bridge, and the network in which the interface participates. They can\u0027t be inferred so I think they motivate an `MCTPInterface` config node or some equivalent. We can correlate this on the bus index (I2C) or device index (serial) to locate the appropriate interface config without specifying the kernel\u0027s interface name in the configs. I will make an new patchset that defines this approach.\n\nCurrently mctpd assumes it\u0027s the top-most bus owner and the bus owner for all interfaces, though Ampere have the motivation for the BMC to support peripheral cases.",
+      "parentUuid": "61b4ff1e_d90efc0b",
+      "range": {
+        "startLine": 39,
+        "startChar": 0,
+        "endLine": 39,
+        "endChar": 79
+      },
+      "revId": "8116de14089785f9cd933068a5752cdfd2680319",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "342dcfc5_e19fd7be",
         "filename": "schemas/mctp.json",
         "patchSetId": 3
@@ -334,6 +382,30 @@
       "side": 1,
       "message": "\u003e I think there\u0027s a middle ground. Using it for hot-pluggable devices is questionable.\n\nI made no mention of hot plug (Plugging in a device while the system is on).  What I\u0027m worried about are devices that you didn\u0027t explicitly expect to be plugged in, which is really the whole point of entity-manager.  Devices that might:\n1. Have multiple devices that plug into the same port.\n2. Have multiple ports on multiple boards that accept the same class of device\n3. Have the same device that plugs into multiple baseboards (ie, a normal PCIe card).\n\n\u003e However, it could be used to provide deterministic addresses for devices on the BMC card or the main planar.\n\nWhat is a \"Deterministic address\"?  A physical card doesn\u0027t have a deterministic address, and attempting to put it into a config file doesn\u0027t make sense.  For things like dynamic-sensors in ipmi, we get semi-determinism by allocating lanes based on hashes, and only moving them in the case of collisions (which would have been non-deterministic anyway).  Could we do something similar here?\n\n\u003e Essentially, in the tree of the MCTP bus topology, things that are closer to the root (BMC) could exploit it. EM is used to dynamically detect all the cards including main planar. Encoding some platform policy in the main planar config file doesn\u0027t feel unreasonable to me.  But as mentioned it\u0027s way more questionable to do something like that in the config for e.g. the Micron drive.\n\nI\u0027m really not understanding what\u0027s being encoded in the main planar?",
       "parentUuid": "3f979a2c_6222dbda",
+      "range": {
+        "startLine": 50,
+        "startChar": 0,
+        "endLine": 50,
+        "endChar": 76
+      },
+      "revId": "8116de14089785f9cd933068a5752cdfd2680319",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "dba627e7_a6b16e61",
+        "filename": "schemas/mctp.json",
+        "patchSetId": 3
+      },
+      "lineNbr": 50,
+      "author": {
+        "id": 1000009
+      },
+      "writtenOn": "2024-03-14T23:53:47Z",
+      "side": 1,
+      "message": "I\u0027m going to back up a bit.\n\nIf you\u0027re going take issue with `StaticEndpointID` in this patch, can you unpack your reasons for giving a CR+1 to [Add mctp eids configuration for Yosemite 4](https://gerrit.openbmc.org/c/openbmc/entity-manager/+/66750)? `StaticEndpointID` in my patch `EndpointId` in Meta\u0027s patch. We can change the name back if that helps. Part of what I\u0027m trying to do in my patch is remove assumptions we have to make in the reactor implementation about the transport type based on the lack of metadata in that schema definition.\n\n\u003e What is a \"Deterministic address\"?\n\nBy address I mean EID, and by deterministic I mean one that can be derived from physical addressing properties of the MCTP-capable device. EM supports evaluation of an expression language in its configuration values. A value for `StaticEndpointID` (an address) can be derived from e.g. the bus index and physical address for the device, _if that\u0027s desired and appropriate for the board/device config_.\n\n`StaticEndpointID` is _optional_, and it must not be provided in configs where it\u0027s not appropriate.\n\n\u003e I\u0027m really not understanding what\u0027s being encoded in the main planar?\n\nThe use of `StaticEndpointID` in the main planar _config_, for example for MCTP devices that are integrated into the main planar and are not pluggable.\n\nAssigning a static EID to a device excludes it from the pool of dynamic EIDs that are allocated out on demand. Addressing will remain coherent. Use of a static (not dynamic) constant (not derived) value for `StaticEndpointID` in the config of a pluggable device is inappropriate use `StaticEndpointID`.",
+      "parentUuid": "11949715_de442df6",
       "range": {
         "startLine": 50,
         "startChar": 0,
