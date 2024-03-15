@@ -2241,6 +2241,9 @@
             "xyz.openbmc_project.FruDevice({'BOARD_PRODUCT_NAME': 'MB'})"
         ],
         "Type": "Board",
+        "xyz.openbmc_project.Common.UUID": {
+            "UUID": "$MULTIRECORD_UUID"
+        },
         "xyz.openbmc_project.Inventory.Decorator.Asset": {
             "Manufacturer": "$BOARD_MANUFACTURER",
             "Model": "$BOARD_PRODUCT_NAME",
