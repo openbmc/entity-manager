@@ -1410,6 +1410,9 @@
         "Name": "Mt.Jade",
         "Probe": "xyz.openbmc_project.FruDevice({'PRODUCT_PRODUCT_NAME': '.*Mt.Jade'})",
         "Type": "Chassis",
+        "xyz.openbmc_project.Common.UUID": {
+            "UUID": "$MULTIRECORD_UUID"
+        },
         "xyz.openbmc_project.Inventory.Decorator.Asset": {
             "Manufacturer": "$PRODUCT_MANUFACTURER",
             "Model": "$PRODUCT_PRODUCT_NAME $PRODUCT_VERSION",
@@ -1418,6 +1421,11 @@
         },
         "xyz.openbmc_project.Inventory.Decorator.AssetTag": {
             "AssetTag": "$PRODUCT_ASSET_TAG"
+        },
+        "xyz.openbmc_project.Inventory.Decorator.Compatible": {
+            "Names": [
+                "com.ampere.Hardware.Chassis.Model.MtJade"
+            ]
         },
         "xyz.openbmc_project.Inventory.Item.System": {}
     }
