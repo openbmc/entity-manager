@@ -1,0 +1,55 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "89078394_c5ef764d",
+        "filename": "configurations/cx7_ocp.json",
+        "patchSetId": 1
+      },
+      "lineNbr": 19,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2024-03-18T13:58:44Z",
+      "side": 0,
+      "message": "Why are we removing this threshold on the NIC?  Aren\u0027t there minimum temperatures based on the chip spec?  It seems like barely above freezing was a reasonable lower-bound temperature.",
+      "revId": "ab7253176225c204f21e91e92f7bfd4a72d4b875",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "37138f83_99e0235d",
+        "filename": "configurations/harma_mb.json",
+        "patchSetId": 1
+      },
+      "lineNbr": 150,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2024-03-18T13:58:44Z",
+      "side": 0,
+      "message": "Why are we removing monitoring of this INA230 chip?",
+      "revId": "ab7253176225c204f21e91e92f7bfd4a72d4b875",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3cee2a6c_e3904b06",
+        "filename": "configurations/harma_mb.json",
+        "patchSetId": 1
+      },
+      "lineNbr": 264,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2024-03-18T13:58:44Z",
+      "side": 0,
+      "message": "Why are we removing all the lower bounds for temperatures?  Can we get a comment in the commit message at least as to why?",
+      "revId": "ab7253176225c204f21e91e92f7bfd4a72d4b875",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    }
+  ]
+}
