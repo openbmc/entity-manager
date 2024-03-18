@@ -22,7 +22,7 @@
                     "Direction": "less than",
                     "Name": "lower critical",
                     "Severity": 1,
-                    "Value": 2.6
+                    "Value": 2.0
                 }
             ],
             "Type": "ADC"
@@ -38,6 +38,78 @@
                 "in5"
             ],
             "Name": "MB_ADC0",
+            "Thresholds": [
+                {
+                    "Direction": "less than",
+                    "Label": "in1",
+                    "Name": "lower critical",
+                    "Severity": 1,
+                    "Value": 1.045
+                },
+                {
+                    "Direction": "greater than",
+                    "Label": "in1",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 1.155
+                },
+                {
+                    "Direction": "less than",
+                    "Label": "in2",
+                    "Name": "lower critical",
+                    "Severity": 1,
+                    "Value": 3.135
+                },
+                {
+                    "Direction": "greater than",
+                    "Label": "in2",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 3.4
+                },
+                {
+                    "Direction": "less than",
+                    "Label": "in3",
+                    "Name": "lower critical",
+                    "Severity": 1,
+                    "Value": 1.76
+                },
+                {
+                    "Direction": "greater than",
+                    "Label": "in3",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 1.84
+                },
+                {
+                    "Direction": "less than",
+                    "Label": "in4",
+                    "Name": "lower critical",
+                    "Severity": 1,
+                    "Value": 10.8
+                },
+                {
+                    "Direction": "greater than",
+                    "Label": "in4",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 13.2
+                },
+                {
+                    "Direction": "less than",
+                    "Label": "in5",
+                    "Name": "lower critical",
+                    "Severity": 1,
+                    "Value": 10.8
+                },
+                {
+                    "Direction": "greater than",
+                    "Label": "in5",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 13.2
+                }
+            ],
             "Type": "ADC128D818",
             "in1_Name": "MB_PVDD11_S3_VOLT_V",
             "in2_Name": "MB_P3V3_STBY_VOLT_V",
@@ -60,6 +132,92 @@
                 "in5"
             ],
             "Name": "MB_ADC1",
+            "Thresholds": [
+                {
+                    "Direction": "less than",
+                    "Label": "in0",
+                    "Name": "lower critical",
+                    "Severity": 1,
+                    "Value": 10.8
+                },
+                {
+                    "Direction": "greater than",
+                    "Label": "in0",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 13.2
+                },
+                {
+                    "Direction": "less than",
+                    "Label": "in1",
+                    "Name": "lower critical",
+                    "Severity": 1,
+                    "Value": 4.75
+                },
+                {
+                    "Direction": "greater than",
+                    "Label": "in1",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 5.25
+                },
+                {
+                    "Direction": "less than",
+                    "Label": "in2",
+                    "Name": "lower critical",
+                    "Severity": 1,
+                    "Value": 3.13
+                },
+                {
+                    "Direction": "greater than",
+                    "Label": "in2",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 3.46
+                },
+                {
+                    "Direction": "less than",
+                    "Label": "in3",
+                    "Name": "lower critical",
+                    "Severity": 1,
+                    "Value": 1.71
+                },
+                {
+                    "Direction": "greater than",
+                    "Label": "in3",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 1.89
+                },
+                {
+                    "Direction": "less than",
+                    "Label": "in4",
+                    "Name": "lower critical",
+                    "Severity": 1,
+                    "Value": 10.8
+                },
+                {
+                    "Direction": "greater than",
+                    "Label": "in4",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 13.2
+                },
+                {
+                    "Direction": "less than",
+                    "Label": "in5",
+                    "Name": "lower critical",
+                    "Severity": 1,
+                    "Value": 1.71
+                },
+                {
+                    "Direction": "greater than",
+                    "Label": "in5",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 1.89
+                }
+            ],
             "Type": "ADC128D818",
             "in0_Name": "MB_P12V_MEM0_VOLT_V",
             "in0_Scale": 151.515151515,
@@ -101,6 +259,20 @@
                     "Name": "lower critical",
                     "Severity": 1,
                     "Value": 10.8
+                },
+                {
+                    "Direction": "greater than",
+                    "Label": "curr1",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 2.1
+                },
+                {
+                    "Direction": "greater than",
+                    "Label": "power1",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 25.0
                 }
             ],
             "Type": "INA230",
@@ -131,6 +303,20 @@
                     "Name": "lower critical",
                     "Severity": 1,
                     "Value": 10.8
+                },
+                {
+                    "Direction": "greater than",
+                    "Label": "curr1",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 2.1
+                },
+                {
+                    "Direction": "greater than",
+                    "Label": "power1",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 25.0
                 }
             ],
             "Type": "INA230",
@@ -149,6 +335,13 @@
             "Name": "NIC_MEZZ",
             "Thresholds": [
                 {
+                    "Direction": "less than",
+                    "Label": "in1",
+                    "Name": "lower critical",
+                    "Severity": 1,
+                    "Value": 10.8
+                },
+                {
                     "Direction": "greater than",
                     "Label": "in1",
                     "Name": "upper critical",
@@ -156,11 +349,18 @@
                     "Value": 13.2
                 },
                 {
-                    "Direction": "less than",
-                    "Label": "in1",
-                    "Name": "lower critical",
+                    "Direction": "greater than",
+                    "Label": "curr1",
+                    "Name": "upper critical",
                     "Severity": 1,
-                    "Value": 10.8
+                    "Value": 5.7
+                },
+                {
+                    "Direction": "greater than",
+                    "Label": "power1",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 75.0
                 }
             ],
             "Type": "INA230",
@@ -178,6 +378,43 @@
                 "temp1"
             ],
             "Name": "MB_VR_CPU_PVDD11",
+            "Thresholds": [
+                {
+                    "Direction": "greater than",
+                    "Label": "iout1",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 59.0
+                },
+                {
+                    "Direction": "less than",
+                    "Label": "vout1",
+                    "Name": "lower critical",
+                    "Severity": 1,
+                    "Value": 1.045
+                },
+                {
+                    "Direction": "greater than",
+                    "Label": "vout1",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 1.155
+                },
+                {
+                    "Direction": "greater than",
+                    "Label": "pout1",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 65.0
+                },
+                {
+                    "Direction": "greater than",
+                    "Label": "temp1",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 105.0
+                }
+            ],
             "Type": "MP2856",
             "iout1_Name": "MB_VR_CPU_PVDD11_CURR_A",
             "pout1_Name": "MB_VR_CPU_PVDD11_PWR_W",
@@ -198,6 +435,78 @@
                 "temp2"
             ],
             "Name": "MB_VR_CPU_VCORE0_SOC",
+            "Thresholds": [
+                {
+                    "Direction": "greater than",
+                    "Label": "iout1",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 318.0
+                },
+                {
+                    "Direction": "greater than",
+                    "Label": "iout2",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 210.0
+                },
+                {
+                    "Direction": "less than",
+                    "Label": "vout1",
+                    "Name": "lower critical",
+                    "Severity": 1,
+                    "Value": 0.53
+                },
+                {
+                    "Direction": "greater than",
+                    "Label": "vout1",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 1.52
+                },
+                {
+                    "Direction": "less than",
+                    "Label": "vout2",
+                    "Name": "lower critical",
+                    "Severity": 1,
+                    "Value": 0.73
+                },
+                {
+                    "Direction": "greater than",
+                    "Label": "vout2",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 1.22
+                },
+                {
+                    "Direction": "greater than",
+                    "Label": "pout1",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 175.0
+                },
+                {
+                    "Direction": "greater than",
+                    "Label": "pout2",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 105.0
+                },
+                {
+                    "Direction": "greater than",
+                    "Label": "temp1",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 105.0
+                },
+                {
+                    "Direction": "greater than",
+                    "Label": "temp2",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 105.0
+                }
+            ],
             "Type": "MP2857",
             "iout1_Name": "MB_VR_CPU_VCORE0_CURR_A",
             "iout2_Name": "MB_VR_CPU_SOC_CURR_A",
@@ -222,6 +531,78 @@
                 "temp2"
             ],
             "Name": "MB_VR_CPU_VCORE1_PDDIO",
+            "Thresholds": [
+                {
+                    "Direction": "greater than",
+                    "Label": "iout1",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 318.0
+                },
+                {
+                    "Direction": "greater than",
+                    "Label": "iout2",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 133.0
+                },
+                {
+                    "Direction": "less than",
+                    "Label": "vout1",
+                    "Name": "lower critical",
+                    "Severity": 1,
+                    "Value": 0.53
+                },
+                {
+                    "Direction": "greater than",
+                    "Label": "vout1",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 1.52
+                },
+                {
+                    "Direction": "less than",
+                    "Label": "vout2",
+                    "Name": "lower critical",
+                    "Severity": 1,
+                    "Value": 0.88
+                },
+                {
+                    "Direction": "greater than",
+                    "Label": "vout2",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 1.22
+                },
+                {
+                    "Direction": "greater than",
+                    "Label": "pout1",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 175.0
+                },
+                {
+                    "Direction": "greater than",
+                    "Label": "pout2",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 120.0
+                },
+                {
+                    "Direction": "greater than",
+                    "Label": "temp1",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 105.0
+                },
+                {
+                    "Direction": "greater than",
+                    "Label": "temp2",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 105.0
+                }
+            ],
             "Type": "MP2857",
             "iout1_Name": "MB_VR_CPU_VCORE1_CURR_A",
             "iout2_Name": "MB_VR_CPU_PDDIO_CURR_A",
@@ -243,6 +624,57 @@
                 "temp1"
             ],
             "Name": "MB_HSC",
+            "Thresholds": [
+                {
+                    "Direction": "greater than",
+                    "Label": "iout1",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 72.0
+                },
+                {
+                    "Direction": "less than",
+                    "Label": "vin",
+                    "Name": "lower critical",
+                    "Severity": 1,
+                    "Value": 10.8
+                },
+                {
+                    "Direction": "greater than",
+                    "Label": "vin",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 13.2
+                },
+                {
+                    "Direction": "less than",
+                    "Label": "vout1",
+                    "Name": "lower critical",
+                    "Severity": 1,
+                    "Value": 10.8
+                },
+                {
+                    "Direction": "greater than",
+                    "Label": "vout1",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 13.2
+                },
+                {
+                    "Direction": "greater than",
+                    "Label": "temp1",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 80.0
+                },
+                {
+                    "Direction": "greater than",
+                    "Label": "pout1",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 950.0
+                }
+            ],
             "Type": "MP5990",
             "iout1_Name": "MB_HSC_CURR_A",
             "pout1_Name": "MB_HSC_PWR_W",
@@ -260,12 +692,6 @@
                     "Name": "upper critical",
                     "Severity": 1,
                     "Value": 70
-                },
-                {
-                    "Direction": "less than",
-                    "Name": "lower critical",
-                    "Severity": 1,
-                    "Value": 5
                 }
             ],
             "Type": "NVME1000"
@@ -280,12 +706,6 @@
                     "Name": "upper critical",
                     "Severity": 1,
                     "Value": 70
-                },
-                {
-                    "Direction": "less than",
-                    "Name": "lower critical",
-                    "Severity": 1,
-                    "Value": 5
                 }
             ],
             "Type": "NVME1000"
@@ -300,7 +720,7 @@
                     "Direction": "greater than",
                     "Name": "upper critical",
                     "Severity": 1,
-                    "Value": 107
+                    "Value": 100.0
                 },
                 {
                     "Direction": "greater than",
@@ -313,12 +733,6 @@
                     "Name": "lower non critical",
                     "Severity": 0,
                     "Value": 5
-                },
-                {
-                    "Direction": "less than",
-                    "Name": "lower critical",
-                    "Severity": 1,
-                    "Value": -7
                 }
             ],
             "Type": "PT5161L"
@@ -333,7 +747,7 @@
                     "Direction": "greater than",
                     "Name": "upper critical",
                     "Severity": 1,
-                    "Value": 107
+                    "Value": 100.0
                 },
                 {
                     "Direction": "greater than",
@@ -346,12 +760,6 @@
                     "Name": "lower non critical",
                     "Severity": 0,
                     "Value": 5
-                },
-                {
-                    "Direction": "less than",
-                    "Name": "lower critical",
-                    "Severity": 1,
-                    "Value": -7
                 }
             ],
             "Type": "PT5161L"
@@ -386,63 +794,119 @@
                     "Label": "power1",
                     "Name": "upper critical",
                     "Severity": 1,
-                    "Value": 420
+                    "Value": 640.0
                 },
                 {
                     "Direction": "greater than",
                     "Label": "temp1",
                     "Name": "upper critical",
                     "Severity": 1,
-                    "Value": 85
+                    "Value": 80.0
                 },
                 {
                     "Direction": "greater than",
                     "Label": "temp2",
                     "Name": "upper critical",
                     "Severity": 1,
-                    "Value": 85
+                    "Value": 80.0
                 },
                 {
                     "Direction": "greater than",
                     "Label": "temp3",
                     "Name": "upper critical",
                     "Severity": 1,
-                    "Value": 85
+                    "Value": 80.0
                 },
                 {
                     "Direction": "greater than",
                     "Label": "temp4",
                     "Name": "upper critical",
                     "Severity": 1,
-                    "Value": 85
+                    "Value": 80.0
                 },
                 {
                     "Direction": "greater than",
                     "Label": "temp5",
                     "Name": "upper critical",
                     "Severity": 1,
-                    "Value": 85
+                    "Value": 80.0
                 },
                 {
                     "Direction": "greater than",
                     "Label": "temp6",
                     "Name": "upper critical",
                     "Severity": 1,
-                    "Value": 85
+                    "Value": 80.0
                 },
                 {
                     "Direction": "greater than",
                     "Label": "temp7",
                     "Name": "upper critical",
                     "Severity": 1,
-                    "Value": 85
+                    "Value": 80.0
                 },
                 {
                     "Direction": "greater than",
                     "Label": "temp8",
                     "Name": "upper critical",
                     "Severity": 1,
-                    "Value": 85
+                    "Value": 80.0
+                },
+                {
+                    "Direction": "greater than",
+                    "Label": "power2",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 9.6
+                },
+                {
+                    "Direction": "greater than",
+                    "Label": "power3",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 9.6
+                },
+                {
+                    "Direction": "greater than",
+                    "Label": "power4",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 9.6
+                },
+                {
+                    "Direction": "greater than",
+                    "Label": "power5",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 9.6
+                },
+                {
+                    "Direction": "greater than",
+                    "Label": "power6",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 9.6
+                },
+                {
+                    "Direction": "greater than",
+                    "Label": "power7",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 9.6
+                },
+                {
+                    "Direction": "greater than",
+                    "Label": "power8",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 9.6
+                },
+                {
+                    "Direction": "greater than",
+                    "Label": "power9",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 9.6
                 }
             ],
             "Type": "SBRMI",
@@ -474,7 +938,7 @@
                     "Direction": "greater than",
                     "Name": "upper critical",
                     "Severity": 1,
-                    "Value": 90
+                    "Value": 95.0
                 }
             ],
             "Type": "SBTSI"
@@ -485,16 +949,10 @@
             "Name": "MB_OUTLET_TEMP_C",
             "Thresholds": [
                 {
-                    "Direction": "less than",
-                    "Name": "lower critical",
-                    "Severity": 1,
-                    "Value": 5
-                },
-                {
                     "Direction": "greater than",
                     "Name": "upper critical",
                     "Severity": 1,
-                    "Value": 75
+                    "Value": 80.0
                 }
             ],
             "Type": "TMP75"
@@ -505,16 +963,10 @@
             "Name": "MB_INLET_TEMP_C",
             "Thresholds": [
                 {
-                    "Direction": "less than",
-                    "Name": "lower critical",
-                    "Severity": 1,
-                    "Value": 5
-                },
-                {
                     "Direction": "greater than",
                     "Name": "upper critical",
                     "Severity": 1,
-                    "Value": 55
+                    "Value": 60.0
                 }
             ],
             "Type": "TMP75"
