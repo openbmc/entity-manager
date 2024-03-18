@@ -22,7 +22,58 @@
             "pin_Name": "PDB_HSC_PWR_W",
             "temp1_Name": "PDB_HSC_TEMP_C",
             "vin_Name": "PDB_HSC_VIN_VOLT_V",
-            "vout1_Name": "PDB_HSC_VOUT_VOLT_V"
+            "vout1_Name": "PDB_HSC_VOUT_VOLT_V",
+            "Thresholds": [
+                {
+                    "Direction": "greater than",
+                    "Label": "iout1",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 30.0
+                },
+                {
+                    "Direction": "greater than",
+                    "Label": "pin",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 1440.0
+                },
+                {
+                    "Direction": "greater than",
+                    "Label": "temp1",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 80.0
+                },
+                {
+                    "Direction": "less than",
+                    "Label": "vin",
+                    "Name": "lower critical",
+                    "Severity": 1,
+                    "Value": 46.0
+                },
+                {
+                    "Direction": "greater than",
+                    "Label": "vin",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 55.0
+                },
+                {
+                    "Direction": "less than",
+                    "Label": "vout1",
+                    "Name": "lower critical",
+                    "Severity": 1,
+                    "Value": 46.0
+                },
+                {
+                    "Direction": "greater than",
+                    "Label": "vout1",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 55.0
+                }
+            ]
         },
         {
             "Address": "0x69",
@@ -42,7 +93,65 @@
             "pout1_Name": "PDB_BRICK_POUT_PWR_W",
             "temp1_Name": "PDB_BRICK_TEMP_C",
             "vin_Name": "PDB_BRICK_VIN_VOLT_V",
-            "vout1_Name": "PDB_BRICK_VOUT_VOLT_V"
+            "vout1_Name": "PDB_BRICK_VOUT_VOLT_V",
+            "Thresholds": [
+                {
+                    "Direction": "greater than",
+                    "Label": "iout1",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 71.6
+                },
+                {
+                    "Direction": "greater than",
+                    "Label": "pin",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 874.0
+                },
+                {
+                    "Direction": "greater than",
+                    "Label": "pout1",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 860.0
+                },
+                {
+                    "Direction": "greater than",
+                    "Label": "temp1",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 105.0
+                },
+                {
+                    "Direction": "less than",
+                    "Label": "vin",
+                    "Name": "lower critical",
+                    "Severity": 1,
+                    "Value": 38.0
+                },
+                {
+                    "Direction": "greater than",
+                    "Label": "vin",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 60.0
+                },
+                {
+                    "Direction": "less than",
+                    "Label": "vout1",
+                    "Name": "lower critical",
+                    "Severity": 1,
+                    "Value": 10.8
+                },
+                {
+                    "Direction": "greater than",
+                    "Label": "vout1",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 13.2
+                }
+            ]
         }
     ],
     "Name": "Minerva PDB",
