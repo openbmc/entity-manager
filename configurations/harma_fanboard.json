@@ -15,7 +15,21 @@
                 "Index": 0,
                 "Name": "FAN_BP0_FAN0_TACH_IL_SPEED_RPM",
                 "PowerState": "Always",
-                "Type": "I2CFan"
+                "Type": "I2CFan",
+                "Thresholds": [
+                    {
+                        "Direction": "less than",
+                        "Name": "lower critical",
+                        "Severity": 1,
+                        "Value": 900.0
+                    },
+                    {
+                        "Direction": "greater than",
+                        "Name": "upper critical",
+                        "Severity": 1,
+                        "Value": 20000.0
+                    }
+                ]
             },
             {
                 "Address": "0x5e",
@@ -31,7 +45,21 @@
                 "Index": 1,
                 "Name": "FAN_BP0_FAN0_TACH_OL_SPEED_RPM",
                 "PowerState": "Always",
-                "Type": "I2CFan"
+                "Type": "I2CFan",
+                "Thresholds": [
+                    {
+                        "Direction": "less than",
+                        "Name": "lower critical",
+                        "Severity": 1,
+                        "Value": 800.0
+                    },
+                    {
+                        "Direction": "greater than",
+                        "Name": "upper critical",
+                        "Severity": 1,
+                        "Value": 19000.0
+                    }
+                ]
             },
             {
                 "Address": "0x5e",
@@ -47,7 +75,21 @@
                 "Index": 2,
                 "Name": "FAN_BP0_FAN1_TACH_IL_SPEED_RPM",
                 "PowerState": "Always",
-                "Type": "I2CFan"
+                "Type": "I2CFan",
+                "Thresholds": [
+                    {
+                        "Direction": "less than",
+                        "Name": "lower critical",
+                        "Severity": 1,
+                        "Value": 900.0
+                    },
+                    {
+                        "Direction": "greater than",
+                        "Name": "upper critical",
+                        "Severity": 1,
+                        "Value": 20000.0
+                    }
+                ]
             },
             {
                 "Address": "0x5e",
@@ -63,7 +105,21 @@
                 "Index": 3,
                 "Name": "FAN_BP0_FAN1_TACH_OL_SPEED_RPM",
                 "PowerState": "Always",
-                "Type": "I2CFan"
+                "Type": "I2CFan",
+                "Thresholds": [
+                    {
+                        "Direction": "less than",
+                        "Name": "lower critical",
+                        "Severity": 1,
+                        "Value": 800.0
+                    },
+                    {
+                        "Direction": "greater than",
+                        "Name": "upper critical",
+                        "Severity": 1,
+                        "Value": 19000.0
+                    }
+                ]
             },
             {
                 "Address": "0x5e",
@@ -79,7 +135,21 @@
                 "Index": 4,
                 "Name": "FAN_BP0_FAN2_TACH_IL_SPEED_RPM",
                 "PowerState": "Always",
-                "Type": "I2CFan"
+                "Type": "I2CFan",
+                "Thresholds": [
+                    {
+                        "Direction": "less than",
+                        "Name": "lower critical",
+                        "Severity": 1,
+                        "Value": 900.0
+                    },
+                    {
+                        "Direction": "greater than",
+                        "Name": "upper critical",
+                        "Severity": 1,
+                        "Value": 20000.0
+                    }
+                ]
             },
             {
                 "Address": "0x5e",
@@ -95,7 +165,21 @@
                 "Index": 5,
                 "Name": "FAN_BP0_FAN2_TACH_OL_SPEED_RPM",
                 "PowerState": "Always",
-                "Type": "I2CFan"
+                "Type": "I2CFan",
+                "Thresholds": [
+                    {
+                        "Direction": "less than",
+                        "Name": "lower critical",
+                        "Severity": 1,
+                        "Value": 800.0
+                    },
+                    {
+                        "Direction": "greater than",
+                        "Name": "upper critical",
+                        "Severity": 1,
+                        "Value": 19000.0
+                    }
+                ]
             },
             {
                 "Address": "0x5e",
@@ -111,7 +195,21 @@
                 "Index": 6,
                 "Name": "FAN_BP0_FAN3_TACH_IL_SPEED_RPM",
                 "PowerState": "Always",
-                "Type": "I2CFan"
+                "Type": "I2CFan",
+                "Thresholds": [
+                    {
+                        "Direction": "less than",
+                        "Name": "lower critical",
+                        "Severity": 1,
+                        "Value": 900.0
+                    },
+                    {
+                        "Direction": "greater than",
+                        "Name": "upper critical",
+                        "Severity": 1,
+                        "Value": 20000.0
+                    }
+                ]
             },
             {
                 "Address": "0x5e",
@@ -127,7 +225,21 @@
                 "Index": 7,
                 "Name": "FAN_BP0_FAN3_TACH_OL_SPEED_RPM",
                 "PowerState": "Always",
-                "Type": "I2CFan"
+                "Type": "I2CFan",
+                "Thresholds": [
+                    {
+                        "Direction": "less than",
+                        "Name": "lower critical",
+                        "Severity": 1,
+                        "Value": 800.0
+                    },
+                    {
+                        "Direction": "greater than",
+                        "Name": "upper critical",
+                        "Severity": 1,
+                        "Value": 19000.0
+                    }
+                ]
             },
             {
                 "Address": "0x40",
@@ -206,7 +318,21 @@
                 "Index": 0,
                 "Name": "FAN_BP1_FAN0_TACH_IL_SPEED_RPM",
                 "PowerState": "Always",
-                "Type": "I2CFan"
+                "Type": "I2CFan",
+                "Thresholds": [
+                    {
+                        "Direction": "less than",
+                        "Name": "lower critical",
+                        "Severity": 1,
+                        "Value": 900.0
+                    },
+                    {
+                        "Direction": "greater than",
+                        "Name": "upper critical",
+                        "Severity": 1,
+                        "Value": 20000.0
+                    }
+                ]
             },
             {
                 "Address": "0x5e",
@@ -222,7 +348,21 @@
                 "Index": 1,
                 "Name": "FAN_BP1_FAN0_TACH_OL_SPEED_RPM",
                 "PowerState": "Always",
-                "Type": "I2CFan"
+                "Type": "I2CFan",
+                "Thresholds": [
+                    {
+                        "Direction": "less than",
+                        "Name": "lower critical",
+                        "Severity": 1,
+                        "Value": 800.0
+                    },
+                    {
+                        "Direction": "greater than",
+                        "Name": "upper critical",
+                        "Severity": 1,
+                        "Value": 19000.0
+                    }
+                ]
             },
             {
                 "Address": "0x5e",
@@ -238,7 +378,21 @@
                 "Index": 2,
                 "Name": "FAN_BP1_FAN1_TACH_IL_SPEED_RPM",
                 "PowerState": "Always",
-                "Type": "I2CFan"
+                "Type": "I2CFan",
+                "Thresholds": [
+                    {
+                        "Direction": "less than",
+                        "Name": "lower critical",
+                        "Severity": 1,
+                        "Value": 900.0
+                    },
+                    {
+                        "Direction": "greater than",
+                        "Name": "upper critical",
+                        "Severity": 1,
+                        "Value": 20000.0
+                    }
+                ]
             },
             {
                 "Address": "0x5e",
@@ -254,7 +408,21 @@
                 "Index": 3,
                 "Name": "FAN_BP1_FAN1_TACH_OL_SPEED_RPM",
                 "PowerState": "Always",
-                "Type": "I2CFan"
+                "Type": "I2CFan",
+                "Thresholds": [
+                    {
+                        "Direction": "less than",
+                        "Name": "lower critical",
+                        "Severity": 1,
+                        "Value": 800.0
+                    },
+                    {
+                        "Direction": "greater than",
+                        "Name": "upper critical",
+                        "Severity": 1,
+                        "Value": 19000.0
+                    }
+                ]
             },
             {
                 "Address": "0x5e",
@@ -270,7 +438,21 @@
                 "Index": 4,
                 "Name": "FAN_BP1_FAN2_TACH_IL_SPEED_RPM",
                 "PowerState": "Always",
-                "Type": "I2CFan"
+                "Type": "I2CFan",
+                "Thresholds": [
+                    {
+                        "Direction": "less than",
+                        "Name": "lower critical",
+                        "Severity": 1,
+                        "Value": 900.0
+                    },
+                    {
+                        "Direction": "greater than",
+                        "Name": "upper critical",
+                        "Severity": 1,
+                        "Value": 20000.0
+                    }
+                ]
             },
             {
                 "Address": "0x5e",
@@ -286,7 +468,21 @@
                 "Index": 5,
                 "Name": "FAN_BP1_FAN2_TACH_OL_SPEED_RPM",
                 "PowerState": "Always",
-                "Type": "I2CFan"
+                "Type": "I2CFan",
+                "Thresholds": [
+                    {
+                        "Direction": "less than",
+                        "Name": "lower critical",
+                        "Severity": 1,
+                        "Value": 800.0
+                    },
+                    {
+                        "Direction": "greater than",
+                        "Name": "upper critical",
+                        "Severity": 1,
+                        "Value": 19000.0
+                    }
+                ]
             },
             {
                 "Address": "0x5e",
@@ -302,7 +498,21 @@
                 "Index": 6,
                 "Name": "FAN_BP1_FAN3_TACH_IL_SPEED_RPM",
                 "PowerState": "Always",
-                "Type": "I2CFan"
+                "Type": "I2CFan",
+                "Thresholds": [
+                    {
+                        "Direction": "less than",
+                        "Name": "lower critical",
+                        "Severity": 1,
+                        "Value": 900.0
+                    },
+                    {
+                        "Direction": "greater than",
+                        "Name": "upper critical",
+                        "Severity": 1,
+                        "Value": 20000.0
+                    }
+                ]
             },
             {
                 "Address": "0x5e",
@@ -318,7 +528,21 @@
                 "Index": 7,
                 "Name": "FAN_BP1_FAN3_TACH_OL_SPEED_RPM",
                 "PowerState": "Always",
-                "Type": "I2CFan"
+                "Type": "I2CFan",
+                "Thresholds": [
+                    {
+                        "Direction": "less than",
+                        "Name": "lower critical",
+                        "Severity": 1,
+                        "Value": 800.0
+                    },
+                    {
+                        "Direction": "greater than",
+                        "Name": "upper critical",
+                        "Severity": 1,
+                        "Value": 19000.0
+                    }
+                ]
             },
             {
                 "Address": "0x40",

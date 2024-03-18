@@ -16,13 +16,6 @@
             "Name1": "NIC Temp $bus",
             "Thresholds": [
                 {
-                    "Direction": "less than",
-                    "Index": 2,
-                    "Name": "lower critical",
-                    "Severity": 1,
-                    "Value": 5
-                },
-                {
                     "Direction": "greater than",
                     "Index": 2,
                     "Name": "upper critical",

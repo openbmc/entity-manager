@@ -61,61 +61,141 @@
             "Address": "0x60",
             "Bus": 24,
             "Name": "PTTV_THRMCUP_REF_TEMP_C",
-            "Type": "MCP9600"
+            "Type": "MCP9600",
+            "Thresholds": [
+                {
+                    "Direction": "greater than",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 60.0
+                }
+            ]
         },
         {
             "Address": "0x62",
             "Bus": 24,
             "Name": "PTTV_THRMCUP_IOA_TEMP_C",
-            "Type": "MCP9600"
+            "Type": "MCP9600",
+            "Thresholds": [
+                {
+                    "Direction": "greater than",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 100.0
+                }
+            ]
         },
         {
             "Address": "0x63",
             "Bus": 24,
             "Name": "PTTV_THRMCUP_IOB_TEMP_C",
-            "Type": "MCP9600"
+            "Type": "MCP9600",
+            "Thresholds": [
+                {
+                    "Direction": "greater than",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 100.0
+                }
+            ]
         },
         {
             "Address": "0x64",
             "Bus": 24,
             "Name": "PTTV_THRMCUP_HBM4_TEMP_C",
-            "Type": "MCP9600"
+            "Type": "MCP9600",
+            "Thresholds": [
+                {
+                    "Direction": "greater than",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 100.0
+                }
+            ]
         },
         {
             "Address": "0x65",
             "Bus": 24,
             "Name": "PTTV_THRMCUP_HBM5_TEMP_C",
-            "Type": "MCP9600"
+            "Type": "MCP9600",
+            "Thresholds": [
+                {
+                    "Direction": "greater than",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 100.0
+                }
+            ]
         },
         {
             "Address": "0x66",
             "Bus": 24,
             "Name": "PTTV_THRMCUP_HBM6_TEMP_C",
-            "Type": "MCP9600"
+            "Type": "MCP9600",
+            "Thresholds": [
+                {
+                    "Direction": "greater than",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 100.0
+                }
+            ]
         },
         {
             "Address": "0x67",
             "Bus": 24,
             "Name": "PTTV_THRMCUP_CORE_TEMP_C",
-            "Type": "MCP9600"
+            "Type": "MCP9600",
+            "Thresholds": [
+                {
+                    "Direction": "greater than",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 100.0
+                }
+            ]
         },
         {
             "Address": "0x64",
             "Bus": 25,
             "Name": "PTTV_THRMCUP_HBM1_TEMP_C",
-            "Type": "MCP9600"
+            "Type": "MCP9600",
+            "Thresholds": [
+                {
+                    "Direction": "greater than",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 100.0
+                }
+            ]
         },
         {
             "Address": "0x65",
             "Bus": 25,
             "Name": "PTTV_THRMCUP_HBM2_TEMP_C",
-            "Type": "MCP9600"
+            "Type": "MCP9600",
+            "Thresholds": [
+                {
+                    "Direction": "greater than",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 100.0
+                }
+            ]
         },
         {
             "Address": "0x66",
             "Bus": 25,
             "Name": "PTTV_THRMCUP_HBM3_TEMP_C",
-            "Type": "MCP9600"
+            "Type": "MCP9600",
+            "Thresholds": [
+                {
+                    "Direction": "greater than",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 100.0
+                }
+            ]
         },
         {
             "Address": "0x49",
@@ -142,7 +222,6 @@
             "Type": "TMP75"
         }
     ],
-    /* Power and thermal test vehicle board */
     "Name": "Minerva PTTV",
     "Probe": "xyz.openbmc_project.FruDevice({'BOARD_PRODUCT_NAME': 'Minerva PTTV '})",
     "Type": "Board",
