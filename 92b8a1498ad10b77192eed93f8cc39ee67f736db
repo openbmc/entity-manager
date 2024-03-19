@@ -20,6 +20,41 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "09635cf8_f5d55fda",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 1001939
+      },
+      "writtenOn": "2024-03-19T05:54:24Z",
+      "side": 1,
+      "message": "Because HW redefines threshold, the original value was only temporary.",
+      "parentUuid": "4f4f43c6_1a87cafb",
+      "revId": "92b8a1498ad10b77192eed93f8cc39ee67f736db",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "7a0be75a_c2daa861",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1001939
+      },
+      "writtenOn": "2024-03-19T05:54:24Z",
+      "side": 1,
+      "message": "I will further confirm with HW before committing new change.",
+      "revId": "92b8a1498ad10b77192eed93f8cc39ee67f736db",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "acab5496_a6b5902a",
         "filename": "configurations/harma_fanboard.json",
         "patchSetId": 1
@@ -31,6 +66,24 @@
       "writtenOn": "2024-03-18T13:58:44Z",
       "side": 1,
       "message": "Can we get comments as to why different fans have different thresholds?  It isn\u0027t obvious.",
+      "revId": "92b8a1498ad10b77192eed93f8cc39ee67f736db",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "08730510_a4067357",
+        "filename": "configurations/harma_fanboard.json",
+        "patchSetId": 1
+      },
+      "lineNbr": 54,
+      "author": {
+        "id": 1001939
+      },
+      "writtenOn": "2024-03-19T05:54:24Z",
+      "side": 1,
+      "message": "Because one is an inlet and the other is an outlet.",
+      "parentUuid": "acab5496_a6b5902a",
       "revId": "92b8a1498ad10b77192eed93f8cc39ee67f736db",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
