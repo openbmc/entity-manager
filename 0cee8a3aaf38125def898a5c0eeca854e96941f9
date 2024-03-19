@@ -96,6 +96,30 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "3d730feb_254ce9e2",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 5
+      },
+      "lineNbr": 23,
+      "author": {
+        "id": 1000008
+      },
+      "writtenOn": "2024-03-19T16:44:00Z",
+      "side": 1,
+      "message": "Hi Zhikui, when fru-device starts up and does its scans, is there any reason to think it would take 5 seconds between 2 of them? \n\nIf not, then I don\u0027t think we need a 5 second wait.  (IBM doesn\u0027t use fru-device and uses openpower-vpd-parser instead, and there definitely isn\u0027t any 5 second delays between interfacesAdded there).  Even if there was, it should be fine if EM puts ifaces on D-Bus in more than one batch.  I\u0027d consider it a  bug if that didn\u0027t work.",
+      "parentUuid": "96a17f1c_3eff0515",
+      "range": {
+        "startLine": 21,
+        "startChar": 0,
+        "endLine": 23,
+        "endChar": 25
+      },
+      "revId": "0cee8a3aaf38125def898a5c0eeca854e96941f9",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "abd8b3bb_d5d58f5c",
