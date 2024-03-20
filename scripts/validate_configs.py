@@ -134,11 +134,13 @@ def main():
             )
             sys.exit(2)
 
+    spec = jsonschema.Draft7Validator
+    spec.check_schema(schema)
     base_uri = "file://{}/".format(
         os.path.split(os.path.realpath(schema_file))[0]
     )
     resolver = jsonschema.RefResolver(base_uri, schema)
-    validator = jsonschema.Draft7Validator(schema, resolver=resolver)
+    validator = spec(schema, resolver=resolver)
 
     results = {
         "invalid": [],
