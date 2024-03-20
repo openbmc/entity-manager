@@ -3,14 +3,7 @@
     "definitions": {
         "IBMCFFPSConnector": {
             "title": "IBM Common Form Factor (CFF) Power Supply connectors",
-            "description": [
-                "A schema associating an I2C endpoint and a GPIO for IBM CFF",
-                "power supplies.  In the entity-manager",
-                "detector-configuration-reactor architecture, the daemon that",
-                "supports IBM CFFPS is both a detector and reactor.  It probes",
-                "the endpoints described by this schema (reactor) and publishes",
-                "the CFFPS FRU information (detector)."
-            ],
+            "description": "A schema associating an I2C endpoint and a GPIO for IBM CFF power supplies.  In the entity-manager detector-configuration-reactor architecture, the daemon that supports IBM CFFPS is both a detector and reactor.  It probes the endpoints described by this schema (reactor) and publishes the CFFPS FRU information (detector).",
             "type": "object",
             "properties": {
                 "Name": {
@@ -20,22 +13,15 @@
                     "enum": ["IBMCFFPSConnector"]
                 },
                 "I2CBus": {
-                    "description": [
-                        "The I2C address on which to probe for a CFFPS."
-                    ],
+                    "description": "The I2C address on which to probe for a CFFPS.",
                     "type": "number"
                 },
                 "I2CAddress": {
-                    "description": [
-                        "The I2C bus number on which to probe for a CFFPS."
-                    ],
+                    "description": "The I2C bus number on which to probe for a CFFPS.",
                     "type": "number"
                 },
                 "NamedPresenceGpio": {
-                    "description": [
-                        "The name of the GPIO to monitor that indicates CFFPS",
-                        "plug state."
-                    ],
+                    "description": "The name of the GPIO to monitor that indicates CFFPS plug state.",
                     "type": "string"
                 }
             },
@@ -49,23 +35,7 @@
         },
         "IBMCompatibleSystem": {
             "title": "System compatibility",
-            "description": [
-                "Devicetree-like compatibility strings for systems, where a",
-                "'system' is roughly defined as the combination of a chassis and a",
-                "mainboard.",
-                "",
-                "The strings should be used by applications to match the",
-                "entity with entries or configuration in a hardware database.",
-                "Strings appear in the list from most specific to most",
-                "general.  This allows an entity to express compatibility with",
-                "a family of similar systems, in turn allowing an application",
-                "to match a variety of systems with a single",
-                "IBMCompatibleSystem entry.",
-                "",
-                "The recommended entry format is 'manufacturer,model' where",
-                "the manufacturer is a string describing the name of the",
-                "manufacturer and model specifies the model number."
-            ],
+            "description": "Devicetree-like compatibility strings for systems, where a 'system' is roughly defined as the combination of a chassis and a mainboard. The strings should be used by applications to match the entity with entries or configuration in a hardware database. Strings appear in the list from most specific to most general.  This allows an entity to express compatibility with a family of similar systems, in turn allowing an application to match a variety of systems with a single IBMCompatibleSystem entry. The recommended entry format is 'manufacturer,model' where the manufacturer is a string describing the name of the manufacturer and model specifies the model number.",
             "type": "object",
             "properties": {
                 "Name": {
@@ -92,58 +62,37 @@
         },
         "PowerModeProperties": {
             "title": "PowerMode Properties",
-            "description": ["The default PowerMode properties for the system"],
+            "description": "The default PowerMode properties for the system",
             "type": "object",
             "properties": {
                 "PowerMode": {
-                    "description": [
-                        "The default PowerMode to use prior to being set by a user."
-                    ],
+                    "description": "The default PowerMode to use prior to being set by a user.",
                     "enum": ["Static", "PowerSaving", "MaximumPerformance"]
                 },
                 "IdlePowerSaverEnabled": {
-                    "description": [
-                        "Default state of idle power saver mode.",
-                        "Setting to true will enable idle power saver."
-                    ],
+                    "description": "Default state of idle power saver mode. Setting to true will enable idle power saver.",
                     "type": "boolean"
                 },
                 "EnterUtilizationPercent": {
-                    "description": [
-                        "The default percentage of utilization that the system shall",
-                        "be lower than to enter idle power save.",
-                        "The value is in integer percentage values (10 = 10%).",
-                        "EnterUtilizationPercent must be <= ExitUtilizationPercent"
-                    ],
+                    "description": "The default percentage of utilization that the system shall be lower than to enter idle power save. The value is in integer percentage values (10 = 10%). EnterUtilizationPercent must be <= ExitUtilizationPercent",
                     "type": "number",
                     "minimum": 1,
                     "maximum": 95
                 },
                 "EnterUtilizationDwellTime": {
-                    "description": [
-                        "The default duration in seconds that the system is below",
-                        "the EnterUtilizationPercent before idle power save is activated."
-                    ],
+                    "description": "The default duration in seconds that the system is below the EnterUtilizationPercent before idle power save is activated.",
                     "type": "number",
                     "minimum": 10,
                     "maximum": 600
                 },
                 "ExitUtilizationPercent": {
-                    "description": [
-                        "The default percentage of utilization that the system shall",
-                        "be above in order to exit idle power save.",
-                        "The value is in integer percentage values (10 = 10%).",
-                        "ExitUtilizationPercent must be >= EnterUtilizationPercent"
-                    ],
+                    "description": "The default percentage of utilization that the system shall be above in order to exit idle power save. The value is in integer percentage values (10 = 10%). ExitUtilizationPercent must be >= EnterUtilizationPercent",
                     "type": "number",
                     "minimum": 5,
                     "maximum": 95
                 },
                 "ExitUtilizationDwellTime": {
-                    "description": [
-                        "The default duration in seconds that the system is above",
-                        "the ExitUtilizationPercent before idle power save is deactivated."
-                    ],
+                    "description": "The default duration in seconds that the system is above the ExitUtilizationPercent before idle power save is deactivated.",
                     "type": "number",
                     "minimum": 10,
                     "maximum": 600
