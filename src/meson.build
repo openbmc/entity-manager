@@ -18,6 +18,7 @@ executable(
         valijson,
     ],
     install: true,
+    install_dir : '/usr/libexec/entity-manager',
 )
 
 if get_option('fru-device')
@@ -42,5 +43,6 @@ if get_option('fru-device')
             valijson,
         ],
         install: true,
+        install_dir : '/usr/libexec/entity-manager',
     )
 endif

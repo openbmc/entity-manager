@@ -3,7 +3,7 @@ Description=Fru Device
 After=dbus.service
 
 [Service]
-ExecStart=/usr/bin/fru-device
+ExecStart=/usr/libexec/entity-manager/fru-device
 Restart=always
 RestartSec=5
 Type=simple

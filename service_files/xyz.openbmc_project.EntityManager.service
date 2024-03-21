@@ -4,7 +4,7 @@ Description=Entity Manager
 [Service]
 ExecStartPre=/bin/mkdir -p /var/configuration
 ExecStartPre=/bin/mkdir -p /tmp/overlays
-ExecStart=/usr/bin/entity-manager
+ExecStart=/usr/libexec/entity-manager/entity-manager
 Restart=always
 Type=dbus
 BusName=xyz.openbmc_project.EntityManager
