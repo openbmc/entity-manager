@@ -1,5 +1,6 @@
 cpp_args = boost_args + ['-DPACKAGE_DIR="' + packagedir + '/"']
 cpp_args += ['-DSYSCONF_DIR="' + sysconfdir + '/"' ]
+installdir = join_paths(get_option('libexecdir'), 'entity-manager')
 
 executable(
     'entity-manager',
@@ -18,6 +19,7 @@ executable(
         valijson,
     ],
     install: true,
+    install_dir: installdir,
 )
 
 if get_option('fru-device')
@@ -42,5 +44,6 @@ if get_option('fru-device')
             valijson,
         ],
         install: true,
+        install_dir: installdir,
     )
 endif
