@@ -39,6 +39,30 @@
       },
       "revId": "05ca0b5486aed34cf5aae09c0488968b40855cbd",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b661a160_24cbb930",
+        "filename": "src/meson.build",
+        "patchSetId": 1
+      },
+      "lineNbr": 22,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2024-03-21T17:25:56Z",
+      "side": 1,
+      "message": "\u003e I think we can omit \"entity-manager\" here. We\u0027re not changing the binary name, so we don\u0027t have to specify a new name, just the folder to install into.\n\nhttps://github.com/openbmc/docs/blob/master/anti-patterns.md#incorrect-placement-of-executables-in-sbin-usrsbin-or-bin-usrbin\n\n\"Executables of type 1 should not be placed anywhere in ${PATH} because it is confusing and error-prone to users, but should instead be placed in a /usr/libexec/\u003cpackage\u003e subdirectory.\"\n\nThis is where \"entity-manager\" comes from in the path expectations.",
+      "parentUuid": "c53a8abc_16cfdce7",
+      "range": {
+        "startLine": 21,
+        "startChar": 0,
+        "endLine": 22,
+        "endChar": 1
+      },
+      "revId": "05ca0b5486aed34cf5aae09c0488968b40855cbd",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }
