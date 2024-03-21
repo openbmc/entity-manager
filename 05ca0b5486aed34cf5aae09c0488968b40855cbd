@@ -16,6 +16,29 @@
       "message": "Just to confirm, the only reason you\u0027re doing this is to remove it from $PATH so if someone types \u0027fru-device\u0027 it won\u0027t run it?\n\n(I know /usr/libexec is the desired path, just trying to see if there is some other technical reason)",
       "revId": "05ca0b5486aed34cf5aae09c0488968b40855cbd",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c53a8abc_16cfdce7",
+        "filename": "src/meson.build",
+        "patchSetId": 1
+      },
+      "lineNbr": 22,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2024-03-21T17:04:55Z",
+      "side": 1,
+      "message": "Shouldn\u0027t this use the meson libexecdir variable?\n\nNit: I think we can omit \"entity-manager\" here.  We\u0027re not changing the binary name, so we don\u0027t have to specify a new name, just the folder to install into.",
+      "range": {
+        "startLine": 21,
+        "startChar": 0,
+        "endLine": 22,
+        "endChar": 1
+      },
+      "revId": "05ca0b5486aed34cf5aae09c0488968b40855cbd",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }
