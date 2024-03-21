@@ -3,7 +3,7 @@
     "definitions": {
         "EMExposesElement": {
             "description": "The exposes property element schema.  An element of the exposes property is always an array where elements are of type exposes entry.",
-            "oneOf": [
+            "anyOf": [
                 {
                     "$ref": "ibm.json#/definitions/PowerModeProperties"
                 },
@@ -35,14 +35,14 @@
                     "$ref": "virtual_sensor.json#/definitions/VirtualSensor"
                 },
                 {
-                    "description": "Ensure the parent oneOf schema does not validate when an element does not define a type property.",
+                    "description": "Ensure the parent anyOf schema does not validate when an element does not define a type property.",
                     "not": {
                         "required": ["Type"]
                     },
                     "title": "Missing Type"
                 },
                 {
-                    "description": "Ensure the parent oneOf schema does not validate when an element does not define a name property.",
+                    "description": "Ensure the parent anyOf schema does not validate when an element does not define a name property.",
                     "not": {
                         "required": ["Name"]
                     },
