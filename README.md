@@ -85,6 +85,11 @@ reactor when architectures are multi-tiered. An example of this might include a
 hot swap backplane daemon, which both reacts to the hot swap being detected, and
 also creates detection records of what drives are present.
 
+### Associations
+
+Entity Manager will automatically create associations between its entities in
+certain cases. For details see [here](docs/associations.md).
+
 ## Requirements
 
 1. Entity manager shall support the dynamic discovery of hardware at runtime,
