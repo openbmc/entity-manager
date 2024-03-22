@@ -20,6 +20,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "fb82e66d_b6a131f6",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 19,
+      "author": {
+        "id": 1001264
+      },
+      "writtenOn": "2024-03-22T01:28:10Z",
+      "side": 1,
+      "message": "Yes, I want to avoid any chances of user execute binary unless they know the full path.",
+      "parentUuid": "3fd749ea_fe697035",
+      "revId": "05ca0b5486aed34cf5aae09c0488968b40855cbd",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "c53a8abc_16cfdce7",
         "filename": "src/meson.build",
         "patchSetId": 1
@@ -79,6 +97,30 @@
       "side": 1,
       "message": "So the binary goes to /usr/libexec/entity-manager/entity-manager.  Makes sense.  ACK",
       "parentUuid": "b661a160_24cbb930",
+      "range": {
+        "startLine": 21,
+        "startChar": 0,
+        "endLine": 22,
+        "endChar": 1
+      },
+      "revId": "05ca0b5486aed34cf5aae09c0488968b40855cbd",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "c0186432_8b14b101",
+        "filename": "src/meson.build",
+        "patchSetId": 1
+      },
+      "lineNbr": 22,
+      "author": {
+        "id": 1001264
+      },
+      "writtenOn": "2024-03-22T01:28:10Z",
+      "side": 1,
+      "message": "updated, done",
+      "parentUuid": "5c7887a9_14d16d2e",
       "range": {
         "startLine": 21,
         "startChar": 0,
