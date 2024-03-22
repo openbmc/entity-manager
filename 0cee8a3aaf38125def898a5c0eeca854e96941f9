@@ -120,6 +120,30 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "ae4a5c5c_a0634c27",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 5
+      },
+      "lineNbr": 23,
+      "author": {
+        "id": 1000559
+      },
+      "writtenOn": "2024-03-22T03:22:58Z",
+      "side": 1,
+      "message": "I agree 5 seconds is long. Unfortunately we don\u0027t know how the number was picked originally. But I would like to see some thought put into picking the next \"better\" number. For example, with 100KHz i2c bus, 1 second means we can read 256 bytes FRU data for 48 devices and we probably don\u0027t expect many systems have 10x that number of FRUs. I don\u0027t have a particular strong objection with 500ms number, just want to ensure the reasoning is documented and sufficient tests have been done.",
+      "parentUuid": "3d730feb_254ce9e2",
+      "range": {
+        "startLine": 21,
+        "startChar": 0,
+        "endLine": 23,
+        "endChar": 25
+      },
+      "revId": "0cee8a3aaf38125def898a5c0eeca854e96941f9",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "abd8b3bb_d5d58f5c",
