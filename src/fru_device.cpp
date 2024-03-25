@@ -220,7 +220,7 @@ static std::optional<bool> isDevice16Bit(int file)
      */
     for (int i = 0; i < 7; i++)
     {
-        int byte2 = i2c_smbus_read_byte_data(file, 0);
+        int byte2 = i2c_smbus_read_byte_data(file, i);
         if (byte2 < 0)
         {
             return std::nullopt;
