@@ -212,20 +212,17 @@ static std::optional<bool> isDevice16Bit(int file)
     {
         return std::nullopt;
     }
-    /* Read 7 more bytes, it will read same first byte in case of
+    /* Read the 2nd byte, it will read same first byte in case of
      * 8 bit but it will read next byte in case of 16 bit
      */
-    for (int i = 0; i < 7; i++)
+    int byte2 = i2c_smbus_read_byte_data(file, 1);
+    if (byte2 < 0)
     {
-        int byte2 = i2c_smbus_read_byte_data(file, 0);
-        if (byte2 < 0)
-        {
-            return std::nullopt;
-        }
-        if (byte2 != byte1)
-        {
-            return true;
-        }
+        return std::nullopt;
+    }
+    if (byte2 != byte1)
+    {
+        return true;
     }
     return false;
 }
