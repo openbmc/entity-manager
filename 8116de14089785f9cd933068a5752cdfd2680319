@@ -173,6 +173,30 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "f62cc2ea_f0be5afe",
+        "filename": "schemas/mctp.json",
+        "patchSetId": 3
+      },
+      "lineNbr": 16,
+      "author": {
+        "id": 1000009
+      },
+      "writtenOn": "2024-03-26T04:00:08Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "f3f3d7cf_34ba3dc8",
+      "range": {
+        "startLine": 10,
+        "startChar": 17,
+        "endLine": 16,
+        "endChar": 48
+      },
+      "revId": "8116de14089785f9cd933068a5752cdfd2680319",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "56ceb637_6210c81f",
@@ -222,6 +246,24 @@
       "side": 1,
       "message": "I am OK will adding more later",
       "parentUuid": "20dd13a1_cb78ebf7",
+      "revId": "8116de14089785f9cd933068a5752cdfd2680319",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "972bc23e_e4c0e5f2",
+        "filename": "schemas/mctp.json",
+        "patchSetId": 3
+      },
+      "lineNbr": 19,
+      "author": {
+        "id": 1000009
+      },
+      "writtenOn": "2024-03-26T04:00:08Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "aed2dd4f_f7a6a15f",
       "revId": "8116de14089785f9cd933068a5752cdfd2680319",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
@@ -311,6 +353,30 @@
       "side": 1,
       "message": "I\u0027m largely going to draw a line under this thread with consensus on the `\"Type\": \"SMBusMCTPDevice\"` approach from my alternatives above.\n\n\u003e why we can\u0027t do logic of:\n\u003e\n\u003e if (mctp device detected):\n\u003e set up mctp lane on that bus\n\u003e\n\u003e in the reactor.\n\nYes, we can do that. However it\u0027s still necessary to specify necessary additional details for the interface (\"mctp lane on that bus\"), such as the link MTU (separate from the device MTU), whether or not the BMC should consider itself the bus owner for the interface or act as a peripheral or a bridge, and the network in which the interface participates. They can\u0027t be inferred so I think they motivate an `MCTPInterface` config node or some equivalent. We can correlate this on the bus index (I2C) or device index (serial) to locate the appropriate interface config without specifying the kernel\u0027s interface name in the configs. I will make an new patchset that defines this approach.\n\nCurrently mctpd assumes it\u0027s the top-most bus owner and the bus owner for all interfaces, though Ampere have the motivation for the BMC to support peripheral cases.",
       "parentUuid": "61b4ff1e_d90efc0b",
+      "range": {
+        "startLine": 39,
+        "startChar": 0,
+        "endLine": 39,
+        "endChar": 79
+      },
+      "revId": "8116de14089785f9cd933068a5752cdfd2680319",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "93e7e32d_ccb3ef50",
+        "filename": "schemas/mctp.json",
+        "patchSetId": 3
+      },
+      "lineNbr": 39,
+      "author": {
+        "id": 1000009
+      },
+      "writtenOn": "2024-03-26T04:00:08Z",
+      "side": 1,
+      "message": "Done.\n\nOne note though: I\u0027ve decided to switch the name of the schema to `MCTPI2CTarget`.\n\nSeveral motivations here:\n\n1. In v7 of the I2C spec \"master\" and \"slave\" are replaced by \"controller\" and \"target\" respectively. The updated language aligns with v7.\n\n2. The language more closely aligns with the hardware, as SMBus is largely a protocol built atop I2C\n\n3. The in-kernel implementation of DSP0237 refers to the capability as I2C rather than SMBus, so increase alignment there also.",
+      "parentUuid": "fadbb0dd_2c5d7050",
       "range": {
         "startLine": 39,
         "startChar": 0,
