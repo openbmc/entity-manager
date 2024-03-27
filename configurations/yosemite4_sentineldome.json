@@ -17,6 +17,9 @@
         "PartNumber": "$PRODUCT_PART_NUMBER",
         "SerialNumber": "$PRODUCT_SERIAL_NUMBER"
     },
+    "xyz.openbmc_project.Inventory.Decorator.AssetTag": {
+        "AssetTag": "$PRODUCT_ASSET_TAG"
+    },
     "xyz.openbmc_project.Inventory.Decorator.Slot": {
         "SlotNumber": "$bus % 15"
     }
