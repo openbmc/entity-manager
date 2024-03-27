@@ -36,6 +36,24 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "1d31d1aa_f0d4cad4",
+        "filename": "configurations/cx7_ocp.json",
+        "patchSetId": 1
+      },
+      "lineNbr": 19,
+      "author": {
+        "id": 1001939
+      },
+      "writtenOn": "2024-03-27T10:37:07Z",
+      "side": 0,
+      "message": "After check with HW engineer, they thought LCR \u003d 5 seems reasonable, so add it back.",
+      "parentUuid": "90bd2464_a9a840bf",
+      "revId": "ab7253176225c204f21e91e92f7bfd4a72d4b875",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "37138f83_99e0235d",
@@ -67,6 +85,24 @@
       "side": 0,
       "message": "Will double-check with HW.",
       "parentUuid": "37138f83_99e0235d",
+      "revId": "ab7253176225c204f21e91e92f7bfd4a72d4b875",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "f78e87eb_f90d280a",
+        "filename": "configurations/harma_mb.json",
+        "patchSetId": 1
+      },
+      "lineNbr": 150,
+      "author": {
+        "id": 1001939
+      },
+      "writtenOn": "2024-03-27T10:37:07Z",
+      "side": 0,
+      "message": "Add it back",
+      "parentUuid": "9afad3c3_41b6986d",
       "revId": "ab7253176225c204f21e91e92f7bfd4a72d4b875",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
@@ -106,6 +142,24 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "59d771c1_a726a1a4",
+        "filename": "configurations/harma_mb.json",
+        "patchSetId": 1
+      },
+      "lineNbr": 264,
+      "author": {
+        "id": 1001939
+      },
+      "writtenOn": "2024-03-27T10:37:07Z",
+      "side": 0,
+      "message": "the original LCR values are referenced from other project, but after the hardware redefined the sensor thresholds, LCR was not set. We consider LCR \u003d 5 to be reasonable, so we added back those sensors whose LCR is 5.",
+      "parentUuid": "c1c37df2_79b1f160",
+      "revId": "ab7253176225c204f21e91e92f7bfd4a72d4b875",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "9e43ea98_85510844",
@@ -123,6 +177,24 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "1c9b9c5e_d2d43635",
+        "filename": "configurations/minerva_pttv.json",
+        "patchSetId": 4
+      },
+      "lineNbr": 145,
+      "author": {
+        "id": 1001939
+      },
+      "writtenOn": "2024-03-27T10:37:07Z",
+      "side": 0,
+      "message": "Add it back",
+      "parentUuid": "9e43ea98_85510844",
+      "revId": "ab7253176225c204f21e91e92f7bfd4a72d4b875",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "17af779c_61bdfb68",
@@ -136,6 +208,24 @@
       "writtenOn": "2024-03-25T11:41:38Z",
       "side": 0,
       "message": "Why did you remove comments?",
+      "revId": "ab7253176225c204f21e91e92f7bfd4a72d4b875",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "5a4aabe1_5f1da870",
+        "filename": "configurations/minerva_sitv.json",
+        "patchSetId": 4
+      },
+      "lineNbr": 28,
+      "author": {
+        "id": 1001939
+      },
+      "writtenOn": "2024-03-27T10:37:07Z",
+      "side": 0,
+      "message": "Done",
+      "parentUuid": "17af779c_61bdfb68",
       "revId": "ab7253176225c204f21e91e92f7bfd4a72d4b875",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
