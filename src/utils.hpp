@@ -68,7 +68,7 @@ bool getI2cDevicePaths(
 bool validateJson(const nlohmann::json& schemaFile,
                   const nlohmann::json& input);
 
-bool isPowerOn(void);
+bool isPowerOn();
 void setupPowerMatch(const std::shared_ptr<sdbusplus::asio::connection>& conn);
 struct DBusInternalError final : public sdbusplus::exception_t
 {
@@ -92,7 +92,7 @@ struct DBusInternalError final : public sdbusplus::exception_t
     }
 };
 
-inline bool fwVersionIsSame(void)
+inline bool fwVersionIsSame()
 {
     std::ifstream version(versionFile);
     if (!version.good())

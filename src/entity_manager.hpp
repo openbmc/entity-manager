@@ -72,7 +72,7 @@ struct PerformScan : std::enable_shared_from_this<PerformScan>
     void updateSystemConfiguration(const nlohmann::json& recordRef,
                                    const std::string& probeName,
                                    FoundDevices& foundDevices);
-    void run(void);
+    void run();
     virtual ~PerformScan();
     nlohmann::json& _systemConfiguration;
     nlohmann::json& _missingConfigurations;
