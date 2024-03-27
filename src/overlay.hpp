@@ -18,5 +18,5 @@
 #pragma once
 #include <nlohmann/json.hpp>
 
-void unloadAllOverlays(void);
+void unloadAllOverlays();
 bool loadOverlays(const nlohmann::json& systemConfiguration);

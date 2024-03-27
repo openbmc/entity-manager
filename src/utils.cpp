@@ -139,7 +139,7 @@ bool validateJson(const nlohmann::json& schemaFile, const nlohmann::json& input)
     return validator.validate(schema, targetAdapter, nullptr);
 }
 
-bool isPowerOn(void)
+bool isPowerOn()
 {
     if (!powerMatch)
     {

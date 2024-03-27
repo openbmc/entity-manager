@@ -728,7 +728,7 @@ struct FindDevicesWithCallback :
     FindDevicesWithCallback(const std::vector<fs::path>& i2cBuses,
                             BusMap& busmap, const bool& powerIsOn,
                             sdbusplus::asio::object_server& objServer,
-                            std::function<void(void)>&& callback) :
+                            std::function<void()>&& callback) :
         _i2cBuses(i2cBuses),
         _busMap(busmap), _powerIsOn(powerIsOn), _objServer(objServer),
         _callback(std::move(callback))
@@ -746,7 +746,7 @@ struct FindDevicesWithCallback :
     BusMap& _busMap;
     const bool& _powerIsOn;
     sdbusplus::asio::object_server& _objServer;
-    std::function<void(void)> _callback;
+    std::function<void()> _callback;
 };
 
 void addFruObjectToDbus(

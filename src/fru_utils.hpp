@@ -101,7 +101,7 @@ inline const std::string& getFruAreaName(fruAreas area)
     return fruAreaNames[static_cast<unsigned int>(area)];
 }
 
-std::tm intelEpoch(void);
+std::tm intelEpoch();
 
 char sixBitToChar(uint8_t val);
 
