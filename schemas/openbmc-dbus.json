@@ -75,6 +75,16 @@
                             },
                             "required": ["SlotNumber"],
                             "type": "object"
+                        },
+                        "Revision": {
+                            "additionalProperties": false,
+                            "properties": {
+                                "Version": {
+                                    "type": "string"
+                                }
+                            },
+                            "required": ["Version"],
+                            "type": "object"
                         }
                     },
                     "Item": {
