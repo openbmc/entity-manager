@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "f48ab93c_b9312e33",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2024-04-03T16:56:45Z",
+      "side": 1,
+      "message": "Can\u0027t really speak to the patch, i don\u0027t understand JsonSchema, but I suspect at some point we need to revisit this stuff and see if we\u0027re be better off with a more fixed, explicitly coded solution.  I\u0027m not sure the JsonSchema stuff is complete enough (it enforces schema but not really correctness), and it gives a false sense of safety such that lots of people (in my experience) will make changes without testing, because \"there is testing of the json configs.\"",
+      "revId": "d2f7ba1c6251f482f3431ab51cf2d2b42486a8a0",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    }
+  ]
+}
