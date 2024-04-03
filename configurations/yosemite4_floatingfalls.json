@@ -1,20 +1,5 @@
 {
-    "Exposes": [
-        {
-            "Address": "0x20",
-            "Bus": "$bus % 16",
-            "EndpointId": "$bus % 15 * 10 + 1",
-            "Name": "BIC",
-            "Type": "MCTPEndpoint"
-        },
-        {
-            "Address": "0x20",
-            "Bus": "$bus % 16",
-            "EndpointId": "$bus % 15 * 10 + 3",
-            "Name": "CXL",
-            "Type": "MCTPEndpoint"
-        }
-    ],
+    "Exposes": [],
     "Name": "Yosemite 4 Floating Falls Slot $bus % 15",
     "Probe": "xyz.openbmc_project.FruDevice({'BOARD_PRODUCT_NAME': 'Floating Falls', 'PRODUCT_PRODUCT_NAME': 'Yosemite V4'})",
     "Type": "Board",
