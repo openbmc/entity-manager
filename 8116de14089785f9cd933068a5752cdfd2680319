@@ -413,6 +413,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "bb25ebbc_333479ff",
+        "filename": "schemas/mctp.json",
+        "patchSetId": 3
+      },
+      "lineNbr": 39,
+      "author": {
+        "id": 1000009
+      },
+      "writtenOn": "2024-04-04T05:43:29Z",
+      "side": 1,
+      "message": "\u003e I\u0027m a little surprised that there isn\u0027t a default MTU that works for all systems.\n\nMCTP specifies a \"Baseline Transmission Unit\" (BTU, minimum MTU) of 64 bytes. All MCTP-compliant devices must support the BTU, and all MCTP control messages fit inside the BTU. That\u0027s necessary so we can perform path MTU discovery. However, the BTU causes a lot of overhead (NVMe-MI gives some experience here).\n\n\u003e Does the spec not say anything about how MTUs should work? I would assume you request the device MTU with a small MTU size, and increase if the device supports a larger transmission unit?\n\nIt says an awful lot about MTUs and path MTU discovery. It also says that configuring the MTU for a given message type on a given device is a problem left to the message-type protocol. See DSP0236 v1.3.1, Section 9.5.1 Path Transmission Unit Negotiation:\n\n\u003e The MCTP control protocol only specifies how to discover what the path transmission unit size is for the path between endpoints. The MCTP control protocol does not specify a generic mechanism for discovering what transmission unit sizes a particular endpoint supports for a given message type. Discovery and negotiation of transmission unit sizes for endpoints, if supported, is specified by the definition of the particular message type.",
+      "parentUuid": "692015da_cbda18d9",
+      "range": {
+        "startLine": 39,
+        "startChar": 0,
+        "endLine": 39,
+        "endChar": 79
+      },
+      "revId": "8116de14089785f9cd933068a5752cdfd2680319",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "342dcfc5_e19fd7be",
         "filename": "schemas/mctp.json",
         "patchSetId": 3
@@ -520,6 +544,30 @@
       "side": 1,
       "message": "\u003e If you\u0027re going take issue with StaticEndpointID\n\nEndpointID is the endpoint of the MCTP; node within the device, correct?  That seems reasonable to have in a config file describing the device, similar to having an Address parameter.  But given your comment above, it\u0027s possible I misunderstood something about what that parameter was doing functionally, and it\u0027s quite possible that stuff needs reverted.  Ideally it never would\u0027ve merged without working backends in place, but I had a misunderstanding about how much work had actually been upstreamed in this space, and arguably made a mistake letting something as incomplete as it was in.  This seems something that we can fix pretty easily.\n\nBacking out the MCTP parts of that change seems reasonable until a backend actually exists.\n\n\u003e EM supports evaluation of an expression language in its configuration values.\n\nI realize some people have used it as such in their downstream EM forks, but based on lots of feedback, doing it that way is error prone at best, and defeats a lot of the reason the parser was built in the first place, to not have to duplicate the configs for the same device that might take on different modes in different locations.  I suspect we need a better solution in that space than the parser (That doesn\u0027t even implement parsing order properly) for static addressing.\n\n\nWhat I\u0027m not quite understanding is why EID, something that seems like internal bookkeeping that only the BMC needs to be aware of, needs to be static?  Can we walk through that a little bit?\n\nI\u0027d really like to see us break this support up into pieces, one that doesn\u0027t include the idea of static addressing, and just uses assignment (as I think would be the default in any implementation if StaticEndpointID is optional?), then lets try to tackle static assignment, ideally with user-facing descriptions for why a static assignment is required.  What I suspect is that we\u0027re trying to hardcode an EID table somewhere else that isn\u0027t EM enabled, and we want the two to match.;",
       "parentUuid": "dba627e7_a6b16e61",
+      "range": {
+        "startLine": 50,
+        "startChar": 0,
+        "endLine": 50,
+        "endChar": 76
+      },
+      "revId": "8116de14089785f9cd933068a5752cdfd2680319",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a6c6c41b_af4ffc68",
+        "filename": "schemas/mctp.json",
+        "patchSetId": 3
+      },
+      "lineNbr": 50,
+      "author": {
+        "id": 1000009
+      },
+      "writtenOn": "2024-04-04T05:43:29Z",
+      "side": 1,
+      "message": "\u003e Backing out the MCTP parts of that change seems reasonable until a backend actually exists.\n\nSure.\n\n\u003e What I\u0027m not quite understanding is why EID, something that seems like internal bookkeeping that only the BMC needs to be aware of, needs to be static? Can we walk through that a little bit?\n\nAs a note, there\u0027s a bunch of discussion on this topic on Discord:\n\nhttps://discord.com/channels/775381525260664832/819741065531359263/1225127654743871600\n\n\u003e I\u0027d really like to see us break this support up into pieces, one that doesn\u0027t include the idea of static addressing, and just uses assignment (as I think would be the default in any implementation if StaticEndpointID is optional?)\n\nYep, I\u0027ll do that so we can make some progress with the rest of it.\n\nI\u0027ll also rebase it on top of https://gerrit.openbmc.org/c/openbmc/entity-manager/+/70572",
+      "parentUuid": "e2be9cc1_e77056a4",
       "range": {
         "startLine": 50,
         "startChar": 0,
