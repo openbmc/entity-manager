@@ -41,7 +41,7 @@ constexpr const char* muxSymlinkDir = "/dev/i2c-mux";
 
 constexpr const bool debug = false;
 
-std::regex illegalNameRegex("[^A-Za-z0-9_]");
+const std::regex illegalNameRegex("[^A-Za-z0-9_]");
 
 // helper function to make json types into string
 std::string jsonToString(const nlohmann::json& in)

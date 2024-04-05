@@ -42,7 +42,9 @@
 constexpr const char* templateChar = "$";
 
 namespace fs = std::filesystem;
+// NOLINTNEXTLINE(cppcoreguidelines-avoid-non-const-global-variables)
 static bool powerStatusOn = false;
+// NOLINTNEXTLINE(cppcoreguidelines-avoid-non-const-global-variables)
 static std::unique_ptr<sdbusplus::bus::match_t> powerMatch = nullptr;
 
 bool findFiles(const fs::path& dirPath, const std::string& matchString,
