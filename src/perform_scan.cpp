@@ -24,11 +24,13 @@
 #include <charconv>
 
 /* Hacks from splitting entity_manager.cpp */
+// NOLINTBEGIN(cppcoreguidelines-avoid-non-const-global-variables)
 extern std::shared_ptr<sdbusplus::asio::connection> systemBus;
 extern nlohmann::json lastJson;
 extern void
     propertiesChangedCallback(nlohmann::json& systemConfiguration,
                               sdbusplus::asio::object_server& objServer);
+// NOLINTEND(cppcoreguidelines-avoid-non-const-global-variables)
 
 using GetSubTreeType = std::vector<
     std::pair<std::string,

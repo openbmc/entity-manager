@@ -191,6 +191,11 @@ std::pair<DecodeState, std::string>
             }
         }
         break;
+
+        default:
+        {
+            return make_pair(DecodeState::err, value);
+        }
     }
 
     return make_pair(DecodeState::ok, value);
