@@ -11,6 +11,7 @@
     "Probe": "xyz.openbmc_project.FruDevice({'BOARD_PRODUCT_NAME': 'Minerva_CMM_BSM.*'})",
     "Type": "Board",
     "xyz.openbmc_project.Inventory.Decorator.Asset": {
+        "BuildDate": "$BOARD_MANUFACTURE_DATE",
         "Manufacturer": "$BOARD_MANUFACTURER",
         "Model": "$BOARD_PRODUCT_NAME",
         "PartNumber": "$BOARD_PART_NUMBER",
