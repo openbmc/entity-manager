@@ -39,6 +39,24 @@
       "message": "Given that https://gerrit.openbmc.org/c/openbmc/entity-manager/+/70691/1 shows that today there\u0027s no way to implement this Property correctly, allowing these in schema shouldn\u0027t be merged until there\u0027s code in place to handle the conversions, or make the interfaces consistent.\n\nBuildDate is also quite annoying because in OpenBMC there\u0027s 4 possible representations of a date:\n- IPMI FRU (which is binary in weeks since an intel-specific epoch)\n- Fru-Device, which turns the IPMI date into a string that looks human facing, but doesn\u0027t follow ISO8061.  I suspect this conversion came verbatim from the python script that fru-device was built-from, and was mostly meant for human (not machine) consumption.  This property could probably be changed without impacting anyone.\n- Dbus, which for all other date interfaces uses microseconds since epoch\n- Redfish, which uses ISO8061\n\nFor the first 3, we need a plan for how we\u0027re going to convert things, or we need to just make them consistent with the rest of the system.  IMO, we should just make fru-device produce linux epoch microseconds for build date, and change phosphor-dbus-interface build date to match (and use linux epoch microseconds).\n\nOnce that\u0027s done, Redfish already has a bunch of infrastructure for going from epoch to ISO8061, so the bmcweb imlementation of this (which I assume is coming) becomes trivial.\n\nIf the above is what you go with, that needs written up somewhere as a holistic change, not just individual pieces (mailing list, design doc, or long prose in a commit message).",
       "revId": "ba63f07ca037443f73c41a89b22c297b63632b45",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6ed3ecb0_5038775e",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1001892
+      },
+      "writtenOn": "2024-04-11T07:18:20Z",
+      "side": 1,
+      "message": "Can we modify the strftime format in Fru-device and IPMI FRU to align with phosphor-dbus-interface?",
+      "parentUuid": "e744a320_26a23b58",
+      "revId": "ba63f07ca037443f73c41a89b22c297b63632b45",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }
