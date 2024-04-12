@@ -38,14 +38,6 @@ extern "C"
 static constexpr bool debug = false;
 constexpr size_t fruVersion = 1; // Current FRU spec version number is 1
 
-std::tm intelEpoch()
-{
-    std::tm val = {};
-    val.tm_year = 1996 - 1900;
-    val.tm_mday = 1;
-    return val;
-}
-
 char sixBitToChar(uint8_t val)
 {
     return static_cast<char>((val & 0x3f) + ' ');
@@ -286,7 +278,8 @@ bool verifyOffset(const std::vector<uint8_t>& fruBytes, fruAreas currentArea,
 
 static void parseMultirecordUUID(
     const std::vector<uint8_t>& device,
-    boost::container::flat_map<std::string, std::string>& result)
+    boost::container::flat_map<std::string,
+                               std::variant<std::string, uint64_t>>& result)
 {
     constexpr size_t uuidDataLen = 16;
     constexpr size_t multiRecordHeaderLen = 5;
@@ -364,9 +357,10 @@ static void parseMultirecordUUID(
     }
 }
 
-resCodes
-    formatIPMIFRU(const std::vector<uint8_t>& fruBytes,
-                  boost::container::flat_map<std::string, std::string>& result)
+resCodes formatIPMIFRU(
+    const std::vector<uint8_t>& fruBytes,
+    boost::container::flat_map<std::string,
+                               std::variant<std::string, uint64_t>>& result)
 {
     resCodes ret = resCodes::resOK;
     if (fruBytes.size() <= fruBlockSize)
@@ -454,27 +448,17 @@ resCodes
                     std::to_string(static_cast<int>(lang));
                 isLangEng = checkLangEng(lang);
                 fruBytesIter += 1;
+                uint64_t minutesRaw = *fruBytesIter | *(fruBytesIter + 1) << 8 |
+                                      *(fruBytesIter + 2) << 16;
+                std::chrono::duration<uint64_t, std::ratio<60>> minutes(
+                    minutesRaw);
+                using DbusEpochType =
+                    std::chrono::duration<uint64_t, std::micro>;
+                // January 1st, 1996
+                DbusEpochType fruTime(820454400000000UL);
+                fruTime += std::chrono::duration_cast<DbusEpochType>(minutes);
 
-                unsigned int minutes = *fruBytesIter |
-                                       *(fruBytesIter + 1) << 8 |
-                                       *(fruBytesIter + 2) << 16;
-                std::tm fruTime = intelEpoch();
-                std::time_t timeValue = timegm(&fruTime);
-                timeValue += static_cast<long>(minutes) * 60;
-                fruTime = *std::gmtime(&timeValue);
-
-                // Tue Nov 20 23:08:00 2018
-                std::array<char, 32> timeString = {};
-                auto bytes = std::strftime(timeString.data(), timeString.size(),
-                                           "%Y-%m-%d - %H:%M:%S UTC", &fruTime);
-                if (bytes == 0)
-                {
-                    std::cerr << "invalid time string encountered\n";
-                    return resCodes::resErr;
-                }
-
-                result["BOARD_MANUFACTURE_DATE"] =
-                    std::string_view(timeString.data(), bytes);
+                result["BOARD_MANUFACTURE_DATE"] = fruTime.count();
                 fruBytesIter += 3;
                 fruAreaFieldNames = &boardFruAreas;
                 break;
@@ -1102,11 +1086,10 @@ std::optional<int> findIndexForFRU(
 
 std::optional<std::string> getProductName(
     std::vector<uint8_t>& device,
-    boost::container::flat_map<std::string, std::string>& formattedFRU,
+    boost::container::flat_map<
+        std::string, std::variant<std::string, uint64_t>>& formattedFRU,
     uint32_t bus, uint32_t address, size_t& unknownBusObjectCount)
 {
-    std::string productName;
-
     resCodes res = formatIPMIFRU(device, formattedFRU);
     if (res == resCodes::resErr)
     {
@@ -1120,27 +1103,28 @@ std::optional<std::string> getProductName(
                   << " address " << address << "\n";
     }
 
-    auto productNameFind = formattedFRU.find("BOARD_PRODUCT_NAME");
-    // Not found under Board section or an empty string.
-    if (productNameFind == formattedFRU.end() ||
-        productNameFind->second.empty())
+    for (const auto& field : {"BOARD_PRODUCT_NAME", "PRODUCT_PRODUCT_NAME"})
     {
-        productNameFind = formattedFRU.find("PRODUCT_PRODUCT_NAME");
-    }
-    // Found under Product section and not an empty string.
-    if (productNameFind != formattedFRU.end() &&
-        !productNameFind->second.empty())
-    {
-        productName = productNameFind->second;
+        auto productNameFind = formattedFRU.find(field);
+        if (productNameFind == formattedFRU.end())
+        {
+            continue;
+        }
+        const std::string* str =
+            std::get_if<std::string>(&productNameFind->second);
+        if (str == nullptr)
+        {
+            continue;
+        }
+        if (str->empty())
+        {
+            continue;
+        }
         std::regex illegalObject("[^A-Za-z0-9_]");
-        productName = std::regex_replace(productName, illegalObject, "_");
+        return std::regex_replace(*str, illegalObject, "_");
     }
-    else
-    {
-        productName = "UNKNOWN" + std::to_string(unknownBusObjectCount);
-        unknownBusObjectCount++;
-    }
-    return productName;
+
+    return "UNKNOWN" + std::to_string(unknownBusObjectCount++);
 }
 
 bool getFruData(std::vector<uint8_t>& fruData, uint32_t bus, uint32_t address)
