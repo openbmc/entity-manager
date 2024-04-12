@@ -180,6 +180,24 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": true,
+      "key": {
+        "uuid": "8e594b98_2ae11064",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 10,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2024-04-12T17:41:55Z",
+      "side": 1,
+      "message": "ISO8601 allows either YYYY-MM-DD or YYYYMMDD (according to wikipedia as I haven\u0027t personally paid for the spec).  I chose the YYYYMMDDThhmmssZ one for the following reasons:\n\n- It was compatible with YYYYMMDD that was in the code before I added the time-portion.\n- Z so we didn\u0027t have to mess with timezones.\n\nIf you want to go ahead and make the changes to epoch-time, that\u0027s fine.  I\u0027m not sure how we deal with the openpower one if they\u0027re already not following the specification.  I guess they\u0027d have to add parsing.",
+      "parentUuid": "01cfcd79_6fbd3501",
+      "revId": "288a2b37d5d8435a7de735ef3327ace102306924",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": false,
       "key": {
         "uuid": "40eaf037_51714f4b",
