@@ -758,7 +758,8 @@ void addFruObjectToDbus(
     const bool& powerIsOn, sdbusplus::asio::object_server& objServer,
     std::shared_ptr<sdbusplus::asio::connection>& systemBus)
 {
-    boost::container::flat_map<std::string, std::string> formattedFRU;
+    boost::container::flat_map<std::string, std::variant<std::string, uint64_t>>
+        formattedFRU;
 
     std::optional<std::string> optionalProductName = getProductName(
         device, formattedFRU, bus, address, unknownBusObjectCount);
@@ -784,49 +785,62 @@ void addFruObjectToDbus(
 
     for (auto& property : formattedFRU)
     {
-        std::regex_replace(property.second.begin(), property.second.begin(),
-                           property.second.end(), nonAsciiRegex, "_");
-        if (property.second.empty() && property.first != "PRODUCT_ASSET_TAG")
-        {
-            continue;
-        }
         std::string key = std::regex_replace(property.first, nonAsciiRegex,
                                              "_");
 
-        if (property.first == "PRODUCT_ASSET_TAG")
+        std::string* str = std::get_if<std::string>(&property.second);
+        if (str != nullptr)
         {
-            std::string propertyName = property.first;
-            iface->register_property(
-                key, property.second + '\0',
-                [bus, address, propertyName, &dbusInterfaceMap,
-                 &unknownBusObjectCount, &powerIsOn, &objServer,
-                 &systemBus](const std::string& req, std::string& resp) {
-                if (strcmp(req.c_str(), resp.c_str()) != 0)
-                {
-                    // call the method which will update
-                    if (updateFRUProperty(req, bus, address, propertyName,
-                                          dbusInterfaceMap,
-                                          unknownBusObjectCount, powerIsOn,
-                                          objServer, systemBus))
+            std::regex_replace(str->begin(), str->begin(), str->end(),
+                               nonAsciiRegex, "_");
+            if (str->empty() && property.first != "PRODUCT_ASSET_TAG")
+            {
+                continue;
+            }
+            if (property.first == "PRODUCT_ASSET_TAG")
+            {
+                std::string propertyName = property.first;
+                iface->register_property(
+                    key, *str + '\0',
+                    [bus, address, propertyName, &dbusInterfaceMap,
+                     &unknownBusObjectCount, &powerIsOn, &objServer,
+                     &systemBus](const std::string& req, std::string& resp) {
+                    if (strcmp(req.c_str(), resp.c_str()) != 0)
                     {
-                        resp = req;
+                        // call the method which will update
+                        if (updateFRUProperty(req, bus, address, propertyName,
+                                              dbusInterfaceMap,
+                                              unknownBusObjectCount, powerIsOn,
+                                              objServer, systemBus))
+                        {
+                            resp = req;
+                        }
+                        else
+                        {
+                            throw std::invalid_argument(
+                                "FRU property update failed.");
+                        }
                     }
-                    else
-                    {
-                        throw std::invalid_argument(
-                            "FRU property update failed.");
-                    }
-                }
-                return 1;
-            });
+                    return 1;
+                });
+            }
+            else if (!iface->register_property(key, *str + '\0'))
+            {
+                std::cerr << "illegal key: " << key << "\n";
+            }
+            if (debug)
+            {
+                std::cout << property.first << ": " << *str << "\n";
+            }
+            continue;
         }
-        else if (!iface->register_property(key, property.second + '\0'))
+        uint64_t* integer = std::get_if<uint64_t>(&property.second);
+        if (integer != nullptr)
         {
-            std::cerr << "illegal key: " << key << "\n";
-        }
-        if (debug)
-        {
-            std::cout << property.first << ": " << property.second << "\n";
+            if (!iface->register_property(key, *integer))
+            {
+                std::cerr << "illegal key: " << key << "\n";
+            }
         }
     }
 
