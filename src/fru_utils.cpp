@@ -454,27 +454,17 @@ resCodes
                     std::to_string(static_cast<int>(lang));
                 isLangEng = checkLangEng(lang);
                 fruBytesIter += 1;
+                uint64_t minutesRaw = *fruBytesIter | *(fruBytesIter + 1) << 8 |
+                                      *(fruBytesIter + 2) << 16;
+                std::chrono::duration<uint64_t, std::ratio<60>> minutes(
+                    minutesRaw);
+                using DbusEpochType =
+                    std::chrono::duration<uint64_t, std::micro>;
+                // January 1st, 1996
+                DbusEpochType fruTime(820454400000000UL);
+                fruTime += std::chrono::duration_cast<DbusEpochType>(minutes);
 
-                unsigned int minutes = *fruBytesIter |
-                                       *(fruBytesIter + 1) << 8 |
-                                       *(fruBytesIter + 2) << 16;
-                std::tm fruTime = intelEpoch();
-                std::time_t timeValue = timegm(&fruTime);
-                timeValue += static_cast<long>(minutes) * 60;
-                fruTime = *std::gmtime(&timeValue);
-
-                // Tue Nov 20 23:08:00 2018
-                std::array<char, 32> timeString = {};
-                auto bytes = std::strftime(timeString.data(), timeString.size(),
-                                           "%Y-%m-%d - %H:%M:%S UTC", &fruTime);
-                if (bytes == 0)
-                {
-                    std::cerr << "invalid time string encountered\n";
-                    return resCodes::resErr;
-                }
-
-                result["BOARD_MANUFACTURE_DATE"] =
-                    std::string_view(timeString.data(), bytes);
+                result["BOARD_MANUFACTURE_DATE"] = fruTime.count();
                 fruBytesIter += 3;
                 fruAreaFieldNames = &boardFruAreas;
                 break;
