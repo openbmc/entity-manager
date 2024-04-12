@@ -126,6 +126,24 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": true,
+      "key": {
+        "uuid": "2216bc7b_1d5de844",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 10,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2024-04-12T16:36:25Z",
+      "side": 1,
+      "message": "openpower-vpd-parser is exposing the Asset.BuildDate that we are also trying to expose via entity-manager.  That is the property you suggested (at a dbus level) needed to be transformed from ISO 8601 to epoch-time, isn\u0027t it?\n\n\u003e ... and change phosphor-dbus-interface build date to match (and use linux epoch microseconds).",
+      "parentUuid": "eb2bf289_cdb096f0",
+      "revId": "288a2b37d5d8435a7de735ef3327ace102306924",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": false,
       "key": {
         "uuid": "40eaf037_51714f4b",
