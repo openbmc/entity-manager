@@ -144,6 +144,24 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": true,
+      "key": {
+        "uuid": "76d6b5c5_77814e7e",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 10,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2024-04-12T16:39:04Z",
+      "side": 1,
+      "message": "If you want to change fru-device to expose epoch-time for this, fine I guess.  That seems like a bit of pointless transformation because then we need entity-manager to (for now) un-transform it.  Since it is all in the same repository, it seems like a 1-2 line change to have it generate ISO 8601 format and everything else proposed here just works as-is.",
+      "parentUuid": "2216bc7b_1d5de844",
+      "revId": "288a2b37d5d8435a7de735ef3327ace102306924",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": false,
       "key": {
         "uuid": "40eaf037_51714f4b",
