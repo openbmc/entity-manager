@@ -101,8 +101,6 @@ inline const std::string& getFruAreaName(fruAreas area)
     return fruAreaNames[static_cast<unsigned int>(area)];
 }
 
-std::tm intelEpoch();
-
 char sixBitToChar(uint8_t val);
 
 /* 0xd - 0xf are reserved values, but not fatal; use a placeholder char. */
@@ -122,9 +120,10 @@ std::pair<DecodeState, std::string>
 
 bool checkLangEng(uint8_t lang);
 
-resCodes
-    formatIPMIFRU(const std::vector<uint8_t>& fruBytes,
-                  boost::container::flat_map<std::string, std::string>& result);
+resCodes formatIPMIFRU(
+    const std::vector<uint8_t>& fruBytes,
+    boost::container::flat_map<std::string,
+                               std::variant<std::string, uint64_t>>& result);
 
 std::vector<uint8_t>& getFRUInfo(const uint16_t& bus, const uint8_t& address);
 
@@ -221,7 +220,8 @@ std::optional<int> findIndexForFRU(
 
 std::optional<std::string> getProductName(
     std::vector<uint8_t>& device,
-    boost::container::flat_map<std::string, std::string>& formattedFRU,
+    boost::container::flat_map<
+        std::string, std::variant<std::string, uint64_t>>& formattedFRU,
     uint32_t bus, uint32_t address, size_t& unknownBusObjectCount);
 
 bool getFruData(std::vector<uint8_t>& fruData, uint32_t bus, uint32_t address);
