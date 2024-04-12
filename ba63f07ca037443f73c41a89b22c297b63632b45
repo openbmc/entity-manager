@@ -57,6 +57,24 @@
       "parentUuid": "e744a320_26a23b58",
       "revId": "ba63f07ca037443f73c41a89b22c297b63632b45",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e38533b9_9a66af30",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2024-04-12T15:44:54Z",
+      "side": 1,
+      "message": "\u003e IMO, we should just make fru-device produce linux epoch microseconds for build date, and change phosphor-dbus-interface build date to match (and use linux epoch microseconds).\n\nThis is typically going to require fru-device to have parsing of some arbitrary formats, isn\u0027t it?  When BuildDate was originally added, it just specified YYYYMMDD which is an ISO 8601 format date.  I suspect this was how most vendors were publishing the raw data in their EEPROMs.\n\nWith feeacfe06de6d32de43750500c9729f141ba6bac, I changed it to be formally ISO 8601 format so that the EEPROM data could optionally include timestamps.\n\nI am expecting that EEPROMs should typically be in ISO 8601 format.  Are there really many which are not?\n\nWe do use epoch-time for timestamps in many places, but that is typically when we\u0027re expecting some calculations to be done.  I\u0027m indifferent on this one if we want to really have fru-device convert to epoch time only to have bmcweb convert it back.  I suspect in many cases it is more helpful for the dbus entry to be an ISO string because humans will probably look at it more often than other programs (other than bmcweb which should send the raw string out anyhow as it is already in ISO 8601 format).",
+      "parentUuid": "6ed3ecb0_5038775e",
+      "revId": "ba63f07ca037443f73c41a89b22c297b63632b45",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }
