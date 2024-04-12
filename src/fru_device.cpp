@@ -758,7 +758,8 @@ void addFruObjectToDbus(
     const bool& powerIsOn, sdbusplus::asio::object_server& objServer,
     std::shared_ptr<sdbusplus::asio::connection>& systemBus)
 {
-    boost::container::flat_map<std::string, std::string> formattedFRU;
+    boost::container::flat_map<std::string, std::variant<std::string, uint64_t>>
+        formattedFRU;
 
     std::optional<std::string> optionalProductName = getProductName(
         device, formattedFRU, bus, address, unknownBusObjectCount);
@@ -784,50 +785,65 @@ void addFruObjectToDbus(
 
     for (auto& property : formattedFRU)
     {
-        std::regex_replace(property.second.begin(), property.second.begin(),
-                           property.second.end(), nonAsciiRegex, "_");
-        if (property.second.empty() && property.first != "PRODUCT_ASSET_TAG")
-        {
-            continue;
-        }
         std::string key = std::regex_replace(property.first, nonAsciiRegex,
                                              "_");
-
-        if (property.first == "PRODUCT_ASSET_TAG")
-        {
-            std::string propertyName = property.first;
-            iface->register_property(
-                key, property.second + '\0',
-                [bus, address, propertyName, &dbusInterfaceMap,
-                 &unknownBusObjectCount, &powerIsOn, &objServer,
-                 &systemBus](const std::string& req, std::string& resp) {
-                if (strcmp(req.c_str(), resp.c_str()) != 0)
+        std::visit(
+            [&](auto value) {
+            using T = std::decay_t<decltype(value)>;
+            if constexpr (std::is_same_v<T, std::string>)
+            {
+                std::regex_replace(value.begin(), value.begin(), value.end(),
+                                   nonAsciiRegex, "_");
+                if (value.empty() && property.first != "PRODUCT_ASSET_TAG")
                 {
-                    // call the method which will update
-                    if (updateFRUProperty(req, bus, address, propertyName,
-                                          dbusInterfaceMap,
-                                          unknownBusObjectCount, powerIsOn,
-                                          objServer, systemBus))
-                    {
-                        resp = req;
-                    }
-                    else
-                    {
-                        throw std::invalid_argument(
-                            "FRU property update failed.");
-                    }
+                    return;
                 }
-                return 1;
-            });
-        }
-        else if (!iface->register_property(key, property.second + '\0'))
-        {
-            std::cerr << "illegal key: " << key << "\n";
-        }
-        if (debug)
-        {
-            std::cout << property.first << ": " << property.second << "\n";
-        }
+                if (property.first == "PRODUCT_ASSET_TAG")
+                {
+                    std::string propertyName = property.first;
+                    iface->register_property(
+                        key, value + '\0',
+                        [bus, address, propertyName, &dbusInterfaceMap,
+                         &unknownBusObjectCount, &powerIsOn, &objServer,
+                         &systemBus](const std::string& req,
+                                     std::string& resp) {
+                        if (strcmp(req.c_str(), resp.c_str()) != 0)
+                        {
+                            // call the method which will update
+                            if (updateFRUProperty(
+                                    req, bus, address, propertyName,
+                                    dbusInterfaceMap, unknownBusObjectCount,
+                                    powerIsOn, objServer, systemBus))
+                            {
+                                resp = req;
+                            }
+                            else
+                            {
+                                throw std::invalid_argument(
+                                    "FRU property update failed.");
+                            }
+                        }
+                        return 1;
+                    });
+                }
+                else if (!iface->register_property(key, value + '\0'))
+                {
+                    std::cerr << "illegal key: " << key << "\n";
+                }
+                if (debug)
+                {
+                    std::cout << property.first << ": " << value << "\n";
+                }
+            }
+            else if constexpr (std::is_same_v<T, uint64_t>)
+            {
+                if (!iface->register_property(key, value))
+                {
+                    std::cerr << "illegal key: " << key << "\n";
+                }
+            }
+        },
+            property.second);
     }
 
     // baseboard will be 0, 0
@@ -860,7 +876,8 @@ static bool readBaseboardFRU(std::vector<uint8_t>& baseboardFRU)
 
 bool writeFRU(uint8_t bus, uint8_t address, const std::vector<uint8_t>& fru)
 {
-    boost::container::flat_map<std::string, std::string> tmp;
+    boost::container::flat_map<std::string, std::variant<std::string, uint64_t>>
+        tmp;
     if (fru.size() > maxFruSize)
     {
         std::cerr << "Invalid fru.size() during writeFRU\n";
