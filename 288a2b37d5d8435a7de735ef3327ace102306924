@@ -108,6 +108,24 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": true,
+      "key": {
+        "uuid": "eb2bf289_cdb096f0",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 10,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2024-04-12T16:34:30Z",
+      "side": 1,
+      "message": "\u003e That also requires changes in openpower-vpd-parser\n\nWhy is openpower-vpd-parser exposing a FruDevice specific interface?  Do you have a pointer to the code handy. I\u0027m not seeing it.\n\nhttps://github.com/search?q\u003drepo%3Aopenbmc%2Fopenpower-vpd-parser%20BOARD_MANUFACTURE_DATE\u0026type\u003dcode\n\n\u003e and likely phosphor-host-ipmid (as there is both references in the repo and a whole bunch of config-yaml files in openbmc/openbmc).  I don\u0027t see why we should require that wholesale change as a pre-requisite when only fru-device is doing it differently.\n\n\u003e only fru-device is doing it differently\n\nIn this patch we\u0027re talking about an interface literally called xyz.openbmc_project.FruDevice......  I\u0027m very confused why any other daemon duplicated it.",
+      "parentUuid": "4bf31816_66db13b5",
+      "revId": "288a2b37d5d8435a7de735ef3327ace102306924",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": false,
       "key": {
         "uuid": "40eaf037_51714f4b",
