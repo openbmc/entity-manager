@@ -90,6 +90,24 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": true,
+      "key": {
+        "uuid": "4bf31816_66db13b5",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 10,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2024-04-12T16:28:14Z",
+      "side": 1,
+      "message": "That also requires changes in openpower-vpd-parser and likely phosphor-host-ipmid (as there is both references in the repo and a whole bunch of config-yaml files in openbmc/openbmc).  I don\u0027t see why we should require that wholesale change as a pre-requisite when only fru-device is doing it differently.",
+      "parentUuid": "1282a732_0e98f078",
+      "revId": "288a2b37d5d8435a7de735ef3327ace102306924",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": false,
       "key": {
         "uuid": "40eaf037_51714f4b",
