@@ -87,6 +87,24 @@
       "parentUuid": "bf0465ef_040d6141",
       "revId": "5cc66a076a90b5312c0c51f673e034484eaab521",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "cdfaa3b2_9938f998",
+        "filename": "configurations/brcm_ocp_mezz.json",
+        "patchSetId": 4
+      },
+      "lineNbr": 30,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2024-04-12T16:34:03Z",
+      "side": 1,
+      "message": "```\n.BOARD_PRODUCT_NAME \"BRCM 200G 1P 57508 OCP Mezz\"\n```\n\nWe need to use more of this information in the wildcard.\n\nMaybe `BRCM 200G 1P.*57508 OCP Mezz`?\n\nThat means it is a 200G single-port card with the 57508 controller in an \"OCP Mezz\" form-factor.",
+      "parentUuid": "1314d2fb_682a0685",
+      "revId": "5cc66a076a90b5312c0c51f673e034484eaab521",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }
