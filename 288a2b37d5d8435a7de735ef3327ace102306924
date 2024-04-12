@@ -54,6 +54,24 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": true,
+      "key": {
+        "uuid": "a062a6e1_4bbbfaac",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 10,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2024-04-12T15:47:30Z",
+      "side": 1,
+      "message": "\u003e Sorry I didn\u0027t notice this, they have different format.\nfru-device displays \"2024-03-28 - 06:06:00 UTC\" on BOARD_MANUFACTURE_DATE.\n\nIs this because fru-device is doing conversions or because of the data in the IPMI eeprom not being the right format?\n\n```\n                auto bytes \u003d std::strftime(timeString.data(), timeString.size(),\n                                           \"%Y-%m-%d - %H:%M:%S UTC\", \u0026fruTime);\n...\n\n                result[\"BOARD_MANUFACTURE_DATE\"] \u003d\n                    std::string_view(timeString.data(), bytes);\n```\n\nWe can make a trivial fix here to do ISO 8601 format, right?",
+      "parentUuid": "aff9c016_58e837d9",
+      "revId": "288a2b37d5d8435a7de735ef3327ace102306924",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": false,
       "key": {
         "uuid": "40eaf037_51714f4b",
