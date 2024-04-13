@@ -545,7 +545,9 @@
             "Bus": 1,
             "Name": "SYSTIN",
             "Name1": "CPUTIN",
-            "Name10": "TSI0_TEMP",
+            "Name10": "PCH_DIM0_TEMP",
+            "Name11": "PCH_DIM1_TEMP",
+            "Name12": "TSI0_TEMP",
             "Name2": "AUXTIN0",
             "Name3": "AUXTIN1",
             "Name4": "AUXTIN2",
@@ -558,28 +560,28 @@
             "Thresholds": [
                 {
                     "Direction": "greater than",
-                    "Index": 11,
+                    "Index": 13,
                     "Name": "upper critical",
                     "Severity": 1,
                     "Value": 90
                 },
                 {
                     "Direction": "greater than",
-                    "Index": 11,
+                    "Index": 13,
                     "Name": "upper non critical",
                     "Severity": 0,
                     "Value": 80
                 },
                 {
                     "Direction": "less than",
-                    "Index": 11,
+                    "Index": 13,
                     "Name": "lower non critical",
                     "Severity": 0,
                     "Value": 5
                 },
                 {
                     "Direction": "less than",
-                    "Index": 11,
+                    "Index": 13,
                     "Name": "lower critical",
                     "Severity": 1,
                     "Value": 0
