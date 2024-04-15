@@ -18,6 +18,24 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "ee3e2962_c8709009",
+        "filename": "configurations/brcm_ocp_mezz.json",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1001939
+      },
+      "writtenOn": "2024-04-15T05:49:15Z",
+      "side": 1,
+      "message": "Change to 644",
+      "parentUuid": "dfb2bcd9_45170a01",
+      "revId": "5cc66a076a90b5312c0c51f673e034484eaab521",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "97b7382a_6e685032",
@@ -103,6 +121,24 @@
       "side": 1,
       "message": "```\n.BOARD_PRODUCT_NAME \"BRCM 200G 1P 57508 OCP Mezz\"\n```\n\nWe need to use more of this information in the wildcard.\n\nMaybe `BRCM 200G 1P.*57508 OCP Mezz`?\n\nThat means it is a 200G single-port card with the 57508 controller in an \"OCP Mezz\" form-factor.",
       "parentUuid": "1314d2fb_682a0685",
+      "revId": "5cc66a076a90b5312c0c51f673e034484eaab521",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "55a3f7d8_82d36186",
+        "filename": "configurations/brcm_ocp_mezz.json",
+        "patchSetId": 4
+      },
+      "lineNbr": 30,
+      "author": {
+        "id": 1001939
+      },
+      "writtenOn": "2024-04-15T05:49:15Z",
+      "side": 1,
+      "message": "Done. and work\n\n$ curl -k -u root:0penBmc -X GET https://10.10.12.102/redfish/v1/Chassis/\n{\n  \"@odata.id\": \"/redfish/v1/Chassis\",\n  \"@odata.type\": \"#ChassisCollection.ChassisCollection\",\n  \"Members\": [\n    {\n      \"@odata.id\": \"/redfish/v1/Chassis/BMC_Storage_Module\"\n    },\n    {\n      \"@odata.id\": \"/redfish/v1/Chassis/BRCM_OCP_NIC_FRU_1\"\n    },\n    {\n      \"@odata.id\": \"/redfish/v1/Chassis/Harma_Fan_Board_0\"\n    },\n    {\n      \"@odata.id\": \"/redfish/v1/Chassis/Harma_Fan_Board_1\"\n    },\n    {\n      \"@odata.id\": \"/redfish/v1/Chassis/Harma_MB\"\n    },\n    {\n      \"@odata.id\": \"/redfish/v1/Chassis/Harma_SCM\"\n    },\n    {\n      \"@odata.id\": \"/redfish/v1/Chassis/Minerva_PDB\"\n    },\n    {\n      \"@odata.id\": \"/redfish/v1/Chassis/Minerva_SITV\"\n    }\n  ],\n  \"Members@odata.count\": 8,\n  \"Name\": \"Chassis Collection\"\n}",
+      "parentUuid": "cdfaa3b2_9938f998",
       "revId": "5cc66a076a90b5312c0c51f673e034484eaab521",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
