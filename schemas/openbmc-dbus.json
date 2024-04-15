@@ -104,6 +104,16 @@
                             "additionalProperties": false,
                             "type": "object"
                         },
+                        "Network": {
+                            "additionalProperties": false,
+                            "properties": {
+                                "MACAddress": {
+                                    "type": "string"
+                                }
+                            },
+                            "required": ["MACAddress"],
+                            "type": "object"
+                        },
                         "Panel": {
                             "additionalProperties": false,
                             "type": "object"
