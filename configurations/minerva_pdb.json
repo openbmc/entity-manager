@@ -1,12 +1,6 @@
 {
     "Exposes": [
         {
-            "Address": "0x49",
-            "Bus": 4,
-            "Name": "PDB_TEMP_C",
-            "Type": "TMP75"
-        },
-        {
             "Address": "0x44",
             "Bus": 4,
             "Labels": [
@@ -68,12 +62,18 @@
                     "Value": 55.0
                 }
             ],
-            "Type": "pmbus",
+            "Type": "LTC4287",
             "iout1_Name": "PDB_HSC_CURR_A",
             "pin_Name": "PDB_HSC_PWR_W",
             "temp1_Name": "PDB_HSC_TEMP_C",
             "vin_Name": "PDB_HSC_VIN_VOLT_V",
             "vout1_Name": "PDB_HSC_VOUT_VOLT_V"
+        },
+        {
+            "Address": "0x49",
+            "Bus": 4,
+            "Name": "PDB_TEMP_C",
+            "Type": "TMP75"
         },
         {
             "Address": "0x69",
