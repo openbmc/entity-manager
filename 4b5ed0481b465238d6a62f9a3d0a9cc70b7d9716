@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0bec6cf2_4b456355",
+        "filename": "configurations/sbp1_baseboard.json",
+        "patchSetId": 1
+      },
+      "lineNbr": 3526,
+      "author": {
+        "id": 1000559
+      },
+      "writtenOn": "2024-04-18T20:38:33Z",
+      "side": 1,
+      "message": "existing configuration uses 1 based index in this field\nhttps://github.com/openbmc/entity-manager/blob/master/configurations/wft_baseboard.json#L234\n\npsusensor code also expects it to be one based",
+      "range": {
+        "startLine": 3526,
+        "startChar": 0,
+        "endLine": 3526,
+        "endChar": 29
+      },
+      "revId": "4b5ed0481b465238d6a62f9a3d0a9cc70b7d9716",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    }
+  ]
+}
