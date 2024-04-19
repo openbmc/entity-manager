@@ -53,6 +53,24 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "bbb43772_a2c25bc5",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1000940
+      },
+      "writtenOn": "2024-04-19T01:29:51Z",
+      "side": 1,
+      "message": "Yes.",
+      "parentUuid": "737ec610_f428d704",
+      "revId": "cff5b69dc53039612b30947971f4e89a87e3a23a",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "2eb5a8a7_b61d8365",
@@ -66,6 +84,30 @@
       "writtenOn": "2024-04-18T21:39:06Z",
       "side": 1,
       "message": "does xyz.openbmc_project.FruDevice support this field?",
+      "range": {
+        "startLine": 1431,
+        "startChar": 28,
+        "endLine": 1431,
+        "endChar": 42
+      },
+      "revId": "cff5b69dc53039612b30947971f4e89a87e3a23a",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c23076d0_88ee250d",
+        "filename": "configurations/mtjade.json",
+        "patchSetId": 2
+      },
+      "lineNbr": 1431,
+      "author": {
+        "id": 1000940
+      },
+      "writtenOn": "2024-04-19T01:29:51Z",
+      "side": 1,
+      "message": "Yes. See below from dbus:\n\n```\nroot@mtjade:~# busctl introspect xyz.openbmc_project.FruDevice /xyz/openbmc_project/FruDevice/Mt_Jade_Motherboard  | grep INFO_AM1\n.BOARD_INFO_AM1                     property  s         \"70:E2:84:8F:E3:56\"                    emits-change\n.CHASSIS_INFO_AM1                   property  s         \"SKUC-A000-0000000000123\"              emits-change\n```",
+      "parentUuid": "2eb5a8a7_b61d8365",
       "range": {
         "startLine": 1431,
         "startChar": 28,
