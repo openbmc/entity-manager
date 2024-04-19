@@ -16,6 +16,24 @@
       "message": "Hi Matt,\n\nCould you help us to check why this FAILED: validate_config.log? I\u0027ve pass format json after the newest patchset. Is there anything wrong about my json file? Thanks.\n\n```\nFAILED: validate_configs.log \n/usr/local/bin/meson --internal exe --capture validate_configs.log -- /data0/jenkins/workspace/ci-repository/openbmc/entity-manager/scripts/validate_configs.py -v -k\n--- stderr ---\n/data0/jenkins/workspace/ci-repository/openbmc/entity-manager/scripts/validate_configs.py:142: DeprecationWarning: jsonschema.RefResolver is deprecated as of v4.18.0, in favor of the https://github.com/python-jsonschema/referencing library, which provides more compliant referencing behavior as well as more flexible APIs for customization. A future release will remove RefResolver. Please file a feature request (on referencing) if you are missing an API for the kind of customization you need.\n  resolver \u003d jsonschema.RefResolver(base_uri, schema)\n```",
       "revId": "7841cc064601e6bb29ea8a7e7cf16dfe147cef95",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "4360650d_07df1d8b",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1000294
+      },
+      "writtenOn": "2024-04-19T04:13:44Z",
+      "side": 1,
+      "message": "Eventually, we saw this error message `ninja: build stopped: subcommand failed.`",
+      "parentUuid": "a9c8c6ba_b2c8cdf2",
+      "revId": "7841cc064601e6bb29ea8a7e7cf16dfe147cef95",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }
