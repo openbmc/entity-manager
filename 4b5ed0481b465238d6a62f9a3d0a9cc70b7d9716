@@ -22,6 +22,30 @@
       },
       "revId": "4b5ed0481b465238d6a62f9a3d0a9cc70b7d9716",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "9b58377b_14fd538d",
+        "filename": "configurations/sbp1_baseboard.json",
+        "patchSetId": 1
+      },
+      "lineNbr": 3526,
+      "author": {
+        "id": 1001422
+      },
+      "writtenOn": "2024-04-19T05:24:32Z",
+      "side": 1,
+      "message": "this is not true. There are also 0 based indexes in this field\nhttps://github.com/openbmc/entity-manager/blob/236f89c848d60dbc845bd2b45a231b7ac8ae3c07/configurations/vegman_rx20_baseboard.json#L229C1-L229C34\n\npsusensor code is *not* expecting it to be one based. There are multiple code path with different expectations.\nI\u0027m trying to fix that here: https://gerrit.openbmc.org/c/openbmc/dbus-sensors/+/70719",
+      "parentUuid": "0bec6cf2_4b456355",
+      "range": {
+        "startLine": 3526,
+        "startChar": 0,
+        "endLine": 3526,
+        "endChar": 29
+      },
+      "revId": "4b5ed0481b465238d6a62f9a3d0a9cc70b7d9716",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }
