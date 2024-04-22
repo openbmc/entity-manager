@@ -344,6 +344,22 @@ void populateInterfaceFromJson(
             }
         }
 
+        if (iface->get_interface_name() ==
+                "xyz.openbmc_project.Inventory.Decorator.Asset" &&
+            key == "BuildDate")
+        {
+            std::time_t timeValue = value.get<uint64_t>() / 1000000;
+            std::tm fruTime = *std::gmtime(&timeValue);
+
+            std::array<char, 32> buffer = {};
+            auto bytes = std::strftime(buffer.data(), buffer.size(),
+                                       "%Y%m%dT%H%M%SZ", &fruTime);
+            std::string timeString(buffer.begin(), buffer.begin() + bytes);
+            addProperty(key, timeString, iface.get(), systemConfiguration, path,
+                        permission);
+            continue;
+        }
+
         switch (type)
         {
             case (nlohmann::json::value_t::boolean):
