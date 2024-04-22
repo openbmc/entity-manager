@@ -96,6 +96,30 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "454e1eae_a9192cc3",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 21,
+      "author": {
+        "id": 1001526
+      },
+      "writtenOn": "2024-04-22T10:40:54Z",
+      "side": 1,
+      "message": "I\u0027m not sure about the reason they chose Inventory.Item for the interface. It seems to be decided since 2020 (https://gerrit.openbmc.org/c/openbmc/phosphor-networkd/+/32124).\n\nAs I browsed PDI, this commit since 2016 (https://github.com/openbmc/phosphor-dbus-interfaces/commit/1542bae0c70185a7fd0109e866aa12871ed4b220) added the interface and specified that \"Placed interfaces corresponding to physical items under Inventory/Item/ and interfaces which serve as item decorators under Inventory/Decorator/\".",
+      "parentUuid": "3b8b20ee_73c625d4",
+      "range": {
+        "startLine": 21,
+        "startChar": 1,
+        "endLine": 21,
+        "endChar": 52
+      },
+      "revId": "71da4a8b85baf2eb1f5a5b2c2c64e34fbf0a4ff2",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "e89b3777_68cbd6cd",
@@ -119,6 +143,30 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "c3dfad05_6178efcb",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 25,
+      "author": {
+        "id": 1001526
+      },
+      "writtenOn": "2024-04-22T10:40:54Z",
+      "side": 1,
+      "message": "Thank you. I added more to Tested section. I was assuming this schema changes are only used to ensure consistency and format.",
+      "parentUuid": "e89b3777_68cbd6cd",
+      "range": {
+        "startLine": 25,
+        "startChar": 0,
+        "endLine": 25,
+        "endChar": 29
+      },
+      "revId": "71da4a8b85baf2eb1f5a5b2c2c64e34fbf0a4ff2",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "7f2a8153_9261d9c0",
@@ -132,6 +180,30 @@
       "writtenOn": "2024-04-18T00:02:48Z",
       "side": 1,
       "message": "What backends exist that consume this interface?",
+      "range": {
+        "startLine": 107,
+        "startChar": 0,
+        "endLine": 116,
+        "endChar": 26
+      },
+      "revId": "71da4a8b85baf2eb1f5a5b2c2c64e34fbf0a4ff2",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "9cbc52ba_4faf5d4b",
+        "filename": "schemas/openbmc-dbus.json",
+        "patchSetId": 2
+      },
+      "lineNbr": 116,
+      "author": {
+        "id": 1001526
+      },
+      "writtenOn": "2024-04-22T10:40:54Z",
+      "side": 1,
+      "message": "This code in phosphor-network-manager (https://github.com/openbmc/phosphor-networkd/blob/c3c6b4c3c6daef74e087c6f3e01c1482bec9abe4/src/inventory_mac.cpp#L147) reads the MACAddress property under Item.NetworkInterface to get the MAC Address from Inventory on first boot or when the FORCE_SYNC_MAC_FROM_INVENTORY flag is set.\n\n\nI believe this commit (https://github.com/openbmc/phosphor-networkd/commit/cc099a855ab517deb563ceb6821a8a414362132e) that I placed in msg commit is the first to support this feature.\n\n\nAs we get MAC address from FRU/VPD, Entity Manager is a good service to parse from FRU and expose the NetworkInterface onto D-Bus for phosphor-network-manager to consume. However, the author wrote in the commit \"The Mapping of the ethernet Interfaces on Network Service and the Inventory objects are configured by the administator via a machine specific config.json file\", so it does not neccessarily have to be in Entity-Manager.",
+      "parentUuid": "7f2a8153_9261d9c0",
       "range": {
         "startLine": 107,
         "startChar": 0,
