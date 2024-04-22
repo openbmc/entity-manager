@@ -70,6 +70,24 @@
       "parentUuid": "1017e826_c9497e38",
       "revId": "7841cc064601e6bb29ea8a7e7cf16dfe147cef95",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "c94f9a73_8e201a19",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1000294
+      },
+      "writtenOn": "2024-04-22T01:45:29Z",
+      "side": 1,
+      "message": "Thanks for your time to review this commit! Yes, we need them for our Arbel EVB. I\u0027ve run the tool, but got some error as below. Is there anything I miss? I also put nuvoton_arbel_bmc.json into configurations folder also got the same error:\n\n```\ntim@openbmc:~/git/entity-manager$ ./scripts/validate_configs.py -v\nTraceback (most recent call last):\n  File \"/home/tim/git/entity-manager/./scripts/validate_configs.py\", line 12, in \u003cmodule\u003e\n    import jsonschema.validators\nModuleNotFoundError: No module named \u0027jsonschema\u0027\n```",
+      "parentUuid": "5c95109c_a6d81d17",
+      "revId": "7841cc064601e6bb29ea8a7e7cf16dfe147cef95",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }
