@@ -620,6 +620,9 @@
                 "iout1_Scale": {
                     "$ref": "#/definitions/Types/iout1_Scale"
                 },
+                "pin_Scale": {
+                    "$ref": "#/definitions/Types/pin_Scale"
+                },
                 "in0_Scale": {
                     "$ref": "#/definitions/Types/in0_Scale"
                 },
@@ -1344,6 +1347,9 @@
                 "type": "number"
             },
             "iout1_Scale": {
+                "type": "number"
+            },
+            "pin_Scale": {
                 "type": "number"
             },
             "in0_Scale": {
