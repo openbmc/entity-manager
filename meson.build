@@ -150,7 +150,7 @@ configs = [
     'mtmitchell_mb.json',
     'mudflap.json',
     'nisqually.json',
-    'nuvoton_arbel_bmc.json',
+    'nuvoton_npcm8xx_evb.json',
     'nvme_intel_p_series.json',
     'nvme_p4500_p5500.json',
     'pcie_ssd_retimer.json',
