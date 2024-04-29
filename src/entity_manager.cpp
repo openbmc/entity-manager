@@ -480,11 +480,9 @@ void createAddObjectMethod(const std::string& jsonPointerPath,
         for (const auto& item : data)
         {
             nlohmann::json& newJson = newData[item.first];
-            std::visit(
-                [&newJson](auto&& val) {
+            std::visit([&newJson](auto&& val) {
                 newJson = std::forward<decltype(val)>(val);
-            },
-                item.second);
+            }, item.second);
         }
 
         auto findName = newData.find("Name");
