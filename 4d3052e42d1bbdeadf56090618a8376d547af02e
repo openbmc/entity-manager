@@ -1,0 +1,130 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "493654f2_9d524327",
+        "filename": "configurations/yosemite4_fanboard_adc_ti.json",
+        "patchSetId": 3
+      },
+      "lineNbr": 248,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2024-04-30T18:08:22Z",
+      "side": 1,
+      "message": "Why is \"FAN\" uppercase as if it is an acronym?",
+      "range": {
+        "startLine": 248,
+        "startChar": 24,
+        "endLine": 248,
+        "endChar": 27
+      },
+      "revId": "4d3052e42d1bbdeadf56090618a8376d547af02e",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "44ec091a_6ecdcfa2",
+        "filename": "configurations/yosemite4_fanboard_adc_ti.json",
+        "patchSetId": 3
+      },
+      "lineNbr": 248,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2024-04-30T18:08:22Z",
+      "side": 1,
+      "message": "Do we want this codified in the Name?  Doesn\u0027t that make it show up as two different object paths even if the part is replaced?",
+      "range": {
+        "startLine": 248,
+        "startChar": 44,
+        "endLine": 248,
+        "endChar": 47
+      },
+      "revId": "4d3052e42d1bbdeadf56090618a8376d547af02e",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "03063808_0f5f83fd",
+        "filename": "configurations/yosemite4_fanboard_adc_ti.json",
+        "patchSetId": 3
+      },
+      "lineNbr": 249,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2024-04-30T18:08:22Z",
+      "side": 1,
+      "message": "Is this expected to be uppercase?  The original yosemite4_fanboard has just \u0027Fan Board\u0027.  Do we have any case of conflicts between the probe statement there and here?",
+      "revId": "4d3052e42d1bbdeadf56090618a8376d547af02e",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "de080c24_2ef8c0d3",
+        "filename": "configurations/yosemite4_fanboard_fsc_max.json",
+        "patchSetId": 3
+      },
+      "lineNbr": 442,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2024-04-30T18:08:22Z",
+      "side": 1,
+      "message": "`Fan` ?",
+      "range": {
+        "startLine": 442,
+        "startChar": 24,
+        "endLine": 442,
+        "endChar": 27
+      },
+      "revId": "4d3052e42d1bbdeadf56090618a8376d547af02e",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d84245cf_ae34c979",
+        "filename": "configurations/yosemite4_fanboard_fsc_nct.json",
+        "patchSetId": 3
+      },
+      "lineNbr": 442,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2024-04-30T18:08:22Z",
+      "side": 1,
+      "message": "`Fan`?",
+      "range": {
+        "startLine": 442,
+        "startChar": 24,
+        "endLine": 442,
+        "endChar": 27
+      },
+      "revId": "4d3052e42d1bbdeadf56090618a8376d547af02e",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "34a2de78_798bdb05",
+        "filename": "meson.build",
+        "patchSetId": 3
+      },
+      "lineNbr": 188,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2024-04-30T18:08:22Z",
+      "side": 1,
+      "message": "Do we still need the original fanboard?  Is the original board one of these 3?  Should we rename this file and adjust the probe statement appropriately?",
+      "revId": "4d3052e42d1bbdeadf56090618a8376d547af02e",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    }
+  ]
+}
