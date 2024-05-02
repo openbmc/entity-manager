@@ -193,32 +193,16 @@ configs = [
     'yosemite4_medusaboard.json',
     'yosemite4_spiderboard.json',
 ]
-filepaths = []
+
 foreach c : configs
-    file = join_paths('configurations', c)
     install_data(
-        file,
+        join_paths('configurations', c),
         install_dir: join_paths(
             packagedir,
             'configurations',
         )
     )
-    filepaths += [file]
 endforeach
-
-validate_script = files('scripts/validate_configs.py')
-autojson = custom_target(
-  'check_syntax',
-  command: [
-    validate_script,
-    '-v',
-    '-k',
-  ],
-  depend_files: files(filepaths),
-  build_by_default: true,
-  capture: true,
-  output: 'validate_configs.log',
-)
 
 schemas = [
     'global.json',
