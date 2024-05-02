@@ -33,6 +33,24 @@
       "message": "Good analysis from @iwoloschin\n\nRust comes from https://github.com/openembedded/openembedded-core/commit/61401c6c82b4e717fcec3810dd9ee5ee61292696. Entity Manager DEPENDS on jsonschema-native (https://github.com/openbmc/openbmc/blob/master/meta-phosphor/recipes-phosphor/configuration/entity-manager_git.bb#L11) which then RDEPENDS on a chain of things that eventually lands on https://github.com/openembedded/openembedded-core/blob/master/meta/recipes-devtools/python/python3-rpds-py_0.18.0.bb which pulls in Rust.",
       "revId": "95c5e30b857def4cbf2455dffdfd7a63fe753660",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "fd086e39_70a15661",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1001140
+      },
+      "writtenOn": "2024-05-02T16:01:14Z",
+      "side": 1,
+      "message": "Yup, if you don\u0027t update the entity manager recipe this change will have no impact on bitbake.",
+      "parentUuid": "37723aa6_29aa16c1",
+      "revId": "95c5e30b857def4cbf2455dffdfd7a63fe753660",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }
