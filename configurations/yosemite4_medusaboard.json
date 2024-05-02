@@ -1564,51 +1564,51 @@
             "Address": "0x44",
             "Bus": 11,
             "Labels": [
-                "in1"
+                "in0"
             ],
             "Name": "MEDUSA_ADC_48V_SENSE",
             "Thresholds": [
                 {
                     "Direction": "greater than",
-                    "Label": "in1",
+                    "Label": "in0",
                     "Name": "upper non recoverable",
                     "Severity": 4,
-                    "Value": 60
+                    "Value": 0.04
                 },
                 {
                     "Direction": "greater than",
-                    "Label": "in1",
+                    "Label": "in0",
                     "Name": "upper critical",
                     "Severity": 1,
-                    "Value": 53.28
+                    "Value": 0.04
                 },
                 {
                     "Direction": "greater than",
-                    "Label": "in1",
+                    "Label": "in0",
                     "Name": "upper non critical",
                     "Severity": 0,
-                    "Value": 52.8
+                    "Value": 0.03
                 },
                 {
                     "Direction": "less than",
-                    "Label": "in1",
+                    "Label": "in0",
                     "Name": "lower non critical",
                     "Severity": 0,
-                    "Value": 43.2
+                    "Value": -0.01
                 },
                 {
                     "Direction": "less than",
-                    "Label": "in1",
+                    "Label": "in0",
                     "Name": "lower critical",
                     "Severity": 1,
-                    "Value": 42.72
+                    "Value": -0.02
                 },
                 {
                     "Direction": "less than",
-                    "Label": "in1",
+                    "Label": "in0",
                     "Name": "lower non recoverable",
                     "Severity": 4,
-                    "Value": 40
+                    "Value": -0.02
                 }
             ],
             "Type": "INA238",
