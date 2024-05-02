@@ -47,6 +47,54 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "c919250e_74e47a6b",
+        "filename": "configurations/yosemite4_fanboard_adc_ti.json",
+        "patchSetId": 3
+      },
+      "lineNbr": 248,
+      "author": {
+        "id": 1001618
+      },
+      "writtenOn": "2024-05-02T09:59:13Z",
+      "side": 1,
+      "message": "Because the Fru name used by the factory employs \u0027uppercase\u0027 for \u0027FAN\u0027.\nTaking the example of NCT\u0027s Fan IC and MAX\u0027s ADC, the Fru name would be \u0027FAN Board FSC-NCT ADC-MAX\u0027.",
+      "parentUuid": "493654f2_9d524327",
+      "range": {
+        "startLine": 248,
+        "startChar": 24,
+        "endLine": 248,
+        "endChar": 27
+      },
+      "revId": "4d3052e42d1bbdeadf56090618a8376d547af02e",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "1b57956e_10b6fc16",
+        "filename": "configurations/yosemite4_fanboard_adc_ti.json",
+        "patchSetId": 3
+      },
+      "lineNbr": 248,
+      "author": {
+        "id": 1001618
+      },
+      "writtenOn": "2024-05-02T09:59:13Z",
+      "side": 1,
+      "message": "This modification separates the configuration of the Fan IC and ADC into independent JSON files, aimed at enhancing the flexibility of combining Fan IC and ADC. \n\nHowever, in this scenario, if the Fan IC and ADC continue to use the same Name across different JSON files, conflicts may arise, resulting in only one set of configurations being applied either to the Fan IC or the ADC. \nHence, distinct Names are necessary to assign different object paths to the Fan IC and ADC.\n\nFollowing this modification, every time power is cut and different combinations of Fan IC and ADC, along with the Fan Board and Fru, are replaced, upon power restoration, the new settings will be applied.",
+      "parentUuid": "44ec091a_6ecdcfa2",
+      "range": {
+        "startLine": 248,
+        "startChar": 44,
+        "endLine": 248,
+        "endChar": 47
+      },
+      "revId": "4d3052e42d1bbdeadf56090618a8376d547af02e",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "03063808_0f5f83fd",
@@ -64,6 +112,24 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "33c3b9cb_06bd613a",
+        "filename": "configurations/yosemite4_fanboard_adc_ti.json",
+        "patchSetId": 3
+      },
+      "lineNbr": 249,
+      "author": {
+        "id": 1001618
+      },
+      "writtenOn": "2024-05-02T09:59:13Z",
+      "side": 1,
+      "message": "Yes, based on the information I have, the factory will use uppercase for \u0027FAN\u0027. Having two different names will not cause conflicts with the probe.",
+      "parentUuid": "03063808_0f5f83fd",
+      "revId": "4d3052e42d1bbdeadf56090618a8376d547af02e",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "de080c24_2ef8c0d3",
@@ -77,6 +143,30 @@
       "writtenOn": "2024-04-30T18:08:22Z",
       "side": 1,
       "message": "`Fan` ?",
+      "range": {
+        "startLine": 442,
+        "startChar": 24,
+        "endLine": 442,
+        "endChar": 27
+      },
+      "revId": "4d3052e42d1bbdeadf56090618a8376d547af02e",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "73e9df13_7eb6fba3",
+        "filename": "configurations/yosemite4_fanboard_fsc_max.json",
+        "patchSetId": 3
+      },
+      "lineNbr": 442,
+      "author": {
+        "id": 1001618
+      },
+      "writtenOn": "2024-05-02T09:59:13Z",
+      "side": 1,
+      "message": "Because the Fru name used by the factory employs \u0027uppercase\u0027 for \u0027FAN\u0027.",
+      "parentUuid": "de080c24_2ef8c0d3",
       "range": {
         "startLine": 442,
         "startChar": 24,
@@ -110,6 +200,30 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "5aad3915_69a74eaf",
+        "filename": "configurations/yosemite4_fanboard_fsc_nct.json",
+        "patchSetId": 3
+      },
+      "lineNbr": 442,
+      "author": {
+        "id": 1001618
+      },
+      "writtenOn": "2024-05-02T09:59:13Z",
+      "side": 1,
+      "message": "Because the Fru name used by the factory employs \u0027uppercase\u0027 for \u0027FAN\u0027.",
+      "parentUuid": "d84245cf_ae34c979",
+      "range": {
+        "startLine": 442,
+        "startChar": 24,
+        "endLine": 442,
+        "endChar": 27
+      },
+      "revId": "4d3052e42d1bbdeadf56090618a8376d547af02e",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "34a2de78_798bdb05",
@@ -123,6 +237,24 @@
       "writtenOn": "2024-04-30T18:08:22Z",
       "side": 1,
       "message": "Do we still need the original fanboard?  Is the original board one of these 3?  Should we rename this file and adjust the probe statement appropriately?",
+      "revId": "4d3052e42d1bbdeadf56090618a8376d547af02e",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "c4947565_af365e0a",
+        "filename": "meson.build",
+        "patchSetId": 3
+      },
+      "lineNbr": 188,
+      "author": {
+        "id": 1001618
+      },
+      "writtenOn": "2024-05-02T09:59:13Z",
+      "side": 1,
+      "message": "The original yosemite4_fanboard.json contains the settings for MAX\u0027s Fan IC and TI\u0027s ADC, already included in this current combination.\n\nHowever, considering that some machines may still use the original Fru name: Fan Board, for this transition period, it is necessary to retain the yosemite4_fanboard.json file.",
+      "parentUuid": "34a2de78_798bdb05",
       "revId": "4d3052e42d1bbdeadf56090618a8376d547af02e",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
