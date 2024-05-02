@@ -85,6 +85,24 @@
       "message": "Ed seemed to have some concerns about using this interface (and not feeling like it would map well to Redfish).  I think Matt Spinler mentioned that the SparePartNumber might work just as well for what we\u0027re trying to express here.",
       "revId": "184428d53b37c0236c5190f57524f8a3483a96b2",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "347ba5a2_7c02e384",
+        "filename": "configurations/yosemite4.json",
+        "patchSetId": 5
+      },
+      "lineNbr": 558,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2024-05-02T18:56:06Z",
+      "side": 1,
+      "message": "Yep.  If we\u0027re just mapping this to \"com.meta.Inventory.ManufacturerExt.Field.FBPN\", just make a meta OEM interface, put it in an OEM Redfish interface and be done with it, there\u0027s no need to try to put this into a dictionary interface (which, based on the definition, bmcweb wouldn\u0027t be able to parse anyway, because the keys aren\u0027t specified, so we wouldn\u0027t be able to parse it to a single property anyway).\n\nIf we want to turn this field into the SparePartNumber, there\u0027s already an existing dbus interface for that and examples of how to do that in a config file.  I suspect if you go that route, no additional code would be necessary.",
+      "parentUuid": "e595dc91_f8f4ae5f",
+      "revId": "184428d53b37c0236c5190f57524f8a3483a96b2",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }
