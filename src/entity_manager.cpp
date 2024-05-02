@@ -84,6 +84,7 @@ boost::asio::io_context io;
 
 const std::regex illegalDbusPathRegex("[^A-Za-z0-9_.]");
 const std::regex illegalDbusMemberRegex("[^A-Za-z0-9_]");
+const std::regex isExtendedInterface(".*Ext$");
 
 void tryIfaceInitialize(std::shared_ptr<sdbusplus::asio::dbus_interface>& iface)
 {
@@ -321,9 +322,16 @@ void populateInterfaceFromJson(
                 continue;
             }
         }
+
         if (type == nlohmann::json::value_t::object)
         {
-            continue; // handled elsewhere
+            //  Only the interface names ending with 'Ext' indicate that the
+            //  property is a dictionary, and these can be set on D-Bus.
+            if (!std::regex_search(iface->get_interface_name(),
+                                   isExtendedInterface))
+            {
+                continue; // handled elsewhere
+            }
         }
 
         std::string path = jsonPointerPath;
@@ -348,6 +356,14 @@ void populateInterfaceFromJson(
 
         switch (type)
         {
+            case (nlohmann::json::value_t::object):
+            {
+                addProperty(key,
+                            value.get<std::map<std::string, std::string>>(),
+                            iface.get(), systemConfiguration, path, permission);
+
+                break;
+            }
             case (nlohmann::json::value_t::boolean):
             {
                 if (array)
