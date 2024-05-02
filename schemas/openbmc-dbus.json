@@ -85,6 +85,19 @@
                             },
                             "required": ["Version"],
                             "type": "object"
+                        },
+                        "ManufacturerExt": {
+                            "additionalProperties": false,
+                            "properties": {
+                              "ExtendedMFGData": {
+                                "additionalProperties": {
+                                    "type" : "string"
+                                },
+                                "type": "object"
+                              }
+                            },
+                            "required": ["ExtendedMFGData"],
+                            "type": "object"
                         }
                     },
                     "Item": {
