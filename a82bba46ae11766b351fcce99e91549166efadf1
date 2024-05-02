@@ -56,6 +56,46 @@
       "message": "Assuming everyone is on board with this feature, I\u0027d like some documentation added somewhere so people know how it works.",
       "revId": "a82bba46ae11766b351fcce99e91549166efadf1",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "39586a31_e2d4370f",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 5
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2024-05-02T18:49:00Z",
+      "side": 1,
+      "message": "Overall, this patchset seems broken.  It\u0027s relying on a VERY fuzzy regex on a specific interface name (which defeats a lot of the intent of entity-manager being generic).\n\nImagine a case where someone included Ext in their oem interface.  This would obviously break.\n\nOverall, I\u0027d like to see more mention in the commit message of what this is trying to accomplish as an overall feature.  \"Expose an ext field as a dict\" doesn\u0027t describe an overall feature.",
+      "revId": "a82bba46ae11766b351fcce99e91549166efadf1",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d442ddab_c109062e",
+        "filename": "src/entity_manager.cpp",
+        "patchSetId": 5
+      },
+      "lineNbr": 87,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2024-05-02T18:49:00Z",
+      "side": 1,
+      "message": "????  This isn\u0027t how to match extended interfaces.  A regex isn\u0027t really appropriate.",
+      "range": {
+        "startLine": 87,
+        "startChar": 0,
+        "endLine": 87,
+        "endChar": 47
+      },
+      "revId": "a82bba46ae11766b351fcce99e91549166efadf1",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }
