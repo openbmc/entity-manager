@@ -16,6 +16,23 @@
       "message": "Still seems nuts that python jsonschema brings in Rust, but oh well. So I should be able to revert I8dfd66b9ed7aec37ee757acff21f1e97e92be04b after this bump to remove it from bitbake.",
       "revId": "95c5e30b857def4cbf2455dffdfd7a63fe753660",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "1e17e3f7_4f042341",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1000004
+      },
+      "writtenOn": "2024-05-02T15:46:44Z",
+      "side": 1,
+      "message": "Good analysis from @iwoloschin\n\nRust comes from https://github.com/openembedded/openembedded-core/commit/61401c6c82b4e717fcec3810dd9ee5ee61292696. Entity Manager DEPENDS on jsonschema-native (https://github.com/openbmc/openbmc/blob/master/meta-phosphor/recipes-phosphor/configuration/entity-manager_git.bb#L11) which then RDEPENDS on a chain of things that eventually lands on https://github.com/openembedded/openembedded-core/blob/master/meta/recipes-devtools/python/python3-rpds-py_0.18.0.bb which pulls in Rust.",
+      "revId": "95c5e30b857def4cbf2455dffdfd7a63fe753660",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }
