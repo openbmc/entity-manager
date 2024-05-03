@@ -97,6 +97,54 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "424ae93f_67fbfe91",
+        "filename": "configurations/yosemite4_fanboard_adc_ti.json",
+        "patchSetId": 3
+      },
+      "lineNbr": 248,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2024-05-03T13:37:16Z",
+      "side": 1,
+      "message": "\u003e However, in this scenario, if the Fan IC and ADC continue to use the same Name across different JSON files, conflicts may arise, resulting in only one set of configurations being applied either to the Fan IC or the ADC.\n\nWhat do you mean by this?  The \"Name\" is used to generate the dbus path.  Don\u0027t we want the same path to be used for the same FRU location?",
+      "parentUuid": "1b57956e_10b6fc16",
+      "range": {
+        "startLine": 248,
+        "startChar": 44,
+        "endLine": 248,
+        "endChar": 47
+      },
+      "revId": "4d3052e42d1bbdeadf56090618a8376d547af02e",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "87da59de_eedf882b",
+        "filename": "configurations/yosemite4_fanboard_adc_ti.json",
+        "patchSetId": 3
+      },
+      "lineNbr": 248,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2024-05-03T13:37:16Z",
+      "side": 1,
+      "message": "This seems like it was a poor choice by the \"factory\".  Can we fix it?",
+      "parentUuid": "c919250e_74e47a6b",
+      "range": {
+        "startLine": 248,
+        "startChar": 24,
+        "endLine": 248,
+        "endChar": 27
+      },
+      "revId": "4d3052e42d1bbdeadf56090618a8376d547af02e",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "03063808_0f5f83fd",
         "filename": "configurations/yosemite4_fanboard_adc_ti.json",
         "patchSetId": 3
