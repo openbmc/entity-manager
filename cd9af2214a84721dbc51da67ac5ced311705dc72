@@ -26,6 +26,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "ac79a164_734e9edd",
+        "filename": "src/fru_device.cpp",
+        "patchSetId": 3
+      },
+      "lineNbr": 216,
+      "author": {
+        "id": 1001717
+      },
+      "writtenOn": "2024-05-03T16:44:16Z",
+      "side": 1,
+      "message": "my assumption is that for an 8 bit EEPROM, the pointer will not be internally incremented since the next byte address doesn\u0027t exist.",
+      "parentUuid": "ccad1ecb_15b8be04",
+      "range": {
+        "startLine": 215,
+        "startChar": 7,
+        "endLine": 216,
+        "endChar": 12
+      },
+      "revId": "cd9af2214a84721dbc51da67ac5ced311705dc72",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "64a454f6_3716ad7a",
         "filename": "src/fru_device.cpp",
         "patchSetId": 3
@@ -37,6 +61,30 @@
       "writtenOn": "2024-04-26T22:46:52Z",
       "side": 1,
       "message": "But this will fail if in a 16bit eeprom, the first two bytes can still have the same data. The original code checks for up to 8 bytes. I guess the assumption was it would be very rare for 16bit eeprom has same data in all 8 bytes.",
+      "range": {
+        "startLine": 223,
+        "startChar": 4,
+        "endLine": 223,
+        "endChar": 23
+      },
+      "revId": "cd9af2214a84721dbc51da67ac5ced311705dc72",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "53d422ff_57e9770e",
+        "filename": "src/fru_device.cpp",
+        "patchSetId": 3
+      },
+      "lineNbr": 223,
+      "author": {
+        "id": 1001717
+      },
+      "writtenOn": "2024-05-03T16:44:16Z",
+      "side": 1,
+      "message": "I agree the first two bytes can still have the same data. I have pushed a new commit to read up to 8 bytes. I believe the intention of the original code was to check for up to 8 bytes - atleast according to the comment in the original code. However, the original code kept the byte address, to be read, as constant i.e. 0.",
+      "parentUuid": "64a454f6_3716ad7a",
       "range": {
         "startLine": 223,
         "startChar": 4,
