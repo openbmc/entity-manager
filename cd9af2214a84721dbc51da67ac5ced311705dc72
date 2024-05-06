@@ -50,6 +50,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "a010056d_b491f771",
+        "filename": "src/fru_device.cpp",
+        "patchSetId": 3
+      },
+      "lineNbr": 216,
+      "author": {
+        "id": 1000559
+      },
+      "writtenOn": "2024-05-06T22:43:26Z",
+      "side": 1,
+      "message": "It was my assumption too that it was using the different behavior of internal address. But since now the reading address is incremented and sent explicitly, I am not sure that the comment is correct anymore and the code is working as intended.\nDo we know what read mode is used - current, random or sequential.\n\nWithout understanding how it is supposed to be reading the same data, it is hard to know what is the right test in line 223.",
+      "parentUuid": "ac79a164_734e9edd",
+      "range": {
+        "startLine": 215,
+        "startChar": 7,
+        "endLine": 216,
+        "endChar": 12
+      },
+      "revId": "cd9af2214a84721dbc51da67ac5ced311705dc72",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "64a454f6_3716ad7a",
         "filename": "src/fru_device.cpp",
         "patchSetId": 3
