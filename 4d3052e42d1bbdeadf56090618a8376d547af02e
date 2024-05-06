@@ -143,6 +143,54 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "03f3f3ec_30b6301e",
+        "filename": "configurations/yosemite4_fanboard_adc_ti.json",
+        "patchSetId": 3
+      },
+      "lineNbr": 248,
+      "author": {
+        "id": 1001618
+      },
+      "writtenOn": "2024-05-06T11:14:32Z",
+      "side": 1,
+      "message": "This was my mistake, and I apologize. \n\nThe uppercase \"FAN\" in the Fru Name during the probe is because it was provided by the factory. \nAdditionally, the uppercase \"FAN\" in the dbus path Name was originally set this way in the `yosemite4_fanboard.json`. \n\nI have attempted to change them to \"Fan\" and verified that after this change, both `mfg-tool inventory` and `mfg-tool fan-speed` are functioning properly.",
+      "parentUuid": "87da59de_eedf882b",
+      "range": {
+        "startLine": 248,
+        "startChar": 24,
+        "endLine": 248,
+        "endChar": 27
+      },
+      "revId": "4d3052e42d1bbdeadf56090618a8376d547af02e",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "ef524062_401313b3",
+        "filename": "configurations/yosemite4_fanboard_adc_ti.json",
+        "patchSetId": 3
+      },
+      "lineNbr": 248,
+      "author": {
+        "id": 1001618
+      },
+      "writtenOn": "2024-05-06T11:14:32Z",
+      "side": 1,
+      "message": "For example, if the current setup consists of a MAX Fan IC and a TI ADC, the Fru will be labeled as \"FAN Board FSC-MAX ADC-TI.\" \n\nNow, if both the `yosemite4_fanboard_fsc_max.json` and `yosemite4_fanboard_adc_ti.json` files have the \"Name\" field set to \"Yosemite 4 FAN Board $bus % 30,\" conflicts will arise, and only one of the configurations, either Fan IC or ADC, will be applied. \n\nIn other words, if the \"Name\" is the same, under `/xyz/openbmc_project/inventory/system/board/Yosemite_4_FAN_Board_1`, there will only be `/xyz/openbmc_project/inventory/system/board/Yosemite_4_FAN_Board_1/FANBOARD1_ADC`, and there will be no object path related to Fan IC (e.g., `/xyz/openbmc_project/control/fanpwm/FANBOARD1_FAN0_PWM`, `/xyz/openbmc_project/sensors/fan_tach/FANBOARD1_FAN0_TACH_IL`), causing failures in `mfg-tool fan-speed`.\n\nTo resolve this, if the \"Name\" is split into \"Yosemite 4 FAN Board $bus % 30 ADC\" and \"Yosemite 4 FAN Board $bus % 30 FSC,\" then under `/xyz/openbmc_project/inventory/system/board/Yosemite_4_FAN_Board_1_ADC`, there will be `/xyz/openbmc_project/inventory/system/board/Yosemite_4_FAN_Board_1_ADC/FANBOARD1_ADC`, and under `/xyz/openbmc_project/inventory/system/board/Yosemite_4_FAN_Board_1_FSC`, there will be `/xyz/openbmc_project/inventory/system/board/Yosemite_4_FAN_Board_1_FSC/FANBOARD1_FAN0_TACH_IL`, `/xyz/openbmc_project/inventory/system/board/Yosemite_4_FAN_Board_1_FSC/FANBOARD1_FAN0_TACH_OL`, etc., enabling both `mfg-tool inventory` and `mfg-tool fan-speed` to operate correctly.",
+      "parentUuid": "424ae93f_67fbfe91",
+      "range": {
+        "startLine": 248,
+        "startChar": 44,
+        "endLine": 248,
+        "endChar": 47
+      },
+      "revId": "4d3052e42d1bbdeadf56090618a8376d547af02e",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "03063808_0f5f83fd",
