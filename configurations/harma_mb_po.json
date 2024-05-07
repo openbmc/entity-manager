@@ -369,7 +369,7 @@
             "power1_Name": "NIC_MEZZ_P12V_PWR_W"
         },
         {
-            "Address": "0x63",
+            "Address": "0x4B",
             "Bus": 28,
             "Labels": [
                 "iout1",
@@ -415,14 +415,14 @@
                     "Value": 105.0
                 }
             ],
-            "Type": "ISL69260",
+            "Type": "MP2856",
             "iout1_Name": "MB_VR_CPU_PVDD11_CURR_A",
             "pout1_Name": "MB_VR_CPU_PVDD11_PWR_W",
             "temp1_Name": "MB_VR_CPU_PVDD11_TEMP_C",
             "vout1_Name": "MB_VR_CPU_PVDD11_VOLT_V"
         },
         {
-            "Address": "0x61",
+            "Address": "0x4F",
             "Bus": 28,
             "Labels": [
                 "iout1",
@@ -507,7 +507,7 @@
                     "Value": 105.0
                 }
             ],
-            "Type": "ISL69260",
+            "Type": "MP2857",
             "iout1_Name": "MB_VR_CPU_VCORE0_CURR_A",
             "iout2_Name": "MB_VR_CPU_SOC_CURR_A",
             "pout1_Name": "MB_VR_CPU_VCORE0_PWR_W",
@@ -518,7 +518,7 @@
             "vout2_Name": "MB_VR_CPU_SOC_VOLT_V"
         },
         {
-            "Address": "0x62",
+            "Address": "0x4E",
             "Bus": 28,
             "Labels": [
                 "iout1",
@@ -603,7 +603,7 @@
                     "Value": 105.0
                 }
             ],
-            "Type": "ISL69260",
+            "Type": "MP2857",
             "iout1_Name": "MB_VR_CPU_VCORE1_CURR_A",
             "iout2_Name": "MB_VR_CPU_PDDIO_CURR_A",
             "pout1_Name": "MB_VR_CPU_VCORE1_PWR_W",
@@ -997,13 +997,7 @@
         }
     ],
     "Name": "Harma MB",
-    "Probe": [
-        "xyz.openbmc_project.FruDevice({'BOARD_PRODUCT_NAME': 'Harma MB EVT'})",
-        "AND",
-        "xyz.openbmc_project.FruDevice({'BOARD_PART_NUMBER': '3BF0MMA0080'})",
-        "AND",
-        "xyz.openbmc_project.FruDevice({'BOARD_FRU_VERSION_ID': 'FRU Ver 0.01'})"
-    ],
+    "Probe": "xyz.openbmc_project.FruDevice({'BOARD_PRODUCT_NAME': 'Harma MB PO'})",
     "Type": "Board",
     "xyz.openbmc_project.Inventory.Decorator.Asset": {
         "Manufacturer": "$PRODUCT_MANUFACTURER",
