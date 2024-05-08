@@ -46,6 +46,30 @@
       },
       "revId": "5131da705f5d0c61ecd6f978735ae6b173b94414",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a8256048_9ac701ec",
+        "filename": "src/entity_manager.cpp",
+        "patchSetId": 1
+      },
+      "lineNbr": 348,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2024-05-08T21:55:15Z",
+      "side": 1,
+      "message": "\u003e But in dbus-interface, the definition of BuildDate is ISO8601. We want to display it in the inventory, so we need to convert it to ISO8601.\n\nMy suggestion was to change the definition of the dbus interface away from iso8601.  There\u0027s only one other usage I could find, and that seems easier to me than trying to shoehorn a new type into Entity-manager when it was primarily designed to deal with strings.\n\n\u003e Do you have any suggestions on how to represent the Datetime property type in a json file?\n\nI haven\u0027t looked at it in depth.  There are other keywords things that already exist in a generic form, we\u0027d have to look into something.",
+      "parentUuid": "96539761_3401a0d7",
+      "range": {
+        "startLine": 348,
+        "startChar": 17,
+        "endLine": 348,
+        "endChar": 62
+      },
+      "revId": "5131da705f5d0c61ecd6f978735ae6b173b94414",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }
