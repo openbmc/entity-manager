@@ -1,0 +1,226 @@
+From 30d5322158a6c13628682447238904a6cd102565 Mon Sep 17 00:00:00 2001
+From: Delphine CC Chiu <Delphine_CC_Chiu@wiwynn.com>
+Date: Wed, 8 May 2024 13:30:02 +0800
+Subject: [PATCH] configurations: yosemite4: revise sensor threshold
+
+Revise the threshold of following sensors:
+- MGNT_TEMP_C
+- NICX_TEMP_C
+- MEDUSA_MBX_12VHSC_TEMP_C
+- MEDUSA_TEMPX_C
+- MEDUSA_48VHSCX_TEMP_C
+- MEDUSA_12VDELTAX_TEMP_C
+- SPIDER_TEMPX_C
+
+Change-Id: I7c29d43deea2644b4d9f8ac56fd627e24cef34dc
+Signed-off-by: Delphine CC Chiu <Delphine_CC_Chiu@wiwynn.com>
+---
+ configurations/yosemite4.json             | 10 ++++----
+ configurations/yosemite4_medusaboard.json | 28 +++++++++++------------
+ configurations/yosemite4_spiderboard.json |  4 ++--
+ 3 files changed, 21 insertions(+), 21 deletions(-)
+
+diff --git a/configurations/yosemite4.json b/configurations/yosemite4.json
+index 05e649b..b0a1760 100644
+--- a/configurations/yosemite4.json
++++ b/configurations/yosemite4.json
+@@ -445,7 +445,7 @@
+                     "Index": 2,
+                     "Name": "upper non recoverable",
+                     "Severity": 4,
+-                    "Value": 120
++                    "Value": 115
+                 },
+                 {
+                     "Direction": "greater than",
+@@ -468,7 +468,7 @@
+                     "Index": 2,
+                     "Name": "upper non recoverable",
+                     "Severity": 4,
+-                    "Value": 120
++                    "Value": 115
+                 },
+                 {
+                     "Direction": "greater than",
+@@ -491,7 +491,7 @@
+                     "Index": 2,
+                     "Name": "upper non recoverable",
+                     "Severity": 4,
+-                    "Value": 120
++                    "Value": 115
+                 },
+                 {
+                     "Direction": "greater than",
+@@ -514,7 +514,7 @@
+                     "Index": 2,
+                     "Name": "upper non recoverable",
+                     "Severity": 4,
+-                    "Value": 120
++                    "Value": 115
+                 },
+                 {
+                     "Direction": "greater than",
+@@ -535,7 +535,7 @@
+                     "Direction": "greater than",
+                     "Name": "upper critical",
+                     "Severity": 1,
+-                    "Value": 125
++                    "Value": 50
+                 }
+             ],
+             "Type": "TMP75"
+diff --git a/configurations/yosemite4_medusaboard.json b/configurations/yosemite4_medusaboard.json
+index 3791f84..8e69f76 100644
+--- a/configurations/yosemite4_medusaboard.json
++++ b/configurations/yosemite4_medusaboard.json
+@@ -17,7 +17,7 @@
+                     "Label": "temp1",
+                     "Name": "upper critical",
+                     "Severity": 1,
+-                    "Value": 100
++                    "Value": 150
+                 },
+                 {
+                     "Direction": "greater than",
+@@ -172,7 +172,7 @@
+                     "Label": "temp1",
+                     "Name": "upper critical",
+                     "Severity": 1,
+-                    "Value": 100
++                    "Value": 150
+                 },
+                 {
+                     "Direction": "greater than",
+@@ -369,7 +369,7 @@
+                     "Label": "temp1",
+                     "Name": "upper critical",
+                     "Severity": 1,
+-                    "Value": 80
++                    "Value": 100
+                 },
+                 {
+                     "Direction": "greater than",
+@@ -524,7 +524,7 @@
+                     "Label": "temp1",
+                     "Name": "upper critical",
+                     "Severity": 1,
+-                    "Value": 80
++                    "Value": 100
+                 },
+                 {
+                     "Direction": "greater than",
+@@ -679,7 +679,7 @@
+                     "Label": "temp1",
+                     "Name": "upper critical",
+                     "Severity": 1,
+-                    "Value": 80
++                    "Value": 100
+                 },
+                 {
+                     "Direction": "greater than",
+@@ -834,7 +834,7 @@
+                     "Label": "temp1",
+                     "Name": "upper critical",
+                     "Severity": 1,
+-                    "Value": 80
++                    "Value": 100
+                 },
+                 {
+                     "Direction": "greater than",
+@@ -989,7 +989,7 @@
+                     "Label": "temp1",
+                     "Name": "upper critical",
+                     "Severity": 1,
+-                    "Value": 80
++                    "Value": 100
+                 },
+                 {
+                     "Direction": "greater than",
+@@ -1144,7 +1144,7 @@
+                     "Label": "temp1",
+                     "Name": "upper critical",
+                     "Severity": 1,
+-                    "Value": 80
++                    "Value": 100
+                 },
+                 {
+                     "Direction": "greater than",
+@@ -1299,7 +1299,7 @@
+                     "Label": "temp1",
+                     "Name": "upper critical",
+                     "Severity": 1,
+-                    "Value": 80
++                    "Value": 100
+                 },
+                 {
+                     "Direction": "greater than",
+@@ -1454,7 +1454,7 @@
+                     "Label": "temp1",
+                     "Name": "upper critical",
+                     "Severity": 1,
+-                    "Value": 80
++                    "Value": 100
+                 },
+                 {
+                     "Direction": "greater than",
+@@ -1893,7 +1893,7 @@
+                     "Label": "temp1",
+                     "Name": "upper critical",
+                     "Severity": 1,
+-                    "Value": 115
++                    "Value": 100
+                 }
+             ],
+             "Type": "pmbus",
+@@ -2023,7 +2023,7 @@
+                     "Label": "temp1",
+                     "Name": "upper critical",
+                     "Severity": 1,
+-                    "Value": 115
++                    "Value": 100
+                 }
+             ],
+             "Type": "pmbus",
+@@ -2153,7 +2153,7 @@
+                     "Label": "temp1",
+                     "Name": "upper critical",
+                     "Severity": 1,
+-                    "Value": 115
++                    "Value": 100
+                 }
+             ],
+             "Type": "pmbus",
+@@ -2283,7 +2283,7 @@
+                     "Label": "temp1",
+                     "Name": "upper critical",
+                     "Severity": 1,
+-                    "Value": 115
++                    "Value": 100
+                 }
+             ],
+             "Type": "pmbus",
+diff --git a/configurations/yosemite4_spiderboard.json b/configurations/yosemite4_spiderboard.json
+index b881a0f..8c321b8 100644
+--- a/configurations/yosemite4_spiderboard.json
++++ b/configurations/yosemite4_spiderboard.json
+@@ -989,7 +989,7 @@
+                     "Direction": "greater than",
+                     "Name": "upper critical",
+                     "Severity": 1,
+-                    "Value": 125
++                    "Value": 50
+                 }
+             ],
+             "Type": "TMP75"
+@@ -1003,7 +1003,7 @@
+                     "Direction": "greater than",
+                     "Name": "upper critical",
+                     "Severity": 1,
+-                    "Value": 125
++                    "Value": 50
+                 }
+             ],
+             "Type": "TMP75"
+-- 
+2.25.1
+
