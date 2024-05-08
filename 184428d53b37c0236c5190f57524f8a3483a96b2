@@ -121,6 +121,24 @@
       "parentUuid": "347ba5a2_7c02e384",
       "revId": "184428d53b37c0236c5190f57524f8a3483a96b2",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a842ae14_7ee82258",
+        "filename": "configurations/yosemite4.json",
+        "patchSetId": 5
+      },
+      "lineNbr": 558,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2024-05-08T21:41:54Z",
+      "side": 1,
+      "message": "\u003e Would it be feasible to apply this interface for YV4 project?\n\nNo, please don\u0027t use \"CustomField*\" anything.  There is no way to connect this to Redfish.\n\nBased on discussion that happened in Discord, Matt Spinler mentioned that IBM had gotten a SparePartNumber added to Redfish and the dbus interfaces.  This seems to be the same purpose as the `FBPN`.  Please implement this using the Asset::SparePartNumber field.  Xinyuan is updating the Meta inventory document to reflect this.",
+      "parentUuid": "eff80618_43bbef47",
+      "revId": "184428d53b37c0236c5190f57524f8a3483a96b2",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }
