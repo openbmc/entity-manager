@@ -56,6 +56,30 @@
       },
       "revId": "1ff03cb91dfa9734adc24fd579767a3f2d676e20",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "10d2a10b_61fd68b4",
+        "filename": "src/fru_utils.cpp",
+        "patchSetId": 4
+      },
+      "lineNbr": 453,
+      "author": {
+        "id": 1001892
+      },
+      "writtenOn": "2024-05-09T08:26:53Z",
+      "side": 1,
+      "message": "The type of `result` includes uint64_t, which is different with the `std::chrono::minutes` used.\n`std::variant\u003cstd::string, uint64_t\u003e\u003e\u0026 result`.\n`using microseconds\t\u003d duration\u003c_GLIBCXX_CHRONO_INT64_T, micro\u003e;`\n\nI guess here want to unify the data types to uint64_t. Then we could assign `std::chrono::duration\u003cRep,Period\u003e::count` to `result` without convert int64_t to uint64_t.\nline-461: `result[\"BOARD_MANUFACTURE_DATE\"] \u003d fruTime.count();`",
+      "parentUuid": "0f9c391c_5a24c4fe",
+      "range": {
+        "startLine": 453,
+        "startChar": 16,
+        "endLine": 453,
+        "endChar": 63
+      },
+      "revId": "1ff03cb91dfa9734adc24fd579767a3f2d676e20",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }
