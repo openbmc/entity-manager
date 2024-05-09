@@ -70,6 +70,30 @@
       },
       "revId": "5131da705f5d0c61ecd6f978735ae6b173b94414",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e2ad1651_a4393c7e",
+        "filename": "src/entity_manager.cpp",
+        "patchSetId": 1
+      },
+      "lineNbr": 348,
+      "author": {
+        "id": 1001892
+      },
+      "writtenOn": "2024-05-09T07:08:59Z",
+      "side": 1,
+      "message": "\u003e My suggestion was to change the definition of the dbus interface away from iso8601.  \n\nThe downside is that it\u0027s a unreadable format for human, but I guess that\u0027s okay.\nHi Patrick, do you have any concerns about changing the definition of BuildDate from ISO8601 to epoch time?",
+      "parentUuid": "a8256048_9ac701ec",
+      "range": {
+        "startLine": 348,
+        "startChar": 17,
+        "endLine": 348,
+        "endChar": 62
+      },
+      "revId": "5131da705f5d0c61ecd6f978735ae6b173b94414",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }
