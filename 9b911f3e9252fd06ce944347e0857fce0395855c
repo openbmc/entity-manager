@@ -52,6 +52,24 @@
       "parentUuid": "c40a4eb1_123a63c8",
       "revId": "9b911f3e9252fd06ce944347e0857fce0395855c",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "df8ac2d8_84aae7fa",
+        "filename": "configurations/yosemite4_fanboard_adc_ti.json",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2024-05-09T16:42:10Z",
+      "side": 1,
+      "message": "@Matt, I think we end up with 4 different JSON files because there are 4 different variants of the same board design.  They have slightly different ADC and fan controllers between them.\n\n@Delphine, I would like it if we can rename the original `yosemite4_fanboard.json` to follow the conventions you\u0027ve laid out here for the 3 new variants.  Please name it with the chip-selection information so we\u0027re not left guessing (or having to reverse engineer).",
+      "parentUuid": "0adbb490_6d9d2ba5",
+      "revId": "9b911f3e9252fd06ce944347e0857fce0395855c",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }
