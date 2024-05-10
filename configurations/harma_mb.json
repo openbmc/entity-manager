@@ -1000,7 +1000,12 @@
         }
     ],
     "Name": "Harma MB",
-    "Probe": "xyz.openbmc_project.FruDevice({'BOARD_PRODUCT_NAME': 'Harma MB '})",
+    "Probe": [
+        "xyz.openbmc_project.FruDevice({'BOARD_PRODUCT_NAME': 'Harma MB EVT', 'BOARD_PART_NUMBER': '3BF0MMA0040', 'BOARD_FRU_VERSION_ID': 'FRU Ver 0.01'})",
+        "OR",
+        "xyz.openbmc_project.FruDevice({'BOARD_PRODUCT_NAME': 'Harma MB EVT', 'BOARD_PART_NUMBER': '3BF0MMA0080', 'BOARD_FRU_VERSION_ID': 'FRU Ver 0.01'})"
+
+    ],
     "Type": "Board",
     "xyz.openbmc_project.Inventory.Decorator.Asset": {
         "Manufacturer": "$PRODUCT_MANUFACTURER",
