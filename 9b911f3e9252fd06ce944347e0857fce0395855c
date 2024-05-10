@@ -106,6 +106,24 @@
       "parentUuid": "d36528db_31366631",
       "revId": "9b911f3e9252fd06ce944347e0857fce0395855c",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "f9220dc7_00c48d22",
+        "filename": "configurations/yosemite4_fanboard_adc_ti.json",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2024-05-10T11:44:28Z",
+      "side": 1,
+      "message": "Doesn\u0027t this result in 2 different inventory objects for the same FRU then?  How are we expecting that to translate to Redfish?",
+      "parentUuid": "fef42e9d_ae3e89a2",
+      "revId": "9b911f3e9252fd06ce944347e0857fce0395855c",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }
