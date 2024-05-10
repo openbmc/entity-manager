@@ -221,14 +221,20 @@
             "Type": "ADC128D818",
             "in0_Name": "MB_P12V_MEM0_VOLT_V",
             "in0_Scale": 151.515151515,
+            "in0_PowerState": "Always",
             "in1_Name": "MB_P5V_STBY_VOLT_V",
             "in1_Scale": 281.29395218,
+            "in1_PowerState": "Always",
             "in2_Name": "MB_PVDD33_S5_VOLT_V",
             "in2_Scale": 500,
+            "in2_PowerState": "Always",
             "in3_Name": "MB_P1V8_STBY_VOLT_V",
+            "in3_PowerState": "Always",
             "in4_Name": "MB_P12V_MEM1_VOLT_V",
             "in4_Scale": 151.515151515,
-            "in5_Name": "MB_P1V8_CPU_RT_VOLT_V"
+            "in4_PowerState": "Always",
+            "in5_Name": "MB_P1V8_CPU_RT_VOLT_V",
+            "in5_PowerState": "On"
         },
         {
             "Address": "$address",
