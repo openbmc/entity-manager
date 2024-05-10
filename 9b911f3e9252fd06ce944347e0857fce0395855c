@@ -88,6 +88,24 @@
       "parentUuid": "df8ac2d8_84aae7fa",
       "revId": "9b911f3e9252fd06ce944347e0857fce0395855c",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "fef42e9d_ae3e89a2",
+        "filename": "configurations/yosemite4_fanboard_adc_ti.json",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1001618
+      },
+      "writtenOn": "2024-05-10T11:00:03Z",
+      "side": 1,
+      "message": "\u003e Hmm.  Maybe I am confused also.\n\u003e \n\u003e \u003e Therefore, we separated the configurations for the Fan IC and ADC, which is why there are no definitions related to tach in yosemite4_fanboard_adc_ti.json.\n\u003e \n\u003e I don\u0027t know what this means.\n\nThe statement suggests that the configurations for the Fan IC and ADC will be kept separate, resulting in their respective configurations not being combined within a single JSON file.\n\nThe fourth JSON, yosemite4_fanboard_adc_ti.json, hasn\u0027t been completed yet. yosemite4_fanboard.json has been renamed to yosemite4_fanboard_fsc_max_adc_ti.json.",
+      "parentUuid": "d36528db_31366631",
+      "revId": "9b911f3e9252fd06ce944347e0857fce0395855c",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }
