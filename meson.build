@@ -130,6 +130,7 @@ configs = [
     'harma_bsm.json',
     'harma_fanboard.json',
     'harma_mb.json',
+    'harma_mb_po.json',
     'harma_scm.json',
     'ibm_tacoma_rack_controller.json',
     'ingraham.json',
