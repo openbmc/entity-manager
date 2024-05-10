@@ -369,7 +369,7 @@
             "power1_Name": "NIC_MEZZ_P12V_PWR_W"
         },
         {
-            "Address": "0x4B",
+            "Address": "0x63",
             "Bus": 28,
             "Labels": [
                 "iout1",
@@ -378,6 +378,7 @@
                 "temp1"
             ],
             "Name": "MB_VR_CPU_PVDD11",
+            "PowerState": "On",
             "Thresholds": [
                 {
                     "Direction": "greater than",
@@ -415,14 +416,14 @@
                     "Value": 105.0
                 }
             ],
-            "Type": "MP2856",
+            "Type": "ISL69260",
             "iout1_Name": "MB_VR_CPU_PVDD11_CURR_A",
             "pout1_Name": "MB_VR_CPU_PVDD11_PWR_W",
             "temp1_Name": "MB_VR_CPU_PVDD11_TEMP_C",
             "vout1_Name": "MB_VR_CPU_PVDD11_VOLT_V"
         },
         {
-            "Address": "0x4F",
+            "Address": "0x61",
             "Bus": 28,
             "Labels": [
                 "iout1",
@@ -435,6 +436,7 @@
                 "temp2"
             ],
             "Name": "MB_VR_CPU_VCORE0_SOC",
+            "PowerState": "On",
             "Thresholds": [
                 {
                     "Direction": "greater than",
@@ -507,7 +509,7 @@
                     "Value": 105.0
                 }
             ],
-            "Type": "MP2857",
+            "Type": "ISL69260",
             "iout1_Name": "MB_VR_CPU_VCORE0_CURR_A",
             "iout2_Name": "MB_VR_CPU_SOC_CURR_A",
             "pout1_Name": "MB_VR_CPU_VCORE0_PWR_W",
@@ -518,7 +520,7 @@
             "vout2_Name": "MB_VR_CPU_SOC_VOLT_V"
         },
         {
-            "Address": "0x4E",
+            "Address": "0x62",
             "Bus": 28,
             "Labels": [
                 "iout1",
@@ -531,6 +533,7 @@
                 "temp2"
             ],
             "Name": "MB_VR_CPU_VCORE1_PDDIO",
+            "PowerState": "On",
             "Thresholds": [
                 {
                     "Direction": "greater than",
@@ -603,7 +606,7 @@
                     "Value": 105.0
                 }
             ],
-            "Type": "MP2857",
+            "Type": "ISL69260",
             "iout1_Name": "MB_VR_CPU_VCORE1_CURR_A",
             "iout2_Name": "MB_VR_CPU_PDDIO_CURR_A",
             "pout1_Name": "MB_VR_CPU_VCORE1_PWR_W",
