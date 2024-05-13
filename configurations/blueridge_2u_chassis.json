@@ -1,0 +1,35 @@
+{
+    "Exposes": [
+        {
+            "Name": "Compatible System",
+            "Names": [
+                "ibm,blueridge-2u",
+                "ibm,blueridge",
+                "ibm,rainier-2u",
+                "ibm,rainier"
+            ],
+            "Type": "IBMCompatibleSystem"
+        },
+        {
+            "EnterUtilizationDwellTime": 240,
+            "EnterUtilizationPercent": 8,
+            "ExitUtilizationDwellTime": 10,
+            "ExitUtilizationPercent": 12,
+            "IdlePowerSaverEnabled": true,
+            "Name": "Default Power Mode Properties",
+            "PowerMode": "MaximumPerformance",
+            "Type": "PowerModeProperties"
+        }
+    ],
+    "Name": "BlueRidge 2U Chassis",
+    "Probe": "com.ibm.ipzvpd.VSBP({'IM': [96, 0, 16, 1]})",
+    "Type": "Chassis",
+    "xyz.openbmc_project.Inventory.Decorator.Compatible": {
+        "Names": [
+            "com.ibm.Hardware.Chassis.Model.BlueRidge2U",
+            "com.ibm.Hardware.Chassis.Model.BlueRidge",
+            "com.ibm.Hardware.Chassis.Model.Rainier2U",
+            "com.ibm.Hardware.Chassis.Model.Rainier"
+        ]
+    }
+}
