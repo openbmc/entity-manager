@@ -121,6 +121,7 @@ configs = [
     'flextronics_s-1100adu00-201_psu.json',
     'fp5280g3_chassis.json',
     'fp5280g3_fanboard.json',
+    'fuji.json',
     'genesis3_psu.json',
     'genesis3_baseboard.json',
     'genesis3_chassis.json',
