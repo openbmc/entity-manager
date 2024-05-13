@@ -74,6 +74,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "c74f93a7_9276c5be",
+        "filename": "src/fru_device.cpp",
+        "patchSetId": 3
+      },
+      "lineNbr": 216,
+      "author": {
+        "id": 1001303
+      },
+      "writtenOn": "2024-05-13T19:20:54Z",
+      "side": 1,
+      "message": "`i2c_smbus_read_byte_data(file, 0)` is read a single byte from location 0x00.  The equivalent command is `i2ctransfer w1 0x00 r1`.\n\nThat writes 0x00 to the internal address pointer, reads a byte and then increments the internal pointer.  For an 8 bit EEPROM we end up reading from 0x00 each time and the value doesn\u0027t change.\n\nIf it\u0027s a 16 bit EEPROM then the assumption is writing 0x00 to the address pointer actually only overwrites the more significant address byte.  The least significant byte is left alone.  That means when the internal pointer increments after each read then that value is not lost.\n\nIt should look something like this:\n```\ninternal pointer\n0x00 0x00 \u003c--- Starting location (iteration 0)\n0x00 0x00 \u003c--- Write 0x00 to address\n0x00 0x00 \u003c--- Read a single byte (from 0x0000)\n0x00 0x01 \u003c--- Increment internal pointer after read\n\n0x00 0x01 \u003c--- Starting location (iteration 1)\n0x00 0x01 \u003c--- Write 0x00 to address\n0x00 0x01 \u003c--- Read a single byte (from 0x0001)\n0x00 0x02 \u003c--- Increment internal pointer after read\n\n0x00 0x02 \u003c--- Starting location (iteration 2)\n0x00 0x02 \u003c--- Write 0x00 to address\n0x00 0x02 \u003c--- Read a single byte (from 0x0002)\n0x00 0x03 \u003c--- Increment internal pointer after read\n....\n```\n\nThe value should change because you\u0027re reading the overall header from the IPMI FRU spec.\n\nThis approach isn\u0027t perfect because there is not an obligation for writing a single byte to the address pointer of a 16 bit EEPROM to only overwrite the most significant byte.  It could zero out the second byte for example.  In that case you end up reading from location 0x0000 on each iteration and the EEPROM gets erroneously interpreted as 8 bit.",
+      "parentUuid": "a010056d_b491f771",
+      "range": {
+        "startLine": 215,
+        "startChar": 7,
+        "endLine": 216,
+        "endChar": 12
+      },
+      "revId": "cd9af2214a84721dbc51da67ac5ced311705dc72",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "64a454f6_3716ad7a",
         "filename": "src/fru_device.cpp",
         "patchSetId": 3

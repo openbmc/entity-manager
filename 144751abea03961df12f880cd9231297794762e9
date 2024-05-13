@@ -1,6 +1,29 @@
 {
   "comments": [
     {
+      "unresolved": true,
+      "key": {
+        "uuid": "5506b0ee_67d6e63b",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 4
+      },
+      "lineNbr": 17,
+      "author": {
+        "id": 1001303
+      },
+      "writtenOn": "2024-05-13T19:20:54Z",
+      "side": 1,
+      "message": "That EEPROM isn\u0027t already defined in your device tree is it?\n\nWith your change you should read different bytes on an 8-bit EEPROM and thus `isDevice16Bit()` would return true instead of false.\n\nDid you do an I2C trace to see what was being read?  You can do something like this to see what\u0027s being read https://linuxtv.org/wiki/index.php/Bus_snooping/sniffing#i2c",
+      "range": {
+        "startLine": 17,
+        "startChar": 0,
+        "endLine": 17,
+        "endChar": 39
+      },
+      "revId": "144751abea03961df12f880cd9231297794762e9",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": false,
       "key": {
         "uuid": "db457ec0_dedb901d",
