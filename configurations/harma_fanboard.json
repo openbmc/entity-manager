@@ -246,8 +246,7 @@
                 "Bus": 2,
                 "Labels": [
                     "in1",
-                    "curr1",
-                    "power1"
+                    "curr1"
                 ],
                 "Name": "FAN_BP0_FAN0",
                 "Thresholds": [
@@ -256,35 +255,33 @@
                         "Label": "in1",
                         "Name": "lower critical",
                         "Severity": 1,
-                        "Value": 54.6
+                        "Value": 48.45
                     },
                     {
                         "Direction": "greater than",
                         "Label": "in1",
                         "Name": "upper critical",
                         "Severity": 1,
-                        "Value": 55.8
+                        "Value": 53.35
                     },
                     {
                         "Direction": "greater than",
                         "Label": "curr1",
                         "Name": "upper critical",
                         "Severity": 1,
-                        "Value": 1.19
+                        "Value": 2.88
                     }
                 ],
                 "Type": "INA238",
                 "curr1_Name": "FAN_BP0_FAN0_CURR_A",
-                "in1_Name": "FAN_BP0_FAN0_VOLT_V",
-                "power1_Name": "FAN_BP0_FAN0_PWR_W"
+                "in1_Name": "FAN_BP0_FAN0_VOLT_V"
             },
             {
                 "Address": "0x41",
                 "Bus": 2,
                 "Labels": [
                     "in1",
-                    "curr1",
-                    "power1"
+                    "curr1"
                 ],
                 "Name": "FAN_BP0_FAN1",
                 "Thresholds": [
@@ -293,35 +290,33 @@
                         "Label": "in1",
                         "Name": "lower critical",
                         "Severity": 1,
-                        "Value": 54.6
+                        "Value": 48.45
                     },
                     {
                         "Direction": "greater than",
                         "Label": "in1",
                         "Name": "upper critical",
                         "Severity": 1,
-                        "Value": 55.8
+                        "Value": 53.35
                     },
                     {
                         "Direction": "greater than",
                         "Label": "curr1",
                         "Name": "upper critical",
                         "Severity": 1,
-                        "Value": 1.13
+                        "Value": 2.88
                     }
                 ],
                 "Type": "INA238",
                 "curr1_Name": "FAN_BP0_FAN1_CURR_A",
-                "in1_Name": "FAN_BP0_FAN1_VOLT_V",
-                "power1_Name": "FAN_BP0_FAN1_PWR_W"
+                "in1_Name": "FAN_BP0_FAN1_VOLT_V"
             },
             {
                 "Address": "0x44",
                 "Bus": 2,
                 "Labels": [
                     "in1",
-                    "curr1",
-                    "power1"
+                    "curr1"
                 ],
                 "Name": "FAN_BP0_FAN2",
                 "Thresholds": [
@@ -330,35 +325,33 @@
                         "Label": "in1",
                         "Name": "lower critical",
                         "Severity": 1,
-                        "Value": 54.6
+                        "Value": 48.45
                     },
                     {
                         "Direction": "greater than",
                         "Label": "in1",
                         "Name": "upper critical",
                         "Severity": 1,
-                        "Value": 55.8
+                        "Value": 53.35
                     },
                     {
                         "Direction": "greater than",
                         "Label": "curr1",
                         "Name": "upper critical",
                         "Severity": 1,
-                        "Value": 1.13
+                        "Value": 2.88
                     }
                 ],
                 "Type": "INA238",
                 "curr1_Name": "FAN_BP0_FAN2_CURR_A",
-                "in1_Name": "FAN_BP0_FAN2_VOLT_V",
-                "power1_Name": "FAN_BP0_FAN2_PWR_W"
+                "in1_Name": "FAN_BP0_FAN2_VOLT_V"
             },
             {
                 "Address": "0x45",
                 "Bus": 2,
                 "Labels": [
                     "in1",
-                    "curr1",
-                    "power1"
+                    "curr1"
                 ],
                 "Name": "FAN_BP0_FAN3",
                 "Thresholds": [
@@ -367,27 +360,26 @@
                         "Label": "in1",
                         "Name": "lower critical",
                         "Severity": 1,
-                        "Value": 54.6
+                        "Value": 48.45
                     },
                     {
                         "Direction": "greater than",
                         "Label": "in1",
                         "Name": "upper critical",
                         "Severity": 1,
-                        "Value": 55.8
+                        "Value": 53.35
                     },
                     {
                         "Direction": "greater than",
                         "Label": "curr1",
                         "Name": "upper critical",
                         "Severity": 1,
-                        "Value": 1.15
+                        "Value": 2.88
                     }
                 ],
                 "Type": "INA238",
                 "curr1_Name": "FAN_BP0_FAN3_CURR_A",
-                "in1_Name": "FAN_BP0_FAN3_VOLT_V",
-                "power1_Name": "FAN_BP0_FAN3_PWR_W"
+                "in1_Name": "FAN_BP0_FAN3_VOLT_V"
             }
         ],
         "Name": "Harma Fan Board 0",
@@ -641,8 +633,7 @@
                 "Bus": 0,
                 "Labels": [
                     "in1",
-                    "curr1",
-                    "power1"
+                    "curr1"
                 ],
                 "Name": "FAN_BP1_FAN0",
                 "Thresholds": [
@@ -651,35 +642,33 @@
                         "Label": "in1",
                         "Name": "lower critical",
                         "Severity": 1,
-                        "Value": 54.6
+                        "Value": 48.45
                     },
                     {
                         "Direction": "greater than",
                         "Label": "in1",
                         "Name": "upper critical",
                         "Severity": 1,
-                        "Value": 55.8
+                        "Value": 53.35
                     },
                     {
                         "Direction": "greater than",
                         "Label": "curr1",
                         "Name": "upper critical",
                         "Severity": 1,
-                        "Value": 1.19
+                        "Value": 2.88
                     }
                 ],
                 "Type": "INA238",
                 "curr1_Name": "FAN_BP1_FAN0_CURR_A",
-                "in1_Name": "FAN_BP1_FAN0_VOLT_V",
-                "power1_Name": "FAN_BP1_FAN0_PWR_W"
+                "in1_Name": "FAN_BP1_FAN0_VOLT_V"
             },
             {
                 "Address": "0x41",
                 "Bus": 0,
                 "Labels": [
                     "in1",
-                    "curr1",
-                    "power1"
+                    "curr1"
                 ],
                 "Name": "FAN_BP1_FAN1",
                 "Thresholds": [
@@ -688,35 +677,33 @@
                         "Label": "in1",
                         "Name": "lower critical",
                         "Severity": 1,
-                        "Value": 54.6
+                        "Value": 48.45
                     },
                     {
                         "Direction": "greater than",
                         "Label": "in1",
                         "Name": "upper critical",
                         "Severity": 1,
-                        "Value": 55.8
+                        "Value": 53.35
                     },
                     {
                         "Direction": "greater than",
                         "Label": "curr1",
                         "Name": "upper critical",
                         "Severity": 1,
-                        "Value": 1.13
+                        "Value": 2.88
                     }
                 ],
                 "Type": "INA238",
                 "curr1_Name": "FAN_BP1_FAN1_CURR_A",
-                "in1_Name": "FAN_BP1_FAN1_VOLT_V",
-                "power1_Name": "FAN_BP1_FAN1_PWR_W"
+                "in1_Name": "FAN_BP1_FAN1_VOLT_V"
             },
             {
                 "Address": "0x44",
                 "Bus": 0,
                 "Labels": [
                     "in1",
-                    "curr1",
-                    "power1"
+                    "curr1"
                 ],
                 "Name": "FAN_BP1_FAN2",
                 "Thresholds": [
@@ -725,35 +712,33 @@
                         "Label": "in1",
                         "Name": "lower critical",
                         "Severity": 1,
-                        "Value": 54.6
+                        "Value": 48.45
                     },
                     {
                         "Direction": "greater than",
                         "Label": "in1",
                         "Name": "upper critical",
                         "Severity": 1,
-                        "Value": 55.8
+                        "Value": 53.35
                     },
                     {
                         "Direction": "greater than",
                         "Label": "curr1",
                         "Name": "upper critical",
                         "Severity": 1,
-                        "Value": 1.13
+                        "Value": 2.88
                     }
                 ],
                 "Type": "INA238",
                 "curr1_Name": "FAN_BP1_FAN2_CURR_A",
-                "in1_Name": "FAN_BP1_FAN2_VOLT_V",
-                "power1_Name": "FAN_BP1_FAN2_PWR_W"
+                "in1_Name": "FAN_BP1_FAN2_VOLT_V"
             },
             {
                 "Address": "0x45",
                 "Bus": 0,
                 "Labels": [
                     "in1",
-                    "curr1",
-                    "power1"
+                    "curr1"
                 ],
                 "Name": "FAN_BP1_FAN3",
                 "Thresholds": [
@@ -762,27 +747,26 @@
                         "Label": "in1",
                         "Name": "lower critical",
                         "Severity": 1,
-                        "Value": 54.6
+                        "Value": 48.45
                     },
                     {
                         "Direction": "greater than",
                         "Label": "in1",
                         "Name": "upper critical",
                         "Severity": 1,
-                        "Value": 55.8
+                        "Value": 53.35
                     },
                     {
                         "Direction": "greater than",
                         "Label": "curr1",
                         "Name": "upper critical",
                         "Severity": 1,
-                        "Value": 1.15
+                        "Value": 2.88
                     }
                 ],
                 "Type": "INA238",
                 "curr1_Name": "FAN_BP1_FAN3_CURR_A",
-                "in1_Name": "FAN_BP1_FAN3_VOLT_V",
-                "power1_Name": "FAN_BP1_FAN3_PWR_W"
+                "in1_Name": "FAN_BP1_FAN3_VOLT_V"
             }
         ],
         "Name": "Harma Fan Board 1",
