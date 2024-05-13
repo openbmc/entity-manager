@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "a680ba03_8605194b",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 8
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2024-05-13T15:52:00Z",
+      "side": 1,
+      "message": "Patrick and I chatted about this and he made the argument to me that FruDevice should be adjusted to follow the existing BuildDate interfaces.  While I still think using epoch everywhere would be more consistent, this patchset being far more non-trivial than I thought it would be, and the fact that we need 4 others to land correctly (Phosphor-dbus-interfaces, entity-manager, IBM, bmcweb) to realize that functionally is a reasonable argument that we shouldn\u0027t do it, or at the very least treat it as a separate problem to clean up later.\n\nI suspect this patchset can be radically simplified, to just make FRU device produce an ISO8160 string.",
+      "revId": "ea4d7abfda1a45901453a19c36f1fa6ddcf68b37",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    }
+  ]
+}
