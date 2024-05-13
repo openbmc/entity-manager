@@ -164,6 +164,30 @@
       },
       "revId": "1ff03cb91dfa9734adc24fd579767a3f2d676e20",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "3136a28a_cfe3257a",
+        "filename": "src/fru_utils.cpp",
+        "patchSetId": 4
+      },
+      "lineNbr": 453,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2024-05-13T15:55:20Z",
+      "side": 1,
+      "message": "I used uint64, and not std::chrono::minutes so that we weren\u0027t going uint -\u003e int -\u003e uint with all the possible overflows and underflows that entails.  I know there are those that fuzz this interface by writing randomized values to eeproms, and I was trying to be paranoid (possibly overly so).  I agree, std::chrono::minutes::period is a good compromise between keeping things unsigned and keeping things readable.",
+      "parentUuid": "bf1b2713_a309e8d3",
+      "range": {
+        "startLine": 453,
+        "startChar": 16,
+        "endLine": 453,
+        "endChar": 63
+      },
+      "revId": "1ff03cb91dfa9734adc24fd579767a3f2d676e20",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }
