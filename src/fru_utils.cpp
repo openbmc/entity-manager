@@ -471,7 +471,7 @@ resCodes
                 // Tue Nov 20 23:08:00 2018
                 std::array<char, 32> timeString = {};
                 auto bytes = std::strftime(timeString.data(), timeString.size(),
-                                           "%Y-%m-%d - %H:%M:%S UTC", &fruTime);
+                                           "%Y%m%dT%H%M%SZ", &fruTime);
                 if (bytes == 0)
                 {
                     std::cerr << "invalid time string encountered\n";
