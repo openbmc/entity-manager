@@ -1,0 +1,106 @@
+{
+    "Exposes": [
+        {
+            "Address": "$address",
+            "Bus": "$bus",
+            "Name": "Catalina HDD Board FRU",
+            "Type": "EEPROM"
+        },
+        {
+            "Address": "0x40",
+            "Bus": 55,
+            "Labels": [
+                "in1",
+                "curr1",
+                "power1"
+            ],
+            "Name": "HDDBOARD_SSD0_INA230",
+            "Type": "INA230",
+            "curr1_Name": "HDDBOARD_SSD0_P12V_CURR_A",
+            "in1_Name": "HDDBOARD_SSD0_P12V_VOLT_V",
+            "power1_Name": "HDDBOARD_SSD0_P12V_PWR_W"
+        },
+        {
+            "Address": "0x41",
+            "Bus": 55,
+            "Labels": [
+                "in1",
+                "curr1",
+                "power1"
+            ],
+            "Name": "HDDBOARD_SSD1_INA230",
+            "Type": "INA230",
+            "curr1_Name": "HDDBOARD_SSD1_P12V_CURR_A",
+            "in1_Name": "HDDBOARD_SSD1_P12V_VOLT_V",
+            "power1_Name": "HDDBOARD_SSD1_P12V_PWR_W"
+        },
+        {
+            "Address": "0x44",
+            "Bus": 55,
+            "Labels": [
+                "in1",
+                "curr1",
+                "power1"
+            ],
+            "Name": "HDDBOARD_SSD2_INA230",
+            "Type": "INA230",
+            "curr1_Name": "HDDBOARD_SSD2_P12V_CURR_A",
+            "in1_Name": "HDDBOARD_SSD2_P12V_VOLT_V",
+            "power1_Name": "HDDBOARD_SSD2_P12V_PWR_W"
+        },
+        {
+            "Address": "0x45",
+            "Bus": 55,
+            "Labels": [
+                "in1",
+                "curr1",
+                "power1"
+            ],
+            "Name": "HDDBOARD_SSD3_INA230",
+            "Type": "INA230",
+            "curr1_Name": "HDDBOARD_SSD3_P12V_CURR_A",
+            "in1_Name": "HDDBOARD_SSD3_P12V_VOLT_V",
+            "power1_Name": "HDDBOARD_SSD3_P12V_PWR_W"
+        },
+        {
+            "Address": "0x6a",
+            "Bus": "48",
+            "Name": "HDDBOARD_SSD0_TEMP_C",
+            "Type": "NVME1000"
+        },
+        {
+            "Address": "0x6a",
+            "Bus": "49",
+            "Name": "HDDBOARD_SSD1_TEMP_C",
+            "Type": "NVME1000"
+        },
+        {
+            "Address": "0x6a",
+            "Bus": "50",
+            "Name": "HDDBOARD_SSD2_TEMP_C",
+            "Type": "NVME1000"
+        },
+        {
+            "Address": "0x6a",
+            "Bus": "51",
+            "Name": "HDDBOARD_SSD3_TEMP_C",
+            "Type": "NVME1000"
+        }
+    ],
+    "Name": "Catalina HDD",
+    "Probe": "xyz.openbmc_project.FruDevice({'BOARD_PRODUCT_NAME': 'Catalina HDD '})",
+    "Type": "Board",
+    "xyz.openbmc_project.Inventory.Decorator.Asset": {
+        "Manufacturer": "$PRODUCT_MANUFACTURER",
+        "Model": "$PRODUCT_PRODUCT_NAME",
+        "PartNumber": "$PRODUCT_PART_NUMBER",
+        "SerialNumber": "$PRODUCT_SERIAL_NUMBER",
+        "SparePartNumber": "$BOARD_INFO_AM1"
+    },
+    "xyz.openbmc_project.Inventory.Decorator.AssetTag": {
+        "AssetTag": "$PRODUCT_ASSET_TAG"
+    },
+    "xyz.openbmc_project.Inventory.Decorator.Revision": {
+        "Version": "$PRODUCT_VERSION"
+    }
+}
