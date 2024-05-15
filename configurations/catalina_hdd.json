@@ -1,0 +1,84 @@
+{
+    "Exposes": [
+        {
+            "Address": "$address",
+            "Bus": "$bus",
+            "Name": "Catalina HDD Board FRU",
+            "Type": "EEPROM"
+        },
+        {
+            "Address": "0x40",
+            "Bus": 55,
+            "Labels": [
+                "in1",
+                "curr1",
+                "power1"
+            ],
+            "Name": "HDDBOARD_SSD0_INA230",
+            "Type": "INA230",
+            "curr1_Name": "HDDBOARD_SSD0_P12V_CURR_A",
+            "in1_Name": "HDDBOARD_SSD0_P12V_VOLT_V",
+            "power1_Name": "HDDBOARD_SSD0_P12V_PWR_W"
+        },
+        {
+            "Address": "0x41",
+            "Bus": 55,
+            "Labels": [
+                "in1",
+                "curr1",
+                "power1"
+            ],
+            "Name": "HDDBOARD_SSD1_INA230",
+            "Type": "INA230",
+            "curr1_Name": "HDDBOARD_SSD1_P12V_CURR_A",
+            "in1_Name": "HDDBOARD_SSD1_P12V_VOLT_V",
+            "power1_Name": "HDDBOARD_SSD1_P12V_PWR_W"
+        },
+        {
+            "Address": "0x44",
+            "Bus": 55,
+            "Labels": [
+                "in1",
+                "curr1",
+                "power1"
+            ],
+            "Name": "HDDBOARD_SSD2_INA230",
+            "Type": "INA230",
+            "curr1_Name": "HDDBOARD_SSD2_P12V_CURR_A",
+            "in1_Name": "HDDBOARD_SSD2_P12V_VOLT_V",
+            "power1_Name": "HDDBOARD_SSD2_P12V_PWR_W"
+        },
+        {
+            "Address": "0x45",
+            "Bus": 55,
+            "Labels": [
+                "in1",
+                "curr1",
+                "power1"
+            ],
+            "Name": "HDDBOARD_SSD3_INA230",
+            "Type": "INA230",
+            "curr1_Name": "HDDBOARD_SSD3_P12V_CURR_A",
+            "in1_Name": "HDDBOARD_SSD3_P12V_VOLT_V",
+            "power1_Name": "HDDBOARD_SSD3_P12V_PWR_W"
+        }
+    ],
+    /* Catalina Hard Disk Drive Carrier Board */
+    "Name": "Catalina HDD",
+    "Probe": "xyz.openbmc_project.FruDevice({'BOARD_PRODUCT_NAME': 'Catalina HDD ', 'BOARD_MANUFACTURER': 'Quanta'})",
+    "Type": "Board",
+    "xyz.openbmc_project.Inventory.Decorator.Asset": {
+        "BuildDate": "$BOARD_MANUFACTURE_DATE",
+        "Manufacturer": "$BOARD_MANUFACTURER",
+        "Model": "$BOARD_PRODUCT_NAME",
+        "PartNumber": "$BOARD_PART_NUMBER",
+        "SerialNumber": "$BOARD_SERIAL_NUMBER",
+        "SparePartNumber": "$BOARD_INFO_AM1"
+    },
+    "xyz.openbmc_project.Inventory.Decorator.AssetTag": {
+        "AssetTag": "$PRODUCT_ASSET_TAG"
+    },
+    "xyz.openbmc_project.Inventory.Decorator.Revision": {
+        "Version": "$PRODUCT_VERSION"
+    }
+}
