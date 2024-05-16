@@ -124,6 +124,24 @@
       "parentUuid": "fef42e9d_ae3e89a2",
       "revId": "9b911f3e9252fd06ce944347e0857fce0395855c",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "37f52575_6c0d0e16",
+        "filename": "configurations/yosemite4_fanboard_adc_ti.json",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1001618
+      },
+      "writtenOn": "2024-05-16T03:23:09Z",
+      "side": 1,
+      "message": "Here is the information obtained by using the `curl` command to view Redfish data:\n\nWhen the Fru name is set to the original \"Fan Board\" and using the `yosemite4_fanboard_fsc_max_adc_ti.json` JSON file:\n\n- Under `/redfish/v1/Chassis/`, you will find `Yosemite_4_FAN_Board_1`.\n- Under `/redfish/v1/Chassis/Yosemite_4_FAN_Board_1/Sensors`, there are a total of 26 sensors, comprising:\n  - 8 ADC sensors:\n    - `/voltage_FANBOARD1_ADC_3V3_STBY_VOLT_V`\n    - `/voltage_FANBOARD1_ADC_48V_AUX_VOLT_V`\n    - `/voltage_FANBOARD1_ADC_48V_FAN${X}_CURR_A` (where X \u003d 2, 3, 6, 7, 10, 11)\n  - 18 Fan IC sensors:\n    - `/fanpwm_FANBOARD1_FAN${X}_PWM`\n    - `/fantach_FANBOARD1_FAN${X}_TACH_IL`\n    - `/fantach_FANBOARD1_FAN${X}_TACH_OL` (where X \u003d 2, 3, 6, 7, 10, 11)\n\nWhen the Fru name is changed to \"FAN Board FSC-MAX ADC-TI\" and using both `yosemite4_fanboard_fsc_max.json` and `yosemite4_fanboard_adc_ti.json` JSON files:\n\n- Under `/redfish/v1/Chassis/`, you will find `/Yosemite_4_Fan_Board_1_ADC` and `/Yosemite_4_Fan_Board_1_FSC`.\n- In `/Yosemite_4_Fan_Board_1_ADC/Sensors`, there are 8 ADC sensors.\n- In `/Yosemite_4_Fan_Board_1_FSC/Sensors`, there are 18 Fan IC sensors.\n\nThe total number of ADC and Fan IC sensors remains 26.\n\nIt can be observed that under Redfish, the sensors are not lost but rather distributed from the original `Yosemite_4_FAN_Board_1/Sensors` to `/Yosemite_4_Fan_Board_1_ADC/Sensors` and `/Yosemite_4_Fan_Board_1_FSC/Sensors`.",
+      "parentUuid": "f9220dc7_00c48d22",
+      "revId": "9b911f3e9252fd06ce944347e0857fce0395855c",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }
