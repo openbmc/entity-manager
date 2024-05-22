@@ -1007,6 +1007,26 @@
                 }
             ],
             "Type": "TMP75"
+        },
+        {
+            "Class": "temp",
+            "Inputs": [
+                "SPIDER_TEMP0_C",
+                "SPIDER_TEMP1_C"
+            ],
+            "Name": "Stepwise_SPIDER_TEMP",
+            "NegativeHysteresis": 0,
+            "Output": [
+                20.0
+            ],
+            "PositiveHysteresis": 0,
+            "Reading": [
+                20.0
+            ],
+            "Type": "Stepwise",
+            "Zones": [
+                "Zone 1"
+            ]
         }
     ],
     "Name": "Yosemite 4 Spider Board",
