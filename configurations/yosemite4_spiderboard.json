@@ -981,6 +981,26 @@
             "vout1_Name": "SPIDER_INA233_12V_NIC3_VOLT_V"
         },
         {
+            "Class": "temp",
+            "Inputs": [
+                "SPIDER_TEMP0_C",
+                "SPIDER_TEMP1_C"
+            ],
+            "Name": "Stepwise_SPIDER_TEMP",
+            "NegativeHysteresis": 0,
+            "Output": [
+                20.0
+            ],
+            "PositiveHysteresis": 0,
+            "Reading": [
+                20.0
+            ],
+            "Type": "Stepwise",
+            "Zones": [
+                "Zone 1"
+            ]
+        },
+        {
             "Address": "0x4e",
             "Bus": 14,
             "Name": "SPIDER_TEMP0_C",
