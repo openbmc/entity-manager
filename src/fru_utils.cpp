@@ -525,10 +525,10 @@ resCodes
 
             if (state == DecodeState::ok)
             {
-                // Strip non null characters from the end
+                // Strip non null characters and trailing spaces from the end
                 value.erase(std::find_if(value.rbegin(), value.rend(),
                                          [](char ch) {
-                    return ch != 0;
+                    return ((ch != 0) && (ch != 32));
                 }).base(),
                             value.end());
 
