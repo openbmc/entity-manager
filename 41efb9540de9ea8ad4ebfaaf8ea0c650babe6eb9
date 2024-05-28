@@ -1,0 +1,67 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "88591e5a_01335117",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 11,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2024-05-28T22:15:56Z",
+      "side": 1,
+      "message": "nope, we don\u0027t tie those two APi definitions together at this point, they implement different things, they need definitions on both sides.",
+      "range": {
+        "startLine": 10,
+        "startChar": 34,
+        "endLine": 11,
+        "endChar": 42
+      },
+      "revId": "41efb9540de9ea8ad4ebfaaf8ea0c650babe6eb9",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "bad35557_d51dc416",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2024-05-28T22:15:56Z",
+      "side": 1,
+      "message": "I don\u0027t see any schema changes;  Can we get a pointer in the commit message to the backend that implements support for these new properties?",
+      "revId": "41efb9540de9ea8ad4ebfaaf8ea0c650babe6eb9",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0741c32e_f5c361ea",
+        "filename": "configurations/blueridge_1s4u_chassis.json",
+        "patchSetId": 1
+      },
+      "lineNbr": 34,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2024-05-28T22:15:56Z",
+      "side": 1,
+      "message": "How does a chassis have a power mode?  Is your chassis more than just sheet metal?",
+      "range": {
+        "startLine": 26,
+        "startChar": 0,
+        "endLine": 34,
+        "endChar": 14
+      },
+      "revId": "41efb9540de9ea8ad4ebfaaf8ea0c650babe6eb9",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    }
+  ]
+}
