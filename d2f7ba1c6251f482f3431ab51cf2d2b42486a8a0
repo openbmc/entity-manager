@@ -34,6 +34,24 @@
       "parentUuid": "f48ab93c_b9312e33",
       "revId": "d2f7ba1c6251f482f3431ab51cf2d2b42486a8a0",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3741e3c0_491e329b",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2024-05-28T22:31:24Z",
+      "side": 1,
+      "message": "\u003e \u003e  but I suspect at some point we need to revisit this stuff and see if we\u0027re be better off with a more fixed, explicitly coded solution.\n\u003e \n\u003e I\u0027m not convinced by that. It would be worth using what the devicetree people have done as a reference wrt JSON schema. They\u0027re solving (almost literally) the same problem.\n\nI found https://github.com/devicetree-org/dt-schema, looks like good nighttime reading.\n\nFWIW, my previous comment was written on a day when I was tired, and looking at a complicated thing I didn\u0027t understand.  I\u0027m not sure I meant what I said (even if I did use the weasel word of \"revisit\");  Json schema can probably solve the problem at hand, I just wish our schema definitions were easier to read, understand, and implement.\n\n\u003e \n\u003e \u003e I\u0027m not sure the JsonSchema stuff is complete enough (it enforces schema but not really correctness)\n\u003e \n\u003e Can you unpack what your expectations are on \"correctness\"? Without understanding that I don\u0027t think we\u0027re going to agree on the value of JSON schema. I think it\u0027s worthwhile.\n\nI think it would be worthwhile as a whole, what I mean is for checking more than just getting the types in the right spot.  It\u0027s possible that json schema can do everything we need, i\u0027m just not sure how to structure it.  For example, I believe we have no enforcement of the Type field today, in that Type: TMP75 can implement all the same properties as Type: PMBus, but the backends don\u0027t support all the same properties.  Ideally we\u0027d know this at compile time, or even better, at EM launch when we parse in the file.  I\u0027m imagining a log like:\n\n\"Tried to parse xyz.json, but Type: TMP75 doesn\u0027t support property \u0027Typo\u0027\" in the startup log to make it obvious where your error is.\n\nFor other examples of things we could check.\n\nExposes records by design should never have a dbus path.  I don\u0027t know how to write that check in json schema, but in code it would be trivial to just check for /xyz/ against all properties.\n\nIf you implement something that matches on a Name (like a Found() probe) make sure there\u0027s at least one file that implements something of that name (ie typo finder).",
+      "parentUuid": "0aa31e24_6df5b6a9",
+      "revId": "d2f7ba1c6251f482f3431ab51cf2d2b42486a8a0",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }
