@@ -80,6 +80,26 @@
                 "Type": {
                     "const": "PowerModeProperties"
                 },
+                "CustomerModes": {
+                    "description": "List of power modes that are available for customers to set for this system.",
+                    "items": {
+                        "enum": [
+                            "BalancedPerformance",
+                            "EfficiencyFavorPerformance",
+                            "EfficiencyFavorPower",
+                            "MaximumPerformance",
+                            "OEM",
+                            "OSControlled",
+                            "PowerSaving",
+                            "Static"
+                        ]
+                    },
+                    "type": "array"
+                },
+                "EcoModeSupport": {
+                    "description": "Indicates if this system supports a set of Efficiency based settings",
+                    "type": "boolean"
+                },
                 "PowerMode": {
                     "description": "The default PowerMode to use prior to being set by a user.",
                     "enum": ["Static", "PowerSaving", "MaximumPerformance"]
@@ -111,6 +131,26 @@
                     "type": "number",
                     "minimum": 10,
                     "maximum": 600
+                },
+                "OemModes": {
+                    "description": "List of power modes that this system supports but are not able to be set directly by the customer.",
+                    "items": {
+                        "enum": [
+                            "BalancedPerformance",
+                            "EfficiencyFavorPerformance",
+                            "EfficiencyFavorPower",
+                            "FFO",
+                            "MaxFrequency",
+                            "MaximumPerformance",
+                            "NonDeterministic",
+                            "OEM",
+                            "OSControlled",
+                            "PowerSaving",
+                            "SFP",
+                            "Static"
+                        ]
+                    },
+                    "type": "array"
                 }
             },
             "required": ["PowerMode", "IdlePowerSaverEnabled", "Name", "Type"]
