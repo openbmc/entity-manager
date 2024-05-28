@@ -9,12 +9,27 @@
             "Type": "IBMCompatibleSystem"
         },
         {
+            "CustomerModes": [
+                "PowerSaving",
+                "MaximumPerformance",
+                "EfficiencyFavorPower"
+            ],
+            "EcoModeSupport": true,
             "EnterUtilizationDwellTime": 240,
             "EnterUtilizationPercent": 8,
             "ExitUtilizationDwellTime": 10,
             "ExitUtilizationPercent": 12,
             "IdlePowerSaverEnabled": true,
             "Name": "Default Power Mode Properties",
+            "OemModes": [
+                "BalancedPerformance",
+                "EfficiencyFavorPerformance",
+                "FFO",
+                "MaxFrequency",
+                "NonDeterministic",
+                "SFP",
+                "Static"
+            ],
             "PowerMode": "MaximumPerformance",
             "Type": "PowerModeProperties"
         }
