@@ -52,6 +52,24 @@
       "parentUuid": "0aa31e24_6df5b6a9",
       "revId": "d2f7ba1c6251f482f3431ab51cf2d2b42486a8a0",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c8cd95de_de154d4c",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1000009
+      },
+      "writtenOn": "2024-05-29T01:03:32Z",
+      "side": 1,
+      "message": "\u003e  It\u0027s possible that json schema can do everything we need, i\u0027m just not sure how to structure it. For example, I believe we have no enforcement of the Type field today, in that Type: TMP75 can implement all the same properties as Type: PMBus, but the backends don\u0027t support all the same properties.\n\nThis is exactly what dt-schema handles. The value of `compatible` defines what schema the remaining properties are validated against. Hence it being instructive 😊\n\nA big problem EM has right now is almost everything is defined by a massive collection of properties in `legacy.json`. That needs to stop; there needs to be more \"shape\" to the schemas. But it\u0027s a long-term project, not something that\u0027s easily fixed right now. I think my attempt at specifying a set of MCTP-related schemas is a step in the right direction.",
+      "parentUuid": "3741e3c0_491e329b",
+      "revId": "d2f7ba1c6251f482f3431ab51cf2d2b42486a8a0",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }
