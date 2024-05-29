@@ -48,6 +48,30 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": true,
+      "key": {
+        "uuid": "4b292779_25f92a29",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 11,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2024-05-29T20:29:35Z",
+      "side": 1,
+      "message": "bmcweb operates on Redfish schemas.  Dbus operates on dbus schemas;  They\u0027re not the same, and you can\u0027t just take an enumeration like this and send the string end to end through the system.",
+      "parentUuid": "932886a7_d3fd363a",
+      "range": {
+        "startLine": 10,
+        "startChar": 34,
+        "endLine": 11,
+        "endChar": 42
+      },
+      "revId": "41efb9540de9ea8ad4ebfaaf8ea0c650babe6eb9",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": false,
       "key": {
         "uuid": "bad35557_d51dc416",
@@ -79,6 +103,24 @@
       "side": 1,
       "message": "Sorry, missed the schema.\nNot sure what you are looking for in a pointer to the backend implementation. That code is still in progress and obviously dependent on this commit. For example:\n1. occ-control will read these properties to know what customer power modes this configuration will support\n2. occ-control will publish the supported modes on dbus for bmcweb to consume\n3. OpenBMC GUI will read the supported customer modes via Redfish and display on customer GUI.",
       "parentUuid": "bad35557_d51dc416",
+      "revId": "41efb9540de9ea8ad4ebfaaf8ea0c650babe6eb9",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6c35ca49_90379e05",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2024-05-29T20:29:35Z",
+      "side": 1,
+      "message": "\u003e Sorry, missed the schema.\n\u003e Not sure what you are looking for in a pointer to the backend implementation. That code is still in progress and obviously dependent on this commit.\n\nSo then mark this commit as WIP until the code is in place so you can do appropriate testing?\n\n\u003e For example:\n\u003e 1. occ-control will read these properties to know what customer power modes this configuration will support\n\u003e 2. occ-control will publish the supported modes on dbus for bmcweb to consume\n\u003e 3. OpenBMC GUI will read the supported customer modes via Redfish and display on customer GUI.\n\nCool.",
+      "parentUuid": "c650d32b_a345028d",
       "revId": "41efb9540de9ea8ad4ebfaaf8ea0c650babe6eb9",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
@@ -120,6 +162,30 @@
       "side": 1,
       "message": "IBM systems are all specific know base configurations (not collections of parts where anything can be plugged in). For example a rainier_1s4u_chassis.json defines a specific configuration that has a specific set of features it supports.",
       "parentUuid": "0741c32e_f5c361ea",
+      "range": {
+        "startLine": 26,
+        "startChar": 0,
+        "endLine": 34,
+        "endChar": 14
+      },
+      "revId": "41efb9540de9ea8ad4ebfaaf8ea0c650babe6eb9",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d8871726_7cbe8c35",
+        "filename": "configurations/blueridge_1s4u_chassis.json",
+        "patchSetId": 1
+      },
+      "lineNbr": 34,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2024-05-29T20:29:35Z",
+      "side": 1,
+      "message": "\u003e IBM systems are all specific know base configurations (not collections of parts where anything can be plugged in). For example a rainier_1s4u_chassis.json defines a specific configuration that has a specific set of features it supports.\n\nSo.......  it\u0027s not a chassis then?  It\u0027s a \"configuration\" of sorts, and you would have a separate file for the chassis?",
+      "parentUuid": "b2e63dfe_a1eb49d8",
       "range": {
         "startLine": 26,
         "startChar": 0,
