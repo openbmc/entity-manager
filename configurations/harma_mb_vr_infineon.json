@@ -375,7 +375,7 @@
                 "iout1",
                 "vin",
                 "vout1",
-                "pout1",
+                "pin",
                 "temp1"
             ],
             "Name": "MB_HSC",
@@ -424,7 +424,7 @@
                 },
                 {
                     "Direction": "greater than",
-                    "Label": "pout1",
+                    "Label": "pin",
                     "Name": "upper critical",
                     "Severity": 1,
                     "Value": 950.0
@@ -432,7 +432,7 @@
             ],
             "Type": "MP5990",
             "iout1_Name": "MB_HSC_CURR_A",
-            "pout1_Name": "MB_HSC_PWR_W",
+            "pin_Name": "MB_HSC_PWR_W",
             "temp1_Name": "MB_HSC_TEMP_C",
             "vin_Name": "MB_HSC_VIN_VOLT_V",
             "vout1_Name": "MB_HSC_VOUT_VOLT_V"
