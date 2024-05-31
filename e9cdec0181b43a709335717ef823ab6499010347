@@ -34,6 +34,24 @@
       "parentUuid": "cbf12ffa_68f5976a",
       "revId": "e9cdec0181b43a709335717ef823ab6499010347",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "94743569_cdd21f69",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2024-05-31T12:14:34Z",
+      "side": 1,
+      "message": "I don\u0027t know that it would have changed the result but probably the timeline.  What happened here was:\n\n- There was a discussion on Discord about the way to add this to mctpd.\n- We implemented EM and mctpd changes and sent PRs.\n- EM was accepted and then mctpd side decided they didn\u0027t want to continue down that direction.\n- Andrew started writing an alternative, which isn\u0027t yet complete.\n\nWe were holding the mctpd patches downstream (https://github.com/facebook/openbmc/blob/helium/meta-facebook/meta-yosemite4/recipes-networking/mctp/files/0503-Add-method-for-setting-up-MCTP-EID-by-config-path.patch) until Andrew\u0027s code is complete and we can transition to this.\n\nWe were caught off guard here by the EM change suddenly being removed and breaking us downstream.  We will add a revert-revert patch in downstream now.",
+      "parentUuid": "14dabd9d_8dd3aa41",
+      "revId": "e9cdec0181b43a709335717ef823ab6499010347",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }
