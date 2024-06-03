@@ -380,6 +380,38 @@
                 "Type": "INA238",
                 "curr1_Name": "FCB_TOP_$bus * -1 + 17 FAN3_CURR_A",
                 "in1_Name": "FCB_TOP_$bus * -1 + 17 FAN3_VOLT_V"
+            },
+            {
+                "Address": "0x4b",
+                "Bus": "$bus",
+                "Name": "FCB_TOP_$bus * -1 + 17 TEMP_C",
+                "Thresholds": [
+                    {
+                        "Direction": "greater than",
+                        "Name": "upper critical",
+                        "Severity": 1,
+                        "Value": 80
+                    },
+                    {
+                        "Direction": "greater than",
+                        "Name": "upper non critical",
+                        "Severity": 0,
+                        "Value": 75
+                    },
+                    {
+                        "Direction": "less than",
+                        "Name": "lower non critical",
+                        "Severity": 0,
+                        "Value": 5
+                    },
+                    {
+                        "Direction": "less than",
+                        "Name": "lower critical",
+                        "Severity": 1,
+                        "Value": 0
+                    }
+                ],
+                "Type": "TMP75"
             }
         ],
         "Name": "Minerva Top Fan Board $bus * -1 + 17",
@@ -778,6 +810,38 @@
                 "Type": "INA238",
                 "curr1_Name": "FCB_MID_$bus * -1 + 19 FAN3_CURR_A",
                 "in1_Name": "FCB_MID_$bus * -1 + 19 FAN3_VOLT_V"
+            },
+            {
+                "Address": "0x4b",
+                "Bus": "$bus",
+                "Name": "FCB_MID_$bus * -1 + 19 TEMP_C",
+                "Thresholds": [
+                    {
+                        "Direction": "greater than",
+                        "Name": "upper critical",
+                        "Severity": 1,
+                        "Value": 80
+                    },
+                    {
+                        "Direction": "greater than",
+                        "Name": "upper non critical",
+                        "Severity": 0,
+                        "Value": 75
+                    },
+                    {
+                        "Direction": "less than",
+                        "Name": "lower non critical",
+                        "Severity": 0,
+                        "Value": 5
+                    },
+                    {
+                        "Direction": "less than",
+                        "Name": "lower critical",
+                        "Severity": 1,
+                        "Value": 0
+                    }
+                ],
+                "Type": "TMP75"
             }
         ],
         "Name": "Minerva Middle Fan Board $bus * -1 + 19",
@@ -1176,6 +1240,38 @@
                 "Type": "INA238",
                 "curr1_Name": "FCB_BOT_$bus * -1 + 21 FAN3_CURR_A",
                 "in1_Name": "FCB_BOT_$bus * -1 + 21 FAN3_VOLT_V"
+            },
+            {
+                "Address": "0x4b",
+                "Bus": "$bus",
+                "Name": "FCB_BOT_$bus * -1 + 21 TEMP_C",
+                "Thresholds": [
+                    {
+                        "Direction": "greater than",
+                        "Name": "upper critical",
+                        "Severity": 1,
+                        "Value": 80
+                    },
+                    {
+                        "Direction": "greater than",
+                        "Name": "upper non critical",
+                        "Severity": 0,
+                        "Value": 75
+                    },
+                    {
+                        "Direction": "less than",
+                        "Name": "lower non critical",
+                        "Severity": 0,
+                        "Value": 5
+                    },
+                    {
+                        "Direction": "less than",
+                        "Name": "lower critical",
+                        "Severity": 1,
+                        "Value": 0
+                    }
+                ],
+                "Type": "TMP75"
             }
         ],
         "Name": "Minerva Bottom Fan Board $bus * -1 + 21",
