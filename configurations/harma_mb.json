@@ -1009,7 +1009,9 @@
     "Probe": [
         "xyz.openbmc_project.FruDevice({'BOARD_PRODUCT_NAME': 'Harma MB EVT', 'BOARD_PART_NUMBER': '3BF0MMA0040'})",
         "OR",
-        "xyz.openbmc_project.FruDevice({'BOARD_PRODUCT_NAME': 'Harma MB EVT', 'BOARD_PART_NUMBER': '3BF0MMA0080'})"
+        "xyz.openbmc_project.FruDevice({'BOARD_PRODUCT_NAME': 'Harma MB EVT', 'BOARD_PART_NUMBER': '3BF0MMA0080'})",
+        "OR",
+        "xyz.openbmc_project.FruDevice({'BOARD_PRODUCT_NAME': 'Harma MB ', 'BOARD_INFO_AM4': 'vr-isl'})"
     ],
     "Type": "Board",
     "xyz.openbmc_project.Inventory.Decorator.Asset": {
