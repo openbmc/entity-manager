@@ -1,0 +1,2300 @@
+{
+    "Exposes": [
+        {
+            "Index": 1,
+            "Name": "SYS_12V",
+            "ScaleFactor": 0.1129,
+            "Thresholds": [
+                {
+                    "Direction": "greater than",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 13.2
+                },
+                {
+                    "Direction": "less than",
+                    "Name": "lower critical",
+                    "Severity": 1,
+                    "Value": 10.8
+                },
+                {
+                    "Direction": "greater than",
+                    "Name": "upper non critical",
+                    "Severity": 0,
+                    "Value": 12.84
+                },
+                {
+                    "Direction": "less than",
+                    "Name": "lower non critical",
+                    "Severity": 0,
+                    "Value": 11.16
+                },
+                {
+                    "Direction": "greater than",
+                    "Name": "upper critical",
+                    "Severity": 5,
+                    "Value": 13.786
+                },
+                {
+                    "Direction": "less than",
+                    "Name": "lower critical",
+                    "Severity": 5,
+                    "Value": 10.44
+                }
+            ],
+            "Type": "ADC"
+        },
+        {
+            "BridgeGpio": [
+                {
+                    "Name": "P3VBAT_BRIDGE_EN",
+                    "Polarity": "High"
+                }
+            ],
+            "Index": 7,
+            "Name": "RTC_Battery",
+            "PollRate": "86400",
+            "SampleNeedFlag": "NoNeed",
+            "ScaleFactor": 0.3333,
+            "Thresholds": [
+                {
+                    "Direction": "greater than",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 3.3
+                },
+                {
+                    "Direction": "less than",
+                    "Name": "lower critical",
+                    "Severity": 1,
+                    "Value": 2.7
+                },
+                {
+                    "Direction": "greater than",
+                    "Name": "upper non critical",
+                    "Severity": 0,
+                    "Value": 3.21
+                },
+                {
+                    "Direction": "less than",
+                    "Name": "lower non critical",
+                    "Severity": 0,
+                    "Value": 2.79
+                }
+            ],
+            "Type": "ADC"
+        },
+        {
+            "Index": 4,
+            "Name": "SYS_5V",
+            "ScaleFactor": 0.2703,
+            "Thresholds": [
+                {
+                    "Direction": "greater than",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 5.52
+                },
+                {
+                    "Direction": "less than",
+                    "Name": "lower critical",
+                    "Severity": 1,
+                    "Value": 4.5
+                },
+                {
+                    "Direction": "greater than",
+                    "Name": "upper non critical",
+                    "Severity": 0,
+                    "Value": 5.37
+                },
+                {
+                    "Direction": "less than",
+                    "Name": "lower non critical",
+                    "Severity": 0,
+                    "Value": 4.65
+                },
+                {
+                    "Direction": "greater than",
+                    "Name": "upper critical",
+                    "Severity": 5,
+                    "Value": 5.65
+                },
+                {
+                    "Direction": "less than",
+                    "Name": "lower critical",
+                    "Severity": 5,
+                    "Value": 4.35
+                }
+            ],
+            "Type": "ADC"
+        },
+        {
+            "Index": 8,
+            "Name": "SYS_3V3",
+            "ScaleFactor": 0.4118,
+            "Thresholds": [
+                {
+                    "Direction": "greater than",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 3.64
+                },
+                {
+                    "Direction": "less than",
+                    "Name": "lower critical",
+                    "Severity": 1,
+                    "Value": 2.98
+                },
+                {
+                    "Direction": "greater than",
+                    "Name": "upper non critical",
+                    "Severity": 0,
+                    "Value": 3.54
+                },
+                {
+                    "Direction": "less than",
+                    "Name": "lower non critical",
+                    "Severity": 0,
+                    "Value": 3.06
+                },
+                {
+                    "Direction": "greater than",
+                    "Name": "upper critical",
+                    "Severity": 5,
+                    "Value": 3.729
+                },
+                {
+                    "Direction": "less than",
+                    "Name": "lower critical",
+                    "Severity": 5,
+                    "Value": 2.871
+                }
+            ],
+            "Type": "ADC"
+        },
+        {
+            "Address": "0x1d",
+            "Bus": 7,
+            "Labels": [
+                "in2",
+                "in3"
+            ],
+            "Name": "PCH_STBY",
+            "PowerState": "On",
+            "Thresholds": [
+                {
+                    "Direction": "greater than",
+                    "Label": "in2",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 0.99
+                },
+                {
+                    "Direction": "less than",
+                    "Label": "in2",
+                    "Name": "lower critical",
+                    "Severity": 1,
+                    "Value": 0.81
+                },
+                {
+                    "Direction": "greater than",
+                    "Label": "in2",
+                    "Name": "upper non critical",
+                    "Severity": 0,
+                    "Value": 0.963
+                },
+                {
+                    "Direction": "less than",
+                    "Label": "in2",
+                    "Name": "lower non critical",
+                    "Severity": 0,
+                    "Value": 0.837
+                },
+                {
+                    "Direction": "greater than",
+                    "Label": "in2",
+                    "Name": "upper critical",
+                    "Severity": 5,
+                    "Value": 1.063
+                },
+                {
+                    "Direction": "less than",
+                    "Label": "in2",
+                    "Name": "lower critical",
+                    "Severity": 5,
+                    "Value": 0.744
+                },
+                {
+                    "Direction": "greater than",
+                    "Label": "in3",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 1.152
+                },
+                {
+                    "Direction": "less than",
+                    "Label": "in3",
+                    "Name": "lower critical",
+                    "Severity": 1,
+                    "Value": 0.945
+                },
+                {
+                    "Direction": "greater than",
+                    "Label": "in3",
+                    "Name": "upper non critical",
+                    "Severity": 0,
+                    "Value": 1.125
+                },
+                {
+                    "Direction": "less than",
+                    "Label": "in3",
+                    "Name": "lower non critical",
+                    "Severity": 0,
+                    "Value": 0.981
+                },
+                {
+                    "Direction": "greater than",
+                    "Label": "in3",
+                    "Name": "upper critical",
+                    "Severity": 5,
+                    "Value": 1.222
+                },
+                {
+                    "Direction": "less than",
+                    "Label": "in3",
+                    "Name": "lower critical",
+                    "Severity": 5,
+                    "Value": 0.868
+                }
+            ],
+            "Type": "ADC128D818",
+            "in2_Name": "PVNN_PCH_STBY",
+            "in3_Name": "P1V05_PCH_STBY"
+        },
+        {
+            "Address": "0x1e",
+            "Bus": 7,
+            "Labels": [
+                "in4",
+                "in7"
+            ],
+            "Name": "CPU0_Volt",
+            "PowerState": "On",
+            "Thresholds": [
+                {
+                    "Direction": "greater than",
+                    "Label": "in7",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 13.2
+                },
+                {
+                    "Direction": "less than",
+                    "Label": "in7",
+                    "Name": "lower critical",
+                    "Severity": 1,
+                    "Value": 10.8
+                },
+                {
+                    "Direction": "greater than",
+                    "Label": "in7",
+                    "Name": "upper non critical",
+                    "Severity": 0,
+                    "Value": 12.84
+                },
+                {
+                    "Direction": "less than",
+                    "Label": "in7",
+                    "Name": "lower non critical",
+                    "Severity": 0,
+                    "Value": 11.16
+                },
+                {
+                    "Direction": "greater than",
+                    "Label": "in7",
+                    "Name": "upper critical",
+                    "Severity": 5,
+                    "Value": 13.786
+                },
+                {
+                    "Direction": "less than",
+                    "Label": "in7",
+                    "Name": "lower critical",
+                    "Severity": 5,
+                    "Value": 10.44
+                },
+                {
+                    "Direction": "greater than",
+                    "Label": "in4",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 1.152
+                },
+                {
+                    "Direction": "less than",
+                    "Label": "in4",
+                    "Name": "lower critical",
+                    "Severity": 1,
+                    "Value": 0.945
+                },
+                {
+                    "Direction": "greater than",
+                    "Label": "in4",
+                    "Name": "upper non critical",
+                    "Severity": 0,
+                    "Value": 1.125
+                },
+                {
+                    "Direction": "less than",
+                    "Label": "in4",
+                    "Name": "lower non critical",
+                    "Severity": 0,
+                    "Value": 0.981
+                },
+                {
+                    "Direction": "greater than",
+                    "Label": "in4",
+                    "Name": "upper critical",
+                    "Severity": 5,
+                    "Value": 1.164
+                },
+                {
+                    "Direction": "less than",
+                    "Label": "in4",
+                    "Name": "lower critical",
+                    "Severity": 5,
+                    "Value": 0.844
+                }
+            ],
+            "Type": "ADC128D818",
+            "in4_Name": "PVNN_MAIN_CPU0",
+            "in7_Name": "P12V_CPU0_DIMM",
+            "in7_Scale": 113
+        },
+        {
+            "Address": "0x2d",
+            "Bus": 7,
+            "Labels": [
+                "in6",
+                "in7"
+            ],
+            "Name": "CPU1_Volt",
+            "PowerState": "On",
+            "Thresholds": [
+                {
+                    "Direction": "greater than",
+                    "Label": "in6",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 13.2
+                },
+                {
+                    "Direction": "less than",
+                    "Label": "in6",
+                    "Name": "lower critical",
+                    "Severity": 1,
+                    "Value": 10.8
+                },
+                {
+                    "Direction": "greater than",
+                    "Label": "in6",
+                    "Name": "upper non critical",
+                    "Severity": 0,
+                    "Value": 12.84
+                },
+                {
+                    "Direction": "less than",
+                    "Label": "in6",
+                    "Name": "lower non critical",
+                    "Severity": 0,
+                    "Value": 11.16
+                },
+                {
+                    "Direction": "greater than",
+                    "Label": "in6",
+                    "Name": "upper critical",
+                    "Severity": 5,
+                    "Value": 13.786
+                },
+                {
+                    "Direction": "less than",
+                    "Label": "in6",
+                    "Name": "lower critical",
+                    "Severity": 5,
+                    "Value": 10.44
+                },
+                {
+                    "Direction": "greater than",
+                    "Label": "in7",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 1.152
+                },
+                {
+                    "Direction": "less than",
+                    "Label": "in7",
+                    "Name": "lower critical",
+                    "Severity": 1,
+                    "Value": 0.945
+                },
+                {
+                    "Direction": "greater than",
+                    "Label": "in7",
+                    "Name": "upper non critical",
+                    "Severity": 0,
+                    "Value": 1.125
+                },
+                {
+                    "Direction": "less than",
+                    "Label": "in7",
+                    "Name": "lower non critical",
+                    "Severity": 0,
+                    "Value": 0.981
+                },
+                {
+                    "Direction": "greater than",
+                    "Label": "in7",
+                    "Name": "upper critical",
+                    "Severity": 5,
+                    "Value": 1.164
+                },
+                {
+                    "Direction": "less than",
+                    "Label": "in7",
+                    "Name": "lower critical",
+                    "Severity": 5,
+                    "Value": 0.844
+                }
+            ],
+            "Type": "ADC128D818",
+            "in6_Name": "P12V_CPU1_DIMM",
+            "in6_Scale": 113,
+            "in7_Name": "PVNN_MAIN_CPU1"
+        },
+        {
+            "Name": "FRU",
+            "ObjectPath": "/xyz/openbmc_project/inventory/system/chassis",
+            "Type": "ChassisFru"
+        },
+        {
+            "Address": "0x4c",
+            "Bus": 200,
+            "Name": "Outlet_Temp",
+            "Thresholds": [
+                {
+                    "Direction": "greater than",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 65
+                },
+                {
+                    "Direction": "greater than",
+                    "Name": "upper non critical",
+                    "Severity": 0,
+                    "Value": 60
+                }
+            ],
+            "Type": "EMC1413"
+        },
+        {
+            "AllowedFailures": 0,
+            "Name": "FanRedundancy",
+            "Type": "FanRedundancy"
+        },
+        {
+            "Name": "FM_PSU0_PRSNT_N",
+            "PSUName": "PSU0",
+            "Type": "Gpio"
+        },
+        {
+            "Name": "FM_PSU1_PRSNT_N",
+            "PSUName": "PSU1",
+            "Type": "Gpio"
+        },
+        {
+            "Address": "0x10",
+            "Bus": 10,
+            "Connector": {
+                "DeviationMargin": 70,
+                "FuncSlope": 315,
+                "Pwm": 0,
+                "PwmMax": 100,
+                "PwmName": "pwm1",
+                "ZeroPioint": -63
+            },
+            "Index": 0,
+            "MaxReading": 31400,
+            "Name": "fan0_0",
+            "PowerState": "Always",
+            "Presence": {
+                "PinName": "FAN_PRSNT0_D_N",
+                "Polarity": "Low"
+            },
+            "Thresholds": [
+                {
+                    "Direction": "greater than",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 31000
+                },
+                {
+                    "Direction": "less than",
+                    "Name": "lower critical",
+                    "Severity": 1,
+                    "Value": 2000
+                },
+                {
+                    "Direction": "greater than",
+                    "Name": "upper non critical",
+                    "Severity": 0,
+                    "Value": 29000
+                },
+                {
+                    "Direction": "less than",
+                    "Name": "lower non critical",
+                    "Severity": 0,
+                    "Value": 2500
+                }
+            ],
+            "Type": "I2CFan"
+        },
+        {
+            "Address": "0x10",
+            "Bus": 10,
+            "Connector": {
+                "DeviationMargin": 70,
+                "FuncSlope": 286,
+                "Pwm": 0,
+                "PwmMax": 100,
+                "PwmName": "pwm1",
+                "ZeroPioint": -56
+            },
+            "Index": 1,
+            "MaxReading": 28500,
+            "Name": "fan0_1",
+            "PowerState": "Always",
+            "Presence": {
+                "PinName": "FAN_PRSNT0_D_N",
+                "Polarity": "Low"
+            },
+            "Thresholds": [
+                {
+                    "Direction": "greater than",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 31000
+                },
+                {
+                    "Direction": "less than",
+                    "Name": "lower critical",
+                    "Severity": 1,
+                    "Value": 2000
+                },
+                {
+                    "Direction": "greater than",
+                    "Name": "upper non critical",
+                    "Severity": 0,
+                    "Value": 29000
+                },
+                {
+                    "Direction": "less than",
+                    "Name": "lower non critical",
+                    "Severity": 0,
+                    "Value": 2500
+                }
+            ],
+            "Type": "I2CFan"
+        },
+        {
+            "Address": "0x10",
+            "Bus": 10,
+            "Connector": {
+                "DeviationMargin": 70,
+                "FuncSlope": 315,
+                "Pwm": 2,
+                "PwmMax": 100,
+                "PwmName": "pwm3",
+                "ZeroPioint": -63
+            },
+            "Index": 4,
+            "MaxReading": 31400,
+            "Name": "fan1_0",
+            "PowerState": "Always",
+            "Presence": {
+                "PinName": "FAN_PRSNT2_D_N",
+                "Polarity": "Low"
+            },
+            "Thresholds": [
+                {
+                    "Direction": "greater than",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 31000
+                },
+                {
+                    "Direction": "less than",
+                    "Name": "lower critical",
+                    "Severity": 1,
+                    "Value": 2000
+                },
+                {
+                    "Direction": "greater than",
+                    "Name": "upper non critical",
+                    "Severity": 0,
+                    "Value": 29000
+                },
+                {
+                    "Direction": "less than",
+                    "Name": "lower non critical",
+                    "Severity": 0,
+                    "Value": 2500
+                }
+            ],
+            "Type": "I2CFan"
+        },
+        {
+            "Address": "0x10",
+            "Bus": 10,
+            "Connector": {
+                "DeviationMargin": 70,
+                "FuncSlope": 286,
+                "Pwm": 2,
+                "PwmMax": 100,
+                "PwmName": "pwm3",
+                "ZeroPioint": -56
+            },
+            "Index": 5,
+            "MaxReading": 28500,
+            "Name": "fan1_1",
+            "PowerState": "Always",
+            "Presence": {
+                "PinName": "FAN_PRSNT2_D_N",
+                "Polarity": "Low"
+            },
+            "Thresholds": [
+                {
+                    "Direction": "greater than",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 31000
+                },
+                {
+                    "Direction": "less than",
+                    "Name": "lower critical",
+                    "Severity": 1,
+                    "Value": 2000
+                },
+                {
+                    "Direction": "greater than",
+                    "Name": "upper non critical",
+                    "Severity": 0,
+                    "Value": 29000
+                },
+                {
+                    "Direction": "less than",
+                    "Name": "lower non critical",
+                    "Severity": 0,
+                    "Value": 2500
+                }
+            ],
+            "Type": "I2CFan"
+        },
+        {
+            "Address": "0x10",
+            "Bus": 10,
+            "Connector": {
+                "DeviationMargin": 70,
+                "FuncSlope": 315,
+                "Pwm": 3,
+                "PwmMax": 100,
+                "PwmName": "pwm4",
+                "ZeroPioint": -63
+            },
+            "Index": 6,
+            "MaxReading": 31400,
+            "Name": "fan2_0",
+            "PowerState": "Always",
+            "Presence": {
+                "PinName": "FAN_PRSNT3_D_N",
+                "Polarity": "Low"
+            },
+            "Thresholds": [
+                {
+                    "Direction": "greater than",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 31000
+                },
+                {
+                    "Direction": "less than",
+                    "Name": "lower critical",
+                    "Severity": 1,
+                    "Value": 2000
+                },
+                {
+                    "Direction": "greater than",
+                    "Name": "upper non critical",
+                    "Severity": 0,
+                    "Value": 29000
+                },
+                {
+                    "Direction": "less than",
+                    "Name": "lower non critical",
+                    "Severity": 0,
+                    "Value": 2500
+                }
+            ],
+            "Type": "I2CFan"
+        },
+        {
+            "Address": "0x10",
+            "Bus": 10,
+            "Connector": {
+                "DeviationMargin": 70,
+                "FuncSlope": 286,
+                "Pwm": 3,
+                "PwmMax": 100,
+                "PwmName": "pwm4",
+                "ZeroPioint": -56
+            },
+            "Index": 7,
+            "MaxReading": 28500,
+            "Name": "fan2_1",
+            "PowerState": "Always",
+            "Presence": {
+                "PinName": "FAN_PRSNT3_D_N",
+                "Polarity": "Low"
+            },
+            "Thresholds": [
+                {
+                    "Direction": "greater than",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 31000
+                },
+                {
+                    "Direction": "less than",
+                    "Name": "lower critical",
+                    "Severity": 1,
+                    "Value": 2000
+                },
+                {
+                    "Direction": "greater than",
+                    "Name": "upper non critical",
+                    "Severity": 0,
+                    "Value": 29000
+                },
+                {
+                    "Direction": "less than",
+                    "Name": "lower non critical",
+                    "Severity": 0,
+                    "Value": 2500
+                }
+            ],
+            "Type": "I2CFan"
+        },
+        {
+            "Address": "0x10",
+            "Bus": 10,
+            "Connector": {
+                "DeviationMargin": 70,
+                "FuncSlope": 315,
+                "Pwm": 5,
+                "PwmMax": 100,
+                "PwmName": "pwm6",
+                "ZeroPioint": -63
+            },
+            "Index": 10,
+            "MaxReading": 31400,
+            "Name": "fan3_0",
+            "PowerState": "Always",
+            "Presence": {
+                "PinName": "FAN_PRSNT5_D_N",
+                "Polarity": "Low"
+            },
+            "Thresholds": [
+                {
+                    "Direction": "greater than",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 31000
+                },
+                {
+                    "Direction": "less than",
+                    "Name": "lower critical",
+                    "Severity": 1,
+                    "Value": 2000
+                },
+                {
+                    "Direction": "greater than",
+                    "Name": "upper non critical",
+                    "Severity": 0,
+                    "Value": 29000
+                },
+                {
+                    "Direction": "less than",
+                    "Name": "lower non critical",
+                    "Severity": 0,
+                    "Value": 2500
+                }
+            ],
+            "Type": "I2CFan"
+        },
+        {
+            "Address": "0x10",
+            "Bus": 10,
+            "Connector": {
+                "DeviationMargin": 70,
+                "FuncSlope": 286,
+                "Pwm": 5,
+                "PwmMax": 100,
+                "PwmName": "pwm6",
+                "ZeroPioint": -56
+            },
+            "Index": 11,
+            "MaxReading": 28500,
+            "Name": "fan3_1",
+            "PowerState": "Always",
+            "Presence": {
+                "PinName": "FAN_PRSNT5_D_N",
+                "Polarity": "Low"
+            },
+            "Thresholds": [
+                {
+                    "Direction": "greater than",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 31000
+                },
+                {
+                    "Direction": "less than",
+                    "Name": "lower critical",
+                    "Severity": 1,
+                    "Value": 2000
+                },
+                {
+                    "Direction": "greater than",
+                    "Name": "upper non critical",
+                    "Severity": 0,
+                    "Value": 29000
+                },
+                {
+                    "Direction": "less than",
+                    "Name": "lower non critical",
+                    "Severity": 0,
+                    "Value": 2500
+                }
+            ],
+            "Type": "I2CFan"
+        },
+        {
+            "Address": "0x10",
+            "Bus": 10,
+            "Connector": {
+                "DeviationMargin": 70,
+                "FuncSlope": 315,
+                "Pwm": 6,
+                "PwmMax": 100,
+                "PwmName": "pwm7",
+                "ZeroPioint": -63
+            },
+            "Index": 12,
+            "MaxReading": 31400,
+            "Name": "fan4_0",
+            "PowerState": "Always",
+            "Presence": {
+                "PinName": "FAN_PRSNT6_D_N",
+                "Polarity": "Low"
+            },
+            "Thresholds": [
+                {
+                    "Direction": "greater than",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 31000
+                },
+                {
+                    "Direction": "less than",
+                    "Name": "lower critical",
+                    "Severity": 1,
+                    "Value": 2000
+                },
+                {
+                    "Direction": "greater than",
+                    "Name": "upper non critical",
+                    "Severity": 0,
+                    "Value": 29000
+                },
+                {
+                    "Direction": "less than",
+                    "Name": "lower non critical",
+                    "Severity": 0,
+                    "Value": 2500
+                }
+            ],
+            "Type": "I2CFan"
+        },
+        {
+            "Address": "0x10",
+            "Bus": 10,
+            "Connector": {
+                "DeviationMargin": 70,
+                "FuncSlope": 286,
+                "Pwm": 6,
+                "PwmMax": 100,
+                "PwmName": "pwm7",
+                "ZeroPioint": -56
+            },
+            "Index": 13,
+            "MaxReading": 28500,
+            "Name": "fan4_1",
+            "PowerState": "Always",
+            "Presence": {
+                "PinName": "FAN_PRSNT6_D_N",
+                "Polarity": "Low"
+            },
+            "Thresholds": [
+                {
+                    "Direction": "greater than",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 31000
+                },
+                {
+                    "Direction": "less than",
+                    "Name": "lower critical",
+                    "Severity": 1,
+                    "Value": 2000
+                },
+                {
+                    "Direction": "greater than",
+                    "Name": "upper non critical",
+                    "Severity": 0,
+                    "Value": 29000
+                },
+                {
+                    "Direction": "less than",
+                    "Name": "lower non critical",
+                    "Severity": 0,
+                    "Value": 2500
+                }
+            ],
+            "Type": "I2CFan"
+        },
+        {
+            "Address": "0x10",
+            "Bus": 10,
+            "Connector": {
+                "DeviationMargin": 70,
+                "FuncSlope": 315,
+                "Pwm": 7,
+                "PwmMax": 100,
+                "PwmName": "pwm8",
+                "ZeroPioint": -63
+            },
+            "Index": 14,
+            "MaxReading": 31400,
+            "Name": "fan5_0",
+            "PowerState": "Always",
+            "Presence": {
+                "PinName": "FAN_PRSNT7_D_N",
+                "Polarity": "Low"
+            },
+            "Thresholds": [
+                {
+                    "Direction": "greater than",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 31000
+                },
+                {
+                    "Direction": "less than",
+                    "Name": "lower critical",
+                    "Severity": 1,
+                    "Value": 2000
+                },
+                {
+                    "Direction": "greater than",
+                    "Name": "upper non critical",
+                    "Severity": 0,
+                    "Value": 29000
+                },
+                {
+                    "Direction": "less than",
+                    "Name": "lower non critical",
+                    "Severity": 0,
+                    "Value": 2500
+                }
+            ],
+            "Type": "I2CFan"
+        },
+        {
+            "Address": "0x10",
+            "Bus": 10,
+            "Connector": {
+                "DeviationMargin": 70,
+                "FuncSlope": 286,
+                "Pwm": 7,
+                "PwmMax": 100,
+                "PwmName": "pwm8",
+                "ZeroPioint": -56
+            },
+            "Index": 15,
+            "MaxReading": 28500,
+            "Name": "fan5_1",
+            "PowerState": "Always",
+            "Presence": {
+                "PinName": "FAN_PRSNT7_D_N",
+                "Polarity": "Low"
+            },
+            "Thresholds": [
+                {
+                    "Direction": "greater than",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 31000
+                },
+                {
+                    "Direction": "less than",
+                    "Name": "lower critical",
+                    "Severity": 1,
+                    "Value": 2000
+                },
+                {
+                    "Direction": "greater than",
+                    "Name": "upper non critical",
+                    "Severity": 0,
+                    "Value": 29000
+                },
+                {
+                    "Direction": "less than",
+                    "Name": "lower non critical",
+                    "Severity": 0,
+                    "Value": 2500
+                }
+            ],
+            "Type": "I2CFan"
+        },
+        {
+            "Address": "0x10",
+            "Bus": 10,
+            "Connector": {
+                "DeviationMargin": 70,
+                "FuncSlope": 315,
+                "Pwm": 8,
+                "PwmMax": 100,
+                "PwmName": "pwm9",
+                "ZeroPioint": -63
+            },
+            "Index": 16,
+            "MaxReading": 31400,
+            "Name": "fan6_0",
+            "PowerState": "Always",
+            "Presence": {
+                "PinName": "FAN_PRSNT8_D_N",
+                "Polarity": "Low"
+            },
+            "Thresholds": [
+                {
+                    "Direction": "greater than",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 31000
+                },
+                {
+                    "Direction": "less than",
+                    "Name": "lower critical",
+                    "Severity": 1,
+                    "Value": 2000
+                },
+                {
+                    "Direction": "greater than",
+                    "Name": "upper non critical",
+                    "Severity": 0,
+                    "Value": 29000
+                },
+                {
+                    "Direction": "less than",
+                    "Name": "lower non critical",
+                    "Severity": 0,
+                    "Value": 2500
+                }
+            ],
+            "Type": "I2CFan"
+        },
+        {
+            "Address": "0x10",
+            "Bus": 10,
+            "Connector": {
+                "DeviationMargin": 70,
+                "FuncSlope": 286,
+                "Pwm": 8,
+                "PwmMax": 100,
+                "PwmName": "pwm9",
+                "ZeroPioint": -56
+            },
+            "Index": 17,
+            "MaxReading": 28500,
+            "Name": "fan6_1",
+            "PowerState": "Always",
+            "Presence": {
+                "PinName": "FAN_PRSNT8_D_N",
+                "Polarity": "Low"
+            },
+            "Thresholds": [
+                {
+                    "Direction": "greater than",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 31000
+                },
+                {
+                    "Direction": "less than",
+                    "Name": "lower critical",
+                    "Severity": 1,
+                    "Value": 2000
+                },
+                {
+                    "Direction": "greater than",
+                    "Name": "upper non critical",
+                    "Severity": 0,
+                    "Value": 29000
+                },
+                {
+                    "Direction": "less than",
+                    "Name": "lower non critical",
+                    "Severity": 0,
+                    "Value": 2500
+                }
+            ],
+            "Type": "I2CFan"
+        },
+        {
+            "Address": "0x10",
+            "Bus": 10,
+            "Connector": {
+                "DeviationMargin": 70,
+                "FuncSlope": 315,
+                "Pwm": 9,
+                "PwmMax": 100,
+                "PwmName": "pwm10",
+                "ZeroPioint": -63
+            },
+            "Index": 18,
+            "MaxReading": 31400,
+            "Name": "fan7_0",
+            "PowerState": "Always",
+            "Presence": {
+                "PinName": "FAN_PRSNT9_D_N",
+                "Polarity": "Low"
+            },
+            "Thresholds": [
+                {
+                    "Direction": "greater than",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 31000
+                },
+                {
+                    "Direction": "less than",
+                    "Name": "lower critical",
+                    "Severity": 1,
+                    "Value": 2000
+                },
+                {
+                    "Direction": "greater than",
+                    "Name": "upper non critical",
+                    "Severity": 0,
+                    "Value": 29000
+                },
+                {
+                    "Direction": "less than",
+                    "Name": "lower non critical",
+                    "Severity": 0,
+                    "Value": 2500
+                }
+            ],
+            "Type": "I2CFan"
+        },
+        {
+            "Address": "0x10",
+            "Bus": 10,
+            "Connector": {
+                "DeviationMargin": 70,
+                "FuncSlope": 286,
+                "Pwm": 9,
+                "PwmMax": 100,
+                "PwmName": "pwm10",
+                "ZeroPioint": -56
+            },
+            "Index": 19,
+            "MaxReading": 28500,
+            "Name": "fan7_1",
+            "PowerState": "Always",
+            "Presence": {
+                "PinName": "FAN_PRSNT9_D_N",
+                "Polarity": "Low"
+            },
+            "Thresholds": [
+                {
+                    "Direction": "greater than",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 31000
+                },
+                {
+                    "Direction": "less than",
+                    "Name": "lower critical",
+                    "Severity": 1,
+                    "Value": 2000
+                },
+                {
+                    "Direction": "greater than",
+                    "Name": "upper non critical",
+                    "Severity": 0,
+                    "Value": 29000
+                },
+                {
+                    "Direction": "less than",
+                    "Name": "lower non critical",
+                    "Severity": 0,
+                    "Value": 2500
+                }
+            ],
+            "Type": "I2CFan"
+        },
+        {
+            "Address": "0x45",
+            "Bus": 7,
+            "Labels": [
+                "power1"
+            ],
+            "Name": "FAN_Power",
+            "Thresholds": [],
+            "Type": "INA226",
+            "power1_Name": "FAN_Power"
+        },
+        {
+            "Address": "0x08",
+            "Class": "METemp",
+            "Name": "PCH_Temp",
+            "Thresholds": [
+                {
+                    "Direction": "greater than",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 85
+                },
+                {
+                    "Direction": "greater than",
+                    "Name": "upper non critical",
+                    "Severity": 0,
+                    "Value": 83
+                }
+            ],
+            "Type": "IpmbSensor"
+        },
+        {
+            "Address": "0xBE",
+            "Class": "MESensor",
+            "Name": "CPU_ResourceRate",
+            "PowerState": "On",
+            "ScaleValue": 0.392,
+            "SensorType": "utilization",
+            "Thresholds": [],
+            "Type": "IpmbSensor"
+        },
+        {
+            "Address": "0xBF",
+            "Class": "MESensor",
+            "Name": "IO_ResourceRate",
+            "PowerState": "On",
+            "ScaleValue": 0.392,
+            "SensorType": "utilization",
+            "Thresholds": [],
+            "Type": "IpmbSensor"
+        },
+        {
+            "Address": "0xC0",
+            "Class": "MESensor",
+            "Name": "MEM_ResourceRate",
+            "PowerState": "On",
+            "ScaleValue": 0.392,
+            "SensorType": "utilization",
+            "Thresholds": [],
+            "Type": "IpmbSensor"
+        },
+        {
+            "Address": "0x58",
+            "Bus": "11",
+            "Labels": [
+                "pin",
+                "pout1",
+                "vin",
+                "vout1",
+                "temp1",
+                "temp3",
+                "iin",
+                "iout1"
+            ],
+            "Name": "PSU0",
+            "Thresholds": [
+                {
+                    "Direction": "greater than",
+                    "Label": "temp1",
+                    "Name": "upper non critical",
+                    "Severity": 0,
+                    "Value": 83
+                },
+                {
+                    "Direction": "greater than",
+                    "Label": "temp1",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 85
+                }
+            ],
+            "Type": "PSM7",
+            "iin_Name": "PSU0_IIN",
+            "iout1_Name": "PSU0_IOUT",
+            "pin_Name": "PSU0_PIN",
+            "pout1_Name": "PSU0_POUT",
+            "temp1_Name": "PSU0_Inlet_Temp",
+            "temp3_Name": "PSU0_Temp",
+            "vin_Name": "PSU0_VIN",
+            "vout1_Name": "PSU0_VOUT"
+        },
+        {
+            "Address": "0x59",
+            "Bus": "11",
+            "Labels": [
+                "pin",
+                "pout1",
+                "vin",
+                "vout1",
+                "temp1",
+                "temp3",
+                "iin",
+                "iout1"
+            ],
+            "Name": "PSU1",
+            "Thresholds": [
+                {
+                    "Direction": "greater than",
+                    "Label": "temp1",
+                    "Name": "upper non critical",
+                    "Severity": 0,
+                    "Value": 83
+                },
+                {
+                    "Direction": "greater than",
+                    "Label": "temp1",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 85
+                }
+            ],
+            "Type": "PSM7",
+            "iin_Name": "PSU1_IIN",
+            "iout1_Name": "PSU1_IOUT",
+            "pin_Name": "PSU1_PIN",
+            "pout1_Name": "PSU1_POUT",
+            "temp1_Name": "PSU1_Inlet_Temp",
+            "temp3_Name": "PSU1_Temp",
+            "vin_Name": "PSU1_VIN",
+            "vout1_Name": "PSU1_VOUT"
+        },
+        {
+            "Class": "fan",
+            "FFGainCoefficient": 1.0,
+            "FFOffCoefficient": 10.0,
+            "ICoefficient": 0.0,
+            "ILimitMax": 0.0,
+            "ILimitMin": 0.0,
+            "Inputs": [
+                "fan0_0",
+                "fan0_1"
+            ],
+            "Name": "Fan Controller0",
+            "NegativeHysteresis": 0.0,
+            "OutLimitMax": 39.2,
+            "OutLimitMin": 7.8,
+            "Outputs": [
+                "pwm1"
+            ],
+            "PCoefficient": 0.0,
+            "PositiveHysteresis": 0.0,
+            "SlewNeg": 0.0,
+            "SlewPos": 0.0,
+            "Type": "Pid",
+            "Zones": [
+                "Zone0"
+            ]
+        },
+        {
+            "Class": "fan",
+            "FFGainCoefficient": 1.0,
+            "FFOffCoefficient": 10.0,
+            "ICoefficient": 0.0,
+            "ILimitMax": 0.0,
+            "ILimitMin": 0.0,
+            "Inputs": [
+                "fan1_0",
+                "fan1_1"
+            ],
+            "Name": "Fan Controller2",
+            "NegativeHysteresis": 0.0,
+            "OutLimitMax": 39.2,
+            "OutLimitMin": 7.8,
+            "Outputs": [
+                "pwm3"
+            ],
+            "PCoefficient": 0.0,
+            "PositiveHysteresis": 0.0,
+            "SlewNeg": 0.0,
+            "SlewPos": 0.0,
+            "Type": "Pid",
+            "Zones": [
+                "Zone2"
+            ]
+        },
+        {
+            "Class": "fan",
+            "FFGainCoefficient": 1.0,
+            "FFOffCoefficient": 10.0,
+            "ICoefficient": 0.0,
+            "ILimitMax": 0.0,
+            "ILimitMin": 0.0,
+            "Inputs": [
+                "fan2_0",
+                "fan2_1"
+            ],
+            "Name": "Fan Controller3",
+            "NegativeHysteresis": 0.0,
+            "OutLimitMax": 39.2,
+            "OutLimitMin": 7.8,
+            "Outputs": [
+                "pwm4"
+            ],
+            "PCoefficient": 0.0,
+            "PositiveHysteresis": 0.0,
+            "SlewNeg": 0.0,
+            "SlewPos": 0.0,
+            "Type": "Pid",
+            "Zones": [
+                "Zone3"
+            ]
+        },
+        {
+            "Class": "fan",
+            "FFGainCoefficient": 1.0,
+            "FFOffCoefficient": 10.0,
+            "ICoefficient": 0.0,
+            "ILimitMax": 0.0,
+            "ILimitMin": 0.0,
+            "Inputs": [
+                "fan3_0",
+                "fan3_1"
+            ],
+            "Name": "Fan Controller5",
+            "NegativeHysteresis": 0.0,
+            "OutLimitMax": 39.2,
+            "OutLimitMin": 7.8,
+            "Outputs": [
+                "pwm6"
+            ],
+            "PCoefficient": 0.0,
+            "PositiveHysteresis": 0.0,
+            "SlewNeg": 0.0,
+            "SlewPos": 0.0,
+            "Type": "Pid",
+            "Zones": [
+                "Zone5"
+            ]
+        },
+        {
+            "Class": "fan",
+            "FFGainCoefficient": 1.0,
+            "FFOffCoefficient": 10.0,
+            "ICoefficient": 0.0,
+            "ILimitMax": 0.0,
+            "ILimitMin": 0.0,
+            "Inputs": [
+                "fan4_0",
+                "fan4_1"
+            ],
+            "Name": "Fan Controller6",
+            "NegativeHysteresis": 0.0,
+            "OutLimitMax": 39.2,
+            "OutLimitMin": 7.8,
+            "Outputs": [
+                "pwm7"
+            ],
+            "PCoefficient": 0.0,
+            "PositiveHysteresis": 0.0,
+            "SlewNeg": 0.0,
+            "SlewPos": 0.0,
+            "Type": "Pid",
+            "Zones": [
+                "Zone6"
+            ]
+        },
+        {
+            "Class": "fan",
+            "FFGainCoefficient": 1.0,
+            "FFOffCoefficient": 10.0,
+            "ICoefficient": 0.0,
+            "ILimitMax": 0.0,
+            "ILimitMin": 0.0,
+            "Inputs": [
+                "fan5_0",
+                "fan5_1"
+            ],
+            "Name": "Fan Controller7",
+            "NegativeHysteresis": 0.0,
+            "OutLimitMax": 39.2,
+            "OutLimitMin": 7.8,
+            "Outputs": [
+                "pwm8"
+            ],
+            "PCoefficient": 0.0,
+            "PositiveHysteresis": 0.0,
+            "SlewNeg": 0.0,
+            "SlewPos": 0.0,
+            "Type": "Pid",
+            "Zones": [
+                "Zone7"
+            ]
+        },
+        {
+            "Class": "fan",
+            "FFGainCoefficient": 1.0,
+            "FFOffCoefficient": 10.0,
+            "ICoefficient": 0.0,
+            "ILimitMax": 0.0,
+            "ILimitMin": 0.0,
+            "Inputs": [
+                "fan6_0",
+                "fan6_1"
+            ],
+            "Name": "Fan Controller8",
+            "NegativeHysteresis": 0.0,
+            "OutLimitMax": 39.2,
+            "OutLimitMin": 7.8,
+            "Outputs": [
+                "pwm9"
+            ],
+            "PCoefficient": 0.0,
+            "PositiveHysteresis": 0.0,
+            "SlewNeg": 0.0,
+            "SlewPos": 0.0,
+            "Type": "Pid",
+            "Zones": [
+                "Zone8"
+            ]
+        },
+        {
+            "Class": "fan",
+            "FFGainCoefficient": 1.0,
+            "FFOffCoefficient": 10.0,
+            "ICoefficient": 0.0,
+            "ILimitMax": 0.0,
+            "ILimitMin": 0.0,
+            "Inputs": [
+                "fan7_0",
+                "fan7_1"
+            ],
+            "Name": "Fan Controller9",
+            "NegativeHysteresis": 0.0,
+            "OutLimitMax": 39.2,
+            "OutLimitMin": 7.8,
+            "Outputs": [
+                "pwm10"
+            ],
+            "PCoefficient": 0.0,
+            "PositiveHysteresis": 0.0,
+            "SlewNeg": 0.0,
+            "SlewPos": 0.0,
+            "Type": "Pid",
+            "Zones": [
+                "Zone9"
+            ]
+        },
+        {
+            "Class": "temp",
+            "FFGainCoefficient": 0.0,
+            "FFOffCoefficient": 0.0,
+            "ICoefficient": -0.1,
+            "ILimitMax": 39.2,
+            "ILimitMin": 7.8,
+            "Inputs": [
+                "CPU0_Temp"
+            ],
+            "Name": "CPU0_Temp_Pid",
+            "NegativeHysteresis": 0.0,
+            "OutLimitMax": 39.2,
+            "OutLimitMin": 7.8,
+            "Outputs": [],
+            "PCoefficient": -1.0,
+            "PositiveHysteresis": 0.0,
+            "SetPoint": 75,
+            "SlewNeg": 0.0,
+            "SlewPos": 0.0,
+            "Type": "Pid",
+            "Zones": [
+                "Zone0",
+                "Zone2",
+                "Zone3",
+                "Zone5",
+                "Zone6",
+                "Zone7",
+                "Zone8",
+                "Zone9"
+            ]
+        },
+        {
+            "Class": "temp",
+            "FFGainCoefficient": 0.0,
+            "FFOffCoefficient": 0.0,
+            "ICoefficient": -0.1,
+            "ILimitMax": 39.2,
+            "ILimitMin": 7.8,
+            "Inputs": [
+                "CPU1_Temp"
+            ],
+            "Name": "CPU1_Temp_Pid",
+            "NegativeHysteresis": 0.0,
+            "OutLimitMax": 39.2,
+            "OutLimitMin": 7.8,
+            "Outputs": [],
+            "PCoefficient": -1.0,
+            "PositiveHysteresis": 0.0,
+            "SetPoint": 75,
+            "SlewNeg": 0.0,
+            "SlewPos": 0.0,
+            "Type": "Pid",
+            "Zones": [
+                "Zone0",
+                "Zone2",
+                "Zone3",
+                "Zone5",
+                "Zone6",
+                "Zone7",
+                "Zone8",
+                "Zone9"
+            ]
+        },
+        {
+            "Class": "temp",
+            "FFGainCoefficient": 0.0,
+            "FFOffCoefficient": 0.0,
+            "ICoefficient": -0.5,
+            "ILimitMax": 39.2,
+            "ILimitMin": 7.8,
+            "Inputs": [
+                "PCH_Temp"
+            ],
+            "Name": "PCH_Temp_Pid",
+            "NegativeHysteresis": 0.0,
+            "OutLimitMax": 39.2,
+            "OutLimitMin": 7.8,
+            "Outputs": [],
+            "PCoefficient": -3.0,
+            "PositiveHysteresis": 0.0,
+            "SetPoint": 74,
+            "SlewNeg": 0.0,
+            "SlewPos": 0.0,
+            "Type": "Pid",
+            "Zones": [
+                "Zone0",
+                "Zone2",
+                "Zone3",
+                "Zone5",
+                "Zone6",
+                "Zone7",
+                "Zone8",
+                "Zone9"
+            ]
+        },
+        {
+            "Class": "temp",
+            "FFGainCoefficient": 0.0,
+            "FFOffCoefficient": 0.0,
+            "ICoefficient": -0.5,
+            "ILimitMax": 39.2,
+            "ILimitMin": 7.8,
+            "Inputs": [
+                "CPU0_VR_Temp"
+            ],
+            "Name": "CPU0_VR_Temp_Pid",
+            "NegativeHysteresis": 0.0,
+            "OutLimitMax": 39.2,
+            "OutLimitMin": 7.8,
+            "Outputs": [],
+            "PCoefficient": -3.0,
+            "PositiveHysteresis": 0.0,
+            "SetPoint": 85,
+            "SlewNeg": 0.0,
+            "SlewPos": 0.0,
+            "Type": "Pid",
+            "Zones": [
+                "Zone0",
+                "Zone2",
+                "Zone3",
+                "Zone5",
+                "Zone6",
+                "Zone7",
+                "Zone8",
+                "Zone9"
+            ]
+        },
+        {
+            "Class": "temp",
+            "FFGainCoefficient": 0.0,
+            "FFOffCoefficient": 0.0,
+            "ICoefficient": -0.5,
+            "ILimitMax": 39.2,
+            "ILimitMin": 7.8,
+            "Inputs": [
+                "CPU1_VR_Temp"
+            ],
+            "Name": "CPU1_VR_Temp_Pid",
+            "NegativeHysteresis": 0.0,
+            "OutLimitMax": 39.2,
+            "OutLimitMin": 7.8,
+            "Outputs": [],
+            "PCoefficient": -3.0,
+            "PositiveHysteresis": 0.0,
+            "SetPoint": 85,
+            "SlewNeg": 0.0,
+            "SlewPos": 0.0,
+            "Type": "Pid",
+            "Zones": [
+                "Zone0",
+                "Zone2",
+                "Zone3",
+                "Zone5",
+                "Zone6",
+                "Zone7",
+                "Zone8",
+                "Zone9"
+            ]
+        },
+        {
+            "FailSafePercent": 31.4,
+            "MinThermalOutput": 0,
+            "Name": "Zone0",
+            "Type": "Pid.Zone"
+        },
+        {
+            "FailSafePercent": 31.4,
+            "MinThermalOutput": 0,
+            "Name": "Zone2",
+            "Type": "Pid.Zone"
+        },
+        {
+            "FailSafePercent": 31.4,
+            "MinThermalOutput": 0,
+            "Name": "Zone3",
+            "Type": "Pid.Zone"
+        },
+        {
+            "FailSafePercent": 31.4,
+            "MinThermalOutput": 0,
+            "Name": "Zone5",
+            "Type": "Pid.Zone"
+        },
+        {
+            "FailSafePercent": 31.4,
+            "MinThermalOutput": 0,
+            "Name": "Zone6",
+            "Type": "Pid.Zone"
+        },
+        {
+            "FailSafePercent": 31.4,
+            "MinThermalOutput": 0,
+            "Name": "Zone7",
+            "Type": "Pid.Zone"
+        },
+        {
+            "FailSafePercent": 31.4,
+            "MinThermalOutput": 0,
+            "Name": "Zone8",
+            "Type": "Pid.Zone"
+        },
+        {
+            "FailSafePercent": 31.4,
+            "MinThermalOutput": 0,
+            "Name": "Zone9",
+            "Type": "Pid.Zone"
+        },
+        {
+            "Class": "Floor",
+            "Inputs": [
+                "Inlet_Temp"
+            ],
+            "Name": "Inlet_Temp_Floor",
+            "NegativeHysteresis": 0.0,
+            "Output": [
+                7.8,
+                14.0,
+                20.0,
+                26.0,
+                32.0,
+                39.2
+            ],
+            "PositiveHysteresis": 0,
+            "Reading": [
+                15.0,
+                20.0,
+                25.0,
+                30.0,
+                35.0,
+                40.0
+            ],
+            "Type": "Stepwise",
+            "Zones": [
+                "Zone0",
+                "Zone2",
+                "Zone3",
+                "Zone5",
+                "Zone6",
+                "Zone7",
+                "Zone8",
+                "Zone9"
+            ]
+        },
+        {
+            "Address": "0x49",
+            "Bus": 200,
+            "Name": "Inlet_Temp",
+            "Thresholds": [
+                {
+                    "Direction": "greater than",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 50
+                },
+                {
+                    "Direction": "greater than",
+                    "Name": "upper non critical",
+                    "Severity": 0,
+                    "Value": 45
+                }
+            ],
+            "Type": "TMP112"
+        },
+        {
+            "Address": "0x76",
+            "AssociateItem": "/xyz/openbmc_project/inventory/system/chassis/motherboard/CPU0",
+            "Bus": 500,
+            "Labels": [
+                "vout1"
+            ],
+            "Name": "PVCCIN_CPU0",
+            "PowerState": "On",
+            "Thresholds": [
+                {
+                    "Direction": "greater than",
+                    "Label": "vout1",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 2.07
+                },
+                {
+                    "Direction": "greater than",
+                    "Label": "vout1",
+                    "Name": "upper non critical",
+                    "Severity": 0,
+                    "Value": 2.016
+                },
+                {
+                    "Direction": "less than",
+                    "Label": "vout1",
+                    "Name": "lower critical",
+                    "Severity": 1,
+                    "Value": 1.197
+                },
+                {
+                    "Direction": "less than",
+                    "Label": "vout1",
+                    "Name": "lower non critical",
+                    "Severity": 0,
+                    "Value": 1.233
+                },
+                {
+                    "Direction": "greater than",
+                    "Label": "vout1",
+                    "Name": "upper critical",
+                    "Severity": 5,
+                    "Value": 2.1
+                },
+                {
+                    "Direction": "less than",
+                    "Label": "vout1",
+                    "Name": "lower critical",
+                    "Severity": 5,
+                    "Value": 1.153
+                }
+            ],
+            "Type": "XDPE152C4D",
+            "vout1_Name": "PVCCIN_CPU0"
+        },
+        {
+            "Address": "0x62",
+            "AssociateItem": "/xyz/openbmc_project/inventory/system/chassis/motherboard/CPU0",
+            "Bus": 500,
+            "Labels": [
+                "vout1"
+            ],
+            "Name": "PVCCINFAON_CPU0",
+            "PowerState": "On",
+            "Thresholds": [
+                {
+                    "Direction": "greater than",
+                    "Label": "vout1",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 1.188
+                },
+                {
+                    "Direction": "greater than",
+                    "Label": "vout1",
+                    "Name": "upper non critical",
+                    "Severity": 0,
+                    "Value": 1.152
+                },
+                {
+                    "Direction": "less than",
+                    "Label": "vout1",
+                    "Name": "lower critical",
+                    "Severity": 1,
+                    "Value": 0.675
+                },
+                {
+                    "Direction": "less than",
+                    "Label": "vout1",
+                    "Name": "lower non critical",
+                    "Severity": 0,
+                    "Value": 0.693
+                },
+                {
+                    "Direction": "greater than",
+                    "Label": "vout1",
+                    "Name": "upper critical",
+                    "Severity": 5,
+                    "Value": 1.187
+                },
+                {
+                    "Direction": "less than",
+                    "Label": "vout1",
+                    "Name": "lower critical",
+                    "Severity": 5,
+                    "Value": 0.649
+                }
+            ],
+            "Type": "XDPE152C4D",
+            "vout1_Name": "PVCCINFAON_CPU0"
+        },
+        {
+            "Address": "0x72",
+            "AssociateItem": "/xyz/openbmc_project/inventory/system/chassis/motherboard/CPU0",
+            "Bus": 500,
+            "Labels": [
+                "vout1"
+            ],
+            "Name": "PVCCD_HV_CPU0",
+            "PowerState": "On",
+            "Thresholds": [
+                {
+                    "Direction": "greater than",
+                    "Label": "vout1",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 1.269
+                },
+                {
+                    "Direction": "greater than",
+                    "Label": "vout1",
+                    "Name": "upper non critical",
+                    "Severity": 0,
+                    "Value": 1.233
+                },
+                {
+                    "Direction": "less than",
+                    "Label": "vout1",
+                    "Name": "lower critical",
+                    "Severity": 1,
+                    "Value": 0.882
+                },
+                {
+                    "Direction": "less than",
+                    "Label": "vout1",
+                    "Name": "lower non critical",
+                    "Severity": 0,
+                    "Value": 0.909
+                },
+                {
+                    "Direction": "greater than",
+                    "Label": "vout1",
+                    "Name": "upper critical",
+                    "Severity": 5,
+                    "Value": 1.347
+                },
+                {
+                    "Direction": "less than",
+                    "Label": "vout1",
+                    "Name": "lower critical",
+                    "Severity": 5,
+                    "Value": 0.92
+                }
+            ],
+            "Type": "XDPE152C4D",
+            "vout1_Name": "PVCCD_HV_CPU0"
+        },
+        {
+            "Address": "0x76",
+            "AssociateItem": "/xyz/openbmc_project/inventory/system/chassis/motherboard/CPU1",
+            "Bus": 501,
+            "Labels": [
+                "vout1"
+            ],
+            "Name": "PVCCIN_CPU1",
+            "PowerState": "On",
+            "Thresholds": [
+                {
+                    "Direction": "greater than",
+                    "Label": "vout1",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 2.07
+                },
+                {
+                    "Direction": "greater than",
+                    "Label": "vout1",
+                    "Name": "upper non critical",
+                    "Severity": 0,
+                    "Value": 2.016
+                },
+                {
+                    "Direction": "less than",
+                    "Label": "vout1",
+                    "Name": "lower critical",
+                    "Severity": 1,
+                    "Value": 1.197
+                },
+                {
+                    "Direction": "less than",
+                    "Label": "vout1",
+                    "Name": "lower non critical",
+                    "Severity": 0,
+                    "Value": 1.233
+                },
+                {
+                    "Direction": "greater than",
+                    "Label": "vout1",
+                    "Name": "upper critical",
+                    "Severity": 5,
+                    "Value": 2.1
+                },
+                {
+                    "Direction": "less than",
+                    "Label": "vout1",
+                    "Name": "lower critical",
+                    "Severity": 5,
+                    "Value": 1.153
+                }
+            ],
+            "Type": "XDPE152C4D",
+            "vout1_Name": "PVCCIN_CPU1"
+        },
+        {
+            "Address": "0x62",
+            "AssociateItem": "/xyz/openbmc_project/inventory/system/chassis/motherboard/CPU1",
+            "Bus": 501,
+            "Labels": [
+                "vout1"
+            ],
+            "Name": "PVCCINFAON_CPU1",
+            "PowerState": "On",
+            "Thresholds": [
+                {
+                    "Direction": "greater than",
+                    "Label": "vout1",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 1.188
+                },
+                {
+                    "Direction": "greater than",
+                    "Label": "vout1",
+                    "Name": "upper non critical",
+                    "Severity": 0,
+                    "Value": 1.152
+                },
+                {
+                    "Direction": "less than",
+                    "Label": "vout1",
+                    "Name": "lower critical",
+                    "Severity": 1,
+                    "Value": 0.675
+                },
+                {
+                    "Direction": "less than",
+                    "Label": "vout1",
+                    "Name": "lower non critical",
+                    "Severity": 0,
+                    "Value": 0.693
+                },
+                {
+                    "Direction": "greater than",
+                    "Label": "vout1",
+                    "Name": "upper critical",
+                    "Severity": 5,
+                    "Value": 1.187
+                },
+                {
+                    "Direction": "less than",
+                    "Label": "vout1",
+                    "Name": "lower critical",
+                    "Severity": 5,
+                    "Value": 0.652
+                }
+            ],
+            "Type": "XDPE152C4D",
+            "vout1_Name": "PVCCINFAON_CPU1"
+        },
+        {
+            "Address": "0x72",
+            "AssociateItem": "/xyz/openbmc_project/inventory/system/chassis/motherboard/CPU1",
+            "Bus": 501,
+            "Labels": [
+                "vout1"
+            ],
+            "Name": "PVCCD_HV_CPU1",
+            "PowerState": "On",
+            "Thresholds": [
+                {
+                    "Direction": "greater than",
+                    "Label": "vout1",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 1.269
+                },
+                {
+                    "Direction": "greater than",
+                    "Label": "vout1",
+                    "Name": "upper non critical",
+                    "Severity": 0,
+                    "Value": 1.233
+                },
+                {
+                    "Direction": "less than",
+                    "Label": "vout1",
+                    "Name": "lower critical",
+                    "Severity": 1,
+                    "Value": 0.882
+                },
+                {
+                    "Direction": "less than",
+                    "Label": "vout1",
+                    "Name": "lower non critical",
+                    "Severity": 0,
+                    "Value": 0.909
+                },
+                {
+                    "Direction": "greater than",
+                    "Label": "vout1",
+                    "Name": "upper critical",
+                    "Severity": 5,
+                    "Value": 1.347
+                },
+                {
+                    "Direction": "less than",
+                    "Label": "vout1",
+                    "Name": "lower critical",
+                    "Severity": 5,
+                    "Value": 0.92
+                }
+            ],
+            "Type": "XDPE152C4D",
+            "vout1_Name": "PVCCD_HV_CPU1"
+        },
+        {
+            "Address": "0x30",
+            "Bus": 0,
+            "CpuID": 0,
+            "Name": "CPU0",
+            "PiromI2cAddress": "0x50",
+            "PiromI2cBus": 10,
+            "PresenceGpio": [
+                {
+                    "Name": "CPU0_PRESENCE",
+                    "Polarity": "Low"
+                }
+            ],
+            "Thresholds": [
+                {
+                    "Direction": "less than",
+                    "Label": "DTS",
+                    "Name": "lower critical",
+                    "Severity": 1,
+                    "Value": 0
+                },
+                {
+                    "Direction": "less than",
+                    "Label": "DTS",
+                    "Name": "lower non critical",
+                    "Severity": 0,
+                    "Value": 2
+                }
+            ],
+            "Type": "XeonCPU"
+        },
+        {
+            "Address": "0x31",
+            "Bus": 0,
+            "CpuID": 1,
+            "Name": "CPU1",
+            "PiromI2cAddress": "0x51",
+            "PiromI2cBus": 10,
+            "PresenceGpio": [
+                {
+                    "Name": "CPU1_PRESENCE",
+                    "Polarity": "Low"
+                }
+            ],
+            "Thresholds": [
+                {
+                    "Direction": "less than",
+                    "Label": "DTS",
+                    "Name": "lower critical",
+                    "Severity": 1,
+                    "Value": 0
+                },
+                {
+                    "Direction": "less than",
+                    "Label": "DTS",
+                    "Name": "lower non critical",
+                    "Severity": 0,
+                    "Value": 2
+                }
+            ],
+            "Type": "XeonCPU"
+        }
+    ],
+    "Name": "nf5280m7 baseboard",
+    "Probe": "xyz.openbmc_project.FruDevice({'PRODUCT_PRODUCT_NAME': 'NF5280M7'})",
+    "Type": "Chassis",
+    "xyz.openbmc_project.Inventory.Decorator.Asset": {
+        "Manufacturer": "$BOARD_MANUFACTURER",
+        "Model": "$BOARD_PRODUCT_NAME",
+        "PartNumber": "$BOARD_PART_NUMBER",
+        "SerialNumber": "$BOARD_SERIAL_NUMBER"
+    },
+    "xyz.openbmc_project.Inventory.Decorator.AssetTag": {
+        "AssetTag": "$PRODUCT_ASSET_TAG"
+    },
+    "xyz.openbmc_project.Inventory.Item.System": {}
+}
+
