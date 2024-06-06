@@ -155,6 +155,7 @@ configs = [
     'mtmitchell_bmc.json',
     'mtmitchell_mb.json',
     'mudflap.json',
+    'nf5280m7_baseboard.json',
     'nisqually.json',
     'nuvoton_npcm8xx_evb.json',
     'nvme_intel_p_series.json',
