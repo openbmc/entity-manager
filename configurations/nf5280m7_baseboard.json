@@ -1,0 +1,1008 @@
+{
+    "Exposes": [
+        {
+            "Index": 1,
+            "Name": "SYS_12V",
+            "ScaleFactor": 0.1129,
+            "Thresholds": [
+                {
+                    "Direction": "greater than",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 13.2
+                },
+                {
+                    "Direction": "less than",
+                    "Name": "lower critical",
+                    "Severity": 1,
+                    "Value": 10.8
+                },
+                {
+                    "Direction": "greater than",
+                    "Name": "upper non critical",
+                    "Severity": 0,
+                    "Value": 12.84
+                },
+                {
+                    "Direction": "less than",
+                    "Name": "lower non critical",
+                    "Severity": 0,
+                    "Value": 11.16
+                },
+                {
+                    "Direction": "greater than",
+                    "Name": "upper critical",
+                    "Severity": 0,
+                    "Value": 13.786
+                },
+                {
+                    "Direction": "less than",
+                    "Name": "lower critical",
+                    "Severity": 0,
+                    "Value": 10.44
+                }
+            ],
+            "Type": "ADC"
+        },
+        {
+            "Index": 7,
+            "Name": "RTC_Battery",
+            "ScaleFactor": 0.3333,
+            "Thresholds": [
+                {
+                    "Direction": "greater than",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 3.3
+                },
+                {
+                    "Direction": "less than",
+                    "Name": "lower critical",
+                    "Severity": 1,
+                    "Value": 2.7
+                },
+                {
+                    "Direction": "greater than",
+                    "Name": "upper non critical",
+                    "Severity": 0,
+                    "Value": 3.21
+                },
+                {
+                    "Direction": "less than",
+                    "Name": "lower non critical",
+                    "Severity": 0,
+                    "Value": 2.79
+                }
+            ],
+            "Type": "ADC"
+        },
+        {
+            "Index": 4,
+            "Name": "SYS_5V",
+            "ScaleFactor": 0.2703,
+            "Thresholds": [
+                {
+                    "Direction": "greater than",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 5.52
+                },
+                {
+                    "Direction": "less than",
+                    "Name": "lower critical",
+                    "Severity": 1,
+                    "Value": 4.5
+                },
+                {
+                    "Direction": "greater than",
+                    "Name": "upper non critical",
+                    "Severity": 0,
+                    "Value": 5.37
+                },
+                {
+                    "Direction": "less than",
+                    "Name": "lower non critical",
+                    "Severity": 0,
+                    "Value": 4.65
+                },
+                {
+                    "Direction": "greater than",
+                    "Name": "upper critical",
+                    "Severity": 0,
+                    "Value": 5.65
+                },
+                {
+                    "Direction": "less than",
+                    "Name": "lower critical",
+                    "Severity": 0,
+                    "Value": 4.35
+                }
+            ],
+            "Type": "ADC"
+        },
+        {
+            "Index": 8,
+            "Name": "SYS_3V3",
+            "ScaleFactor": 0.4118,
+            "Thresholds": [
+                {
+                    "Direction": "greater than",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 3.64
+                },
+                {
+                    "Direction": "less than",
+                    "Name": "lower critical",
+                    "Severity": 1,
+                    "Value": 2.98
+                },
+                {
+                    "Direction": "greater than",
+                    "Name": "upper non critical",
+                    "Severity": 0,
+                    "Value": 3.54
+                },
+                {
+                    "Direction": "less than",
+                    "Name": "lower non critical",
+                    "Severity": 0,
+                    "Value": 3.06
+                },
+                {
+                    "Direction": "greater than",
+                    "Name": "upper critical",
+                    "Severity": 0,
+                    "Value": 3.729
+                },
+                {
+                    "Direction": "less than",
+                    "Name": "lower critical",
+                    "Severity": 0,
+                    "Value": 2.871
+                }
+            ],
+            "Type": "ADC"
+        },
+        {
+            "Address": "0x1d",
+            "Bus": 7,
+            "Labels": [
+                "in2",
+                "in3"
+            ],
+            "Name": "PCH_STBY",
+            "PowerState": "On",
+            "Thresholds": [
+                {
+                    "Direction": "greater than",
+                    "Label": "in2",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 0.99
+                },
+                {
+                    "Direction": "less than",
+                    "Label": "in2",
+                    "Name": "lower critical",
+                    "Severity": 1,
+                    "Value": 0.81
+                },
+                {
+                    "Direction": "greater than",
+                    "Label": "in2",
+                    "Name": "upper non critical",
+                    "Severity": 0,
+                    "Value": 0.963
+                },
+                {
+                    "Direction": "less than",
+                    "Label": "in2",
+                    "Name": "lower non critical",
+                    "Severity": 0,
+                    "Value": 0.837
+                },
+                {
+                    "Direction": "greater than",
+                    "Label": "in2",
+                    "Name": "upper critical",
+                    "Severity": 0,
+                    "Value": 1.063
+                },
+                {
+                    "Direction": "less than",
+                    "Label": "in2",
+                    "Name": "lower critical",
+                    "Severity": 0,
+                    "Value": 0.744
+                },
+                {
+                    "Direction": "greater than",
+                    "Label": "in3",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 1.152
+                },
+                {
+                    "Direction": "less than",
+                    "Label": "in3",
+                    "Name": "lower critical",
+                    "Severity": 1,
+                    "Value": 0.945
+                },
+                {
+                    "Direction": "greater than",
+                    "Label": "in3",
+                    "Name": "upper non critical",
+                    "Severity": 0,
+                    "Value": 1.125
+                },
+                {
+                    "Direction": "less than",
+                    "Label": "in3",
+                    "Name": "lower non critical",
+                    "Severity": 0,
+                    "Value": 0.981
+                },
+                {
+                    "Direction": "greater than",
+                    "Label": "in3",
+                    "Name": "upper critical",
+                    "Severity": 0,
+                    "Value": 1.222
+                },
+                {
+                    "Direction": "less than",
+                    "Label": "in3",
+                    "Name": "lower critical",
+                    "Severity": 0,
+                    "Value": 0.868
+                }
+            ],
+            "Type": "ADC128D818",
+            "in2_Name": "PVNN_PCH_STBY",
+            "in3_Name": "P1V05_PCH_STBY"
+        },
+        {
+            "Address": "0x1e",
+            "Bus": 7,
+            "Labels": [
+                "in4",
+                "in7"
+            ],
+            "Name": "CPU0_Volt",
+            "PowerState": "On",
+            "Thresholds": [
+                {
+                    "Direction": "greater than",
+                    "Label": "in7",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 13.2
+                },
+                {
+                    "Direction": "less than",
+                    "Label": "in7",
+                    "Name": "lower critical",
+                    "Severity": 1,
+                    "Value": 10.8
+                },
+                {
+                    "Direction": "greater than",
+                    "Label": "in7",
+                    "Name": "upper non critical",
+                    "Severity": 0,
+                    "Value": 12.84
+                },
+                {
+                    "Direction": "less than",
+                    "Label": "in7",
+                    "Name": "lower non critical",
+                    "Severity": 0,
+                    "Value": 11.16
+                },
+                {
+                    "Direction": "greater than",
+                    "Label": "in7",
+                    "Name": "upper critical",
+                    "Severity": 0,
+                    "Value": 13.786
+                },
+                {
+                    "Direction": "less than",
+                    "Label": "in7",
+                    "Name": "lower critical",
+                    "Severity": 0,
+                    "Value": 10.44
+                },
+                {
+                    "Direction": "greater than",
+                    "Label": "in4",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 1.152
+                },
+                {
+                    "Direction": "less than",
+                    "Label": "in4",
+                    "Name": "lower critical",
+                    "Severity": 1,
+                    "Value": 0.945
+                },
+                {
+                    "Direction": "greater than",
+                    "Label": "in4",
+                    "Name": "upper non critical",
+                    "Severity": 0,
+                    "Value": 1.125
+                },
+                {
+                    "Direction": "less than",
+                    "Label": "in4",
+                    "Name": "lower non critical",
+                    "Severity": 0,
+                    "Value": 0.981
+                },
+                {
+                    "Direction": "greater than",
+                    "Label": "in4",
+                    "Name": "upper critical",
+                    "Severity": 0,
+                    "Value": 1.164
+                },
+                {
+                    "Direction": "less than",
+                    "Label": "in4",
+                    "Name": "lower critical",
+                    "Severity": 0,
+                    "Value": 0.844
+                }
+            ],
+            "Type": "ADC128D818",
+            "in4_Name": "PVNN_MAIN_CPU0",
+            "in7_Name": "P12V_CPU0_DIMM",
+            "in7_Scale": 113
+        },
+        {
+            "Address": "0x2d",
+            "Bus": 7,
+            "Labels": [
+                "in6",
+                "in7"
+            ],
+            "Name": "CPU1_Volt",
+            "PowerState": "On",
+            "Thresholds": [
+                {
+                    "Direction": "greater than",
+                    "Label": "in6",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 13.2
+                },
+                {
+                    "Direction": "less than",
+                    "Label": "in6",
+                    "Name": "lower critical",
+                    "Severity": 1,
+                    "Value": 10.8
+                },
+                {
+                    "Direction": "greater than",
+                    "Label": "in6",
+                    "Name": "upper non critical",
+                    "Severity": 0,
+                    "Value": 12.84
+                },
+                {
+                    "Direction": "less than",
+                    "Label": "in6",
+                    "Name": "lower non critical",
+                    "Severity": 0,
+                    "Value": 11.16
+                },
+                {
+                    "Direction": "greater than",
+                    "Label": "in6",
+                    "Name": "upper critical",
+                    "Severity": 0,
+                    "Value": 13.786
+                },
+                {
+                    "Direction": "less than",
+                    "Label": "in6",
+                    "Name": "lower critical",
+                    "Severity": 0,
+                    "Value": 10.44
+                },
+                {
+                    "Direction": "greater than",
+                    "Label": "in7",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 1.152
+                },
+                {
+                    "Direction": "less than",
+                    "Label": "in7",
+                    "Name": "lower critical",
+                    "Severity": 1,
+                    "Value": 0.945
+                },
+                {
+                    "Direction": "greater than",
+                    "Label": "in7",
+                    "Name": "upper non critical",
+                    "Severity": 0,
+                    "Value": 1.125
+                },
+                {
+                    "Direction": "less than",
+                    "Label": "in7",
+                    "Name": "lower non critical",
+                    "Severity": 0,
+                    "Value": 0.981
+                },
+                {
+                    "Direction": "greater than",
+                    "Label": "in7",
+                    "Name": "upper critical",
+                    "Severity": 0,
+                    "Value": 1.164
+                },
+                {
+                    "Direction": "less than",
+                    "Label": "in7",
+                    "Name": "lower critical",
+                    "Severity": 0,
+                    "Value": 0.844
+                }
+            ],
+            "Type": "ADC128D818",
+            "in6_Name": "P12V_CPU1_DIMM",
+            "in6_Scale": 113,
+            "in7_Name": "PVNN_MAIN_CPU1"
+        },
+        {
+            "Address": "0x4c",
+            "Bus": 200,
+            "Name": "Outlet_Temp",
+            "Thresholds": [
+                {
+                    "Direction": "greater than",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 65
+                },
+                {
+                    "Direction": "greater than",
+                    "Name": "upper non critical",
+                    "Severity": 0,
+                    "Value": 60
+                }
+            ],
+            "Type": "EMC1413"
+        },
+        {
+            "Address": "0x08",
+            "Class": "METemp",
+            "Name": "PCH_Temp",
+            "Thresholds": [
+                {
+                    "Direction": "greater than",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 85
+                },
+                {
+                    "Direction": "greater than",
+                    "Name": "upper non critical",
+                    "Severity": 0,
+                    "Value": 83
+                }
+            ],
+            "Type": "IpmbSensor"
+        },
+        {
+            "Address": "0x58",
+            "Bus": "11",
+            "Labels": [
+                "pin",
+                "pout1",
+                "vin",
+                "vout1",
+                "temp1",
+                "temp3",
+                "iin",
+                "iout1"
+            ],
+            "Name": "PSU0",
+            "Thresholds": [
+                {
+                    "Direction": "greater than",
+                    "Label": "temp1",
+                    "Name": "upper non critical",
+                    "Severity": 0,
+                    "Value": 83
+                },
+                {
+                    "Direction": "greater than",
+                    "Label": "temp1",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 85
+                }
+            ],
+            "Type": "PSM7",
+            "iin_Name": "PSU0_IIN",
+            "iout1_Name": "PSU0_IOUT",
+            "pin_Name": "PSU0_PIN",
+            "pout1_Name": "PSU0_POUT",
+            "temp1_Name": "PSU0_Inlet_Temp",
+            "temp3_Name": "PSU0_Temp",
+            "vin_Name": "PSU0_VIN",
+            "vout1_Name": "PSU0_VOUT"
+        },
+        {
+            "Address": "0x59",
+            "Bus": "11",
+            "Labels": [
+                "pin",
+                "pout1",
+                "vin",
+                "vout1",
+                "temp1",
+                "temp3",
+                "iin",
+                "iout1"
+            ],
+            "Name": "PSU1",
+            "Thresholds": [
+                {
+                    "Direction": "greater than",
+                    "Label": "temp1",
+                    "Name": "upper non critical",
+                    "Severity": 0,
+                    "Value": 83
+                },
+                {
+                    "Direction": "greater than",
+                    "Label": "temp1",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 85
+                }
+            ],
+            "Type": "PSM7",
+            "iin_Name": "PSU1_IIN",
+            "iout1_Name": "PSU1_IOUT",
+            "pin_Name": "PSU1_PIN",
+            "pout1_Name": "PSU1_POUT",
+            "temp1_Name": "PSU1_Inlet_Temp",
+            "temp3_Name": "PSU1_Temp",
+            "vin_Name": "PSU1_VIN",
+            "vout1_Name": "PSU1_VOUT"
+        },
+        {
+            "Address": "0x49",
+            "Bus": 200,
+            "Name": "Inlet_Temp",
+            "Thresholds": [
+                {
+                    "Direction": "greater than",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 50
+                },
+                {
+                    "Direction": "greater than",
+                    "Name": "upper non critical",
+                    "Severity": 0,
+                    "Value": 45
+                }
+            ],
+            "Type": "TMP112"
+        },
+        {
+            "Address": "0x76",
+            "Bus": 500,
+            "Labels": [
+                "vout1"
+            ],
+            "Name": "PVCCIN_CPU0",
+            "PowerState": "On",
+            "Thresholds": [
+                {
+                    "Direction": "greater than",
+                    "Label": "vout1",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 2.07
+                },
+                {
+                    "Direction": "greater than",
+                    "Label": "vout1",
+                    "Name": "upper non critical",
+                    "Severity": 0,
+                    "Value": 2.016
+                },
+                {
+                    "Direction": "less than",
+                    "Label": "vout1",
+                    "Name": "lower critical",
+                    "Severity": 1,
+                    "Value": 1.197
+                },
+                {
+                    "Direction": "less than",
+                    "Label": "vout1",
+                    "Name": "lower non critical",
+                    "Severity": 0,
+                    "Value": 1.233
+                },
+                {
+                    "Direction": "greater than",
+                    "Label": "vout1",
+                    "Name": "upper critical",
+                    "Severity": 0,
+                    "Value": 2.1
+                },
+                {
+                    "Direction": "less than",
+                    "Label": "vout1",
+                    "Name": "lower critical",
+                    "Severity": 0,
+                    "Value": 1.153
+                }
+            ],
+            "Type": "XDPE152C4D",
+            "vout1_Name": "PVCCIN_CPU0"
+        },
+        {
+            "Address": "0x62",
+            "Bus": 500,
+            "Labels": [
+                "vout1"
+            ],
+            "Name": "PVCCINFAON_CPU0",
+            "PowerState": "On",
+            "Thresholds": [
+                {
+                    "Direction": "greater than",
+                    "Label": "vout1",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 1.188
+                },
+                {
+                    "Direction": "greater than",
+                    "Label": "vout1",
+                    "Name": "upper non critical",
+                    "Severity": 0,
+                    "Value": 1.152
+                },
+                {
+                    "Direction": "less than",
+                    "Label": "vout1",
+                    "Name": "lower critical",
+                    "Severity": 1,
+                    "Value": 0.675
+                },
+                {
+                    "Direction": "less than",
+                    "Label": "vout1",
+                    "Name": "lower non critical",
+                    "Severity": 0,
+                    "Value": 0.693
+                },
+                {
+                    "Direction": "greater than",
+                    "Label": "vout1",
+                    "Name": "upper critical",
+                    "Severity": 0,
+                    "Value": 1.187
+                },
+                {
+                    "Direction": "less than",
+                    "Label": "vout1",
+                    "Name": "lower critical",
+                    "Severity": 0,
+                    "Value": 0.649
+                }
+            ],
+            "Type": "XDPE152C4D",
+            "vout1_Name": "PVCCINFAON_CPU0"
+        },
+        {
+            "Address": "0x72",
+            "Bus": 500,
+            "Labels": [
+                "vout1"
+            ],
+            "Name": "PVCCD_HV_CPU0",
+            "PowerState": "On",
+            "Thresholds": [
+                {
+                    "Direction": "greater than",
+                    "Label": "vout1",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 1.269
+                },
+                {
+                    "Direction": "greater than",
+                    "Label": "vout1",
+                    "Name": "upper non critical",
+                    "Severity": 0,
+                    "Value": 1.233
+                },
+                {
+                    "Direction": "less than",
+                    "Label": "vout1",
+                    "Name": "lower critical",
+                    "Severity": 1,
+                    "Value": 0.882
+                },
+                {
+                    "Direction": "less than",
+                    "Label": "vout1",
+                    "Name": "lower non critical",
+                    "Severity": 0,
+                    "Value": 0.909
+                },
+                {
+                    "Direction": "greater than",
+                    "Label": "vout1",
+                    "Name": "upper critical",
+                    "Severity": 0,
+                    "Value": 1.347
+                },
+                {
+                    "Direction": "less than",
+                    "Label": "vout1",
+                    "Name": "lower critical",
+                    "Severity": 0,
+                    "Value": 0.92
+                }
+            ],
+            "Type": "XDPE152C4D",
+            "vout1_Name": "PVCCD_HV_CPU0"
+        },
+        {
+            "Address": "0x76",
+            "Bus": 501,
+            "Labels": [
+                "vout1"
+            ],
+            "Name": "PVCCIN_CPU1",
+            "PowerState": "On",
+            "Thresholds": [
+                {
+                    "Direction": "greater than",
+                    "Label": "vout1",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 2.07
+                },
+                {
+                    "Direction": "greater than",
+                    "Label": "vout1",
+                    "Name": "upper non critical",
+                    "Severity": 0,
+                    "Value": 2.016
+                },
+                {
+                    "Direction": "less than",
+                    "Label": "vout1",
+                    "Name": "lower critical",
+                    "Severity": 1,
+                    "Value": 1.197
+                },
+                {
+                    "Direction": "less than",
+                    "Label": "vout1",
+                    "Name": "lower non critical",
+                    "Severity": 0,
+                    "Value": 1.233
+                },
+                {
+                    "Direction": "greater than",
+                    "Label": "vout1",
+                    "Name": "upper critical",
+                    "Severity": 0,
+                    "Value": 2.1
+                },
+                {
+                    "Direction": "less than",
+                    "Label": "vout1",
+                    "Name": "lower critical",
+                    "Severity": 0,
+                    "Value": 1.153
+                }
+            ],
+            "Type": "XDPE152C4D",
+            "vout1_Name": "PVCCIN_CPU1"
+        },
+        {
+            "Address": "0x62",
+            "Bus": 501,
+            "Labels": [
+                "vout1"
+            ],
+            "Name": "PVCCINFAON_CPU1",
+            "PowerState": "On",
+            "Thresholds": [
+                {
+                    "Direction": "greater than",
+                    "Label": "vout1",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 1.188
+                },
+                {
+                    "Direction": "greater than",
+                    "Label": "vout1",
+                    "Name": "upper non critical",
+                    "Severity": 0,
+                    "Value": 1.152
+                },
+                {
+                    "Direction": "less than",
+                    "Label": "vout1",
+                    "Name": "lower critical",
+                    "Severity": 1,
+                    "Value": 0.675
+                },
+                {
+                    "Direction": "less than",
+                    "Label": "vout1",
+                    "Name": "lower non critical",
+                    "Severity": 0,
+                    "Value": 0.693
+                },
+                {
+                    "Direction": "greater than",
+                    "Label": "vout1",
+                    "Name": "upper critical",
+                    "Severity": 0,
+                    "Value": 1.187
+                },
+                {
+                    "Direction": "less than",
+                    "Label": "vout1",
+                    "Name": "lower critical",
+                    "Severity": 0,
+                    "Value": 0.652
+                }
+            ],
+            "Type": "XDPE152C4D",
+            "vout1_Name": "PVCCINFAON_CPU1"
+        },
+        {
+            "Address": "0x72",
+            "Bus": 501,
+            "Labels": [
+                "vout1"
+            ],
+            "Name": "PVCCD_HV_CPU1",
+            "PowerState": "On",
+            "Thresholds": [
+                {
+                    "Direction": "greater than",
+                    "Label": "vout1",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 1.269
+                },
+                {
+                    "Direction": "greater than",
+                    "Label": "vout1",
+                    "Name": "upper non critical",
+                    "Severity": 0,
+                    "Value": 1.233
+                },
+                {
+                    "Direction": "less than",
+                    "Label": "vout1",
+                    "Name": "lower critical",
+                    "Severity": 1,
+                    "Value": 0.882
+                },
+                {
+                    "Direction": "less than",
+                    "Label": "vout1",
+                    "Name": "lower non critical",
+                    "Severity": 0,
+                    "Value": 0.909
+                },
+                {
+                    "Direction": "greater than",
+                    "Label": "vout1",
+                    "Name": "upper critical",
+                    "Severity": 0,
+                    "Value": 1.347
+                },
+                {
+                    "Direction": "less than",
+                    "Label": "vout1",
+                    "Name": "lower critical",
+                    "Severity": 0,
+                    "Value": 0.92
+                }
+            ],
+            "Type": "XDPE152C4D",
+            "vout1_Name": "PVCCD_HV_CPU1"
+        },
+        {
+            "Address": "0x30",
+            "Bus": 0,
+            "CpuID": 0,
+            "Name": "CPU0",
+            "PresenceGpio": [
+                {
+                    "Name": "CPU0_PRESENCE",
+                    "Polarity": "Low"
+                }
+            ],
+            "Thresholds": [
+                {
+                    "Direction": "less than",
+                    "Label": "DTS",
+                    "Name": "lower critical",
+                    "Severity": 1,
+                    "Value": 0
+                },
+                {
+                    "Direction": "less than",
+                    "Label": "DTS",
+                    "Name": "lower non critical",
+                    "Severity": 0,
+                    "Value": 2
+                }
+            ],
+            "Type": "XeonCPU"
+        },
+        {
+            "Address": "0x31",
+            "Bus": 0,
+            "CpuID": 1,
+            "Name": "CPU1",
+            "PresenceGpio": [
+                {
+                    "Name": "CPU1_PRESENCE",
+                    "Polarity": "Low"
+                }
+            ],
+            "Thresholds": [
+                {
+                    "Direction": "less than",
+                    "Label": "DTS",
+                    "Name": "lower critical",
+                    "Severity": 1,
+                    "Value": 0
+                },
+                {
+                    "Direction": "less than",
+                    "Label": "DTS",
+                    "Name": "lower non critical",
+                    "Severity": 0,
+                    "Value": 2
+                }
+            ],
+            "Type": "XeonCPU"
+        }
+    ],
+    "Name": "nf5280m7 baseboard",
+    "Probe": "xyz.openbmc_project.FruDevice({'PRODUCT_PRODUCT_NAME': 'NF5280M7'})",
+    "Type": "Chassis",
+    "xyz.openbmc_project.Inventory.Decorator.Asset": {
+        "Manufacturer": "$BOARD_MANUFACTURER",
+        "Model": "$BOARD_PRODUCT_NAME",
+        "PartNumber": "$BOARD_PART_NUMBER",
+        "SerialNumber": "$BOARD_SERIAL_NUMBER"
+    },
+    "xyz.openbmc_project.Inventory.Decorator.AssetTag": {
+        "AssetTag": "$PRODUCT_ASSET_TAG"
+    },
+    "xyz.openbmc_project.Inventory.Item.System": {}
+}
