@@ -183,6 +183,7 @@ configs = [
     'storm_king.json',
     'stp_baseboard.json',
     'stp_p4000_chassis.json',
+    'terminus_2x100g_nic_tsff.json',
     'tola.json',
     'twinlake.json',
     'tyan_s7106_baseboard.json',
