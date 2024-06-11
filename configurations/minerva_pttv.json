@@ -9,7 +9,6 @@
                 "in2",
                 "in3",
                 "in4",
-                "in5",
                 "in6"
             ],
             "Name": "PTTV_ADC",
@@ -110,8 +109,6 @@
             "in3_Scale": 43.233563571,
             "in4_Name": "PTTV_ADC_P48V_VOLT_V",
             "in4_Scale": 41.32231405,
-            "in5_Name": "PTTV_ADC_P5V_AUX_VOLT_V",
-            "in5_Scale": 281.29395218,
             "in6_Name": "PTTV_ADC_P3V3_AUX_VOLT_V",
             "in6_Scale": 500
         },
@@ -125,6 +122,20 @@
             ],
             "Name": "PTTV_P48V_VR",
             "Thresholds": [
+                {
+                    "Direction": "less than",
+                    "Label": "in1",
+                    "Name": "lower critical",
+                    "Severity": 1,
+                    "Value": 46.0
+                },
+                {
+                    "Direction": "greater than",
+                    "Label": "in1",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 55.0
+                },
                 {
                     "Direction": "less than",
                     "Label": "curr1",
@@ -169,6 +180,20 @@
             ],
             "Name": "PTTV_P48V",
             "Thresholds": [
+                {
+                    "Direction": "less than",
+                    "Label": "in1",
+                    "Name": "lower critical",
+                    "Severity": 1,
+                    "Value": 46.0
+                },
+                {
+                    "Direction": "greater than",
+                    "Label": "in1",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 55.0
+                },
                 {
                     "Direction": "less than",
                     "Label": "curr1",
@@ -368,7 +393,6 @@
             "Type": "TMP75"
         }
     ],
-    /* Power and thermal test vehicle board */
     "Name": "Minerva PTTV",
     "Probe": "xyz.openbmc_project.FruDevice({'BOARD_PRODUCT_NAME': 'Minerva PTTV '})",
     "Type": "Board",
