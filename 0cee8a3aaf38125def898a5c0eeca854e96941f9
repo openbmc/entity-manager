@@ -146,6 +146,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "36c859c7_5799c8be",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 5
+      },
+      "lineNbr": 23,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2024-06-13T03:26:50Z",
+      "side": 1,
+      "message": "Do we need any delay at all?  I can understand queuing this up asynchronously but it isn\u0027t clear to me that we should have a delay to it.\n\nI see originally James had 1 second in 8f2710ab and changed to 5 seconds in 899e17fa but there seems to be very little explanation as to why any of those values were chosen.",
+      "parentUuid": "ae4a5c5c_a0634c27",
+      "range": {
+        "startLine": 21,
+        "startChar": 0,
+        "endLine": 23,
+        "endChar": 25
+      },
+      "revId": "0cee8a3aaf38125def898a5c0eeca854e96941f9",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "abd8b3bb_d5d58f5c",
         "filename": "/COMMIT_MSG",
         "patchSetId": 5
