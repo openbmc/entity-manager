@@ -380,6 +380,12 @@
                 "Type": "INA238",
                 "curr1_Name": "FAN_BP0_FAN3_CURR_A",
                 "in1_Name": "FAN_BP0_FAN3_VOLT_V"
+            },
+            {
+                "Address": "0x4B",
+                "Bus": 2,
+                "Name": "FAN_BP0_TEMP_C",
+                "Type": "TMP75"
             }
         ],
         "Name": "Harma Fan Board 0",
@@ -767,6 +773,12 @@
                 "Type": "INA238",
                 "curr1_Name": "FAN_BP1_FAN3_CURR_A",
                 "in1_Name": "FAN_BP1_FAN3_VOLT_V"
+            },
+            {
+                "Address": "0x4B",
+                "Bus": 0,
+                "Name": "FAN_BP1_TEMP_C",
+                "Type": "TMP75"
             }
         ],
         "Name": "Harma Fan Board 1",
