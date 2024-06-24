@@ -3,6 +3,46 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "6733e5d0_8731a5b3",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 8,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2024-06-24T19:08:58Z",
+      "side": 1,
+      "message": "This commit message needs a large section dedicated to \"why\" we would want this upstream.  It seems like a significant step backwards in terms of maintenance.",
+      "revId": "cc40bb91883a047daa2c191cfba26c5013e2023d",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8a74e07a_50418e78",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 16,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2024-06-24T19:08:58Z",
+      "side": 1,
+      "message": "?  This is OpenBMC, there are no customers, and the intent of EM is that config files that aren\u0027t used don\u0027t have any effect.",
+      "range": {
+        "startLine": 16,
+        "startChar": 4,
+        "endLine": 16,
+        "endChar": 28
+      },
+      "revId": "cc40bb91883a047daa2c191cfba26c5013e2023d",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "da610d76_974ca8b2",
         "filename": "/COMMIT_MSG",
         "patchSetId": 2
@@ -54,6 +94,23 @@
       "writtenOn": "2024-06-24T18:45:39Z",
       "side": 1,
       "message": "Would like to see what the community thinks about this.",
+      "revId": "cc40bb91883a047daa2c191cfba26c5013e2023d",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "76391b8f_120e1f0a",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2024-06-24T19:08:58Z",
+      "side": 1,
+      "message": "Overall, I don\u0027t really understand why we would want this in upstream.  I can hypothesize a reason, because the commit message doesn\u0027t list it:  There are conflicts in the probe statements in the config files between platforms.  We should just fix these conflicts.  Config files should be based on a fixed fru, and if there are conflicting probe statements, we should fix them.\n\nBeyond that, the config files don\u0027t take up much binary space, and are ensured at compile time that they parse, so in theory there should be no problem with the json files themselves causing issues.\n\nI could certainly see a downstream fork of entity-manager wanting to do this, to provide a completely different set of EM config files, but in that case they should be maintaining it as a fork, not pushing the complexity on upstream.\n\nOverall, even though this change doesn\u0027t seem large, I\u0027m not in support.  It encourages users to not get the upstream config files correct, because with this patch they can be trivially disabled.  In addition, there are optimizations we might do in the future, like generating c structures instead of parsing the json itself, that would no longer be possible if we explicitly supported install-time json, rather than requiring it be in the build.",
       "revId": "cc40bb91883a047daa2c191cfba26c5013e2023d",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
