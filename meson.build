@@ -8,7 +8,7 @@ project(
     ],
     license: 'Apache-2.0',
     version: '0.1',
-    meson_version: '>=0.58.0',
+    meson_version: '>=0.60.0',
 )
 add_project_arguments('-Wno-psabi', language: 'cpp')
 
@@ -204,18 +204,25 @@ configs = [
     'yosemite4_medusaboard.json',
     'yosemite4_spiderboard.json',
 ]
+installAlljson = get_option('install-github-config')
 filepaths = []
 foreach c : configs
     file = join_paths('configurations', c)
-    install_data(
-        file,
-        install_dir: join_paths(
-            packagedir,
-            'configurations',
+    if installAlljson
+        install_data(
+            file,
+            install_dir: join_paths(
+                packagedir,
+                'configurations',
+            )
         )
-    )
+    endif
     filepaths += [file]
 endforeach
+
+if not installAlljson
+    install_emptydir(join_paths(packagedir, 'configurations'))
+endif
 
 if get_option('validate-json')
     validate_script = files('scripts/validate_configs.py')
