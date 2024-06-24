@@ -10,3 +10,7 @@ option(
 option(
     'validate-json', type: 'boolean', value: true, description: 'Run JSON schema validation during the build.',
 )
+option(
+    'install-configuration-files', type: 'boolean', value: true, description: 'Install all configuration files',
+)
+
