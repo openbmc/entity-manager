@@ -215,6 +215,24 @@
       "parentUuid": "76391b8f_120e1f0a",
       "revId": "cc40bb91883a047daa2c191cfba26c5013e2023d",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4a01dc1c_62ca4ce0",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2024-06-25T16:33:38Z",
+      "side": 1,
+      "message": "\u003e Actually, our machine is facing the issue that there is no space for a new feature, so we are working on cleaning up the useless files on machine.\n\nThen put that in your commit message: How much space is saved by not including them?\n\nA quick look on my system shows that once compressed, the entire payload of json files is about 40kB\n\n```\ned in tv entity-manager.bak/configurations on  master [$?⇡]\n❯ ls -alh archive.tar.xz\n-rw-rw-r-- 1 ed ed 40K Jun 25 09:31 archive.tar.xz\n```\n\nThis is such a minor change, I really doubt it\u0027s going to help with binary size much, and isn\u0027t worth the complexity of trying to maintain multiple sets of EM configs.",
+      "parentUuid": "d5024221_8c6d531b",
+      "revId": "cc40bb91883a047daa2c191cfba26c5013e2023d",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }
