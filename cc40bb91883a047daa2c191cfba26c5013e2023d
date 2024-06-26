@@ -233,6 +233,24 @@
       "parentUuid": "d5024221_8c6d531b",
       "revId": "cc40bb91883a047daa2c191cfba26c5013e2023d",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "b2f136d7_a992a97e",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1000934
+      },
+      "writtenOn": "2024-06-26T02:27:26Z",
+      "side": 1,
+      "message": "Yeah, it only save 56kB in our image which is a small change, so we are also going to find out other unused thing to remove.\n\nI think this saving size might not be a fix number due to the JSON file might be added/removed/modified by people, so I have not add this in commit message.\n\nIt is a small change and will not have any change to entity-manager itself, so I think it might be fine to be upstreamed. However, you\u0027re right, my reasons aren\u0027t strong enough.",
+      "parentUuid": "4a01dc1c_62ca4ce0",
+      "revId": "cc40bb91883a047daa2c191cfba26c5013e2023d",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }
