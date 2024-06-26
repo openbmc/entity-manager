@@ -26,6 +26,30 @@
     {
       "unresolved": false,
       "key": {
+        "uuid": "83fdea4c_06a768a3",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 4
+      },
+      "lineNbr": 17,
+      "author": {
+        "id": 1001717
+      },
+      "writtenOn": "2024-06-26T13:07:48Z",
+      "side": 1,
+      "message": "The EEPROM wasn\u0027t defined in the device tree. Your explanation matches with what is in the i2c trace. Thanks!",
+      "parentUuid": "5506b0ee_67d6e63b",
+      "range": {
+        "startLine": 17,
+        "startChar": 0,
+        "endLine": 17,
+        "endChar": 39
+      },
+      "revId": "144751abea03961df12f880cd9231297794762e9",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
         "uuid": "db457ec0_dedb901d",
         "filename": "/PATCHSET_LEVEL",
         "patchSetId": 4
@@ -55,6 +79,24 @@
       "side": 1,
       "message": "This code keeps getting changed, and keeps breaking devices that were previously working, which is understandable, because it\u0027s hard to get all the possible hardware types in one system, we need to start putting these behind policy flags that we can set on a per image basis.  While I\u0027d really like to thing we can come up with something that handles all cases of 8 bit hardware, 16 bit hardware, 8 bit emulated, 16 bit emulated eepoms, that doesn\u0027t seem realistic right now.",
       "parentUuid": "db457ec0_dedb901d",
+      "revId": "144751abea03961df12f880cd9231297794762e9",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "41457fb9_09988124",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1001717
+      },
+      "writtenOn": "2024-06-26T13:07:48Z",
+      "side": 1,
+      "message": "Apparently the old code works. @Carson gave a detailed explanation of the internal mechanics, why it works for most EEPROMs and doesn\u0027t for a few and it matches with the activities seen in the i2c trace.",
+      "parentUuid": "b112d858_bbffc56e",
       "revId": "144751abea03961df12f880cd9231297794762e9",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
