@@ -202,6 +202,7 @@ configs = [
     'yosemite4_wailuafalls.json',
     'yosemite4.json',
     'yosemite4_medusaboard.json',
+    'yosemite4_medusaboard_psu_mps_xdp.json',
     'yosemite4_spiderboard.json',
 ]
 filepaths = []
