@@ -201,6 +201,7 @@ configs = [
     'yosemite4_floatingfalls.json',
     'yosemite4_wailuafalls.json',
     'yosemite4.json',
+    'yosemite4_n.json',
     'yosemite4_medusaboard.json',
     'yosemite4_spiderboard.json',
 ]
