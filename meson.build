@@ -198,6 +198,7 @@ configs = [
     'yosemite4_fanboard_fsc_max.json',
     'yosemite4_fanboard_fsc_nct.json',
     'yosemite4_sentineldome.json',
+    'yosemite4_sentineldome_t1.json',
     'yosemite4_floatingfalls.json',
     'yosemite4_wailuafalls.json',
     'yosemite4.json',
