@@ -24,6 +24,10 @@
                 "MB_DIMM_K_TEMP_C_15 $bus % 15 * 10",
                 "MB_DIMM_L_TEMP_C_16 $bus % 15 * 10"
             ],
+            "MissingIsAcceptable": [
+                "MB_DIMM_F_TEMP_C_10 $bus % 15 * 10",
+                "MB_DIMM_L_TEMP_C_16 $bus % 15 * 10"
+            ],
             "Name": "PID_MB_DIMM $bus % 15 * 10",
             "NegativeHysteresis": 2.0,
             "OutLimitMax": 100,
@@ -171,8 +175,10 @@
             "Class": "temp",
             "InputUnavailableAsFailed": false,
             "Inputs": [
-                "MB_X8_RETIMER_TEMP_C_24 $bus % 15 * 10",
-                "MB_X16_RETIMER_TEMP_C_25 $bus % 15 * 10"
+                "MB_X8_RETIMER_TEMP_C_24 $bus % 15 * 10"
+            ],
+            "MissingIsAcceptable": [
+                "MB_X8_RETIMER_TEMP_C_24 $bus % 15 * 10"
             ],
             "Name": "Stepwise_MB_RETIMER_TEMP $bus % 15 * 10",
             "NegativeHysteresis": 0,
@@ -260,6 +266,10 @@
                 "MB_DIMM_I_TEMP_C_13 $bus % 15 * 10",
                 "MB_DIMM_J_TEMP_C_14 $bus % 15 * 10",
                 "MB_DIMM_K_TEMP_C_15 $bus % 15 * 10",
+                "MB_DIMM_L_TEMP_C_16 $bus % 15 * 10"
+            ],
+            "MissingIsAcceptable": [
+                "MB_DIMM_F_TEMP_C_10 $bus % 15 * 10",
                 "MB_DIMM_L_TEMP_C_16 $bus % 15 * 10"
             ],
             "Name": "Stepwise_MB_DIMM $bus % 15 * 10",
@@ -414,8 +424,12 @@
             ]
         }
     ],
-    "Name": "Yosemite 4 Sentinel Dome Slot $bus % 15",
-    "Probe": "xyz.openbmc_project.FruDevice({'BOARD_PRODUCT_NAME': 'Sentinel Dome', 'PRODUCT_PRODUCT_NAME': 'Yosemite V4'})",
+    "Name": "Yosemite 4 Sentinel Dome T2 Slot $bus % 15",
+    "Probe": [
+        "xyz.openbmc_project.FruDevice({'BOARD_PRODUCT_NAME': 'Sentinel Dome', 'PRODUCT_PRODUCT_NAME': 'Yosemite V4', 'PRODUCT_INFO_AM2': 'N/A'})",
+        "OR",
+        "xyz.openbmc_project.FruDevice({'BOARD_PRODUCT_NAME': 'Sentinel Dome', 'PRODUCT_PRODUCT_NAME': 'Yosemite V4', 'PRODUCT_INFO_AM2': 'Yosemite V4 T2.*'})"
+    ],
     "Type": "Board",
     "xyz.openbmc_project.Inventory.Decorator.Asset": {
         "Manufacturer": "$PRODUCT_MANUFACTURER",
