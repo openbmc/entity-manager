@@ -218,6 +218,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "b9b1c329_d95b6a50",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 5
+      },
+      "lineNbr": 23,
+      "author": {
+        "id": 1001932
+      },
+      "writtenOn": "2024-06-28T16:15:55Z",
+      "side": 1,
+      "message": "Is below detail is sufficient, can I add this as commit message ?\n\n\"\nTested EntityManager with varying delays in propertiesChangedCallback\napi, ranging from 5 seconds to 500 milliseconds on IBM systems.\nObserved improved performance in creating interfaces for matching\nprobes with a 500-millisecond delay.\n\nDecided to retain the 500-millisecond delay to avoid altering the\nsystem\u0027s behavior significantly. This delay should not impact\nother systems. The choice of 500 milliseconds is arbitrary but based\non observed performance improvements.\n\"",
+      "parentUuid": "984b89a5_31779ea4",
+      "range": {
+        "startLine": 21,
+        "startChar": 0,
+        "endLine": 23,
+        "endChar": 25
+      },
+      "revId": "0cee8a3aaf38125def898a5c0eeca854e96941f9",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "abd8b3bb_d5d58f5c",
         "filename": "/COMMIT_MSG",
         "patchSetId": 5
