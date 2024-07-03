@@ -204,6 +204,7 @@ configs = [
     'yosemite4.json',
     'yosemite4_medusaboard.json',
     'yosemite4_spiderboard.json',
+    'yosemite4_spiderboard_adc_max.json',
 ]
 filepaths = []
 foreach c : configs
