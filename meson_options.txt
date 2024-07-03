@@ -8,5 +8,8 @@ option(
     'fru-device-resizefru', value : false, type: 'boolean', description: 'Allow FruDevice to resize FRU areas.',
 )
 option(
+    'fru-device-16bitdetectmode', type: 'integer', value: 1, description: 'Different modes to detect 16-bit address EEPROM devices.',
+)
+option(
     'validate-json', type: 'boolean', value: true, description: 'Run JSON schema validation during the build.',
 )
