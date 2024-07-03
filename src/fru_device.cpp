@@ -199,40 +199,6 @@ static void makeProbeInterface(size_t bus, size_t address,
     it->second->initialize();
 }
 
-static std::optional<bool> isDevice16Bit(int file)
-{
-    // Set the higher data word address bits to 0. It's safe on 8-bit addressing
-    // EEPROMs because it doesn't write any actual data.
-    int ret = i2c_smbus_write_byte(file, 0);
-    if (ret < 0)
-    {
-        return std::nullopt;
-    }
-
-    /* Get first byte */
-    int byte1 = i2c_smbus_read_byte_data(file, 0);
-    if (byte1 < 0)
-    {
-        return std::nullopt;
-    }
-    /* Read 7 more bytes, it will read same first byte in case of
-     * 8 bit but it will read next byte in case of 16 bit
-     */
-    for (int i = 0; i < 7; i++)
-    {
-        int byte2 = i2c_smbus_read_byte_data(file, 0);
-        if (byte2 < 0)
-        {
-            return std::nullopt;
-        }
-        if (byte2 != byte1)
-        {
-            return true;
-        }
-    }
-    return false;
-}
-
 // Issue an I2C transaction to first write to_target_buf_len bytes,then read
 // from_target_buf_len bytes.
 static int i2cSmbusWriteThenRead(int file, uint16_t address,
@@ -298,6 +264,37 @@ static int64_t readData(bool is16bit, bool isBytewise, int file,
     // NOLINTNEXTLINE(cppcoreguidelines-pro-type-reinterpret-cast)
     uint8_t* u8Offset = reinterpret_cast<uint8_t*>(&offset);
     return i2cSmbusWriteThenRead(file, address, u8Offset, 2, buf, len);
+}
+
+static std::optional<bool> isDevice16Bit(int file, uint16_t address)
+{
+    uint8_t first = 0;
+    uint8_t cur = 0;
+    uint16_t v = 0;
+    // NOLINTNEXTLINE(cppcoreguidelines-pro-type-reinterpret-cast)
+    uint8_t* p = reinterpret_cast<uint8_t*>(&v);
+
+    /*
+     * Write 2 bytes byte0 = 0, byte1 = {0..7} and then subsequent read byte
+     * It will read same first byte in case of 8 bit but
+     * it will read next byte in case of 16 bit
+     */
+    for (int i = 0; i < 8; i++)
+    {
+        v = htobe16(i);
+
+        i2cSmbusWriteThenRead(file, address, p, 2, &cur, 1);
+        if (i == 0)
+        {
+            first = cur;
+        }
+
+        if (first != cur)
+        {
+            return true;
+        }
+    }
+    return false;
 }
 
 // TODO: This code is very similar to the non-eeprom version and can be merged
@@ -501,7 +498,7 @@ int getBusFRUs(int file, int first, int last, int bus,
             }
 
             /* Check for Device type if it is 8 bit or 16 bit */
-            std::optional<bool> is16Bit = isDevice16Bit(file);
+            std::optional<bool> is16Bit = isDevice16Bit(file, ii);
             if (!is16Bit.has_value())
             {
                 std::cerr << "failed to read bus " << bus << " address " << ii
