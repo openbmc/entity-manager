@@ -18,6 +18,24 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "45654df8_3dba8270",
+        "filename": "configurations/yosemite4n.json",
+        "patchSetId": 6
+      },
+      "lineNbr": 521,
+      "author": {
+        "id": 1000294
+      },
+      "writtenOn": "2024-07-05T02:13:58Z",
+      "side": 1,
+      "message": "No, I don\u0027t know it, but I think you are right, those values should sync with `yosemite4`. Due to the the `Type` is the same `TMP421`. Changed it.",
+      "parentUuid": "072850c0_ae1388b8",
+      "revId": "d6e3f815d903af41301abae9242f45c4eeb3db8e",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "5cd93094_6bb50b5d",
@@ -35,6 +53,24 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "d6632eff_b4e14b0d",
+        "filename": "configurations/yosemite4n.json",
+        "patchSetId": 6
+      },
+      "lineNbr": 611,
+      "author": {
+        "id": 1000294
+      },
+      "writtenOn": "2024-07-05T02:13:58Z",
+      "side": 1,
+      "message": "Thanks for your review. Sync with `yosemite4`. Due to the `Type` is the same `TMP75`.",
+      "parentUuid": "5cd93094_6bb50b5d",
+      "revId": "d6e3f815d903af41301abae9242f45c4eeb3db8e",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "98d01084_6476231b",
@@ -48,6 +84,30 @@
       "writtenOn": "2024-07-04T19:48:47Z",
       "side": 1,
       "message": "Do we want/need a difference in the name here?  There can only be one.  I\u0027m not sure if it is useful to have a different one or not.\n\nFor other second-source FRUs we used the same name (like Yosemite 4 Fan Board).",
+      "range": {
+        "startLine": 617,
+        "startChar": 24,
+        "endLine": 617,
+        "endChar": 31
+      },
+      "revId": "d6e3f815d903af41301abae9242f45c4eeb3db8e",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "f4c99a02_22b616d6",
+        "filename": "configurations/yosemite4n.json",
+        "patchSetId": 6
+      },
+      "lineNbr": 617,
+      "author": {
+        "id": 1000294
+      },
+      "writtenOn": "2024-07-05T02:13:58Z",
+      "side": 1,
+      "message": "The name seems no need to use different one. Due to the `BOARD_PRODUCT_NAME` already change to different name `Management Board wN-BMC`. Thanks for review.",
+      "parentUuid": "98d01084_6476231b",
       "range": {
         "startLine": 617,
         "startChar": 24,
