@@ -1,0 +1,84 @@
+{
+    "Exposes": [
+        {
+            "Address": "0x41",
+            "Bus": 11,
+            "Labels": [
+                "vout1"
+            ],
+            "Name": "MEDUSA_ADC_GND_SENSE",
+            "Type": "INA233",
+            "vout1_Name": "MEDUSA_ADC_GND_SENSE_VOLT_V"
+        },
+        {
+            "Address": "0x44",
+            "Bus": 11,
+            "Labels": [
+                "in0"
+            ],
+            "Name": "MEDUSA_ADC_48V_SENSE",
+            "Thresholds": [
+                {
+                    "Direction": "greater than",
+                    "Label": "in0",
+                    "Name": "upper non recoverable",
+                    "Severity": 4,
+                    "Value": 0.04
+                },
+                {
+                    "Direction": "greater than",
+                    "Label": "in0",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 0.04
+                },
+                {
+                    "Direction": "greater than",
+                    "Label": "in0",
+                    "Name": "upper non critical",
+                    "Severity": 0,
+                    "Value": 0.03
+                },
+                {
+                    "Direction": "less than",
+                    "Label": "in0",
+                    "Name": "lower non critical",
+                    "Severity": 0,
+                    "Value": -0.01
+                },
+                {
+                    "Direction": "less than",
+                    "Label": "in0",
+                    "Name": "lower critical",
+                    "Severity": 1,
+                    "Value": -0.02
+                },
+                {
+                    "Direction": "less than",
+                    "Label": "in0",
+                    "Name": "lower non recoverable",
+                    "Severity": 4,
+                    "Value": -0.02
+                }
+            ],
+            "Type": "INA238",
+            "in1_Name": "MEDUSA_ADC_48V_SENSE_VOLT_V"
+        }
+    ],
+    "Name": "Yosemite 4 Medusa Board ADC TI",
+    "Probe": "xyz.openbmc_project.FruDevice({'BOARD_PRODUCT_NAME': 'Medusa Board ADC-TI 12VHSC-.* 48VHSC-.*', 'PRODUCT_PRODUCT_NAME': 'Yosemite V4'})",
+    "Type": "Board",
+    "xyz.openbmc_project.Inventory.Decorator.Asset": {
+        "Manufacturer": "$PRODUCT_MANUFACTURER",
+        "Model": "$PRODUCT_PRODUCT_NAME",
+        "PartNumber": "$PRODUCT_PART_NUMBER",
+        "SerialNumber": "$PRODUCT_SERIAL_NUMBER",
+        "SparePartNumber": "$BOARD_INFO_AM1"
+    },
+    "xyz.openbmc_project.Inventory.Decorator.AssetTag": {
+        "AssetTag": "$PRODUCT_ASSET_TAG"
+    },
+    "xyz.openbmc_project.Inventory.Decorator.Revision": {
+        "Version": "$PRODUCT_VERSION"
+    }
+}

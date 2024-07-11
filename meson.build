@@ -204,6 +204,9 @@ configs = [
     'yosemite4.json',
     'yosemite4n.json',
     'yosemite4_medusaboard.json',
+    'yosemite4_medusaboard_adc_ti.json',
+    'yosemite4_medusaboard_48vhsc_adi.json',
+    'yosemite4_medusaboard_12vhsc_adi.json',
     'yosemite4_spiderboard.json',
 ]
 filepaths = []
