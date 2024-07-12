@@ -16,6 +16,46 @@
       "message": "Can we rename this file to fully describe the variant?",
       "revId": "2af0bce5a4752ce17722f2fd96f27fe65d9e1704",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ef65a9a8_54016e24",
+        "filename": "configurations/yosemite4_medusaboard_12vhsc_adi.json",
+        "patchSetId": 2
+      },
+      "lineNbr": 1244,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2024-07-12T02:20:24Z",
+      "side": 1,
+      "message": "I don\u0027t think we want all this in the name.  Let\u0027s use a single name for the same FRU no matter which variant it is.",
+      "range": {
+        "startLine": 1244,
+        "startChar": 37,
+        "endLine": 1244,
+        "endChar": 49
+      },
+      "revId": "2af0bce5a4752ce17722f2fd96f27fe65d9e1704",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4e072295_8a536226",
+        "filename": "configurations/yosemite4_medusaboard_12vhsc_adi.json",
+        "patchSetId": 2
+      },
+      "lineNbr": 1245,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2024-07-12T02:20:24Z",
+      "side": 1,
+      "message": "We\u0027re going to end up with two different FRU entries for the same FRU.  This isn\u0027t correct.\n\nThis is the yosemite4_medusa.json vs this one...\n\n```\n    \"Probe\": \"xyz.openbmc_project.FruDevice({\u0027BOARD_PRODUCT_NAME\u0027: \u0027Medusa Board ADC-.* 12VHSC-.* 48VHSC-.*\u0027, \u0027PRODUCT_PRODUCT_NAME\u0027: \u0027Yosemite V4\u0027})\",\n    \"Probe\": \"xyz.openbmc_project.FruDevice({\u0027BOARD_PRODUCT_NAME\u0027: \u0027Medusa Board ADC-.* 12VHSC-ADI 48VHSC-.*\u0027, \u0027PRODUCT_PRODUCT_NAME\u0027: \u0027Yosemite V4\u0027})\",\n```\n\nWe need to completely separate the two different files so only one triggers for any individual FRU.",
+      "revId": "2af0bce5a4752ce17722f2fd96f27fe65d9e1704",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }
