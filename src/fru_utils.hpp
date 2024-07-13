@@ -22,6 +22,7 @@
 #include <sdbusplus/asio/object_server.hpp>
 
 #include <cstdint>
+#include <cstdio>
 #include <functional>
 #include <regex>
 #include <string>

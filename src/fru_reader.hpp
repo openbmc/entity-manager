@@ -17,6 +17,7 @@
 #pragma once
 
 #include <cstdint>
+#include <cstdio>
 #include <functional>
 #include <map>
 #include <optional>
