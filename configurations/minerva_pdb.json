@@ -164,5 +164,8 @@
         "PartNumber": "$BOARD_PART_NUMBER",
         "SerialNumber": "$BOARD_SERIAL_NUMBER",
         "SparePartNumber": "$BOARD_INFO_AM1"
+    },
+    "xyz.openbmc_project.Inventory.Decorator.AssetTag": {
+        "AssetTag": "$PRODUCT_ASSET_TAG"
     }
 }
