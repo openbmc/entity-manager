@@ -20,6 +20,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "20239f47_199b1455",
+        "filename": "configurations/yosemite4_medusaboard.json",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1002022
+      },
+      "writtenOn": "2024-07-15T02:44:46Z",
+      "side": 1,
+      "message": "Hi Parick,\n\nAbout the naming of the sensor config.\nThese are the fully describe the variant for medusa board:\n\nMain sources:   medusa_board_adc_ti_12hsc_mps_48vhsc_adi\nSecond sources: medusa_board_adc_ti_12hsc_mps_48vhsc_inf\nThird sources:  medusa_board_adc_rns_12hsc_mps_48vhsc_adi\n... and so on.\n\nThere might be 8 sources (sensor config) for the Medusa Board.\nIs it suggested to load an individual sensor config for each Medusa Board?\nThank you!",
+      "parentUuid": "75ae7443_ba1c9f61",
+      "revId": "2af0bce5a4752ce17722f2fd96f27fe65d9e1704",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "ef65a9a8_54016e24",
         "filename": "configurations/yosemite4_medusaboard_12vhsc_adi.json",
         "patchSetId": 2
@@ -54,6 +72,24 @@
       "writtenOn": "2024-07-12T02:20:24Z",
       "side": 1,
       "message": "We\u0027re going to end up with two different FRU entries for the same FRU.  This isn\u0027t correct.\n\nThis is the yosemite4_medusa.json vs this one...\n\n```\n    \"Probe\": \"xyz.openbmc_project.FruDevice({\u0027BOARD_PRODUCT_NAME\u0027: \u0027Medusa Board ADC-.* 12VHSC-.* 48VHSC-.*\u0027, \u0027PRODUCT_PRODUCT_NAME\u0027: \u0027Yosemite V4\u0027})\",\n    \"Probe\": \"xyz.openbmc_project.FruDevice({\u0027BOARD_PRODUCT_NAME\u0027: \u0027Medusa Board ADC-.* 12VHSC-ADI 48VHSC-.*\u0027, \u0027PRODUCT_PRODUCT_NAME\u0027: \u0027Yosemite V4\u0027})\",\n```\n\nWe need to completely separate the two different files so only one triggers for any individual FRU.",
+      "revId": "2af0bce5a4752ce17722f2fd96f27fe65d9e1704",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f838917c_b6b5eb0e",
+        "filename": "configurations/yosemite4_medusaboard_12vhsc_adi.json",
+        "patchSetId": 2
+      },
+      "lineNbr": 1245,
+      "author": {
+        "id": 1002022
+      },
+      "writtenOn": "2024-07-15T02:44:46Z",
+      "side": 1,
+      "message": "Hi @Patrick Williams,\n\nFour components might contain second sources on the Medusa Board,\nwhich are: ADC_1, ADC_2, 12V HSC. and 48V HSC.\nIn this project, these components built 8 different sources for the Medusa Board. If different FRUs (each source contains individual FRU) for different files, 8 different sensor configs for the Medsua Board might be generated.\n\nThis commit tries to separate the sensor config by the driver. For example, if the Medusa Board contains INA233, MP5990, ADM1272, and INA238. This board will load the sensor configs of INA233, MP5990, ADM1272, and INA238 at the same time.\n(each driver will be an individual sensor config).\n\nI would like to confirm with you. Is it recommended to separate the sensor config for any individual FRU which we might generate 8 different sensor configs for the Medusa Board?\n\nThank you!",
+      "parentUuid": "4e072295_8a536226",
       "revId": "2af0bce5a4752ce17722f2fd96f27fe65d9e1704",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
