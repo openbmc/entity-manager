@@ -1621,10 +1621,32 @@
                 "temp1",
                 "vin",
                 "vout1",
-                "iout1"
+                "iout1",
+                "pin"
             ],
             "Name": "MEDUSA_12VEFFUSE",
             "Thresholds": [
+                {
+                    "Direction": "greater than",
+                    "Label": "pin",
+                    "Name": "upper non recoverable",
+                    "Severity": 4,
+                    "Value": 47.5
+                },
+                {
+                    "Direction": "greater than",
+                    "Label": "pin",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 44.55
+                },
+                {
+                    "Direction": "greater than",
+                    "Label": "pin",
+                    "Name": "upper non critical",
+                    "Severity": 0,
+                    "Value": 44.1375
+                },
                 {
                     "Direction": "greater than",
                     "Label": "vin",
@@ -1740,6 +1762,7 @@
             ],
             "Type": "MP5023",
             "iout1_Name": "MEDUSA_12VEFFUSE_CURR_A",
+	    "pin_Name": "MEDUSA_12VEFFUSE_INPUT_PWR_W",
             "temp1_Name": "MEDUSA_12VEFFUSE_TEMP_C",
             "vin_Name": "MEDUSA_12VEFFUSE_INPUT_VOLT_V",
             "vout1_Name": "MEDUSA_12VEFFUSE_OUTPUT_VOLT_V"
