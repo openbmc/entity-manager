@@ -468,10 +468,10 @@ resCodes
                 timeValue += static_cast<long>(minutes) * 60;
                 fruTime = *std::gmtime(&timeValue);
 
-                // Tue Nov 20 23:08:00 2018
+                // Format time with redfish standard 2018-11-20T23:08:00Z
                 std::array<char, 32> timeString = {};
                 auto bytes = std::strftime(timeString.data(), timeString.size(),
-                                           "%Y%m%dT%H%M%SZ", &fruTime);
+                                           "%Y-%m-%dT%H:%M:%SZ", &fruTime);
                 if (bytes == 0)
                 {
                     std::cerr << "invalid time string encountered\n";
