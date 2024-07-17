@@ -145,7 +145,39 @@
             "power1_Name": "CMM_PMON_P12V_PWR_W"
         },
         {
-            "Address": "0x44",
+            "Address": "0x4f",
+            "Bus": 1,
+            "Name": "CMM_OUTLET_TEMP_C",
+            "Thresholds": [
+                {
+                    "Direction": "greater than",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 80
+                },
+                {
+                    "Direction": "greater than",
+                    "Name": "upper non critical",
+                    "Severity": 0,
+                    "Value": 75
+                },
+                {
+                    "Direction": "less than",
+                    "Name": "lower non critical",
+                    "Severity": 0,
+                    "Value": 5
+                },
+                {
+                    "Direction": "less than",
+                    "Name": "lower critical",
+                    "Severity": 1,
+                    "Value": 0
+                }
+            ],
+            "Type": "TMP75"
+        },
+        {
+            "Address": "0x43",
             "Bus": 0,
             "Labels": [
                 "vin",
@@ -212,50 +244,18 @@
                     "Value": 0
                 }
             ],
-            "Type": "LTC4287",
+            "Type": "XDP710",
             "iout1_Name": "CMM_HSC_CURR_A",
             "pin_Name": "CMM_HSC_PWR_W",
             "vin_Name": "CMM_HSC_VIN_VOLT_V",
             "vout1_Name": "CMM_HSC_VOUT_VOLT_V"
-        },
-        {
-            "Address": "0x4f",
-            "Bus": 1,
-            "Name": "CMM_OUTLET_TEMP_C",
-            "Thresholds": [
-                {
-                    "Direction": "greater than",
-                    "Name": "upper critical",
-                    "Severity": 1,
-                    "Value": 80
-                },
-                {
-                    "Direction": "greater than",
-                    "Name": "upper non critical",
-                    "Severity": 0,
-                    "Value": 75
-                },
-                {
-                    "Direction": "less than",
-                    "Name": "lower non critical",
-                    "Severity": 0,
-                    "Value": 5
-                },
-                {
-                    "Direction": "less than",
-                    "Name": "lower critical",
-                    "Severity": 1,
-                    "Value": 0
-                }
-            ],
-            "Type": "TMP75"
         }
     ],
     "Name": "Minerva CMM",
     "Probe": [
-        "xyz.openbmc_project.FruDevice({'BOARD_PRODUCT_NAME': 'Minerva CMM EVT', 'BOARD_PART_NUMBER': '3IF0MMA0000'})",
+        "xyz.openbmc_project.FruDevice({'BOARD_PRODUCT_NAME': 'Minerva CMM EVT', 'BOARD_PART_NUMBER': '3IF0MMA0010'})",
         "OR",
-        "xyz.openbmc_project.FruDevice({'BOARD_PRODUCT_NAME': 'Minerva CMM ', 'BOARD_INFO_AM4': 'hsc-ltc'})"
+        "xyz.openbmc_project.FruDevice({'BOARD_PRODUCT_NAME': 'Minerva CMM ', 'BOARD_INFO_AM4': 'hsc-xdp'})"
     ],
     "Type": "Board",
     "xyz.openbmc_project.Inventory.Decorator.Asset": {
