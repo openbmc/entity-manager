@@ -16,6 +16,24 @@
       "message": "Does this still support all the fan board variants?  It looks like we removed 3 of them.",
       "revId": "311f1f24c4eb749ed79b224279343786020f2ffb",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "1f5a51bd_91af62d8",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1002022
+      },
+      "writtenOn": "2024-07-19T15:57:06Z",
+      "side": 1,
+      "message": "Hi Patrick,\n\nThere is a fan board config that we are going to support these days which will be named \"yosemite4_fanboard_fsc_nct_adc_max.json\"\nThis config supports 2nd source fan board with NCT and MAX drivers.\n\n\nThe configs that I removed only load specific drivers.\nfsc_max.json only loads the MAX driver\nfsc_nct.json only loads the NCT driver\nfsc_adc_ti.json only loads the TI driver\n\n\nI also found out there is an issue in this fan board config.\nThis fanboard config hard code setting FanBoard0 and FanBoard1, it\u0027s supposed to put only one FanBoard and the entity manager will number the FanBoard automatically.\n\nCurrently, this fan board config will load FANBOARD0 and FANBOARD1\u0027s drivers twice since there are two fan boards on Yv4. It is leading to duplicate inventory items. I am now fixing it.\n\nLog:\n```\nroot@bmc:~# busctl tree xyz.openbmc_project.EntityManager | grep FAN\n          ├─ /xyz/openbmc_project/inventory/system/board/Yosemite_4_FAN_Board_0\n          │ ├─ /xyz/openbmc_project/inventory/system/board/Yosemite_4_FAN_Board_0/FANBOARD0_ADC\n          │ ├─ /xyz/openbmc_project/inventory/system/board/Yosemite_4_FAN_Board_0/FANBOARD0_FAN0_TACH_IL\n          │ ├─ /xyz/openbmc_project/inventory/system/board/Yosemite_4_FAN_Board_0/FANBOARD0_FAN0_TACH_OL\n...     │ ├─ /xyz/openbmc_project/inventory/system/board/Yosemite_4_FAN_Board_0/FANBOARD1_ADC\n          │ ├─ /xyz/openbmc_project/inventory/system/board/Yosemite_4_FAN_Board_0/FANBOARD1_FAN10_TACH_IL\n          │ ├─ /xyz/openbmc_project/inventory/system/board/Yosemite_4_FAN_Board_0/FANBOARD1_FAN10_TACH_OL\n          │ ├─ /xyz/openbmc_project/inventory/system/board/Yosemite_4_FAN_Board_0/FANBOARD1_FAN11_TACH_IL\n          \n      ├─ /xyz/openbmc_project/inventory/system/board/Yosemite_4_FAN_Board_1\n          │ ├─ /xyz/openbmc_project/inventory/system/board/Yosemite_4_FAN_Board_1/FANBOARD0_ADC\n          │ ├─ /xyz/openbmc_project/inventory/system/board/Yosemite_4_FAN_Board_1/FANBOARD0_FAN0_TACH_IL\n          │ ├─ /xyz/openbmc_project/inventory/system/board/Yosemite_4_FAN_Board_1/FANBOARD0_FAN0_TACH_OL\n       │ ├─ /xyz/openbmc_project/inventory/system/board/Yosemite_4_FAN_Board_1/FANBOARD1_ADC\n          │ ├─ /xyz/openbmc_project/inventory/system/board/Yosemite_4_FAN_Board_1/FANBOARD1_FAN10_TACH_IL\n          │ ├─ /xyz/openbmc_project/inventory/system/board/Yosemite_4_FAN_Board_1/FANBOARD1_FAN10_TACH_OL\n\n```",
+      "parentUuid": "ed20d7c4_6bc74e99",
+      "revId": "311f1f24c4eb749ed79b224279343786020f2ffb",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }
