@@ -204,7 +204,7 @@ configs = [
     'yosemite4_wailuafalls.json',
     'yosemite4.json',
     'yosemite4n.json',
-    'yosemite4_medusaboard.json',
+    'yosemite4_medusaboard_adc_ti_hsc_adi.json',
     'yosemite4_medusaboard_adc_ti_12vhsc_mps_48vhsc_inf.json',
     'yosemite4_spiderboard.json',
 ]
