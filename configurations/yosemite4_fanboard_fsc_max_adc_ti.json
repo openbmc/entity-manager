@@ -1,512 +1,268 @@
 {
     "Exposes": [
         {
-            "Address": "0x1f",
-            "Bus": 30,
-            "Labels": [
-                "in0",
-                "in1",
-                "in2",
-                "in3",
-                "in4",
-                "in5",
-                "in6",
-                "in7"
-            ],
-            "Name": "FANBOARD0_ADC",
-            "Thresholds": [
-                {
-                    "Direction": "greater than",
-                    "Label": "in0",
-                    "Name": "upper non recoverable",
-                    "Severity": 4,
-                    "Value": 6
-                },
-                {
-                    "Direction": "greater than",
-                    "Label": "in0",
-                    "Name": "upper critical",
-                    "Severity": 1,
-                    "Value": 2.156
-                },
-                {
-                    "Direction": "greater than",
-                    "Label": "in0",
-                    "Name": "upper non critical",
-                    "Severity": 0,
-                    "Value": 2.058
-                },
-                {
-                    "Direction": "greater than",
-                    "Label": "in1",
-                    "Name": "upper non recoverable",
-                    "Severity": 4,
-                    "Value": 6
-                },
-                {
-                    "Direction": "greater than",
-                    "Label": "in1",
-                    "Name": "upper critical",
-                    "Severity": 1,
-                    "Value": 2.156
-                },
-                {
-                    "Direction": "greater than",
-                    "Label": "in1",
-                    "Name": "upper non critical",
-                    "Severity": 0,
-                    "Value": 2.058
-                },
-                {
-                    "Direction": "greater than",
-                    "Label": "in2",
-                    "Name": "upper non recoverable",
-                    "Severity": 4,
-                    "Value": 6
-                },
-                {
-                    "Direction": "greater than",
-                    "Label": "in2",
-                    "Name": "upper critical",
-                    "Severity": 1,
-                    "Value": 2.156
-                },
-                {
-                    "Direction": "greater than",
-                    "Label": "in2",
-                    "Name": "upper non critical",
-                    "Severity": 0,
-                    "Value": 2.058
-                },
-                {
-                    "Direction": "greater than",
-                    "Label": "in3",
-                    "Name": "upper non recoverable",
-                    "Severity": 4,
-                    "Value": 6
-                },
-                {
-                    "Direction": "greater than",
-                    "Label": "in3",
-                    "Name": "upper critical",
-                    "Severity": 1,
-                    "Value": 2.156
-                },
-                {
-                    "Direction": "greater than",
-                    "Label": "in3",
-                    "Name": "upper non critical",
-                    "Severity": 0,
-                    "Value": 2.058
-                },
-                {
-                    "Direction": "greater than",
-                    "Label": "in4",
-                    "Name": "upper non recoverable",
-                    "Severity": 4,
-                    "Value": 6
-                },
-                {
-                    "Direction": "greater than",
-                    "Label": "in4",
-                    "Name": "upper critical",
-                    "Severity": 1,
-                    "Value": 2.156
-                },
-                {
-                    "Direction": "greater than",
-                    "Label": "in4",
-                    "Name": "upper non critical",
-                    "Severity": 0,
-                    "Value": 2.058
-                },
-                {
-                    "Direction": "greater than",
-                    "Label": "in5",
-                    "Name": "upper non recoverable",
-                    "Severity": 4,
-                    "Value": 6
-                },
-                {
-                    "Direction": "greater than",
-                    "Label": "in5",
-                    "Name": "upper critical",
-                    "Severity": 1,
-                    "Value": 2.156
-                },
-                {
-                    "Direction": "greater than",
-                    "Label": "in5",
-                    "Name": "upper non critical",
-                    "Severity": 0,
-                    "Value": 2.058
-                },
-                {
-                    "Direction": "greater than",
-                    "Label": "in6",
-                    "Name": "upper non recoverable",
-                    "Severity": 4,
-                    "Value": 60
-                },
-                {
-                    "Direction": "greater than",
-                    "Label": "in6",
-                    "Name": "upper critical",
-                    "Severity": 1,
-                    "Value": 53.28
-                },
-                {
-                    "Direction": "greater than",
-                    "Label": "in6",
-                    "Name": "upper non critical",
-                    "Severity": 0,
-                    "Value": 52.8
-                },
-                {
-                    "Direction": "less than",
-                    "Label": "in6",
-                    "Name": "lower non critical",
-                    "Severity": 0,
-                    "Value": 43.2
-                },
-                {
-                    "Direction": "less than",
-                    "Label": "in6",
-                    "Name": "lower critical",
-                    "Severity": 1,
-                    "Value": 42.72
-                },
-                {
-                    "Direction": "less than",
-                    "Label": "in6",
-                    "Name": "lower non recoverable",
-                    "Severity": 4,
-                    "Value": 40
-                },
-                {
-                    "Direction": "greater than",
-                    "Label": "in7",
-                    "Name": "upper non recoverable",
-                    "Severity": 4,
-                    "Value": 3.83
-                },
-                {
-                    "Direction": "greater than",
-                    "Label": "in7",
-                    "Name": "upper critical",
-                    "Severity": 1,
-                    "Value": 3.432
-                },
-                {
-                    "Direction": "greater than",
-                    "Label": "in7",
-                    "Name": "upper non critical",
-                    "Severity": 0,
-                    "Value": 3.399
-                },
-                {
-                    "Direction": "less than",
-                    "Label": "in7",
-                    "Name": "lower non critical",
-                    "Severity": 0,
-                    "Value": 3.201
-                },
-                {
-                    "Direction": "less than",
-                    "Label": "in7",
-                    "Name": "lower critical",
-                    "Severity": 1,
-                    "Value": 3.168
-                },
-                {
-                    "Direction": "less than",
-                    "Label": "in7",
-                    "Name": "lower non recoverable",
-                    "Severity": 4,
-                    "Value": 2.64
-                }
-            ],
-            "Type": "ADC128D818",
-            "in0_Name": "FANBOARD0_ADC_48V_FAN8_CURR_A",
-            "in0_Scale": 300,
-            "in1_Name": "FANBOARD0_ADC_48V_FAN4_CURR_A",
-            "in1_Scale": 300,
-            "in2_Name": "FANBOARD0_ADC_48V_FAN0_CURR_A",
-            "in2_Scale": 300,
-            "in3_Name": "FANBOARD0_ADC_48V_FAN9_CURR_A",
-            "in3_Scale": 300,
-            "in4_Name": "FANBOARD0_ADC_48V_FAN5_CURR_A",
-            "in4_Scale": 300,
-            "in5_Name": "FANBOARD0_ADC_48V_FAN1_CURR_A",
-            "in5_Scale": 300,
-            "in6_Name": "FANBOARD0_ADC_48V_AUX_VOLT_V",
-            "in6_Scale": 31.9458,
-            "in7_Name": "FANBOARD0_ADC_3V3_STBY_VOLT_V",
-            "in7_Scale": 500
-        },
-        {
-            "Address": "0x1f",
-            "Bus": 31,
-            "Labels": [
-                "in0",
-                "in1",
-                "in2",
-                "in3",
-                "in4",
-                "in5",
-                "in6",
-                "in7"
-            ],
-            "Name": "FANBOARD1_ADC",
-            "Thresholds": [
-                {
-                    "Direction": "greater than",
-                    "Label": "in0",
-                    "Name": "upper non recoverable",
-                    "Severity": 4,
-                    "Value": 6
-                },
-                {
-                    "Direction": "greater than",
-                    "Label": "in0",
-                    "Name": "upper critical",
-                    "Severity": 1,
-                    "Value": 2.156
-                },
-                {
-                    "Direction": "greater than",
-                    "Label": "in0",
-                    "Name": "upper non critical",
-                    "Severity": 0,
-                    "Value": 2.058
-                },
-                {
-                    "Direction": "greater than",
-                    "Label": "in1",
-                    "Name": "upper non recoverable",
-                    "Severity": 4,
-                    "Value": 6
-                },
-                {
-                    "Direction": "greater than",
-                    "Label": "in1",
-                    "Name": "upper critical",
-                    "Severity": 1,
-                    "Value": 2.156
-                },
-                {
-                    "Direction": "greater than",
-                    "Label": "in1",
-                    "Name": "upper non critical",
-                    "Severity": 0,
-                    "Value": 2.058
-                },
-                {
-                    "Direction": "greater than",
-                    "Label": "in2",
-                    "Name": "upper non recoverable",
-                    "Severity": 4,
-                    "Value": 6
-                },
-                {
-                    "Direction": "greater than",
-                    "Label": "in2",
-                    "Name": "upper critical",
-                    "Severity": 1,
-                    "Value": 2.156
-                },
-                {
-                    "Direction": "greater than",
-                    "Label": "in2",
-                    "Name": "upper non critical",
-                    "Severity": 0,
-                    "Value": 2.058
-                },
-                {
-                    "Direction": "greater than",
-                    "Label": "in3",
-                    "Name": "upper non recoverable",
-                    "Severity": 4,
-                    "Value": 6
-                },
-                {
-                    "Direction": "greater than",
-                    "Label": "in3",
-                    "Name": "upper critical",
-                    "Severity": 1,
-                    "Value": 2.156
-                },
-                {
-                    "Direction": "greater than",
-                    "Label": "in3",
-                    "Name": "upper non critical",
-                    "Severity": 0,
-                    "Value": 2.058
-                },
-                {
-                    "Direction": "greater than",
-                    "Label": "in4",
-                    "Name": "upper non recoverable",
-                    "Severity": 4,
-                    "Value": 6
-                },
-                {
-                    "Direction": "greater than",
-                    "Label": "in4",
-                    "Name": "upper critical",
-                    "Severity": 1,
-                    "Value": 2.156
-                },
-                {
-                    "Direction": "greater than",
-                    "Label": "in4",
-                    "Name": "upper non critical",
-                    "Severity": 0,
-                    "Value": 2.058
-                },
-                {
-                    "Direction": "greater than",
-                    "Label": "in5",
-                    "Name": "upper non recoverable",
-                    "Severity": 4,
-                    "Value": 6
-                },
-                {
-                    "Direction": "greater than",
-                    "Label": "in5",
-                    "Name": "upper critical",
-                    "Severity": 1,
-                    "Value": 2.156
-                },
-                {
-                    "Direction": "greater than",
-                    "Label": "in5",
-                    "Name": "upper non critical",
-                    "Severity": 0,
-                    "Value": 2.058
-                },
-                {
-                    "Direction": "greater than",
-                    "Label": "in6",
-                    "Name": "upper non recoverable",
-                    "Severity": 4,
-                    "Value": 60
-                },
-                {
-                    "Direction": "greater than",
-                    "Label": "in6",
-                    "Name": "upper critical",
-                    "Severity": 1,
-                    "Value": 53.28
-                },
-                {
-                    "Direction": "greater than",
-                    "Label": "in6",
-                    "Name": "upper non critical",
-                    "Severity": 0,
-                    "Value": 52.8
-                },
-                {
-                    "Direction": "less than",
-                    "Label": "in6",
-                    "Name": "lower non critical",
-                    "Severity": 0,
-                    "Value": 43.2
-                },
-                {
-                    "Direction": "less than",
-                    "Label": "in6",
-                    "Name": "lower critical",
-                    "Severity": 1,
-                    "Value": 42.72
-                },
-                {
-                    "Direction": "less than",
-                    "Label": "in6",
-                    "Name": "lower non recoverable",
-                    "Severity": 4,
-                    "Value": 40
-                },
-                {
-                    "Direction": "greater than",
-                    "Label": "in7",
-                    "Name": "upper non recoverable",
-                    "Severity": 4,
-                    "Value": 3.83
-                },
-                {
-                    "Direction": "greater than",
-                    "Label": "in7",
-                    "Name": "upper critical",
-                    "Severity": 1,
-                    "Value": 3.432
-                },
-                {
-                    "Direction": "greater than",
-                    "Label": "in7",
-                    "Name": "upper non critical",
-                    "Severity": 0,
-                    "Value": 3.399
-                },
-                {
-                    "Direction": "less than",
-                    "Label": "in7",
-                    "Name": "lower non critical",
-                    "Severity": 0,
-                    "Value": 3.201
-                },
-                {
-                    "Direction": "less than",
-                    "Label": "in7",
-                    "Name": "lower critical",
-                    "Severity": 1,
-                    "Value": 3.168
-                },
-                {
-                    "Direction": "less than",
-                    "Label": "in7",
-                    "Name": "lower non recoverable",
-                    "Severity": 4,
-                    "Value": 2.64
-                }
-            ],
-            "Type": "ADC128D818",
-            "in0_Name": "FANBOARD1_ADC_48V_FAN10_CURR_A",
-            "in0_Scale": 300,
-            "in1_Name": "FANBOARD1_ADC_48V_FAN6_CURR_A",
-            "in1_Scale": 300,
-            "in2_Name": "FANBOARD1_ADC_48V_FAN2_CURR_A",
-            "in2_Scale": 300,
-            "in3_Name": "FANBOARD1_ADC_48V_FAN11_CURR_A",
-            "in3_Scale": 300,
-            "in4_Name": "FANBOARD1_ADC_48V_FAN7_CURR_A",
-            "in4_Scale": 300,
-            "in5_Name": "FANBOARD1_ADC_48V_FAN3_CURR_A",
-            "in5_Scale": 300,
-            "in6_Name": "FANBOARD1_ADC_48V_AUX_VOLT_V",
-            "in6_Scale": 31.9458,
-            "in7_Name": "FANBOARD1_ADC_3V3_STBY_VOLT_V",
-            "in7_Scale": 500
-        },
-        {
             "Address": "$address",
             "Bus": "$bus",
             "Name": "Fan Board $bus % 30 FRU",
             "Type": "EEPROM"
         },
         {
+            "Address": "0x1f",
+            "Bus": "$bus",
+            "Labels": [
+                "in0",
+                "in1",
+                "in2",
+                "in3",
+                "in4",
+                "in5",
+                "in6",
+                "in7"
+            ],
+            "Name": "FANBOARD$bus % 30 ADC",
+            "Thresholds": [
+                {
+                    "Direction": "greater than",
+                    "Label": "in0",
+                    "Name": "upper non recoverable",
+                    "Severity": 4,
+                    "Value": 6
+                },
+                {
+                    "Direction": "greater than",
+                    "Label": "in0",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 2.156
+                },
+                {
+                    "Direction": "greater than",
+                    "Label": "in0",
+                    "Name": "upper non critical",
+                    "Severity": 0,
+                    "Value": 2.058
+                },
+                {
+                    "Direction": "greater than",
+                    "Label": "in1",
+                    "Name": "upper non recoverable",
+                    "Severity": 4,
+                    "Value": 6
+                },
+                {
+                    "Direction": "greater than",
+                    "Label": "in1",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 2.156
+                },
+                {
+                    "Direction": "greater than",
+                    "Label": "in1",
+                    "Name": "upper non critical",
+                    "Severity": 0,
+                    "Value": 2.058
+                },
+                {
+                    "Direction": "greater than",
+                    "Label": "in2",
+                    "Name": "upper non recoverable",
+                    "Severity": 4,
+                    "Value": 6
+                },
+                {
+                    "Direction": "greater than",
+                    "Label": "in2",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 2.156
+                },
+                {
+                    "Direction": "greater than",
+                    "Label": "in2",
+                    "Name": "upper non critical",
+                    "Severity": 0,
+                    "Value": 2.058
+                },
+                {
+                    "Direction": "greater than",
+                    "Label": "in3",
+                    "Name": "upper non recoverable",
+                    "Severity": 4,
+                    "Value": 6
+                },
+                {
+                    "Direction": "greater than",
+                    "Label": "in3",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 2.156
+                },
+                {
+                    "Direction": "greater than",
+                    "Label": "in3",
+                    "Name": "upper non critical",
+                    "Severity": 0,
+                    "Value": 2.058
+                },
+                {
+                    "Direction": "greater than",
+                    "Label": "in4",
+                    "Name": "upper non recoverable",
+                    "Severity": 4,
+                    "Value": 6
+                },
+                {
+                    "Direction": "greater than",
+                    "Label": "in4",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 2.156
+                },
+                {
+                    "Direction": "greater than",
+                    "Label": "in4",
+                    "Name": "upper non critical",
+                    "Severity": 0,
+                    "Value": 2.058
+                },
+                {
+                    "Direction": "greater than",
+                    "Label": "in5",
+                    "Name": "upper non recoverable",
+                    "Severity": 4,
+                    "Value": 6
+                },
+                {
+                    "Direction": "greater than",
+                    "Label": "in5",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 2.156
+                },
+                {
+                    "Direction": "greater than",
+                    "Label": "in5",
+                    "Name": "upper non critical",
+                    "Severity": 0,
+                    "Value": 2.058
+                },
+                {
+                    "Direction": "greater than",
+                    "Label": "in6",
+                    "Name": "upper non recoverable",
+                    "Severity": 4,
+                    "Value": 60
+                },
+                {
+                    "Direction": "greater than",
+                    "Label": "in6",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 53.28
+                },
+                {
+                    "Direction": "greater than",
+                    "Label": "in6",
+                    "Name": "upper non critical",
+                    "Severity": 0,
+                    "Value": 52.8
+                },
+                {
+                    "Direction": "less than",
+                    "Label": "in6",
+                    "Name": "lower non critical",
+                    "Severity": 0,
+                    "Value": 43.2
+                },
+                {
+                    "Direction": "less than",
+                    "Label": "in6",
+                    "Name": "lower critical",
+                    "Severity": 1,
+                    "Value": 42.72
+                },
+                {
+                    "Direction": "less than",
+                    "Label": "in6",
+                    "Name": "lower non recoverable",
+                    "Severity": 4,
+                    "Value": 40
+                },
+                {
+                    "Direction": "greater than",
+                    "Label": "in7",
+                    "Name": "upper non recoverable",
+                    "Severity": 4,
+                    "Value": 3.83
+                },
+                {
+                    "Direction": "greater than",
+                    "Label": "in7",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 3.432
+                },
+                {
+                    "Direction": "greater than",
+                    "Label": "in7",
+                    "Name": "upper non critical",
+                    "Severity": 0,
+                    "Value": 3.399
+                },
+                {
+                    "Direction": "less than",
+                    "Label": "in7",
+                    "Name": "lower non critical",
+                    "Severity": 0,
+                    "Value": 3.201
+                },
+                {
+                    "Direction": "less than",
+                    "Label": "in7",
+                    "Name": "lower critical",
+                    "Severity": 1,
+                    "Value": 3.168
+                },
+                {
+                    "Direction": "less than",
+                    "Label": "in7",
+                    "Name": "lower non recoverable",
+                    "Severity": 4,
+                    "Value": 2.64
+                }
+            ],
+            "Type": "ADC128D818",
+            "in0_Name": "FANBOARD$bus % 30 ADC_48V_FAN$bus % 30 * 2 + 8 CURR_A",
+            "in0_Scale": 300,
+            "in1_Name": "FANBOARD$bus % 30 ADC_48V_FAN$bus % 30 * 2 + 4 CURR_A",
+            "in1_Scale": 300,
+            "in2_Name": "FANBOARD$bus % 30 ADC_48V_FAN$bus % 30 * 2 + 0 CURR_A",
+            "in2_Scale": 300,
+            "in3_Name": "FANBOARD$bus % 30 ADC_48V_FAN$bus % 30 * 2 + 9 CURR_A",
+            "in3_Scale": 300,
+            "in4_Name": "FANBOARD$bus % 30 ADC_48V_FAN$bus % 30 * 2 + 5 CURR_A",
+            "in4_Scale": 300,
+            "in5_Name": "FANBOARD$bus % 30 ADC_48V_FAN$bus % 30 * 2 + 1 CURR_A",
+            "in5_Scale": 300,
+            "in6_Name": "FANBOARD$bus % 30 ADC_48V_AUX_VOLT_V",
+            "in6_Scale": 31.9458,
+            "in7_Name": "FANBOARD$bus % 30 ADC_3V3_STBY_VOLT_V",
+            "in7_Scale": 500
+        },
+        {
             "Address": "0x20",
-            "Bus": 30,
+            "Bus": "$bus",
             "Connector": {
-                "Name": "FANBOARD0_FAN0_TACH_IL",
+                "Name": "FANBOARD$bus % 30 FAN$bus % 30 * 2 + 0 TACH_IL",
                 "Pwm": 2,
-                "PwmName": "FANBOARD0_FAN0_PWM",
+                "PwmName": "FANBOARD$bus % 30 FAN$bus % 30 * 2 + 0 PWM",
                 "Tachs": [
                     3
                 ]
             },
             "Index": 3,
-            "Name": "FANBOARD0_FAN0_TACH_IL",
+            "Name": "FANBOARD$bus % 30 FAN$bus % 30 * 2 + 0 TACH_IL",
             "PowerState": "Always",
             "Thresholds": [
                 {
@@ -532,17 +288,17 @@
         },
         {
             "Address": "0x20",
-            "Bus": 30,
+            "Bus": "$bus",
             "Connector": {
-                "Name": "FANBOARD0_FAN0_TACH_OL",
+                "Name": "FANBOARD$bus % 30 FAN$bus % 30 * 2 + 0 TACH_OL",
                 "Pwm": 2,
-                "PwmName": "FANBOARD0_FAN0_PWM",
+                "PwmName": "FANBOARD$bus % 30 FAN$bus % 30 * 2 + 0 PWM",
                 "Tachs": [
                     10
                 ]
             },
             "Index": 10,
-            "Name": "FANBOARD0_FAN0_TACH_OL",
+            "Name": "FANBOARD$bus % 30 FAN$bus % 30 * 2 + 0 TACH_OL",
             "PowerState": "Always",
             "Thresholds": [
                 {
@@ -568,17 +324,17 @@
         },
         {
             "Address": "0x2f",
-            "Bus": 30,
+            "Bus": "$bus",
             "Connector": {
-                "Name": "FANBOARD0_FAN1_TACH_IL",
+                "Name": "FANBOARD$bus % 30 FAN$bus % 30 * 2 + 1 TACH_IL",
                 "Pwm": 2,
-                "PwmName": "FANBOARD0_FAN1_PWM",
+                "PwmName": "FANBOARD$bus % 30 FAN$bus % 30 * 2 + 1 PWM",
                 "Tachs": [
                     3
                 ]
             },
             "Index": 3,
-            "Name": "FANBOARD0_FAN1_TACH_IL",
+            "Name": "FANBOARD$bus % 30 FAN$bus % 30 * 2 + 1 TACH_IL",
             "PowerState": "Always",
             "Thresholds": [
                 {
@@ -604,17 +360,17 @@
         },
         {
             "Address": "0x2f",
-            "Bus": 30,
+            "Bus": "$bus",
             "Connector": {
-                "Name": "FANBOARD0_FAN1_TACH_OL",
+                "Name": "FANBOARD$bus % 30 FAN$bus % 30 * 2 + 1 TACH_OL",
                 "Pwm": 2,
-                "PwmName": "FANBOARD0_FAN1_PWM",
+                "PwmName": "FANBOARD$bus % 30 FAN$bus % 30 * 2 + 1 PWM",
                 "Tachs": [
                     10
                 ]
             },
             "Index": 10,
-            "Name": "FANBOARD0_FAN1_TACH_OL",
+            "Name": "FANBOARD$bus % 30 FAN$bus % 30 * 2 + 1 TACH_OL",
             "PowerState": "Always",
             "Thresholds": [
                 {
@@ -640,161 +396,17 @@
         },
         {
             "Address": "0x20",
-            "Bus": 31,
+            "Bus": "$bus",
             "Connector": {
-                "Name": "FANBOARD1_FAN2_TACH_IL",
-                "Pwm": 2,
-                "PwmName": "FANBOARD1_FAN2_PWM",
-                "Tachs": [
-                    3
-                ]
-            },
-            "Index": 3,
-            "Name": "FANBOARD1_FAN2_TACH_IL",
-            "PowerState": "Always",
-            "Thresholds": [
-                {
-                    "Direction": "greater than",
-                    "Name": "upper critical",
-                    "Severity": 1,
-                    "Value": 17380
-                },
-                {
-                    "Direction": "greater than",
-                    "Name": "upper non critical",
-                    "Severity": 0,
-                    "Value": 13140
-                },
-                {
-                    "Direction": "less than",
-                    "Name": "lower critical",
-                    "Severity": 1,
-                    "Value": 1000
-                }
-            ],
-            "Type": "I2CFan"
-        },
-        {
-            "Address": "0x20",
-            "Bus": 31,
-            "Connector": {
-                "Name": "FANBOARD1_FAN2_TACH_OL",
-                "Pwm": 2,
-                "PwmName": "FANBOARD1_FAN2_PWM",
-                "Tachs": [
-                    10
-                ]
-            },
-            "Index": 10,
-            "Name": "FANBOARD1_FAN2_TACH_OL",
-            "PowerState": "Always",
-            "Thresholds": [
-                {
-                    "Direction": "greater than",
-                    "Name": "upper critical",
-                    "Severity": 1,
-                    "Value": 15950
-                },
-                {
-                    "Direction": "greater than",
-                    "Name": "upper non critical",
-                    "Severity": 0,
-                    "Value": 11970
-                },
-                {
-                    "Direction": "less than",
-                    "Name": "lower critical",
-                    "Severity": 1,
-                    "Value": 1000
-                }
-            ],
-            "Type": "I2CFan"
-        },
-        {
-            "Address": "0x2f",
-            "Bus": 31,
-            "Connector": {
-                "Name": "FANBOARD1_FAN3_TACH_IL",
-                "Pwm": 2,
-                "PwmName": "FANBOARD1_FAN3_PWM",
-                "Tachs": [
-                    3
-                ]
-            },
-            "Index": 3,
-            "Name": "FANBOARD1_FAN3_TACH_IL",
-            "PowerState": "Always",
-            "Thresholds": [
-                {
-                    "Direction": "greater than",
-                    "Name": "upper critical",
-                    "Severity": 1,
-                    "Value": 17380
-                },
-                {
-                    "Direction": "greater than",
-                    "Name": "upper non critical",
-                    "Severity": 0,
-                    "Value": 13140
-                },
-                {
-                    "Direction": "less than",
-                    "Name": "lower critical",
-                    "Severity": 1,
-                    "Value": 1000
-                }
-            ],
-            "Type": "I2CFan"
-        },
-        {
-            "Address": "0x2f",
-            "Bus": 31,
-            "Connector": {
-                "Name": "FANBOARD1_FAN3_TACH_OL",
-                "Pwm": 2,
-                "PwmName": "FANBOARD1_FAN3_PWM",
-                "Tachs": [
-                    10
-                ]
-            },
-            "Index": 10,
-            "Name": "FANBOARD1_FAN3_TACH_OL",
-            "PowerState": "Always",
-            "Thresholds": [
-                {
-                    "Direction": "greater than",
-                    "Name": "upper critical",
-                    "Severity": 1,
-                    "Value": 15950
-                },
-                {
-                    "Direction": "greater than",
-                    "Name": "upper non critical",
-                    "Severity": 0,
-                    "Value": 11970
-                },
-                {
-                    "Direction": "less than",
-                    "Name": "lower critical",
-                    "Severity": 1,
-                    "Value": 1000
-                }
-            ],
-            "Type": "I2CFan"
-        },
-        {
-            "Address": "0x20",
-            "Bus": 30,
-            "Connector": {
-                "Name": "FANBOARD0_FAN4_TACH_IL",
+                "Name": "FANBOARD$bus % 30 FAN$bus % 30 * 2 + 4 TACH_IL",
                 "Pwm": 1,
-                "PwmName": "FANBOARD0_FAN4_PWM",
+                "PwmName": "FANBOARD$bus % 30 FAN$bus % 30 * 2 + 4 PWM",
                 "Tachs": [
                     2
                 ]
             },
             "Index": 2,
-            "Name": "FANBOARD0_FAN4_TACH_IL",
+            "Name": "FANBOARD$bus % 30 FAN$bus % 30 * 2 + 4 TACH_IL",
             "PowerState": "Always",
             "Thresholds": [
                 {
@@ -820,17 +432,17 @@
         },
         {
             "Address": "0x20",
-            "Bus": 30,
+            "Bus": "$bus",
             "Connector": {
-                "Name": "FANBOARD0_FAN4_TACH_OL",
+                "Name": "FANBOARD$bus % 30 FAN$bus % 30 * 2 + 4 TACH_OL",
                 "Pwm": 1,
-                "PwmName": "FANBOARD0_FAN4_PWM",
+                "PwmName": "FANBOARD$bus % 30 FAN$bus % 30 * 2 + 4 PWM",
                 "Tachs": [
                     9
                 ]
             },
             "Index": 9,
-            "Name": "FANBOARD0_FAN4_TACH_OL",
+            "Name": "FANBOARD$bus % 30 FAN$bus % 30 * 2 + 4 TACH_OL",
             "PowerState": "Always",
             "Thresholds": [
                 {
@@ -856,17 +468,17 @@
         },
         {
             "Address": "0x2f",
-            "Bus": 30,
+            "Bus": "$bus",
             "Connector": {
-                "Name": "FANBOARD0_FAN5_TACH_IL",
+                "Name": "FANBOARD$bus % 30 FAN$bus % 30 * 2 + 5 TACH_IL",
                 "Pwm": 1,
-                "PwmName": "FANBOARD0_FAN5_PWM",
+                "PwmName": "FANBOARD$bus % 30 FAN$bus % 30 * 2 + 5 PWM",
                 "Tachs": [
                     2
                 ]
             },
             "Index": 2,
-            "Name": "FANBOARD0_FAN5_TACH_IL",
+            "Name": "FANBOARD$bus % 30 FAN$bus % 30 * 2 + 5 TACH_IL",
             "PowerState": "Always",
             "Thresholds": [
                 {
@@ -892,17 +504,17 @@
         },
         {
             "Address": "0x2f",
-            "Bus": 30,
+            "Bus": "$bus",
             "Connector": {
-                "Name": "FANBOARD0_FAN5_TACH_OL",
+                "Name": "FANBOARD$bus % 30 FAN$bus % 30 * 2 + 5 TACH_OL",
                 "Pwm": 1,
-                "PwmName": "FANBOARD0_FAN5_PWM",
+                "PwmName": "FANBOARD$bus % 30 FAN$bus % 30 * 2 + 5 PWM",
                 "Tachs": [
                     9
                 ]
             },
             "Index": 9,
-            "Name": "FANBOARD0_FAN5_TACH_OL",
+            "Name": "FANBOARD$bus % 30 FAN$bus % 30 * 2 + 5 TACH_OL",
             "PowerState": "Always",
             "Thresholds": [
                 {
@@ -928,161 +540,17 @@
         },
         {
             "Address": "0x20",
-            "Bus": 31,
+            "Bus": "$bus",
             "Connector": {
-                "Name": "FANBOARD1_FAN6_TACH_IL",
-                "Pwm": 1,
-                "PwmName": "FANBOARD1_FAN6_PWM",
-                "Tachs": [
-                    2
-                ]
-            },
-            "Index": 2,
-            "Name": "FANBOARD1_FAN6_TACH_IL",
-            "PowerState": "Always",
-            "Thresholds": [
-                {
-                    "Direction": "greater than",
-                    "Name": "upper critical",
-                    "Severity": 1,
-                    "Value": 17380
-                },
-                {
-                    "Direction": "greater than",
-                    "Name": "upper non critical",
-                    "Severity": 0,
-                    "Value": 13140
-                },
-                {
-                    "Direction": "less than",
-                    "Name": "lower critical",
-                    "Severity": 1,
-                    "Value": 1000
-                }
-            ],
-            "Type": "I2CFan"
-        },
-        {
-            "Address": "0x20",
-            "Bus": 31,
-            "Connector": {
-                "Name": "FANBOARD1_FAN6_TACH_OL",
-                "Pwm": 1,
-                "PwmName": "FANBOARD1_FAN6_PWM",
-                "Tachs": [
-                    9
-                ]
-            },
-            "Index": 9,
-            "Name": "FANBOARD1_FAN6_TACH_OL",
-            "PowerState": "Always",
-            "Thresholds": [
-                {
-                    "Direction": "greater than",
-                    "Name": "upper critical",
-                    "Severity": 1,
-                    "Value": 15950
-                },
-                {
-                    "Direction": "greater than",
-                    "Name": "upper non critical",
-                    "Severity": 0,
-                    "Value": 11970
-                },
-                {
-                    "Direction": "less than",
-                    "Name": "lower critical",
-                    "Severity": 1,
-                    "Value": 1000
-                }
-            ],
-            "Type": "I2CFan"
-        },
-        {
-            "Address": "0x2f",
-            "Bus": 31,
-            "Connector": {
-                "Name": "FANBOARD1_FAN7_TACH_IL",
-                "Pwm": 1,
-                "PwmName": "FANBOARD1_FAN7_PWM",
-                "Tachs": [
-                    2
-                ]
-            },
-            "Index": 2,
-            "Name": "FANBOARD1_FAN7_TACH_IL",
-            "PowerState": "Always",
-            "Thresholds": [
-                {
-                    "Direction": "greater than",
-                    "Name": "upper critical",
-                    "Severity": 1,
-                    "Value": 17380
-                },
-                {
-                    "Direction": "greater than",
-                    "Name": "upper non critical",
-                    "Severity": 0,
-                    "Value": 13140
-                },
-                {
-                    "Direction": "less than",
-                    "Name": "lower critical",
-                    "Severity": 1,
-                    "Value": 1000
-                }
-            ],
-            "Type": "I2CFan"
-        },
-        {
-            "Address": "0x2f",
-            "Bus": 31,
-            "Connector": {
-                "Name": "FANBOARD1_FAN7_TACH_OL",
-                "Pwm": 1,
-                "PwmName": "FANBOARD1_FAN7_PWM",
-                "Tachs": [
-                    9
-                ]
-            },
-            "Index": 9,
-            "Name": "FANBOARD1_FAN7_TACH_OL",
-            "PowerState": "Always",
-            "Thresholds": [
-                {
-                    "Direction": "greater than",
-                    "Name": "upper critical",
-                    "Severity": 1,
-                    "Value": 15950
-                },
-                {
-                    "Direction": "greater than",
-                    "Name": "upper non critical",
-                    "Severity": 0,
-                    "Value": 11970
-                },
-                {
-                    "Direction": "less than",
-                    "Name": "lower critical",
-                    "Severity": 1,
-                    "Value": 1000
-                }
-            ],
-            "Type": "I2CFan"
-        },
-        {
-            "Address": "0x20",
-            "Bus": 30,
-            "Connector": {
-                "Name": "FANBOARD0_FAN8_TACH_IL",
+                "Name": "FANBOARD$bus % 30 FAN$bus % 30 * 2 + 8 TACH_IL",
                 "Pwm": 0,
-                "PwmName": "FANBOARD0_FAN8_PWM",
+                "PwmName": "FANBOARD$bus % 30 FAN$bus % 30 * 2 + 8 PWM",
                 "Tachs": [
                     0
                 ]
             },
             "Index": 0,
-            "Name": "FANBOARD0_FAN8_TACH_IL",
+            "Name": "FANBOARD$bus % 30 FAN$bus % 30 * 2 + 8 TACH_IL",
             "PowerState": "Always",
             "Thresholds": [
                 {
@@ -1108,17 +576,17 @@
         },
         {
             "Address": "0x20",
-            "Bus": 30,
+            "Bus": "$bus",
             "Connector": {
-                "Name": "FANBOARD0_FAN8_TACH_OL",
+                "Name": "FANBOARD$bus % 30 FAN$bus % 30 * 2 + 8 TACH_OL",
                 "Pwm": 0,
-                "PwmName": "FANBOARD0_FAN8_PWM",
+                "PwmName": "FANBOARD$bus % 30 FAN$bus % 30 * 2 + 8 PWM",
                 "Tachs": [
                     1
                 ]
             },
             "Index": 1,
-            "Name": "FANBOARD0_FAN8_TACH_OL",
+            "Name": "FANBOARD$bus % 30 FAN$bus % 30 * 2 + 8 TACH_OL",
             "PowerState": "Always",
             "Thresholds": [
                 {
@@ -1144,17 +612,17 @@
         },
         {
             "Address": "0x2f",
-            "Bus": 30,
+            "Bus": "$bus",
             "Connector": {
-                "Name": "FANBOARD0_FAN9_TACH_IL",
+                "Name": "FANBOARD$bus % 30 FAN$bus % 30 * 2 + 9 TACH_IL",
                 "Pwm": 0,
-                "PwmName": "FANBOARD0_FAN9_PWM",
+                "PwmName": "FANBOARD$bus % 30 FAN$bus % 30 * 2 + 9 PWM",
                 "Tachs": [
                     0
                 ]
             },
             "Index": 0,
-            "Name": "FANBOARD0_FAN9_TACH_IL",
+            "Name": "FANBOARD$bus % 30 FAN$bus % 30 * 2 + 9 TACH_IL",
             "PowerState": "Always",
             "Thresholds": [
                 {
@@ -1180,161 +648,17 @@
         },
         {
             "Address": "0x2f",
-            "Bus": 30,
+            "Bus": "$bus",
             "Connector": {
-                "Name": "FANBOARD0_FAN9_TACH_OL",
+                "Name": "FANBOARD$bus % 30 FAN$bus % 30 * 2 + 9 TACH_OL",
                 "Pwm": 0,
-                "PwmName": "FANBOARD0_FAN9_PWM",
+                "PwmName": "FANBOARD$bus % 30 FAN$bus % 30 * 2 + 9 PWM",
                 "Tachs": [
                     1
                 ]
             },
             "Index": 1,
-            "Name": "FANBOARD0_FAN9_TACH_OL",
-            "PowerState": "Always",
-            "Thresholds": [
-                {
-                    "Direction": "greater than",
-                    "Name": "upper critical",
-                    "Severity": 1,
-                    "Value": 15950
-                },
-                {
-                    "Direction": "greater than",
-                    "Name": "upper non critical",
-                    "Severity": 0,
-                    "Value": 11970
-                },
-                {
-                    "Direction": "less than",
-                    "Name": "lower critical",
-                    "Severity": 1,
-                    "Value": 1000
-                }
-            ],
-            "Type": "I2CFan"
-        },
-        {
-            "Address": "0x20",
-            "Bus": 31,
-            "Connector": {
-                "Name": "FANBOARD1_FAN10_TACH_IL",
-                "Pwm": 0,
-                "PwmName": "FANBOARD1_FAN10_PWM",
-                "Tachs": [
-                    0
-                ]
-            },
-            "Index": 0,
-            "Name": "FANBOARD1_FAN10_TACH_IL",
-            "PowerState": "Always",
-            "Thresholds": [
-                {
-                    "Direction": "greater than",
-                    "Name": "upper critical",
-                    "Severity": 1,
-                    "Value": 17380
-                },
-                {
-                    "Direction": "greater than",
-                    "Name": "upper non critical",
-                    "Severity": 0,
-                    "Value": 13140
-                },
-                {
-                    "Direction": "less than",
-                    "Name": "lower critical",
-                    "Severity": 1,
-                    "Value": 1000
-                }
-            ],
-            "Type": "I2CFan"
-        },
-        {
-            "Address": "0x20",
-            "Bus": 31,
-            "Connector": {
-                "Name": "FANBOARD1_FAN10_TACH_OL",
-                "Pwm": 0,
-                "PwmName": "FANBOARD1_FAN10_PWM",
-                "Tachs": [
-                    1
-                ]
-            },
-            "Index": 1,
-            "Name": "FANBOARD1_FAN10_TACH_OL",
-            "PowerState": "Always",
-            "Thresholds": [
-                {
-                    "Direction": "greater than",
-                    "Name": "upper critical",
-                    "Severity": 1,
-                    "Value": 15950
-                },
-                {
-                    "Direction": "greater than",
-                    "Name": "upper non critical",
-                    "Severity": 0,
-                    "Value": 11970
-                },
-                {
-                    "Direction": "less than",
-                    "Name": "lower critical",
-                    "Severity": 1,
-                    "Value": 1000
-                }
-            ],
-            "Type": "I2CFan"
-        },
-        {
-            "Address": "0x2f",
-            "Bus": 31,
-            "Connector": {
-                "Name": "FANBOARD1_FAN11_TACH_IL",
-                "Pwm": 0,
-                "PwmName": "FANBOARD1_FAN11_PWM",
-                "Tachs": [
-                    0
-                ]
-            },
-            "Index": 0,
-            "Name": "FANBOARD1_FAN11_TACH_IL",
-            "PowerState": "Always",
-            "Thresholds": [
-                {
-                    "Direction": "greater than",
-                    "Name": "upper critical",
-                    "Severity": 1,
-                    "Value": 17380
-                },
-                {
-                    "Direction": "greater than",
-                    "Name": "upper non critical",
-                    "Severity": 0,
-                    "Value": 13140
-                },
-                {
-                    "Direction": "less than",
-                    "Name": "lower critical",
-                    "Severity": 1,
-                    "Value": 1000
-                }
-            ],
-            "Type": "I2CFan"
-        },
-        {
-            "Address": "0x2f",
-            "Bus": 31,
-            "Connector": {
-                "Name": "FANBOARD1_FAN11_TACH_OL",
-                "Pwm": 0,
-                "PwmName": "FANBOARD1_FAN11_PWM",
-                "Tachs": [
-                    1
-                ]
-            },
-            "Index": 1,
-            "Name": "FANBOARD1_FAN11_TACH_OL",
+            "Name": "FANBOARD$bus % 30 FAN$bus % 30 * 2 + 9 TACH_OL",
             "PowerState": "Always",
             "Thresholds": [
                 {
