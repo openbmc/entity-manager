@@ -196,6 +196,7 @@ configs = [
     'wft_baseboard.json',
     'yosemite4_fanboard_adc_ti.json',
     'yosemite4_fanboard_fsc_max_adc_ti.json',
+    'yosemite4_fanboard_fsc_nct_adc_max.json',
     'yosemite4_fanboard_fsc_max.json',
     'yosemite4_fanboard_fsc_nct.json',
     'yosemite4_sentineldome_t1.json',
