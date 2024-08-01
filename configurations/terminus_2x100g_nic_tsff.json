@@ -3,7 +3,7 @@
         {
             "Address": "$address",
             "Bus": "$bus",
-            "Name": "TERMINUS NIC FRU $bus",
+            "Name": "Terminus NIC FRU $bus",
             "Type": "EEPROM"
         },
         {
@@ -25,7 +25,7 @@
             "Type": "EMC1403"
         }
     ],
-    "Name": "TERMINUS NIC FRU $bus",
+    "Name": "Terminus NIC FRU $bus",
     "Probe": "xyz.openbmc_project.FruDevice({'BOARD_PRODUCT_NAME': 'Terminus 2x100G NIC TSFF'})",
     "Type": "Board",
     "xyz.openbmc_project.Inventory.Decorator.Asset": {
