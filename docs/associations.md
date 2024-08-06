@@ -48,14 +48,40 @@ definition interface on the downstream entity.
 
 In addition to the `containing` associations, entity-manager will add
 `powering`/`powered_by` associations between a power supply and its parent when
-its downstream port is marked as a `PowerPort`:
+its downstream port is marked as a `PowerPort`.
+
+The below example shows two PSU ports on the motherboard, where the `Type`
+fields for those ports match up with the `ConnectsToType` field from the PSUs.
+
+motherboard.json:
 
 ```json
 {
-  "ConnectsToType": "Mobo Upstream Port",
-  "Name": "PSU $BUS Downstream Port",
-  "Type": "DownstreamPort",
-  "PowerPort": true
+  "Exposes": [
+    {
+      "Name": "PSU 1 Port",
+      "Type": "PSU 1 Port"
+    },
+    {
+      "Name": "PSU 2 Port",
+      "Type": "PSU 2 Port"
+    }
+  ]
+}
+```
+
+psu.json:
+
+```json
+{
+  "Exposes": [
+    {
+      "ConnectsToType": "PSU$ADDRESS % 4 + 1 Port",
+      "Name": "PSU Port",
+      "Type": "DownstreamPort",
+      "PowerPort": true
+    }
+  ]
 }
 ```
 
