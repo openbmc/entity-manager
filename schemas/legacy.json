@@ -47,6 +47,9 @@
                 "Connector": {
                     "$ref": "#/definitions/Types/Connector"
                 },
+                "ConnectsToType": {
+                    "$ref": "#/definitions/Types/ConnectsToType"
+                },
                 "CpuID": {
                     "$ref": "#/definitions/Types/CpuID"
                 },
@@ -175,6 +178,9 @@
                 },
                 "PowerFactorMin": {
                     "$ref": "#/definitions/Types/PowerFactorMin"
+                },
+                "PowerPort": {
+                    "$ref": "#/definitions/Types/PowerPort"
                 },
                 "PowerScaleFactor": {
                     "$ref": "#/definitions/Types/PowerScaleFactor"
@@ -787,6 +793,9 @@
                 "required": ["Name", "Pwm", "Tachs"],
                 "type": "object"
             },
+            "ConnectsToType": {
+                "type": "string"
+            },
             "CpuID": {
                 "type": "number"
             },
@@ -936,6 +945,9 @@
             },
             "PowerFactorMin": {
                 "type": "number"
+            },
+            "PowerPort": {
+                "type": "boolean"
             },
             "PowerScaleFactor": {
                 "type": "number"
