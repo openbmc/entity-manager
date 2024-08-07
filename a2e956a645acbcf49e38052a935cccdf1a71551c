@@ -20,6 +20,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "b09400d4_17daf6d5",
+        "filename": "docs/associations.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 57,
+      "author": {
+        "id": 1000008
+      },
+      "writtenOn": "2024-08-07T13:47:22Z",
+      "side": 1,
+      "message": "Good question, because bmcweb gets the chassis to find the assocations: https://github.com/openbmc/bmcweb/blob/master/redfish-core/lib/power_supply.hpp#L553\n\nThough I believe for a lot of systems people just add the chassis interface into their motherboard JSON.\n\nI think i can rename it and then just mention it needs to host that interface.",
+      "parentUuid": "80643a56_e10907f5",
+      "revId": "a2e956a645acbcf49e38052a935cccdf1a71551c",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "86093c4e_17eab420",
         "filename": "docs/associations.md",
         "patchSetId": 1
@@ -49,6 +67,24 @@
       "side": 1,
       "message": "PSU$ADDRESS % 4 + 1 looks more universal",
       "parentUuid": "86093c4e_17eab420",
+      "revId": "a2e956a645acbcf49e38052a935cccdf1a71551c",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7392616f_ccebf891",
+        "filename": "docs/associations.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 80,
+      "author": {
+        "id": 1000008
+      },
+      "writtenOn": "2024-08-07T13:47:22Z",
+      "side": 1,
+      "message": "yea that does look more universal, thanks will fix.",
+      "parentUuid": "2bf3f258_d3e00073",
       "revId": "a2e956a645acbcf49e38052a935cccdf1a71551c",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
