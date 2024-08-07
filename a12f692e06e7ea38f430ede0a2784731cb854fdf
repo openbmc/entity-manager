@@ -3,6 +3,46 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "d030f0a7_258ffead",
+        "filename": "configurations/catalina_hdd.json",
+        "patchSetId": 5
+      },
+      "lineNbr": 88,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2024-08-07T01:19:39Z",
+      "side": 1,
+      "message": "This looks wrong.  One board doesn\u0027t have 3 NVMe devices physically embedded.  I suspect you need 2 files, one for this board, and one for the NVME drive that\u0027s detected.",
+      "range": {
+        "startLine": 71,
+        "startChar": 0,
+        "endLine": 88,
+        "endChar": 9
+      },
+      "revId": "a12f692e06e7ea38f430ede0a2784731cb854fdf",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3bff9766_a65237e9",
+        "filename": "configurations/catalina_hdd.json",
+        "patchSetId": 5
+      },
+      "lineNbr": 91,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2024-08-07T01:19:39Z",
+      "side": 1,
+      "message": "Please also add a manufacturer field check.",
+      "revId": "a12f692e06e7ea38f430ede0a2784731cb854fdf",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "6e3723a2_3228067d",
         "filename": "configurations/catalina_hmc.json",
         "patchSetId": 5
@@ -50,6 +90,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "a2dfcb7c_05859084",
+        "filename": "configurations/catalina_hmc.json",
+        "patchSetId": 5
+      },
+      "lineNbr": 62,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2024-08-07T01:19:39Z",
+      "side": 1,
+      "message": "Please remove all stanzas of this type and put in their own patchset, which can be merged once the satellite implementation is merged in openbmc/dbus-sensors.\n\nYou\u0027ve pointed to a fork, which is fine, you\u0027re welcome to implement things in forks, but putting those same configs in upstream removes the possibility for review.  For example \"Satellite\" is far less detailed of a type name that we would likely accept.",
+      "parentUuid": "4f46929d_e14ca78a",
+      "range": {
+        "startLine": 62,
+        "startChar": 12,
+        "endLine": 62,
+        "endChar": 31
+      },
+      "revId": "a12f692e06e7ea38f430ede0a2784731cb854fdf",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "1540394d_fa74fccf",
         "filename": "configurations/catalina_hmc.json",
         "patchSetId": 5
@@ -85,6 +149,30 @@
       "side": 1,
       "message": "nevermind, this is for bmcweb aggregation",
       "parentUuid": "1540394d_fa74fccf",
+      "range": {
+        "startLine": 434,
+        "startChar": 11,
+        "endLine": 434,
+        "endChar": 40
+      },
+      "revId": "a12f692e06e7ea38f430ede0a2784731cb854fdf",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8018b2c1_02ccbf6d",
+        "filename": "configurations/catalina_hmc.json",
+        "patchSetId": 5
+      },
+      "lineNbr": 434,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2024-08-07T01:19:39Z",
+      "side": 1,
+      "message": "Yeah, we really should\u0027ve picked a better name for this.  Probably an opportunity to change in the future.  Something like \"RedfishHttpService\" or something like that.",
+      "parentUuid": "190b98ef_2a38ad0a",
       "range": {
         "startLine": 434,
         "startChar": 11,
