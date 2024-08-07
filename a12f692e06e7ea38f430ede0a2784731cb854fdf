@@ -26,6 +26,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "aaacf266_33fbf4f0",
+        "filename": "configurations/catalina_hdd.json",
+        "patchSetId": 5
+      },
+      "lineNbr": 88,
+      "author": {
+        "id": 1001264
+      },
+      "writtenOn": "2024-08-07T10:57:41Z",
+      "side": 1,
+      "message": "Hi Ed, in our HDD board, it does have 4 SSDs on one board.",
+      "parentUuid": "d030f0a7_258ffead",
+      "range": {
+        "startLine": 71,
+        "startChar": 0,
+        "endLine": 88,
+        "endChar": 9
+      },
+      "revId": "a12f692e06e7ea38f430ede0a2784731cb854fdf",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "3bff9766_a65237e9",
         "filename": "configurations/catalina_hdd.json",
         "patchSetId": 5
@@ -37,6 +61,24 @@
       "writtenOn": "2024-08-07T01:19:39Z",
       "side": 1,
       "message": "Please also add a manufacturer field check.",
+      "revId": "a12f692e06e7ea38f430ede0a2784731cb854fdf",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "dcd6c95d_bf2681a2",
+        "filename": "configurations/catalina_hdd.json",
+        "patchSetId": 5
+      },
+      "lineNbr": 91,
+      "author": {
+        "id": 1001264
+      },
+      "writtenOn": "2024-08-07T10:57:41Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "3bff9766_a65237e9",
       "revId": "a12f692e06e7ea38f430ede0a2784731cb854fdf",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
@@ -102,6 +144,30 @@
       "side": 1,
       "message": "Please remove all stanzas of this type and put in their own patchset, which can be merged once the satellite implementation is merged in openbmc/dbus-sensors.\n\nYou\u0027ve pointed to a fork, which is fine, you\u0027re welcome to implement things in forks, but putting those same configs in upstream removes the possibility for review.  For example \"Satellite\" is far less detailed of a type name that we would likely accept.",
       "parentUuid": "4f46929d_e14ca78a",
+      "range": {
+        "startLine": 62,
+        "startChar": 12,
+        "endLine": 62,
+        "endChar": 31
+      },
+      "revId": "a12f692e06e7ea38f430ede0a2784731cb854fdf",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1d7cd0cc_fe8e38c6",
+        "filename": "configurations/catalina_hmc.json",
+        "patchSetId": 5
+      },
+      "lineNbr": 62,
+      "author": {
+        "id": 1001264
+      },
+      "writtenOn": "2024-08-07T10:57:41Z",
+      "side": 1,
+      "message": "Got it, I moved all \"Satellite\" to another commmit and keep it as WIP for now.\nhttps://gerrit.openbmc.org/c/openbmc/entity-manager/+/73502/1",
+      "parentUuid": "a2dfcb7c_05859084",
       "range": {
         "startLine": 62,
         "startChar": 12,
