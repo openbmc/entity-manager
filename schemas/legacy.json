@@ -266,6 +266,9 @@
                 "in0_Max": {
                     "$ref": "#/definitions/Types/in0_Max"
                 },
+                "in0_Min": {
+                    "$ref": "#/definitions/Types/in0_Min"
+                },
                 "in0_Name": {
                     "$ref": "#/definitions/Types/in0_Name"
                 },
@@ -1119,6 +1122,9 @@
                 "type": "string"
             },
             "in0_Max": {
+                "type": "number"
+            },
+            "in0_Min": {
                 "type": "number"
             },
             "in0_Name": {
