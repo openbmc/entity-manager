@@ -1,0 +1,44 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b3a24653_cc5f0ddf",
+        "filename": "src/fru_device.cpp",
+        "patchSetId": 6
+      },
+      "lineNbr": 798,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2024-08-12T14:43:44Z",
+      "side": 1,
+      "message": "I suspect we should be doing this as part of the entity-manager template instantiation, that way FRUDevice can continue to host exactly what\u0027s in the FRU (and keep 1:1 for property sets versus the result) and EM can still produce the cleaned up value.\n\nProbably needs a little thought.",
+      "revId": "46f8fc83a257a78c3648b7a44d4b7cd1d8e0f2ff",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c335cb82_424a24fe",
+        "filename": "src/fru_device.cpp",
+        "patchSetId": 6
+      },
+      "lineNbr": 802,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2024-08-12T14:43:44Z",
+      "side": 1,
+      "message": "Please just do a compare against character space.\n\nstd::isspace pulls in std::locale, which is likely much more complex than intended.  If there are newlines in a FRU, something is very wrong and we shouldn\u0027t be covering that up.",
+      "range": {
+        "startLine": 802,
+        "startChar": 19,
+        "endLine": 802,
+        "endChar": 31
+      },
+      "revId": "46f8fc83a257a78c3648b7a44d4b7cd1d8e0f2ff",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    }
+  ]
+}
