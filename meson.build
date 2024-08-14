@@ -195,6 +195,7 @@ configs = [
     'vegman_sx20_baseboard.json',
     'wft_baseboard.json',
     'yosemite4_fanboard_fsc_max_adc_ti_led_nxp_efuse_mps.json',
+    'yosemite4_fanboard_fsc_max_adc_ti_led_nxp_efuse_max.json',
     'yosemite4_fanboard_fsc_nct_adc_max_led_ons_efuse_mps.json',
     'yosemite4_sentineldome_t1.json',
     'yosemite4_sentineldome_t1_retimer.json',
