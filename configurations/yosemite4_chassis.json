@@ -1,0 +1,13 @@
+{
+    "Exposes": [],
+    "Name": "Yosemite 4 Chassis",
+    "Probe": "xyz.openbmc_project.FruDevice({'BOARD_PRODUCT_NAME': 'Management Board wBMC', 'PRODUCT_PRODUCT_NAME': 'Yosemite V4'})",
+    "Type": "Chassis",
+    "xyz.openbmc_project.Inventory.Decorator.Asset": {
+        "Manufacturer": "$PRODUCT_MANUFACTURER",
+        "Model": "$PRODUCT_PRODUCT_NAME",
+        "PartNumber": "$PRODUCT_PART_NUMBER",
+        "SerialNumber": "$PRODUCT_SERIAL_NUMBER",
+        "SparePartNumber": "$PRODUCT_INFO_AM1"
+    }
+}
