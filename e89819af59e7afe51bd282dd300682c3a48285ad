@@ -20,6 +20,23 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "0df23926_6395a2b2",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2024-08-15T19:44:57Z",
+      "side": 1,
+      "message": "I commented this elsewhere, but this function has been re-engineered and modified so many times, in so many different forks, that I\u0027d like to keep a representation of the \"old way\" and just have modes we can run this in.\n\nIt seems like every time we modify this function, we break someone in some unknown way.  I realize this is directly enumerating hardware, and all hardware acts differently, so aside from being able to set the old behavior, I don\u0027t know how we test changes like this.\n\nLets add a meson option for \"16 bit detect mode\", and give the modes names of 1, 2, 3, then in code, we can document how each detect mode operates.",
+      "revId": "e89819af59e7afe51bd282dd300682c3a48285ad",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "332f7970_5b5ace6b",
         "filename": "src/fru_device.cpp",
         "patchSetId": 3
