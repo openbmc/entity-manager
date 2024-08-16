@@ -344,6 +344,12 @@
                 "in_voltage7_Name": {
                     "$ref": "#/definitions/Types/in_voltage7_Name"
                 },
+                "in_voltage8_Name": {
+                    "$ref": "#/definitions/Types/in_voltage8_Name"
+                },
+                "in_voltage9_Name": {
+                    "$ref": "#/definitions/Types/in_voltage9_Name"
+                },
                 "in0_PowerState": {
                     "$ref": "#/definitions/Types/in0_PowerState"
                 },
@@ -757,6 +763,12 @@
                 },
                 "in_voltage7_Scale": {
                     "$ref": "#/definitions/Types/in_voltage7_Scale"
+                },
+                "in_voltage8_Scale": {
+                    "$ref": "#/definitions/Types/in_voltage8_Scale"
+                },
+                "in_voltage9_Scale": {
+                    "$ref": "#/definitions/Types/in_voltage9_Scale"
                 },
                 "PollRate": {
                     "$ref": "#/definitions/Types/PollRate"
@@ -1184,6 +1196,12 @@
             "in_voltage7_Name": {
                 "type": "string"
             },
+            "in_voltage8_Name": {
+                "type": "string"
+            },
+            "in_voltage9_Name": {
+                "type": "string"
+            },
             "in0_PowerState": {
                 "type": "string"
             },
@@ -1596,6 +1614,12 @@
                 "type": "number"
             },
             "in_voltage7_Scale": {
+                "type": "number"
+            },
+            "in_voltage8_Scale": {
+                "type": "number"
+            },
+            "in_voltage9_Scale": {
                 "type": "number"
             },
             "PollRate": {
