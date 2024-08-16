@@ -2234,9 +2234,9 @@
         ],
         "Name": "Mt.Mitchell_Motherboard",
         "Probe": [
-            "FOUND('Mt.Mitchell_BMC')",
+            "xyz.openbmc_project.FruDevice({'BOARD_PRODUCT_NAME': 'MB'})",
             "AND",
-            "xyz.openbmc_project.FruDevice({'BOARD_PRODUCT_NAME': 'MB'})"
+            "FOUND('Mt.Mitchell_DCSCM_BMC')"
         ],
         "Type": "Board",
         "xyz.openbmc_project.Common.UUID": {

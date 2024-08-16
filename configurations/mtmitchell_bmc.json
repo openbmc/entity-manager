@@ -114,8 +114,8 @@
             "Type": "TMP175"
         }
     ],
-    "Name": "Mt.Mitchell_BMC",
-    "Probe": "xyz.openbmc_project.FruDevice({'BOARD_PRODUCT_NAME': '.*Mitchell BMC*'})",
+    "Name": "Mt.Mitchell_DCSCM_BMC",
+    "Probe": "xyz.openbmc_project.FruDevice({'BOARD_PRODUCT_NAME': '.*Mitchell BMC DC-SCM.*'})",
     "Type": "Board",
     "xyz.openbmc_project.Inventory.Decorator.Asset": {
         "BuildDate": "$BOARD_MANUFACTURE_DATE",
@@ -130,5 +130,6 @@
     },
     "xyz.openbmc_project.Inventory.Item.NetworkInterface": {
         "MACAddress": "$BOARD_INFO_AM1"
-    }
+    },
+    "xyz.openbmc_project.Inventory.Item.Bmc": {}
 }
