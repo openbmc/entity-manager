@@ -210,6 +210,7 @@ configs = [
     'yosemite4_medusaboard_adc_ti_12vhsc_mps_48vhsc_inf.json',
     'yosemite4_medusaboard_adc_rns_12vhsc_mps_48vhsc_inf.json',
     'yosemite4_spiderboard_adc_ti_pwr_ti.json',
+    'yosemite4_spiderboard_adc_max_pwr_ti.json',
 ]
 filepaths = []
 foreach c : configs
