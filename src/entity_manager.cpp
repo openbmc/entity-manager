@@ -202,20 +202,20 @@ void addArrayToDbus(const std::string& name, const nlohmann::json& array,
              jsonPointerString{std::string(jsonPointerString)}](
                 const std::vector<PropertyType>& newVal,
                 std::vector<PropertyType>& val) {
-            val = newVal;
-            if (!setJsonFromPointer(jsonPointerString, val,
-                                    systemConfiguration))
-            {
-                std::cerr << "error setting json field\n";
-                return -1;
-            }
-            if (!writeJsonFiles(systemConfiguration))
-            {
-                std::cerr << "error setting json file\n";
-                return -1;
-            }
-            return 1;
-        });
+                val = newVal;
+                if (!setJsonFromPointer(jsonPointerString, val,
+                                        systemConfiguration))
+                {
+                    std::cerr << "error setting json field\n";
+                    return -1;
+                }
+                if (!writeJsonFiles(systemConfiguration))
+                {
+                    std::cerr << "error setting json file\n";
+                    return -1;
+                }
+                return 1;
+            });
     }
 }
 
@@ -236,19 +236,20 @@ void addProperty(const std::string& name, const PropertyType& value,
         [&systemConfiguration,
          jsonPointerString{std::string(jsonPointerString)}](
             const PropertyType& newVal, PropertyType& val) {
-        val = newVal;
-        if (!setJsonFromPointer(jsonPointerString, val, systemConfiguration))
-        {
-            std::cerr << "error setting json field\n";
-            return -1;
-        }
-        if (!writeJsonFiles(systemConfiguration))
-        {
-            std::cerr << "error setting json file\n";
-            return -1;
-        }
-        return 1;
-    });
+            val = newVal;
+            if (!setJsonFromPointer(jsonPointerString, val,
+                                    systemConfiguration))
+            {
+                std::cerr << "error setting json field\n";
+                return -1;
+            }
+            if (!writeJsonFiles(systemConfiguration))
+            {
+                std::cerr << "error setting json file\n";
+                return -1;
+            }
+            return 1;
+        });
 }
 
 void createDeleteObjectMethod(
@@ -258,32 +259,32 @@ void createDeleteObjectMethod(
     nlohmann::json& systemConfiguration)
 {
     std::weak_ptr<sdbusplus::asio::dbus_interface> interface = iface;
-    iface->register_method("Delete",
-                           [&objServer, &systemConfiguration, interface,
-                            jsonPointerPath{std::string(jsonPointerPath)}]() {
-        std::shared_ptr<sdbusplus::asio::dbus_interface> dbusInterface =
-            interface.lock();
-        if (!dbusInterface)
-        {
-            // this technically can't happen as the pointer is pointing to
-            // us
-            throw DBusInternalError();
-        }
-        nlohmann::json::json_pointer ptr(jsonPointerPath);
-        systemConfiguration[ptr] = nullptr;
+    iface->register_method(
+        "Delete", [&objServer, &systemConfiguration, interface,
+                   jsonPointerPath{std::string(jsonPointerPath)}]() {
+            std::shared_ptr<sdbusplus::asio::dbus_interface> dbusInterface =
+                interface.lock();
+            if (!dbusInterface)
+            {
+                // this technically can't happen as the pointer is pointing to
+                // us
+                throw DBusInternalError();
+            }
+            nlohmann::json::json_pointer ptr(jsonPointerPath);
+            systemConfiguration[ptr] = nullptr;
 
-        // todo(james): dig through sdbusplus to find out why we can't
-        // delete it in a method call
-        boost::asio::post(io, [&objServer, dbusInterface]() mutable {
-            objServer.remove_interface(dbusInterface);
+            // todo(james): dig through sdbusplus to find out why we can't
+            // delete it in a method call
+            boost::asio::post(io, [&objServer, dbusInterface]() mutable {
+                objServer.remove_interface(dbusInterface);
+            });
+
+            if (!writeJsonFiles(systemConfiguration))
+            {
+                std::cerr << "error setting json file\n";
+                throw DBusInternalError();
+            }
         });
-
-        if (!writeJsonFiles(systemConfiguration))
-        {
-            std::cerr << "error setting json file\n";
-            throw DBusInternalError();
-        }
-    });
 }
 
 // adds simple json types to interface's properties
@@ -451,11 +452,10 @@ sdbusplus::asio::PropertyPermission getPermission(const std::string& interface)
                : sdbusplus::asio::PropertyPermission::readOnly;
 }
 
-void createAddObjectMethod(const std::string& jsonPointerPath,
-                           const std::string& path,
-                           nlohmann::json& systemConfiguration,
-                           sdbusplus::asio::object_server& objServer,
-                           const std::string& board)
+void createAddObjectMethod(
+    const std::string& jsonPointerPath, const std::string& path,
+    nlohmann::json& systemConfiguration,
+    sdbusplus::asio::object_server& objServer, const std::string& board)
 {
     std::shared_ptr<sdbusplus::asio::dbus_interface> iface = createInterface(
         objServer, path, "xyz.openbmc_project.AddObject", board);
@@ -466,116 +466,116 @@ void createAddObjectMethod(const std::string& jsonPointerPath,
          jsonPointerPath{std::string(jsonPointerPath)}, path{std::string(path)},
          board](const boost::container::flat_map<std::string, JsonVariantType>&
                     data) {
-        nlohmann::json::json_pointer ptr(jsonPointerPath);
-        nlohmann::json& base = systemConfiguration[ptr];
-        auto findExposes = base.find("Exposes");
+            nlohmann::json::json_pointer ptr(jsonPointerPath);
+            nlohmann::json& base = systemConfiguration[ptr];
+            auto findExposes = base.find("Exposes");
 
-        if (findExposes == base.end())
-        {
-            throw std::invalid_argument("Entity must have children.");
-        }
-
-        // this will throw invalid-argument to sdbusplus if invalid json
-        nlohmann::json newData{};
-        for (const auto& item : data)
-        {
-            nlohmann::json& newJson = newData[item.first];
-            std::visit(
-                [&newJson](auto&& val) {
-                newJson = std::forward<decltype(val)>(val);
-            },
-                item.second);
-        }
-
-        auto findName = newData.find("Name");
-        auto findType = newData.find("Type");
-        if (findName == newData.end() || findType == newData.end())
-        {
-            throw std::invalid_argument("AddObject missing Name or Type");
-        }
-        const std::string* type = findType->get_ptr<const std::string*>();
-        const std::string* name = findName->get_ptr<const std::string*>();
-        if (type == nullptr || name == nullptr)
-        {
-            throw std::invalid_argument("Type and Name must be a string.");
-        }
-
-        bool foundNull = false;
-        size_t lastIndex = 0;
-        // we add in the "exposes"
-        for (const auto& expose : *findExposes)
-        {
-            if (expose.is_null())
+            if (findExposes == base.end())
             {
-                foundNull = true;
-                continue;
+                throw std::invalid_argument("Entity must have children.");
             }
 
-            if (expose["Name"] == *name && expose["Type"] == *type)
+            // this will throw invalid-argument to sdbusplus if invalid json
+            nlohmann::json newData{};
+            for (const auto& item : data)
+            {
+                nlohmann::json& newJson = newData[item.first];
+                std::visit(
+                    [&newJson](auto&& val) {
+                        newJson = std::forward<decltype(val)>(val);
+                    },
+                    item.second);
+            }
+
+            auto findName = newData.find("Name");
+            auto findType = newData.find("Type");
+            if (findName == newData.end() || findType == newData.end())
+            {
+                throw std::invalid_argument("AddObject missing Name or Type");
+            }
+            const std::string* type = findType->get_ptr<const std::string*>();
+            const std::string* name = findName->get_ptr<const std::string*>();
+            if (type == nullptr || name == nullptr)
+            {
+                throw std::invalid_argument("Type and Name must be a string.");
+            }
+
+            bool foundNull = false;
+            size_t lastIndex = 0;
+            // we add in the "exposes"
+            for (const auto& expose : *findExposes)
+            {
+                if (expose.is_null())
+                {
+                    foundNull = true;
+                    continue;
+                }
+
+                if (expose["Name"] == *name && expose["Type"] == *type)
+                {
+                    throw std::invalid_argument(
+                        "Field already in JSON, not adding");
+                }
+
+                if (foundNull)
+                {
+                    continue;
+                }
+
+                lastIndex++;
+            }
+
+            std::ifstream schemaFile(std::string(schemaDirectory) + "/" +
+                                     boost::to_lower_copy(*type) + ".json");
+            // todo(james) we might want to also make a list of 'can add'
+            // interfaces but for now I think the assumption if there is a
+            // schema avaliable that it is allowed to update is fine
+            if (!schemaFile.good())
             {
                 throw std::invalid_argument(
-                    "Field already in JSON, not adding");
+                    "No schema avaliable, cannot validate.");
             }
-
+            nlohmann::json schema =
+                nlohmann::json::parse(schemaFile, nullptr, false, true);
+            if (schema.is_discarded())
+            {
+                std::cerr << "Schema not legal" << *type << ".json\n";
+                throw DBusInternalError();
+            }
+            if (!validateJson(schema, newData))
+            {
+                throw std::invalid_argument("Data does not match schema");
+            }
             if (foundNull)
             {
-                continue;
+                findExposes->at(lastIndex) = newData;
             }
+            else
+            {
+                findExposes->push_back(newData);
+            }
+            if (!writeJsonFiles(systemConfiguration))
+            {
+                std::cerr << "Error writing json files\n";
+                throw DBusInternalError();
+            }
+            std::string dbusName = *name;
 
-            lastIndex++;
-        }
+            std::regex_replace(dbusName.begin(), dbusName.begin(),
+                               dbusName.end(), illegalDbusMemberRegex, "_");
 
-        std::ifstream schemaFile(std::string(schemaDirectory) + "/" +
-                                 boost::to_lower_copy(*type) + ".json");
-        // todo(james) we might want to also make a list of 'can add'
-        // interfaces but for now I think the assumption if there is a
-        // schema avaliable that it is allowed to update is fine
-        if (!schemaFile.good())
-        {
-            throw std::invalid_argument(
-                "No schema avaliable, cannot validate.");
-        }
-        nlohmann::json schema = nlohmann::json::parse(schemaFile, nullptr,
-                                                      false, true);
-        if (schema.is_discarded())
-        {
-            std::cerr << "Schema not legal" << *type << ".json\n";
-            throw DBusInternalError();
-        }
-        if (!validateJson(schema, newData))
-        {
-            throw std::invalid_argument("Data does not match schema");
-        }
-        if (foundNull)
-        {
-            findExposes->at(lastIndex) = newData;
-        }
-        else
-        {
-            findExposes->push_back(newData);
-        }
-        if (!writeJsonFiles(systemConfiguration))
-        {
-            std::cerr << "Error writing json files\n";
-            throw DBusInternalError();
-        }
-        std::string dbusName = *name;
-
-        std::regex_replace(dbusName.begin(), dbusName.begin(), dbusName.end(),
-                           illegalDbusMemberRegex, "_");
-
-        std::shared_ptr<sdbusplus::asio::dbus_interface> interface =
-            createInterface(objServer, path + "/" + dbusName,
-                            "xyz.openbmc_project.Configuration." + *type, board,
-                            true);
-        // permission is read-write, as since we just created it, must be
-        // runtime modifiable
-        populateInterfaceFromJson(
-            systemConfiguration,
-            jsonPointerPath + "/Exposes/" + std::to_string(lastIndex),
-            interface, newData, objServer,
-            sdbusplus::asio::PropertyPermission::readWrite);
-    });
+            std::shared_ptr<sdbusplus::asio::dbus_interface> interface =
+                createInterface(objServer, path + "/" + dbusName,
+                                "xyz.openbmc_project.Configuration." + *type,
+                                board, true);
+            // permission is read-write, as since we just created it, must be
+            // runtime modifiable
+            populateInterfaceFromJson(
+                systemConfiguration,
+                jsonPointerPath + "/Exposes/" + std::to_string(lastIndex),
+                interface, newData, objServer,
+                sdbusplus::asio::PropertyPermission::readWrite);
+        });
     tryIfaceInitialize(iface);
 }
 
@@ -839,8 +839,8 @@ bool loadConfigurations(std::list<nlohmann::json>& configurations)
         return false;
     }
 
-    std::ifstream schemaStream(std::string(schemaDirectory) + "/" +
-                               globalSchema);
+    std::ifstream schemaStream(
+        std::string(schemaDirectory) + "/" + globalSchema);
     if (!schemaStream.good())
     {
         std::cerr
@@ -848,8 +848,8 @@ bool loadConfigurations(std::list<nlohmann::json>& configurations)
         std::exit(EXIT_FAILURE);
         return false;
     }
-    nlohmann::json schema = nlohmann::json::parse(schemaStream, nullptr, false,
-                                                  true);
+    nlohmann::json schema =
+        nlohmann::json::parse(schemaStream, nullptr, false, true);
     if (schema.is_discarded())
     {
         std::cerr
@@ -954,24 +954,24 @@ void startRemovedTimer(boost::asio::steady_timer& timer,
     timer.expires_after(std::chrono::seconds(10));
     timer.async_wait(
         [&systemConfiguration](const boost::system::error_code& ec) {
-        if (ec == boost::asio::error::operation_aborted)
-        {
-            return;
-        }
+            if (ec == boost::asio::error::operation_aborted)
+            {
+                return;
+            }
 
-        bool powerOff = !isPowerOn();
-        for (const auto& [name, device] : lastJson.items())
-        {
-            pruneDevice(systemConfiguration, powerOff, scannedPowerOff, name,
-                        device);
-        }
+            bool powerOff = !isPowerOn();
+            for (const auto& [name, device] : lastJson.items())
+            {
+                pruneDevice(systemConfiguration, powerOff, scannedPowerOff,
+                            name, device);
+            }
 
-        scannedPowerOff = true;
-        if (!powerOff)
-        {
-            scannedPowerOn = true;
-        }
-    });
+            scannedPowerOff = true;
+            if (!powerOff)
+            {
+                scannedPowerOn = true;
+            }
+        });
 }
 
 static std::vector<std::weak_ptr<sdbusplus::asio::dbus_interface>>&
@@ -1106,32 +1106,33 @@ void propertiesChangedCallback(nlohmann::json& systemConfiguration,
             objServer,
             [&systemConfiguration, &objServer, count, oldConfiguration,
              missingConfigurations]() {
-            // this is something that since ac has been applied to the bmc
-            // we saw, and we no longer see it
-            bool powerOff = !isPowerOn();
-            for (const auto& [name, device] : missingConfigurations->items())
-            {
-                pruneConfiguration(systemConfiguration, objServer, powerOff,
-                                   name, device);
-            }
+                // this is something that since ac has been applied to the bmc
+                // we saw, and we no longer see it
+                bool powerOff = !isPowerOn();
+                for (const auto& [name, device] :
+                     missingConfigurations->items())
+                {
+                    pruneConfiguration(systemConfiguration, objServer, powerOff,
+                                       name, device);
+                }
 
-            nlohmann::json newConfiguration = systemConfiguration;
+                nlohmann::json newConfiguration = systemConfiguration;
 
-            deriveNewConfiguration(oldConfiguration, newConfiguration);
+                deriveNewConfiguration(oldConfiguration, newConfiguration);
 
-            for (const auto& [_, device] : newConfiguration.items())
-            {
-                logDeviceAdded(device);
-            }
+                for (const auto& [_, device] : newConfiguration.items())
+                {
+                    logDeviceAdded(device);
+                }
 
-            inProgress = false;
+                inProgress = false;
 
-            boost::asio::post(
-                io, std::bind_front(publishNewConfiguration, std::ref(instance),
-                                    count, std::ref(timer),
-                                    std::ref(systemConfiguration),
-                                    newConfiguration, std::ref(objServer)));
-        });
+                boost::asio::post(
+                    io, std::bind_front(
+                            publishNewConfiguration, std::ref(instance), count,
+                            std::ref(timer), std::ref(systemConfiguration),
+                            newConfiguration, std::ref(objServer)));
+            });
         perfScan->run();
     });
 }
@@ -1196,9 +1197,8 @@ static std::set<std::string> getProbeInterfaces()
 }
 
 // Check if InterfacesAdded payload contains an iface that needs probing.
-static bool
-    iaContainsProbeInterface(sdbusplus::message_t& msg,
-                             const std::set<std::string>& probeInterfaces)
+static bool iaContainsProbeInterface(
+    sdbusplus::message_t& msg, const std::set<std::string>& probeInterfaces)
 {
     sdbusplus::message::object_path path;
     DBusObject interfaces;
@@ -1209,8 +1209,8 @@ static bool
 
     std::for_each(interfaces.begin(), interfaces.end(),
                   [&interfaceSet](const auto& iface) {
-        interfaceSet.insert(iface.first);
-    });
+                      interfaceSet.insert(iface.first);
+                  });
 
     std::set_intersection(interfaceSet.begin(), interfaceSet.end(),
                           probeInterfaces.begin(), probeInterfaces.end(),
@@ -1219,9 +1219,8 @@ static bool
 }
 
 // Check if InterfacesRemoved payload contains an iface that needs probing.
-static bool
-    irContainsProbeInterface(sdbusplus::message_t& msg,
-                             const std::set<std::string>& probeInterfaces)
+static bool irContainsProbeInterface(
+    sdbusplus::message_t& msg, const std::set<std::string>& probeInterfaces)
 {
     sdbusplus::message::object_path path;
     std::set<std::string> interfaces;
@@ -1271,37 +1270,37 @@ int main()
         static_cast<sdbusplus::bus_t&>(*systemBus),
         sdbusplus::bus::match::rules::nameOwnerChanged(),
         [&](sdbusplus::message_t& m) {
-        auto [name, oldOwner,
-              newOwner] = m.unpack<std::string, std::string, std::string>();
+            auto [name, oldOwner,
+                  newOwner] = m.unpack<std::string, std::string, std::string>();
 
-        if (name.starts_with(':'))
-        {
-            // We should do nothing with unique-name connections.
-            return;
-        }
+            if (name.starts_with(':'))
+            {
+                // We should do nothing with unique-name connections.
+                return;
+            }
 
-        propertiesChangedCallback(systemConfiguration, objServer);
-    });
+            propertiesChangedCallback(systemConfiguration, objServer);
+        });
     // We also need a poke from DBus when new interfaces are created or
     // destroyed.
     sdbusplus::bus::match_t interfacesAddedMatch(
         static_cast<sdbusplus::bus_t&>(*systemBus),
         sdbusplus::bus::match::rules::interfacesAdded(),
         [&](sdbusplus::message_t& msg) {
-        if (iaContainsProbeInterface(msg, probeInterfaces))
-        {
-            propertiesChangedCallback(systemConfiguration, objServer);
-        }
-    });
+            if (iaContainsProbeInterface(msg, probeInterfaces))
+            {
+                propertiesChangedCallback(systemConfiguration, objServer);
+            }
+        });
     sdbusplus::bus::match_t interfacesRemovedMatch(
         static_cast<sdbusplus::bus_t&>(*systemBus),
         sdbusplus::bus::match::rules::interfacesRemoved(),
         [&](sdbusplus::message_t& msg) {
-        if (irContainsProbeInterface(msg, probeInterfaces))
-        {
-            propertiesChangedCallback(systemConfiguration, objServer);
-        }
-    });
+            if (irContainsProbeInterface(msg, probeInterfaces))
+            {
+                propertiesChangedCallback(systemConfiguration, objServer);
+            }
+        });
 
     boost::asio::post(io, [&]() {
         propertiesChangedCallback(systemConfiguration, objServer);
@@ -1328,8 +1327,8 @@ int main()
                 auto data = nlohmann::json::parse(jsonStream, nullptr, false);
                 if (data.is_discarded())
                 {
-                    std::cerr << "syntax error in " << lastConfiguration
-                              << "\n";
+                    std::cerr
+                        << "syntax error in " << lastConfiguration << "\n";
                 }
                 else
                 {

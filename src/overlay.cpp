@@ -164,13 +164,12 @@ static bool deviceIsCreated(const std::string& busPath, uint64_t bus,
     return std::filesystem::exists(dirPath, ec);
 }
 
-static int buildDevice(const std::string& name, const std::string& busPath,
-                       const std::string& parameters, uint64_t bus,
-                       uint64_t address, const std::string& constructor,
-                       const std::string& destructor,
-                       const devices::createsHWMon hasHWMonDir,
-                       std::vector<std::string> channelNames,
-                       const size_t retries = 5)
+static int
+    buildDevice(const std::string& name, const std::string& busPath,
+                const std::string& parameters, uint64_t bus, uint64_t address,
+                const std::string& constructor, const std::string& destructor,
+                const devices::createsHWMon hasHWMonDir,
+                std::vector<std::string> channelNames, const size_t retries = 5)
 {
     if (retries == 0U)
     {
@@ -196,15 +195,15 @@ static int buildDevice(const std::string& name, const std::string& busPath,
                  constructor, destructor, hasHWMonDir,
                  channelNames(std::move(channelNames)),
                  retries](const boost::system::error_code& ec) mutable {
-                if (ec)
-                {
-                    std::cerr << "Timer error: " << ec << "\n";
-                    return -2;
-                }
-                return buildDevice(name, busPath, parameters, bus, address,
-                                   constructor, destructor, hasHWMonDir,
-                                   std::move(channelNames), retries - 1);
-            });
+                    if (ec)
+                    {
+                        std::cerr << "Timer error: " << ec << "\n";
+                        return -2;
+                    }
+                    return buildDevice(name, busPath, parameters, bus, address,
+                                       constructor, destructor, hasHWMonDir,
+                                       std::move(channelNames), retries - 1);
+                });
             return -1;
         }
     }

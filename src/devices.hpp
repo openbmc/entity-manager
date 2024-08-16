@@ -55,9 +55,8 @@ struct ExportTemplate
 {
     ExportTemplate(const char* params, const char* bus, const char* constructor,
                    const char* destructor, createsHWMon hasHWMonDir) :
-        parameters(params),
-        busPath(bus), add(constructor), remove(destructor),
-        hasHWMonDir(hasHWMonDir){};
+        parameters(params), busPath(bus), add(constructor), remove(destructor),
+        hasHWMonDir(hasHWMonDir) {};
     const char* parameters;
     const char* busPath;
     const char* add;

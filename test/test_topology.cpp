@@ -12,8 +12,8 @@ const std::string superchassisPath =
 
 const Association subchassisAssoc =
     std::make_tuple("contained_by", "containing", superchassisPath);
-const Association powerAssoc = std::make_tuple("powered_by", "powering",
-                                               subchassisPath);
+const Association powerAssoc =
+    std::make_tuple("powered_by", "powering", subchassisPath);
 
 const nlohmann::json subchassisExposesItem = nlohmann::json::parse(R"(
     {
