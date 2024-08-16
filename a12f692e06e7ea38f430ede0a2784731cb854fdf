@@ -50,6 +50,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "70933828_1c309780",
+        "filename": "configurations/catalina_hdd.json",
+        "patchSetId": 5
+      },
+      "lineNbr": 88,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2024-08-16T18:11:26Z",
+      "side": 1,
+      "message": "It has 4 SSDs or it has 4 slots for SSDs?  What Ed is getting at here is that you\u0027ve instantiated NVMe-MI sensors for devices that might not be present.  Should we have a separate config for the SSDs themselves?",
+      "parentUuid": "aaacf266_33fbf4f0",
+      "range": {
+        "startLine": 71,
+        "startChar": 0,
+        "endLine": 88,
+        "endChar": 9
+      },
+      "revId": "a12f692e06e7ea38f430ede0a2784731cb854fdf",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "3bff9766_a65237e9",
         "filename": "configurations/catalina_hdd.json",
         "patchSetId": 5

@@ -3,6 +3,46 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "48ed30f7_f8ed9345",
+        "filename": "configurations/catalina_hdd.json",
+        "patchSetId": 8
+      },
+      "lineNbr": 91,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2024-08-16T18:11:26Z",
+      "side": 1,
+      "message": "What does \"HDD\" mean?  We should probably use the comment feature to expand these acronyms.",
+      "revId": "7f6d964093db24f479a23be806aed4a2ea26c1ec",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2a34ef83_87572f3b",
+        "filename": "configurations/catalina_hmc.json",
+        "patchSetId": 8
+      },
+      "lineNbr": 22,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2024-08-16T18:11:26Z",
+      "side": 1,
+      "message": "Isn\u0027t this an off-the-shelf device from NVidia?  Do we really want a Catalina-specific JSON file in entity manager for this, or should NVidia be providing a generic JSON file for their device?",
+      "range": {
+        "startLine": 17,
+        "startChar": 0,
+        "endLine": 22,
+        "endChar": 6
+      },
+      "revId": "7f6d964093db24f479a23be806aed4a2ea26c1ec",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "d9a6800d_3961cdf0",
         "filename": "configurations/catalina_mb.json",
         "patchSetId": 8
@@ -67,6 +107,145 @@
         "startChar": 41,
         "endLine": 7,
         "endChar": 48
+      },
+      "revId": "7f6d964093db24f479a23be806aed4a2ea26c1ec",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "66bf588f_9b1576d5",
+        "filename": "configurations/catalina_mb.json",
+        "patchSetId": 8
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2024-08-16T18:11:26Z",
+      "side": 1,
+      "message": "`(bus + 1) % 2`?",
+      "parentUuid": "931d04b2_d268683b",
+      "range": {
+        "startLine": 7,
+        "startChar": 41,
+        "endLine": 7,
+        "endChar": 48
+      },
+      "revId": "7f6d964093db24f479a23be806aed4a2ea26c1ec",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "03472738_0c60952a",
+        "filename": "configurations/catalina_mb.json",
+        "patchSetId": 8
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2024-08-16T18:11:26Z",
+      "side": 1,
+      "message": "Why is FRU in the name?  Why is this the \"MB\"?",
+      "range": {
+        "startLine": 7,
+        "startChar": 37,
+        "endLine": 7,
+        "endChar": 40
+      },
+      "revId": "7f6d964093db24f479a23be806aed4a2ea26c1ec",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "70f1864d_bc28871d",
+        "filename": "configurations/catalina_mb.json",
+        "patchSetId": 8
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2024-08-16T18:11:26Z",
+      "side": 1,
+      "message": "Why is it \"primary\" and \"secondary\"?  Aren\u0027t these CPU slots?  Any reason this isn\u0027t just {0, 1}?",
+      "range": {
+        "startLine": 7,
+        "startChar": 41,
+        "endLine": 7,
+        "endChar": 48
+      },
+      "revId": "7f6d964093db24f479a23be806aed4a2ea26c1ec",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "679e7461_b2bd3df6",
+        "filename": "configurations/catalina_mb.json",
+        "patchSetId": 8
+      },
+      "lineNbr": 16,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2024-08-16T18:11:26Z",
+      "side": 1,
+      "message": "This is another case where we probably shouldn\u0027t have a Catalina-specific JSON?",
+      "range": {
+        "startLine": 13,
+        "startChar": 0,
+        "endLine": 16,
+        "endChar": 10
+      },
+      "revId": "7f6d964093db24f479a23be806aed4a2ea26c1ec",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "baaf3c34_d0bf2baf",
+        "filename": "configurations/catalina_osfp.json",
+        "patchSetId": 8
+      },
+      "lineNbr": 11,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2024-08-16T18:11:26Z",
+      "side": 1,
+      "message": "Is this a separate carrier board or the device in the OSFP connector?  If it is a carrier, we should probably use that word in the name somewhere.  Otherwise, I don\u0027t know what an \"OSFP Board\" is.",
+      "range": {
+        "startLine": 10,
+        "startChar": 0,
+        "endLine": 11,
+        "endChar": 87
+      },
+      "revId": "7f6d964093db24f479a23be806aed4a2ea26c1ec",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "798adc87_dda6b363",
+        "filename": "configurations/catalina_scm.json",
+        "patchSetId": 8
+      },
+      "lineNbr": 208,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2024-08-16T18:11:26Z",
+      "side": 1,
+      "message": "Is this the BMC?  (DC-SCM?)  Are we missing exposes that identifies this as the BMC board?",
+      "range": {
+        "startLine": 207,
+        "startChar": 0,
+        "endLine": 208,
+        "endChar": 86
       },
       "revId": "7f6d964093db24f479a23be806aed4a2ea26c1ec",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
