@@ -159,6 +159,7 @@ configs = [
     'nf5280m7_baseboard.json',
     'nisqually.json',
     'nuvoton_npcm8xx_evb.json',
+    'nvidia_hmc.json',
     'nvme_intel_p_series.json',
     'nvme_p4500_p5500.json',
     'pcie_ssd_retimer.json',
