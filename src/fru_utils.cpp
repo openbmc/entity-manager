@@ -17,6 +17,8 @@
 
 #include "fru_utils.hpp"
 
+#include <phosphor-logging/lg2.hpp>
+
 #include <array>
 #include <cstddef>
 #include <cstdint>
@@ -35,7 +37,6 @@ extern "C"
 #include <linux/i2c.h>
 }
 
-static constexpr bool debug = false;
 constexpr size_t fruVersion = 1; // Current FRU spec version number is 1
 
 std::tm intelEpoch()
@@ -646,23 +647,17 @@ bool validateHeader(const std::array<uint8_t, I2C_SMBUS_BLOCK_MAX>& blockData)
     // ipmi spec format version number is currently at 1, verify it
     if (blockData[0] != fruVersion)
     {
-        if (debug)
-        {
-            std::cerr << "FRU spec version " << (int)(blockData[0])
-                      << " not supported. Supported version is "
-                      << (int)(fruVersion) << "\n";
-        }
+        lg2::debug(
+            "FRU spec version {VER} not supported. Supported version is {SVER}",
+            "VER", (int)blockData[0], "SVER", (int)fruVersion);
         return false;
     }
 
     // verify pad is set to 0
     if (blockData[6] != 0x0)
     {
-        if (debug)
-        {
-            std::cerr << "PAD value in header is non zero, value is "
-                      << (int)(blockData[6]) << "\n";
-        }
+        lg2::debug("PAD value in header is non zero, value is {VAL}", "VAL",
+                   (int)(blockData[6]));
         return false;
     }
 
@@ -691,12 +686,8 @@ bool validateHeader(const std::array<uint8_t, I2C_SMBUS_BLOCK_MAX>& blockData)
 
     if (sum != blockData[7])
     {
-        if (debug)
-        {
-            std::cerr << "Checksum " << (int)(blockData[7])
-                      << " is invalid. calculated checksum is " << (int)(sum)
-                      << "\n";
-        }
+        lg2::debug("Checksum {C} is invalid. calculated checksum is {CC}", "C",
+                   (int)(blockData[7]), "CC", (int)sum);
         return false;
     }
     return true;
@@ -737,11 +728,8 @@ bool findFRUHeader(FRUReader& reader, const std::string& errorHelp,
         return findFRUHeader(reader, errorHelp, blockData, baseOffset);
     }
 
-    if (debug)
-    {
-        std::cerr << "Illegal header " << errorHelp << " base offset "
-                  << baseOffset << "\n";
-    }
+    lg2::debug("Illegal header {H} base offset {OFFSET}", "H", errorHelp,
+               "OFFSET", baseOffset);
 
     return false;
 }
