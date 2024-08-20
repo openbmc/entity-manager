@@ -52,6 +52,24 @@
       "parentUuid": "191f2fba_9ec5d99f",
       "revId": "793ff08708d5f0361aee85605de08c185deb434b",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e4f1ffe0_044beaf0",
+        "filename": "subprojects/phosphor-dbus-interfaces.wrap",
+        "patchSetId": 5
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 1000008
+      },
+      "writtenOn": "2024-08-20T21:11:55Z",
+      "side": 1,
+      "message": "That\u0027s right, it isn\u0027t a direct dependency of entity-manager, only of phosphor-logging.  The redirect shows up when phosphor-logging is built as a subproject so there is no need to check it in here.",
+      "parentUuid": "292f9879_02cf1fc0",
+      "revId": "793ff08708d5f0361aee85605de08c185deb434b",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }
