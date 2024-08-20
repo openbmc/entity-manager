@@ -16,6 +16,24 @@
       "message": "This was originally a wrap re-direct and not a direct dependency, right?  I don\u0027t think you need to include those.",
       "revId": "793ff08708d5f0361aee85605de08c185deb434b",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "191f2fba_9ec5d99f",
+        "filename": "subprojects/phosphor-dbus-interfaces.wrap",
+        "patchSetId": 5
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2024-08-20T20:49:57Z",
+      "side": 1,
+      "message": "I\u0027m not too good with meson. If you look at the jenkins output from the previous patchsets, there were issues involving the wrap-redirect.\n\nFeel free to push new revisions. Otherwise i can try my luck tomorrow.",
+      "parentUuid": "e53d9bac_aeb8787f",
+      "revId": "793ff08708d5f0361aee85605de08c185deb434b",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }
