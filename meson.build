@@ -214,6 +214,7 @@ configs = [
     'yosemite4_medusaboard_adc_ti_12vhsc_mps_48vhsc_adi.json',
     'yosemite4_medusaboard_adc_rns_12vhsc_mps_48vhsc_inf.json',
     'yosemite4_medusaboard_adc_rns_hsc_adi.json',
+    'yosemite4_medusaboard_adc_rns_12vhsc_adi_48vhsc_inf.json',
     'yosemite4_spiderboard_adc_ti_pwr_ti.json',
 ]
 filepaths = []
