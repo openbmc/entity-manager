@@ -20,6 +20,7 @@
 #include <boost/asio/steady_timer.hpp>
 #include <boost/container/flat_map.hpp>
 #include <boost/container/flat_set.hpp>
+#include <phosphor-logging/lg2.hpp>
 
 #include <charconv>
 
@@ -37,8 +38,6 @@ using GetSubTreeType = std::vector<
               std::vector<std::pair<std::string, std::vector<std::string>>>>>;
 
 constexpr const int32_t maxMapperDepth = 0;
-
-constexpr const bool debug = false;
 
 struct DBusInterfaceInstance
 {
@@ -82,11 +81,6 @@ void getInterfaces(
         },
         instance.busName, instance.path, "org.freedesktop.DBus.Properties",
         "GetAll", instance.interface);
-
-    if constexpr (debug)
-    {
-        std::cerr << __LINE__ << "\n";
-    }
 }
 
 static void registerCallback(nlohmann::json& systemConfiguration,
@@ -201,11 +195,6 @@ void findDbusObjects(std::vector<std::shared_ptr<PerformProbe>>&& probeVector,
         "/xyz/openbmc_project/object_mapper",
         "xyz.openbmc_project.ObjectMapper", "GetSubTree", "/", maxMapperDepth,
         interfaces);
-
-    if constexpr (debug)
-    {
-        std::cerr << __LINE__ << "\n";
-    }
 }
 
 static std::string getRecordName(const DBusInterface& probe,
@@ -227,10 +216,7 @@ static std::string getRecordName(const DBusInterface& probe,
 
     // hashes are hard to distinguish, use the non-hashed version if we want
     // debug
-    if constexpr (debug)
-    {
-        return probeName + device.dump();
-    }
+    // return probeName + device.dump();
 
     return std::to_string(std::hash<std::string>{}(probeName + device.dump()));
 }
@@ -655,10 +641,6 @@ void PerformScan::run()
     // about a dbus interface
     findDbusObjects(std::move(dbusProbePointers),
                     std::move(dbusProbeInterfaces), shared_from_this());
-    if constexpr (debug)
-    {
-        std::cerr << __LINE__ << "\n";
-    }
 }
 
 PerformScan::~PerformScan()
@@ -671,19 +653,9 @@ PerformScan::~PerformScan()
         nextScan->passedProbes = std::move(passedProbes);
         nextScan->dbusProbeObjects = std::move(dbusProbeObjects);
         nextScan->run();
-
-        if constexpr (debug)
-        {
-            std::cerr << __LINE__ << "\n";
-        }
     }
     else
     {
         _callback();
-
-        if constexpr (debug)
-        {
-            std::cerr << __LINE__ << "\n";
-        }
     }
 }
