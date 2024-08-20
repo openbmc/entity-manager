@@ -22,6 +22,30 @@
       },
       "revId": "8ea7fb5708e1f162440afd53076ddf6bca1eed94",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e4a0a471_ddf490e8",
+        "filename": "configurations/nvidia_hmc.json",
+        "patchSetId": 2
+      },
+      "lineNbr": 18,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2024-08-20T16:03:31Z",
+      "side": 1,
+      "message": "We shouldn\u0027t be using the generic PRODUCT_NAME like this, as there are many products that return HMC as their product name.  We should be using the more specific fields (board part number).",
+      "parentUuid": "2cc5f116_29a18e92",
+      "range": {
+        "startLine": 17,
+        "startChar": 0,
+        "endLine": 18,
+        "endChar": 110
+      },
+      "revId": "8ea7fb5708e1f162440afd53076ddf6bca1eed94",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }
