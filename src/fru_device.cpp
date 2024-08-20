@@ -27,6 +27,7 @@
 #include <boost/asio/steady_timer.hpp>
 #include <boost/container/flat_map.hpp>
 #include <nlohmann/json.hpp>
+#include <phosphor-logging/lg2.hpp>
 #include <sdbusplus/asio/connection.hpp>
 #include <sdbusplus/asio/object_server.hpp>
 
@@ -60,7 +61,6 @@ extern "C"
 }
 
 namespace fs = std::filesystem;
-static constexpr bool debug = false;
 constexpr size_t maxFruSize = 512;
 constexpr size_t maxEepromPageIndex = 255;
 constexpr size_t busTimeoutSeconds = 10;
@@ -477,11 +477,8 @@ int getBusFRUs(int file, int first, int last, int bus,
                 continue;
             }
 
-            if (debug)
-            {
-                std::cout << "something at bus " << bus << " addr " << ii
-                          << "\n";
-            }
+            lg2::debug("something at bus {BUS}, addr {ADDR}", "BUS", bus,
+                       "ADDR", ii);
 
             makeProbeInterface(bus, ii, objServer);
 
@@ -708,18 +705,12 @@ static void findI2CDevices(const std::vector<fs::path>& i2cBuses,
         //  i2cdetect by default uses the range 0x03 to 0x77, as
         //  this is  what we have tested with, use this range. Could be
         //  changed in future.
-        if (debug)
-        {
-            std::cerr << "Scanning bus " << bus << "\n";
-        }
+        lg2::debug("Scanning bus {BUS}", "BUS", bus);
 
         // fd is closed in this function in case the bus locks up
         getBusFRUs(file, 0x03, 0x77, bus, device, powerIsOn, objServer);
 
-        if (debug)
-        {
-            std::cerr << "Done scanning bus " << bus << "\n";
-        }
+        lg2::debug("Done scanning bus {BUS}", "BUS", bus);
     }
 }
 
@@ -825,10 +816,8 @@ void addFruObjectToDbus(
         {
             std::cerr << "illegal key: " << key << "\n";
         }
-        if (debug)
-        {
-            std::cout << property.first << ": " << property.second << "\n";
-        }
+        lg2::debug("parsed FRU property: {FIRST}: {SECOND}", "FIRST",
+                   property.first, "SECOND", property.second);
     }
 
     // baseboard will be 0, 0
