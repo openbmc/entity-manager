@@ -204,6 +204,7 @@ configs = [
     'yosemite4_sentineldome_t2_retimer.json',
     'yosemite4_sentineldome_chassis.json',
     'yosemite4_chassis.json',
+    'yosemite4_cpu.json',
     'yosemite4_floatingfalls.json',
     'yosemite4_wailuafalls.json',
     'yosemite4.json',
