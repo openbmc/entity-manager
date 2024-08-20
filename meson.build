@@ -235,6 +235,7 @@ configs = [
     'yosemite4_sentineldome_t2_retimer.json',
     'yosemite4_spiderboard_adc_max_pwr_ti.json',
     'yosemite4_spiderboard_adc_ti_pwr_ti.json',
+    'yosemite4_cpu.json',
     'yosemite4_wailuafalls.json',
     'yosemite4n.json',
 ]
