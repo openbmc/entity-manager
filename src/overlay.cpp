@@ -27,6 +27,7 @@
 #include <boost/container/flat_set.hpp>
 #include <boost/process/child.hpp>
 #include <nlohmann/json.hpp>
+#include <phosphor-logging/lg2.hpp>
 
 #include <filesystem>
 #include <iomanip>
@@ -38,8 +39,6 @@ constexpr const char* outputDir = "/tmp/overlays";
 constexpr const char* templateChar = "$";
 constexpr const char* i2CDevsDir = "/sys/bus/i2c/devices";
 constexpr const char* muxSymlinkDir = "/dev/i2c-mux";
-
-constexpr const bool debug = false;
 
 const std::regex illegalNameRegex("[^A-Za-z0-9_]");
 
@@ -315,11 +314,8 @@ bool loadOverlays(const nlohmann::json& systemConfiguration)
             // this error message is not printed in all situations.
             // If wondering why your device not appearing, add your type to
             // the exportTemplates array in the devices.hpp file.
-            if constexpr (debug)
-            {
-                std::cerr << "Device type " << type
-                          << " not found in export map allowlist\n";
-            }
+            lg2::debug("Device type {TYPE} not found in export map allowlist",
+                       "TYPE", type);
         }
     }
 
