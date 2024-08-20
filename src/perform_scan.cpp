@@ -14,6 +14,7 @@
 // limitations under the License.
 */
 /// \file perform_scan.cpp
+#include "debug.hpp"
 #include "entity_manager.hpp"
 
 #include <boost/algorithm/string/predicate.hpp>
@@ -37,8 +38,6 @@ using GetSubTreeType = std::vector<
               std::vector<std::pair<std::string, std::vector<std::string>>>>>;
 
 constexpr const int32_t maxMapperDepth = 0;
-
-constexpr const bool debug = false;
 
 struct DBusInterfaceInstance
 {

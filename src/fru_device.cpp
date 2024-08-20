@@ -15,6 +15,7 @@
 */
 /// \file fru_device.cpp
 
+#include "debug.hpp"
 #include "fru_utils.hpp"
 #include "utils.hpp"
 
@@ -60,7 +61,6 @@ extern "C"
 }
 
 namespace fs = std::filesystem;
-static constexpr bool debug = false;
 constexpr size_t maxFruSize = 512;
 constexpr size_t maxEepromPageIndex = 255;
 constexpr size_t busTimeoutSeconds = 10;

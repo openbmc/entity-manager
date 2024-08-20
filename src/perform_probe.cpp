@@ -14,14 +14,13 @@
 // limitations under the License.
 */
 /// \file perform_probe.cpp
+#include "debug.hpp"
 #include "entity_manager.hpp"
 
 #include <boost/algorithm/string/replace.hpp>
 
 #include <regex>
 #include <utility>
-
-constexpr const bool debug = false;
 
 // probes dbus interface dictionary for a key with a value that matches a regex
 // When an interface passes a probe, also save its D-Bus path with it.

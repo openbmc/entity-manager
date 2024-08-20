@@ -10,3 +10,6 @@ option(
 option(
     'validate-json', type: 'boolean', value: true, description: 'Run JSON schema validation during the build.',
 )
+option(
+    'debug-log', type: 'boolean', value: false, description: 'Print debug messages',
+)

@@ -238,6 +238,11 @@ if get_option('validate-json')
     )
 endif
 
+
+if get_option('debug-log')
+    add_project_arguments('-DDEBUG_LOG', language: 'cpp')
+endif
+
 schemas = [
     'global.json',
     'legacy.json',

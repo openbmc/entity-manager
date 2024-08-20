@@ -17,6 +17,8 @@
 
 #include "fru_utils.hpp"
 
+#include "debug.hpp"
+
 #include <array>
 #include <cstddef>
 #include <cstdint>
@@ -35,7 +37,6 @@ extern "C"
 #include <linux/i2c.h>
 }
 
-static constexpr bool debug = false;
 constexpr size_t fruVersion = 1; // Current FRU spec version number is 1
 
 std::tm intelEpoch()

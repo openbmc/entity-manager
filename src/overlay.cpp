@@ -17,6 +17,7 @@
 
 #include "overlay.hpp"
 
+#include "debug.hpp"
 #include "devices.hpp"
 #include "utils.hpp"
 
@@ -38,8 +39,6 @@ constexpr const char* outputDir = "/tmp/overlays";
 constexpr const char* templateChar = "$";
 constexpr const char* i2CDevsDir = "/sys/bus/i2c/devices";
 constexpr const char* muxSymlinkDir = "/dev/i2c-mux";
-
-constexpr const bool debug = false;
 
 const std::regex illegalNameRegex("[^A-Za-z0-9_]");
 
