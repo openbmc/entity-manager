@@ -72,6 +72,30 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "3ac2524c_1926e79a",
+        "filename": "configurations/catalina_hdd.json",
+        "patchSetId": 5
+      },
+      "lineNbr": 88,
+      "author": {
+        "id": 1001264
+      },
+      "writtenOn": "2024-08-20T05:20:32Z",
+      "side": 1,
+      "message": "Move NVMe configs into a seperate file `catalina_hdd_nvme.json`.",
+      "parentUuid": "70933828_1c309780",
+      "range": {
+        "startLine": 71,
+        "startChar": 0,
+        "endLine": 88,
+        "endChar": 9
+      },
+      "revId": "a12f692e06e7ea38f430ede0a2784731cb854fdf",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "3bff9766_a65237e9",
@@ -202,6 +226,30 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "ed0543b0_3e87af74",
+        "filename": "configurations/catalina_hmc.json",
+        "patchSetId": 5
+      },
+      "lineNbr": 62,
+      "author": {
+        "id": 1001264
+      },
+      "writtenOn": "2024-08-20T05:20:32Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "1d7cd0cc_fe8e38c6",
+      "range": {
+        "startLine": 62,
+        "startChar": 12,
+        "endLine": 62,
+        "endChar": 31
+      },
+      "revId": "a12f692e06e7ea38f430ede0a2784731cb854fdf",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "1540394d_fa74fccf",
@@ -263,6 +311,30 @@
       "side": 1,
       "message": "Yeah, we really should\u0027ve picked a better name for this.  Probably an opportunity to change in the future.  Something like \"RedfishHttpService\" or something like that.",
       "parentUuid": "190b98ef_2a38ad0a",
+      "range": {
+        "startLine": 434,
+        "startChar": 11,
+        "endLine": 434,
+        "endChar": 40
+      },
+      "revId": "a12f692e06e7ea38f430ede0a2784731cb854fdf",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "ba93a437_5894192c",
+        "filename": "configurations/catalina_hmc.json",
+        "patchSetId": 5
+      },
+      "lineNbr": 434,
+      "author": {
+        "id": 1001264
+      },
+      "writtenOn": "2024-08-20T05:20:32Z",
+      "side": 1,
+      "message": "Since catalina_hmc.json has moved to nvidia_hmc.json, I will mark this comment as resolved for now, thanks.\nhttps://gerrit.openbmc.org/c/openbmc/entity-manager/+/73837/1",
+      "parentUuid": "8018b2c1_02ccbf6d",
       "range": {
         "startLine": 434,
         "startChar": 11,

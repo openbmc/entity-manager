@@ -18,6 +18,24 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "3a099dec_448157e1",
+        "filename": "configurations/catalina_hdd.json",
+        "patchSetId": 8
+      },
+      "lineNbr": 91,
+      "author": {
+        "id": 1001264
+      },
+      "writtenOn": "2024-08-20T05:20:32Z",
+      "side": 1,
+      "message": "comment added in catalina_hdd.json.",
+      "parentUuid": "48ed30f7_f8ed9345",
+      "revId": "7f6d964093db24f479a23be806aed4a2ea26c1ec",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "2a34ef83_87572f3b",
@@ -31,6 +49,30 @@
       "writtenOn": "2024-08-16T18:11:26Z",
       "side": 1,
       "message": "Isn\u0027t this an off-the-shelf device from NVidia?  Do we really want a Catalina-specific JSON file in entity manager for this, or should NVidia be providing a generic JSON file for their device?",
+      "range": {
+        "startLine": 17,
+        "startChar": 0,
+        "endLine": 22,
+        "endChar": 6
+      },
+      "revId": "7f6d964093db24f479a23be806aed4a2ea26c1ec",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "3dce59be_f30733f8",
+        "filename": "configurations/catalina_hmc.json",
+        "patchSetId": 8
+      },
+      "lineNbr": 22,
+      "author": {
+        "id": 1001264
+      },
+      "writtenOn": "2024-08-20T05:20:32Z",
+      "side": 1,
+      "message": "Remove catalina_hmc.json.\n\nAdd a generic JSON file for HMC, please kindly have a review at below link.\nhttps://gerrit.openbmc.org/c/openbmc/entity-manager/+/73837",
+      "parentUuid": "2a34ef83_87572f3b",
       "range": {
         "startLine": 17,
         "startChar": 0,
@@ -182,6 +224,78 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "0029fcb8_1697fcfc",
+        "filename": "configurations/catalina_mb.json",
+        "patchSetId": 8
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 1001264
+      },
+      "writtenOn": "2024-08-20T05:20:32Z",
+      "side": 1,
+      "message": "Updated in new commit.\nhttps://gerrit.openbmc.org/c/openbmc/entity-manager/+/73838/1",
+      "parentUuid": "66bf588f_9b1576d5",
+      "range": {
+        "startLine": 7,
+        "startChar": 41,
+        "endLine": 7,
+        "endChar": 48
+      },
+      "revId": "7f6d964093db24f479a23be806aed4a2ea26c1ec",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "900390d3_b93c13ce",
+        "filename": "configurations/catalina_mb.json",
+        "patchSetId": 8
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 1001264
+      },
+      "writtenOn": "2024-08-20T05:20:32Z",
+      "side": 1,
+      "message": "catalina_mb.json removed from here, please kindly have a review at below link.\nhttps://gerrit.openbmc.org/c/openbmc/entity-manager/+/73838/1",
+      "parentUuid": "03472738_0c60952a",
+      "range": {
+        "startLine": 7,
+        "startChar": 37,
+        "endLine": 7,
+        "endChar": 40
+      },
+      "revId": "7f6d964093db24f479a23be806aed4a2ea26c1ec",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "0aede2ab_f032ccca",
+        "filename": "configurations/catalina_mb.json",
+        "patchSetId": 8
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 1001264
+      },
+      "writtenOn": "2024-08-20T05:20:32Z",
+      "side": 1,
+      "message": "catalina_mb.json removed from here, please kindly have a review at below link.\nhttps://gerrit.openbmc.org/c/openbmc/entity-manager/+/73838/1",
+      "parentUuid": "70f1864d_bc28871d",
+      "range": {
+        "startLine": 7,
+        "startChar": 41,
+        "endLine": 7,
+        "endChar": 48
+      },
+      "revId": "7f6d964093db24f479a23be806aed4a2ea26c1ec",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "679e7461_b2bd3df6",
@@ -195,6 +309,30 @@
       "writtenOn": "2024-08-16T18:11:26Z",
       "side": 1,
       "message": "This is another case where we probably shouldn\u0027t have a Catalina-specific JSON?",
+      "range": {
+        "startLine": 13,
+        "startChar": 0,
+        "endLine": 16,
+        "endChar": 10
+      },
+      "revId": "7f6d964093db24f479a23be806aed4a2ea26c1ec",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "00bacc83_680542b5",
+        "filename": "configurations/catalina_mb.json",
+        "patchSetId": 8
+      },
+      "lineNbr": 16,
+      "author": {
+        "id": 1001264
+      },
+      "writtenOn": "2024-08-20T05:20:32Z",
+      "side": 1,
+      "message": "catalina_mb.json removed from here, please kindly have a review at below link.\nhttps://gerrit.openbmc.org/c/openbmc/entity-manager/+/73838/1",
+      "parentUuid": "679e7461_b2bd3df6",
       "range": {
         "startLine": 13,
         "startChar": 0,
@@ -228,6 +366,30 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "32ad8248_6bae68e8",
+        "filename": "configurations/catalina_osfp.json",
+        "patchSetId": 8
+      },
+      "lineNbr": 11,
+      "author": {
+        "id": 1001264
+      },
+      "writtenOn": "2024-08-20T05:20:32Z",
+      "side": 1,
+      "message": "Comment added.",
+      "parentUuid": "baaf3c34_d0bf2baf",
+      "range": {
+        "startLine": 10,
+        "startChar": 0,
+        "endLine": 11,
+        "endChar": 87
+      },
+      "revId": "7f6d964093db24f479a23be806aed4a2ea26c1ec",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "798adc87_dda6b363",
@@ -241,6 +403,30 @@
       "writtenOn": "2024-08-16T18:11:26Z",
       "side": 1,
       "message": "Is this the BMC?  (DC-SCM?)  Are we missing exposes that identifies this as the BMC board?",
+      "range": {
+        "startLine": 207,
+        "startChar": 0,
+        "endLine": 208,
+        "endChar": 86
+      },
+      "revId": "7f6d964093db24f479a23be806aed4a2ea26c1ec",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0bcd92b5_ff90c138",
+        "filename": "configurations/catalina_scm.json",
+        "patchSetId": 8
+      },
+      "lineNbr": 208,
+      "author": {
+        "id": 1001264
+      },
+      "writtenOn": "2024-08-20T05:20:32Z",
+      "side": 1,
+      "message": "Do you mean line 190 - 193?\n```\n        {\n            \"Name\": \"BMC\",\n            \"Type\": \"BMC\"\n        },\n```",
+      "parentUuid": "798adc87_dda6b363",
       "range": {
         "startLine": 207,
         "startChar": 0,
