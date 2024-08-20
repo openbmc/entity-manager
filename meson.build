@@ -35,13 +35,9 @@ if get_option('fru-device')
 endif
 
 nlohmann_json_dep = dependency('nlohmann_json', include_type: 'system')
+sdbusplus = dependency('sdbusplus', include_type: 'system')
+phosphor_logging_dep = dependency('phosphor-logging')
 
-sdbusplus = dependency('sdbusplus', required: false)
-if not sdbusplus.found()
-    sdbusplus_proj = subproject('sdbusplus', required: true)
-    sdbusplus = sdbusplus_proj.get_variable('sdbusplus_dep')
-    sdbusplus = sdbusplus.as_system('system')
-endif
 systemd = dependency('systemd')
 systemd_system_unit_dir = systemd.get_variable(
     'systemdsystemunitdir',
@@ -293,6 +289,7 @@ if not build_tests.disabled()
                 nlohmann_json_dep,
                 sdbusplus,
                 valijson,
+                phosphor_logging_dep,
             ],
             include_directories: 'src',
         )
@@ -310,6 +307,7 @@ if not build_tests.disabled()
                 boost,
                 gtest,
                 sdbusplus,
+                phosphor_logging_dep,
             ],
             include_directories: 'src',
         )
@@ -326,6 +324,7 @@ if not build_tests.disabled()
                 gtest,
                 gmock,
                 nlohmann_json_dep,
+                phosphor_logging_dep,
             ],
             include_directories: 'src',
         )

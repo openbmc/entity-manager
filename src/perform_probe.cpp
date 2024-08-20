@@ -17,11 +17,10 @@
 #include "entity_manager.hpp"
 
 #include <boost/algorithm/string/replace.hpp>
+#include <phosphor-logging/lg2.hpp>
 
 #include <regex>
 #include <utility>
-
-constexpr const bool debug = false;
 
 // probes dbus interface dictionary for a key with a value that matches a regex
 // When an interface passes a probe, also save its D-Bus path with it.
@@ -63,11 +62,8 @@ bool probeDbus(const std::string& interfaceName,
         }
         if (deviceMatches)
         {
-            if constexpr (debug)
-            {
-                std::cerr << "probeDBus: Found probe match on " << path << " "
-                          << interfaceName << "\n";
-            }
+            lg2::debug("Found probe match on {PATH} {IFACE}", "PATH", path,
+                       "IFACE", interfaceName);
             devices.emplace_back(interface, path);
             foundMatch = true;
         }
