@@ -59,6 +59,16 @@
                             "required": ["Names"],
                             "type": "object"
                         },
+                        "ManagedHost": {
+                            "additionalProperties": false,
+                            "properties": {
+                                "HostIndex": {
+                                    "type": ["string", "number"]
+                                }
+                            },
+                            "required": ["HostIndex"],
+                            "type": "object"
+                        },
                         "Replaceable": {
                             "additionalProperties": false,
                             "properties": {
