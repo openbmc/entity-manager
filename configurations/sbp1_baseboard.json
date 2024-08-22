@@ -812,6 +812,14 @@
                     "Value": 125.0
                 },
                 {
+                    "Direction": "greater than",
+                    "Hysteresis": 1.1,
+                    "Label": "temp1",
+                    "Name": "upper non critical",
+                    "Severity": 0,
+                    "Value": 110.0
+                },
+                {
                     "Direction": "less than",
                     "Hysteresis": 0.0076,
                     "Label": "vout1",
@@ -915,6 +923,14 @@
                     "Name": "upper critical",
                     "Severity": 1,
                     "Value": 125.0
+                },
+                {
+                    "Direction": "greater than",
+                    "Hysteresis": 1.1,
+                    "Label": "temp1",
+                    "Name": "upper non critical",
+                    "Severity": 0,
+                    "Value": 110.0
                 },
                 {
                     "Direction": "less than",
@@ -1603,17 +1619,17 @@
             "Thresholds": [
                 {
                     "Direction": "greater than",
-                    "Hysteresis": 1.03,
+                    "Hysteresis": 1.25,
                     "Name": "upper critical",
                     "Severity": 1,
-                    "Value": 103
+                    "Value": 125
                 },
                 {
                     "Direction": "greater than",
-                    "Hysteresis": 0.98,
+                    "Hysteresis": 1.1,
                     "Name": "upper non critical",
                     "Severity": 0,
-                    "Value": 98
+                    "Value": 110
                 }
             ],
             "Type": "IpmbSensor"
@@ -3561,11 +3577,19 @@
                 },
                 {
                     "Direction": "greater than",
-                    "Hysteresis": 1.5,
+                    "Hysteresis": 1.25,
                     "Label": "temp1",
                     "Name": "upper critical",
                     "Severity": 1,
-                    "Value": 150.0
+                    "Value": 125.0
+                },
+                {
+                    "Direction": "greater than",
+                    "Hysteresis": 1.1,
+                    "Label": "temp1",
+                    "Name": "upper non critical",
+                    "Severity": 0,
+                    "Value": 110.0
                 },
                 {
                     "Direction": "greater than",
@@ -3724,11 +3748,19 @@
                 },
                 {
                     "Direction": "greater than",
-                    "Hysteresis": 1.5,
+                    "Hysteresis": 1.25,
                     "Label": "temp1",
                     "Name": "upper critical",
                     "Severity": 1,
-                    "Value": 150.0
+                    "Value": 125.0
+                },
+                {
+                    "Direction": "greater than",
+                    "Hysteresis": 1.1,
+                    "Label": "temp1",
+                    "Name": "upper non critical",
+                    "Severity": 0,
+                    "Value": 110.0
                 },
                 {
                     "Direction": "greater than",
@@ -3887,11 +3919,19 @@
                 },
                 {
                     "Direction": "greater than",
-                    "Hysteresis": 1.5,
+                    "Hysteresis": 1.25,
                     "Label": "temp1",
                     "Name": "upper critical",
                     "Severity": 1,
-                    "Value": 150.0
+                    "Value": 125.0
+                },
+                {
+                    "Direction": "greater than",
+                    "Hysteresis": 1.1,
+                    "Label": "temp1",
+                    "Name": "upper non critical",
+                    "Severity": 0,
+                    "Value": 110.0
                 },
                 {
                     "Direction": "greater than",
@@ -4050,11 +4090,19 @@
                 },
                 {
                     "Direction": "greater than",
-                    "Hysteresis": 1.5,
+                    "Hysteresis": 1.25,
                     "Label": "temp1",
                     "Name": "upper critical",
                     "Severity": 1,
-                    "Value": 150.0
+                    "Value": 125.0
+                },
+                {
+                    "Direction": "greater than",
+                    "Hysteresis": 1.1,
+                    "Label": "temp1",
+                    "Name": "upper non critical",
+                    "Severity": 0,
+                    "Value": 110.0
                 },
                 {
                     "Direction": "greater than",
@@ -4213,11 +4261,19 @@
                 },
                 {
                     "Direction": "greater than",
-                    "Hysteresis": 1.5,
+                    "Hysteresis": 1.25,
                     "Label": "temp1",
                     "Name": "upper critical",
                     "Severity": 1,
-                    "Value": 150.0
+                    "Value": 125.0
+                },
+                {
+                    "Direction": "greater than",
+                    "Hysteresis": 1.1,
+                    "Label": "temp1",
+                    "Name": "upper non critical",
+                    "Severity": 0,
+                    "Value": 110.0
                 },
                 {
                     "Direction": "greater than",
@@ -4376,11 +4432,19 @@
                 },
                 {
                     "Direction": "greater than",
-                    "Hysteresis": 1.5,
+                    "Hysteresis": 1.25,
                     "Label": "temp1",
                     "Name": "upper critical",
                     "Severity": 1,
-                    "Value": 150.0
+                    "Value": 125.0
+                },
+                {
+                    "Direction": "greater than",
+                    "Hysteresis": 1.1,
+                    "Label": "temp1",
+                    "Name": "upper non critical",
+                    "Severity": 0,
+                    "Value": 110.0
                 },
                 {
                     "Direction": "greater than",
@@ -4539,11 +4603,19 @@
                 },
                 {
                     "Direction": "greater than",
-                    "Hysteresis": 1.5,
+                    "Hysteresis": 1.25,
                     "Label": "temp1",
                     "Name": "upper critical",
                     "Severity": 1,
-                    "Value": 150.0
+                    "Value": 125.0
+                },
+                {
+                    "Direction": "greater than",
+                    "Hysteresis": 1.1,
+                    "Label": "temp1",
+                    "Name": "upper non critical",
+                    "Severity": 0,
+                    "Value": 110.0
                 },
                 {
                     "Direction": "greater than",
@@ -4702,11 +4774,19 @@
                 },
                 {
                     "Direction": "greater than",
-                    "Hysteresis": 1.5,
+                    "Hysteresis": 1.25,
                     "Label": "temp1",
                     "Name": "upper critical",
                     "Severity": 1,
-                    "Value": 150.0
+                    "Value": 125.0
+                },
+                {
+                    "Direction": "greater than",
+                    "Hysteresis": 1.1,
+                    "Label": "temp1",
+                    "Name": "upper non critical",
+                    "Severity": 0,
+                    "Value": 110.0
                 },
                 {
                     "Direction": "greater than",
@@ -4901,11 +4981,11 @@
                 },
                 {
                     "Direction": "greater than",
-                    "Hysteresis": 1.4000000000000001,
+                    "Hysteresis": 1.25,
                     "Label": "temp1",
                     "Name": "upper critical",
                     "Severity": 1,
-                    "Value": 140.0
+                    "Value": 125.0
                 },
                 {
                     "Direction": "less than",
@@ -5017,11 +5097,11 @@
                 },
                 {
                     "Direction": "greater than",
-                    "Hysteresis": 1.4000000000000001,
+                    "Hysteresis": 1.25,
                     "Label": "temp1",
                     "Name": "upper critical",
                     "Severity": 1,
-                    "Value": 140.0
+                    "Value": 125.0
                 },
                 {
                     "Direction": "less than",
@@ -5133,11 +5213,11 @@
                 },
                 {
                     "Direction": "greater than",
-                    "Hysteresis": 1.4000000000000001,
+                    "Hysteresis": 1.25,
                     "Label": "temp1",
                     "Name": "upper critical",
                     "Severity": 1,
-                    "Value": 140.0
+                    "Value": 125.0
                 },
                 {
                     "Direction": "less than",
@@ -5249,11 +5329,11 @@
                 },
                 {
                     "Direction": "greater than",
-                    "Hysteresis": 1.4000000000000001,
+                    "Hysteresis": 1.25,
                     "Label": "temp1",
                     "Name": "upper critical",
                     "Severity": 1,
-                    "Value": 140.0
+                    "Value": 125.0
                 },
                 {
                     "Direction": "less than",
@@ -5349,19 +5429,19 @@
                 },
                 {
                     "Direction": "greater than",
-                    "Hysteresis": 1.2,
+                    "Hysteresis": 1.1,
                     "Label": "temp1",
                     "Name": "upper non critical",
                     "Severity": 0,
-                    "Value": 120.0
+                    "Value": 110.0
                 },
                 {
                     "Direction": "greater than",
-                    "Hysteresis": 1.4000000000000001,
+                    "Hysteresis": 1.25,
                     "Label": "temp1",
                     "Name": "upper critical",
                     "Severity": 1,
-                    "Value": 140.0
+                    "Value": 125.0
                 },
                 {
                     "Direction": "less than",
@@ -5467,19 +5547,19 @@
                 },
                 {
                     "Direction": "greater than",
-                    "Hysteresis": 1.2,
+                    "Hysteresis": 1.1,
                     "Label": "temp1",
                     "Name": "upper non critical",
                     "Severity": 0,
-                    "Value": 120.0
+                    "Value": 110.0
                 },
                 {
                     "Direction": "greater than",
-                    "Hysteresis": 1.4000000000000001,
+                    "Hysteresis": 1.25,
                     "Label": "temp1",
                     "Name": "upper critical",
                     "Severity": 1,
-                    "Value": 140.0
+                    "Value": 125.0
                 },
                 {
                     "Direction": "less than",
@@ -5585,19 +5665,19 @@
                 },
                 {
                     "Direction": "greater than",
-                    "Hysteresis": 1.2,
+                    "Hysteresis": 1.1,
                     "Label": "temp1",
                     "Name": "upper non critical",
                     "Severity": 0,
-                    "Value": 120.0
+                    "Value": 110.0
                 },
                 {
                     "Direction": "greater than",
-                    "Hysteresis": 1.4000000000000001,
+                    "Hysteresis": 1.25,
                     "Label": "temp1",
                     "Name": "upper critical",
                     "Severity": 1,
-                    "Value": 140.0
+                    "Value": 125.0
                 },
                 {
                     "Direction": "less than",
@@ -5703,19 +5783,19 @@
                 },
                 {
                     "Direction": "greater than",
-                    "Hysteresis": 1.2,
+                    "Hysteresis": 1.1,
                     "Label": "temp1",
                     "Name": "upper non critical",
                     "Severity": 0,
-                    "Value": 120.0
+                    "Value": 110.0
                 },
                 {
                     "Direction": "greater than",
-                    "Hysteresis": 1.4000000000000001,
+                    "Hysteresis": 1.25,
                     "Label": "temp1",
                     "Name": "upper critical",
                     "Severity": 1,
-                    "Value": 140.0
+                    "Value": 125.0
                 },
                 {
                     "Direction": "less than",
