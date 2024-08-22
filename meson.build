@@ -158,6 +158,7 @@ configs = [
     'nuvoton_npcm8xx_evb.json',
     'nvidia_gb200.json',
     'nvidia_hmc.json',
+    'nvidia_io_board.json',
     'nvme_intel_p_series.json',
     'nvme_p4500_p5500.json',
     'pcie_ssd_retimer.json',
