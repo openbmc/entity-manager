@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "fbdc799a_8b0c3e96",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 8
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 1000008
+      },
+      "writtenOn": "2024-08-22T14:18:32Z",
+      "side": 1,
+      "message": "You\u0027re doing a lot more than that, so maybe something more along the lines of:  use lg2 for debug statements.\n\nAt some point it\u0027d be good to get rid of all the std::cerr calls and just use lg2 for those as well.",
+      "range": {
+        "startLine": 7,
+        "startChar": 0,
+        "endLine": 7,
+        "endChar": 38
+      },
+      "revId": "a3e12bfa8b622622e8343a85def033363489045d",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ae830788_5c90830b",
+        "filename": "src/fru_utils.cpp",
+        "patchSetId": 8
+      },
+      "lineNbr": 652,
+      "author": {
+        "id": 1000008
+      },
+      "writtenOn": "2024-08-22T14:18:32Z",
+      "side": 1,
+      "message": "All of these that just print bytes may be more readable by using lg2::hex to print them in hex.  Also I\u0027m not sure even how it is you\u0027d need a cast, I don\u0027t think lg2 would try to convert to a char.",
+      "range": {
+        "startLine": 652,
+        "startChar": 23,
+        "endLine": 652,
+        "endChar": 28
+      },
+      "revId": "a3e12bfa8b622622e8343a85def033363489045d",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    }
+  ]
+}
