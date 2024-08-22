@@ -1,0 +1,98 @@
+{
+    "Exposes": [
+        {
+            "Address": "$address",
+            "Bus": "$bus",
+            "Name": "NVIDIA GB200 IO Board $bus FRU",
+            "Type": "EEPROM"
+        },
+        {
+            "Address": "0x1f",
+            "Bus": 36,
+            "Labels": [
+                "temp2"
+            ],
+            "Name": "IOB$bus_NIC0_LOCAL_TEMP_C",
+            "Name1": "IOB$bus_NIC0_TEMP_C",
+            "PowerState": "On",
+            "Thresholds": [
+                {
+                    "Direction": "greater than",
+                    "Index": 2,
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 108.0
+                },
+                {
+                    "Direction": "greater than",
+                    "Index": 2,
+                    "Name": "upper non critical",
+                    "Severity": 0,
+                    "Value": 105.0
+                },
+                {
+                    "Direction": "less than",
+                    "Index": 2,
+                    "Name": "lower non critical",
+                    "Severity": 0,
+                    "Value": 5
+                }
+            ],
+            "Type": "TMP421"
+        },
+        {
+            "Address": "0x1f",
+            "Bus": 38,
+            "Labels": [
+                "temp2"
+            ],
+            "Name": "IOB$bus_NIC1_LOCAL_TEMP_C",
+            "Name1": "IOB$bus_NIC1_TEMP_C",
+            "PowerState": "On",
+            "Thresholds": [
+                {
+                    "Direction": "greater than",
+                    "Index": 2,
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 108.0
+                },
+                {
+                    "Direction": "greater than",
+                    "Index": 2,
+                    "Name": "upper non critical",
+                    "Severity": 0,
+                    "Value": 105.0
+                },
+                {
+                    "Direction": "less than",
+                    "Index": 2,
+                    "Name": "lower non critical",
+                    "Severity": 0,
+                    "Value": 5
+                }
+            ],
+            "Type": "TMP421"
+        }
+    ],
+    "Name": "NVIDIA GB200 IO Board $bus",
+    "Probe": [
+        "xyz.openbmc_project.FruDevice({'BOARD_PRODUCT_NAME': 'P4768', 'BOARD_MANUFACTURER': 'NVIDIA'})",
+        "OR",
+        "xyz.openbmc_project.FruDevice({'BOARD_PRODUCT_NAME': 'ConnectX-7 400GE 2P NIC', 'BOARD_MANUFACTURER': 'Nvidia'})"
+    ],
+    "Type": "Board",
+    "xyz.openbmc_project.Inventory.Decorator.Asset": {
+        "BuildDate": "$BOARD_MANUFACTURE_DATE",
+        "Manufacturer": "$BOARD_MANUFACTURER",
+        "Model": "$BOARD_PRODUCT_NAME",
+        "PartNumber": "$BOARD_PART_NUMBER",
+        "SerialNumber": "$BOARD_SERIAL_NUMBER"
+    },
+    "xyz.openbmc_project.Inventory.Decorator.AssetTag": {
+        "AssetTag": "$PRODUCT_ASSET_TAG"
+    },
+    "xyz.openbmc_project.Inventory.Decorator.Revision": {
+        "Version": "$PRODUCT_VERSION"
+    }
+}
