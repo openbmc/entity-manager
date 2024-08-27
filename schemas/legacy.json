@@ -218,6 +218,9 @@
                 "SensorType": {
                     "$ref": "#/definitions/Types/SensorType"
                 },
+                "SlotId": {
+                    "$ref": "#/definitions/Types/SlotId"
+                },
                 "TachMaxPercent": {
                     "$ref": "#/definitions/Types/TachMaxPercent"
                 },
@@ -1027,6 +1030,9 @@
                 "type": "number"
             },
             "SensorType": {
+                "type": "string"
+            },
+            "SlotId": {
                 "type": "string"
             },
             "TachMaxPercent": {
