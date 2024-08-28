@@ -147,6 +147,7 @@ configs = [
     'minerva_cmm_bsm.json',
     'minerva_cmm_scm.json',
     'minerva_fanboard.json',
+    'minerva_pdb_hsc_xdp.json',
     'minerva_pdb.json',
     'minerva_pttv.json',
     'minerva_sitv.json',
