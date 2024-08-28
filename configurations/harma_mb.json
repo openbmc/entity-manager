@@ -13,16 +13,16 @@
             "ScaleFactor": 0.333333333,
             "Thresholds": [
                 {
-                    "Direction": "greater than",
-                    "Name": "upper critical",
-                    "Severity": 1,
-                    "Value": 3.4
-                },
-                {
                     "Direction": "less than",
                     "Name": "lower critical",
                     "Severity": 1,
                     "Value": 2.0
+                },
+                {
+                    "Direction": "greater than",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 3.4
                 }
             ],
             "Type": "ADC"
@@ -255,18 +255,18 @@
             "PowerState": "On",
             "Thresholds": [
                 {
-                    "Direction": "greater than",
-                    "Label": "in1",
-                    "Name": "upper critical",
-                    "Severity": 1,
-                    "Value": 13.2
-                },
-                {
                     "Direction": "less than",
                     "Label": "in1",
                     "Name": "lower critical",
                     "Severity": 1,
                     "Value": 10.8
+                },
+                {
+                    "Direction": "greater than",
+                    "Label": "in1",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 13.2
                 },
                 {
                     "Direction": "greater than",
@@ -300,18 +300,18 @@
             "PowerState": "On",
             "Thresholds": [
                 {
-                    "Direction": "greater than",
-                    "Label": "in1",
-                    "Name": "upper critical",
-                    "Severity": 1,
-                    "Value": 13.2
-                },
-                {
                     "Direction": "less than",
                     "Label": "in1",
                     "Name": "lower critical",
                     "Severity": 1,
                     "Value": 10.8
+                },
+                {
+                    "Direction": "greater than",
+                    "Label": "in1",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 13.2
                 },
                 {
                     "Direction": "greater than",
@@ -418,6 +418,13 @@
                     "Value": 65.0
                 },
                 {
+                    "Direction": "less than",
+                    "Label": "temp1",
+                    "Name": "lower critical",
+                    "Severity": 1,
+                    "Value": -1.0
+                },
+                {
                     "Direction": "greater than",
                     "Label": "temp1",
                     "Name": "upper critical",
@@ -445,7 +452,6 @@
                 "temp2"
             ],
             "Name": "MB_VR_CPU_VCORE0_SOC",
-            "PowerState": "On",
             "Thresholds": [
                 {
                     "Direction": "greater than",
@@ -504,11 +510,25 @@
                     "Value": 105.0
                 },
                 {
+                    "Direction": "less than",
+                    "Label": "temp1",
+                    "Name": "lower critical",
+                    "Severity": 1,
+                    "Value": -1.0
+                },
+                {
                     "Direction": "greater than",
                     "Label": "temp1",
                     "Name": "upper critical",
                     "Severity": 1,
                     "Value": 105.0
+                },
+                {
+                    "Direction": "less than",
+                    "Label": "temp2",
+                    "Name": "lower critical",
+                    "Severity": 1,
+                    "Value": -1.0
                 },
                 {
                     "Direction": "greater than",
@@ -520,13 +540,21 @@
             ],
             "Type": "ISL69260",
             "iout1_Name": "MB_VR_CPU_VCORE0_CURR_A",
+            "iout1_PowerState": "On",
             "iout2_Name": "MB_VR_CPU_SOC_CURR_A",
+            "iout2_PowerState": "On",
             "pout1_Name": "MB_VR_CPU_VCORE0_PWR_W",
+            "pout1_PowerState": "On",
             "pout2_Name": "MB_VR_CPU_SOC_PWR_W",
+            "pout2_PowerState": "BiosPost",
             "temp1_Name": "MB_VR_CPU_VCORE0_TEMP_C",
+            "temp1_PowerState": "On",
             "temp2_Name": "MB_VR_CPU_SOC_TEMP_C",
+            "temp2_PowerState": "BiosPost",
             "vout1_Name": "MB_VR_CPU_VCORE0_VOLT_V",
-            "vout2_Name": "MB_VR_CPU_SOC_VOLT_V"
+            "vout1_PowerState": "On",
+            "vout2_Name": "MB_VR_CPU_SOC_VOLT_V",
+            "vout2_PowerState": "BiosPost"
         },
         {
             "Address": "0x62",
@@ -601,11 +629,25 @@
                     "Value": 120.0
                 },
                 {
+                    "Direction": "less than",
+                    "Label": "temp1",
+                    "Name": "lower critical",
+                    "Severity": 1,
+                    "Value": -1.0
+                },
+                {
                     "Direction": "greater than",
                     "Label": "temp1",
                     "Name": "upper critical",
                     "Severity": 1,
                     "Value": 105.0
+                },
+                {
+                    "Direction": "less than",
+                    "Label": "temp2",
+                    "Name": "lower critical",
+                    "Severity": 1,
+                    "Value": -1.0
                 },
                 {
                     "Direction": "greater than",
@@ -674,17 +716,17 @@
                 },
                 {
                     "Direction": "greater than",
-                    "Label": "temp1",
-                    "Name": "upper critical",
-                    "Severity": 1,
-                    "Value": 80.0
-                },
-                {
-                    "Direction": "greater than",
                     "Label": "pin",
                     "Name": "upper critical",
                     "Severity": 1,
                     "Value": 950.0
+                },
+                {
+                    "Direction": "greater than",
+                    "Label": "temp1",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 80.0
                 }
             ],
             "Type": "MP5990",
@@ -698,18 +740,19 @@
             "Address": "0x6a",
             "Bus": 23,
             "Name": "MB_E1S0_TEMP_C",
+            "PowerState": "On",
             "Thresholds": [
-                {
-                    "Direction": "greater than",
-                    "Name": "upper critical",
-                    "Severity": 1,
-                    "Value": 70
-                },
                 {
                     "Direction": "less than",
                     "Name": "lower critical",
                     "Severity": 1,
                     "Value": 5.0
+                },
+                {
+                    "Direction": "greater than",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 70.0
                 }
             ],
             "Type": "NVME1000"
@@ -718,18 +761,19 @@
             "Address": "0x6a",
             "Bus": 22,
             "Name": "MB_E1S1_TEMP_C",
+            "PowerState": "On",
             "Thresholds": [
-                {
-                    "Direction": "greater than",
-                    "Name": "upper critical",
-                    "Severity": 1,
-                    "Value": 70
-                },
                 {
                     "Direction": "less than",
                     "Name": "lower critical",
                     "Severity": 1,
                     "Value": 5.0
+                },
+                {
+                    "Direction": "greater than",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 70.0
                 }
             ],
             "Type": "NVME1000"
@@ -740,6 +784,12 @@
             "Name": "MB_RETIMER0_TEMP_C",
             "PowerState": "On",
             "Thresholds": [
+                {
+                    "Direction": "less than",
+                    "Name": "lower critical",
+                    "Severity": 1,
+                    "Value": -1.0
+                },
                 {
                     "Direction": "greater than",
                     "Name": "upper critical",
@@ -755,6 +805,12 @@
             "Name": "MB_RETIMER1_TEMP_C",
             "PowerState": "On",
             "Thresholds": [
+                {
+                    "Direction": "less than",
+                    "Name": "lower critical",
+                    "Severity": 1,
+                    "Value": -1.0
+                },
                 {
                     "Direction": "greater than",
                     "Name": "upper critical",
@@ -853,11 +909,25 @@
                     "Value": 14.0
                 },
                 {
+                    "Direction": "less than",
+                    "Label": "temp1",
+                    "Name": "lower critical",
+                    "Severity": 1,
+                    "Value": -1.0
+                },
+                {
                     "Direction": "greater than",
                     "Label": "temp1",
                     "Name": "upper critical",
                     "Severity": 1,
                     "Value": 80.0
+                },
+                {
+                    "Direction": "less than",
+                    "Label": "temp2",
+                    "Name": "lower critical",
+                    "Severity": 1,
+                    "Value": -1.0
                 },
                 {
                     "Direction": "greater than",
@@ -867,11 +937,25 @@
                     "Value": 80.0
                 },
                 {
+                    "Direction": "less than",
+                    "Label": "temp3",
+                    "Name": "lower critical",
+                    "Severity": 1,
+                    "Value": -1.0
+                },
+                {
                     "Direction": "greater than",
                     "Label": "temp3",
                     "Name": "upper critical",
                     "Severity": 1,
                     "Value": 80.0
+                },
+                {
+                    "Direction": "less than",
+                    "Label": "temp4",
+                    "Name": "lower critical",
+                    "Severity": 1,
+                    "Value": -1.0
                 },
                 {
                     "Direction": "greater than",
@@ -881,11 +965,25 @@
                     "Value": 80.0
                 },
                 {
+                    "Direction": "less than",
+                    "Label": "temp5",
+                    "Name": "lower critical",
+                    "Severity": 1,
+                    "Value": -1.0
+                },
+                {
                     "Direction": "greater than",
                     "Label": "temp5",
                     "Name": "upper critical",
                     "Severity": 1,
                     "Value": 80.0
+                },
+                {
+                    "Direction": "less than",
+                    "Label": "temp6",
+                    "Name": "lower critical",
+                    "Severity": 1,
+                    "Value": -1.0
                 },
                 {
                     "Direction": "greater than",
@@ -895,11 +993,25 @@
                     "Value": 80.0
                 },
                 {
+                    "Direction": "less than",
+                    "Label": "temp7",
+                    "Name": "lower critical",
+                    "Severity": 1,
+                    "Value": -1.0
+                },
+                {
                     "Direction": "greater than",
                     "Label": "temp7",
                     "Name": "upper critical",
                     "Severity": 1,
                     "Value": 80.0
+                },
+                {
+                    "Direction": "less than",
+                    "Label": "temp8",
+                    "Name": "lower critical",
+                    "Severity": 1,
+                    "Value": -1.0
                 },
                 {
                     "Direction": "greater than",
@@ -932,8 +1044,14 @@
             "Address": "0x4C",
             "Bus": 7,
             "Name": "MB_CPU_TEMP_C",
-            "PowerState": "On",
+            "PowerState": "BiosPost",
             "Thresholds": [
+                {
+                    "Direction": "less than",
+                    "Name": "lower critical",
+                    "Severity": 1,
+                    "Value": -1.0
+                },
                 {
                     "Direction": "greater than",
                     "Name": "upper critical",
@@ -949,16 +1067,16 @@
             "Name": "MB_OUTLET_TEMP_C",
             "Thresholds": [
                 {
-                    "Direction": "greater than",
-                    "Name": "upper critical",
-                    "Severity": 1,
-                    "Value": 80.0
-                },
-                {
                     "Direction": "less than",
                     "Name": "lower critical",
                     "Severity": 1,
                     "Value": 5.0
+                },
+                {
+                    "Direction": "greater than",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 80.0
                 }
             ],
             "Type": "TMP75"
@@ -969,16 +1087,16 @@
             "Name": "MB_INLET_TEMP_C",
             "Thresholds": [
                 {
-                    "Direction": "greater than",
-                    "Name": "upper critical",
-                    "Severity": 1,
-                    "Value": 60.0
-                },
-                {
                     "Direction": "less than",
                     "Name": "lower critical",
                     "Severity": 1,
                     "Value": 5.0
+                },
+                {
+                    "Direction": "greater than",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 60.0
                 }
             ],
             "Type": "TMP75"
