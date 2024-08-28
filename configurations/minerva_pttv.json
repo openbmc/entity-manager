@@ -12,34 +12,35 @@
                 "in6"
             ],
             "Name": "PTTV_ADC",
+            "PowerState": "On",
             "Thresholds": [
                 {
                     "Direction": "greater than",
                     "Label": "in0",
                     "Name": "upper critical",
                     "Severity": 1,
-                    "Value": 42.56
+                    "Value": 39.05
                 },
                 {
                     "Direction": "greater than",
                     "Label": "in1",
                     "Name": "upper critical",
                     "Severity": 1,
-                    "Value": 42.56
+                    "Value": 39.05
                 },
                 {
                     "Direction": "greater than",
                     "Label": "in2",
                     "Name": "upper critical",
                     "Severity": 1,
-                    "Value": 36.23
+                    "Value": 33.24
                 },
                 {
                     "Direction": "greater than",
                     "Label": "in3",
                     "Name": "upper critical",
                     "Severity": 1,
-                    "Value": 29.33
+                    "Value": 26.91
                 },
                 {
                     "Direction": "greater than",
@@ -79,6 +80,7 @@
                 "power1"
             ],
             "Name": "PTTV_P48V_VR",
+            "PowerState": "On",
             "Thresholds": [
                 {
                     "Direction": "greater than",
@@ -88,18 +90,32 @@
                     "Value": 55.0
                 },
                 {
+                    "Direction": "less than",
+                    "Label": "curr1",
+                    "Name": "lower critical",
+                    "Severity": 1,
+                    "Value": 0.0
+                },
+                {
                     "Direction": "greater than",
                     "Label": "curr1",
                     "Name": "upper critical",
                     "Severity": 1,
-                    "Value": 2.0
+                    "Value": 2.3
+                },
+                {
+                    "Direction": "less than",
+                    "Label": "power1",
+                    "Name": "lower critical",
+                    "Severity": 1,
+                    "Value": 0.0
                 },
                 {
                     "Direction": "greater than",
                     "Label": "power1",
                     "Name": "upper critical",
                     "Severity": 1,
-                    "Value": 90.0
+                    "Value": 111.0
                 }
             ],
             "Type": "INA238",
@@ -116,6 +132,7 @@
                 "power1"
             ],
             "Name": "PTTV_P48V",
+            "PowerState": "On",
             "Thresholds": [
                 {
                     "Direction": "greater than",
@@ -125,11 +142,25 @@
                     "Value": 55.0
                 },
                 {
+                    "Direction": "less than",
+                    "Label": "curr1",
+                    "Name": "lower critical",
+                    "Severity": 1,
+                    "Value": 0.0
+                },
+                {
                     "Direction": "greater than",
                     "Label": "curr1",
                     "Name": "upper critical",
                     "Severity": 1,
                     "Value": 28.3
+                },
+                {
+                    "Direction": "less than",
+                    "Label": "power1",
+                    "Name": "lower critical",
+                    "Severity": 1,
+                    "Value": 0.0
                 },
                 {
                     "Direction": "greater than",
@@ -148,7 +179,14 @@
             "Address": "0x60",
             "Bus": 34,
             "Name": "PTTV_THRMCUP_REF_TEMP_C",
+            "PowerState": "On",
             "Thresholds": [
+                {
+                    "Direction": "less than",
+                    "Name": "lower critical",
+                    "Severity": 1,
+                    "Value": 5.0
+                },
                 {
                     "Direction": "greater than",
                     "Name": "upper critical",
@@ -162,7 +200,14 @@
             "Address": "0x62",
             "Bus": 34,
             "Name": "PTTV_THRMCUP_IOA_TEMP_C",
+            "PowerState": "On",
             "Thresholds": [
+                {
+                    "Direction": "less than",
+                    "Name": "lower critical",
+                    "Severity": 1,
+                    "Value": 5.0
+                },
                 {
                     "Direction": "greater than",
                     "Name": "upper critical",
@@ -176,7 +221,14 @@
             "Address": "0x63",
             "Bus": 34,
             "Name": "PTTV_THRMCUP_IOB_TEMP_C",
+            "PowerState": "On",
             "Thresholds": [
+                {
+                    "Direction": "less than",
+                    "Name": "lower critical",
+                    "Severity": 1,
+                    "Value": 5.0
+                },
                 {
                     "Direction": "greater than",
                     "Name": "upper critical",
@@ -190,7 +242,14 @@
             "Address": "0x64",
             "Bus": 34,
             "Name": "PTTV_THRMCUP_HBM4_TEMP_C",
+            "PowerState": "On",
             "Thresholds": [
+                {
+                    "Direction": "less than",
+                    "Name": "lower critical",
+                    "Severity": 1,
+                    "Value": 5.0
+                },
                 {
                     "Direction": "greater than",
                     "Name": "upper critical",
@@ -204,7 +263,14 @@
             "Address": "0x65",
             "Bus": 34,
             "Name": "PTTV_THRMCUP_HBM5_TEMP_C",
+            "PowerState": "On",
             "Thresholds": [
+                {
+                    "Direction": "less than",
+                    "Name": "lower critical",
+                    "Severity": 1,
+                    "Value": 5.0
+                },
                 {
                     "Direction": "greater than",
                     "Name": "upper critical",
@@ -218,7 +284,14 @@
             "Address": "0x66",
             "Bus": 34,
             "Name": "PTTV_THRMCUP_HBM6_TEMP_C",
+            "PowerState": "On",
             "Thresholds": [
+                {
+                    "Direction": "less than",
+                    "Name": "lower critical",
+                    "Severity": 1,
+                    "Value": 5.0
+                },
                 {
                     "Direction": "greater than",
                     "Name": "upper critical",
@@ -232,7 +305,14 @@
             "Address": "0x67",
             "Bus": 34,
             "Name": "PTTV_THRMCUP_CORE_TEMP_C",
+            "PowerState": "On",
             "Thresholds": [
+                {
+                    "Direction": "less than",
+                    "Name": "lower critical",
+                    "Severity": 1,
+                    "Value": 5.0
+                },
                 {
                     "Direction": "greater than",
                     "Name": "upper critical",
@@ -246,7 +326,14 @@
             "Address": "0x64",
             "Bus": 35,
             "Name": "PTTV_THRMCUP_HBM1_TEMP_C",
+            "PowerState": "On",
             "Thresholds": [
+                {
+                    "Direction": "less than",
+                    "Name": "lower critical",
+                    "Severity": 1,
+                    "Value": 5.0
+                },
                 {
                     "Direction": "greater than",
                     "Name": "upper critical",
@@ -260,7 +347,14 @@
             "Address": "0x65",
             "Bus": 35,
             "Name": "PTTV_THRMCUP_HBM2_TEMP_C",
+            "PowerState": "On",
             "Thresholds": [
+                {
+                    "Direction": "less than",
+                    "Name": "lower critical",
+                    "Severity": 1,
+                    "Value": 5.0
+                },
                 {
                     "Direction": "greater than",
                     "Name": "upper critical",
@@ -274,7 +368,14 @@
             "Address": "0x66",
             "Bus": 35,
             "Name": "PTTV_THRMCUP_HBM3_TEMP_C",
+            "PowerState": "On",
             "Thresholds": [
+                {
+                    "Direction": "less than",
+                    "Name": "lower critical",
+                    "Severity": 1,
+                    "Value": 5.0
+                },
                 {
                     "Direction": "greater than",
                     "Name": "upper critical",
@@ -288,24 +389,28 @@
             "Address": "0x49",
             "Bus": 36,
             "Name": "PTTV_TMP75_92_TEMP_C",
+            "PowerState": "On",
             "Type": "TMP75"
         },
         {
             "Address": "0x4A",
             "Bus": 36,
             "Name": "PTTV_TMP75_94_TEMP_C",
+            "PowerState": "On",
             "Type": "TMP75"
         },
         {
             "Address": "0x4B",
             "Bus": 36,
             "Name": "PTTV_TMP75_96_TEMP_C",
+            "PowerState": "On",
             "Type": "TMP75"
         },
         {
             "Address": "0x4C",
             "Bus": 34,
             "Name": "PTTV_TMP75_98_TEMP_C",
+            "PowerState": "On",
             "Type": "TMP75"
         }
     ],
