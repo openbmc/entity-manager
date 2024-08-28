@@ -27,6 +27,13 @@
                     "Value": 1440.0
                 },
                 {
+                    "Direction": "less than",
+                    "Label": "temp1",
+                    "Name": "lower critical",
+                    "Severity": 1,
+                    "Value": 5.0
+                },
+                {
                     "Direction": "greater than",
                     "Label": "temp1",
                     "Name": "upper critical",
@@ -73,6 +80,20 @@
             "Address": "0x49",
             "Bus": 4,
             "Name": "PDB_TEMP_C",
+            "Thresholds": [
+                {
+                    "Direction": "less than",
+                    "Name": "lower critical",
+                    "Severity": 1,
+                    "Value": 5.0
+                },
+                {
+                    "Direction": "greater than",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 80.0
+                }
+            ],
             "Type": "TMP75"
         },
         {
@@ -108,6 +129,13 @@
                     "Name": "upper critical",
                     "Severity": 1,
                     "Value": 860.0
+                },
+                {
+                    "Direction": "less than",
+                    "Label": "temp1",
+                    "Name": "lower critical",
+                    "Severity": 1,
+                    "Value": 5.0
                 },
                 {
                     "Direction": "greater than",
@@ -155,7 +183,11 @@
         }
     ],
     "Name": "Minerva PDB",
-    "Probe": "xyz.openbmc_project.FruDevice({'BOARD_PRODUCT_NAME': 'Minerva PDB '})",
+    "Probe": [
+        "xyz.openbmc_project.FruDevice({'BOARD_PRODUCT_NAME': 'Minerva PDB EVT'})",
+        "OR",
+        "xyz.openbmc_project.FruDevice({'BOARD_PRODUCT_NAME': 'Minerva PDB', 'BOARD_INFO_AM4': 'hsc-ltc'})"
+    ],
     "Type": "Board",
     "xyz.openbmc_project.Inventory.Decorator.Asset": {
         "BuildDate": "$BOARD_MANUFACTURE_DATE",
