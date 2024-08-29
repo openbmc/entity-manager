@@ -85,6 +85,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "270f4953_fa549563",
+        "filename": "configurations/catalina_hdd_nvme.json",
+        "patchSetId": 9
+      },
+      "lineNbr": 35,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2024-08-29T18:53:00Z",
+      "side": 1,
+      "message": "There is no \"Catalina HDD NVMe\".  You have a carrier that has SSDs plugged into it.  The carrier has a FRU EEPROM and is detected (you\u0027ve changed the name to carrier on that one, which is good).  The SSDs themselves have their own detection method (eeprom?) and locations.  What you\u0027ve written here attempted to make a fake Inventory item with 4 SSD sensors, but this isn\u0027t a real thing.  You\u0027d need to add detection for each SSD independently, which will also deal with partial populated carrier cards.",
+      "parentUuid": "6fc10473_d443c928",
+      "range": {
+        "startLine": 32,
+        "startChar": 0,
+        "endLine": 35,
+        "endChar": 52
+      },
+      "revId": "bdd0d15d94e5459e3bd54300f886ba9bf160ead2",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "ddc77dcd_a066e9c0",
         "filename": "configurations/catalina_osfp.json",
         "patchSetId": 9
