@@ -108,6 +108,7 @@ configs = [
     'brcm_200g_1p_ocp_mezz.json',
     'catalina_fio.json',
     'catalina_hdd.json',
+    'catalina_hdd_nvme.json',
     'catalina_osfp.json',
     'catalina_pdb.json',
     'catalina_scm.json',
