@@ -39,14 +39,23 @@
                 "Type": {
                     "description": "The type of calculation this sensor uses.",
                     "type": "string",
-                    "enum": ["ModifiedMedian", "Maximum"]
+                    "enum": [
+                        "Maximum",
+                        "Minimum",
+                        "ModifiedMedian"
+                    ]
                 },
                 "Units": {
                     "description": "The sensor type, as it shows up in the D-Bus object name.",
                     "$ref": "legacy.json#/definitions/Types/Units"
                 }
             },
-            "required": ["Name", "Sensors", "Type", "Units"]
+            "required": [
+                "Name",
+                "Sensors",
+                "Type",
+                "Units"
+            ]
         }
     }
 }
