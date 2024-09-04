@@ -134,7 +134,7 @@ def main():
             )
             sys.exit(2)
 
-    spec = jsonschema.Draft7Validator
+    spec = jsonschema.Draft202012Validator
     spec.check_schema(schema)
     base_uri = "file://{}/".format(
         os.path.split(os.path.realpath(schema_file))[0]
