@@ -1,6 +1,6 @@
 {
     "$schema": "http://json-schema.org/draft-07/schema#",
-    "definitions": {
+    "$defs": {
         "VirtualSensor": {
             "title": "phosphor-virtual-sensor configuration",
             "description": "The configuration used by the virtual-sensor daemon in the phosphor-virtual-sensor repository. Virtual sensors are xyz.openbmc_project.Sensor.Value D-Bus objects that have sensor values calculated from the D-Bus sensors listed here.",
@@ -12,7 +12,7 @@
                 },
                 "MaxValue": {
                     "description": "Maximum sensor value",
-                    "$ref": "legacy.json#/definitions/Types/MaxValue"
+                    "$ref": "legacy.json#/$defs/Types/MaxValue"
                 },
                 "MinValidInput": {
                     "description": "Miniumum valid value of an input sensor",
@@ -20,7 +20,7 @@
                 },
                 "MinValue": {
                     "description": "Minimum sensor value",
-                    "$ref": "legacy.json#/definitions/Types/MinValue"
+                    "$ref": "legacy.json#/$defs/Types/MinValue"
                 },
                 "Name": {
                     "type": "string"
@@ -34,7 +34,7 @@
                 },
                 "Thresholds": {
                     "description": "Threshold values used to set and clear alarms",
-                    "$ref": "legacy.json#/definitions/Types/Thresholds"
+                    "$ref": "legacy.json#/$defs/Types/Thresholds"
                 },
                 "Type": {
                     "description": "The type of calculation this sensor uses.",
@@ -43,7 +43,7 @@
                 },
                 "Units": {
                     "description": "The sensor type, as it shows up in the D-Bus object name.",
-                    "$ref": "legacy.json#/definitions/Types/Units"
+                    "$ref": "legacy.json#/$defs/Types/Units"
                 }
             },
             "required": ["Name", "Sensors", "Type", "Units"]
