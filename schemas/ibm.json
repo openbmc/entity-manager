@@ -1,6 +1,6 @@
 {
     "$schema": "http://json-schema.org/draft-07/schema#",
-    "definitions": {
+    "$defs": {
         "IBMCFFPSConnector": {
             "title": "IBM Common Form Factor (CFF) Power Supply connectors",
             "description": "A schema associating an I2C endpoint and a GPIO for IBM CFF power supplies.  In the entity-manager detector-configuration-reactor architecture, the daemon that supports IBM CFFPS is both a detector and reactor.  It probes the endpoints described by this schema (reactor) and publishes the CFFPS FRU information (detector).",

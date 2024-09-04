@@ -1,38 +1,38 @@
 {
     "$schema": "http://json-schema.org/draft-07/schema#",
-    "definitions": {
+    "$defs": {
         "EMExposesElement": {
             "description": "The exposes property element schema.  An element of the exposes property is always an array where elements are of type exposes entry.",
             "anyOf": [
                 {
-                    "$ref": "ibm.json#/definitions/PowerModeProperties"
+                    "$ref": "ibm.json#/$defs/PowerModeProperties"
                 },
                 {
-                    "$ref": "ibm.json#/definitions/IBMCompatibleSystem"
+                    "$ref": "ibm.json#/$defs/IBMCompatibleSystem"
                 },
                 {
-                    "$ref": "ibm.json#/definitions/IBMCFFPSConnector"
+                    "$ref": "ibm.json#/$defs/IBMCFFPSConnector"
                 },
                 {
-                    "$ref": "intel.json#/definitions/IntelFanConnector"
+                    "$ref": "intel.json#/$defs/IntelFanConnector"
                 },
                 {
-                    "$ref": "pid.json#/definitions/Pid"
+                    "$ref": "pid.json#/$defs/Pid"
                 },
                 {
-                    "$ref": "pid_zone.json#/definitions/PidZone"
+                    "$ref": "pid_zone.json#/$defs/PidZone"
                 },
                 {
-                    "$ref": "satellite_controller.json#/definitions/SatelliteController"
+                    "$ref": "satellite_controller.json#/$defs/SatelliteController"
                 },
                 {
-                    "$ref": "stepwise.json#/definitions/Stepwise"
+                    "$ref": "stepwise.json#/$defs/Stepwise"
                 },
                 {
-                    "$ref": "legacy.json#/definitions/Aggregate"
+                    "$ref": "legacy.json#/$defs/Aggregate"
                 },
                 {
-                    "$ref": "virtual_sensor.json#/definitions/VirtualSensor"
+                    "$ref": "virtual_sensor.json#/$defs/VirtualSensor"
                 },
                 {
                     "description": "Ensure the parent anyOf schema does not validate when an element does not define a type property.",
@@ -64,7 +64,7 @@
                     "description": "The schema for the exposes property. The exposes property must be an array where elements are of type EMExposesElement.  The exposes property is the heterogeneous configuration data exported to DBus upon a probe match.",
                     "type": "array",
                     "items": {
-                        "$ref": "#/definitions/EMExposesElement"
+                        "$ref": "#/$defs/EMExposesElement"
                     }
                 },
                 "Logging": {
@@ -94,46 +94,46 @@
                     "enum": ["Board", "Chassis", "NVMe", "PowerSupply"]
                 },
                 "xyz.openbmc_project.Common.UUID": {
-                    "$ref": "openbmc-dbus.json#/definitions/xyz/openbmc_project/Common/UUID"
+                    "$ref": "openbmc-dbus.json#/$defs/xyz/openbmc_project/Common/UUID"
                 },
                 "xyz.openbmc_project.Inventory.Decorator.Asset": {
-                    "$ref": "openbmc-dbus.json#/definitions/xyz/openbmc_project/Inventory/Decorator/Asset"
+                    "$ref": "openbmc-dbus.json#/$defs/xyz/openbmc_project/Inventory/Decorator/Asset"
                 },
                 "ProductId": {
                     "type": "number"
                 },
                 "xyz.openbmc_project.Inventory.Decorator.AssetTag": {
-                    "$ref": "openbmc-dbus.json#/definitions/xyz/openbmc_project/Inventory/Decorator/AssetTag"
+                    "$ref": "openbmc-dbus.json#/$defs/xyz/openbmc_project/Inventory/Decorator/AssetTag"
                 },
                 "xyz.openbmc_project.Inventory.Decorator.Compatible": {
-                    "$ref": "openbmc-dbus.json#/definitions/xyz/openbmc_project/Inventory/Decorator/Compatible"
+                    "$ref": "openbmc-dbus.json#/$defs/xyz/openbmc_project/Inventory/Decorator/Compatible"
                 },
                 "xyz.openbmc_project.Inventory.Decorator.Replaceable": {
-                    "$ref": "openbmc-dbus.json#/definitions/xyz/openbmc_project/Inventory/Decorator/Replaceable"
+                    "$ref": "openbmc-dbus.json#/$defs/xyz/openbmc_project/Inventory/Decorator/Replaceable"
                 },
                 "xyz.openbmc_project.Inventory.Decorator.Slot": {
-                    "$ref": "openbmc-dbus.json#/definitions/xyz/openbmc_project/Inventory/Decorator/Slot"
+                    "$ref": "openbmc-dbus.json#/$defs/xyz/openbmc_project/Inventory/Decorator/Slot"
                 },
                 "xyz.openbmc_project.Inventory.Decorator.Revision": {
-                    "$ref": "openbmc-dbus.json#/definitions/xyz/openbmc_project/Inventory/Decorator/Revision"
+                    "$ref": "openbmc-dbus.json#/$defs/xyz/openbmc_project/Inventory/Decorator/Revision"
                 },
                 "xyz.openbmc_project.Inventory.Item.Board.Motherboard": {
-                    "$ref": "openbmc-dbus.json#/definitions/xyz/openbmc_project/Inventory/Item/Board/Motherboard"
+                    "$ref": "openbmc-dbus.json#/$defs/xyz/openbmc_project/Inventory/Item/Board/Motherboard"
                 },
                 "xyz.openbmc_project.Inventory.Item.Chassis": {
-                    "$ref": "openbmc-dbus.json#/definitions/xyz/openbmc_project/Inventory/Item/Chassis"
+                    "$ref": "openbmc-dbus.json#/$defs/xyz/openbmc_project/Inventory/Item/Chassis"
                 },
                 "xyz.openbmc_project.Inventory.Item.NetworkInterface": {
-                    "$ref": "openbmc-dbus.json#/definitions/xyz/openbmc_project/Inventory/Item/NetworkInterface"
+                    "$ref": "openbmc-dbus.json#/$defs/xyz/openbmc_project/Inventory/Item/NetworkInterface"
                 },
                 "xyz.openbmc_project.Inventory.Item.Panel": {
-                    "$ref": "openbmc-dbus.json#/definitions/xyz/openbmc_project/Inventory/Item/Panel"
+                    "$ref": "openbmc-dbus.json#/$defs/xyz/openbmc_project/Inventory/Item/Panel"
                 },
                 "xyz.openbmc_project.Inventory.Item.System": {
-                    "$ref": "openbmc-dbus.json#/definitions/xyz/openbmc_project/Inventory/Item/System"
+                    "$ref": "openbmc-dbus.json#/$defs/xyz/openbmc_project/Inventory/Item/System"
                 },
                 "xyz.openbmc_project.Inventory.Item.BMC": {
-                    "$ref": "openbmc-dbus.json#/definitions/xyz/openbmc_project/Inventory/Item/BMC"
+                    "$ref": "openbmc-dbus.json#/$defs/xyz/openbmc_project/Inventory/Item/BMC"
                 }
             },
             "required": ["Exposes", "Name", "Probe", "Type"]
@@ -145,11 +145,11 @@
         {
             "type": "array",
             "items": {
-                "$ref": "#/definitions/EMConfig"
+                "$ref": "#/$defs/EMConfig"
             }
         },
         {
-            "$ref": "#/definitions/EMConfig"
+            "$ref": "#/$defs/EMConfig"
         }
     ]
 }
