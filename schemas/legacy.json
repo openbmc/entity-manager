@@ -1,783 +1,783 @@
 {
     "$schema": "http://json-schema.org/draft-07/schema#",
-    "definitions": {
+    "$defs": {
         "Aggregate": {
             "description": "Don't add additional properties to this schema. Consult README.schema for instructions on adding new Exposes element sub-schema.",
             "additionalProperties": false,
             "properties": {
                 "Address": {
-                    "$ref": "#/definitions/Types/Address"
+                    "$ref": "#/$defs/Types/Address"
                 },
                 "AllowedFailures": {
-                    "$ref": "#/definitions/Types/AllowedFailures"
+                    "$ref": "#/$defs/Types/AllowedFailures"
                 },
                 "AlphaF": {
-                    "$ref": "#/definitions/Types/AlphaF"
+                    "$ref": "#/$defs/Types/AlphaF"
                 },
                 "AlphaS": {
-                    "$ref": "#/definitions/Types/AlphaS"
+                    "$ref": "#/$defs/Types/AlphaS"
                 },
                 "BindConnector": {
-                    "$ref": "#/definitions/Types/BindConnector"
+                    "$ref": "#/$defs/Types/BindConnector"
                 },
                 "BindPresence": {
-                    "$ref": "#/definitions/Types/BindPresence"
+                    "$ref": "#/$defs/Types/BindPresence"
                 },
                 "BridgeGpio": {
-                    "$ref": "#/definitions/Types/BridgeGpio"
+                    "$ref": "#/$defs/Types/BridgeGpio"
                 },
                 "Bus": {
-                    "$ref": "#/definitions/Types/Bus"
+                    "$ref": "#/$defs/Types/Bus"
                 },
                 "C1": {
-                    "$ref": "#/definitions/Types/C1"
+                    "$ref": "#/$defs/Types/C1"
                 },
                 "C2": {
-                    "$ref": "#/definitions/Types/C2"
+                    "$ref": "#/$defs/Types/C2"
                 },
                 "CPURequired": {
-                    "$ref": "#/definitions/Types/CPURequired"
+                    "$ref": "#/$defs/Types/CPURequired"
                 },
                 "ChannelNames": {
-                    "$ref": "#/definitions/Types/ChannelNames"
+                    "$ref": "#/$defs/Types/ChannelNames"
                 },
                 "Class": {
-                    "$ref": "#/definitions/Types/Class"
+                    "$ref": "#/$defs/Types/Class"
                 },
                 "Connector": {
-                    "$ref": "#/definitions/Types/Connector"
+                    "$ref": "#/$defs/Types/Connector"
                 },
                 "ConnectsToType": {
-                    "$ref": "#/definitions/Types/ConnectsToType"
+                    "$ref": "#/$defs/Types/ConnectsToType"
                 },
                 "CpuID": {
-                    "$ref": "#/definitions/Types/CpuID"
+                    "$ref": "#/$defs/Types/CpuID"
                 },
                 "CurrScaleFactor": {
-                    "$ref": "#/definitions/Types/CurrScaleFactor"
+                    "$ref": "#/$defs/Types/CurrScaleFactor"
                 },
                 "Direction": {
-                    "$ref": "#/definitions/Types/Direction"
+                    "$ref": "#/$defs/Types/Direction"
                 },
                 "DtsCritOffset": {
-                    "$ref": "#/definitions/Types/DtsCritOffset"
+                    "$ref": "#/$defs/Types/DtsCritOffset"
                 },
                 "EntityId": {
-                    "$ref": "#/definitions/Types/EntityId"
+                    "$ref": "#/$defs/Types/EntityId"
                 },
                 "EntityInstance": {
-                    "$ref": "#/definitions/Types/EntityInstance"
+                    "$ref": "#/$defs/Types/EntityInstance"
                 },
                 "FaultIndex": {
-                    "$ref": "#/definitions/Types/FaultIndex"
+                    "$ref": "#/$defs/Types/FaultIndex"
                 },
                 "FaultType": {
-                    "$ref": "#/definitions/Types/FaultType"
+                    "$ref": "#/$defs/Types/FaultType"
                 },
                 "GpioPins": {
-                    "$ref": "#/definitions/Types/GpioPins"
+                    "$ref": "#/$defs/Types/GpioPins"
                 },
                 "GpioPolarity": {
-                    "$ref": "#/definitions/Types/GpioPolarity"
+                    "$ref": "#/$defs/Types/GpioPolarity"
                 },
                 "Index": {
-                    "$ref": "#/definitions/Types/Index"
+                    "$ref": "#/$defs/Types/Index"
                 },
                 "InScaleFactor": {
-                    "$ref": "#/definitions/Types/InScaleFactor"
+                    "$ref": "#/$defs/Types/InScaleFactor"
                 },
                 "Labels": {
-                    "$ref": "#/definitions/Types/Labels"
+                    "$ref": "#/$defs/Types/Labels"
                 },
                 "LedGpioPins": {
-                    "$ref": "#/definitions/Types/LedGpioPins"
+                    "$ref": "#/$defs/Types/LedGpioPins"
                 },
                 "MaxCFM": {
-                    "$ref": "#/definitions/Types/MaxCFM"
+                    "$ref": "#/$defs/Types/MaxCFM"
                 },
                 "MaxReading": {
-                    "$ref": "#/definitions/Types/MaxReading"
+                    "$ref": "#/$defs/Types/MaxReading"
                 },
                 "MaxValue": {
-                    "$ref": "#/definitions/Types/MaxValue"
+                    "$ref": "#/$defs/Types/MaxValue"
                 },
                 "Units": {
-                    "$ref": "#/definitions/Types/Units"
+                    "$ref": "#/$defs/Types/Units"
                 },
                 "MinReading": {
-                    "$ref": "#/definitions/Types/MinReading"
+                    "$ref": "#/$defs/Types/MinReading"
                 },
                 "MinValue": {
-                    "$ref": "#/definitions/Types/MinValue"
+                    "$ref": "#/$defs/Types/MinValue"
                 },
                 "Name": {
-                    "$ref": "#/definitions/Types/Name"
+                    "$ref": "#/$defs/Types/Name"
                 },
                 "Name1": {
-                    "$ref": "#/definitions/Types/Name1"
+                    "$ref": "#/$defs/Types/Name1"
                 },
                 "Name2": {
-                    "$ref": "#/definitions/Types/Name2"
+                    "$ref": "#/$defs/Types/Name2"
                 },
                 "Name3": {
-                    "$ref": "#/definitions/Types/Name3"
+                    "$ref": "#/$defs/Types/Name3"
                 },
                 "Name4": {
-                    "$ref": "#/definitions/Types/Name4"
+                    "$ref": "#/$defs/Types/Name4"
                 },
                 "Name5": {
-                    "$ref": "#/definitions/Types/Name5"
+                    "$ref": "#/$defs/Types/Name5"
                 },
                 "Name6": {
-                    "$ref": "#/definitions/Types/Name6"
+                    "$ref": "#/$defs/Types/Name6"
                 },
                 "Name7": {
-                    "$ref": "#/definitions/Types/Name7"
+                    "$ref": "#/$defs/Types/Name7"
                 },
                 "Name8": {
-                    "$ref": "#/definitions/Types/Name8"
+                    "$ref": "#/$defs/Types/Name8"
                 },
                 "Name9": {
-                    "$ref": "#/definitions/Types/Name9"
+                    "$ref": "#/$defs/Types/Name9"
                 },
                 "Name10": {
-                    "$ref": "#/definitions/Types/Name10"
+                    "$ref": "#/$defs/Types/Name10"
                 },
                 "Name11": {
-                    "$ref": "#/definitions/Types/Name11"
+                    "$ref": "#/$defs/Types/Name11"
                 },
                 "Name12": {
-                    "$ref": "#/definitions/Types/Name12"
+                    "$ref": "#/$defs/Types/Name12"
                 },
                 "Name13": {
-                    "$ref": "#/definitions/Types/Name13"
+                    "$ref": "#/$defs/Types/Name13"
                 },
                 "Name14": {
-                    "$ref": "#/definitions/Types/Name14"
+                    "$ref": "#/$defs/Types/Name14"
                 },
                 "Name15": {
-                    "$ref": "#/definitions/Types/Name15"
+                    "$ref": "#/$defs/Types/Name15"
                 },
                 "Name16": {
-                    "$ref": "#/definitions/Types/Name16"
+                    "$ref": "#/$defs/Types/Name16"
                 },
                 "Name17": {
-                    "$ref": "#/definitions/Types/Name17"
+                    "$ref": "#/$defs/Types/Name17"
                 },
                 "OffsetValue": {
-                    "$ref": "#/definitions/Types/OffsetValue"
+                    "$ref": "#/$defs/Types/OffsetValue"
                 },
                 "Polarity": {
-                    "$ref": "#/definitions/Types/Polarity"
+                    "$ref": "#/$defs/Types/Polarity"
                 },
                 "Polling": {
-                    "$ref": "#/definitions/Types/Polling"
+                    "$ref": "#/$defs/Types/Polling"
                 },
                 "PowerFactorMax": {
-                    "$ref": "#/definitions/Types/PowerFactorMax"
+                    "$ref": "#/$defs/Types/PowerFactorMax"
                 },
                 "PowerFactorMin": {
-                    "$ref": "#/definitions/Types/PowerFactorMin"
+                    "$ref": "#/$defs/Types/PowerFactorMin"
                 },
                 "PowerPort": {
-                    "$ref": "#/definitions/Types/PowerPort"
+                    "$ref": "#/$defs/Types/PowerPort"
                 },
                 "PowerScaleFactor": {
-                    "$ref": "#/definitions/Types/PowerScaleFactor"
+                    "$ref": "#/$defs/Types/PowerScaleFactor"
                 },
                 "PowerState": {
-                    "$ref": "#/definitions/Types/PowerState"
+                    "$ref": "#/$defs/Types/PowerState"
                 },
                 "Presence": {
-                    "$ref": "#/definitions/Types/Presence"
+                    "$ref": "#/$defs/Types/Presence"
                 },
                 "PresenceGpio": {
-                    "$ref": "#/definitions/Types/PresenceGpio"
+                    "$ref": "#/$defs/Types/PresenceGpio"
                 },
                 "Pwm": {
-                    "$ref": "#/definitions/Types/Pwm"
+                    "$ref": "#/$defs/Types/Pwm"
                 },
                 "QMax": {
-                    "$ref": "#/definitions/Types/QMax"
+                    "$ref": "#/$defs/Types/QMax"
                 },
                 "QMin": {
-                    "$ref": "#/definitions/Types/QMin"
+                    "$ref": "#/$defs/Types/QMin"
                 },
                 "Rearm": {
-                    "$ref": "#/definitions/Types/Rearm"
+                    "$ref": "#/$defs/Types/Rearm"
                 },
                 "RedundantCount": {
-                    "$ref": "#/definitions/Types/RedundantCount"
+                    "$ref": "#/$defs/Types/RedundantCount"
                 },
                 "ScaleFactor": {
-                    "$ref": "#/definitions/Types/ScaleFactor"
+                    "$ref": "#/$defs/Types/ScaleFactor"
                 },
                 "ScaleValue": {
-                    "$ref": "#/definitions/Types/ScaleValue"
+                    "$ref": "#/$defs/Types/ScaleValue"
                 },
                 "SensorType": {
-                    "$ref": "#/definitions/Types/SensorType"
+                    "$ref": "#/$defs/Types/SensorType"
                 },
                 "SlotId": {
-                    "$ref": "#/definitions/Types/SlotId"
+                    "$ref": "#/$defs/Types/SlotId"
                 },
                 "TachMaxPercent": {
-                    "$ref": "#/definitions/Types/TachMaxPercent"
+                    "$ref": "#/$defs/Types/TachMaxPercent"
                 },
                 "TachMinPercent": {
-                    "$ref": "#/definitions/Types/TachMinPercent"
+                    "$ref": "#/$defs/Types/TachMinPercent"
                 },
                 "Tachs": {
-                    "$ref": "#/definitions/Types/Tachs"
+                    "$ref": "#/$defs/Types/Tachs"
                 },
                 "Thresholds": {
-                    "$ref": "#/definitions/Types/Thresholds"
+                    "$ref": "#/$defs/Types/Thresholds"
                 },
                 "Timeout": {
-                    "$ref": "#/definitions/Types/Timeout"
+                    "$ref": "#/$defs/Types/Timeout"
                 },
                 "HostSMbusIndex": {
-                    "$ref": "#/definitions/Types/HostSMbusIndex"
+                    "$ref": "#/$defs/Types/HostSMbusIndex"
                 },
                 "pin_Max": {
-                    "$ref": "#/definitions/Types/pin_Max"
+                    "$ref": "#/$defs/Types/pin_Max"
                 },
                 "pin_Min": {
-                    "$ref": "#/definitions/Types/pin_Min"
+                    "$ref": "#/$defs/Types/pin_Min"
                 },
                 "pin_Name": {
-                    "$ref": "#/definitions/Types/pin_Name"
+                    "$ref": "#/$defs/Types/pin_Name"
                 },
                 "maxpin_Name": {
-                    "$ref": "#/definitions/Types/maxpin_Name"
+                    "$ref": "#/$defs/Types/maxpin_Name"
                 },
                 "vin_Max": {
-                    "$ref": "#/definitions/Types/vin_Max"
+                    "$ref": "#/$defs/Types/vin_Max"
                 },
                 "vin_Min": {
-                    "$ref": "#/definitions/Types/vin_Min"
+                    "$ref": "#/$defs/Types/vin_Min"
                 },
                 "vin_Name": {
-                    "$ref": "#/definitions/Types/vin_Name"
+                    "$ref": "#/$defs/Types/vin_Name"
                 },
                 "iin_Name": {
-                    "$ref": "#/definitions/Types/iin_Name"
+                    "$ref": "#/$defs/Types/iin_Name"
                 },
                 "in0_Max": {
-                    "$ref": "#/definitions/Types/in0_Max"
+                    "$ref": "#/$defs/Types/in0_Max"
                 },
                 "in0_Name": {
-                    "$ref": "#/definitions/Types/in0_Name"
+                    "$ref": "#/$defs/Types/in0_Name"
                 },
                 "in1_Max": {
-                    "$ref": "#/definitions/Types/in1_Max"
+                    "$ref": "#/$defs/Types/in1_Max"
                 },
                 "in1_Name": {
-                    "$ref": "#/definitions/Types/in1_Name"
+                    "$ref": "#/$defs/Types/in1_Name"
                 },
                 "in2_Max": {
-                    "$ref": "#/definitions/Types/in2_Max"
+                    "$ref": "#/$defs/Types/in2_Max"
                 },
                 "in2_Name": {
-                    "$ref": "#/definitions/Types/in2_Name"
+                    "$ref": "#/$defs/Types/in2_Name"
                 },
                 "in3_Max": {
-                    "$ref": "#/definitions/Types/in3_Max"
+                    "$ref": "#/$defs/Types/in3_Max"
                 },
                 "in3_Name": {
-                    "$ref": "#/definitions/Types/in3_Name"
+                    "$ref": "#/$defs/Types/in3_Name"
                 },
                 "in4_Max": {
-                    "$ref": "#/definitions/Types/in4_Max"
+                    "$ref": "#/$defs/Types/in4_Max"
                 },
                 "in4_Name": {
-                    "$ref": "#/definitions/Types/in4_Name"
+                    "$ref": "#/$defs/Types/in4_Name"
                 },
                 "in5_Max": {
-                    "$ref": "#/definitions/Types/in5_Max"
+                    "$ref": "#/$defs/Types/in5_Max"
                 },
                 "in5_Name": {
-                    "$ref": "#/definitions/Types/in5_Name"
+                    "$ref": "#/$defs/Types/in5_Name"
                 },
                 "in6_Name": {
-                    "$ref": "#/definitions/Types/in6_Name"
+                    "$ref": "#/$defs/Types/in6_Name"
                 },
                 "in7_Name": {
-                    "$ref": "#/definitions/Types/in7_Name"
+                    "$ref": "#/$defs/Types/in7_Name"
                 },
                 "in_voltage0_Max": {
-                    "$ref": "#/definitions/Types/in_voltage0_Max"
+                    "$ref": "#/$defs/Types/in_voltage0_Max"
                 },
                 "in_voltage0_Name": {
-                    "$ref": "#/definitions/Types/in_voltage0_Name"
+                    "$ref": "#/$defs/Types/in_voltage0_Name"
                 },
                 "in_voltage1_Max": {
-                    "$ref": "#/definitions/Types/in_voltage1_Max"
+                    "$ref": "#/$defs/Types/in_voltage1_Max"
                 },
                 "in_voltage1_Name": {
-                    "$ref": "#/definitions/Types/in_voltage1_Name"
+                    "$ref": "#/$defs/Types/in_voltage1_Name"
                 },
                 "in_voltage2_Max": {
-                    "$ref": "#/definitions/Types/in_voltage2_Max"
+                    "$ref": "#/$defs/Types/in_voltage2_Max"
                 },
                 "in_voltage2_Name": {
-                    "$ref": "#/definitions/Types/in_voltage2_Name"
+                    "$ref": "#/$defs/Types/in_voltage2_Name"
                 },
                 "in_voltage3_Max": {
-                    "$ref": "#/definitions/Types/in_voltage3_Max"
+                    "$ref": "#/$defs/Types/in_voltage3_Max"
                 },
                 "in_voltage3_Name": {
-                    "$ref": "#/definitions/Types/in_voltage3_Name"
+                    "$ref": "#/$defs/Types/in_voltage3_Name"
                 },
                 "in_voltage4_Max": {
-                    "$ref": "#/definitions/Types/in_voltage4_Max"
+                    "$ref": "#/$defs/Types/in_voltage4_Max"
                 },
                 "in_voltage4_Name": {
-                    "$ref": "#/definitions/Types/in_voltage4_Name"
+                    "$ref": "#/$defs/Types/in_voltage4_Name"
                 },
                 "in_voltage5_Max": {
-                    "$ref": "#/definitions/Types/in_voltage5_Max"
+                    "$ref": "#/$defs/Types/in_voltage5_Max"
                 },
                 "in_voltage5_Name": {
-                    "$ref": "#/definitions/Types/in_voltage5_Name"
+                    "$ref": "#/$defs/Types/in_voltage5_Name"
                 },
                 "in_voltage6_Name": {
-                    "$ref": "#/definitions/Types/in_voltage6_Name"
+                    "$ref": "#/$defs/Types/in_voltage6_Name"
                 },
                 "in_voltage7_Name": {
-                    "$ref": "#/definitions/Types/in_voltage7_Name"
+                    "$ref": "#/$defs/Types/in_voltage7_Name"
                 },
                 "in_voltage8_Name": {
-                    "$ref": "#/definitions/Types/in_voltage8_Name"
+                    "$ref": "#/$defs/Types/in_voltage8_Name"
                 },
                 "in_voltage9_Name": {
-                    "$ref": "#/definitions/Types/in_voltage9_Name"
+                    "$ref": "#/$defs/Types/in_voltage9_Name"
                 },
                 "in0_PowerState": {
-                    "$ref": "#/definitions/Types/in0_PowerState"
+                    "$ref": "#/$defs/Types/in0_PowerState"
                 },
                 "in1_PowerState": {
-                    "$ref": "#/definitions/Types/in1_PowerState"
+                    "$ref": "#/$defs/Types/in1_PowerState"
                 },
                 "in2_PowerState": {
-                    "$ref": "#/definitions/Types/in2_PowerState"
+                    "$ref": "#/$defs/Types/in2_PowerState"
                 },
                 "in3_PowerState": {
-                    "$ref": "#/definitions/Types/in3_PowerState"
+                    "$ref": "#/$defs/Types/in3_PowerState"
                 },
                 "in4_PowerState": {
-                    "$ref": "#/definitions/Types/in4_PowerState"
+                    "$ref": "#/$defs/Types/in4_PowerState"
                 },
                 "in5_PowerState": {
-                    "$ref": "#/definitions/Types/in5_PowerState"
+                    "$ref": "#/$defs/Types/in5_PowerState"
                 },
                 "in6_PowerState": {
-                    "$ref": "#/definitions/Types/in6_PowerState"
+                    "$ref": "#/$defs/Types/in6_PowerState"
                 },
                 "in7_PowerState": {
-                    "$ref": "#/definitions/Types/in7_PowerState"
+                    "$ref": "#/$defs/Types/in7_PowerState"
                 },
                 "curr1_Name": {
-                    "$ref": "#/definitions/Types/curr1_Name"
+                    "$ref": "#/$defs/Types/curr1_Name"
                 },
                 "curr2_Name": {
-                    "$ref": "#/definitions/Types/curr2_Name"
+                    "$ref": "#/$defs/Types/curr2_Name"
                 },
                 "curr3_Name": {
-                    "$ref": "#/definitions/Types/curr3_Name"
+                    "$ref": "#/$defs/Types/curr3_Name"
                 },
                 "curr4_Name": {
-                    "$ref": "#/definitions/Types/curr4_Name"
+                    "$ref": "#/$defs/Types/curr4_Name"
                 },
                 "iin1_Max": {
-                    "$ref": "#/definitions/Types/iin1_Max"
+                    "$ref": "#/$defs/Types/iin1_Max"
                 },
                 "iin1_Min": {
-                    "$ref": "#/definitions/Types/iin1_Min"
+                    "$ref": "#/$defs/Types/iin1_Min"
                 },
                 "iin1_Name": {
-                    "$ref": "#/definitions/Types/iin1_Name"
+                    "$ref": "#/$defs/Types/iin1_Name"
                 },
                 "iin2_Max": {
-                    "$ref": "#/definitions/Types/iin2_Max"
+                    "$ref": "#/$defs/Types/iin2_Max"
                 },
                 "iin2_Min": {
-                    "$ref": "#/definitions/Types/iin2_Min"
+                    "$ref": "#/$defs/Types/iin2_Min"
                 },
                 "iin2_Name": {
-                    "$ref": "#/definitions/Types/iin2_Name"
+                    "$ref": "#/$defs/Types/iin2_Name"
                 },
                 "iin3_Max": {
-                    "$ref": "#/definitions/Types/iin3_Max"
+                    "$ref": "#/$defs/Types/iin3_Max"
                 },
                 "iin3_Min": {
-                    "$ref": "#/definitions/Types/iin3_Min"
+                    "$ref": "#/$defs/Types/iin3_Min"
                 },
                 "iin3_Name": {
-                    "$ref": "#/definitions/Types/iin3_Name"
+                    "$ref": "#/$defs/Types/iin3_Name"
                 },
                 "iout1_Max": {
-                    "$ref": "#/definitions/Types/iout1_Max"
+                    "$ref": "#/$defs/Types/iout1_Max"
                 },
                 "iout1_Min": {
-                    "$ref": "#/definitions/Types/iout1_Min"
+                    "$ref": "#/$defs/Types/iout1_Min"
                 },
                 "iout1_Name": {
-                    "$ref": "#/definitions/Types/iout1_Name"
+                    "$ref": "#/$defs/Types/iout1_Name"
                 },
                 "maxiout1_Name": {
-                    "$ref": "#/definitions/Types/maxiout1_Name"
+                    "$ref": "#/$defs/Types/maxiout1_Name"
                 },
                 "iout2_Max": {
-                    "$ref": "#/definitions/Types/iout2_Max"
+                    "$ref": "#/$defs/Types/iout2_Max"
                 },
                 "iout2_Min": {
-                    "$ref": "#/definitions/Types/iout2_Min"
+                    "$ref": "#/$defs/Types/iout2_Min"
                 },
                 "iout2_Name": {
-                    "$ref": "#/definitions/Types/iout2_Name"
+                    "$ref": "#/$defs/Types/iout2_Name"
                 },
                 "iout3_Max": {
-                    "$ref": "#/definitions/Types/iout3_Max"
+                    "$ref": "#/$defs/Types/iout3_Max"
                 },
                 "iout3_Min": {
-                    "$ref": "#/definitions/Types/iout3_Min"
+                    "$ref": "#/$defs/Types/iout3_Min"
                 },
                 "iout3_Name": {
-                    "$ref": "#/definitions/Types/iout3_Name"
+                    "$ref": "#/$defs/Types/iout3_Name"
                 },
                 "pin1_Max": {
-                    "$ref": "#/definitions/Types/pin1_Max"
+                    "$ref": "#/$defs/Types/pin1_Max"
                 },
                 "pin1_Min": {
-                    "$ref": "#/definitions/Types/pin1_Min"
+                    "$ref": "#/$defs/Types/pin1_Min"
                 },
                 "pin1_Name": {
-                    "$ref": "#/definitions/Types/pin1_Name"
+                    "$ref": "#/$defs/Types/pin1_Name"
                 },
                 "pin2_Max": {
-                    "$ref": "#/definitions/Types/pin2_Max"
+                    "$ref": "#/$defs/Types/pin2_Max"
                 },
                 "pin2_Min": {
-                    "$ref": "#/definitions/Types/pin2_Min"
+                    "$ref": "#/$defs/Types/pin2_Min"
                 },
                 "pin2_Name": {
-                    "$ref": "#/definitions/Types/pin2_Name"
+                    "$ref": "#/$defs/Types/pin2_Name"
                 },
                 "pin3_Max": {
-                    "$ref": "#/definitions/Types/pin3_Max"
+                    "$ref": "#/$defs/Types/pin3_Max"
                 },
                 "pin3_Min": {
-                    "$ref": "#/definitions/Types/pin3_Min"
+                    "$ref": "#/$defs/Types/pin3_Min"
                 },
                 "pin3_Name": {
-                    "$ref": "#/definitions/Types/pin3_Name"
+                    "$ref": "#/$defs/Types/pin3_Name"
                 },
                 "pout1_Max": {
-                    "$ref": "#/definitions/Types/pout1_Max"
+                    "$ref": "#/$defs/Types/pout1_Max"
                 },
                 "pout1_Min": {
-                    "$ref": "#/definitions/Types/pout1_Min"
+                    "$ref": "#/$defs/Types/pout1_Min"
                 },
                 "pout1_Name": {
-                    "$ref": "#/definitions/Types/pout1_Name"
+                    "$ref": "#/$defs/Types/pout1_Name"
                 },
                 "pout2_Max": {
-                    "$ref": "#/definitions/Types/pout2_Max"
+                    "$ref": "#/$defs/Types/pout2_Max"
                 },
                 "pout2_Min": {
-                    "$ref": "#/definitions/Types/pout2_Min"
+                    "$ref": "#/$defs/Types/pout2_Min"
                 },
                 "pout2_Name": {
-                    "$ref": "#/definitions/Types/pout2_Name"
+                    "$ref": "#/$defs/Types/pout2_Name"
                 },
                 "pout3_Max": {
-                    "$ref": "#/definitions/Types/pout3_Max"
+                    "$ref": "#/$defs/Types/pout3_Max"
                 },
                 "pout3_Min": {
-                    "$ref": "#/definitions/Types/pout3_Min"
+                    "$ref": "#/$defs/Types/pout3_Min"
                 },
                 "pout3_Name": {
-                    "$ref": "#/definitions/Types/pout3_Name"
+                    "$ref": "#/$defs/Types/pout3_Name"
                 },
                 "power1_Name": {
-                    "$ref": "#/definitions/Types/power1_Name"
+                    "$ref": "#/$defs/Types/power1_Name"
                 },
                 "power2_Name": {
-                    "$ref": "#/definitions/Types/power2_Name"
+                    "$ref": "#/$defs/Types/power2_Name"
                 },
                 "power3_Name": {
-                    "$ref": "#/definitions/Types/power3_Name"
+                    "$ref": "#/$defs/Types/power3_Name"
                 },
                 "power4_Name": {
-                    "$ref": "#/definitions/Types/power4_Name"
+                    "$ref": "#/$defs/Types/power4_Name"
                 },
                 "power5_Name": {
-                    "$ref": "#/definitions/Types/power5_Name"
+                    "$ref": "#/$defs/Types/power5_Name"
                 },
                 "power6_Name": {
-                    "$ref": "#/definitions/Types/power6_Name"
+                    "$ref": "#/$defs/Types/power6_Name"
                 },
                 "power7_Name": {
-                    "$ref": "#/definitions/Types/power7_Name"
+                    "$ref": "#/$defs/Types/power7_Name"
                 },
                 "power8_Name": {
-                    "$ref": "#/definitions/Types/power8_Name"
+                    "$ref": "#/$defs/Types/power8_Name"
                 },
                 "power9_Name": {
-                    "$ref": "#/definitions/Types/power9_Name"
+                    "$ref": "#/$defs/Types/power9_Name"
                 },
                 "temp1_Name": {
-                    "$ref": "#/definitions/Types/temp1_Name"
+                    "$ref": "#/$defs/Types/temp1_Name"
                 },
                 "temp2_Name": {
-                    "$ref": "#/definitions/Types/temp2_Name"
+                    "$ref": "#/$defs/Types/temp2_Name"
                 },
                 "temp3_Name": {
-                    "$ref": "#/definitions/Types/temp3_Name"
+                    "$ref": "#/$defs/Types/temp3_Name"
                 },
                 "temp4_Name": {
-                    "$ref": "#/definitions/Types/temp4_Name"
+                    "$ref": "#/$defs/Types/temp4_Name"
                 },
                 "temp5_Name": {
-                    "$ref": "#/definitions/Types/temp5_Name"
+                    "$ref": "#/$defs/Types/temp5_Name"
                 },
                 "temp6_Name": {
-                    "$ref": "#/definitions/Types/temp6_Name"
+                    "$ref": "#/$defs/Types/temp6_Name"
                 },
                 "temp7_Name": {
-                    "$ref": "#/definitions/Types/temp7_Name"
+                    "$ref": "#/$defs/Types/temp7_Name"
                 },
                 "temp8_Name": {
-                    "$ref": "#/definitions/Types/temp8_Name"
+                    "$ref": "#/$defs/Types/temp8_Name"
                 },
                 "vout1_Max": {
-                    "$ref": "#/definitions/Types/vout1_Max"
+                    "$ref": "#/$defs/Types/vout1_Max"
                 },
                 "vout1_Min": {
-                    "$ref": "#/definitions/Types/vout1_Min"
+                    "$ref": "#/$defs/Types/vout1_Min"
                 },
                 "vout1_Name": {
-                    "$ref": "#/definitions/Types/vout1_Name"
+                    "$ref": "#/$defs/Types/vout1_Name"
                 },
                 "vout2_Max": {
-                    "$ref": "#/definitions/Types/vout2_Max"
+                    "$ref": "#/$defs/Types/vout2_Max"
                 },
                 "vout2_Min": {
-                    "$ref": "#/definitions/Types/vout2_Min"
+                    "$ref": "#/$defs/Types/vout2_Min"
                 },
                 "vout2_Name": {
-                    "$ref": "#/definitions/Types/vout2_Name"
+                    "$ref": "#/$defs/Types/vout2_Name"
                 },
                 "vout3_Max": {
-                    "$ref": "#/definitions/Types/vout3_Max"
+                    "$ref": "#/$defs/Types/vout3_Max"
                 },
                 "vout3_Min": {
-                    "$ref": "#/definitions/Types/vout3_Min"
+                    "$ref": "#/$defs/Types/vout3_Min"
                 },
                 "vout3_Name": {
-                    "$ref": "#/definitions/Types/vout3_Name"
+                    "$ref": "#/$defs/Types/vout3_Name"
                 },
                 "vout4_Max": {
-                    "$ref": "#/definitions/Types/vout4_Max"
+                    "$ref": "#/$defs/Types/vout4_Max"
                 },
                 "vout4_Min": {
-                    "$ref": "#/definitions/Types/vout4_Min"
+                    "$ref": "#/$defs/Types/vout4_Min"
                 },
                 "vout4_Name": {
-                    "$ref": "#/definitions/Types/vout4_Name"
+                    "$ref": "#/$defs/Types/vout4_Name"
                 },
                 "vout5_Max": {
-                    "$ref": "#/definitions/Types/vout5_Max"
+                    "$ref": "#/$defs/Types/vout5_Max"
                 },
                 "vout5_Min": {
-                    "$ref": "#/definitions/Types/vout5_Min"
+                    "$ref": "#/$defs/Types/vout5_Min"
                 },
                 "vout5_Name": {
-                    "$ref": "#/definitions/Types/vout5_Name"
+                    "$ref": "#/$defs/Types/vout5_Name"
                 },
                 "vout6_Max": {
-                    "$ref": "#/definitions/Types/vout6_Max"
+                    "$ref": "#/$defs/Types/vout6_Max"
                 },
                 "vout6_Min": {
-                    "$ref": "#/definitions/Types/vout6_Min"
+                    "$ref": "#/$defs/Types/vout6_Min"
                 },
                 "vout6_Name": {
-                    "$ref": "#/definitions/Types/vout6_Name"
+                    "$ref": "#/$defs/Types/vout6_Name"
                 },
                 "vout7_Max": {
-                    "$ref": "#/definitions/Types/vout7_Max"
+                    "$ref": "#/$defs/Types/vout7_Max"
                 },
                 "vout7_Min": {
-                    "$ref": "#/definitions/Types/vout7_Min"
+                    "$ref": "#/$defs/Types/vout7_Min"
                 },
                 "vout7_Name": {
-                    "$ref": "#/definitions/Types/vout7_Name"
+                    "$ref": "#/$defs/Types/vout7_Name"
                 },
                 "vout8_Max": {
-                    "$ref": "#/definitions/Types/vout8_Max"
+                    "$ref": "#/$defs/Types/vout8_Max"
                 },
                 "vout8_Min": {
-                    "$ref": "#/definitions/Types/vout8_Min"
+                    "$ref": "#/$defs/Types/vout8_Min"
                 },
                 "vout8_Name": {
-                    "$ref": "#/definitions/Types/vout8_Name"
+                    "$ref": "#/$defs/Types/vout8_Name"
                 },
                 "vout9_Max": {
-                    "$ref": "#/definitions/Types/vout9_Max"
+                    "$ref": "#/$defs/Types/vout9_Max"
                 },
                 "vout9_Min": {
-                    "$ref": "#/definitions/Types/vout9_Min"
+                    "$ref": "#/$defs/Types/vout9_Min"
                 },
                 "vout9_Name": {
-                    "$ref": "#/definitions/Types/vout9_Name"
+                    "$ref": "#/$defs/Types/vout9_Name"
                 },
                 "vout10_Max": {
-                    "$ref": "#/definitions/Types/vout10_Max"
+                    "$ref": "#/$defs/Types/vout10_Max"
                 },
                 "vout10_Min": {
-                    "$ref": "#/definitions/Types/vout10_Min"
+                    "$ref": "#/$defs/Types/vout10_Min"
                 },
                 "vout10_Name": {
-                    "$ref": "#/definitions/Types/vout10_Name"
+                    "$ref": "#/$defs/Types/vout10_Name"
                 },
                 "vout11_Max": {
-                    "$ref": "#/definitions/Types/vout11_Max"
+                    "$ref": "#/$defs/Types/vout11_Max"
                 },
                 "vout11_Min": {
-                    "$ref": "#/definitions/Types/vout11_Min"
+                    "$ref": "#/$defs/Types/vout11_Min"
                 },
                 "vout11_Name": {
-                    "$ref": "#/definitions/Types/vout11_Name"
+                    "$ref": "#/$defs/Types/vout11_Name"
                 },
                 "vout12_Max": {
-                    "$ref": "#/definitions/Types/vout12_Max"
+                    "$ref": "#/$defs/Types/vout12_Max"
                 },
                 "vout12_Min": {
-                    "$ref": "#/definitions/Types/vout12_Min"
+                    "$ref": "#/$defs/Types/vout12_Min"
                 },
                 "vout12_Name": {
-                    "$ref": "#/definitions/Types/vout12_Name"
+                    "$ref": "#/$defs/Types/vout12_Name"
                 },
                 "vout13_Max": {
-                    "$ref": "#/definitions/Types/vout13_Max"
+                    "$ref": "#/$defs/Types/vout13_Max"
                 },
                 "vout13_Min": {
-                    "$ref": "#/definitions/Types/vout13_Min"
+                    "$ref": "#/$defs/Types/vout13_Min"
                 },
                 "vout13_Name": {
-                    "$ref": "#/definitions/Types/vout13_Name"
+                    "$ref": "#/$defs/Types/vout13_Name"
                 },
                 "vout14_Max": {
-                    "$ref": "#/definitions/Types/vout14_Max"
+                    "$ref": "#/$defs/Types/vout14_Max"
                 },
                 "vout14_Min": {
-                    "$ref": "#/definitions/Types/vout14_Min"
+                    "$ref": "#/$defs/Types/vout14_Min"
                 },
                 "vout14_Name": {
-                    "$ref": "#/definitions/Types/vout14_Name"
+                    "$ref": "#/$defs/Types/vout14_Name"
                 },
                 "vout15_Max": {
-                    "$ref": "#/definitions/Types/vout15_Max"
+                    "$ref": "#/$defs/Types/vout15_Max"
                 },
                 "vout15_Min": {
-                    "$ref": "#/definitions/Types/vout15_Min"
+                    "$ref": "#/$defs/Types/vout15_Min"
                 },
                 "vout15_Name": {
-                    "$ref": "#/definitions/Types/vout15_Name"
+                    "$ref": "#/$defs/Types/vout15_Name"
                 },
                 "vout16_Max": {
-                    "$ref": "#/definitions/Types/vout16_Max"
+                    "$ref": "#/$defs/Types/vout16_Max"
                 },
                 "vout16_Min": {
-                    "$ref": "#/definitions/Types/vout16_Min"
+                    "$ref": "#/$defs/Types/vout16_Min"
                 },
                 "vout16_Name": {
-                    "$ref": "#/definitions/Types/vout16_Name"
+                    "$ref": "#/$defs/Types/vout16_Name"
                 },
                 "vout17_Max": {
-                    "$ref": "#/definitions/Types/vout17_Max"
+                    "$ref": "#/$defs/Types/vout17_Max"
                 },
                 "vout17_Min": {
-                    "$ref": "#/definitions/Types/vout17_Min"
+                    "$ref": "#/$defs/Types/vout17_Min"
                 },
                 "vout17_Name": {
-                    "$ref": "#/definitions/Types/vout17_Name"
+                    "$ref": "#/$defs/Types/vout17_Name"
                 },
                 "fan1_Name": {
-                    "$ref": "#/definitions/Types/fan1_Name"
+                    "$ref": "#/$defs/Types/fan1_Name"
                 },
                 "iout1_Offset": {
-                    "$ref": "#/definitions/Types/iout1_Offset"
+                    "$ref": "#/$defs/Types/iout1_Offset"
                 },
                 "pout1_Offset": {
-                    "$ref": "#/definitions/Types/pout1_Offset"
+                    "$ref": "#/$defs/Types/pout1_Offset"
                 },
                 "iout1_Scale": {
-                    "$ref": "#/definitions/Types/iout1_Scale"
+                    "$ref": "#/$defs/Types/iout1_Scale"
                 },
                 "pin_Scale": {
-                    "$ref": "#/definitions/Types/pin_Scale"
+                    "$ref": "#/$defs/Types/pin_Scale"
                 },
                 "in0_Scale": {
-                    "$ref": "#/definitions/Types/in0_Scale"
+                    "$ref": "#/$defs/Types/in0_Scale"
                 },
                 "in1_Scale": {
-                    "$ref": "#/definitions/Types/in1_Scale"
+                    "$ref": "#/$defs/Types/in1_Scale"
                 },
                 "in2_Scale": {
-                    "$ref": "#/definitions/Types/in2_Scale"
+                    "$ref": "#/$defs/Types/in2_Scale"
                 },
                 "in3_Scale": {
-                    "$ref": "#/definitions/Types/in3_Scale"
+                    "$ref": "#/$defs/Types/in3_Scale"
                 },
                 "in4_Scale": {
-                    "$ref": "#/definitions/Types/in4_Scale"
+                    "$ref": "#/$defs/Types/in4_Scale"
                 },
                 "in5_Scale": {
-                    "$ref": "#/definitions/Types/in5_Scale"
+                    "$ref": "#/$defs/Types/in5_Scale"
                 },
                 "in6_Scale": {
-                    "$ref": "#/definitions/Types/in6_Scale"
+                    "$ref": "#/$defs/Types/in6_Scale"
                 },
                 "in7_Scale": {
-                    "$ref": "#/definitions/Types/in7_Scale"
+                    "$ref": "#/$defs/Types/in7_Scale"
                 },
                 "in_voltage0_Scale": {
-                    "$ref": "#/definitions/Types/in_voltage0_Scale"
+                    "$ref": "#/$defs/Types/in_voltage0_Scale"
                 },
                 "in_voltage1_Scale": {
-                    "$ref": "#/definitions/Types/in_voltage1_Scale"
+                    "$ref": "#/$defs/Types/in_voltage1_Scale"
                 },
                 "in_voltage2_Scale": {
-                    "$ref": "#/definitions/Types/in_voltage2_Scale"
+                    "$ref": "#/$defs/Types/in_voltage2_Scale"
                 },
                 "in_voltage3_Scale": {
-                    "$ref": "#/definitions/Types/in_voltage3_Scale"
+                    "$ref": "#/$defs/Types/in_voltage3_Scale"
                 },
                 "in_voltage4_Scale": {
-                    "$ref": "#/definitions/Types/in_voltage4_Scale"
+                    "$ref": "#/$defs/Types/in_voltage4_Scale"
                 },
                 "in_voltage5_Scale": {
-                    "$ref": "#/definitions/Types/in_voltage5_Scale"
+                    "$ref": "#/$defs/Types/in_voltage5_Scale"
                 },
                 "in_voltage6_Scale": {
-                    "$ref": "#/definitions/Types/in_voltage6_Scale"
+                    "$ref": "#/$defs/Types/in_voltage6_Scale"
                 },
                 "in_voltage7_Scale": {
-                    "$ref": "#/definitions/Types/in_voltage7_Scale"
+                    "$ref": "#/$defs/Types/in_voltage7_Scale"
                 },
                 "in_voltage8_Scale": {
-                    "$ref": "#/definitions/Types/in_voltage8_Scale"
+                    "$ref": "#/$defs/Types/in_voltage8_Scale"
                 },
                 "in_voltage9_Scale": {
-                    "$ref": "#/definitions/Types/in_voltage9_Scale"
+                    "$ref": "#/$defs/Types/in_voltage9_Scale"
                 },
                 "PollRate": {
-                    "$ref": "#/definitions/Types/PollRate"
+                    "$ref": "#/$defs/Types/PollRate"
                 },
                 "Type": {
-                    "$ref": "#/definitions/Types/Type"
+                    "$ref": "#/$defs/Types/Type"
                 }
             },
             "required": ["Name", "Type"],
@@ -1012,7 +1012,7 @@
                         "type": "string"
                     },
                     "Polarity": {
-                        "$ref": "#/definitions/Types/Polarity"
+                        "$ref": "#/$defs/Types/Polarity"
                     }
                 },
                 "type": "object"
