@@ -221,6 +221,7 @@ foreach c : configs
     file = join_paths('configurations', c)
     install_data(
         file,
+        rename: c.replace('/','_'),
         install_dir: join_paths(
             packagedir,
             'configurations',
