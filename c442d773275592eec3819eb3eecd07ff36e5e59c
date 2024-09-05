@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "920e9156_3aeaf5b5",
+        "filename": "meson.build",
+        "patchSetId": 1
+      },
+      "lineNbr": 224,
+      "author": {
+        "id": 1000008
+      },
+      "writtenOn": "2024-09-05T21:56:41Z",
+      "side": 1,
+      "message": "To test new EM configs, one just throws the file into /etc/entity-manager/ or into the configuration dir down in /usr/share. \n\nNow if one were to try to do that but forgot to rename the file, there\u0027d be 2 files with the same probe and EM would throw away whichever ifaces were probed last.\n\nSo I don\u0027t know what I think of this.  At the very least, we\u0027d want some guidelines in the readme about the vendor subdirs and testing implications.\n\nAlternatively I guess we could just have EM recursively look for files and not flatten out the structure?",
+      "revId": "c442d773275592eec3819eb3eecd07ff36e5e59c",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    }
+  ]
+}
