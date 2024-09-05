@@ -87,13 +87,15 @@ class CommentTracker:
         return "\n".join(result)
 
 
-files = argv[1:]
+files = []
 
-for file in files[:]:
-    if os.path.isdir(file):
-        files.remove(file)
-        for f in os.listdir(file):
-            files.append(os.path.join(file, f))
+for file in argv[1:]:
+    if not os.path.isdir(file):
+        files.append(file)
+        continue
+    for root, _, filenames in os.walk(file):
+        for f in filenames:
+            files.append(os.path.join(root, f))
 
 for file in files:
     if not file.endswith(".json"):
