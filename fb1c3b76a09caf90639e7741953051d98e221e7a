@@ -22,6 +22,29 @@
       },
       "revId": "fb1c3b76a09caf90639e7741953051d98e221e7a",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0227d17b_f1ba3dd4",
+        "filename": "src/fru_utils.cpp",
+        "patchSetId": 4
+      },
+      "lineNbr": 531,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2024-09-05T23:30:37Z",
+      "side": 1,
+      "message": "can we use the character versions of these\n\n\u0027\\0\u0027 \u003d\u003d 0 is pretty easy to figure out\n\u0027 \u0027 \u003d\u003d 32 is not.\n\nI\u0027ve been on the fence about this before.  Technically if the length field isn\u0027t set correctly, how the string was interpreted (with the additional spaces) is correct.  I\u0027m not sure I care to fight that battle anymore, and I don\u0027t think this will cause any issues, so get the minor changes, and it looks fine to me.",
+      "range": {
+        "startLine": 531,
+        "startChar": 75,
+        "endLine": 531,
+        "endChar": 76
+      },
+      "revId": "fb1c3b76a09caf90639e7741953051d98e221e7a",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }
