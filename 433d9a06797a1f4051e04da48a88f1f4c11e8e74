@@ -16,6 +16,24 @@
       "message": "How did we come to the conclusion that this is the way we wanted it?\n\nIn my head I had thought I would start by doing \u003ccomponent_type\u003e/\u003cvendor\u003e_device.json, that exists on target in the same format.   That\u0027s fine we didn\u0027t do that, but at least some amount of discussion around why/how we\u0027re doing this is probably warranted.\n\n\n\nas an aside on pushing this, I\u0027d much rather we just squash all the move commits in a single commit, so we know they\u0027re all done, and we can discuss what the folder structure afterward looks like in a single review, rather than having to check out the series, and leave N comments on each one.",
       "revId": "433d9a06797a1f4051e04da48a88f1f4c11e8e74",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "96f1755a_cf32fe96",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2024-09-05T23:21:30Z",
+      "side": 1,
+      "message": "We should also get documented concretely what vendor means:  Is the the name of the manufacturer ODM of the component?  The name of the company of the person that pushes the config?  The name that it\u0027s branded as?  The name of the manufacturer field in the FRU?  Any of the above depending on disposition?  Regardless of which we pick, we should have a pointer for folks that add new configs.\n\nAdditionally, things like OCP NICs, GPUs, NVMe, and other things that get reused between manufacturers;  Whatever policy we pick, we should avoid duplication in those cases.",
+      "parentUuid": "defd5b45_a81b85fb",
+      "revId": "433d9a06797a1f4051e04da48a88f1f4c11e8e74",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }
