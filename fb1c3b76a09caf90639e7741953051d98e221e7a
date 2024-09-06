@@ -24,6 +24,30 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "8195ce1d_b64b9267",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 4
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 1002089
+      },
+      "writtenOn": "2024-09-06T02:59:33Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "4b9f30e7_c0a67e06",
+      "range": {
+        "startLine": 7,
+        "startChar": 0,
+        "endLine": 7,
+        "endChar": 15
+      },
+      "revId": "fb1c3b76a09caf90639e7741953051d98e221e7a",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "0227d17b_f1ba3dd4",
@@ -37,6 +61,30 @@
       "writtenOn": "2024-09-05T23:30:37Z",
       "side": 1,
       "message": "can we use the character versions of these\n\n\u0027\\0\u0027 \u003d\u003d 0 is pretty easy to figure out\n\u0027 \u0027 \u003d\u003d 32 is not.\n\nI\u0027ve been on the fence about this before.  Technically if the length field isn\u0027t set correctly, how the string was interpreted (with the additional spaces) is correct.  I\u0027m not sure I care to fight that battle anymore, and I don\u0027t think this will cause any issues, so get the minor changes, and it looks fine to me.",
+      "range": {
+        "startLine": 531,
+        "startChar": 75,
+        "endLine": 531,
+        "endChar": 76
+      },
+      "revId": "fb1c3b76a09caf90639e7741953051d98e221e7a",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "d369956b_b609b999",
+        "filename": "src/fru_utils.cpp",
+        "patchSetId": 4
+      },
+      "lineNbr": 531,
+      "author": {
+        "id": 1002089
+      },
+      "writtenOn": "2024-09-06T02:59:33Z",
+      "side": 1,
+      "message": "Done. In my opinion, it\u0027s more convenient to verify serial number and part number on Redfish, without interference of the extra spaces.",
+      "parentUuid": "0227d17b_f1ba3dd4",
       "range": {
         "startLine": 531,
         "startChar": 75,
