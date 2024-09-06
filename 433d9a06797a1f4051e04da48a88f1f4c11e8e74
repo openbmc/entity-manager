@@ -34,6 +34,24 @@
       "parentUuid": "defd5b45_a81b85fb",
       "revId": "433d9a06797a1f4051e04da48a88f1f4c11e8e74",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "536517c3_e725f009",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2024-09-06T01:33:49Z",
+      "side": 1,
+      "message": "\u003e How did we come to the conclusion that this is the way we wanted it?\n\nThe aim was somewhat selfish.  I\u0027d like to be able to set OWNERs for the sub-directory for our hardware.  That would imply doing it on a vendor basis (because I don\u0027t think we want to enumerate every file in OWNERs).\n\n\u003e  I\u0027d much rather we just squash all the move commits in a single commit,\n\nSure.  I can squash.\n\n\u003e We should also get documented concretely what vendor means:\n\nI can write some words of what I think is most helpful.",
+      "parentUuid": "96f1755a_cf32fe96",
+      "revId": "433d9a06797a1f4051e04da48a88f1f4c11e8e74",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }
