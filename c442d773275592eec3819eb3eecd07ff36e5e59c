@@ -34,6 +34,24 @@
       "parentUuid": "920e9156_3aeaf5b5",
       "revId": "c442d773275592eec3819eb3eecd07ff36e5e59c",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c5ce9ad3_32fb780e",
+        "filename": "meson.build",
+        "patchSetId": 1
+      },
+      "lineNbr": 224,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2024-09-06T01:36:52Z",
+      "side": 1,
+      "message": "I\u0027m fine not doing it the way I\u0027ve done it in the commit.  As I was doing the `meson install` I realized the current behavior had the potential for collisions and just tried something to avoid it.\n\nI\u0027d rather not prepend the name to every file like that.  I think I\u0027ll look at implementing it on the server side, like Matt said, to have it go recursive.",
+      "parentUuid": "1c381b88_6f73337b",
+      "revId": "c442d773275592eec3819eb3eecd07ff36e5e59c",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }
