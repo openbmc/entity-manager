@@ -2088,6 +2088,25 @@
                 "Units": "DegreesC"
             },
             {
+                "Name": "SysInletTemp",
+                "Sensors": [
+                    "SysCabInletTemp",
+                    "MBInletTemp1",
+                    "MBInletTemp2",
+                    "InletTemp"
+                ],
+                "Thresholds": [
+                    {
+                        "Direction": "greater than",
+                        "Name": "upper critical",
+                        "Severity": 1,
+                        "Value": 65
+                    }
+                ],
+                "Type": "Minimum",
+                "Units": "DegreesC"
+            },
+            {
                 "Address": "0x6a",
                 "Bus": 80,
                 "Name": "m2nvme0",
