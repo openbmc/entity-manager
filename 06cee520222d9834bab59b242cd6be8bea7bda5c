@@ -3,6 +3,23 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "3a26e3b6_29d70611",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2024-09-10T23:33:20Z",
+      "side": 1,
+      "message": "Overall I\u0027m in support of this.  I have a worry that as written the \"options 1, 2, and 3\" thing is going to cause some conflicts between the rules.  I\u0027d rather we get it down to a single policy, where we make the intent clear, then call out degenerate cases like OCP explicitly with a policy, rather than try to make it generic.  I suspect this is one of those things where most of us \"know\" what the right answer is, but writing down rules that we can point to when people commit things is hard.",
+      "revId": "06cee520222d9834bab59b242cd6be8bea7bda5c",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "fe68827b_662108cb",
         "filename": "configurations/VENDORS.md",
         "patchSetId": 2
@@ -50,6 +67,87 @@
       "side": 1,
       "message": "The \u0027Type\u0027 field is where it shows up.  It\u0027s  just a string now and there are about 125 values in use today so it wouldn\u0027t be all the pleasant to make an enum but we could.",
       "parentUuid": "1249f123_5df2126a",
+      "revId": "06cee520222d9834bab59b242cd6be8bea7bda5c",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "af4ad73d_2bfa6b08",
+        "filename": "configurations/VENDORS.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2024-09-10T23:33:20Z",
+      "side": 1,
+      "message": "The Type field really needs to be turned into an Enum at some point in the schemas, at which point I think Patricks worry is moot.\n\nI\u0027d also say that people adding downstream-only functionality is already a problem.  I don\u0027t think this proposal makes it worse until we start giving people maintainership/reviewership of folders, at which point we can make the expectations clear as we onboard folks.",
+      "parentUuid": "6ff2094c_909b0a5c",
+      "revId": "06cee520222d9834bab59b242cd6be8bea7bda5c",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "13806642_12febdb6",
+        "filename": "configurations/VENDORS.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 24,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2024-09-10T23:33:20Z",
+      "side": 1,
+      "message": "We don\u0027t currently have any \"assembled product\" configs, they\u0027re all per component, so I suspect #2 can just be entirely removed until we actually support the idea of a collection of components as a \"product\" in code.",
+      "range": {
+        "startLine": 23,
+        "startChar": 20,
+        "endLine": 24,
+        "endChar": 47
+      },
+      "revId": "06cee520222d9834bab59b242cd6be8bea7bda5c",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4b805d1a_a0743a56",
+        "filename": "configurations/VENDORS.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 30,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2024-09-10T23:33:20Z",
+      "side": 1,
+      "message": "#3 reads in a pretty complicated way and I\u0027d have trouble enforcing it.  Should we just say:\n\nDesigns donated to OCP that are not reused between BMC implementations will be added with the donating company as the vendor.\nDesigns donated to OCP that are reused between BMC implementations will be added with OCP as the vendor.\n\nFirst clause covers things like mt olympus, which obviously goes into the microsoft folder.\nSecond clause covers things like OCP NICs, which get reused a lot and we\u0027d like to not duplicate config files between two different companies.",
+      "range": {
+        "startLine": 29,
+        "startChar": 50,
+        "endLine": 30,
+        "endChar": 57
+      },
+      "revId": "06cee520222d9834bab59b242cd6be8bea7bda5c",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c7b35498_88494e2f",
+        "filename": "configurations/VENDORS.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 41,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2024-09-10T23:33:20Z",
+      "side": 1,
+      "message": "Should we also call out that the Probe statements for all items in a given companies folder must include a check for that companies name in the FRU if using FRU field detection.  This seems like a way we can audit that the rules are actually being followed.",
       "revId": "06cee520222d9834bab59b242cd6be8bea7bda5c",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
