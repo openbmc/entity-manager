@@ -10,12 +10,40 @@
             "Address": "0x4b",
             "Bus": 23,
             "Name": "FIOBOARD_TEMP_C",
+            "Thresholds": [
+                {
+                    "Direction": "greater than",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 45
+                },
+                {
+                    "Direction": "less than",
+                    "Name": "lower critical",
+                    "Severity": 1,
+                    "Value": 5
+                }
+            ],
             "Type": "TMP75"
         },
         {
             "Address": "0x4f",
             "Bus": 23,
             "Name": "FIOBOARD_REMOTE_TEMP_C",
+            "Thresholds": [
+                {
+                    "Direction": "greater than",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 45
+                },
+                {
+                    "Direction": "less than",
+                    "Name": "lower critical",
+                    "Severity": 1,
+                    "Value": 5
+                }
+            ],
             "Type": "TMP75"
         }
     ],
