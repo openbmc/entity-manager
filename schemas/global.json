@@ -134,6 +134,9 @@
                 },
                 "xyz.openbmc_project.Inventory.Item.BMC": {
                     "$ref": "openbmc-dbus.json#/definitions/xyz/openbmc_project/Inventory/Item/BMC"
+                },
+                "xyz.openbmc_project.Inventory.Item.Storage": {
+                    "$ref": "openbmc-dbus.json#/definitions/xyz/openbmc_project/Inventory/Item/Storage"
                 }
             },
             "required": ["Exposes", "Name", "Probe", "Type"]
