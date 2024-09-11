@@ -15,6 +15,22 @@
                 "power1"
             ],
             "Name": "HDDBOARD_SSD0_INA230",
+            "Thresholds": [
+                {
+                    "Direction": "greater than",
+                    "Label": "in1",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 13.6
+                },
+                {
+                    "Direction": "less than",
+                    "Label": "in1",
+                    "Name": "lower critical",
+                    "Severity": 1,
+                    "Value": 10.5
+                }
+            ],
             "Type": "INA230",
             "curr1_Name": "HDDBOARD_SSD0_P12V_CURR_A",
             "in1_Name": "HDDBOARD_SSD0_P12V_VOLT_V",
@@ -29,6 +45,22 @@
                 "power1"
             ],
             "Name": "HDDBOARD_SSD1_INA230",
+            "Thresholds": [
+                {
+                    "Direction": "greater than",
+                    "Label": "in1",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 13.6
+                },
+                {
+                    "Direction": "less than",
+                    "Label": "in1",
+                    "Name": "lower critical",
+                    "Severity": 1,
+                    "Value": 10.5
+                }
+            ],
             "Type": "INA230",
             "curr1_Name": "HDDBOARD_SSD1_P12V_CURR_A",
             "in1_Name": "HDDBOARD_SSD1_P12V_VOLT_V",
@@ -43,6 +75,22 @@
                 "power1"
             ],
             "Name": "HDDBOARD_SSD2_INA230",
+            "Thresholds": [
+                {
+                    "Direction": "greater than",
+                    "Label": "in1",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 13.6
+                },
+                {
+                    "Direction": "less than",
+                    "Label": "in1",
+                    "Name": "lower critical",
+                    "Severity": 1,
+                    "Value": 10.5
+                }
+            ],
             "Type": "INA230",
             "curr1_Name": "HDDBOARD_SSD2_P12V_CURR_A",
             "in1_Name": "HDDBOARD_SSD2_P12V_VOLT_V",
@@ -57,6 +105,22 @@
                 "power1"
             ],
             "Name": "HDDBOARD_SSD3_INA230",
+            "Thresholds": [
+                {
+                    "Direction": "greater than",
+                    "Label": "in1",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 13.6
+                },
+                {
+                    "Direction": "less than",
+                    "Label": "in1",
+                    "Name": "lower critical",
+                    "Severity": 1,
+                    "Value": 10.5
+                }
+            ],
             "Type": "INA230",
             "curr1_Name": "HDDBOARD_SSD3_P12V_CURR_A",
             "in1_Name": "HDDBOARD_SSD3_P12V_VOLT_V",
