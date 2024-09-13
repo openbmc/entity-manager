@@ -9,6 +9,7 @@
             "ICoefficient": -0.035,
             "ILimitMax": 100,
             "ILimitMin": -50,
+            "InputUnavailableAsFailed": false,
             "Inputs": [
                 "Sentinel_Dome_Slot $bus % 15 MB_DIMM_A_TEMP_C",
                 "Sentinel_Dome_Slot $bus % 15 MB_DIMM_B_TEMP_C",
@@ -46,6 +47,7 @@
             "ICoefficient": -0.035,
             "ILimitMax": 100,
             "ILimitMin": -50,
+            "InputUnavailableAsFailed": false,
             "Inputs": [
                 "Sentinel_Dome_Slot $bus % 15 MB_CPU_TEMP_C"
             ],
@@ -72,6 +74,7 @@
             "ICoefficient": -0.02,
             "ILimitMax": 100,
             "ILimitMin": -50,
+            "InputUnavailableAsFailed": false,
             "Inputs": [
                 "Sentinel_Dome_Slot $bus % 15 MB_SSD_BOOT_TEMP_C"
             ],
@@ -98,6 +101,7 @@
             "ICoefficient": -0.02,
             "ILimitMax": 100,
             "ILimitMin": -50,
+            "InputUnavailableAsFailed": false,
             "Inputs": [
                 "Sentinel_Dome_Slot $bus % 15 MB_SSD_DATA_TEMP_C"
             ],
@@ -124,6 +128,7 @@
             "ICoefficient": -0.02,
             "ILimitMax": 100,
             "ILimitMin": -50,
+            "InputUnavailableAsFailed": false,
             "Inputs": [
                 "Sentinel_Dome_Slot $bus % 15 MB_VR_CPU0_TEMP_C",
                 "Sentinel_Dome_Slot $bus % 15 MB_VR_SOC_TEMP_C",
@@ -147,6 +152,7 @@
         },
         {
             "Class": "temp",
+            "InputUnavailableAsFailed": false,
             "Inputs": [
                 "Sentinel_Dome_Slot $bus % 15 MB_INLET_TEMP_C",
                 "Sentinel_Dome_Slot $bus % 15 MB_OUTLET_TEMP_C"
@@ -167,6 +173,7 @@
         },
         {
             "Class": "temp",
+            "InputUnavailableAsFailed": false,
             "Inputs": [
                 "Sentinel_Dome_Slot $bus % 15 MB_X8_RETIMER_TEMP_C"
             ],
@@ -186,6 +193,7 @@
         },
         {
             "Class": "temp",
+            "InputUnavailableAsFailed": false,
             "Inputs": [
                 "Calibrated_Sentinel_Dome_Slot $bus % 15 MB_FIO_TEMP_C"
             ],
@@ -243,6 +251,7 @@
         },
         {
             "Class": "temp",
+            "InputUnavailableAsFailed": false,
             "Inputs": [
                 "Sentinel_Dome_Slot $bus % 15 MB_DIMM_A_TEMP_C",
                 "Sentinel_Dome_Slot $bus % 15 MB_DIMM_B_TEMP_C",
@@ -283,6 +292,7 @@
         },
         {
             "Class": "temp",
+            "InputUnavailableAsFailed": false,
             "Inputs": [
                 "Sentinel_Dome_Slot $bus % 15 MB_CPU_TEMP_C"
             ],
@@ -318,6 +328,7 @@
         },
         {
             "Class": "temp",
+            "InputUnavailableAsFailed": false,
             "Inputs": [
                 "Sentinel_Dome_Slot $bus % 15 MB_SSD_BOOT_TEMP_C"
             ],
@@ -347,6 +358,7 @@
         },
         {
             "Class": "temp",
+            "InputUnavailableAsFailed": false,
             "Inputs": [
                 "Sentinel_Dome_Slot $bus % 15 MB_SSD_DATA_TEMP_C"
             ],
@@ -376,6 +388,7 @@
         },
         {
             "Class": "temp",
+            "InputUnavailableAsFailed": false,
             "Inputs": [
                 "Sentinel_Dome_Slot $bus % 15 MB_VR_CPU0_TEMP_C",
                 "Sentinel_Dome_Slot $bus % 15 MB_VR_SOC_TEMP_C",

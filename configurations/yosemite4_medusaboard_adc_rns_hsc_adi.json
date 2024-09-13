@@ -1796,6 +1796,27 @@
             "Inputs": [
                 "MEDUSA_48VHSC0_TEMP_C",
                 "MEDUSA_48VHSC1_TEMP_C",
+                "MEDUSA_TEMP0_C",
+                "MEDUSA_TEMP1_C"
+            ],
+            "Name": "Stepwise_MEDUSA_Non_Critical_Sensors",
+            "NegativeHysteresis": 0,
+            "Output": [
+                20.0
+            ],
+            "PositiveHysteresis": 0,
+            "Reading": [
+                20.0
+            ],
+            "Type": "Stepwise",
+            "Zones": [
+                "Zone 1"
+            ]
+        },
+        {
+            "Class": "temp",
+            "InputUnavailableAsFailed": false,
+            "Inputs": [
                 "MEDUSA_MB1_12VHSC_TEMP_C",
                 "MEDUSA_MB2_12VHSC_TEMP_C",
                 "MEDUSA_MB3_12VHSC_TEMP_C",
@@ -1803,11 +1824,9 @@
                 "MEDUSA_MB5_12VHSC_TEMP_C",
                 "MEDUSA_MB6_12VHSC_TEMP_C",
                 "MEDUSA_MB7_12VHSC_TEMP_C",
-                "MEDUSA_MB8_12VHSC_TEMP_C",
-                "MEDUSA_TEMP0_C",
-                "MEDUSA_TEMP1_C"
+                "MEDUSA_MB8_12VHSC_TEMP_C"
             ],
-            "Name": "Stepwise_MEDUSA_Non_Critical_Sensors",
+            "Name": "Stepwise_MEDUSA_MB_12VHSC",
             "NegativeHysteresis": 0,
             "Output": [
                 20.0
