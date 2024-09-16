@@ -1348,6 +1348,22 @@ int main()
             rescanBusses(busMap, dbusInterfaceMap, unknownBusObjectCount,
                          powerIsOn, objServer, systemBus);
         });
+
+    iface->register_method(
+        "UpdateFruProperty",
+        [&](const uint32_t bus, const uint32_t address,
+            const std::string& propertyName, const std::string& propertyValue) {
+            if (!updateFRUProperty(propertyValue, bus, address, propertyName,
+                                   dbusInterfaceMap, unknownBusObjectCount,
+                                   powerIsOn, objServer, systemBus))
+            {
+                throw std::invalid_argument("Invalid Arguments.");
+                return;
+            }
+            rescanBusses(busMap, dbusInterfaceMap, unknownBusObjectCount,
+                         powerIsOn, objServer, systemBus);
+        });
+
     iface->initialize();
 
     std::function<void(sdbusplus::message_t & message)> eventHandler =
