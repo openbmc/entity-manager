@@ -71,6 +71,8 @@ const static constexpr char* baseboardFruLocation =
     "/etc/fru/baseboard.fru.bin";
 
 const static constexpr char* i2CDevLocation = "/dev";
+const static constexpr char* backupsLocation =
+    "/var/lib/entity-manager/backups/";
 
 // TODO Refactor these to not be globals
 // NOLINTBEGIN(cppcoreguidelines-avoid-non-const-global-variables)
@@ -119,6 +121,75 @@ static bool hasEepromFile(size_t bus, size_t address)
     {
         return false;
     }
+}
+
+static std::string getBackupPath(size_t bus, size_t address)
+{
+    return backupsLocation + std::to_string(bus) + "-" +
+           std::to_string(address) + ".bin";
+}
+
+static bool hasBackupFile(size_t bus, size_t address)
+{
+    auto backupPath = getBackupPath(bus, address);
+
+    lg2::debug("checking if {PATH} exists", "PATH", backupPath);
+    try
+    {
+        return fs::exists(backupPath);
+    }
+    catch (...)
+    {
+        lg2::error("no backup found!");
+        return false;
+    }
+}
+
+static bool createBackupFile(size_t bus, size_t address)
+{
+    auto eepromPath = getEepromPath(bus, address);
+    auto backupPath = getBackupPath(bus, address);
+
+    lg2::info("backing up FRU eeprom: copying {FROM} to {TO}", "FROM",
+              eepromPath, "TO", backupPath);
+
+    try
+    {
+        fs::copy(eepromPath, backupPath);
+        return true;
+    }
+    catch (...)
+    {
+        lg2::error("creating backup failed!");
+        return false;
+    }
+}
+
+static bool restoreFromBackup(size_t bus, size_t address)
+{
+    auto eepromPath = getEepromPath(bus, address);
+    auto backupPath = getBackupPath(bus, address);
+
+    lg2::info("restoring FRU eeprom: copying {FROM} to {TO}", "FROM",
+              backupPath, "TO", eepromPath);
+
+    if (hasBackupFile(bus, address))
+    {
+        try
+        {
+            fs::copy(backupPath, eepromPath,
+                     fs::copy_options::overwrite_existing);
+            return true;
+        }
+        catch (...)
+        {
+            lg2::error("resetting fru failed!");
+            return false;
+        }
+    }
+
+    lg2::error("no backup found!");
+    return false;
 }
 
 static int64_t readFromEeprom(int fd, off_t offset, size_t len, uint8_t* buf)
@@ -1133,6 +1204,17 @@ bool updateFRUProperty(
     sdbusplus::asio::object_server& objServer,
     std::shared_ptr<sdbusplus::asio::connection>& systemBus)
 {
+    // create a backup of the original eeprom file, before altering any property
+    if (!hasBackupFile(bus, address))
+    {
+        lg2::info("Creating backup of FRU data for bus {BUS}, address {ADDR}",
+                  "BUS", bus, "ADDR", address);
+        if (!createBackupFile(bus, address))
+        {
+            lg2::error("Failure creating backup of FRU data, aborting.. \n");
+            return false;
+        }
+    }
     size_t updatePropertyReqLen = updatePropertyReq.length();
     if (updatePropertyReqLen == 1 || updatePropertyReqLen > 63)
     {
@@ -1363,6 +1445,36 @@ int main()
             rescanBusses(busMap, dbusInterfaceMap, unknownBusObjectCount,
                          powerIsOn, objServer, systemBus);
         });
+
+    iface->register_method(
+        "BackupFru", [&](const uint32_t bus, const uint32_t address) {
+            if (!hasBackupFile(bus, address))
+            {
+                if (!createBackupFile(bus, address))
+                {
+                    throw std::invalid_argument("Invalid Arguments");
+                }
+            }
+        });
+
+    iface->register_method(
+        "ResetFru", [&](const uint32_t bus, const uint32_t address) {
+            if (!restoreFromBackup(bus, address))
+            {
+                throw std::invalid_argument("Invalid Arguments");
+                return;
+            }
+            rescanBusses(busMap, dbusInterfaceMap, unknownBusObjectCount,
+                         powerIsOn, objServer, systemBus);
+        });
+
+    iface->register_method("CallDebugFiveTimes", [&]() {
+        lg2::debug("Debug");
+        lg2::debug("Debug");
+        lg2::debug("Debug");
+        lg2::debug("Debug");
+        lg2::debug("Debug");
+    });
 
     iface->initialize();
 
