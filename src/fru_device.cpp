@@ -67,6 +67,10 @@ constexpr size_t busTimeoutSeconds = 10;
 
 constexpr const char* blocklistPath = PACKAGE_DIR "blacklist.json";
 
+constexpr const char* fruUpdateSchema = PACKAGE_DIR
+    "configurations/schemas/fru_update_policy.json";
+constexpr const char* fruUpdatePolicyPath = PACKAGE_DIR
+    "fru_update_policy.json";
 const static constexpr char* baseboardFruLocation =
     "/etc/fru/baseboard.fru.bin";
 
@@ -97,8 +101,10 @@ bool updateFRUProperty(
         std::pair<size_t, size_t>,
         std::shared_ptr<sdbusplus::asio::dbus_interface>>& dbusInterfaceMap,
     size_t& unknownBusObjectCount, const bool& powerIsOn,
+    std::set<std::string>& updatableFruProperties,
     sdbusplus::asio::object_server& objServer,
-    std::shared_ptr<sdbusplus::asio::connection>& systemBus);
+    std::shared_ptr<sdbusplus::asio::connection>& systemBus,
+    bool dbusCall = false);
 
 // Given a bus/address, produce the path in sysfs for an eeprom.
 static std::string getEepromPath(size_t bus, size_t address)
@@ -702,6 +708,49 @@ void loadBlocklist(const char* path)
     }
 }
 
+void loadFruUpdatePolicy(const char* path,
+                         std::set<std::string>& updatableFruProperties)
+{
+    std::ifstream schemaFile(fruUpdateSchema);
+
+    if (!schemaFile.good())
+    {
+        throw std::invalid_argument("No schema avaliable, cannot validate.");
+    }
+    nlohmann::json schema =
+        nlohmann::json::parse(schemaFile, nullptr, false, true);
+    if (schema.is_discarded())
+    {
+        lg2::error("Schema not legal.");
+    }
+
+    std::ifstream fruUpdatePolicyStream(path);
+    if (!fruUpdatePolicyStream.good())
+    {
+        lg2::error("Cannot open fru_update_policy.json file.");
+        return;
+    }
+
+    nlohmann::json data =
+        nlohmann::json::parse(fruUpdatePolicyStream, nullptr, false);
+
+    if (!validateJson(schema, data))
+    {
+        lg2::error("Error validating fru_update_policy.json file.");
+        return;
+    }
+
+    auto areas = data.at("areas");
+    for (const auto& areasIterator : areas)
+    {
+        for (const auto& property : areasIterator)
+        {
+            std::string p = property.get<std::string>();
+            updatableFruProperties.insert(p);
+        }
+    }
+}
+
 static void findI2CDevices(const std::vector<fs::path>& i2cBuses,
                            BusMap& busmap, const bool& powerIsOn,
                            sdbusplus::asio::object_server& objServer)
@@ -806,7 +855,8 @@ void addFruObjectToDbus(
         std::pair<size_t, size_t>,
         std::shared_ptr<sdbusplus::asio::dbus_interface>>& dbusInterfaceMap,
     uint32_t bus, uint32_t address, size_t& unknownBusObjectCount,
-    const bool& powerIsOn, sdbusplus::asio::object_server& objServer,
+    const bool& powerIsOn, std::set<std::string>& updatableFruProperties,
+    sdbusplus::asio::object_server& objServer,
     std::shared_ptr<sdbusplus::asio::connection>& systemBus)
 {
     boost::container::flat_map<std::string, std::string> formattedFRU;
@@ -850,7 +900,8 @@ void addFruObjectToDbus(
             iface->register_property(
                 key, property.second + '\0',
                 [bus, address, propertyName, &dbusInterfaceMap,
-                 &unknownBusObjectCount, &powerIsOn, &objServer,
+                 &unknownBusObjectCount, &powerIsOn, &updatableFruProperties,
+                 &objServer,
                  &systemBus](const std::string& req, std::string& resp) {
                     if (strcmp(req.c_str(), resp.c_str()) != 0)
                     {
@@ -858,7 +909,8 @@ void addFruObjectToDbus(
                         if (updateFRUProperty(req, bus, address, propertyName,
                                               dbusInterfaceMap,
                                               unknownBusObjectCount, powerIsOn,
-                                              objServer, systemBus))
+                                              updatableFruProperties, objServer,
+                                              systemBus))
                         {
                             resp = req;
                         }
@@ -882,6 +934,28 @@ void addFruObjectToDbus(
     // baseboard will be 0, 0
     iface->register_property("BUS", bus);
     iface->register_property("ADDRESS", address);
+
+    if constexpr (ENABLE_FRU_UPDATE_PROPERTY)
+    {
+        iface->register_method(
+            "UpdateFruProperty",
+            [&updatableFruProperties, &dbusInterfaceMap, &unknownBusObjectCount,
+             &powerIsOn, &objServer, &systemBus, bus,
+             address](const std::string& propertyName,
+                      const std::string& propertyValue) {
+                if (!updateFRUProperty(
+                        propertyValue, bus, address, propertyName,
+                        dbusInterfaceMap, unknownBusObjectCount, powerIsOn,
+                        updatableFruProperties, objServer, systemBus, true))
+                {
+                    throw DBusInternalError();
+                    return;
+                }
+
+                lg2::info("FRU property updated: {PROP}={VAL}", "PROP",
+                          propertyName, "VAL", propertyValue);
+            });
+    }
 
     iface->initialize();
 }
@@ -1049,6 +1123,7 @@ void rescanOneBus(
         std::pair<size_t, size_t>,
         std::shared_ptr<sdbusplus::asio::dbus_interface>>& dbusInterfaceMap,
     bool dbusCall, size_t& unknownBusObjectCount, const bool& powerIsOn,
+    std::set<std::string>& updatableFruProperties,
     sdbusplus::asio::object_server& objServer,
     std::shared_ptr<sdbusplus::asio::connection>& systemBus)
 {
@@ -1083,7 +1158,7 @@ void rescanOneBus(
     auto scan = std::make_shared<FindDevicesWithCallback>(
         i2cBuses, busmap, powerIsOn, objServer,
         [busNum, &busmap, &dbusInterfaceMap, &unknownBusObjectCount, &powerIsOn,
-         &objServer, &systemBus]() {
+         &updatableFruProperties, &objServer, &systemBus]() {
             for (auto busIface = dbusInterfaceMap.begin();
                  busIface != dbusInterfaceMap.end();)
             {
@@ -1106,7 +1181,8 @@ void rescanOneBus(
             {
                 addFruObjectToDbus(device.second, dbusInterfaceMap,
                                    static_cast<uint32_t>(busNum), device.first,
-                                   unknownBusObjectCount, powerIsOn, objServer,
+                                   unknownBusObjectCount, powerIsOn,
+                                   updatableFruProperties, objServer,
                                    systemBus);
             }
         });
@@ -1119,6 +1195,7 @@ void rescanBusses(
         std::pair<size_t, size_t>,
         std::shared_ptr<sdbusplus::asio::dbus_interface>>& dbusInterfaceMap,
     size_t& unknownBusObjectCount, const bool& powerIsOn,
+    std::set<std::string>& updatableFruProperties,
     sdbusplus::asio::object_server& objServer,
     std::shared_ptr<sdbusplus::asio::connection>& systemBus)
 {
@@ -1183,10 +1260,10 @@ void rescanBusses(
                 {
                     for (auto& device : *devicemap.second)
                     {
-                        addFruObjectToDbus(device.second, dbusInterfaceMap,
-                                           devicemap.first, device.first,
-                                           unknownBusObjectCount, powerIsOn,
-                                           objServer, systemBus);
+                        addFruObjectToDbus(
+                            device.second, dbusInterfaceMap, devicemap.first,
+                            device.first, unknownBusObjectCount, powerIsOn,
+                            updatableFruProperties, objServer, systemBus);
                     }
                 }
             });
@@ -1212,8 +1289,9 @@ bool updateFRUProperty(
         std::pair<size_t, size_t>,
         std::shared_ptr<sdbusplus::asio::dbus_interface>>& dbusInterfaceMap,
     size_t& unknownBusObjectCount, const bool& powerIsOn,
+    std::set<std::string>& updatableFruProperties,
     sdbusplus::asio::object_server& objServer,
-    std::shared_ptr<sdbusplus::asio::connection>& systemBus)
+    std::shared_ptr<sdbusplus::asio::connection>& systemBus, bool dbusCall)
 {
     size_t updatePropertyReqLen = updatePropertyReq.length();
     if (updatePropertyReqLen == 1 || updatePropertyReqLen > 63)
@@ -1231,6 +1309,19 @@ bool updateFRUProperty(
     {
         std::cerr << "Failure getting FRU Data \n";
         return false;
+    }
+
+    if (ENABLE_FRU_UPDATE_PROPERTY && dbusCall)
+    {
+        if (updatableFruProperties.find(propertyName) ==
+            updatableFruProperties.end())
+        {
+            lg2::error("Cannot update {PROP}. Policy violated.", "PROP",
+                       propertyName);
+            throw std::invalid_argument(
+                "Update for this property is not allowed");
+            return false;
+        }
     }
 
     struct FruArea fruAreaParams{};
@@ -1369,7 +1460,7 @@ bool updateFRUProperty(
 
     // Rescan the bus so that GetRawFru dbus-call fetches updated values
     rescanBusses(busMap, dbusInterfaceMap, unknownBusObjectCount, powerIsOn,
-                 objServer, systemBus);
+                 updatableFruProperties, objServer, systemBus);
     return true;
 }
 
@@ -1393,6 +1484,12 @@ int main()
     // check for and load blocklist with initial buses.
     loadBlocklist(blocklistPath);
 
+    std::set<std::string> updatableFruProperties = {};
+    if constexpr (ENABLE_FRU_UPDATE_PROPERTY)
+    {
+        loadFruUpdatePolicy(fruUpdatePolicyPath, updatableFruProperties);
+    }
+
     systemBus->request_name("xyz.openbmc_project.FruDevice");
 
     // this is a map with keys of pair(bus number, address) and values of
@@ -1407,28 +1504,29 @@ int main()
 
     iface->register_method("ReScan", [&]() {
         rescanBusses(busMap, dbusInterfaceMap, unknownBusObjectCount, powerIsOn,
-                     objServer, systemBus);
+                     updatableFruProperties, objServer, systemBus);
     });
 
     iface->register_method("ReScanBus", [&](uint16_t bus) {
         rescanOneBus(busMap, bus, dbusInterfaceMap, true, unknownBusObjectCount,
-                     powerIsOn, objServer, systemBus);
+                     powerIsOn, updatableFruProperties, objServer, systemBus);
     });
 
     iface->register_method("GetRawFru", getFRUInfo);
 
-    iface->register_method(
-        "WriteFru", [&](const uint16_t bus, const uint8_t address,
-                        const std::vector<uint8_t>& data) {
-            if (!writeFRU(bus, address, data))
-            {
-                throw std::invalid_argument("Invalid Arguments.");
-                return;
-            }
-            // schedule rescan on success
-            rescanBusses(busMap, dbusInterfaceMap, unknownBusObjectCount,
-                         powerIsOn, objServer, systemBus);
-        });
+    iface->register_method("WriteFru", [&](const uint16_t bus,
+                                           const uint8_t address,
+                                           const std::vector<uint8_t>& data) {
+        if (!writeFRU(bus, address, data))
+        {
+            throw std::invalid_argument("Invalid Arguments.");
+            return;
+        }
+        // schedule rescan on success
+        rescanBusses(busMap, dbusInterfaceMap, unknownBusObjectCount, powerIsOn,
+                     updatableFruProperties, objServer, systemBus);
+    });
+
     iface->initialize();
 
     std::function<void(sdbusplus::message_t & message)> eventHandler =
@@ -1452,7 +1550,8 @@ int main()
             if (powerIsOn)
             {
                 rescanBusses(busMap, dbusInterfaceMap, unknownBusObjectCount,
-                             powerIsOn, objServer, systemBus);
+                             powerIsOn, updatableFruProperties, objServer,
+                             systemBus);
             }
         };
 
@@ -1505,12 +1604,14 @@ int main()
                                              static_cast<uint16_t>(rootBus),
                                              dbusInterfaceMap, false,
                                              unknownBusObjectCount, powerIsOn,
-                                             objServer, systemBus);
+                                             updatableFruProperties, objServer,
+                                             systemBus);
                             }
                             rescanOneBus(busMap, static_cast<uint16_t>(bus),
                                          dbusInterfaceMap, false,
                                          unknownBusObjectCount, powerIsOn,
-                                         objServer, systemBus);
+                                         updatableFruProperties, objServer,
+                                         systemBus);
                         }
                     }
                     break;
@@ -1527,7 +1628,7 @@ int main()
     dirWatch.async_read_some(boost::asio::buffer(readBuffer), watchI2cBusses);
     // run the initial scan
     rescanBusses(busMap, dbusInterfaceMap, unknownBusObjectCount, powerIsOn,
-                 objServer, systemBus);
+                 updatableFruProperties, objServer, systemBus);
 
     io.run();
     return 0;
