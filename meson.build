@@ -69,6 +69,7 @@ else
 endif
 
 install_data('blacklist.json')
+install_data('fru_update_policy.json')
 
 # this creates the 'configs' variable
 subdir('configurations')
@@ -115,6 +116,7 @@ schemas = [
     'satellite_controller.json',
     'leak_detector.json',
     'firmware.json',
+    'fru_update_policy.json'
 ]
 
 foreach s : schemas
