@@ -28,6 +28,7 @@ if get_option('fru-device')
     if get_option('fru-device-resizefru')
         cpp_args_fd = cpp_args_fd + ['-DENABLE_FRU_AREA_RESIZE']
     endif
+    cpp_args_fd = cpp_args_fd + ['-DENABLE_FRU_UPDATE_PROPERTY=@0@'.format(get_option('fru-update-property').to_int())]
     detect_mode = get_option('fru-device-16bitdetectmode')
     cpp_args_fd += ['-DFRU_DEVICE_16BITDETECTMODE="' + detect_mode + '"']
     executable(
