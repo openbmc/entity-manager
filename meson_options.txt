@@ -16,3 +16,6 @@ option(
 option(
     'validate-json', type: 'boolean', value: true, description: 'Run JSON schema validation during the build.',
 )
+option(
+    'fru-update-property', type: 'boolean', value: false, description: 'Enable updating fru properties via dbus.',
+)
