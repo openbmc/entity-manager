@@ -20,6 +20,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "9c8729d3_84b91977",
+        "filename": "src/fru_device.cpp",
+        "patchSetId": 1
+      },
+      "lineNbr": 142,
+      "author": {
+        "id": 1002065
+      },
+      "writtenOn": "2024-09-18T15:57:09Z",
+      "side": 1,
+      "message": "you are right, I have added the log to the restoreFromBackup function, where this information actually is relevant and should be treated as an error. The other calls to hasBackupFile should not be logged as error, rather as debug. Would that work?",
+      "parentUuid": "e96a956d_507fad9c",
+      "revId": "1cf34fd1e418e0604cffcb0e0742793f19aca241",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "942aa60e_d126ec29",
         "filename": "src/fru_device.cpp",
         "patchSetId": 1
@@ -31,6 +49,24 @@
       "writtenOn": "2024-09-18T08:23:13Z",
       "side": 1,
       "message": "lg2::error here",
+      "revId": "1cf34fd1e418e0604cffcb0e0742793f19aca241",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "3840c183_707581db",
+        "filename": "src/fru_device.cpp",
+        "patchSetId": 1
+      },
+      "lineNbr": 161,
+      "author": {
+        "id": 1002065
+      },
+      "writtenOn": "2024-09-18T15:57:09Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "942aa60e_d126ec29",
       "revId": "1cf34fd1e418e0604cffcb0e0742793f19aca241",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
@@ -52,6 +88,24 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "35d10c27_de0ab23d",
+        "filename": "src/fru_device.cpp",
+        "patchSetId": 1
+      },
+      "lineNbr": 166,
+      "author": {
+        "id": 1002065
+      },
+      "writtenOn": "2024-09-18T15:57:09Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "13077489_4d254e8c",
+      "revId": "1cf34fd1e418e0604cffcb0e0742793f19aca241",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "f02ce775_58994480",
@@ -69,6 +123,24 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "72a1084e_c7c324e7",
+        "filename": "src/fru_device.cpp",
+        "patchSetId": 1
+      },
+      "lineNbr": 180,
+      "author": {
+        "id": 1002065
+      },
+      "writtenOn": "2024-09-18T15:57:09Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "f02ce775_58994480",
+      "revId": "1cf34fd1e418e0604cffcb0e0742793f19aca241",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "068ec4cb_d33d5782",
@@ -82,6 +154,24 @@
       "writtenOn": "2024-09-18T08:23:13Z",
       "side": 1,
       "message": "since the backup is only created initially for this implementation, it could also be interesting to have a log in the journal when the backup was done.\n\nSo it might be worth it to do an lg2::info here.",
+      "revId": "1cf34fd1e418e0604cffcb0e0742793f19aca241",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "21fe01d0_2ff8af66",
+        "filename": "src/fru_device.cpp",
+        "patchSetId": 1
+      },
+      "lineNbr": 1200,
+      "author": {
+        "id": 1002065
+      },
+      "writtenOn": "2024-09-18T15:57:09Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "068ec4cb_d33d5782",
       "revId": "1cf34fd1e418e0604cffcb0e0742793f19aca241",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
