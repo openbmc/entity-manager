@@ -1,0 +1,89 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e96a956d_507fad9c",
+        "filename": "src/fru_device.cpp",
+        "patchSetId": 1
+      },
+      "lineNbr": 142,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2024-09-18T08:23:13Z",
+      "side": 1,
+      "message": "in case fs::exists returns false, the backup is also not found.\n\nSo the log message applies in both branches.",
+      "revId": "1cf34fd1e418e0604cffcb0e0742793f19aca241",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "942aa60e_d126ec29",
+        "filename": "src/fru_device.cpp",
+        "patchSetId": 1
+      },
+      "lineNbr": 161,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2024-09-18T08:23:13Z",
+      "side": 1,
+      "message": "lg2::error here",
+      "revId": "1cf34fd1e418e0604cffcb0e0742793f19aca241",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "13077489_4d254e8c",
+        "filename": "src/fru_device.cpp",
+        "patchSetId": 1
+      },
+      "lineNbr": 166,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2024-09-18T08:23:13Z",
+      "side": 1,
+      "message": "Since overwriting the FRU eeprom is a pretty significant event for the bmc,\ni would prefer we change the log level to lg2::info.\n\n```\nlg2::info(\"restoring FRU eeprom: copying {FROM} to {TO}\", \"FROM\", backupPath, \"TO\", eepromPath);\n```",
+      "revId": "1cf34fd1e418e0604cffcb0e0742793f19aca241",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f02ce775_58994480",
+        "filename": "src/fru_device.cpp",
+        "patchSetId": 1
+      },
+      "lineNbr": 180,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2024-09-18T08:23:13Z",
+      "side": 1,
+      "message": "lg2::error here",
+      "revId": "1cf34fd1e418e0604cffcb0e0742793f19aca241",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "068ec4cb_d33d5782",
+        "filename": "src/fru_device.cpp",
+        "patchSetId": 1
+      },
+      "lineNbr": 1200,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2024-09-18T08:23:13Z",
+      "side": 1,
+      "message": "since the backup is only created initially for this implementation, it could also be interesting to have a log in the journal when the backup was done.\n\nSo it might be worth it to do an lg2::info here.",
+      "revId": "1cf34fd1e418e0604cffcb0e0742793f19aca241",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    }
+  ]
+}
