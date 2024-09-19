@@ -1,0 +1,124 @@
+{
+    "Exposes": [
+        {
+            "Address": "$address",
+            "Bus": "$bus",
+            "Name": "PSU$address % 4 + 1 FRU",
+            "Type": "EEPROM"
+        },
+        {
+            "Address": "$address",
+            "Bus": "$bus",
+            "Name": "PSU$address % 4 + 1 ADDR",
+            "Type": "PSUPresence"
+        },
+        {
+            "Address": "$address + 8",
+            "Bus": "$bus",
+            "Labels": [
+                "temp1",
+                "pin",
+                "iin",
+                "vin",
+                "fan1"
+            ],
+            "Name": "PSU$address % 4 + 1",
+            "Thresholds": [
+                {
+                    "Direction": "greater than",
+                    "Label": "pin",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 900
+                },
+                {
+                    "Direction": "greater than",
+                    "Label": "pout1",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 1200
+                },
+                {
+                    "Direction": "less than",
+                    "Label": "vin",
+                    "Name": "lower critical",
+                    "Severity": 1,
+                    "Value": 90
+                },
+                {
+                    "Direction": "greater than",
+                    "Label": "vin",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 264
+                },
+                {
+                    "Direction": "greater than",
+                    "Label": "iin",
+                    "Name": "upper non critical",
+                    "Severity": 0,
+                    "Value": 8
+                },
+                {
+                    "Direction": "greater than",
+                    "Label": "iin",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 11.5
+                },
+                {
+                    "Direction": "less than",
+                    "Label": "temp1",
+                    "Name": "lower critical",
+                    "Severity": 1,
+                    "Value": 0
+                },
+                {
+                    "Direction": "less than",
+                    "Label": "temp1",
+                    "Name": "lower non critical",
+                    "Severity": 0,
+                    "Value": 5
+                },
+                {
+                    "Direction": "greater than",
+                    "Label": "temp1",
+                    "Name": "upper non critical",
+                    "Severity": 0,
+                    "Value": 45
+                },
+                {
+                    "Direction": "greater than",
+                    "Label": "temp1",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 55
+                },
+                {
+                    "Direction": "greater than",
+                    "Label": "fan1",
+                    "Name": "upper non critical",
+                    "Severity": 0,
+                    "Value": 22000
+                },
+                {
+                    "Direction": "greater than",
+                    "Label": "fan1",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 25000
+                }
+            ],
+            "Type": "pmbus"
+        }
+    ],
+    "Name": "COMPUWARE CDR 9011 3M1 PSU$address % 4 + 1",
+    "Probe": "xyz.openbmc_project.FruDevice({'PRODUCT_MANUFACTURER': 'COMPUWARE', 'PRODUCT_PRODUCT_NAME': 'CDR-9011-3M1*'})",
+    "Type": "PowerSupply",
+    "xyz.openbmc_project.Inventory.Decorator.Asset": {
+        "Manufacturer": "$PRODUCT_MANUFACTURER",
+        "Model": "$PRODUCT_PRODUCT_NAME",
+        "PartNumber": "$PRODUCT_PART_NUMBER",
+        "SerialNumber": "$PRODUCT_SERIAL_NUMBER"
+    }
+}
