@@ -39,6 +39,24 @@
       "message": "How about the EndpointId? Why isn\u0027t that in this schema?",
       "revId": "61209f156e23e777372c820fd0b269c79de2a914",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7c890325_1345cda2",
+        "filename": "schemas/mctp.json",
+        "patchSetId": 6
+      },
+      "lineNbr": 23,
+      "author": {
+        "id": 1000009
+      },
+      "writtenOn": "2024-09-20T03:10:58Z",
+      "side": 1,
+      "message": "Because they are generally dynamically assigned. See also:\n\nhttps://gerrit.openbmc.org/c/openbmc/entity-manager/+/69600/comment/342dcfc5_e19fd7be/",
+      "parentUuid": "835ef2c5_6da5ffdd",
+      "revId": "61209f156e23e777372c820fd0b269c79de2a914",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }
