@@ -52,6 +52,24 @@
       "parentUuid": "ca5d328d_fd19c569",
       "revId": "48ffe351f98631f265a86114a85ad8d7b61a4742",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0217affa_fe506fb4",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 1002065
+      },
+      "writtenOn": "2024-09-20T10:52:57Z",
+      "side": 1,
+      "message": "In addition: there is usage for a backup mechanism besides fru-device by some of our customers, that are using custom tooling to update fru data. Thats why we added the option to manually backup fru data aswell. I assume other users that do similar editing of fru data with their own tooling would benefit of a backup mechanism aswell.",
+      "parentUuid": "1be10d33_f2ee9c84",
+      "revId": "48ffe351f98631f265a86114a85ad8d7b61a4742",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }
