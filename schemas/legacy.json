@@ -716,6 +716,9 @@
                 "pout1_Offset": {
                     "$ref": "#/$defs/Types/pout1_Offset"
                 },
+                "pin_Offset": {
+                    "$ref": "#/$defs/Types/pin_Offset"
+                },
                 "iout1_Scale": {
                     "$ref": "#/$defs/Types/iout1_Scale"
                 },
@@ -1572,6 +1575,9 @@
                 "type": "number"
             },
             "pout1_Offset": {
+                "type": "number"
+            },
+            "pin_Offset": {
                 "type": "number"
             },
             "iout1_Scale": {
