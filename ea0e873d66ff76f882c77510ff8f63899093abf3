@@ -3,6 +3,172 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "a02be81d_4c87fb01",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 3
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2024-09-25T19:05:03Z",
+      "side": 1,
+      "message": "Remove \"feat\". that\u0027s not a convention we use, and capitalize \"Add\"",
+      "range": {
+        "startLine": 7,
+        "startChar": 0,
+        "endLine": 7,
+        "endChar": 6
+      },
+      "revId": "ea0e873d66ff76f882c77510ff8f63899093abf3",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4d89bd23_b9a7f058",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 3
+      },
+      "lineNbr": 14,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2024-09-25T19:05:03Z",
+      "side": 1,
+      "message": "This change takes FRUDevice from being largely stateless, to being a stateful interface.  Considering we already have double buffering in IPMI for this interface, it\u0027s not clear from this commit message what this accomplishes?\n\nHow would a user of the BMC use this interface through the existing user-facing interfaces for this (ipmi).  If you intend to add new user-facing interfaces to this, please state that.",
+      "revId": "ea0e873d66ff76f882c77510ff8f63899093abf3",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3c447f06_d452cb20",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 3
+      },
+      "lineNbr": 18,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2024-09-25T19:05:03Z",
+      "side": 1,
+      "message": "Why?  This seems like all frus would boot in manufacturing empty, and \"back up\" the empty versions?",
+      "range": {
+        "startLine": 15,
+        "startChar": 0,
+        "endLine": 18,
+        "endChar": 30
+      },
+      "revId": "ea0e873d66ff76f882c77510ff8f63899093abf3",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4e5618b4_350162af",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 3
+      },
+      "lineNbr": 23,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2024-09-25T19:05:03Z",
+      "side": 1,
+      "message": "bus numbers are not consistent boot to boot or if components are changed.  You\u0027ll need to key by something else.",
+      "range": {
+        "startLine": 23,
+        "startChar": 1,
+        "endLine": 23,
+        "endChar": 5
+      },
+      "revId": "ea0e873d66ff76f882c77510ff8f63899093abf3",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6f2155ee_987df305",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 3
+      },
+      "lineNbr": 28,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2024-09-25T19:05:03Z",
+      "side": 1,
+      "message": "I\u0027m not sure how qemu could possibly test this well, considering we\u0027re writing to hardware?",
+      "range": {
+        "startLine": 25,
+        "startChar": 0,
+        "endLine": 28,
+        "endChar": 64
+      },
+      "revId": "ea0e873d66ff76f882c77510ff8f63899093abf3",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7a6c76a9_7de1017a",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2024-09-25T19:05:03Z",
+      "side": 1,
+      "message": "Not quite understanding how this fits into the big picture.  As an internal debug interface, I don\u0027t understand why it\u0027s useful beyond what can already be done on command line with a basic \"cp\".\n\nAs a user-facing interface, I would expect that these give too much power to force hardware interfaces to change, and the interfaces aren\u0027t really something we could expose to the user\n\nLets get documented which of these we\u0027re trying to accomplish and go from there.",
+      "revId": "ea0e873d66ff76f882c77510ff8f63899093abf3",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "23ac48b0_64d66355",
+        "filename": "src/fru_device.cpp",
+        "patchSetId": 3
+      },
+      "lineNbr": 134,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2024-09-25T19:05:03Z",
+      "side": 1,
+      "message": "nit, std::string would make this parameter more clear what it is.  That same advice can be applied throughout the file.",
+      "range": {
+        "startLine": 134,
+        "startChar": 4,
+        "endLine": 134,
+        "endChar": 8
+      },
+      "revId": "ea0e873d66ff76f882c77510ff8f63899093abf3",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "649e9933_94764b3d",
+        "filename": "src/fru_device.cpp",
+        "patchSetId": 3
+      },
+      "lineNbr": 139,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2024-09-25T19:05:03Z",
+      "side": 1,
+      "message": "Please just use the ec version of fs::exists.",
+      "revId": "ea0e873d66ff76f882c77510ff8f63899093abf3",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "02df5fdb_67240c01",
         "filename": "src/fru_device.cpp",
         "patchSetId": 3
@@ -14,6 +180,24 @@
       "writtenOn": "2024-09-25T18:39:05Z",
       "side": 1,
       "message": "What\u0027s creating /var/lib/entity-manager/backups/?  I don\u0027t think fs::copy does.",
+      "revId": "ea0e873d66ff76f882c77510ff8f63899093abf3",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "cf688c08_8e4f28db",
+        "filename": "src/fru_device.cpp",
+        "patchSetId": 3
+      },
+      "lineNbr": 158,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2024-09-25T19:05:03Z",
+      "side": 1,
+      "message": "+1.  Not sure how this could\u0027ve worked.",
+      "parentUuid": "02df5fdb_67240c01",
       "revId": "ea0e873d66ff76f882c77510ff8f63899093abf3",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
@@ -66,6 +250,29 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "9e2c5dbd_ea57a466",
+        "filename": "src/fru_device.cpp",
+        "patchSetId": 3
+      },
+      "lineNbr": 1450,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2024-09-25T19:05:03Z",
+      "side": 1,
+      "message": "please don\u0027t do wildcard captures in lambdas.  They obscure lifetimes.",
+      "range": {
+        "startLine": 1450,
+        "startChar": 21,
+        "endLine": 1450,
+        "endChar": 24
+      },
+      "revId": "ea0e873d66ff76f882c77510ff8f63899093abf3",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "249869f6_a854759e",
         "filename": "src/fru_device.cpp",
         "patchSetId": 3
@@ -82,6 +289,29 @@
         "startChar": 11,
         "endLine": 1451,
         "endChar": 45
+      },
+      "revId": "ea0e873d66ff76f882c77510ff8f63899093abf3",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "25b658a9_1ad8fbb1",
+        "filename": "src/fru_device.cpp",
+        "patchSetId": 3
+      },
+      "lineNbr": 1458,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2024-09-25T19:05:03Z",
+      "side": 1,
+      "message": "Please make these a normal function.",
+      "range": {
+        "startLine": 1452,
+        "startChar": 0,
+        "endLine": 1458,
+        "endChar": 10
       },
       "revId": "ea0e873d66ff76f882c77510ff8f63899093abf3",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
@@ -112,6 +342,47 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "9ba63de9_97cc02a8",
+        "filename": "src/fru_device.cpp",
+        "patchSetId": 3
+      },
+      "lineNbr": 1461,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2024-09-25T19:05:03Z",
+      "side": 1,
+      "message": "we already have objects that represent each individual FRU.  We should attach these methods to the fru objects themselves, not add them to the root.  A dbus user isn\u0027t going to know the concept of a \"bus\" to go update.",
+      "parentUuid": "dcd21f1b_474b4732",
+      "range": {
+        "startLine": 1461,
+        "startChar": 9,
+        "endLine": 1461,
+        "endChar": 17
+      },
+      "revId": "ea0e873d66ff76f882c77510ff8f63899093abf3",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a7261366_81b3e477",
+        "filename": "src/fru_device.cpp",
+        "patchSetId": 3
+      },
+      "lineNbr": 1467,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2024-09-25T19:05:03Z",
+      "side": 1,
+      "message": "?  Why are we rescanning all the busses.  We double buffer things already, this should just be a reset of a single FRU.",
+      "revId": "ea0e873d66ff76f882c77510ff8f63899093abf3",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "1bef26e1_1ed74c96",
         "filename": "src/fru_device.cpp",
         "patchSetId": 3
@@ -123,6 +394,24 @@
       "writtenOn": "2024-09-25T18:39:05Z",
       "side": 1,
       "message": "??",
+      "revId": "ea0e873d66ff76f882c77510ff8f63899093abf3",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "cc41f03c_187d472a",
+        "filename": "src/fru_device.cpp",
+        "patchSetId": 3
+      },
+      "lineNbr": 1471,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2024-09-25T19:05:03Z",
+      "side": 1,
+      "message": "Matt, it says 5 time, your comment should\u0027ve been\n\n?????",
+      "parentUuid": "1bef26e1_1ed74c96",
       "revId": "ea0e873d66ff76f882c77510ff8f63899093abf3",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
