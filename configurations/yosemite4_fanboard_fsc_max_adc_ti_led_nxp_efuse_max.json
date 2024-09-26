@@ -260,15 +260,15 @@
             "Address": "0x20",
             "Bus": "$bus",
             "Connector": {
-                "Name": "FANBOARD$bus % 30 FAN$bus % 30 * 2 + 0 TACH_IL",
+                "Name": "FANBOARD$bus % 30 FAN$bus % 30 * 2 + 0 TACH_IL_SPEED_RPM",
                 "Pwm": 2,
-                "PwmName": "FANBOARD$bus % 30 FAN$bus % 30 * 2 + 0 PWM",
+                "PwmName": "FANBOARD$bus % 30 FAN$bus % 30 * 2 + 0 PWM_TACH_PCT",
                 "Tachs": [
                     3
                 ]
             },
             "Index": 3,
-            "Name": "FANBOARD$bus % 30 FAN$bus % 30 * 2 + 0 TACH_IL",
+            "Name": "FANBOARD$bus % 30 FAN$bus % 30 * 2 + 0 TACH_IL_SPEED_RPM",
             "PowerState": "Always",
             "Thresholds": [
                 {
@@ -296,15 +296,15 @@
             "Address": "0x20",
             "Bus": "$bus",
             "Connector": {
-                "Name": "FANBOARD$bus % 30 FAN$bus % 30 * 2 + 0 TACH_OL",
+                "Name": "FANBOARD$bus % 30 FAN$bus % 30 * 2 + 0 TACH_OL_SPEED_RPM",
                 "Pwm": 2,
-                "PwmName": "FANBOARD$bus % 30 FAN$bus % 30 * 2 + 0 PWM",
+                "PwmName": "FANBOARD$bus % 30 FAN$bus % 30 * 2 + 0 PWM_TACH_PCT",
                 "Tachs": [
                     10
                 ]
             },
             "Index": 10,
-            "Name": "FANBOARD$bus % 30 FAN$bus % 30 * 2 + 0 TACH_OL",
+            "Name": "FANBOARD$bus % 30 FAN$bus % 30 * 2 + 0 TACH_OL_SPEED_RPM",
             "PowerState": "Always",
             "Thresholds": [
                 {
@@ -332,15 +332,15 @@
             "Address": "0x2f",
             "Bus": "$bus",
             "Connector": {
-                "Name": "FANBOARD$bus % 30 FAN$bus % 30 * 2 + 1 TACH_IL",
+                "Name": "FANBOARD$bus % 30 FAN$bus % 30 * 2 + 1 TACH_IL_SPEED_RPM",
                 "Pwm": 2,
-                "PwmName": "FANBOARD$bus % 30 FAN$bus % 30 * 2 + 1 PWM",
+                "PwmName": "FANBOARD$bus % 30 FAN$bus % 30 * 2 + 1 PWM_TACH_PCT",
                 "Tachs": [
                     3
                 ]
             },
             "Index": 3,
-            "Name": "FANBOARD$bus % 30 FAN$bus % 30 * 2 + 1 TACH_IL",
+            "Name": "FANBOARD$bus % 30 FAN$bus % 30 * 2 + 1 TACH_IL_SPEED_RPM",
             "PowerState": "Always",
             "Thresholds": [
                 {
@@ -368,15 +368,15 @@
             "Address": "0x2f",
             "Bus": "$bus",
             "Connector": {
-                "Name": "FANBOARD$bus % 30 FAN$bus % 30 * 2 + 1 TACH_OL",
+                "Name": "FANBOARD$bus % 30 FAN$bus % 30 * 2 + 1 TACH_OL_SPEED_RPM",
                 "Pwm": 2,
-                "PwmName": "FANBOARD$bus % 30 FAN$bus % 30 * 2 + 1 PWM",
+                "PwmName": "FANBOARD$bus % 30 FAN$bus % 30 * 2 + 1 PWM_TACH_PCT",
                 "Tachs": [
                     10
                 ]
             },
             "Index": 10,
-            "Name": "FANBOARD$bus % 30 FAN$bus % 30 * 2 + 1 TACH_OL",
+            "Name": "FANBOARD$bus % 30 FAN$bus % 30 * 2 + 1 TACH_OL_SPEED_RPM",
             "PowerState": "Always",
             "Thresholds": [
                 {
@@ -404,15 +404,15 @@
             "Address": "0x20",
             "Bus": "$bus",
             "Connector": {
-                "Name": "FANBOARD$bus % 30 FAN$bus % 30 * 2 + 4 TACH_IL",
+                "Name": "FANBOARD$bus % 30 FAN$bus % 30 * 2 + 4 TACH_IL_SPEED_RPM",
                 "Pwm": 1,
-                "PwmName": "FANBOARD$bus % 30 FAN$bus % 30 * 2 + 4 PWM",
+                "PwmName": "FANBOARD$bus % 30 FAN$bus % 30 * 2 + 4 PWM_TACH_PCT",
                 "Tachs": [
                     2
                 ]
             },
             "Index": 2,
-            "Name": "FANBOARD$bus % 30 FAN$bus % 30 * 2 + 4 TACH_IL",
+            "Name": "FANBOARD$bus % 30 FAN$bus % 30 * 2 + 4 TACH_IL_SPEED_RPM",
             "PowerState": "Always",
             "Thresholds": [
                 {
@@ -440,15 +440,15 @@
             "Address": "0x20",
             "Bus": "$bus",
             "Connector": {
-                "Name": "FANBOARD$bus % 30 FAN$bus % 30 * 2 + 4 TACH_OL",
+                "Name": "FANBOARD$bus % 30 FAN$bus % 30 * 2 + 4 TACH_OL_SPEED_RPM",
                 "Pwm": 1,
-                "PwmName": "FANBOARD$bus % 30 FAN$bus % 30 * 2 + 4 PWM",
+                "PwmName": "FANBOARD$bus % 30 FAN$bus % 30 * 2 + 4 PWM_TACH_PCT",
                 "Tachs": [
                     9
                 ]
             },
             "Index": 9,
-            "Name": "FANBOARD$bus % 30 FAN$bus % 30 * 2 + 4 TACH_OL",
+            "Name": "FANBOARD$bus % 30 FAN$bus % 30 * 2 + 4 TACH_OL_SPEED_RPM",
             "PowerState": "Always",
             "Thresholds": [
                 {
@@ -476,15 +476,15 @@
             "Address": "0x2f",
             "Bus": "$bus",
             "Connector": {
-                "Name": "FANBOARD$bus % 30 FAN$bus % 30 * 2 + 5 TACH_IL",
+                "Name": "FANBOARD$bus % 30 FAN$bus % 30 * 2 + 5 TACH_IL_SPEED_RPM",
                 "Pwm": 1,
-                "PwmName": "FANBOARD$bus % 30 FAN$bus % 30 * 2 + 5 PWM",
+                "PwmName": "FANBOARD$bus % 30 FAN$bus % 30 * 2 + 5 PWM_TACH_PCT",
                 "Tachs": [
                     2
                 ]
             },
             "Index": 2,
-            "Name": "FANBOARD$bus % 30 FAN$bus % 30 * 2 + 5 TACH_IL",
+            "Name": "FANBOARD$bus % 30 FAN$bus % 30 * 2 + 5 TACH_IL_SPEED_RPM",
             "PowerState": "Always",
             "Thresholds": [
                 {
@@ -512,15 +512,15 @@
             "Address": "0x2f",
             "Bus": "$bus",
             "Connector": {
-                "Name": "FANBOARD$bus % 30 FAN$bus % 30 * 2 + 5 TACH_OL",
+                "Name": "FANBOARD$bus % 30 FAN$bus % 30 * 2 + 5 TACH_OL_SPEED_RPM",
                 "Pwm": 1,
-                "PwmName": "FANBOARD$bus % 30 FAN$bus % 30 * 2 + 5 PWM",
+                "PwmName": "FANBOARD$bus % 30 FAN$bus % 30 * 2 + 5 PWM_TACH_PCT",
                 "Tachs": [
                     9
                 ]
             },
             "Index": 9,
-            "Name": "FANBOARD$bus % 30 FAN$bus % 30 * 2 + 5 TACH_OL",
+            "Name": "FANBOARD$bus % 30 FAN$bus % 30 * 2 + 5 TACH_OL_SPEED_RPM",
             "PowerState": "Always",
             "Thresholds": [
                 {
@@ -548,15 +548,15 @@
             "Address": "0x20",
             "Bus": "$bus",
             "Connector": {
-                "Name": "FANBOARD$bus % 30 FAN$bus % 30 * 2 + 8 TACH_IL",
+                "Name": "FANBOARD$bus % 30 FAN$bus % 30 * 2 + 8 TACH_IL_SPEED_RPM",
                 "Pwm": 0,
-                "PwmName": "FANBOARD$bus % 30 FAN$bus % 30 * 2 + 8 PWM",
+                "PwmName": "FANBOARD$bus % 30 FAN$bus % 30 * 2 + 8 PWM_TACH_PCT",
                 "Tachs": [
                     0
                 ]
             },
             "Index": 0,
-            "Name": "FANBOARD$bus % 30 FAN$bus % 30 * 2 + 8 TACH_IL",
+            "Name": "FANBOARD$bus % 30 FAN$bus % 30 * 2 + 8 TACH_IL_SPEED_RPM",
             "PowerState": "Always",
             "Thresholds": [
                 {
@@ -584,15 +584,15 @@
             "Address": "0x20",
             "Bus": "$bus",
             "Connector": {
-                "Name": "FANBOARD$bus % 30 FAN$bus % 30 * 2 + 8 TACH_OL",
+                "Name": "FANBOARD$bus % 30 FAN$bus % 30 * 2 + 8 TACH_OL_SPEED_RPM",
                 "Pwm": 0,
-                "PwmName": "FANBOARD$bus % 30 FAN$bus % 30 * 2 + 8 PWM",
+                "PwmName": "FANBOARD$bus % 30 FAN$bus % 30 * 2 + 8 PWM_TACH_PCT",
                 "Tachs": [
                     1
                 ]
             },
             "Index": 1,
-            "Name": "FANBOARD$bus % 30 FAN$bus % 30 * 2 + 8 TACH_OL",
+            "Name": "FANBOARD$bus % 30 FAN$bus % 30 * 2 + 8 TACH_OL_SPEED_RPM",
             "PowerState": "Always",
             "Thresholds": [
                 {
@@ -620,15 +620,15 @@
             "Address": "0x2f",
             "Bus": "$bus",
             "Connector": {
-                "Name": "FANBOARD$bus % 30 FAN$bus % 30 * 2 + 9 TACH_IL",
+                "Name": "FANBOARD$bus % 30 FAN$bus % 30 * 2 + 9 TACH_IL_SPEED_RPM",
                 "Pwm": 0,
-                "PwmName": "FANBOARD$bus % 30 FAN$bus % 30 * 2 + 9 PWM",
+                "PwmName": "FANBOARD$bus % 30 FAN$bus % 30 * 2 + 9 PWM_TACH_PCT",
                 "Tachs": [
                     0
                 ]
             },
             "Index": 0,
-            "Name": "FANBOARD$bus % 30 FAN$bus % 30 * 2 + 9 TACH_IL",
+            "Name": "FANBOARD$bus % 30 FAN$bus % 30 * 2 + 9 TACH_IL_SPEED_RPM",
             "PowerState": "Always",
             "Thresholds": [
                 {
@@ -656,15 +656,15 @@
             "Address": "0x2f",
             "Bus": "$bus",
             "Connector": {
-                "Name": "FANBOARD$bus % 30 FAN$bus % 30 * 2 + 9 TACH_OL",
+                "Name": "FANBOARD$bus % 30 FAN$bus % 30 * 2 + 9 TACH_OL_SPEED_RPM",
                 "Pwm": 0,
-                "PwmName": "FANBOARD$bus % 30 FAN$bus % 30 * 2 + 9 PWM",
+                "PwmName": "FANBOARD$bus % 30 FAN$bus % 30 * 2 + 9 PWM_TACH_PCT",
                 "Tachs": [
                     1
                 ]
             },
             "Index": 1,
-            "Name": "FANBOARD$bus % 30 FAN$bus % 30 * 2 + 9 TACH_OL",
+            "Name": "FANBOARD$bus % 30 FAN$bus % 30 * 2 + 9 TACH_OL_SPEED_RPM",
             "PowerState": "Always",
             "Thresholds": [
                 {
