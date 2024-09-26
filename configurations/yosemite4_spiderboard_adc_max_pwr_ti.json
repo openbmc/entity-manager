@@ -973,8 +973,8 @@
         {
             "Class": "temp",
             "Inputs": [
-                "SPIDER_TEMP0_C",
-                "SPIDER_TEMP1_C"
+                "SPIDER_0_TEMP_C",
+                "SPIDER_1_TEMP_C"
             ],
             "Name": "Stepwise_SPIDER_TEMP",
             "NegativeHysteresis": 0,
@@ -993,7 +993,7 @@
         {
             "Address": "0x4e",
             "Bus": 14,
-            "Name": "SPIDER_TEMP0_C",
+            "Name": "SPIDER_0_TEMP_C",
             "Thresholds": [
                 {
                     "Direction": "greater than",
@@ -1007,7 +1007,7 @@
         {
             "Address": "0x4f",
             "Bus": 14,
-            "Name": "SPIDER_TEMP1_C",
+            "Name": "SPIDER_1_TEMP_C",
             "Thresholds": [
                 {
                     "Direction": "greater than",
