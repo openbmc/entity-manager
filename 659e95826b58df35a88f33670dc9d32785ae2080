@@ -69,6 +69,24 @@
       "parentUuid": "0b608cb2_26447384",
       "revId": "659e95826b58df35a88f33670dc9d32785ae2080",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "eb963332_4d18a3ee",
+        "filename": "meson_options.txt",
+        "patchSetId": 5
+      },
+      "lineNbr": 11,
+      "author": {
+        "id": 1000008
+      },
+      "writtenOn": "2024-09-26T13:57:30Z",
+      "side": 1,
+      "message": "if you use type \u003d \u0027combo\u0027, it will check for you:\n\n$ meson setup testbuild -Dfru-device-16bitdetectmode\u003dMODE_3\n \n meson.build:1:0: ERROR: Value \"MODE_3\" (of type \"string\") for combo option \"Different modes to detect 16-bit address EEPROM devices. MODE_1 is current and default mode.\" is not one of the choices. Possible choices are (as string): \"MODE_1\", \"MODE_2\".",
+      "parentUuid": "2062caad_8a87ca93",
+      "revId": "659e95826b58df35a88f33670dc9d32785ae2080",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }
