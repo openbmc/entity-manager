@@ -20,6 +20,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "b91c8a38_de39062e",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 5
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1002155
+      },
+      "writtenOn": "2024-09-26T00:04:05Z",
+      "side": 1,
+      "message": "Let me ask my colleagues",
+      "parentUuid": "58d3fa3b_c40fef03",
+      "revId": "659e95826b58df35a88f33670dc9d32785ae2080",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "0b608cb2_26447384",
         "filename": "meson_options.txt",
         "patchSetId": 5
@@ -31,6 +49,24 @@
       "writtenOn": "2024-09-25T20:25:09Z",
       "side": 1,
       "message": "There is still the \u0027choices\u0027 array that can restrict the values to just the 2.  See https://mesonbuild.com/Build-options.html",
+      "revId": "659e95826b58df35a88f33670dc9d32785ae2080",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2062caad_8a87ca93",
+        "filename": "meson_options.txt",
+        "patchSetId": 5
+      },
+      "lineNbr": 11,
+      "author": {
+        "id": 1002155
+      },
+      "writtenOn": "2024-09-26T00:04:05Z",
+      "side": 1,
+      "message": "Would the codes implicitly restrict/limit the choices to just 2 enough?\n\nWith meson option array \"choices\"/\"values\", extra codes would be needed in meson.build + codes to parse the array and detect error for the bad usages:\n\noption(\u0027fru-device-16bitdetectmode\u0027, type : \u0027array\u0027, choices : [\u0027MODE_1\u0027, \u0027MODE_2\u0027], value : [\u0027MODE_1\u0027) \n\n-Dfru-device-16bitdetectmode\u003d   or\n-Dfru-device-16bitdetectmode\u003d[]  or\n-Dfru-device-16bitdetectmode\u003d[\u0027MODE_1\u0027, \u0027MODE_2\u0027]",
+      "parentUuid": "0b608cb2_26447384",
       "revId": "659e95826b58df35a88f33670dc9d32785ae2080",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
