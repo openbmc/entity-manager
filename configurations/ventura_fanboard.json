@@ -1,0 +1,384 @@
+[
+    {
+        "Exposes": [
+            {
+                "Address": "0x1f",
+                "Bus": "$bus",
+                "Labels": [
+                    "in0",
+                    "in1",
+                    "in2",
+                    "in3"
+                ],
+                "Name": "FAN_ADC",
+                "Thresholds": [
+                    {
+                        "Direction": "greater than",
+                        "Label": "in0",
+                        "Name": "upper critical",
+                        "Severity": 1,
+                        "Value": 13.6
+                    },
+                    {
+                        "Direction": "less than",
+                        "Label": "in0",
+                        "Name": "lower critical",
+                        "Severity": 1,
+                        "Value": 10.5
+                    },
+                    {
+                        "Direction": "greater than",
+                        "Label": "in2",
+                        "Name": "upper critical",
+                        "Severity": 1,
+                        "Value": 13.6
+                    },
+                    {
+                        "Direction": "less than",
+                        "Label": "in2",
+                        "Name": "lower critical",
+                        "Severity": 1,
+                        "Value": 10.5
+                    }
+                ],
+                "Type": "ADC128D818",
+                "in0_Name": "FCB_0_FAN_0_VOLT_V",
+                "in0_Scale": 166.667,
+                "in1_Name": "FCB_0_FAN_0_CURR_A",
+                "in1_Scale": 464,
+                "in2_Name": "FCB_0_FAN_1_VOLT_V",
+                "in2_Scale": 166.667,
+                "in3_Name": "FCB_0_FAN_1_CURR_A",
+                "in3_Scale": 464
+            },
+            {
+                "Address": "0x20",
+                "Bus": "18",
+                "Connector": {
+                    "Name": "FCB_0_FAN0_TACH_OL",
+                    "Pwm": 0,
+                    "PwmName": "FCB_0_FAN0_PWM",
+                    "Tachs": [
+                        1
+                    ]
+                },
+                "Index": 1,
+                "Name": "FCB_0_FAN0_TACH_OL_SPEED_RPM",
+                "PowerState": "Always",
+                "Thresholds": [
+                    {
+                        "Direction": "greater than",
+                        "Name": "upper critical",
+                        "Severity": 1,
+                        "Value": 33000
+                    },
+                    {
+                        "Direction": "less than",
+                        "Name": "lower critical",
+                        "Severity": 1,
+                        "Value": 1960
+                    }
+                ],
+                "Type": "I2CFan"
+            },
+            {
+                "Address": "0x20",
+                "Bus": "18",
+                "Connector": {
+                    "Name": "FCB_0_FAN0_TACH_IL",
+                    "Pwm": 0,
+                    "PwmName": "FCB_0_FAN0_PWM",
+                    "Tachs": [
+                        0
+                    ]
+                },
+                "Index": 0,
+                "Name": "FCB_0_FAN0_TACH_IL_SPEED_RPM",
+                "PowerState": "Always",
+                "Thresholds": [
+                    {
+                        "Direction": "greater than",
+                        "Name": "upper critical",
+                        "Severity": 1,
+                        "Value": 36300
+                    },
+                    {
+                        "Direction": "less than",
+                        "Name": "lower critical",
+                        "Severity": 1,
+                        "Value": 2550
+                    }
+                ],
+                "Type": "I2CFan"
+            },
+            {
+                "Address": "0x20",
+                "Bus": "18",
+                "Connector": {
+                    "Name": "FCB_0_FAN1_TACH_OL",
+                    "Pwm": 2,
+                    "PwmName": "FCB_0_FAN1_PWM",
+                    "Tachs": [
+                        2
+                    ]
+                },
+                "Index": 2,
+                "Name": "FCB_0_FAN1_TACH_OL_SPEED_RPM",
+                "PowerState": "Always",
+                "Thresholds": [
+                    {
+                        "Direction": "greater than",
+                        "Name": "upper critical",
+                        "Severity": 1,
+                        "Value": 33000
+                    },
+                    {
+                        "Direction": "less than",
+                        "Name": "lower critical",
+                        "Severity": 1,
+                        "Value": 1960
+                    }
+                ],
+                "Type": "I2CFan"
+            },
+            {
+                "Address": "0x20",
+                "Bus": "18",
+                "Connector": {
+                    "Name": "FCB_0_FAN1_TACH_IL",
+                    "Pwm": 2,
+                    "PwmName": "FCB_0_FAN1_PWM",
+                    "Tachs": [
+                        7
+                    ]
+                },
+                "Index": 7,
+                "Name": "FCB_0_FAN1_TACH_IL_SPEED_RPM",
+                "PowerState": "Always",
+                "Thresholds": [
+                    {
+                        "Direction": "greater than",
+                        "Name": "upper critical",
+                        "Severity": 1,
+                        "Value": 36300
+                    },
+                    {
+                        "Direction": "less than",
+                        "Name": "lower critical",
+                        "Severity": 1,
+                        "Value": 2550
+                    }
+                ],
+                "Type": "I2CFan"
+            }
+        ],
+        "Name": "Ventura Fan Board 0",
+        "Probe": "xyz.openbmc_project.FruDevice({'BOARD_PRODUCT_NAME': 'Ventura FAN Board', 'BUS': 16})",
+        "Type": "Board",
+        "xyz.openbmc_project.Inventory.Decorator.Asset": {
+            "BuildDate": "$BOARD_MANUFACTURE_DATE",
+            "Manufacturer": "$BOARD_MANUFACTURER",
+            "Model": "$BOARD_PRODUCT_NAME",
+            "PartNumber": "$BOARD_PART_NUMBER",
+            "SerialNumber": "$BOARD_SERIAL_NUMBER",
+            "SparePartNumber": "$BOARD_INFO_AM1"
+        },
+        "xyz.openbmc_project.Inventory.Decorator.AssetTag": {
+            "AssetTag": "$PRODUCT_ASSET_TAG"
+        },
+        "xyz.openbmc_project.Inventory.Decorator.Revision": {
+            "Version": "$PRODUCT_VERSION"
+        }
+    },
+    {
+        "Exposes": [
+            {
+                "Address": "0x1f",
+                "Bus": "$bus",
+                "Labels": [
+                    "in0",
+                    "in1",
+                    "in2",
+                    "in3"
+                ],
+                "Name": "FAN_ADC",
+                "Thresholds": [
+                    {
+                        "Direction": "greater than",
+                        "Label": "in0",
+                        "Name": "upper critical",
+                        "Severity": 1,
+                        "Value": 13.6
+                    },
+                    {
+                        "Direction": "less than",
+                        "Label": "in0",
+                        "Name": "lower critical",
+                        "Severity": 1,
+                        "Value": 10.5
+                    },
+                    {
+                        "Direction": "greater than",
+                        "Label": "in2",
+                        "Name": "upper critical",
+                        "Severity": 1,
+                        "Value": 13.6
+                    },
+                    {
+                        "Direction": "less than",
+                        "Label": "in2",
+                        "Name": "lower critical",
+                        "Severity": 1,
+                        "Value": 10.5
+                    }
+                ],
+                "Type": "ADC128D818",
+                "in0_Name": "FCB_1_FAN_2_VOLT_V",
+                "in0_Scale": 166.667,
+                "in1_Name": "FCB_1_FAN_2_CURR_A",
+                "in1_Scale": 464,
+                "in2_Name": "FCB_1_FAN_3_VOLT_V",
+                "in2_Scale": 166.667,
+                "in3_Name": "FCB_1_FAN_3_CURR_A",
+                "in3_Scale": 464
+            },
+            {
+                "Address": "0x20",
+                "Bus": "18",
+                "Connector": {
+                    "Name": "FCB_1_FAN2_TACH_OL",
+                    "Pwm": 3,
+                    "PwmName": "FCB_1_FAN2_PWM",
+                    "Tachs": [
+                        4
+                    ]
+                },
+                "Index": 4,
+                "Name": "FCB_1_FAN2_TACH_OL_SPEED_RPM",
+                "PowerState": "Always",
+                "Thresholds": [
+                    {
+                        "Direction": "greater than",
+                        "Name": "upper critical",
+                        "Severity": 1,
+                        "Value": 33000
+                    },
+                    {
+                        "Direction": "less than",
+                        "Name": "lower critical",
+                        "Severity": 1,
+                        "Value": 1960
+                    }
+                ],
+                "Type": "I2CFan"
+            },
+            {
+                "Address": "0x20",
+                "Bus": "18",
+                "Connector": {
+                    "Name": "FCB_1_FAN2_TACH_IL",
+                    "Pwm": 3,
+                    "PwmName": "FCB_1_FAN2_PWM",
+                    "Tachs": [
+                        3
+                    ]
+                },
+                "Index": 3,
+                "Name": "FCB_1_FAN2_TACH_IL_SPEED_RPM",
+                "PowerState": "Always",
+                "Thresholds": [
+                    {
+                        "Direction": "greater than",
+                        "Name": "upper critical",
+                        "Severity": 1,
+                        "Value": 36300
+                    },
+                    {
+                        "Direction": "less than",
+                        "Name": "lower critical",
+                        "Severity": 1,
+                        "Value": 2550
+                    }
+                ],
+                "Type": "I2CFan"
+            },
+            {
+                "Address": "0x20",
+                "Bus": "18",
+                "Connector": {
+                    "Name": "FCB_1_FAN3_TACH_OL",
+                    "Pwm": 5,
+                    "PwmName": "FCB_1_FAN3_PWM",
+                    "Tachs": [
+                        5
+                    ]
+                },
+                "Index": 5,
+                "Name": "FCB_1_FAN3_TACH_OL_SPEED_RPM",
+                "PowerState": "Always",
+                "Thresholds": [
+                    {
+                        "Direction": "greater than",
+                        "Name": "upper critical",
+                        "Severity": 1,
+                        "Value": 33000
+                    },
+                    {
+                        "Direction": "less than",
+                        "Name": "lower critical",
+                        "Severity": 1,
+                        "Value": 1960
+                    }
+                ],
+                "Type": "I2CFan"
+            },
+            {
+                "Address": "0x20",
+                "Bus": "18",
+                "Connector": {
+                    "Name": "FCB_1_FAN3_TACH_IL",
+                    "Pwm": 5,
+                    "PwmName": "FCB_1_FAN3_PWM",
+                    "Tachs": [
+                        10
+                    ]
+                },
+                "Index": 10,
+                "Name": "FCB_1_FAN3_TACH_IL_SPEED_RPM",
+                "PowerState": "Always",
+                "Thresholds": [
+                    {
+                        "Direction": "greater than",
+                        "Name": "upper critical",
+                        "Severity": 1,
+                        "Value": 36300
+                    },
+                    {
+                        "Direction": "less than",
+                        "Name": "lower critical",
+                        "Severity": 1,
+                        "Value": 2550
+                    }
+                ],
+                "Type": "I2CFan"
+            }
+        ],
+        "Name": "Ventura Fan Board 1",
+        "Probe": "xyz.openbmc_project.FruDevice({'BOARD_PRODUCT_NAME': 'Ventura FAN Board', 'BUS': 17})",
+        "Type": "Board",
+        "xyz.openbmc_project.Inventory.Decorator.Asset": {
+            "BuildDate": "$BOARD_MANUFACTURE_DATE",
+            "Manufacturer": "$BOARD_MANUFACTURER",
+            "Model": "$BOARD_PRODUCT_NAME",
+            "PartNumber": "$BOARD_PART_NUMBER",
+            "SerialNumber": "$BOARD_SERIAL_NUMBER",
+            "SparePartNumber": "$BOARD_INFO_AM1"
+        },
+        "xyz.openbmc_project.Inventory.Decorator.AssetTag": {
+            "AssetTag": "$PRODUCT_ASSET_TAG"
+        },
+        "xyz.openbmc_project.Inventory.Decorator.Revision": {
+            "Version": "$PRODUCT_VERSION"
+        }
+    }
+]
