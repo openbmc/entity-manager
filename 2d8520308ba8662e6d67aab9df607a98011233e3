@@ -18,6 +18,24 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "bed5810b_b42bc88f",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 6
+      },
+      "lineNbr": 91,
+      "author": {
+        "id": 1002155
+      },
+      "writtenOn": "2024-10-01T19:33:56Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "e72ec635_37cf737f",
+      "revId": "2d8520308ba8662e6d67aab9df607a98011233e3",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "c4871205_367c4ede",
@@ -31,6 +49,24 @@
       "writtenOn": "2024-09-30T17:54:00Z",
       "side": 1,
       "message": "dont we need address for mode1?",
+      "revId": "2d8520308ba8662e6d67aab9df607a98011233e3",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "bfbfc70c_a44e3dca",
+        "filename": "src/fru_device.cpp",
+        "patchSetId": 6
+      },
+      "lineNbr": 412,
+      "author": {
+        "id": 1002155
+      },
+      "writtenOn": "2024-10-01T19:33:56Z",
+      "side": 1,
+      "message": "Maintaining the same logic as current code (mode_1) by calling isDevice16Bit() without address",
+      "parentUuid": "c4871205_367c4ede",
       "revId": "2d8520308ba8662e6d67aab9df607a98011233e3",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
