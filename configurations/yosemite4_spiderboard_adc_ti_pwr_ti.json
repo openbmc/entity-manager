@@ -1007,9 +1007,15 @@
             "Thresholds": [
                 {
                     "Direction": "greater than",
+                    "Name": "upper non recoverable",
+                    "Severity": 4,
+                    "Value": 150
+                },
+                {
+                    "Direction": "greater than",
                     "Name": "upper critical",
                     "Severity": 1,
-                    "Value": 50
+                    "Value": 60
                 }
             ],
             "Type": "TMP75"
@@ -1021,9 +1027,15 @@
             "Thresholds": [
                 {
                     "Direction": "greater than",
+                    "Name": "upper non recoverable",
+                    "Severity": 4,
+                    "Value": 150
+                },
+                {
+                    "Direction": "greater than",
                     "Name": "upper critical",
                     "Severity": 1,
-                    "Value": 50
+                    "Value": 60
                 }
             ],
             "Type": "TMP75"
