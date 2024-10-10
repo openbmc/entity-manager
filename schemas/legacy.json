@@ -449,6 +449,24 @@
                 "iout3_Name": {
                     "$ref": "#/$defs/Types/iout3_Name"
                 },
+                "iout4_Max": {
+                    "$ref": "#/$defs/Types/iout4_Max"
+                },
+                "iout4_Min": {
+                    "$ref": "#/$defs/Types/iout4_Min"
+                },
+                "iout4_Name": {
+                    "$ref": "#/$defs/Types/iout4_Name"
+                },
+                "iout5_Max": {
+                    "$ref": "#/$defs/Types/iout5_Max"
+                },
+                "iout5_Min": {
+                    "$ref": "#/$defs/Types/iout5_Min"
+                },
+                "iout5_Name": {
+                    "$ref": "#/$defs/Types/iout5_Name"
+                },
                 "pin1_Max": {
                     "$ref": "#/$defs/Types/pin1_Max"
                 },
@@ -553,6 +571,21 @@
                 },
                 "temp8_Name": {
                     "$ref": "#/$defs/Types/temp8_Name"
+                },
+                "temp9_Name": {
+                    "$ref": "#/$defs/Types/temp9_Name"
+                },
+                "temp10_Name": {
+                    "$ref": "#/$defs/Types/temp10_Name"
+                },
+                "temp11_Name": {
+                    "$ref": "#/$defs/Types/temp11_Name"
+                },
+                "temp12_Name": {
+                    "$ref": "#/$defs/Types/temp12_Name"
+                },
+                "temp13_Name": {
+                    "$ref": "#/$defs/Types/temp13_Name"
                 },
                 "vout1_Max": {
                     "$ref": "#/$defs/Types/vout1_Max"
@@ -1310,6 +1343,24 @@
             "iout3_Name": {
                 "type": "string"
             },
+            "iout4_Max": {
+                "type": "number"
+            },
+            "iout4_Min": {
+                "type": "number"
+            },
+            "iout4_Name": {
+                "type": "string"
+            },
+            "iout5_Max": {
+                "type": "number"
+            },
+            "iout5_Min": {
+                "type": "number"
+            },
+            "iout5_Name": {
+                "type": "string"
+            },
             "pin1_Max": {
                 "type": "number"
             },
@@ -1413,6 +1464,21 @@
                 "type": "string"
             },
             "temp8_Name": {
+                "type": "string"
+            },
+            "temp9_Name": {
+                "type": "string"
+            },
+            "temp10_Name": {
+                "type": "string"
+            },
+            "temp11_Name": {
+                "type": "string"
+            },
+            "temp12_Name": {
+                "type": "string"
+            },
+            "temp13_Name": {
                 "type": "string"
             },
             "vout1_Max": {
@@ -1581,6 +1647,18 @@
                 "type": "number"
             },
             "iout1_Scale": {
+                "type": "number"
+            },
+            "iout2_Scale": {
+                "type": "number"
+            },
+            "iout3_Scale": {
+                "type": "number"
+            },
+            "iout4_Scale": {
+                "type": "number"
+            },
+            "iout5_Scale": {
                 "type": "number"
             },
             "pin_Scale": {
