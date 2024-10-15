@@ -1,6 +1,7 @@
 unit_files = [
     ['xyz.openbmc_project.FruDevice.service', 'fru-device'],
     ['xyz.openbmc_project.EntityManager.service', ''],
+    ['xyz.openbmc_project.DeviceTree.VPD.Parser.service', 'devicetree-vpd'],
 ]
 
 foreach u : unit_files
