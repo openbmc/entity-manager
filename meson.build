@@ -34,6 +34,10 @@ if get_option('fru-device')
     i2c = cpp.find_library('i2c')
 endif
 
+if get_option('devicetree-vpd')
+    phosphor_dbus_interfaces_dep = dependency('phosphor-dbus-interfaces', include_type: 'system')
+endif
+
 nlohmann_json_dep = dependency('nlohmann_json', include_type: 'system')
 sdbusplus = dependency('sdbusplus', include_type: 'system')
 phosphor_logging_dep = dependency('phosphor-logging')

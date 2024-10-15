@@ -2,10 +2,13 @@ option(
     'tests', type: 'feature', description: 'Build tests.',
 )
 option(
-    'fru-device', type: 'boolean', description: 'Build fru-device.',
+    'fru-device', type: 'boolean', description: 'Build fru-device VPD parser.',
 )
 option(
     'fru-device-resizefru', value : false, type: 'boolean', description: 'Allow FruDevice to resize FRU areas.',
+)
+option(
+    'devicetree-vpd', type: 'boolean', description: 'Build device-tree VPD parser'
 )
 option(
     'validate-json', type: 'boolean', value: true, description: 'Run JSON schema validation during the build.',
