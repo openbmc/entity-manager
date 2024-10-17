@@ -1,0 +1,90 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "eab3976a_e6f95156",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1001354
+      },
+      "writtenOn": "2024-10-17T19:54:03Z",
+      "side": 1,
+      "message": "Added comments to the specific pain points I\u0027ve run into with the CI tool suggestions",
+      "revId": "201bd4bb44674bf232fa87217ed26321a669d0f4",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "57743120_586df2a2",
+        "filename": "src/dt-vpd-parser.cpp",
+        "patchSetId": 1
+      },
+      "lineNbr": 13,
+      "author": {
+        "id": 1001354
+      },
+      "writtenOn": "2024-10-17T19:54:03Z",
+      "side": 1,
+      "message": "The only place I can find an OBMC instances of \u0027__final_awaitable\u0027 is as a set of private structs linked to async API: https://github.com/search?q\u003dorg%3Aopenbmc%20final_awaitable\u0026type\u003dcode\n\nAmong other related-complaints, console output shows\n\n\u003e/usr/local/include/sdbusplus/async/stdexec/task.hpp:366:12: note: declared private here\n\u003e  366 |     struct __final_awaitable\n\nI don\u0027t even understand what the CI tool is trying to do here.",
+      "range": {
+        "startLine": 13,
+        "startChar": 18,
+        "endLine": 13,
+        "endChar": 35
+      },
+      "revId": "201bd4bb44674bf232fa87217ed26321a669d0f4",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "973c32ee_b90f1fd8",
+        "filename": "src/machinecontext.cpp",
+        "patchSetId": 1
+      },
+      "lineNbr": 26,
+      "author": {
+        "id": 1001354
+      },
+      "writtenOn": "2024-10-17T19:54:03Z",
+      "side": 1,
+      "message": "If this function is marked as static like the CI tool suggests, it breaks the lambda closures.\n\nIf I move the creation of this map into the populateMachineContext() function instead of here, the CI tool wants to mark the populateMachineContext() function as static instead, which also breaks the lambda closures in the map.",
+      "range": {
+        "startLine": 26,
+        "startChar": 12,
+        "endLine": 26,
+        "endChar": 13
+      },
+      "revId": "201bd4bb44674bf232fa87217ed26321a669d0f4",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1ef653ec_a819bf23",
+        "filename": "src/machinecontext.hpp",
+        "patchSetId": 1
+      },
+      "lineNbr": 41,
+      "author": {
+        "id": 1001354
+      },
+      "writtenOn": "2024-10-17T19:54:03Z",
+      "side": 1,
+      "message": "The map being returned ties a device-tree path string to a lambda function with a by-reference closure used update a MachineContext object\u0027s inherited properties.\n\nMaking a function that uses this map static breaks the by-reference closure.",
+      "range": {
+        "startLine": 41,
+        "startChar": 4,
+        "endLine": 41,
+        "endChar": 11
+      },
+      "revId": "201bd4bb44674bf232fa87217ed26321a669d0f4",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    }
+  ]
+}
