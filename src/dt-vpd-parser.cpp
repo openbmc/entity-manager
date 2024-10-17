@@ -7,10 +7,14 @@ int main()
     sdbusplus::server::manager_t manager{ctx, MachineContext::reqDBusPath};
     MachineContext mc{ctx, MachineContext::reqDBusPath};
 
-    ctx.spawn([](sdbusplus::async::context& ctx) -> sdbusplus::async::task<> {
-        ctx.request_name(MachineContext::reqDBusInterface);
-        co_return;
-    }(ctx));
+    ctx.spawn(exec::__task::basic_task<
+                  void, exec::__task::__default_task_context_impl<
+                            exec::__task::__scheduler_affinity::__sticky>>::
+                  __final_awaitable::[](sdbusplus::async::context& ctx)
+                                         -> sdbusplus::async::task<> {
+                      ctx.request_name(MachineContext::reqDBusInterface);
+                      co_return;
+                  }(ctx));
 
     ctx.run();
 

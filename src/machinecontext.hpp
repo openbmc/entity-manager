@@ -38,7 +38,7 @@ class MachineContext :
         populateMachineContext();
     }
 
-    const std::map<std::string, std::function<void(std::string)>>
+    static std::map<std::string, std::function<void(std::string)>>
         nodeSupportMap();
     void populateMachineContext();
 };
