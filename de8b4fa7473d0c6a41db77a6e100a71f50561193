@@ -20,6 +20,69 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "b2e32e0c_5b537b82",
+        "filename": "meson.build",
+        "patchSetId": 1
+      },
+      "lineNbr": 39,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2024-10-18T18:26:26Z",
+      "side": 1,
+      "message": "whitespace issues.",
+      "revId": "de8b4fa7473d0c6a41db77a6e100a71f50561193",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b99f0dc6_43487752",
+        "filename": "src/machinecontext.cpp",
+        "patchSetId": 1
+      },
+      "lineNbr": 27,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2024-10-18T18:26:26Z",
+      "side": 1,
+      "message": "This is a copy.  I suspect this will go away shortly though.",
+      "range": {
+        "startLine": 27,
+        "startChar": 26,
+        "endLine": 27,
+        "endChar": 30
+      },
+      "revId": "de8b4fa7473d0c6a41db77a6e100a71f50561193",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c514471a_3e893102",
+        "filename": "src/machinecontext.cpp",
+        "patchSetId": 1
+      },
+      "lineNbr": 27,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2024-10-18T18:26:26Z",
+      "side": 1,
+      "message": "Wildcard captures are generally disallowed, as they are hard to review.",
+      "range": {
+        "startLine": 27,
+        "startChar": 23,
+        "endLine": 27,
+        "endChar": 25
+      },
+      "revId": "de8b4fa7473d0c6a41db77a6e100a71f50561193",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "64a31fe4_6872da70",
         "filename": "src/machinecontext.cpp",
         "patchSetId": 1
@@ -67,6 +130,98 @@
       "side": 1,
       "message": "Discord discussion about the CI tool suggestions breaking things posted @\nhttps://discord.com/channels/775381525260664832/817151035197358081/1296853865911812097",
       "parentUuid": "f3d09510_649e57f3",
+      "revId": "de8b4fa7473d0c6a41db77a6e100a71f50561193",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7f2c1263_27b74d49",
+        "filename": "src/machinecontext.cpp",
+        "patchSetId": 1
+      },
+      "lineNbr": 30,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2024-10-18T18:26:26Z",
+      "side": 1,
+      "message": "\u003e I feel like this approach might be over-complicating it.\n\n+1\n\nI think in discord I posted this, but duplicating in gerrit for visibility\n```\nif (name \u003d\u003d \"serial-number\"){\n    MachineContext::Asset::serial_number(....);\n}\n```\n\nIn addition, I would say as an overall goal, lets keep _this patch_ simple.  If in future patches we find that we need targetable per handler dynamic callbacks we can do implement that when we can justify the complexity.  For now, just a fixed list of keys and direct call methods will work just fine.",
+      "parentUuid": "e410452a_e69cfafd",
+      "revId": "de8b4fa7473d0c6a41db77a6e100a71f50561193",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "61f82e7a_65794f98",
+        "filename": "src/machinecontext.cpp",
+        "patchSetId": 1
+      },
+      "lineNbr": 35,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2024-10-18T18:26:26Z",
+      "side": 1,
+      "message": "You\u0027re constructing a map here, then you\u0027re using it like a list.",
+      "revId": "de8b4fa7473d0c6a41db77a6e100a71f50561193",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "dcde11bc_365a072c",
+        "filename": "src/machinecontext.cpp",
+        "patchSetId": 1
+      },
+      "lineNbr": 46,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2024-10-18T18:26:26Z",
+      "side": 1,
+      "message": "This is doing a blocking IO call in the async reactor, which will deadlock all other calls if this node takes a long time to reply.  In asio we have uring based file readers, or should we do this in its own thread so we don\u0027t block dbus?",
+      "revId": "de8b4fa7473d0c6a41db77a6e100a71f50561193",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "56cb9b23_be561d4a",
+        "filename": "src/machinecontext.hpp",
+        "patchSetId": 1
+      },
+      "lineNbr": 31,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2024-10-18T18:26:26Z",
+      "side": 1,
+      "message": "This is only used in one place, and realistically has nothing to do with this class.  Just inline this.",
+      "revId": "de8b4fa7473d0c6a41db77a6e100a71f50561193",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "41b19e17_e3509bf2",
+        "filename": "src/machinecontext.hpp",
+        "patchSetId": 1
+      },
+      "lineNbr": 43,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2024-10-18T18:26:26Z",
+      "side": 1,
+      "message": "This is only ever called in the constructor.  Maybe just make this the constructor?",
+      "range": {
+        "startLine": 43,
+        "startChar": 9,
+        "endLine": 43,
+        "endChar": 31
+      },
       "revId": "de8b4fa7473d0c6a41db77a6e100a71f50561193",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
