@@ -115,6 +115,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "b93d9faa_b164b435",
+        "filename": "src/dt-vpd-parser.cpp",
+        "patchSetId": 1
+      },
+      "lineNbr": 13,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2024-10-18T18:05:00Z",
+      "side": 1,
+      "message": "```\n../src/dt-vpd-parser.cpp:10:15: error: static member accessed through instance [readability-static-accessed-through-instance,-warnings-as-errors]\n   10 |     ctx.spawn([](sdbusplus::async::context\u0026 ctx) -\u003e sdbusplus::async::task\u003c\u003e {\n```\n\nThe \"fixup\" for this from clang-tidy is busted.  Yes, making a real fix is preferred over NOLINT.  We generally don\u0027t like to put those in.",
+      "parentUuid": "227a1152_489b96d5",
+      "range": {
+        "startLine": 13,
+        "startChar": 18,
+        "endLine": 13,
+        "endChar": 35
+      },
+      "revId": "201bd4bb44674bf232fa87217ed26321a669d0f4",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "973c32ee_b90f1fd8",
         "filename": "src/machinecontext.cpp",
         "patchSetId": 1
