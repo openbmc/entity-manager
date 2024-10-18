@@ -607,6 +607,30 @@
             "in0_Name": "PDB_RETURN_VDROP_VOLT_V"
         },
         {
+            "Address": "0x44",
+            "Bus": 23,
+            "Labels": [
+                "in0"
+            ],
+            "Name": "PDB_CABLE_TSENSE_POSITIVE_INA238",
+            "Type": "INA238",
+            "in0_Max": 1,
+            "in0_Min": -1,
+            "in0_Name": "PDB_CABLE_TSENSE_POSITIVE_VOLT_V"
+        },
+        {
+            "Address": "0x42",
+            "Bus": 23,
+            "Labels": [
+                "in0"
+            ],
+            "Name": "PDB_CABLE_TSENSE_NEGATIVE_INA238",
+            "Type": "INA238",
+            "in0_Max": 1,
+            "in0_Min": -1,
+            "in0_Name": "PDB_CABLE_TSENSE_NEGATIVE_VOLT_V"
+        },
+        {
             "Address": "0x42",
             "Bus": 20,
             "Labels": [
