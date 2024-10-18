@@ -33,6 +33,24 @@
       "message": "It looks like you\u0027re having some difficulty with this, and I feel like this approach might be over-complicating it.\n\nThe devicetree isn\u0027t something that changes on a whim; properties of a node are described in machine-checked bindings because they form an ABI between the firmware and the kernel.\n\nI don\u0027t see a reason we can\u0027t hard-code the setting of these members rather than have the complexity of the property map with lambdas. The only thing that\u0027s necessary is testing if the file exists.",
       "revId": "de8b4fa7473d0c6a41db77a6e100a71f50561193",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f3d09510_649e57f3",
+        "filename": "src/machinecontext.cpp",
+        "patchSetId": 1
+      },
+      "lineNbr": 30,
+      "author": {
+        "id": 1001354
+      },
+      "writtenOn": "2024-10-18T14:22:17Z",
+      "side": 1,
+      "message": "Fair enough. The structure seemed like a really cool idea suggested in a previous review that left things open for easy expansion in the future.\n(https://gerrit.openbmc.org/c/openbmc/phosphor-u-boot-env-mgr/+/71512/comment/34ca01d8_5acf8f3d/)\n\nThe weird thing is that the code itself works-- but when the CI tool runs, it wants to change any function containing this map def into a \u0027static\u0027 (replacing \u0027const\u0027 if set) -- which breaks the closure getting a reference to an instanced object.\n\nI\u0027m about to jump on Discord and ask around to see if I can get a handle on why the CI tool is so insistent about following this structure with a \u0027static\u0027 label. \nCurrently I\u0027m suspecting it\u0027s something to do with the tool thinking \"map being defined on-the-spot? clearly that could be static.\"\n\nEither way, I\u0027ll put \"just get rid of the structure and hardcode\" on the shortlist of serious considerations.",
+      "parentUuid": "64a31fe4_6872da70",
+      "revId": "de8b4fa7473d0c6a41db77a6e100a71f50561193",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }
