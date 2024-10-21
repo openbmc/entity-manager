@@ -1057,6 +1057,100 @@
                 "Type": "MB Upstream Port"
             },
             {
+                "Name": "S0_DIMMG0_Temp",
+                "Sensors": [
+                    "S0_DIMM_CH0_Temp",
+                    "S0_DIMM_CH1_Temp",
+                    "S0_DIMM_CH2_Temp",
+                    "S0_DIMM_CH3_Temp"
+                ],
+                "Thresholds": [
+                    {
+                        "Direction": "greater than",
+                        "Name": "upper critical",
+                        "Severity": 1,
+                        "Value": 85
+                    }
+                ],
+                "Type": "Maximum",
+                "Units": "DegreesC"
+            },
+            {
+                "Name": "S1_DIMMG0_Temp",
+                "Sensors": [
+                    "S1_DIMM_CH0_Temp",
+                    "S1_DIMM_CH1_Temp",
+                    "S1_DIMM_CH2_Temp",
+                    "S1_DIMM_CH3_Temp"
+                ],
+                "Thresholds": [
+                    {
+                        "Direction": "greater than",
+                        "Name": "upper critical",
+                        "Severity": 1,
+                        "Value": 85
+                    }
+                ],
+                "Type": "Maximum",
+                "Units": "DegreesC"
+            },
+            {
+                "Name": "S0_DIMMG1_Temp",
+                "Sensors": [
+                    "S0_DIMM_CH4_Temp",
+                    "S0_DIMM_CH5_Temp",
+                    "S0_DIMM_CH6_Temp",
+                    "S0_DIMM_CH7_Temp"
+                ],
+                "Thresholds": [
+                    {
+                        "Direction": "greater than",
+                        "Name": "upper critical",
+                        "Severity": 1,
+                        "Value": 85
+                    }
+                ],
+                "Type": "Maximum",
+                "Units": "DegreesC"
+            },
+            {
+                "Name": "S1_DIMMG1_Temp",
+                "Sensors": [
+                    "S1_DIMM_CH4_Temp",
+                    "S1_DIMM_CH5_Temp",
+                    "S1_DIMM_CH6_Temp",
+                    "S1_DIMM_CH7_Temp"
+                ],
+                "Thresholds": [
+                    {
+                        "Direction": "greater than",
+                        "Name": "upper critical",
+                        "Severity": 1,
+                        "Value": 85
+                    }
+                ],
+                "Type": "Maximum",
+                "Units": "DegreesC"
+            },
+            {
+                "Name": "S0_DIMM_DDR_Volt",
+                "Sensors": [
+                    "S0_DIMM_VR1_Volt",
+                    "S0_DIMM_VR2_Volt"
+                ],
+                "Type": "Maximum",
+                "Units": "Volts"
+            },
+            {
+                "Name": "S1_DIMM_DDR_Volt",
+                "Sensors": [
+                    "S1_DIMM_VR1_Volt",
+                    "S1_DIMM_VR2_Volt"
+                ],
+                "Type": "Maximum",
+                "Units": "Volts"
+            },
+            {
                 "Name": "nvme_bp_max",
                 "Sensors": [
                     "nvme0",
@@ -1851,5 +1945,37 @@
             "MACAddress": "$BOARD_INFO_AM1"
         },
         "xyz.openbmc_project.Inventory.Item.System": {}
+    },
+    {
+        "Exposes": [
+            {
+                "ConnectsToType": "MB Upstream Port",
+                "Name": "PowerSupply$ADDRESS % 80 Downstream Port",
+                "PowerPort": true,
+                "Type": "DownstreamPort"
+            }
+        ],
+        "Name": "PowerSupply$ADDRESS % 80",
+        "Probe": [
+            "xyz.openbmc_project.FruDevice({'BUS': 6, 'ADDRESS': 80})",
+            "OR",
+            "xyz.openbmc_project.FruDevice({'BUS': 6, 'ADDRESS': 81})",
+            "AND",
+            "FOUND('Mt.Jade')"
+        ],
+        "Type": "PowerSupply",
+        "xyz.openbmc_project.Inventory.Decorator.Asset": {
+            "Manufacturer": "$PRODUCT_MANUFACTURER",
+            "Model": "$PRODUCT_PRODUCT_NAME",
+            "PartNumber": "$PRODUCT_PART_NUMBER",
+            "SerialNumber": "$PRODUCT_SERIAL_NUMBER"
+        },
+        "xyz.openbmc_project.Inventory.Decorator.AssetTag": {
+            "AssetTag": "$PRODUCT_ASSET_TAG"
+        },
+        "xyz.openbmc_project.Inventory.Decorator.Replaceable": {
+            "FieldReplaceable": false,
+            "HotPluggable": false
+        }
     }
 ]
