@@ -181,13 +181,13 @@
                 }
             ],
             "Type": "ADC128D818",
-            "in0_Name": "SPIDER_ADC_12V_NIC0_VOLT_V",
+            "in0_Name": "SPIDER_ADC_NIC0_12V_VOLT_V",
             "in0_Scale": 112.3596,
-            "in1_Name": "SPIDER_ADC_3V3_NIC0_VOLT_V",
+            "in1_Name": "SPIDER_ADC_NIC0_3V3_VOLT_V",
             "in1_Scale": 410.6776,
-            "in2_Name": "SPIDER_ADC_12V_NIC1_VOLT_V",
+            "in2_Name": "SPIDER_ADC_NIC1_12V_VOLT_V",
             "in2_Scale": 112.3596,
-            "in3_Name": "SPIDER_ADC_3V3_NIC1_VOLT_V",
+            "in3_Name": "SPIDER_ADC_NIC1_3V3_VOLT_V",
             "in3_Scale": 410.6776
         },
         {
@@ -285,7 +285,7 @@
                 }
             ],
             "Type": "ADC128D818",
-            "in0_Name": "SPIDER_ADC_12V_MEDUSA_AUX_VOLT_V",
+            "in0_Name": "SPIDER_ADC_MEDUSA_12V_AUX_VOLT_V",
             "in0_Scale": 112.3596,
             "in1_Name": "SPIDER_ADC_3V3_AUX_VOLT_V",
             "in1_Scale": 410.6776
@@ -471,13 +471,13 @@
                 }
             ],
             "Type": "ADC128D818",
-            "in0_Name": "SPIDER_ADC_12V_NIC2_VOLT_V",
+            "in0_Name": "SPIDER_ADC_NIC2_12V_VOLT_V",
             "in0_Scale": 112.3596,
-            "in1_Name": "SPIDER_ADC_3V3_NIC2_VOLT_V",
+            "in1_Name": "SPIDER_ADC_NIC2_3V3_VOLT_V",
             "in1_Scale": 410.6776,
-            "in2_Name": "SPIDER_ADC_12V_NIC3_VOLT_V",
+            "in2_Name": "SPIDER_ADC_NIC3_12V_VOLT_V",
             "in2_Scale": 112.3596,
-            "in3_Name": "SPIDER_ADC_3V3_NIC3_VOLT_V",
+            "in3_Name": "SPIDER_ADC_NIC3_3V3_VOLT_V",
             "in3_Scale": 410.6776
         },
         {
@@ -488,7 +488,7 @@
                 "iout1",
                 "pout1"
             ],
-            "Name": "SPIDER_INA233_12V_STBY",
+            "Name": "SPIDER_PMON_12V_STBY",
             "Thresholds": [
                 {
                     "Direction": "greater than",
@@ -576,9 +576,9 @@
                 }
             ],
             "Type": "INA233",
-            "iout1_Name": "SPIDER_INA233_12V_STBY_CURR_A",
-            "pout1_Name": "SPIDER_INA233_12V_STBY_PWR_W",
-            "vout1_Name": "SPIDER_INA233_12V_STBY_VOLT_V"
+            "iout1_Name": "SPIDER_PMON_12V_STBY_CURR_A",
+            "pout1_Name": "SPIDER_PMON_12V_STBY_PWR_W",
+            "vout1_Name": "SPIDER_PMON_12V_STBY_VOLT_V"
         },
         {
             "Address": "0x41",
@@ -588,7 +588,7 @@
                 "iout1",
                 "pout1"
             ],
-            "Name": "SPIDER_INA233_12V_NIC0",
+            "Name": "SPIDER_PMON_NIC0_12V",
             "Thresholds": [
                 {
                     "Direction": "greater than",
@@ -676,9 +676,9 @@
                 }
             ],
             "Type": "INA233",
-            "iout1_Name": "SPIDER_INA233_12V_NIC0_CURR_A",
-            "pout1_Name": "SPIDER_INA233_12V_NIC0_PWR_W",
-            "vout1_Name": "SPIDER_INA233_12V_NIC0_VOLT_V"
+            "iout1_Name": "SPIDER_PMON_NIC0_12V_CURR_A",
+            "pout1_Name": "SPIDER_PMON_NIC0_12V_PWR_W",
+            "vout1_Name": "SPIDER_PMON_NIC0_12V_VOLT_V"
         },
         {
             "Address": "0x42",
@@ -688,7 +688,7 @@
                 "iout1",
                 "pout1"
             ],
-            "Name": "SPIDER_INA233_12V_NIC1",
+            "Name": "SPIDER_PMON_NIC1_12V",
             "Thresholds": [
                 {
                     "Direction": "greater than",
@@ -776,9 +776,9 @@
                 }
             ],
             "Type": "INA233",
-            "iout1_Name": "SPIDER_INA233_12V_NIC1_CURR_A",
-            "pout1_Name": "SPIDER_INA233_12V_NIC1_PWR_W",
-            "vout1_Name": "SPIDER_INA233_12V_NIC1_VOLT_V"
+            "iout1_Name": "SPIDER_PMON_NIC1_12V_CURR_A",
+            "pout1_Name": "SPIDER_PMON_NIC1_12V_PWR_W",
+            "vout1_Name": "SPIDER_PMON_NIC1_12V_VOLT_V"
         },
         {
             "Address": "0x43",
@@ -788,7 +788,7 @@
                 "iout1",
                 "pout1"
             ],
-            "Name": "SPIDER_INA233_12V_NIC2",
+            "Name": "SPIDER_PMON_NIC2_12V",
             "Thresholds": [
                 {
                     "Direction": "greater than",
@@ -876,9 +876,9 @@
                 }
             ],
             "Type": "INA233",
-            "iout1_Name": "SPIDER_INA233_12V_NIC2_CURR_A",
-            "pout1_Name": "SPIDER_INA233_12V_NIC2_PWR_W",
-            "vout1_Name": "SPIDER_INA233_12V_NIC2_VOLT_V"
+            "iout1_Name": "SPIDER_PMON_NIC2_12V_CURR_A",
+            "pout1_Name": "SPIDER_PMON_NIC2_12V_PWR_W",
+            "vout1_Name": "SPIDER_PMON_NIC2_12V_VOLT_V"
         },
         {
             "Address": "0x44",
@@ -888,7 +888,7 @@
                 "iout1",
                 "pout1"
             ],
-            "Name": "SPIDER_INA233_12V_NIC3",
+            "Name": "SPIDER_PMON_NIC3_12V",
             "Thresholds": [
                 {
                     "Direction": "greater than",
@@ -976,9 +976,9 @@
                 }
             ],
             "Type": "INA233",
-            "iout1_Name": "SPIDER_INA233_12V_NIC3_CURR_A",
-            "pout1_Name": "SPIDER_INA233_12V_NIC3_PWR_W",
-            "vout1_Name": "SPIDER_INA233_12V_NIC3_VOLT_V"
+            "iout1_Name": "SPIDER_PMON_NIC3_12V_CURR_A",
+            "pout1_Name": "SPIDER_PMON_NIC3_12V_PWR_W",
+            "vout1_Name": "SPIDER_PMON_NIC3_12V_VOLT_V"
         },
         {
             "Class": "temp",
