@@ -37,6 +37,23 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "08fa1554_74137272",
+        "filename": "src/dt-vpd-parser.cpp",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1000008
+      },
+      "writtenOn": "2024-10-21T19:51:07Z",
+      "side": 1,
+      "message": "source files names should be snake_case.",
+      "revId": "de8b4fa7473d0c6a41db77a6e100a71f50561193",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "b99f0dc6_43487752",
         "filename": "src/machinecontext.cpp",
         "patchSetId": 1
@@ -182,6 +199,23 @@
       "writtenOn": "2024-10-18T18:26:26Z",
       "side": 1,
       "message": "This is doing a blocking IO call in the async reactor, which will deadlock all other calls if this node takes a long time to reply.  In asio we have uring based file readers, or should we do this in its own thread so we don\u0027t block dbus?",
+      "revId": "de8b4fa7473d0c6a41db77a6e100a71f50561193",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e5e4c6b8_66147b3c",
+        "filename": "src/machinecontext.hpp",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1000008
+      },
+      "writtenOn": "2024-10-21T19:51:07Z",
+      "side": 1,
+      "message": "snake_case filenames here too.",
       "revId": "de8b4fa7473d0c6a41db77a6e100a71f50561193",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
