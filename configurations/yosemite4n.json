@@ -168,6 +168,50 @@
         },
         {
             "Index": 4,
+            "Name": "MGNT_P5V_USB_VOLT_V",
+            "ScaleFactor": 0.2717,
+            "Thresholds": [
+                {
+                    "Direction": "greater than",
+                    "Name": "upper non recoverable",
+                    "Severity": 4,
+                    "Value": 5.5
+                },
+                {
+                    "Direction": "greater than",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 5.4
+                },
+                {
+                    "Direction": "greater than",
+                    "Name": "upper non critical",
+                    "Severity": 0,
+                    "Value": 5.35
+                },
+                {
+                    "Direction": "less than",
+                    "Name": "lower non critical",
+                    "Severity": 0,
+                    "Value": 4.65
+                },
+                {
+                    "Direction": "less than",
+                    "Name": "lower critical",
+                    "Severity": 1,
+                    "Value": 4.6
+                },
+                {
+                    "Direction": "less than",
+                    "Name": "lower non recoverable",
+                    "Severity": 4,
+                    "Value": 4.15
+                }
+            ],
+            "Type": "ADC"
+        },
+        {
+            "Index": 5,
             "Name": "MGNT_P1V2_VOLT_V",
             "ScaleFactor": 1,
             "Thresholds": [
@@ -218,7 +262,7 @@
                     "SetupTime": 1
                 }
             ],
-            "Index": 5,
+            "Index": 6,
             "Name": "MGNT_P3V_BAT_VOLT_V",
             "PollRate": 3600,
             "ScaleFactor": 0.3333,
@@ -251,7 +295,7 @@
             "Type": "ADC"
         },
         {
-            "Index": 6,
+            "Index": 7,
             "Name": "MGNT_P1V07_BMC_VOLT_V",
             "ScaleFactor": 1,
             "Thresholds": [
@@ -278,50 +322,6 @@
                     "Name": "lower critical",
                     "Severity": 1,
                     "Value": 0.984
-                }
-            ],
-            "Type": "ADC"
-        },
-        {
-            "Index": 7,
-            "Name": "MGNT_P5V_USB_VOLT_V",
-            "ScaleFactor": 0.2717,
-            "Thresholds": [
-                {
-                    "Direction": "greater than",
-                    "Name": "upper non recoverable",
-                    "Severity": 4,
-                    "Value": 5.5
-                },
-                {
-                    "Direction": "greater than",
-                    "Name": "upper critical",
-                    "Severity": 1,
-                    "Value": 5.4
-                },
-                {
-                    "Direction": "greater than",
-                    "Name": "upper non critical",
-                    "Severity": 0,
-                    "Value": 5.35
-                },
-                {
-                    "Direction": "less than",
-                    "Name": "lower non critical",
-                    "Severity": 0,
-                    "Value": 4.65
-                },
-                {
-                    "Direction": "less than",
-                    "Name": "lower critical",
-                    "Severity": 1,
-                    "Value": 4.6
-                },
-                {
-                    "Direction": "less than",
-                    "Name": "lower non recoverable",
-                    "Severity": 4,
-                    "Value": 4.15
                 }
             ],
             "Type": "ADC"
