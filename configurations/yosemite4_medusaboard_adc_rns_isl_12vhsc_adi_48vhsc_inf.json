@@ -64,7 +64,7 @@
                 "iout1",
                 "pin"
             ],
-            "Name": "MEDUSA_12VEFFUSE",
+            "Name": "MEDUSA_EFFUSE_12V",
             "Thresholds": [
                 {
                     "Direction": "greater than",
@@ -201,11 +201,11 @@
                 }
             ],
             "Type": "MP5023",
-            "iout1_Name": "MEDUSA_12VEFFUSE_CURR_A",
-            "pin_Name": "MEDUSA_12VEFFUSE_INPUT_PWR_W",
-            "temp1_Name": "MEDUSA_12VEFFUSE_TEMP_C",
-            "vin_Name": "MEDUSA_12VEFFUSE_INPUT_VOLT_V",
-            "vout1_Name": "MEDUSA_12VEFFUSE_OUTPUT_VOLT_V"
+            "iout1_Name": "MEDUSA_EFFUSE_12V_CURR_A",
+            "pin_Name": "MEDUSA_EFFUSE_12V_INPUT_PWR_W",
+            "temp1_Name": "MEDUSA_EFFUSE_12V_TEMP_C",
+            "vin_Name": "MEDUSA_EFFUSE_12V_INPUT_VOLT_V",
+            "vout1_Name": "MEDUSA_EFFUSE_12V_OUTPUT_VOLT_V"
         },
         {
             "Address": "0x40",
@@ -217,7 +217,7 @@
                 "iout1",
                 "pin"
             ],
-            "Name": "MEDUSA_MB1_12VHSC",
+            "Name": "MEDUSA_MB1_HSC_12V",
             "Thresholds": [
                 {
                     "Direction": "greater than",
@@ -312,13 +312,13 @@
                 }
             ],
             "Type": "MP5990",
-            "iout1_Name": "MEDUSA_MB1_12VHSC_2_CURR_A",
+            "iout1_Name": "MEDUSA_MB1_HSC_12V_2_CURR_A",
             "iout1_Scale": 500,
-            "pin_Name": "MEDUSA_MB1_12VHSC_INPUT_2_PWR_W",
+            "pin_Name": "MEDUSA_MB1_HSC_12V_INPUT_2_PWR_W",
             "pin_Scale": 500000,
-            "temp1_Name": "MEDUSA_MB1_12VHSC_TEMP_C",
-            "vin_Name": "MEDUSA_MB1_12VHSC_INPUT_VOLT_V",
-            "vout1_Name": "MEDUSA_MB1_12VHSC_OUTPUT_VOLT_V"
+            "temp1_Name": "MEDUSA_MB1_HSC_12V_TEMP_C",
+            "vin_Name": "MEDUSA_MB1_HSC_12V_INPUT_VOLT_V",
+            "vout1_Name": "MEDUSA_MB1_HSC_12V_OUTPUT_VOLT_V"
         },
         {
             "Address": "0x40",
@@ -330,7 +330,7 @@
                 "iout1",
                 "pin"
             ],
-            "Name": "MEDUSA_MB2_12VHSC",
+            "Name": "MEDUSA_MB2_HSC_12V",
             "Thresholds": [
                 {
                     "Direction": "greater than",
@@ -425,13 +425,13 @@
                 }
             ],
             "Type": "MP5990",
-            "iout1_Name": "MEDUSA_MB2_12VHSC_2_CURR_A",
+            "iout1_Name": "MEDUSA_MB2_HSC_12V_2_CURR_A",
             "iout1_Scale": 500,
-            "pin_Name": "MEDUSA_MB2_12VHSC_INPUT_2_PWR_W",
+            "pin_Name": "MEDUSA_MB2_HSC_12V_INPUT_2_PWR_W",
             "pin_Scale": 500000,
-            "temp1_Name": "MEDUSA_MB2_12VHSC_TEMP_C",
-            "vin_Name": "MEDUSA_MB2_12VHSC_INPUT_VOLT_V",
-            "vout1_Name": "MEDUSA_MB2_12VHSC_OUTPUT_VOLT_V"
+            "temp1_Name": "MEDUSA_MB2_HSC_12V_TEMP_C",
+            "vin_Name": "MEDUSA_MB2_HSC_12V_INPUT_VOLT_V",
+            "vout1_Name": "MEDUSA_MB2_HSC_12V_OUTPUT_VOLT_V"
         },
         {
             "Address": "0x40",
@@ -443,7 +443,7 @@
                 "iout1",
                 "pin"
             ],
-            "Name": "MEDUSA_MB3_12VHSC",
+            "Name": "MEDUSA_MB3_HSC_12V",
             "Thresholds": [
                 {
                     "Direction": "greater than",
@@ -538,13 +538,13 @@
                 }
             ],
             "Type": "MP5990",
-            "iout1_Name": "MEDUSA_MB3_12VHSC_2_CURR_A",
+            "iout1_Name": "MEDUSA_MB3_HSC_12V_2_CURR_A",
             "iout1_Scale": 500,
-            "pin_Name": "MEDUSA_MB3_12VHSC_INPUT_2_PWR_W",
+            "pin_Name": "MEDUSA_MB3_HSC_12V_INPUT_2_PWR_W",
             "pin_Scale": 500000,
-            "temp1_Name": "MEDUSA_MB3_12VHSC_TEMP_C",
-            "vin_Name": "MEDUSA_MB3_12VHSC_INPUT_VOLT_V",
-            "vout1_Name": "MEDUSA_MB3_12VHSC_OUTPUT_VOLT_V"
+            "temp1_Name": "MEDUSA_MB3_HSC_12V_TEMP_C",
+            "vin_Name": "MEDUSA_MB3_HSC_12V_INPUT_VOLT_V",
+            "vout1_Name": "MEDUSA_MB3_HSC_12V_OUTPUT_VOLT_V"
         },
         {
             "Address": "0x40",
@@ -556,7 +556,7 @@
                 "iout1",
                 "pin"
             ],
-            "Name": "MEDUSA_MB4_12VHSC",
+            "Name": "MEDUSA_MB4_HSC_12V",
             "Thresholds": [
                 {
                     "Direction": "greater than",
@@ -651,13 +651,13 @@
                 }
             ],
             "Type": "MP5990",
-            "iout1_Name": "MEDUSA_MB4_12VHSC_2_CURR_A",
+            "iout1_Name": "MEDUSA_MB4_HSC_12V_2_CURR_A",
             "iout1_Scale": 500,
-            "pin_Name": "MEDUSA_MB4_12VHSC_INPUT_2_PWR_W",
+            "pin_Name": "MEDUSA_MB4_HSC_12V_INPUT_2_PWR_W",
             "pin_Scale": 500000,
-            "temp1_Name": "MEDUSA_MB4_12VHSC_TEMP_C",
-            "vin_Name": "MEDUSA_MB4_12VHSC_INPUT_VOLT_V",
-            "vout1_Name": "MEDUSA_MB4_12VHSC_OUTPUT_VOLT_V"
+            "temp1_Name": "MEDUSA_MB4_HSC_12V_TEMP_C",
+            "vin_Name": "MEDUSA_MB4_HSC_12V_INPUT_VOLT_V",
+            "vout1_Name": "MEDUSA_MB4_HSC_12V_OUTPUT_VOLT_V"
         },
         {
             "Address": "0x40",
@@ -669,7 +669,7 @@
                 "iout1",
                 "pin"
             ],
-            "Name": "MEDUSA_MB5_12VHSC",
+            "Name": "MEDUSA_MB5_HSC_12V",
             "Thresholds": [
                 {
                     "Direction": "greater than",
@@ -764,13 +764,13 @@
                 }
             ],
             "Type": "MP5990",
-            "iout1_Name": "MEDUSA_MB5_12VHSC_2_CURR_A",
+            "iout1_Name": "MEDUSA_MB5_HSC_12V_2_CURR_A",
             "iout1_Scale": 500,
-            "pin_Name": "MEDUSA_MB5_12VHSC_INPUT_2_PWR_W",
+            "pin_Name": "MEDUSA_MB5_HSC_12V_INPUT_2_PWR_W",
             "pin_Scale": 500000,
-            "temp1_Name": "MEDUSA_MB5_12VHSC_TEMP_C",
-            "vin_Name": "MEDUSA_MB5_12VHSC_INPUT_VOLT_V",
-            "vout1_Name": "MEDUSA_MB5_12VHSC_OUTPUT_VOLT_V"
+            "temp1_Name": "MEDUSA_MB5_HSC_12V_TEMP_C",
+            "vin_Name": "MEDUSA_MB5_HSC_12V_INPUT_VOLT_V",
+            "vout1_Name": "MEDUSA_MB5_HSC_12V_OUTPUT_VOLT_V"
         },
         {
             "Address": "0x40",
@@ -782,7 +782,7 @@
                 "iout1",
                 "pin"
             ],
-            "Name": "MEDUSA_MB6_12VHSC",
+            "Name": "MEDUSA_MB6_HSC_12V",
             "Thresholds": [
                 {
                     "Direction": "greater than",
@@ -877,13 +877,13 @@
                 }
             ],
             "Type": "MP5990",
-            "iout1_Name": "MEDUSA_MB6_12VHSC_2_CURR_A",
+            "iout1_Name": "MEDUSA_MB6_HSC_12V_2_CURR_A",
             "iout1_Scale": 500,
-            "pin_Name": "MEDUSA_MB6_12VHSC_INPUT_2_PWR_W",
+            "pin_Name": "MEDUSA_MB6_HSC_12V_INPUT_2_PWR_W",
             "pin_Scale": 500000,
-            "temp1_Name": "MEDUSA_MB6_12VHSC_TEMP_C",
-            "vin_Name": "MEDUSA_MB6_12VHSC_INPUT_VOLT_V",
-            "vout1_Name": "MEDUSA_MB6_12VHSC_OUTPUT_VOLT_V"
+            "temp1_Name": "MEDUSA_MB6_HSC_12V_TEMP_C",
+            "vin_Name": "MEDUSA_MB6_HSC_12V_INPUT_VOLT_V",
+            "vout1_Name": "MEDUSA_MB6_HSC_12V_OUTPUT_VOLT_V"
         },
         {
             "Address": "0x40",
@@ -895,7 +895,7 @@
                 "iout1",
                 "pin"
             ],
-            "Name": "MEDUSA_MB7_12VHSC",
+            "Name": "MEDUSA_MB7_HSC_12V",
             "Thresholds": [
                 {
                     "Direction": "greater than",
@@ -990,13 +990,13 @@
                 }
             ],
             "Type": "MP5990",
-            "iout1_Name": "MEDUSA_MB7_12VHSC_2_CURR_A",
+            "iout1_Name": "MEDUSA_MB7_HSC_12V_2_CURR_A",
             "iout1_Scale": 500,
-            "pin_Name": "MEDUSA_MB7_12VHSC_INPUT_2_PWR_W",
+            "pin_Name": "MEDUSA_MB7_HSC_12V_INPUT_2_PWR_W",
             "pin_Scale": 500000,
-            "temp1_Name": "MEDUSA_MB7_12VHSC_TEMP_C",
-            "vin_Name": "MEDUSA_MB7_12VHSC_INPUT_VOLT_V",
-            "vout1_Name": "MEDUSA_MB7_12VHSC_OUTPUT_VOLT_V"
+            "temp1_Name": "MEDUSA_MB7_HSC_12V_TEMP_C",
+            "vin_Name": "MEDUSA_MB7_HSC_12V_INPUT_VOLT_V",
+            "vout1_Name": "MEDUSA_MB7_HSC_12V_OUTPUT_VOLT_V"
         },
         {
             "Address": "0x40",
@@ -1008,7 +1008,7 @@
                 "iout1",
                 "pin"
             ],
-            "Name": "MEDUSA_MB8_12VHSC",
+            "Name": "MEDUSA_MB8_HSC_12V",
             "Thresholds": [
                 {
                     "Direction": "greater than",
@@ -1103,13 +1103,13 @@
                 }
             ],
             "Type": "MP5990",
-            "iout1_Name": "MEDUSA_MB8_12VHSC_2_CURR_A",
+            "iout1_Name": "MEDUSA_MB8_HSC_12V_2_CURR_A",
             "iout1_Scale": 500,
-            "pin_Name": "MEDUSA_MB8_12VHSC_INPUT_2_PWR_W",
+            "pin_Name": "MEDUSA_MB8_HSC_12V_INPUT_2_PWR_W",
             "pin_Scale": 500000,
-            "temp1_Name": "MEDUSA_MB8_12VHSC_TEMP_C",
-            "vin_Name": "MEDUSA_MB8_12VHSC_INPUT_VOLT_V",
-            "vout1_Name": "MEDUSA_MB8_12VHSC_OUTPUT_VOLT_V"
+            "temp1_Name": "MEDUSA_MB8_HSC_12V_TEMP_C",
+            "vin_Name": "MEDUSA_MB8_HSC_12V_INPUT_VOLT_V",
+            "vout1_Name": "MEDUSA_MB8_HSC_12V_OUTPUT_VOLT_V"
         },
         {
             "CheckHysteresisWithSetpoint": true,
@@ -1121,10 +1121,10 @@
             "ILimitMax": 100,
             "ILimitMin": -50,
             "Inputs": [
-                "MEDUSA_12VDELTA0_TEMP_C",
-                "MEDUSA_12VDELTA1_TEMP_C",
-                "MEDUSA_12VDELTA2_TEMP_C",
-                "MEDUSA_12VDELTA3_TEMP_C"
+                "MEDUSA_DELTA0_12V_TEMP_C",
+                "MEDUSA_DELTA1_12V_TEMP_C",
+                "MEDUSA_DELTA2_12V_TEMP_C",
+                "MEDUSA_DELTA3_12V_TEMP_C"
             ],
             "Name": "PID_MEDUSA_12VDELTA",
             "NegativeHysteresis": 3.0,
@@ -1153,16 +1153,16 @@
         {
             "Class": "temp",
             "Inputs": [
-                "MEDUSA_48VHSC0_TEMP_C",
-                "MEDUSA_48VHSC1_TEMP_C",
-                "MEDUSA_MB1_12VHSC_TEMP_C",
-                "MEDUSA_MB2_12VHSC_TEMP_C",
-                "MEDUSA_MB3_12VHSC_TEMP_C",
-                "MEDUSA_MB4_12VHSC_TEMP_C",
-                "MEDUSA_MB5_12VHSC_TEMP_C",
-                "MEDUSA_MB6_12VHSC_TEMP_C",
-                "MEDUSA_MB7_12VHSC_TEMP_C",
-                "MEDUSA_MB8_12VHSC_TEMP_C",
+                "MEDUSA_HSC0_48V_TEMP_C",
+                "MEDUSA_HSC1_48V_TEMP_C",
+                "MEDUSA_MB1_HSC_12V_TEMP_C",
+                "MEDUSA_MB2_HSC_12V_TEMP_C",
+                "MEDUSA_MB3_HSC_12V_TEMP_C",
+                "MEDUSA_MB4_HSC_12V_TEMP_C",
+                "MEDUSA_MB5_HSC_12V_TEMP_C",
+                "MEDUSA_MB6_HSC_12V_TEMP_C",
+                "MEDUSA_MB7_HSC_12V_TEMP_C",
+                "MEDUSA_MB8_HSC_12V_TEMP_C",
                 "MEDUSA_TEMP0_C",
                 "MEDUSA_TEMP1_C"
             ],
@@ -1183,10 +1183,10 @@
         {
             "Class": "temp",
             "Inputs": [
-                "MEDUSA_12VDELTA0_TEMP_C",
-                "MEDUSA_12VDELTA1_TEMP_C",
-                "MEDUSA_12VDELTA2_TEMP_C",
-                "MEDUSA_12VDELTA3_TEMP_C"
+                "MEDUSA_DELTA0_12V_TEMP_C",
+                "MEDUSA_DELTA1_12V_TEMP_C",
+                "MEDUSA_DELTA2_12V_TEMP_C",
+                "MEDUSA_DELTA3_12V_TEMP_C"
             ],
             "Name": "Stepwise_MEDUSA_12VDELTA",
             "NegativeHysteresis": 2,
@@ -1215,7 +1215,7 @@
         {
             "Address": "0x48",
             "Bus": 11,
-            "Name": "MEDUSA_0_TEMP_C",
+            "Name": "MEDUSA0_TEMP_C",
             "Thresholds": [
                 {
                     "Direction": "greater than",
@@ -1229,7 +1229,7 @@
         {
             "Address": "0x49",
             "Bus": 11,
-            "Name": "MEDUSA_1_TEMP_C",
+            "Name": "MEDUSA1_TEMP_C",
             "Thresholds": [
                 {
                     "Direction": "greater than",
@@ -1250,7 +1250,7 @@
                 "iout1",
                 "pin"
             ],
-            "Name": "MEDUSA_48VHSC0",
+            "Name": "MEDUSA_HSC0_48V",
             "Thresholds": [
                 {
                     "Direction": "greater than",
@@ -1345,13 +1345,13 @@
                 }
             ],
             "Type": "XDP710",
-            "iout1_Name": "MEDUSA_48VHSC0_2_CURR_A",
+            "iout1_Name": "MEDUSA_HSC0_48V_2_CURR_A",
             "iout1_Scale": 250,
-            "pin_Name": "MEDUSA_48VHSC0_INPUT_2_PWR_W",
+            "pin_Name": "MEDUSA_HSC0_48V_INPUT_2_PWR_W",
             "pin_Scale": 250000,
-            "temp1_Name": "MEDUSA_48VHSC0_TEMP_C",
-            "vin_Name": "MEDUSA_48VHSC0_INPUT_VOLT_V",
-            "vout1_Name": "MEDUSA_48VHSC0_OUTPUT_VOLT_V"
+            "temp1_Name": "MEDUSA_HSC0_48V_TEMP_C",
+            "vin_Name": "MEDUSA_HSC0_48V_INPUT_VOLT_V",
+            "vout1_Name": "MEDUSA_HSC0_48V_OUTPUT_VOLT_V"
         },
         {
             "Address": "0x13",
@@ -1363,7 +1363,7 @@
                 "iout1",
                 "pin"
             ],
-            "Name": "MEDUSA_48VHSC1",
+            "Name": "MEDUSA_HSC1_48V",
             "Thresholds": [
                 {
                     "Direction": "greater than",
@@ -1458,13 +1458,13 @@
                 }
             ],
             "Type": "XDP710",
-            "iout1_Name": "MEDUSA_48VHSC1_2_CURR_A",
+            "iout1_Name": "MEDUSA_HSC1_48V_2_CURR_A",
             "iout1_Scale": 250,
-            "pin_Name": "MEDUSA_48VHSC1_INPUT_2_PWR_W",
+            "pin_Name": "MEDUSA_HSC1_48V_INPUT_2_PWR_W",
             "pin_Scale": 250000,
-            "temp1_Name": "MEDUSA_48VHSC1_TEMP_C",
-            "vin_Name": "MEDUSA_48VHSC1_INPUT_VOLT_V",
-            "vout1_Name": "MEDUSA_48VHSC1_OUTPUT_VOLT_V"
+            "temp1_Name": "MEDUSA_HSC1_48V_TEMP_C",
+            "vin_Name": "MEDUSA_HSC1_48V_INPUT_VOLT_V",
+            "vout1_Name": "MEDUSA_HSC1_48V_OUTPUT_VOLT_V"
         },
         {
             "Address": "0x62",
@@ -1475,7 +1475,7 @@
                 "vout1",
                 "iout1"
             ],
-            "Name": "MEDUSA_12VDELTA0",
+            "Name": "MEDUSA_DELTA0_12V",
             "Thresholds": [
                 {
                     "Direction": "greater than",
@@ -1591,10 +1591,10 @@
                 }
             ],
             "Type": "pmbus",
-            "iout1_Name": "MEDUSA_12VDELTA0_CURR_A",
-            "temp1_Name": "MEDUSA_12VDELTA0_TEMP_C",
-            "vin_Name": "MEDUSA_12VDELTA0_INPUT_VOLT_V",
-            "vout1_Name": "MEDUSA_12VDELTA0_OUTPUT_VOLT_V"
+            "iout1_Name": "MEDUSA_DELTA0_12V_CURR_A",
+            "temp1_Name": "MEDUSA_DELTA0_12V_TEMP_C",
+            "vin_Name": "MEDUSA_DELTA0_12V_INPUT_VOLT_V",
+            "vout1_Name": "MEDUSA_DELTA0_12V_OUTPUT_VOLT_V"
         },
         {
             "Address": "0x64",
@@ -1605,7 +1605,7 @@
                 "vout1",
                 "iout1"
             ],
-            "Name": "MEDUSA_12VDELTA1",
+            "Name": "MEDUSA_DELTA1_12V",
             "Thresholds": [
                 {
                     "Direction": "greater than",
@@ -1721,10 +1721,10 @@
                 }
             ],
             "Type": "pmbus",
-            "iout1_Name": "MEDUSA_12VDELTA1_CURR_A",
-            "temp1_Name": "MEDUSA_12VDELTA1_TEMP_C",
-            "vin_Name": "MEDUSA_12VDELTA1_INPUT_VOLT_V",
-            "vout1_Name": "MEDUSA_12VDELTA1_OUTPUT_VOLT_V"
+            "iout1_Name": "MEDUSA_DELTA1_12V_CURR_A",
+            "temp1_Name": "MEDUSA_DELTA1_12V_TEMP_C",
+            "vin_Name": "MEDUSA_DELTA1_12V_INPUT_VOLT_V",
+            "vout1_Name": "MEDUSA_DELTA1_12V_OUTPUT_VOLT_V"
         },
         {
             "Address": "0x65",
@@ -1735,7 +1735,7 @@
                 "vout1",
                 "iout1"
             ],
-            "Name": "MEDUSA_12VDELTA2",
+            "Name": "MEDUSA_DELTA2_12V",
             "Thresholds": [
                 {
                     "Direction": "greater than",
@@ -1851,10 +1851,10 @@
                 }
             ],
             "Type": "pmbus",
-            "iout1_Name": "MEDUSA_12VDELTA2_CURR_A",
-            "temp1_Name": "MEDUSA_12VDELTA2_TEMP_C",
-            "vin_Name": "MEDUSA_12VDELTA2_INPUT_VOLT_V",
-            "vout1_Name": "MEDUSA_12VDELTA2_OUTPUT_VOLT_V"
+            "iout1_Name": "MEDUSA_DELTA2_12V_CURR_A",
+            "temp1_Name": "MEDUSA_DELTA2_12V_TEMP_C",
+            "vin_Name": "MEDUSA_DELTA2_12V_INPUT_VOLT_V",
+            "vout1_Name": "MEDUSA_DELTA2_12V_OUTPUT_VOLT_V"
         },
         {
             "Address": "0x68",
@@ -1865,7 +1865,7 @@
                 "vout1",
                 "iout1"
             ],
-            "Name": "MEDUSA_12VDELTA3",
+            "Name": "MEDUSA_DELTA3_12V",
             "Thresholds": [
                 {
                     "Direction": "greater than",
@@ -1981,10 +1981,10 @@
                 }
             ],
             "Type": "pmbus",
-            "iout1_Name": "MEDUSA_12VDELTA3_CURR_A",
-            "temp1_Name": "MEDUSA_12VDELTA3_TEMP_C",
-            "vin_Name": "MEDUSA_12VDELTA3_INPUT_VOLT_V",
-            "vout1_Name": "MEDUSA_12VDELTA3_OUTPUT_VOLT_V"
+            "iout1_Name": "MEDUSA_DELTA3_12V_CURR_A",
+            "temp1_Name": "MEDUSA_DELTA3_12V_TEMP_C",
+            "vin_Name": "MEDUSA_DELTA3_12V_INPUT_VOLT_V",
+            "vout1_Name": "MEDUSA_DELTA3_12V_OUTPUT_VOLT_V"
         }
     ],
     "Name": "Yosemite 4 Medusa Board",

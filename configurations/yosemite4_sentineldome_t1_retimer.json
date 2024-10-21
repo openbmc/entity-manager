@@ -10,7 +10,7 @@
             "ILimitMax": 100,
             "ILimitMin": -50,
             "Inputs": [
-                "SENTINEL_DOME_SLOT $bus % 15 MB_X8_RETIMER_TEMP_C"
+                "SENTINEL_DOME_SLOT $bus % 15 MB_X8_RTM_TEMP_C"
             ],
             "Name": "PID_MB_RETIMER_TEMP_Slot $bus % 15",
             "NegativeHysteresis": 3.0,
@@ -172,7 +172,7 @@
             "Class": "temp",
             "InputUnavailableAsFailed": false,
             "Inputs": [
-                "SENTINEL_DOME_SLOT $bus % 15 MB_X8_RETIMER_TEMP_C"
+                "SENTINEL_DOME_SLOT $bus % 15 MB_X8_RTM_TEMP_C"
             ],
             "Name": "Stepwise_MB_RETIMER_TEMP_Slot $bus % 15",
             "NegativeHysteresis": 2,

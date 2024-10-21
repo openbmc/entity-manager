@@ -2,7 +2,7 @@
     "Exposes": [
         {
             "Index": 0,
-            "Name": "MGNT_P12V_VOLT_V",
+            "Name": "MGNT_ADC_P12V_VOLT_V",
             "ScaleFactor": 0.1124,
             "Thresholds": [
                 {
@@ -48,7 +48,7 @@
         },
         {
             "Index": 1,
-            "Name": "MGNT_P5V_VOLT_V",
+            "Name": "MGNT_ADC_P5V_VOLT_V",
             "ScaleFactor": 0.2717,
             "Thresholds": [
                 {
@@ -92,7 +92,7 @@
         },
         {
             "Index": 2,
-            "Name": "MGNT_P3V3_VOLT_V",
+            "Name": "MGNT_ADC_P3V3_VOLT_V",
             "ScaleFactor": 0.4107,
             "Thresholds": [
                 {
@@ -136,7 +136,7 @@
         },
         {
             "Index": 3,
-            "Name": "MGNT_P2V5_VOLT_V",
+            "Name": "MGNT_ADC_P2V5_VOLT_V",
             "ScaleFactor": 0.542,
             "Thresholds": [
                 {
@@ -168,7 +168,7 @@
         },
         {
             "Index": 4,
-            "Name": "MGNT_P5V_USB_VOLT_V",
+            "Name": "MGNT_ADC_P5V_USB_VOLT_V",
             "ScaleFactor": 0.2717,
             "Thresholds": [
                 {
@@ -212,7 +212,7 @@
         },
         {
             "Index": 5,
-            "Name": "MGNT_P1V2_VOLT_V",
+            "Name": "MGNT_ADC_P1V2_VOLT_V",
             "ScaleFactor": 1,
             "Thresholds": [
                 {
@@ -263,7 +263,7 @@
                 }
             ],
             "Index": 6,
-            "Name": "MGNT_P3V_BAT_VOLT_V",
+            "Name": "MGNT_ADC_P3V_BAT_VOLT_V",
             "PollRate": 3600,
             "ScaleFactor": 0.3333,
             "Thresholds": [
@@ -296,7 +296,7 @@
         },
         {
             "Index": 7,
-            "Name": "MGNT_P1V07_BMC_VOLT_V",
+            "Name": "MGNT_ADC_P1V07_BMC_VOLT_V",
             "ScaleFactor": 1,
             "Thresholds": [
                 {
@@ -364,7 +364,7 @@
                 }
             ],
             "Type": "ADC128D818",
-            "in0_Name": "MGNT_P1V8_VOLT_V",
+            "in0_Name": "MGNT_ADC_P1V8_VOLT_V",
             "in0_Scale": 824.561
         },
         {
@@ -405,7 +405,7 @@
                 }
             ],
             "Type": "MAX11615",
-            "in_voltage0_Name": "MGNT_P1V8_VOLT_V",
+            "in_voltage0_Name": "MGNT_ADC_P1V8_VOLT_V",
             "in_voltage0_Scale": 1649.122
         },
         {
@@ -417,59 +417,59 @@
             "ILimitMax": 0.0,
             "ILimitMin": 0.0,
             "Inputs": [
-                "FANBOARD0_FAN0_TACH_IL_SPEED_RPM",
-                "FANBOARD0_FAN0_TACH_OL_SPEED_RPM",
-                "FANBOARD0_FAN1_TACH_IL_SPEED_RPM",
-                "FANBOARD0_FAN1_TACH_OL_SPEED_RPM",
-                "FANBOARD1_FAN2_TACH_IL_SPEED_RPM",
-                "FANBOARD1_FAN2_TACH_OL_SPEED_RPM",
-                "FANBOARD1_FAN3_TACH_IL_SPEED_RPM",
-                "FANBOARD1_FAN3_TACH_OL_SPEED_RPM",
-                "FANBOARD0_FAN4_TACH_IL_SPEED_RPM",
-                "FANBOARD0_FAN4_TACH_OL_SPEED_RPM",
-                "FANBOARD0_FAN5_TACH_IL_SPEED_RPM",
-                "FANBOARD0_FAN5_TACH_OL_SPEED_RPM",
-                "FANBOARD1_FAN6_TACH_IL_SPEED_RPM",
-                "FANBOARD1_FAN6_TACH_OL_SPEED_RPM",
-                "FANBOARD1_FAN7_TACH_IL_SPEED_RPM",
-                "FANBOARD1_FAN7_TACH_OL_SPEED_RPM",
-                "FANBOARD0_FAN8_TACH_IL_SPEED_RPM",
-                "FANBOARD0_FAN8_TACH_OL_SPEED_RPM",
-                "FANBOARD0_FAN9_TACH_IL_SPEED_RPM",
-                "FANBOARD0_FAN9_TACH_OL_SPEED_RPM",
-                "FANBOARD1_FAN10_TACH_IL_SPEED_RPM",
-                "FANBOARD1_FAN10_TACH_OL_SPEED_RPM",
-                "FANBOARD1_FAN11_TACH_IL_SPEED_RPM",
-                "FANBOARD1_FAN11_TACH_OL_SPEED_RPM"
+                "FANBOARD0_FAN0_TACH_INLET_SPEED_RPM",
+                "FANBOARD0_FAN0_TACH_OUTLET_SPEED_RPM",
+                "FANBOARD0_FAN1_TACH_INLET_SPEED_RPM",
+                "FANBOARD0_FAN1_TACH_OUTLET_SPEED_RPM",
+                "FANBOARD1_FAN2_TACH_INLET_SPEED_RPM",
+                "FANBOARD1_FAN2_TACH_OUTLET_SPEED_RPM",
+                "FANBOARD1_FAN3_TACH_INLET_SPEED_RPM",
+                "FANBOARD1_FAN3_TACH_OUTLET_SPEED_RPM",
+                "FANBOARD0_FAN4_TACH_INLET_SPEED_RPM",
+                "FANBOARD0_FAN4_TACH_OUTLET_SPEED_RPM",
+                "FANBOARD0_FAN5_TACH_INLET_SPEED_RPM",
+                "FANBOARD0_FAN5_TACH_OUTLET_SPEED_RPM",
+                "FANBOARD1_FAN6_TACH_INLET_SPEED_RPM",
+                "FANBOARD1_FAN6_TACH_OUTLET_SPEED_RPM",
+                "FANBOARD1_FAN7_TACH_INLET_SPEED_RPM",
+                "FANBOARD1_FAN7_TACH_OUTLET_SPEED_RPM",
+                "FANBOARD0_FAN8_TACH_INLET_SPEED_RPM",
+                "FANBOARD0_FAN8_TACH_OUTLET_SPEED_RPM",
+                "FANBOARD0_FAN9_TACH_INLET_SPEED_RPM",
+                "FANBOARD0_FAN9_TACH_OUTLET_SPEED_RPM",
+                "FANBOARD1_FAN10_TACH_INLET_SPEED_RPM",
+                "FANBOARD1_FAN10_TACH_OUTLET_SPEED_RPM",
+                "FANBOARD1_FAN11_TACH_INLET_SPEED_RPM",
+                "FANBOARD1_FAN11_TACH_OUTLET_SPEED_RPM"
             ],
             "Name": "All Fan",
             "OutLimitMax": 100.0,
             "OutLimitMin": 0.0,
             "Outputs": [
-                "FANBOARD0_FAN0_PWM_TACH_PCT",
-                "FANBOARD0_FAN0_PWM_TACH_PCT",
-                "FANBOARD0_FAN1_PWM_TACH_PCT",
-                "FANBOARD0_FAN1_PWM_TACH_PCT",
-                "FANBOARD1_FAN2_PWM_TACH_PCT",
-                "FANBOARD1_FAN2_PWM_TACH_PCT",
-                "FANBOARD1_FAN3_PWM_TACH_PCT",
-                "FANBOARD1_FAN3_PWM_TACH_PCT",
-                "FANBOARD0_FAN4_PWM_TACH_PCT",
-                "FANBOARD0_FAN4_PWM_TACH_PCT",
-                "FANBOARD0_FAN5_PWM_TACH_PCT",
-                "FANBOARD0_FAN5_PWM_TACH_PCT",
-                "FANBOARD1_FAN6_PWM_TACH_PCT",
-                "FANBOARD1_FAN6_PWM_TACH_PCT",
-                "FANBOARD1_FAN7_PWM_TACH_PCT",
-                "FANBOARD1_FAN7_PWM_TACH_PCT",
-                "FANBOARD0_FAN8_PWM_TACH_PCT",
-                "FANBOARD0_FAN8_PWM_TACH_PCT",
-                "FANBOARD0_FAN9_PWM_TACH_PCT",
-                "FANBOARD0_FAN9_PWM_TACH_PCT",
-                "FANBOARD1_FAN10_PWM_TACH_PCT",
-                "FANBOARD1_FAN10_PWM_TACH_PCT",
-                "FANBOARD1_FAN11_PWM_TACH_PCT",
-                "FANBOARD1_FAN11_PWM_TACH_PCT"
+                "FANBOARD0_FAN0_PWM_PCT",
+                "FANBOARD0_FAN0_PWM_PCT",
+                "FANBOARD0_FAN1_PWM_PCT",
+                "FANBOARD0_FAN1_PWM_PCT",
+                "FANBOARD1_FAN2_PWM_PCT",
+                "FANBOARD1_FAN2_PWM_PCT",
+                "FANBOARD1_FAN3_PWM_PCT",
+                "FANBOARD1_FAN3_PWM_PCT",
+                "FANBOARD0_FAN4_PWM_PCT",
+                "FANBOARD0_FAN4_PWM_PCT",
+                "FANBOARD0_FAN5_PWM_PCT",
+                "FANBOARD0_FAN5_PWM_PCT",
+                "FANBOARD1_FAN6_PWM_PCT",
+                "FANBOARD1_FAN6_PWM_PCT",
+                "FANBOARD1_FAN7_PWM_PCT",
+                "FANBOARD1_FAN7_PWM_PCT",
+                "FANBOARD0_FAN8_PWM_PCT",
+                "FANBOARD0_FAN8_PWM_PCT",
+                "FANBOARD0_FAN9_PWM_PCT",
+                "FANBOARD0_FAN9_PWM_PCT",
+                "FANBOARD1_FAN10_PWM_PCT",
+                "FANBOARD1_FAN10_PWM_PCT",
+                "FANBOARD1_FAN11_PWM_PCT",
+                "FANBOARD1_FAN11_PWM_PCT"
             ],
             "PCoefficient": 0.0,
             "SlewNeg": 0.0,
