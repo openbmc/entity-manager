@@ -11,18 +11,18 @@
             "ILimitMin": -50,
             "InputUnavailableAsFailed": false,
             "Inputs": [
-                "Sentinel_Dome_Slot $bus % 15 MB_DIMM_A_TEMP_C",
-                "Sentinel_Dome_Slot $bus % 15 MB_DIMM_B_TEMP_C",
-                "Sentinel_Dome_Slot $bus % 15 MB_DIMM_C_TEMP_C",
-                "Sentinel_Dome_Slot $bus % 15 MB_DIMM_D_TEMP_C",
-                "Sentinel_Dome_Slot $bus % 15 MB_DIMM_E_TEMP_C",
-                "Sentinel_Dome_Slot $bus % 15 MB_DIMM_F_TEMP_C",
-                "Sentinel_Dome_Slot $bus % 15 MB_DIMM_G_TEMP_C",
-                "Sentinel_Dome_Slot $bus % 15 MB_DIMM_H_TEMP_C",
-                "Sentinel_Dome_Slot $bus % 15 MB_DIMM_I_TEMP_C",
-                "Sentinel_Dome_Slot $bus % 15 MB_DIMM_J_TEMP_C",
-                "Sentinel_Dome_Slot $bus % 15 MB_DIMM_K_TEMP_C",
-                "Sentinel_Dome_Slot $bus % 15 MB_DIMM_L_TEMP_C"
+                "SENTINEL_DOME_SLOT $bus % 15 MB_DIMM_A_TEMP_C",
+                "SENTINEL_DOME_SLOT $bus % 15 MB_DIMM_B_TEMP_C",
+                "SENTINEL_DOME_SLOT $bus % 15 MB_DIMM_C_TEMP_C",
+                "SENTINEL_DOME_SLOT $bus % 15 MB_DIMM_D_TEMP_C",
+                "SENTINEL_DOME_SLOT $bus % 15 MB_DIMM_E_TEMP_C",
+                "SENTINEL_DOME_SLOT $bus % 15 MB_DIMM_F_TEMP_C",
+                "SENTINEL_DOME_SLOT $bus % 15 MB_DIMM_G_TEMP_C",
+                "SENTINEL_DOME_SLOT $bus % 15 MB_DIMM_H_TEMP_C",
+                "SENTINEL_DOME_SLOT $bus % 15 MB_DIMM_I_TEMP_C",
+                "SENTINEL_DOME_SLOT $bus % 15 MB_DIMM_J_TEMP_C",
+                "SENTINEL_DOME_SLOT $bus % 15 MB_DIMM_K_TEMP_C",
+                "SENTINEL_DOME_SLOT $bus % 15 MB_DIMM_L_TEMP_C"
             ],
             "Name": "PID_MB_DIMM_Slot $bus % 15",
             "NegativeHysteresis": 2.0,
@@ -49,7 +49,7 @@
             "ILimitMin": -50,
             "InputUnavailableAsFailed": false,
             "Inputs": [
-                "Sentinel_Dome_Slot $bus % 15 MB_CPU_TEMP_C"
+                "SENTINEL_DOME_SLOT $bus % 15 MB_CPU_TEMP_C"
             ],
             "Name": "PID_MB_CPU_Slot $bus % 15",
             "NegativeHysteresis": 3.0,
@@ -76,7 +76,7 @@
             "ILimitMin": -50,
             "InputUnavailableAsFailed": false,
             "Inputs": [
-                "Sentinel_Dome_Slot $bus % 15 MB_SSD_BOOT_TEMP_C"
+                "SENTINEL_DOME_SLOT $bus % 15 MB_SSD_BOOT_TEMP_C"
             ],
             "Name": "PID_MB_SSD_BOOT_Slot $bus % 15",
             "NegativeHysteresis": 2.0,
@@ -103,7 +103,7 @@
             "ILimitMin": -50,
             "InputUnavailableAsFailed": false,
             "Inputs": [
-                "Sentinel_Dome_Slot $bus % 15 MB_SSD_DATA_TEMP_C"
+                "SENTINEL_DOME_SLOT $bus % 15 MB_SSD_DATA_TEMP_C"
             ],
             "Name": "PID_MB_SSD_DATA_Slot $bus % 15",
             "NegativeHysteresis": 2.0,
@@ -130,11 +130,11 @@
             "ILimitMin": -50,
             "InputUnavailableAsFailed": false,
             "Inputs": [
-                "Sentinel_Dome_Slot $bus % 15 MB_VR_CPU0_TEMP_C",
-                "Sentinel_Dome_Slot $bus % 15 MB_VR_SOC_TEMP_C",
-                "Sentinel_Dome_Slot $bus % 15 MB_VR_CPU1_TEMP_C",
-                "Sentinel_Dome_Slot $bus % 15 MB_VR_PVDDIO_TEMP_C",
-                "Sentinel_Dome_Slot $bus % 15 MB_VR_PVDD11_TEMP_C"
+                "SENTINEL_DOME_SLOT $bus % 15 MB_VR_CPU0_TEMP_C",
+                "SENTINEL_DOME_SLOT $bus % 15 MB_VR_SOC_TEMP_C",
+                "SENTINEL_DOME_SLOT $bus % 15 MB_VR_CPU1_TEMP_C",
+                "SENTINEL_DOME_SLOT $bus % 15 MB_VR_PVDDIO_TEMP_C",
+                "SENTINEL_DOME_SLOT $bus % 15 MB_VR_PVDD11_TEMP_C"
             ],
             "Name": "PID_MB_VR_Slot $bus % 15",
             "NegativeHysteresis": 3.0,
@@ -154,8 +154,8 @@
             "Class": "temp",
             "InputUnavailableAsFailed": false,
             "Inputs": [
-                "Sentinel_Dome_Slot $bus % 15 MB_INLET_TEMP_C",
-                "Sentinel_Dome_Slot $bus % 15 MB_OUTLET_TEMP_C"
+                "SENTINEL_DOME_SLOT $bus % 15 MB_INLET_TEMP_C",
+                "SENTINEL_DOME_SLOT $bus % 15 MB_OUTLET_TEMP_C"
             ],
             "Name": "Stepwise_MB_INLET_OUTLET_TEMP_Slot $bus % 15",
             "NegativeHysteresis": 0,
@@ -175,7 +175,7 @@
             "Class": "temp",
             "InputUnavailableAsFailed": false,
             "Inputs": [
-                "Calibrated_Sentinel_Dome_Slot $bus % 15 MB_FIO_TEMP_C"
+                "CALIBRATED_SENTINEL_DOME_SLOT $bus % 15 MB_FIO_TEMP_C"
             ],
             "Name": "Stepwise_MB_FIO_Slot $bus % 15",
             "NegativeHysteresis": 1,
@@ -245,18 +245,18 @@
             "Class": "temp",
             "InputUnavailableAsFailed": false,
             "Inputs": [
-                "Sentinel_Dome_Slot $bus % 15 MB_DIMM_A_TEMP_C",
-                "Sentinel_Dome_Slot $bus % 15 MB_DIMM_B_TEMP_C",
-                "Sentinel_Dome_Slot $bus % 15 MB_DIMM_C_TEMP_C",
-                "Sentinel_Dome_Slot $bus % 15 MB_DIMM_D_TEMP_C",
-                "Sentinel_Dome_Slot $bus % 15 MB_DIMM_E_TEMP_C",
-                "Sentinel_Dome_Slot $bus % 15 MB_DIMM_F_TEMP_C",
-                "Sentinel_Dome_Slot $bus % 15 MB_DIMM_G_TEMP_C",
-                "Sentinel_Dome_Slot $bus % 15 MB_DIMM_H_TEMP_C",
-                "Sentinel_Dome_Slot $bus % 15 MB_DIMM_I_TEMP_C",
-                "Sentinel_Dome_Slot $bus % 15 MB_DIMM_J_TEMP_C",
-                "Sentinel_Dome_Slot $bus % 15 MB_DIMM_K_TEMP_C",
-                "Sentinel_Dome_Slot $bus % 15 MB_DIMM_L_TEMP_C"
+                "SENTINEL_DOME_SLOT $bus % 15 MB_DIMM_A_TEMP_C",
+                "SENTINEL_DOME_SLOT $bus % 15 MB_DIMM_B_TEMP_C",
+                "SENTINEL_DOME_SLOT $bus % 15 MB_DIMM_C_TEMP_C",
+                "SENTINEL_DOME_SLOT $bus % 15 MB_DIMM_D_TEMP_C",
+                "SENTINEL_DOME_SLOT $bus % 15 MB_DIMM_E_TEMP_C",
+                "SENTINEL_DOME_SLOT $bus % 15 MB_DIMM_F_TEMP_C",
+                "SENTINEL_DOME_SLOT $bus % 15 MB_DIMM_G_TEMP_C",
+                "SENTINEL_DOME_SLOT $bus % 15 MB_DIMM_H_TEMP_C",
+                "SENTINEL_DOME_SLOT $bus % 15 MB_DIMM_I_TEMP_C",
+                "SENTINEL_DOME_SLOT $bus % 15 MB_DIMM_J_TEMP_C",
+                "SENTINEL_DOME_SLOT $bus % 15 MB_DIMM_K_TEMP_C",
+                "SENTINEL_DOME_SLOT $bus % 15 MB_DIMM_L_TEMP_C"
             ],
             "Name": "Stepwise_MB_DIMM_Slot $bus % 15",
             "NegativeHysteresis": 2,
@@ -286,7 +286,7 @@
             "Class": "temp",
             "InputUnavailableAsFailed": false,
             "Inputs": [
-                "Sentinel_Dome_Slot $bus % 15 MB_CPU_TEMP_C"
+                "SENTINEL_DOME_SLOT $bus % 15 MB_CPU_TEMP_C"
             ],
             "Name": "Stepwise_MB_CPU_Slot $bus % 15",
             "NegativeHysteresis": 3,
@@ -322,7 +322,7 @@
             "Class": "temp",
             "InputUnavailableAsFailed": false,
             "Inputs": [
-                "Sentinel_Dome_Slot $bus % 15 MB_SSD_BOOT_TEMP_C"
+                "SENTINEL_DOME_SLOT $bus % 15 MB_SSD_BOOT_TEMP_C"
             ],
             "Name": "Stepwise_MB_SSD_BOOT_Slot $bus % 15",
             "NegativeHysteresis": 2,
@@ -352,7 +352,7 @@
             "Class": "temp",
             "InputUnavailableAsFailed": false,
             "Inputs": [
-                "Sentinel_Dome_Slot $bus % 15 MB_SSD_DATA_TEMP_C"
+                "SENTINEL_DOME_SLOT $bus % 15 MB_SSD_DATA_TEMP_C"
             ],
             "Name": "Stepwise_MB_SSD_DATA_Slot $bus % 15",
             "NegativeHysteresis": 2,
@@ -382,11 +382,11 @@
             "Class": "temp",
             "InputUnavailableAsFailed": false,
             "Inputs": [
-                "Sentinel_Dome_Slot $bus % 15 MB_VR_CPU0_TEMP_C",
-                "Sentinel_Dome_Slot $bus % 15 MB_VR_SOC_TEMP_C",
-                "Sentinel_Dome_Slot $bus % 15 MB_VR_CPU1_TEMP_C",
-                "Sentinel_Dome_Slot $bus % 15 MB_VR_PVDDIO_TEMP_C",
-                "Sentinel_Dome_Slot $bus % 15 MB_VR_PVDD11_TEMP_C"
+                "SENTINEL_DOME_SLOT $bus % 15 MB_VR_CPU0_TEMP_C",
+                "SENTINEL_DOME_SLOT $bus % 15 MB_VR_SOC_TEMP_C",
+                "SENTINEL_DOME_SLOT $bus % 15 MB_VR_CPU1_TEMP_C",
+                "SENTINEL_DOME_SLOT $bus % 15 MB_VR_PVDDIO_TEMP_C",
+                "SENTINEL_DOME_SLOT $bus % 15 MB_VR_PVDD11_TEMP_C"
             ],
             "Name": "Stepwise_MB_VR_Slot $bus % 15",
             "NegativeHysteresis": 3,

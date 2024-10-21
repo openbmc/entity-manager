@@ -11,14 +11,14 @@
             "ILimitMin": -50,
             "InputUnavailableAsFailed": false,
             "Inputs": [
-                "Wailua_Falls_Slot $bus % 15 WF_VR_P0V8_ASIC1_TEMP_C",
-                "Wailua_Falls_Slot $bus % 15 WF_VR_PVDDQ_CD_ASIC1_TEMP_C",
-                "Wailua_Falls_Slot $bus % 15 WF_VR_P0V85_ASIC1_TEMP_C",
-                "Wailua_Falls_Slot $bus % 15 WF_VR_PVDDQ_AB_ASIC1_TEMP_C",
-                "Wailua_Falls_Slot $bus % 15 WF_VR_P0V8_ASIC2_TEMP_C",
-                "Wailua_Falls_Slot $bus % 15 WF_VR_PVDDQ_CD_ASIC2_TEMP_C",
-                "Wailua_Falls_Slot $bus % 15 WF_VR_P0V85_ASIC2_TEMP_C",
-                "Wailua_Falls_Slot $bus % 15 WF_VR_PVDDQ_AB_ASIC2_TEMP_C"
+                "WAILUA_FALLS_SLOT $bus % 15 WF_VR_P0V8_ASIC1_TEMP_C",
+                "WAILUA_FALLS_SLOT $bus % 15 WF_VR_PVDDQ_CD_ASIC1_TEMP_C",
+                "WAILUA_FALLS_SLOT $bus % 15 WF_VR_P0V85_ASIC1_TEMP_C",
+                "WAILUA_FALLS_SLOT $bus % 15 WF_VR_PVDDQ_AB_ASIC1_TEMP_C",
+                "WAILUA_FALLS_SLOT $bus % 15 WF_VR_P0V8_ASIC2_TEMP_C",
+                "WAILUA_FALLS_SLOT $bus % 15 WF_VR_PVDDQ_CD_ASIC2_TEMP_C",
+                "WAILUA_FALLS_SLOT $bus % 15 WF_VR_P0V85_ASIC2_TEMP_C",
+                "WAILUA_FALLS_SLOT $bus % 15 WF_VR_PVDDQ_AB_ASIC2_TEMP_C"
             ],
             "Name": "PID_WF_VR_Slot $bus % 15",
             "NegativeHysteresis": 3.0,
@@ -45,14 +45,14 @@
             "ILimitMin": -50,
             "InputUnavailableAsFailed": false,
             "Inputs": [
-                "Wailua_Falls_Slot $bus % 15 WF_ASIC1_DIMM_A_TEMP_C",
-                "Wailua_Falls_Slot $bus % 15 WF_ASIC1_DIMM_B_TEMP_C",
-                "Wailua_Falls_Slot $bus % 15 WF_ASIC1_DIMM_C_TEMP_C",
-                "Wailua_Falls_Slot $bus % 15 WF_ASIC1_DIMM_D_TEMP_C",
-                "Wailua_Falls_Slot $bus % 15 WF_ASIC2_DIMM_A_TEMP_C",
-                "Wailua_Falls_Slot $bus % 15 WF_ASIC2_DIMM_B_TEMP_C",
-                "Wailua_Falls_Slot $bus % 15 WF_ASIC2_DIMM_C_TEMP_C",
-                "Wailua_Falls_Slot $bus % 15 WF_ASIC2_DIMM_D_TEMP_C"
+                "WAILUA_FALLS_SLOT $bus % 15 WF_ASIC1_DIMM_A_TEMP_C",
+                "WAILUA_FALLS_SLOT $bus % 15 WF_ASIC1_DIMM_B_TEMP_C",
+                "WAILUA_FALLS_SLOT $bus % 15 WF_ASIC1_DIMM_C_TEMP_C",
+                "WAILUA_FALLS_SLOT $bus % 15 WF_ASIC1_DIMM_D_TEMP_C",
+                "WAILUA_FALLS_SLOT $bus % 15 WF_ASIC2_DIMM_A_TEMP_C",
+                "WAILUA_FALLS_SLOT $bus % 15 WF_ASIC2_DIMM_B_TEMP_C",
+                "WAILUA_FALLS_SLOT $bus % 15 WF_ASIC2_DIMM_C_TEMP_C",
+                "WAILUA_FALLS_SLOT $bus % 15 WF_ASIC2_DIMM_D_TEMP_C"
             ],
             "Name": "PID_WF_DIMM_Slot $bus % 15",
             "NegativeHysteresis": 2.0,
@@ -79,7 +79,7 @@
             "ILimitMin": -50,
             "InputUnavailableAsFailed": false,
             "Inputs": [
-                "Wailua_Falls_Slot $bus % 15 WF_E1S_TEMP_C"
+                "WAILUA_FALLS_SLOT $bus % 15 WF_E1S_TEMP_C"
             ],
             "Name": "PID_WF_E1S_Slot $bus % 15",
             "NegativeHysteresis": 2.0,
@@ -106,8 +106,8 @@
             "ILimitMin": -50,
             "InputUnavailableAsFailed": false,
             "Inputs": [
-                "Wailua_Falls_Slot $bus % 15 WF_CXL1_CNTR_TEMP_C",
-                "Wailua_Falls_Slot $bus % 15 WF_CXL2_CNTR_TEMP_C"
+                "WAILUA_FALLS_SLOT $bus % 15 WF_CXL1_CNTR_TEMP_C",
+                "WAILUA_FALLS_SLOT $bus % 15 WF_CXL2_CNTR_TEMP_C"
             ],
             "Name": "PID_WF_CXL_Slot $bus % 15",
             "NegativeHysteresis": 3.0,
@@ -127,14 +127,14 @@
             "Class": "temp",
             "InputUnavailableAsFailed": false,
             "Inputs": [
-                "Wailua_Falls_Slot $bus % 15 WF_VR_P0V8_ASIC1_TEMP_C",
-                "Wailua_Falls_Slot $bus % 15 WF_VR_PVDDQ_CD_ASIC1_TEMP_C",
-                "Wailua_Falls_Slot $bus % 15 WF_VR_P0V85_ASIC1_TEMP_C",
-                "Wailua_Falls_Slot $bus % 15 WF_VR_PVDDQ_AB_ASIC1_TEMP_C",
-                "Wailua_Falls_Slot $bus % 15 WF_VR_P0V8_ASIC2_TEMP_C",
-                "Wailua_Falls_Slot $bus % 15 WF_VR_PVDDQ_CD_ASIC2_TEMP_C",
-                "Wailua_Falls_Slot $bus % 15 WF_VR_P0V85_ASIC2_TEMP_C",
-                "Wailua_Falls_Slot $bus % 15 WF_VR_PVDDQ_AB_ASIC2_TEMP_C"
+                "WAILUA_FALLS_SLOT $bus % 15 WF_VR_P0V8_ASIC1_TEMP_C",
+                "WAILUA_FALLS_SLOT $bus % 15 WF_VR_PVDDQ_CD_ASIC1_TEMP_C",
+                "WAILUA_FALLS_SLOT $bus % 15 WF_VR_P0V85_ASIC1_TEMP_C",
+                "WAILUA_FALLS_SLOT $bus % 15 WF_VR_PVDDQ_AB_ASIC1_TEMP_C",
+                "WAILUA_FALLS_SLOT $bus % 15 WF_VR_P0V8_ASIC2_TEMP_C",
+                "WAILUA_FALLS_SLOT $bus % 15 WF_VR_PVDDQ_CD_ASIC2_TEMP_C",
+                "WAILUA_FALLS_SLOT $bus % 15 WF_VR_P0V85_ASIC2_TEMP_C",
+                "WAILUA_FALLS_SLOT $bus % 15 WF_VR_PVDDQ_AB_ASIC2_TEMP_C"
             ],
             "Name": "Stepwise_WF_VR_Slot $bus % 15",
             "NegativeHysteresis": 3,
@@ -164,14 +164,14 @@
             "Class": "temp",
             "InputUnavailableAsFailed": false,
             "Inputs": [
-                "Wailua_Falls_Slot $bus % 15 WF_ASIC1_DIMM_A_TEMP_C",
-                "Wailua_Falls_Slot $bus % 15 WF_ASIC1_DIMM_B_TEMP_C",
-                "Wailua_Falls_Slot $bus % 15 WF_ASIC1_DIMM_C_TEMP_C",
-                "Wailua_Falls_Slot $bus % 15 WF_ASIC1_DIMM_D_TEMP_C",
-                "Wailua_Falls_Slot $bus % 15 WF_ASIC2_DIMM_A_TEMP_C",
-                "Wailua_Falls_Slot $bus % 15 WF_ASIC2_DIMM_B_TEMP_C",
-                "Wailua_Falls_Slot $bus % 15 WF_ASIC2_DIMM_C_TEMP_C",
-                "Wailua_Falls_Slot $bus % 15 WF_ASIC2_DIMM_D_TEMP_C"
+                "WAILUA_FALLS_SLOT $bus % 15 WF_ASIC1_DIMM_A_TEMP_C",
+                "WAILUA_FALLS_SLOT $bus % 15 WF_ASIC1_DIMM_B_TEMP_C",
+                "WAILUA_FALLS_SLOT $bus % 15 WF_ASIC1_DIMM_C_TEMP_C",
+                "WAILUA_FALLS_SLOT $bus % 15 WF_ASIC1_DIMM_D_TEMP_C",
+                "WAILUA_FALLS_SLOT $bus % 15 WF_ASIC2_DIMM_A_TEMP_C",
+                "WAILUA_FALLS_SLOT $bus % 15 WF_ASIC2_DIMM_B_TEMP_C",
+                "WAILUA_FALLS_SLOT $bus % 15 WF_ASIC2_DIMM_C_TEMP_C",
+                "WAILUA_FALLS_SLOT $bus % 15 WF_ASIC2_DIMM_D_TEMP_C"
             ],
             "Name": "Stepwise_WF_DIMM_Slot $bus % 15",
             "NegativeHysteresis": 2,
@@ -201,7 +201,7 @@
             "Class": "temp",
             "InputUnavailableAsFailed": false,
             "Inputs": [
-                "Wailua_Falls_Slot $bus % 15 WF_E1S_TEMP_C"
+                "WAILUA_FALLS_SLOT $bus % 15 WF_E1S_TEMP_C"
             ],
             "Name": "Stepwise_WF_E1S_Slot $bus % 15",
             "NegativeHysteresis": 2,
@@ -231,8 +231,8 @@
             "Class": "temp",
             "InputUnavailableAsFailed": false,
             "Inputs": [
-                "Wailua_Falls_Slot $bus % 15 WF_CXL1_CNTR_TEMP_C",
-                "Wailua_Falls_Slot $bus % 15 WF_CXL2_CNTR_TEMP_C"
+                "WAILUA_FALLS_SLOT $bus % 15 WF_CXL1_CNTR_TEMP_C",
+                "WAILUA_FALLS_SLOT $bus % 15 WF_CXL2_CNTR_TEMP_C"
             ],
             "Name": "Stepwise_WF_CXL_Slot $bus % 15",
             "NegativeHysteresis": 2,
