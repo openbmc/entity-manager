@@ -35,6 +35,24 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "6cb4df30_61a6a2a8",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1001354
+      },
+      "writtenOn": "2024-10-23T18:26:16Z",
+      "side": 1,
+      "message": "My thinking was that I had \u0027working code\u0027 I wanted to start discussion on, but CI tool passes were suggesting changes that broke the build outright -- so I was hoping to separate discussions about the odd changes being suggested from the working code discussion.\n\nI plan to mark this one as \u0027abandoned\u0027 soon, as I think I\u0027ve worked out the cause behind the last \u0027build-breaking suggestion\u0027 being put out by a clang-tidy rule in the entity-manager repo.",
+      "parentUuid": "d53660a0_f77f45b6",
+      "revId": "201bd4bb44674bf232fa87217ed26321a669d0f4",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "57743120_586df2a2",
@@ -144,6 +162,30 @@
       "side": 1,
       "message": "```\n../src/dt-vpd-parser.cpp:10:15: error: static member accessed through instance [readability-static-accessed-through-instance,-warnings-as-errors]\n   10 |     ctx.spawn([](sdbusplus::async::context\u0026 ctx) -\u003e sdbusplus::async::task\u003c\u003e {\n```\n\nThe \"fixup\" for this from clang-tidy is busted.  Yes, making a real fix is preferred over NOLINT.  We generally don\u0027t like to put those in.",
       "parentUuid": "227a1152_489b96d5",
+      "range": {
+        "startLine": 13,
+        "startChar": 18,
+        "endLine": 13,
+        "endChar": 35
+      },
+      "revId": "201bd4bb44674bf232fa87217ed26321a669d0f4",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b3eecd19_d5384a34",
+        "filename": "src/dt-vpd-parser.cpp",
+        "patchSetId": 1
+      },
+      "lineNbr": 13,
+      "author": {
+        "id": 1001354
+      },
+      "writtenOn": "2024-10-23T18:26:16Z",
+      "side": 1,
+      "message": "I discovered I could fix the \"static member accessed through instance\" complaint by calling spawn from\n\nsdbusplus::async::context.spawn()\ninstead of (context instance).spawn()\n\nwhich incidentally, all the Async API examples I\u0027ve seen so far call spawn from an instance:\n\nhttps://github.com/openbmc/sdbusplus/blob/master/example/calculator-aserver.cpp\n\nhttps://github.com/openbmc/sdbusplus/blob/master/example/calculator-client.cpp\n\nhttps://github.com/openbmc/sdbusplus/blob/master/example/coroutine-example.cpp\n\nAssuming this \u0027fix\u0027 isn\u0027t quietly breaking something somewhere-- do you think the Async API examples in SDBusPlus should be updated to call spawn this way too?",
+      "parentUuid": "b93d9faa_b164b435",
       "range": {
         "startLine": 13,
         "startChar": 18,
