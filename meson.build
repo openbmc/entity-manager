@@ -156,6 +156,8 @@ configs = [
     'mtjade.json',
     'mtmitchell_bmc.json',
     'mtmitchell_mb.json',
+    'mtjefferson_bmc.json',
+    'mtjefferson_mb.json',
     'mudflap.json',
     'nf5280m7_baseboard.json',
     'nisqually.json',

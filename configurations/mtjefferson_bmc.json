@@ -1,0 +1,83 @@
+{
+    "Exposes": [
+        {
+            "EntityId": 19,
+            "EntityInstance": 45,
+            "Index": 2,
+            "MaxValue": 4.4,
+            "MinValue": 0,
+            "Name": "3V3_SB_BMC",
+            "PollRate": 10,
+            "ScaleFactor": 0.5,
+            "Thresholds": [
+                {
+                    "Direction": "greater than",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 3.944
+                },
+                {
+                    "Direction": "greater than",
+                    "Name": "upper non critical",
+                    "Severity": 0,
+                    "Value": 3.789
+                },
+                {
+                    "Direction": "less than",
+                    "Name": "lower critical",
+                    "Severity": 1,
+                    "Value": 2.647
+                },
+                {
+                    "Direction": "less than",
+                    "Name": "lower non critical",
+                    "Severity": 0,
+                    "Value": 2.82
+                }
+            ],
+            "Type": "ADC"
+        },
+        {
+            "Address": "0x48",
+            "Bus": 14,
+            "EntityId": 7,
+            "EntityInstance": 1,
+            "MaxValue": 127,
+            "MinValue": 0,
+            "Name": "AST2600CPUTemp",
+            "Thresholds": [
+                {
+                    "Direction": "less than",
+                    "Name": "lower critical",
+                    "Severity": 1,
+                    "Value": 0.0
+                },
+                {
+                    "Direction": "less than",
+                    "Name": "lower non critical",
+                    "Severity": 0,
+                    "Value": 5.489
+                }
+            ],
+            "Type": "TMP75"
+        }
+    ],
+    "Name": "Mt.Jefferson_BMC",
+    "Probe": "xyz.openbmc_project.FruDevice({'BOARD_PRODUCT_NAME': 'Jefferson DC-SCM 2.0'})",
+    "Type": "Board",
+    "xyz.openbmc_project.Inventory.Decorator.Asset": {
+        "BuildDate": "$BOARD_MANUFACTURE_DATE",
+        "Manufacturer": "$BOARD_MANUFACTURER",
+        "Model": "$BOARD_PRODUCT_NAME",
+        "PartNumber": "$BOARD_PART_NUMBER",
+        "SerialNumber": "$BOARD_SERIAL_NUMBER"
+    },
+    "xyz.openbmc_project.Inventory.Decorator.Replaceable": {
+        "FieldReplaceable": false,
+        "HotPluggable": false
+    },
+    "xyz.openbmc_project.Inventory.Item.BMC": {},
+    "xyz.openbmc_project.Inventory.Item.NetworkInterface": {
+        "MACAddress": "$BOARD_INFO_AM1"
+    }
+}
