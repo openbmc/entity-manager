@@ -222,6 +222,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "f881d979_79664132",
+        "filename": "src/dt-vpd-parser.cpp",
+        "patchSetId": 1
+      },
+      "lineNbr": 13,
+      "author": {
+        "id": 1001354
+      },
+      "writtenOn": "2024-10-24T19:33:41Z",
+      "side": 1,
+      "message": "I\u0027ve confirmed we can avoid the CI tool issue entirely by switching away from the ctx.spawn() calls used in the Async API examples, and replacing\n\n\u003ectx.spawn([](sdbusplus::async::context\u0026 ctx) -\u003e sdbusplus::async::task\u003c\u003e {\n\u003e        ctx.request_name(reqDBusName);\n\u003e        co_return;\n\u003e    }(ctx));\n\n//anything passed to ctx.spawn from inside main() will have \"exec::...__final_awaitable::\" appended to it by the CI tool unless NOLINTNEXTLINE(readability-static-accessed-through-instance) is set\n\nwith\n\n\u003e std::thread nameReqThread([\u0026ctx] { ctx.request_name(reqDBusName); });\n\u003e nameReqThread.join();\n\nIt\u0027s confirmed working on a live system. \n\nYou worked on the SDBusPlus Async API, correct? Does this seem like a reasonable workaround for the clang-tidy complaints in Entity-Manager?\n\nI\u0027ll be pushing the updated source for discussion to the parent PR 75349: service: device-tree node vpd to d-bus hw id data | https://gerrit.openbmc.org/c/openbmc/entity-manager/+/75349\n\nand marking this PR as closed. If we want to roll back to relying on ctx.spawn, we can continue discussion on the parent PR, since the \"I don\u0027t understand what\u0027s even happening\" level CI issues seem to be resolved now.\n\nThanks for helping out on this stuff!",
+      "parentUuid": "7bc1bba2_19c7d4d6",
+      "range": {
+        "startLine": 13,
+        "startChar": 18,
+        "endLine": 13,
+        "endChar": 35
+      },
+      "revId": "201bd4bb44674bf232fa87217ed26321a669d0f4",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "973c32ee_b90f1fd8",
         "filename": "src/machinecontext.cpp",
         "patchSetId": 1
