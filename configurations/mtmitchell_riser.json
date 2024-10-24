@@ -1,0 +1,31 @@
+{
+    "Exposes": [
+        {
+            "Address": "$address",
+            "Bus": "$bus",
+            "Name": "Mitchell_Riser_$BUS - 38",
+            "Type": "EEPROM"
+        }
+    ],
+    "Name": "Mitchell_Riser_$BUS - 38",
+    "Probe": [
+        "xyz.openbmc_project.FruDevice({'BOARD_PART_NUMBER': '.*YZRI-02759-103.*'})",
+        "AND",
+        "FOUND('Mt.Mitchell_Motherboard')"
+    ],
+    "Type": "Board",
+    "xyz.openbmc_project.Inventory.Decorator.Asset": {
+        "BuildDate": "$BOARD_MANUFACTURE_DATE",
+        "Manufacturer": "$BOARD_MANUFACTURER",
+        "Model": "$BOARD_PRODUCT_NAME",
+        "PartNumber": "$BOARD_PART_NUMBER",
+        "SerialNumber": "$BOARD_SERIAL_NUMBER"
+    },
+    "xyz.openbmc_project.Inventory.Decorator.Replaceable": {
+        "FieldReplaceable": false,
+        "HotPluggable": false
+    },
+    "xyz.openbmc_project.Inventory.Decorator.Revision": {
+        "Version": "$BOARD_INFO_AM1"
+    }
+}
