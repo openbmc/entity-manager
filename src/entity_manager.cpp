@@ -700,11 +700,6 @@ void postToDbus(const nlohmann::json& newConfiguration,
             ifacePath += "/";
             ifacePath += itemName;
 
-            std::shared_ptr<sdbusplus::asio::dbus_interface> itemIface =
-                createInterface(objServer, ifacePath,
-                                "xyz.openbmc_project.Configuration." + itemType,
-                                boardNameOrig);
-
             if (itemType == "BMC")
             {
                 std::shared_ptr<sdbusplus::asio::dbus_interface> bmcIface =
@@ -725,10 +720,6 @@ void postToDbus(const nlohmann::json& newConfiguration,
                                           systemIface, item, objServer,
                                           getPermission(itemType));
             }
-
-            populateInterfaceFromJson(systemConfiguration, jsonPointerPath,
-                                      itemIface, item, objServer,
-                                      getPermission(itemType));
 
             for (const auto& [name, config] : item.items())
             {
@@ -799,6 +790,15 @@ void postToDbus(const nlohmann::json& newConfiguration,
                     }
                 }
             }
+
+            std::shared_ptr<sdbusplus::asio::dbus_interface> itemIface =
+                createInterface(objServer, ifacePath,
+                                "xyz.openbmc_project.Configuration." + itemType,
+                                boardNameOrig);
+
+            populateInterfaceFromJson(systemConfiguration, jsonPointerPath,
+                                      itemIface, item, objServer,
+                                      getPermission(itemType));
 
             topology.addBoard(boardPath, boardType, boardNameOrig, item);
         }
