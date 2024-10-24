@@ -448,7 +448,7 @@ void EntityManager::publishNewConfiguration(
     // NOLINTNEXTLINE(performance-unnecessary-value-param)
     const nlohmann::json newConfiguration)
 {
-    loadOverlays(newConfiguration, io);
+    loadOverlays(newConfiguration, systemConfiguration, io);
 
     boost::asio::post(io, [this]() {
         if (!writeJsonFiles(systemConfiguration))
