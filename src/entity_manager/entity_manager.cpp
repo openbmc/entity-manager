@@ -443,7 +443,7 @@ static void publishNewConfiguration(
     const nlohmann::json newConfiguration,
     sdbusplus::asio::object_server& objServer)
 {
-    loadOverlays(newConfiguration);
+    loadOverlays(newConfiguration, systemConfiguration);
 
     boost::asio::post(io, [systemConfiguration]() {
         if (!configuration::writeJsonFiles(systemConfiguration))
