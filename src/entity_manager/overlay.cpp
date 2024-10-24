@@ -3,47 +3,11 @@
 
 #include "overlay.hpp"
 
-#include "../utils.hpp"
-#include "devices.hpp"
 #include "utils.hpp"
 
-#include <boost/asio/io_context.hpp>
-#include <boost/asio/steady_timer.hpp>
-#include <boost/container/flat_map.hpp>
-#include <boost/container/flat_set.hpp>
-#include <nlohmann/json.hpp>
-#include <phosphor-logging/lg2.hpp>
-
-#include <filesystem>
 #include <fstream>
-#include <iomanip>
-#include <regex>
-#include <string>
 
-constexpr const char* outputDir = "/tmp/overlays";
-constexpr const char* templateChar = "$";
-constexpr const char* i2CDevsDir = "/sys/bus/i2c/devices";
-constexpr const char* muxSymlinkDir = "/dev/i2c-mux";
-
-const std::regex illegalNameRegex("[^A-Za-z0-9_]");
-
-// helper function to make json types into string
-std::string jsonToString(const nlohmann::json& in)
-{
-    if (in.type() == nlohmann::json::value_t::string)
-    {
-        return in.get<std::string>();
-    }
-    if (in.type() == nlohmann::json::value_t::array)
-    {
-        // remove brackets and comma from array
-        std::string array = in.dump();
-        array = array.substr(1, array.size() - 2);
-        std::ranges::replace(array, ',', ' ');
-        return array;
-    }
-    return in.dump();
-}
+constexpr const bool debug = false;
 
 static std::string deviceDirName(uint64_t bus, uint64_t address)
 {
@@ -53,217 +17,11 @@ static std::string deviceDirName(uint64_t bus, uint64_t address)
     return name.str();
 }
 
-void linkMux(const std::string& muxName, uint64_t busIndex, uint64_t address,
-             const std::vector<std::string>& channelNames)
-{
-    std::error_code ec;
-    std::filesystem::path muxSymlinkDirPath(muxSymlinkDir);
-    std::filesystem::create_directory(muxSymlinkDirPath, ec);
-    // ignore error codes here if the directory already exists
-    ec.clear();
-    std::filesystem::path linkDir = muxSymlinkDirPath / muxName;
-    std::filesystem::create_directory(linkDir, ec);
-
-    std::filesystem::path devDir(i2CDevsDir);
-    devDir /= deviceDirName(busIndex, address);
-
-    for (std::size_t channelIndex = 0; channelIndex < channelNames.size();
-         channelIndex++)
-    {
-        const std::string& channelName = channelNames[channelIndex];
-        if (channelName.empty())
-        {
-            continue;
-        }
-
-        std::filesystem::path channelPath =
-            devDir / ("channel-" + std::to_string(channelIndex));
-        if (!is_symlink(channelPath))
-        {
-            lg2::error("{PATH} for mux channel {CHANNEL} doesn't exist!",
-                       "PATH", channelPath.string(), "CHANNEL", channelName);
-            continue;
-        }
-        std::filesystem::path bus = std::filesystem::read_symlink(channelPath);
-
-        std::filesystem::path fp("/dev" / bus.filename());
-        std::filesystem::path link(linkDir / channelName);
-
-        std::filesystem::create_symlink(fp, link, ec);
-        if (ec)
-        {
-            lg2::error("Failure creating symlink for {PATH} to {LINK}", "PATH",
-                       fp.string(), "LINK", link.string());
-        }
-    }
-}
-
-static int deleteDevice(const std::string& busPath, uint64_t address,
-                        const std::string& destructor)
-{
-    std::filesystem::path deviceDestructor(busPath);
-    deviceDestructor /= destructor;
-    std::ofstream deviceFile(deviceDestructor);
-    if (!deviceFile.good())
-    {
-        lg2::error("Error writing {PATH}", "PATH", deviceDestructor.string());
-        return -1;
-    }
-    deviceFile << std::to_string(address);
-    deviceFile.close();
-    return 0;
-}
-
-static int createDevice(const std::string& busPath,
-                        const std::string& parameters,
-                        const std::string& constructor)
-{
-    std::filesystem::path deviceConstructor(busPath);
-    deviceConstructor /= constructor;
-    std::ofstream deviceFile(deviceConstructor);
-    if (!deviceFile.good())
-    {
-        lg2::error("Error writing {PATH}", "PATH", deviceConstructor.string());
-        return -1;
-    }
-    deviceFile << parameters;
-    deviceFile.close();
-
-    return 0;
-}
-
-static bool deviceIsCreated(const std::string& busPath, uint64_t bus,
-                            uint64_t address,
-                            const devices::createsHWMon hasHWMonDir)
-{
-    std::filesystem::path dirPath = busPath;
-    dirPath /= deviceDirName(bus, address);
-    if (hasHWMonDir == devices::createsHWMon::hasHWMonDir)
-    {
-        dirPath /= "hwmon";
-    }
-
-    std::error_code ec;
-    // Ignore errors; anything but a clean 'true' is just fine as 'false'
-    return std::filesystem::exists(dirPath, ec);
-}
-
-static int buildDevice(
-    const std::string& name, const std::string& busPath,
-    const std::string& parameters, uint64_t bus, uint64_t address,
-    const std::string& constructor, const std::string& destructor,
-    const devices::createsHWMon hasHWMonDir,
-    std::vector<std::string> channelNames, boost::asio::io_context& io,
-    const size_t retries = 5)
-{
-    if (retries == 0U)
-    {
-        return -1;
-    }
-
-    // If it's already instantiated, we don't need to create it again.
-    if (!deviceIsCreated(busPath, bus, address, hasHWMonDir))
-    {
-        // Try to create the device
-        createDevice(busPath, parameters, constructor);
-
-        // If it didn't work, delete it and try again in 500ms
-        if (!deviceIsCreated(busPath, bus, address, hasHWMonDir))
-        {
-            deleteDevice(busPath, address, destructor);
-
-            std::shared_ptr<boost::asio::steady_timer> createTimer =
-                std::make_shared<boost::asio::steady_timer>(io);
-            createTimer->expires_after(std::chrono::milliseconds(500));
-            createTimer->async_wait(
-                [createTimer, name, busPath, parameters, bus, address,
-                 constructor, destructor, hasHWMonDir,
-                 channelNames(std::move(channelNames)), retries,
-                 &io](const boost::system::error_code& ec) mutable {
-                    if (ec)
-                    {
-                        lg2::error("Timer error: {ERR}", "ERR", ec.message());
-                        return -2;
-                    }
-                    return buildDevice(name, busPath, parameters, bus, address,
-                                       constructor, destructor, hasHWMonDir,
-                                       std::move(channelNames), io,
-                                       retries - 1);
-                });
-            return -1;
-        }
-    }
-
-    // Link the mux channels if needed once the device is created.
-    if (!channelNames.empty())
-    {
-        linkMux(name, bus, address, channelNames);
-    }
-
-    return 0;
-}
-
-void exportDevice(const std::string& type,
-                  const devices::ExportTemplate& exportTemplate,
-                  const nlohmann::json& configuration,
-                  boost::asio::io_context& io)
-{
-    std::string parameters = exportTemplate.parameters;
-    std::string busPath = exportTemplate.busPath;
-    std::string constructor = exportTemplate.add;
-    std::string destructor = exportTemplate.remove;
-    devices::createsHWMon hasHWMonDir = exportTemplate.hasHWMonDir;
-    std::string name = "unknown";
-    std::optional<uint64_t> bus;
-    std::optional<uint64_t> address;
-    std::vector<std::string> channels;
-
-    for (auto keyPair = configuration.begin(); keyPair != configuration.end();
-         keyPair++)
-    {
-        std::string subsituteString;
-
-        if (keyPair.key() == "Name" &&
-            keyPair.value().type() == nlohmann::json::value_t::string)
-        {
-            subsituteString = std::regex_replace(
-                keyPair.value().get<std::string>(), illegalNameRegex, "_");
-            name = subsituteString;
-        }
-        else
-        {
-            subsituteString = jsonToString(keyPair.value());
-        }
-
-        if (keyPair.key() == "Bus")
-        {
-            bus = keyPair.value().get<uint64_t>();
-        }
-        else if (keyPair.key() == "Address")
-        {
-            address = keyPair.value().get<uint64_t>();
-        }
-        else if (keyPair.key() == "ChannelNames" && type.ends_with("Mux"))
-        {
-            channels = keyPair.value().get<std::vector<std::string>>();
-        }
-        replaceAll(parameters, templateChar + keyPair.key(), subsituteString);
-        replaceAll(busPath, templateChar + keyPair.key(), subsituteString);
-    }
-
-    if (!bus || !address)
-    {
-        createDevice(busPath, parameters, constructor);
-        return;
-    }
-
-    buildDevice(name, busPath, parameters, *bus, *address, constructor,
-                destructor, hasHWMonDir, std::move(channels), io);
-}
-
 bool loadOverlays(const nlohmann::json& systemConfiguration,
+                  nlohmann::json& currConfiguration,
                   boost::asio::io_context& io)
 {
+    std::vector<DeviceConfig> deviceConfigurations;
     std::filesystem::create_directory(outputDir);
     for (auto entity = systemConfiguration.begin();
          entity != systemConfiguration.end(); entity++)
@@ -293,7 +51,8 @@ bool loadOverlays(const nlohmann::json& systemConfiguration,
             auto device = devices::exportTemplates.find(type.c_str());
             if (device != devices::exportTemplates.end())
             {
-                exportDevice(type, device->second, configuration, io);
+                deviceConfigurations.emplace_back(type, device->second,
+                                                  configuration);
                 continue;
             }
 
@@ -301,10 +60,267 @@ bool loadOverlays(const nlohmann::json& systemConfiguration,
             // this error message is not printed in all situations.
             // If wondering why your device not appearing, add your type to
             // the exportTemplates array in the devices.hpp file.
-            lg2::debug("Device type {TYPE} not found in export map allowlist",
-                       "TYPE", type);
+            if constexpr (debug)
+            {
+                std::cerr << "Device type " << type
+                          << " not found in export map allowlist\n";
+            }
+        }
+    }
+
+    std::vector<DeviceConfig> newMuxConfigs;
+    for (auto& config : deviceConfigurations)
+    {
+        if (config.buildDevice(io))
+        {
+            if (config.isMux())
+            {
+                std::vector<DeviceConfig> linkedConfigs =
+                    config.linkMux(currConfiguration);
+                for (const auto& linkedConfig : linkedConfigs)
+                {
+                    newMuxConfigs.emplace_back(linkedConfig);
+                }
+            }
+        }
+    }
+    while (!newMuxConfigs.empty())
+    {
+        std::vector<DeviceConfig> muxConfigs(newMuxConfigs);
+        newMuxConfigs.clear();
+        for (auto& newMux : muxConfigs)
+        {
+            if (newMux.buildDevice(io))
+            {
+                std::vector<DeviceConfig> linkedConfigs =
+                    newMux.linkMux(currConfiguration);
+                for (const auto& linkedConfig : linkedConfigs)
+                {
+                    newMuxConfigs.emplace_back(linkedConfig);
+                }
+            }
+        }
+    }
+    return true;
+}
+
+bool DeviceConfig::deviceIsCreated()
+{
+    std::filesystem::path dirPath = busPath;
+    if (!bus.has_value() || !address.has_value())
+    {
+        return false;
+    }
+    dirPath /= deviceDirName(*bus, *address);
+    if (hasHWMonDir == devices::createsHWMon::hasHWMonDir)
+    {
+        dirPath /= "hwmon";
+    }
+
+    std::error_code ec;
+    // Ignore errors; anything but a clean 'true' is just fine as 'false'
+    return std::filesystem::exists(dirPath, ec);
+}
+
+bool DeviceConfig::createDevice()
+{
+    std::filesystem::path deviceConstructor(busPath);
+    deviceConstructor /= constructor;
+    std::ofstream deviceFile(deviceConstructor);
+    if (!deviceFile.good())
+    {
+        std::cerr << "Error writing " << deviceConstructor << "\n";
+        return false;
+    }
+    deviceFile << parameters;
+    deviceFile.close();
+    return true;
+}
+
+bool DeviceConfig::deleteDevice()
+{
+    std::filesystem::path deviceDestructor(busPath);
+    deviceDestructor /= destructor;
+    std::ofstream deviceFile(deviceDestructor);
+    if (!deviceFile.good() || !address.has_value())
+    {
+        std::cerr << "Error writing " << deviceDestructor << "\n";
+        return false;
+    }
+    deviceFile << std::to_string(*address);
+    deviceFile.close();
+    return true;
+}
+
+bool DeviceConfig::buildDevice(boost::asio::io_context& io,
+                               const size_t retries)
+{
+    if (retries == 0U)
+    {
+        return false;
+    }
+    if (!bus.has_value() || !address.has_value())
+    {
+        return false;
+    }
+
+    // If it's already instantiated, we don't need to create it again.
+    if (!deviceIsCreated())
+    {
+        // If it didn't work, delete it and try again in 500ms
+        if (!createDevice())
+        {
+            deleteDevice();
+
+            std::shared_ptr<boost::asio::steady_timer> createTimer =
+                std::make_shared<boost::asio::steady_timer>(io);
+            createTimer->expires_after(std::chrono::milliseconds(500));
+            createTimer->async_wait(
+                [createTimer, this, retries,
+                 &io](const boost::system::error_code& ec) mutable {
+                    if (ec)
+                    {
+                        std::cerr << "Timer error: " << ec << "\n";
+                        return false;
+                    }
+                    return buildDevice(io, retries - 1);
+                });
+            return false;
         }
     }
 
     return true;
+}
+
+bool DeviceConfig::isMux()
+{
+    return (type.ends_with("Mux") && !channels.empty());
+}
+
+std::vector<DeviceConfig> DeviceConfig::linkMux(
+    nlohmann::json& systemConfiguration)
+{
+    std::error_code ec;
+    std::filesystem::path muxSymlinkDirPath(muxSymlinkDir);
+    std::filesystem::create_directory(muxSymlinkDirPath, ec);
+    // ignore error codes here if the directory already exists
+    ec.clear();
+    std::filesystem::path linkDir = muxSymlinkDirPath / name;
+    std::filesystem::create_directory(linkDir, ec);
+
+    std::filesystem::path devDir(i2CDevsDir);
+    if (!bus.has_value() || !address.has_value())
+    {
+        return {};
+    }
+    devDir /= deviceDirName(*bus, *address);
+
+    std::vector<DeviceConfig> newMuxConfigs;
+    for (std::size_t channelIndex = 0; channelIndex < channels.size();
+         channelIndex++)
+    {
+        const std::string& channelName = channels[channelIndex];
+        if (channelName.empty())
+        {
+            continue;
+        }
+
+        std::filesystem::path channelPath =
+            devDir / ("channel-" + std::to_string(channelIndex));
+        if (!is_symlink(channelPath))
+        {
+            std::cerr << channelPath << " for mux channel " << channelName
+                      << " doesn't exist!\n";
+            continue;
+        }
+        std::filesystem::path busFile =
+            std::filesystem::read_symlink(channelPath);
+
+        std::filesystem::path fp("/dev" / busFile.filename());
+        std::filesystem::path link(linkDir / channelName);
+        uint64_t busNumber = busStrToInt(busFile.filename().string());
+
+        std::filesystem::create_symlink(fp, link, ec);
+        if (ec)
+        {
+            if (ec != std::make_error_code(std::errc::file_exists))
+            {
+                std::cerr << "Failure creating symlink for " << fp << " to "
+                          << link << "\n";
+                std::cerr << ec.message() << std::endl;
+                continue;
+            }
+
+            auto linkedBus = std::filesystem::read_symlink(link);
+            uint64_t linkedBusNumber =
+                busStrToInt(linkedBus.filename().string());
+            if (busNumber != linkedBusNumber)
+            {
+                std::cerr << "New busNumber attached to ChannelName"
+                          << std::endl;
+                std::filesystem::remove(link);
+                std::filesystem::create_symlink(fp, link, ec);
+                if (ec)
+                {
+                    std::cerr << "Failure creating symlink for " << fp << " to "
+                              << link << "\n";
+                    std::cerr << ec.message() << std::endl;
+                    continue;
+                }
+            }
+        }
+        for (auto entity = systemConfiguration.begin();
+             entity != systemConfiguration.end(); entity++)
+        {
+            auto findExposes = entity.value().find("Exposes");
+            if (findExposes == entity.value().end() ||
+                findExposes->type() != nlohmann::json::value_t::array)
+            {
+                continue;
+            }
+
+            for (auto& configuration : *findExposes)
+            {
+                auto findMuxChannel = configuration.find("MuxChannel");
+                auto findName = configuration.find("Name");
+                if (findMuxChannel == configuration.end())
+                {
+                    continue;
+                }
+                if (findMuxChannel->type() != nlohmann::json::value_t::object)
+                {
+                    std::cout << "Incomplete MuxChannel for " << *findName
+                              << std::endl;
+                    continue;
+                }
+                auto findMuxName = findMuxChannel.value().find("MuxName");
+                auto findChName = findMuxChannel.value().find("ChannelName");
+                if (findMuxName == findMuxChannel.value().end() ||
+                    findChName == findMuxChannel.value().end() ||
+                    *findMuxName != name || *findChName != channelName)
+                {
+                    continue;
+                }
+                if constexpr (debug)
+                {
+                    std::cout << "Applying " << *findName
+                              << " to bus: " << busNumber << std::endl;
+                }
+                configuration["Bus"] = busNumber;
+                auto findType = configuration.find("Type");
+                std::string cfgType = findType.value().get<std::string>();
+                if (cfgType.ends_with("Mux"))
+                {
+                    auto device =
+                        devices::exportTemplates.find(cfgType.c_str());
+                    if (device != devices::exportTemplates.end())
+                    {
+                        newMuxConfigs.emplace_back(cfgType, device->second,
+                                                   configuration);
+                    }
+                }
+            }
+        }
+    }
+    return newMuxConfigs;
 }
