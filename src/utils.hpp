@@ -116,3 +116,5 @@ std::from_chars_result fromCharsWrapper(const std::string_view& str, T& out,
 
     return result;
 }
+
+int busStrToInt(const std::string_view busName);
