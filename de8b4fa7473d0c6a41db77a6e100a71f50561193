@@ -37,6 +37,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "6cdd2858_c21d8ca9",
+        "filename": "meson.build",
+        "patchSetId": 1
+      },
+      "lineNbr": 39,
+      "author": {
+        "id": 1001354
+      },
+      "writtenOn": "2024-10-24T20:23:37Z",
+      "side": 1,
+      "message": "Since it seems like the CI tool scripts don\u0027t catch this kind of thing automatically - any recommended tools for checking this stuff automatically before I push to Gerrit?",
+      "parentUuid": "b2e32e0c_5b537b82",
+      "revId": "de8b4fa7473d0c6a41db77a6e100a71f50561193",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "08fa1554_74137272",
         "filename": "src/dt-vpd-parser.cpp",
         "patchSetId": 1
@@ -48,6 +66,24 @@
       "writtenOn": "2024-10-21T19:51:07Z",
       "side": 1,
       "message": "source files names should be snake_case.",
+      "revId": "de8b4fa7473d0c6a41db77a6e100a71f50561193",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "2489cf6b_08839935",
+        "filename": "src/dt-vpd-parser.cpp",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1001354
+      },
+      "writtenOn": "2024-10-24T20:23:37Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "08fa1554_74137272",
       "revId": "de8b4fa7473d0c6a41db77a6e100a71f50561193",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
@@ -88,6 +124,54 @@
       "writtenOn": "2024-10-18T18:26:26Z",
       "side": 1,
       "message": "Wildcard captures are generally disallowed, as they are hard to review.",
+      "range": {
+        "startLine": 27,
+        "startChar": 23,
+        "endLine": 27,
+        "endChar": 25
+      },
+      "revId": "de8b4fa7473d0c6a41db77a6e100a71f50561193",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "0ec1ef00_20506cac",
+        "filename": "src/machinecontext.cpp",
+        "patchSetId": 1
+      },
+      "lineNbr": 27,
+      "author": {
+        "id": 1001354
+      },
+      "writtenOn": "2024-10-24T20:23:37Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "b99f0dc6_43487752",
+      "range": {
+        "startLine": 27,
+        "startChar": 26,
+        "endLine": 27,
+        "endChar": 30
+      },
+      "revId": "de8b4fa7473d0c6a41db77a6e100a71f50561193",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1b03081f_a0d584cc",
+        "filename": "src/machinecontext.cpp",
+        "patchSetId": 1
+      },
+      "lineNbr": 27,
+      "author": {
+        "id": 1001354
+      },
+      "writtenOn": "2024-10-24T20:23:37Z",
+      "side": 1,
+      "message": "Is capturing \u0027this\u0027 for access to members of the MachineContext object instance acceptable, or would something else be preferred?\n\nI tried capturing \"MachineContext::Asset:model\" (overloaded setter for the inherited property I\u0027m trying to update), but I get errors along the lines of\n\nerror: capture of non-variable \u0027sdbusplus::aserver::xyz::openbmc_project::inventory::decorator::details::Asset\u003cMachineContext, sdbusplus::async::server::server\u003cMachineContext, sdbusplus::aserver::xyz::openbmc_project::inventory::decorator::details::Asset\u003e \u003e::model\u0027\n|    25 |     std::thread readInThread([\u0026model] {\n\n\nand I haven\u0027t worked out what other options are available for capturing those references yet.",
+      "parentUuid": "c514471a_3e893102",
       "range": {
         "startLine": 27,
         "startChar": 23,
@@ -169,6 +253,24 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "e7ae855c_f4a8dfbf",
+        "filename": "src/machinecontext.cpp",
+        "patchSetId": 1
+      },
+      "lineNbr": 30,
+      "author": {
+        "id": 1001354
+      },
+      "writtenOn": "2024-10-24T20:23:37Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "7f2c1263_27b74d49",
+      "revId": "de8b4fa7473d0c6a41db77a6e100a71f50561193",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "61f82e7a_65794f98",
@@ -182,6 +284,24 @@
       "writtenOn": "2024-10-18T18:26:26Z",
       "side": 1,
       "message": "You\u0027re constructing a map here, then you\u0027re using it like a list.",
+      "revId": "de8b4fa7473d0c6a41db77a6e100a71f50561193",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "128443bf_42aaef52",
+        "filename": "src/machinecontext.cpp",
+        "patchSetId": 1
+      },
+      "lineNbr": 35,
+      "author": {
+        "id": 1001354
+      },
+      "writtenOn": "2024-10-24T20:23:37Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "61f82e7a_65794f98",
       "revId": "de8b4fa7473d0c6a41db77a6e100a71f50561193",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
@@ -203,6 +323,24 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "5525784e_ebff03e3",
+        "filename": "src/machinecontext.cpp",
+        "patchSetId": 1
+      },
+      "lineNbr": 46,
+      "author": {
+        "id": 1001354
+      },
+      "writtenOn": "2024-10-24T20:23:37Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "dcde11bc_365a072c",
+      "revId": "de8b4fa7473d0c6a41db77a6e100a71f50561193",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "e5e4c6b8_66147b3c",
@@ -216,6 +354,24 @@
       "writtenOn": "2024-10-21T19:51:07Z",
       "side": 1,
       "message": "snake_case filenames here too.",
+      "revId": "de8b4fa7473d0c6a41db77a6e100a71f50561193",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "fdcc3e3d_8e0ff8fb",
+        "filename": "src/machinecontext.hpp",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1001354
+      },
+      "writtenOn": "2024-10-24T20:23:37Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "e5e4c6b8_66147b3c",
       "revId": "de8b4fa7473d0c6a41db77a6e100a71f50561193",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
@@ -237,6 +393,24 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "9882767d_6c24eef2",
+        "filename": "src/machinecontext.hpp",
+        "patchSetId": 1
+      },
+      "lineNbr": 31,
+      "author": {
+        "id": 1001354
+      },
+      "writtenOn": "2024-10-24T20:23:37Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "56cb9b23_be561d4a",
+      "revId": "de8b4fa7473d0c6a41db77a6e100a71f50561193",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "41b19e17_e3509bf2",
@@ -250,6 +424,30 @@
       "writtenOn": "2024-10-18T18:26:26Z",
       "side": 1,
       "message": "This is only ever called in the constructor.  Maybe just make this the constructor?",
+      "range": {
+        "startLine": 43,
+        "startChar": 9,
+        "endLine": 43,
+        "endChar": 31
+      },
+      "revId": "de8b4fa7473d0c6a41db77a6e100a71f50561193",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "13fc53ae_0bf1c36d",
+        "filename": "src/machinecontext.hpp",
+        "patchSetId": 1
+      },
+      "lineNbr": 43,
+      "author": {
+        "id": 1001354
+      },
+      "writtenOn": "2024-10-24T20:23:37Z",
+      "side": 1,
+      "message": "I ran into linker issues when I call out the MachineContext constructor in machine_context.hpp, then define the implimentation in the cpp (attempting to avoid implementation code in the header file). \n\nI *think* I can work around that with some meson.build changes, but I haven\u0027t gotten that working in experiments yet.\n\nDefining a MC constructor in the header that calls a member function with the implementation details works around the linker issue without meson changes.\n\nThoughts?",
+      "parentUuid": "41b19e17_e3509bf2",
       "range": {
         "startLine": 43,
         "startChar": 9,
