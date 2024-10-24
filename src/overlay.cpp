@@ -42,6 +42,22 @@ constexpr const char* muxSymlinkDir = "/dev/i2c-mux";
 
 const std::regex illegalNameRegex("[^A-Za-z0-9_]");
 
+// Map for slot name to logical bus number
+using BusMap = boost::container::flat_map<std::string, uint64_t>;
+// NOLINTNEXTLINE(cppcoreguidelines-avoid-non-const-global-variables)
+static boost::container::flat_map<std::string, BusMap> muxChannelMap{};
+
+struct ExportInfo
+{
+    std::string type;
+    devices::ExportTemplate exportTemplate;
+    nlohmann::json configuration;
+    bool operator==(const ExportInfo& a) const
+    {
+        return configuration["Name"] == a.configuration["Name"];
+    }
+};
+
 // helper function to make json types into string
 std::string jsonToString(const nlohmann::json& in)
 {
@@ -104,11 +120,28 @@ void linkMux(const std::string& muxName, uint64_t busIndex, uint64_t address,
         std::filesystem::path fp("/dev" / bus.filename());
         std::filesystem::path link(linkDir / channelName);
 
-        std::filesystem::create_symlink(fp, link, ec);
-        if (ec)
+        // Get the logical bus number from channel link
+        std::string linkName = bus.filename();
+        if (boost::starts_with(linkName, "i2c-"))
         {
-            std::cerr << "Failure creating symlink for " << fp << " to " << link
-                      << "\n";
+            auto sub = linkName.substr(std::string("i2c-").size());
+            uint64_t chNum = std::stoull(sub);
+            muxChannelMap[muxName].emplace(channelName, chNum);
+        }
+
+        if (!std::filesystem::exists(link) ||
+            !(std::filesystem::is_symlink(link)))
+        {
+            std::filesystem::create_symlink(fp, link, ec);
+            if (ec)
+            {
+                std::cerr << "Failure creating symlink for " << fp << " to "
+                          << link << "\n";
+            }
+        }
+        else
+        {
+            std::cout << "Link already exists" << std::endl;
         }
     }
 }
@@ -216,7 +249,7 @@ static int buildDevice(
     return 0;
 }
 
-void exportDevice(const std::string& type,
+bool exportDevice(const std::string& type,
                   const devices::ExportTemplate& exportTemplate,
                   const nlohmann::json& configuration)
 {
@@ -259,6 +292,25 @@ void exportDevice(const std::string& type,
         {
             channels = keyPair.value().get<std::vector<std::string>>();
         }
+        else if (keyPair.key() == "MuxChannel")
+        {
+            auto muxChannel =
+                keyPair.value()
+                    .get<
+                        boost::container::flat_map<std::string, std::string>>();
+            if (muxChannelMap.contains(muxChannel["MuxName"]) &&
+                muxChannelMap[muxChannel["MuxName"]].contains(
+                    muxChannel["ChannelName"]))
+            {
+                bus = muxChannelMap[muxChannel["MuxName"]]
+                                   [muxChannel["ChannelName"]];
+                boost::replace_all(busPath, "$Bus", std::to_string(*bus));
+            }
+            else
+            {
+                return false;
+            }
+        }
         boost::replace_all(parameters, templateChar + keyPair.key(),
                            subsituteString);
         boost::replace_all(busPath, templateChar + keyPair.key(),
@@ -267,17 +319,17 @@ void exportDevice(const std::string& type,
 
     if (!bus || !address)
     {
-        createDevice(busPath, parameters, constructor);
-        return;
+        return (createDevice(busPath, parameters, constructor) >= 0);
     }
 
-    buildDevice(name, busPath, parameters, *bus, *address, constructor,
-                destructor, hasHWMonDir, std::move(channels));
+    return (buildDevice(name, busPath, parameters, *bus, *address, constructor,
+                        destructor, hasHWMonDir, std::move(channels)) >= 0);
 }
 
 bool loadOverlays(const nlohmann::json& systemConfiguration)
 {
     std::filesystem::create_directory(outputDir);
+    std::list<ExportInfo> unfoundList;
     for (auto entity = systemConfiguration.begin();
          entity != systemConfiguration.end(); entity++)
     {
@@ -306,7 +358,11 @@ bool loadOverlays(const nlohmann::json& systemConfiguration)
             auto device = devices::exportTemplates.find(type.c_str());
             if (device != devices::exportTemplates.end())
             {
-                exportDevice(type, device->second, configuration);
+                if (!exportDevice(type, device->second, configuration))
+                {
+                    unfoundList.emplace_back(type, device->second,
+                                             configuration);
+                }
                 continue;
             }
 
@@ -317,6 +373,26 @@ bool loadOverlays(const nlohmann::json& systemConfiguration)
             lg2::debug("Device type {TYPE} not found in export map allowlist",
                        "TYPE", type);
         }
+    }
+
+    size_t unfoundListSize = unfoundList.size();
+    while (!unfoundList.empty())
+    {
+        for (auto& missingCfg : unfoundList)
+        {
+            if (exportDevice(missingCfg.type, missingCfg.exportTemplate,
+                             missingCfg.configuration))
+            {
+                unfoundList.remove(missingCfg);
+                break;
+            }
+        }
+        if (unfoundListSize == unfoundList.size())
+        {
+            std::cerr << "There is an incorrect config" << std::endl;
+            break;
+        }
+        unfoundListSize = unfoundList.size();
     }
 
     return true;
