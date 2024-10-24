@@ -243,3 +243,17 @@ std::string toLowerCopy(std::string_view str)
                    [](unsigned char c) { return asciiToLower(c); });
     return result;
 }
+
+int busStrToInt(const std::string_view busName)
+{
+    auto findBus = busName.rfind('-');
+    if (findBus == std::string::npos)
+    {
+        return -1;
+    }
+    std::string_view num = busName.substr(findBus + 1);
+    int val = 0;
+    bool fullMatch = false;
+    fromCharsWrapper(num, val, fullMatch);
+    return val;
+}
