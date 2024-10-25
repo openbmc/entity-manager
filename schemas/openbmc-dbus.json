@@ -118,6 +118,22 @@
                         },
                         "Chassis": {
                             "additionalProperties": false,
+                            "properties": {
+                                "ChassisType": {
+                                    "type": "string",
+                                    "enum": [
+                                        "Blade", 
+                                        "Component", 
+                                        "Enclosure", 
+                                        "Module", 
+                                        "RackMount", 
+                                        "StandAlone", 
+                                        "StorageEnclosure", 
+                                        "Unkown", 
+                                        "Zone"
+				    ]
+                                }
+                            },
                             "type": "object"
                         },
                         "NetworkInterface": {
