@@ -137,7 +137,13 @@
                 },
                 "xyz.openbmc_project.Inventory.Item.Storage": {
                     "$ref": "openbmc-dbus.json#/$defs/xyz/openbmc_project/Inventory/Item/Storage"
-                }
+                },
+		"xyz.openbmc_project.Inventory.Item.Chassis.RackMount": {
+                    "$ref": "openbmc-dbus.json#/$defs/xyz/openbmc_project/Inventory/Item/Chassis/RackMount"
+                },
+                "xyz.openbmc_project.Inventory.Item.Chassis.Blade": {
+                    "$ref": "openbmc-dbus.json#/$defs/xyz/openbmc_project/Inventory/Item/Chassis/Blade"
+		}
             },
             "required": ["Exposes", "Name", "Probe", "Type"]
         }
