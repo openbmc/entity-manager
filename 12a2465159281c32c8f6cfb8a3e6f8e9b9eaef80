@@ -16,6 +16,24 @@
       "message": "Usually different card types are in different files.  Also usually power supplies probe on part numbers or product names if there is a common one you could share with your other system, though I guess maybe that isn\u0027t possible.",
       "revId": "12a2465159281c32c8f6cfb8a3e6f8e9b9eaef80",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "22b00c89_6049680f",
+        "filename": "configurations/mtjade.json",
+        "patchSetId": 2
+      },
+      "lineNbr": 1960,
+      "author": {
+        "id": 1001526
+      },
+      "writtenOn": "2024-10-25T07:57:13Z",
+      "side": 1,
+      "message": "Our platform\u0027s PowerSupply cards are not always with a FRU, so we chose to fixedly place psu sensor configs in MB\u0027s config, and this part of config is just to expose PowerSupply inventory onto Redfish if a FRU is present at that specific bus-address of the platform. I know this is not right, but this works for our platforms, so I hide this into the same file with MB.",
+      "parentUuid": "10a563fc_5450aa6c",
+      "revId": "12a2465159281c32c8f6cfb8a3e6f8e9b9eaef80",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }
