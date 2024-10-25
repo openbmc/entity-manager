@@ -15,5 +15,9 @@
     },
     "xyz.openbmc_project.Inventory.Decorator.Slot": {
         "SlotNumber": "$bus % 15"
+    },
+    "xyz.openbmc_project.Inventory.Item.Chassis": {
+        "ChassisType": "RackMount"
     }
+
 }
