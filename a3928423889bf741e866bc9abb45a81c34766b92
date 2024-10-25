@@ -18,6 +18,24 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "1a0e5c1e_105124bc",
+        "filename": "configurations/mtmitchell_bp.json",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1001526
+      },
+      "writtenOn": "2024-10-25T07:57:08Z",
+      "side": 1,
+      "message": "Ah, I tested with yocto and forgot about that part. Updated and also added mtmitchell_riser.json as the commit msg mentioned it but it was missed from the changes yesterday.",
+      "parentUuid": "15a516fe_416f14cf",
+      "revId": "a3928423889bf741e866bc9abb45a81c34766b92",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "5fbe2560_32b47577",
@@ -31,6 +49,30 @@
       "writtenOn": "2024-10-24T19:39:03Z",
       "side": 1,
       "message": "I guess this doesn\u0027t work including the opening parenthesis?",
+      "range": {
+        "startLine": 11,
+        "startChar": 30,
+        "endLine": 11,
+        "endChar": 31
+      },
+      "revId": "a3928423889bf741e866bc9abb45a81c34766b92",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "43e355cc_3b4830b9",
+        "filename": "configurations/mtmitchell_bp.json",
+        "patchSetId": 3
+      },
+      "lineNbr": 11,
+      "author": {
+        "id": 1001526
+      },
+      "writtenOn": "2024-10-25T07:57:08Z",
+      "side": 1,
+      "message": "The author of this line said it did not work before without the parenthesis. Since it works now, I removed \")\" and replaced \"-\" with \"%\". Thanks.",
+      "parentUuid": "5fbe2560_32b47577",
       "range": {
         "startLine": 11,
         "startChar": 30,
