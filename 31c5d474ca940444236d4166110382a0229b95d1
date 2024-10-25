@@ -51,6 +51,24 @@
       "message": "Why do we have threads and mutexes? This seems too complex. I\u0027d much rather we read the procfs devicetree attributes into stack-local variables before doing any DBus-related work, and drop the threads and the mutexes.",
       "revId": "31c5d474ca940444236d4166110382a0229b95d1",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5fcbb7c3_65438881",
+        "filename": "src/dt_vpd_parser.cpp",
+        "patchSetId": 3
+      },
+      "lineNbr": 14,
+      "author": {
+        "id": 1001354
+      },
+      "writtenOn": "2024-10-25T14:08:36Z",
+      "side": 1,
+      "message": "I experimented with std::thread partially as \n\nA) potential workaround for erroneous CI tool output surrounding Async API .spawn calls (discussion on that here: https://gerrit.openbmc.org/c/openbmc/entity-manager/+/75353/comment/57743120_586df2a2/ --  but now it sounds like we\u0027re leaning towards rolling back this bit back to using Async API\u0027s context.spawn + a //NOLINT tag)\n\nB) in response to a comment Ed T made about the MachineContext populate operation:\n\u003eThis is doing a blocking IO call in the async reactor, which will deadlock all other calls if this node takes a long time to reply. In asio we have uring based file readers, or should we do this in its own thread so we don\u0027t block dbus?\n\nhttps://gerrit.openbmc.org/c/openbmc/entity-manager/+/75349/comment/dcde11bc_365a072c/\n\nI have not yet dug into the uring file reader option since it seemed like using std::thread might solve a few things at a once-- but I\u0027ll go ahead and take a closer look into the uring readers option next.",
+      "parentUuid": "9fd0bba2_62619323",
+      "revId": "31c5d474ca940444236d4166110382a0229b95d1",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }
