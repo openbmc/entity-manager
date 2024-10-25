@@ -69,6 +69,24 @@
       "parentUuid": "9fd0bba2_62619323",
       "revId": "31c5d474ca940444236d4166110382a0229b95d1",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2d21a877_02e0fe11",
+        "filename": "src/dt_vpd_parser.cpp",
+        "patchSetId": 3
+      },
+      "lineNbr": 14,
+      "author": {
+        "id": 1000009
+      },
+      "writtenOn": "2024-10-25T21:31:59Z",
+      "side": 1,
+      "message": "I think explicit consideration of io_uring is over-complicating it as well.\n\nAll we need to do is:\n\n1. do simple blocking reads of the procfs files into local variables\n2. setup and run the async dbus stuff, passing the local variables in as the data for the machine context object\n\nin that order.\n\nThe blocking reads aren\u0027t even going to block, the data comes straight of memory, so IMO the concern seems a bit overblown. However the approach above removes the problem.\n\nIf necessary, a `//NOLINT` is preferable than invoking the complexity of threads and mutexes.",
+      "parentUuid": "5fcbb7c3_65438881",
+      "revId": "31c5d474ca940444236d4166110382a0229b95d1",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }
