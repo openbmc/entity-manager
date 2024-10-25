@@ -34,6 +34,23 @@
       "parentUuid": "54ef35d6_b30f0ce4",
       "revId": "31c5d474ca940444236d4166110382a0229b95d1",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9fd0bba2_62619323",
+        "filename": "src/dt_vpd_parser.cpp",
+        "patchSetId": 3
+      },
+      "lineNbr": 14,
+      "author": {
+        "id": 1000009
+      },
+      "writtenOn": "2024-10-25T00:19:30Z",
+      "side": 1,
+      "message": "Why do we have threads and mutexes? This seems too complex. I\u0027d much rather we read the procfs devicetree attributes into stack-local variables before doing any DBus-related work, and drop the threads and the mutexes.",
+      "revId": "31c5d474ca940444236d4166110382a0229b95d1",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }
