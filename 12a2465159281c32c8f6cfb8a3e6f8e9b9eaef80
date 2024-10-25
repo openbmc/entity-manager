@@ -34,6 +34,24 @@
       "parentUuid": "10a563fc_5450aa6c",
       "revId": "12a2465159281c32c8f6cfb8a3e6f8e9b9eaef80",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "111625aa_941a8f33",
+        "filename": "configurations/mtjade.json",
+        "patchSetId": 2
+      },
+      "lineNbr": 1960,
+      "author": {
+        "id": 1000940
+      },
+      "writtenOn": "2024-10-25T08:03:40Z",
+      "side": 1,
+      "message": "PSUs are pluggable devices so different PSU devices might be used in different system shipments, just to ensure they provide enough power for the system. Actually, I saw at least 4 different PSU devices used for this system so if using FRUs to probe the devices, we will have several configurations to do.\nIn addition, as different platforms might have different I2C buses for the PSUs, they can\u0027t be shared across platforms. So, we chose to use I2C bus and address to probe PSU devices",
+      "parentUuid": "22b00c89_6049680f",
+      "revId": "12a2465159281c32c8f6cfb8a3e6f8e9b9eaef80",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }
