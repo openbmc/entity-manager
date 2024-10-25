@@ -107,9 +107,25 @@
                             }
                         },
                         "Chassis": {
-                            "additionalProperties": false,
-                            "type": "object"
-                        },
+                            "RackMount": {
+                                "additionalProperties": false,
+                                "properties": {
+                                    "Type": {
+                                        "type": "string"
+                                    }
+				},
+				"type": "object"
+                            },
+                            "Blade": {
+                                "additionalProperties": false,
+				"properties": {
+                                    "Type": {
+                                        "type": "string"
+                                    }
+                                },
+                                "type": "object"
+                            }
+			},
                         "NetworkInterface": {
                             "additionalProperties": false,
                             "properties": {
