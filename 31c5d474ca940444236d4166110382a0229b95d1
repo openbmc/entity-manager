@@ -87,6 +87,24 @@
       "parentUuid": "5fcbb7c3_65438881",
       "revId": "31c5d474ca940444236d4166110382a0229b95d1",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "daaedbb0_87daa0e6",
+        "filename": "src/dt_vpd_parser.cpp",
+        "patchSetId": 3
+      },
+      "lineNbr": 14,
+      "author": {
+        "id": 1001354
+      },
+      "writtenOn": "2024-10-26T03:26:01Z",
+      "side": 1,
+      "message": "\u003edo simple blocking reads of the procfs files into local variables\nsetup and run the async dbus stuff, passing the local variables in as the data for the machine context object\n\nPatrick may have more insight into how Async API works behind the scenes here and may correct me -- but I have the impression the steps you\u0027ve enumerated are more-or-less the default behavior when going through SDBusPlus Async API -- if I hadn\u0027t added the thread-related code.\n\nMy current understanding of the process seen in lines 12 - 14 here is:\nMachineContext object is instantiated. The constructor does blocking reads (without the std:::thread stuff; that\u0027s new), and uses the results to populate properties that were inherited from an SDBusPlus Async API version of Inventory::Asset. A reference to this instance is saved to \u0027async::context ctx.\u0027 \n\nI *think* the spawn call just cues up anything that needs to be done asynchronously at this point, then when ctx.run() is called, the spawn function fires off, then the MachineContext object is consumed and a d-bus bus is plumbed out based on that.\n\nUp until ctx.run() is called, I believe nothing here interacts with d-bus. Once ctx.run() is called, changes to the MachineContext object do not appear to be reflected to the associated d-bus property after that point.\n\nIf things really that simple with the Async API, it seems like I *might* be able to just remove the std::thread stuff, put the ctx.spawn with //NOLINT back into the dt_vpd_parser.cpp and expect things to be \u0027good as-is\u0027.",
+      "parentUuid": "2d21a877_02e0fe11",
+      "revId": "31c5d474ca940444236d4166110382a0229b95d1",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }
