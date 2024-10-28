@@ -20,6 +20,40 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "65abb30f_edc8f4e4",
+        "filename": "service_files/xyz.openbmc_project.DeviceTree.VPD.Parser.service",
+        "patchSetId": 4
+      },
+      "lineNbr": 8,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2024-10-28T15:26:33Z",
+      "side": 1,
+      "message": "Why a different busname from the service name?  If you named the service name with an `xyz...` this is surprising.",
+      "revId": "bb793d5347b4630cd521d80bfdd8b69d9032705c",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "009cb9e9_561311a5",
+        "filename": "src/dt_vpd_parser.cpp",
+        "patchSetId": 4
+      },
+      "lineNbr": 5,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2024-10-28T15:26:33Z",
+      "side": 1,
+      "message": "Where\u0027d this come from?\n\nI\u0027m not really liking the separate path (vs inventory) but I guess this is in some regards a \"hidden\" API within entity-manager.\n\nDo we have any other suggestions than \"MachineContext\"?  I don\u0027t have any alternatives but \"Context\" seems so vague to not be very helpful.",
+      "revId": "bb793d5347b4630cd521d80bfdd8b69d9032705c",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "0ad4625c_5eab1232",
         "filename": "src/machine_context.cpp",
         "patchSetId": 4
@@ -37,6 +71,93 @@
         "endLine": 36,
         "endChar": 5
       },
+      "revId": "bb793d5347b4630cd521d80bfdd8b69d9032705c",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9940218b_37c9519a",
+        "filename": "src/machine_context.cpp",
+        "patchSetId": 4
+      },
+      "lineNbr": 36,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2024-10-28T15:26:33Z",
+      "side": 1,
+      "message": "It doesn\u0027t seem to me like it really matters where the code lives.  Having a big blob of random device tree processing in the main function doesn\u0027t sound that great either, so at some point this becomes a function.  A static function in main vs a non-static function here isn\u0027t really that different, is it?\n\nMaybe move `populate` to be called explicitly rather than implicitly via the constructor?",
+      "parentUuid": "0ad4625c_5eab1232",
+      "range": {
+        "startLine": 23,
+        "startChar": 0,
+        "endLine": 36,
+        "endChar": 5
+      },
+      "revId": "bb793d5347b4630cd521d80bfdd8b69d9032705c",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a6a6063c_053a0e53",
+        "filename": "src/machine_context.hpp",
+        "patchSetId": 4
+      },
+      "lineNbr": 27,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2024-10-28T15:26:33Z",
+      "side": 1,
+      "message": "Do you want this to explicitly be a `\u0026\u0026` ?\n\nI guess in the original code this ends up being a c-string, so why the extra work of a std::forward anyhow?\n\nLooks like the `server` class implementation uses a c-string also.",
+      "range": {
+        "startLine": 27,
+        "startChar": 60,
+        "endLine": 27,
+        "endChar": 64
+      },
+      "revId": "bb793d5347b4630cd521d80bfdd8b69d9032705c",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "431988ad_0ad28ef9",
+        "filename": "src/machine_context.hpp",
+        "patchSetId": 4
+      },
+      "lineNbr": 29,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2024-10-28T15:26:33Z",
+      "side": 1,
+      "message": "I\u0027m slightly surprised this decltype is necessary.",
+      "range": {
+        "startLine": 29,
+        "startChar": 46,
+        "endLine": 29,
+        "endChar": 60
+      },
+      "revId": "bb793d5347b4630cd521d80bfdd8b69d9032705c",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ba5e828c_09c9b68e",
+        "filename": "src/meson.build",
+        "patchSetId": 4
+      },
+      "lineNbr": 62,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2024-10-28T15:26:33Z",
+      "side": 1,
+      "message": "We will need a wrap file for this.",
       "revId": "bb793d5347b4630cd521d80bfdd8b69d9032705c",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
