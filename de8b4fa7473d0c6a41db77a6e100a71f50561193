@@ -206,6 +206,30 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "d2ce1a10_3e890095",
+        "filename": "src/machinecontext.cpp",
+        "patchSetId": 1
+      },
+      "lineNbr": 27,
+      "author": {
+        "id": 1001354
+      },
+      "writtenOn": "2024-10-28T17:31:30Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "feb55dce_c31c1854",
+      "range": {
+        "startLine": 27,
+        "startChar": 23,
+        "endLine": 27,
+        "endChar": 25
+      },
+      "revId": "de8b4fa7473d0c6a41db77a6e100a71f50561193",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "64a31fe4_6872da70",
@@ -472,6 +496,30 @@
       "side": 1,
       "message": "I ran into linker issues when I call out the MachineContext constructor in machine_context.hpp, then define the implimentation in the cpp (attempting to avoid implementation code in the header file). \n\nI *think* I can work around that with some meson.build changes, but I haven\u0027t gotten that working in experiments yet.\n\nDefining a MC constructor in the header that calls a member function with the implementation details works around the linker issue without meson changes.\n\nThoughts?",
       "parentUuid": "41b19e17_e3509bf2",
+      "range": {
+        "startLine": 43,
+        "startChar": 9,
+        "endLine": 43,
+        "endChar": 31
+      },
+      "revId": "de8b4fa7473d0c6a41db77a6e100a71f50561193",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "34b527c5_36e9269a",
+        "filename": "src/machinecontext.hpp",
+        "patchSetId": 1
+      },
+      "lineNbr": 43,
+      "author": {
+        "id": 1001354
+      },
+      "writtenOn": "2024-10-28T17:31:30Z",
+      "side": 1,
+      "message": "Looks like we\u0027re now discussing having the populate function called explicitly, instead of in the constructor.\n\nhttps://gerrit.openbmc.org/c/openbmc/entity-manager/+/75349/comment/0ad4625c_5eab1232/",
+      "parentUuid": "13fc53ae_0bf1c36d",
       "range": {
         "startLine": 43,
         "startChar": 9,

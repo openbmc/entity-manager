@@ -37,6 +37,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "db06f124_4f34bfb1",
+        "filename": "service_files/xyz.openbmc_project.DeviceTree.VPD.Parser.service",
+        "patchSetId": 4
+      },
+      "lineNbr": 8,
+      "author": {
+        "id": 1001354
+      },
+      "writtenOn": "2024-10-28T17:31:30Z",
+      "side": 1,
+      "message": "The service name and bus name matched previously, but the bus name was simplified (to match fru-device handling, IIRC) based on another comment.\n\nMy thinking on *not* changing the service name too was that MachineContext is a class -\u003e bus that encapsulates info from the device tree that gives context about the hardware OBMC is running on, and that the \u0027daemon/service\u0027 is driving the parsing of the device-tree to populate that bus-- which is an abstraction for \u0027misc\u0027 hardware communicating data readable through DT nodes.\n\nvs. the fru-device daemon, which generally focuses on I2C-based EEPROM \u0027fru-devices.\u0027\n\nIf the bus name \u003d\u003d service name is a strong preference, I\u0027m not stuck on using the current service file name.",
+      "parentUuid": "65abb30f_edc8f4e4",
+      "revId": "bb793d5347b4630cd521d80bfdd8b69d9032705c",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "009cb9e9_561311a5",
         "filename": "src/dt_vpd_parser.cpp",
         "patchSetId": 4
@@ -48,6 +66,24 @@
       "writtenOn": "2024-10-28T15:26:33Z",
       "side": 1,
       "message": "Where\u0027d this come from?\n\nI\u0027m not really liking the separate path (vs inventory) but I guess this is in some regards a \"hidden\" API within entity-manager.\n\nDo we have any other suggestions than \"MachineContext\"?  I don\u0027t have any alternatives but \"Context\" seems so vague to not be very helpful.",
+      "revId": "bb793d5347b4630cd521d80bfdd8b69d9032705c",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f1e65f72_99db3275",
+        "filename": "src/dt_vpd_parser.cpp",
+        "patchSetId": 4
+      },
+      "lineNbr": 5,
+      "author": {
+        "id": 1001354
+      },
+      "writtenOn": "2024-10-28T17:31:30Z",
+      "side": 1,
+      "message": "We\u0027ve gone through a fair number of name changes, but the name \u0027MachineContext\u0027 ultimately got the least pushback. I\u0027d say the idea here is that MachineContext can represent any kind of device that can give OBMC context about the hardware it\u0027s booting on through the device-tree. (and folks *definitely* didn\u0027t want \"device-tree\" in the name.)\n\nI think this was the last bit real of discussion on the topic (with a much longer previous discussion I\u0027m having trouble digging up) before the \u0027MachineContext\u0027 name started being used here, in the doc, and in Discord discussions:\n\nhttps://gerrit.openbmc.org/c/openbmc/docs/+/66369/comment/a2a72830_f4385807/",
+      "parentUuid": "009cb9e9_561311a5",
       "revId": "bb793d5347b4630cd521d80bfdd8b69d9032705c",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
@@ -101,6 +137,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "e2f03fde_042a7614",
+        "filename": "src/machine_context.cpp",
+        "patchSetId": 4
+      },
+      "lineNbr": 36,
+      "author": {
+        "id": 1001354
+      },
+      "writtenOn": "2024-10-28T17:31:30Z",
+      "side": 1,
+      "message": "I\u0027ve gone ahead and refactored populate() to populateFromDeviceTree(), and it is now called explicitly from main(), rather than from the constructor in the next rev.",
+      "parentUuid": "9940218b_37c9519a",
+      "range": {
+        "startLine": 23,
+        "startChar": 0,
+        "endLine": 36,
+        "endChar": 5
+      },
+      "revId": "bb793d5347b4630cd521d80bfdd8b69d9032705c",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "a6a6063c_053a0e53",
         "filename": "src/machine_context.hpp",
         "patchSetId": 4
@@ -112,6 +172,30 @@
       "writtenOn": "2024-10-28T15:26:33Z",
       "side": 1,
       "message": "Do you want this to explicitly be a `\u0026\u0026` ?\n\nI guess in the original code this ends up being a c-string, so why the extra work of a std::forward anyhow?\n\nLooks like the `server` class implementation uses a c-string also.",
+      "range": {
+        "startLine": 27,
+        "startChar": 60,
+        "endLine": 27,
+        "endChar": 64
+      },
+      "revId": "bb793d5347b4630cd521d80bfdd8b69d9032705c",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7856d807_2c3ce36f",
+        "filename": "src/machine_context.hpp",
+        "patchSetId": 4
+      },
+      "lineNbr": 27,
+      "author": {
+        "id": 1001354
+      },
+      "writtenOn": "2024-10-28T17:31:30Z",
+      "side": 1,
+      "message": "I originally added the std::forward based on a nit: for an earlier version of this code when it was being reviewed for a different repo. \n\nAsking around, I got the impression it probably wasn\u0027t needed in this *specific* case, but it wouldn\u0027t hurt anything either. \n\nI\u0027ll go ahead and take it out in the next revision to keep things simpler. \n\nI\u0027m thinking there\u0027s not too many examples of Async API being used yet, so I\u0027d definitely like to get this done in a way folks feel would \u0027set a good example\u0027 for future usage -- whatever that ends up meaning.",
+      "parentUuid": "a6a6063c_053a0e53",
       "range": {
         "startLine": 27,
         "startChar": 60,
