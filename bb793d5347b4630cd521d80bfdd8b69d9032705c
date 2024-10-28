@@ -53,6 +53,24 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "d1ba24f9_9b799452",
+        "filename": "service_files/xyz.openbmc_project.DeviceTree.VPD.Parser.service",
+        "patchSetId": 4
+      },
+      "lineNbr": 8,
+      "author": {
+        "id": 1001354
+      },
+      "writtenOn": "2024-10-28T21:09:18Z",
+      "side": 1,
+      "message": "The daemon \u0026 service name are now \u0027devicetree-vpd-parserd\u0027 and \u0027devicetree-vpd-parserd.service\u0027 respecctively.",
+      "parentUuid": "db06f124_4f34bfb1",
+      "revId": "bb793d5347b4630cd521d80bfdd8b69d9032705c",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "009cb9e9_561311a5",
@@ -159,6 +177,30 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "03302587_0c94ff52",
+        "filename": "src/machine_context.cpp",
+        "patchSetId": 4
+      },
+      "lineNbr": 36,
+      "author": {
+        "id": 1001354
+      },
+      "writtenOn": "2024-10-28T21:09:18Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "e2f03fde_042a7614",
+      "range": {
+        "startLine": 23,
+        "startChar": 0,
+        "endLine": 36,
+        "endChar": 5
+      },
+      "revId": "bb793d5347b4630cd521d80bfdd8b69d9032705c",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "a6a6063c_053a0e53",
@@ -208,6 +250,30 @@
     {
       "unresolved": false,
       "key": {
+        "uuid": "bb4a4e30_57294d7a",
+        "filename": "src/machine_context.hpp",
+        "patchSetId": 4
+      },
+      "lineNbr": 27,
+      "author": {
+        "id": 1001354
+      },
+      "writtenOn": "2024-10-28T21:09:18Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "7856d807_2c3ce36f",
+      "range": {
+        "startLine": 27,
+        "startChar": 60,
+        "endLine": 27,
+        "endChar": 64
+      },
+      "revId": "bb793d5347b4630cd521d80bfdd8b69d9032705c",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
         "uuid": "431988ad_0ad28ef9",
         "filename": "src/machine_context.hpp",
         "patchSetId": 4
@@ -242,6 +308,24 @@
       "writtenOn": "2024-10-28T15:26:33Z",
       "side": 1,
       "message": "We will need a wrap file for this.",
+      "revId": "bb793d5347b4630cd521d80bfdd8b69d9032705c",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5ae9a5e2_72dee18e",
+        "filename": "src/meson.build",
+        "patchSetId": 4
+      },
+      "lineNbr": 62,
+      "author": {
+        "id": 1001354
+      },
+      "writtenOn": "2024-10-28T21:09:18Z",
+      "side": 1,
+      "message": "I tried checking in phosphor_dbus_interfaces.wrap, but discovered there\u0027s a specific callout in entity-manager repo\u0027s root-level .gitignore about it\n\n\u003e build*/*\n\u003e subprojects/*\n\u003e !subprojects/*.wrap\n\u003e subprojects/phosphor-dbus-interfaces.wrap\n\u003e !subprojects/.clang-tidy\n\u003e !subprojects/.clang-format",
+      "parentUuid": "ba5e828c_09c9b68e",
       "revId": "bb793d5347b4630cd521d80bfdd8b69d9032705c",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
