@@ -16,6 +16,29 @@
       "message": "For more detailed test results:\nThe interface \"xyz.openbmc_project.Inventory.Item.Chassis.RackMount\" is created under paths such as \"/xyz/openbmc_project/inventory/system/chassis/Yosemite_4_Chassis\" with the \".Type\" property set to \"RackMount.\" Meanwhile, the interface \"xyz.openbmc_project.Inventory.Item.Chassis.Blade\" is created under paths such as \"/xyz/openbmc_project/inventory/system/board/Yosemite_4_Sentinel_Dome_T2_with_Retimer_Slot_8\" with the \".Type\" property set to \"Blade.\"",
       "revId": "5a5339f2693b4aa03864c6a9594b71e6fb27943d",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5dacbc94_5ffe31bb",
+        "filename": "configurations/yosemite4_chassis.json",
+        "patchSetId": 25
+      },
+      "lineNbr": 13,
+      "author": {
+        "id": 1000008
+      },
+      "writtenOn": "2024-10-28T21:54:50Z",
+      "side": 1,
+      "message": "the interface is just xyz.openbmc_project.Inventory.Item.Chassis",
+      "range": {
+        "startLine": 13,
+        "startChar": 47,
+        "endLine": 13,
+        "endChar": 57
+      },
+      "revId": "5a5339f2693b4aa03864c6a9594b71e6fb27943d",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }
