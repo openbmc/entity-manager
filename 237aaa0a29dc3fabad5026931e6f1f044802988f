@@ -46,6 +46,54 @@
       },
       "revId": "237aaa0a29dc3fabad5026931e6f1f044802988f",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8246a345_7ff4056a",
+        "filename": "configurations/nvidia_io_board.json",
+        "patchSetId": 5
+      },
+      "lineNbr": 78,
+      "author": {
+        "id": 1001264
+      },
+      "writtenOn": "2024-10-29T16:24:35Z",
+      "side": 1,
+      "message": "Hi @Matt \u0026 @Patrick,\nIs it ok if I call it \"NVIDIA GB200 IO Board $bus\"?",
+      "parentUuid": "156d69ef_b5571cc8",
+      "range": {
+        "startLine": 78,
+        "startChar": 12,
+        "endLine": 78,
+        "endChar": 35
+      },
+      "revId": "237aaa0a29dc3fabad5026931e6f1f044802988f",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1035fd78_af69ac38",
+        "filename": "configurations/nvidia_io_board.json",
+        "patchSetId": 5
+      },
+      "lineNbr": 78,
+      "author": {
+        "id": 1001264
+      },
+      "writtenOn": "2024-10-29T16:24:35Z",
+      "side": 1,
+      "message": "Based on reference code on github, NV just called it `IO_Board_X`.\nhttps://github.com/NVIDIA/openbmc/blob/c2df9c881d4025246dc99b0389b6b2eaa1079c39/meta-nvidia/meta-prime/meta-graceblackwell/meta-gb200nvl/meta-bmc/recipes-phosphor/configuration/entity-manager/files/IO_Board.json#L133",
+      "parentUuid": "156d69ef_b5571cc8",
+      "range": {
+        "startLine": 78,
+        "startChar": 12,
+        "endLine": 78,
+        "endChar": 35
+      },
+      "revId": "237aaa0a29dc3fabad5026931e6f1f044802988f",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }
