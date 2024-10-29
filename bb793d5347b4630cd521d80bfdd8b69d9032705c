@@ -328,6 +328,24 @@
       "parentUuid": "ba5e828c_09c9b68e",
       "revId": "bb793d5347b4630cd521d80bfdd8b69d9032705c",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "155d1d26_a9dabded",
+        "filename": "src/meson.build",
+        "patchSetId": 4
+      },
+      "lineNbr": 62,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2024-10-29T10:40:31Z",
+      "side": 1,
+      "message": "It is in gitignore right now because we were getting a wrapfile \"for free\" from phosphor-logging as a secondary dependency.  Now it is a first-class dependency we need to explicitly add it.\n\n```\n$ cat subprojects/phosphor-dbus-interfaces.wrap \n[wrap-redirect]\nfilename \u003d phosphor-logging/subprojects/phosphor-dbus-interfaces.wrap\n```\n\nThis is what is currently in place as a secondary dependency.",
+      "parentUuid": "5ae9a5e2_72dee18e",
+      "revId": "bb793d5347b4630cd521d80bfdd8b69d9032705c",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }
