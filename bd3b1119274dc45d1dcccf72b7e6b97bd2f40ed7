@@ -18,6 +18,24 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "54ae7b04_54aec9b9",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 7
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1001354
+      },
+      "writtenOn": "2024-10-29T19:16:13Z",
+      "side": 1,
+      "message": "I added a static function that checks for specific node existence at the basepath (since device-tree root is always present). \n\nI considered setting \u0027model\u0027 as a default parameter in the header, but decided setting it main() where the static function is called was more readable.\n\nhttps://gerrit.openbmc.org/c/openbmc/entity-manager/+/75349/8/src/dt_vpd_parser.cpp#27\n\nhttps://gerrit.openbmc.org/c/openbmc/entity-manager/+/75349/8/src/machine_context.cpp#39",
+      "parentUuid": "b35aa4d0_6aed4285",
+      "revId": "bd3b1119274dc45d1dcccf72b7e6b97bd2f40ed7",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "f889aeb6_94c490e5",
