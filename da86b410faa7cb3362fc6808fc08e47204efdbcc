@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9ce990d6_8098c3c7",
+        "filename": "configurations/minerva_fanboard.json",
+        "patchSetId": 3
+      },
+      "lineNbr": 698,
+      "author": {
+        "id": 1001354
+      },
+      "writtenOn": "2024-10-31T14:53:32Z",
+      "side": 1,
+      "message": "nit: Is there a reason this value is set to \u00277\u0027 when the other \"FCB_$bus - 15 FAN_$bus * 4 - 64 + 1\" item uses \u00277.0\u0027?\n\nhttps://gerrit.openbmc.org/c/openbmc/entity-manager/+/75307/3/configurations/minerva_fanboard.json#272\n\nOther than that, the changes all seem internally consistent to me.",
+      "revId": "da86b410faa7cb3362fc6808fc08e47204efdbcc",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    }
+  ]
+}
