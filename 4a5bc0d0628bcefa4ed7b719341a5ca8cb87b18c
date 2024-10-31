@@ -84,6 +84,24 @@
       "message": "Q: what was the NOLINT here fixing an issue about? Was the tool offering build-breaking suggestions?\n\nI understand that it\u0027s preferred to avoid using NOLINT where possible (but it\u0027s not a hard rule).",
       "revId": "4a5bc0d0628bcefa4ed7b719341a5ca8cb87b18c",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "def3be92_bccbf584",
+        "filename": "src/fru_device.cpp",
+        "patchSetId": 7
+      },
+      "lineNbr": 372,
+      "author": {
+        "id": 1001354
+      },
+      "writtenOn": "2024-10-31T21:25:38Z",
+      "side": 1,
+      "message": "Ah. I see - this line, and lines 381-383 are doing the same as what\u0027s done in the existing readData() function. That seems to make sense then.\n\n(I still wonder what kind of problem the NOLINT it covering, but that\u0027s probably for someone else who\u0027s already worked around there on fru_device to worry about :)",
+      "parentUuid": "62ec9f3d_cc1ea0af",
+      "revId": "4a5bc0d0628bcefa4ed7b719341a5ca8cb87b18c",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }
