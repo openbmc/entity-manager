@@ -67,6 +67,23 @@
       "message": "I personally like the comment explanations for mode 1 and mode 2, but I feel like some of the comment below veers into \u0027design document\u0027 (see openbmc/docs/designs territory -- mainly the stuff about proposals and quoting parts of spec docs for justifications. I\u0027m not sure if this is a complex enough change to full-on require a design document to be approved, though.\n\nI suspect the in-source comment could be simplified to treat this as a done-deal, then cut/paste any justifications/points for discussion into a gerrit comment, or in-line gerrit comment for any further discussion needed.\n\n(That said, I don\u0027t know enough about operations being done in the 2nd half of this commit to have any complaints about them, and the top half looks good to me :)",
       "revId": "4a5bc0d0628bcefa4ed7b719341a5ca8cb87b18c",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "62ec9f3d_cc1ea0af",
+        "filename": "src/fru_device.cpp",
+        "patchSetId": 7
+      },
+      "lineNbr": 372,
+      "author": {
+        "id": 1001354
+      },
+      "writtenOn": "2024-10-31T21:16:47Z",
+      "side": 1,
+      "message": "Q: what was the NOLINT here fixing an issue about? Was the tool offering build-breaking suggestions?\n\nI understand that it\u0027s preferred to avoid using NOLINT where possible (but it\u0027s not a hard rule).",
+      "revId": "4a5bc0d0628bcefa4ed7b719341a5ca8cb87b18c",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }
