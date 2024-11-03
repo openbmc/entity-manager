@@ -59,6 +59,19 @@
                             "required": ["Names"],
                             "type": "object"
                         },
+                        "Cable": {
+                            "additionalProperties": false,
+                            "properties": {
+                                "LengthInMeters": {
+                                    "type": "number"
+                                },
+                                "Type": {
+                                    "enum": ["Optical", "Copper"]
+                                }
+                            },
+                            "required": ["LengthInMeters", "Type"],
+                            "type": "object"
+                        },
                         "Replaceable": {
                             "additionalProperties": false,
                             "properties": {
