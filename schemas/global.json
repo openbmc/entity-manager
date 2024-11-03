@@ -91,7 +91,14 @@
                 "Type": {
                     "title": "Configuration Type",
                     "description": "The schema for the type property. The type property identifies the type of the configuration.  When exported, configurations will be instantiated as children of: /xyz/openbmc_project/configuration/<Type>",
-                    "enum": ["Board", "Chassis", "NVMe", "PowerSupply", "CPU"]
+                    "enum": [
+                        "Board",
+                        "Chassis",
+                        "NVMe",
+                        "PowerSupply",
+                        "CPU",
+                        "Cable"
+                    ]
                 },
                 "xyz.openbmc_project.Common.UUID": {
                     "$ref": "openbmc-dbus.json#/$defs/xyz/openbmc_project/Common/UUID"
@@ -104,6 +111,9 @@
                 },
                 "xyz.openbmc_project.Inventory.Decorator.AssetTag": {
                     "$ref": "openbmc-dbus.json#/$defs/xyz/openbmc_project/Inventory/Decorator/AssetTag"
+                },
+                "xyz.openbmc_project.Inventory.Decorator.Cable": {
+                    "$ref": "openbmc-dbus.json#/$defs/xyz/openbmc_project/Inventory/Decorator/Cable"
                 },
                 "xyz.openbmc_project.Inventory.Decorator.Compatible": {
                     "$ref": "openbmc-dbus.json#/$defs/xyz/openbmc_project/Inventory/Decorator/Compatible"

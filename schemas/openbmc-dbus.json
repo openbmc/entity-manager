@@ -69,6 +69,19 @@
                             "required": ["HostIndex"],
                             "type": "object"
                         },
+                        "Cable": {
+                            "additionalProperties": false,
+                            "properties": {
+                                "LengthInMeters": {
+                                    "type": "number"
+                                },
+                                "Type": {
+                                    "enum": ["Optical", "Copper", "Unknown"]
+                                }
+                            },
+                            "required": ["LengthInMeters", "Type"],
+                            "type": "object"
+                        },
                         "Replaceable": {
                             "additionalProperties": false,
                             "properties": {
