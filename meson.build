@@ -28,7 +28,7 @@ if get_option('fru-device')
     i2c = cpp.find_library('i2c')
 endif
 
-if get_option('devicetree-vpd')
+if get_option('devicetree-vpd') or get_option('gpio-presence')
     phosphor_dbus_interfaces_dep = dependency(
         'phosphor-dbus-interfaces',
         include_type: 'system',
@@ -38,6 +38,10 @@ endif
 nlohmann_json_dep = dependency('nlohmann_json', include_type: 'system')
 sdbusplus = dependency('sdbusplus', include_type: 'system')
 phosphor_logging_dep = dependency('phosphor-logging')
+
+if get_option('gpio-presence') or get_option('tests').allowed()
+    libgpio_dep = dependency('libgpiodcxx', default_options: ['bindings=cxx'])
+endif
 
 systemd = dependency('systemd')
 systemd_system_unit_dir = systemd.get_variable(
@@ -180,6 +184,24 @@ if get_option('tests').allowed()
                 phosphor_logging_dep,
             ],
             include_directories: 'src',
+        ),
+    )
+
+    test(
+        'test_gpio_presence',
+        executable(
+            'test_gpio_presence',
+            'test/test_gpio_presence.cpp',
+            cpp_args: test_boost_args,
+            include_directories: ['src'],
+            dependencies: [
+                boost,
+                gtest,
+                gmock,
+                phosphor_logging_dep,
+                libgpio_dep,
+            ],
+            link_with: gpio_presence_lib,
         ),
     )
 endif
