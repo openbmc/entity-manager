@@ -1,0 +1,12 @@
+[Unit]
+Description=GPIO Presence Sensor
+
+[Service]
+ExecStart=/usr/libexec/entity-manager/gpio-presence-sensor
+Restart=always
+Type=dbus
+BusName=xyz.openbmc_project.gpiopresencesensor
+
+[Install]
+WantedBy=multi-user.target
+Alias=dbus-xyz.openbmc_project.gpiopresence.service
