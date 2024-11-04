@@ -65,3 +65,11 @@ if get_option('devicetree-vpd')
         install_dir: installdir,
     )
 endif
+
+libgpiod = dependency(
+  'libgpiodcxx',
+  default_options:['bindings=cxx'],
+  version: '>=1.1.2'
+)
+
+subdir('gpio-presence')
