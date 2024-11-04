@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "f9f0fd44_311ef9da",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1001354
+      },
+      "writtenOn": "2024-11-04T20:21:13Z",
+      "side": 1,
+      "message": "The commit message could probably use a \u0027TESTED\u0027 section that describes how a positive result could be verified. \n\nYou may also want to surround that section with \u0027\u0027\u0027 marks to avoid formatting complaints from the gitcommit message linting tools if you copy/paste test console output to show a resut (as I found out in the process of getting this https://gerrit.openbmc.org/c/openbmc/entity-manager/+/75349 daemon recently merged into the Entity-Manager repo).\n\nThis project seems relevant to my interests at a glance, so I\u0027ll try digging into the linked design doc and following along :)",
+      "revId": "6ad9a746021f8fe118361dbd3d608d79947e156f",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "31f1f407_ff7c941a",
+        "filename": "src/gpio-presence/meson.build",
+        "patchSetId": 2
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 1001354
+      },
+      "writtenOn": "2024-11-04T20:21:13Z",
+      "side": 1,
+      "message": "I have the impression the .h* files don\u0027t need to be included in this list.\n\nI\u0027m still relatively new to Meson scripting, but my understanding is the header files are pulled by meson automatically via being referenced in the the .cpp file #includes",
+      "revId": "6ad9a746021f8fe118361dbd3d608d79947e156f",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    }
+  ]
+}
