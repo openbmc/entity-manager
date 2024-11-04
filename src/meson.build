@@ -64,3 +64,7 @@ if get_option('devicetree-vpd')
         install_dir: installdir,
     )
 endif
+
+if get_option('gpio-presence')
+    subdir('gpio-presence')
+endif

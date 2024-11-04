@@ -28,3 +28,9 @@ option(
     value: true,
     description: 'Run JSON schema validation during the build.',
 )
+option(
+    'gpio-presence',
+    type: 'boolean',
+    value: true,
+    description: 'Build gpio presence daemon',
+)
