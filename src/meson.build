@@ -11,3 +11,7 @@ endif
 if get_option('devicetree-vpd')
     subdir('devicetree_vpd_parser')
 endif
+
+if get_option('gpio-presence')
+    subdir('gpio-presence')
+endif
