@@ -88,6 +88,24 @@
       "parentUuid": "a757615e_738bed76",
       "revId": "08ad2535a2da7ee2123a852bceb3a62eecfd7fb2",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "376690c6_aa80f073",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1000008
+      },
+      "writtenOn": "2024-11-05T14:52:47Z",
+      "side": 1,
+      "message": "There\u0027s already a way to add the item.bmc and item.system interfaces to an object - https://github.com/openbmc/entity-manager/blob/master/src/entity_manager.cpp#L703.  I wonder if this could be extended to also do a Chassis.",
+      "parentUuid": "c604e3a9_65cd3bf8",
+      "revId": "08ad2535a2da7ee2123a852bceb3a62eecfd7fb2",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }
