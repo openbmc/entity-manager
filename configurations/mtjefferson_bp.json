@@ -1,0 +1,84 @@
+{
+    "Exposes": [
+        {
+            "Address": "$address",
+            "Bus": "$bus",
+            "Name": "Jefferson BP_EEPROM$ADDRESS / 82 + 1",
+            "Type": "EEPROM"
+        },
+        {
+            "Address": "$ADDRESS % 80 + 24",
+            "Bus": "$bus",
+            "Name": "FrontBPTemp$ADDRESS / 82 + 1",
+            "Type": "JC42"
+        },
+        {
+            "Address": "0x6a",
+            "Bus": "$ADDRESS / 82 * 8 + 48 + 0",
+            "Name": "nvme$ADDRESS / 82 * 8 + 0",
+            "Type": "NVME1000"
+        },
+        {
+            "Address": "0x6a",
+            "Bus": "$ADDRESS / 82 * 8 + 48 + 1",
+            "Name": "nvme$ADDRESS / 82 * 8 + 1",
+            "Type": "NVME1000"
+        },
+        {
+            "Address": "0x6a",
+            "Bus": "$ADDRESS / 82 * 8 + 48 + 2",
+            "Name": "nvme$ADDRESS / 82 * 8 + 2",
+            "Type": "NVME1000"
+        },
+        {
+            "Address": "0x6a",
+            "Bus": "$ADDRESS / 82 * 8 + 48 + 3",
+            "Name": "nvme$ADDRESS / 82 * 8 + 3",
+            "Type": "NVME1000"
+        },
+        {
+            "Address": "0x6a",
+            "Bus": "$ADDRESS / 82 * 8 + 48 + 4",
+            "Name": "nvme$ADDRESS / 82 * 8 + 4",
+            "Type": "NVME1000"
+        },
+        {
+            "Address": "0x6a",
+            "Bus": "$ADDRESS / 82 * 8 + 48 + 5",
+            "Name": "nvme$ADDRESS / 82 * 8 + 5",
+            "Type": "NVME1000"
+        },
+        {
+            "Address": "0x6a",
+            "Bus": "$ADDRESS / 82 * 8 + 48 + 6",
+            "Name": "nvme$ADDRESS / 82 * 8 + 6",
+            "Type": "NVME1000"
+        },
+        {
+            "Address": "0x6a",
+            "Bus": "$ADDRESS / 82 * 8 + 48 + 7",
+            "Name": "nvme$ADDRESS / 82 * 8 + 7",
+            "Type": "NVME1000"
+        }
+    ],
+    "Name": "Jefferson BP_$ADDRESS / 82 + 1",
+    "Probe": [
+        "xyz.openbmc_project.FruDevice({'BOARD_PART_NUMBER': 'CBP2980'})",
+        "AND",
+        "FOUND('Mt.Jefferson_Motherboard')"
+    ],
+    "Type": "Board",
+    "xyz.openbmc_project.Inventory.Decorator.Asset": {
+        "Manufacturer": "$BOARD_MANUFACTURER",
+        "Model": "$BOARD_PRODUCT_NAME",
+        "PartNumber": "$BOARD_PART_NUMBER",
+        "SerialNumber": "$BOARD_SERIAL_NUMBER"
+    },
+    "xyz.openbmc_project.Inventory.Decorator.Replaceable": {
+        "FieldReplaceable": false,
+        "HotPluggable": false
+    },
+    "xyz.openbmc_project.Inventory.Decorator.Revision": {
+        "Version": "$BOARD_INFO_AM1"
+    }
+}
