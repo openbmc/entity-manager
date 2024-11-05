@@ -8,6 +8,9 @@ option(
     'fru-device-resizefru', value : false, type: 'boolean', description: 'Allow FruDevice to resize FRU areas.',
 )
 option(
+    'fru-device-16bitdetectmode', type: 'combo', choices: ['MODE_1', 'MODE_2'], value: 'MODE_1', description: 'Different modes to detect 16-bit address EEPROM devices. MODE_1 is current and default mode.',
+)
+option(
     'devicetree-vpd', type: 'boolean', description: 'Build device-tree VPD parser'
 )
 option(
