@@ -159,6 +159,7 @@ configs = [
     'mori_motherboard.json',
     'mtjade.json',
     'mtjefferson_bmc.json',
+    'mtjefferson_cbp2980.json',
     'mtjefferson_mb.json',
     'mtmitchell_bmc.json',
     'mtmitchell_bp.json',
