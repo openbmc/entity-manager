@@ -106,6 +106,40 @@
       "parentUuid": "c604e3a9_65cd3bf8",
       "revId": "08ad2535a2da7ee2123a852bceb3a62eecfd7fb2",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "9acb4dbb_dd2220f8",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2024-11-05T16:26:14Z",
+      "side": 1,
+      "message": "Pretty sure most of these are not appropriate.  What are you trying to accomplish?",
+      "revId": "08ad2535a2da7ee2123a852bceb3a62eecfd7fb2",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2365664d_28c747ea",
+        "filename": "configurations/harma_bsm.json",
+        "patchSetId": 4
+      },
+      "lineNbr": 28,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2024-11-05T16:26:14Z",
+      "side": 1,
+      "message": "Why are we making a \"chassis\" for the BSM?  A chassis should only be used for a unique piece of sheet metal.",
+      "revId": "08ad2535a2da7ee2123a852bceb3a62eecfd7fb2",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }
