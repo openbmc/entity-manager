@@ -163,6 +163,23 @@
       },
       "revId": "0c4cc27a4346e520b16edb9e8991e11a105b0be0",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "25c0372c_de9b5dfe",
+        "filename": "configurations/mtjefferson_cbp2980.json",
+        "patchSetId": 1
+      },
+      "lineNbr": 66,
+      "author": {
+        "id": 1000940
+      },
+      "writtenOn": "2024-11-06T06:30:18Z",
+      "side": 1,
+      "message": "Hieu,\nThis backplane is available for Mt. Jefferson only. So, to avoid possiblewrongly probe for other platforms, let add FOUND condition.\nrefer to https://github.com/openbmc/entity-manager/blob/f7cf399d01532fb00f57501a580367d8806f5d4b/configurations/mtmitchell_riser.json#L14",
+      "revId": "0c4cc27a4346e520b16edb9e8991e11a105b0be0",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }
