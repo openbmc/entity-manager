@@ -43,10 +43,174 @@
         },
         {
             "Address": "0x52",
-            "BindConnector": "Fan1 connector",
+            "BindConnector": "Fan2 connector",
             "Bus": 6,
             "Index": 1,
-            "MaxReading": 0,
+            "MaxReading": 14500,
+            "Name": "Fan2a_in",
+            "PowerState": "Always",
+            "Presence": {
+                "MonitorType": "Polling",
+                "PinName": "FAN1_PRESENCE_R_N",
+                "Polarity": "Low"
+            },
+            "Thresholds": [
+                {
+                    "Direction": "less than",
+                    "Name": "lower critical",
+                    "Severity": 1,
+                    "Value": 0
+                },
+                {
+                    "Direction": "less than",
+                    "Name": "lower non critical",
+                    "Severity": 0,
+                    "Value": 1800
+                },
+                {
+                    "Direction": "greater than",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 36200
+                },
+                {
+                    "Direction": "greater than",
+                    "Name": "upper non critical",
+                    "Severity": 0,
+                    "Value": 28960
+                }
+            ],
+            "Type": "I2CFan"
+        },
+        {
+            "Address": "0x52",
+            "BindConnector": "Fan3 connector",
+            "Bus": 6,
+            "Index": 2,
+            "MaxReading": 14500,
+            "Name": "Fan3a_in",
+            "PowerState": "Always",
+            "Presence": {
+                "MonitorType": "Polling",
+                "PinName": "FAN2_PRESENCE_R_N",
+                "Polarity": "Low"
+            },
+            "Thresholds": [
+                {
+                    "Direction": "less than",
+                    "Name": "lower critical",
+                    "Severity": 1,
+                    "Value": 0
+                },
+                {
+                    "Direction": "less than",
+                    "Name": "lower non critical",
+                    "Severity": 0,
+                    "Value": 1800
+                },
+                {
+                    "Direction": "greater than",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 36200
+                },
+                {
+                    "Direction": "greater than",
+                    "Name": "upper non critical",
+                    "Severity": 0,
+                    "Value": 28960
+                }
+            ],
+            "Type": "I2CFan"
+        },
+        {
+            "Address": "0x52",
+            "BindConnector": "Fan4 connector",
+            "Bus": 6,
+            "Index": 3,
+            "MaxReading": 14500,
+            "Name": "Fan4a_in",
+            "PowerState": "Always",
+            "Presence": {
+                "MonitorType": "Polling",
+                "PinName": "FAN3_PRESENCE_R_N",
+                "Polarity": "Low"
+            },
+            "Thresholds": [
+                {
+                    "Direction": "less than",
+                    "Name": "lower critical",
+                    "Severity": 1,
+                    "Value": 0
+                },
+                {
+                    "Direction": "less than",
+                    "Name": "lower non critical",
+                    "Severity": 0,
+                    "Value": 1800
+                },
+                {
+                    "Direction": "greater than",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 36200
+                },
+                {
+                    "Direction": "greater than",
+                    "Name": "upper non critical",
+                    "Severity": 0,
+                    "Value": 28960
+                }
+            ],
+            "Type": "I2CFan"
+        },
+        {
+            "Address": "0x52",
+            "BindConnector": "Fan5 connector",
+            "Bus": 6,
+            "Index": 4,
+            "MaxReading": 14500,
+            "Name": "Fan5a_in",
+            "PowerState": "Always",
+            "Presence": {
+                "MonitorType": "Polling",
+                "PinName": "FAN4_PRESENCE_R_N",
+                "Polarity": "Low"
+            },
+            "Thresholds": [
+                {
+                    "Direction": "less than",
+                    "Name": "lower critical",
+                    "Severity": 1,
+                    "Value": 0
+                },
+                {
+                    "Direction": "less than",
+                    "Name": "lower non critical",
+                    "Severity": 0,
+                    "Value": 1800
+                },
+                {
+                    "Direction": "greater than",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 36200
+                },
+                {
+                    "Direction": "greater than",
+                    "Name": "upper non critical",
+                    "Severity": 0,
+                    "Value": 28960
+                }
+            ],
+            "Type": "I2CFan"
+        },
+        {
+            "Address": "0x52",
+            "BindConnector": "Fan1 connector",
+            "Bus": 6,
+            "Index": 5,
+            "MaxReading": 14500,
             "Name": "Fan1b_in",
             "PowerState": "Always",
             "Presence": {
@@ -86,49 +250,8 @@
             "Address": "0x52",
             "BindConnector": "Fan2 connector",
             "Bus": 6,
-            "Index": 2,
-            "MaxReading": 0,
-            "Name": "Fan2a_in",
-            "PowerState": "Always",
-            "Presence": {
-                "MonitorType": "Polling",
-                "PinName": "FAN1_PRESENCE_R_N",
-                "Polarity": "Low"
-            },
-            "Thresholds": [
-                {
-                    "Direction": "less than",
-                    "Name": "lower critical",
-                    "Severity": 1,
-                    "Value": 0
-                },
-                {
-                    "Direction": "less than",
-                    "Name": "lower non critical",
-                    "Severity": 0,
-                    "Value": 1800
-                },
-                {
-                    "Direction": "greater than",
-                    "Name": "upper critical",
-                    "Severity": 1,
-                    "Value": 36200
-                },
-                {
-                    "Direction": "greater than",
-                    "Name": "upper non critical",
-                    "Severity": 0,
-                    "Value": 28960
-                }
-            ],
-            "Type": "I2CFan"
-        },
-        {
-            "Address": "0x52",
-            "BindConnector": "Fan2 connector",
-            "Bus": 6,
-            "Index": 3,
-            "MaxReading": 0,
+            "Index": 6,
+            "MaxReading": 14500,
             "Name": "Fan2b_in",
             "PowerState": "Always",
             "Presence": {
@@ -168,49 +291,8 @@
             "Address": "0x52",
             "BindConnector": "Fan3 connector",
             "Bus": 6,
-            "Index": 4,
-            "MaxReading": 0,
-            "Name": "Fan3a_in",
-            "PowerState": "Always",
-            "Presence": {
-                "MonitorType": "Polling",
-                "PinName": "FAN2_PRESENCE_R_N",
-                "Polarity": "Low"
-            },
-            "Thresholds": [
-                {
-                    "Direction": "less than",
-                    "Name": "lower critical",
-                    "Severity": 1,
-                    "Value": 0
-                },
-                {
-                    "Direction": "less than",
-                    "Name": "lower non critical",
-                    "Severity": 0,
-                    "Value": 1800
-                },
-                {
-                    "Direction": "greater than",
-                    "Name": "upper critical",
-                    "Severity": 1,
-                    "Value": 36200
-                },
-                {
-                    "Direction": "greater than",
-                    "Name": "upper non critical",
-                    "Severity": 0,
-                    "Value": 28960
-                }
-            ],
-            "Type": "I2CFan"
-        },
-        {
-            "Address": "0x52",
-            "BindConnector": "Fan3 connector",
-            "Bus": 6,
-            "Index": 5,
-            "MaxReading": 0,
+            "Index": 7,
+            "MaxReading": 14500,
             "Name": "Fan3b_in",
             "PowerState": "Always",
             "Presence": {
@@ -250,95 +332,13 @@
             "Address": "0x52",
             "BindConnector": "Fan4 connector",
             "Bus": 6,
-            "Index": 6,
-            "MaxReading": 0,
-            "Name": "Fan4a_in",
-            "PowerState": "Always",
-            "Presence": {
-                "MonitorType": "Polling",
-                "PinName": "FAN3_PRESENCE_R_N",
-                "Polarity": "Low"
-            },
-            "Thresholds": [
-                {
-                    "Direction": "less than",
-                    "Name": "lower critical",
-                    "Severity": 1,
-                    "Value": 0
-                },
-                {
-                    "Direction": "less than",
-                    "Name": "lower non critical",
-                    "Severity": 0,
-                    "Value": 1800
-                },
-                {
-                    "Direction": "greater than",
-                    "Name": "upper critical",
-                    "Severity": 1,
-                    "Value": 36200
-                },
-                {
-                    "Direction": "greater than",
-                    "Name": "upper non critical",
-                    "Severity": 0,
-                    "Value": 28960
-                }
-            ],
-            "Type": "I2CFan"
-        },
-        {
-            "Address": "0x52",
-            "BindConnector": "Fan4 connector",
-            "Bus": 6,
-            "Index": 7,
-            "MaxReading": 0,
+            "Index": 8,
+            "MaxReading": 14500,
             "Name": "Fan4b_in",
             "PowerState": "Always",
             "Presence": {
                 "MonitorType": "Polling",
                 "PinName": "FAN3_PRESENCE_R_N",
-                "Polarity": "Low"
-            },
-            "Thresholds": [
-                {
-                    "Direction": "less than",
-                    "Name": "lower critical",
-                    "Severity": 1,
-                    "Value": 0
-                },
-                {
-                    "Direction": "less than",
-                    "Name": "lower non critical",
-                    "Severity": 0,
-                    "Value": 1800
-                },
-                {
-                    "Direction": "greater than",
-                    "Name": "upper critical",
-                    "Severity": 1,
-                    "Value": 36200
-                },
-                {
-                    "Direction": "greater than",
-                    "Name": "upper non critical",
-                    "Severity": 0,
-                    "Value": 28960
-                }
-            ],
-            "Type": "I2CFan"
-        },
-        {
-            "Address": "0x52",
-            "BindConnector": "Fan5 connector",
-            "Bus": 6,
-            "Index": 8,
-            "MaxReading": 0,
-            "Name": "Fan5a_in",
-            "PowerState": "Always",
-            "Presence": {
-                "MonitorType": "Polling",
-                "PinName": "FAN4_PRESENCE_R_N",
                 "Polarity": "Low"
             },
             "Thresholds": [
