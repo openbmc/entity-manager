@@ -881,12 +881,34 @@ bool writeFRU(uint8_t bus, uint8_t address, const std::vector<uint8_t>& fru)
     if (hasEepromFile(bus, address))
     {
         auto path = getEepromPath(bus, address);
+        off_t offset;
+
         int eeprom = open(path.c_str(), O_RDWR | O_CLOEXEC);
         if (eeprom < 0)
         {
             std::cerr << "unable to open i2c device " << path << "\n";
             throw DBusInternalError();
             return false;
+        }
+
+        std::array<uint8_t, I2C_SMBUS_BLOCK_MAX> blockData{};
+        std::string errorMessage = "eeprom at " + std::to_string(bus) +
+                                " address " + std::to_string(address);
+        auto readFunc = [eeprom](off_t offset, size_t length, uint8_t* outbuf) {
+            return readFromEeprom(eeprom, offset, length, outbuf);
+        };
+        FRUReader reader(std::move(readFunc));
+
+        if (!findFRUHeader(reader, errorMessage, blockData, offset))
+        {
+            offset = 0;
+        }
+
+        if (lseek(eeprom, offset, SEEK_SET) < 0)
+        {
+            std::cerr << "Unable to seek to offset " << offset << " in device: " << path << "\n";
+            close(eeprom);
+            throw DBusInternalError();
         }
 
         ssize_t writtenBytes = write(eeprom, fru.data(), fru.size());
