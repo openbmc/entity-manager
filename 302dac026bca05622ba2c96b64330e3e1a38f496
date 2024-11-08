@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "4bef4511_61d4e67d",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 31
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1002173
+      },
+      "writtenOn": "2024-11-08T11:12:48Z",
+      "side": 1,
+      "message": "Hi, thanks for the comments. I have updated the code and would like to confirm if this inventory layout meets your expectations. Below is the modified portion for your reference:\n\nroot@bmc:~# busctl introspect xyz.openbmc_project.EntityManager /xyz/openbmc_project/inventory/system/chassis/Yosemite_4_Chassis\n.\n(omitted)\n.\nxyz.openbmc_project.Inventory.Item.Chassis    interface -   -                                        \n.ChassisType                                  property  s   \"RackMount\"                              \n.Name                                         property  s   \"Yosemite 4 Chassis\"                     \n.Probe                                        property  s   \"xyz.openbmc_project… \n.Type                                         property  s   \"Chassis\"",
+      "revId": "302dac026bca05622ba2c96b64330e3e1a38f496",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    }
+  ]
+}
