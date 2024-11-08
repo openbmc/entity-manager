@@ -35,6 +35,9 @@
                     "$ref": "virtual_sensor.json#/$defs/VirtualSensor"
                 },
                 {
+                    "$ref": "leak_detector.json#/$defs/GpioLiquidLeakDetector"
+                },
+                {
                     "description": "Ensure the parent anyOf schema does not validate when an element does not define a type property.",
                     "not": {
                         "required": ["Type"]
