@@ -1,0 +1,55 @@
+{
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "$defs": {
+        "GpioLiquidLeakDetector": {
+            "description": "Configuration for GPIO based Leak Detector.",
+            "type": "object",
+            "properties": {
+                "Name": {
+                    "description": "The name of the leak detector.",
+                    "type": "string"
+                },
+                "Type": {
+                    "description": "The type of configuration object",
+                    "type": "string"
+                },
+                "SubType": {
+                    "description": "The type of leak detector from https://redfish.dmtf.org/schemas/v1/LeakDetector.v1_2_0.json.",
+                    "enum": [
+                        "LeakSensingCable",
+                        "FloatSwitch",
+                        "MoistureSensor"
+                    ]
+                },
+                "PinName": {
+                    "description": "The GPIO pin name for the leak detector.",
+                    "type": "string"
+                },
+                "Polarity": {
+                    "description": "The GPIO polarity depicting its active status.",
+                    "enum": ["ActiveLow", "ActiveHigh"]
+                },
+                "Group": {
+                    "description": "The leak detector group to which the leak detector may belong.",
+                    "type": "string"
+                },
+                "Level": {
+                    "description": "",
+                    "enum": ["Critical", "Warning"]
+                },
+                "DefaultAction": {
+                    "description": "The action to take if the leak detector becomes enabled.",
+                    "enum": ["RackPowerOff", "ChassisPowerOff"]
+                }
+            },
+            "required": [
+                "Name",
+                "Type",
+                "SubType",
+                "PinName",
+                "Polarity",
+                "Level"
+            ]
+        }
+    }
+}
