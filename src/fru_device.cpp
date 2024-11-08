@@ -889,6 +889,33 @@ bool writeFRU(uint8_t bus, uint8_t address, const std::vector<uint8_t>& fru)
             return false;
         }
 
+        const std::vector<uint8_t> tyanHeader = {'$', 'T', 'Y', 'A', 'N', '$'};
+        std::vector<uint8_t> headerBuffer(tyanHeader.size());
+        if (read(eeprom, headerBuffer.data(), tyanHeader.size()) <
+            static_cast<ssize_t>(tyanHeader.size()))
+        {
+            std::cerr << "Unable to read TYAN header from device " << path
+                      << "\n";
+            close(eeprom);
+            throw DBusInternalError();
+            return false;
+        }
+
+        // Compare the read header with the expected TYAN header
+        if (std::equal(tyanHeader.begin(), tyanHeader.end(),
+                       headerBuffer.begin()))
+        {
+            // Set the offset
+            if (lseek(eeprom, 0x6000, SEEK_SET) < 0)
+            {
+                std::cerr << "Unable to seek to offset " << 0x6000
+                          << " in device " << path << "\n";
+                close(eeprom);
+                throw DBusInternalError();
+                return false;
+            }
+        }
+
         ssize_t writtenBytes = write(eeprom, fru.data(), fru.size());
         if (writtenBytes < 0)
         {
