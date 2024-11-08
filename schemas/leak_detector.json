@@ -1,0 +1,48 @@
+{
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "$defs": {
+        "GPIOLeakDetector": {
+            "description": "Configuration for GPIO based Leak Detector.",
+            "type": "object",
+            "properties": {
+                "Name": {
+                    "description": "The name of the leak detector.",
+                    "type": "string"
+                },
+                "Type": {
+                    "description": "The type of configuration object",
+                    "type": "string"
+                },
+                "SubType": {
+                    "description": "The type of leak detector.",
+                    "enum": ["Moisture", "LeakSensingCable", "Unknown"]
+                },
+                "PinName": {
+                    "description": "The GPIO pin name for the leak detector.",
+                    "type": "string"
+                },
+                "Polarity": {
+                    "description": "The GPIO polarity depicting its active status.",
+                    "enum": ["ActiveLow", "ActiveHigh"]
+                },
+                "Level": {
+                    "description": "The severity level of the leak detector.",
+                    "enum": ["Critical", "Warning"]
+                },
+                "RunTarget": {
+                    "description": "The flag to indicate if the leak target action should be run or not.",
+                    "type": "boolean"
+                }
+            },
+            "required": [
+                "Name",
+                "Type",
+                "SubType",
+                "PinName",
+                "Polarity",
+                "Level",
+                "RunTarget"
+            ]
+        }
+    }
+}
