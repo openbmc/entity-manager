@@ -1,0 +1,59 @@
+{
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "$defs": {
+        "GpioLeakDetector": {
+            "description": "Configuration for GPIO based Leak Detector.",
+            "type": "object",
+            "properties": {
+                "Name": {
+                    "description": "The name of the leak detector.",
+                    "type": "string"
+                },
+                "Type": {
+                    "description": "The type of configuration object",
+                    "type": "string"
+                },
+                "SubType": {
+                    "description": "The type of leak detector from https://redfish.dmtf.org/schemas/v1/LeakDetector.v1_2_0.json.",
+                    "enum": [
+                        "xyz.openbmc_project.State.Leak.Detector.DetectorType.LeakSensingCable",
+                        "xyz.openbmc_project.State.Leak.Detector.DetectorType.Unknown"
+                    ]
+                },
+                "PinName": {
+                    "description": "The GPIO pin name for the leak detector.",
+                    "type": "string"
+                },
+                "Polarity": {
+                    "description": "The GPIO polarity depicting its active status.",
+                    "enum": [
+                        "xyz.openbmc_project.Configuration.GpioLeakDetector.PinPolarity.ActiveLow",
+                        "xyz.openbmc_project.Configuration.GpioLeakDetector.PinPolarity.ActiveHigh"
+                    ]
+                },
+                "Level": {
+                    "description": "The severity level of the leak detector.",
+                    "enum": [
+                        "xyz.openbmc_project.Configuration.GpioLeakDetector.DetectorLevel.Critical",
+                        "xyz.openbmc_project.Configuration.GpioLeakDetector.DetectorLevel.Warning"
+                    ]
+                },
+                "DefaultAction": {
+                    "description": "The action to take if the leak detector becomes enabled.",
+                    "enum": [
+                        "xyz.openbmc_project.Configuration.GpioLeakDetector.DetectorDefaultAction.RackPowerOff",
+                        "xyz.openbmc_project.Configuration.GpioLeakDetector.DetectorDefaultAction.ChassisPowerOff"
+                    ]
+                }
+            },
+            "required": [
+                "Name",
+                "Type",
+                "SubType",
+                "PinName",
+                "Polarity",
+                "Level"
+            ]
+        }
+    }
+}
