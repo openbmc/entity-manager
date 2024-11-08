@@ -16,6 +16,103 @@
       "message": "Hi, thanks for the comments. I have updated the code and would like to confirm if this inventory layout meets your expectations. Below is the modified portion for your reference:\n\nroot@bmc:~# busctl introspect xyz.openbmc_project.EntityManager /xyz/openbmc_project/inventory/system/chassis/Yosemite_4_Chassis\n.\n(omitted)\n.\nxyz.openbmc_project.Inventory.Item.Chassis    interface -   -                                        \n.ChassisType                                  property  s   \"RackMount\"                              \n.Name                                         property  s   \"Yosemite 4 Chassis\"                     \n.Probe                                        property  s   \"xyz.openbmc_project… \n.Type                                         property  s   \"Chassis\"",
       "revId": "302dac026bca05622ba2c96b64330e3e1a38f496",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d5abe230_bcad5d48",
+        "filename": "configurations/yosemite4_sentineldome_chassis.json",
+        "patchSetId": 31
+      },
+      "lineNbr": 20,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2024-11-08T17:25:37Z",
+      "side": 1,
+      "message": "Blade",
+      "range": {
+        "startLine": 20,
+        "startChar": 24,
+        "endLine": 20,
+        "endChar": 33
+      },
+      "revId": "302dac026bca05622ba2c96b64330e3e1a38f496",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e1da3872_cb75a5b9",
+        "filename": "configurations/yosemite4_sentineldome_t1.json",
+        "patchSetId": 31
+      },
+      "lineNbr": 371,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2024-11-08T17:25:37Z",
+      "side": 1,
+      "message": "This is not a chassis or a blade, is it?  It is a Motherboard already.",
+      "range": {
+        "startLine": 369,
+        "startChar": 0,
+        "endLine": 371,
+        "endChar": 5
+      },
+      "revId": "302dac026bca05622ba2c96b64330e3e1a38f496",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b5009f79_20f4ac93",
+        "filename": "configurations/yosemite4_sentineldome_t1_retimer.json",
+        "patchSetId": 31
+      },
+      "lineNbr": 429,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2024-11-08T17:25:37Z",
+      "side": 1,
+      "message": "This is not a chassis or a blade, is it? It is a Motherboard already.",
+      "revId": "302dac026bca05622ba2c96b64330e3e1a38f496",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c63acb94_16d17994",
+        "filename": "configurations/yosemite4_sentineldome_t2.json",
+        "patchSetId": 31
+      },
+      "lineNbr": 431,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2024-11-08T17:25:37Z",
+      "side": 1,
+      "message": "This is not a chassis or a blade, is it? It is a Motherboard already.",
+      "revId": "302dac026bca05622ba2c96b64330e3e1a38f496",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2f62e9f7_3b0bff2f",
+        "filename": "configurations/yosemite4_sentineldome_t2_retimer.json",
+        "patchSetId": 31
+      },
+      "lineNbr": 491,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2024-11-08T17:25:37Z",
+      "side": 1,
+      "message": "This is not a chassis or a blade, is it? It is a Motherboard already.",
+      "revId": "302dac026bca05622ba2c96b64330e3e1a38f496",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }
