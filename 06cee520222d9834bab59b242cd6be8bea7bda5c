@@ -214,6 +214,30 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "534070ee_802e1028",
+        "filename": "configurations/VENDORS.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 24,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2024-11-09T11:38:36Z",
+      "side": 1,
+      "message": "I made a tweak to the words.  I\u0027m not sure if that is sufficient.\n\nI suspect this may be a difference of \"how does EM work from a software design standpoint\" and \"how do people think about systems (and the configs they\u0027re writing for them)\".",
+      "parentUuid": "cecf2df6_f0e5454e",
+      "range": {
+        "startLine": 23,
+        "startChar": 20,
+        "endLine": 24,
+        "endChar": 47
+      },
+      "revId": "06cee520222d9834bab59b242cd6be8bea7bda5c",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "4b805d1a_a0743a56",
@@ -275,6 +299,30 @@
       "side": 1,
       "message": "\u003e \u003e Second clause covers things like OCP NICs, which get reused a lot and we\u0027d like to not duplicate config files between two different companies.\n\u003e \n\u003e I was not expecting this to cover OCP NICs (I think those should be under 1).  Most of those are made by some vendor (ex. Broadcom, NVidia).\n\nHuh, I guess they are all branded by a vendor.  I had that wrong.  Fine as is.\n\n\u003e \n\u003e \u003e BMC implementations \n\u003e \n\u003e What do you mean by \"BMC implementations\" here?  Is Mt Olympus and Yosemite4 two different \"BMC implementations\" or do you mean OpenBMC vs AMI?\n\nThe former is what I intended.  Basically I was trying to get at the fact that just because a server installs a component, and the server manufacturer uses that component in their designs, doesn\u0027t mean that manufacturer is the folder in which it goes.  My primary example of this was NICs, which is shot to hell, so I\u0027ll defer.\n\n\u003e \n\u003e \u003e #3 reads in a pretty complicated way and I\u0027d have trouble enforcing it.\n\u003e \n\u003e That\u0027s fair.  I was trying to get this to cover Meta\u0027s systems because we really aren\u0027t #2 or #1.\n\u003e \n\u003e Meta commissions the design of a system and works closely with one or more system manufactures on the design and implementation.  Those system manufactures end up manufacturing the system themselves and sometimes selling them under their own labels.  Additionally, once the design goes to OCP, *other* system manufacturers end up making copies/variants of the system that they further sell.  [As an example I\u0027ve seen more companies selling \"Tiogapass\" than just our ODMs.]\n\nYeah, functionally I have no problem with Meta owning the standard components of their designed systems, I just had trouble reading this.\n\n\u003e \n\u003e I was trying to make it clear that these are \"Meta systems\" first and foremost (and not Wiwynn/Quanta or \"OCP\" systems).\n\nI suspect this is something that will need to be iterated on over who \"Owns\" a system that is donated to an organization and manufactured by multiple ODMs.  I\u0027m ok with this as it stands for the moment, but I suspect we\u0027ll need to come up with a better distinction in the future as more folks start using meta systems outside of meta.",
       "parentUuid": "3542fa71_11594595",
+      "range": {
+        "startLine": 29,
+        "startChar": 50,
+        "endLine": 30,
+        "endChar": 57
+      },
+      "revId": "06cee520222d9834bab59b242cd6be8bea7bda5c",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "a77aa7a7_19b0c726",
+        "filename": "configurations/VENDORS.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 30,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2024-11-09T11:38:36Z",
+      "side": 1,
+      "message": "I\u0027ve reworded this section to hopefully make it simpler.\n\n\u003e I suspect we\u0027ll need to come up with a better distinction in the future as more folks start using meta systems outside of meta.\n\nI think this is somewhat separate, but, one gap I see in EM right now is that if two machines use the same device (such as an OCP NIC) but want to set different sensor thresholds there is no way to accomplish this.  Sometime next year, I foresee our team doing a design and implementation for some kind of \"mixins\" that would allow some platform-level customization of common parts.  I hope that this can cover \"someone used a Meta system design but wanted to customize aspects of it\".",
+      "parentUuid": "a8210421_b3569493",
       "range": {
         "startLine": 29,
         "startChar": 50,
