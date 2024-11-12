@@ -140,6 +140,12 @@
                 },
                 "xyz.openbmc_project.Inventory.Item.Storage": {
                     "$ref": "openbmc-dbus.json#/$defs/xyz/openbmc_project/Inventory/Item/Storage"
+                },
+                "xyz.openbmc_project.Inventory.Item.Accelerator": {
+                    "$ref": "openbmc-dbus.json#/$defs/xyz/openbmc_project/Inventory/Item/Accelerator"
+                },
+                "xyz.openbmc_project.Inventory.Item.Dimm": {
+                    "$ref": "openbmc-dbus.json#/$defs/xyz/openbmc_project/Inventory/Item/Dimm"
                 }
             },
             "required": ["Exposes", "Name", "Probe", "Type"]
