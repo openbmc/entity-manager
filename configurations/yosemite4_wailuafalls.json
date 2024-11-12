@@ -278,5 +278,9 @@
     },
     "xyz.openbmc_project.Inventory.Decorator.Slot": {
         "SlotNumber": "$bus % 15"
-    }
+    },
+    "xyz.openbmc_project.Inventory.Item.Accelerator": {
+        "AcceleratorType": "ASIC"
+    },
+    "xyz.openbmc_project.Inventory.Item.Dimm": {}
 }
