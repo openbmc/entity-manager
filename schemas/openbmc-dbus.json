@@ -150,6 +150,20 @@
                         "Storage": {
                             "additionalProperties": false,
                             "type": "object"
+                        },
+                        "Accelerator": {
+                            "additionalProperties": false,
+                            "properties": {
+                                "Type": {
+                                    "type": "string"
+                                }
+                            },
+                            "required": ["Type"],
+                            "type": "object"
+                        },
+                        "Dimm": {
+                            "additionalProperties": false,
+                            "type": "object"
                         }
                     }
                 },
