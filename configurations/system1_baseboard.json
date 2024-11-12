@@ -474,6 +474,20 @@
             "Name": "PCIE_SWITCH2_TEMP",
             "Name1": "PCIE_SWITCH6_TEMP",
             "Type": "TMP432"
+        },
+        {
+            "Address": "0x30",
+            "Bus": 0,
+            "CpuID": 0,
+            "Name": "CPU 0",
+            "Type": "XeonCPU"
+        },
+        {
+            "Address": "0x31",
+            "Bus": 0,
+            "CpuID": 1,
+            "Name": "CPU 1",
+            "Type": "XeonCPU"
         }
     ],
     "Name": "IBM System1 Baseboard",
