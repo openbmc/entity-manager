@@ -39,6 +39,30 @@
       },
       "revId": "19cb904938560c2c0e56b3e114d80798a97b8b0e",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2adf5ce6_025b2374",
+        "filename": "src/overlay.cpp",
+        "patchSetId": 9
+      },
+      "lineNbr": 396,
+      "author": {
+        "id": 1000559
+      },
+      "writtenOn": "2024-11-12T21:54:43Z",
+      "side": 1,
+      "message": "re-read the commit message a bit - looks like this is meant to retry after MUX is loaded and logic bus is available. I think we want make that more clear in the code either with some comments and/or function and variable names. \nAlso i would expect this to be an iterative process as we can have mux behind a mux.",
+      "parentUuid": "e78861dd_32d7baeb",
+      "range": {
+        "startLine": 378,
+        "startChar": 1,
+        "endLine": 396,
+        "endChar": 5
+      },
+      "revId": "19cb904938560c2c0e56b3e114d80798a97b8b0e",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }
