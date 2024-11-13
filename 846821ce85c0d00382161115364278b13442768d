@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "f7854c99_e0a03366",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2024-11-13T10:19:35Z",
+      "side": 1,
+      "message": "Having a unit test for this would be nice 👍",
+      "revId": "846821ce85c0d00382161115364278b13442768d",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3670b30c_a9d21ca7",
+        "filename": "src/fru_device.cpp",
+        "patchSetId": 4
+      },
+      "lineNbr": 905,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2024-11-13T10:19:35Z",
+      "side": 1,
+      "message": "Why do we compare the entire header there, if the header was already detected when reading?\n\nCan we store that information about the offset somewhere and then retrieve it here?",
+      "revId": "846821ce85c0d00382161115364278b13442768d",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    }
+  ]
+}
