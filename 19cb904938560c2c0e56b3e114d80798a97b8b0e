@@ -20,6 +20,23 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "3fedeafd_93018e9e",
+        "filename": "src/overlay.cpp",
+        "patchSetId": 9
+      },
+      "lineNbr": 145,
+      "author": {
+        "id": 1000021
+      },
+      "writtenOn": "2024-11-15T08:29:29Z",
+      "side": 1,
+      "message": "where\u0027s the code removing stale symlinks?\n\n\nwhere\u0027s the check that the mux names and channel names are unique?\n\n\ndevice and bus numbers not in the device tree can be reused after a parent unbind and the order is not preserved.\n\nI did find code in FRU device with an inotify watch but it\u0027s not creating files or links so there\u0027s nothing to clean up.  that\u0027s the only other reference to \"/dev\" I found in a GitHub search of this repository (search pattern was `/dev[^i]/` ignoring a few false positives).\n\n\n`libudev` can at least report when devices are removed.  it supports filters on the monitor for example the subsystem (i2c).\nWe still need to remember what was created to remove them, or rebuild or validate the directory on reload.  \n\nudev would manage such symlinks if we told it what to create. libudev however it\u0027s purely reporting what\u0027s been decided by the udev rules from the kernel reporting netlink.\n\ninstead we\u0027d need entries in udev rules (which this project is mostly trying to avoid from my observations) but we might be able to create a program involved by a rule that replies with the desired symlink creation.   I don\u0027t know what it\u0027d take to have udev reprocess a device after it was matched to our inventory tree.   It can probably triggered with udevadm coldplug support.\nwhile it\u0027s possible probably complex.\n\nI\u0027d be ok with something that looked for the target removal and unlink the symlink and directory created and some uniquenes checking.   (is the name supposed to include something from the instance like plug location?)",
+      "revId": "19cb904938560c2c0e56b3e114d80798a97b8b0e",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "e78861dd_32d7baeb",
         "filename": "src/overlay.cpp",
         "patchSetId": 9
