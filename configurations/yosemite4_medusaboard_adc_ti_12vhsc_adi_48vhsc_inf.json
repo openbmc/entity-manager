@@ -1148,6 +1148,7 @@
         {
             "Class": "temp",
             "Inputs": [
+                "MEDUSA_EFFUSE_12V_TEMP_C",
                 "MEDUSA_HSC0_48V_TEMP_C",
                 "MEDUSA_HSC1_48V_TEMP_C",
                 "MEDUSA0_TEMP_C",
@@ -1156,7 +1157,7 @@
             "Name": "Stepwise_MEDUSA_Non_Critical_Sensors",
             "NegativeHysteresis": 0,
             "Output": [
-                20.0
+                10.0
             ],
             "PositiveHysteresis": 0,
             "Reading": [
@@ -1183,7 +1184,7 @@
             "Name": "Stepwise_MEDUSA_MB_12VHSC",
             "NegativeHysteresis": 0,
             "Output": [
-                20.0
+                10.0
             ],
             "PositiveHysteresis": 0,
             "Reading": [
