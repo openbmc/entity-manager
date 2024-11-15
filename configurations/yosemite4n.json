@@ -550,6 +550,25 @@
             ]
         },
         {
+            "Class": "temp",
+            "Inputs": [
+                "MGNT_TEMP_C"
+            ],
+            "Name": "Stepwise_MGNT_TEMP",
+            "NegativeHysteresis": 0,
+            "Output": [
+                10.0
+            ],
+            "PositiveHysteresis": 0,
+            "Reading": [
+                10.0
+            ],
+            "Type": "Stepwise",
+            "Zones": [
+                "Zone 1"
+            ]
+        },
+        {
             "Address": "0x1f",
             "Bus": 24,
             "Name": "NIC0_REMOTE_TEMP_C",

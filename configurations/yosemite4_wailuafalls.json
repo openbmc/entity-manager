@@ -257,6 +257,26 @@
             "Zones": [
                 "Zone 1"
             ]
+        },
+        {
+            "Class": "temp",
+            "InputUnavailableAsFailed": false,
+            "Inputs": [
+                "WAILUA_FALLS_SLOT $bus % 15 WF_INLET_TEMP_C"
+            ],
+            "Name": "Stepwise_WF_INLET_Slot $bus % 15",
+            "NegativeHysteresis": 0,
+            "Output": [
+                10.0
+            ],
+            "PositiveHysteresis": 0,
+            "Reading": [
+                10.0
+            ],
+            "Type": "Stepwise",
+            "Zones": [
+                "Zone 1"
+            ]
         }
     ],
     "Name": "Yosemite 4 Wailua Falls Slot $bus % 15",
