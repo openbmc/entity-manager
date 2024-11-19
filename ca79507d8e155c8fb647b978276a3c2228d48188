@@ -55,6 +55,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "907c1b9f_6ea07f52",
+        "filename": "configurations/harma_mb.json",
+        "patchSetId": 5
+      },
+      "lineNbr": 1125,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2024-11-19T12:05:29Z",
+      "side": 1,
+      "message": "Yes, \"Harma Chassis\".",
+      "parentUuid": "5cae5d37_74dd37c0",
+      "revId": "ca79507d8e155c8fb647b978276a3c2228d48188",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "4ae9a9bf_393ead8a",
         "filename": "configurations/harma_mb.json",
         "patchSetId": 5
@@ -84,6 +102,24 @@
       "side": 1,
       "message": "The dbus tree look like as follow,\n\nroot@bmc:~# busctl tree xyz.openbmc_project.EntityManager |grep chassis\n        └─ /xyz/openbmc_project/inventory/system/chassis\n          └─ /xyz/openbmc_project/inventory/system/chassis/Harma_MB_Chassis\nroot@bmc:~# \nroot@bmc:~# \nroot@bmc:~# busctl introspect xyz.openbmc_project.EntityManager /xyz/openbmc_project/inventory/system/chassis/Harma_MB_Chassis\nNAME                                             TYPE      SIGNATURE RESULT/VALUE                             FLAGS\norg.freedesktop.DBus.Introspectable              interface -         -                                        -\n.Introspect                                      method    -         s                                        -\norg.freedesktop.DBus.Peer                        interface -         -                                        -\n.GetMachineId                                    method    -         s                                        -\n.Ping                                            method    -         -                                        -\norg.freedesktop.DBus.Properties                  interface -         -                                        -\n.Get                                             method    ss        v                                        -\n.GetAll                                          method    s         a{sv}                                    -\n.Set                                             method    ssv       -                                        -\n.PropertiesChanged                               signal    sa{sv}as  -                                        -\nxyz.openbmc_project.AddObject                    interface -         -                                        -\n.AddObject                                       method    a{sv}     -                                        -\nxyz.openbmc_project.Inventory.Decorator.Asset    interface -         -                                        -\n.Manufacturer                                    property  s         \"Quanta\"                                 emits-change\n.Model                                           property  s         \"T21 Minerva\"                            emits-change\n.PartNumber                                      property  s         \"$PRODUCT_PART_NUMBER\"                   emits-change\n.SerialNumber                                    property  s         \"$PRODUCT_INFO_AM2\"                      emits-change\n.SparePartNumber                                 property  s         \"$PRODUCT_FRU_VERSION_ID\"                emits-change\nxyz.openbmc_project.Inventory.Decorator.AssetTag interface -         -                                        -\n.AssetTag                                        property  s         \"$PRODUCT_INFO_AM3\"                      emits-change\nxyz.openbmc_project.Inventory.Item.Chassis       interface -         -                                        -\n.Name                                            property  s         \"Harma MB Chassis\"                       emits-change\n.Probe                                           property  as        5 \"xyz.openbmc_project.FruDevice({\\\u0027BOA… emits-change\n.Type                                            property  s         \"Chassis\"                                emits-change\nroot@bmc:~#",
       "parentUuid": "4ae9a9bf_393ead8a",
+      "revId": "ca79507d8e155c8fb647b978276a3c2228d48188",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2bf359f9_1e1f4820",
+        "filename": "configurations/harma_mb.json",
+        "patchSetId": 5
+      },
+      "lineNbr": 1133,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2024-11-19T12:05:29Z",
+      "side": 1,
+      "message": "And we still have a separate \"Harma_MB\" object, right?",
+      "parentUuid": "ec2a4d8c_f67fb9b2",
       "revId": "ca79507d8e155c8fb647b978276a3c2228d48188",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
