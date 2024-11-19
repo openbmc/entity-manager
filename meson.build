@@ -199,6 +199,7 @@ configs = [
     'supermicro-pws-920p-sq_psu.json',
     'system1_baseboard.json',
     'system1_chassis.json',
+    'system1_psu.json',
     'terminus_2x100g_nic_tsff.json',
     'tola.json',
     'twinlake.json',
