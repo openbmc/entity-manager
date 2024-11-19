@@ -237,6 +237,7 @@ configs = [
     'supermicro-pws-920p-sq_psu.json',
     'system1_baseboard.json',
     'system1_chassis.json',
+    'system1_psu.json',
     'tola.json',
     'tyan_s7106_baseboard.json',
     'tyan_s8036_baseboard.json',
