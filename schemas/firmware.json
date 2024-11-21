@@ -19,9 +19,22 @@
                 },
                 "FirmwareInfo": {
                     "$ref": "#/$defs/FirmwareInfoDef"
+                },
+                "UpdateInfo": {
+                    "anyOf": [
+                        {
+                            "$ref": "#/$defs/BIOS"
+                        }
+                    ]
                 }
             },
-            "required": ["Name", "Type", "SubType", "FirmwareInfo"]
+            "required": [
+                "Name",
+                "Type",
+                "SubType",
+                "FirmwareInfo",
+                "UpdateInfo"
+            ]
         },
         "FirmwareInfoDef": {
             "description": "This indicates the properties which apply to all firmwares",
@@ -37,6 +50,38 @@
                 }
             },
             "required": ["VendorIANA", "CompatibleName"]
+        },
+        "BIOS": {
+            "description": "The update info related to BIOS",
+            "type": "object",
+            "properties": {
+                "SPIDevicePath": {
+                    "description": "The path to the SPI flash device",
+                    "type": "string"
+                },
+                "MuxGPIO": {
+                    "description": "The Pin name for the mux which toggles the flash to BMC",
+                    "type": "object",
+                    "properties": {
+                        "PinName": {
+                            "type": "string"
+                        },
+                        "Polarity": {
+                            "description": "The GPIO polarity depicting its active status.",
+                            "enum": ["ActiveLow", "ActiveHigh"]
+                        }
+                    }
+                },
+                "HasME": {
+                    "description": "This indicates if the CPU has a Management Engine",
+                    "type": "boolean"
+                },
+                "Layout": {
+                    "description": "The layout of the BIOS flash",
+                    "enum": ["IFD", "Flat"]
+                }
+            },
+            "required": ["SPIDevicePath", "MuxGPIO", "HasME", "Layout"]
         }
     }
 }
