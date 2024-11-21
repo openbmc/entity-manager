@@ -1,0 +1,42 @@
+{
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "$defs": {
+        "Firmware": {
+            "description": "The firmware details.",
+            "type": "object",
+            "properties": {
+                "Type": {
+                    "description": "The type of configuration object",
+                    "type": "string"
+                },
+                "SubType": {
+                    "description": "The type of firmware",
+                    "enum": ["BIOS"]
+                },
+                "Name": {
+                    "description": "The name of the firmware.",
+                    "type": "string"
+                },
+                "FirmwareInfo": {
+                    "$ref": "#/$defs/FirmwareInfoDef"
+                }
+            },
+            "required": ["Name", "Type", "SubType", "FirmwareInfo"]
+        },
+        "FirmwareInfoDef": {
+            "description": "This indicates the properties which apply to all firmwares",
+            "type": "object",
+            "properties": {
+                "VendorIANA": {
+                    "description": "The IANA Enterprise Id of the hardware vendor",
+                    "type": "number"
+                },
+                "CompatibleName": {
+                    "description": "The compatible name of format com.<vendor>.Hardware.<XXX> specified by vendor in phosphor-dbus-interfaces",
+                    "type": "string"
+                }
+            },
+            "required": ["VendorIANA", "CompatibleName"]
+        }
+    }
+}
