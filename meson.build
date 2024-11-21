@@ -281,6 +281,7 @@ schemas = [
     'virtual_sensor.json',
     'satellite_controller.json',
     'leak_detector.json',
+    'firmware.json',
 ]
 
 foreach s : schemas
