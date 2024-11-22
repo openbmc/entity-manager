@@ -18,6 +18,24 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "0d05aaa5_fbd8d80f",
+        "filename": "schemas/firmware.json",
+        "patchSetId": 1
+      },
+      "lineNbr": 12,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2024-11-22T08:13:13Z",
+      "side": 1,
+      "message": "No, the Type property has value of \"Firmware\", which includes common section \"FirmwareInfo\" and device/hardware section \"UpdateInfo\" and type of UpdateInfo is depicted by SubType.\n\nAlso, Type and Name are two must properties for elements in expose section https://grok.openbmc.org/xref/openbmc/entity-manager/schemas/README.md?r\u003dec1137d5#63.",
+      "parentUuid": "95606647_291e36d7",
+      "revId": "7fce1d71dc4bd6016f178eb20fd26630b8578a58",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "2f1b0be8_3865c08e",
@@ -31,6 +49,24 @@
       "writtenOn": "2024-11-21T11:30:49Z",
       "side": 1,
       "message": "You are using \u0027CompatibleName\u0027 here but the other patch\nhttps://gerrit.openbmc.org/c/openbmc/docs/+/74653 (patchset 7)\n\nis using \u0027Compatible\u0027. Is it intended or a typo.",
+      "revId": "7fce1d71dc4bd6016f178eb20fd26630b8578a58",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "1547db1e_21de7c95",
+        "filename": "schemas/firmware.json",
+        "patchSetId": 1
+      },
+      "lineNbr": 34,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2024-11-22T08:13:13Z",
+      "side": 1,
+      "message": "Yes, this is intended. I would be updating https://gerrit.openbmc.org/c/openbmc/docs/+/74653 to refer to this patch directly.",
+      "parentUuid": "2f1b0be8_3865c08e",
       "revId": "7fce1d71dc4bd6016f178eb20fd26630b8578a58",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
