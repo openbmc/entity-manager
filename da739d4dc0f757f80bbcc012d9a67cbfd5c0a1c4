@@ -18,6 +18,24 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "b1a2d39d_f33025e4",
+        "filename": "schemas/leak_detector.json",
+        "patchSetId": 10
+      },
+      "lineNbr": 32,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2024-11-25T18:54:30Z",
+      "side": 1,
+      "message": "On entity-manager schema side it doesn\u0027t make much sense, so i am fine to drop it from this schema enum. But on client side i would need this to initialize the vars to defaults, so it makes sense to keep them in configuration PDI.",
+      "parentUuid": "c9adf510_a42f429b",
+      "revId": "da739d4dc0f757f80bbcc012d9a67cbfd5c0a1c4",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "8404daf7_e9f64c68",
@@ -31,6 +49,24 @@
       "writtenOn": "2024-11-25T15:50:36Z",
       "side": 1,
       "message": "if \u0027DefaultAction\u0027 is not a required property, why is there an option to define it as unknown?",
+      "revId": "da739d4dc0f757f80bbcc012d9a67cbfd5c0a1c4",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "42bcccd4_974553e7",
+        "filename": "schemas/leak_detector.json",
+        "patchSetId": 10
+      },
+      "lineNbr": 48,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2024-11-25T18:54:30Z",
+      "side": 1,
+      "message": "In schema, yes, its not a required property so i am fine to drop it.",
+      "parentUuid": "8404daf7_e9f64c68",
       "revId": "da739d4dc0f757f80bbcc012d9a67cbfd5c0a1c4",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
