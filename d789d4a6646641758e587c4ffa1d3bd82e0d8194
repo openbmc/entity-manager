@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4e62da1b_b8a718aa",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 8
+      },
+      "lineNbr": 40,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2024-11-25T15:45:02Z",
+      "side": 1,
+      "message": "```xyz.openbmc_project.Configuration.BIOS.MuxGPIO1     interface -        ```\n\nThis will not work with the PDI generated bindings, right?\nBecause we cannot generate bindings for **n** different dbus interfaces.\n\nIt has to be a single dbus interface.",
+      "revId": "d789d4a6646641758e587c4ffa1d3bd82e0d8194",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    }
+  ]
+}
