@@ -54,6 +54,24 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "da1f14f1_c0e2bdfe",
+        "filename": "schemas/firmware.json",
+        "patchSetId": 1
+      },
+      "lineNbr": 12,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2024-11-25T00:50:28Z",
+      "side": 1,
+      "message": "\u003e If the \u0027Type\u0027 is \u0027Firmware\u0027, then it\u0027s a separate exposes record?\n\nI have updated the diff and defined generic FirmwareInfo which can be used in device/firmware specific blocks.\n\n\u003e \n\u003e So the firmware specific properties will be stored in a separate record from the description of the actual device?\n\u003e \n\u003e For example, when configuring a voltage regulator which also provides sensor readings, will 2 separate records be required?\n\u003e \n\u003e That would introduce some duplication in Bus and Address fields.\n\nThere are many existing devices that lack schema definitions, and VR is one such device. Therefore, it will be necessary to define schemas for these devices in the future, ensuring compatibility with existing users, such as dbus-sensors.",
+      "parentUuid": "b4d62dae_a4387db1",
+      "revId": "7fce1d71dc4bd6016f178eb20fd26630b8578a58",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "2f1b0be8_3865c08e",
