@@ -15,6 +15,65 @@
                 }
             },
             "required": ["VendorIANA", "CompatibleName"]
+        },
+        "BIOS": {
+            "description": "The firmware details.",
+            "type": "object",
+            "properties": {
+                "Type": {
+                    "description": "The type of configuration object",
+                    "type": "string"
+                },
+                "SubType": {
+                    "description": "The type of firmware",
+                    "enum": ["BIOS"]
+                },
+                "Name": {
+                    "description": "The name of the firmware.",
+                    "type": "string"
+                },
+                "SPIDevicePath": {
+                    "description": "The path to the SPI flash device",
+                    "type": "string"
+                },
+                "MuxGPIO": {
+                    "description": "The Pin name for the mux which toggles the flash to BMC",
+                    "type": "array",
+                    "items": {
+                        "type": "object",
+                        "properties": {
+                            "PinName": {
+                                "type": "string"
+                            },
+                            "Polarity": {
+                                "description": "The GPIO polarity depicting its active status.",
+                                "enum": ["ActiveLow", "ActiveHigh"]
+                            }
+                        },
+                        "required": ["PinName", "Polarity"]
+                    }
+                },
+                "HasME": {
+                    "description": "This indicates if the CPU has a Management Engine",
+                    "type": "boolean"
+                },
+                "Layout": {
+                    "description": "The layout of the BIOS flash",
+                    "enum": ["IFD", "Flat"]
+                },
+                "FirmwareInfo": {
+                    "$ref": "#/$defs/FirmwareInfoDef"
+                }
+            },
+            "required": [
+                "Name",
+                "Type",
+                "SPIDevicePath",
+                "MuxGPIO",
+                "HasME",
+                "Layout",
+                "FirmwareInfo"
+            ]
         }
     }
 }
