@@ -41,6 +41,55 @@
                 }
             },
             "required": ["Name", "Type", "Bus", "Address", "FirmwareInfo"]
+        },
+        "BIOS": {
+            "description": "Required information to complete the host fw update process.",
+            "type": "object",
+            "properties": {
+                "Type": {
+                    "description": "The type of configuration object. IntelSPIFlash implies Intel Flash Descriptor.",
+                    "enum": ["IntelSPIFlash", "SPIFlash"]
+                },
+                "Name": {
+                    "description": "The name of the firmware.",
+                    "type": "string"
+                },
+                "SPIControllerIndex": {
+                    "description": "The index of the SPI controller",
+                    "type": "number"
+                },
+                "SPIDeviceIndex": {
+                    "description": "The index of the SPI device connected to that controller",
+                    "type": "number"
+                },
+                "MuxOutputs": {
+                    "description": "The pin names and values for the mux which toggles the flash to BMC",
+                    "type": "array",
+                    "items": {
+                        "type": "object",
+                        "properties": {
+                            "Name": {
+                                "$ref": "legacy.json#/$defs/Types/Name"
+                            },
+                            "Polarity": {
+                                "$ref": "legacy.json#/$defs/Types/Polarity"
+                            }
+                        },
+                        "required": ["Name", "Polarity"]
+                    }
+                },
+                "FirmwareInfo": {
+                    "$ref": "#/$defs/FirmwareInfoDef"
+                }
+            },
+            "required": [
+                "Name",
+                "Type",
+                "SPIControllerIndex",
+                "SPIDeviceIndex",
+                "MuxOutputs",
+                "FirmwareInfo"
+            ]
         }
     }
 }
