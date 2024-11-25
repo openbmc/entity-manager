@@ -38,6 +38,9 @@
                     "$ref": "leak_detector.json#/$defs/GPIOLeakDetector"
                 },
                 {
+                    "$ref": "firmware.json#/$defs/BIOS"
+                },
+                {
                     "description": "Ensure the parent anyOf schema does not validate when an element does not define a type property.",
                     "not": {
                         "required": ["Type"]
