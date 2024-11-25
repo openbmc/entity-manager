@@ -16,6 +16,24 @@
       "message": "```com.\u003cvendor\u003e.Hardware.\u003cXXX\u003e```\n\nnit: Can we reword this as a regex or refer to a place where it\u0027s defined?",
       "revId": "c2d2e914b1680b03dc7d1add113f9df0665b7c90",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "9bc948e8_9f5ea579",
+        "filename": "schemas/firmware.json",
+        "patchSetId": 7
+      },
+      "lineNbr": 13,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2024-11-25T19:48:59Z",
+      "side": 1,
+      "message": "It is already mentioned that it is in the phosphor-dbus-interfaces, so I don\u0027t think we need to provide a specific link here as it is an implicitly known repository internal to OpenBMC and definitions are under yaml/com.",
+      "parentUuid": "58013d0c_c02e7307",
+      "revId": "c2d2e914b1680b03dc7d1add113f9df0665b7c90",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }
