@@ -872,6 +872,9 @@
                 "pin_Scale": {
                     "$ref": "#/$defs/Types/pin_Scale"
                 },
+                "pout1_Scale": {
+                    "$ref": "#/$defs/Types/pout1_Scale"
+                },
                 "in0_Scale": {
                     "$ref": "#/$defs/Types/in0_Scale"
                 },
@@ -1878,6 +1881,9 @@
                 "type": "number"
             },
             "pin_Scale": {
+                "type": "number"
+            },
+            "pout1_Scale": {
                 "type": "number"
             },
             "in0_Scale": {
