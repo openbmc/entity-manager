@@ -1490,7 +1490,8 @@
                 "temp1",
                 "vin",
                 "vout1",
-                "iout1"
+                "iout1",
+                "pout1"
             ],
             "Name": "MEDUSA_DELTA0_12V",
             "Thresholds": [
@@ -1605,10 +1606,33 @@
                     "Name": "upper critical",
                     "Severity": 1,
                     "Value": 100
+                },
+                {
+                    "Direction": "greater than",
+                    "Label": "pout1",
+                    "Name": "upper non recoverable",
+                    "Severity": 4,
+                    "Value": 1625
+                },
+                {
+                    "Direction": "greater than",
+                    "Label": "pout1",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 1461.4875
+                },
+                {
+                    "Direction": "greater than",
+                    "Label": "pout1",
+                    "Name": "upper non critical",
+                    "Severity": 0,
+                    "Value": 1395.05625
                 }
             ],
             "Type": "pmbus",
             "iout1_Name": "MEDUSA_DELTA0_12V_CURR_A",
+            "pout1_Name": "MEDUSA_DELTA0_12V_PWR_W",
+            "pout1_Scale": 1000000,
             "temp1_Name": "MEDUSA_DELTA0_12V_TEMP_C",
             "vin_Name": "MEDUSA_DELTA0_12V_INPUT_VOLT_V",
             "vout1_Name": "MEDUSA_DELTA0_12V_OUTPUT_VOLT_V"
@@ -1620,7 +1644,8 @@
                 "temp1",
                 "vin",
                 "vout1",
-                "iout1"
+                "iout1",
+                "pout1"
             ],
             "Name": "MEDUSA_DELTA1_12V",
             "Thresholds": [
@@ -1735,10 +1760,33 @@
                     "Name": "upper critical",
                     "Severity": 1,
                     "Value": 100
+                },
+                {
+                    "Direction": "greater than",
+                    "Label": "pout1",
+                    "Name": "upper non recoverable",
+                    "Severity": 4,
+                    "Value": 1625
+                },
+                {
+                    "Direction": "greater than",
+                    "Label": "pout1",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 1461.4875
+                },
+                {
+                    "Direction": "greater than",
+                    "Label": "pout1",
+                    "Name": "upper non critical",
+                    "Severity": 0,
+                    "Value": 1395.05625
                 }
             ],
             "Type": "pmbus",
             "iout1_Name": "MEDUSA_DELTA1_12V_CURR_A",
+            "pout1_Name": "MEDUSA_DELTA1_12V_PWR_W",
+            "pout1_Scale": 1000000,
             "temp1_Name": "MEDUSA_DELTA1_12V_TEMP_C",
             "vin_Name": "MEDUSA_DELTA1_12V_INPUT_VOLT_V",
             "vout1_Name": "MEDUSA_DELTA1_12V_OUTPUT_VOLT_V"
@@ -1750,7 +1798,8 @@
                 "temp1",
                 "vin",
                 "vout1",
-                "iout1"
+                "iout1",
+                "pout1"
             ],
             "Name": "MEDUSA_DELTA2_12V",
             "Thresholds": [
@@ -1865,10 +1914,33 @@
                     "Name": "upper critical",
                     "Severity": 1,
                     "Value": 100
+                },
+                {
+                    "Direction": "greater than",
+                    "Label": "pout1",
+                    "Name": "upper non recoverable",
+                    "Severity": 4,
+                    "Value": 1625
+                },
+                {
+                    "Direction": "greater than",
+                    "Label": "pout1",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 1461.4875
+                },
+                {
+                    "Direction": "greater than",
+                    "Label": "pout1",
+                    "Name": "upper non critical",
+                    "Severity": 0,
+                    "Value": 1395.05625
                 }
             ],
             "Type": "pmbus",
             "iout1_Name": "MEDUSA_DELTA2_12V_CURR_A",
+            "pout1_Name": "MEDUSA_DELTA2_12V_PWR_W",
+            "pout1_Scale": 1000000,
             "temp1_Name": "MEDUSA_DELTA2_12V_TEMP_C",
             "vin_Name": "MEDUSA_DELTA2_12V_INPUT_VOLT_V",
             "vout1_Name": "MEDUSA_DELTA2_12V_OUTPUT_VOLT_V"
@@ -1880,7 +1952,8 @@
                 "temp1",
                 "vin",
                 "vout1",
-                "iout1"
+                "iout1",
+                "pout1"
             ],
             "Name": "MEDUSA_DELTA3_12V",
             "Thresholds": [
@@ -1995,10 +2068,33 @@
                     "Name": "upper critical",
                     "Severity": 1,
                     "Value": 100
+                },
+                {
+                    "Direction": "greater than",
+                    "Label": "pout1",
+                    "Name": "upper non recoverable",
+                    "Severity": 4,
+                    "Value": 1625
+                },
+                {
+                    "Direction": "greater than",
+                    "Label": "pout1",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 1461.4875
+                },
+                {
+                    "Direction": "greater than",
+                    "Label": "pout1",
+                    "Name": "upper non critical",
+                    "Severity": 0,
+                    "Value": 1395.05625
                 }
             ],
             "Type": "pmbus",
             "iout1_Name": "MEDUSA_DELTA3_12V_CURR_A",
+            "pout1_Name": "MEDUSA_DELTA3_12V_PWR_W",
+            "pout1_Scale": 1000000,
             "temp1_Name": "MEDUSA_DELTA3_12V_TEMP_C",
             "vin_Name": "MEDUSA_DELTA3_12V_INPUT_VOLT_V",
             "vout1_Name": "MEDUSA_DELTA3_12V_OUTPUT_VOLT_V"
