@@ -12,6 +12,15 @@
             "Name": "HMC",
             "Port": 80,
             "Type": "SatelliteController"
+        },
+        {
+            "Address": "0x4f",
+            "Bus": "$bus",
+            "Format": "xyz.openbmc_project.Configuration.SmbusPostBox.Format.I24F8",
+            "Name": "HMC_Temperature_Sensor",
+            "Offset": 240,
+            "Type": "SmbusPostBox",
+            "Units": "DegreesC"
         }
     ],
     "Name": "NVIDIA HMC",
