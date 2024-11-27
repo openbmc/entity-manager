@@ -1,0 +1,41 @@
+{
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "$defs": {
+        "SmbusPostBox": {
+            "title": "An smbus post-box",
+            "description": "An smbus post-box",
+            "type": "object",
+            "properties": {
+                "Address": {
+                    "description": "I2C address",
+                    "type": "string"
+                },
+                "Bus": {
+                    "description": "I2C bus index",
+                    "type": "string"
+                },
+                "Format": {
+                    "description": "Post-box data format",
+                    "enum": ["xyz.openbmc_project.Configuration.SmbusPostBox.Format.I24F8"]
+                },
+                "Name": {
+                    "description": "Post-box name",
+                    "type": "string"
+                },
+                "Offset": {
+                    "description": "Offset of post-box within virtual EEPROM",
+                    "type": "number"
+                },
+                "Type": {
+                    "description": "Object type",
+                    "enum": ["SmbusPostBox"]
+                },
+                "Units": {
+                    "description": "Unit type of the sensor data",
+                    "$ref": "legacy.json#/$defs/Types/Units"
+                }
+            },
+            "required": ["Address", "Bus", "Name", "Offset", "Type", "Units"]
+        }
+    }
+}
