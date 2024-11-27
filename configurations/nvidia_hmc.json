@@ -12,6 +12,19 @@
             "Name": "HMC",
             "Port": 80,
             "Type": "SatelliteController"
+        },
+        {
+            "Name": "HMC_SMBPBI",
+            "Bus": "$bus",
+            "Address": "0x4f",
+            "PostBoxes": [
+                {
+                    "Name": "HMC_Temperature_Sensor",
+                    "Offset": 240,
+                    "Type": "FixedPointI24F8"
+                }
+            ],
+            "Type": "SmbusPostBoxInterface"
         }
     ],
     "Name": "NVIDIA HMC",

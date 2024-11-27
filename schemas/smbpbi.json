@@ -1,0 +1,56 @@
+{
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "$defs": {
+        "SmbusPostBoxInterface": {
+            "title": "Smbus Post-Box Interface (SMBPBI) configuration",
+            "description": "Describes the post-box layout of an SMBPBI device",
+            "type": "object",
+            "properties": {
+                "Name": {
+                    "description": "Name of the SMBPBI device",
+                    "type": "string"
+                },
+                "Type": {
+                    "description": "Object type",
+                    "enum": ["SmbusPostBoxInterface"]
+                },
+                "Bus": {
+                    "description": "I2C bus index",
+                    "type": "string"
+                },
+                "Address": {
+                    "description": "I2C address",
+                    "type": "string"
+                },
+                "PostBoxes": {
+                    "description": "Array of post-boxes",
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/$defs/SmbusPostBox"
+                    }
+                }
+            },
+            "required": ["Name", "Type", "Bus", "Address", "PostBoxes"]
+        },
+        "SmbusPostBox": {
+            "title": "An SMBPBI sensor post-box",
+            "description": "An SMBPBI sensor post-box",
+            "type": "object",
+            "properties": {
+                "Name": {
+                    "description": "Post-box or sensor name",
+                    "type": "string"
+                },
+                "Type": {
+                    "description": "Post-box data type",
+                    "enum": ["FixedPointI24F8"]
+                },
+                "Offset": {
+                    "description": "Offset of post-box, addressed like an EEPROM offset",
+                    "type": "number"
+                }
+            },
+            "required": ["Name", "Type", "Offset"]
+        }
+    }
+}
