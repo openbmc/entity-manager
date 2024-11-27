@@ -1,0 +1,44 @@
+{
+    "Exposes": [
+        {
+            "Address": 79,
+            "Bus": 13,
+            "MaxValue": 127,
+            "MinValue": -128,
+            "Name": "HGX_GPU_0_DRAM_0_Temp_0",
+            "OffsetValue": 25,
+            "PollRate": 1,
+            "PowerState": "On",
+            "SensorType": "Temperature",
+            "Thresholds": [
+                {
+                    "Direction": "greater than",
+                    "Name": "upper non recoverable",
+                    "Severity": 4,
+                    "Value": 110.0
+                },
+                {
+                    "Direction": "greater than",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 107.0
+                },
+                {
+                    "Direction": "greater than",
+                    "Name": "upper non critical",
+                    "Severity": 0,
+                    "Value": 105.0
+                }
+            ],
+            "Type": "SMBPBI",
+            "ValueType": "Raw"
+        }
+    ],
+    "Name": "Catalina HMC",
+    "Probe": [
+        "xyz.openbmc_project.FruDevice({'BOARD_PRODUCT_NAME': 'Catalina SCM'})",
+        "AND",
+        "xyz.openbmc_project.FruDevice({'PRODUCT_MANUFACTURER': 'NVIDIA', 'PRODUCT_PRODUCT_NAME': 'HMC'})"
+    ],
+    "Type": "Board"
+}
