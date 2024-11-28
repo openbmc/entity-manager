@@ -167,8 +167,8 @@ Linux types.
 For the card found on bus 18:
 
 ```sh
-echo "24c02 0x50 > /sys/bus/i2c/devices/i2c-18/new_device"
-echo "tmp441 0x4c > /sys/bus/i2c/devices/i2c-18/new_device"
+echo "24c02 0x50" > /sys/bus/i2c/devices/i2c-18/new_device
+echo "tmp441 0x4c" > /sys/bus/i2c/devices/i2c-18/new_device
 ```
 
 Beyond this, it also publishes to dbus a configuration:
