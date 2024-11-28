@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c125a199_2115c429",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1001289
+      },
+      "writtenOn": "2024-11-28T00:31:48Z",
+      "side": 1,
+      "message": "The CI failure is on trunk as well:\n\n```\n$ git checkout HEAD~\n$ ./scripts/validate_configs.py\n/root/openbmc/entity-manager/./scripts/validate_configs.py:142: DeprecationWarning: jsonschema.RefResolver is deprecated as of v4.18.0, in favor of the https://github.com/python-jsonschema/referencing library, which provides more compliant referencing behavior as well as more flexible APIs for customization. A future release will remove RefResolver. Please file a feature request (on referencing) if you are missing an API for the kind of customization you need.\n  resolver \u003d jsonschema.RefResolver(base_uri, schema)\n```",
+      "revId": "de36c7a53ec80300364e682b973d1189a832d931",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    }
+  ]
+}
