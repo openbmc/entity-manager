@@ -72,6 +72,9 @@ const static constexpr char* baseboardFruLocation =
 
 const static constexpr char* i2CDevLocation = "/dev";
 
+constexpr size_t MinAddress = 0x03;
+constexpr size_t MaxAddress = 0x77;
+
 // TODO Refactor these to not be globals
 // NOLINTBEGIN(cppcoreguidelines-avoid-non-const-global-variables)
 static boost::container::flat_map<size_t, std::optional<std::set<size_t>>>
@@ -609,29 +612,103 @@ void loadBlocklist(const char* path)
         {
             for (const auto& busIterator : buses)
             {
-                // If bus and addresses field are missing, that's fine.
-                if (busIterator.contains("bus") &&
-                    busIterator.contains("addresses"))
+                size_t bus = 0;
+
+                // If the entry is a number, set blocklist for the bus to
+                // std::nullopt
+                if (busIterator.is_number())
                 {
-                    auto busData = busIterator.at("bus");
-                    auto bus = busData.get<size_t>();
-
-                    auto addressData = busIterator.at("addresses");
-                    auto addresses =
-                        addressData.get<std::set<std::string_view>>();
-
-                    auto& block = busBlocklist[bus].emplace();
-                    for (const auto& address : addresses)
+                    // If only bus number is provided, set blocklist to nullopt
+                    bus = busIterator.get<size_t>();
+                    busBlocklist.emplace(bus, std::nullopt);
+                }
+                else if (busIterator.is_object())
+                {
+                    if (busIterator.contains("bus"))
                     {
-                        size_t addressInt = 0;
-                        std::from_chars(address.begin() + 2, address.end(),
-                                        addressInt, 16);
-                        block.insert(addressInt);
+                        bus = busIterator.at("bus").get<size_t>();
+                    }
+
+                    // Initialize blocklist if not present
+                    auto& block = busBlocklist[bus].emplace();
+                    size_t addressInt = 0;
+
+                    if (busIterator.contains("no_block"))
+                    {
+                        std::set<size_t> allowAddressesSet;
+                        for (const auto& address : busIterator.at("no_block"))
+                        {
+                            std::string addressData =
+                                address.get<std::string>();
+                            // Check if the address starts with "0x"
+                            if (addressData.rfind("0x", 0) == 0)
+                            {
+                                std::string_view addressStr =
+                                    std::string_view(addressData).substr(2);
+                                addressInt = 0;
+
+                                std::from_chars(
+                                    addressStr.data(),
+                                    addressStr.data() + addressStr.size(),
+                                    addressInt, 16);
+                                allowAddressesSet.insert(addressInt);
+                            }
+                            else
+                            {
+                                std::cerr << "Invalid address format: " << addressData
+                                          << "\n";
+                                continue;
+                            }
+                        }
+
+                        // Add all non-whitelisted addresses to the blocklist
+                        for (addressInt = MinAddress; addressInt <= MaxAddress;
+                             ++addressInt)
+                        {
+                            if (!allowAddressesSet.contains(addressInt))
+                            {
+                                block.insert(addressInt);
+                            }
+                        }
+                    }
+                    else if (busIterator.contains("addresses"))
+                    {
+                        for (const auto& address : busIterator.at("addresses"))
+                        {
+                            std::string addressData =
+                                address.get<std::string>();
+                            // Check if the address starts with "0x"
+                            if (addressData.rfind("0x", 0) == 0)
+                            {
+                                std::string_view addressStr =
+                                    std::string_view(addressData).substr(2);
+                                addressInt = 0;
+
+                                std::from_chars(
+                                    addressStr.data(),
+                                    addressStr.data() + addressStr.size(),
+                                    addressInt, 16);
+                                block.insert(addressInt);
+                            }
+                            else
+                            {
+                                std::cerr << "Invalid address format: " << addressData
+                                          << "\n";
+                                continue;
+                            }
+                        }
+                    }
+                    else
+                    {
+                        // No whitelist or explicit addresses,
+                        // block all addresses
+                        busBlocklist[busIterator.get<size_t>()] = std::nullopt;
                     }
                 }
                 else
                 {
-                    busBlocklist[busIterator.get<size_t>()] = std::nullopt;
+                    std::cerr << "Invalid bus entry detected\n";
+                    std::exit(EXIT_FAILURE);
                 }
             }
         }
@@ -708,7 +785,8 @@ static void findI2CDevices(const std::vector<fs::path>& i2cBuses,
         lg2::debug("Scanning bus {BUS}", "BUS", bus);
 
         // fd is closed in this function in case the bus locks up
-        getBusFRUs(file, 0x03, 0x77, bus, device, powerIsOn, objServer);
+        getBusFRUs(file, MinAddress, MaxAddress, bus, device, powerIsOn,
+                   objServer);
 
         lg2::debug("Done scanning bus {BUS}", "BUS", bus);
     }
