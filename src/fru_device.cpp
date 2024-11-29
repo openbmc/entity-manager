@@ -609,29 +609,76 @@ void loadBlocklist(const char* path)
         {
             for (const auto& busIterator : buses)
             {
-                // If bus and addresses field are missing, that's fine.
-                if (busIterator.contains("bus") &&
-                    busIterator.contains("addresses"))
+                size_t bus = 0;
+
+                // If the entry is a number, set blocklist for the bus to std::nullopt
+                if (busIterator.is_number())
                 {
-                    auto busData = busIterator.at("bus");
-                    auto bus = busData.get<size_t>();
+                    bus = busIterator.get<size_t>();
+                    busBlocklist[bus] = std::nullopt; // No blocklist for this bus
+                }
+                else if (busIterator.is_object())
+                {
+                    std::set<size_t> whiteAddressesSet;
 
-                    auto addressData = busIterator.at("addresses");
-                    auto addresses =
-                        addressData.get<std::set<std::string_view>>();
-
-                    auto& block = busBlocklist[bus].emplace();
-                    for (const auto& address : addresses)
+                    if (busIterator.contains("bus"))
                     {
-                        size_t addressInt = 0;
-                        std::from_chars(address.begin() + 2, address.end(),
-                                        addressInt, 16);
-                        block.insert(addressInt);
+                        bus = busIterator.at("bus").get<size_t>();
+                    }
+
+                    if (busIterator.contains("addresses_white"))
+                    {
+                        auto whiteAddresses = busIterator.at("addresses_white");
+                        for (const auto& address : whiteAddresses)
+                        {
+                            std::string addressStr = address.get<std::string>();
+                            size_t addressInt = 0;
+                            std::from_chars(addressStr.data() + 2,
+                                            addressStr.data() + addressStr.size(),
+                                            addressInt, 16);
+                            whiteAddressesSet.insert(addressInt);
+                        }
+                    }
+
+                    if (!busIterator.contains("addresses"))
+                    {
+                        // Add all non-whitelisted addresses to the blocklist
+                        if (!busBlocklist[bus])
+                        {
+                            busBlocklist[bus] = std::set<size_t>();
+                        }
+                        for (size_t addressInt = 0x03; addressInt <= 0x77; ++addressInt)
+                        {
+                            if (whiteAddressesSet.find(addressInt) == whiteAddressesSet.end())
+                            {
+                                busBlocklist[bus]->insert(addressInt);
+                            }
+                        }
+                    }
+                    else
+                    {
+                        // Process explicitly listed addresses
+                        auto addresses = busIterator.at("addresses");
+                        for (const auto& address : addresses)
+                        {
+                            std::string addressStr = address.get<std::string>();
+                            size_t addressInt = 0;
+                            std::from_chars(addressStr.data() + 2,
+                                            addressStr.data() + addressStr.size(),
+                                            addressInt, 16);
+
+                            if (!busBlocklist[bus])
+                            {
+                                busBlocklist[bus] = std::set<size_t>();
+                            }
+                            busBlocklist[bus]->insert(addressInt);
+                        }
                     }
                 }
                 else
                 {
-                    busBlocklist[busIterator.get<size_t>()] = std::nullopt;
+                    std::cerr << "Invalid bus entry detected\n";
+                    std::exit(EXIT_FAILURE);
                 }
             }
         }
