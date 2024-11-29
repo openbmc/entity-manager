@@ -609,29 +609,85 @@ void loadBlocklist(const char* path)
         {
             for (const auto& busIterator : buses)
             {
-                // If bus and addresses field are missing, that's fine.
-                if (busIterator.contains("bus") &&
-                    busIterator.contains("addresses"))
+                size_t bus = 0;
+
+                // If the entry is a number, set blocklist for the bus to
+                // std::nullopt
+                if (busIterator.is_number())
                 {
-                    auto busData = busIterator.at("bus");
-                    auto bus = busData.get<size_t>();
-
-                    auto addressData = busIterator.at("addresses");
-                    auto addresses =
-                        addressData.get<std::set<std::string_view>>();
-
-                    auto& block = busBlocklist[bus].emplace();
-                    for (const auto& address : addresses)
+                    // If only bus number is provided, set blocklist to nullopt
+                    bus = busIterator.get<size_t>();
+                    busBlocklist.emplace(bus, std::nullopt);
+                }
+                else if (busIterator.is_object())
+                {
+                    if (busIterator.contains("bus"))
                     {
-                        size_t addressInt = 0;
-                        std::from_chars(address.begin() + 2, address.end(),
-                                        addressInt, 16);
-                        block.insert(addressInt);
+                        bus = busIterator.at("bus").get<size_t>();
+                    }
+
+                    // Initialize blocklist if not present
+                    auto& block = busBlocklist[bus].emplace();
+                    size_t addressInt = 0;
+
+                    if (busIterator.contains("no_block"))
+                    {
+                        std::set<size_t> whiteAddressesSet;
+                        for (const auto& address :
+                             busIterator.at("no_block"))
+                        {
+                            std::string addressData =
+                                address.get<std::string>();
+                            std::string_view addressStr =
+                                std::string_view(addressData).substr(2);
+                            addressInt = 0;
+
+                            std::from_chars(
+                                addressStr.data(),
+                                addressStr.data() + addressStr.size(),
+                                addressInt, 16);
+                            whiteAddressesSet.insert(addressInt);
+                        }
+
+                        // Add all non-whitelisted addresses to the blocklist
+                        for (addressInt = 0x03; addressInt <= 0x77;
+                             ++addressInt)
+                        {
+                            if (whiteAddressesSet.find(addressInt) ==
+                                whiteAddressesSet.end())
+                            {
+                                block.insert(addressInt);
+                            }
+                        }
+                    }
+                    else if (busIterator.contains("addresses"))
+                    {
+                        for (const auto& address : busIterator.at("addresses"))
+                        {
+                            std::string addressData =
+                                address.get<std::string>();
+                            std::string_view addressStr =
+                                std::string_view(addressData).substr(2);
+                            addressInt = 0;
+
+                            std::from_chars(
+                                addressStr.data(),
+                                addressStr.data() + addressStr.size(),
+                                addressInt, 16);
+                            block.insert(addressInt);
+                        }
+                    }
+                    else
+                    {
+                        // No whitelist or explicit addresses,
+                        // block all addresses
+                        busBlocklist[busIterator.get<size_t>()] = std::nullopt;
                     }
                 }
                 else
                 {
-                    busBlocklist[busIterator.get<size_t>()] = std::nullopt;
+                    std::cerr << "Invalid bus entry detected\n";
+                    std::exit(EXIT_FAILURE);
                 }
             }
         }
