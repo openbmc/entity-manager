@@ -1,0 +1,308 @@
+!_TAG_FILE_FORMAT	2	/extended format; --format=1 will not append ;" to lines/
+!_TAG_FILE_SORTED	1	/0=unsorted, 1=sorted, 2=foldcase/
+!_TAG_PROGRAM_AUTHOR	Darren Hiebert	/dhiebert@users.sourceforge.net/
+!_TAG_PROGRAM_NAME	Exuberant Ctags	//
+!_TAG_PROGRAM_URL	http://ctags.sourceforge.net	/official site/
+!_TAG_PROGRAM_VERSION	5.9~svn20110310	//
+AND	entity_manager.hpp	/^    AND,$/;"	m	class:probe_type_codes
+CmpStr	devices.hpp	/^struct CmpStr$/;"	s	namespace:devices
+CmpStr	entity_manager.hpp	/^struct CmpStr$/;"	s
+DBusDeviceDescriptor	entity_manager.hpp	/^struct DBusDeviceDescriptor$/;"	s
+DBusInterfaceInstance	perform_scan.cpp	/^struct DBusInterfaceInstance$/;"	s	file:
+DecodeState	fru_utils.hpp	/^enum class DecodeState$/;"	c
+ExportTemplate	devices.hpp	/^    ExportTemplate(const char* params, const char* bus, const char* constructor,$/;"	f	struct:devices::ExportTemplate
+ExportTemplate	devices.hpp	/^struct ExportTemplate$/;"	s	namespace:devices
+FALSE_T	entity_manager.hpp	/^    FALSE_T,$/;"	m	class:probe_type_codes
+FOUND	entity_manager.hpp	/^    FOUND,$/;"	m	class:probe_type_codes
+FRUDataEncoding	fru_utils.cpp	/^enum FRUDataEncoding$/;"	g	file:
+FRUReader	fru_reader.hpp	/^    explicit FRUReader(ReadBlockFunc readFunc) : readFunc(std::move(readFunc))$/;"	f	class:FRUReader
+FRUReader	fru_reader.hpp	/^class FRUReader$/;"	c
+FindDevicesWithCallback	fru_device.cpp	/^    FindDevicesWithCallback(const std::vector<fs::path>& i2cBuses,$/;"	f	struct:FindDevicesWithCallback
+FindDevicesWithCallback	fru_device.cpp	/^struct FindDevicesWithCallback :$/;"	s	file:
+FruArea	fru_utils.hpp	/^struct FruArea$/;"	s
+MachineContext	machine_context.hpp	/^    explicit MachineContext(sdbusplus::async::context& ctx, auto path) :$/;"	f	class:MachineContext
+MachineContext	machine_context.hpp	/^class MachineContext :$/;"	c
+MatchProbe	utils.cpp	/^struct MatchProbe$/;"	s	file:
+MatchProbe	utils.cpp	/^struct MatchProbe<std::string>$/;"	s	file:
+MatchProbeForwarder	utils.cpp	/^    explicit MatchProbeForwarder(const nlohmann::json& probe) : probeRef(probe)$/;"	f	struct:MatchProbeForwarder
+MatchProbeForwarder	utils.cpp	/^struct MatchProbeForwarder$/;"	s	file:
+OR	entity_manager.hpp	/^    OR,$/;"	m	class:probe_type_codes
+Operation	expression.hpp	/^enum class Operation$/;"	c	namespace:expression
+PerformProbe	entity_manager.hpp	/^struct PerformProbe : std::enable_shared_from_this<PerformProbe>$/;"	s
+PerformProbe	perform_probe.cpp	/^PerformProbe::PerformProbe(nlohmann::json& recordRef,$/;"	f	class:PerformProbe
+PerformScan	entity_manager.hpp	/^struct PerformScan : std::enable_shared_from_this<PerformScan>$/;"	s
+PerformScan	perform_scan.cpp	/^PerformScan::PerformScan(nlohmann::json& systemConfiguration,$/;"	f	class:PerformScan
+TRUE_T	entity_manager.hpp	/^    TRUE_T,$/;"	m	class:probe_type_codes
+Topology	topology.hpp	/^class Topology$/;"	c
+VariantToIntVisitor	variant_visitors.hpp	/^struct VariantToIntVisitor$/;"	s
+VariantToStringVisitor	variant_visitors.hpp	/^struct VariantToStringVisitor$/;"	s
+_busMap	fru_device.cpp	/^    BusMap& _busMap;$/;"	m	struct:FindDevicesWithCallback	file:
+_callback	entity_manager.hpp	/^    std::function<void()> _callback;$/;"	m	struct:PerformScan
+_callback	fru_device.cpp	/^    std::function<void()> _callback;$/;"	m	struct:FindDevicesWithCallback	file:
+_configurations	entity_manager.hpp	/^    std::list<nlohmann::json> _configurations;$/;"	m	struct:PerformScan
+_i2cBuses	fru_device.cpp	/^    const std::vector<fs::path>& _i2cBuses;$/;"	m	struct:FindDevicesWithCallback	file:
+_missingConfigurations	entity_manager.hpp	/^    nlohmann::json& _missingConfigurations;$/;"	m	struct:PerformScan
+_objServer	fru_device.cpp	/^    sdbusplus::asio::object_server& _objServer;$/;"	m	struct:FindDevicesWithCallback	file:
+_passed	entity_manager.hpp	/^    bool _passed = false;$/;"	m	struct:PerformScan
+_powerIsOn	fru_device.cpp	/^    const bool& _powerIsOn;$/;"	m	struct:FindDevicesWithCallback	file:
+_probeCommand	entity_manager.hpp	/^    std::vector<std::string> _probeCommand;$/;"	m	struct:PerformProbe
+_systemConfiguration	entity_manager.hpp	/^    nlohmann::json& _systemConfiguration;$/;"	m	struct:PerformScan
+add	devices.hpp	/^    const char* add;$/;"	m	struct:devices::ExportTemplate
+addArrayToDbus	entity_manager.cpp	/^void addArrayToDbus(const std::string& name, const nlohmann::json& array,$/;"	f
+addBoard	topology.cpp	/^void Topology::addBoard(const std::string& path, const std::string& boardType,$/;"	f	class:Topology
+addFruObjectToDbus	fru_device.cpp	/^void addFruObjectToDbus($/;"	f
+addProperty	entity_manager.cpp	/^void addProperty(const std::string& name, const PropertyType& value,$/;"	f
+addition	expression.hpp	/^    addition,$/;"	m	class:expression::Operation
+applyBindExposeAction	perform_scan.cpp	/^static void applyBindExposeAction(nlohmann::json& exposedObject,$/;"	f	file:
+applyConfigExposeActions	perform_scan.cpp	/^static void applyConfigExposeActions($/;"	f	file:
+applyDisableExposeAction	perform_scan.cpp	/^static void applyDisableExposeAction(nlohmann::json& exposedObject,$/;"	f	file:
+applyExposeActions	perform_scan.cpp	/^static void applyExposeActions($/;"	f	file:
+baseCompatibilityRecord	fru_utils.cpp	/^    baseCompatibilityRecord = 0x04,$/;"	e	enum:uint8_t	file:
+baseboardFruLocation	fru_device.cpp	/^const static constexpr char* baseboardFruLocation =$/;"	v	file:
+bcdHighChars	fru_utils.hpp	/^constexpr std::array<char, 6> bcdHighChars = {$/;"	v
+bcdPlus	fru_utils.cpp	/^    bcdPlus = 0x1,$/;"	e	enum:FRUDataEncoding	file:
+bcdPlusToChar	fru_utils.cpp	/^char bcdPlusToChar(uint8_t val)$/;"	f
+binary	fru_utils.cpp	/^    binary = 0x0,$/;"	e	enum:FRUDataEncoding	file:
+blocklistPath	fru_device.cpp	/^constexpr const char* blocklistPath = PACKAGE_DIR "blacklist.json";$/;"	v
+boardFruAreas	fru_utils.hpp	/^const std::vector<std::string> boardFruAreas = {$/;"	v
+boardNames	topology.hpp	/^    std::unordered_map<BoardName, Path> boardNames;$/;"	m	class:Topology
+boardTypes	topology.hpp	/^    std::unordered_map<Path, BoardType> boardTypes;$/;"	m	class:Topology
+buildDevice	overlay.cpp	/^    buildDevice(const std::string& name, const std::string& busPath,$/;"	f	file:
+busBlocklist	fru_device.cpp	/^    busBlocklist;$/;"	v	file:
+busName	perform_scan.cpp	/^    std::string busName;$/;"	m	struct:DBusInterfaceInstance	file:
+busPath	devices.hpp	/^    const char* busPath;$/;"	m	struct:devices::ExportTemplate
+busStrToInt	fru_device.cpp	/^static int busStrToInt(const std::string_view busName)$/;"	f	file:
+busTimeoutSeconds	fru_device.cpp	/^constexpr size_t busTimeoutSeconds = 10;$/;"	v
+busname	utils.hpp	/^const static constexpr char* busname = "xyz.openbmc_project.State.Host";$/;"	m	namespace:power
+cache	fru_reader.hpp	/^    Cache cache;$/;"	m	class:FRUReader
+cacheBlockSize	fru_reader.hpp	/^    static constexpr size_t cacheBlockSize = 32;$/;"	m	class:FRUReader
+calculateChecksum	fru_utils.cpp	/^uint8_t calculateChecksum(std::vector<uint8_t>& fruAreaData)$/;"	f
+calculateChecksum	fru_utils.cpp	/^uint8_t calculateChecksum(std::vector<uint8_t>::const_iterator iter,$/;"	f
+chassisFruAreas	fru_utils.hpp	/^const std::vector<std::string> chassisFruAreas = {"PART_NUMBER",$/;"	v
+checkLangEng	fru_utils.cpp	/^bool checkLangEng(uint8_t lang)$/;"	f
+componentManagementURL	fru_utils.cpp	/^    componentManagementURL = 0x04,$/;"	e	enum:uint8_t	file:
+componentName	fru_utils.cpp	/^    componentName = 0x05,$/;"	e	enum:uint8_t	file:
+componentPingAddress	fru_utils.cpp	/^    componentPingAddress = 0x06,$/;"	e	enum:uint8_t	file:
+configurationDirectory	entity_manager.cpp	/^constexpr const char* configurationDirectory = PACKAGE_DIR "configurations";$/;"	v
+configurationOutDir	utils.hpp	/^constexpr const char* configurationOutDir = "\/var\/configuration\/";$/;"	v
+copyRestFRUArea	fru_utils.cpp	/^bool copyRestFRUArea(std::vector<uint8_t>& fruData,$/;"	f
+createAddObjectMethod	entity_manager.cpp	/^void createAddObjectMethod($/;"	f
+createDeleteObjectMethod	entity_manager.cpp	/^void createDeleteObjectMethod($/;"	f
+createDevice	overlay.cpp	/^static int createDevice(const std::string& busPath,$/;"	f	file:
+createInterface	entity_manager.cpp	/^    createInterface(sdbusplus::asio::object_server& objServer,$/;"	f	file:
+createsHWMon	devices.hpp	/^enum class createsHWMon : bool$/;"	c	namespace:devices
+currentConfiguration	entity_manager.cpp	/^constexpr const char* currentConfiguration = "\/var\/configuration\/system.json";$/;"	v
+dbusProbeObjects	entity_manager.hpp	/^    MapperGetSubTreeResponse dbusProbeObjects;$/;"	m	struct:PerformScan
+dcLoad	fru_utils.cpp	/^    dcLoad = 0x02,$/;"	e	enum:uint8_t	file:
+dcOutput	fru_utils.cpp	/^    dcOutput = 0x01,$/;"	e	enum:uint8_t	file:
+decodeFRUData	fru_utils.cpp	/^std::pair<DecodeState, std::string> decodeFRUData($/;"	f
+deleteDevice	overlay.cpp	/^static int deleteDevice(const std::string& busPath, uint64_t address,$/;"	f	file:
+deriveNewConfiguration	entity_manager.cpp	/^static void deriveNewConfiguration(const nlohmann::json& oldConfiguration,$/;"	f	file:
+deviceDirName	overlay.cpp	/^static std::string deviceDirName(uint64_t bus, uint64_t address)$/;"	f	file:
+deviceHasLogging	utils.hpp	/^inline bool deviceHasLogging(const nlohmann::json& json)$/;"	f
+deviceIsCreated	overlay.cpp	/^static bool deviceIsCreated(const std::string& busPath, uint64_t bus,$/;"	f	file:
+deviceRequiresPowerOn	entity_manager.cpp	/^static bool deviceRequiresPowerOn(const nlohmann::json& entity)$/;"	f	file:
+devices	devices.hpp	/^namespace devices$/;"	n
+division	expression.hpp	/^    division,$/;"	m	class:expression::Operation
+downstreamPorts	topology.hpp	/^    std::unordered_map<PortType, std::vector<Path>> downstreamPorts;$/;"	m	class:Topology
+end	fru_utils.hpp	/^    end,$/;"	m	class:DecodeState
+end	fru_utils.hpp	/^    size_t end;            \/\/ Fru Area end offset$/;"	m	struct:FruArea
+eof	fru_reader.hpp	/^    std::optional<size_t> eof;$/;"	m	class:FRUReader
+err	fru_utils.hpp	/^    err,$/;"	m	class:DecodeState
+evaluate	expression.cpp	/^int evaluate(int a, Operation op, int b)$/;"	f	namespace:expression
+evaluate	expression.cpp	/^int evaluate(int substitute, std::vector<std::string>::iterator curr,$/;"	f	namespace:expression
+exportDevice	overlay.cpp	/^void exportDevice(const std::string& type,$/;"	f
+expression	expression.cpp	/^namespace expression$/;"	n	file:
+expression	expression.hpp	/^namespace expression$/;"	n
+extendedCompatibilityRecord	fru_utils.cpp	/^    extendedCompatibilityRecord = 0x05,$/;"	e	enum:uint8_t	file:
+extendedDCLoad	fru_utils.cpp	/^    extendedDCLoad = 0x0A$/;"	e	enum:uint8_t	file:
+extendedDCOutput	fru_utils.cpp	/^    extendedDCOutput = 0x09,$/;"	e	enum:uint8_t	file:
+extractExposeActionRecordNames	perform_scan.cpp	/^static bool extractExposeActionRecordNames(std::vector<std::string>& matches,$/;"	f	file:
+failedAddresses	fru_device.cpp	/^static boost::container::flat_map<size_t, std::set<size_t>> failedAddresses;$/;"	v	file:
+final	utils.hpp	/^struct DBusInternalError final : public sdbusplus::exception_t$/;"	s
+findDbusObjects	perform_scan.cpp	/^void findDbusObjects(std::vector<std::shared_ptr<PerformProbe>>&& probeVector,$/;"	f
+findExposeActionRecord	perform_scan.cpp	/^static std::optional<std::vector<std::string>::iterator> findExposeActionRecord($/;"	f	file:
+findFRUHeader	fru_utils.cpp	/^bool findFRUHeader(FRUReader& reader, const std::string& errorHelp,$/;"	f
+findFiles	utils.cpp	/^bool findFiles(const fs::path& dirPath, const std::string& matchString,$/;"	f
+findFiles	utils.cpp	/^bool findFiles(const std::vector<fs::path>&& dirPaths,$/;"	f
+findFruAreaLocationAndField	fru_utils.cpp	/^bool findFruAreaLocationAndField(std::vector<uint8_t>& fruData,$/;"	f
+findI2CDevices	fru_device.cpp	/^static void findI2CDevices(const std::vector<fs::path>& i2cBuses,$/;"	f	file:
+findI2CEeproms	fru_device.cpp	/^std::set<size_t> findI2CEeproms(int i2cBus,$/;"	f
+findIndexForFRU	fru_utils.cpp	/^std::optional<int> findIndexForFRU($/;"	f
+findProbeType	entity_manager.cpp	/^FoundProbeTypeT findProbeType(const std::string& probe)$/;"	f
+formatIPMIFRU	fru_utils.cpp	/^    formatIPMIFRU(const std::vector<uint8_t>& fruBytes,$/;"	f
+foundDevices	fru_device.cpp	/^    foundDevices;$/;"	v	file:
+fruAddresses	fru_device.cpp	/^static boost::container::flat_map<size_t, std::set<size_t>> fruAddresses;$/;"	v	file:
+fruAreaBoard	fru_utils.hpp	/^    fruAreaBoard,$/;"	m	class:fruAreas
+fruAreaChassis	fru_utils.hpp	/^    fruAreaChassis,$/;"	m	class:fruAreas
+fruAreaInternal	fru_utils.hpp	/^    fruAreaInternal = 0,$/;"	m	class:fruAreas
+fruAreaNames	fru_utils.hpp	/^const std::vector<std::string> fruAreaNames = {"INTERNAL", "CHASSIS", "BOARD",$/;"	v
+fruAreaProduct	fru_utils.hpp	/^    fruAreaProduct,$/;"	m	class:fruAreas
+fruAreas	fru_utils.hpp	/^enum class fruAreas$/;"	c
+fruBlockSize	fru_utils.hpp	/^constexpr size_t fruBlockSize = 8;$/;"	v
+fruCustomFieldName	fru_utils.hpp	/^const std::string fruCustomFieldName = "INFO_AM";$/;"	v
+fruVersion	fru_utils.cpp	/^constexpr size_t fruVersion = 1; \/\/ Current FRU spec version number is 1$/;"	v
+fwVersionIsSame	utils.hpp	/^inline bool fwVersionIsSame()$/;"	f
+generateDeviceName	perform_scan.cpp	/^static std::string generateDeviceName($/;"	f	file:
+get	utils.hpp	/^constexpr const char* get = "Get";$/;"	m	namespace:properties
+getAssocs	topology.cpp	/^    Topology::getAssocs(const std::map<Path, BoardName>& boards)$/;"	f	class:Topology
+getBusFRUs	fru_device.cpp	/^int getBusFRUs(int file, int first, int last, int bus,$/;"	f
+getDeviceInterfaces	entity_manager.cpp	/^    getDeviceInterfaces(const nlohmann::json& device)$/;"	f	file:
+getEepromPath	fru_device.cpp	/^static std::string getEepromPath(size_t bus, size_t address)$/;"	f	file:
+getFRUInfo	fru_utils.cpp	/^std::vector<uint8_t>& getFRUInfo(const uint16_t& bus, const uint8_t& address)$/;"	f
+getFieldLength	fru_utils.cpp	/^ssize_t getFieldLength(uint8_t fruFieldTypeLenValue)$/;"	f
+getFruAreaName	fru_utils.hpp	/^inline const std::string& getFruAreaName(fruAreas area)$/;"	f
+getFruData	fru_utils.cpp	/^bool getFruData(std::vector<uint8_t>& fruData, uint32_t bus, uint32_t address)$/;"	f
+getHeaderAreaFieldOffset	fru_utils.cpp	/^unsigned int getHeaderAreaFieldOffset(fruAreas area)$/;"	f
+getI2cDevicePaths	utils.cpp	/^bool getI2cDevicePaths(const fs::path& dirPath,$/;"	f
+getInterfaces	perform_scan.cpp	/^void getInterfaces($/;"	f
+getPermission	entity_manager.cpp	/^sdbusplus::asio::PropertyPermission getPermission(const std::string& interface)$/;"	f
+getProbeInterfaces	entity_manager.cpp	/^static std::set<std::string> getProbeInterfaces()$/;"	f	file:
+getProductName	fru_utils.cpp	/^std::optional<std::string> getProductName($/;"	f
+getRecordName	perform_scan.cpp	/^static std::string getRecordName(const DBusInterface& probe,$/;"	f	file:
+getRootBus	fru_device.cpp	/^static int getRootBus(size_t bus)$/;"	f	file:
+globalSchema	entity_manager.cpp	/^constexpr const char* globalSchema = "global.json";$/;"	v
+hasEepromFile	fru_device.cpp	/^static bool hasEepromFile(size_t bus, size_t address)$/;"	f	file:
+hasHWMonDir	devices.hpp	/^    createsHWMon hasHWMonDir;$/;"	m	struct:devices::ExportTemplate
+hostConfigurationDirectory	entity_manager.cpp	/^constexpr const char* hostConfigurationDirectory = SYSCONF_DIR "configurations";$/;"	v
+i2CDevLocation	fru_device.cpp	/^const static constexpr char* i2CDevLocation = "\/dev";$/;"	v	file:
+i2CDevsDir	overlay.cpp	/^constexpr const char* i2CDevsDir = "\/sys\/bus\/i2c\/devices";$/;"	v
+i2cSmbusWriteThenRead	fru_device.cpp	/^static int i2cSmbusWriteThenRead($/;"	f	file:
+iaContainsProbeInterface	entity_manager.cpp	/^static bool iaContainsProbeInterface($/;"	f	file:
+intelEpoch	fru_utils.cpp	/^std::tm intelEpoch()$/;"	f
+interface	entity_manager.hpp	/^    DBusInterface interface;$/;"	m	struct:DBusDeviceDescriptor
+interface	perform_scan.cpp	/^    std::string interface;$/;"	m	struct:DBusInterfaceInstance	file:
+interface	utils.hpp	/^const static constexpr char* interface = "xyz.openbmc_project.State.Host";$/;"	m	namespace:power
+interface	utils.hpp	/^constexpr const char* interface = "org.freedesktop.DBus.Properties";$/;"	m	namespace:properties
+io	entity_manager.cpp	/^boost::asio::io_context io;$/;"	v
+io	fru_device.cpp	/^boost::asio::io_context io;$/;"	v
+irContainsProbeInterface	entity_manager.cpp	/^static bool irContainsProbeInterface($/;"	f	file:
+isDevice16Bit	fru_device.cpp	/^static std::optional<bool> isDevice16Bit(int file)$/;"	f	file:
+isMuxBus	fru_device.cpp	/^static bool isMuxBus(size_t bus)$/;"	f	file:
+isPowerOn	utils.cpp	/^bool isPowerOn()$/;"	f
+jsonToString	overlay.cpp	/^std::string jsonToString(const nlohmann::json& in)$/;"	f
+keyNodeExists	machine_context.cpp	/^bool MachineContext::keyNodeExists()$/;"	f	class:MachineContext
+languageDependent	fru_utils.cpp	/^    languageDependent = 0x3,$/;"	e	enum:FRUDataEncoding	file:
+lastConfiguration	entity_manager.cpp	/^constexpr const char* lastConfiguration = "\/tmp\/configuration\/last.json";$/;"	v
+lastJson	entity_manager.cpp	/^nlohmann::json lastJson;$/;"	v
+linkMux	overlay.cpp	/^void linkMux(const std::string& muxName, uint64_t busIndex, uint64_t address,$/;"	f
+loadBlocklist	fru_device.cpp	/^void loadBlocklist(const char* path)$/;"	f
+loadConfigurations	entity_manager.cpp	/^bool loadConfigurations(std::list<nlohmann::json>& configurations)$/;"	f
+loadOverlays	overlay.cpp	/^bool loadOverlays(const nlohmann::json& systemConfiguration)$/;"	f
+logDeviceAdded	entity_manager.hpp	/^inline void logDeviceAdded(const nlohmann::json& record)$/;"	f
+logDeviceRemoved	entity_manager.hpp	/^inline void logDeviceRemoved(const nlohmann::json& record)$/;"	f
+main	devicetree_vpd_parser.cpp	/^int main()$/;"	f
+main	entity_manager.cpp	/^int main()$/;"	f
+main	fru_device.cpp	/^int main()$/;"	f
+makeProbeInterface	fru_device.cpp	/^static void makeProbeInterface(size_t bus, size_t address,$/;"	f	file:
+managementAccessRecord	fru_utils.cpp	/^    managementAccessRecord = 0x03,$/;"	e	enum:uint8_t	file:
+match	utils.cpp	/^    static bool match(const nlohmann::json& probe, const T& value)$/;"	f	struct:MatchProbe
+match	utils.cpp	/^    static bool match(const nlohmann::json& probe, const std::string& value)$/;"	f	struct:MatchProbe
+matchProbe	utils.cpp	/^bool matchProbe(const nlohmann::json& probe, const DBusValueVariant& dbusValue)$/;"	f
+maxEepromPageIndex	fru_device.cpp	/^constexpr size_t maxEepromPageIndex = 255;$/;"	v
+maxFruSize	fru_device.cpp	/^constexpr size_t maxFruSize = 512;$/;"	v
+maxMapperDepth	perform_scan.cpp	/^constexpr const int32_t maxMapperDepth = 0;$/;"	v
+modulo	expression.hpp	/^    modulo,$/;"	m	class:expression::Operation
+multiplication	expression.hpp	/^    multiplication,$/;"	m	class:expression::Operation
+muxSymlinkDir	overlay.cpp	/^constexpr const char* muxSymlinkDir = "\/dev\/i2c-mux";$/;"	v
+noHWMonDir	devices.hpp	/^    noHWMonDir,$/;"	m	class:devices::createsHWMon
+nodeBasePath	machine_context.hpp	/^    static constexpr auto nodeBasePath = "\/proc\/device-tree\/";$/;"	m	class:MachineContext
+objServer	entity_manager.hpp	/^    sdbusplus::asio::object_server& objServer;$/;"	m	struct:PerformScan
+ok	fru_utils.hpp	/^    ok,$/;"	m	class:DecodeState
+operator ()	devices.hpp	/^    bool operator()(const char* a, const char* b) const$/;"	f	struct:devices::CmpStr
+operator ()	entity_manager.hpp	/^    bool operator()(const char* a, const char* b) const$/;"	f	struct:CmpStr
+operator ()	utils.cpp	/^    bool operator()(const T& dbusValue) const$/;"	f	struct:MatchProbeForwarder
+operator ()	variant_visitors.hpp	/^    int operator()(const T& t) const$/;"	f	struct:VariantToIntVisitor
+operator ()	variant_visitors.hpp	/^    std::string operator()(const T& t) const$/;"	f	struct:VariantToStringVisitor
+operator ++	fru_utils.hpp	/^inline fruAreas operator++(fruAreas& x)$/;"	f
+outputDir	overlay.cpp	/^constexpr const char* outputDir = "\/tmp\/overlays";$/;"	v
+parameters	devices.hpp	/^    const char* parameters;$/;"	m	struct:devices::ExportTemplate
+parseMultirecordUUID	fru_utils.cpp	/^static void parseMultirecordUUID($/;"	f	file:
+parseOperation	expression.cpp	/^std::optional<Operation> parseOperation(std::string& op)$/;"	f	namespace:expression
+passedProbes	entity_manager.hpp	/^    std::vector<std::string> passedProbes;$/;"	m	struct:PerformScan
+path	entity_manager.hpp	/^    std::string path;$/;"	m	struct:DBusDeviceDescriptor
+path	perform_scan.cpp	/^    std::string path;$/;"	m	struct:DBusInterfaceInstance	file:
+path	utils.hpp	/^const static constexpr char* path = "\/xyz\/openbmc_project\/state\/host0";$/;"	m	namespace:power
+populateFromDeviceTree	machine_context.cpp	/^void MachineContext::populateFromDeviceTree()$/;"	f	class:MachineContext
+populateInterfaceFromJson	entity_manager.cpp	/^void populateInterfaceFromJson($/;"	f
+postToDbus	entity_manager.cpp	/^void postToDbus(const nlohmann::json& newConfiguration,$/;"	f
+power	utils.hpp	/^namespace power$/;"	n
+powerMatch	utils.cpp	/^static std::unique_ptr<sdbusplus::bus::match_t> powerMatch = nullptr;$/;"	v	file:
+powerPaths	topology.hpp	/^    std::set<Path> powerPaths;$/;"	m	class:Topology
+powerStatusOn	utils.cpp	/^static bool powerStatusOn = false;$/;"	v	file:
+powerSupplyInfo	fru_utils.cpp	/^    powerSupplyInfo = 0x00,$/;"	e	enum:uint8_t	file:
+probe	perform_probe.cpp	/^bool probe(const std::vector<std::string>& probeCommand,$/;"	f
+probeDbus	perform_probe.cpp	/^bool probeDbus(const std::string& interfaceName,$/;"	f
+probeName	entity_manager.hpp	/^    std::string probeName;$/;"	m	struct:PerformProbe
+probeRef	utils.cpp	/^    const nlohmann::json& probeRef;$/;"	m	struct:MatchProbeForwarder	file:
+probe_type_codes	entity_manager.hpp	/^enum class probe_type_codes$/;"	c
+processDbusObjects	perform_scan.cpp	/^    processDbusObjects(std::vector<std::shared_ptr<PerformProbe>>& probeVector,$/;"	f	file:
+processEeprom	fru_device.cpp	/^static std::vector<uint8_t> processEeprom(int bus, int address)$/;"	f	file:
+productFruAreas	fru_utils.hpp	/^const std::vector<std::string> productFruAreas = {$/;"	v
+properties	utils.hpp	/^namespace properties$/;"	n
+propertiesChangedCallback	entity_manager.cpp	/^void propertiesChangedCallback(nlohmann::json& systemConfiguration,$/;"	f
+property	utils.hpp	/^const static constexpr char* property = "CurrentHostState";$/;"	m	namespace:power
+pruneConfiguration	entity_manager.cpp	/^static void pruneConfiguration(nlohmann::json& systemConfiguration,$/;"	f	file:
+pruneDevice	entity_manager.cpp	/^static void pruneDevice(const nlohmann::json& systemConfiguration,$/;"	f	file:
+pruneRecordExposes	perform_scan.cpp	/^static void pruneRecordExposes(nlohmann::json& record)$/;"	f	file:
+publishNewConfiguration	entity_manager.cpp	/^static void publishNewConfiguration($/;"	f	file:
+read	fru_reader.cpp	/^ssize_t FRUReader::read(off_t start, size_t len, uint8_t* outbuf)$/;"	f	class:FRUReader
+readBaseboardFRU	fru_device.cpp	/^static bool readBaseboardFRU(std::vector<uint8_t>& baseboardFRU)$/;"	f	file:
+readData	fru_device.cpp	/^static int64_t readData(bool is16bit, bool isBytewise, int file,$/;"	f	file:
+readFRUContents	fru_utils.cpp	/^    readFRUContents(FRUReader& reader, const std::string& errorHelp)$/;"	f
+readFromEeprom	fru_device.cpp	/^static int64_t readFromEeprom(int fd, off_t offset, size_t len, uint8_t* buf)$/;"	f	file:
+recordDiscoveredIdentifiers	perform_scan.cpp	/^static void recordDiscoveredIdentifiers($/;"	f	file:
+recordRef	entity_manager.hpp	/^    nlohmann::json& recordRef;$/;"	m	struct:PerformProbe
+registerCallback	perform_scan.cpp	/^static void registerCallback(nlohmann::json& systemConfiguration,$/;"	f	file:
+remove	devices.hpp	/^    const char* remove;$/;"	m	struct:devices::ExportTemplate
+remove	topology.cpp	/^void Topology::remove(const std::string& boardName)$/;"	f	class:Topology
+resCodes	fru_utils.hpp	/^enum class resCodes$/;"	c
+resOK	fru_utils.hpp	/^    resOK,$/;"	m	class:resCodes
+resWarn	fru_utils.hpp	/^    resWarn,$/;"	m	class:resCodes
+rescanBusses	fru_device.cpp	/^void rescanBusses($/;"	f
+rescanOneBus	fru_device.cpp	/^void rescanOneBus($/;"	f
+restFieldsEnd	fru_utils.hpp	/^    size_t restFieldsEnd;  \/\/ Ending location of restFRUArea data$/;"	m	struct:FruArea
+restFieldsLoc	fru_utils.hpp	/^    size_t restFieldsLoc;  \/\/ Starting location of restFRUArea data$/;"	m	struct:FruArea
+resvASFLegacyDeviceAlerts	fru_utils.cpp	/^    resvASFLegacyDeviceAlerts = 0x07,$/;"	e	enum:uint8_t	file:
+resvASFRemoteControl	fru_utils.cpp	/^    resvASFRemoteControl = 0x08,$/;"	e	enum:uint8_t	file:
+resvASFSMBusDeviceRecord	fru_utils.cpp	/^    resvASFSMBusDeviceRecord = 0x06,$/;"	e	enum:uint8_t	file:
+run	fru_device.cpp	/^    void run()$/;"	f	struct:FindDevicesWithCallback
+run	perform_scan.cpp	/^void PerformScan::run()$/;"	f	class:PerformScan
+scan	entity_manager.hpp	/^    std::shared_ptr<PerformScan> scan;$/;"	m	struct:PerformProbe
+schemaDirectory	entity_manager.cpp	/^constexpr const char* schemaDirectory = PACKAGE_DIR "configurations\/schemas";$/;"	v
+setJsonFromPointer	entity_manager.cpp	/^bool setJsonFromPointer(const std::string& ptrStr, const JsonType& value,$/;"	f
+settableInterfaces	entity_manager.cpp	/^static constexpr std::array<const char*, 6> settableInterfaces = {$/;"	v	file:
+setupPowerMatch	utils.cpp	/^void setupPowerMatch(const std::shared_ptr<sdbusplus::asio::connection>& conn)$/;"	f
+sixBitASCII	fru_utils.cpp	/^    sixBitASCII = 0x2,$/;"	e	enum:FRUDataEncoding	file:
+sixBitToChar	fru_utils.cpp	/^char sixBitToChar(uint8_t val)$/;"	f
+size	fru_utils.hpp	/^    size_t size;           \/\/ Fru Area Size$/;"	m	struct:FruArea
+start	fru_utils.hpp	/^    size_t start;          \/\/ Fru Area Start offset$/;"	m	struct:FruArea
+startRemovedTimer	entity_manager.cpp	/^void startRemovedTimer(boost::asio::steady_timer& timer,$/;"	f
+subtraction	expression.hpp	/^    subtraction,$/;"	m	class:expression::Operation
+systemBus	entity_manager.cpp	/^std::shared_ptr<sdbusplus::asio::connection> systemBus;$/;"	v
+systemManagementURL	fru_utils.cpp	/^    systemManagementURL = 0x01,$/;"	e	enum:uint8_t	file:
+systemName	fru_utils.cpp	/^    systemName = 0x02,$/;"	e	enum:uint8_t	file:
+systemPingAddress	fru_utils.cpp	/^    systemPingAddress = 0x03,$/;"	e	enum:uint8_t	file:
+systemUniqueID	fru_utils.cpp	/^    systemUniqueID = 0x07$/;"	e	enum:uint8_t	file:
+tempConfigDir	entity_manager.cpp	/^constexpr const char* tempConfigDir = "\/tmp\/configuration\/";$/;"	v
+templateChar	overlay.cpp	/^constexpr const char* templateChar = "$";$/;"	v
+templateChar	utils.cpp	/^constexpr const char* templateChar = "$";$/;"	v
+templateCharReplace	utils.cpp	/^std::optional<std::string> templateCharReplace($/;"	f
+topology	entity_manager.cpp	/^Topology topology;$/;"	v
+tryIfaceInitialize	entity_manager.cpp	/^void tryIfaceInitialize(std::shared_ptr<sdbusplus::asio::dbus_interface>& iface)$/;"	f
+uint8_t	fru_utils.cpp	/^enum MultiRecordType : uint8_t$/;"	g	file:
+uint8_t	fru_utils.cpp	/^enum SubManagementAccessRecord : uint8_t$/;"	g	file:
+updateFRUAreaLenAndChecksum	fru_utils.cpp	/^unsigned int updateFRUAreaLenAndChecksum($/;"	f
+updateFRUProperty	fru_device.cpp	/^bool updateFRUProperty($/;"	f
+updateFieldLoc	fru_utils.hpp	/^    size_t updateFieldLoc; \/\/ Fru Area update Field Location$/;"	m	struct:FruArea
+updateSystemConfiguration	perform_scan.cpp	/^void PerformScan::updateSystemConfiguration(const nlohmann::json& recordRef,$/;"	f	class:PerformScan
+validateHeader	fru_utils.cpp	/^bool validateHeader(const std::array<uint8_t, I2C_SMBUS_BLOCK_MAX>& blockData)$/;"	f
+validateJson	utils.cpp	/^bool validateJson(const nlohmann::json& schemaFile, const nlohmann::json& input)$/;"	f
+verifyOffset	fru_utils.cpp	/^bool verifyOffset(const std::vector<uint8_t>& fruBytes, fruAreas currentArea,$/;"	f
+versionFile	utils.hpp	/^constexpr const char* versionFile = "\/etc\/os-release";$/;"	v
+versionHashFile	utils.hpp	/^constexpr const char* versionHashFile = "\/var\/configuration\/version";$/;"	v
+writeFRU	fru_device.cpp	/^bool writeFRU(uint8_t bus, uint8_t address, const std::vector<uint8_t>& fru)$/;"	f
+writeJsonFiles	entity_manager.cpp	/^bool writeJsonFiles(const nlohmann::json& systemConfiguration)$/;"	f
+~FindDevicesWithCallback	fru_device.cpp	/^    ~FindDevicesWithCallback()$/;"	f	struct:FindDevicesWithCallback
+~PerformProbe	perform_probe.cpp	/^PerformProbe::~PerformProbe()$/;"	f	class:PerformProbe
+~PerformScan	perform_scan.cpp	/^PerformScan::~PerformScan()$/;"	f	class:PerformScan
