@@ -1,0 +1,84 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "190acd88_c06b170b",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 5
+      },
+      "lineNbr": 13,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2024-12-02T19:52:02Z",
+      "side": 1,
+      "message": "Why not?  There is a single i2c bus coming off the HMC board for both the EEPROM and the SMBPBI interface.  The SMBPBI address is specified by the HMC itself.  I\u0027m pretty sure that whatever bus/address we use to find the EEPROM is also the same bus for the SMBPBI.  Therefore, we should be able to make at least the basic SMBPBI information common across all users of the board.",
+      "range": {
+        "startLine": 12,
+        "startChar": 0,
+        "endLine": 13,
+        "endChar": 66
+      },
+      "revId": "9549b64ac175953123dfd406de9dfc4218b682a3",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "112c31e6_b6cdfafe",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 5
+      },
+      "lineNbr": 78,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2024-12-02T19:52:02Z",
+      "side": 1,
+      "message": "(I wrote about this later, but this is the problematic aspect of what you\u0027ve done.)",
+      "revId": "9549b64ac175953123dfd406de9dfc4218b682a3",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9e8c5710_85d90187",
+        "filename": "configurations/catalina_hmc.json",
+        "patchSetId": 5
+      },
+      "lineNbr": 36,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2024-12-02T19:52:02Z",
+      "side": 1,
+      "message": "This isn\u0027t a separate FRU from the \"real\" HMC.  What you\u0027ve done here will create two separate inventory objects (in entity-manager) which will show up as two different FRUs in EM (and eventually in Redfish).  This isn\u0027t what we want.",
+      "revId": "9549b64ac175953123dfd406de9dfc4218b682a3",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "31ce0b71_fb63faeb",
+        "filename": "configurations/catalina_hmc.json",
+        "patchSetId": 5
+      },
+      "lineNbr": 40,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2024-12-02T19:52:02Z",
+      "side": 1,
+      "message": "We explicitly used this before:\n\n```\n    \"Probe\": \"xyz.openbmc_project.FruDevice({\u0027BOARD_PRODUCT_NAME\u0027: \u0027P4764\u0027, \u0027BOARD_MANUFACTURER\u0027: \u0027NVIDIA\u0027})\",\n```\n\nIf you just do \"Product Name\" you don\u0027t know which version of the HMC it is, so you can end up having the wrong config loaded anyhow.",
+      "range": {
+        "startLine": 40,
+        "startChar": 74,
+        "endLine": 40,
+        "endChar": 106
+      },
+      "revId": "9549b64ac175953123dfd406de9dfc4218b682a3",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    }
+  ]
+}
