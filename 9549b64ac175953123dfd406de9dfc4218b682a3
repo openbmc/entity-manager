@@ -26,6 +26,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "49082906_acb937c6",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 5
+      },
+      "lineNbr": 13,
+      "author": {
+        "id": 1001289
+      },
+      "writtenOn": "2024-12-02T19:59:02Z",
+      "side": 1,
+      "message": "Hmmmmm ok, I mean I\u0027m happy to add this to nvidia_hmc.json, I just wouldn\u0027t guarantee that it will work for the next user that comes along.\n\nCompare this specification in the downstream Nvidia repository:\n\nhttps://github.com/NVIDIA/openbmc/blob/0a389de055e3b08110ac6bb9c80e653873fd2889/meta-nvidia/meta-prime/meta-graceblackwell/meta-gb200nvl/meta-bmc/recipes-phosphor/configuration/entity-manager/files/HMC.json#L5-L6\n\n```\n                \"Address\": \"0x4f\",\n                \"Bus\": 2,\n```\n\nAnd then the address and bus from a live Catalina BMC:\n\n```\nxyz.openbmc_project.Configuration.Satellite interface -         -                          -\n.Address                                    property  t         79                         emits-change\n.Bus                                        property  t         13                         emits-change\n```\n\nSo, yes you\u0027re correct about the address, but what about the bus, that\u0027s different right? That part\ndepends on which bus we connect the HMC board to on the BMC part.",
+      "parentUuid": "190acd88_c06b170b",
+      "range": {
+        "startLine": 12,
+        "startChar": 0,
+        "endLine": 13,
+        "endChar": 66
+      },
+      "revId": "9549b64ac175953123dfd406de9dfc4218b682a3",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "112c31e6_b6cdfafe",
         "filename": "/COMMIT_MSG",
         "patchSetId": 5
