@@ -84,6 +84,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "127a0ca6_49011c43",
+        "filename": "configurations/catalina_hmc.json",
+        "patchSetId": 5
+      },
+      "lineNbr": 36,
+      "author": {
+        "id": 1001289
+      },
+      "writtenOn": "2024-12-02T20:02:52Z",
+      "side": 1,
+      "message": "Well, to be clear, this configuration file will not create 2 different FRUs, it will create 1. But because there is another configuration file that matches on the HMC FRU (nvidia_hmc.json), it will also create an object. That was actually my intent.\n\nThe reason I was doing this is because the bus address varies depending on the SCM part, so I was trying to make a config object that will provide this additional SMBPBI information, separate from the core HMC information (that provides the IP address).\n\nI also don\u0027t like the fact that it\u0027s a separate object, but I\u0027m not sure how else to add Catalina-specific information about the HMC. I could add it to the SCM object, if that would be preferable, and remove the HMC condition?",
+      "parentUuid": "9e8c5710_85d90187",
+      "revId": "9549b64ac175953123dfd406de9dfc4218b682a3",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "31ce0b71_fb63faeb",
         "filename": "configurations/catalina_hmc.json",
         "patchSetId": 5
@@ -95,6 +113,30 @@
       "writtenOn": "2024-12-02T19:52:02Z",
       "side": 1,
       "message": "We explicitly used this before:\n\n```\n    \"Probe\": \"xyz.openbmc_project.FruDevice({\u0027BOARD_PRODUCT_NAME\u0027: \u0027P4764\u0027, \u0027BOARD_MANUFACTURER\u0027: \u0027NVIDIA\u0027})\",\n```\n\nIf you just do \"Product Name\" you don\u0027t know which version of the HMC it is, so you can end up having the wrong config loaded anyhow.",
+      "range": {
+        "startLine": 40,
+        "startChar": 74,
+        "endLine": 40,
+        "endChar": 106
+      },
+      "revId": "9549b64ac175953123dfd406de9dfc4218b682a3",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0136b2f9_b0e8db06",
+        "filename": "configurations/catalina_hmc.json",
+        "patchSetId": 5
+      },
+      "lineNbr": 40,
+      "author": {
+        "id": 1001289
+      },
+      "writtenOn": "2024-12-02T20:02:52Z",
+      "side": 1,
+      "message": "Oh ok, yeah I saw that the real version is using the name explicitly but it seemed like overkill to be that specific. It\u0027s also not as obvious when reading the inventory busctl output to tell what it\u0027s supposed to be.",
+      "parentUuid": "31ce0b71_fb63faeb",
       "range": {
         "startLine": 40,
         "startChar": 74,
