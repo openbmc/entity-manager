@@ -23,50 +23,8 @@
         },
         {
             "Address": "0x6a",
-            "Bus": "49",
-            "Name": "HDDBOARD_SSD1_TEMP_C",
-            "PowerState": "On",
-            "Thresholds": [
-                {
-                    "Direction": "greater than",
-                    "Name": "upper critical",
-                    "Severity": 1,
-                    "Value": 70
-                },
-                {
-                    "Direction": "less than",
-                    "Name": "lower critical",
-                    "Severity": 1,
-                    "Value": 5
-                }
-            ],
-            "Type": "NVME1000"
-        },
-        {
-            "Address": "0x6a",
             "Bus": "50",
             "Name": "HDDBOARD_SSD2_TEMP_C",
-            "PowerState": "On",
-            "Thresholds": [
-                {
-                    "Direction": "greater than",
-                    "Name": "upper critical",
-                    "Severity": 1,
-                    "Value": 70
-                },
-                {
-                    "Direction": "less than",
-                    "Name": "lower critical",
-                    "Severity": 1,
-                    "Value": 5
-                }
-            ],
-            "Type": "NVME1000"
-        },
-        {
-            "Address": "0x6a",
-            "Bus": "51",
-            "Name": "HDDBOARD_SSD3_TEMP_C",
             "PowerState": "On",
             "Thresholds": [
                 {
