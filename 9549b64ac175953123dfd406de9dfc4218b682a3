@@ -96,6 +96,30 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "1f641448_10fd63d7",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 5
+      },
+      "lineNbr": 13,
+      "author": {
+        "id": 1001289
+      },
+      "writtenOn": "2024-12-03T06:28:02Z",
+      "side": 1,
+      "message": "Ok: I moved the configuration object to nvidia_hmc.json, and I\u0027m using the \"$bus\" from the HMC FRU EEPROM.",
+      "parentUuid": "bc918acb_8692abd4",
+      "range": {
+        "startLine": 12,
+        "startChar": 0,
+        "endLine": 13,
+        "endChar": 66
+      },
+      "revId": "9549b64ac175953123dfd406de9dfc4218b682a3",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "112c31e6_b6cdfafe",
@@ -109,6 +133,24 @@
       "writtenOn": "2024-12-02T19:52:02Z",
       "side": 1,
       "message": "(I wrote about this later, but this is the problematic aspect of what you\u0027ve done.)",
+      "revId": "9549b64ac175953123dfd406de9dfc4218b682a3",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "500504f8_445e2ff2",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 5
+      },
+      "lineNbr": 78,
+      "author": {
+        "id": 1001289
+      },
+      "writtenOn": "2024-12-03T06:28:02Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "112c31e6_b6cdfafe",
       "revId": "9549b64ac175953123dfd406de9dfc4218b682a3",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
@@ -166,6 +208,24 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "15f15b13_f3d73008",
+        "filename": "configurations/catalina_hmc.json",
+        "patchSetId": 5
+      },
+      "lineNbr": 36,
+      "author": {
+        "id": 1001289
+      },
+      "writtenOn": "2024-12-03T06:28:02Z",
+      "side": 1,
+      "message": "Got it, moved the config object to nvidia_hmc.json, now the SMBPBI device shows up under the HMC object path.\n\nI took the liberty of refactoring the object structure in this change significantly, after learning a little more about the schemas.",
+      "parentUuid": "dd0767a5_bd5a6c92",
+      "revId": "9549b64ac175953123dfd406de9dfc4218b682a3",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "31ce0b71_fb63faeb",
@@ -203,6 +263,30 @@
       "side": 1,
       "message": "Oh ok, yeah I saw that the real version is using the name explicitly but it seemed like overkill to be that specific. It\u0027s also not as obvious when reading the inventory busctl output to tell what it\u0027s supposed to be.",
       "parentUuid": "31ce0b71_fb63faeb",
+      "range": {
+        "startLine": 40,
+        "startChar": 74,
+        "endLine": 40,
+        "endChar": 106
+      },
+      "revId": "9549b64ac175953123dfd406de9dfc4218b682a3",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "dda26cb1_b63f0761",
+        "filename": "configurations/catalina_hmc.json",
+        "patchSetId": 5
+      },
+      "lineNbr": 40,
+      "author": {
+        "id": 1001289
+      },
+      "writtenOn": "2024-12-03T06:28:02Z",
+      "side": 1,
+      "message": "Fixed, just using the Probe condition already present in nvidia_hmc.json now.",
+      "parentUuid": "0136b2f9_b0e8db06",
       "range": {
         "startLine": 40,
         "startChar": 74,
