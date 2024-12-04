@@ -16,6 +16,24 @@
       "message": "How would this work in practice?\n\nDevice gets detected and assigned 0x01 from the dynamic pool\nDevice 2 (which has StaticEndpointID) gets detected and requests EID 0x01.  Would we separate the pools?",
       "revId": "a6088460414d414906a472e4e3089087d729ee49",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "810f1ddb_b32a4091",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 3
+      },
+      "lineNbr": 11,
+      "author": {
+        "id": 1001354
+      },
+      "writtenOn": "2024-12-04T22:31:39Z",
+      "side": 1,
+      "message": "I\u0027m not as familiar with the underlying systems as I\u0027d like (yet), but could a 2-pass solution for assigning EIDs make sense here? \n\nFirst pass handles records with specific EID request, and next pass handles everything not assigned in the fist pass?",
+      "parentUuid": "9bc3b592_4db23d1a",
+      "revId": "a6088460414d414906a472e4e3089087d729ee49",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }
