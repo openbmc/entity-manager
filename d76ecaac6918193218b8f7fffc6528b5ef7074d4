@@ -143,6 +143,30 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": true,
+      "key": {
+        "uuid": "d88e259e_524b5e68",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 12
+      },
+      "lineNbr": 11,
+      "author": {
+        "id": 1001906
+      },
+      "writtenOn": "2024-12-04T07:44:42Z",
+      "side": 1,
+      "message": "This is Harma blacklist.\nhttps://github.com/openbmc/openbmc/blob/master/meta-facebook/meta-harma/recipes-phosphor/configuration/entity-manager/blacklist.json\n\nIf we use address_white, we only need to configure it as follows:\n\n...\n8,\n{\n  \"bus\": 9,\n  \"addresses_white\": [ \"0x52\"]\n},\n10,\n{\n  \"bus\": 11,\n  \"addresses_white\": [ \"0x52\"]\n},\n12,\n...",
+      "parentUuid": "f6e5ec81_f01d8e3d",
+      "range": {
+        "startLine": 10,
+        "startChar": 0,
+        "endLine": 11,
+        "endChar": 13
+      },
+      "revId": "d76ecaac6918193218b8f7fffc6528b5ef7074d4",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": false,
       "key": {
         "uuid": "d41db81a_f08f6652",
