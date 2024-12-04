@@ -26,6 +26,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "f197f21e_ca061981",
+        "filename": "schemas/global.json",
+        "patchSetId": 11
+      },
+      "lineNbr": 38,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2024-12-04T18:26:57Z",
+      "side": 1,
+      "message": "The GPIOLeakDetector is the one which implements the GPIO hardware interface. So, its a specific kind, so i don\u0027t think we need to make it extendable.",
+      "parentUuid": "90cb4baf_276b11a7",
+      "range": {
+        "startLine": 38,
+        "startChar": 55,
+        "endLine": 38,
+        "endChar": 71
+      },
+      "revId": "e1dcdb682ce2e60681257538cf33ffb1e1ecd57a",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "6040f7c7_7d8df68c",
         "filename": "schemas/leak_detector.json",
         "patchSetId": 11
@@ -37,6 +61,24 @@
       "writtenOn": "2024-12-02T17:13:00Z",
       "side": 1,
       "message": "was there some discussion somewhere on using these PDI prefixes on everything?  Both Polarity and GpioPolarity have already been in the schema for quite some time.",
+      "revId": "e1dcdb682ce2e60681257538cf33ffb1e1ecd57a",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8ed1feec_f1913567",
+        "filename": "schemas/leak_detector.json",
+        "patchSetId": 11
+      },
+      "lineNbr": 30,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2024-12-04T18:26:57Z",
+      "side": 1,
+      "message": "Until now, none of the Configuration interfaces were documented in PDI. I have created a PDI PR for this https://gerrit.openbmc.org/c/openbmc/phosphor-dbus-interfaces/+/75999/comments/21a1bfb9_04f82e2d and its being discussed there.",
+      "parentUuid": "6040f7c7_7d8df68c",
       "revId": "e1dcdb682ce2e60681257538cf33ffb1e1ecd57a",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
