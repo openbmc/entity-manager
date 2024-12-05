@@ -382,6 +382,16 @@
                 "in1_Name": "FCB_$bus - 15 FAN $bus * 4 - 64 + 4 VOLT_V"
             },
             {
+                "Address": "0x49",
+                "Bus": "$bus",
+                "Labels": [
+                    "temp1"
+                ],
+                "Name": "FCB_$bus - 15 T_SENSE",
+                "Type": "INA238",
+                "temp1_Name": "FCB_$bus - 15 T_SENSE_TEMP_C"
+            },
+            {
                 "Address": "0x4b",
                 "Bus": "$bus",
                 "Name": "FCB_$bus - 15 TEMP_C",
@@ -806,6 +816,16 @@
                 "Type": "INA238",
                 "curr1_Name": "FCB_$bus - 15 FAN $bus * 4 - 64 + 4 CURR_A",
                 "in1_Name": "FCB_$bus - 15 FAN $bus * 4 - 64 + 4 VOLT_V"
+            },
+            {
+                "Address": "0x49",
+                "Bus": "$bus",
+                "Labels": [
+                    "temp1"
+                ],
+                "Name": "FCB_$bus - 15 T_SENSE",
+                "Type": "INA238",
+                "temp1_Name": "FCB_$bus - 15 T_SENSE_TEMP_C"
             },
             {
                 "Address": "0x4b",
