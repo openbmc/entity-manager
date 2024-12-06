@@ -1519,11 +1519,14 @@
             "Address": "0x41",
             "Bus": 11,
             "Labels": [
-                "in_voltage1"
+                "in_voltage0"
             ],
             "Name": "MEDUSA_ADC_GND_SENSE",
             "Type": "RTQ6056",
-            "in_voltage1_Name": "MEDUSA_ADC_GND_SENSE_VOLT_V"
+            "in_voltage0_Max": 0.06,
+            "in_voltage0_Min": 0,
+            "in_voltage0_Name": "MEDUSA_ADC_GND_SENSE_VOLT_V",
+            "in_voltage0_Scale": 400000
         },
         {
             "Class": "temp",
