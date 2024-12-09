@@ -697,6 +697,7 @@ static void findI2CDevices(const std::vector<fs::path>& i2cBuses,
         {
             std::cerr << "Error: Can't use SMBus Receive Byte command bus "
                       << bus << "\n";
+            close(file);
             continue;
         }
         auto& device = busmap[bus];
