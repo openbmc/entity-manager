@@ -68,6 +68,9 @@
                 "EntityInstance": {
                     "$ref": "#/$defs/Types/EntityInstance"
                 },
+                "StaticEndpointId": {
+                    "$ref": "#/$defs/Types/StaticEndpointId"
+                },
                 "FaultIndex": {
                     "$ref": "#/$defs/Types/FaultIndex"
                 },
@@ -79,6 +82,9 @@
                 },
                 "GpioPolarity": {
                     "$ref": "#/$defs/Types/GpioPolarity"
+                },
+                "IANA": {
+                    "$ref": "#/$defs/Types/IANA"
                 },
                 "Index": {
                     "$ref": "#/$defs/Types/Index"
@@ -1021,6 +1027,9 @@
             "EntityInstance": {
                 "type": "number"
             },
+            "StaticEndpointId": {
+                "type": "string"
+            },
             "FaultIndex": {
                 "type": "number"
             },
@@ -1035,6 +1044,9 @@
             },
             "GpioPolarity": {
                 "enum": ["Low"]
+            },
+            "IANA": {
+                "type": "string"
             },
             "Index": {
                 "type": "number"
