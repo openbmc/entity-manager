@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3a10b0ba_ee82cec6",
+        "filename": "schemas/global.json",
+        "patchSetId": 13
+      },
+      "lineNbr": 46,
+      "author": {
+        "id": 1002222
+      },
+      "writtenOn": "2024-12-10T10:34:40Z",
+      "side": 1,
+      "message": "BIOS seems a little old school. I know the word is around for some decades, but the name BIOS does not reflect the complexity of modern host firmware very well.\n\nIn the redfish specification the \"BIOS\" schema is defined as:\nThe Bios schema contains properties related to the BIOS attribute registry. The attribute registry describes the system-specific BIOS attributes and actions for changing to BIOS settings. Changes to the BIOS typically require a system reset before they take effect. It is likely that a client finds the @Redfish.Settings term in this resource, and if it is found, the client makes requests to change BIOS settings by modifying the resource identified by the @Redfish.Settings term.\"\n\nThe other types of firmware do not have a definition, but are mentioned in the schema of SoftwareInventory:\n\"The SoftwareInventory schema contains an inventory of software components. This can include software components such as BIOS, BMC firmware, firmware for other devices, system drivers, or provider software.\"\n\nSo the redfish specification do not solve the problem to distinguish between the different types of firmware.\n\nAs alternative I suggest \u0027HOST_FW\u0027 and here are my reasons:\n- it is not tied to any legacy namimg. (At some point people need to look up BIOS to roughly understand what is meant, and even then they get a very simplified idea about it. \n- it is more descriptive in itself and better reflects the complexity of nowadays host firmware and precisly describes the target of the software.\n- In the future, we will have different firmware types, so we have the problem of distinguishing between them. Establishing the naming scheme `\u003cTARGET\u003e_FW` will help solve this issue.\n- Hence the redfish specification only touches BMCweb, I don\u0027t see a reason, why we should keep the naming problem around in other parts of OpenBMC. Inside BMCweb, we can create a link between the naming of \"BIOS\" and \"HOST_FW\". \n\n\nExamples for other firmware types:\n- BMC_FW: for BMC firmware\n- HOST_FW: for host firmware\n- VR_FW: for voltage regulator firmware\n\nThe naming scheme for general future use:\n\u003cTARGET\u003e_FW: for \u003cTARGET\u003e-device firmware.\n\n\n\n\n\nWhat do you think?",
+      "range": {
+        "startLine": 44,
+        "startChar": 1,
+        "endLine": 46,
+        "endChar": 17
+      },
+      "revId": "977be717bfd575d2a33b995b6dfdf0e32dada2e6",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    }
+  ]
+}
