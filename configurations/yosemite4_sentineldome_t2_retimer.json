@@ -459,6 +459,15 @@
             "Zones": [
                 "Zone 1"
             ]
+        },
+        {
+            "Address": ["7", "236", "128", "1", "0", "$bus % 16 * 5"],
+            "Bus": "$bus / 4 - 4",
+            "Class": "I3C",
+            "StaticEndpointId": "$bus % 15 * 10",
+            "IANA": "0015A000",
+            "Name": "BIC",
+            "Type": "MCTPI3CTarget"
         }
     ],
     "Name": "Yosemite 4 Sentinel Dome T2 with Retimer Slot $bus % 15",
