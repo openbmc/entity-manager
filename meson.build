@@ -167,6 +167,7 @@ configs = [
     'meta/yosemite4_cpu.json',
     'meta/yosemite4_fanboard_fsc_max_adc_ti_led_nxp_efuse_max.json',
     'meta/yosemite4_fanboard_fsc_max_adc_ti_led_nxp_efuse_mps.json',
+    'meta/yosemite4_fanboard_fsc_max_adc_ti_led_ons_efuse_mps.json',
     'meta/yosemite4_fanboard_fsc_nct_adc_max_led_ons_efuse_max.json',
     'meta/yosemite4_fanboard_fsc_nct_adc_max_led_ons_efuse_mps.json',
     'meta/yosemite4_floatingfalls.json',
