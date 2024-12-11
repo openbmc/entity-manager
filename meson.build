@@ -218,6 +218,7 @@ configs = [
     'yosemite4_chassis.json',
     'yosemite4_fanboard_fsc_max_adc_ti_led_nxp_efuse_max.json',
     'yosemite4_fanboard_fsc_max_adc_ti_led_nxp_efuse_mps.json',
+    'yosemite4_fanboard_fsc_max_adc_ti_led_ons_efuse_mps.json',
     'yosemite4_fanboard_fsc_nct_adc_max_led_ons_efuse_max.json',
     'yosemite4_fanboard_fsc_nct_adc_max_led_ons_efuse_mps.json',
     'yosemite4_floatingfalls.json',
