@@ -80,6 +80,9 @@
                 "GpioPolarity": {
                     "$ref": "#/$defs/Types/GpioPolarity"
                 },
+                "IANA": {
+                    "$ref": "#/$defs/Types/IANA"
+                },
                 "Index": {
                     "$ref": "#/$defs/Types/Index"
                 },
@@ -1035,6 +1038,9 @@
             },
             "GpioPolarity": {
                 "enum": ["Low"]
+            },
+            "IANA": {
+                "type": "string"
             },
             "Index": {
                 "type": "number"
