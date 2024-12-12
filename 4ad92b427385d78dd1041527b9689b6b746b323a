@@ -16,6 +16,24 @@
       "message": "Isn\u0027t IANA required?",
       "revId": "4ad92b427385d78dd1041527b9689b6b746b323a",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "f60aa5da_96fedfe7",
+        "filename": "schemas/mctp.json",
+        "patchSetId": 3
+      },
+      "lineNbr": 49,
+      "author": {
+        "id": 1002143
+      },
+      "writtenOn": "2024-12-12T02:18:32Z",
+      "side": 1,
+      "message": "Hi Jagpal, thanks for your advice. Currently, we use \"IANA\" to check if BMC is processing OEM Meta event from Meta specific device or not. I think it is not necessary to force \"IANA\", especially for non-Meta device.",
+      "parentUuid": "a4847e7a_596d48cd",
+      "revId": "4ad92b427385d78dd1041527b9689b6b746b323a",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }
