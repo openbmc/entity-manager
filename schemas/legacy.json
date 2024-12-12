@@ -224,6 +224,9 @@
                 "SlotId": {
                     "$ref": "#/$defs/Types/SlotId"
                 },
+                "StaticEndpointID": {
+                    "$ref": "#/$defs/Types/StaticEndpointID"
+                },
                 "TachMaxPercent": {
                     "$ref": "#/$defs/Types/TachMaxPercent"
                 },
@@ -1210,6 +1213,9 @@
                 "type": "string"
             },
             "SlotId": {
+                "type": "string"
+            },
+            "StaticEndpointID": {
                 "type": "string"
             },
             "TachMaxPercent": {
