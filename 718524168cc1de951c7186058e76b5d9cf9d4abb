@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "731e7afc_64ab2e2d",
+        "filename": "schemas/firmware.json",
+        "patchSetId": 13
+      },
+      "lineNbr": 13,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2024-12-12T22:52:01Z",
+      "side": 1,
+      "message": "This breaks the intent of EM.  If we can just hardcode a compatible interface, there\u0027s no need for it to be in an exposes record.  Just put it in code.\n\nConfig stanzas should be freestanding, and not have a relation to other software in OpenBMC (so that people that aren\u0027t openbmc experts can actually configure this stuff).\n\nSo if there\u0027s a description for CompatibleName that can be put here, lets put it here, and not bound in on dbus definitions.  They might match, and that\u0027s fine, but if this is an enumeration, it needs to be called out as such, and describe how folks can configure it.\n\n\nAs written, It could be a lot of things.",
+      "range": {
+        "startLine": 13,
+        "startChar": 36,
+        "endLine": 13,
+        "endChar": 141
+      },
+      "revId": "718524168cc1de951c7186058e76b5d9cf9d4abb",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b9689163_b001d9e6",
+        "filename": "schemas/firmware.json",
+        "patchSetId": 13
+      },
+      "lineNbr": 17,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2024-12-12T22:52:01Z",
+      "side": 1,
+      "message": "Do all systems have both of these?  I\u0027d assume it\u0027s likely they have one or another.",
+      "range": {
+        "startLine": 17,
+        "startChar": 0,
+        "endLine": 17,
+        "endChar": 56
+      },
+      "revId": "718524168cc1de951c7186058e76b5d9cf9d4abb",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    }
+  ]
+}
