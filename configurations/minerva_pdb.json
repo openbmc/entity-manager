@@ -1,0 +1,229 @@
+<<<<<<< PATCH SET (9241e0 configurations: minerva_pdb: add hysteresis)
+{
+    "Exposes": [
+        {
+            "Address": "0x44",
+            "Bus": 4,
+            "Labels": [
+                "iout1",
+                "pin",
+                "temp1",
+                "vin",
+                "vout1"
+            ],
+            "Name": "PDB_HSC",
+            "Thresholds": [
+                {
+                    "Direction": "greater than",
+                    "Hysteresis": 0.75,
+                    "Label": "iout1",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 37.5
+                },
+                {
+                    "Direction": "greater than",
+                    "Hysteresis": 38.2,
+                    "Label": "pin",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 1910.0
+                },
+                {
+                    "Direction": "less than",
+                    "Hysteresis": 0.1,
+                    "Label": "temp1",
+                    "Name": "lower critical",
+                    "Severity": 1,
+                    "Value": 5.0
+                },
+                {
+                    "Direction": "greater than",
+                    "Hysteresis": 1.6,
+                    "Label": "temp1",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 80.0
+                },
+                {
+                    "Direction": "less than",
+                    "Hysteresis": 0.92,
+                    "Label": "vin",
+                    "Name": "lower critical",
+                    "Severity": 1,
+                    "Value": 46.0
+                },
+                {
+                    "Direction": "greater than",
+                    "Hysteresis": 1.1,
+                    "Label": "vin",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 55.0
+                },
+                {
+                    "Direction": "less than",
+                    "Hysteresis": 0.92,
+                    "Label": "vout1",
+                    "Name": "lower critical",
+                    "Severity": 1,
+                    "Value": 46.0
+                },
+                {
+                    "Direction": "greater than",
+                    "Hysteresis": 1.1,
+                    "Label": "vout1",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 55.0
+                }
+            ],
+            "Type": "LTC4287",
+            "iout1_Name": "PDB_HSC_CURR_A",
+            "iout1_Offset": -0.5496,
+            "iout1_Scale": 1070,
+            "pin_Name": "PDB_HSC_PWR_W",
+            "pin_Offset": -16,
+            "pin_Scale": 1073883,
+            "temp1_Name": "PDB_HSC_TEMP_C",
+            "vin_Name": "PDB_HSC_VIN_VOLT_V",
+            "vout1_Name": "PDB_HSC_VOUT_VOLT_V"
+        },
+        {
+            "Address": "0x49",
+            "Bus": 4,
+            "Name": "PDB_TEMP_C",
+            "Thresholds": [
+                {
+                    "Direction": "less than",
+                    "Hysteresis": 0.1,
+                    "Name": "lower critical",
+                    "Severity": 1,
+                    "Value": 5.0
+                },
+                {
+                    "Direction": "greater than",
+                    "Hysteresis": 1.6,
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 80.0
+                }
+            ],
+            "Type": "TMP75"
+        },
+        {
+            "Address": "0x69",
+            "Bus": 4,
+            "Labels": [
+                "iout1",
+                "pin",
+                "pout1",
+                "temp1",
+                "vin",
+                "vout1"
+            ],
+            "Name": "PDB_BRICK",
+            "Thresholds": [
+                {
+                    "Direction": "greater than",
+                    "Hysteresis": 1.432,
+                    "Label": "iout1",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 71.6
+                },
+                {
+                    "Direction": "greater than",
+                    "Hysteresis": 17.48,
+                    "Label": "pin",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 874.0
+                },
+                {
+                    "Direction": "greater than",
+                    "Hysteresis": 17.2,
+                    "Label": "pout1",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 860.0
+                },
+                {
+                    "Direction": "less than",
+                    "Hysteresis": 0.1,
+                    "Label": "temp1",
+                    "Name": "lower critical",
+                    "Severity": 1,
+                    "Value": 5.0
+                },
+                {
+                    "Direction": "greater than",
+                    "Hysteresis": 2.1,
+                    "Label": "temp1",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 105.0
+                },
+                {
+                    "Direction": "less than",
+                    "Hysteresis": 0.76,
+                    "Label": "vin",
+                    "Name": "lower critical",
+                    "Severity": 1,
+                    "Value": 38.0
+                },
+                {
+                    "Direction": "greater than",
+                    "Hysteresis": 1.2,
+                    "Label": "vin",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 60.0
+                },
+                {
+                    "Direction": "less than",
+                    "Hysteresis": 0.216,
+                    "Label": "vout1",
+                    "Name": "lower critical",
+                    "Severity": 1,
+                    "Value": 10.8
+                },
+                {
+                    "Direction": "greater than",
+                    "Hysteresis": 0.264,
+                    "Label": "vout1",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 13.2
+                }
+            ],
+            "Type": "pmbus",
+            "iout1_Name": "PDB_BRICK_CURR_A",
+            "pin_Name": "PDB_BRICK_PIN_PWR_W",
+            "pout1_Name": "PDB_BRICK_POUT_PWR_W",
+            "temp1_Name": "PDB_BRICK_TEMP_C",
+            "vin_Name": "PDB_BRICK_VIN_VOLT_V",
+            "vout1_Name": "PDB_BRICK_VOUT_VOLT_V"
+        }
+    ],
+    "Name": "Minerva PDB",
+    "Probe": [
+        "xyz.openbmc_project.FruDevice({'BOARD_PRODUCT_NAME': 'Minerva PDB EVT'})",
+        "OR",
+        "xyz.openbmc_project.FruDevice({'BOARD_PRODUCT_NAME': 'Minerva PDB', 'BOARD_INFO_AM4': 'hsc-ltc'})"
+    ],
+    "Type": "Board",
+    "xyz.openbmc_project.Inventory.Decorator.Asset": {
+        "BuildDate": "$BOARD_MANUFACTURE_DATE",
+        "Manufacturer": "$BOARD_MANUFACTURER",
+        "Model": "$BOARD_PRODUCT_NAME",
+        "PartNumber": "$BOARD_PART_NUMBER",
+        "SerialNumber": "$BOARD_SERIAL_NUMBER",
+        "SparePartNumber": "$BOARD_INFO_AM1"
+    },
+    "xyz.openbmc_project.Inventory.Decorator.AssetTag": {
+        "AssetTag": "$PRODUCT_ASSET_TAG"
+    }
+}
+=======
+>>>>>>> BASE      (4c36b8 configurations: harma_mb_vr_infineon: add hysteresis)
