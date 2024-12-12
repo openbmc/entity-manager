@@ -206,9 +206,29 @@
             "Class": "temp",
             "InputUnavailableAsFailed": false,
             "Inputs": [
-                "CALIBRATED_SENTINEL_DOME_SLOT $bus % 15 MB_FIO_TEMP_C"
+                "SENTINEL_DOME_SLOT $bus % 15 MB_FIO_TEMP_C"
             ],
             "Name": "Stepwise_MB_FIO_Slot $bus % 15",
+            "NegativeHysteresis": 0,
+            "Output": [
+                10.0
+            ],
+            "PositiveHysteresis": 0,
+            "Reading": [
+                20.0
+            ],
+            "Type": "Stepwise",
+            "Zones": [
+                "Zone 1"
+            ]
+        },
+        {
+            "Class": "temp",
+            "InputUnavailableAsFailed": false,
+            "Inputs": [
+                "CALIBRATED_SENTINEL_DOME_SLOT $bus % 15 MB_FIO_TEMP_C"
+            ],
+            "Name": "Stepwise_CALIBRATED_MB_FIO_Slot $bus % 15",
             "NegativeHysteresis": 1,
             "Output": [
                 20.0,
