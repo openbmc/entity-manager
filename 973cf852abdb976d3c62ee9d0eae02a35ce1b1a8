@@ -16,6 +16,24 @@
       "message": "I don\u0027t think this is appropriate in the context of the description:\n\n\u003e Don\u0027t add additional properties to this schema. Consult README.schema for instructions on adding new Exposes element sub-schema.\n\nYou also define it in `schemas/mctp.json`. I don\u0027t think that duplication is right.",
       "revId": "973cf852abdb976d3c62ee9d0eae02a35ce1b1a8",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "3c77cc91_3df257fa",
+        "filename": "schemas/legacy.json",
+        "patchSetId": 4
+      },
+      "lineNbr": 83,
+      "author": {
+        "id": 1002143
+      },
+      "writtenOn": "2024-12-13T07:29:30Z",
+      "side": 1,
+      "message": "Hi Andrew, thanks for your suggestion. I removed the duplicate.\nBTW, in Patchset 5, I added the missing define for MCTPI3CTarget in schemas/global.json.",
+      "parentUuid": "e38ecda7_433e4d71",
+      "revId": "973cf852abdb976d3c62ee9d0eae02a35ce1b1a8",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }
