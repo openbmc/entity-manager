@@ -1,0 +1,45 @@
+{
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "$defs": {
+        "VoltageRegulator": {
+            "type": "object",
+            "properties": {
+                "Name": {
+                    "description": "Product name or identifier of the device",
+                    "type": "string"
+                },
+                "Type": {
+                    "description": "Device type",
+                    "type": "string"
+                },
+                "Powerstate": {
+                    "type": "string",
+                    "enum": ["On", "Off"]
+                },
+                "Thresholds": {
+                    "description": "Threshold values used to set and clear alarms",
+                    "$ref": "legacy.json#/$defs/Types/Thresholds"
+                },
+                "Connection": {
+                    "type": "object",
+                    "properties": {
+                        "Bus": {
+                            "description": "I2C bus, the device is connected to",
+                            "type": "integer"
+                        },
+                        "Address": {
+                            "description": "The I2C address of the device",
+                            "type": "integer"
+                        }
+                    }
+                },
+                "Labels": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    }
+                }
+            }
+		}
+	}
+}
