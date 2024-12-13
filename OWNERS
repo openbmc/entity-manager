@@ -41,6 +41,9 @@ reviewers:
 - christopher.sides@hpe.com
 
 matchers:
+- partial_regex: configurations/meta
+  owners:
+    - patrick@stwcx.xyz
 
 openbmc:
 - name: Ed Tanous
@@ -58,3 +61,6 @@ openbmc:
 - name: Christopher Sides
   email: christopher.sides@hpe.com
   discord: citysides
+- name: Patrick Williams
+  email: patrick@stwcx.xyz
+  discord: stwcx
