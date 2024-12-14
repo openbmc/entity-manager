@@ -50,6 +50,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "0a18388e_b043b612",
+        "filename": "schemas/firmware.json",
+        "patchSetId": 13
+      },
+      "lineNbr": 13,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2024-12-14T01:05:54Z",
+      "side": 1,
+      "message": "\u003e \u003e so that people that aren\u0027t openbmc experts can actually configure this stuff\n\u003e \n\u003e While I understand this was an original desire of EM, it doesn\u0027t seem to match reality.  Pretty much single contributor since 2022 has been someone relatively active in the community.\n\nSure, and that\u0027s fine.  It doesn\u0027t mean they\u0027re an expert on every subsystem for which they wrote a config file for.  Point still stands.\n\n\u003e \n\u003e https://gist.github.com/williamspatrick/42361153a246bd5a11ef2aa3874a5692\n\u003e \n\u003e \u003e This breaks the intent of EM. If we can just hardcode a compatible interface, there\u0027s no need for it to be in an exposes record. Just put it in code.\n\u003e \n\u003e I don\u0027t understand what you\u0027ve written here.\n\n\"Compatible\" doesn\u0027t mean anything outside of software.  Maybe we just need to redefine this from the point of view of the users?\n\n\u003e \n\u003e The purpose of this record is to say \"this FRU has a firmware blob that can be updated and the update image needs to be \u0027Compatible\u0027 in this way\".  How do we \"just put that in code\"?  This seems to be exactly what EM configurations are for.\n\nCool, so then lets put that in the definition exactly what user facing field we\u0027re referring to, (PLDM FWUPDAte header compatibility I suspect?) THen this should be fine.\n\n\u003e \n\u003e \u003e So if there\u0027s a description for CompatibleName that can be put here, lets put it here, and not bound in on dbus definitions. They might match, and that\u0027s fine, but if this is an enumeration, it needs to be called out as such, and describe how folks can configure it.\n\u003e \n\u003e Can you elaborate on what action you\u0027d like to see here; is it just a change of the description?\n\n\nChange the description and name to match something user facing.  What does the software actually do with the information in this?  If this is to match up a PLDM header (which I think it is) lets call it PLDMHeaderCompatibleField (or something like that) and give it the appropriate description.\n\n\u003e \n\u003e There is `xyz.openbmc_project.Inventory.Decorator.Compatible` where the intended design is for someone to define an empty dbus interface with enumerations, which become the valid values of a possible Compatible.  You can see some existing ones here: https://github.com/openbmc/phosphor-dbus-interfaces/blob/3eb0180161fc42a91fd2197f60695da1541e8083/yaml/com/meta/Hardware/BMC.interface.yaml#L17\n\n\nRight.... those are all Meta systems, which is fine.  If this is some Internal Meta identifier, lets get it called out as such.  (I\u0027m pretty sure IBM has a similar internal identifier).\n\n\u003e \n\u003e (These are already used as part of the BMC update identifiers: https://github.com/openbmc/openbmc/blob/88c1c16b4583b1b2bd890dcacaa22290b940fc82/meta-facebook/meta-yosemite4/conf/machine/yosemite4.conf#L9 )\n\u003e \n\u003e There was a question on how this is suppose to work on Discord also, so I must have done a poor job of documenting it.  https://discord.com/channels/775381525260664832/867820390406422538/1317152417564987432\n\u003e \n\u003e I don\u0027t know how we reconcile the \"this needs to be simple enough that people who don\u0027t understand OpenBMC can configure it\" with \"we need to ensure these are unique and documented so they can be reasoned about\".  I know at one point someone suggested using device-tree style naming (ie. \"meta,yosemite4\") but those are similarly understood only by people who understand kernel device trees.  \n\u003e Using reverse-DNS style is pretty widely used all over industry (https://en.wikipedia.org/wiki/Reverse_domain_name_notation#Examples) and seems pretty straight-forward to understand to me (plus it aligns with all our dbus stuff).\n\u003e \n\nI think the big thing here is to add an appropriate name and description of what the heck this means without using a Dbus name, dbus path, or identifier.  Once we have that, I really suspect there\u0027s something better than \"CompatibleName\" but I\u0027m also not sure what this parameter does, so it\u0027s hard to make suggestions.\n\n\u003e We could require people to add to a big list of valid compatibles in EM so you could use the short name (ie. \"Yosemite4\") but that seems like extra steps for the same effect and it doesn\u0027t allow us to handle two companies ending up with the same code-name / model-name for two different products.\n\nAgreed, just making a list doesn\u0027t seem great either.",
+      "parentUuid": "f381eaeb_2768f42b",
+      "range": {
+        "startLine": 13,
+        "startChar": 36,
+        "endLine": 13,
+        "endChar": 141
+      },
+      "revId": "718524168cc1de951c7186058e76b5d9cf9d4abb",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "b9689163_b001d9e6",
         "filename": "schemas/firmware.json",
         "patchSetId": 13
