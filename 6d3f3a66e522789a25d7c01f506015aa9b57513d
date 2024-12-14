@@ -1,0 +1,73 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d33b1894_764025e0",
+        "filename": "schemas/leak_detector.json",
+        "patchSetId": 17
+      },
+      "lineNbr": 17,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2024-12-14T00:28:25Z",
+      "side": 1,
+      "message": "We don\u0027t crossreference Redfish here.  Make this a proper enumeration of the two types (or for now just assume Moisture, as I don\u0027t know of any BMCs with FloatSwitch leak detectors)",
+      "range": {
+        "startLine": 17,
+        "startChar": 36,
+        "endLine": 17,
+        "endChar": 128
+      },
+      "revId": "6d3f3a66e522789a25d7c01f506015aa9b57513d",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "dc50c39f_10d56486",
+        "filename": "schemas/leak_detector.json",
+        "patchSetId": 17
+      },
+      "lineNbr": 19,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2024-12-14T00:28:25Z",
+      "side": 1,
+      "message": "Please remove the PDI-style namespacing from all of these.  If we\u0027re going to support PDI, that\u0027s fine, but the EM config files and schema shouldn\u0027t need PDI definitions in them to do it, otherwise we break the rule of \"You don\u0027t need to be a dbus expert to write an EM config file\".",
+      "range": {
+        "startLine": 19,
+        "startChar": 25,
+        "endLine": 19,
+        "endChar": 78
+      },
+      "revId": "6d3f3a66e522789a25d7c01f506015aa9b57513d",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8220535a_f3defe11",
+        "filename": "schemas/leak_detector.json",
+        "patchSetId": 17
+      },
+      "lineNbr": 40,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2024-12-14T00:28:25Z",
+      "side": 1,
+      "message": "What does this mean?  This should likely not be configurable, right?  There\u0027s no such thing as a \"warning\" leak detector.",
+      "range": {
+        "startLine": 34,
+        "startChar": 0,
+        "endLine": 40,
+        "endChar": 18
+      },
+      "revId": "6d3f3a66e522789a25d7c01f506015aa9b57513d",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    }
+  ]
+}
