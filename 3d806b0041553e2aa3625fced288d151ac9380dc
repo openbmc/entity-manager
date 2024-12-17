@@ -1,0 +1,90 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "146380a5_5dcacd65",
+        "filename": "docs/blacklist_configuration.md",
+        "patchSetId": 21
+      },
+      "lineNbr": 45,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2024-12-17T22:04:59Z",
+      "side": 1,
+      "message": "\"allowlist\"",
+      "range": {
+        "startLine": 45,
+        "startChar": 55,
+        "endLine": 45,
+        "endChar": 64
+      },
+      "revId": "3d806b0041553e2aa3625fced288d151ac9380dc",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1b0f81dd_196aad63",
+        "filename": "docs/blacklist_configuration.md",
+        "patchSetId": 21
+      },
+      "lineNbr": 76,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2024-12-17T22:04:59Z",
+      "side": 1,
+      "message": "Since the opposite behavior is \"addresses\", I don\u0027t think \"no_block\" is very intuitive.  How about \"only_addresses\"?  Not sure if others have opinions.",
+      "range": {
+        "startLine": 76,
+        "startChar": 7,
+        "endLine": 76,
+        "endChar": 15
+      },
+      "revId": "3d806b0041553e2aa3625fced288d151ac9380dc",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "600d5e5e_26d09e31",
+        "filename": "src/fru_device.cpp",
+        "patchSetId": 21
+      },
+      "lineNbr": 76,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2024-12-17T22:04:59Z",
+      "side": 1,
+      "message": "Do we have comments on why these are the minimum and maximum addresses?",
+      "range": {
+        "startLine": 75,
+        "startChar": 0,
+        "endLine": 76,
+        "endChar": 35
+      },
+      "revId": "3d806b0041553e2aa3625fced288d151ac9380dc",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d62755b3_d68b0f26",
+        "filename": "src/fru_device.cpp",
+        "patchSetId": 21
+      },
+      "lineNbr": 675,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2024-12-17T22:04:59Z",
+      "side": 1,
+      "message": "Can we combine the two legs of this to simplify?  There is a lot of duplicated code and it is now almost 100 lines long.",
+      "revId": "3d806b0041553e2aa3625fced288d151ac9380dc",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    }
+  ]
+}
