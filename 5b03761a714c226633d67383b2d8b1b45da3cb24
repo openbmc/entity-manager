@@ -16,6 +16,24 @@
       "message": "Why isn\u0027t this \"RackMount\"?",
       "revId": "5b03761a714c226633d67383b2d8b1b45da3cb24",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b8ec89b3_e74543e4",
+        "filename": "configurations/meta/harma_mb.json",
+        "patchSetId": 2
+      },
+      "lineNbr": 1145,
+      "author": {
+        "id": 1001802
+      },
+      "writtenOn": "2024-12-18T17:48:17Z",
+      "side": 1,
+      "message": "The internal tooling uses the Chassis.Type to identify whether the FRU is \"SERVER\" or \"CHASSIS\", and the current rule is \"Blade\"-\u003e\"SERVER\", \"RackMount\"-\u003e\"CHASSIS\" because this rule is designed using yv4 multi-host system as the sample. I double check the description for [\"Blade\"](https://github.com/openbmc/phosphor-dbus-interfaces/blob/master/yaml/xyz/openbmc_project/Inventory/Item/Chassis.interface.yaml#L16-L20) and it does seem that it doesn\u0027t fit for single host case. To prevent such conflict,  I guess one way to solve this is to have the internal tooling taking single/multi-host as a factor when deciding the FRU type and so we can use \"RackMount\" here. Or we should actually change the mapping to \"Blade/RackMount\"-\u003e\"SERVER\", \"Enclosure\"-\u003e\"Chassis\" and do some change on the yv4 part? (The description seems to indicate that [\"RackMount\"](https://github.com/openbmc/phosphor-dbus-interfaces/blob/master/yaml/xyz/openbmc_project/Inventory/Item/Chassis.interface.yaml#L33-L36) is for single-host chassis)",
+      "parentUuid": "26a38aa6_a7b6a856",
+      "revId": "5b03761a714c226633d67383b2d8b1b45da3cb24",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }
