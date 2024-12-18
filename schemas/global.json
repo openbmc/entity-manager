@@ -100,7 +100,8 @@
                         "NVMe",
                         "PowerSupply",
                         "CPU",
-                        "Cable"
+                        "Cable",
+                        "Vrm"
                     ]
                 },
                 "xyz.openbmc_project.Common.UUID": {
@@ -159,6 +160,9 @@
                 },
                 "xyz.openbmc_project.Inventory.Item.Dimm": {
                     "$ref": "openbmc-dbus.json#/$defs/xyz/openbmc_project/Inventory/Item/Dimm"
+                },
+                "xyz.openbmc_project.Inventory.Item.Vrm": {
+                    "$ref": "openbmc-dbus.json#/$defs/xyz/openbmc_project/Inventory/Item/Vrm"
                 }
             },
             "required": ["Exposes", "Name", "Probe", "Type"]
