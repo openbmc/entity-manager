@@ -50,6 +50,29 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "976c3b65_8a86b2f1",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2024-12-18T12:57:33Z",
+      "side": 1,
+      "message": "nit: \"feat:\" isn\u0027t really a tag we use in openbmc for commit messages.",
+      "range": {
+        "startLine": 7,
+        "startChar": 0,
+        "endLine": 7,
+        "endChar": 4
+      },
+      "revId": "37895feb26dbfa3175bcc0e8ecb40be4766e0069",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "61677f58_51c36c7f",
         "filename": "/COMMIT_MSG",
         "patchSetId": 2
@@ -97,6 +120,24 @@
       "side": 1,
       "message": "@Ed beyond exposing this functionality on dbus nothing is planned for now, unlike the ASSET_TAG update that we can do via redfish.\n \n@Christopher we mainly have pre-production scenarios in mind for this feature, however we know of a case of one of our customers that updates some properties in production aswell.\nI can only assume that updating \u0027BOARD_PRODUCT_NAME\u0027 might have a case be it pre-production or production, but updating \u0027BOARD_SERIAL_NUMBER\u0027 for example shouldn\u0027t be really in the discussion. I feel like especially updating custom fru fields is something people are looking for.",
       "parentUuid": "ea018507_27017c91",
+      "revId": "37895feb26dbfa3175bcc0e8ecb40be4766e0069",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f93c2e0d_7b7a6d68",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 23,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2024-12-18T12:57:33Z",
+      "side": 1,
+      "message": "\u003e but updating \u0027BOARD_SERIAL_NUMBER\u0027 for example shouldn\u0027t be really in the discussion\n\nNot positive what you meant by that.  Using this in API manufacturing time might actually desire programming the serial number.",
+      "parentUuid": "b4b39415_e3ff92bc",
       "revId": "37895feb26dbfa3175bcc0e8ecb40be4766e0069",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
