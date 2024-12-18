@@ -46,10 +46,10 @@ struct DBusInterfaceInstance
     std::string interface;
 };
 
-void getInterfaces(
-    const DBusInterfaceInstance& instance,
-    const std::vector<std::shared_ptr<PerformProbe>>& probeVector,
-    const std::shared_ptr<PerformScan>& scan, size_t retries = 5)
+void
+    getInterfaces(const DBusInterfaceInstance& instance,
+                  const std::vector<std::shared_ptr<PerformProbe>>& probeVector,
+                  const std::shared_ptr<PerformScan>& scan, size_t retries = 5)
 {
     if (retries == 0U)
     {
