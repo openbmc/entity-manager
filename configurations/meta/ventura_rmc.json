@@ -12,20 +12,6 @@
             "Thresholds": [
                 {
                     "Direction": "greater than",
-                    "Label": "curr1",
-                    "Name": "upper critical",
-                    "Severity": 1,
-                    "Value": 8.33
-                },
-                {
-                    "Direction": "less than",
-                    "Label": "curr1",
-                    "Name": "lower critical",
-                    "Severity": 1,
-                    "Value": -0.05
-                },
-                {
-                    "Direction": "greater than",
                     "Label": "in1",
                     "Name": "upper critical",
                     "Severity": 1,
@@ -43,14 +29,7 @@
                     "Label": "power1",
                     "Name": "upper critical",
                     "Severity": 1,
-                    "Value": 199.92
-                },
-                {
-                    "Direction": "less than",
-                    "Label": "power1",
-                    "Name": "lower critical",
-                    "Severity": 1,
-                    "Value": 0
+                    "Value": 144
                 }
             ],
             "Type": "INA230",
@@ -70,20 +49,6 @@
             "Thresholds": [
                 {
                     "Direction": "greater than",
-                    "Label": "curr1",
-                    "Name": "upper critical",
-                    "Severity": 1,
-                    "Value": 8.33
-                },
-                {
-                    "Direction": "less than",
-                    "Label": "curr1",
-                    "Name": "lower critical",
-                    "Severity": 1,
-                    "Value": -0.05
-                },
-                {
-                    "Direction": "greater than",
                     "Label": "in1",
                     "Name": "upper critical",
                     "Severity": 1,
@@ -101,14 +66,7 @@
                     "Label": "power1",
                     "Name": "upper critical",
                     "Severity": 1,
-                    "Value": 199.92
-                },
-                {
-                    "Direction": "less than",
-                    "Label": "power1",
-                    "Name": "lower critical",
-                    "Severity": 1,
-                    "Value": 0
+                    "Value": 105.6
                 }
             ],
             "Type": "INA230",
@@ -125,18 +83,11 @@
             "Name": "RMC_MEDUSA_RETURN",
             "Thresholds": [
                 {
-                    "Direction": "less than",
-                    "Label": "in0",
-                    "Name": "lower critical",
-                    "Severity": 1,
-                    "Value": 10.8
-                },
-                {
                     "Direction": "greater than",
                     "Label": "in0",
                     "Name": "upper critical",
                     "Severity": 1,
-                    "Value": 13.2
+                    "Value": 200
                 }
             ],
             "Type": "INA238",
@@ -151,18 +102,11 @@
             "Name": "RMC_MEDUSA_POSITIVE",
             "Thresholds": [
                 {
-                    "Direction": "less than",
-                    "Label": "in0",
-                    "Name": "lower critical",
-                    "Severity": 1,
-                    "Value": 10.8
-                },
-                {
                     "Direction": "greater than",
                     "Label": "in0",
                     "Name": "upper critical",
                     "Severity": 1,
-                    "Value": 13.2
+                    "Value": 200
                 }
             ],
             "Type": "INA238",
@@ -220,12 +164,16 @@
                     "Label": "pin",
                     "Name": "upper critical",
                     "Severity": 1,
-                    "Value": 334.4
+                    "Value": 580
                 }
             ],
             "Type": "LTC4287",
             "iout1_Name": "RMC_HSC_CURR_A",
+            "iout1_Offset": -0.16125,
+            "iout1_Scale": 3327.366,
             "pin_Name": "RMC_HSC_PWR_W",
+            "pin_Offset": -0.16125,
+            "pin_Scale": 3327366.257,
             "temp1_Name": "RMC_HSC_TEMP_C",
             "vin_Name": "RMC_HSC_VIN_VOLT_V",
             "vout1_Name": "RMC_HSC_VOUT_VOLT_V"
