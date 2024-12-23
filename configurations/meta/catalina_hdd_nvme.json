@@ -8,12 +8,14 @@
             "Thresholds": [
                 {
                     "Direction": "greater than",
+                    "Hysteresis": 1.4,
                     "Name": "upper critical",
                     "Severity": 1,
                     "Value": 70
                 },
                 {
                     "Direction": "less than",
+                    "Hysteresis": 0.1,
                     "Name": "lower critical",
                     "Severity": 1,
                     "Value": 5
@@ -29,12 +31,14 @@
             "Thresholds": [
                 {
                     "Direction": "greater than",
+                    "Hysteresis": 1.4,
                     "Name": "upper critical",
                     "Severity": 1,
                     "Value": 70
                 },
                 {
                     "Direction": "less than",
+                    "Hysteresis": 0.1,
                     "Name": "lower critical",
                     "Severity": 1,
                     "Value": 5
