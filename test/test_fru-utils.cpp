@@ -168,6 +168,7 @@ int64_t getDataTempl(const std::vector<uint8_t>& data, off_t offset,
 TEST(FRUReaderTest, ReadData)
 {
     std::vector<uint8_t> data = {};
+    data.reserve(blockSize * 2);
     for (size_t i = 0; i < blockSize * 2; i++)
     {
         data.push_back(i);
