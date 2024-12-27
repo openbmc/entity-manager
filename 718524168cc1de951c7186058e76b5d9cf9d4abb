@@ -74,6 +74,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "10a862d6_304dcc39",
+        "filename": "schemas/firmware.json",
+        "patchSetId": 13
+      },
+      "lineNbr": 13,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2024-12-27T02:25:06Z",
+      "side": 1,
+      "message": "This is a very long thread, so i am not going to reply on all the messages in this thread, but only actionable ones so we can conclude on the points being discussed -\n\n* Property Name\n\n\u003e I think the big thing here is to add an appropriate name and description of what the heck this means without using a Dbus name, dbus path, or identifier. Once we have that, I really suspect there\u0027s something better than \"CompatibleName\" but I\u0027m also not sure what this parameter does, so it\u0027s hard to make suggestions.\n\nI wouldn\u0027t recommend using keyword \"PLDM\" in property names for firmwareInfo as its better to keep EM definitions independent of packaging format as different vendors may choose different formats. Since, this is part of FirmwareInfo definition i am suggesting the property name as \"CompatibleHardware\" or \"CompatibleDevice\" and Description as \"Compatible hardware/device for the firmware\". Let me know if you have any other suggestions.\n\n* Property Value\n\n\u003e\u003e There is xyz.openbmc_project.Inventory.Decorator.Compatible where the intended design is for someone to define an empty dbus interface with enumerations, which become the valid values of a possible Compatible. You can see some existing ones here: https://github.com/openbmc/phosphor-dbus-interfaces/blob/3eb0180161fc42a91fd2197f60695da1541e8083/yaml/com/meta/Hardware/BMC.interface.yaml#L17\n\n\u003e Right.... those are all Meta systems, which is fine. If this is some Internal Meta identifier, lets get it called out as such. (I\u0027m pretty sure IBM has a similar internal identifier).\n\n@Ed as @Patrick mentioned above, every vendor would need to define their Hardware compatible definitions in the PDI, for example, as Meta and IBM have done for their hardware. This is nothing specific to Meta or IBM but a general design approach to take for hardware definitions. You already seem to agree \"not making a list\", so if property is renamed to something better (Some suggestions above), are you fine with using these fully qualified names?",
+      "parentUuid": "0a18388e_b043b612",
+      "range": {
+        "startLine": 13,
+        "startChar": 36,
+        "endLine": 13,
+        "endChar": 141
+      },
+      "revId": "718524168cc1de951c7186058e76b5d9cf9d4abb",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "b9689163_b001d9e6",
         "filename": "schemas/firmware.json",
         "patchSetId": 13
@@ -109,6 +133,30 @@
       "side": 1,
       "message": "This isn\u0027t about a system, but a device.  Anyhow...\n\nThe design suggests that we need both of them as a PLDM image identifier, which is the purpose of this configuration.  The reason is because we\u0027d like to be able to differentiate (and block as necessary) two different images that work functionally on the same hardware but have not been qualified in different environments.\n\nFor an example I made up on the fly, we could have a different compatible of `com.meta.Hardware.Yosemite4.CX7` vs `com.meta.Hardware.Catalina.CX7` and ensure that the image that was qualified for Yv4 is never applied to Catalina, even thought it is the same hardware.\n\n(What I wrote above actually doesn\u0027t work today because the CX7 would have the \"Compatible\" and there isn\u0027t currently a way to tweak them per-machine; we might work on that next half.  We do have concrete cases of the same CPLD being used for different purposes and so while the VendorIANA would be the same we need to have different compatible identifiers so we don\u0027t end up putting one CPLD image on a different [purpose] CPLD and brick the whole device.)",
       "parentUuid": "b9689163_b001d9e6",
+      "range": {
+        "startLine": 17,
+        "startChar": 0,
+        "endLine": 17,
+        "endChar": 56
+      },
+      "revId": "718524168cc1de951c7186058e76b5d9cf9d4abb",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c6d5ec7e_d68b14fe",
+        "filename": "schemas/firmware.json",
+        "patchSetId": 13
+      },
+      "lineNbr": 17,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2024-12-27T02:25:06Z",
+      "side": 1,
+      "message": "@Ed I don\u0027t see any further comments on this, so i assume you are fine with @Patrick\u0027s response?",
+      "parentUuid": "61df594a_6fe8d251",
       "range": {
         "startLine": 17,
         "startChar": 0,
