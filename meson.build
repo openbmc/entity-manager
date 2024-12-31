@@ -151,6 +151,7 @@ configs = [
     'meta/minerva_cmm_hsc_infineon.json',
     'meta/minerva_cmm_scm.json',
     'meta/minerva_fanboard.json',
+    'meta/minerva_fanboard_adc_silergy.json',
     'meta/minerva_pdb.json',
     'meta/minerva_pdb_hsc_xdp.json',
     'meta/minerva_pttv.json',
