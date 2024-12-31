@@ -293,7 +293,8 @@
                 ],
                 "Type": "INA238",
                 "curr1_Name": "FCB_$bus - 15 FAN $bus * 4 - 64 + 1 CURR_A",
-                "in1_Name": "FCB_$bus - 15 FAN $bus * 4 - 64 + 1 VOLT_V"
+                "in1_Name": "FCB_$bus - 15 FAN $bus * 4 - 64 + 1 VOLT_V",
+                "in1_Scale": 833.3333
             },
             {
                 "Address": "0x41",
@@ -331,7 +332,8 @@
                 ],
                 "Type": "INA238",
                 "curr1_Name": "FCB_$bus - 15 FAN $bus * 4 - 64 + 2 CURR_A",
-                "in1_Name": "FCB_$bus - 15 FAN $bus * 4 - 64 + 2 VOLT_V"
+                "in1_Name": "FCB_$bus - 15 FAN $bus * 4 - 64 + 2 VOLT_V",
+                "in1_Scale": 833.3333
             },
             {
                 "Address": "0x44",
@@ -369,7 +371,8 @@
                 ],
                 "Type": "INA238",
                 "curr1_Name": "FCB_$bus - 15 FAN $bus * 4 - 64 + 3 CURR_A",
-                "in1_Name": "FCB_$bus - 15 FAN $bus * 4 - 64 + 3 VOLT_V"
+                "in1_Name": "FCB_$bus - 15 FAN $bus * 4 - 64 + 3 VOLT_V",
+                "in1_Scale": 833.3333
             },
             {
                 "Address": "0x45",
@@ -407,7 +410,8 @@
                 ],
                 "Type": "INA238",
                 "curr1_Name": "FCB_$bus - 15 FAN $bus * 4 - 64 + 4 CURR_A",
-                "in1_Name": "FCB_$bus - 15 FAN $bus * 4 - 64 + 4 VOLT_V"
+                "in1_Name": "FCB_$bus - 15 FAN $bus * 4 - 64 + 4 VOLT_V",
+                "in1_Scale": 833.3333
             },
             {
                 "Address": "0x49",
@@ -444,13 +448,13 @@
         ],
         "Name": "Minerva Fan Board $bus - 15",
         "Probe": [
-            "xyz.openbmc_project.FruDevice({'BOARD_PRODUCT_NAME': 'Minerva Fan Board.*', 'BUS': 16, 'BOARD_PART_NUMBER': '3XF0MFB0010'})",
+            "xyz.openbmc_project.FruDevice({'BOARD_PRODUCT_NAME': 'Minerva Fan Board.*', 'BUS': 16, 'BOARD_PART_NUMBER': '3XF0MFB0030'})",
             "OR",
-            "xyz.openbmc_project.FruDevice({'BOARD_PRODUCT_NAME': 'Minerva Fan Board.*', 'BUS': 17, 'BOARD_PART_NUMBER': '3XF0MFB0010'})",
+            "xyz.openbmc_project.FruDevice({'BOARD_PRODUCT_NAME': 'Minerva Fan Board.*', 'BUS': 17, 'BOARD_PART_NUMBER': '3XF0MFB0030'})",
             "OR",
-            "xyz.openbmc_project.FruDevice({'BOARD_PRODUCT_NAME': 'Minerva Fan Board.*', 'BUS': 18, 'BOARD_PART_NUMBER': '3XF0MFB0010'})",
+            "xyz.openbmc_project.FruDevice({'BOARD_PRODUCT_NAME': 'Minerva Fan Board.*', 'BUS': 18, 'BOARD_PART_NUMBER': '3XF0MFB0030'})",
             "OR",
-            "xyz.openbmc_project.FruDevice({'BOARD_PRODUCT_NAME': 'Minerva Fan Board.*', 'BUS': 19, 'BOARD_PART_NUMBER': '3XF0MFB0010'})"
+            "xyz.openbmc_project.FruDevice({'BOARD_PRODUCT_NAME': 'Minerva Fan Board.*', 'BUS': 19, 'BOARD_PART_NUMBER': '3XF0MFB0030'})"
         ],
         "Type": "Board",
         "xyz.openbmc_project.Inventory.Decorator.Asset": {
@@ -759,7 +763,8 @@
                 ],
                 "Type": "INA238",
                 "curr1_Name": "FCB_$bus - 15 FAN $bus * 4 - 64 + 1 CURR_A",
-                "in1_Name": "FCB_$bus - 15 FAN $bus * 4 - 64 + 1 VOLT_V"
+                "in1_Name": "FCB_$bus - 15 FAN $bus * 4 - 64 + 1 VOLT_V",
+                "in1_Scale": 833.3333
             },
             {
                 "Address": "0x41",
@@ -797,7 +802,8 @@
                 ],
                 "Type": "INA238",
                 "curr1_Name": "FCB_$bus - 15 FAN $bus * 4 - 64 + 2 CURR_A",
-                "in1_Name": "FCB_$bus - 15 FAN $bus * 4 - 64 + 2 VOLT_V"
+                "in1_Name": "FCB_$bus - 15 FAN $bus * 4 - 64 + 2 VOLT_V",
+                "in1_Scale": 833.3333
             },
             {
                 "Address": "0x44",
@@ -835,7 +841,8 @@
                 ],
                 "Type": "INA238",
                 "curr1_Name": "FCB_$bus - 15 FAN $bus * 4 - 64 + 3 CURR_A",
-                "in1_Name": "FCB_$bus - 15 FAN $bus * 4 - 64 + 3 VOLT_V"
+                "in1_Name": "FCB_$bus - 15 FAN $bus * 4 - 64 + 3 VOLT_V",
+                "in1_Scale": 833.3333
             },
             {
                 "Address": "0x45",
@@ -873,7 +880,8 @@
                 ],
                 "Type": "INA238",
                 "curr1_Name": "FCB_$bus - 15 FAN $bus * 4 - 64 + 4 CURR_A",
-                "in1_Name": "FCB_$bus - 15 FAN $bus * 4 - 64 + 4 VOLT_V"
+                "in1_Name": "FCB_$bus - 15 FAN $bus * 4 - 64 + 4 VOLT_V",
+                "in1_Scale": 833.3333
             },
             {
                 "Address": "0x49",
@@ -910,9 +918,9 @@
         ],
         "Name": "Minerva Fan Board $bus - 15",
         "Probe": [
-            "xyz.openbmc_project.FruDevice({'BOARD_PRODUCT_NAME': 'Minerva Fan Board.*', 'BUS': 20, 'BOARD_PART_NUMBER': '3XF0MFB0010'})",
+            "xyz.openbmc_project.FruDevice({'BOARD_PRODUCT_NAME': 'Minerva Fan Board.*', 'BUS': 20, 'BOARD_PART_NUMBER': '3XF0MFB0030'})",
             "OR",
-            "xyz.openbmc_project.FruDevice({'BOARD_PRODUCT_NAME': 'Minerva Fan Board.*', 'BUS': 21, 'BOARD_PART_NUMBER': '3XF0MFB0010'})"
+            "xyz.openbmc_project.FruDevice({'BOARD_PRODUCT_NAME': 'Minerva Fan Board.*', 'BUS': 21, 'BOARD_PART_NUMBER': '3XF0MFB0030'})"
         ],
         "Type": "Board",
         "xyz.openbmc_project.Inventory.Decorator.Asset": {
