@@ -16,6 +16,24 @@
       "message": "The reason for the verification failure is not due to errors in the modified code, but because other parts, specifically fru_device.cpp and test_fru-utils.cpp, do not comply with the new CI rules.",
       "revId": "b77d46f5385a5f2a69558510839b039da945fca4",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "d5ab97da_6ca56aa9",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 6
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1001354
+      },
+      "writtenOn": "2025-01-02T16:06:31Z",
+      "side": 1,
+      "message": "One option might be to try running \u0027run-unit-test-docker.sh\u0027 from https://github.com/openbmc/openbmc-build-scripts against your entity-manager directory -- that should apply any CI-tool required format changes automatically, and you\u0027ll just need to check in changes the tool makes, and then commit and push it upstream.\n\n\nYou\u0027ll specifically need docker community edition installed to run the tool, IIRC. The command to run is something along the lines of\n\n\u003e WORKSPACE\u003d$(pwd) UNIT_TEST_PKG\u003d[target-directory (\u0027entity-manager\u0027)] ./openbmc-build-scripts/run-unit-test-docker.sh\n\nThis command can be run from a root directory that contains both the entity-manager checkout and the openbmc-build-scripts checkout directories\n\nie\n\nroot/entity-manager\nroot/openbmc-build-scripts/run-unit-test-docker.sh\n\nrun the command above while in \u0027root\u0027 directory to have changes applied to the \u0027entity-manager\u0027 directory.",
+      "parentUuid": "a9476ae5_2f723870",
+      "revId": "b77d46f5385a5f2a69558510839b039da945fca4",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }
