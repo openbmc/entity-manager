@@ -132,6 +132,11 @@ entity-manager to produce a Redfish compliant REST API. **intel-ipmi-oem** An
 implementation of the IPMI SDR, FRU, and Storage commands that utilize Entity
 Manager as the source of information.
 
+### When adding/moving/removing a configuration file
+
+Please run `scripts/generate_config_list.sh` from the root of the repository so
+that configuration files are correctly referenced by meson.
+
 ## Additional Documentation
 
 1. **[Entity Manager DBus API](https://github.com/openbmc/entity-manager/blob/master/docs/entity_manager_dbus_api.md)**
