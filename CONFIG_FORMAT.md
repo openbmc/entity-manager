@@ -109,6 +109,11 @@ files. The following table describes the template strings currently defined.
 If you're just getting started and your goal is to add sensors dynamically,
 check out [My First Sensors](docs/my_first_sensors.md)
 
+## When adding/moving/removing a configuration file
+
+Please run `scripts/generate_config_list.sh` from the root of the repository so
+that configuration files are correctly referenced by meson.
+
 ## Configuration schema
 
 The config schema is documented in [README.md](schemas/README.md)
