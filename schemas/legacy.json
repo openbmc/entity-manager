@@ -845,6 +845,12 @@
                 "fan1_Name": {
                     "$ref": "#/$defs/Types/fan1_Name"
                 },
+                "curr1_Offset": {
+                    "$ref": "#/$defs/Types/curr1_Offset"
+                },
+                "power1_Offset": {
+                    "$ref": "#/$defs/Types/power1_Offset"
+                },
                 "iout1_Offset": {
                     "$ref": "#/$defs/Types/iout1_Offset"
                 },
@@ -853,6 +859,12 @@
                 },
                 "pin_Offset": {
                     "$ref": "#/$defs/Types/pin_Offset"
+                },
+                "curr1_Scale": {
+                    "$ref": "#/$defs/Types/curr1_Scale"
+                },
+                "power1_Scale": {
+                    "$ref": "#/$defs/Types/power1_Scale"
                 },
                 "iout1_Scale": {
                     "$ref": "#/$defs/Types/iout1_Scale"
@@ -1859,6 +1871,12 @@
             "fan1_Name": {
                 "type": "string"
             },
+            "curr1_Offset": {
+                "type": "number"
+            },
+            "power1_Offset": {
+                "type": "number"
+            },
             "iout1_Offset": {
                 "type": "number"
             },
@@ -1866,6 +1884,12 @@
                 "type": "number"
             },
             "pin_Offset": {
+                "type": "number"
+            },
+            "curr1_Scale": {
+                "type": "number"
+            },
+            "power1_Scale": {
                 "type": "number"
             },
             "iout1_Scale": {
