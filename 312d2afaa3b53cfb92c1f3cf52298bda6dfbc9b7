@@ -16,6 +16,24 @@
       "message": "Am I understanding correctly that the aim of this change is to make it so that when a new EM config is added to configurations/, the submitter would run generate_config_list.sh, then commit the updates configurations/meson.build along with their changes-- instead of just updating the existing meson.build like we\u0027d do today?\n\n\nWhen you say\n\n\u003e There is a tradeoff when running a command to get the filenames, as it\nmay not regenerate when file is added/removed\n\nThat sounds like a potentially serious tradeoff if we\u0027re replacing the existing list (relatively easy for change submitters to maintain, IMO) with a file that has \u0027# This file is auto-generated. Do not edit manually.\u0027 at the top.\n\nWhat situations would result in the script *not* updating the list when a config is added or removed?",
       "revId": "312d2afaa3b53cfb92c1f3cf52298bda6dfbc9b7",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "4e1dc08f_d149b03e",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-01-07T01:54:19Z",
+      "side": 1,
+      "message": "yes, the idea is that the list is a separate file and not updated manually.\n\n\u003eWhat situations would result in the script not updating the list when a config is added or removed?\n\nAs long as you run the script, it should be fine. I initially wanted to avoid the script and just use \u0027find\u0027to get all the filenames but came across that meson documentation as to why all the files are explicitly mentioned.",
+      "parentUuid": "ce8e1c3d_0eb0c1aa",
+      "revId": "312d2afaa3b53cfb92c1f3cf52298bda6dfbc9b7",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }
