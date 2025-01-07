@@ -52,6 +52,24 @@
       "parentUuid": "4e1dc08f_d149b03e",
       "revId": "312d2afaa3b53cfb92c1f3cf52298bda6dfbc9b7",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "588dd324_4fda14bf",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-01-07T15:51:04Z",
+      "side": 1,
+      "message": "\u003e Assuming Entity-Manager maintainers have don\u0027t have other objections, I think it\u0027d make sense to make a revision that also updates the Entity-Manager readme to mention this script should be run after adding or changing the name of an entity-manager config.\n\nMany people don\u0027t read documentation. It tends to be outdated anyways.\nBut you are right that it should be clear how to update this file.\n\nThis is fixed in the latest revision. The script now puts its own filename\ninto the generated file. So it is clear how the file is generated.\n\n\u003e It\u0027s a simple thing to fix, but I know I\u0027ve definitely submitted config files in the past without remembering to update the meson.build first\n\nSame. But i would prefer to keep this change simple and just focus on automating the process of creating that list.",
+      "parentUuid": "11e2f65a_a1130371",
+      "revId": "312d2afaa3b53cfb92c1f3cf52298bda6dfbc9b7",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }
