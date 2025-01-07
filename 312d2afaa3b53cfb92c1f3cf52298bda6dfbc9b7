@@ -34,6 +34,24 @@
       "parentUuid": "ce8e1c3d_0eb0c1aa",
       "revId": "312d2afaa3b53cfb92c1f3cf52298bda6dfbc9b7",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "11e2f65a_a1130371",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1001354
+      },
+      "writtenOn": "2025-01-07T15:29:34Z",
+      "side": 1,
+      "message": "That sounds like it makes sense to me.\n\nAssuming Entity-Manager maintainers have don\u0027t have other objections, I think it\u0027d make sense to make a revision that also updates the Entity-Manager readme to mention this script should be run after adding or changing the name of an entity-manager config.\n\n...And maybe not worth the effort to dig in too deep for now (let\u0027s see what other folks think)-- but I wonder if it could make sense to have a script like this run as part of the automatic CI tests processes that get called before/when submitting new changes for Entity-Manager to Gerrit.\n\nIt\u0027s a simple thing to fix, but I know I\u0027ve definitely submitted config files in the past without remembering to update the meson.build first",
+      "parentUuid": "4e1dc08f_d149b03e",
+      "revId": "312d2afaa3b53cfb92c1f3cf52298bda6dfbc9b7",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }
