@@ -4,11 +4,23 @@
             "Address": "0x41",
             "Bus": 11,
             "Labels": [
-                "vout1"
+                "vshunt"
             ],
             "Name": "MEDUSA_ADC_GND_SENSE",
+            "Thresholds": [
+                {
+                    "Direction": "less than",
+                    "Hysteresis": 0,
+                    "Label": "vshunt",
+                    "Name": "lower critical",
+                    "Severity": 1,
+                    "Value": -0.07
+                }
+            ],
             "Type": "INA233",
-            "vout1_Name": "MEDUSA_ADC_GND_SENSE_VOLT_V"
+            "vshunt_Max": 0.1,
+            "vshunt_Min": -0.1,
+            "vshunt_Name": "MEDUSA_ADC_GND_SENSE_VOLT_V"
         },
         {
             "Address": "0x44",
@@ -19,28 +31,12 @@
             "Name": "MEDUSA_ADC_48V_SENSE",
             "Thresholds": [
                 {
-                    "Direction": "greater than",
+                    "Direction": "less than",
                     "Hysteresis": 0,
                     "Label": "in0",
-                    "Name": "upper non recoverable",
-                    "Severity": 4,
-                    "Value": 0.29
-                },
-                {
-                    "Direction": "greater than",
-                    "Hysteresis": 0,
-                    "Label": "in0",
-                    "Name": "upper critical",
+                    "Name": "lower critical",
                     "Severity": 1,
-                    "Value": 0.253
-                },
-                {
-                    "Direction": "greater than",
-                    "Hysteresis": 0,
-                    "Label": "in0",
-                    "Name": "upper non critical",
-                    "Severity": 0,
-                    "Value": 0.242
+                    "Value": -0.162
                 }
             ],
             "Type": "INA238",
