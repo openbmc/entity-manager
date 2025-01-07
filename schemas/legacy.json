@@ -275,6 +275,9 @@
                 "in1_Max": {
                     "$ref": "#/$defs/Types/in1_Max"
                 },
+                "in1_Min": {
+                    "$ref": "#/$defs/Types/in1_Min"
+                },
                 "in1_Name": {
                     "$ref": "#/$defs/Types/in1_Name"
                 },
@@ -286,6 +289,9 @@
                 },
                 "in3_Max": {
                     "$ref": "#/$defs/Types/in3_Max"
+                },
+                "in3_Min": {
+                    "$ref": "#/$defs/Types/in3_Min"
                 },
                 "in3_Name": {
                     "$ref": "#/$defs/Types/in3_Name"
@@ -310,6 +316,9 @@
                 },
                 "in_voltage0_Max": {
                     "$ref": "#/$defs/Types/in_voltage0_Max"
+                },
+                "in_voltage0_Min": {
+                    "$ref": "#/$defs/Types/in_voltage0_Min"
                 },
                 "in_voltage0_Name": {
                     "$ref": "#/$defs/Types/in_voltage0_Name"
@@ -1301,6 +1310,9 @@
             "in1_Max": {
                 "type": "number"
             },
+            "in1_Min": {
+                "type": "number"
+            },
             "in1_Name": {
                 "type": "string"
             },
@@ -1311,6 +1323,9 @@
                 "type": "string"
             },
             "in3_Max": {
+                "type": "number"
+            },
+            "in3_Min": {
                 "type": "number"
             },
             "in3_Name": {
@@ -1335,6 +1350,9 @@
                 "type": "string"
             },
             "in_voltage0_Max": {
+                "type": "number"
+            },
+            "in_voltage0_Min": {
                 "type": "number"
             },
             "in_voltage0_Name": {
