@@ -16,6 +16,40 @@
       "message": "Ping for review",
       "revId": "08941358ed06811ad2c5b07987a142b27c194b2e",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "bbaaf454_97fadfca",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 8
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-01-07T09:44:33Z",
+      "side": 1,
+      "message": "Do we need a meson option to control the behavior?\n\nSome people might want to overwr",
+      "revId": "08941358ed06811ad2c5b07987a142b27c194b2e",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a5ad5f37_9b2473bf",
+        "filename": "src/fru_device.cpp",
+        "patchSetId": 8
+      },
+      "lineNbr": 946,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-01-07T09:44:33Z",
+      "side": 1,
+      "message": "Do we need to respect the offset here aswell?\n\nTo me it looks like the offset is currently only respected in the case of\n```\n if (hasEepromFile(bus, address))\n```",
+      "revId": "08941358ed06811ad2c5b07987a142b27c194b2e",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }
