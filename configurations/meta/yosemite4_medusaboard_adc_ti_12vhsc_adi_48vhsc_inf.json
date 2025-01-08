@@ -1043,28 +1043,12 @@
             "Name": "MEDUSA_ADC_48V_SENSE",
             "Thresholds": [
                 {
-                    "Direction": "greater than",
+                    "Direction": "less than",
                     "Hysteresis": 0,
                     "Label": "in0",
-                    "Name": "upper non recoverable",
-                    "Severity": 4,
-                    "Value": 0.29
-                },
-                {
-                    "Direction": "greater than",
-                    "Hysteresis": 0,
-                    "Label": "in0",
-                    "Name": "upper critical",
+                    "Name": "lower critical",
                     "Severity": 1,
-                    "Value": 0.253
-                },
-                {
-                    "Direction": "greater than",
-                    "Hysteresis": 0,
-                    "Label": "in0",
-                    "Name": "upper non critical",
-                    "Severity": 0,
-                    "Value": 0.242
+                    "Value": -0.162
                 }
             ],
             "Type": "INA238",
