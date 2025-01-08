@@ -9,55 +9,17 @@
             "Name": "MEDUSA_ADC_48V_SENSE",
             "Thresholds": [
                 {
-                    "Direction": "greater than",
-                    "Hysteresis": 0,
-                    "Label": "in1",
-                    "Name": "upper non recoverable",
-                    "Severity": 4,
-                    "Value": 0.04
-                },
-                {
-                    "Direction": "greater than",
-                    "Hysteresis": 0,
-                    "Label": "in1",
-                    "Name": "upper critical",
-                    "Severity": 1,
-                    "Value": 0.04
-                },
-                {
-                    "Direction": "greater than",
-                    "Hysteresis": 0,
-                    "Label": "in1",
-                    "Name": "upper non critical",
-                    "Severity": 0,
-                    "Value": 0.03
-                },
-                {
-                    "Direction": "less than",
-                    "Hysteresis": 0,
-                    "Label": "in1",
-                    "Name": "lower non critical",
-                    "Severity": 0,
-                    "Value": -0.01
-                },
-                {
                     "Direction": "less than",
                     "Hysteresis": 0,
                     "Label": "in1",
                     "Name": "lower critical",
                     "Severity": 1,
-                    "Value": -0.02
-                },
-                {
-                    "Direction": "less than",
-                    "Hysteresis": 0,
-                    "Label": "in1",
-                    "Name": "lower non recoverable",
-                    "Severity": 4,
-                    "Value": -0.02
+                    "Value": -0.32
                 }
             ],
             "Type": "ISL28022",
+            "in1_Max": 1,
+            "in1_Min": -1,
             "in1_Name": "MEDUSA_ADC_48V_SENSE_VOLT_V"
         },
         {
@@ -1289,11 +1251,24 @@
             "Address": "0x41",
             "Bus": 11,
             "Labels": [
-                "in_voltage1"
+                "in_voltage0"
             ],
             "Name": "MEDUSA_ADC_GND_SENSE",
+            "Thresholds": [
+                {
+                    "Direction": "less than",
+                    "Hysteresis": 0,
+                    "Label": "in_voltage0",
+                    "Name": "lower critical",
+                    "Severity": 1,
+                    "Value": 0.006
+                }
+            ],
             "Type": "RTQ6056",
-            "in_voltage1_Name": "MEDUSA_ADC_GND_SENSE_VOLT_V"
+            "in_voltage0_Max": 0.1,
+            "in_voltage0_Min": -0.1,
+            "in_voltage0_Name": "MEDUSA_ADC_GND_SENSE_VOLT_V",
+            "in_voltage0_Scale": 400000
         },
         {
             "Class": "temp",
