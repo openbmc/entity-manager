@@ -22,6 +22,32 @@
             },
             "required": ["Address", "Bus", "Name", "Type"],
             "type": "object"
+        },
+        "MCTPI3CTarget": {
+            "properties": {
+                "Address": {
+                    "description": "The 6-byte PID for the device on the I3C bus",
+                    "type": ["string", "array"]
+                },
+                "Bus": {
+                    "description": "The bus index to which the device is attached",
+                    "type": "string"
+                },
+                "IANA": {
+                    "description": "The IANA index to which the device is attached",
+                    "type": "string"
+                },
+                "Name": {
+                    "description": "A recognisable name for the device",
+                    "type": "string"
+                },
+                "Type": {
+                    "type": "string",
+                    "enum": ["MCTPI3CTarget"]
+                }
+            },
+            "required": ["Address", "Bus", "Name", "Type"],
+            "type": "object"
         }
     }
 }
