@@ -70,6 +70,24 @@
       "parentUuid": "11e2f65a_a1130371",
       "revId": "312d2afaa3b53cfb92c1f3cf52298bda6dfbc9b7",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "c815eaf2_c312e735",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1001354
+      },
+      "writtenOn": "2025-01-10T16:32:46Z",
+      "side": 1,
+      "message": "\u003eMany people don\u0027t read documentation. It tends to be outdated anyways.\nBut you are right that it should be clear how to update this file.\n\nI hear ya on that-- but the contents of the readme.md are displayed on the front page of openbmc/entity-manager and is likely to be looked over by anyone looking to add a new configuration.\n\nI think it\u0027d make sense to add a bit to the end of the readme that explains that this script should be called anytime a new configuration is added, removed, or renamed to update a list meson is relying on.\n\n\u003eThe script now puts its own filename into the generated file.\n\nby \u0027generated file\u0027 are you referring to the configuration/meson.build file you uploaded with the new list of configs? If so, based on the changes between rev 3 and rev 5, I\u0027m suspecting you meant to remove the configuration/meson.build and replace it with another file that didn\u0027t get added to the most recent commit.\n\nThat\u0027s just a guess on my end.\n\n\u003eSame. But i would prefer to keep this change simple and just focus on automating the process of creating that list\n\nVery understandable. Honestly, I would have thought someone else with a \u0027strong opinion\u0027 would have chimed in on this topic by now.\n\nI think it might be a good idea for you to go to the openbmc Discord -- maybe under the \u0027Inventory\u0027 channel, then post a list to this PR with a brief description and see if any folks have \u0027opinions\u0027 on this topic that just didn\u0027t see this review yet.",
+      "parentUuid": "588dd324_4fda14bf",
+      "revId": "312d2afaa3b53cfb92c1f3cf52298bda6dfbc9b7",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }
