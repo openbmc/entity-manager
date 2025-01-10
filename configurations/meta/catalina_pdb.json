@@ -634,7 +634,8 @@
             "Type": "INA238",
             "in0_Max": 1,
             "in0_Min": -1,
-            "in0_Name": "PDB_CABLE_TSENSE_POSITIVE_VOLT_V"
+            "in0_Name": "PDB_CABLE_TSENSE_POSITIVE_VOLT_V",
+            "in0_Scale": 1000000
         },
         {
             "Address": "0x42",
@@ -646,7 +647,8 @@
             "Type": "INA238",
             "in0_Max": 1,
             "in0_Min": -1,
-            "in0_Name": "PDB_CABLE_TSENSE_NEGATIVE_VOLT_V"
+            "in0_Name": "PDB_CABLE_TSENSE_NEGATIVE_VOLT_V",
+            "in0_Scale": 1000000
         },
         {
             "Address": "0x42",
