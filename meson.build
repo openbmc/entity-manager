@@ -135,6 +135,7 @@ configs = [
     'meta/catalina_osfp.json',
     'meta/catalina_pdb_hsc_ltc_fsc_max_vr_raa_gndsen_ina_p12vsen_ina_p12vfan_mps.json',
     'meta/catalina_pdb_hsc_xdp_fsc_nct_vr_raa_gndsen_max_p12vsen_isl_p12vfan_rtt.json',
+    'meta/catalina_pdb_hsc_ltc_fsc_max_vr_delta_gndsen_ina_p12vsen_ina_p12vfan_mps.json',
     'meta/catalina_scm.json',
     'meta/fbtp.json',
     'meta/fbyv2.json',
