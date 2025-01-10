@@ -389,6 +389,12 @@
                 "curr1_Name": {
                     "$ref": "#/$defs/Types/curr1_Name"
                 },
+                "curr1_Max": {
+                    "$ref": "#/$defs/Types/curr1_Max"
+                },
+                "curr1_Min": {
+                    "$ref": "#/$defs/Types/curr1_Min"
+                },
                 "curr2_Name": {
                     "$ref": "#/$defs/Types/curr2_Name"
                 },
@@ -1420,6 +1426,12 @@
             },
             "curr1_Name": {
                 "type": "string"
+            },
+            "curr1_Max": {
+                "type": "number"
+            },
+            "curr1_Min": {
+                "type": "number"
             },
             "curr2_Name": {
                 "type": "string"
