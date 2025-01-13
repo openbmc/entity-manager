@@ -44,6 +44,9 @@
                     "$ref": "firmware.json#/$defs/BIOS"
                 },
                 {
+                    "$ref": "firmware.json#/$defs/EEPROM"
+                },
+                {
                     "description": "Ensure the parent anyOf schema does not validate when an element does not define a type property.",
                     "not": {
                         "required": ["Type"]
