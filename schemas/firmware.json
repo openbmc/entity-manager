@@ -15,6 +15,53 @@
                 }
             },
             "required": ["VendorIANA", "CompatibleName"]
+        },
+        "EEPROMDeviceFirmware": {
+            "description": "The configuration parameters for flashing the EEPROM device",
+            "type": "object",
+            "properties": {
+                "Name": {
+                    "description": "The unique identifier or label for the EEPROM device",
+                    "type": "string"
+                },
+                "Type": {
+                    "description": "The type of configuration object",
+                    "enum": ["EEPROMDeviceFirmware"]
+                },
+                "Bus": {
+                    "description": "The I2C bus index to which the EEPROM device is attached",
+                    "type": "string"
+                },
+                "Address": {
+                    "description": "The I2C address of the EEPROM device on the specified bus",
+                    "type": "string"
+                },
+                "MuxGPIOs": {
+                    "description": "The GPIO line toggles the mux to switch the EEPROM connection to the BMC",
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    }
+                },
+                "MuxGPIOPolarities": {
+                    "description": "The polarity for the mux gpios which toggle the EEPROM to BMC",
+                    "type": "array",
+                    "items": {
+                        "enum": ["High", "Low"]
+                    }
+                },
+                "FirmwareInfo": {
+                    "$ref": "#/$defs/FirmwareInfoDef"
+                }
+            },
+            "required": [
+                "Name",
+                "Type",
+                "Bus",
+                "Address",
+                "MuxGPIOs",
+                "MuxGPIOPolarities"
+            ]
         }
     }
 }
