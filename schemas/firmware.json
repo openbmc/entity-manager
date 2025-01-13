@@ -90,6 +90,58 @@
                 "MuxOutputs",
                 "FirmwareInfo"
             ]
+        },
+        "EEPROMDeviceFirmware": {
+            "description": "Required information to complete the EEPROM device firmware update process",
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+                "Name": {
+                    "description": "Unique identifier or label for the EEPROM device",
+                    "type": "string"
+                },
+                "Type": {
+                    "description": "The type of configuration object",
+                    "enum": ["PT5161L"]
+                },
+                "Bus": {
+                    "$ref": "legacy.json#/$defs/Types/Bus"
+                },
+                "Address": {
+                    "$ref": "legacy.json#/$defs/Types/Address"
+                },
+                "FirmwareDevice": {
+                    "description": "The device that stores the EEPROM device firmware",
+                    "type": "string"
+                },
+                "MuxOutputs": {
+                    "description": "The pin names and polarities for the mux which toggles the flash to BMC",
+                    "type": "array",
+                    "items": {
+                        "type": "object",
+                        "properties": {
+                            "Name": {
+                                "$ref": "legacy.json#/$defs/Types/Name"
+                            },
+                            "Polarity": {
+                                "$ref": "legacy.json#/$defs/Types/Polarity"
+                            }
+                        },
+                        "required": ["Name", "Polarity"]
+                    }
+                },
+                "FirmwareInfo": {
+                    "$ref": "#/$defs/FirmwareInfoDef"
+                }
+            },
+            "required": [
+                "Name",
+                "Type",
+                "Bus",
+                "Address",
+                "FirmwareDevice",
+                "FirmwareInfo"
+            ]
         }
     }
 }
