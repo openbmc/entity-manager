@@ -74,6 +74,61 @@
                 "Layout",
                 "FirmwareInfo"
             ]
+        },
+        "EEPROM": {
+            "description": "The configuration parameters for flashing the EEPROM device",
+            "type": "object",
+            "properties": {
+                "Name": {
+                    "description": "The unique identifier or label for the EEPROM device",
+                    "type": "string"
+                },
+                "Type": {
+                    "description": "The type of configuration object",
+                    "enum": ["EEPROM"]
+                },
+                "Bus": {
+                    "description": "The I2C bus index to which the EEPROM device is attached",
+                    "type": "string"
+                },
+                "Address": {
+                    "description": "The I2C address of the EEPROM device on the specified bus",
+                    "type": "string"
+                },
+                "MuxGPIO": {
+                    "description": "The GPIO configuration for the mux that switches the EEPROM connection to the BMC",
+                    "type": "array",
+                    "items": {
+                        "type": "object",
+                        "properties": {
+                            "Name": {
+                                "description": "The name of the GPIO line used for toggling the connection",
+                                "type": "string"
+                            },
+                            "ChipName": {
+                                "description": "The name of the GPIO chip managing the specified GPIO line",
+                                "type": "string"
+                            },
+                            "Polarity": {
+                                "description": "The GPIO polarity depicting its active status",
+                                "enum": ["High", "Low"]
+                            }
+                        },
+                        "required": ["Name", "ChipName", "Polarity"]
+                    }
+                },
+                "FirmwareInfo": {
+                    "$ref": "#/$defs/FirmwareInfoDef"
+                }
+            },
+            "required": [
+                "Name",
+                "Type",
+                "Bus",
+                "Address",
+                "MuxGPIO",
+                "FirmwareInfo"
+            ]
         }
     }
 }
