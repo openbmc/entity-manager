@@ -90,6 +90,81 @@
                 "MuxOutputs",
                 "FirmwareInfo"
             ]
+        },
+        "EEPROMDeviceFirmware": {
+            "description": "Required information to complete the EEPROM device firmware update process",
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+                "Name": {
+                    "description": "Unique identifier or label for the EEPROM device",
+                    "type": "string"
+                },
+                "Type": {
+                    "description": "The type of configuration object",
+                    "enum": ["EEPROMDeviceFirmware"]
+                },
+                "DeviceInfo": {
+                    "description": "I2C properties of the device containing firmware version information",
+                    "type": "object",
+                    "properties": {
+                        "Bus": {
+                            "$ref": "legacy.json#/$defs/Types/Bus"
+                        },
+                        "Address": {
+                            "$ref": "legacy.json#/$defs/Types/Address"
+                        },
+                        "ChipModel": {
+                            "description": "Chip model identifier for the device",
+                            "enum": ["pt5161l"]
+                        }
+                    },
+                    "required": ["Bus", "Address", "ChipModel"]
+                },
+                "EEPROMInfo": {
+                    "description": "I2C properties of the EEPROM device to be flashed",
+                    "type": "object",
+                    "properties": {
+                        "Bus": {
+                            "$ref": "legacy.json#/$defs/Types/Bus"
+                        },
+                        "Address": {
+                            "$ref": "legacy.json#/$defs/Types/Address"
+                        },
+                        "ChipModel": {
+                            "description": "Chip model identifier for the EEPROM",
+                            "enum": ["at24"]
+                        }
+                    },
+                    "required": ["Bus", "Address", "ChipModel"]
+                },
+                "MuxOutputs": {
+                    "description": "The pin names and polarities for the mux which toggles the flash to BMC",
+                    "type": "array",
+                    "items": {
+                        "type": "object",
+                        "properties": {
+                            "Name": {
+                                "$ref": "legacy.json#/$defs/Types/Name"
+                            },
+                            "Polarity": {
+                                "$ref": "legacy.json#/$defs/Types/Polarity"
+                            }
+                        },
+                        "required": ["Name", "Polarity"]
+                    }
+                },
+                "FirmwareInfo": {
+                    "$ref": "#/$defs/FirmwareInfoDef"
+                }
+            },
+            "required": [
+                "Name",
+                "Type",
+                "DeviceInfo",
+                "EEPROMInfo",
+                "FirmwareInfo"
+            ]
         }
     }
 }
