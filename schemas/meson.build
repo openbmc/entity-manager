@@ -11,6 +11,7 @@ schemas = [
     'leak_detector.json',
     'legacy.json',
     'mctp.json',
+    'modbus.json',
     'nvidia.json',
     'openbmc-dbus.json',
     'pid.json',
