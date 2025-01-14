@@ -34,6 +34,24 @@
       "parentUuid": "7aba2b21_67760bfc",
       "revId": "1bfc16737768ad7434976490736660a2b62f81ad",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "92cc6370_2cfa900e",
+        "filename": "scripts/run-ci.sh",
+        "patchSetId": 7
+      },
+      "lineNbr": 8,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2025-01-14T09:45:47Z",
+      "side": 1,
+      "message": "I guess PDI does do a check. You should use git calls though rather than copying/raw diff. \n\nhttps://github.com/openbmc/phosphor-dbus-interfaces/blob/7f154004885f4e98bd8d0aa6f66259c117b95a4c/gen/run-ci#L6",
+      "parentUuid": "7aba2b21_67760bfc",
+      "revId": "1bfc16737768ad7434976490736660a2b62f81ad",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }
