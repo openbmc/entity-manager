@@ -1,0 +1,82 @@
+{
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "$defs": {
+        "ModBusDeviceDetect": {
+            "description": "The definition for the modbus device",
+            "type": "object",
+            "properties": {
+                "Type": {
+                    "description": "The type of configuration object",
+                    "type": "string"
+                },
+                "Name": {
+                    "description": "The name of the modbus device",
+                    "type": "string"
+                },
+                "AddressRangeStart": {
+                    "description": "The start address for the address range of the modbus device",
+                    "type": "number"
+                },
+                "AddressRangeEnd": {
+                    "description": "The end address for the address range of the modbus device",
+                    "type": "number"
+                },
+                "ConnectionType": {
+                    "description": "The connection type to the modbus device",
+                    "enum": ["RTU", "TCP"]
+                },
+                "RTUBaudRate": {
+                    "description": "The supported baudrate by the device",
+                    "enum": [19200, 115200, null]
+                },
+                "DataParity": {
+                    "description": "The parity to use for data transmission",
+                    "enum": ["Odd", "Even", "None"]
+                },
+                "DataEndianness": {
+                    "description": "The byte order used for storing multi-register content of float or double data types.",
+                    "enum": ["Big", "Little"]
+                },
+                "RegisterNames": {
+                    "type": "array",
+                    "items": {
+                        "enum": [
+                            "PartNumber",
+                            "SparePartNumber",
+                            "SerialNumber",
+                            "BuildDate",
+                            "Model",
+                            "Manufacturer"
+                        ]
+                    }
+                },
+                "RegisterSizes": {
+                    "description": "The size of register in bytes",
+                    "type": "array",
+                    "items": {
+                        "enum": [2, 4]
+                    }
+                },
+                "RegisterFormats": {
+                    "description": "The format for interpreting the contents of a register",
+                    "type": "array",
+                    "items": {
+                        "enum": ["String", "Integer"]
+                    }
+                }
+            },
+            "required": [
+                "Name",
+                "Type",
+                "DeviceId",
+                "ConnectionType",
+                "RTUBaudRate",
+                "DataParity",
+                "DataEndianness",
+                "RegisterNames",
+                "RegisterSizes",
+                "RegisterFormats"
+            ]
+        }
+    }
+}
