@@ -134,6 +134,7 @@ configs = [
     'meta/catalina_hdd_nvme.json',
     'meta/catalina_osfp.json',
     'meta/catalina_pdb.json',
+    'meta/catalina_pdb_2nd.json',
     'meta/catalina_scm.json',
     'meta/fbtp.json',
     'meta/fbyv2.json',
