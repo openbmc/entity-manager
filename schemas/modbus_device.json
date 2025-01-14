@@ -1,0 +1,64 @@
+{
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "$defs": {
+        "ModbusDeviceDef": {
+            "description": "The definition for the modbus device",
+            "type": "object",
+            "properties": {
+                "Type": {
+                    "description": "The type of configuration object",
+                    "type": "string"
+                },
+                "Name": {
+                    "description": "The name of the modbus device",
+                    "type": "string"
+                },
+                "LinkType": {
+                    "description": "The connection link type to the modbus device",
+                    "enum": ["Serial", "TCP"]
+                },
+                "SerialBaudRate": {
+                    "description": "The supported baudrate by the device",
+                    "enum": [19200, 115200, null]
+                },
+                "Endian": {
+                    "description": "The type of byte order for the register contents",
+                    "enum": ["Big", "Little"]
+                },
+                "RegisterName": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    }
+                },
+                "RegisterSize": {
+                    "description": "The size of register in bytes",
+                    "type": "array",
+                    "items": {
+                        "type": "number"
+                    }
+                },
+                "RegisterFormat": {
+                    "description": "The format for interpreting the contents of a register",
+                    "type": "array",
+                    "items": {
+                        "enum": ["String", "Integer", "Raw"]
+                    }
+                }
+            },
+            "required": [
+                "Name",
+                "Type",
+                "LinkType",
+                "SerialBaudRate",
+                "Endian",
+                "RegisterName",
+                "RegisterSize",
+                "RegisterFormat"
+            ]
+        }
+    },
+    "ModbusDeviceDetect": {
+        "$ref": "#/$defs/ModbusDeviceDef"
+    }
+}
