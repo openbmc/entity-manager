@@ -97,6 +97,7 @@ schemas = [
     'ibm.json',
     'intel.json',
     'mctp.json',
+    'modbus.json',
     'pid.json',
     'pid_zone.json',
     'stepwise.json',

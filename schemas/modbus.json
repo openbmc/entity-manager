@@ -1,0 +1,90 @@
+{
+    "$schema1": "http://json-schema.org/draft-07/schema#",
+    "$defs": {
+        "ModbusRTUDetect": {
+            "description": "The definition for the modbus device.",
+            "type": "object",
+            "properties": {
+                "Type": {
+                    "description": "The type of configuration object.",
+                    "const": "ModbusRTUDetect"
+                },
+                "Name": {
+                    "description": "The name of the modbus device.",
+                    "type": "string"
+                },
+                "Address": {
+                    "description": "The address ranges for the modbus device.",
+                    "type": "array",
+                    "items": {
+                        "type": "object",
+                        "properties": {
+                            "RangeStart": {
+                                "description": "The start address for the address range of the modbus device.",
+                                "type": "number"
+                            },
+                            "RangeEnd": {
+                                "description": "The end address for the address range of the modbus device.",
+                                "type": "number"
+                            }
+                        },
+                        "required": ["RangeStart", "RangeEnd"]
+                    }
+                },
+                "DataEndianness": {
+                    "description": "The byte order used for storing multi-register content of float or double data types.",
+                    "enum": ["Big", "Little"]
+                },
+                "SerialPort": {
+                    "description": "The list of serial ports where this device is connected.",
+                    "type": "array",
+                    "items": {
+                        "description": "The name of the serial port",
+                        "type": "string"
+                    }
+                },
+                "Registers": {
+                    "description": "The Modbus register definition.",
+                    "type": "array",
+                    "items": {
+                        "type": "object",
+                        "properties": {
+                            "Name": {
+                                "description": "The name of the register.",
+                                "enum": [
+                                    "PartNumber",
+                                    "SparePartNumber",
+                                    "SerialNumber",
+                                    "BuildDate",
+                                    "Model",
+                                    "Manufacturer"
+                                ]
+                            },
+                            "Address": {
+                                "description": "The address of the register.",
+                                "type": "number"
+                            },
+                            "Size": {
+                                "description": "The size of the register in bytes.",
+                                "type": "number"
+                            },
+                            "Format": {
+                                "description": "The format for interpreting the contents of a register.",
+                                "enum": ["String", "Integer"]
+                            }
+                        },
+                        "required": ["Name", "Address", "Size", "Format"]
+                    }
+                }
+            },
+            "required": [
+                "Name",
+                "Type",
+                "Address",
+                "DataEndianness",
+                "SerialPort",
+                "Registers"
+            ]
+        }
+    }
+}
