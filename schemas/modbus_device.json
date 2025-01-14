@@ -1,0 +1,96 @@
+{
+    "$schema1": "http://json-schema.org/draft-07/schema#",
+    "$defs": {
+        "ModbusDeviceDetect": {
+            "description": "The definition for the modbus device.",
+            "type": "object",
+            "properties": {
+                "Type": {
+                    "description": "The type of configuration object.",
+                    "type": "string"
+                },
+                "Name": {
+                    "description": "The name of the modbus device.",
+                    "type": "string"
+                },
+                "Address": {
+                    "description": "The address ranges for the modbus device.",
+                    "type": "array",
+                    "items": {
+                        "type": "object",
+                        "properties": {
+                            "RangeStart": {
+                                "description": "The start address for the address range of the modbus device.",
+                                "type": "number"
+                            },
+                            "RangeEnd": {
+                                "description": "The end address for the address range of the modbus device.",
+                                "type": "number"
+                            }
+                        },
+                        "required": ["RangeStart", "RangeEnd"]
+                    }
+                },
+                "ConnectionType": {
+                    "description": "The connection type to the modbus device.",
+                    "enum": ["RTU", "TCP"]
+                },
+                "RTUBaudRate": {
+                    "description": "The supported baudrate by the device.",
+                    "enum": [19200, 115200, null]
+                },
+                "DataParity": {
+                    "description": "The parity to use for data transmission.",
+                    "enum": ["Odd", "Even", "None"]
+                },
+                "DataEndianness": {
+                    "description": "The byte order used for storing multi-register content of float or double data types.",
+                    "enum": ["Big", "Little"]
+                },
+                "Registers": {
+                    "description": "The Modbus register definition.",
+                    "type": "array",
+                    "items": {
+                        "type": "object",
+                        "properties": {
+                            "Name": {
+                                "description": "The name of the register.",
+                                "enum": [
+                                    "PartNumber",
+                                    "SparePartNumber",
+                                    "SerialNumber",
+                                    "BuildDate",
+                                    "Model",
+                                    "Manufacturer"
+                                ]
+                            },
+                            "Address": {
+                                "description": "The address of the register.",
+                                "type": "number"
+                            },
+                            "Size": {
+                                "description": "The size of the register in bytes.",
+                                "type": "number"
+                            },
+                            "Format": {
+                                "description": "The format for interpreting the contents of a register.",
+                                "enum": ["String", "Integer"]
+                            }
+                        },
+                        "required": ["Name", "Address", "Size", "Format"]
+                    }
+                }
+            },
+            "required": [
+                "Name",
+                "Type",
+                "Address",
+                "ConnectionType",
+                "RTUBaudRate",
+                "DataParity",
+                "DataEndianness",
+                "Registers"
+            ]
+        }
+    }
+}
