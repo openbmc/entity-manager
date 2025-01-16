@@ -69,6 +69,24 @@
       "parentUuid": "44f9b3aa_cd82a204",
       "revId": "43474d793fad178281368f15cc251ad84d4151f5",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7ae575df_7a4b4963",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 6
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1002131
+      },
+      "writtenOn": "2025-01-16T08:35:16Z",
+      "side": 1,
+      "message": "(1) The model name sq52205 is changed to sy24655.\n(2) According to the upstream\u0027s suggestion, supports the SQ52205 by applying a patch in the INA2xx driver. The patch is applied in linux kernel 6.13.\n\nWe are modifying the code. Temporarily set the status to WIP.",
+      "parentUuid": "79e89589_79e4a8c5",
+      "revId": "43474d793fad178281368f15cc251ad84d4151f5",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }
