@@ -41,6 +41,9 @@
                     "$ref": "modbus_device.json#/$defs/ModbusDeviceDetect"
                 },
                 {
+                    "$ref": "modbus_device.json#/$defs/ModbusDevice"
+                },
+                {
                     "description": "Ensure the parent anyOf schema does not validate when an element does not define a type property.",
                     "not": {
                         "required": ["Type"]
