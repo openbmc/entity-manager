@@ -90,6 +90,120 @@
                 "DataEndianness",
                 "Registers"
             ]
+        },
+        "ModbusDevice": {
+            "description": "The definition for the modbus device.",
+            "type": "object",
+            "properties": {
+                "Type": {
+                    "description": "The type of configuration object",
+                    "type": "string"
+                },
+                "SubType": {
+                    "description": "The concrete type of modbus device",
+                    "enum": ["FlowMeter", "RackPumpUnit"]
+                },
+                "Name": {
+                    "description": "The name of the modbus device.",
+                    "type": "string"
+                },
+                "Address": {
+                    "description": "The address of the modbus device.",
+                    "type": "number"
+                },
+                "ConnectionType": {
+                    "description": "The connection type to the modbus device.",
+                    "enum": ["RTU", "TCP"]
+                },
+                "LinkTTY": {
+                    "description": "The Link TTY on which this device is discovered.",
+                    "type": "string"
+                },
+                "RTUBaudRate": {
+                    "description": "The supported baudrate by the device.",
+                    "enum": [19200, 115200, null]
+                },
+                "DataParity": {
+                    "description": "The parity to use for data transmission.",
+                    "enum": ["Odd", "Even", "None"]
+                },
+                "DataEndianness": {
+                    "description": "The byte order used for storing multi-register content of float or double data types.",
+                    "enum": ["Big", "Little"]
+                },
+                "SensorRegisterNames": {
+                    "description": "The register names for the sensor registers",
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    }
+                },
+                "SensorRegisterAddresses": {
+                    "description": "The register addresses for the corresponding register names.",
+                    "type": "array",
+                    "items": {
+                        "type": "number"
+                    }
+                },
+                "SensorRegisterSizes": {
+                    "description": "The size of register in bytes.",
+                    "type": "array",
+                    "items": {
+                        "type": "number"
+                    }
+                },
+                "SensorRegisterFormats": {
+                    "description": "The format for interpreting the contents of a register.",
+                    "type": "array",
+                    "items": {
+                        "enum": ["Integer", "Float"]
+                    }
+                },
+                "FirmwareVersionRegisterAddress": {
+                    "description": "The register address for the modbus device firmware version.",
+                    "type": "number"
+                },
+                "StatusBitNames": {
+                    "description": "The name of the status bits.",
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    }
+                },
+                "StatusBitRegisterAddresses": {
+                    "description": "The register addresses for the corresponding status bits.",
+                    "type": "array",
+                    "items": {
+                        "type": "number"
+                    }
+                },
+                "StatusBitPositions": {
+                    "description": "The position of the bit in the register representing this specific status.",
+                    "type": "array",
+                    "items": {
+                        "type": "number"
+                    }
+                }
+            },
+            "required": [
+                "Name",
+                "Type",
+                "SubType",
+                "Address",
+                "ConnectionType",
+                "LinkTTY",
+                "RTUBaudRate",
+                "DataParity",
+                "DataEndianness",
+                "SensorRegisterNames",
+                "SensorRegisterAddresses",
+                "SensorRegisterSizes",
+                "SensorRegisterFormats",
+                "FirmwareVersionRegisterAddress",
+                "StatusBitNames",
+                "StatusBitRegisterAddress",
+                "StatusBitPosition"
+            ]
         }
     }
 }
