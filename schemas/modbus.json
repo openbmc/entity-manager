@@ -84,6 +84,190 @@
                 "DataParity",
                 "BaudRate"
             ]
+        },
+        "ModbusRTUDevice": {
+            "description": "The definition for the modbus device.",
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+                "Type": {
+                    "description": "The type of configuration object",
+                    "enum": [
+                        "ModbusRDF040DSS5193E0ReservoirPumpUnit",
+                        "ModbusRDF040DSS5193E0HeatExchanger"
+                    ]
+                },
+                "Name": {
+                    "description": "The name of the modbus device.",
+                    "type": "string"
+                },
+                "Address": {
+                    "description": "The address of the modbus device.",
+                    "type": "string"
+                },
+                "SerialPort": {
+                    "description": "The name of the serial port from the port configuration where the device is discovered.",
+                    "type": "string"
+                },
+                "DataParity": {
+                    "description": "The parity to use for data transmission.",
+                    "enum": ["Odd", "Even", "None"]
+                },
+                "BaudRate": {
+                    "description": "The baudrate of the communication channel.",
+                    "enum": [9600, 19200, 57600, 115200]
+                },
+                "SensorRegisters": {
+                    "description": "The sensor registers for the modbus device.",
+                    "type": "array",
+                    "items": {
+                        "description": "The Modbus register definition.",
+                        "type": "object",
+                        "additionalProperties": false,
+                        "properties": {
+                            "Name": {
+                                "description": "The name of the register.",
+                                "type": "string"
+                            },
+                            "RegisterType": {
+                                "description": "The type of information which the registers holds.",
+                                "enum": [
+                                    "FanTach",
+                                    "LiquidLevel",
+                                    "LiquidFlow",
+                                    "Power",
+                                    "Pressure",
+                                    "Temperature"
+                                ]
+                            },
+                            "Address": {
+                                "description": "The address of the register.",
+                                "type": "number"
+                            },
+                            "Size": {
+                                "description": "The size of the register in bytes.",
+                                "type": "number"
+                            },
+                            "Precision": {
+                                "description": "The number of bits used to represent the fractional part.",
+                                "type": "integer",
+                                "minimum": 0,
+                                "maximum": 31
+                            },
+                            "Scale": {
+                                "description": "The constant number to multiply register value to change the magnitude.",
+                                "type": "number"
+                            },
+                            "Shift": {
+                                "description": "The constant number to add to register value to change the magnitude.",
+                                "type": "number"
+                            },
+                            "Signed": {
+                                "description": "This indicates whether the register contains a signed or an unsigned number",
+                                "type": "boolean"
+                            },
+                            "Format": {
+                                "description": "The format for interpreting the contents of a register.",
+                                "enum": ["Integer", "Float"]
+                            }
+                        },
+                        "required": [
+                            "Name",
+                            "RegisterType",
+                            "Address",
+                            "Size",
+                            "Precision",
+                            "Scale",
+                            "Shift",
+                            "Signed",
+                            "Format"
+                        ]
+                    }
+                },
+                "StatusBits": {
+                    "description": "The status bits for the modbus device.",
+                    "type": "array",
+                    "items": {
+                        "type": "object",
+                        "additionalProperties": false,
+                        "properties": {
+                            "Name": {
+                                "description": "The name of the status bit.",
+                                "type": "string"
+                            },
+                            "StatusType": {
+                                "description": "The type of status bit",
+                                "enum": [
+                                    "SensorReadingCritical",
+                                    "SensorReadingWarning",
+                                    "SensorFailure",
+                                    "ControllerFailure",
+                                    "PumpFailure",
+                                    "FilterFailure",
+                                    "PowerFault"
+                                ]
+                            },
+                            "Address": {
+                                "description": "The address for the status bit",
+                                "type": "number"
+                            },
+                            "BitPosition": {
+                                "description": "The position of the bit in the register representing this status.",
+                                "type": "number"
+                            },
+                            "Value": {
+                                "description": "A true or false value that indicates whether this status is active.",
+                                "type": "boolean"
+                            }
+                        },
+                        "required": [
+                            "Name",
+                            "StatusType",
+                            "Address",
+                            "BitPosition",
+                            "Value"
+                        ]
+                    }
+                },
+                "FirmwareRegisters": {
+                    "description": "The modbus device firmware related registers.",
+                    "type": "array",
+                    "items": {
+                        "type": "object",
+                        "additionalProperties": false,
+                        "properties": {
+                            "Name": {
+                                "description": "The name of the status bit.",
+                                "type": "string"
+                            },
+                            "RegisterType": {
+                                "description": "The type of register for firmware.",
+                                "enum": ["Version", "Update"]
+                            },
+                            "Address": {
+                                "description": "The address of the register.",
+                                "type": "number"
+                            },
+                            "Size": {
+                                "description": "The size of the register in bytes.",
+                                "type": "number"
+                            }
+                        },
+                        "required": ["Name", "RegisterType", "Address", "Size"]
+                    }
+                }
+            },
+            "required": [
+                "Name",
+                "Type",
+                "Address",
+                "SerialPort",
+                "DataParity",
+                "BaudRate",
+                "SensorRegisters",
+                "StatusBits",
+                "FirmwareRegisters"
+            ]
         }
     }
 }
