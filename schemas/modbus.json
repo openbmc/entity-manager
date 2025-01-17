@@ -90,6 +90,107 @@
                 "DataEndianness",
                 "Registers"
             ]
+        },
+        "ModbusRegisterDef": {
+            "description": "The Modbus register definition.",
+            "type": "object",
+            "properties": {
+                "Name": {
+                    "description": "The name of the register.",
+                    "type": "string"
+                },
+                "Address": {
+                    "description": "The address of the register.",
+                    "type": "number"
+                },
+                "Size": {
+                    "description": "The size of the register in bytes.",
+                    "type": "number"
+                },
+                "Format": {
+                    "description": "The format for interpreting the contents of a register.",
+                    "enum": ["String", "Integer", "Float"]
+                }
+            },
+            "required": ["Name", "Address", "Size", "Format"]
+        },
+        "ModbusRTUDevice": {
+            "description": "The definition for the modbus device.",
+            "type": "object",
+            "properties": {
+                "Type": {
+                    "description": "The type of configuration object",
+                    "enum": ["ModbusRTUFlowMeter", "ModbusRTUPumpUnit"]
+                },
+                "Name": {
+                    "description": "The name of the modbus device.",
+                    "type": "string"
+                },
+                "Address": {
+                    "description": "The address of the modbus device.",
+                    "type": "number"
+                },
+                "LinkTTY": {
+                    "description": "The Link TTY on which this device is discovered.",
+                    "type": "string"
+                },
+                "RTUBaudRate": {
+                    "description": "The supported baudrate by the device.",
+                    "enum": [19200, 115200, null]
+                },
+                "DataParity": {
+                    "description": "The parity to use for data transmission.",
+                    "enum": ["Odd", "Even", "None"]
+                },
+                "DataEndianness": {
+                    "description": "The byte order used for storing multi-register content of float or double data types.",
+                    "enum": ["Big", "Little"]
+                },
+                "SensorRegisters": {
+                    "description": "The sensor registers for the modbus device.",
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/$defs/ModbusRegisterDef"
+                    }
+                },
+                "FirmwareRegister": {
+                    "description": "The register for the modbus device firmware.",
+                    "$ref": "#/$defs/ModbusRegisterDef"
+                },
+                "StatusBits": {
+                    "description": "The status bits for the modbus device.",
+                    "type": "array",
+                    "items": {
+                        "type": "object",
+                        "properties": {
+                            "Name": {
+                                "description": "The name of the status bit.",
+                                "type": "string"
+                            },
+                            "Address": {
+                                "description": "The address for the status bit",
+                                "type": "number"
+                            },
+                            "Position": {
+                                "description": "The position of the bit in the register representing this status.",
+                                "type": "number"
+                            }
+                        }
+                    }
+                }
+            },
+            "required": [
+                "Name",
+                "Type",
+                "Address",
+                "LinkTTY",
+                "RTUBaudRate",
+                "DataParity",
+                "DataEndianness",
+                "SensorRegisters",
+                "FirmwareRegister",
+                "StatusBits"
+            ]
         }
     }
 }
