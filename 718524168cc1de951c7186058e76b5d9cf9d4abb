@@ -98,6 +98,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "3372736f_3b01728c",
+        "filename": "schemas/firmware.json",
+        "patchSetId": 13
+      },
+      "lineNbr": 13,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-01-17T15:23:18Z",
+      "side": 1,
+      "message": "What about ```\u0027FirmwareCompatible\u0027``` ?\n\n```Name``` field is used to uniquely identify the device\n```Type``` field is used to tell which type of device it is and used for daemons to find their configuration,\n\nand the ```FirmwareCompatible``` field can tell us which firmware can be applied to the device.\n\nEach of the 3 refers to a different concept, and ```FirmwareCompatible``` is something that a user should feel comfortable with. The purpose of that property is not easily misunderstood.\n\nThere could also be a special value that people can use to prevent any update to that component.",
+      "parentUuid": "10a862d6_304dcc39",
+      "range": {
+        "startLine": 13,
+        "startChar": 36,
+        "endLine": 13,
+        "endChar": 141
+      },
+      "revId": "718524168cc1de951c7186058e76b5d9cf9d4abb",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "b9689163_b001d9e6",
         "filename": "schemas/firmware.json",
         "patchSetId": 13
