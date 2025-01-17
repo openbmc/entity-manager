@@ -16,6 +16,24 @@
       "message": "We are still encountering the CI failure.",
       "revId": "20450d5bf3fc8ab95d624a9faf3873cfc2d1033f",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c7f74fda_6f1551be",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 7
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2025-01-17T16:14:28Z",
+      "side": 1,
+      "message": "Your commit is still based on one that is 20 commits old:\n\n```\n$ git rev-list origin/master ^2e98156a5032aba4c195225f79b79a47920eba03 | wc -l              \n20\n```\n\nPlease rebase before you submit to Gerrit.",
+      "parentUuid": "3266a9f2_c5bb6e30",
+      "revId": "20450d5bf3fc8ab95d624a9faf3873cfc2d1033f",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }
