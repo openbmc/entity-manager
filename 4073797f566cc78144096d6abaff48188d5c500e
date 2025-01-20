@@ -1,6 +1,29 @@
 {
   "comments": [
     {
+      "unresolved": true,
+      "key": {
+        "uuid": "c44f387b_a1b20ad2",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 9
+      },
+      "lineNbr": 13,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2025-01-20T19:26:19Z",
+      "side": 1,
+      "message": "this link recommends using run_command to explicitly run the script.  Any reason we avoided that here?",
+      "range": {
+        "startLine": 13,
+        "startChar": 45,
+        "endLine": 13,
+        "endChar": 50
+      },
+      "revId": "4073797f566cc78144096d6abaff48188d5c500e",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": false,
       "key": {
         "uuid": "f83a9fb5_7e8301d4",
@@ -49,6 +72,40 @@
       "side": 1,
       "message": "As long as it takes.  Feel free to add yourself to the reviewers list and start reviewing patches if you believe it takes too long.",
       "parentUuid": "5f04200a_e763de2f",
+      "revId": "4073797f566cc78144096d6abaff48188d5c500e",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a40eff06_adf7cb51",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 9
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2025-01-20T19:26:19Z",
+      "side": 1,
+      "message": "I\u0027m not sure how much we need to care, but this is going to break every fork that ever added an EM config.  I\u0027m fine to do that, but lets not do it lightly, and lets make sure we get the output right so we only have to break everyone once.",
+      "revId": "4073797f566cc78144096d6abaff48188d5c500e",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "36186825_99f54e19",
+        "filename": "scripts/generate_config_list.sh",
+        "patchSetId": 9
+      },
+      "lineNbr": 21,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2025-01-20T19:26:19Z",
+      "side": 1,
+      "message": "Should this generation be part of something like auto_json, which is already known and run by developers?  Creating a new script that devs now have to know exists adds roadblocks (albiet minor ones).  What were the motivations for a new script vs using an existing?\n\nAlternatively, could validate_configs just check to see if a config is missing?",
       "revId": "4073797f566cc78144096d6abaff48188d5c500e",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
