@@ -1992,7 +1992,9 @@
         "Probe": [
             "xyz.openbmc_project.FruDevice({'BUS': 24, 'ADDRESS': 80})",
             "OR",
-            "xyz.openbmc_project.FruDevice({'BUS': 24, 'ADDRESS': 81})"
+            "xyz.openbmc_project.FruDevice({'BUS': 24, 'ADDRESS': 81})",
+            "AND",
+            "FOUND('Mt.Jefferson_Motherboard')"
         ],
         "Type": "PowerSupply",
         "xyz.openbmc_project.Inventory.Decorator.Asset": {
