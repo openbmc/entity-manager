@@ -1,0 +1,55 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "4160a8c5_a9f742e1",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1000008
+      },
+      "writtenOn": "2025-01-21T20:42:25Z",
+      "side": 1,
+      "message": "I don\u0027t have a problem",
+      "revId": "be7f59b0df20dbd09f131095242a0ce3c4f7243d",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "94c4026b_2030f98d",
+        "filename": "meson_options.txt",
+        "patchSetId": 1
+      },
+      "lineNbr": 20,
+      "author": {
+        "id": 1000008
+      },
+      "writtenOn": "2025-01-21T20:42:25Z",
+      "side": 1,
+      "message": "Maybe add something here that it\u0027s just for development.",
+      "revId": "be7f59b0df20dbd09f131095242a0ce3c4f7243d",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5dcdb78d_7d5a8367",
+        "filename": "src/entity_manager.cpp",
+        "patchSetId": 1
+      },
+      "lineNbr": 1350,
+      "author": {
+        "id": 1000008
+      },
+      "writtenOn": "2025-01-21T20:42:25Z",
+      "side": 1,
+      "message": "It may read a bit better if you just made line 1348 an else if.\n\nI suppose could also just wrap 1318 to 1357 with \"if (!EM_CACHE_CONFIGURATION)\" but  there\u0027s already enough indent levels probably.",
+      "revId": "be7f59b0df20dbd09f131095242a0ce3c4f7243d",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    }
+  ]
+}
