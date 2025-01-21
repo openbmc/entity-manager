@@ -92,6 +92,11 @@ class EntityManager
 
 inline void logDeviceAdded(const nlohmann::json& record)
 {
+    if (!EM_CACHE_CONFIGURATION)
+    {
+        return;
+    }
+
     if (!deviceHasLogging(record))
     {
         return;
