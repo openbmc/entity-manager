@@ -21,6 +21,11 @@ namespace configuration
 // writes output files to persist data
 bool writeJsonFiles(const nlohmann::json& systemConfiguration)
 {
+    if (!EM_CACHE_CONFIGURATION)
+    {
+        return true;
+    }
+
     std::filesystem::create_directory(configurationOutDir);
     std::ofstream output(currentConfiguration);
     if (!output.good())

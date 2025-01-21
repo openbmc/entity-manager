@@ -660,7 +660,7 @@ int main()
     });
     dbus_interface::tryIfaceInitialize(entityIface);
 
-    if (fwVersionIsSame())
+    if (EM_CACHE_CONFIGURATION && fwVersionIsSame())
     {
         if (std::filesystem::is_regular_file(
                 configuration::currentConfiguration))
