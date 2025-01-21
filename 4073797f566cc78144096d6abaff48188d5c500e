@@ -26,6 +26,30 @@
     {
       "unresolved": false,
       "key": {
+        "uuid": "d34c547a_379c6635",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 9
+      },
+      "lineNbr": 13,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-01-21T09:36:00Z",
+      "side": 1,
+      "message": "The overhead. There is no need to run the command for each build.\n\nThe file only needs to be regenerated when config is added/moved/removed.\n\nThe reference talks in detail about how incremental builds with meson + ninja are efficient because every dependency of a target is listed and there are no wildcards.\n\nIf you use wildcards, things need to run each time you do an incremental build.",
+      "parentUuid": "c44f387b_a1b20ad2",
+      "range": {
+        "startLine": 13,
+        "startChar": 45,
+        "endLine": 13,
+        "endChar": 50
+      },
+      "revId": "4073797f566cc78144096d6abaff48188d5c500e",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
         "uuid": "f83a9fb5_7e8301d4",
         "filename": "/PATCHSET_LEVEL",
         "patchSetId": 9
@@ -93,6 +117,24 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "a8b46441_877103f7",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 9
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-01-21T09:36:00Z",
+      "side": 1,
+      "message": "Here\u0027s an example of how people typically do this.\nThere is no need to create a patch or fork to add a configuration.\n```\n     install -d ${D}${datadir}/entity-manager/configurations\n     install -m 0444 ${UNPACKDIR}/ethanolx-baseboard.json ${D}${datadir}/entity-manager/configurations\n```\n\nIf there is a list of supported forks, where is this documented?\nDo we need to create a pull request on that fork in that case?",
+      "parentUuid": "a40eff06_adf7cb51",
+      "revId": "4073797f566cc78144096d6abaff48188d5c500e",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "eded885c_8e127157",
@@ -110,6 +152,24 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "9e0090f0_0787eade",
+        "filename": "README.md",
+        "patchSetId": 9
+      },
+      "lineNbr": 138,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-01-21T09:36:00Z",
+      "side": 1,
+      "message": "makes sense. Moved it there 👍",
+      "parentUuid": "eded885c_8e127157",
+      "revId": "4073797f566cc78144096d6abaff48188d5c500e",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "36186825_99f54e19",
@@ -123,6 +183,24 @@
       "writtenOn": "2025-01-20T19:26:19Z",
       "side": 1,
       "message": "Should this generation be part of something like auto_json, which is already known and run by developers?  Creating a new script that devs now have to know exists adds roadblocks (albiet minor ones).  What were the motivations for a new script vs using an existing?\n\nAlternatively, could validate_configs just check to see if a config is missing?",
+      "revId": "4073797f566cc78144096d6abaff48188d5c500e",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "4e1756d2_f4ee63b4",
+        "filename": "scripts/generate_config_list.sh",
+        "patchSetId": 9
+      },
+      "lineNbr": 21,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-01-21T09:36:00Z",
+      "side": 1,
+      "message": "Which roadblock? Just run the script. It\u0027s been documented.\n\n\u003e Alternatively, could validate_configs just check to see if a config is missing?\n\nThat\u0027s an overhead each time that is run. Which is not needed.",
+      "parentUuid": "36186825_99f54e19",
       "revId": "4073797f566cc78144096d6abaff48188d5c500e",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
