@@ -16,3 +16,6 @@ option(
 option(
     'validate-json', type: 'boolean', value: true, description: 'Run JSON schema validation during the build.',
 )
+option(
+    'entity-manager-cache-configuration', type: 'boolean', value: true, description: 'Cache the current configuration to avoid re-parsing.',
+)
