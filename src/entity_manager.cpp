@@ -144,6 +144,10 @@ static std::shared_ptr<sdbusplus::asio::dbus_interface> createInterface(
 // writes output files to persist data
 bool writeJsonFiles(const nlohmann::json& systemConfiguration)
 {
+    if (!EM_CACHE_CONFIGURATION)
+    {
+        return true;
+    }
     std::filesystem::create_directory(configurationOutDir);
     std::ofstream output(currentConfiguration);
     if (!output.good())
@@ -1311,41 +1315,46 @@ int main()
     });
     tryIfaceInitialize(entityIface);
 
-    if (fwVersionIsSame())
+    if (EM_CACHE_CONFIGURATION)
     {
-        if (std::filesystem::is_regular_file(currentConfiguration))
+        if (fwVersionIsSame())
         {
-            // this file could just be deleted, but it's nice for debug
-            std::filesystem::create_directory(tempConfigDir);
-            std::filesystem::remove(lastConfiguration);
-            std::filesystem::copy(currentConfiguration, lastConfiguration);
-            std::filesystem::remove(currentConfiguration);
-
-            std::ifstream jsonStream(lastConfiguration);
-            if (jsonStream.good())
+            if (std::filesystem::is_regular_file(currentConfiguration))
             {
-                auto data = nlohmann::json::parse(jsonStream, nullptr, false);
-                if (data.is_discarded())
+                // this file could just be deleted, but it's nice for debug
+                std::filesystem::create_directory(tempConfigDir);
+                std::filesystem::remove(lastConfiguration);
+                std::filesystem::copy(currentConfiguration, lastConfiguration);
+                std::filesystem::remove(currentConfiguration);
+
+                std::ifstream jsonStream(lastConfiguration);
+                if (jsonStream.good())
                 {
-                    std::cerr
-                        << "syntax error in " << lastConfiguration << "\n";
+                    auto data =
+                        nlohmann::json::parse(jsonStream, nullptr, false);
+                    if (data.is_discarded())
+                    {
+                        std::cerr
+                            << "syntax error in " << lastConfiguration << "\n";
+                    }
+                    else
+                    {
+                        lastJson = std::move(data);
+                    }
                 }
                 else
                 {
-                    lastJson = std::move(data);
+                    std::cerr << "unable to open " << lastConfiguration << "\n";
                 }
             }
-            else
-            {
-                std::cerr << "unable to open " << lastConfiguration << "\n";
-            }
         }
-    }
-    else
-    {
-        // not an error, just logging at this level to make it in the journal
-        std::cerr << "Clearing previous configuration\n";
-        std::filesystem::remove(currentConfiguration);
+        else
+        {
+            // not an error, just logging at this level to make it in the
+            // journal
+            std::cerr << "Clearing previous configuration\n";
+            std::filesystem::remove(currentConfiguration);
+        }
     }
 
     // some boards only show up after power is on, we want to not say they are
