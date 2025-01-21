@@ -144,6 +144,10 @@ static std::shared_ptr<sdbusplus::asio::dbus_interface> createInterface(
 // writes output files to persist data
 bool writeJsonFiles(const nlohmann::json& systemConfiguration)
 {
+    if (!EM_CACHE_CONFIGURATION)
+    {
+        return true;
+    }
     std::filesystem::create_directory(configurationOutDir);
     std::ofstream output(currentConfiguration);
     if (!output.good())
@@ -1311,7 +1315,7 @@ int main()
     });
     tryIfaceInitialize(entityIface);
 
-    if (fwVersionIsSame())
+    if (EM_CACHE_CONFIGURATION && fwVersionIsSame())
     {
         if (std::filesystem::is_regular_file(currentConfiguration))
         {
@@ -1343,7 +1347,8 @@ int main()
     }
     else
     {
-        // not an error, just logging at this level to make it in the journal
+        // not an error, just logging at this level to make it in the
+        // journal
         std::cerr << "Clearing previous configuration\n";
         std::filesystem::remove(currentConfiguration);
     }
