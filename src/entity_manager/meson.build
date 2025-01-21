@@ -1,3 +1,10 @@
+
+if get_option('new-device-detection')
+    cpp_args += ['-DEM_CACHE_CONFIGURATION=true']
+else
+    cpp_args += ['-DEM_CACHE_CONFIGURATION=false']
+endif
+
 executable(
     'entity-manager',
     'entity_manager.cpp',
