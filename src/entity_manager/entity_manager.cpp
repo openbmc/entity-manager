@@ -583,7 +583,7 @@ static bool irContainsProbeInterface(
 
 void EntityManager::handleCurrentConfigurationJson()
 {
-    if (em_utils::fwVersionIsSame())
+    if (EM_CACHE_CONFIGURATION && em_utils::fwVersionIsSame())
     {
         if (std::filesystem::is_regular_file(
                 configuration::currentConfiguration))

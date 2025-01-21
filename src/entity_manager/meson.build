@@ -6,6 +6,9 @@ else
     cpp_args_em += ['-DENABLE_RUNTIME_VALIDATE_JSON=false']
 endif
 
+allowed = get_option('new-device-detection')
+cpp_args_em += '-DEM_CACHE_CONFIGURATION=' + allowed.to_string()
+
 executable(
     'entity-manager',
     'entity_manager.cpp',
