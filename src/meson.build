@@ -2,6 +2,12 @@ cpp_args = boost_args + ['-DPACKAGE_DIR="' + packagedir + '/"']
 cpp_args += ['-DSYSCONF_DIR="' + sysconfdir + '/"']
 installdir = join_paths(get_option('libexecdir'), 'entity-manager')
 
+if get_option('entity-manager-cache-configuration')
+    cpp_args += ['-DEM_CACHE_CONFIGURATION=true']
+else
+    cpp_args += ['-DEM_CACHE_CONFIGURATION=false']
+endif
+
 executable(
     'entity-manager',
     'entity_manager.cpp',
