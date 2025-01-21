@@ -155,6 +155,7 @@ configs = [
     'meta/minerva_pdb_hsc_xdp.json',
     'meta/minerva_pttv.json',
     'meta/minerva_sitv.json',
+    'meta/modbus-Catalina.json',
     'meta/terminus_2x100g_nic_tsff.json',
     'meta/twinlake.json',
     'meta/ventura_fanboard.json',
