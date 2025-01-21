@@ -193,6 +193,7 @@ configs = [
     'meta/yosemite4_wailuafalls.json',
     'meta/yosemite4n.json',
     'micron_7450.json',
+    'modbus-Catalina.json',
     'mori_bmc.json',
     'mori_motherboard.json',
     'mtjade.json',
