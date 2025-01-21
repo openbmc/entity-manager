@@ -44,6 +44,12 @@ matchers:
 - partial_regex: configurations/meta
   owners:
     - patrick@stwcx.xyz
+- partial_regex: src
+  reviewers:
+    - alexander.hansen@9elements.com
+- partial_regex: test
+  reviewers:
+    - alexander.hansen@9elements.com
 
 openbmc:
 - name: Ed Tanous
@@ -64,3 +70,6 @@ openbmc:
 - name: Patrick Williams
   email: patrick@stwcx.xyz
   discord: stwcx
+- name: Alexander Hansen
+  email: alexander.hansen@9elements.com
+  discord: Alexander
