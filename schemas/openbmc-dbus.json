@@ -105,6 +105,17 @@
                             "required": ["SlotNumber"],
                             "type": "object"
                         },
+                        "Pair": {
+                            "additionalProperties": false,
+                            "properties": {
+                                "Name": {
+                                    "description": "The name of the other item in the pair.",
+                                    "type": "string"
+                                }
+                            },
+                            "required": ["Name"],
+                            "type": "object"
+                        },
                         "Revision": {
                             "additionalProperties": false,
                             "properties": {
@@ -170,6 +181,20 @@
                         },
                         "Dimm": {
                             "additionalProperties": false,
+                            "type": "object"
+                        },
+                        "Valve": {
+                            "additionalProperties": false,
+                            "properties": {
+                                "Direction": {
+                                    "enum": ["Supply", "Return", "Unknown"]
+                                },
+                                "Paired": {
+                                    "description": "This property indicates whether the valve is paired with another valve as supply and return pair.",
+                                    "type": "boolean"
+                                }
+                            },
+                            "required": ["Direction", "Paired"],
                             "type": "object"
                         }
                     }
