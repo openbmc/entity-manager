@@ -581,7 +581,8 @@ void createAddObjectMethod(
 
 void postToDbus(const nlohmann::json& newConfiguration,
                 nlohmann::json& systemConfiguration,
-                sdbusplus::asio::object_server& objServer)
+                sdbusplus::asio::object_server& objServer,
+                std::map<std::string, std::set<std::string>> probedByInterfaces)
 
 {
     std::map<std::string, std::string> newBoards; // path -> name
@@ -799,6 +800,21 @@ void postToDbus(const nlohmann::json& newConfiguration,
             populateInterfaceFromJson(systemConfiguration, jsonPointerPath,
                                       itemIface, item, objServer,
                                       getPermission(itemType));
+
+            std::shared_ptr<sdbusplus::asio::dbus_interface> assocIface =
+                createInterface(objServer, ifacePath,
+                                "xyz.openbmc_project.Association.Definitions",
+                                boardNameOrig);
+
+            // find all the dbus interfaces that this configuration was probed
+            // upon
+            std::vector<Association> probeAssociations = {};
+            for (const auto& interface : probedByInterfaces[boardName])
+            {
+                probeAssociations.emplace_back("probed_by", "used_to_probe",
+                                               interface);
+            }
+            assocIface->register_property("Associations", probeAssociations);
 
             topology.addBoard(boardPath, boardType, boardNameOrig, item);
         }
@@ -1035,7 +1051,8 @@ static void publishNewConfiguration(
     //
     // NOLINTNEXTLINE(performance-unnecessary-value-param)
     const nlohmann::json newConfiguration,
-    sdbusplus::asio::object_server& objServer)
+    sdbusplus::asio::object_server& objServer,
+    std::map<std::string, std::set<std::string>> probedByInterfaces)
 {
     loadOverlays(newConfiguration);
 
@@ -1047,8 +1064,10 @@ static void publishNewConfiguration(
     });
 
     boost::asio::post(io, [&instance, count, &timer, newConfiguration,
-                           &systemConfiguration, &objServer]() {
-        postToDbus(newConfiguration, systemConfiguration, objServer);
+                           &systemConfiguration, &objServer,
+                           probedByInterfaces]() {
+        postToDbus(newConfiguration, systemConfiguration, objServer,
+                   probedByInterfaces);
         if (count == instance)
         {
             startRemovedTimer(timer, systemConfiguration);
@@ -1105,7 +1124,8 @@ void propertiesChangedCallback(nlohmann::json& systemConfiguration,
             systemConfiguration, *missingConfigurations, configurations,
             objServer,
             [&systemConfiguration, &objServer, count, oldConfiguration,
-             missingConfigurations]() {
+             missingConfigurations](std::map<std::string, std::set<std::string>>
+                                        probedByInterfaces) {
                 // this is something that since ac has been applied to the bmc
                 // we saw, and we no longer see it
                 bool powerOff = !isPowerOn();
@@ -1131,7 +1151,8 @@ void propertiesChangedCallback(nlohmann::json& systemConfiguration,
                     io, std::bind_front(
                             publishNewConfiguration, std::ref(instance), count,
                             std::ref(timer), std::ref(systemConfiguration),
-                            newConfiguration, std::ref(objServer)));
+                            newConfiguration, std::ref(objServer),
+                            probedByInterfaces));
             });
         perfScan->run();
     });

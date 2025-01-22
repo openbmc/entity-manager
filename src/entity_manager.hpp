@@ -67,7 +67,7 @@ struct PerformScan : std::enable_shared_from_this<PerformScan>
                 nlohmann::json& missingConfigurations,
                 std::list<nlohmann::json>& configurations,
                 sdbusplus::asio::object_server& objServer,
-                std::function<void()>&& callback);
+                std::function<void(std::map<std::string, std::set<std::string>> probedByInterfaces)>&& callback);
     void updateSystemConfiguration(const nlohmann::json& recordRef,
                                    const std::string& probeName,
                                    FoundDevices& foundDevices);
@@ -77,9 +77,15 @@ struct PerformScan : std::enable_shared_from_this<PerformScan>
     nlohmann::json& _missingConfigurations;
     std::list<nlohmann::json> _configurations;
     sdbusplus::asio::object_server& objServer;
-    std::function<void()> _callback;
+
+    std::function<void(std::map<std::string, std::set<std::string>> probedByInterfaces)> _callback;
+    std::map<std::string, std::set<std::string>> probedByInterfaces;
+
     bool _passed = false;
     MapperGetSubTreeResponse dbusProbeObjects;
+
+    // vector of "Name" properties from configuration files.
+    // These configurations have already probed successfully.
     std::vector<std::string> passedProbes;
 };
 
@@ -92,8 +98,13 @@ struct PerformProbe : std::enable_shared_from_this<PerformProbe>
     virtual ~PerformProbe();
 
     nlohmann::json& recordRef;
+
+    // array of of probe expressions. e.g. {"com.abc.z{...}", "..."}
     std::vector<std::string> _probeCommand;
+
+    // this is the "Name" property from a config file
     std::string probeName;
+
     std::shared_ptr<PerformScan> scan;
 };
 

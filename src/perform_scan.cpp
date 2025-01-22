@@ -221,11 +221,12 @@ static std::string getRecordName(const DBusInterface& probe,
     return std::to_string(std::hash<std::string>{}(probeName + device.dump()));
 }
 
-PerformScan::PerformScan(nlohmann::json& systemConfiguration,
-                         nlohmann::json& missingConfigurations,
-                         std::list<nlohmann::json>& configurations,
-                         sdbusplus::asio::object_server& objServerIn,
-                         std::function<void()>&& callback) :
+PerformScan::PerformScan(
+    nlohmann::json& systemConfiguration, nlohmann::json& missingConfigurations,
+    std::list<nlohmann::json>& configurations,
+    sdbusplus::asio::object_server& objServerIn,
+    std::function<void(std::map<std::string, std::set<std::string>>
+                           probedByInterfaces)>&& callback) :
     _systemConfiguration(systemConfiguration),
     _missingConfigurations(missingConfigurations),
     _configurations(configurations), objServer(objServerIn),
@@ -656,6 +657,6 @@ PerformScan::~PerformScan()
     }
     else
     {
-        _callback();
+        _callback(probedByInterfaces);
     }
 }
