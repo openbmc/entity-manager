@@ -171,6 +171,20 @@
                         "Dimm": {
                             "additionalProperties": false,
                             "type": "object"
+                        },
+                        "Valve": {
+                            "additionalProperties": false,
+                            "properties": {
+                                "Direction": {
+                                    "enum": ["Supply", "Return", "Unknown"]
+                                },
+                                "PairName": {
+                                    "description": "This property specifies the pair name for valves when they form a supply and return valve pair; otherwise, it is set to NA.",
+                                    "type": "string"
+                                }
+                            },
+                            "required": ["Direction", "PairName"],
+                            "type": "object"
                         }
                     }
                 },
