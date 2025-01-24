@@ -18,6 +18,24 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "03f55ded_6b7401eb",
+        "filename": "configurations/meta/minerva_fanboard.json",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1001896
+      },
+      "writtenOn": "2025-01-24T07:27:39Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "dd9a790c_d4a3bec9",
+      "revId": "92c191d97c8a58a58b719ee19354f8aa72bb64f1",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "ebed986b_c49d965f",
@@ -31,6 +49,30 @@
       "writtenOn": "2025-01-07T16:21:15Z",
       "side": 1,
       "message": "Can we get added to the product name the differentiation?  This is what we\u0027ve done in all the Yv4 config files.\n\nHaving to specify these as part numbers means that for each development phase we have to add new entries, right?",
+      "range": {
+        "startLine": 447,
+        "startChar": 12,
+        "endLine": 447,
+        "endChar": 87
+      },
+      "revId": "92c191d97c8a58a58b719ee19354f8aa72bb64f1",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "8e9090b5_d2637a2f",
+        "filename": "configurations/meta/minerva_fanboard.json",
+        "patchSetId": 2
+      },
+      "lineNbr": 447,
+      "author": {
+        "id": 1001896
+      },
+      "writtenOn": "2025-01-24T07:27:39Z",
+      "side": 1,
+      "message": "Due to the FRU format already defined on the Minerva system (Harma and Minerva), we may not change the product name. Unlike YV4, we use the board custom data 4 fields to distinguish the different sources of the board. Board custom data 4 will start from the next stage (PVT) so I put the probe condition \"BOARD_PART_NUMBER\" here to downward compatibility with the old stage version.",
+      "parentUuid": "ebed986b_c49d965f",
       "range": {
         "startLine": 447,
         "startChar": 12,

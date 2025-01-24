@@ -18,6 +18,24 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "b2b4b0de_33950fcf",
+        "filename": "configurations/meta/minerva_fanboard.json",
+        "patchSetId": 3
+      },
+      "lineNbr": 453,
+      "author": {
+        "id": 1001896
+      },
+      "writtenOn": "2025-01-24T07:27:39Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "ea956287_61881683",
+      "revId": "d186a773e22040cab6c079825119dee6804df83a",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "4302e7bc_6003b906",
@@ -31,6 +49,24 @@
       "writtenOn": "2025-01-20T19:07:16Z",
       "side": 1,
       "message": "This file looks like it has two completely different fan boards in it, not different placement of the same board.\n\nI suspect this should\u0027ve been two files.",
+      "revId": "d186a773e22040cab6c079825119dee6804df83a",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "b1786457_0e3b7377",
+        "filename": "configurations/meta/minerva_fanboard_adc_silergy.json",
+        "patchSetId": 3
+      },
+      "lineNbr": 938,
+      "author": {
+        "id": 1001896
+      },
+      "writtenOn": "2025-01-24T07:27:39Z",
+      "side": 1,
+      "message": "It\u0027s the same fan board with a different source of component (1st/2nd), so I use two different files to distinguish them with different probe conditions and different sensor formulas.",
+      "parentUuid": "4302e7bc_6003b906",
       "revId": "d186a773e22040cab6c079825119dee6804df83a",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
