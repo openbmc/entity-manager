@@ -1,6 +1,7 @@
 #!/bin/sh
 
 set -eu
+LANG=C
 
 json_files=$(cd configurations; find . -iname "*.json" | sort | sed 's|^\./||')
 
