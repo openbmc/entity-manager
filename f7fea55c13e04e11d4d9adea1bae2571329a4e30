@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d9faf628_74da9f55",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 13,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2025-01-24T15:19:04Z",
+      "side": 1,
+      "message": "I chose \"C\" here because that appears to be what the original author used.  My system has LANG\u003den_US.utf8 and resulted in a different sorting.\n\nI tried to search around the organization for other cases where we add LANG.  The only ones I found were in openbmc-build-scripts where we also set to `en_US.utf8`.  I\u0027m fine using that here as well but it means that the current generated file will have some changes.\n\nOpinions?",
+      "revId": "f7fea55c13e04e11d4d9adea1bae2571329a4e30",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    }
+  ]
+}
