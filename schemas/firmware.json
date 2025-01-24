@@ -15,6 +15,84 @@
                 }
             },
             "required": ["VendorIANA", "CompatibleHardware"]
+        },
+        "BIOS": {
+            "description": "Required information to complete the host fw update process.",
+            "type": "object",
+            "properties": {
+                "Type": {
+                    "description": "The type of configuration object",
+                    "type": "string"
+                },
+                "Name": {
+                    "description": "The name of the firmware.",
+                    "type": "string"
+                },
+                "SPIDevicePath": {
+                    "description": "The path to the SPI flash device",
+                    "type": "string"
+                },
+                "MuxOutputs": {
+                    "description": "The pin names for the mux which toggles the flash to BMC",
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    }
+                },
+                "MuxGPIOValues": {
+                    "description": "The values for the mux gpios which toggle the flash to BMC",
+                    "type": "array",
+                    "items": {
+                        "type": "number"
+                    }
+                },
+                "HasME": {
+                    "description": "This indicates if the CPU has a Management Engine. If so, it may need a command to prevent it from any access to the spi flash during the update.",
+                    "type": "boolean"
+                },
+                "Layout": {
+                    "description": "The layout of the BIOS flash. IFD: Intel Flash Descriptor, Flat: no layout info.",
+                    "enum": ["IFD", "Flat"]
+                },
+                "FirmwareInfo": {
+                    "$ref": "#/$defs/FirmwareInfoDef"
+                }
+            },
+            "required": [
+                "Name",
+                "Type",
+                "SPIDevicePath",
+                "MuxGPIO",
+                "HasME",
+                "Layout",
+                "FirmwareInfo"
+            ]
+        },
+        "I2CVRFW": {
+            "description": "Required information to complete a voltage regulator firmware update",
+            "object": "object",
+            "properties": {
+                "Name": {
+                    "description": "Name of the firmware",
+                    "type": "string"
+                },
+                "Type": {
+                    "description": "The type of configuration object",
+                    "enum": ["XDPE1X2XX"]
+                },
+                "Bus": {
+                    "description": "I2C bus, the device is connected to",
+                    "type": "integer"
+                },
+                "Address": {
+                    "description": "I2C address of the device",
+                    "type": "integer"
+                },
+                "FirmwareInfo": {
+                    "$ref": "#/$defs/FirmwareInfoDef"
+                }
+            },
+            "required": ["Name", "Type", "Bus", "Address", "FirmwareInfo"]
         }
     }
 }
