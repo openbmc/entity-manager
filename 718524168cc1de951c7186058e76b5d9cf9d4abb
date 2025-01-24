@@ -120,6 +120,30 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "39b91e01_86f79114",
+        "filename": "schemas/firmware.json",
+        "patchSetId": 13
+      },
+      "lineNbr": 13,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-01-24T09:37:05Z",
+      "side": 1,
+      "message": "We are already inside the firmware stanza, and here compatible refers to what hardware/device this firmware is compatible with, so with this reasoning CompatibleHardware seems more informative and better.\nI am changing the definition to reflect this and marking the comment as resolved. Please let me know if there are still any questions.",
+      "parentUuid": "3372736f_3b01728c",
+      "range": {
+        "startLine": 13,
+        "startChar": 36,
+        "endLine": 13,
+        "endChar": 141
+      },
+      "revId": "718524168cc1de951c7186058e76b5d9cf9d4abb",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "b9689163_b001d9e6",
@@ -181,6 +205,30 @@
       "side": 1,
       "message": "@Ed I don\u0027t see any further comments on this, so i assume you are fine with @Patrick\u0027s response?",
       "parentUuid": "61df594a_6fe8d251",
+      "range": {
+        "startLine": 17,
+        "startChar": 0,
+        "endLine": 17,
+        "endChar": 56
+      },
+      "revId": "718524168cc1de951c7186058e76b5d9cf9d4abb",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "39d779c2_d36c7dd3",
+        "filename": "schemas/firmware.json",
+        "patchSetId": 13
+      },
+      "lineNbr": 17,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-01-24T09:37:05Z",
+      "side": 1,
+      "message": "Marking this as resolved as i don\u0027t see any further comments on this. Please let me know if there are still any questions. Thanks",
+      "parentUuid": "c6d5ec7e_d68b14fe",
       "range": {
         "startLine": 17,
         "startChar": 0,
