@@ -67,6 +67,34 @@
                 "Layout",
                 "FirmwareInfo"
             ]
+        },
+        "VoltageRegulator_I2C": {
+            "description": "Required information to complete a voltage regulator firmware update",
+            "object": "object",
+            "properties": {
+                "Type": {
+                    "description": "The device type of the voltage regulator",
+                    "enum" : ["XDPE152XX", "XDPE192XX"]
+                },
+                "Bus": {
+                    "description": "I2C bus, the device is connected to",
+                    "type": "integer"
+                },
+                "Address": {
+                    "description": "I2C address of the device",
+                    "type": "integer"
+                },
+                "FirmwareInfo": {
+                    "$ref": "#/$defs/FirmwareInfoDef"
+                }
+            },
+            "required": [
+                "Name",
+                "Type",
+                "Bus",
+                "Address",
+                "FirmwareInfo"
+            ]
         }
     }
 }
