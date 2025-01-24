@@ -48,6 +48,30 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": true,
+      "key": {
+        "uuid": "f27f4ce3_749e9895",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 9
+      },
+      "lineNbr": 13,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2025-01-24T19:22:23Z",
+      "side": 1,
+      "message": "\u003e The overhead.\n\nwe\u0027re talking about a command that runs in sub second time during a 10+ second operation..... Are we effecting the configure time in a measurable way?\n\n\nIt seems a little odd that we link the meson maintainers recommendations for this, then don\u0027t follow their recommendations.  I agree about wildcards, but don\u0027t understand why we\u0027re avoiding run_command, which is what that link recommends.",
+      "parentUuid": "d34c547a_379c6635",
+      "range": {
+        "startLine": 13,
+        "startChar": 45,
+        "endLine": 13,
+        "endChar": 50
+      },
+      "revId": "4073797f566cc78144096d6abaff48188d5c500e",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": false,
       "key": {
         "uuid": "f83a9fb5_7e8301d4",
@@ -155,6 +179,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "493be188_283d2741",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 9
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2025-01-24T19:22:23Z",
+      "side": 1,
+      "message": "\u003e If there is a list of supported forks, where is this documented?\n\nWe don\u0027t support forks officially.  Some do it the way you\u0027ve done it.  Some just fork entity-manager which would be effected by this change.  Like I said, we don\u0027t have to care, but lets make sure this solves the problem so we\u0027re not doing this more than once in a short period of time.",
+      "parentUuid": "a8b46441_877103f7",
+      "revId": "4073797f566cc78144096d6abaff48188d5c500e",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "eded885c_8e127157",
         "filename": "README.md",
         "patchSetId": 9
@@ -219,6 +261,24 @@
       "side": 1,
       "message": "Which roadblock? Just run the script. It\u0027s been documented.\n\n\u003e Alternatively, could validate_configs just check to see if a config is missing?\n\nThat\u0027s an overhead each time that is run. Which is not needed.",
       "parentUuid": "36186825_99f54e19",
+      "revId": "4073797f566cc78144096d6abaff48188d5c500e",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c47b5e4b_2dc72269",
+        "filename": "scripts/generate_config_list.sh",
+        "patchSetId": 9
+      },
+      "lineNbr": 21,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2025-01-24T19:22:23Z",
+      "side": 1,
+      "message": "\u003e Which roadblock? Just run the script. It\u0027s been documented.\n\u003e \n\nYou have to know the documentation and script exist;  It\u0027s less of a roadblock if the \"normal\" flow just works correctly, which would be my preference if there\u0027s not a good technical reason to avoid it.\n\n\u003e \u003e Alternatively, could validate_configs just check to see if a config is missing?\n\u003e \n\u003e That\u0027s an overhead each time that is run. Which is not needed.\n\nThis is the second time you\u0027ve mentioned overhead, and I don\u0027t really understand what you mean by it.  That script already opens every file and parses them fully.  The overhead in also writing out a new meson file is likely unmeasurable.",
+      "parentUuid": "4e1756d2_f4ee63b4",
       "revId": "4073797f566cc78144096d6abaff48188d5c500e",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
