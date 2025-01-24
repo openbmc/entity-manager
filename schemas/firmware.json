@@ -15,6 +15,32 @@
                 }
             },
             "required": ["VendorIANA", "CompatibleHardware"]
+        },
+        "XDPE1X2XXFirmware": {
+            "description": "Required information to complete a voltage regulator firmware update",
+            "object": "object",
+            "properties": {
+                "Name": {
+                    "description": "Name of the firmware",
+                    "type": "string"
+                },
+                "Type": {
+                    "description": "The type of configuration object",
+                    "enum": ["XDPE1X2XXFirmware"]
+                },
+                "Bus": {
+                    "description": "I2C bus, the device is connected to",
+                    "type": "integer"
+                },
+                "Address": {
+                    "description": "I2C address of the device",
+                    "type": "integer"
+                },
+                "FirmwareInfo": {
+                    "$ref": "#/$defs/FirmwareInfoDef"
+                }
+            },
+            "required": ["Name", "Type", "Bus", "Address", "FirmwareInfo"]
         }
     }
 }
