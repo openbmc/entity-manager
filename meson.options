@@ -34,3 +34,9 @@ option(
     value: true,
     description: 'Cache the current configuration to support new-device detection. This option can be set to false for development, which will force re-parsing of configuration.',
 )
+option(
+    'compatible-hardware',
+    type: 'string',
+    value: '',
+    description: 'Space-separated list of which hardware should be supported. Install every configuration by default.',
+)
