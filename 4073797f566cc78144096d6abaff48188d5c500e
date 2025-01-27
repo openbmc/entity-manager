@@ -74,6 +74,30 @@
     {
       "unresolved": false,
       "key": {
+        "uuid": "5cddb5bc_4013d198",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 9
+      },
+      "lineNbr": 13,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-01-27T08:40:51Z",
+      "side": 1,
+      "message": "The time for meson to reconfigure itself is around 5 seconds for me.\n\nSo if we are running the script each time that\u0027s 5 seconds extra for every build. \n\nI would be interested to see a patch if someone finds a more clever way to do this.",
+      "parentUuid": "f27f4ce3_749e9895",
+      "range": {
+        "startLine": 13,
+        "startChar": 45,
+        "endLine": 13,
+        "endChar": 50
+      },
+      "revId": "4073797f566cc78144096d6abaff48188d5c500e",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
         "uuid": "f83a9fb5_7e8301d4",
         "filename": "/PATCHSET_LEVEL",
         "patchSetId": 9
@@ -195,6 +219,24 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "5d4c8522_2fba134b",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 9
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-01-27T08:40:51Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "493be188_283d2741",
+      "revId": "4073797f566cc78144096d6abaff48188d5c500e",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "eded885c_8e127157",
@@ -279,6 +321,24 @@
       "side": 1,
       "message": "\u003e Which roadblock? Just run the script. It\u0027s been documented.\n\u003e \n\nYou have to know the documentation and script exist;  It\u0027s less of a roadblock if the \"normal\" flow just works correctly, which would be my preference if there\u0027s not a good technical reason to avoid it.\n\n\u003e \u003e Alternatively, could validate_configs just check to see if a config is missing?\n\u003e \n\u003e That\u0027s an overhead each time that is run. Which is not needed.\n\nThis is the second time you\u0027ve mentioned overhead, and I don\u0027t really understand what you mean by it.  That script already opens every file and parses them fully.  The overhead in also writing out a new meson file is likely unmeasurable.",
       "parentUuid": "4e1756d2_f4ee63b4",
+      "revId": "4073797f566cc78144096d6abaff48188d5c500e",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "36ed90e7_242d2897",
+        "filename": "scripts/generate_config_list.sh",
+        "patchSetId": 9
+      },
+      "lineNbr": 21,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-01-27T08:40:51Z",
+      "side": 1,
+      "message": "\u003e You have to know the documentation and script exist; It\u0027s less of a roadblock if the \"normal\" flow just works correctly, which would be my preference if there\u0027s not a good technical reason to avoid it.\n\nThere is a trail of comments guiding people to the script. Even in the output of the script itself. I would be surprised if folks used to the old flow would not find it.",
+      "parentUuid": "c47b5e4b_2dc72269",
       "revId": "4073797f566cc78144096d6abaff48188d5c500e",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
