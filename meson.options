@@ -28,3 +28,9 @@ option(
     value: true,
     description: 'Run JSON schema validation during the build.',
 )
+option(
+    'compatible-hardware',
+    type: 'string',
+    value: '',
+    description: 'Space-separated list of which hardware should be supported. Install every configuration by default.',
+)
