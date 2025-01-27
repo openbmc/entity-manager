@@ -78,11 +78,34 @@ install_data('blacklist.json')
 # this creates the 'configs' variable
 subdir('configurations')
 
-filepaths = []
 package_configdir = join_paths(packagedir, 'configurations')
 fs = import('fs')
 
+relative_configs = []
 foreach c : configs
+    #f = files(join_paths('configurations', c))
+    relative_configs += join_paths(
+        meson.current_source_dir(),
+        join_paths('configurations', c),
+    )
+endforeach
+
+regex_filter_script = files('scripts/filter_configs.py')
+
+filtered_configs = run_command(
+    find_program('python3'),
+    regex_filter_script,
+    '--compatible-hardware',
+    get_option('compatible-hardware'),
+    '--configs',
+    ' '.join(relative_configs),
+    check: true,
+).stdout().strip().split(
+    '\n',
+)
+
+filepaths = []
+foreach c : filtered_configs
     file = join_paths('configurations', c)
     install_data(
         file,

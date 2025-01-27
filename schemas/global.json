@@ -24,6 +24,10 @@
                     "description": "The schema for the name property.  The name property identifies the configuration.  When exported, the configuration will be instantiated at: /xyz/openbmc_project/configuration/<Type>/<Name>",
                     "type": "string"
                 },
+                "CompatibleHardware": {
+                    "description": "used for meson option 'compatible-hardware' to install configurations",
+                    "type": "string"
+                },
                 "Probe": {
                     "description": "The schema for an entity manager probe statement. Probes can be a single string or an array. Probes describe a match condition, for example when a DBus property has a specific value. When the match condition occurs, the information described by the Exposes property is exported onto the DBus.",
                     "anyOf": [
