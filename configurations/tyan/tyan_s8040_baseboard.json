@@ -392,6 +392,7 @@
     "Name": "Tyan S8040 Baseboard",
     "Probe": "xyz.openbmc_project.FruDevice({'BOARD_MANUFACTURER': 'TYAN', 'BOARD_PRODUCT_NAME': 'S8040*'})",
     "Type": "Board",
+    "CompatibleHardware": "tyan-s8040",
     "xyz.openbmc_project.Inventory.Decorator.Asset": {
         "Manufacturer": "$PRODUCT_MANUFACTURER",
         "Model": "$PRODUCT_PRODUCT_NAME",
