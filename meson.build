@@ -72,8 +72,19 @@ install_data('blacklist.json')
 # this creates the 'configs' variable
 subdir('configurations')
 
+regex_filter_script = files('scripts/filter_configs.py')
+
+filtered_configs = run_command(
+    find_program('python3'),
+    regex_filter_script,
+    '--regex',
+    get_option('config-regex'),
+    '--configs',
+    ' '.join(configs)
+).stdout().strip().split('\n')
+
 filepaths = []
-foreach c : configs
+foreach c : filtered_configs
     file = join_paths('configurations', c)
     install_data(
         file,

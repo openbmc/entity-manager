@@ -16,3 +16,6 @@ option(
 option(
     'validate-json', type: 'boolean', value: true, description: 'Run JSON schema validation during the build.',
 )
+option(
+    'config-regex', type: 'string', value: '.*\.json', description: 'Which configuration files to install. Install every configuration by default.',
+)
