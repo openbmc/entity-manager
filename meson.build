@@ -130,11 +130,11 @@ endforeach
 subdir('service_files')
 subdir('src')
 
-if not build_tests.disabled()
+if build_tests.allowed()
     test_boost_args = boost_args + ['-DBOOST_ASIO_DISABLE_THREADS']
     gtest = dependency('gtest', main: true, disabler: true, required: false)
     gmock = dependency('gmock', disabler: true, required: false)
-    if not (gtest.found() and gmock.found()) and build_tests.enabled()
+    if not (gtest.found() and gmock.found()) and build_tests.allowed()
         cmake = import('cmake')
         gtest_subproject = cmake.subproject('gtest')
         cm_gtest = gtest_subproject.dependency('gtest')
