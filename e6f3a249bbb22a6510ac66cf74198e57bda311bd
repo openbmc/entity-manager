@@ -191,6 +191,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "1ca426b3_874a9854",
+        "filename": "schemas/firmware.json",
+        "patchSetId": 14
+      },
+      "lineNbr": 39,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-01-30T16:35:43Z",
+      "side": 1,
+      "message": "Can we make a compromise here and call it \"MuxGPIOOutputs\"?\n\nThat still allows for people to grep which GPIOs are configured in their tree\nwhile being explicit about it being an output.",
+      "parentUuid": "5ddc9cba_415b1ee6",
+      "range": {
+        "startLine": 39,
+        "startChar": 17,
+        "endLine": 39,
+        "endChar": 24
+      },
+      "revId": "e6f3a249bbb22a6510ac66cf74198e57bda311bd",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "9eff2482_48a59c68",
         "filename": "schemas/firmware.json",
         "patchSetId": 14
