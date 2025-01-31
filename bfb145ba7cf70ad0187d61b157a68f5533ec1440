@@ -22,6 +22,30 @@
       },
       "revId": "bfb145ba7cf70ad0187d61b157a68f5533ec1440",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4bce3f5a_491610d2",
+        "filename": "meson.build",
+        "patchSetId": 6
+      },
+      "lineNbr": 137,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2025-01-31T17:00:20Z",
+      "side": 1,
+      "message": "Yes... maybe...\n\nAllowed is when either you\u0027ve explicitly enabled or the option has no default.  The `gtest` and `gmock` right above has \"required \u003d false\".  What this `and enabled` does is _only_ pick up the subprojects if you\u0027ve explicitly enabled it.  In the case where the settings was only \"allowed\" the dependency won\u0027t be satisified and none of the tests will be built.\n\nI don\u0027t know what the repository explicitly wants here.",
+      "parentUuid": "a1fed9c8_153f9dc9",
+      "range": {
+        "startLine": 137,
+        "startChar": 49,
+        "endLine": 137,
+        "endChar": 70
+      },
+      "revId": "bfb145ba7cf70ad0187d61b157a68f5533ec1440",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }
