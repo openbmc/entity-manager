@@ -144,6 +144,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "5f9a2c2a_053d1cbb",
+        "filename": "schemas/firmware.json",
+        "patchSetId": 14
+      },
+      "lineNbr": 38,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-01-31T12:44:36Z",
+      "side": 1,
+      "message": "Looking at the linux kernel docs for SPI userspace API, they \nshow that the spi device access is done via its path (e.g. in sysfs).\nSo we would need some way to convert your index into this path.\n\n```\n/sys/class/spidev/spidevB.C ...\n```\n\nhttps://www.kernel.org/doc/html/v6.13-rc7/spi/spidev.html\n\nLooking at one system, i found that\n\n```\n/sys/class/spi_master/spi0/\n```\n\nso there is a way to access by index.\nBut sysfs could be mounted somewhere else, ...\n\nIf we use a path, it is clear which device is referenced.\nWhen using the index, there is some built-in assumptions about how\nit is used to construct the path, which i would like to avoid.\n\nPlease explain to me why it must be an index.",
+      "parentUuid": "8382b0c0_5bd6b8f6",
+      "range": {
+        "startLine": 35,
+        "startChar": 0,
+        "endLine": 38,
+        "endChar": 18
+      },
+      "revId": "e6f3a249bbb22a6510ac66cf74198e57bda311bd",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "96f78c7d_5a82ed1f",
         "filename": "schemas/firmware.json",
         "patchSetId": 14
@@ -203,6 +227,30 @@
       "side": 1,
       "message": "Can we make a compromise here and call it \"MuxGPIOOutputs\"?\n\nThat still allows for people to grep which GPIOs are configured in their tree\nwhile being explicit about it being an output.",
       "parentUuid": "5ddc9cba_415b1ee6",
+      "range": {
+        "startLine": 39,
+        "startChar": 17,
+        "endLine": 39,
+        "endChar": 24
+      },
+      "revId": "e6f3a249bbb22a6510ac66cf74198e57bda311bd",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "18b5c338_75e8e213",
+        "filename": "schemas/firmware.json",
+        "patchSetId": 14
+      },
+      "lineNbr": 39,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-01-31T12:44:36Z",
+      "side": 1,
+      "message": "nvm, changed it to your suggestion.",
+      "parentUuid": "1ca426b3_874a9854",
       "range": {
         "startLine": 39,
         "startChar": 17,
