@@ -1,5 +1,5 @@
 cpp_args = boost_args + ['-DPACKAGE_DIR="' + packagedir + '/"']
-cpp_args += ['-DSYSCONF_DIR="' + sysconfdir + '/"' ]
+cpp_args += ['-DSYSCONF_DIR="' + sysconfdir + '/"']
 installdir = join_paths(get_option('libexecdir'), 'entity-manager')
 
 executable(
@@ -59,10 +59,7 @@ if get_option('devicetree-vpd')
         'machine_context.cpp',
         'devicetree_vpd_parser.cpp',
         cpp_args: cpp_args_fd,
-        dependencies: [
-            sdbusplus,
-            phosphor_dbus_interfaces_dep,
-        ],
+        dependencies: [sdbusplus, phosphor_dbus_interfaces_dep],
         install: true,
         install_dir: installdir,
     )
