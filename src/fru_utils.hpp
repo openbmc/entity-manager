@@ -123,9 +123,9 @@ std::pair<DecodeState, std::string> decodeFRUData(
 
 bool checkLangEng(uint8_t lang);
 
-resCodes
-    formatIPMIFRU(const std::vector<uint8_t>& fruBytes,
-                  boost::container::flat_map<std::string, std::string>& result);
+resCodes formatIPMIFRU(
+    const std::vector<uint8_t>& fruBytes,
+    boost::container::flat_map<std::string, std::string>& result);
 
 std::vector<uint8_t>& getFRUInfo(const uint16_t& bus, const uint8_t& address);
 
@@ -157,8 +157,8 @@ bool findFRUHeader(FRUReader& reader, const std::string& errorHelp,
 /// \param errorHelp and a helper string for failures
 /// \return the FRU contents from the file and bool indicating if the FRU Header
 /// was found
-std::pair<std::vector<uint8_t>, bool>
-    readFRUContents(FRUReader& reader, const std::string& errorHelp);
+std::pair<std::vector<uint8_t>, bool> readFRUContents(
+    FRUReader& reader, const std::string& errorHelp);
 
 /// \brief Validate an IPMI FRU common header
 /// \param blockData the bytes comprising the common header
