@@ -142,6 +142,30 @@
       },
       "revId": "9b48f16d887d549e306afb5533e9ee64675cbeb7",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "e3ba19c1_49f993a5",
+        "filename": "configurations/meta/harma_fanboard.json",
+        "patchSetId": 1
+      },
+      "lineNbr": 709,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2025-02-03T17:19:19Z",
+      "side": 1,
+      "message": "I don\u0027t know what a \"logical construct\" means in entity-manager.  Entity-manager creates objects in `/xyz/openbmc_project/inventory`.  If you ask it to make a \"logical construct\" it is still going to populate this.  That means we end up with FRUs in external interfaces (like Redfish) that aren\u0027t actually FRUs.  Please move this into something that is a real physical entity.  Maybe the Harma board itself?",
+      "parentUuid": "855cb4ef_030a8e05",
+      "range": {
+        "startLine": 708,
+        "startChar": 0,
+        "endLine": 709,
+        "endChar": 38
+      },
+      "revId": "9b48f16d887d549e306afb5533e9ee64675cbeb7",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }
