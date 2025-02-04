@@ -72,6 +72,10 @@ install_data('blacklist.json')
 # this creates the 'configs' variable
 subdir('configurations')
 
+configs = [
+    'meta/yosemite4_spiderboard_adc_max_pwr_silergy.json',
+    'meta/yosemite4_spiderboard_adc_ti_pwr_silergy.json',
+]
 filepaths = []
 foreach c : configs
     file = join_paths('configurations', c)
