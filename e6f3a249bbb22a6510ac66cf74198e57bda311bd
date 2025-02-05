@@ -168,6 +168,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "d7b067a7_45315b2a",
+        "filename": "schemas/firmware.json",
+        "patchSetId": 14
+      },
+      "lineNbr": 38,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2025-02-05T13:34:15Z",
+      "side": 1,
+      "message": "I think that entity-manager configs tend to not be tied to knowledge of Linux, which is what makes the path problematic.\n\nI do agree that there is at a minimum `{controller-index, chip-index}` of some sort that needs to be encoded.  Just having `chip-index` isn\u0027t sufficient because there is no consistent numbering scheme, especially for devices like BIOS chips which are held behind a mux and have to be probed at runtime by the update code (vs being statically loaded from the DTS).",
+      "parentUuid": "5f9a2c2a_053d1cbb",
+      "range": {
+        "startLine": 35,
+        "startChar": 0,
+        "endLine": 38,
+        "endChar": 18
+      },
+      "revId": "e6f3a249bbb22a6510ac66cf74198e57bda311bd",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "96f78c7d_5a82ed1f",
         "filename": "schemas/firmware.json",
         "patchSetId": 14
