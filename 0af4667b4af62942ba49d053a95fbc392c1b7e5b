@@ -16,6 +16,40 @@
       "message": "These docs are unformatted, and to a degree, outright unfished -- but I\u0027d like to get some input before I put too much time going down a path that maybe folks won\u0027t think is that useful as-is.",
       "revId": "0af4667b4af62942ba49d053a95fbc392c1b7e5b",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d4a09e4d_30874926",
+        "filename": "docs/hw_identification_daemons.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 6,
+      "author": {
+        "id": 1001354
+      },
+      "writtenOn": "2025-02-06T21:12:26Z",
+      "side": 1,
+      "message": "If we move forward on this doc, I imagine updating this to include info on checking status on associated services and for seeing what\u0027s on each daemon\u0027s associated bus on D-Bus.\n\nie. \n\n\u003e systemctl status xyz.openbmc_project.frudevice.service\n\u003e journalctl -u xyz.openbmc_project.frudevice.service\n\u003e busctl tree xyz.openbmc_project.FruDevice\n\ntype info",
+      "revId": "0af4667b4af62942ba49d053a95fbc392c1b7e5b",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "975576ef_4c7179c2",
+        "filename": "docs/my_first_sensors_troubleshooting.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 15,
+      "author": {
+        "id": 1001354
+      },
+      "writtenOn": "2025-02-06T21:12:26Z",
+      "side": 1,
+      "message": "Apologies for such an ugly format-- but I wanted to get something out the door for early commentary, and didn\u0027t want \"good\" to be the \"enemy of getting started\"\n\nIf folks thing this doc is a good idea for Entity-Manager/docs, I\u0027ll get to work on making it look nicer.",
+      "revId": "0af4667b4af62942ba49d053a95fbc392c1b7e5b",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }
