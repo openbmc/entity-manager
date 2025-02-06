@@ -352,34 +352,6 @@
             "Type": "ADC"
         },
         {
-            "I2CAddress": 88,
-            "I2CBus": 2,
-            "Name": "Power Supply Slot 0",
-            "NamedPresenceGpio": "presence-ps0",
-            "Type": "IBMCFFPSConnector"
-        },
-        {
-            "I2CAddress": 89,
-            "I2CBus": 2,
-            "Name": "Power Supply Slot 1",
-            "NamedPresenceGpio": "presence-ps1",
-            "Type": "IBMCFFPSConnector"
-        },
-        {
-            "I2CAddress": 90,
-            "I2CBus": 2,
-            "Name": "Power Supply Slot 2",
-            "NamedPresenceGpio": "presence-ps2",
-            "Type": "IBMCFFPSConnector"
-        },
-        {
-            "I2CAddress": 91,
-            "I2CBus": 2,
-            "Name": "Power Supply Slot 3",
-            "NamedPresenceGpio": "presence-ps3",
-            "Type": "IBMCFFPSConnector"
-        },
-        {
             "Name": "Fan1 connector",
             "Pwm": 0,
             "PwmName": "Fan1_Pwm",
@@ -476,6 +448,36 @@
             "Type": "TMP432"
         },
         {
+            "Class": "temp",
+            "FFGainCoefficient": 0.0,
+            "FFOffCoefficient": 0.0,
+            "ICoefficient": -4.64,
+            "ILimitMax": 100,
+            "ILimitMin": 30,
+            "Inputs": [
+                "PCIE_SWITCH1_TEMP",
+                "PCIE_SWITCH2_TEMP",
+                "PCIE_SWITCH3_TEMP",
+                "PCIE_SWITCH4_TEMP",
+                "PCIE_SWITCH5_TEMP",
+                "PCIE_SWITCH6_TEMP"
+            ],
+            "Name": "PCIE Switch Temperature",
+            "NegativeHysteresis": 5.0,
+            "OutLimitMax": 100,
+            "OutLimitMin": 30,
+            "Outputs": [],
+            "PCoefficient": -0.15,
+            "PositiveHysteresis": 0.0,
+            "SetPoint": 75.0,
+            "SlewNeg": -1,
+            "SlewPos": 0.0,
+            "Type": "Pid",
+            "Zones": [
+                "CECIO"
+            ]
+        },
+        {
             "Address": "0x30",
             "Bus": 0,
             "CpuID": 0,
@@ -488,6 +490,198 @@
             "CpuID": 1,
             "Name": "CPU 1",
             "Type": "XeonCPU"
+        },
+        {
+            "Address": "0x4b",
+            "Bus": 72,
+            "Name": "SPYRE9_TEMP1",
+            "Type": "TMP112"
+        },
+        {
+            "Address": "0x48",
+            "Bus": 73,
+            "Name": "SPYRE9_TEMP2",
+            "Type": "TMP112"
+        },
+        {
+            "Address": "0x4b",
+            "Bus": 74,
+            "Name": "SPYRE10_TEMP1",
+            "Type": "TMP112"
+        },
+        {
+            "Address": "0x48",
+            "Bus": 75,
+            "Name": "SPYRE10_TEMP2",
+            "Type": "TMP112"
+        },
+        {
+            "Address": "0x4b",
+            "Bus": 76,
+            "Name": "SPYRE11_TEMP1",
+            "Type": "TMP112"
+        },
+        {
+            "Address": "0x48",
+            "Bus": 77,
+            "Name": "SPYRE11_TEMP2",
+            "Type": "TMP112"
+        },
+        {
+            "Address": "0x4b",
+            "Bus": 78,
+            "Name": "SPYRE12_TEMP1",
+            "Type": "TMP112"
+        },
+        {
+            "Address": "0x48",
+            "Bus": 79,
+            "Name": "SPYRE12_TEMP2",
+            "Type": "TMP112"
+        },
+        {
+            "Address": "0x4b",
+            "Bus": 80,
+            "Name": "SPYRE13_TEMP1",
+            "Type": "TMP112"
+        },
+        {
+            "Address": "0x48",
+            "Bus": 81,
+            "Name": "SPYRE13_TEMP2",
+            "Type": "TMP112"
+        },
+        {
+            "Address": "0x4b",
+            "Bus": 82,
+            "Name": "SPYRE14_TEMP1",
+            "Type": "TMP112"
+        },
+        {
+            "Address": "0x48",
+            "Bus": 83,
+            "Name": "SPYRE14_TEMP2",
+            "Type": "TMP112"
+        },
+        {
+            "Address": "0x4b",
+            "Bus": 84,
+            "Name": "SPYRE15_TEMP1",
+            "Type": "TMP112"
+        },
+        {
+            "Address": "0x48",
+            "Bus": 85,
+            "Name": "SPYRE15_TEMP2",
+            "Type": "TMP112"
+        },
+        {
+            "Address": "0x4b",
+            "Bus": 86,
+            "Name": "SPYRE16_TEMP1",
+            "Type": "TMP112"
+        },
+        {
+            "Address": "0x48",
+            "Bus": 87,
+            "Name": "SPYRE16_TEMP2",
+            "Type": "TMP112"
+        },
+        {
+            "Address": "0x4b",
+            "Bus": 88,
+            "Name": "SPYRE1_TEMP1",
+            "Type": "TMP112"
+        },
+        {
+            "Address": "0x48",
+            "Bus": 89,
+            "Name": "SPYRE1_TEMP2",
+            "Type": "TMP112"
+        },
+        {
+            "Address": "0x4b",
+            "Bus": 90,
+            "Name": "SPYRE2_TEMP1",
+            "Type": "TMP112"
+        },
+        {
+            "Address": "0x48",
+            "Bus": 91,
+            "Name": "SPYRE2_TEMP2",
+            "Type": "TMP112"
+        },
+        {
+            "Address": "0x4b",
+            "Bus": 92,
+            "Name": "SPYRE3_TEMP1",
+            "Type": "TMP112"
+        },
+        {
+            "Address": "0x48",
+            "Bus": 93,
+            "Name": "SPYRE3_TEMP2",
+            "Type": "TMP112"
+        },
+        {
+            "Address": "0x4b",
+            "Bus": 94,
+            "Name": "SPYRE4_TEMP1",
+            "Type": "TMP112"
+        },
+        {
+            "Address": "0x48",
+            "Bus": 95,
+            "Name": "SPYRE4_TEMP2",
+            "Type": "TMP112"
+        },
+        {
+            "Address": "0x4b",
+            "Bus": 96,
+            "Name": "SPYRE5_TEMP1",
+            "Type": "TMP112"
+        },
+        {
+            "Address": "0x48",
+            "Bus": 97,
+            "Name": "SPYRE5_TEMP2",
+            "Type": "TMP112"
+        },
+        {
+            "Address": "0x4b",
+            "Bus": 98,
+            "Name": "SPYRE6_TEMP1",
+            "Type": "TMP112"
+        },
+        {
+            "Address": "0x48",
+            "Bus": 99,
+            "Name": "SPYRE6_TEMP2",
+            "Type": "TMP112"
+        },
+        {
+            "Address": "0x4b",
+            "Bus": 100,
+            "Name": "SPYRE7_TEMP1",
+            "Type": "TMP112"
+        },
+        {
+            "Address": "0x48",
+            "Bus": 101,
+            "Name": "SPYRE7_TEMP2",
+            "Type": "TMP112"
+        },
+        {
+            "Address": "0x4b",
+            "Bus": 102,
+            "Name": "SPYRE8_TEMP1",
+            "Type": "TMP112"
+        },
+        {
+            "Address": "0x48",
+            "Bus": 102,
+            "Name": "SPYRE8_TEMP2",
+            "Type": "TMP112"
         }
     ],
     "Name": "IBM System1 Baseboard",
