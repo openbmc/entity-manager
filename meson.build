@@ -130,7 +130,7 @@ endforeach
 subdir('service_files')
 subdir('src')
 
-if not build_tests.disabled()
+if build_tests.allowed()
     test_boost_args = boost_args + ['-DBOOST_ASIO_DISABLE_THREADS']
     gtest = dependency('gtest', main: true, disabler: true, required: false)
     gmock = dependency('gmock', disabler: true, required: false)
