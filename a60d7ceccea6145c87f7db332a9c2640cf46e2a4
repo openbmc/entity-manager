@@ -16,6 +16,24 @@
       "message": "Because some of the fields depends on the design,\nWe should wait for the design doc review https://gerrit.openbmc.org/c/openbmc/docs/+/65678",
       "revId": "a60d7ceccea6145c87f7db332a9c2640cf46e2a4",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "c4bdb20b_547f973e",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 16
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1001354
+      },
+      "writtenOn": "2025-02-07T00:49:32Z",
+      "side": 1,
+      "message": "It took a good while, but the daemon for reading VPD to identify hardware via device-tree nodes has been merged, and we\u0027ve now confirmed sensor readings with that in place.\n\nSee comment @ for specific details\nhttps://gerrit.openbmc.org/c/openbmc/entity-manager/+/59245/17/configurations/hpe/dl360g12_baseboard.json#348\n\n\nNote: this change also relies on acceptance of:\n78023: HwmonTempSensor: add support for tmp411 and tmp1075 sensors | https://gerrit.openbmc.org/c/openbmc/dbus-sensors/+/78023\n\nbut I don\u0027t expect much trouble there.",
+      "parentUuid": "f54ba87c_3f30dee2",
+      "revId": "a60d7ceccea6145c87f7db332a9c2640cf46e2a4",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }

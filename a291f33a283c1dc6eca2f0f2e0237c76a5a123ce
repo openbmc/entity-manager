@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3d78d194_7c3865c7",
+        "filename": "configurations/hpe/dl360g12_baseboard.json",
+        "patchSetId": 17
+      },
+      "lineNbr": 348,
+      "author": {
+        "id": 1001354
+      },
+      "writtenOn": "2025-02-07T00:49:32Z",
+      "side": 1,
+      "message": "HPE hardware is now detected by checking value of the \u0027model\u0027 node in /proc/device-tree. \n\nThe process for keying HW IDs off device-tree VPD is now detailed here:\nhttps://github.com/openbmc/docs/blob/master/designs/entity-manager-hw-id-vpd-discover-via-device-tree.md\n\nand has been implemented here:\nhttps://gerrit.openbmc.org/c/openbmc/entity-manager/+/75349",
+      "revId": "a291f33a283c1dc6eca2f0f2e0237c76a5a123ce",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    }
+  ]
+}
