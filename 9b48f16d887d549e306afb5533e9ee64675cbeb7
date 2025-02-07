@@ -166,6 +166,30 @@
       },
       "revId": "9b48f16d887d549e306afb5533e9ee64675cbeb7",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "921b191c_88a6d6cf",
+        "filename": "configurations/meta/harma_fanboard.json",
+        "patchSetId": 1
+      },
+      "lineNbr": 709,
+      "author": {
+        "id": 1001939
+      },
+      "writtenOn": "2025-02-07T09:59:39Z",
+      "side": 1,
+      "message": "To avoid redundancy, would it be acceptable to move the fan-related configuration to this harma_fanboard.json? Since the Harma board already has two sources, adding another configuration there feels unnecessary. The fan board is a physical entity, so it seems like the more appropriate place to handle this. so I would put it in Harma Fan Board 0 exposes section.\n\nWould this approach work?",
+      "parentUuid": "e3ba19c1_49f993a5",
+      "range": {
+        "startLine": 708,
+        "startChar": 0,
+        "endLine": 709,
+        "endChar": 38
+      },
+      "revId": "9b48f16d887d549e306afb5533e9ee64675cbeb7",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }
