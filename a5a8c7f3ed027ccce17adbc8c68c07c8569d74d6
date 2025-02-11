@@ -166,6 +166,30 @@
       },
       "revId": "a5a8c7f3ed027ccce17adbc8c68c07c8569d74d6",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "45f25453_33e6e018",
+        "filename": "schemas/mctp.json",
+        "patchSetId": 7
+      },
+      "lineNbr": 37,
+      "author": {
+        "id": 1002143
+      },
+      "writtenOn": "2025-02-11T08:33:28Z",
+      "side": 1,
+      "message": "We implemented a `checkMetaIana` function as a [patch file](https://github.com/facebook/openbmc/blob/helium/common/lfopenbmc/recipes-phosphor/pldm/files/0004-platform-mc-Add-OEM-Meta-event-handler.patch#L961-L976) in pldm that uses the stored IANA info to validate devices, checking if a given  EID corresponds to a Meta device. \nLet me know if you need any further clarification. Thank you!",
+      "parentUuid": "35785502_ec494823",
+      "range": {
+        "startLine": 37,
+        "startChar": 35,
+        "endLine": 37,
+        "endChar": 83
+      },
+      "revId": "a5a8c7f3ed027ccce17adbc8c68c07c8569d74d6",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }
