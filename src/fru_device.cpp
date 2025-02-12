@@ -1123,7 +1123,7 @@ void rescanBusses(
     std::shared_ptr<sdbusplus::asio::connection>& systemBus)
 {
     static boost::asio::steady_timer timer(io);
-    timer.expires_from_now(std::chrono::seconds(1));
+    timer.expires_after(std::chrono::seconds(1));
 
     // setup an async wait in case we get flooded with requests
     timer.async_wait([&](const boost::system::error_code& ec) {
