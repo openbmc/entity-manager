@@ -3,6 +3,142 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "ef8ec4d8_7dea2761",
+        "filename": "schemas/modbus_device.json",
+        "patchSetId": 4
+      },
+      "lineNbr": 4,
+      "author": {
+        "id": 1000021
+      },
+      "writtenOn": "2025-02-12T07:29:56Z",
+      "side": 1,
+      "message": "what is a detect?\n\nthis seems to be a combination of probe address and and attributes discovered.\n\nthe application protocol specification talked about nodes",
+      "revId": "c9d10fab3c4fb38c58ea40001ea1f24cf1bf3fe6",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1ce4fac8_9c0ecec1",
+        "filename": "schemas/modbus_device.json",
+        "patchSetId": 4
+      },
+      "lineNbr": 15,
+      "author": {
+        "id": 1000021
+      },
+      "writtenOn": "2025-02-12T07:29:56Z",
+      "side": 1,
+      "message": "huh?\n\n4.4 data model \n\nthere are 4 overlapping data types \neach data is addressed 0-65536\neach element within a data block is numbered 1-n\n\nthe above is in bold page 7/50",
+      "revId": "c9d10fab3c4fb38c58ea40001ea1f24cf1bf3fe6",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e05462d9_45da74e1",
+        "filename": "schemas/modbus_device.json",
+        "patchSetId": 4
+      },
+      "lineNbr": 17,
+      "author": {
+        "id": 1000021
+      },
+      "writtenOn": "2025-02-12T07:29:56Z",
+      "side": 1,
+      "message": "what is this? \n\nregister addresses? (edit: probably not)\n\ndid you mean node address?  or unit address in TCP?\nwhy is this a range and not discreet?\n\nare you trying to describe a probe or detection for a device?  looking for a sensor on any of N consecutive addresses?  (why would they be consecutive?  would we not expect to correlate the assigned address with some physical instance uniquely)?",
+      "revId": "c9d10fab3c4fb38c58ea40001ea1f24cf1bf3fe6",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "73bc5244_095173df",
+        "filename": "schemas/modbus_device.json",
+        "patchSetId": 4
+      },
+      "lineNbr": 28,
+      "author": {
+        "id": 1000021
+      },
+      "writtenOn": "2025-02-12T07:29:56Z",
+      "side": 1,
+      "message": "this is missing the node number (serial protocol)\n\n1-247 for serial, 0xFF recommended for tcp\n\nedit: or that is the address range being referred to.",
+      "revId": "c9d10fab3c4fb38c58ea40001ea1f24cf1bf3fe6",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "58aac02f_69652469",
+        "filename": "schemas/modbus_device.json",
+        "patchSetId": 4
+      },
+      "lineNbr": 40,
+      "author": {
+        "id": 1000021
+      },
+      "writtenOn": "2025-02-12T07:29:56Z",
+      "side": 1,
+      "message": "see discussion in required properties below",
+      "revId": "c9d10fab3c4fb38c58ea40001ea1f24cf1bf3fe6",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8398c0d0_4c99bf6b",
+        "filename": "schemas/modbus_device.json",
+        "patchSetId": 4
+      },
+      "lineNbr": 44,
+      "author": {
+        "id": 1000021
+      },
+      "writtenOn": "2025-02-12T07:29:56Z",
+      "side": 1,
+      "message": "4.2 address and data are Big endian byte order (most significant byte first) (elsewhere bits are numbered little endian and sent Le in the wire)\n\ndo you have non standard devices?",
+      "revId": "c9d10fab3c4fb38c58ea40001ea1f24cf1bf3fe6",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7e7f2761_e268dc5a",
+        "filename": "schemas/modbus_device.json",
+        "patchSetId": 4
+      },
+      "lineNbr": 56,
+      "author": {
+        "id": 1000021
+      },
+      "writtenOn": "2025-02-12T07:29:56Z",
+      "side": 1,
+      "message": "why are any of these inventory data items expected to be in registers?\n\nbecause of the exemplar device?\n\nThe modbus spec defines a gateway to read product information objects with this information.",
+      "revId": "c9d10fab3c4fb38c58ea40001ea1f24cf1bf3fe6",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "cf6ca599_f163d27f",
+        "filename": "schemas/modbus_device.json",
+        "patchSetId": 4
+      },
+      "lineNbr": 78,
+      "author": {
+        "id": 1000021
+      },
+      "writtenOn": "2025-02-12T07:29:56Z",
+      "side": 1,
+      "message": "formats should determine the endianness and size implicitly.\n\nthis doesn\u0027t differentiate between input registers and holding registers, and doesn\u0027t allow description of digital inputs or coils (digital outputs), the other numbering spaces.\n\n(this means that we won\u0027t need to parse/case 3 levels deep when comparing values)",
+      "revId": "c9d10fab3c4fb38c58ea40001ea1f24cf1bf3fe6",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "a6d25c0e_bef87f86",
         "filename": "schemas/modbus_device.json",
         "patchSetId": 4
@@ -14,6 +150,91 @@
       "writtenOn": "2025-02-04T03:15:07Z",
       "side": 1,
       "message": "Why are we doing the struct-of-arrays thing vs array-of-structs? IMO this strategy makes it less ergonomic and the benefit isn\u0027t obvious. But maybe I\u0027m missing something regarding EM\u0027s implementation constraints (which maybe we could fix?)\n\nhttps://en.wikipedia.org/wiki/AoS_and_SoA",
+      "revId": "c9d10fab3c4fb38c58ea40001ea1f24cf1bf3fe6",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0e15875c_f26d2f68",
+        "filename": "schemas/modbus_device.json",
+        "patchSetId": 4
+      },
+      "lineNbr": 87,
+      "author": {
+        "id": 1000021
+      },
+      "writtenOn": "2025-02-12T07:29:56Z",
+      "side": 1,
+      "message": "the change log says the interface is intended to be durable to TCP and indeed includes the type but baud rate and parity bits are required but IP address and TCP port are missing.   (I\u0027d expect a URL could be convenient but don\u0027t know/didn\u0027t look if a scheme has been registered with IANA.  edit: mbap\u003dtcp (udp) port 502, mbap-s\u003d (tls on tcp) port 802, but no mbap was found in url scheme registry).\n\nThis is an inventory interface right?",
+      "revId": "c9d10fab3c4fb38c58ea40001ea1f24cf1bf3fe6",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "fed5f084_856ca7ae",
+        "filename": "schemas/modbus_device.json",
+        "patchSetId": 4
+      },
+      "lineNbr": 88,
+      "author": {
+        "id": 1000021
+      },
+      "writtenOn": "2025-02-12T07:29:56Z",
+      "side": 1,
+      "message": "conversely the interface doesn\u0027t specify the electrical interface: is it RS232, RS4285 or something else (which is required to properly connect and determine the possible topology).  \n\n232 and 485 are explicitly mentioned in the modbus API protocol specification (1.1b3  4.1 5/50)\n\n\nThe exemplar device includes a status, readonly register bit that records if the terminator resistor is enabled.  for rs485 its recommended that devices are wired along a linear chain terminated at each end and not a star topology (per wikipedia).",
+      "revId": "c9d10fab3c4fb38c58ea40001ea1f24cf1bf3fe6",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "32b4549b_5e35d6b4",
+        "filename": "schemas/modbus_device.json",
+        "patchSetId": 4
+      },
+      "lineNbr": 89,
+      "author": {
+        "id": 1000021
+      },
+      "writtenOn": "2025-02-12T07:29:56Z",
+      "side": 1,
+      "message": "do we want a decorator to the associated serial port?\n\nThe exemplar device includes a status, readonly register bit that records if the terminator resistor is enabled.  for rs485 its recommended that devices are wired along a linear chain terminated at each end and not a star topology (per wikipedia).",
+      "revId": "c9d10fab3c4fb38c58ea40001ea1f24cf1bf3fe6",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2cfd5e22_37ead1bc",
+        "filename": "schemas/modbus_device.json",
+        "patchSetId": 4
+      },
+      "lineNbr": 89,
+      "author": {
+        "id": 1000021
+      },
+      "writtenOn": "2025-02-12T07:29:56Z",
+      "side": 1,
+      "message": "thinking again, the data parity and baud rate are defined by the network port.\n\nit needs to be common to all modbus servers on the given tty link (or tcp ip address and port).\n\nthe network interface (possibly muxing a serial UART to this modbus network) should be a higher common entity to the sensor device (a server exposing multiple readings).",
+      "revId": "c9d10fab3c4fb38c58ea40001ea1f24cf1bf3fe6",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a236d76b_9351ce29",
+        "filename": "schemas/modbus_device.json",
+        "patchSetId": 4
+      },
+      "lineNbr": 94,
+      "author": {
+        "id": 1000021
+      },
+      "writtenOn": "2025-02-12T07:29:56Z",
+      "side": 1,
+      "message": "while we could funnel all this configuration through EM, it doesn\u0027t appear there is enough standard function in the exemplar sensor to warrant shuffling all the programming interface through entity manager.  \n\nI am advocating separating the device register interface (which registers have which formats, especially for random configuration (unit selection), status (not defined protocol error status) from the instance information describing sensor name, association, and thresholds.",
       "revId": "c9d10fab3c4fb38c58ea40001ea1f24cf1bf3fe6",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
