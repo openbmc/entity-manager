@@ -3,6 +3,23 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "987f73d8_c8a1d137",
+        "filename": "schemas/firmware.json",
+        "patchSetId": 10
+      },
+      "lineNbr": 71,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-02-12T09:34:38Z",
+      "side": 1,
+      "message": "Lets rename this XDPE1X2XXFirmware to make it specific that its firmware related and not a general XDPE1X2XX schema.",
+      "revId": "8065491e80042a6a886af4d8e9b460fedf9efb92",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "b2359a43_0c4882a4",
         "filename": "schemas/firmware.json",
         "patchSetId": 10
@@ -32,6 +49,23 @@
       "side": 1,
       "message": "In my understanding the XX in the enum values serves as a placeholder for different versions/iterations of the same chip, with different physical properties (e.g. pin count, pagaging), but in regards of updating, these chips follow the exact same process/protocol. Hence I do not expect a change in properties.\n\nAs source I was linked to this:\nhttps://github.com/facebook/openbmc/blob/f69624d471ea08c3b6d37b163ae11aeab7f8ff42/common/recipes-lib/vr/files/xdpe152xx.h\n\nIt shall not serve as a placeholder for any future device, but as a class of devices which share the same update-process/protocol, even if the physical properties differ.",
       "parentUuid": "b2359a43_0c4882a4",
+      "revId": "8065491e80042a6a886af4d8e9b460fedf9efb92",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "33e9e945_b259f001",
+        "filename": "schemas/firmware.json",
+        "patchSetId": 10
+      },
+      "lineNbr": 77,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-02-12T09:34:38Z",
+      "side": 1,
+      "message": "Lets update all Type enums as well to have Firmware as suffix.",
       "revId": "8065491e80042a6a886af4d8e9b460fedf9efb92",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
