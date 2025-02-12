@@ -13,6 +13,7 @@ project(
 add_project_arguments('-Wno-psabi', language: 'cpp')
 
 boost_args = [
+    '-DBOOST_ASIO_NO_DEPRECATED',
     '-DBOOST_SYSTEM_NO_DEPRECATED',
     '-DBOOST_ERROR_CODE_HEADER_ONLY',
     '-DBOOST_NO_RTTI',
