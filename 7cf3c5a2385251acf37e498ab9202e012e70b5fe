@@ -54,6 +54,24 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "e15c7d2a_c976fee5",
+        "filename": "schemas/firmware.json",
+        "patchSetId": 5
+      },
+      "lineNbr": 71,
+      "author": {
+        "id": 1002253
+      },
+      "writtenOn": "2025-02-12T11:14:45Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "2bd5be3c_7649bab0",
+      "revId": "7cf3c5a2385251acf37e498ab9202e012e70b5fe",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "278f0209_738f2974",
@@ -103,6 +121,24 @@
       "side": 1,
       "message": "\u003e The string \"EEPROM\" applies to all EEPROM-based devices, not just retimers or FRUs. It exports a xyz.openbmc_project.Configuration.EEPROM interface for the EEPROM device code updater daemon. \n\nThe EEPROM device updater can register to handle EM config update for all eeprom based devices. So, it will watch for, e.g. - xyz.openbmc_project.Configuration.EEPROMRetimerFirmware, xyz.openbmc_project.Configuration.EEPROMXXXFirmware, etc.\n\nBut i am fine if you want to keep it generic and name enum for Type as \"EEPROMDeviceFirmware\". We can revisit this later if someone thinks otherwise.",
       "parentUuid": "717e457e_34dd4c5e",
+      "revId": "7cf3c5a2385251acf37e498ab9202e012e70b5fe",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "fdba7c34_70e4a9a4",
+        "filename": "schemas/firmware.json",
+        "patchSetId": 5
+      },
+      "lineNbr": 81,
+      "author": {
+        "id": 1002253
+      },
+      "writtenOn": "2025-02-12T11:14:45Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "14dc1954_190ca037",
       "revId": "7cf3c5a2385251acf37e498ab9202e012e70b5fe",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
