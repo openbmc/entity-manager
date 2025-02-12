@@ -20,6 +20,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "dbe60000_314e8042",
+        "filename": "schemas/firmware.json",
+        "patchSetId": 5
+      },
+      "lineNbr": 71,
+      "author": {
+        "id": 1002253
+      },
+      "writtenOn": "2025-02-12T08:36:15Z",
+      "side": 1,
+      "message": "Renaming \"EEPROM\" to \"EEPROMDeviceFirmware\" creates a naming style inconsistency with other components like BIOS or XDPE1X2XX, which are already defined in the same firmware.json in other active commits. Given this inconsistency, should we still proceed with renaming it to \"EEPROMDeviceFirmware\"?",
+      "parentUuid": "a827f50a_0ab9eaa2",
+      "revId": "7cf3c5a2385251acf37e498ab9202e012e70b5fe",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "278f0209_738f2974",
         "filename": "schemas/firmware.json",
         "patchSetId": 5
@@ -37,6 +55,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "717e457e_34dd4c5e",
+        "filename": "schemas/firmware.json",
+        "patchSetId": 5
+      },
+      "lineNbr": 81,
+      "author": {
+        "id": 1002253
+      },
+      "writtenOn": "2025-02-12T08:36:15Z",
+      "side": 1,
+      "message": "The string \"EEPROM\" applies to all EEPROM-based devices, not just retimers or FRUs. It exports a xyz.openbmc_project.Configuration.EEPROM interface for the EEPROM device code updater daemon. How about changing it to EEPROMDevice to export xyz.openbmc_project.Configuration.EEPROMDevice? Listing \"RetimerFirmware\" in Type may mislead users into thinking it\u0027s limited to specific components.",
+      "parentUuid": "278f0209_738f2974",
+      "revId": "7cf3c5a2385251acf37e498ab9202e012e70b5fe",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "ff62d1ed_73346b55",
         "filename": "schemas/firmware.json",
         "patchSetId": 5
@@ -48,6 +84,24 @@
       "writtenOn": "2025-02-09T02:16:04Z",
       "side": 1,
       "message": "MuxGPIOs",
+      "revId": "7cf3c5a2385251acf37e498ab9202e012e70b5fe",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "3f33dd4d_72d612ff",
+        "filename": "schemas/firmware.json",
+        "patchSetId": 5
+      },
+      "lineNbr": 91,
+      "author": {
+        "id": 1002253
+      },
+      "writtenOn": "2025-02-12T08:36:15Z",
+      "side": 1,
+      "message": "Done.",
+      "parentUuid": "ff62d1ed_73346b55",
       "revId": "7cf3c5a2385251acf37e498ab9202e012e70b5fe",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
