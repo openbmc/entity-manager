@@ -69,6 +69,24 @@
       "message": "I don\u0027t see PinName or LineName in the list.\n\nAlso do you need ChipName when you add the LineName?",
       "revId": "2330beec2e347a6d9b4784b6ffde2659f14d10b5",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "21b326b8_7a933f0e",
+        "filename": "schemas/firmware.json",
+        "patchSetId": 7
+      },
+      "lineNbr": 49,
+      "author": {
+        "id": 1002253
+      },
+      "writtenOn": "2025-02-13T09:29:05Z",
+      "side": 1,
+      "message": "Referring to https://gerrit.openbmc.org/c/openbmc/entity-manager/+/75948/25/schemas/firmware.json, I am planning to use MuxGPIOs as the LineName and MuxGPIOValues as the Polarity. ChipName is not needed.",
+      "parentUuid": "3e5a70d9_d1e9d758",
+      "revId": "2330beec2e347a6d9b4784b6ffde2659f14d10b5",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }
