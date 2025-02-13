@@ -16,6 +16,24 @@
       "message": "Since you have defined MuxGPIOs as an array of nested object, i suppose this will show on DBus as indexed interfaces, for example,\n\nxyz.openbmc_project.Configuration.EEPROMDeviceFirmware.MuxGPIOs0\nxyz.openbmc_project.Configuration.EEPROMDeviceFirmware.MuxGPIOs1\n...\nxyz.openbmc_project.Configuration.EEPROMDeviceFirmware.MuxGPIOsX\n\nHave you verified this by providing a test configuration? This will make the reactor side handling more involved and we won\u0027t be able to use the phosphor-dbus-interfaces generated bindings.",
       "revId": "2330beec2e347a6d9b4784b6ffde2659f14d10b5",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "15078cbb_4a153a7b",
+        "filename": "schemas/firmware.json",
+        "patchSetId": 7
+      },
+      "lineNbr": 39,
+      "author": {
+        "id": 1002253
+      },
+      "writtenOn": "2025-02-13T01:06:11Z",
+      "side": 1,
+      "message": "Yes, it will show on DBus as indexed xyz.openbmc_project.Configuration.EEPROMDeviceFirmware.MuxGPIOsX. Since there are cases where multiple GPIOs need to be set up to mux the EEPROM device to the BMC, this approach ensures flexibility in handling different hardware configurations.\n\nI understand that this makes the reactor-side handling more involved and prevents the use of phosphor-dbus-interfaces generated bindings. Do you have any suggestions or alternative ways to structure this on DBus while still supporting multiple GPIOs for muxing?",
+      "parentUuid": "afdd28fb_da564ac7",
+      "revId": "2330beec2e347a6d9b4784b6ffde2659f14d10b5",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }
