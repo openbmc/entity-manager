@@ -52,6 +52,24 @@
       "parentUuid": "810f1ddb_b32a4091",
       "revId": "a6088460414d414906a472e4e3089087d729ee49",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b9e43d57_8dc75029",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 3
+      },
+      "lineNbr": 11,
+      "author": {
+        "id": 1000016
+      },
+      "writtenOn": "2025-02-14T05:11:44Z",
+      "side": 1,
+      "message": "\u003e How would this work in practice?\n\nI\u0027d propose that this should be handled entirely by the dynamic address allocation mechanism (in our case, mctpd).\n\nSpecifically, `mctpd`\u0027s own configuration should specify the dynamic pool for EID allocation, which should be predefined to avoid any platform static EIDs.\n\nIn any case, the `AssignEndpointStatic` call will fail if a static EID would conflict.",
+      "parentUuid": "4f6fc509_b0665432",
+      "revId": "a6088460414d414906a472e4e3089087d729ee49",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }
