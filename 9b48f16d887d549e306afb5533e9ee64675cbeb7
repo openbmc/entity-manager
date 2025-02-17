@@ -214,6 +214,30 @@
       },
       "revId": "9b48f16d887d549e306afb5533e9ee64675cbeb7",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "54755948_548bdd0f",
+        "filename": "configurations/meta/harma_fanboard.json",
+        "patchSetId": 1
+      },
+      "lineNbr": 709,
+      "author": {
+        "id": 1001939
+      },
+      "writtenOn": "2025-02-17T07:31:32Z",
+      "side": 1,
+      "message": "There is no GPIO present, so the only way to check whether the device is present or not is by using a weaker method—sending an I2C command and checking for a response.\n\nThe probe condition is changed to Harma Chassis.",
+      "parentUuid": "b8e3656e_e720afa9",
+      "range": {
+        "startLine": 708,
+        "startChar": 0,
+        "endLine": 709,
+        "endChar": 38
+      },
+      "revId": "9b48f16d887d549e306afb5533e9ee64675cbeb7",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }
