@@ -70,6 +70,24 @@
       "parentUuid": "4f6fc509_b0665432",
       "revId": "a6088460414d414906a472e4e3089087d729ee49",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8b534bdc_f1fa2427",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 3
+      },
+      "lineNbr": 11,
+      "author": {
+        "id": 1000009
+      },
+      "writtenOn": "2025-02-17T03:59:43Z",
+      "side": 1,
+      "message": "Yes, agree with @jk@ozlabs.org here. It seems a sensible pre-condition that mctpd be configured with the dynamic pool from which to draw EIDs before any are assigned. I expect we can set things up so the pool can be configured over D-Bus (or through mctpd-specific configuration files), and then enumeration and assignment can follow.",
+      "parentUuid": "b9e43d57_8dc75029",
+      "revId": "a6088460414d414906a472e4e3089087d729ee49",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }
