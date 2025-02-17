@@ -26,6 +26,7 @@
 #include <boost/asio/io_context.hpp>
 #include <boost/asio/steady_timer.hpp>
 #include <boost/container/flat_map.hpp>
+#include <boost/functional/hash.hpp>
 #include <nlohmann/json.hpp>
 #include <phosphor-logging/lg2.hpp>
 #include <sdbusplus/asio/connection.hpp>
@@ -71,6 +72,9 @@ constexpr const char* fruUpdateSchema = PACKAGE_DIR
     "configurations/schemas/fru_update_policy.json";
 constexpr const char* fruUpdatePolicyPath = PACKAGE_DIR
     "fru_update_policy.json";
+
+const static constexpr char* backupsLocation =
+    "/var/lib/entity-manager/backups/";
 const static constexpr char* baseboardFruLocation =
     "/etc/fru/baseboard.fru.bin";
 
@@ -106,6 +110,16 @@ bool updateFRUProperty(
     std::shared_ptr<sdbusplus::asio::connection>& systemBus,
     bool dbusCall = false);
 
+void rescanOneBus(
+    BusMap& busmap, uint16_t busNum,
+    boost::container::flat_map<
+        std::pair<size_t, size_t>,
+        std::shared_ptr<sdbusplus::asio::dbus_interface>>& dbusInterfaceMap,
+    bool dbusCall, size_t& unknownBusObjectCount, const bool& powerIsOn,
+    std::set<std::string>& updatableFruProperties,
+    sdbusplus::asio::object_server& objServer,
+    std::shared_ptr<sdbusplus::asio::connection>& systemBus);
+
 // Given a bus/address, produce the path in sysfs for an eeprom.
 static std::string getEepromPath(size_t bus, size_t address)
 {
@@ -127,6 +141,129 @@ static bool hasEepromFile(size_t bus, size_t address)
     {
         return false;
     }
+}
+
+static std::string getBackupPath(size_t fruHash)
+{
+    std::string backupPath{backupsLocation};
+    backupPath += std::to_string(fruHash);
+
+    return backupPath;
+}
+
+static bool hasBackupFile(size_t fruHash)
+{
+    std::string backupPath = getBackupPath(fruHash);
+    std::error_code ec;
+    return fs::exists(backupPath, ec);
+}
+
+static bool getFRUDataHash(uint32_t bus, uint32_t address, size_t& hashValue)
+{
+    std::vector<uint8_t> fruData;
+    if (!getFruData(fruData, bus, address))
+    {
+        lg2::error("Failed to get FRU data to hash.");
+        return false;
+    }
+
+    hashValue = boost::hash_value(fruData);
+    return true;
+}
+
+static bool createBackupFile(size_t bus, size_t address, size_t fruHash)
+{
+    std::string eepromPath = getEepromPath(bus, address);
+    std::string backupPath = getBackupPath(fruHash);
+
+    try
+    {
+        fs::copy(eepromPath, backupPath, fs::copy_options::skip_existing);
+    }
+    catch (...)
+    {
+        lg2::error("Copying eeprom file failed.");
+        return false;
+    }
+
+    lg2::info("Backup created for eeprom at {BUS}-{ADDRESS}.", "BUS", bus,
+              "ADDRESS", address);
+    return true;
+}
+
+static void manageBackup(size_t currentFruHash, size_t newFruHash)
+{
+    fs::path p = getBackupPath(currentFruHash);
+
+    if (fs::is_symlink(p))
+    {
+        fs::path outdated{getBackupPath(currentFruHash)};
+        fs::path backupFile = fs::read_symlink(outdated);
+
+        fs::path updated{getBackupPath(newFruHash)};
+        fs::create_symlink(backupFile, updated);
+        fs::remove(outdated);
+
+        lg2::debug("Symlink updated. Outdated link removed.");
+    }
+    else
+    {
+        fs::path backupPath{getBackupPath(currentFruHash)};
+        fs::path symlink{getBackupPath(newFruHash)};
+
+        fs::create_symlink(backupPath, symlink);
+
+        lg2::debug("New symlink to backup file created.");
+    }
+
+    fs::path newBackupPath{fs::read_symlink(getBackupPath(newFruHash))};
+    lg2::debug("Backup mapping for this fru: {FROM} -> {TO}", "FROM",
+               newFruHash, "TO", newBackupPath.string());
+}
+
+static bool restoreFRUFromBackup(size_t bus, size_t address)
+{
+    size_t fruHash = 0;
+    if (!getFRUDataHash(bus, address, fruHash))
+    {
+        lg2::error("Failed to get FRU data hash. Cannot restore FRU..");
+        throw DBusInternalError();
+        return false;
+    }
+
+    if (!hasBackupFile(fruHash))
+    {
+        lg2::error("No backup found. Cannot restore FRU..");
+        throw DBusInternalError();
+        return false;
+    }
+
+    std::string path = getBackupPath(fruHash);
+
+    if (!fs::is_symlink(path))
+    {
+        lg2::info("Nothing to do.");
+        return false;
+    }
+
+    std::string eepromPath = getEepromPath(bus, address);
+    std::string backupPath = fs::read_symlink(path);
+
+    try
+    {
+        fs::copy(backupPath, eepromPath, fs::copy_options::overwrite_existing);
+    }
+    catch (...)
+    {
+        lg2::error("Failed to copy backup. Cannot restore FRU..");
+        throw DBusInternalError();
+        return false;
+    }
+
+    // clean up - symlink no longer valid
+    std::error_code ec;
+    fs::remove(path, ec);
+    return true;
 }
 
 static int64_t readFromEeprom(int fd, off_t offset, size_t len, uint8_t* buf)
@@ -948,6 +1085,7 @@ void addFruObjectToDbus(
                         dbusInterfaceMap, unknownBusObjectCount, powerIsOn,
                         updatableFruProperties, objServer, systemBus, true))
                 {
+                    lg2::error("Failed to update FRU..");
                     throw DBusInternalError();
                     return;
                 }
@@ -955,10 +1093,26 @@ void addFruObjectToDbus(
                 lg2::info("FRU property updated: {PROP}={VAL}", "PROP",
                           propertyName, "VAL", propertyValue);
             });
-    });
-}
 
-iface->initialize();
+        iface->register_method(
+            "RestoreFruFromBackup",
+            [&dbusInterfaceMap, &unknownBusObjectCount, &powerIsOn,
+             &updatableFruProperties, &objServer, &systemBus, bus, address]() {
+                if (!restoreFRUFromBackup(bus, address))
+                {
+                    return;
+                }
+
+                lg2::info("FRU at {BUS}-{ADDRESS} restored. Rescanning bus..",
+                          "BUS", bus, "ADDRESS", address);
+
+                rescanOneBus(busMap, bus, dbusInterfaceMap, true,
+                             unknownBusObjectCount, powerIsOn,
+                             updatableFruProperties, objServer, systemBus);
+            });
+    }
+
+    iface->initialize();
 }
 
 static bool readBaseboardFRU(std::vector<uint8_t>& baseboardFRU)
@@ -1312,6 +1466,7 @@ bool updateFRUProperty(
         return false;
     }
 
+    size_t currentFruHash = 0;
     if (ENABLE_FRU_UPDATE_PROPERTY && dbusCall)
     {
         if (updatableFruProperties.find(propertyName) ==
@@ -1322,6 +1477,21 @@ bool updateFRUProperty(
             throw std::invalid_argument(
                 "Update for this property is not allowed");
             return false;
+        }
+
+        currentFruHash = boost::hash_value(fruData);
+
+        lg2::debug("current FRU data hash -> {HASH}", "HASH",
+                   std::to_string(currentFruHash));
+
+        if (!hasBackupFile(currentFruHash))
+        {
+            // create a backup if non is existing
+            if (!createBackupFile(bus, address, currentFruHash))
+            {
+                lg2::error("Backup for FRU failed.");
+                return false;
+            }
         }
     }
 
@@ -1459,9 +1629,17 @@ bool updateFRUProperty(
         return false;
     }
 
+    if (ENABLE_FRU_UPDATE_PROPERTY && dbusCall)
+    {
+        size_t newFruHash = boost::hash_value(fruData);
+        lg2::debug("new FRU data hash: {HASH}", "HASH", newFruHash);
+        manageBackup(currentFruHash, newFruHash);
+    }
+
     // Rescan the bus so that GetRawFru dbus-call fetches updated values
     rescanBusses(busMap, dbusInterfaceMap, unknownBusObjectCount, powerIsOn,
                  updatableFruProperties, objServer, systemBus);
+
     return true;
 }
 
