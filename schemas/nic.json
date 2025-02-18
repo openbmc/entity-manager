@@ -1,0 +1,66 @@
+{
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "$defs": {
+        "MCTPTransportInfo": {
+            "description": "The properties for MCTP transport",
+            "type": "object",
+            "properties": {
+                "MCTPNetworkId": {
+                    "description": "The MCTP network id.",
+                    "type": "number"
+                },
+                "MCTPEndpointId": {
+                    "description": "The MCTP endpoint id.",
+                    "type": "number"
+                }
+            },
+            "required": ["MCTPEndpointId"]
+        },
+        "RBTTransportInfo": {
+            "description": "The properties for RBT transport",
+            "type": "object",
+            "properties": {
+                "InterfaceIndex": {
+                    "description": "The interface index.",
+                    "type": "number"
+                }
+            },
+            "required": ["InterfaceIndex"]
+        },
+        "NIC": {
+            "description": "The definition for the NIC configuration.",
+            "type": "object",
+            "properties": {
+                "Type": {
+                    "description": "The type of configuration object.",
+                    "enum": ["NIC"]
+                },
+                "Name": {
+                    "description": "The name of the network interface.",
+                    "type": "string"
+                },
+                "NCSITransportType": {
+                    "description": "The type of NCSI tansport.",
+                    "enum": ["MCTP", "RBT"]
+                },
+                "NCSITransportInfo": {
+                    "description": "The NCSI transport properties based on transport type",
+                    "anyOf": [
+                        {
+                            "$ref": "#/$defs/MCTPTransportInfo"
+                        },
+                        {
+                            "$ref": "#/$defs/RBTTransportInfo"
+                        }
+                    ]
+                }
+            },
+            "required": [
+                "Name",
+                "Type",
+                "NCSITransportType",
+                "NCSITransportInfo"
+            ]
+        }
+    }
+}
