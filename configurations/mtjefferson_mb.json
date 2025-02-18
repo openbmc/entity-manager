@@ -418,15 +418,15 @@
                     },
                     {
                         "Direction": "less than",
-                        "Name": "lower critical",
-                        "Severity": 1,
+                        "Name": "lower non critical",
+                        "Severity": 0,
                         "Value": 1.53
                     },
                     {
                         "Direction": "less than",
-                        "Name": "lower non critical",
-                        "Severity": 0,
-                        "Value": 1.434
+                        "Name": "lower critical",
+                        "Severity": 1,
+                        "Value": 1.435
                     }
                 ],
                 "Type": "ADC"
@@ -446,7 +446,7 @@
                         "Direction": "greater than",
                         "Name": "upper critical",
                         "Severity": 1,
-                        "Value": 6.022
+                        "Value": 6.023
                     },
                     {
                         "Direction": "greater than",
@@ -464,7 +464,7 @@
                         "Direction": "less than",
                         "Name": "lower non critical",
                         "Severity": 0,
-                        "Value": 4.262
+                        "Value": 4.263
                     }
                 ],
                 "Type": "ADC"
@@ -818,7 +818,7 @@
                         "Direction": "less than",
                         "Name": "lower critical",
                         "Severity": 1,
-                        "Value": 1.434
+                        "Value": 1.435
                     },
                     {
                         "Direction": "less than",
@@ -978,7 +978,7 @@
                         "Direction": "less than",
                         "Name": "lower critical",
                         "Severity": 1,
-                        "Value": 1.434
+                        "Value": 1.435
                     },
                     {
                         "Direction": "less than",
@@ -1132,6 +1132,8 @@
                         1
                     ]
                 },
+                "EntityId": 29,
+                "EntityInstance": 1,
                 "Index": 0,
                 "MaxReading": 21000,
                 "Name": "FAN0",
@@ -1162,6 +1164,8 @@
                         3
                     ]
                 },
+                "EntityId": 29,
+                "EntityInstance": 3,
                 "Index": 2,
                 "MaxReading": 21000,
                 "Name": "FAN1",
@@ -1192,6 +1196,8 @@
                         5
                     ]
                 },
+                "EntityId": 29,
+                "EntityInstance": 5,
                 "Index": 4,
                 "MaxReading": 21000,
                 "Name": "FAN2",
@@ -1222,6 +1228,8 @@
                         7
                     ]
                 },
+                "EntityId": 29,
+                "EntityInstance": 7,
                 "Index": 6,
                 "MaxReading": 21000,
                 "Name": "FAN3",
@@ -1246,7 +1254,7 @@
                 "Type": "MB Upstream Port"
             },
             {
-                "EntityId": 30,
+                "EntityId": 4,
                 "EntityInstance": 1,
                 "MaxValue": 127,
                 "MinValue": 0,
@@ -1350,6 +1358,8 @@
                 "Units": "DegreesC"
             },
             {
+                "EntityId": 15,
+                "EntityInstance": 1,
                 "MaxValue": 127,
                 "MinValue": 0,
                 "Name": "FrontBP_MaxTemp",
@@ -1369,6 +1379,8 @@
                 "Units": "DegreesC"
             },
             {
+                "EntityId": 4,
+                "EntityInstance": 2,
                 "MaxValue": 127,
                 "MinValue": 0,
                 "Name": "NVMeFBP_MaxTemp",
@@ -1468,8 +1480,8 @@
                 "Name": "Stepwise_CPU_MaxTemp",
                 "NegativeHysteresis": 2.0,
                 "Output": [
+                    15.0,
                     20.0,
-                    25.0,
                     30.0,
                     40.0,
                     45.0,
@@ -1483,25 +1495,27 @@
                     85.0,
                     90.0,
                     95.0,
+                    100.0,
                     100.0
                 ],
                 "PositiveHysteresis": 0,
                 "Reading": [
                     1.0,
+                    10.0,
+                    40.0,
                     65.0,
+                    67.0,
                     70.0,
-                    73.0,
+                    72.0,
                     75.0,
+                    77.0,
                     80.0,
                     82.0,
-                    84.0,
-                    86.0,
-                    88.0,
+                    85.0,
                     90.0,
                     92.0,
-                    94.0,
-                    96.0,
-                    98.0,
+                    95.0,
+                    99.0,
                     100.0
                 ],
                 "Type": "Stepwise",
@@ -1524,6 +1538,7 @@
                     35.0,
                     40.0,
                     70.0,
+                    85.0,
                     100.0
                 ],
                 "PositiveHysteresis": 0,
@@ -1535,7 +1550,8 @@
                     30.0,
                     35.0,
                     38.0,
-                    40.0
+                    41.0,
+                    43.0
                 ],
                 "Type": "Stepwise",
                 "Zones": [
@@ -1547,27 +1563,90 @@
                 "Inputs": [
                     "NVMeM2_MaxTemp"
                 ],
+                "MissingIsAcceptable": [
+                    "NVMeM2_MaxTemp"
+                ],
                 "Name": "Stepwise_NVMeM2_MaxTemp",
                 "NegativeHysteresis": 2.0,
                 "Output": [
                     15.0,
+                    20.0,
                     30.0,
                     40.0,
+                    45.0,
+                    50.0,
                     55.0,
+                    60.0,
+                    65.0,
                     70.0,
-                    85.0,
+                    75.0,
+                    80.0,
                     90.0,
                     100.0
                 ],
                 "PositiveHysteresis": 0,
                 "Reading": [
                     1.0,
+                    10.0,
+                    25.0,
+                    40.0,
+                    45.0,
+                    50.0,
+                    52.0,
+                    55.0,
+                    57.0,
+                    60.0,
+                    62.0,
+                    65.0,
+                    68.0,
+                    70.0
+                ],
+                "Type": "Stepwise",
+                "Zones": [
+                    "Zone 1"
+                ]
+            },
+            {
+                "Class": "temp",
+                "Inputs": [
+                    "NVMeFBP_MaxTemp"
+                ],
+                "MissingIsAcceptable": [
+                    "NVMeFBP_MaxTemp"
+                ],
+                "Name": "Stepwise_NVMeFBP_MaxTemp",
+                "NegativeHysteresis": 2.0,
+                "Output": [
+                    15.0,
+                    20.0,
+                    30.0,
+                    40.0,
+                    45.0,
                     50.0,
                     55.0,
-                    58.0,
-                    61.0,
-                    64.0,
-                    67.0,
+                    60.0,
+                    65.0,
+                    70.0,
+                    75.0,
+                    80.0,
+                    90.0,
+                    100.0
+                ],
+                "PositiveHysteresis": 0,
+                "Reading": [
+                    1.0,
+                    10.0,
+                    25.0,
+                    40.0,
+                    45.0,
+                    50.0,
+                    52.0,
+                    55.0,
+                    57.0,
+                    60.0,
+                    62.0,
+                    65.0,
+                    68.0,
                     70.0
                 ],
                 "Type": "Stepwise",
@@ -1587,7 +1666,9 @@
                 "NegativeHysteresis": 2.0,
                 "Output": [
                     15.0,
-                    25.0,
+                    30.0,
+                    40.0,
+                    45.0,
                     50.0,
                     55.0,
                     60.0,
@@ -1603,15 +1684,17 @@
                 "PositiveHysteresis": 0,
                 "Reading": [
                     1.0,
-                    50.0,
-                    55.0,
-                    60.0,
+                    10.0,
                     65.0,
+                    67.0,
                     70.0,
+                    72.0,
                     75.0,
+                    77.0,
                     80.0,
                     85.0,
                     90.0,
+                    92.0,
                     95.0,
                     100.0,
                     105.0
@@ -1634,11 +1717,15 @@
                 "Output": [
                     15.0,
                     20.0,
+                    30.0,
+                    40.0,
                     45.0,
                     50.0,
                     55.0,
+                    60.0,
                     65.0,
                     70.0,
+                    75.0,
                     80.0,
                     85.0,
                     90.0,
@@ -1648,17 +1735,111 @@
                 "PositiveHysteresis": 0,
                 "Reading": [
                     1.0,
+                    10.0,
+                    40.0,
+                    50.0,
                     55.0,
                     60.0,
+                    62.0,
                     65.0,
-                    68.0,
+                    67.0,
                     70.0,
                     72.0,
                     75.0,
-                    78.0,
+                    77.0,
                     80.0,
-                    82.0,
+                    83.0,
                     85.0
+                ],
+                "Type": "Stepwise",
+                "Zones": [
+                    "Zone 1"
+                ]
+            },
+            {
+                "Class": "temp",
+                "Inputs": [
+                    "PcieZoneTemp1",
+                    "PcieZoneTemp2"
+                ],
+                "MissingIsAcceptable": [
+                    "PcieZoneTemp1",
+                    "PcieZoneTemp2"
+                ],
+                "Name": "Stepwise_PcieCard_MaxTemp",
+                "NegativeHysteresis": 2.0,
+                "Output": [
+                    15.0,
+                    30.0,
+                    40.0,
+                    45.0,
+                    50.0,
+                    55.0,
+                    60.0,
+                    65.0,
+                    70.0,
+                    75.0,
+                    80.0,
+                    85.0,
+                    90.0,
+                    95.0,
+                    100.0
+                ],
+                "PositiveHysteresis": 0,
+                "Reading": [
+                    1.0,
+                    10.0,
+                    65.0,
+                    67.0,
+                    70.0,
+                    72.0,
+                    75.0,
+                    77.0,
+                    80.0,
+                    85.0,
+                    90.0,
+                    92.0,
+                    95.0,
+                    100.0,
+                    105.0
+                ],
+                "Type": "Stepwise",
+                "Zones": [
+                    "Zone 1"
+                ]
+            },
+            {
+                "Class": "temp",
+                "Inputs": [
+                    "PSU1_TEMP",
+                    "PSU2_TEMP"
+                ],
+                "Name": "Stepwise_PSU_MaxTemp",
+                "NegativeHysteresis": 2.0,
+                "Output": [
+                    15.0,
+                    20.0,
+                    30.0,
+                    40.0,
+                    50.0,
+                    60.0,
+                    70.0,
+                    80.0,
+                    90.0,
+                    100.0
+                ],
+                "PositiveHysteresis": 0,
+                "Reading": [
+                    1.0,
+                    10.0,
+                    25.0,
+                    35.0,
+                    40.0,
+                    45.0,
+                    50.0,
+                    55.0,
+                    57.0,
+                    60.0
                 ],
                 "Type": "Stepwise",
                 "Zones": [
