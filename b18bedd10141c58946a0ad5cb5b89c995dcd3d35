@@ -16,6 +16,24 @@
       "message": "To summarize chris and my discussion on discord:\n\"I fully support the concept of a debugging/troublshooting doc.  I don\u0027t think this review is valuable as it exists now until it\u0027s gone through.\"",
       "revId": "b18bedd10141c58946a0ad5cb5b89c995dcd3d35",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c3793524_d3cd136d",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 11
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1001354
+      },
+      "writtenOn": "2025-02-18T16:56:56Z",
+      "side": 1,
+      "message": "While I was thinking about \"how would this work as a pure troubleshooting doc\" (re: questions you asked on Discord), it occurred to me that a lot of the troubleshooting I personally did wouldn\u0027t be needed on most platforms -- and several of those issues I had got resolved with daemon-level changes anyways.\n\nCurrently I\u0027m thinking about reframing this as a \"my_first_unsupported_sensor: a retrospective\" type doc that would be cleaned up with \"less is more\" -- as discussed on discord, but maybe retaining more of the existing structure the doc has now vs. what a true \"troubleshooting\" doc would be. \n\nIt would assume folks had already worked through the my_first_sensors doc, but maybe aren\u0027t sure to how to add something \u0027new\u0027 that no one else is using yet.\n\nWhat do folks think of approaching things from that angle?",
+      "parentUuid": "6656604c_4ad9f0a2",
+      "revId": "b18bedd10141c58946a0ad5cb5b89c995dcd3d35",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }
