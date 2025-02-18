@@ -1,0 +1,38 @@
+{
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "$defs": {
+        "NIC": {
+            "description": "The definition for the modbus device.",
+            "type": "object",
+            "properties": {
+                "Type": {
+                    "description": "The type of configuration object.",
+                    "enum": ["NIC"]
+                },
+                "Name": {
+                    "description": "The name of the network interface.",
+                    "type": "string"
+                },
+                "NCSITransportType": {
+                    "description": "The type of NCSI tansport.",
+                    "enum": ["MCTP", "RBT"]
+                },
+                "InterfaceIndex": {
+                    "description": "The interface index, applicable for RBT transport.",
+                    "type": "number"
+                },
+                "MCTPEndpointId": {
+                    "description": "The MCTP endpoint, applicable for MCTP tansport.",
+                    "type": "string"
+                }
+            },
+            "required": [
+                "Name",
+                "Type",
+                "NCSITransportType",
+                "InterfaceIndex",
+                "MCTPEndpointId"
+            ]
+        }
+    }
+}
