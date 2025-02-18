@@ -238,6 +238,23 @@
       },
       "revId": "9b48f16d887d549e306afb5533e9ee64675cbeb7",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "744ee259_bb342732",
+        "filename": "configurations/meta/harma_fanboard.json",
+        "patchSetId": 1
+      },
+      "lineNbr": 710,
+      "author": {
+        "id": 1000008
+      },
+      "writtenOn": "2025-02-18T15:21:42Z",
+      "side": 1,
+      "message": "This is still a new piece of inventory just to hold a fan config, which isn\u0027t necessary.\n\nIf I look for the term \u0027stepwise\u0027 in the yosemite4 files, I see it in 21 different ones, which implies that the fan parameters can be put with the inventory they represent.  If nothing else, this could all go in the Chassis object in the haram_mb.json file.",
+      "revId": "9b48f16d887d549e306afb5533e9ee64675cbeb7",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }
