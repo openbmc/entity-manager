@@ -663,8 +663,8 @@ void postToDbus(const nlohmann::json& newConfiguration,
         for (auto& item : *exposes)
         {
             exposesIndex++;
-            jsonPointerPath = jsonPointerPathBoard;
-            jsonPointerPath += std::to_string(exposesIndex);
+            auto exposesIndexJsonPointer =
+                jsonPointerPathBoard + std::to_string(exposesIndex);
 
             auto findName = item.find("Name");
             if (findName == item.end())
@@ -723,10 +723,10 @@ void postToDbus(const nlohmann::json& newConfiguration,
 
             for (const auto& [name, config] : item.items())
             {
-                jsonPointerPath = jsonPointerPathBoard;
-                jsonPointerPath.append(std::to_string(exposesIndex))
-                    .append("/")
-                    .append(name);
+                auto objOrArrayBaseJsonPointer = exposesIndexJsonPointer;
+                objOrArrayBaseJsonPointer += "/";
+                objOrArrayBaseJsonPointer += name;
+
                 if (config.type() == nlohmann::json::value_t::object)
                 {
                     std::string ifaceName =
@@ -738,8 +738,8 @@ void postToDbus(const nlohmann::json& newConfiguration,
                                                       ifaceName, boardNameOrig);
 
                     populateInterfaceFromJson(
-                        systemConfiguration, jsonPointerPath, objectIface,
-                        config, objServer, getPermission(name));
+                        systemConfiguration, objOrArrayBaseJsonPointer,
+                        objectIface, config, objServer, getPermission(name));
                 }
                 else if (config.type() == nlohmann::json::value_t::array)
                 {
@@ -783,7 +783,8 @@ void postToDbus(const nlohmann::json& newConfiguration,
 
                         populateInterfaceFromJson(
                             systemConfiguration,
-                            jsonPointerPath + "/" + std::to_string(index),
+                            objOrArrayBaseJsonPointer + "/" +
+                                std::to_string(index),
                             objectIface, arrayItem, objServer,
                             getPermission(name));
                         index++;
@@ -796,9 +797,9 @@ void postToDbus(const nlohmann::json& newConfiguration,
                                 "xyz.openbmc_project.Configuration." + itemType,
                                 boardNameOrig);
 
-            populateInterfaceFromJson(systemConfiguration, jsonPointerPath,
-                                      itemIface, item, objServer,
-                                      getPermission(itemType));
+            populateInterfaceFromJson(systemConfiguration,
+                                      exposesIndexJsonPointer, itemIface, item,
+                                      objServer, getPermission(itemType));
 
             topology.addBoard(boardPath, boardType, boardNameOrig, item);
         }
