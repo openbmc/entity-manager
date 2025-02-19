@@ -1,0 +1,32 @@
+{
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "$defs": {
+        "CPLD": {
+            "title": "CPLD",
+            "description": "A CPLD",
+            "type": "object",
+            "properties": {
+                "Address": {
+                    "description": "I2C address",
+                    "type": "string"
+                },
+                "Bus": {
+                    "description": "I2C bus index",
+                    "type": "string"
+                },
+                "Name": {
+                    "description": "Name of component",
+                    "type": "string"
+                },
+                "Part": {
+                    "description": "Part name",
+                    "type": "string"
+                },
+                "Type": {
+                    "description": "Type of CPLD",
+                    "type": "string"
+                }
+            }
+        }
+    }
+}
