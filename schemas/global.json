@@ -1,6 +1,62 @@
 {
     "$schema": "http://json-schema.org/draft-07/schema#",
     "$defs": {
+        "EMExposesElement": {
+            "description": "The exposes property element schema.  An element of the exposes property is always an array where elements are of type exposes entry.",
+            "anyOf": [
+                {
+                    "$ref": "ibm.json#/$defs/PowerModeProperties"
+                },
+                {
+                    "$ref": "ibm.json#/$defs/IBMCompatibleSystem"
+                },
+                {
+                    "$ref": "ibm.json#/$defs/IBMCFFPSConnector"
+                },
+                {
+                    "$ref": "intel.json#/$defs/IntelFanConnector"
+                },
+                {
+                    "$ref": "mctp.json#/$defs/MCTPI2CTarget"
+                },
+                {
+                    "$ref": "pid.json#/$defs/Pid"
+                },
+                {
+                    "$ref": "pid_zone.json#/$defs/PidZone"
+                },
+                {
+                    "$ref": "satellite_controller.json#/$defs/SatelliteController"
+                },
+                {
+                    "$ref": "stepwise.json#/$defs/Stepwise"
+                },
+                {
+                    "$ref": "legacy.json#/$defs/Aggregate"
+                },
+                {
+                    "$ref": "virtual_sensor.json#/$defs/VirtualSensor"
+                },
+                {
+                    "$ref": "leak_detector.json#/$defs/GPIOLeakDetector"
+                },
+                {
+                    "description": "Ensure the parent anyOf schema does not validate when an element does not define a type property.",
+                    "not": {
+                        "required": ["Type"]
+                    },
+                    "title": "Missing Type"
+                },
+                {
+                    "description": "Ensure the parent anyOf schema does not validate when an element does not define a name property.",
+                    "not": {
+                        "required": ["Name"]
+                    },
+                    "title": "Missing Name"
+                }
+            ],
+            "title": "Exposes Property Element"
+        },
         "EMConfig": {
             "title": "Entity Manager Configuration",
             "description": "The schema for an entity manager configuration. An entity manager configuration describes an association between a match condition, also known as a probe, and an array of heterogeneous configuration data.  When a probe match occurs, the configuration data is exported to DBus.",
