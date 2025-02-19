@@ -38,6 +38,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "556d9cd4_7b73e779",
+        "filename": "schemas/nic.json",
+        "patchSetId": 1
+      },
+      "lineNbr": 24,
+      "author": {
+        "id": 1000016
+      },
+      "writtenOn": "2025-02-19T07:41:12Z",
+      "side": 1,
+      "message": "\u003e I don\u0027t see MCTPNetworkId being passed to ncsi_cmd (with -m option) in Tested Section in https://gerrit.openbmc.org/c/openbmc/phosphor-networkd/+/74759. Do you think it should include that?\n\nNot really, the Tested: section isn\u0027t intended to document every behaviour.\n\n\u003e Also, is MCTPNetworkId property same as InterfaceIndex or is it something different, wondering if we can use the InterfaceIndex property itself?\n\nNo, this is separate.",
+      "parentUuid": "496569f7_647871ac",
+      "revId": "a557fbd39045908ecb858d26debd9359a7796508",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "fcca9b5f_2be8fcb3",
         "filename": "schemas/nic.json",
         "patchSetId": 1
