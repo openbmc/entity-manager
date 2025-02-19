@@ -91,6 +91,7 @@ if get_option('validate-json')
 endif
 
 schemas = [
+    'cpld.json',
     'global.json',
     'legacy.json',
     'openbmc-dbus.json',

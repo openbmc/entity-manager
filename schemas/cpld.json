@@ -1,0 +1,34 @@
+{
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "$defs": {
+        "CPLDFirmware": {
+            "description": "The schema definition for CPLD firmware upgrade",
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+                "Address": {
+                    "$ref": "legacy.json#/$defs/Types/Address"
+                },
+                "Bus": {
+                    "$ref": "legacy.json#/$defs/Types/Bus"
+                },
+                "FirmwareInfo": {
+                    "$ref": "firmware.json#/$defs/FirmwareInfoDef"
+                },
+                "Name": {
+                    "description": "Full name of device",
+                    "type": "string"
+                },
+                "Type": {
+                    "description": "Supported CPLD devices, <vendor name><chip family>CPLD",
+                    "enum": [
+                        "LatticeMachXO2Firmware",
+                        "LatticeMachXO3Firmware",
+                        "LatticeMachXO5Firmware"
+                    ]
+                }
+            },
+            "required": ["Address", "Bus", "FirmwareInfo", "Name", "Type"]
+        }
+    }
+}
