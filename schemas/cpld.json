@@ -1,0 +1,42 @@
+{
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "$defs": {
+        "CPLDFirmware": {
+            "description": "CPLD device",
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+                "Address": {
+                    "description": "I2C address",
+                    "type": "string"
+                },
+                "Bus": {
+                    "description": "I2C bus index",
+                    "type": "number"
+                },
+                "ChipVendor": {
+                    "description": "CPLD chip vendor",
+                    "type": "string"
+                },
+                "ChipFamily": {
+                    "description": [
+                        "Indicates the model family this chip belongs to, ",
+                        "used to determine shared behaviors like firmware updates."
+                    ],
+                    "type": "string"
+                },
+                "FirmwareInfoDef": {
+                    "$ref": "firmware.json#/$defs/FirmwareInfoDef"
+                },
+                "Name": {
+                    "description": "Full name of device",
+                    "type": "string"
+                },
+                "Type": {
+                    "enum": ["CPLDFirmware"]
+                }
+            },
+            "required": ["Address", "Bus", "ChipVendor", "ChipFamily", "FirmwareInfoDef", "Name", "Type"]
+        }
+    }
+}
