@@ -20,6 +20,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "496569f7_647871ac",
+        "filename": "schemas/nic.json",
+        "patchSetId": 1
+      },
+      "lineNbr": 24,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-02-19T07:37:09Z",
+      "side": 1,
+      "message": "@jk@ozlabs.org\n1. I don\u0027t see MCTPNetworkId being passed to ncsi_cmd (with -m option) in Tested Section in https://gerrit.openbmc.org/c/openbmc/phosphor-networkd/+/74759. Do you think it should include that?\n\n2. Also, is MCTPNetworkId property same as InterfaceIndex or is it something different, wondering if we can use the InterfaceIndex property itself?",
+      "parentUuid": "77221901_540bff21",
+      "revId": "a557fbd39045908ecb858d26debd9359a7796508",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "fcca9b5f_2be8fcb3",
         "filename": "schemas/nic.json",
         "patchSetId": 1
@@ -31,6 +49,24 @@
       "writtenOn": "2025-02-19T00:14:00Z",
       "side": 1,
       "message": "In your example, you have a bit of awkwardness around the NaN / \"None\" fields for the unused interface type (ie, `InterfaceIndex` when using MCTP, and `MCTPEndpointId` when using RBT).\n\nIs there a better way to specify when those properties are required or not, rather than always required (and then filled with dummy values)?",
+      "revId": "a557fbd39045908ecb858d26debd9359a7796508",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "bab2534b_db4164e7",
+        "filename": "schemas/nic.json",
+        "patchSetId": 1
+      },
+      "lineNbr": 35,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-02-19T07:37:09Z",
+      "side": 1,
+      "message": "We plan to use Phosphor-dbus-interface auto generated bindings, thats why i am marking the properties as all required to avoid too much of try catch handling for missing properties. But in this case, we have NCSITransportType which can help to figure out which are required for which type of interface, so probably i can define \"InterfaceIndex\", \"MCTPEndpointId\" as optional. Will try to make some change to accommodate this in next revision of patch.",
+      "parentUuid": "fcca9b5f_2be8fcb3",
       "revId": "a557fbd39045908ecb858d26debd9359a7796508",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
