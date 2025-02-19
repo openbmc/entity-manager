@@ -15,6 +15,29 @@
                 }
             },
             "required": ["VendorIANA", "CompatibleName"]
+        },
+        "PLDMDevice": {
+            "description": "This indicates the properties which apply to all PLDM devices",
+            "type": "object",
+            "properties": {
+                "Type": {
+                    "description": "The type of the device",
+                    "type": "string"
+                },
+                "Name": {
+                    "description": "A recognisable name for the device",
+                    "type": "string"
+                },
+                "RanOver": {
+                    "description": "The bus over which the device is connected",
+                    "type": "string",
+                    "enum": ["MCTPI2CTarget", "MCTPI3CTarget"]
+                },
+                "FirmwareInfo": {
+                    "$ref": "#/$defs/FirmwareInfoDef"
+                }
+            },
+            "required": ["Type", "Name", "RanOver", "FirmwareInfo"]
         }
     }
 }
