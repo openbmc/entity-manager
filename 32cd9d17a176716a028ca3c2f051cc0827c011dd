@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "75a5fb50_aa46a31f",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 20,
+      "author": {
+        "id": 1002188
+      },
+      "writtenOn": "2025-02-19T12:23:36Z",
+      "side": 1,
+      "message": "I think we can use \"InterfaceIndex\": null instead of NaN, since JSON doesn\u0027t support NaN as a valid number. Another advantage of using \"InterfaceIndex\": null for MCTP is that the xyz.openbmc_project.Configuration.NIC interface would hide this property.\n\nexample:\nroot@bmc:~# busctl introspect xyz.openbmc_project.EntityManager /xyz/openbmc_project/inventory/system/board/Yosemite_4_Spider_Board/NIC_1\n\noutput:\nNAME                                  TYPE      SIGNATURE RESULT/VALUE FLAGS\norg.freedesktop.DBus.Introspectable   interface -         -            -\n.Introspect                           method    -         s            -\norg.freedesktop.DBus.Peer             interface -         -            -\n.GetMachineId                         method    -         s            -\n.Ping                                 method    -         -            -\norg.freedesktop.DBus.Properties       interface -         -            -\n.Get                                  method    ss        v            -\n.GetAll                               method    s         a{sv}        -\n.Set                                  method    ssv       -            -\n.PropertiesChanged                    signal    sa{sv}as  -            -\nxyz.openbmc_project.Configuration.NIC interface -         -            -\n.MCTPEndpointId                       property  t         93           emits-change\n.NCSITransportType                    property  s         \"MCTP\"       emits-change\n.Name                                 property  s         \"NIC_1\"      emits-change\n.Type                                 property  s         \"NIC\"        emits-change",
+      "revId": "32cd9d17a176716a028ca3c2f051cc0827c011dd",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    }
+  ]
+}
