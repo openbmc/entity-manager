@@ -1,0 +1,40 @@
+{
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "$defs": {
+        "CPLDFirmware": {
+            "description": "CPLD",
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+                "ChipVendor": {
+                    "description": "CPLD chip vendor",
+                    "enum": ["Altera", "Lattice"]
+                },
+                "FirmwareInfo": {
+                    "$ref": "firmware.json#/$defs/FirmwareInfoDef"
+                },
+                "Name": {
+                    "description": "Full name of device",
+                    "type": "string"
+                },
+                "Type": {
+                    "description": "Supported CPLD devices, <device name>-CPLD",
+                    "enum": [
+                        "LCMXO3LF-4300-CPLD",
+                        "LCMXO3LF-6900-CPLD",
+                        "LCMXO3D-4300-CPLD",
+                        "LCMXO3D-9400-CPLD"
+                    ]
+                }
+            },
+            "required": [
+                "Address",
+                "Bus",
+                "ChipVendor",
+                "FirmwareInfo",
+                "Name",
+                "Type"
+            ]
+        }
+    }
+}
