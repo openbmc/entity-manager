@@ -1,0 +1,42 @@
+{
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "$defs": {
+        "CPLDFirmware": {
+            "description": "CPLD",
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+                "Address": {
+                    "description": "I2C address",
+                    "type": "string"
+                },
+                "Bus": {
+                    "description": "I2C bus index",
+                    "type": "number"
+                },
+                "ChipVendor": {
+                    "description": "CPLD chip vendor",
+                    "type": "string"
+                },
+                "FirmwareInfo": {
+                    "$ref": "firmware.json#/$defs/FirmwareInfoDef"
+                },
+                "Name": {
+                    "description": "Full name of device",
+                    "type": "string"
+                },
+                "Type": {
+                    "enum": ["AlteraCPLD", "LatticeCPLD"]
+                }
+            },
+            "required": [
+                "Address",
+                "Bus",
+                "ChipVendor",
+                "FirmwareInfo",
+                "Name",
+                "Type"
+            ]
+        }
+    }
+}
