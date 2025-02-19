@@ -56,6 +56,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "25e24394_f64bbe69",
+        "filename": "schemas/nic.json",
+        "patchSetId": 1
+      },
+      "lineNbr": 24,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-02-19T07:48:55Z",
+      "side": 1,
+      "message": "\u003e \u003e I don\u0027t see MCTPNetworkId being passed to ncsi_cmd (with -m option) in Tested Section in https://gerrit.openbmc.org/c/openbmc/phosphor-networkd/+/74759. Do you think it should include that?\n\u003e \n\u003e Not really, the Tested: section isn\u0027t intended to document every behaviour.\n\n\n@jk@ozlabs.org My question is more related to supported options as i don\u0027t see it there -\n\nconst struct option options[] \u003d {\n    {\"package\", required_argument, NULL, \u0027p\u0027},\n    {\"channel\", required_argument, NULL, \u0027c\u0027},\n    {\"interface\", required_argument, NULL, \u0027i\u0027},\n    {\"mctp\", required_argument, NULL, \u0027m\u0027},\n    {\"help\", no_argument, NULL, \u0027h\u0027},\n    {0, 0, 0, 0},\n};\n\nIs there a plan to add MCTPNetworkId in future?",
+      "parentUuid": "556d9cd4_7b73e779",
+      "revId": "a557fbd39045908ecb858d26debd9359a7796508",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "fcca9b5f_2be8fcb3",
         "filename": "schemas/nic.json",
         "patchSetId": 1
