@@ -24,6 +24,30 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "f8eb6701_2fe08617",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 3
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 1002065
+      },
+      "writtenOn": "2025-02-19T15:05:14Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "a02be81d_4c87fb01",
+      "range": {
+        "startLine": 7,
+        "startChar": 0,
+        "endLine": 7,
+        "endChar": 6
+      },
+      "revId": "ea0e873d66ff76f882c77510ff8f63899093abf3",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "4d89bd23_b9a7f058",
@@ -41,6 +65,24 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "22368b1b_8a01673d",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 3
+      },
+      "lineNbr": 14,
+      "author": {
+        "id": 1002065
+      },
+      "writtenOn": "2025-02-19T15:05:14Z",
+      "side": 1,
+      "message": "\u003e This change takes FRUDevice from being largely stateless, to being a stateful interface.\n\nThe added state is comparably small. I have added a meson flag in the previous patch, to opt into the feature as a whole.\n\n\u003e How would a user of the BMC use this interface through the existing user-facing interfaces for this (ipmi). If you intend to add new user-facing interfaces to this, please state that.\n\nThe feature is currently not connected to a user-facing interface.",
+      "parentUuid": "4d89bd23_b9a7f058",
+      "revId": "ea0e873d66ff76f882c77510ff8f63899093abf3",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "3c447f06_d452cb20",
@@ -54,6 +96,30 @@
       "writtenOn": "2024-09-25T19:05:03Z",
       "side": 1,
       "message": "Why?  This seems like all frus would boot in manufacturing empty, and \"back up\" the empty versions?",
+      "range": {
+        "startLine": 15,
+        "startChar": 0,
+        "endLine": 18,
+        "endChar": 30
+      },
+      "revId": "ea0e873d66ff76f882c77510ff8f63899093abf3",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "08293c07_24966701",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 3
+      },
+      "lineNbr": 18,
+      "author": {
+        "id": 1002065
+      },
+      "writtenOn": "2025-02-19T15:05:14Z",
+      "side": 1,
+      "message": "The eeproms are already programmed during manufacturing. So when the daemon starts and does its initial scan, the fru devices are registered on dbus with many properties already set.",
+      "parentUuid": "3c447f06_d452cb20",
       "range": {
         "startLine": 15,
         "startChar": 0,
@@ -87,6 +153,30 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "67715f44_ade59469",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 3
+      },
+      "lineNbr": 23,
+      "author": {
+        "id": 1002065
+      },
+      "writtenOn": "2025-02-19T15:05:14Z",
+      "side": 1,
+      "message": "Done. Instead of bus and address, a calculated hash of the fru data is being used as identifier.",
+      "parentUuid": "4e5618b4_350162af",
+      "range": {
+        "startLine": 23,
+        "startChar": 1,
+        "endLine": 23,
+        "endChar": 5
+      },
+      "revId": "ea0e873d66ff76f882c77510ff8f63899093abf3",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "6f2155ee_987df305",
@@ -100,6 +190,30 @@
       "writtenOn": "2024-09-25T19:05:03Z",
       "side": 1,
       "message": "I\u0027m not sure how qemu could possibly test this well, considering we\u0027re writing to hardware?",
+      "range": {
+        "startLine": 25,
+        "startChar": 0,
+        "endLine": 28,
+        "endChar": 64
+      },
+      "revId": "ea0e873d66ff76f882c77510ff8f63899093abf3",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "a9263943_5fb10bc4",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 3
+      },
+      "lineNbr": 28,
+      "author": {
+        "id": 1002065
+      },
+      "writtenOn": "2025-02-19T15:05:14Z",
+      "side": 1,
+      "message": "I have not made any changes to the internal write operations. The copy operation used to restore the FRU calls into the kernel driver which should work the same for emulated eeproms in qemu.",
+      "parentUuid": "6f2155ee_987df305",
       "range": {
         "startLine": 25,
         "startChar": 0,
@@ -127,6 +241,24 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "361ab5f4_f91b4bbf",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1002065
+      },
+      "writtenOn": "2025-02-19T15:05:14Z",
+      "side": 1,
+      "message": "The current revision also changed the overall context of this patch. I adjusted the commit message accordingly. For now its outside the scope to provide the interfaces as user-facing.\nCalling \u0027cp\u0027 yourself is discouraged in favour of making it a internal design and tightly couple it with the updating.",
+      "parentUuid": "7a6c76a9_7de1017a",
+      "revId": "ea0e873d66ff76f882c77510ff8f63899093abf3",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "23ac48b0_64d66355",
@@ -150,6 +282,30 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "76cf64b1_f47ca533",
+        "filename": "src/fru_device.cpp",
+        "patchSetId": 3
+      },
+      "lineNbr": 134,
+      "author": {
+        "id": 1002065
+      },
+      "writtenOn": "2025-02-19T15:05:14Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "23ac48b0_64d66355",
+      "range": {
+        "startLine": 134,
+        "startChar": 4,
+        "endLine": 134,
+        "endChar": 8
+      },
+      "revId": "ea0e873d66ff76f882c77510ff8f63899093abf3",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "649e9933_94764b3d",
@@ -163,6 +319,24 @@
       "writtenOn": "2024-09-25T19:05:03Z",
       "side": 1,
       "message": "Please just use the ec version of fs::exists.",
+      "revId": "ea0e873d66ff76f882c77510ff8f63899093abf3",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "c39a02c1_89e48dfb",
+        "filename": "src/fru_device.cpp",
+        "patchSetId": 3
+      },
+      "lineNbr": 139,
+      "author": {
+        "id": 1002065
+      },
+      "writtenOn": "2025-02-19T15:05:14Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "649e9933_94764b3d",
       "revId": "ea0e873d66ff76f882c77510ff8f63899093abf3",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
@@ -202,6 +376,24 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "d7df9ed6_eda43cb7",
+        "filename": "src/fru_device.cpp",
+        "patchSetId": 3
+      },
+      "lineNbr": 158,
+      "author": {
+        "id": 1002065
+      },
+      "writtenOn": "2025-02-19T15:05:14Z",
+      "side": 1,
+      "message": "Patch #74674 does create it, which was submitted under the same topic. I have updated the commit message to point out the dependency.",
+      "parentUuid": "cf688c08_8e4f28db",
+      "revId": "ea0e873d66ff76f882c77510ff8f63899093abf3",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "d0addc61_f53bb273",
@@ -215,6 +407,30 @@
       "writtenOn": "2024-09-25T18:39:05Z",
       "side": 1,
       "message": "don\u0027t need the \\n",
+      "range": {
+        "startLine": 1214,
+        "startChar": 72,
+        "endLine": 1214,
+        "endChar": 74
+      },
+      "revId": "ea0e873d66ff76f882c77510ff8f63899093abf3",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "99b7d3c5_b4aeb3f7",
+        "filename": "src/fru_device.cpp",
+        "patchSetId": 3
+      },
+      "lineNbr": 1214,
+      "author": {
+        "id": 1002065
+      },
+      "writtenOn": "2025-02-19T15:05:14Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "d0addc61_f53bb273",
       "range": {
         "startLine": 1214,
         "startChar": 72,
@@ -250,6 +466,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "c46dceba_f3e8b51e",
+        "filename": "src/fru_device.cpp",
+        "patchSetId": 3
+      },
+      "lineNbr": 1215,
+      "author": {
+        "id": 1002065
+      },
+      "writtenOn": "2025-02-19T15:05:14Z",
+      "side": 1,
+      "message": "Yes, this was the intent. It is tightly coupled with the manual updating of properties and should serve as a safety layer. The user opts into that via the meson option.\n\nDo you want another meson option to configure the behavior?",
+      "parentUuid": "3a2b49af_5b25f74c",
+      "range": {
+        "startLine": 1215,
+        "startChar": 12,
+        "endLine": 1215,
+        "endChar": 25
+      },
+      "revId": "ea0e873d66ff76f882c77510ff8f63899093abf3",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "9e2c5dbd_ea57a466",
         "filename": "src/fru_device.cpp",
         "patchSetId": 3
@@ -261,6 +501,30 @@
       "writtenOn": "2024-09-25T19:05:03Z",
       "side": 1,
       "message": "please don\u0027t do wildcard captures in lambdas.  They obscure lifetimes.",
+      "range": {
+        "startLine": 1450,
+        "startChar": 21,
+        "endLine": 1450,
+        "endChar": 24
+      },
+      "revId": "ea0e873d66ff76f882c77510ff8f63899093abf3",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "13c83ec7_69f755ef",
+        "filename": "src/fru_device.cpp",
+        "patchSetId": 3
+      },
+      "lineNbr": 1450,
+      "author": {
+        "id": 1002065
+      },
+      "writtenOn": "2025-02-19T15:05:14Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "9e2c5dbd_ea57a466",
       "range": {
         "startLine": 1450,
         "startChar": 21,
@@ -294,6 +558,30 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "bfb8b351_cdec99e1",
+        "filename": "src/fru_device.cpp",
+        "patchSetId": 3
+      },
+      "lineNbr": 1451,
+      "author": {
+        "id": 1002065
+      },
+      "writtenOn": "2025-02-19T15:05:14Z",
+      "side": 1,
+      "message": "Current revision does not expose this method anymore.",
+      "parentUuid": "249869f6_a854759e",
+      "range": {
+        "startLine": 1451,
+        "startChar": 11,
+        "endLine": 1451,
+        "endChar": 45
+      },
+      "revId": "ea0e873d66ff76f882c77510ff8f63899093abf3",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "25b658a9_1ad8fbb1",
@@ -307,6 +595,30 @@
       "writtenOn": "2024-09-25T19:05:03Z",
       "side": 1,
       "message": "Please make these a normal function.",
+      "range": {
+        "startLine": 1452,
+        "startChar": 0,
+        "endLine": 1458,
+        "endChar": 10
+      },
+      "revId": "ea0e873d66ff76f882c77510ff8f63899093abf3",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "43fc813b_4d78bca5",
+        "filename": "src/fru_device.cpp",
+        "patchSetId": 3
+      },
+      "lineNbr": 1458,
+      "author": {
+        "id": 1002065
+      },
+      "writtenOn": "2025-02-19T15:05:14Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "25b658a9_1ad8fbb1",
       "range": {
         "startLine": 1452,
         "startChar": 0,
@@ -364,6 +676,30 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "a6dae1d2_3a623109",
+        "filename": "src/fru_device.cpp",
+        "patchSetId": 3
+      },
+      "lineNbr": 1461,
+      "author": {
+        "id": 1002065
+      },
+      "writtenOn": "2025-02-19T15:05:14Z",
+      "side": 1,
+      "message": "Sure, this was the other design we have thought about. The methods are now registered on the FruDevice itself, rather than on the FruDeviceManager. Also renamed the method to RestoreFruFromBackup.",
+      "parentUuid": "9ba63de9_97cc02a8",
+      "range": {
+        "startLine": 1461,
+        "startChar": 9,
+        "endLine": 1461,
+        "endChar": 17
+      },
+      "revId": "ea0e873d66ff76f882c77510ff8f63899093abf3",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "a7261366_81b3e477",
@@ -377,6 +713,24 @@
       "writtenOn": "2024-09-25T19:05:03Z",
       "side": 1,
       "message": "?  Why are we rescanning all the busses.  We double buffer things already, this should just be a reset of a single FRU.",
+      "revId": "ea0e873d66ff76f882c77510ff8f63899093abf3",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "2a8a075b_42dd5a04",
+        "filename": "src/fru_device.cpp",
+        "patchSetId": 3
+      },
+      "lineNbr": 1467,
+      "author": {
+        "id": 1002065
+      },
+      "writtenOn": "2025-02-19T15:05:14Z",
+      "side": 1,
+      "message": "Went on to use rescanOneBus now as it already exists in the codebase.",
+      "parentUuid": "a7261366_81b3e477",
       "revId": "ea0e873d66ff76f882c77510ff8f63899093abf3",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
@@ -412,6 +766,24 @@
       "side": 1,
       "message": "Matt, it says 5 time, your comment should\u0027ve been\n\n?????",
       "parentUuid": "1bef26e1_1ed74c96",
+      "revId": "ea0e873d66ff76f882c77510ff8f63899093abf3",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "0a47c3db_ca41e782",
+        "filename": "src/fru_device.cpp",
+        "patchSetId": 3
+      },
+      "lineNbr": 1471,
+      "author": {
+        "id": 1002065
+      },
+      "writtenOn": "2025-02-19T15:05:14Z",
+      "side": 1,
+      "message": "😄 Sorry..removed from this patch.",
+      "parentUuid": "cc41f03c_187d472a",
       "revId": "ea0e873d66ff76f882c77510ff8f63899093abf3",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
