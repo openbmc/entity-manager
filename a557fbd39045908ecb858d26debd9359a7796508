@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "77221901_540bff21",
+        "filename": "schemas/nic.json",
+        "patchSetId": 1
+      },
+      "lineNbr": 24,
+      "author": {
+        "id": 1000016
+      },
+      "writtenOn": "2025-02-19T00:14:00Z",
+      "side": 1,
+      "message": "You will likely want to accommodate MCTP endpoints that are on non-default MCTP networks, so I would suggest adding a `MCTPNetworkId` property.",
+      "revId": "a557fbd39045908ecb858d26debd9359a7796508",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "fcca9b5f_2be8fcb3",
+        "filename": "schemas/nic.json",
+        "patchSetId": 1
+      },
+      "lineNbr": 35,
+      "author": {
+        "id": 1000016
+      },
+      "writtenOn": "2025-02-19T00:14:00Z",
+      "side": 1,
+      "message": "In your example, you have a bit of awkwardness around the NaN / \"None\" fields for the unused interface type (ie, `InterfaceIndex` when using MCTP, and `MCTPEndpointId` when using RBT).\n\nIs there a better way to specify when those properties are required or not, rather than always required (and then filled with dummy values)?",
+      "revId": "a557fbd39045908ecb858d26debd9359a7796508",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    }
+  ]
+}
