@@ -16,6 +16,24 @@
       "message": "[This might be an opportunity to make things a little more reliable; I am happy to defer this discussion if you don\u0027t think it is relevant for this particular change though.]\n\nWhat would you think about using an actual interface name (rather than index) here?\n\nThe interface indexes are certainly not intended to be persistent - it\u0027s just defined by the probe order of network devices. A network device that is removed and re-added will have a different index after the re-add. The interfaces names are not *necessarily* persistent either, but they are probably more reliable than the index, and we can enforce persistency to names if required.\n\nThe tooling does currently take an index, but we could definitely add functionality to deal with names instead.\n\nOr, alternatively: if we start with an index in this schema, would it be possible to later convert to names?",
       "revId": "1fac1fd0e6b2e768e85edeb7b5b6f3665d829eb7",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "efe27fa2_69af2a82",
+        "filename": "schemas/nic.json",
+        "patchSetId": 3
+      },
+      "lineNbr": 28,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-02-20T03:20:20Z",
+      "side": 1,
+      "message": "\u003e [This might be an opportunity to make things a little more reliable; I am happy to defer this discussion if you don\u0027t think it is relevant for this particular change though.]\n\u003e \n\u003e What would you think about using an actual interface name (rather than index) here?\n\nThats a good point. I would say that we use something which is more persistent as i also got review comments about this earlier too.\n\u003e \n\u003e The interface indexes are certainly not intended to be persistent - it\u0027s just defined by the probe order of network devices. A network device that is removed and re-added will have a different index after the re-add. The interfaces names are not *necessarily* persistent either, but they are probably more reliable than the index, and we can enforce persistency to names if required.\n\u003e \n\u003e The tooling does currently take an index, but we could definitely add functionality to deal with names instead.\n\nMakes sense to accept interface names.\n\n\u003e \n\u003e Or, alternatively: if we start with an index in this schema, would it be possible to later convert to names?\n\n@jk@ozlabs.org How can we enforce persistency to names? I suppose the names would be getting selected based on some linux config.",
+      "parentUuid": "f978dfb5_38547578",
+      "revId": "1fac1fd0e6b2e768e85edeb7b5b6f3665d829eb7",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }
