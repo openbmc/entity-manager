@@ -166,9 +166,11 @@ bool setJsonFromPointer(const std::string& ptrStr, const JsonType& value,
         ref = value;
         return true;
     }
-    catch (const std::out_of_range&)
+    catch (const nlohmann::json::out_of_range& e)
     {
-        return false;
+        std::cerr << "json out of range error for " << ptrStr << " : "
+                  << e.what() << "\n";
+        throw DBusInternalError();
     }
 }
 
