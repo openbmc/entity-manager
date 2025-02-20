@@ -90,6 +90,24 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "6a367a43_9bd66e21",
+        "filename": "schemas/nic.json",
+        "patchSetId": 1
+      },
+      "lineNbr": 24,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-02-20T02:33:18Z",
+      "side": 1,
+      "message": "\u003e The network ID is provided as part of the `--mctp` argument, for which the usage output states:\n\u003e \n\u003e ```\n\u003e     --mctp [NET,]EID, -m   Specify MCTP network device.\n\u003e ```\n\u003e \n\u003e The `NET` component of that is optional, but can be used for specifying a non-default MCTP network ID.\n\u003e \n\u003e At this stage, I would suggest not combining the net and EID in your schema; the \u003cnet\u003e,\u003ceid\u003e format is more intended for command-line utilities.\n\nSure thanks for the information.\n\nDone, I have updated schema.",
+      "parentUuid": "2191f221_074f62b4",
+      "revId": "a557fbd39045908ecb858d26debd9359a7796508",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "fcca9b5f_2be8fcb3",
