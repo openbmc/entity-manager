@@ -34,6 +34,24 @@
       "parentUuid": "f978dfb5_38547578",
       "revId": "1fac1fd0e6b2e768e85edeb7b5b6f3665d829eb7",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "fe399976_e0cf2ec5",
+        "filename": "schemas/nic.json",
+        "patchSetId": 3
+      },
+      "lineNbr": 28,
+      "author": {
+        "id": 1000016
+      },
+      "writtenOn": "2025-02-20T03:46:14Z",
+      "side": 1,
+      "message": "\u003e How can we enforce persistency to names? I suppose the names would be getting selected based on some linux config.\n\nYes, this is typically implemented either by specific driver naming rules (eg, the MCTP-over-i2c interfaces will be assigned a network name that corresponds to the underlying i2c controller device, and those may be persistent), or by a udev rule that applies a persistent name based on some property of the underlying device (say, by bus topology)\n\n... that\u0027s not something you would need to cover in this changeset, of course 😊",
+      "parentUuid": "efe27fa2_69af2a82",
+      "revId": "1fac1fd0e6b2e768e85edeb7b5b6f3665d829eb7",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }
