@@ -108,6 +108,7 @@ schemas = [
     'openbmc-dbus.json',
     'ibm.json',
     'intel.json',
+    'mctp.json',
     'pid.json',
     'pid_zone.json',
     'stepwise.json',
