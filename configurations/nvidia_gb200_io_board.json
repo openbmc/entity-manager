@@ -79,7 +79,9 @@
     "Probe": [
         "xyz.openbmc_project.FruDevice({'BOARD_PRODUCT_NAME': 'P4768', 'BOARD_MANUFACTURER': 'NVIDIA'})",
         "OR",
-        "xyz.openbmc_project.FruDevice({'BOARD_PRODUCT_NAME': 'ConnectX-7 400GE 2P NIC', 'BOARD_MANUFACTURER': 'Nvidia'})"
+        "xyz.openbmc_project.FruDevice({'BOARD_PRODUCT_NAME': 'ConnectX-7 400GE 2P NIC', 'BOARD_MANUFACTURER': 'Nvidia'})",
+        "OR",
+        "xyz.openbmc_project.FruDevice({'BOARD_PRODUCT_NAME': '2x ConnectX-7 Mezz', 'BOARD_MANUFACTURER': 'Nvidia'})"
     ],
     "Type": "Board",
     "xyz.openbmc_project.Inventory.Decorator.Asset": {
