@@ -3,6 +3,29 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "ccb9cf55_6aa080ed",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 5
+      },
+      "lineNbr": 15,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2025-02-23T17:45:34Z",
+      "side": 1,
+      "message": "Needs to be in entity-manager config, with already exists with type: eeprom, just needs to be read out by fru-device and have a new field added.",
+      "range": {
+        "startLine": 14,
+        "startChar": 0,
+        "endLine": 15,
+        "endChar": 28
+      },
+      "revId": "e74e9647b8f614acb5dc60c986282576cd5faae5",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "d4eb92e0_97d88995",
         "filename": "/PATCHSET_LEVEL",
         "patchSetId": 5
@@ -36,6 +59,121 @@
         "startChar": 0,
         "endLine": 72,
         "endChar": 38
+      },
+      "revId": "e74e9647b8f614acb5dc60c986282576cd5faae5",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "432466d0_a293792c",
+        "filename": "src/fru_device.cpp",
+        "patchSetId": 5
+      },
+      "lineNbr": 718,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2025-02-23T17:45:34Z",
+      "side": 1,
+      "message": "?  Pretty sure we don\u0027t want to crash all of fru-device because of a bad config.",
+      "range": {
+        "startLine": 718,
+        "startChar": 0,
+        "endLine": 718,
+        "endChar": 77
+      },
+      "revId": "e74e9647b8f614acb5dc60c986282576cd5faae5",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6bfc5fd7_2d9eaff9",
+        "filename": "src/fru_device.cpp",
+        "patchSetId": 5
+      },
+      "lineNbr": 724,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2025-02-23T17:45:34Z",
+      "side": 1,
+      "message": "Need to return here?",
+      "range": {
+        "startLine": 724,
+        "startChar": 0,
+        "endLine": 724,
+        "endChar": 40
+      },
+      "revId": "e74e9647b8f614acb5dc60c986282576cd5faae5",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "33c2e22d_d7dd6d43",
+        "filename": "src/fru_device.cpp",
+        "patchSetId": 5
+      },
+      "lineNbr": 743,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2025-02-23T17:45:34Z",
+      "side": 1,
+      "message": "No need to structure code with a validateJson then call at().\n\nJust use \n\ndata.find(\"areas\");\n\nand handle the case where the iterator is end.  As written this will generate an exception for a case that can never happen, which bloats binary sizes.",
+      "range": {
+        "startLine": 743,
+        "startChar": 22,
+        "endLine": 743,
+        "endChar": 24
+      },
+      "revId": "e74e9647b8f614acb5dc60c986282576cd5faae5",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3d4d9975_e891e14b",
+        "filename": "src/fru_device.cpp",
+        "patchSetId": 5
+      },
+      "lineNbr": 748,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2025-02-23T17:45:34Z",
+      "side": 1,
+      "message": "get_if here and handle the error.",
+      "range": {
+        "startLine": 748,
+        "startChar": 37,
+        "endLine": 748,
+        "endChar": 40
+      },
+      "revId": "e74e9647b8f614acb5dc60c986282576cd5faae5",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "844932cc_bd23a06f",
+        "filename": "src/fru_device.cpp",
+        "patchSetId": 5
+      },
+      "lineNbr": 749,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2025-02-23T17:45:34Z",
+      "side": 1,
+      "message": "It seems really odd that this is just a fixed table of string entries?  Presumably it needs to be per FRU, right?",
+      "range": {
+        "startLine": 749,
+        "startChar": 12,
+        "endLine": 749,
+        "endChar": 34
       },
       "revId": "e74e9647b8f614acb5dc60c986282576cd5faae5",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
