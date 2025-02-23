@@ -1,0 +1,400 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f2759112_e4b6ab9f",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 6
+      },
+      "lineNbr": 29,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2025-02-23T17:28:28Z",
+      "side": 1,
+      "message": "Then why is it on dbus if it\u0027s not user facing?  If it\u0027s dev facing, cp gives the same result?  I\u0027m not against this feature overall, just not understanding what the intent is here.\n\nI\u0027ve seen this same function exist on many systems, just not directly in the bmc.  We should document why this is better than simply making the FRU available on OOB interfaces (it\u0027s already present in IPMI) and let the user manage/backup/update it without the bmc having to persist it.",
+      "range": {
+        "startLine": 28,
+        "startChar": 0,
+        "endLine": 29,
+        "endChar": 65
+      },
+      "revId": "42aa8cba99ac5f04fa287c9c4914a7ce7308c63e",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "551e7dfa_6bc2b2b4",
+        "filename": "src/fru_device.cpp",
+        "patchSetId": 6
+      },
+      "lineNbr": 29,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2025-02-23T17:28:28Z",
+      "side": 1,
+      "message": "Per the coding standard, don\u0027t use components from boost that have std:: equivalents.  If boost::hash is required over std:: hash, please document why.",
+      "range": {
+        "startLine": 29,
+        "startChar": 0,
+        "endLine": 29,
+        "endChar": 36
+      },
+      "revId": "42aa8cba99ac5f04fa287c9c4914a7ce7308c63e",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f90cb5ad_4a3e0f77",
+        "filename": "src/fru_device.cpp",
+        "patchSetId": 6
+      },
+      "lineNbr": 77,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2025-02-23T17:28:28Z",
+      "side": 1,
+      "message": "Should these be in /tmp somewhere so they are cleared on a reset?  If the intent is for them to be persistent, there needs to be some level of size/count limits applied to how many backups you can have.  Also needs to account for the fact that busses do not come up in consistent numbering, so bus 4 on this boot might be different than bus 4 on the next boot.  (addresses are consistent though).",
+      "range": {
+        "startLine": 77,
+        "startChar": 0,
+        "endLine": 77,
+        "endChar": 39
+      },
+      "revId": "42aa8cba99ac5f04fa287c9c4914a7ce7308c63e",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "62c76c87_37570801",
+        "filename": "src/fru_device.cpp",
+        "patchSetId": 6
+      },
+      "lineNbr": 197,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2025-02-23T17:28:28Z",
+      "side": 1,
+      "message": "Do we need some logic to create the directory if it doesn\u0027t exist?  I suspect that will obsolete your bb recipe change.",
+      "revId": "42aa8cba99ac5f04fa287c9c4914a7ce7308c63e",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5cc34cde_e76334f0",
+        "filename": "src/fru_device.cpp",
+        "patchSetId": 6
+      },
+      "lineNbr": 214,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2025-02-23T17:28:28Z",
+      "side": 1,
+      "message": "I\u0027m not following what this symlinking is for.  More info in the commit message?",
+      "range": {
+        "startLine": 214,
+        "startChar": 0,
+        "endLine": 214,
+        "endChar": 48
+      },
+      "revId": "42aa8cba99ac5f04fa287c9c4914a7ce7308c63e",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9bb92dd0_d2369320",
+        "filename": "src/fru_device.cpp",
+        "patchSetId": 6
+      },
+      "lineNbr": 228,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2025-02-23T17:28:28Z",
+      "side": 1,
+      "message": "I\u0027m confused how this works as written.\n\ngetFRUDataHash gets the hash of the CURRENT contents of the fru, and attempts to read that from disk.  that only works if the current contents of the FRU matches the contents of the fru in the backup, which if a field has been updated, won\u0027t match.\n\nIf you could document in your commit message where the hashing comes in, and why that\u0027s important, I think it would help a lot.  In my thinking a simple bus/address save would be fine.",
+      "revId": "42aa8cba99ac5f04fa287c9c4914a7ce7308c63e",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5efdc7ab_007c3ff9",
+        "filename": "src/fru_device.cpp",
+        "patchSetId": 6
+      },
+      "lineNbr": 231,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2025-02-23T17:28:28Z",
+      "side": 1,
+      "message": "Dead code path.  No way to hit if the previous line throws.  I\u0027m surprised tidy didn\u0027t catch this.  It usually does",
+      "revId": "42aa8cba99ac5f04fa287c9c4914a7ce7308c63e",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "26b61895_2970a8c1",
+        "filename": "src/fru_device.cpp",
+        "patchSetId": 6
+      },
+      "lineNbr": 238,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2025-02-23T17:28:28Z",
+      "side": 1,
+      "message": "Dead code path.",
+      "range": {
+        "startLine": 238,
+        "startChar": 0,
+        "endLine": 238,
+        "endChar": 21
+      },
+      "revId": "42aa8cba99ac5f04fa287c9c4914a7ce7308c63e",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "944f77fe_75253b86",
+        "filename": "src/fru_device.cpp",
+        "patchSetId": 6
+      },
+      "lineNbr": 243,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2025-02-23T17:28:28Z",
+      "side": 1,
+      "message": "I see no mention of symlinks in the description, so it\u0027s not clear why this check is here?\n\nAlso, you\u0027ve used a number of fs:: methods that throw exception that you\u0027ve failed to catch.  Generally its advisable in these cases to use the non throwing variation that takes an error_code.",
+      "range": {
+        "startLine": 243,
+        "startChar": 0,
+        "endLine": 243,
+        "endChar": 30
+      },
+      "revId": "42aa8cba99ac5f04fa287c9c4914a7ce7308c63e",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f5b43d2a_12c43622",
+        "filename": "src/fru_device.cpp",
+        "patchSetId": 6
+      },
+      "lineNbr": 245,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2025-02-23T17:28:28Z",
+      "side": 1,
+      "message": "Maybe a little better error code?",
+      "range": {
+        "startLine": 245,
+        "startChar": 0,
+        "endLine": 245,
+        "endChar": 36
+      },
+      "revId": "42aa8cba99ac5f04fa287c9c4914a7ce7308c63e",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "68b0d415_2d020e8e",
+        "filename": "src/fru_device.cpp",
+        "patchSetId": 6
+      },
+      "lineNbr": 256,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2025-02-23T17:28:28Z",
+      "side": 1,
+      "message": "Certainly you didn\u0027t mean to catch all errors here?  If an int is thrown ,or an OOM is thrown, we need to fall through.",
+      "range": {
+        "startLine": 256,
+        "startChar": 0,
+        "endLine": 256,
+        "endChar": 15
+      },
+      "revId": "42aa8cba99ac5f04fa287c9c4914a7ce7308c63e",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "bacce04c_e6c3adf3",
+        "filename": "src/fru_device.cpp",
+        "patchSetId": 6
+      },
+      "lineNbr": 265,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2025-02-23T17:28:28Z",
+      "side": 1,
+      "message": "Missing error code check?  At the very least log.",
+      "range": {
+        "startLine": 265,
+        "startChar": 0,
+        "endLine": 265,
+        "endChar": 25
+      },
+      "revId": "42aa8cba99ac5f04fa287c9c4914a7ce7308c63e",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "cbace995_e3490a2d",
+        "filename": "src/fru_device.cpp",
+        "patchSetId": 6
+      },
+      "lineNbr": 1098,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2025-02-23T17:28:28Z",
+      "side": 1,
+      "message": "Does this interface need to be only populated if the backup exists for this path?  If there\u0027s no backup available, what\u0027s the behavior?",
+      "range": {
+        "startLine": 1098,
+        "startChar": 13,
+        "endLine": 1098,
+        "endChar": 33
+      },
+      "revId": "42aa8cba99ac5f04fa287c9c4914a7ce7308c63e",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2661f2f4_fd9f8044",
+        "filename": "src/fru_device.cpp",
+        "patchSetId": 6
+      },
+      "lineNbr": 1109,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2025-02-23T17:28:28Z",
+      "side": 1,
+      "message": "Considering we just wrote this fru, we shoudn\u0027t be rescanning the whole bus, we should be rescanning the one fru address at most, and considering we verified the fru was written, there\u0027s really no reason to even do that.",
+      "range": {
+        "startLine": 1109,
+        "startChar": 0,
+        "endLine": 1109,
+        "endChar": 65
+      },
+      "revId": "42aa8cba99ac5f04fa287c9c4914a7ce7308c63e",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d1064b73_9344647d",
+        "filename": "src/fru_device.cpp",
+        "patchSetId": 6
+      },
+      "lineNbr": 1482,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2025-02-23T17:28:28Z",
+      "side": 1,
+      "message": "See previous comment.  Boost usage is limited to things not already covered by the standard.",
+      "range": {
+        "startLine": 1482,
+        "startChar": 32,
+        "endLine": 1482,
+        "endChar": 42
+      },
+      "revId": "42aa8cba99ac5f04fa287c9c4914a7ce7308c63e",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "69a641f7_9ccfbf97",
+        "filename": "src/fru_device.cpp",
+        "patchSetId": 6
+      },
+      "lineNbr": 1489,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2025-02-23T17:28:28Z",
+      "side": 1,
+      "message": "nit, probably meant \"none\" here?",
+      "range": {
+        "startLine": 1489,
+        "startChar": 34,
+        "endLine": 1489,
+        "endChar": 37
+      },
+      "revId": "42aa8cba99ac5f04fa287c9c4914a7ce7308c63e",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e6522897_6c914616",
+        "filename": "src/fru_device.cpp",
+        "patchSetId": 6
+      },
+      "lineNbr": 1493,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2025-02-23T17:28:28Z",
+      "side": 1,
+      "message": "Remove.  Failure to back up the fru should not prevent failure to update the fru.",
+      "range": {
+        "startLine": 1493,
+        "startChar": 0,
+        "endLine": 1493,
+        "endChar": 29
+      },
+      "revId": "42aa8cba99ac5f04fa287c9c4914a7ce7308c63e",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "37c55301_8617b136",
+        "filename": "src/fru_device.cpp",
+        "patchSetId": 6
+      },
+      "lineNbr": 1632,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2025-02-23T17:28:28Z",
+      "side": 1,
+      "message": "Do we need a unique option for this?  As written, this is writing the persistent filesystem on every property update, in code that has a potential to break.  That seems like the kind of thing we should have a compile time policy for (default to disabled for now).\n\nSaid another way, just because someone enables ENABLE_FRU_UPDATE_PROPERTY doesn\u0027t mean they want their FRUs backed up.\n\nKeep in mind, there are use cases like DC-SCM where backing up a fru persistently might be a functional problem if the dc-scm module is swapped between units, or the individual FRU devices are swapped.",
+      "range": {
+        "startLine": 1632,
+        "startChar": 8,
+        "endLine": 1632,
+        "endChar": 34
+      },
+      "revId": "42aa8cba99ac5f04fa287c9c4914a7ce7308c63e",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    }
+  ]
+}
