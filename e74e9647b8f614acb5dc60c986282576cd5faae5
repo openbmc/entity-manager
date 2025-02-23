@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a0530fbd_ee18d4a2",
+        "filename": "meson.build",
+        "patchSetId": 5
+      },
+      "lineNbr": 72,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2025-02-23T17:32:43Z",
+      "side": 1,
+      "message": "This data needs to be coming from entity-manager, not a fixed json file on disk.  Add it as a value under the Type: \"Eeprom\" exposes record, and have fru device read it.",
+      "range": {
+        "startLine": 72,
+        "startChar": 0,
+        "endLine": 72,
+        "endChar": 38
+      },
+      "revId": "e74e9647b8f614acb5dc60c986282576cd5faae5",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "db914c33_88824bea",
+        "filename": "src/fru_device.cpp",
+        "patchSetId": 5
+      },
+      "lineNbr": 941,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2025-02-23T17:32:43Z",
+      "side": 1,
+      "message": "This needs to be a SetProperty method, which already exists and has examples\n\nhttps://github.com/openbmc/entity-manager/blob/48c21ce1a532ffedf205a942b398255a5755aa85/src/fru_device.cpp#L1208\n\n\nWe shouldn\u0027t be registering a new dbus method when there\u0027s already a mechanism registered to do this:\n\nregistration is here.\nhttps://github.com/openbmc/entity-manager/blob/48c21ce1a532ffedf205a942b398255a5755aa85/src/fru_device.cpp#L854",
+      "range": {
+        "startLine": 941,
+        "startChar": 13,
+        "endLine": 941,
+        "endChar": 30
+      },
+      "revId": "e74e9647b8f614acb5dc60c986282576cd5faae5",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    }
+  ]
+}
