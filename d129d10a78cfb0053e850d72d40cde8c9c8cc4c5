@@ -33,6 +33,92 @@
       "message": "LGTM",
       "revId": "d129d10a78cfb0053e850d72d40cde8c9c8cc4c5",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "461e00d0_fa50cb0c",
+        "filename": "meson_options.txt",
+        "patchSetId": 2
+      },
+      "lineNbr": 20,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2025-02-23T18:47:10Z",
+      "side": 1,
+      "message": "A little more description here would be good.  The goal of the cache is not to \"avoid re parsing\" it\u0027s to handle \"new devices detected\" on firmware updates.  Should we reword this in terms of the user facing feature, rather than what the code does internally?  (Ie, support new-device detection).\n\nFWIW, I suspect if worded that way, and modified slightly, there\u0027s a lot of users that would opt for this mode.",
+      "range": {
+        "startLine": 20,
+        "startChar": 86,
+        "endLine": 20,
+        "endChar": 187
+      },
+      "revId": "d129d10a78cfb0053e850d72d40cde8c9c8cc4c5",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e4e46e48_3ff4fedb",
+        "filename": "src/entity_manager.cpp",
+        "patchSetId": 2
+      },
+      "lineNbr": 147,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2025-02-23T18:47:10Z",
+      "side": 1,
+      "message": "This will now issue \"new device found\" events on every boot, which is the whole intent of this file existing.  Fine if you want to remove it, but you should add a check in the new device logic to not log that event if this option is enabled, because all devices will be \"new\" devices.",
+      "range": {
+        "startLine": 147,
+        "startChar": 9,
+        "endLine": 147,
+        "endChar": 31
+      },
+      "revId": "d129d10a78cfb0053e850d72d40cde8c9c8cc4c5",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a1a1376b_296b509c",
+        "filename": "src/entity_manager.cpp",
+        "patchSetId": 2
+      },
+      "lineNbr": 1348,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2025-02-23T18:47:10Z",
+      "side": 1,
+      "message": "can we avoid duplicating this check in two places?  Just put this conditional on line 1317 once, and avoid this whole block if it\u0027s not enabled.",
+      "range": {
+        "startLine": 1348,
+        "startChar": 13,
+        "endLine": 1348,
+        "endChar": 35
+      },
+      "revId": "d129d10a78cfb0053e850d72d40cde8c9c8cc4c5",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "12a127dd_83ce49ce",
+        "filename": "src/meson.build",
+        "patchSetId": 2
+      },
+      "lineNbr": 34,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2025-02-23T18:47:10Z",
+      "side": 1,
+      "message": "Please structure your option like this.  Set the define if it\u0027s enabled.",
+      "revId": "d129d10a78cfb0053e850d72d40cde8c9c8cc4c5",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }
