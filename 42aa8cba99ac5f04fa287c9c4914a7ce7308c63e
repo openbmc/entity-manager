@@ -3,6 +3,23 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "254d1881_45cfc1f6",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 6
+      },
+      "lineNbr": 27,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2025-02-23T18:35:09Z",
+      "side": 1,
+      "message": "Should we have some level of checking that the FRU we\u0027re restoring matches the device we\u0027re restoring to?  Imagine the case:\n1. Back up add in card A at bus 1 address 1.\n2. Add in card A is swapped with a different card B. (also could have i2c bus 1 replaced with bus 2 on a reboot)\n3. User calls \"restore\"\n\nIn that case, the serial number from card A is implanted on card B.  There\u0027s almost no case where we want this to happen, and would cause a lot of problems for both inventory management and device manufacturers if the serial number is a duplicate.  Is this a case you\u0027ve thought of?  Should we have at least some minor protection against this.  Maybe verify the serial number is the same?",
+      "revId": "42aa8cba99ac5f04fa287c9c4914a7ce7308c63e",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "f2759112_e4b6ab9f",
         "filename": "/COMMIT_MSG",
         "patchSetId": 6
