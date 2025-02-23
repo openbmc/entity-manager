@@ -220,6 +220,24 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": true,
+      "key": {
+        "uuid": "95d35ba2_76ade4e8",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 23,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2025-02-23T17:51:54Z",
+      "side": 1,
+      "message": "\u003e @Ed beyond exposing this functionality on dbus nothing is planned for now\n\n\"for now\" makes it sound like you have something in mind for the future?  BTW, there\u0027s already mechanisms for updating asset tag through Redfish, so if that\u0027s your intent, that\u0027s fine and expected.  We can add more supported fields as needed.\n\n\u003e I feel like especially updating custom fru fields is something people are looking for.\n\nFWIW, this is exactly what the Intel \"Manufacturing mode\" interface is supposed to support.  Should we hook into that, and say \"if in manufacturing mode, allow updating any fru field, else only allow expected user-modifyable fields?\"",
+      "parentUuid": "1944cc6c_f2b080b4",
+      "revId": "37895feb26dbfa3175bcc0e8ecb40be4766e0069",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": false,
       "key": {
         "uuid": "882e84ca_ff9c04f9",
