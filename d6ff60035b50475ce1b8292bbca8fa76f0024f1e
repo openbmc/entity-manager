@@ -34,6 +34,29 @@
       "parentUuid": "546f7712_a693610b",
       "revId": "d6ff60035b50475ce1b8292bbca8fa76f0024f1e",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c943805b_58a4640e",
+        "filename": "schemas/firmware.json",
+        "patchSetId": 6
+      },
+      "lineNbr": 123,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2025-02-23T18:28:11Z",
+      "side": 1,
+      "message": "I don\u0027t think the current EEPROM definition supports this today?  Can we get this split into two commits.\n\n1 commit for the existing functionality that we\u0027re (correctly) making enforced in json schema\n2nd commit for the new functions you\u0027re adding?\n\nIt\u0027s not clear to me why a fru eeprom would have an iana and device compatibility descriptor, but having it separate will get a commit message that describes why its needed, so that should help.",
+      "range": {
+        "startLine": 123,
+        "startChar": 17,
+        "endLine": 123,
+        "endChar": 29
+      },
+      "revId": "d6ff60035b50475ce1b8292bbca8fa76f0024f1e",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }
