@@ -1,0 +1,119 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "cf710a83_521c13a5",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 4
+      },
+      "lineNbr": 17,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2025-02-23T17:58:01Z",
+      "side": 1,
+      "message": "\"NIC\" is not a type in the way Em specifies configuration.\n\nThis would be something like MctpNcsiEndpoint ?  Describing the interface itself, not the fact that it\u0027s a \"NIC\" which could take many forms and have many interfaces on it.",
+      "range": {
+        "startLine": 17,
+        "startChar": 0,
+        "endLine": 17,
+        "endChar": 16
+      },
+      "revId": "a8e8d987ec5e38e5df442534df83404f866f8da3",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1ee787f0_54a6e2df",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 4
+      },
+      "lineNbr": 19,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2025-02-23T17:58:01Z",
+      "side": 1,
+      "message": "See above, this gets rolled into \"type\" and can be removed.",
+      "range": {
+        "startLine": 19,
+        "startChar": 0,
+        "endLine": 19,
+        "endChar": 30
+      },
+      "revId": "a8e8d987ec5e38e5df442534df83404f866f8da3",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1b73155b_cc07fd81",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 4
+      },
+      "lineNbr": 21,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2025-02-23T17:58:01Z",
+      "side": 1,
+      "message": "Devices do not have an intrinsic \"endpoint id\".  I understand lots of people want an endpoint Id, but as written this immediately breaks if you put more than one nic in a system, or share a nic across two systems.  We need a \"platform\" level config file type (that honestly could have the same schema) if we want to do static IPMI/MCTP assignments.\n\nPlease remove for now.",
+      "range": {
+        "startLine": 21,
+        "startChar": 0,
+        "endLine": 21,
+        "endChar": 25
+      },
+      "revId": "a8e8d987ec5e38e5df442534df83404f866f8da3",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c640c4a6_4fb3bc2d",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 4
+      },
+      "lineNbr": 34,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2025-02-23T17:58:01Z",
+      "side": 1,
+      "message": "This is a linux identifier, which should be removed.  This needs to be related to the physical interface on the BMC, so something like \"interfaceIndex: 0\" here.",
+      "range": {
+        "startLine": 34,
+        "startChar": 0,
+        "endLine": 34,
+        "endChar": 27
+      },
+      "revId": "a8e8d987ec5e38e5df442534df83404f866f8da3",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e8692c0e_4b48bb6d",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 4
+      },
+      "lineNbr": 36,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2025-02-23T17:58:01Z",
+      "side": 1,
+      "message": "Need descriptions somewhere of what these actually are and do.",
+      "range": {
+        "startLine": 26,
+        "startChar": 0,
+        "endLine": 36,
+        "endChar": 1
+      },
+      "revId": "a8e8d987ec5e38e5df442534df83404f866f8da3",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    }
+  ]
+}
