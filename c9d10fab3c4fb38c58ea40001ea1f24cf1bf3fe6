@@ -3,6 +3,52 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "1ed3a056_3546b6c1",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 4
+      },
+      "lineNbr": 15,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2025-02-23T18:05:49Z",
+      "side": 1,
+      "message": "Is there a reason to do this loopback?  If the modbus device can self-describe all of its interfaces, why do the bounceback through entity-manager?  Just have the modbus daemon host all the inventory objects directly?  I don\u0027t suspect this patch is \"wrong\", I suspect there\u0027s a use case here that just isn\u0027t documented very well.",
+      "range": {
+        "startLine": 14,
+        "startChar": 0,
+        "endLine": 15,
+        "endChar": 15
+      },
+      "revId": "c9d10fab3c4fb38c58ea40001ea1f24cf1bf3fe6",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "37777f4b_fdbfa60a",
+        "filename": "meson.build",
+        "patchSetId": 4
+      },
+      "lineNbr": 288,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2025-02-23T18:05:49Z",
+      "side": 1,
+      "message": "Please keep the naming matching the schema contained within the file.",
+      "range": {
+        "startLine": 288,
+        "startChar": 5,
+        "endLine": 288,
+        "endChar": 18
+      },
+      "revId": "c9d10fab3c4fb38c58ea40001ea1f24cf1bf3fe6",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "ef8ec4d8_7dea2761",
         "filename": "schemas/modbus_device.json",
         "patchSetId": 4
@@ -20,6 +66,29 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "0071aca8_0b3566d1",
+        "filename": "schemas/modbus_device.json",
+        "patchSetId": 4
+      },
+      "lineNbr": 4,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2025-02-23T18:05:49Z",
+      "side": 1,
+      "message": "+1, I think the only thing wrong here is the \"detect\" portion.  Detection is supposed to happen pre-entity-manager instantiation, so this would just be \"modbus device\"",
+      "range": {
+        "startLine": 4,
+        "startChar": 9,
+        "endLine": 4,
+        "endChar": 27
+      },
+      "revId": "c9d10fab3c4fb38c58ea40001ea1f24cf1bf3fe6",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "1ce4fac8_9c0ecec1",
         "filename": "schemas/modbus_device.json",
         "patchSetId": 4
@@ -31,6 +100,29 @@
       "writtenOn": "2025-02-12T07:29:56Z",
       "side": 1,
       "message": "huh?\n\n4.4 data model \n\nthere are 4 overlapping data types \neach data is addressed 0-65536\neach element within a data block is numbered 1-n\n\nthe above is in bold page 7/50",
+      "revId": "c9d10fab3c4fb38c58ea40001ea1f24cf1bf3fe6",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "af115e03_d5ee2ad7",
+        "filename": "schemas/modbus_device.json",
+        "patchSetId": 4
+      },
+      "lineNbr": 16,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2025-02-23T18:05:49Z",
+      "side": 1,
+      "message": "Modbus supports a number of different transports.  Should this be called\n\nModBusSerialPort\nModBusEthernetPort\n\nEtc, so that we can differentiate the physical hardware?  As written it\u0027s not clear what transport this would use.",
+      "range": {
+        "startLine": 16,
+        "startChar": 17,
+        "endLine": 16,
+        "endChar": 34
+      },
       "revId": "c9d10fab3c4fb38c58ea40001ea1f24cf1bf3fe6",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
@@ -150,6 +242,24 @@
       "writtenOn": "2025-02-04T03:15:07Z",
       "side": 1,
       "message": "Why are we doing the struct-of-arrays thing vs array-of-structs? IMO this strategy makes it less ergonomic and the benefit isn\u0027t obvious. But maybe I\u0027m missing something regarding EM\u0027s implementation constraints (which maybe we could fix?)\n\nhttps://en.wikipedia.org/wiki/AoS_and_SoA",
+      "revId": "c9d10fab3c4fb38c58ea40001ea1f24cf1bf3fe6",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "47f319aa_70609180",
+        "filename": "schemas/modbus_device.json",
+        "patchSetId": 4
+      },
+      "lineNbr": 81,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2025-02-23T18:05:49Z",
+      "side": 1,
+      "message": "+1.  Entity-manager uses arrays of structs.  Yes.... the way James (throws under bus) chose to represent these arrays originally isn\u0027t the easiest to parse, but it\u0027s what we have.  I understand that PDI can\u0027t parse these, but that\u0027s not a reason to make things a mess here.  Path forward is either:\nA. Use the existing code for parsing arrays of structs.\nB. Update EM/dbus-sensors to improve how we represent arrays of structs such that it\u0027s compatible with PDI\nC. Improve PDI to make it handle the (admittedly insane) way that EM hosts arrays on dbus.",
+      "parentUuid": "a6d25c0e_bef87f86",
       "revId": "c9d10fab3c4fb38c58ea40001ea1f24cf1bf3fe6",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
