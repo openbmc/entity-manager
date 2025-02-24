@@ -58,6 +58,30 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "8681bd01_c60aaab9",
+        "filename": "meson_options.txt",
+        "patchSetId": 2
+      },
+      "lineNbr": 20,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-02-24T11:21:11Z",
+      "side": 1,
+      "message": "Changed it to also mention the interaction with the new-device detection feature.\n\nI left the stuff about configuration parsing in there since i consider editing configuration something a user might do.\n\nAnd re-parsing the configuration is a side effect of setting the option to false, which is a behavior that\u0027s visible to the user (their changes will be applied on EM restart).\n\n\u003e FWIW, I suspect if worded that way, and modified slightly, there\u0027s a lot of users that would opt for this mode.\n\nNice to hear that!",
+      "parentUuid": "461e00d0_fa50cb0c",
+      "range": {
+        "startLine": 20,
+        "startChar": 86,
+        "endLine": 20,
+        "endChar": 187
+      },
+      "revId": "d129d10a78cfb0053e850d72d40cde8c9c8cc4c5",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "e4e46e48_3ff4fedb",
@@ -71,6 +95,30 @@
       "writtenOn": "2025-02-23T18:47:10Z",
       "side": 1,
       "message": "This will now issue \"new device found\" events on every boot, which is the whole intent of this file existing.  Fine if you want to remove it, but you should add a check in the new device logic to not log that event if this option is enabled, because all devices will be \"new\" devices.",
+      "range": {
+        "startLine": 147,
+        "startChar": 9,
+        "endLine": 147,
+        "endChar": 31
+      },
+      "revId": "d129d10a78cfb0053e850d72d40cde8c9c8cc4c5",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "a8fd3dc4_008419ad",
+        "filename": "src/entity_manager.cpp",
+        "patchSetId": 2
+      },
+      "lineNbr": 147,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-02-24T11:21:11Z",
+      "side": 1,
+      "message": "Done. Had not thought about the interactions with that feature, thanks for pointing it out 👍",
+      "parentUuid": "e4e46e48_3ff4fedb",
       "range": {
         "startLine": 147,
         "startChar": 9,
@@ -104,6 +152,30 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "1cd97f66_4ea17377",
+        "filename": "src/entity_manager.cpp",
+        "patchSetId": 2
+      },
+      "lineNbr": 1348,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-02-24T11:21:11Z",
+      "side": 1,
+      "message": "Done.",
+      "parentUuid": "a1a1376b_296b509c",
+      "range": {
+        "startLine": 1348,
+        "startChar": 13,
+        "endLine": 1348,
+        "endChar": 35
+      },
+      "revId": "d129d10a78cfb0053e850d72d40cde8c9c8cc4c5",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "12a127dd_83ce49ce",
@@ -117,6 +189,24 @@
       "writtenOn": "2025-02-23T18:47:10Z",
       "side": 1,
       "message": "Please structure your option like this.  Set the define if it\u0027s enabled.",
+      "revId": "d129d10a78cfb0053e850d72d40cde8c9c8cc4c5",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "2dbf0fb3_e1c32f0d",
+        "filename": "src/meson.build",
+        "patchSetId": 2
+      },
+      "lineNbr": 34,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-02-24T11:21:11Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "12a127dd_83ce49ce",
       "revId": "d129d10a78cfb0053e850d72d40cde8c9c8cc4c5",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
