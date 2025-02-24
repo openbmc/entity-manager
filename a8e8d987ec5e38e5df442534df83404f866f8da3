@@ -72,6 +72,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "c40caec4_8d54a736",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 4
+      },
+      "lineNbr": 21,
+      "author": {
+        "id": 1000016
+      },
+      "writtenOn": "2025-02-24T07:16:44Z",
+      "side": 1,
+      "message": "Are you intending some dereferencing scheme to get the actual MCTP EID here? We need that to be able to communicate with the device.",
+      "parentUuid": "1b73155b_cc07fd81",
+      "range": {
+        "startLine": 21,
+        "startChar": 0,
+        "endLine": 21,
+        "endChar": 25
+      },
+      "revId": "a8e8d987ec5e38e5df442534df83404f866f8da3",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "c640c4a6_4fb3bc2d",
         "filename": "/COMMIT_MSG",
         "patchSetId": 4
@@ -83,6 +107,30 @@
       "writtenOn": "2025-02-23T17:58:01Z",
       "side": 1,
       "message": "This is a linux identifier, which should be removed.  This needs to be related to the physical interface on the BMC, so something like \"interfaceIndex: 0\" here.",
+      "range": {
+        "startLine": 34,
+        "startChar": 0,
+        "endLine": 34,
+        "endChar": 27
+      },
+      "revId": "a8e8d987ec5e38e5df442534df83404f866f8da3",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "955cccd3_b0602f90",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 4
+      },
+      "lineNbr": 34,
+      "author": {
+        "id": 1000016
+      },
+      "writtenOn": "2025-02-24T07:16:44Z",
+      "side": 1,
+      "message": "OK, but this is not to be confused with the Linux network interface index, which is what the current netlink tools use (but probably shouldn\u0027t).\n\nIs there some other schema that defines these indexes?",
+      "parentUuid": "c640c4a6_4fb3bc2d",
       "range": {
         "startLine": 34,
         "startChar": 0,
