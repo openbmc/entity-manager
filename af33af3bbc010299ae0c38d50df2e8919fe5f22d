@@ -22,6 +22,30 @@
       },
       "revId": "af33af3bbc010299ae0c38d50df2e8919fe5f22d",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "68a1cab6_78ba389f",
+        "filename": "meson.build",
+        "patchSetId": 1
+      },
+      "lineNbr": 111,
+      "author": {
+        "id": 1002143
+      },
+      "writtenOn": "2025-02-24T01:24:17Z",
+      "side": 1,
+      "message": "Hi Ed, actually I added \"MCTP**I3C**Target\" to mctp.json in [entity-manager/76412](https://gerrit.openbmc.org/c/openbmc/entity-manager/+/76412). Is it okay if we rename it to `mctp_target.json` ?",
+      "parentUuid": "df0c3d4c_d543fc6c",
+      "range": {
+        "startLine": 111,
+        "startChar": 5,
+        "endLine": 111,
+        "endChar": 9
+      },
+      "revId": "af33af3bbc010299ae0c38d50df2e8919fe5f22d",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ],
   "submitRequirementResults": []
