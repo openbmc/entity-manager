@@ -81,6 +81,30 @@
       },
       "revId": "d6ff60035b50475ce1b8292bbca8fa76f0024f1e",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "40534fac_4174ab32",
+        "filename": "schemas/firmware.json",
+        "patchSetId": 6
+      },
+      "lineNbr": 123,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2025-02-24T02:36:38Z",
+      "side": 1,
+      "message": "First one looks to be a private google doc that isn\u0027t public and isn\u0027t related to openbmc, so not really sure what to do with that.\n\nI\u0027m not really sure how https://gerrit.openbmc.org/c/openbmc/docs/+/74653 got approved, given that IANA isn\u0027t really a property of an eeprom or of a piece of hardware and violates some of the design of entity-manager in that it adds openbmc-specific and company specific software identifiers to a hardware specific file.  I\u0027m not sure how that would work in practice unless you assume that each company never shares the same hardware.\n\nI\u0027ll read more.  Maybe there\u0027s something in the design that deals with that?",
+      "parentUuid": "3cb44208_354ecd5e",
+      "range": {
+        "startLine": 123,
+        "startChar": 17,
+        "endLine": 123,
+        "endChar": 29
+      },
+      "revId": "d6ff60035b50475ce1b8292bbca8fa76f0024f1e",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }
