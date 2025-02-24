@@ -24,6 +24,30 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "f00c9992_153ad575",
+        "filename": "schemas/firmware.json",
+        "patchSetId": 27
+      },
+      "lineNbr": 25,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-02-24T13:43:53Z",
+      "side": 1,
+      "message": "Changed as per your comment https://gerrit.openbmc.org/c/openbmc/entity-manager/+/75948/comment/aadd4c06_383a51c5/",
+      "parentUuid": "d6f01bf7_5ae20194",
+      "range": {
+        "startLine": 25,
+        "startChar": 30,
+        "endLine": 25,
+        "endChar": 34
+      },
+      "revId": "e874366747df65d61a480e44cfd55e2e6233e9ce",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "7d41fccf_f52307df",
@@ -37,6 +61,30 @@
       "writtenOn": "2025-02-23T18:25:11Z",
       "side": 1,
       "message": "combine these into a single array of structs.",
+      "range": {
+        "startLine": 39,
+        "startChar": 0,
+        "endLine": 52,
+        "endChar": 18
+      },
+      "revId": "e874366747df65d61a480e44cfd55e2e6233e9ce",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "12cec8d8_2d6c6dd6",
+        "filename": "schemas/firmware.json",
+        "patchSetId": 27
+      },
+      "lineNbr": 52,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-02-24T13:43:53Z",
+      "side": 1,
+      "message": "Won\u0027t that be incompatible with PDI then?\n\nSince the array elements would then each get their own dbus interface with the index suffix. I believe we talked about this on discord already.\n\nhttps://discord.com/channels/775381525260664832/1273263354647023616/1313489525846179901\n\nIf this situation is somehow different, or i misunderstood something, please re-open this comment.",
+      "parentUuid": "7d41fccf_f52307df",
       "range": {
         "startLine": 39,
         "startChar": 0,
@@ -70,6 +118,30 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "45725840_c56a5d68",
+        "filename": "schemas/firmware.json",
+        "patchSetId": 27
+      },
+      "lineNbr": 56,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-02-24T13:43:53Z",
+      "side": 1,
+      "message": "Do you have a link?\n\nI grepped for \u0027ipmi\u0027, \u0027ipmb\u0027, \u0027management\u0027 in schemas/ but did not find anything.\nSo i did not find anything to look at there.\n\n\u003e do they need to be connected in someway to indicated \"this spi controls for this ME\"?\n\nI do not see a benefit in connecting them, considering this schema is for fw update. Maybe someone who knows more about the IPMB subsystem will have a use-case and at that point we can update the schema.",
+      "parentUuid": "672f0a8e_c1038416",
+      "range": {
+        "startLine": 53,
+        "startChar": 0,
+        "endLine": 56,
+        "endChar": 18
+      },
+      "revId": "e874366747df65d61a480e44cfd55e2e6233e9ce",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "aadd4c06_383a51c5",
@@ -83,6 +155,30 @@
       "writtenOn": "2025-02-23T18:25:11Z",
       "side": 1,
       "message": "Please spell this out\n\nIntelFlashDescriptor\n\nWith that said, this probably needs to be rolled into type.\n\nIntelSpiFlash\n\nvs\n\nSpiFlash \n\nthey can have the same backend, but they need to denote they\u0027re different types.  Side question, HasME and Layout seem very related.  Is there a case we\u0027d mix and match them at all, or can they be the same property?",
+      "range": {
+        "startLine": 59,
+        "startChar": 30,
+        "endLine": 59,
+        "endChar": 33
+      },
+      "revId": "e874366747df65d61a480e44cfd55e2e6233e9ce",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "7809c90d_e1973d69",
+        "filename": "schemas/firmware.json",
+        "patchSetId": 27
+      },
+      "lineNbr": 59,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-02-24T13:43:53Z",
+      "side": 1,
+      "message": "Done.\n\n\u003e Side question, HasME and Layout seem very related. Is there a case we\u0027d mix and match them at all, or can they be the same property?\n\nAn answer to this question would probably require some knowledge about Intel Server Architecture.\n\nI don\u0027t see why any permutation of these 2 should not be possible, but i cannot say for sure if they actually exist on some system.",
+      "parentUuid": "aadd4c06_383a51c5",
       "range": {
         "startLine": 59,
         "startChar": 30,
