@@ -9,6 +9,7 @@
                 "power1"
             ],
             "Name": "RMC_M12_P24V",
+            "in1_Max": 36,
             "Thresholds": [
                 {
                     "Direction": "greater than",
@@ -50,6 +51,7 @@
                 "power1"
             ],
             "Name": "RMC_RJ14_P24V",
+            "in1_Max": 36,
             "Thresholds": [
                 {
                     "Direction": "greater than",
@@ -135,13 +137,7 @@
                     "Direction": "greater than",
                     "Name": "upper critical",
                     "Severity": 1,
-                    "Value": 45
-                },
-                {
-                    "Direction": "less than",
-                    "Name": "lower critical",
-                    "Severity": 1,
-                    "Value": 0
+                    "Value": 50
                 }
             ],
             "Type": "TMP75"
@@ -157,6 +153,8 @@
                 "vout1"
             ],
             "Name": "RMC_HSC",
+            "vin_Max": 76,
+            "vout1_Max": 18,
             "Thresholds": [
                 {
                     "Direction": "greater than",
@@ -218,6 +216,8 @@
                 "vout1"
             ],
             "Name": "RMC_BRICK",
+            "vin_Max": 76,
+            "vout1_Max": 18,
             "Thresholds": [
                 {
                     "Direction": "greater than",
