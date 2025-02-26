@@ -16,6 +16,24 @@
       "message": "I don\u0027t think your code will compile when set to false as it is now, as this global var won\u0027t be defined.  You would need to use an #ifdef or have it write a something to a config.h.",
       "revId": "7acd2f344d5997b4eeed1fc3e8764bda6ccb5577",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "18d6e05b_4401e3b9",
+        "filename": "src/meson.build",
+        "patchSetId": 3
+      },
+      "lineNbr": 6,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-02-26T09:12:47Z",
+      "side": 1,
+      "message": "Right... 😮\n\nI had changed this based on comment https://gerrit.openbmc.org/c/openbmc/entity-manager/+/77355/comment/12a127dd_83ce49ce/\n\nbut the option mentioned there (fru-device-resizefru / ENABLE_FRU_AREA_RESIZE)\nis using #ifdef.\n\nI would prefer the version from PS2 since it does not rely on #ifdef which comes with its own problems.\n\nChanged it back to how it was in PS2.",
+      "parentUuid": "d6374bf8_cb9e4ae5",
+      "revId": "7acd2f344d5997b4eeed1fc3e8764bda6ccb5577",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }
