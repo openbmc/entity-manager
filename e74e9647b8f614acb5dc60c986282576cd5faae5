@@ -24,6 +24,30 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "5247e15e_9ead4706",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 5
+      },
+      "lineNbr": 15,
+      "author": {
+        "id": 1002065
+      },
+      "writtenOn": "2025-02-26T11:04:59Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "ccb9cf55_6aa080ed",
+      "range": {
+        "startLine": 14,
+        "startChar": 0,
+        "endLine": 15,
+        "endChar": 28
+      },
+      "revId": "e74e9647b8f614acb5dc60c986282576cd5faae5",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "d4eb92e0_97d88995",
@@ -64,6 +88,30 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "cfc68065_bfff9aca",
+        "filename": "meson.build",
+        "patchSetId": 5
+      },
+      "lineNbr": 72,
+      "author": {
+        "id": 1002065
+      },
+      "writtenOn": "2025-02-26T11:04:59Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "a0530fbd_ee18d4a2",
+      "range": {
+        "startLine": 72,
+        "startChar": 0,
+        "endLine": 72,
+        "endChar": 38
+      },
+      "revId": "e74e9647b8f614acb5dc60c986282576cd5faae5",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "432466d0_a293792c",
@@ -77,6 +125,30 @@
       "writtenOn": "2025-02-23T17:45:34Z",
       "side": 1,
       "message": "?  Pretty sure we don\u0027t want to crash all of fru-device because of a bad config.",
+      "range": {
+        "startLine": 718,
+        "startChar": 0,
+        "endLine": 718,
+        "endChar": 77
+      },
+      "revId": "e74e9647b8f614acb5dc60c986282576cd5faae5",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "c87f8f49_c71283e7",
+        "filename": "src/fru_device.cpp",
+        "patchSetId": 5
+      },
+      "lineNbr": 718,
+      "author": {
+        "id": 1002065
+      },
+      "writtenOn": "2025-02-26T11:04:59Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "432466d0_a293792c",
       "range": {
         "startLine": 718,
         "startChar": 0,
@@ -110,6 +182,30 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "c13f129c_875b2551",
+        "filename": "src/fru_device.cpp",
+        "patchSetId": 5
+      },
+      "lineNbr": 724,
+      "author": {
+        "id": 1002065
+      },
+      "writtenOn": "2025-02-26T11:04:59Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "6bfc5fd7_2d9eaff9",
+      "range": {
+        "startLine": 724,
+        "startChar": 0,
+        "endLine": 724,
+        "endChar": 40
+      },
+      "revId": "e74e9647b8f614acb5dc60c986282576cd5faae5",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "33c2e22d_d7dd6d43",
@@ -123,6 +219,30 @@
       "writtenOn": "2025-02-23T17:45:34Z",
       "side": 1,
       "message": "No need to structure code with a validateJson then call at().\n\nJust use \n\ndata.find(\"areas\");\n\nand handle the case where the iterator is end.  As written this will generate an exception for a case that can never happen, which bloats binary sizes.",
+      "range": {
+        "startLine": 743,
+        "startChar": 22,
+        "endLine": 743,
+        "endChar": 24
+      },
+      "revId": "e74e9647b8f614acb5dc60c986282576cd5faae5",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "bed17199_60aa922b",
+        "filename": "src/fru_device.cpp",
+        "patchSetId": 5
+      },
+      "lineNbr": 743,
+      "author": {
+        "id": 1002065
+      },
+      "writtenOn": "2025-02-26T11:04:59Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "33c2e22d_d7dd6d43",
       "range": {
         "startLine": 743,
         "startChar": 22,
@@ -156,6 +276,30 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "527d7cb6_fda4f5e5",
+        "filename": "src/fru_device.cpp",
+        "patchSetId": 5
+      },
+      "lineNbr": 748,
+      "author": {
+        "id": 1002065
+      },
+      "writtenOn": "2025-02-26T11:04:59Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "3d4d9975_e891e14b",
+      "range": {
+        "startLine": 748,
+        "startChar": 37,
+        "endLine": 748,
+        "endChar": 40
+      },
+      "revId": "e74e9647b8f614acb5dc60c986282576cd5faae5",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "844932cc_bd23a06f",
@@ -179,6 +323,30 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "3ce59709_55c6addc",
+        "filename": "src/fru_device.cpp",
+        "patchSetId": 5
+      },
+      "lineNbr": 749,
+      "author": {
+        "id": 1002065
+      },
+      "writtenOn": "2025-02-26T11:04:59Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "844932cc_bd23a06f",
+      "range": {
+        "startLine": 749,
+        "startChar": 12,
+        "endLine": 749,
+        "endChar": 34
+      },
+      "revId": "e74e9647b8f614acb5dc60c986282576cd5faae5",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "db914c33_88824bea",
@@ -192,6 +360,30 @@
       "writtenOn": "2025-02-23T17:32:43Z",
       "side": 1,
       "message": "This needs to be a SetProperty method, which already exists and has examples\n\nhttps://github.com/openbmc/entity-manager/blob/48c21ce1a532ffedf205a942b398255a5755aa85/src/fru_device.cpp#L1208\n\n\nWe shouldn\u0027t be registering a new dbus method when there\u0027s already a mechanism registered to do this:\n\nregistration is here.\nhttps://github.com/openbmc/entity-manager/blob/48c21ce1a532ffedf205a942b398255a5755aa85/src/fru_device.cpp#L854",
+      "range": {
+        "startLine": 941,
+        "startChar": 13,
+        "endLine": 941,
+        "endChar": 30
+      },
+      "revId": "e74e9647b8f614acb5dc60c986282576cd5faae5",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "68cdd7c1_78130f54",
+        "filename": "src/fru_device.cpp",
+        "patchSetId": 5
+      },
+      "lineNbr": 941,
+      "author": {
+        "id": 1002065
+      },
+      "writtenOn": "2025-02-26T11:04:59Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "db914c33_88824bea",
       "range": {
         "startLine": 941,
         "startChar": 13,
