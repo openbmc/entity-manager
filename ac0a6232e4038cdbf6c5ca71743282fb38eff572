@@ -3,6 +3,57 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "c530b953_556c6c8f",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 13
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-02-26T07:38:45Z",
+      "side": 1,
+      "message": "Schema definition for I2CVRFirmware",
+      "revId": "ac0a6232e4038cdbf6c5ca71743282fb38eff572",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1f6a0b11_50a1cd90",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 13
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-02-26T07:38:45Z",
+      "side": 1,
+      "message": "Add schema definition for i2c voltage regulator firmware -",
+      "revId": "ac0a6232e4038cdbf6c5ca71743282fb38eff572",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1aede58b_729e48af",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 13
+      },
+      "lineNbr": 10,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-02-26T07:38:45Z",
+      "side": 1,
+      "message": "This is enum now.",
+      "revId": "ac0a6232e4038cdbf6c5ca71743282fb38eff572",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "0aac2b31_478fdbd9",
         "filename": "/PATCHSET_LEVEL",
         "patchSetId": 13
@@ -14,6 +65,57 @@
       "writtenOn": "2025-02-26T07:27:16Z",
       "side": 1,
       "message": "@christopher.meis@9elements.com Can you please base this on top of master branch",
+      "revId": "ac0a6232e4038cdbf6c5ca71743282fb38eff572",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f832c3ba_f825534a",
+        "filename": "schemas/firmware.json",
+        "patchSetId": 13
+      },
+      "lineNbr": 71,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-02-26T07:38:45Z",
+      "side": 1,
+      "message": "Change to I2CVRFirmware",
+      "revId": "ac0a6232e4038cdbf6c5ca71743282fb38eff572",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5692bdc3_7ea32ec6",
+        "filename": "schemas/firmware.json",
+        "patchSetId": 13
+      },
+      "lineNbr": 81,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-02-26T07:38:45Z",
+      "side": 1,
+      "message": "Change type from string to \n\n\"enum\": [\"XDPE152Firmware\", \"XDPE192Firmware\", \"XDPE1A2Firmware\"]",
+      "revId": "ac0a6232e4038cdbf6c5ca71743282fb38eff572",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8e4da811_cb46b39d",
+        "filename": "schemas/global.json",
+        "patchSetId": 13
+      },
+      "lineNbr": 47,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-02-26T07:38:45Z",
+      "side": 1,
+      "message": "Change XDPE1X2XX -\u003e I2CVRFirmware",
       "revId": "ac0a6232e4038cdbf6c5ca71743282fb38eff572",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
