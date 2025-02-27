@@ -45,6 +45,30 @@
       },
       "revId": "5eb569eb3f5580414baa301f40d2110adfa8cf7d",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c660747d_1bb098de",
+        "filename": "schemas/firmware.json",
+        "patchSetId": 17
+      },
+      "lineNbr": 19,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-02-27T23:17:25Z",
+      "side": 1,
+      "message": "This schema definition is for listing the properties needed for firmware update for i2c vr for which the first supported usecase is XDPE1X2XX. This is written with intent that in future when the reactor is updated to add support for more i2c vr type, the schema enum needs to be updated to add that to the type list. \n\nNow, having said that, one can also say this I2CVRFirmware schema might not apply to other I2C VRs in future as they might need more properties as you mentioned there is no common i2c firmware update protocol.\n\nSo, i see 2 options here -\n1. Keep this as such for now and revisit it in future when more i2c vrs gets added.\n2. Change both schema node name and type to \"XDPE1X2XXFirmware\" now itself and in future we will see how to harmonize if anything is possible.\n\nPlease tell which option seems reasonable to you?",
+      "parentUuid": "a414eee7_2464ab82",
+      "range": {
+        "startLine": 19,
+        "startChar": 9,
+        "endLine": 19,
+        "endChar": 22
+      },
+      "revId": "5eb569eb3f5580414baa301f40d2110adfa8cf7d",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }
