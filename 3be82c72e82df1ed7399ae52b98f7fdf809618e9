@@ -16,6 +16,24 @@
       "message": "Since these probe statements all have \"BUS\" identifiers, shouldn\u0027t we also include a probe statement for the device they are connected to (the CMM?)?  As is, these JSON files aren\u0027t really stand-alone FRU identifiers like EM configs are intended to be.",
       "revId": "3be82c72e82df1ed7399ae52b98f7fdf809618e9",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a7b5d936_6f4efe41",
+        "filename": "configurations/meta/minerva_janga_smb.json",
+        "patchSetId": 6
+      },
+      "lineNbr": 12,
+      "author": {
+        "id": 1001896
+      },
+      "writtenOn": "2025-02-27T01:05:52Z",
+      "side": 1,
+      "message": "I want to confirm with you: Do you mean we should add one probe condition to \"FOUND\" the CMM that those network blades connected to?",
+      "parentUuid": "c1af703a_926f2909",
+      "revId": "3be82c72e82df1ed7399ae52b98f7fdf809618e9",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }
