@@ -129,6 +129,30 @@
       },
       "revId": "d6ff60035b50475ce1b8292bbca8fa76f0024f1e",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0976dd6d_b6038531",
+        "filename": "schemas/firmware.json",
+        "patchSetId": 6
+      },
+      "lineNbr": 123,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-03-02T04:51:56Z",
+      "side": 1,
+      "message": "\u003e https://gerrit.openbmc.org/c/openbmc/docs/+/74653\n\u003e \n\u003e shows adding it to a CPLD, where it might make sense (a given CPLD is made by a known manufacturer)\n\u003e \n\u003e This is adding it to an eeprom device.  I suspect this has made some missteps on what the above doc intended.\n\nHere EEPROM is not the FRU EEPROM but its the EERPOM for a device such as Retimer (for example, https://github.com/torvalds/linux/blob/master/drivers/hwmon/pt5161l.c#L666) whose Firmware Image resides on that.",
+      "parentUuid": "047ccf30_9f3d456c",
+      "range": {
+        "startLine": 123,
+        "startChar": 17,
+        "endLine": 123,
+        "endChar": 29
+      },
+      "revId": "d6ff60035b50475ce1b8292bbca8fa76f0024f1e",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }
