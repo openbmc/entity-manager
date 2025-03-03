@@ -163,12 +163,12 @@ static bool deviceIsCreated(const std::string& busPath, uint64_t bus,
     return std::filesystem::exists(dirPath, ec);
 }
 
-static int
-    buildDevice(const std::string& name, const std::string& busPath,
-                const std::string& parameters, uint64_t bus, uint64_t address,
-                const std::string& constructor, const std::string& destructor,
-                const devices::createsHWMon hasHWMonDir,
-                std::vector<std::string> channelNames, const size_t retries = 5)
+static int buildDevice(
+    const std::string& name, const std::string& busPath,
+    const std::string& parameters, uint64_t bus, uint64_t address,
+    const std::string& constructor, const std::string& destructor,
+    const devices::createsHWMon hasHWMonDir,
+    std::vector<std::string> channelNames, const size_t retries = 5)
 {
     if (retries == 0U)
     {

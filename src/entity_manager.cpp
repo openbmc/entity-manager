@@ -116,10 +116,10 @@ FoundProbeTypeT findProbeType(const std::string& probe)
     return std::nullopt;
 }
 
-static std::shared_ptr<sdbusplus::asio::dbus_interface>
-    createInterface(sdbusplus::asio::object_server& objServer,
-                    const std::string& path, const std::string& interface,
-                    const std::string& parent, bool checkNull = false)
+static std::shared_ptr<sdbusplus::asio::dbus_interface> createInterface(
+    sdbusplus::asio::object_server& objServer, const std::string& path,
+    const std::string& interface, const std::string& parent,
+    bool checkNull = false)
 {
     // on first add we have no reason to check for null before add, as there
     // won't be any. For dynamically added interfaces, we check for null so that
