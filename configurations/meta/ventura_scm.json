@@ -201,6 +201,14 @@
             "Address": "0x4b",
             "Bus": 9,
             "Name": "SCM_TEMP_C",
+            "Thresholds": [
+                {
+                    "Direction": "greater than",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 45
+                }
+            ],
             "Type": "TMP75"
         }
     ],
