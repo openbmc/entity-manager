@@ -369,9 +369,9 @@ static void parseMultirecordUUID(
     }
 }
 
-resCodes
-    formatIPMIFRU(const std::vector<uint8_t>& fruBytes,
-                  boost::container::flat_map<std::string, std::string>& result)
+resCodes formatIPMIFRU(
+    const std::vector<uint8_t>& fruBytes,
+    boost::container::flat_map<std::string, std::string>& result)
 {
     resCodes ret = resCodes::resOK;
     if (fruBytes.size() <= fruBlockSize)
@@ -739,8 +739,8 @@ bool findFRUHeader(FRUReader& reader, const std::string& errorHelp,
     return false;
 }
 
-std::pair<std::vector<uint8_t>, bool>
-    readFRUContents(FRUReader& reader, const std::string& errorHelp)
+std::pair<std::vector<uint8_t>, bool> readFRUContents(
+    FRUReader& reader, const std::string& errorHelp)
 {
     std::array<uint8_t, I2C_SMBUS_BLOCK_MAX> blockData{};
     off_t baseOffset = 0x0;

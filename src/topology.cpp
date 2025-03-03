@@ -42,8 +42,8 @@ void Topology::addBoard(const std::string& path, const std::string& boardType,
     }
 }
 
-std::unordered_map<std::string, std::vector<Association>>
-    Topology::getAssocs(const std::map<Path, BoardName>& boards)
+std::unordered_map<std::string, std::vector<Association>> Topology::getAssocs(
+    const std::map<Path, BoardName>& boards)
 {
     std::unordered_map<std::string, std::vector<Association>> result;
 
