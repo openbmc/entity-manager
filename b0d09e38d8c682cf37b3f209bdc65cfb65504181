@@ -166,6 +166,24 @@
       "message": "I\u0027d also point out this feature assumes that there\u0027s useful information in the filename, which there isn\u0027t really.  We don\u0027t want to have to enforce some new naming convention because we\u0027re regex-searching filenames.\n\nif we end up finding a way that this feature doesn\u0027t cause a violation of our goals, the search should be based on content of the file, not filename regex.",
       "revId": "b0d09e38d8c682cf37b3f209bdc65cfb65504181",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b7939533_f6705a54",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2025-03-04T16:39:50Z",
+      "side": 1,
+      "message": "\u003e I\u0027m all for a way of removing unnecessary configs.\n\nFor performance reasons?  I wouldn\u0027t expect that FruDevice probes would have a lot of overhead if you\u0027re never sending out a FRU interfacesadded signal?",
+      "parentUuid": "764fa373_7486e05b",
+      "revId": "b0d09e38d8c682cf37b3f209bdc65cfb65504181",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }
