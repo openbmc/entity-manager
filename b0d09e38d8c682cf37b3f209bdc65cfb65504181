@@ -50,6 +50,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "c6254253_873fae3d",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 24,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-03-05T15:20:08Z",
+      "side": 1,
+      "message": "\u003e This defeats most of the purpose of entity manager supporting multiple systems with a single binary.\n\n- The default is still to deploy all configurations.\n- This is simply an example of how this feature can be used.\n- I do not expect anyone to blindly copy-paste this regex.\n- A more realistic regex here would also account for the PSU jsons\n  or other common jsons which need to be there for a \u0027complete\u0027 image.\n- Users may deploy as many configs as they want with this feature,\n  there is no limit to the amount of systems that can be supported.\n  So i do not see the point here.\n\n\u003e I\u0027d also say, we shouldn\u0027t allow selecting on a per folder basis. That incentivizes people to put configs in their companies folder even if they don\u0027t belong (such as in the case of a shared NIC, or other add in card).\n\nThe current incentive for people is to\n- delete upstream configs\n- deploy their own configs\n- keep their configs downstream\n\nas this keeps them in control of their configurations which they validated for their particular use-case and hardware setup.\n\nFor example this instance (and the surrounding configs which they deploy),\n\nhttps://github.com/MCT-BMC/tyan_openbmc/blob/master/meta-mct/meta-s8030/recipes-phosphor/configuration/entity-manager/0005-remove-NVME-P4000.json.patch\n\nor this \n\nhttps://github.com/ampere-openbmc/openbmc/blob/c47375f672babf39d3d399c2971a14fc527feb4c/meta-ampere/meta-jefferson/recipes-phosphor/configuration/entity-manager/mtjefferson_cbp2980.json\n\nI would prefer people to have their configurations upstream instead.\n\n\u003e I\u0027d also say, we shouldn\u0027t allow selecting on a per folder basis. That incentivizes people to put configs in their companies folder even if they don\u0027t belong (such as in the case of a shared NIC, or other add in card).\n\nDid this actually happen in EM?\n\nIf someone puts something in a wrong place, you can still veto that or move it afterwards. There is nothing preventing you from reviewing changes just because companies might be maintaining configurations in some sub-directory.\n\nI am reading this as \"Let\u0027s not have folders since then people might put things into the wrong  folder\".",
+      "parentUuid": "d9f174ef_97a5026d",
+      "range": {
+        "startLine": 20,
+        "startChar": 0,
+        "endLine": 24,
+        "endChar": 0
+      },
+      "revId": "b0d09e38d8c682cf37b3f209bdc65cfb65504181",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "3d12670c_fd36dc22",
         "filename": "/COMMIT_MSG",
         "patchSetId": 1
@@ -79,6 +103,24 @@
       "side": 1,
       "message": "+1, and show some effort that we\u0027ve tried to optimize this in other ways.  This seems counter to the entity-manager stated goal of\n\n\"Reduce the amount of code that is different between platforms\"\n\nThis would make the config different.\nhttps://github.com/openbmc/entity-manager?tab\u003dreadme-ov-file#goals",
       "parentUuid": "3d12670c_fd36dc22",
+      "revId": "b0d09e38d8c682cf37b3f209bdc65cfb65504181",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "957cf285_b470c155",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 25,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-03-05T15:20:08Z",
+      "side": 1,
+      "message": "\u003e benchmarks please\n\nAgree, i can provide benchmarks to show there is some measurable benefit.\n\n\u003e +1, and show some effort that we\u0027ve tried to optimize this in other ways.\n\nConverting the .json files into .cpp files during the build step would optimize it in another way. Then EM could just use that as default and when people develop their config in ```/usr/share/entity-manager/configurations```, EM could use that to override that which is built into the binary.\n\nThis would eliminate the parsing step. However it is not optimal\nsince there would still be configuration which is not needed.\n\n\u003e  This seems counter to the entity-manager stated goal of\n  \"Reduce the amount of code that is different between platforms\"\n  This would make the config different.\n\nThere should be no observable difference besides a reduced EM startup delay,\nif this option is correctly configured and all required + common configurations are present.\n\nI view EM config in the same way as devicetrees. There is no need to have a devicetree for system B on system A if system A will never be a system B.\n\nCan you elaborate how the stated goal applies in this situation and which benefit we gain by having configuration as part of the image if it will never be probed?",
+      "parentUuid": "d488de00_3784c850",
       "revId": "b0d09e38d8c682cf37b3f209bdc65cfb65504181",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
@@ -182,6 +224,24 @@
       "side": 1,
       "message": "\u003e I\u0027m all for a way of removing unnecessary configs.\n\nFor performance reasons?  I wouldn\u0027t expect that FruDevice probes would have a lot of overhead if you\u0027re never sending out a FRU interfacesadded signal?",
       "parentUuid": "764fa373_7486e05b",
+      "revId": "b0d09e38d8c682cf37b3f209bdc65cfb65504181",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7a33a103_0358ee51",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-03-05T15:20:08Z",
+      "side": 1,
+      "message": "\u003e I\u0027d also point out this feature assumes that there\u0027s useful information in the filename, which there isn\u0027t really.\n\nThere is some information, for example if you have configs in ```tyan/``` directory, that is tyan hardware configuration which an IBM board does not need.\n\nAlso, a tyan board would not benefit much from configurations in ```meta/``` folder. If it could use any config from there, that config should not be in there in the first place.\n\nSame can be done with PSU, NIC and such, and then the file path will have that useful information which is missing now. For example a tyan board might pull in configurations from ```tyan/```, ```psu/```, ```nic/```, and ```common/```.\n\nBut if there is no feature to take advantage of organizing the information, it can all be dumped into toplevel....\n\n\n\n\u003e if we end up finding a way that this feature doesn\u0027t cause a violation of our goals, the search should be based on content of the file, not filename regex.\n\nWhich specific properties of the file would you search? What are you proposing?\n\nPeople do not want to have configurations in their image which \n\n- cost performance\n- may be probed unintended\n- which they do not know about and have not validated for their use-case\n\nIt would be nice if you could consider the use case for platform maintainers who need to have some kind of overview of which configuration is present on their board. At the same time they do not want to write configuration which is already present upstream, as it would be a time-waste.\n\nA solution for them might be to organize the configuration into folders such that they are able to pick and choose what they need for their board, while preventing the bloat and slowdown from configurations which will never probe on their systems.",
+      "parentUuid": "9e56784a_cb3a8b3b",
       "revId": "b0d09e38d8c682cf37b3f209bdc65cfb65504181",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
