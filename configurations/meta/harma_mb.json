@@ -1344,12 +1344,12 @@
             },
             {
                 "AccumulateSetPoint": true,
-                "CycleIntervalTimeMS": 1000,
+                "CycleIntervalTimeMS": 3000,
                 "FailSafePercent": 85.0,
                 "MinThermalOutput": 0.0,
                 "Name": "Zone 0",
                 "Type": "Pid.Zone",
-                "UpdateThermalsTimeMS": 1000
+                "UpdateThermalsTimeMS": 4000
             },
             {
                 "Class": "temp",
