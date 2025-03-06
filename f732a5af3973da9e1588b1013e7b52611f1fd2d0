@@ -3,6 +3,23 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "b958c7df_2baf33a5",
+        "filename": "src/gpio-presence/config_provider.cpp",
+        "patchSetId": 17
+      },
+      "lineNbr": 135,
+      "author": {
+        "id": 1000008
+      },
+      "writtenOn": "2025-03-06T19:55:00Z",
+      "side": 1,
+      "message": "You may as well go all in on coroutines and use the new style of handling D-Bus matches.  There\u0027s examples in sdbusplus, and I see Jagpal has some at https://gerrit.openbmc.org/c/openbmc/dbus-sensors/+/75329/64/src/EntityManager.hpp#67",
+      "revId": "f732a5af3973da9e1588b1013e7b52611f1fd2d0",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "61970ffd_e61da9ff",
         "filename": "src/gpio-presence/main.cpp",
         "patchSetId": 17
