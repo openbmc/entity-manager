@@ -83,6 +83,7 @@ configs = [
     'meta/harma_mb.json',
     'meta/harma_mb_vr_infineon.json',
     'meta/harma_scm.json',
+    'meta/minerva_aegis.json',
     'meta/minerva_cmm.json',
     'meta/minerva_cmm_bsm.json',
     'meta/minerva_cmm_hsc_infineon.json',
