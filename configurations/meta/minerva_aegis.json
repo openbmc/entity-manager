@@ -1,0 +1,30 @@
+[
+    {
+        "Exposes": [
+            {
+                "Address": "$address",
+                "Bus": "$bus",
+                "Name": "Minerva Aegis FRU",
+                "Type": "EEPROM"
+            }
+        ],
+        "Name": "Minerva Aegis",
+        "Probe": [
+            "xyz.openbmc_project.FruDevice({'BOARD_PRODUCT_NAME': 'Minerva Aegis Board ', 'PRODUCT_MANUFACTURER': 'Quanta'})",
+            "AND",
+            "FOUND('Harma SCM')"
+        ],
+        "Type": "Board",
+        "xyz.openbmc_project.Inventory.Decorator.Asset": {
+            "BuildDate": "$BOARD_MANUFACTURE_DATE",
+            "Manufacturer": "$BOARD_MANUFACTURER",
+            "Model": "$BOARD_PRODUCT_NAME",
+            "PartNumber": "$BOARD_PART_NUMBER",
+            "SerialNumber": "$BOARD_SERIAL_NUMBER",
+            "SparePartNumber": "$BOARD_INFO_AM1"
+        },
+        "xyz.openbmc_project.Inventory.Decorator.AssetTag": {
+            "AssetTag": "$PRODUCT_ASSET_TAG"
+        }
+    }
+]
