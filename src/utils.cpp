@@ -47,8 +47,29 @@ static bool powerStatusOn = false;
 // NOLINTNEXTLINE(cppcoreguidelines-avoid-non-const-global-variables)
 static std::unique_ptr<sdbusplus::bus::match_t> powerMatch = nullptr;
 
+std::vector<std::string> splitConfigString(const std::string& input,
+                                           char delimiter, bool ignoreSpaces)
+{
+    std::vector<std::string> parts;
+    std::istringstream stream(input);
+    std::string part;
+
+    while (std::getline(stream, part, delimiter))
+    {
+        if (ignoreSpaces)
+        {
+            part.erase(0, part.find_first_not_of(" \t"));
+            part.erase(part.find_last_not_of(" \t") + 1);
+        }
+
+        parts.emplace_back(std::move(part));
+    }
+    return parts;
+}
+
 bool findFiles(const fs::path& dirPath, const std::string& matchString,
-               std::vector<fs::path>& foundPaths)
+               std::vector<fs::path>& foundPaths,
+               const std::vector<std::string>& prefixes)
 {
     if (!fs::exists(dirPath))
     {
@@ -56,45 +77,41 @@ bool findFiles(const fs::path& dirPath, const std::string& matchString,
     }
 
     std::regex search(matchString);
-    std::smatch match;
-    for (const auto& p : fs::directory_iterator(dirPath))
-    {
-        std::string path = p.path().string();
-        if (std::regex_search(path, match, search))
-        {
-            foundPaths.emplace_back(p.path());
-        }
-    }
-    return true;
-}
 
-bool findFiles(const std::vector<fs::path>&& dirPaths,
-               const std::string& matchString,
-               std::vector<fs::path>& foundPaths)
-{
-    std::map<fs::path, fs::path> paths;
-    std::regex search(matchString);
-    std::smatch match;
-    for (const auto& dirPath : dirPaths)
+    for (const auto& entry : fs::directory_iterator(dirPath))
     {
-        if (!fs::exists(dirPath))
+        const std::string filename = entry.path().filename().string();
+
+        if (!std::regex_search(filename, search))
         {
             continue;
         }
 
-        for (const auto& p : fs::directory_iterator(dirPath))
+        if (!prefixes.empty() &&
+            !std::any_of(prefixes.begin(), prefixes.end(),
+                         [&filename](const std::string& prefix) {
+                             return filename.starts_with(prefix);
+                         }))
         {
-            std::string path = p.path().string();
-            if (std::regex_search(path, match, search))
-            {
-                paths[p.path().filename()] = p.path();
-            }
+            continue;
         }
+
+        foundPaths.emplace_back(entry.path());
     }
 
-    for (const auto& [key, value] : paths)
+    return !foundPaths.empty();
+}
+bool findFiles(const std::vector<fs::path>& dirPaths,
+               const std::string& matchString,
+               std::vector<fs::path>& foundPaths,
+               const std::vector<std::string>& prefixes)
+{
+    for (const auto& dirPath : dirPaths)
     {
-        foundPaths.emplace_back(value);
+        if (fs::exists(dirPath))
+        {
+            findFiles(dirPath, matchString, foundPaths, prefixes);
+        }
     }
 
     return !foundPaths.empty();

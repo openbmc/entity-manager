@@ -28,3 +28,9 @@ option(
     value: true,
     description: 'Run JSON schema validation during the build.',
 )
+option(
+    'config-prefix',
+    type: 'string',
+    value: 'all',
+    description: 'Comma-separated list of JSON filename prefixes to filter. Default loads all JSON files.',
+)

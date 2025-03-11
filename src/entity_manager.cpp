@@ -827,12 +827,17 @@ void postToDbus(const nlohmann::json& newConfiguration,
 // reads json files out of the filesystem
 bool loadConfigurations(std::list<nlohmann::json>& configurations)
 {
+    const std::string configPrefixesEnv = CONFIG_PREFIX;
+    std::vector<std::string> configPrefixes =
+        (configPrefixesEnv != "all" && !configPrefixesEnv.empty())
+            ? splitConfigString(configPrefixesEnv, ',', true)
+            : std::vector<std::string>{};
+
     // find configuration files
     std::vector<std::filesystem::path> jsonPaths;
-    if (!findFiles(
-            std::vector<std::filesystem::path>{configurationDirectory,
-                                               hostConfigurationDirectory},
-            R"(.*\.json)", jsonPaths))
+    if (!findFiles({std::filesystem::path(configurationDirectory),
+                    std::filesystem::path(hostConfigurationDirectory)},
+                   R"(.*\.json)", jsonPaths, configPrefixes))
     {
         std::cerr << "Unable to find any configuration files in "
                   << configurationDirectory << "\n";

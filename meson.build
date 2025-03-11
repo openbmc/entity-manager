@@ -7,6 +7,11 @@ project(
     meson_version: '>=1.1.1',
 )
 add_project_arguments('-Wno-psabi', language: 'cpp')
+config_prefix_val = get_option('config-prefix')
+add_project_arguments(
+    '-DCONFIG_PREFIX="@0@"'.format(config_prefix_val),
+    language: 'cpp',
+)
 
 boost_args = [
     '-DBOOST_ASIO_NO_DEPRECATED',
