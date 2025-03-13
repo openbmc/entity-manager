@@ -175,11 +175,7 @@
             }
         ],
         "Name": "Ventura Fan Board 0",
-        "Probe": [
-            "xyz.openbmc_project.FruDevice({'BOARD_PRODUCT_NAME': 'Ventura FAN Board', 'BUS': 16})",
-            "AND",
-            "xyz.openbmc_project.FruDevice({'BOARD_INFO_AM4': 'adc-tic'})"
-        ],
+        "Probe": "xyz.openbmc_project.FruDevice({'BOARD_PRODUCT_NAME': 'Ventura FAN Board', 'BUS': 16, 'BOARD_INFO_AM4': 'adc-tic'})",
         "Type": "Board",
         "xyz.openbmc_project.Inventory.Decorator.Asset": {
             "BuildDate": "$BOARD_MANUFACTURE_DATE",
@@ -372,11 +368,7 @@
             }
         ],
         "Name": "Ventura Fan Board 1",
-        "Probe": [
-            "xyz.openbmc_project.FruDevice({'BOARD_PRODUCT_NAME': 'Ventura FAN Board', 'BUS': 17})",
-            "AND",
-            "xyz.openbmc_project.FruDevice({'BOARD_INFO_AM4': 'adc-tic'})"
-        ],
+        "Probe": "xyz.openbmc_project.FruDevice({'BOARD_PRODUCT_NAME': 'Ventura FAN Board', 'BUS': 17, 'BOARD_INFO_AM4': 'adc-tic'})",
         "Type": "Board",
         "xyz.openbmc_project.Inventory.Decorator.Asset": {
             "BuildDate": "$BOARD_MANUFACTURE_DATE",
