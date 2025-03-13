@@ -96,6 +96,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "50c53f84_804b014a",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 4
+      },
+      "lineNbr": 21,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2025-03-13T15:59:53Z",
+      "side": 1,
+      "message": "\u003e Are you intending some dereferencing scheme to get the actual MCTP EID here?\n\nWe\u0027d need to implement some way to describe \"when I see X component plugged into Y slot on Z baseboard, please assign it EIDs from the range 4-10\"\n\nI\u0027m assuming dereferencing scheme would only be internal to the service accessing the device.  In general we don\u0027t make protocol-specific assignments like that mappable outside of a single application.",
+      "parentUuid": "c40caec4_8d54a736",
+      "range": {
+        "startLine": 21,
+        "startChar": 0,
+        "endLine": 21,
+        "endChar": 25
+      },
+      "revId": "a8e8d987ec5e38e5df442534df83404f866f8da3",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "c640c4a6_4fb3bc2d",
         "filename": "/COMMIT_MSG",
         "patchSetId": 4
