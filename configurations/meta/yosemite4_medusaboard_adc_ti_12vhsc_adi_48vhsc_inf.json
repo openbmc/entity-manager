@@ -1041,16 +1041,6 @@
                 "in0"
             ],
             "Name": "MEDUSA_ADC_48V_SENSE",
-            "Thresholds": [
-                {
-                    "Direction": "less than",
-                    "Hysteresis": 0,
-                    "Label": "in0",
-                    "Name": "lower critical",
-                    "Severity": 1,
-                    "Value": -0.162
-                }
-            ],
             "Type": "INA238",
             "in0_Max": 1,
             "in0_Min": -1,
