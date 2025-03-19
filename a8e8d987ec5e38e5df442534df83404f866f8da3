@@ -144,6 +144,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "891bd9d1_06ba60e7",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 4
+      },
+      "lineNbr": 21,
+      "author": {
+        "id": 1002188
+      },
+      "writtenOn": "2025-03-19T10:43:07Z",
+      "side": 1,
+      "message": "Hi Ed,\nFor YV4, we plan to use this schema since NICs 0–3 are statically mapped to EID 90–93. We can keep the same schema for static assignments as you mentioned.\n\nHere’s an example of the \"platform\" level configuration integrated into the board JSON:\ndiff --git a/configurations/meta/yosemite4_spiderboard_adc_ti_pwr_ti.json b/configurations/meta/yosemite4_spiderboard_adc_ti_pwr_ti.json\nindex 1a91a07..4523036 100644\n--- a/configurations/meta/yosemite4_spiderboard_adc_ti_pwr_ti.json\n+++ b/configurations/meta/yosemite4_spiderboard_adc_ti_pwr_ti.json\n@@ -1163,6 +1163,40 @@\n                 }\n             ],\n             \"Type\": \"TMP75\"\n+        },\n+        {\n+            \"Type\": \"NIC\",\n+            \"Name\": \"NIC_1\",\n+            \"NCSITransportType\": \"MCTP\",\n+            \"NCSITransportInfo\": {\n+                \"MCTPEndpointId\": 90,\n+                \"MCTPNetworkId\": 1\n+            }\n+        },\n+        {\n+            \"Type\": \"NIC\",\n+            \"Name\": \"NIC_2\",\n+            \"NCSITransportType\": \"RBT\",\n+            \"NCSITransportInfo\": {\n+                \"InterfaceName\": \"eth0\"\n+            }\n+        },\n+        {\n+            \"Type\": \"NIC\",\n+            \"Name\": \"NIC_3\",\n+            \"NCSITransportType\": \"RBT\",\n+            \"NCSITransportInfo\": {\n+                \"InterfaceName\": \"eth1\"\n+            }\n+        },\n+        {\n+            \"Type\": \"NIC\",\n+            \"Name\": \"NIC_4\",\n+            \"NCSITransportType\": \"MCTP\",\n+            \"NCSITransportInfo\": {\n+                \"MCTPEndpointId\": 93,\n+                \"MCTPNetworkId\": 1\n+            }\n         }\n     ],\n     \"Name\": \"Yosemite 4 Spider Board\",\n\nBelow is the static assignment configuration for YV4:\nhttps://github.com/openbmc/openbmc/blob/master/meta-facebook/meta-yosemite4/recipes-phosphor/gpio/phosphor-gpio-monitor/configure-nic-mctp-endpoint\n\nLet me know if you have any further questions, ty.",
+      "parentUuid": "a2ce0dbc_738273b6",
+      "range": {
+        "startLine": 21,
+        "startChar": 0,
+        "endLine": 21,
+        "endChar": 25
+      },
+      "revId": "a8e8d987ec5e38e5df442534df83404f866f8da3",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "c640c4a6_4fb3bc2d",
         "filename": "/COMMIT_MSG",
         "patchSetId": 4
