@@ -192,6 +192,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "33306ad2_d4d8fb12",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 4
+      },
+      "lineNbr": 21,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2025-03-19T15:32:16Z",
+      "side": 1,
+      "message": "\u003e We can keep the same schema for static assignments as you mentioned.\n\nSure, we can statically assign things, it just doesn\u0027t belong into the file for a specific piece of hardware that will be reused.  That\u0027s what\u0027s in this patchset now, and it doesn\u0027t work as written.  Otherwise it would require the entire community to organize and agree on eid assignments to avoid collisions (what if I also had picked EID 91 for an nv GPU?, or a connectx NIC?)",
+      "parentUuid": "28df798b_ff672eca",
+      "range": {
+        "startLine": 21,
+        "startChar": 0,
+        "endLine": 21,
+        "endChar": 25
+      },
+      "revId": "a8e8d987ec5e38e5df442534df83404f866f8da3",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "c640c4a6_4fb3bc2d",
         "filename": "/COMMIT_MSG",
         "patchSetId": 4
@@ -251,6 +275,30 @@
       "side": 1,
       "message": "the rbt attachment is defined by the physical rmii bus (a port on the manager) and the package identifier (upto 8 logical 4 physical).\n\n\nif we need to enhance the inventory by adding the physical rmii bus and porta for the NIC.\n\n\nwe might need to check with DMTF redfish forum for the not a switch multiple port network.   \n\n\nthings like eth1 and network index are subject to probe order variation and are not stable across network device driver bind/unbind etc.   the interface name can also be changed by userspace request.\n\n\nThe NCSI spec recommends  using the guid to recognize the alternative pathways to the same device.",
       "parentUuid": "955cccd3_b0602f90",
+      "range": {
+        "startLine": 34,
+        "startChar": 0,
+        "endLine": 34,
+        "endChar": 27
+      },
+      "revId": "a8e8d987ec5e38e5df442534df83404f866f8da3",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2bd0a245_00efd3d3",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 4
+      },
+      "lineNbr": 34,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2025-03-19T15:32:16Z",
+      "side": 1,
+      "message": "\u003e this is not to be confused with the Linux network interface index\n\nAgreed.",
+      "parentUuid": "c5e4c09c_1996b0b6",
       "range": {
         "startLine": 34,
         "startChar": 0,
