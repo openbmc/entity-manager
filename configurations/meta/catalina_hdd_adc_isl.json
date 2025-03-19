@@ -10,7 +10,7 @@
             "Address": "0x40",
             "Bus": 55,
             "Labels": [
-                "in1",
+                "in0",
                 "curr1",
                 "power1"
             ],
@@ -20,7 +20,7 @@
                 {
                     "Direction": "greater than",
                     "Hysteresis": 0.272,
-                    "Label": "in1",
+                    "Label": "in0",
                     "Name": "upper critical",
                     "Severity": 1,
                     "Value": 13.6
@@ -28,22 +28,24 @@
                 {
                     "Direction": "less than",
                     "Hysteresis": 0.21,
-                    "Label": "in1",
+                    "Label": "in0",
                     "Name": "lower critical",
                     "Severity": 1,
                     "Value": 10.5
                 }
             ],
-            "Type": "INA230",
+            "Type": "ISL28022",
             "curr1_Name": "HDDBOARD_SSD0_P12V_CURR_A",
-            "in1_Name": "HDDBOARD_SSD0_P12V_VOLT_V",
-            "power1_Name": "HDDBOARD_SSD0_P12V_PWR_W"
+            "curr1_Scale": 200,
+            "in0_Name": "HDDBOARD_SSD0_P12V_VOLT_V",
+            "power1_Name": "HDDBOARD_SSD0_P12V_PWR_W",
+            "power1_Scale": 200000
         },
         {
             "Address": "0x44",
             "Bus": 55,
             "Labels": [
-                "in1",
+                "in0",
                 "curr1",
                 "power1"
             ],
@@ -53,7 +55,7 @@
                 {
                     "Direction": "greater than",
                     "Hysteresis": 0.272,
-                    "Label": "in1",
+                    "Label": "in0",
                     "Name": "upper critical",
                     "Severity": 1,
                     "Value": 13.6
@@ -61,21 +63,27 @@
                 {
                     "Direction": "less than",
                     "Hysteresis": 0.21,
-                    "Label": "in1",
+                    "Label": "in0",
                     "Name": "lower critical",
                     "Severity": 1,
                     "Value": 10.5
                 }
             ],
-            "Type": "INA230",
+            "Type": "ISL28022",
             "curr1_Name": "HDDBOARD_SSD2_P12V_CURR_A",
-            "in1_Name": "HDDBOARD_SSD2_P12V_VOLT_V",
-            "power1_Name": "HDDBOARD_SSD2_P12V_PWR_W"
+            "curr1_Scale": 200,
+            "in0_Name": "HDDBOARD_SSD2_P12V_VOLT_V",
+            "power1_Name": "HDDBOARD_SSD2_P12V_PWR_W",
+            "power1_Scale": 200000
         }
     ],
     /* Catalina Hard Disk Drive Carrier Board */
     "Name": "Catalina HDD Carrier",
-    "Probe": "xyz.openbmc_project.FruDevice({'BOARD_PRODUCT_NAME': 'Catalina HDD ', 'BOARD_MANUFACTURER': 'Quanta'})",
+    "Probe": [
+        "xyz.openbmc_project.FruDevice({'BOARD_PRODUCT_NAME': 'Catalina HDD ', 'BOARD_MANUFACTURER': 'Quanta', 'BOARD_PART_NUMBER': '3FF0NHB0020'})",
+        "OR",
+        "xyz.openbmc_project.FruDevice({'BOARD_PRODUCT_NAME': 'Catalina HDD ', 'BOARD_MANUFACTURER': 'Quanta', 'BOARD_INFO_AM4': 'adc-isl'})"
+    ],
     "Type": "Board",
     "xyz.openbmc_project.Inventory.Decorator.Asset": {
         "BuildDate": "$BOARD_MANUFACTURE_DATE",
