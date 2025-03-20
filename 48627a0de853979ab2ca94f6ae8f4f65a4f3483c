@@ -70,6 +70,30 @@
       },
       "revId": "48627a0de853979ab2ca94f6ae8f4f65a4f3483c",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "adefb9ac_9f478de9",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 3
+      },
+      "lineNbr": 11,
+      "author": {
+        "id": 1001896
+      },
+      "writtenOn": "2025-03-20T06:40:57Z",
+      "side": 1,
+      "message": "There are two fan boards connected to the RMC on i2c bus 16/17 with the same FRU information. There are two sources of the fan board with different ADC chips and use the filed Board Custom Data 4 to distinguish.\n\nSo we want to use one configuration to cover two fan boards using different buses and the BOARD_INFO_AM4 to distinguish different sources as below format.\n\n```\n\"xyz.openbmc_project.FruDevice({\u0027BOARD_PRODUCT_NAME\u0027: \u0027Ventura FAN Board\u0027, \u0027BUS\u0027: 17})\",\n\"AND\",\n\"xyz.openbmc_project.FruDevice({\u0027BOARD_INFO_AM4\u0027: \u0027adc-max\u0027})\"\n```\n\nBut we found there will be duplicate probes, below is the portion of the entity manager journal log. The \"Ventura Fan Board 0/1\" was added two times by each.\n\n```\nMar 19 23:00:14 bmc entity-manager[478]: Inventory Added: Ventura RMC LED Board\nMar 19 23:00:14 bmc entity-manager[478]: Inventory Added: Ventura Fan Board 0\nMar 19 23:00:14 bmc entity-manager[478]: Inventory Added: Ventura SCM\nMar 19 23:00:14 bmc entity-manager[478]: Inventory Added: Ventura Rear IO BD\nMar 19 23:00:14 bmc entity-manager[478]: Inventory Added: Ventura RMC\nMar 19 23:00:14 bmc entity-manager[478]: Inventory Added: Ventura Fan Board 0\nMar 19 23:00:14 bmc entity-manager[478]: Inventory Added: Ventura Fan Board 1\nMar 19 23:00:14 bmc entity-manager[478]: Inventory Added: Ventura Fan Board 1\nMar 19 23:00:14 bmc entity-manager[478]: Inventory Added: BMC Storage Module\n\n```\n\nAnd I checked the /var/configuration/system.json found there are four parts of the fan board.\n\n```\n\"Probe\": [\n            \"xyz.openbmc_project.FruDevice({\u0027BOARD_PRODUCT_NAME\u0027: \u0027Ventura FAN Board\u0027, \u0027BUS\u0027: 17})\",\n            \"AND\",\n            \"xyz.openbmc_project.FruDevice({\u0027BOARD_INFO_AM4\u0027: \u0027adc-tic\u0027})\"\n        ],\n        \"Type\": \"Board\",\n        \"xyz.openbmc_project.Inventory.Decorator.Asset\": {\n            \"BuildDate\": \"20241216T145100Z\",\n            \"Manufacturer\": \"Quanta\",\n            \"Model\": \"Ventura FAN Board PVT\",\n            \"PartNumber\": \"39L05FB0040\",\n            \"SerialNumber\": \"TWB45Q45000058\",\n            \"SparePartNumber\": \"05-100120\"\n        },\n--\n\"Probe\": [\n            \"xyz.openbmc_project.FruDevice({\u0027BOARD_PRODUCT_NAME\u0027: \u0027Ventura FAN Board\u0027, \u0027BUS\u0027: 17})\",\n            \"AND\",\n            \"xyz.openbmc_project.FruDevice({\u0027BOARD_INFO_AM4\u0027: \u0027adc-tic\u0027})\"\n        ],\n        \"Type\": \"Board\",\n        \"xyz.openbmc_project.Inventory.Decorator.Asset\": {\n            \"BuildDate\": \"20241216T143500Z\",\n            \"Manufacturer\": \"Quanta\",\n            \"Model\": \"Ventura FAN Board PVT\",\n            \"PartNumber\": \"39L05FB0040\",\n            \"SerialNumber\": \"TWB45Q45000028\",\n            \"SparePartNumber\": \"05-100120\"\n        },\n--\n\"Probe\": [\n            \"xyz.openbmc_project.FruDevice({\u0027BOARD_PRODUCT_NAME\u0027: \u0027Ventura FAN Board\u0027, \u0027BUS\u0027: 16})\",\n            \"AND\",\n            \"xyz.openbmc_project.FruDevice({\u0027BOARD_INFO_AM4\u0027: \u0027adc-tic\u0027})\"\n        ],\n        \"Type\": \"Board\",\n        \"xyz.openbmc_project.Inventory.Decorator.Asset\": {\n            \"BuildDate\": \"20241216T145100Z\",\n            \"Manufacturer\": \"Quanta\",\n            \"Model\": \"Ventura FAN Board PVT\",\n            \"PartNumber\": \"39L05FB0040\",\n            \"SerialNumber\": \"TWB45Q45000058\",\n            \"SparePartNumber\": \"05-100120\"\n        },\n--\n\"Probe\": [\n            \"xyz.openbmc_project.FruDevice({\u0027BOARD_PRODUCT_NAME\u0027: \u0027Ventura FAN Board\u0027, \u0027BUS\u0027: 16})\",\n            \"AND\",\n            \"xyz.openbmc_project.FruDevice({\u0027BOARD_INFO_AM4\u0027: \u0027adc-tic\u0027})\"\n        ],\n        \"Type\": \"Board\",\n        \"xyz.openbmc_project.Inventory.Decorator.Asset\": {\n            \"BuildDate\": \"20241216T143500Z\",\n            \"Manufacturer\": \"Quanta\",\n            \"Model\": \"Ventura FAN Board PVT\",\n            \"PartNumber\": \"39L05FB0040\",\n            \"SerialNumber\": \"TWB45Q45000028\",\n            \"SparePartNumber\": \"05-100120\"\n        },\n```\n\nThen I found the `\"BuildDate\": \"20241216T143500Z\"` and `\"BuildDate\": \"20241216T145100Z\"` there one is from the EEPROM on bus 16 and another is from bus 17. \n\nIt seems that the EEPROMs on the fan boards are being probed twice.  \nI have modified the probe condition to a single line, and it now works fine.  \n\nWe have not yet investigated the root cause of this behavior.  \nDo you have any insights or comments on this? Is this the expected behavior?",
+      "parentUuid": "6e0d4eb5_5a8b1629",
+      "range": {
+        "startLine": 9,
+        "startChar": 0,
+        "endLine": 11,
+        "endChar": 8
+      },
+      "revId": "48627a0de853979ab2ca94f6ae8f4f65a4f3483c",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ],
   "submitRequirementResults": []
