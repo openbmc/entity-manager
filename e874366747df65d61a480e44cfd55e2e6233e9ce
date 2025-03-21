@@ -97,6 +97,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "e333d85b_e570540f",
+        "filename": "schemas/firmware.json",
+        "patchSetId": 27
+      },
+      "lineNbr": 52,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2025-03-21T06:11:26Z",
+      "side": 1,
+      "message": "\u003e Won\u0027t that be incompatible with PDI then?\n\nThat\u0027s not really a concern for the config files themselves (they don\u0027t directly reference DBUS) If we want to fix the object array behavior to allow PDI, lets fix it in the c++ code itself.",
+      "parentUuid": "12cec8d8_2d6c6dd6",
+      "range": {
+        "startLine": 39,
+        "startChar": 0,
+        "endLine": 52,
+        "endChar": 18
+      },
+      "revId": "e874366747df65d61a480e44cfd55e2e6233e9ce",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "672f0a8e_c1038416",
         "filename": "schemas/firmware.json",
         "patchSetId": 27
@@ -144,6 +168,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "33eb9c43_f0ca5145",
+        "filename": "schemas/firmware.json",
+        "patchSetId": 27
+      },
+      "lineNbr": 56,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2025-03-21T06:11:26Z",
+      "side": 1,
+      "message": "https://github.com/openbmc/dbus-sensors/blob/f2a2baae26ed85ef2096046f8457e5e0fbb1fb3f/src/ipmb/IpmbSensor.hpp#L96\n\nIpmb implementation\n\nThere\u0027s also an ipmbbridge implementation (search the repo list)",
+      "parentUuid": "45725840_c56a5d68",
+      "range": {
+        "startLine": 53,
+        "startChar": 0,
+        "endLine": 56,
+        "endChar": 18
+      },
+      "revId": "e874366747df65d61a480e44cfd55e2e6233e9ce",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "aadd4c06_383a51c5",
         "filename": "schemas/firmware.json",
         "patchSetId": 27
@@ -179,6 +227,30 @@
       "side": 1,
       "message": "Done.\n\n\u003e Side question, HasME and Layout seem very related. Is there a case we\u0027d mix and match them at all, or can they be the same property?\n\nAn answer to this question would probably require some knowledge about Intel Server Architecture.\n\nI don\u0027t see why any permutation of these 2 should not be possible, but i cannot say for sure if they actually exist on some system.",
       "parentUuid": "aadd4c06_383a51c5",
+      "range": {
+        "startLine": 59,
+        "startChar": 30,
+        "endLine": 59,
+        "endChar": 33
+      },
+      "revId": "e874366747df65d61a480e44cfd55e2e6233e9ce",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "58db34a2_b1a30627",
+        "filename": "schemas/firmware.json",
+        "patchSetId": 27
+      },
+      "lineNbr": 59,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2025-03-21T06:11:26Z",
+      "side": 1,
+      "message": "Can you figure that out please?  It seems really odd to make that configurable.",
+      "parentUuid": "7809c90d_e1973d69",
       "range": {
         "startLine": 59,
         "startChar": 30,
