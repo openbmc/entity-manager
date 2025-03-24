@@ -121,6 +121,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "84629bbd_b406d1aa",
+        "filename": "schemas/firmware.json",
+        "patchSetId": 27
+      },
+      "lineNbr": 52,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-03-24T09:44:03Z",
+      "side": 1,
+      "message": "\u003e That\u0027s not really a concern for the config files themselves (they don\u0027t directly reference DBUS)\n\nThe config json directly determines how the configuration is exposed on dbus.\n\nSo if i want a schema that\u0027s compatible with PDI, i have to follow a few constraints for that schema.\n\n\u003e If we want to fix the object array behavior to allow PDI, lets fix it in the c++ code itself.\n\nI do not want to create that scope creep now. I just want to create a schema which works under the given constraints. I do not see the problem.\n\nWhy do we have to do some heavy lifting now, if we can just create something that works?\n\nI\u0027m not against fixing/refactoring EM, but that\u0027s out of scope for this patch.",
+      "parentUuid": "e333d85b_e570540f",
+      "range": {
+        "startLine": 39,
+        "startChar": 0,
+        "endLine": 52,
+        "endChar": 18
+      },
+      "revId": "e874366747df65d61a480e44cfd55e2e6233e9ce",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "672f0a8e_c1038416",
         "filename": "schemas/firmware.json",
         "patchSetId": 27
@@ -180,6 +204,30 @@
       "side": 1,
       "message": "https://github.com/openbmc/dbus-sensors/blob/f2a2baae26ed85ef2096046f8457e5e0fbb1fb3f/src/ipmb/IpmbSensor.hpp#L96\n\nIpmb implementation\n\nThere\u0027s also an ipmbbridge implementation (search the repo list)",
       "parentUuid": "45725840_c56a5d68",
+      "range": {
+        "startLine": 53,
+        "startChar": 0,
+        "endLine": 56,
+        "endChar": 18
+      },
+      "revId": "e874366747df65d61a480e44cfd55e2e6233e9ce",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "72343aa7_03c54fd0",
+        "filename": "schemas/firmware.json",
+        "patchSetId": 27
+      },
+      "lineNbr": 56,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-03-24T09:44:03Z",
+      "side": 1,
+      "message": "Removed the HasME property for now, so this should not be a concern anymore.",
+      "parentUuid": "33eb9c43_f0ca5145",
       "range": {
         "startLine": 53,
         "startChar": 0,
@@ -251,6 +299,30 @@
       "side": 1,
       "message": "Can you figure that out please?  It seems really odd to make that configurable.",
       "parentUuid": "7809c90d_e1973d69",
+      "range": {
+        "startLine": 59,
+        "startChar": 30,
+        "endLine": 59,
+        "endChar": 33
+      },
+      "revId": "e874366747df65d61a480e44cfd55e2e6233e9ce",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "74ba7963_5060e7f5",
+        "filename": "schemas/firmware.json",
+        "patchSetId": 27
+      },
+      "lineNbr": 59,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-03-24T09:44:03Z",
+      "side": 1,
+      "message": "Removed \u0027HasME\u0027 property, so it should not be a concern anymore.",
+      "parentUuid": "58db34a2_b1a30627",
       "range": {
         "startLine": 59,
         "startChar": 30,
