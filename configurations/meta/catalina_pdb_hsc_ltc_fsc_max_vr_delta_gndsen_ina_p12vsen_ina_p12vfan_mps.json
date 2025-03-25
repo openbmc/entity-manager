@@ -915,6 +915,40 @@
             ],
             "Name": "PDB_BRICK0_P12V_N1",
             "PowerState": "On",
+            "Thresholds": [
+                {
+                    "Direction": "greater than",
+                    "Hysteresis": 0.272,
+                    "Label": "vout1",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 13.6
+                },
+                {
+                    "Direction": "less than",
+                    "Hysteresis": 0.21,
+                    "Label": "vout1",
+                    "Name": "lower critical",
+                    "Severity": 1,
+                    "Value": 10.5
+                },
+                {
+                    "Direction": "greater than",
+                    "Hysteresis": 2.5,
+                    "Label": "temp1",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 125
+                },
+                {
+                    "Direction": "less than",
+                    "Hysteresis": 0.1,
+                    "Label": "temp1",
+                    "Name": "lower critical",
+                    "Severity": 1,
+                    "Value": 5
+                }
+            ],
             "Type": "pmbus",
             "iout1_Name": "PDB_BRICK0_P12V_N1_CURR_A",
             "pout1_Name": "PDB_BRICK0_P12V_N1_PWR_W",
@@ -932,6 +966,40 @@
             ],
             "Name": "PDB_BRICK1_P12V_N1",
             "PowerState": "On",
+            "Thresholds": [
+                {
+                    "Direction": "greater than",
+                    "Hysteresis": 0.272,
+                    "Label": "vout1",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 13.6
+                },
+                {
+                    "Direction": "less than",
+                    "Hysteresis": 0.21,
+                    "Label": "vout1",
+                    "Name": "lower critical",
+                    "Severity": 1,
+                    "Value": 10.5
+                },
+                {
+                    "Direction": "greater than",
+                    "Hysteresis": 2.5,
+                    "Label": "temp1",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 125
+                },
+                {
+                    "Direction": "less than",
+                    "Hysteresis": 0.1,
+                    "Label": "temp1",
+                    "Name": "lower critical",
+                    "Severity": 1,
+                    "Value": 5
+                }
+            ],
             "Type": "pmbus",
             "iout1_Name": "PDB_BRICK1_P12V_N1_CURR_A",
             "pout1_Name": "PDB_BRICK1_P12V_N1_PWR_W",
@@ -949,6 +1017,40 @@
             ],
             "Name": "PDB_BRICK0_P12V_N2",
             "PowerState": "On",
+            "Thresholds": [
+                {
+                    "Direction": "greater than",
+                    "Hysteresis": 0.272,
+                    "Label": "vout1",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 13.6
+                },
+                {
+                    "Direction": "less than",
+                    "Hysteresis": 0.21,
+                    "Label": "vout1",
+                    "Name": "lower critical",
+                    "Severity": 1,
+                    "Value": 10.5
+                },
+                {
+                    "Direction": "greater than",
+                    "Hysteresis": 2.5,
+                    "Label": "temp1",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 125
+                },
+                {
+                    "Direction": "less than",
+                    "Hysteresis": 0.1,
+                    "Label": "temp1",
+                    "Name": "lower critical",
+                    "Severity": 1,
+                    "Value": 5
+                }
+            ],
             "Type": "pmbus",
             "iout1_Name": "PDB_BRICK0_P12V_N2_CURR_A",
             "pout1_Name": "PDB_BRICK0_P12V_N2_PWR_W",
@@ -966,6 +1068,40 @@
             ],
             "Name": "PDB_BRICK1_P12V_N2",
             "PowerState": "On",
+            "Thresholds": [
+                {
+                    "Direction": "greater than",
+                    "Hysteresis": 0.272,
+                    "Label": "vout1",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 13.6
+                },
+                {
+                    "Direction": "less than",
+                    "Hysteresis": 0.21,
+                    "Label": "vout1",
+                    "Name": "lower critical",
+                    "Severity": 1,
+                    "Value": 10.5
+                },
+                {
+                    "Direction": "greater than",
+                    "Hysteresis": 2.5,
+                    "Label": "temp1",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 125
+                },
+                {
+                    "Direction": "less than",
+                    "Hysteresis": 0.1,
+                    "Label": "temp1",
+                    "Name": "lower critical",
+                    "Severity": 1,
+                    "Value": 5
+                }
+            ],
             "Type": "pmbus",
             "iout1_Name": "PDB_BRICK1_P12V_N2_CURR_A",
             "pout1_Name": "PDB_BRICK1_P12V_N2_PWR_W",
@@ -982,6 +1118,40 @@
                 "vout1"
             ],
             "Name": "PDB_BRICK0_P12V_AUX",
+            "Thresholds": [
+                {
+                    "Direction": "greater than",
+                    "Hysteresis": 0.272,
+                    "Label": "vout1",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 13.6
+                },
+                {
+                    "Direction": "less than",
+                    "Hysteresis": 0.21,
+                    "Label": "vout1",
+                    "Name": "lower critical",
+                    "Severity": 1,
+                    "Value": 10.5
+                },
+                {
+                    "Direction": "greater than",
+                    "Hysteresis": 2.5,
+                    "Label": "temp1",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 125
+                },
+                {
+                    "Direction": "less than",
+                    "Hysteresis": 0.1,
+                    "Label": "temp1",
+                    "Name": "lower critical",
+                    "Severity": 1,
+                    "Value": 5
+                }
+            ],
             "Type": "pmbus",
             "iout1_Name": "PDB_BRICK0_P12V_AUX_CURR_A",
             "pout1_Name": "PDB_BRICK0_P12V_AUX_PWR_W",
