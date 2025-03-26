@@ -82,7 +82,13 @@ if get_option('validate-json')
     validate_script = files('scripts/validate_configs.py')
     autojson = custom_target(
         'check_syntax',
-        command: [validate_script, '-v', '-k'],
+        command: [
+            validate_script,
+            '-v',
+            '-k',
+            '-e',
+            files('test/expected-schema-errors.txt'),
+        ],
         depend_files: files(filepaths),
         build_by_default: true,
         capture: true,

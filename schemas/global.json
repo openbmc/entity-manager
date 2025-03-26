@@ -3,62 +3,62 @@
     "$defs": {
         "EMExposesElement": {
             "description": "The exposes property element schema.  An element of the exposes property is always an array where elements are of type exposes entry.",
-            "anyOf": [
+            "allOf": [
                 {
-                    "$ref": "ibm.json#/$defs/PowerModeProperties"
+                    "oneOf": [
+                        {
+                            "$ref": "ibm.json#/$defs/PowerModeProperties"
+                        },
+                        {
+                            "$ref": "ibm.json#/$defs/IBMCompatibleSystem"
+                        },
+                        {
+                            "$ref": "ibm.json#/$defs/IBMCFFPSConnector"
+                        },
+                        {
+                            "$ref": "intel.json#/$defs/IntelFanConnector"
+                        },
+                        {
+                            "$ref": "mctp.json#/$defs/MCTPI2CTarget"
+                        },
+                        {
+                            "$ref": "mctp.json#/$defs/MCTPI3CTarget"
+                        },
+                        {
+                            "$ref": "pid.json#/$defs/Pid"
+                        },
+                        {
+                            "$ref": "pid_zone.json#/$defs/PidZone"
+                        },
+                        {
+                            "$ref": "satellite_controller.json#/$defs/SatelliteController"
+                        },
+                        {
+                            "$ref": "stepwise.json#/$defs/Stepwise"
+                        },
+                        {
+                            "$ref": "legacy.json#/$defs/Aggregate"
+                        },
+                        {
+                            "$ref": "virtual_sensor.json#/$defs/VirtualSensor"
+                        },
+                        {
+                            "$ref": "leak_detector.json#/$defs/GPIOLeakDetector"
+                        },
+                        {
+                            "$ref": "firmware.json#/$defs/XDPE1X2XXFirmware"
+                        }
+                    ]
                 },
                 {
-                    "$ref": "ibm.json#/$defs/IBMCompatibleSystem"
+                    "title": "Missing 'Name'",
+                    "description": "Ensure the schema does not validate when an element does not define a Name",
+                    "required": ["Name"]
                 },
                 {
-                    "$ref": "ibm.json#/$defs/IBMCFFPSConnector"
-                },
-                {
-                    "$ref": "intel.json#/$defs/IntelFanConnector"
-                },
-                {
-                    "$ref": "mctp.json#/$defs/MCTPI2CTarget"
-                },
-                {
-                    "$ref": "mctp.json#/$defs/MCTPI3CTarget"
-                },
-                {
-                    "$ref": "pid.json#/$defs/Pid"
-                },
-                {
-                    "$ref": "pid_zone.json#/$defs/PidZone"
-                },
-                {
-                    "$ref": "satellite_controller.json#/$defs/SatelliteController"
-                },
-                {
-                    "$ref": "stepwise.json#/$defs/Stepwise"
-                },
-                {
-                    "$ref": "legacy.json#/$defs/Aggregate"
-                },
-                {
-                    "$ref": "virtual_sensor.json#/$defs/VirtualSensor"
-                },
-                {
-                    "$ref": "leak_detector.json#/$defs/GPIOLeakDetector"
-                },
-                {
-                    "$ref": "firmware.json#/$defs/XDPE1X2XXFirmware"
-                },
-                {
-                    "description": "Ensure the parent anyOf schema does not validate when an element does not define a type property.",
-                    "not": {
-                        "required": ["Type"]
-                    },
-                    "title": "Missing Type"
-                },
-                {
-                    "description": "Ensure the parent anyOf schema does not validate when an element does not define a name property.",
-                    "not": {
-                        "required": ["Name"]
-                    },
-                    "title": "Missing Name"
+                    "title": "Missing 'Type'",
+                    "description": "Ensure the schema does not validate when an element does not define a Type",
+                    "required": ["Type"]
                 }
             ],
             "title": "Exposes Property Element"
@@ -172,7 +172,7 @@
     },
     "title": "Entity Manager Configuration File",
     "description": "The schema for an entity manager configuration file. An entity mananger configuration file can consist of a single object, or an array of objects. Objects must be of type EMConfig.",
-    "anyOf": [
+    "oneOf": [
         {
             "type": "array",
             "items": {
