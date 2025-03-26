@@ -33,6 +33,24 @@
       "message": "Minerva and Harma are different meta systems, and it can plug into both? So why does it have \u0027Minerva\u0027 in the board product name?  Also applies to the filename.\n\nWhat even is an Aegis card?",
       "revId": "1405294d4f9540e3b687b650db93faff4a3cb770",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "13cd08a0_787022d9",
+        "filename": "configurations/meta/minerva_aegis.json",
+        "patchSetId": 6
+      },
+      "lineNbr": 15,
+      "author": {
+        "id": 1000212
+      },
+      "writtenOn": "2025-03-26T20:32:41Z",
+      "side": 1,
+      "message": "Aegis is an accelerator module. Harma is the compute card (BMC) which is connected to the aegis board. But the EEPROM has an I2C connection to the chassis manager (Minerva) as well. So, its not that it plugs into either, but it is the same card being reported (in duplicate) by both BMCs (Patrick\u0027s query).",
+      "parentUuid": "6aa53811_df201f2d",
+      "revId": "1405294d4f9540e3b687b650db93faff4a3cb770",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }
