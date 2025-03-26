@@ -14,7 +14,10 @@
 // limitations under the License.
 */
 /// \file perform_scan.cpp
+#include "perform_scan.hpp"
+
 #include "entity_manager.hpp"
+#include "perform_probe.hpp"
 
 #include <boost/algorithm/string/predicate.hpp>
 #include <boost/asio/steady_timer.hpp>
@@ -48,8 +51,8 @@ struct DBusInterfaceInstance
 
 void getInterfaces(
     const DBusInterfaceInstance& instance,
-    const std::vector<std::shared_ptr<PerformProbe>>& probeVector,
-    const std::shared_ptr<PerformScan>& scan, size_t retries = 5)
+    const std::vector<std::shared_ptr<probe::PerformProbe>>& probeVector,
+    const std::shared_ptr<scan::PerformScan>& scan, size_t retries = 5)
 {
     if (retries == 0U)
     {
@@ -109,8 +112,8 @@ static void registerCallback(nlohmann::json& systemConfiguration,
 }
 
 static void processDbusObjects(
-    std::vector<std::shared_ptr<PerformProbe>>& probeVector,
-    const std::shared_ptr<PerformScan>& scan,
+    std::vector<std::shared_ptr<probe::PerformProbe>>& probeVector,
+    const std::shared_ptr<scan::PerformScan>& scan,
     const GetSubTreeType& interfaceSubtree)
 {
     for (const auto& [path, object] : interfaceSubtree)
@@ -137,10 +140,10 @@ static void processDbusObjects(
 
 // Populates scan->dbusProbeObjects with all interfaces and properties
 // for the paths that own the interfaces passed in.
-void findDbusObjects(std::vector<std::shared_ptr<PerformProbe>>&& probeVector,
-                     boost::container::flat_set<std::string>&& interfaces,
-                     const std::shared_ptr<PerformScan>& scan,
-                     size_t retries = 5)
+void findDbusObjects(
+    std::vector<std::shared_ptr<probe::PerformProbe>>&& probeVector,
+    boost::container::flat_set<std::string>&& interfaces,
+    const std::shared_ptr<scan::PerformScan>& scan, size_t retries = 5)
 {
     // Filter out interfaces already obtained.
     for (const auto& [path, probeInterfaces] : scan->dbusProbeObjects)
@@ -221,11 +224,11 @@ static std::string getRecordName(const DBusInterface& probe,
     return std::to_string(std::hash<std::string>{}(probeName + device.dump()));
 }
 
-PerformScan::PerformScan(nlohmann::json& systemConfiguration,
-                         nlohmann::json& missingConfigurations,
-                         std::list<nlohmann::json>& configurations,
-                         sdbusplus::asio::object_server& objServerIn,
-                         std::function<void()>&& callback) :
+scan::PerformScan::PerformScan(nlohmann::json& systemConfiguration,
+                               nlohmann::json& missingConfigurations,
+                               std::list<nlohmann::json>& configurations,
+                               sdbusplus::asio::object_server& objServerIn,
+                               std::function<void()>&& callback) :
     _systemConfiguration(systemConfiguration),
     _missingConfigurations(missingConfigurations),
     _configurations(configurations), objServer(objServerIn),
@@ -449,9 +452,9 @@ static std::string generateDeviceName(
     return copyIt.value();
 }
 
-void PerformScan::updateSystemConfiguration(const nlohmann::json& recordRef,
-                                            const std::string& probeName,
-                                            FoundDevices& foundDevices)
+void scan::PerformScan::updateSystemConfiguration(
+    const nlohmann::json& recordRef, const std::string& probeName,
+    FoundDevices& foundDevices)
 {
     _passed = true;
     passedProbes.push_back(probeName);
@@ -564,10 +567,10 @@ void PerformScan::updateSystemConfiguration(const nlohmann::json& recordRef,
     }
 }
 
-void PerformScan::run()
+void scan::PerformScan::run()
 {
     boost::container::flat_set<std::string> dbusProbeInterfaces;
-    std::vector<std::shared_ptr<PerformProbe>> dbusProbePointers;
+    std::vector<std::shared_ptr<probe::PerformProbe>> dbusProbePointers;
 
     for (auto it = _configurations.begin(); it != _configurations.end();)
     {
@@ -611,7 +614,7 @@ void PerformScan::run()
         // store reference to this to children to makes sure we don't get
         // destroyed too early
         auto thisRef = shared_from_this();
-        auto probePointer = std::make_shared<PerformProbe>(
+        auto probePointer = std::make_shared<probe::PerformProbe>(
             recordRef, probeCommand, probeName, thisRef);
 
         // parse out dbus probes by discarding other probe types, store in a
@@ -624,7 +627,7 @@ void PerformScan::run()
                 std::cerr << "Probe statement wasn't a string, can't parse";
                 continue;
             }
-            if (findProbeType(*probe))
+            if (probe::findProbeType(*probe))
             {
                 continue;
             }
@@ -643,7 +646,7 @@ void PerformScan::run()
                     std::move(dbusProbeInterfaces), shared_from_this());
 }
 
-PerformScan::~PerformScan()
+scan::PerformScan::~PerformScan()
 {
     if (_passed)
     {
