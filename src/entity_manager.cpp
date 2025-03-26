@@ -18,6 +18,8 @@
 #include "entity_manager.hpp"
 
 #include "overlay.hpp"
+#include "perform_probe.hpp"
+#include "perform_scan.hpp"
 #include "topology.hpp"
 #include "utils.hpp"
 #include "variant_visitors.hpp"
@@ -52,14 +54,6 @@ constexpr const char* tempConfigDir = "/tmp/configuration/";
 constexpr const char* lastConfiguration = "/tmp/configuration/last.json";
 constexpr const char* currentConfiguration = "/var/configuration/system.json";
 constexpr const char* globalSchema = "global.json";
-
-const boost::container::flat_map<const char*, probe_type_codes, CmpStr>
-    probeTypes{{{"FALSE", probe_type_codes::FALSE_T},
-                {"TRUE", probe_type_codes::TRUE_T},
-                {"AND", probe_type_codes::AND},
-                {"OR", probe_type_codes::OR},
-                {"FOUND", probe_type_codes::FOUND},
-                {"MATCH_ONE", probe_type_codes::MATCH_ONE}}};
 
 static constexpr std::array<const char*, 6> settableInterfaces = {
     "FanProfile", "Pid", "Pid.Zone", "Stepwise", "Thresholds", "Polling"};
@@ -98,22 +92,6 @@ void tryIfaceInitialize(std::shared_ptr<sdbusplus::asio::dbus_interface>& iface)
                   << "object Path : " << iface->get_object_path() << "\n"
                   << "interface name : " << iface->get_interface_name() << "\n";
     }
-}
-
-FoundProbeTypeT findProbeType(const std::string& probe)
-{
-    boost::container::flat_map<const char*, probe_type_codes,
-                               CmpStr>::const_iterator probeType;
-    for (probeType = probeTypes.begin(); probeType != probeTypes.end();
-         ++probeType)
-    {
-        if (probe.find(probeType->first) != std::string::npos)
-        {
-            return probeType;
-        }
-    }
-
-    return std::nullopt;
 }
 
 static std::shared_ptr<sdbusplus::asio::dbus_interface> createInterface(
@@ -1101,7 +1079,7 @@ void propertiesChangedCallback(nlohmann::json& systemConfiguration,
             return;
         }
 
-        auto perfScan = std::make_shared<PerformScan>(
+        auto perfScan = std::make_shared<scan::PerformScan>(
             systemConfiguration, *missingConfigurations, configurations,
             objServer,
             [&systemConfiguration, &objServer, count, oldConfiguration,
@@ -1177,7 +1155,7 @@ static std::set<std::string> getProbeInterfaces()
                 continue;
             }
             // Skip it if the probe cmd doesn't contain an interface.
-            if (findProbeType(*probe))
+            if (probe::findProbeType(*probe))
             {
                 continue;
             }

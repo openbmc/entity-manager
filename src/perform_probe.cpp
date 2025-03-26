@@ -14,7 +14,10 @@
 // limitations under the License.
 */
 /// \file perform_probe.cpp
+#include "perform_probe.hpp"
+
 #include "entity_manager.hpp"
+#include "perform_scan.hpp"
 
 #include <boost/algorithm/string/replace.hpp>
 #include <phosphor-logging/lg2.hpp>
@@ -26,8 +29,8 @@
 // When an interface passes a probe, also save its D-Bus path with it.
 bool probeDbus(const std::string& interfaceName,
                const std::map<std::string, nlohmann::json>& matches,
-               FoundDevices& devices, const std::shared_ptr<PerformScan>& scan,
-               bool& foundProbe)
+               scan::FoundDevices& devices,
+               const std::shared_ptr<scan::PerformScan>& scan, bool& foundProbe)
 {
     bool foundMatch = false;
     foundProbe = false;
@@ -73,35 +76,36 @@ bool probeDbus(const std::string& interfaceName,
 
 // default probe entry point, iterates a list looking for specific types to
 // call specific probe functions
-bool probe(const std::vector<std::string>& probeCommand,
-           const std::shared_ptr<PerformScan>& scan, FoundDevices& foundDevs)
+bool probefunc(const std::vector<std::string>& probeCommand,
+               const std::shared_ptr<scan::PerformScan>& scan,
+               scan::FoundDevices& foundDevs)
 {
     const static std::regex command(R"(\((.*)\))");
     std::smatch match;
     bool ret = false;
     bool matchOne = false;
     bool cur = true;
-    probe_type_codes lastCommand = probe_type_codes::FALSE_T;
+    probe::probe_type_codes lastCommand = probe::probe_type_codes::FALSE_T;
     bool first = true;
 
     for (const auto& probe : probeCommand)
     {
-        FoundProbeTypeT probeType = findProbeType(probe);
+        probe::FoundProbeTypeT probeType = probe::findProbeType(probe);
         if (probeType)
         {
             switch ((*probeType)->second)
             {
-                case probe_type_codes::FALSE_T:
+                case probe::probe_type_codes::FALSE_T:
                 {
                     cur = false;
                     break;
                 }
-                case probe_type_codes::TRUE_T:
+                case probe::probe_type_codes::TRUE_T:
                 {
                     cur = true;
                     break;
                 }
-                case probe_type_codes::MATCH_ONE:
+                case probe::probe_type_codes::MATCH_ONE:
                 {
                     // set current value to last, this probe type shouldn't
                     // affect the outcome
@@ -109,13 +113,13 @@ bool probe(const std::vector<std::string>& probeCommand,
                     matchOne = true;
                     break;
                 }
-                /*case probe_type_codes::AND:
+                /*case probe::probe_type_codes::AND:
                   break;
-                case probe_type_codes::OR:
+                case probe::probe_type_codes::OR:
                   break;
                   // these are no-ops until the last command switch
                   */
-                case probe_type_codes::FOUND:
+                case probe::probe_type_codes::FOUND:
                 {
                     if (!std::regex_search(probe, match, command))
                     {
@@ -171,11 +175,11 @@ bool probe(const std::vector<std::string>& probeCommand,
 
         // some functions like AND and OR only take affect after the
         // fact
-        if (lastCommand == probe_type_codes::AND)
+        if (lastCommand == probe::probe_type_codes::AND)
         {
             ret = cur && ret;
         }
-        else if (lastCommand == probe_type_codes::OR)
+        else if (lastCommand == probe::probe_type_codes::OR)
         {
             ret = cur || ret;
         }
@@ -186,7 +190,7 @@ bool probe(const std::vector<std::string>& probeCommand,
             first = false;
         }
         lastCommand = probeType ? (*probeType)->second
-                                : probe_type_codes::FALSE_T;
+                                : probe::probe_type_codes::FALSE_T;
     }
 
     // probe passed, but empty device
@@ -207,18 +211,40 @@ bool probe(const std::vector<std::string>& probeCommand,
     return ret;
 }
 
+namespace probe
+{
+
 PerformProbe::PerformProbe(nlohmann::json& recordRef,
                            const std::vector<std::string>& probeCommand,
                            std::string probeName,
-                           std::shared_ptr<PerformScan>& scanPtr) :
+                           std::shared_ptr<scan::PerformScan>& scanPtr) :
     recordRef(recordRef), _probeCommand(probeCommand),
     probeName(std::move(probeName)), scan(scanPtr)
 {}
+
 PerformProbe::~PerformProbe()
 {
-    FoundDevices foundDevs;
-    if (probe(_probeCommand, scan, foundDevs))
+    scan::FoundDevices foundDevs;
+    if (probefunc(_probeCommand, scan, foundDevs))
     {
         scan->updateSystemConfiguration(recordRef, probeName, foundDevs);
     }
 }
+
+FoundProbeTypeT findProbeType(const std::string& probe)
+{
+    boost::container::flat_map<const char*, probe_type_codes,
+                               CmpStr>::const_iterator probeType;
+    for (probeType = probeTypes.begin(); probeType != probeTypes.end();
+         ++probeType)
+    {
+        if (probe.find(probeType->first) != std::string::npos)
+        {
+            return probeType;
+        }
+    }
+
+    return std::nullopt;
+}
+
+} // namespace probe
