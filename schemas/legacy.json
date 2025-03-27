@@ -94,6 +94,23 @@
             "required": ["Name", "Type"],
             "type": "object"
         },
+        "PURedundancy": {
+            "additionalProperties": false,
+            "properties": {
+                "RedundantCount": {
+                    "$ref": "#/$defs/Types/RedundantCount"
+                },
+                "Name": {
+                    "$ref": "#/$defs/Types/Name"
+                },
+                "Type": {
+                    "type": "string",
+                    "const": "PURedundancy"
+                }
+            },
+            "required": ["RedundantCount", "Name", "Type"],
+            "type": "object"
+        },
         "Aggregate": {
             "description": "Don't add additional properties to this schema. Consult README.schema for instructions on adding new Exposes element sub-schema.",
             "additionalProperties": false,
@@ -256,9 +273,6 @@
                 },
                 "Rearm": {
                     "$ref": "#/$defs/Types/Rearm"
-                },
-                "RedundantCount": {
-                    "$ref": "#/$defs/Types/RedundantCount"
                 },
                 "ScaleFactor": {
                     "$ref": "#/$defs/Types/ScaleFactor"
@@ -2124,7 +2138,6 @@
                     "cffps",
                     "ChassisIntrusionSensor",
                     "ExternalSensor",
-                    "PURedundancy",
                     "NMSensor",
                     "PCA9543Mux",
                     "PCA9544Mux",
