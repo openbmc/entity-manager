@@ -36,6 +36,38 @@
             "required": ["Name", "Type"],
             "type": "object"
         },
+        "CFMSensor": {
+            "additionalProperties": false,
+            "properties": {
+                "C1": {
+                    "$ref": "#/$defs/Types/C1"
+                },
+                "C2": {
+                    "$ref": "#/$defs/Types/C2"
+                },
+                "MaxCFM": {
+                    "$ref": "#/$defs/Types/MaxCFM"
+                },
+                "TachMaxPercent": {
+                    "$ref": "#/$defs/Types/TachMaxPercent"
+                },
+                "TachMinPercent": {
+                    "$ref": "#/$defs/Types/TachMinPercent"
+                },
+                "Tachs": {
+                    "$ref": "#/$defs/Types/Tachs"
+                },
+                "Name": {
+                    "$ref": "#/$defs/Types/Name"
+                },
+                "Type": {
+                    "type": "string",
+                    "const": "CFMSensor"
+                }
+            },
+            "required": ["Name", "Type"],
+            "type": "object"
+        },
         "Aggregate": {
             "description": "Don't add additional properties to this schema. Consult README.schema for instructions on adding new Exposes element sub-schema.",
             "additionalProperties": false,
@@ -54,12 +86,6 @@
                 },
                 "Bus": {
                     "$ref": "#/$defs/Types/Bus"
-                },
-                "C1": {
-                    "$ref": "#/$defs/Types/C1"
-                },
-                "C2": {
-                    "$ref": "#/$defs/Types/C2"
                 },
                 "CPURequired": {
                     "$ref": "#/$defs/Types/CPURequired"
@@ -108,9 +134,6 @@
                 },
                 "Labels": {
                     "$ref": "#/$defs/Types/Labels"
-                },
-                "MaxCFM": {
-                    "$ref": "#/$defs/Types/MaxCFM"
                 },
                 "MaxReading": {
                     "$ref": "#/$defs/Types/MaxReading"
@@ -225,12 +248,6 @@
                 },
                 "SlotId": {
                     "$ref": "#/$defs/Types/SlotId"
-                },
-                "TachMaxPercent": {
-                    "$ref": "#/$defs/Types/TachMaxPercent"
-                },
-                "TachMinPercent": {
-                    "$ref": "#/$defs/Types/TachMinPercent"
                 },
                 "Tachs": {
                     "$ref": "#/$defs/Types/Tachs"
@@ -2081,7 +2098,6 @@
                     "MultiNodePresence",
                     "PSUPresence",
                     "PowerModeProperties",
-                    "CFMSensor",
                     "IntelFanConnector",
                     "Intel HSBP CPLD",
                     "IntelHsbpFruDevice",
