@@ -80,9 +80,6 @@
                 "Labels": {
                     "$ref": "#/$defs/Types/Labels"
                 },
-                "LedGpioPins": {
-                    "$ref": "#/$defs/Types/LedGpioPins"
-                },
                 "MaxCFM": {
                     "$ref": "#/$defs/Types/MaxCFM"
                 },
@@ -1051,12 +1048,6 @@
             "Labels": {
                 "items": {
                     "type": "string"
-                },
-                "type": "array"
-            },
-            "LedGpioPins": {
-                "items": {
-                    "type": "number"
                 },
                 "type": "array"
             },
