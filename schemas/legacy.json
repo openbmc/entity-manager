@@ -77,15 +77,29 @@
             "required": ["Name", "Type"],
             "type": "object"
         },
+        "FanRedundancy": {
+            "additionalProperties": false,
+            "properties": {
+                "AllowedFailures": {
+                    "$ref": "#/$defs/Types/AllowedFailures"
+                },
+                "Name": {
+                    "$ref": "#/$defs/Types/Name"
+                },
+                "Type": {
+                    "type": "string",
+                    "const": "FanRedundancy"
+                }
+            },
+            "required": ["Name", "Type"],
+            "type": "object"
+        },
         "Aggregate": {
             "description": "Don't add additional properties to this schema. Consult README.schema for instructions on adding new Exposes element sub-schema.",
             "additionalProperties": false,
             "properties": {
                 "Address": {
                     "$ref": "#/$defs/Types/Address"
-                },
-                "AllowedFailures": {
-                    "$ref": "#/$defs/Types/AllowedFailures"
                 },
                 "BindConnector": {
                     "$ref": "#/$defs/Types/BindConnector"
@@ -2110,7 +2124,6 @@
                     "cffps",
                     "ChassisIntrusionSensor",
                     "ExternalSensor",
-                    "FanRedundancy",
                     "PURedundancy",
                     "NMSensor",
                     "PCA9543Mux",
