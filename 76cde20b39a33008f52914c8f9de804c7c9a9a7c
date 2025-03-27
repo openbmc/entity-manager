@@ -87,6 +87,24 @@
       "parentUuid": "7ee56459_f4041d52",
       "revId": "76cde20b39a33008f52914c8f9de804c7c9a9a7c",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "13e26b7d_ebe6587c",
+        "filename": "configurations/meta/minerva_aegis.json",
+        "patchSetId": 4
+      },
+      "lineNbr": 43,
+      "author": {
+        "id": 1001896
+      },
+      "writtenOn": "2025-03-27T08:42:48Z",
+      "side": 1,
+      "message": "There are two EEPROMs on the Aegis Board, one for Harma (compute blade) and one for CMM (chassis manager). Both contain the same FRU data to prevent conflicts when accessed by the BMC.\n\nWe received a request from the RTP team stating that both Harma and Minerva need to display this information. To achieve this, we use the same probe conditions based on `BOARD_PRODUCT_NAME` and `PRODUCT_MANUFACTURER`, while distinguishing between Harma and Minerva using the SCM.\n\nSince Harma only needs to represent a single Aegis board at a time, whereas Minerva must display all 16 compute blades connected to I2C buses 24-39, we plan to use names such as \"Minerva Aegis 1\" or \"Minerva Aegis 13\" to indicate the blade locations in the rack.",
+      "parentUuid": "c61a44f9_50c2cd15",
+      "revId": "76cde20b39a33008f52914c8f9de804c7c9a9a7c",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }
