@@ -1,6 +1,50 @@
 {
     "$schema": "http://json-schema.org/draft-07/schema#",
     "$defs": {
+        "ExitAirTempSensor": {
+            "additionalProperties": false,
+            "properties": {
+                "AlphaF": {
+                    "$ref": "#/$defs/Types/AlphaF"
+                },
+                "AlphaS": {
+                    "$ref": "#/$defs/Types/AlphaS"
+                },
+                "Name": {
+                    "$ref": "#/$defs/Types/Name"
+                },
+                "PowerFactorMax": {
+                    "$ref": "#/$defs/Types/PowerFactorMax"
+                },
+                "PowerFactorMin": {
+                    "$ref": "#/$defs/Types/PowerFactorMin"
+                },
+                "QMax": {
+                    "$ref": "#/$defs/Types/QMax"
+                },
+                "QMin": {
+                    "$ref": "#/$defs/Types/QMin"
+                },
+                "Thresholds": {
+                    "$ref": "#/$defs/Types/Thresholds"
+                },
+                "Type": {
+                    "type": "string",
+                    "const": "ExitAirTempSensor"
+                }
+            },
+            "required": [
+                "Name",
+                "Type",
+                "AlphaF",
+                "AlphaS",
+                "PowerFactorMax",
+                "PowerFactorMin",
+                "QMax",
+                "QMin"
+            ],
+            "type": "object"
+        },
         "Aggregate": {
             "description": "Don't add additional properties to this schema. Consult README.schema for instructions on adding new Exposes element sub-schema.",
             "additionalProperties": false,
@@ -10,12 +54,6 @@
                 },
                 "AllowedFailures": {
                     "$ref": "#/$defs/Types/AllowedFailures"
-                },
-                "AlphaF": {
-                    "$ref": "#/$defs/Types/AlphaF"
-                },
-                "AlphaS": {
-                    "$ref": "#/$defs/Types/AlphaS"
                 },
                 "BindConnector": {
                     "$ref": "#/$defs/Types/BindConnector"
@@ -161,12 +199,6 @@
                 "Polling": {
                     "$ref": "#/$defs/Types/Polling"
                 },
-                "PowerFactorMax": {
-                    "$ref": "#/$defs/Types/PowerFactorMax"
-                },
-                "PowerFactorMin": {
-                    "$ref": "#/$defs/Types/PowerFactorMin"
-                },
                 "PowerPort": {
                     "$ref": "#/$defs/Types/PowerPort"
                 },
@@ -184,12 +216,6 @@
                 },
                 "Pwm": {
                     "$ref": "#/$defs/Types/Pwm"
-                },
-                "QMax": {
-                    "$ref": "#/$defs/Types/QMax"
-                },
-                "QMin": {
-                    "$ref": "#/$defs/Types/QMin"
                 },
                 "Rearm": {
                     "$ref": "#/$defs/Types/Rearm"
@@ -2067,7 +2093,6 @@
                     "IBMCFFPSConnector",
                     "cffps",
                     "ChassisIntrusionSensor",
-                    "ExitAirTempSensor",
                     "ExternalSensor",
                     "FanRedundancy",
                     "PURedundancy",
