@@ -65,9 +65,6 @@
                 "EntityInstance": {
                     "$ref": "#/$defs/Types/EntityInstance"
                 },
-                "FaultType": {
-                    "$ref": "#/$defs/Types/FaultType"
-                },
                 "GpioPins": {
                     "$ref": "#/$defs/Types/GpioPins"
                 },
@@ -1035,9 +1032,6 @@
             },
             "EntityInstance": {
                 "type": "number"
-            },
-            "FaultType": {
-                "type": "string"
             },
             "GpioPins": {
                 "items": {
