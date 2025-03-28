@@ -140,6 +140,47 @@
             "required": ["Name", "Type", "Class"],
             "type": "object"
         },
+        "AspeedFan": {
+            "additionalProperties": false,
+            "properties": {
+                "BindConnector": {
+                    "$ref": "#/$defs/Types/BindConnector"
+                },
+                "Index": {
+                    "$ref": "#/$defs/Types/Index"
+                },
+                "PowerState": {
+                    "$ref": "#/$defs/Types/PowerState"
+                },
+                "Connector": {
+                    "$ref": "#/$defs/Types/Connector"
+                },
+                "EntityId": {
+                    "$ref": "#/$defs/Types/EntityId"
+                },
+                "EntityInstance": {
+                    "$ref": "#/$defs/Types/EntityInstance"
+                },
+                "Presence": {
+                    "$ref": "#/$defs/Types/Presence"
+                },
+                "MaxReading": {
+                    "$ref": "#/$defs/Types/MaxReading"
+                },
+                "Thresholds": {
+                    "$ref": "#/$defs/Types/Thresholds"
+                },
+                "Name": {
+                    "$ref": "#/$defs/Types/Name"
+                },
+                "Type": {
+                    "type": "string",
+                    "const": "AspeedFan"
+                }
+            },
+            "required": ["Name", "Type"],
+            "type": "object"
+        },
         "Aggregate": {
             "description": "Don't add additional properties to this schema. Consult README.schema for instructions on adding new Exposes element sub-schema.",
             "additionalProperties": false,
@@ -591,7 +632,6 @@
                     "TMP464",
                     "I2CFan",
                     "NuvotonFan",
-                    "AspeedFan",
                     "ADC",
                     "NCT7802",
                     "NCT6779",
