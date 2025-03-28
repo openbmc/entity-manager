@@ -112,6 +112,36 @@
             "required": ["RedundantCount", "Name", "Type"],
             "type": "object"
         },
+        "ChassisIntrusionSensor": {
+            "description": "implemented in dbus-sensors: ChassisIntrusionSensor",
+            "additionalProperties": false,
+            "properties": {
+                "Address": {
+                    "$ref": "#/$defs/Types/Address"
+                },
+                "Bus": {
+                    "$ref": "#/$defs/Types/Bus"
+                },
+                "Class": {
+                    "$ref": "#/$defs/Types/Class"
+                },
+                "GpioPolarity": {
+                    "$ref": "#/$defs/Types/GpioPolarity"
+                },
+                "Rearm": {
+                    "enum": ["Automatic", "Manual"]
+                },
+                "Name": {
+                    "$ref": "#/$defs/Types/Name"
+                },
+                "Type": {
+                    "type": "string",
+                    "const": "ChassisIntrusionSensor"
+                }
+            },
+            "required": ["Name", "Type", "Class"],
+            "type": "object"
+        },
         "Aggregate": {
             "description": "Don't add additional properties to this schema. Consult README.schema for instructions on adding new Exposes element sub-schema.",
             "additionalProperties": false,
@@ -199,9 +229,6 @@
                 "GpioPins": {
                     "$ref": "#/$defs/Types/GpioPins"
                 },
-                "GpioPolarity": {
-                    "$ref": "#/$defs/Types/GpioPolarity"
-                },
                 "Index": {
                     "$ref": "#/$defs/Types/Index"
                 },
@@ -252,9 +279,6 @@
                 },
                 "Pwm": {
                     "$ref": "#/$defs/Types/Pwm"
-                },
-                "Rearm": {
-                    "$ref": "#/$defs/Types/Rearm"
                 },
                 "ScaleFactor": {
                     "$ref": "#/$defs/Types/ScaleFactor"
@@ -488,9 +512,6 @@
             "QMin": {
                 "type": "number"
             },
-            "Rearm": {
-                "enum": ["Automatic", "Manual"]
-            },
             "RedundantCount": {
                 "type": "number"
             },
@@ -654,7 +675,6 @@
                     "IntelHsbpTempSensor",
                     "GenericSMBusMux",
                     "cffps",
-                    "ChassisIntrusionSensor",
                     "ExternalSensor",
                     "NMSensor",
                     "PCA9543Mux",
