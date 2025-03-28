@@ -265,6 +265,42 @@
             "required": ["Name", "Type", "Connector"],
             "type": "object"
         },
+        "XeonCPU": {
+            "description": "implemented in dbus-sensors: IntelCPUSensor",
+            "additionalProperties": false,
+            "properties": {
+                "Name": {
+                    "$ref": "#/$defs/Types/Name"
+                },
+                "Address": {
+                    "$ref": "#/$defs/Types/Address"
+                },
+                "Bus": {
+                    "$ref": "#/$defs/Types/Bus"
+                },
+                "PowerState": {
+                    "$ref": "#/$defs/Types/PowerState"
+                },
+                "Thresholds": {
+                    "$ref": "#/$defs/Types/Thresholds"
+                },
+                "DtsCritOffset": {
+                    "$ref": "#/$defs/Types/DtsCritOffset"
+                },
+                "PresenceGpio": {
+                    "$ref": "#/$defs/Types/PresenceGpio"
+                },
+                "CpuID": {
+                    "$ref": "#/$defs/Types/CpuID"
+                },
+                "Type": {
+                    "type": "string",
+                    "const": "XeonCPU"
+                }
+            },
+            "required": ["Name", "Type", "CpuID", "Address"],
+            "type": "object"
+        },
         "Aggregate": {
             "description": "Don't add additional properties to this schema. Consult README.schema for instructions on adding new Exposes element sub-schema.",
             "additionalProperties": false,
@@ -325,17 +361,11 @@
                 "ConnectsToType": {
                     "$ref": "#/$defs/Types/ConnectsToType"
                 },
-                "CpuID": {
-                    "$ref": "#/$defs/Types/CpuID"
-                },
                 "CurrScaleFactor": {
                     "$ref": "#/$defs/Types/CurrScaleFactor"
                 },
                 "Direction": {
                     "$ref": "#/$defs/Types/Direction"
-                },
-                "DtsCritOffset": {
-                    "$ref": "#/$defs/Types/DtsCritOffset"
                 },
                 "EntityId": {
                     "$ref": "#/$defs/Types/EntityId"
@@ -718,7 +748,6 @@
                     "IpmbDevice",
                     "IpmbPowerMonitor",
                     "MOSTempSensor",
-                    "XeonCPU",
                     "EEPROM",
                     "BMC",
                     "Board",
