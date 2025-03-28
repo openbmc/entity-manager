@@ -183,6 +183,53 @@
             "required": ["Name", "Type"],
             "type": "object"
         },
+        "I2CFan": {
+            "additionalProperties": false,
+            "properties": {
+                "BindConnector": {
+                    "$ref": "#/$defs/Types/BindConnector"
+                },
+                "Address": {
+                    "$ref": "#/$defs/Types/Address"
+                },
+                "Bus": {
+                    "$ref": "#/$defs/Types/Bus"
+                },
+                "EntityId": {
+                    "$ref": "#/$defs/Types/EntityId"
+                },
+                "EntityInstance": {
+                    "$ref": "#/$defs/Types/EntityInstance"
+                },
+                "Index": {
+                    "$ref": "#/$defs/Types/Index"
+                },
+                "PowerState": {
+                    "$ref": "#/$defs/Types/PowerState"
+                },
+                "Presence": {
+                    "$ref": "#/$defs/Types/Presence"
+                },
+                "MaxReading": {
+                    "$ref": "#/$defs/Types/MaxReading"
+                },
+                "Connector": {
+                    "$ref": "#/$defs/Types/Connector"
+                },
+                "Thresholds": {
+                    "$ref": "#/$defs/Types/Thresholds"
+                },
+                "Name": {
+                    "$ref": "#/$defs/Types/Name"
+                },
+                "Type": {
+                    "type": "string",
+                    "const": "I2CFan"
+                }
+            },
+            "required": ["Name", "Type"],
+            "type": "object"
+        },
         "Aggregate": {
             "description": "Don't add additional properties to this schema. Consult README.schema for instructions on adding new Exposes element sub-schema.",
             "additionalProperties": false,
@@ -632,7 +679,6 @@
                     "TMP421",
                     "TMP432",
                     "TMP464",
-                    "I2CFan",
                     "NuvotonFan",
                     "ADC",
                     "NCT7802",
