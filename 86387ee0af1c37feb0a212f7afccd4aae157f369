@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9e4c63ec_2a41d5fb",
+        "filename": "schemas/legacy.json",
+        "patchSetId": 1
+      },
+      "lineNbr": 36,
+      "author": {
+        "id": 1000008
+      },
+      "writtenOn": "2025-03-28T20:34:19Z",
+      "side": 1,
+      "message": "It appears the D-Bus sensors code will throw an exception and probably just crash if one of these properties aren\u0027t on the interface, so they should probably all be required?  \n\nThough I guess it isn\u0027t any worse than what was there previously, and saves you from having to look at the implementing code for every one of these commits.",
+      "range": {
+        "startLine": 36,
+        "startChar": 11,
+        "endLine": 36,
+        "endChar": 41
+      },
+      "revId": "86387ee0af1c37feb0a212f7afccd4aae157f369",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    }
+  ]
+}
