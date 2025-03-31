@@ -507,6 +507,25 @@
             "required": ["Name", "Type", "ConnectsToType", "PowerPort"],
             "type": "object"
         },
+        "PSUPresence": {
+            "additionalProperties": false,
+            "properties": {
+                "Name": {
+                    "$ref": "#/$defs/Types/Name"
+                },
+                "Bus": {
+                    "$ref": "#/$defs/Types/Bus"
+                },
+                "Address": {
+                    "$ref": "#/$defs/Types/Address"
+                },
+                "Type": {
+                    "const": "PSUPresence"
+                }
+            },
+            "required": ["Name", "Type", "Bus", "Address"],
+            "type": "object"
+        },
         "Aggregate": {
             "description": "Don't add additional properties to this schema. Consult README.schema for instructions on adding new Exposes element sub-schema.",
             "additionalProperties": false,
@@ -988,7 +1007,6 @@
                     "UCD90160",
                     "UCD90320",
                     "EmmcDevice",
-                    "PSUPresence",
                     "Intel HSBP CPLD",
                     "IntelHsbpFruDevice",
                     "IntelHsbpTempSensor",
