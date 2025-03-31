@@ -298,6 +298,44 @@
             "required": ["Name", "Type", "CpuID", "Address"],
             "type": "object"
         },
+        "IpmbSensor": {
+            "additionalProperties": false,
+            "properties": {
+                "Name": {
+                    "$ref": "#/$defs/Types/Name"
+                },
+                "Class": {
+                    "$ref": "#/$defs/Types/Class"
+                },
+                "Address": {
+                    "$ref": "#/$defs/Types/Address"
+                },
+                "Thresholds": {
+                    "$ref": "#/$defs/Types/Thresholds"
+                },
+                "HostSMbusIndex": {
+                    "$ref": "#/$defs/Types/HostSMbusIndex"
+                },
+                "PowerState": {
+                    "$ref": "#/$defs/Types/PowerState"
+                },
+                "SensorType": {
+                    "$ref": "#/$defs/Types/SensorType"
+                },
+                "ScaleValue": {
+                    "$ref": "#/$defs/Types/ScaleValue"
+                },
+                "OffsetValue": {
+                    "$ref": "#/$defs/Types/OffsetValue"
+                },
+                "Type": {
+                    "type": "string",
+                    "const": "IpmbSensor"
+                }
+            },
+            "required": ["Name", "Type", "Address", "Class"],
+            "type": "object"
+        },
         "Aggregate": {
             "description": "Don't add additional properties to this schema. Consult README.schema for instructions on adding new Exposes element sub-schema.",
             "additionalProperties": false,
@@ -427,12 +465,6 @@
                 "ScaleFactor": {
                     "$ref": "#/$defs/Types/ScaleFactor"
                 },
-                "ScaleValue": {
-                    "$ref": "#/$defs/Types/ScaleValue"
-                },
-                "SensorType": {
-                    "$ref": "#/$defs/Types/SensorType"
-                },
                 "SlotId": {
                     "$ref": "#/$defs/Types/SlotId"
                 },
@@ -444,9 +476,6 @@
                 },
                 "Timeout": {
                     "$ref": "#/$defs/Types/Timeout"
-                },
-                "HostSMbusIndex": {
-                    "$ref": "#/$defs/Types/HostSMbusIndex"
                 },
                 "maxiout1_Name": {
                     "$ref": "#/$defs/Types/Name"
@@ -743,7 +772,6 @@
                     "SBRMI",
                     "SBTSI",
                     "smpro_hwmon",
-                    "IpmbSensor",
                     "IpmbDevice",
                     "IpmbPowerMonitor",
                     "MOSTempSensor",
