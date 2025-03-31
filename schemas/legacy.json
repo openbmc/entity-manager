@@ -852,7 +852,7 @@
                 "type": "number"
             },
             "SensorType": {
-                "type": "string"
+                "enum": ["current", "power", "voltage"]
             },
             "SlotId": {
                 "type": "string"
