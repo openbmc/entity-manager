@@ -822,7 +822,7 @@
                 "type": "number"
             },
             "PowerState": {
-                "type": "string"
+                "enum": ["On", "ChassisOn", "Always", "BiosPost"]
             },
             "Presence": {
                 "properties": {
