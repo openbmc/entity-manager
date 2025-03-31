@@ -427,6 +427,23 @@
             "required": ["Name", "Type", "Bus", "Address"],
             "type": "object"
         },
+        "HostCpuUtilization": {
+            "additionalProperties": false,
+            "properties": {
+                "Name": {
+                    "$ref": "#/$defs/Types/Name"
+                },
+                "Polling": {
+                    "$ref": "#/$defs/Types/Polling"
+                },
+                "Type": {
+                    "type": "string",
+                    "const": "HostCpuUtilization"
+                }
+            },
+            "required": ["Name", "Type", "Polling"],
+            "type": "object"
+        },
         "Aggregate": {
             "description": "Don't add additional properties to this schema. Consult README.schema for instructions on adding new Exposes element sub-schema.",
             "additionalProperties": false,
@@ -907,7 +924,6 @@
                     "UCD90160",
                     "UCD90320",
                     "EmmcDevice",
-                    "HostCpuUtilization",
                     "MB Upstream Port",
                     "DownstreamPort",
                     "PSUPresence",
