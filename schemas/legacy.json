@@ -572,6 +572,28 @@
             "required": ["Name", "Type", "Bus", "Address", "Class"],
             "type": "object"
         },
+        "IpmbPowerMonitor": {
+            "additionalProperties": false,
+            "properties": {
+                "Name": {
+                    "$ref": "#/$defs/Types/Name"
+                },
+                "Bus": {
+                    "$ref": "#/$defs/Types/Bus"
+                },
+                "Address": {
+                    "$ref": "#/$defs/Types/Address"
+                },
+                "Class": {
+                    "$ref": "#/$defs/Types/Class"
+                },
+                "Type": {
+                    "const": "IpmbPowerMonitor"
+                }
+            },
+            "required": ["Name", "Type", "Bus", "Address", "Class"],
+            "type": "object"
+        },
         "Aggregate": {
             "description": "Don't add additional properties to this schema. Consult README.schema for instructions on adding new Exposes element sub-schema.",
             "additionalProperties": false,
@@ -992,7 +1014,6 @@
                     "SBRMI",
                     "SBTSI",
                     "smpro_hwmon",
-                    "IpmbPowerMonitor",
                     "MOSTempSensor",
                     "EEPROM",
                     "BMC",
