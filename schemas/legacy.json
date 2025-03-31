@@ -477,6 +477,40 @@
             "required": ["Name", "Type", "Units", "EntityId", "EntityInstance"],
             "type": "object"
         },
+        "MBUpstreamPort": {
+            "additionalProperties": false,
+            "properties": {
+                "Name": {
+                    "$ref": "#/$defs/Types/Name"
+                },
+                "Type": {
+                    "type": "string",
+                    "const": "MB Upstream Port"
+                }
+            },
+            "required": ["Name", "Type"],
+            "type": "object"
+        },
+        "DownstreamPort": {
+            "additionalProperties": false,
+            "properties": {
+                "Name": {
+                    "$ref": "#/$defs/Types/Name"
+                },
+                "ConnectsToType": {
+                    "$ref": "#/$defs/Types/ConnectsToType"
+                },
+                "PowerPort": {
+                    "$ref": "#/$defs/Types/PowerPort"
+                },
+                "Type": {
+                    "type": "string",
+                    "const": "DownstreamPort"
+                }
+            },
+            "required": ["Name", "Type", "ConnectsToType", "PowerPort"],
+            "type": "object"
+        },
         "Aggregate": {
             "description": "Don't add additional properties to this schema. Consult README.schema for instructions on adding new Exposes element sub-schema.",
             "additionalProperties": false,
@@ -531,9 +565,6 @@
                 "Class": {
                     "$ref": "#/$defs/Types/Class"
                 },
-                "ConnectsToType": {
-                    "$ref": "#/$defs/Types/ConnectsToType"
-                },
                 "CurrScaleFactor": {
                     "$ref": "#/$defs/Types/CurrScaleFactor"
                 },
@@ -572,9 +603,6 @@
                 },
                 "Polling": {
                     "$ref": "#/$defs/Types/Polling"
-                },
-                "PowerPort": {
-                    "$ref": "#/$defs/Types/PowerPort"
                 },
                 "PowerScaleFactor": {
                     "$ref": "#/$defs/Types/PowerScaleFactor"
@@ -954,8 +982,6 @@
                     "UCD90160",
                     "UCD90320",
                     "EmmcDevice",
-                    "MB Upstream Port",
-                    "DownstreamPort",
                     "PSUPresence",
                     "Intel HSBP CPLD",
                     "IntelHsbpFruDevice",
