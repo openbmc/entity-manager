@@ -723,7 +723,8 @@
                 "type": "number"
             },
             "Direction": {
-                "type": "string"
+                "type": "string",
+                "enum": ["less than", "greater than"]
             },
             "DtsCritOffset": {
                 "type": "number"
