@@ -686,7 +686,21 @@
                 "type": "array"
             },
             "Class": {
-                "type": "string"
+                "type": "string",
+                "enum": [
+                    "fan",
+                    "temp",
+                    "i2c",
+                    "Aspeed2600_Hwmon",
+                    "METemp",
+                    "IpmbDevice",
+                    "twin_lake",
+                    "Gpio",
+                    "MOSTemp",
+                    "MOSTempLinear",
+                    "PxeBridgeTemp",
+                    "HSCBridge"
+                ]
             },
             "Connector": {
                 "properties": {
