@@ -367,6 +367,29 @@
             "required": ["Name", "Type", "Address", "Bus", "ChannelNames"],
             "type": "object"
         },
+        "Gpio": {
+            "additionalProperties": false,
+            "properties": {
+                "Name": {
+                    "$ref": "#/$defs/Types/Name"
+                },
+                "Index": {
+                    "$ref": "#/$defs/Types/Index"
+                },
+                "Direction": {
+                    "type": "string"
+                },
+                "Polarity": {
+                    "$ref": "#/$defs/Types/Polarity"
+                },
+                "Type": {
+                    "type": "string",
+                    "const": "Gpio"
+                }
+            },
+            "required": ["Name", "Type", "Index", "Direction", "Polarity"],
+            "type": "object"
+        },
         "Aggregate": {
             "description": "Don't add additional properties to this schema. Consult README.schema for instructions on adding new Exposes element sub-schema.",
             "additionalProperties": false,
@@ -427,9 +450,6 @@
                 "CurrScaleFactor": {
                     "$ref": "#/$defs/Types/CurrScaleFactor"
                 },
-                "Direction": {
-                    "$ref": "#/$defs/Types/Direction"
-                },
                 "EntityId": {
                     "$ref": "#/$defs/Types/EntityId"
                 },
@@ -465,9 +485,6 @@
                 },
                 "OffsetValue": {
                     "$ref": "#/$defs/Types/OffsetValue"
-                },
-                "Polarity": {
-                    "$ref": "#/$defs/Types/Polarity"
                 },
                 "Polling": {
                     "$ref": "#/$defs/Types/Polling"
@@ -801,7 +818,6 @@
                     "EEPROM",
                     "BMC",
                     "Board",
-                    "Gpio",
                     "pmbus",
                     "ADC128D818",
                     "INA230",
