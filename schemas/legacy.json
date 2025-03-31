@@ -881,7 +881,7 @@
                 "items": {
                     "properties": {
                         "Direction": {
-                            "type": "string"
+                            "enum": ["less than", "greater than"]
                         },
                         "Hysteresis": {
                             "type": "number"
