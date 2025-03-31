@@ -336,6 +336,34 @@
             "required": ["Name", "Type", "Address", "Class"],
             "type": "object"
         },
+        "I2CMux": {
+            "additionalProperties": false,
+            "properties": {
+                "Name": {
+                    "$ref": "#/$defs/Types/Name"
+                },
+                "Bus": {
+                    "$ref": "#/$defs/Types/Bus"
+                },
+                "Address": {
+                    "$ref": "#/$defs/Types/Address"
+                },
+                "ChannelNames": {
+                    "$ref": "#/$defs/Types/ChannelNames"
+                },
+                "Type": {
+                    "type": "string",
+                    "enum": [
+                        "PCA9543Mux",
+                        "PCA9544Mux",
+                        "PCA9545Mux",
+                        "PCA9546Mux"
+                    ]
+                }
+            },
+            "required": ["Name", "Type", "Address", "Bus", "ChannelNames"],
+            "type": "object"
+        },
         "Aggregate": {
             "description": "Don't add additional properties to this schema. Consult README.schema for instructions on adding new Exposes element sub-schema.",
             "additionalProperties": false,
@@ -386,9 +414,6 @@
                 },
                 "CPURequired": {
                     "$ref": "#/$defs/Types/CPURequired"
-                },
-                "ChannelNames": {
-                    "$ref": "#/$defs/Types/ChannelNames"
                 },
                 "Class": {
                     "$ref": "#/$defs/Types/Class"
@@ -851,10 +876,6 @@
                     "cffps",
                     "ExternalSensor",
                     "NMSensor",
-                    "PCA9543Mux",
-                    "PCA9544Mux",
-                    "PCA9545Mux",
-                    "PCA9546Mux",
                     "PSM7",
                     "JC42",
                     "MCP9600"
