@@ -477,6 +477,44 @@
             "required": ["Name", "Type", "Units", "EntityId", "EntityInstance"],
             "type": "object"
         },
+        "Port": {
+            "description": "https://github.com/openbmc/docs/blob/master/designs/physical-topology.md",
+            "additionalProperties": false,
+            "properties": {
+                "Name": {
+                    "$ref": "#/$defs/Types/Name"
+                },
+                "Type": {
+                    "description": "This enum may be extended as described in the design",
+                    "type": "string",
+                    "enum": ["MB Upstream Port"]
+                }
+            },
+            "required": ["Name", "Type"],
+            "type": "object"
+        },
+        "DownstreamPort": {
+            "description": "https://github.com/openbmc/docs/blob/master/designs/physical-topology.md",
+            "additionalProperties": false,
+            "properties": {
+                "Name": {
+                    "$ref": "#/$defs/Types/Name"
+                },
+                "ConnectsToType": {
+                    "description": "Should be equal to the 'Type' property on the upstream port",
+                    "$ref": "#/$defs/Types/ConnectsToType"
+                },
+                "PowerPort": {
+                    "$ref": "#/$defs/Types/PowerPort"
+                },
+                "Type": {
+                    "type": "string",
+                    "const": "DownstreamPort"
+                }
+            },
+            "required": ["Name", "Type", "ConnectsToType"],
+            "type": "object"
+        },
         "Aggregate": {
             "description": "Don't add additional properties to this schema. Consult README.schema for instructions on adding new Exposes element sub-schema.",
             "additionalProperties": false,
@@ -531,9 +569,6 @@
                 "Class": {
                     "$ref": "#/$defs/Types/Class"
                 },
-                "ConnectsToType": {
-                    "$ref": "#/$defs/Types/ConnectsToType"
-                },
                 "CurrScaleFactor": {
                     "$ref": "#/$defs/Types/CurrScaleFactor"
                 },
@@ -572,9 +607,6 @@
                 },
                 "Polling": {
                     "$ref": "#/$defs/Types/Polling"
-                },
-                "PowerPort": {
-                    "$ref": "#/$defs/Types/PowerPort"
                 },
                 "PowerScaleFactor": {
                     "$ref": "#/$defs/Types/PowerScaleFactor"
@@ -954,8 +986,6 @@
                     "UCD90160",
                     "UCD90320",
                     "EmmcDevice",
-                    "MB Upstream Port",
-                    "DownstreamPort",
                     "PSUPresence",
                     "Intel HSBP CPLD",
                     "IntelHsbpFruDevice",
