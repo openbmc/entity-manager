@@ -16,6 +16,24 @@
       "message": "Can you add  to the commit message why this is failing and why it can\u0027t just be fixed?",
       "revId": "0de6a17a3611dae13df0132f54b91c3498e12e9e",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3b2a8a42_a705e806",
+        "filename": "test/expected-schema-errors.txt",
+        "patchSetId": 1
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-03-31T09:34:18Z",
+      "side": 1,
+      "message": "Looks like it\u0027s the following record which does not have the \"Name\" property.\n\n```\n            {\n                \"Address\": \"0x44\",\n                \"Bus\": 11,\n                \"Labels\": [\n                    \"in1\"\n                ],\n                \"Type\": \"ISL28022\",\n                \"in1_Max\": 1,\n                \"in1_Min\": -1,\n                \"in1_Name\": \"MEDUSA_ADC_48V_SENSE_VOLT_V\"\n            },\n```\n\nI did not want to fix it as part of this commit since this patch is about the schemas.\n\nIf i were to introduce a \"Name\" property there, that is also a review concern,\nand meta probably has their own naming schema for things like that. And i did not want to get blocked on waiting for someone from meta to look into it.\n\nSo i was hoping they will fix this on their own when they notice their config failing to validate.\n\n\u003e Can you add to the commit message why this is failing\n\nDone 👍\n\nLet me know if you have other thoughts. I can add some folks to this review who own / contribute to the meta configs, so they will be aware that their config is broken and then they can fix it in another patch.",
+      "parentUuid": "3292ebca_0a046ef9",
+      "revId": "0de6a17a3611dae13df0132f54b91c3498e12e9e",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }
