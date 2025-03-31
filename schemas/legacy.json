@@ -387,6 +387,23 @@
             "required": ["Name", "Type", "Index", "Direction", "Polarity"],
             "type": "object"
         },
+        "MultiNodeID": {
+            "additionalProperties": false,
+            "properties": {
+                "Name": {
+                    "$ref": "#/$defs/Types/Name"
+                },
+                "GpioPins": {
+                    "$ref": "#/$defs/Types/GpioPins"
+                },
+                "Type": {
+                    "type": "string",
+                    "const": "MultiNodeID"
+                }
+            },
+            "required": ["Name", "Type", "GpioPins"],
+            "type": "object"
+        },
         "Aggregate": {
             "description": "Don't add additional properties to this schema. Consult README.schema for instructions on adding new Exposes element sub-schema.",
             "additionalProperties": false,
@@ -452,9 +469,6 @@
                 },
                 "EntityInstance": {
                     "$ref": "#/$defs/Types/EntityInstance"
-                },
-                "GpioPins": {
-                    "$ref": "#/$defs/Types/GpioPins"
                 },
                 "Index": {
                     "$ref": "#/$defs/Types/Index"
@@ -873,7 +887,6 @@
                     "HostCpuUtilization",
                     "MB Upstream Port",
                     "DownstreamPort",
-                    "MultiNodeID",
                     "MultiNodePresence",
                     "PSUPresence",
                     "PowerModeProperties",
