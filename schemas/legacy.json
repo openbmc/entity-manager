@@ -441,6 +441,38 @@
             "required": ["Name", "Type", "Polling"],
             "type": "object"
         },
+        "ExternalSensor": {
+            "additionalProperties": false,
+            "properties": {
+                "Name": {
+                    "$ref": "#/$defs/Types/Name"
+                },
+                "Timeout": {
+                    "$ref": "#/$defs/Types/Timeout"
+                },
+                "Units": {
+                    "$ref": "#/$defs/Types/Units"
+                },
+                "MaxValue": {
+                    "$ref": "#/$defs/Types/MaxValue"
+                },
+                "MinValue": {
+                    "$ref": "#/$defs/Types/MinValue"
+                },
+                "EntityId": {
+                    "$ref": "#/$defs/Types/EntityId"
+                },
+                "EntityInstance": {
+                    "$ref": "#/$defs/Types/EntityInstance"
+                },
+                "Type": {
+                    "type": "string",
+                    "const": "ExternalSensor"
+                }
+            },
+            "required": ["Name", "Type", "Units", "EntityId", "EntityInstance"],
+            "type": "object"
+        },
         "Aggregate": {
             "description": "Don't add additional properties to this schema. Consult README.schema for instructions on adding new Exposes element sub-schema.",
             "additionalProperties": false,
@@ -563,9 +595,6 @@
                 },
                 "Thresholds": {
                     "$ref": "#/$defs/Types/Thresholds"
-                },
-                "Timeout": {
-                    "$ref": "#/$defs/Types/Timeout"
                 },
                 "maxiout1_Name": {
                     "$ref": "#/$defs/Types/Name"
@@ -938,7 +967,6 @@
                     "GenericSMBusMux",
                     "IBMCFFPSConnector",
                     "cffps",
-                    "ExternalSensor",
                     "NMSensor",
                     "PSM7",
                     "JC42",
