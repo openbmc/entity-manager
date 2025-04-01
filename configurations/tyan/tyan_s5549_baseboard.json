@@ -463,69 +463,6 @@
             "Type": "IpmbSensor"
         },
         {
-            "Address": "0x58",
-            "Bus": 10,
-            "Class": "MOSTempLinear",
-            "Name": "CPU_MOSFET_TEMP",
-            "Thresholds": [
-                {
-                    "Direction": "greater than",
-                    "Name": "upper critical",
-                    "Severity": 1,
-                    "Value": 100
-                },
-                {
-                    "Direction": "less than",
-                    "Name": "lower critical",
-                    "Severity": 1,
-                    "Value": 0
-                }
-            ],
-            "Type": "MOSTempSensor"
-        },
-        {
-            "Address": "0x68",
-            "Bus": 10,
-            "Class": "MOSTempLinear",
-            "Name": "DIMM_MOSFET_1_TEMP",
-            "Thresholds": [
-                {
-                    "Direction": "greater than",
-                    "Name": "upper critical",
-                    "Severity": 1,
-                    "Value": 100
-                },
-                {
-                    "Direction": "less than",
-                    "Name": "lower critical",
-                    "Severity": 1,
-                    "Value": 0
-                }
-            ],
-            "Type": "MOSTempSensor"
-        },
-        {
-            "Address": "0x6A",
-            "Bus": 10,
-            "Class": "MOSTempLinear",
-            "Name": "DIMM_MOSFET_2_TEMP",
-            "Thresholds": [
-                {
-                    "Direction": "greater than",
-                    "Name": "upper critical",
-                    "Severity": 1,
-                    "Value": 100
-                },
-                {
-                    "Direction": "less than",
-                    "Name": "lower critical",
-                    "Severity": 1,
-                    "Value": 0
-                }
-            ],
-            "Type": "MOSTempSensor"
-        },
-        {
             "Address": "0x49",
             "Bus": 6,
             "Name": "AIR_INLET_TEMP",
