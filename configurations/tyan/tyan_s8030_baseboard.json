@@ -304,66 +304,6 @@
             "Type": "ADC"
         },
         {
-            "Address": "0x60",
-            "Bus": 4,
-            "Class": "MOSTemp",
-            "Name": "CPU_CORE_MOSFET",
-            "Thresholds": [
-                {
-                    "Direction": "greater than",
-                    "Name": "upper critical",
-                    "Severity": 1,
-                    "Value": 110
-                }
-            ],
-            "Type": "MOSTempSensor"
-        },
-        {
-            "Address": "0x62",
-            "Bus": 4,
-            "Class": "MOSTemp",
-            "Name": "CPU_SOC_MOSFET",
-            "Thresholds": [
-                {
-                    "Direction": "greater than",
-                    "Name": "upper critical",
-                    "Severity": 1,
-                    "Value": 110
-                }
-            ],
-            "Type": "MOSTempSensor"
-        },
-        {
-            "Address": "0x64",
-            "Bus": 4,
-            "Class": "MOSTemp",
-            "Name": "DIMM_MOSFET_1",
-            "Thresholds": [
-                {
-                    "Direction": "greater than",
-                    "Name": "upper critical",
-                    "Severity": 1,
-                    "Value": 110
-                }
-            ],
-            "Type": "MOSTempSensor"
-        },
-        {
-            "Address": "0x65",
-            "Bus": 4,
-            "Class": "MOSTemp",
-            "Name": "DIMM_MOSFET_2",
-            "Thresholds": [
-                {
-                    "Direction": "greater than",
-                    "Name": "upper critical",
-                    "Severity": 1,
-                    "Value": 110
-                }
-            ],
-            "Type": "MOSTempSensor"
-        },
-        {
             "Address": "0x28",
             "Bus": 5,
             "Labels": [
