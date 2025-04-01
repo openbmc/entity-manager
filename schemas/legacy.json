@@ -726,6 +726,32 @@
             "required": ["Name", "Type", "Bus", "Address"],
             "type": "object"
         },
+        "NVME1000": {
+            "description": "implemented in dbus-sensors: NVMEeSensor",
+            "additionalProperties": false,
+            "properties": {
+                "Name": {
+                    "$ref": "#/$defs/Types/Name"
+                },
+                "Bus": {
+                    "$ref": "#/$defs/Types/Bus"
+                },
+                "Address": {
+                    "$ref": "#/$defs/Types/Address"
+                },
+                "PowerState": {
+                    "$ref": "#/$defs/Types/PowerState"
+                },
+                "Thresholds": {
+                    "$ref": "#/$defs/Types/Thresholds"
+                },
+                "Type": {
+                    "const": "NVME1000"
+                }
+            },
+            "required": ["Name", "Type", "Bus", "Address"],
+            "type": "object"
+        },
         "Aggregate": {
             "description": "Don't add additional properties to this schema. Consult README.schema for instructions on adding new Exposes element sub-schema.",
             "additionalProperties": false,
@@ -1156,7 +1182,6 @@
                     "RTQ6056",
                     "LTC4287",
                     "LTC4282",
-                    "NVME1000",
                     "XDPE11280",
                     "XDPE132G5C",
                     "XDPE152C4",
