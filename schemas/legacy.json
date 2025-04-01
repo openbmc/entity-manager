@@ -650,6 +650,82 @@
             "required": ["Name", "Type", "Index"],
             "type": "object"
         },
+        "TempSensor": {
+            "description": "implemented in dbus-sensors: HwmonTempSensor",
+            "additionalProperties": false,
+            "patternProperties": {
+                "Name([1-9][0-9]*)?$": {
+                    "$ref": "#/$defs/Types/Name"
+                }
+            },
+            "properties": {
+                "Name": {
+                    "$ref": "#/$defs/Types/Name"
+                },
+                "Address": {
+                    "$ref": "#/$defs/Types/Address"
+                },
+                "Bus": {
+                    "$ref": "#/$defs/Types/Bus"
+                },
+                "EntityId": {
+                    "$ref": "#/$defs/Types/EntityId"
+                },
+                "EntityInstance": {
+                    "$ref": "#/$defs/Types/EntityInstance"
+                },
+                "PowerState": {
+                    "$ref": "#/$defs/Types/PowerState"
+                },
+                "CPURequired": {
+                    "$ref": "#/$defs/Types/CPURequired"
+                },
+                "Labels": {
+                    "$ref": "#/$defs/Types/Labels"
+                },
+                "PollRate": {
+                    "$ref": "#/$defs/Types/PollRate"
+                },
+                "MinValue": {
+                    "$ref": "#/$defs/Types/MinValue"
+                },
+                "MaxValue": {
+                    "$ref": "#/$defs/Types/MaxValue"
+                },
+                "Thresholds": {
+                    "$ref": "#/$defs/Types/Thresholds"
+                },
+                "Type": {
+                    "enum": [
+                        "ADM1021",
+                        "DPS310",
+                        "EMC1403",
+                        "EMC1413",
+                        "JC42",
+                        "MAX6639",
+                        "MAX31725",
+                        "MCP9600",
+                        "NCT6779",
+                        "NCT7802",
+                        "PT5161L",
+                        "SBTSI",
+                        "SI7020",
+                        "TMP75",
+                        "TMP100",
+                        "TMP112",
+                        "TMP175",
+                        "TMP411",
+                        "TMP421",
+                        "TMP432",
+                        "TMP464",
+                        "HDC1080",
+                        "W83773G"
+                    ]
+                }
+            },
+            "required": ["Name", "Type", "Bus", "Address"],
+            "type": "object"
+        },
         "Aggregate": {
             "description": "Don't add additional properties to this schema. Consult README.schema for instructions on adding new Exposes element sub-schema.",
             "additionalProperties": false,
@@ -722,17 +798,11 @@
                 "MaxReading": {
                     "$ref": "#/$defs/Types/MaxReading"
                 },
-                "MaxValue": {
-                    "$ref": "#/$defs/Types/MaxValue"
-                },
                 "Units": {
                     "$ref": "#/$defs/Types/Units"
                 },
                 "MinReading": {
                     "$ref": "#/$defs/Types/MinReading"
-                },
-                "MinValue": {
-                    "$ref": "#/$defs/Types/MinValue"
                 },
                 "OffsetValue": {
                     "$ref": "#/$defs/Types/OffsetValue"
@@ -1047,18 +1117,7 @@
             "Type": {
                 "type": "string",
                 "enum": [
-                    "TMP75",
-                    "TMP100",
-                    "TMP112",
-                    "TMP175",
-                    "TMP411",
-                    "TMP421",
-                    "TMP432",
-                    "TMP464",
-                    "NCT7802",
-                    "NCT6779",
                     "SBRMI",
-                    "SBTSI",
                     "smpro_hwmon",
                     "MOSTempSensor",
                     "EEPROM",
@@ -1071,12 +1130,9 @@
                     "INA238",
                     "SY24655",
                     "MAX5970",
-                    "MAX6639",
                     "MAX11615",
                     "MAX11617",
                     "MAX34451",
-                    "MAX31725",
-                    "ADM1021",
                     "ADM1272",
                     "ADM1266",
                     "ADM1272",
@@ -1100,22 +1156,15 @@
                     "RTQ6056",
                     "LTC4287",
                     "LTC4282",
-                    "EMC1403",
-                    "EMC1413",
                     "NVME1000",
                     "XDPE11280",
                     "XDPE132G5C",
                     "XDPE152C4",
                     "XDPE152C4D",
-                    "PT5161L",
                     "RAA228000",
                     "RAA228004",
-                    "HDC1080",
-                    "SI7020",
                     "CRPS185",
-                    "DPS310",
                     "LM25066",
-                    "W83773G",
                     "UCD90160",
                     "UCD90320",
                     "Intel HSBP CPLD",
@@ -1124,9 +1173,7 @@
                     "GenericSMBusMux",
                     "cffps",
                     "NMSensor",
-                    "PSM7",
-                    "JC42",
-                    "MCP9600"
+                    "PSM7"
                 ]
             }
         }
