@@ -594,6 +594,62 @@
             "required": ["Name", "Type", "Bus", "Address", "Class"],
             "type": "object"
         },
+        "ADC": {
+            "description": "implemented in dbus-sensors: ADCSensor",
+            "additionalProperties": false,
+            "properties": {
+                "Name": {
+                    "$ref": "#/$defs/Types/Name"
+                },
+                "Address": {
+                    "$ref": "#/$defs/Types/Address"
+                },
+                "Bus": {
+                    "$ref": "#/$defs/Types/Bus"
+                },
+                "BridgeGpio": {
+                    "$ref": "#/$defs/Types/BridgeGpio"
+                },
+                "PowerState": {
+                    "$ref": "#/$defs/Types/PowerState"
+                },
+                "EntityId": {
+                    "$ref": "#/$defs/Types/EntityId"
+                },
+                "EntityInstance": {
+                    "$ref": "#/$defs/Types/EntityInstance"
+                },
+                "Index": {
+                    "$ref": "#/$defs/Types/Index"
+                },
+                "PollRate": {
+                    "$ref": "#/$defs/Types/PollRate"
+                },
+                "CPURequired": {
+                    "$ref": "#/$defs/Types/CPURequired"
+                },
+                "PresenceGpio": {
+                    "$ref": "#/$defs/Types/PresenceGpio"
+                },
+                "MaxValue": {
+                    "$ref": "#/$defs/Types/MaxValue"
+                },
+                "MinValue": {
+                    "$ref": "#/$defs/Types/MinValue"
+                },
+                "ScaleFactor": {
+                    "$ref": "#/$defs/Types/ScaleFactor"
+                },
+                "Thresholds": {
+                    "$ref": "#/$defs/Types/Thresholds"
+                },
+                "Type": {
+                    "const": "ADC"
+                }
+            },
+            "required": ["Name", "Type", "Index"],
+            "type": "object"
+        },
         "Aggregate": {
             "description": "Don't add additional properties to this schema. Consult README.schema for instructions on adding new Exposes element sub-schema.",
             "additionalProperties": false,
@@ -657,9 +713,6 @@
                 "EntityInstance": {
                     "$ref": "#/$defs/Types/EntityInstance"
                 },
-                "Index": {
-                    "$ref": "#/$defs/Types/Index"
-                },
                 "InScaleFactor": {
                     "$ref": "#/$defs/Types/InScaleFactor"
                 },
@@ -692,12 +745,6 @@
                 },
                 "PowerState": {
                     "$ref": "#/$defs/Types/PowerState"
-                },
-                "PresenceGpio": {
-                    "$ref": "#/$defs/Types/PresenceGpio"
-                },
-                "ScaleFactor": {
-                    "$ref": "#/$defs/Types/ScaleFactor"
                 },
                 "SlotId": {
                     "$ref": "#/$defs/Types/SlotId"
@@ -1008,7 +1055,6 @@
                     "TMP421",
                     "TMP432",
                     "TMP464",
-                    "ADC",
                     "NCT7802",
                     "NCT6779",
                     "SBRMI",
