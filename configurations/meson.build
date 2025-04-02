@@ -24,6 +24,7 @@ configs = [
     'asrock_spc621d8hm3.json',
     'axx1p100hssi_aic.json',
     'axx2prthdhd.json',
+    'balcones.json',
     'bellavista.json',
     'blueridge_1s4u_chassis.json',
     'blueridge_2u_chassis.json',
@@ -190,5 +191,6 @@ configs = [
     'vegman_n110_baseboard.json',
     'vegman_rx20_baseboard.json',
     'vegman_sx20_baseboard.json',
+    'waterloo.json',
     'wft_baseboard.json',
 ]
