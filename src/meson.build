@@ -5,6 +5,7 @@ installdir = join_paths(get_option('libexecdir'), 'entity-manager')
 executable(
     'entity-manager',
     'entity_manager.cpp',
+    'configuration.cpp',
     'expression.cpp',
     'perform_scan.cpp',
     'perform_probe.cpp',
