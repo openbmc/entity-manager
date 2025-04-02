@@ -28,10 +28,6 @@
 #include <boost/container/flat_map.hpp>
 #include <boost/lexical_cast.hpp>
 #include <sdbusplus/bus/match.hpp>
-#include <valijson/adapters/nlohmann_json_adapter.hpp>
-#include <valijson/schema.hpp>
-#include <valijson/schema_parser.hpp>
-#include <valijson/validator.hpp>
 
 #include <charconv>
 #include <filesystem>
@@ -128,17 +124,6 @@ bool getI2cDevicePaths(const fs::path& dirPath,
     }
 
     return true;
-}
-
-bool validateJson(const nlohmann::json& schemaFile, const nlohmann::json& input)
-{
-    valijson::Schema schema;
-    valijson::SchemaParser parser;
-    valijson::adapters::NlohmannJsonAdapter schemaAdapter(schemaFile);
-    parser.populateSchema(schemaAdapter, schema);
-    valijson::Validator validator;
-    valijson::adapters::NlohmannJsonAdapter targetAdapter(input);
-    return validator.validate(schema, targetAdapter, nullptr);
 }
 
 bool isPowerOn()
