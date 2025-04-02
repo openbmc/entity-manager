@@ -222,6 +222,6 @@ std::optional<int> findIndexForFRU(
 std::optional<std::string> getProductName(
     std::vector<uint8_t>& device,
     boost::container::flat_map<std::string, std::string>& formattedFRU,
-    uint32_t bus, uint32_t address, size_t& unknownBusObjectCount);
+    size_t bus, size_t address, size_t& unknownBusObjectCount);
 
-bool getFruData(std::vector<uint8_t>& fruData, uint32_t bus, uint32_t address);
+bool getFruData(std::vector<uint8_t>& fruData, size_t bus, size_t address);

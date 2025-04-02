@@ -91,7 +91,7 @@ boost::asio::io_context io;
 // NOLINTEND(cppcoreguidelines-avoid-non-const-global-variables)
 
 bool updateFRUProperty(
-    const std::string& updatePropertyReq, uint32_t bus, uint32_t address,
+    const std::string& updatePropertyReq, size_t bus, size_t address,
     const std::string& propertyName,
     boost::container::flat_map<
         std::pair<size_t, size_t>,
@@ -805,7 +805,7 @@ void addFruObjectToDbus(
     boost::container::flat_map<
         std::pair<size_t, size_t>,
         std::shared_ptr<sdbusplus::asio::dbus_interface>>& dbusInterfaceMap,
-    uint32_t bus, uint32_t address, size_t& unknownBusObjectCount,
+    size_t bus, size_t address, size_t& unknownBusObjectCount,
     const bool& powerIsOn, sdbusplus::asio::object_server& objServer,
     std::shared_ptr<sdbusplus::asio::connection>& systemBus)
 {
@@ -1105,7 +1105,7 @@ void rescanOneBus(
             for (auto& device : *(found->second))
             {
                 addFruObjectToDbus(device.second, dbusInterfaceMap,
-                                   static_cast<uint32_t>(busNum), device.first,
+                                   static_cast<size_t>(busNum), device.first,
                                    unknownBusObjectCount, powerIsOn, objServer,
                                    systemBus);
             }
@@ -1206,7 +1206,7 @@ void rescanBusses(
 // 8 bytes. Update the Product area length and checksum.
 
 bool updateFRUProperty(
-    const std::string& updatePropertyReq, uint32_t bus, uint32_t address,
+    const std::string& updatePropertyReq, size_t bus, size_t address,
     const std::string& propertyName,
     boost::container::flat_map<
         std::pair<size_t, size_t>,
