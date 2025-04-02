@@ -1,6 +1,262 @@
 {
     "Exposes": [
         {
+            "Address": "0x23",
+            "Bus": "18",
+            "Connector": {
+                "Name": "FCB_0_FAN0_TACH_OL",
+                "Pwm": 0,
+                "PwmName": "FCB_0_FAN0_PWM",
+                "Tachs": [
+                    11
+                ]
+            },
+            "Index": 11,
+            "Name": "FCB_0_FAN0_TACH_OL_SPEED_RPM",
+            "PowerState": "Always",
+            "Thresholds": [
+                {
+                    "Direction": "greater than",
+                    "Hysteresis": 660.0,
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 33000
+                },
+                {
+                    "Direction": "less than",
+                    "Hysteresis": 39.2,
+                    "Name": "lower critical",
+                    "Severity": 1,
+                    "Value": 1960
+                }
+            ],
+            "Type": "I2CFan"
+        },
+        {
+            "Address": "0x23",
+            "Bus": "18",
+            "Connector": {
+                "Name": "FCB_0_FAN0_TACH_IL",
+                "Pwm": 0,
+                "PwmName": "FCB_0_FAN0_PWM",
+                "Tachs": [
+                    9
+                ]
+            },
+            "Index": 9,
+            "Name": "FCB_0_FAN0_TACH_IL_SPEED_RPM",
+            "PowerState": "Always",
+            "Thresholds": [
+                {
+                    "Direction": "greater than",
+                    "Hysteresis": 726.0,
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 36300
+                },
+                {
+                    "Direction": "less than",
+                    "Hysteresis": 51,
+                    "Name": "lower critical",
+                    "Severity": 1,
+                    "Value": 2550
+                }
+            ],
+            "Type": "I2CFan"
+        },
+        {
+            "Address": "0x23",
+            "Bus": "18",
+            "Connector": {
+                "Name": "FCB_0_FAN1_TACH_OL",
+                "Pwm": 4,
+                "PwmName": "FCB_0_FAN1_PWM",
+                "Tachs": [
+                    13
+                ]
+            },
+            "Index": 13,
+            "Name": "FCB_0_FAN1_TACH_OL_SPEED_RPM",
+            "PowerState": "Always",
+            "Thresholds": [
+                {
+                    "Direction": "greater than",
+                    "Hysteresis": 660.0,
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 33000
+                },
+                {
+                    "Direction": "less than",
+                    "Hysteresis": 39.2,
+                    "Name": "lower critical",
+                    "Severity": 1,
+                    "Value": 1960
+                }
+            ],
+            "Type": "I2CFan"
+        },
+        {
+            "Address": "0x23",
+            "Bus": "18",
+            "Connector": {
+                "Name": "FCB_0_FAN1_TACH_IL",
+                "Pwm": 4,
+                "PwmName": "FCB_0_FAN1_PWM",
+                "Tachs": [
+                    10
+                ]
+            },
+            "Index": 10,
+            "Name": "FCB_0_FAN1_TACH_IL_SPEED_RPM",
+            "PowerState": "Always",
+            "Thresholds": [
+                {
+                    "Direction": "greater than",
+                    "Hysteresis": 726.0,
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 36300
+                },
+                {
+                    "Direction": "less than",
+                    "Hysteresis": 51,
+                    "Name": "lower critical",
+                    "Severity": 1,
+                    "Value": 2550
+                }
+            ],
+            "Type": "I2CFan"
+        },
+        {
+            "Address": "0x23",
+            "Bus": "18",
+            "Connector": {
+                "Name": "FCB_1_FAN2_TACH_OL",
+                "Pwm": 6,
+                "PwmName": "FCB_1_FAN2_PWM",
+                "Tachs": [
+                    1
+                ]
+            },
+            "Index": 1,
+            "Name": "FCB_1_FAN2_TACH_OL_SPEED_RPM",
+            "PowerState": "Always",
+            "Thresholds": [
+                {
+                    "Direction": "greater than",
+                    "Hysteresis": 660.0,
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 33000
+                },
+                {
+                    "Direction": "less than",
+                    "Hysteresis": 39.2,
+                    "Name": "lower critical",
+                    "Severity": 1,
+                    "Value": 1960
+                }
+            ],
+            "Type": "I2CFan"
+        },
+        {
+            "Address": "0x23",
+            "Bus": "18",
+            "Connector": {
+                "Name": "FCB_1_FAN2_TACH_IL",
+                "Pwm": 6,
+                "PwmName": "FCB_1_FAN2_PWM",
+                "Tachs": [
+                    15
+                ]
+            },
+            "Index": 15,
+            "Name": "FCB_1_FAN2_TACH_IL_SPEED_RPM",
+            "PowerState": "Always",
+            "Thresholds": [
+                {
+                    "Direction": "greater than",
+                    "Hysteresis": 726.0,
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 36300
+                },
+                {
+                    "Direction": "less than",
+                    "Hysteresis": 51.0,
+                    "Name": "lower critical",
+                    "Severity": 1,
+                    "Value": 2550
+                }
+            ],
+            "Type": "I2CFan"
+        },
+        {
+            "Address": "0x23",
+            "Bus": "18",
+            "Connector": {
+                "Name": "FCB_1_FAN3_TACH_OL",
+                "Pwm": 10,
+                "PwmName": "FCB_1_FAN3_PWM",
+                "Tachs": [
+                    3
+                ]
+            },
+            "Index": 3,
+            "Name": "FCB_1_FAN3_TACH_OL_SPEED_RPM",
+            "PowerState": "Always",
+            "Thresholds": [
+                {
+                    "Direction": "greater than",
+                    "Hysteresis": 660.0,
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 33000
+                },
+                {
+                    "Direction": "less than",
+                    "Hysteresis": 39.2,
+                    "Name": "lower critical",
+                    "Severity": 1,
+                    "Value": 1960
+                }
+            ],
+            "Type": "I2CFan"
+        },
+        {
+            "Address": "0x23",
+            "Bus": "18",
+            "Connector": {
+                "Name": "FCB_1_FAN3_TACH_IL",
+                "Pwm": 10,
+                "PwmName": "FCB_1_FAN3_PWM",
+                "Tachs": [
+                    0
+                ]
+            },
+            "Index": 0,
+            "Name": "FCB_1_FAN3_TACH_IL_SPEED_RPM",
+            "PowerState": "Always",
+            "Thresholds": [
+                {
+                    "Direction": "greater than",
+                    "Hysteresis": 726.0,
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 36300
+                },
+                {
+                    "Direction": "less than",
+                    "Hysteresis": 51.0,
+                    "Name": "lower critical",
+                    "Severity": 1,
+                    "Value": 2550
+                }
+            ],
+            "Type": "I2CFan"
+        },
+        {
             "Address": "0x40",
             "Bus": 10,
             "Labels": [
