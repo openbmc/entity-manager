@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b91a08a8_85303db8",
+        "filename": "schemas/legacy.json",
+        "patchSetId": 5
+      },
+      "lineNbr": 488,
+      "author": {
+        "id": 1000008
+      },
+      "writtenOn": "2025-04-02T19:57:59Z",
+      "side": 1,
+      "message": "The design with the physical topology entries is that a board could have all sorts of different ports on it, like PS port, riser port, BMC card port, etc.\n\n(docs are: https://github.com/openbmc/entity-manager/blob/master/docs/associations.md,  https://github.com/openbmc/docs/blob/master/designs/physical-topology.md).\n\nSo far it\u0027s hardly used though, people may not be interested in all the associations needed for Redfish yet.\n\nthe code at https://github.com/openbmc/entity-manager/blob/master/src/topology.cpp#L38 just needs the upstream side to end in \u0027Port\u0027, so maybe this can be an enum with just 1 entry now?  Does that conflict with the the enumerating of the Type field in your other commit?",
+      "range": {
+        "startLine": 488,
+        "startChar": 29,
+        "endLine": 488,
+        "endChar": 47
+      },
+      "revId": "160686d6ab4b7a0389c49886ad90303a75f9fe23",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b5c01206_a8552b94",
+        "filename": "schemas/legacy.json",
+        "patchSetId": 5
+      },
+      "lineNbr": 511,
+      "author": {
+        "id": 1000008
+      },
+      "writtenOn": "2025-04-02T19:57:59Z",
+      "side": 1,
+      "message": "This should be optional, as not every port is a power port.",
+      "range": {
+        "startLine": 511,
+        "startChar": 59,
+        "endLine": 511,
+        "endChar": 70
+      },
+      "revId": "160686d6ab4b7a0389c49886ad90303a75f9fe23",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    }
+  ]
+}
