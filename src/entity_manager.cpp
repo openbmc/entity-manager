@@ -17,8 +17,8 @@
 
 #include "entity_manager.hpp"
 
+#include "configuration.hpp"
 #include "overlay.hpp"
-#include "perform_probe.hpp"
 #include "perform_scan.hpp"
 #include "topology.hpp"
 #include "utils.hpp"
@@ -47,13 +47,8 @@
 #include <map>
 #include <regex>
 #include <variant>
-constexpr const char* hostConfigurationDirectory = SYSCONF_DIR "configurations";
-constexpr const char* configurationDirectory = PACKAGE_DIR "configurations";
-constexpr const char* schemaDirectory = PACKAGE_DIR "configurations/schemas";
 constexpr const char* tempConfigDir = "/tmp/configuration/";
 constexpr const char* lastConfiguration = "/tmp/configuration/last.json";
-constexpr const char* currentConfiguration = "/var/configuration/system.json";
-constexpr const char* globalSchema = "global.json";
 
 static constexpr std::array<const char*, 6> settableInterfaces = {
     "FanProfile", "Pid", "Pid.Zone", "Stepwise", "Thresholds", "Polling"};
@@ -119,37 +114,6 @@ static std::shared_ptr<sdbusplus::asio::dbus_interface> createInterface(
     return ptr;
 }
 
-// writes output files to persist data
-bool writeJsonFiles(const nlohmann::json& systemConfiguration)
-{
-    std::filesystem::create_directory(configurationOutDir);
-    std::ofstream output(currentConfiguration);
-    if (!output.good())
-    {
-        return false;
-    }
-    output << systemConfiguration.dump(4);
-    output.close();
-    return true;
-}
-
-template <typename JsonType>
-bool setJsonFromPointer(const std::string& ptrStr, const JsonType& value,
-                        nlohmann::json& systemConfiguration)
-{
-    try
-    {
-        nlohmann::json::json_pointer ptr(ptrStr);
-        nlohmann::json& ref = systemConfiguration[ptr];
-        ref = value;
-        return true;
-    }
-    catch (const std::out_of_range&)
-    {
-        return false;
-    }
-}
-
 // template function to add array as dbus property
 template <typename PropertyType>
 void addArrayToDbus(const std::string& name, const nlohmann::json& array,
@@ -181,13 +145,13 @@ void addArrayToDbus(const std::string& name, const nlohmann::json& array,
                 const std::vector<PropertyType>& newVal,
                 std::vector<PropertyType>& val) {
                 val = newVal;
-                if (!setJsonFromPointer(jsonPointerString, val,
-                                        systemConfiguration))
+                if (!configuration::setJsonFromPointer(jsonPointerString, val,
+                                                       systemConfiguration))
                 {
                     std::cerr << "error setting json field\n";
                     return -1;
                 }
-                if (!writeJsonFiles(systemConfiguration))
+                if (!configuration::writeJsonFiles(systemConfiguration))
                 {
                     std::cerr << "error setting json file\n";
                     return -1;
@@ -215,13 +179,13 @@ void addProperty(const std::string& name, const PropertyType& value,
          jsonPointerString{std::string(jsonPointerString)}](
             const PropertyType& newVal, PropertyType& val) {
             val = newVal;
-            if (!setJsonFromPointer(jsonPointerString, val,
-                                    systemConfiguration))
+            if (!configuration::setJsonFromPointer(jsonPointerString, val,
+                                                   systemConfiguration))
             {
                 std::cerr << "error setting json field\n";
                 return -1;
             }
-            if (!writeJsonFiles(systemConfiguration))
+            if (!configuration::writeJsonFiles(systemConfiguration))
             {
                 std::cerr << "error setting json file\n";
                 return -1;
@@ -257,7 +221,7 @@ void createDeleteObjectMethod(
                 objServer.remove_interface(dbusInterface);
             });
 
-            if (!writeJsonFiles(systemConfiguration))
+            if (!configuration::writeJsonFiles(systemConfiguration))
             {
                 std::cerr << "error setting json file\n";
                 throw DBusInternalError();
@@ -503,8 +467,9 @@ void createAddObjectMethod(
                 lastIndex++;
             }
 
-            std::ifstream schemaFile(std::string(schemaDirectory) + "/" +
-                                     boost::to_lower_copy(*type) + ".json");
+            std::ifstream schemaFile(
+                std::string(configuration::schemaDirectory) + "/" +
+                boost::to_lower_copy(*type) + ".json");
             // todo(james) we might want to also make a list of 'can add'
             // interfaces but for now I think the assumption if there is a
             // schema avaliable that it is allowed to update is fine
@@ -520,7 +485,7 @@ void createAddObjectMethod(
                 std::cerr << "Schema not legal" << *type << ".json\n";
                 throw DBusInternalError();
             }
-            if (!validateJson(schema, newData))
+            if (!configuration::validateJson(schema, newData))
             {
                 throw std::invalid_argument("Data does not match schema");
             }
@@ -532,7 +497,7 @@ void createAddObjectMethod(
             {
                 findExposes->push_back(newData);
             }
-            if (!writeJsonFiles(systemConfiguration))
+            if (!configuration::writeJsonFiles(systemConfiguration))
             {
                 std::cerr << "Error writing json files\n";
                 throw DBusInternalError();
@@ -802,79 +767,6 @@ void postToDbus(const nlohmann::json& newConfiguration,
     }
 }
 
-// reads json files out of the filesystem
-bool loadConfigurations(std::list<nlohmann::json>& configurations)
-{
-    // find configuration files
-    std::vector<std::filesystem::path> jsonPaths;
-    if (!findFiles(
-            std::vector<std::filesystem::path>{configurationDirectory,
-                                               hostConfigurationDirectory},
-            R"(.*\.json)", jsonPaths))
-    {
-        std::cerr << "Unable to find any configuration files in "
-                  << configurationDirectory << "\n";
-        return false;
-    }
-
-    std::ifstream schemaStream(
-        std::string(schemaDirectory) + "/" + globalSchema);
-    if (!schemaStream.good())
-    {
-        std::cerr
-            << "Cannot open schema file,  cannot validate JSON, exiting\n\n";
-        std::exit(EXIT_FAILURE);
-        return false;
-    }
-    nlohmann::json schema =
-        nlohmann::json::parse(schemaStream, nullptr, false, true);
-    if (schema.is_discarded())
-    {
-        std::cerr
-            << "Illegal schema file detected, cannot validate JSON, exiting\n";
-        std::exit(EXIT_FAILURE);
-        return false;
-    }
-
-    for (auto& jsonPath : jsonPaths)
-    {
-        std::ifstream jsonStream(jsonPath.c_str());
-        if (!jsonStream.good())
-        {
-            std::cerr << "unable to open " << jsonPath.string() << "\n";
-            continue;
-        }
-        auto data = nlohmann::json::parse(jsonStream, nullptr, false, true);
-        if (data.is_discarded())
-        {
-            std::cerr << "syntax error in " << jsonPath.string() << "\n";
-            continue;
-        }
-        /*
-         * todo(james): reenable this once less things are in flight
-         *
-        if (!validateJson(schema, data))
-        {
-            std::cerr << "Error validating " << jsonPath.string() << "\n";
-            continue;
-        }
-        */
-
-        if (data.type() == nlohmann::json::value_t::array)
-        {
-            for (auto& d : data)
-            {
-                configurations.emplace_back(d);
-            }
-        }
-        else
-        {
-            configurations.emplace_back(data);
-        }
-    }
-    return true;
-}
-
 static bool deviceRequiresPowerOn(const nlohmann::json& entity)
 {
     auto powerState = entity.find("PowerState");
@@ -985,23 +877,6 @@ static void pruneConfiguration(nlohmann::json& systemConfiguration,
     logDeviceRemoved(device);
 }
 
-static void deriveNewConfiguration(const nlohmann::json& oldConfiguration,
-                                   nlohmann::json& newConfiguration)
-{
-    for (auto it = newConfiguration.begin(); it != newConfiguration.end();)
-    {
-        auto findKey = oldConfiguration.find(it.key());
-        if (findKey != oldConfiguration.end())
-        {
-            it = newConfiguration.erase(it);
-        }
-        else
-        {
-            it++;
-        }
-    }
-}
-
 static void publishNewConfiguration(
     const size_t& instance, const size_t count,
     boost::asio::steady_timer& timer, nlohmann::json& systemConfiguration,
@@ -1018,7 +893,7 @@ static void publishNewConfiguration(
     loadOverlays(newConfiguration);
 
     boost::asio::post(io, [systemConfiguration]() {
-        if (!writeJsonFiles(systemConfiguration))
+        if (!configuration::writeJsonFiles(systemConfiguration))
         {
             std::cerr << "Error writing json files\n";
         }
@@ -1072,7 +947,7 @@ void propertiesChangedCallback(nlohmann::json& systemConfiguration,
         *missingConfigurations = systemConfiguration;
 
         std::list<nlohmann::json> configurations;
-        if (!loadConfigurations(configurations))
+        if (!configuration::loadConfigurations(configurations))
         {
             std::cerr << "Could not load configurations\n";
             inProgress = false;
@@ -1096,7 +971,8 @@ void propertiesChangedCallback(nlohmann::json& systemConfiguration,
 
                 nlohmann::json newConfiguration = systemConfiguration;
 
-                deriveNewConfiguration(oldConfiguration, newConfiguration);
+                configuration::deriveNewConfiguration(oldConfiguration,
+                                                      newConfiguration);
 
                 for (const auto& [_, device] : newConfiguration.items())
                 {
@@ -1113,65 +989,6 @@ void propertiesChangedCallback(nlohmann::json& systemConfiguration,
             });
         perfScan->run();
     });
-}
-
-// Extract the D-Bus interfaces to probe from the JSON config files.
-static std::set<std::string> getProbeInterfaces()
-{
-    std::set<std::string> interfaces;
-    std::list<nlohmann::json> configurations;
-    if (!loadConfigurations(configurations))
-    {
-        return interfaces;
-    }
-
-    for (auto it = configurations.begin(); it != configurations.end();)
-    {
-        auto findProbe = it->find("Probe");
-        if (findProbe == it->end())
-        {
-            std::cerr << "configuration file missing probe:\n " << *it << "\n";
-            it++;
-            continue;
-        }
-
-        nlohmann::json probeCommand;
-        if ((*findProbe).type() != nlohmann::json::value_t::array)
-        {
-            probeCommand = nlohmann::json::array();
-            probeCommand.push_back(*findProbe);
-        }
-        else
-        {
-            probeCommand = *findProbe;
-        }
-
-        for (const nlohmann::json& probeJson : probeCommand)
-        {
-            const std::string* probe = probeJson.get_ptr<const std::string*>();
-            if (probe == nullptr)
-            {
-                std::cerr << "Probe statement wasn't a string, can't parse";
-                continue;
-            }
-            // Skip it if the probe cmd doesn't contain an interface.
-            if (probe::findProbeType(*probe))
-            {
-                continue;
-            }
-
-            // syntax requires probe before first open brace
-            auto findStart = probe->find('(');
-            if (findStart != std::string::npos)
-            {
-                std::string interface = probe->substr(0, findStart);
-                interfaces.emplace(interface);
-            }
-        }
-        it++;
-    }
-
-    return interfaces;
 }
 
 // Check if InterfacesAdded payload contains an iface that needs probing.
@@ -1237,7 +1054,7 @@ int main()
 
     nlohmann::json systemConfiguration = nlohmann::json::object();
 
-    std::set<std::string> probeInterfaces = getProbeInterfaces();
+    std::set<std::string> probeInterfaces = configuration::getProbeInterfaces();
 
     // We need a poke from DBus for static providers that create all their
     // objects prior to claiming a well-known name, and thus don't emit any
@@ -1291,13 +1108,15 @@ int main()
 
     if (fwVersionIsSame())
     {
-        if (std::filesystem::is_regular_file(currentConfiguration))
+        if (std::filesystem::is_regular_file(
+                configuration::currentConfiguration))
         {
             // this file could just be deleted, but it's nice for debug
             std::filesystem::create_directory(tempConfigDir);
             std::filesystem::remove(lastConfiguration);
-            std::filesystem::copy(currentConfiguration, lastConfiguration);
-            std::filesystem::remove(currentConfiguration);
+            std::filesystem::copy(configuration::currentConfiguration,
+                                  lastConfiguration);
+            std::filesystem::remove(configuration::currentConfiguration);
 
             std::ifstream jsonStream(lastConfiguration);
             if (jsonStream.good())
@@ -1323,7 +1142,7 @@ int main()
     {
         // not an error, just logging at this level to make it in the journal
         std::cerr << "Clearing previous configuration\n";
-        std::filesystem::remove(currentConfiguration);
+        std::filesystem::remove(configuration::currentConfiguration);
     }
 
     // some boards only show up after power is on, we want to not say they are
