@@ -1,0 +1,21 @@
+{
+    "Exposes": [
+        {
+            "Name": "Compatible System",
+            "Names": [
+                "ibm,balcones"
+            ],
+            "Type": "IBMCompatibleSystem"
+        }
+    ],
+    "Name": "Balcones Chassis",
+    "Probe": [
+        "com.ibm.ipzvpd.VSBP({'IM': [96, 0, 64, 0]})"
+    ],
+    "Type": "Chassis",
+    "xyz.openbmc_project.Inventory.Decorator.Compatible": {
+        "Names": [
+            "com.ibm.Hardware.Chassis.Model.Balcones"
+        ]
+    }
+}
