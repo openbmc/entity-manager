@@ -1116,7 +1116,9 @@
                 "type": ["number", "array"]
             },
             "Pwm": {
-                "type": "number"
+                "type": "number",
+                "minimum": 0,
+                "multipleOf": 1
             },
             "QMax": {
                 "type": "number"
