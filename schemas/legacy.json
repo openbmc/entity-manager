@@ -902,7 +902,25 @@
                 "type": "string"
             },
             "BridgeGpio": {
-                "type": ["number", "array"]
+                "type": "array",
+                "items": {
+                    "additionalProperties": false,
+                    "properties": {
+                        "Name": {
+                            "$ref": "#/$defs/Types/Name"
+                        },
+                        "Label": {
+                            "$ref": "#/$defs/Types/Name"
+                        },
+                        "Polarity": {
+                            "$ref": "#/$defs/Types/Polarity"
+                        },
+                        "SetupTime": {
+                            "type": "number"
+                        }
+                    },
+                    "required": ["Name", "Polarity"]
+                }
             },
             "Bus": {
                 "type": ["string", "number"]
