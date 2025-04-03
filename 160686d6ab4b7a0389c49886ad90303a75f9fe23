@@ -24,6 +24,30 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "c29dc0d8_ae53fc1f",
+        "filename": "schemas/legacy.json",
+        "patchSetId": 5
+      },
+      "lineNbr": 488,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-04-03T09:02:38Z",
+      "side": 1,
+      "message": "Thanks for pointing out the relevant design 😊\n\nI was mostly going off of the existing configurations when creating this series,\nso this is a good opportunity for people to come in and refine each schema with the relevant background and experience.\n\n\u003e just needs the upstream side to end in \u0027Port\u0027, so maybe this can be an enum with just 1 entry now? Does that conflict with the the enumerating of the Type field in your other commit?\n\nIt should not conflict since no other value for ```Type``` ends in \"Port\",\nfrom what\u0027s been enumerated.\n\nTechnically, my commit for enumerating ```Type``` field is not fully complete when considering the design wording ```The upstream port has a type ending in Port (such as a BackplanePort, PowerInputPort, etc)``` since some possibilities from the design are not covered. I still would prefer to keep that patch as is since the intent there was to enumerate what\u0027s in the upstream configs.\n\n\u003e so maybe this can be an enum with just 1 entry now?  \n\nSure 👍.\nI will also create ```description``` property pointing to the design, so folks know that the enum may be extended.",
+      "parentUuid": "b91a08a8_85303db8",
+      "range": {
+        "startLine": 488,
+        "startChar": 29,
+        "endLine": 488,
+        "endChar": 47
+      },
+      "revId": "160686d6ab4b7a0389c49886ad90303a75f9fe23",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "b5c01206_a8552b94",
@@ -37,6 +61,30 @@
       "writtenOn": "2025-04-02T19:57:59Z",
       "side": 1,
       "message": "This should be optional, as not every port is a power port.",
+      "range": {
+        "startLine": 511,
+        "startChar": 59,
+        "endLine": 511,
+        "endChar": 70
+      },
+      "revId": "160686d6ab4b7a0389c49886ad90303a75f9fe23",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "d29b0a66_0e2c0ea6",
+        "filename": "schemas/legacy.json",
+        "patchSetId": 5
+      },
+      "lineNbr": 511,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-04-03T09:02:38Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "b5c01206_a8552b94",
       "range": {
         "startLine": 511,
         "startChar": 59,
