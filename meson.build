@@ -170,7 +170,7 @@ if not build_tests.disabled()
         executable(
             'test_topology',
             'test/test_topology.cpp',
-            'src/topology.cpp',
+            'src/entity_manager/topology.cpp',
             cpp_args: test_boost_args,
             dependencies: [
                 gtest,
