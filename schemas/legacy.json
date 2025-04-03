@@ -1192,7 +1192,8 @@
                 "type": "number"
             },
             "PollRate": {
-                "type": "number"
+                "type": "number",
+                "exclusiveMinimum": 0
             },
             "Type": {
                 "type": "string",
