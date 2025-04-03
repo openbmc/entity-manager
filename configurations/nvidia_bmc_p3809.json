@@ -1,0 +1,13 @@
+{
+    "Exposes": [
+        {
+            "Address": "$address",
+            "Bus": "$bus",
+            "Name": "HMC_FRU",
+            "Type": "EEPROM_24C02"
+        }
+    ],
+    "Name": "BMC",
+    "Probe": "xyz.openbmc_project.FruDevice({'PRODUCT_MANUFACTURER': 'NVIDIA', 'PRODUCT_PRODUCT_NAME': 'P3809-BMC'})",
+    "Type": "Board"
+}
