@@ -1066,7 +1066,22 @@
                 "enum": ["High", "Low"]
             },
             "Polling": {
-                "type": "object"
+                "type": "object",
+                "additionalProperties": false,
+                "properties": {
+                    "AveragingPeriod": {
+                        "type": "number"
+                    },
+                    "Interval": {
+                        "type": "number"
+                    },
+                    "PollRate": {
+                        "type": "number"
+                    },
+                    "Label": {
+                        "type": "string"
+                    }
+                }
             },
             "PowerFactorMax": {
                 "type": "number"
