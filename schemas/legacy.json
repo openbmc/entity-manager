@@ -875,7 +875,9 @@
                 "type": ["string", "array"]
             },
             "AllowedFailures": {
-                "type": "number"
+                "type": "number",
+                "multipleOf": 1,
+                "minimum": 0
             },
             "AlphaF": {
                 "type": "number"
