@@ -980,7 +980,9 @@
                 "const": "MB Upstream Port"
             },
             "CpuID": {
-                "type": "number"
+                "type": "number",
+                "minimum": 0,
+                "multipleOf": 1
             },
             "CurrScaleFactor": {
                 "type": "number"
