@@ -1010,7 +1010,9 @@
                 "enum": ["Low"]
             },
             "Index": {
-                "type": "number"
+                "type": "number",
+                "minimum": 0,
+                "multipleOf": 1
             },
             "InScaleFactor": {
                 "type": "number"
