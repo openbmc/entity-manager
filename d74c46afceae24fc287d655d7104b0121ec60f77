@@ -3,6 +3,40 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "13657a80_814a8754",
+        "filename": "schemas/legacy.json",
+        "patchSetId": 6
+      },
+      "lineNbr": 125,
+      "author": {
+        "id": 1001526
+      },
+      "writtenOn": "2025-04-03T03:48:38Z",
+      "side": 1,
+      "message": "Can this be \"(in|in_voltage|vout)(0|([1-9][0-9]*))_Name$\"?. Otherwise, this would accept something like \"in_voltage02_Name\".",
+      "revId": "d74c46afceae24fc287d655d7104b0121ec60f77",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ecca5cd6_78d7d078",
+        "filename": "schemas/legacy.json",
+        "patchSetId": 6
+      },
+      "lineNbr": 131,
+      "author": {
+        "id": 1001526
+      },
+      "writtenOn": "2025-04-03T03:48:38Z",
+      "side": 1,
+      "message": "Can this be \"(in|in_voltage)(0|([1-9][0-9]*))_Scale$\"?. Otherwise, this would accept something like \"in_voltage02_Scale\".",
+      "revId": "d74c46afceae24fc287d655d7104b0121ec60f77",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "84a0b5f8_2ad8d0ea",
         "filename": "schemas/legacy.json",
         "patchSetId": 6
@@ -20,6 +54,40 @@
         "endLine": 138,
         "endChar": 48
       },
+      "revId": "d74c46afceae24fc287d655d7104b0121ec60f77",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "410b332b_ddc021b0",
+        "filename": "schemas/legacy.json",
+        "patchSetId": 6
+      },
+      "lineNbr": 140,
+      "author": {
+        "id": 1001526
+      },
+      "writtenOn": "2025-04-03T03:48:38Z",
+      "side": 1,
+      "message": "(0|([1-9][0-9]*)) because I don\u0027t see any (in|vout|in_voltage)_(Mix|Max)$ is used.",
+      "revId": "d74c46afceae24fc287d655d7104b0121ec60f77",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "6b7a101a_972853ed",
+        "filename": "schemas/legacy.json",
+        "patchSetId": 6
+      },
+      "lineNbr": 414,
+      "author": {
+        "id": 1001526
+      },
+      "writtenOn": "2025-04-03T03:48:38Z",
+      "side": 1,
+      "message": "Just a suggestion. Since it already belongs to \"Types\", can this just be \"MinMax\" or \"MinMaxValue\"?. Same to \"OffsetType\".",
       "revId": "d74c46afceae24fc287d655d7104b0121ec60f77",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
