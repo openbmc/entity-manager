@@ -7,6 +7,7 @@ executable(
     'entity_manager.cpp',
     'configuration.cpp',
     'expression.cpp',
+    'dbus_interface.cpp',
     'perform_scan.cpp',
     'perform_probe.cpp',
     'overlay.cpp',
