@@ -149,6 +149,7 @@ configs = [
     'nf5280m7_baseboard.json',
     'nisqually.json',
     'nuvoton_npcm8xx_evb.json',
+    'nvidia_bmc_p3809.json',
     'nvidia_gb200.json',
     'nvidia_gb200_io_board.json',
     'nvidia_hmc.json',
