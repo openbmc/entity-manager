@@ -759,6 +759,25 @@
             "required": ["Name", "Type", "Bus", "Address"],
             "type": "object"
         },
+        "EEPROM": {
+            "additionalProperties": false,
+            "properties": {
+                "Name": {
+                    "$ref": "#/$defs/Types/Name"
+                },
+                "Bus": {
+                    "$ref": "#/$defs/Types/Bus"
+                },
+                "Address": {
+                    "$ref": "#/$defs/Types/Address"
+                },
+                "Type": {
+                    "const": "EEPROM"
+                }
+            },
+            "required": ["Name", "Type", "Bus", "Address"],
+            "type": "object"
+        },
         "Aggregate": {
             "description": "Don't add additional properties to this schema. Consult README.schema for instructions on adding new Exposes element sub-schema.",
             "additionalProperties": false,
@@ -1200,7 +1219,6 @@
                 "enum": [
                     "SBRMI",
                     "smpro_hwmon",
-                    "EEPROM",
                     "BMC",
                     "Board",
                     "pmbus",
