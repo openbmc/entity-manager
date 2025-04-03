@@ -525,7 +525,14 @@
                     "$ref": "#/$defs/Types/Bus"
                 },
                 "Address": {
-                    "$ref": "#/$defs/Types/Address"
+                    "oneOf": [
+                        {
+                            "$ref": "#/$defs/Types/Address"
+                        },
+                        {
+                            "$ref": "#/$defs/Types/AddressArray"
+                        }
+                    ]
                 },
                 "Type": {
                     "const": "PSUPresence"
@@ -872,7 +879,13 @@
         },
         "Types": {
             "Address": {
-                "type": ["string", "array"]
+                "type": "string"
+            },
+            "AddressArray": {
+                "type": "array",
+                "items": {
+                    "$ref": "#/$defs/Types/Address"
+                }
             },
             "AllowedFailures": {
                 "type": "number",
