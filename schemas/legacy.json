@@ -932,7 +932,9 @@
                 "type": "number"
             },
             "CPURequired": {
-                "type": "number"
+                "type": "number",
+                "multipleOf": 1,
+                "minimum": 0
             },
             "ChannelNames": {
                 "items": {
