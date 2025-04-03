@@ -17,13 +17,13 @@
 
 #include "entity_manager.hpp"
 
+#include "../utils.hpp"
+#include "../variant_visitors.hpp"
 #include "configuration.hpp"
 #include "interface.hpp"
 #include "overlay.hpp"
 #include "perform_scan.hpp"
 #include "topology.hpp"
-#include "utils.hpp"
-#include "variant_visitors.hpp"
 
 #include <boost/algorithm/string/case_conv.hpp>
 #include <boost/algorithm/string/classification.hpp>
