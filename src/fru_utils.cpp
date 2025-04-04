@@ -384,6 +384,7 @@ resCodes decodeField(
     state = res.first;
     std::string value = res.second;
     std::string name;
+    bool isCustomField = false;
     if (fieldIndex < fruAreaFieldNames.size())
     {
         name = std::string(getFruAreaName(area)) + "_" +
@@ -391,6 +392,7 @@ resCodes decodeField(
     }
     else
     {
+        isCustomField = true;
         name = std::string(getFruAreaName(area)) + "_" + fruCustomFieldName +
                std::to_string(fieldIndex - fruAreaFieldNames.size() + 1);
     }
@@ -403,7 +405,16 @@ resCodes decodeField(
                          [](char ch) { return ((ch != 0) && (ch != ' ')); })
                 .base(),
             value.end());
-
+        if (isCustomField)
+        {
+            // Some MAC addresses are stored in a custom field, with
+            // "MAC:" prefixed on the value.  If we see that, create a
+            // new field with the decoded data
+            if (value.starts_with("MAC: "))
+            {
+                result["MAC_" + name] = value.substr(5);
+            }
+        }
         result[name] = std::move(value);
         ++fieldIndex;
     }
