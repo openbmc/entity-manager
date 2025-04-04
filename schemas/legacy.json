@@ -772,8 +772,8 @@
             "required": ["Name", "Type", "Bus", "Address"],
             "type": "object"
         },
-        "Aggregate": {
-            "description": "Don't add additional properties to this schema. Consult README.schema for instructions on adding new Exposes element sub-schema.",
+        "PSUSensor": {
+            "description": "implemented in dbus-sensors: PSUSensor",
             "additionalProperties": false,
             "patternProperties": {
                 "Name(1[0-7]|[1-9])?$": {
@@ -811,20 +811,8 @@
                 }
             },
             "properties": {
-                "Address": {
-                    "$ref": "#/$defs/Types/Address"
-                },
-                "BridgeGpio": {
-                    "$ref": "#/$defs/Types/BridgeGpio"
-                },
-                "Bus": {
-                    "$ref": "#/$defs/Types/Bus"
-                },
-                "CPURequired": {
-                    "$ref": "#/$defs/Types/CPURequired"
-                },
-                "CurrScaleFactor": {
-                    "$ref": "#/$defs/Types/CurrScaleFactor"
+                "Name": {
+                    "$ref": "#/$defs/Types/Name"
                 },
                 "EntityId": {
                     "$ref": "#/$defs/Types/EntityId"
@@ -832,26 +820,8 @@
                 "EntityInstance": {
                     "$ref": "#/$defs/Types/EntityInstance"
                 },
-                "InScaleFactor": {
-                    "$ref": "#/$defs/Types/InScaleFactor"
-                },
-                "Labels": {
-                    "$ref": "#/$defs/Types/Labels"
-                },
-                "Polling": {
-                    "$ref": "#/$defs/Types/Polling"
-                },
-                "PowerScaleFactor": {
-                    "$ref": "#/$defs/Types/PowerScaleFactor"
-                },
-                "PowerState": {
-                    "$ref": "#/$defs/Types/PowerState"
-                },
-                "SlotId": {
-                    "$ref": "#/$defs/Types/SlotId"
-                },
-                "Thresholds": {
-                    "$ref": "#/$defs/Types/Thresholds"
+                "CPURequired": {
+                    "$ref": "#/$defs/Types/CPURequired"
                 },
                 "maxiout1_Name": {
                     "$ref": "#/$defs/Types/Name"
@@ -865,11 +835,195 @@
                 "pout1_Scale": {
                     "$ref": "#/$defs/Types/ScaleValue"
                 },
+                "Bus": {
+                    "$ref": "#/$defs/Types/Bus"
+                },
+                "Address": {
+                    "$ref": "#/$defs/Types/Address"
+                },
+                "BridgeGpio": {
+                    "$ref": "#/$defs/Types/BridgeGpio"
+                },
+                "CurrScaleFactor": {
+                    "$ref": "#/$defs/Types/CurrScaleFactor"
+                },
+                "Labels": {
+                    "$ref": "#/$defs/Types/Labels"
+                },
+                "SlotId": {
+                    "$ref": "#/$defs/Types/SlotId"
+                },
+                "PowerState": {
+                    "$ref": "#/$defs/Types/PowerState"
+                },
+                "PowerScaleFactor": {
+                    "$ref": "#/$defs/Types/PowerScaleFactor"
+                },
+                "Polling": {
+                    "$ref": "#/$defs/Types/Polling"
+                },
                 "PollRate": {
                     "$ref": "#/$defs/Types/PollRate"
                 },
+                "Thresholds": {
+                    "$ref": "#/$defs/Types/Thresholds"
+                },
                 "Type": {
-                    "$ref": "#/$defs/Types/Type"
+                    "enum": [
+                        "ADC128D818",
+                        "ADM1266",
+                        "ADM1272",
+                        "ADM1275",
+                        "ADM1278",
+                        "ADM1293",
+                        "ADS1015",
+                        "ADS7830",
+                        "AHE50DC_FAN",
+                        "BMR490",
+                        "cffps",
+                        "cffps1",
+                        "cffps2",
+                        "cffps3",
+                        "CRPS185",
+                        "DPS800",
+                        "INA219",
+                        "INA230",
+                        "INA238",
+                        "IPSPS1",
+                        "IR35221",
+                        "IR38060",
+                        "IR38164",
+                        "IR38263",
+                        "ISL28022",
+                        "ISL68137",
+                        "ISL68220",
+                        "ISL68223",
+                        "ISL69225",
+                        "ISL69243",
+                        "ISL69260",
+                        "LM25066",
+                        "LTC2945",
+                        "LTC4286",
+                        "LTC4287",
+                        "MAX5970",
+                        "MAX11607",
+                        "MAX11615",
+                        "MAX11617",
+                        "MAX16601",
+                        "MAX20710",
+                        "MAX20730",
+                        "MAX20734",
+                        "MAX20796",
+                        "MAX34451",
+                        "MP2856",
+                        "MP2857",
+                        "MP2971",
+                        "MP2973",
+                        "MP2975",
+                        "MP5023",
+                        "MP5990",
+                        "MPQ8785",
+                        "NCP4200",
+                        "PLI1209BC",
+                        "pmbus",
+                        "PXE1610",
+                        "RAA228000",
+                        "RAA228004",
+                        "RAA228228",
+                        "RAA228620",
+                        "RAA229001",
+                        "RAA229004",
+                        "RAA229126",
+                        "RTQ6056",
+                        "SBRMI",
+                        "smpro_hwmon",
+                        "SY24655",
+                        "TDA38640",
+                        "TPS53679",
+                        "TPS546D24",
+                        "XDP710",
+                        "XDPE11280",
+                        "XDPE12284",
+                        "XDPE132G5C",
+                        "XDPE152C4"
+                    ]
+                }
+            },
+            "required": ["Name", "Type"],
+            "type": "object"
+        },
+        "Aggregate": {
+            "description": "Don't add additional properties to this schema. Consult README.schema for instructions on adding new Exposes element sub-schema.",
+            "additionalProperties": false,
+            "patternProperties": {
+                "Name(1[0-7]|[0-9])?$": {
+                    "$ref": "#/$defs/Types/Name"
+                },
+                "(vin|iin|pin|maxpin)_Name$": {
+                    "$ref": "#/$defs/Types/Name"
+                },
+                "(in|in_voltage|vout)(1[0-7]|[0-9])_Name$": {
+                    "$ref": "#/$defs/Types/Name"
+                },
+                "(curr|iin|iout|pin|pout|power|temp)(1[0-7]|[0-9])_Name$": {
+                    "$ref": "#/$defs/Types/Name"
+                },
+                "(in|in_voltage)(1[0-7]|[0-9])_Scale$": {
+                    "$ref": "#/$defs/Types/ScaleValue"
+                },
+                "(curr|power|iout)(1[0-7]|[1-9])_Scale$": {
+                    "$ref": "#/$defs/Types/ScaleValue"
+                }
+            },
+            "properties": {
+                "Address": {
+                    "$ref": "#/$defs/Types/Address"
+                },
+                "Bus": {
+                    "$ref": "#/$defs/Types/Bus"
+                },
+                "CurrScaleFactor": {
+                    "$ref": "#/$defs/Types/CurrScaleFactor"
+                },
+                "InScaleFactor": {
+                    "$ref": "#/$defs/Types/InScaleFactor"
+                },
+                "Labels": {
+                    "$ref": "#/$defs/Types/Labels"
+                },
+                "PowerScaleFactor": {
+                    "$ref": "#/$defs/Types/PowerScaleFactor"
+                },
+                "PowerState": {
+                    "$ref": "#/$defs/Types/PowerState"
+                },
+                "SlotId": {
+                    "$ref": "#/$defs/Types/SlotId"
+                },
+                "Thresholds": {
+                    "$ref": "#/$defs/Types/Thresholds"
+                },
+                "pin_Scale": {
+                    "$ref": "#/$defs/Types/ScaleValue"
+                },
+                "Type": {
+                    "enum": [
+                        "BMC",
+                        "Board",
+                        "INA233",
+                        "ADM1281",
+                        "ISL69269",
+                        "LTC4282",
+                        "XDPE152C4D",
+                        "UCD90160",
+                        "UCD90320",
+                        "Intel HSBP CPLD",
+                        "IntelHsbpFruDevice",
+                        "IntelHsbpTempSensor",
+                        "GenericSMBusMux",
+                        "NMSensor",
+                        "PSM7"
+                    ]
                 }
             },
             "required": ["Name", "Type"],
@@ -1192,65 +1346,6 @@
             "PollRate": {
                 "type": "number",
                 "exclusiveMinimum": 0
-            },
-            "Type": {
-                "type": "string",
-                "enum": [
-                    "SBRMI",
-                    "smpro_hwmon",
-                    "BMC",
-                    "Board",
-                    "pmbus",
-                    "ADC128D818",
-                    "INA230",
-                    "INA233",
-                    "INA238",
-                    "SY24655",
-                    "MAX5970",
-                    "MAX11615",
-                    "MAX11617",
-                    "MAX34451",
-                    "ADM1272",
-                    "ADM1266",
-                    "ADM1272",
-                    "ADM1278",
-                    "ADM1281",
-                    "MP2971",
-                    "MP2973",
-                    "MP5023",
-                    "MP5990",
-                    "XDP710",
-                    "IR35221",
-                    "IR38060",
-                    "IR38164",
-                    "IR38263",
-                    "PLI1209BC",
-                    "PXE1610",
-                    "TDA38640",
-                    "ISL28022",
-                    "ISL69260",
-                    "ISL69269",
-                    "RTQ6056",
-                    "LTC4287",
-                    "LTC4282",
-                    "XDPE11280",
-                    "XDPE132G5C",
-                    "XDPE152C4",
-                    "XDPE152C4D",
-                    "RAA228000",
-                    "RAA228004",
-                    "CRPS185",
-                    "LM25066",
-                    "UCD90160",
-                    "UCD90320",
-                    "Intel HSBP CPLD",
-                    "IntelHsbpFruDevice",
-                    "IntelHsbpTempSensor",
-                    "GenericSMBusMux",
-                    "cffps",
-                    "NMSensor",
-                    "PSM7"
-                ]
             }
         }
     }
