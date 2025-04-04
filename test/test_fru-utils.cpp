@@ -427,6 +427,7 @@ TEST(formatIPMIFRU, FullDecode)
             Pair("BOARD_PRODUCT_NAME", "P3809"),
             Pair("BOARD_SERIAL_NUMBER", "1583324800150"),
             Pair("Common_Format_Version", "1"), Pair("PRODUCT_ASSET_TAG", ""),
+            Pair("MAC_BOARD_INFO_AM2", "3C:6D:66:14:C8:7A"),
             Pair("PRODUCT_FRU_VERSION_ID", "v0.1"),
             Pair("PRODUCT_LANGUAGE_CODE", "25"),
             Pair("PRODUCT_MANUFACTURER", "NVIDIA"),
