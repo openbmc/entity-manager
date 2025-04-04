@@ -37,6 +37,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "01c95988_2e3bcc82",
+        "filename": "schemas/legacy.json",
+        "patchSetId": 7
+      },
+      "lineNbr": 49,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-04-04T18:07:02Z",
+      "side": 1,
+      "message": "I first split it out in this file to clarify it as a ```Legacy``` schema.\n\nThe schemas i extract from ```Aggregate``` are not  final. They are an intermediate step for subproject maintainers and other folks to come in and finalize each specific schema and perhaps also put them in a different file.\n\n\nMaybe we can find a policy that if a subproject wants to extend (not refactor) a legacy schema, then it is not ```Legacy``` anymore since it\u0027s actively being developed. Maybe then it is the right time to find the correct file to put it.\n\nWhat do you think? Or do you think we must do that work as part of this series?",
+      "parentUuid": "88f3ef27_ecdd4ea6",
+      "revId": "e4d4d16c1bb49d3cf337b671b5465de06bcf630d",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "4c89a9a9_7abbe8d4",
         "filename": "schemas/legacy.json",
         "patchSetId": 7
@@ -48,6 +66,24 @@
       "writtenOn": "2025-04-04T17:48:32Z",
       "side": 1,
       "message": "Functionally it\u0027s really odd to me that we broke these out into their own types instead of just inlining them here.   It\u0027s not like C1 is a complex type or reused anywhere but here.  The same could be said for the rest of the types.\n\n\nThis patchset on its own is great, and an improvement, but it would be great if someone could look at the ergonomics of these.",
+      "revId": "e4d4d16c1bb49d3cf337b671b5465de06bcf630d",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c8a3f65e_b63d56bf",
+        "filename": "schemas/legacy.json",
+        "patchSetId": 7
+      },
+      "lineNbr": 53,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-04-04T18:07:02Z",
+      "side": 1,
+      "message": "I can look into inlining types which are only used once,\nbut i would prefer to do that in a different patch, since this patch is about extracting ```CFMSensor```. \n\nYou are right, a lot of these types are just ```number``` or ```string``` under the hood and provide no extra value.",
+      "parentUuid": "4c89a9a9_7abbe8d4",
       "revId": "e4d4d16c1bb49d3cf337b671b5465de06bcf630d",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
