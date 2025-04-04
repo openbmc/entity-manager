@@ -37,6 +37,23 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "654d4bb8_9a35ce17",
+        "filename": "schemas/global.json",
+        "patchSetId": 4
+      },
+      "lineNbr": 23,
+      "author": {
+        "id": 1000005
+      },
+      "writtenOn": "2025-04-04T03:22:29Z",
+      "side": 1,
+      "message": "`MCTPUSBDevice` may be a better choice. \n\nCopying the discussion from Discord\n\nnote that \"Target\" portion of MCTPI2CTarget was language from the I2C spec, as that\u0027s what I2C calls devices that are addressable on the bus. My intent was that each EM type used language that aligned with its spec. In the case of USB, MCTPUSBDevice might be better",
+      "revId": "7cea6e9643409462d7b4eea3a436c65155b85847",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "6677edcb_1404ca72",
         "filename": "schemas/mctp.json",
         "patchSetId": 4
@@ -84,6 +101,23 @@
       "side": 1,
       "message": "Acknowledged",
       "parentUuid": "283959b1_ef2b15f1",
+      "revId": "7cea6e9643409462d7b4eea3a436c65155b85847",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e6df7a86_3f2da3fe",
+        "filename": "schemas/mctp.json",
+        "patchSetId": 4
+      },
+      "lineNbr": 38,
+      "author": {
+        "id": 1000005
+      },
+      "writtenOn": "2025-04-04T03:22:29Z",
+      "side": 1,
+      "message": "What are the other enumerations possible other than `MCTPUSBTarget`?",
       "revId": "7cea6e9643409462d7b4eea3a436c65155b85847",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
