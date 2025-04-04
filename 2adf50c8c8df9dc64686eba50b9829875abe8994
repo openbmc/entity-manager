@@ -16,6 +16,24 @@
       "message": "The MaxValue/MinValue are used in other sensor types, I think you should keep those properties in the common area. We can remove those properties when all of sensor types have been updated",
       "revId": "2adf50c8c8df9dc64686eba50b9829875abe8994",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "78e2634a_aec918f7",
+        "filename": "schemas/legacy.json",
+        "patchSetId": 3
+      },
+      "lineNbr": 721,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-04-04T07:24:19Z",
+      "side": 0,
+      "message": "Do you mean they are used downstream, or should we keep them here because they *may* be used by one of the configurations enumerated by \"Type\" for the \"Aggregate\" schema?\n\nCurrently \"MinValue\", \"MaxValue\" are unused by configurations using the \"Aggregate\" schema, otherwise the schema validator would complain.\n\nTo clarify, the ```#/$defs/Types/MinValue``` and ```#/$defs/Types/MaxValue``` are still available to use in other schemas and i am using it in ```TempSensor``` schema.\n\nFor \"Aggregate\" schema, at the point of this patch, we have\n```Name([1-9][0-9]*)?$\"``` properties and also ```Labels``` and various other pattern properties. So i do not see how it makes sense to define a single ```MinValue``` or ```MaxValue``` in that case, as the ```Aggregate``` configuration supports multiple sensors of different units.\n\nI would like to remove as many properties from ```Aggregate``` schema as possible, since it has gotten out of control and used for too many things.\nMany combinations of the properties defined in ```Aggregate``` schema are not supported at all by the backing daemons and i would speculate some combinations could probably crash them 😄",
+      "parentUuid": "98816f05_b88aa909",
+      "revId": "2adf50c8c8df9dc64686eba50b9829875abe8994",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }
