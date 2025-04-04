@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "98816f05_b88aa909",
+        "filename": "schemas/legacy.json",
+        "patchSetId": 3
+      },
+      "lineNbr": 721,
+      "author": {
+        "id": 1001198
+      },
+      "writtenOn": "2025-04-04T02:46:32Z",
+      "side": 0,
+      "message": "The MaxValue/MinValue are used in other sensor types, I think you should keep those properties in the common area. We can remove those properties when all of sensor types have been updated",
+      "revId": "2adf50c8c8df9dc64686eba50b9829875abe8994",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    }
+  ]
+}
