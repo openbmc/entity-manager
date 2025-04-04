@@ -510,6 +510,7 @@ resCodes formatIPMIFRU(
             state = res.first;
             std::string value = res.second;
             std::string name;
+            bool isCustomField = false;
             if (fieldIndex < fruAreaFieldNames->size())
             {
                 name = std::string(getFruAreaName(area)) + "_" +
@@ -521,6 +522,7 @@ resCodes formatIPMIFRU(
                     std::string(getFruAreaName(area)) + "_" +
                     fruCustomFieldName +
                     std::to_string(fieldIndex - fruAreaFieldNames->size() + 1);
+                isCustomField = true;
             }
 
             if (state == DecodeState::ok)
@@ -532,8 +534,18 @@ resCodes formatIPMIFRU(
                                          })
                                 .base(),
                             value.end());
-
+                if (isCustomField)
+                {
+                    // Some MAC addresses are stored in a custom field, with
+                    // "MAC:" prefixed on the value.  If we see that, create a
+                    // new field with the decoded data
+                    if (value.starts_with("MAC: "))
+                    {
+                        result["MAC_" + name] = value.substr(5);
+                    }
+                }
                 result[name] = std::move(value);
+
                 ++fieldIndex;
             }
             else if (state == DecodeState::err)
