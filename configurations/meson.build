@@ -30,6 +30,7 @@ configs = [
     'blueridge_2u_chassis.json',
     'blueridge_4u_chassis.json',
     'blyth.json',
+    'blyth2.json',
     'bnp_baseboard.json',
     'bonnell.json',
     'brcm_100g_1p_ocp_mezz.json',
