@@ -1,11 +1,5 @@
 {
     "Exposes": [
-        {
-            "Address": "$address",
-            "Bus": "$bus",
-            "Name": "Ventura RMC LED Board $bus",
-            "Type": "Board"
-        }
     ],
     "Name": "Ventura RMC LED Board",
     "Probe": "xyz.openbmc_project.FruDevice({'BOARD_PRODUCT_NAME': 'Ventura LED Board'})",
