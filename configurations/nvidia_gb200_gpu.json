@@ -1,0 +1,20 @@
+{
+    "Exposes": [
+        {
+            "EntityId": 0,
+            "EntityInstance": 0,
+            "Name": "NVIDIA GB200 GPU",
+            "Type": "NvidiaMctpVdm"
+        }
+    ],
+    "Name": "NVIDIA GB200",
+    "Probe": "xyz.openbmc_project.FruDevice({'PRODUCT_PRODUCT_NAME': 'P4975', 'PRODUCT_MANUFACTURER': 'NVIDIA'})",
+    "Type": "Chassis",
+    "xyz.openbmc_project.Inventory.Decorator.Asset": {
+        "BuildDate": "$BOARD_MANUFACTURE_DATE",
+        "Manufacturer": "$PRODUCT_MANUFACTURER",
+        "Model": "$PRODUCT_PRODUCT_NAME",
+        "PartNumber": "$PRODUCT_PART_NUMBER",
+        "SerialNumber": "$PRODUCT_SERIAL_NUMBER"
+    }
+}
