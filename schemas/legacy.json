@@ -1021,6 +1021,17 @@
                 }
             }
         },
+        "BMC": {
+            "additionalProperties": false,
+            "properties": {
+                "Name": {
+                    "$ref": "#/$defs/Types/Name"
+                },
+                "Type": {
+                    "const": "BMC"
+                }
+            }
+        },
         "Aggregate": {
             "description": "Don't add additional properties to this schema. Consult README.schema for instructions on adding new Exposes element sub-schema.",
             "additionalProperties": false,
@@ -1077,7 +1088,6 @@
                 },
                 "Type": {
                     "enum": [
-                        "BMC",
                         "Board",
                         "INA233",
                         "ADM1281",
