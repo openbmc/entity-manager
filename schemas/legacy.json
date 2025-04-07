@@ -6,10 +6,10 @@
             "additionalProperties": false,
             "properties": {
                 "AlphaF": {
-                    "$ref": "#/$defs/Types/AlphaF"
+                    "type": "number"
                 },
                 "AlphaS": {
-                    "$ref": "#/$defs/Types/AlphaS"
+                    "type": "number"
                 },
                 "Name": {
                     "$ref": "#/$defs/Types/Name"
@@ -21,10 +21,10 @@
                     "$ref": "#/$defs/Types/PowerFactorMin"
                 },
                 "QMax": {
-                    "$ref": "#/$defs/Types/QMax"
+                    "type": "number"
                 },
                 "QMin": {
-                    "$ref": "#/$defs/Types/QMin"
+                    "type": "number"
                 },
                 "Thresholds": {
                     "$ref": "#/$defs/Types/Thresholds"
@@ -1133,12 +1133,6 @@
                 "multipleOf": 1,
                 "minimum": 0
             },
-            "AlphaF": {
-                "type": "number"
-            },
-            "AlphaS": {
-                "type": "number"
-            },
             "BindConnector": {
                 "type": "string"
             },
@@ -1360,12 +1354,6 @@
                 "type": "number",
                 "minimum": 0,
                 "multipleOf": 1
-            },
-            "QMax": {
-                "type": "number"
-            },
-            "QMin": {
-                "type": "number"
             },
             "RedundantCount": {
                 "type": "number"
