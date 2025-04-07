@@ -1,0 +1,111 @@
+{
+    "Exposes": [
+        {
+            "Address": "0x76",
+            "Bus": 29,
+            "Name": "Ambient 1 Temp",
+            "Name1": "Station Pressure",
+            "Thresholds": [
+                {
+                    "Direction": "greater than",
+                    "Index": 1,
+                    "Name": "Ambient Upper Critical",
+                    "Severity": 0,
+                    "Value": 100
+                },
+                {
+                    "Direction": "less than",
+                    "Index": 1,
+                    "Name": "Ambient Lower Critical",
+                    "Severity": 0,
+                    "Value": 0
+                }
+            ],
+            "Type": "DPS310"
+        },
+        {
+            "Address": "0x40",
+            "Bus": 29,
+            "Name": "Ambient 2 Temp",
+            "Name1": "Relative Humidity",
+            "Thresholds": [
+                {
+                    "Direction": "greater than",
+                    "Index": 1,
+                    "Name": "Ambient Upper Critical",
+                    "Severity": 0,
+                    "Value": 100
+                },
+                {
+                    "Direction": "less than",
+                    "Index": 1,
+                    "Name": "Ambient Lower Critical",
+                    "Severity": 0,
+                    "Value": 0
+                }
+            ],
+            "Type": "HDC1080"
+        },
+        {
+            "MaxValidInput": 100,
+            "MaxValue": 128,
+            "MinValidInput": 0,
+            "MinValue": -127,
+            "Name": "Ambient Virtual Temp",
+            "Sensors": [
+                "Ambient 0 Temp",
+                "Ambient 1 Temp",
+                "Ambient 2 Temp"
+            ],
+            "Thresholds": [
+                {
+                    "Direction": "greater than",
+                    "Hysteresis": 3,
+                    "Name": "HardShutdown",
+                    "Severity": 4,
+                    "Value": 53
+                },
+                {
+                    "Direction": "greater than",
+                    "Hysteresis": 3,
+                    "Name": "SoftShutdown",
+                    "Severity": 3,
+                    "Value": 48
+                },
+                {
+                    "Direction": "greater than",
+                    "Hysteresis": 3,
+                    "Name": "Warning",
+                    "Severity": 0,
+                    "Value": 45
+                }
+            ],
+            "Type": "ModifiedMedian",
+            "Units": "DegreesC"
+        },
+        {
+            "Address": "0x48",
+            "Bus": 29,
+            "Name": "Ambient 0 Temp",
+            "PollRate": 1,
+            "Thresholds": [
+                {
+                    "Direction": "greater than",
+                    "Name": "Ambient Upper Critical",
+                    "Severity": 0,
+                    "Value": 100
+                },
+                {
+                    "Direction": "less than",
+                    "Name": "Ambient Lower Critical",
+                    "Severity": 0,
+                    "Value": 0
+                }
+            ],
+            "Type": "TMP75"
+        }
+    ],
+    "Name": "Storm King 2 Panel",
+    "Probe": "com.ibm.ipzvpd.VINI({'CC': [53, 49, 70, 55]})",
+    "Type": "Board"
+}
