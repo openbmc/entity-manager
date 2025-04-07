@@ -50,19 +50,19 @@
             "additionalProperties": false,
             "properties": {
                 "C1": {
-                    "$ref": "#/$defs/Types/C1"
+                    "type": "number"
                 },
                 "C2": {
-                    "$ref": "#/$defs/Types/C2"
+                    "type": "number"
                 },
                 "MaxCFM": {
-                    "$ref": "#/$defs/Types/MaxCFM"
+                    "type": "number"
                 },
                 "TachMaxPercent": {
-                    "$ref": "#/$defs/Types/TachMaxPercent"
+                    "type": "number"
                 },
                 "TachMinPercent": {
-                    "$ref": "#/$defs/Types/TachMinPercent"
+                    "type": "number"
                 },
                 "Tachs": {
                     "$ref": "#/$defs/Types/Tachs"
@@ -1160,12 +1160,6 @@
             "Bus": {
                 "type": ["string", "number"]
             },
-            "C1": {
-                "type": "number"
-            },
-            "C2": {
-                "type": "number"
-            },
             "CPURequired": {
                 "type": "number",
                 "multipleOf": 1,
@@ -1257,9 +1251,6 @@
                     "type": "string"
                 },
                 "type": "array"
-            },
-            "MaxCFM": {
-                "type": "number"
             },
             "MaxReading": {
                 "type": "number"
@@ -1369,12 +1360,6 @@
             },
             "SlotId": {
                 "type": "string"
-            },
-            "TachMaxPercent": {
-                "type": "number"
-            },
-            "TachMinPercent": {
-                "type": "number"
             },
             "Tachs": {
                 "items": {
