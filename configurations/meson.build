@@ -176,6 +176,7 @@ configs = [
     'sbp1_rssd.json',
     'solum_pssf162202_psu.json',
     'storm_king.json',
+    'storm_king2.json',
     'stp_baseboard.json',
     'stp_p4000_chassis.json',
     'supermicro-pws-920p-sq_psu.json',
