@@ -5,6 +5,10 @@
             "Bus": "$bus",
             "Name": "NVIDIA GB200 $bus + 1 % 2 FRU",
             "Type": "EEPROM"
+        },
+        {
+            "Name": "NVIDIA GB200 GPU",
+            "Type": "NvidiaMctpVdm"
         }
     ],
     "Name": "NVIDIA GB200 $bus + 1 % 2",

@@ -1078,6 +1078,20 @@
                 }
             }
         },
+        "NvidiaMctpVdm": {
+            "additionalProperties": false,
+            "properties": {
+                "Name": {
+                    "$ref": "#/$defs/Types/Name"
+                },
+                "Type": {
+                    "type": "string",
+                    "const": "NvidiaMctpVdm"
+                }
+            },
+            "required": ["Name", "Type"],
+            "type": "object"
+        },
         "Types": {
             "Address": {
                 "type": "string"
