@@ -68,6 +68,24 @@
       "parentUuid": "e45b1782_04107227",
       "revId": "61fd6e16fedb47895bf64548334178176bacc6e1",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7ed7c2b0_be6bf681",
+        "filename": "configurations/nvidia_gb200_gpu.json",
+        "patchSetId": 2
+      },
+      "lineNbr": 11,
+      "author": {
+        "id": 1000056
+      },
+      "writtenOn": "2025-04-07T15:01:04Z",
+      "side": 1,
+      "message": "@haghera@nvidia.com after looking at the platform a bit more, I think we can PROBE on the following as it corresponds to the GPU:\n\n.PRODUCT_PRODUCT_NAME               property  s         \"P4975\"",
+      "parentUuid": "e2fc8004_96e810a8",
+      "revId": "61fd6e16fedb47895bf64548334178176bacc6e1",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }
