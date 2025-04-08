@@ -122,6 +122,9 @@
                 "Bus": {
                     "$ref": "#/$defs/Types/Bus"
                 },
+                "MuxChannel": {
+                    "$ref": "#/$defs/Types/MuxChannel"
+                },
                 "Class": {
                     "$ref": "#/$defs/Types/Class"
                 },
@@ -194,6 +197,9 @@
                 },
                 "Bus": {
                     "$ref": "#/$defs/Types/Bus"
+                },
+                "MuxChannel": {
+                    "$ref": "#/$defs/Types/MuxChannel"
                 },
                 "EntityId": {
                     "$ref": "#/$defs/Types/EntityId"
@@ -278,6 +284,9 @@
                 "Bus": {
                     "$ref": "#/$defs/Types/Bus"
                 },
+                "MuxChannel": {
+                    "$ref": "#/$defs/Types/MuxChannel"
+                },
                 "PowerState": {
                     "$ref": "#/$defs/Types/PowerState"
                 },
@@ -348,6 +357,9 @@
                 "Bus": {
                     "$ref": "#/$defs/Types/Bus"
                 },
+                "MuxChannel": {
+                    "$ref": "#/$defs/Types/MuxChannel"
+                },
                 "Address": {
                     "$ref": "#/$defs/Types/Address"
                 },
@@ -364,7 +376,15 @@
                     ]
                 }
             },
-            "required": ["Name", "Type", "Address", "Bus", "ChannelNames"],
+            "required": ["Name", "Type", "Address", "ChannelNames"],
+            "oneOf": [
+                {
+                    "required": ["Bus"]
+                },
+                {
+                    "required": ["MuxChannel"]
+                }
+            ],
             "type": "object"
         },
         "Gpio": {
@@ -675,6 +695,9 @@
                 "Bus": {
                     "$ref": "#/$defs/Types/Bus"
                 },
+                "MuxChannel": {
+                    "$ref": "#/$defs/Types/MuxChannel"
+                },
                 "EntityId": {
                     "$ref": "#/$defs/Types/EntityId"
                 },
@@ -730,7 +753,15 @@
                     ]
                 }
             },
-            "required": ["Name", "Type", "Bus", "Address"],
+            "required": ["Name", "Type", "Address"],
+            "oneOf": [
+                {
+                    "required": ["Bus"]
+                },
+                {
+                    "required": ["MuxChannel"]
+                }
+            ],
             "type": "object"
         },
         "NVME1000": {
@@ -742,6 +773,9 @@
                 },
                 "Bus": {
                     "$ref": "#/$defs/Types/Bus"
+                },
+                "MuxChannel": {
+                    "$ref": "#/$defs/Types/MuxChannel"
                 },
                 "Address": {
                     "$ref": "#/$defs/Types/Address"
@@ -756,7 +790,15 @@
                     "const": "NVME1000"
                 }
             },
-            "required": ["Name", "Type", "Bus", "Address"],
+            "required": ["Name", "Type", "Address"],
+            "oneOf": [
+                {
+                    "required": ["Bus"]
+                },
+                {
+                    "required": ["MuxChannel"]
+                }
+            ],
             "type": "object"
         },
         "EEPROM": {
@@ -825,6 +867,9 @@
                 },
                 "Bus": {
                     "$ref": "#/$defs/Types/Bus"
+                },
+                "MuxChannel": {
+                    "$ref": "#/$defs/Types/MuxChannel"
                 },
                 "CPURequired": {
                     "$ref": "#/$defs/Types/CPURequired"
@@ -1059,6 +1104,19 @@
             },
             "MinValue": {
                 "type": "number"
+            },
+            "MuxChannel": {
+                "additionalProperties": false,
+                "properties": {
+                    "MuxName": {
+                        "type": "string"
+                    },
+                    "ChannelName": {
+                        "type": "string"
+                    }
+                },
+                "required": ["MuxName", "ChannelName"],
+                "type": "object"
             },
             "Name": {
                 "type": "string"
