@@ -116,6 +116,9 @@ subdir('service_files')
 subdir('src')
 
 if get_option('tests').allowed()
+<<<<<<< PATCH SET (ba21a0 Move test meson into the test folder)
+    subdir('test')
+=======
     test_boost_args = boost_args + ['-DBOOST_ASIO_DISABLE_THREADS']
     gtest = dependency('gtest', main: true, disabler: true, required: false)
     gmock = dependency('gmock', disabler: true, required: false)
@@ -181,4 +184,5 @@ if get_option('tests').allowed()
             include_directories: 'src',
         ),
     )
+>>>>>>> BASE      (955c6e Fix subproject gtest)
 endif
