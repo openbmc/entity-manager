@@ -853,6 +853,9 @@
                 "CurrScaleFactor": {
                     "$ref": "#/$defs/Types/CurrScaleFactor"
                 },
+                "InScaleFactor": {
+                    "$ref": "#/$defs/Types/InScaleFactor"
+                },
                 "Labels": {
                     "$ref": "#/$defs/Types/Labels"
                 },
@@ -881,6 +884,7 @@
                         "ADM1272",
                         "ADM1275",
                         "ADM1278",
+                        "ADM1281",
                         "ADM1293",
                         "ADS1015",
                         "ADS7830",
@@ -894,6 +898,7 @@
                         "DPS800",
                         "INA219",
                         "INA230",
+                        "INA233",
                         "INA238",
                         "IPSPS1",
                         "IR38060",
@@ -908,6 +913,7 @@
                         "ISL69260",
                         "LM25066",
                         "LTC2945",
+                        "LTC4282",
                         "LTC4286",
                         "LTC4287",
                         "MAX5970",
@@ -1101,37 +1107,19 @@
                 "Bus": {
                     "$ref": "#/$defs/Types/Bus"
                 },
-                "CurrScaleFactor": {
-                    "$ref": "#/$defs/Types/CurrScaleFactor"
-                },
-                "InScaleFactor": {
-                    "$ref": "#/$defs/Types/InScaleFactor"
-                },
                 "Labels": {
                     "$ref": "#/$defs/Types/Labels"
-                },
-                "PowerScaleFactor": {
-                    "$ref": "#/$defs/Types/PowerScaleFactor"
                 },
                 "PowerState": {
                     "$ref": "#/$defs/Types/PowerState"
                 },
-                "SlotId": {
-                    "$ref": "#/$defs/Types/SlotId"
-                },
                 "Thresholds": {
                     "$ref": "#/$defs/Types/Thresholds"
                 },
-                "pin_Scale": {
-                    "$ref": "#/$defs/Types/ScaleValue"
-                },
                 "Type": {
                     "enum": [
-                        "INA233",
-                        "ADM1281",
                         "IR35221",
                         "ISL69269",
-                        "LTC4282",
                         "XDPE132G5C",
                         "XDPE152C4D",
                         "PSM7"
