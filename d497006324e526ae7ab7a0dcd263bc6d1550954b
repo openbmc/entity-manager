@@ -16,6 +16,24 @@
       "message": "This is more of a question rather than a review:\n\nIt\u0027s  documented to not add new properties to the ```Aggregate``` schema.\n\nLine 5, in \"description\"\n\n```\nDon\u0027t add additional properties to this schema. Consult README.schema for instructions on adding new Exposes element sub-schema.\n```\n\nIs there something that I\u0027m missing here?",
       "revId": "d497006324e526ae7ab7a0dcd263bc6d1550954b",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4de4bdf8_217e264d",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 6
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1001526
+      },
+      "writtenOn": "2025-04-08T10:38:35Z",
+      "side": 1,
+      "message": "Hi @alexander.hansen@9elements.com, thanks for pointing out. I moved \"MuxChannel\" into the subschemas of each sensor (the impact list is added to the commit msg). However, I still temporarily put one \"MuxChannel\" property in \"Aggregate\" until your extract patches are fully merged.\n\nFYI, I added a [patch](https://gerrit.openbmc.org/c/openbmc/entity-manager/+/79539/1) to this relation chain to remove Bus/Address from ADC because they are redundant. My apology that we Ampere accidentally put them in our config which must have been part of the reason you added them to ADC subschema.",
+      "parentUuid": "a26ffbb1_2b82697f",
+      "revId": "d497006324e526ae7ab7a0dcd263bc6d1550954b",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }
