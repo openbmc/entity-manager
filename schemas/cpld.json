@@ -12,6 +12,9 @@
                 "Bus": {
                     "$ref": "legacy.json#/$defs/Types/Bus"
                 },
+                "MuxChannel": {
+                    "$ref": "#/$defs/Types/MuxChannel"
+                },
                 "FirmwareInfo": {
                     "$ref": "firmware.json#/$defs/FirmwareInfoDef"
                 },
@@ -29,7 +32,15 @@
                     ]
                 }
             },
-            "required": ["Address", "Bus", "FirmwareInfo", "Name", "Type"]
+            "required": ["Address", "FirmwareInfo", "Name", "Type"],
+            "oneOf": [
+                {
+                    "required": ["Bus"]
+                },
+                {
+                    "required": ["MuxChannel"]
+                }
+            ]
         }
     }
 }

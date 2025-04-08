@@ -122,6 +122,9 @@
                 "Bus": {
                     "$ref": "#/$defs/Types/Bus"
                 },
+                "MuxChannel": {
+                    "$ref": "#/$defs/Types/MuxChannel"
+                },
                 "Class": {
                     "$ref": "#/$defs/Types/Class"
                 },
@@ -140,6 +143,7 @@
                 }
             },
             "required": ["Name", "Type", "Class"],
+            "not": { "required": ["Bus", "MuxChannel"] },
             "type": "object"
         },
         "AspeedFan": {
@@ -195,6 +199,9 @@
                 "Bus": {
                     "$ref": "#/$defs/Types/Bus"
                 },
+                "MuxChannel": {
+                    "$ref": "#/$defs/Types/MuxChannel"
+                },
                 "EntityId": {
                     "$ref": "#/$defs/Types/EntityId"
                 },
@@ -228,6 +235,7 @@
                 }
             },
             "required": ["Name", "Type"],
+            "not": { "required": ["Bus", "MuxChannel"] },
             "type": "object"
         },
         "NuvotonFan": {
@@ -278,6 +286,9 @@
                 "Bus": {
                     "$ref": "#/$defs/Types/Bus"
                 },
+                "MuxChannel": {
+                    "$ref": "#/$defs/Types/MuxChannel"
+                },
                 "PowerState": {
                     "$ref": "#/$defs/Types/PowerState"
                 },
@@ -299,6 +310,7 @@
                 }
             },
             "required": ["Name", "Type", "CpuID", "Address"],
+            "not": { "required": ["Bus", "MuxChannel"] },
             "type": "object"
         },
         "IpmbSensor": {
@@ -348,6 +360,9 @@
                 "Bus": {
                     "$ref": "#/$defs/Types/Bus"
                 },
+                "MuxChannel": {
+                    "$ref": "#/$defs/Types/MuxChannel"
+                },
                 "Address": {
                     "$ref": "#/$defs/Types/Address"
                 },
@@ -364,7 +379,15 @@
                     ]
                 }
             },
-            "required": ["Name", "Type", "Address", "Bus", "ChannelNames"],
+            "required": ["Name", "Type", "Address", "ChannelNames"],
+            "oneOf": [
+                {
+                    "required": ["Bus"]
+                },
+                {
+                    "required": ["MuxChannel"]
+                }
+            ],
             "type": "object"
         },
         "Gpio": {
@@ -416,6 +439,9 @@
                 "Bus": {
                     "$ref": "#/$defs/Types/Bus"
                 },
+                "MuxChannel": {
+                    "$ref": "#/$defs/Types/MuxChannel"
+                },
                 "Address": {
                     "$ref": "#/$defs/Types/Address"
                 },
@@ -424,7 +450,15 @@
                     "const": "MultiNodePresence"
                 }
             },
-            "required": ["Name", "Type", "Bus", "Address"],
+            "required": ["Name", "Type", "Address"],
+            "oneOf": [
+                {
+                    "required": ["Bus"]
+                },
+                {
+                    "required": ["MuxChannel"]
+                }
+            ],
             "type": "object"
         },
         "HostCpuUtilization": {
@@ -486,6 +520,9 @@
                 "Bus": {
                     "$ref": "#/$defs/Types/Bus"
                 },
+                "MuxChannel": {
+                    "$ref": "#/$defs/Types/MuxChannel"
+                },
                 "Address": {
                     "oneOf": [
                         {
@@ -500,7 +537,15 @@
                     "const": "PSUPresence"
                 }
             },
-            "required": ["Name", "Type", "Bus", "Address"],
+            "required": ["Name", "Type", "Address"],
+            "oneOf": [
+                {
+                    "required": ["Bus"]
+                },
+                {
+                    "required": ["MuxChannel"]
+                }
+            ],
             "type": "object"
         },
         "EmmcDevice": {
@@ -525,6 +570,9 @@
                 "Bus": {
                     "$ref": "#/$defs/Types/Bus"
                 },
+                "MuxChannel": {
+                    "$ref": "#/$defs/Types/MuxChannel"
+                },
                 "Address": {
                     "$ref": "#/$defs/Types/Address"
                 },
@@ -538,7 +586,15 @@
                     "const": "IpmbDevice"
                 }
             },
-            "required": ["Name", "Type", "Bus", "Address", "Class"],
+            "required": ["Name", "Type", "Address", "Class"],
+            "oneOf": [
+                {
+                    "required": ["Bus"]
+                },
+                {
+                    "required": ["MuxChannel"]
+                }
+            ],
             "type": "object"
         },
         "IpmbPowerMonitor": {
@@ -550,6 +606,9 @@
                 "Bus": {
                     "$ref": "#/$defs/Types/Bus"
                 },
+                "MuxChannel": {
+                    "$ref": "#/$defs/Types/MuxChannel"
+                },
                 "Address": {
                     "$ref": "#/$defs/Types/Address"
                 },
@@ -560,7 +619,15 @@
                     "const": "IpmbPowerMonitor"
                 }
             },
-            "required": ["Name", "Type", "Bus", "Address", "Class"],
+            "required": ["Name", "Type", "Address", "Class"],
+            "oneOf": [
+                {
+                    "required": ["Bus"]
+                },
+                {
+                    "required": ["MuxChannel"]
+                }
+            ],
             "type": "object"
         },
         "ADC": {
@@ -631,6 +698,9 @@
                 "Bus": {
                     "$ref": "#/$defs/Types/Bus"
                 },
+                "MuxChannel": {
+                    "$ref": "#/$defs/Types/MuxChannel"
+                },
                 "EntityId": {
                     "$ref": "#/$defs/Types/EntityId"
                 },
@@ -697,7 +767,15 @@
                     ]
                 }
             },
-            "required": ["Name", "Type", "Bus", "Address"],
+            "required": ["Name", "Type", "Address"],
+            "oneOf": [
+                {
+                    "required": ["Bus"]
+                },
+                {
+                    "required": ["MuxChannel"]
+                }
+            ],
             "type": "object"
         },
         "NVME1000": {
@@ -709,6 +787,9 @@
                 },
                 "Bus": {
                     "$ref": "#/$defs/Types/Bus"
+                },
+                "MuxChannel": {
+                    "$ref": "#/$defs/Types/MuxChannel"
                 },
                 "Address": {
                     "$ref": "#/$defs/Types/Address"
@@ -723,7 +804,15 @@
                     "const": "NVME1000"
                 }
             },
-            "required": ["Name", "Type", "Bus", "Address"],
+            "required": ["Name", "Type", "Address"],
+            "oneOf": [
+                {
+                    "required": ["Bus"]
+                },
+                {
+                    "required": ["MuxChannel"]
+                }
+            ],
             "type": "object"
         },
         "EEPROM": {
@@ -734,6 +823,9 @@
                 },
                 "Bus": {
                     "$ref": "#/$defs/Types/Bus"
+                },
+                "MuxChannel": {
+                    "$ref": "#/$defs/Types/MuxChannel"
                 },
                 "Address": {
                     "$ref": "#/$defs/Types/Address"
@@ -753,7 +845,15 @@
                     ]
                 }
             },
-            "required": ["Name", "Type", "Bus", "Address"],
+            "required": ["Name", "Type", "Address"],
+            "oneOf": [
+                {
+                    "required": ["Bus"]
+                },
+                {
+                    "required": ["MuxChannel"]
+                }
+            ],
             "type": "object"
         },
         "PSUSensor": {
@@ -821,6 +921,9 @@
                 },
                 "Bus": {
                     "$ref": "#/$defs/Types/Bus"
+                },
+                "MuxChannel": {
+                    "$ref": "#/$defs/Types/MuxChannel"
                 },
                 "Address": {
                     "$ref": "#/$defs/Types/Address"
@@ -943,6 +1046,7 @@
                 }
             },
             "required": ["Name", "Type"],
+            "not": { "required": ["Bus", "MuxChannel"] },
             "type": "object"
         },
         "NMSensor": {
@@ -994,10 +1098,14 @@
                 "Bus": {
                     "$ref": "#/$defs/Types/Bus"
                 },
+                "MuxChannel": {
+                    "$ref": "#/$defs/Types/MuxChannel"
+                },
                 "Type": {
                     "const": "Intel HSBP CPLD"
                 }
-            }
+            },
+            "not": { "required": ["Bus", "MuxChannel"] }
         },
         "GenericSMBusMux": {
             "description": "unknown purpose",
@@ -1038,10 +1146,14 @@
                 "Bus": {
                     "$ref": "#/$defs/Types/Bus"
                 },
+                "MuxChannel": {
+                    "$ref": "#/$defs/Types/MuxChannel"
+                },
                 "Type": {
                     "enum": ["UCD90160", "UCD90320"]
                 }
-            }
+            },
+            "not": { "required": ["Bus", "MuxChannel"] }
         },
         "Types": {
             "Address": {
@@ -1202,6 +1314,19 @@
             },
             "MinValue": {
                 "type": "number"
+            },
+            "MuxChannel": {
+                "additionalProperties": false,
+                "properties": {
+                    "MuxName": {
+                        "type": "string"
+                    },
+                    "ChannelName": {
+                        "type": "string"
+                    }
+                },
+                "required": ["MuxName", "ChannelName"],
+                "type": "object"
             },
             "Name": {
                 "type": "string"

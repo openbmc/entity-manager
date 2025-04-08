@@ -11,6 +11,9 @@
                     "description": "The bus index to which the device is attached",
                     "type": "string"
                 },
+                "MuxChannel": {
+                    "$ref": "#/$defs/Types/MuxChannel"
+                },
                 "Name": {
                     "description": "A recognisable name for the device",
                     "type": "string"
@@ -20,7 +23,15 @@
                     "enum": ["MCTPI2CTarget"]
                 }
             },
-            "required": ["Address", "Bus", "Name", "Type"],
+            "required": ["Address", "Name", "Type"],
+            "oneOf": [
+                {
+                    "required": ["Bus"]
+                },
+                {
+                    "required": ["MuxChannel"]
+                }
+            ],
             "type": "object"
         },
         "MCTPI3CTarget": {
@@ -33,6 +44,9 @@
                     "description": "The bus index to which the device is attached",
                     "type": "string"
                 },
+                "MuxChannel": {
+                    "$ref": "#/$defs/Types/MuxChannel"
+                },
                 "Name": {
                     "description": "A recognisable name for the device",
                     "type": "string"
@@ -42,7 +56,15 @@
                     "enum": ["MCTPI3CTarget"]
                 }
             },
-            "required": ["Address", "Bus", "Name", "Type"],
+            "required": ["Address", "Name", "Type"],
+            "oneOf": [
+                {
+                    "required": ["Bus"]
+                },
+                {
+                    "required": ["MuxChannel"]
+                }
+            ],
             "type": "object"
         }
     }
