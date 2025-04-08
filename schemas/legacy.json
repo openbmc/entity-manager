@@ -906,6 +906,7 @@
                         "ISL69225",
                         "ISL69243",
                         "ISL69260",
+                        "ISL69269",
                         "LM25066",
                         "LTC2945",
                         "LTC4282",
@@ -1055,52 +1056,6 @@
                     "enum": ["UCD90160", "UCD90320"]
                 }
             }
-        },
-        "Aggregate": {
-            "description": "Don't add additional properties to this schema. Consult README.schema for instructions on adding new Exposes element sub-schema.",
-            "additionalProperties": false,
-            "patternProperties": {
-                "Name(1[0-7]|[0-9])?$": {
-                    "$ref": "#/$defs/Types/Name"
-                },
-                "(vin|iin|pin|maxpin)_Name$": {
-                    "$ref": "#/$defs/Types/Name"
-                },
-                "(in|in_voltage|vout)(1[0-7]|[0-9])_Name$": {
-                    "$ref": "#/$defs/Types/Name"
-                },
-                "(curr|iin|iout|pin|pout|power|temp)(1[0-7]|[0-9])_Name$": {
-                    "$ref": "#/$defs/Types/Name"
-                },
-                "(in|in_voltage)(1[0-7]|[0-9])_Scale$": {
-                    "$ref": "#/$defs/Types/ScaleValue"
-                },
-                "(curr|power|iout)(1[0-7]|[1-9])_Scale$": {
-                    "$ref": "#/$defs/Types/ScaleValue"
-                }
-            },
-            "properties": {
-                "Address": {
-                    "$ref": "#/$defs/Types/Address"
-                },
-                "Bus": {
-                    "$ref": "#/$defs/Types/Bus"
-                },
-                "Labels": {
-                    "$ref": "#/$defs/Types/Labels"
-                },
-                "PowerState": {
-                    "$ref": "#/$defs/Types/PowerState"
-                },
-                "Thresholds": {
-                    "$ref": "#/$defs/Types/Thresholds"
-                },
-                "Type": {
-                    "enum": ["ISL69269"]
-                }
-            },
-            "required": ["Name", "Type"],
-            "type": "object"
         },
         "Types": {
             "Address": {
