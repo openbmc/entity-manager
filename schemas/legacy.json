@@ -905,6 +905,7 @@
                         "ISL69225",
                         "ISL69243",
                         "ISL69260",
+                        "ISL69269",
                         "LM25066",
                         "LTC2945",
                         "LTC4282",
@@ -1094,7 +1095,7 @@
                     "$ref": "#/$defs/Types/Thresholds"
                 },
                 "Type": {
-                    "enum": ["IR35221", "ISL69269", "XDPE132G5C"]
+                    "enum": ["IR35221", "XDPE132G5C"]
                 }
             },
             "required": ["Name", "Type"],
