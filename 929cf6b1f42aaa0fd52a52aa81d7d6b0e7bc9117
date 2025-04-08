@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a408a2cd_e2385d99",
+        "filename": "schemas/legacy.json",
+        "patchSetId": 7
+      },
+      "lineNbr": 125,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-04-08T11:27:28Z",
+      "side": 1,
+      "message": "\u003e Other applications can then form the device file path from these\nproperties, and read the symbolic link to know the needed i2c bus.\n\nSo, if this replaces the need for ```Bus``` property, we probably need to have ```oneOf``` logic in all schemas which use the ```MuxChannel``` to prevent both being configured in the same record.\n\nI think you already did this for some of the other schemas.",
+      "revId": "929cf6b1f42aaa0fd52a52aa81d7d6b0e7bc9117",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    }
+  ]
+}
