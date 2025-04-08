@@ -34,6 +34,24 @@
       "parentUuid": "a26ffbb1_2b82697f",
       "revId": "d497006324e526ae7ab7a0dcd263bc6d1550954b",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a95224a8_791fb9c1",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 6
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-04-08T10:46:29Z",
+      "side": 1,
+      "message": "\u003e FYI, I added a patch to this relation chain to remove Bus/Address from ADC because they are redundant. My apology that we Ampere accidentally put them in our config which must have been part of the reason you added them to ADC subschema.\n\nThanks for helping to clean up the schemas!\n\nCan you re-order the patch to be the first one in this chain?\nI think it will be easier and faster to merge since you are removing the redundant property and only one config is affected (which is owned by ampere)\n\n\n\u003e However, I still temporarily put one \"MuxChannel\" property in \"Aggregate\" until your extract patches are fully merged.\n\nOk, good to note!",
+      "parentUuid": "4de4bdf8_217e264d",
+      "revId": "d497006324e526ae7ab7a0dcd263bc6d1550954b",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }
