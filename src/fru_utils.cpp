@@ -100,8 +100,8 @@ enum SubManagementAccessRecord : uint8_t
  * iterator is no longer usable.
  */
 std::pair<DecodeState, std::string> decodeFRUData(
-    std::vector<uint8_t>::const_iterator& iter,
-    const std::vector<uint8_t>::const_iterator& end, bool isLangEng)
+    std::span<const uint8_t>::const_iterator& iter,
+    std::span<const uint8_t>::const_iterator& end, bool isLangEng)
 {
     std::string value;
     unsigned int i = 0;
@@ -224,7 +224,7 @@ bool checkLangEng(uint8_t lang)
  * len:         Length of current area space and it is a multiple of 8 bytes
  *              as per specification
  */
-bool verifyOffset(const std::vector<uint8_t>& fruBytes, fruAreas currentArea,
+bool verifyOffset(std::span<const uint8_t> fruBytes, fruAreas currentArea,
                   uint8_t len)
 {
     unsigned int fruBytesSize = fruBytes.size();
@@ -290,7 +290,7 @@ bool verifyOffset(const std::vector<uint8_t>& fruBytes, fruAreas currentArea,
 }
 
 static void parseMultirecordUUID(
-    const std::vector<uint8_t>& device,
+    std::span<const uint8_t> device,
     boost::container::flat_map<std::string, std::string>& result)
 {
     constexpr size_t uuidDataLen = 16;
@@ -304,8 +304,12 @@ static void parseMultirecordUUID(
      */
     const std::array<uint8_t, uuidDataLen> uuidCharOrder = {
         3, 2, 1, 0, 5, 4, 7, 6, 8, 9, 10, 11, 12, 13, 14, 15};
-    uint32_t areaOffset =
-        device.at(getHeaderAreaFieldOffset(fruAreas::fruAreaMultirecord));
+    size_t offset = getHeaderAreaFieldOffset(fruAreas::fruAreaMultirecord);
+    if (offset >= device.size())
+    {
+        throw std::runtime_error("Multirecord UUID offset is out of range");
+    }
+    uint32_t areaOffset = device[offset];
 
     if (areaOffset == 0)
     {
@@ -313,7 +317,7 @@ static void parseMultirecordUUID(
     }
 
     areaOffset *= fruBlockSize;
-    std::vector<uint8_t>::const_iterator fruBytesIter =
+    std::span<const uint8_t>::const_iterator fruBytesIter =
         device.begin() + areaOffset;
 
     /* Verify area offset */
@@ -370,7 +374,7 @@ static void parseMultirecordUUID(
 }
 
 resCodes formatIPMIFRU(
-    const std::vector<uint8_t>& fruBytes,
+    std::span<const uint8_t> fruBytes,
     boost::container::flat_map<std::string, std::string>& result)
 {
     resCodes ret = resCodes::resOK;
@@ -394,7 +398,7 @@ resCodes formatIPMIFRU(
             continue;
         }
         offset *= fruBlockSize;
-        std::vector<uint8_t>::const_iterator fruBytesIter =
+        std::span<const uint8_t>::const_iterator fruBytesIter =
             fruBytes.begin() + offset;
         if (fruBytesIter + fruBlockSize >= fruBytes.end())
         {
@@ -418,7 +422,7 @@ resCodes formatIPMIFRU(
         }
 
         size_t fruAreaSize = *fruBytesIter * fruBlockSize;
-        std::vector<uint8_t>::const_iterator fruBytesIterEndArea =
+        std::span<const uint8_t>::const_iterator fruBytesIterEndArea =
             fruBytes.begin() + offset + fruAreaSize - 1;
         ++fruBytesIter;
 
@@ -579,15 +583,15 @@ resCodes formatIPMIFRU(
 }
 
 // Calculate new checksum for fru info area
-uint8_t calculateChecksum(std::vector<uint8_t>::const_iterator iter,
-                          std::vector<uint8_t>::const_iterator end)
+uint8_t calculateChecksum(std::span<const uint8_t>::const_iterator iter,
+                          std::span<const uint8_t>::const_iterator end)
 {
     constexpr int checksumMod = 256;
     uint8_t sum = std::accumulate(iter, end, static_cast<uint8_t>(0));
     return (checksumMod - sum) % checksumMod;
 }
 
-uint8_t calculateChecksum(std::vector<uint8_t>& fruAreaData)
+uint8_t calculateChecksum(std::span<const uint8_t> fruAreaData)
 {
     return calculateChecksum(fruAreaData.begin(), fruAreaData.end());
 }
