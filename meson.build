@@ -160,7 +160,7 @@ if not build_tests.disabled()
             'src/fru_utils.cpp',
             'src/fru_reader.cpp',
             cpp_args: test_boost_args,
-            dependencies: [boost, gtest, phosphor_logging_dep, sdbusplus],
+            dependencies: [boost, gtest, gmock, phosphor_logging_dep, sdbusplus],
             include_directories: 'src',
         ),
     )
