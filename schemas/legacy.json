@@ -766,7 +766,18 @@
                     "$ref": "#/$defs/Types/Address"
                 },
                 "Type": {
-                    "const": "EEPROM"
+                    "const": [
+                        "EEPROM",
+                        "EEPROM_24C01",
+                        "EEPROM_24C02",
+                        "EEPROM_24C04",
+                        "EEPROM_24C08",
+                        "EEPROM_24C16",
+                        "EEPROM_24C32",
+                        "EEPROM_24C64",
+                        "EEPROM_24C128",
+                        "EEPROM_24C256",
+                    ]
                 }
             },
             "required": ["Name", "Type", "Bus", "Address"],
