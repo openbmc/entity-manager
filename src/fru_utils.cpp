@@ -373,6 +373,65 @@ static void parseMultirecordUUID(
     }
 }
 
+resCodes decodeField(
+    std::span<const uint8_t>::const_iterator& fruBytesIter,
+    std::span<const uint8_t>::const_iterator& fruBytesIterEndArea,
+    const std::vector<std::string>& fruAreaFieldNames, size_t& fieldIndex,
+    DecodeState& state, bool isLangEng, const fruAreas& area,
+    boost::container::flat_map<std::string, std::string>& result)
+{
+    auto res = decodeFRUData(fruBytesIter, fruBytesIterEndArea, isLangEng);
+    state = res.first;
+    std::string value = res.second;
+    std::string name;
+    if (fieldIndex < fruAreaFieldNames.size())
+    {
+        name = std::string(getFruAreaName(area)) + "_" +
+               fruAreaFieldNames.at(fieldIndex);
+    }
+    else
+    {
+        name = std::string(getFruAreaName(area)) + "_" + fruCustomFieldName +
+               std::to_string(fieldIndex - fruAreaFieldNames.size() + 1);
+    }
+
+    if (state == DecodeState::ok)
+    {
+        // Strip non null characters and trailing spaces from the end
+        value.erase(
+            std::find_if(value.rbegin(), value.rend(),
+                         [](char ch) { return ((ch != 0) && (ch != ' ')); })
+                .base(),
+            value.end());
+
+        result[name] = std::move(value);
+        ++fieldIndex;
+    }
+    else if (state == DecodeState::err)
+    {
+        std::cerr << "Error while parsing " << name << "\n";
+
+        // Cancel decoding if failed to parse any of mandatory
+        // fields
+        if (fieldIndex < fruAreaFieldNames.size())
+        {
+            std::cerr << "Failed to parse mandatory field \n";
+            return resCodes::resErr;
+        }
+        return resCodes::resWarn;
+    }
+    else
+    {
+        if (fieldIndex < fruAreaFieldNames.size())
+        {
+            std::cerr << "Mandatory fields absent in FRU area "
+                      << getFruAreaName(area) << " after " << name << "\n";
+            return resCodes::resWarn;
+        }
+    }
+    return resCodes::resOK;
+}
+
 resCodes formatIPMIFRU(
     std::span<const uint8_t> fruBytes,
     boost::container::flat_map<std::string, std::string>& result)
@@ -509,58 +568,16 @@ resCodes formatIPMIFRU(
         DecodeState state = DecodeState::ok;
         do
         {
-            auto res =
-                decodeFRUData(fruBytesIter, fruBytesIterEndArea, isLangEng);
-            state = res.first;
-            std::string value = res.second;
-            std::string name;
-            if (fieldIndex < fruAreaFieldNames->size())
+            resCodes decodeRet = decodeField(fruBytesIter, fruBytesIterEndArea,
+                                             *fruAreaFieldNames, fieldIndex,
+                                             state, isLangEng, area, result);
+            if (decodeRet == resCodes::resErr)
             {
-                name = std::string(getFruAreaName(area)) + "_" +
-                       fruAreaFieldNames->at(fieldIndex);
+                return resCodes::resErr;
             }
-            else
+            if (decodeRet == resCodes::resWarn)
             {
-                name =
-                    std::string(getFruAreaName(area)) + "_" +
-                    fruCustomFieldName +
-                    std::to_string(fieldIndex - fruAreaFieldNames->size() + 1);
-            }
-
-            if (state == DecodeState::ok)
-            {
-                // Strip non null characters and trailing spaces from the end
-                value.erase(std::find_if(value.rbegin(), value.rend(),
-                                         [](char ch) {
-                                             return ((ch != 0) && (ch != ' '));
-                                         })
-                                .base(),
-                            value.end());
-
-                result[name] = std::move(value);
-                ++fieldIndex;
-            }
-            else if (state == DecodeState::err)
-            {
-                std::cerr << "Error while parsing " << name << "\n";
-                ret = resCodes::resWarn;
-                // Cancel decoding if failed to parse any of mandatory
-                // fields
-                if (fieldIndex < fruAreaFieldNames->size())
-                {
-                    std::cerr << "Failed to parse mandatory field \n";
-                    return resCodes::resErr;
-                }
-            }
-            else
-            {
-                if (fieldIndex < fruAreaFieldNames->size())
-                {
-                    std::cerr
-                        << "Mandatory fields absent in FRU area "
-                        << getFruAreaName(area) << " after " << name << "\n";
-                    ret = resCodes::resWarn;
-                }
+                ret = decodeRet;
             }
         } while (state == DecodeState::ok);
         for (; fruBytesIter < fruBytesIterEndArea; fruBytesIter++)
