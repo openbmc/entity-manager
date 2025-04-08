@@ -1117,12 +1117,7 @@
                     "$ref": "#/$defs/Types/Thresholds"
                 },
                 "Type": {
-                    "enum": [
-                        "IR35221",
-                        "ISL69269",
-                        "XDPE132G5C",
-                        "XDPE152C4D"
-                    ]
+                    "enum": ["IR35221", "ISL69269", "XDPE132G5C"]
                 }
             },
             "required": ["Name", "Type"],
