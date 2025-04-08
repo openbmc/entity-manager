@@ -55,7 +55,7 @@ TEST(Topology, Empty)
 
     auto assocs = topo.getAssocs(boards);
 
-    EXPECT_EQ(assocs.size(), 0);
+    EXPECT_EQ(assocs.size(), 0U);
 }
 
 TEST(Topology, EmptyExposes)
@@ -68,7 +68,7 @@ TEST(Topology, EmptyExposes)
 
     auto assocs = topo.getAssocs(boards);
 
-    EXPECT_EQ(assocs.size(), 0);
+    EXPECT_EQ(assocs.size(), 0U);
 }
 
 TEST(Topology, MissingConnectsTo)
@@ -90,7 +90,7 @@ TEST(Topology, MissingConnectsTo)
 
     auto assocs = topo.getAssocs(boards);
 
-    EXPECT_EQ(assocs.size(), 0);
+    EXPECT_EQ(assocs.size(), 0U);
 }
 
 TEST(Topology, OtherExposes)
@@ -103,7 +103,7 @@ TEST(Topology, OtherExposes)
 
     auto assocs = topo.getAssocs(boards);
 
-    EXPECT_EQ(assocs.size(), 0);
+    EXPECT_EQ(assocs.size(), 0U);
 }
 
 TEST(Topology, NoMatchSubchassis)
@@ -117,7 +117,7 @@ TEST(Topology, NoMatchSubchassis)
 
     auto assocs = topo.getAssocs(boards);
 
-    EXPECT_EQ(assocs.size(), 0);
+    EXPECT_EQ(assocs.size(), 0U);
 }
 
 TEST(Topology, NoMatchSuperchassis)
@@ -130,7 +130,7 @@ TEST(Topology, NoMatchSuperchassis)
 
     auto assocs = topo.getAssocs(boards);
 
-    EXPECT_EQ(assocs.size(), 0);
+    EXPECT_EQ(assocs.size(), 0U);
 }
 
 TEST(Topology, Basic)
@@ -144,8 +144,8 @@ TEST(Topology, Basic)
 
     auto assocs = topo.getAssocs(boards);
 
-    EXPECT_EQ(assocs.size(), 1);
-    EXPECT_EQ(assocs[subchassisPath].size(), 1);
+    EXPECT_EQ(assocs.size(), 1U);
+    EXPECT_EQ(assocs[subchassisPath].size(), 1U);
     EXPECT_EQ(assocs[subchassisPath][0], subchassisAssoc);
 }
 
@@ -160,10 +160,10 @@ TEST(Topology, BasicPower)
 
     auto assocs = topo.getAssocs(boards);
 
-    EXPECT_EQ(assocs.size(), 2);
-    EXPECT_EQ(assocs[subchassisPath].size(), 1);
+    EXPECT_EQ(assocs.size(), 2U);
+    EXPECT_EQ(assocs[subchassisPath].size(), 1U);
     EXPECT_EQ(assocs[subchassisPath][0], subchassisAssoc);
-    EXPECT_EQ(assocs[superchassisPath].size(), 1);
+    EXPECT_EQ(assocs[superchassisPath].size(), 1U);
     EXPECT_EQ(assocs[superchassisPath][0], powerAssoc);
 }
 
@@ -179,7 +179,7 @@ TEST(Topology, NoNewBoards)
     // Boards A and B aren't new, so no assocs are returned.
     auto assocs = topo.getAssocs(boards);
 
-    EXPECT_EQ(assocs.size(), 0);
+    EXPECT_EQ(assocs.size(), 0U);
 }
 
 TEST(Topology, 2Subchassis)
@@ -197,10 +197,10 @@ TEST(Topology, 2Subchassis)
 
     auto assocs = topo.getAssocs(boards);
 
-    EXPECT_EQ(assocs.size(), 2);
-    EXPECT_EQ(assocs[subchassisPath].size(), 1);
+    EXPECT_EQ(assocs.size(), 2U);
+    EXPECT_EQ(assocs[subchassisPath].size(), 1U);
     EXPECT_EQ(assocs[subchassisPath][0], subchassisAssoc);
-    EXPECT_EQ(assocs[subchassisPath + "2"].size(), 1);
+    EXPECT_EQ(assocs[subchassisPath + "2"].size(), 1U);
     EXPECT_EQ(assocs[subchassisPath + "2"][0], subchassisAssoc);
 }
 
@@ -218,8 +218,8 @@ TEST(Topology, OneNewBoard)
     // Only the assoc for BoardA should be returned
     auto assocs = topo.getAssocs(boards);
 
-    EXPECT_EQ(assocs.size(), 1);
-    EXPECT_EQ(assocs[subchassisPath].size(), 1);
+    EXPECT_EQ(assocs.size(), 1U);
+    EXPECT_EQ(assocs[subchassisPath].size(), 1U);
     EXPECT_EQ(assocs[subchassisPath][0], subchassisAssoc);
 }
 
@@ -241,8 +241,8 @@ TEST(Topology, 2Superchassis)
 
     auto assocs = topo.getAssocs(boards);
 
-    EXPECT_EQ(assocs.size(), 1);
-    EXPECT_EQ(assocs[subchassisPath].size(), 2);
+    EXPECT_EQ(assocs.size(), 1U);
+    EXPECT_EQ(assocs[subchassisPath].size(), 2U);
 
     EXPECT_THAT(assocs[subchassisPath],
                 UnorderedElementsAre(subchassisAssoc, subchassisAssoc2));
@@ -269,9 +269,9 @@ TEST(Topology, 2SuperchassisAnd2Subchassis)
 
     auto assocs = topo.getAssocs(boards);
 
-    EXPECT_EQ(assocs.size(), 2);
-    EXPECT_EQ(assocs[subchassisPath].size(), 2);
-    EXPECT_EQ(assocs[subchassisPath + "2"].size(), 2);
+    EXPECT_EQ(assocs.size(), 2U);
+    EXPECT_EQ(assocs[subchassisPath].size(), 2U);
+    EXPECT_EQ(assocs[subchassisPath + "2"].size(), 2U);
 
     EXPECT_THAT(assocs[subchassisPath],
                 UnorderedElementsAre(subchassisAssoc, subchassisAssoc2));
@@ -295,10 +295,10 @@ TEST(Topology, Remove)
     {
         auto assocs = topo.getAssocs(boards);
 
-        EXPECT_EQ(assocs.size(), 2);
-        EXPECT_EQ(assocs[subchassisPath].size(), 1);
+        EXPECT_EQ(assocs.size(), 2U);
+        EXPECT_EQ(assocs[subchassisPath].size(), 1U);
         EXPECT_EQ(assocs[subchassisPath][0], subchassisAssoc);
-        EXPECT_EQ(assocs[subchassisPath + "2"].size(), 1);
+        EXPECT_EQ(assocs[subchassisPath + "2"].size(), 1U);
         EXPECT_EQ(assocs[subchassisPath + "2"][0], subchassisAssoc);
     }
 
@@ -306,8 +306,8 @@ TEST(Topology, Remove)
         topo.remove("BoardA");
         auto assocs = topo.getAssocs(boards);
 
-        EXPECT_EQ(assocs.size(), 1);
-        EXPECT_EQ(assocs[subchassisPath + "2"].size(), 1);
+        EXPECT_EQ(assocs.size(), 1U);
+        EXPECT_EQ(assocs[subchassisPath + "2"].size(), 1U);
         EXPECT_EQ(assocs[subchassisPath + "2"][0], subchassisAssoc);
     }
 
@@ -315,6 +315,6 @@ TEST(Topology, Remove)
         topo.remove("BoardB");
         auto assocs = topo.getAssocs(boards);
 
-        EXPECT_EQ(assocs.size(), 0);
+        EXPECT_EQ(assocs.size(), 0U);
     }
 }
