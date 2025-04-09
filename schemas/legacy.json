@@ -357,10 +357,18 @@
                 "Type": {
                     "type": "string",
                     "enum": [
+                        "PCA9537",
+                        "PCA9542Mux",
                         "PCA9543Mux",
                         "PCA9544Mux",
                         "PCA9545Mux",
-                        "PCA9546Mux"
+                        "PCA9546Mux",
+                        "PCA9547Mux",
+                        "PCA9548Mux",
+                        "PCA9846Mux",
+                        "PCA9847Mux",
+                        "PCA9848Mux",
+                        "PCA9849Mux"
                     ]
                 }
             },
@@ -776,7 +784,18 @@
                     "$ref": "#/$defs/Types/Address"
                 },
                 "Type": {
-                    "const": "EEPROM"
+                    "enum": [
+                        "EEPROM",
+                        "EEPROM_24C01",
+                        "EEPROM_24C02",
+                        "EEPROM_24C04",
+                        "EEPROM_24C08",
+                        "EEPROM_24C16",
+                        "EEPROM_24C32",
+                        "EEPROM_24C64",
+                        "EEPROM_24C128",
+                        "EEPROM_24C256"
+                    ]
                 }
             },
             "required": ["Name", "Type", "Bus", "Address"],
@@ -1357,6 +1376,18 @@
             "PollRate": {
                 "type": "number",
                 "exclusiveMinimum": 0
+            },
+            "Type": {
+                "type": "string",
+                "enum": [
+                    "RAA229621",
+                    "IPSPS1",
+                    "MAX334440",
+                    "MAX31790",
+                    "SIC450",
+                    "PIC32",
+                    "Q50SN12072"
+                ]
             }
         }
     }
