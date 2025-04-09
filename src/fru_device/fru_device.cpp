@@ -15,8 +15,8 @@
 */
 /// \file fru_device.cpp
 
+#include "../utils.hpp"
 #include "fru_utils.hpp"
-#include "utils.hpp"
 
 #include <fcntl.h>
 #include <sys/inotify.h>
