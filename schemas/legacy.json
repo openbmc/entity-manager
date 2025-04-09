@@ -383,10 +383,18 @@
                 "Type": {
                     "type": "string",
                     "enum": [
+                        "PCA9537",
+                        "PCA9542Mux",
                         "PCA9543Mux",
                         "PCA9544Mux",
                         "PCA9545Mux",
-                        "PCA9546Mux"
+                        "PCA9546Mux",
+                        "PCA9547Mux",
+                        "PCA9548Mux",
+                        "PCA9846Mux",
+                        "PCA9847Mux",
+                        "PCA9848Mux",
+                        "PCA9849Mux"
                     ]
                 }
             },
@@ -1381,6 +1389,18 @@
             "PollRate": {
                 "type": "number",
                 "exclusiveMinimum": 0
+            },
+            "Type": {
+                "type": "string",
+                "enum": [
+                    "RAA229621",
+                    "IPSPS1",
+                    "MAX334440",
+                    "MAX31790",
+                    "SIC450",
+                    "PIC32",
+                    "Q50SN12072"
+                ]
             }
         }
     }
