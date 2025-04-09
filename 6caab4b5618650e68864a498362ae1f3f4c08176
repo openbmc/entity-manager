@@ -1,0 +1,61 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f1b7d0d2_ed5fc152",
+        "filename": "src/perform_probe.cpp",
+        "patchSetId": 5
+      },
+      "lineNbr": 79,
+      "author": {
+        "id": 1000008
+      },
+      "writtenOn": "2025-04-09T21:35:01Z",
+      "side": 1,
+      "message": "how about something like doProbe()?  To me probefunc sounds like a variable that holds an std::function.",
+      "range": {
+        "startLine": 79,
+        "startChar": 5,
+        "endLine": 79,
+        "endChar": 14
+      },
+      "revId": "6caab4b5618650e68864a498362ae1f3f4c08176",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "916861b7_e15643a8",
+        "filename": "src/perform_probe.cpp",
+        "patchSetId": 5
+      },
+      "lineNbr": 238,
+      "author": {
+        "id": 1000008
+      },
+      "writtenOn": "2025-04-09T21:35:01Z",
+      "side": 1,
+      "message": "This could stand to be modernized but that could be outside the scope of this commit.",
+      "revId": "6caab4b5618650e68864a498362ae1f3f4c08176",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a2003b29_182e5cd1",
+        "filename": "src/perform_probe.hpp",
+        "patchSetId": 5
+      },
+      "lineNbr": 37,
+      "author": {
+        "id": 1000008
+      },
+      "writtenOn": "2025-04-09T21:35:01Z",
+      "side": 1,
+      "message": "since this is only used in findProbeType(), maybe it should just be local inside that function, or a global in perform_probe.cpp.",
+      "revId": "6caab4b5618650e68864a498362ae1f3f4c08176",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    }
+  ]
+}
