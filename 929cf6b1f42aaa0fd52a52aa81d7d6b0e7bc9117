@@ -34,6 +34,24 @@
       "parentUuid": "a408a2cd_e2385d99",
       "revId": "929cf6b1f42aaa0fd52a52aa81d7d6b0e7bc9117",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f66a2eca_6780f1ec",
+        "filename": "schemas/legacy.json",
+        "patchSetId": 7
+      },
+      "lineNbr": 125,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-04-09T09:53:02Z",
+      "side": 1,
+      "message": "\u003e That would require more logics to the config to achieve that, even if/else might be involved I think. Should we pursuit that?\n\nIf it\u0027s possible to express in the schema, i think we should do that.\n\nIt can help to reduce the time needed to produce valid configuration 👍\n\n\nFor how to go about this, can either express it in this schema or simply split the schema and have one with ```Bus``` and one with ```MuxChannel```.\n\nIf it has to be split and cannot be done otherwise then it probably needs to go into its own file to prevent fragmentation / bitrot.",
+      "parentUuid": "0ff39728_9323a534",
+      "revId": "929cf6b1f42aaa0fd52a52aa81d7d6b0e7bc9117",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }
