@@ -1,4 +1,4 @@
-#include "fru_utils.hpp"
+#include "fru_device/fru_utils.hpp"
 
 #include <algorithm>
 #include <array>
