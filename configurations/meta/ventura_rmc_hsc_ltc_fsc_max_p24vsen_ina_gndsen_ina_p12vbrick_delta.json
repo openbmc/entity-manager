@@ -6,7 +6,7 @@
             "Connector": {
                 "Name": "FCB_0_FAN0_TACH_OL",
                 "Pwm": 0,
-                "PwmName": "FCB_0_FAN0_PWM",
+                "PwmName": "FCB_0_FAN0_PWM_PCT",
                 "Tachs": [
                     1
                 ]
@@ -38,7 +38,7 @@
             "Connector": {
                 "Name": "FCB_0_FAN0_TACH_IL",
                 "Pwm": 0,
-                "PwmName": "FCB_0_FAN0_PWM",
+                "PwmName": "FCB_0_FAN0_PWM_PCT",
                 "Tachs": [
                     0
                 ]
@@ -70,7 +70,7 @@
             "Connector": {
                 "Name": "FCB_0_FAN1_TACH_OL",
                 "Pwm": 2,
-                "PwmName": "FCB_0_FAN1_PWM",
+                "PwmName": "FCB_0_FAN1_PWM_PCT",
                 "Tachs": [
                     2
                 ]
@@ -102,7 +102,7 @@
             "Connector": {
                 "Name": "FCB_0_FAN1_TACH_IL",
                 "Pwm": 2,
-                "PwmName": "FCB_0_FAN1_PWM",
+                "PwmName": "FCB_0_FAN1_PWM_PCT",
                 "Tachs": [
                     7
                 ]
@@ -134,7 +134,7 @@
             "Connector": {
                 "Name": "FCB_1_FAN2_TACH_OL",
                 "Pwm": 3,
-                "PwmName": "FCB_1_FAN2_PWM",
+                "PwmName": "FCB_1_FAN2_PWM_PCT",
                 "Tachs": [
                     4
                 ]
@@ -166,7 +166,7 @@
             "Connector": {
                 "Name": "FCB_1_FAN2_TACH_IL",
                 "Pwm": 3,
-                "PwmName": "FCB_1_FAN2_PWM",
+                "PwmName": "FCB_1_FAN2_PWM_PCT",
                 "Tachs": [
                     3
                 ]
@@ -198,7 +198,7 @@
             "Connector": {
                 "Name": "FCB_1_FAN3_TACH_OL",
                 "Pwm": 5,
-                "PwmName": "FCB_1_FAN3_PWM",
+                "PwmName": "FCB_1_FAN3_PWM_PCT",
                 "Tachs": [
                     5
                 ]
@@ -230,7 +230,7 @@
             "Connector": {
                 "Name": "FCB_1_FAN3_TACH_IL",
                 "Pwm": 5,
-                "PwmName": "FCB_1_FAN3_PWM",
+                "PwmName": "FCB_1_FAN3_PWM_PCT",
                 "Tachs": [
                     10
                 ]
@@ -366,7 +366,7 @@
             "Type": "INA238",
             "in0_Max": 1,
             "in0_Min": -1,
-            "in0_Name": "RMC_MEDUSA_RETURN_VDROP_V",
+            "in0_Name": "RMC_MEDUSA_RETURN_VDROP_VOLT_V",
             "in0_Scale": 953.0162965787
         },
         {
@@ -389,7 +389,7 @@
             "Type": "INA238",
             "in0_Max": 1,
             "in0_Min": -1,
-            "in0_Name": "RMC_MEDUSA_POSITIVE_VDROP_V",
+            "in0_Name": "RMC_MEDUSA_POSITIVE_VDROP_VOLT_V",
             "in0_Scale": 936.1542782251
         },
         {
