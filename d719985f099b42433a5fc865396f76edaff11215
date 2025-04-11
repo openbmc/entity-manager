@@ -33,6 +33,24 @@
       "message": "Can we use #if instead?",
       "revId": "d719985f099b42433a5fc865396f76edaff11215",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "da5eb33a_4d05a36d",
+        "filename": "src/entity_manager.cpp",
+        "patchSetId": 5
+      },
+      "lineNbr": 147,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-04-11T11:05:06Z",
+      "side": 1,
+      "message": "Why use the preprocessor if we do not have to?\n\nUsing conditional compilation excludes some of the code from parsing and typechecking.\n\nSince only one configuration of meson options is compiled in CI,\nthis increases the likelihood of permutations of these options \nwhich then do not compile.\n\n\nThere is almost never a need to actually use the preprocessor if you have a modern compiler which can do const value propagation and dead code elimination.\n\n\nIt\u0027s also better for LSP and code navigation to not use the preprocessor.\nAn LSP aware code editor may not be able to navigate code that is not \u0027compiled\u0027.",
+      "parentUuid": "17944e07_2dea0843",
+      "revId": "d719985f099b42433a5fc865396f76edaff11215",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }
