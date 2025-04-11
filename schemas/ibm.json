@@ -5,6 +5,7 @@
             "title": "IBM Common Form Factor (CFF) Power Supply connectors",
             "description": "A schema associating an I2C endpoint and a GPIO for IBM CFF power supplies.  In the entity-manager detector-configuration-reactor architecture, the daemon that supports IBM CFFPS is both a detector and reactor.  It probes the endpoints described by this schema (reactor) and publishes the CFFPS FRU information (detector).",
             "type": "object",
+            "additionalProperties": false,
             "properties": {
                 "Name": {
                     "type": "string"
@@ -37,6 +38,7 @@
             "title": "System compatibility",
             "description": "Devicetree-like compatibility strings for systems, where a 'system' is roughly defined as the combination of a chassis and a mainboard. The strings should be used by applications to match the entity with entries or configuration in a hardware database. Strings appear in the list from most specific to most general.  This allows an entity to express compatibility with a family of similar systems, in turn allowing an application to match a variety of systems with a single IBMCompatibleSystem entry. The recommended entry format is 'manufacturer,model' where the manufacturer is a string describing the name of the manufacturer and model specifies the model number.",
             "type": "object",
+            "additionalProperties": false,
             "properties": {
                 "Name": {
                     "type": "string"
@@ -70,7 +72,14 @@
             "title": "PowerMode Properties",
             "description": "The default PowerMode properties for the system",
             "type": "object",
+            "additionalProperties": false,
             "properties": {
+                "Name": {
+                    "type": "string"
+                },
+                "Type": {
+                    "const": "PowerModeProperties"
+                },
                 "PowerMode": {
                     "description": "The default PowerMode to use prior to being set by a user.",
                     "enum": ["Static", "PowerSaving", "MaximumPerformance"]
@@ -104,7 +113,7 @@
                     "maximum": 600
                 }
             },
-            "required": ["PowerMode", "IdlePowerSaverEnabled"]
+            "required": ["PowerMode", "IdlePowerSaverEnabled", "Name", "Type"]
         }
     }
 }
