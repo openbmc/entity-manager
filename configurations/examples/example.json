@@ -1,0 +1,92 @@
+{
+    "Exposes": [
+        {
+            "Index": 0,
+            "Name": "VDD_5_DUAL",
+            "PowerState": "Always",
+            "ScaleFactor": 0.2722,
+            "Thresholds": [
+                {
+                    "Direction": "less than",
+                    "Name": "lower critical",
+                    "Severity": 1,
+                    "Value": 4.438
+                },
+                {
+                    "Direction": "less than",
+                    "Name": "lower non critical",
+                    "Severity": 0,
+                    "Value": 4.7
+                },
+                {
+                    "Direction": "greater than",
+                    "Name": "upper non critical",
+                    "Severity": 0,
+                    "Value": 5.3
+                },
+                {
+                    "Direction": "greater than",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 5.521
+                }
+            ],
+            "Type": "ADC"
+        },
+        {
+            "Index": 8,
+            "Name": "P0_VDD_MEM_ABCD",
+            "PowerState": "On",
+            "ScaleFactor": 1,
+            "Thresholds": [
+                {
+                    "Direction": "greater than",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 1.351
+                },
+                {
+                    "Direction": "less than",
+                    "Name": "lower critical",
+                    "Severity": 1,
+                    "Value": 1.05
+                }
+            ],
+            "Type": "ADC"
+        },
+        {
+            "Index": 9,
+            "Name": "P0_VDD_MEM_EFGH",
+            "PowerState": "On",
+            "ScaleFactor": 1,
+            "Thresholds": [
+                {
+                    "Direction": "greater than",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 1.351
+                },
+                {
+                    "Direction": "less than",
+                    "Name": "lower critical",
+                    "Severity": 1,
+                    "Value": 1.05
+                }
+            ],
+            "Type": "ADC"
+        },
+        {
+            "Address": "0x3c",
+            "Bus": 0,
+            "Labels": [
+                "power1_input"
+            ],
+            "Name": "CPU0 Power Consumption",
+            "PollRate": 1.0,
+            "Type": "pmbus"
+        }
+    ],
+    "Name": "Example Baseboard Template",
+    "Probe": "FALSE",
+    "Type": "Board"
+}
