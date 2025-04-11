@@ -85,15 +85,6 @@ def main():
             )
             sys.exit(2)
 
-    schema = {}
-    try:
-        with open(schema_file) as fd:
-            schema = json.load(fd)
-    except FileNotFoundError:
-        sys.stderr.write(
-            "Could not read schema file '{}'\n".format(schema_file)
-        )
-        sys.exit(2)
 
     config_files = args.config or []
     if len(config_files) == 0:
@@ -134,13 +125,7 @@ def main():
             )
             sys.exit(2)
 
-    spec = jsonschema.Draft202012Validator
-    spec.check_schema(schema)
-    base_uri = "file://{}/".format(
-        os.path.split(os.path.realpath(schema_file))[0]
-    )
-    resolver = jsonschema.RefResolver(base_uri, schema)
-    validator = spec(schema, resolver=resolver)
+    validator = validator_from_file(schema_file)
 
     results = {
         "invalid": [],
@@ -167,6 +152,28 @@ def main():
             print("\n** configuration expected to fail")
 
     sys.exit(exit_status)
+
+def validator_from_file(schema_file):
+
+    schema = {}
+    try:
+        with open(schema_file) as fd:
+            schema = json.load(fd)
+    except FileNotFoundError:
+        sys.stderr.write(
+            "Could not read schema file '{}'\n".format(schema_file)
+        )
+        sys.exit(2)
+
+    spec = jsonschema.Draft202012Validator
+    spec.check_schema(schema)
+    base_uri = "file://{}/".format(
+        os.path.split(os.path.realpath(schema_file))[0]
+    )
+    resolver = jsonschema.RefResolver(base_uri, schema)
+    validator = spec(schema, resolver=resolver)
+
+    return validator
 
 def validate_single_config(args, config_file, config, expected_fails, validator, results):
     name = os.path.split(config_file)[1]
