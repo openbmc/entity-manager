@@ -149,26 +149,64 @@
                 }
             ]
         },
+        "EMIncludeElement": {
+            "description": "Include a .record.json and override properties",
+            "additionalProperties": false,
+            "properties": {
+                "Override": {
+                    "type": "object"
+                },
+                "Path": {
+                    "type": "string"
+                },
+                "Type": {
+                    "const": "include"
+                }
+            },
+            "required": ["Path", "Type"]
+        },
         "EMExposesElement": {
             "description": "The exposes property element schema.  An element of the exposes property is always an array where elements are of type exposes entry.",
             "allOf": [
                 {
-                    "$ref": "#/$defs/ConfigSchema"
+                    "oneOf": [
+                        {
+                            "allOf": [
+                                {
+                                    "$ref": "#/$defs/ConfigSchema"
+                                },
+                                {
+                                    "title": "Missing 'Name'",
+                                    "description": "Ensure the schema does not validate when an element does not define a Name",
+                                    "required": ["Name"]
+                                },
+                                {
+                                    "title": "Missing 'Type'",
+                                    "description": "Ensure the schema does not validate when an element does not define a Type",
+                                    "required": ["Type"]
+                                }
+                            ]
+                        },
+                        {
+                            "$ref": "#/$defs/EMIncludeElement"
+                        }
+                    ]
                 },
                 {
-                    "title": "Missing 'Name'",
-                    "description": "Ensure the schema does not validate when an element does not define a Name",
-                    "required": ["Name"]
+                    "not": {
+                        "required": ["Probe"]
+                    }
                 },
                 {
-                    "title": "Missing 'Type'",
-                    "description": "Ensure the schema does not validate when an element does not define a Type",
-                    "required": ["Type"]
+                    "not": {
+                        "required": ["Exposes"]
+                    }
                 }
             ],
             "title": "Exposes Property Element"
         }
     },
     "title": "Entity Manager Exposes Record",
-    "description": "The schema for an entity manager exposes record."
+    "description": "The schema for an entity manager exposes record.",
+    "$ref": "#/$defs/EMExposesElement"
 }
