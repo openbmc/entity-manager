@@ -3,7 +3,7 @@
 set -eu
 LANG=C
 
-json_files=$(cd configurations; find . -iname "*.json" | sort | sed 's|^\./||')
+json_files=$(cd configurations; find . -regex "[\./]?[\/a-zA-Z0-9_\-]+.json" | sort | sed 's|^\./||')
 
 MESON_FILE=configurations/meson.build
 
