@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "4cbffce4_263f2350",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 7
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-04-11T10:46:02Z",
+      "side": 1,
+      "message": "Looks good to me besides the naming issue.",
+      "revId": "9e705739261d91f19f50b263fd5e2cd00c8e86d5",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a5211e87_db4ee5e8",
+        "filename": "src/dbus_interface.hpp",
+        "patchSetId": 7
+      },
+      "lineNbr": 13,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-04-11T10:46:02Z",
+      "side": 1,
+      "message": "As already noted by others https://gerrit.openbmc.org/c/openbmc/entity-manager/+/79404/comment/d771eb39_4f325925/\n\nLet\u0027s rename this namespace to something else.\nThe word \u0027interface\u0027 alone does not describe what the functions here are doing.\n\nI think ```namespace dbus_interfaces``` would be better, as Matt already said.\n\nThen it would also match the filename.\nI would prefer a namespace to match the filename.",
+      "revId": "9e705739261d91f19f50b263fd5e2cd00c8e86d5",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    }
+  ]
+}
