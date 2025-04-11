@@ -148,29 +148,6 @@
             "Type": "ADC"
         },
         {
-            "Index": 7,
-            "Name": "VBAT_33",
-            "PowerState": "On",
-            "ScaleFactor": 0.0112,
-            "Thresholds": [
-                {
-                    "Direction": "greater than",
-                    "Hysteresis": 0.01,
-                    "Name": "upper critical",
-                    "Severity": 1,
-                    "Value": 3.79
-                },
-                {
-                    "Direction": "less than",
-                    "Hysteresis": 0.01,
-                    "Name": "lower critical",
-                    "Severity": 1,
-                    "Value": 2.8
-                }
-            ],
-            "Type": "ADC"
-        },
-        {
             "Index": 8,
             "Name": "VDDC_AON",
             "PowerState": "On",
@@ -192,27 +169,6 @@
             "Type": "ADC"
         },
         {
-            "Index": 9,
-            "Name": "VDD_12_RUN",
-            "PowerState": "On",
-            "ScaleFactor": 0.1121,
-            "Thresholds": [
-                {
-                    "Direction": "greater than",
-                    "Name": "upper critical",
-                    "Severity": 1,
-                    "Value": 13.79
-                },
-                {
-                    "Direction": "less than",
-                    "Name": "lower critical",
-                    "Severity": 1,
-                    "Value": 10.2
-                }
-            ],
-            "Type": "ADC"
-        },
-        {
             "Index": 10,
             "Name": "VDD_5_RUN",
             "PowerState": "On",
@@ -229,27 +185,6 @@
                     "Name": "lower critical",
                     "Severity": 1,
                     "Value": 4.25
-                }
-            ],
-            "Type": "ADC"
-        },
-        {
-            "Index": 11,
-            "Name": "VDD_33_RUN",
-            "PowerState": "On",
-            "ScaleFactor": 0.4054,
-            "Thresholds": [
-                {
-                    "Direction": "greater than",
-                    "Name": "upper critical",
-                    "Severity": 1,
-                    "Value": 3.79
-                },
-                {
-                    "Direction": "less than",
-                    "Name": "lower critical",
-                    "Severity": 1,
-                    "Value": 2.8
                 }
             ],
             "Type": "ADC"
@@ -574,6 +509,29 @@
                 }
             ],
             "Type": "SBTSI"
+        },
+        {
+            "Override": {
+                "Index": 7,
+                "PowerState": "On",
+                "ScaleFactor": 0.0112
+            },
+            "Path": "tyan_vbat_33.record.json",
+            "Type": "include"
+        },
+        {
+            "Override": {
+                "Index": 11
+            },
+            "Path": "tyan_vdd_33_run.record.json",
+            "Type": "include"
+        },
+        {
+            "Override": {
+                "Index": 9
+            },
+            "Path": "tyan_vdd_12_run.record.json",
+            "Type": "include"
         }
     ],
     "Name": "Tyan S8047 Baseboard",
