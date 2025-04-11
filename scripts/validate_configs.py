@@ -147,21 +147,7 @@ def main():
         "unexpected_pass": [],
     }
     for config_file, config in zip(config_files, configs):
-        name = os.path.split(config_file)[1]
-        expect_fail = name in expected_fails
-        try:
-            validator.validate(config)
-            if expect_fail:
-                results["unexpected_pass"].append(name)
-                if not getattr(args, "continue"):
-                    break
-        except jsonschema.exceptions.ValidationError as e:
-            if not expect_fail:
-                results["invalid"].append(name)
-                if args.verbose:
-                    print(e)
-            if expect_fail or getattr(args, "continue"):
-                continue
+        if not validate_single_config(args, config_file, config, expected_fails, validator, results):
             break
 
     exit_status = 0
@@ -182,6 +168,24 @@ def main():
 
     sys.exit(exit_status)
 
+def validate_single_config(args, config_file, config, expected_fails, validator, results):
+    name = os.path.split(config_file)[1]
+    expect_fail = name in expected_fails
+    try:
+        validator.validate(config)
+        if expect_fail:
+            results["unexpected_pass"].append(name)
+            if not getattr(args, "continue"):
+                return False
+    except jsonschema.exceptions.ValidationError as e:
+        if not expect_fail:
+            results["invalid"].append(name)
+            if args.verbose:
+                print(e)
+        if expect_fail or getattr(args, "continue"):
+            return True
+        return False
+    return True
 
 if __name__ == "__main__":
     main()
