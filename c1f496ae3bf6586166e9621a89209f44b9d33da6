@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "94e31c40_6c5c872d",
+        "filename": "src/entity_manager/meson.build",
+        "patchSetId": 7
+      },
+      "lineNbr": 5,
+      "author": {
+        "id": 1000008
+      },
+      "writtenOn": "2025-04-11T19:02:26Z",
+      "side": 1,
+      "message": "This is an entity-manager only file.  Looks like though it gets used by utils.cpp, in a function that is also an EM only function.\n\nfru-device and entity-manager appear to share just a few things in utils, most of utils is for entity-manager.\n\nSo at the very least maybe could you move those templateCharReplace functions into expressions.* (or somewhere else) so that the expressions files can be EM only?\n\nIdeally I think EM would get its own util.* files, with then a very small shared one would be left between the two.  Looks like fru-device already has its own fru_utils files.",
+      "range": {
+        "startLine": 5,
+        "startChar": 3,
+        "endLine": 5,
+        "endChar": 24
+      },
+      "revId": "c1f496ae3bf6586166e9621a89209f44b9d33da6",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    }
+  ]
+}
