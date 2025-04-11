@@ -2,7 +2,7 @@
     "Exposes": [
         {
             "Index": 0,
-            "Name": "CPU_CORE0",
+            "Name": "P0_VDD_CORE0_RUN",
             "PowerState": "On",
             "ScaleFactor": 1,
             "Thresholds": [
@@ -23,7 +23,7 @@
         },
         {
             "Index": 2,
-            "Name": "CPU_SOC",
+            "Name": "P0_VDD_SOC_RUN",
             "PowerState": "On",
             "ScaleFactor": 1,
             "Thresholds": [
@@ -44,7 +44,7 @@
         },
         {
             "Index": 3,
-            "Name": "CPU_11_SUS",
+            "Name": "P0_VDD_11_SUS",
             "PowerState": "On",
             "ScaleFactor": 1,
             "Thresholds": [
@@ -65,7 +65,7 @@
         },
         {
             "Index": 4,
-            "Name": "CPU_CORE1",
+            "Name": "P0_VDD_CORE1_RUN",
             "PowerState": "On",
             "ScaleFactor": 1,
             "Thresholds": [
@@ -86,7 +86,7 @@
         },
         {
             "Index": 5,
-            "Name": "CPU_33_DUAL",
+            "Name": "P0_VDD_33_DUAL",
             "PowerState": "Always",
             "ScaleFactor": 0.4054,
             "Thresholds": [
@@ -127,29 +127,29 @@
             "Type": "ADC"
         },
         {
-            "Index": 9,
-            "Name": "VDD_12V_RUN",
+            "Index": 8,
+            "Name": "VDDC_AON",
             "PowerState": "On",
-            "ScaleFactor": 0.1121,
+            "ScaleFactor": 1,
             "Thresholds": [
                 {
                     "Direction": "greater than",
                     "Name": "upper critical",
                     "Severity": 1,
-                    "Value": 13.79
+                    "Value": 1.15
                 },
                 {
                     "Direction": "less than",
                     "Name": "lower critical",
                     "Severity": 1,
-                    "Value": 10.2
+                    "Value": 0.85
                 }
             ],
             "Type": "ADC"
         },
         {
             "Index": 10,
-            "Name": "VDD_5V_RUN",
+            "Name": "VDD_5_RUN",
             "PowerState": "On",
             "ScaleFactor": 0.266,
             "Thresholds": [
@@ -169,29 +169,8 @@
             "Type": "ADC"
         },
         {
-            "Index": 11,
-            "Name": "VDD_33V_RUN",
-            "PowerState": "On",
-            "ScaleFactor": 0.4054,
-            "Thresholds": [
-                {
-                    "Direction": "greater than",
-                    "Name": "upper critical",
-                    "Severity": 1,
-                    "Value": 3.79
-                },
-                {
-                    "Direction": "less than",
-                    "Name": "lower critical",
-                    "Severity": 1,
-                    "Value": 2.8
-                }
-            ],
-            "Type": "ADC"
-        },
-        {
             "Index": 12,
-            "Name": "VDD_33V_DUAL",
+            "Name": "VDD_33_DUAL",
             "PowerState": "Always",
             "ScaleFactor": 0.4054,
             "Thresholds": [
@@ -212,7 +191,7 @@
         },
         {
             "Index": 13,
-            "Name": "CPU_18_DUAL",
+            "Name": "P0_VDD_18_DUAL",
             "PowerState": "Always",
             "ScaleFactor": 1,
             "Thresholds": [
@@ -233,7 +212,7 @@
         },
         {
             "Index": 14,
-            "Name": "USB_1V2_HUB",
+            "Name": "VDD_1V2_HUB",
             "PowerState": "Always",
             "ScaleFactor": 0.8333,
             "Thresholds": [
@@ -253,9 +232,9 @@
             "Type": "ADC"
         },
         {
-            "Index": 1,
-            "Name": "CPU_VDDIO",
-            "PowerState": "On",
+            "Index": 15,
+            "Name": "VDDC_HOST",
+            "PowerState": "Always",
             "ScaleFactor": 1,
             "Thresholds": [
                 {
@@ -274,43 +253,82 @@
             "Type": "ADC"
         },
         {
-            "BridgeGpio": [
-                {
-                    "Name": "A_P3V_BAT_SCALED_EN",
-                    "Polarity": "High"
-                }
-            ],
-            "Index": 7,
-            "Name": "VBAT_33",
+            "Connector": {
+                "Name": "Sys FAN Connector 1",
+                "Pwm": 0,
+                "Tachs": [
+                    0
+                ]
+            },
+            "Index": 0,
+            "Name": "SYS_FAN_0",
             "PowerState": "On",
-            "ScaleFactor": 0.0112,
             "Thresholds": [
                 {
                     "Direction": "greater than",
                     "Name": "upper critical",
                     "Severity": 1,
-                    "Value": 3.507
+                    "Value": 9000
                 },
                 {
                     "Direction": "greater than",
                     "Name": "upper non critical",
                     "Severity": 0,
-                    "Value": 3.332
+                    "Value": 8000
                 },
                 {
                     "Direction": "less than",
                     "Name": "lower non critical",
                     "Severity": 0,
-                    "Value": 2.85
+                    "Value": 200
                 },
                 {
                     "Direction": "less than",
                     "Name": "lower critical",
                     "Severity": 1,
-                    "Value": 2.688
+                    "Value": 50
                 }
             ],
-            "Type": "ADC"
+            "Type": "AspeedFan"
+        },
+        {
+            "Connector": {
+                "Name": "Sys FAN Connector 2",
+                "Pwm": 1,
+                "Tachs": [
+                    1
+                ]
+            },
+            "Index": 1,
+            "Name": "SYS_FAN_1",
+            "PowerState": "On",
+            "Thresholds": [
+                {
+                    "Direction": "greater than",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 9000
+                },
+                {
+                    "Direction": "greater than",
+                    "Name": "upper non critical",
+                    "Severity": 0,
+                    "Value": 8000
+                },
+                {
+                    "Direction": "less than",
+                    "Name": "lower non critical",
+                    "Severity": 0,
+                    "Value": 200
+                },
+                {
+                    "Direction": "less than",
+                    "Name": "lower critical",
+                    "Severity": 1,
+                    "Value": 50
+                }
+            ],
+            "Type": "AspeedFan"
         },
         {
             "Address": "0x28",
@@ -321,100 +339,190 @@
                 "temp4"
             ],
             "Name": "NC",
-            "Name1": "SYS_Air_Inlet",
-            "Name2": "MB_Air_Inlet",
-            "Name3": "MB_Air_Outlet",
+            "Name1": "SYS_AIR_INLET",
+            "Name2": "MB_AIR_INLET",
+            "Name3": "MB_AIR_OUTLET",
+            "PowerState": "Always",
             "Thresholds": [
                 {
-                    "Direction": "less than",
-                    "Index": 2,
-                    "Name": "lower critical",
-                    "Severity": 1,
-                    "Value": 0
-                },
-                {
-                    "Direction": "less than",
-                    "Index": 3,
-                    "Name": "lower critical",
-                    "Severity": 1,
-                    "Value": 0
-                },
-                {
-                    "Direction": "less than",
-                    "Index": 4,
-                    "Name": "lower critical",
-                    "Severity": 1,
-                    "Value": 0
-                },
-                {
-                    "Direction": "less than",
-                    "Index": 2,
-                    "Name": "lower non critical",
-                    "Severity": 0,
-                    "Value": 5
-                },
-                {
-                    "Direction": "less than",
-                    "Index": 3,
-                    "Name": "lower non critical",
-                    "Severity": 0,
-                    "Value": 5
-                },
-                {
-                    "Direction": "less than",
-                    "Index": 4,
-                    "Name": "lower non critical",
-                    "Severity": 0,
-                    "Value": 5
-                },
-                {
                     "Direction": "greater than",
                     "Index": 2,
-                    "Name": "upper non critical",
-                    "Severity": 0,
+                    "Name": "upper critical",
+                    "Severity": 1,
                     "Value": 35
                 },
                 {
+                    "Direction": "less than",
+                    "Index": 2,
+                    "Name": "lower critical",
+                    "Severity": 1,
+                    "Value": 10
+                },
+                {
                     "Direction": "greater than",
                     "Index": 3,
-                    "Name": "upper non critical",
-                    "Severity": 0,
+                    "Name": "upper critical",
+                    "Severity": 1,
                     "Value": 35
                 },
                 {
-                    "Direction": "greater than",
-                    "Index": 4,
-                    "Name": "upper non critical",
-                    "Severity": 0,
-                    "Value": 55
-                },
-                {
-                    "Direction": "greater than",
-                    "Index": 2,
-                    "Name": "upper critical",
-                    "Severity": 1,
-                    "Value": 40
-                },
-                {
-                    "Direction": "greater than",
+                    "Direction": "less than",
                     "Index": 3,
-                    "Name": "upper critical",
+                    "Name": "lower critical",
                     "Severity": 1,
-                    "Value": 40
+                    "Value": 10
                 },
                 {
                     "Direction": "greater than",
                     "Index": 4,
                     "Name": "upper critical",
                     "Severity": 1,
-                    "Value": 60
+                    "Value": 35
+                },
+                {
+                    "Direction": "less than",
+                    "Index": 4,
+                    "Name": "lower critical",
+                    "Severity": 1,
+                    "Value": 10
                 }
             ],
             "Type": "NCT7802"
+        },
+        {
+            "Class": "temp",
+            "FFGainCoefficient": 0,
+            "FFOffCoefficient": 0,
+            "ICoefficient": -0.2,
+            "ILimitMax": 90,
+            "ILimitMin": 35,
+            "Inputs": [
+                "CPU0_Temp"
+            ],
+            "Name": "Temperature Control",
+            "NegativeHysteresis": 0,
+            "OutLimitMax": 100,
+            "OutLimitMin": 35,
+            "Outputs": [],
+            "PCoefficient": -10,
+            "PositiveHysteresis": 0,
+            "SetPoint": 40,
+            "SlewNeg": -0.2,
+            "SlewPos": 0,
+            "Type": "Pid",
+            "Zones": [
+                "Zone0"
+            ]
+        },
+        {
+            "Class": "fan",
+            "FFGainCoefficient": 1,
+            "FFOffCoefficient": 0,
+            "ICoefficient": 0,
+            "ILimitMax": 0,
+            "ILimitMin": 0,
+            "Inputs": [
+                "SYS_FAN_0",
+                "SYS_FAN_1"
+            ],
+            "Name": "Fan Control",
+            "NegativeHysteresis": 0,
+            "OutLimitMax": 100,
+            "OutLimitMin": 40,
+            "Outputs": [
+                "Pwm 1",
+                "Pwm 2"
+            ],
+            "PCoefficient": 0,
+            "PositiveHysteresis": 0,
+            "SetPoint": 0,
+            "SlewNeg": 0,
+            "SlewPos": 0,
+            "Type": "Pid",
+            "Zones": [
+                "Zone0"
+            ]
+        },
+        {
+            "FailSafePercent": 100,
+            "MinThermalOutput": 10,
+            "Name": "Zone0",
+            "Type": "Pid.Zone"
+        },
+        {
+            "Address": "0x3c",
+            "Bus": "5",
+            "Labels": [
+                "power1_input"
+            ],
+            "Name": "CPU0 Power Consumption",
+            "PollRate": 1.0,
+            "PowerState": "On",
+            "Thresholds": [
+                {
+                    "Direction": "greater than",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 200
+                }
+            ],
+            "Type": "SBRMI"
+        },
+        {
+            "Address": "0x4c",
+            "Bus": "5",
+            "Name": "CPU0_Temp",
+            "PowerState": "On",
+            "Thresholds": [
+                {
+                    "Direction": "greater than",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 80
+                },
+                {
+                    "Direction": "less than",
+                    "Name": "lower critical",
+                    "Severity": 1,
+                    "Value": 10
+                }
+            ],
+            "Type": "SBTSI"
+        },
+        {
+            "Override": {
+                "Index": 1,
+                "Name": "P0_VDD_VDDIO_RUN"
+            },
+            "Path": "tyan_p0_vddio.record.json",
+            "Type": "include"
+        },
+        {
+            "Override": {
+                "Index": 7,
+                "PowerState": "On",
+                "ScaleFactor": 0.0112
+            },
+            "Path": "tyan_vbat_33.record.json",
+            "Type": "include"
+        },
+        {
+            "Override": {
+                "Index": 11
+            },
+            "Path": "tyan_vdd_33_run.record.json",
+            "Type": "include"
+        },
+        {
+            "Override": {
+                "Index": 9
+            },
+            "Path": "tyan_vdd_12_run.record.json",
+            "Type": "include"
         }
     ],
-    "Name": "Tyan S8040 Baseboard",
-    "Probe": "xyz.openbmc_project.FruDevice({'BOARD_MANUFACTURER': 'TYAN', 'BOARD_PRODUCT_NAME': 'S8040*'})",
+    "Name": "Tyan S8047 Baseboard",
+    "Probe": "xyz.openbmc_project.FruDevice({'BOARD_MANUFACTURER': 'TYAN', 'BOARD_PRODUCT_NAME': 'S8047*'})",
     "Type": "Board",
     "xyz.openbmc_project.Inventory.Decorator.Asset": {
         "Manufacturer": "$PRODUCT_MANUFACTURER",
