@@ -1,153 +1,156 @@
 {
     "$schema": "http://json-schema.org/draft-07/schema#",
     "$defs": {
+        "ConfigSchema": {
+            "oneOf": [
+                {
+                    "$ref": "ibm.json#/$defs/PowerModeProperties"
+                },
+                {
+                    "$ref": "ibm.json#/$defs/IBMCompatibleSystem"
+                },
+                {
+                    "$ref": "ibm.json#/$defs/IBMCFFPSConnector"
+                },
+                {
+                    "$ref": "intel.json#/$defs/IntelFanConnector"
+                },
+                {
+                    "$ref": "mctp.json#/$defs/MCTPI2CTarget"
+                },
+                {
+                    "$ref": "mctp.json#/$defs/MCTPI3CTarget"
+                },
+                {
+                    "$ref": "pid.json#/$defs/Pid"
+                },
+                {
+                    "$ref": "pid_zone.json#/$defs/PidZone"
+                },
+                {
+                    "$ref": "satellite_controller.json#/$defs/SatelliteController"
+                },
+                {
+                    "$ref": "stepwise.json#/$defs/Stepwise"
+                },
+                {
+                    "$ref": "legacy.json#/$defs/ExitAirTempSensor"
+                },
+                {
+                    "$ref": "legacy.json#/$defs/CFMSensor"
+                },
+                {
+                    "$ref": "legacy.json#/$defs/FanRedundancy"
+                },
+                {
+                    "$ref": "legacy.json#/$defs/PURedundancy"
+                },
+                {
+                    "$ref": "legacy.json#/$defs/ChassisIntrusionSensor"
+                },
+                {
+                    "$ref": "legacy.json#/$defs/AspeedFan"
+                },
+                {
+                    "$ref": "legacy.json#/$defs/I2CFan"
+                },
+                {
+                    "$ref": "legacy.json#/$defs/NuvotonFan"
+                },
+                {
+                    "$ref": "legacy.json#/$defs/XeonCPU"
+                },
+                {
+                    "$ref": "legacy.json#/$defs/IpmbSensor"
+                },
+                {
+                    "$ref": "legacy.json#/$defs/I2CMux"
+                },
+                {
+                    "$ref": "legacy.json#/$defs/Gpio"
+                },
+                {
+                    "$ref": "legacy.json#/$defs/MultiNodeID"
+                },
+                {
+                    "$ref": "legacy.json#/$defs/MultiNodePresence"
+                },
+                {
+                    "$ref": "legacy.json#/$defs/HostCpuUtilization"
+                },
+                {
+                    "$ref": "legacy.json#/$defs/ExternalSensor"
+                },
+                {
+                    "$ref": "legacy.json#/$defs/Port"
+                },
+                {
+                    "$ref": "legacy.json#/$defs/DownstreamPort"
+                },
+                {
+                    "$ref": "legacy.json#/$defs/PSUPresence"
+                },
+                {
+                    "$ref": "legacy.json#/$defs/EmmcDevice"
+                },
+                {
+                    "$ref": "legacy.json#/$defs/IpmbDevice"
+                },
+                {
+                    "$ref": "legacy.json#/$defs/IpmbPowerMonitor"
+                },
+                {
+                    "$ref": "legacy.json#/$defs/ADC"
+                },
+                {
+                    "$ref": "legacy.json#/$defs/TempSensor"
+                },
+                {
+                    "$ref": "legacy.json#/$defs/NVME1000"
+                },
+                {
+                    "$ref": "legacy.json#/$defs/EEPROM"
+                },
+                {
+                    "$ref": "legacy.json#/$defs/PSUSensor"
+                },
+                {
+                    "$ref": "legacy.json#/$defs/NMSensor"
+                },
+                {
+                    "$ref": "legacy.json#/$defs/IntelHsbpFruDevice"
+                },
+                {
+                    "$ref": "legacy.json#/$defs/IntelHsbpTempSensor"
+                },
+                {
+                    "$ref": "legacy.json#/$defs/IntelHsbpCPLD"
+                },
+                {
+                    "$ref": "legacy.json#/$defs/GenericSMBusMux"
+                },
+                {
+                    "$ref": "legacy.json#/$defs/BMC"
+                },
+                {
+                    "$ref": "legacy.json#/$defs/UCD90XXX"
+                },
+                {
+                    "$ref": "virtual_sensor.json#/$defs/VirtualSensor"
+                },
+                {
+                    "$ref": "leak_detector.json#/$defs/GPIOLeakDetector"
+                },
+                {
+                    "$ref": "firmware.json#/$defs/XDPE1X2XXFirmware"
+                }
+            ]
+        },
         "EMExposesElement": {
             "description": "The exposes property element schema.  An element of the exposes property is always an array where elements are of type exposes entry.",
             "allOf": [
                 {
-                    "oneOf": [
-                        {
-                            "$ref": "ibm.json#/$defs/PowerModeProperties"
-                        },
-                        {
-                            "$ref": "ibm.json#/$defs/IBMCompatibleSystem"
-                        },
-                        {
-                            "$ref": "ibm.json#/$defs/IBMCFFPSConnector"
-                        },
-                        {
-                            "$ref": "intel.json#/$defs/IntelFanConnector"
-                        },
-                        {
-                            "$ref": "mctp.json#/$defs/MCTPI2CTarget"
-                        },
-                        {
-                            "$ref": "mctp.json#/$defs/MCTPI3CTarget"
-                        },
-                        {
-                            "$ref": "pid.json#/$defs/Pid"
-                        },
-                        {
-                            "$ref": "pid_zone.json#/$defs/PidZone"
-                        },
-                        {
-                            "$ref": "satellite_controller.json#/$defs/SatelliteController"
-                        },
-                        {
-                            "$ref": "stepwise.json#/$defs/Stepwise"
-                        },
-                        {
-                            "$ref": "legacy.json#/$defs/ExitAirTempSensor"
-                        },
-                        {
-                            "$ref": "legacy.json#/$defs/CFMSensor"
-                        },
-                        {
-                            "$ref": "legacy.json#/$defs/FanRedundancy"
-                        },
-                        {
-                            "$ref": "legacy.json#/$defs/PURedundancy"
-                        },
-                        {
-                            "$ref": "legacy.json#/$defs/ChassisIntrusionSensor"
-                        },
-                        {
-                            "$ref": "legacy.json#/$defs/AspeedFan"
-                        },
-                        {
-                            "$ref": "legacy.json#/$defs/I2CFan"
-                        },
-                        {
-                            "$ref": "legacy.json#/$defs/NuvotonFan"
-                        },
-                        {
-                            "$ref": "legacy.json#/$defs/XeonCPU"
-                        },
-                        {
-                            "$ref": "legacy.json#/$defs/IpmbSensor"
-                        },
-                        {
-                            "$ref": "legacy.json#/$defs/I2CMux"
-                        },
-                        {
-                            "$ref": "legacy.json#/$defs/Gpio"
-                        },
-                        {
-                            "$ref": "legacy.json#/$defs/MultiNodeID"
-                        },
-                        {
-                            "$ref": "legacy.json#/$defs/MultiNodePresence"
-                        },
-                        {
-                            "$ref": "legacy.json#/$defs/HostCpuUtilization"
-                        },
-                        {
-                            "$ref": "legacy.json#/$defs/ExternalSensor"
-                        },
-                        {
-                            "$ref": "legacy.json#/$defs/Port"
-                        },
-                        {
-                            "$ref": "legacy.json#/$defs/DownstreamPort"
-                        },
-                        {
-                            "$ref": "legacy.json#/$defs/PSUPresence"
-                        },
-                        {
-                            "$ref": "legacy.json#/$defs/EmmcDevice"
-                        },
-                        {
-                            "$ref": "legacy.json#/$defs/IpmbDevice"
-                        },
-                        {
-                            "$ref": "legacy.json#/$defs/IpmbPowerMonitor"
-                        },
-                        {
-                            "$ref": "legacy.json#/$defs/ADC"
-                        },
-                        {
-                            "$ref": "legacy.json#/$defs/TempSensor"
-                        },
-                        {
-                            "$ref": "legacy.json#/$defs/NVME1000"
-                        },
-                        {
-                            "$ref": "legacy.json#/$defs/EEPROM"
-                        },
-                        {
-                            "$ref": "legacy.json#/$defs/PSUSensor"
-                        },
-                        {
-                            "$ref": "legacy.json#/$defs/NMSensor"
-                        },
-                        {
-                            "$ref": "legacy.json#/$defs/IntelHsbpFruDevice"
-                        },
-                        {
-                            "$ref": "legacy.json#/$defs/IntelHsbpTempSensor"
-                        },
-                        {
-                            "$ref": "legacy.json#/$defs/IntelHsbpCPLD"
-                        },
-                        {
-                            "$ref": "legacy.json#/$defs/GenericSMBusMux"
-                        },
-                        {
-                            "$ref": "legacy.json#/$defs/BMC"
-                        },
-                        {
-                            "$ref": "legacy.json#/$defs/UCD90XXX"
-                        },
-                        {
-                            "$ref": "virtual_sensor.json#/$defs/VirtualSensor"
-                        },
-                        {
-                            "$ref": "leak_detector.json#/$defs/GPIOLeakDetector"
-                        },
-                        {
-                            "$ref": "firmware.json#/$defs/XDPE1X2XXFirmware"
-                        }
-                    ]
+                    "$ref": "#/$defs/ConfigSchema"
                 },
                 {
                     "title": "Missing 'Name'",
