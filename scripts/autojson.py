@@ -113,6 +113,8 @@ for file in files:
     else:
         j["Exposes"] = sorted(j["Exposes"], key=lambda k: k["Type"])
 
+    if not file.endswith(".record.json"):
+
     with open(file, "w") as fp:
         contents = json.dumps(
             j, indent=4, sort_keys=True, separators=(",", ": ")
