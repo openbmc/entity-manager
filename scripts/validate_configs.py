@@ -8,10 +8,12 @@ import json
 import os
 import re
 import sys
+from pathlib import Path
 
 import jsonschema.validators
 
 DEFAULT_SCHEMA_FILENAME = "global.json"
+DEFAULT_SCHEMA_FILENAME_RECORD = "exposes_record.json"
 
 
 def remove_c_comments(string):
@@ -85,7 +87,6 @@ def main():
             )
             sys.exit(2)
 
-
     config_files = args.config or []
     if len(config_files) == 0:
         try:
@@ -127,12 +128,25 @@ def main():
 
     validator = validator_from_file(schema_file)
 
+    schema_filename_record = os.sep + os.path.join(
+        *source_dir, "schemas", DEFAULT_SCHEMA_FILENAME_RECORD
+    )
+    validator_record = validator_from_file(schema_filename_record)
+
     results = {
         "invalid": [],
         "unexpected_pass": [],
     }
     for config_file, config in zip(config_files, configs):
-        if not validate_single_config(args, config_file, config, expected_fails, validator, results):
+        if not validate_single_config(
+            args,
+            config_file,
+            config,
+            expected_fails,
+            validator,
+            validator_record,
+            results,
+        ):
             break
 
     exit_status = 0
@@ -152,6 +166,7 @@ def main():
             print("\n** configuration expected to fail")
 
     sys.exit(exit_status)
+
 
 def validator_from_file(schema_file):
 
@@ -175,7 +190,16 @@ def validator_from_file(schema_file):
 
     return validator
 
-def validate_single_config(args, config_file, config, expected_fails, validator, results):
+
+def validate_single_config(
+    args,
+    config_file,
+    config,
+    expected_fails,
+    validator,
+    validator_record,
+    results,
+):
     name = os.path.split(config_file)[1]
     expect_fail = name in expected_fails
     try:
@@ -192,7 +216,77 @@ def validate_single_config(args, config_file, config, expected_fails, validator,
         if expect_fail or getattr(args, "continue"):
             return True
         return False
+
+    # in case of EM record json, no override validation
+    if isinstance(config, dict):
+        if "Exposes" not in config:
+            return True
+
+    records = collect_exposes_records(config)
+
+    for record in records:
+        if record["Type"] is not None and record["Type"] == "include":
+            if args.verbose:
+                print("include / override detected in", name)
+
+            if not validate_override_record(
+                record, validator_record, Path(config_file).parent, args
+            ):
+                results["invalid"].append(name)
+                if expect_fail or getattr(args, "continue"):
+                    return True
+                return False
+
     return True
+
+
+def merge_override_record(record, base_dir):
+
+    path = record["Path"]
+
+    with open(os.path.join(base_dir, path)) as fd:
+        res = json.loads(fd.read())
+
+    if "Override" in record:
+        overrides = record["Override"]
+
+        for key in overrides.keys():
+            res[key] = overrides[key]
+
+    return res
+
+
+def validate_override_record(record, validator_record, base_dir, args):
+
+    if "Path" not in record:
+        print("missing 'Path' in override record")
+
+    merged_config = merge_override_record(record, base_dir)
+
+    try:
+        validator_record.validate(merged_config)
+    except jsonschema.exceptions.ValidationError as e:
+        if args.verbose:
+            print(e)
+        return False
+
+    return True
+
+
+def collect_exposes_records(config):
+    records = []
+
+    if isinstance(config, dict):
+        records = config["Exposes"]
+
+    if isinstance(config, list):
+        for item in config:
+            exposes = item["Exposes"]
+            for record in exposes:
+                records.append(record)
+
+    return records
+
 
 if __name__ == "__main__":
     main()
