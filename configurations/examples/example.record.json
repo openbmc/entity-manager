@@ -1,0 +1,21 @@
+{
+    "Index": 9,
+    "Name": "P0_VDD_MEM_EFGH",
+    "PowerState": "On",
+    "ScaleFactor": 1,
+    "Thresholds": [
+        {
+            "Direction": "greater than",
+            "Name": "upper critical",
+            "Severity": 1,
+            "Value": 1.351
+        },
+        {
+            "Direction": "less than",
+            "Name": "lower critical",
+            "Severity": 1,
+            "Value": 1.05
+        }
+    ],
+    "Type": "ADC"
+}
