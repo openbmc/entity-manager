@@ -42,6 +42,7 @@ configs = [
     'delta_dps-2000ab_psu.json',
     'delta_dps-750xb_psu.json',
     'everest.json',
+    'examples/example.json',
     'f1u12x25_hsbp.json',
     'f1u4x25_hsbp.json',
     'f2u12x35_hsbp.json',
