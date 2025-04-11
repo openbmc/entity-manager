@@ -18,6 +18,7 @@
 #include "entity_manager.hpp"
 
 #include "overlay.hpp"
+#include "phosphor-logging/lg2.hpp"
 #include "topology.hpp"
 #include "utils.hpp"
 #include "variant_visitors.hpp"
@@ -828,6 +829,83 @@ void postToDbus(const nlohmann::json& newConfiguration,
     }
 }
 
+std::optional<nlohmann::json> processIncludeJsonRecord(
+    const nlohmann::json& record, const std::filesystem::path& parentDirectory,
+    const std::filesystem::path& jsonPath)
+{
+    lg2::debug("Processing json include for {PATH} in directory {DIR}", "PATH",
+               jsonPath, "DIR", parentDirectory);
+
+    auto path = parentDirectory / jsonPath;
+
+    std::ifstream jsonStream(path.c_str());
+    if (!jsonStream.good())
+    {
+        lg2::error("unable to open {PATH}", "PATH", path.string());
+        return std::nullopt;
+    }
+    auto data = nlohmann::json::parse(jsonStream, nullptr, false, true);
+    if (data.is_discarded())
+    {
+        lg2::error("syntax error in {PATH}", "PATH", path.string());
+        return std::nullopt;
+    }
+
+    if (record.contains("Override"))
+    {
+        lg2::debug("Processing overrides for {PATH}", "PATH", jsonPath);
+
+        for (const auto& [key, value] : record["Override"].items())
+        {
+            data[key] = value;
+        }
+    }
+
+    return data;
+}
+
+nlohmann::json processIncludeJson(const std::filesystem::path& parentDirectory,
+                                  nlohmann::json& json)
+{
+    lg2::debug("Processing json includes");
+
+    if (!json.contains("Exposes"))
+    {
+        return json;
+    }
+    auto records = json["Exposes"];
+
+    if (!records.is_array())
+    {
+        return json;
+    }
+
+    for (auto& record : records)
+    {
+        if (!record.contains("Type"))
+        {
+            continue;
+        }
+
+        if (record["Type"] != "include")
+        {
+            continue;
+        }
+
+        std::filesystem::path path(record["Path"]);
+        auto optData = processIncludeJsonRecord(record, parentDirectory, path);
+
+        if (optData.has_value())
+        {
+            record = optData.value();
+        }
+    }
+
+    json["Exposes"] = records;
+
+    return json;
+}
+
 // reads json files out of the filesystem
 bool loadConfigurations(std::list<nlohmann::json>& configurations)
 {
@@ -841,6 +919,23 @@ bool loadConfigurations(std::list<nlohmann::json>& configurations)
         std::cerr << "Unable to find any configuration files in "
                   << configurationDirectory << "\n";
         return false;
+    }
+
+    std::vector<std::filesystem::path> jsonPathsPrimary;
+    std::vector<std::filesystem::path> jsonPathsRecords;
+    jsonPathsPrimary.reserve(jsonPaths.size());
+    jsonPathsRecords.reserve(jsonPaths.size());
+
+    for (std::filesystem::path& path : jsonPaths)
+    {
+        if (path.string().ends_with(".record.json"))
+        {
+            jsonPathsRecords.push_back(path);
+        }
+        else
+        {
+            jsonPathsPrimary.push_back(path);
+        }
     }
 
     std::ifstream schemaStream(
@@ -862,7 +957,7 @@ bool loadConfigurations(std::list<nlohmann::json>& configurations)
         return false;
     }
 
-    for (auto& jsonPath : jsonPaths)
+    for (auto& jsonPath : jsonPathsPrimary)
     {
         std::ifstream jsonStream(jsonPath.c_str());
         if (!jsonStream.good())
@@ -893,7 +988,8 @@ bool loadConfigurations(std::list<nlohmann::json>& configurations)
         }
         else
         {
-            configurations.emplace_back(data);
+            configurations.emplace_back(
+                processIncludeJson(jsonPath.parent_path(), data));
         }
     }
     return true;

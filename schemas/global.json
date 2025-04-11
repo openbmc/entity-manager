@@ -113,6 +113,9 @@
     "oneOf": [
         {
             "$ref": "#/$defs/EMConfig"
+        },
+        {
+            "$ref": "exposes_record.json#/$defs/EMExposesElement"
         }
     ]
 }
