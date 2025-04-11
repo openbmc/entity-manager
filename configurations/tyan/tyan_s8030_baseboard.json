@@ -67,39 +67,6 @@
             "Type": "ADC"
         },
         {
-            "Index": 2,
-            "Name": "VDD_12_RUN",
-            "PowerState": "On",
-            "ScaleFactor": 0.1127,
-            "Thresholds": [
-                {
-                    "Direction": "less than",
-                    "Name": "lower critical",
-                    "Severity": 1,
-                    "Value": 10.478
-                },
-                {
-                    "Direction": "less than",
-                    "Name": "lower non critical",
-                    "Severity": 0,
-                    "Value": 11.5
-                },
-                {
-                    "Direction": "greater than",
-                    "Name": "upper non critical",
-                    "Severity": 0,
-                    "Value": 12.8
-                },
-                {
-                    "Direction": "greater than",
-                    "Name": "upper critical",
-                    "Severity": 1,
-                    "Value": 13.02
-                }
-            ],
-            "Type": "ADC"
-        },
-        {
             "Index": 3,
             "Name": "VDD_5_RUN",
             "PowerState": "On",
@@ -128,39 +95,6 @@
                     "Name": "upper critical",
                     "Severity": 1,
                     "Value": 5.521
-                }
-            ],
-            "Type": "ADC"
-        },
-        {
-            "Index": 4,
-            "Name": "VDD_33_RUN",
-            "PowerState": "On",
-            "ScaleFactor": 0.4113,
-            "Thresholds": [
-                {
-                    "Direction": "less than",
-                    "Name": "lower critical",
-                    "Severity": 1,
-                    "Value": 2.686
-                },
-                {
-                    "Direction": "less than",
-                    "Name": "lower non critical",
-                    "Severity": 0,
-                    "Value": 3.1
-                },
-                {
-                    "Direction": "greater than",
-                    "Name": "upper non critical",
-                    "Severity": 0,
-                    "Value": 3.5
-                },
-                {
-                    "Direction": "greater than",
-                    "Name": "upper critical",
-                    "Severity": 1,
-                    "Value": 3.604
                 }
             ],
             "Type": "ADC"
@@ -454,6 +388,28 @@
                 }
             ],
             "Type": "TMP75"
+        },
+        {
+            "Override": {
+                "Index": 10,
+                "ScaleFactor": 0.3333
+            },
+            "Path": "tyan_vbat_33.record.json",
+            "Type": "include"
+        },
+        {
+            "Override": {
+                "Index": 4
+            },
+            "Path": "tyan_vdd_33_run.record.json",
+            "Type": "include"
+        },
+        {
+            "Override": {
+                "Index": 2
+            },
+            "Path": "tyan_vdd_12_run.record.json",
+            "Type": "include"
         },
         {
             "Address": "0x3c",
