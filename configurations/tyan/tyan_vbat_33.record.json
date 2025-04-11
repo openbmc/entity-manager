@@ -1,0 +1,21 @@
+{
+    "Index": 10,
+    "Name": "VBAT_33",
+    "PowerState": "Always",
+    "ScaleFactor": 0.3333,
+    "Thresholds": [
+        {
+            "Direction": "greater than",
+            "Name": "upper critical",
+            "Severity": 1,
+            "Value": 3.507
+        },
+        {
+            "Direction": "less than",
+            "Name": "lower critical",
+            "Severity": 1,
+            "Value": 2.688
+        }
+    ],
+    "Type": "ADC"
+}
