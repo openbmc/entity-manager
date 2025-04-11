@@ -1,0 +1,21 @@
+{
+    "Index": 1,
+    "Name": "P0_VDD_VDDIO_RUN",
+    "PowerState": "On",
+    "ScaleFactor": 1,
+    "Thresholds": [
+        {
+            "Direction": "greater than",
+            "Name": "upper critical",
+            "Severity": 1,
+            "Value": 1.15
+        },
+        {
+            "Direction": "less than",
+            "Name": "lower critical",
+            "Severity": 1,
+            "Value": 0.85
+        }
+    ],
+    "Type": "ADC"
+}
