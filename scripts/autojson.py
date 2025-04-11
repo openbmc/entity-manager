@@ -107,7 +107,8 @@ for file in files:
     with open(file) as fp:
         j = json.loads(comments.extract_comments(fp.read()))
 
-    j["Exposes"] = sorted(j["Exposes"], key=lambda k: k["Type"])
+    if not file.endswith(".record.json"):
+        j["Exposes"] = sorted(j["Exposes"], key=lambda k: k["Type"])
 
     with open(file, "w") as fp:
         contents = json.dumps(
