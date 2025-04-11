@@ -22,27 +22,6 @@
             "Type": "ADC"
         },
         {
-            "Index": 1,
-            "Name": "P0_VDD_VDDIO_RUN",
-            "PowerState": "On",
-            "ScaleFactor": 1,
-            "Thresholds": [
-                {
-                    "Direction": "greater than",
-                    "Name": "upper critical",
-                    "Severity": 1,
-                    "Value": 1.15
-                },
-                {
-                    "Direction": "less than",
-                    "Name": "lower critical",
-                    "Severity": 1,
-                    "Value": 0.85
-                }
-            ],
-            "Type": "ADC"
-        },
-        {
             "Index": 2,
             "Name": "P0_VDD_SOC_RUN",
             "PowerState": "On",
@@ -148,29 +127,6 @@
             "Type": "ADC"
         },
         {
-            "Index": 7,
-            "Name": "VBAT_33",
-            "PowerState": "On",
-            "ScaleFactor": 0.0112,
-            "Thresholds": [
-                {
-                    "Direction": "greater than",
-                    "Hysteresis": 0.01,
-                    "Name": "upper critical",
-                    "Severity": 1,
-                    "Value": 3.79
-                },
-                {
-                    "Direction": "less than",
-                    "Hysteresis": 0.01,
-                    "Name": "lower critical",
-                    "Severity": 1,
-                    "Value": 2.8
-                }
-            ],
-            "Type": "ADC"
-        },
-        {
             "Index": 8,
             "Name": "VDDC_AON",
             "PowerState": "On",
@@ -192,27 +148,6 @@
             "Type": "ADC"
         },
         {
-            "Index": 9,
-            "Name": "VDD_12_RUN",
-            "PowerState": "On",
-            "ScaleFactor": 0.1121,
-            "Thresholds": [
-                {
-                    "Direction": "greater than",
-                    "Name": "upper critical",
-                    "Severity": 1,
-                    "Value": 13.79
-                },
-                {
-                    "Direction": "less than",
-                    "Name": "lower critical",
-                    "Severity": 1,
-                    "Value": 10.2
-                }
-            ],
-            "Type": "ADC"
-        },
-        {
             "Index": 10,
             "Name": "VDD_5_RUN",
             "PowerState": "On",
@@ -229,27 +164,6 @@
                     "Name": "lower critical",
                     "Severity": 1,
                     "Value": 4.25
-                }
-            ],
-            "Type": "ADC"
-        },
-        {
-            "Index": 11,
-            "Name": "VDD_33_RUN",
-            "PowerState": "On",
-            "ScaleFactor": 0.4054,
-            "Thresholds": [
-                {
-                    "Direction": "greater than",
-                    "Name": "upper critical",
-                    "Severity": 1,
-                    "Value": 3.79
-                },
-                {
-                    "Direction": "less than",
-                    "Name": "lower critical",
-                    "Severity": 1,
-                    "Value": 2.8
                 }
             ],
             "Type": "ADC"
@@ -334,6 +248,126 @@
                     "Name": "lower critical",
                     "Severity": 1,
                     "Value": 0.85
+                }
+            ],
+            "Type": "ADC"
+        },
+        {
+            "Index": 1,
+            "Name": "P0_VDD_VDDIO_RUN",
+            "PowerState": "On",
+            "ScaleFactor": 1,
+            "Thresholds": [
+                {
+                    "Direction": "greater than",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 1.15
+                },
+                {
+                    "Direction": "less than",
+                    "Name": "lower critical",
+                    "Severity": 1,
+                    "Value": 0.85
+                }
+            ],
+            "Type": "ADC"
+        },
+        {
+            "Index": 7,
+            "Name": "VBAT_33",
+            "PowerState": "On",
+            "ScaleFactor": 0.0112,
+            "Thresholds": [
+                {
+                    "Direction": "greater than",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 3.507
+                },
+                {
+                    "Direction": "greater than",
+                    "Name": "upper non critical",
+                    "Severity": 0,
+                    "Value": 3.332
+                },
+                {
+                    "Direction": "less than",
+                    "Name": "lower non critical",
+                    "Severity": 0,
+                    "Value": 2.85
+                },
+                {
+                    "Direction": "less than",
+                    "Name": "lower critical",
+                    "Severity": 1,
+                    "Value": 2.688
+                }
+            ],
+            "Type": "ADC"
+        },
+        {
+            "Index": 11,
+            "Name": "VDD_33_RUN",
+            "PowerState": "On",
+            "ScaleFactor": 0.4113,
+            "Thresholds": [
+                {
+                    "Direction": "less than",
+                    "Name": "lower critical",
+                    "Severity": 1,
+                    "Value": 2.686
+                },
+                {
+                    "Direction": "less than",
+                    "Name": "lower non critical",
+                    "Severity": 0,
+                    "Value": 3.1
+                },
+                {
+                    "Direction": "greater than",
+                    "Name": "upper non critical",
+                    "Severity": 0,
+                    "Value": 3.5
+                },
+                {
+                    "Direction": "greater than",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 3.604
+                }
+            ],
+            "Type": "ADC"
+        },
+        {
+            "Index": 9,
+            "Name": "VDD_12_RUN",
+            "PowerState": "On",
+            "ScaleFactor": 0.1127,
+            "Thresholds": [
+                {
+                    "Direction": "less than",
+                    "Name": "lower critical",
+                    "Severity": 1,
+                    "Value": 10.478
+                },
+                {
+                    "Direction": "less than",
+                    "Name": "lower non critical",
+                    "Severity": 0,
+                    "Value": 11.5
+                },
+                {
+                    "Direction": "greater than",
+                    "Name": "upper non critical",
+                    "Severity": 0,
+                    "Value": 12.8
+                },
+                {
+                    "Direction": "greater than",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 13.02
                 }
             ],
             "Type": "ADC"

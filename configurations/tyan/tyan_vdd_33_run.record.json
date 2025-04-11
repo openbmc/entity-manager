@@ -1,0 +1,33 @@
+{
+    "Index": 4,
+    "Name": "VDD_33_RUN",
+    "PowerState": "On",
+    "ScaleFactor": 0.4113,
+    "Thresholds": [
+        {
+            "Direction": "less than",
+            "Name": "lower critical",
+            "Severity": 1,
+            "Value": 2.686
+        },
+        {
+            "Direction": "less than",
+            "Name": "lower non critical",
+            "Severity": 0,
+            "Value": 3.1
+        },
+        {
+            "Direction": "greater than",
+            "Name": "upper non critical",
+            "Severity": 0,
+            "Value": 3.5
+        },
+        {
+            "Direction": "greater than",
+            "Name": "upper critical",
+            "Severity": 1,
+            "Value": 3.604
+        }
+    ],
+    "Type": "ADC"
+}

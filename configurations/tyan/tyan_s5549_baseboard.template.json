@@ -397,45 +397,6 @@
             "Type": "ADC"
         },
         {
-            "BridgeGpio": [
-                {
-                    "Name": "FM_BAT_MON",
-                    "Polarity": "High"
-                }
-            ],
-            "Index": 7,
-            "Name": "BATTERY_VOLTAGE",
-            "PowerState": "Always",
-            "ScaleFactor": 0.3333,
-            "Thresholds": [
-                {
-                    "Direction": "greater than",
-                    "Name": "upper critical",
-                    "Severity": 1,
-                    "Value": 3.507
-                },
-                {
-                    "Direction": "greater than",
-                    "Name": "upper non critical",
-                    "Severity": 0,
-                    "Value": 3.332
-                },
-                {
-                    "Direction": "less than",
-                    "Name": "lower non critical",
-                    "Severity": 0,
-                    "Value": 2.85
-                },
-                {
-                    "Direction": "less than",
-                    "Name": "lower critical",
-                    "Severity": 1,
-                    "Value": 2.688
-                }
-            ],
-            "Type": "ADC"
-        },
-        {
             "Address": "0x50",
             "Bus": 6,
             "Name": "BOARD_FRU",
@@ -509,6 +470,20 @@
             "Name": "CPU",
             "PowerState": "On",
             "Type": "XeonCPU"
+        },
+        {
+            "Override": {
+                "BridgeGpio": [
+                    {
+                        "Name": "FM_BAT_MON",
+                        "Polarity": "High"
+                    }
+                ],
+                "Index": 7,
+                "Name": "BATTERY_VOLTAGE"
+            },
+            "Path": "tyan_vbat_33.record.json",
+            "Type": "include"
         }
     ],
     "Name": "Tyan S5549 Baseboard",
