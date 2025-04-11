@@ -148,35 +148,6 @@
             "Type": "ADC"
         },
         {
-            "BridgeGpio": [
-                {
-                    "Name": "A_P3V_BAT_SCALED_EN",
-                    "Polarity": "High"
-                }
-            ],
-            "Index": 7,
-            "Name": "VBAT_33",
-            "PowerState": "On",
-            "ScaleFactor": 0.0112,
-            "Thresholds": [
-                {
-                    "Direction": "greater than",
-                    "Hysteresis": 0.01,
-                    "Name": "upper critical",
-                    "Severity": 1,
-                    "Value": 3.79
-                },
-                {
-                    "Direction": "less than",
-                    "Hysteresis": 0.01,
-                    "Name": "lower critical",
-                    "Severity": 1,
-                    "Value": 2.8
-                }
-            ],
-            "Type": "ADC"
-        },
-        {
             "Index": 9,
             "Name": "VDD_12V_RUN",
             "PowerState": "On",
@@ -401,6 +372,21 @@
                 }
             ],
             "Type": "NCT7802"
+        },
+        {
+            "Override": {
+                "BridgeGpio": [
+                    {
+                        "Name": "A_P3V_BAT_SCALED_EN",
+                        "Polarity": "High"
+                    }
+                ],
+                "Index": 7,
+                "PowerState": "On",
+                "ScaleFactor": 0.0112
+            },
+            "Path": "tyan_vbat_33.record.json",
+            "Type": "include"
         }
     ],
     "Name": "Tyan S8040 Baseboard",
