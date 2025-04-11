@@ -1339,6 +1339,13 @@
                 {
                     "Direction": "greater than",
                     "Hysteresis": 0,
+                    "Name": "upper non recoverable",
+                    "Severity": 4,
+                    "Value": 150
+                },
+                {
+                    "Direction": "greater than",
+                    "Hysteresis": 0,
                     "Name": "upper critical",
                     "Severity": 1,
                     "Value": 80
@@ -1351,6 +1358,13 @@
             "Bus": 11,
             "Name": "MEDUSA1_TEMP_C",
             "Thresholds": [
+                {
+                    "Direction": "greater than",
+                    "Hysteresis": 0,
+                    "Name": "upper non recoverable",
+                    "Severity": 4,
+                    "Value": 150
+                },
                 {
                     "Direction": "greater than",
                     "Hysteresis": 0,
