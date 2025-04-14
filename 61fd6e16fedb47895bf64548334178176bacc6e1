@@ -98,6 +98,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "2aaea1ab_9af199a4",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 12,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2025-04-14T23:09:30Z",
+      "side": 1,
+      "message": "\u003e gb200nvl-obmc\n\nThis machine doesn\u0027t enable MCTP fully, and is intended to run on a BMC (ie P3809).\n\nLets just remove the MCTP-specific code until a backend exists, then this can merge.",
+      "parentUuid": "410cab31_d8844067",
+      "range": {
+        "startLine": 12,
+        "startChar": 0,
+        "endLine": 12,
+        "endChar": 48
+      },
+      "revId": "61fd6e16fedb47895bf64548334178176bacc6e1",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "b451a2bb_73de68fe",
         "filename": "configurations/nvidia_gb200_gpu.json",
         "patchSetId": 2
