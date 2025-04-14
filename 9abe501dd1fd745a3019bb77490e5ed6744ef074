@@ -126,6 +126,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "af958396_844fe5ed",
+        "filename": "schemas/firmware.json",
+        "patchSetId": 11
+      },
+      "lineNbr": 31,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2025-04-14T18:50:10Z",
+      "side": 1,
+      "message": "\u003e  I intentionally avoid restricting the supported values\n\nThe intent of EM is to have a listing of what things are supported.  Please make this an enum.\n\nALso, if these types are things like AT04 devices that we already support, please roll your definitions into those types.",
+      "parentUuid": "2817710d_395d0598",
+      "revId": "9abe501dd1fd745a3019bb77490e5ed6744ef074",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "fd367eaf_84e51157",
         "filename": "schemas/firmware.json",
         "patchSetId": 11
@@ -179,6 +197,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "9e8a4ea7_bdb43046",
+        "filename": "schemas/firmware.json",
+        "patchSetId": 11
+      },
+      "lineNbr": 38,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2025-04-14T18:50:10Z",
+      "side": 1,
+      "message": "EEPROMDeviceFirmware \n\nwould instead be\n\nEEPROMAT04256, which is a type we already support.  I suspect we just need to add something to the existing type that indicates the \"expected contents\"",
+      "parentUuid": "2f78ad92_316ce9d5",
+      "revId": "9abe501dd1fd745a3019bb77490e5ed6744ef074",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "c2885470_436befa1",
         "filename": "schemas/firmware.json",
         "patchSetId": 11
@@ -190,6 +226,24 @@
       "writtenOn": "2025-04-14T10:23:07Z",
       "side": 1,
       "message": "Can you add to this description which daemon will initially consume this configuration.",
+      "revId": "9abe501dd1fd745a3019bb77490e5ed6744ef074",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5c20e755_bc69eef8",
+        "filename": "schemas/firmware.json",
+        "patchSetId": 11
+      },
+      "lineNbr": 39,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2025-04-14T18:50:10Z",
+      "side": 1,
+      "message": "Please don\u0027t add the daemon name in the schema description.  Add it into the commit message.\n\nAt a schema level, it shouldn\u0027t matter what daemon consumes a config stanza.",
+      "parentUuid": "c2885470_436befa1",
       "revId": "9abe501dd1fd745a3019bb77490e5ed6744ef074",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
