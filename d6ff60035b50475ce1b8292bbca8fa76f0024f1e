@@ -177,6 +177,30 @@
       },
       "revId": "d6ff60035b50475ce1b8292bbca8fa76f0024f1e",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "57ae24d9_2408d388",
+        "filename": "schemas/firmware.json",
+        "patchSetId": 6
+      },
+      "lineNbr": 123,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2025-04-14T18:46:49Z",
+      "side": 1,
+      "message": "Right, we already have an EEPROM type.  Does this differ in the actual hardware interfaces?  Or just how software treats it (reads through fru device instead of firmware update daemon).",
+      "parentUuid": "33f15702_3e8c9027",
+      "range": {
+        "startLine": 123,
+        "startChar": 17,
+        "endLine": 123,
+        "endChar": 29
+      },
+      "revId": "d6ff60035b50475ce1b8292bbca8fa76f0024f1e",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }
