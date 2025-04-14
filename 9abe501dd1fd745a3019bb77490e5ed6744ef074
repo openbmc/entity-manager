@@ -36,6 +36,41 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "7c703886_2a7297ab",
+        "filename": "schemas/firmware.json",
+        "patchSetId": 11
+      },
+      "lineNbr": 19,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-04-14T10:23:07Z",
+      "side": 1,
+      "message": "Ok, looks like i missed that. Thanks for clarify 😊",
+      "parentUuid": "3bbbbd95_16a7c2c6",
+      "revId": "9abe501dd1fd745a3019bb77490e5ed6744ef074",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "50c04573_14209712",
+        "filename": "schemas/firmware.json",
+        "patchSetId": 11
+      },
+      "lineNbr": 19,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-04-14T10:23:07Z",
+      "side": 1,
+      "message": "Since it\u0027s specifically aimed at i2c devices, can we rename it to ```I2CDeviceProperties``` or similar?",
+      "revId": "9abe501dd1fd745a3019bb77490e5ed6744ef074",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "81d769b1_777dec91",
@@ -73,6 +108,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "2817710d_395d0598",
+        "filename": "schemas/firmware.json",
+        "patchSetId": 11
+      },
+      "lineNbr": 31,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-04-14T10:23:07Z",
+      "side": 1,
+      "message": "Yes, but there needs to be a way for people to see which values will be supported here. There will be values which the daemon does not handle and that can already be expressed in the configuration schema.\n\nIf there is no way to enumerate, maybe 2 \"ChipModel\" properties can be part of the \"EEPROMDeviceFirmware\" schema? Then they can be enumerated there since they are no longer shared.",
+      "parentUuid": "f937554c_d9e35a6c",
+      "revId": "9abe501dd1fd745a3019bb77490e5ed6744ef074",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "fd367eaf_84e51157",
         "filename": "schemas/firmware.json",
         "patchSetId": 11
@@ -102,6 +155,75 @@
       "side": 1,
       "message": "Why do we need \"additionalProperties: false\"?",
       "parentUuid": "fd367eaf_84e51157",
+      "revId": "9abe501dd1fd745a3019bb77490e5ed6744ef074",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2f78ad92_316ce9d5",
+        "filename": "schemas/firmware.json",
+        "patchSetId": 11
+      },
+      "lineNbr": 38,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-04-14T10:23:07Z",
+      "side": 1,
+      "message": "Since we do not want configurations to pass the validator if they use properties not listed in their schema.\n\nhttps://json-schema.org/draft/2020-12/json-schema-core#section-10.3.2.3\n\n\nThere is an active patch to fix this for an IBM schema https://gerrit.openbmc.org/c/openbmc/entity-manager/+/79654\n\nand now the (reviewers) need to figure out if these additional Properties in these configurations are actually supported, if the schema has to be changed, or the configurations.\n\nSo better to avoid these problems by using \n\n```\n\"additionalProperties\": false\n```",
+      "parentUuid": "a32e8c37_3e999303",
+      "revId": "9abe501dd1fd745a3019bb77490e5ed6744ef074",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c2885470_436befa1",
+        "filename": "schemas/firmware.json",
+        "patchSetId": 11
+      },
+      "lineNbr": 39,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-04-14T10:23:07Z",
+      "side": 1,
+      "message": "Can you add to this description which daemon will initially consume this configuration.",
+      "revId": "9abe501dd1fd745a3019bb77490e5ed6744ef074",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "80596b94_53e8894c",
+        "filename": "schemas/firmware.json",
+        "patchSetId": 11
+      },
+      "lineNbr": 50,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-04-14T10:23:07Z",
+      "side": 1,
+      "message": "Since DeviceInfo and EEPROMInfo use the same schema, will the bus and address be different?\n\nAre you configuring for 2 i2c devices or 1?\n\nIf it\u0027s 1 device we are duplicating Bus and Address.\n\nIf it\u0027s 2 devices, can we have some description on these properties about how they relate to each other.",
+      "revId": "9abe501dd1fd745a3019bb77490e5ed6744ef074",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0e41da03_44981e69",
+        "filename": "schemas/firmware.json",
+        "patchSetId": 11
+      },
+      "lineNbr": 67,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-04-14T10:23:07Z",
+      "side": 1,
+      "message": "There is already an existing schema for polarity, i would prefer we use that instead 😊",
       "revId": "9abe501dd1fd745a3019bb77490e5ed6744ef074",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
