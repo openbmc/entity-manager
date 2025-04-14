@@ -93,6 +93,74 @@
       },
       "revId": "1e1d8a43d969b46bfa68587b4e0aebb157538cd6",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "db14556f_a8f96e15",
+        "filename": "schemas/cpld.json",
+        "patchSetId": 4
+      },
+      "lineNbr": 6,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-04-14T09:04:43Z",
+      "side": 1,
+      "message": "Let\u0027s add to the description which repos will use this configuration schema.\n\nI did this for some of the legacy schemas, and i think it will help to keep an overview as more schemas are introduced\n\ne.g.\n```\n  \"ChassisIntrusionSensor\": {\n            \"description\": \"implemented in dbus-sensors: ChassisIntrusionSensor\",\n```",
+      "revId": "1e1d8a43d969b46bfa68587b4e0aebb157538cd6",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8ab45500_2281fa23",
+        "filename": "schemas/cpld.json",
+        "patchSetId": 4
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-04-14T09:04:43Z",
+      "side": 1,
+      "message": "Can add \n```\n\"additionalProperties\": false,\n```\nhere",
+      "revId": "1e1d8a43d969b46bfa68587b4e0aebb157538cd6",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d38aecb7_17395dc2",
+        "filename": "schemas/cpld.json",
+        "patchSetId": 4
+      },
+      "lineNbr": 27,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-04-14T09:04:43Z",
+      "side": 1,
+      "message": "```Type``` field should be enum or const value.\n\nOtherwise it would be possible for 2 unrelated schemas to collide in the future, leading to validation problems.\n\nHaving an enum for ```Type``` will help to easily grep which schema a configuration record belongs to.",
+      "revId": "1e1d8a43d969b46bfa68587b4e0aebb157538cd6",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f4b4f8c7_4b1251e8",
+        "filename": "schemas/cpld.json",
+        "patchSetId": 4
+      },
+      "lineNbr": 28,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-04-14T09:04:43Z",
+      "side": 1,
+      "message": "Can add\n```\n\"required\": [\"Name\", \"Type\", \"Bus\", \"Address\", \"Part\"],\n```\n\nAt least Name and Type should be required. I would prefer all properties to be required.",
+      "revId": "1e1d8a43d969b46bfa68587b4e0aebb157538cd6",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }
