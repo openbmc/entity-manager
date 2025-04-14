@@ -789,7 +789,7 @@
                 "Name(1[0-7]|[1-9])?$": {
                     "$ref": "#/$defs/Types/Name"
                 },
-                "(vin|iin|pin|maxpin)_Name$": {
+                "(vin|vmon|iin|pin|maxpin)_Name$": {
                     "$ref": "#/$defs/Types/Name"
                 },
                 "(in|in_voltage|vout)(1[0-7]|[0-9])_Name$": {
@@ -810,7 +810,7 @@
                 "(in|vout|in_voltage)(1[0-7]|[0-9])_(Min|Max)$": {
                     "$ref": "#/$defs/Types/MinMaxType"
                 },
-                "(iin|vin|curr|iout|pin|pout|temp)(1[0-7]|[1-9])?_(Min|Max)$": {
+                "(iin|vin|vmon|curr|iout|pin|pout|temp)(1[0-7]|[1-9])?_(Min|Max)$": {
                     "$ref": "#/$defs/Types/MinMaxType"
                 },
                 "power(1[0-7]|[1-9])?_Max$": {
