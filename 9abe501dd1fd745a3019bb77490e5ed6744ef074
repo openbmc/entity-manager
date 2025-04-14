@@ -20,6 +20,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "3bbbbd95_16a7c2c6",
+        "filename": "schemas/firmware.json",
+        "patchSetId": 11
+      },
+      "lineNbr": 19,
+      "author": {
+        "id": 1002253
+      },
+      "writtenOn": "2025-04-14T02:06:50Z",
+      "side": 1,
+      "message": "This schema is defined separately to enable reuse of common configuration properties that are based on a combination of bus, address, and chip model. For example, both `DeviceInfo` and `EEPROMInfo` use this structure to describe how to access devices over I2C. By referencing a shared schema, we avoid duplication and ensure consistency across components that interact with similar hardware.",
+      "parentUuid": "a3e400b6_c5d491c7",
+      "revId": "9abe501dd1fd745a3019bb77490e5ed6744ef074",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "81d769b1_777dec91",
         "filename": "schemas/firmware.json",
         "patchSetId": 11
@@ -37,6 +55,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "f937554c_d9e35a6c",
+        "filename": "schemas/firmware.json",
+        "patchSetId": 11
+      },
+      "lineNbr": 31,
+      "author": {
+        "id": 1002253
+      },
+      "writtenOn": "2025-04-14T02:06:50Z",
+      "side": 1,
+      "message": "Yes, but I intentionally avoid restricting the supported values in this common schema since this property is shared across multiple schemas.",
+      "parentUuid": "81d769b1_777dec91",
+      "revId": "9abe501dd1fd745a3019bb77490e5ed6744ef074",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "fd367eaf_84e51157",
         "filename": "schemas/firmware.json",
         "patchSetId": 11
@@ -48,6 +84,24 @@
       "writtenOn": "2025-04-12T08:12:25Z",
       "side": 1,
       "message": "probably needs the \n\nadditionalProperties: false\n\nstanza",
+      "revId": "9abe501dd1fd745a3019bb77490e5ed6744ef074",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a32e8c37_3e999303",
+        "filename": "schemas/firmware.json",
+        "patchSetId": 11
+      },
+      "lineNbr": 38,
+      "author": {
+        "id": 1002253
+      },
+      "writtenOn": "2025-04-14T02:06:50Z",
+      "side": 1,
+      "message": "Why do we need \"additionalProperties: false\"?",
+      "parentUuid": "fd367eaf_84e51157",
       "revId": "9abe501dd1fd745a3019bb77490e5ed6744ef074",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
