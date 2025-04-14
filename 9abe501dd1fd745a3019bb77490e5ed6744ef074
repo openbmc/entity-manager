@@ -250,6 +250,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "c668e43c_8120d251",
+        "filename": "schemas/firmware.json",
+        "patchSetId": 11
+      },
+      "lineNbr": 39,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-04-14T19:18:10Z",
+      "side": 1,
+      "message": "\u003e At a schema level, it shouldn\u0027t matter what daemon consumes a config stanza.\n\nYes. But how do you then find that daemon without building an image and monitoring dbus at runtime?",
+      "parentUuid": "5c20e755_bc69eef8",
+      "revId": "9abe501dd1fd745a3019bb77490e5ed6744ef074",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "80596b94_53e8894c",
         "filename": "schemas/firmware.json",
         "patchSetId": 11
