@@ -1,0 +1,32 @@
+{
+    "Exposes": [
+        {
+            "ConnectsToType": "MB Upstream Port",
+            "Name": "PowerSupply$ADDRESS % 80 Downstream Port",
+            "PowerPort": true,
+            "Type": "DownstreamPort"
+        }
+    ],
+    "Name": "PowerSupply$ADDRESS % 80",
+    "Probe": [
+        "xyz.openbmc_project.FruDevice({'BUS': 6, 'ADDRESS': 80})",
+        "OR",
+        "xyz.openbmc_project.FruDevice({'BUS': 6, 'ADDRESS': 81})",
+        "AND",
+        "FOUND('Mt.Jade')"
+    ],
+    "Type": "PowerSupply",
+    "xyz.openbmc_project.Inventory.Decorator.Asset": {
+        "Manufacturer": "$PRODUCT_MANUFACTURER",
+        "Model": "$PRODUCT_PRODUCT_NAME",
+        "PartNumber": "$PRODUCT_PART_NUMBER",
+        "SerialNumber": "$PRODUCT_SERIAL_NUMBER"
+    },
+    "xyz.openbmc_project.Inventory.Decorator.AssetTag": {
+        "AssetTag": "$PRODUCT_ASSET_TAG"
+    },
+    "xyz.openbmc_project.Inventory.Decorator.Replaceable": {
+        "FieldReplaceable": false,
+        "HotPluggable": false
+    }
+}
