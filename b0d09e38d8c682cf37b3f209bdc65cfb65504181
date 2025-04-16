@@ -328,6 +328,42 @@
       "parentUuid": "7a33a103_0358ee51",
       "revId": "b0d09e38d8c682cf37b3f209bdc65cfb65504181",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8c630f3f_59125b3e",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2025-04-16T21:08:29Z",
+      "side": 1,
+      "message": "\u003e having to compare every single possible Probe statement on each signal, even for boards that don\u0027t fit\n\nYou mean the literal string operator\u003d\u003d compare when we read in a signal for interface name?  Is that actually a problem?  Considering there\u0027s a 5 second bounce timer before we even start trying to read stuff in, I find it really hard to believe that the number of probes is the thing that\u0027s the performance problem.\n\nIf it truly is a performance problem that we can articulate/measure, it\u0027s probably relatively easy to optimize using some form of map/set lookup.",
+      "parentUuid": "d0647d0f_92f1b8f6",
+      "revId": "b0d09e38d8c682cf37b3f209bdc65cfb65504181",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8c1fc6c7_424a42ef",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2025-04-16T21:08:29Z",
+      "side": 1,
+      "message": "It looks like we now have a magic \"compatible\" string in the config files?  I don\u0027t think that solves the concern.",
+      "parentUuid": "3690b526_2b620b7c",
+      "revId": "b0d09e38d8c682cf37b3f209bdc65cfb65504181",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }
