@@ -22,6 +22,30 @@
       },
       "revId": "7f805ba9365d4e91431c4f33c53cb955b57b9177",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f2abcc7a_77e139b3",
+        "filename": "schemas/pid.json",
+        "patchSetId": 1
+      },
+      "lineNbr": 104,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-04-16T21:05:20Z",
+      "side": 1,
+      "message": "I did not dive into phosphor-pid-control, but they do mention this property in their configuration guides.\n\nhttps://github.com/search?q\u003dorg%3Aopenbmc%20samplePeriod\u0026type\u003dcode\n\nIt is definitely configured somewhere, else i would not have added this property.\n\nDo you think it makes sense to remove the property ```samplePeriod``` from the configurations instead of adding it to the schema? It sounds like you know more about the pid-control.",
+      "parentUuid": "68f18e90_f3655eec",
+      "range": {
+        "startLine": 104,
+        "startChar": 0,
+        "endLine": 104,
+        "endChar": 33
+      },
+      "revId": "7f805ba9365d4e91431c4f33c53cb955b57b9177",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }
