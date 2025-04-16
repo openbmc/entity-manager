@@ -26,6 +26,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "f5327619_2d7dd55f",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 4
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-04-16T20:45:21Z",
+      "side": 1,
+      "message": "\u003e THis isn\u0027t really true. The intent of the policy was one file per piece of hardware.\n\nI should have probably read the ```README.md``` where this policy is mentioned 👍\n\nI am wondering if the policy intent is worth keeping.\n\nIn case of a complicated piece of hardware with variants and modes requiring different configuration files, i would rather have a folder to keep them in.\n\nThis can give the advantage to easily ```diff``` the variants of that piece of hardware.\n\nWith a combined file, it would still be possible to ```diff``` them but may require special scripts. I am wondering how you handle this use-case.\n\nI see the concern that people may lose track of multiple configurations supporting a piece of hardware if they are not properly kept in folders. But i would assume good intent from people to keep their configurations organized.\n\nThere is another patch in this change to introduce ```CompatibleHardware``` property at EM Config toplevel to support another feature. Maybe that can help to keep track of multiple configurations supporting a piece of hardware.",
+      "parentUuid": "47b865de_608c8609",
+      "range": {
+        "startLine": 9,
+        "startChar": 0,
+        "endLine": 9,
+        "endChar": 44
+      },
+      "revId": "5fb4103264c5f84b4352a709188c11f8a26eb5df",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "910897d3_746efcf1",
         "filename": "/COMMIT_MSG",
         "patchSetId": 4
