@@ -2,6 +2,7 @@
     "$schema": "http://json-schema.org/draft-07/schema#",
     "$defs": {
         "GPIOLeakDetector": {
+            "additionalProperties": false,
             "description": "Configuration for GPIO based Leak Detector.",
             "type": "object",
             "properties": {
@@ -11,7 +12,7 @@
                 },
                 "Type": {
                     "description": "The type of configuration object",
-                    "type": "string"
+                    "const": "GPIOLeakDetector"
                 },
                 "SubType": {
                     "description": "The type of leak detector.",
@@ -23,7 +24,7 @@
                 },
                 "Polarity": {
                     "description": "The GPIO polarity depicting its active status.",
-                    "enum": ["ActiveLow", "ActiveHigh"]
+                    "$ref": "legacy.json#/$defs/Types/Polarity"
                 },
                 "Level": {
                     "description": "The severity level of the leak detector.",
