@@ -1,0 +1,78 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "212d47ad_55eed3ea",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 7
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2025-04-16T20:39:00Z",
+      "side": 1,
+      "message": "sorry for the late review, this fell to the bottom of the stack.  If you want to merge this then in the next week or so clean up the bugs, I\u0027m fine with that.",
+      "revId": "a51453e12ac164685796a27948c1c771047e84e0",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7afb3269_1ced442d",
+        "filename": "src/entity_manager.cpp",
+        "patchSetId": 7
+      },
+      "lineNbr": 1355,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2025-04-16T20:39:00Z",
+      "side": 1,
+      "message": "Pretty sure you want this to still happen.\n\nImagine a system goes from:\nEM_CACHE_CONFIGURATION \u003d true\n\nto\n\nEM_CACHE_CONFIGURATION \u003d false\n\nThese files won\u0027t be cleared correctly.",
+      "revId": "a51453e12ac164685796a27948c1c771047e84e0",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "de38af25_41d46dd4",
+        "filename": "src/entity_manager.hpp",
+        "patchSetId": 7
+      },
+      "lineNbr": 102,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2025-04-16T20:39:00Z",
+      "side": 1,
+      "message": "should this branch go here instead?\n\nhttps://github.com/openbmc/entity-manager/blob/79b2075688eac9fabf3c2e9e2f2346ffb7a1fd2c/src/entity_manager.cpp#L1123C48-L1123C64\n\nI suspect we need some handling of this in deriveNewConfiguration, right?",
+      "revId": "a51453e12ac164685796a27948c1c771047e84e0",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "06369d36_bc4374c5",
+        "filename": "src/meson.build",
+        "patchSetId": 7
+      },
+      "lineNbr": 10,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2025-04-16T20:39:00Z",
+      "side": 1,
+      "message": "Can we code golf this a little?\nallowed \u003d get_option(\u0027entity-manager-cache-configuration\u0027).allowed()\ncpp_args +\u003d -DEM_CACHE_CONFIGURATION\u003d\u0027 + allowed",
+      "range": {
+        "startLine": 4,
+        "startChar": 0,
+        "endLine": 10,
+        "endChar": 0
+      },
+      "revId": "a51453e12ac164685796a27948c1c771047e84e0",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    }
+  ]
+}
