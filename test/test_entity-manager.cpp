@@ -1,3 +1,4 @@
+#include "entity_manager/utils.hpp"
 #include "utils.hpp"
 
 #include <nlohmann/json.hpp>
@@ -16,7 +17,7 @@ TEST(TemplateCharReplace, replaceOneInt)
     DBusInterface data;
     data["BUS"] = 23;
 
-    templateCharReplace(it, data, 0);
+    em_utils::templateCharReplace(it, data, 0);
 
     nlohmann::json expected = 23;
     EXPECT_EQ(expected, j["foo"]);
@@ -29,7 +30,7 @@ TEST(TemplateCharReplace, replaceOneStr)
     DBusInterface data;
     data["TEST"] = std::string("Test");
 
-    templateCharReplace(it, data, 0);
+    em_utils::templateCharReplace(it, data, 0);
 
     nlohmann::json expected = "Test";
     EXPECT_EQ(expected, j["foo"]);
@@ -42,7 +43,7 @@ TEST(TemplateCharReplace, replaceSecondStr)
     DBusInterface data;
     data["TEST"] = std::string("Test");
 
-    templateCharReplace(it, data, 0);
+    em_utils::templateCharReplace(it, data, 0);
 
     nlohmann::json expected = "the Test";
     EXPECT_EQ(expected, j["foo"]);
@@ -55,7 +56,7 @@ TEST(TemplateCharReplace, replaceMiddleStr)
     DBusInterface data;
     data["TEST"] = std::string("Test");
 
-    templateCharReplace(it, data, 0);
+    em_utils::templateCharReplace(it, data, 0);
 
     nlohmann::json expected = "the Test worked";
     EXPECT_EQ(expected, j["foo"]);
@@ -68,7 +69,7 @@ TEST(TemplateCharReplace, replaceLastStr)
     DBusInterface data;
     data["TEST"] = 23;
 
-    templateCharReplace(it, data, 0);
+    em_utils::templateCharReplace(it, data, 0);
 
     nlohmann::json expected = "the Test 23";
     EXPECT_EQ(expected, j["foo"]);
@@ -81,7 +82,7 @@ TEST(TemplateCharReplace, increment)
     DBusInterface data;
     data["TEST"] = 3;
 
-    templateCharReplace(it, data, 0);
+    em_utils::templateCharReplace(it, data, 0);
 
     nlohmann::json expected = "3 plus 1 equals 4";
     EXPECT_EQ(expected, j["foo"]);
@@ -94,7 +95,7 @@ TEST(TemplateCharReplace, decrement)
     DBusInterface data;
     data["TEST"] = 3;
 
-    templateCharReplace(it, data, 0);
+    em_utils::templateCharReplace(it, data, 0);
 
     nlohmann::json expected = "3 minus 1 equals 2 !";
     EXPECT_EQ(expected, j["foo"]);
@@ -107,7 +108,7 @@ TEST(TemplateCharReplace, modulus)
     DBusInterface data;
     data["TEST"] = 3;
 
-    templateCharReplace(it, data, 0);
+    em_utils::templateCharReplace(it, data, 0);
 
     nlohmann::json expected = "3 mod 2 equals 1";
     EXPECT_EQ(expected, j["foo"]);
@@ -120,7 +121,7 @@ TEST(TemplateCharReplace, multiply)
     DBusInterface data;
     data["TEST"] = 3;
 
-    templateCharReplace(it, data, 0);
+    em_utils::templateCharReplace(it, data, 0);
 
     nlohmann::json expected = "3 * 2 equals 6";
     EXPECT_EQ(expected, j["foo"]);
@@ -133,7 +134,7 @@ TEST(TemplateCharReplace, divide)
     DBusInterface data;
     data["TEST"] = 4;
 
-    templateCharReplace(it, data, 0);
+    em_utils::templateCharReplace(it, data, 0);
 
     nlohmann::json expected = "4 / 2 equals 2";
     EXPECT_EQ(expected, j["foo"]);
@@ -146,7 +147,7 @@ TEST(TemplateCharReplace, multiMath)
     DBusInterface data;
     data["TEST"] = 4;
 
-    templateCharReplace(it, data, 0);
+    em_utils::templateCharReplace(it, data, 0);
 
     nlohmann::json expected = "4 * 2 % 6 equals 2";
     EXPECT_EQ(expected, j["foo"]);
@@ -160,7 +161,7 @@ TEST(TemplateCharReplace, twoReplacements)
     data["FOO"] = std::string("foo");
     data["BAR"] = std::string("bar");
 
-    templateCharReplace(it, data, 0);
+    em_utils::templateCharReplace(it, data, 0);
 
     nlohmann::json expected = "foo bar";
     EXPECT_EQ(expected, j["foo"]);
@@ -174,7 +175,7 @@ TEST(TemplateCharReplace, twoReplacementsWithMath)
     data["TEST"] = 4;
     data["BAR"] = std::string("bar");
 
-    templateCharReplace(it, data, 0);
+    em_utils::templateCharReplace(it, data, 0);
 
     nlohmann::json expected = "4 / 2 equals 2 bar";
 }
@@ -187,7 +188,7 @@ TEST(TemplateCharReplace, twoReplacementsWithMath2)
     data["ADDRESS"] = 4;
     data["BAR"] = std::string("bar");
 
-    templateCharReplace(it, data, 0);
+    em_utils::templateCharReplace(it, data, 0);
 
     nlohmann::json expected = "4 / 2 equals 2 bar";
     EXPECT_EQ(expected, j["foo"]);
@@ -205,7 +206,7 @@ TEST(TemplateCharReplace, hexAndWrongCase)
 
     for (auto it = j.begin(); it != j.end(); it++)
     {
-        templateCharReplace(it, data, 0);
+        em_utils::templateCharReplace(it, data, 0);
     }
     nlohmann::json expected = {{"Address", 84},
                                {"Bus", 15},
@@ -221,7 +222,7 @@ TEST(TemplateCharReplace, replaceSecondAsInt)
     DBusInterface data;
     data["test"] = 12;
 
-    templateCharReplace(it, data, 0);
+    em_utils::templateCharReplace(it, data, 0);
 
     nlohmann::json expected = "twelve is 12";
     EXPECT_EQ(expected, j["foo"]);
@@ -233,7 +234,7 @@ TEST(TemplateCharReplace, singleHex)
     auto it = j.begin();
     DBusInterface data;
 
-    templateCharReplace(it, data, 0);
+    em_utils::templateCharReplace(it, data, 0);
 
     nlohmann::json expected = 84;
     EXPECT_EQ(expected, j["foo"]);

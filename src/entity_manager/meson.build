@@ -8,6 +8,7 @@ executable(
     'perform_probe.cpp',
     'overlay.cpp',
     'topology.cpp',
+    'utils.cpp',
     '../utils.cpp',
     cpp_args: cpp_args + ['-DBOOST_ASIO_DISABLE_THREADS'],
     dependencies: [

@@ -139,6 +139,7 @@ if not build_tests.disabled()
             'test/test_entity-manager.cpp',
             'src/expression.cpp',
             'src/utils.cpp',
+            'src/entity_manager/utils.cpp',
             cpp_args: test_boost_args,
             dependencies: [
                 boost,
