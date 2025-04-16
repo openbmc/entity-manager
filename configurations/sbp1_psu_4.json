@@ -1,0 +1,149 @@
+{
+    "Exposes": [
+        {
+            "Address": "0x5f",
+            "Bus": "39",
+            "Labels": [
+                "iin2",
+                "iout2",
+                "vin2",
+                "vout2",
+                "pin2",
+                "pout2",
+                "temp1"
+            ],
+            "Name": "BCM3_TEMP",
+            "Name1": "BCM3",
+            "PollRate": 5,
+            "PowerState": "Always",
+            "Thresholds": [
+                {
+                    "Direction": "greater than",
+                    "Hysteresis": 4.1,
+                    "Label": "vin2",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 410
+                },
+                {
+                    "Direction": "less than",
+                    "Hysteresis": 3.65,
+                    "Label": "vin2",
+                    "Name": "lower critical",
+                    "Severity": 1,
+                    "Value": 365
+                },
+                {
+                    "Direction": "greater than",
+                    "Hysteresis": 4,
+                    "Label": "vin2",
+                    "Name": "upper non critical",
+                    "Severity": 0,
+                    "Value": 400
+                },
+                {
+                    "Direction": "less than",
+                    "Hysteresis": 3.8,
+                    "Label": "vin2",
+                    "Name": "lower non critical",
+                    "Severity": 0,
+                    "Value": 380
+                },
+                {
+                    "Direction": "greater than",
+                    "Hysteresis": 0.05,
+                    "Label": "iin2",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 5
+                },
+                {
+                    "Direction": "greater than",
+                    "Hysteresis": 0.04,
+                    "Label": "iin2",
+                    "Name": "upper non critical",
+                    "Severity": 0,
+                    "Value": 4
+                },
+                {
+                    "Direction": "greater than",
+                    "Hysteresis": 1.25,
+                    "Label": "temp1",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 125
+                },
+                {
+                    "Direction": "greater than",
+                    "Hysteresis": 1.1,
+                    "Label": "temp1",
+                    "Name": "upper non critical",
+                    "Severity": 0,
+                    "Value": 110
+                },
+                {
+                    "Direction": "greater than",
+                    "Hysteresis": 1.45,
+                    "Label": "iout2",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 145
+                },
+                {
+                    "Direction": "greater than",
+                    "Hysteresis": 1.25,
+                    "Label": "iout2",
+                    "Name": "upper non critical",
+                    "Severity": 0,
+                    "Value": 125
+                },
+                {
+                    "Direction": "greater than",
+                    "Hysteresis": 0.133,
+                    "Label": "vout2",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 13.3
+                },
+                {
+                    "Direction": "less than",
+                    "Hysteresis": 0.11080000000000001,
+                    "Label": "vout2",
+                    "Name": "lower critical",
+                    "Severity": 1,
+                    "Value": 11.08
+                },
+                {
+                    "Direction": "greater than",
+                    "Hysteresis": 0.128,
+                    "Label": "vout2",
+                    "Name": "upper non critical",
+                    "Severity": 0,
+                    "Value": 12.8
+                },
+                {
+                    "Direction": "less than",
+                    "Hysteresis": 0.1168,
+                    "Label": "vout2",
+                    "Name": "lower non critical",
+                    "Severity": 0,
+                    "Value": 11.68
+                }
+            ],
+            "Type": "PLI1209BC"
+        }
+    ],
+    "Name": "Vicor BCM 6123 750W 4",
+    "Probe": "FOUND('IBM SBP1 Baseboard')",
+    "Type": "PowerSupply",
+    "xyz.openbmc_project.Inventory.Decorator.Asset": {
+        "Manufacturer": "Vicor",
+        "Model": "BCM 6123",
+        "PartNumber": "BCM6123TD1E1368T01",
+        "SerialNumber": ""
+    },
+    "xyz.openbmc_project.Inventory.Decorator.Replaceable": {
+        "FieldReplaceable": false,
+        "HotPluggable": false
+    }
+}

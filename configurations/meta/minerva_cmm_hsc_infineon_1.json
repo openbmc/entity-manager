@@ -1,0 +1,283 @@
+{
+    "Exposes": [
+        {
+            "BridgeGpio": [
+                {
+                    "Name": "BAT_DETECT",
+                    "Polarity": "High",
+                    "SetupTime": 1
+                }
+            ],
+            "Index": 7,
+            "Name": "CMM_P3V_BAT_VOLT_V",
+            "PollRate": 86400,
+            "ScaleFactor": 0.333333,
+            "Thresholds": [
+                {
+                    "Direction": "greater than",
+                    "Hysteresis": 0.068,
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 3.4
+                },
+                {
+                    "Direction": "less than",
+                    "Hysteresis": 0.052,
+                    "Name": "lower critical",
+                    "Severity": 1,
+                    "Value": 2.6
+                }
+            ],
+            "Type": "ADC"
+        },
+        {
+            "Address": "0x40",
+            "Bus": 0,
+            "Labels": [
+                "in1",
+                "curr1",
+                "power1"
+            ],
+            "Name": "CMM_PMON_P24V",
+            "Thresholds": [
+                {
+                    "Direction": "greater than",
+                    "Hysteresis": 0.1666,
+                    "Label": "curr1",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 8.33
+                },
+                {
+                    "Direction": "less than",
+                    "Hysteresis": 0.001,
+                    "Label": "curr1",
+                    "Name": "lower critical",
+                    "Severity": 1,
+                    "Value": -0.05
+                },
+                {
+                    "Direction": "greater than",
+                    "Hysteresis": 0.504,
+                    "Label": "in1",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 25.2
+                },
+                {
+                    "Direction": "less than",
+                    "Hysteresis": 0.456,
+                    "Label": "in1",
+                    "Name": "lower critical",
+                    "Severity": 1,
+                    "Value": 22.8
+                },
+                {
+                    "Direction": "greater than",
+                    "Hysteresis": 3.9984,
+                    "Label": "power1",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 199.92
+                },
+                {
+                    "Direction": "less than",
+                    "Hysteresis": 0,
+                    "Label": "power1",
+                    "Name": "lower critical",
+                    "Severity": 1,
+                    "Value": 0
+                }
+            ],
+            "Type": "INA230",
+            "curr1_Name": "CMM_PMON_P24V_CURR_A",
+            "in1_Name": "CMM_PMON_P24V_VOLT_V",
+            "power1_Name": "CMM_PMON_P24V_PWR_W"
+        },
+        {
+            "Address": "0x41",
+            "Bus": 0,
+            "Labels": [
+                "in1",
+                "curr1",
+                "power1"
+            ],
+            "Name": "CMM_PMON_P12V",
+            "Thresholds": [
+                {
+                    "Direction": "greater than",
+                    "Hysteresis": 0.1048,
+                    "Label": "curr1",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 5.24
+                },
+                {
+                    "Direction": "less than",
+                    "Hysteresis": 0.001,
+                    "Label": "curr1",
+                    "Name": "lower critical",
+                    "Severity": 1,
+                    "Value": -0.05
+                },
+                {
+                    "Direction": "greater than",
+                    "Hysteresis": 0.26,
+                    "Label": "in1",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 13
+                },
+                {
+                    "Direction": "less than",
+                    "Hysteresis": 0.22,
+                    "Label": "in1",
+                    "Name": "lower critical",
+                    "Severity": 1,
+                    "Value": 11
+                },
+                {
+                    "Direction": "greater than",
+                    "Hysteresis": 1.2576,
+                    "Label": "power1",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 62.88
+                },
+                {
+                    "Direction": "less than",
+                    "Hysteresis": 0,
+                    "Label": "power1",
+                    "Name": "lower critical",
+                    "Severity": 1,
+                    "Value": 0
+                }
+            ],
+            "Type": "INA230",
+            "curr1_Name": "CMM_PMON_P12V_CURR_A",
+            "in1_Name": "CMM_PMON_P12V_VOLT_V",
+            "power1_Name": "CMM_PMON_P12V_PWR_W"
+        },
+        {
+            "Address": "0x4f",
+            "Bus": 1,
+            "Name": "CMM_OUTLET_TEMP_C",
+            "Thresholds": [
+                {
+                    "Direction": "greater than",
+                    "Hysteresis": 1.6,
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 80
+                },
+                {
+                    "Direction": "less than",
+                    "Hysteresis": 0,
+                    "Name": "lower critical",
+                    "Severity": 1,
+                    "Value": 0
+                }
+            ],
+            "Type": "TMP75"
+        },
+        {
+            "Address": "0x43",
+            "Bus": 0,
+            "Labels": [
+                "vin",
+                "vout1",
+                "iout1",
+                "pin"
+            ],
+            "Name": "CMM_HSC",
+            "Thresholds": [
+                {
+                    "Direction": "greater than",
+                    "Hysteresis": 1.12,
+                    "Label": "vin",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 56
+                },
+                {
+                    "Direction": "less than",
+                    "Hysteresis": 0.92,
+                    "Label": "vin",
+                    "Name": "lower critical",
+                    "Severity": 1,
+                    "Value": 46
+                },
+                {
+                    "Direction": "greater than",
+                    "Hysteresis": 1.12,
+                    "Label": "vout1",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 56
+                },
+                {
+                    "Direction": "less than",
+                    "Hysteresis": 0.92,
+                    "Label": "vout1",
+                    "Name": "lower critical",
+                    "Severity": 1,
+                    "Value": 46
+                },
+                {
+                    "Direction": "greater than",
+                    "Hysteresis": 0.1216,
+                    "Label": "iout1",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 6.08
+                },
+                {
+                    "Direction": "less than",
+                    "Hysteresis": 0.001,
+                    "Label": "iout1",
+                    "Name": "lower critical",
+                    "Severity": 1,
+                    "Value": -0.05
+                },
+                {
+                    "Direction": "greater than",
+                    "Hysteresis": 6.688,
+                    "Label": "pin",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 334.4
+                }
+            ],
+            "Type": "XDP710",
+            "iout1_Name": "CMM_HSC_CURR_A",
+            "iout1_Scale": 1010,
+            "pin_Name": "CMM_HSC_PWR_W",
+            "pin_Offset": -2,
+            "pin_Scale": 1010101,
+            "vin_Name": "CMM_HSC_VIN_VOLT_V",
+            "vout1_Name": "CMM_HSC_VOUT_VOLT_V"
+        }
+    ],
+    "Name": "Minerva CMM",
+    "Probe": [
+        "xyz.openbmc_project.FruDevice({'BOARD_PRODUCT_NAME': 'Minerva CMM EVT', 'BOARD_PART_NUMBER': '3IF0MMA0010'})",
+        "OR",
+        "xyz.openbmc_project.FruDevice({'BOARD_PRODUCT_NAME': 'Minerva CMM ', 'BOARD_INFO_AM4': 'hsc-xdp'})"
+    ],
+    "Type": "Board",
+    "xyz.openbmc_project.Inventory.Decorator.Asset": {
+        "BuildDate": "$BOARD_MANUFACTURE_DATE",
+        "Manufacturer": "$BOARD_MANUFACTURER",
+        "Model": "$BOARD_PRODUCT_NAME",
+        "PartNumber": "$BOARD_PART_NUMBER",
+        "SerialNumber": "$BOARD_SERIAL_NUMBER",
+        "SparePartNumber": "$BOARD_INFO_AM1"
+    },
+    "xyz.openbmc_project.Inventory.Decorator.AssetTag": {
+        "AssetTag": "$PRODUCT_ASSET_TAG"
+    },
+    "xyz.openbmc_project.Inventory.Item.Board.Motherboard": {},
+    "xyz.openbmc_project.Inventory.Item.NetworkInterface": {
+        "MACAddress": "$CHASSIS_INFO_AM2"
+    }
+}
