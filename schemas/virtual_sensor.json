@@ -2,6 +2,7 @@
     "$schema": "http://json-schema.org/draft-07/schema#",
     "$defs": {
         "VirtualSensor": {
+            "additionalProperties": false,
             "title": "phosphor-virtual-sensor configuration",
             "description": "The configuration used by the virtual-sensor daemon in the phosphor-virtual-sensor repository. Virtual sensors are xyz.openbmc_project.Sensor.Value D-Bus objects that have sensor values calculated from the D-Bus sensors listed here.",
             "type": "object",
@@ -24,6 +25,15 @@
                 },
                 "Name": {
                     "type": "string"
+                },
+                "PowerState": {
+                    "$ref": "legacy.json#/$defs/Types/PowerState"
+                },
+                "EntityId": {
+                    "$ref": "legacy.json#/$defs/Types/EntityId"
+                },
+                "EntityInstance": {
+                    "$ref": "legacy.json#/$defs/Types/EntityInstance"
                 },
                 "Sensors": {
                     "description": "Any DBus sensors whose values are used to determine the value of the virtual sensor.",
