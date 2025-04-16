@@ -16,6 +16,24 @@
       "message": "What is the advantage of splitting this config into multiple files.  The reasoning on next line is more around cosmetic stuff. TBH One can also prefer to keep the related conifguration in a single file to avoid creating multiple files.\nHas there been any formal discussion on this change?",
       "revId": "5fb4103264c5f84b4352a709188c11f8a26eb5df",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ef708d00_3cdd7a12",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 4
+      },
+      "lineNbr": 10,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-04-16T20:20:07Z",
+      "side": 1,
+      "message": "Thanks for taking an interest in this change 😊\n\n\u003e TBH One can also prefer to keep the related configuration in a single file to avoid creating multiple files.\n\nTo EM, these configurations are unrelated. I do not think there is any code which would treat them differently based on which file they come from.\nIf you have a concern around losing track of related configuration, i think creating a folder for related configuration files can solve that issue.\n\n\u003e What is the advantage of splitting this config into multiple files\n\nI want to simplify this aspect of EM which will\n- simplify the schema\n- simplify runtime code\n- simplify scripts for validation of configuration\n- indentation is reduced \n- no \u00272 ways of doing something\u0027\n\n\u003e Has there been any formal discussion on this change?\n\nNot much discussion. I think the patch is the right place to discuss this.",
+      "parentUuid": "910897d3_746efcf1",
+      "revId": "5fb4103264c5f84b4352a709188c11f8a26eb5df",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }
