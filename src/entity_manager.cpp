@@ -888,10 +888,8 @@ bool loadConfigurations(std::list<nlohmann::json>& configurations)
 
         if (data.type() == nlohmann::json::value_t::array)
         {
-            for (auto& d : data)
-            {
-                configurations.emplace_back(d);
-            }
+            std::cerr << "syntax error: (json array unsupported) in "
+                      << jsonPath.string() << "\n";
         }
         else
         {
