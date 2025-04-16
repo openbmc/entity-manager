@@ -1,0 +1,356 @@
+{
+    "Exposes": [
+        {
+            "Class": "fan",
+            "FFGainCoefficient": 1,
+            "FFOffCoefficient": 0,
+            "ICoefficient": 0,
+            "ILimitMax": 0,
+            "ILimitMin": 0,
+            "Inputs": [
+                "FAN_BP1_FAN1_TACH_IL_SPEED_RPM",
+                "FAN_BP1_FAN1_TACH_OL_SPEED_RPM",
+                "FAN_BP1_FAN2_TACH_IL_SPEED_RPM",
+                "FAN_BP1_FAN2_TACH_OL_SPEED_RPM",
+                "FAN_BP1_FAN3_TACH_IL_SPEED_RPM",
+                "FAN_BP1_FAN3_TACH_OL_SPEED_RPM",
+                "FAN_BP1_FAN4_TACH_IL_SPEED_RPM",
+                "FAN_BP1_FAN4_TACH_OL_SPEED_RPM",
+                "FAN_BP2_FAN1_TACH_IL_SPEED_RPM",
+                "FAN_BP2_FAN1_TACH_OL_SPEED_RPM",
+                "FAN_BP2_FAN2_TACH_IL_SPEED_RPM",
+                "FAN_BP2_FAN2_TACH_OL_SPEED_RPM",
+                "FAN_BP2_FAN3_TACH_IL_SPEED_RPM",
+                "FAN_BP2_FAN3_TACH_OL_SPEED_RPM",
+                "FAN_BP2_FAN4_TACH_IL_SPEED_RPM",
+                "FAN_BP2_FAN4_TACH_OL_SPEED_RPM"
+            ],
+            "Name": "All Fan",
+            "OutLimitMax": 100,
+            "OutLimitMin": 0,
+            "Outputs": [
+                "FAN_BP1_FAN_PWM",
+                "FAN_BP1_FAN_PWM",
+                "FAN_BP1_FAN_PWM",
+                "FAN_BP1_FAN_PWM",
+                "FAN_BP1_FAN_PWM",
+                "FAN_BP1_FAN_PWM",
+                "FAN_BP1_FAN_PWM",
+                "FAN_BP1_FAN_PWM",
+                "FAN_BP2_FAN_PWM",
+                "FAN_BP2_FAN_PWM",
+                "FAN_BP2_FAN_PWM",
+                "FAN_BP2_FAN_PWM",
+                "FAN_BP2_FAN_PWM",
+                "FAN_BP2_FAN_PWM",
+                "FAN_BP2_FAN_PWM",
+                "FAN_BP2_FAN_PWM"
+            ],
+            "PCoefficient": 0,
+            "SlewNeg": 0,
+            "SlewPos": 0,
+            "Type": "Pid",
+            "Zones": [
+                "Zone 0"
+            ]
+        },
+        {
+            "CheckHysteresisWithSetpoint": true,
+            "Class": "temp",
+            "DCoefficient": 0,
+            "FFGainCoefficient": 0,
+            "FFOffCoefficient": 0,
+            "ICoefficient": -0.0035,
+            "ILimitMax": 100,
+            "ILimitMin": -50,
+            "InputUnavailableAsFailed": false,
+            "Inputs": [
+                "MB_CPU_TEMP_C"
+            ],
+            "Name": "PID_MB_CPU",
+            "NegativeHysteresis": 2,
+            "OutLimitMax": 100,
+            "OutLimitMin": 0,
+            "PCoefficient": -1,
+            "PositiveHysteresis": 0,
+            "SetPoint": 79,
+            "SlewNeg": 0,
+            "SlewPos": 0,
+            "Type": "Pid",
+            "Zones": [
+                "Zone 0"
+            ]
+        },
+        {
+            "CheckHysteresisWithSetpoint": true,
+            "Class": "temp",
+            "DCoefficient": 0,
+            "FFGainCoefficient": 0,
+            "FFOffCoefficient": 0,
+            "ICoefficient": -0.0035,
+            "ILimitMax": 100,
+            "ILimitMin": -50,
+            "InputUnavailableAsFailed": false,
+            "Inputs": [
+                "MB_DIMM_A0_TEMP_C",
+                "MB_DIMM_A1_TEMP_C",
+                "MB_DIMM_A2_TEMP_C",
+                "MB_DIMM_A4_TEMP_C",
+                "MB_DIMM_A6_TEMP_C",
+                "MB_DIMM_A7_TEMP_C",
+                "MB_DIMM_A8_TEMP_C",
+                "MB_DIMM_A10_TEMP_C"
+            ],
+            "Name": "PID_MB_DIMM",
+            "NegativeHysteresis": 2,
+            "OutLimitMax": 100,
+            "OutLimitMin": 0,
+            "PCoefficient": -3,
+            "PositiveHysteresis": 0,
+            "SetPoint": 79,
+            "SlewNeg": 0,
+            "SlewPos": 0,
+            "Type": "Pid",
+            "Zones": [
+                "Zone 0"
+            ]
+        },
+        {
+            "AccumulateSetPoint": true,
+            "CycleIntervalTimeMS": 3000,
+            "FailSafePercent": 85,
+            "MinThermalOutput": 0,
+            "Name": "Zone 0",
+            "Type": "Pid.Zone",
+            "UpdateThermalsTimeMS": 4000
+        },
+        {
+            "Class": "temp",
+            "InputUnavailableAsFailed": false,
+            "Inputs": [
+                "SCM_INLET_TEMP_C"
+            ],
+            "Name": "Stepwise_SCM_INLET",
+            "NegativeHysteresis": 2,
+            "Output": [
+                20,
+                22,
+                25,
+                90
+            ],
+            "PositiveHysteresis": 0,
+            "Reading": [
+                25,
+                30,
+                35,
+                40
+            ],
+            "Type": "Stepwise",
+            "Zones": [
+                "Zone 0"
+            ]
+        },
+        {
+            "Class": "temp",
+            "InputUnavailableAsFailed": false,
+            "Inputs": [
+                "MB_CPU_TEMP_C"
+            ],
+            "Name": "Stepwise_MB_CPU",
+            "NegativeHysteresis": 2,
+            "Output": [
+                20,
+                23,
+                25,
+                27,
+                30
+            ],
+            "PositiveHysteresis": 0,
+            "Reading": [
+                55,
+                60,
+                65,
+                70,
+                75
+            ],
+            "Type": "Stepwise",
+            "Zones": [
+                "Zone 0"
+            ]
+        },
+        {
+            "Class": "temp",
+            "InputUnavailableAsFailed": false,
+            "Inputs": [
+                "MB_DIMM_A0_TEMP_C",
+                "MB_DIMM_A1_TEMP_C",
+                "MB_DIMM_A2_TEMP_C",
+                "MB_DIMM_A4_TEMP_C",
+                "MB_DIMM_A6_TEMP_C",
+                "MB_DIMM_A7_TEMP_C",
+                "MB_DIMM_A8_TEMP_C",
+                "MB_DIMM_A10_TEMP_C"
+            ],
+            "Name": "Stepwise_MB_DIMM",
+            "NegativeHysteresis": 2,
+            "Output": [
+                20,
+                25,
+                30
+            ],
+            "PositiveHysteresis": 0,
+            "Reading": [
+                60,
+                70,
+                75
+            ],
+            "Type": "Stepwise",
+            "Zones": [
+                "Zone 0"
+            ]
+        },
+        {
+            "Class": "temp",
+            "InputUnavailableAsFailed": false,
+            "Inputs": [
+                "MB_VR_CPU_VCORE0_TEMP_C",
+                "MB_VR_CPU_VCORE1_TEMP_C",
+                "MB_VR_CPU_PVDD11_TEMP_C",
+                "MB_VR_CPU_PDDIO_TEMP_C",
+                "MB_VR_CPU_SOC_TEMP_C"
+            ],
+            "Name": "Stepwise_MB_VR",
+            "NegativeHysteresis": 2,
+            "Output": [
+                20,
+                25,
+                90
+            ],
+            "PositiveHysteresis": 0,
+            "Reading": [
+                80,
+                90,
+                100
+            ],
+            "Type": "Stepwise",
+            "Zones": [
+                "Zone 0"
+            ]
+        },
+        {
+            "Class": "temp",
+            "InputUnavailableAsFailed": false,
+            "Inputs": [
+                "MB_RETIMER0_TEMP_C",
+                "MB_RETIMER1_TEMP_C"
+            ],
+            "Name": "Stepwise_MB_RETIMER",
+            "NegativeHysteresis": 2,
+            "Output": [
+                20,
+                25,
+                90
+            ],
+            "PositiveHysteresis": 0,
+            "Reading": [
+                80,
+                90,
+                100
+            ],
+            "Type": "Stepwise",
+            "Zones": [
+                "Zone 0"
+            ]
+        },
+        {
+            "Class": "temp",
+            "InputUnavailableAsFailed": false,
+            "Inputs": [
+                "NIC_Temp_1"
+            ],
+            "Name": "Stepwise_NIC",
+            "NegativeHysteresis": 2,
+            "Output": [
+                20,
+                25,
+                90
+            ],
+            "PositiveHysteresis": 0,
+            "Reading": [
+                80,
+                90,
+                100
+            ],
+            "Type": "Stepwise",
+            "Zones": [
+                "Zone 0"
+            ]
+        },
+        {
+            "Class": "temp",
+            "InputUnavailableAsFailed": false,
+            "Inputs": [
+                "MB_E1S0_TEMP_C",
+                "MB_E1S1_TEMP_C"
+            ],
+            "Name": "Stepwise_E1S",
+            "NegativeHysteresis": 2,
+            "Output": [
+                20,
+                25,
+                90
+            ],
+            "PositiveHysteresis": 0,
+            "Reading": [
+                60,
+                65,
+                70
+            ],
+            "Type": "Stepwise",
+            "Zones": [
+                "Zone 0"
+            ]
+        },
+        {
+            "Class": "temp",
+            "InputUnavailableAsFailed": false,
+            "Inputs": [
+                "PDB_BRICK_TEMP_C"
+            ],
+            "Name": "Stepwise_Brick",
+            "NegativeHysteresis": 2,
+            "Output": [
+                20,
+                25,
+                90
+            ],
+            "PositiveHysteresis": 0,
+            "Reading": [
+                80,
+                90,
+                100
+            ],
+            "Type": "Stepwise",
+            "Zones": [
+                "Zone 0"
+            ]
+        }
+    ],
+    "Name": "Harma Chassis",
+    "Probe": [
+        "xyz.openbmc_project.FruDevice({'BOARD_PRODUCT_NAME': 'Harma MB EVT', 'BOARD_PART_NUMBER': '3BF0MMA0050'})",
+        "OR",
+        "xyz.openbmc_project.FruDevice({'BOARD_PRODUCT_NAME': 'Harma MB ', 'BOARD_INFO_AM4': 'vr-xdpe'})"
+    ],
+    "Type": "Chassis",
+    "xyz.openbmc_project.Inventory.Decorator.Asset": {
+        "Manufacturer": "$PRODUCT_MANUFACTURER",
+        "Model": "$PRODUCT_PRODUCT_NAME",
+        "PartNumber": "$PRODUCT_PART_NUMBER",
+        "SerialNumber": "$PRODUCT_INFO_AM2",
+        "SparePartNumber": "$PRODUCT_FRU_VERSION_ID"
+    },
+    "xyz.openbmc_project.Inventory.Decorator.AssetTag": {
+        "AssetTag": "$PRODUCT_INFO_AM3"
+    }
+}

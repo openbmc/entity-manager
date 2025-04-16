@@ -1,0 +1,63 @@
+{
+    "Exposes": [
+        {
+            "Address": "$address",
+            "Bus": "$bus",
+            "Name": "Riser 2 Fru",
+            "Type": "EEPROM"
+        },
+        {
+            "Address": "0x73",
+            "Bus": "$bus",
+            "ChannelNames": [
+                "Pcie_Slot_1",
+                "Pcie_Slot_2",
+                "Pcie_Slot_3",
+                ""
+            ],
+            "Name": "Riser 2 Mux",
+            "Type": "PCA9545Mux"
+        },
+        {
+            "Address": "0x49",
+            "Bus": "$bus",
+            "Name": "Riser 2 Temp",
+            "Thresholds": [
+                {
+                    "Direction": "greater than",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 80
+                },
+                {
+                    "Direction": "greater than",
+                    "Name": "upper non critical",
+                    "Severity": 0,
+                    "Value": 75
+                },
+                {
+                    "Direction": "less than",
+                    "Name": "lower non critical",
+                    "Severity": 0,
+                    "Value": 5
+                },
+                {
+                    "Direction": "less than",
+                    "Name": "lower critical",
+                    "Severity": 1,
+                    "Value": 0
+                }
+            ],
+            "Type": "TMP75"
+        }
+    ],
+    "Name": "1Ux16 Riser 2",
+    "Probe": "xyz.openbmc_project.FruDevice({'BOARD_PRODUCT_NAME': 'F1UL16RISER\\d', 'ADDRESS' : 81})",
+    "Type": "Board",
+    "xyz.openbmc_project.Inventory.Decorator.Asset": {
+        "Manufacturer": "$BOARD_MANUFACTURER",
+        "Model": "$BOARD_PRODUCT_NAME",
+        "PartNumber": "$BOARD_PART_NUMBER",
+        "SerialNumber": "$BOARD_SERIAL_NUMBER"
+    }
+}
