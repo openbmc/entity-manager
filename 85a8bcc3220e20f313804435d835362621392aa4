@@ -20,6 +20,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "f2e7e65d_7166e059",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1000056
+      },
+      "writtenOn": "2025-04-16T18:41:39Z",
+      "side": 1,
+      "message": "Updating based on our offline discussion - this should just update the existing https://github.com/openbmc/entity-manager/blob/master/configurations/nvidia_gb200.json to add the new NvidiaMctpVdm type.",
+      "parentUuid": "ebe90bb1_8cefe423",
+      "revId": "85a8bcc3220e20f313804435d835362621392aa4",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "6fa09d39_cc6ba9d5",
         "filename": "configurations/nvidia_gb200_gpu.json",
         "patchSetId": 4
@@ -91,6 +109,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "7ee6693f_bfe28072",
+        "filename": "configurations/nvidia_gb200_gpu.json",
+        "patchSetId": 4
+      },
+      "lineNbr": 5,
+      "author": {
+        "id": 1000056
+      },
+      "writtenOn": "2025-04-16T18:41:39Z",
+      "side": 1,
+      "message": "Updating based on offline discussion - this is not needed because the same is discoverable via MCTP VDM messages.",
+      "parentUuid": "73ce626f_74a10dc1",
+      "range": {
+        "startLine": 4,
+        "startChar": 0,
+        "endLine": 5,
+        "endChar": 32
+      },
+      "revId": "85a8bcc3220e20f313804435d835362621392aa4",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "7cb3d0c1_a31a8211",
         "filename": "configurations/nvidia_gb200_gpu.json",
         "patchSetId": 4
@@ -126,6 +168,30 @@
       "side": 1,
       "message": "Backend code is up in dbus-sensors. Wouldn\u0027t this be a chicken and egg problem?",
       "parentUuid": "7cb3d0c1_a31a8211",
+      "range": {
+        "startLine": 3,
+        "startChar": 0,
+        "endLine": 8,
+        "endChar": 9
+      },
+      "revId": "85a8bcc3220e20f313804435d835362621392aa4",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "be17e6ba_9e83677b",
+        "filename": "configurations/nvidia_gb200_gpu.json",
+        "patchSetId": 4
+      },
+      "lineNbr": 8,
+      "author": {
+        "id": 1000056
+      },
+      "writtenOn": "2025-04-16T18:41:39Z",
+      "side": 1,
+      "message": "Backend code now implements the correct sensor type.",
+      "parentUuid": "ee84d550_56222ee2",
       "range": {
         "startLine": 3,
         "startChar": 0,
