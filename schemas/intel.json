@@ -2,6 +2,7 @@
     "$schema": "http://json-schema.org/draft-07/schema#",
     "$defs": {
         "IntelFanConnector": {
+            "additionalProperties": false,
             "properties": {
                 "LED": {
                     "type": "string"
@@ -9,8 +10,14 @@
                 "Name": {
                     "type": "string"
                 },
+                "PwmName": {
+                    "type": "string"
+                },
                 "Pwm": {
                     "type": "number"
+                },
+                "Status": {
+                    "enum": ["enabled", "disabled"]
                 },
                 "Tachs": {
                     "items": {
