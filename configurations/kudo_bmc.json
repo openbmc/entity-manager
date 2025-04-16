@@ -1,258 +1,256 @@
-[
-    {
-        "Exposes": [
-            {
-                "Name": "BMC",
-                "Type": "BMC"
-            },
-            {
-                "Address": "$address",
-                "Bus": "$bus",
-                "Name": "BMC FRU",
-                "Type": "EEPROM"
-            },
-            {
-                "Address": "0x59",
-                "Bus": 14,
-                "Labels": [
-                    "vout1",
-                    "vout2",
-                    "vout3",
-                    "vout5",
-                    "vout6",
-                    "vout10"
-                ],
-                "Name": "BMC_MAX34451",
-                "Name1": "DC_P1V8",
-                "Name2": "DC_P2V5",
-                "Name3": "DC_P1V2",
-                "Name4": "DC_3V3_STBY",
-                "Name5": "DC_P1V175",
-                "Name6": "DC_PVTT",
-                "PowerState": "Always",
-                "Thresholds": [
-                    {
-                        "Direction": "greater than",
-                        "Label": "vout2",
-                        "Name": "upper critical",
-                        "Severity": 1,
-                        "Value": 2.754
-                    },
-                    {
-                        "Direction": "greater than",
-                        "Label": "vout2",
-                        "Name": "upper non critical",
-                        "Severity": 0,
-                        "Value": 2.617
-                    },
-                    {
-                        "Direction": "less than",
-                        "Label": "vout2",
-                        "Name": "lower non critical",
-                        "Severity": 0,
-                        "Value": 2.4
-                    },
-                    {
-                        "Direction": "less than",
-                        "Label": "vout2",
-                        "Name": "lower critical",
-                        "Severity": 1,
-                        "Value": 2.37
-                    },
-                    {
-                        "Direction": "greater than",
-                        "Label": "vout3",
-                        "Name": "upper critical",
-                        "Severity": 1,
-                        "Value": 1.313
-                    },
-                    {
-                        "Direction": "greater than",
-                        "Label": "vout3",
-                        "Name": "upper non critical",
-                        "Severity": 0,
-                        "Value": 1.215
-                    },
-                    {
-                        "Direction": "less than",
-                        "Label": "vout3",
-                        "Name": "lower non critical",
-                        "Severity": 0,
-                        "Value": 1.176
-                    },
-                    {
-                        "Direction": "less than",
-                        "Label": "vout3",
-                        "Name": "lower critical",
-                        "Severity": 1,
-                        "Value": 1.147
-                    },
-                    {
-                        "Direction": "greater than",
-                        "Label": "vout5",
-                        "Name": "upper critical",
-                        "Severity": 1,
-                        "Value": 3.609
-                    },
-                    {
-                        "Direction": "greater than",
-                        "Label": "vout5",
-                        "Name": "upper non critical",
-                        "Severity": 0,
-                        "Value": 3.382
-                    },
-                    {
-                        "Direction": "less than",
-                        "Label": "vout5",
-                        "Name": "lower non critical",
-                        "Severity": 0,
-                        "Value": 3.2
-                    },
-                    {
-                        "Direction": "less than",
-                        "Label": "vout5",
-                        "Name": "lower critical",
-                        "Severity": 1,
-                        "Value": 3.155
-                    },
-                    {
-                        "Direction": "greater than",
-                        "Label": "vout6",
-                        "Name": "upper critical",
-                        "Severity": 1,
-                        "Value": 1.286
-                    },
-                    {
-                        "Direction": "greater than",
-                        "Label": "vout6",
-                        "Name": "upper non critical",
-                        "Severity": 0,
-                        "Value": 1.227
-                    },
-                    {
-                        "Direction": "less than",
-                        "Label": "vout6",
-                        "Name": "lower non critical",
-                        "Severity": 0,
-                        "Value": 1.121
-                    },
-                    {
-                        "Direction": "less than",
-                        "Label": "vout6",
-                        "Name": "lower critical",
-                        "Severity": 1,
-                        "Value": 1.062
-                    },
-                    {
-                        "Direction": "greater than",
-                        "Label": "vout1",
-                        "Name": "upper critical",
-                        "Severity": 1,
-                        "Value": 1.978
-                    },
-                    {
-                        "Direction": "greater than",
-                        "Label": "vout1",
-                        "Name": "upper non critical",
-                        "Severity": 0,
-                        "Value": 1.884
-                    },
-                    {
-                        "Direction": "less than",
-                        "Label": "vout1",
-                        "Name": "lower non critical",
-                        "Severity": 0,
-                        "Value": 1.711
-                    },
-                    {
-                        "Direction": "less than",
-                        "Label": "vout1",
-                        "Name": "lower critical",
-                        "Severity": 1,
-                        "Value": 1.633
-                    },
-                    {
-                        "Direction": "greater than",
-                        "Label": "vout10",
-                        "Name": "upper critical",
-                        "Severity": 1,
-                        "Value": 0.659
-                    },
-                    {
-                        "Direction": "greater than",
-                        "Label": "vout10",
-                        "Name": "upper non critical",
-                        "Severity": 0,
-                        "Value": 0.628
-                    },
-                    {
-                        "Direction": "less than",
-                        "Label": "vout10",
-                        "Name": "lower non critical",
-                        "Severity": 0,
-                        "Value": 0.581
-                    },
-                    {
-                        "Direction": "less than",
-                        "Label": "vout10",
-                        "Name": "lower critical",
-                        "Severity": 1,
-                        "Value": 0.55
-                    }
-                ],
-                "Type": "MAX34451",
-                "vout10_Max": 4,
-                "vout1_Max": 4,
-                "vout2_Max": 3.5,
-                "vout3_Max": 2.5,
-                "vout5_Max": 5.8,
-                "vout6_Max": 3
-            },
-            {
-                "EntityId": 19,
-                "EntityInstance": 0,
-                "Name": "DC_P2V5",
-                "Type": "MAX34451"
-            },
-            {
-                "EntityId": 19,
-                "EntityInstance": 1,
-                "Name": "DC_P1V2",
-                "Type": "MAX34451"
-            },
-            {
-                "EntityId": 19,
-                "EntityInstance": 3,
-                "Name": "DC_3V3_STBY",
-                "Type": "MAX34451"
-            },
-            {
-                "EntityId": 19,
-                "EntityInstance": 4,
-                "Name": "DC_P1V175",
-                "Type": "MAX34451"
-            },
-            {
-                "EntityId": 19,
-                "EntityInstance": 2,
-                "Name": "DC_P1V8",
-                "Type": "MAX34451"
-            },
-            {
-                "EntityId": 19,
-                "EntityInstance": 5,
-                "Name": "DC_PVTT",
-                "Type": "MAX34451"
-            }
-        ],
-        "Name": "Kudo_BMC",
-        "Probe": "xyz.openbmc_project.FruDevice({'BOARD_PART_NUMBER': '1093695*'})",
-        "Type": "Board",
-        "xyz.openbmc_project.Inventory.Decorator.Asset": {
-            "Manufacturer": "$BOARD_MANUFACTURER",
-            "Model": "$BOARD_PRODUCT_NAME",
-            "PartNumber": "$BOARD_PART_NUMBER",
-            "SerialNumber": "$BOARD_SERIAL_NUMBER"
+{
+    "Exposes": [
+        {
+            "Name": "BMC",
+            "Type": "BMC"
+        },
+        {
+            "Address": "$address",
+            "Bus": "$bus",
+            "Name": "BMC FRU",
+            "Type": "EEPROM"
+        },
+        {
+            "Address": "0x59",
+            "Bus": 14,
+            "Labels": [
+                "vout1",
+                "vout2",
+                "vout3",
+                "vout5",
+                "vout6",
+                "vout10"
+            ],
+            "Name": "BMC_MAX34451",
+            "Name1": "DC_P1V8",
+            "Name2": "DC_P2V5",
+            "Name3": "DC_P1V2",
+            "Name4": "DC_3V3_STBY",
+            "Name5": "DC_P1V175",
+            "Name6": "DC_PVTT",
+            "PowerState": "Always",
+            "Thresholds": [
+                {
+                    "Direction": "greater than",
+                    "Label": "vout2",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 2.754
+                },
+                {
+                    "Direction": "greater than",
+                    "Label": "vout2",
+                    "Name": "upper non critical",
+                    "Severity": 0,
+                    "Value": 2.617
+                },
+                {
+                    "Direction": "less than",
+                    "Label": "vout2",
+                    "Name": "lower non critical",
+                    "Severity": 0,
+                    "Value": 2.4
+                },
+                {
+                    "Direction": "less than",
+                    "Label": "vout2",
+                    "Name": "lower critical",
+                    "Severity": 1,
+                    "Value": 2.37
+                },
+                {
+                    "Direction": "greater than",
+                    "Label": "vout3",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 1.313
+                },
+                {
+                    "Direction": "greater than",
+                    "Label": "vout3",
+                    "Name": "upper non critical",
+                    "Severity": 0,
+                    "Value": 1.215
+                },
+                {
+                    "Direction": "less than",
+                    "Label": "vout3",
+                    "Name": "lower non critical",
+                    "Severity": 0,
+                    "Value": 1.176
+                },
+                {
+                    "Direction": "less than",
+                    "Label": "vout3",
+                    "Name": "lower critical",
+                    "Severity": 1,
+                    "Value": 1.147
+                },
+                {
+                    "Direction": "greater than",
+                    "Label": "vout5",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 3.609
+                },
+                {
+                    "Direction": "greater than",
+                    "Label": "vout5",
+                    "Name": "upper non critical",
+                    "Severity": 0,
+                    "Value": 3.382
+                },
+                {
+                    "Direction": "less than",
+                    "Label": "vout5",
+                    "Name": "lower non critical",
+                    "Severity": 0,
+                    "Value": 3.2
+                },
+                {
+                    "Direction": "less than",
+                    "Label": "vout5",
+                    "Name": "lower critical",
+                    "Severity": 1,
+                    "Value": 3.155
+                },
+                {
+                    "Direction": "greater than",
+                    "Label": "vout6",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 1.286
+                },
+                {
+                    "Direction": "greater than",
+                    "Label": "vout6",
+                    "Name": "upper non critical",
+                    "Severity": 0,
+                    "Value": 1.227
+                },
+                {
+                    "Direction": "less than",
+                    "Label": "vout6",
+                    "Name": "lower non critical",
+                    "Severity": 0,
+                    "Value": 1.121
+                },
+                {
+                    "Direction": "less than",
+                    "Label": "vout6",
+                    "Name": "lower critical",
+                    "Severity": 1,
+                    "Value": 1.062
+                },
+                {
+                    "Direction": "greater than",
+                    "Label": "vout1",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 1.978
+                },
+                {
+                    "Direction": "greater than",
+                    "Label": "vout1",
+                    "Name": "upper non critical",
+                    "Severity": 0,
+                    "Value": 1.884
+                },
+                {
+                    "Direction": "less than",
+                    "Label": "vout1",
+                    "Name": "lower non critical",
+                    "Severity": 0,
+                    "Value": 1.711
+                },
+                {
+                    "Direction": "less than",
+                    "Label": "vout1",
+                    "Name": "lower critical",
+                    "Severity": 1,
+                    "Value": 1.633
+                },
+                {
+                    "Direction": "greater than",
+                    "Label": "vout10",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 0.659
+                },
+                {
+                    "Direction": "greater than",
+                    "Label": "vout10",
+                    "Name": "upper non critical",
+                    "Severity": 0,
+                    "Value": 0.628
+                },
+                {
+                    "Direction": "less than",
+                    "Label": "vout10",
+                    "Name": "lower non critical",
+                    "Severity": 0,
+                    "Value": 0.581
+                },
+                {
+                    "Direction": "less than",
+                    "Label": "vout10",
+                    "Name": "lower critical",
+                    "Severity": 1,
+                    "Value": 0.55
+                }
+            ],
+            "Type": "MAX34451",
+            "vout10_Max": 4,
+            "vout1_Max": 4,
+            "vout2_Max": 3.5,
+            "vout3_Max": 2.5,
+            "vout5_Max": 5.8,
+            "vout6_Max": 3
+        },
+        {
+            "EntityId": 19,
+            "EntityInstance": 0,
+            "Name": "DC_P2V5",
+            "Type": "MAX34451"
+        },
+        {
+            "EntityId": 19,
+            "EntityInstance": 1,
+            "Name": "DC_P1V2",
+            "Type": "MAX34451"
+        },
+        {
+            "EntityId": 19,
+            "EntityInstance": 3,
+            "Name": "DC_3V3_STBY",
+            "Type": "MAX34451"
+        },
+        {
+            "EntityId": 19,
+            "EntityInstance": 4,
+            "Name": "DC_P1V175",
+            "Type": "MAX34451"
+        },
+        {
+            "EntityId": 19,
+            "EntityInstance": 2,
+            "Name": "DC_P1V8",
+            "Type": "MAX34451"
+        },
+        {
+            "EntityId": 19,
+            "EntityInstance": 5,
+            "Name": "DC_PVTT",
+            "Type": "MAX34451"
         }
+    ],
+    "Name": "Kudo_BMC",
+    "Probe": "xyz.openbmc_project.FruDevice({'BOARD_PART_NUMBER': '1093695*'})",
+    "Type": "Board",
+    "xyz.openbmc_project.Inventory.Decorator.Asset": {
+        "Manufacturer": "$BOARD_MANUFACTURER",
+        "Model": "$BOARD_PRODUCT_NAME",
+        "PartNumber": "$BOARD_PART_NUMBER",
+        "SerialNumber": "$BOARD_SERIAL_NUMBER"
     }
-]
+}

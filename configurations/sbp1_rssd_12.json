@@ -1,0 +1,128 @@
+{
+    "Exposes": [
+        {
+            "Address": "0x3a",
+            "Bus": "144",
+            "Labels": [
+                "in0",
+                "in1",
+                "curr1",
+                "curr2"
+            ],
+            "Name": "SSB_RSSD11",
+            "PollRate": 5,
+            "PowerState": "On",
+            "Thresholds": [
+                {
+                    "Direction": "greater than",
+                    "Hysteresis": 0.03,
+                    "Label": "curr1",
+                    "Name": "upper non critical",
+                    "Severity": 0,
+                    "Value": 3
+                },
+                {
+                    "Direction": "greater than",
+                    "Hysteresis": 0.04,
+                    "Label": "curr1",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 4
+                },
+                {
+                    "Direction": "greater than",
+                    "Hysteresis": 0.001,
+                    "Label": "curr2",
+                    "Name": "upper non critical",
+                    "Severity": 0,
+                    "Value": 0.1
+                },
+                {
+                    "Direction": "greater than",
+                    "Hysteresis": 0.0015,
+                    "Label": "curr2",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 0.15
+                },
+                {
+                    "Direction": "less than",
+                    "Hysteresis": 0.108,
+                    "Label": "in0",
+                    "Name": "lower non critical",
+                    "Severity": 0,
+                    "Value": 10.8
+                },
+                {
+                    "Direction": "greater than",
+                    "Hysteresis": 0.128,
+                    "Label": "in0",
+                    "Name": "upper non critical",
+                    "Severity": 0,
+                    "Value": 12.8
+                },
+                {
+                    "Direction": "less than",
+                    "Hysteresis": 0.108,
+                    "Label": "in0",
+                    "Name": "lower critical",
+                    "Severity": 1,
+                    "Value": 10.8
+                },
+                {
+                    "Direction": "greater than",
+                    "Hysteresis": 0.133,
+                    "Label": "in0",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 13.3
+                },
+                {
+                    "Direction": "less than",
+                    "Hysteresis": 0.031400000000000004,
+                    "Label": "in1",
+                    "Name": "lower non critical",
+                    "Severity": 0,
+                    "Value": 3.14
+                },
+                {
+                    "Direction": "greater than",
+                    "Hysteresis": 0.0347,
+                    "Label": "in1",
+                    "Name": "upper non critical",
+                    "Severity": 0,
+                    "Value": 3.47
+                },
+                {
+                    "Direction": "less than",
+                    "Hysteresis": 0.029700000000000004,
+                    "Label": "in1",
+                    "Name": "lower critical",
+                    "Severity": 1,
+                    "Value": 2.97
+                },
+                {
+                    "Direction": "greater than",
+                    "Hysteresis": 0.0363,
+                    "Label": "in1",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 3.63
+                }
+            ],
+            "Type": "MAX5970",
+            "curr1_Name": "SSB_RSSD11 P12V Output Current",
+            "curr2_Name": "SSB_RSSD11 P3V3 Output Current",
+            "in0_Name": "SSB_RSSD11 P12V Output Voltage",
+            "in1_Name": "SSB_RSSD11 P3V3 Output Voltage"
+        }
+    ],
+    "Name": "RSSD11",
+    "Probe": [
+        "xyz.openbmc_project.FruDevice({'BOARD_PRODUCT_NAME': '.*SBP1'})",
+        "AND",
+        "xyz.openbmc_project.Inventory.Item({'PrettyName': 'RSSD11', 'Present': true})",
+        "MATCH_ONE"
+    ],
+    "Type": "Chassis"
+}

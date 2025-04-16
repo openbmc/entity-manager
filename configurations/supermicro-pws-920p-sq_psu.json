@@ -1,127 +1,125 @@
-[
-    {
-        "Exposes": [
-            {
-                "Address": "$address",
-                "Bus": "$bus",
-                "Name": "PSU$address % 4 FRU",
-                "Type": "EEPROM"
-            },
-            {
-                "Address": "$address",
-                "Bus": "$bus",
-                "Name": "PSU$address % 4 ADDR",
-                "Type": "PSUPresence"
-            },
-            {
-                "Address": "$address + 4",
-                "Bus": "$bus",
-                "Labels": [
-                    "pin",
-                    "pout1",
-                    "vin",
-                    "vout1",
-                    "iin",
-                    "iout1",
-                    "temp1",
-                    "fan1"
-                ],
-                "Name": "PSU$address % 4",
-                "Thresholds": [
-                    {
-                        "Direction": "greater than",
-                        "Label": "pin",
-                        "Name": "upper critical",
-                        "Severity": 1,
-                        "Value": 920
-                    },
-                    {
-                        "Direction": "greater than",
-                        "Label": "pout1",
-                        "Name": "upper critical",
-                        "Severity": 1,
-                        "Value": 920
-                    },
-                    {
-                        "Direction": "less than",
-                        "Label": "vin",
-                        "Name": "lower critical",
-                        "Severity": 1,
-                        "Value": 90
-                    },
-                    {
-                        "Direction": "greater than",
-                        "Label": "vin",
-                        "Name": "upper critical",
-                        "Severity": 1,
-                        "Value": 250
-                    },
-                    {
-                        "Direction": "greater than",
-                        "Label": "vout1",
-                        "Name": "upper critical",
-                        "Severity": 1,
-                        "Value": 13
-                    },
-                    {
-                        "Direction": "greater than",
-                        "Label": "iin",
-                        "Name": "upper critical",
-                        "Severity": 1,
-                        "Value": 13
-                    },
-                    {
-                        "Direction": "greater than",
-                        "Label": "iout1",
-                        "Name": "upper critical",
-                        "Severity": 1,
-                        "Value": 80
-                    },
-                    {
-                        "Direction": "less than",
-                        "Label": "temp1",
-                        "Name": "lower critical",
-                        "Severity": 1,
-                        "Value": 0
-                    },
-                    {
-                        "Direction": "greater than",
-                        "Label": "temp1",
-                        "Name": "upper critical",
-                        "Severity": 1,
-                        "Value": 100
-                    },
-                    {
-                        "Direction": "less than",
-                        "Label": "fan1",
-                        "Name": "lower critical",
-                        "Severity": 1,
-                        "Value": 100
-                    },
-                    {
-                        "Direction": "greater than",
-                        "Label": "fan1",
-                        "Name": "upper critical",
-                        "Severity": 1,
-                        "Value": 9000
-                    }
-                ],
-                "Type": "pmbus"
-            }
-        ],
-        "Name": "Supermicro PWS 920P SQ $address % 4",
-        "Probe": [
-            "xyz.openbmc_project.FruDevice({'PRODUCT_PRODUCT_NAME': 'PWS-920P-SQ'})"
-        ],
-        "Type": "PowerSupply",
-        "xyz.openbmc_project.Inventory.Decorator.Asset": {
-            "Manufacturer": "$PRODUCT_MANUFACTURER",
-            "Model": "$PRODUCT_PRODUCT_NAME",
-            "PartNumber": "$PRODUCT_PART_NUMBER",
-            "SerialNumber": "$PRODUCT_SERIAL_NUMBER"
+{
+    "Exposes": [
+        {
+            "Address": "$address",
+            "Bus": "$bus",
+            "Name": "PSU$address % 4 FRU",
+            "Type": "EEPROM"
         },
-        "xyz.openbmc_project.Inventory.Decorator.AssetTag": {
-            "AssetTag": "$PRODUCT_ASSET_TAG"
+        {
+            "Address": "$address",
+            "Bus": "$bus",
+            "Name": "PSU$address % 4 ADDR",
+            "Type": "PSUPresence"
+        },
+        {
+            "Address": "$address + 4",
+            "Bus": "$bus",
+            "Labels": [
+                "pin",
+                "pout1",
+                "vin",
+                "vout1",
+                "iin",
+                "iout1",
+                "temp1",
+                "fan1"
+            ],
+            "Name": "PSU$address % 4",
+            "Thresholds": [
+                {
+                    "Direction": "greater than",
+                    "Label": "pin",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 920
+                },
+                {
+                    "Direction": "greater than",
+                    "Label": "pout1",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 920
+                },
+                {
+                    "Direction": "less than",
+                    "Label": "vin",
+                    "Name": "lower critical",
+                    "Severity": 1,
+                    "Value": 90
+                },
+                {
+                    "Direction": "greater than",
+                    "Label": "vin",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 250
+                },
+                {
+                    "Direction": "greater than",
+                    "Label": "vout1",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 13
+                },
+                {
+                    "Direction": "greater than",
+                    "Label": "iin",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 13
+                },
+                {
+                    "Direction": "greater than",
+                    "Label": "iout1",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 80
+                },
+                {
+                    "Direction": "less than",
+                    "Label": "temp1",
+                    "Name": "lower critical",
+                    "Severity": 1,
+                    "Value": 0
+                },
+                {
+                    "Direction": "greater than",
+                    "Label": "temp1",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 100
+                },
+                {
+                    "Direction": "less than",
+                    "Label": "fan1",
+                    "Name": "lower critical",
+                    "Severity": 1,
+                    "Value": 100
+                },
+                {
+                    "Direction": "greater than",
+                    "Label": "fan1",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 9000
+                }
+            ],
+            "Type": "pmbus"
         }
+    ],
+    "Name": "Supermicro PWS 920P SQ $address % 4",
+    "Probe": [
+        "xyz.openbmc_project.FruDevice({'PRODUCT_PRODUCT_NAME': 'PWS-920P-SQ'})"
+    ],
+    "Type": "PowerSupply",
+    "xyz.openbmc_project.Inventory.Decorator.Asset": {
+        "Manufacturer": "$PRODUCT_MANUFACTURER",
+        "Model": "$PRODUCT_PRODUCT_NAME",
+        "PartNumber": "$PRODUCT_PART_NUMBER",
+        "SerialNumber": "$PRODUCT_SERIAL_NUMBER"
+    },
+    "xyz.openbmc_project.Inventory.Decorator.AssetTag": {
+        "AssetTag": "$PRODUCT_ASSET_TAG"
     }
-]
+}
