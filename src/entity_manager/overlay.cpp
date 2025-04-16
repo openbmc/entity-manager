@@ -17,8 +17,8 @@
 
 #include "overlay.hpp"
 
-#include "../utils.hpp"
 #include "devices.hpp"
+#include "utils.hpp"
 
 #include <boost/algorithm/string/predicate.hpp>
 #include <boost/asio/io_context.hpp>
@@ -30,6 +30,7 @@
 #include <phosphor-logging/lg2.hpp>
 
 #include <filesystem>
+#include <fstream>
 #include <iomanip>
 #include <iostream>
 #include <regex>
