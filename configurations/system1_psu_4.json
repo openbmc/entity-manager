@@ -1,0 +1,33 @@
+{
+    "Exposes": [
+        {
+            "Address": "0x5b",
+            "Bus": "2",
+            "Labels": [
+                "iin",
+                "iout1",
+                "vin",
+                "vout1",
+                "pin"
+            ],
+            "Name": "PSU3",
+            "Name1": "BCM3",
+            "PollRate": 5,
+            "PowerState": "Always",
+            "Type": "CRPS185"
+        }
+    ],
+    "Name": "Intel CRPS185 2400W 4",
+    "Probe": "FOUND('IBM System1 Baseboard')",
+    "Type": "PowerSupply",
+    "xyz.openbmc_project.Inventory.Decorator.Asset": {
+        "Manufacturer": "Intel",
+        "Model": "CRPS185",
+        "PartNumber": "CRPS185TD1E1368T01",
+        "SerialNumber": ""
+    },
+    "xyz.openbmc_project.Inventory.Decorator.Replaceable": {
+        "FieldReplaceable": false,
+        "HotPluggable": false
+    }
+}
