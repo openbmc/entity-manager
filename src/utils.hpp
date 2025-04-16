@@ -23,15 +23,6 @@
 #include <sdbusplus/exception.hpp>
 
 #include <filesystem>
-#include <fstream>
-#include <iostream>
-
-constexpr const char* configurationOutDir = "/var/configuration/";
-constexpr const char* versionHashFile = "/var/configuration/version";
-constexpr const char* versionFile = "/etc/os-release";
-
-// NOLINTNEXTLINE(cppcoreguidelines-avoid-non-const-global-variables)
-extern boost::asio::io_context io;
 
 using DBusValueVariant =
     std::variant<std::string, int64_t, uint64_t, double, int32_t, uint32_t,
@@ -40,20 +31,6 @@ using DBusInterface = boost::container::flat_map<std::string, DBusValueVariant>;
 using DBusObject = boost::container::flat_map<std::string, DBusInterface>;
 using MapperGetSubTreeResponse =
     boost::container::flat_map<std::string, DBusObject>;
-
-namespace properties
-{
-constexpr const char* interface = "org.freedesktop.DBus.Properties";
-constexpr const char* get = "Get";
-} // namespace properties
-
-namespace power
-{
-const static constexpr char* busname = "xyz.openbmc_project.State.Host";
-const static constexpr char* interface = "xyz.openbmc_project.State.Host";
-const static constexpr char* path = "/xyz/openbmc_project/state/host0";
-const static constexpr char* property = "CurrentHostState";
-} // namespace power
 
 bool findFiles(const std::filesystem::path& dirPath,
                const std::string& matchString,
@@ -66,11 +43,6 @@ bool getI2cDevicePaths(
     const std::filesystem::path& dirPath,
     boost::container::flat_map<size_t, std::filesystem::path>& busPaths);
 
-bool validateJson(const nlohmann::json& schemaFile,
-                  const nlohmann::json& input);
-
-bool isPowerOn();
-void setupPowerMatch(const std::shared_ptr<sdbusplus::asio::connection>& conn);
 struct DBusInternalError final : public sdbusplus::exception_t
 {
     const char* name() const noexcept override
@@ -92,52 +64,6 @@ struct DBusInternalError final : public sdbusplus::exception_t
         return EACCES;
     }
 };
-
-inline bool fwVersionIsSame()
-{
-    std::ifstream version(versionFile);
-    if (!version.good())
-    {
-        std::cerr << "Can't read " << versionFile << "\n";
-        return false;
-    }
-
-    std::string versionData;
-    std::string line;
-    while (std::getline(version, line))
-    {
-        versionData += line;
-    }
-
-    std::string expectedHash =
-        std::to_string(std::hash<std::string>{}(versionData));
-
-    std::filesystem::create_directory(configurationOutDir);
-    std::ifstream hashFile(versionHashFile);
-    if (hashFile.good())
-    {
-        std::string hashString;
-        hashFile >> hashString;
-
-        if (expectedHash == hashString)
-        {
-            return true;
-        }
-        hashFile.close();
-    }
-
-    std::ofstream output(versionHashFile);
-    output << expectedHash;
-    return false;
-}
-
-std::optional<std::string> templateCharReplace(
-    nlohmann::json::iterator& keyPair, const DBusObject& object, size_t index,
-    const std::optional<std::string>& replaceStr = std::nullopt);
-
-std::optional<std::string> templateCharReplace(
-    nlohmann::json::iterator& keyPair, const DBusInterface& interface,
-    size_t index, const std::optional<std::string>& replaceStr = std::nullopt);
 
 inline bool deviceHasLogging(const nlohmann::json& json)
 {
