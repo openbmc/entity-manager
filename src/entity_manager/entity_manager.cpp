@@ -24,6 +24,7 @@
 #include "overlay.hpp"
 #include "perform_scan.hpp"
 #include "topology.hpp"
+#include "utils.hpp"
 
 #include <boost/algorithm/string/case_conv.hpp>
 #include <boost/algorithm/string/classification.hpp>
@@ -40,14 +41,12 @@
 #include <sdbusplus/asio/connection.hpp>
 #include <sdbusplus/asio/object_server.hpp>
 
-#include <charconv>
 #include <filesystem>
 #include <fstream>
 #include <functional>
 #include <iostream>
 #include <map>
 #include <regex>
-#include <variant>
 constexpr const char* tempConfigDir = "/tmp/configuration/";
 constexpr const char* lastConfiguration = "/tmp/configuration/last.json";
 
@@ -376,7 +375,7 @@ void startRemovedTimer(boost::asio::steady_timer& timer,
         return;
     }
 
-    if (!isPowerOn() && scannedPowerOff)
+    if (!em_utils::isPowerOn() && scannedPowerOff)
     {
         return;
     }
@@ -389,7 +388,7 @@ void startRemovedTimer(boost::asio::steady_timer& timer,
                 return;
             }
 
-            bool powerOff = !isPowerOn();
+            bool powerOff = !em_utils::isPowerOn();
             for (const auto& [name, device] : lastJson.items())
             {
                 pruneDevice(systemConfiguration, powerOff, scannedPowerOff,
@@ -515,7 +514,7 @@ void propertiesChangedCallback(nlohmann::json& systemConfiguration,
              missingConfigurations]() {
                 // this is something that since ac has been applied to the bmc
                 // we saw, and we no longer see it
-                bool powerOff = !isPowerOn();
+                bool powerOff = !em_utils::isPowerOn();
                 for (const auto& [name, device] :
                      missingConfigurations->items())
                 {
@@ -660,7 +659,7 @@ int main()
     });
     dbus_interface::tryIfaceInitialize(entityIface);
 
-    if (fwVersionIsSame())
+    if (em_utils::fwVersionIsSame())
     {
         if (std::filesystem::is_regular_file(
                 configuration::currentConfiguration))
@@ -701,7 +700,7 @@ int main()
 
     // some boards only show up after power is on, we want to not say they are
     // removed until the same state happens
-    setupPowerMatch(systemBus);
+    em_utils::setupPowerMatch(systemBus);
 
     io.run();
 
