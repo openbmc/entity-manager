@@ -1,0 +1,20 @@
+{
+    "Exposes": [],
+    "Name": "Minerva Chassis",
+    "Probe": [
+        "xyz.openbmc_project.FruDevice({'BOARD_PRODUCT_NAME': 'Minerva CMM EVT', 'BOARD_PART_NUMBER': '3IF0MMA0010'})",
+        "OR",
+        "xyz.openbmc_project.FruDevice({'BOARD_PRODUCT_NAME': 'Minerva CMM ', 'BOARD_INFO_AM4': 'hsc-xdp'})"
+    ],
+    "Type": "Chassis",
+    "xyz.openbmc_project.Inventory.Decorator.Asset": {
+        "Manufacturer": "$PRODUCT_MANUFACTURER",
+        "Model": "$PRODUCT_PRODUCT_NAME",
+        "PartNumber": "$PRODUCT_PART_NUMBER",
+        "SerialNumber": "$PRODUCT_INFO_AM2",
+        "SparePartNumber": "$PRODUCT_FRU_VERSION_ID"
+    },
+    "xyz.openbmc_project.Inventory.Decorator.AssetTag": {
+        "AssetTag": "$PRODUCT_INFO_AM3"
+    }
+}

@@ -1,0 +1,478 @@
+{
+    "Exposes": [
+        {
+            "Address": "0x5e",
+            "Bus": "$bus",
+            "Connector": {
+                "Name": "FCB_$bus - 15 FAN $bus * 4 - 64 + 1 TACH_IL",
+                "Pwm": 2,
+                "PwmName": "FCB_$bus - 15 FAN_PWM",
+                "Tachs": [
+                    0
+                ]
+            },
+            "Index": 0,
+            "Name": "FCB_$bus - 15 FAN $bus * 4 - 64 + 1 TACH_IL_SPEED_RPM",
+            "PowerState": "Always",
+            "Thresholds": [
+                {
+                    "Direction": "greater than",
+                    "Hysteresis": 400,
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 20000
+                },
+                {
+                    "Direction": "less than",
+                    "Hysteresis": 16,
+                    "Name": "lower critical",
+                    "Severity": 1,
+                    "Value": 800
+                }
+            ],
+            "Type": "I2CFan"
+        },
+        {
+            "Address": "0x5e",
+            "Bus": "$bus",
+            "Connector": {
+                "Name": "FCB_$bus - 15 FAN $bus * 4 - 64 + 1 TACH_OL",
+                "Pwm": 2,
+                "PwmName": "FCB_$bus - 15 FAN_PWM",
+                "Tachs": [
+                    1
+                ]
+            },
+            "Index": 1,
+            "Name": "FCB_$bus - 15 FAN $bus * 4 - 64 + 1 TACH_OL_SPEED_RPM",
+            "PowerState": "Always",
+            "Thresholds": [
+                {
+                    "Direction": "greater than",
+                    "Hysteresis": 400,
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 20000
+                },
+                {
+                    "Direction": "less than",
+                    "Hysteresis": 16,
+                    "Name": "lower critical",
+                    "Severity": 1,
+                    "Value": 800
+                }
+            ],
+            "Type": "I2CFan"
+        },
+        {
+            "Address": "0x5e",
+            "Bus": "$bus",
+            "Connector": {
+                "Name": "FCB_$bus - 15 FAN $bus * 4 - 64 + 2 TACH_IL",
+                "Pwm": 2,
+                "PwmName": "FCB_$bus - 15 FAN_PWM",
+                "Tachs": [
+                    2
+                ]
+            },
+            "Index": 2,
+            "Name": "FCB_$bus - 15 FAN $bus * 4 - 64 + 2 TACH_IL_SPEED_RPM",
+            "PowerState": "Always",
+            "Thresholds": [
+                {
+                    "Direction": "greater than",
+                    "Hysteresis": 400,
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 20000
+                },
+                {
+                    "Direction": "less than",
+                    "Hysteresis": 16,
+                    "Name": "lower critical",
+                    "Severity": 1,
+                    "Value": 800
+                }
+            ],
+            "Type": "I2CFan"
+        },
+        {
+            "Address": "0x5e",
+            "Bus": "$bus",
+            "Connector": {
+                "Name": "FCB_$bus - 15 FAN $bus * 4 - 64 + 2 TACH_OL",
+                "Pwm": 2,
+                "PwmName": "FCB_$bus - 15 FAN_PWM",
+                "Tachs": [
+                    3
+                ]
+            },
+            "Index": 3,
+            "Name": "FCB_$bus - 15 FAN $bus * 4 - 64 + 2 TACH_OL_SPEED_RPM",
+            "PowerState": "Always",
+            "Thresholds": [
+                {
+                    "Direction": "greater than",
+                    "Hysteresis": 400,
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 20000
+                },
+                {
+                    "Direction": "less than",
+                    "Hysteresis": 16,
+                    "Name": "lower critical",
+                    "Severity": 1,
+                    "Value": 800
+                }
+            ],
+            "Type": "I2CFan"
+        },
+        {
+            "Address": "0x5e",
+            "Bus": "$bus",
+            "Connector": {
+                "Name": "FCB_$bus - 15 FAN $bus * 4 - 64 + 3 TACH_IL",
+                "Pwm": 2,
+                "PwmName": "FCB_$bus - 15 FAN_PWM",
+                "Tachs": [
+                    4
+                ]
+            },
+            "Index": 4,
+            "Name": "FCB_$bus - 15 FAN $bus * 4 - 64 + 3 TACH_IL_SPEED_RPM",
+            "PowerState": "Always",
+            "Thresholds": [
+                {
+                    "Direction": "greater than",
+                    "Hysteresis": 400,
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 20000
+                },
+                {
+                    "Direction": "less than",
+                    "Hysteresis": 16,
+                    "Name": "lower critical",
+                    "Severity": 1,
+                    "Value": 800
+                }
+            ],
+            "Type": "I2CFan"
+        },
+        {
+            "Address": "0x5e",
+            "Bus": "$bus",
+            "Connector": {
+                "Name": "FCB_$bus - 15 FAN $bus * 4 - 64 + 3 TACH_OL",
+                "Pwm": 2,
+                "PwmName": "FCB_$bus - 15 FAN_PWM",
+                "Tachs": [
+                    5
+                ]
+            },
+            "Index": 5,
+            "Name": "FCB_$bus - 15 FAN $bus * 4 - 64 + 3 TACH_OL_SPEED_RPM",
+            "PowerState": "Always",
+            "Thresholds": [
+                {
+                    "Direction": "greater than",
+                    "Hysteresis": 400,
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 20000
+                },
+                {
+                    "Direction": "less than",
+                    "Hysteresis": 16,
+                    "Name": "lower critical",
+                    "Severity": 1,
+                    "Value": 800
+                }
+            ],
+            "Type": "I2CFan"
+        },
+        {
+            "Address": "0x5e",
+            "Bus": "$bus",
+            "Connector": {
+                "Name": "FCB_$bus - 15 FAN $bus * 4 - 64 + 4 TACH_IL",
+                "Pwm": 2,
+                "PwmName": "FCB_$bus - 15 FAN_PWM",
+                "Tachs": [
+                    6
+                ]
+            },
+            "Index": 6,
+            "Name": "FCB_$bus - 15 FAN $bus * 4 - 64 + 4 TACH_IL_SPEED_RPM",
+            "PowerState": "Always",
+            "Thresholds": [
+                {
+                    "Direction": "greater than",
+                    "Hysteresis": 400,
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 20000
+                },
+                {
+                    "Direction": "less than",
+                    "Hysteresis": 16,
+                    "Name": "lower critical",
+                    "Severity": 1,
+                    "Value": 800
+                }
+            ],
+            "Type": "I2CFan"
+        },
+        {
+            "Address": "0x5e",
+            "Bus": "$bus",
+            "Connector": {
+                "Name": "FCB_$bus - 15 FAN $bus * 4 - 64 + 4 TACH_OL",
+                "Pwm": 2,
+                "PwmName": "FCB_$bus - 15 FAN_PWM",
+                "Tachs": [
+                    7
+                ]
+            },
+            "Index": 7,
+            "Name": "FCB_$bus - 15 FAN $bus * 4 - 64 + 4 TACH_OL_SPEED_RPM",
+            "PowerState": "Always",
+            "Thresholds": [
+                {
+                    "Direction": "greater than",
+                    "Hysteresis": 400,
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 20000
+                },
+                {
+                    "Direction": "less than",
+                    "Hysteresis": 16,
+                    "Name": "lower critical",
+                    "Severity": 1,
+                    "Value": 800
+                }
+            ],
+            "Type": "I2CFan"
+        },
+        {
+            "Address": "0x40",
+            "Bus": "$bus",
+            "Labels": [
+                "in1",
+                "curr1"
+            ],
+            "Name": "FCB_$bus - 15 FAN_$bus * 4 - 64 + 1",
+            "Thresholds": [
+                {
+                    "Direction": "less than",
+                    "Hysteresis": 0.969,
+                    "Label": "in1",
+                    "Name": "lower critical",
+                    "Severity": 1,
+                    "Value": 48.45
+                },
+                {
+                    "Direction": "greater than",
+                    "Hysteresis": 1.067,
+                    "Label": "in1",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 53.35
+                },
+                {
+                    "Direction": "greater than",
+                    "Hysteresis": 0.14,
+                    "Label": "curr1",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 7
+                }
+            ],
+            "Type": "INA238",
+            "curr1_Name": "FCB_$bus - 15 FAN $bus * 4 - 64 + 1 CURR_A",
+            "in1_Name": "FCB_$bus - 15 FAN $bus * 4 - 64 + 1 VOLT_V",
+            "in1_Scale": 833.3333
+        },
+        {
+            "Address": "0x41",
+            "Bus": "$bus",
+            "Labels": [
+                "in1",
+                "curr1"
+            ],
+            "Name": "FCB_$bus - 15 FAN_$bus * 4 - 64 + 2",
+            "Thresholds": [
+                {
+                    "Direction": "less than",
+                    "Hysteresis": 0.969,
+                    "Label": "in1",
+                    "Name": "lower critical",
+                    "Severity": 1,
+                    "Value": 48.45
+                },
+                {
+                    "Direction": "greater than",
+                    "Hysteresis": 1.067,
+                    "Label": "in1",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 53.35
+                },
+                {
+                    "Direction": "greater than",
+                    "Hysteresis": 0.14,
+                    "Label": "curr1",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 7
+                }
+            ],
+            "Type": "INA238",
+            "curr1_Name": "FCB_$bus - 15 FAN $bus * 4 - 64 + 2 CURR_A",
+            "in1_Name": "FCB_$bus - 15 FAN $bus * 4 - 64 + 2 VOLT_V",
+            "in1_Scale": 833.3333
+        },
+        {
+            "Address": "0x44",
+            "Bus": "$bus",
+            "Labels": [
+                "in1",
+                "curr1"
+            ],
+            "Name": "FCB_$bus - 15 FAN_$bus * 4 - 64 + 3",
+            "Thresholds": [
+                {
+                    "Direction": "less than",
+                    "Hysteresis": 0.969,
+                    "Label": "in1",
+                    "Name": "lower critical",
+                    "Severity": 1,
+                    "Value": 48.45
+                },
+                {
+                    "Direction": "greater than",
+                    "Hysteresis": 1.067,
+                    "Label": "in1",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 53.35
+                },
+                {
+                    "Direction": "greater than",
+                    "Hysteresis": 0.14,
+                    "Label": "curr1",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 7
+                }
+            ],
+            "Type": "INA238",
+            "curr1_Name": "FCB_$bus - 15 FAN $bus * 4 - 64 + 3 CURR_A",
+            "in1_Name": "FCB_$bus - 15 FAN $bus * 4 - 64 + 3 VOLT_V",
+            "in1_Scale": 833.3333
+        },
+        {
+            "Address": "0x45",
+            "Bus": "$bus",
+            "Labels": [
+                "in1",
+                "curr1"
+            ],
+            "Name": "FCB_$bus - 15 FAN_$bus * 4 - 64 + 4",
+            "Thresholds": [
+                {
+                    "Direction": "less than",
+                    "Hysteresis": 0.969,
+                    "Label": "in1",
+                    "Name": "lower critical",
+                    "Severity": 1,
+                    "Value": 48.45
+                },
+                {
+                    "Direction": "greater than",
+                    "Hysteresis": 1.067,
+                    "Label": "in1",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 53.35
+                },
+                {
+                    "Direction": "greater than",
+                    "Hysteresis": 0.14,
+                    "Label": "curr1",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 7
+                }
+            ],
+            "Type": "INA238",
+            "curr1_Name": "FCB_$bus - 15 FAN $bus * 4 - 64 + 4 CURR_A",
+            "in1_Name": "FCB_$bus - 15 FAN $bus * 4 - 64 + 4 VOLT_V",
+            "in1_Scale": 833.3333
+        },
+        {
+            "Address": "0x49",
+            "Bus": "$bus",
+            "Labels": [
+                "temp1"
+            ],
+            "Name": "FCB_$bus - 15 T_SENSE",
+            "Type": "INA238",
+            "temp1_Name": "FCB_$bus - 15 T_SENSE_TEMP_C"
+        },
+        {
+            "Address": "0x4b",
+            "Bus": "$bus",
+            "Name": "FCB_$bus - 15 TEMP_C",
+            "Thresholds": [
+                {
+                    "Direction": "greater than",
+                    "Hysteresis": 1.6,
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 80
+                },
+                {
+                    "Direction": "less than",
+                    "Hysteresis": 0,
+                    "Name": "lower critical",
+                    "Severity": 1,
+                    "Value": 0
+                }
+            ],
+            "Type": "TMP75"
+        }
+    ],
+    "Name": "Minerva Fan Board $bus - 15",
+    "Probe": [
+        "xyz.openbmc_project.FruDevice({'BOARD_PRODUCT_NAME': 'Minerva Fan Board.*', 'PRODUCT_MANUFACTURER': 'Quanta', 'BUS': 16, 'BOARD_INFO_AM4': 'pwr-silergy'})",
+        "OR",
+        "xyz.openbmc_project.FruDevice({'BOARD_PRODUCT_NAME': 'Minerva Fan Board.*', 'PRODUCT_MANUFACTURER': 'Quanta', 'BUS': 17, 'BOARD_INFO_AM4': 'pwr-silergy'})",
+        "OR",
+        "xyz.openbmc_project.FruDevice({'BOARD_PRODUCT_NAME': 'Minerva Fan Board.*', 'PRODUCT_MANUFACTURER': 'Quanta', 'BUS': 18, 'BOARD_INFO_AM4': 'pwr-silergy'})",
+        "OR",
+        "xyz.openbmc_project.FruDevice({'BOARD_PRODUCT_NAME': 'Minerva Fan Board.*', 'PRODUCT_MANUFACTURER': 'Quanta', 'BUS': 19, 'BOARD_INFO_AM4': 'pwr-silergy'})",
+        "OR",
+        "xyz.openbmc_project.FruDevice({'BOARD_PRODUCT_NAME': 'Minerva Fan Board.*', 'PRODUCT_MANUFACTURER': 'Quanta', 'BUS': 16, 'BOARD_PART_NUMBER': '3XF0MFB0030'})",
+        "OR",
+        "xyz.openbmc_project.FruDevice({'BOARD_PRODUCT_NAME': 'Minerva Fan Board.*', 'PRODUCT_MANUFACTURER': 'Quanta', 'BUS': 17, 'BOARD_PART_NUMBER': '3XF0MFB0030'})",
+        "OR",
+        "xyz.openbmc_project.FruDevice({'BOARD_PRODUCT_NAME': 'Minerva Fan Board.*', 'PRODUCT_MANUFACTURER': 'Quanta', 'BUS': 18, 'BOARD_PART_NUMBER': '3XF0MFB0030'})",
+        "OR",
+        "xyz.openbmc_project.FruDevice({'BOARD_PRODUCT_NAME': 'Minerva Fan Board.*', 'PRODUCT_MANUFACTURER': 'Quanta', 'BUS': 19, 'BOARD_PART_NUMBER': '3XF0MFB0030'})"
+    ],
+    "Type": "Board",
+    "xyz.openbmc_project.Inventory.Decorator.Asset": {
+        "BuildDate": "$BOARD_MANUFACTURE_DATE",
+        "Manufacturer": "$BOARD_MANUFACTURER",
+        "Model": "$BOARD_PRODUCT_NAME",
+        "PartNumber": "$BOARD_PART_NUMBER",
+        "SerialNumber": "$BOARD_SERIAL_NUMBER",
+        "SparePartNumber": "$BOARD_INFO_AM1"
+    },
+    "xyz.openbmc_project.Inventory.Decorator.AssetTag": {
+        "AssetTag": "$PRODUCT_ASSET_TAG"
+    }
+}
