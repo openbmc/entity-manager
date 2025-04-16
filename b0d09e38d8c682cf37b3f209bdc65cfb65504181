@@ -122,6 +122,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "6e4fa3a8_d556151a",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 24,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-04-16T22:01:12Z",
+      "side": 1,
+      "message": "\u003e And for their downstream, that might absolutely be the right decision for maintenance reasons. \n\nIn my perspective, having a downstream is somewhat of a last resort\n\n\u003e Platform specifics (if we want to support that) would go in meta layers.\n\nI disagree 😊,  EM ```configurations/``` directory is full of platform specific board configurations.\n\n\n\u003e Yep, still exists on master too:\n\nWhich is only reinforcing my argument. \n\nhttps://github.com/openbmc/openbmc/blob/36d626ab36102f241ce100f5cf485ef277c7e942/meta-amd/meta-daytonax/recipes-phosphor/configuration/entity-manager_%25.bbappend\n\nStuff like this shows how people want EM to work. They want to deploy configuration for their board only. Since their BMC firmware image is intended to support that board and not capable to support another board.\n\n\nSo there is no benefit for them to have extra configuration files which they will never use.",
+      "parentUuid": "5f4d1653_12f06646",
+      "range": {
+        "startLine": 20,
+        "startChar": 0,
+        "endLine": 24,
+        "endChar": 0
+      },
+      "revId": "b0d09e38d8c682cf37b3f209bdc65cfb65504181",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "3d12670c_fd36dc22",
         "filename": "/COMMIT_MSG",
         "patchSetId": 1
@@ -362,6 +386,24 @@
       "side": 1,
       "message": "It looks like we now have a magic \"compatible\" string in the config files?  I don\u0027t think that solves the concern.",
       "parentUuid": "3690b526_2b620b7c",
+      "revId": "b0d09e38d8c682cf37b3f209bdc65cfb65504181",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3ba3cc98_288b8e41",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-04-16T22:01:12Z",
+      "side": 1,
+      "message": "## existing policy still the default\n\n\u003e the purpose of entity manager supporting multiple systems with a single binary.\n\nI think it is fine to have this goal and policy. The patch intent is to have this as default like before.\n\n## concern about untested and unreviewed configuration\n\nBut there is a use-case for people who get nervous around having configuration as part of their image that they never validated or reviewed. For those people it might make sense to be selective in which hardware EM supports.\n\nIf an unqualified component / psu / whatever is plugged into a system, or an upstream configuration is just badly written, what happens at runtime, that will be  a surprise.",
+      "parentUuid": "8c1fc6c7_424a42ef",
       "revId": "b0d09e38d8c682cf37b3f209bdc65cfb65504181",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }

@@ -26,6 +26,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "1b310670_b456f24a",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 3
+      },
+      "lineNbr": 71,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-04-16T22:01:12Z",
+      "side": 1,
+      "message": "My small examples do not convey the full intent or possibilities to use the feature.\n\n\u003e an S8030 has PCIe and NVMe ports, so we\u0027d need to also include all possible hardware that those have.\n\nYes. I would assume all configurations for any PCIe hardware to be always present in the fw image, for an upstream configuration of that option. Since most servers support PCIe hardware to be used on them.\n\nI have not fully defined all the edge cases for the feature yet, since i would like to first align on the general direction.\n\nHaving choice in support of peripheral components would be a more advanced version of this feature, since there are different form factors for power supplies and such which can limit the hardware supported.",
+      "parentUuid": "1c5bf535_03e0794c",
+      "range": {
+        "startLine": 71,
+        "startChar": 0,
+        "endLine": 71,
+        "endChar": 69
+      },
+      "revId": "396f767cb74c6c99b35d3ec15845db49c5689308",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "aa1488a5_36de25f7",
         "filename": "/PATCHSET_LEVEL",
         "patchSetId": 3
@@ -37,6 +61,24 @@
       "writtenOn": "2025-04-16T21:25:02Z",
       "side": 1,
       "message": "Overall, my aversion to this is a fundamental one:  OpenBMC should be building software that is open to addition by both the system manufacturer AND those looking to add new hardware peripheral support to an existing system.  This design goal is stated at the top of the readme: https://github.com/openbmc/entity-manager?tab\u003dreadme-ov-file#goals\n\nCreating private company compatible lists where companies will only allow certain hardware on certain systems defeats some of the spirit of the \"open\" portion of OpenBmc, and means that when new configurations are enabled, they\u0027re only enabled on a subset of platforms.  Our builds should be \"open\" to improvement by anyone, not just the folks that manufacture or contract the board.  FWIW, in this patchset we\u0027re modifying which things are compatible with Tyan motherboards (that are buyable retail).  Who\u0027s the authority that should decide that support list given it\u0027s a commercial board?\n\nYes, there are downstream forks (including those of my employer) where removing all the configs except for a \"supported\" subset makes sense for their release model.  That kind of model is trivial to implement downstream (or even upstream if you wanted) in a meta layer if that\u0027s your goal.  That doesn\u0027t mean that it makes sense for something like OpenBMC, which aims to support firmware in the open.\n\nYes, we could do a better job of making the EM code performant (I\u0027m pretty sure nobody has ever profiled it since it was ported from the python script) and ensuring that we prevent conflicts between real hardware before they happen.  I suspect the former is pretty trivially solvable by optimizing the daemon a little.  The later I suspect is solved by requiring a fru match on manufacturer.",
+      "revId": "396f767cb74c6c99b35d3ec15845db49c5689308",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "99658040_88e69253",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-04-16T22:01:12Z",
+      "side": 1,
+      "message": "So you don\u0027t like the feature because of how it may be used?\n\nThe intent of the feature is to reduce the configurations present in a BMC fw image to those which can be supported by the hardware.\n\nIt is intended to be an upstream feature used in openbmc/openbmc.\n\nFor example to prevent sbp1 and yv4 baseboard configuration from being present in a  fw image for Tyan s8030.\n\n\u003e and means that when new configurations are enabled, they\u0027re only enabled on a subset of platforms\n\nThat is an interpretation of the feature but not the intent.\n\nThe usage of the feature in the upstream is subject to review. So if config for hardware A is not present on a firmware image for board B even though board B supports hardware A then that is a misconfiguration.\n\n## who decides which hardware is supported\n\n\u003e Who\u0027s the authority that should decide that support list given it\u0027s a commercial board?\n\nThat depends on who is maintaining that layer. Nothing changes in that regard.\n\nThey should configure the option properly to support all the hardware which can be used on that system.\n\nI see this as analogous to configuring the linux kernel. There is not much incentive to support less than what the board is capable of. \n\n## the intent\n\n**If the hardware applies to or can be used on a server system**, the configuration for that hardware **should be present** in the firmware image.\n\nIf the configuration **will never apply** to the hardware, that configuration **should not be present** in a firmware image for said hardware.",
+      "parentUuid": "aa1488a5_36de25f7",
       "revId": "396f767cb74c6c99b35d3ec15845db49c5689308",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
