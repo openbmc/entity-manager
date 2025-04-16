@@ -16,6 +16,24 @@
       "message": "Are migrations like this useful?\n\nI would say the code on the left is easier to read and understand, and if we ever make extensions to polarity, we\u0027d need something like the left to stage it anway, right?",
       "revId": "4e741d5effa736bccfec75dae12677d8a818ea3e",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f3eefe20_c21bcbd6",
+        "filename": "schemas/leak_detector.json",
+        "patchSetId": 1
+      },
+      "lineNbr": 27,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-04-16T20:54:06Z",
+      "side": 1,
+      "message": "\u003e Are migrations like this useful?\n\nDoubtful. It will surely break @paligill@gmail.com \u0027s patch.\n\n\n\u003e  if we ever make extensions to polarity,\n\nHow would you ever even extend polarity on a gpio. What would be the 3rd value.\n\n\u003e I would say the code on the left is easier to read and understand\n\nYes, but it duplicates something which is already defined.\n\n\u003e I would say the code on the left is easier to read and understand\n\nBy that same argument it would make sense to manually inline functions in C++.",
+      "parentUuid": "6420e36e_88b637f5",
+      "revId": "4e741d5effa736bccfec75dae12677d8a818ea3e",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }
