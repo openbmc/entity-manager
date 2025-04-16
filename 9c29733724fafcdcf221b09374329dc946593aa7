@@ -16,6 +16,24 @@
       "message": "This doesn\u0027t show up in a schema.  How does it pass?  Don\u0027t we need this added to a schema?",
       "revId": "9c29733724fafcdcf221b09374329dc946593aa7",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "54b8b1cf_a982e670",
+        "filename": "configurations/meta/yosemite4_fanboard_fsc_max_adc_ti_led_nxp_efuse_max.json",
+        "patchSetId": 1
+      },
+      "lineNbr": 293,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-04-16T13:45:43Z",
+      "side": 1,
+      "message": "Connector schema is lacking \nthe \n```\n\"additionalProperties\": false\n```\nline\n```\n            \"Connector\": {\n                \"properties\": {\n                    \"Name\": {\n                        \"type\": \"string\"\n                    },\n                    \"Pwm\": {\n                        \"type\": \"number\"\n                    },\n                    \"Tachs\": {\n                        \"items\": {\n                            \"type\": \"number\"\n                        },\n                        \"type\": \"array\"\n                    }\n                },\n                \"required\": [\"Name\", \"Pwm\", \"Tachs\"],\n                \"type\": \"object\"\n            },\n```\n\nMaybe that line can be added as part of this patch, along with the new property being configured 👍",
+      "parentUuid": "8f928a3c_6bf2a102",
+      "revId": "9c29733724fafcdcf221b09374329dc946593aa7",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }
