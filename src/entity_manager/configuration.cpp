@@ -1,7 +1,7 @@
 #include "configuration.hpp"
 
-#include "../utils.hpp"
 #include "perform_probe.hpp"
+#include "utils.hpp"
 
 #include <nlohmann/json.hpp>
 #include <valijson/adapters/nlohmann_json_adapter.hpp>
