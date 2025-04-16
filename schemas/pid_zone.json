@@ -2,6 +2,7 @@
     "$schema": "http://json-schema.org/draft-07/schema#",
     "$defs": {
         "PidZone": {
+            "additionalProperties": false,
             "type": "object",
             "properties": {
                 "AccumulateSetPoint": {
@@ -20,7 +21,7 @@
                     "type": "string"
                 },
                 "Type": {
-                    "type": "string"
+                    "const": "Pid.Zone"
                 },
                 "UpdateThermalsTimeMS": {
                     "type": "number"
