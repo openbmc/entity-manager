@@ -98,6 +98,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "5f4d1653_12f06646",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 24,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2025-04-16T21:04:10Z",
+      "side": 1,
+      "message": "\u003e as this keeps them in control of their configurations which they validated for their particular use-case and hardware setup.\n\nAnd for their downstream, that might absolutely be the right decision for maintenance reasons.  Here in upstream, we get to look at OpenBMC as a whole of more than one platform.  Platform specifics (if we want to support that) would go in meta layers.\n\n\u003e I would prefer people to have their configurations upstream instead.\n\nI\u0027m confused, what\u0027s stopping them from upstreaming those?  The first looks like we missed a probe for manufacturer, which I\u0027d really like to start requiring on all new configs, but we haven\u0027t gotten there yet.  For that device, I think it\u0027s already been fixed?\n\nFwiw, the second one also has a bad probe:\n```\n        \"xyz.openbmc_project.FruDevice({\u0027BOARD_PART_NUMBER\u0027: \u0027CBP2980\u0027})\"\n```\n\nIs the fix to this just that we need to require all FRU probes to have some level of manufacturer matching?  That seems a lot easier to maintain and support (we can get a CI check for it) than trying to segment who wants which configs.\n\n\u003e Did this actually happen in EM?\n\nYep, still exists on master too:\nhttps://github.com/openbmc/openbmc/blob/master/meta-amd/meta-daytonax/recipes-phosphor/configuration/entity-manager/daytonax-baseboard.json",
+      "parentUuid": "73dd0c03_96f5d578",
+      "range": {
+        "startLine": 20,
+        "startChar": 0,
+        "endLine": 24,
+        "endChar": 0
+      },
+      "revId": "b0d09e38d8c682cf37b3f209bdc65cfb65504181",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "3d12670c_fd36dc22",
         "filename": "/COMMIT_MSG",
         "patchSetId": 1
