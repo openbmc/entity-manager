@@ -107,11 +107,7 @@ for file in files:
     with open(file) as fp:
         j = json.loads(comments.extract_comments(fp.read()))
 
-    if isinstance(j, list):
-        for item in j:
-            item["Exposes"] = sorted(item["Exposes"], key=lambda k: k["Type"])
-    else:
-        j["Exposes"] = sorted(j["Exposes"], key=lambda k: k["Type"])
+    j["Exposes"] = sorted(j["Exposes"], key=lambda k: k["Type"])
 
     with open(file, "w") as fp:
         contents = json.dumps(
