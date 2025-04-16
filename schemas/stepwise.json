@@ -2,6 +2,7 @@
     "$schema": "http://json-schema.org/draft-07/schema#",
     "$defs": {
         "Stepwise": {
+            "additionalProperties": false,
             "type": "object",
             "properties": {
                 "Class": {
@@ -56,7 +57,7 @@
                     }
                 },
                 "Type": {
-                    "type": "string"
+                    "const": "Stepwise"
                 },
                 "Zones": {
                     "type": "array",
