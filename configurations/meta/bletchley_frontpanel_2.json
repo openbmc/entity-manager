@@ -1,0 +1,48 @@
+{
+    "Exposes": [
+        {
+            "Address": "0x40",
+            "Bus": 10,
+            "Name": "FRONT_PANEL_TEMP",
+            "Name1": "FRONT_PANEL_HUMIDTY",
+            "Thresholds": [
+                {
+                    "Direction": "greater than",
+                    "Index": 1,
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 40
+                },
+                {
+                    "Direction": "greater than",
+                    "Index": 1,
+                    "Name": "upper non critical",
+                    "Severity": 0,
+                    "Value": 39
+                },
+                {
+                    "Direction": "less than",
+                    "Index": 1,
+                    "Name": "lower non critical",
+                    "Severity": 0,
+                    "Value": 1
+                },
+                {
+                    "Direction": "less than",
+                    "Index": 1,
+                    "Name": "lower critical",
+                    "Severity": 1,
+                    "Value": 0
+                }
+            ],
+            "Type": "SI7020"
+        }
+    ],
+    "Name": "Bletchley Front Panel Board",
+    "Probe": [
+        "FOUND('Bletchley Baseboard')",
+        "AND",
+        "xyz.openbmc_project.Inventory.Decorator.Asset({'Model': 'Bletchley_FPB_SI7021'})"
+    ],
+    "Type": "Board"
+}
