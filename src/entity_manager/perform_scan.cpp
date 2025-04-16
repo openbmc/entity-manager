@@ -16,8 +16,8 @@
 /// \file perform_scan.cpp
 #include "perform_scan.hpp"
 
-#include "entity_manager.hpp"
 #include "perform_probe.hpp"
+#include "utils.hpp"
 
 #include <boost/algorithm/string/predicate.hpp>
 #include <boost/asio/steady_timer.hpp>
@@ -26,6 +26,7 @@
 #include <phosphor-logging/lg2.hpp>
 
 #include <charconv>
+#include <iostream>
 
 /* Hacks from splitting entity_manager.cpp */
 // NOLINTBEGIN(cppcoreguidelines-avoid-non-const-global-variables)
@@ -428,8 +429,8 @@ static std::string generateDeviceName(
 {
     nlohmann::json copyForName = {{"Name", nameTemplate}};
     nlohmann::json::iterator copyIt = copyForName.begin();
-    std::optional<std::string> replaceVal =
-        templateCharReplace(copyIt, dbusObject, foundDeviceIdx, replaceStr);
+    std::optional<std::string> replaceVal = em_utils::templateCharReplace(
+        copyIt, dbusObject, foundDeviceIdx, replaceStr);
 
     if (!replaceStr && replaceVal)
     {
@@ -438,7 +439,8 @@ static std::string generateDeviceName(
             replaceStr = replaceVal;
             copyForName = {{"Name", nameTemplate}};
             copyIt = copyForName.begin();
-            templateCharReplace(copyIt, dbusObject, foundDeviceIdx, replaceStr);
+            em_utils::templateCharReplace(copyIt, dbusObject, foundDeviceIdx,
+                                          replaceStr);
         }
     }
 
@@ -532,8 +534,8 @@ void scan::PerformScan::updateSystemConfiguration(
         {
             if (keyPair.key() != "Name")
             {
-                templateCharReplace(keyPair, dbusObject, foundDeviceIdx,
-                                    replaceStr);
+                em_utils::templateCharReplace(keyPair, dbusObject,
+                                              foundDeviceIdx, replaceStr);
             }
         }
 
@@ -553,8 +555,8 @@ void scan::PerformScan::updateSystemConfiguration(
             for (auto keyPair = expose.begin(); keyPair != expose.end();
                  keyPair++)
             {
-                templateCharReplace(keyPair, dbusObject, foundDeviceIdx,
-                                    replaceStr);
+                em_utils::templateCharReplace(keyPair, dbusObject,
+                                              foundDeviceIdx, replaceStr);
 
                 applyExposeActions(_systemConfiguration, recordName, expose,
                                    keyPair);
