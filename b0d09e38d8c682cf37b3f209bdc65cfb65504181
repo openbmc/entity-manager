@@ -72,6 +72,30 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "73dd0c03_96f5d578",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 24,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-04-16T17:52:03Z",
+      "side": 1,
+      "message": "I have reworked the patch to not rely on regex.",
+      "parentUuid": "c6254253_873fae3d",
+      "range": {
+        "startLine": 20,
+        "startChar": 0,
+        "endLine": 24,
+        "endChar": 0
+      },
+      "revId": "b0d09e38d8c682cf37b3f209bdc65cfb65504181",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "3d12670c_fd36dc22",
@@ -260,6 +284,24 @@
       "side": 1,
       "message": "I haven\u0027t measured performance for reading and parsing the 200ish files, though it probably isn\u0027t so bad.  For people that do use FruDevice, they have the added penalty of having to compare every single possible Probe statement on each signal, even for boards that don\u0027t fit, haven\u0027t been qualified, or don\u0027t have kernel drivers configured for anyway.",
       "parentUuid": "b7939533_f6705a54",
+      "revId": "b0d09e38d8c682cf37b3f209bdc65cfb65504181",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "3690b526_2b620b7c",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-04-16T17:52:03Z",
+      "side": 1,
+      "message": "\u003e if we end up finding a way that this feature doesn\u0027t cause a violation of our goals, the search should be based on content of the file, not filename regex.\n\nI have reworked this feature to be based on file contents.\n\nAn EM config can be declared to support or be compatible with a piece of hardware,\nand then users can configure which hardware should be supported and that then determines which configurations are installed 😊\n\nPlease review again and confirm if this aligns better with your expectation 👍",
+      "parentUuid": "7a33a103_0358ee51",
       "revId": "b0d09e38d8c682cf37b3f209bdc65cfb65504181",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
