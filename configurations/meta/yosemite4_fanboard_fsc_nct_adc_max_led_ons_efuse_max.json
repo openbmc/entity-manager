@@ -10,6 +10,7 @@
             "Address": "0x21",
             "Bus": "$bus",
             "Connector": {
+                "ForcePwmWriteOnEqual": true,
                 "Name": "FANBOARD$bus % 30 FAN$bus % 30 * 2 + 0 TACH_INLET_SPEED_RPM",
                 "Pwm": 5,
                 "PwmName": "FANBOARD$bus % 30 FAN$bus % 30 * 2 + 0 PWM_PCT",
@@ -49,6 +50,7 @@
             "Address": "0x21",
             "Bus": "$bus",
             "Connector": {
+                "ForcePwmWriteOnEqual": true,
                 "Name": "FANBOARD$bus % 30 FAN$bus % 30 * 2 + 0 TACH_OUTLET_SPEED_RPM",
                 "Pwm": 5,
                 "PwmName": "FANBOARD$bus % 30 FAN$bus % 30 * 2 + 0 PWM_PCT",
@@ -88,6 +90,7 @@
             "Address": "0x23",
             "Bus": "$bus",
             "Connector": {
+                "ForcePwmWriteOnEqual": true,
                 "Name": "FANBOARD$bus % 30 FAN$bus % 30 * 2 + 1 TACH_INLET_SPEED_RPM",
                 "Pwm": 5,
                 "PwmName": "FANBOARD$bus % 30 FAN$bus % 30 * 2 + 1 PWM_PCT",
@@ -127,6 +130,7 @@
             "Address": "0x23",
             "Bus": "$bus",
             "Connector": {
+                "ForcePwmWriteOnEqual": true,
                 "Name": "FANBOARD$bus % 30 FAN$bus % 30 * 2 + 1 TACH_OUTLET_SPEED_RPM",
                 "Pwm": 5,
                 "PwmName": "FANBOARD$bus % 30 FAN$bus % 30 * 2 + 1 PWM_PCT",
@@ -166,6 +170,7 @@
             "Address": "0x21",
             "Bus": "$bus",
             "Connector": {
+                "ForcePwmWriteOnEqual": true,
                 "Name": "FANBOARD$bus % 30 FAN$bus % 30 * 2 + 4 TACH_INLET_SPEED_RPM",
                 "Pwm": 2,
                 "PwmName": "FANBOARD$bus % 30 FAN$bus % 30 * 2 + 4 PWM_PCT",
@@ -205,6 +210,7 @@
             "Address": "0x21",
             "Bus": "$bus",
             "Connector": {
+                "ForcePwmWriteOnEqual": true,
                 "Name": "FANBOARD$bus % 30 FAN$bus % 30 * 2 + 4 TACH_OUTLET_SPEED_RPM",
                 "Pwm": 2,
                 "PwmName": "FANBOARD$bus % 30 FAN$bus % 30 * 2 + 4 PWM_PCT",
@@ -244,6 +250,7 @@
             "Address": "0x23",
             "Bus": "$bus",
             "Connector": {
+                "ForcePwmWriteOnEqual": true,
                 "Name": "FANBOARD$bus % 30 FAN$bus % 30 * 2 + 5 TACH_INLET_SPEED_RPM",
                 "Pwm": 2,
                 "PwmName": "FANBOARD$bus % 30 FAN$bus % 30 * 2 + 5 PWM_PCT",
@@ -283,6 +290,7 @@
             "Address": "0x23",
             "Bus": "$bus",
             "Connector": {
+                "ForcePwmWriteOnEqual": true,
                 "Name": "FANBOARD$bus % 30 FAN$bus % 30 * 2 + 5 TACH_OUTLET_SPEED_RPM",
                 "Pwm": 2,
                 "PwmName": "FANBOARD$bus % 30 FAN$bus % 30 * 2 + 5 PWM_PCT",
@@ -322,6 +330,7 @@
             "Address": "0x21",
             "Bus": "$bus",
             "Connector": {
+                "ForcePwmWriteOnEqual": true,
                 "Name": "FANBOARD$bus % 30 FAN$bus % 30 * 2 + 8 TACH_INLET_SPEED_RPM",
                 "Pwm": 0,
                 "PwmName": "FANBOARD$bus % 30 FAN$bus % 30 * 2 + 8 PWM_PCT",
@@ -361,6 +370,7 @@
             "Address": "0x21",
             "Bus": "$bus",
             "Connector": {
+                "ForcePwmWriteOnEqual": true,
                 "Name": "FANBOARD$bus % 30 FAN$bus % 30 * 2 + 8 TACH_OUTLET_SPEED_RPM",
                 "Pwm": 0,
                 "PwmName": "FANBOARD$bus % 30 FAN$bus % 30 * 2 + 8 PWM_PCT",
@@ -400,6 +410,7 @@
             "Address": "0x23",
             "Bus": "$bus",
             "Connector": {
+                "ForcePwmWriteOnEqual": true,
                 "Name": "FANBOARD$bus % 30 FAN$bus % 30 * 2 + 9 TACH_INLET_SPEED_RPM",
                 "Pwm": 0,
                 "PwmName": "FANBOARD$bus % 30 FAN$bus % 30 * 2 + 9 PWM_PCT",
@@ -439,6 +450,7 @@
             "Address": "0x23",
             "Bus": "$bus",
             "Connector": {
+                "ForcePwmWriteOnEqual": true,
                 "Name": "FANBOARD$bus % 30 FAN$bus % 30 * 2 + 9 TACH_OUTLET_SPEED_RPM",
                 "Pwm": 0,
                 "PwmName": "FANBOARD$bus % 30 FAN$bus % 30 * 2 + 9 PWM_PCT",
