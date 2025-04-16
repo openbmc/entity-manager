@@ -16,12 +16,12 @@
 /// \file perform_probe.cpp
 #include "perform_probe.hpp"
 
-#include "entity_manager.hpp"
 #include "perform_scan.hpp"
 
 #include <boost/algorithm/string/replace.hpp>
 #include <phosphor-logging/lg2.hpp>
 
+#include <iostream>
 #include <regex>
 #include <utility>
 

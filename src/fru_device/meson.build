@@ -6,7 +6,6 @@ detect_mode = get_option('fru-device-16bitdetectmode')
 cpp_args_fd += ['-DFRU_DEVICE_16BITDETECTMODE="' + detect_mode + '"']
 executable(
     'fru-device',
-    '../expression.cpp',
     'fru_device.cpp',
     '../utils.cpp',
     'fru_utils.cpp',
