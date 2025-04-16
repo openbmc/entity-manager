@@ -1,0 +1,44 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3b8d1442_ccadeaad",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 9
+      },
+      "lineNbr": 20,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2025-04-16T20:54:05Z",
+      "side": 1,
+      "message": "This was explicitly discounted in the original design.  As someone who has maintained things that supported arbitrary includes, maintenance is a nightmare.\n\nFor example, if you have a common #include, and you make an edit to it, are we going to require that all board variants be tested?  How do we stage that?\n\n\nAlso keep in mind that EM files are supposed to be self contained so that they\u0027re not tied to a specific firmware revision (and generally have infinite backward compatibility).\n\nAdding this new feature breaks that property, and makes things like single image systems not possible.",
+      "range": {
+        "startLine": 17,
+        "startChar": 0,
+        "endLine": 20,
+        "endChar": 42
+      },
+      "revId": "7c990bc5b31d6d294b219d55232fc6a91b3fccdc",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7ce052a5_abb6ac3d",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 9
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2025-04-16T20:54:05Z",
+      "side": 1,
+      "message": "Overall I\u0027m not in support of this type of feature, as it defeats some of the purpose of having runtime-read config files in the first place, and complicates the maintenance burden for any common files.  If configs are truly common enough that we can pick defaults, then we shouldn\u0027t have a configuration at all, just add it as a feature in code that can be selected with a single property or type.\n\nFWIW, the predecessor to entity manager implemented this feature, and it needed to be completely undone due to the maintenance issues around minor changes to a single platform or component needing major refactors due to the files being created originally as \"common\".\n\nIf we want to talk through guard rails to prevent the above issues, I\u0027m happy to discuss further.",
+      "revId": "7c990bc5b31d6d294b219d55232fc6a91b3fccdc",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    }
+  ]
+}
