@@ -2,6 +2,7 @@
     "$schema": "http://json-schema.org/draft-07/schema#",
     "$defs": {
         "Pid": {
+            "additionalProperties": false,
             "type": "object",
             "properties": {
                 "CheckHysteresisWithSetpoint": {
@@ -86,7 +87,7 @@
                     }
                 },
                 "Type": {
-                    "type": "string"
+                    "const": "Pid"
                 },
                 "Zones": {
                     "type": "array",
@@ -99,6 +100,15 @@
                 },
                 "SetPointOffset": {
                     "type": "string"
+                },
+                "samplePeriod": {
+                    "type": "number",
+                    "minimum": 0
+                },
+                "FailSafePercent": {
+                    "type": "number",
+                    "minimum": 0,
+                    "maximum": 100
                 }
             },
             "required": [
