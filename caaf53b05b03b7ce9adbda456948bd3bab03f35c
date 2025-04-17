@@ -37,6 +37,23 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "52b0f8b3_1239bf86",
+        "filename": "schemas/firmware.json",
+        "patchSetId": 12
+      },
+      "lineNbr": 117,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2025-04-17T20:15:24Z",
+      "side": 1,
+      "message": "This pattern of creating a top level type then a subtype is an anti pattern.   we do it in cases where it truly is (at a spec level) a sub type, but just declaring all the appropriate types at the top level seems to be much easier to maintain (from the last time we did this eeprom thing).",
+      "revId": "caaf53b05b03b7ce9adbda456948bd3bab03f35c",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "6da0a511_f40b915d",
         "filename": "schemas/firmware.json",
         "patchSetId": 12
