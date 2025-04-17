@@ -99,6 +99,24 @@
       "parentUuid": "99658040_88e69253",
       "revId": "396f767cb74c6c99b35d3ec15845db49c5689308",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b0cd02c6_cb840d74",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-04-17T21:54:40Z",
+      "side": 1,
+      "message": "## adding instead of removing things\n\n\u003e Why does the configuration being PRESENT cause an issue?\n\nIt violates the basic principle of firmware images being built by adding things to them instead of removing them.\n\nFor example when configuring a linux kernel, one enables drivers and features to make it support the hardware. \n\nThat ensures there will be no surprises and overhead from things which are not needed. The overhead being both size and cpu cycles.\n\nImagine installing a linux distro and then first having to de-bloat it to remove all the crap that is not needed.\n\nWhen developing configuration for a board, i often end up changing it at runtime, then restarting EM. That is why it\u0027s useful for me to have a meson option to turn off the caching that EM tries to do with the ```system.json```.\nOtherwise my changes will not apply.\n\nWhen EM is restarted then it often spends many seconds just going through all the configuration files for yv4, sbp1, ... . Which is just wasting time since they will never probe on my board 😊\n\n## hopeless idealism\n\n\u003e The way you know what configuration applies to a given piece of hardware is the probe statement. If those are wrong, we can fix those rather than invent another analog.\n\nIt does not help to have the configuration for something if the drivers are not installed. There is no way to drive the hardware and it will just crash.\n\nI would consider it harmful to have a configuration mismatch with EM / Linux Kernel. EM config in a firmware image should always be a subset of what was enabled in the kernel.\n\nHow do you enforce this currently?\n\n\u003e but how do we know which tyan baseboard we\u0027re on unless we read the fru? (As is the intent of EM).\n\nWhoever is building a firmware image (for one or multiple boards) should configure the EM to install the right configuration. By default, EM should install all configurations in case someone forgets or does not want to limit the support.\n\n\u003e How do you see this tagging working for non-baseboards?\n\nIf there is a known limitation (such as PSU form factor)\nor add-on cards only available for specific OEM, then based on that there can be different tags.\n\nFor starting out i would propose going with just ```psu```, for powersupplies but there will likely be people who want to split that up some more.\n\nFor NIC, there are some specs from OCP for their different form factors and tags can be written based on that.\n\nSo a more realistic setting for the option to suppport e.g. 4 tyan boards with a single firmware image would be ```tyan-s8030, tyan-s5549, tyan-s8040, tyan-s8047, psu-XY, nic-ocp-Z, pcie, nvme```\n\nKeep in mind i am no expert on any of these standards or component compatibility in general. The intent for this is to be developed over time by multiple people if there is community interest.\n\nIf there is no one configuring the option, it may be dropped after some time as a failed feature.\n\n\n\u003e if that\u0027s the extent of what you\u0027re trying to do, the Device tree tagging that HPe pushed I think solves that issue already?\n\nDo you have a link? Is it an EM feature? Or are you talking about kernel device trees?\n\nKeep in mind not everyone is trying to build firmware images to support the greatest number of devices. One goal of firmware is to be small which is at odds with trying to support everything.\n\nBased on a platform architecture and BMC architecture there is a rabbit hole of complexities such as A/B schema, size constraints, flash partitioning, ...  which can make it impossible to support a large number of devices.",
+      "parentUuid": "7d84ff65_cc2d1f2f",
+      "revId": "396f767cb74c6c99b35d3ec15845db49c5689308",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }
