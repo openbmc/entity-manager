@@ -1,6 +1,23 @@
 {
   "comments": [
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "4c822122_621f6410",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2025-04-17T02:09:38Z",
+      "side": 1,
+      "message": "After undersatnding the problem more (from the dbus-sensors side) I don\u0027t think this is appropriate to encode in entity-manager anyhow.  We\u0027re essentially wanting to encode driver-specific behavior into a FRU-specific config.  If this behavior is needed, dbus-sensors should know which driver-specific behavior to use; otherwise we have to replicate this information for every single FRU that uses \"affected PWM drivers\".",
+      "revId": "9c29733724fafcdcf221b09374329dc946593aa7",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "8f928a3c_6bf2a102",
