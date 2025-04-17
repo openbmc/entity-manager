@@ -50,6 +50,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "92f34d99_f3f05dd2",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 4
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2025-04-17T20:22:13Z",
+      "side": 1,
+      "message": "\u003e \u003e THis isn\u0027t really true. The intent of the policy was one file per piece of hardware.\n\u003e \n\u003e I should have probably read the ```README.md``` where this policy is mentioned 👍\n\u003e \n\nAs the guy that wrote the readme.... I highly recommend reading it 😊\n\n\u003e I am wondering if the policy intent is worth keeping.\n\u003e \n\u003e In case of a complicated piece of hardware with variants and modes requiring different configuration files, i would rather have a folder to keep them in.\n\nI disagree.  I would rather we use folders to indicate classes and manufacturers of hardware.  The goal with the \"one file per hardware\" is that new hardware could be added using a single include.  I don\u0027t really want to lose that ability.\n\n\u003e \n\u003e This can give the advantage to easily ```diff``` the variants of that piece of hardware.\n\u003e \n\u003e With a combined file, it would still be possible to ```diff``` them but may require special scripts. I am wondering how you handle this use-case.\n\nThe script seems like it would be a line or two of python.  If we\u0027re worried about that case, we can check that into a scripts repo, but I don\u0027t think the general \"diff these two identical hardware configs\" is a common use case.  \n\n\u003e \n\u003e I see the concern that people may lose track of multiple configurations supporting a piece of hardware if they are not properly kept in folders. But i would assume good intent from people to keep their configurations organized.\n\nIt\u0027s much easier to just be able to enforce it as convention.  While we may assume good intent, a lot of people don\u0027t read the docs on intent (see above 😊) so the more clear we can make it without needing documentation, the better.  Certainly appending _N to the end of the filename is more subtle as a convention than what we have.\n\n\u003e \n\u003e There is another patch in this change to introduce ```CompatibleHardware``` property at EM Config toplevel to support another feature. Maybe that can help to keep track of multiple configurations supporting a piece of hardware.\n\nAlready left comments on that as well.  I think that\u0027s just a way to drive community factions rather than community consensus.  we can discuss more in that patch.",
+      "parentUuid": "f5327619_2d7dd55f",
+      "range": {
+        "startLine": 9,
+        "startChar": 0,
+        "endLine": 9,
+        "endChar": 44
+      },
+      "revId": "5fb4103264c5f84b4352a709188c11f8a26eb5df",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "910897d3_746efcf1",
         "filename": "/COMMIT_MSG",
         "patchSetId": 4
