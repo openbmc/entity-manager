@@ -89,6 +89,24 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "571ce48c_6eca5adc",
+        "filename": "schemas/firmware.json",
+        "patchSetId": 11
+      },
+      "lineNbr": 19,
+      "author": {
+        "id": 1002253
+      },
+      "writtenOn": "2025-04-17T08:58:58Z",
+      "side": 1,
+      "message": "Removed `DevicePropertiesDef` and inlined its properties into each schema to allow ChipModel enumeration and improve clarity. Reused existing Bus and Address types from legacy.json to avoid confusion.",
+      "parentUuid": "50c04573_14209712",
+      "revId": "9abe501dd1fd745a3019bb77490e5ed6744ef074",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "81d769b1_777dec91",
@@ -155,6 +173,24 @@
       "writtenOn": "2025-04-14T18:50:10Z",
       "side": 1,
       "message": "\u003e  I intentionally avoid restricting the supported values\n\nThe intent of EM is to have a listing of what things are supported.  Please make this an enum.\n\nALso, if these types are things like AT04 devices that we already support, please roll your definitions into those types.",
+      "parentUuid": "2817710d_395d0598",
+      "revId": "9abe501dd1fd745a3019bb77490e5ed6744ef074",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "c493eb57_c230b990",
+        "filename": "schemas/firmware.json",
+        "patchSetId": 11
+      },
+      "lineNbr": 31,
+      "author": {
+        "id": 1002253
+      },
+      "writtenOn": "2025-04-17T08:58:58Z",
+      "side": 1,
+      "message": "Moved the `ChipModel` into the `EEPROMDeviceFirmware` schema.",
       "parentUuid": "2817710d_395d0598",
       "revId": "9abe501dd1fd745a3019bb77490e5ed6744ef074",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
@@ -231,6 +267,24 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "146c6f92_4dc04d47",
+        "filename": "schemas/firmware.json",
+        "patchSetId": 11
+      },
+      "lineNbr": 38,
+      "author": {
+        "id": 1002253
+      },
+      "writtenOn": "2025-04-17T08:58:58Z",
+      "side": 1,
+      "message": "Understood. Added \"additionalProperties: false\".\n\n@ed@tanous.net EEPROMDeviceFirmware is for devices that use a separate EEPROM to store their firmware but read the firmware version directly from the device itself, such as a Retimer.",
+      "parentUuid": "2f78ad92_316ce9d5",
+      "revId": "9abe501dd1fd745a3019bb77490e5ed6744ef074",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "c2885470_436befa1",
@@ -284,6 +338,24 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "f67fa888_a0568ffa",
+        "filename": "schemas/firmware.json",
+        "patchSetId": 11
+      },
+      "lineNbr": 39,
+      "author": {
+        "id": 1002253
+      },
+      "writtenOn": "2025-04-17T08:58:58Z",
+      "side": 1,
+      "message": "Improved the description.",
+      "parentUuid": "c668e43c_8120d251",
+      "revId": "9abe501dd1fd745a3019bb77490e5ed6744ef074",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "80596b94_53e8894c",
@@ -319,6 +391,24 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "861e9e1f_a2c46240",
+        "filename": "schemas/firmware.json",
+        "patchSetId": 11
+      },
+      "lineNbr": 50,
+      "author": {
+        "id": 1002253
+      },
+      "writtenOn": "2025-04-17T08:58:58Z",
+      "side": 1,
+      "message": "Yes, the bus and address are different as they are configured for two separate I2C devices. The descriptions of these properties have been improved for clarity.",
+      "parentUuid": "80596b94_53e8894c",
+      "revId": "9abe501dd1fd745a3019bb77490e5ed6744ef074",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "0e41da03_44981e69",
@@ -349,6 +439,24 @@
       "writtenOn": "2025-04-17T08:22:06Z",
       "side": 1,
       "message": "Done",
+      "parentUuid": "0e41da03_44981e69",
+      "revId": "9abe501dd1fd745a3019bb77490e5ed6744ef074",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "e9be7f74_b72bf637",
+        "filename": "schemas/firmware.json",
+        "patchSetId": 11
+      },
+      "lineNbr": 67,
+      "author": {
+        "id": 1002253
+      },
+      "writtenOn": "2025-04-17T08:58:58Z",
+      "side": 1,
+      "message": "Got it. Thanks for the information. Changed to use that one instead.",
       "parentUuid": "0e41da03_44981e69",
       "revId": "9abe501dd1fd745a3019bb77490e5ed6744ef074",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"

@@ -201,6 +201,30 @@
       },
       "revId": "d6ff60035b50475ce1b8292bbca8fa76f0024f1e",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7c00fd11_3f121aee",
+        "filename": "schemas/firmware.json",
+        "patchSetId": 6
+      },
+      "lineNbr": 123,
+      "author": {
+        "id": 1002253
+      },
+      "writtenOn": "2025-04-17T08:58:58Z",
+      "side": 1,
+      "message": "It\u0027s a difference in how the software handles it. For example, with a Retimer, the firmware update daemon reads the firmware version from the Retimer itself but writes the firmware image to the external EEPROM connected to it.",
+      "parentUuid": "57ae24d9_2408d388",
+      "range": {
+        "startLine": 123,
+        "startChar": 17,
+        "endLine": 123,
+        "endChar": 29
+      },
+      "revId": "d6ff60035b50475ce1b8292bbca8fa76f0024f1e",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }
