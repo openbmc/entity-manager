@@ -18,6 +18,24 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "deb1dcc3_d2e1d070",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 7
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-04-17T08:19:03Z",
+      "side": 1,
+      "message": "I would rather merge a finished version. The feature is not too complicated so it should be possible to make it happen.",
+      "parentUuid": "212d47ad_55eed3ea",
+      "revId": "a51453e12ac164685796a27948c1c771047e84e0",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "7afb3269_1ced442d",
@@ -31,6 +49,24 @@
       "writtenOn": "2025-04-16T20:39:00Z",
       "side": 1,
       "message": "Pretty sure you want this to still happen.\n\nImagine a system goes from:\nEM_CACHE_CONFIGURATION \u003d true\n\nto\n\nEM_CACHE_CONFIGURATION \u003d false\n\nThese files won\u0027t be cleared correctly.",
+      "revId": "a51453e12ac164685796a27948c1c771047e84e0",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "c0d4b031_63fa4d74",
+        "filename": "src/entity_manager.cpp",
+        "patchSetId": 7
+      },
+      "lineNbr": 1355,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-04-17T08:19:03Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "7afb3269_1ced442d",
       "revId": "a51453e12ac164685796a27948c1c771047e84e0",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
@@ -54,6 +90,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "3a49883f_d4796860",
+        "filename": "src/entity_manager.hpp",
+        "patchSetId": 7
+      },
+      "lineNbr": 102,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-04-17T08:19:03Z",
+      "side": 1,
+      "message": "That location is already deeply nested so i would prefer to have the logic here if possible.\n\n```logDeviceAdded``` is only applicable when there is persistence of the devices currently present on the system. That has been previously pointed out.\n\nhttps://gerrit.openbmc.org/c/openbmc/entity-manager/+/77355/comment/e4e46e48_3ff4fedb/\n\nCan you say why you want the branch to be moved?\n\n\n\u003e I suspect we need some handling of this in deriveNewConfiguration, right?\n\nWhat do we need to handle there? From what i can see the function is only handling the in-memory objects.",
+      "parentUuid": "de38af25_41d46dd4",
+      "revId": "a51453e12ac164685796a27948c1c771047e84e0",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "06369d36_bc4374c5",
         "filename": "src/meson.build",
         "patchSetId": 7
@@ -65,6 +119,30 @@
       "writtenOn": "2025-04-16T20:39:00Z",
       "side": 1,
       "message": "Can we code golf this a little?\nallowed \u003d get_option(\u0027entity-manager-cache-configuration\u0027).allowed()\ncpp_args +\u003d -DEM_CACHE_CONFIGURATION\u003d\u0027 + allowed",
+      "range": {
+        "startLine": 4,
+        "startChar": 0,
+        "endLine": 10,
+        "endChar": 0
+      },
+      "revId": "a51453e12ac164685796a27948c1c771047e84e0",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "9fb2e8cf_de6e1f8f",
+        "filename": "src/meson.build",
+        "patchSetId": 7
+      },
+      "lineNbr": 10,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-04-17T08:19:03Z",
+      "side": 1,
+      "message": "Maybe that golfing stick is broken\n```\n../src/meson.build:5:59: ERROR: Unknown method \"allowed\" in object \u003c[BooleanHolder] holds [bool]: True\u003e of type BooleanHolder.\n```",
+      "parentUuid": "06369d36_bc4374c5",
       "range": {
         "startLine": 4,
         "startChar": 0,
