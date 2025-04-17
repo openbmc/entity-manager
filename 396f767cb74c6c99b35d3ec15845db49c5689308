@@ -81,6 +81,24 @@
       "parentUuid": "aa1488a5_36de25f7",
       "revId": "396f767cb74c6c99b35d3ec15845db49c5689308",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7d84ff65_cc2d1f2f",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2025-04-17T21:01:35Z",
+      "side": 1,
+      "message": "\u003e So you don\u0027t like the feature because of how it may be used?\n\nThis is an over simplification of the above.\n\n\n\u003e The intent of the feature is to reduce the configurations present in a BMC fw image to those which can be supported by the hardware.\n\nRight, that\u0027s what the probe statements are already intended to do.\n\n\u003eFor example to prevent sbp1 and yv4 baseboard configuration from being present in a fw image for Tyan s8030.\n\nWhy does the configuration being PRESENT cause an issue?  If the configuration is wrong and has a bad probe, obviously that\u0027s an issue, but the config existing takes up pretty minimal space (and if that\u0027s an issue, can be easily compressed further than we\u0027ve attempted).\n\n\u003e That depends on who is maintaining that layer. Nothing changes in that regard.\n\nThere\u0027s no meta layers in what you\u0027ve proposed.  What\u0027s changed is that we\u0027ve now allowed classes of hardware.\n\n\u003e If the configuration will never apply to the hardware, that configuration should not be present in a firmware image for said hardware.\n\nThe way you know what configuration applies to a given piece of hardware is the probe statement.  If those are wrong, we can fix those rather than invent another analog.\n\n\n\n\u003e If the hardware applies to or can be used on a server system\n\nThis is the part I don\u0027t really see handled or examples of.  The example you have is giving each tyan baseboard a compat flag, but how do we know which tyan baseboard we\u0027re on unless we read the fru?   (As is the intent of EM).\n\nif that\u0027s the extent of what you\u0027re trying to do, the Device tree tagging that HPe pushed I think solves that issue already?\n\n\nHow do you see this tagging working for non-baseboards?",
+      "parentUuid": "99658040_88e69253",
+      "revId": "396f767cb74c6c99b35d3ec15845db49c5689308",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }
