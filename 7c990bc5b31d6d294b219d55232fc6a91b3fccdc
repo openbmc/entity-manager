@@ -50,6 +50,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "1eba569a_d2088785",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 9
+      },
+      "lineNbr": 20,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2025-04-17T20:43:57Z",
+      "side": 1,
+      "message": "\u003e \u003e For example, if you have a common #include, and you make an edit to it, are we going to require that all board variants be tested? How do we stage that?\n\u003e \n\u003e I think it would depend on the property and who owns those configurations.\n\nOpenBMC as a whole maintains the configurations.  There\u0027s not one \"owner\".\n\n\u003e \n\u003e And some people do have hardware CI and are capable to test multiple boards in an automated way.\n\nAnd that\u0027s wonderful for those folks.  We should encourage that more, but I don\u0027t see that reported to gerrit CI on EM commits, so the point still stands.\n\n\u003e \n\u003e In general this feature works in both directions for maximum flexibility 😎\n\u003e The configuration can be de-duplicated but also inlined as needed. If there is the need to change a property but no way to test the other variants, the changed property goes into the ```Override``` property or the whole record is simply inlined and then changed 👍\n\u003e \n\u003e \u003e Also keep in mind that EM files are supposed to be self contained so that they\u0027re not tied to a specific firmware revision (and generally have infinite backward compatibility).\n\u003e \n\u003e Would you prefer this to be a compile-time feature? That way there would then only be full configuration files on the BMC. It may even work better with the ```compatible-hardware``` proposal then, since there will be no dangling .record.json files.\n\nI\u0027m not sure how moving it to compile time solves the issue.  now folks need to do a full compile anytime they want to make an individual change to something with a #include in it?  That seems worse.  it\u0027s pretty common you make an edit to a config live on system, or SCP a config to a system and restart the reactors.  That ability gets lost if the files now require being a template.\n\nWith that said, I think we can build something that gets what you want (some level of confidence that files remain the same).  See my comment on the other commit.",
+      "parentUuid": "a7e89448_d81aa050",
+      "range": {
+        "startLine": 17,
+        "startChar": 0,
+        "endLine": 20,
+        "endChar": 42
+      },
+      "revId": "7c990bc5b31d6d294b219d55232fc6a91b3fccdc",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "7ce052a5_abb6ac3d",
         "filename": "/PATCHSET_LEVEL",
         "patchSetId": 9
@@ -79,6 +103,24 @@
       "side": 1,
       "message": "\u003e complicates the maintenance burden for any common files\n\nYes, but it also allows to easily introduce changes across multiple board variants and keep things in sync. Imagine you have some exposes records which are already part of multiple configs and do not differ much.\n\nHaving a way to deduplicate that can help to avoid the configurations drifting apart.\n\n## realistic use-case for shared configuration records\n\nSome properties which i would like to keep in sync between boards and board variants:\n\n- Thresholds for specific components (the component is the same, just different address and bus and living on a different board)\n\n- Name property (VBAT, CPU_TEMP, ... ) can often be the same. Since it is the same component, just on a different board.\n\n- Type property\n\n## dealing with changes which cannot be validated for all boards\n\n\u003e due to the maintenance issues around minor changes to a single platform or component needing major refactors due to the files being created originally as \"common\".\n\nIf there is a change needed for a configuration which does not apply to all variants or cannot be validated for all of them, it can go in ```Override``` property. If there are too many ```Override``` properties, there is no need to include and the whole record can be inlined.\n\n## proposed guardrails for review of the usage of the feature\n\n- no sharing common configuration records (for baseboards) across OEMs\n- good to share configuration records for slightly different board variants from same OEM\n- if there are too many ```Override``` properties on an included record, the record can be inlined.",
       "parentUuid": "7ce052a5_abb6ac3d",
+      "revId": "7c990bc5b31d6d294b219d55232fc6a91b3fccdc",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "168adb7a_765878fc",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 9
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2025-04-17T20:43:57Z",
+      "side": 1,
+      "message": "\u003e \u003e complicates the maintenance burden for any common files\n\u003e \n\u003e Yes, but it also allows to easily introduce changes across multiple board variants and keep things in sync.\n\nRight, and this is an anti pattern because of the testing requirement.  If you have one config that\u0027s used on 8 boards, it\u0027s fairly unlikely you actually tested all 8 boards with your commit.  Having them separate lets the changes be made as the boards are tested, one at a time, or in chunks (one lead, others follow once stable).\n\n\u003e Thresholds for specific components\n\nIf this is truly common, just put it in the application code.  FWIW, there are many cases where systems \"start\" with common thresholds, then as more data is available, transition to more specific thresholds.  Keeping them separate prevents bugs and makes code scope a lot more reviewable so we\u0027re not breaking working systems when we piece apart a config.\n\n\u003e If there is a change needed for a configuration which does not apply to all variants or cannot be validated for all of them, it can go in Override property.\n\nRight, so now we\u0027ve cause a problem, then needed to invent new code to solve the problem.  Lets just not create the problem in the first place.\n\n\u003e no sharing common configuration records (for baseboards) across OEMs\n\nThis would defeat most of your patches, right?  Most of the shared config is cross odm?\n\n\u003e if there are too many Override properties on an included record, the record can be inlined.\n\n\"too many\" is too subjective for me.  If the override is required at all, the config should be rolled out.\n\n\nThe above guard rails don\u0027t solve the issues around review velocity, or blast radius.\nWhat if we did something like this as an annotation:\n\n{\n   \"Property1\": \"Value\"\n   \"Type\" \"MyType\"\n   \"@FromTemplate\": \"template_name.json\"\n}\n\nthen in the template_name.json\n\n{\n   \"Property1\": \"Value\",\n   \"Type: \"Mytype\",\n}\n\nThen have warnings (maybe build errors) when a config deviates from the template.  This has a couple good properties compared to what\u0027s proposed in this patch, we can have our templates, but we still keep two important development properties:\n\n1. Em files and code reviews are reviewable easily for \"What systems does this effect\", because template changes will still show in all the systems they effect.\n2. EM files continue to be self contained, so we keep the use case of \"SCP a config file to a system to test a config\" that is very common in development.",
+      "parentUuid": "2df04e22_7a030db6",
       "revId": "7c990bc5b31d6d294b219d55232fc6a91b3fccdc",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
