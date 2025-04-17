@@ -37,6 +37,75 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "6da0a511_f40b915d",
+        "filename": "schemas/firmware.json",
+        "patchSetId": 12
+      },
+      "lineNbr": 120,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2025-04-17T20:14:04Z",
+      "side": 1,
+      "message": "Remove.  This should be the top level type\n\n{\n   Type: \"EEPROMpt5161l\"\n}",
+      "range": {
+        "startLine": 117,
+        "startChar": 0,
+        "endLine": 120,
+        "endChar": 25
+      },
+      "revId": "caaf53b05b03b7ce9adbda456948bd3bab03f35c",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "10730c1a_285959d2",
+        "filename": "schemas/firmware.json",
+        "patchSetId": 12
+      },
+      "lineNbr": 124,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2025-04-17T20:14:04Z",
+      "side": 1,
+      "message": "Please follow the pattern for other i2c devices.  Bus and Address are included in the top level",
+      "range": {
+        "startLine": 124,
+        "startChar": 0,
+        "endLine": 124,
+        "endChar": 31
+      },
+      "revId": "caaf53b05b03b7ce9adbda456948bd3bab03f35c",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f8725297_d58d936e",
+        "filename": "schemas/firmware.json",
+        "patchSetId": 12
+      },
+      "lineNbr": 136,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2025-04-17T20:14:04Z",
+      "side": 1,
+      "message": "This type is already covered in EM configs. \n\nhttps://github.com/openbmc/entity-manager/blob/79b2075688eac9fabf3c2e9e2f2346ffb7a1fd2c/src/devices.hpp#L69\n\nPlease use those definitions.",
+      "range": {
+        "startLine": 136,
+        "startChar": 0,
+        "endLine": 136,
+        "endChar": 44
+      },
+      "revId": "caaf53b05b03b7ce9adbda456948bd3bab03f35c",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "f3a20c0f_8a51d1ce",
         "filename": "schemas/firmware.json",
         "patchSetId": 12
@@ -54,6 +123,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "fd85795c_c1334d95",
+        "filename": "schemas/firmware.json",
+        "patchSetId": 12
+      },
+      "lineNbr": 142,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2025-04-17T20:14:04Z",
+      "side": 1,
+      "message": "Any reason functionally this is an array?  Do real systems need to flip multiple GPIOs to select a chip?",
+      "parentUuid": "f3a20c0f_8a51d1ce",
+      "revId": "caaf53b05b03b7ce9adbda456948bd3bab03f35c",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "0b5ebc4d_4bf3b328",
         "filename": "schemas/firmware.json",
         "patchSetId": 12
@@ -65,6 +152,24 @@
       "writtenOn": "2025-04-17T18:57:22Z",
       "side": 1,
       "message": "Missing MuxOutputs in required list.",
+      "revId": "caaf53b05b03b7ce9adbda456948bd3bab03f35c",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9f6e3fd2_e047b946",
+        "filename": "schemas/firmware.json",
+        "patchSetId": 12
+      },
+      "lineNbr": 166,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2025-04-17T20:14:04Z",
+      "side": 1,
+      "message": "MuxOutputs shouldn\u0027t be required.  Not all designs require it.",
+      "parentUuid": "0b5ebc4d_4bf3b328",
       "revId": "caaf53b05b03b7ce9adbda456948bd3bab03f35c",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }

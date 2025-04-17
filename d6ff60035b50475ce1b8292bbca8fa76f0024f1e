@@ -225,6 +225,30 @@
       },
       "revId": "d6ff60035b50475ce1b8292bbca8fa76f0024f1e",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b6ca5094_95d90005",
+        "filename": "schemas/firmware.json",
+        "patchSetId": 6
+      },
+      "lineNbr": 123,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2025-04-17T20:14:04Z",
+      "side": 1,
+      "message": "\u003e It\u0027s a difference in how the software handles it.\n\nGreat, so if the hardware is the same, reuse the existing hardware type, and add the appropriate properties to it to denote that it\u0027s used for firmware.\n\n\u003e For example, with a Retimer, the firmware update daemon reads the firmware version from the Retimer itself but writes the firmware image to the external EEPROM connected to it.\n\nYep, this is what I suspected.  New \"type\" isn\u0027t required here, just one new property to denote that an at24 is used for \"firmware\" versus \"fru\".",
+      "parentUuid": "7c00fd11_3f121aee",
+      "range": {
+        "startLine": 123,
+        "startChar": 17,
+        "endLine": 123,
+        "endChar": 29
+      },
+      "revId": "d6ff60035b50475ce1b8292bbca8fa76f0024f1e",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }
