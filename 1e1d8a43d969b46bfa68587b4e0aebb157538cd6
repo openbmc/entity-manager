@@ -74,6 +74,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "b86d7a98_9fabd057",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 4
+      },
+      "lineNbr": 12,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-04-18T02:48:06Z",
+      "side": 1,
+      "message": "\u003e I2CCPLD isn\u0027t really specific enough either.  The CPLD supports a specific type of interface, even proprietary ones.  Lets make sure that\u0027s clear here.\n\u003e \n\u003e As an example, I doubt that Maxim and Altera CPLDs both support the same update protocol.  This as written would imply that they do.\n\nSure, makes sense. I think it can be achieved with \n\"Type\": { enum : [\"AlteraCPLD\", \"LatticeCPLD\"] }\n\nAnd the description should be updated to reflect the appropriate wording.",
+      "parentUuid": "a13d168b_a521ea92",
+      "range": {
+        "startLine": 10,
+        "startChar": 0,
+        "endLine": 12,
+        "endChar": 66
+      },
+      "revId": "1e1d8a43d969b46bfa68587b4e0aebb157538cd6",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "5d1fff88_10fa2558",
         "filename": "/COMMIT_MSG",
         "patchSetId": 4
@@ -183,6 +207,23 @@
       "writtenOn": "2025-04-14T09:04:43Z",
       "side": 1,
       "message": "Can add\n```\n\"required\": [\"Name\", \"Type\", \"Bus\", \"Address\", \"Part\"],\n```\n\nAt least Name and Type should be required. I would prefer all properties to be required.",
+      "revId": "1e1d8a43d969b46bfa68587b4e0aebb157538cd6",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b221be5e_60c262cd",
+        "filename": "schemas/cpld.json",
+        "patchSetId": 4
+      },
+      "lineNbr": 30,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-04-18T02:48:06Z",
+      "side": 1,
+      "message": "Properties are missing FirwareInfo, please refer to https://grok.openbmc.org/xref/openbmc/entity-manager/schemas/firmware.json?r\u003d79b2075688eac9fabf3c2e9e2f2346ffb7a1fd2c#81",
       "revId": "1e1d8a43d969b46bfa68587b4e0aebb157538cd6",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
