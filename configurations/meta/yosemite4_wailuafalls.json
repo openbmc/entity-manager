@@ -264,6 +264,9 @@
             "Inputs": [
                 "WAILUA_FALLS_SLOT $bus % 15 WF_INLET_TEMP_C"
             ],
+            "MissingIsAcceptable": [
+                "WAILUA_FALLS_SLOT $bus % 15 WF_INLET_TEMP_C"
+            ],
             "Name": "Stepwise_WF_INLET_Slot $bus % 15",
             "NegativeHysteresis": 0,
             "Output": [

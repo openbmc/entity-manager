@@ -155,6 +155,10 @@
                 "SENTINEL_DOME_SLOT $bus % 15 MB_INLET_TEMP_C",
                 "SENTINEL_DOME_SLOT $bus % 15 MB_OUTLET_TEMP_C"
             ],
+            "MissingIsAcceptable": [
+                "SENTINEL_DOME_SLOT $bus % 15 MB_INLET_TEMP_C",
+                "SENTINEL_DOME_SLOT $bus % 15 MB_OUTLET_TEMP_C"
+            ],
             "Name": "Stepwise_MB_INLET_OUTLET_TEMP_Slot $bus % 15",
             "NegativeHysteresis": 0,
             "Output": [
