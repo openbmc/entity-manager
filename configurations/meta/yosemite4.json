@@ -661,6 +661,41 @@
         {
             "Class": "temp",
             "Inputs": [
+                "WAILUA_FALLS_CXL_CNTR_PRESENT_PERCENTAGE"
+            ],
+            "Name": "Stepwise_WAILUA_FALLS_CXL_CNTR_PRESENT_PERCENTAGE",
+            "NegativeHysteresis": 0,
+            "Output": [
+                100.0,
+                100.0,
+                100.0,
+                100.0,
+                100.0,
+                100.0,
+                100.0,
+                100.0,
+                10.0
+            ],
+            "PositiveHysteresis": 0,
+            "Reading": [
+                0.0,
+                12.5,
+                25.0,
+                37.5,
+                50.0,
+                62.5,
+                75.0,
+                87.5,
+                100.0
+            ],
+            "Type": "Stepwise",
+            "Zones": [
+                "Zone 1"
+            ]
+        },
+        {
+            "Class": "temp",
+            "Inputs": [
                 "SENTINEL_DOME_SLOT_PRESENT_PERCENTAGE"
             ],
             "Name": "Stepwise_SENTINEL_DOME_SLOT_PRESENT_PERCENTAGE",
