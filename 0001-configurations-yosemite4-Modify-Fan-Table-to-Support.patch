@@ -1,0 +1,476 @@
+From 08d85b4606eb503f5ca9d30b82d85671c1d788a4 Mon Sep 17 00:00:00 2001
+From: Patrick NC Lin <patrick.nc.lin.wiwynn@gmail.com>
+Date: Mon, 21 Apr 2025 10:46:33 +0800
+Subject: [PATCH] configurations: yosemite4: Modify Fan Table to Support
+ On-board Ambient Sensor
+
+# Description:
+Adjusted fan table to prevent triggering failsafe mode when the
+On-board Ambient Sensor missing or hitting UCR.
+
+# Motivation:
+System should not trigger failsafe mode no matter sensor missing
+or hitting UCR.
+
+# Test Plan:
+Hit the UCR and check the fan speed.
+
+# Test result:
+```
+// Set UCR
+root@bmc:~# busctl set-property xyz.openbmc_project.PLDM /xyz/openbmc_project/sensors/temperature/SENTINEL_DOME_SLOT_1_MB_INLET_TEMP_C xyz.openbmc_project.Sensor.Threshold.Critical CriticalHigh d 10.0
+root@bmc:~# busctl set-property xyz.openbmc_project.PLDM /xyz/openbmc_project/sensors/temperature/WAILUA_FALLS_SLOT_3_WF_INLET_TEMP_C xyz.openbmc_project.Sensor.Threshold.Critical CriticalHigh d 10.0
+root@bmc:~# busctl set-property xyz.openbmc_project.PLDM /xyz/openbmc_project/sensors/temperature/SENTINEL_DOME_SLOT_8_MB_OUTLET_TEMP_C xyz.openbmc_project.Sensor.Threshold.Critical CriticalHigh d 10.0
+root@bmc:~# busctl set-property xyz.openbmc_project.HwmonTempSensor  /xyz/openbmc_project/sensors/temperature/MGNT_TEMP_C xyz.openbmc_project.Sensor.Threshold.Critical CriticalHigh d 10.0
+root@bmc:~# busctl set-property xyz.openbmc_project.HwmonTempSensor  /xyz/openbmc_project/sensors/temperature/SPIDER0_TEMP_C xyz.openbmc_project.Sensor.Threshold.Critical CriticalHigh d 10.0
+root@bmc:~# busctl set-property xyz.openbmc_project.HwmonTempSensor  /xyz/openbmc_project/sensors/temperature/SPIDER1_TEMP_C xyz.openbmc_project.Sensor.Threshold.Critical CriticalHigh d 10.0
+root@bmc:~# busctl set-property xyz.openbmc_project.HwmonTempSensor  /xyz/openbmc_project/sensors/temperature/MEDUSA0_TEMP_C xyz.openbmc_project.Sensor.Threshold.Critical CriticalHigh d 10.0
+root@bmc:~# busctl set-property xyz.openbmc_project.HwmonTempSensor  /xyz/openbmc_project/sensors/temperature/MEDUSA1_TEMP_C xyz.openbmc_project.Sensor.Threshold.Critical CriticalHigh d 10.0
+
+// Check UCR is set
+root@bmc:~# mfg-tool sensor-display 2>/dev/null | table-sensor-display | egrep -i critical
+MEDUSA0_TEMP_C                                          critical        49.125          DegreesC        N/A     N/A             N/A             N/A             10              N/A
+MEDUSA1_TEMP_C                                          critical        41.187          DegreesC        N/A     N/A             N/A             N/A             10              N/A
+MGNT_TEMP_C                                             critical        30.625          DegreesC        N/A     N/A             N/A             N/A             10              N/A
+SENTINEL_DOME_SLOT_1_MB_INLET_TEMP_C                    critical        37              DegreesC        N/A     N/A             N/A             N/A             10              N/A
+SENTINEL_DOME_SLOT_8_MB_OUTLET_TEMP_C                   critical        51              DegreesC        N/A     N/A             N/A             N/A             10              N/A
+SPIDER0_TEMP_C                                          critical        41.375          DegreesC        N/A     N/A             N/A             N/A             10              150
+SPIDER1_TEMP_C                                          critical        40.625          DegreesC        N/A     N/A             N/A             N/A             10              150
+WAILUA_FALLS_SLOT_3_WF_INLET_TEMP_C                     critical        37              DegreesC        N/A     N/A             N/A             N/A             10              N/A
+
+// Check pwm
+root@bmc:~# mfg-tool sensor-display 2>/dev/null | table-sensor-display | egrep -i pwm
+FANBOARD0_FAN0_PWM_PCT                                  ok              16.8627         Percent         N/A     N/A             N/A             N/A             N/A             N/A
+FANBOARD0_FAN1_PWM_PCT                                  ok              16.8627         Percent         N/A     N/A             N/A             N/A             N/A             N/A
+FANBOARD0_FAN4_PWM_PCT                                  ok              16.8627         Percent         N/A     N/A             N/A             N/A             N/A             N/A
+FANBOARD0_FAN5_PWM_PCT                                  ok              16.8627         Percent         N/A     N/A             N/A             N/A             N/A             N/A
+FANBOARD0_FAN8_PWM_PCT                                  ok              16.8627         Percent         N/A     N/A             N/A             N/A             N/A             N/A
+FANBOARD0_FAN9_PWM_PCT                                  ok              16.8627         Percent         N/A     N/A             N/A             N/A             N/A             N/A
+FANBOARD1_FAN10_PWM_PCT                                 ok              16.8627         Percent         N/A     N/A             N/A             N/A             N/A             N/A
+FANBOARD1_FAN11_PWM_PCT                                 ok              16.8627         Percent         N/A     N/A             N/A             N/A             N/A             N/A
+FANBOARD1_FAN2_PWM_PCT                                  ok              16.8627         Percent         N/A     N/A             N/A             N/A             N/A             N/A
+FANBOARD1_FAN3_PWM_PCT                                  ok              16.8627         Percent         N/A     N/A             N/A             N/A             N/A             N/A
+FANBOARD1_FAN6_PWM_PCT                                  ok              16.8627         Percent         N/A     N/A             N/A             N/A             N/A             N/A
+FANBOARD1_FAN7_PWM_PCT                                  ok              16.8627         Percent         N/A     N/A             N/A             N/A             N/A             N/A
+
+// Check pid-control does not been trigger
+root@bmc:~# journalctl -u phosphor-pid-control -n 10
+Apr 11 16:07:29 bmc swampd[8181]: inputs: WAILUA_FALLS_SLOT_6_WF_VR_ASIC1_P0V8_TEMP_C, WAILUA_FALLS_SLOT_6_WF_VR_ASIC1_PVDDQ_CD_TEMP_C, WAILUA_FALLS_SLOT_6_WF_VR_ASIC1_P0V85_TEMP_C, WAILUA_FALLS_SLOT_6_WF_VR_ASIC1_PVDDQ_AB_TEMP_C, WAILUA_FALLS_SLOT_6_WF_VR_ASIC2_P0V8_TEMP_C, WAILUA_FALLS_SLOT_6_WF_VR_ASIC2_PVDDQ_CD_TEMP_C, WAILUA_FALLS_SLOT_6_WF_VR_ASIC2_P0V85_TEMP_C, WAILUA_FALLS_SLOT_6_WF_VR_ASIC2_PVDDQ_AB_TEMP_C,
+Apr 11 16:07:29 bmc swampd[8181]: PID name: Stepwise_WF_VR_Slot_7
+Apr 11 16:07:29 bmc swampd[8181]: inputs: WAILUA_FALLS_SLOT_7_WF_VR_ASIC1_P0V8_TEMP_C, WAILUA_FALLS_SLOT_7_WF_VR_ASIC1_PVDDQ_CD_TEMP_C, WAILUA_FALLS_SLOT_7_WF_VR_ASIC1_P0V85_TEMP_C, WAILUA_FALLS_SLOT_7_WF_VR_ASIC1_PVDDQ_AB_TEMP_C, WAILUA_FALLS_SLOT_7_WF_VR_ASIC2_P0V8_TEMP_C, WAILUA_FALLS_SLOT_7_WF_VR_ASIC2_PVDDQ_CD_TEMP_C, WAILUA_FALLS_SLOT_7_WF_VR_ASIC2_P0V85_TEMP_C, WAILUA_FALLS_SLOT_7_WF_VR_ASIC2_PVDDQ_AB_TEMP_C,
+Apr 11 16:07:29 bmc swampd[8181]: PID name: Stepwise_WF_VR_Slot_8
+Apr 11 16:07:29 bmc swampd[8181]: inputs: WAILUA_FALLS_SLOT_8_WF_VR_ASIC1_P0V8_TEMP_C, WAILUA_FALLS_SLOT_8_WF_VR_ASIC1_PVDDQ_CD_TEMP_C, WAILUA_FALLS_SLOT_8_WF_VR_ASIC1_P0V85_TEMP_C, WAILUA_FALLS_SLOT_8_WF_VR_ASIC1_PVDDQ_AB_TEMP_C, WAILUA_FALLS_SLOT_8_WF_VR_ASIC2_P0V8_TEMP_C, WAILUA_FALLS_SLOT_8_WF_VR_ASIC2_PVDDQ_CD_TEMP_C, WAILUA_FALLS_SLOT_8_WF_VR_ASIC2_P0V85_TEMP_C, WAILUA_FALLS_SLOT_8_WF_VR_ASIC2_PVDDQ_AB_TEMP_C,
+Apr 11 16:07:29 bmc swampd[8181]: Build failsafe logger for Zone 0 with initial failsafe mode: 0
+Apr 11 16:07:29 bmc swampd[8181]: pushing zone 0
+Apr 11 16:07:29 bmc swampd[8181]: PID Zone 0 max SetPoint 17 requested by Stepwise_CALIBRATED_MB_FIO_Slot_8 FANBOARD0_FAN0_TACH_INLET_SPEED_RPMFANBOARD0_FAN0_PWM_PCT FANBOARD0_FAN0_TACH_OUTLET_SPEED_RPMFANBOARD0_FAN0_PWM_PCT FANBOARD0_FAN1_TACH_INLET_SPEED_RPMFANBOARD0_FAN1_PWM_PCT FANBOARD0_FAN1_TACH_OUTLET_SPEED_RPMFANBOARD0_FAN1_PWM_PCT FANBOARD0_FAN4_TACH_INLET_SPEED_RPMFANBOARD0_FAN4_PWM_PCT FANBOARD0_FAN4_TACH_OUTLET_SPEED_RPMFANBOARD0_FAN4_PWM_PCT FANBOARD0_FAN5_TACH_INLET_SPEED_RPMFANBOARD0_FAN5_PWM_PCT FANBOARD0_FAN5_TACH_OUTLET_SPEED_RPMFANBOARD0_FAN5_PWM_PCT FANBOARD0_FAN8_TACH_INLET_SPEED_RPMFANBOARD0_FAN8_PWM_PCT FANBOARD0_FAN8_TACH_OUTLET_SPEED_RPMFANBOARD0_FAN8_PWM_PCT FANBOARD0_FAN9_TACH_INLET_SPEED_RPMFANBOARD0_FAN9_PWM_PCT FANBOARD0_FAN9_TACH_OUTLET_SPEED_RPMFANBOARD0_FAN9_PWM_PCT FANBOARD1_FAN10_TACH_INLET_SPEED_RPMFANBOARD1_FAN10_PWM_PCT FANBOARD1_FAN10_TACH_OUTLET_SPEED_RPMFANBOARD1_FAN10_PWM_PCT FANBOARD1_FAN11_TACH_INLET_SPEED_RPMFANBOARD1_FAN11_PWM_PCT FANBOARD1_FAN11_TACH_OUTLET_SPEED_RPMFANBOARD1_FAN11_PWM_PCT FANBOARD1_FAN2_TACH_INLET_SPEED_RPMFANBOARD1_FAN2_PWM_PCT FANBOARD1_FAN2_TACH_OUTLET_SPEED_RPMFANBOARD1_FAN2_PWM_PCT FANBOARD1_FAN3_TACH_INLET_SPEED_RPMFANBOARD1_FAN3_PWM_PCT FANBOARD1_FAN3_TACH_OUTLET_SPEED_RPMFANBOARD1_FAN3_PWM_PCT FANBOARD1_FAN6_TACH_INLET_SPEED_RPMFANBOARD1_FAN6_PWM_PCT FANBOARD1_FAN6_TACH_OUTLET_SPEED_RPMFANBOARD1_FAN6_PWM_PCT FANBOARD1_FAN7_TACH_INLET_SPEED_RPMFANBOARD1_FAN7_PWM_PCT FANBOARD1_FAN7_TACH_OUTLET_SPEED_RPMFANBOARD1_FAN7_PWM_PCT
+Apr 11 16:07:30 bmc swampd[8181]: Zone 0 fans, returning to normal mode, output pwm: 17
+Apr 11 16:07:50 bmc swampd[8181]: PID Zone 0 max SetPoint 17 requested by Stepwise_CALIBRATED_MB_FIO_Slot_7
+```
+---
+ configurations/meta/yosemite4.json            | 38 +++++++++++++++++++
+ ...saboard_adc_rns_12vhsc_adi_48vhsc_inf.json |  4 ++
+ ...saboard_adc_rns_12vhsc_mps_48vhsc_adi.json |  4 ++
+ ...saboard_adc_rns_12vhsc_mps_48vhsc_inf.json |  4 ++
+ ...yosemite4_medusaboard_adc_rns_hsc_adi.json |  4 ++
+ ...ard_adc_rns_isl_12vhsc_adi_48vhsc_inf.json |  4 ++
+ ...ard_adc_rns_isl_12vhsc_mps_48vhsc_adi.json |  4 ++
+ ...ard_adc_rns_isl_12vhsc_mps_48vhsc_inf.json |  4 ++
+ ...mite4_medusaboard_adc_rns_isl_hsc_adi.json |  4 ++
+ ...usaboard_adc_ti_12vhsc_adi_48vhsc_inf.json |  4 ++
+ ...usaboard_adc_ti_12vhsc_mps_48vhsc_adi.json |  4 ++
+ ...usaboard_adc_ti_12vhsc_mps_48vhsc_inf.json |  4 ++
+ .../yosemite4_medusaboard_adc_ti_hsc_adi.json |  4 ++
+ .../meta/yosemite4_sentineldome_t1.json       |  4 ++
+ .../yosemite4_sentineldome_t1_retimer.json    |  4 ++
+ .../meta/yosemite4_sentineldome_t2.json       |  4 ++
+ .../yosemite4_sentineldome_t2_retimer.json    |  4 ++
+ ...mite4_spiderboard_adc_max_pwr_silergy.json |  4 ++
+ .../yosemite4_spiderboard_adc_max_pwr_ti.json |  7 +++-
+ ...emite4_spiderboard_adc_ti_pwr_silergy.json |  4 ++
+ .../yosemite4_spiderboard_adc_ti_pwr_ti.json  |  4 ++
+ .../meta/yosemite4_wailuafalls.json           |  3 ++
+ 22 files changed, 123 insertions(+), 1 deletion(-)
+
+diff --git a/configurations/meta/yosemite4.json b/configurations/meta/yosemite4.json
+index 8b90d8a..ace45e4 100644
+--- a/configurations/meta/yosemite4.json
++++ b/configurations/meta/yosemite4.json
+@@ -644,6 +644,9 @@
+             "Inputs": [
+                 "MGNT_TEMP_C"
+             ],
++            "MissingIsAcceptable": [
++                 "MGNT_TEMP_C"
++            ],
+             "Name": "Stepwise_MGNT_TEMP",
+             "NegativeHysteresis": 0,
+             "Output": [
+@@ -658,6 +661,41 @@
+                 "Zone 1"
+             ]
+         },
++        {
++            "Class": "temp",
++            "Inputs": [
++                "WAILUA_FALLS_CXL_CNTR_PRESENT_PERCENTAGE"
++            ],
++            "Name": "Stepwise_WAILUA_FALLS_CXL_CNTR_PRESENT_PERCENTAGE",
++            "NegativeHysteresis": 0,
++            "Output": [
++                100.0,
++                100.0,
++                100.0,
++                100.0,
++                100.0,
++                100.0,
++                100.0,
++                100.0,
++                10.0
++            ],
++            "PositiveHysteresis": 0,
++            "Reading": [
++                0.0,
++                12.5,
++                25.0,
++                37.5,
++                50.0,
++                62.5,
++                75.0,
++                87.5,
++                100.0
++            ],
++            "Type": "Stepwise",
++            "Zones": [
++                "Zone 1"
++            ]
++        },
+         {
+             "Class": "temp",
+             "Inputs": [
+diff --git a/configurations/meta/yosemite4_medusaboard_adc_rns_12vhsc_adi_48vhsc_inf.json b/configurations/meta/yosemite4_medusaboard_adc_rns_12vhsc_adi_48vhsc_inf.json
+index bcedbea..b6324ad 100644
+--- a/configurations/meta/yosemite4_medusaboard_adc_rns_12vhsc_adi_48vhsc_inf.json
++++ b/configurations/meta/yosemite4_medusaboard_adc_rns_12vhsc_adi_48vhsc_inf.json
+@@ -1259,6 +1259,10 @@
+                 "MEDUSA0_TEMP_C",
+                 "MEDUSA1_TEMP_C"
+             ],
++            "MissingIsAcceptable": [
++                "MEDUSA0_TEMP_C",
++                "MEDUSA1_TEMP_C"
++            ],
+             "Name": "Stepwise_MEDUSA_Non_Critical_Sensors",
+             "NegativeHysteresis": 0,
+             "Output": [
+diff --git a/configurations/meta/yosemite4_medusaboard_adc_rns_12vhsc_mps_48vhsc_adi.json b/configurations/meta/yosemite4_medusaboard_adc_rns_12vhsc_mps_48vhsc_adi.json
+index 0120c8b..d384e18 100644
+--- a/configurations/meta/yosemite4_medusaboard_adc_rns_12vhsc_mps_48vhsc_adi.json
++++ b/configurations/meta/yosemite4_medusaboard_adc_rns_12vhsc_mps_48vhsc_adi.json
+@@ -1511,6 +1511,10 @@
+                 "MEDUSA0_TEMP_C",
+                 "MEDUSA1_TEMP_C"
+             ],
++            "MissingIsAcceptable": [
++                "MEDUSA0_TEMP_C",
++                "MEDUSA1_TEMP_C"
++            ],
+             "Name": "Stepwise_MEDUSA_Non_Critical_Sensors",
+             "NegativeHysteresis": 0,
+             "Output": [
+diff --git a/configurations/meta/yosemite4_medusaboard_adc_rns_12vhsc_mps_48vhsc_inf.json b/configurations/meta/yosemite4_medusaboard_adc_rns_12vhsc_mps_48vhsc_inf.json
+index e3c61fe..9c33b73 100644
+--- a/configurations/meta/yosemite4_medusaboard_adc_rns_12vhsc_mps_48vhsc_inf.json
++++ b/configurations/meta/yosemite4_medusaboard_adc_rns_12vhsc_mps_48vhsc_inf.json
+@@ -1259,6 +1259,10 @@
+                 "MEDUSA0_TEMP_C",
+                 "MEDUSA1_TEMP_C"
+             ],
++            "MissingIsAcceptable": [
++                "MEDUSA0_TEMP_C",
++                "MEDUSA1_TEMP_C"
++            ],
+             "Name": "Stepwise_MEDUSA_Non_Critical_Sensors",
+             "NegativeHysteresis": 0,
+             "Output": [
+diff --git a/configurations/meta/yosemite4_medusaboard_adc_rns_hsc_adi.json b/configurations/meta/yosemite4_medusaboard_adc_rns_hsc_adi.json
+index c3cab9d..84163b1 100644
+--- a/configurations/meta/yosemite4_medusaboard_adc_rns_hsc_adi.json
++++ b/configurations/meta/yosemite4_medusaboard_adc_rns_hsc_adi.json
+@@ -1511,6 +1511,10 @@
+                 "MEDUSA0_TEMP_C",
+                 "MEDUSA1_TEMP_C"
+             ],
++            "MissingIsAcceptable": [
++                "MEDUSA0_TEMP_C",
++                "MEDUSA1_TEMP_C"
++            ],
+             "Name": "Stepwise_MEDUSA_Non_Critical_Sensors",
+             "NegativeHysteresis": 0,
+             "Output": [
+diff --git a/configurations/meta/yosemite4_medusaboard_adc_rns_isl_12vhsc_adi_48vhsc_inf.json b/configurations/meta/yosemite4_medusaboard_adc_rns_isl_12vhsc_adi_48vhsc_inf.json
+index 2484c97..40087e2 100644
+--- a/configurations/meta/yosemite4_medusaboard_adc_rns_isl_12vhsc_adi_48vhsc_inf.json
++++ b/configurations/meta/yosemite4_medusaboard_adc_rns_isl_12vhsc_adi_48vhsc_inf.json
+@@ -1259,6 +1259,10 @@
+                 "MEDUSA0_TEMP_C",
+                 "MEDUSA1_TEMP_C"
+             ],
++            "MissingIsAcceptable": [
++                "MEDUSA0_TEMP_C",
++                "MEDUSA1_TEMP_C"
++            ],
+             "Name": "Stepwise_MEDUSA_Non_Critical_Sensors",
+             "NegativeHysteresis": 0,
+             "Output": [
+diff --git a/configurations/meta/yosemite4_medusaboard_adc_rns_isl_12vhsc_mps_48vhsc_adi.json b/configurations/meta/yosemite4_medusaboard_adc_rns_isl_12vhsc_mps_48vhsc_adi.json
+index bc7d45d..92151c7 100644
+--- a/configurations/meta/yosemite4_medusaboard_adc_rns_isl_12vhsc_mps_48vhsc_adi.json
++++ b/configurations/meta/yosemite4_medusaboard_adc_rns_isl_12vhsc_mps_48vhsc_adi.json
+@@ -1511,6 +1511,10 @@
+                 "MEDUSA0_TEMP_C",
+                 "MEDUSA1_TEMP_C"
+             ],
++            "MissingIsAcceptable": [
++                "MEDUSA0_TEMP_C",
++                "MEDUSA1_TEMP_C"
++            ],
+             "Name": "Stepwise_MEDUSA_Non_Critical_Sensors",
+             "NegativeHysteresis": 0,
+             "Output": [
+diff --git a/configurations/meta/yosemite4_medusaboard_adc_rns_isl_12vhsc_mps_48vhsc_inf.json b/configurations/meta/yosemite4_medusaboard_adc_rns_isl_12vhsc_mps_48vhsc_inf.json
+index 21c9924..f68919b 100644
+--- a/configurations/meta/yosemite4_medusaboard_adc_rns_isl_12vhsc_mps_48vhsc_inf.json
++++ b/configurations/meta/yosemite4_medusaboard_adc_rns_isl_12vhsc_mps_48vhsc_inf.json
+@@ -1259,6 +1259,10 @@
+                 "MEDUSA0_TEMP_C",
+                 "MEDUSA1_TEMP_C"
+             ],
++            "MissingIsAcceptable": [
++                "MEDUSA0_TEMP_C",
++                "MEDUSA1_TEMP_C"
++            ],
+             "Name": "Stepwise_MEDUSA_Non_Critical_Sensors",
+             "NegativeHysteresis": 0,
+             "Output": [
+diff --git a/configurations/meta/yosemite4_medusaboard_adc_rns_isl_hsc_adi.json b/configurations/meta/yosemite4_medusaboard_adc_rns_isl_hsc_adi.json
+index 8f37015..d131f4e 100644
+--- a/configurations/meta/yosemite4_medusaboard_adc_rns_isl_hsc_adi.json
++++ b/configurations/meta/yosemite4_medusaboard_adc_rns_isl_hsc_adi.json
+@@ -1511,6 +1511,10 @@
+                 "MEDUSA0_TEMP_C",
+                 "MEDUSA1_TEMP_C"
+             ],
++            "MissingIsAcceptable": [
++                "MEDUSA0_TEMP_C",
++                "MEDUSA1_TEMP_C"
++            ],
+             "Name": "Stepwise_MEDUSA_Non_Critical_Sensors",
+             "NegativeHysteresis": 0,
+             "Output": [
+diff --git a/configurations/meta/yosemite4_medusaboard_adc_ti_12vhsc_adi_48vhsc_inf.json b/configurations/meta/yosemite4_medusaboard_adc_ti_12vhsc_adi_48vhsc_inf.json
+index 7ade48b..517b637 100644
+--- a/configurations/meta/yosemite4_medusaboard_adc_ti_12vhsc_adi_48vhsc_inf.json
++++ b/configurations/meta/yosemite4_medusaboard_adc_ti_12vhsc_adi_48vhsc_inf.json
+@@ -1256,6 +1256,10 @@
+                 "MEDUSA0_TEMP_C",
+                 "MEDUSA1_TEMP_C"
+             ],
++            "MissingIsAcceptable": [
++                "MEDUSA0_TEMP_C",
++                "MEDUSA1_TEMP_C"
++            ],
+             "Name": "Stepwise_MEDUSA_Non_Critical_Sensors",
+             "NegativeHysteresis": 0,
+             "Output": [
+diff --git a/configurations/meta/yosemite4_medusaboard_adc_ti_12vhsc_mps_48vhsc_adi.json b/configurations/meta/yosemite4_medusaboard_adc_ti_12vhsc_mps_48vhsc_adi.json
+index 15b1368..17417fc 100644
+--- a/configurations/meta/yosemite4_medusaboard_adc_ti_12vhsc_mps_48vhsc_adi.json
++++ b/configurations/meta/yosemite4_medusaboard_adc_ti_12vhsc_mps_48vhsc_adi.json
+@@ -1508,6 +1508,10 @@
+                 "MEDUSA0_TEMP_C",
+                 "MEDUSA1_TEMP_C"
+             ],
++            "MissingIsAcceptable": [
++                "MEDUSA0_TEMP_C",
++                "MEDUSA1_TEMP_C"
++            ],
+             "Name": "Stepwise_MEDUSA_Non_Critical_Sensors",
+             "NegativeHysteresis": 0,
+             "Output": [
+diff --git a/configurations/meta/yosemite4_medusaboard_adc_ti_12vhsc_mps_48vhsc_inf.json b/configurations/meta/yosemite4_medusaboard_adc_ti_12vhsc_mps_48vhsc_inf.json
+index c02b2fb..acfc8d7 100644
+--- a/configurations/meta/yosemite4_medusaboard_adc_ti_12vhsc_mps_48vhsc_inf.json
++++ b/configurations/meta/yosemite4_medusaboard_adc_ti_12vhsc_mps_48vhsc_inf.json
+@@ -1256,6 +1256,10 @@
+                 "MEDUSA0_TEMP_C",
+                 "MEDUSA1_TEMP_C"
+             ],
++            "MissingIsAcceptable": [
++                "MEDUSA0_TEMP_C",
++                "MEDUSA1_TEMP_C"
++            ],
+             "Name": "Stepwise_MEDUSA_Non_Critical_Sensors",
+             "NegativeHysteresis": 0,
+             "Output": [
+diff --git a/configurations/meta/yosemite4_medusaboard_adc_ti_hsc_adi.json b/configurations/meta/yosemite4_medusaboard_adc_ti_hsc_adi.json
+index 4f8c696..19a9042 100644
+--- a/configurations/meta/yosemite4_medusaboard_adc_ti_hsc_adi.json
++++ b/configurations/meta/yosemite4_medusaboard_adc_ti_hsc_adi.json
+@@ -1508,6 +1508,10 @@
+                 "MEDUSA0_TEMP_C",
+                 "MEDUSA1_TEMP_C"
+             ],
++            "MissingIsAcceptable": [
++                "MEDUSA0_TEMP_C",
++                "MEDUSA1_TEMP_C"
++            ],
+             "Name": "Stepwise_MEDUSA_Non_Critical_Sensors",
+             "NegativeHysteresis": 0,
+             "Output": [
+diff --git a/configurations/meta/yosemite4_sentineldome_t1.json b/configurations/meta/yosemite4_sentineldome_t1.json
+index 659eae4..15dd93a 100644
+--- a/configurations/meta/yosemite4_sentineldome_t1.json
++++ b/configurations/meta/yosemite4_sentineldome_t1.json
+@@ -128,6 +128,10 @@
+                 "SENTINEL_DOME_SLOT $bus % 15 MB_INLET_TEMP_C",
+                 "SENTINEL_DOME_SLOT $bus % 15 MB_OUTLET_TEMP_C"
+             ],
++            "MissingIsAcceptable": [
++                "SENTINEL_DOME_SLOT $bus % 15 MB_INLET_TEMP_C",
++                "SENTINEL_DOME_SLOT $bus % 15 MB_OUTLET_TEMP_C"
++            ],
+             "Name": "Stepwise_MB_INLET_OUTLET_TEMP_Slot $bus % 15",
+             "NegativeHysteresis": 0,
+             "Output": [
+diff --git a/configurations/meta/yosemite4_sentineldome_t1_retimer.json b/configurations/meta/yosemite4_sentineldome_t1_retimer.json
+index ca71291..95fcafa 100644
+--- a/configurations/meta/yosemite4_sentineldome_t1_retimer.json
++++ b/configurations/meta/yosemite4_sentineldome_t1_retimer.json
+@@ -154,6 +154,10 @@
+                 "SENTINEL_DOME_SLOT $bus % 15 MB_INLET_TEMP_C",
+                 "SENTINEL_DOME_SLOT $bus % 15 MB_OUTLET_TEMP_C"
+             ],
++            "MissingIsAcceptable": [
++                "SENTINEL_DOME_SLOT $bus % 15 MB_INLET_TEMP_C",
++                "SENTINEL_DOME_SLOT $bus % 15 MB_OUTLET_TEMP_C"
++            ],
+             "Name": "Stepwise_MB_INLET_OUTLET_TEMP_Slot $bus % 15",
+             "NegativeHysteresis": 0,
+             "Output": [
+diff --git a/configurations/meta/yosemite4_sentineldome_t2.json b/configurations/meta/yosemite4_sentineldome_t2.json
+index 718a435..6001152 100644
+--- a/configurations/meta/yosemite4_sentineldome_t2.json
++++ b/configurations/meta/yosemite4_sentineldome_t2.json
+@@ -157,6 +157,10 @@
+                 "SENTINEL_DOME_SLOT $bus % 15 MB_INLET_TEMP_C",
+                 "SENTINEL_DOME_SLOT $bus % 15 MB_OUTLET_TEMP_C"
+             ],
++            "MissingIsAcceptable": [
++                "SENTINEL_DOME_SLOT $bus % 15 MB_INLET_TEMP_C",
++                "SENTINEL_DOME_SLOT $bus % 15 MB_OUTLET_TEMP_C"
++            ],
+             "Name": "Stepwise_MB_INLET_OUTLET_TEMP_Slot $bus % 15",
+             "NegativeHysteresis": 0,
+             "Output": [
+diff --git a/configurations/meta/yosemite4_sentineldome_t2_retimer.json b/configurations/meta/yosemite4_sentineldome_t2_retimer.json
+index a23e533..ca87876 100644
+--- a/configurations/meta/yosemite4_sentineldome_t2_retimer.json
++++ b/configurations/meta/yosemite4_sentineldome_t2_retimer.json
+@@ -183,6 +183,10 @@
+                 "SENTINEL_DOME_SLOT $bus % 15 MB_INLET_TEMP_C",
+                 "SENTINEL_DOME_SLOT $bus % 15 MB_OUTLET_TEMP_C"
+             ],
++            "MissingIsAcceptable": [
++                "SENTINEL_DOME_SLOT $bus % 15 MB_INLET_TEMP_C",
++                "SENTINEL_DOME_SLOT $bus % 15 MB_OUTLET_TEMP_C"
++            ],
+             "Name": "Stepwise_MB_INLET_OUTLET_TEMP_Slot $bus % 15",
+             "NegativeHysteresis": 0,
+             "Output": [
+diff --git a/configurations/meta/yosemite4_spiderboard_adc_max_pwr_silergy.json b/configurations/meta/yosemite4_spiderboard_adc_max_pwr_silergy.json
+index 9291edd..032ccef 100644
+--- a/configurations/meta/yosemite4_spiderboard_adc_max_pwr_silergy.json
++++ b/configurations/meta/yosemite4_spiderboard_adc_max_pwr_silergy.json
+@@ -1096,6 +1096,10 @@
+                 "SPIDER0_TEMP_C",
+                 "SPIDER1_TEMP_C"
+             ],
++            "MissingIsAcceptable": [
++                "SPIDER0_TEMP_C",
++                "SPIDER1_TEMP_C"
++            ],
+             "Name": "Stepwise_SPIDER_TEMP",
+             "NegativeHysteresis": 0,
+             "Output": [
+diff --git a/configurations/meta/yosemite4_spiderboard_adc_max_pwr_ti.json b/configurations/meta/yosemite4_spiderboard_adc_max_pwr_ti.json
+index 23a7ea9..e35de75 100644
+--- a/configurations/meta/yosemite4_spiderboard_adc_max_pwr_ti.json
++++ b/configurations/meta/yosemite4_spiderboard_adc_max_pwr_ti.json
+@@ -1096,6 +1096,10 @@
+                 "SPIDER0_TEMP_C",
+                 "SPIDER1_TEMP_C"
+             ],
++            "MissingIsAcceptable": [
++                "SPIDER0_TEMP_C",
++                "SPIDER1_TEMP_C"
++            ],
+             "Name": "Stepwise_SPIDER_TEMP",
+             "NegativeHysteresis": 0,
+             "Output": [
+@@ -1149,7 +1153,8 @@
+                     "Hysteresis": 0,
+                     "Name": "upper critical",
+                     "Severity": 1,
+-                    "Value": 60
++                    "Value": 60,
++                    "Action": "ignore"
+                 }
+             ],
+             "Type": "TMP75"
+diff --git a/configurations/meta/yosemite4_spiderboard_adc_ti_pwr_silergy.json b/configurations/meta/yosemite4_spiderboard_adc_ti_pwr_silergy.json
+index ad095ce..9239849 100644
+--- a/configurations/meta/yosemite4_spiderboard_adc_ti_pwr_silergy.json
++++ b/configurations/meta/yosemite4_spiderboard_adc_ti_pwr_silergy.json
+@@ -1106,6 +1106,10 @@
+                 "SPIDER0_TEMP_C",
+                 "SPIDER1_TEMP_C"
+             ],
++            "MissingIsAcceptable": [
++                "SPIDER0_TEMP_C",
++                "SPIDER1_TEMP_C"
++            ],
+             "Name": "Stepwise_SPIDER_TEMP",
+             "NegativeHysteresis": 0,
+             "Output": [
+diff --git a/configurations/meta/yosemite4_spiderboard_adc_ti_pwr_ti.json b/configurations/meta/yosemite4_spiderboard_adc_ti_pwr_ti.json
+index 1a91a07..0e0e824 100644
+--- a/configurations/meta/yosemite4_spiderboard_adc_ti_pwr_ti.json
++++ b/configurations/meta/yosemite4_spiderboard_adc_ti_pwr_ti.json
+@@ -1106,6 +1106,10 @@
+                 "SPIDER0_TEMP_C",
+                 "SPIDER1_TEMP_C"
+             ],
++            "MissingIsAcceptable": [
++                "SPIDER0_TEMP_C",
++                "SPIDER1_TEMP_C"
++            ],
+             "Name": "Stepwise_SPIDER_TEMP",
+             "NegativeHysteresis": 0,
+             "Output": [
+diff --git a/configurations/meta/yosemite4_wailuafalls.json b/configurations/meta/yosemite4_wailuafalls.json
+index 214be6b..7e2dad8 100644
+--- a/configurations/meta/yosemite4_wailuafalls.json
++++ b/configurations/meta/yosemite4_wailuafalls.json
+@@ -264,6 +264,9 @@
+             "Inputs": [
+                 "WAILUA_FALLS_SLOT $bus % 15 WF_INLET_TEMP_C"
+             ],
++            "MissingIsAcceptable": [
++                "WAILUA_FALLS_SLOT $bus % 15 WF_INLET_TEMP_C"
++            ],
+             "Name": "Stepwise_WF_INLET_Slot $bus % 15",
+             "NegativeHysteresis": 0,
+             "Output": [
+-- 
+2.34.1
+
