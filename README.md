@@ -135,6 +135,7 @@ Manager as the source of information.
 ## Additional Documentation
 
 1. **[Entity Manager DBus API](https://github.com/openbmc/entity-manager/blob/master/docs/entity_manager_dbus_api.md)**
-2. **[My First Sensor Example](https://github.com/openbmc/entity-manager/blob/master/docs/my_first_sensors.md)**
-3. **[Configuration File Schema](https://github.com/openbmc/entity-manager/tree/master/schemas)**
-4. **[EEPROM address size detection modes](https://github.com/openbmc/entity-manager/tree/master/docs/address_size_detection_modes.md)**
+2. **[Entity Manager Alternative DBus API](https://github.com/openbmc/entity-manager/blob/master/docs/entity_manager_alt_dbus_api.md)**
+3. **[My First Sensor Example](https://github.com/openbmc/entity-manager/blob/master/docs/my_first_sensors.md)**
+4. **[Configuration File Schema](https://github.com/openbmc/entity-manager/tree/master/schemas)**
+5. **[EEPROM address size detection modes](https://github.com/openbmc/entity-manager/tree/master/docs/address_size_detection_modes.md)**

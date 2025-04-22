@@ -42,6 +42,12 @@ option(
     description: 'Run JSON schema validation at runtime.',
 )
 option(
+    'pdi-compatible-dbus',
+    type: 'boolean',
+    value: true,
+    description: 'Expose Configuration DBus interfaces in a PDI-compatible way. See docs/entity_manager_dbus_api.md',
+)
+option(
     'gpio-presence',
     type: 'boolean',
     value: true,

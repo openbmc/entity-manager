@@ -1,6 +1,7 @@
 #include "dbus_interface.hpp"
 
 #include "perform_probe.hpp"
+#include "phosphor-logging/lg2.hpp"
 #include "utils.hpp"
 
 #include <boost/algorithm/string/case_conv.hpp>
@@ -10,6 +11,8 @@
 #include <regex>
 #include <string>
 #include <vector>
+
+PHOSPHOR_LOG2_USING;
 
 using JsonVariantType =
     std::variant<std::vector<std::string>, std::vector<double>, std::string,
@@ -197,6 +200,116 @@ static void populateInterfacePropertyFromJson(
             break;
         }
     }
+}
+
+void EMDBusInterface::populateIntfPDICompatObject(
+    nlohmann::json& systemConfiguration, const std::string& jsonPointerPath,
+    std::shared_ptr<sdbusplus::asio::dbus_interface>& iface,
+    const std::string& key, nlohmann::json& value,
+    const std::string& boardNameOrig,
+    const config_type_tree::ConfigTypeNode& ctn,
+    sdbusplus::asio::PropertyPermission permission, size_t depth)
+{
+    const std::string ifacePathAlt =
+        std::format("{}/{}", iface->get_object_path(), key);
+    const std::string ifaceNameAlt =
+        std::format("xyz.openbmc_project.Configuration.{}", ctn.type);
+    std::shared_ptr<sdbusplus::asio::dbus_interface> objectIfaceAlt =
+        createInterface(ifacePathAlt, ifaceNameAlt, boardNameOrig);
+    populateIntfPDICompat(systemConfiguration, jsonPointerPath, objectIfaceAlt,
+                          value, boardNameOrig, ctn, permission, depth + 1);
+}
+
+void EMDBusInterface::populateIntfPDICompatArray(
+    nlohmann::json& systemConfiguration, const std::string& jsonPointerPath,
+    std::shared_ptr<sdbusplus::asio::dbus_interface>& iface,
+    const std::string& propertyName, nlohmann::json& value,
+    const std::string& boardNameOrig,
+    const config_type_tree::ConfigTypeNode& ctn,
+    sdbusplus::asio::PropertyPermission permission, size_t depth)
+{
+    for (const auto& [index, v] : value.items())
+    {
+        const std::string ifacePathAlt = std::format(
+            "{}/{}/{}", iface->get_object_path(), propertyName, index);
+        const std::string ifaceNameAlt =
+            std::format("xyz.openbmc_project.Configuration.{}", ctn.type);
+        std::shared_ptr<sdbusplus::asio::dbus_interface> objectIfaceAlt =
+            createInterface(ifacePathAlt, ifaceNameAlt, boardNameOrig);
+        populateIntfPDICompat(systemConfiguration, jsonPointerPath,
+                              objectIfaceAlt, v, boardNameOrig, ctn, permission,
+                              depth + 1);
+    }
+}
+
+void EMDBusInterface::populateIntfPDICompat(
+    nlohmann::json& systemConfiguration, const std::string& jsonPointerPath,
+    std::shared_ptr<sdbusplus::asio::dbus_interface>& iface,
+    nlohmann::json& dict, const std::string& boardNameOrig,
+    const config_type_tree::ConfigTypeNode& ctn,
+    sdbusplus::asio::PropertyPermission permission, size_t depth)
+{
+    if constexpr (!PDI_COMPATIBLE_DBUS)
+    {
+        return;
+    }
+
+    const size_t maxDepth = 3;
+
+    if (depth >= maxDepth)
+    {
+        lg2::error("maximum depth exceeded for object path, skipping");
+        return;
+    }
+
+    for (const auto& [key, value] : dict.items())
+    {
+        auto type = value.type();
+        if (value.type() == nlohmann::json::value_t::array)
+        {
+            if (value.empty())
+            {
+                continue;
+            }
+            if (!checkArrayElementsSameType(value))
+            {
+                std::cerr << "dbus format error" << value << "\n";
+                continue;
+            }
+        }
+        if (type == nlohmann::json::value_t::object)
+        {
+            if (!ctn.properties.contains(key))
+            {
+                continue;
+            }
+
+            populateIntfPDICompatObject(
+                systemConfiguration, jsonPointerPath, iface, key, value,
+                boardNameOrig, ctn.properties.at(key), permission, depth);
+            continue;
+        }
+        if (type == nlohmann::json::value_t::array && !value.empty() &&
+            value[0].type() == nlohmann::json::value_t::object &&
+            ctn.properties.contains(key))
+        {
+            populateIntfPDICompatArray(
+                systemConfiguration, jsonPointerPath, iface, key, value,
+                boardNameOrig, ctn.properties.at(key), permission, depth);
+            continue;
+        }
+
+        std::string path = jsonPointerPath;
+        path.append("/").append(key);
+
+        populateInterfacePropertyFromJson(systemConfiguration, path, key, value,
+                                          type, iface, permission);
+    }
+    if (permission == sdbusplus::asio::PropertyPermission::readWrite)
+    {
+        createDeleteObjectMethod(jsonPointerPath, iface, systemConfiguration);
+    }
+    tryIfaceInitialize(iface);
 }
 
 // adds simple json types to interface's properties
