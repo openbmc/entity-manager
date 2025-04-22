@@ -16,8 +16,8 @@
             },
             "required": ["VendorIANA", "CompatibleHardware"]
         },
-        "XDPE1X2XXFirmware": {
-            "description": "Required information to complete a voltage regulator firmware update",
+        "I2CVRFirmware": {
+            "description": "Required information to complete Infineon XDPE1X2XX firmware update",
             "object": "object",
             "properties": {
                 "Name": {
@@ -26,15 +26,13 @@
                 },
                 "Type": {
                     "description": "The type of configuration object",
-                    "enum": ["XDPE1X2XXFirmware"]
+                    "enum": ["XDPE1X2XXFirmware", "ISL69269Firmware"]
                 },
                 "Bus": {
-                    "description": "I2C bus, the device is connected to",
-                    "type": "integer"
+                    "$ref": "legacy.json#/$defs/Types/Bus"
                 },
                 "Address": {
-                    "description": "I2C address of the device",
-                    "type": "integer"
+                    "$ref": "legacy.json#/$defs/Types/Address"
                 },
                 "FirmwareInfo": {
                     "$ref": "#/$defs/FirmwareInfoDef"
