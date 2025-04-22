@@ -1,6 +1,7 @@
 #include "dbus_interface.hpp"
 
 #include "perform_probe.hpp"
+#include "phosphor-logging/lg2.hpp"
 #include "utils.hpp"
 
 #include <boost/algorithm/string/case_conv.hpp>
@@ -10,6 +11,8 @@
 #include <regex>
 #include <string>
 #include <vector>
+
+PHOSPHOR_LOG2_USING;
 
 using JsonVariantType =
     std::variant<std::vector<std::string>, std::vector<double>, std::string,
@@ -196,12 +199,13 @@ static void populateInterfacePropertyFromJson(
 }
 
 // adds simple json types to interface's properties
-void populateInterfaceFromJson(
+void EMDBusInterface::populateInterfaceFromJson(
     boost::asio::io_context& io, nlohmann::json& systemConfiguration,
     const std::string& jsonPointerPath,
     std::shared_ptr<sdbusplus::asio::dbus_interface>& iface,
     nlohmann::json& dict, sdbusplus::asio::object_server& objServer,
-    sdbusplus::asio::PropertyPermission permission)
+    const std::string& boardNameOrig,
+    sdbusplus::asio::PropertyPermission permission, const bool altExpose)
 {
     for (const auto& [key, value] : dict.items())
     {
@@ -221,7 +225,58 @@ void populateInterfaceFromJson(
         }
         if (type == nlohmann::json::value_t::object)
         {
-            continue; // handled elsewhere
+            if (!altExpose)
+            {
+                continue; // handled elsewhere
+            }
+            if (!value.contains("Type"))
+            {
+                debug(
+                    "Did not find 'Type' field on path {PATH}, interface {IFACE}",
+                    "PATH", iface->get_object_path(), "IFACE",
+                    iface->get_interface_name());
+                continue;
+            }
+            const std::string ifacePathAlt =
+                std::format("{}/{}", iface->get_object_path(), key);
+            const std::string ifaceNameAlt =
+                std::format("xyz.openbmc_project.Configuration.{}",
+                            value.value("Type", ""));
+            std::shared_ptr<sdbusplus::asio::dbus_interface> objectIfaceAlt =
+                createInterface(objServer, ifacePathAlt, ifaceNameAlt,
+                                boardNameOrig);
+            populateInterfaceFromJson(io, systemConfiguration, jsonPointerPath,
+                                      objectIfaceAlt, value, objServer,
+                                      boardNameOrig, permission, altExpose);
+            continue;
+        }
+        if (type == nlohmann::json::value_t::array && !value.empty() &&
+            value[0].type() == nlohmann::json::value_t::object &&
+            value[0].contains("Type"))
+        {
+            for (const auto& [index, v] : value.items())
+            {
+                if (!v.contains("Type"))
+                {
+                    debug(
+                        "Did not find 'Type' field on path {PATH}, interface {IFACE}",
+                        "PATH", iface->get_object_path(), "IFACE",
+                        iface->get_interface_name());
+                    break;
+                }
+                const std::string ifacePathAlt =
+                    std::format("{}/{}", iface->get_object_path(), index);
+                const std::string ifaceNameAlt =
+                    std::format("xyz.openbmc_project.Configuration.{}",
+                                value.value("Type", ""));
+                std::shared_ptr<sdbusplus::asio::dbus_interface>
+                    objectIfaceAlt = createInterface(
+                        objServer, ifacePathAlt, ifaceNameAlt, boardNameOrig);
+                populateInterfaceFromJson(
+                    io, systemConfiguration, jsonPointerPath, objectIfaceAlt, v,
+                    objServer, boardNameOrig, permission, altExpose);
+            }
+            continue;
         }
 
         std::string path = jsonPointerPath;
@@ -361,7 +416,7 @@ void EMDBusInterface::createAddObjectMethod(
             populateInterfaceFromJson(
                 io, systemConfiguration,
                 jsonPointerPath + "/Exposes/" + std::to_string(lastIndex),
-                interface, newData, objServer,
+                interface, newData, objServer, board,
                 sdbusplus::asio::PropertyPermission::readWrite);
         });
     tryIfaceInitialize(iface);
