@@ -15,7 +15,7 @@
                     {
                         "Direction": "greater than",
                         "Hysteresis": 0.272,
-                        "Label": "in0",
+                        "Label": "in_voltage0",
                         "Name": "upper critical",
                         "Severity": 1,
                         "Value": 13.6
@@ -23,7 +23,7 @@
                     {
                         "Direction": "less than",
                         "Hysteresis": 2.1,
-                        "Label": "in0",
+                        "Label": "in_voltage0",
                         "Name": "lower critical",
                         "Severity": 1,
                         "Value": 10.5
@@ -31,7 +31,7 @@
                     {
                         "Direction": "greater than",
                         "Hysteresis": 0.272,
-                        "Label": "in2",
+                        "Label": "in_voltage2",
                         "Name": "upper critical",
                         "Severity": 1,
                         "Value": 13.6
@@ -39,7 +39,7 @@
                     {
                         "Direction": "less than",
                         "Hysteresis": 2.1,
-                        "Label": "in2",
+                        "Label": "in_voltage2",
                         "Name": "lower critical",
                         "Severity": 1,
                         "Value": 10.5
@@ -48,14 +48,14 @@
                 "Type": "MAX11617",
                 "in_voltage0_Max": 18,
                 "in_voltage0_Name": "FCB_0_FAN_0_VOLT_V",
-                "in_voltage0_Scale": 133.262,
-                "in_voltage1_Name": "FCB_0_FAN_0_CURR_A",
-                "in_voltage1_Scale": 464,
+                "in_voltage0_Scale": 266.525,
+                "in_voltage1_Name": "FCB_0_FAN_0_IMON_VOLT_V",
+                "in_voltage1_Scale": 2,
                 "in_voltage2_Max": 18,
                 "in_voltage2_Name": "FCB_0_FAN_1_VOLT_V",
-                "in_voltage2_Scale": 133.262,
-                "in_voltage3_Name": "FCB_0_FAN_1_CURR_A",
-                "in_voltage3_Scale": 464
+                "in_voltage2_Scale": 266.525,
+                "in_voltage3_Name": "FCB_0_FAN_1_IMON_VOLT_V",
+                "in_voltage3_Scale": 2
             }
         ],
         "Name": "Ventura Fan Board 0",
@@ -92,7 +92,7 @@
                     {
                         "Direction": "greater than",
                         "Hysteresis": 0.272,
-                        "Label": "in0",
+                        "Label": "in_voltage0",
                         "Name": "upper critical",
                         "Severity": 1,
                         "Value": 13.6
@@ -100,7 +100,7 @@
                     {
                         "Direction": "less than",
                         "Hysteresis": 2.1,
-                        "Label": "in0",
+                        "Label": "in_voltage0",
                         "Name": "lower critical",
                         "Severity": 1,
                         "Value": 10.5
@@ -108,7 +108,7 @@
                     {
                         "Direction": "greater than",
                         "Hysteresis": 0.272,
-                        "Label": "in2",
+                        "Label": "in_voltage2",
                         "Name": "upper critical",
                         "Severity": 1,
                         "Value": 13.6
@@ -116,7 +116,7 @@
                     {
                         "Direction": "less than",
                         "Hysteresis": 2.1,
-                        "Label": "in2",
+                        "Label": "in_voltage2",
                         "Name": "lower critical",
                         "Severity": 1,
                         "Value": 10.5
@@ -125,14 +125,14 @@
                 "Type": "MAX11617",
                 "in_voltage0_Max": 18,
                 "in_voltage0_Name": "FCB_1_FAN_2_VOLT_V",
-                "in_voltage0_Scale": 133.262,
-                "in_voltage1_Name": "FCB_1_FAN_2_CURR_A",
-                "in_voltage1_Scale": 464,
+                "in_voltage0_Scale": 266.525,
+                "in_voltage1_Name": "FCB_1_FAN_2_IMON_VOLT_V",
+                "in_voltage1_Scale": 2,
                 "in_voltage2_Max": 18,
                 "in_voltage2_Name": "FCB_1_FAN_3_VOLT_V",
-                "in_voltage2_Scale": 133.262,
-                "in_voltage3_Name": "FCB_1_FAN_3_CURR_A",
-                "in_voltage3_Scale": 464
+                "in_voltage2_Scale": 266.525,
+                "in_voltage3_Name": "FCB_1_FAN_3_IMON_VOLT_V",
+                "in_voltage3_Scale": 2
             }
         ],
         "Name": "Ventura Fan Board 1",
