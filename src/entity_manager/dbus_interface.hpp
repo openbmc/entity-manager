@@ -1,5 +1,6 @@
 #pragma once
 
+#include "config_type_tree.hpp"
 #include "configuration.hpp"
 
 #include <boost/container/flat_map.hpp>
@@ -42,6 +43,35 @@ class EMDBusInterface
         const std::string& jsonPointerPath,
         const std::shared_ptr<sdbusplus::asio::dbus_interface>& iface,
         nlohmann::json& systemConfiguration);
+
+    void populateIntfPDICompatObject(
+        nlohmann::json& systemConfiguration, const std::string& jsonPointerPath,
+        std::shared_ptr<sdbusplus::asio::dbus_interface>& iface,
+        const std::string& key, nlohmann::json& value,
+        const std::string& boardNameOrig,
+        const config_type_tree::ConfigTypeNode& ctn,
+        sdbusplus::asio::PropertyPermission permission =
+            sdbusplus::asio::PropertyPermission::readOnly,
+        size_t depth = 0);
+
+    void populateIntfPDICompatArray(
+        nlohmann::json& systemConfiguration, const std::string& jsonPointerPath,
+        std::shared_ptr<sdbusplus::asio::dbus_interface>& iface,
+        const std::string& propertyName, nlohmann::json& value,
+        const std::string& boardNameOrig,
+        const config_type_tree::ConfigTypeNode& ctn,
+        sdbusplus::asio::PropertyPermission permission =
+            sdbusplus::asio::PropertyPermission::readOnly,
+        size_t depth = 0);
+
+    void populateIntfPDICompat(
+        nlohmann::json& systemConfiguration, const std::string& jsonPointerPath,
+        std::shared_ptr<sdbusplus::asio::dbus_interface>& iface,
+        nlohmann::json& dict, const std::string& boardNameOrig,
+        const config_type_tree::ConfigTypeNode& ctn,
+        sdbusplus::asio::PropertyPermission permission =
+            sdbusplus::asio::PropertyPermission::readOnly,
+        size_t depth = 0);
 
   private:
     boost::asio::io_context& io;

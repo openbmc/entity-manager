@@ -5,6 +5,7 @@
 
 #include "../utils.hpp"
 #include "../variant_visitors.hpp"
+#include "config_type_tree.hpp"
 #include "configuration.hpp"
 #include "dbus_interface.hpp"
 #include "log_device_inventory.hpp"
@@ -283,15 +284,43 @@ bool EntityManager::postConfigurationRecord(
 {
     if (config.type() == nlohmann::json::value_t::object)
     {
-        std::string ifaceName = "xyz.openbmc_project.Configuration.";
-        ifaceName.append(itemType).append(".").append(name);
+        if (config_type_tree::hasConfigTypeNode(itemType))
+        {
+            const config_type_tree::ConfigTypeNode node =
+                config_type_tree::getConfigTypeNode(itemType);
 
-        std::shared_ptr<sdbusplus::asio::dbus_interface> objectIface =
-            dbus_interface.createInterface(ifacePath, ifaceName, boardNameOrig);
+            if (!node.properties.contains(name))
+            {
+                return false;
+            }
 
-        dbus_interface.populateInterfaceFromJson(
-            systemConfiguration, jsonPointerPath, objectIface, config,
-            getPermission(name));
+            const std::string type = node.properties.at(name).type;
+
+            const std::string ifacePathAlt =
+                std::format("{}/{}", ifacePath, name);
+            const std::string ifaceNameAlt =
+                std::format("xyz.openbmc_project.Configuration.{}", type);
+
+            std::shared_ptr<sdbusplus::asio::dbus_interface> objectIfaceAlt =
+                dbus_interface.createInterface(ifacePathAlt, ifaceNameAlt,
+                                               boardNameOrig);
+            dbus_interface.populateIntfPDICompat(
+                systemConfiguration, jsonPointerPath, objectIfaceAlt, config,
+                boardNameOrig, node, getPermission(name));
+        }
+        else
+        {
+            std::string ifaceName = "xyz.openbmc_project.Configuration.";
+            ifaceName.append(itemType).append(".").append(name);
+
+            std::shared_ptr<sdbusplus::asio::dbus_interface> objectIface =
+                dbus_interface.createInterface(ifacePath, ifaceName,
+                                               boardNameOrig);
+
+            dbus_interface.populateInterfaceFromJson(
+                systemConfiguration, jsonPointerPath, objectIface, config,
+                getPermission(name));
+        }
     }
     else if (config.type() == nlohmann::json::value_t::array)
     {
@@ -324,18 +353,48 @@ bool EntityManager::postConfigurationRecord(
 
         for (auto& arrayItem : config)
         {
-            std::string ifaceName = "xyz.openbmc_project.Configuration.";
-            ifaceName.append(itemType).append(".").append(name);
-            ifaceName.append(std::to_string(index));
+            if (config_type_tree::hasConfigTypeNode(itemType))
+            {
+                const config_type_tree::ConfigTypeNode node =
+                    config_type_tree::getConfigTypeNode(itemType);
 
-            std::shared_ptr<sdbusplus::asio::dbus_interface> objectIface =
-                dbus_interface.createInterface(ifacePath, ifaceName,
-                                               boardNameOrig);
+                if (!node.properties.contains(name))
+                {
+                    return false;
+                }
 
-            dbus_interface.populateInterfaceFromJson(
-                systemConfiguration,
-                jsonPointerPath + "/" + std::to_string(index), objectIface,
-                arrayItem, getPermission(name));
+                const std::string type = node.properties.at(name).type;
+
+                const std::string ifaceNameAlt =
+                    std::format("xyz.openbmc_project.Configuration.{}", type);
+                const std::string objectPathAlt =
+                    std::format("{}/{}/{}", ifacePath, name, index);
+
+                std::shared_ptr<sdbusplus::asio::dbus_interface>
+                    objectIfaceAlt = dbus_interface.createInterface(
+                        objectPathAlt, ifaceNameAlt, boardNameOrig);
+                dbus_interface.populateIntfPDICompat(
+                    systemConfiguration,
+                    jsonPointerPath + "/" + std::to_string(index),
+                    objectIfaceAlt, arrayItem, boardNameOrig, node,
+                    getPermission(name));
+            }
+            else
+            {
+                std::string ifaceName = "xyz.openbmc_project.Configuration.";
+                ifaceName.append(itemType).append(".").append(name);
+                ifaceName.append(std::to_string(index));
+
+                std::shared_ptr<sdbusplus::asio::dbus_interface> objectIface =
+                    dbus_interface.createInterface(ifacePath, ifaceName,
+                                                   boardNameOrig);
+
+                dbus_interface.populateInterfaceFromJson(
+                    systemConfiguration,
+                    jsonPointerPath + "/" + std::to_string(index), objectIface,
+                    arrayItem, getPermission(name));
+            }
+
             index++;
         }
     }
