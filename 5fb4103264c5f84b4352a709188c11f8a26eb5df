@@ -74,6 +74,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "88bbfb00_212c2a4d",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 4
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-04-22T08:58:42Z",
+      "side": 1,
+      "message": "\u003e I disagree. I would rather we use folders to indicate classes and manufacturers of hardware. The goal with the \"one file per hardware\" is that new hardware could be added using a single include. I don\u0027t really want to lose that ability.\n\nI had a solution with regex to select based on folders. Which you did not agree with.\n\n\u003e The goal with the \"one file per hardware\" is that new hardware could be added using a single include. I don\u0027t really want to lose that ability.\n\nWhy is that important to have that capability? It\u0027s not like there is any guarantees provided by having it be in one file?\n\n\nIf you have a single piece of hardware, why would it even result in multiple EM configs. It should be configuration of a specific \u0027Type\u0027, right? Like \u0027Powersupply\u0027 or \u0027Board\u0027.",
+      "parentUuid": "92f34d99_f3f05dd2",
+      "range": {
+        "startLine": 9,
+        "startChar": 0,
+        "endLine": 9,
+        "endChar": 44
+      },
+      "revId": "5fb4103264c5f84b4352a709188c11f8a26eb5df",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "910897d3_746efcf1",
         "filename": "/COMMIT_MSG",
         "patchSetId": 4
