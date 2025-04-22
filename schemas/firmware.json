@@ -17,7 +17,7 @@
             "required": ["VendorIANA", "CompatibleHardware"]
         },
         "XDPE1X2XXFirmware": {
-            "description": "Required information to complete a voltage regulator firmware update",
+            "description": "Required information to complete Infineon XDPE1X2XX firmware update",
             "object": "object",
             "properties": {
                 "Name": {
@@ -129,6 +129,7 @@
                         },
                         "required": ["Name", "Polarity"]
                     }
+                }
                 },
                 "FirmwareInfo": {
                     "$ref": "#/$defs/FirmwareInfoDef"
@@ -142,6 +143,28 @@
                 "FirmwareDevice",
                 "FirmwareInfo"
             ]
+        },
+        "ISL69269Firmware": {
+            "description": "Required information to complete Renesas ISL69269 firmware update",
+            "object": "object",
+            "properties": {
+                "Name": {
+                    "description": "Name of the firmware",
+                    "enum": ["ISL69269Firmware"]
+                },
+                "Bus": {
+                    "description": "I2C bus, the device is connected to",
+                    "type": "integer"
+                },
+                "Address": {
+                    "description": "I2C address of the device",
+                    "type": "integer"
+                },
+                "FirmwareInfo": {
+                    "$ref": "#/$defs/FirmwareInfoDef"
+                }
+            },
+            "required": ["Name", "Type", "Bus", "Address", "FirmwareInfo"]
         }
     }
 }
