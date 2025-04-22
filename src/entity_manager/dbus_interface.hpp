@@ -29,6 +29,46 @@ class EMDBusInterface
         const std::string& path, nlohmann::json& systemConfiguration,
         sdbusplus::asio::object_server& objServer, const std::string& board);
 
+    void populateIntfPDICompatObject(
+        boost::asio::io_context& io, nlohmann::json& systemConfiguration,
+        const std::string& jsonPointerPath,
+        std::shared_ptr<sdbusplus::asio::dbus_interface>& iface,
+        const std::string& key, nlohmann::json& value,
+        sdbusplus::asio::object_server& objServer,
+        const std::string& boardNameOrig,
+        sdbusplus::asio::PropertyPermission permission =
+            sdbusplus::asio::PropertyPermission::readOnly,
+        size_t depth = 0);
+
+    void populateIntfPDICompatArray(
+        boost::asio::io_context& io, nlohmann::json& systemConfiguration,
+        const std::string& jsonPointerPath,
+        std::shared_ptr<sdbusplus::asio::dbus_interface>& iface,
+        const std::string& propertyName, nlohmann::json& value,
+        sdbusplus::asio::object_server& objServer,
+        const std::string& boardNameOrig,
+        sdbusplus::asio::PropertyPermission permission =
+            sdbusplus::asio::PropertyPermission::readOnly,
+        size_t depth = 0);
+
+    void populateIntfPDICompat(
+        boost::asio::io_context& io, nlohmann::json& systemConfiguration,
+        const std::string& jsonPointerPath,
+        std::shared_ptr<sdbusplus::asio::dbus_interface>& iface,
+        nlohmann::json& dict, sdbusplus::asio::object_server& objServer,
+        const std::string& boardNameOrig,
+        sdbusplus::asio::PropertyPermission permission =
+            sdbusplus::asio::PropertyPermission::readOnly,
+        size_t depth = 0);
+
+    void populateInterfaceFromJson(
+        boost::asio::io_context& io, nlohmann::json& systemConfiguration,
+        const std::string& jsonPointerPath,
+        std::shared_ptr<sdbusplus::asio::dbus_interface>& iface,
+        nlohmann::json& dict, sdbusplus::asio::object_server& objServer,
+        sdbusplus::asio::PropertyPermission permission =
+            sdbusplus::asio::PropertyPermission::readOnly);
+
   private:
     boost::container::flat_map<
         std::string,
@@ -143,13 +183,5 @@ void createDeleteObjectMethod(
     const std::shared_ptr<sdbusplus::asio::dbus_interface>& iface,
     sdbusplus::asio::object_server& objServer,
     nlohmann::json& systemConfiguration, boost::asio::io_context& io);
-
-void populateInterfaceFromJson(
-    boost::asio::io_context& io, nlohmann::json& systemConfiguration,
-    const std::string& jsonPointerPath,
-    std::shared_ptr<sdbusplus::asio::dbus_interface>& iface,
-    nlohmann::json& dict, sdbusplus::asio::object_server& objServer,
-    sdbusplus::asio::PropertyPermission permission =
-        sdbusplus::asio::PropertyPermission::readOnly);
 
 } // namespace dbus_interface
