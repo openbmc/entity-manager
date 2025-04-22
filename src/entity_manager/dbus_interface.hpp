@@ -109,8 +109,10 @@ void populateInterfaceFromJson(
     nlohmann::json& systemConfiguration, const std::string& jsonPointerPath,
     std::shared_ptr<sdbusplus::asio::dbus_interface>& iface,
     nlohmann::json& dict, sdbusplus::asio::object_server& objServer,
+    const std::string& boardNameOrig,
     sdbusplus::asio::PropertyPermission permission =
-        sdbusplus::asio::PropertyPermission::readOnly);
+        sdbusplus::asio::PropertyPermission::readOnly,
+    bool altExpose = false);
 
 void createAddObjectMethod(
     const std::string& jsonPointerPath, const std::string& path,
