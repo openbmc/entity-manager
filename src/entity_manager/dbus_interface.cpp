@@ -2,6 +2,7 @@
 
 #include "../utils.hpp"
 #include "perform_probe.hpp"
+#include "phosphor-logging/lg2.hpp"
 
 #include <boost/algorithm/string/case_conv.hpp>
 #include <boost/container/flat_map.hpp>
@@ -107,7 +108,8 @@ void populateInterfaceFromJson(
     nlohmann::json& systemConfiguration, const std::string& jsonPointerPath,
     std::shared_ptr<sdbusplus::asio::dbus_interface>& iface,
     nlohmann::json& dict, sdbusplus::asio::object_server& objServer,
-    sdbusplus::asio::PropertyPermission permission)
+    const std::string& boardNameOrig,
+    sdbusplus::asio::PropertyPermission permission, const bool altExpose)
 {
     for (const auto& [key, value] : dict.items())
     {
@@ -138,7 +140,58 @@ void populateInterfaceFromJson(
         }
         if (type == nlohmann::json::value_t::object)
         {
-            continue; // handled elsewhere
+            if (!altExpose)
+            {
+                continue; // handled elsewhere
+            }
+            if (!value.contains("Type"))
+            {
+                lg2::debug(
+                    "Did not find 'Type' field on path {PATH}, interface {IFACE}",
+                    "PATH", iface->get_object_path(), "IFACE",
+                    iface->get_interface_name());
+                continue;
+            }
+            std::string ifacePathAlt = iface->get_object_path();
+            ifacePathAlt.append("/");
+            ifacePathAlt.append(key);
+            std::string ifaceNameAlt = "xyz.openbmc_project.Configuration.";
+            ifaceNameAlt.append(value.value("Type", ""));
+            std::shared_ptr<sdbusplus::asio::dbus_interface> objectIfaceAlt =
+                createInterface(objServer, ifacePathAlt, ifaceNameAlt,
+                                boardNameOrig);
+            populateInterfaceFromJson(systemConfiguration, jsonPointerPath,
+                                      objectIfaceAlt, value, objServer,
+                                      boardNameOrig, permission, altExpose);
+            continue;
+        }
+        if (value.type() == nlohmann::json::value_t::array && !value.empty() &&
+            value[0].type() == nlohmann::json::value_t::object &&
+            value[0].contains("Type"))
+        {
+            for (const auto& [index, v] : value.items())
+            {
+                if (!v.contains("Type"))
+                {
+                    lg2::debug(
+                        "Did not find 'Type' field on path {PATH}, interface {IFACE}",
+                        "PATH", iface->get_object_path(), "IFACE",
+                        iface->get_interface_name());
+                    break;
+                }
+                std::string ifacePathAlt = iface->get_object_path();
+                ifacePathAlt.append("/");
+                ifacePathAlt.append(index);
+                std::string ifaceNameAlt = "xyz.openbmc_project.Configuration.";
+                ifaceNameAlt.append(v.value("Type", ""));
+                std::shared_ptr<sdbusplus::asio::dbus_interface>
+                    objectIfaceAlt = createInterface(
+                        objServer, ifacePathAlt, ifaceNameAlt, boardNameOrig);
+                populateInterfaceFromJson(systemConfiguration, jsonPointerPath,
+                                          objectIfaceAlt, v, objServer,
+                                          boardNameOrig, permission, altExpose);
+            }
+            continue;
         }
 
         std::string path = jsonPointerPath;
