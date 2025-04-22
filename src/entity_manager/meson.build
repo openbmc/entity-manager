@@ -5,6 +5,11 @@ if get_option('runtime-validate-json')
 else
     cpp_args_em += ['-DENABLE_RUNTIME_VALIDATE_JSON=false']
 endif
+if get_option('pdi-compatible-dbus')
+    cpp_args_em += ['-DPDI_COMPATIBLE_DBUS=true']
+else
+    cpp_args_em += ['-DPDI_COMPATIBLE_DBUS=false']
+endif
 
 em_deps = [boost, nlohmann_json_dep, phosphor_logging_dep, sdbusplus, valijson]
 
