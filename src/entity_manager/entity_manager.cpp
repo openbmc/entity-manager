@@ -153,7 +153,7 @@ void EntityManager::postBoardToDBus(
         io, jsonPointerPath, boardPath, systemConfiguration, objServer,
         boardNameOrig);
 
-    dbus_interface::populateInterfaceFromJson(
+    dbus_interface.populateInterfaceFromJson(
         io, systemConfiguration, jsonPointerPath, boardIface, boardValues,
         objServer);
     jsonPointerPath += "/";
@@ -166,7 +166,7 @@ void EntityManager::postBoardToDBus(
                 dbus_interface.createInterface(objServer, boardPath, propName,
                                                boardNameOrig);
 
-            dbus_interface::populateInterfaceFromJson(
+            dbus_interface.populateInterfaceFromJson(
                 io, systemConfiguration, jsonPointerPath + propName, iface,
                 propValue, objServer);
         }
@@ -243,7 +243,7 @@ void EntityManager::postExposesRecordsToDBus(
             dbus_interface.createInterface(
                 objServer, ifacePath, "xyz.openbmc_project.Inventory.Item.Bmc",
                 boardNameOrig);
-        dbus_interface::populateInterfaceFromJson(
+        dbus_interface.populateInterfaceFromJson(
             io, systemConfiguration, jsonPointerPath, bmcIface, item, objServer,
             getPermission(itemType));
     }
@@ -253,7 +253,7 @@ void EntityManager::postExposesRecordsToDBus(
             dbus_interface.createInterface(
                 objServer, ifacePath,
                 "xyz.openbmc_project.Inventory.Item.System", boardNameOrig);
-        dbus_interface::populateInterfaceFromJson(
+        dbus_interface.populateInterfaceFromJson(
             io, systemConfiguration, jsonPointerPath, systemIface, item,
             objServer, getPermission(itemType));
     }
@@ -277,7 +277,7 @@ void EntityManager::postExposesRecordsToDBus(
             objServer, ifacePath,
             "xyz.openbmc_project.Configuration." + itemType, boardNameOrig);
 
-    dbus_interface::populateInterfaceFromJson(
+    dbus_interface.populateInterfaceFromJson(
         io, systemConfiguration, jsonPointerPath, itemIface, item, objServer,
         getPermission(itemType));
 
@@ -298,9 +298,25 @@ bool EntityManager::postConfigurationRecord(
             dbus_interface.createInterface(objServer, ifacePath, ifaceName,
                                            boardNameOrig);
 
-        dbus_interface::populateInterfaceFromJson(
+        dbus_interface.populateInterfaceFromJson(
             io, systemConfiguration, jsonPointerPath, objectIface, config,
             objServer, getPermission(name));
+
+        if (!config.contains("Type"))
+        {
+            // cannot expose the property alternatively
+            return true;
+        }
+        const std::string ifacePathAlt = std::format("{}/{}", ifacePath, name);
+        const std::string ifaceNameAlt = std::format(
+            "xyz.openbmc_project.Configuration.{}", config.value("Type", ""));
+
+        std::shared_ptr<sdbusplus::asio::dbus_interface> objectIfaceAlt =
+            dbus_interface.createInterface(objServer, ifacePathAlt,
+                                           ifaceNameAlt, boardNameOrig);
+        dbus_interface.populateIntfPDICompat(
+            io, systemConfiguration, jsonPointerPath, objectIfaceAlt, config,
+            objServer, boardNameOrig, getPermission(name));
     }
     else if (config.type() == nlohmann::json::value_t::array)
     {
@@ -341,10 +357,31 @@ bool EntityManager::postConfigurationRecord(
                 dbus_interface.createInterface(objServer, ifacePath, ifaceName,
                                                boardNameOrig);
 
-            dbus_interface::populateInterfaceFromJson(
+            dbus_interface.populateInterfaceFromJson(
                 io, systemConfiguration,
                 jsonPointerPath + "/" + std::to_string(index), objectIface,
                 arrayItem, objServer, getPermission(name));
+
+            if (!arrayItem.contains("Type"))
+            {
+                // cannot expose the property alternatively
+                index++;
+                continue;
+            }
+            const std::string ifaceNameAlt =
+                std::format("xyz.openbmc_project.Configuration.{}",
+                            arrayItem.value("Type", ""));
+            const std::string objectPathAlt =
+                std::format("{}/{}/{}", ifacePath, name, index);
+
+            std::shared_ptr<sdbusplus::asio::dbus_interface> objectIfaceAlt =
+                dbus_interface.createInterface(objServer, objectPathAlt,
+                                               ifaceNameAlt, boardNameOrig);
+            dbus_interface.populateIntfPDICompat(
+                io, systemConfiguration,
+                jsonPointerPath + "/" + std::to_string(index), objectIfaceAlt,
+                arrayItem, objServer, boardNameOrig, getPermission(name));
+
             index++;
         }
     }
