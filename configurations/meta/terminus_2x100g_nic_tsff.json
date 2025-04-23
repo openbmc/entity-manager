@@ -3,7 +3,7 @@
         {
             "Address": "$address",
             "Bus": "$bus",
-            "Name": "Terminus NIC FRU $bus",
+            "Name": "Terminus NIC FRU $bus % 24",
             "Type": "EEPROM"
         },
         {
@@ -12,7 +12,7 @@
             "Labels": [
                 "temp1"
             ],
-            "Name": "NIC TEMP $bus",
+            "Name": "NIC$bus % 24 TEMP_C",
             "Thresholds": [
                 {
                     "Direction": "greater than",
@@ -32,7 +32,7 @@
             "Type": "EMC1403"
         }
     ],
-    "Name": "Terminus NIC FRU $bus",
+    "Name": "Terminus NIC FRU $bus % 24",
     "Probe": "xyz.openbmc_project.FruDevice({'BOARD_PRODUCT_NAME': 'Terminus 2x100G NIC TSFF'})",
     "Type": "Board",
     "xyz.openbmc_project.Inventory.Decorator.Asset": {
