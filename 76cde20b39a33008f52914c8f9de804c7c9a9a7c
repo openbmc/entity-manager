@@ -105,6 +105,24 @@
       "parentUuid": "c61a44f9_50c2cd15",
       "revId": "76cde20b39a33008f52914c8f9de804c7c9a9a7c",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1e5caaee_5984eda9",
+        "filename": "configurations/meta/minerva_aegis.json",
+        "patchSetId": 4
+      },
+      "lineNbr": 43,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2025-04-23T19:53:02Z",
+      "side": 1,
+      "message": "\u003eWe received a request from the RTP team stating that both Harma and Minerva need to display this information. To achieve this, we use the same probe conditions based on BOARD_PRODUCT_NAME and PRODUCT_MANUFACTURER, while distinguishing between Harma and Minerva using the SCM.\n\nPlease copy openbmc_compute@meta.com on this request.  I don\u0027t understand why they\u0027re expecting every piece of inventory to show up in the CMM but it is seeming to be adding confusion.",
+      "parentUuid": "13e26b7d_ebe6587c",
+      "revId": "76cde20b39a33008f52914c8f9de804c7c9a9a7c",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }
