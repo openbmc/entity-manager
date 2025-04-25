@@ -16,6 +16,24 @@
       "message": "One other thing I thought about.  A common debugging mechanism is to diff the stanza from the platform config with the template to compare \"config that\u0027s running\" from \"config that\u0027s default\".  That use case is lost if the files on system aren\u0027t similar to the files in git.",
       "revId": "c7eaa718911cd1426f22b3b4dca836879006e935",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "49543432_4e4f9812",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 16
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2025-04-25T17:26:23Z",
+      "side": 1,
+      "message": "FWIW, that\u0027s the original use case that caused em to enforce json formatting/ordering, so that configs were diffable.",
+      "parentUuid": "f0dd287b_d0a36eb9",
+      "revId": "c7eaa718911cd1426f22b3b4dca836879006e935",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }
