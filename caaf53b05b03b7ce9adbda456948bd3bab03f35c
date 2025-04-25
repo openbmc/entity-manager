@@ -70,6 +70,24 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "e8ebef30_ac893c82",
+        "filename": "schemas/firmware.json",
+        "patchSetId": 12
+      },
+      "lineNbr": 117,
+      "author": {
+        "id": 1002253
+      },
+      "writtenOn": "2025-04-25T08:55:53Z",
+      "side": 1,
+      "message": "Understood. Moved to the top level.",
+      "parentUuid": "52b0f8b3_1239bf86",
+      "revId": "caaf53b05b03b7ce9adbda456948bd3bab03f35c",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "6da0a511_f40b915d",
@@ -83,6 +101,30 @@
       "writtenOn": "2025-04-17T20:14:04Z",
       "side": 1,
       "message": "Remove.  This should be the top level type\n\n{\n   Type: \"EEPROMpt5161l\"\n}",
+      "range": {
+        "startLine": 117,
+        "startChar": 0,
+        "endLine": 120,
+        "endChar": 25
+      },
+      "revId": "caaf53b05b03b7ce9adbda456948bd3bab03f35c",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "1f830dd5_b842f702",
+        "filename": "schemas/firmware.json",
+        "patchSetId": 12
+      },
+      "lineNbr": 120,
+      "author": {
+        "id": 1002253
+      },
+      "writtenOn": "2025-04-25T08:55:53Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "6da0a511_f40b915d",
       "range": {
         "startLine": 117,
         "startChar": 0,
@@ -116,6 +158,30 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "5d3679b3_a75fae4d",
+        "filename": "schemas/firmware.json",
+        "patchSetId": 12
+      },
+      "lineNbr": 124,
+      "author": {
+        "id": 1002253
+      },
+      "writtenOn": "2025-04-25T08:55:53Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "10730c1a_285959d2",
+      "range": {
+        "startLine": 124,
+        "startChar": 0,
+        "endLine": 124,
+        "endChar": 31
+      },
+      "revId": "caaf53b05b03b7ce9adbda456948bd3bab03f35c",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "f8725297_d58d936e",
@@ -129,6 +195,30 @@
       "writtenOn": "2025-04-17T20:14:04Z",
       "side": 1,
       "message": "This type is already covered in EM configs. \n\nhttps://github.com/openbmc/entity-manager/blob/79b2075688eac9fabf3c2e9e2f2346ffb7a1fd2c/src/devices.hpp#L69\n\nPlease use those definitions.",
+      "range": {
+        "startLine": 136,
+        "startChar": 0,
+        "endLine": 136,
+        "endChar": 44
+      },
+      "revId": "caaf53b05b03b7ce9adbda456948bd3bab03f35c",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "f64b6fe6_27e10062",
+        "filename": "schemas/firmware.json",
+        "patchSetId": 12
+      },
+      "lineNbr": 136,
+      "author": {
+        "id": 1002253
+      },
+      "writtenOn": "2025-04-25T08:55:53Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "f8725297_d58d936e",
       "range": {
         "startLine": 136,
         "startChar": 0,
