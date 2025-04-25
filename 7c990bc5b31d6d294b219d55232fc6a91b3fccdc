@@ -165,6 +165,24 @@
       "parentUuid": "168adb7a_765878fc",
       "revId": "7c990bc5b31d6d294b219d55232fc6a91b3fccdc",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e10df3a4_6bcf6145",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 9
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2025-04-25T16:56:36Z",
+      "side": 1,
+      "message": "\u003e Since there is no \u0027include\u0027 feature, maybe we should call it \"@MatchesTemplate\" since we are not including anything \u0027From\u0027 a template.\n\nSure, that naming is fine.  I like the word \"From\", just because it won\u0027t \"match\", but if were at the point of naming, I\u0027m fine either way.\n\n\u003e The problem is that then there is even more duplication\n\nDuplication on its own is not a problem.  Duplicate strings are deduplicated when the filesystem is compressed, so from a technical perspective it\u0027s only the human element.\n\n\u003e So your proposal solves one issue at the expense of another one.\n\nYes, everything is a tradeoff, but importantly, this keeps the \"I can add support for a component with a single file\" which in my opinion is more important than setting targets around config duplication.  So long as the templates can be automatically applied/enforced at compile time, the duplication only helps people rather than hinders them.",
+      "parentUuid": "321a8783_6662ec39",
+      "revId": "7c990bc5b31d6d294b219d55232fc6a91b3fccdc",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }
