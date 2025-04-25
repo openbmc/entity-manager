@@ -48,7 +48,7 @@
 #include <variant>
 constexpr const char* hostConfigurationDirectory = SYSCONF_DIR "configurations";
 constexpr const char* configurationDirectory = PACKAGE_DIR "configurations";
-constexpr const char* schemaDirectory = PACKAGE_DIR "configurations/schemas";
+constexpr const char* schemaDirectory = PACKAGE_DIR "schemas";
 constexpr const char* tempConfigDir = "/tmp/configuration/";
 constexpr const char* lastConfiguration = "/tmp/configuration/last.json";
 constexpr const char* currentConfiguration = "/var/configuration/system.json";
