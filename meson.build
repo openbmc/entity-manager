@@ -75,9 +75,18 @@ install_data('blacklist.json')
 subdir('configurations')
 
 filepaths = []
+package_configdir = join_paths(packagedir, 'configurations')
+fs = import('fs')
+
 foreach c : configs
     file = join_paths('configurations', c)
-    install_data(file, install_dir: join_paths(packagedir, 'configurations'))
+    install_data(
+        file,
+        install_dir: join_paths(
+            package_configdir,
+            fs.parent(fs.relative_to(file, 'configurations')),
+        ),
+    )
     filepaths += [file]
 endforeach
 
