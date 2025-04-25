@@ -1,5 +1,5 @@
 # This file is auto-generated. Do not edit manually.
-# File content generated with generate_config_list.sh.
+# File content generated with generate_meson_array.sh.
 configs = [
     '1ux16_riser.json',
     '2ux8_riser.json',
