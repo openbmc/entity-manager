@@ -97,10 +97,17 @@ filtered_configs = run_command(
 )
 
 filepaths = []
+package_configdir = join_paths(packagedir, 'configurations')
 foreach c : filtered_configs
     message(' - installing config', c, '-')
     file = join_paths('configurations', c)
-    install_data(file, install_dir: join_paths(packagedir, 'configurations'))
+    install_data(
+        file,
+        install_dir: join_paths(
+            package_configdir,
+            fs.parent(fs.relative_to(file, 'configurations')),
+        ),
+    )
     filepaths += [file]
 endforeach
 
