@@ -98,6 +98,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "70ac074f_eb62be99",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 9
+      },
+      "lineNbr": 20,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2025-04-25T17:04:52Z",
+      "side": 1,
+      "message": "\u003e It\u0027s impossible to fully test configurations if you do not have the board.\n\u003e ....will be guesswork\n\nYep.... exactly, so to keep things stable, the duplication helps because you can operate only on the boards that you have access to when you\u0027re testing.\n\n\u003e If you prevent those contributing the configuration from owning it\n\nThis confuses me.  How does #includes prevent the ownership of the config files?  In my mind it hinders, because you need both ownership of the #include file (which might be owned by a company that doesn\u0027t prioritize reviewing/testing you change) and the config file.  In the current model, you could make an asset tag change, and write a config file that ONLY recognizes one board in isolation, so we can test things as needed.\n\n\n\u003e If you do not want to use that feature, you don\u0027t have to.\n\nThe problem here is there is no \"you\" in open source.  Lots of folks contribute configs for boards then move on to other things.  If SOME people use an include feature, then the next person to make improvements faces the issue that they have to do a major refactor to make a minor change on their board, because they probably don\u0027t have access to all other boards.",
+      "parentUuid": "aaded93b_a718c991",
+      "range": {
+        "startLine": 17,
+        "startChar": 0,
+        "endLine": 20,
+        "endChar": 42
+      },
+      "revId": "7c990bc5b31d6d294b219d55232fc6a91b3fccdc",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "7ce052a5_abb6ac3d",
         "filename": "/PATCHSET_LEVEL",
         "patchSetId": 9
