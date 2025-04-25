@@ -68,8 +68,14 @@ bool findFiles(const std::vector<fs::path>&& dirPaths,
             continue;
         }
 
-        for (const auto& p : fs::directory_iterator(dirPath))
+        for (const auto& p : fs::recursive_directory_iterator(dirPath))
         {
+            std::error_code ec;
+            if (p.is_directory(ec))
+            {
+                continue;
+            }
+
             std::string path = p.path().string();
             if (std::regex_search(path, match, search))
             {
