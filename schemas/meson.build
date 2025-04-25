@@ -1,0 +1,15 @@
+schemas = [
+    'global.json',
+    'legacy.json',
+    'openbmc-dbus.json',
+    'ibm.json',
+    'intel.json',
+    'mctp.json',
+    'pid.json',
+    'pid_zone.json',
+    'stepwise.json',
+    'virtual_sensor.json',
+    'satellite_controller.json',
+    'leak_detector.json',
+    'firmware.json',
+]
