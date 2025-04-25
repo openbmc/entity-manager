@@ -131,7 +131,7 @@ subdir('schemas')
 foreach s : schemas
     install_data(
         join_paths('schemas', s),
-        install_dir: join_paths(packagedir, 'configurations', 'schemas'),
+        install_dir: join_paths(packagedir, 'schemas'),
     )
 endforeach
 
