@@ -74,6 +74,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "aaded93b_a718c991",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 9
+      },
+      "lineNbr": 20,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-04-25T11:51:58Z",
+      "side": 1,
+      "message": "\u003e OpenBMC as a whole maintains the configurations. There\u0027s not one \"owner\".\n\nIt\u0027s impossible to fully test configurations if you do not have the board.\nBest you can do is some light maintenance, refactoring and migration.\n\nMost boards do not even have schematics online, so any changes of actual configuration records like Bus, Address, Thresholds, Scale factors, ... will be guesswork at best for anyone without the access.\n\nIf you prevent those contributing the configuration from owning it, it will only encourage them to keep those downstream, which is not in the interests of this project.\n\n\u003e I\u0027m not sure how moving it to compile time solves the issue. now folks need to do a full compile anytime they want to make an individual change to something with a #include in it? That seems worse. it\u0027s pretty common you make an edit to a config live on system, or SCP a config to a system and restart the reactors.\n\nIf the include feature is moved to compile-time, the configs on the BMC will be complete. So there is no issue to edit them directly.\n\nIf the edit is done in EM repository, processing includes for a single configuration might take less than one second. I don\u0027t see why a \u0027full compile\u0027 would be needed there?\n\n\u003e That ability gets lost if the files now require being a template.\n\nIf you do not want to use that feature, you don\u0027t have to. It\u0027s an opt-in feature for people maintaining multiple boards to deduplicate their configuration.\n\nIf it turns out no one needs such a feature or people do not use it, we can drop the feature after some time.",
+      "parentUuid": "1eba569a_d2088785",
+      "range": {
+        "startLine": 17,
+        "startChar": 0,
+        "endLine": 20,
+        "endChar": 42
+      },
+      "revId": "7c990bc5b31d6d294b219d55232fc6a91b3fccdc",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "7ce052a5_abb6ac3d",
         "filename": "/PATCHSET_LEVEL",
         "patchSetId": 9
@@ -121,6 +145,24 @@
       "side": 1,
       "message": "\u003e \u003e complicates the maintenance burden for any common files\n\u003e \n\u003e Yes, but it also allows to easily introduce changes across multiple board variants and keep things in sync.\n\nRight, and this is an anti pattern because of the testing requirement.  If you have one config that\u0027s used on 8 boards, it\u0027s fairly unlikely you actually tested all 8 boards with your commit.  Having them separate lets the changes be made as the boards are tested, one at a time, or in chunks (one lead, others follow once stable).\n\n\u003e Thresholds for specific components\n\nIf this is truly common, just put it in the application code.  FWIW, there are many cases where systems \"start\" with common thresholds, then as more data is available, transition to more specific thresholds.  Keeping them separate prevents bugs and makes code scope a lot more reviewable so we\u0027re not breaking working systems when we piece apart a config.\n\n\u003e If there is a change needed for a configuration which does not apply to all variants or cannot be validated for all of them, it can go in Override property.\n\nRight, so now we\u0027ve cause a problem, then needed to invent new code to solve the problem.  Lets just not create the problem in the first place.\n\n\u003e no sharing common configuration records (for baseboards) across OEMs\n\nThis would defeat most of your patches, right?  Most of the shared config is cross odm?\n\n\u003e if there are too many Override properties on an included record, the record can be inlined.\n\n\"too many\" is too subjective for me.  If the override is required at all, the config should be rolled out.\n\n\nThe above guard rails don\u0027t solve the issues around review velocity, or blast radius.\nWhat if we did something like this as an annotation:\n\n{\n   \"Property1\": \"Value\"\n   \"Type\" \"MyType\"\n   \"@FromTemplate\": \"template_name.json\"\n}\n\nthen in the template_name.json\n\n{\n   \"Property1\": \"Value\",\n   \"Type: \"Mytype\",\n}\n\nThen have warnings (maybe build errors) when a config deviates from the template.  This has a couple good properties compared to what\u0027s proposed in this patch, we can have our templates, but we still keep two important development properties:\n\n1. Em files and code reviews are reviewable easily for \"What systems does this effect\", because template changes will still show in all the systems they effect.\n2. EM files continue to be self contained, so we keep the use case of \"SCP a config file to a system to test a config\" that is very common in development.",
       "parentUuid": "2df04e22_7a030db6",
+      "revId": "7c990bc5b31d6d294b219d55232fc6a91b3fccdc",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "321a8783_6662ec39",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 9
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-04-25T11:51:58Z",
+      "side": 1,
+      "message": "\u003e Right, and this is an anti pattern because of the testing requirement. If you have one config that\u0027s used on 8 boards, it\u0027s fairly unlikely you actually tested all 8 boards with your commit. Having them separate lets the changes be made as the boards are tested, one at a time, or in chunks (one lead, others follow once stable).\n\nThat\u0027s what the ```Override``` feature is meant for. To be able to share configuration and introduce some small differences.\n\n\n\u003e If this is truly common, just put it in the application code. FWIW, there are many cases where systems \"start\" with common thresholds, then as more data is available, transition to more specific thresholds. Keeping them separate prevents bugs and makes code scope a lot more reviewable so we\u0027re not breaking working systems when we piece apart a config.\n\nDisagree. Thresholds should come from the configuration. If you have an ADC, Temperature or Air flow sensor, what is a sensible default Threshold? \n\nI also don\u0027t think that Thresholds should just change at runtime without any user actions. When do Thresholds \u0027transition\u0027 to be more specific? Why can\u0027t they be right from the start?\n\n\u003e \"too many\" is too subjective for me. If the override is required at all, the config should be rolled out.\n\nIf you have 3 baseboard temperature sensors which are only different in their i2c bus and address, that should not need to be duplicated.\n\nIf you have 2 board variants which share a common component, that should not have to be duplicated across 2 configs. Especially if the variants are functionally equivalent and only vary by small details like component manufacturer.\n\nAnd having an array of EM configs in a single file does **not** solve the duplication issue.\n\n## moving forward\n\n\u003e What if we did something like this as an annotation:\n\nMaybe this can work to enforce configuration records in different files to not drift apart, which is already a good step compared to what we have now.\n\nThe syntax makes sense and it will stand out from the rest of the config,\nallowing people to keep their config in sync with specific templates.\n\nSince there is no \u0027include\u0027 feature, maybe we should call it ```\"@MatchesTemplate\"``` since we are not including anything \u0027From\u0027 a template.\n\nThe problem is that then there is even more duplication due to the need to also define those template files. The goal of this patch is to solve the duplication and not make it worse.\n\nSo your proposal solves one issue at the expense of another one.",
+      "parentUuid": "168adb7a_765878fc",
       "revId": "7c990bc5b31d6d294b219d55232fc6a91b3fccdc",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
