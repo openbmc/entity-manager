@@ -1,0 +1,221 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "54bd8ed9_587dcf1d",
+        "filename": "src/gpio-presence/config.cpp",
+        "patchSetId": 18
+      },
+      "lineNbr": 116,
+      "author": {
+        "id": 1000008
+      },
+      "writtenOn": "2025-04-28T19:38:15Z",
+      "side": 1,
+      "message": "I don\u0027t see a reason these both can\u0027t be a const reference?",
+      "range": {
+        "startLine": 115,
+        "startChar": 14,
+        "endLine": 116,
+        "endChar": 47
+      },
+      "revId": "d22481c115466839687f1392e3a961ceecd5d2d7",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e6179235_05a42889",
+        "filename": "src/gpio-presence/config.cpp",
+        "patchSetId": 18
+      },
+      "lineNbr": 119,
+      "author": {
+        "id": 1000008
+      },
+      "writtenOn": "2025-04-28T19:38:15Z",
+      "side": 1,
+      "message": "what if gpioNames and gpioValues isn\u0027t the same size?  Do you need to check that?",
+      "revId": "d22481c115466839687f1392e3a961ceecd5d2d7",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c3cc27e9_6b822d0f",
+        "filename": "src/gpio-presence/config.cpp",
+        "patchSetId": 18
+      },
+      "lineNbr": 133,
+      "author": {
+        "id": 1000008
+      },
+      "writtenOn": "2025-04-28T19:38:15Z",
+      "side": 1,
+      "message": "A std::ranges::find_if or std::ranges::any_of would be the modern way to do this.",
+      "revId": "d22481c115466839687f1392e3a961ceecd5d2d7",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9c46e202_eecfb864",
+        "filename": "src/gpio-presence/config_provider.cpp",
+        "patchSetId": 18
+      },
+      "lineNbr": 61,
+      "author": {
+        "id": 1000008
+      },
+      "writtenOn": "2025-04-28T19:38:15Z",
+      "side": 1,
+      "message": "better to add some context here as well",
+      "revId": "d22481c115466839687f1392e3a961ceecd5d2d7",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "dd85cafe_b5086c31",
+        "filename": "src/gpio-presence/config_provider.cpp",
+        "patchSetId": 18
+      },
+      "lineNbr": 67,
+      "author": {
+        "id": 1000008
+      },
+      "writtenOn": "2025-04-28T19:38:15Z",
+      "side": 1,
+      "message": "Are you expecting something other than an exception to get thrown?",
+      "range": {
+        "startLine": 64,
+        "startChar": 0,
+        "endLine": 67,
+        "endChar": 5
+      },
+      "revId": "d22481c115466839687f1392e3a961ceecd5d2d7",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7f58fa75_5aa7281d",
+        "filename": "src/gpio-presence/config_provider.cpp",
+        "patchSetId": 18
+      },
+      "lineNbr": 95,
+      "author": {
+        "id": 1000008
+      },
+      "writtenOn": "2025-04-28T19:38:15Z",
+      "side": 1,
+      "message": "these matches can now just be locals in the functions that use them.",
+      "range": {
+        "startLine": 95,
+        "startChar": 10,
+        "endLine": 95,
+        "endChar": 23
+      },
+      "revId": "d22481c115466839687f1392e3a961ceecd5d2d7",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5f9dcf14_9af07c4d",
+        "filename": "src/gpio-presence/config_provider.cpp",
+        "patchSetId": 18
+      },
+      "lineNbr": 125,
+      "author": {
+        "id": 1000008
+      },
+      "writtenOn": "2025-04-28T19:38:15Z",
+      "side": 1,
+      "message": "this doesn\u0027t get triggered for IA signals on other EM interfaces?  Or it does, but then it fails the check on line 133?",
+      "revId": "d22481c115466839687f1392e3a961ceecd5d2d7",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "cc826db4_0a8b3dc5",
+        "filename": "src/gpio-presence/config_provider.cpp",
+        "patchSetId": 18
+      },
+      "lineNbr": 170,
+      "author": {
+        "id": 1000008
+      },
+      "writtenOn": "2025-04-28T19:38:15Z",
+      "side": 1,
+      "message": "I guess EM doesn\u0027t remove interfaces one at a time, but in general you\u0027d want to check if it was the interface you cared about being removed.",
+      "revId": "d22481c115466839687f1392e3a961ceecd5d2d7",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6a7e3cac_885cb612",
+        "filename": "src/gpio-presence/config_provider.hpp",
+        "patchSetId": 18
+      },
+      "lineNbr": 22,
+      "author": {
+        "id": 1000008
+      },
+      "writtenOn": "2025-04-28T19:38:15Z",
+      "side": 1,
+      "message": "This doesn\u0027t use asio, so I assume these wouldn\u0027t be necessary.",
+      "range": {
+        "startLine": 21,
+        "startChar": 0,
+        "endLine": 22,
+        "endChar": 43
+      },
+      "revId": "d22481c115466839687f1392e3a961ceecd5d2d7",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "33767de3_376b5687",
+        "filename": "src/gpio-presence/config_provider.hpp",
+        "patchSetId": 18
+      },
+      "lineNbr": 44,
+      "author": {
+        "id": 1000008
+      },
+      "writtenOn": "2025-04-28T19:38:15Z",
+      "side": 1,
+      "message": "Why is this necessary?",
+      "range": {
+        "startLine": 44,
+        "startChar": 30,
+        "endLine": 44,
+        "endChar": 74
+      },
+      "revId": "d22481c115466839687f1392e3a961ceecd5d2d7",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "713fa0f8_5a388ff9",
+        "filename": "src/gpio-presence/gpio_presence.hpp",
+        "patchSetId": 18
+      },
+      "lineNbr": 31,
+      "author": {
+        "id": 1000008
+      },
+      "writtenOn": "2025-04-28T19:38:15Z",
+      "side": 1,
+      "message": "most others have capitals in their D-Bus service name.  Is there a reason you went all lower case?",
+      "revId": "d22481c115466839687f1392e3a961ceecd5d2d7",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    }
+  ]
+}
