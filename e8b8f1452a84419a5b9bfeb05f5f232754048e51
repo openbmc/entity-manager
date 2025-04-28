@@ -3,6 +3,74 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "8147f33c_d4a1fb3c",
+        "filename": "schemas/cpld.json",
+        "patchSetId": 7
+      },
+      "lineNbr": 4,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-04-28T18:21:55Z",
+      "side": 1,
+      "message": "Lets call this CPLD instead because you are defining this in cpld.json",
+      "revId": "e8b8f1452a84419a5b9bfeb05f5f232754048e51",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9b7c0364_1c56c888",
+        "filename": "schemas/cpld.json",
+        "patchSetId": 7
+      },
+      "lineNbr": 17,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-04-28T18:21:55Z",
+      "side": 1,
+      "message": "Lets remove and update the Type to reflect the appropriate Chip. Please refer to https://gerrit.openbmc.org/c/openbmc/entity-manager/+/78300/comment/9e2ed26f_4af82c03/ .",
+      "revId": "e8b8f1452a84419a5b9bfeb05f5f232754048e51",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "829de781_b0cdb9dd",
+        "filename": "schemas/cpld.json",
+        "patchSetId": 7
+      },
+      "lineNbr": 21,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-04-28T18:21:55Z",
+      "side": 1,
+      "message": "I don\u0027t think you need to explicitly define this in EM. Based on Type the backend code should be able to figure out the family so common/shared behavior can be reused.",
+      "revId": "e8b8f1452a84419a5b9bfeb05f5f232754048e51",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0f9790a4_67c8f43a",
+        "filename": "schemas/cpld.json",
+        "patchSetId": 7
+      },
+      "lineNbr": 28,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-04-28T18:21:55Z",
+      "side": 1,
+      "message": "Please rename property `FirmwareInfoDef` - `FirmwareInfo`",
+      "revId": "e8b8f1452a84419a5b9bfeb05f5f232754048e51",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "52075852_8672203f",
         "filename": "schemas/global.json",
         "patchSetId": 7
