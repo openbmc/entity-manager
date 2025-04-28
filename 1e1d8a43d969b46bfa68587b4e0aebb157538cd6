@@ -177,6 +177,24 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "d297d470_3726f7c2",
+        "filename": "schemas/cpld.json",
+        "patchSetId": 4
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-04-28T18:06:06Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "8ab45500_2281fa23",
+      "revId": "1e1d8a43d969b46bfa68587b4e0aebb157538cd6",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "d38aecb7_17395dc2",
@@ -190,6 +208,24 @@
       "writtenOn": "2025-04-14T09:04:43Z",
       "side": 1,
       "message": "```Type``` field should be enum or const value.\n\nOtherwise it would be possible for 2 unrelated schemas to collide in the future, leading to validation problems.\n\nHaving an enum for ```Type``` will help to easily grep which schema a configuration record belongs to.",
+      "revId": "1e1d8a43d969b46bfa68587b4e0aebb157538cd6",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "6f155b1a_9d9ca2cd",
+        "filename": "schemas/cpld.json",
+        "patchSetId": 4
+      },
+      "lineNbr": 27,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-04-28T18:06:06Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "d38aecb7_17395dc2",
       "revId": "1e1d8a43d969b46bfa68587b4e0aebb157538cd6",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
@@ -211,6 +247,24 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "8a815781_1f2f3aa9",
+        "filename": "schemas/cpld.json",
+        "patchSetId": 4
+      },
+      "lineNbr": 28,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-04-28T18:06:06Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "f4b4f8c7_4b1251e8",
+      "revId": "1e1d8a43d969b46bfa68587b4e0aebb157538cd6",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "b221be5e_60c262cd",
@@ -224,6 +278,24 @@
       "writtenOn": "2025-04-18T02:48:06Z",
       "side": 1,
       "message": "Properties are missing FirwareInfo, please refer to https://grok.openbmc.org/xref/openbmc/entity-manager/schemas/firmware.json?r\u003d79b2075688eac9fabf3c2e9e2f2346ffb7a1fd2c#81",
+      "revId": "1e1d8a43d969b46bfa68587b4e0aebb157538cd6",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "e703bb9d_a770c738",
+        "filename": "schemas/cpld.json",
+        "patchSetId": 4
+      },
+      "lineNbr": 30,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-04-28T18:06:06Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "b221be5e_60c262cd",
       "revId": "1e1d8a43d969b46bfa68587b4e0aebb157538cd6",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
