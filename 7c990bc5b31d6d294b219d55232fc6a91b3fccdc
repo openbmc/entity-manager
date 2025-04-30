@@ -122,6 +122,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "ba6e3b40_a2ee4fd3",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 9
+      },
+      "lineNbr": 20,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-04-30T14:31:33Z",
+      "side": 1,
+      "message": "\u003e Yep.... exactly, so to keep things stable, the duplication helps because you can operate only on the boards that you have access to when you\u0027re testing.\n\nIn the newest revision, the file which is generated from the template is part of the EM source tree. The script can then run as part of CI to ensure there is no diff in the tree.\n\nSo all configurations which are changed as part of a change to an included file will show up in the review 😎\n\n\u003e  If SOME people use an include feature, then the next person to make improvements faces the issue that they have to do a major refactor to make a minor change on their board, because they probably don\u0027t have access to all other boards.\n\nAs i already said, the ```Override``` feature is intended to make minor changes on top of an included Exposes record. If many properties are changed, it might make sense to inline that record. With the newest revision, it is very easy to just take the fully expanded record and inline it into the template, since it\u0027s already part of the source tree. So there is no \u0027major refactor\u0027 required 👍",
+      "parentUuid": "70ac074f_eb62be99",
+      "range": {
+        "startLine": 17,
+        "startChar": 0,
+        "endLine": 20,
+        "endChar": 42
+      },
+      "revId": "7c990bc5b31d6d294b219d55232fc6a91b3fccdc",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "7ce052a5_abb6ac3d",
         "filename": "/PATCHSET_LEVEL",
         "patchSetId": 9
@@ -205,6 +229,24 @@
       "side": 1,
       "message": "\u003e Since there is no \u0027include\u0027 feature, maybe we should call it \"@MatchesTemplate\" since we are not including anything \u0027From\u0027 a template.\n\nSure, that naming is fine.  I like the word \"From\", just because it won\u0027t \"match\", but if were at the point of naming, I\u0027m fine either way.\n\n\u003e The problem is that then there is even more duplication\n\nDuplication on its own is not a problem.  Duplicate strings are deduplicated when the filesystem is compressed, so from a technical perspective it\u0027s only the human element.\n\n\u003e So your proposal solves one issue at the expense of another one.\n\nYes, everything is a tradeoff, but importantly, this keeps the \"I can add support for a component with a single file\" which in my opinion is more important than setting targets around config duplication.  So long as the templates can be automatically applied/enforced at compile time, the duplication only helps people rather than hinders them.",
       "parentUuid": "321a8783_6662ec39",
+      "revId": "7c990bc5b31d6d294b219d55232fc6a91b3fccdc",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0bdf49e5_605c458a",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 9
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-04-30T14:31:33Z",
+      "side": 1,
+      "message": "\u003e So long as the templates can be automatically applied/enforced at compile time, the duplication only helps people rather than hinders them.\n\nThe newest revision applies the duplication with a script, so the expanded templates are part of the source tree 👍",
+      "parentUuid": "e10df3a4_6bcf6145",
       "revId": "7c990bc5b31d6d294b219d55232fc6a91b3fccdc",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
