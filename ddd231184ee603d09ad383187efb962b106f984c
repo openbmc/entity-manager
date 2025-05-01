@@ -3,6 +3,23 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "6ddc710e_06bea35c",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 23
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-05-01T09:47:03Z",
+      "side": 1,
+      "message": "Another concern with this feature:\n```CompatibleHardware``` string is currently part of the EM config,\nif a file contains multiple EM configs, that may introduce some inconsistency:\n\nat least 3 options here:\n- install all EM configs in that file (and accept installing config that\u0027s not needed or wanted)\n- install only those which are selected (and introduce an inconsistency between the config files present in the tree and on the BMC)\n- print a build error due to the detected inconsistency",
+      "revId": "ddd231184ee603d09ad383187efb962b106f984c",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "ce8e4b70_0928e493",
         "filename": "meson.options",
         "patchSetId": 23
