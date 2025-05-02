@@ -3,15 +3,27 @@
 """
 A tool for validating entity manager configurations.
 """
+
 import argparse
 import json
 import os
 import re
 import sys
+from concurrent.futures import ProcessPoolExecutor
 
 import jsonschema.validators
 
 DEFAULT_SCHEMA_FILENAME = "global.json"
+
+
+def get_available_cpu_count():
+    """
+    Get the number of CPUs available to this process,
+    respecting CPU affinity masks when available.
+    """
+    if hasattr(os, "sched_getaffinity"):
+        return len(os.sched_getaffinity(0))
+    return os.cpu_count()
 
 
 def remove_c_comments(string):
@@ -27,6 +39,52 @@ def remove_c_comments(string):
             return match.group(1)
 
     return regex.sub(_replacer, string)
+
+
+def validate_config(args):
+    """
+    Validate a configuration file against a schema.
+
+    Args:
+        args: Tuple containing (config_file, config, base_uri, schema, expected_fails)
+            config_file: Path to the configuration file
+            config: Parsed JSON configuration
+            base_uri: Base URI for JSON schema references
+            schema: JSON schema to validate against
+            expected_fails: List of filenames expected to fail validation
+
+    Returns:
+        Dictionary with validation results
+    """
+    # Unpack arguments
+    config_file, config, base_uri, schema, expected_fails = args
+
+    # Create a new resolver and validator for each validation to avoid race conditions
+    spec = jsonschema.Draft202012Validator
+    resolver = jsonschema.RefResolver(base_uri, schema)
+    validator = spec(schema, resolver=resolver)
+
+    name = os.path.split(config_file)[1]
+    expect_fail = name in expected_fails
+    result = {
+        "name": name,
+        "file": config_file,
+        "status": "valid",
+        "error": None,
+    }
+
+    try:
+        validator.validate(config)
+        if expect_fail:
+            result["status"] = "unexpected_pass"
+    except jsonschema.exceptions.ValidationError as e:
+        if not expect_fail:
+            result["status"] = "invalid"
+            result["error"] = e
+        else:
+            result["status"] = "expected_fail"
+
+    return result
 
 
 def main():
@@ -65,6 +123,15 @@ def main():
         action="store_true",
         help="keep validating after a failure",
     )
+
+    parser.add_argument(
+        "-t",
+        "--threads",
+        type=int,
+        default=get_available_cpu_count(),
+        help="number of threads to use for validation (default: number of available CPUs)",
+    )
+
     parser.add_argument(
         "-v", "--verbose", action="store_true", help="be noisy"
     )
@@ -139,30 +206,37 @@ def main():
     base_uri = "file://{}/".format(
         os.path.split(os.path.realpath(schema_file))[0]
     )
-    resolver = jsonschema.RefResolver(base_uri, schema)
-    validator = spec(schema, resolver=resolver)
 
     results = {
         "invalid": [],
         "unexpected_pass": [],
     }
-    for config_file, config in zip(config_files, configs):
-        name = os.path.split(config_file)[1]
-        expect_fail = name in expected_fails
-        try:
-            validator.validate(config)
-            if expect_fail:
-                results["unexpected_pass"].append(name)
-                if not getattr(args, "continue"):
-                    break
-        except jsonschema.exceptions.ValidationError as e:
-            if not expect_fail:
-                results["invalid"].append(name)
-                if args.verbose:
-                    print(e)
-            if expect_fail or getattr(args, "continue"):
-                continue
-            break
+
+    # Use ProcessPoolExecutor to validate configs in parallel
+    with ProcessPoolExecutor(max_workers=args.threads) as executor:
+        # Prepare arguments for each config file
+        validation_args = [
+            (cf, c, base_uri, schema, expected_fails)
+            for cf, c in zip(config_files, configs)
+        ]
+
+        # Process configs in parallel
+        validation_results = list(
+            executor.map(validate_config, validation_args)
+        )
+
+    # Process results
+    for result in validation_results:
+        if result["status"] == "unexpected_pass":
+            results["unexpected_pass"].append(result["name"])
+            if not getattr(args, "continue"):
+                break
+        elif result["status"] == "invalid":
+            results["invalid"].append(result["name"])
+            if args.verbose:
+                print(result["error"])
+            if not getattr(args, "continue"):
+                break
 
     exit_status = 0
     if len(results["invalid"]) + len(results["unexpected_pass"]):
