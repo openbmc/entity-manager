@@ -46,6 +46,30 @@
       },
       "revId": "ea7a7bc1c608295bbaa7c99419cbc65577fefc80",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e76a2366_08851c18",
+        "filename": "scripts/validate_configs.py",
+        "patchSetId": 9
+      },
+      "lineNbr": 168,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2025-05-02T04:21:28Z",
+      "side": 1,
+      "message": "The point is really that methods shouldn\u0027t really be declaring exit for the entire application, and it removes all debug information about where the error happened from.\n\nWith that said, not worth holding up this patch.",
+      "parentUuid": "918eafd2_f6965401",
+      "range": {
+        "startLine": 168,
+        "startChar": 0,
+        "endLine": 168,
+        "endChar": 19
+      },
+      "revId": "ea7a7bc1c608295bbaa7c99419cbc65577fefc80",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }
