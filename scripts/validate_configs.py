@@ -8,10 +8,23 @@ import json
 import os
 import re
 import sys
+from concurrent.futures import ProcessPoolExecutor
 
 import jsonschema.validators
 
 DEFAULT_SCHEMA_FILENAME = "global.json"
+
+
+def get_default_thread_count() -> int:
+    """
+    Returns the number of CPUs available to the current process.
+    """
+    try:
+        # This will respect CPU affinity settings
+        return len(os.sched_getaffinity(0))
+    except AttributeError:
+        # Fallback for systems without sched_getaffinity
+        return os.cpu_count() or 1
 
 
 def remove_c_comments(string):
@@ -68,6 +81,13 @@ def main():
     parser.add_argument(
         "-v", "--verbose", action="store_true", help="be noisy"
     )
+    parser.add_argument(
+        "-t",
+        "--threads",
+        type=int,
+        default=get_default_thread_count(),
+        help="Number of threads to use for parallel validation (default: number of CPUs)",
+    )
     args = parser.parse_args()
 
     schema_file = args.schema
@@ -78,10 +98,9 @@ def main():
                 *source_dir, "schemas", DEFAULT_SCHEMA_FILENAME
             )
         except Exception:
-            sys.stderr.write(
-                "Could not guess location of {}\n".format(
-                    DEFAULT_SCHEMA_FILENAME
-                )
+            print(
+                f"Could not guess location of {DEFAULT_SCHEMA_FILENAME}",
+                file=sys.stderr,
             )
             sys.exit(2)
 
@@ -96,7 +115,9 @@ def main():
                     if f.endswith(".json"):
                         config_files.append(os.path.join(root, f))
         except Exception:
-            sys.stderr.write("Could not guess location of configurations\n")
+            print(
+                "Could not guess location of configurations", file=sys.stderr
+            )
             sys.exit(2)
 
     configs = []
@@ -105,8 +126,8 @@ def main():
             with open(config_file) as fd:
                 configs.append(json.loads(remove_c_comments(fd.read())))
         except FileNotFoundError:
-            sys.stderr.write(
-                "Could not parse config file '{}'\n".format(config_file)
+            print(
+                f"Could not parse config file: {config_file}", file=sys.stderr
             )
             sys.exit(2)
 
@@ -117,24 +138,50 @@ def main():
                 for line in fd:
                     expected_fails.append(line.strip())
         except Exception:
-            sys.stderr.write(
-                "Could not read expected fails file '{}'\n".format(
-                    args.expected_fails
-                )
+            print(
+                f"Could not read expected fails file: {args.expected_fails}",
+                file=sys.stderr,
             )
             sys.exit(2)
-
-    validator = validator_from_file(schema_file)
 
     results = {
         "invalid": [],
         "unexpected_pass": [],
     }
-    for config_file, config in zip(config_files, configs):
-        if not validate_single_config(
-            args, config_file, config, expected_fails, validator, results
-        ):
-            break
+
+    should_continue = getattr(args, "continue")
+
+    with ProcessPoolExecutor(max_workers=args.threads) as executor:
+        # Submit all validation tasks
+        config_to_future = {}
+        for config_file, config in zip(config_files, configs):
+            filename = os.path.split(config_file)[1]
+            future = executor.submit(
+                validate_single_config,
+                args,
+                filename,
+                config,
+                expected_fails,
+                schema_file,
+            )
+            config_to_future[config_file] = future
+
+        # Process results as they complete
+        for config_file, future in config_to_future.items():
+            # Wait for the future to complete and get its result
+            is_invalid, is_unexpected_pass = future.result()
+            # Update the results with the validation result
+            filename = os.path.split(config_file)[1]
+            if is_invalid:
+                results["invalid"].append(filename)
+            if is_unexpected_pass:
+                results["unexpected_pass"].append(filename)
+
+            # Stop validation if validation failed unexpectedly and --continue is not set
+            validation_failed = is_invalid or is_unexpected_pass
+            if validation_failed and not should_continue:
+                executor.shutdown(wait=False, cancel_futures=True)
+                break
 
     exit_status = 0
     if len(results["invalid"]) + len(results["unexpected_pass"]):
@@ -145,9 +192,9 @@ def main():
         for f in config_files:
             if any([x in f for x in results["unexpected_pass"]]):
                 show_suffix_explanation = True
-                print("  '{}' passed!{}".format(f, unexpected_pass_suffix))
+                print(f"  '{f}' passed!{unexpected_pass_suffix}")
             if any([x in f for x in results["invalid"]]):
-                print("  '{}' failed!".format(f))
+                print(f"  '{f}' failed!")
 
         if show_suffix_explanation:
             print("\n** configuration expected to fail")
@@ -156,16 +203,9 @@ def main():
 
 
 def validator_from_file(schema_file):
-
     schema = {}
-    try:
-        with open(schema_file) as fd:
-            schema = json.load(fd)
-    except FileNotFoundError:
-        sys.stderr.write(
-            "Could not read schema file '{}'\n".format(schema_file)
-        )
-        sys.exit(2)
+    with open(schema_file) as fd:
+        schema = json.load(fd)
 
     spec = jsonschema.Draft202012Validator
     spec.check_schema(schema)
@@ -179,25 +219,29 @@ def validator_from_file(schema_file):
 
 
 def validate_single_config(
-    args, config_file, config, expected_fails, validator, results
+    args, filename, config, expected_fails, schema_file
 ):
-    name = os.path.split(config_file)[1]
-    expect_fail = name in expected_fails
+    expect_fail = filename in expected_fails
+
+    is_invalid = False
+    is_unexpected_pass = False
+
     try:
+        validator = validator_from_file(schema_file)
         validator.validate(config)
         if expect_fail:
-            results["unexpected_pass"].append(name)
-            if not getattr(args, "continue"):
-                return False
+            is_unexpected_pass = True
     except jsonschema.exceptions.ValidationError as e:
         if not expect_fail:
-            results["invalid"].append(name)
+            is_invalid = True
             if args.verbose:
                 print(e)
-        if expect_fail or getattr(args, "continue"):
-            return True
-        return False
-    return True
+    except FileNotFoundError:
+        is_invalid = True
+        if args.verbose:
+            print(f"Could not read schema file: {schema_file}")
+
+    return (is_invalid, is_unexpected_pass)
 
 
 if __name__ == "__main__":
