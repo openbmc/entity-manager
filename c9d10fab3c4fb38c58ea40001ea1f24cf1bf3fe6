@@ -24,6 +24,30 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "2faf9ec3_a7d085b8",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 4
+      },
+      "lineNbr": 15,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-05-05T22:00:50Z",
+      "side": 1,
+      "message": "This brings the design in sync with other inventory daemons such as fru-device and gpio-hw-inventory where EM holds all the configurations and only the required configurations are probed when a specific device is discovered (rather than exposing all the configuration even if the device is not found as these would be part of board configurations). Please refer to designs for complete flow -\nhttps://gerrit.openbmc.org/c/openbmc/docs/+/77318\nhttps://gerrit.openbmc.org/c/openbmc/docs/+/77422\n\nAnd we don\u0027t need to reimplement the logic to expose the inventory interfaces as they are already being exposed through EM.\n\nI am marking this as resolved here and lets discuss any further comments related to this on design doc itself.",
+      "parentUuid": "1ed3a056_3546b6c1",
+      "range": {
+        "startLine": 14,
+        "startChar": 0,
+        "endLine": 15,
+        "endChar": 15
+      },
+      "revId": "c9d10fab3c4fb38c58ea40001ea1f24cf1bf3fe6",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "37777f4b_fdbfa60a",
@@ -37,6 +61,30 @@
       "writtenOn": "2025-02-23T18:05:49Z",
       "side": 1,
       "message": "Please keep the naming matching the schema contained within the file.",
+      "range": {
+        "startLine": 288,
+        "startChar": 5,
+        "endLine": 288,
+        "endChar": 18
+      },
+      "revId": "c9d10fab3c4fb38c58ea40001ea1f24cf1bf3fe6",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "3a3639d3_fb4c265e",
+        "filename": "meson.build",
+        "patchSetId": 4
+      },
+      "lineNbr": 288,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-05-05T22:00:50Z",
+      "side": 1,
+      "message": "ModbusDevice and ModbusDeviceDetect are two different schema configurations and modbus_device.json will hold all the schema definitions related to modbus devices, hence the name. I see this pattern for other schema files as well, for example, mctp.json. Marking this as resolved for now, please let me know if there are still any concerns.",
+      "parentUuid": "37777f4b_fdbfa60a",
       "range": {
         "startLine": 288,
         "startChar": 5,
@@ -87,6 +135,48 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "11e6d183_a52da25f",
+        "filename": "schemas/modbus_device.json",
+        "patchSetId": 4
+      },
+      "lineNbr": 4,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-05-05T22:00:50Z",
+      "side": 1,
+      "message": "This schema is for pre-entity-manager instantiation only, please refer to design https://gerrit.openbmc.org/c/openbmc/docs/+/77318 .",
+      "parentUuid": "0071aca8_0b3566d1",
+      "range": {
+        "startLine": 4,
+        "startChar": 9,
+        "endLine": 4,
+        "endChar": 27
+      },
+      "revId": "c9d10fab3c4fb38c58ea40001ea1f24cf1bf3fe6",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "3ecb92d2_8a989192",
+        "filename": "schemas/modbus_device.json",
+        "patchSetId": 4
+      },
+      "lineNbr": 4,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-05-05T22:00:50Z",
+      "side": 1,
+      "message": "This schema represents the initial configuration for modbus probe to discover the modbus inventory. Please refer to design https://gerrit.openbmc.org/c/openbmc/docs/+/77318 .",
+      "parentUuid": "ef8ec4d8_7dea2761",
+      "revId": "c9d10fab3c4fb38c58ea40001ea1f24cf1bf3fe6",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "1ce4fac8_9c0ecec1",
@@ -106,6 +196,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "352a9113_4935bba2",
+        "filename": "schemas/modbus_device.json",
+        "patchSetId": 4
+      },
+      "lineNbr": 15,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-05-05T22:00:50Z",
+      "side": 1,
+      "message": "\u003e huh?\n\u003e \n\u003e 4.4 data model \n\u003e \n\u003e there are 4 overlapping data types \n\u003e each data is addressed 0-65536\n\u003e each element within a data block is numbered 1-n\n\u003e \n\u003e the above is in bold page 7/50\n\nWhat is the specific question/concern you are raising here?",
+      "parentUuid": "1ce4fac8_9c0ecec1",
+      "revId": "c9d10fab3c4fb38c58ea40001ea1f24cf1bf3fe6",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "af115e03_d5ee2ad7",
         "filename": "schemas/modbus_device.json",
         "patchSetId": 4
@@ -117,6 +225,30 @@
       "writtenOn": "2025-02-23T18:05:49Z",
       "side": 1,
       "message": "Modbus supports a number of different transports.  Should this be called\n\nModBusSerialPort\nModBusEthernetPort\n\nEtc, so that we can differentiate the physical hardware?  As written it\u0027s not clear what transport this would use.",
+      "range": {
+        "startLine": 16,
+        "startChar": 17,
+        "endLine": 16,
+        "endChar": 34
+      },
+      "revId": "c9d10fab3c4fb38c58ea40001ea1f24cf1bf3fe6",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "faa77a56_ba4c455c",
+        "filename": "schemas/modbus_device.json",
+        "patchSetId": 4
+      },
+      "lineNbr": 16,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-05-05T22:00:50Z",
+      "side": 1,
+      "message": "Please refer to Connection Type (RTU, TCP) property, its already being handled there.",
+      "parentUuid": "af115e03_d5ee2ad7",
       "range": {
         "startLine": 16,
         "startChar": 17,
@@ -195,6 +327,24 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "c31b086d_67bb50dd",
+        "filename": "schemas/modbus_device.json",
+        "patchSetId": 4
+      },
+      "lineNbr": 44,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-05-05T22:00:50Z",
+      "side": 1,
+      "message": "Yes, we have seen devices with both the mixes, hence this property.",
+      "parentUuid": "8398c0d0_4c99bf6b",
+      "revId": "c9d10fab3c4fb38c58ea40001ea1f24cf1bf3fe6",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "7e7f2761_e268dc5a",
@@ -212,6 +362,24 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "550d477c_c5b98dab",
+        "filename": "schemas/modbus_device.json",
+        "patchSetId": 4
+      },
+      "lineNbr": 56,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-05-05T22:00:50Z",
+      "side": 1,
+      "message": "Because as per size requirements only registers can hold them. Refer to Data Model 4.3",
+      "parentUuid": "7e7f2761_e268dc5a",
+      "revId": "c9d10fab3c4fb38c58ea40001ea1f24cf1bf3fe6",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "cf6ca599_f163d27f",
@@ -225,6 +393,24 @@
       "writtenOn": "2025-02-12T07:29:56Z",
       "side": 1,
       "message": "formats should determine the endianness and size implicitly.\n\nthis doesn\u0027t differentiate between input registers and holding registers, and doesn\u0027t allow description of digital inputs or coils (digital outputs), the other numbering spaces.\n\n(this means that we won\u0027t need to parse/case 3 levels deep when comparing values)",
+      "revId": "c9d10fab3c4fb38c58ea40001ea1f24cf1bf3fe6",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "0a55bd81_71db8171",
+        "filename": "schemas/modbus_device.json",
+        "patchSetId": 4
+      },
+      "lineNbr": 78,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-05-05T22:00:50Z",
+      "side": 1,
+      "message": "I have moved this inside the registers, so its specific to registers.",
+      "parentUuid": "cf6ca599_f163d27f",
       "revId": "c9d10fab3c4fb38c58ea40001ea1f24cf1bf3fe6",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
@@ -260,6 +446,24 @@
       "side": 1,
       "message": "+1.  Entity-manager uses arrays of structs.  Yes.... the way James (throws under bus) chose to represent these arrays originally isn\u0027t the easiest to parse, but it\u0027s what we have.  I understand that PDI can\u0027t parse these, but that\u0027s not a reason to make things a mess here.  Path forward is either:\nA. Use the existing code for parsing arrays of structs.\nB. Update EM/dbus-sensors to improve how we represent arrays of structs such that it\u0027s compatible with PDI\nC. Improve PDI to make it handle the (admittedly insane) way that EM hosts arrays on dbus.",
       "parentUuid": "a6d25c0e_bef87f86",
+      "revId": "c9d10fab3c4fb38c58ea40001ea1f24cf1bf3fe6",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "bc30adbf_5d3c4bfe",
+        "filename": "schemas/modbus_device.json",
+        "patchSetId": 4
+      },
+      "lineNbr": 81,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-05-05T22:00:50Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "47f319aa_70609180",
       "revId": "c9d10fab3c4fb38c58ea40001ea1f24cf1bf3fe6",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
