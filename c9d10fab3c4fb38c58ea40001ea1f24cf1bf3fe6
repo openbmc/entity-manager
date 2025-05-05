@@ -276,6 +276,24 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "2be11661_f83c91c6",
+        "filename": "schemas/modbus_device.json",
+        "patchSetId": 4
+      },
+      "lineNbr": 17,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-05-05T23:00:24Z",
+      "side": 1,
+      "message": "These are register addresses. Refer to Section 4.4 Modbus Addressing Model.",
+      "parentUuid": "e05462d9_45da74e1",
+      "revId": "c9d10fab3c4fb38c58ea40001ea1f24cf1bf3fe6",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "73bc5244_095173df",
@@ -293,6 +311,24 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "0c004293_1380dee6",
+        "filename": "schemas/modbus_device.json",
+        "patchSetId": 4
+      },
+      "lineNbr": 28,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-05-05T23:00:24Z",
+      "side": 1,
+      "message": "I searched the spec and i couldn\u0027t find the word node at all https://www.modbus.org/docs/Modbus_Application_Protocol_V1_1b3.pdf.\n\nThe registers and coils have addresses.",
+      "parentUuid": "73bc5244_095173df",
+      "revId": "c9d10fab3c4fb38c58ea40001ea1f24cf1bf3fe6",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "58aac02f_69652469",
@@ -306,6 +342,24 @@
       "writtenOn": "2025-02-12T07:29:56Z",
       "side": 1,
       "message": "see discussion in required properties below",
+      "revId": "c9d10fab3c4fb38c58ea40001ea1f24cf1bf3fe6",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "bd79baed_2fcd866a",
+        "filename": "schemas/modbus_device.json",
+        "patchSetId": 4
+      },
+      "lineNbr": 40,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-05-05T23:00:24Z",
+      "side": 1,
+      "message": "Replying at same place and marking this as resolved.",
+      "parentUuid": "58aac02f_69652469",
       "revId": "c9d10fab3c4fb38c58ea40001ea1f24cf1bf3fe6",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
@@ -485,6 +539,24 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "31b0362d_62b3ff44",
+        "filename": "schemas/modbus_device.json",
+        "patchSetId": 4
+      },
+      "lineNbr": 87,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-05-05T23:00:24Z",
+      "side": 1,
+      "message": "This is an inventory interface. My current use case is only for serial, so i have updated the schema definition to reflect only it, i.e. ModbusRTUDetect. In future when use case for TCP will be there, we will add those.",
+      "parentUuid": "0e15875c_f26d2f68",
+      "revId": "c9d10fab3c4fb38c58ea40001ea1f24cf1bf3fe6",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "fed5f084_856ca7ae",
@@ -498,6 +570,24 @@
       "writtenOn": "2025-02-12T07:29:56Z",
       "side": 1,
       "message": "conversely the interface doesn\u0027t specify the electrical interface: is it RS232, RS4285 or something else (which is required to properly connect and determine the possible topology).  \n\n232 and 485 are explicitly mentioned in the modbus API protocol specification (1.1b3  4.1 5/50)\n\n\nThe exemplar device includes a status, readonly register bit that records if the terminator resistor is enabled.  for rs485 its recommended that devices are wired along a linear chain terminated at each end and not a star topology (per wikipedia).",
+      "revId": "c9d10fab3c4fb38c58ea40001ea1f24cf1bf3fe6",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "710476b4_8152228c",
+        "filename": "schemas/modbus_device.json",
+        "patchSetId": 4
+      },
+      "lineNbr": 88,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-05-05T23:00:24Z",
+      "side": 1,
+      "message": "Added Interface in latest patch.",
+      "parentUuid": "fed5f084_856ca7ae",
       "revId": "c9d10fab3c4fb38c58ea40001ea1f24cf1bf3fe6",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
@@ -536,6 +626,24 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "b39fd870_fe5aa804",
+        "filename": "schemas/modbus_device.json",
+        "patchSetId": 4
+      },
+      "lineNbr": 89,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-05-05T23:00:24Z",
+      "side": 1,
+      "message": "\u003e do we want a decorator to the associated serial port?\n\n\nI haven\u0027t seen a use case for it at the moment. We will see if any association is needed in the future.\n\n\u003e \n\u003e The exemplar device includes a status, readonly register bit that records if the terminator resistor is enabled.  for rs485 its recommended that devices are wired along a linear chain terminated at each end and not a star topology (per wikipedia).",
+      "parentUuid": "32b4549b_5e35d6b4",
+      "revId": "c9d10fab3c4fb38c58ea40001ea1f24cf1bf3fe6",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "a236d76b_9351ce29",
@@ -549,6 +657,24 @@
       "writtenOn": "2025-02-12T07:29:56Z",
       "side": 1,
       "message": "while we could funnel all this configuration through EM, it doesn\u0027t appear there is enough standard function in the exemplar sensor to warrant shuffling all the programming interface through entity manager.  \n\nI am advocating separating the device register interface (which registers have which formats, especially for random configuration (unit selection), status (not defined protocol error status) from the instance information describing sensor name, association, and thresholds.",
+      "revId": "c9d10fab3c4fb38c58ea40001ea1f24cf1bf3fe6",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "9cf16b0e_341c049b",
+        "filename": "schemas/modbus_device.json",
+        "patchSetId": 4
+      },
+      "lineNbr": 94,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-05-05T23:00:24Z",
+      "side": 1,
+      "message": "They are already separate as this schema definitions is just for inventory and not for sensors.",
+      "parentUuid": "a236d76b_9351ce29",
       "revId": "c9d10fab3c4fb38c58ea40001ea1f24cf1bf3fe6",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
