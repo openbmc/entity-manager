@@ -16,6 +16,24 @@
       "message": "@spinler@us.ibm.com There was a discussion on discord yesterday that you might have missed.  There\u0027s no such thing as a \"firmwareeeprom\" and the configs need separated to denote the two physical interfaces.\n\n@Kevin.Tung@quantatw.com is that something you can fix please like we discussed?",
       "revId": "f75a499a91c5705c6a94604cad990c4aaad50a66",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "542e6f3f_d5bce688",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 16
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1002253
+      },
+      "writtenOn": "2025-05-05T07:57:53Z",
+      "side": 1,
+      "message": "@ed@tanous.net I think the latest patch addresses the discussed concerns, with the configs now separated to represent two physical interfaces, as shown below:\n\n```\n{\n   Name: MyEeprom\n   Bus: 1\n   Address: 0x10\n   Type: EEPROM_24C64\n   \n}\n{\n   Name: MyRetimer\n   Bus: 2\n   Address: 0x20\n   FirmwareDevice: MyEeprom\n   Type: PT51611\n}\n```",
+      "parentUuid": "f0979ba3_b629d61e",
+      "revId": "f75a499a91c5705c6a94604cad990c4aaad50a66",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }
