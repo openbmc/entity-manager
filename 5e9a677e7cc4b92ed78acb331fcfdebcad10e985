@@ -22,6 +22,30 @@
       },
       "revId": "5e9a677e7cc4b92ed78acb331fcfdebcad10e985",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "8959e9ed_4f89b8dc",
+        "filename": "configurations/tyan/tyan_s8047_baseboard.json",
+        "patchSetId": 9
+      },
+      "lineNbr": 518,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-05-05T09:19:30Z",
+      "side": 1,
+      "message": "\u003e needed to invent an \"override\" in addition to the include system\n\nThis is just the notation to make it easier to read.\nIf you have any constructive idea about the notation, i am happy to consider 😊\n\n\n\u003e If theres a common battery scheme we can include, just invent a new type called \"Battery\" and implement the thresholds in code.\n\nImplementing thresholds in code is not possible in all cases. Depending on the hardware design and intended application, even a single component will run with different thresholds in different systems. Same story for ```PowerState``` and other properties.",
+      "parentUuid": "cb43251d_4da87e41",
+      "range": {
+        "startLine": 514,
+        "startChar": 0,
+        "endLine": 518,
+        "endChar": 14
+      },
+      "revId": "5e9a677e7cc4b92ed78acb331fcfdebcad10e985",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }
