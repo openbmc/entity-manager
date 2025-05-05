@@ -1,0 +1,55 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4321351d_a8f1c786",
+        "filename": "schemas/cpld.json",
+        "patchSetId": 10
+      },
+      "lineNbr": 10,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-05-05T18:05:09Z",
+      "side": 1,
+      "message": "There is already an existing type defined for ```Address``` which can be used (defined in legacy schema).",
+      "revId": "0d407ea3a17fc49fceb0e5a11d52689ff9c2f091",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9896f136_f9abd47e",
+        "filename": "schemas/cpld.json",
+        "patchSetId": 10
+      },
+      "lineNbr": 15,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-05-05T18:05:09Z",
+      "side": 1,
+      "message": "There is already an existing type defined for ```Bus``` which can be used (defined in legacy schema).",
+      "revId": "0d407ea3a17fc49fceb0e5a11d52689ff9c2f091",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d4c871f1_05a4e20d",
+        "filename": "schemas/cpld.json",
+        "patchSetId": 10
+      },
+      "lineNbr": 19,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-05-05T18:05:09Z",
+      "side": 1,
+      "message": "Would prefer this be an enum, if there is any code branching based on this value.\n\nOtherwise we can name the property to ```DisplayChipVendor``` if it\u0027s only used for display and/or note that in the description.",
+      "revId": "0d407ea3a17fc49fceb0e5a11d52689ff9c2f091",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    }
+  ]
+}
