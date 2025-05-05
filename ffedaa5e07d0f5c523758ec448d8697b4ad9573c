@@ -16,6 +16,24 @@
       "message": "Say someone puts a file from /usr/share/entity-manager/configurations/meta/ into the override dir root in /etc/configurations/. It\u0027ll still use it, right?",
       "revId": "ffedaa5e07d0f5c523758ec448d8697b4ad9573c",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "8192cd28_1943ca85",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 19
+      },
+      "lineNbr": 24,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-05-05T18:18:42Z",
+      "side": 1,
+      "message": "Looking at the code in ```configuration.cpp```, the \n\n```\n11 constexpr const char* hostConfigurationDirectory \u003d SYSCONF_DIR \"configurations\";\n```\n\nshould be used aswell.\n\n```\n   35 // reads json files out of the filesystem\n   36 bool loadConfigurations(std::list\u003cnlohmann::json\u003e\u0026 configurations)\n   37 {\n   38     // find configuration files\n   39     std::vector\u003cstd::filesystem::path\u003e jsonPaths;\n   40     if (!findFiles(\n   41             std::vector\u003cstd::filesystem::path\u003e{configurationDirectory,\n   42                                                hostConfigurationDirectory},\n   43             R\"(.*\\.json)\", jsonPaths))\n   44     {\n   45         std::cerr \u003c\u003c \"Unable to find any configuration files in \"\n   46                   \u003c\u003c configurationDirectory \u003c\u003c \"\\n\";\n   47         return false;\n   48     }\n```\n\nBtw i noticed right above ```findFiles``` there is another ```findFiles``` which does not work on ```std::vector```.\n\nWe recurse into the correct one in our case but that would be a candidate for cleanup aswell, or convert to thin wrapper.\n\nThat other ```findFiles``` is only used in fru_device from what i can tell.",
+      "parentUuid": "8ab17589_eae5b21b",
+      "revId": "ffedaa5e07d0f5c523758ec448d8697b4ad9573c",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }
