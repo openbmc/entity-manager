@@ -264,6 +264,12 @@
                 "Type": "EEPROM"
             },
             {
+                "Address": "0x50",
+                "Bus": 20,
+                "Name": "MB_Retimer_EEPROM",
+                "Type": "EEPROM_24C64"
+            },
+            {
                 "Address": "0x45",
                 "Bus": 23,
                 "Labels": [
@@ -888,6 +894,27 @@
                         "Value": 100.0
                     }
                 ],
+                "Type": "PT5161L"
+            },
+            {
+                "Address": "0x24",
+                "Bus": 12,
+                "FirmwareDevice": "MB_Retimer_EEPROM",
+                "FirmwareInfo": {
+                    "CompatibleHardware": "com.meta.Hardware.Harma.pt5161l.Retimer",
+                    "VendorIANA": 40981
+                },
+                "MuxOutputs": [
+                    {
+                        "Name": "rt-cpu0-p1-enable",
+                        "Polarity": "High"
+                    },
+                    {
+                        "Name": "smb-rt-rom-p1-select",
+                        "Polarity": "High"
+                    }
+                ],
+                "Name": "MB_Retimer",
                 "Type": "PT5161L"
             },
             {
