@@ -18,6 +18,24 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "6832311e_f66796b4",
+        "filename": "schemas/modbus_device.json",
+        "patchSetId": 4
+      },
+      "lineNbr": 105,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-05-06T01:05:32Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "854eddf6_64e8c9b5",
+      "revId": "7b64b7dc1ca5a3258e34fb2f8001a39d11131a1b",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "6f7f844f_5ddb6387",
@@ -31,6 +49,30 @@
       "writtenOn": "2025-02-23T18:19:42Z",
       "side": 1,
       "message": "nit, take out the word \"rack\" nothing about the modbus device itself makes it a \"rack\" pump.  That\u0027s a location identifier.",
+      "range": {
+        "startLine": 107,
+        "startChar": 43,
+        "endLine": 107,
+        "endChar": 55
+      },
+      "revId": "7b64b7dc1ca5a3258e34fb2f8001a39d11131a1b",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "1f827116_c68b985a",
+        "filename": "schemas/modbus_device.json",
+        "patchSetId": 4
+      },
+      "lineNbr": 107,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-05-06T01:05:32Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "6f7f844f_5ddb6387",
       "range": {
         "startLine": 107,
         "startChar": 43,
@@ -66,6 +108,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "4137bc1b_22ae8959",
+        "filename": "schemas/modbus_device.json",
+        "patchSetId": 4
+      },
+      "lineNbr": 136,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-05-06T01:05:32Z",
+      "side": 1,
+      "message": "ModbusRTUDetect and ModbusRTUDevice are 2 different schemas, are you suggesting to create a common schema def for common properties and reuse it?",
+      "parentUuid": "bdb7ff75_d17cdb2c",
+      "range": {
+        "startLine": 113,
+        "startChar": 0,
+        "endLine": 136,
+        "endChar": 18
+      },
+      "revId": "7b64b7dc1ca5a3258e34fb2f8001a39d11131a1b",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "1594a39f_4d0f637b",
         "filename": "schemas/modbus_device.json",
         "patchSetId": 4
@@ -77,6 +143,30 @@
       "writtenOn": "2025-02-23T18:19:42Z",
       "side": 1,
       "message": "Are these registers standard things defined by the modbus specification?  If so, can we give them names?\n\nIf these are per-device register settings, they belong in c++ code and we need a \"type\" that matches the specific device.  WE shouldn\u0027t be encoding long lists of registers in json config.",
+      "range": {
+        "startLine": 137,
+        "startChar": 0,
+        "endLine": 150,
+        "endChar": 18
+      },
+      "revId": "7b64b7dc1ca5a3258e34fb2f8001a39d11131a1b",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "b009d531_476eedc6",
+        "filename": "schemas/modbus_device.json",
+        "patchSetId": 4
+      },
+      "lineNbr": 150,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-05-06T01:05:32Z",
+      "side": 1,
+      "message": "\u003e Are these registers standard things defined by the modbus specification?  If so, can we give them names?\n\nRegister as a concept is standard. Refer to Section 4.3 Data Model\n\u003e \n\u003e If these are per-device register settings, they belong in c++ code and we need a \"type\" that matches the specific device.  WE shouldn\u0027t be encoding long lists of registers in json config.\n\nSpecific sensors can vary between different devices, thats the reason i have just added the general register properties here.",
+      "parentUuid": "1594a39f_4d0f637b",
       "range": {
         "startLine": 137,
         "startChar": 0,
@@ -110,6 +200,30 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "21e76598_78121915",
+        "filename": "schemas/modbus_device.json",
+        "patchSetId": 4
+      },
+      "lineNbr": 164,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-05-06T01:05:32Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "b81d318b_62b1743b",
+      "range": {
+        "startLine": 137,
+        "startChar": 0,
+        "endLine": 164,
+        "endChar": 18
+      },
+      "revId": "7b64b7dc1ca5a3258e34fb2f8001a39d11131a1b",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "7ecb715d_79ddc6d4",
@@ -123,6 +237,30 @@
       "writtenOn": "2025-02-23T18:19:42Z",
       "side": 1,
       "message": "Same with all these.  These are trying to encode device-specific registers into an EM json config.  These need to just be mapped in the modbus daemon.  You can have a trivial lookup table of device/register map that\u0027s very similar.",
+      "range": {
+        "startLine": 165,
+        "startChar": 0,
+        "endLine": 190,
+        "endChar": 14
+      },
+      "revId": "7b64b7dc1ca5a3258e34fb2f8001a39d11131a1b",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "0e8e711e_be70d72e",
+        "filename": "schemas/modbus_device.json",
+        "patchSetId": 4
+      },
+      "lineNbr": 190,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-05-06T01:05:32Z",
+      "side": 1,
+      "message": "Are you referring to the firmware register? If yes, then that needs to be explicitly called out as i am trying to keep the property name common across all modbus rtu devices.",
+      "parentUuid": "7ecb715d_79ddc6d4",
       "range": {
         "startLine": 165,
         "startChar": 0,
