@@ -1,0 +1,40 @@
+[
+    {
+        "Exposes": [
+            {
+                "Address": "$address",
+                "Bus": "$bus",
+                "Name": "CX8 IRIS 2P NIC FRU",
+                "Type": "EEPROM"
+            },
+            {
+                "Name": "CX8 IRIS MCU",
+                "Type": "PldmDevice",
+                "UUID": "c01dc250-5678-11ed-9b6a-0242ac120002"
+            },
+            {
+                "Name": "CX8_0",
+                "Type": "PldmDevice",
+                "UUID": "f72d6f50-5675-11ed-9b6a-0242ac120002"
+            },
+            {
+                "Name": "CX8_1",
+                "Type": "PldmDevice",
+                "UUID": "f72d6f60-5675-11ed-9b6a-0242ac120002"
+            }
+        ],
+        "Name": "NVIDIA CX8 IRIS 2P NIC",
+        "Probe": "xyz.openbmc_project.FruDevice({'BOARD_PRODUCT_NAME': 'ConnectX-8 800GE 2P NIC', 'BOARD_MANUFACTURER': 'Nvidia'})",
+        "Type": "Board",
+        "xyz.openbmc_project.Inventory.Decorator.Asset": {
+            "Manufacturer": "$BOARD_MANUFACTURER",
+            "Model": "$BOARD_PRODUCT_NAME",
+            "PartNumber": "$BOARD_PART_NUMBER",
+            "SerialNumber": "$BOARD_SERIAL_NUMBER",
+            "SparePartNumber": "$BOARD_INFO_AM1"
+        },
+        "xyz.openbmc_project.Inventory.Decorator.AssetTag": {
+            "AssetTag": "$PRODUCT_ASSET_TAG"
+        }
+    }
+]
