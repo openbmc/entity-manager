@@ -1,0 +1,28 @@
+{
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "$defs": {
+        "PldmDevice": {
+            "description": "MCTP device that implements PLDM protocol. Use this for PLDMd to enumerate devices that don't have PDR tables on the inventory dbus",
+            "properties": {
+                "Name": {
+                    "description": "A recognisable name for the device",
+                    "type": "string"
+                },
+                "Type": {
+                    "type": "string",
+                    "const": "PldmDevice"
+                },
+                "UUID": {
+                    "description": "A recognisable name for the device",
+                    "type": "string"
+                }
+            },
+            "required": [
+                "Name",
+                "Type",
+                "UUID"
+            ],
+            "type": "object"
+        }
+    }
+}
