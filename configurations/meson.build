@@ -152,6 +152,7 @@ configs = [
     'nisqually.json',
     'nuvoton_npcm8xx_evb.json',
     'nvidia_bmc_p3809.json',
+    'nvidia_cx8_iris.json',
     'nvidia_gb200.json',
     'nvidia_gb200_io_board.json',
     'nvidia_hmc.json',
