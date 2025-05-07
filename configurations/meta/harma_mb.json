@@ -1201,6 +1201,23 @@
                     }
                 ],
                 "Type": "TMP75"
+            },
+            {
+                "Name": "Host_SPI_Flash",
+                "SPIControllerIndex": 3,
+                "SPIDeviceIndex": 0,
+                "hasME": false,
+                "MuxOutputs": [
+                    {
+                        "Name": "bmc-spi-mux-select-0",
+                        "Polarity": "High"
+                    }
+                ],
+                "FirmwareInfo": {
+                    "VendorIANA": 40981,
+                    "CompatibleHardware": "com.meta.Hardware.Harma.SPI.Host"
+                },
+                "Type": "SPIFlash"
             }
         ],
         "Name": "Harma MB",

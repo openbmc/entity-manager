@@ -1201,6 +1201,23 @@
                 "temp2_Name": "MB_VR_CPU_PDDIO_TEMP_C",
                 "vout1_Name": "MB_VR_CPU_VCORE1_VOLT_V",
                 "vout2_Name": "MB_VR_CPU_PDDIO_VOLT_V"
+            },
+            {
+                "Name": "Host_SPI_Flash",
+                "SPIControllerIndex": 3,
+                "SPIDeviceIndex": 0,
+                "hasME": false,
+                "MuxOutputs": [
+                    {
+                        "Name": "bmc-spi-mux-select-0",
+                        "Polarity": "High"
+                    }
+                ],
+                "FirmwareInfo": {
+                    "VendorIANA": 40981,
+                    "CompatibleHardware": "com.meta.Hardware.Harma.SPI.Host"
+                },
+                "Type": "SPIFlash"
             }
         ],
         "Name": "Harma MB",
