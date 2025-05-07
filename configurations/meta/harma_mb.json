@@ -1159,6 +1159,23 @@
                 "Type": "SBTSI"
             },
             {
+                "FirmwareInfo": {
+                    "CompatibleHardware": "com.meta.Hardware.Harma.SPI.Host",
+                    "VendorIANA": 40981
+                },
+                "MuxOutputs": [
+                    {
+                        "Name": "bmc-spi-mux-select-0",
+                        "Polarity": "High"
+                    }
+                ],
+                "Name": "Host_SPI_Flash",
+                "SPIControllerIndex": 3,
+                "SPIDeviceIndex": 0,
+                "Type": "SPIFlash",
+                "hasME": false
+            },
+            {
                 "Address": "0x49",
                 "Bus": 29,
                 "Name": "MB_OUTLET_TEMP_C",
