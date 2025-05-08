@@ -1208,11 +1208,7 @@
         }
     ],
     "Name": "Catalina PDB",
-    "Probe": [
-        "xyz.openbmc_project.FruDevice({'BOARD_PRODUCT_NAME': 'Catalina PDB '})",
-        "AND",
-        "xyz.openbmc_project.FruDevice({'BOARD_INFO_AM4': 'hsc-ltc fsc-max vr-delta gndsen-ina p12vsen-ina p12vfan-mps'})"
-    ],
+    "Probe": "xyz.openbmc_project.FruDevice({'BOARD_PRODUCT_NAME': 'Catalina PDB ', 'BOARD_INFO_AM4': 'hsc-ltc fsc-max vr-delta gndsen-ina p12vsen-ina p12vfan-mps'})",
     "Type": "Board",
     "xyz.openbmc_project.Inventory.Decorator.Asset": {
         "BuildDate": "$BOARD_MANUFACTURE_DATE",
