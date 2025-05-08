@@ -1,0 +1,45 @@
+{
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "$defs": {
+        "MCTPUSBDevice": {
+            "properties": {
+                "RootHubPosition": {
+                    "description": "The position of the root port on the SOC (0 is first).",
+                    "type": "number"
+                },
+                "Port": {
+                    "description": "The port hierarchy starting at the root hub to which the device is attached.",
+                    "type": "array",
+                    "items": {
+                        "type": "number"
+                    }
+                },
+                "Configuration": {
+                    "description": "The configuration index for the USB device.",
+                    "type": "number"
+                },
+                "Interface": {
+                    "description": "The interface number for the USB device.",
+                    "type": "number"
+                },
+                "Name": {
+                    "description": "A recognisable name for the USB device",
+                    "type": "string"
+                },
+                "Type": {
+                    "type": "string",
+                    "enum": ["MCTPUSBDevice"]
+                }
+            },
+            "required": [
+                "RootHubPosition",
+                "Port",
+                "Configuration",
+                "Interface",
+                "Name",
+                "Type"
+            ],
+            "type": "object"
+        }
+    }
+}
