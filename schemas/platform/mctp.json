@@ -1,0 +1,51 @@
+{
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "$defs": {
+        "MCTPUSBDevice": {
+            "properties": {
+                "Board": {
+                    "description": "Name of the board inventory object this device is on. Consumers use it to find the configuration that board exposes for the device, and to associate the resulting sensors with the correct board or chassis. The named board must be present, so it is expected as a FOUND precondition in the platform Probe.",
+                    "type": "string"
+                },
+                "RootHubPosition": {
+                    "description": "Which of the SOC's USB root hubs the device is reached through, counting from zero. Only the host controllers count: a companion controller serving the same ports at a lower speed is not a root hub of its own. The bus number the kernel gives that hub is not fixed, so it is read from sysfs rather than named here.",
+                    "type": "number"
+                },
+                "Port": {
+                    "description": "The hub ports to follow from the root hub down to the device, outermost first, so the length is the number of hops. With the root hub's bus number this names the device in sysfs: [1, 2, 1] is /sys/bus/usb/devices/<bus>-1.2.1.",
+                    "type": "array",
+                    "items": {
+                        "type": "number"
+                    }
+                },
+                "Configuration": {
+                    "description": "The USB configuration to use, the bConfigurationValue of the device's configuration descriptor.",
+                    "type": "number"
+                },
+                "Interface": {
+                    "description": "The USB interface within that configuration, the bInterfaceNumber of its interface descriptor. Configuration and interface together name the interface in sysfs, so configuration 1 interface 0 of the device above is /sys/bus/usb/devices/<bus>-1.2.1:1.0.",
+                    "type": "number"
+                },
+                "Name": {
+                    "description": "Name of this device. It must match the PlatformConfigName of the MCTP VDM configuration the device's board exposes for it, which is how the two are paired up.",
+                    "type": "string"
+                },
+                "Type": {
+                    "type": "string",
+                    "enum": ["MCTPUSBDevice"]
+                }
+            },
+            "required": [
+                "RootHubPosition",
+                "Port",
+                "Configuration",
+                "Interface",
+                "Name",
+                "Board",
+                "Type"
+            ],
+            "additionalProperties": false,
+            "type": "object"
+        }
+    }
+}
