@@ -44,6 +44,43 @@
             },
             "required": ["Address", "Bus", "Name", "Type"],
             "type": "object"
+        },
+        "MCTPUSBDevice": {
+            "properties": {
+                "RootHubPath": {
+                    "description": "The path to the USB root hub for the device. For AST2600, the RootHubPath looks like /sys/devices/platform/ahb/1e6a3000.usb",
+                    "type": "string"
+                },
+                "Port": {
+                    "description": "The port on the root hub to which the device is attached.",
+                    "type": "string"
+                },
+                "Configuration": {
+                    "description": "The configuration index for the USB device.",
+                    "type": "string"
+                },
+                "InterfaceNum": {
+                    "description": "The interface number for the USB device.",
+                    "type": "string"
+                },
+                "Name": {
+                    "description": "A recognisable name for the USB device",
+                    "type": "string"
+                },
+                "Type": {
+                    "type": "string",
+                    "enum": ["MCTPUSBDevice"]
+                }
+            },
+            "required": [
+                "RootHubPath",
+                "Port",
+                "Configuration",
+                "InterfaceNum",
+                "Name",
+                "Type"
+            ],
+            "type": "object"
         }
     }
 }
