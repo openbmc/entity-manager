@@ -17,17 +17,27 @@
                 },
                 "Type": {
                     "type": "string",
-                    "enum": ["MCTPI2CTarget"]
+                    "enum": [
+                        "MCTPI2CTarget"
+                    ]
                 }
             },
-            "required": ["Address", "Bus", "Name", "Type"],
+            "required": [
+                "Address",
+                "Bus",
+                "Name",
+                "Type"
+            ],
             "type": "object"
         },
         "MCTPI3CTarget": {
             "properties": {
                 "Address": {
                     "description": "The 6-byte PID for the device on the I3C bus",
-                    "type": ["string", "array"]
+                    "type": [
+                        "string",
+                        "array"
+                    ]
                 },
                 "Bus": {
                     "description": "The bus index to which the device is attached",
@@ -39,10 +49,56 @@
                 },
                 "Type": {
                     "type": "string",
-                    "enum": ["MCTPI3CTarget"]
+                    "enum": [
+                        "MCTPI3CTarget"
+                    ]
                 }
             },
-            "required": ["Address", "Bus", "Name", "Type"],
+            "required": [
+                "Address",
+                "Bus",
+                "Name",
+                "Type"
+            ],
+            "type": "object"
+        },
+        "MCTPUSBDevice": {
+            "properties": {
+                "RootHubPath": {
+                    "description": "The path to the USB root hub for the device.",
+                    "type": "string"
+                },
+                "Port": {
+                    "description": "The port on the root hub to which the device is attached.",
+                    "type": "string"
+                },
+                "Configuration": {
+                    "description": "The configuration index for the USB device.",
+                    "type": "integer"
+                },
+                "InterfaceNum": {
+                    "description": "The interface number for the USB device.",
+                    "type": "integer"
+                },
+                "Name": {
+                    "description": "A recognisable name for the USB device",
+                    "type": "string"
+                },
+                "Type": {
+                    "type": "string",
+                    "enum": [
+                        "MCTPUSBDevice"
+                    ]
+                }
+            },
+            "required": [
+                "RootHubPath",
+                "Port",
+                "Configuration",
+                "InterfaceNum",
+                "Name",
+                "Type"
+            ],
             "type": "object"
         }
     }
