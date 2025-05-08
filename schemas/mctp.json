@@ -44,6 +44,24 @@
             },
             "required": ["Address", "Bus", "Name", "Type"],
             "type": "object"
+        },
+        "MCTPUSBDevice": {
+            "properties": {
+                "Interface": {
+                    "description": "Interface name for MCTP USB device",
+                    "type": "string"
+                },
+                "Name": {
+                    "description": "A recognisable name for the USB device",
+                    "type": "string"
+                },
+                "Type": {
+                    "type": "string",
+                    "enum": ["MCTPUSBDevice"]
+                }
+            },
+            "required": ["Interface", "Name", "Type"],
+            "type": "object"
         }
     }
 }
