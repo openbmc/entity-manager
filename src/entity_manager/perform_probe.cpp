@@ -90,7 +90,7 @@ bool doProbe(const std::vector<std::string>& probeCommand,
 
     for (const auto& probe : probeCommand)
     {
-        probe::FoundProbeTypeT probeType = probe::findProbeType(probe);
+        auto probeType = probe::findProbeType(probe);
         if (probeType)
         {
             switch ((*probeType)->second)
@@ -231,20 +231,23 @@ PerformProbe::~PerformProbe()
     }
 }
 
+using ProbeMap =
+    boost::container::flat_map<std::string, probe_type_codes>;
+
+using FoundProbeTypeT = std::optional<ProbeMap::const_iterator>;
+
 FoundProbeTypeT findProbeType(const std::string& probe)
 {
-    const boost::container::flat_map<const char*, probe_type_codes, CmpStr>
-        probeTypes{{{"FALSE", probe_type_codes::FALSE_T},
-                    {"TRUE", probe_type_codes::TRUE_T},
-                    {"AND", probe_type_codes::AND},
-                    {"OR", probe_type_codes::OR},
-                    {"FOUND", probe_type_codes::FOUND},
-                    {"MATCH_ONE", probe_type_codes::MATCH_ONE}}};
+    static const ProbeMap probeTypes = {
+        {"FALSE", probe_type_codes::FALSE_T},
+        {"TRUE", probe_type_codes::TRUE_T},
+        {"AND", probe_type_codes::AND},
+        {"OR", probe_type_codes::OR},
+        {"FOUND", probe_type_codes::FOUND},
+        {"MATCH_ONE", probe_type_codes::MATCH_ONE},
+    };
 
-    boost::container::flat_map<const char*, probe_type_codes,
-                               CmpStr>::const_iterator probeType;
-    for (probeType = probeTypes.begin(); probeType != probeTypes.end();
-         ++probeType)
+    for (auto probeType = probeTypes.begin(); probeType != probeTypes.end(); ++probeType)
     {
         if (probe.find(probeType->first) != std::string::npos)
         {

@@ -10,14 +10,6 @@
 
 namespace probe
 {
-struct CmpStr
-{
-    bool operator()(const char* a, const char* b) const
-    {
-        return std::strcmp(a, b) < 0;
-    }
-};
-
 // underscore T for collison with dbus c api
 enum class probe_type_codes
 {
@@ -30,7 +22,7 @@ enum class probe_type_codes
 };
 
 using FoundProbeTypeT = std::optional<boost::container::flat_map<
-    const char*, probe_type_codes, CmpStr>::const_iterator>;
+    std::string, probe_type_codes>::const_iterator>;
 
 FoundProbeTypeT findProbeType(const std::string& probe);
 
