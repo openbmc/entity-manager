@@ -16,6 +16,57 @@
       "message": "Thank you for the review and comments 👍",
       "revId": "c0a98ee0f20d4f3fa9c3b87a3372ed895b74f7c4",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e6c658ae_4833634a",
+        "filename": "meson.build",
+        "patchSetId": 19
+      },
+      "lineNbr": 39,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-05-08T07:57:43Z",
+      "side": 1,
+      "message": "I think it would be good to add the wrap file for \u0027phosphor-dbus-interfaces\u0027, so it can be built as a subproject as well.",
+      "revId": "c0a98ee0f20d4f3fa9c3b87a3372ed895b74f7c4",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "cc041f37_c1d87737",
+        "filename": "meson.build",
+        "patchSetId": 19
+      },
+      "lineNbr": 48,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-05-08T07:57:43Z",
+      "side": 1,
+      "message": "lets call this libgpio_dep instead of gpiodcxx.",
+      "revId": "c0a98ee0f20d4f3fa9c3b87a3372ed895b74f7c4",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "159d5655_dd6e7c0c",
+        "filename": "service_files/xyz.openbmc_project.gpiopresence.service",
+        "patchSetId": 19
+      },
+      "lineNbr": 2,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-05-08T07:57:43Z",
+      "side": 1,
+      "message": "nit: Sensor instead of Daemon",
+      "revId": "c0a98ee0f20d4f3fa9c3b87a3372ed895b74f7c4",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }
