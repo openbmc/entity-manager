@@ -16,6 +16,24 @@
       "message": "Weird that FoundProbeTypeT is an iterator when none of the calling code uses it as such. Should we just change src/entity_manager/perform_probe.hpp from\n```\nusing FoundProbeTypeT \u003d std::optional\u003cboost::container::flat_map\u003cconst char*, probe_type_codes, CmpStr\u003e::const_iterator\u003e;\n```\nto\n```\nusing FoundProbeTypeT \u003d std::optional\u003cprobe_type_codes\u003e;\n```\n?",
       "revId": "441a20bff60e4a0d429697e410f89a10fdfa2b99",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4b61d356_c20ceadb",
+        "filename": "src/entity_manager/perform_probe.cpp",
+        "patchSetId": 7
+      },
+      "lineNbr": 234,
+      "author": {
+        "id": 1000212
+      },
+      "writtenOn": "2025-05-09T18:44:06Z",
+      "side": 1,
+      "message": "I have a feeling the earlier code used the iterator to compare against end to signal \"not found\". But now that its an optional, we have an explicit signal. So, we don\u0027t need it to be an iterator anymore.",
+      "parentUuid": "15a06ec8_d8ff773c",
+      "revId": "441a20bff60e4a0d429697e410f89a10fdfa2b99",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }
