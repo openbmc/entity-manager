@@ -1,0 +1,108 @@
+[
+    {
+        "Exposes": [
+            {
+                "Address": "0x6a",
+                "Bus": "48",
+                "Name": "HDDBOARD0_SSD0_TEMP_C",
+                "PowerState": "On",
+                "Thresholds": [
+                    {
+                        "Direction": "greater than",
+                        "Name": "upper critical",
+                        "Severity": 1,
+                        "Value": 70
+                    },
+                    {
+                        "Direction": "less than",
+                        "Name": "lower critical",
+                        "Severity": 1,
+                        "Value": 5
+                    }
+                ],
+                "Type": "NVME1000"
+            },
+            {
+                "Address": "0x6a",
+                "Bus": "50",
+                "Name": "HDDBOARD0_SSD1_TEMP_C",
+                "PowerState": "On",
+                "Thresholds": [
+                    {
+                        "Direction": "greater than",
+                        "Name": "upper critical",
+                        "Severity": 1,
+                        "Value": 70
+                    },
+                    {
+                        "Direction": "less than",
+                        "Name": "lower critical",
+                        "Severity": 1,
+                        "Value": 5
+                    }
+                ],
+                "Type": "NVME1000"
+            }
+        ],
+        /* Clemente Hard Disk Drive NVMe Board 0*/
+        "Name": "Clemente HDD NVMe",
+        "Probe": [
+            "FOUND('Clemente HDD Carrier 0')"
+        ],
+        "Type": "Board",
+        "xyz.openbmc_project.Inventory.Item.Chassis": {}
+    },
+    {
+        "Exposes": [
+            {
+                "Address": "0x6a",
+                "Bus": "52",
+                "Name": "HDDBOARD1_SSD0_TEMP_C",
+                "PowerState": "On",
+                "Thresholds": [
+                    {
+                        "Direction": "greater than",
+                        "Name": "upper critical",
+                        "Severity": 1,
+                        "Value": 70
+                    },
+                    {
+                        "Direction": "less than",
+                        "Name": "lower critical",
+                        "Severity": 1,
+                        "Value": 5
+                    }
+                ],
+                "Type": "NVME1000"
+            },
+            {
+                "Address": "0x6a",
+                "Bus": "54",
+                "Name": "HDDBOARD1_SSD1_TEMP_C",
+                "PowerState": "On",
+                "Thresholds": [
+                    {
+                        "Direction": "greater than",
+                        "Name": "upper critical",
+                        "Severity": 1,
+                        "Value": 70
+                    },
+                    {
+                        "Direction": "less than",
+                        "Name": "lower critical",
+                        "Severity": 1,
+                        "Value": 5
+                    }
+                ],
+                "Type": "NVME1000"
+            }
+        ],
+        /* Clemente Hard Disk Drive NVMe Board 1*/
+        "Name": "Clemente HDD NVMe",
+        "Probe": [
+            "FOUND('Clemente HDD Carrier 1')"
+        ],
+        "Type": "Board",
+        "xyz.openbmc_project.Inventory.Item.Chassis": {}
+    }
+]
