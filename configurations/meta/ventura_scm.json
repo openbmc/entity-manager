@@ -226,6 +226,13 @@
                     "Name": "upper critical",
                     "Severity": 1,
                     "Value": 45
+                },
+                {
+                    "Direction": "less than",
+                    "Hysteresis": 0.9,
+                    "Name": "lower critical",
+                    "Severity": 1,
+                    "Value": 5
                 }
             ],
             "Type": "TMP75"
