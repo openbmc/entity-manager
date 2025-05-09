@@ -1,0 +1,152 @@
+{
+    "Exposes": [
+        {
+            "Address": "$address",
+            "Bus": "$bus",
+            "Name": "Clemente HDD Board FRU",
+            "Type": "EEPROM"
+        },
+        {
+            "Address": "0x40",
+            "Bus": 55,
+            "Labels": [
+                "in1",
+                "curr1",
+                "power1"
+            ],
+            "Name": "HDDBOARD_SSD0_INA230",
+            "PowerState": "On",
+            "Thresholds": [
+                {
+                    "Direction": "greater than",
+                    "Label": "in1",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 13.6
+                },
+                {
+                    "Direction": "less than",
+                    "Label": "in1",
+                    "Name": "lower critical",
+                    "Severity": 1,
+                    "Value": 10.5
+                }
+            ],
+            "Type": "INA230",
+            "curr1_Name": "HDDBOARD_SSD0_P12V_CURR_A",
+            "in1_Name": "HDDBOARD_SSD0_P12V_VOLT_V",
+            "power1_Name": "HDDBOARD_SSD0_P12V_PWR_W"
+        },
+        {
+            "Address": "0x41",
+            "Bus": 55,
+            "Labels": [
+                "in1",
+                "curr1",
+                "power1"
+            ],
+            "Name": "HDDBOARD_SSD1_INA230",
+            "PowerState": "On",
+            "Thresholds": [
+                {
+                    "Direction": "greater than",
+                    "Label": "in1",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 13.6
+                },
+                {
+                    "Direction": "less than",
+                    "Label": "in1",
+                    "Name": "lower critical",
+                    "Severity": 1,
+                    "Value": 10.5
+                }
+            ],
+            "Type": "INA230",
+            "curr1_Name": "HDDBOARD_SSD1_P12V_CURR_A",
+            "in1_Name": "HDDBOARD_SSD1_P12V_VOLT_V",
+            "power1_Name": "HDDBOARD_SSD1_P12V_PWR_W"
+        },
+        {
+            "Address": "0x44",
+            "Bus": 55,
+            "Labels": [
+                "in1",
+                "curr1",
+                "power1"
+            ],
+            "Name": "HDDBOARD_SSD2_INA230",
+            "PowerState": "On",
+            "Thresholds": [
+                {
+                    "Direction": "greater than",
+                    "Label": "in1",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 13.6
+                },
+                {
+                    "Direction": "less than",
+                    "Label": "in1",
+                    "Name": "lower critical",
+                    "Severity": 1,
+                    "Value": 10.5
+                }
+            ],
+            "Type": "INA230",
+            "curr1_Name": "HDDBOARD_SSD2_P12V_CURR_A",
+            "in1_Name": "HDDBOARD_SSD2_P12V_VOLT_V",
+            "power1_Name": "HDDBOARD_SSD2_P12V_PWR_W"
+        },
+        {
+            "Address": "0x49",
+            "Bus": 55,
+            "Labels": [
+                "in1",
+                "curr1",
+                "power1"
+            ],
+            "Name": "HDDBOARD_SSD3_INA230",
+            "PowerState": "On",
+            "Thresholds": [
+                {
+                    "Direction": "greater than",
+                    "Label": "in1",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 13.6
+                },
+                {
+                    "Direction": "less than",
+                    "Label": "in1",
+                    "Name": "lower critical",
+                    "Severity": 1,
+                    "Value": 10.5
+                }
+            ],
+            "Type": "INA230",
+            "curr1_Name": "HDDBOARD_SSD3_P12V_CURR_A",
+            "in1_Name": "HDDBOARD_SSD3_P12V_VOLT_V",
+            "power1_Name": "HDDBOARD_SSD3_P12V_PWR_W"
+        }
+    ],
+    /* Clemente Hard Disk Drive Carrier Board */
+    "Name": "Clemente HDD Carrier",
+    "Probe": "xyz.openbmc_project.FruDevice({'BOARD_PRODUCT_NAME': 'Clemente HDD '})",
+    "Type": "Board",
+    "xyz.openbmc_project.Inventory.Decorator.Asset": {
+        "BuildDate": "$BOARD_MANUFACTURE_DATE",
+        "Manufacturer": "$BOARD_MANUFACTURER",
+        "Model": "$BOARD_PRODUCT_NAME",
+        "PartNumber": "$BOARD_PART_NUMBER",
+        "SerialNumber": "$BOARD_SERIAL_NUMBER",
+        "SparePartNumber": "$BOARD_INFO_AM1"
+    },
+    "xyz.openbmc_project.Inventory.Decorator.AssetTag": {
+        "AssetTag": "$PRODUCT_ASSET_TAG"
+    },
+    "xyz.openbmc_project.Inventory.Decorator.Revision": {
+        "Version": "$PRODUCT_VERSION"
+    }
+}
