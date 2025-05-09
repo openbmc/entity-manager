@@ -11,7 +11,9 @@
     "Probe": [
         "xyz.openbmc_project.FruDevice({'BOARD_PRODUCT_NAME': 'BMC Storage Module', 'BOARD_MANUFACTURER': 'Wiwynn'})",
         "OR",
-        "xyz.openbmc_project.FruDevice({'BOARD_PRODUCT_NAME': 'BMC Storage Module', 'BOARD_MANUFACTURER': 'Quanta'})"
+        "xyz.openbmc_project.FruDevice({'BOARD_PRODUCT_NAME': 'BMC Storage Module', 'BOARD_MANUFACTURER': 'Quanta'})",
+        "OR",
+        "xyz.openbmc_project.FruDevice({'BOARD_PRODUCT_NAME': 'BMC Storage Module', 'BOARD_MANUFACTURER': 'Ingrasys'})"
     ],
     "Type": "Board",
     "xyz.openbmc_project.Inventory.Decorator.Asset": {
