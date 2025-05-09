@@ -18,6 +18,24 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "d7707ffc_cb90163c",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 19
+      },
+      "lineNbr": 27,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-05-09T14:45:50Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "8462be32_e0f91676",
+      "revId": "c0a98ee0f20d4f3fa9c3b87a3372ed895b74f7c4",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "f0b58545_8571c2ec",
@@ -31,6 +49,24 @@
       "writtenOn": "2025-05-08T08:06:33Z",
       "side": 1,
       "message": "Isn\u0027t this one only for patches? What would it mean in this PR context?",
+      "revId": "c0a98ee0f20d4f3fa9c3b87a3372ed895b74f7c4",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "3adb4e26_291e747b",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 19
+      },
+      "lineNbr": 39,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-05-09T14:45:50Z",
+      "side": 1,
+      "message": "It is required for yocto builds to build an image and test my changes.\n\nOtherwise the build system will reject the patch!\n\nI try to test the patches without modification if possible.",
+      "parentUuid": "f0b58545_8571c2ec",
       "revId": "c0a98ee0f20d4f3fa9c3b87a3372ed895b74f7c4",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
@@ -69,6 +105,24 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "fbf389d4_e28051c1",
+        "filename": "meson.build",
+        "patchSetId": 19
+      },
+      "lineNbr": 39,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-05-09T14:45:50Z",
+      "side": 1,
+      "message": "I believe it\u0027s already part of the tree\n\nhttps://github.com/openbmc/entity-manager/blob/master/subprojects/phosphor-dbus-interfaces.wrap",
+      "parentUuid": "e6c658ae_4833634a",
+      "revId": "c0a98ee0f20d4f3fa9c3b87a3372ed895b74f7c4",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "cc041f37_c1d87737",
@@ -86,6 +140,24 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "7ac7dee4_595a553c",
+        "filename": "meson.build",
+        "patchSetId": 19
+      },
+      "lineNbr": 48,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-05-09T14:45:50Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "cc041f37_c1d87737",
+      "revId": "c0a98ee0f20d4f3fa9c3b87a3372ed895b74f7c4",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "159d5655_dd6e7c0c",
@@ -99,6 +171,24 @@
       "writtenOn": "2025-05-08T07:57:43Z",
       "side": 1,
       "message": "nit: Sensor instead of Daemon",
+      "revId": "c0a98ee0f20d4f3fa9c3b87a3372ed895b74f7c4",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "f4596857_f44e30cb",
+        "filename": "service_files/xyz.openbmc_project.gpiopresence.service",
+        "patchSetId": 19
+      },
+      "lineNbr": 2,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-05-09T14:45:50Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "159d5655_dd6e7c0c",
       "revId": "c0a98ee0f20d4f3fa9c3b87a3372ed895b74f7c4",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
@@ -137,6 +227,24 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "9ce03f87_65e1a1c4",
+        "filename": "src/gpio-presence/config.cpp",
+        "patchSetId": 19
+      },
+      "lineNbr": 98,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-05-09T14:45:50Z",
+      "side": 1,
+      "message": "\u003e Clang is getting confused in case of co-routines\n\nIf it\u0027s getting confused, do you mean there is a bug in clang-tidy?\nIn that case, that should be fixed in clang-tidy project.\n\nI\u0027m not sure how that\u0027s related to this patch.",
+      "parentUuid": "362cfc73_a9584aaf",
+      "revId": "c0a98ee0f20d4f3fa9c3b87a3372ed895b74f7c4",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "299ceec0_92c89f77",
@@ -150,6 +258,24 @@
       "writtenOn": "2025-05-08T22:36:40Z",
       "side": 1,
       "message": "Why do you have present here? This is not configuration but an runtime state. I would expect GPIO to be a composite structure of -\n\nstruct GPIO {\nGPIOConfig\nGPIOState\n}\n\nWhere config is the one received from EM and the state is the one being manipulated locally. On the similar pattern classes would need to be organized to create that distinction and encapsulation hierarchy.",
+      "revId": "c0a98ee0f20d4f3fa9c3b87a3372ed895b74f7c4",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a1d6c260_b1dafa41",
+        "filename": "src/gpio-presence/config.hpp",
+        "patchSetId": 19
+      },
+      "lineNbr": 32,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-05-09T14:45:50Z",
+      "side": 1,
+      "message": "If i were to separate the configuration and runtime state, it would be more objects.\n\nThe only thing we need to keep track of is the name (which is they key for the map)\nand the polarity as well as the cached state of the gpio.\n\n\nI combined the config and runtime state to avoid having any stale values from handling multiple maps (and perhaps forgetting to update one of them).",
+      "parentUuid": "299ceec0_92c89f77",
       "revId": "c0a98ee0f20d4f3fa9c3b87a3372ed895b74f7c4",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
@@ -171,6 +297,24 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "3177cc87_1717e0c5",
+        "filename": "src/gpio-presence/config_provider.hpp",
+        "patchSetId": 19
+      },
+      "lineNbr": 2,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-05-09T14:45:50Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "2dd03155_e7278971",
+      "revId": "c0a98ee0f20d4f3fa9c3b87a3372ed895b74f7c4",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "27441044_177c1a37",
@@ -184,6 +328,24 @@
       "writtenOn": "2025-05-08T22:36:40Z",
       "side": 1,
       "message": "Lets move all these using clauses to .cpp file as they are being used there.",
+      "revId": "c0a98ee0f20d4f3fa9c3b87a3372ed895b74f7c4",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "1d66fc19_cc7d7480",
+        "filename": "src/gpio-presence/config_provider.hpp",
+        "patchSetId": 19
+      },
+      "lineNbr": 35,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-05-09T14:45:50Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "27441044_177c1a37",
       "revId": "c0a98ee0f20d4f3fa9c3b87a3372ed895b74f7c4",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
@@ -205,6 +367,24 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "a8ed436d_f1942d4b",
+        "filename": "src/gpio-presence/config_provider.hpp",
+        "patchSetId": 19
+      },
+      "lineNbr": 40,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-05-09T14:45:50Z",
+      "side": 1,
+      "message": "Saw this one in your patch\n```\nDetectionManager::DetectionManager(sdbusplus::async::context\u0026 ctx) :\n    ctx(ctx),\n    entityManager(\n        ctx, {GPIODetectorConfigIntf::interface},\n        std::bind_front(\u0026DetectionManager::processInventoryAdded, this),\n        std::bind_front(\u0026DetectionManager::processInventoryRemoved, this)),\n    leakEvents(ctx)\n{\n    ctx.spawn(startup());\n}\n```\n\n, it makes more sense 😊.\n\nThen the logic can be shared later on by different EM config consumers.\n\nChanged the ```ConfigProvider``` to not be coupled to gpio presence sensor anymore.",
+      "parentUuid": "438de8fb_16c6f703",
+      "revId": "c0a98ee0f20d4f3fa9c3b87a3372ed895b74f7c4",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "9be88070_02a628eb",
@@ -218,6 +398,24 @@
       "writtenOn": "2025-05-08T22:36:40Z",
       "side": 1,
       "message": "Refer to my comment above.",
+      "revId": "c0a98ee0f20d4f3fa9c3b87a3372ed895b74f7c4",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "ad0137c2_b426a2fa",
+        "filename": "src/gpio-presence/config_provider.hpp",
+        "patchSetId": 19
+      },
+      "lineNbr": 49,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-05-09T14:45:50Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "9be88070_02a628eb",
       "revId": "c0a98ee0f20d4f3fa9c3b87a3372ed895b74f7c4",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
@@ -239,6 +437,24 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "7587fea8_8b50db6f",
+        "filename": "src/gpio-presence/gpio_presence.cpp",
+        "patchSetId": 19
+      },
+      "lineNbr": 54,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-05-09T14:45:50Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "d8f48ff0_0f95c0a4",
+      "revId": "c0a98ee0f20d4f3fa9c3b87a3372ed895b74f7c4",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "548cf2ab_f75b97be",
@@ -252,6 +468,24 @@
       "writtenOn": "2025-05-08T22:36:40Z",
       "side": 1,
       "message": "Please make sure the .hpp and .cpp follow similar order in terms of APIs so its easier to browse and map the code. Please do this in all the files.",
+      "revId": "c0a98ee0f20d4f3fa9c3b87a3372ed895b74f7c4",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "1df4e4ea_6e2b8014",
+        "filename": "src/gpio-presence/gpio_presence.cpp",
+        "patchSetId": 19
+      },
+      "lineNbr": 118,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-05-09T14:45:50Z",
+      "side": 1,
+      "message": "Yes, fixed it 👍",
+      "parentUuid": "548cf2ab_f75b97be",
       "revId": "c0a98ee0f20d4f3fa9c3b87a3372ed895b74f7c4",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
@@ -273,6 +507,24 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "2f062d0f_4be79bad",
+        "filename": "src/gpio-presence/gpio_presence.cpp",
+        "patchSetId": 19
+      },
+      "lineNbr": 123,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-05-09T14:45:50Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "97659515_af68c2d8",
+      "revId": "c0a98ee0f20d4f3fa9c3b87a3372ed895b74f7c4",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "ddccf454_03f9e306",
@@ -286,6 +538,24 @@
       "writtenOn": "2025-05-08T22:36:40Z",
       "side": 1,
       "message": "How is this API different from API at line#46?",
+      "revId": "c0a98ee0f20d4f3fa9c3b87a3372ed895b74f7c4",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "f363e687_324108e9",
+        "filename": "src/gpio-presence/gpio_presence.hpp",
+        "patchSetId": 19
+      },
+      "lineNbr": 53,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-05-09T14:45:50Z",
+      "side": 1,
+      "message": "Inlined it as you suggested 👍",
+      "parentUuid": "ddccf454_03f9e306",
       "revId": "c0a98ee0f20d4f3fa9c3b87a3372ed895b74f7c4",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
@@ -307,6 +577,24 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "3dd18733_0115b44f",
+        "filename": "src/gpio-presence/main.cpp",
+        "patchSetId": 19
+      },
+      "lineNbr": 18,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-05-09T14:45:50Z",
+      "side": 1,
+      "message": "I would like to keep the name that\u0027s been agreed upon in the design document\nhttps://github.com/openbmc/docs/blob/master/designs/inventory/gpio-based-hardware-inventory.md\n\nAfter it\u0027s been merged we can move the code, change names, ...",
+      "parentUuid": "f884f9d4_9f1da166",
+      "revId": "c0a98ee0f20d4f3fa9c3b87a3372ed895b74f7c4",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "37cdf6dd_c0a59e1d",
@@ -320,6 +608,24 @@
       "writtenOn": "2025-05-08T22:36:40Z",
       "side": 1,
       "message": "Lets move ConfigProvider as a member var in GPIOPresence so you don\u0027t have to pass it in class constructor. I don\u0027t see it being used anywhere else.",
+      "revId": "c0a98ee0f20d4f3fa9c3b87a3372ed895b74f7c4",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "9a7d0bf6_586ba940",
+        "filename": "src/gpio-presence/main.cpp",
+        "patchSetId": 19
+      },
+      "lineNbr": 33,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-05-09T14:45:50Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "37cdf6dd_c0a59e1d",
       "revId": "c0a98ee0f20d4f3fa9c3b87a3372ed895b74f7c4",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
@@ -343,6 +649,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "f7ea63f9_6eff6115",
+        "filename": "src/gpio-presence/main.cpp",
+        "patchSetId": 19
+      },
+      "lineNbr": 40,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-05-09T14:45:50Z",
+      "side": 1,
+      "message": "How will it work with the test code?\n\nIf we compile gpio_presence.cpp with the test code then there will be 2 main functions.",
+      "parentUuid": "16b3abac_bf5b6f8e",
+      "revId": "c0a98ee0f20d4f3fa9c3b87a3372ed895b74f7c4",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "25859f61_2377a6cf",
         "filename": "src/gpio-presence/main.cpp",
         "patchSetId": 19
@@ -354,6 +678,24 @@
       "writtenOn": "2025-05-08T22:36:40Z",
       "side": 1,
       "message": "This file will become really small so better to collapse the main into gpio_presence.cpp",
+      "revId": "c0a98ee0f20d4f3fa9c3b87a3372ed895b74f7c4",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3b23d603_f1d0ef8e",
+        "filename": "src/gpio-presence/main.cpp",
+        "patchSetId": 19
+      },
+      "lineNbr": 43,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-05-09T14:45:50Z",
+      "side": 1,
+      "message": "How will it work with the test code?\n\nIf we compile ```gpio_presence.cpp``` with the test code then there will be 2 main functions.",
+      "parentUuid": "25859f61_2377a6cf",
       "revId": "c0a98ee0f20d4f3fa9c3b87a3372ed895b74f7c4",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
