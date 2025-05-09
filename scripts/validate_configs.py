@@ -3,6 +3,7 @@
 """
 A tool for validating entity manager configurations.
 """
+
 import argparse
 import json
 import os
@@ -10,7 +11,10 @@ import re
 import sys
 from concurrent.futures import ProcessPoolExecutor
 
+import jsonschema.exceptions
 import jsonschema.validators
+import referencing
+from referencing.jsonschema import DRAFT202012
 
 DEFAULT_SCHEMA_FILENAME = "global.json"
 
@@ -203,17 +207,46 @@ def main():
 
 
 def validator_from_file(schema_file):
-    schema = {}
-    with open(schema_file) as fd:
-        schema = json.load(fd)
+    # Get root directory of schema file, so we can walk all the directories
+    # for referenced schemas.
+    schema_path = os.path.dirname(schema_file)
 
-    spec = jsonschema.Draft202012Validator
-    spec.check_schema(schema)
-    base_uri = "file://{}/".format(
-        os.path.split(os.path.realpath(schema_file))[0]
+    root_schema = None
+    registry = referencing.Registry()
+
+    # Pre-load all .json files from the schemas directory and its subdirectories
+    # into the registry. This allows $refs to resolve to any schema.
+    for dirpath, _, directory in os.walk(schema_path):
+        for filename in directory:
+            if filename.endswith(".json"):
+                full_file_path = os.path.join(dirpath, filename)
+
+                # The URI  is their path relative to schema_path.
+                relative_uri = os.path.relpath(full_file_path, schema_path)
+
+                with open(full_file_path, "r") as fd:
+                    schema_contents = json.loads(remove_c_comments(fd.read()))
+                    jsonschema.validators.Draft202012Validator.check_schema(
+                        schema_contents
+                    )
+
+                    # Add to the registry.
+                    registry = registry.with_resource(
+                        uri=relative_uri,
+                        resource=referencing.Resource.from_contents(
+                            schema_contents, default_specification=DRAFT202012
+                        ),
+                    )
+
+                    # If this was the schema_file we need to save the contents
+                    # as the root schema.
+                    if schema_file == full_file_path:
+                        root_schema = schema_contents
+
+    # Create the validator instance with the schema content and the configured registry.
+    validator = jsonschema.validators.Draft202012Validator(
+        root_schema, registry=registry
     )
-    resolver = jsonschema.RefResolver(base_uri, schema)
-    validator = spec(schema, resolver=resolver)
 
     return validator
 
@@ -235,11 +268,13 @@ def validate_single_config(
         if not expect_fail:
             is_invalid = True
             if args.verbose:
-                print(e)
-    except FileNotFoundError:
-        is_invalid = True
-        if args.verbose:
-            print(f"Could not read schema file: {schema_file}")
+                print(f"Validation Error for {filename}: {e}")
+    except Exception as e:
+        # Catch any other unexpected errors during validation
+        if not expect_fail:
+            is_invalid = True
+            if args.verbose:
+                print(f"Unexpected Error during processing {filename}: {e}")
 
     return (is_invalid, is_unexpected_pass)
 
