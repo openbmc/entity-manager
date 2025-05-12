@@ -105,6 +105,7 @@ schemas = [
     'leak_detector.json',
     'firmware.json',
     'modbus.json',
+    'serial_port.json',
 ]
 
 foreach s : schemas
