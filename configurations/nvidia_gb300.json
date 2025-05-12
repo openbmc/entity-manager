@@ -1,0 +1,326 @@
+{
+    "Exposes": [
+        {
+            "Address": "$bus - 1 % 2 + 72",
+            "Bus": 1,
+            "Labels": [
+                "in_voltage0"
+            ],
+            "Name": "NVIDIA_GB300_CPU $bus - 1 % 2",
+            "Thresholds": [
+                {
+                    "Direction": "greater than",
+                    "Hysteresis": 0,
+                    "Label": "in_voltage0",
+                    "Name": "upper non recoverable",
+                    "Severity": 4,
+                    "Value": 13.74
+                },
+                {
+                    "Direction": "greater than",
+                    "Hysteresis": 0,
+                    "Label": "in_voltage0",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 13.176
+                },
+                {
+                    "Direction": "greater than",
+                    "Hysteresis": 0,
+                    "Label": "in_voltage0",
+                    "Name": "upper non critical",
+                    "Severity": 0,
+                    "Value": 13.054
+                },
+                {
+                    "Direction": "less than",
+                    "Hysteresis": 0,
+                    "Label": "in_voltage0",
+                    "Name": "lower non critical",
+                    "Severity": 0,
+                    "Value": 1.346
+                },
+                {
+                    "Direction": "less than",
+                    "Hysteresis": 0,
+                    "Label": "in_voltage0",
+                    "Name": "lower critical",
+                    "Severity": 1,
+                    "Value": 1.224
+                },
+                {
+                    "Direction": "less than",
+                    "Hysteresis": 0,
+                    "Label": "in_voltage0",
+                    "Name": "lower non recoverable",
+                    "Severity": 4,
+                    "Value": 1.32
+                }
+            ],
+            "Type": "ADS1015",
+            "in_voltage0_Name": "NVIDIA_GB300_CPU$bus - 1 % 2_LEAK_SENSOR"
+        },
+        {
+            "Address": "$address",
+            "Bus": "$bus",
+            "Name": "NVIDIA GB300 FRU $bus - 1 % 2",
+            "Type": "EEPROM"
+        },
+        {
+            "Address": "$bus - 1 % 2 * 12 + 32",
+            "Bus": 1,
+            "Connector": {
+                "Name": "FAN$bus - 1 % 2 * 4 + 0_TACH_IL",
+                "Pwm": 2,
+                "PwmName": "FAN$bus - 1 % 2 * 4 + 0_PWM",
+                "Tachs": [
+                    4
+                ]
+            },
+            "Index": 4,
+            "Name": "FAN$bus - 1 % 2 * 4 + 0_TACH_IL_SPEED_RPM",
+            "PowerState": "Always",
+            "Thresholds": [
+                {
+                    "Direction": "greater than",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 36300
+                },
+                {
+                    "Direction": "less than",
+                    "Name": "lower critical",
+                    "Severity": 1,
+                    "Value": 2550
+                }
+            ],
+            "Type": "I2CFan"
+        },
+        {
+            "Address": "$bus - 1 % 2 * 12 + 32",
+            "Bus": 1,
+            "Connector": {
+                "Name": "FAN$bus - 1 % 2 * 4 + 0_TACH_OL",
+                "Pwm": 2,
+                "PwmName": "FAN$bus - 1 % 2 * 4 + 0_PWM",
+                "Tachs": [
+                    5
+                ]
+            },
+            "Index": 5,
+            "Name": "FAN$bus - 1 % 2 * 4 + 0_TACH_OL_SPEED_RPM",
+            "PowerState": "Always",
+            "Thresholds": [
+                {
+                    "Direction": "greater than",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 33000
+                },
+                {
+                    "Direction": "less than",
+                    "Name": "lower critical",
+                    "Severity": 1,
+                    "Value": 1960
+                }
+            ],
+            "Type": "I2CFan"
+        },
+        {
+            "Address": "$bus - 1 % 2 * 12 + 32",
+            "Bus": 1,
+            "Connector": {
+                "Name": "FAN$bus - 1 % 2 * 4 + 1_TACH_IL",
+                "Pwm": 3,
+                "PwmName": "FAN$bus - 1 % 2 * 4 + 1_PWM",
+                "Tachs": [
+                    10
+                ]
+            },
+            "Index": 10,
+            "Name": "FAN$bus - 1 % 2 * 4 + 1_TACH_IL_SPEED_RPM",
+            "PowerState": "Always",
+            "Thresholds": [
+                {
+                    "Direction": "greater than",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 36300
+                },
+                {
+                    "Direction": "less than",
+                    "Name": "lower critical",
+                    "Severity": 1,
+                    "Value": 2550
+                }
+            ],
+            "Type": "I2CFan"
+        },
+        {
+            "Address": "$bus - 1 % 2 * 12 + 32",
+            "Bus": 1,
+            "Connector": {
+                "Name": "FAN$bus - 1 % 2 * 4 + 1_TACH_OL",
+                "Pwm": 3,
+                "PwmName": "FAN$bus - 1 % 2 * 4 + 1_PWM",
+                "Tachs": [
+                    11
+                ]
+            },
+            "Index": 11,
+            "Name": "FAN$bus - 1 % 2 * 4 + 1_TACH_OL_SPEED_RPM",
+            "PowerState": "Always",
+            "Thresholds": [
+                {
+                    "Direction": "greater than",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 33000
+                },
+                {
+                    "Direction": "less than",
+                    "Name": "lower critical",
+                    "Severity": 1,
+                    "Value": 1960
+                }
+            ],
+            "Type": "I2CFan"
+        },
+        {
+            "Address": "$bus - 1 % 2 * 12 + 35",
+            "Bus": 1,
+            "Connector": {
+                "Name": "FAN$bus - 1 % 2 * 4 + 2_TACH_IL",
+                "Pwm": 0,
+                "PwmName": "FAN$bus - 1 % 2 * 4 + 2_PWM",
+                "Tachs": [
+                    0
+                ]
+            },
+            "Index": 0,
+            "Name": "FAN$bus - 1 % 2 * 4 + 2_TACH_IL_SPEED_RPM",
+            "PowerState": "Always",
+            "Thresholds": [
+                {
+                    "Direction": "greater than",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 36300
+                },
+                {
+                    "Direction": "less than",
+                    "Name": "lower critical",
+                    "Severity": 1,
+                    "Value": 2550
+                }
+            ],
+            "Type": "I2CFan"
+        },
+        {
+            "Address": "$bus - 1 % 2 * 12 + 35",
+            "Bus": 1,
+            "Connector": {
+                "Name": "FAN$bus - 1 % 2 * 4 + 2_TACH_OL",
+                "Pwm": 0,
+                "PwmName": "FAN$bus - 1 % 2 * 4 + 2_PWM",
+                "Tachs": [
+                    1
+                ]
+            },
+            "Index": 1,
+            "Name": "FAN$bus - 1 % 2 * 4 + 2_TACH_OL_SPEED_RPM",
+            "PowerState": "Always",
+            "Thresholds": [
+                {
+                    "Direction": "greater than",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 33000
+                },
+                {
+                    "Direction": "less than",
+                    "Name": "lower critical",
+                    "Severity": 1,
+                    "Value": 1960
+                }
+            ],
+            "Type": "I2CFan"
+        },
+        {
+            "Address": "$bus - 1 % 2 * 12 + 35",
+            "Bus": 1,
+            "Connector": {
+                "Name": "FAN$bus - 1 % 2 * 4 + 3_TACH_IL",
+                "Pwm": 1,
+                "PwmName": "FAN$bus - 1 % 2 * 4 + 3_PWM",
+                "Tachs": [
+                    2
+                ]
+            },
+            "Index": 2,
+            "Name": "FAN$bus - 1 % 2 * 4 + 3_TACH_IL_SPEED_RPM",
+            "PowerState": "Always",
+            "Thresholds": [
+                {
+                    "Direction": "greater than",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 36300
+                },
+                {
+                    "Direction": "less than",
+                    "Name": "lower critical",
+                    "Severity": 1,
+                    "Value": 2550
+                }
+            ],
+            "Type": "I2CFan"
+        },
+        {
+            "Address": "$bus - 1 % 2 * 12 + 35",
+            "Bus": 1,
+            "Connector": {
+                "Name": "FAN$bus - 1 % 2 * 4 + 3_TACH_OL",
+                "Pwm": 1,
+                "PwmName": "FAN$bus - 1 % 2 * 4 + 3_PWM",
+                "Tachs": [
+                    3
+                ]
+            },
+            "Index": 3,
+            "Name": "FAN$bus - 1 % 2 * 4 + 3_TACH_OL_SPEED_RPM",
+            "PowerState": "Always",
+            "Thresholds": [
+                {
+                    "Direction": "greater than",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 33000
+                },
+                {
+                    "Direction": "less than",
+                    "Name": "lower critical",
+                    "Severity": 1,
+                    "Value": 1960
+                }
+            ],
+            "Type": "I2CFan"
+        }
+    ],
+    "Name": "NVIDIA GB300 $bus + 1 % 2",
+    "Probe": "xyz.openbmc_project.FruDevice({'BOARD_PRODUCT_NAME': 'PG548', 'BOARD_MANUFACTURER': 'NVIDIA', 'PRODUCT_PRODUCT_NAME': 'GB300'})",
+    "Type": "Board",
+    "xyz.openbmc_project.Inventory.Decorator.Asset": {
+        "BuildDate": "$BOARD_MANUFACTURE_DATE",
+        "Manufacturer": "$BOARD_MANUFACTURER",
+        "Model": "$BOARD_PRODUCT_NAME",
+        "PartNumber": "$BOARD_PART_NUMBER",
+        "SerialNumber": "$BOARD_SERIAL_NUMBER"
+    },
+    "xyz.openbmc_project.Inventory.Decorator.AssetTag": {
+        "AssetTag": "$PRODUCT_ASSET_TAG"
+    },
+    "xyz.openbmc_project.Inventory.Decorator.Revision": {
+        "Version": "$PRODUCT_VERSION"
+    }
+}
