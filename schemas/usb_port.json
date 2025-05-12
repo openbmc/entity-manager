@@ -1,0 +1,53 @@
+{
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "$defs": {
+        "USBPort": {
+            "description": "The definition of the USB port.",
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+                "Type": {
+                    "description": "The type of configuration object.",
+                    "const": "USBPort"
+                },
+                "Name": {
+                    "description": "The name of the USB port.",
+                    "type": "string"
+                },
+                "DeviceAddress": {
+                    "description": "The address of the USB device.",
+                    "type": "string"
+                },
+                "DeviceInterface": {
+                    "description": "This indicates the interface number of the device.",
+                    "type": "number"
+                },
+                "Port": {
+                    "description": "This indicates the physical port of the serial device within that interface.",
+                    "type": "number"
+                },
+                "Mode": {
+                    "enum": ["RS232", "RS485"]
+                },
+                "BaudRate": {
+                    "description": "The baudrate of the communication channel.",
+                    "enum": [9600, 19200, 57600, 115200]
+                },
+                "RTSDelay": {
+                    "description": "The request to send delay in milli-seconds.",
+                    "type": "number"
+                }
+            },
+            "required": [
+                "Name",
+                "Type",
+                "DeviceAddress",
+                "DeviceInterface",
+                "Port",
+                "Mode",
+                "BaudRate",
+                "RTSDelay"
+            ]
+        }
+    }
+}
