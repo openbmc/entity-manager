@@ -1,0 +1,31 @@
+{
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "$defs": {
+        "SerialPort": {
+            "description": "The definition for the serial port.",
+            "type": "object",
+            "properties": {
+                "Type": {
+                    "description": "The type of configuration object.",
+                    "const": "SerialPort"
+                },
+                "Name": {
+                    "description": "The name of the serial port, for example ttyS0, ttyUSB0, etc.",
+                    "type": "string"
+                },
+                "Mode": {
+                    "enum": ["RS232", "RS485"]
+                },
+                "BaudRate": {
+                    "description": "The baudrate of the communication channel.",
+                    "enum": [9600, 19200, 57600, 115200]
+                },
+                "DataParity": {
+                    "description": "The parity to use for data transmission.",
+                    "enum": ["Odd", "Even", "None"]
+                }
+            },
+            "required": ["Name", "Type", "Mode", "BaudRate", "DataParity"]
+        }
+    }
+}
