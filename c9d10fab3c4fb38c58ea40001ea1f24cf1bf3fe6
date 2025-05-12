@@ -212,6 +212,24 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "70e6a0b7_9d72eaa1",
+        "filename": "schemas/modbus_device.json",
+        "patchSetId": 4
+      },
+      "lineNbr": 15,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-05-12T21:54:02Z",
+      "side": 1,
+      "message": "This address refers to the address of the modbus device in a daisy chain. For exmaple, RS485 can support upto 32 devices in a single segment and can have upto 247 devices with repeaters. So, this address range refers to those devices.",
+      "parentUuid": "352a9113_4935bba2",
+      "revId": "c9d10fab3c4fb38c58ea40001ea1f24cf1bf3fe6",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "af115e03_d5ee2ad7",
@@ -676,6 +694,24 @@
       "side": 1,
       "message": "\u003e thinking again, the data parity and baud rate are defined by the network port.\n\nIdeally Baud rate can be a property of a serial port but not the data parity as parity bits are added by the device.\n\n\u003e \n\u003e it needs to be common to all modbus servers on the given tty link (or tcp ip address and port).\n\u003e \n\u003e the network interface (possibly muxing a serial UART to this modbus network) should be a higher common entity to the sensor device (a server exposing multiple readings).\n\nI need to look into this to see if it is feasible.",
       "parentUuid": "2cfd5e22_37ead1bc",
+      "revId": "c9d10fab3c4fb38c58ea40001ea1f24cf1bf3fe6",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "fe7aa74a_06390d02",
+        "filename": "schemas/modbus_device.json",
+        "patchSetId": 4
+      },
+      "lineNbr": 89,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-05-12T21:54:02Z",
+      "side": 1,
+      "message": "Added SerialPort schema with the link properties https://gerrit.openbmc.org/c/openbmc/entity-manager/+/80242 .",
+      "parentUuid": "e03f54d8_442f7e94",
       "revId": "c9d10fab3c4fb38c58ea40001ea1f24cf1bf3fe6",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
