@@ -99,7 +99,8 @@ schemas = [
     'mctp.json',
     'modbus.json',
     'pid.json',
-    'pid_zone.json',
+    'pid_zone.json'
+    'serial_port.json',
     'stepwise.json',
     'virtual_sensor.json',
     'satellite_controller.json',
