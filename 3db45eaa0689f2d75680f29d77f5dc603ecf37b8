@@ -16,6 +16,41 @@
       "message": "Can you add a high level description of what makes up this system?  That will help seeing how the different boards fit together.",
       "revId": "3db45eaa0689f2d75680f29d77f5dc603ecf37b8",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c2b120bf_992c7899",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 10,
+      "author": {
+        "id": 1002479
+      },
+      "writtenOn": "2025-05-13T02:56:28Z",
+      "side": 1,
+      "message": "High level description:\n\n- **FIO (Front I/O controller)**  \n  Provides system status indicators (LEDs) and board information (FRU), and communicates with the Remote Management Controller (RMC) to ensure front-panel events are monitored and reported in real time.\n\n- **HDD \u0026 HDD_NVMe**  \n  Connected via the MCIO connector and CX8 interface, and linked to SSDs so that CX8 can carry high-speed traffic to and from the drives.\n\n- **HSC (Hot-Swap Controller)**  \n  Acts as the intermediary board between the motherboard and the bus bar, coordinating signal routing and data-path reconfiguration during hot-swap events to maintain data integrity and safe removal/insertion.\n\n- **OSFP (Octal Small Form-factor Pluggable)**  \n  Defines front-panel pluggable slots with eight high-speed electrical lanes. The Entity Manager reads the OSFP JSON definitions to detect inserted modules and exposes them via D-Bus for dynamic binding by other services.\n\n- **PDB (Power Distribution Board)**  \n  Manages and reports voltage and current on power rails for storage and networking modules. It exposes these metrics in JSON so that other components can throttle I/O or trigger alarms when approaching power limits.\n\n- **SCM (Secure Control Module)**  \n  Serves as the carrier board for the BMC, connecting to the Hardware Platform Manager (HPM) to monitor and manage secure-boot policies, cryptographic keys, and global configuration.",
+      "parentUuid": "7e6d6507_12629243",
+      "revId": "3db45eaa0689f2d75680f29d77f5dc603ecf37b8",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "b2d6806a_097eabfb",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1002479
+      },
+      "writtenOn": "2025-05-13T02:56:28Z",
+      "side": 1,
+      "message": "I have published a draft of the high-level description. Please review it.",
+      "revId": "3db45eaa0689f2d75680f29d77f5dc603ecf37b8",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }
