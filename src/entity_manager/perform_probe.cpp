@@ -93,7 +93,7 @@ bool doProbe(const std::vector<std::string>& probeCommand,
         probe::FoundProbeTypeT probeType = probe::findProbeType(probe);
         if (probeType)
         {
-            switch ((*probeType)->second)
+            switch (*probeType)
             {
                 case probe::probe_type_codes::FALSE_T:
                 {
@@ -189,7 +189,7 @@ bool doProbe(const std::vector<std::string>& probeCommand,
             ret = cur;
             first = false;
         }
-        lastCommand = probeType ? (*probeType)->second
+        lastCommand = probeType ? *probeType
                                 : probe::probe_type_codes::FALSE_T;
     }
 
@@ -233,7 +233,7 @@ PerformProbe::~PerformProbe()
 
 FoundProbeTypeT findProbeType(const std::string& probe)
 {
-    const boost::container::flat_map<const char*, probe_type_codes, CmpStr>
+    static const boost::container::flat_map<const char*, probe_type_codes, CmpStr>
         probeTypes{{{"FALSE", probe_type_codes::FALSE_T},
                     {"TRUE", probe_type_codes::TRUE_T},
                     {"AND", probe_type_codes::AND},
@@ -248,7 +248,7 @@ FoundProbeTypeT findProbeType(const std::string& probe)
     {
         if (probe.find(probeType->first) != std::string::npos)
         {
-            return probeType;
+            return probeType->second;
         }
     }
 
