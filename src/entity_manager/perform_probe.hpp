@@ -29,8 +29,7 @@ enum class probe_type_codes
     MATCH_ONE
 };
 
-using FoundProbeTypeT = std::optional<boost::container::flat_map<
-    const char*, probe_type_codes, CmpStr>::const_iterator>;
+using FoundProbeTypeT = std::optional<probe_type_codes>;
 
 FoundProbeTypeT findProbeType(const std::string& probe);
 
