@@ -280,6 +280,27 @@
             "Zones": [
                 "Zone 1"
             ]
+        },
+        {
+            "Class": "temp",
+            "Inputs": [
+                "WAILUA_FALLS_SLOT $bus % 15 SENSOR_STATUS"
+            ],
+            "Name": "Stepwise_WAILUA_FALLS_SLOT $bus % 15 SENSOR_STATUS",
+            "NegativeHysteresis": 0,
+            "Output": [
+                100.0,
+                10.0
+            ],
+            "PositiveHysteresis": 0,
+            "Reading": [
+                0.0,
+                100.0
+            ],
+            "Type": "Stepwise",
+            "Zones": [
+                "Zone 1"
+            ]
         }
     ],
     "Name": "Yosemite 4 Wailua Falls Slot $bus % 15",
