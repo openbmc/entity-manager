@@ -93,7 +93,7 @@ bool doProbe(const std::vector<std::string>& probeCommand,
         probe::FoundProbeTypeT probeType = probe::findProbeType(probe);
         if (probeType)
         {
-            switch ((*probeType)->second)
+            switch (*probeType)
             {
                 case probe::probe_type_codes::FALSE_T:
                 {
@@ -189,8 +189,7 @@ bool doProbe(const std::vector<std::string>& probeCommand,
             ret = cur;
             first = false;
         }
-        lastCommand = probeType ? (*probeType)->second
-                                : probe::probe_type_codes::FALSE_T;
+        lastCommand = probeType.value_or(probe::probe_type_codes::FALSE_T);
     }
 
     // probe passed, but empty device
@@ -249,7 +248,7 @@ FoundProbeTypeT findProbeType(const std::string& probe)
     {
         if (probe.find(probeType->first) != std::string::npos)
         {
-            return probeType;
+            return probeType->second;
         }
     }
 
