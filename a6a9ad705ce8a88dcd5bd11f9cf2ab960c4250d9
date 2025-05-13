@@ -1,0 +1,55 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d85be0fe_0046614f",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-05-13T08:00:00Z",
+      "side": 1,
+      "message": "Can we explain the initial use-case for this schema.\n\nWhich service will consume this information initially?\n\nIs it for obmc-console?",
+      "revId": "a6a9ad705ce8a88dcd5bd11f9cf2ab960c4250d9",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "872c19f4_3885e533",
+        "filename": "schemas/exposes_record.json",
+        "patchSetId": 2
+      },
+      "lineNbr": 163,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-05-13T08:00:00Z",
+      "side": 1,
+      "message": "```serial_port.json```",
+      "revId": "a6a9ad705ce8a88dcd5bd11f9cf2ab960c4250d9",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "144dd62f_01205ba6",
+        "filename": "schemas/serial_port.json",
+        "patchSetId": 2
+      },
+      "lineNbr": 13,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-05-13T08:00:00Z",
+      "side": 1,
+      "message": "Wouldn\u0027t the name of the port depend on probing order?\n\nI usually refer to serial ports with paths like\n```\n/dev/serial/by-path/platform-fd500000.pcie-pci-0000:01:00.0-usb-0:1.1:1.0-port0\n/dev/serial/by-id/usb-1a86_USB_Serial-if00-port0\n```\n\nto avoid this issue.\n\nShould we refer by path or id instead and provide the appropriate example?",
+      "revId": "a6a9ad705ce8a88dcd5bd11f9cf2ab960c4250d9",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    }
+  ]
+}
