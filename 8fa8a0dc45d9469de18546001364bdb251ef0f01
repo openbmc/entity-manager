@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "b21fbd68_d5b8456b",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 6
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1002129
+      },
+      "writtenOn": "2025-05-14T02:41:42Z",
+      "side": 1,
+      "message": "The CI build is failing due to compilation errors involving sdbusplus and boost::asio. Specifically:\n\nasync_wait Errors:\nThe function async_wait in boost::asio::posix::basic_descriptor fails with the following error:\n```\n/usr/local/include/sdbusplus/asio/connection.hpp:377:20: error: no matching member function for call to \u0027async_wait\u0027\nsocket.async_wait(boost::asio::posix::stream_descriptor::wait_read, ...);\n```\npost Errors:\nThe calls to boost::asio::post fail with:\n```\n/usr/local/include/sdbusplus/asio/connection.hpp:415:9: error: no matching function for call to \u0027post\u0027\nboost::asio::post(io_, std::bind_front(\u0026connection::process, this));\n```\n\nI also noticed that several other commits in entity-manager are failing to build for the same reasons.\nThe possible causes might include a version mismatch between sdbusplus and asio or issues with C++23 compatibility.\nPlease help look into this issue and provide guidance or a solution.\nThank you!",
+      "revId": "8fa8a0dc45d9469de18546001364bdb251ef0f01",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    }
+  ]
+}
