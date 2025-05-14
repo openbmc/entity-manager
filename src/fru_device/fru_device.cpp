@@ -509,11 +509,11 @@ int getBusFRUs(int file, int first, int last, int bus,
 
         for (int ii = first; ii <= last; ii++)
         {
-            if (foundItems.find(ii) != foundItems.end())
+            if (foundItems.contains(ii))
             {
                 continue;
             }
-            if (skipList.find(ii) != skipList.end())
+            if (skipList.contains(ii))
             {
                 continue;
             }
@@ -540,7 +540,7 @@ int getBusFRUs(int file, int first, int last, int bus,
 
             makeProbeInterface(bus, ii, objServer);
 
-            if (failedItems.find(ii) != failedItems.end())
+            if (failedItems.contains(ii))
             {
                 // if we failed to read it once, unlikely we can read it later
                 continue;
@@ -548,7 +548,7 @@ int getBusFRUs(int file, int first, int last, int bus,
 
             if (rootFailures != nullptr)
             {
-                if (rootFailures->find(ii) != rootFailures->end())
+                if (rootFailures->contains(ii))
                 {
                     continue;
                 }

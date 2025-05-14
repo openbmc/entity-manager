@@ -434,7 +434,7 @@ static std::string generateDeviceName(
 
     if (!replaceStr && replaceVal)
     {
-        if (usedNames.find(copyIt.value()) != usedNames.end())
+        if (usedNames.contains(copyIt.value()))
         {
             replaceStr = replaceVal;
             copyForName = {{"Name", nameTemplate}};
