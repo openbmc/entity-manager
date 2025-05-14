@@ -1201,6 +1201,36 @@
                 "temp2_Name": "MB_VR_CPU_PDDIO_TEMP_C",
                 "vout1_Name": "MB_VR_CPU_VCORE1_VOLT_V",
                 "vout2_Name": "MB_VR_CPU_PDDIO_VOLT_V"
+            },
+            {
+                "Address": "0x64",
+                "Bus": 28,
+                "FirmwareInfo": {
+                    "CompatibleHardware": "com.meta.Hardware.Harma.XDPE152XX.VR",
+                    "VendorIANA": 40981
+                },
+                "Name": "MB_VR_CPU0_VCORE0",
+                "Type": "XDPE1X2XXFirmware"
+            },
+            {
+                "Address": "0x66",
+                "Bus": 28,
+                "FirmwareInfo": {
+                    "CompatibleHardware": "com.meta.Hardware.Harma.XDPE152XX.VR",
+                    "VendorIANA": 40981
+                },
+                "Name": "MB_VR_CPU0_VCORE1",
+                "Type": "XDPE1X2XXFirmware"
+            },
+            {
+                "Address": "0x68",
+                "Bus": 28,
+                "FirmwareInfo": {
+                    "CompatibleHardware": "com.meta.Hardware.Harma.XDPE152XX.VR",
+                    "VendorIANA": 40981
+                },
+                "Name": "MB_VR_CPU0_PVDD11",
+                "Type": "XDPE1X2XXFirmware"
             }
         ],
         "Name": "Harma MB",
