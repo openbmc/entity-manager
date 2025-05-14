@@ -729,6 +729,36 @@
                 "vout2_Name": "MB_VR_CPU_PDDIO_VOLT_V"
             },
             {
+                "Address": "0x61",
+                "Bus": 28,
+                "FirmwareInfo": {
+                    "CompatibleHardware": "com.meta.Hardware.Harma.VR.ISL69269_vcore0",
+                    "VendorIANA": 40981
+                },
+                "Name": "Harma_MB_VR_cpu0_vcore0",
+                "Type": "ISL69269Firmware"
+            },
+            {
+                "Address": "0x62",
+                "Bus": 28,
+                "FirmwareInfo": {
+                    "CompatibleHardware": "com.meta.Hardware.Harma.VR.ISL69269_vcore1",
+                    "VendorIANA": 40981
+                },
+                "Name": "Harma_MB_VR_cpu0_vcore1",
+                "Type": "ISL69269Firmware"
+            },
+            {
+                "Address": "0x63",
+                "Bus": 28,
+                "FirmwareInfo": {
+                    "CompatibleHardware": "com.meta.Hardware.Harma.VR.ISL69269_pvdd11",
+                    "VendorIANA": 40981
+                },
+                "Name": "Harma_MB_VR_cpu0_pvdd11",
+                "Type": "ISL69269Firmware"
+            },
+            {
                 "Address": "0x20",
                 "Bus": 28,
                 "Labels": [
