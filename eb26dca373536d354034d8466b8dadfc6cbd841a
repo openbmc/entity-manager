@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7adc8a40_aba72811",
+        "filename": "scripts/validate_configs.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 272,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2025-05-14T16:30:14Z",
+      "side": 1,
+      "message": "Nit, this is going to catch all errors, and not print a stack trace when we hit an unexpected error (out of memory for example).\n\nMight be better to explicitly catch the error types we expect here.",
+      "range": {
+        "startLine": 272,
+        "startChar": 10,
+        "endLine": 272,
+        "endChar": 25
+      },
+      "revId": "eb26dca373536d354034d8466b8dadfc6cbd841a",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    }
+  ]
+}
