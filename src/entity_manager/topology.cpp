@@ -66,11 +66,11 @@ std::unordered_map<std::string, std::vector<Association>> Topology::getAssocs(
                 for (const Path& downstream : downstreamMatch->second)
                 {
                     // The downstream path must be one we care about.
-                    if (boards.find(downstream) != boards.end())
+                    if (boards.contains(downstream))
                     {
                         result[downstream].emplace_back("contained_by",
                                                         "containing", upstream);
-                        if (powerPaths.find(downstream) != powerPaths.end())
+                        if (powerPaths.contains(downstream))
                         {
                             result[upstream].emplace_back(
                                 "powered_by", "powering", downstream);
