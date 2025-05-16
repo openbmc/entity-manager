@@ -248,7 +248,6 @@
                 "MinValue": 0,
                 "Name": "12V_FAN",
                 "PollRate": 15,
-                "PowerState": "ChassisOn",
                 "ScaleFactor": 0.130434783,
                 "Thresholds": [
                     {
@@ -1072,7 +1071,7 @@
                 "MinValue": 0,
                 "Name": "S0_EXT_VREF",
                 "PollRate": 15,
-                "PowerState": "ChassisOn",
+                "PowerState": "On",
                 "ScaleFactor": 1,
                 "Thresholds": [
                     {
@@ -1255,6 +1254,44 @@
                         "Name": "upper critical",
                         "Severity": 1,
                         "Value": 70.359
+                    },
+                    {
+                        "Direction": "less than",
+                        "Name": "lower critical",
+                        "Severity": 1,
+                        "Value": 0.0
+                    },
+                    {
+                        "Direction": "less than",
+                        "Name": "lower non critical",
+                        "Severity": 0,
+                        "Value": 5.489
+                    }
+                ],
+                "Type": "Maximum",
+                "Units": "DegreesC"
+            },
+            {
+                "EntityId": 11,
+                "EntityInstance": 6,
+                "MaxValue": 127,
+                "MinValue": 0,
+                "Name": "PCIeNIC_MaxTemp",
+                "Sensors": [
+                    "PCIeNIC1_Temp"
+                ],
+                "Thresholds": [
+                    {
+                        "Direction": "greater than",
+                        "Name": "upper critical",
+                        "Severity": 1,
+                        "Value": 115.269
+                    },
+                    {
+                        "Direction": "greater than",
+                        "Name": "upper non critical",
+                        "Severity": 0,
+                        "Value": 105.289
                     },
                     {
                         "Direction": "less than",
@@ -1746,14 +1783,12 @@
             {
                 "Class": "temp",
                 "Inputs": [
-                    "PcieZoneTemp1",
-                    "PcieZoneTemp2"
+                    "PCIeNIC_MaxTemp"
                 ],
                 "MissingIsAcceptable": [
-                    "PcieZoneTemp1",
-                    "PcieZoneTemp2"
+                    "PCIeNIC_MaxTemp"
                 ],
-                "Name": "Stepwise_PcieCard_MaxTemp",
+                "Name": "Stepwise_PCIeNIC_MaxTemp",
                 "NegativeHysteresis": 2.0,
                 "Output": [
                     15.0,
@@ -1843,6 +1878,48 @@
                 ],
                 "Type": "Sum",
                 "Units": "Watts"
+            },
+            {
+                "Address": "0x1f",
+                "Bus": 40,
+                "EntityId": 11,
+                "EntityInstance": 4,
+                "MaxValue": 127,
+                "MinValue": 0,
+                "Name": "PCIeNIC1_Lcl",
+                "Name1": "PCIeNIC1_Temp",
+                "PowerState": "ChassisOn",
+                "Thresholds": [
+                    {
+                        "Direction": "greater than",
+                        "Index": 2,
+                        "Name": "upper critical",
+                        "Severity": 1,
+                        "Value": 115.269
+                    },
+                    {
+                        "Direction": "greater than",
+                        "Index": 2,
+                        "Name": "upper non critical",
+                        "Severity": 0,
+                        "Value": 105.289
+                    },
+                    {
+                        "Direction": "less than",
+                        "Index": 2,
+                        "Name": "lower critical",
+                        "Severity": 1,
+                        "Value": 0.0
+                    },
+                    {
+                        "Direction": "less than",
+                        "Index": 2,
+                        "Name": "lower non critical",
+                        "Severity": 0,
+                        "Value": 5.489
+                    }
+                ],
+                "Type": "TMP421"
             },
             {
                 "Address": "0x1f",

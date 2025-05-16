@@ -143,6 +143,7 @@ configs = [
     'mtjefferson_bmc.json',
     'mtjefferson_bp.json',
     'mtjefferson_mb.json',
+    'mtjefferson_riser.json',
     'mtmitchell_bmc.json',
     'mtmitchell_bp.json',
     'mtmitchell_mb.json',
