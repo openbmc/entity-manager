@@ -1,0 +1,61 @@
+{
+    "Exposes": [
+        {
+            "Address": "0x22",
+            "Bus": 9,
+            "Name": "Verona Gpio Expander U29",
+            "Type": "PCA9555Iox",
+            "GpioNames": [
+                "BMC1_FANCTRL_FAIL_L",
+                "IOEXP_BMC_RST_12V",
+                "NODE_RST_STBY_H"
+            ]
+        },
+        {
+            "Address": "0x23",
+            "Bus": 9,
+            "Name": "Verona Gpio Expander U766",
+            "Type": "PCA9555Iox",
+            "GpioNames": [
+                "PEXSW_FL_SPI_MUX_SEL",
+                "PEX_SW_FATAL_ERROR_3V3_L",
+                "IOEXP_PDB_NODE_EN_L",
+                "NODE_PWOK_ISO",
+                "BMC_FAN_PWR_EN",
+                "BMC_ETHERNET_INT",
+                "BMC_ENET_RST",
+                "IOEXP_BMC_RST_SENSE",
+                "BMC_ID",
+                "TPM_MUX_3V3_SEL_N",
+                "IOEXP_TPM_RST_N",
+                "TPM_DOWN_SPI_INT_L",
+                "PS_BRD_PGOOD",
+                "FP_BUTTON_POWER_N",
+                "FP_BUTTON_RESET_N",
+                "FP_LED_POWER_GPIOEXP_N"
+            ]
+        }
+    ],
+    "Name": "GB200 Verona Tester",
+    "Probe": [
+        "xyz.openbmc_project.FruDevice({'BOARD_PRODUCT_NAME': 'PG548', 'BOARD_MANUFACTURER': 'NVIDIA'})",
+        "AND",
+        "xyz.openbmc_project.Inventory.Item.I2CDevice({'Bus': 9, 'Address': 22})",
+        "AND",
+        "xyz.openbmc_project.Inventory.Item.I2CDevice({'Bus': 9, 'Address': 23})"
+    ],
+    "Type": "Board",
+    "xyz.openbmc_project.Inventory.Decorator.Asset": {
+        "BuildDate": "$BOARD_MANUFACTURE_DATE",
+        "Manufacturer": "$BOARD_MANUFACTURER",
+        "Model": "$BOARD_PRODUCT_NAME",
+        "PartNumber": "$BOARD_PART_NUMBER",
+        "SerialNumber": "$BOARD_SERIAL_NUMBER"
+    },
+    "xyz.openbmc_project.Inventory.Decorator.AssetTag": {
+        "AssetTag": "$PRODUCT_ASSET_TAG"
+    },
+    "xyz.openbmc_project.Inventory.Decorator.Revision": {
+        "Version": "$PRODUCT_VERSION"
+    }
+}
