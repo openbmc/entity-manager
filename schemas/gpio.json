@@ -1,0 +1,45 @@
+{
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "$defs": {
+        "GpioExpander": {
+            "additionalProperties": false,
+            "properties": {
+                "Name": {
+                    "$ref": "#/$defs/Types/Name"
+                },
+                "Bus": {
+                    "$ref": "#/$defs/Types/Bus"
+                },
+                "Address": {
+                    "$ref": "#/$defs/Types/Address"
+                },
+                "Type": {
+                    "type": "string",
+                    "enum": ["PCA9554Iox", "PCA9555Iox"]
+                },
+                "GpioNames": {
+                    "$ref": "#/$defs/Types/GpioNames"
+                }
+            },
+            "required": ["Name", "Type", "Address", "Bus", "GpioNames"],
+            "type": "object"
+        },
+        "Types": {
+            "Name": {
+                "type": "string"
+            },
+            "Bus": {
+                "type": ["string", "number"]
+            },
+            "Address": {
+                "type": "string"
+            },
+            "GpioNames": {
+                "type": "array",
+                "items": {
+                    "type": "string"
+                }
+            }
+        }
+    }
+}
