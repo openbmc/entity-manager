@@ -390,6 +390,32 @@
             "required": ["Name", "Type", "Index", "Direction", "Polarity"],
             "type": "object"
         },
+        "GpioExpander": {
+            "additionalProperties": false,
+            "properties": {
+                "Name": {
+                    "$ref": "#/$defs/Types/Name"
+                },
+                "Bus": {
+                    "$ref": "#/$defs/Types/Bus"
+                },
+                "Address": {
+                    "$ref": "#/$defs/Types/Address"
+                },
+                "Type": {
+                    "type": "string",
+                    "enum": [
+                        "PCA9554Iox",
+                        "PCA9555Iox"
+                    ]
+                },
+                "GpioNames": {
+                    "$ref": "#/$defs/Types/GpioNames"
+                }
+            },
+            "required": ["Name", "Type", "Address", "Bus", "GpioNames"],
+            "type": "object"
+        },
         "MultiNodeID": {
             "additionalProperties": false,
             "properties": {
@@ -1126,6 +1152,12 @@
                 "minimum": 0
             },
             "ChannelNames": {
+                "items": {
+                    "type": "string"
+                },
+                "type": "array"
+            },
+            "GpioNames": {
                 "items": {
                     "type": "string"
                 },
