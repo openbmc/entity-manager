@@ -40,7 +40,6 @@ constexpr const char* outputDir = "/tmp/overlays";
 constexpr const char* templateChar = "$";
 constexpr const char* i2CDevsDir = "/sys/bus/i2c/devices";
 constexpr const char* muxSymlinkDir = "/dev/i2c-mux";
-
 const std::regex illegalNameRegex("[^A-Za-z0-9_]");
 
 // helper function to make json types into string
@@ -164,12 +163,13 @@ static bool deviceIsCreated(const std::string& busPath, uint64_t bus,
     return std::filesystem::exists(dirPath, ec);
 }
 
-static int buildDevice(
+static int dynamicDeviceCreation(
     const std::string& name, const std::string& busPath,
     const std::string& parameters, uint64_t bus, uint64_t address,
     const std::string& constructor, const std::string& destructor,
     const devices::createsHWMon hasHWMonDir,
-    std::vector<std::string> channelNames, const size_t retries = 5)
+    std::vector<std::string> channelNames,
+    [[maybe_unused]] std::vector<std::string> gpios, const size_t retries = 5)
 {
     if (retries == 0U)
     {
@@ -193,20 +193,23 @@ static int buildDevice(
             createTimer->async_wait(
                 [createTimer, name, busPath, parameters, bus, address,
                  constructor, destructor, hasHWMonDir,
-                 channelNames(std::move(channelNames)),
+                 channelNames(std::move(channelNames)), gpios(std::move(gpios)),
                  retries](const boost::system::error_code& ec) mutable {
                     if (ec)
                     {
                         std::cerr << "Timer error: " << ec << "\n";
                         return -2;
                     }
-                    return buildDevice(name, busPath, parameters, bus, address,
-                                       constructor, destructor, hasHWMonDir,
-                                       std::move(channelNames), retries - 1);
+                    return dynamicDeviceCreation(
+                        name, busPath, parameters, bus, address, constructor,
+                        destructor, hasHWMonDir, std::move(channelNames),
+                        std::move(gpios), retries - 1);
                 });
             return -1;
         }
     }
+
+    std::cout << "Device " << name << " created at " << deviceDirName(bus, address) << std::endl;
 
     // Link the mux channels if needed once the device is created.
     if (!channelNames.empty())
@@ -230,6 +233,7 @@ void exportDevice(const std::string& type,
     std::optional<uint64_t> bus;
     std::optional<uint64_t> address;
     std::vector<std::string> channels;
+    std::vector<std::string> gpios;
 
     for (auto keyPair = configuration.begin(); keyPair != configuration.end();
          keyPair++)
@@ -260,6 +264,10 @@ void exportDevice(const std::string& type,
         {
             channels = keyPair.value().get<std::vector<std::string>>();
         }
+        else if (keyPair.key() == "GpioNames" && type.ends_with("Iox"))
+        {
+            gpios = keyPair.value().get<std::vector<std::string>>();
+        }
         boost::replace_all(parameters, templateChar + keyPair.key(),
                            subsituteString);
         boost::replace_all(busPath, templateChar + keyPair.key(),
@@ -272,8 +280,9 @@ void exportDevice(const std::string& type,
         return;
     }
 
-    buildDevice(name, busPath, parameters, *bus, *address, constructor,
-                destructor, hasHWMonDir, std::move(channels));
+    dynamicDeviceCreation(name, busPath, parameters, *bus, *address,
+                          constructor, destructor, hasHWMonDir,
+                          std::move(channels), std::move(gpios));
 }
 
 bool loadOverlays(const nlohmann::json& systemConfiguration)
