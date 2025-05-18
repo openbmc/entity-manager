@@ -154,6 +154,7 @@ configs = [
     'nvidia_bmc_p3809.json',
     'nvidia_gb200.json',
     'nvidia_gb200_io_board.json',
+    'nvidia_gb200_verona.json',
     'nvidia_hmc.json',
     'nvme_intel_p_series.json',
     'nvme_p4500_p5500.json',
