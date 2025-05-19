@@ -70,8 +70,6 @@ constexpr const char* blocklistPath = PACKAGE_DIR "blacklist.json";
 const static constexpr char* baseboardFruLocation =
     "/etc/fru/baseboard.fru.bin";
 
-const static constexpr char* i2CDevLocation = "/dev";
-
 constexpr const char* fruDevice16BitDetectMode = FRU_DEVICE_16BITDETECTMODE;
 
 // TODO Refactor these to not be globals
@@ -133,19 +131,6 @@ static int64_t readFromEeprom(int fd, off_t offset, size_t len, uint8_t* buf)
     }
 
     return read(fd, buf, len);
-}
-
-static int busStrToInt(const std::string_view busName)
-{
-    auto findBus = busName.rfind('-');
-    if (findBus == std::string::npos)
-    {
-        return -1;
-    }
-    std::string_view num = busName.substr(findBus + 1);
-    int val = 0;
-    std::from_chars(num.data(), num.data() + num.size(), val);
-    return val;
 }
 
 static int getRootBus(size_t bus)

@@ -24,6 +24,8 @@
 
 #include <filesystem>
 
+constexpr const char* i2CDevLocation = "/dev";
+
 using DBusValueVariant =
     std::variant<std::string, int64_t, uint64_t, double, int32_t, uint32_t,
                  int16_t, uint16_t, uint8_t, bool, std::vector<uint8_t>>;
@@ -87,3 +89,5 @@ inline bool deviceHasLogging(const nlohmann::json& json)
 /// \param dbusValue the property value being matched to a probe.
 /// \return true if the dbusValue matched the probe otherwise false.
 bool matchProbe(const nlohmann::json& probe, const DBusValueVariant& dbusValue);
+
+int busStrToInt(std::string_view busName);
