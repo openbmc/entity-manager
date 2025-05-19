@@ -1352,6 +1352,71 @@ int main()
     // removed until the same state happens
     setupPowerMatch(systemBus);
 
+    int fd = inotify_init();
+    inotify_add_watch(fd, i2CDevLocation, IN_DELETE);
+    std::array<char, 4096> readBuffer{};
+    // monitor for removed i2c devices
+    boost::asio::posix::stream_descriptor dirWatch(io, fd);
+    std::function<void(const boost::system::error_code, std::size_t)>
+        watchI2cBusses = [&](const boost::system::error_code& ec,
+                             std::size_t bytesTransferred) {
+            if (ec)
+            {
+                std::cout << "Callback Error " << ec << "\n";
+                return;
+            }
+            size_t index = 0;
+            while ((index + sizeof(inotify_event)) <= bytesTransferred)
+            {
+                const char* p = &readBuffer[index];
+                // NOLINTNEXTLINE(cppcoreguidelines-pro-type-reinterpret-cast)
+                const auto* iEvent = reinterpret_cast<const inotify_event*>(p);
+                std::string_view name(&iEvent->name[0], iEvent->len);
+                if (boost::starts_with(name, "i2c"))
+                {
+                    int bus = busStrToInt(name);
+                    if (bus < 0)
+                    {
+                        std::cerr << "Could not parse bus " << name << "\n";
+                        continue;
+                    }
+                    for (const auto& entry :
+                         std::filesystem::recursive_directory_iterator(
+                             "/dev/i2c-mux"))
+                    {
+                        if (std::filesystem::is_symlink(entry))
+                        {
+                            try
+                            {
+                                std::filesystem::path resolvedPath =
+                                    std::filesystem::read_symlink(entry);
+                                std::filesystem::path target(
+                                    "/dev/i2c-" + std::to_string(bus));
+                                if (resolvedPath == target)
+                                {
+                                    std::filesystem::remove(entry);
+                                    std::cout
+                                        << "Symlink removed: " << entry.path()
+                                        << std::endl;
+                                }
+                            }
+                            catch (const std::filesystem::filesystem_error& e)
+                            {
+                                std::cerr << "Error processing " << entry.path()
+                                          << ": " << e.what() << std::endl;
+                            }
+                        }
+                    }
+                }
+                index += sizeof(inotify_event) + iEvent->len;
+            }
+
+            dirWatch.async_read_some(boost::asio::buffer(readBuffer),
+                                     watchI2cBusses);
+        };
+
+    dirWatch.async_read_some(boost::asio::buffer(readBuffer), watchI2cBusses);
+
     io.run();
 
     return 0;
