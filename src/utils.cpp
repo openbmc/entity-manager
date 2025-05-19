@@ -415,3 +415,16 @@ bool matchProbe(const nlohmann::json& probe, const DBusValueVariant& dbusValue)
 {
     return std::visit(MatchProbeForwarder(probe), dbusValue);
 }
+
+int busStrToInt(const std::string_view busName)
+{
+    auto findBus = busName.rfind('-');
+    if (findBus == std::string::npos)
+    {
+        return -1;
+    }
+    std::string_view num = busName.substr(findBus + 1);
+    int val = 0;
+    std::from_chars(num.data(), num.data() + num.size(), val);
+    return val;
+}
