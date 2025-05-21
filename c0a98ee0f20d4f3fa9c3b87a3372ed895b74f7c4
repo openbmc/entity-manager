@@ -210,6 +210,24 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "44ce66ca_5efe25b3",
+        "filename": "src/gpio-presence/config.cpp",
+        "patchSetId": 19
+      },
+      "lineNbr": 93,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-05-21T13:59:13Z",
+      "side": 1,
+      "message": "Raised the patch here https://gerrit.openbmc.org/c/openbmc/phosphor-dbus-interfaces/+/80482",
+      "parentUuid": "131c96a5_8897394f",
+      "revId": "c0a98ee0f20d4f3fa9c3b87a3372ed895b74f7c4",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "362cfc73_a9584aaf",
@@ -276,6 +294,24 @@
       "side": 1,
       "message": "If i were to separate the configuration and runtime state, it would be more objects.\n\nThe only thing we need to keep track of is the name (which is they key for the map)\nand the polarity as well as the cached state of the gpio.\n\n\nI combined the config and runtime state to avoid having any stale values from handling multiple maps (and perhaps forgetting to update one of them).",
       "parentUuid": "299ceec0_92c89f77",
+      "revId": "c0a98ee0f20d4f3fa9c3b87a3372ed895b74f7c4",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "ddabde41_95d5493f",
+        "filename": "src/gpio-presence/config.hpp",
+        "patchSetId": 19
+      },
+      "lineNbr": 32,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-05-21T13:59:13Z",
+      "side": 1,
+      "message": "Changed the class to use ```std::map``` now for easier representation and to separate configuration from runtime state.",
+      "parentUuid": "a1d6c260_b1dafa41",
       "revId": "c0a98ee0f20d4f3fa9c3b87a3372ed895b74f7c4",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
@@ -665,6 +701,24 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "79cad9c4_e9f6413f",
+        "filename": "src/gpio-presence/main.cpp",
+        "patchSetId": 19
+      },
+      "lineNbr": 40,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-05-21T13:59:13Z",
+      "side": 1,
+      "message": "closing this as resolved since there was no answer to the question.",
+      "parentUuid": "f7ea63f9_6eff6115",
+      "revId": "c0a98ee0f20d4f3fa9c3b87a3372ed895b74f7c4",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "25859f61_2377a6cf",
@@ -696,6 +750,24 @@
       "side": 1,
       "message": "How will it work with the test code?\n\nIf we compile ```gpio_presence.cpp``` with the test code then there will be 2 main functions.",
       "parentUuid": "25859f61_2377a6cf",
+      "revId": "c0a98ee0f20d4f3fa9c3b87a3372ed895b74f7c4",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "9c94c0bf_e870def9",
+        "filename": "src/gpio-presence/main.cpp",
+        "patchSetId": 19
+      },
+      "lineNbr": 43,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-05-21T13:59:13Z",
+      "side": 1,
+      "message": "closing this as resolved since there was no further discussion on this point.",
+      "parentUuid": "3b23d603_f1d0ef8e",
       "revId": "c0a98ee0f20d4f3fa9c3b87a3372ed895b74f7c4",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
