@@ -3,37 +3,47 @@
         {
             "Name": "Verona Gpio Expander U29",
             "Bus": 9,
-            "Address": "0x22",
+            "Address": "22",
             "Type": "PCA9555Iox",
             "GpioNames": [
-                "BMC1_FANCTRL_FAIL_L",
-                "IOEXP_BMC_RST_12V",
-                "NODE_RST_STBY_H"
-            ]
+                "BMC1_FANCTRL_FAIL_L-I",
+                "IOEXP_BMC_RST_12V-O",
+                "NODE_RST_STBY_H-O"
+            ],
+            "InterruptPin": {
+                "Phandle": "&gpio1",
+                "Pin": 14,
+                "Type": "IRQ_TYPE_LEVEL_LOW"
+            }
         },
         {
             "Name": "Verona Gpio Expander U766",
             "Bus": 9,
-            "Address": "0x23",
+            "Address": "23",
             "Type": "PCA9555Iox",
             "GpioNames": [
-                "PEXSW_FL_SPI_MUX_SEL",
-                "PEX_SW_FATAL_ERROR_3V3_L",
-                "IOEXP_PDB_NODE_EN_L",
-                "NODE_PWOK_ISO",
-                "BMC_FAN_PWR_EN",
-                "BMC_ETHERNET_INT",
-                "BMC_ENET_RST",
-                "IOEXP_BMC_RST_SENSE",
-                "BMC_ID",
-                "TPM_MUX_3V3_SEL_N",
-                "IOEXP_TPM_RST_N",
-                "TPM_DOWN_SPI_INT_L",
-                "PS_BRD_PGOOD",
-                "FP_BUTTON_POWER_N",
-                "FP_BUTTON_RESET_N",
-                "FP_LED_POWER_GPIOEXP_N"
-            ]
+                "PEXSW_FL_SPI_MUX_SEL-O",
+                "PEX_SW_FATAL_ERROR_3V3_L-I",
+                "IOEXP_PDB_NODE_EN_L-O",
+                "NODE_PWOK_ISO-I",
+                "BMC_FAN_PWR_EN-O",
+                "BMC_ETHERNET_INT-I",
+                "BMC_ENET_RST-O",
+                "IOEXP_BMC_RST_SENSE-O",
+                "BMC_ID-I",
+                "TPM_MUX_3V3_SEL_N-O",
+                "IOEXP_TPM_RST_N-O",
+                "TPM_DOWN_SPI_INT_L-I",
+                "PS_BRD_PGOOD-I",
+                "FP_BUTTON_POWER_N-I",
+                "FP_BUTTON_RESET_N-I",
+                "FP_LED_POWER_GPIOEXP_N-O"
+            ],
+            "InterruptPin": {
+                "Phandle": "&gpio1",
+                "Pin": 14,
+                "Type": "IRQ_TYPE_LEVEL_LOW"
+            }
         }
     ],
     "Name": "GB200 Verona Tester",

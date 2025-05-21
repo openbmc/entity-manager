@@ -30,6 +30,7 @@
 #include <phosphor-logging/lg2.hpp>
 
 #include <filesystem>
+#include <format>
 #include <fstream>
 #include <iomanip>
 #include <iostream>
@@ -163,13 +164,12 @@ static bool deviceIsCreated(const std::string& busPath, uint64_t bus,
     return std::filesystem::exists(dirPath, ec);
 }
 
-static int buildDevice(
+static int dynamicDeviceCreation(
     const std::string& name, const std::string& busPath,
     const std::string& parameters, uint64_t bus, uint64_t address,
     const std::string& constructor, const std::string& destructor,
     const devices::createsHWMon hasHWMonDir,
-    std::vector<std::string> channelNames, [[maybe_unused]] std::vector<std::string> gpios,
-    const size_t retries = 5)
+    std::vector<std::string> channelNames, const size_t retries = 5)
 {
     if (retries == 0U)
     {
@@ -200,9 +200,10 @@ static int buildDevice(
                         std::cerr << "Timer error: " << ec << "\n";
                         return -2;
                     }
-                    return buildDevice(name, busPath, parameters, bus, address,
-                                       constructor, destructor, hasHWMonDir,
-                                       std::move(channelNames), retries - 1);
+                    return dynamicDeviceCreation(
+                        name, busPath, parameters, bus, address, constructor,
+                        destructor, hasHWMonDir, std::move(channelNames),
+                        retries - 1);
                 });
             return -1;
         }
@@ -217,6 +218,118 @@ static int buildDevice(
     return 0;
 }
 
+/**
+ * @brief Create a device tree overlay file to overlay a GPIO device
+ *
+ * @param[in] name - name of the device node
+ * @param[in] busPath - name of i2c bus node
+ * @param[in] parameters - name of device driver
+ * @param[in] bus - bus number
+ * @param[in] address - address of the device
+ * @param[in] gpios - gpios for the device
+ * @param[in] interruptPhandle - phandle of the interrupt parent
+ * @param[in] interruptPin - pin number of the interrupt
+ * @param[in] interruptType - type of the interrupt
+ * @param[out] dtsPath - path to the dts file
+ *
+ * @return 0 on success, -1 on failure
+ */
+static int createDTSOFile(
+    const std::string& name, const std::string& busPath,
+    const std::string& parameters, const uint64_t bus, const uint64_t address,
+    const std::vector<std::string> gpios, const std::string& interruptPhandle,
+    const uint8_t interruptPin, const std::string& interruptType,
+    std::string& dtsoPath)
+{
+    std::string working_dir = "/tmp/entity_manager/";
+    std::filesystem::create_directories(working_dir);
+    std::string overlay_file_path = working_dir + name + "_overlay.dts";
+    std::ofstream overlay_file(overlay_file_path);
+    if (!overlay_file)
+    {
+        std::cerr << "Failed to create overlay file: " << overlay_file_path
+                  << std::endl;
+        return -1;
+    }
+
+    overlay_file << std::format("// SPDX-License-Identifier: GPL-2.0+\n");
+    overlay_file << std::format("\n");
+    overlay_file << std::format("{} {{\n", busPath); // open i2c
+    overlay_file << std::format("\t{}: gpio@{} {{\n", name,
+                                address);            // open gpio
+
+    overlay_file << std::format("\t\tcompatible = \"{}\";\n", parameters);
+    overlay_file << std::format("\t\treg = <0x{}>;\n", address);
+    overlay_file << std::format("\t\tgpio-controller;\n");
+    overlay_file << std::format("\t\t#gpio-cells = <2>;\n");
+    overlay_file << std::format("\t\tinterrupt-controller;\n", address);
+    overlay_file << std::format("\t\t#interrupt-cells = <2>;\n", address);
+    overlay_file << std::format("\t\tinterrupt-parent = <{}>;\n",
+                                interruptPhandle);
+    overlay_file << std::format("\t\tinterrupts = <{} {}>;\n", interruptPin,
+                                interruptType);
+    overlay_file << std::format("\t\tgpio-line-names =\n");
+
+    for (const auto& gpio : gpios)
+    {
+        overlay_file << std::format("\t\t\t\"{}\",\n", gpio);
+    }
+
+    overlay_file << std::format("\t}};\n", bus); // close gpio
+    overlay_file << std::format("}};\n", bus);   // close i2c
+
+    overlay_file.close();
+    dtsoPath = overlay_file_path;
+    std::cout << "Overlay file created at: " << overlay_file_path << std::endl;
+    return 0;
+}
+
+static int compileDeviceTree(const std::string& dtsoPath, std::string& dtboPath)
+{
+    // import lib device tree 
+    // dtc -@ -I dts -O dtb -o my-overlay.dtbo my-overlay.dtso
+
+    return 0;
+}
+
+static int applyDeviceTreeBlob(const std::string& dtboPath)
+{
+    // import lib device tree 
+    // require beaglebone patch
+    return 0;
+}
+
+/**
+ * @brief Adds a GPIO expander using device tree overlays
+ *
+ * @param[in] name - name of the device node
+ * @param[in] busPath - name of i2c bus node
+ * @param[in] parameters - name of device driver
+ * @param[in] bus - bus number
+ * @param[in] address - address of the device
+ * @param[in] gpios - gpios for the device
+ * @param[in] interruptPhandle - phandle of the interrupt parent
+ * @param[in] interruptPin - pin number of the interrupt
+ * @param[in] interruptType - type of the interrupt
+ *
+ * @return 0 on success, -1 on failure
+ */
+static int deviceTreeOverlay(
+    const std::string& name, const std::string& busPath,
+    const std::string& parameters, const uint64_t bus, const uint64_t address,
+    const std::vector<std::string> gpios, const std::string& interruptPhandle,
+    const uint8_t interruptPin, const std::string& interruptType)
+{
+    std::string dtsoPath;
+    createDTSOFile(name, busPath, parameters, bus, address, gpios,
+                   interruptPhandle, interruptPin, interruptType, dtsoPath);
+
+    std::string dtboPath;
+    compileDeviceTree(dtsoPath, dtboPath);
+
+    applyDeviceTreeBlob(dtboPath);
+}
+
 void exportDevice(const std::string& type,
                   const devices::ExportTemplate& exportTemplate,
                   const nlohmann::json& configuration)
@@ -229,6 +342,9 @@ void exportDevice(const std::string& type,
     std::string name = "unknown";
     std::optional<uint64_t> bus;
     std::optional<uint64_t> address;
+    std::optional<std::string> interruptPhandle;
+    std::optional<uint8_t> interruptPin;
+    std::optional<std::string> interruptType;
     std::vector<std::string> channels;
     std::vector<std::string> gpios;
 
@@ -265,6 +381,12 @@ void exportDevice(const std::string& type,
         {
             gpios = keyPair.value().get<std::vector<std::string>>();
         }
+        else if (keyPair.key() == "InterruptPin" && type.ends_with("Iox"))
+        {
+            interruptPhandle = keyPair.value().find("Phandle");
+            interruptPin = keyPair.value().find("Pin");
+            interruptType = keyPair.value().find("Type");
+        }
         boost::replace_all(parameters, templateChar + keyPair.key(),
                            subsituteString);
         boost::replace_all(busPath, templateChar + keyPair.key(),
@@ -276,9 +398,20 @@ void exportDevice(const std::string& type,
         createDevice(busPath, parameters, constructor);
         return;
     }
-
-    buildDevice(name, busPath, parameters, *bus, *address, constructor,
-                destructor, hasHWMonDir, std::move(channels), std::move(gpios));
+    else if (interruptPhandle && interruptPin && interruptType &&
+             !gpios.empty())
+    {
+        deviceTreeOverlay(name, busPath, parameters, *bus, *address,
+                          std::move(gpios), interruptPhandle.value(),
+                          interruptPin.value(), interruptType.value());
+        return;
+    }
+    else
+    {
+        dynamicDeviceCreation(name, busPath, parameters, *bus, *address,
+                              constructor, destructor, hasHWMonDir,
+                              std::move(channels), std::move(gpios));
+    }
 }
 
 bool loadOverlays(const nlohmann::json& systemConfiguration)
