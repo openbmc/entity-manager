@@ -74,6 +74,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "34917ee0_a43ecb92",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 5
+      },
+      "lineNbr": 15,
+      "author": {
+        "id": 1001426
+      },
+      "writtenOn": "2025-05-22T15:37:40Z",
+      "side": 1,
+      "message": "@ed@tanous.net\nIs below snippet aligned with your suggestion?\n```\n  \"Type\": {\n    \"title\": \"Configuration Type\",\n    \"description\": \"The schema for the type property. The type property identifies the type of the configuration.  When exported, configurations will be instantiated as children of: /xyz/openbmc_project/configuration/\u003cType\u003e\",\n    \"enum\": [\n      \"Board\",\n      \"Chassis\",\n      \"NVMe\",\n      \"PowerSupply\",\n      \"CPU\",\n      \"Cable\",\n      \"Eeprom\"\n    ]\n  },\n\n  \"UpdatableProperties\": {\n    \"type\": \"object\",\n    \"properties\": {\n      \"areas\": {\n        \"type\": \"object\",\n        \"properties\": {\n          \"chassis\": {\n            \"type\": \"array\",\n            \"items\": {\n              \"type\": \"string\"\n            }\n          },\n          \"board\": {\n            \"type\": \"array\",\n            \"items\": {\n              \"type\": \"string\"\n            }\n          },\n          \"product\": {\n            \"type\": \"array\",\n            \"items\": {\n              \"type\": \"string\"\n            }\n          }\n        },\n      }\n    },\n  }```\n\nPlease let me know if this needs further changes",
+      "parentUuid": "91bc894f_9e7fc083",
+      "range": {
+        "startLine": 14,
+        "startChar": 0,
+        "endLine": 15,
+        "endChar": 28
+      },
+      "revId": "e74e9647b8f614acb5dc60c986282576cd5faae5",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "d4eb92e0_97d88995",
         "filename": "/PATCHSET_LEVEL",
         "patchSetId": 5
