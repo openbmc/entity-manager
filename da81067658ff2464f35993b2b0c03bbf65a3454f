@@ -16,6 +16,24 @@
       "message": "Would this require any change to dbus-sensors or would those continue to work as such since you necessitating the need for a Type property for new Dbus paths?",
       "revId": "da81067658ff2464f35993b2b0c03bbf65a3454f",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d389cc81_b7b6bab8",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 29
+      },
+      "lineNbr": 27,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-05-22T19:48:10Z",
+      "side": 1,
+      "message": "It should depend on which value the ```Type``` property has in the nested records, if any.\n\nIn the current schemas the nested records like ```FirmwareInfoDef``` usually do not have their own ```Type``` property which means they should not be affected by this change. \n\nSo the dbus tree should look the same and the code should work as before.\n\n\nIf then in the future someone wants to refactor a daemon in dbus-sensors to use the PDI generated code, enablement would look something like:\n\n- Update the specific schema to require that ```Type``` field on the nested records.\n- Create (or preferably, generate) the PDI interface definitions for the involved interfaces from the schemas involved\n- Use some script to add ```Type``` property to all the nested records and array records of that specific configuration schema on all existing configurations\n- Update the daemon to start consuming the interfaces which were newly added to the dbus tree via the generated clients.\n- Profit",
+      "parentUuid": "50c5cf4e_7277bef8",
+      "revId": "da81067658ff2464f35993b2b0c03bbf65a3454f",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }
