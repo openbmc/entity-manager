@@ -9,7 +9,7 @@
     ],
     /* Clemente Octal Small Form-factor Pluggable Carrier Board */
     "Name": "Clemente OSFP Carrier",
-    "Probe": "xyz.openbmc_project.FruDevice({'BOARD_PRODUCT_NAME': 'Clemente OSFP ', 'BOARD_MANUFACTURER': 'Ingrasys'})",
+    "Probe": "xyz.openbmc_project.FruDevice({'BOARD_PRODUCT_NAME': 'Clemente OSFP ', 'BOARD_MANUFACTURER': '(Ingrasys|Quanta)'})",
     "Type": "Board",
     "xyz.openbmc_project.Inventory.Decorator.Asset": {
         "BuildDate": "$BOARD_MANUFACTURE_DATE",
