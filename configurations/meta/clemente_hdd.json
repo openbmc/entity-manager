@@ -133,7 +133,7 @@
     ],
     /* Clemente Hard Disk Drive Carrier Board */
     "Name": "Clemente HDD Carrier",
-    "Probe": "xyz.openbmc_project.FruDevice({'BOARD_PRODUCT_NAME': 'Clemente HDD ', 'BOARD_MANUFACTURER': 'Ingrasys'})",
+    "Probe": "xyz.openbmc_project.FruDevice({'BOARD_PRODUCT_NAME': 'Clemente HDD ', 'BOARD_MANUFACTURER': '(Ingrasys|Quanta)'})",
     "Type": "Board",
     "xyz.openbmc_project.Inventory.Decorator.Asset": {
         "BuildDate": "$BOARD_MANUFACTURE_DATE",
