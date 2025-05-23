@@ -85,7 +85,6 @@ if get_option('validate-json')
         command: [validate_script, '-v', '-k'],
         depend_files: files(filepaths),
         build_by_default: true,
-        capture: true,
         output: 'validate_configs.log',
     )
 endif
