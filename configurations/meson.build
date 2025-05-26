@@ -75,6 +75,7 @@ configs = [
     'meta/clemente_fio.json',
     'meta/clemente_hdd.json',
     'meta/clemente_hdd_nvme.json',
+    'meta/clemente_interposer.json',
     'meta/clemente_osfp.json',
     'meta/clemente_pdb.json',
     'meta/clemente_scm.json',
