@@ -283,6 +283,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "0d374443_7c0901e6",
+        "filename": "src/gpio-presence/config.cpp",
+        "patchSetId": 19
+      },
+      "lineNbr": 98,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-05-27T20:22:28Z",
+      "side": 1,
+      "message": "@alexander.hansen@9elements.com Can you raise a patch to disable the clang-tidy warning and rebase this one on top of that. If that patch gets approved you can drop the NOLINTBEGIN(readability-static-accessed-through-instance) from this patch.",
+      "parentUuid": "ca715a2e_207bc508",
+      "revId": "c0a98ee0f20d4f3fa9c3b87a3372ed895b74f7c4",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "299ceec0_92c89f77",
         "filename": "src/gpio-presence/config.hpp",
         "patchSetId": 19
