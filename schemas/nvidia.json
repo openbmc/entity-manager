@@ -8,12 +8,16 @@
                     "description": "A recognisable name for the device",
                     "type": "string"
                 },
+                "PollRate": {
+                    "description": "Poll the device at this rate, specified in milliseconds, to fetch sensors",
+                    "type": "number"
+                },
                 "Type": {
                     "type": "string",
                     "const": "NvidiaMctpVdm"
                 }
             },
-            "required": ["Name", "Type"],
+            "required": ["Name", "PollRate", "Type"],
             "type": "object"
         }
     }
