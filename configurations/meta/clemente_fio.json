@@ -29,7 +29,7 @@
     ],
     /* Clemente Front IO Board */
     "Name": "Clemente FIO",
-    "Probe": "xyz.openbmc_project.FruDevice({'BOARD_PRODUCT_NAME': 'Clemente FIO ', 'BOARD_MANUFACTURER': 'Ingrasys'})",
+    "Probe": "xyz.openbmc_project.FruDevice({'BOARD_PRODUCT_NAME': 'Clemente FIO ', 'BOARD_MANUFACTURER': '(Ingrasys|Quanta)'})",
     "Type": "Board",
     "xyz.openbmc_project.Inventory.Decorator.Asset": {
         "BuildDate": "$BOARD_MANUFACTURE_DATE",
