@@ -164,6 +164,14 @@
             "Type": "BMC"
         },
         {
+            "Level": "Critical",
+            "Name": "ComputeBlade",
+            "PinName": "leakage-detect-alert",
+            "Polarity": "High",
+            "SubType": "LeakSensingCable",
+            "Type": "GPIOLeakDetector"
+        },
+        {
             "Address": "0x4B",
             "Bus": 1,
             "Name": "SCM_INLET_TEMP_C",
