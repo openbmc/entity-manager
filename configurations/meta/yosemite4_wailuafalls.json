@@ -1,6 +1,45 @@
 {
     "Exposes": [
         {
+            "Address": [
+                "7",
+                "236",
+                "128",
+                "1",
+                "0",
+                "$bus % 16 * 5"
+            ],
+            "Bus": "$bus / 4 - 4",
+            "Name": "BIC",
+            "Type": "MCTPI3CTarget"
+        },
+        {
+            "Address": [
+                "7",
+                "236",
+                "128",
+                "1",
+                "0",
+                "$bus % 16 * 5"
+            ],
+            "Bus": "$bus / 4 - 4",
+            "Name": "CXL1",
+            "Type": "MCTPI3CTarget"
+        },
+        {
+            "Address": [
+                "7",
+                "236",
+                "128",
+                "1",
+                "0",
+                "$bus % 16 * 5"
+            ],
+            "Bus": "$bus / 4 - 4",
+            "Name": "CXL2",
+            "Type": "MCTPI3CTarget"
+        },
+        {
             "CheckHysteresisWithSetpoint": true,
             "Class": "temp",
             "DCoefficient": 0.0,
