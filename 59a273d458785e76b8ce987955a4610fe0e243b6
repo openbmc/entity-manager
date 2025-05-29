@@ -1,0 +1,446 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5b7726cd_13347d32",
+        "filename": "src/gpio-presence/README.md",
+        "patchSetId": 24
+      },
+      "lineNbr": 95,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-05-29T03:07:58Z",
+      "side": 1,
+      "message": "This looks redundant as you already have github link on next line.",
+      "revId": "59a273d458785e76b8ce987955a4610fe0e243b6",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "078a5280_230dff95",
+        "filename": "src/gpio-presence/device_presence.cpp",
+        "patchSetId": 24
+      },
+      "lineNbr": 30,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-05-29T03:07:58Z",
+      "side": 1,
+      "message": "We should have modeled polarity only in EM, that was more standard way to do this.",
+      "revId": "59a273d458785e76b8ce987955a4610fe0e243b6",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "98d13d85_c3711aee",
+        "filename": "src/gpio-presence/device_presence.cpp",
+        "patchSetId": 24
+      },
+      "lineNbr": 62,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-05-29T03:07:58Z",
+      "side": 1,
+      "message": "This is the path for DevicePresenceInterface, i don\u0027t think u need to expose it outside as public.",
+      "revId": "59a273d458785e76b8ce987955a4610fe0e243b6",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "064c4949_340c01a1",
+        "filename": "src/gpio-presence/device_presence.cpp",
+        "patchSetId": 24
+      },
+      "lineNbr": 102,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-05-29T03:07:58Z",
+      "side": 1,
+      "message": "Would this emit removed as well? Did u notice the InterfaceRemoved signal going out?",
+      "revId": "59a273d458785e76b8ce987955a4610fe0e243b6",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c031f3c7_c46fd439",
+        "filename": "src/gpio-presence/device_presence.hpp",
+        "patchSetId": 24
+      },
+      "lineNbr": 32,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-05-29T03:07:58Z",
+      "side": 1,
+      "message": "rename name to deviceName to make it precise.",
+      "revId": "59a273d458785e76b8ce987955a4610fe0e243b6",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "864121e2_023783f9",
+        "filename": "src/gpio-presence/device_presence.hpp",
+        "patchSetId": 24
+      },
+      "lineNbr": 37,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-05-29T03:07:58Z",
+      "side": 1,
+      "message": "Make this a static function .cpp file by passing in deviceName.",
+      "revId": "59a273d458785e76b8ce987955a4610fe0e243b6",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c7944e23_ca7ac16f",
+        "filename": "src/gpio-presence/device_presence.hpp",
+        "patchSetId": 24
+      },
+      "lineNbr": 40,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-05-29T03:07:58Z",
+      "side": 1,
+      "message": "No need to expose this once u bring in all the GPIO state inside DevicePresence.",
+      "revId": "59a273d458785e76b8ce987955a4610fe0e243b6",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c0ed4401_3ab9f7e8",
+        "filename": "src/gpio-presence/device_presence.hpp",
+        "patchSetId": 24
+      },
+      "lineNbr": 44,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-05-29T03:07:58Z",
+      "side": 1,
+      "message": "rename to deviceName",
+      "revId": "59a273d458785e76b8ce987955a4610fe0e243b6",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6ef8f5c9_e3f297b3",
+        "filename": "src/gpio-presence/device_presence.hpp",
+        "patchSetId": 24
+      },
+      "lineNbr": 47,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-05-29T03:07:58Z",
+      "side": 1,
+      "message": "why do u need 2 maps? Can\u0027t you use value as tuple or a struct of polarity and presence?\n\nAnd this should be private as well.",
+      "revId": "59a273d458785e76b8ce987955a4610fe0e243b6",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "836cb62e_c400f062",
+        "filename": "src/gpio-presence/gpio_presence_manager.cpp",
+        "patchSetId": 24
+      },
+      "lineNbr": 45,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-05-29T03:07:58Z",
+      "side": 1,
+      "message": "Lets drop this API and add these APIs to the ConfigurationProvider constructor itself, so it can be done on line31 itself.",
+      "revId": "59a273d458785e76b8ce987955a4610fe0e243b6",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "bfaabd82_204d71fc",
+        "filename": "src/gpio-presence/gpio_presence_manager.cpp",
+        "patchSetId": 24
+      },
+      "lineNbr": 124,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-05-29T03:07:58Z",
+      "side": 1,
+      "message": "Since ConfigProvider is part of this daemon itself would it be better to drop the normal function and just bind and call the task from the config_provider?",
+      "revId": "59a273d458785e76b8ce987955a4610fe0e243b6",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d83f1784_9c35725a",
+        "filename": "src/gpio-presence/gpio_presence_manager.cpp",
+        "patchSetId": 24
+      },
+      "lineNbr": 142,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-05-29T03:07:58Z",
+      "side": 1,
+      "message": "auto properties \u003d co_await sdbusplus::client::xyz::openbmc_project::configuration::\n                      GPIODeviceDetect\u003c\u003e(ctx) .......path(obj.str).properties; \n                      \n                      \nand then \n\nauto presencePinNames \u003d properties.presence_pin_names\n\nso you can get all properties in one go.",
+      "revId": "59a273d458785e76b8ce987955a4610fe0e243b6",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "fea376eb_96ffb23e",
+        "filename": "src/gpio-presence/gpio_presence_manager.cpp",
+        "patchSetId": 24
+      },
+      "lineNbr": 167,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-05-29T03:07:58Z",
+      "side": 1,
+      "message": "This should only delete the DevicePresence which should take care of cleaning the whole flow below for you in DevicePresence class.",
+      "revId": "59a273d458785e76b8ce987955a4610fe0e243b6",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d7b0e441_cbac2c13",
+        "filename": "src/gpio-presence/gpio_presence_manager.hpp",
+        "patchSetId": 24
+      },
+      "lineNbr": 32,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-05-29T03:07:58Z",
+      "side": 1,
+      "message": "Why is this a function here? It should be part of DevicePresence?",
+      "revId": "59a273d458785e76b8ce987955a4610fe0e243b6",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "427bdf48_7229b233",
+        "filename": "src/gpio-presence/gpio_presence_manager.hpp",
+        "patchSetId": 24
+      },
+      "lineNbr": 36,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-05-29T03:07:58Z",
+      "side": 1,
+      "message": "This API can be dropped, please look at my comment in .cpp file.",
+      "revId": "59a273d458785e76b8ce987955a4610fe0e243b6",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c1b10c19_89c25c99",
+        "filename": "src/gpio-presence/gpio_presence_manager.hpp",
+        "patchSetId": 24
+      },
+      "lineNbr": 46,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-05-29T03:07:58Z",
+      "side": 1,
+      "message": "This should be private and rename to addConfigHandler.",
+      "revId": "59a273d458785e76b8ce987955a4610fe0e243b6",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "10cddc95_a91a73e0",
+        "filename": "src/gpio-presence/gpio_presence_manager.hpp",
+        "patchSetId": 24
+      },
+      "lineNbr": 59,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-05-29T03:07:58Z",
+      "side": 1,
+      "message": "Why is this a function here? It should be part of DevicePresence?",
+      "revId": "59a273d458785e76b8ce987955a4610fe0e243b6",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "855007f1_b85edd7b",
+        "filename": "src/gpio-presence/gpio_presence_manager.hpp",
+        "patchSetId": 24
+      },
+      "lineNbr": 62,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-05-29T03:07:58Z",
+      "side": 1,
+      "message": "GPIO Event handler should be part of DevicePresence?",
+      "revId": "59a273d458785e76b8ce987955a4610fe0e243b6",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "904b23cc_2aaf4129",
+        "filename": "src/gpio-presence/gpio_presence_manager.hpp",
+        "patchSetId": 24
+      },
+      "lineNbr": 66,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-05-29T03:07:58Z",
+      "side": 1,
+      "message": "You don\u0027t need this map as each DevicePresence should hold its own config.",
+      "revId": "59a273d458785e76b8ce987955a4610fe0e243b6",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "07a885fb_a21b9a02",
+        "filename": "src/gpio-presence/gpio_presence_manager.hpp",
+        "patchSetId": 24
+      },
+      "lineNbr": 69,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-05-29T03:07:58Z",
+      "side": 1,
+      "message": "This should be part of DevicePresence?",
+      "revId": "59a273d458785e76b8ce987955a4610fe0e243b6",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "eef47a5b_724b7e74",
+        "filename": "src/gpio-presence/gpio_presence_manager.hpp",
+        "patchSetId": 24
+      },
+      "lineNbr": 72,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-05-29T03:07:58Z",
+      "side": 1,
+      "message": "GPIOLines should be part of DevicePresence rather than Manager?",
+      "revId": "59a273d458785e76b8ce987955a4610fe0e243b6",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "548ce8c9_32ed3ae6",
+        "filename": "src/gpio-presence/gpio_presence_manager.hpp",
+        "patchSetId": 24
+      },
+      "lineNbr": 74,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-05-29T03:07:58Z",
+      "side": 1,
+      "message": "I don\u0027t think you need a map for DevicePresenceInterface but rather a map for DevicePresence as DevicePresenceInterface is already a var in that class.",
+      "revId": "59a273d458785e76b8ce987955a4610fe0e243b6",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "42ce6b69_c0685067",
+        "filename": "src/gpio-presence/main.cpp",
+        "patchSetId": 24
+      },
+      "lineNbr": 21,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-05-29T03:07:58Z",
+      "side": 1,
+      "message": "No need of a unqie_ptr just a normal var is good enough here.",
+      "revId": "59a273d458785e76b8ce987955a4610fe0e243b6",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ab8f1cb6_32c6599d",
+        "filename": "src/gpio-presence/main.cpp",
+        "patchSetId": 24
+      },
+      "lineNbr": 26,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-05-29T03:07:58Z",
+      "side": 1,
+      "message": "Can this be done in the controller constructor instead?",
+      "revId": "59a273d458785e76b8ce987955a4610fe0e243b6",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6d81603a_100dcc21",
+        "filename": "src/gpio-presence/meson.build",
+        "patchSetId": 24
+      },
+      "lineNbr": 10,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-05-29T03:07:58Z",
+      "side": 1,
+      "message": "Do you still need boost after moving to coroutines?",
+      "revId": "59a273d458785e76b8ce987955a4610fe0e243b6",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "405e360b_ccc0f372",
+        "filename": "src/gpio-presence/meson.build",
+        "patchSetId": 24
+      },
+      "lineNbr": 22,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-05-29T03:07:58Z",
+      "side": 1,
+      "message": "Do you still need boost after moving to coroutines?",
+      "revId": "59a273d458785e76b8ce987955a4610fe0e243b6",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    }
+  ]
+}
