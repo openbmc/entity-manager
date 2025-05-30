@@ -20,6 +20,363 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "7e6dcb9e_11e63cb3",
+        "filename": "src/gpio-presence/config_provider.cpp",
+        "patchSetId": 24
+      },
+      "lineNbr": 17,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-05-30T06:16:40Z",
+      "side": 1,
+      "message": "Rename to VariantType.",
+      "revId": "59a273d458785e76b8ce987955a4610fe0e243b6",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c0b500a0_0b5e7128",
+        "filename": "src/gpio-presence/config_provider.cpp",
+        "patchSetId": 24
+      },
+      "lineNbr": 20,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-05-30T06:16:40Z",
+      "side": 1,
+      "message": "Rename to ConfigMap",
+      "revId": "59a273d458785e76b8ce987955a4610fe0e243b6",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "43db9e13_9fc043bf",
+        "filename": "src/gpio-presence/config_provider.cpp",
+        "patchSetId": 24
+      },
+      "lineNbr": 22,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-05-30T06:16:40Z",
+      "side": 1,
+      "message": "Rename to ConfigData",
+      "revId": "59a273d458785e76b8ce987955a4610fe0e243b6",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ffb0c1ff_c52dc72d",
+        "filename": "src/gpio-presence/config_provider.cpp",
+        "patchSetId": 24
+      },
+      "lineNbr": 32,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-05-30T06:16:40Z",
+      "side": 1,
+      "message": "All these checks can be dropped as clang-tidy PR has been merged.",
+      "revId": "59a273d458785e76b8ce987955a4610fe0e243b6",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "81ff93ff_c44ea1af",
+        "filename": "src/gpio-presence/config_provider.cpp",
+        "patchSetId": 24
+      },
+      "lineNbr": 37,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-05-30T06:16:40Z",
+      "side": 1,
+      "message": "Better to move this into handleInterfacesAdded as entry debug.",
+      "revId": "59a273d458785e76b8ce987955a4610fe0e243b6",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "88d9daaa_bffa9f5b",
+        "filename": "src/gpio-presence/config_provider.cpp",
+        "patchSetId": 24
+      },
+      "lineNbr": 41,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-05-30T06:16:40Z",
+      "side": 1,
+      "message": "Better to move this to handleInterfacesRemoved as entry debug.",
+      "revId": "59a273d458785e76b8ce987955a4610fe0e243b6",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "fd7b6a1e_9d47ee8b",
+        "filename": "src/gpio-presence/config_provider.cpp",
+        "patchSetId": 24
+      },
+      "lineNbr": 49,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-05-30T06:16:40Z",
+      "side": 1,
+      "message": "Move all the below logic into a new getConfig API.",
+      "revId": "59a273d458785e76b8ce987955a4610fe0e243b6",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "67cb4a9f_bca8a110",
+        "filename": "src/gpio-presence/config_provider.cpp",
+        "patchSetId": 24
+      },
+      "lineNbr": 74,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-05-30T06:16:40Z",
+      "side": 1,
+      "message": "rename mapServiceInterfaces to serviceInterfaceMap",
+      "revId": "59a273d458785e76b8ce987955a4610fe0e243b6",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9c44ff92_83559d81",
+        "filename": "src/gpio-presence/config_provider.cpp",
+        "patchSetId": 24
+      },
+      "lineNbr": 86,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-05-30T06:16:40Z",
+      "side": 1,
+      "message": "rename to senderRule.",
+      "revId": "59a273d458785e76b8ce987955a4610fe0e243b6",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "270d536d_c025d834",
+        "filename": "src/gpio-presence/config_provider.cpp",
+        "patchSetId": 24
+      },
+      "lineNbr": 94,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-05-30T06:16:40Z",
+      "side": 1,
+      "message": "Use it directly in line#99 rather than defining another var for this.",
+      "revId": "59a273d458785e76b8ce987955a4610fe0e243b6",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c312cf30_fe3c7e99",
+        "filename": "src/gpio-presence/config_provider.cpp",
+        "patchSetId": 24
+      },
+      "lineNbr": 97,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-05-30T06:16:40Z",
+      "side": 1,
+      "message": "rename to addedMatch.",
+      "revId": "59a273d458785e76b8ce987955a4610fe0e243b6",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "762b3691_f8d357f2",
+        "filename": "src/gpio-presence/config_provider.cpp",
+        "patchSetId": 24
+      },
+      "lineNbr": 98,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-05-30T06:16:40Z",
+      "side": 1,
+      "message": "Define a using for sdbusplus::bus::match::rules and use that as its being typed at multiple places.",
+      "revId": "59a273d458785e76b8ce987955a4610fe0e243b6",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e960e140_3dea2f81",
+        "filename": "src/gpio-presence/config_provider.cpp",
+        "patchSetId": 24
+      },
+      "lineNbr": 116,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-05-30T06:16:40Z",
+      "side": 1,
+      "message": "Just use it directly on next line rather then defining service var?",
+      "revId": "59a273d458785e76b8ce987955a4610fe0e243b6",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9c89add5_3ab99f91",
+        "filename": "src/gpio-presence/config_provider.cpp",
+        "patchSetId": 24
+      },
+      "lineNbr": 122,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-05-30T06:16:40Z",
+      "side": 1,
+      "message": "Just e and not e.what(), logging macro can take care of it.",
+      "revId": "59a273d458785e76b8ce987955a4610fe0e243b6",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a9de6f9c_42a117f1",
+        "filename": "src/gpio-presence/config_provider.cpp",
+        "patchSetId": 24
+      },
+      "lineNbr": 132,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-05-30T06:16:40Z",
+      "side": 1,
+      "message": "Use it directly in line#135 rather than defining another var for this.",
+      "revId": "59a273d458785e76b8ce987955a4610fe0e243b6",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1b554ae7_5d5f38b2",
+        "filename": "src/gpio-presence/config_provider.cpp",
+        "patchSetId": 24
+      },
+      "lineNbr": 135,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-05-30T06:16:40Z",
+      "side": 1,
+      "message": "rename to removedMatch.",
+      "revId": "59a273d458785e76b8ce987955a4610fe0e243b6",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4cbd7f84_1172402c",
+        "filename": "src/gpio-presence/config_provider.hpp",
+        "patchSetId": 24
+      },
+      "lineNbr": 15,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-05-30T06:16:40Z",
+      "side": 1,
+      "message": "Rename to AddedCallback as u r already in ConfigProvider so prefix Config seems redundant.",
+      "revId": "59a273d458785e76b8ce987955a4610fe0e243b6",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "be9f1073_dd6e72b8",
+        "filename": "src/gpio-presence/config_provider.hpp",
+        "patchSetId": 24
+      },
+      "lineNbr": 18,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-05-30T06:16:40Z",
+      "side": 1,
+      "message": "Rename to RemovedCallback as u r already in ConfigProvider so prefix Config seems redundant.",
+      "revId": "59a273d458785e76b8ce987955a4610fe0e243b6",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8a1144c3_5bcd2a45",
+        "filename": "src/gpio-presence/config_provider.hpp",
+        "patchSetId": 24
+      },
+      "lineNbr": 27,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-05-30T06:16:40Z",
+      "side": 1,
+      "message": "I would suggest to drop this function and move these 2 callbacks as in_args constructor itself and initialize it in constructor args. You can spawn tasks for add/remove functionalities in constructor itself.\n\nAdd an explicit API for getConfig and you can call it from required place in the caller, that way the API explicitly says its doing a get.",
+      "revId": "59a273d458785e76b8ce987955a4610fe0e243b6",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "cafd6e31_855d0b1f",
+        "filename": "src/gpio-presence/config_provider.hpp",
+        "patchSetId": 24
+      },
+      "lineNbr": 34,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-05-30T06:16:40Z",
+      "side": 1,
+      "message": "nit: Better to change all the APIs to use post notation for return type.\n\nauto handleInterfacesRemoved(...) -\u003e sdbusplus::async::task\u003cvoid\u003e;\n\nRefer to this comment from Patrick\nhttps://gerrit.openbmc.org/c/openbmc/dbus-sensors/+/75329/comment/55565604_7e4b7273/",
+      "revId": "59a273d458785e76b8ce987955a4610fe0e243b6",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "72bd10c5_e97b1737",
+        "filename": "src/gpio-presence/config_provider.hpp",
+        "patchSetId": 24
+      },
+      "lineNbr": 38,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-05-30T06:16:40Z",
+      "side": 1,
+      "message": "Just interface or interfaceName is fine.",
+      "revId": "59a273d458785e76b8ce987955a4610fe0e243b6",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "078a5280_230dff95",
         "filename": "src/gpio-presence/device_presence.cpp",
         "patchSetId": 24
