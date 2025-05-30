@@ -105,6 +105,7 @@ configs = [
     'meta/minerva_tahan_smb.json',
     'meta/terminus_2x100g_nic_tsff.json',
     'meta/twinlake.json',
+    'meta/ventura_cable.json',
     'meta/ventura_fanboard_adc_max.json',
     'meta/ventura_fanboard_adc_tic.json',
     'meta/ventura_ioboard.json',
