@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "89a290f3_6732df44",
+        "filename": "schemas/mctp.json",
+        "patchSetId": 8
+      },
+      "lineNbr": 53,
+      "author": {
+        "id": 1000009
+      },
+      "writtenOn": "2025-05-30T06:20:56Z",
+      "side": 1,
+      "message": "By describing the configuration in EM we\u0027re trying to locate the physical device. Maybe Bus, Port, Configuration and Interface might be more helpful here? The kernel will automatically create an interface when it sees the MCTP interface descriptor. The interface can be located by looking under the net/ subdirectory:\n\n```\n# ls -1d /sys/bus/usb/devices/1-1/1-1:1.0/net/*\n/sys/bus/usb/devices/1-1/1-1:1.0/net/mctpusb0\n```\n\nThis is essentially:\n\n```\n/sys/bus/usb/devices/${Bus}-${Port}/${Bus}-${Port}:${Configuration}-${Interface}/net/...\n```",
+      "range": {
+        "startLine": 50,
+        "startChar": 1,
+        "endLine": 53,
+        "endChar": 18
+      },
+      "revId": "65e4f7064388a2ce1447444acd15f1270d31ad3c",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    }
+  ]
+}
