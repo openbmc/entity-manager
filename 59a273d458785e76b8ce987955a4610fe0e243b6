@@ -773,6 +773,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "730a7754_4698dd67",
+        "filename": "src/gpio-presence/config_provider.hpp",
+        "patchSetId": 24
+      },
+      "lineNbr": 34,
+      "author": {
+        "id": 1000008
+      },
+      "writtenOn": "2025-05-30T16:35:12Z",
+      "side": 1,
+      "message": "The inconsistency doesn\u0027t really bother me, as using coroutines is a bigger one.\n\nThat being said, since we don\u0027t have a project standard for this yet, maybe it should be left up to the patch set author in repos that aren\u0027t already using this style.\n\n@ed@tanous.net do you care either way?\n\nIt wouldn\u0027t surprise me at all if there will soon be a clang-tidy setting to convert them all to one way or another anyway.",
+      "parentUuid": "65ab035a_74400b28",
+      "revId": "59a273d458785e76b8ce987955a4610fe0e243b6",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "72bd10c5_e97b1737",
         "filename": "src/gpio-presence/config_provider.hpp",
         "patchSetId": 24
