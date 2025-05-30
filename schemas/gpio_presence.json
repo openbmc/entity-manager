@@ -1,0 +1,40 @@
+{
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "$defs": {
+        "GPIODeviceDetect": {
+            "additionalProperties": false,
+            "description": "Configuration for GPIO device presence daemon",
+            "type": "object",
+            "properties": {
+                "Name": {
+                    "description": "The name of the device",
+                    "type": "string"
+                },
+                "Type": {
+                    "description": "The type of configuration object",
+                    "const": "GPIODeviceDetect"
+                },
+                "PresencePinNames": {
+                    "description": "The names of the GPIOs used for presence detection.",
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    }
+                },
+                "PresencePinValues": {
+                    "description": "The presence pin values for the GPIOs.",
+                    "type": "array",
+                    "items": {
+                        "type": "number"
+                    }
+                }
+            },
+            "required": [
+                "Name",
+                "Type",
+                "PresencePinNames",
+                "PresencePinValues"
+            ]
+        }
+    }
+}
