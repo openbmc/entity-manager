@@ -91,6 +91,7 @@ endif
 schemas = [
     'cpld.json',
     'global.json',
+    'gpio_presence.json',
     'legacy.json',
     'openbmc-dbus.json',
     'ibm.json',
