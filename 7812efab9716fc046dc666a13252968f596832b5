@@ -16,6 +16,91 @@
       "message": "Thanks for of all the comments on the last revision 😎 👍",
       "revId": "7812efab9716fc046dc666a13252968f596832b5",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f4ae17bb_bfa2de56",
+        "filename": "service_files/xyz.openbmc_project.gpiopresence.service",
+        "patchSetId": 25
+      },
+      "lineNbr": 8,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-05-31T01:57:03Z",
+      "side": 1,
+      "message": "Can you please use the bus name same as the service name ?",
+      "revId": "7812efab9716fc046dc666a13252968f596832b5",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "73eb320d_230c3d7e",
+        "filename": "src/gpio-presence/config_provider.hpp",
+        "patchSetId": 25
+      },
+      "lineNbr": 13,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-05-31T01:57:03Z",
+      "side": 1,
+      "message": "Drop this forward reference as it doesn\u0027t seem to be used.",
+      "revId": "7812efab9716fc046dc666a13252968f596832b5",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5e8320c8_f652094b",
+        "filename": "src/gpio-presence/gpio_presence_manager.cpp",
+        "patchSetId": 25
+      },
+      "lineNbr": 148,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-05-31T01:57:03Z",
+      "side": 1,
+      "message": "this is not config because if its just config you could have just defined a struct in this class, its doing way more than that.",
+      "revId": "7812efab9716fc046dc666a13252968f596832b5",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "479f4efe_1c051e6e",
+        "filename": "src/gpio-presence/gpio_presence_manager.hpp",
+        "patchSetId": 25
+      },
+      "lineNbr": 70,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-05-31T01:57:03Z",
+      "side": 1,
+      "message": "It has been confusing for me to understand this hence i am bringing this up -\nIf the purpose of the DevicePresence class is just to hold config as a passive entity then i would suggest to name the class something like PresenceConfig but i can see that its more than just config as it also creates the Detected interface, so my suggestion is to rename configs var to presenceMap or something more appropriate.",
+      "revId": "7812efab9716fc046dc666a13252968f596832b5",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "69c2281d_12002cfe",
+        "filename": "test/test_gpio_presence.cpp",
+        "patchSetId": 25
+      },
+      "lineNbr": 12,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-05-31T01:57:03Z",
+      "side": 1,
+      "message": "Do you still need this as static warning was disabled?",
+      "revId": "7812efab9716fc046dc666a13252968f596832b5",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }

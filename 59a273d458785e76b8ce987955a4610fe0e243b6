@@ -895,6 +895,24 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "4fb5f58b_0ff79589",
+        "filename": "src/gpio-presence/device_presence.cpp",
+        "patchSetId": 24
+      },
+      "lineNbr": 30,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-05-31T01:57:03Z",
+      "side": 1,
+      "message": "Marking this as resolved based on discussion on discord https://discord.com/channels/775381525260664832/1273263354647023616/1305568394510209025 .",
+      "parentUuid": "59f3f678_31767c90",
+      "revId": "59a273d458785e76b8ce987955a4610fe0e243b6",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "98d13d85_c3711aee",
@@ -926,6 +944,24 @@
       "side": 1,
       "message": "```\ntest/test_gpio_presence.cpp\n76:    sdbusplus::message::object_path objPath \u003d c-\u003egetObjPath();\n123:    sdbusplus::message::object_path objPath \u003d c-\u003egetObjPath();\n```\n\nIt\u0027s used for testing the dbus interface, so it needs to be public.",
       "parentUuid": "98d13d85_c3711aee",
+      "revId": "59a273d458785e76b8ce987955a4610fe0e243b6",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "257f61f6_6c1e2494",
+        "filename": "src/gpio-presence/device_presence.cpp",
+        "patchSetId": 24
+      },
+      "lineNbr": 62,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-05-31T01:57:03Z",
+      "side": 1,
+      "message": "TBH i am not in favor of exposing so much of state outside in every class just for the purpose of Unit testing which can be achieved through other alternatives such as gmock. Now for gmock there could be some opinions as one might not be in favor of defining an interface using virtual functions, which i would support rather than exposing the class state this way.\nI am not going to hold up your PR for this but wanted to share my thoughts on this.",
+      "parentUuid": "16096ddc_ddde8c15",
       "revId": "59a273d458785e76b8ce987955a4610fe0e243b6",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
