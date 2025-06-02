@@ -1,0 +1,147 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "3ea99fc4_b1388b22",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 31
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1000008
+      },
+      "writtenOn": "2025-06-02T21:56:23Z",
+      "side": 1,
+      "message": "a few minor comments",
+      "revId": "1d81dc09840ff98471bb1caea6bdcb76ee383af2",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f02f827a_dbc63908",
+        "filename": "src/gpio-presence/config_provider.cpp",
+        "patchSetId": 31
+      },
+      "lineNbr": 76,
+      "author": {
+        "id": 1000008
+      },
+      "writtenOn": "2025-06-02T21:56:23Z",
+      "side": 1,
+      "message": "could use std::ranges::views::keys() here if you wanted.",
+      "range": {
+        "startLine": 76,
+        "startChar": 40,
+        "endLine": 76,
+        "endChar": 60
+      },
+      "revId": "1d81dc09840ff98471bb1caea6bdcb76ee383af2",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ac6cea28_51abdaf5",
+        "filename": "src/gpio-presence/config_provider.cpp",
+        "patchSetId": 31
+      },
+      "lineNbr": 141,
+      "author": {
+        "id": 1000008
+      },
+      "writtenOn": "2025-06-02T21:56:23Z",
+      "side": 1,
+      "message": "Could use std::ranges::contains() here if you wanted. Also above.",
+      "revId": "1d81dc09840ff98471bb1caea6bdcb76ee383af2",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8eb8c25b_647866a5",
+        "filename": "src/gpio-presence/device_presence.cpp",
+        "patchSetId": 31
+      },
+      "lineNbr": 30,
+      "author": {
+        "id": 1000008
+      },
+      "writtenOn": "2025-06-02T21:56:23Z",
+      "side": 1,
+      "message": "This looks like something that would only be required in C.",
+      "range": {
+        "startLine": 30,
+        "startChar": 8,
+        "endLine": 30,
+        "endChar": 13
+      },
+      "revId": "1d81dc09840ff98471bb1caea6bdcb76ee383af2",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "78d2777e_8f596ee4",
+        "filename": "src/gpio-presence/device_presence.hpp",
+        "patchSetId": 31
+      },
+      "lineNbr": 48,
+      "author": {
+        "id": 1000008
+      },
+      "writtenOn": "2025-06-02T21:56:23Z",
+      "side": 1,
+      "message": "is \u0027enum\u0027 required?",
+      "range": {
+        "startLine": 48,
+        "startChar": 26,
+        "endLine": 48,
+        "endChar": 31
+      },
+      "revId": "1d81dc09840ff98471bb1caea6bdcb76ee383af2",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a7268f26_6926a02b",
+        "filename": "src/gpio-presence/gpio_presence_manager.hpp",
+        "patchSetId": 31
+      },
+      "lineNbr": 23,
+      "author": {
+        "id": 1000008
+      },
+      "writtenOn": "2025-06-02T21:56:23Z",
+      "side": 1,
+      "message": "Why is this necessary?",
+      "range": {
+        "startLine": 23,
+        "startChar": 0,
+        "endLine": 23,
+        "endChar": 26
+      },
+      "revId": "1d81dc09840ff98471bb1caea6bdcb76ee383af2",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "006f3692_e7db9f23",
+        "filename": "src/gpio-presence/gpio_presence_manager.hpp",
+        "patchSetId": 31
+      },
+      "lineNbr": 38,
+      "author": {
+        "id": 1000008
+      },
+      "writtenOn": "2025-06-02T21:56:23Z",
+      "side": 1,
+      "message": "may as well be consistent and add a comment to this one and on line 46 (and the private methods).  Also, would look better if the use of @brief was consistent, so maybe just remove it from 34.",
+      "revId": "1d81dc09840ff98471bb1caea6bdcb76ee383af2",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    }
+  ]
+}
