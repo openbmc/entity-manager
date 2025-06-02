@@ -800,6 +800,33 @@ struct FindDevicesWithCallback :
     std::function<void()> _callback;
 };
 
+bool isFieldEditable(const std::string& fieldName)
+{
+    // Editable fields
+    const std::vector<std::string> editableFields = {
+        "MANUFACTURER",  "PRODUCT_NAME", "PART_NUMBER",    "VERSION",
+        "SERIAL_NUMBER", "ASSET_TAG",    "FRU_VERSION_ID", "INFO_AM"};
+
+    // Extract substring after the first underscore
+    std::size_t pos = fieldName.find('_');
+    if (pos == std::string::npos || pos + 1 >= fieldName.size())
+    {
+        return false;
+    }
+
+    std::string subField = fieldName.substr(pos + 1);
+
+    // Trim trailing digits (e.g., INFO_AM2 → INFO_AM)
+    while (!subField.empty() && (std::isdigit(subField.back()) != 0))
+    {
+        subField.pop_back();
+    }
+
+    // Match against editable fields
+    return std::find(editableFields.begin(), editableFields.end(), subField) !=
+           editableFields.end();
+}
+
 void addFruObjectToDbus(
     std::vector<uint8_t>& device,
     boost::container::flat_map<
@@ -835,16 +862,20 @@ void addFruObjectToDbus(
 
     for (auto& property : formattedFRU)
     {
+        bool fieldEditable = isFieldEditable(property.first);
+
         std::regex_replace(property.second.begin(), property.second.begin(),
                            property.second.end(), nonAsciiRegex, "_");
-        if (property.second.empty() && property.first != "PRODUCT_ASSET_TAG")
+        if (property.second.empty())
         {
             continue;
         }
         std::string key =
             std::regex_replace(property.first, nonAsciiRegex, "_");
 
-        if (property.first == "PRODUCT_ASSET_TAG")
+        // Allow FRU field update if ENABLE_FRU_UPDATE_PROPERTY is set.
+        if (fieldEditable && (property.first == "PRODUCT_ASSET_TAG" ||
+                              ENABLE_FRU_UPDATE_PROPERTY))
         {
             std::string propertyName = property.first;
             iface->register_property(
