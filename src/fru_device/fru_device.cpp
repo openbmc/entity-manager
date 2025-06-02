@@ -837,14 +837,15 @@ void addFruObjectToDbus(
     {
         std::regex_replace(property.second.begin(), property.second.begin(),
                            property.second.end(), nonAsciiRegex, "_");
-        if (property.second.empty() && property.first != "PRODUCT_ASSET_TAG")
+        if (property.second.empty())
         {
             continue;
         }
         std::string key =
             std::regex_replace(property.first, nonAsciiRegex, "_");
 
-        if (property.first == "PRODUCT_ASSET_TAG")
+        // Allow FRU field update if ENABLE_FRU_UPDATE_PROPERTY is set.
+        if (property.first == "PRODUCT_ASSET_TAG" || ENABLE_FRU_UPDATE_PROPERTY)
         {
             std::string propertyName = property.first;
             iface->register_property(
