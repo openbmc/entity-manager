@@ -966,6 +966,24 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "c67b3517_6ab62b8d",
+        "filename": "src/gpio-presence/device_presence.cpp",
+        "patchSetId": 24
+      },
+      "lineNbr": 62,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-06-02T10:24:50Z",
+      "side": 1,
+      "message": "I\u0027m trying to balance the implementation complexity with the testing requirement.\n\nIf there is some class which is used a lot and part of \u0027common code\u0027 then it will make sense to properly implement the encapsulation and push the complexity into the test code to work around that.\n\nWhich then increases the number of lines needed since the whole mocking and inheritance needed to bypass the encapsulation which was created.\n\nSo i see this as a 3-way tradeoff between\n\n(small code size) - encapsulation - testing\n\nwhere one can choose 2.\n\nIn our case here it\u0027s a small self-contained implementation, so i am not too worried for now.",
+      "parentUuid": "257f61f6_6c1e2494",
+      "revId": "59a273d458785e76b8ce987955a4610fe0e243b6",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "064c4949_340c01a1",
