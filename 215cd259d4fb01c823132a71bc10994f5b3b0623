@@ -22,6 +22,30 @@
       },
       "revId": "215cd259d4fb01c823132a71bc10994f5b3b0623",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "dafaa0f3_3db6ffab",
+        "filename": "configurations/nvidia_gb300_io_board.json",
+        "patchSetId": 23
+      },
+      "lineNbr": 82,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2025-06-02T17:50:06Z",
+      "side": 1,
+      "message": "It looks like on the gb200 io board we\u0027ve ended up observing multiple different variants.  See nvidia_gb200_io_board.json:\n\n        \"xyz.openbmc_project.FruDevice({\u0027BOARD_PRODUCT_NAME\u0027: \u0027P4768\u0027, \u0027BOARD_MANUFACTURER\u0027: \u0027NVIDIA\u0027})\",\n        \"OR\",\n        \"xyz.openbmc_project.FruDevice({\u0027BOARD_PRODUCT_NAME\u0027: \u0027ConnectX-7 400GE 2P NIC\u0027, \u0027BOARD_MANUFACTURER\u0027: \u0027Nvidia\u0027})\",\n        \"OR\",\n        \"xyz.openbmc_project.FruDevice({\u0027BOARD_PRODUCT_NAME\u0027: \u00272x ConnectX-7 Mezz\u0027, \u0027BOARD_MANUFACTURER\u0027: \u0027Nvidia\u0027})\"\n\nCan someone from nvidia give a solid answer on which one we\u0027re going to see?  Otherwise we can delete one of them after we get some of our systems fully built.",
+      "parentUuid": "0aa90510_523ad519",
+      "range": {
+        "startLine": 80,
+        "startChar": 0,
+        "endLine": 82,
+        "endChar": 123
+      },
+      "revId": "215cd259d4fb01c823132a71bc10994f5b3b0623",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }
