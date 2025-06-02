@@ -35,6 +35,24 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "40660f0b_1e3b9745",
+        "filename": "meson.build",
+        "patchSetId": 25
+      },
+      "lineNbr": 46,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-06-02T09:59:14Z",
+      "side": 1,
+      "message": "not sure. could not find it. replaced it with\n```get_option(\u0027tests\u0027).allowed()```",
+      "parentUuid": "10426c24_cd23cab7",
+      "revId": "7812efab9716fc046dc666a13252968f596832b5",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "f4ae17bb_bfa2de56",
@@ -48,6 +66,24 @@
       "writtenOn": "2025-05-31T01:57:03Z",
       "side": 1,
       "message": "Can you please use the bus name same as the service name ?",
+      "revId": "7812efab9716fc046dc666a13252968f596832b5",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "ca404fdb_b3634a8b",
+        "filename": "service_files/xyz.openbmc_project.gpiopresence.service",
+        "patchSetId": 25
+      },
+      "lineNbr": 8,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-06-02T09:59:14Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "f4ae17bb_bfa2de56",
       "revId": "7812efab9716fc046dc666a13252968f596832b5",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
@@ -69,6 +105,24 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "8ed87c77_2869bccb",
+        "filename": "src/gpio-presence/config_provider.hpp",
+        "patchSetId": 25
+      },
+      "lineNbr": 13,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-06-02T09:59:14Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "73eb320d_230c3d7e",
+      "revId": "7812efab9716fc046dc666a13252968f596832b5",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "5e8320c8_f652094b",
@@ -82,6 +136,24 @@
       "writtenOn": "2025-05-31T01:57:03Z",
       "side": 1,
       "message": "this is not config because if its just config you could have just defined a struct in this class, its doing way more than that.",
+      "revId": "7812efab9716fc046dc666a13252968f596832b5",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "1e92a1d0_4ae3038f",
+        "filename": "src/gpio-presence/gpio_presence_manager.cpp",
+        "patchSetId": 25
+      },
+      "lineNbr": 148,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-06-02T09:59:14Z",
+      "side": 1,
+      "message": "Renamed the variable to ```devicePresence```",
+      "parentUuid": "5e8320c8_f652094b",
       "revId": "7812efab9716fc046dc666a13252968f596832b5",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
@@ -103,6 +175,24 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "cbf70d79_d14a4e14",
+        "filename": "src/gpio-presence/gpio_presence_manager.hpp",
+        "patchSetId": 25
+      },
+      "lineNbr": 70,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-06-02T09:59:14Z",
+      "side": 1,
+      "message": "renamed to ```presenceMap``` as suggested.",
+      "parentUuid": "479f4efe_1c051e6e",
+      "revId": "7812efab9716fc046dc666a13252968f596832b5",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "69c2281d_12002cfe",
@@ -116,6 +206,24 @@
       "writtenOn": "2025-05-31T01:57:03Z",
       "side": 1,
       "message": "Do you still need this as static warning was disabled?",
+      "revId": "7812efab9716fc046dc666a13252968f596832b5",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "9556a040_5c9dc50a",
+        "filename": "test/test_gpio_presence.cpp",
+        "patchSetId": 25
+      },
+      "lineNbr": 12,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-06-02T09:59:14Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "69c2281d_12002cfe",
       "revId": "7812efab9716fc046dc666a13252968f596832b5",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
