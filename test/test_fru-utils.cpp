@@ -436,3 +436,50 @@ TEST(formatIPMIFRU, FullDecode)
             Pair("PRODUCT_SERIAL_NUMBER", "1583324800150"),
             Pair("PRODUCT_VERSION", "AE.1")));
 }
+
+// Test for the `isFieldEditable` function
+TEST(IsFieldEditableTest, ValidField)
+{
+    // Test with a valid field name that is editable
+    // All PRODUCT fields are editable
+    EXPECT_TRUE(isFieldEditable("PRODUCT_MANUFACTURER"));
+    EXPECT_TRUE(isFieldEditable("PRODUCT_PART_NUMBER"));
+    EXPECT_TRUE(isFieldEditable("PRODUCT_SERIAL_NUMBER"));
+    EXPECT_TRUE(isFieldEditable("PRODUCT_VERSION"));
+    EXPECT_TRUE(isFieldEditable("PRODUCT_PART_NUMBER"));
+    EXPECT_TRUE(isFieldEditable("PRODUCT_PRODUCT_NAME"));
+    EXPECT_TRUE(isFieldEditable("PRODUCT_ASSET_TAG"));
+    EXPECT_TRUE(isFieldEditable("PRODUCT_FRU_VERSION_ID"));
+    EXPECT_TRUE(isFieldEditable("PRODUCT_INFO_AM0"));
+
+    // All BOARD fields are editable
+    EXPECT_TRUE(isFieldEditable("BOARD_MANUFACTURER"));
+    EXPECT_TRUE(isFieldEditable("BOARD_PART_NUMBER"));
+    EXPECT_TRUE(isFieldEditable("BOARD_SERIAL_NUMBER"));
+    EXPECT_TRUE(isFieldEditable("BOARD_FRU_VERSION_ID"));
+    EXPECT_TRUE(isFieldEditable("BOARD_PRODUCT_NAME"));
+    EXPECT_TRUE(isFieldEditable("BOARD_INFO_AM0"));
+    EXPECT_TRUE(isFieldEditable("BOARD_INFO_AM10"));
+
+    // All CHASSIS fields are editable
+    EXPECT_TRUE(isFieldEditable("CHASSIS_PART_NUMBER"));
+    EXPECT_TRUE(isFieldEditable("CHASSIS_SERIAL_NUMBER"));
+    EXPECT_TRUE(isFieldEditable("CHASSIS_INFO_AM0"));
+    EXPECT_TRUE(isFieldEditable("CHASSIS_INFO_AM10"));
+}
+
+TEST(IsFieldEditableTest, InvalidField)
+{
+    // Test with an invalid field name that is not editable
+    EXPECT_FALSE(isFieldEditable("INVALID_FIELD"));
+    EXPECT_FALSE(isFieldEditable("PRODUCT_INVALID_FIELD"));
+    EXPECT_FALSE(isFieldEditable("BOARD_INVALID_FIELD"));
+    EXPECT_FALSE(isFieldEditable("CHASSIS_INVALID_FIELD"));
+
+    // Test with a field that does not match the expected pattern
+    EXPECT_FALSE(isFieldEditable("PRODUCT_12345"));
+    EXPECT_FALSE(isFieldEditable("BOARD_67890"));
+    EXPECT_FALSE(isFieldEditable("ABCD_CHASSIS"));
+    EXPECT_FALSE(isFieldEditable("ABCD_PRODUCT"));
+    EXPECT_FALSE(isFieldEditable("ABCD_BOARD"));
+}
