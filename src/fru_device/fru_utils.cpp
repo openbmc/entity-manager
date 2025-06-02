@@ -1185,3 +1185,40 @@ bool getFruData(std::vector<uint8_t>& fruData, uint32_t bus, uint32_t address)
 
     return !fruData.empty();
 }
+
+bool isFieldEditable(std::string_view fieldName)
+{
+    if (fieldName == "PRODUCT_ASSET_TAG")
+    {
+        return true; // PRODUCT_ASSET_TAG is always editable.
+    }
+
+    if (!ENABLE_FRU_UPDATE_PROPERTY)
+    {
+        return false; // If FRU update is disabled, no fields are editable.
+    }
+
+    // Editable fields
+    constexpr std::array<std::string_view, 8> editableFields = {
+        "MANUFACTURER",  "PRODUCT_NAME", "PART_NUMBER",    "VERSION",
+        "SERIAL_NUMBER", "ASSET_TAG",    "FRU_VERSION_ID", "INFO_AM"};
+
+    // Find position of first underscore
+    std::size_t pos = fieldName.find('_');
+    if (pos == std::string_view::npos || pos + 1 >= fieldName.size())
+    {
+        return false;
+    }
+
+    // Extract substring after the underscore
+    std::string_view subField = fieldName.substr(pos + 1);
+
+    // Trim trailing digits
+    while (!subField.empty() && (std::isdigit(subField.back()) != 0))
+    {
+        subField.remove_suffix(1);
+    }
+
+    // Match against editable fields
+    return std::ranges::contains(editableFields, subField);
+}
