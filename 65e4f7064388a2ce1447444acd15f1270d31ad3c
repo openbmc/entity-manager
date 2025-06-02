@@ -1,6 +1,23 @@
 {
   "comments": [
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "d3d53ee0_00ca868e",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 8
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1002345
+      },
+      "writtenOn": "2025-06-02T06:43:56Z",
+      "side": 1,
+      "message": "Hello Andrew,\n\nThank you for your comment.",
+      "revId": "65e4f7064388a2ce1447444acd15f1270d31ad3c",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "89a290f3_6732df44",
@@ -14,6 +31,30 @@
       "writtenOn": "2025-05-30T06:20:56Z",
       "side": 1,
       "message": "By describing the configuration in EM we\u0027re trying to locate the physical device. Maybe Bus, Port, Configuration and Interface might be more helpful here? The kernel will automatically create an interface when it sees the MCTP interface descriptor. The interface can be located by looking under the net/ subdirectory:\n\n```\n# ls -1d /sys/bus/usb/devices/1-1/1-1:1.0/net/*\n/sys/bus/usb/devices/1-1/1-1:1.0/net/mctpusb0\n```\n\nThis is essentially:\n\n```\n/sys/bus/usb/devices/${Bus}-${Port}/${Bus}-${Port}:${Configuration}-${Interface}/net/...\n```",
+      "range": {
+        "startLine": 50,
+        "startChar": 1,
+        "endLine": 53,
+        "endChar": 18
+      },
+      "revId": "65e4f7064388a2ce1447444acd15f1270d31ad3c",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "bebfd5fc_e7805ec0",
+        "filename": "schemas/mctp.json",
+        "patchSetId": 8
+      },
+      "lineNbr": 53,
+      "author": {
+        "id": 1002345
+      },
+      "writtenOn": "2025-06-02T06:43:56Z",
+      "side": 1,
+      "message": "Interface name assigned to USB devices from kernel is indeterministic in nature i.e for x-y.z bus-port.path, it\u0027s not necessary that mctpusbX would always be assigned since its completely based on first come first serve basis for usb devices.\n\nfor eg : if we have two USB devices as 1-1 and 1-2 path, and we attach first USB device (1-1) and later the second one (1-2), interface names may get assigned as mctpusb0 and mctpusb1 for first and second device respectively. Since USB is hot pluggable in nature, we can detach and reattach devices and this time if in reverse sequence i.e second device followed by first, then interface name for second device would end up as mctpusb0 while for the first usb device as mctpusb1.\n\n \nRight now we don\u0027t have a proper mechanism in upstream to map the USB device\u0027s bus-port.path to its right interface name.\n\nI agree at kernel sysfs path this data will exist but this too would be indeterministic, thus exposing BUS, PORT, CONFIGURATION etc for usb device on EM configuration might not be directly feasible.\n\nBesides this patch aims to handle dynamic EID assignment to the mctp usb devices which as in whole doesn\u0027t necessarily requires such data from MCTP Reactor end.\n\nBut I completely agree with you to expose these details of devices once we are looking into integrating Static EID assignment to the USB endpoints.",
+      "parentUuid": "89a290f3_6732df44",
       "range": {
         "startLine": 50,
         "startChar": 1,
