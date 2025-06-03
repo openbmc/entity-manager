@@ -38,6 +38,18 @@ class EntityManager
     std::shared_ptr<sdbusplus::asio::connection> systemBus;
     sdbusplus::asio::object_server objServer;
     std::shared_ptr<sdbusplus::asio::dbus_interface> entityIface;
+    nlohmann::json lastJson;
+    nlohmann::json systemConfiguration;
+    Topology topology;
+
+    void propertiesChangedCallback();
+    void registerCallback(const std::string& path);
+    void publishNewConfiguration(const size_t& instance, size_t count,
+                                 boost::asio::steady_timer& timer,
+                                 nlohmann::json newConfiguration);
+    void postToDbus(const nlohmann::json& newConfiguration);
+    void pruneConfiguration(bool powerOff, const std::string& name,
+                            const nlohmann::json& device);
 };
 
 inline void logDeviceAdded(const nlohmann::json& record)
