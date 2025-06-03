@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "93259b74_eafda513",
+        "filename": "configurations/meta/harma_mb_vr_infineon.json",
+        "patchSetId": 6
+      },
+      "lineNbr": 1277,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2025-06-03T22:59:43Z",
+      "side": 1,
+      "message": "@paligill@gmail.com Are we expecting the same VR firmware goes on all 3 devices?  That\u0027s a little surprising.  If it isn\u0027t the same exact image, we need to use different CompatibleHardware identifiers.\n\nGenerally the identifiers should be something like System.Model.Purpose.\n\nI don\u0027t know if we\u0027re thinking the \"Name\" is the differentiator here, but we should instead make sure the CompatibleHardware is entirely unique.",
+      "revId": "267e0805e0107498a482bd1806f6c148b55c99ff",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    }
+  ]
+}
