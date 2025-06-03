@@ -6,7 +6,8 @@ After=dbus.service
 ExecStart=/usr/libexec/entity-manager/fru-device
 Restart=always
 RestartSec=5
-Type=simple
+Type=dbus
+BusName=xyz.openbmc_project.FruDevice
 
 [Install]
 WantedBy=multi-user.target
