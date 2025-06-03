@@ -63,6 +63,30 @@
       },
       "revId": "65e4f7064388a2ce1447444acd15f1270d31ad3c",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ab25479a_977613db",
+        "filename": "schemas/mctp.json",
+        "patchSetId": 8
+      },
+      "lineNbr": 53,
+      "author": {
+        "id": 1000009
+      },
+      "writtenOn": "2025-06-03T00:25:00Z",
+      "side": 1,
+      "message": "\u003e Interface name assigned to USB devices from kernel is indeterministic in nature i.e for x-y.z bus-port.path, it\u0027s not necessary that mctpusbX would always be assigned since its completely based on first come first serve basis for usb devices.\n\nYes, this is why it\u0027s not appropriate to specify the interface name in an EM schema IMO.\n\n\u003e Right now we don\u0027t have a proper mechanism in upstream to map the USB device\u0027s bus-port.path to its right interface name.\n\nI gave you one above. Use the bus, port, config and interface values to locate the device in sysfs, then look at the directory name under `net/`. From there you just need to take the basename. Expanding on my example above:\n\n```\n# basename /sys/bus/usb/devices/1-1/1-1:1.0/net/*\nmctpusb0\n```\n\n\u003e I agree at kernel sysfs path this data will exist but this too would be indeterministic\n\nOne concern here is a stable alias for the bus, but beyond that the port topology is stable.\n\n\u003e Besides this patch aims to handle dynamic EID assignment to the mctp usb devices which as in whole doesn\u0027t necessarily requires such data from MCTP Reactor end.\n\nIf that\u0027s the case, why are you proposing an EM schema (I\u0027m the author of `mctpreactor`)? We can have mctpreactor respond to udev or netlink events to automatically set up the endpoint dynamically.",
+      "parentUuid": "bebfd5fc_e7805ec0",
+      "range": {
+        "startLine": 50,
+        "startChar": 1,
+        "endLine": 53,
+        "endChar": 18
+      },
+      "revId": "65e4f7064388a2ce1447444acd15f1270d31ad3c",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }
