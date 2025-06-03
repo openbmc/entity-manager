@@ -18,14 +18,41 @@
 #pragma once
 
 #include "../utils.hpp"
+#include "topology.hpp"
 
 #include <systemd/sd-journal.h>
 
 #include <boost/container/flat_map.hpp>
 #include <nlohmann/json.hpp>
+#include <sdbusplus/asio/connection.hpp>
 #include <sdbusplus/asio/object_server.hpp>
 
 #include <string>
+
+class EntityManager
+{
+  public:
+    explicit EntityManager(
+        std::shared_ptr<sdbusplus::asio::connection>& systemBus);
+
+    std::shared_ptr<sdbusplus::asio::connection> systemBus;
+    sdbusplus::asio::object_server objServer;
+    std::shared_ptr<sdbusplus::asio::dbus_interface> entityIface;
+    nlohmann::json lastJson;
+    nlohmann::json systemConfiguration;
+    Topology topology;
+
+    void propertiesChangedCallback();
+    void registerCallback(const std::string& path);
+    void publishNewConfiguration(const size_t& instance, size_t count,
+                                 boost::asio::steady_timer& timer,
+                                 nlohmann::json newConfiguration);
+    void postToDbus(const nlohmann::json& newConfiguration);
+    void pruneConfiguration(bool powerOff, const std::string& name,
+                            const nlohmann::json& device);
+
+    void initFilters(const std::set<std::string>& probeInterfaces);
+};
 
 inline void logDeviceAdded(const nlohmann::json& record)
 {
