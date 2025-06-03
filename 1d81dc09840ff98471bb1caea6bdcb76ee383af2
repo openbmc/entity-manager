@@ -35,6 +35,24 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "9d583a9d_09fd69fb",
+        "filename": "meson.build",
+        "patchSetId": 31
+      },
+      "lineNbr": 32,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-06-03T09:19:52Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "c882bfff_0cbffc21",
+      "revId": "1d81dc09840ff98471bb1caea6bdcb76ee383af2",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "3411db90_93c0bdba",
@@ -52,6 +70,24 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "f687db69_a4734fa7",
+        "filename": "meson.build",
+        "patchSetId": 31
+      },
+      "lineNbr": 47,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-06-03T09:19:52Z",
+      "side": 1,
+      "message": "Added the libgpiod.wrap file from phosphor-bmc-code-mgmt 👍",
+      "parentUuid": "3411db90_93c0bdba",
+      "revId": "1d81dc09840ff98471bb1caea6bdcb76ee383af2",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "f02f827a_dbc63908",
@@ -65,6 +101,30 @@
       "writtenOn": "2025-06-02T21:56:23Z",
       "side": 1,
       "message": "could use std::ranges::views::keys() here if you wanted.",
+      "range": {
+        "startLine": 76,
+        "startChar": 40,
+        "endLine": 76,
+        "endChar": 60
+      },
+      "revId": "1d81dc09840ff98471bb1caea6bdcb76ee383af2",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "0cbf61ee_3f03f9f6",
+        "filename": "src/gpio-presence/config_provider.cpp",
+        "patchSetId": 31
+      },
+      "lineNbr": 76,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-06-03T09:19:52Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "f02f827a_dbc63908",
       "range": {
         "startLine": 76,
         "startChar": 40,
@@ -98,6 +158,30 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "d49b80d4_6a9ee311",
+        "filename": "src/gpio-presence/config_provider.cpp",
+        "patchSetId": 31
+      },
+      "lineNbr": 111,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-06-03T09:19:52Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "c72874e9_a1293a45",
+      "range": {
+        "startLine": 110,
+        "startChar": 0,
+        "endLine": 111,
+        "endChar": 33
+      },
+      "revId": "1d81dc09840ff98471bb1caea6bdcb76ee383af2",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "99e30e2c_c6e3d5d5",
@@ -111,6 +195,30 @@
       "writtenOn": "2025-06-03T01:29:56Z",
       "side": 1,
       "message": "Why are we silently catching this and dropping it into phosphor-logging?  Do we want to do something more serious here?  What are the cases where we fail?",
+      "range": {
+        "startLine": 118,
+        "startChar": 0,
+        "endLine": 121,
+        "endChar": 9
+      },
+      "revId": "1d81dc09840ff98471bb1caea6bdcb76ee383af2",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "81ec8cc8_bb077f90",
+        "filename": "src/gpio-presence/config_provider.cpp",
+        "patchSetId": 31
+      },
+      "lineNbr": 121,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-06-03T09:19:52Z",
+      "side": 1,
+      "message": "\u003e Why are we silently catching this \n\nWouldn\u0027t call ```error(...)``` \u0027silent\u0027 😄\n\nWhat\u0027s the alternative, ```exit(1)``` ?\n\n\nThere is nothing to catch here since \n```\nGPIOPresenceManager::addConfigHandler\n```\njust spawns ```addConfigFromDbusAsync```.\n\nBut i like to have a catch-all around any kind of configuration handling.\nIf the configuration is bad or anything goes wrong.\n\nSince the ```addConfig``` is a callback, from an API perspective we do not know which function will be passed here and if it will throw or not.",
+      "parentUuid": "99e30e2c_c6e3d5d5",
       "range": {
         "startLine": 118,
         "startChar": 0,
@@ -144,6 +252,30 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "818ab740_6797b07c",
+        "filename": "src/gpio-presence/config_provider.cpp",
+        "patchSetId": 31
+      },
+      "lineNbr": 140,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-06-03T09:19:52Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "4b88bbaf_7be64d36",
+      "range": {
+        "startLine": 139,
+        "startChar": 0,
+        "endLine": 140,
+        "endChar": 29
+      },
+      "revId": "1d81dc09840ff98471bb1caea6bdcb76ee383af2",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "ac6cea28_51abdaf5",
@@ -161,6 +293,24 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "fdf9878e_d7ac7531",
+        "filename": "src/gpio-presence/config_provider.cpp",
+        "patchSetId": 31
+      },
+      "lineNbr": 141,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-06-03T09:19:52Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "ac6cea28_51abdaf5",
+      "revId": "1d81dc09840ff98471bb1caea6bdcb76ee383af2",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "8eb8c25b_647866a5",
@@ -174,6 +324,30 @@
       "writtenOn": "2025-06-02T21:56:23Z",
       "side": 1,
       "message": "This looks like something that would only be required in C.",
+      "range": {
+        "startLine": 30,
+        "startChar": 8,
+        "endLine": 30,
+        "endChar": 13
+      },
+      "revId": "1d81dc09840ff98471bb1caea6bdcb76ee383af2",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "cd8ce75e_920a5713",
+        "filename": "src/gpio-presence/device_presence.cpp",
+        "patchSetId": 31
+      },
+      "lineNbr": 30,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-06-03T09:19:52Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "8eb8c25b_647866a5",
       "range": {
         "startLine": 30,
         "startChar": 8,
@@ -207,6 +381,30 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "5c775bbe_d6f90b32",
+        "filename": "src/gpio-presence/device_presence.hpp",
+        "patchSetId": 31
+      },
+      "lineNbr": 48,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-06-03T09:19:52Z",
+      "side": 1,
+      "message": "no. C habits. removed it here.",
+      "parentUuid": "78d2777e_8f596ee4",
+      "range": {
+        "startLine": 48,
+        "startChar": 26,
+        "endLine": 48,
+        "endChar": 31
+      },
+      "revId": "1d81dc09840ff98471bb1caea6bdcb76ee383af2",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "cfcf19af_d47f185a",
@@ -220,6 +418,30 @@
       "writtenOn": "2025-06-03T01:29:56Z",
       "side": 1,
       "message": "drop the .str on these.",
+      "range": {
+        "startLine": 67,
+        "startChar": 10,
+        "endLine": 67,
+        "endChar": 17
+      },
+      "revId": "1d81dc09840ff98471bb1caea6bdcb76ee383af2",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "2a146915_b95f1d5c",
+        "filename": "src/gpio-presence/gpio_presence_manager.cpp",
+        "patchSetId": 31
+      },
+      "lineNbr": 67,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-06-03T09:19:52Z",
+      "side": 1,
+      "message": "Dropped it here and in one other place but in the generated client this is still required, otherwise it will not compile.\n```\n.path(obj.str)\n```",
+      "parentUuid": "cfcf19af_d47f185a",
       "range": {
         "startLine": 67,
         "startChar": 10,
@@ -253,6 +475,30 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "4e530c1b_01c3a3e3",
+        "filename": "src/gpio-presence/gpio_presence_manager.cpp",
+        "patchSetId": 31
+      },
+      "lineNbr": 85,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-06-03T09:19:52Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "91d92fef_98b4f515",
+      "range": {
+        "startLine": 85,
+        "startChar": 63,
+        "endLine": 85,
+        "endChar": 71
+      },
+      "revId": "1d81dc09840ff98471bb1caea6bdcb76ee383af2",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "cc564e6b_b03c0a68",
@@ -266,6 +512,24 @@
       "writtenOn": "2025-06-03T01:29:56Z",
       "side": 1,
       "message": "e.what should never be used as the first parameter to lg2 calls.",
+      "revId": "1d81dc09840ff98471bb1caea6bdcb76ee383af2",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "e194a6fb_111ab193",
+        "filename": "src/gpio-presence/gpio_presence_manager.cpp",
+        "patchSetId": 31
+      },
+      "lineNbr": 103,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-06-03T09:19:52Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "cc564e6b_b03c0a68",
       "revId": "1d81dc09840ff98471bb1caea6bdcb76ee383af2",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
@@ -304,6 +568,24 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "a0ea3693_a65509e0",
+        "filename": "src/gpio-presence/gpio_presence_manager.cpp",
+        "patchSetId": 31
+      },
+      "lineNbr": 233,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-06-03T09:19:52Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "da016078_0d70b231",
+      "revId": "1d81dc09840ff98471bb1caea6bdcb76ee383af2",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "0f4b552a_e5c5c5c5",
@@ -321,6 +603,24 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "2077e026_ff4fb150",
+        "filename": "src/gpio-presence/gpio_presence_manager.hpp",
+        "patchSetId": 31
+      },
+      "lineNbr": 19,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-06-03T09:19:52Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "0f4b552a_e5c5c5c5",
+      "revId": "1d81dc09840ff98471bb1caea6bdcb76ee383af2",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "2a15c70d_6d7eaff8",
@@ -334,6 +634,24 @@
       "writtenOn": "2025-06-03T01:29:56Z",
       "side": 1,
       "message": "Can we `constexpr auto` this?",
+      "revId": "1d81dc09840ff98471bb1caea6bdcb76ee383af2",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "0f9ec334_d66425c1",
+        "filename": "src/gpio-presence/gpio_presence_manager.hpp",
+        "patchSetId": 31
+      },
+      "lineNbr": 21,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-06-03T09:19:52Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "2a15c70d_6d7eaff8",
       "revId": "1d81dc09840ff98471bb1caea6bdcb76ee383af2",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
@@ -361,6 +679,30 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "6b5a326d_0afa435e",
+        "filename": "src/gpio-presence/gpio_presence_manager.hpp",
+        "patchSetId": 31
+      },
+      "lineNbr": 23,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-06-03T09:19:52Z",
+      "side": 1,
+      "message": "Removed it. Probably leftovers from CRTP.",
+      "parentUuid": "a7268f26_6926a02b",
+      "range": {
+        "startLine": 23,
+        "startChar": 0,
+        "endLine": 23,
+        "endChar": 26
+      },
+      "revId": "1d81dc09840ff98471bb1caea6bdcb76ee383af2",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "006f3692_e7db9f23",
@@ -378,6 +720,24 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "59edc5b2_94ce339c",
+        "filename": "src/gpio-presence/gpio_presence_manager.hpp",
+        "patchSetId": 31
+      },
+      "lineNbr": 38,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-06-03T09:19:52Z",
+      "side": 1,
+      "message": "removed the ```@brief``` and made the comments more consistent 😊",
+      "parentUuid": "006f3692_e7db9f23",
+      "revId": "1d81dc09840ff98471bb1caea6bdcb76ee383af2",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "81b9a867_39b90db7",
@@ -391,6 +751,24 @@
       "writtenOn": "2025-06-03T01:29:56Z",
       "side": 1,
       "message": "Please add this as a member function.  Adding co-routines to the spawn from a local instance leads to the class not being aware that you\u0027ve left a dangling pointer somewhere.",
+      "revId": "1d81dc09840ff98471bb1caea6bdcb76ee383af2",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "9e1a7e64_3051b333",
+        "filename": "src/gpio-presence/main.cpp",
+        "patchSetId": 31
+      },
+      "lineNbr": 25,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-06-03T09:19:52Z",
+      "side": 1,
+      "message": "Added this as ```start``` function.",
+      "parentUuid": "81b9a867_39b90db7",
       "revId": "1d81dc09840ff98471bb1caea6bdcb76ee383af2",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
