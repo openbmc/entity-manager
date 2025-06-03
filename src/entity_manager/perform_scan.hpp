@@ -1,6 +1,7 @@
 #pragma once
 
 #include "../utils.hpp"
+#include "entity_manager.hpp"
 
 #include <systemd/sd-journal.h>
 
@@ -24,10 +25,9 @@ using FoundDevices = std::vector<DBusDeviceDescriptor>;
 
 struct PerformScan : std::enable_shared_from_this<PerformScan>
 {
-    PerformScan(nlohmann::json& systemConfiguration,
+    PerformScan(EntityManager& em, nlohmann::json& systemConfiguration,
                 nlohmann::json& missingConfigurations,
                 std::list<nlohmann::json>& configurations,
-                sdbusplus::asio::object_server& objServer,
                 std::function<void()>&& callback);
 
     void updateSystemConfiguration(const nlohmann::json& recordRef,
@@ -35,10 +35,10 @@ struct PerformScan : std::enable_shared_from_this<PerformScan>
                                    FoundDevices& foundDevices);
     void run();
     virtual ~PerformScan();
+    EntityManager& _em;
     nlohmann::json& _systemConfiguration;
     nlohmann::json& _missingConfigurations;
     std::list<nlohmann::json> _configurations;
-    sdbusplus::asio::object_server& objServer;
     std::function<void()> _callback;
     bool _passed = false;
     MapperGetSubTreeResponse dbusProbeObjects;
