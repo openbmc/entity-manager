@@ -54,12 +54,6 @@ static constexpr std::array<const char*, 6> settableInterfaces = {
     "FanProfile", "Pid", "Pid.Zone", "Stepwise", "Thresholds", "Polling"};
 
 // NOLINTBEGIN(cppcoreguidelines-avoid-non-const-global-variables)
-
-// todo: pass this through nicer
-std::shared_ptr<sdbusplus::asio::connection> systemBus;
-nlohmann::json lastJson;
-Topology topology;
-
 boost::asio::io_context io;
 // NOLINTEND(cppcoreguidelines-avoid-non-const-global-variables)
 
@@ -74,10 +68,24 @@ sdbusplus::asio::PropertyPermission getPermission(const std::string& interface)
                : sdbusplus::asio::PropertyPermission::readOnly;
 }
 
-void postToDbus(const nlohmann::json& newConfiguration,
-                nlohmann::json& systemConfiguration,
-                sdbusplus::asio::object_server& objServer)
+EntityManager::EntityManager(
+    std::shared_ptr<sdbusplus::asio::connection>& systemBus) :
+    systemBus(systemBus),
+    objServer(sdbusplus::asio::object_server(systemBus, /*skipManager=*/true)),
+    lastJson(nlohmann::json::object()),
+    systemConfiguration(nlohmann::json::object())
+{
+    // All other objects that EntityManager currently support are under the
+    // inventory subtree.
+    // See the discussion at
+    // https://discord.com/channels/775381525260664832/1018929092009144380
+    objServer.add_manager("/xyz/openbmc_project/inventory");
 
+    entityIface = objServer.add_interface("/xyz/openbmc_project/EntityManager",
+                                          "xyz.openbmc_project.EntityManager");
+}
+
+void EntityManager::postToDbus(const nlohmann::json& newConfiguration)
 {
     std::map<std::string, std::string> newBoards; // path -> name
 
@@ -361,7 +369,8 @@ static void pruneDevice(const nlohmann::json& systemConfiguration,
 }
 
 void startRemovedTimer(boost::asio::steady_timer& timer,
-                       nlohmann::json& systemConfiguration)
+                       nlohmann::json& systemConfiguration,
+                       nlohmann::json& lastJson)
 {
     static bool scannedPowerOff = false;
     static bool scannedPowerOn = false;
@@ -382,7 +391,7 @@ void startRemovedTimer(boost::asio::steady_timer& timer,
 
     timer.expires_after(std::chrono::seconds(10));
     timer.async_wait(
-        [&systemConfiguration](const boost::system::error_code& ec) {
+        [&systemConfiguration, &lastJson](const boost::system::error_code& ec) {
             if (ec == boost::asio::error::operation_aborted)
             {
                 return;
@@ -403,10 +412,8 @@ void startRemovedTimer(boost::asio::steady_timer& timer,
         });
 }
 
-static void pruneConfiguration(nlohmann::json& systemConfiguration,
-                               sdbusplus::asio::object_server& objServer,
-                               bool powerOff, const std::string& name,
-                               const nlohmann::json& device)
+void EntityManager::pruneConfiguration(bool powerOff, const std::string& name,
+                                       const nlohmann::json& device)
 {
     if (powerOff && deviceRequiresPowerOn(device))
     {
@@ -430,41 +437,37 @@ static void pruneConfiguration(nlohmann::json& systemConfiguration,
     logDeviceRemoved(device);
 }
 
-static void publishNewConfiguration(
+void EntityManager::publishNewConfiguration(
     const size_t& instance, const size_t count,
-    boost::asio::steady_timer& timer, nlohmann::json& systemConfiguration,
-    // Gerrit discussion:
+    boost::asio::steady_timer& timer, // Gerrit discussion:
     // https://gerrit.openbmc-project.xyz/c/openbmc/entity-manager/+/52316/6
     //
     // Discord discussion:
     // https://discord.com/channels/775381525260664832/867820390406422538/958048437729910854
     //
     // NOLINTNEXTLINE(performance-unnecessary-value-param)
-    const nlohmann::json newConfiguration,
-    sdbusplus::asio::object_server& objServer)
+    const nlohmann::json newConfiguration)
 {
     loadOverlays(newConfiguration);
 
-    boost::asio::post(io, [systemConfiguration]() {
+    boost::asio::post(io, [this]() {
         if (!configuration::writeJsonFiles(systemConfiguration))
         {
             std::cerr << "Error writing json files\n";
         }
     });
 
-    boost::asio::post(io, [&instance, count, &timer, newConfiguration,
-                           &systemConfiguration, &objServer]() {
-        postToDbus(newConfiguration, systemConfiguration, objServer);
+    boost::asio::post(io, [this, &instance, count, &timer, newConfiguration]() {
+        this->postToDbus(newConfiguration);
         if (count == instance)
         {
-            startRemovedTimer(timer, systemConfiguration);
+            startRemovedTimer(timer, systemConfiguration, lastJson);
         }
     });
 }
 
 // main properties changed entry
-void propertiesChangedCallback(nlohmann::json& systemConfiguration,
-                               sdbusplus::asio::object_server& objServer)
+void EntityManager::propertiesChangedCallback()
 {
     static bool inProgress = false;
     static boost::asio::steady_timer timer(io);
@@ -475,8 +478,7 @@ void propertiesChangedCallback(nlohmann::json& systemConfiguration,
     timer.expires_after(std::chrono::milliseconds(500));
 
     // setup an async wait as we normally get flooded with new requests
-    timer.async_wait([&systemConfiguration, &objServer,
-                      count](const boost::system::error_code& ec) {
+    timer.async_wait([this, count](const boost::system::error_code& ec) {
         if (ec == boost::asio::error::operation_aborted)
         {
             // we were cancelled
@@ -490,7 +492,7 @@ void propertiesChangedCallback(nlohmann::json& systemConfiguration,
 
         if (inProgress)
         {
-            propertiesChangedCallback(systemConfiguration, objServer);
+            this->propertiesChangedCallback();
             return;
         }
         inProgress = true;
@@ -508,21 +510,18 @@ void propertiesChangedCallback(nlohmann::json& systemConfiguration,
         }
 
         auto perfScan = std::make_shared<scan::PerformScan>(
-            systemConfiguration, *missingConfigurations, configurations,
-            objServer,
-            [&systemConfiguration, &objServer, count, oldConfiguration,
-             missingConfigurations]() {
+            *this, *missingConfigurations, configurations,
+            [this, count, oldConfiguration, missingConfigurations]() {
                 // this is something that since ac has been applied to the bmc
                 // we saw, and we no longer see it
                 bool powerOff = !em_utils::isPowerOn();
                 for (const auto& [name, device] :
                      missingConfigurations->items())
                 {
-                    pruneConfiguration(systemConfiguration, objServer, powerOff,
-                                       name, device);
+                    pruneConfiguration(powerOff, name, device);
                 }
 
-                nlohmann::json newConfiguration = systemConfiguration;
+                nlohmann::json newConfiguration = this->systemConfiguration;
 
                 configuration::deriveNewConfiguration(oldConfiguration,
                                                       newConfiguration);
@@ -534,11 +533,11 @@ void propertiesChangedCallback(nlohmann::json& systemConfiguration,
 
                 inProgress = false;
 
-                boost::asio::post(
-                    io, std::bind_front(
-                            publishNewConfiguration, std::ref(instance), count,
-                            std::ref(timer), std::ref(systemConfiguration),
-                            newConfiguration, std::ref(objServer)));
+                boost::asio::post(io, [this, newConfiguration, count] {
+                    this->publishNewConfiguration(std::ref(instance), count,
+                                                  std::ref(timer),
+                                                  newConfiguration);
+                });
             });
         perfScan->run();
     });
@@ -582,30 +581,37 @@ static bool irContainsProbeInterface(
     return !intersect.empty();
 }
 
+void EntityManager::registerCallback(const std::string& path)
+{
+    static boost::container::flat_map<std::string, sdbusplus::bus::match_t>
+        dbusMatches;
+
+    auto find = dbusMatches.find(path);
+    if (find != dbusMatches.end())
+    {
+        return;
+    }
+
+    std::function<void(sdbusplus::message_t & message)> eventHandler =
+        [&](sdbusplus::message_t&) { propertiesChangedCallback(); };
+
+    sdbusplus::bus::match_t match(
+        static_cast<sdbusplus::bus_t&>(*systemBus),
+        "type='signal',member='PropertiesChanged',path='" + path + "'",
+        eventHandler);
+    dbusMatches.emplace(path, std::move(match));
+}
+
 int main()
 {
-    // setup connection to dbus
-    systemBus = std::make_shared<sdbusplus::asio::connection>(io);
+    // Basic setup for dbus operation
+    std::shared_ptr<sdbusplus::asio::connection> systemBus =
+        std::make_shared<sdbusplus::asio::connection>(io);
     systemBus->request_name("xyz.openbmc_project.EntityManager");
-
-    // The EntityManager object itself doesn't expose any properties.
-    // No need to set up ObjectManager for the |EntityManager| object.
-    sdbusplus::asio::object_server objServer(systemBus, /*skipManager=*/true);
-
-    // All other objects that EntityManager currently support are under the
-    // inventory subtree.
-    // See the discussion at
-    // https://discord.com/channels/775381525260664832/1018929092009144380
-    objServer.add_manager("/xyz/openbmc_project/inventory");
-
-    std::shared_ptr<sdbusplus::asio::dbus_interface> entityIface =
-        objServer.add_interface("/xyz/openbmc_project/EntityManager",
-                                "xyz.openbmc_project.EntityManager");
-
-    // to keep reference to the match / filter objects so they don't get
-    // destroyed
+    EntityManager em(systemBus);
 
     nlohmann::json systemConfiguration = nlohmann::json::object();
+
 
     std::set<std::string> probeInterfaces = configuration::getProbeInterfaces();
 
@@ -615,7 +621,7 @@ int main()
     // for any reason, expected or otherwise, we'll need a poke to remove
     // entities from DBus.
     sdbusplus::bus::match_t nameOwnerChangedMatch(
-        static_cast<sdbusplus::bus_t&>(*systemBus),
+        static_cast<sdbusplus::bus_t&>(*em.systemBus),
         sdbusplus::bus::match::rules::nameOwnerChanged(),
         [&](sdbusplus::message_t& m) {
             auto [name, oldOwner,
@@ -627,37 +633,35 @@ int main()
                 return;
             }
 
-            propertiesChangedCallback(systemConfiguration, objServer);
+            em.propertiesChangedCallback();
         });
     // We also need a poke from DBus when new interfaces are created or
     // destroyed.
     sdbusplus::bus::match_t interfacesAddedMatch(
-        static_cast<sdbusplus::bus_t&>(*systemBus),
+        static_cast<sdbusplus::bus_t&>(*em.systemBus),
         sdbusplus::bus::match::rules::interfacesAdded(),
         [&](sdbusplus::message_t& msg) {
             if (iaContainsProbeInterface(msg, probeInterfaces))
             {
-                propertiesChangedCallback(systemConfiguration, objServer);
+                em.propertiesChangedCallback();
             }
         });
     sdbusplus::bus::match_t interfacesRemovedMatch(
-        static_cast<sdbusplus::bus_t&>(*systemBus),
+        static_cast<sdbusplus::bus_t&>(*em.systemBus),
         sdbusplus::bus::match::rules::interfacesRemoved(),
         [&](sdbusplus::message_t& msg) {
             if (irContainsProbeInterface(msg, probeInterfaces))
             {
-                propertiesChangedCallback(systemConfiguration, objServer);
+                em.propertiesChangedCallback();
             }
         });
 
-    boost::asio::post(io, [&]() {
-        propertiesChangedCallback(systemConfiguration, objServer);
-    });
+    boost::asio::post(io, [&]() { em.propertiesChangedCallback(); });
 
-    entityIface->register_method("ReScan", [&]() {
-        propertiesChangedCallback(systemConfiguration, objServer);
+    em.entityIface->register_method("ReScan", [&]() {
+        em.propertiesChangedCallback();
     });
-    dbus_interface::tryIfaceInitialize(entityIface);
+    dbus_interface::tryIfaceInitialize(em.entityIface);
 
     if (em_utils::fwVersionIsSame())
     {
@@ -682,7 +686,7 @@ int main()
                 }
                 else
                 {
-                    lastJson = std::move(data);
+                    em.lastJson = std::move(data);
                 }
             }
             else
@@ -700,7 +704,7 @@ int main()
 
     // some boards only show up after power is on, we want to not say they are
     // removed until the same state happens
-    em_utils::setupPowerMatch(systemBus);
+    em_utils::setupPowerMatch(em.systemBus);
 
     io.run();
 
