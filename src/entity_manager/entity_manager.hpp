@@ -36,7 +36,8 @@ class EntityManager
         std::shared_ptr<sdbusplus::asio::connection>& systemBus) :
         systemBus(systemBus),
         objServer(
-            sdbusplus::asio::object_server(systemBus, /*skipManager=*/true))
+            sdbusplus::asio::object_server(systemBus, /*skipManager=*/true)),
+        systemConfiguration(nlohmann::json::object())
     {
         // All other objects that EntityManager currently support are under the
         // inventory subtree.
@@ -54,6 +55,14 @@ class EntityManager
     std::shared_ptr<sdbusplus::asio::dbus_interface> entityIface;
     Topology topology;
     nlohmann::json lastJson;
+    nlohmann::json systemConfiguration;
+
+    void propertiesChangedCallback();
+    void registerCallback(const std::string& path);
+    void publishNewConfiguration(
+        const size_t& instance, size_t count, boost::asio::steady_timer& timer,
+        nlohmann::json& systemConfiguration, nlohmann::json newConfiguration);
+    void postToDbus(const nlohmann::json& newConfiguration);
 };
 
 inline void logDeviceAdded(const nlohmann::json& record)
