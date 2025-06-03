@@ -20,6 +20,40 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "c882bfff_0cbffc21",
+        "filename": "meson.build",
+        "patchSetId": 31
+      },
+      "lineNbr": 32,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2025-06-03T01:29:56Z",
+      "side": 1,
+      "message": "Can you clean this up?  Looks like you\u0027re duplicating.\n\nShould this be `or get_option(\u0027gpio-presence\u0027)`?",
+      "revId": "1d81dc09840ff98471bb1caea6bdcb76ee383af2",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3411db90_93c0bdba",
+        "filename": "meson.build",
+        "patchSetId": 31
+      },
+      "lineNbr": 47,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2025-06-03T01:29:56Z",
+      "side": 1,
+      "message": "Please add the wrap file for this from other repositories.",
+      "revId": "1d81dc09840ff98471bb1caea6bdcb76ee383af2",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "f02f827a_dbc63908",
         "filename": "src/gpio-presence/config_provider.cpp",
         "patchSetId": 31
@@ -36,6 +70,75 @@
         "startChar": 40,
         "endLine": 76,
         "endChar": 60
+      },
+      "revId": "1d81dc09840ff98471bb1caea6bdcb76ee383af2",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c72874e9_a1293a45",
+        "filename": "src/gpio-presence/config_provider.cpp",
+        "patchSetId": 31
+      },
+      "lineNbr": 111,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2025-06-03T01:29:56Z",
+      "side": 1,
+      "message": "std::ranges::contains?",
+      "range": {
+        "startLine": 110,
+        "startChar": 0,
+        "endLine": 111,
+        "endChar": 33
+      },
+      "revId": "1d81dc09840ff98471bb1caea6bdcb76ee383af2",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "99e30e2c_c6e3d5d5",
+        "filename": "src/gpio-presence/config_provider.cpp",
+        "patchSetId": 31
+      },
+      "lineNbr": 121,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2025-06-03T01:29:56Z",
+      "side": 1,
+      "message": "Why are we silently catching this and dropping it into phosphor-logging?  Do we want to do something more serious here?  What are the cases where we fail?",
+      "range": {
+        "startLine": 118,
+        "startChar": 0,
+        "endLine": 121,
+        "endChar": 9
+      },
+      "revId": "1d81dc09840ff98471bb1caea6bdcb76ee383af2",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4b88bbaf_7be64d36",
+        "filename": "src/gpio-presence/config_provider.cpp",
+        "patchSetId": 31
+      },
+      "lineNbr": 140,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2025-06-03T01:29:56Z",
+      "side": 1,
+      "message": "std::ranges::contains?",
+      "range": {
+        "startLine": 139,
+        "startChar": 0,
+        "endLine": 140,
+        "endChar": 29
       },
       "revId": "1d81dc09840ff98471bb1caea6bdcb76ee383af2",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
@@ -106,6 +209,137 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "cfcf19af_d47f185a",
+        "filename": "src/gpio-presence/gpio_presence_manager.cpp",
+        "patchSetId": 31
+      },
+      "lineNbr": 67,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2025-06-03T01:29:56Z",
+      "side": 1,
+      "message": "drop the .str on these.",
+      "range": {
+        "startLine": 67,
+        "startChar": 10,
+        "endLine": 67,
+        "endChar": 17
+      },
+      "revId": "1d81dc09840ff98471bb1caea6bdcb76ee383af2",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "91d92fef_98b4f515",
+        "filename": "src/gpio-presence/gpio_presence_manager.cpp",
+        "patchSetId": 31
+      },
+      "lineNbr": 85,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2025-06-03T01:29:56Z",
+      "side": 1,
+      "message": "Drop the `.what()` on all your lg2 calls.  The framework already supports automatic conversion of exceptions, paths, etc.",
+      "range": {
+        "startLine": 85,
+        "startChar": 63,
+        "endLine": 85,
+        "endChar": 71
+      },
+      "revId": "1d81dc09840ff98471bb1caea6bdcb76ee383af2",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "cc564e6b_b03c0a68",
+        "filename": "src/gpio-presence/gpio_presence_manager.cpp",
+        "patchSetId": 31
+      },
+      "lineNbr": 103,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2025-06-03T01:29:56Z",
+      "side": 1,
+      "message": "e.what should never be used as the first parameter to lg2 calls.",
+      "revId": "1d81dc09840ff98471bb1caea6bdcb76ee383af2",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "053d193f_5871d494",
+        "filename": "src/gpio-presence/gpio_presence_manager.cpp",
+        "patchSetId": 31
+      },
+      "lineNbr": 127,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2025-06-03T01:29:56Z",
+      "side": 1,
+      "message": "spawning functions that have references to `this` is not ideal because you can\u0027t stop the co-routine when the destructor is called.  This seems to be a common pattern that I need to make a more complete / less error prone assistance class for this in sdbusplus.",
+      "revId": "1d81dc09840ff98471bb1caea6bdcb76ee383af2",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "da016078_0d70b231",
+        "filename": "src/gpio-presence/gpio_presence_manager.cpp",
+        "patchSetId": 31
+      },
+      "lineNbr": 233,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2025-06-03T01:29:56Z",
+      "side": 1,
+      "message": "Fix this.",
+      "revId": "1d81dc09840ff98471bb1caea6bdcb76ee383af2",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0f4b552a_e5c5c5c5",
+        "filename": "src/gpio-presence/gpio_presence_manager.hpp",
+        "patchSetId": 31
+      },
+      "lineNbr": 19,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2025-06-03T01:29:56Z",
+      "side": 1,
+      "message": "It doesn\u0027t seem like there is any separate use of this variable, so why?",
+      "revId": "1d81dc09840ff98471bb1caea6bdcb76ee383af2",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2a15c70d_6d7eaff8",
+        "filename": "src/gpio-presence/gpio_presence_manager.hpp",
+        "patchSetId": 31
+      },
+      "lineNbr": 21,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2025-06-03T01:29:56Z",
+      "side": 1,
+      "message": "Can we `constexpr auto` this?",
+      "revId": "1d81dc09840ff98471bb1caea6bdcb76ee383af2",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "a7268f26_6926a02b",
         "filename": "src/gpio-presence/gpio_presence_manager.hpp",
         "patchSetId": 31
@@ -140,6 +374,23 @@
       "writtenOn": "2025-06-02T21:56:23Z",
       "side": 1,
       "message": "may as well be consistent and add a comment to this one and on line 46 (and the private methods).  Also, would look better if the use of @brief was consistent, so maybe just remove it from 34.",
+      "revId": "1d81dc09840ff98471bb1caea6bdcb76ee383af2",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "81b9a867_39b90db7",
+        "filename": "src/gpio-presence/main.cpp",
+        "patchSetId": 31
+      },
+      "lineNbr": 25,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2025-06-03T01:29:56Z",
+      "side": 1,
+      "message": "Please add this as a member function.  Adding co-routines to the spawn from a local instance leads to the class not being aware that you\u0027ve left a dangling pointer somewhere.",
       "revId": "1d81dc09840ff98471bb1caea6bdcb76ee383af2",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
