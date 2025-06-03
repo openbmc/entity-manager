@@ -17,15 +17,43 @@
 
 #pragma once
 
+#include "topology.hpp"
 #include "../utils.hpp"
 
 #include <systemd/sd-journal.h>
 
 #include <boost/container/flat_map.hpp>
 #include <nlohmann/json.hpp>
+#include <sdbusplus/asio/connection.hpp>
 #include <sdbusplus/asio/object_server.hpp>
 
 #include <string>
+
+class EntityManager
+{
+  public:
+    explicit EntityManager(
+        std::shared_ptr<sdbusplus::asio::connection>& systemBus) :
+            systemBus(systemBus),
+            objServer(sdbusplus::asio::object_server(systemBus, /*skipManager=*/true))
+    {
+        // All other objects that EntityManager currently support are under the
+        // inventory subtree.
+        // See the discussion at
+        // https://discord.com/channels/775381525260664832/1018929092009144380
+        objServer.add_manager("/xyz/openbmc_project/inventory");
+
+        entityIface =
+            objServer.add_interface("/xyz/openbmc_project/EntityManager",
+                                "xyz.openbmc_project.EntityManager");
+    }
+
+    std::shared_ptr<sdbusplus::asio::connection> systemBus;
+    sdbusplus::asio::object_server objServer;
+    std::shared_ptr<sdbusplus::asio::dbus_interface> entityIface;
+    Topology topology;
+    nlohmann::json lastJson;
+};
 
 inline void logDeviceAdded(const nlohmann::json& record)
 {
