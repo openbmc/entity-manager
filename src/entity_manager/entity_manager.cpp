@@ -74,6 +74,21 @@ sdbusplus::asio::PropertyPermission getPermission(const std::string& interface)
                : sdbusplus::asio::PropertyPermission::readOnly;
 }
 
+EntityManager::EntityManager(
+    std::shared_ptr<sdbusplus::asio::connection>& systemBus) :
+    systemBus(systemBus),
+    objServer(sdbusplus::asio::object_server(systemBus, /*skipManager=*/true))
+{
+    // All other objects that EntityManager currently support are under the
+    // inventory subtree.
+    // See the discussion at
+    // https://discord.com/channels/775381525260664832/1018929092009144380
+    objServer.add_manager("/xyz/openbmc_project/inventory");
+
+    entityIface = objServer.add_interface("/xyz/openbmc_project/EntityManager",
+                                          "xyz.openbmc_project.EntityManager");
+}
+
 void postToDbus(const nlohmann::json& newConfiguration,
                 nlohmann::json& systemConfiguration,
                 sdbusplus::asio::object_server& objServer)
@@ -584,26 +599,13 @@ static bool irContainsProbeInterface(
 
 int main()
 {
-    // setup connection to dbus
+    // Basic setup for dbus operation
     systemBus = std::make_shared<sdbusplus::asio::connection>(io);
     systemBus->request_name("xyz.openbmc_project.EntityManager");
-
-    // The EntityManager object itself doesn't expose any properties.
-    // No need to set up ObjectManager for the |EntityManager| object.
-    sdbusplus::asio::object_server objServer(systemBus, /*skipManager=*/true);
-
-    // All other objects that EntityManager currently support are under the
-    // inventory subtree.
-    // See the discussion at
-    // https://discord.com/channels/775381525260664832/1018929092009144380
-    objServer.add_manager("/xyz/openbmc_project/inventory");
-
-    std::shared_ptr<sdbusplus::asio::dbus_interface> entityIface =
-        objServer.add_interface("/xyz/openbmc_project/EntityManager",
-                                "xyz.openbmc_project.EntityManager");
-
+    EntityManager em(systemBus);
     // to keep reference to the match / filter objects so they don't get
     // destroyed
+    std::cerr << "Constructor finished" << std::endl;
 
     nlohmann::json systemConfiguration = nlohmann::json::object();
 
@@ -615,7 +617,7 @@ int main()
     // for any reason, expected or otherwise, we'll need a poke to remove
     // entities from DBus.
     sdbusplus::bus::match_t nameOwnerChangedMatch(
-        static_cast<sdbusplus::bus_t&>(*systemBus),
+        static_cast<sdbusplus::bus_t&>(*em.systemBus),
         sdbusplus::bus::match::rules::nameOwnerChanged(),
         [&](sdbusplus::message_t& m) {
             auto [name, oldOwner,
@@ -627,37 +629,37 @@ int main()
                 return;
             }
 
-            propertiesChangedCallback(systemConfiguration, objServer);
+            propertiesChangedCallback(systemConfiguration, em.objServer);
         });
     // We also need a poke from DBus when new interfaces are created or
     // destroyed.
     sdbusplus::bus::match_t interfacesAddedMatch(
-        static_cast<sdbusplus::bus_t&>(*systemBus),
+        static_cast<sdbusplus::bus_t&>(*em.systemBus),
         sdbusplus::bus::match::rules::interfacesAdded(),
         [&](sdbusplus::message_t& msg) {
             if (iaContainsProbeInterface(msg, probeInterfaces))
             {
-                propertiesChangedCallback(systemConfiguration, objServer);
+                propertiesChangedCallback(systemConfiguration, em.objServer);
             }
         });
     sdbusplus::bus::match_t interfacesRemovedMatch(
-        static_cast<sdbusplus::bus_t&>(*systemBus),
+        static_cast<sdbusplus::bus_t&>(*em.systemBus),
         sdbusplus::bus::match::rules::interfacesRemoved(),
         [&](sdbusplus::message_t& msg) {
             if (irContainsProbeInterface(msg, probeInterfaces))
             {
-                propertiesChangedCallback(systemConfiguration, objServer);
+                propertiesChangedCallback(systemConfiguration, em.objServer);
             }
         });
 
     boost::asio::post(io, [&]() {
-        propertiesChangedCallback(systemConfiguration, objServer);
+        propertiesChangedCallback(systemConfiguration, em.objServer);
     });
 
-    entityIface->register_method("ReScan", [&]() {
-        propertiesChangedCallback(systemConfiguration, objServer);
+    em.entityIface->register_method("ReScan", [&]() {
+        propertiesChangedCallback(systemConfiguration, em.objServer);
     });
-    dbus_interface::tryIfaceInitialize(entityIface);
+    dbus_interface::tryIfaceInitialize(em.entityIface);
 
     if (em_utils::fwVersionIsSame())
     {
@@ -700,7 +702,7 @@ int main()
 
     // some boards only show up after power is on, we want to not say they are
     // removed until the same state happens
-    em_utils::setupPowerMatch(systemBus);
+    em_utils::setupPowerMatch(em.systemBus);
 
     io.run();
 
