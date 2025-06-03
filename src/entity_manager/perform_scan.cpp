@@ -87,31 +87,6 @@ void getInterfaces(
         "GetAll", instance.interface);
 }
 
-static void registerCallback(nlohmann::json& systemConfiguration,
-                             sdbusplus::asio::object_server& objServer,
-                             const std::string& path)
-{
-    static boost::container::flat_map<std::string, sdbusplus::bus::match_t>
-        dbusMatches;
-
-    auto find = dbusMatches.find(path);
-    if (find != dbusMatches.end())
-    {
-        return;
-    }
-
-    std::function<void(sdbusplus::message_t & message)> eventHandler =
-        [&](sdbusplus::message_t&) {
-            propertiesChangedCallback(systemConfiguration, objServer);
-        };
-
-    sdbusplus::bus::match_t match(
-        static_cast<sdbusplus::bus_t&>(*systemBus),
-        "type='signal',member='PropertiesChanged',path='" + path + "'",
-        eventHandler);
-    dbusMatches.emplace(path, std::move(match));
-}
-
 static void processDbusObjects(
     std::vector<std::shared_ptr<probe::PerformProbe>>& probeVector,
     const std::shared_ptr<scan::PerformScan>& scan,
@@ -120,7 +95,7 @@ static void processDbusObjects(
     for (const auto& [path, object] : interfaceSubtree)
     {
         // Get a PropertiesChanged callback for all interfaces on this path.
-        registerCallback(scan->_systemConfiguration, scan->objServer, path);
+        scan->_em.registerCallback(scan->_systemConfiguration, path);
 
         for (const auto& [busname, ifaces] : object)
         {
@@ -225,15 +200,14 @@ static std::string getRecordName(const DBusInterface& probe,
     return std::to_string(std::hash<std::string>{}(probeName + device.dump()));
 }
 
-scan::PerformScan::PerformScan(nlohmann::json& systemConfiguration,
+scan::PerformScan::PerformScan(EntityManager& em,
+                               nlohmann::json& systemConfiguration,
                                nlohmann::json& missingConfigurations,
                                std::list<nlohmann::json>& configurations,
-                               sdbusplus::asio::object_server& objServerIn,
                                std::function<void()>&& callback) :
-    _systemConfiguration(systemConfiguration),
+    _em(em), _systemConfiguration(systemConfiguration),
     _missingConfigurations(missingConfigurations),
-    _configurations(configurations), objServer(objServerIn),
-    _callback(std::move(callback))
+    _configurations(configurations), _callback(std::move(callback))
 {}
 
 static void pruneRecordExposes(nlohmann::json& record)
@@ -653,8 +627,8 @@ scan::PerformScan::~PerformScan()
     if (_passed)
     {
         auto nextScan = std::make_shared<PerformScan>(
-            _systemConfiguration, _missingConfigurations, _configurations,
-            objServer, std::move(_callback));
+            _em, _systemConfiguration, _missingConfigurations, _configurations,
+            std::move(_callback));
         nextScan->passedProbes = std::move(passedProbes);
         nextScan->dbusProbeObjects = std::move(dbusProbeObjects);
         nextScan->run();

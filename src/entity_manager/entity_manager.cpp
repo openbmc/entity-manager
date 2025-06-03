@@ -74,10 +74,8 @@ sdbusplus::asio::PropertyPermission getPermission(const std::string& interface)
                : sdbusplus::asio::PropertyPermission::readOnly;
 }
 
-void postToDbus(const nlohmann::json& newConfiguration,
-                nlohmann::json& systemConfiguration,
-                sdbusplus::asio::object_server& objServer)
-
+void EntityManager::postToDbus(const nlohmann::json& newConfiguration,
+                               nlohmann::json& systemConfiguration)
 {
     std::map<std::string, std::string> newBoards; // path -> name
 
@@ -430,7 +428,7 @@ static void pruneConfiguration(nlohmann::json& systemConfiguration,
     logDeviceRemoved(device);
 }
 
-static void publishNewConfiguration(
+void EntityManager::publishNewConfiguration(
     const size_t& instance, const size_t count,
     boost::asio::steady_timer& timer, nlohmann::json& systemConfiguration,
     // Gerrit discussion:
@@ -440,8 +438,7 @@ static void publishNewConfiguration(
     // https://discord.com/channels/775381525260664832/867820390406422538/958048437729910854
     //
     // NOLINTNEXTLINE(performance-unnecessary-value-param)
-    const nlohmann::json newConfiguration,
-    sdbusplus::asio::object_server& objServer)
+    const nlohmann::json newConfiguration)
 {
     loadOverlays(newConfiguration);
 
@@ -452,9 +449,9 @@ static void publishNewConfiguration(
         }
     });
 
-    boost::asio::post(io, [&instance, count, &timer, newConfiguration,
-                           &systemConfiguration, &objServer]() {
-        postToDbus(newConfiguration, systemConfiguration, objServer);
+    boost::asio::post(io, [this, &instance, count, &timer, newConfiguration,
+                           &systemConfiguration]() {
+        this->postToDbus(newConfiguration, systemConfiguration);
         if (count == instance)
         {
             startRemovedTimer(timer, systemConfiguration);
@@ -463,8 +460,8 @@ static void publishNewConfiguration(
 }
 
 // main properties changed entry
-void propertiesChangedCallback(nlohmann::json& systemConfiguration,
-                               sdbusplus::asio::object_server& objServer)
+void EntityManager::propertiesChangedCallback(
+    nlohmann::json& systemConfiguration)
 {
     static bool inProgress = false;
     static boost::asio::steady_timer timer(io);
@@ -475,7 +472,7 @@ void propertiesChangedCallback(nlohmann::json& systemConfiguration,
     timer.expires_after(std::chrono::milliseconds(500));
 
     // setup an async wait as we normally get flooded with new requests
-    timer.async_wait([&systemConfiguration, &objServer,
+    timer.async_wait([this, &systemConfiguration,
                       count](const boost::system::error_code& ec) {
         if (ec == boost::asio::error::operation_aborted)
         {
@@ -490,7 +487,7 @@ void propertiesChangedCallback(nlohmann::json& systemConfiguration,
 
         if (inProgress)
         {
-            propertiesChangedCallback(systemConfiguration, objServer);
+            this->propertiesChangedCallback(systemConfiguration);
             return;
         }
         inProgress = true;
@@ -508,9 +505,8 @@ void propertiesChangedCallback(nlohmann::json& systemConfiguration,
         }
 
         auto perfScan = std::make_shared<scan::PerformScan>(
-            systemConfiguration, *missingConfigurations, configurations,
-            objServer,
-            [&systemConfiguration, &objServer, count, oldConfiguration,
+            *this, systemConfiguration, *missingConfigurations, configurations,
+            [this, &systemConfiguration, count, oldConfiguration,
              missingConfigurations]() {
                 // this is something that since ac has been applied to the bmc
                 // we saw, and we no longer see it
@@ -518,8 +514,8 @@ void propertiesChangedCallback(nlohmann::json& systemConfiguration,
                 for (const auto& [name, device] :
                      missingConfigurations->items())
                 {
-                    pruneConfiguration(systemConfiguration, objServer, powerOff,
-                                       name, device);
+                    pruneConfiguration(systemConfiguration, this->objServer,
+                                       powerOff, name, device);
                 }
 
                 nlohmann::json newConfiguration = systemConfiguration;
@@ -534,11 +530,12 @@ void propertiesChangedCallback(nlohmann::json& systemConfiguration,
 
                 inProgress = false;
 
-                boost::asio::post(
-                    io, std::bind_front(
-                            publishNewConfiguration, std::ref(instance), count,
-                            std::ref(timer), std::ref(systemConfiguration),
-                            newConfiguration, std::ref(objServer)));
+                boost::asio::post(io, [this, &systemConfiguration,
+                                       newConfiguration, count] {
+                    this->publishNewConfiguration(
+                        std::ref(instance), count, std::ref(timer),
+                        std::ref(systemConfiguration), newConfiguration);
+                });
             });
         perfScan->run();
     });
@@ -582,6 +579,30 @@ static bool irContainsProbeInterface(
     return !intersect.empty();
 }
 
+void EntityManager::registerCallback(nlohmann::json& systemConfiguration,
+                                     const std::string& path)
+{
+    static boost::container::flat_map<std::string, sdbusplus::bus::match_t>
+        dbusMatches;
+
+    auto find = dbusMatches.find(path);
+    if (find != dbusMatches.end())
+    {
+        return;
+    }
+
+    std::function<void(sdbusplus::message_t & message)> eventHandler =
+        [&](sdbusplus::message_t&) {
+            propertiesChangedCallback(systemConfiguration);
+        };
+
+    sdbusplus::bus::match_t match(
+        static_cast<sdbusplus::bus_t&>(*systemBus),
+        "type='signal',member='PropertiesChanged',path='" + path + "'",
+        eventHandler);
+    dbusMatches.emplace(path, std::move(match));
+}
+
 int main()
 {
     // Basic setup for dbus operation
@@ -614,7 +635,7 @@ int main()
                 return;
             }
 
-            propertiesChangedCallback(systemConfiguration, em.objServer);
+            em.propertiesChangedCallback(systemConfiguration);
         });
     // We also need a poke from DBus when new interfaces are created or
     // destroyed.
@@ -624,7 +645,7 @@ int main()
         [&](sdbusplus::message_t& msg) {
             if (iaContainsProbeInterface(msg, probeInterfaces))
             {
-                propertiesChangedCallback(systemConfiguration, em.objServer);
+                em.propertiesChangedCallback(systemConfiguration);
             }
         });
     sdbusplus::bus::match_t interfacesRemovedMatch(
@@ -633,16 +654,16 @@ int main()
         [&](sdbusplus::message_t& msg) {
             if (irContainsProbeInterface(msg, probeInterfaces))
             {
-                propertiesChangedCallback(systemConfiguration, em.objServer);
+                em.propertiesChangedCallback(systemConfiguration);
             }
         });
 
     boost::asio::post(io, [&]() {
-        propertiesChangedCallback(systemConfiguration, em.objServer);
+        em.propertiesChangedCallback(systemConfiguration);
     });
 
     em.entityIface->register_method("ReScan", [&]() {
-        propertiesChangedCallback(systemConfiguration, em.objServer);
+        em.propertiesChangedCallback(systemConfiguration);
     });
     dbus_interface::tryIfaceInitialize(em.entityIface);
 

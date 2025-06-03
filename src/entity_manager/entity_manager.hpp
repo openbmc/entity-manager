@@ -54,6 +54,15 @@ class EntityManager
     std::shared_ptr<sdbusplus::asio::dbus_interface> entityIface;
     Topology topology;
     nlohmann::json lastJson;
+
+    void propertiesChangedCallback(nlohmann::json& systemConfiguration);
+    void registerCallback(nlohmann::json& systemConfiguration,
+                          const std::string& path);
+    void publishNewConfiguration(
+        const size_t& instance, size_t count, boost::asio::steady_timer& timer,
+        nlohmann::json& systemConfiguration, nlohmann::json newConfiguration);
+    void postToDbus(const nlohmann::json& newConfiguration,
+                    nlohmann::json& systemConfiguration);
 };
 
 inline void logDeviceAdded(const nlohmann::json& record)
