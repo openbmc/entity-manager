@@ -7,6 +7,38 @@
             "Type": "EEPROM"
         },
         {
+            "Level": "Warning",
+            "Name": "LeakCable0",
+            "PinName": "CHASSIS0_LEAK_Q_N_PLD",
+            "Polarity": "Low",
+            "SubType": "LeakSensingCable",
+            "Type": "GPIOLeakDetector"
+        },
+        {
+            "Level": "Critical",
+            "Name": "LeakCable1",
+            "PinName": "CHASSIS1_LEAK_Q_N_PLD",
+            "Polarity": "Low",
+            "SubType": "LeakSensingCable",
+            "Type": "GPIOLeakDetector"
+        },
+        {
+            "Level": "Warning",
+            "Name": "LeakCable2",
+            "PinName": "CHASSIS2_LEAK_Q_N_PLD",
+            "Polarity": "Low",
+            "SubType": "LeakSensingCable",
+            "Type": "GPIOLeakDetector"
+        },
+        {
+            "Level": "Critical",
+            "Name": "LeakCable3",
+            "PinName": "CHASSIS3_LEAK_Q_N_PLD",
+            "Polarity": "Low",
+            "SubType": "LeakSensingCable",
+            "Type": "GPIOLeakDetector"
+        },
+        {
             "Address": "0x21",
             "Bus": 18,
             "Connector": {
