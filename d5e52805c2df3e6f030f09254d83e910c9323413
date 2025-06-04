@@ -1,0 +1,55 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b91ffb43_d6bca5ec",
+        "filename": "src/entity_manager/entity_manager.cpp",
+        "patchSetId": 3
+      },
+      "lineNbr": 593,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-06-04T11:50:44Z",
+      "side": 1,
+      "message": "Debug statement like ```lg2::debug(\"Entity-Manager initialized\")```\n\ncan go into at the end of the constructor.\n\nLet\u0027s not use ```std::cerr```.",
+      "revId": "d5e52805c2df3e6f030f09254d83e910c9323413",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "dae391ee_f7bcfb10",
+        "filename": "src/entity_manager/entity_manager.hpp",
+        "patchSetId": 3
+      },
+      "lineNbr": 35,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-06-04T11:50:44Z",
+      "side": 1,
+      "message": "Since it\u0027s not a template, why does the constructor implementation go into the header?",
+      "revId": "d5e52805c2df3e6f030f09254d83e910c9323413",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d0fc0a64_bedac506",
+        "filename": "src/entity_manager/entity_manager.hpp",
+        "patchSetId": 3
+      },
+      "lineNbr": 55,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-06-04T11:50:44Z",
+      "side": 1,
+      "message": "Where is ```topology``` coming from? Is it a global?\n\nI don\u0027t see the diff where it\u0027s removed in another place.",
+      "revId": "d5e52805c2df3e6f030f09254d83e910c9323413",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    }
+  ]
+}
