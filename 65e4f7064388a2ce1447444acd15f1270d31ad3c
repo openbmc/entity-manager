@@ -111,6 +111,30 @@
       },
       "revId": "65e4f7064388a2ce1447444acd15f1270d31ad3c",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "20573f66_26b96b8b",
+        "filename": "schemas/mctp.json",
+        "patchSetId": 8
+      },
+      "lineNbr": 53,
+      "author": {
+        "id": 1000009
+      },
+      "writtenOn": "2025-06-05T23:55:18Z",
+      "side": 1,
+      "message": "\u003e Would it be best that we let something external do that? Something like a udev rule that sets an altname to the net i/f via a udev rule, (via something like: ip link property add dev $env{INTERFACE} altname mctpusb\u003cbus_id\u003e-\u003cport_path\u003e-\u003ccfg\u003e-\u003cintf\u003e\n\nI feel that\u0027s moving the problem rather than removing it. Now you need to coordinate the custom udev rule with the EM configuration, and you still end up needing to know the details anyway with the scheme you\u0027ve proposed.\n\nEM configs are about describing hardware and their relationships. I don\u0027t see any reason not to continue that by describing Bus/Port/Configuration/Interface for USB devices directly.\n\n\u003e We need an EM schema for 1) creating the association between the MCTP endpoint objects and the config and 2) the aim is still to get to static endpoints in the future.\n\nUnderstood, however, EM configs that lack any hardware context are detached in a way that makes them a bit meaningless. However, with the scheme discussed above we can fix that.",
+      "parentUuid": "e14056eb_3f50adab",
+      "range": {
+        "startLine": 50,
+        "startChar": 1,
+        "endLine": 53,
+        "endChar": 18
+      },
+      "revId": "65e4f7064388a2ce1447444acd15f1270d31ad3c",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }
