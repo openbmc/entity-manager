@@ -54,6 +54,24 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": true,
+      "key": {
+        "uuid": "25ca4623_29467116",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 29
+      },
+      "lineNbr": 27,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-06-05T10:47:26Z",
+      "side": 1,
+      "message": "The top-level configuration interfaces all have ```Name``` property which is used as part of the object path. But not all nested configuration interfaces have this property currently.\n\nFor example ```xyz.openbmc_project.Configuration.SPIFlash.FirmwareInfo``` is top-level configuration based on object path, but has a nested interface name and no ```Name``` property.\n\nAnd ```xyz.openbmc_project.Configuration.ADC.Thresholds0``` may have ```Name \u003d\u003d \"upper critical\"```. which is not unique.\n\nSo every exposes record currently should have one ```Name``` property on its primary (non-nested) dbus interface (feel free to correct me here 😊 )\n\nBecause the ```Name``` is part of the object path it has to be unique below the entity that it\u0027s exposed on. Not sure if it\u0027s unique across all entities, that would be hard to enforce since potentially any EM config could be probed. \n\nVarious daemons currently use ```Name``` property to form their own object paths. For example the ADCSensor.\n```\n        |- /xyz/openbmc_project/sensors/voltage/VBAT_33\n        |- /xyz/openbmc_project/sensors/voltage/VDD_12_RUN\n        |- /xyz/openbmc_project/sensors/voltage/VDD_33_DUAL\n        |- /xyz/openbmc_project/sensors/voltage/VDD_33_RUN\n        |- /xyz/openbmc_project/sensors/voltage/VDD_5_DUAL\n        `- /xyz/openbmc_project/sensors/voltage/VDD_5_RUN\n```\n\nSo for that daemon, it actually forms the object path based on ```Name``` property on the configuration interface, not based on the object path.\n\n@paligill@gmail.com i hope this answers your question about ```Name``` property being required.\n\nWhy do you want to generate (part of?) the ```Name``` property? What\u0027s the issue with the current ```Name``` property?",
+      "parentUuid": "2c87aea8_c2763ad4",
+      "revId": "da81067658ff2464f35993b2b0c03bbf65a3454f",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": false,
       "key": {
         "uuid": "da4f18c9_ce234b80",
