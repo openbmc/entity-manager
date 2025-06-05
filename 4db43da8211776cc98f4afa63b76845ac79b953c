@@ -36,6 +36,24 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "9c793cb8_a6b87175",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 30
+      },
+      "lineNbr": 8,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-06-05T13:16:11Z",
+      "side": 1,
+      "message": "\u003e Ie, array properties previously would be represented as:\n\u003cX\u003e\nAnd after this change, are represented as:\n\u003cY\u003e\n\nSure.\n\n\u003e I\u0027m thinking you wanted this because of the gpio arrays in the gpio cable presence configs? so maybe an example of that.\n\nI would like to consider the changes with abstract and not concrete examples for compactness reasons in the commit message.\n\nHowever i can expand further by creating something similar to ```docs/entity_manager_dbus_api.md``` since this new API will require documentation beyond the commit message.",
+      "parentUuid": "672272b3_1cb9b0e1",
+      "revId": "4db43da8211776cc98f4afa63b76845ac79b953c",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "9f819ce2_039bddb3",
@@ -49,6 +67,24 @@
       "writtenOn": "2025-06-04T18:30:49Z",
       "side": 1,
       "message": "I\u0027m a little worried we\u0027re conflating the problem further here by creating more depth in paths.\n\nAt some point, in the ideal,",
+      "revId": "4db43da8211776cc98f4afa63b76845ac79b953c",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "dbdbe289_9f026d79",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 30
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-06-05T13:16:11Z",
+      "side": 1,
+      "message": "Looks like some part of your comment got cut off here.\n\n\u003e I\u0027m a little worried we\u0027re conflating the problem further here by creating more depth in paths.\n\n## concern about configuration\n\nDo you see the problem in how deep configuration is nested in json configs?\n(which could be a concern about misrepresentation)\n\n## concern about developer workflow (tree)\n\nWith the alternative code path, the dbus tree may be somewhat bloated since the json objects in arrays would get their own object path.\n\nMaybe we could have a helper program there to list the object paths / configuration records for an entity? \n\nLike a custom ```busctl tree``` but specific to EM. What do you think 😊\n\n## concern about developer workflow (introspecting)\n\nWith the alternative code path, it would not be as easy anymore for folks to dump some logs of ```busctl introspect``` to show all the interfaces and values without relying on the existing code path. Since there would be multiple object paths needed to dump the information.\n\nBut that can be solved by having some small helper program to dump the subtree  and it\u0027s dbus interfaces without the \n```\norg.freedesktop.DBus.Introspectable\norg.freedesktop.DBus.Peer\norg.freedesktop.DBus.Properties\n```\nwhich seems to be on all the object paths.\n\nWould you like to have such a helper program created to make the workflow easier?\n\n## concern about performance (daemon consuming the config)\n\nWhen using the new API, there may be more DBus calls required than before.\nSince the information is found on different object paths instead of one.\n\nI would not be too concerned since the configuration may not change that often.\n\n## concern about performance (EM)\n\nWould you like to see some benchmarks here? We could insert some timestamp logging into EM at debug level to make it easier to look at the impacts of changes like that.",
+      "parentUuid": "9f819ce2_039bddb3",
       "revId": "4db43da8211776cc98f4afa63b76845ac79b953c",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
