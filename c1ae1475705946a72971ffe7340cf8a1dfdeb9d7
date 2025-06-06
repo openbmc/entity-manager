@@ -177,6 +177,24 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "1fe60854_95ab6811",
+        "filename": "configurations/meta/harma_mb_vr_infineon.json",
+        "patchSetId": 3
+      },
+      "lineNbr": 416,
+      "author": {
+        "id": 1001939
+      },
+      "writtenOn": "2025-06-06T12:20:52Z",
+      "side": 1,
+      "message": "The two instances share the same image because they are the main source and the second source, respectively, but both are MB CPLDs.\nHowever, the CPLDs in the system still might not share the same image even if they use the same chip; add a suffix to distinguish them.",
+      "parentUuid": "1a08ae93_e3122c6b",
+      "revId": "c1ae1475705946a72971ffe7340cf8a1dfdeb9d7",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "36695a3e_8cef7106",
