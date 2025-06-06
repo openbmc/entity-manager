@@ -213,3 +213,18 @@ std::optional<std::string> getProductName(
 bool getFruData(std::vector<uint8_t>& fruData, uint32_t bus, uint32_t address);
 
 bool isFieldEditable(std::string_view fieldName);
+
+bool getAreaIdx(const std::string& areaName, fruAreas& fruAreaToUpdate);
+
+bool updateAreacksum(std::vector<uint8_t>& fruArea);
+
+bool disassembleFruData(std::vector<uint8_t>& fruData,
+                        std::vector<std::vector<uint8_t>>& areasData);
+
+bool createDummyArea(fruAreas fruArea, std::vector<uint8_t>& areaData);
+
+bool assembleFruData(std::vector<uint8_t>& fruData,
+                     const std::vector<std::vector<uint8_t>>& areasData);
+
+bool setField(const fruAreas& fruAreaToUpdate, std::vector<uint8_t>& areaData,
+              const std::string& propertyName, const std::string& value);
