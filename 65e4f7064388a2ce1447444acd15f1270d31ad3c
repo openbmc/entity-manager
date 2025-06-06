@@ -159,6 +159,30 @@
       },
       "revId": "65e4f7064388a2ce1447444acd15f1270d31ad3c",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "05ea521a_e520a216",
+        "filename": "schemas/mctp.json",
+        "patchSetId": 8
+      },
+      "lineNbr": 53,
+      "author": {
+        "id": 1000009
+      },
+      "writtenOn": "2025-06-06T07:20:43Z",
+      "side": 1,
+      "message": "\u003e OK, that is fair. We can update this config to include that information and make the corresponding reactor changes to consume that info, get the right interface name from sysfs and proceed to use that to call into mctpd. Once that is done, would this and the corresponding Reactor change be good to go?\n\nIMO yes, but I\u0027m not an EM maintainer, so you\u0027ll need to convince them too 😊\n\nFWIW note the implementation for resolving the interface name of `MCTPI2CTarget`s:\n\nhttps://gerrit.openbmc.org/plugins/gitiles/openbmc/dbus-sensors/+/02c4366be0eb2409c81784c989dfb690cd41af58/src/mctp/MCTPEndpoint.cpp#397",
+      "parentUuid": "0acc7295_7fb6a657",
+      "range": {
+        "startLine": 50,
+        "startChar": 1,
+        "endLine": 53,
+        "endChar": 18
+      },
+      "revId": "65e4f7064388a2ce1447444acd15f1270d31ad3c",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }
