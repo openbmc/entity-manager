@@ -483,3 +483,129 @@ TEST(IsFieldEditableTest, InvalidField)
     EXPECT_FALSE(isFieldEditable("ABCD_PRODUCT"));
     EXPECT_FALSE(isFieldEditable("ABCD_BOARD"));
 }
+
+TEST(GetAreaIdxTest, InvalidAreaReturnsInvalid)
+{
+    // Validates that false is returned for an invalid area.
+    const std::string invalidArea = "INVALID_AREA";
+    fruAreas areaIdx = fruAreas::fruAreaInternal;
+    EXPECT_FALSE(getAreaIdx(invalidArea, areaIdx));
+}
+
+TEST(GetAreaIdxTest, ValidAreaReturnsValid)
+{
+    const std::vector<std::string> validAreas = {"INTERNAL", "CHASSIS", "BOARD",
+                                                 "PRODUCT", "MULTIRECORD"};
+
+    const std::array<fruAreas, 5> expectedAreas = {
+        fruAreas::fruAreaInternal, fruAreas::fruAreaChassis,
+        fruAreas::fruAreaBoard, fruAreas::fruAreaProduct,
+        fruAreas::fruAreaMultirecord};
+
+    for (size_t i = 0; i < validAreas.size(); ++i)
+    {
+        fruAreas testArea = fruAreas::fruAreaInternal; // default init
+        EXPECT_TRUE(getAreaIdx(validAreas[i], testArea));
+        EXPECT_EQ(testArea, expectedAreas[i]);
+    }
+}
+
+TEST(UpdateAreaChecksumTest, EmptyArea)
+{
+    // Validates that an empty area does not cause any issues.
+    std::vector<uint8_t> fruArea = {};
+    EXPECT_FALSE(updateAreacksum(fruArea));
+}
+
+TEST(UpdateAreaChecksumTest, ValidArea)
+{
+    // Validates that a valid area updates the checksum correctly.
+    std::vector<uint8_t> fruArea = {0x01, 0x00, 0x01, 0x02,
+                                    0x03, 0x04, 0x00, 0x00};
+    EXPECT_TRUE(updateAreacksum(fruArea));
+    EXPECT_EQ(fruArea.back(), 0xf5);
+}
+
+TEST(UpdateAreaChecksumTest, InvalidArea)
+{
+    // Validates that an invalid area does not update the checksum.
+    std::vector<uint8_t> fruArea = {0x01, 0x00, 0x01, 0x02, 0x03,
+                                    0x04, 0x00, 0x00, 0xAA};
+    EXPECT_FALSE(updateAreacksum(fruArea));
+}
+
+TEST(DisassembleFruDataTest, EmptyData)
+{
+    // Validates that an empty data vector returns false.
+    std::vector<uint8_t> fruData = {};
+    std::vector<std::vector<uint8_t>> areasData;
+    EXPECT_FALSE(disassembleFruData(fruData, areasData));
+}
+
+TEST(DisassembleFruDataTest, ValidData)
+{
+    // Taken from qemu fby35_bmc_fruid
+    std::vector<uint8_t> fruData = {
+        0x01, 0x00, 0x00, 0x01, 0x0d, 0x00, 0x00, 0xf1, 0x01, 0x0c, 0x00, 0x36,
+        0xe6, 0xd0, 0xc6, 0x58, 0x58, 0x58, 0x58, 0x58, 0x58, 0xd2, 0x42, 0x4d,
+        0x43, 0x20, 0x53, 0x74, 0x6f, 0x72, 0x61, 0x67, 0x65, 0x20, 0x4d, 0x6f,
+        0x64, 0x75, 0x6c, 0x65, 0xcd, 0x58, 0x58, 0x58, 0x58, 0x58, 0x58, 0x58,
+        0x58, 0x58, 0x58, 0x58, 0x58, 0x58, 0xce, 0x58, 0x58, 0x58, 0x58, 0x58,
+        0x58, 0x58, 0x58, 0x58, 0x58, 0x58, 0x58, 0x58, 0x58, 0xc3, 0x31, 0x2e,
+        0x30, 0xc9, 0x58, 0x58, 0x58, 0x58, 0x58, 0x58, 0x58, 0x58, 0x58, 0xd2,
+        0x58, 0x58, 0x58, 0x58, 0x58, 0x58, 0x58, 0x58, 0x58, 0x58, 0x58, 0x58,
+        0x58, 0x58, 0x58, 0x58, 0x58, 0x58, 0xc1, 0x39, 0x01, 0x0c, 0x00, 0xc6,
+        0x58, 0x58, 0x58, 0x58, 0x58, 0x58, 0xd2, 0x59, 0x6f, 0x73, 0x65, 0x6d,
+        0x69, 0x74, 0x65, 0x20, 0x56, 0x33, 0x2e, 0x35, 0x20, 0x45, 0x56, 0x54,
+        0x32, 0xce, 0x58, 0x58, 0x58, 0x58, 0x58, 0x58, 0x58, 0x58, 0x58, 0x58,
+        0x58, 0x58, 0x58, 0x58, 0xc4, 0x45, 0x56, 0x54, 0x32, 0xcd, 0x58, 0x58,
+        0x58, 0x58, 0x58, 0x58, 0x58, 0x58, 0x58, 0x58, 0x58, 0x58, 0x58, 0xc7,
+        0x58, 0x58, 0x58, 0x58, 0x58, 0x58, 0x58, 0xc3, 0x31, 0x2e, 0x30, 0xc9,
+        0x58, 0x58, 0x58, 0x58, 0x58, 0x58, 0x58, 0x58, 0x58, 0xc8, 0x43, 0x6f,
+        0x6e, 0x66, 0x69, 0x67, 0x20, 0x41, 0xc1, 0x45,
+    };
+
+    std::vector<std::vector<uint8_t>> areasData;
+    EXPECT_TRUE(disassembleFruData(fruData, areasData));
+    EXPECT_GT(areasData.size(), 1);
+
+    // Internal area is size is zero
+    EXPECT_EQ(areasData[static_cast<size_t>(fruAreas::fruAreaInternal)].size(),
+              0);
+    // Chassis are is zero
+    EXPECT_EQ(areasData[static_cast<size_t>(fruAreas::fruAreaChassis)].size(),
+              0);
+    // Board area is 96 byte
+    EXPECT_EQ(areasData[static_cast<size_t>(fruAreas::fruAreaBoard)].size(),
+              96);
+    // Product area is 96 byte
+    EXPECT_EQ(areasData[static_cast<size_t>(fruAreas::fruAreaProduct)].size(),
+              96);
+
+    // Multi-record area is 64 byte.
+    EXPECT_EQ(
+        areasData[static_cast<size_t>(fruAreas::fruAreaMultirecord)].size(), 0);
+
+    EXPECT_TRUE(setField(fruAreas::fruAreaBoard,
+                         areasData[static_cast<size_t>(fruAreas::fruAreaBoard)],
+                         "BOARD_INFO_AM1", "01"));
+    EXPECT_TRUE(setField(fruAreas::fruAreaBoard,
+                         areasData[static_cast<size_t>(fruAreas::fruAreaBoard)],
+                         "BOARD_INFO_AM2", "MAC: 3C:6D:66:14:C8:7A"));
+    // set Product fields
+    EXPECT_TRUE(
+        setField(fruAreas::fruAreaProduct,
+                 areasData[static_cast<size_t>(fruAreas::fruAreaProduct)],
+                 "PRODUCT_ASSET_TAG", "123"));
+    EXPECT_TRUE(
+        setField(fruAreas::fruAreaProduct,
+                 areasData[static_cast<size_t>(fruAreas::fruAreaProduct)],
+                 "PRODUCT_PART_NUMBER", "699-13809-0404-600"));
+    EXPECT_TRUE(
+        setField(fruAreas::fruAreaProduct,
+                 areasData[static_cast<size_t>(fruAreas::fruAreaProduct)],
+                 "PRODUCT_PRODUCT_NAME", "OpenBMC-test1"));
+
+    std::vector<uint8_t> assembledData;
+    EXPECT_TRUE(assembleFruData(assembledData, areasData));
+}
