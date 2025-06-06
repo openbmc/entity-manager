@@ -75,8 +75,8 @@ static boost::container::flat_map<size_t, std::set<size_t>> fruAddresses;
 boost::asio::io_context io;
 // NOLINTEND(cppcoreguidelines-avoid-non-const-global-variables)
 
-bool updateFRUProperty(
-    const std::string& updatePropertyReq, uint32_t bus, uint32_t address,
+bool updateFruProperty(
+    const std::string& propertyValue, uint32_t bus, uint32_t address,
     const std::string& propertyName,
     boost::container::flat_map<
         std::pair<size_t, size_t>,
@@ -820,6 +820,28 @@ void addFruObjectToDbus(
         objServer.add_interface(productName, "xyz.openbmc_project.FruDevice");
     dbusInterfaceMap[std::pair<size_t, size_t>(bus, address)] = iface;
 
+    if (ENABLE_FRU_UPDATE_PROPERTY)
+    {
+        iface->register_method(
+            "UpdateFruField",
+            [bus, address, &dbusInterfaceMap, &unknownBusObjectCount,
+             &powerIsOn, &objServer, &systemBus](
+                const std::string& fieldName, const std::string& fieldValue) {
+                // Update the property
+                if (!updateFruProperty(fieldValue, bus, address, fieldName,
+                                       dbusInterfaceMap, unknownBusObjectCount,
+                                       powerIsOn, objServer, systemBus))
+                {
+                    lg2::debug(
+                        "Failed to Add Field: Name = {NAME}, Value = {VALUE}",
+                        "NAME", fieldName, "VALUE", fieldValue);
+                    return false;
+                }
+
+                return true;
+            });
+    }
+
     for (auto& property : formattedFRU)
     {
         std::regex_replace(property.second.begin(), property.second.begin(),
@@ -843,7 +865,7 @@ void addFruObjectToDbus(
                     if (strcmp(req.c_str(), resp.c_str()) != 0)
                     {
                         // call the method which will update
-                        if (updateFRUProperty(req, bus, address, propertyName,
+                        if (updateFruProperty(req, bus, address, propertyName,
                                               dbusInterfaceMap,
                                               unknownBusObjectCount, powerIsOn,
                                               objServer, systemBus))
@@ -1182,19 +1204,8 @@ void rescanBusses(
     });
 }
 
-// Details with example of Asset Tag Update
-// To find location of Product Info Area asset tag as per FRU specification
-// 1. Find product Info area starting offset (*8 - as header will be in
-// multiple of 8 bytes).
-// 2. Skip 3 bytes of product info area (like format version, area length,
-// and language code).
-// 3. Traverse manufacturer name, product name, product version, & product
-// serial number, by reading type/length code to reach the Asset Tag.
-// 4. Update the Asset Tag, reposition the product Info area in multiple of
-// 8 bytes. Update the Product area length and checksum.
-
-bool updateFRUProperty(
-    const std::string& updatePropertyReq, uint32_t bus, uint32_t address,
+bool updateFruProperty(
+    const std::string& propertyValue, uint32_t bus, uint32_t address,
     const std::string& propertyName,
     boost::container::flat_map<
         std::pair<size_t, size_t>,
@@ -1203,149 +1214,79 @@ bool updateFRUProperty(
     sdbusplus::asio::object_server& objServer,
     std::shared_ptr<sdbusplus::asio::connection>& systemBus)
 {
-    size_t updatePropertyReqLen = updatePropertyReq.length();
-    if (updatePropertyReqLen == 1 || updatePropertyReqLen > 63)
+    lg2::debug(
+        "updateFruProperty called: FieldName = {NAME}, FieldValue = {VALUE}",
+        "NAME", propertyName, "VALUE", propertyValue);
+
+    // Validate field length: must be 2–63 characters
+    const size_t len = propertyValue.length();
+    if (len <= 1 || len > 63)
     {
-        std::cerr
-            << "FRU field data cannot be of 1 char or more than 63 chars. "
-               "Invalid Length "
-            << updatePropertyReqLen << "\n";
+        lg2::debug(
+            "FRU field data must be between 2 and 63 characters. Invalid Length: {LEN}",
+            "LEN", len);
         return false;
     }
 
     std::vector<uint8_t> fruData;
-
     if (!getFruData(fruData, bus, address))
     {
-        std::cerr << "Failure getting FRU Data \n";
+        std::cerr << "Failure getting FRU Data from bus " << bus << ", address "
+                  << address << "\n";
         return false;
     }
 
-    struct FruArea fruAreaParams{};
-
-    if (!findFruAreaLocationAndField(fruData, propertyName, fruAreaParams))
-    {
-        std::cerr << "findFruAreaLocationAndField failed \n";
-        return false;
-    }
-
-    std::vector<uint8_t> restFRUAreaFieldsData;
-    if (!copyRestFRUArea(fruData, propertyName, fruAreaParams,
-                         restFRUAreaFieldsData))
-    {
-        std::cerr << "copyRestFRUArea failed \n";
-        return false;
-    }
-
-    // Push post update fru areas if any
-    unsigned int nextFRUAreaLoc = 0;
-    for (fruAreas nextFRUArea = fruAreas::fruAreaInternal;
-         nextFRUArea <= fruAreas::fruAreaMultirecord; ++nextFRUArea)
-    {
-        unsigned int fruAreaLoc =
-            fruData[getHeaderAreaFieldOffset(nextFRUArea)] * fruBlockSize;
-        if ((fruAreaLoc > fruAreaParams.restFieldsEnd) &&
-            ((nextFRUAreaLoc == 0) || (fruAreaLoc < nextFRUAreaLoc)))
-        {
-            nextFRUAreaLoc = fruAreaLoc;
-        }
-    }
-    std::vector<uint8_t> restFRUAreasData;
-    if (nextFRUAreaLoc != 0U)
-    {
-        std::copy_n(fruData.begin() + nextFRUAreaLoc,
-                    fruData.size() - nextFRUAreaLoc,
-                    std::back_inserter(restFRUAreasData));
-    }
-
-    // check FRU area size
-    size_t fruAreaDataSize =
-        ((fruAreaParams.updateFieldLoc - fruAreaParams.start + 1) +
-         restFRUAreaFieldsData.size());
-    size_t fruAreaAvailableSize = fruAreaParams.size - fruAreaDataSize;
-    if ((updatePropertyReqLen + 1) > fruAreaAvailableSize)
-    {
-#ifdef ENABLE_FRU_AREA_RESIZE
-        size_t newFRUAreaSize = fruAreaDataSize + updatePropertyReqLen + 1;
-        // round size to 8-byte blocks
-        newFRUAreaSize =
-            ((newFRUAreaSize - 1) / fruBlockSize + 1) * fruBlockSize;
-        size_t newFRUDataSize =
-            fruData.size() + newFRUAreaSize - fruAreaParams.size;
-        fruData.resize(newFRUDataSize);
-        fruAreaParams.size = newFRUAreaSize;
-        fruAreaParams.end = fruAreaParams.start + fruAreaParams.size;
-#else
-        std::cerr << "FRU field length: " << updatePropertyReqLen + 1
-                  << " should not be greater than available FRU area size: "
-                  << fruAreaAvailableSize << "\n";
-        return false;
-#endif // ENABLE_FRU_AREA_RESIZE
-    }
-
-    // write new requested property field length and data
-    constexpr uint8_t newTypeLenMask = 0xC0;
-    fruData[fruAreaParams.updateFieldLoc] =
-        static_cast<uint8_t>(updatePropertyReqLen | newTypeLenMask);
-    fruAreaParams.updateFieldLoc++;
-    std::copy(updatePropertyReq.begin(), updatePropertyReq.end(),
-              fruData.begin() + fruAreaParams.updateFieldLoc);
-
-    // Copy remaining data to main fru area - post updated fru field vector
-    fruAreaParams.restFieldsLoc =
-        fruAreaParams.updateFieldLoc + updatePropertyReqLen;
-    size_t fruAreaDataEnd =
-        fruAreaParams.restFieldsLoc + restFRUAreaFieldsData.size();
-
-    std::copy(restFRUAreaFieldsData.begin(), restFRUAreaFieldsData.end(),
-              fruData.begin() + fruAreaParams.restFieldsLoc);
-
-    // Update final fru with new fru area length and checksum
-    unsigned int nextFRUAreaNewLoc = updateFRUAreaLenAndChecksum(
-        fruData, fruAreaParams.start, fruAreaDataEnd, fruAreaParams.end);
-
-#ifdef ENABLE_FRU_AREA_RESIZE
-    ++nextFRUAreaNewLoc;
-    ssize_t nextFRUAreaOffsetDiff =
-        (nextFRUAreaNewLoc - nextFRUAreaLoc) / fruBlockSize;
-    // Append rest FRU Areas if size changed and there were other sections after
-    // updated one
-    if ((nextFRUAreaOffsetDiff != 0) && (nextFRUAreaLoc != 0U))
-    {
-        std::copy(restFRUAreasData.begin(), restFRUAreasData.end(),
-                  fruData.begin() + nextFRUAreaNewLoc);
-        // Update Common Header
-        for (fruAreas nextFRUArea = fruAreas::fruAreaInternal;
-             nextFRUArea <= fruAreas::fruAreaMultirecord; ++nextFRUArea)
-        {
-            unsigned int fruAreaOffsetField =
-                getHeaderAreaFieldOffset(nextFRUArea);
-            size_t curFRUAreaOffset = fruData[fruAreaOffsetField];
-            if (curFRUAreaOffset > fruAreaParams.end)
-            {
-                fruData[fruAreaOffsetField] = static_cast<int8_t>(
-                    curFRUAreaOffset + nextFRUAreaOffsetDiff);
-            }
-        }
-        // Calculate new checksum
-        std::vector<uint8_t> headerFRUData;
-        std::copy_n(fruData.begin(), 7, std::back_inserter(headerFRUData));
-        size_t checksumVal = calculateChecksum(headerFRUData);
-        fruData[7] = static_cast<uint8_t>(checksumVal);
-        // fill zeros if FRU Area size decreased
-        if (nextFRUAreaOffsetDiff < 0)
-        {
-            std::fill(fruData.begin() + nextFRUAreaNewLoc +
-                          restFRUAreasData.size(),
-                      fruData.end(), 0);
-        }
-    }
-#else
-    // this is to avoid "unused variable" warning
-    (void)nextFRUAreaNewLoc;
-#endif // ENABLE_FRU_AREA_RESIZE
     if (fruData.empty())
     {
+        std::cerr << "Empty FRU data\n";
+        return false;
+    }
+
+    // Extract area name (prefix before underscore)
+    fruAreas fruAreaToUpdate{};
+    std::string areaName = propertyName.substr(0, propertyName.find('_'));
+    if (!getAreaIdx(areaName, fruAreaToUpdate))
+    {
+        lg2::debug("Failed to get FRU area for property: {AREA}", "AREA",
+                   areaName);
+        return false;
+    }
+
+    std::vector<std::vector<uint8_t>> areasData;
+    disassembleFruData(fruData, areasData);
+
+    std::vector<uint8_t>& areaData =
+        areasData[static_cast<size_t>(fruAreaToUpdate)];
+    if (areaData.empty())
+    {
+        // If ENABLE_FRU_AREA_RESIZE is not defined then return with failure
+#ifndef ENABLE_FRU_AREA_RESIZE
+        lg2::debug(
+            "FRU area {AREA} not present and ENABLE_FRU_AREA_RESIZE is not set. "
+            "Returning failure.",
+            "AREA", areaName);
+        return false;
+#endif
+        if (!createDummyArea(fruAreaToUpdate, areaData))
+        {
+            lg2::debug("Failed to create dummy area for {AREA}", "AREA",
+                       areaName);
+            return false;
+        }
+    }
+
+    if (!setField(fruAreaToUpdate, areaData, propertyName, propertyValue))
+    {
+        lg2::debug("Failed to set field value for property: {PROPERTY}",
+                   "PROPERTY", propertyName);
+        return false;
+    }
+
+    assembleFruData(fruData, areasData);
+
+    if (fruData.empty())
+    {
+        std::cerr << "FRU data is empty after assembly\n";
         return false;
     }
 
@@ -1355,7 +1296,6 @@ bool updateFRUProperty(
         return false;
     }
 
-    // Rescan the bus so that GetRawFru dbus-call fetches updated values
     rescanBusses(busMap, dbusInterfaceMap, unknownBusObjectCount, powerIsOn,
                  objServer, systemBus);
     return true;
