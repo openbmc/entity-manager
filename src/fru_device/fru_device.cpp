@@ -833,6 +833,28 @@ void addFruObjectToDbus(
         objServer.add_interface(productName, "xyz.openbmc_project.FruDevice");
     dbusInterfaceMap[std::pair<size_t, size_t>(bus, address)] = iface;
 
+    if (ENABLE_FRU_UPDATE_PROPERTY)
+    {
+        iface->register_method(
+            "AddFRUArea",
+            [bus, address, &dbusInterfaceMap, &unknownBusObjectCount,
+             &powerIsOn, &objServer, &systemBus](const std::string& areaName) {
+                lg2::debug("AddFRUArea called: AreaName ={VALUE}", "VALUE",
+                           areaName);
+
+                // Update the property
+                if (!addFruArea(bus, address, areaName, dbusInterfaceMap,
+                                unknownBusObjectCount, powerIsOn, objServer,
+                                systemBus))
+                {
+                    lg2::debug("Failed to Add Area: {AREA}", "AREA", areaName);
+                    return false;
+                }
+
+                return true;
+            });
+    }
+
     for (auto& property : formattedFRU)
     {
         std::regex_replace(property.second.begin(), property.second.begin(),
@@ -1193,6 +1215,63 @@ void rescanBusses(
             });
         scan->run();
     });
+}
+
+bool addFruArea(
+    uint32_t bus, uint32_t address, const std::string& areaName,
+    boost::container::flat_map<
+        std::pair<size_t, size_t>,
+        std::shared_ptr<sdbusplus::asio::dbus_interface>>& dbusInterfaceMap,
+    size_t& unknownBusObjectCount, const bool& powerIsOn,
+    sdbusplus::asio::object_server& objServer,
+    std::shared_ptr<sdbusplus::asio::connection>& systemBus)
+{
+    // Determine FRU area to update based on propertyName
+    fruAreas fruAreaToUpdate{};
+    if (!getAreaIdx(areaName, fruAreaToUpdate))
+    {
+        lg2::debug("Failed to get FRU area for property: {AREA}", "AREA",
+                   areaName);
+        return false;
+    }
+
+    // Get the FRU data from the bus and address
+    std::vector<uint8_t> fruData;
+    if (!getFruData(fruData, bus, address))
+    {
+        lg2::debug("Failure getting FRU Data for bus {BUS}, address {ADDR}",
+                   "BUS", bus, "ADDR", address);
+        return false;
+    }
+
+    // Get areas data from the FRU data
+    std::vector<std::vector<uint8_t>> areasData;
+    disassembleFruData(fruData, areasData);
+
+    // Check if the area doesn't exist
+    if (areasData[static_cast<size_t>(fruAreaToUpdate)].empty())
+    {
+        lg2::debug("FRU area {AREA} not present, adding it.", "AREA", areaName);
+        // If the area does not exist, create a dummy area
+        if (!createDummyArea(fruAreaToUpdate,
+                             areasData[static_cast<size_t>(fruAreaToUpdate)]))
+        {
+            lg2::debug("Failed to create dummy area for {AREA}", "AREA",
+                       areaName);
+            return false;
+        }
+    }
+    assembleFruData(fruData, areasData);
+
+    if (!writeFRU(static_cast<uint8_t>(bus), static_cast<uint8_t>(address),
+                  fruData))
+    {
+        return false;
+    }
+    // Rescan the bus so that GetRawFru dbus-call fetches updated values
+    rescanBusses(busMap, dbusInterfaceMap, unknownBusObjectCount, powerIsOn,
+                 objServer, systemBus);
+    return true;
 }
 
 // Details with example of Asset Tag Update
