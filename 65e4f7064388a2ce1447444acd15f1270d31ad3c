@@ -135,6 +135,30 @@
       },
       "revId": "65e4f7064388a2ce1447444acd15f1270d31ad3c",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0acc7295_7fb6a657",
+        "filename": "schemas/mctp.json",
+        "patchSetId": 8
+      },
+      "lineNbr": 53,
+      "author": {
+        "id": 1000338
+      },
+      "writtenOn": "2025-06-06T03:50:00Z",
+      "side": 1,
+      "message": "\u003e I feel that\u0027s moving the problem rather than removing it. Now you need to coordinate the custom udev rule with the EM configuration, and you still end up needing to know the details anyway with the scheme you\u0027ve proposed.\n\u003e \n\u003e EM configs are about describing hardware and their relationships. I don\u0027t see any reason not to continue that by describing Bus/Port/Configuration/Interface for USB devices directly.\n\u003e\n\nOK, that is fair. We can update this config to include that information and make the corresponding reactor changes to consume that info, get the right interface name from sysfs and proceed to use that to call into mctpd. Once that is done, would this and the corresponding Reactor change be good to go?\n\n\u003e \u003e We need an EM schema for 1) creating the association between the MCTP endpoint objects and the config and 2) the aim is still to get to static endpoints in the future.\n\u003e \n\u003e Understood, however, EM configs that lack any hardware context are detached in a way that makes them a bit meaningless. However, with the scheme discussed above we can fix that.\n\nAck.",
+      "parentUuid": "20573f66_26b96b8b",
+      "range": {
+        "startLine": 50,
+        "startChar": 1,
+        "endLine": 53,
+        "endChar": 18
+      },
+      "revId": "65e4f7064388a2ce1447444acd15f1270d31ad3c",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }
