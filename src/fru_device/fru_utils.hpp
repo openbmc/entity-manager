@@ -225,3 +225,22 @@ std::optional<std::string> getProductName(
     uint32_t bus, uint32_t address, size_t& unknownBusObjectCount);
 
 bool getFruData(std::vector<uint8_t>& fruData, uint32_t bus, uint32_t address);
+
+bool getAreaIdx(const std::string AreaName, fruAreas& fruAreaToUpdate);
+
+bool disassemble_fruData(std::vector<uint8_t>& fruData,
+                         std::vector<std::vector<uint8_t>>& areasData);
+
+bool createDummyArea(fruAreas fruArea, std::vector<uint8_t>& areaData);
+
+bool assemble_fruData(std::vector<uint8_t>& fruData,
+                      const std::vector<std::vector<uint8_t>>& areasData);
+
+bool AddFRUArea(
+    uint32_t bus, uint32_t address, const std::string& AreaName,
+    boost::container::flat_map<
+        std::pair<size_t, size_t>,
+        std::shared_ptr<sdbusplus::asio::dbus_interface>>& dbusInterfaceMap,
+    size_t& unknownBusObjectCount, const bool& powerIsOn,
+    sdbusplus::asio::object_server& objServer,
+    std::shared_ptr<sdbusplus::asio::connection>& systemBus);
