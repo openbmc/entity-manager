@@ -3,13 +3,152 @@
         {
             "Address": "$address",
             "Bus": "$bus",
-            "Name": "Clemente Interposer FRU $bus",
+            "Name": "Clemente Interposer FRU",
             "Type": "EEPROM"
+        },
+        {
+            "Address": "0x41",
+            "Bus": 16,
+            "Labels": [
+                "in1",
+                "curr1",
+                "power1",
+                "temp1"
+            ],
+            "Name": "Interposer_P12V_NIC0",
+            "Thresholds": [
+                {
+                    "Direction": "greater than",
+                    "Hysteresis": 0.2592,
+                    "Label": "in1",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 12.96
+                },
+                {
+                    "Direction": "less than",
+                    "Hysteresis": 0.2112,
+                    "Label": "in1",
+                    "Name": "lower critical",
+                    "Severity": 1,
+                    "Value": 10.56
+                }
+            ],
+            "Type": "INA238",
+            "curr1_Name": "Interposer_P12V_NIC0_CURR_A",
+            "curr1_Offset": -0.0002,
+            "curr1_Scale": 57.957575055,
+            "in1_Name": "Interposer_P12V_NIC0_VOLT_V",
+            "power1_Name": "Interposer_P12V_NIC0_PWR_W",
+            "power1_Offset": 0.0022,
+            "power1_Scale": 58031.56917363,
+            "temp1_Name": "Interposer_P12V_NIC0_TEMP_C"
+        },
+        {
+            "Address": "0x42",
+            "Bus": 16,
+            "Labels": [
+                "in1",
+                "curr1",
+                "power1",
+                "temp1"
+            ],
+            "Name": "Interposer_P12V_NIC1",
+            "Thresholds": [
+                {
+                    "Direction": "greater than",
+                    "Hysteresis": 0.2592,
+                    "Label": "in1",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 12.96
+                },
+                {
+                    "Direction": "less than",
+                    "Hysteresis": 0.2112,
+                    "Label": "in1",
+                    "Name": "lower critical",
+                    "Severity": 1,
+                    "Value": 10.56
+                }
+            ],
+            "Type": "INA238",
+            "curr1_Name": "Interposer_P12V_NIC1_CURR_A",
+            "curr1_Offset": 0.0004,
+            "curr1_Scale": 54.083288264,
+            "in1_Name": "Interposer_P12V_NIC1_VOLT_V",
+            "power1_Name": "Interposer_P12V_NIC1_PWR_W",
+            "power1_Offset": 0.0032,
+            "power1_Scale": 54077.438892494,
+            "temp1_Name": "Interposer_P12V_NIC1_TEMP_C"
+        },
+        {
+            "Address": "0x44",
+            "Bus": 16,
+            "Labels": [
+                "in1",
+                "curr1",
+                "power1",
+                "temp1"
+            ],
+            "Name": "Interposer_P12V_SCM",
+            "Thresholds": [
+                {
+                    "Direction": "greater than",
+                    "Hysteresis": 0.272,
+                    "Label": "in1",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 13.6
+                },
+                {
+                    "Direction": "less than",
+                    "Hysteresis": 0.21,
+                    "Label": "in1",
+                    "Name": "lower critical",
+                    "Severity": 1,
+                    "Value": 10.5
+                }
+            ],
+            "Type": "INA238",
+            "curr1_Name": "Interposer_P12V_SCM_CURR_A",
+            "curr1_Offset": 8e-05,
+            "curr1_Scale": 51.030822617,
+            "in1_Name": "Interposer_P12V_SCM_VOLT_V",
+            "power1_Name": "Interposer_P12V_SCM_PWR_W",
+            "power1_Offset": -0.0102,
+            "power1_Scale": 50875.050875051,
+            "temp1_Name": "Interposer_P12V_SCM_TEMP_C"
+        },
+        {
+            "Address": "0x44",
+            "Bus": 23,
+            "Labels": [
+                "curr1"
+            ],
+            "Name": "Interposer_CABLE_TSENSE_POSITIVE",
+            "Type": "INA238",
+            "curr1_Max": 0.1,
+            "curr1_Min": 0,
+            "curr1_Name": "Interposer_CABLE_TSENSE_POSITIVE_CURR_A",
+            "curr1_Scale": 50000
+        },
+        {
+            "Address": "0x42",
+            "Bus": 23,
+            "Labels": [
+                "curr1"
+            ],
+            "Name": "Interposer_CABLE_TSENSE_NEGATIVE",
+            "Type": "INA238",
+            "curr1_Max": 0.1,
+            "curr1_Min": 0,
+            "curr1_Name": "Interposer_CABLE_TSENSE_NEGATIVE_CURR_A",
+            "curr1_Scale": 50000
         }
     ],
-    /* Clemente Interposer Board */
     "Name": "Clemente Interposer",
-    "Probe": "xyz.openbmc_project.FruDevice({'BOARD_PRODUCT_NAME': 'Clemente Interposer ', 'BOARD_MANUFACTURER': 'Ingrasys|Quanta'})",
+    "Probe": "xyz.openbmc_project.FruDevice({'BOARD_PRODUCT_NAME': 'Clemente Interposer '})",
     "Type": "Board",
     "xyz.openbmc_project.Inventory.Decorator.Asset": {
         "BuildDate": "$BOARD_MANUFACTURE_DATE",
