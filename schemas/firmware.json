@@ -4,6 +4,7 @@
         "FirmwareInfoDef": {
             "description": "This indicates the properties which apply to all firmwares",
             "type": "object",
+            "additionalProperties": false,
             "properties": {
                 "VendorIANA": {
                     "description": "The IANA Enterprise Id of the hardware vendor",
@@ -19,6 +20,7 @@
         "I2CVRFirmware": {
             "description": "Required information to complete I2C voltage regulator firmware update",
             "object": "object",
+            "additionalProperties": false,
             "properties": {
                 "Name": {
                     "description": "Name of the firmware",
@@ -43,6 +45,7 @@
         "BIOS": {
             "description": "Required information to complete the host fw update process.",
             "type": "object",
+            "additionalProperties": false,
             "properties": {
                 "Type": {
                     "description": "The type of configuration object. IntelSPIFlash implies Intel Flash Descriptor.",
@@ -65,6 +68,7 @@
                     "type": "array",
                     "items": {
                         "type": "object",
+                        "additionalProperties": false,
                         "properties": {
                             "Name": {
                                 "$ref": "legacy.json#/$defs/Types/Name"
@@ -117,6 +121,7 @@
                     "type": "array",
                     "items": {
                         "type": "object",
+                        "additionalProperties": false,
                         "properties": {
                             "Name": {
                                 "$ref": "legacy.json#/$defs/Types/Name"
