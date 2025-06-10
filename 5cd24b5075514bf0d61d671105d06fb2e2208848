@@ -20,6 +20,115 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "06933d6d_e5ab9f66",
+        "filename": "src/entity_manager/entity_manager.cpp",
+        "patchSetId": 8
+      },
+      "lineNbr": 86,
+      "author": {
+        "id": 1000008
+      },
+      "writtenOn": "2025-06-10T21:45:39Z",
+      "side": 1,
+      "message": "Doesn\u0027t appear to be anything we need to capture here.",
+      "range": {
+        "startLine": 86,
+        "startChar": 44,
+        "endLine": 86,
+        "endChar": 45
+      },
+      "revId": "5cd24b5075514bf0d61d671105d06fb2e2208848",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c258b6a7_6fc5e89f",
+        "filename": "src/entity_manager/entity_manager.cpp",
+        "patchSetId": 8
+      },
+      "lineNbr": 465,
+      "author": {
+        "id": 1000008
+      },
+      "writtenOn": "2025-06-10T21:45:39Z",
+      "side": 1,
+      "message": "this isn\u0027t necessary, so maybe just remove all these.",
+      "range": {
+        "startLine": 465,
+        "startChar": 8,
+        "endLine": 465,
+        "endChar": 14
+      },
+      "revId": "5cd24b5075514bf0d61d671105d06fb2e2208848",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "73747f22_a34e9c7b",
+        "filename": "src/entity_manager/entity_manager.cpp",
+        "patchSetId": 8
+      },
+      "lineNbr": 593,
+      "author": {
+        "id": 1000008
+      },
+      "writtenOn": "2025-06-10T21:45:39Z",
+      "side": 1,
+      "message": "nit: can just use contains()",
+      "revId": "5cd24b5075514bf0d61d671105d06fb2e2208848",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9db81f59_600409a9",
+        "filename": "src/entity_manager/entity_manager.cpp",
+        "patchSetId": 8
+      },
+      "lineNbr": 614,
+      "author": {
+        "id": 1000008
+      },
+      "writtenOn": "2025-06-10T21:45:39Z",
+      "side": 1,
+      "message": "I\u0027m not seeing a reason this can\u0027t be const",
+      "range": {
+        "startLine": 614,
+        "startChar": 55,
+        "endLine": 614,
+        "endChar": 70
+      },
+      "revId": "5cd24b5075514bf0d61d671105d06fb2e2208848",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f4bfc06a_6dea3020",
+        "filename": "src/entity_manager/entity_manager.cpp",
+        "patchSetId": 8
+      },
+      "lineNbr": 637,
+      "author": {
+        "id": 1000008
+      },
+      "writtenOn": "2025-06-10T21:45:39Z",
+      "side": 1,
+      "message": "if probeInterfaces was made a member of EntityManager we could avoid copies on these.  Though I suppose most systems only probe on a small number of different interfaces so not that big of a deal.",
+      "range": {
+        "startLine": 637,
+        "startChar": 15,
+        "endLine": 637,
+        "endChar": 30
+      },
+      "revId": "5cd24b5075514bf0d61d671105d06fb2e2208848",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "ff692df3_244c064c",
         "filename": "src/entity_manager/entity_manager.cpp",
         "patchSetId": 8
@@ -31,6 +140,47 @@
       "writtenOn": "2025-06-10T13:54:27Z",
       "side": 1,
       "message": "nit: We can remove the comment since from the code it is already clear that it is doing dbus related setup.",
+      "revId": "5cd24b5075514bf0d61d671105d06fb2e2208848",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "830ff4f4_375f5f9c",
+        "filename": "src/entity_manager/entity_manager.cpp",
+        "patchSetId": 8
+      },
+      "lineNbr": 657,
+      "author": {
+        "id": 1000008
+      },
+      "writtenOn": "2025-06-10T21:45:39Z",
+      "side": 1,
+      "message": "+1",
+      "parentUuid": "ff692df3_244c064c",
+      "revId": "5cd24b5075514bf0d61d671105d06fb2e2208848",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7e965df5_8df3bf68",
+        "filename": "src/entity_manager/entity_manager.cpp",
+        "patchSetId": 8
+      },
+      "lineNbr": 658,
+      "author": {
+        "id": 1000008
+      },
+      "writtenOn": "2025-06-10T21:45:39Z",
+      "side": 1,
+      "message": "I feel like with a make_shared on the other side \u0027auto\u0027 here is reasonable.",
+      "range": {
+        "startLine": 658,
+        "startChar": 4,
+        "endLine": 658,
+        "endChar": 49
+      },
       "revId": "5cd24b5075514bf0d61d671105d06fb2e2208848",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
