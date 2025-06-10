@@ -407,6 +407,46 @@
                 }
             ],
             "Type": "TMP75"
+        },
+        {
+            "Name": "BCBCableBottom",
+            "PresencePinNames": [
+                "TOP_BCB_CABLE_PRSNT_N"
+            ],
+            "PresencePinValues": [
+                0
+            ],
+            "Type": "GPIODeviceDetect"
+        },
+        {
+            "Name": "BCBCableTop",
+            "PresencePinNames": [
+                "BOT_BCB_CABLE_PRSNT_N"
+            ],
+            "PresencePinValues": [
+                0
+            ],
+            "Type": "GPIODeviceDetect"
+        },
+        {
+            "Name": "CableCartridgeBottom",
+            "PresencePinNames": [
+                "CMM_CABLE_CARTRIDGE_PRSNT_BOT_N"
+            ],
+            "PresencePinValues": [
+                0
+            ],
+            "Type": "GPIODeviceDetect"
+        },
+        {
+            "Name": "CableCartridgeTop",
+            "PresencePinNames": [
+                "CMM_CABLE_CARTRIDGE_PRSNT_TOP_N"
+            ],
+            "PresencePinValues": [
+                0
+            ],
+            "Type": "GPIODeviceDetect"
         }
     ],
     "Name": "Minerva CMM SCM",

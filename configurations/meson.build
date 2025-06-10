@@ -93,6 +93,7 @@ configs = [
     'meta/minerva_aegis.json',
     'meta/minerva_cmm.json',
     'meta/minerva_cmm_bsm.json',
+    'meta/minerva_cmm_gpio_inventory.json',
     'meta/minerva_cmm_hsc_infineon.json',
     'meta/minerva_cmm_scm.json',
     'meta/minerva_fanboard_adc_silergy.json',
