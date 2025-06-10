@@ -103,6 +103,25 @@ void createDeleteObjectMethod(
         });
 }
 
+static bool checkArrayElementsSameType(nlohmann::json& value)
+{
+    nlohmann::json::array_t* arr = value.get_ptr<nlohmann::json::array_t*>();
+    if (arr == nullptr)
+    {
+        return false;
+    }
+
+    if (arr->empty())
+    {
+        return true;
+    }
+
+    nlohmann::json::value_t firstType = value[0].type();
+    return std::ranges::all_of(value, [firstType](const nlohmann::json& el) {
+        return el.type() == firstType;
+    });
+}
+
 // adds simple json types to interface's properties
 void populateInterfaceFromJson(
     nlohmann::json& systemConfiguration, const std::string& jsonPointerPath,
@@ -122,16 +141,7 @@ void populateInterfaceFromJson(
                 continue;
             }
             type = value[0].type();
-            bool isLegal = true;
-            for (const auto& arrayItem : value)
-            {
-                if (arrayItem.type() != type)
-                {
-                    isLegal = false;
-                    break;
-                }
-            }
-            if (!isLegal)
+            if (!checkArrayElementsSameType(value))
             {
                 std::cerr << "dbus format error" << value << "\n";
                 continue;
