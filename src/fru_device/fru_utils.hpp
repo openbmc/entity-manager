@@ -21,6 +21,7 @@ extern "C"
 }
 
 constexpr size_t fruBlockSize = 8;
+constexpr size_t multiRecordHeaderLen = 5;
 
 using DeviceMap = std::flat_map<int, std::vector<uint8_t>>;
 using BusMap = std::flat_map<int, std::shared_ptr<DeviceMap>>;
@@ -102,6 +103,7 @@ char bcdPlusToChar(uint8_t val);
 
 bool verifyOffset(std::span<const uint8_t> fruBytes, fruAreas currentArea,
                   uint8_t len);
+uint32_t getAreaOffset(std::span<const uint8_t> device);
 
 std::pair<DecodeState, std::string> decodeFRUData(
     std::span<const uint8_t>::const_iterator& iter,

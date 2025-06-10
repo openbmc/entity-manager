@@ -13,6 +13,7 @@ cpp_args_fd += [
 
 executable(
     'fru-device',
+    'fru_dcscm.cpp',
     'fru_device.cpp',
     'fru_reader.cpp',
     'fru_utils.cpp',
