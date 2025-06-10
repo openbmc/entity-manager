@@ -1,0 +1,67 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "61044ba9_975cf7ab",
+        "filename": "src/entity_manager/dbus_interface.cpp",
+        "patchSetId": 1
+      },
+      "lineNbr": 107,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2025-06-10T15:15:57Z",
+      "side": 1,
+      "message": "Please don\u0027t use anything in a detail namespace in your code.  details are intended to be internal to the library.",
+      "range": {
+        "startLine": 107,
+        "startChar": 49,
+        "endLine": 107,
+        "endChar": 55
+      },
+      "revId": "ef3b5618c6fef6ec8b514fc60ba5792955fed2d8",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "70536fe4_4534a519",
+        "filename": "src/entity_manager/dbus_interface.cpp",
+        "patchSetId": 1
+      },
+      "lineNbr": 109,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2025-06-10T15:15:57Z",
+      "side": 1,
+      "message": "Now that this is its own method, it\u0027s not clear that this doesn\u0027t throw an exception, because nlohmann::json could be any type.  Maybe change the calling code to use\n\nconst nlohmann::json::array_t* arr \u003d value.get_ptr\u003cnlohmann::json::array_t\u003e();\nif (arr !\u003d nullptr){\n    checkArrayElementsSameType(...., *arr);\n}",
+      "range": {
+        "startLine": 109,
+        "startChar": 33,
+        "endLine": 109,
+        "endChar": 38
+      },
+      "revId": "ef3b5618c6fef6ec8b514fc60ba5792955fed2d8",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a0f36538_890a5b2d",
+        "filename": "src/entity_manager/dbus_interface.cpp",
+        "patchSetId": 1
+      },
+      "lineNbr": 117,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2025-06-10T15:15:57Z",
+      "side": 1,
+      "message": "Do we want to do a little code golf here?\n\n```\nif (value.size() \u003d\u003d 0){\n   return true;\n}\nnlohmann::json::type first_type \u003d value[0].type();\nstd::ranges::all_of(value, [first_type](const json\u0026 el){ return el.type() \u003d\u003d first_type; }\n```",
+      "revId": "ef3b5618c6fef6ec8b514fc60ba5792955fed2d8",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    }
+  ]
+}
