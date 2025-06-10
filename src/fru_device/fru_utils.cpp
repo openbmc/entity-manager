@@ -17,6 +17,8 @@
 
 #include "fru_utils.hpp"
 
+#include "fru_dcscm.hpp"
+
 #include <phosphor-logging/lg2.hpp>
 
 #include <array>
@@ -606,6 +608,9 @@ resCodes formatIPMIFRU(
 
     /* Parsing the Multirecord UUID */
     parseMultirecordUUID(fruBytes, result);
+
+    /*Parse the Multi-record data for exposing on Dbus*/
+    dcscm_fru::populateMultirecordOCPDCSCM(fruBytes, result);
 
     return ret;
 }
