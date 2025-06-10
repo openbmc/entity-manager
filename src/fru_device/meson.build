@@ -10,6 +10,7 @@ executable(
     '../utils.cpp',
     'fru_utils.cpp',
     'fru_reader.cpp',
+    'fru_dcscm.cpp',
     cpp_args: cpp_args_fd,
     dependencies: [
         boost,
