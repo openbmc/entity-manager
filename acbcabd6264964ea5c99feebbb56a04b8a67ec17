@@ -1,6 +1,109 @@
 {
   "comments": [
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "0eb4dbb7_89f12da8",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2025-06-10T15:38:36Z",
+      "side": 1,
+      "message": "Overall in support of this.",
+      "revId": "acbcabd6264964ea5c99feebbb56a04b8a67ec17",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a05ac6d8_465f9314",
+        "filename": "src/entity_manager/dbus_interface.cpp",
+        "patchSetId": 1
+      },
+      "lineNbr": 185,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2025-06-10T15:38:36Z",
+      "side": 1,
+      "message": "Any reason we didn\u0027t do the same transform for bool?",
+      "revId": "acbcabd6264964ea5c99feebbb56a04b8a67ec17",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "12fad167_9eafe298",
+        "filename": "src/entity_manager/dbus_interface.hpp",
+        "patchSetId": 1
+      },
+      "lineNbr": 103,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2025-06-10T15:38:36Z",
+      "side": 1,
+      "message": "Maybe just name this \"addValueToDBus\"\n\n\"array or property\" covers everything I think?",
+      "range": {
+        "startLine": 103,
+        "startChar": 5,
+        "endLine": 103,
+        "endChar": 29
+      },
+      "revId": "acbcabd6264964ea5c99feebbb56a04b8a67ec17",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c1f5fda7_f0e233f2",
+        "filename": "src/entity_manager/dbus_interface.hpp",
+        "patchSetId": 1
+      },
+      "lineNbr": 105,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2025-06-10T15:38:36Z",
+      "side": 1,
+      "message": "We\u0027re not taking shared ownership in this function, so just pass by sdbusplus::asio::dbus_interface\u0026\n\nAs it was passed, you\u0027d need null checks on this (because it\u0027s a pointer).",
+      "range": {
+        "startLine": 105,
+        "startChar": 4,
+        "endLine": 105,
+        "endChar": 60
+      },
+      "revId": "acbcabd6264964ea5c99feebbb56a04b8a67ec17",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "024d550c_7b27476e",
+        "filename": "src/entity_manager/dbus_interface.hpp",
+        "patchSetId": 1
+      },
+      "lineNbr": 111,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2025-06-10T15:38:36Z",
+      "side": 1,
+      "message": "value.is_array() might be clearer and less code",
+      "range": {
+        "startLine": 111,
+        "startChar": 8,
+        "endLine": 111,
+        "endChar": 13
+      },
+      "revId": "acbcabd6264964ea5c99feebbb56a04b8a67ec17",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "724a33d2_d1fff096",
@@ -14,6 +117,24 @@
       "writtenOn": "2025-06-10T14:22:26Z",
       "side": 1,
       "message": "I\u0027d agree that making all the properties equally RO regardless of their type. I wonder if there was a reason previously to handle e.g. integers and floats different or if that was an oversight.",
+      "revId": "acbcabd6264964ea5c99feebbb56a04b8a67ec17",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3a70d530_1cd05de9",
+        "filename": "src/entity_manager/dbus_interface.hpp",
+        "patchSetId": 1
+      },
+      "lineNbr": 120,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2025-06-10T15:38:36Z",
+      "side": 1,
+      "message": "This is a great discussion, but lets have it not on this patch.  This patch hasnt\u0027 change anything regarding whether the properties are read-only or not.",
+      "parentUuid": "724a33d2_d1fff096",
       "revId": "acbcabd6264964ea5c99feebbb56a04b8a67ec17",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
