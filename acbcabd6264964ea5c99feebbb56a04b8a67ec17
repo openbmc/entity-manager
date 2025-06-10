@@ -18,6 +18,23 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "60e4cd72_f8f2fee0",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-06-10T16:23:44Z",
+      "side": 1,
+      "message": "Thank you 😊",
+      "revId": "acbcabd6264964ea5c99feebbb56a04b8a67ec17",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "a05ac6d8_465f9314",
@@ -37,6 +54,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "a00fee2e_70a6dc4f",
+        "filename": "src/entity_manager/dbus_interface.cpp",
+        "patchSetId": 1
+      },
+      "lineNbr": 185,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-06-10T16:23:44Z",
+      "side": 1,
+      "message": "In case of an array (line 174) it will become an array of ```uint64_t``` based on the template function call in line 178.\n\nSo we cannot simplify here since the type will be different.",
+      "parentUuid": "a05ac6d8_465f9314",
+      "revId": "acbcabd6264964ea5c99feebbb56a04b8a67ec17",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "12fad167_9eafe298",
         "filename": "src/entity_manager/dbus_interface.hpp",
         "patchSetId": 1
@@ -48,6 +83,30 @@
       "writtenOn": "2025-06-10T15:38:36Z",
       "side": 1,
       "message": "Maybe just name this \"addValueToDBus\"\n\n\"array or property\" covers everything I think?",
+      "range": {
+        "startLine": 103,
+        "startChar": 5,
+        "endLine": 103,
+        "endChar": 29
+      },
+      "revId": "acbcabd6264964ea5c99feebbb56a04b8a67ec17",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "43e5c7a9_88f8c19f",
+        "filename": "src/entity_manager/dbus_interface.hpp",
+        "patchSetId": 1
+      },
+      "lineNbr": 103,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-06-10T16:23:44Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "12fad167_9eafe298",
       "range": {
         "startLine": 103,
         "startChar": 5,
@@ -81,6 +140,30 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "a73ece10_21b42c8e",
+        "filename": "src/entity_manager/dbus_interface.hpp",
+        "patchSetId": 1
+      },
+      "lineNbr": 105,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-06-10T16:23:44Z",
+      "side": 1,
+      "message": "We get this via the same type. Not creating a new shared pointer here, it is just reference to shared ptr.\n\nAnd the functions we pass the iface to take raw pointers.\n\nI am not happy with the types here but i would like to tackle the problem one step at a time.\n\nAdded the nullptr check, let me know if that\u0027s okay for you 😊",
+      "parentUuid": "c1f5fda7_f0e233f2",
+      "range": {
+        "startLine": 105,
+        "startChar": 4,
+        "endLine": 105,
+        "endChar": 60
+      },
+      "revId": "acbcabd6264964ea5c99feebbb56a04b8a67ec17",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "024d550c_7b27476e",
@@ -94,6 +177,30 @@
       "writtenOn": "2025-06-10T15:38:36Z",
       "side": 1,
       "message": "value.is_array() might be clearer and less code",
+      "range": {
+        "startLine": 111,
+        "startChar": 8,
+        "endLine": 111,
+        "endChar": 13
+      },
+      "revId": "acbcabd6264964ea5c99feebbb56a04b8a67ec17",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "4f8931fe_b9fda606",
+        "filename": "src/entity_manager/dbus_interface.hpp",
+        "patchSetId": 1
+      },
+      "lineNbr": 111,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-06-10T16:23:44Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "024d550c_7b27476e",
       "range": {
         "startLine": 111,
         "startChar": 8,
