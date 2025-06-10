@@ -164,6 +164,7 @@ if get_option('tests').allowed()
             'test/test_fru-utils.cpp',
             'src/fru_device/fru_utils.cpp',
             'src/fru_device/fru_reader.cpp',
+            'src/fru_device/fru_dcscm.cpp',
             cpp_args: test_boost_args,
             dependencies: [boost, gtest, gmock, phosphor_logging_dep, sdbusplus],
             include_directories: 'src',
