@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b132ce0c_deaea7df",
+        "filename": "src/entity_manager/dbus_interface.cpp",
+        "patchSetId": 4
+      },
+      "lineNbr": 108,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2025-06-10T16:51:29Z",
+      "side": 1,
+      "message": "You\u0027re close here but not quite.  You want to put the result of this in a variable so the rest of the function can operate on the array_t, and not the base type.  This removes about 5 + N  type checks from the generated binary, and causes gcc to not generate the exception tables.\n\nnlohmann::json::array_t* arr \u003d value.get_ptr\u003cnlohmann::json::array_t*\u003e();\nif (arr \u003d\u003d nullptr){\n   return false;\n}\n\nif (arr-\u003eempty()){\n   return true;\n}\n\nnlohmann::json::value_t firstType \u003d arr-\u003ebegin()-\u003etype() \u003d\u003d",
+      "range": {
+        "startLine": 108,
+        "startChar": 7,
+        "endLine": 108,
+        "endChar": 49
+      },
+      "revId": "026c1b5a3c06299d4693642259741fe9d346569c",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    }
+  ]
+}
