@@ -53,6 +53,24 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "56fb41d1_9c24aae7",
+        "filename": "src/entity_manager/entity_manager.cpp",
+        "patchSetId": 5
+      },
+      "lineNbr": 88,
+      "author": {
+        "id": 1002222
+      },
+      "writtenOn": "2025-06-10T12:31:05Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "e797ed90_af650a9d",
+      "revId": "85229f5e02081ad921eed8ea222ff7517b6a8243",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "9833569d_66c4c3eb",
@@ -152,6 +170,24 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "a2790473_8f7ddaee",
+        "filename": "src/entity_manager/entity_manager.cpp",
+        "patchSetId": 5
+      },
+      "lineNbr": 619,
+      "author": {
+        "id": 1002222
+      },
+      "writtenOn": "2025-06-10T12:31:05Z",
+      "side": 1,
+      "message": "I agree, they should be part content of a function. I chose `initFilters` for now.",
+      "parentUuid": "425236c2_cef08374",
+      "revId": "85229f5e02081ad921eed8ea222ff7517b6a8243",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "7436a40d_4953ec6e",
@@ -165,6 +201,30 @@
       "writtenOn": "2025-06-06T21:08:44Z",
       "side": 1,
       "message": "I feel this should be done in the constructor.  Otherwise, you have an instance of an EM object but it doesn\u0027t host anything on D-Bus because initialize() was never called on the interface.",
+      "range": {
+        "startLine": 659,
+        "startChar": 0,
+        "endLine": 662,
+        "endChar": 55
+      },
+      "revId": "85229f5e02081ad921eed8ea222ff7517b6a8243",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "ee38a21b_ad75ab25",
+        "filename": "src/entity_manager/entity_manager.cpp",
+        "patchSetId": 5
+      },
+      "lineNbr": 662,
+      "author": {
+        "id": 1002222
+      },
+      "writtenOn": "2025-06-10T12:31:05Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "7436a40d_4953ec6e",
       "range": {
         "startLine": 659,
         "startChar": 0,
