@@ -3,6 +3,7 @@
 
 #include "fru_utils.hpp"
 
+#include "fru_dcscm.hpp"
 #include "gzip_utils.hpp"
 
 #include <phosphor-logging/lg2.hpp>
@@ -201,6 +202,32 @@ bool checkLangEng(uint8_t lang)
     return true;
 }
 
+uint32_t getAreaOffset(std::span<const uint8_t> device)
+{
+    size_t offset = getHeaderAreaFieldOffset(fruAreas::fruAreaMultirecord);
+    if (offset >= device.size())
+    {
+        throw std::runtime_error("Multirecord UUID offset is out of range");
+    }
+    uint32_t areaOffset = device[offset];
+
+    if (areaOffset == 0)
+    {
+        return 0;
+    }
+
+    areaOffset *= fruBlockSize;
+    std::span<const uint8_t>::const_iterator fruBytesIter =
+        device.begin() + areaOffset;
+
+    /* Verify area offset */
+    if (!verifyOffset(device, fruAreas::fruAreaMultirecord, *fruBytesIter))
+    {
+        return 0;
+    }
+    return areaOffset;
+}
+
 /* This function verifies for other offsets to check if they are not
  * falling under other field area
  *
@@ -280,7 +307,7 @@ static void parseMultirecordUUID(
     std::flat_map<std::string, std::string, std::less<>>& result)
 {
     constexpr size_t uuidDataLen = 16;
-    constexpr size_t multiRecordHeaderLen = 5;
+    uint32_t areaOffset = 0;
     /* UUID record data, plus one to skip past the sub-record type byte */
     constexpr size_t uuidRecordData = multiRecordHeaderLen + 1;
     constexpr size_t multiRecordEndOfListMask = 0x80;
@@ -290,27 +317,13 @@ static void parseMultirecordUUID(
      */
     const std::array<uint8_t, uuidDataLen> uuidCharOrder = {
         3, 2, 1, 0, 5, 4, 7, 6, 8, 9, 10, 11, 12, 13, 14, 15};
-    size_t offset = getHeaderAreaFieldOffset(fruAreas::fruAreaMultirecord);
-    if (offset >= device.size())
-    {
-        throw std::runtime_error("Multirecord UUID offset is out of range");
-    }
-    uint32_t areaOffset = device[offset];
 
-    if (areaOffset == 0)
+    areaOffset = getAreaOffset(device);
+    if (areaOffset == 0U)
     {
         return;
     }
 
-    areaOffset *= fruBlockSize;
-    std::span<const uint8_t>::const_iterator fruBytesIter =
-        device.begin() + areaOffset;
-
-    /* Verify area offset */
-    if (!verifyOffset(device, fruAreas::fruAreaMultirecord, *fruBytesIter))
-    {
-        return;
-    }
     while (areaOffset + uuidRecordData + uuidDataLen <= device.size())
     {
         if ((areaOffset < device.size()) &&
@@ -595,6 +608,9 @@ resCodes formatIPMIFRU(
 
     /* Parsing the Multirecord UUID */
     parseMultirecordUUID(fruBytes, result);
+
+    /*Parse the Multi-record data for exposing on Dbus*/
+    dcscm_fru::populateMultirecordOCPDCSCM(fruBytes, result);
 
     return ret;
 }
