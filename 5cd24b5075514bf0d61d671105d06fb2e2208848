@@ -1,0 +1,72 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "ff60e72b_95107fa7",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 8
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-06-10T13:54:27Z",
+      "side": 1,
+      "message": "few nits but i think it is",
+      "revId": "5cd24b5075514bf0d61d671105d06fb2e2208848",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ff692df3_244c064c",
+        "filename": "src/entity_manager/entity_manager.cpp",
+        "patchSetId": 8
+      },
+      "lineNbr": 657,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-06-10T13:54:27Z",
+      "side": 1,
+      "message": "nit: We can remove the comment since from the code it is already clear that it is doing dbus related setup.",
+      "revId": "5cd24b5075514bf0d61d671105d06fb2e2208848",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3f49e247_1484cd4b",
+        "filename": "src/entity_manager/entity_manager.cpp",
+        "patchSetId": 8
+      },
+      "lineNbr": 670,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-06-10T13:54:27Z",
+      "side": 1,
+      "message": "nit: Leftover debug comment?",
+      "revId": "5cd24b5075514bf0d61d671105d06fb2e2208848",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8c0d4f94_054f7d48",
+        "filename": "src/entity_manager/perform_scan.cpp",
+        "patchSetId": 8
+      },
+      "lineNbr": 31,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-06-10T13:54:27Z",
+      "side": 1,
+      "message": "nit: Traced this comment back to 47af65a5266453153e6f96bc93798a1bc6c0a81c, perhaps we can remove the comment as well, since the globals (which i believe it applied to) are no longer there.",
+      "revId": "5cd24b5075514bf0d61d671105d06fb2e2208848",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    }
+  ]
+}
