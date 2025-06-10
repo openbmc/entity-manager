@@ -18,6 +18,23 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "a1be695c_9a4707dd",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-06-10T15:42:27Z",
+      "side": 1,
+      "message": "Thanks for the quick review 😎",
+      "revId": "ef3b5618c6fef6ec8b514fc60ba5792955fed2d8",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "61044ba9_975cf7ab",
@@ -31,6 +48,30 @@
       "writtenOn": "2025-06-10T15:15:57Z",
       "side": 1,
       "message": "Please don\u0027t use anything in a detail namespace in your code.  details are intended to be internal to the library.",
+      "range": {
+        "startLine": 107,
+        "startChar": 49,
+        "endLine": 107,
+        "endChar": 55
+      },
+      "revId": "ef3b5618c6fef6ec8b514fc60ba5792955fed2d8",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "653d33ae_b8b35291",
+        "filename": "src/entity_manager/dbus_interface.cpp",
+        "patchSetId": 1
+      },
+      "lineNbr": 107,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-06-10T15:42:27Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "61044ba9_975cf7ab",
       "range": {
         "startLine": 107,
         "startChar": 49,
@@ -88,6 +129,30 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "b151f0b2_2d656b4d",
+        "filename": "src/entity_manager/dbus_interface.cpp",
+        "patchSetId": 1
+      },
+      "lineNbr": 109,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-06-10T15:42:27Z",
+      "side": 1,
+      "message": "Added a check there based on your example code 😊",
+      "parentUuid": "4377e82a_ffd79230",
+      "range": {
+        "startLine": 109,
+        "startChar": 33,
+        "endLine": 109,
+        "endChar": 38
+      },
+      "revId": "ef3b5618c6fef6ec8b514fc60ba5792955fed2d8",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "a0f36538_890a5b2d",
@@ -101,6 +166,24 @@
       "writtenOn": "2025-06-10T15:15:57Z",
       "side": 1,
       "message": "Do we want to do a little code golf here?\n\n```\nif (value.size() \u003d\u003d 0){\n   return true;\n}\nnlohmann::json::type first_type \u003d value[0].type();\nstd::ranges::all_of(value, [first_type](const json\u0026 el){ return el.type() \u003d\u003d first_type; }\n```",
+      "revId": "ef3b5618c6fef6ec8b514fc60ba5792955fed2d8",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "87b9e329_c56219ba",
+        "filename": "src/entity_manager/dbus_interface.cpp",
+        "patchSetId": 1
+      },
+      "lineNbr": 117,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-06-10T15:42:27Z",
+      "side": 1,
+      "message": "Yes, we can avoid the loop with ranges algorithm, code becomes shorter but we have an inline lambda now.\nNo complain, it is very short. Adjusted the code as described 👍",
+      "parentUuid": "a0f36538_890a5b2d",
       "revId": "ef3b5618c6fef6ec8b514fc60ba5792955fed2d8",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
