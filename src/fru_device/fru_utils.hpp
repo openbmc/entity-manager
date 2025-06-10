@@ -90,6 +90,11 @@ const std::vector<std::string> productFruAreas = {
     "MANUFACTURER",  "PRODUCT_NAME", "PART_NUMBER",   "VERSION",
     "SERIAL_NUMBER", "ASSET_TAG",    "FRU_VERSION_ID"};
 
+const std::vector<std::pair<std::string, uint8_t>> muitiRecordTable = {
+    {"MANUFACTURE_ID", 3}, {"OEM_RECORD_VERSION", 1}, {"DC_SCI_REVISION", 2},
+    {"DC_SCI_VERSION", 1}, {"LTPI_REVISION", 2},      {"LTPI_VERSION", 1},
+    {"DC_SCM_TYPE", 1},    {"HPM_VENDOR_ID", 2},      {"HPM_DEVICE_ID", 2}};
+
 const std::string fruCustomFieldName = "INFO_AM";
 
 inline fruAreas operator++(fruAreas& x)
