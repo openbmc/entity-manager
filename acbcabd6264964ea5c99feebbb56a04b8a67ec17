@@ -184,6 +184,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "da5d8c96_f16f20be",
+        "filename": "src/entity_manager/dbus_interface.hpp",
+        "patchSetId": 1
+      },
+      "lineNbr": 105,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2025-06-10T16:47:35Z",
+      "side": 1,
+      "message": "I understand it\u0027s not creating a new shared_ptr here, but that\u0027s kind of the point.  The API as you\u0027ve written it SHOULD be making a new shared_ptr.  Just pass by reference, then take the pointer to that reference where needed.",
+      "parentUuid": "a73ece10_21b42c8e",
+      "range": {
+        "startLine": 105,
+        "startChar": 4,
+        "endLine": 105,
+        "endChar": 60
+      },
+      "revId": "acbcabd6264964ea5c99feebbb56a04b8a67ec17",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "024d550c_7b27476e",
         "filename": "src/entity_manager/dbus_interface.hpp",
         "patchSetId": 1
