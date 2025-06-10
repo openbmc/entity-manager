@@ -607,6 +607,9 @@ resCodes formatIPMIFRU(
     /* Parsing the Multirecord UUID */
     parseMultirecordUUID(fruBytes, result);
 
+    /*Parse the Multi-record data for exposing on Dbus*/
+    populateMultirecordOCPDCSCM(fruBytes, result);
+
     return ret;
 }
 
