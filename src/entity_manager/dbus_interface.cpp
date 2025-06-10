@@ -103,26 +103,27 @@ void createDeleteObjectMethod(
         });
 }
 
-static bool checkArrayElementsSameType(nlohmann::json& value,
-                                       nlohmann::detail::value_t& type)
+static bool checkArrayElementsSameType(nlohmann::json& value)
 {
-    for (const auto& arrayItem : value)
+    if (value.get_ptr<nlohmann::json::array_t*>() == nullptr)
     {
-        if (arrayItem.type() != type)
-        {
-            return false;
-        }
+        return false;
     }
 
-    return true;
+    if (value.empty())
+    {
+        return true;
+    }
+
+    nlohmann::json::value_t firstType = value[0].type();
+    return std::ranges::all_of(value, [firstType](const nlohmann::json& el) {
+        return el.type() == firstType;
+    });
 }
 
-static void populateInterfacePropertyFromJson(
-    nlohmann::json& systemConfiguration, const std::string& path,
-    const nlohmann::json& key, const nlohmann::json& value,
-    nlohmann::json::value_t type,
-    std::shared_ptr<sdbusplus::asio::dbus_interface>& iface,
-    sdbusplus::asio::PropertyPermission permission)
+static nlohmann::detail::value_t getModifiedType(
+    const nlohmann::json& value, nlohmann::json::value_t type,
+    sdbusplus::asio::PropertyPermission& permission)
 {
     const bool array = value.type() == nlohmann::json::value_t::array;
 
@@ -135,16 +136,29 @@ static void populateInterfacePropertyFromJson(
         {
             if (value[0].is_number())
             {
-                type = nlohmann::json::value_t::number_float;
+                return nlohmann::json::value_t::number_float;
             }
         }
         else if (value.is_number())
         {
-            type = nlohmann::json::value_t::number_float;
+            return nlohmann::json::value_t::number_float;
         }
     }
 
-    switch (type)
+    return type;
+}
+
+static void populateInterfacePropertyFromJson(
+    nlohmann::json& systemConfiguration, const std::string& path,
+    const nlohmann::json& key, const nlohmann::json& value,
+    nlohmann::json::value_t type,
+    std::shared_ptr<sdbusplus::asio::dbus_interface>& iface,
+    sdbusplus::asio::PropertyPermission permission)
+{
+    const bool array = value.type() == nlohmann::json::value_t::array;
+    const auto modifiedType = getModifiedType(value, type, permission);
+
+    switch (modifiedType)
     {
         case (nlohmann::json::value_t::boolean):
         {
@@ -213,7 +227,7 @@ void populateInterfaceFromJson(
                 continue;
             }
             type = value[0].type();
-            if (!checkArrayElementsSameType(value, type))
+            if (!checkArrayElementsSameType(value))
             {
                 std::cerr << "dbus format error" << value << "\n";
                 continue;
