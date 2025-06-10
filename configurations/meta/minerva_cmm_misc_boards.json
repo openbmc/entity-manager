@@ -1,0 +1,10 @@
+{
+    "Exposes": [],
+    "Name": "$Name",
+    "Probe": [
+        "xyz.openbmc_project.Inventory.Source.DevicePresence({'Name': 'CableCartridge*'})",
+        "OR",
+        "xyz.openbmc_project.Inventory.Source.DevicePresence({'Name': 'BCBCable*'})"
+    ],
+    "Type": "Board"
+}
