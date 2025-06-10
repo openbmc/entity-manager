@@ -117,6 +117,85 @@ static bool checkArrayElementsSameType(nlohmann::json& value,
     return true;
 }
 
+static void populateInterfacePropertyFromJson(
+    nlohmann::json& systemConfiguration, const std::string& path,
+    const nlohmann::json& key, const nlohmann::json& value,
+    nlohmann::json::value_t type,
+    std::shared_ptr<sdbusplus::asio::dbus_interface>& iface,
+    sdbusplus::asio::PropertyPermission permission)
+{
+    const bool array = value.type() == nlohmann::json::value_t::array;
+
+    if (permission == sdbusplus::asio::PropertyPermission::readWrite)
+    {
+        // all setable numbers are doubles as it is difficult to always
+        // create a configuration file with all whole numbers as decimals
+        // i.e. 1.0
+        if (array)
+        {
+            if (value[0].is_number())
+            {
+                type = nlohmann::json::value_t::number_float;
+            }
+        }
+        else if (value.is_number())
+        {
+            type = nlohmann::json::value_t::number_float;
+        }
+    }
+
+    switch (type)
+    {
+        case (nlohmann::json::value_t::boolean):
+        {
+            if (array)
+            {
+                // todo: array of bool isn't detected correctly by
+                // sdbusplus, change it to numbers
+                addArrayToDbus<uint64_t>(key, value, iface.get(), permission,
+                                         systemConfiguration, path);
+            }
+
+            else
+            {
+                addProperty(key, value.get<bool>(), iface.get(),
+                            systemConfiguration, path, permission);
+            }
+            break;
+        }
+        case (nlohmann::json::value_t::number_integer):
+        {
+            addValueToDBus<int64_t>(key, value, iface, permission,
+                                    systemConfiguration, path);
+            break;
+        }
+        case (nlohmann::json::value_t::number_unsigned):
+        {
+            addValueToDBus<uint64_t>(key, value, iface, permission,
+                                     systemConfiguration, path);
+            break;
+        }
+        case (nlohmann::json::value_t::number_float):
+        {
+            addValueToDBus<double>(key, value, iface, permission,
+                                   systemConfiguration, path);
+            break;
+        }
+        case (nlohmann::json::value_t::string):
+        {
+            addValueToDBus<std::string>(key, value, iface, permission,
+                                        systemConfiguration, path);
+            break;
+        }
+        default:
+        {
+            std::cerr << "Unexpected json type in system configuration " << key
+                      << ": " << value.type_name() << "\n";
+            break;
+        }
+    }
+}
+
 // adds simple json types to interface's properties
 void populateInterfaceFromJson(
     nlohmann::json& systemConfiguration, const std::string& jsonPointerPath,
@@ -127,10 +206,8 @@ void populateInterfaceFromJson(
     for (const auto& [key, value] : dict.items())
     {
         auto type = value.type();
-        bool array = false;
         if (value.type() == nlohmann::json::value_t::array)
         {
-            array = true;
             if (value.empty())
             {
                 continue;
@@ -149,75 +226,9 @@ void populateInterfaceFromJson(
 
         std::string path = jsonPointerPath;
         path.append("/").append(key);
-        if (permission == sdbusplus::asio::PropertyPermission::readWrite)
-        {
-            // all setable numbers are doubles as it is difficult to always
-            // create a configuration file with all whole numbers as decimals
-            // i.e. 1.0
-            if (array)
-            {
-                if (value[0].is_number())
-                {
-                    type = nlohmann::json::value_t::number_float;
-                }
-            }
-            else if (value.is_number())
-            {
-                type = nlohmann::json::value_t::number_float;
-            }
-        }
 
-        switch (type)
-        {
-            case (nlohmann::json::value_t::boolean):
-            {
-                if (array)
-                {
-                    // todo: array of bool isn't detected correctly by
-                    // sdbusplus, change it to numbers
-                    addArrayToDbus<uint64_t>(key, value, iface.get(),
-                                             permission, systemConfiguration,
-                                             path);
-                }
-
-                else
-                {
-                    addProperty(key, value.get<bool>(), iface.get(),
-                                systemConfiguration, path, permission);
-                }
-                break;
-            }
-            case (nlohmann::json::value_t::number_integer):
-            {
-                addValueToDBus<int64_t>(key, value, iface, permission,
-                                        systemConfiguration, path);
-                break;
-            }
-            case (nlohmann::json::value_t::number_unsigned):
-            {
-                addValueToDBus<uint64_t>(key, value, iface, permission,
-                                         systemConfiguration, path);
-                break;
-            }
-            case (nlohmann::json::value_t::number_float):
-            {
-                addValueToDBus<double>(key, value, iface, permission,
-                                       systemConfiguration, path);
-                break;
-            }
-            case (nlohmann::json::value_t::string):
-            {
-                addValueToDBus<std::string>(key, value, iface, permission,
-                                            systemConfiguration, path);
-                break;
-            }
-            default:
-            {
-                std::cerr << "Unexpected json type in system configuration "
-                          << key << ": " << value.type_name() << "\n";
-                break;
-            }
-        }
+        populateInterfacePropertyFromJson(systemConfiguration, path, key, value,
+                                          type, iface, permission);
     }
     if (permission == sdbusplus::asio::PropertyPermission::readWrite)
     {
