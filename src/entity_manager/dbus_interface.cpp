@@ -189,63 +189,26 @@ void populateInterfaceFromJson(
             }
             case (nlohmann::json::value_t::number_integer):
             {
-                if (array)
-                {
-                    addArrayToDbus<int64_t>(key, value, iface.get(), permission,
-                                            systemConfiguration, path);
-                }
-                else
-                {
-                    addProperty(key, value.get<int64_t>(), iface.get(),
-                                systemConfiguration, path,
-                                sdbusplus::asio::PropertyPermission::readOnly);
-                }
+                addArrayOrPropertyToDbus<int64_t>(key, value, iface, permission,
+                                                  systemConfiguration, path);
                 break;
             }
             case (nlohmann::json::value_t::number_unsigned):
             {
-                if (array)
-                {
-                    addArrayToDbus<uint64_t>(key, value, iface.get(),
-                                             permission, systemConfiguration,
-                                             path);
-                }
-                else
-                {
-                    addProperty(key, value.get<uint64_t>(), iface.get(),
-                                systemConfiguration, path,
-                                sdbusplus::asio::PropertyPermission::readOnly);
-                }
+                addArrayOrPropertyToDbus<uint64_t>(
+                    key, value, iface, permission, systemConfiguration, path);
                 break;
             }
             case (nlohmann::json::value_t::number_float):
             {
-                if (array)
-                {
-                    addArrayToDbus<double>(key, value, iface.get(), permission,
-                                           systemConfiguration, path);
-                }
-
-                else
-                {
-                    addProperty(key, value.get<double>(), iface.get(),
-                                systemConfiguration, path, permission);
-                }
+                addArrayOrPropertyToDbus<double>(key, value, iface, permission,
+                                                 systemConfiguration, path);
                 break;
             }
             case (nlohmann::json::value_t::string):
             {
-                if (array)
-                {
-                    addArrayToDbus<std::string>(key, value, iface.get(),
-                                                permission, systemConfiguration,
-                                                path);
-                }
-                else
-                {
-                    addProperty(key, value.get<std::string>(), iface.get(),
-                                systemConfiguration, path, permission);
-                }
+                addArrayOrPropertyToDbus<std::string>(
+                    key, value, iface, permission, systemConfiguration, path);
                 break;
             }
             default:
