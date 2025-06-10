@@ -2,38 +2,18 @@
     {
         "Exposes": [
             {
+                "Address": "0x1d",
                 "BridgeGpio": [
                     {
+                        "Label": "in0",
                         "Name": "rtc-battery-voltage-read-enable",
                         "Polarity": "High",
                         "SetupTime": 1
                     }
                 ],
-                "Index": 7,
-                "Name": "MB_P3V_BAT_VOLT_V",
-                "ScaleFactor": 0.333333333,
-                "Thresholds": [
-                    {
-                        "Direction": "less than",
-                        "Hysteresis": 0.04,
-                        "Name": "lower critical",
-                        "Severity": 1,
-                        "Value": 2.0
-                    },
-                    {
-                        "Direction": "greater than",
-                        "Hysteresis": 0.068,
-                        "Name": "upper critical",
-                        "Severity": 1,
-                        "Value": 3.4
-                    }
-                ],
-                "Type": "ADC"
-            },
-            {
-                "Address": "0x1d",
                 "Bus": 29,
                 "Labels": [
+                    "in0",
                     "in1",
                     "in2",
                     "in3",
@@ -42,6 +22,22 @@
                 ],
                 "Name": "MB_ADC0",
                 "Thresholds": [
+                    {
+                        "Direction": "less than",
+                        "Hysteresis": 0.04,
+                        "Label": "in0",
+                        "Name": "lower critical",
+                        "Severity": 1,
+                        "Value": 2.0
+                    },
+                    {
+                        "Direction": "greater than",
+                        "Hysteresis": 0.068,
+                        "Label": "in0",
+                        "Name": "upper critical",
+                        "Severity": 1,
+                        "Value": 3.4
+                    },
                     {
                         "Direction": "less than",
                         "Hysteresis": 0.0209,
@@ -124,6 +120,8 @@
                     }
                 ],
                 "Type": "ADC128D818",
+                "in0_Name": "MB_P3V_BAT_VOLT_V",
+                "in0_Scale": 333.333333,
                 "in1_Name": "MB_PVDD11_S3_VOLT_V",
                 "in1_PowerState": "On",
                 "in2_Name": "MB_P3V3_STBY_VOLT_V",
