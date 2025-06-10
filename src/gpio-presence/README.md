@@ -1,14 +1,14 @@
 # gpio-presence-sensor
 
-This program was originally implemented following the design [1].
+This program was originally implemented following the [design][].
 
 ## Configuration
 
-See [1] for the full design.
+See the full [design][] for more details.
 
 Example EM config fragments:
 
-```
+```json
 {
   Exposes:
   [
@@ -54,7 +54,7 @@ Example EM config fragments:
 The above configuration can then cause a Probe match in another configuration,
 like below:
 
-```
+```json
 {
   Exposes:
   [
@@ -92,5 +92,5 @@ like FRU eeprom is corrupted or unavailable.
 
 ## References
 
-- [1]
+[design]:
   https://github.com/openbmc/docs/blob/master/designs/inventory/gpio-based-hardware-inventory.md

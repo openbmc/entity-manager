@@ -88,7 +88,7 @@ also creates detection records of what drives are present.
 ### Associations
 
 Entity Manager will automatically create associations between its entities in
-certain cases. For details see [here](docs/associations.md).
+certain cases. For details see the [associations doc](docs/associations.md).
 
 ## Requirements
 
