@@ -99,6 +99,30 @@ void addProperty(const std::string& name, const PropertyType& value,
         });
 }
 
+template <typename PropertyType>
+void addValueToDBus(const std::string& key, const nlohmann::json& value,
+                    std::shared_ptr<sdbusplus::asio::dbus_interface>& iface,
+                    sdbusplus::asio::PropertyPermission permission,
+                    nlohmann::json& systemConfiguration,
+                    const std::string& path)
+{
+    if (!iface)
+    {
+        return;
+    }
+    if (value.is_array())
+    {
+        addArrayToDbus<PropertyType>(key, value, iface.get(), permission,
+                                     systemConfiguration, path);
+    }
+    else
+    {
+        addProperty(key, value.get<PropertyType>(), iface.get(),
+                    systemConfiguration, path,
+                    sdbusplus::asio::PropertyPermission::readOnly);
+    }
+}
+
 void createDeleteObjectMethod(
     const std::string& jsonPointerPath,
     const std::shared_ptr<sdbusplus::asio::dbus_interface>& iface,
