@@ -434,8 +434,8 @@ void scan::PerformScan::updateSystemConfiguration(
     {
         std::string recordName = getRecordName(itr->interface, probeName);
 
-        auto record = this->_em.systemConfiguration.find(recordName);
-        if (record == this->_em.systemConfiguration.end())
+        auto record = _em.systemConfiguration.find(recordName);
+        if (record == _em.systemConfiguration.end())
         {
             record = _em.lastJson.find(recordName);
             if (record == _em.lastJson.end())
@@ -446,7 +446,7 @@ void scan::PerformScan::updateSystemConfiguration(
 
             pruneRecordExposes(*record);
 
-            this->_em.systemConfiguration[recordName] = *record;
+            _em.systemConfiguration[recordName] = *record;
         }
         _missingConfigurations.erase(recordName);
 
@@ -505,7 +505,7 @@ void scan::PerformScan::updateSystemConfiguration(
         // insert into configuration temporarily to be able to
         // reference ourselves
 
-        this->_em.systemConfiguration[recordName] = record;
+        _em.systemConfiguration[recordName] = record;
 
         auto findExpose = record.find("Exposes");
         if (findExpose == record.end())
@@ -521,13 +521,13 @@ void scan::PerformScan::updateSystemConfiguration(
                 em_utils::templateCharReplace(keyPair, dbusObject,
                                               foundDeviceIdx, replaceStr);
 
-                applyExposeActions(this->_em.systemConfiguration, recordName,
+                applyExposeActions(_em.systemConfiguration, recordName,
                                    expose, keyPair);
             }
         }
 
         // overwrite ourselves with cleaned up version
-        this->_em.systemConfiguration[recordName] = record;
+        _em.systemConfiguration[recordName] = record;
         _missingConfigurations.erase(recordName);
     }
 }
