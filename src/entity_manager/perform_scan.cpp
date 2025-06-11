@@ -196,7 +196,7 @@ static std::string getRecordName(const DBusInterface& probe,
 
 scan::PerformScan::PerformScan(
     EntityManager& em, nlohmann::json& missingConfigurations,
-    std::list<nlohmann::json>& configurations, boost::asio::io_context& io,
+    std::vector<nlohmann::json>& configurations, boost::asio::io_context& io,
     std::function<void()>&& callback) :
     _em(em), _missingConfigurations(missingConfigurations),
     _configurations(configurations), _callback(std::move(callback)), io(io)
