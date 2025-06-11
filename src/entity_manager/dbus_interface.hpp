@@ -50,13 +50,13 @@ void addArrayToDbus(const std::string& name, const nlohmann::json& array,
                 const std::vector<PropertyType>& newVal,
                 std::vector<PropertyType>& val) {
                 val = newVal;
-                if (!configuration::setJsonFromPointer(jsonPointerString, val,
-                                                       systemConfiguration))
+                if (!setJsonFromPointer(jsonPointerString, val,
+                                        systemConfiguration))
                 {
                     std::cerr << "error setting json field\n";
                     return -1;
                 }
-                if (!configuration::writeJsonFiles(systemConfiguration))
+                if (!writeJsonFiles(systemConfiguration))
                 {
                     std::cerr << "error setting json file\n";
                     return -1;
@@ -84,13 +84,13 @@ void addProperty(const std::string& name, const PropertyType& value,
          jsonPointerString{std::string(jsonPointerString)}](
             const PropertyType& newVal, PropertyType& val) {
             val = newVal;
-            if (!configuration::setJsonFromPointer(jsonPointerString, val,
-                                                   systemConfiguration))
+            if (!setJsonFromPointer(jsonPointerString, val,
+                                    systemConfiguration))
             {
                 std::cerr << "error setting json field\n";
                 return -1;
             }
-            if (!configuration::writeJsonFiles(systemConfiguration))
+            if (!writeJsonFiles(systemConfiguration))
             {
                 std::cerr << "error setting json file\n";
                 return -1;
