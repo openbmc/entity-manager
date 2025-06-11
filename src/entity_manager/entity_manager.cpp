@@ -505,16 +505,8 @@ void EntityManager::propertiesChangedCallback()
         auto missingConfigurations = std::make_shared<nlohmann::json>();
         *missingConfigurations = systemConfiguration;
 
-        std::list<nlohmann::json> configurations;
-        if (!configuration::loadConfigurations(configurations))
-        {
-            std::cerr << "Could not load configurations\n";
-            inProgress = false;
-            return;
-        }
-
         auto perfScan = std::make_shared<scan::PerformScan>(
-            *this, *missingConfigurations, configurations,
+            *this, *missingConfigurations, configuration.configurations,
             [this, count, oldConfiguration, missingConfigurations]() {
                 // this is something that since ac has been applied to the bmc
                 // we saw, and we no longer see it
@@ -658,9 +650,7 @@ int main()
 
     nlohmann::json systemConfiguration = nlohmann::json::object();
 
-    std::set<std::string> probeInterfaces = configuration::getProbeInterfaces();
-
-    em.initFilters(probeInterfaces);
+    em.initFilters(em.configuration.probeInterfaces);
 
     boost::asio::post(io, [&]() { em.propertiesChangedCallback(); });
 
