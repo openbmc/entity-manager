@@ -505,16 +505,8 @@ void EntityManager::propertiesChangedCallback()
         auto missingConfigurations = std::make_shared<nlohmann::json>();
         *missingConfigurations = systemConfiguration;
 
-        std::list<nlohmann::json> configurations;
-        if (!configuration::loadConfigurations(configurations))
-        {
-            std::cerr << "Could not load configurations\n";
-            inProgress = false;
-            return;
-        }
-
         auto perfScan = std::make_shared<scan::PerformScan>(
-            *this, *missingConfigurations, configurations,
+            *this, *missingConfigurations, configuration.configurations,
             [this, count, oldConfiguration, missingConfigurations]() {
                 // this is something that since ac has been applied to the bmc
                 // we saw, and we no longer see it
@@ -548,7 +540,7 @@ void EntityManager::propertiesChangedCallback()
 
 // Check if InterfacesAdded payload contains an iface that needs probing.
 static bool iaContainsProbeInterface(
-    sdbusplus::message_t& msg, const std::set<std::string>& probeInterfaces)
+    sdbusplus::message_t& msg, const std::unordered_set<std::string>& probeInterfaces)
 {
     sdbusplus::message::object_path path;
     DBusObject interfaces;
@@ -570,7 +562,7 @@ static bool iaContainsProbeInterface(
 
 // Check if InterfacesRemoved payload contains an iface that needs probing.
 static bool irContainsProbeInterface(
-    sdbusplus::message_t& msg, const std::set<std::string>& probeInterfaces)
+    sdbusplus::message_t& msg, const std::unordered_set<std::string>& probeInterfaces)
 {
     sdbusplus::message::object_path path;
     std::set<std::string> interfaces;
@@ -609,7 +601,7 @@ void EntityManager::registerCallback(const std::string& path)
 // org.freedesktop.DBus.Properties signals.  Similarly if a process exits
 // for any reason, expected or otherwise, we'll need a poke to remove
 // entities from DBus.
-void EntityManager::initFilters(const std::set<std::string>& probeInterfaces)
+void EntityManager::initFilters(const std::unordered_set<std::string>& probeInterfaces)
 {
     static sdbusplus::bus::match_t nameOwnerChangedMatch(
         static_cast<sdbusplus::bus_t&>(*systemBus),
@@ -658,9 +650,7 @@ int main()
 
     nlohmann::json systemConfiguration = nlohmann::json::object();
 
-    std::set<std::string> probeInterfaces = configuration::getProbeInterfaces();
-
-    em.initFilters(probeInterfaces);
+    em.initFilters(em.configuration.probeInterfaces);
 
     boost::asio::post(io, [&]() { em.propertiesChangedCallback(); });
 

@@ -2,8 +2,20 @@
 
 #include <nlohmann/json.hpp>
 
-#include <list>
-#include <set>
+#include <unordered_set>
+#include <vector>
+
+class Configuration
+{
+  public:
+    explicit Configuration();
+    std::unordered_set<std::string> probeInterfaces;
+    std::vector<nlohmann::json> configurations;
+
+  private:
+    void loadConfigurations();
+    void filterProbeInterfaces();
+};
 
 namespace configuration
 {
@@ -14,8 +26,6 @@ constexpr const char* currentConfiguration = "/var/configuration/system.json";
 constexpr const char* schemaDirectory = PACKAGE_DIR "configurations/schemas";
 
 bool writeJsonFiles(const nlohmann::json& systemConfiguration);
-
-bool loadConfigurations(std::list<nlohmann::json>& configurations);
 
 template <typename JsonType>
 bool setJsonFromPointer(const std::string& ptrStr, const JsonType& value,
@@ -40,6 +50,6 @@ void deriveNewConfiguration(const nlohmann::json& oldConfiguration,
 bool validateJson(const nlohmann::json& schemaFile,
                   const nlohmann::json& input);
 
-std::set<std::string> getProbeInterfaces();
+std::unordered_set<std::string> getProbeInterfaces();
 
 } // namespace configuration
