@@ -46,6 +46,30 @@
       },
       "revId": "215cd259d4fb01c823132a71bc10994f5b3b0623",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "013d7150_934a8c0f",
+        "filename": "configurations/nvidia_gb300_io_board.json",
+        "patchSetId": 23
+      },
+      "lineNbr": 82,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2025-06-11T20:18:39Z",
+      "side": 1,
+      "message": "My point was mostly that you can do this same thing with:\n\n    \"xyz.openbmc_project.FruDevice({\u0027BOARD_PRODUCT_NAME\u0027: \u0027(ConnectX-7 400GE 2P NIC)|(P4768)|(2x ConnectX-7 Mezz)\u0027, \u0027BOARD_MANUFACTURER\u0027: \u0027(Nvidia)|(NVIDIA)\u0027})\"\n\n\nno need to get fancy.  I can go try to hunt down the \"right\" name, but I think just a quick simplification is all this PR needs.",
+      "parentUuid": "dafaa0f3_3db6ffab",
+      "range": {
+        "startLine": 80,
+        "startChar": 0,
+        "endLine": 82,
+        "endChar": 123
+      },
+      "revId": "215cd259d4fb01c823132a71bc10994f5b3b0623",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }
