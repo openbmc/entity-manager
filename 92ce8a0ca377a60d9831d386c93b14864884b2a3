@@ -1,0 +1,107 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "202f19e5_91a11e81",
+        "filename": "scripts/filter_configs.py",
+        "patchSetId": 35
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2025-06-11T11:26:12Z",
+      "side": 1,
+      "message": "nit: Can you add typing information?",
+      "revId": "92ce8a0ca377a60d9831d386c93b14864884b2a3",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a907f9fa_6041e3a1",
+        "filename": "scripts/filter_configs.py",
+        "patchSetId": 35
+      },
+      "lineNbr": 23,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2025-06-11T11:26:12Z",
+      "side": 1,
+      "message": "`loads` please",
+      "range": {
+        "startLine": 23,
+        "startChar": 21,
+        "endLine": 23,
+        "endChar": 25
+      },
+      "revId": "92ce8a0ca377a60d9831d386c93b14864884b2a3",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "285ae277_6df973f6",
+        "filename": "scripts/filter_configs.py",
+        "patchSetId": 35
+      },
+      "lineNbr": 31,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2025-06-11T11:26:12Z",
+      "side": 1,
+      "message": "Why is an empty string considered a match?",
+      "range": {
+        "startLine": 30,
+        "startChar": 0,
+        "endLine": 31,
+        "endChar": 27
+      },
+      "revId": "92ce8a0ca377a60d9831d386c93b14864884b2a3",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "05cd7195_b6dcf9dd",
+        "filename": "scripts/filter_configs.py",
+        "patchSetId": 35
+      },
+      "lineNbr": 53,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2025-06-11T11:26:12Z",
+      "side": 1,
+      "message": "Can you simplify this to use list comprehension?  It looks like a one-liner to me:\n\n```\nreturn [x if filter_config(compatible_hw, x) for x in configs]\n```",
+      "range": {
+        "startLine": 44,
+        "startChar": 0,
+        "endLine": 53,
+        "endChar": 27
+      },
+      "revId": "92ce8a0ca377a60d9831d386c93b14864884b2a3",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "cdfedba5_cea408c1",
+        "filename": "scripts/filter_configs.py",
+        "patchSetId": 35
+      },
+      "lineNbr": 55,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2025-06-11T11:26:12Z",
+      "side": 1,
+      "message": "nit: Python tends to use the `if __name__ \u003d\u003d \"__main__\": main()` pattern to avoid polluting the global environment.",
+      "revId": "92ce8a0ca377a60d9831d386c93b14864884b2a3",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    }
+  ]
+}
