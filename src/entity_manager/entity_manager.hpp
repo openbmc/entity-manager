@@ -18,6 +18,7 @@
 #pragma once
 
 #include "../utils.hpp"
+#include "configuration.hpp"
 #include "topology.hpp"
 
 #include <systemd/sd-journal.h>
@@ -38,6 +39,7 @@ class EntityManager
     std::shared_ptr<sdbusplus::asio::connection> systemBus;
     sdbusplus::asio::object_server objServer;
     std::shared_ptr<sdbusplus::asio::dbus_interface> entityIface;
+    Configuration configuration;
     nlohmann::json lastJson;
     nlohmann::json systemConfiguration;
     Topology topology;
