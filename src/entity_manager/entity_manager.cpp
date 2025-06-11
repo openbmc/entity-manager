@@ -455,7 +455,7 @@ void EntityManager::publishNewConfiguration(
     loadOverlays(newConfiguration);
 
     boost::asio::post(io, [this]() {
-        if (!configuration::writeJsonFiles(systemConfiguration))
+        if (!writeJsonFiles(systemConfiguration))
         {
             std::cerr << "Error writing json files\n";
         }
@@ -505,16 +505,8 @@ void EntityManager::propertiesChangedCallback()
         auto missingConfigurations = std::make_shared<nlohmann::json>();
         *missingConfigurations = systemConfiguration;
 
-        std::list<nlohmann::json> configurations;
-        if (!configuration::loadConfigurations(configurations))
-        {
-            std::cerr << "Could not load configurations\n";
-            inProgress = false;
-            return;
-        }
-
         auto perfScan = std::make_shared<scan::PerformScan>(
-            *this, *missingConfigurations, configurations,
+            *this, *missingConfigurations, configuration.configurations,
             [this, count, oldConfiguration, missingConfigurations]() {
                 // this is something that since ac has been applied to the bmc
                 // we saw, and we no longer see it
@@ -527,8 +519,7 @@ void EntityManager::propertiesChangedCallback()
 
                 nlohmann::json newConfiguration = systemConfiguration;
 
-                configuration::deriveNewConfiguration(oldConfiguration,
-                                                      newConfiguration);
+                deriveNewConfiguration(oldConfiguration, newConfiguration);
 
                 for (const auto& [_, device] : newConfiguration.items())
                 {
@@ -548,7 +539,8 @@ void EntityManager::propertiesChangedCallback()
 
 // Check if InterfacesAdded payload contains an iface that needs probing.
 static bool iaContainsProbeInterface(
-    sdbusplus::message_t& msg, const std::set<std::string>& probeInterfaces)
+    sdbusplus::message_t& msg,
+    const std::unordered_set<std::string>& probeInterfaces)
 {
     sdbusplus::message::object_path path;
     DBusObject interfaces;
@@ -570,7 +562,8 @@ static bool iaContainsProbeInterface(
 
 // Check if InterfacesRemoved payload contains an iface that needs probing.
 static bool irContainsProbeInterface(
-    sdbusplus::message_t& msg, const std::set<std::string>& probeInterfaces)
+    sdbusplus::message_t& msg,
+    const std::unordered_set<std::string>& probeInterfaces)
 {
     sdbusplus::message::object_path path;
     std::set<std::string> interfaces;
@@ -609,7 +602,8 @@ void EntityManager::registerCallback(const std::string& path)
 // org.freedesktop.DBus.Properties signals.  Similarly if a process exits
 // for any reason, expected or otherwise, we'll need a poke to remove
 // entities from DBus.
-void EntityManager::initFilters(const std::set<std::string>& probeInterfaces)
+void EntityManager::initFilters(
+    const std::unordered_set<std::string>& probeInterfaces)
 {
     static sdbusplus::bus::match_t nameOwnerChangedMatch(
         static_cast<sdbusplus::bus_t&>(*systemBus),
@@ -658,23 +652,19 @@ int main()
 
     nlohmann::json systemConfiguration = nlohmann::json::object();
 
-    std::set<std::string> probeInterfaces = configuration::getProbeInterfaces();
-
-    em.initFilters(probeInterfaces);
+    em.initFilters(em.configuration.probeInterfaces);
 
     boost::asio::post(io, [&]() { em.propertiesChangedCallback(); });
 
     if (em_utils::fwVersionIsSame())
     {
-        if (std::filesystem::is_regular_file(
-                configuration::currentConfiguration))
+        if (std::filesystem::is_regular_file(currentConfiguration))
         {
             // this file could just be deleted, but it's nice for debug
             std::filesystem::create_directory(tempConfigDir);
             std::filesystem::remove(lastConfiguration);
-            std::filesystem::copy(configuration::currentConfiguration,
-                                  lastConfiguration);
-            std::filesystem::remove(configuration::currentConfiguration);
+            std::filesystem::copy(currentConfiguration, lastConfiguration);
+            std::filesystem::remove(currentConfiguration);
 
             std::ifstream jsonStream(lastConfiguration);
             if (jsonStream.good())
@@ -700,7 +690,7 @@ int main()
     {
         // not an error, just logging at this level to make it in the journal
         std::cerr << "Clearing previous configuration\n";
-        std::filesystem::remove(configuration::currentConfiguration);
+        std::filesystem::remove(currentConfiguration);
     }
 
     // some boards only show up after power is on, we want to not say they are

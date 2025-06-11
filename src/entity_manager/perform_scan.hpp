@@ -26,7 +26,7 @@ using FoundDevices = std::vector<DBusDeviceDescriptor>;
 struct PerformScan : std::enable_shared_from_this<PerformScan>
 {
     PerformScan(EntityManager& em, nlohmann::json& missingConfigurations,
-                std::list<nlohmann::json>& configurations,
+                std::vector<nlohmann::json>& configurations,
                 std::function<void()>&& callback);
 
     void updateSystemConfiguration(const nlohmann::json& recordRef,
@@ -36,7 +36,7 @@ struct PerformScan : std::enable_shared_from_this<PerformScan>
     virtual ~PerformScan();
     EntityManager& _em;
     nlohmann::json& _missingConfigurations;
-    std::list<nlohmann::json> _configurations;
+    std::vector<nlohmann::json> _configurations;
     std::function<void()> _callback;
     bool _passed = false;
     MapperGetSubTreeResponse dbusProbeObjects;

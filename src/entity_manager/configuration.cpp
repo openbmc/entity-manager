@@ -13,28 +13,16 @@
 #include <filesystem>
 #include <fstream>
 #include <iostream>
-#include <list>
 #include <string>
 #include <vector>
 
-namespace configuration
+Configuration::Configuration()
 {
-// writes output files to persist data
-bool writeJsonFiles(const nlohmann::json& systemConfiguration)
-{
-    std::filesystem::create_directory(configurationOutDir);
-    std::ofstream output(currentConfiguration);
-    if (!output.good())
-    {
-        return false;
-    }
-    output << systemConfiguration.dump(4);
-    output.close();
-    return true;
+    loadConfigurations();
+    filterProbeInterfaces();
 }
 
-// reads json files out of the filesystem
-bool loadConfigurations(std::list<nlohmann::json>& configurations)
+void Configuration::loadConfigurations()
 {
     const auto start = std::chrono::steady_clock::now();
 
@@ -47,7 +35,7 @@ bool loadConfigurations(std::list<nlohmann::json>& configurations)
     {
         std::cerr << "Unable to find any configuration files in "
                   << configurationDirectory << "\n";
-        return false;
+        return;
     }
 
     std::ifstream schemaStream(
@@ -57,7 +45,7 @@ bool loadConfigurations(std::list<nlohmann::json>& configurations)
         std::cerr
             << "Cannot open schema file,  cannot validate JSON, exiting\n\n";
         std::exit(EXIT_FAILURE);
-        return false;
+        return;
     }
     nlohmann::json schema =
         nlohmann::json::parse(schemaStream, nullptr, false, true);
@@ -66,7 +54,7 @@ bool loadConfigurations(std::list<nlohmann::json>& configurations)
         std::cerr
             << "Illegal schema file detected, cannot validate JSON, exiting\n";
         std::exit(EXIT_FAILURE);
-        return false;
+        return;
     }
 
     for (auto& jsonPath : jsonPaths)
@@ -112,8 +100,6 @@ bool loadConfigurations(std::list<nlohmann::json>& configurations)
 
     lg2::debug("Finished loading json configuration in {MILLIS}ms", "MILLIS",
                duration);
-
-    return true;
 }
 
 // Iterate over new configuration and erase items from old configuration.
@@ -147,15 +133,8 @@ bool validateJson(const nlohmann::json& schemaFile, const nlohmann::json& input)
 }
 
 // Extract the D-Bus interfaces to probe from the JSON config files.
-std::set<std::string> getProbeInterfaces()
+void Configuration::filterProbeInterfaces()
 {
-    std::set<std::string> interfaces;
-    std::list<nlohmann::json> configurations;
-    if (!configuration::loadConfigurations(configurations))
-    {
-        return interfaces;
-    }
-
     for (auto it = configurations.begin(); it != configurations.end();)
     {
         auto findProbe = it->find("Probe");
@@ -196,13 +175,52 @@ std::set<std::string> getProbeInterfaces()
             if (findStart != std::string::npos)
             {
                 std::string interface = probe->substr(0, findStart);
-                interfaces.emplace(interface);
+                probeInterfaces.emplace(interface);
             }
         }
         it++;
     }
-
-    return interfaces;
 }
 
-} // namespace configuration
+bool writeJsonFiles(const nlohmann::json& systemConfiguration)
+{
+    std::filesystem::create_directory(configurationOutDir);
+    std::ofstream output(currentConfiguration);
+    if (!output.good())
+    {
+        return false;
+    }
+    output << systemConfiguration.dump(4);
+    output.close();
+    return true;
+}
+
+// Iterate over new configuration and erase items from old configuration.
+void deriveNewConfiguration(const nlohmann::json& oldConfiguration,
+                            nlohmann::json& newConfiguration)
+{
+    for (auto it = newConfiguration.begin(); it != newConfiguration.end();)
+    {
+        auto findKey = oldConfiguration.find(it.key());
+        if (findKey != oldConfiguration.end())
+        {
+            it = newConfiguration.erase(it);
+        }
+        else
+        {
+            it++;
+        }
+    }
+}
+
+// validates a given input(configuration) with a given json schema file.
+bool validateJson(const nlohmann::json& schemaFile, const nlohmann::json& input)
+{
+    valijson::Schema schema;
+    valijson::SchemaParser parser;
+    valijson::adapters::NlohmannJsonAdapter schemaAdapter(schemaFile);
+    parser.populateSchema(schemaAdapter, schema);
+    valijson::Validator validator;
+    valijson::adapters::NlohmannJsonAdapter targetAdapter(input);
+    return validator.validate(schema, targetAdapter, nullptr);
+}
