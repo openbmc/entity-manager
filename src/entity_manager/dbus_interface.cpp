@@ -95,7 +95,7 @@ void createDeleteObjectMethod(
                 objServer.remove_interface(dbusInterface);
             });
 
-            if (!configuration::writeJsonFiles(systemConfiguration))
+            if (!writeJsonFiles(systemConfiguration))
             {
                 std::cerr << "error setting json file\n";
                 throw DBusInternalError();
@@ -325,9 +325,8 @@ void createAddObjectMethod(
                 lastIndex++;
             }
 
-            std::ifstream schemaFile(
-                std::string(configuration::schemaDirectory) + "/" +
-                boost::to_lower_copy(*type) + ".json");
+            std::ifstream schemaFile(std::string(schemaDirectory) + "/" +
+                                     boost::to_lower_copy(*type) + ".json");
             // todo(james) we might want to also make a list of 'can add'
             // interfaces but for now I think the assumption if there is a
             // schema avaliable that it is allowed to update is fine
@@ -343,7 +342,7 @@ void createAddObjectMethod(
                 std::cerr << "Schema not legal" << *type << ".json\n";
                 throw DBusInternalError();
             }
-            if (!configuration::validateJson(schema, newData))
+            if (!validateJson(schema, newData))
             {
                 throw std::invalid_argument("Data does not match schema");
             }
@@ -355,7 +354,7 @@ void createAddObjectMethod(
             {
                 findExposes->push_back(newData);
             }
-            if (!configuration::writeJsonFiles(systemConfiguration))
+            if (!writeJsonFiles(systemConfiguration))
             {
                 std::cerr << "Error writing json files\n";
                 throw DBusInternalError();
