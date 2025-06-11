@@ -183,6 +183,30 @@
       },
       "revId": "65e4f7064388a2ce1447444acd15f1270d31ad3c",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e94e18a6_55ea16a1",
+        "filename": "schemas/mctp.json",
+        "patchSetId": 8
+      },
+      "lineNbr": 53,
+      "author": {
+        "id": 1002305
+      },
+      "writtenOn": "2025-06-11T11:21:35Z",
+      "side": 1,
+      "message": "@andrew@codeconstruct.com.au, this is the new EM schema which takes in the RootHubPath like `\"/sys/devices/platform/ahb/1e6a3000.usb\"` and deduces the deterministic busnum attribute in the reactor. \nExample EM schema would look like\n```\n\"Exposes\": [\n        {\n\t     \"RootHubPath\": \"/sys/devices/platform/ahb/1e6a3000.usb\",\n    \t     \"Port\": \"1.2.5\",\n             \"Configuration\": \"1\",\n             \"InterfaceNum\": “0”,\n\t      \"Name\": \"mctpusb_x”,\n         \"Type\": \"MCTPUSBDevice\"\n        }\n    ]\n```\nReactor Changes for your reference: https://gerrit.openbmc.org/c/openbmc/dbus-sensors/+/80452",
+      "parentUuid": "05ea521a_e520a216",
+      "range": {
+        "startLine": 50,
+        "startChar": 1,
+        "endLine": 53,
+        "endChar": 18
+      },
+      "revId": "65e4f7064388a2ce1447444acd15f1270d31ad3c",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }
