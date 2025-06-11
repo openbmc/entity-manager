@@ -196,7 +196,7 @@ static std::string getRecordName(const DBusInterface& probe,
 
 scan::PerformScan::PerformScan(
     EntityManager& em, nlohmann::json& missingConfigurations,
-    std::list<nlohmann::json>& configurations, boost::asio::io_context& io,
+    std::vector<nlohmann::json>& configurations, boost::asio::io_context& io,
     std::function<void()>&& callback) :
     _em(em), _missingConfigurations(missingConfigurations),
     _configurations(configurations), _callback(std::move(callback)), io(io)
@@ -619,7 +619,11 @@ scan::PerformScan::~PerformScan()
     if (_passed)
     {
         auto nextScan = std::make_shared<PerformScan>(
+<<<<<<< Updated upstream
             _em, _missingConfigurations, _configurations, io,
+=======
+            _em, _missingConfigurations, _configurations, io, _probes,
+>>>>>>> Stashed changes
             std::move(_callback));
         nextScan->passedProbes = std::move(passedProbes);
         nextScan->dbusProbeObjects = std::move(dbusProbeObjects);
