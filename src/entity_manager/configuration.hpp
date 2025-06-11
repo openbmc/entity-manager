@@ -5,6 +5,18 @@
 #include <list>
 #include <set>
 
+class Configuration
+{
+  public:
+    explicit Configuration();
+    std::set<std::string> probeInterfaces;
+    std::list<nlohmann::json> configurations;
+
+  private:
+    void loadConfigurations();
+    void filterProbeInterfaces();
+};
+
 namespace configuration
 {
 constexpr const char* globalSchema = "global.json";
@@ -14,8 +26,6 @@ constexpr const char* currentConfiguration = "/var/configuration/system.json";
 constexpr const char* schemaDirectory = PACKAGE_DIR "configurations/schemas";
 
 bool writeJsonFiles(const nlohmann::json& systemConfiguration);
-
-bool loadConfigurations(std::list<nlohmann::json>& configurations);
 
 template <typename JsonType>
 bool setJsonFromPointer(const std::string& ptrStr, const JsonType& value,
