@@ -238,6 +238,9 @@ bool createDummyArea(fruAreas fruArea, std::vector<uint8_t>& areaData);
 bool assembleFruData(std::vector<uint8_t>& fruData,
                      const std::vector<std::vector<uint8_t>>& areasData);
 
+bool setField(const fruAreas& fruAreaToUpdate, std::vector<uint8_t>& areaData,
+              const std::string& propertyName, const std::string& value);
+
 bool addFruArea(
     uint32_t bus, uint32_t address, const std::string& areaName,
     boost::container::flat_map<

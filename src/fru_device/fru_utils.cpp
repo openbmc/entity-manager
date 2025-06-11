@@ -1000,6 +1000,74 @@ bool disassembleFruData(std::vector<uint8_t>& fruData,
     return true;
 }
 
+bool setField(const fruAreas& fruAreaToUpdate, std::vector<uint8_t>& areaData,
+              const std::string& propertyName, const std::string& value)
+{
+    const std::vector<std::string>* fruAreaFieldNames = nullptr;
+    int8_t fieldLength = 0, fieldIndex = 0;
+    std::string areaName = propertyName.substr(0, propertyName.find('_'));
+    std::string propertyNamePrefix = areaName + "_";
+
+    switch (fruAreaToUpdate)
+    {
+        case fruAreas::fruAreaChassis:
+            fruAreaFieldNames = &chassisFruAreas;
+            fieldIndex = 3;
+            break;
+        case fruAreas::fruAreaBoard:
+            fruAreaFieldNames = &boardFruAreas;
+            fieldIndex = 6;
+            break;
+        case fruAreas::fruAreaProduct:
+            fruAreaFieldNames = &productFruAreas;
+            fieldIndex = 3;
+            break;
+        default:
+            lg2::error("Invalid FRU area: {AREA}", "AREA",
+                       static_cast<int>(fruAreaToUpdate));
+            return false;
+    }
+
+    for (const auto& field : *fruAreaFieldNames)
+    {
+        fieldLength = getFieldLength(areaData[fieldIndex]);
+        if (fieldLength < 0)
+        {
+            // This should never happen. Insert dummy field.
+            areaData.insert(areaData.begin() + fieldIndex, 0xc0);
+            fieldLength = 0;
+        }
+
+        if (propertyNamePrefix + field == propertyName)
+        {
+            break;
+        }
+        fieldIndex += 1 + fieldLength;
+    }
+
+    // Reset checksum byte to 0 before recalculating
+    areaData[areaData.size() - 1] = 0;
+
+    // Erase the existing field content.
+    areaData.erase(areaData.begin() + fieldIndex,
+                   areaData.begin() + fieldIndex + fieldLength + 1);
+    // Insert the new field value
+    areaData.insert(areaData.begin() + fieldIndex, 0xc0 | value.size());
+    areaData.insert(areaData.begin() + fieldIndex + 1, value.begin(),
+                    value.end());
+
+    // Calculate number of blocks needed
+    uint8_t numOfBlocks = (areaData.size() + fruBlockSize - 1) / fruBlockSize;
+
+    // Resize areaData as per numOfBlocks & fill with zeros
+    areaData.resize(numOfBlocks * fruBlockSize, 0);
+    // Update the length field
+    areaData[1] = numOfBlocks;
+    updateAreacksum(areaData);
+
+    return true;
+}
+
 bool assembleFruData(std::vector<uint8_t>& fruData,
                      const std::vector<std::vector<uint8_t>>& areasData)
 {
