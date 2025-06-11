@@ -18,6 +18,7 @@
 #pragma once
 
 #include "../utils.hpp"
+#include "configuration.hpp"
 #include "dbus_interface.hpp"
 #include "topology.hpp"
 
@@ -40,6 +41,7 @@ class EntityManager
     std::shared_ptr<sdbusplus::asio::connection> systemBus;
     sdbusplus::asio::object_server objServer;
     std::shared_ptr<sdbusplus::asio::dbus_interface> entityIface;
+    Configuration configuration;
     nlohmann::json lastJson;
     nlohmann::json systemConfiguration;
     Topology topology;
@@ -56,8 +58,6 @@ class EntityManager
     void pruneConfiguration(bool powerOff, const std::string& name,
                             const nlohmann::json& device);
 
-    void initFilters(const std::set<std::string>& probeInterfaces);
-
     void handleCurrentConfigurationJson();
 
   private:
@@ -70,6 +70,7 @@ class EntityManager
 
     void startRemovedTimer(boost::asio::steady_timer& timer,
                            nlohmann::json& systemConfiguration);
+    void initFilters(const std::unordered_set<std::string>& probeInterfaces);
 };
 
 inline void logDeviceAdded(const nlohmann::json& record)
