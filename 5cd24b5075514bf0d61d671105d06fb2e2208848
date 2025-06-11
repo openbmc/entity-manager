@@ -41,6 +41,30 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "73e1cbbb_fca3d719",
+        "filename": "src/entity_manager/entity_manager.cpp",
+        "patchSetId": 8
+      },
+      "lineNbr": 86,
+      "author": {
+        "id": 1002222
+      },
+      "writtenOn": "2025-06-11T06:22:41Z",
+      "side": 1,
+      "message": "I think I have to capture `this`, otherwise I cant provide the function as callback. I get errors if I just want to supply the function name to register_method directly.",
+      "parentUuid": "06933d6d_e5ab9f66",
+      "range": {
+        "startLine": 86,
+        "startChar": 44,
+        "endLine": 86,
+        "endChar": 45
+      },
+      "revId": "5cd24b5075514bf0d61d671105d06fb2e2208848",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "c258b6a7_6fc5e89f",
@@ -54,6 +78,30 @@
       "writtenOn": "2025-06-10T21:45:39Z",
       "side": 1,
       "message": "this isn\u0027t necessary, so maybe just remove all these.",
+      "range": {
+        "startLine": 465,
+        "startChar": 8,
+        "endLine": 465,
+        "endChar": 14
+      },
+      "revId": "5cd24b5075514bf0d61d671105d06fb2e2208848",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "ddaa7570_a370f64c",
+        "filename": "src/entity_manager/entity_manager.cpp",
+        "patchSetId": 8
+      },
+      "lineNbr": 465,
+      "author": {
+        "id": 1002222
+      },
+      "writtenOn": "2025-06-11T06:22:41Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "c258b6a7_6fc5e89f",
       "range": {
         "startLine": 465,
         "startChar": 8,
@@ -81,6 +129,24 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "2888a2d7_7c0bdc1d",
+        "filename": "src/entity_manager/entity_manager.cpp",
+        "patchSetId": 8
+      },
+      "lineNbr": 593,
+      "author": {
+        "id": 1002222
+      },
+      "writtenOn": "2025-06-11T06:22:41Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "73747f22_a34e9c7b",
+      "revId": "5cd24b5075514bf0d61d671105d06fb2e2208848",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "9db81f59_600409a9",
@@ -104,6 +170,30 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "ac0e34ad_4a54e26f",
+        "filename": "src/entity_manager/entity_manager.cpp",
+        "patchSetId": 8
+      },
+      "lineNbr": 614,
+      "author": {
+        "id": 1002222
+      },
+      "writtenOn": "2025-06-11T06:22:41Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "9db81f59_600409a9",
+      "range": {
+        "startLine": 614,
+        "startChar": 55,
+        "endLine": 614,
+        "endChar": 70
+      },
+      "revId": "5cd24b5075514bf0d61d671105d06fb2e2208848",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "f4bfc06a_6dea3020",
@@ -117,6 +207,30 @@
       "writtenOn": "2025-06-10T21:45:39Z",
       "side": 1,
       "message": "if probeInterfaces was made a member of EntityManager we could avoid copies on these.  Though I suppose most systems only probe on a small number of different interfaces so not that big of a deal.",
+      "range": {
+        "startLine": 637,
+        "startChar": 15,
+        "endLine": 637,
+        "endChar": 30
+      },
+      "revId": "5cd24b5075514bf0d61d671105d06fb2e2208848",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "eb560a04_41e541dd",
+        "filename": "src/entity_manager/entity_manager.cpp",
+        "patchSetId": 8
+      },
+      "lineNbr": 637,
+      "author": {
+        "id": 1002222
+      },
+      "writtenOn": "2025-06-11T06:22:41Z",
+      "side": 1,
+      "message": "I want to have probeInterfaces as part of a different class `Configurations` which shall handle the json related configurations and `stuff`. Already exploring this, but I have some issues with it. \n\nAnyway, in general I agree, that probeInterfaces shouldnt be a local variables reference being passed around.",
+      "parentUuid": "f4bfc06a_6dea3020",
       "range": {
         "startLine": 637,
         "startChar": 15,
@@ -162,6 +276,24 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "11622e18_195a6b2c",
+        "filename": "src/entity_manager/entity_manager.cpp",
+        "patchSetId": 8
+      },
+      "lineNbr": 657,
+      "author": {
+        "id": 1002222
+      },
+      "writtenOn": "2025-06-11T06:22:41Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "830ff4f4_375f5f9c",
+      "revId": "5cd24b5075514bf0d61d671105d06fb2e2208848",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "7e965df5_8df3bf68",
@@ -175,6 +307,30 @@
       "writtenOn": "2025-06-10T21:45:39Z",
       "side": 1,
       "message": "I feel like with a make_shared on the other side \u0027auto\u0027 here is reasonable.",
+      "range": {
+        "startLine": 658,
+        "startChar": 4,
+        "endLine": 658,
+        "endChar": 49
+      },
+      "revId": "5cd24b5075514bf0d61d671105d06fb2e2208848",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "bcc27e50_d31ca7aa",
+        "filename": "src/entity_manager/entity_manager.cpp",
+        "patchSetId": 8
+      },
+      "lineNbr": 658,
+      "author": {
+        "id": 1002222
+      },
+      "writtenOn": "2025-06-11T06:22:41Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "7e965df5_8df3bf68",
       "range": {
         "startLine": 658,
         "startChar": 4,
@@ -202,6 +358,24 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "2372f81f_b0695f03",
+        "filename": "src/entity_manager/entity_manager.cpp",
+        "patchSetId": 8
+      },
+      "lineNbr": 670,
+      "author": {
+        "id": 1002222
+      },
+      "writtenOn": "2025-06-11T06:22:41Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "3f49e247_1484cd4b",
+      "revId": "5cd24b5075514bf0d61d671105d06fb2e2208848",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "8c0d4f94_054f7d48",
@@ -215,6 +389,24 @@
       "writtenOn": "2025-06-10T13:54:27Z",
       "side": 1,
       "message": "nit: Traced this comment back to 47af65a5266453153e6f96bc93798a1bc6c0a81c, perhaps we can remove the comment as well, since the globals (which i believe it applied to) are no longer there.",
+      "revId": "5cd24b5075514bf0d61d671105d06fb2e2208848",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "7ace2b3b_d64dbdbe",
+        "filename": "src/entity_manager/perform_scan.cpp",
+        "patchSetId": 8
+      },
+      "lineNbr": 31,
+      "author": {
+        "id": 1002222
+      },
+      "writtenOn": "2025-06-11T06:22:41Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "8c0d4f94_054f7d48",
       "revId": "5cd24b5075514bf0d61d671105d06fb2e2208848",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
