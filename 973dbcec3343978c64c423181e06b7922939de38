@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7d83bf10_32e22ad8",
+        "filename": "src/fru_device/fru_device.cpp",
+        "patchSetId": 11
+      },
+      "lineNbr": 842,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-06-12T08:05:34Z",
+      "side": 1,
+      "message": "nit: This debug print can go into the ```addFruArea``` function.\n\nOr perhaps make a ```addFRUAreaDBusHandler``` function as wrapper to the ```addFruArea``` function which will contain these extra checks and log statements.\n\nReasoning is that we are taking up a lot of space in this function.",
+      "revId": "973dbcec3343978c64c423181e06b7922939de38",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "baf1ab41_6c21a47a",
+        "filename": "src/fru_device/fru_device.cpp",
+        "patchSetId": 11
+      },
+      "lineNbr": 845,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-06-12T08:05:34Z",
+      "side": 1,
+      "message": "nit: comment does not apply since we are not updating a property here",
+      "revId": "973dbcec3343978c64c423181e06b7922939de38",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    }
+  ]
+}
