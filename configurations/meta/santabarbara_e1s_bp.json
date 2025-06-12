@@ -1,0 +1,268 @@
+{
+    "Exposes": [
+        {
+            "Address": "$address",
+            "Bus": "$bus",
+            "Name": "Santa Barbara E1.S BP FRU",
+            "Type": "EEPROM"
+        },
+        {
+            "Address": "0x6a",
+            "Bus": 24,
+            "Name": "E1S_BP_E1S0_TEMP_C",
+            "PowerState": "On",
+            "Thresholds": [
+                {
+                    "Direction": "less than",
+                    "Hysteresis": 0.1,
+                    "Name": "lower critical",
+                    "Severity": 1,
+                    "Value": 5.0
+                },
+                {
+                    "Direction": "greater than",
+                    "Hysteresis": 1.4,
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 70.0
+                }
+            ],
+            "Type": "NVME1000"
+        },
+        {
+            "Address": "0x6a",
+            "Bus": 25,
+            "Name": "E1S_BP_E1S1_TEMP_C",
+            "PowerState": "On",
+            "Thresholds": [
+                {
+                    "Direction": "less than",
+                    "Hysteresis": 0.1,
+                    "Name": "lower critical",
+                    "Severity": 1,
+                    "Value": 5.0
+                },
+                {
+                    "Direction": "greater than",
+                    "Hysteresis": 1.4,
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 70.0
+                }
+            ],
+            "Type": "NVME1000"
+        },
+        {
+            "Address": "0x6a",
+            "Bus": 26,
+            "Name": "E1S_BP_E1S2_TEMP_C",
+            "PowerState": "On",
+            "Thresholds": [
+                {
+                    "Direction": "less than",
+                    "Hysteresis": 0.1,
+                    "Name": "lower critical",
+                    "Severity": 1,
+                    "Value": 5.0
+                },
+                {
+                    "Direction": "greater than",
+                    "Hysteresis": 1.4,
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 70.0
+                }
+            ],
+            "Type": "NVME1000"
+        },
+        {
+            "Address": "0x6a",
+            "Bus": 27,
+            "Name": "E1S_BP_E1S3_TEMP_C",
+            "PowerState": "On",
+            "Thresholds": [
+                {
+                    "Direction": "less than",
+                    "Hysteresis": 0.1,
+                    "Name": "lower critical",
+                    "Severity": 1,
+                    "Value": 5.0
+                },
+                {
+                    "Direction": "greater than",
+                    "Hysteresis": 1.4,
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 70.0
+                }
+            ],
+            "Type": "NVME1000"
+        },
+        {
+            "Address": "0x48",
+            "Bus": 28,
+            "Labels": [
+                    "in0",
+                    "in1",
+                    "in2",
+                    "in3",
+                    "in4"
+                ],
+            "Name": "E1S_BP_ADC",
+            "Type": "ADS7830",
+            "in0_Name": "E1S_BP_P3V3_E1S0_VOLT_V",
+            "in0_Scale": 479.1030,
+            "in1_Name": "E1S_BP_P3V3_E1S1_VOLT_V",
+            "in1_Scale": 479.1030,
+            "in2_Name": "E1S_BP_P3V3_E1S2_VOLT_V",
+            "in2_Scale": 479.1030,
+            "in3_Name": "E1S_BP_P3V3_E1S3_VOLT_V",
+            "in3_Scale": 479.1030,
+            "in4_Name": "E1S_BP_P3V3_AUX_VOLT_V",
+            "in4_Scale": 479.1030
+        },
+        {
+            "Address": "0x48",
+            "Bus": 29,
+            "Name": "E1S_BP_TEMP_C",
+            "Type": "TMP75"
+        },
+        {
+            "Address": "0x41",
+            "Bus": 30,
+            "Labels": [
+                "in1",
+                "curr1",
+                "power1"
+            ],
+            "Name": "E1S_BP_P12V_E1S0",
+            "Thresholds": [
+                {
+                    "Direction": "greater than",
+                    "Label": "in1",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 13.2
+                },
+                {
+                    "Direction": "less than",
+                    "Label": "in1",
+                    "Name": "lower critical",
+                    "Severity": 1,
+                    "Value": 10.8
+                }
+            ],
+            "Type": "INA230",
+            "curr1_Name": "E1S_BP_P12V_E1S0_CURR_A",
+            "in1_Name": "E1S_BP_P12V_E1S0_VOLT_V",
+            "power1_Name": "E1S_BP_P12V_E1S0_PWR_W"
+        },
+        {
+            "Address": "0x40",
+            "Bus": 30,
+            "Labels": [
+                "in1",
+                "curr1",
+                "power1"
+            ],
+            "Name": "E1S_BP_P12V_E1S1",
+            "Thresholds": [
+                {
+                    "Direction": "greater than",
+                    "Label": "in1",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 13.2
+                },
+                {
+                    "Direction": "less than",
+                    "Label": "in1",
+                    "Name": "lower critical",
+                    "Severity": 1,
+                    "Value": 10.8
+                }
+            ],
+            "Type": "INA230",
+            "curr1_Name": "E1S_BP_P12V_E1S1_CURR_A",
+            "in1_Name": "E1S_BP_P12V_E1S1_VOLT_V",
+            "power1_Name": "E1S_BP_P12V_E1S1_PWR_W"
+        },
+        {
+            "Address": "0x45",
+            "Bus": 30,
+            "Labels": [
+                "in1",
+                "curr1",
+                "power1"
+            ],
+            "Name": "E1S_BP_P12V_E1S2",
+            "Thresholds": [
+                {
+                    "Direction": "greater than",
+                    "Label": "in1",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 13.2
+                },
+                {
+                    "Direction": "less than",
+                    "Label": "in1",
+                    "Name": "lower critical",
+                    "Severity": 1,
+                    "Value": 10.8
+                }
+            ],
+            "Type": "INA230",
+            "curr1_Name": "E1S_BP_P12V_E1S2_CURR_A",
+            "in1_Name": "E1S_BP_P12V_E1S2_VOLT_V",
+            "power1_Name": "E1S_BP_P12V_E1S2_PWR_W"
+        },
+        {
+            "Address": "0x44",
+            "Bus": 30,
+            "Labels": [
+                "in1",
+                "curr1",
+                "power1"
+            ],
+            "Name": "E1S_BP_P12V_E1S3",
+            "Thresholds": [
+                {
+                    "Direction": "greater than",
+                    "Label": "in1",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 13.2
+                },
+                {
+                    "Direction": "less than",
+                    "Label": "in1",
+                    "Name": "lower critical",
+                    "Severity": 1,
+                    "Value": 10.8
+                }
+            ],
+            "Type": "INA230",
+            "curr1_Name": "E1S_BP_P12V_E1S3_CURR_A",
+            "in1_Name": "E1S_BP_P12V_E1S3_VOLT_V",
+            "power1_Name": "E1S_BP_P12V_E1S3_PWR_W"
+        }
+    ],
+    "Name": "Santa Barbara E1.S BP",
+    "Probe": "xyz.openbmc_project.FruDevice({'BOARD_PRODUCT_NAME': 'Santa Barbara E1.S BP'})",
+    "Type": "Board",
+    "xyz.openbmc_project.Inventory.Decorator.Asset": {
+        "BuildDate": "$BOARD_MANUFACTURE_DATE",
+        "Manufacturer": "$BOARD_MANUFACTURER",
+        "Model": "$BOARD_PRODUCT_NAME",
+        "PartNumber": "$BOARD_PART_NUMBER",
+        "SerialNumber": "$BOARD_SERIAL_NUMBER",
+        "SparePartNumber": "$BOARD_INFO_AM1"
+    },
+    "xyz.openbmc_project.Inventory.Decorator.AssetTag": {
+        "AssetTag": "$PRODUCT_ASSET_TAG"
+    },
+    "xyz.openbmc_project.Inventory.Decorator.Revision": {
+        "Version": "$PRODUCT_VERSION"
+    }
+}

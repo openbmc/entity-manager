@@ -1,0 +1,167 @@
+{
+    "Exposes": [
+        {
+            "Address": "$address",
+            "Bus": "$bus",
+            "Name": "Santa Barbara PDB1 FRU",
+            "Type": "EEPROM"
+        },
+        {
+            "Address": "0x4a",
+            "Bus": 44,
+            "Name": "PDB1_TOP_TEMP_C",
+            "Thresholds": [
+                {
+                    "Direction": "greater than",
+                    "Hysteresis": 0.9,
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 45
+                },
+                {
+                    "Direction": "less than",
+                    "Hysteresis": 0.1,
+                    "Name": "lower critical",
+                    "Severity": 1,
+                    "Value": 5
+                }
+            ],
+            "Type": "TMP75"
+        },
+        {
+            "Address": "0x4e",
+            "Bus": 44,
+            "Name": "PDB1_BOT_TEMP_C",
+            "Thresholds": [
+                {
+                    "Direction": "greater than",
+                    "Hysteresis": 0.9,
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 45
+                },
+                {
+                    "Direction": "less than",
+                    "Hysteresis": 0.1,
+                    "Name": "lower critical",
+                    "Severity": 1,
+                    "Value": 5
+                }
+            ],
+            "Type": "TMP75"
+        },
+        {
+            "Address": "0x42",
+            "Bus": 45,
+            "Labels": [
+                "in1"
+            ],
+            "Name": "PDB1_P52V_SENSE",
+            "Type": "INA238",
+            "in1_Name": "PDB1_P52V_SENSE_VOLT_V"
+        },
+        {
+            "Address": "0x43",
+            "Bus": 45,
+            "Labels": [
+                "in1"
+            ],
+            "Name": "PDB1_GND_SENSE",
+            "Type": "INA238",
+            "in1_Name": "PDB1_GND_SENSE_VOLT_V"
+        },
+        {
+            "Address": "0x4c",
+            "Bus": 45,
+            "Labels": [
+                "curr1"
+            ],
+            "Name": "PDB1_BUSBAR_TSENSE_P1",
+            "Type": "INA238",
+            "curr1_Name": "PDB1_BUSBAR_TSENSE_P1_CURR_A"
+        },
+        {
+            "Address": "0x4d",
+            "Bus": 45,
+            "Labels": [
+                "curr1"
+            ],
+            "Name": "PDB1_BUSBAR_TSENSE_P2",
+            "Type": "INA238",
+            "curr1_Name": "PDB1_BUSBAR_TSENSE_P2_CURR_A"
+        },
+        {
+            "Address": "0x45",
+            "Bus": 46,
+            "Labels": [
+                "in1",
+                "curr1",
+                "power1"
+            ],
+            "Name": "PDB1_P52V_ASIC0_SENSE",
+            "Type": "INA238",
+            "curr1_Name": "PDB1_P52V_ASIC0_SENSE_CURR_A",
+            "in1_Name": "PDB1_P52V_ASIC0_SENSE_VOLT_V",
+            "power1_Name": "PDB1_P52V_ASIC0_SENSE_PWR_W"
+        },
+        {
+            "Address": "0x44",
+            "Bus": 46,
+            "Labels": [
+                "in1",
+                "curr1",
+                "power1"
+            ],
+            "Name": "PDB1_P52V_ASIC1_SENSE",
+            "Type": "INA238",
+            "curr1_Name": "PDB1_P52V_ASIC1_SENSE_CURR_A",
+            "in1_Name": "PDB1_P52V_ASIC1_SENSE_VOLT_V",
+            "power1_Name": "PDB1_P52V_ASIC1_SENSE_PWR_W"
+        },
+        {
+            "Address": "0x41",
+            "Bus": 46,
+            "Labels": [
+                "in1",
+                "curr1",
+                "power1"
+            ],
+            "Name": "PDB1_P52V_ASIC2_SENSE",
+            "Type": "INA238",
+            "curr1_Name": "PDB1_P52V_ASIC2_SENSE_CURR_A",
+            "in1_Name": "PDB1_P52V_ASIC2_SENSE_VOLT_V",
+            "power1_Name": "PDB1_P52V_ASIC2_SENSE_PWR_W"
+        },
+        {
+            "Address": "0x40",
+            "Bus": 46,
+            "Labels": [
+                "in1",
+                "curr1",
+                "power1"
+            ],
+            "Name": "PDB1_P52V_ASIC3_SENSE",
+            "Type": "INA238",
+            "curr1_Name": "PDB1_P52V_ASIC3_SENSE_CURR_A",
+            "in1_Name": "PDB1_P52V_ASIC3_SENSE_VOLT_V",
+            "power1_Name": "PDB1_P52V_ASIC3_SENSE_PWR_W"
+        }
+    ],
+    "Name": "Santa Barbara PDB1",
+    "Probe": "xyz.openbmc_project.FruDevice({'BOARD_PRODUCT_NAME': 'Santa Barbara PDB1'})",
+    "Type": "Board",
+    "xyz.openbmc_project.Inventory.Decorator.Asset": {
+        "BuildDate": "$BOARD_MANUFACTURE_DATE",
+        "Manufacturer": "$BOARD_MANUFACTURER",
+        "Model": "$BOARD_PRODUCT_NAME",
+        "PartNumber": "$BOARD_PART_NUMBER",
+        "SerialNumber": "$BOARD_SERIAL_NUMBER",
+        "SparePartNumber": "$BOARD_INFO_AM1"
+    },
+    "xyz.openbmc_project.Inventory.Decorator.AssetTag": {
+        "AssetTag": "$PRODUCT_ASSET_TAG"
+    },
+    "xyz.openbmc_project.Inventory.Decorator.Revision": {
+        "Version": "$PRODUCT_VERSION"
+    }
+}
