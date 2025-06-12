@@ -1,0 +1,84 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9e5699a4_87ceb5af",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 13
+      },
+      "lineNbr": 24,
+      "author": {
+        "id": 1000009
+      },
+      "writtenOn": "2025-06-12T01:21:37Z",
+      "side": 1,
+      "message": "This isn\u0027t just one port though - your defining a topology here. I think we have a few things to resolve here:\n\n- Should this be 1 port or many?\n- If many perhaps we should use a list of integers rather than a string",
+      "revId": "d4ffda25111a65bca1e63fbaa01aa1c526d1c462",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8e9f8b82_29c4b5ac",
+        "filename": "schemas/mctp.json",
+        "patchSetId": 13
+      },
+      "lineNbr": 51,
+      "author": {
+        "id": 1000009
+      },
+      "writtenOn": "2025-06-12T01:21:37Z",
+      "side": 1,
+      "message": "Can we require the value match `devpath` (i.e. without the preceding /sys)?\n\nhttps://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/tree/Documentation/admin-guide/sysfs-rules.rst?h\u003dv6.15#n47\n\n(the whole document is worth reading)\n\n`mctpreactor` can do what needs to be done with the `devpath` value to translate it into a filesystem access.",
+      "revId": "d4ffda25111a65bca1e63fbaa01aa1c526d1c462",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ae123b80_8e34bcb6",
+        "filename": "schemas/mctp.json",
+        "patchSetId": 13
+      },
+      "lineNbr": 57,
+      "author": {
+        "id": 1000009
+      },
+      "writtenOn": "2025-06-12T01:21:37Z",
+      "side": 1,
+      "message": "This example provided in the commit message isn\u0027t just one port though - your defining a topology (`1.2.5`). I think we have a few things to resolve here:\n\n- Should this be 1 port or many?\n- If many perhaps we should use a list of integers rather than a string",
+      "range": {
+        "startLine": 54,
+        "startChar": 16,
+        "endLine": 57,
+        "endChar": 18
+      },
+      "revId": "d4ffda25111a65bca1e63fbaa01aa1c526d1c462",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a1a2a319_65d16b70",
+        "filename": "schemas/mctp.json",
+        "patchSetId": 13
+      },
+      "lineNbr": 62,
+      "author": {
+        "id": 1000009
+      },
+      "writtenOn": "2025-06-12T01:21:37Z",
+      "side": 1,
+      "message": "Why `InterfaceNum` rather than `Interface`? Is there some constraint that prevents use of `Interface`?",
+      "range": {
+        "startLine": 62,
+        "startChar": 16,
+        "endLine": 62,
+        "endChar": 30
+      },
+      "revId": "d4ffda25111a65bca1e63fbaa01aa1c526d1c462",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    }
+  ]
+}
