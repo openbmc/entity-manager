@@ -16,6 +16,24 @@
       "message": "How does the function handle ```ENABLE_FRU_AREA_RESIZE``` flag which was present in the previous implementation.\n\nSince some OEMs use their FRU eeprom for other stuff (besides FRU)\nand would need to ensure the FRU data does not move or grow.\n\nNot saying that it\u0027s a good thing to do this but perhaps we should try to keep the existing features available.\n\nShould only need a small check to compare the previous to the new area size.",
       "revId": "790d6f95158139ab9e99efd7fddc9fec5c4f2b7d",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2a5ccf49_ec8e0c3f",
+        "filename": "src/fru_device/fru_device.cpp",
+        "patchSetId": 5
+      },
+      "lineNbr": 1328,
+      "author": {
+        "id": 1001426
+      },
+      "writtenOn": "2025-06-12T10:00:28Z",
+      "side": 1,
+      "message": "Agree. I have that in my mind.\nIf ENABLE_FRU_AREA_RESIZE is not set then I\u0027m thinking of writing the data to existing available size only if it fits otherwise fail gracefully.\n\nAnother thing, if the field itself is missing, then currently its being handled by adding the missing field but I guess if ENABLE_FRU_AREA_RESIZE  isn\u0027t selected then the handling will not work \u0026 again fail gracefully.\n\nIdeally I should have being done by specifying the upper limit of FRU.\nEither ways, will add conditions to honor ENABLE_FRU_AREA_RESIZE flag.",
+      "parentUuid": "74025a10_a04051b9",
+      "revId": "790d6f95158139ab9e99efd7fddc9fec5c4f2b7d",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }
