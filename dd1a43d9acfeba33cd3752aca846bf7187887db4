@@ -18,6 +18,24 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "ee19ad38_3af12226",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 19,
+      "author": {
+        "id": 1001497
+      },
+      "writtenOn": "2025-06-12T13:01:31Z",
+      "side": 1,
+      "message": "Hi,\nThanks for the comment.\nI updated it after removing the confidential things.",
+      "parentUuid": "13086746_5a2460d3",
+      "revId": "dd1a43d9acfeba33cd3752aca846bf7187887db4",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "b8eb76ff_29a27a55",
@@ -52,6 +70,42 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "7ccfc162_5859a612",
+        "filename": "src/fru_device/fru_utils.cpp",
+        "patchSetId": 2
+      },
+      "lineNbr": 366,
+      "author": {
+        "id": 1001497
+      },
+      "writtenOn": "2025-06-12T13:01:31Z",
+      "side": 1,
+      "message": "Hello,\nCreated a new .cpp file.",
+      "parentUuid": "32d0f22e_67a87ba3",
+      "revId": "dd1a43d9acfeba33cd3752aca846bf7187887db4",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "aaeb6304_7ce2be3b",
+        "filename": "src/fru_device/fru_utils.cpp",
+        "patchSetId": 2
+      },
+      "lineNbr": 366,
+      "author": {
+        "id": 1001497
+      },
+      "writtenOn": "2025-06-12T13:01:31Z",
+      "side": 1,
+      "message": "Hi,\nRenamed the function name.",
+      "parentUuid": "b8eb76ff_29a27a55",
+      "revId": "dd1a43d9acfeba33cd3752aca846bf7187887db4",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "68555afb_18526313",
@@ -69,6 +123,24 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "30659711_94538424",
+        "filename": "src/fru_device/fru_utils.cpp",
+        "patchSetId": 2
+      },
+      "lineNbr": 440,
+      "author": {
+        "id": 1001497
+      },
+      "writtenOn": "2025-06-12T13:01:31Z",
+      "side": 1,
+      "message": "Hello,\nModified the code to add log2:error",
+      "parentUuid": "68555afb_18526313",
+      "revId": "dd1a43d9acfeba33cd3752aca846bf7187887db4",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "013775c4_8d4af9c9",
@@ -82,6 +154,24 @@
       "writtenOn": "2025-06-10T14:55:21Z",
       "side": 1,
       "message": "Since this is specific to OCP DC-SCM spec, maybe we can choose another name for the variable to clarify.\n\nAlso a comment referencing the spec could be helpful to avoid the need to git blame when encountering this table.\n\nSince the ```fru_utils.hpp``` seems to be specific to ipmi fru,\nwe could also have a new .hpp (and .cpp) for the DC-SCM related things.",
+      "revId": "dd1a43d9acfeba33cd3752aca846bf7187887db4",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "9a601d9b_a4df3dc0",
+        "filename": "src/fru_device/fru_utils.hpp",
+        "patchSetId": 2
+      },
+      "lineNbr": 94,
+      "author": {
+        "id": 1001497
+      },
+      "writtenOn": "2025-06-12T13:01:31Z",
+      "side": 1,
+      "message": "Hi,\nI renamed the variable, added comment and created new .hpp file.",
+      "parentUuid": "013775c4_8d4af9c9",
       "revId": "dd1a43d9acfeba33cd3752aca846bf7187887db4",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
