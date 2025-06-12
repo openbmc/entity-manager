@@ -144,6 +144,30 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "d592c8d5_4acf08c5",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 24,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-06-12T14:05:12Z",
+      "side": 1,
+      "message": "Closing this comment thread since it\u0027s been inactive for 2 months. Let me know if there are still any concerns 😊",
+      "parentUuid": "6e4fa3a8_d556151a",
+      "range": {
+        "startLine": 20,
+        "startChar": 0,
+        "endLine": 24,
+        "endChar": 0
+      },
+      "revId": "b0d09e38d8c682cf37b3f209bdc65cfb65504181",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "3d12670c_fd36dc22",
@@ -193,6 +217,24 @@
       "side": 1,
       "message": "\u003e benchmarks please\n\nAgree, i can provide benchmarks to show there is some measurable benefit.\n\n\u003e +1, and show some effort that we\u0027ve tried to optimize this in other ways.\n\nConverting the .json files into .cpp files during the build step would optimize it in another way. Then EM could just use that as default and when people develop their config in ```/usr/share/entity-manager/configurations```, EM could use that to override that which is built into the binary.\n\nThis would eliminate the parsing step. However it is not optimal\nsince there would still be configuration which is not needed.\n\n\u003e  This seems counter to the entity-manager stated goal of\n  \"Reduce the amount of code that is different between platforms\"\n  This would make the config different.\n\nThere should be no observable difference besides a reduced EM startup delay,\nif this option is correctly configured and all required + common configurations are present.\n\nI view EM config in the same way as devicetrees. There is no need to have a devicetree for system B on system A if system A will never be a system B.\n\nCan you elaborate how the stated goal applies in this situation and which benefit we gain by having configuration as part of the image if it will never be probed?",
       "parentUuid": "d488de00_3784c850",
+      "revId": "b0d09e38d8c682cf37b3f209bdc65cfb65504181",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "ada9fab3_42edd042",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 25,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-06-12T14:05:12Z",
+      "side": 1,
+      "message": "\u003e benchmarks please\n\nRefer to generic nlohmann json benchmarks for json parsing. The json parsing can be very time-consuming 😊.\n\n\u003e  This seems counter to the entity-manager stated goal of\n\"Reduce the amount of code that is different between platforms\"\n\nThe code is still the same. The effective configuration remains the same if the feature is correctly configured.\n\n\u003e show some effort that we\u0027ve tried to optimize this in other ways.\n\nAfter looking at the EM codebase, i am doubtful that there is much room for optimization. Probably needs some major cleanup. Compiling all the json into the EM could result in a good speedup but the EM codebase is not ready and then we would also need the inotify in case folks overwrite configuration on the BMC, then it needs to be parsed again.\n\nThen there is still the tradeoff with the binary size of EM bloating due to the included configuration.\n\n\u003e Can you elaborate how the stated goal applies in this situation and which benefit we gain by having configuration as part of the image if it will never be probed?\n\nSince there is no responses to the discussion in this thread i will close the thread after 2+ months, let me know if there are any other concerns 😊",
+      "parentUuid": "957cf285_b470c155",
       "revId": "b0d09e38d8c682cf37b3f209bdc65cfb65504181",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
@@ -404,6 +446,24 @@
       "side": 1,
       "message": "## existing policy still the default\n\n\u003e the purpose of entity manager supporting multiple systems with a single binary.\n\nI think it is fine to have this goal and policy. The patch intent is to have this as default like before.\n\n## concern about untested and unreviewed configuration\n\nBut there is a use-case for people who get nervous around having configuration as part of their image that they never validated or reviewed. For those people it might make sense to be selective in which hardware EM supports.\n\nIf an unqualified component / psu / whatever is plugged into a system, or an upstream configuration is just badly written, what happens at runtime, that will be  a surprise.",
       "parentUuid": "8c1fc6c7_424a42ef",
+      "revId": "b0d09e38d8c682cf37b3f209bdc65cfb65504181",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "3adb885c_18470af9",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-06-12T14:05:12Z",
+      "side": 1,
+      "message": "Closing this comment thread since it\u0027s been inactive for 2 months. Let me know if there are still any concerns 😊",
+      "parentUuid": "3ba3cc98_288b8e41",
       "revId": "b0d09e38d8c682cf37b3f209bdc65cfb65504181",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
