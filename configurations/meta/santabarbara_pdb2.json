@@ -1,0 +1,223 @@
+{
+    "Exposes": [
+        {
+            "Address": "$address",
+            "Bus": "$bus",
+            "Name": "Santa Barbara PDB2 FRU",
+            "Type": "EEPROM"
+        },
+        {
+            "Address": "0x4a",
+            "Bus": 40,
+            "Name": "PDB2_TOP_TEMP_C",
+            "Thresholds": [
+                {
+                    "Direction": "greater than",
+                    "Hysteresis": 0.9,
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 45
+                },
+                {
+                    "Direction": "less than",
+                    "Hysteresis": 0.1,
+                    "Name": "lower critical",
+                    "Severity": 1,
+                    "Value": 5
+                }
+            ],
+            "Type": "TMP75"
+        },
+        {
+            "Address": "0x4e",
+            "Bus": 40,
+            "Name": "PDB2_BOT_TEMP_C",
+            "Thresholds": [
+                {
+                    "Direction": "greater than",
+                    "Hysteresis": 0.9,
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 45
+                },
+                {
+                    "Direction": "less than",
+                    "Hysteresis": 0.1,
+                    "Name": "lower critical",
+                    "Severity": 1,
+                    "Value": 5
+                }
+            ],
+            "Type": "TMP75"
+        },
+        {
+            "Address": "0x40",
+            "Bus": 41,
+            "Labels": [
+                "in1",
+                "curr1",
+                "power1"
+            ],
+            "Name": "PDB2_P12V_FAN0",
+            "Thresholds": [
+                {
+                    "Direction": "greater than",
+                    "Label": "in1",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 13.2
+                },
+                {
+                    "Direction": "less than",
+                    "Label": "in1",
+                    "Name": "lower critical",
+                    "Severity": 1,
+                    "Value": 10.8
+                }
+            ],
+            "Type": "INA230",
+            "curr1_Name": "PDB2_P12V_FAN0_CURR_A",
+            "in1_Name": "PDB2_P12V_FAN0_VOLT_V",
+            "power1_Name": "PDB2_P12V_FAN0_PWR_W"
+        },
+        {
+            "Address": "0x43",
+            "Bus": 41,
+            "Labels": [
+                "in1",
+                "curr1",
+                "power1"
+            ],
+            "Name": "PDB2_P12V_FAN1",
+            "Thresholds": [
+                {
+                    "Direction": "greater than",
+                    "Label": "in1",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 13.2
+                },
+                {
+                    "Direction": "less than",
+                    "Label": "in1",
+                    "Name": "lower critical",
+                    "Severity": 1,
+                    "Value": 10.8
+                }
+            ],
+            "Type": "INA230",
+            "curr1_Name": "PDB2_P12V_FAN1_CURR_A",
+            "in1_Name": "PDB2_P12V_FAN1_VOLT_V",
+            "power1_Name": "PDB2_P12V_FAN1_PWR_W"
+        },
+        {
+            "Address": "0x44",
+            "Bus": 41,
+            "Labels": [
+                "in1",
+                "curr1",
+                "power1"
+            ],
+            "Name": "PDB2_P12V_FAN2",
+            "Thresholds": [
+                {
+                    "Direction": "greater than",
+                    "Label": "in1",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 13.2
+                },
+                {
+                    "Direction": "less than",
+                    "Label": "in1",
+                    "Name": "lower critical",
+                    "Severity": 1,
+                    "Value": 10.8
+                }
+            ],
+            "Type": "INA230",
+            "curr1_Name": "PDB2_P12V_FAN2_CURR_A",
+            "in1_Name": "PDB2_P12V_FAN2_VOLT_V",
+            "power1_Name": "PDB2_P12V_FAN2_PWR_W"
+        },
+        {
+            "Address": "0x47",
+            "Bus": 41,
+            "Labels": [
+                "in1",
+                "curr1",
+                "power1"
+            ],
+            "Name": "PDB2_P12V_FAN3",
+            "Thresholds": [
+                {
+                    "Direction": "greater than",
+                    "Label": "in1",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 13.2
+                },
+                {
+                    "Direction": "less than",
+                    "Label": "in1",
+                    "Name": "lower critical",
+                    "Severity": 1,
+                    "Value": 10.8
+                }
+            ],
+            "Type": "INA230",
+            "curr1_Name": "PDB2_P12V_FAN3_CURR_A",
+            "in1_Name": "PDB2_P12V_FAN3_VOLT_V",
+            "power1_Name": "PDB2_P12V_FAN3_PWR_W"
+        },
+        {
+            "Address": "0x62",
+            "Bus": 42,
+            "Labels": [
+                "iout1",
+                "pout1",
+                "temp1",
+                "vout1"
+            ],
+            "Name": "PDB2_P12V_BRICK0",
+            "Type": "pmbus",
+            "iout1_Name": "PDB2_P12V_BRICK0_CURR_A",
+            "pout1_Name": "PDB2_P12V_BRICK0_POUT_PWR_W",
+            "temp1_Name": "PDB2_P12V_BRICK0_TEMP_C",
+            "vout1_Name": "PDB2_P12V_BRICK0_VOUT_VOLT_V"
+        },
+        {
+            "Address": "0x67",
+            "Bus": 42,
+            "Labels": [
+                "iout1",
+                "pout1",
+                "temp1",
+                "vout1"
+            ],
+            "Name": "PDB2_P12V_BRICK1",
+            "Type": "pmbus",
+            "iout1_Name": "PDB2_P12V_BRICK1_CURR_A",
+            "pout1_Name": "PDB2_P12V_BRICK1_POUT_PWR_W",
+            "temp1_Name": "PDB2_P12V_BRICK1_TEMP_C",
+            "vout1_Name": "PDB2_P12V_BRICK1_VOUT_VOLT_V"
+        }
+    ],
+    "Name": "Santa Barbara PDB2",
+    "Probe": "xyz.openbmc_project.FruDevice({'BOARD_PRODUCT_NAME': 'Santa Barbara PDB2'})",
+    "Type": "Board",
+    "xyz.openbmc_project.Inventory.Decorator.Asset": {
+        "BuildDate": "$BOARD_MANUFACTURE_DATE",
+        "Manufacturer": "$BOARD_MANUFACTURER",
+        "Model": "$BOARD_PRODUCT_NAME",
+        "PartNumber": "$BOARD_PART_NUMBER",
+        "SerialNumber": "$BOARD_SERIAL_NUMBER",
+        "SparePartNumber": "$BOARD_INFO_AM1"
+    },
+    "xyz.openbmc_project.Inventory.Decorator.AssetTag": {
+        "AssetTag": "$PRODUCT_ASSET_TAG"
+    },
+    "xyz.openbmc_project.Inventory.Decorator.Revision": {
+        "Version": "$PRODUCT_VERSION"
+    }
+}

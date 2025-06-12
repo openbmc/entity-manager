@@ -1,0 +1,426 @@
+{
+    "Exposes": [
+        {
+            "Address": "$address",
+            "Bus": "$bus",
+            "Name": "Santa Barbara MB FRU",
+            "Type": "EEPROM"
+        },
+        {
+            "BridgeGpio": [
+                {
+                    "Name": "rtc-battery-voltage-read-enable",
+                    "Polarity": "High",
+                    "SetupTime": 1
+                }
+            ],
+            "Index": 7,
+            "Name": "MB_P3V_BAT_VOLT_V",
+            "PollRate": 86400,
+            "ScaleFactor": 0.333333333,
+            "Thresholds": [
+                {
+                    "Direction": "greater than",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 3.4
+                },
+                {
+                    "Direction": "less than",
+                    "Name": "lower critical",
+                    "Severity": 1,
+                    "Value": 2.6
+                }
+            ],
+            "Type": "ADC"
+        },
+        {
+            "Address": "0x40",
+            "Bus": 19,
+            "Labels": [
+                "in1",
+                "curr1",
+                "power1"
+            ],
+            "Name": "MB_P12V_E1S1",
+            "Thresholds": [
+                {
+                    "Direction": "greater than",
+                    "Label": "in1",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 13.2
+                },
+                {
+                    "Direction": "less than",
+                    "Label": "in1",
+                    "Name": "lower critical",
+                    "Severity": 1,
+                    "Value": 10.8
+                }
+            ],
+            "Type": "INA230",
+            "curr1_Name": "MB_P12V_E1S1_CURR_A",
+            "in1_Name": "MB_P12V_E1S1_VOLT_V",
+            "power1_Name": "MB_P12V_E1S1_PWR_W"
+        },
+        {
+            "Address": "0x42",
+            "Bus": 19,
+            "Labels": [
+                "in1",
+                "curr1",
+                "power1"
+            ],
+            "Name": "MB_P12V_E1S0",
+            "Thresholds": [
+                {
+                    "Direction": "greater than",
+                    "Label": "in1",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 13.2
+                },
+                {
+                    "Direction": "less than",
+                    "Label": "in1",
+                    "Name": "lower critical",
+                    "Severity": 1,
+                    "Value": 10.8
+                }
+            ],
+            "Type": "INA230",
+            "curr1_Name": "MB_P12V_E1S0_CURR_A",
+            "in1_Name": "MB_P12V_E1S0_VOLT_V",
+            "power1_Name": "MB_P12V_E1S0_PWR_W"
+        },
+        {
+            "Address": "0x44",
+            "Bus": 19,
+            "Labels": [
+                "in1",
+                "curr1",
+                "power1"
+            ],
+            "Name": "MB_P12V_OCP_SFF",
+            "Thresholds": [
+                {
+                    "Direction": "greater than",
+                    "Label": "in1",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 13.2
+                },
+                {
+                    "Direction": "less than",
+                    "Label": "in1",
+                    "Name": "lower critical",
+                    "Severity": 1,
+                    "Value": 10.8
+                }
+            ],
+            "Type": "INA230",
+            "curr1_Name": "MB_P12V_OCP_SFF_CURR_A",
+            "in1_Name": "MB_P12V_OCP_SFF_VOLT_V",
+            "power1_Name": "MB_P12V_OCP_SFF_PWR_W"
+        },
+        {
+            "Address": "0x4c",
+            "Bus": 19,
+            "Name": "MB_OUTLET_TEMP_C",
+            "Thresholds": [
+                {
+                    "Direction": "less than",
+                    "Hysteresis": 0.1,
+                    "Name": "lower critical",
+                    "Severity": 1,
+                    "Value": 5.0
+                },
+                {
+                    "Direction": "greater than",
+                    "Hysteresis": 1.6,
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 80.0
+                }
+            ],
+            "Type": "TMP75"
+        },
+        {
+            "Address": "0x4e",
+            "Bus": 19,
+            "Name": "MB_INLET_TEMP_C",
+            "Thresholds": [
+                {
+                    "Direction": "less than",
+                    "Hysteresis": 0.1,
+                    "Name": "lower critical",
+                    "Severity": 1,
+                    "Value": 5.0
+                },
+                {
+                    "Direction": "greater than",
+                    "Hysteresis": 1.2,
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 60.0
+                }
+            ],
+            "Type": "TMP75"
+        },
+        {
+            "Address": "0x48",
+            "Bus": 19,
+            "Labels": [
+                    "in0",
+                    "in1",
+                    "in2",
+                    "in3",
+                    "in4",
+                    "in5",
+                    "in6",
+                    "in7"
+                ],
+            "Name": "MB_ADC0",
+            "Type": "ADS7830",
+            "in0_Name": "MB_P3V3_OCP_SFF_VOLT_V",
+            "in0_Scale": 410.6776,
+            "in1_Name": "MB_P3V3_E1S0_VOLT_V",
+            "in1_Scale": 410.6776,
+            "in2_Name": "MB_P3V3_E1S1_VOLT_V",
+            "in2_Scale": 410.6776,
+            "in3_Name": "MB_PVDD33_S5_VOLT_V",
+            "in3_Scale": 410.6776,
+            "in4_Name": "MB_PVDD18_S5_VOLT_V",
+            "in4_Scale": 750.4690,
+            "in5_Name": "MB_MCIO_1A_CARD_VOLT_V",
+            "in6_Name": "MB_MCIO_1B_CARD_VOLT_V",
+            "in7_Name": "MB_MCIO_0A_CARD_VOLT_V"
+        },
+        {
+            "Address": "0x4a",
+            "Bus": 19,
+            "Labels": [
+                    "in0",
+                    "in1",
+                    "in2",
+                    "in3",
+                    "in4",
+                    "in5"
+                ],
+            "Name": "MB_ADC1",
+            "Type": "ADS7830",
+            "in0_Name": "MB_MCIO_2A_CARD_VOLT_V",
+            "in1_Name": "MB_MCIO_2B_CARD_VOLT_V",
+            "in2_Name": "MB_MCIO_3A_CARD_VOLT_V",
+            "in3_Name": "MB_MCIO_3B_CARD_VOLT_V",
+            "in4_Name": "MB_MCIO_4A_CARD_VOLT_V",
+            "in5_Name": "MB_MCIO_4B_CARD_VOLT_V"
+        },
+        {
+            "Address": "0x6a",
+            "Bus": 20,
+            "Name": "MB_E1S0_TEMP_C",
+            "PowerState": "On",
+            "Thresholds": [
+                {
+                    "Direction": "less than",
+                    "Hysteresis": 0.1,
+                    "Name": "lower critical",
+                    "Severity": 1,
+                    "Value": 5.0
+                },
+                {
+                    "Direction": "greater than",
+                    "Hysteresis": 1.4,
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 70.0
+                }
+            ],
+            "Type": "NVME1000"
+        },
+        {
+            "Address": "0x6a",
+            "Bus": 21,
+            "Name": "MB_E1S1_TEMP_C",
+            "PowerState": "On",
+            "Thresholds": [
+                {
+                    "Direction": "less than",
+                    "Hysteresis": 0.1,
+                    "Name": "lower critical",
+                    "Severity": 1,
+                    "Value": 5.0
+                },
+                {
+                    "Direction": "greater than",
+                    "Hysteresis": 1.4,
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 70.0
+                }
+            ],
+            "Type": "NVME1000"
+        },
+        {
+            "Address": "0x40",
+            "Bus": 22,
+            "Labels": [
+                "in1",
+                "curr1",
+                "power1"
+            ],
+            "Name": "MB_P12V_FAN0",
+            "Thresholds": [
+                {
+                    "Direction": "greater than",
+                    "Label": "in1",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 13.2
+                },
+                {
+                    "Direction": "less than",
+                    "Label": "in1",
+                    "Name": "lower critical",
+                    "Severity": 1,
+                    "Value": 10.8
+                }
+            ],
+            "Type": "INA230",
+            "curr1_Name": "MB_P12V_FAN0_CURR_A",
+            "in1_Name": "MB_P12V_FAN0_VOLT_V",
+            "power1_Name": "MB_P12V_FAN0_PWR_W"
+        },
+        {
+            "Address": "0x42",
+            "Bus": 22,
+            "Labels": [
+                "in1",
+                "curr1",
+                "power1"
+            ],
+            "Name": "MB_P12V_FAN1",
+            "Thresholds": [
+                {
+                    "Direction": "greater than",
+                    "Label": "in1",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 13.2
+                },
+                {
+                    "Direction": "less than",
+                    "Label": "in1",
+                    "Name": "lower critical",
+                    "Severity": 1,
+                    "Value": 10.8
+                }
+            ],
+            "Type": "INA230",
+            "curr1_Name": "MB_P12V_FAN1_CURR_A",
+            "in1_Name": "MB_P12V_FAN1_VOLT_V",
+            "power1_Name": "MB_P12V_FAN1_PWR_W"
+        },
+        {
+            "Address": "0x44",
+            "Bus": 22,
+            "Labels": [
+                "in1",
+                "curr1",
+                "power1"
+            ],
+            "Name": "MB_P12V_FAN2",
+            "Thresholds": [
+                {
+                    "Direction": "greater than",
+                    "Label": "in1",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 13.2
+                },
+                {
+                    "Direction": "less than",
+                    "Label": "in1",
+                    "Name": "lower critical",
+                    "Severity": 1,
+                    "Value": 10.8
+                }
+            ],
+            "Type": "INA230",
+            "curr1_Name": "MB_P12V_FAN2_CURR_A",
+            "in1_Name": "MB_P12V_FAN2_VOLT_V",
+            "power1_Name": "MB_P12V_FAN2_PWR_W"
+        },
+        {
+            "Address": "0x46",
+            "Bus": 22,
+            "Labels": [
+                "in1",
+                "curr1",
+                "power1"
+            ],
+            "Name": "MB_P12V_FAN3",
+            "Thresholds": [
+                {
+                    "Direction": "greater than",
+                    "Label": "in1",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 13.2
+                },
+                {
+                    "Direction": "less than",
+                    "Label": "in1",
+                    "Name": "lower critical",
+                    "Severity": 1,
+                    "Value": 10.8
+                }
+            ],
+            "Type": "INA230",
+            "curr1_Name": "MB_P12V_FAN3_CURR_A",
+            "in1_Name": "MB_P12V_FAN3_VOLT_V",
+            "power1_Name": "MB_P12V_FAN3_PWR_W"
+        },
+        {
+            "Address": "0x48",
+            "Bus": 22,
+            "Labels": [
+                    "in0",
+                    "in1",
+                    "in2",
+                    "in3",
+                    "in4"
+                ],
+            "Name": "MB_ADC2",
+            "Type": "ADS7830",
+            "in0_Name": "MB_P12V_AUX_VOLT_V",
+            "in0_Scale": 112.3596,
+            "in1_Name": "MB_P5V_AUX_VOLT_V",
+            "in1_Scale": 271.7391,
+            "in2_Name": "MB_P3V3_AUX_VOLT_V",
+            "in2_Scale": 410.6776,
+            "in3_Name": "MB_P1V8_LDO_VOLT_V",
+            "in3_Scale": 750.4690,
+            "in4_Name": "MB_P1V_LDO_VOLT_V"
+        }
+    ],
+    "Name": "Santa Barbara Chassis",
+    "Probe": "xyz.openbmc_project.FruDevice({'BOARD_PRODUCT_NAME': 'Santa Barbara MB'})",
+    "Type": "Board",
+    "xyz.openbmc_project.Inventory.Decorator.Asset": {
+        "BuildDate": "$BOARD_MANUFACTURE_DATE",
+        "Manufacturer": "$BOARD_MANUFACTURER",
+        "Model": "$BOARD_PRODUCT_NAME",
+        "PartNumber": "$BOARD_PART_NUMBER",
+        "SerialNumber": "$BOARD_SERIAL_NUMBER",
+        "SparePartNumber": "$BOARD_INFO_AM1"
+    },
+    "xyz.openbmc_project.Inventory.Decorator.AssetTag": {
+        "AssetTag": "$PRODUCT_ASSET_TAG"
+    },
+    "xyz.openbmc_project.Inventory.Decorator.Revision": {
+        "Version": "$PRODUCT_VERSION"
+    }
+}
