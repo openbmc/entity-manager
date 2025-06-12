@@ -16,6 +16,125 @@
       "message": "Hi,\nThank you for the comment. Updated the code as per the review comments.",
       "revId": "d3ae0a12b95418b15d72bcc58f2bc3681f958f48",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "65ab3fcb_222212bd",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-06-12T13:38:07Z",
+      "side": 1,
+      "message": "Thank you 😊\n\nOnly a few smaller comments.",
+      "revId": "d3ae0a12b95418b15d72bcc58f2bc3681f958f48",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "987f7e85_9f3ac285",
+        "filename": "src/fru_device/fru_dcscm.cpp",
+        "patchSetId": 4
+      },
+      "lineNbr": 24,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-06-12T13:38:07Z",
+      "side": 1,
+      "message": "nit: we can use a namespace here and in the header aswell\n\nto avoid any name collisions with other parts of the FRU device codebase.",
+      "revId": "d3ae0a12b95418b15d72bcc58f2bc3681f958f48",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "299c08c8_c0839f00",
+        "filename": "src/fru_device/fru_dcscm.cpp",
+        "patchSetId": 4
+      },
+      "lineNbr": 150,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-06-12T13:38:07Z",
+      "side": 1,
+      "message": "This does not look like normal usage of lg2::error, \nin other places it looks more like:\n```\nlg2::error(\"message {VALUE1} {VALUE2}\", \"VALUE1\", x \"VALUE2\", other);\n```\n\nAre you sure it is right how you wrote it?",
+      "revId": "d3ae0a12b95418b15d72bcc58f2bc3681f958f48",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4891f49c_631dcebb",
+        "filename": "src/fru_device/fru_dcscm.cpp",
+        "patchSetId": 4
+      },
+      "lineNbr": 160,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-06-12T13:38:07Z",
+      "side": 1,
+      "message": "lg2::error",
+      "revId": "d3ae0a12b95418b15d72bcc58f2bc3681f958f48",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "fd15fd26_c14d2807",
+        "filename": "src/fru_device/fru_dcscm.cpp",
+        "patchSetId": 4
+      },
+      "lineNbr": 174,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-06-12T13:38:07Z",
+      "side": 1,
+      "message": "This looks like almost the same thing from line 140.\n\nThe error message here is fairly elaborate with formatting and such.\n\nMaybe it can go in a separate function since it\u0027s consuming almost 10 lines here for an error message.",
+      "revId": "d3ae0a12b95418b15d72bcc58f2bc3681f958f48",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e58bd9cc_f95d9f4d",
+        "filename": "src/fru_device/fru_dcscm.hpp",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-06-12T13:38:07Z",
+      "side": 1,
+      "message": "gerrit shows that the file mode is executable instead of regular file.\nIt should be regular file, right?",
+      "revId": "d3ae0a12b95418b15d72bcc58f2bc3681f958f48",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "77a07372_e0a578ff",
+        "filename": "src/fru_device/fru_utils.hpp",
+        "patchSetId": 4
+      },
+      "lineNbr": 229,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-06-12T13:38:07Z",
+      "side": 1,
+      "message": "This forward declaration should go into ```src/fru_device/fru_dcscm.hpp```",
+      "revId": "d3ae0a12b95418b15d72bcc58f2bc3681f958f48",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }
