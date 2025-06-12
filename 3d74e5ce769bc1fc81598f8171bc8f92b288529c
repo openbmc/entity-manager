@@ -39,6 +39,29 @@
       },
       "revId": "3d74e5ce769bc1fc81598f8171bc8f92b288529c",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e9e8269f_ed05efdb",
+        "filename": "meson.options",
+        "patchSetId": 38
+      },
+      "lineNbr": 41,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2025-06-12T18:30:00Z",
+      "side": 1,
+      "message": "How does is this value get maintained as we add components?  Every time we add a pcie add in card, are we going to ask every platform maintainer with a pcie port on their system to update their regex?  That seems like a lot of effort for very little payoff.",
+      "range": {
+        "startLine": 41,
+        "startChar": 18,
+        "endLine": 41,
+        "endChar": 126
+      },
+      "revId": "3d74e5ce769bc1fc81598f8171bc8f92b288529c",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }
