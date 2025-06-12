@@ -20,6 +20,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "b6f54a0d_16c085ad",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 13
+      },
+      "lineNbr": 24,
+      "author": {
+        "id": 1000338
+      },
+      "writtenOn": "2025-06-12T02:54:13Z",
+      "side": 1,
+      "message": "Yes, the wording and the name here should be updated. Perhaps `PortNumbers` is more appropriate. I am kind of on the fence about the actual data type, though. Not sure what we gain by making this an int array only to later convert it to the format necessary to translate it for sysfs.",
+      "parentUuid": "9e5699a4_87ceb5af",
+      "revId": "d4ffda25111a65bca1e63fbaa01aa1c526d1c462",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "8e9f8b82_29c4b5ac",
         "filename": "schemas/mctp.json",
         "patchSetId": 13
