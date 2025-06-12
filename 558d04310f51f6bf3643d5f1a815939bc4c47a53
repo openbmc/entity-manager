@@ -1,0 +1,90 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "dbe9a2b7_417c6012",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 29
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2025-06-12T18:26:44Z",
+      "side": 1,
+      "message": "Overall in support of this direction.",
+      "revId": "558d04310f51f6bf3643d5f1a815939bc4c47a53",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8b4ca993_265fa4a5",
+        "filename": "meson.build",
+        "patchSetId": 29
+      },
+      "lineNbr": 82,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2025-06-12T18:26:44Z",
+      "side": 1,
+      "message": "Good debug statement, but should be removed on master.\n\nJust comment this out if you want to keep the possible data.",
+      "range": {
+        "startLine": 82,
+        "startChar": 0,
+        "endLine": 82,
+        "endChar": 43
+      },
+      "revId": "558d04310f51f6bf3643d5f1a815939bc4c47a53",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e7b3cc27_88e9a9a0",
+        "filename": "src/utils.cpp",
+        "patchSetId": 29
+      },
+      "lineNbr": 71,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2025-06-12T18:26:44Z",
+      "side": 1,
+      "message": "Can we use recursive_directory_iterator here, which is intended for this purpose rather than implementing recursion ourselves?",
+      "range": {
+        "startLine": 71,
+        "startChar": 0,
+        "endLine": 71,
+        "endChar": 61
+      },
+      "revId": "558d04310f51f6bf3643d5f1a815939bc4c47a53",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "859a8ee9_38befc57",
+        "filename": "src/utils.cpp",
+        "patchSetId": 29
+      },
+      "lineNbr": 73,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2025-06-12T18:26:44Z",
+      "side": 1,
+      "message": "Unhandled exception (you presumably want to continue parsing even if one file can\u0027t be accessed).\n\nI\u0027m assuming you want the version of this that takes ec, then leave a comment that we\u0027re intentionally ignoring the error, but that becomes moot when we go to recursive_directory_iterator",
+      "range": {
+        "startLine": 73,
+        "startChar": 18,
+        "endLine": 73,
+        "endChar": 30
+      },
+      "revId": "558d04310f51f6bf3643d5f1a815939bc4c47a53",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    }
+  ]
+}
