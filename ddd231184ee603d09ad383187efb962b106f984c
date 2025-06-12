@@ -55,6 +55,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "0375b6c6_56ab2701",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 23
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2025-06-12T18:38:39Z",
+      "side": 1,
+      "message": "Maybe we just enforce that all entities in the same file have the same compatible string in CI?  If we have more than one entity in a file that has a different compatible string, it means that the multiples in the file were used incorrectly.",
+      "parentUuid": "6e2ad07e_32dfaf52",
+      "revId": "ddd231184ee603d09ad383187efb962b106f984c",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "ce8e4b70_0928e493",
         "filename": "meson.options",
         "patchSetId": 23
