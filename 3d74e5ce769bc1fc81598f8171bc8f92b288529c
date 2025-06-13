@@ -18,6 +18,24 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "fff5c896_ba5eee3e",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 38
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-06-13T08:48:42Z",
+      "side": 1,
+      "message": "The configuration which is to be installed is determined by the meson option.\n\nIt\u0027s something to configure when building a firmware image.\nThe configuration files themselves only declare which type of hardware or which specific hardware they are compatible with.\n\nThen later when building the EM we can select which hardware it should support.\n\nSo \"what is supported\" by EM is determined by whoever is building the BMC firmware image.",
+      "parentUuid": "28d58818_c5b02511",
+      "revId": "3d74e5ce769bc1fc81598f8171bc8f92b288529c",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "38aa01eb_e935d066",
@@ -31,6 +49,30 @@
       "writtenOn": "2025-06-12T18:14:25Z",
       "side": 1,
       "message": "There\u0027s any number of add in cards that could be plugged into this baseboard?  How is that supposed to work if we haven\u0027t marked all of them as compatible?",
+      "range": {
+        "startLine": 25,
+        "startChar": 0,
+        "endLine": 29,
+        "endChar": 0
+      },
+      "revId": "3d74e5ce769bc1fc81598f8171bc8f92b288529c",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "09a9d132_366460ee",
+        "filename": "docs/compatible_hardware.md",
+        "patchSetId": 38
+      },
+      "lineNbr": 29,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-06-13T08:48:42Z",
+      "side": 1,
+      "message": "Determining the compatibility and figuring out a schema there is an open issue that will require some consideration to get right. \n\nIf a type of add-in card is not yet covered in our naming scheme then we can just go with ```\"CompatibleHardware\": \"\"``` as documented.\n\nIn that case it will be installed no matter the value of the meson option and there is no way to opt out of it.\n\nPeople who want to avoid installing some configuration file must then figure out which type of hardware a configuration file is for and then add the ```CompatibleHardware``` appropriately.\n\n\n\u003e How is that supposed to work if we haven\u0027t marked all of them as compatible?\n\nThat\u0027s one of the reasons for why the meson option is a list of regexes.\nIt should be easy to configure it correctly without too much investigation.\n\nFor example when going with some product listing like \nhttps://www.mitaccomputing.com/en/spec/Barebones/TS70B8056_B8056T70V8E6HR-2T-HE-TU\n\nwe see it has\n- SATA\n- NVMe\n- hot-swap 8056 fans\n- CRPS PSU\n- PCIe\n- ...\n\nI\u0027m not sure if SATA does support any kind of management so we could go with an initial value for the meson option of ```nvme-* psu-crps-* tyan-*```\n\nThere is some leeway in this feature for how far one wants to go with determining compatibility. \n\nWe can start out by looking into the baseboard compatibility which is easy to determine. So that is phase 1.\n\nThen perhaps look into power supplies. Should also be easy to determine the compatibility there.\n\nCovering baseboards and power-supplies will already go a long way.",
+      "parentUuid": "38aa01eb_e935d066",
       "range": {
         "startLine": 25,
         "startChar": 0,
