@@ -104,6 +104,30 @@
       },
       "revId": "3d74e5ce769bc1fc81598f8171bc8f92b288529c",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "649ba60b_2911b9b9",
+        "filename": "meson.options",
+        "patchSetId": 38
+      },
+      "lineNbr": 41,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-06-13T11:35:35Z",
+      "side": 1,
+      "message": "That\u0027s why it is a list of regex and not plain strings 😊.\n\nIf one wants to support all PSU, go with ```psu-*```\n\nIf one wants to support only the CRPS PSU, go with ```psu-crps```\n\nIf one wants to support all the pcie hardware, go with ```pcie-*```\n\nSo there is a choice for the yocto layer maintainer in how fine-grained they want to configure this.\n\nNow the time where someone may need to adjust their regex list is when we annotate a new category of hardware. In that case the config would no longer be installed automatically.\n\nFor example if we start with the baseboards, my regex would look something like ```tyan-*```. Then at a later state we may start evaluating the PSU compatibility and i may need to adjust the regex to be like ```tyan-* psu-*```.\n\nI would assume anyone using this feature to fine-grain pick their configuration will be able to keep up with those changes.\n\nFor people who don\u0027t care and just want to have support support for everything they can always leave the meson option as default.",
+      "parentUuid": "e9e8269f_ed05efdb",
+      "range": {
+        "startLine": 41,
+        "startChar": 18,
+        "endLine": 41,
+        "endChar": 126
+      },
+      "revId": "3d74e5ce769bc1fc81598f8171bc8f92b288529c",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }
