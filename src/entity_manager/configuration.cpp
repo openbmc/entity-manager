@@ -1,6 +1,7 @@
 #include "configuration.hpp"
 
 #include "perform_probe.hpp"
+#include "phosphor-logging/lg2.hpp"
 #include "utils.hpp"
 
 #include <nlohmann/json.hpp>
@@ -35,6 +36,8 @@ bool writeJsonFiles(const nlohmann::json& systemConfiguration)
 // reads json files out of the filesystem
 bool loadConfigurations(std::list<nlohmann::json>& configurations)
 {
+    const auto start = std::chrono::steady_clock::now();
+
     // find configuration files
     std::vector<std::filesystem::path> jsonPaths;
     if (!findFiles(
@@ -102,6 +105,14 @@ bool loadConfigurations(std::list<nlohmann::json>& configurations)
             configurations.emplace_back(data);
         }
     }
+
+    const auto duration = std::chrono::duration_cast<std::chrono::milliseconds>(
+                              std::chrono::steady_clock::now() - start)
+                              .count();
+
+    lg2::debug("Finished loading json configuration in {MILLIS}ms", "MILLIS",
+               duration);
+
     return true;
 }
 
