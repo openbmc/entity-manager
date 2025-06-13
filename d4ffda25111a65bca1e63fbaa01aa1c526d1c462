@@ -74,6 +74,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "568e06b7_b192eaee",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 13
+      },
+      "lineNbr": 24,
+      "author": {
+        "id": 1000009
+      },
+      "writtenOn": "2025-06-13T02:06:51Z",
+      "side": 1,
+      "message": "\u003e but then the Root hub devpath is already something linux specific.\n\nI\u0027m not enamoured with `RootHubPath` for that reason, which was why I was suggesting a deterministic bus index. I2C busses achieve this with aliases in the devicetree, the same might be done here (and we use `Bus` instead of `RootHubPath`).\n\nIt\u0027s probably time to find an EM maintainer to weigh in 😊",
+      "parentUuid": "011e0844_41326891",
+      "revId": "d4ffda25111a65bca1e63fbaa01aa1c526d1c462",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "8e9f8b82_29c4b5ac",
         "filename": "schemas/mctp.json",
         "patchSetId": 13
