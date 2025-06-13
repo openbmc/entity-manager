@@ -12,7 +12,7 @@
         }
     ],
     "Name": "NVIDIA GB200 $bus + 1 % 2",
-    "Probe": "xyz.openbmc_project.FruDevice({'BOARD_PRODUCT_NAME': 'PG548', 'BOARD_MANUFACTURER': 'NVIDIA'})",
+    "Probe": "xyz.openbmc_project.FruDevice({'BOARD_PRODUCT_NAME': 'PG548', 'BOARD_MANUFACTURER': 'NVIDIA', 'PRODUCT_PRODUCT_NAME': 'GB200'})",
     "Type": "Board",
     "xyz.openbmc_project.Inventory.Decorator.Asset": {
         "BuildDate": "$BOARD_MANUFACTURE_DATE",
