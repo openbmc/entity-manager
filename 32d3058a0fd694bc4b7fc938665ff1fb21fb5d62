@@ -50,6 +50,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "d1c22c73_ad1f2241",
+        "filename": "meson.build",
+        "patchSetId": 27
+      },
+      "lineNbr": 96,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-06-13T09:18:30Z",
+      "side": 1,
+      "message": "What about \n```\nxyz.openbmc_project.AddObject                       interface -         -                                        -\n.AddObject                                          method    a{sv}     -                                        -\n```\n? That\u0027s currently available and added through ```createAddObjectMethod```\n\nwhich then calls ```configuration::validateJson(schema, newData)```\n\nwhich then does the schema validation.\n\nSo there is still a code path using the installed schemas.\n\nNot sure if ```AddObject``` has any user somwewhere, do we still need it?",
+      "parentUuid": "b75fe328_4f55d4df",
+      "range": {
+        "startLine": 96,
+        "startChar": 0,
+        "endLine": 96,
+        "endChar": 17
+      },
+      "revId": "32d3058a0fd694bc4b7fc938665ff1fb21fb5d62",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "cfd8d3d1_927a36b9",
         "filename": "scripts/run-ci.sh",
         "patchSetId": 27
