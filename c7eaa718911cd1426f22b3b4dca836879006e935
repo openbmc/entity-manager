@@ -70,6 +70,24 @@
       "parentUuid": "d1bce6f7_1494d5ce",
       "revId": "c7eaa718911cd1426f22b3b4dca836879006e935",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "c3f0766a_1c9fe6b5",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 16
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-06-13T09:42:24Z",
+      "side": 1,
+      "message": "They were not generated, which ```scripts/generate_configs.py``` is used for.\n\nIn patch https://gerrit.openbmc.org/c/openbmc/entity-manager/+/79659/37 the generated configs are also part of that patch so it will be better to look into that patch for an example of practical use.\n\n\u003e So I can\u0027t go scp a config to the BMC and test, right?\n\nYou can do that, your feedback was the reason for me to change it from run-time to build-time feature and the generated configurations are part of the source tree 😊",
+      "parentUuid": "b4095c03_ce66d829",
+      "revId": "c7eaa718911cd1426f22b3b4dca836879006e935",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }
