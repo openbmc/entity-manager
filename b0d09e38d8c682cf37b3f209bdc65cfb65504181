@@ -502,6 +502,24 @@
       "parentUuid": "de8aa63c_1d0a21d5",
       "revId": "b0d09e38d8c682cf37b3f209bdc65cfb65504181",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "3b3d7fa6_6a8e5a16",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-06-16T10:08:24Z",
+      "side": 1,
+      "message": "\u003e haven\u0027t measured performance for reading and parsing the 200ish files, though it probably isn\u0027t so bad\n\nCreated a patch with debug logs to measure the json parsing delay\n\nhttps://gerrit.openbmc.org/c/openbmc/entity-manager/+/81127\n\nThe delay is around 3 seconds 😞\n\n\u003e If it truly is a performance problem that we can articulate/measure, it\u0027s probably relatively easy to optimize using some form of map/set lookup.\n\nBased on the limited integration test coverage of the EM, i think it will be a longer time-frame until we can implement the aggressive optimization.\n\nEven if we optimize EM to the max, we will still leave something on the table.\n\nPerformance will continue to get worse as people add more and more configuration,\nespecially the worst-case performance on AST2500\nafter fw update or developer changes, since EM then cannot rely on ```/var/configuration/system.json```.\n\nLet me know if you see any other way besides this compatible hardware feature, to implement a solution for performance that can scale as new configurations get added. I do not see a solution, so i want to close this thread after 2 months.",
+      "parentUuid": "8c630f3f_59125b3e",
+      "revId": "b0d09e38d8c682cf37b3f209bdc65cfb65504181",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }
