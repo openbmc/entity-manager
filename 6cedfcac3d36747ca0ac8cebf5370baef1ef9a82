@@ -51,6 +51,24 @@
       "parentUuid": "65199951_d5b21f63",
       "revId": "6cedfcac3d36747ca0ac8cebf5370baef1ef9a82",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "cde02804_a3ce5a0e",
+        "filename": "configurations/meta/minerva_aegis.json",
+        "patchSetId": 2
+      },
+      "lineNbr": 10,
+      "author": {
+        "id": 1001906
+      },
+      "writtenOn": "2025-06-16T06:16:04Z",
+      "side": 1,
+      "message": "Can we rename the MMC sensor name from\nCB_VR_ASIC_P0V4_VDDQL_HBM1_HBM3_HBM5_VOLT_V to\nMinerva_Aegis_VR_ASIC_P0V4_VDDQL_HBM1_HBM3_HBM5_VOLT_V?\n\nCB and Minerva_Aegis were obtained from the BIC.\nhttps://github.com/openbmc/pldm/blob/master/platform-mc/terminus.cpp#L60\n\nYV4 has the same symptom, where SENTINEL_DOME_SLOT_X is created by PLDMD.\npeter_bmc@peter-bmc:~$ curl -u root:0penBmc -k -X GET https://10.10.12.226/redfish/v1/Chassis/ |grep -i Slot\n  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current\n                                 Dload  Upload   Total   Spent    Left  Speed\n100  2998  100  2998    0     0  16655      0 --:--:-- --:--:-- --:--:-- 16655\n      \"@odata.id\": \"/redfish/v1/Chassis/SENTINEL_DOME_SLOT_1\"\n      \"@odata.id\": \"/redfish/v1/Chassis/SENTINEL_DOME_SLOT_2\"\n      \"@odata.id\": \"/redfish/v1/Chassis/SENTINEL_DOME_SLOT_3\"\n      \"@odata.id\": \"/redfish/v1/Chassis/SENTINEL_DOME_SLOT_4\"\n      \"@odata.id\": \"/redfish/v1/Chassis/SENTINEL_DOME_SLOT_5\"\n      \"@odata.id\": \"/redfish/v1/Chassis/SENTINEL_DOME_SLOT_6\"\n      \"@odata.id\": \"/redfish/v1/Chassis/SENTINEL_DOME_SLOT_7\"\n      \"@odata.id\": \"/redfish/v1/Chassis/SENTINEL_DOME_SLOT_8\"\n      \"@odata.id\": \"/redfish/v1/Chassis/Yosemite_4_Sentinel_Dome_Slot_1_Chassis\"\n      \"@odata.id\": \"/redfish/v1/Chassis/Yosemite_4_Sentinel_Dome_Slot_2_Chassis\"\n      \"@odata.id\": \"/redfish/v1/Chassis/Yosemite_4_Sentinel_Dome_Slot_3_Chassis\"\n      \"@odata.id\": \"/redfish/v1/Chassis/Yosemite_4_Sentinel_Dome_Slot_4_Chassis\"\n      \"@odata.id\": \"/redfish/v1/Chassis/Yosemite_4_Sentinel_Dome_Slot_5_Chassis\"\n      \"@odata.id\": \"/redfish/v1/Chassis/Yosemite_4_Sentinel_Dome_Slot_6_Chassis\"\n      \"@odata.id\": \"/redfish/v1/Chassis/Yosemite_4_Sentinel_Dome_Slot_7_Chassis\"\n      \"@odata.id\": \"/redfish/v1/Chassis/Yosemite_4_Sentinel_Dome_Slot_8_Chassis\"\n      \"@odata.id\": \"/redfish/v1/Chassis/Yosemite_4_Sentinel_Dome_T1_Slot_1\"\n      \"@odata.id\": \"/redfish/v1/Chassis/Yosemite_4_Sentinel_Dome_T1_Slot_2\"\n      \"@odata.id\": \"/redfish/v1/Chassis/Yosemite_4_Sentinel_Dome_T1_Slot_3\"\n      \"@odata.id\": \"/redfish/v1/Chassis/Yosemite_4_Sentinel_Dome_T1_Slot_4\"\n      \"@odata.id\": \"/redfish/v1/Chassis/Yosemite_4_Sentinel_Dome_T1_Slot_5\"\n      \"@odata.id\": \"/redfish/v1/Chassis/Yosemite_4_Sentinel_Dome_T1_Slot_6\"\n      \"@odata.id\": \"/redfish/v1/Chassis/Yosemite_4_Sentinel_Dome_T1_Slot_7\"\n      \"@odata.id\": \"/redfish/v1/Chassis/Yosemite_4_Sentinel_Dome_T1_Slot_8\"",
+      "parentUuid": "6352f2c0_5c0d45d2",
+      "revId": "6cedfcac3d36747ca0ac8cebf5370baef1ef9a82",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }
