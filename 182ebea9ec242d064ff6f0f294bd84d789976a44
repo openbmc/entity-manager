@@ -16,6 +16,29 @@
       "message": "Tested this change\n\ninventory and config is exposed normally\n```\nbusctl tree xyz.openbmc_project.EntityManager\n`- /xyz\n  `- /xyz/openbmc_project\n    |- /xyz/openbmc_project/EntityManager\n    `- /xyz/openbmc_project/inventory\n      `- /xyz/openbmc_project/inventory/system\n        |- /xyz/openbmc_project/inventory/system/board\n        | `- /xyz/openbmc_project/inventory/system/board/Tyan_S8030_Baseboard\n        |   |- /xyz/openbmc_project/inventory/system/board/Tyan_S8030_Baseboard/CPU0_Power_Consumption\n        |   |- /xyz/openbmc_project/inventory/system/board/Tyan_S8030_Baseboard/CPU0_Temp\n        |   |- /xyz/openbmc_project/inventory/system/board/Tyan_S8030_Baseboard/GARBO_SENSOR\n        |   |- /xyz/openbmc_project/inventory/system/board/Tyan_S8030_Baseboard/P0_VDD_18_RUN\n        |   |- /xyz/openbmc_project/inventory/system/board/Tyan_S8030_Baseboard/P0_VDD_CORE_RUN\n        |   |- /xyz/openbmc_project/inventory/system/board/Tyan_S8030_Baseboard/P0_VDD_MEM_ABCD\n        |   |- /xyz/openbmc_project/inventory/system/board/Tyan_S8030_Baseboard/P0_VDD_MEM_EFGH\n        |   |- /xyz/openbmc_project/inventory/system/board/Tyan_S8030_Baseboard/P0_VDD_SOC_RUN\n        |   |- /xyz/openbmc_project/inventory/system/board/Tyan_S8030_Baseboard/VBAT_33\n        |   |- /xyz/openbmc_project/inventory/system/board/Tyan_S8030_Baseboard/VDD_12_RUN\n        |   |- /xyz/openbmc_project/inventory/system/board/Tyan_S8030_Baseboard/VDD_33_DUAL\n        |   |- /xyz/openbmc_project/inventory/system/board/Tyan_S8030_Baseboard/VDD_33_RUN\n        |   |- /xyz/openbmc_project/inventory/system/board/Tyan_S8030_Baseboard/VDD_5_DUAL\n        |   |- /xyz/openbmc_project/inventory/system/board/Tyan_S8030_Baseboard/VDD_5_RUN\n        |   `- /xyz/openbmc_project/inventory/system/board/Tyan_S8030_Baseboard/X550\n        `- /xyz/openbmc_project/inventory/system/powersupply\n          |- /xyz/openbmc_project/inventory/system/powersupply/Supermicro_PWS_920P_SQ_0\n          | |- /xyz/openbmc_project/inventory/system/powersupply/Supermicro_PWS_920P_SQ_0/PSU0\n          | |- /xyz/openbmc_project/inventory/system/powersupply/Supermicro_PWS_920P_SQ_0/PSU0_ADDR\n          | `- /xyz/openbmc_project/inventory/system/powersupply/Supermicro_PWS_920P_SQ_0/PSU0_FRU\n          `- /xyz/openbmc_project/inventory/system/powersupply/Supermicro_PWS_920P_SQ_1\n            |- /xyz/openbmc_project/inventory/system/powersupply/Supermicro_PWS_920P_SQ_1/PSU1\n            |- /xyz/openbmc_project/inventory/system/powersupply/Supermicro_PWS_920P_SQ_1/PSU1_ADDR\n            `- /xyz/openbmc_project/inventory/system/powersupply/Supermicro_PWS_920P_SQ_1/PSU1_FRU\n```\n\nAlso, journal messages appear as before\n```\nJun 17 14:51:26 s8030-bmc-30303035c0c1 systemd[1]: Started Entity Manager.\nJun 17 14:51:37 s8030-bmc-30303035c0c1 entity-manager[10070]: Inventory Added: Supermicro PWS 920P SQ 0\nJun 17 14:51:37 s8030-bmc-30303035c0c1 entity-manager[10070]: Inventory Added: Supermicro PWS 920P SQ 1\nJun 17 14:51:37 s8030-bmc-30303035c0c1 entity-manager[10070]: Inventory Added: Tyan S8030 Baseboard\n```\n\nIt works in both cases, with and without the ```/var/configuration/system.json``` present.\n\nCalling ```ReScan``` results in the expected probe matches, observable via the lg2 debug statements.\n```\nbusctl call xyz.openbmc_project.EntityManager /xyz/openbmc_project/EntityManager xyz.openbmc_project.EntityManager ReScan\n```\n\nThis change is a good step forward for modernizing the EM and removing the global variables.",
       "revId": "182ebea9ec242d064ff6f0f294bd84d789976a44",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "670180be_2c893eb1",
+        "filename": "src/entity_manager/perform_scan.cpp",
+        "patchSetId": 9
+      },
+      "lineNbr": 437,
+      "author": {
+        "id": 1000008
+      },
+      "writtenOn": "2025-06-17T19:12:31Z",
+      "side": 1,
+      "message": "nit:  can you clean these \u0027this-\u003e\u0027 up too?",
+      "range": {
+        "startLine": 437,
+        "startChar": 21,
+        "endLine": 437,
+        "endChar": 28
+      },
+      "revId": "182ebea9ec242d064ff6f0f294bd84d789976a44",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }
