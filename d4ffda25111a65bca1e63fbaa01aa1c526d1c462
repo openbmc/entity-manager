@@ -92,6 +92,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "717a5b48_05a92011",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 13
+      },
+      "lineNbr": 24,
+      "author": {
+        "id": 1002305
+      },
+      "writtenOn": "2025-06-18T04:58:09Z",
+      "side": 1,
+      "message": "Hey @andrew@codeconstruct.com.au, so adding the aliases in dt like \n```\n        usb10 \u003d \u0026ehci0;\n        usb20 \u003d \u0026ehci1;\n        usb30 \u003d \u0026uhci;\n```\nexposes them in `/proc/device-tree/aliases` and not in `/sys/bus/usb/devices` which still shows a usb1 instead of usb10, \n\nSo what I am thinking is reading the of_node property and mapping it against the device-tree alias, would that be an acceptable solution? Please feel free to point me to any other approaches which might be less cumbersome. 😊\n```root@gb200nvl-hmc:/sys/bus/usb/devices/usb1# readlink -f of_node\n/sys/firmware/devicetree/base/ahb/usb@1e6a1000\n```",
+      "parentUuid": "568e06b7_b192eaee",
+      "revId": "d4ffda25111a65bca1e63fbaa01aa1c526d1c462",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "8e9f8b82_29c4b5ac",
         "filename": "schemas/mctp.json",
         "patchSetId": 13
