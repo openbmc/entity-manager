@@ -16,6 +16,9 @@
 
 PHOSPHOR_LOG2_USING;
 
+using DevicePresenceProperties = sdbusplus::common::xyz::openbmc_project::
+    inventory::source::DevicePresence::properties_t;
+
 namespace gpio_presence
 {
 
@@ -89,10 +92,8 @@ auto DevicePresence::updateDbusInterfaces() -> void
         info("Detected {NAME} as present, adding dbus interface", "NAME",
              deviceName);
 
-        detectedIface =
-            std::make_unique<DevicePresenceInterface>(ctx, objPath.str.c_str());
-
-        detectedIface->name(deviceName);
+        detectedIface = std::make_unique<DevicePresenceInterface>(
+            ctx, objPath.str.c_str(), DevicePresenceProperties{deviceName});
 
         detectedIface->emit_added();
     }
