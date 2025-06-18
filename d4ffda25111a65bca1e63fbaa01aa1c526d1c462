@@ -110,6 +110,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "7770d2dc_4f469f4e",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 13
+      },
+      "lineNbr": 24,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2025-06-18T10:30:21Z",
+      "side": 1,
+      "message": "I don’t know how we make this usable without some extra code in entity manager similar to what we’re doing for relative i2c busses. If you take the GB300 card as an example, you might have some USB endpoint via MCTP. That card can be plugged into a server from Meta or a server from Google, and there can be multiple of those cards. One of us could use multiple root ports off the BMC in our design and the other could use a USB hub. You can’t express this by putting a static MCTP-USB device into the GB300 EM config as you’ve proposed it here.",
+      "parentUuid": "717a5b48_05a92011",
+      "revId": "d4ffda25111a65bca1e63fbaa01aa1c526d1c462",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "8e9f8b82_29c4b5ac",
         "filename": "schemas/mctp.json",
         "patchSetId": 13
