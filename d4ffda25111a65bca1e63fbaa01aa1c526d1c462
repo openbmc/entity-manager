@@ -128,6 +128,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "678d6844_5fd3e2b3",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 13
+      },
+      "lineNbr": 24,
+      "author": {
+        "id": 1000009
+      },
+      "writtenOn": "2025-06-19T01:09:21Z",
+      "side": 1,
+      "message": "\u003e I don’t know how we make this usable without some extra code in entity manager similar to what we’re doing for relative i2c busses\n\nAs it stands its only usable in the configuration for the board containing the BMC from where we can describe the absolute topology (where while the device is USB-attached and USB supports hot-plug, the topology is fixed in the hardware design). You\u0027re right that it\u0027s not yet useful for pluggable cards.\n\nThe extra code we need in EM is probably best hashed out in a design doc. Having thought about it a bit, I suspect it might be useful for EM to process events from a `NETLINK_KOBJECT_UEVENT` socket. Other choices seem unwieldy (e.g. leaving that to udev, and then poking EM via a D-Bus interface from a helper binary launched from a udev rule like we do for phosphor-led-sysfs).\n\nUSB is self-describing so I think it\u0027s reasonable that we allow probes based on the info there and not tie it to a FRU EEPROM? This will get us inventory for the device in EM (which is necessary for the purpose of OpenBMC and eliminates a udev-only solution). From there we can fill in bus and port info from sysfs based on the uevent.\n\n\u003e So what I am thinking is reading the of_node property and mapping it against the device-tree alias, would that be an acceptable solution?\n\nIt would be better if the usb subsystem applied aliases itself like the i2c subsystem. Can you send a patch upstream?",
+      "parentUuid": "7770d2dc_4f469f4e",
+      "revId": "d4ffda25111a65bca1e63fbaa01aa1c526d1c462",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "8e9f8b82_29c4b5ac",
         "filename": "schemas/mctp.json",
         "patchSetId": 13
