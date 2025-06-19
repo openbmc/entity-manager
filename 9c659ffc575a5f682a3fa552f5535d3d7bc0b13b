@@ -1,0 +1,84 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3e7f6d7b_7c01b767",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 7
+      },
+      "lineNbr": 41,
+      "author": {
+        "id": 1000008
+      },
+      "writtenOn": "2025-06-19T18:48:01Z",
+      "side": 1,
+      "message": "this shows you updated it on D-Bus; can you also provide evidence it made it into the EEPROM?",
+      "revId": "9c659ffc575a5f682a3fa552f5535d3d7bc0b13b",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3bb003d6_5ae95503",
+        "filename": "meson.options",
+        "patchSetId": 7
+      },
+      "lineNbr": 41,
+      "author": {
+        "id": 1000008
+      },
+      "writtenOn": "2025-06-19T18:48:01Z",
+      "side": 1,
+      "message": "nit:  FRU and D-Bus",
+      "range": {
+        "startLine": 41,
+        "startChar": 34,
+        "endLine": 41,
+        "endChar": 58
+      },
+      "revId": "9c659ffc575a5f682a3fa552f5535d3d7bc0b13b",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1dadc9ea_000ce440",
+        "filename": "src/fru_device/fru_device.cpp",
+        "patchSetId": 7
+      },
+      "lineNbr": 820,
+      "author": {
+        "id": 1000008
+      },
+      "writtenOn": "2025-06-19T18:48:01Z",
+      "side": 1,
+      "message": "don\u0027t need.",
+      "range": {
+        "startLine": 820,
+        "startChar": 62,
+        "endLine": 820,
+        "endChar": 67
+      },
+      "revId": "9c659ffc575a5f682a3fa552f5535d3d7bc0b13b",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6455203e_0b17e162",
+        "filename": "src/fru_device/fru_device.cpp",
+        "patchSetId": 7
+      },
+      "lineNbr": 826,
+      "author": {
+        "id": 1000008
+      },
+      "writtenOn": "2025-06-19T18:48:01Z",
+      "side": 1,
+      "message": "can simplify to:\n\nreturn std::ranges::contains(editableFields, subField);",
+      "revId": "9c659ffc575a5f682a3fa552f5535d3d7bc0b13b",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    }
+  ]
+}
