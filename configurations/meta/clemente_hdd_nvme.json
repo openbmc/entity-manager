@@ -47,7 +47,7 @@
         /* Clemente Hard Disk Drive NVMe Board 0*/
         "Name": "Clemente HDD NVMe 0",
         "Probe": [
-            "FOUND('Clemente HDD Carrier 0')"
+            "xyz.openbmc_project.Inventory.Item.Board({'Name': 'Clemente HDD Carrier 0'})"
         ],
         "Type": "Board",
         "xyz.openbmc_project.Inventory.Item.Chassis": {}
@@ -100,7 +100,7 @@
         /* Clemente Hard Disk Drive NVMe Board 1*/
         "Name": "Clemente HDD NVMe 1",
         "Probe": [
-            "FOUND('Clemente HDD Carrier 1')"
+            "xyz.openbmc_project.Inventory.Item.Board({'Name': 'Clemente HDD Carrier 1'})"
         ],
         "Type": "Board",
         "xyz.openbmc_project.Inventory.Item.Chassis": {}
