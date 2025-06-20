@@ -56,6 +56,30 @@
       },
       "revId": "ba484a5446d1909289be183b1512fe481beb00b7",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9e8b30c9_7d86dae3",
+        "filename": "configurations/nvidia_gb300_io_board.json",
+        "patchSetId": 26
+      },
+      "lineNbr": 80,
+      "author": {
+        "id": 1002479
+      },
+      "writtenOn": "2025-06-20T03:08:02Z",
+      "side": 1,
+      "message": "Originally, during EVT, the name was \"2x ConnectX-8 GB300 Mezz\", but in DVT it changed to \"ConnectX-8 800GE 2P NIC\".\nTo support both EVT and DVT, we had used the more generic name \"ConnectX-8\".\nNow it has been updated to \"ConnectX-8 800GE 2P NIC\" to reflect the actual FRU content.",
+      "parentUuid": "60584124_f7838c12",
+      "range": {
+        "startLine": 80,
+        "startChar": 63,
+        "endLine": 80,
+        "endChar": 74
+      },
+      "revId": "ba484a5446d1909289be183b1512fe481beb00b7",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }
