@@ -146,6 +146,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "7f824f84_c975e13d",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 13
+      },
+      "lineNbr": 24,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2025-06-23T22:57:16Z",
+      "side": 1,
+      "message": "I\u0027m looking at the above, and I don\u0027t see how this could work.  Could you include an example of\n\nBMC -\u003e Mainboard(Embedded usb hub) -\u003e USB MCU device\n\nThe full layout for those three components?  The way you\u0027re describing 1.2.5 makes it seem like you\u0027re putting the whole topology in a single component, but remember that 1.2.5 in the above example would be\n\nBMC(USB port 1) -\u003e Mainboard (Hub port 2) -\u003e USB device (Device 5) \n\nSo that config needs split across 3 config files, similar to what patrick has pointed out.",
+      "parentUuid": "678d6844_5fd3e2b3",
+      "revId": "d4ffda25111a65bca1e63fbaa01aa1c526d1c462",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "8e9f8b82_29c4b5ac",
         "filename": "schemas/mctp.json",
         "patchSetId": 13
