@@ -18,6 +18,24 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "63addad1_ac4b1072",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 7
+      },
+      "lineNbr": 41,
+      "author": {
+        "id": 1001426
+      },
+      "writtenOn": "2025-06-23T10:24:34Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "3e7f6d7b_7c01b767",
+      "revId": "9c659ffc575a5f682a3fa552f5535d3d7bc0b13b",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "3bb003d6_5ae95503",
@@ -31,6 +49,30 @@
       "writtenOn": "2025-06-19T18:48:01Z",
       "side": 1,
       "message": "nit:  FRU and D-Bus",
+      "range": {
+        "startLine": 41,
+        "startChar": 34,
+        "endLine": 41,
+        "endChar": 58
+      },
+      "revId": "9c659ffc575a5f682a3fa552f5535d3d7bc0b13b",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "495d01fe_d747b4f5",
+        "filename": "meson.options",
+        "patchSetId": 7
+      },
+      "lineNbr": 41,
+      "author": {
+        "id": 1001426
+      },
+      "writtenOn": "2025-06-23T10:24:34Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "3bb003d6_5ae95503",
       "range": {
         "startLine": 41,
         "startChar": 34,
@@ -64,6 +106,30 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "a0603ea2_8c3c11de",
+        "filename": "src/fru_device/fru_device.cpp",
+        "patchSetId": 7
+      },
+      "lineNbr": 820,
+      "author": {
+        "id": 1001426
+      },
+      "writtenOn": "2025-06-23T10:24:34Z",
+      "side": 1,
+      "message": "`../src/fru_device/fru_device.cpp:820:33: error: implicit conversion \u0027int\u0027 -\u003e \u0027bool\u0027 [readability-implicit-bool-conversion,-warnings-as-errors]\n  820 |     while (!subField.empty() \u0026\u0026 std::isdigit(subField.back()))\n      |                                 ^\n      |                                 (                             !\u003d 0)\n`",
+      "parentUuid": "1dadc9ea_000ce440",
+      "range": {
+        "startLine": 820,
+        "startChar": 62,
+        "endLine": 820,
+        "endChar": 67
+      },
+      "revId": "9c659ffc575a5f682a3fa552f5535d3d7bc0b13b",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "6455203e_0b17e162",
@@ -77,6 +143,24 @@
       "writtenOn": "2025-06-19T18:48:01Z",
       "side": 1,
       "message": "can simplify to:\n\nreturn std::ranges::contains(editableFields, subField);",
+      "revId": "9c659ffc575a5f682a3fa552f5535d3d7bc0b13b",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "7ed83f78_21f3fc8c",
+        "filename": "src/fru_device/fru_device.cpp",
+        "patchSetId": 7
+      },
+      "lineNbr": 826,
+      "author": {
+        "id": 1001426
+      },
+      "writtenOn": "2025-06-23T10:24:34Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "6455203e_0b17e162",
       "revId": "9c659ffc575a5f682a3fa552f5535d3d7bc0b13b",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
