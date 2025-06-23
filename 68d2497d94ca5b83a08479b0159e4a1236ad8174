@@ -1,0 +1,165 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f2c449d9_d7d19e91",
+        "filename": "meson.options",
+        "patchSetId": 8
+      },
+      "lineNbr": 39,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2025-06-23T23:17:37Z",
+      "side": 1,
+      "message": "Can we make this an enum please.\nwith the following entries:\nasset_only\nall",
+      "range": {
+        "startLine": 39,
+        "startChar": 11,
+        "endLine": 39,
+        "endChar": 18
+      },
+      "revId": "68d2497d94ca5b83a08479b0159e4a1236ad8174",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2064814a_d383c3cc",
+        "filename": "meson.options",
+        "patchSetId": 8
+      },
+      "lineNbr": 43,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2025-06-23T23:17:37Z",
+      "side": 1,
+      "message": "Please put this option with the other fru options",
+      "range": {
+        "startLine": 37,
+        "startChar": 0,
+        "endLine": 43,
+        "endChar": 0
+      },
+      "revId": "68d2497d94ca5b83a08479b0159e4a1236ad8174",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6c69f2df_5c9b82ef",
+        "filename": "src/fru_device/fru_device.cpp",
+        "patchSetId": 8
+      },
+      "lineNbr": 803,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2025-06-23T23:17:37Z",
+      "side": 1,
+      "message": "nit, string_view for any new code",
+      "range": {
+        "startLine": 803,
+        "startChar": 27,
+        "endLine": 803,
+        "endChar": 39
+      },
+      "revId": "68d2497d94ca5b83a08479b0159e4a1236ad8174",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4502eb44_a80331bf",
+        "filename": "src/fru_device/fru_device.cpp",
+        "patchSetId": 8
+      },
+      "lineNbr": 803,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2025-06-23T23:17:37Z",
+      "side": 1,
+      "message": "Can we get a unit test for this new self contained function?",
+      "range": {
+        "startLine": 803,
+        "startChar": 5,
+        "endLine": 803,
+        "endChar": 20
+      },
+      "revId": "68d2497d94ca5b83a08479b0159e4a1236ad8174",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "de4c2ad8_0b4375dd",
+        "filename": "src/fru_device/fru_device.cpp",
+        "patchSetId": 8
+      },
+      "lineNbr": 806,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2025-06-23T23:17:37Z",
+      "side": 1,
+      "message": "nit, std::array\u003cstd::string_view, n\u003e.",
+      "range": {
+        "startLine": 806,
+        "startChar": 16,
+        "endLine": 806,
+        "endChar": 17
+      },
+      "revId": "68d2497d94ca5b83a08479b0159e4a1236ad8174",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0d6693ad_79295d93",
+        "filename": "src/fru_device/fru_device.cpp",
+        "patchSetId": 8
+      },
+      "lineNbr": 808,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2025-06-23T23:17:37Z",
+      "side": 1,
+      "message": "why this list?  Shouldn\u0027t all fields be editable in this mode?",
+      "range": {
+        "startLine": 806,
+        "startChar": 0,
+        "endLine": 808,
+        "endChar": 70
+      },
+      "revId": "68d2497d94ca5b83a08479b0159e4a1236ad8174",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "fbc93a3e_89bb27c6",
+        "filename": "src/fru_device/fru_device.cpp",
+        "patchSetId": 8
+      },
+      "lineNbr": 877,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2025-06-23T23:17:37Z",
+      "side": 1,
+      "message": "Can ENABLE_FRU_UPDATE_PROPERTY be checked as part of isFieldEditable?\n\nThis logic looks really complicated.  I like that we\u0027ve rolled out isFieldEditable, but it needs to match reality, and check against both options.",
+      "range": {
+        "startLine": 877,
+        "startChar": 30,
+        "endLine": 877,
+        "endChar": 56
+      },
+      "revId": "68d2497d94ca5b83a08479b0159e4a1236ad8174",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    }
+  ]
+}
