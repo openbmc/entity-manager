@@ -3,6 +3,29 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "973a7a50_8510fbcf",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 7
+      },
+      "lineNbr": 22,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2025-06-23T23:18:48Z",
+      "side": 1,
+      "message": "Can you articulate in your commit message why we need a separate API for this?  There\u0027s already a WriteFru API that would let you add a section easily.\n\nCan you walk through what a normal workflow for using this would be? (including the external facing APIs).\n\nI would normally expect that someone would use the WriteFRU command to add whatever they liked to the FRU, if they\u0027re going to use IPMI specifics to do it.  They generally will use the parsed fields for interacting with individual fields.",
+      "range": {
+        "startLine": 21,
+        "startChar": 0,
+        "endLine": 22,
+        "endChar": 26
+      },
+      "revId": "f836d203ed5aae16d43d64ba509d3f84e716fc0d",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "545b7b16_76a6e53a",
         "filename": "src/fru_device/fru_device.cpp",
         "patchSetId": 7
