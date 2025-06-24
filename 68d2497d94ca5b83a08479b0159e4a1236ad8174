@@ -49,6 +49,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "f9e7389d_44b13a19",
+        "filename": "meson.options",
+        "patchSetId": 8
+      },
+      "lineNbr": 43,
+      "author": {
+        "id": 1001426
+      },
+      "writtenOn": "2025-06-24T19:21:02Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "2064814a_d383c3cc",
+      "range": {
+        "startLine": 37,
+        "startChar": 0,
+        "endLine": 43,
+        "endChar": 0
+      },
+      "revId": "68d2497d94ca5b83a08479b0159e4a1236ad8174",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "6c69f2df_5c9b82ef",
         "filename": "src/fru_device/fru_device.cpp",
         "patchSetId": 8
@@ -95,6 +119,54 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "070199dd_fb3ef7ec",
+        "filename": "src/fru_device/fru_device.cpp",
+        "patchSetId": 8
+      },
+      "lineNbr": 803,
+      "author": {
+        "id": 1001426
+      },
+      "writtenOn": "2025-06-24T19:21:02Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "6c69f2df_5c9b82ef",
+      "range": {
+        "startLine": 803,
+        "startChar": 27,
+        "endLine": 803,
+        "endChar": 39
+      },
+      "revId": "68d2497d94ca5b83a08479b0159e4a1236ad8174",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ac14c1d3_873a3604",
+        "filename": "src/fru_device/fru_device.cpp",
+        "patchSetId": 8
+      },
+      "lineNbr": 803,
+      "author": {
+        "id": 1001426
+      },
+      "writtenOn": "2025-06-24T19:21:02Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "4502eb44_a80331bf",
+      "range": {
+        "startLine": 803,
+        "startChar": 5,
+        "endLine": 803,
+        "endChar": 20
+      },
+      "revId": "68d2497d94ca5b83a08479b0159e4a1236ad8174",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "de4c2ad8_0b4375dd",
         "filename": "src/fru_device/fru_device.cpp",
         "patchSetId": 8
@@ -106,6 +178,30 @@
       "writtenOn": "2025-06-23T23:17:37Z",
       "side": 1,
       "message": "nit, std::array\u003cstd::string_view, n\u003e.",
+      "range": {
+        "startLine": 806,
+        "startChar": 16,
+        "endLine": 806,
+        "endChar": 17
+      },
+      "revId": "68d2497d94ca5b83a08479b0159e4a1236ad8174",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a558a2dd_28cc3ba1",
+        "filename": "src/fru_device/fru_device.cpp",
+        "patchSetId": 8
+      },
+      "lineNbr": 806,
+      "author": {
+        "id": 1001426
+      },
+      "writtenOn": "2025-06-24T19:21:02Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "de4c2ad8_0b4375dd",
       "range": {
         "startLine": 806,
         "startChar": 16,
@@ -139,6 +235,30 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "2283d33f_d99373ad",
+        "filename": "src/fru_device/fru_device.cpp",
+        "patchSetId": 8
+      },
+      "lineNbr": 808,
+      "author": {
+        "id": 1001426
+      },
+      "writtenOn": "2025-06-24T19:21:02Z",
+      "side": 1,
+      "message": "As of now, MULTIRECORD fields \u0026 CHASSIS_TYPE isn\u0027t supported yet.",
+      "parentUuid": "0d6693ad_79295d93",
+      "range": {
+        "startLine": 806,
+        "startChar": 0,
+        "endLine": 808,
+        "endChar": 70
+      },
+      "revId": "68d2497d94ca5b83a08479b0159e4a1236ad8174",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "fbc93a3e_89bb27c6",
@@ -152,6 +272,30 @@
       "writtenOn": "2025-06-23T23:17:37Z",
       "side": 1,
       "message": "Can ENABLE_FRU_UPDATE_PROPERTY be checked as part of isFieldEditable?\n\nThis logic looks really complicated.  I like that we\u0027ve rolled out isFieldEditable, but it needs to match reality, and check against both options.",
+      "range": {
+        "startLine": 877,
+        "startChar": 30,
+        "endLine": 877,
+        "endChar": 56
+      },
+      "revId": "68d2497d94ca5b83a08479b0159e4a1236ad8174",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6c17e28f_75d35e25",
+        "filename": "src/fru_device/fru_device.cpp",
+        "patchSetId": 8
+      },
+      "lineNbr": 877,
+      "author": {
+        "id": 1001426
+      },
+      "writtenOn": "2025-06-24T19:21:02Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "fbc93a3e_89bb27c6",
       "range": {
         "startLine": 877,
         "startChar": 30,
