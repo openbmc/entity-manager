@@ -1,6 +1,29 @@
 {
   "comments": [
     {
+      "unresolved": true,
+      "key": {
+        "uuid": "2217c617_949a219f",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 6
+      },
+      "lineNbr": 10,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2025-06-24T16:53:50Z",
+      "side": 1,
+      "message": "Please wrap on 72 char boundaries.",
+      "range": {
+        "startLine": 9,
+        "startChar": 0,
+        "endLine": 10,
+        "endChar": 60
+      },
+      "revId": "868d6752a0f42a5140403163a4c92c9b7d840eb6",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": false,
       "key": {
         "uuid": "5b988afd_8927b3bc",
@@ -31,6 +54,293 @@
       "writtenOn": "2025-06-23T07:22:14Z",
       "side": 1,
       "message": "Hi All,\nCan you please review and give me +1, +2.",
+      "revId": "868d6752a0f42a5140403163a4c92c9b7d840eb6",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1c8907fe_57ba723e",
+        "filename": "src/fru_device/fru_dcscm.cpp",
+        "patchSetId": 6
+      },
+      "lineNbr": 27,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2025-06-24T16:53:50Z",
+      "side": 1,
+      "message": "Any reason this is an enum rather than just a simple value?",
+      "revId": "868d6752a0f42a5140403163a4c92c9b7d840eb6",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4e3cf51e_e8949dab",
+        "filename": "src/fru_device/fru_dcscm.cpp",
+        "patchSetId": 6
+      },
+      "lineNbr": 47,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2025-06-24T16:53:50Z",
+      "side": 1,
+      "message": "std::format please for new code\n\nIn addition, I don\u0027t see anything in the spec that says these should be interpreted as hex?",
+      "range": {
+        "startLine": 47,
+        "startChar": 0,
+        "endLine": 47,
+        "endChar": 40
+      },
+      "revId": "868d6752a0f42a5140403163a4c92c9b7d840eb6",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3f312a3a_19114f71",
+        "filename": "src/fru_device/fru_dcscm.cpp",
+        "patchSetId": 6
+      },
+      "lineNbr": 61,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2025-06-24T16:53:50Z",
+      "side": 1,
+      "message": "why static_cast here?  *iter is already uint8_t",
+      "range": {
+        "startLine": 61,
+        "startChar": 18,
+        "endLine": 61,
+        "endChar": 38
+      },
+      "revId": "868d6752a0f42a5140403163a4c92c9b7d840eb6",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "cbf8d087_5b9e5359",
+        "filename": "src/fru_device/fru_dcscm.cpp",
+        "patchSetId": 6
+      },
+      "lineNbr": 62,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2025-06-24T16:53:50Z",
+      "side": 1,
+      "message": "This looks like it will produce a string like\n\nAB\n\nWhen the spec would say that this is supposed to be\n\nA.B for version information (major/minor)",
+      "range": {
+        "startLine": 62,
+        "startChar": 0,
+        "endLine": 62,
+        "endChar": 68
+      },
+      "revId": "868d6752a0f42a5140403163a4c92c9b7d840eb6",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "32dd548c_5893243d",
+        "filename": "src/fru_device/fru_dcscm.cpp",
+        "patchSetId": 6
+      },
+      "lineNbr": 84,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2025-06-24T16:53:50Z",
+      "side": 1,
+      "message": "std::format will make this much easier to read",
+      "range": {
+        "startLine": 80,
+        "startChar": 0,
+        "endLine": 84,
+        "endChar": 29
+      },
+      "revId": "868d6752a0f42a5140403163a4c92c9b7d840eb6",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f7582247_98b45fe6",
+        "filename": "src/fru_device/fru_dcscm.cpp",
+        "patchSetId": 6
+      },
+      "lineNbr": 93,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2025-06-24T16:53:50Z",
+      "side": 1,
+      "message": "should be setw(len * 2), right?",
+      "range": {
+        "startLine": 93,
+        "startChar": 22,
+        "endLine": 93,
+        "endChar": 33
+      },
+      "revId": "868d6752a0f42a5140403163a4c92c9b7d840eb6",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0475f33d_18a90834",
+        "filename": "src/fru_device/fru_dcscm.cpp",
+        "patchSetId": 6
+      },
+      "lineNbr": 96,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2025-06-24T16:53:50Z",
+      "side": 1,
+      "message": "Current convention is to post other values as integers.  We can debate if that\u0027s the right thing to do, but I suspect we don\u0027t want this.",
+      "range": {
+        "startLine": 87,
+        "startChar": 0,
+        "endLine": 96,
+        "endChar": 9
+      },
+      "revId": "868d6752a0f42a5140403163a4c92c9b7d840eb6",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3e852988_db2e490c",
+        "filename": "src/fru_device/fru_dcscm.cpp",
+        "patchSetId": 6
+      },
+      "lineNbr": 126,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2025-06-24T16:53:50Z",
+      "side": 1,
+      "message": "This is now duplicated with https://github.com/openbmc/entity-manager/blob/a6686e5210b3cb4417dfd3b7aca1aa65de48668e/src/fru_device/fru_utils.cpp#L307C56-L307C74\n\nparseMultirecordUUID\n\nPlease reorganize the code so that the common portions of these two multi-record code paths rely on the same code.\n\nparseMultirecordUUID likely needs refactored into some smaller methods, but this whole code block all the way through line 146 is copy/pasted.",
+      "range": {
+        "startLine": 126,
+        "startChar": 20,
+        "endLine": 126,
+        "endChar": 44
+      },
+      "revId": "868d6752a0f42a5140403163a4c92c9b7d840eb6",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a38d14d8_1ec7615c",
+        "filename": "src/fru_device/fru_dcscm.cpp",
+        "patchSetId": 6
+      },
+      "lineNbr": 173,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2025-06-24T16:53:50Z",
+      "side": 1,
+      "message": "Shouldn\u0027t these be replaced with fruBytesIter?  I see device.begin() + areaOffset is calculated 5 times in this method.",
+      "range": {
+        "startLine": 173,
+        "startChar": 12,
+        "endLine": 173,
+        "endChar": 39
+      },
+      "revId": "868d6752a0f42a5140403163a4c92c9b7d840eb6",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b41296ef_5a1abec9",
+        "filename": "src/fru_device/fru_dcscm.cpp",
+        "patchSetId": 6
+      },
+      "lineNbr": 185,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2025-06-24T16:53:50Z",
+      "side": 1,
+      "message": "This loop I suspect needs to go away.  We loop over it, then apply conditionals within formatString based on which fields.  We might as well just have appropriate helper functions\n\nreadStringValue(size_t len, std::string_view name)\nreadBytesValue(size_t len, std::string_view name)\n\n\nThen have",
+      "range": {
+        "startLine": 185,
+        "startChar": 0,
+        "endLine": 185,
+        "endChar": 66
+      },
+      "revId": "868d6752a0f42a5140403163a4c92c9b7d840eb6",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9e359a19_03359740",
+        "filename": "src/fru_device/fru_dcscm.hpp",
+        "patchSetId": 6
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2025-06-24T16:53:50Z",
+      "side": 1,
+      "message": "I don\u0027t see any unit tests for the new functions in this file?  Please add some.",
+      "revId": "868d6752a0f42a5140403163a4c92c9b7d840eb6",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c1cf14c8_82e09f37",
+        "filename": "src/fru_device/fru_dcscm.hpp",
+        "patchSetId": 6
+      },
+      "lineNbr": 26,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2025-06-24T16:53:50Z",
+      "side": 1,
+      "message": "constexpr std::array for constexpr values please",
+      "range": {
+        "startLine": 26,
+        "startChar": 11,
+        "endLine": 26,
+        "endChar": 17
+      },
+      "revId": "868d6752a0f42a5140403163a4c92c9b7d840eb6",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f3cc374b_0f596a07",
+        "filename": "src/fru_device/fru_dcscm.hpp",
+        "patchSetId": 6
+      },
+      "lineNbr": 26,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2025-06-24T16:53:50Z",
+      "side": 1,
+      "message": "typo",
+      "range": {
+        "startLine": 26,
+        "startChar": 57,
+        "endLine": 26,
+        "endChar": 61
+      },
       "revId": "868d6752a0f42a5140403163a4c92c9b7d840eb6",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
