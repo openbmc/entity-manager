@@ -29,7 +29,7 @@ struct PerformScan : std::enable_shared_from_this<PerformScan>
                 std::vector<nlohmann::json>& configurations,
                 boost::asio::io_context& io, std::function<void()>&& callback);
 
-    void updateSystemConfiguration(const nlohmann::json& recordRef,
+    void updateSystemConfiguration(nlohmann::json& recordRef,
                                    const std::string& probeName,
                                    FoundDevices& foundDevices);
     void run();
