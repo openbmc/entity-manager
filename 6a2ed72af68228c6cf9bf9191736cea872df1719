@@ -1,6 +1,30 @@
 {
   "comments": [
     {
+      "unresolved": true,
+      "key": {
+        "uuid": "b89e73af_ea672686",
+        "filename": "configurations/Twinlake.json",
+        "patchSetId": 10
+      },
+      "lineNbr": 11,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2025-06-24T17:26:22Z",
+      "side": 1,
+      "message": "I\u0027m not quite following how these differ.  I see 0x01 in \"address\" which I initially thought meant i2c address, but clearly that\u0027s not the case, as address 0x1 would be unlikely for an i2c device, and would conflict with 0x2 (as the bottom bit is the read-write bit).",
+      "range": {
+        "startLine": 4,
+        "startChar": 0,
+        "endLine": 11,
+        "endChar": 32
+      },
+      "revId": "6a2ed72af68228c6cf9bf9191736cea872df1719",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
       "key": {
         "uuid": "7d494373_bbf0633e",
         "filename": "configurations/Twinlake.json",
@@ -20,10 +44,10 @@
         "endChar": 9
       },
       "revId": "6a2ed72af68228c6cf9bf9191736cea872df1719",
-      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
-      "unresolved": true
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": true,
       "key": {
         "uuid": "5949333f_cdda3765",
         "filename": "configurations/Twinlake.json",
@@ -44,8 +68,31 @@
         "endChar": 9
       },
       "revId": "6a2ed72af68228c6cf9bf9191736cea872df1719",
-      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
-      "unresolved": true
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8068e2eb_fa38a48a",
+        "filename": "configurations/Twinlake.json",
+        "patchSetId": 10
+      },
+      "lineNbr": 112,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2025-06-24T17:26:22Z",
+      "side": 1,
+      "message": "\u003e This configuration file is probing \"xyz.openbmc_project.Ipmb.FruDevice\" service. Since\n\u003e IPMB FRU patch ( https://gerrit.openbmc-project.xyz/c/openbmc/entity-manager/+/39593 ) is not merged, this config file will not be used, eventhough we split this into another review.\n\u003e \n\u003e Can we follow this in single review?\n\nAh, good point.  I thought it was using stock frudevice, yes, one patch seems worthwhile.",
+      "parentUuid": "5949333f_cdda3765",
+      "range": {
+        "startLine": 3,
+        "startChar": 0,
+        "endLine": 112,
+        "endChar": 9
+      },
+      "revId": "6a2ed72af68228c6cf9bf9191736cea872df1719",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }
