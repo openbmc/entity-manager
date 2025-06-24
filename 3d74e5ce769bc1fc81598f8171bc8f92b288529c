@@ -38,6 +38,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "357b2ff9_e3d7422b",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 38
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2025-06-24T17:16:35Z",
+      "side": 1,
+      "message": "\u003e by EM is determined by whoever is building the BMC firmware image.\n\nI really have no idea what you mean by this.  You\u0027re adding a meson option that removes the config files for all the pcie devices, for boards that have PCIe slots.\n\nHow would one building the bmc image \"determine\" which hardware should be supported?  How is that (likely very large) list maintained?",
+      "parentUuid": "fff5c896_ba5eee3e",
+      "revId": "3d74e5ce769bc1fc81598f8171bc8f92b288529c",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "1fec691e_00b9deb5",
         "filename": "configurations/tyan/tyan_s8030_baseboard.json",
         "patchSetId": 38
