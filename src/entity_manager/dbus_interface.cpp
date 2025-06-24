@@ -144,7 +144,7 @@ static nlohmann::json::value_t getDBusType(
 
 static void populateInterfacePropertyFromJson(
     nlohmann::json& systemConfiguration, const std::string& path,
-    const nlohmann::json& key, const nlohmann::json& value,
+    const std::string& key, const nlohmann::json& value,
     nlohmann::json::value_t type,
     std::shared_ptr<sdbusplus::asio::dbus_interface>& iface,
     sdbusplus::asio::PropertyPermission permission)

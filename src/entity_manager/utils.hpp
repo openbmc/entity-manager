@@ -27,16 +27,16 @@ constexpr const char* get = "Get";
 
 bool fwVersionIsSame();
 
-void handleLeftOverTemplateVars(nlohmann::json::iterator& keyPair);
+void handleLeftOverTemplateVars(nlohmann::json& value);
 
 std::optional<std::string> templateCharReplace(
-    nlohmann::json::iterator& keyPair, const DBusObject& object, size_t index,
+    nlohmann::json& value, const DBusObject& object, size_t index,
     const std::optional<std::string>& replaceStr = std::nullopt,
     bool handleLeftOver = true);
 
 std::optional<std::string> templateCharReplace(
-    nlohmann::json::iterator& keyPair, const DBusInterface& interface,
-    size_t index, const std::optional<std::string>& replaceStr = std::nullopt);
+    nlohmann::json& value, const DBusInterface& interface, size_t index,
+    const std::optional<std::string>& replaceStr = std::nullopt);
 
 std::string buildInventorySystemPath(std::string& boardName,
                                      const std::string& boardType);
