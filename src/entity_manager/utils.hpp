@@ -40,11 +40,11 @@ void setupPowerMatch(const std::shared_ptr<sdbusplus::asio::connection>& conn);
 bool fwVersionIsSame();
 
 std::optional<std::string> templateCharReplace(
-    nlohmann::json::iterator& keyPair, const DBusObject& object, size_t index,
+    const std::string& key, nlohmann::json& value, const DBusObject& object, size_t index,
     const std::optional<std::string>& replaceStr = std::nullopt);
 
 std::optional<std::string> templateCharReplace(
-    nlohmann::json::iterator& keyPair, const DBusInterface& interface,
+    const std::string& key, nlohmann::json& value, const DBusInterface& interface,
     size_t index, const std::optional<std::string>& replaceStr = std::nullopt);
 
 } // namespace em_utils

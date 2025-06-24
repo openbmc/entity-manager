@@ -84,8 +84,17 @@ void postToDbus(const nlohmann::json& newConfiguration,
     // iterate through boards
     for (const auto& [boardId, boardConfig] : newConfiguration.items())
     {
-        std::string boardName = boardConfig["Name"];
-        std::string boardNameOrig = boardConfig["Name"];
+        const auto name = boardConfig.find("Name");
+        if (name == boardConfig.end()){
+            std::cerr << "Board did not include a config\n";
+            continue;
+        }
+        const std::string* boardNameOrig = name->get_ptr<const std::string*>();
+        if (boardNameOrig == nullptr){
+            std::cerr << "Board name was not a string????\n";
+            continue;
+        }
+        std::string boardName = *boardNameOrig;
         std::string jsonPointerPath = "/" + boardId;
         // loop through newConfiguration, but use values from system
         // configuration to be able to modify via dbus later
@@ -123,11 +132,11 @@ void postToDbus(const nlohmann::json& newConfiguration,
             dbus_interface::createInterface(
                 objServer, boardPath,
                 "xyz.openbmc_project.Inventory.Item." + boardType,
-                boardNameOrig);
+                *boardNameOrig);
 
         dbus_interface::createAddObjectMethod(
             jsonPointerPath, boardPath, systemConfiguration, objServer,
-            boardNameOrig);
+            *boardNameOrig);
 
         dbus_interface::populateInterfaceFromJson(
             systemConfiguration, jsonPointerPath, boardIface, boardValues,
@@ -140,7 +149,7 @@ void postToDbus(const nlohmann::json& newConfiguration,
             {
                 std::shared_ptr<sdbusplus::asio::dbus_interface> iface =
                     dbus_interface::createInterface(objServer, boardPath,
-                                                    propName, boardNameOrig);
+                                                    propName, *boardNameOrig);
 
                 dbus_interface::populateInterfaceFromJson(
                     systemConfiguration, jsonPointerPath + propName, iface,
@@ -205,7 +214,7 @@ void postToDbus(const nlohmann::json& newConfiguration,
                     dbus_interface::createInterface(
                         objServer, ifacePath,
                         "xyz.openbmc_project.Inventory.Item.Bmc",
-                        boardNameOrig);
+                        *boardNameOrig);
                 dbus_interface::populateInterfaceFromJson(
                     systemConfiguration, jsonPointerPath, bmcIface, item,
                     objServer, getPermission(itemType));
@@ -216,7 +225,7 @@ void postToDbus(const nlohmann::json& newConfiguration,
                     dbus_interface::createInterface(
                         objServer, ifacePath,
                         "xyz.openbmc_project.Inventory.Item.System",
-                        boardNameOrig);
+                        *boardNameOrig);
                 dbus_interface::populateInterfaceFromJson(
                     systemConfiguration, jsonPointerPath, systemIface, item,
                     objServer, getPermission(itemType));
@@ -236,7 +245,7 @@ void postToDbus(const nlohmann::json& newConfiguration,
 
                     std::shared_ptr<sdbusplus::asio::dbus_interface>
                         objectIface = dbus_interface::createInterface(
-                            objServer, ifacePath, ifaceName, boardNameOrig);
+                            objServer, ifacePath, ifaceName, *boardNameOrig);
 
                     dbus_interface::populateInterfaceFromJson(
                         systemConfiguration, jsonPointerPath, objectIface,
@@ -280,7 +289,7 @@ void postToDbus(const nlohmann::json& newConfiguration,
 
                         std::shared_ptr<sdbusplus::asio::dbus_interface>
                             objectIface = dbus_interface::createInterface(
-                                objServer, ifacePath, ifaceName, boardNameOrig);
+                                objServer, ifacePath, ifaceName, *boardNameOrig);
 
                         dbus_interface::populateInterfaceFromJson(
                             systemConfiguration,
@@ -296,16 +305,16 @@ void postToDbus(const nlohmann::json& newConfiguration,
                 dbus_interface::createInterface(
                     objServer, ifacePath,
                     "xyz.openbmc_project.Configuration." + itemType,
-                    boardNameOrig);
+                    *boardNameOrig);
 
             dbus_interface::populateInterfaceFromJson(
                 systemConfiguration, jsonPointerPath, itemIface, item,
                 objServer, getPermission(itemType));
 
-            topology.addBoard(boardPath, boardType, boardNameOrig, item);
+            topology.addBoard(boardPath, boardType, *boardNameOrig, item);
         }
 
-        newBoards.emplace(boardPath, boardNameOrig);
+        newBoards.emplace(boardPath, *boardNameOrig);
     }
 
     for (const auto& [assocPath, assocPropValue] :

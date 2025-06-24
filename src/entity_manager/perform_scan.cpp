@@ -427,14 +427,13 @@ static std::string generateDeviceName(
     size_t foundDeviceIdx, const std::string& nameTemplate,
     std::optional<std::string>& replaceStr)
 {
-    nlohmann::json copyForName = {{"Name", nameTemplate}};
-    nlohmann::json::iterator copyIt = copyForName.begin();
+    nlohmann::json copyForName = nameTemplate;
     std::optional<std::string> replaceVal = em_utils::templateCharReplace(
-        copyIt, dbusObject, foundDeviceIdx, replaceStr);
+        "Name", copyForName, dbusObject, foundDeviceIdx, replaceStr);
 
     if (!replaceStr && replaceVal)
     {
-        if (usedNames.contains(copyIt.value()))
+        if (usedNames.contains(nameTemplate)
         {
             replaceStr = replaceVal;
             copyForName = {{"Name", nameTemplate}};
@@ -450,8 +449,12 @@ static std::string generateDeviceName(
                   << " with found device index.\n Consider "
                      "fixing template to not have duplicates\n";
     }
-
-    return copyIt.value();
+    const std::string* ret = copyIt->get_ptr<const std::string*>();
+    if (ret == nullptr){
+        std::cerr << "Device name wasn't a string???";
+        return "";
+    }
+    return *ret;
 }
 
 void scan::PerformScan::updateSystemConfiguration(
@@ -512,29 +515,40 @@ void scan::PerformScan::updateSystemConfiguration(
                                            ? emptyObject
                                            : objectIt->second;
 
-        nlohmann::json record = recordRef;
+        const nlohmann::json::object_t* record = recordRef.get_ptr<const nlohmann::json::object_t*>();
+        if (record == nullptr){
+            std::cerr << "Failed to parse record" << recordRef.dump() << "\n";
+            continue;
+        }
         std::string recordName = getRecordName(foundDevice, probeName);
         size_t foundDeviceIdx = indexes.front();
         indexes.pop_front();
-
+        
         // check name first so we have no duplicate names
-        auto getName = record.find("Name");
-        if (getName == record.end())
+        auto getName = record->find("Name");
+        if (getName == record->end())
         {
-            std::cerr << "Record Missing Name! " << record.dump();
+            std::cerr << "Record Missing Name! " << recordRef.dump() << "\n";
             continue; // this should be impossible at this level
         }
 
+        const std::string* name = getName->second.get_ptr<const std::string*>();
+        if (name == nullptr){
+            std::cerr << "Name wasn't a string?\n";
+            continue;
+        }
+
         std::string deviceName = generateDeviceName(
-            usedNames, dbusObject, foundDeviceIdx, getName.value(), replaceStr);
-        getName.value() = deviceName;
+            usedNames, dbusObject, foundDeviceIdx, *name, replaceStr);
+        // TODO?
+        //*name = deviceName;
         usedNames.insert(deviceName);
 
-        for (auto keyPair = record.begin(); keyPair != record.end(); keyPair++)
+        for (auto keyPair = record->begin(); keyPair != record->end(); keyPair++)
         {
-            if (keyPair.key() != "Name")
+            if (keyPair->first != "Name")
             {
-                em_utils::templateCharReplace(keyPair, dbusObject,
+                em_utils::templateCharReplace(keyPair->first, keyPair->second, dbusObject,
                                               foundDeviceIdx, replaceStr);
             }
         }
