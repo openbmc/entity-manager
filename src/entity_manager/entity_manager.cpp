@@ -104,8 +104,21 @@ void EntityManager::postBoardToDBus(
     const std::string& boardId, const nlohmann::json& boardConfig,
     std::map<std::string, std::string>& newBoards)
 {
-    std::string boardName = boardConfig["Name"];
-    std::string boardNameOrig = boardConfig["Name"];
+    nlohmann::json::const_iterator boardNameIt = boardConfig.find("Name");
+    if (boardNameIt == boardConfig.end())
+    {
+        lg2::error("Unable to find name for {BOARD}", "BOARD", boardId);
+        return;
+    }
+    const std::string* boardNamePtr =
+        boardNameIt->get_ptr<const std::string*>();
+    if (boardNamePtr == nullptr)
+    {
+        lg2::error("Name for {BOARD} was not a string", "BOARD", boardId);
+        return;
+    }
+    std::string boardName = *boardNamePtr;
+    std::string boardNameOrig = *boardNamePtr;
     std::string jsonPointerPath = "/" + boardId;
     // loop through newConfiguration, but use values from system
     // configuration to be able to modify via dbus later
