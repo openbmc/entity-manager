@@ -64,20 +64,30 @@ bool fwVersionIsSame()
     return false;
 }
 
-void handleLeftOverTemplateVars(nlohmann::json::iterator& keyPair)
+void handleLeftOverTemplateVars(nlohmann::json& value)
 {
-    if (keyPair.value().type() == nlohmann::json::value_t::object ||
-        keyPair.value().type() == nlohmann::json::value_t::array)
+    nlohmann::json::object_t* objPtr =
+        value.get_ptr<nlohmann::json::object_t*>();
+    if (objPtr != nullptr)
     {
-        for (auto nextLayer = keyPair.value().begin();
-             nextLayer != keyPair.value().end(); nextLayer++)
+        for (auto& nextLayer : *objPtr)
+        {
+            handleLeftOverTemplateVars(nextLayer.second);
+        }
+        return;
+    }
+
+    nlohmann::json::array_t* arrPtr = value.get_ptr<nlohmann::json::array_t*>();
+    if (arrPtr != nullptr)
+    {
+        for (auto& nextLayer : *arrPtr)
         {
             handleLeftOverTemplateVars(nextLayer);
         }
         return;
     }
 
-    std::string* strPtr = keyPair.value().get_ptr<std::string*>();
+    std::string* strPtr = value.get_ptr<std::string*>();
     if (strPtr == nullptr)
     {
         return;
@@ -125,25 +135,26 @@ void handleLeftOverTemplateVars(nlohmann::json::iterator& keyPair)
 // but checks all properties on all interfaces provided to do the substitution
 // with.
 std::optional<std::string> templateCharReplace(
-    nlohmann::json::iterator& keyPair, const DBusObject& object,
+    const std::string& key, nlohmann::json& value, const DBusObject& object,
     const size_t index, const std::optional<std::string>& replaceStr,
     bool handleLeftOver)
 {
     for (const auto& [_, interface] : object)
     {
-        auto ret = templateCharReplace(keyPair, interface, index, replaceStr);
+        auto ret =
+            templateCharReplace(key, value, interface, index, replaceStr);
         if (ret)
         {
             if (handleLeftOver)
             {
-                handleLeftOverTemplateVars(keyPair);
+                handleLeftOverTemplateVars(value);
             }
             return ret;
         }
     }
     if (handleLeftOver)
     {
-        handleLeftOverTemplateVars(keyPair);
+        handleLeftOverTemplateVars(value);
     }
     return std::nullopt;
 }
@@ -152,23 +163,25 @@ std::optional<std::string> templateCharReplace(
 // the field found in a dbus object i.e. $ADDRESS would get populated with the
 // ADDRESS field from a object on dbus
 std::optional<std::string> templateCharReplace(
-    nlohmann::json::iterator& keyPair, const DBusInterface& interface,
-    const size_t index, const std::optional<std::string>& replaceStr)
+    const std::string& /*key*/, nlohmann::json& value,
+    const DBusInterface& interface, const size_t index,
+    const std::optional<std::string>& replaceStr)
 {
     std::optional<std::string> ret = std::nullopt;
 
-    if (keyPair.value().type() == nlohmann::json::value_t::object ||
-        keyPair.value().type() == nlohmann::json::value_t::array)
+    if (value.type() == nlohmann::json::value_t::object ||
+        value.type() == nlohmann::json::value_t::array)
     {
-        for (auto nextLayer = keyPair.value().begin();
-             nextLayer != keyPair.value().end(); nextLayer++)
+        for (auto nextLayer = value.begin(); nextLayer != value.end();
+             nextLayer++)
         {
-            templateCharReplace(nextLayer, interface, index, replaceStr);
+            templateCharReplace(nextLayer.key(), nextLayer.value(), interface,
+                                index, replaceStr);
         }
         return ret;
     }
 
-    std::string* strPtr = keyPair.value().get_ptr<std::string*>();
+    std::string* strPtr = value.get_ptr<std::string*>();
     if (strPtr == nullptr)
     {
         return ret;
@@ -196,7 +209,7 @@ std::optional<std::string> templateCharReplace(
         // check for additional operations
         if ((start == 0U) && find.end() == strPtr->end())
         {
-            std::visit([&](auto&& val) { keyPair.value() = val; }, propValue);
+            std::visit([&](auto&& val) { value = val; }, propValue);
             return ret;
         }
 
@@ -255,18 +268,18 @@ std::optional<std::string> templateCharReplace(
         {
             result.append(" ").append(*exprEnd++);
         }
-        keyPair.value() = result;
+        value = result;
 
         // We probably just invalidated the pointer abovei,
         // reset and continue to handle multiple templates
-        strPtr = keyPair.value().get_ptr<std::string*>();
+        strPtr = value.get_ptr<std::string*>();
         if (strPtr == nullptr)
         {
             break;
         }
     }
 
-    strPtr = keyPair.value().get_ptr<std::string*>();
+    strPtr = value.get_ptr<std::string*>();
     if (strPtr == nullptr)
     {
         return ret;
@@ -286,7 +299,7 @@ std::optional<std::string> templateCharReplace(
         fromCharsWrapper(strView, temp, fullMatch, base);
     if (res.ec == std::errc{} && fullMatch)
     {
-        keyPair.value() = temp;
+        value = temp;
     }
 
     return ret;
