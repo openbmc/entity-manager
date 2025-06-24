@@ -520,6 +520,42 @@
       "parentUuid": "8c630f3f_59125b3e",
       "revId": "b0d09e38d8c682cf37b3f209bdc65cfb65504181",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "bf5f5f55_7b0f5aa2",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2025-06-24T17:14:29Z",
+      "side": 1,
+      "message": "\u003e Ideally the upstream software only needs to be configured and then it should be ready to go.\n\nYep, agreed, so if you find bugs in other folks configs, feel free to fix them.\n\n\u003e If there is need for patching or adding / removing files to make it work then the upstream software needs to be fixed\n\nNo, there is no need to add/remove files to \"make it work\" If the conventions are followed, everything works fine.  What you\u0027re pointing out is a trust issue with upstream configs, that can be alleviated with testing and review.",
+      "parentUuid": "1fddd1ff_ea622a82",
+      "revId": "b0d09e38d8c682cf37b3f209bdc65cfb65504181",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "fa143d1b_fbc366ec",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2025-06-24T17:14:29Z",
+      "side": 1,
+      "message": "\u003e The delay is around 3 seconds 😞\n\nAnd we have an arbitrary delay of 5 seconds before starting, so this doesn\u0027t seem to be a real problem, or we could optimize in a much simpler way by simply changing that delay to 1 second?",
+      "parentUuid": "3b3d7fa6_6a8e5a16",
+      "revId": "b0d09e38d8c682cf37b3f209bdc65cfb65504181",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }
