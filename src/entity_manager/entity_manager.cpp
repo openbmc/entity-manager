@@ -84,7 +84,15 @@ void EntityManager::postToDbus(const nlohmann::json& newConfiguration)
     // iterate through boards
     for (const auto& [boardId, boardConfig] : newConfiguration.items())
     {
-        postBoardToDBus(boardId, boardConfig, newBoards);
+        const nlohmann::json::object_t* boardConfigPtr =
+            boardConfig.get_ptr<const nlohmann::json::object_t*>();
+        if (boardConfigPtr == nullptr)
+        {
+            lg2::error("boardConfig for {BOARD} was not an object", "BOARD",
+                       boardId);
+            continue;
+        }
+        postBoardToDBus(boardId, *boardConfigPtr, newBoards);
     }
 
     for (const auto& [assocPath, assocPropValue] :
@@ -108,11 +116,24 @@ void EntityManager::postToDbus(const nlohmann::json& newConfiguration)
 }
 
 void EntityManager::postBoardToDBus(
-    const std::string& boardId, const nlohmann::json& boardConfig,
+    const std::string& boardId, const nlohmann::json::object_t& boardConfig,
     std::map<std::string, std::string>& newBoards)
 {
-    std::string boardName = boardConfig["Name"];
-    std::string boardNameOrig = boardConfig["Name"];
+    auto boardNameIt = boardConfig.find("Name");
+    if (boardNameIt == boardConfig.end())
+    {
+        lg2::error("Unable to find name for {BOARD}", "BOARD", boardId);
+        return;
+    }
+    const std::string* boardNamePtr =
+        boardNameIt->second.get_ptr<const std::string*>();
+    if (boardNamePtr == nullptr)
+    {
+        lg2::error("Name for {BOARD} was not a string", "BOARD", boardId);
+        return;
+    }
+    std::string boardName = *boardNamePtr;
+    std::string boardNameOrig = *boardNamePtr;
     std::string jsonPointerPath = "/" + boardId;
     // loop through newConfiguration, but use values from system
     // configuration to be able to modify via dbus later

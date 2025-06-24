@@ -53,7 +53,7 @@ class EntityManager
                                  nlohmann::json newConfiguration);
     void postToDbus(const nlohmann::json& newConfiguration);
     void postBoardToDBus(const std::string& boardId,
-                         const nlohmann::json& boardConfig,
+                         const nlohmann::json::object_t& boardConfig,
                          std::map<std::string, std::string>& newBoards);
     void postExposesRecordsToDBus(
         nlohmann::json& item, size_t& exposesIndex,
