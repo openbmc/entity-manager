@@ -6,7 +6,10 @@ project(
     version: '0.1',
     meson_version: '>=1.3.0',
 )
-add_project_arguments('-Wno-psabi', language: 'cpp')
+add_project_arguments(
+    ['-Wno-psabi', '-DJSON_USE_IMPLICIT_CONVERSIONS=0'],
+    language: 'cpp',
+)
 
 boost_args = [
     '-DBOOST_ASIO_NO_DEPRECATED',

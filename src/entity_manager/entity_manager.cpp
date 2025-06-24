@@ -104,8 +104,19 @@ void EntityManager::postBoardToDBus(
     const std::string& boardId, const nlohmann::json& boardConfig,
     std::map<std::string, std::string>& newBoards)
 {
-    std::string boardName = boardConfig["Name"];
-    std::string boardNameOrig = boardConfig["Name"];
+    nlohmann::json::const_iterator boardNameIt = boardConfig.find("Name");
+    if (boardNameIt == boardConfig.end())
+    {
+        lg2::error("Unable to find name for {BOARD}", "BOARD", boardId);
+        return;
+    }
+    const std::string* boardName = boardNameIt->get_ptr<const std::string*>();
+    if (boardName == nullptr)
+    {
+        lg2::error("Name for {BOARD} was not a string", "BOARD", boardId);
+        return;
+    }
+    std::string boardNameOrig = *boardName;
     std::string jsonPointerPath = "/" + boardId;
     // loop through newConfiguration, but use values from system
     // configuration to be able to modify via dbus later
@@ -122,16 +133,16 @@ void EntityManager::postBoardToDBus(
     else
     {
         lg2::error("Unable to find type for {BOARD} reverting to Chassis.",
-                   "BOARD", boardName);
+                   "BOARD", *boardName);
         boardType = "Chassis";
     }
 
     const std::string boardPath =
-        em_utils::buildInventorySystemPath(boardName, boardType);
+        em_utils::buildInventorySystemPath(*boardName, boardType);
 
     std::shared_ptr<sdbusplus::asio::dbus_interface> inventoryIface =
         dbus_interface.createInterface(
-            boardPath, "xyz.openbmc_project.Inventory.Item", boardName);
+            boardPath, "xyz.openbmc_project.Inventory.Item", *boardName);
 
     std::shared_ptr<sdbusplus::asio::dbus_interface> boardIface =
         dbus_interface.createInterface(
