@@ -9,7 +9,6 @@ intended to be simple, and are guided by the following principles.
 1. Configuration files should be easy to write. If a tradeoff is to be made
    between a config file being complex to write, and a reactor being complex to
    write, the reactor will be the one to hold the complexity. Why?
-
    - Configuration files will get replicated and built to support hundreds of
      systems over time, and scale linearly with the number of systems. In
      contrast, reactors tend to scale as a logarithm of system count, with each
@@ -26,7 +25,6 @@ intended to be simple, and are guided by the following principles.
    hardware, and should avoid attempting to support multiple variations of a
    given piece of hardware in a single file, even at the risk of duplicating
    information. Why?
-
    - Hardware constraints, bugs, and oddities are generally found over time. The
      initial commit of a configuration file is far from the final time that
      changes will be submitted. Having each individual piece of hardware in its
@@ -49,7 +47,6 @@ intended to be simple, and are guided by the following principles.
        config files.
 
 3. Configuration files are not a long-term stable ABI. Why?
-
    - Configuration files occasionally need to modify their schema in pursuit of
      simplicity, or based on a greater understanding of the system level
      constraints.
