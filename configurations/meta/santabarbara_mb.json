@@ -106,6 +106,246 @@
             "Type": "EEPROM"
         },
         {
+            "Address": "0x21",
+            "Bus": 1,
+            "Connector": {
+                "Name": "MB_FAN0_TACH_IL",
+                "Pwm": 2,
+                "PwmName": "MB_FAN_PWM_PCT",
+                "Tachs": [
+                    0
+                ]
+            },
+            "Index": 0,
+            "Name": "MB_FAN0_TACH_IL_SPEED_RPM",
+            "PowerState": "Always",
+            "Thresholds": [
+                {
+                    "Direction": "greater than",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 40000
+                },
+                {
+                    "Direction": "less than",
+                    "Name": "lower critical",
+                    "Severity": 1,
+                    "Value": 1000
+                }
+            ],
+            "Type": "I2CFan"
+        },
+        {
+            "Address": "0x21",
+            "Bus": 1,
+            "Connector": {
+                "Name": "MB_FAN0_TACH_OL",
+                "Pwm": 2,
+                "PwmName": "MB_FAN_PWM_PCT",
+                "Tachs": [
+                    1
+                ]
+            },
+            "Index": 1,
+            "Name": "MB_FAN0_TACH_OL_SPEED_RPM",
+            "PowerState": "Always",
+            "Thresholds": [
+                {
+                    "Direction": "greater than",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 35000
+                },
+                {
+                    "Direction": "less than",
+                    "Name": "lower critical",
+                    "Severity": 1,
+                    "Value": 1000
+                }
+            ],
+            "Type": "I2CFan"
+        },
+        {
+            "Address": "0x21",
+            "Bus": 1,
+            "Connector": {
+                "Name": "MB_FAN1_TACH_IL",
+                "Pwm": 2,
+                "PwmName": "MB_FAN_PWM_PCT",
+                "Tachs": [
+                    2
+                ]
+            },
+            "Index": 2,
+            "Name": "MB_FAN1_TACH_IL_SPEED_RPM",
+            "PowerState": "Always",
+            "Thresholds": [
+                {
+                    "Direction": "greater than",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 40000
+                },
+                {
+                    "Direction": "less than",
+                    "Name": "lower critical",
+                    "Severity": 1,
+                    "Value": 1000
+                }
+            ],
+            "Type": "I2CFan"
+        },
+        {
+            "Address": "0x21",
+            "Bus": 1,
+            "Connector": {
+                "Name": "MB_FAN1_TACH_OL",
+                "Pwm": 2,
+                "PwmName": "MB_FAN_PWM_PCT",
+                "Tachs": [
+                    3
+                ]
+            },
+            "Index": 3,
+            "Name": "MB_FAN1_TACH_OL_SPEED_RPM",
+            "PowerState": "Always",
+            "Thresholds": [
+                {
+                    "Direction": "greater than",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 35000
+                },
+                {
+                    "Direction": "less than",
+                    "Name": "lower critical",
+                    "Severity": 1,
+                    "Value": 1000
+                }
+            ],
+            "Type": "I2CFan"
+        },
+        {
+            "Address": "0x21",
+            "Bus": 1,
+            "Connector": {
+                "Name": "MB_FAN2_TACH_IL",
+                "Pwm": 2,
+                "PwmName": "MB_FAN_PWM_PCT",
+                "Tachs": [
+                    4
+                ]
+            },
+            "Index": 4,
+            "Name": "MB_FAN2_TACH_IL_SPEED_RPM",
+            "PowerState": "Always",
+            "Thresholds": [
+                {
+                    "Direction": "greater than",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 40000
+                },
+                {
+                    "Direction": "less than",
+                    "Name": "lower critical",
+                    "Severity": 1,
+                    "Value": 1000
+                }
+            ],
+            "Type": "I2CFan"
+        },
+        {
+            "Address": "0x21",
+            "Bus": 1,
+            "Connector": {
+                "Name": "MB_FAN2_TACH_OL",
+                "Pwm": 2,
+                "PwmName": "MB_FAN_PWM_PCT",
+                "Tachs": [
+                    5
+                ]
+            },
+            "Index": 5,
+            "Name": "MB_FAN2_TACH_OL_SPEED_RPM",
+            "PowerState": "Always",
+            "Thresholds": [
+                {
+                    "Direction": "greater than",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 35000
+                },
+                {
+                    "Direction": "less than",
+                    "Name": "lower critical",
+                    "Severity": 1,
+                    "Value": 1000
+                }
+            ],
+            "Type": "I2CFan"
+        },
+        {
+            "Address": "0x21",
+            "Bus": 1,
+            "Connector": {
+                "Name": "MB_FAN3_TACH_IL",
+                "Pwm": 2,
+                "PwmName": "MB_FAN_PWM_PCT",
+                "Tachs": [
+                    6
+                ]
+            },
+            "Index": 6,
+            "Name": "MB_FAN3_TACH_IL_SPEED_RPM",
+            "PowerState": "Always",
+            "Thresholds": [
+                {
+                    "Direction": "greater than",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 40000
+                },
+                {
+                    "Direction": "less than",
+                    "Name": "lower critical",
+                    "Severity": 1,
+                    "Value": 1000
+                }
+            ],
+            "Type": "I2CFan"
+        },
+        {
+            "Address": "0x21",
+            "Bus": 1,
+            "Connector": {
+                "Name": "MB_FAN3_TACH_OL",
+                "Pwm": 2,
+                "PwmName": "MB_FAN_PWM_PCT",
+                "Tachs": [
+                    7
+                ]
+            },
+            "Index": 7,
+            "Name": "MB_FAN3_TACH_OL_SPEED_RPM",
+            "PowerState": "Always",
+            "Thresholds": [
+                {
+                    "Direction": "greater than",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 35000
+                },
+                {
+                    "Direction": "less than",
+                    "Name": "lower critical",
+                    "Severity": 1,
+                    "Value": 1000
+                }
+            ],
+            "Type": "I2CFan"
+        },
+        {
             "Address": "0x40",
             "Bus": 19,
             "Labels": [
