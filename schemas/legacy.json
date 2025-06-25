@@ -487,7 +487,11 @@
                 "Type": {
                     "description": "This enum may be extended as described in the design",
                     "type": "string",
-                    "enum": ["MB Upstream Port"]
+                    "enum": [
+                        "MB Upstream Port",
+                        "MB Upstream $bus % 15 Port",
+                        "Chassis Upstream Port"
+                    ]
                 }
             },
             "required": ["Name", "Type"],
@@ -1168,7 +1172,11 @@
             },
             "ConnectsToType": {
                 "type": "string",
-                "const": "MB Upstream Port"
+                "enum": [
+                    "MB Upstream Port",
+                    "MB Upstream $bus % 15 Port",
+                    "Chassis Upstream Port"
+                ]
             },
             "CpuID": {
                 "type": "number",
