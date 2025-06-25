@@ -103,6 +103,42 @@
             "power1_Name": "PDB1_P52V_ASIC3_SENSE_PWR_W"
         },
         {
+            "Address": "0x43",
+            "Bus": 47,
+            "Labels": [
+                "iout1",
+                "pin",
+                "temp1",
+                "vin",
+                "vout1"
+            ],
+            "Name": "PDB1_P52V_HSC1",
+            "Type": "LTC4287",
+            "iout1_Name": "PDB1_P52V_HSC1_CURR_A",
+            "pin_Name": "PDB1_P52V_HSC1_PWR_W",
+            "temp1_Name": "PDB1_P52V_HSC1_TEMP_C",
+            "vin_Name": "PDB1_P52V_HSC1_VIN_VOLT_V",
+            "vout1_Name": "PDB1_P52V_HSC1_VOUT_VOLT_V"
+        },
+        {
+            "Address": "0x41",
+            "Bus": 47,
+            "Labels": [
+                "iout1",
+                "pin",
+                "temp1",
+                "vin",
+                "vout1"
+            ],
+            "Name": "PDB1_P52V_HSC2",
+            "Type": "LTC4287",
+            "iout1_Name": "PDB1_P52V_HSC2_CURR_A",
+            "pin_Name": "PDB1_P52V_HSC2_PWR_W",
+            "temp1_Name": "PDB1_P52V_HSC2_TEMP_C",
+            "vin_Name": "PDB1_P52V_HSC2_VIN_VOLT_V",
+            "vout1_Name": "PDB1_P52V_HSC2_VOUT_VOLT_V"
+        },
+        {
             "Address": "0x4a",
             "Bus": 44,
             "Name": "PDB1_TOP_TEMP_C",
