@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "cd3ab8ae_4ecb7d60",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 9
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1001426
+      },
+      "writtenOn": "2025-06-25T10:52:22Z",
+      "side": 1,
+      "message": "The jenkin failure is unrelated to this patch.\n\nmeson needs to be fixed.\n```\nif get_option(\u0027tests\u0027).allowed()\n    # Include the subdir when running test to include \u0027gpio_presence_lib\u0027 variable\n    if not get_option(\u0027gpio-presence\u0027)\n        subdir(\u0027src/gpio-presence\u0027)\n    endif\n    subdir(\u0027test\u0027)\nendif\n```",
+      "revId": "ecc68c8359424887f9c2ef43a2b001ba74791404",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    }
+  ]
+}
