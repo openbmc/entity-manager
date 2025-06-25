@@ -1,6 +1,11 @@
 {
     "Exposes": [
         {
+            "ConnectsToType": "Backplane $bus % 15 Port",
+            "Name": "Sentinel Dome T1 with Retimer Baseboard $bus % 15",
+            "Type": "DownstreamPort"
+        },
+        {
             "CheckHysteresisWithSetpoint": true,
             "Class": "temp",
             "DCoefficient": 0.0,
