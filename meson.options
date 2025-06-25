@@ -29,6 +29,12 @@ option(
     description: 'Run JSON schema validation during the build.',
 )
 option(
+    'runtime-validate-json',
+    type: 'boolean',
+    value: false,
+    description: 'Run JSON schema validation at runtime.',
+)
+option(
     'gpio-presence',
     type: 'boolean',
     value: true,

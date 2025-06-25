@@ -1,3 +1,11 @@
+cpp_args_em = cpp_args + ['-DBOOST_ASIO_DISABLE_THREADS']
+
+if get_option('runtime-validate-json')
+    cpp_args_em += ['-DENABLE_RUNTIME_VALIDATE_JSON=true']
+else
+    cpp_args_em += ['-DENABLE_RUNTIME_VALIDATE_JSON=false']
+endif
+
 executable(
     'entity-manager',
     'entity_manager.cpp',
@@ -10,7 +18,7 @@ executable(
     'topology.cpp',
     'utils.cpp',
     '../utils.cpp',
-    cpp_args: cpp_args + ['-DBOOST_ASIO_DISABLE_THREADS'],
+    cpp_args: cpp_args_em,
     dependencies: [
         boost,
         nlohmann_json_dep,
