@@ -7,6 +7,246 @@
             "Type": "EEPROM"
         },
         {
+            "Address": "0x21",
+            "Bus": 43,
+            "Connector": {
+                "Name": "PDB2_FAN4_TACH_IL",
+                "Pwm": 5,
+                "PwmName": "PDB2_FAN4_PWM_PCT",
+                "Tachs": [
+                    4
+                ]
+            },
+            "Index": 4,
+            "Name": "PDB2_FAN4_TACH_IL_SPEED_RPM",
+            "PowerState": "Always",
+            "Thresholds": [
+                {
+                    "Direction": "greater than",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 40000
+                },
+                {
+                    "Direction": "less than",
+                    "Name": "lower critical",
+                    "Severity": 1,
+                    "Value": 1000
+                }
+            ],
+            "Type": "I2CFan"
+        },
+        {
+            "Address": "0x21",
+            "Bus": 43,
+            "Connector": {
+                "Name": "PDB2_FAN4_TACH_OL",
+                "Pwm": 5,
+                "PwmName": "PDB2_FAN4_PWM_PCT",
+                "Tachs": [
+                    5
+                ]
+            },
+            "Index": 5,
+            "Name": "PDB2_FAN4_TACH_OL_SPEED_RPM",
+            "PowerState": "Always",
+            "Thresholds": [
+                {
+                    "Direction": "greater than",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 35000
+                },
+                {
+                    "Direction": "less than",
+                    "Name": "lower critical",
+                    "Severity": 1,
+                    "Value": 1000
+                }
+            ],
+            "Type": "I2CFan"
+        },
+        {
+            "Address": "0x21",
+            "Bus": 43,
+            "Connector": {
+                "Name": "PDB2_FAN5_TACH_IL",
+                "Pwm": 3,
+                "PwmName": "PDB2_FAN5_PWM_PCT",
+                "Tachs": [
+                    3
+                ]
+            },
+            "Index": 3,
+            "Name": "PDB2_FAN5_TACH_IL_SPEED_RPM",
+            "PowerState": "Always",
+            "Thresholds": [
+                {
+                    "Direction": "greater than",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 40000
+                },
+                {
+                    "Direction": "less than",
+                    "Name": "lower critical",
+                    "Severity": 1,
+                    "Value": 1000
+                }
+            ],
+            "Type": "I2CFan"
+        },
+        {
+            "Address": "0x21",
+            "Bus": 43,
+            "Connector": {
+                "Name": "PDB2_FAN5_TACH_OL",
+                "Pwm": 3,
+                "PwmName": "PDB2_FAN5_PWM_PCT",
+                "Tachs": [
+                    10
+                ]
+            },
+            "Index": 10,
+            "Name": "PDB2_FAN5_TACH_OL_SPEED_RPM",
+            "PowerState": "Always",
+            "Thresholds": [
+                {
+                    "Direction": "greater than",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 35000
+                },
+                {
+                    "Direction": "less than",
+                    "Name": "lower critical",
+                    "Severity": 1,
+                    "Value": 1000
+                }
+            ],
+            "Type": "I2CFan"
+        },
+        {
+            "Address": "0x21",
+            "Bus": 43,
+            "Connector": {
+                "Name": "PDB2_FAN6_TACH_IL",
+                "Pwm": 2,
+                "PwmName": "PDB2_FAN6_PWM_PCT",
+                "Tachs": [
+                    1
+                ]
+            },
+            "Index": 1,
+            "Name": "PDB2_FAN6_TACH_IL_SPEED_RPM",
+            "PowerState": "Always",
+            "Thresholds": [
+                {
+                    "Direction": "greater than",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 40000
+                },
+                {
+                    "Direction": "less than",
+                    "Name": "lower critical",
+                    "Severity": 1,
+                    "Value": 1000
+                }
+            ],
+            "Type": "I2CFan"
+        },
+        {
+            "Address": "0x21",
+            "Bus": 43,
+            "Connector": {
+                "Name": "PDB2_FAN6_TACH_OL",
+                "Pwm": 2,
+                "PwmName": "PDB2_FAN6_PWM_PCT",
+                "Tachs": [
+                    2
+                ]
+            },
+            "Index": 2,
+            "Name": "PDB2_FAN6_TACH_OL_SPEED_RPM",
+            "PowerState": "Always",
+            "Thresholds": [
+                {
+                    "Direction": "greater than",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 35000
+                },
+                {
+                    "Direction": "less than",
+                    "Name": "lower critical",
+                    "Severity": 1,
+                    "Value": 1000
+                }
+            ],
+            "Type": "I2CFan"
+        },
+        {
+            "Address": "0x21",
+            "Bus": 43,
+            "Connector": {
+                "Name": "PDB2_FAN7_TACH_IL",
+                "Pwm": 0,
+                "PwmName": "PDB2_FAN7_PWM_PCT",
+                "Tachs": [
+                    0
+                ]
+            },
+            "Index": 0,
+            "Name": "PDB2_FAN7_TACH_IL_SPEED_RPM",
+            "PowerState": "Always",
+            "Thresholds": [
+                {
+                    "Direction": "greater than",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 40000
+                },
+                {
+                    "Direction": "less than",
+                    "Name": "lower critical",
+                    "Severity": 1,
+                    "Value": 1000
+                }
+            ],
+            "Type": "I2CFan"
+        },
+        {
+            "Address": "0x21",
+            "Bus": 43,
+            "Connector": {
+                "Name": "PDB2_FAN7_TACH_OL",
+                "Pwm": 0,
+                "PwmName": "PDB2_FAN7_PWM_PCT",
+                "Tachs": [
+                    7
+                ]
+            },
+            "Index": 7,
+            "Name": "PDB2_FAN7_TACH_OL_SPEED_RPM",
+            "PowerState": "Always",
+            "Thresholds": [
+                {
+                    "Direction": "greater than",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 35000
+                },
+                {
+                    "Direction": "less than",
+                    "Name": "lower critical",
+                    "Severity": 1,
+                    "Value": 1000
+                }
+            ],
+            "Type": "I2CFan"
+        },
+        {
             "Address": "0x40",
             "Bus": 41,
             "Labels": [
