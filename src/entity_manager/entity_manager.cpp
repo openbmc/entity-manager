@@ -584,6 +584,48 @@ static bool irContainsProbeInterface(
     return !intersect.empty();
 }
 
+void EntityManager::handleCurrentConfigurationJson()
+{
+    if (em_utils::fwVersionIsSame())
+    {
+        if (std::filesystem::is_regular_file(
+                configuration::currentConfiguration))
+        {
+            // this file could just be deleted, but it's nice for debug
+            std::filesystem::create_directory(tempConfigDir);
+            std::filesystem::remove(lastConfiguration);
+            std::filesystem::copy(configuration::currentConfiguration,
+                                  lastConfiguration);
+            std::filesystem::remove(configuration::currentConfiguration);
+
+            std::ifstream jsonStream(lastConfiguration);
+            if (jsonStream.good())
+            {
+                auto data = nlohmann::json::parse(jsonStream, nullptr, false);
+                if (data.is_discarded())
+                {
+                    std::cerr
+                        << "syntax error in " << lastConfiguration << "\n";
+                }
+                else
+                {
+                    lastJson = std::move(data);
+                }
+            }
+            else
+            {
+                std::cerr << "unable to open " << lastConfiguration << "\n";
+            }
+        }
+    }
+    else
+    {
+        // not an error, just logging at this level to make it in the journal
+        std::cerr << "Clearing previous configuration\n";
+        std::filesystem::remove(configuration::currentConfiguration);
+    }
+}
+
 void EntityManager::registerCallback(const std::string& path)
 {
     static boost::container::flat_map<std::string, sdbusplus::bus::match_t>
@@ -664,44 +706,7 @@ int main()
 
     boost::asio::post(io, [&]() { em.propertiesChangedCallback(); });
 
-    if (em_utils::fwVersionIsSame())
-    {
-        if (std::filesystem::is_regular_file(
-                configuration::currentConfiguration))
-        {
-            // this file could just be deleted, but it's nice for debug
-            std::filesystem::create_directory(tempConfigDir);
-            std::filesystem::remove(lastConfiguration);
-            std::filesystem::copy(configuration::currentConfiguration,
-                                  lastConfiguration);
-            std::filesystem::remove(configuration::currentConfiguration);
-
-            std::ifstream jsonStream(lastConfiguration);
-            if (jsonStream.good())
-            {
-                auto data = nlohmann::json::parse(jsonStream, nullptr, false);
-                if (data.is_discarded())
-                {
-                    std::cerr
-                        << "syntax error in " << lastConfiguration << "\n";
-                }
-                else
-                {
-                    em.lastJson = std::move(data);
-                }
-            }
-            else
-            {
-                std::cerr << "unable to open " << lastConfiguration << "\n";
-            }
-        }
-    }
-    else
-    {
-        // not an error, just logging at this level to make it in the journal
-        std::cerr << "Clearing previous configuration\n";
-        std::filesystem::remove(configuration::currentConfiguration);
-    }
+    em.handleCurrentConfigurationJson();
 
     // some boards only show up after power is on, we want to not say they are
     // removed until the same state happens
