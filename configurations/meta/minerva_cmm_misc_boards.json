@@ -6,5 +6,15 @@
         "OR",
         "xyz.openbmc_project.Inventory.Source.DevicePresence({'Name': 'BCBCable*'})"
     ],
-    "Type": "Board"
+    "xyz.openbmc_project.Inventory.Decorator.Asset": {
+            "Manufacturer": "Unknown",
+            "Model": "Unknown",
+            "PartNumber": "Unknown",
+            "SerialNumber": "Unknown",
+            "SparePartNumber": "Unknown"
+    },
+    "xyz.openbmc_project.Inventory.Decorator.AssetTag": {
+            "AssetTag": "Unknown"
+     },
+     "Type": "Board"
 }
