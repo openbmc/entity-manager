@@ -10,6 +10,8 @@
     "Name": "Minerva Aegis",
     "Probe": [
         "xyz.openbmc_project.FruDevice({'BOARD_PRODUCT_NAME': 'Minerva Aegis Board ', 'PRODUCT_MANUFACTURER': 'Quanta'})",
+        "OR",
+        "xyz.openbmc_project.FruDevice({'BOARD_PRODUCT_NAME': 'Minerva EVB ', 'PRODUCT_MANUFACTURER': 'Quanta'})",
         "AND",
         "FOUND('Harma SCM')"
     ],
