@@ -106,5 +106,9 @@ subdir('service_files')
 subdir('src')
 
 if get_option('tests').allowed()
+    # Include the subdir when running test to include 'gpio_presence_lib' variable
+    if not get_option('gpio-presence')
+        subdir('src/gpio-presence')
+    endif
     subdir('test')
 endif
