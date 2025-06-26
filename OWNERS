@@ -41,6 +41,9 @@ reviewers:
 - christopher.sides@hpe.com
 
 matchers:
+- partial_regex: configurations/meson.build
+  owners:
+    - paligill@gmail.com
 - partial_regex: configurations/meta
   owners:
     - paligill@gmail.com
