@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2a550cfb_7e52529d",
+        "filename": "src/entity_manager/configuration.cpp",
+        "patchSetId": 8
+      },
+      "lineNbr": 148,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2025-06-26T16:45:44Z",
+      "side": 1,
+      "message": "Adding more namespaces doesn\u0027t seem helpful here.  There\u0027s not a good sense for what this namespace is for, and it only contains 3 method definitions;  Should we just keep these free methods?",
+      "range": {
+        "startLine": 147,
+        "startChar": 0,
+        "endLine": 148,
+        "endChar": 1
+      },
+      "revId": "bca29fbec1137199c91cab27156879817e887bc9",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5f2f1b2c_a5d7997a",
+        "filename": "src/entity_manager/configuration.hpp",
+        "patchSetId": 8
+      },
+      "lineNbr": 13,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2025-06-26T16:45:44Z",
+      "side": 1,
+      "message": "This really should\u0027ve been vector and unordered_set... oh well.",
+      "range": {
+        "startLine": 13,
+        "startChar": 9,
+        "endLine": 13,
+        "endChar": 13
+      },
+      "revId": "bca29fbec1137199c91cab27156879817e887bc9",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    }
+  ]
+}
