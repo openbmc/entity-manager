@@ -1285,7 +1285,9 @@
         "Probe": [
             "xyz.openbmc_project.FruDevice({'BOARD_PRODUCT_NAME': 'Harma MB EVT', 'BOARD_PART_NUMBER': '3BF0MMA0050'})",
             "OR",
-            "xyz.openbmc_project.FruDevice({'BOARD_PRODUCT_NAME': 'Harma MB ', 'BOARD_INFO_AM4': 'vr-xdpe'})"
+            "xyz.openbmc_project.FruDevice({'BOARD_PRODUCT_NAME': 'Harma MB ', 'BOARD_INFO_AM4': 'vr-xdpe'})",
+            "AND",
+            "FOUND('Harma SCM')"
         ],
         "Type": "Board",
         "xyz.openbmc_project.Inventory.Decorator.Asset": {
@@ -1643,7 +1645,9 @@
         "Probe": [
             "xyz.openbmc_project.FruDevice({'BOARD_PRODUCT_NAME': 'Harma MB EVT', 'BOARD_PART_NUMBER': '3BF0MMA0050'})",
             "OR",
-            "xyz.openbmc_project.FruDevice({'BOARD_PRODUCT_NAME': 'Harma MB ', 'BOARD_INFO_AM4': 'vr-xdpe'})"
+            "xyz.openbmc_project.FruDevice({'BOARD_PRODUCT_NAME': 'Harma MB ', 'BOARD_INFO_AM4': 'vr-xdpe'})",
+            "AND",
+            "FOUND('Harma SCM')"
         ],
         "Type": "Chassis",
         "xyz.openbmc_project.Inventory.Decorator.Asset": {
