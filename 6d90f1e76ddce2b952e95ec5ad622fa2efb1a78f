@@ -48,6 +48,30 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "dc7df91f_d58d2117",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 12
+      },
+      "lineNbr": 10,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2025-06-26T16:40:10Z",
+      "side": 1,
+      "message": "\u003e \u003e what are you thinking this would be used for?\n\u003e \n\u003e Creating a class is a good way to eliminate global variables.\n\u003e \n\u003e The class instance can hold the variables for the duration of the program.\n\u003e \n\u003e \n\u003e I will not go into detail as to why we want to get rid of the global variables, i think we are aligned on this topic.\n\n\nACK.  If eliminating global variables is the only goal, I\u0027m in full support (obviously).  \"further refactoring\" I assumed meant there was more going on.",
+      "parentUuid": "aeccf60f_68aa69fe",
+      "range": {
+        "startLine": 9,
+        "startChar": 0,
+        "endLine": 10,
+        "endChar": 12
+      },
+      "revId": "6d90f1e76ddce2b952e95ec5ad622fa2efb1a78f",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "4fd1c0b7_7fcef286",
@@ -155,6 +179,30 @@
       "side": 1,
       "message": "Not sure what\u0027s wrong with the current name?\n\nWe need some top-level class for the class hierarchy and it\u0027s common practice for it to have the same name as the containing file.\n\nAgree that there is a slight mismatch between entity-manager and the EntityManager class since the class currently does not handle everything, like acquiring the bus name.\n\nThese inconsistencies can be worked out over time.\n\n```EntityManageDbusState``` is for sure misleading since we also hold\njson members and not just dbus state.\n\n```cpp\n    nlohmann::json lastJson;\n    nlohmann::json systemConfiguration;\n    Topology topology;\n```",
       "parentUuid": "31297532_7431d1e2",
+      "range": {
+        "startLine": 32,
+        "startChar": 6,
+        "endLine": 32,
+        "endChar": 19
+      },
+      "revId": "6d90f1e76ddce2b952e95ec5ad622fa2efb1a78f",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "f3ef14f2_bb1c5b6d",
+        "filename": "src/entity_manager/entity_manager.hpp",
+        "patchSetId": 12
+      },
+      "lineNbr": 32,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2025-06-26T16:40:10Z",
+      "side": 1,
+      "message": "\u003e Not sure what\u0027s wrong with the current name?\n\u003e \n\nEntity manager is the name of the application, and there are more things in entity manager than just this class.  We need something to disambiguate the app from the class.\n\n\u003e We need some top-level class for the class hierarchy and it\u0027s common practice for it to have the same name as the containing file.\n\nSure, but the argument that we need to name the class something because the file (that existed before the class) is named something is weak.\n\n\u003e \n\u003e Agree that there is a slight mismatch between entity-manager and the EntityManager class since the class currently does not handle everything, like acquiring the bus name.\n\u003e \n\u003e These inconsistencies can be worked out over time.\n\u003e \n\u003e ```EntityManageDbusState``` is for sure misleading since we also hold\n\u003e json members and not just dbus state.\n\u003e \n\u003e ```cpp\n\u003e     nlohmann::json lastJson;\n\u003e     nlohmann::json systemConfiguration;\n\u003e     Topology topology;\n\u003e ```\n\nFair.\n\nMy convictions here aren\u0027t strong.  It\u0027s just naming.",
+      "parentUuid": "febb361d_575d944f",
       "range": {
         "startLine": 32,
         "startChar": 6,
