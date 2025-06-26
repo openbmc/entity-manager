@@ -270,12 +270,12 @@
         "xyz.openbmc_project.Inventory.Decorator.Asset": {
             "Manufacturer": "$PRODUCT_MANUFACTURER",
             "Model": "$PRODUCT_PRODUCT_NAME",
-            "PartNumber": "$PRODUCT_PART_NUMBER",
-            "SerialNumber": "$PRODUCT_INFO_AM2",
-            "SparePartNumber": "$PRODUCT_FRU_VERSION_ID"
+            "PartNumber": "$CHASSIS_PART_NUMBER",
+            "SerialNumber": "$CHASSIS_SERIAL_NUMBER",
+            "SparePartNumber": "$CHASSIS_INFO_AM1"
         },
         "xyz.openbmc_project.Inventory.Decorator.AssetTag": {
-            "AssetTag": "$PRODUCT_INFO_AM3"
+            "AssetTag": "$CHASSIS_INFO_AM3"
         }
     }
 ]
