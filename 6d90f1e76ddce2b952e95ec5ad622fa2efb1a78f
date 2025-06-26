@@ -49,6 +49,29 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "62fb417c_1ca1c255",
+        "filename": "src/entity_manager/entity_manager.cpp",
+        "patchSetId": 12
+      },
+      "lineNbr": 617,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2025-06-26T15:07:30Z",
+      "side": 1,
+      "message": "Every place we do a \"this\" capture is technically unsafe.  This class as it stands is only constructed in main(), so we won\u0027t see the issue yet, but just be aware, these have caused lots of problems in the past.  dbus-sensors had some workarounds using shared_ptr and shared_from_this that we might look into.",
+      "range": {
+        "startLine": 617,
+        "startChar": 9,
+        "endLine": 617,
+        "endChar": 13
+      },
+      "revId": "6d90f1e76ddce2b952e95ec5ad622fa2efb1a78f",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "31297532_7431d1e2",
         "filename": "src/entity_manager/entity_manager.hpp",
         "patchSetId": 12
