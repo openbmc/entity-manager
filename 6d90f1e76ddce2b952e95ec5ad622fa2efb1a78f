@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5a850023_667f4a72",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 12
+      },
+      "lineNbr": 10,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2025-06-26T14:57:55Z",
+      "side": 1,
+      "message": "Can you elaborate on this a little?  You\u0027ve created a class that\u0027s essentially a singleton.  Thats all well and good, and this patch as it stands can probably merge, but what are you thinking this would be used for?  Presumably you can\u0027t instantiate multiple instances of EM.",
+      "range": {
+        "startLine": 9,
+        "startChar": 0,
+        "endLine": 10,
+        "endChar": 12
+      },
+      "revId": "6d90f1e76ddce2b952e95ec5ad622fa2efb1a78f",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "31297532_7431d1e2",
+        "filename": "src/entity_manager/entity_manager.hpp",
+        "patchSetId": 12
+      },
+      "lineNbr": 32,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2025-06-26T14:57:55Z",
+      "side": 1,
+      "message": "can we come up with a better name for this?  EntityManagerDbusState?",
+      "range": {
+        "startLine": 32,
+        "startChar": 6,
+        "endLine": 32,
+        "endChar": 19
+      },
+      "revId": "6d90f1e76ddce2b952e95ec5ad622fa2efb1a78f",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    }
+  ]
+}
