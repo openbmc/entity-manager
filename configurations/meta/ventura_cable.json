@@ -3,6 +3,13 @@
     "Name": "$Name",
     "Probe": "xyz.openbmc_project.Inventory.Source.DevicePresence({'Name': 'LeakPort*'})",
     "Type": "Cable",
+    "xyz.openbmc_project.Inventory.Decorator.Asset": {
+        "Manufacturer": "Unknown",
+        "Model": "Unknown",
+        "PartNumber": "Unknown",
+        "SerialNumber": "Unknown",
+        "SparePartNumber": "Unknown"
+    },
     "xyz.openbmc_project.Inventory.Decorator.Cable": {
         "Length": 0,
         "Type": "Copper"
