@@ -74,6 +74,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "02cb8018_c6db359d",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 38
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2025-06-26T16:53:28Z",
+      "side": 1,
+      "message": "\u003e for their platform\n\nThis would mean it goes in an meta layer config for that platform?  Who determines for tyan (Which I also have boards that I used regularly), which PCIe cards are supported?  This is the problem for normal boards that multiple people might have.\n\n\u003e For my use-case i do not need the pcie configs\n\nRight... but others (including me) do.  How do you separate the idea of a hardware image itself from what is supported.  This patch as a whole breaks that idea, and now fragments things.\n\n\u003e They can determine which hardware the platform has based on BOM, schematics, and devicetree.\n\nOk, so the tyan boards you have changed have support for several PCIe ports, NVMe drives, and other things that this config has disabled.  That\u0027s broken in my opinion.\n\n\u003e If the platform is fixed from the hardware side and will not be changed, then go via the 4-step process:\n\nPlatforms are not fixed.  Add in cards are added/removed all the time.  We cannot be hardcoding a single config in EM.  If you want to do that, phosphor-inventory is the tool to use for a \"I know all things about the config at compile time\" use cases.",
+      "parentUuid": "b377adf1_e4ab34e3",
+      "revId": "3d74e5ce769bc1fc81598f8171bc8f92b288529c",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "1fec691e_00b9deb5",
         "filename": "configurations/tyan/tyan_s8030_baseboard.json",
         "patchSetId": 38
