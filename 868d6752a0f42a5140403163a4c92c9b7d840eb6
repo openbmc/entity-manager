@@ -24,6 +24,30 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": true,
+      "key": {
+        "uuid": "8d6d0aaf_e604d948",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 6
+      },
+      "lineNbr": 10,
+      "author": {
+        "id": 1001497
+      },
+      "writtenOn": "2025-06-26T11:43:39Z",
+      "side": 1,
+      "message": "Hi,\nIt is within 72 char. Do you mean like below is the expectation?\n\n\"Current implementation does not show multi-record data on D-bus. It \nonly displays board, chassis and product areas.\"",
+      "parentUuid": "2217c617_949a219f",
+      "range": {
+        "startLine": 9,
+        "startChar": 0,
+        "endLine": 10,
+        "endChar": 60
+      },
+      "revId": "868d6752a0f42a5140403163a4c92c9b7d840eb6",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": false,
       "key": {
         "uuid": "5b988afd_8927b3bc",
@@ -54,6 +78,23 @@
       "writtenOn": "2025-06-23T07:22:14Z",
       "side": 1,
       "message": "Hi All,\nCan you please review and give me +1, +2.",
+      "revId": "868d6752a0f42a5140403163a4c92c9b7d840eb6",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "2d99d0d0_f07c1f2f",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 6
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1001497
+      },
+      "writtenOn": "2025-06-26T11:43:39Z",
+      "side": 1,
+      "message": "Hi Ed,\n\nThank you for the review comments. Please provide me more clarity on the below comments.",
       "revId": "868d6752a0f42a5140403163a4c92c9b7d840eb6",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
@@ -146,6 +187,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "a4629f2a_e29de9bd",
+        "filename": "src/fru_device/fru_dcscm.cpp",
+        "patchSetId": 6
+      },
+      "lineNbr": 62,
+      "author": {
+        "id": 1001497
+      },
+      "writtenOn": "2025-06-26T11:43:39Z",
+      "side": 1,
+      "message": "Hello,\nThe current implementation already providing as A.B. It is in the commit message.\nPlease provide me some clarification on this.",
+      "parentUuid": "cbf8d087_5b9e5359",
+      "range": {
+        "startLine": 62,
+        "startChar": 0,
+        "endLine": 62,
+        "endChar": 68
+      },
+      "revId": "868d6752a0f42a5140403163a4c92c9b7d840eb6",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "32dd548c_5893243d",
         "filename": "src/fru_device/fru_dcscm.cpp",
         "patchSetId": 6
@@ -215,6 +280,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "f47bd2b5_5fdafde0",
+        "filename": "src/fru_device/fru_dcscm.cpp",
+        "patchSetId": 6
+      },
+      "lineNbr": 96,
+      "author": {
+        "id": 1001497
+      },
+      "writtenOn": "2025-06-26T11:43:39Z",
+      "side": 1,
+      "message": "Hi,\nI am not clear about the comment, please help.\nDo I need to remove the \"0x\" part in the below fields:\n\n.MULTIRECORD_HPM_DEVICE_ID        property  s \"0xff00\"   emits-change\n.MULTIRECORD_HPM_VENDOR_ID        property  s \"0x1234\"   emits-change\n.MULTIRECORD_MANUFACTURE_ID       property  s \"0x001234\" emits-change",
+      "parentUuid": "0475f33d_18a90834",
+      "range": {
+        "startLine": 87,
+        "startChar": 0,
+        "endLine": 96,
+        "endChar": 9
+      },
+      "revId": "868d6752a0f42a5140403163a4c92c9b7d840eb6",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "3e852988_db2e490c",
         "filename": "src/fru_device/fru_dcscm.cpp",
         "patchSetId": 6
@@ -272,6 +361,30 @@
       "writtenOn": "2025-06-24T16:53:50Z",
       "side": 1,
       "message": "This loop I suspect needs to go away.  We loop over it, then apply conditionals within formatString based on which fields.  We might as well just have appropriate helper functions\n\nreadStringValue(size_t len, std::string_view name)\nreadBytesValue(size_t len, std::string_view name)\n\n\nThen have",
+      "range": {
+        "startLine": 185,
+        "startChar": 0,
+        "endLine": 185,
+        "endChar": 66
+      },
+      "revId": "868d6752a0f42a5140403163a4c92c9b7d840eb6",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "bca3024a_f545fb4e",
+        "filename": "src/fru_device/fru_dcscm.cpp",
+        "patchSetId": 6
+      },
+      "lineNbr": 185,
+      "author": {
+        "id": 1001497
+      },
+      "writtenOn": "2025-06-26T11:43:39Z",
+      "side": 1,
+      "message": "Hello,\n\nCan you please elaborate about this comment?\n\nDo you mean to remove the loop and extract the fields one by one by using helper functions. In this case it will be repetitive for total 9 fields.",
+      "parentUuid": "b41296ef_5a1abec9",
       "range": {
         "startLine": 185,
         "startChar": 0,
