@@ -54,6 +54,24 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "b377adf1_e4ab34e3",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 38
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-06-26T10:20:07Z",
+      "side": 1,
+      "message": "\u003e You\u0027re adding a meson option that removes the config files for all the pcie devices, for boards that have PCIe slots.\n\nThe option *does nothing* unless you configure it.\n\nAnyone who does configure it may want to adjust the configurations which they need for their platform. Clarified this point by adding the ```CompatibleHardware``` property to some PSU configurations as well which i need for my use-case.\n\nThis (figuring out compatibility for many components) is not something i want to do in a single commit.\n\nFor my use-case i do not need the pcie configs, as none of them probes true for my hardware configuration.\n\nSo if i configure the option as ```tyan-s8030 psu-1u``` then it will be ideal for my use-case. I will have all the configurations i need and zero bloat.\n\n\u003e How would one building the bmc image \"determine\" which hardware should be supported? How is that (likely very large) list maintained?\n\nThey can determine which hardware the platform has based on BOM, schematics, and devicetree.\n\nIf there are multiple platforms to be supported then they can make a union.\n\n\nIf the platform is general-purpose and not a fixed configuration (e.g. for sale to various customers doing who-knows-what with the platform) then the meson option should be left as default.\n\n\nIf the platform is fixed from the hardware side and will not be changed, then go via the 4-step process:\n- option as default\n- see which configs probe true\n- check these should have a ```CompatibleHardware``` property\n- configure the option to match the actual hardware",
+      "parentUuid": "357b2ff9_e3d7422b",
+      "revId": "3d74e5ce769bc1fc81598f8171bc8f92b288529c",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "1fec691e_00b9deb5",
@@ -67,6 +85,30 @@
       "writtenOn": "2025-06-24T17:14:29Z",
       "side": 1,
       "message": "I have one of these boards that I use regularly for testing.  This would now cause all other configs to no longer install in that build?",
+      "range": {
+        "startLine": 2,
+        "startChar": 27,
+        "endLine": 2,
+        "endChar": 37
+      },
+      "revId": "3d74e5ce769bc1fc81598f8171bc8f92b288529c",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "f782a5dd_9c24497e",
+        "filename": "configurations/tyan/tyan_s8030_baseboard.json",
+        "patchSetId": 38
+      },
+      "lineNbr": 2,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-06-26T10:20:07Z",
+      "side": 1,
+      "message": "The change in the configuration json has no effect unless the meson option is configured to something other than the default value.",
+      "parentUuid": "1fec691e_00b9deb5",
       "range": {
         "startLine": 2,
         "startChar": 27,
