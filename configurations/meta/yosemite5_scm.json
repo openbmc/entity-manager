@@ -1,0 +1,256 @@
+{
+    "Exposes": [
+        {
+            "Index": 0,
+            "Name": "SCM_P12V_VOLT_V",
+            "ScaleFactor": 0.112359551,
+            "Thresholds": [
+                {
+                    "Direction": "less than",
+                    "Hysteresis": 0.216,
+                    "Name": "lower critical",
+                    "Severity": 1,
+                    "Value": 10.8
+                },
+                {
+                    "Direction": "greater than",
+                    "Hysteresis": 0.264,
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 13.2
+                }
+            ],
+            "Type": "ADC"
+        },
+        {
+            "Index": 1,
+            "Name": "SCM_P5V_VOLT_V",
+            "ScaleFactor": 0.27173913,
+            "Thresholds": [
+                {
+                    "Direction": "less than",
+                    "Hysteresis": 0.095,
+                    "Name": "lower critical",
+                    "Severity": 1,
+                    "Value": 4.75
+                },
+                {
+                    "Direction": "greater than",
+                    "Hysteresis": 0.105,
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 5.25
+                }
+            ],
+            "Type": "ADC"
+        },
+        {
+            "Index": 2,
+            "Name": "SCM_P3V3_VOLT_V",
+            "ScaleFactor": 0.410677618,
+            "Thresholds": [
+                {
+                    "Direction": "less than",
+                    "Hysteresis": 0.0627,
+                    "Name": "lower critical",
+                    "Severity": 1,
+                    "Value": 3.135
+                },
+                {
+                    "Direction": "greater than",
+                    "Hysteresis": 0.0693,
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 3.465
+                }
+            ],
+            "Type": "ADC"
+        },
+        {
+            "Index": 3,
+            "Name": "SCM_P2V5_VOLT_V",
+            "ScaleFactor": 0.54200542,
+            "Thresholds": [
+                {
+                    "Direction": "less than",
+                    "Hysteresis": 0.0475,
+                    "Name": "lower critical",
+                    "Severity": 1,
+                    "Value": 2.375
+                },
+                {
+                    "Direction": "greater than",
+                    "Hysteresis": 0.0525,
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 2.625
+                }
+            ],
+            "Type": "ADC"
+        },
+        {
+            "Index": 4,
+            "Name": "SCM_P1V8_VOLT_V",
+            "ScaleFactor": 0.750469043,
+            "Thresholds": [
+                {
+                    "Direction": "less than",
+                    "Hysteresis": 0.0342,
+                    "Name": "lower critical",
+                    "Severity": 1,
+                    "Value": 1.71
+                },
+                {
+                    "Direction": "greater than",
+                    "Hysteresis": 0.0378,
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 1.89
+                }
+            ],
+            "Type": "ADC"
+        },
+        {
+            "Index": 5,
+            "Name": "SCM_PGPPA_VOLT_V",
+            "ScaleFactor": 0.410677618,
+            "Thresholds": [
+                {
+                    "Direction": "less than",
+                    "Hysteresis": 0.0627,
+                    "Name": "lower critical",
+                    "Severity": 1,
+                    "Value": 3.135
+                },
+                {
+                    "Direction": "greater than",
+                    "Hysteresis": 0.0693,
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 3.465
+                }
+            ],
+            "Type": "ADC"
+        },
+        {
+            "Index": 6,
+            "Name": "SCM_P1V2_VOLT_V",
+            "ScaleFactor": 1,
+            "Thresholds": [
+                {
+                    "Direction": "less than",
+                    "Hysteresis": 0.0228,
+                    "Name": "lower critical",
+                    "Severity": 1,
+                    "Value": 1.14
+                },
+                {
+                    "Direction": "greater than",
+                    "Hysteresis": 0.0252,
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 1.26
+                }
+            ],
+            "Type": "ADC"
+        },
+        {
+            "BridgeGpio": [
+                {
+                    "Name": "BATTERY_DETECT",
+                    "Polarity": "High",
+                    "SetupTime": 1
+                }
+            ],
+            "Index": 7,
+            "Name": "SCM_P3V_BAT_VOLT_V",
+            "PollRate": 86400,
+            "ScaleFactor": 0.333333333,
+            "Thresholds": [
+                {
+                    "Direction": "less than",
+                    "Hysteresis": 0.052,
+                    "Name": "lower critical",
+                    "Severity": 1,
+                    "Value": 2.6
+                },
+                {
+                    "Direction": "greater than",
+                    "Hysteresis": 0.068,
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 3.4
+                }
+            ],
+            "Type": "ADC"
+        },
+        {
+            "Index": 8,
+            "Name": "SCM_P1V0_VOLT_V",
+            "ScaleFactor": 1,
+            "Thresholds": [
+                {
+                    "Direction": "less than",
+                    "Hysteresis": 0.019,
+                    "Name": "lower critical",
+                    "Severity": 1,
+                    "Value": 0.95
+                },
+                {
+                    "Direction": "greater than",
+                    "Hysteresis": 0.021,
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 1.05
+                }
+            ],
+            "Type": "ADC"
+        },
+        {
+            "Name": "BMC",
+            "Type": "BMC"
+        },
+        {
+            "Address": "$address",
+            "Bus": "$bus",
+            "Name": "Yosemite5 SCM FRU",
+            "Type": "EEPROM"
+        },
+        {
+            "Address": "0x4B",
+            "Bus": 9,
+            "Name": "SCM_INLET_TEMP_C",
+            "Thresholds": [
+                {
+                    "Direction": "less than",
+                    "Hysteresis": 0.1,
+                    "Name": "lower critical",
+                    "Severity": 1,
+                    "Value": 5.0
+                },
+                {
+                    "Direction": "greater than",
+                    "Hysteresis": 0.9,
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 45
+                }
+            ],
+            "Type": "TMP75"
+        }
+    ],
+    "Name": "Yosemite5 SCM",
+    "Probe": "xyz.openbmc_project.FruDevice({'PRODUCT_PRODUCT_NAME': 'Yosemite V5 .*', 'BOARD_PRODUCT_NAME': 'SCM board', 'BOARD_MANUFACTURER': 'Quanta'})",
+    "Type": "Board",
+    "xyz.openbmc_project.Inventory.Decorator.Asset": {
+        "BuildDate": "$BOARD_MANUFACTURE_DATE",
+        "Manufacturer": "$BOARD_MANUFACTURER",
+        "Model": "$BOARD_PRODUCT_NAME",
+        "PartNumber": "$BOARD_PART_NUMBER",
+        "SerialNumber": "$BOARD_SERIAL_NUMBER",
+        "SparePartNumber": "$BOARD_INFO_AM1"
+    },
+    "xyz.openbmc_project.Inventory.Decorator.AssetTag": {
+        "AssetTag": "$PRODUCT_ASSET_TAG"
+    }
+}
