@@ -96,6 +96,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "f902cc7e_38badd5b",
+        "filename": "src/entity_manager/entity_manager.cpp",
+        "patchSetId": 12
+      },
+      "lineNbr": 617,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-06-26T16:30:33Z",
+      "side": 1,
+      "message": "Is it fine if we create a ```TODO``` item for this purpose at the point where the EntityManager instance is created in main function?\n\nSomething like\n```\nTODO: The EM instance needs to be shared_ptr and captured via\nshared_from_this in all callbacks.\n```\n\nSince we cannot encounter the issue anyways, i would not want to go for another cycle since a multiple people already tested the patch.",
+      "parentUuid": "62fb417c_1ca1c255",
+      "range": {
+        "startLine": 617,
+        "startChar": 9,
+        "endLine": 617,
+        "endChar": 13
+      },
+      "revId": "6d90f1e76ddce2b952e95ec5ad622fa2efb1a78f",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "31297532_7431d1e2",
         "filename": "src/entity_manager/entity_manager.hpp",
         "patchSetId": 12
