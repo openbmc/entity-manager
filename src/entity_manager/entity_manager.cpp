@@ -683,29 +683,3 @@ void EntityManager::initFilters(const std::set<std::string>& probeInterfaces)
             }
         });
 }
-
-int main()
-{
-    boost::asio::io_context io;
-    auto systemBus = std::make_shared<sdbusplus::asio::connection>(io);
-    systemBus->request_name("xyz.openbmc_project.EntityManager");
-    EntityManager em(systemBus, io);
-
-    nlohmann::json systemConfiguration = nlohmann::json::object();
-
-    std::set<std::string> probeInterfaces = configuration::getProbeInterfaces();
-
-    em.initFilters(probeInterfaces);
-
-    boost::asio::post(io, [&]() { em.propertiesChangedCallback(); });
-
-    em.handleCurrentConfigurationJson();
-
-    // some boards only show up after power is on, we want to not say they are
-    // removed until the same state happens
-    em.powerStatus.setupPowerMatch(em.systemBus);
-
-    io.run();
-
-    return 0;
-}
