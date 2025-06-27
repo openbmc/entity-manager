@@ -6,7 +6,9 @@ else
     cpp_args_em += ['-DENABLE_RUNTIME_VALIDATE_JSON=false']
 endif
 
-executable(
+em_deps = [boost, nlohmann_json_dep, phosphor_logging_dep, sdbusplus, valijson]
+
+entity_manager_lib = static_library(
     'entity-manager',
     'entity_manager.cpp',
     'configuration.cpp',
@@ -19,15 +21,16 @@ executable(
     'utils.cpp',
     'log_device_inventory.cpp',
     '../utils.cpp',
+    cpp_args: cpp_args_em,
+    dependencies: em_deps,
+)
+
+executable(
+    'entity-manager',
     'main.cpp',
     cpp_args: cpp_args_em,
-    dependencies: [
-        boost,
-        nlohmann_json_dep,
-        phosphor_logging_dep,
-        sdbusplus,
-        valijson,
-    ],
+    dependencies: em_deps,
+    link_with: entity_manager_lib,
     install: true,
     install_dir: installdir,
 )
