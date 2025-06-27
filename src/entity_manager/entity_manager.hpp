@@ -59,6 +59,11 @@ class EntityManager
     void initFilters(const std::set<std::string>& probeInterfaces);
 
     void handleCurrentConfigurationJson();
+
+  private:
+    std::unique_ptr<sdbusplus::bus::match_t> nameOwnerChangedMatch = nullptr;
+    std::unique_ptr<sdbusplus::bus::match_t> interfacesAddedMatch = nullptr;
+    std::unique_ptr<sdbusplus::bus::match_t> interfacesRemovedMatch = nullptr;
 };
 
 inline void logDeviceAdded(const nlohmann::json& record)
