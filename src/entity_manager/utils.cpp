@@ -16,14 +16,9 @@
 namespace em_utils
 {
 
-// NOLINTNEXTLINE(cppcoreguidelines-avoid-non-const-global-variables)
-static bool powerStatusOn = false;
-// NOLINTNEXTLINE(cppcoreguidelines-avoid-non-const-global-variables)
-static std::unique_ptr<sdbusplus::bus::match_t> powerMatch = nullptr;
-
 constexpr const char* templateChar = "$";
 
-bool isPowerOn()
+bool PowerStatusMonitor::isPowerOn()
 {
     if (!powerMatch)
     {
@@ -32,14 +27,15 @@ bool isPowerOn()
     return powerStatusOn;
 }
 
-void setupPowerMatch(const std::shared_ptr<sdbusplus::asio::connection>& conn)
+void PowerStatusMonitor::setupPowerMatch(
+    const std::shared_ptr<sdbusplus::asio::connection>& conn)
 {
     powerMatch = std::make_unique<sdbusplus::bus::match_t>(
         static_cast<sdbusplus::bus_t&>(*conn),
         "type='signal',interface='" + std::string(properties::interface) +
             "',path='" + std::string(power::path) + "',arg0='" +
             std::string(power::interface) + "'",
-        [](sdbusplus::message_t& message) {
+        [this](sdbusplus::message_t& message) {
             std::string objectName;
             boost::container::flat_map<std::string, std::variant<std::string>>
                 values;
@@ -53,8 +49,8 @@ void setupPowerMatch(const std::shared_ptr<sdbusplus::asio::connection>& conn)
         });
 
     conn->async_method_call(
-        [](boost::system::error_code ec,
-           const std::variant<std::string>& state) {
+        [this](boost::system::error_code ec,
+               const std::variant<std::string>& state) {
             if (ec)
             {
                 return;

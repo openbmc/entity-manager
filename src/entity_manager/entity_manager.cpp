@@ -383,7 +383,7 @@ void EntityManager::startRemovedTimer(boost::asio::steady_timer& timer,
         return;
     }
 
-    if (!em_utils::isPowerOn() && scannedPowerOff)
+    if (!powerStatus.isPowerOn() && scannedPowerOff)
     {
         return;
     }
@@ -396,7 +396,7 @@ void EntityManager::startRemovedTimer(boost::asio::steady_timer& timer,
                 return;
             }
 
-            bool powerOff = !em_utils::isPowerOn();
+            bool powerOff = !powerStatus.isPowerOn();
             for (const auto& [name, device] : lastJson.items())
             {
                 pruneDevice(systemConfiguration, powerOff, scannedPowerOff,
@@ -512,7 +512,7 @@ void EntityManager::propertiesChangedCallback()
             [this, count, oldConfiguration, missingConfigurations]() {
                 // this is something that since ac has been applied to the bmc
                 // we saw, and we no longer see it
-                bool powerOff = !em_utils::isPowerOn();
+                bool powerOff = !powerStatus.isPowerOn();
                 for (const auto& [name, device] :
                      missingConfigurations->items())
                 {
@@ -705,7 +705,7 @@ int main()
 
     // some boards only show up after power is on, we want to not say they are
     // removed until the same state happens
-    em_utils::setupPowerMatch(em.systemBus);
+    em.powerStatus.setupPowerMatch(em.systemBus);
 
     io.run();
 
