@@ -53,12 +53,12 @@ sdbusplus::asio::PropertyPermission getPermission(const std::string& interface)
 
 EntityManager::EntityManager(
     std::shared_ptr<sdbusplus::asio::connection>& systemBus,
-    boost::asio::io_context& io, bool loadConfigs) :
+    boost::asio::io_context& io, bool loadConfigs, bool testing) :
     systemBus(systemBus),
     objServer(sdbusplus::asio::object_server(systemBus, /*skipManager=*/true)),
     configuration(loadConfigs), lastJson(nlohmann::json::object()),
     systemConfiguration(nlohmann::json::object()), io(io),
-    dbus_interface(io, objServer), powerStatus(*systemBus),
+    dbus_interface(io, objServer), powerStatus(*systemBus, testing),
     propertiesChangedTimer(io)
 {
     // All other objects that EntityManager currently support are under the

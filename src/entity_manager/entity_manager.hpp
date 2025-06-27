@@ -20,7 +20,7 @@ class EntityManager
   public:
     explicit EntityManager(
         std::shared_ptr<sdbusplus::asio::connection>& systemBus,
-        boost::asio::io_context& io, bool loadConfigs);
+        boost::asio::io_context& io, bool loadConfigs, bool testing);
 
     // disable copy
     EntityManager(const EntityManager&) = delete;
@@ -71,7 +71,7 @@ class EntityManager
 
     void handleCurrentConfigurationJson();
 
-  private:
+  protected:
     std::unique_ptr<sdbusplus::bus::match_t> nameOwnerChangedMatch = nullptr;
     std::unique_ptr<sdbusplus::bus::match_t> interfacesAddedMatch = nullptr;
     std::unique_ptr<sdbusplus::bus::match_t> interfacesRemovedMatch = nullptr;

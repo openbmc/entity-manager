@@ -1,18 +1,23 @@
-test(
-    'test_entity_manager',
-    executable(
-        'test_entity_manager',
-        'test_entity-manager.cpp',
-        cpp_args: test_boost_args,
-        dependencies: [
-            boost,
-            gtest,
-            nlohmann_json_dep,
-            phosphor_logging_dep,
-            sdbusplus,
-            valijson,
-        ],
-        link_with: entity_manager_lib,
-        include_directories: test_include_dir,
-    ),
-)
+tests = ['utils', 'entity_manager']
+em_test_deps = [
+    boost,
+    gtest,
+    gmock,
+    nlohmann_json_dep,
+    phosphor_logging_dep,
+    sdbusplus,
+    valijson,
+]
+foreach t : tests
+    test(
+        'test_' + t,
+        executable(
+            'test_' + t,
+            t + '.cpp',
+            cpp_args: cpp_args + test_boost_args,
+            dependencies: em_test_deps,
+            link_with: entity_manager_lib,
+            include_directories: test_include_dir,
+        ),
+    )
+endforeach
