@@ -466,7 +466,6 @@ void EntityManager::publishNewConfiguration(
 // main properties changed entry
 void EntityManager::propertiesChangedCallback()
 {
-    static bool inProgress = false;
     static boost::asio::steady_timer timer(io);
     static size_t instance = 0;
     instance++;
@@ -487,12 +486,12 @@ void EntityManager::propertiesChangedCallback()
             return;
         }
 
-        if (inProgress)
+        if (propertiesChangedInProgress)
         {
             propertiesChangedCallback();
             return;
         }
-        inProgress = true;
+        propertiesChangedInProgress = true;
 
         nlohmann::json oldConfiguration = systemConfiguration;
         auto missingConfigurations = std::make_shared<nlohmann::json>();
@@ -502,7 +501,7 @@ void EntityManager::propertiesChangedCallback()
         if (!configuration::loadConfigurations(configurations))
         {
             std::cerr << "Could not load configurations\n";
-            inProgress = false;
+            propertiesChangedInProgress = false;
             return;
         }
 
@@ -528,7 +527,7 @@ void EntityManager::propertiesChangedCallback()
                     logDeviceAdded(device);
                 }
 
-                inProgress = false;
+                propertiesChangedInProgress = false;
 
                 boost::asio::post(io, [this, newConfiguration, count] {
                     publishNewConfiguration(std::ref(instance), count,
