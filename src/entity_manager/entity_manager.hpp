@@ -69,6 +69,7 @@ class EntityManager
     bool scannedPowerOn = false;
 
     bool propertiesChangedInProgress = false;
+    boost::asio::steady_timer propertiesChangedTimer;
 
     void startRemovedTimer(boost::asio::steady_timer& timer,
                            nlohmann::json& systemConfiguration);
