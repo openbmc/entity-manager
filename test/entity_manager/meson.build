@@ -1,5 +1,9 @@
 
-tests = ['test_match_probe', 'test_template_char_replace']
+tests = [
+    'test_match_probe',
+    'test_template_char_replace',
+    'test_entity_manager',
+]
 
 em_test_deps = [
     boost,
@@ -16,7 +20,7 @@ foreach t : tests
         executable(
             t,
             t + '.cpp',
-            cpp_args: test_boost_args,
+            cpp_args: cpp_args + test_boost_args,
             dependencies: em_test_deps,
             link_with: entity_manager_lib,
             include_directories: test_include_dir,
