@@ -9,6 +9,7 @@ executable(
     'overlay.cpp',
     'topology.cpp',
     'utils.cpp',
+    'log_device_inventory.cpp',
     '../utils.cpp',
     cpp_args: cpp_args + ['-DBOOST_ASIO_DISABLE_THREADS'],
     dependencies: [
