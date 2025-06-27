@@ -22,13 +22,6 @@ namespace dbus_interface
 const std::regex illegalDbusPathRegex("[^A-Za-z0-9_.]");
 const std::regex illegalDbusMemberRegex("[^A-Za-z0-9_]");
 
-// NOLINTBEGIN(cppcoreguidelines-avoid-non-const-global-variables)
-// store reference to all interfaces so we can destroy them later
-boost::container::flat_map<
-    std::string, std::vector<std::weak_ptr<sdbusplus::asio::dbus_interface>>>
-    inventory;
-// NOLINTEND(cppcoreguidelines-avoid-non-const-global-variables)
-
 void tryIfaceInitialize(std::shared_ptr<sdbusplus::asio::dbus_interface>& iface)
 {
     try
@@ -44,9 +37,10 @@ void tryIfaceInitialize(std::shared_ptr<sdbusplus::asio::dbus_interface>& iface)
     }
 }
 
-std::shared_ptr<sdbusplus::asio::dbus_interface> createInterface(
-    sdbusplus::asio::object_server& objServer, const std::string& path,
-    const std::string& interface, const std::string& parent, bool checkNull)
+std::shared_ptr<sdbusplus::asio::dbus_interface>
+    EMDBusInterface::createInterface(
+        sdbusplus::asio::object_server& objServer, const std::string& path,
+        const std::string& interface, const std::string& parent, bool checkNull)
 {
     // on first add we have no reason to check for null before add, as there
     // won't be any. For dynamically added interfaces, we check for null so that
@@ -244,7 +238,7 @@ void populateInterfaceFromJson(
     tryIfaceInitialize(iface);
 }
 
-void createAddObjectMethod(
+void EMDBusInterface::createAddObjectMethod(
     boost::asio::io_context& io, const std::string& jsonPointerPath,
     const std::string& path, nlohmann::json& systemConfiguration,
     sdbusplus::asio::object_server& objServer, const std::string& board)
@@ -256,9 +250,9 @@ void createAddObjectMethod(
         "AddObject",
         [&systemConfiguration, &objServer,
          jsonPointerPath{std::string(jsonPointerPath)}, path{std::string(path)},
-         board,
-         &io](const boost::container::flat_map<std::string, JsonVariantType>&
-                  data) {
+         board, &io,
+         this](const boost::container::flat_map<std::string, JsonVariantType>&
+                   data) {
             nlohmann::json::json_pointer ptr(jsonPointerPath);
             nlohmann::json& base = systemConfiguration[ptr];
             auto findExposes = base.find("Exposes");
@@ -374,7 +368,7 @@ void createAddObjectMethod(
 }
 
 std::vector<std::weak_ptr<sdbusplus::asio::dbus_interface>>&
-    getDeviceInterfaces(const nlohmann::json& device)
+    EMDBusInterface::getDeviceInterfaces(const nlohmann::json& device)
 {
     return inventory[device["Name"].get<std::string>()];
 }
