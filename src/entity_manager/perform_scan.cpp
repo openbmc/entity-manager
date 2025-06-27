@@ -44,7 +44,8 @@ struct DBusInterfaceInstance
 void getInterfaces(
     const DBusInterfaceInstance& instance,
     const std::vector<std::shared_ptr<probe::PerformProbe>>& probeVector,
-    const std::shared_ptr<scan::PerformScan>& scan, size_t retries = 5)
+    const std::shared_ptr<scan::PerformScan>& scan, boost::asio::io_context& io,
+    size_t retries = 5)
 {
     if (retries == 0U)
     {
@@ -54,8 +55,8 @@ void getInterfaces(
     }
 
     scan->_em.systemBus->async_method_call(
-        [instance, scan, probeVector,
-         retries](boost::system::error_code& errc, const DBusInterface& resp) {
+        [instance, scan, probeVector, retries,
+         &io](boost::system::error_code& errc, const DBusInterface& resp) {
             if (errc)
             {
                 std::cerr << "error calling getall on  " << instance.busName
@@ -65,9 +66,9 @@ void getInterfaces(
                 auto timer = std::make_shared<boost::asio::steady_timer>(io);
                 timer->expires_after(std::chrono::seconds(2));
 
-                timer->async_wait([timer, instance, scan, probeVector,
-                                   retries](const boost::system::error_code&) {
-                    getInterfaces(instance, probeVector, scan, retries - 1);
+                timer->async_wait([timer, instance, scan, probeVector, retries,
+                                   &io](const boost::system::error_code&) {
+                    getInterfaces(instance, probeVector, scan, io, retries - 1);
                 });
                 return;
             }
@@ -81,7 +82,7 @@ void getInterfaces(
 static void processDbusObjects(
     std::vector<std::shared_ptr<probe::PerformProbe>>& probeVector,
     const std::shared_ptr<scan::PerformScan>& scan,
-    const GetSubTreeType& interfaceSubtree)
+    const GetSubTreeType& interfaceSubtree, boost::asio::io_context& io)
 {
     for (const auto& [path, object] : interfaceSubtree)
     {
@@ -98,7 +99,8 @@ static void processDbusObjects(
                 // with the GetAll call to save some cycles.
                 if (!boost::algorithm::starts_with(iface, "org.freedesktop"))
                 {
-                    getInterfaces({busname, path, iface}, probeVector, scan);
+                    getInterfaces({busname, path, iface}, probeVector, scan,
+                                  io);
                 }
             }
         }
@@ -110,7 +112,8 @@ static void processDbusObjects(
 void findDbusObjects(
     std::vector<std::shared_ptr<probe::PerformProbe>>&& probeVector,
     boost::container::flat_set<std::string>&& interfaces,
-    const std::shared_ptr<scan::PerformScan>& scan, size_t retries = 5)
+    const std::shared_ptr<scan::PerformScan>& scan, boost::asio::io_context& io,
+    size_t retries = 5)
 {
     // Filter out interfaces already obtained.
     for (const auto& [path, probeInterfaces] : scan->dbusProbeObjects)
@@ -127,9 +130,9 @@ void findDbusObjects(
 
     // find all connections in the mapper that expose a specific type
     scan->_em.systemBus->async_method_call(
-        [interfaces, probeVector{std::move(probeVector)}, scan,
-         retries](boost::system::error_code& ec,
-                  const GetSubTreeType& interfaceSubtree) mutable {
+        [interfaces, probeVector{std::move(probeVector)}, scan, retries,
+         &io](boost::system::error_code& ec,
+              const GetSubTreeType& interfaceSubtree) mutable {
             if (ec)
             {
                 if (ec.value() == ENOENT)
@@ -150,16 +153,16 @@ void findDbusObjects(
 
                 timer->async_wait(
                     [timer, interfaces{std::move(interfaces)}, scan,
-                     probeVector{std::move(probeVector)},
-                     retries](const boost::system::error_code&) mutable {
+                     probeVector{std::move(probeVector)}, retries,
+                     &io](const boost::system::error_code&) mutable {
                         findDbusObjects(std::move(probeVector),
-                                        std::move(interfaces), scan,
+                                        std::move(interfaces), scan, io,
                                         retries - 1);
                     });
                 return;
             }
 
-            processDbusObjects(probeVector, scan, interfaceSubtree);
+            processDbusObjects(probeVector, scan, interfaceSubtree, io);
         },
         "xyz.openbmc_project.ObjectMapper",
         "/xyz/openbmc_project/object_mapper",
@@ -191,12 +194,12 @@ static std::string getRecordName(const DBusInterface& probe,
     return std::to_string(std::hash<std::string>{}(probeName + device.dump()));
 }
 
-scan::PerformScan::PerformScan(EntityManager& em,
-                               nlohmann::json& missingConfigurations,
-                               std::list<nlohmann::json>& configurations,
-                               std::function<void()>&& callback) :
+scan::PerformScan::PerformScan(
+    EntityManager& em, nlohmann::json& missingConfigurations,
+    std::list<nlohmann::json>& configurations, boost::asio::io_context& io,
+    std::function<void()>&& callback) :
     _em(em), _missingConfigurations(missingConfigurations),
-    _configurations(configurations), _callback(std::move(callback))
+    _configurations(configurations), _callback(std::move(callback)), io(io)
 {}
 
 static void pruneRecordExposes(nlohmann::json& record)
@@ -608,7 +611,7 @@ void scan::PerformScan::run()
     // probe vector stores a shared_ptr to each PerformProbe that cares
     // about a dbus interface
     findDbusObjects(std::move(dbusProbePointers),
-                    std::move(dbusProbeInterfaces), shared_from_this());
+                    std::move(dbusProbeInterfaces), shared_from_this(), io);
 }
 
 scan::PerformScan::~PerformScan()
@@ -616,7 +619,8 @@ scan::PerformScan::~PerformScan()
     if (_passed)
     {
         auto nextScan = std::make_shared<PerformScan>(
-            _em, _missingConfigurations, _configurations, std::move(_callback));
+            _em, _missingConfigurations, _configurations, io,
+            std::move(_callback));
         nextScan->passedProbes = std::move(passedProbes);
         nextScan->dbusProbeObjects = std::move(dbusProbeObjects);
         nextScan->run();
