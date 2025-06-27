@@ -15,7 +15,8 @@ const static constexpr char* interface = "xyz.openbmc_project.State.Host";
 const static constexpr char* path = "/xyz/openbmc_project/state/host0";
 const static constexpr char* property = "CurrentHostState";
 
-PowerStatusMonitor::PowerStatusMonitor(sdbusplus::asio::connection& conn) :
+PowerStatusMonitor::PowerStatusMonitor(sdbusplus::asio::connection& conn,
+                                       bool testing) :
 
     powerMatch(static_cast<sdbusplus::bus_t&>(conn),
                "type='signal',interface='" +
@@ -25,7 +26,10 @@ PowerStatusMonitor::PowerStatusMonitor(sdbusplus::asio::connection& conn) :
                std::bind_front(&PowerStatusMonitor::handlePowerMatch, this))
 
 {
-    getInitialPowerStatus(conn);
+    if (!testing)
+    {
+        getInitialPowerStatus(conn);
+    }
 }
 
 bool PowerStatusMonitor::isPowerOn() const

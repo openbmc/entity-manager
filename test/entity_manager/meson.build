@@ -1,4 +1,4 @@
-tests = ['utils']
+tests = ['utils', 'entity_manager']
 em_test_deps = [
     boost,
     gtest,
@@ -13,7 +13,7 @@ foreach t : tests
         executable(
             'test_' + t,
             t + '.cpp',
-            cpp_args: test_boost_args,
+            cpp_args: cpp_args + test_boost_args,
             dependencies: em_test_deps,
             link_with: entity_manager_lib,
             include_directories: test_include_dir,

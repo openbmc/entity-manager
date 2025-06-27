@@ -1,5 +1,7 @@
 #include "entity_manager/utils.hpp"
 
+#include "test_em.hpp"
+
 #include <nlohmann/json.hpp>
 
 #include <string>
@@ -236,4 +238,9 @@ TEST(TemplateCharReplace, singleHex)
 
     nlohmann::json expected = 84;
     EXPECT_EQ(expected, j["foo"]);
+}
+
+TEST(EntityManager, fwVersionIsSame)
+{
+    EXPECT_FALSE(em_utils::fwVersionIsSame());
 }
