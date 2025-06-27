@@ -1,272 +1,10 @@
-#include "entity_manager/utils.hpp"
 #include "utils.hpp"
 
 #include <nlohmann/json.hpp>
 
-#include <string>
-#include <variant>
-
 #include "gtest/gtest.h"
 
 using namespace std::string_literals;
-
-TEST(TemplateCharReplace, replaceOneInt)
-{
-    nlohmann::json j = {{"foo", "$bus"}};
-    auto it = j.begin();
-    DBusInterface data;
-    data["BUS"] = 23;
-
-    em_utils::templateCharReplace(it, data, 0);
-
-    nlohmann::json expected = 23;
-    EXPECT_EQ(expected, j["foo"]);
-}
-
-TEST(TemplateCharReplace, replaceOneStr)
-{
-    nlohmann::json j = {{"foo", "$TEST"}};
-    auto it = j.begin();
-    DBusInterface data;
-    data["TEST"] = std::string("Test");
-
-    em_utils::templateCharReplace(it, data, 0);
-
-    nlohmann::json expected = "Test";
-    EXPECT_EQ(expected, j["foo"]);
-}
-
-TEST(TemplateCharReplace, replaceSecondStr)
-{
-    nlohmann::json j = {{"foo", "the $TEST"}};
-    auto it = j.begin();
-    DBusInterface data;
-    data["TEST"] = std::string("Test");
-
-    em_utils::templateCharReplace(it, data, 0);
-
-    nlohmann::json expected = "the Test";
-    EXPECT_EQ(expected, j["foo"]);
-}
-
-TEST(TemplateCharReplace, replaceMiddleStr)
-{
-    nlohmann::json j = {{"foo", "the $TEST worked"}};
-    auto it = j.begin();
-    DBusInterface data;
-    data["TEST"] = std::string("Test");
-
-    em_utils::templateCharReplace(it, data, 0);
-
-    nlohmann::json expected = "the Test worked";
-    EXPECT_EQ(expected, j["foo"]);
-}
-
-TEST(TemplateCharReplace, replaceLastStr)
-{
-    nlohmann::json j = {{"foo", "the Test $TEST"}};
-    auto it = j.begin();
-    DBusInterface data;
-    data["TEST"] = 23;
-
-    em_utils::templateCharReplace(it, data, 0);
-
-    nlohmann::json expected = "the Test 23";
-    EXPECT_EQ(expected, j["foo"]);
-}
-
-TEST(TemplateCharReplace, increment)
-{
-    nlohmann::json j = {{"foo", "3 plus 1 equals $TEST + 1"}};
-    auto it = j.begin();
-    DBusInterface data;
-    data["TEST"] = 3;
-
-    em_utils::templateCharReplace(it, data, 0);
-
-    nlohmann::json expected = "3 plus 1 equals 4";
-    EXPECT_EQ(expected, j["foo"]);
-}
-
-TEST(TemplateCharReplace, decrement)
-{
-    nlohmann::json j = {{"foo", "3 minus 1 equals $TEST - 1 !"}};
-    auto it = j.begin();
-    DBusInterface data;
-    data["TEST"] = 3;
-
-    em_utils::templateCharReplace(it, data, 0);
-
-    nlohmann::json expected = "3 minus 1 equals 2 !";
-    EXPECT_EQ(expected, j["foo"]);
-}
-
-TEST(TemplateCharReplace, modulus)
-{
-    nlohmann::json j = {{"foo", "3 mod 2 equals $TEST % 2"}};
-    auto it = j.begin();
-    DBusInterface data;
-    data["TEST"] = 3;
-
-    em_utils::templateCharReplace(it, data, 0);
-
-    nlohmann::json expected = "3 mod 2 equals 1";
-    EXPECT_EQ(expected, j["foo"]);
-}
-
-TEST(TemplateCharReplace, multiply)
-{
-    nlohmann::json j = {{"foo", "3 * 2 equals $TEST * 2"}};
-    auto it = j.begin();
-    DBusInterface data;
-    data["TEST"] = 3;
-
-    em_utils::templateCharReplace(it, data, 0);
-
-    nlohmann::json expected = "3 * 2 equals 6";
-    EXPECT_EQ(expected, j["foo"]);
-}
-
-TEST(TemplateCharReplace, divide)
-{
-    nlohmann::json j = {{"foo", "4 / 2 equals $TEST / 2"}};
-    auto it = j.begin();
-    DBusInterface data;
-    data["TEST"] = 4;
-
-    em_utils::templateCharReplace(it, data, 0);
-
-    nlohmann::json expected = "4 / 2 equals 2";
-    EXPECT_EQ(expected, j["foo"]);
-}
-
-TEST(TemplateCharReplace, multiMath)
-{
-    nlohmann::json j = {{"foo", "4 * 2 % 6 equals $TEST * 2 % 6"}};
-    auto it = j.begin();
-    DBusInterface data;
-    data["TEST"] = 4;
-
-    em_utils::templateCharReplace(it, data, 0);
-
-    nlohmann::json expected = "4 * 2 % 6 equals 2";
-    EXPECT_EQ(expected, j["foo"]);
-}
-
-TEST(TemplateCharReplace, twoReplacements)
-{
-    nlohmann::json j = {{"foo", "$FOO $BAR"}};
-    auto it = j.begin();
-    DBusInterface data;
-    data["FOO"] = std::string("foo");
-    data["BAR"] = std::string("bar");
-
-    em_utils::templateCharReplace(it, data, 0);
-
-    nlohmann::json expected = "foo bar";
-    EXPECT_EQ(expected, j["foo"]);
-}
-
-TEST(TemplateCharReplace, twoReplacementsWithMath)
-{
-    nlohmann::json j = {{"foo", "4 / 2 equals $TEST / 2 $BAR"}};
-    auto it = j.begin();
-    DBusInterface data;
-    data["TEST"] = 4;
-    data["BAR"] = std::string("bar");
-
-    em_utils::templateCharReplace(it, data, 0);
-
-    nlohmann::json expected = "4 / 2 equals 2 bar";
-}
-
-TEST(TemplateCharReplace, twoReplacementsWithMath2)
-{
-    nlohmann::json j = {{"foo", "4 / 2 equals $ADDRESS / 2 $BAR"}};
-    auto it = j.begin();
-    DBusInterface data;
-    data["ADDRESS"] = 4;
-    data["BAR"] = std::string("bar");
-
-    em_utils::templateCharReplace(it, data, 0);
-
-    nlohmann::json expected = "4 / 2 equals 2 bar";
-    EXPECT_EQ(expected, j["foo"]);
-}
-
-TEST(TemplateCharReplace, hexAndWrongCase)
-{
-    nlohmann::json j = {{"Address", "0x54"},
-                        {"Bus", 15},
-                        {"Name", "$bus sensor 0"},
-                        {"Type", "SomeType"}};
-
-    DBusInterface data;
-    data["BUS"] = 15;
-
-    for (auto it = j.begin(); it != j.end(); it++)
-    {
-        em_utils::templateCharReplace(it, data, 0);
-    }
-    nlohmann::json expected = {{"Address", 84},
-                               {"Bus", 15},
-                               {"Name", "15 sensor 0"},
-                               {"Type", "SomeType"}};
-    EXPECT_EQ(expected, j);
-}
-
-TEST(TemplateCharReplace, replaceSecondAsInt)
-{
-    nlohmann::json j = {{"foo", "twelve is $TEST"}};
-    auto it = j.begin();
-    DBusInterface data;
-    data["test"] = 12;
-
-    em_utils::templateCharReplace(it, data, 0);
-
-    nlohmann::json expected = "twelve is 12";
-    EXPECT_EQ(expected, j["foo"]);
-}
-
-TEST(TemplateCharReplace, singleHex)
-{
-    nlohmann::json j = {{"foo", "0x54"}};
-    auto it = j.begin();
-    DBusInterface data;
-
-    em_utils::templateCharReplace(it, data, 0);
-
-    nlohmann::json expected = 84;
-    EXPECT_EQ(expected, j["foo"]);
-}
-
-TEST(TemplateCharReplace, leftOverTemplateVars)
-{
-    nlohmann::json j = {{"foo", "$EXISTENT_VAR and $NON_EXISTENT_VAR"}};
-    auto it = j.begin();
-
-    DBusInterface data;
-    data["EXISTENT_VAR"] = std::string("Replaced");
-
-    DBusObject object;
-    object["PATH"] = data;
-
-    em_utils::templateCharReplace(it, object, 0);
-
-    nlohmann::json expected = "Replaced and ";
-    EXPECT_EQ(expected, j["foo"]);
-}
-
-TEST(HandleLeftOverTemplateVars, replaceLeftOverTemplateVar)
-{
-    nlohmann::json j = {{"foo", "the Test $TEST is $TESTED"}};
-    auto it = j.begin();
-
-    em_utils::handleLeftOverTemplateVars(it);
-
-    nlohmann::json expected = "the Test  is ";
-    EXPECT_EQ(expected, j["foo"]);
-}
 
 TEST(MatchProbe, stringEqString)
 {
@@ -918,4 +656,169 @@ TEST(MatchProbe, nullNeqArray)
     nlohmann::json j = R"(null)"_json;
     DBusValueVariant v = std::vector<uint8_t>{};
     EXPECT_FALSE(matchProbe(j, v));
+}
+
+constexpr std::string_view helloWorld = "Hello World";
+
+TEST(IfindFirstTest, BasicMatch)
+{
+    auto match = iFindFirst(helloWorld, "World");
+    EXPECT_TRUE(match);
+    EXPECT_EQ(std::distance(helloWorld.begin(), match.begin()), 6);
+    EXPECT_EQ(std::distance(helloWorld.begin(), match.end()), 11);
+}
+
+TEST(IfindFirstTest, CaseInsensitiveMatch)
+{
+    auto match = iFindFirst(helloWorld, "world");
+    EXPECT_TRUE(match);
+    EXPECT_EQ(std::distance(helloWorld.begin(), match.begin()), 6);
+    EXPECT_EQ(std::distance(helloWorld.begin(), match.end()), 11);
+}
+
+TEST(IfindFirstTest, NoMatch)
+{
+    auto match = iFindFirst(helloWorld, "Planet");
+    EXPECT_FALSE(match);
+}
+
+TEST(IfindFirstTest, MatchAtStart)
+{
+    auto match = iFindFirst(helloWorld, "HeLLo");
+    EXPECT_TRUE(match);
+    EXPECT_EQ(std::distance(helloWorld.begin(), match.begin()), 0);
+    EXPECT_EQ(std::distance(helloWorld.begin(), match.end()), 5);
+}
+
+TEST(IfindFirstTest, MatchAtEnd)
+{
+    auto match = iFindFirst(helloWorld, "LD");
+    EXPECT_TRUE(match);
+    EXPECT_EQ(std::distance(helloWorld.begin(), match.begin()), 9);
+    EXPECT_EQ(std::distance(helloWorld.begin(), match.end()), 11);
+}
+
+TEST(IfindFirstTest, EmptySubstring)
+{
+    auto match = iFindFirst(helloWorld, "");
+    EXPECT_FALSE(match);
+}
+
+TEST(IfindFirstTest, EmptyString)
+{
+    auto match = iFindFirst("", "Hello");
+    EXPECT_FALSE(match);
+}
+
+TEST(SplitTest, NormalSplit)
+{
+    auto result = split("a,b,c", ',');
+    std::vector<std::string> expected = {"a", "b", "c"};
+    EXPECT_EQ(result, expected);
+}
+
+TEST(SplitTest, ConsecutiveDelimiters)
+{
+    auto result = split("a,,b", ',');
+    std::vector<std::string> expected = {"a", "", "b"};
+    EXPECT_EQ(result, expected);
+}
+
+TEST(SplitTest, LeadingDelimiter)
+{
+    auto result = split(",a,b", ',');
+    std::vector<std::string> expected = {"", "a", "b"};
+    EXPECT_EQ(result, expected);
+}
+
+TEST(SplitTest, TrailingDelimiter)
+{
+    auto result = split("a,b,", ',');
+    std::vector<std::string> expected = {"a", "b", ""};
+    EXPECT_EQ(result, expected);
+}
+
+TEST(SplitTest, NoDelimiter)
+{
+    auto result = split("abc", ',');
+    std::vector<std::string> expected = {"abc"};
+    EXPECT_EQ(result, expected);
+}
+
+TEST(SplitTest, EmptyString)
+{
+    auto result = split("", ',');
+    std::vector<std::string> expected = {""};
+    EXPECT_EQ(result, expected);
+}
+
+TEST(ReplaceAllTest, BasicReplacement)
+{
+    std::string str = "hello world, world!";
+    replaceAll(str, "world", "earth");
+    EXPECT_EQ(str, "hello earth, earth!");
+}
+
+TEST(ReplaceAllTest, NoMatch)
+{
+    std::string str = "hello world";
+    replaceAll(str, "xxx", "abc");
+    EXPECT_EQ(str, "hello world");
+}
+
+TEST(ReplaceAllTest, ReplaceWithEmpty)
+{
+    std::string str = "apple apple";
+    replaceAll(str, "apple", "");
+    EXPECT_EQ(str, " ");
+}
+
+TEST(ReplaceAllTest, ReplaceEmptySearch)
+{
+    std::string str = "abc";
+    replaceAll(str, "", "x");
+    EXPECT_EQ(str, "abc");
+}
+
+TEST(IReplaceAllTest, CaseInsensitive)
+{
+    std::string str = "Hello hEllo heLLo";
+    iReplaceAll(str, "hello", "hi");
+    EXPECT_EQ(str, "hi hi hi");
+}
+
+TEST(IReplaceAllTest, MixedContent)
+{
+    std::string str = "Hello World! WORLD world";
+    iReplaceAll(str, "world", "Earth");
+    EXPECT_EQ(str, "Hello Earth! Earth Earth");
+}
+
+TEST(IReplaceAllTest, NoMatchCaseInsensitive)
+{
+    std::string str = "Good Morning";
+    iReplaceAll(str, "night", "day");
+    EXPECT_EQ(str, "Good Morning");
+}
+
+TEST(IReplaceAllTest, ReplaceWithEmptyCaseInsensitive)
+{
+    std::string str = "ABC abc AbC";
+    iReplaceAll(str, "abc", "");
+    EXPECT_EQ(str, "  ");
+}
+
+TEST(ToLowerCopyTest, BasicTests)
+{
+    EXPECT_EQ(toLowerCopy("HelloWorld"), "helloworld");
+
+    EXPECT_EQ(toLowerCopy("HELLOWORLD"), "helloworld");
+
+    EXPECT_EQ(toLowerCopy("helloworld"), "helloworld");
+
+    EXPECT_EQ(toLowerCopy("123ABC!@#"), "123abc!@#");
+
+    EXPECT_EQ(toLowerCopy("!@#$%^&*()_+"), "!@#$%^&*()_+");
+
+    EXPECT_EQ(toLowerCopy(""), "");
 }
