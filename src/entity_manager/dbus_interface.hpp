@@ -99,7 +99,7 @@ void addProperty(const std::string& name, const PropertyType& value,
         });
 }
 
-template <typename PropertyType>
+template <typename PropertyType, typename PropertyType2 = PropertyType>
 void addValueToDBus(const std::string& key, const nlohmann::json& value,
                     sdbusplus::asio::dbus_interface& iface,
                     sdbusplus::asio::PropertyPermission permission,
@@ -113,8 +113,9 @@ void addValueToDBus(const std::string& key, const nlohmann::json& value,
     }
     else
     {
-        addProperty(key, value.get<PropertyType>(), &iface, systemConfiguration,
-                    path, sdbusplus::asio::PropertyPermission::readOnly);
+        addProperty(key, value.get<PropertyType2>(), &iface,
+                    systemConfiguration, path,
+                    sdbusplus::asio::PropertyPermission::readOnly);
     }
 }
 
