@@ -647,6 +647,21 @@ void EntityManager::handleCurrentConfigurationJson()
         std::filesystem::remove(currentConfiguration, ec);
     }
 }
+bool EntityManager::isPropertiesChangedInProgress() const
+{
+    return propertiesChangedInProgress;
+}
+
+size_t EntityManager::getPropertiesChangedInstance() const
+{
+    return propertiesChangedInstance;
+}
+
+bool EntityManager::hasDBusMatch(
+    const sdbusplus::message::object_path& path) const
+{
+    return dbusMatches.contains(path);
+}
 
 void EntityManager::registerCallback(const std::string& path)
 {

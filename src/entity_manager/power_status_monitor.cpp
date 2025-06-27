@@ -27,9 +27,7 @@ PowerStatusMonitor::PowerStatusMonitor(sdbusplus::asio::connection& conn) :
                    std::string(HostState::interface) + "'",
                std::bind_front(&PowerStatusMonitor::handlePowerMatch, this))
 
-{
-    getInitialPowerStatus(conn);
-}
+{}
 
 bool PowerStatusMonitor::isPowerOn() const
 {
