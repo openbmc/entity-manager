@@ -11,6 +11,7 @@ executable(
     'utils.cpp',
     'log_device_inventory.cpp',
     '../utils.cpp',
+    'main.cpp',
     cpp_args: cpp_args + ['-DBOOST_ASIO_DISABLE_THREADS'],
     dependencies: [
         boost,
