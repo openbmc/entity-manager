@@ -1,5 +1,7 @@
 #include "entity_manager/utils.hpp"
 
+#include "test_em.hpp"
+
 #include <nlohmann/json.hpp>
 
 #include <string>
@@ -264,4 +266,9 @@ TEST(HandleLeftOverTemplateVars, replaceLeftOverTemplateVar)
 
     nlohmann::json expected = "the Test  is ";
     EXPECT_EQ(expected, j["foo"]);
+}
+
+TEST(EntityManager, fwVersionIsSame)
+{
+    EXPECT_FALSE(em_utils::fwVersionIsSame());
 }
