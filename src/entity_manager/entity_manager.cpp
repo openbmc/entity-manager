@@ -124,17 +124,17 @@ void EntityManager::postToDbus(const nlohmann::json& newConfiguration)
         boardPath += boardName;
 
         std::shared_ptr<sdbusplus::asio::dbus_interface> inventoryIface =
-            dbus_interface::createInterface(
-                objServer, boardPath, "xyz.openbmc_project.Inventory.Item",
-                boardName);
+            dbus_interface.createInterface(objServer, boardPath,
+                                           "xyz.openbmc_project.Inventory.Item",
+                                           boardName);
 
         std::shared_ptr<sdbusplus::asio::dbus_interface> boardIface =
-            dbus_interface::createInterface(
+            dbus_interface.createInterface(
                 objServer, boardPath,
                 "xyz.openbmc_project.Inventory.Item." + boardType,
                 boardNameOrig);
 
-        dbus_interface::createAddObjectMethod(
+        dbus_interface.createAddObjectMethod(
             io, jsonPointerPath, boardPath, systemConfiguration, objServer,
             boardNameOrig);
 
@@ -148,8 +148,8 @@ void EntityManager::postToDbus(const nlohmann::json& newConfiguration)
             if (propValue.type() == nlohmann::json::value_t::object)
             {
                 std::shared_ptr<sdbusplus::asio::dbus_interface> iface =
-                    dbus_interface::createInterface(objServer, boardPath,
-                                                    propName, boardNameOrig);
+                    dbus_interface.createInterface(objServer, boardPath,
+                                                   propName, boardNameOrig);
 
                 dbus_interface::populateInterfaceFromJson(
                     io, systemConfiguration, jsonPointerPath + propName, iface,
@@ -211,7 +211,7 @@ void EntityManager::postToDbus(const nlohmann::json& newConfiguration)
             if (itemType == "BMC")
             {
                 std::shared_ptr<sdbusplus::asio::dbus_interface> bmcIface =
-                    dbus_interface::createInterface(
+                    dbus_interface.createInterface(
                         objServer, ifacePath,
                         "xyz.openbmc_project.Inventory.Item.Bmc",
                         boardNameOrig);
@@ -222,7 +222,7 @@ void EntityManager::postToDbus(const nlohmann::json& newConfiguration)
             else if (itemType == "System")
             {
                 std::shared_ptr<sdbusplus::asio::dbus_interface> systemIface =
-                    dbus_interface::createInterface(
+                    dbus_interface.createInterface(
                         objServer, ifacePath,
                         "xyz.openbmc_project.Inventory.Item.System",
                         boardNameOrig);
@@ -244,7 +244,7 @@ void EntityManager::postToDbus(const nlohmann::json& newConfiguration)
                     ifaceName.append(itemType).append(".").append(name);
 
                     std::shared_ptr<sdbusplus::asio::dbus_interface>
-                        objectIface = dbus_interface::createInterface(
+                        objectIface = dbus_interface.createInterface(
                             objServer, ifacePath, ifaceName, boardNameOrig);
 
                     dbus_interface::populateInterfaceFromJson(
@@ -288,7 +288,7 @@ void EntityManager::postToDbus(const nlohmann::json& newConfiguration)
                         ifaceName.append(std::to_string(index));
 
                         std::shared_ptr<sdbusplus::asio::dbus_interface>
-                            objectIface = dbus_interface::createInterface(
+                            objectIface = dbus_interface.createInterface(
                                 objServer, ifacePath, ifaceName, boardNameOrig);
 
                         dbus_interface::populateInterfaceFromJson(
@@ -302,7 +302,7 @@ void EntityManager::postToDbus(const nlohmann::json& newConfiguration)
             }
 
             std::shared_ptr<sdbusplus::asio::dbus_interface> itemIface =
-                dbus_interface::createInterface(
+                dbus_interface.createInterface(
                     objServer, ifacePath,
                     "xyz.openbmc_project.Configuration." + itemType,
                     boardNameOrig);
@@ -326,7 +326,7 @@ void EntityManager::postToDbus(const nlohmann::json& newConfiguration)
             continue;
         }
 
-        auto ifacePtr = dbus_interface::createInterface(
+        auto ifacePtr = dbus_interface.createInterface(
             objServer, assocPath, "xyz.openbmc_project.Association.Definitions",
             findBoard->second);
 
@@ -422,7 +422,7 @@ void EntityManager::pruneConfiguration(bool powerOff, const std::string& name,
         return;
     }
 
-    auto& ifaces = dbus_interface::getDeviceInterfaces(device);
+    auto& ifaces = dbus_interface.getDeviceInterfaces(device);
     for (auto& iface : ifaces)
     {
         auto sharedPtr = iface.lock();
