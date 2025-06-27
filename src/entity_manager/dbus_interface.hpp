@@ -2,23 +2,42 @@
 
 #include "configuration.hpp"
 
+#include <boost/container/flat_map.hpp>
 #include <nlohmann/json.hpp>
 #include <sdbusplus/asio/connection.hpp>
 #include <sdbusplus/asio/object_server.hpp>
 
 #include <iostream>
-#include <set>
 #include <vector>
 
 namespace dbus_interface
 {
+
+class EMDBusInterface
+{
+  public:
+    std::shared_ptr<sdbusplus::asio::dbus_interface> createInterface(
+        sdbusplus::asio::object_server& objServer, const std::string& path,
+        const std::string& interface, const std::string& parent,
+        bool checkNull = false);
+
+    std::vector<std::weak_ptr<sdbusplus::asio::dbus_interface>>&
+        getDeviceInterfaces(const nlohmann::json& device);
+
+    void createAddObjectMethod(
+        boost::asio::io_context& io, const std::string& jsonPointerPath,
+        const std::string& path, nlohmann::json& systemConfiguration,
+        sdbusplus::asio::object_server& objServer, const std::string& board);
+
+  private:
+    boost::container::flat_map<
+        std::string,
+        std::vector<std::weak_ptr<sdbusplus::asio::dbus_interface>>>
+        inventory;
+};
+
 void tryIfaceInitialize(
     std::shared_ptr<sdbusplus::asio::dbus_interface>& iface);
-
-std::shared_ptr<sdbusplus::asio::dbus_interface> createInterface(
-    sdbusplus::asio::object_server& objServer, const std::string& path,
-    const std::string& interface, const std::string& parent,
-    bool checkNull = false);
 
 template <typename PropertyType>
 void addArrayToDbus(const std::string& name, const nlohmann::json& array,
@@ -132,13 +151,5 @@ void populateInterfaceFromJson(
     nlohmann::json& dict, sdbusplus::asio::object_server& objServer,
     sdbusplus::asio::PropertyPermission permission =
         sdbusplus::asio::PropertyPermission::readOnly);
-
-void createAddObjectMethod(
-    boost::asio::io_context& io, const std::string& jsonPointerPath,
-    const std::string& path, nlohmann::json& systemConfiguration,
-    sdbusplus::asio::object_server& objServer, const std::string& board);
-
-std::vector<std::weak_ptr<sdbusplus::asio::dbus_interface>>&
-    getDeviceInterfaces(const nlohmann::json& device);
 
 } // namespace dbus_interface
