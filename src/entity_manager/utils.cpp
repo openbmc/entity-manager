@@ -2,6 +2,7 @@
 
 #include "../variant_visitors.hpp"
 #include "expression.hpp"
+#include "power_status_monitor.hpp"
 
 #include <boost/algorithm/string/classification.hpp>
 #include <boost/algorithm/string/find.hpp>
@@ -13,17 +14,7 @@
 #include <fstream>
 #include <iostream>
 
-namespace em_utils
-{
-
-// NOLINTNEXTLINE(cppcoreguidelines-avoid-non-const-global-variables)
-static bool powerStatusOn = false;
-// NOLINTNEXTLINE(cppcoreguidelines-avoid-non-const-global-variables)
-static std::unique_ptr<sdbusplus::bus::match_t> powerMatch = nullptr;
-
-constexpr const char* templateChar = "$";
-
-bool isPowerOn()
+bool power::PowerStatusMonitor::isPowerOn()
 {
     if (!powerMatch)
     {
@@ -32,14 +23,16 @@ bool isPowerOn()
     return powerStatusOn;
 }
 
-void setupPowerMatch(const std::shared_ptr<sdbusplus::asio::connection>& conn)
+void power::PowerStatusMonitor::setupPowerMatch(
+    const std::shared_ptr<sdbusplus::asio::connection>& conn)
 {
     powerMatch = std::make_unique<sdbusplus::bus::match_t>(
         static_cast<sdbusplus::bus_t&>(*conn),
-        "type='signal',interface='" + std::string(properties::interface) +
-            "',path='" + std::string(power::path) + "',arg0='" +
+        "type='signal',interface='" +
+            std::string(em_utils::properties::interface) + "',path='" +
+            std::string(power::path) + "',arg0='" +
             std::string(power::interface) + "'",
-        [](sdbusplus::message_t& message) {
+        [this](sdbusplus::message_t& message) {
             std::string objectName;
             boost::container::flat_map<std::string, std::variant<std::string>>
                 values;
@@ -53,8 +46,8 @@ void setupPowerMatch(const std::shared_ptr<sdbusplus::asio::connection>& conn)
         });
 
     conn->async_method_call(
-        [](boost::system::error_code ec,
-           const std::variant<std::string>& state) {
+        [this](boost::system::error_code ec,
+               const std::variant<std::string>& state) {
             if (ec)
             {
                 return;
@@ -62,9 +55,14 @@ void setupPowerMatch(const std::shared_ptr<sdbusplus::asio::connection>& conn)
             powerStatusOn =
                 boost::ends_with(std::get<std::string>(state), "Running");
         },
-        power::busname, power::path, properties::interface, properties::get,
-        power::interface, power::property);
+        power::busname, power::path, em_utils::properties::interface,
+        em_utils::properties::get, power::interface, power::property);
 }
+
+namespace em_utils
+{
+
+constexpr const char* templateChar = "$";
 
 bool fwVersionIsSame()
 {
