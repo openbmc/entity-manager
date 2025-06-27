@@ -24,16 +24,6 @@ constexpr const char* interface = "org.freedesktop.DBus.Properties";
 constexpr const char* get = "Get";
 } // namespace properties
 
-namespace power
-{
-const static constexpr char* busname = "xyz.openbmc_project.State.Host";
-const static constexpr char* interface = "xyz.openbmc_project.State.Host";
-const static constexpr char* path = "/xyz/openbmc_project/state/host0";
-const static constexpr char* property = "CurrentHostState";
-} // namespace power
-
-bool isPowerOn();
-void setupPowerMatch(const std::shared_ptr<sdbusplus::asio::connection>& conn);
 bool fwVersionIsSame();
 
 std::optional<std::string> templateCharReplace(
