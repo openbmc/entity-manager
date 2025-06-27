@@ -467,9 +467,8 @@ void EntityManager::publishNewConfiguration(
 // main properties changed entry
 void EntityManager::propertiesChangedCallback()
 {
-    static size_t instance = 0;
-    instance++;
-    size_t count = instance;
+    propertiesChangedInstance++;
+    size_t count = propertiesChangedInstance;
 
     propertiesChangedTimer.expires_after(std::chrono::milliseconds(500));
 
@@ -532,7 +531,7 @@ void EntityManager::propertiesChangedCallback()
 
                     boost::asio::post(io, [this, newConfiguration, count] {
                         publishNewConfiguration(
-                            std::ref(instance), count,
+                            std::ref(propertiesChangedInstance), count,
                             std::ref(propertiesChangedTimer), newConfiguration);
                     });
                 });
