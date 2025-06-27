@@ -70,6 +70,7 @@ class EntityManager
 
     bool propertiesChangedInProgress = false;
     boost::asio::steady_timer propertiesChangedTimer;
+    size_t propertiesChangedInstance = 0;
 
     void startRemovedTimer(boost::asio::steady_timer& timer,
                            nlohmann::json& systemConfiguration);
