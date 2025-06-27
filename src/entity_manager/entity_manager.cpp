@@ -369,13 +369,9 @@ static void pruneDevice(const nlohmann::json& systemConfiguration,
     logDeviceRemoved(device);
 }
 
-void startRemovedTimer(boost::asio::steady_timer& timer,
-                       nlohmann::json& systemConfiguration,
-                       nlohmann::json& lastJson)
+void EntityManager::startRemovedTimer(boost::asio::steady_timer& timer,
+                                      nlohmann::json& systemConfiguration)
 {
-    static bool scannedPowerOff = false;
-    static bool scannedPowerOn = false;
-
     if (systemConfiguration.empty() || lastJson.empty())
     {
         return; // not ready yet
@@ -392,7 +388,7 @@ void startRemovedTimer(boost::asio::steady_timer& timer,
 
     timer.expires_after(std::chrono::seconds(10));
     timer.async_wait(
-        [&systemConfiguration, &lastJson](const boost::system::error_code& ec) {
+        [&systemConfiguration, this](const boost::system::error_code& ec) {
             if (ec == boost::asio::error::operation_aborted)
             {
                 return;
@@ -462,7 +458,7 @@ void EntityManager::publishNewConfiguration(
         postToDbus(newConfiguration);
         if (count == instance)
         {
-            startRemovedTimer(timer, systemConfiguration, lastJson);
+            startRemovedTimer(timer, systemConfiguration);
         }
     });
 }

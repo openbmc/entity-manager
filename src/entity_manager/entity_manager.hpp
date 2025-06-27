@@ -64,6 +64,12 @@ class EntityManager
     std::unique_ptr<sdbusplus::bus::match_t> nameOwnerChangedMatch = nullptr;
     std::unique_ptr<sdbusplus::bus::match_t> interfacesAddedMatch = nullptr;
     std::unique_ptr<sdbusplus::bus::match_t> interfacesRemovedMatch = nullptr;
+
+    bool scannedPowerOff = false;
+    bool scannedPowerOn = false;
+
+    void startRemovedTimer(boost::asio::steady_timer& timer,
+                           nlohmann::json& systemConfiguration);
 };
 
 inline void logDeviceAdded(const nlohmann::json& record)
