@@ -19,6 +19,7 @@
 
 #include "../utils.hpp"
 #include "dbus_interface.hpp"
+#include "power_status_monitor.hpp"
 #include "topology.hpp"
 
 #include <systemd/sd-journal.h>
@@ -56,6 +57,8 @@ class EntityManager
     boost::asio::io_context& io;
 
     dbus_interface::EMDBusInterface dbus_interface;
+
+    power::PowerStatusMonitor powerStatus;
 
     void propertiesChangedCallback();
     void registerCallback(const std::string& path);
