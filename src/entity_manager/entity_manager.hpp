@@ -18,6 +18,7 @@
 #pragma once
 
 #include "../utils.hpp"
+#include "dbus_interface.hpp"
 #include "topology.hpp"
 
 #include <systemd/sd-journal.h>
@@ -43,6 +44,8 @@ class EntityManager
     nlohmann::json systemConfiguration;
     Topology topology;
     boost::asio::io_context& io;
+
+    dbus_interface::EMDBusInterface dbus_interface;
 
     void propertiesChangedCallback();
     void registerCallback(const std::string& path);
