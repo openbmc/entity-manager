@@ -370,6 +370,19 @@
             "in0_Scale": 953.0162965787
         },
         {
+            "Address": "0x42",
+            "Bus": 10,
+            "Labels": [
+                "curr1"
+            ],
+            "Name": "RMC_CABLE_TSENSE_POSITIVE_INA",
+            "Type": "INA238",
+            "curr1_Max": 0.1,
+            "curr1_Min": 0,
+            "curr1_Name": "RMC_CABLE_TSENSE_POSITIVE_INA_CURR_A",
+            "curr1_Scale": 50000
+        },
+        {
             "Address": "0x43",
             "Bus": 10,
             "Labels": [
@@ -391,6 +404,19 @@
             "in0_Min": -1,
             "in0_Name": "RMC_MEDUSA_POSITIVE_VDROP_VOLT_V",
             "in0_Scale": 936.1542782251
+        },
+        {
+            "Address": "0x46",
+            "Bus": 10,
+            "Labels": [
+                "curr1"
+            ],
+            "Name": "RMC_CABLE_TSENSE_NEGATIVE_INA",
+            "Type": "INA238",
+            "curr1_Max": 0.1,
+            "curr1_Min": 0,
+            "curr1_Name": "RMC_CABLE_TSENSE_NEGATIVE_INA_CURR_A",
+            "curr1_Scale": 50000
         },
         {
             "Address": "0x44",
