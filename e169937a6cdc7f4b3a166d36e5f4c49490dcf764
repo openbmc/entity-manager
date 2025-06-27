@@ -22,6 +22,30 @@
       },
       "revId": "e169937a6cdc7f4b3a166d36e5f4c49490dcf764",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f4a8f1eb_d0a9a5c4",
+        "filename": "src/entity_manager/entity_manager.cpp",
+        "patchSetId": 1
+      },
+      "lineNbr": 390,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-06-27T20:31:42Z",
+      "side": 1,
+      "message": "Yes, it moves to EM class.\n\nThat way all the lifetimes are the same as the EM class instance which spans the entire duration of the program.\n\nSo there is no need to worry about lifetimes as we transition global variables to EM class members.",
+      "parentUuid": "9697b55b_a809b1f0",
+      "range": {
+        "startLine": 390,
+        "startChar": 4,
+        "endLine": 390,
+        "endChar": 9
+      },
+      "revId": "e169937a6cdc7f4b3a166d36e5f4c49490dcf764",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }
