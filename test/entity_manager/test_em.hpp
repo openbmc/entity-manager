@@ -1,0 +1,50 @@
+#pragma once
+
+#include "entity_manager/entity_manager.hpp"
+#include "phosphor-logging/lg2.hpp"
+
+#include <nlohmann/json.hpp>
+
+#include <string>
+
+using namespace std::string_literals;
+
+static int myrandom()
+{
+    struct timespec ts{};
+    clock_gettime(CLOCK_REALTIME, &ts);
+    const unsigned int seed = ts.tv_nsec ^ getpid();
+    srandom(seed);
+    return random();
+}
+
+static std::string getRandomBusName()
+{
+    return "xyz.openbmc_project.EntityManager" + std::to_string(myrandom());
+}
+
+// Helper class to access the protected members of the class we are testing
+class TestEM : public EntityManager
+{
+  public:
+    TestEM(std::shared_ptr<sdbusplus::asio::connection>& systemBus,
+           boost::asio::io_context& io) :
+        EntityManager(systemBus, io, false, true)
+    {
+        std::string busName = getRandomBusName();
+        systemBus->request_name(busName.c_str());
+        lg2::debug("requesting bus name {NAME}", "NAME", busName);
+    };
+
+    // declare protected members of the base class as public here
+    using EntityManager::dbusMatches;
+    using EntityManager::initFilters;
+    using EntityManager::interfacesAddedMatch;
+    using EntityManager::interfacesRemovedMatch;
+    using EntityManager::nameOwnerChangedMatch;
+    using EntityManager::propertiesChangedInProgress;
+    using EntityManager::propertiesChangedInstance;
+    using EntityManager::propertiesChangedTimer;
+    using EntityManager::scannedPowerOff;
+    using EntityManager::scannedPowerOn;
+};
