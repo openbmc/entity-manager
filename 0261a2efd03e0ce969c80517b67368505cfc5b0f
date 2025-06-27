@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e5100eed_03becbf6",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2025-06-27T18:31:53Z",
+      "side": 1,
+      "message": "https://github.com/openbmc/bmcweb/blob/83609eb5f07b73e14be4789719b93fe933559c59/include/io_context_singleton.hpp#L7\n\nIs what the asio maintainers recommended.  Can we do a pattern like that to avoid passing this through so many layers?  Unless we intend to multi-thread with multiple io_services (which I doubt we do anytime soon) we don\u0027t really need to get fancy here.",
+      "revId": "0261a2efd03e0ce969c80517b67368505cfc5b0f",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    }
+  ]
+}
