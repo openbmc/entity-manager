@@ -54,7 +54,8 @@ EntityManager::EntityManager(
     std::shared_ptr<sdbusplus::asio::connection>& systemBus,
     boost::asio::io_context& io,
     const std::vector<std::filesystem::path>& configurationDirectories,
-    const std::filesystem::path& schemaDirectory) :
+    const std::filesystem::path& schemaDirectory,
+    const bool queryInitialPowerState) :
     systemBus(systemBus),
     objServer(sdbusplus::asio::object_server(systemBus, /*skipManager=*/true)),
     configuration(configurationDirectories, schemaDirectory),
@@ -63,6 +64,10 @@ EntityManager::EntityManager(
     dbus_interface(io, objServer, schemaDirectory), powerStatus(*systemBus),
     propertiesChangedTimer(io)
 {
+    if (queryInitialPowerState)
+    {
+        powerStatus.getInitialPowerStatus(*systemBus);
+    }
     // All other objects that EntityManager currently support are under the
     // inventory subtree.
     // See the discussion at
@@ -641,6 +646,21 @@ void EntityManager::handleCurrentConfigurationJson()
         lg2::error("Clearing previous configuration");
         std::filesystem::remove(currentConfiguration, ec);
     }
+}
+bool EntityManager::isPropertiesChangedInProgress() const
+{
+    return propertiesChangedInProgress;
+}
+
+size_t EntityManager::getPropertiesChangedInstance() const
+{
+    return propertiesChangedInstance;
+}
+
+bool EntityManager::hasDBusMatch(
+    const sdbusplus::message::object_path& path) const
+{
+    return dbusMatches.contains(path);
 }
 
 void EntityManager::registerCallback(const std::string& path)
