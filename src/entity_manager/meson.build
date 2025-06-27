@@ -18,6 +18,7 @@ executable(
     'topology.cpp',
     'utils.cpp',
     '../utils.cpp',
+    'main.cpp',
     cpp_args: cpp_args_em,
     dependencies: [
         boost,
