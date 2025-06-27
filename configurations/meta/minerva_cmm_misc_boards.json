@@ -1,17 +1,40 @@
-{
-    "Exposes": [],
-    "Name": "$Name",
-    "Probe": [
-        "xyz.openbmc_project.Inventory.Source.DevicePresence({'Name': 'CableCartridge*'})",
-        "OR",
-        "xyz.openbmc_project.Inventory.Source.DevicePresence({'Name': 'BCBCable*'})"
-    ],
-    "Type": "Board",
-    "xyz.openbmc_project.Inventory.Decorator.Asset": {
-        "Manufacturer": "Unknown",
-        "Model": "Unknown",
-        "PartNumber": "Unknown",
-        "SerialNumber": "Unknown",
-        "SparePartNumber": "Unknown"
+[
+    {
+        "Exposes": [],
+        "Name": "$Name",
+        "Probe": [
+            "xyz.openbmc_project.Inventory.Source.DevicePresence({'Name': 'CableCartridge*'})",
+            "OR",
+            "xyz.openbmc_project.Inventory.Source.DevicePresence({'Name': 'BCBCable*'})"
+        ],
+        "Type": "Board",
+        "xyz.openbmc_project.Inventory.Decorator.Asset": {
+            "Manufacturer": "Unknown",
+            "Model": "Unknown",
+            "PartNumber": "Unknown",
+            "SerialNumber": "Unknown",
+            "SparePartNumber": "Unknown"
+        }
+    },
+    {
+        "Exposes": [],
+        "Name": "$Name",
+        "Probe": [
+            "xyz.openbmc_project.Inventory.Source.DevicePresence({'Name': 'MtiaBlade*'})",
+            "OR",
+            "xyz.openbmc_project.Inventory.Source.DevicePresence({'Name': 'NetworkBlade*'})",
+            "OR",
+            "xyz.openbmc_project.Inventory.Source.DevicePresence({'Name': 'FanControlBoard*'})",
+            "OR",
+            "xyz.openbmc_project.Inventory.Source.DevicePresence({'Name': '*RpuLink'})"
+        ],
+        "Type": "Board",
+        "xyz.openbmc_project.Inventory.Decorator.Asset": {
+            "Manufacturer": "$BOARD_MANUFACTURER",
+            "Model": "$BOARD_PRODUCT_NAME",
+            "PartNumber": "$BOARD_PART_NUMBER",
+            "SerialNumber": "$BOARD_SERIAL_NUMBER",
+            "SparePartNumber": "$BOARD_INFO_AM1"
+        }
     }
-}
+]
