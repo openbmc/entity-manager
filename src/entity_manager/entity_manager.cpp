@@ -70,7 +70,8 @@ EntityManager::EntityManager(
     systemBus(systemBus),
     objServer(sdbusplus::asio::object_server(systemBus, /*skipManager=*/true)),
     lastJson(nlohmann::json::object()),
-    systemConfiguration(nlohmann::json::object()), io(io)
+    systemConfiguration(nlohmann::json::object()), io(io),
+    propertiesChangedTimer(io)
 {
     // All other objects that EntityManager currently support are under the
     // inventory subtree.
@@ -466,10 +467,11 @@ void EntityManager::publishNewConfiguration(
 // main properties changed entry
 void EntityManager::propertiesChangedCallback()
 {
-    static boost::asio::steady_timer timer(io);
     static size_t instance = 0;
     instance++;
     size_t count = instance;
+
+    auto& timer = propertiesChangedTimer;
 
     timer.expires_after(std::chrono::milliseconds(500));
 
@@ -531,7 +533,8 @@ void EntityManager::propertiesChangedCallback()
 
                 boost::asio::post(io, [this, newConfiguration, count] {
                     publishNewConfiguration(std::ref(instance), count,
-                                            std::ref(timer), newConfiguration);
+                                            std::ref(propertiesChangedTimer),
+                                            newConfiguration);
                 });
             });
         perfScan->run();
