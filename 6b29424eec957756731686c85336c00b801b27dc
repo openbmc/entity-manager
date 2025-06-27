@@ -1,0 +1,44 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8427821a_a4b1fee8",
+        "filename": "src/entity_manager/dbus_interface.cpp",
+        "patchSetId": 1
+      },
+      "lineNbr": 167,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2025-06-27T18:30:26Z",
+      "side": 1,
+      "message": "We don\u0027t have any arrays of bools anymore, and this has been supported by the bindings for a while now, can we just make this common?",
+      "revId": "6b29424eec957756731686c85336c00b801b27dc",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "273da496_96526010",
+        "filename": "src/entity_manager/dbus_interface.hpp",
+        "patchSetId": 1
+      },
+      "lineNbr": 102,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2025-06-27T18:30:26Z",
+      "side": 1,
+      "message": "This is a really unfortunate variable name.  Can we come up with a better one?",
+      "range": {
+        "startLine": 102,
+        "startChar": 42,
+        "endLine": 102,
+        "endChar": 55
+      },
+      "revId": "6b29424eec957756731686c85336c00b801b27dc",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    }
+  ]
+}
