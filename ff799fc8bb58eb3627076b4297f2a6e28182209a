@@ -26,6 +26,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "f24edfcd_0055697c",
+        "filename": "src/entity_manager/entity_manager.cpp",
+        "patchSetId": 1
+      },
+      "lineNbr": 474,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-06-27T20:42:31Z",
+      "side": 1,
+      "message": "Yes we need it to avoid the lambda from reformatting.\n\nCurrently we have\n```\ntimer.async_wait( ...\n```\nbut\n```\npropertiesChangedTimer.async_wait( ...\n```\n\nwould cause a different indentation for the whole lambda body.",
+      "parentUuid": "a0bcf87a_0916a587",
+      "range": {
+        "startLine": 474,
+        "startChar": 4,
+        "endLine": 474,
+        "endChar": 8
+      },
+      "revId": "ff799fc8bb58eb3627076b4297f2a6e28182209a",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "508399e4_cc422797",
         "filename": "src/entity_manager/entity_manager.cpp",
         "patchSetId": 1
@@ -37,6 +61,24 @@
       "writtenOn": "2025-06-27T18:40:38Z",
       "side": 1,
       "message": "unrelated?  (looks like our famous lambda formatting mess)",
+      "revId": "ff799fc8bb58eb3627076b4297f2a6e28182209a",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3b5bc83e_4383a56d",
+        "filename": "src/entity_manager/entity_manager.cpp",
+        "patchSetId": 1
+      },
+      "lineNbr": 514,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-06-27T20:42:31Z",
+      "side": 1,
+      "message": "Yes, looks unrelated, i should remove that diff.\n\nIt\u0027s a leftover from changing \n```timer``` to ```propertiesChangedTimer``` and back.\n\nThe alias is needed to avoid the lambda being completely reformatted and causing unrelated diff.",
+      "parentUuid": "508399e4_cc422797",
       "revId": "ff799fc8bb58eb3627076b4297f2a6e28182209a",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
