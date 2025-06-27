@@ -622,9 +622,6 @@ void EntityManager::handleCurrentConfigurationJson()
 
 void EntityManager::registerCallback(const std::string& path)
 {
-    static boost::container::flat_map<std::string, sdbusplus::bus::match_t>
-        dbusMatches;
-
     if (dbusMatches.contains(path))
     {
         return;
