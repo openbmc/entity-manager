@@ -72,6 +72,9 @@ class EntityManager
     boost::asio::steady_timer propertiesChangedTimer;
     size_t propertiesChangedInstance = 0;
 
+    boost::container::flat_map<std::string, sdbusplus::bus::match_t>
+        dbusMatches;
+
     void startRemovedTimer(boost::asio::steady_timer& timer,
                            nlohmann::json& systemConfiguration);
 };

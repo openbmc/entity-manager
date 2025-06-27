@@ -23,6 +23,7 @@
 #include "dbus_interface.hpp"
 #include "overlay.hpp"
 #include "perform_scan.hpp"
+#include "phosphor-logging/lg2.hpp"
 #include "topology.hpp"
 #include "utils.hpp"
 
@@ -622,13 +623,12 @@ void EntityManager::handleCurrentConfigurationJson()
 
 void EntityManager::registerCallback(const std::string& path)
 {
-    static boost::container::flat_map<std::string, sdbusplus::bus::match_t>
-        dbusMatches;
-
     if (dbusMatches.contains(path))
     {
         return;
     }
+
+    lg2::debug("creating PropertiesChanged match on {PATH}", "PATH", path);
 
     std::function<void(sdbusplus::message_t & message)> eventHandler =
         [&](sdbusplus::message_t&) { propertiesChangedCallback(); };
