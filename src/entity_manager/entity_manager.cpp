@@ -21,6 +21,7 @@
 #include "../variant_visitors.hpp"
 #include "configuration.hpp"
 #include "dbus_interface.hpp"
+#include "log_device_inventory.hpp"
 #include "overlay.hpp"
 #include "perform_scan.hpp"
 #include "phosphor-logging/lg2.hpp"
