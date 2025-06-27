@@ -123,18 +123,19 @@ void createDeleteObjectMethod(
     const std::string& jsonPointerPath,
     const std::shared_ptr<sdbusplus::asio::dbus_interface>& iface,
     sdbusplus::asio::object_server& objServer,
-    nlohmann::json& systemConfiguration);
+    nlohmann::json& systemConfiguration, boost::asio::io_context& io);
 
 void populateInterfaceFromJson(
-    nlohmann::json& systemConfiguration, const std::string& jsonPointerPath,
+    boost::asio::io_context& io, nlohmann::json& systemConfiguration,
+    const std::string& jsonPointerPath,
     std::shared_ptr<sdbusplus::asio::dbus_interface>& iface,
     nlohmann::json& dict, sdbusplus::asio::object_server& objServer,
     sdbusplus::asio::PropertyPermission permission =
         sdbusplus::asio::PropertyPermission::readOnly);
 
 void createAddObjectMethod(
-    const std::string& jsonPointerPath, const std::string& path,
-    nlohmann::json& systemConfiguration,
+    boost::asio::io_context& io, const std::string& jsonPointerPath,
+    const std::string& path, nlohmann::json& systemConfiguration,
     sdbusplus::asio::object_server& objServer, const std::string& board);
 
 std::vector<std::weak_ptr<sdbusplus::asio::dbus_interface>>&
