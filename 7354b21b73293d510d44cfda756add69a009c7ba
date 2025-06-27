@@ -34,6 +34,24 @@
       "parentUuid": "43f8f1e9_305713dd",
       "revId": "7354b21b73293d510d44cfda756add69a009c7ba",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f0ef0ded_69c91dc0",
+        "filename": "src/entity_manager/configuration.cpp",
+        "patchSetId": 1
+      },
+      "lineNbr": 87,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2025-06-27T19:53:46Z",
+      "side": 0,
+      "message": "\u003e I do remember how in dbus-sensors everyone had their own little ```static bool debug \u003d false;``` in the .cpp file to enable via patch file.\n\nThat log variables was a James thing;  Ideally what would be moved to at least one common debug variable, and std::format/printf.\n\n\u003e \n\u003e This piece of commented code has a similar smell.\n\u003e \n\u003e I can try to enable it via meson option, but do not want to test it since it will be default disabled and i see no good reason for anyone to enable it.\n\nThat\u0027s fine.  FWIW, There\u0027s VERY good reasons to enable it if you want to accept new configs on the fly securely, but doing that caused people that hadn\u0027t upstreamed their schemas to break, so.......  we do what\u0027s best for the greater industry.\n\nThat\u0027s fine if you don\u0027t want to test the enabled option, I just want something I can point people to when they scream about schemas not being enforced or EM crashing.",
+      "parentUuid": "94359090_88eb3327",
+      "revId": "7354b21b73293d510d44cfda756add69a009c7ba",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }
