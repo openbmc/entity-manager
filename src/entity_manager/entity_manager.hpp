@@ -73,7 +73,7 @@ class EntityManager
 
     void handleCurrentConfigurationJson();
 
-  private:
+  protected:
     std::unique_ptr<sdbusplus::bus::match_t> nameOwnerChangedMatch = nullptr;
     std::unique_ptr<sdbusplus::bus::match_t> interfacesAddedMatch = nullptr;
     std::unique_ptr<sdbusplus::bus::match_t> interfacesRemovedMatch = nullptr;
