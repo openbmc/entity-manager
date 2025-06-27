@@ -169,7 +169,8 @@ static int buildDevice(
     const std::string& parameters, uint64_t bus, uint64_t address,
     const std::string& constructor, const std::string& destructor,
     const devices::createsHWMon hasHWMonDir,
-    std::vector<std::string> channelNames, const size_t retries = 5)
+    std::vector<std::string> channelNames, boost::asio::io_context& io,
+    const size_t retries = 5)
 {
     if (retries == 0U)
     {
@@ -193,8 +194,8 @@ static int buildDevice(
             createTimer->async_wait(
                 [createTimer, name, busPath, parameters, bus, address,
                  constructor, destructor, hasHWMonDir,
-                 channelNames(std::move(channelNames)),
-                 retries](const boost::system::error_code& ec) mutable {
+                 channelNames(std::move(channelNames)), retries,
+                 &io](const boost::system::error_code& ec) mutable {
                     if (ec)
                     {
                         std::cerr << "Timer error: " << ec << "\n";
@@ -202,7 +203,8 @@ static int buildDevice(
                     }
                     return buildDevice(name, busPath, parameters, bus, address,
                                        constructor, destructor, hasHWMonDir,
-                                       std::move(channelNames), retries - 1);
+                                       std::move(channelNames), io,
+                                       retries - 1);
                 });
             return -1;
         }
@@ -219,7 +221,8 @@ static int buildDevice(
 
 void exportDevice(const std::string& type,
                   const devices::ExportTemplate& exportTemplate,
-                  const nlohmann::json& configuration)
+                  const nlohmann::json& configuration,
+                  boost::asio::io_context& io)
 {
     std::string parameters = exportTemplate.parameters;
     std::string busPath = exportTemplate.busPath;
@@ -273,10 +276,11 @@ void exportDevice(const std::string& type,
     }
 
     buildDevice(name, busPath, parameters, *bus, *address, constructor,
-                destructor, hasHWMonDir, std::move(channels));
+                destructor, hasHWMonDir, std::move(channels), io);
 }
 
-bool loadOverlays(const nlohmann::json& systemConfiguration)
+bool loadOverlays(const nlohmann::json& systemConfiguration,
+                  boost::asio::io_context& io)
 {
     std::filesystem::create_directory(outputDir);
     for (auto entity = systemConfiguration.begin();
@@ -307,7 +311,7 @@ bool loadOverlays(const nlohmann::json& systemConfiguration)
             auto device = devices::exportTemplates.find(type.c_str());
             if (device != devices::exportTemplates.end())
             {
-                exportDevice(type, device->second, configuration);
+                exportDevice(type, device->second, configuration, io);
                 continue;
             }
 

@@ -72,12 +72,12 @@ void createDeleteObjectMethod(
     const std::string& jsonPointerPath,
     const std::shared_ptr<sdbusplus::asio::dbus_interface>& iface,
     sdbusplus::asio::object_server& objServer,
-    nlohmann::json& systemConfiguration)
+    nlohmann::json& systemConfiguration, boost::asio::io_context& io)
 {
     std::weak_ptr<sdbusplus::asio::dbus_interface> interface = iface;
     iface->register_method(
         "Delete", [&objServer, &systemConfiguration, interface,
-                   jsonPointerPath{std::string(jsonPointerPath)}]() {
+                   jsonPointerPath{std::string(jsonPointerPath)}, &io]() {
             std::shared_ptr<sdbusplus::asio::dbus_interface> dbusInterface =
                 interface.lock();
             if (!dbusInterface)
@@ -203,7 +203,8 @@ static void populateInterfacePropertyFromJson(
 
 // adds simple json types to interface's properties
 void populateInterfaceFromJson(
-    nlohmann::json& systemConfiguration, const std::string& jsonPointerPath,
+    boost::asio::io_context& io, nlohmann::json& systemConfiguration,
+    const std::string& jsonPointerPath,
     std::shared_ptr<sdbusplus::asio::dbus_interface>& iface,
     nlohmann::json& dict, sdbusplus::asio::object_server& objServer,
     sdbusplus::asio::PropertyPermission permission)
@@ -238,14 +239,14 @@ void populateInterfaceFromJson(
     if (permission == sdbusplus::asio::PropertyPermission::readWrite)
     {
         createDeleteObjectMethod(jsonPointerPath, iface, objServer,
-                                 systemConfiguration);
+                                 systemConfiguration, io);
     }
     tryIfaceInitialize(iface);
 }
 
 void createAddObjectMethod(
-    const std::string& jsonPointerPath, const std::string& path,
-    nlohmann::json& systemConfiguration,
+    boost::asio::io_context& io, const std::string& jsonPointerPath,
+    const std::string& path, nlohmann::json& systemConfiguration,
     sdbusplus::asio::object_server& objServer, const std::string& board)
 {
     std::shared_ptr<sdbusplus::asio::dbus_interface> iface = createInterface(
@@ -255,8 +256,9 @@ void createAddObjectMethod(
         "AddObject",
         [&systemConfiguration, &objServer,
          jsonPointerPath{std::string(jsonPointerPath)}, path{std::string(path)},
-         board](const boost::container::flat_map<std::string, JsonVariantType>&
-                    data) {
+         board,
+         &io](const boost::container::flat_map<std::string, JsonVariantType>&
+                  data) {
             nlohmann::json::json_pointer ptr(jsonPointerPath);
             nlohmann::json& base = systemConfiguration[ptr];
             auto findExposes = base.find("Exposes");
@@ -363,7 +365,7 @@ void createAddObjectMethod(
             // permission is read-write, as since we just created it, must be
             // runtime modifiable
             populateInterfaceFromJson(
-                systemConfiguration,
+                io, systemConfiguration,
                 jsonPointerPath + "/Exposes/" + std::to_string(lastIndex),
                 interface, newData, objServer,
                 sdbusplus::asio::PropertyPermission::readWrite);

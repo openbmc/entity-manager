@@ -33,7 +33,8 @@ class EntityManager
 {
   public:
     explicit EntityManager(
-        std::shared_ptr<sdbusplus::asio::connection>& systemBus);
+        std::shared_ptr<sdbusplus::asio::connection>& systemBus,
+        boost::asio::io_context& io);
 
     std::shared_ptr<sdbusplus::asio::connection> systemBus;
     sdbusplus::asio::object_server objServer;
@@ -41,6 +42,7 @@ class EntityManager
     nlohmann::json lastJson;
     nlohmann::json systemConfiguration;
     Topology topology;
+    boost::asio::io_context& io;
 
     void propertiesChangedCallback();
     void registerCallback(const std::string& path);

@@ -16,7 +16,9 @@
 /// \file overlay.hpp
 
 #pragma once
+#include <boost/asio/io_context.hpp>
 #include <nlohmann/json.hpp>
 
 void unloadAllOverlays();
-bool loadOverlays(const nlohmann::json& systemConfiguration);
+bool loadOverlays(const nlohmann::json& systemConfiguration,
+                  boost::asio::io_context& io);

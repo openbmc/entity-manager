@@ -53,10 +53,6 @@ constexpr const char* lastConfiguration = "/tmp/configuration/last.json";
 static constexpr std::array<const char*, 6> settableInterfaces = {
     "FanProfile", "Pid", "Pid.Zone", "Stepwise", "Thresholds", "Polling"};
 
-// NOLINTBEGIN(cppcoreguidelines-avoid-non-const-global-variables)
-boost::asio::io_context io;
-// NOLINTEND(cppcoreguidelines-avoid-non-const-global-variables)
-
 const std::regex illegalDbusPathRegex("[^A-Za-z0-9_.]");
 const std::regex illegalDbusMemberRegex("[^A-Za-z0-9_]");
 
@@ -69,11 +65,12 @@ sdbusplus::asio::PropertyPermission getPermission(const std::string& interface)
 }
 
 EntityManager::EntityManager(
-    std::shared_ptr<sdbusplus::asio::connection>& systemBus) :
+    std::shared_ptr<sdbusplus::asio::connection>& systemBus,
+    boost::asio::io_context& io) :
     systemBus(systemBus),
     objServer(sdbusplus::asio::object_server(systemBus, /*skipManager=*/true)),
     lastJson(nlohmann::json::object()),
-    systemConfiguration(nlohmann::json::object())
+    systemConfiguration(nlohmann::json::object()), io(io)
 {
     // All other objects that EntityManager currently support are under the
     // inventory subtree.
@@ -138,11 +135,11 @@ void EntityManager::postToDbus(const nlohmann::json& newConfiguration)
                 boardNameOrig);
 
         dbus_interface::createAddObjectMethod(
-            jsonPointerPath, boardPath, systemConfiguration, objServer,
+            io, jsonPointerPath, boardPath, systemConfiguration, objServer,
             boardNameOrig);
 
         dbus_interface::populateInterfaceFromJson(
-            systemConfiguration, jsonPointerPath, boardIface, boardValues,
+            io, systemConfiguration, jsonPointerPath, boardIface, boardValues,
             objServer);
         jsonPointerPath += "/";
         // iterate through board properties
@@ -155,7 +152,7 @@ void EntityManager::postToDbus(const nlohmann::json& newConfiguration)
                                                     propName, boardNameOrig);
 
                 dbus_interface::populateInterfaceFromJson(
-                    systemConfiguration, jsonPointerPath + propName, iface,
+                    io, systemConfiguration, jsonPointerPath + propName, iface,
                     propValue, objServer);
             }
         }
@@ -219,7 +216,7 @@ void EntityManager::postToDbus(const nlohmann::json& newConfiguration)
                         "xyz.openbmc_project.Inventory.Item.Bmc",
                         boardNameOrig);
                 dbus_interface::populateInterfaceFromJson(
-                    systemConfiguration, jsonPointerPath, bmcIface, item,
+                    io, systemConfiguration, jsonPointerPath, bmcIface, item,
                     objServer, getPermission(itemType));
             }
             else if (itemType == "System")
@@ -230,7 +227,7 @@ void EntityManager::postToDbus(const nlohmann::json& newConfiguration)
                         "xyz.openbmc_project.Inventory.Item.System",
                         boardNameOrig);
                 dbus_interface::populateInterfaceFromJson(
-                    systemConfiguration, jsonPointerPath, systemIface, item,
+                    io, systemConfiguration, jsonPointerPath, systemIface, item,
                     objServer, getPermission(itemType));
             }
 
@@ -251,7 +248,7 @@ void EntityManager::postToDbus(const nlohmann::json& newConfiguration)
                             objServer, ifacePath, ifaceName, boardNameOrig);
 
                     dbus_interface::populateInterfaceFromJson(
-                        systemConfiguration, jsonPointerPath, objectIface,
+                        io, systemConfiguration, jsonPointerPath, objectIface,
                         config, objServer, getPermission(name));
                 }
                 else if (config.type() == nlohmann::json::value_t::array)
@@ -295,7 +292,7 @@ void EntityManager::postToDbus(const nlohmann::json& newConfiguration)
                                 objServer, ifacePath, ifaceName, boardNameOrig);
 
                         dbus_interface::populateInterfaceFromJson(
-                            systemConfiguration,
+                            io, systemConfiguration,
                             jsonPointerPath + "/" + std::to_string(index),
                             objectIface, arrayItem, objServer,
                             getPermission(name));
@@ -311,7 +308,7 @@ void EntityManager::postToDbus(const nlohmann::json& newConfiguration)
                     boardNameOrig);
 
             dbus_interface::populateInterfaceFromJson(
-                systemConfiguration, jsonPointerPath, itemIface, item,
+                io, systemConfiguration, jsonPointerPath, itemIface, item,
                 objServer, getPermission(itemType));
 
             topology.addBoard(boardPath, boardType, boardNameOrig, item);
@@ -452,7 +449,7 @@ void EntityManager::publishNewConfiguration(
     // NOLINTNEXTLINE(performance-unnecessary-value-param)
     const nlohmann::json newConfiguration)
 {
-    loadOverlays(newConfiguration);
+    loadOverlays(newConfiguration, io);
 
     boost::asio::post(io, [this]() {
         if (!configuration::writeJsonFiles(systemConfiguration))
@@ -514,7 +511,7 @@ void EntityManager::propertiesChangedCallback()
         }
 
         auto perfScan = std::make_shared<scan::PerformScan>(
-            *this, *missingConfigurations, configurations,
+            *this, *missingConfigurations, configurations, io,
             [this, count, oldConfiguration, missingConfigurations]() {
                 // this is something that since ac has been applied to the bmc
                 // we saw, and we no longer see it
@@ -694,9 +691,10 @@ void EntityManager::initFilters(const std::set<std::string>& probeInterfaces)
 
 int main()
 {
+    boost::asio::io_context io;
     auto systemBus = std::make_shared<sdbusplus::asio::connection>(io);
     systemBus->request_name("xyz.openbmc_project.EntityManager");
-    EntityManager em(systemBus);
+    EntityManager em(systemBus, io);
 
     nlohmann::json systemConfiguration = nlohmann::json::object();
 
