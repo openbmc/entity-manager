@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9697b55b_a809b1f0",
+        "filename": "src/entity_manager/entity_manager.cpp",
+        "patchSetId": 1
+      },
+      "lineNbr": 390,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2025-06-27T18:36:58Z",
+      "side": 1,
+      "message": "In what you\u0027re thinking, does this timer eventually move to the EM class?  That would remove the use-after free issue on capturing \"this\" (which existed before your patch)",
+      "range": {
+        "startLine": 390,
+        "startChar": 4,
+        "endLine": 390,
+        "endChar": 9
+      },
+      "revId": "e169937a6cdc7f4b3a166d36e5f4c49490dcf764",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    }
+  ]
+}
