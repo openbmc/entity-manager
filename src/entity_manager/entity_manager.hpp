@@ -73,6 +73,10 @@ class EntityManager
 
     void handleCurrentConfigurationJson();
 
+    bool isPropertiesChangedInProgress() const;
+    size_t getPropertiesChangedInstance() const;
+    bool hasDBusMatch(const sdbusplus::message::object_path& path) const;
+
   private:
     std::unique_ptr<sdbusplus::bus::match_t> nameOwnerChangedMatch = nullptr;
     std::unique_ptr<sdbusplus::bus::match_t> interfacesAddedMatch = nullptr;

@@ -12,10 +12,10 @@ class PowerStatusMonitor
     explicit PowerStatusMonitor(sdbusplus::asio::connection& conn);
 
     bool isPowerOn() const;
+    void getInitialPowerStatus(sdbusplus::asio::connection& conn);
 
   private:
     void handlePowerMatch(sdbusplus::message_t& message);
-    void getInitialPowerStatus(sdbusplus::asio::connection& conn);
 
     bool powerStatusOn = false;
     sdbusplus::bus::match_t powerMatch;
