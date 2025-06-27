@@ -18,7 +18,8 @@ const static std::string path =
                 HostState::namespace_path::host, 0);
 const static constexpr char* property = "CurrentHostState";
 
-PowerStatusMonitor::PowerStatusMonitor(sdbusplus::asio::connection& conn) :
+PowerStatusMonitor::PowerStatusMonitor(sdbusplus::asio::connection& conn,
+                                       bool queryInitialState) :
 
     powerMatch(static_cast<sdbusplus::bus_t&>(conn),
                "type='signal',interface='" +
@@ -28,7 +29,10 @@ PowerStatusMonitor::PowerStatusMonitor(sdbusplus::asio::connection& conn) :
                std::bind_front(&PowerStatusMonitor::handlePowerMatch, this))
 
 {
-    getInitialPowerStatus(conn);
+    if (queryInitialState)
+    {
+        getInitialPowerStatus(conn);
+    }
 }
 
 bool PowerStatusMonitor::isPowerOn() const

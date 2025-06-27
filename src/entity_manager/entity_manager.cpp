@@ -54,14 +54,15 @@ EntityManager::EntityManager(
     std::shared_ptr<sdbusplus::asio::connection>& systemBus,
     boost::asio::io_context& io,
     const std::vector<std::filesystem::path>& configurationDirectories,
-    const std::filesystem::path& schemaDirectory) :
+    const std::filesystem::path& schemaDirectory,
+    const bool queryInitialPowerState) :
     systemBus(systemBus),
     objServer(sdbusplus::asio::object_server(systemBus, /*skipManager=*/true)),
     configuration(configurationDirectories, schemaDirectory),
     lastJson(nlohmann::json::object()),
     systemConfiguration(nlohmann::json::object()), io(io),
-    dbus_interface(io, objServer, schemaDirectory), powerStatus(*systemBus),
-    propertiesChangedTimer(io)
+    dbus_interface(io, objServer, schemaDirectory),
+    powerStatus(*systemBus, queryInitialPowerState), propertiesChangedTimer(io)
 {
     // All other objects that EntityManager currently support are under the
     // inventory subtree.

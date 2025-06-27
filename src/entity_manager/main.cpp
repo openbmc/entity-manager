@@ -18,7 +18,8 @@ int main()
     boost::asio::io_context io;
     auto systemBus = std::make_shared<sdbusplus::asio::connection>(io);
     systemBus->request_name("xyz.openbmc_project.EntityManager");
-    EntityManager em(systemBus, io, configurationDirectories, schemaDirectory);
+    EntityManager em(systemBus, io, configurationDirectories, schemaDirectory,
+                     true);
 
     boost::asio::post(io, [&]() { em.propertiesChangedCallback(); });
 

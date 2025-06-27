@@ -9,7 +9,9 @@ namespace power
 class PowerStatusMonitor
 {
   public:
-    explicit PowerStatusMonitor(sdbusplus::asio::connection& conn);
+    // @param queryInitialState : whether to query initial power state
+    explicit PowerStatusMonitor(sdbusplus::asio::connection& conn,
+                                bool queryInitialState);
 
     bool isPowerOn() const;
 
