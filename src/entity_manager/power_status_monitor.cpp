@@ -25,7 +25,14 @@ PowerStatusMonitor::PowerStatusMonitor(sdbusplus::asio::connection& conn) :
                std::bind_front(&PowerStatusMonitor::handlePowerMatch, this))
 
 {
-    getInitialPowerStatus(conn);
+    try
+    {
+        getInitialPowerStatus(conn);
+    }
+    catch (std::exception& e)
+    {
+        lg2::error("could not get initial power state: {ERR}", "ERR", e);
+    }
 }
 
 bool PowerStatusMonitor::isPowerOn() const
