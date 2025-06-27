@@ -467,9 +467,8 @@ void EntityManager::publishNewConfiguration(
 // main properties changed entry
 void EntityManager::propertiesChangedCallback()
 {
-    static size_t instance = 0;
-    instance++;
-    size_t count = instance;
+    propertiesChangedInstance++;
+    size_t count = propertiesChangedInstance;
 
     auto& timer = propertiesChangedTimer;
 
@@ -532,9 +531,9 @@ void EntityManager::propertiesChangedCallback()
                 propertiesChangedInProgress = false;
 
                 boost::asio::post(io, [this, newConfiguration, count] {
-                    publishNewConfiguration(std::ref(instance), count,
-                                            std::ref(propertiesChangedTimer),
-                                            newConfiguration);
+                    publishNewConfiguration(
+                        std::ref(propertiesChangedInstance), count,
+                        std::ref(propertiesChangedTimer), newConfiguration);
                 });
             });
         perfScan->run();
