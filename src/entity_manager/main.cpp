@@ -20,6 +20,8 @@ int main()
     systemBus->request_name("xyz.openbmc_project.EntityManager");
     EntityManager em(systemBus, io, configurationDirectories, schemaDirectory);
 
+    em.powerStatus.getInitialPowerStatus(*systemBus);
+
     boost::asio::post(io, [&]() { em.propertiesChangedCallback(); });
 
     em.handleCurrentConfigurationJson();
