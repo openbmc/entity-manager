@@ -16,6 +16,24 @@
       "message": "https://github.com/openbmc/bmcweb/blob/83609eb5f07b73e14be4789719b93fe933559c59/include/io_context_singleton.hpp#L7\n\nIs what the asio maintainers recommended.  Can we do a pattern like that to avoid passing this through so many layers?  Unless we intend to multi-thread with multiple io_services (which I doubt we do anytime soon) we don\u0027t really need to get fancy here.",
       "revId": "0261a2efd03e0ce969c80517b67368505cfc5b0f",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "98a6de7b_d6545b53",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-06-27T20:28:19Z",
+      "side": 1,
+      "message": "```cpp\ninline boost::asio::io_context\u0026 getIoContext()\n{\n    static boost::asio::io_context io;\n    return io;\n}\n```\n\nA static local variable is just a global variable with a fancy hat.\n\nJust make the surrounding function return a reference to that variable and \nnow you have a global variable.\n\nI don\u0027t see how this *pattern* is much better than the plain global variable.\n\nMaybe people think it\u0027s okay because clang-tidy does not flag it.\n\n\u003e Is what the asio maintainers recommended.\n\nphosphor-host-ipmid [also likes this pattern](https://github.com/openbmc/phosphor-host-ipmid/blob/195d552861198586ad0a7a2e7faf606b9128c411/user_channel/channel_mgmt.cpp#L283)\n\n\u003e Is what the asio maintainers recommended.\n\nI want to write code which does not need the right amount of threads, right amount of class instances, 10+ build configuration options and alignment of the stars above my build server to work right.\n\n\u003e Unless we intend to multi-thread with multiple io_services (which I doubt we do anytime soon) we don\u0027t really need to get fancy here.\n\nYou can get into trouble with static local variables even with single threaded code.\n\nJust run 2 tests sequentially in the same process.\n\nThe state from running the first test will leak into the second test.\n\nIf you have a unit testing framework which likes to change around the order of those tests randomly, then you have a random error in CI which can be hard to reproduce.\n\nI do not want to make any assumption about\n- order of tests run\n- if tests run in the same process or not\n- how many instances of a class there are\n\n\nAs to the number of functions this gets passed through,\nit can probably be solved by creating classes. But that\u0027s a separate issue.\n\nHaving a global variable is worse than excessive passing of references, at least from my perspective.",
+      "parentUuid": "e5100eed_03becbf6",
+      "revId": "0261a2efd03e0ce969c80517b67368505cfc5b0f",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }
