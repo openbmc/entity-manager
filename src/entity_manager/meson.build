@@ -18,6 +18,7 @@ executable(
     'overlay.cpp',
     'topology.cpp',
     'utils.cpp',
+    'log_device_inventory.cpp',
     '../utils.cpp',
     'main.cpp',
     cpp_args: cpp_args_em,
