@@ -1,5 +1,7 @@
 #pragma once
 
+#include "sdbusplus/bus/match.hpp"
+
 #include <boost/asio/io_context.hpp>
 #include <boost/container/flat_map.hpp>
 #include <nlohmann/json.hpp>
@@ -18,6 +20,18 @@ constexpr const char* versionFile = "/etc/os-release";
 namespace em_utils
 {
 
+class PowerStatusMonitor
+{
+  public:
+    bool isPowerOn();
+    void setupPowerMatch(
+        const std::shared_ptr<sdbusplus::asio::connection>& conn);
+
+  private:
+    bool powerStatusOn = false;
+    std::unique_ptr<sdbusplus::bus::match_t> powerMatch = nullptr;
+};
+
 namespace properties
 {
 constexpr const char* interface = "org.freedesktop.DBus.Properties";
@@ -32,8 +46,6 @@ const static constexpr char* path = "/xyz/openbmc_project/state/host0";
 const static constexpr char* property = "CurrentHostState";
 } // namespace power
 
-bool isPowerOn();
-void setupPowerMatch(const std::shared_ptr<sdbusplus::asio::connection>& conn);
 bool fwVersionIsSame();
 
 std::optional<std::string> templateCharReplace(
