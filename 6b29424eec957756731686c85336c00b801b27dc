@@ -20,6 +20,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "4252e108_396cc3a3",
+        "filename": "src/entity_manager/dbus_interface.cpp",
+        "patchSetId": 1
+      },
+      "lineNbr": 167,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-06-27T19:51:23Z",
+      "side": 1,
+      "message": "\u003e We don\u0027t have any arrays of bools anymore\n\nHow do you know?\n\nEM configs are supposed to be a stable extension point for downstream, \nas you stated [here](https://gerrit.openbmc.org/c/openbmc/entity-manager/+/79744/comments/4635f6e6_7f553143).\n\nThat\u0027s part of the reason why i could not drop support for arrays of EM configs.\n\nMaybe i am misunderstanding the code, but isn\u0027t this the code which puts the properties and values from the json configs on DBus?\n\nAny change to the type there could cause major problems in case there is any daemons (upstream or downstream) which rely on this EM quirk.",
+      "parentUuid": "8427821a_a4b1fee8",
+      "revId": "6b29424eec957756731686c85336c00b801b27dc",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "273da496_96526010",
         "filename": "src/entity_manager/dbus_interface.hpp",
         "patchSetId": 1
