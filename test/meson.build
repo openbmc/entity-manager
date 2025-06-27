@@ -19,6 +19,18 @@ test_include_dir = include_directories('../src')
 subdir('entity_manager')
 
 test(
+    'test_utils',
+    executable(
+        'test_utils',
+        'utils.cpp',
+        cpp_args: test_boost_args,
+        dependencies: [boost, gtest, gmock, phosphor_logging_dep, sdbusplus],
+        include_directories: test_include_dir,
+        link_with: entity_manager_lib,
+    ),
+)
+
+test(
     'test_fru_utils',
     executable(
         'test_fru_utils',
@@ -27,18 +39,6 @@ test(
         '../src/fru_device/fru_reader.cpp',
         cpp_args: test_boost_args,
         dependencies: [boost, gtest, gmock, phosphor_logging_dep, sdbusplus],
-        include_directories: test_include_dir,
-    ),
-)
-
-test(
-    'test_topology',
-    executable(
-        'test_topology',
-        'test_topology.cpp',
-        '../src/entity_manager/topology.cpp',
-        cpp_args: test_boost_args,
-        dependencies: [gtest, gmock, nlohmann_json_dep, phosphor_logging_dep],
         include_directories: test_include_dir,
     ),
 )
