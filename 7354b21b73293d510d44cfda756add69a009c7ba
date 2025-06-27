@@ -16,6 +16,24 @@
       "message": "We can take out the todo, but I\u0027d like to keep this tombstone code for when we routinely get asked why we don\u0027t enforce schemas at runtime.\n\nIdeally we\u0027d make it a non-default meson option these days",
       "revId": "7354b21b73293d510d44cfda756add69a009c7ba",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "94359090_88eb3327",
+        "filename": "src/entity_manager/configuration.cpp",
+        "patchSetId": 1
+      },
+      "lineNbr": 87,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-06-27T19:26:14Z",
+      "side": 0,
+      "message": "I do remember how in dbus-sensors everyone had their own little ```static bool debug \u003d false;``` in the .cpp file to enable via patch file.\n\nThis piece of commented code has a similar smell.\n\nI can try to enable it via meson option, but do not want to test it since it will be default disabled and i see no good reason for anyone to enable it.",
+      "parentUuid": "43f8f1e9_305713dd",
+      "revId": "7354b21b73293d510d44cfda756add69a009c7ba",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }
