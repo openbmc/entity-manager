@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9563a27f_7a2ce73e",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 5
+      },
+      "lineNbr": 11,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-06-29T11:16:36Z",
+      "side": 1,
+      "message": "An example configuration could be useful here, to clarify how to\ndecompose something like\n\n```\n/dev/serial/by-path/platform-fd500000.pcie-pci-0000:01:00.0-usb-0:1.1:1.0-port0\n/dev/serial/by-id/usb-1a86_USB_Serial-if00-port0\n```\n\ninto the properties defined in the schema.\n\n\nIt would be great if that was also possible by just reading the schema without going through the commit message.\n\nEssentially, if i have a serial device (like ```/dev/serial/...```)\nhow do i map that information to the configuration schema.",
+      "revId": "8f7b43e300bc478ebd50ba995d62d4c7c9fcfef6",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "accd71a7_0d3d2e21",
+        "filename": "schemas/usb_port.json",
+        "patchSetId": 5
+      },
+      "lineNbr": 4,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-06-29T11:16:36Z",
+      "side": 1,
+      "message": "On line 4 it is \"USB Port\" and in the file name as well,\nbut the description says it\u0027s a \"serial port\".\n\nIs it a serial port exposed via a USB interface?\n\nIf that\u0027s the case, maybe we should adjust the name of this schema, Type and filename to match.\n\nSomething like\n```USBSerialPort``` ?\n\n\nHowever modbus serial line protocol does not require a USB device, right?\n\nMaybe it can just be\n```\nSerialPort\n```\nor\n```\nModbusSerialPort\n```",
+      "revId": "8f7b43e300bc478ebd50ba995d62d4c7c9fcfef6",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    }
+  ]
+}
