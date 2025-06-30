@@ -70,6 +70,24 @@
       "parentUuid": "f0ef0ded_69c91dc0",
       "revId": "7354b21b73293d510d44cfda756add69a009c7ba",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "286085ec_8fa50db8",
+        "filename": "src/entity_manager/configuration.cpp",
+        "patchSetId": 1
+      },
+      "lineNbr": 87,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-06-30T14:46:48Z",
+      "side": 0,
+      "message": "I added a meson option for the runtime config validation.\n\nUntested, but at least now there is no patching required anymore to go via that code path.",
+      "parentUuid": "efe02339_3d54e86e",
+      "revId": "7354b21b73293d510d44cfda756add69a009c7ba",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }
