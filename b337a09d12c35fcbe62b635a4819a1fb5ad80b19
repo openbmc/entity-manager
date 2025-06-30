@@ -22,6 +22,30 @@
       },
       "revId": "b337a09d12c35fcbe62b635a4819a1fb5ad80b19",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "85fe6587_eec24a9c",
+        "filename": "src/entity_manager/dbus_interface.hpp",
+        "patchSetId": 1
+      },
+      "lineNbr": 32,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-06-30T14:47:45Z",
+      "side": 1,
+      "message": "Having an EM reference here could work but then we have the situation\nof circular references.\n\nSince EM has EMDBusInterface as a member.\n\nFor the intention of the patch, currently it is very simple as noted in the commit message.\n\nTo have a class to store ```inventory``` map and enable some functions to access it as before.\n\nThat change by itself is simple. If we get into OOP design with this change, it can be a long-winded discussion 😊. So this patch is more of a keep it simple/stupid kind of patch.\n\nMaybe in your series you will get to a different abstraction which is better 👍",
+      "parentUuid": "dc6c08bb_8103c36f",
+      "range": {
+        "startLine": 32,
+        "startChar": 2,
+        "endLine": 32,
+        "endChar": 10
+      },
+      "revId": "b337a09d12c35fcbe62b635a4819a1fb5ad80b19",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }
