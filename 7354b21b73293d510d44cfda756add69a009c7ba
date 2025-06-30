@@ -52,6 +52,24 @@
       "parentUuid": "94359090_88eb3327",
       "revId": "7354b21b73293d510d44cfda756add69a009c7ba",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "efe02339_3d54e86e",
+        "filename": "src/entity_manager/configuration.cpp",
+        "patchSetId": 1
+      },
+      "lineNbr": 87,
+      "author": {
+        "id": 1002222
+      },
+      "writtenOn": "2025-06-30T07:22:57Z",
+      "side": 0,
+      "message": "I think, we should enforce the validation as default and downstream people need to activly deactivate it via meson option or so.\n\nThe comment should refer the meson option.",
+      "parentUuid": "f0ef0ded_69c91dc0",
+      "revId": "7354b21b73293d510d44cfda756add69a009c7ba",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }
