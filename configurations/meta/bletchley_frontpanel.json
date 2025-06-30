@@ -41,8 +41,6 @@
         ],
         "Name": "Bletchley Front Panel Board",
         "Probe": [
-            "FOUND('Bletchley Baseboard')",
-            "AND",
             "xyz.openbmc_project.Inventory.Decorator.Asset({'Model': 'Bletchley_FPB_HDC1080'})"
         ],
         "Type": "Board"
@@ -89,8 +87,6 @@
         ],
         "Name": "Bletchley Front Panel Board",
         "Probe": [
-            "FOUND('Bletchley Baseboard')",
-            "AND",
             "xyz.openbmc_project.Inventory.Decorator.Asset({'Model': 'Bletchley_FPB_SI7021'})"
         ],
         "Type": "Board"
