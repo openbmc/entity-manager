@@ -54,6 +54,24 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "12976f4e_e70a1ad1",
+        "filename": "src/entity_manager/dbus_interface.cpp",
+        "patchSetId": 1
+      },
+      "lineNbr": 167,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-06-30T14:47:16Z",
+      "side": 1,
+      "message": "Good to know 👍\n\nI will close this discussion thread since i consider the quirk to be unavoidable for now. At some point in the future when the EM is cleaned up,\nthis quirk will attract more interest and people can begin their testing to see if there is anything which still requires this special case.",
+      "parentUuid": "dad86559_983cbafc",
+      "revId": "6b29424eec957756731686c85336c00b801b27dc",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "273da496_96526010",
@@ -91,6 +109,30 @@
       "side": 1,
       "message": "`AltPropertyType` or `AlternativePropertyType` maybe?",
       "parentUuid": "273da496_96526010",
+      "range": {
+        "startLine": 102,
+        "startChar": 42,
+        "endLine": 102,
+        "endChar": 55
+      },
+      "revId": "6b29424eec957756731686c85336c00b801b27dc",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "e4aae446_a55497e9",
+        "filename": "src/entity_manager/dbus_interface.hpp",
+        "patchSetId": 1
+      },
+      "lineNbr": 102,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-06-30T14:47:16Z",
+      "side": 1,
+      "message": "Renamed to ```SinglePropertyType``` since it\u0027s the case without the array.",
+      "parentUuid": "48351a3d_adecd490",
       "range": {
         "startLine": 102,
         "startChar": 42,
