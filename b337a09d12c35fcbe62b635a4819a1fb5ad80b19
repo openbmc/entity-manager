@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "dc6c08bb_8103c36f",
+        "filename": "src/entity_manager/dbus_interface.hpp",
+        "patchSetId": 1
+      },
+      "lineNbr": 32,
+      "author": {
+        "id": 1002222
+      },
+      "writtenOn": "2025-06-30T09:57:35Z",
+      "side": 1,
+      "message": "If we add an entity-manager member to the class (as private), we can avoid passing `io_context` and `objServer` or we implement all operations, which require direct io_context and objServer access, in entity-manager class, while keeping the interface related code here and call into the entity-manager functions.\n\nJust a thought.",
+      "range": {
+        "startLine": 32,
+        "startChar": 2,
+        "endLine": 32,
+        "endChar": 10
+      },
+      "revId": "b337a09d12c35fcbe62b635a4819a1fb5ad80b19",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    }
+  ]
+}
