@@ -62,6 +62,8 @@ configs = [
     'meta/bletchley_baseboard.json',
     'meta/bletchley_chassis.json',
     'meta/bletchley_frontpanel.json',
+    'meta/bletchley15_baseboard.json',
+    'meta/bletchley15_chassis.json',
     'meta/bmc_storage_module.json',
     'meta/catalina_fio.json',
     'meta/catalina_hdd_adc_ina.json',
