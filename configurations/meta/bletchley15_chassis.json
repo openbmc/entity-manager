@@ -1,0 +1,374 @@
+{
+    "Exposes": [
+        {
+            "BindConnector": "System Fan Connector 0",
+            "Index": 0,
+            "Name": "FAN0_TACH_IL",
+            "PowerState": "Always",
+            "Thresholds": [
+                {
+                    "Direction": "greater than",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 7920
+                },
+                {
+                    "Direction": "less than",
+                    "Name": "lower critical",
+                    "Severity": 1,
+                    "Value": 700
+                }
+            ],
+            "Type": "AspeedFan"
+        },
+        {
+            "BindConnector": "System Fan Connector 0",
+            "Index": 1,
+            "Name": "FAN0_TACH_OL",
+            "PowerState": "Always",
+            "Thresholds": [
+                {
+                    "Direction": "greater than",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 7920
+                },
+                {
+                    "Direction": "less than",
+                    "Name": "lower critical",
+                    "Severity": 1,
+                    "Value": 700
+                }
+            ],
+            "Type": "AspeedFan"
+        },
+        {
+            "BindConnector": "System Fan Connector 1",
+            "Index": 2,
+            "Name": "FAN1_TACH_IL",
+            "PowerState": "Always",
+            "Thresholds": [
+                {
+                    "Direction": "greater than",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 7920
+                },
+                {
+                    "Direction": "less than",
+                    "Name": "lower critical",
+                    "Severity": 1,
+                    "Value": 700
+                }
+            ],
+            "Type": "AspeedFan"
+        },
+        {
+            "BindConnector": "System Fan Connector 1",
+            "Index": 3,
+            "Name": "FAN1_TACH_OL",
+            "PowerState": "Always",
+            "Thresholds": [
+                {
+                    "Direction": "greater than",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 7920
+                },
+                {
+                    "Direction": "less than",
+                    "Name": "lower critical",
+                    "Severity": 1,
+                    "Value": 700
+                }
+            ],
+            "Type": "AspeedFan"
+        },
+        {
+            "BindConnector": "System Fan Connector 2",
+            "Index": 4,
+            "Name": "FAN2_TACH_IL",
+            "PowerState": "Always",
+            "Thresholds": [
+                {
+                    "Direction": "greater than",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 7920
+                },
+                {
+                    "Direction": "less than",
+                    "Name": "lower critical",
+                    "Severity": 1,
+                    "Value": 700
+                }
+            ],
+            "Type": "AspeedFan"
+        },
+        {
+            "BindConnector": "System Fan Connector 2",
+            "Index": 5,
+            "Name": "FAN2_TACH_OL",
+            "PowerState": "Always",
+            "Thresholds": [
+                {
+                    "Direction": "greater than",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 7920
+                },
+                {
+                    "Direction": "less than",
+                    "Name": "lower critical",
+                    "Severity": 1,
+                    "Value": 700
+                }
+            ],
+            "Type": "AspeedFan"
+        },
+        {
+            "BindConnector": "System Fan Connector 3",
+            "Index": 6,
+            "Name": "FAN3_TACH_IL",
+            "PowerState": "Always",
+            "Thresholds": [
+                {
+                    "Direction": "greater than",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 7920
+                },
+                {
+                    "Direction": "less than",
+                    "Name": "lower critical",
+                    "Severity": 1,
+                    "Value": 700
+                }
+            ],
+            "Type": "AspeedFan"
+        },
+        {
+            "BindConnector": "System Fan Connector 3",
+            "Index": 7,
+            "Name": "FAN3_TACH_OL",
+            "PowerState": "Always",
+            "Thresholds": [
+                {
+                    "Direction": "greater than",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 7920
+                },
+                {
+                    "Direction": "less than",
+                    "Name": "lower critical",
+                    "Severity": 1,
+                    "Value": 700
+                }
+            ],
+            "Type": "AspeedFan"
+        },
+        {
+            "Class": "fan",
+            "FFGainCoefficient": 1.0,
+            "FFOffCoefficient": 0.0,
+            "ICoefficient": 0.0,
+            "ILimitMax": 0.0,
+            "ILimitMin": 0.0,
+            "Inputs": [
+                "FAN0_TACH_IL",
+                "FAN0_TACH_OL",
+                "FAN1_TACH_IL",
+                "FAN1_TACH_OL",
+                "FAN2_TACH_IL",
+                "FAN2_TACH_OL",
+                "FAN3_TACH_IL",
+                "FAN3_TACH_OL"
+            ],
+            "Name": "FAN_TACH",
+            "NegativeHysteresis": 0.0,
+            "OutLimitMax": 100.0,
+            "OutLimitMin": 0.0,
+            "Outputs": [
+                "FAN0_PWM",
+                "FAN0_PWM",
+                "FAN1_PWM",
+                "FAN1_PWM",
+                "FAN2_PWM",
+                "FAN2_PWM",
+                "FAN3_PWM",
+                "FAN3_PWM"
+            ],
+            "PCoefficient": 0.0,
+            "PositiveHysteresis": 0.0,
+            "SlewNeg": 0.0,
+            "SlewPos": 0.0,
+            "Type": "Pid",
+            "Zones": [
+                "Zone0"
+            ]
+        },
+        {
+            "FailSafePercent": 60,
+            "MinThermalOutput": 15,
+            "Name": "Zone0",
+            "Type": "Pid.Zone"
+        },
+        {
+            "Class": "temp",
+            "Inputs": [
+                "Virtual_Inlet_Temp"
+            ],
+            "Name": "inlet_temp",
+            "NegativeHysteresis": 0,
+            "Output": [
+                27.0,
+                30.0,
+                34.0,
+                37.0,
+                40.0,
+                44.0,
+                45.0,
+                46.0,
+                47.0,
+                48.0,
+                49.0,
+                50.0,
+                50.0,
+                53.0,
+                55.0,
+                60.0,
+                80.0
+            ],
+            "PositiveHysteresis": 0,
+            "Reading": [
+                15.0,
+                20.0,
+                22.0,
+                24.0,
+                26.0,
+                28.0,
+                30.0,
+                31.0,
+                32.0,
+                33.0,
+                34.0,
+                35.0,
+                36.0,
+                37.0,
+                38.0,
+                39.0,
+                40.0
+            ],
+            "Type": "Stepwise",
+            "Zones": [
+                "Zone0"
+            ]
+        },
+        {
+            "Class": "temp",
+            "Inputs": [
+                "MB_U402_THERM_LOCAL"
+            ],
+            "Name": "switch_temp",
+            "NegativeHysteresis": 0,
+            "Output": [
+                0.0,
+                15.0,
+                20.0,
+                25.0,
+                40.0
+            ],
+            "PositiveHysteresis": 0,
+            "Reading": [
+                48.0,
+                49.0,
+                50.0,
+                51.0,
+                52.0
+            ],
+            "Type": "Stepwise",
+            "Zones": [
+                "Zone0"
+            ]
+        },
+        {
+            "Class": "temp",
+            "Inputs": [
+                "MB_U19_THERM_LOCAL"
+            ],
+            "Name": "retimer_temp",
+            "NegativeHysteresis": 0,
+            "Output": [
+                0.0,
+                20.0,
+                40.0,
+                42.0,
+                44.0,
+                46.0,
+                48.0,
+                50.0,
+                80.0
+            ],
+            "PositiveHysteresis": 0,
+            "Reading": [
+                35.0,
+                40.0,
+                43.0,
+                44.0,
+                45.0,
+                46.0,
+                47.0,
+                48.0,
+                49.0
+            ],
+            "Type": "Stepwise",
+            "Zones": [
+                "Zone0"
+            ]
+        },
+        {
+            "Class": "temp",
+            "Inputs": [
+                "SLED1_THERM_LOCAL",
+                "SLED2_THERM_LOCAL",
+                "SLED3_THERM_LOCAL",
+                "SLED4_THERM_LOCAL"
+            ],
+            "Name": "sled_thermal_local",
+            "NegativeHysteresis": 0,
+            "Output": [
+                0.0,
+                20.0,
+                20.0,
+                45.0,
+                46.0,
+                47.0,
+                50.0
+            ],
+            "PositiveHysteresis": 0,
+            "Reading": [
+                29.0,
+                30.0,
+                35.0,
+                47.0,
+                48.0,
+                49.0,
+                50.0
+            ],
+            "Type": "Stepwise",
+            "Zones": [
+                "Zone0"
+            ]
+        }
+    ],
+    "Name": "Bletchley15 Chassis",
+    "Probe": [
+        "xyz.openbmc_project.FruDevice({'BOARD_PRODUCT_NAME': 'Bletchley v1.5 Chassis Controller.*', 'BOARD_MANUFACTURER': 'Quanta'})"
+    ],
+    "Type": "Chassis",
+    "xyz.openbmc_project.Inventory.Decorator.Asset": {
+        "PartNumber": "$CHASSIS_PART_NUMBER",
+        "SerialNumber": "$CHASSIS_SERIAL_NUMBER"
+    }
+}
