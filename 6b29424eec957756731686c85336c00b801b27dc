@@ -38,6 +38,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "dad86559_983cbafc",
+        "filename": "src/entity_manager/dbus_interface.cpp",
+        "patchSetId": 1
+      },
+      "lineNbr": 167,
+      "author": {
+        "id": 1002222
+      },
+      "writtenOn": "2025-06-30T09:32:31Z",
+      "side": 1,
+      "message": "Not exactly. \n\nThis adds the property/value to the dbus object in memory, but does not execute the placement directly. The `tryIfaceInitialize(iface)`-function places stuff on DBus.",
+      "parentUuid": "4252e108_396cc3a3",
+      "revId": "6b29424eec957756731686c85336c00b801b27dc",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "273da496_96526010",
         "filename": "src/entity_manager/dbus_interface.hpp",
         "patchSetId": 1
@@ -49,6 +67,30 @@
       "writtenOn": "2025-06-27T18:30:26Z",
       "side": 1,
       "message": "This is a really unfortunate variable name.  Can we come up with a better one?",
+      "range": {
+        "startLine": 102,
+        "startChar": 42,
+        "endLine": 102,
+        "endChar": 55
+      },
+      "revId": "6b29424eec957756731686c85336c00b801b27dc",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "48351a3d_adecd490",
+        "filename": "src/entity_manager/dbus_interface.hpp",
+        "patchSetId": 1
+      },
+      "lineNbr": 102,
+      "author": {
+        "id": 1002222
+      },
+      "writtenOn": "2025-06-30T09:32:31Z",
+      "side": 1,
+      "message": "`AltPropertyType` or `AlternativePropertyType` maybe?",
+      "parentUuid": "273da496_96526010",
       "range": {
         "startLine": 102,
         "startChar": 42,
