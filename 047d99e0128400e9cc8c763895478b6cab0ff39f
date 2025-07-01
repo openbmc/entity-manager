@@ -1,0 +1,72 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "8a6b1c98_4d82f86e",
+        "filename": "meson.options",
+        "patchSetId": 11
+      },
+      "lineNbr": 11,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-07-01T12:10:04Z",
+      "side": 1,
+      "message": "nit: you are providing the feature and changing the default behavior in the same patch.\n\nNot a problem for me though.",
+      "revId": "047d99e0128400e9cc8c763895478b6cab0ff39f",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "da06f8e3_109c3780",
+        "filename": "src/fru_device/fru_device.cpp",
+        "patchSetId": 11
+      },
+      "lineNbr": 847,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-07-01T12:10:04Z",
+      "side": 1,
+      "message": "nit: leaking the implementation detail of ```isFieldEditable```, this could bitrot.",
+      "revId": "047d99e0128400e9cc8c763895478b6cab0ff39f",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "aecedd43_f5f162c2",
+        "filename": "src/fru_device/fru_utils.cpp",
+        "patchSetId": 11
+      },
+      "lineNbr": 1207,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-07-01T12:10:04Z",
+      "side": 1,
+      "message": "nit: \n\nThis can be a separate function to extract the \u0027base\u0027 name of the field without the prefix area and trailing digits.\n\n\nJust an idea and probably not needed since the function is already well-tested.",
+      "revId": "047d99e0128400e9cc8c763895478b6cab0ff39f",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "bd93e0d0_1ae0b0ac",
+        "filename": "test/test_fru-utils.cpp",
+        "patchSetId": 11
+      },
+      "lineNbr": 440,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-07-01T12:10:04Z",
+      "side": 1,
+      "message": "Amazing Testing!",
+      "revId": "047d99e0128400e9cc8c763895478b6cab0ff39f",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    }
+  ]
+}
