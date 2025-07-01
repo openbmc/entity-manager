@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "65d3ac00_49b59f28",
+        "filename": "src/entity_manager/entity_manager.cpp",
+        "patchSetId": 13
+      },
+      "lineNbr": 509,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-07-01T09:24:53Z",
+      "side": 0,
+      "message": "Just an idea, \n\nwe can mention this in the commit message, that the redundant calls to ```loadConfigurations``` have been removed.\n\nIt may be obvious to you but others might wonder why these calls have been removed.\n\nThe debug log level is great for tracking this. Should be no need to test again since the inventory in the logs already shows the configurations must have been loaded.\n\nI tested this change and there is only one of these statements in my log, right at the start:\n\n```\nJul 01 09:06:04 s8030-bmc-30303035c0c1 systemd[1]: Starting Entity Manager...\nJul 01 09:06:04 s8030-bmc-30303035c0c1 systemd[1]: Started Entity Manager.\nJul 01 09:06:08 s8030-bmc-30303035c0c1 entity-manager[2809]: Finished loading json configuration in 3862ms\n```\n\nCompared to how it was loaded 3 times before\n(Tested statement of commit ee9a387f375c9b0bfa94f44eb12832b18adec9a7):\n```\n    Jun 13 12:23:46 s8030-bmc-30303035c0c1 systemd[1]: Started Entity Manager.\n    Jun 13 12:23:54 s8030-bmc-30303035c0c1 entity-manager[19814]: finished loading json configuration in 7668ms\n    Jun 13 12:24:01 s8030-bmc-30303035c0c1 entity-manager[19814]: finished loading json configuration in 6533ms\n    ...\n    Jun 13 12:24:16 s8030-bmc-30303035c0c1 entity-manager[19814]: finished loading json configuration in 6838ms\n    ...\n```",
+      "revId": "59a2db285349f2046bfe4845f56bea2326aa7c62",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    }
+  ]
+}

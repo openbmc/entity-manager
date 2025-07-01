@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "000767e3_b9924acf",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 13
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-07-01T09:24:53Z",
+      "side": 1,
+      "message": "Tested this change on my board, looks good to me.\n\nThe configuration is only loaded once, at the start, there are no redundant loads after that.\n\n```\nJul 01 09:06:04 s8030-bmc-30303035c0c1 systemd[1]: Starting Entity Manager...\nJul 01 09:06:04 s8030-bmc-30303035c0c1 systemd[1]: Started Entity Manager.\nJul 01 09:06:08 s8030-bmc-30303035c0c1 entity-manager[2809]: Finished loading json configuration in 3862ms\n```\n\nThe inventory is added as expected\n```\nJul 01 09:06:13 s8030-bmc-30303035c0c1 entity-manager[2809]: Inventory Added: Supermicro PWS 920P SQ 0\nJul 01 09:06:13 s8030-bmc-30303035c0c1 entity-manager[2809]: Inventory Added: Supermicro PWS 920P SQ 1\nJul 01 09:06:13 s8030-bmc-30303035c0c1 entity-manager[2809]: Inventory Added: chassis\nJul 01 09:06:13 s8030-bmc-30303035c0c1 entity-manager[2809]: Inventory Added: MBX 1.57 Chassis\n```\n\nbusctl output also looks fine.",
+      "revId": "306d22c6b67daa927e0d89c7f6075a1b85cc6182",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    }
+  ]
+}
