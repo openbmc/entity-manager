@@ -74,6 +74,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "3d6193b9_d7b2481e",
+        "filename": "configurations/meta/minerva_cmm_misc_boards.json",
+        "patchSetId": 4
+      },
+      "lineNbr": 15,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2025-07-01T19:24:19Z",
+      "side": 1,
+      "message": "We don\u0027t have an eeprom, so we can\u0027t fetch it from the eeprom.  I get that.  But these devices do have a FBPN (ie. a SparePartNumber) assigned.  We just need to look them up from the internal databases.",
+      "parentUuid": "f62968e7_eec4086d",
+      "range": {
+        "startLine": 13,
+        "startChar": 0,
+        "endLine": 15,
+        "endChar": 36
+      },
+      "revId": "b6865081fbf544d5eff2c5054f9545401eebf1d3",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "0a89d8c8_3e092c9d",
         "filename": "configurations/meta/minerva_cmm_misc_boards.json",
         "patchSetId": 4
