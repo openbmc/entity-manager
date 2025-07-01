@@ -15,6 +15,10 @@
                     "description": "A recognisable name for the device",
                     "type": "string"
                 },
+                "Bridged": {
+                    "description": "Indicates that the device is bridged to another endpoint",
+                    "type": "boolean"
+                },
                 "Type": {
                     "type": "string",
                     "enum": ["MCTPI2CTarget"]
@@ -40,6 +44,10 @@
                 "Name": {
                     "description": "A recognisable name for the device",
                     "type": "string"
+                },
+                "Bridged": {
+                    "description": "Indicates that the device is bridged to another endpoint",
+                    "type": "boolean"
                 },
                 "Type": {
                     "type": "string",
