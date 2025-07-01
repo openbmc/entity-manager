@@ -13,7 +13,7 @@
                 },
                 "MaxValue": {
                     "description": "Maximum sensor value",
-                    "$ref": "legacy.json#/$defs/Types/MaxValue"
+                    "$ref": "types.json#/$defs/Types/MaxValue"
                 },
                 "MinValidInput": {
                     "description": "Miniumum valid value of an input sensor",
@@ -21,19 +21,19 @@
                 },
                 "MinValue": {
                     "description": "Minimum sensor value",
-                    "$ref": "legacy.json#/$defs/Types/MinValue"
+                    "$ref": "types.json#/$defs/Types/MinValue"
                 },
                 "Name": {
                     "type": "string"
                 },
                 "PowerState": {
-                    "$ref": "legacy.json#/$defs/Types/PowerState"
+                    "$ref": "types.json#/$defs/Types/PowerState"
                 },
                 "EntityId": {
-                    "$ref": "legacy.json#/$defs/Types/EntityId"
+                    "$ref": "types.json#/$defs/Types/EntityId"
                 },
                 "EntityInstance": {
-                    "$ref": "legacy.json#/$defs/Types/EntityInstance"
+                    "$ref": "types.json#/$defs/Types/EntityInstance"
                 },
                 "Sensors": {
                     "description": "Any DBus sensors whose values are used to determine the value of the virtual sensor.",
@@ -44,7 +44,7 @@
                 },
                 "Thresholds": {
                     "description": "Threshold values used to set and clear alarms",
-                    "$ref": "legacy.json#/$defs/Types/Thresholds"
+                    "$ref": "types.json#/$defs/Types/Thresholds"
                 },
                 "Type": {
                     "description": "The type of calculation this sensor uses.",
@@ -59,7 +59,7 @@
                 },
                 "Units": {
                     "description": "The sensor type, as it shows up in the D-Bus object name.",
-                    "$ref": "legacy.json#/$defs/Types/Units"
+                    "$ref": "types.json#/$defs/Types/Units"
                 }
             },
             "required": ["Name", "Sensors", "Type", "Units"]
