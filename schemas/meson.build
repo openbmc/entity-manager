@@ -18,5 +18,6 @@ schemas = [
     'satellite_controller.json',
     'stepwise.json',
     'topology.json',
+    'types.json',
     'virtual_sensor.json',
 ]
