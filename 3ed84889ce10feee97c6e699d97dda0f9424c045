@@ -39,6 +39,24 @@
       "message": "This should be `Cable`, right?\n\nTake a look at schemas/global.json for the valid Type enum values.",
       "revId": "3ed84889ce10feee97c6e699d97dda0f9424c045",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2d9be140_224c7c99",
+        "filename": "configurations/meta/minerva_cmm_misc_boards.json",
+        "patchSetId": 6
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-07-01T22:08:59Z",
+      "side": 1,
+      "message": "No CableCatridge is not a Cable but its a fru which plugs into CMM and that one has bunch of cables going out from it, hence it has been modeled as a board.\n\nBCBCable is not something which connects to the Minerva board but it shows the presence of cable between two BCB boards, hence it has been modeled as a board.",
+      "parentUuid": "96e3f1a6_e72b60e2",
+      "revId": "3ed84889ce10feee97c6e699d97dda0f9424c045",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }
