@@ -12,13 +12,13 @@
                     "type": "number"
                 },
                 "Name": {
-                    "$ref": "#/$defs/Types/Name"
+                    "$ref": "types.json#/$defs/Types/Name"
                 },
                 "PowerFactorMax": {
-                    "$ref": "#/$defs/Types/PowerFactorMax"
+                    "$ref": "types.json#/$defs/Types/PowerFactorMax"
                 },
                 "PowerFactorMin": {
-                    "$ref": "#/$defs/Types/PowerFactorMin"
+                    "$ref": "types.json#/$defs/Types/PowerFactorMin"
                 },
                 "QMax": {
                     "type": "number"
@@ -27,7 +27,7 @@
                     "type": "number"
                 },
                 "Thresholds": {
-                    "$ref": "#/$defs/Types/Thresholds"
+                    "$ref": "types.json#/$defs/Types/Thresholds"
                 },
                 "Type": {
                     "type": "string",
@@ -65,10 +65,10 @@
                     "type": "number"
                 },
                 "Tachs": {
-                    "$ref": "#/$defs/Types/Tachs"
+                    "$ref": "types.json#/$defs/Types/Tachs"
                 },
                 "Name": {
-                    "$ref": "#/$defs/Types/Name"
+                    "$ref": "types.json#/$defs/Types/Name"
                 },
                 "Type": {
                     "type": "string",
@@ -82,10 +82,10 @@
             "additionalProperties": false,
             "properties": {
                 "AllowedFailures": {
-                    "$ref": "#/$defs/Types/AllowedFailures"
+                    "$ref": "types.json#/$defs/Types/AllowedFailures"
                 },
                 "Name": {
-                    "$ref": "#/$defs/Types/Name"
+                    "$ref": "types.json#/$defs/Types/Name"
                 },
                 "Type": {
                     "type": "string",
@@ -99,10 +99,10 @@
             "additionalProperties": false,
             "properties": {
                 "RedundantCount": {
-                    "$ref": "#/$defs/Types/RedundantCount"
+                    "$ref": "types.json#/$defs/Types/RedundantCount"
                 },
                 "Name": {
-                    "$ref": "#/$defs/Types/Name"
+                    "$ref": "types.json#/$defs/Types/Name"
                 },
                 "Type": {
                     "type": "string",
@@ -117,22 +117,22 @@
             "additionalProperties": false,
             "properties": {
                 "Address": {
-                    "$ref": "#/$defs/Types/Address"
+                    "$ref": "types.json#/$defs/Types/Address"
                 },
                 "Bus": {
-                    "$ref": "#/$defs/Types/Bus"
+                    "$ref": "types.json#/$defs/Types/Bus"
                 },
                 "Class": {
-                    "$ref": "#/$defs/Types/Class"
+                    "$ref": "types.json#/$defs/Types/Class"
                 },
                 "GpioPolarity": {
-                    "$ref": "#/$defs/Types/GpioPolarity"
+                    "$ref": "types.json#/$defs/Types/GpioPolarity"
                 },
                 "Rearm": {
                     "enum": ["Automatic", "Manual"]
                 },
                 "Name": {
-                    "$ref": "#/$defs/Types/Name"
+                    "$ref": "types.json#/$defs/Types/Name"
                 },
                 "Type": {
                     "type": "string",
@@ -146,34 +146,34 @@
             "additionalProperties": false,
             "properties": {
                 "BindConnector": {
-                    "$ref": "#/$defs/Types/BindConnector"
+                    "$ref": "types.json#/$defs/Types/BindConnector"
                 },
                 "Index": {
-                    "$ref": "#/$defs/Types/Index"
+                    "$ref": "types.json#/$defs/Types/Index"
                 },
                 "PowerState": {
-                    "$ref": "#/$defs/Types/PowerState"
+                    "$ref": "types.json#/$defs/Types/PowerState"
                 },
                 "Connector": {
-                    "$ref": "#/$defs/Types/Connector"
+                    "$ref": "types.json#/$defs/Types/Connector"
                 },
                 "EntityId": {
-                    "$ref": "#/$defs/Types/EntityId"
+                    "$ref": "types.json#/$defs/Types/EntityId"
                 },
                 "EntityInstance": {
-                    "$ref": "#/$defs/Types/EntityInstance"
+                    "$ref": "types.json#/$defs/Types/EntityInstance"
                 },
                 "Presence": {
-                    "$ref": "#/$defs/Types/Presence"
+                    "$ref": "types.json#/$defs/Types/Presence"
                 },
                 "MaxReading": {
-                    "$ref": "#/$defs/Types/MaxReading"
+                    "$ref": "types.json#/$defs/Types/MaxReading"
                 },
                 "Thresholds": {
-                    "$ref": "#/$defs/Types/Thresholds"
+                    "$ref": "types.json#/$defs/Types/Thresholds"
                 },
                 "Name": {
-                    "$ref": "#/$defs/Types/Name"
+                    "$ref": "types.json#/$defs/Types/Name"
                 },
                 "Type": {
                     "type": "string",
@@ -187,40 +187,40 @@
             "additionalProperties": false,
             "properties": {
                 "BindConnector": {
-                    "$ref": "#/$defs/Types/BindConnector"
+                    "$ref": "types.json#/$defs/Types/BindConnector"
                 },
                 "Address": {
-                    "$ref": "#/$defs/Types/Address"
+                    "$ref": "types.json#/$defs/Types/Address"
                 },
                 "Bus": {
-                    "$ref": "#/$defs/Types/Bus"
+                    "$ref": "types.json#/$defs/Types/Bus"
                 },
                 "EntityId": {
-                    "$ref": "#/$defs/Types/EntityId"
+                    "$ref": "types.json#/$defs/Types/EntityId"
                 },
                 "EntityInstance": {
-                    "$ref": "#/$defs/Types/EntityInstance"
+                    "$ref": "types.json#/$defs/Types/EntityInstance"
                 },
                 "Index": {
-                    "$ref": "#/$defs/Types/Index"
+                    "$ref": "types.json#/$defs/Types/Index"
                 },
                 "PowerState": {
-                    "$ref": "#/$defs/Types/PowerState"
+                    "$ref": "types.json#/$defs/Types/PowerState"
                 },
                 "Presence": {
-                    "$ref": "#/$defs/Types/Presence"
+                    "$ref": "types.json#/$defs/Types/Presence"
                 },
                 "MaxReading": {
-                    "$ref": "#/$defs/Types/MaxReading"
+                    "$ref": "types.json#/$defs/Types/MaxReading"
                 },
                 "Connector": {
-                    "$ref": "#/$defs/Types/Connector"
+                    "$ref": "types.json#/$defs/Types/Connector"
                 },
                 "Thresholds": {
-                    "$ref": "#/$defs/Types/Thresholds"
+                    "$ref": "types.json#/$defs/Types/Thresholds"
                 },
                 "Name": {
-                    "$ref": "#/$defs/Types/Name"
+                    "$ref": "types.json#/$defs/Types/Name"
                 },
                 "Type": {
                     "type": "string",
@@ -234,28 +234,28 @@
             "additionalProperties": false,
             "properties": {
                 "EntityId": {
-                    "$ref": "#/$defs/Types/EntityId"
+                    "$ref": "types.json#/$defs/Types/EntityId"
                 },
                 "EntityInstance": {
-                    "$ref": "#/$defs/Types/EntityInstance"
+                    "$ref": "types.json#/$defs/Types/EntityInstance"
                 },
                 "Index": {
-                    "$ref": "#/$defs/Types/Index"
+                    "$ref": "types.json#/$defs/Types/Index"
                 },
                 "PowerState": {
-                    "$ref": "#/$defs/Types/PowerState"
+                    "$ref": "types.json#/$defs/Types/PowerState"
                 },
                 "MaxReading": {
-                    "$ref": "#/$defs/Types/MaxReading"
+                    "$ref": "types.json#/$defs/Types/MaxReading"
                 },
                 "Connector": {
-                    "$ref": "#/$defs/Types/Connector"
+                    "$ref": "types.json#/$defs/Types/Connector"
                 },
                 "Thresholds": {
-                    "$ref": "#/$defs/Types/Thresholds"
+                    "$ref": "types.json#/$defs/Types/Thresholds"
                 },
                 "Name": {
-                    "$ref": "#/$defs/Types/Name"
+                    "$ref": "types.json#/$defs/Types/Name"
                 },
                 "Type": {
                     "type": "string",
@@ -270,28 +270,28 @@
             "additionalProperties": false,
             "properties": {
                 "Name": {
-                    "$ref": "#/$defs/Types/Name"
+                    "$ref": "types.json#/$defs/Types/Name"
                 },
                 "Address": {
-                    "$ref": "#/$defs/Types/Address"
+                    "$ref": "types.json#/$defs/Types/Address"
                 },
                 "Bus": {
-                    "$ref": "#/$defs/Types/Bus"
+                    "$ref": "types.json#/$defs/Types/Bus"
                 },
                 "PowerState": {
-                    "$ref": "#/$defs/Types/PowerState"
+                    "$ref": "types.json#/$defs/Types/PowerState"
                 },
                 "Thresholds": {
-                    "$ref": "#/$defs/Types/Thresholds"
+                    "$ref": "types.json#/$defs/Types/Thresholds"
                 },
                 "DtsCritOffset": {
-                    "$ref": "#/$defs/Types/DtsCritOffset"
+                    "$ref": "types.json#/$defs/Types/DtsCritOffset"
                 },
                 "PresenceGpio": {
-                    "$ref": "#/$defs/Types/PresenceGpio"
+                    "$ref": "types.json#/$defs/Types/PresenceGpio"
                 },
                 "CpuID": {
-                    "$ref": "#/$defs/Types/CpuID"
+                    "$ref": "types.json#/$defs/Types/CpuID"
                 },
                 "Type": {
                     "type": "string",
@@ -305,31 +305,31 @@
             "additionalProperties": false,
             "properties": {
                 "Name": {
-                    "$ref": "#/$defs/Types/Name"
+                    "$ref": "types.json#/$defs/Types/Name"
                 },
                 "Class": {
-                    "$ref": "#/$defs/Types/Class"
+                    "$ref": "types.json#/$defs/Types/Class"
                 },
                 "Address": {
-                    "$ref": "#/$defs/Types/Address"
+                    "$ref": "types.json#/$defs/Types/Address"
                 },
                 "Thresholds": {
-                    "$ref": "#/$defs/Types/Thresholds"
+                    "$ref": "types.json#/$defs/Types/Thresholds"
                 },
                 "HostSMbusIndex": {
-                    "$ref": "#/$defs/Types/HostSMbusIndex"
+                    "$ref": "types.json#/$defs/Types/HostSMbusIndex"
                 },
                 "PowerState": {
-                    "$ref": "#/$defs/Types/PowerState"
+                    "$ref": "types.json#/$defs/Types/PowerState"
                 },
                 "SensorType": {
-                    "$ref": "#/$defs/Types/SensorType"
+                    "$ref": "types.json#/$defs/Types/SensorType"
                 },
                 "ScaleValue": {
-                    "$ref": "#/$defs/Types/ScaleValue"
+                    "$ref": "types.json#/$defs/Types/ScaleValue"
                 },
                 "OffsetValue": {
-                    "$ref": "#/$defs/Types/OffsetValue"
+                    "$ref": "types.json#/$defs/Types/OffsetValue"
                 },
                 "Type": {
                     "type": "string",
@@ -343,16 +343,16 @@
             "additionalProperties": false,
             "properties": {
                 "Name": {
-                    "$ref": "#/$defs/Types/Name"
+                    "$ref": "types.json#/$defs/Types/Name"
                 },
                 "Bus": {
-                    "$ref": "#/$defs/Types/Bus"
+                    "$ref": "types.json#/$defs/Types/Bus"
                 },
                 "Address": {
-                    "$ref": "#/$defs/Types/Address"
+                    "$ref": "types.json#/$defs/Types/Address"
                 },
                 "ChannelNames": {
-                    "$ref": "#/$defs/Types/ChannelNames"
+                    "$ref": "types.json#/$defs/Types/ChannelNames"
                 },
                 "Type": {
                     "type": "string",
@@ -371,16 +371,16 @@
             "additionalProperties": false,
             "properties": {
                 "Name": {
-                    "$ref": "#/$defs/Types/Name"
+                    "$ref": "types.json#/$defs/Types/Name"
                 },
                 "Index": {
-                    "$ref": "#/$defs/Types/Index"
+                    "$ref": "types.json#/$defs/Types/Index"
                 },
                 "Direction": {
                     "type": "string"
                 },
                 "Polarity": {
-                    "$ref": "#/$defs/Types/Polarity"
+                    "$ref": "types.json#/$defs/Types/Polarity"
                 },
                 "Type": {
                     "type": "string",
@@ -394,10 +394,10 @@
             "additionalProperties": false,
             "properties": {
                 "Name": {
-                    "$ref": "#/$defs/Types/Name"
+                    "$ref": "types.json#/$defs/Types/Name"
                 },
                 "GpioPins": {
-                    "$ref": "#/$defs/Types/GpioPins"
+                    "$ref": "types.json#/$defs/Types/GpioPins"
                 },
                 "Type": {
                     "type": "string",
@@ -411,13 +411,13 @@
             "additionalProperties": false,
             "properties": {
                 "Name": {
-                    "$ref": "#/$defs/Types/Name"
+                    "$ref": "types.json#/$defs/Types/Name"
                 },
                 "Bus": {
-                    "$ref": "#/$defs/Types/Bus"
+                    "$ref": "types.json#/$defs/Types/Bus"
                 },
                 "Address": {
-                    "$ref": "#/$defs/Types/Address"
+                    "$ref": "types.json#/$defs/Types/Address"
                 },
                 "Type": {
                     "type": "string",
@@ -431,10 +431,10 @@
             "additionalProperties": false,
             "properties": {
                 "Name": {
-                    "$ref": "#/$defs/Types/Name"
+                    "$ref": "types.json#/$defs/Types/Name"
                 },
                 "Polling": {
-                    "$ref": "#/$defs/Types/Polling"
+                    "$ref": "types.json#/$defs/Types/Polling"
                 },
                 "Type": {
                     "type": "string",
@@ -449,25 +449,25 @@
             "additionalProperties": false,
             "properties": {
                 "Name": {
-                    "$ref": "#/$defs/Types/Name"
+                    "$ref": "types.json#/$defs/Types/Name"
                 },
                 "Timeout": {
-                    "$ref": "#/$defs/Types/Timeout"
+                    "$ref": "types.json#/$defs/Types/Timeout"
                 },
                 "Units": {
-                    "$ref": "#/$defs/Types/Units"
+                    "$ref": "types.json#/$defs/Types/Units"
                 },
                 "MaxValue": {
-                    "$ref": "#/$defs/Types/MaxValue"
+                    "$ref": "types.json#/$defs/Types/MaxValue"
                 },
                 "MinValue": {
-                    "$ref": "#/$defs/Types/MinValue"
+                    "$ref": "types.json#/$defs/Types/MinValue"
                 },
                 "EntityId": {
-                    "$ref": "#/$defs/Types/EntityId"
+                    "$ref": "types.json#/$defs/Types/EntityId"
                 },
                 "EntityInstance": {
-                    "$ref": "#/$defs/Types/EntityInstance"
+                    "$ref": "types.json#/$defs/Types/EntityInstance"
                 },
                 "Type": {
                     "type": "string",
@@ -482,7 +482,7 @@
             "additionalProperties": false,
             "properties": {
                 "Name": {
-                    "$ref": "#/$defs/Types/Name"
+                    "$ref": "types.json#/$defs/Types/Name"
                 },
                 "Type": {
                     "description": "This enum may be extended as described in the design",
@@ -498,14 +498,14 @@
             "additionalProperties": false,
             "properties": {
                 "Name": {
-                    "$ref": "#/$defs/Types/Name"
+                    "$ref": "types.json#/$defs/Types/Name"
                 },
                 "ConnectsToType": {
                     "description": "Should be equal to the 'Type' property on the upstream port",
-                    "$ref": "#/$defs/Types/ConnectsToType"
+                    "$ref": "types.json#/$defs/Types/ConnectsToType"
                 },
                 "PowerPort": {
-                    "$ref": "#/$defs/Types/PowerPort"
+                    "$ref": "types.json#/$defs/Types/PowerPort"
                 },
                 "Type": {
                     "type": "string",
@@ -519,18 +519,18 @@
             "additionalProperties": false,
             "properties": {
                 "Name": {
-                    "$ref": "#/$defs/Types/Name"
+                    "$ref": "types.json#/$defs/Types/Name"
                 },
                 "Bus": {
-                    "$ref": "#/$defs/Types/Bus"
+                    "$ref": "types.json#/$defs/Types/Bus"
                 },
                 "Address": {
                     "oneOf": [
                         {
-                            "$ref": "#/$defs/Types/Address"
+                            "$ref": "types.json#/$defs/Types/Address"
                         },
                         {
-                            "$ref": "#/$defs/Types/AddressArray"
+                            "$ref": "types.json#/$defs/Types/AddressArray"
                         }
                     ]
                 },
@@ -545,7 +545,7 @@
             "additionalProperties": false,
             "properties": {
                 "Name": {
-                    "$ref": "#/$defs/Types/Name"
+                    "$ref": "types.json#/$defs/Types/Name"
                 },
                 "Type": {
                     "const": "EmmcDevice"
@@ -558,19 +558,19 @@
             "additionalProperties": false,
             "properties": {
                 "Name": {
-                    "$ref": "#/$defs/Types/Name"
+                    "$ref": "types.json#/$defs/Types/Name"
                 },
                 "Bus": {
-                    "$ref": "#/$defs/Types/Bus"
+                    "$ref": "types.json#/$defs/Types/Bus"
                 },
                 "Address": {
-                    "$ref": "#/$defs/Types/Address"
+                    "$ref": "types.json#/$defs/Types/Address"
                 },
                 "Class": {
-                    "$ref": "#/$defs/Types/Class"
+                    "$ref": "types.json#/$defs/Types/Class"
                 },
                 "PowerState": {
-                    "$ref": "#/$defs/Types/PowerState"
+                    "$ref": "types.json#/$defs/Types/PowerState"
                 },
                 "Type": {
                     "const": "IpmbDevice"
@@ -583,16 +583,16 @@
             "additionalProperties": false,
             "properties": {
                 "Name": {
-                    "$ref": "#/$defs/Types/Name"
+                    "$ref": "types.json#/$defs/Types/Name"
                 },
                 "Bus": {
-                    "$ref": "#/$defs/Types/Bus"
+                    "$ref": "types.json#/$defs/Types/Bus"
                 },
                 "Address": {
-                    "$ref": "#/$defs/Types/Address"
+                    "$ref": "types.json#/$defs/Types/Address"
                 },
                 "Class": {
-                    "$ref": "#/$defs/Types/Class"
+                    "$ref": "types.json#/$defs/Types/Class"
                 },
                 "Type": {
                     "const": "IpmbPowerMonitor"
@@ -606,43 +606,43 @@
             "additionalProperties": false,
             "properties": {
                 "Name": {
-                    "$ref": "#/$defs/Types/Name"
+                    "$ref": "types.json#/$defs/Types/Name"
                 },
                 "BridgeGpio": {
-                    "$ref": "#/$defs/Types/BridgeGpio"
+                    "$ref": "types.json#/$defs/Types/BridgeGpio"
                 },
                 "PowerState": {
-                    "$ref": "#/$defs/Types/PowerState"
+                    "$ref": "types.json#/$defs/Types/PowerState"
                 },
                 "EntityId": {
-                    "$ref": "#/$defs/Types/EntityId"
+                    "$ref": "types.json#/$defs/Types/EntityId"
                 },
                 "EntityInstance": {
-                    "$ref": "#/$defs/Types/EntityInstance"
+                    "$ref": "types.json#/$defs/Types/EntityInstance"
                 },
                 "Index": {
-                    "$ref": "#/$defs/Types/Index"
+                    "$ref": "types.json#/$defs/Types/Index"
                 },
                 "PollRate": {
-                    "$ref": "#/$defs/Types/PollRate"
+                    "$ref": "types.json#/$defs/Types/PollRate"
                 },
                 "CPURequired": {
-                    "$ref": "#/$defs/Types/CPURequired"
+                    "$ref": "types.json#/$defs/Types/CPURequired"
                 },
                 "PresenceGpio": {
-                    "$ref": "#/$defs/Types/PresenceGpio"
+                    "$ref": "types.json#/$defs/Types/PresenceGpio"
                 },
                 "MaxValue": {
-                    "$ref": "#/$defs/Types/MaxValue"
+                    "$ref": "types.json#/$defs/Types/MaxValue"
                 },
                 "MinValue": {
-                    "$ref": "#/$defs/Types/MinValue"
+                    "$ref": "types.json#/$defs/Types/MinValue"
                 },
                 "ScaleFactor": {
-                    "$ref": "#/$defs/Types/ScaleFactor"
+                    "$ref": "types.json#/$defs/Types/ScaleFactor"
                 },
                 "Thresholds": {
-                    "$ref": "#/$defs/Types/Thresholds"
+                    "$ref": "types.json#/$defs/Types/Thresholds"
                 },
                 "Type": {
                     "const": "ADC"
@@ -656,45 +656,45 @@
             "additionalProperties": false,
             "patternProperties": {
                 "Name([1-9][0-9]*)?$": {
-                    "$ref": "#/$defs/Types/Name"
+                    "$ref": "types.json#/$defs/Types/Name"
                 }
             },
             "properties": {
                 "Name": {
-                    "$ref": "#/$defs/Types/Name"
+                    "$ref": "types.json#/$defs/Types/Name"
                 },
                 "Address": {
-                    "$ref": "#/$defs/Types/Address"
+                    "$ref": "types.json#/$defs/Types/Address"
                 },
                 "Bus": {
-                    "$ref": "#/$defs/Types/Bus"
+                    "$ref": "types.json#/$defs/Types/Bus"
                 },
                 "EntityId": {
-                    "$ref": "#/$defs/Types/EntityId"
+                    "$ref": "types.json#/$defs/Types/EntityId"
                 },
                 "EntityInstance": {
-                    "$ref": "#/$defs/Types/EntityInstance"
+                    "$ref": "types.json#/$defs/Types/EntityInstance"
                 },
                 "PowerState": {
-                    "$ref": "#/$defs/Types/PowerState"
+                    "$ref": "types.json#/$defs/Types/PowerState"
                 },
                 "CPURequired": {
-                    "$ref": "#/$defs/Types/CPURequired"
+                    "$ref": "types.json#/$defs/Types/CPURequired"
                 },
                 "Labels": {
-                    "$ref": "#/$defs/Types/Labels"
+                    "$ref": "types.json#/$defs/Types/Labels"
                 },
                 "PollRate": {
-                    "$ref": "#/$defs/Types/PollRate"
+                    "$ref": "types.json#/$defs/Types/PollRate"
                 },
                 "MinValue": {
-                    "$ref": "#/$defs/Types/MinValue"
+                    "$ref": "types.json#/$defs/Types/MinValue"
                 },
                 "MaxValue": {
-                    "$ref": "#/$defs/Types/MaxValue"
+                    "$ref": "types.json#/$defs/Types/MaxValue"
                 },
                 "Thresholds": {
-                    "$ref": "#/$defs/Types/Thresholds"
+                    "$ref": "types.json#/$defs/Types/Thresholds"
                 },
                 "Type": {
                     "enum": [
@@ -743,19 +743,19 @@
             "additionalProperties": false,
             "properties": {
                 "Name": {
-                    "$ref": "#/$defs/Types/Name"
+                    "$ref": "types.json#/$defs/Types/Name"
                 },
                 "Bus": {
-                    "$ref": "#/$defs/Types/Bus"
+                    "$ref": "types.json#/$defs/Types/Bus"
                 },
                 "Address": {
-                    "$ref": "#/$defs/Types/Address"
+                    "$ref": "types.json#/$defs/Types/Address"
                 },
                 "PowerState": {
-                    "$ref": "#/$defs/Types/PowerState"
+                    "$ref": "types.json#/$defs/Types/PowerState"
                 },
                 "Thresholds": {
-                    "$ref": "#/$defs/Types/Thresholds"
+                    "$ref": "types.json#/$defs/Types/Thresholds"
                 },
                 "Type": {
                     "const": "NVME1000"
@@ -768,13 +768,13 @@
             "additionalProperties": false,
             "properties": {
                 "Name": {
-                    "$ref": "#/$defs/Types/Name"
+                    "$ref": "types.json#/$defs/Types/Name"
                 },
                 "Bus": {
-                    "$ref": "#/$defs/Types/Bus"
+                    "$ref": "types.json#/$defs/Types/Bus"
                 },
                 "Address": {
-                    "$ref": "#/$defs/Types/Address"
+                    "$ref": "types.json#/$defs/Types/Address"
                 },
                 "Type": {
                     "enum": [
@@ -799,99 +799,99 @@
             "additionalProperties": false,
             "patternProperties": {
                 "Name(1[0-7]|[1-9])?$": {
-                    "$ref": "#/$defs/Types/Name"
+                    "$ref": "types.json#/$defs/Types/Name"
                 },
                 "(vin|vmon|iin|pin|maxpin)_Name$": {
-                    "$ref": "#/$defs/Types/Name"
+                    "$ref": "types.json#/$defs/Types/Name"
                 },
                 "(in|in_voltage|vout)(1[0-7]|[0-9])_Name$": {
-                    "$ref": "#/$defs/Types/Name"
+                    "$ref": "types.json#/$defs/Types/Name"
                 },
                 "(curr|iin|iout|pin|pout|power|temp)(1[0-7]|[1-9])_Name$": {
-                    "$ref": "#/$defs/Types/Name"
+                    "$ref": "types.json#/$defs/Types/Name"
                 },
                 "(in|in_voltage)(1[0-7]|[0-9])_Scale$": {
-                    "$ref": "#/$defs/Types/ScaleValue"
+                    "$ref": "types.json#/$defs/Types/ScaleValue"
                 },
                 "(curr|power|iout)(1[0-7]|[1-9])_Scale$": {
-                    "$ref": "#/$defs/Types/ScaleValue"
+                    "$ref": "types.json#/$defs/Types/ScaleValue"
                 },
                 "in(1[0-7]|[0-9])_PowerState$": {
-                    "$ref": "#/$defs/Types/PowerState"
+                    "$ref": "types.json#/$defs/Types/PowerState"
                 },
                 "(in|vout|in_voltage)(1[0-7]|[0-9])_(Min|Max)$": {
-                    "$ref": "#/$defs/Types/MinMaxType"
+                    "$ref": "types.json#/$defs/Types/MinMaxType"
                 },
                 "(iin|vin|vmon|curr|iout|pin|pout|temp)(1[0-7]|[1-9])?_(Min|Max)$": {
-                    "$ref": "#/$defs/Types/MinMaxType"
+                    "$ref": "types.json#/$defs/Types/MinMaxType"
                 },
                 "power(1[0-7]|[1-9])?_Max$": {
-                    "$ref": "#/$defs/Types/MinMaxType"
+                    "$ref": "types.json#/$defs/Types/MinMaxType"
                 },
                 "(power|curr|iout|pout|pin)(1[0-7]|[1-9])?_Offset$": {
-                    "$ref": "#/$defs/Types/OffsetType"
+                    "$ref": "types.json#/$defs/Types/OffsetType"
                 }
             },
             "properties": {
                 "Name": {
-                    "$ref": "#/$defs/Types/Name"
+                    "$ref": "types.json#/$defs/Types/Name"
                 },
                 "EntityId": {
-                    "$ref": "#/$defs/Types/EntityId"
+                    "$ref": "types.json#/$defs/Types/EntityId"
                 },
                 "EntityInstance": {
-                    "$ref": "#/$defs/Types/EntityInstance"
+                    "$ref": "types.json#/$defs/Types/EntityInstance"
                 },
                 "CPURequired": {
-                    "$ref": "#/$defs/Types/CPURequired"
+                    "$ref": "types.json#/$defs/Types/CPURequired"
                 },
                 "maxiout1_Name": {
-                    "$ref": "#/$defs/Types/Name"
+                    "$ref": "types.json#/$defs/Types/Name"
                 },
                 "fan1_Name": {
-                    "$ref": "#/$defs/Types/Name"
+                    "$ref": "types.json#/$defs/Types/Name"
                 },
                 "pin_Scale": {
-                    "$ref": "#/$defs/Types/ScaleValue"
+                    "$ref": "types.json#/$defs/Types/ScaleValue"
                 },
                 "pout1_Scale": {
-                    "$ref": "#/$defs/Types/ScaleValue"
+                    "$ref": "types.json#/$defs/Types/ScaleValue"
                 },
                 "Bus": {
-                    "$ref": "#/$defs/Types/Bus"
+                    "$ref": "types.json#/$defs/Types/Bus"
                 },
                 "Address": {
-                    "$ref": "#/$defs/Types/Address"
+                    "$ref": "types.json#/$defs/Types/Address"
                 },
                 "BridgeGpio": {
-                    "$ref": "#/$defs/Types/BridgeGpio"
+                    "$ref": "types.json#/$defs/Types/BridgeGpio"
                 },
                 "CurrScaleFactor": {
-                    "$ref": "#/$defs/Types/CurrScaleFactor"
+                    "$ref": "types.json#/$defs/Types/CurrScaleFactor"
                 },
                 "InScaleFactor": {
-                    "$ref": "#/$defs/Types/InScaleFactor"
+                    "$ref": "types.json#/$defs/Types/InScaleFactor"
                 },
                 "Labels": {
-                    "$ref": "#/$defs/Types/Labels"
+                    "$ref": "types.json#/$defs/Types/Labels"
                 },
                 "SlotId": {
-                    "$ref": "#/$defs/Types/SlotId"
+                    "$ref": "types.json#/$defs/Types/SlotId"
                 },
                 "PowerState": {
-                    "$ref": "#/$defs/Types/PowerState"
+                    "$ref": "types.json#/$defs/Types/PowerState"
                 },
                 "PowerScaleFactor": {
-                    "$ref": "#/$defs/Types/PowerScaleFactor"
+                    "$ref": "types.json#/$defs/Types/PowerScaleFactor"
                 },
                 "Polling": {
-                    "$ref": "#/$defs/Types/Polling"
+                    "$ref": "types.json#/$defs/Types/Polling"
                 },
                 "PollRate": {
-                    "$ref": "#/$defs/Types/PollRate"
+                    "$ref": "types.json#/$defs/Types/PollRate"
                 },
                 "Thresholds": {
-                    "$ref": "#/$defs/Types/Thresholds"
+                    "$ref": "types.json#/$defs/Types/Thresholds"
                 },
                 "Type": {
                     "enum": [
@@ -987,7 +987,7 @@
             "additionalProperties": false,
             "properties": {
                 "Name": {
-                    "$ref": "#/$defs/Types/Name"
+                    "$ref": "types.json#/$defs/Types/Name"
                 },
                 "Type": {
                     "const": "NMSensor"
@@ -999,7 +999,7 @@
             "additionalProperties": false,
             "properties": {
                 "Name": {
-                    "$ref": "#/$defs/Types/Name"
+                    "$ref": "types.json#/$defs/Types/Name"
                 },
                 "Type": {
                     "const": "IntelHsbpFruDevice"
@@ -1011,7 +1011,7 @@
             "additionalProperties": false,
             "properties": {
                 "Name": {
-                    "$ref": "#/$defs/Types/Name"
+                    "$ref": "types.json#/$defs/Types/Name"
                 },
                 "Type": {
                     "const": "IntelHsbpTempSensor"
@@ -1023,13 +1023,13 @@
             "additionalProperties": false,
             "properties": {
                 "Name": {
-                    "$ref": "#/$defs/Types/Name"
+                    "$ref": "types.json#/$defs/Types/Name"
                 },
                 "Address": {
-                    "$ref": "#/$defs/Types/Address"
+                    "$ref": "types.json#/$defs/Types/Address"
                 },
                 "Bus": {
-                    "$ref": "#/$defs/Types/Bus"
+                    "$ref": "types.json#/$defs/Types/Bus"
                 },
                 "Type": {
                     "const": "Intel HSBP CPLD"
@@ -1041,10 +1041,10 @@
             "additionalProperties": false,
             "properties": {
                 "Name": {
-                    "$ref": "#/$defs/Types/Name"
+                    "$ref": "types.json#/$defs/Types/Name"
                 },
                 "Address": {
-                    "$ref": "#/$defs/Types/Address"
+                    "$ref": "types.json#/$defs/Types/Address"
                 },
                 "Type": {
                     "const": "GenericSMBusMux"
@@ -1055,7 +1055,7 @@
             "additionalProperties": false,
             "properties": {
                 "Name": {
-                    "$ref": "#/$defs/Types/Name"
+                    "$ref": "types.json#/$defs/Types/Name"
                 },
                 "Type": {
                     "const": "BMC"
@@ -1067,309 +1067,17 @@
             "additionalProperties": false,
             "properties": {
                 "Name": {
-                    "$ref": "#/$defs/Types/Name"
+                    "$ref": "types.json#/$defs/Types/Name"
                 },
                 "Address": {
-                    "$ref": "#/$defs/Types/Address"
+                    "$ref": "types.json#/$defs/Types/Address"
                 },
                 "Bus": {
-                    "$ref": "#/$defs/Types/Bus"
+                    "$ref": "types.json#/$defs/Types/Bus"
                 },
                 "Type": {
                     "enum": ["UCD90160", "UCD90320"]
                 }
-            }
-        },
-        "Types": {
-            "Address": {
-                "type": "string"
-            },
-            "AddressArray": {
-                "type": "array",
-                "items": {
-                    "$ref": "#/$defs/Types/Address"
-                }
-            },
-            "AllowedFailures": {
-                "type": "number",
-                "multipleOf": 1,
-                "minimum": 0
-            },
-            "BindConnector": {
-                "type": "string"
-            },
-            "BridgeGpio": {
-                "type": "array",
-                "items": {
-                    "additionalProperties": false,
-                    "properties": {
-                        "Name": {
-                            "$ref": "#/$defs/Types/Name"
-                        },
-                        "Label": {
-                            "$ref": "#/$defs/Types/Name"
-                        },
-                        "Polarity": {
-                            "$ref": "#/$defs/Types/Polarity"
-                        },
-                        "SetupTime": {
-                            "type": "number"
-                        }
-                    },
-                    "required": ["Name", "Polarity"]
-                }
-            },
-            "Bus": {
-                "type": ["string", "number"]
-            },
-            "CPURequired": {
-                "type": "number",
-                "multipleOf": 1,
-                "minimum": 0
-            },
-            "ChannelNames": {
-                "items": {
-                    "type": "string"
-                },
-                "type": "array"
-            },
-            "Class": {
-                "type": "string",
-                "enum": [
-                    "fan",
-                    "temp",
-                    "i2c",
-                    "Aspeed2600_Hwmon",
-                    "METemp",
-                    "IpmbDevice",
-                    "twin_lake",
-                    "Gpio",
-                    "PxeBridgeTemp",
-                    "HSCBridge"
-                ]
-            },
-            "Connector": {
-                "properties": {
-                    "Name": {
-                        "type": "string"
-                    },
-                    "Pwm": {
-                        "type": "number"
-                    },
-                    "Tachs": {
-                        "items": {
-                            "type": "number"
-                        },
-                        "type": "array"
-                    }
-                },
-                "required": ["Name", "Pwm", "Tachs"],
-                "type": "object"
-            },
-            "ConnectsToType": {
-                "type": "string",
-                "const": "MB Upstream Port"
-            },
-            "CpuID": {
-                "type": "number",
-                "minimum": 0,
-                "multipleOf": 1
-            },
-            "CurrScaleFactor": {
-                "type": "number"
-            },
-            "Direction": {
-                "type": "string",
-                "enum": ["less than", "greater than"]
-            },
-            "DtsCritOffset": {
-                "type": "number"
-            },
-            "EntityId": {
-                "type": "number"
-            },
-            "EntityInstance": {
-                "type": "number"
-            },
-            "GpioPins": {
-                "items": {
-                    "type": "number"
-                },
-                "type": "array"
-            },
-            "GpioPolarity": {
-                "enum": ["Low"]
-            },
-            "Index": {
-                "type": "number",
-                "minimum": 0,
-                "multipleOf": 1
-            },
-            "InScaleFactor": {
-                "type": "number"
-            },
-            "Labels": {
-                "items": {
-                    "type": "string"
-                },
-                "type": "array"
-            },
-            "MaxReading": {
-                "type": "number"
-            },
-            "MaxValue": {
-                "type": "number"
-            },
-            "MinMaxType": {
-                "type": "number"
-            },
-            "Units": {
-                "type": "string",
-                "enum": [
-                    "DegreesC",
-                    "RPMS",
-                    "Volts",
-                    "Meters",
-                    "Amperes",
-                    "Watts",
-                    "Joules",
-                    "Percent",
-                    "CFM",
-                    "Pascals"
-                ]
-            },
-            "MinReading": {
-                "type": "number"
-            },
-            "MinValue": {
-                "type": "number"
-            },
-            "Name": {
-                "type": "string"
-            },
-            "OffsetValue": {
-                "type": "number"
-            },
-            "Polarity": {
-                "enum": ["High", "Low"]
-            },
-            "Polling": {
-                "type": "object",
-                "additionalProperties": false,
-                "properties": {
-                    "AveragingPeriod": {
-                        "type": "number"
-                    },
-                    "Interval": {
-                        "type": "number"
-                    },
-                    "PollRate": {
-                        "type": "number"
-                    },
-                    "Label": {
-                        "type": "string"
-                    }
-                }
-            },
-            "PowerFactorMax": {
-                "type": "number"
-            },
-            "PowerFactorMin": {
-                "type": "number"
-            },
-            "PowerPort": {
-                "type": "boolean"
-            },
-            "PowerScaleFactor": {
-                "type": "number"
-            },
-            "PowerState": {
-                "enum": ["On", "ChassisOn", "Always", "BiosPost"]
-            },
-            "Presence": {
-                "properties": {
-                    "MonitorType": {
-                        "enum": ["Event", "Polling"]
-                    },
-                    "PinName": {
-                        "type": "string"
-                    },
-                    "Polarity": {
-                        "$ref": "#/$defs/Types/Polarity"
-                    }
-                },
-                "type": "object"
-            },
-            "PresenceGpio": {
-                "type": ["number", "array"]
-            },
-            "Pwm": {
-                "type": "number",
-                "minimum": 0,
-                "multipleOf": 1
-            },
-            "RedundantCount": {
-                "type": "number"
-            },
-            "ScaleFactor": {
-                "type": "number"
-            },
-            "ScaleValue": {
-                "type": "number"
-            },
-            "SensorType": {
-                "enum": ["current", "power", "voltage"]
-            },
-            "SlotId": {
-                "type": "string"
-            },
-            "Tachs": {
-                "items": {
-                    "type": ["number", "string"]
-                },
-                "type": "array"
-            },
-            "Thresholds": {
-                "items": {
-                    "properties": {
-                        "Direction": {
-                            "enum": ["less than", "greater than"]
-                        },
-                        "Hysteresis": {
-                            "type": "number"
-                        },
-                        "Label": {
-                            "type": "string"
-                        },
-                        "Name": {
-                            "type": "string"
-                        },
-                        "Severity": {
-                            "type": "number",
-                            "minimum": 0,
-                            "maximum": 4
-                        },
-                        "Value": {
-                            "type": "number"
-                        }
-                    },
-                    "required": ["Direction", "Name", "Severity", "Value"],
-                    "type": "object"
-                },
-                "type": "array"
-            },
-            "Timeout": {
-                "type": "number"
-            },
-            "HostSMbusIndex": {
-                "type": "number"
-            },
-            "OffsetType": {
-                "type": "number"
-            },
-            "PollRate": {
-                "type": "number",
-                "exclusiveMinimum": 0
             }
         }
     }

@@ -31,10 +31,10 @@
                     "enum": ["XDPE1X2XXFirmware", "ISL69269Firmware"]
                 },
                 "Bus": {
-                    "$ref": "legacy.json#/$defs/Types/Bus"
+                    "$ref": "types.json#/$defs/Types/Bus"
                 },
                 "Address": {
-                    "$ref": "legacy.json#/$defs/Types/Address"
+                    "$ref": "types.json#/$defs/Types/Address"
                 },
                 "FirmwareInfo": {
                     "$ref": "#/$defs/FirmwareInfoDef"
@@ -71,10 +71,10 @@
                         "additionalProperties": false,
                         "properties": {
                             "Name": {
-                                "$ref": "legacy.json#/$defs/Types/Name"
+                                "$ref": "types.json#/$defs/Types/Name"
                             },
                             "Polarity": {
-                                "$ref": "legacy.json#/$defs/Types/Polarity"
+                                "$ref": "types.json#/$defs/Types/Polarity"
                             }
                         },
                         "required": ["Name", "Polarity"]
@@ -107,10 +107,10 @@
                     "enum": ["PT5161LFirmware"]
                 },
                 "Bus": {
-                    "$ref": "legacy.json#/$defs/Types/Bus"
+                    "$ref": "types.json#/$defs/Types/Bus"
                 },
                 "Address": {
-                    "$ref": "legacy.json#/$defs/Types/Address"
+                    "$ref": "types.json#/$defs/Types/Address"
                 },
                 "FirmwareDevice": {
                     "description": "The device that stores the EEPROM device firmware",
@@ -124,10 +124,10 @@
                         "additionalProperties": false,
                         "properties": {
                             "Name": {
-                                "$ref": "legacy.json#/$defs/Types/Name"
+                                "$ref": "types.json#/$defs/Types/Name"
                             },
                             "Polarity": {
-                                "$ref": "legacy.json#/$defs/Types/Polarity"
+                                "$ref": "types.json#/$defs/Types/Polarity"
                             }
                         },
                         "required": ["Name", "Polarity"]

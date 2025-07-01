@@ -17,5 +17,6 @@ schemas = [
     'pid_zone.json',
     'satellite_controller.json',
     'stepwise.json',
+    'types.json',
     'virtual_sensor.json',
 ]
