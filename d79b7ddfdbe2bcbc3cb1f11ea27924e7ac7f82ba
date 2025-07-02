@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "fdeaba45_17703093",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 10,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-07-02T10:30:08Z",
+      "side": 1,
+      "message": "Why ```size_t```? Only to align with the dbus interface?\n\nFor i2c, the largest i have seen is a 10-bit addressing scheme.\nhttps://www.i2c-bus.org/addressing/10-bit-addressing/\n\nSo a ```uint16_t``` should be sufficient to represent it?\n\nIf we choose data types larger than what we can actually use, it\u0027s just wasted space and extra cycles for copying zeros around.\n\n\nFor the bus number, i don\u0027t think it is bounded so a size_t could make sense there. On the other hand, i have not seen anyone use more i2c buses than what a ```uint32_t``` can represent.",
+      "revId": "d79b7ddfdbe2bcbc3cb1f11ea27924e7ac7f82ba",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ce227807_c4489e37",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 11,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-07-02T10:30:08Z",
+      "side": 1,
+      "message": "How would a caller misuse it?\n\nIs there a bug in FruDevice?",
+      "revId": "d79b7ddfdbe2bcbc3cb1f11ea27924e7ac7f82ba",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    }
+  ]
+}
