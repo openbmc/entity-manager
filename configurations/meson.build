@@ -114,6 +114,8 @@ configs = [
     'meta/twinlake.json',
     'meta/ventura_cable.json',
     'meta/ventura_fanboard_adc_max.json',
+    'meta/ventura_fanboard_adc_ocp_max.json',
+    'meta/ventura_fanboard_adc_ocp_tic.json',
     'meta/ventura_fanboard_adc_tic.json',
     'meta/ventura_ioboard.json',
     'meta/ventura_ledboard.json',
