@@ -115,6 +115,8 @@ configs = [
     'meta/ventura_cable.json',
     'meta/ventura_fanboard_adc_max.json',
     'meta/ventura_fanboard_adc_tic.json',
+    'meta/ventura_fanboard_adc_ocp_max.json',
+    'meta/ventura_fanboard_adc_ocp_tic.json',
     'meta/ventura_ioboard.json',
     'meta/ventura_ledboard.json',
     'meta/ventura_rmc_hsc_ltc_fsc_max_p24vsen_ina_gndsen_ina_p12vbrick_delta.json',
