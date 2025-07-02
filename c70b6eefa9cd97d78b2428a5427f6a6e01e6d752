@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f557a66b_8120cfec",
+        "filename": "configurations/meta/ventura_fanboard_adc_max.json",
+        "patchSetId": 1
+      },
+      "lineNbr": 293,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2025-07-02T15:09:24Z",
+      "side": 1,
+      "message": "Why do we need the same information represented twice?  Can\u0027t we use `$bus % 2` in the Name field so we only need one copy of this?  I don\u0027t think we should have to explicitly reference bus 16/17 in a probe statement.",
+      "range": {
+        "startLine": 292,
+        "startChar": 0,
+        "endLine": 293,
+        "endChar": 138
+      },
+      "revId": "c70b6eefa9cd97d78b2428a5427f6a6e01e6d752",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    }
+  ]
+}
