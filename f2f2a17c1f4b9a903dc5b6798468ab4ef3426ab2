@@ -36,6 +36,24 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "b58739aa_5c25ea02",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2025-07-03T15:21:59Z",
+      "side": 1,
+      "message": "Yes, the config record includes is what I was thinking of.  I don\u0027t think Meta should be dictating a \"consistent\" sensor naming schema.",
+      "parentUuid": "8eab2cce_1e0dc810",
+      "revId": "f2f2a17c1f4b9a903dc5b6798468ab4ef3426ab2",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "a04511ee_a0ad7429",
@@ -49,6 +67,24 @@
       "writtenOn": "2025-07-03T08:33:37Z",
       "side": 1,
       "message": "Why the `_C` ?\n\nWhy are we making the sensor unit part of the sensor name?\n\nThe sensor value interface already provides the unit.",
+      "revId": "f2f2a17c1f4b9a903dc5b6798468ab4ef3426ab2",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1198dcaa_c0c3cfcd",
+        "filename": "configurations/cx7_ocp.json",
+        "patchSetId": 2
+      },
+      "lineNbr": 16,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2025-07-03T15:21:59Z",
+      "side": 1,
+      "message": "That\u0027s just how our internal teams at Meta have previously specified the schema for sensors.  All the sensors for all the servers end up in a big database that people can run queries against and there is a common schema for those names to make it easier to run similar queries against different platforms.",
+      "parentUuid": "a04511ee_a0ad7429",
       "revId": "f2f2a17c1f4b9a903dc5b6798468ab4ef3426ab2",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
