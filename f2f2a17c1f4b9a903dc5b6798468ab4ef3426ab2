@@ -16,6 +16,41 @@
       "message": "I\u0027m ok with this, but these naming schemes are Meta specified but the components are off-the-shelf devices.  We might not be able to change the sensor names like this.\n\nAlexander was potentially working on a method to overwrite common-device configs on a per-machine basis, which could be leveraged in the future.  Until that is in, unless this naming change is acceptable upstream, we might need to keep these as a patch downstream.",
       "revId": "f2f2a17c1f4b9a903dc5b6798468ab4ef3426ab2",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "8eab2cce_1e0dc810",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-07-03T08:33:37Z",
+      "side": 1,
+      "message": "CompatibleHardware + config record includes could be abused to make this possible.\n\nhttps://gerrit.openbmc.org/c/openbmc/entity-manager/+/79657\nhttps://gerrit.openbmc.org/c/openbmc/entity-manager/+/77496\n\nBut it\u0027s not really the best use for it since an EM config still describes a piece of hardware. Config record includes were meant to cover the use-case for board variants, but renaming a sensor is not a hardware variant. It would be possible but there might be pushback.\n\nAlternatively, Meta could propose a naming scheme for sensor names and document it in EM repo?\n\n@ed@tanous.net @spinler@us.ibm.com Do you have any input on the sensor names?\n\nhttps://www.dmtf.org/sites/default/files/standards/documents/DSP2049_0.2.2b.pdf\n\ncould be used as the starting point since it already defines some sensor names from the redfish side.",
+      "parentUuid": "746074d3_93206a95",
+      "revId": "f2f2a17c1f4b9a903dc5b6798468ab4ef3426ab2",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a04511ee_a0ad7429",
+        "filename": "configurations/cx7_ocp.json",
+        "patchSetId": 2
+      },
+      "lineNbr": 16,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-07-03T08:33:37Z",
+      "side": 1,
+      "message": "Why the `_C` ?\n\nWhy are we making the sensor unit part of the sensor name?\n\nThe sensor value interface already provides the unit.",
+      "revId": "f2f2a17c1f4b9a903dc5b6798468ab4ef3426ab2",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }
