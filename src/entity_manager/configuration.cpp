@@ -1,5 +1,6 @@
 #include "configuration.hpp"
 
+#include "config_record.hpp"
 #include "perform_probe.hpp"
 #include "phosphor-logging/lg2.hpp"
 #include "utils.hpp"
@@ -15,6 +16,8 @@
 #include <iostream>
 #include <string>
 #include <vector>
+
+PHOSPHOR_LOG2_USING;
 
 Configuration::Configuration()
 {
@@ -33,8 +36,8 @@ void Configuration::loadConfigurations()
                                                hostConfigurationDirectory},
             R"(.*\.json)", jsonPaths))
     {
-        std::cerr << "Unable to find any configuration files in "
-                  << configurationDirectory << "\n";
+        error("Unable to find any configuration files in {CFGDIR}", "CFGDIR",
+              configurationDirectory);
         return;
     }
 
@@ -42,8 +45,7 @@ void Configuration::loadConfigurations()
         std::string(schemaDirectory) + "/" + globalSchema);
     if (!schemaStream.good())
     {
-        std::cerr
-            << "Cannot open schema file,  cannot validate JSON, exiting\n\n";
+        error("Cannot open schema file, cannot validate JSON, exiting");
         std::exit(EXIT_FAILURE);
         return;
     }
@@ -51,8 +53,7 @@ void Configuration::loadConfigurations()
         nlohmann::json::parse(schemaStream, nullptr, false, true);
     if (schema.is_discarded())
     {
-        std::cerr
-            << "Illegal schema file detected, cannot validate JSON, exiting\n";
+        error("Illegal schema file detected, cannot validate JSON, exiting");
         std::exit(EXIT_FAILURE);
         return;
     }
@@ -62,19 +63,19 @@ void Configuration::loadConfigurations()
         std::ifstream jsonStream(jsonPath.c_str());
         if (!jsonStream.good())
         {
-            std::cerr << "unable to open " << jsonPath.string() << "\n";
+            error("unable to open {PATH}", "PATH", jsonPath.string());
             continue;
         }
         auto data = nlohmann::json::parse(jsonStream, nullptr, false, true);
         if (data.is_discarded())
         {
-            std::cerr << "syntax error in " << jsonPath.string() << "\n";
+            error("syntax error in {PATH}", "PATH", jsonPath.string());
             continue;
         }
 
         if (ENABLE_RUNTIME_VALIDATE_JSON && !validateJson(schema, data))
         {
-            std::cerr << "Error validating " << jsonPath.string() << "\n";
+            error("Error validating {PATH}", "PATH", jsonPath.string());
             continue;
         }
 
@@ -129,16 +130,28 @@ bool validateJson(const nlohmann::json& schemaFile, const nlohmann::json& input)
     return validator.validate(schema, targetAdapter, nullptr);
 }
 
-// Extract the D-Bus interfaces to probe from the JSON config files.
+// Extract information from an EM configuration and creates configuration
+// record.
 void Configuration::filterProbeInterfaces()
 {
+    std::set<std::string> interfaces;
     for (auto it = configurations.begin(); it != configurations.end();)
     {
+        auto findName = it->find("Name");
         auto findProbe = it->find("Probe");
         if (findProbe == it->end())
         {
-            std::cerr << "configuration file missing probe:\n " << *it << "\n";
-            it++;
+            error("configuration missing probe: {NAME}", "NAME",
+                  findName->get<std::string>());
+            it = configurations.erase(it);
+            continue;
+        }
+
+        if (findName == it->end())
+        {
+            error("configuration missing name: {PROBE}", "PROBE",
+                  findProbe->get<std::string>());
+            it = configurations.erase(it);
             continue;
         }
 
@@ -155,26 +168,29 @@ void Configuration::filterProbeInterfaces()
 
         for (const nlohmann::json& probeJson : probeCommand)
         {
-            const std::string* probe = probeJson.get_ptr<const std::string*>();
-            if (probe == nullptr)
+            const std::string* p = probeJson.get_ptr<const std::string*>();
+            if (p == nullptr)
             {
-                std::cerr << "Probe statement wasn't a string, can't parse";
+                error("Probe statement wasn't a string, can't parse");
                 continue;
             }
             // Skip it if the probe cmd doesn't contain an interface.
-            if (probe::findProbeType(*probe))
+            if (probe::findProbeType(*p))
             {
                 continue;
             }
 
             // syntax requires probe before first open brace
-            auto findStart = probe->find('(');
+            auto findStart = p->find('(');
             if (findStart != std::string::npos)
             {
-                std::string interface = probe->substr(0, findStart);
-                probeInterfaces.emplace(interface);
+                std::string interface = p->substr(0, findStart);
+                interfaces.emplace(interface);
             }
         }
+        std::string name = *findName;
+        ConfigRecord record(name, probeCommand, *it, interfaces);
+        configRecords.push_back(record);
         it++;
     }
 }
