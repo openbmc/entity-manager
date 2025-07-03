@@ -1,6 +1,7 @@
 #pragma once
 
 #include "../utils.hpp"
+#include "config_record.hpp"
 #include "entity_manager.hpp"
 
 #include <systemd/sd-journal.h>
@@ -27,7 +28,8 @@ struct PerformScan : std::enable_shared_from_this<PerformScan>
 {
     PerformScan(EntityManager& em, nlohmann::json& missingConfigurations,
                 std::vector<nlohmann::json>& configurations,
-                boost::asio::io_context& io, std::function<void()>&& callback);
+                boost::asio::io_context& io, std::vector<ConfigRecord>& records,
+                std::function<void()>&& callback);
 
     void updateSystemConfiguration(const nlohmann::json& recordRef,
                                    const std::string& probeName,
@@ -37,6 +39,7 @@ struct PerformScan : std::enable_shared_from_this<PerformScan>
     EntityManager& _em;
     nlohmann::json& _missingConfigurations;
     std::vector<nlohmann::json> _configurations;
+    std::vector<ConfigRecord> _configRecords;
     std::function<void()> _callback;
     bool _passed = false;
     MapperGetSubTreeResponse dbusProbeObjects;
