@@ -48,6 +48,8 @@
 #include <iostream>
 #include <map>
 #include <regex>
+#include <unordered_set>
+
 constexpr const char* tempConfigDir = "/tmp/configuration/";
 constexpr const char* lastConfiguration = "/tmp/configuration/last.json";
 
@@ -87,7 +89,7 @@ EntityManager::EntityManager(
     });
     dbus_interface::tryIfaceInitialize(entityIface);
 
-    initFilters(configuration.probeInterfaces);
+    initFilters(configuration.configRecords);
 }
 
 void EntityManager::postToDbus(const nlohmann::json& newConfiguration)
@@ -502,6 +504,7 @@ void EntityManager::propertiesChangedCallback()
 
             auto perfScan = std::make_shared<scan::PerformScan>(
                 *this, *missingConfigurations, configuration.configurations, io,
+                configuration.configRecords,
                 [this, count, oldConfiguration, missingConfigurations]() {
                     // this is something that since ac has been applied to the
                     // bmc we saw, and we no longer see it
@@ -636,10 +639,15 @@ void EntityManager::registerCallback(const std::string& path)
 // org.freedesktop.DBus.Properties signals.  Similarly if a process exits
 // for any reason, expected or otherwise, we'll need a poke to remove
 // entities from DBus.
-void EntityManager::initFilters(
-    const std::unordered_set<std::string>& probeInterfaces)
+void EntityManager::initFilters(const std::vector<ConfigRecord>& records)
 {
-    nameOwnerChangedMatch = std::make_unique<sdbusplus::bus::match_t>(
+    std::unordered_set<std::string> probeInterfaces;
+    for (const ConfigRecord& r : records)
+    {
+        probeInterfaces.insert(r.name);
+    }
+
+    static sdbusplus::bus::match_t nameOwnerChangedMatch(
         static_cast<sdbusplus::bus_t&>(*systemBus),
         sdbusplus::bus::match::rules::nameOwnerChanged(),
         [this](sdbusplus::message_t& m) {
