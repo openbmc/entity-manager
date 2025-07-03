@@ -56,7 +56,7 @@ class EntityManager
                             const nlohmann::json& device);
 
     void handleCurrentConfigurationJson();
-    void initFilters(const std::unordered_set<std::string>& probeInterfaces);
+    void initFilters(const std::vector<DbusProbe>& probes);
 };
 
 inline void logDeviceAdded(const nlohmann::json& record)
