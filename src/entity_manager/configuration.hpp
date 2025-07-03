@@ -1,8 +1,9 @@
 #pragma once
 
+#include "config_record.hpp"
+
 #include <nlohmann/json.hpp>
 
-#include <unordered_set>
 #include <vector>
 
 constexpr const char* globalSchema = "global.json";
@@ -15,7 +16,7 @@ class Configuration
 {
   public:
     explicit Configuration();
-    std::unordered_set<std::string> probeInterfaces;
+    std::vector<ConfigRecord> configRecords;
     std::vector<nlohmann::json> configurations;
 
   private:
