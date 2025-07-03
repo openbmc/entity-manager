@@ -18,8 +18,8 @@
 #pragma once
 
 #include "../utils.hpp"
-#include "dbus_interface.hpp"
 #include "configuration.hpp"
+#include "dbus_interface.hpp"
 #include "topology.hpp"
 
 #include <systemd/sd-journal.h>
@@ -70,7 +70,7 @@ class EntityManager
 
     void startRemovedTimer(boost::asio::steady_timer& timer,
                            nlohmann::json& systemConfiguration);
-    void initFilters(const std::unordered_set<std::string>& probeInterfaces);
+    void initFilters(const std::vector<DbusProbe>& probes);
 };
 
 inline void logDeviceAdded(const nlohmann::json& record)

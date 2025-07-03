@@ -12,6 +12,7 @@ executable(
     'configuration.cpp',
     'expression.cpp',
     'dbus_interface.cpp',
+    'dbus_probe.cpp',
     'perform_scan.cpp',
     'perform_probe.cpp',
     'overlay.cpp',
