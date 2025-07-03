@@ -191,12 +191,13 @@ static std::string getRecordName(const DBusInterface& probe,
     return std::to_string(std::hash<std::string>{}(probeName + device.dump()));
 }
 
-scan::PerformScan::PerformScan(EntityManager& em,
-                               nlohmann::json& missingConfigurations,
-                               std::vector<nlohmann::json>& configurations,
-                               std::function<void()>&& callback) :
+scan::PerformScan::PerformScan(
+    EntityManager& em, nlohmann::json& missingConfigurations,
+    std::vector<nlohmann::json>& configurations, std::vector<DbusProbe>& probes,
+    std::function<void()>&& callback) :
     _em(em), _missingConfigurations(missingConfigurations),
-    _configurations(configurations), _callback(std::move(callback))
+    _configurations(configurations), _probes(probes),
+    _callback(std::move(callback))
 {}
 
 static void pruneRecordExposes(nlohmann::json& record)
@@ -537,54 +538,25 @@ void scan::PerformScan::run()
     boost::container::flat_set<std::string> dbusProbeInterfaces;
     std::vector<std::shared_ptr<probe::PerformProbe>> dbusProbePointers;
 
-    for (auto it = _configurations.begin(); it != _configurations.end();)
+    for (auto it = _probes.begin(); it != _probes.end();)
     {
-        // check for poorly formatted fields, probe must be an array
-        auto findProbe = it->find("Probe");
-        if (findProbe == it->end())
-        {
-            std::cerr << "configuration file missing probe:\n " << *it << "\n";
-            it = _configurations.erase(it);
-            continue;
-        }
-
-        auto findName = it->find("Name");
-        if (findName == it->end())
-        {
-            std::cerr << "configuration file missing name:\n " << *it << "\n";
-            it = _configurations.erase(it);
-            continue;
-        }
-        std::string probeName = *findName;
-
-        if (std::find(passedProbes.begin(), passedProbes.end(), probeName) !=
+        if (std::find(passedProbes.begin(), passedProbes.end(), it->name) !=
             passedProbes.end())
         {
-            it = _configurations.erase(it);
+            it = _probes.erase(it);
             continue;
-        }
-
-        nlohmann::json& recordRef = *it;
-        nlohmann::json probeCommand;
-        if ((*findProbe).type() != nlohmann::json::value_t::array)
-        {
-            probeCommand = nlohmann::json::array();
-            probeCommand.push_back(*findProbe);
-        }
-        else
-        {
-            probeCommand = *findProbe;
         }
 
         // store reference to this to children to makes sure we don't get
         // destroyed too early
         auto thisRef = shared_from_this();
+        nlohmann::json cmd = it->command;
         auto probePointer = std::make_shared<probe::PerformProbe>(
-            recordRef, probeCommand, probeName, thisRef);
+            *it->ref, cmd, it->name, thisRef);
 
         // parse out dbus probes by discarding other probe types, store in a
         // map
-        for (const nlohmann::json& probeJson : probeCommand)
+        for (const nlohmann::json& probeJson : it->command)
         {
             const std::string* probe = probeJson.get_ptr<const std::string*>();
             if (probe == nullptr)
@@ -596,11 +568,11 @@ void scan::PerformScan::run()
             {
                 continue;
             }
-            // syntax requires probe before first open brace
-            auto findStart = probe->find('(');
-            std::string interface = probe->substr(0, findStart);
-            dbusProbeInterfaces.emplace(interface);
             dbusProbePointers.emplace_back(probePointer);
+        }
+        for (auto inf : it->interface)
+        {
+            dbusProbeInterfaces.emplace(inf);
         }
         it++;
     }
@@ -616,7 +588,8 @@ scan::PerformScan::~PerformScan()
     if (_passed)
     {
         auto nextScan = std::make_shared<PerformScan>(
-            _em, _missingConfigurations, _configurations, std::move(_callback));
+            _em, _missingConfigurations, _configurations, _probes,
+            std::move(_callback));
         nextScan->passedProbes = std::move(passedProbes);
         nextScan->dbusProbeObjects = std::move(dbusProbeObjects);
         nextScan->run();
