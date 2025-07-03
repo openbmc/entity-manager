@@ -54,6 +54,24 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "c79c9663_e639e326",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-07-03T16:27:56Z",
+      "side": 1,
+      "message": "\u003e I don\u0027t think Meta should be dictating a \"consistent\" sensor naming schema.\n\nNot dictating, more like\n\n\"if you want a guideline on how to name this sensor, here is a sane solution\"\n\nA document like that could provide guidance in case people want to modify common configs.\n\nAnd provide some guarantees for people that if they edit common configs, it is acceptable to adjust the names to match the conventional style.\n\nOtherwise tomorrow HPE (or someone else) comes along to edit ```cx7_ocp.json``` to fit their naming preference and then your downstream patch breaks 😄",
+      "parentUuid": "b58739aa_5c25ea02",
+      "revId": "f2f2a17c1f4b9a903dc5b6798468ab4ef3426ab2",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "a04511ee_a0ad7429",
@@ -85,6 +103,24 @@
       "side": 1,
       "message": "That\u0027s just how our internal teams at Meta have previously specified the schema for sensors.  All the sensors for all the servers end up in a big database that people can run queries against and there is a common schema for those names to make it easier to run similar queries against different platforms.",
       "parentUuid": "a04511ee_a0ad7429",
+      "revId": "f2f2a17c1f4b9a903dc5b6798468ab4ef3426ab2",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "c97c4cbf_1763d5f3",
+        "filename": "configurations/cx7_ocp.json",
+        "patchSetId": 2
+      },
+      "lineNbr": 16,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-07-03T16:27:56Z",
+      "side": 1,
+      "message": "Changing the name will break anyone who had this exact use-case (storing the values in a database) since their sensor name will change.\n\nAlso it will break folks who are testing their redfish response to contain exactly this sensor name which they expect to be present.\n\nAnd likely a different user of this config will have a different naming scheme.\n\nSome may like to name the sensor the same as in the schematics.\n\nNothing is stable in this complete mess 😄\n\n\nThat being said, my question is answered (thanks!), i do not have anything for or against this change, but a documented naming convention would be nice.\n\nThis could even be in ```configurations/meta/SENSOR_NAMES.md```, just to point people towards \u0027something\u0027.\n\nIf upstream does not come up with some alternative, at least there is some reference in the repo with a rationale for how meta go to the point of suffixing units onto sensor names 😄, and why that\u0027s part of some common configs.",
+      "parentUuid": "1198dcaa_c0c3cfcd",
       "revId": "f2f2a17c1f4b9a903dc5b6798468ab4ef3426ab2",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
