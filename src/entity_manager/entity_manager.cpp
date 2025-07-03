@@ -47,6 +47,8 @@
 #include <iostream>
 #include <map>
 #include <regex>
+#include <unordered_set>
+
 constexpr const char* tempConfigDir = "/tmp/configuration/";
 constexpr const char* lastConfiguration = "/tmp/configuration/last.json";
 
@@ -507,6 +509,7 @@ void EntityManager::propertiesChangedCallback()
 
         auto perfScan = std::make_shared<scan::PerformScan>(
             *this, *missingConfigurations, configuration.configurations,
+            configuration.probes,
             [this, count, oldConfiguration, missingConfigurations]() {
                 // this is something that since ac has been applied to the bmc
                 // we saw, and we no longer see it
@@ -642,9 +645,14 @@ void EntityManager::registerCallback(const std::string& path)
 // org.freedesktop.DBus.Properties signals.  Similarly if a process exits
 // for any reason, expected or otherwise, we'll need a poke to remove
 // entities from DBus.
-void EntityManager::initFilters(
-    const std::unordered_set<std::string>& probeInterfaces)
+void EntityManager::initFilters(const std::vector<DbusProbe>& probes)
 {
+    std::unordered_set<std::string> probeInterfaces;
+    for (const DbusProbe& p : probes)
+    {
+        probeInterfaces.insert(p.name);
+    }
+
     static sdbusplus::bus::match_t nameOwnerChangedMatch(
         static_cast<sdbusplus::bus_t&>(*systemBus),
         sdbusplus::bus::match::rules::nameOwnerChanged(),
@@ -692,7 +700,7 @@ int main()
 
     nlohmann::json systemConfiguration = nlohmann::json::object();
 
-    em.initFilters(em.configuration.probeInterfaces);
+    em.initFilters(em.configuration.probes);
 
     boost::asio::post(io, [&]() { em.propertiesChangedCallback(); });
 

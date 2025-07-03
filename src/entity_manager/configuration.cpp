@@ -1,5 +1,6 @@
 #include "configuration.hpp"
 
+#include "dbus_probe.hpp"
 #include "perform_probe.hpp"
 #include "phosphor-logging/lg2.hpp"
 #include "utils.hpp"
@@ -135,13 +136,22 @@ bool validateJson(const nlohmann::json& schemaFile, const nlohmann::json& input)
 // Extract the D-Bus interfaces to probe from the JSON config files.
 void Configuration::filterProbeInterfaces()
 {
+    std::set<std::string> interfaces;
     for (auto it = configurations.begin(); it != configurations.end();)
     {
         auto findProbe = it->find("Probe");
         if (findProbe == it->end())
         {
             std::cerr << "configuration file missing probe:\n " << *it << "\n";
-            it++;
+            it = configurations.erase(it);
+            continue;
+        }
+
+        auto findName = it->find("Name");
+        if (findName == it->end())
+        {
+            std::cerr << "configuration file missing name:\n " << *it << "\n";
+            it = configurations.erase(it);
             continue;
         }
 
@@ -158,26 +168,29 @@ void Configuration::filterProbeInterfaces()
 
         for (const nlohmann::json& probeJson : probeCommand)
         {
-            const std::string* probe = probeJson.get_ptr<const std::string*>();
-            if (probe == nullptr)
+            const std::string* p = probeJson.get_ptr<const std::string*>();
+            if (p == nullptr)
             {
                 std::cerr << "Probe statement wasn't a string, can't parse";
                 continue;
             }
             // Skip it if the probe cmd doesn't contain an interface.
-            if (probe::findProbeType(*probe))
+            if (probe::findProbeType(*p))
             {
                 continue;
             }
 
             // syntax requires probe before first open brace
-            auto findStart = probe->find('(');
+            auto findStart = p->find('(');
             if (findStart != std::string::npos)
             {
-                std::string interface = probe->substr(0, findStart);
-                probeInterfaces.emplace(interface);
+                std::string interface = p->substr(0, findStart);
+                interfaces.emplace(interface);
             }
         }
+        std::string name = *findName;
+        DbusProbe probe(&name, &probeCommand, *it, &interfaces);
+        probes.push_back(probe);
         it++;
     }
 }

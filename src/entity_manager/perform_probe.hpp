@@ -8,6 +8,8 @@
 #include <string>
 #include <vector>
 
+class Configuration;
+
 namespace probe
 {
 struct CmpStr
