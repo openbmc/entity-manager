@@ -1,0 +1,92 @@
+{
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "$defs": {
+        "SmbpbiVirtualEeprom": {
+            "description": "Virtual eeprom that provides sensor readings in SMBPBI format",
+            "properties": {
+                "Name": {
+                    "description": "The name of the device",
+                    "type": "string"
+                },
+                "Bus": {
+                    "description": "The i2c bus of the device",
+                    "type": "number"
+                },
+                "Address": {
+                    "description": "The i2c address of the device",
+                    "type": "string"
+                },
+                "ReadOffset": {
+                    "description": "The sensor reading offset in the virtual eeprom",
+                    "type": "number"
+                },
+                "Units": {
+                    "description": "The units of the sensor reading",
+                    "type": "string"
+                },
+                "PollRate": {
+                    "description": "Poll the device at this rate, specified in seconds, to fetch sensor readings",
+                    "type": "number"
+                },
+                "MinValue": {
+                    "description": "The minimum value of the sensor reading",
+                    "type": "number"
+                },
+                "MaxValue": {
+                    "description": "The maximum value of the sensor reading",
+                    "type": "number"
+                },
+                "ValueType": {
+                    "description": "The type of value to expect from the virtual eeprom",
+                    "type": "string",
+                    "enum": ["UINT64", "FLOAT64"]
+                },
+                "Thresholds": {
+                    "description": "The thresholds for the sensor reading",
+                    "type": "array",
+                    "items": {
+                        "type": "object",
+                        "properties": {
+                            "Direction": {
+                                "description": "The direction of the threshold",
+                                "type": "string",
+                                "enum": ["greater than", "less than"]
+                            },
+                            "Name": {
+                                "description": "The name of the threshold",
+                                "type": "string"
+                            },
+                            "Severity": {
+                                "description": "The severity of the threshold",
+                                "type": "number",
+                                "enum": [0, 1, 2, 3, 4, 5]
+                            },
+                            "Value": {
+                                "description": "The value of the threshold",
+                                "type": "number"
+                            }
+                        }
+                    }
+                },
+                "Type": {
+                    "type": "string",
+                    "const": "SmbpbiVirtualEeprom"
+                }
+            },
+            "required": [
+                "Name",
+                "Bus",
+                "Address",
+                "ReadOffset",
+                "Units",
+                "PollRate",
+                "MinValue",
+                "MaxValue",
+                "ValueType",
+                "Thresholds",
+                "Type"
+            ],
+            "type": "object"
+        }
+    }
+}
