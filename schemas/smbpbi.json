@@ -1,0 +1,63 @@
+{
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "$defs": {
+        "SmbpbiVirtualEeprom": {
+            "description": "Virtual eeprom that provides sensor readings in Nvidia SMBPBI format",
+            "properties": {
+                "Name": {
+                    "$ref": "legacy.json#/$defs/Types/Name"
+                },
+                "Bus": {
+                    "$ref": "legacy.json#/$defs/Types/Bus"
+                },
+                "Address": {
+                    "$ref": "legacy.json#/$defs/Types/Address"
+                },
+                "ReadOffset": {
+                    "description": "The sensor reading offset in the virtual eeprom",
+                    "type": "number"
+                },
+                "Units": {
+                    "description": "The units of the sensor reading",
+                    "type": "string"
+                },
+                "PollRate": {
+                    "description": "Poll the device at this rate, specified in seconds, to fetch sensor readings",
+                    "type": "number"
+                },
+                "MinValue": {
+                    "$ref": "legacy.json#/$defs/Types/MinValue"
+                },
+                "MaxValue": {
+                    "$ref": "legacy.json#/$defs/Types/MaxValue"
+                },
+                "ValueType": {
+                    "description": "The type of value to expect from the virtual eeprom",
+                    "type": "string",
+                    "enum": ["UINT64", "FLOAT64"]
+                },
+                "Thresholds": {
+                    "$ref": "legacy.json#/$defs/Types/Thresholds"
+                },
+                "Type": {
+                    "type": "string",
+                    "const": "SmbpbiVirtualEeprom"
+                }
+            },
+            "required": [
+                "Name",
+                "Bus",
+                "Address",
+                "ReadOffset",
+                "Units",
+                "PollRate",
+                "MinValue",
+                "MaxValue",
+                "ValueType",
+                "Thresholds",
+                "Type"
+            ],
+            "type": "object"
+        }
+    }
+}
