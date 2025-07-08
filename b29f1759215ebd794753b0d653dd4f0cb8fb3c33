@@ -55,6 +55,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "8b1a8967_71d694e3",
+        "filename": "schemas/smbpbi.json",
+        "patchSetId": 6
+      },
+      "lineNbr": 27,
+      "author": {
+        "id": 1002169
+      },
+      "writtenOn": "2025-07-08T18:03:06Z",
+      "side": 1,
+      "message": "seconds is accurate per spec. For context, the sensor polls readings from a virtual eeprom over i2c.",
+      "parentUuid": "11dd531f_0ad50386",
+      "revId": "b29f1759215ebd794753b0d653dd4f0cb8fb3c33",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "1919a5ff_2f144f08",
         "filename": "schemas/smbpbi.json",
         "patchSetId": 6
@@ -66,6 +84,24 @@
       "writtenOn": "2025-07-08T00:20:50Z",
       "side": 1,
       "message": "Can you reference the threshold schema like this:\n```\"$ref\": \"#/$defs/Types/Thresholds\"```\n\nor is there something specific about this one which makes it different.\n\nSame for some of the other properties, they might already have schema definitions.",
+      "revId": "b29f1759215ebd794753b0d653dd4f0cb8fb3c33",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6d30d611_0abec6dd",
+        "filename": "schemas/smbpbi.json",
+        "patchSetId": 6
+      },
+      "lineNbr": 45,
+      "author": {
+        "id": 1002169
+      },
+      "writtenOn": "2025-07-08T18:03:06Z",
+      "side": 1,
+      "message": "Done, looks like I had to reference these properties in the legacy schema, please let me know if that needs to change.",
+      "parentUuid": "1919a5ff_2f144f08",
       "revId": "b29f1759215ebd794753b0d653dd4f0cb8fb3c33",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
