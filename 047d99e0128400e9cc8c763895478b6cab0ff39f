@@ -58,6 +58,46 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": true,
+      "key": {
+        "uuid": "9a0792e8_9da56f84",
+        "filename": "src/fru_device/fru_utils.cpp",
+        "patchSetId": 11
+      },
+      "lineNbr": 1189,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2025-07-08T18:20:36Z",
+      "side": 1,
+      "message": "I really would\u0027ve expected this funtion to be\n\nif (ENABLE_FRU_UPDATE_PROPERTY){\n   return true;\n}\nreturn fieldName \u003d\u003d \"PRODUCT_ASSET_TAG\";\n\n\nI don\u0027t understand why the rest of the function exists if we\u0027re only supporting \"asset only\" or \"all\"",
+      "range": {
+        "startLine": 1189,
+        "startChar": 5,
+        "endLine": 1189,
+        "endChar": 20
+      },
+      "revId": "047d99e0128400e9cc8c763895478b6cab0ff39f",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2e861a0f_95284ab4",
+        "filename": "src/fru_device/fru_utils.cpp",
+        "patchSetId": 11
+      },
+      "lineNbr": 1202,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2025-07-08T18:20:36Z",
+      "side": 1,
+      "message": "Where did this list come from?",
+      "revId": "047d99e0128400e9cc8c763895478b6cab0ff39f",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": false,
       "key": {
         "uuid": "aecedd43_f5f162c2",
@@ -71,6 +111,23 @@
       "writtenOn": "2025-07-01T12:10:04Z",
       "side": 1,
       "message": "nit: \n\nThis can be a separate function to extract the \u0027base\u0027 name of the field without the prefix area and trailing digits.\n\n\nJust an idea and probably not needed since the function is already well-tested.",
+      "revId": "047d99e0128400e9cc8c763895478b6cab0ff39f",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "726cb86a_4295b891",
+        "filename": "src/fru_device/fru_utils.cpp",
+        "patchSetId": 11
+      },
+      "lineNbr": 1223,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2025-07-08T18:20:36Z",
+      "side": 1,
+      "message": "This function doesn\u0027t really look like I would expect.",
       "revId": "047d99e0128400e9cc8c763895478b6cab0ff39f",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
