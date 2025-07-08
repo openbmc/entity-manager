@@ -1,0 +1,55 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f3f2f42b_da8fbf24",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 6
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-07-08T00:20:50Z",
+      "side": 1,
+      "message": "Can you kindly link to SMBPBI spec.\n\nI did a quick search but could not find any document directly.",
+      "revId": "b29f1759215ebd794753b0d653dd4f0cb8fb3c33",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "11dd531f_0ad50386",
+        "filename": "schemas/smbpbi.json",
+        "patchSetId": 6
+      },
+      "lineNbr": 27,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-07-08T00:20:50Z",
+      "side": 1,
+      "message": "specifying poll rate in seconds sounds limiting, can we make it milliseconds?\n\nJust asking, not familiar SMBPBI spec.",
+      "revId": "b29f1759215ebd794753b0d653dd4f0cb8fb3c33",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1919a5ff_2f144f08",
+        "filename": "schemas/smbpbi.json",
+        "patchSetId": 6
+      },
+      "lineNbr": 45,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-07-08T00:20:50Z",
+      "side": 1,
+      "message": "Can you reference the threshold schema like this:\n```\"$ref\": \"#/$defs/Types/Thresholds\"```\n\nor is there something specific about this one which makes it different.\n\nSame for some of the other properties, they might already have schema definitions.",
+      "revId": "b29f1759215ebd794753b0d653dd4f0cb8fb3c33",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    }
+  ]
+}
