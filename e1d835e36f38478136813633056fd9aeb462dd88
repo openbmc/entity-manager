@@ -69,6 +69,24 @@
       "parentUuid": "507ee9fb_ff46190a",
       "revId": "e1d835e36f38478136813633056fd9aeb462dd88",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5402010d_7a3b0a31",
+        "filename": "meson.build",
+        "patchSetId": 2
+      },
+      "lineNbr": 110,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2025-07-08T18:13:03Z",
+      "side": 1,
+      "message": "I think that\u0027s a bug in the implementation in src/meson.build.  If we can have unit tests in the sub folders, we can\u0027t conditionally include them.  We\u0027ll need to refactor a bit.",
+      "parentUuid": "c42e88fc_f70a3e60",
+      "revId": "e1d835e36f38478136813633056fd9aeb462dd88",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }
