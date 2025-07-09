@@ -1,0 +1,30 @@
+[
+    {
+        "Exposes": [],
+        "Name": "$Name",
+        "Probe": "xyz.openbmc_project.Inventory.Source.Modbus.FRU({'Name': 'Heat Exchanger Fan 1.*'})",
+        "Type": "Chassis",
+        "xyz.openbmc_project.Inventory.Decorator.Asset": {
+            "BuildDate": "$BuildDate",
+            "Manufacturer": "$Manufacturer",
+            "Model": "$Model",
+            "PartNumber": "$PartNumber",
+            "SerialNumber": "$SerialNumber",
+            "SparePartNumber": "$SparePartNumber"
+        }
+    },
+    {
+        "Exposes": [],
+        "Name": "$Name",
+        "Probe": "xyz.openbmc_project.Inventory.Source.Modbus.FRU({'Name': 'Heat Exchanger Fan 2.*'})",
+        "Type": "Chassis",
+        "xyz.openbmc_project.Inventory.Decorator.Asset": {
+            "BuildDate": "$BuildDate",
+            "Manufacturer": "$Manufacturer",
+            "Model": "$Model",
+            "PartNumber": "$PartNumber",
+            "SerialNumber": "$SerialNumber",
+            "SparePartNumber": "$SparePartNumber"
+        }
+    }
+]
