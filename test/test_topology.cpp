@@ -13,7 +13,7 @@ const std::string superchassisPath =
 const Association subchassisAssoc =
     std::make_tuple("contained_by", "containing", superchassisPath);
 const Association powerAssoc =
-    std::make_tuple("powered_by", "powering", subchassisPath);
+    std::make_tuple("powering", "powered_by", superchassisPath);
 
 const nlohmann::json subchassisExposesItem = nlohmann::json::parse(R"(
     {
@@ -160,11 +160,10 @@ TEST(Topology, BasicPower)
 
     auto assocs = topo.getAssocs(boards);
 
-    EXPECT_EQ(assocs.size(), 2U);
-    EXPECT_EQ(assocs[subchassisPath].size(), 1U);
+    EXPECT_EQ(assocs.size(), 1U);
+    EXPECT_EQ(assocs[subchassisPath].size(), 2U);
     EXPECT_EQ(assocs[subchassisPath][0], subchassisAssoc);
-    EXPECT_EQ(assocs[superchassisPath].size(), 1U);
-    EXPECT_EQ(assocs[superchassisPath][0], powerAssoc);
+    EXPECT_EQ(assocs[subchassisPath][1], powerAssoc);
 }
 
 TEST(Topology, NoNewBoards)
