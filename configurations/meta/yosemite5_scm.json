@@ -217,6 +217,16 @@
             "Type": "EEPROM"
         },
         {
+            "Address": "0x40",
+            "Bus": 7,
+            "FirmwareInfo": {
+                "CompatibleHardware": "com.meta.Hardware.Yosemite5.CPLD.LCMXO3D_9400HC_scm",
+                "VendorIANA": 40981
+            },
+            "Name": "YV5_SCM_CPLD",
+            "Type": "LatticeLCMXO3D_9400Firmware"
+        },
+        {
             "Address": "0x4B",
             "Bus": 9,
             "Name": "SCM_INLET_TEMP_C",
