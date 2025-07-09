@@ -1068,6 +1068,101 @@
             "Type": "GPIOLeakDetector"
         },
         {
+            "Address": [
+                {
+                    "RangeEnd": 12,
+                    "RangeStart": 12,
+                    "SerialPort": "DevTTYUSB0"
+                }
+            ],
+            "BaudRate": 115200,
+            "DataParity": "Even",
+            "Name": "Reservoir Pumping Unit",
+            "Registers": [
+                {
+                    "Address": 6604,
+                    "Name": "Model",
+                    "Size": 8
+                },
+                {
+                    "Address": 6612,
+                    "Name": "BuildDate",
+                    "Size": 4
+                },
+                {
+                    "Address": 6616,
+                    "Name": "SerialNumber",
+                    "Size": 8
+                },
+                {
+                    "Address": 6652,
+                    "Name": "SparePartNumber",
+                    "Size": 4
+                }
+            ],
+            "Type": "ModbusRTUDetect"
+        },
+        {
+            "Address": [
+                {
+                    "RangeEnd": 12,
+                    "RangeStart": 12,
+                    "SerialPort": "DevTTYUSB0"
+                }
+            ],
+            "BaudRate": 115200,
+            "DataParity": "Even",
+            "Name": "Heat Exchanger",
+            "Registers": [
+                {
+                    "Address": 6656,
+                    "Name": "SparePartNumber",
+                    "Size": 4
+                }
+            ],
+            "Type": "ModbusRTUDetect"
+        },
+        {
+            "Address": [
+                {
+                    "RangeEnd": 12,
+                    "RangeStart": 12,
+                    "SerialPort": "DevTTYUSB0"
+                }
+            ],
+            "BaudRate": 115200,
+            "DataParity": "Even",
+            "Name": "Heat Exchanger Fan 1",
+            "Registers": [
+                {
+                    "Address": 6660,
+                    "Name": "SparePartNumber",
+                    "Size": 4
+                }
+            ],
+            "Type": "ModbusRTUDetect"
+        },
+        {
+            "Address": [
+                {
+                    "RangeEnd": 12,
+                    "RangeStart": 12,
+                    "SerialPort": "DevTTYUSB0"
+                }
+            ],
+            "BaudRate": 115200,
+            "DataParity": "Even",
+            "Name": "Heat Exchanger Fan 2",
+            "Registers": [
+                {
+                    "Address": 6660,
+                    "Name": "SparePartNumber",
+                    "Size": 4
+                }
+            ],
+            "Type": "ModbusRTUDetect"
+        },
+        {
             "Address": "0x4b",
             "Bus": 9,
             "Name": "SCM_TEMP_C",
@@ -1088,6 +1183,16 @@
                 }
             ],
             "Type": "TMP75"
+        },
+        {
+            "BaudRate": 115200,
+            "DeviceAddress": "1e6a1000",
+            "DeviceInterface": 0,
+            "Mode": "RS485",
+            "Name": "DevTTYUSB0",
+            "Port": 0,
+            "RTSDelay": 100,
+            "Type": "USBPort"
         }
     ],
     "Name": "Ventura SCM",
