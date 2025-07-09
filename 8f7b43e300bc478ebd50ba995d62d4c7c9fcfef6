@@ -20,6 +20,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "b2c69c64_577062d9",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 5
+      },
+      "lineNbr": 11,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-07-09T02:29:18Z",
+      "side": 1,
+      "message": "I would let maintainers comment if they are fine with adding linux specific details (such as path details) into the schema properties descriptions. If they are fine with it, i will go ahead and add it.",
+      "parentUuid": "9563a27f_7a2ce73e",
+      "revId": "8f7b43e300bc478ebd50ba995d62d4c7c9fcfef6",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "accd71a7_0d3d2e21",
         "filename": "schemas/usb_port.json",
         "patchSetId": 5
@@ -31,6 +49,24 @@
       "writtenOn": "2025-06-29T11:16:36Z",
       "side": 1,
       "message": "On line 4 it is \"USB Port\" and in the file name as well,\nbut the description says it\u0027s a \"serial port\".\n\nIs it a serial port exposed via a USB interface?\n\nIf that\u0027s the case, maybe we should adjust the name of this schema, Type and filename to match.\n\nSomething like\n```USBSerialPort``` ?\n\n\nHowever modbus serial line protocol does not require a USB device, right?\n\nMaybe it can just be\n```\nSerialPort\n```\nor\n```\nModbusSerialPort\n```",
+      "revId": "8f7b43e300bc478ebd50ba995d62d4c7c9fcfef6",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "7c986c7d_144d2e38",
+        "filename": "schemas/usb_port.json",
+        "patchSetId": 5
+      },
+      "lineNbr": 4,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-07-09T02:29:18Z",
+      "side": 1,
+      "message": "\u003e On line 4 it is \"USB Port\" and in the file name as well,\n\u003e but the description says it\u0027s a \"serial port\".\n\nChanged the description to reflect USB.\n\n\u003e \n\u003e Is it a serial port exposed via a USB interface?\n\nAll USB (Universal Serial Bus) ports are serial.\n\n\u003e \n\u003e If that\u0027s the case, maybe we should adjust the name of this schema, Type and filename to match.\n\u003e \n\u003e Something like\n\u003e ```USBSerialPort``` ?\n\nUSB - Universal Serial Bus, so adding Serial makes it redundant, hence i didn\u0027t add it.\n\n\u003e \n\u003e \n\u003e However modbus serial line protocol does not require a USB device, right?\n\u003e \n\u003e Maybe it can just be\n\u003e ```\n\u003e SerialPort\n\u003e ```\n\u003e or\n\u003e ```\n\u003e ModbusSerialPort\n\u003e ```\n\nHere i am specifically modeling a USB port as properties of USB ports are being mentioned. For other type of serial ports a different schema definition can be added as per need in future.",
+      "parentUuid": "accd71a7_0d3d2e21",
       "revId": "8f7b43e300bc478ebd50ba995d62d4c7c9fcfef6",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
