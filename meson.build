@@ -45,7 +45,7 @@ endif
 
 systemd = dependency('systemd')
 systemd_system_unit_dir = systemd.get_variable(
-    'systemdsystemunitdir',
+    'systemd_system_unit_dir',
     pkgconfig_define: ['prefix', get_option('prefix')],
 )
 packagedir = join_paths(
