@@ -72,8 +72,8 @@ std::unordered_map<std::string, std::vector<Association>> Topology::getAssocs(
                                                         "containing", upstream);
                         if (powerPaths.contains(downstream))
                         {
-                            result[upstream].emplace_back(
-                                "powered_by", "powering", downstream);
+                            result[downstream].emplace_back(
+                                "powering", "powered_by", upstream);
                         }
                     }
                 }
