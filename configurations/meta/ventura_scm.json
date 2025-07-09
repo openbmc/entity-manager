@@ -978,6 +978,51 @@
                 }
             ],
             "Type": "TMP75"
+        },
+        {
+            "Address": [
+                {
+                    "RangeEnd": 12,
+                    "RangeStart": 12,
+                    "SerialPort": "DevTTYUSB0"
+                }
+            ],
+            "BaudRate": 115200,
+            "DataParity": "Even",
+            "Name": "QuantaAALCRPU",
+            "Registers": [
+                {
+                    "Address": 6604,
+                    "Name": "Model",
+                    "Size": 8
+                },
+                {
+                    "Address": 6612,
+                    "Name": "BuildDate",
+                    "Size": 4
+                },
+                {
+                    "Address": 6616,
+                    "Name": "SerialNumber",
+                    "Size": 8
+                },
+                {
+                    "Address": 6596,
+                    "Name": "SparePartNumber",
+                    "Size": 8
+                }
+            ],
+            "Type": "ModbusRTUDetect"
+        },
+        {
+            "BaudRate": 115200,
+            "DeviceAddress": "1e6a1000",
+            "DeviceInterface": 0,
+            "Mode": "RS485",
+            "Name": "DevTTYUSB0",
+            "Port": 0,
+            "RTSDelay": 100,
+            "Type": "USBPort"
         }
     ],
     "Name": "Ventura SCM",
