@@ -953,6 +953,22 @@
                 }
             ],
             "Type": "SBTSI"
+        },
+        {
+            "FirmwareInfo": {
+                "CompatibleHardware": "com.meta.Hardware.Yosemite5.SPI.Host",
+                "VendorIANA": 40981
+            },
+            "MuxOutputs": [
+                {
+                    "Name": "FM_BMC_MUX1_SEL",
+                    "Polarity": "High"
+                }
+            ],
+            "Name": "Yosemite5_BIOS",
+            "SPIControllerIndex": 1,
+            "SPIDeviceIndex": 0,
+            "Type": "SPIFlash"
         }
     ],
     "Name": "Yosemite5 MB",
