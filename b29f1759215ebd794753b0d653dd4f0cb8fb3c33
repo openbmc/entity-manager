@@ -38,6 +38,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "3e62eefa_f0e345a0",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 6
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-07-10T09:19:33Z",
+      "side": 1,
+      "message": "Can we note that down in the commit message and\nin the schema \u0027description\u0027.\n\nSomething like\n\n`\u0027SMBPBI\u0027 is a closed nvidia specification`\n\nThen it will be clear that it\u0027s not something anyone can simply edit and refactor.",
+      "parentUuid": "954d06e7_03174997",
+      "revId": "b29f1759215ebd794753b0d653dd4f0cb8fb3c33",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "11dd531f_0ad50386",
         "filename": "schemas/smbpbi.json",
         "patchSetId": 6
@@ -67,6 +85,24 @@
       "side": 1,
       "message": "seconds is accurate per spec. For context, the sensor polls readings from a virtual eeprom over i2c.",
       "parentUuid": "11dd531f_0ad50386",
+      "revId": "b29f1759215ebd794753b0d653dd4f0cb8fb3c33",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "187e2d8d_998e53b1",
+        "filename": "schemas/smbpbi.json",
+        "patchSetId": 6
+      },
+      "lineNbr": 27,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-07-10T09:19:33Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "8b1a8967_71d694e3",
       "revId": "b29f1759215ebd794753b0d653dd4f0cb8fb3c33",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
@@ -102,6 +138,24 @@
       "side": 1,
       "message": "Done, looks like I had to reference these properties in the legacy schema, please let me know if that needs to change.",
       "parentUuid": "1919a5ff_2f144f08",
+      "revId": "b29f1759215ebd794753b0d653dd4f0cb8fb3c33",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "481d68b0_c832acad",
+        "filename": "schemas/smbpbi.json",
+        "patchSetId": 6
+      },
+      "lineNbr": 45,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-07-10T09:19:33Z",
+      "side": 1,
+      "message": "I have a patch for that https://gerrit.openbmc.org/c/openbmc/entity-manager/+/81553\n\nsince these common schemas are used in new schema development, they can be split from the legacy sensor schemas.\n\nLooks like your schema is using these standard definitions now so it looks ok to me from that perspective. Thanks!",
+      "parentUuid": "6d30d611_0abec6dd",
       "revId": "b29f1759215ebd794753b0d653dd4f0cb8fb3c33",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
