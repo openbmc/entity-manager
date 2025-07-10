@@ -87,6 +87,24 @@
       "parentUuid": "c42e88fc_f70a3e60",
       "revId": "e1d835e36f38478136813633056fd9aeb462dd88",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e72aa926_11a14b40",
+        "filename": "meson.build",
+        "patchSetId": 2
+      },
+      "lineNbr": 110,
+      "author": {
+        "id": 1001426
+      },
+      "writtenOn": "2025-07-10T11:39:43Z",
+      "side": 1,
+      "message": "The condition was included because when building entity-manager with gpio-presence enabled, there is error: \n\n```\nmeson.build:87: WARNING: Project targets \u0027\u003e\u003d1.1.1\u0027 but uses feature introduced in \u00271.3.0\u0027: fs.relative_to.\nRun-time dependency dbus-1 found: YES 1.14.10\n\nmeson.build:118:4: ERROR: Tried to enter directory \"src/gpio-presence\", which has already been visited.\n```\nOptions:\n1. I think adding condition is best.\n2. I can modify test/meson.build to not use the variable \u0027gpio_presence_lib\u0027 \u0026 instead refer the files using relative path.\n\nAny other suggestion?\n@ed@tanous.net Please let me know what fits best.\nThanks 😊",
+      "parentUuid": "5402010d_7a3b0a31",
+      "revId": "e1d835e36f38478136813633056fd9aeb462dd88",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }
