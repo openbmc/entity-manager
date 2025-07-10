@@ -50,6 +50,30 @@
     {
       "unresolved": false,
       "key": {
+        "uuid": "5a72e3aa_bd8c5aec",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 6
+      },
+      "lineNbr": 10,
+      "author": {
+        "id": 1001497
+      },
+      "writtenOn": "2025-07-10T10:07:58Z",
+      "side": 1,
+      "message": "Hello,\nI have modified as per my above comment. Please review.",
+      "parentUuid": "8d6d0aaf_e604d948",
+      "range": {
+        "startLine": 9,
+        "startChar": 0,
+        "endLine": 10,
+        "endChar": 60
+      },
+      "revId": "868d6752a0f42a5140403163a4c92c9b7d840eb6",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
         "uuid": "5b988afd_8927b3bc",
         "filename": "/PATCHSET_LEVEL",
         "patchSetId": 6
@@ -116,6 +140,24 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "5c54c904_cb36248a",
+        "filename": "src/fru_device/fru_dcscm.cpp",
+        "patchSetId": 6
+      },
+      "lineNbr": 27,
+      "author": {
+        "id": 1001497
+      },
+      "writtenOn": "2025-07-10T10:07:58Z",
+      "side": 1,
+      "message": "Hi,\nRemoved the enum and added as a variable in the method.",
+      "parentUuid": "1c8907fe_57ba723e",
+      "revId": "868d6752a0f42a5140403163a4c92c9b7d840eb6",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "4e3cf51e_e8949dab",
@@ -139,6 +181,30 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "8633c380_01ec672a",
+        "filename": "src/fru_device/fru_dcscm.cpp",
+        "patchSetId": 6
+      },
+      "lineNbr": 47,
+      "author": {
+        "id": 1001497
+      },
+      "writtenOn": "2025-07-10T10:07:58Z",
+      "side": 1,
+      "message": "Hi,\nImplemented using std::format",
+      "parentUuid": "4e3cf51e_e8949dab",
+      "range": {
+        "startLine": 47,
+        "startChar": 0,
+        "endLine": 47,
+        "endChar": 40
+      },
+      "revId": "868d6752a0f42a5140403163a4c92c9b7d840eb6",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "3f312a3a_19114f71",
@@ -152,6 +218,30 @@
       "writtenOn": "2025-06-24T16:53:50Z",
       "side": 1,
       "message": "why static_cast here?  *iter is already uint8_t",
+      "range": {
+        "startLine": 61,
+        "startChar": 18,
+        "endLine": 61,
+        "endChar": 38
+      },
+      "revId": "868d6752a0f42a5140403163a4c92c9b7d840eb6",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "a4889bf2_f0220c02",
+        "filename": "src/fru_device/fru_dcscm.cpp",
+        "patchSetId": 6
+      },
+      "lineNbr": 61,
+      "author": {
+        "id": 1001497
+      },
+      "writtenOn": "2025-07-10T10:07:58Z",
+      "side": 1,
+      "message": "Hi,\nChanged the implementation.",
+      "parentUuid": "3f312a3a_19114f71",
       "range": {
         "startLine": 61,
         "startChar": 18,
@@ -232,6 +322,30 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "deb15953_da94053d",
+        "filename": "src/fru_device/fru_dcscm.cpp",
+        "patchSetId": 6
+      },
+      "lineNbr": 84,
+      "author": {
+        "id": 1001497
+      },
+      "writtenOn": "2025-07-10T10:07:58Z",
+      "side": 1,
+      "message": "Hi,\nused std::format for the implementation.",
+      "parentUuid": "32dd548c_5893243d",
+      "range": {
+        "startLine": 80,
+        "startChar": 0,
+        "endLine": 84,
+        "endChar": 29
+      },
+      "revId": "868d6752a0f42a5140403163a4c92c9b7d840eb6",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "f7582247_98b45fe6",
@@ -245,6 +359,30 @@
       "writtenOn": "2025-06-24T16:53:50Z",
       "side": 1,
       "message": "should be setw(len * 2), right?",
+      "range": {
+        "startLine": 93,
+        "startChar": 22,
+        "endLine": 93,
+        "endChar": 33
+      },
+      "revId": "868d6752a0f42a5140403163a4c92c9b7d840eb6",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "81ceffa2_f10ea73a",
+        "filename": "src/fru_device/fru_dcscm.cpp",
+        "patchSetId": 6
+      },
+      "lineNbr": 93,
+      "author": {
+        "id": 1001497
+      },
+      "writtenOn": "2025-07-10T10:07:58Z",
+      "side": 1,
+      "message": "Hi,\nChanged the implementation.",
+      "parentUuid": "f7582247_98b45fe6",
       "range": {
         "startLine": 93,
         "startChar": 22,
@@ -325,6 +463,30 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "d0bb0128_ad541fa7",
+        "filename": "src/fru_device/fru_dcscm.cpp",
+        "patchSetId": 6
+      },
+      "lineNbr": 126,
+      "author": {
+        "id": 1001497
+      },
+      "writtenOn": "2025-07-10T10:07:58Z",
+      "side": 1,
+      "message": "Hello,\nI added a new method for the common portions the two multi-record functions.",
+      "parentUuid": "3e852988_db2e490c",
+      "range": {
+        "startLine": 126,
+        "startChar": 20,
+        "endLine": 126,
+        "endChar": 44
+      },
+      "revId": "868d6752a0f42a5140403163a4c92c9b7d840eb6",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "a38d14d8_1ec7615c",
@@ -338,6 +500,30 @@
       "writtenOn": "2025-06-24T16:53:50Z",
       "side": 1,
       "message": "Shouldn\u0027t these be replaced with fruBytesIter?  I see device.begin() + areaOffset is calculated 5 times in this method.",
+      "range": {
+        "startLine": 173,
+        "startChar": 12,
+        "endLine": 173,
+        "endChar": 39
+      },
+      "revId": "868d6752a0f42a5140403163a4c92c9b7d840eb6",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "ccfdf7b0_a370d37f",
+        "filename": "src/fru_device/fru_dcscm.cpp",
+        "patchSetId": 6
+      },
+      "lineNbr": 173,
+      "author": {
+        "id": 1001497
+      },
+      "writtenOn": "2025-07-10T10:07:58Z",
+      "side": 1,
+      "message": "Hi,\nChanged to fruBytesIter in the current implementation.",
+      "parentUuid": "a38d14d8_1ec7615c",
       "range": {
         "startLine": 173,
         "startChar": 12,
@@ -412,6 +598,24 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "a8660da7_b331f9a0",
+        "filename": "src/fru_device/fru_dcscm.hpp",
+        "patchSetId": 6
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 1001497
+      },
+      "writtenOn": "2025-07-10T10:07:58Z",
+      "side": 1,
+      "message": "Acknowledged... Will work on it in the other patch set.",
+      "parentUuid": "9e359a19_03359740",
+      "revId": "868d6752a0f42a5140403163a4c92c9b7d840eb6",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "c1cf14c8_82e09f37",
@@ -448,6 +652,54 @@
       "writtenOn": "2025-06-24T16:53:50Z",
       "side": 1,
       "message": "typo",
+      "range": {
+        "startLine": 26,
+        "startChar": 57,
+        "endLine": 26,
+        "endChar": 61
+      },
+      "revId": "868d6752a0f42a5140403163a4c92c9b7d840eb6",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "8e57b436_2c066cfd",
+        "filename": "src/fru_device/fru_dcscm.hpp",
+        "patchSetId": 6
+      },
+      "lineNbr": 26,
+      "author": {
+        "id": 1001497
+      },
+      "writtenOn": "2025-07-10T10:07:58Z",
+      "side": 1,
+      "message": "Hi,\nChanged to constant expression.",
+      "parentUuid": "c1cf14c8_82e09f37",
+      "range": {
+        "startLine": 26,
+        "startChar": 11,
+        "endLine": 26,
+        "endChar": 17
+      },
+      "revId": "868d6752a0f42a5140403163a4c92c9b7d840eb6",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "cd586637_bd9d997e",
+        "filename": "src/fru_device/fru_dcscm.hpp",
+        "patchSetId": 6
+      },
+      "lineNbr": 26,
+      "author": {
+        "id": 1001497
+      },
+      "writtenOn": "2025-07-10T10:07:58Z",
+      "side": 1,
+      "message": "Hi,\nCorrected the typing mistake.",
+      "parentUuid": "f3cc374b_0f596a07",
       "range": {
         "startLine": 26,
         "startChar": 57,
