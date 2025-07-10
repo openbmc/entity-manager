@@ -18,6 +18,24 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "312f6738_0a0a53ba",
+        "filename": "meson.options",
+        "patchSetId": 11
+      },
+      "lineNbr": 11,
+      "author": {
+        "id": 1001426
+      },
+      "writtenOn": "2025-07-10T11:59:49Z",
+      "side": 1,
+      "message": "I remember Ed asked for default all.",
+      "parentUuid": "8a6b1c98_4d82f86e",
+      "revId": "047d99e0128400e9cc8c763895478b6cab0ff39f",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "8cc99e7d_5703df64",
@@ -31,6 +49,30 @@
       "writtenOn": "2025-07-08T18:15:03Z",
       "side": 1,
       "message": "?  Unrelated?",
+      "range": {
+        "startLine": 41,
+        "startChar": 11,
+        "endLine": 41,
+        "endChar": 16
+      },
+      "revId": "047d99e0128400e9cc8c763895478b6cab0ff39f",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d95131af_7026733c",
+        "filename": "meson.options",
+        "patchSetId": 11
+      },
+      "lineNbr": 41,
+      "author": {
+        "id": 1001426
+      },
+      "writtenOn": "2025-07-10T11:59:49Z",
+      "side": 1,
+      "message": "yes. sorry I pushed without checking. will remove in next patch.",
+      "parentUuid": "8cc99e7d_5703df64",
       "range": {
         "startLine": 41,
         "startChar": 11,
@@ -81,6 +123,30 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "2b06a67f_6088b52f",
+        "filename": "src/fru_device/fru_utils.cpp",
+        "patchSetId": 11
+      },
+      "lineNbr": 1189,
+      "author": {
+        "id": 1001426
+      },
+      "writtenOn": "2025-07-10T11:59:49Z",
+      "side": 1,
+      "message": "There are certain exception in editing the properties. Currently updating field is limited to that listed in variable: editableFields \nExample: handling updation of CHASSIS_TYPE, PRODUCT_LANGUAGE_CODE, BOARD_MANUFACTURE_DATE \u0026 multirecord fields.",
+      "parentUuid": "9a0792e8_9da56f84",
+      "range": {
+        "startLine": 1189,
+        "startChar": 5,
+        "endLine": 1189,
+        "endChar": 20
+      },
+      "revId": "047d99e0128400e9cc8c763895478b6cab0ff39f",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "2e861a0f_95284ab4",
@@ -94,6 +160,24 @@
       "writtenOn": "2025-07-08T18:20:36Z",
       "side": 1,
       "message": "Where did this list come from?",
+      "revId": "047d99e0128400e9cc8c763895478b6cab0ff39f",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "c4677be7_1e4ad90d",
+        "filename": "src/fru_device/fru_utils.cpp",
+        "patchSetId": 11
+      },
+      "lineNbr": 1202,
+      "author": {
+        "id": 1001426
+      },
+      "writtenOn": "2025-07-10T11:59:49Z",
+      "side": 1,
+      "message": "These are superset of variable chassisFruAreas , boardFruAreas, productFruAreas \u0026 fruCustomFieldName .\n\nhttps://github.com/openbmc/entity-manager/blob/master/src/fru_device/fru_utils.hpp#L82",
+      "parentUuid": "2e861a0f_95284ab4",
       "revId": "047d99e0128400e9cc8c763895478b6cab0ff39f",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
@@ -134,6 +218,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "0be3acb3_42bc25b3",
+        "filename": "src/fru_device/fru_utils.cpp",
+        "patchSetId": 11
+      },
+      "lineNbr": 1223,
+      "author": {
+        "id": 1001426
+      },
+      "writtenOn": "2025-07-10T11:59:49Z",
+      "side": 1,
+      "message": "For the function isFieldEditable:\nI\u0027m not having clarity on what I might have missed but please let me know what needs to be fixed here. I\u0027ll work on it to level needed.\nThanks.",
+      "parentUuid": "726cb86a_4295b891",
+      "revId": "047d99e0128400e9cc8c763895478b6cab0ff39f",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "53bab610_b7757ef2",
         "filename": "src/fru_device/meson.build",
         "patchSetId": 11
@@ -145,6 +247,30 @@
       "writtenOn": "2025-07-08T18:14:50Z",
       "side": 1,
       "message": "nit, can we clean this up a little?  we\u0027re appending arrays on duplicate lines.",
+      "range": {
+        "startLine": 8,
+        "startChar": 0,
+        "endLine": 10,
+        "endChar": 1
+      },
+      "revId": "047d99e0128400e9cc8c763895478b6cab0ff39f",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4465a09c_15ba8a5e",
+        "filename": "src/fru_device/meson.build",
+        "patchSetId": 11
+      },
+      "lineNbr": 10,
+      "author": {
+        "id": 1001426
+      },
+      "writtenOn": "2025-07-10T11:59:49Z",
+      "side": 1,
+      "message": "Ya sure. In next patchset will make it something like:\n```\ncpp_args_fd_extra \u003d [\n    \u0027-DFRU_DEVICE_16BITDETECTMODE\u003d\"\u0027 + get_option(\u0027fru-device-16bitdetectmode\u0027) + \u0027\"\u0027,\n    \u0027-DENABLE_FRU_UPDATE_PROPERTY\u003d\u0027 + (get_option(\u0027fru-device-update-property\u0027) \u003d\u003d \u0027all\u0027 ? \u00271\u0027 : \u00270\u0027),\n]\n```\n\nPlease let me know if this looks fine.",
+      "parentUuid": "53bab610_b7757ef2",
       "range": {
         "startLine": 8,
         "startChar": 0,
