@@ -1,17 +1,226 @@
-{
-    "Exposes": [],
-    "Name": "$Name",
-    "Probe": "xyz.openbmc_project.Inventory.Source.DevicePresence({'Name': 'LeakPort*'})",
-    "Type": "Cable",
-    "xyz.openbmc_project.Inventory.Decorator.Asset": {
-        "Manufacturer": "Unknown",
-        "Model": "Unknown",
-        "PartNumber": "Unknown",
-        "SerialNumber": "Unknown",
-        "SparePartNumber": "Unknown"
+[
+    {
+        "Exposes": [],
+        "Name": "$Name",
+        "Probe": [
+            "xyz.openbmc_project.Inventory.Source.DevicePresence({'Name': 'LeakPort1'})",
+            "OR",
+            "xyz.openbmc_project.Inventory.Source.DevicePresence({'Name': 'LeakPort2'})",
+            "OR",
+            "xyz.openbmc_project.Inventory.Source.DevicePresence({'Name': 'LeakPort3'})"
+        ],
+        "Type": "Cable",
+        "xyz.openbmc_project.Inventory.Decorator.Asset": {
+            "Manufacturer": "Unknown",
+            "Model": "Unknown",
+            "PartNumber": "Unknown",
+            "SerialNumber": "Unknown",
+            "SparePartNumber": "07-100391"
+        },
+        "xyz.openbmc_project.Inventory.Decorator.Cable": {
+            "Length": 1.9,
+            "Type": "Copper"
+        }
     },
-    "xyz.openbmc_project.Inventory.Decorator.Cable": {
-        "Length": 0,
-        "Type": "Copper"
+    {
+        "Exposes": [],
+        "Name": "$Name",
+        "Probe": [
+            "xyz.openbmc_project.Inventory.Source.DevicePresence({'Name': 'LeakPort4'})",
+            "OR",
+            "xyz.openbmc_project.Inventory.Source.DevicePresence({'Name': 'LeakPort5'})",
+            "OR",
+            "xyz.openbmc_project.Inventory.Source.DevicePresence({'Name': 'LeakPort6'})"
+        ],
+        "Type": "Cable",
+        "xyz.openbmc_project.Inventory.Decorator.Asset": {
+            "Manufacturer": "Unknown",
+            "Model": "Unknown",
+            "PartNumber": "Unknown",
+            "SerialNumber": "Unknown",
+            "SparePartNumber": "07-100390"
+        },
+        "xyz.openbmc_project.Inventory.Decorator.Cable": {
+            "Length": 1.8,
+            "Type": "Copper"
+        }
+    },
+    {
+        "Exposes": [],
+        "Name": "$Name",
+        "Probe": [
+            "xyz.openbmc_project.Inventory.Source.DevicePresence({'Name': 'LeakPort7'})",
+            "OR",
+            "xyz.openbmc_project.Inventory.Source.DevicePresence({'Name': 'LeakPort8'})"
+        ],
+        "Type": "Cable",
+        "xyz.openbmc_project.Inventory.Decorator.Asset": {
+            "Manufacturer": "Unknown",
+            "Model": "Unknown",
+            "PartNumber": "Unknown",
+            "SerialNumber": "Unknown",
+            "SparePartNumber": "07-100389"
+        },
+        "xyz.openbmc_project.Inventory.Decorator.Cable": {
+            "Length": 1.7,
+            "Type": "Copper"
+        }
+    },
+    {
+        "Exposes": [],
+        "Name": "$Name",
+        "Probe": [
+            "xyz.openbmc_project.Inventory.Source.DevicePresence({'Name': 'LeakPort9'})",
+            "OR",
+            "xyz.openbmc_project.Inventory.Source.DevicePresence({'Name': 'LeakPort10'})"
+        ],
+        "Type": "Cable",
+        "xyz.openbmc_project.Inventory.Decorator.Asset": {
+            "Manufacturer": "Unknown",
+            "Model": "Unknown",
+            "PartNumber": "Unknown",
+            "SerialNumber": "Unknown",
+            "SparePartNumber": "07-100388"
+        },
+        "xyz.openbmc_project.Inventory.Decorator.Cable": {
+            "Length": 1.6,
+            "Type": "Copper"
+        }
+    },
+    {
+        "Exposes": [],
+        "Name": "$Name",
+        "Probe": [
+            "xyz.openbmc_project.Inventory.Source.DevicePresence({'Name': 'LeakPort11'})",
+            "OR",
+            "xyz.openbmc_project.Inventory.Source.DevicePresence({'Name': 'LeakPort12'})",
+            "OR",
+            "xyz.openbmc_project.Inventory.Source.DevicePresence({'Name': 'LeakPort13'})",
+            "OR",
+            "xyz.openbmc_project.Inventory.Source.DevicePresence({'Name': 'LeakPort16'})",
+            "OR",
+            "xyz.openbmc_project.Inventory.Source.DevicePresence({'Name': 'LeakPort17'})"
+        ],
+        "Type": "Cable",
+        "xyz.openbmc_project.Inventory.Decorator.Asset": {
+            "Manufacturer": "Unknown",
+            "Model": "Unknown",
+            "PartNumber": "Unknown",
+            "SerialNumber": "Unknown",
+            "SparePartNumber": "07-100361"
+        },
+        "xyz.openbmc_project.Inventory.Decorator.Cable": {
+            "Length": 1.5,
+            "Type": "Copper"
+        }
+    },
+    {
+        "Exposes": [],
+        "Name": "$Name",
+        "Probe": [
+            "xyz.openbmc_project.Inventory.Source.DevicePresence({'Name': 'LeakPort14'})",
+            "OR",
+            "xyz.openbmc_project.Inventory.Source.DevicePresence({'Name': 'LeakPort15'})"
+        ],
+        "Type": "Cable",
+        "xyz.openbmc_project.Inventory.Decorator.Asset": {
+            "Manufacturer": "Unknown",
+            "Model": "Unknown",
+            "PartNumber": "Unknown",
+            "SerialNumber": "Unknown",
+            "SparePartNumber": "07-100360"
+        },
+        "xyz.openbmc_project.Inventory.Decorator.Cable": {
+            "Length": 1.5,
+            "Type": "Copper"
+        }
+    },
+    {
+        "Exposes": [],
+        "Name": "$Name",
+        "Probe": [
+            "xyz.openbmc_project.Inventory.Source.DevicePresence({'Name': 'LeakPort18'})",
+            "OR",
+            "xyz.openbmc_project.Inventory.Source.DevicePresence({'Name': 'LeakPort19'})",
+            "OR",
+            "xyz.openbmc_project.Inventory.Source.DevicePresence({'Name': 'LeakPort20'})"
+        ],
+        "Type": "Cable",
+        "xyz.openbmc_project.Inventory.Decorator.Asset": {
+            "Manufacturer": "Unknown",
+            "Model": "Unknown",
+            "PartNumber": "Unknown",
+            "SerialNumber": "Unknown",
+            "SparePartNumber": "07-100359"
+        },
+        "xyz.openbmc_project.Inventory.Decorator.Cable": {
+            "Length": 1.3,
+            "Type": "Copper"
+        }
+    },
+    {
+        "Exposes": [],
+        "Name": "$Name",
+        "Probe": [
+            "xyz.openbmc_project.Inventory.Source.DevicePresence({'Name': 'LeakPort21'})",
+            "OR",
+            "xyz.openbmc_project.Inventory.Source.DevicePresence({'Name': 'LeakPort22'})"
+        ],
+        "Type": "Cable",
+        "xyz.openbmc_project.Inventory.Decorator.Asset": {
+            "Manufacturer": "Unknown",
+            "Model": "Unknown",
+            "PartNumber": "Unknown",
+            "SerialNumber": "Unknown",
+            "SparePartNumber": "07-100355"
+        },
+        "xyz.openbmc_project.Inventory.Decorator.Cable": {
+            "Length": 1.2,
+            "Type": "Copper"
+        }
+    },
+    {
+        "Exposes": [],
+        "Name": "$Name",
+        "Probe": [
+            "xyz.openbmc_project.Inventory.Source.DevicePresence({'Name': 'LeakPort23'})",
+            "OR",
+            "xyz.openbmc_project.Inventory.Source.DevicePresence({'Name': 'LeakPort24'})"
+        ],
+        "Type": "Cable",
+        "xyz.openbmc_project.Inventory.Decorator.Asset": {
+            "Manufacturer": "Unknown",
+            "Model": "Unknown",
+            "PartNumber": "Unknown",
+            "SerialNumber": "Unknown",
+            "SparePartNumber": "07-100354"
+        },
+        "xyz.openbmc_project.Inventory.Decorator.Cable": {
+            "Length": 1.1,
+            "Type": "Copper"
+        }
+    },
+    {
+        "Exposes": [],
+        "Name": "$Name",
+        "Probe": [
+            "xyz.openbmc_project.Inventory.Source.DevicePresence({'Name': 'LeakPort25'})",
+            "OR",
+            "xyz.openbmc_project.Inventory.Source.DevicePresence({'Name': 'LeakPort26'})",
+            "OR",
+            "xyz.openbmc_project.Inventory.Source.DevicePresence({'Name': 'LeakPort27'})"
+        ],
+        "Type": "Cable",
+        "xyz.openbmc_project.Inventory.Decorator.Asset": {
+            "Manufacturer": "Unknown",
+            "Model": "Unknown",
+            "PartNumber": "Unknown",
+            "SerialNumber": "Unknown",
+            "SparePartNumber": "07-100633"
+        },
+        "xyz.openbmc_project.Inventory.Decorator.Cable": {
+            "Length": 0.9,
+            "Type": "Copper"
+        }
     }
-}
+]
