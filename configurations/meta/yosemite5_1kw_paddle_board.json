@@ -5,6 +5,42 @@
             "Bus": "$bus",
             "Name": "Yosemite5 Paddle Board FRU",
             "Type": "EEPROM"
+        },
+        {
+            "Address": "0x50",
+            "Bus": 8,
+            "Labels": [
+                "vin",
+                "vout1",
+                "iin",
+                "pin",
+                "temp1"
+            ],
+            "Name": "Paddle_P12V_HSC",
+            "Thresholds": [
+                {
+                    "Direction": "less than",
+                    "Hysteresis": 0.1,
+                    "Label": "temp1",
+                    "Name": "lower critical",
+                    "Severity": 1,
+                    "Value": 5.0
+                },
+                {
+                    "Direction": "greater than",
+                    "Hysteresis": 2.5,
+                    "Label": "temp1",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 125.0
+                }
+            ],
+            "Type": "TPS25990",
+            "iin_Name": "Paddle_HSC_CURR_A",
+            "pin_Name": "Paddle_HSC_PWR_W",
+            "temp1_Name": "Paddle_HSC_TEMP_C",
+            "vin_Name": "Paddle_HSC_VIN_VOLT_V",
+            "vout1_Name": "Paddle_HSC_VOUT_VOLT_V"
         }
     ],
     "Name": "Yosemite5 1KW Paddle Board",
