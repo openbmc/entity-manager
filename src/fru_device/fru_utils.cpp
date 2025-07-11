@@ -678,6 +678,7 @@ ssize_t getFieldLength(uint8_t fruFieldTypeLenValue)
 
 bool validateHeader(const std::array<uint8_t, I2C_SMBUS_BLOCK_MAX>& blockData)
 {
+    lg2::debug("My msg~ Y(A_A)Y")
     // ipmi spec format version number is currently at 1, verify it
     if (blockData[0] != fruVersion)
     {
