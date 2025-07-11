@@ -5,6 +5,16 @@
             "Bus": "$bus",
             "Name": "Minerva Aegis FRU",
             "Type": "EEPROM"
+        },
+        {
+            "Address": "0x40",
+            "Bus": 11,
+            "FirmwareInfo": {
+                "CompatibleHardware": "com.meta.Hardware.Harma.CPLD.LCMXO3D_9400HC_aegis",
+                "VendorIANA": 40981
+            },
+            "Name": "Minerva_Aegis_CPLD",
+            "Type": "LatticeLCMXO3D_9400Firmware"
         }
     ],
     "Name": "Minerva Aegis",
