@@ -694,6 +694,7 @@ void EntityManager::initFilters(const std::set<std::string>& probeInterfaces)
 
 int main()
 {
+    lg2::debug("degug message for workshop");
     auto systemBus = std::make_shared<sdbusplus::asio::connection>(io);
     systemBus->request_name("xyz.openbmc_project.EntityManager");
     EntityManager em(systemBus);
