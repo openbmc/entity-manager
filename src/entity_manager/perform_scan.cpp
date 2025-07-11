@@ -16,6 +16,7 @@
 /// \file perform_scan.cpp
 #include "perform_scan.hpp"
 
+#include "dbus_system.hpp"
 #include "perform_probe.hpp"
 #include "utils.hpp"
 
@@ -27,19 +28,6 @@
 
 #include <charconv>
 #include <iostream>
-
-using GetSubTreeType = std::vector<
-    std::pair<std::string,
-              std::vector<std::pair<std::string, std::vector<std::string>>>>>;
-
-constexpr const int32_t maxMapperDepth = 0;
-
-struct DBusInterfaceInstance
-{
-    std::string busName;
-    std::string path;
-    std::string interface;
-};
 
 void getInterfaces(
     const DBusInterfaceInstance& instance,
@@ -575,6 +563,47 @@ void scan::PerformScan::run()
             dbusProbeInterfaces.emplace(inf);
         }
         it++;
+    }
+
+    // Filter already obtained interfaces
+    for (const auto& [path, probeInterfaces] : dbusProbeObjects)
+    {
+        for (const auto& [interface, _] : probeInterfaces)
+        {
+            dbusProbeInterfaces.erase(interface);
+        }
+    }
+
+    if (dbusProbeInterfaces.empty())
+    {
+        return;
+    }
+
+    // Get the tree
+    GetSubTreeType tree;
+    _em.bus->getObjectMapperSubTree(dbusProbePointers, dbusProbeInterfaces,
+                                    tree);
+
+    // Iterate over the tree to get paths, busnames and interfaces
+    for (const auto& [path, object] : tree)
+    {
+        std::cerr << "Loop" << std::endl;
+        _em.registerCallback(path);
+
+        for (const auto& [busname, ifaces] : object)
+        {
+            for (const std::string& iface : ifaces)
+            {
+                if (!boost::algorithm::starts_with(iface, "org.freedesktop"))
+                {
+                    DBusInterface dbusInf;
+                    _em.bus->getInterfaces({busname, path, iface},
+                                           dbusProbePointers, dbusInf);
+                    // Store the result
+                    dbusProbeObjects[path][iface] = dbusInf;
+                }
+            }
+        }
     }
 
     // probe vector stores a shared_ptr to each PerformProbe that cares

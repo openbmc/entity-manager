@@ -21,6 +21,7 @@
 #include "../variant_visitors.hpp"
 #include "configuration.hpp"
 #include "dbus_interface.hpp"
+#include "dbus_system.hpp"
 #include "overlay.hpp"
 #include "perform_scan.hpp"
 #include "topology.hpp"
@@ -77,6 +78,8 @@ EntityManager::EntityManager(
     lastJson(nlohmann::json::object()),
     systemConfiguration(nlohmann::json::object())
 {
+    DbusSystem b(this, systemBus);
+    bus = &b;
     // All other objects that EntityManager currently support are under the
     // inventory subtree.
     // See the discussion at

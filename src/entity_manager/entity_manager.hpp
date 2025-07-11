@@ -30,6 +30,8 @@
 
 #include <string>
 
+class DbusSystem;
+
 class EntityManager
 {
   public:
@@ -43,6 +45,7 @@ class EntityManager
     nlohmann::json lastJson;
     nlohmann::json systemConfiguration;
     Topology topology;
+    DbusSystem* bus;
 
     void propertiesChangedCallback();
     void registerCallback(const std::string& path);
