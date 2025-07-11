@@ -13,6 +13,24 @@
                 "in0"
             ],
             "Name": "PDB1_P52V_SENSE",
+            "Thresholds": [
+                {
+                    "Direction": "greater than",
+                    "Hysteresis": 0.05,
+                    "Label": "in0",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 1
+                },
+                {
+                    "Direction": "less than",
+                    "Hysteresis": 0.05,
+                    "Label": "in0",
+                    "Name": "lower critical",
+                    "Severity": 1,
+                    "Value": -1
+                }
+            ],
             "Type": "INA238",
             "in0_Name": "PDB1_P52V_SENSE_VOLT_V"
         },
@@ -23,6 +41,24 @@
                 "in0"
             ],
             "Name": "PDB1_GND_SENSE",
+            "Thresholds": [
+                {
+                    "Direction": "greater than",
+                    "Hysteresis": 0.05,
+                    "Label": "in0",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 1
+                },
+                {
+                    "Direction": "less than",
+                    "Hysteresis": 0.05,
+                    "Label": "in0",
+                    "Name": "lower critical",
+                    "Severity": 1,
+                    "Value": -1
+                }
+            ],
             "Type": "INA238",
             "in0_Name": "PDB1_GND_SENSE_VOLT_V"
         },
@@ -55,6 +91,36 @@
                 "power1"
             ],
             "Name": "PDB1_P52V_ASIC0_SENSE",
+            "Thresholds": [
+                {
+                    "Direction": "greater than",
+                    "Label": "in1",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 56
+                },
+                {
+                    "Direction": "less than",
+                    "Label": "in1",
+                    "Name": "lower critical",
+                    "Severity": 1,
+                    "Value": 46
+                },
+                {
+                    "Direction": "greater than",
+                    "Label": "curr1",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 31
+                },
+                {
+                    "Direction": "greater than",
+                    "Label": "power1",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 1550
+                }
+            ],
             "Type": "INA238",
             "curr1_Name": "PDB1_P52V_ASIC0_SENSE_CURR_A",
             "in1_Name": "PDB1_P52V_ASIC0_SENSE_VOLT_V",
@@ -69,6 +135,36 @@
                 "power1"
             ],
             "Name": "PDB1_P52V_ASIC1_SENSE",
+            "Thresholds": [
+                {
+                    "Direction": "greater than",
+                    "Label": "in1",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 56
+                },
+                {
+                    "Direction": "less than",
+                    "Label": "in1",
+                    "Name": "lower critical",
+                    "Severity": 1,
+                    "Value": 46
+                },
+                {
+                    "Direction": "greater than",
+                    "Label": "curr1",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 31
+                },
+                {
+                    "Direction": "greater than",
+                    "Label": "power1",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 1550
+                }
+            ],
             "Type": "INA238",
             "curr1_Name": "PDB1_P52V_ASIC1_SENSE_CURR_A",
             "in1_Name": "PDB1_P52V_ASIC1_SENSE_VOLT_V",
@@ -83,6 +179,36 @@
                 "power1"
             ],
             "Name": "PDB1_P52V_ASIC2_SENSE",
+            "Thresholds": [
+                {
+                    "Direction": "greater than",
+                    "Label": "in1",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 56
+                },
+                {
+                    "Direction": "less than",
+                    "Label": "in1",
+                    "Name": "lower critical",
+                    "Severity": 1,
+                    "Value": 46
+                },
+                {
+                    "Direction": "greater than",
+                    "Label": "curr1",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 31
+                },
+                {
+                    "Direction": "greater than",
+                    "Label": "power1",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 1550
+                }
+            ],
             "Type": "INA238",
             "curr1_Name": "PDB1_P52V_ASIC2_SENSE_CURR_A",
             "in1_Name": "PDB1_P52V_ASIC2_SENSE_VOLT_V",
@@ -97,6 +223,36 @@
                 "power1"
             ],
             "Name": "PDB1_P52V_ASIC3_SENSE",
+            "Thresholds": [
+                {
+                    "Direction": "greater than",
+                    "Label": "in1",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 56
+                },
+                {
+                    "Direction": "less than",
+                    "Label": "in1",
+                    "Name": "lower critical",
+                    "Severity": 1,
+                    "Value": 46
+                },
+                {
+                    "Direction": "greater than",
+                    "Label": "curr1",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 31
+                },
+                {
+                    "Direction": "greater than",
+                    "Label": "power1",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 1550
+                }
+            ],
             "Type": "INA238",
             "curr1_Name": "PDB1_P52V_ASIC3_SENSE_CURR_A",
             "in1_Name": "PDB1_P52V_ASIC3_SENSE_VOLT_V",
@@ -264,7 +420,7 @@
                     "Hysteresis": 0.9,
                     "Name": "upper critical",
                     "Severity": 1,
-                    "Value": 45
+                    "Value": 100
                 },
                 {
                     "Direction": "less than",
@@ -286,7 +442,7 @@
                     "Hysteresis": 0.9,
                     "Name": "upper critical",
                     "Severity": 1,
-                    "Value": 45
+                    "Value": 100
                 },
                 {
                     "Direction": "less than",

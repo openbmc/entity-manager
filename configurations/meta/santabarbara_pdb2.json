@@ -269,6 +269,20 @@
                     "Name": "lower critical",
                     "Severity": 1,
                     "Value": 10.8
+                },
+                {
+                    "Direction": "greater than",
+                    "Label": "curr1",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 3.6
+                },
+                {
+                    "Direction": "greater than",
+                    "Label": "power1",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 43.2
                 }
             ],
             "Type": "INA230",
@@ -299,6 +313,20 @@
                     "Name": "lower critical",
                     "Severity": 1,
                     "Value": 10.8
+                },
+                {
+                    "Direction": "greater than",
+                    "Label": "curr1",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 3.6
+                },
+                {
+                    "Direction": "greater than",
+                    "Label": "power1",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 43.2
                 }
             ],
             "Type": "INA230",
@@ -329,6 +357,20 @@
                     "Name": "lower critical",
                     "Severity": 1,
                     "Value": 10.8
+                },
+                {
+                    "Direction": "greater than",
+                    "Label": "curr1",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 3.6
+                },
+                {
+                    "Direction": "greater than",
+                    "Label": "power1",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 43.2
                 }
             ],
             "Type": "INA230",
@@ -359,6 +401,20 @@
                     "Name": "lower critical",
                     "Severity": 1,
                     "Value": 10.8
+                },
+                {
+                    "Direction": "greater than",
+                    "Label": "curr1",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 3.6
+                },
+                {
+                    "Direction": "greater than",
+                    "Label": "power1",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 43.2
                 }
             ],
             "Type": "INA230",
@@ -376,7 +432,7 @@
                     "Hysteresis": 0.9,
                     "Name": "upper critical",
                     "Severity": 1,
-                    "Value": 45
+                    "Value": 100
                 },
                 {
                     "Direction": "less than",
@@ -398,7 +454,7 @@
                     "Hysteresis": 0.9,
                     "Name": "upper critical",
                     "Severity": 1,
-                    "Value": 45
+                    "Value": 100
                 },
                 {
                     "Direction": "less than",
@@ -420,6 +476,43 @@
                 "vout1"
             ],
             "Name": "PDB2_P12V_BRICK0",
+            "Thresholds": [
+                {
+                    "Direction": "greater than",
+                    "Label": "iout1",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 109.78
+                },
+                {
+                    "Direction": "greater than",
+                    "Label": "pout1",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 1384.3258
+                },
+                {
+                    "Direction": "greater than",
+                    "Label": "temp1",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 100
+                },
+                {
+                    "Direction": "greater than",
+                    "Label": "vout1",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 12.61
+                },
+                {
+                    "Direction": "less than",
+                    "Label": "vout1",
+                    "Name": "lower critical",
+                    "Severity": 1,
+                    "Value": 11.39
+                }
+            ],
             "Type": "pmbus",
             "iout1_Name": "PDB2_P12V_BRICK0_CURR_A",
             "pout1_Name": "PDB2_P12V_BRICK0_POUT_PWR_W",
@@ -436,6 +529,43 @@
                 "vout1"
             ],
             "Name": "PDB2_P12V_BRICK1",
+            "Thresholds": [
+                {
+                    "Direction": "greater than",
+                    "Label": "iout1",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 109.78
+                },
+                {
+                    "Direction": "greater than",
+                    "Label": "pout1",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 1384.3258
+                },
+                {
+                    "Direction": "greater than",
+                    "Label": "temp1",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 100
+                },
+                {
+                    "Direction": "greater than",
+                    "Label": "vout1",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 12.61
+                },
+                {
+                    "Direction": "less than",
+                    "Label": "vout1",
+                    "Name": "lower critical",
+                    "Severity": 1,
+                    "Value": 11.39
+                }
+            ],
             "Type": "pmbus",
             "iout1_Name": "PDB2_P12V_BRICK1_CURR_A",
             "pout1_Name": "PDB2_P12V_BRICK1_POUT_PWR_W",
