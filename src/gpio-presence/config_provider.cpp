@@ -35,6 +35,7 @@ auto ConfigProvider::initialize(AddedCallback addConfig,
 {
     ctx.spawn(handleInterfacesAdded(addConfig));
     ctx.spawn(handleInterfacesRemoved(removeConfig));
+    lg2::debug("This is a debug message");
 
     co_await getConfig(addConfig);
 }
