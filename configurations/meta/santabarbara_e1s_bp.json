@@ -11,6 +11,78 @@
                 "in4"
             ],
             "Name": "E1S_BP_ADC",
+            "Thresholds": [
+                {
+                    "Direction": "less than",
+                    "Label": "in0",
+                    "Name": "lower critical",
+                    "Severity": 1,
+                    "Value": 3.135
+                },
+                {
+                    "Direction": "greater than",
+                    "Label": "in0",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 3.465
+                },
+                {
+                    "Direction": "less than",
+                    "Label": "in1",
+                    "Name": "lower critical",
+                    "Severity": 1,
+                    "Value": 3.135
+                },
+                {
+                    "Direction": "greater than",
+                    "Label": "in1",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 3.465
+                },
+                {
+                    "Direction": "less than",
+                    "Label": "in2",
+                    "Name": "lower critical",
+                    "Severity": 1,
+                    "Value": 3.135
+                },
+                {
+                    "Direction": "greater than",
+                    "Label": "in2",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 3.465
+                },
+                {
+                    "Direction": "less than",
+                    "Label": "in3",
+                    "Name": "lower critical",
+                    "Severity": 1,
+                    "Value": 3.135
+                },
+                {
+                    "Direction": "greater than",
+                    "Label": "in3",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 3.465
+                },
+                {
+                    "Direction": "less than",
+                    "Label": "in4",
+                    "Name": "lower critical",
+                    "Severity": 1,
+                    "Value": 3.135
+                },
+                {
+                    "Direction": "greater than",
+                    "Label": "in4",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 3.465
+                }
+            ],
             "Type": "ADS7830",
             "in0_Name": "E1S_BP_P3V3_E1S0_VOLT_V",
             "in0_Scale": 479.103,
@@ -52,6 +124,20 @@
                     "Name": "lower critical",
                     "Severity": 1,
                     "Value": 10.8
+                },
+                {
+                    "Direction": "greater than",
+                    "Label": "curr1",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 2.5
+                },
+                {
+                    "Direction": "greater than",
+                    "Label": "power1",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 25
                 }
             ],
             "Type": "INA230",
@@ -82,6 +168,20 @@
                     "Name": "lower critical",
                     "Severity": 1,
                     "Value": 10.8
+                },
+                {
+                    "Direction": "greater than",
+                    "Label": "curr1",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 2.5
+                },
+                {
+                    "Direction": "greater than",
+                    "Label": "power1",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 25
                 }
             ],
             "Type": "INA230",
@@ -112,6 +212,20 @@
                     "Name": "lower critical",
                     "Severity": 1,
                     "Value": 10.8
+                },
+                {
+                    "Direction": "greater than",
+                    "Label": "curr1",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 2.5
+                },
+                {
+                    "Direction": "greater than",
+                    "Label": "power1",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 25
                 }
             ],
             "Type": "INA230",
@@ -142,6 +256,20 @@
                     "Name": "lower critical",
                     "Severity": 1,
                     "Value": 10.8
+                },
+                {
+                    "Direction": "greater than",
+                    "Label": "curr1",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 2.5
+                },
+                {
+                    "Direction": "greater than",
+                    "Label": "power1",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 25
                 }
             ],
             "Type": "INA230",
@@ -167,7 +295,7 @@
                     "Hysteresis": 1.4,
                     "Name": "upper critical",
                     "Severity": 1,
-                    "Value": 70.0
+                    "Value": 82.0
                 }
             ],
             "Type": "NVME1000"
@@ -190,7 +318,7 @@
                     "Hysteresis": 1.4,
                     "Name": "upper critical",
                     "Severity": 1,
-                    "Value": 70.0
+                    "Value": 82.0
                 }
             ],
             "Type": "NVME1000"
@@ -213,7 +341,7 @@
                     "Hysteresis": 1.4,
                     "Name": "upper critical",
                     "Severity": 1,
-                    "Value": 70.0
+                    "Value": 82.0
                 }
             ],
             "Type": "NVME1000"
@@ -236,7 +364,7 @@
                     "Hysteresis": 1.4,
                     "Name": "upper critical",
                     "Severity": 1,
-                    "Value": 70.0
+                    "Value": 82.0
                 }
             ],
             "Type": "NVME1000"
@@ -245,6 +373,14 @@
             "Address": "0x48",
             "Bus": 29,
             "Name": "E1S_BP_TEMP_C",
+            "Thresholds": [
+                {
+                    "Direction": "greater than",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 82
+                }
+            ],
             "Type": "TMP75"
         }
     ],

@@ -49,13 +49,13 @@
                     "Direction": "greater than",
                     "Name": "upper critical",
                     "Severity": 1,
-                    "Value": 3.6
+                    "Value": 3.465
                 },
                 {
                     "Direction": "less than",
                     "Name": "lower critical",
                     "Severity": 1,
-                    "Value": 3.0
+                    "Value": 3.135
                 }
             ],
             "Type": "ADC"
@@ -89,13 +89,13 @@
                     "Direction": "greater than",
                     "Name": "upper critical",
                     "Severity": 1,
-                    "Value": 1.98
+                    "Value": 1.89
                 },
                 {
                     "Direction": "less than",
                     "Name": "lower critical",
                     "Severity": 1,
-                    "Value": 1.62
+                    "Value": 1.71
                 }
             ],
             "Type": "ADC"
@@ -109,13 +109,13 @@
                     "Direction": "greater than",
                     "Name": "upper critical",
                     "Severity": 1,
-                    "Value": 3.6
+                    "Value": 1.89
                 },
                 {
                     "Direction": "less than",
                     "Name": "lower critical",
                     "Severity": 1,
-                    "Value": 1.62
+                    "Value": 1.71
                 }
             ],
             "Type": "ADC"
@@ -148,13 +148,13 @@
                     "Direction": "greater than",
                     "Name": "upper critical",
                     "Severity": 1,
-                    "Value": 1.1
+                    "Value": 1.05
                 },
                 {
                     "Direction": "less than",
                     "Name": "lower critical",
                     "Severity": 1,
-                    "Value": 0.9
+                    "Value": 0.95
                 }
             ],
             "Type": "ADC"
@@ -192,6 +192,20 @@
                     "Name": "lower critical",
                     "Severity": 1,
                     "Value": 10.8
+                },
+                {
+                    "Direction": "greater than",
+                    "Label": "curr1",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 5.2
+                },
+                {
+                    "Direction": "greater than",
+                    "Label": "power1",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 62.4
                 }
             ],
             "Type": "INA230",
@@ -219,6 +233,14 @@
             "Address": "0x4b",
             "Bus": 9,
             "Name": "SCM_TEMP_C",
+            "Thresholds": [
+                {
+                    "Direction": "greater than",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 40
+                }
+            ],
             "Type": "TMP75"
         }
     ],
