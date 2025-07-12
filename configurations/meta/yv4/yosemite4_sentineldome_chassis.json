@@ -1,5 +1,16 @@
 {
-    "Exposes": [],
+    "Exposes": [
+        {
+            "Name": "EnclosurePort",
+            "PortType": "contained_by",
+            "Type": "Port"
+        },
+        {
+            "Name": "BladePort $bus % 15",
+            "PortType": "containing",
+            "Type": "Port"
+        }
+    ],
     "Name": "Yosemite 4 Sentinel Dome Slot $bus % 15 Chassis",
     "Probe": "xyz.openbmc_project.FruDevice({'BOARD_PRODUCT_NAME': 'Sentinel Dome', 'PRODUCT_PRODUCT_NAME': 'Yosemite V4', 'BOARD_MANUFACTURER': '(Quanta|Wiwynn)'})",
     "Type": "Chassis",
