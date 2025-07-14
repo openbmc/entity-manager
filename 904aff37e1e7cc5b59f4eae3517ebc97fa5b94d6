@@ -16,6 +16,24 @@
       "message": "What if objServer and io were added as class members and passed into the constructor, and then you wouldn\u0027t have to pass them through to all the calls of createInterface and createAddObjectMethod.",
       "revId": "904aff37e1e7cc5b59f4eae3517ebc97fa5b94d6",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ee1f124a_9d41d1e1",
+        "filename": "src/entity_manager/dbus_interface.hpp",
+        "patchSetId": 3
+      },
+      "lineNbr": 23,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-07-14T15:12:18Z",
+      "side": 1,
+      "message": "The goal of this patch is just to remove the global variable.\n\nNot passing `io` around anymore would increase the diff of this patch and then\nwe would have a patch changing 2 things at the same time.\n\n\u003e The class was created with a small amount of changes.\nIt does not aim to be a good abstraction for entity-manager\u0027s dbus\ninterface, the primary goal is to get rid of the global variable and\navoid passing it through a bunch of functions.\n\nWe can always add `io` and `objServer` references to the class at a later point\nbut i would avoid creating an extra patch for it just now since there are already many patches in the series waiting for review.",
+      "parentUuid": "2bae58bc_dca12b2c",
+      "revId": "904aff37e1e7cc5b59f4eae3517ebc97fa5b94d6",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }
