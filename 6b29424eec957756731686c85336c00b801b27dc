@@ -90,6 +90,24 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "32e5c8c6_39425d4b",
+        "filename": "src/entity_manager/dbus_interface.cpp",
+        "patchSetId": 1
+      },
+      "lineNbr": 167,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-07-14T15:04:36Z",
+      "side": 1,
+      "message": "I tried your suggestion to remove the quirk but that does not compile.\nBelow is just a fragment of the full error log.\n```\n../src/entity_manager/dbus_interface.hpp:42:33:   required from ‘void dbus_interface::addArrayToDbus(const std::string\u0026, const nlohmann::json_abi_v3_12_0::json\u0026, sdbusplus::asio::dbus_interface*, sdbusplus::asio::PropertyPermission, nlohmann::json_abi_v3_12_0::json\u0026, const std::string\u0026) [with PropertyType \u003d bool; std::string \u003d std::__cxx11::basic_string\u003cchar\u003e; nlohmann::json_abi_v3_12_0::json \u003d nlohmann::json_abi_v3_12_0::basic_json\u003c\u003e]’\n   42 |         iface-\u003eregister_property(name, values);\n      |         ~~~~~~~~~~~~~~~~~~~~~~~~^~~~~~~~~~~~~~\n../src/entity_manager/dbus_interface.hpp:111:37:   required from ‘void dbus_interface::addValueToDBus(const std::string\u0026, const nlohmann::json_abi_v3_12_0::json\u0026, sdbusplus::asio::dbus_interface\u0026, sdbusplus::asio::PropertyPermission, nlohmann::json_abi_v3_12_0::json\u0026, const std::string\u0026) [with PropertyType \u003d bool; std::string \u003d std::__cxx11::basic_string\u003cchar\u003e; nlohmann::json_abi_v3_12_0::json \u003d nlohmann::json_abi_v3_12_0::basic_json\u003c\u003e]’\n  111 |         addArrayToDbus\u003cPropertyType\u003e(key, value, \u0026iface, permission,\n      |         ~~~~~~~~~~~~~~~~~~~~~~~~~~~~^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\n  112 |                                      systemConfiguration, path);\n      |                                      ~~~~~~~~~~~~~~~~~~~~~~~~~~\n../src/entity_manager/dbus_interface.cpp:165:33:   required from here\n  165 |             addValueToDBus\u003cbool\u003e(key, value, *iface, permission,\n      |             ~~~~~~~~~~~~~~~~~~~~^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\n  166 |                                            systemConfiguration, path);\n      |                                            ~~~~~~~~~~~~~~~~~~~~~~~~~~\n../subprojects/sdbusplus/include/sdbusplus/message/types.hpp:278:25: error: static assertion failed: No dbus type conversion provided for type.\n  278 |     static_assert(!std::is_base_of_v\u003cundefined_type_id, type_id\u003cT\u003e\u003e,\n```\n\nSince the goal of this series is to refactor + cleanup the EM i do not want to go further to dig up this quirk unnecessarily, since as you mentioned it is not used anyways.\n\nWe can always come back to this later on when there is interest since it looks like sdbusplus changes may also be involved.",
+      "parentUuid": "3ca14e6d_42c425dd",
+      "revId": "6b29424eec957756731686c85336c00b801b27dc",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "273da496_96526010",
