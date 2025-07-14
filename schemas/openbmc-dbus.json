@@ -185,6 +185,19 @@
                         "required": ["UUID"],
                         "type": "object"
                     }
+                },
+                "MCTP": {
+                    "Interface": {
+                        "additionalProperties": false,
+                        "properties": {
+                            "LocalEID": {
+                                "type": "string",
+                                "description": "The local endpoint ID for this MCTP interface"
+                            }
+                        },
+                        "required": ["LocalEID"],
+                        "type": "object"
+                    }
                 }
             }
         }
