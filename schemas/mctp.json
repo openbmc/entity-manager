@@ -18,9 +18,13 @@
                 "Type": {
                     "type": "string",
                     "enum": ["MCTPI2CTarget"]
+                },
+                "LocalEID": {
+                    "description": "The local endpoint ID for the device",
+                    "type": "string"
                 }
             },
-            "required": ["Address", "Bus", "Name", "Type"],
+            "required": ["Address", "Bus", "Name", "Type", "LocalEID"],
             "type": "object"
         },
         "MCTPI3CTarget": {
@@ -40,9 +44,13 @@
                 "Type": {
                     "type": "string",
                     "enum": ["MCTPI3CTarget"]
+                },
+                "LocalEID": {
+                    "description": "The local endpoint ID for the device",
+                    "type": "string"
                 }
             },
-            "required": ["Address", "Bus", "Name", "Type"],
+            "required": ["Address", "Bus", "Name", "Type", "LocalEID"],
             "type": "object"
         }
     }
