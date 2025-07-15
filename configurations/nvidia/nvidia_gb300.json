@@ -6,7 +6,7 @@
             "Labels": [
                 "in_voltage0"
             ],
-            "Name": "NVIDIA_GB300_CPU $bus - 1 % 2",
+            "Name": "NVIDIA_GB300_CPU$bus - 1 % 2",
             "Thresholds": [
                 {
                     "Direction": "greater than",
@@ -58,7 +58,7 @@
                 }
             ],
             "Type": "ADS1015",
-            "in_voltage0_Name": "NVIDIA_GB300_CPU$bus - 1 % 2_LEAK_SENSOR"
+            "in_voltage0_Name": "NVIDIA_GB300_CPU$bus - 1 % 2 LEAK_SENSOR"
         },
         {
             "Address": "$address",
@@ -70,15 +70,15 @@
             "Address": "$bus - 1 % 2 * 12 + 32",
             "Bus": 1,
             "Connector": {
-                "Name": "FAN$bus - 1 % 2 * 4 + 0_TACH_IL",
+                "Name": "FAN$bus - 1 % 2 * 4 + 0 TACH_IL",
                 "Pwm": 2,
-                "PwmName": "FAN$bus - 1 % 2 * 4 + 0_PWM_PCT",
+                "PwmName": "FAN$bus - 1 % 2 * 4 + 0 PWM_PCT",
                 "Tachs": [
                     4
                 ]
             },
             "Index": 4,
-            "Name": "FAN$bus - 1 % 2 * 4 + 0_TACH_IL_SPEED_RPM",
+            "Name": "FAN$bus - 1 % 2 * 4 + 0 TACH_IL_SPEED_RPM",
             "PowerState": "Always",
             "Thresholds": [
                 {
@@ -100,15 +100,15 @@
             "Address": "$bus - 1 % 2 * 12 + 32",
             "Bus": 1,
             "Connector": {
-                "Name": "FAN$bus - 1 % 2 * 4 + 0_TACH_OL",
+                "Name": "FAN$bus - 1 % 2 * 4 + 0 TACH_OL",
                 "Pwm": 2,
-                "PwmName": "FAN$bus - 1 % 2 * 4 + 0_PWM_PCT",
+                "PwmName": "FAN$bus - 1 % 2 * 4 + 0 PWM_PCT",
                 "Tachs": [
                     5
                 ]
             },
             "Index": 5,
-            "Name": "FAN$bus - 1 % 2 * 4 + 0_TACH_OL_SPEED_RPM",
+            "Name": "FAN$bus - 1 % 2 * 4 + 0 TACH_OL_SPEED_RPM",
             "PowerState": "Always",
             "Thresholds": [
                 {
@@ -130,15 +130,15 @@
             "Address": "$bus - 1 % 2 * 12 + 32",
             "Bus": 1,
             "Connector": {
-                "Name": "FAN$bus - 1 % 2 * 4 + 1_TACH_IL",
+                "Name": "FAN$bus - 1 % 2 * 4 + 1 TACH_IL",
                 "Pwm": 3,
-                "PwmName": "FAN$bus - 1 % 2 * 4 + 1_PWM_PCT",
+                "PwmName": "FAN$bus - 1 % 2 * 4 + 1 PWM_PCT",
                 "Tachs": [
                     10
                 ]
             },
             "Index": 10,
-            "Name": "FAN$bus - 1 % 2 * 4 + 1_TACH_IL_SPEED_RPM",
+            "Name": "FAN$bus - 1 % 2 * 4 + 1 TACH_IL_SPEED_RPM",
             "PowerState": "Always",
             "Thresholds": [
                 {
@@ -160,15 +160,15 @@
             "Address": "$bus - 1 % 2 * 12 + 32",
             "Bus": 1,
             "Connector": {
-                "Name": "FAN$bus - 1 % 2 * 4 + 1_TACH_OL",
+                "Name": "FAN$bus - 1 % 2 * 4 + 1 TACH_OL",
                 "Pwm": 3,
-                "PwmName": "FAN$bus - 1 % 2 * 4 + 1_PWM_PCT",
+                "PwmName": "FAN$bus - 1 % 2 * 4 + 1 PWM_PCT",
                 "Tachs": [
                     11
                 ]
             },
             "Index": 11,
-            "Name": "FAN$bus - 1 % 2 * 4 + 1_TACH_OL_SPEED_RPM",
+            "Name": "FAN$bus - 1 % 2 * 4 + 1 TACH_OL_SPEED_RPM",
             "PowerState": "Always",
             "Thresholds": [
                 {
@@ -190,15 +190,15 @@
             "Address": "$bus - 1 % 2 * 12 + 35",
             "Bus": 1,
             "Connector": {
-                "Name": "FAN$bus - 1 % 2 * 4 + 2_TACH_IL",
+                "Name": "FAN$bus - 1 % 2 * 4 + 2 TACH_IL",
                 "Pwm": 0,
-                "PwmName": "FAN$bus - 1 % 2 * 4 + 2_PWM_PCT",
+                "PwmName": "FAN$bus - 1 % 2 * 4 + 2 PWM_PCT",
                 "Tachs": [
                     0
                 ]
             },
             "Index": 0,
-            "Name": "FAN$bus - 1 % 2 * 4 + 2_TACH_IL_SPEED_RPM",
+            "Name": "FAN$bus - 1 % 2 * 4 + 2 TACH_IL_SPEED_RPM",
             "PowerState": "Always",
             "Thresholds": [
                 {
@@ -220,15 +220,15 @@
             "Address": "$bus - 1 % 2 * 12 + 35",
             "Bus": 1,
             "Connector": {
-                "Name": "FAN$bus - 1 % 2 * 4 + 2_TACH_OL",
+                "Name": "FAN$bus - 1 % 2 * 4 + 2 TACH_OL",
                 "Pwm": 0,
-                "PwmName": "FAN$bus - 1 % 2 * 4 + 2_PWM_PCT",
+                "PwmName": "FAN$bus - 1 % 2 * 4 + 2 PWM_PCT",
                 "Tachs": [
                     1
                 ]
             },
             "Index": 1,
-            "Name": "FAN$bus - 1 % 2 * 4 + 2_TACH_OL_SPEED_RPM",
+            "Name": "FAN$bus - 1 % 2 * 4 + 2 TACH_OL_SPEED_RPM",
             "PowerState": "Always",
             "Thresholds": [
                 {
@@ -250,15 +250,15 @@
             "Address": "$bus - 1 % 2 * 12 + 35",
             "Bus": 1,
             "Connector": {
-                "Name": "FAN$bus - 1 % 2 * 4 + 3_TACH_IL",
+                "Name": "FAN$bus - 1 % 2 * 4 + 3 TACH_IL",
                 "Pwm": 1,
-                "PwmName": "FAN$bus - 1 % 2 * 4 + 3_PWM_PCT",
+                "PwmName": "FAN$bus - 1 % 2 * 4 + 3 PWM_PCT",
                 "Tachs": [
                     2
                 ]
             },
             "Index": 2,
-            "Name": "FAN$bus - 1 % 2 * 4 + 3_TACH_IL_SPEED_RPM",
+            "Name": "FAN$bus - 1 % 2 * 4 + 3 TACH_IL_SPEED_RPM",
             "PowerState": "Always",
             "Thresholds": [
                 {
@@ -280,15 +280,15 @@
             "Address": "$bus - 1 % 2 * 12 + 35",
             "Bus": 1,
             "Connector": {
-                "Name": "FAN$bus - 1 % 2 * 4 + 3_TACH_OL",
+                "Name": "FAN$bus - 1 % 2 * 4 + 3 TACH_OL",
                 "Pwm": 1,
-                "PwmName": "FAN$bus - 1 % 2 * 4 + 3_PWM_PCT",
+                "PwmName": "FAN$bus - 1 % 2 * 4 + 3 PWM_PCT",
                 "Tachs": [
                     3
                 ]
             },
             "Index": 3,
-            "Name": "FAN$bus - 1 % 2 * 4 + 3_TACH_OL_SPEED_RPM",
+            "Name": "FAN$bus - 1 % 2 * 4 + 3 TACH_OL_SPEED_RPM",
             "PowerState": "Always",
             "Thresholds": [
                 {
