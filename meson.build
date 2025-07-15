@@ -21,7 +21,7 @@ cpp = meson.get_compiler('cpp')
 boost = dependency('boost', required: false)
 if not boost.found()
     subproject('boost', required: false)
-    boost = declare_dependency(include_directories: 'subprojects/boost_1_71_0')
+    boost = declare_dependency(include_directories: 'subprojects/boost_1_88_0')
     boost = boost.as_system('system')
 endif
 if get_option('fru-device')
