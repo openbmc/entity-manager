@@ -20,6 +20,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "83037588_790d85cb",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 19,
+      "author": {
+        "id": 1002065
+      },
+      "writtenOn": "2025-07-15T14:06:47Z",
+      "side": 1,
+      "message": "Also not sure about the situation with BackplanePort. It was not defined in the schema aswell. If we find agreement on the port names I would update the docs accordingly.",
+      "parentUuid": "2629aef3_599186d2",
+      "revId": "62f580e54feccffcfd90177a20129ac02ace8957",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "6a8a4ae0_b4652ccd",
         "filename": "/COMMIT_MSG",
         "patchSetId": 2
@@ -31,6 +49,24 @@
       "writtenOn": "2025-07-14T13:58:31Z",
       "side": 1,
       "message": "Maybe we can link to https://gerrit.openbmc.org/c/openbmc/entity-manager/+/81385/4 as an configuration example",
+      "revId": "62f580e54feccffcfd90177a20129ac02ace8957",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "8eea4b7e_64e5960a",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 62,
+      "author": {
+        "id": 1002065
+      },
+      "writtenOn": "2025-07-15T14:06:47Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "6a8a4ae0_b4652ccd",
       "revId": "62f580e54feccffcfd90177a20129ac02ace8957",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
@@ -54,6 +90,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "f8e28f0c_8e97d5b4",
+        "filename": "schemas/legacy.json",
+        "patchSetId": 2
+      },
+      "lineNbr": 480,
+      "author": {
+        "id": 1002065
+      },
+      "writtenOn": "2025-07-15T14:06:47Z",
+      "side": 1,
+      "message": "Sounds good (Y)",
+      "parentUuid": "05a1ce31_3f282a02",
+      "revId": "62f580e54feccffcfd90177a20129ac02ace8957",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "61b44073_1ae631a4",
         "filename": "schemas/legacy.json",
         "patchSetId": 2
@@ -65,6 +119,24 @@
       "writtenOn": "2025-07-14T13:55:15Z",
       "side": 1,
       "message": "Maybe have wildcard in the middle for variable substitution and expression evaluation?\n\nCurrently only `$bus` would be supported while `$addr` is also possible to appear in expressions.\nSo things like\n```\nMB Upstream ($bus+1)%3 Port\nMB Upstream $addr Port\n```\nwould not work.",
+      "revId": "62f580e54feccffcfd90177a20129ac02ace8957",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "c4ec7592_d5e77919",
+        "filename": "schemas/legacy.json",
+        "patchSetId": 2
+      },
+      "lineNbr": 492,
+      "author": {
+        "id": 1002065
+      },
+      "writtenOn": "2025-07-15T14:06:47Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "61b44073_1ae631a4",
       "revId": "62f580e54feccffcfd90177a20129ac02ace8957",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
@@ -82,6 +154,24 @@
       "writtenOn": "2025-07-14T13:55:15Z",
       "side": 1,
       "message": "So in case we have \n\n`MB -\u003e Chassis` we use the `MB Upstream Port` and\nin case of \n`Chassis -\u003e Chassis` containment we use `Chassis Upstream Port` ?\n\nSince EM already knows what type of config something is `Type: Board` vs `Type: Chassis`, what do you think about only having one way to configure the \u0027contains\u0027 concept.",
+      "revId": "62f580e54feccffcfd90177a20129ac02ace8957",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c9e9e8ec_9191094c",
+        "filename": "schemas/legacy.json",
+        "patchSetId": 2
+      },
+      "lineNbr": 495,
+      "author": {
+        "id": 1002065
+      },
+      "writtenOn": "2025-07-15T14:06:47Z",
+      "side": 1,
+      "message": "\u003e So in case we have\n\n\u003e MB -\u003e Chassis we use the MB Upstream Port and\n\u003e in case of\n\u003e Chassis -\u003e Chassis containment we use Chassis Upstream Port ?\n\nCorrect. However, other port names could be added aswell (i.e Backplane Port) if needed.\n\n\u003e Since EM already knows what type of config something is Type: Board vs Type:  \u003e Chassis, what do you think about only having one way to configure the \u0027contains\u0027 \u003e concept.\n\nIn the sense of a single, generic port name used to create all associations?",
+      "parentUuid": "be5c040f_8df02355",
       "revId": "62f580e54feccffcfd90177a20129ac02ace8957",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
