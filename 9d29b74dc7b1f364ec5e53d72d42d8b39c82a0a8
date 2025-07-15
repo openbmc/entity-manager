@@ -1,0 +1,55 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "683a732a_3f8c86b9",
+        "filename": "configurations/meta/harma_mb.json",
+        "patchSetId": 2
+      },
+      "lineNbr": 763,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-07-15T17:25:51Z",
+      "side": 1,
+      "message": "I don\u0027t see an entry for this CompatibleHardware in https://github.com/openbmc/phosphor-dbus-interfaces/blob/master/yaml/com/meta/Hardware/Harma.interface.yaml#L16.\nCan you please share the PR for that and lets get that merged first.",
+      "revId": "9d29b74dc7b1f364ec5e53d72d42d8b39c82a0a8",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7a3fe8d6_02119b6e",
+        "filename": "configurations/meta/harma_mb_vr_infineon.json",
+        "patchSetId": 2
+      },
+      "lineNbr": 422,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-07-15T17:25:51Z",
+      "side": 1,
+      "message": "Same here. Don\u0027t see this entry in PDI for Harma. Please add it there first.",
+      "revId": "9d29b74dc7b1f364ec5e53d72d42d8b39c82a0a8",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0c07a27a_570bdbb1",
+        "filename": "schemas/cpld.json",
+        "patchSetId": 2
+      },
+      "lineNbr": 27,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-07-15T17:25:51Z",
+      "side": 1,
+      "message": "This has already been merged via https://gerrit.openbmc.org/c/openbmc/entity-manager/+/81736, so lets drop this change.",
+      "revId": "9d29b74dc7b1f364ec5e53d72d42d8b39c82a0a8",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    }
+  ]
+}
