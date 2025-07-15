@@ -3,11 +3,69 @@
         "Exposes": [],
         "Name": "$Name",
         "Probe": [
-            "xyz.openbmc_project.Inventory.Source.DevicePresence({'Name': 'CableCartridge*'})",
+            "xyz.openbmc_project.Inventory.Source.DevicePresence({'Name': 'CableCartridgeTop'})"
+        ],
+        "Type": "Board",
+        "xyz.openbmc_project.Inventory.Decorator.Asset": {
+            "Manufacturer": "Unknown",
+            "Model": "Unknown",
+            "PartNumber": "Unknown",
+            "SerialNumber": "Unknown",
+            "SparePartNumber": "07-100127"
+        }
+    },
+    {
+        "Exposes": [],
+        "Name": "$Name",
+        "Probe": [
+            "xyz.openbmc_project.Inventory.Source.DevicePresence({'Name': 'CableCartridgeBottom'})"
+        ],
+        "Type": "Board",
+        "xyz.openbmc_project.Inventory.Decorator.Asset": {
+            "Manufacturer": "Unknown",
+            "Model": "Unknown",
+            "PartNumber": "Unknown",
+            "SerialNumber": "Unknown",
+            "SparePartNumber": "07-100126"
+        }
+    },
+    {
+        "Exposes": [],
+        "Name": "$Name",
+        "Probe": [
+            "xyz.openbmc_project.Inventory.Source.DevicePresence({'Name': 'BCBCableTop'})"
+        ],
+        "Type": "Board",
+        "xyz.openbmc_project.Inventory.Decorator.Asset": {
+            "Manufacturer": "Unknown",
+            "Model": "Unknown",
+            "PartNumber": "Unknown",
+            "SerialNumber": "Unknown",
+            "SparePartNumber": "07-100093"
+        }
+    },
+    {
+        "Exposes": [],
+        "Name": "$Name",
+        "Probe": [
+            "xyz.openbmc_project.Inventory.Source.DevicePresence({'Name': 'BCBCableBottom'})"
+        ],
+        "Type": "Board",
+        "xyz.openbmc_project.Inventory.Decorator.Asset": {
+            "Manufacturer": "Unknown",
+            "Model": "Unknown",
+            "PartNumber": "Unknown",
+            "SerialNumber": "Unknown",
+            "SparePartNumber": "07-100157"
+        }
+    },
+    {
+        "Exposes": [],
+        "Name": "$Name",
+        "Probe": [
+            "xyz.openbmc_project.Inventory.Source.DevicePresence({'Name': 'RpuLink'})",
             "OR",
-            "xyz.openbmc_project.Inventory.Source.DevicePresence({'Name': 'BCBCable*'})",
-            "OR",
-            "xyz.openbmc_project.Inventory.Source.DevicePresence({'Name': '*RpuLink'})"
+            "xyz.openbmc_project.Inventory.Source.DevicePresence({'Name': 'SpareRpuLink'})"
         ],
         "Type": "Board",
         "xyz.openbmc_project.Inventory.Decorator.Asset": {
