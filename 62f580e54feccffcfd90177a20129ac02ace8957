@@ -108,6 +108,23 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "2c2113c5_bf1eaf5c",
+        "filename": "schemas/legacy.json",
+        "patchSetId": 2
+      },
+      "lineNbr": 487,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-07-16T11:00:51Z",
+      "side": 1,
+      "message": "Since `Type` maps to a dbus interface (for most exposes records at least),\ndo you think it would be better to have another property to put the identifier?\n\nSince the identifier can be variable based on the regex and the `Type` is usually a fixed string.\n\nThis could help to avoid issues with the validator since different exposes records could accidentally overlap their regexes for `Type` if we start doing this.\n\nAlso to help folks quickly find which schema was actually configured in a config file.",
+      "revId": "62f580e54feccffcfd90177a20129ac02ace8957",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "61b44073_1ae631a4",
         "filename": "schemas/legacy.json",
         "patchSetId": 2
@@ -172,6 +189,24 @@
       "side": 1,
       "message": "\u003e So in case we have\n\n\u003e MB -\u003e Chassis we use the MB Upstream Port and\n\u003e in case of\n\u003e Chassis -\u003e Chassis containment we use Chassis Upstream Port ?\n\nCorrect. However, other port names could be added aswell (i.e Backplane Port) if needed.\n\n\u003e Since EM already knows what type of config something is Type: Board vs Type:  \u003e Chassis, what do you think about only having one way to configure the \u0027contains\u0027 \u003e concept.\n\nIn the sense of a single, generic port name used to create all associations?",
       "parentUuid": "be5c040f_8df02355",
+      "revId": "62f580e54feccffcfd90177a20129ac02ace8957",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "55316fb2_2dc63102",
+        "filename": "schemas/legacy.json",
+        "patchSetId": 2
+      },
+      "lineNbr": 495,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-07-16T11:00:51Z",
+      "side": 1,
+      "message": "Ok, after further discussion, i do not care about having one name as much anymore,\nas long as we document that these all represent the same concept (configuring the hardware topology).\n\n@ed@tanous.net what do you think?",
+      "parentUuid": "c9e9e8ec_9191094c",
       "revId": "62f580e54feccffcfd90177a20129ac02ace8957",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
