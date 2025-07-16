@@ -108,6 +108,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "7d82c37a_98adb440",
+        "filename": "src/entity_manager.hpp",
+        "patchSetId": 7
+      },
+      "lineNbr": 102,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2025-07-16T16:37:51Z",
+      "side": 1,
+      "message": "Because I don\u0027t believe if this is only put here that this patch will function correctly.  Devices are added and removed as needed.\n\nThe only thing you\u0027re doing here is nerfing the message, you\u0027re not actually disabling caching.",
+      "parentUuid": "3a49883f_d4796860",
+      "revId": "a51453e12ac164685796a27948c1c771047e84e0",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "06369d36_bc4374c5",
         "filename": "src/meson.build",
         "patchSetId": 7
@@ -143,6 +161,30 @@
       "side": 1,
       "message": "Maybe that golfing stick is broken\n```\n../src/meson.build:5:59: ERROR: Unknown method \"allowed\" in object \u003c[BooleanHolder] holds [bool]: True\u003e of type BooleanHolder.\n```",
       "parentUuid": "06369d36_bc4374c5",
+      "range": {
+        "startLine": 4,
+        "startChar": 0,
+        "endLine": 10,
+        "endChar": 0
+      },
+      "revId": "a51453e12ac164685796a27948c1c771047e84e0",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2e4063de_f7eb3e77",
+        "filename": "src/meson.build",
+        "patchSetId": 7
+      },
+      "lineNbr": 10,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2025-07-16T16:37:51Z",
+      "side": 1,
+      "message": "sure, I missed a str() around allowed",
+      "parentUuid": "9fb2e8cf_de6e1f8f",
       "range": {
         "startLine": 4,
         "startChar": 0,
