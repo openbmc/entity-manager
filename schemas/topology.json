@@ -26,10 +26,11 @@
                 },
                 "ConnectsToType": {
                     "description": "Should be equal to the 'Type' property on the upstream port",
-                    "$ref": "#/$defs/Types/ConnectsToType"
+                    "type": "string",
+                    "const": "MB Upstream Port"
                 },
                 "PowerPort": {
-                    "$ref": "#/$defs/Types/PowerPort"
+                    "type": "boolean"
                 },
                 "Type": {
                     "type": "string",
@@ -40,15 +41,8 @@
             "type": "object"
         },
         "Types": {
-            "ConnectsToType": {
-                "type": "string",
-                "const": "MB Upstream Port"
-            },
             "Name": {
                 "type": "string"
-            },
-            "PowerPort": {
-                "type": "boolean"
             }
         }
     }
