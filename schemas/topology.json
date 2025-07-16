@@ -1,0 +1,55 @@
+{
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "$defs": {
+        "Port": {
+            "description": "https://github.com/openbmc/docs/blob/master/designs/physical-topology.md",
+            "additionalProperties": false,
+            "properties": {
+                "Name": {
+                    "$ref": "#/$defs/Types/Name"
+                },
+                "Type": {
+                    "description": "This enum may be extended as described in the design",
+                    "type": "string",
+                    "enum": ["MB Upstream Port"]
+                }
+            },
+            "required": ["Name", "Type"],
+            "type": "object"
+        },
+        "DownstreamPort": {
+            "description": "https://github.com/openbmc/docs/blob/master/designs/physical-topology.md",
+            "additionalProperties": false,
+            "properties": {
+                "Name": {
+                    "$ref": "#/$defs/Types/Name"
+                },
+                "ConnectsToType": {
+                    "description": "Should be equal to the 'Type' property on the upstream port",
+                    "$ref": "#/$defs/Types/ConnectsToType"
+                },
+                "PowerPort": {
+                    "$ref": "#/$defs/Types/PowerPort"
+                },
+                "Type": {
+                    "type": "string",
+                    "const": "DownstreamPort"
+                }
+            },
+            "required": ["Name", "Type", "ConnectsToType"],
+            "type": "object"
+        },
+        "Types": {
+            "ConnectsToType": {
+                "type": "string",
+                "const": "MB Upstream Port"
+            },
+            "Name": {
+                "type": "string"
+            },
+            "PowerPort": {
+                "type": "boolean"
+            }
+        }
+    }
+}
