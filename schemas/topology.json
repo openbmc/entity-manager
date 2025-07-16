@@ -11,7 +11,17 @@
                 "Type": {
                     "description": "This enum may be extended as described in the design",
                     "type": "string",
-                    "enum": ["MB Upstream Port"]
+                    "anyOf": [
+                        {
+                            "pattern": "^Backplane (Port|[$]bus % [0-9]* Port|[$]addr Port|[(][$]bus [+] [0-9]*[)] % [0-9]* Port)$"
+                        },
+                        {
+                            "pattern": "^MB Upstream (Port|[$]bus % [0-9]* Port|[$]addr Port|[(][$]bus [+] [0-9]*[)] % [0-9]* Port)$"
+                        },
+                        {
+                            "pattern": "^Chassis Upstream (Port|[$]bus % [0-9]* Port|[$]addr Port|[(][$]bus [+] [0-9]*[)] % [0-9]* Port)$"
+                        }
+                    ]
                 }
             },
             "required": ["Name", "Type"],
@@ -27,7 +37,17 @@
                 "ConnectsToType": {
                     "description": "Should be equal to the 'Type' property on the upstream port",
                     "type": "string",
-                    "const": "MB Upstream Port"
+                    "anyOf": [
+                        {
+                            "pattern": "^Backplane (Port|[$]bus % [0-9]* Port|[$]addr Port|[(][$]bus [+] [0-9]*[)] % [0-9]* Port)$"
+                        },
+                        {
+                            "pattern": "^MB Upstream (Port|[$]bus % [0-9]* Port|[$]addr Port|[(][$]bus [+] [0-9]*[)] % [0-9]* Port)$"
+                        },
+                        {
+                            "pattern": "^Chassis Upstream (Port|[$]bus % [0-9]* Port|[$]addr Port|[(][$]bus [+] [0-9]*[)] % [0-9]* Port)$"
+                        }
+                    ]
                 },
                 "PowerPort": {
                     "type": "boolean"
