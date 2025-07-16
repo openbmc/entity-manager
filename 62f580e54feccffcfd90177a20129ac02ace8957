@@ -125,6 +125,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "f930f702_1a06714b",
+        "filename": "schemas/legacy.json",
+        "patchSetId": 2
+      },
+      "lineNbr": 487,
+      "author": {
+        "id": 1002065
+      },
+      "writtenOn": "2025-07-16T13:19:24Z",
+      "side": 1,
+      "message": "\u003e Since Type maps to a dbus interface (for most exposes records at least),\ndo you think it would be better to have another property to put the identifier?\n\nIdeally we would reuse the existing ones in order to not break other configs. Alternatively we could implement new definitions for upcoming platforms and document accoridingly. But I am not a huge fan of again having two options for achieving the same thing. \n\n\u003e Also to help folks quickly find which schema was actually configured in a config file.\n\nI think, refactoring topology definitions into their own json schema should suffice for folks to quickly find that out.",
+      "parentUuid": "2c2113c5_bf1eaf5c",
+      "revId": "62f580e54feccffcfd90177a20129ac02ace8957",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "61b44073_1ae631a4",
         "filename": "schemas/legacy.json",
         "patchSetId": 2
