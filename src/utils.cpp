@@ -33,8 +33,29 @@
 
 namespace fs = std::filesystem;
 
+std::vector<std::string> splitConfigString(const std::string& input,
+                                           char delimiter, bool ignoreSpaces)
+{
+    std::vector<std::string> parts;
+    std::istringstream stream(input);
+    std::string part;
+
+    while (std::getline(stream, part, delimiter))
+    {
+        if (ignoreSpaces)
+        {
+            part.erase(0, part.find_first_not_of(" \t"));
+            part.erase(part.find_last_not_of(" \t") + 1);
+        }
+
+        parts.emplace_back(std::move(part));
+    }
+    return parts;
+}
+
 bool findFiles(const fs::path& dirPath, const std::string& matchString,
-               std::vector<fs::path>& foundPaths)
+               std::vector<fs::path>& foundPaths,
+               const std::vector<std::string>& prefixes)
 {
     if (!fs::exists(dirPath))
     {
@@ -46,7 +67,13 @@ bool findFiles(const fs::path& dirPath, const std::string& matchString,
     for (const auto& p : fs::directory_iterator(dirPath))
     {
         std::string path = p.path().string();
-        if (std::regex_search(path, match, search))
+        std::string filename = p.path().filename().string();
+        if (std::regex_search(path, match, search) &&
+            (prefixes.empty() ||
+             std::any_of(prefixes.begin(), prefixes.end(),
+                         [&](const std::string& prefix) {
+                             return filename.starts_with(prefix);
+                         })))
         {
             foundPaths.emplace_back(p.path());
         }
@@ -54,9 +81,10 @@ bool findFiles(const fs::path& dirPath, const std::string& matchString,
     return true;
 }
 
-bool findFiles(const std::vector<fs::path>&& dirPaths,
+bool findFiles(const std::vector<fs::path>& dirPaths,
                const std::string& matchString,
-               std::vector<fs::path>& foundPaths)
+               std::vector<fs::path>& foundPaths,
+               const std::vector<std::string>& prefixes)
 {
     std::map<fs::path, fs::path> paths;
     std::regex search(matchString);
@@ -77,7 +105,13 @@ bool findFiles(const std::vector<fs::path>&& dirPaths,
             }
 
             std::string path = p.path().string();
-            if (std::regex_search(path, match, search))
+            std::string filename = p.path().filename().string();
+            if (std::regex_search(path, match, search) &&
+                (prefixes.empty() ||
+                 std::any_of(prefixes.begin(), prefixes.end(),
+                             [&](const std::string& prefix) {
+                                 return filename.starts_with(prefix);
+                             })))
             {
                 paths[p.path().filename()] = p.path();
             }
