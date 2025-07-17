@@ -126,6 +126,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "d46cccab_08cce6a0",
+        "filename": "src/entity_manager.hpp",
+        "patchSetId": 7
+      },
+      "lineNbr": 102,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-07-17T07:54:20Z",
+      "side": 1,
+      "message": "Maybe i am not really understanding how EM handles the different json files.\n\nFrom my perspective, we have the path `currentConfiguration` which is used in 2 places\n```cpp\nconstexpr const char* currentConfiguration \u003d \"/var/configuration/system.json\";\n\n\nsrc/entity_manager/entity_manager.cpp\n589:                configuration::currentConfiguration))\n594:            std::filesystem::copy(configuration::currentConfiguration,\n596:            std::filesystem::remove(configuration::currentConfiguration);\n622:        std::filesystem::remove(configuration::currentConfiguration);\n\nsrc/entity_manager/configuration.cpp\n31:    std::ofstream output(currentConfiguration);\n```\n\nOne is the initial check for existing configuration and one is the `writeJsonFiles` function.\n\nSo if we do not read and do not write to the file there we disabled the caching, right?\n\nOr is the file used in another place i did not check?\nIs there another file which is also used for the same purpose?",
+      "parentUuid": "7d82c37a_98adb440",
+      "revId": "a51453e12ac164685796a27948c1c771047e84e0",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "06369d36_bc4374c5",
         "filename": "src/meson.build",
         "patchSetId": 7
@@ -185,6 +203,30 @@
       "side": 1,
       "message": "sure, I missed a str() around allowed",
       "parentUuid": "9fb2e8cf_de6e1f8f",
+      "range": {
+        "startLine": 4,
+        "startChar": 0,
+        "endLine": 10,
+        "endChar": 0
+      },
+      "revId": "a51453e12ac164685796a27948c1c771047e84e0",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "4e3eae58_2ff7f4cf",
+        "filename": "src/meson.build",
+        "patchSetId": 7
+      },
+      "lineNbr": 10,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-07-17T07:54:20Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "2e4063de_f7eb3e77",
       "range": {
         "startLine": 4,
         "startChar": 0,
