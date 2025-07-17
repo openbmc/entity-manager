@@ -179,6 +179,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "2a6be7c1_a5303e54",
+        "filename": "schemas/legacy.json",
+        "patchSetId": 2
+      },
+      "lineNbr": 487,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-07-17T08:22:42Z",
+      "side": 1,
+      "message": "\u003e But I am not a huge fan of again having two options for achieving the same thing. \n\nFair. What if we extended `DownstreamPort` schema to have an optional `ConnectsToName` property.\n\nAnd then change the code in `topology.cpp` to prefer that notation and then look for an `MB Upstream Port` with that `Name` property.\n\nThen way we can use expressions with `$bus`, `$addr` without messing with the `Type` property.\n\n\nThat would be more consistent with the rest of the schemas since the `Name` is what becomes part of the object path and used to refer to things while `Type` is usually fixed.",
+      "parentUuid": "f930f702_1a06714b",
+      "revId": "62f580e54feccffcfd90177a20129ac02ace8957",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "61b44073_1ae631a4",
         "filename": "schemas/legacy.json",
         "patchSetId": 2
