@@ -32,12 +32,23 @@ using DBusObject = boost::container::flat_map<std::string, DBusInterface>;
 using MapperGetSubTreeResponse =
     boost::container::flat_map<std::string, DBusObject>;
 
+std::vector<std::string> splitConfigString(
+    const std::string& input, char delimiter = ',', bool ignoreSpaces = true);
+
 bool findFiles(const std::filesystem::path& dirPath,
                const std::string& matchString,
                std::vector<std::filesystem::path>& foundPaths);
-bool findFiles(const std::vector<std::filesystem::path>&& dirPaths,
+bool findFiles(const std::vector<std::filesystem::path>& dirPaths,
                const std::string& matchString,
                std::vector<std::filesystem::path>& foundPaths);
+bool findFiles(const std::filesystem::path& dirPath,
+               const std::string& matchString,
+               std::vector<std::filesystem::path>& foundPaths,
+               const std::vector<std::string>& prefixes);
+bool findFiles(const std::vector<std::filesystem::path>& dirPaths,
+               const std::string& matchString,
+               std::vector<std::filesystem::path>& foundPaths,
+               const std::vector<std::string>& prefixes);
 
 bool getI2cDevicePaths(
     const std::filesystem::path& dirPath,
