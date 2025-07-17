@@ -404,6 +404,22 @@
             "Type": "NCT7802"
         },
         {
+            "FirmwareInfo": {
+                "CompatibleHardware": "com.tyan.Hardware.S8030.SPI.Host",
+                "VendorIANA": 6653
+            },
+            "MuxOutputs": [
+                {
+                    "Name": "BMC_SPI_SEL",
+                    "Polarity": "High"
+                }
+            ],
+            "Name": "HostSPIFlash",
+            "SPIControllerIndex": 1,
+            "SPIDeviceIndex": 0,
+            "Type": "SPIFlash"
+        },
+        {
             "Address": "0x4c",
             "Bus": 5,
             "Name": "X550",
