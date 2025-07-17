@@ -85,6 +85,30 @@
     {
       "unresolved": false,
       "key": {
+        "uuid": "114d8ccf_3a2480ef",
+        "filename": "meson.options",
+        "patchSetId": 11
+      },
+      "lineNbr": 41,
+      "author": {
+        "id": 1001426
+      },
+      "writtenOn": "2025-07-17T17:36:03Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "d95131af_7026733c",
+      "range": {
+        "startLine": 41,
+        "startChar": 11,
+        "endLine": 41,
+        "endChar": 16
+      },
+      "revId": "047d99e0128400e9cc8c763895478b6cab0ff39f",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
         "uuid": "da06f8e3_109c3780",
         "filename": "src/fru_device/fru_device.cpp",
         "patchSetId": 11
@@ -234,6 +258,24 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "86d0be5a_dead17ca",
+        "filename": "src/fru_device/fru_utils.cpp",
+        "patchSetId": 11
+      },
+      "lineNbr": 1223,
+      "author": {
+        "id": 1001426
+      },
+      "writtenOn": "2025-07-17T17:36:03Z",
+      "side": 1,
+      "message": "Let me know if you have further concern. Thanks",
+      "parentUuid": "0be3acb3_42bc25b3",
+      "revId": "047d99e0128400e9cc8c763895478b6cab0ff39f",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "53bab610_b7757ef2",
@@ -271,6 +313,30 @@
       "side": 1,
       "message": "Ya sure. In next patchset will make it something like:\n```\ncpp_args_fd_extra \u003d [\n    \u0027-DFRU_DEVICE_16BITDETECTMODE\u003d\"\u0027 + get_option(\u0027fru-device-16bitdetectmode\u0027) + \u0027\"\u0027,\n    \u0027-DENABLE_FRU_UPDATE_PROPERTY\u003d\u0027 + (get_option(\u0027fru-device-update-property\u0027) \u003d\u003d \u0027all\u0027 ? \u00271\u0027 : \u00270\u0027),\n]\n```\n\nPlease let me know if this looks fine.",
       "parentUuid": "53bab610_b7757ef2",
+      "range": {
+        "startLine": 8,
+        "startChar": 0,
+        "endLine": 10,
+        "endChar": 1
+      },
+      "revId": "047d99e0128400e9cc8c763895478b6cab0ff39f",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "d31311cd_48049542",
+        "filename": "src/fru_device/meson.build",
+        "patchSetId": 11
+      },
+      "lineNbr": 10,
+      "author": {
+        "id": 1001426
+      },
+      "writtenOn": "2025-07-17T17:36:03Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "4465a09c_15ba8a5e",
       "range": {
         "startLine": 8,
         "startChar": 0,
