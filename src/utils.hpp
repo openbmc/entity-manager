@@ -35,9 +35,21 @@ using MapperGetSubTreeResponse =
 bool findFiles(const std::filesystem::path& dirPath,
                const std::string& matchString,
                std::vector<std::filesystem::path>& foundPaths);
+
 bool findFiles(const std::vector<std::filesystem::path>&& dirPaths,
                const std::string& matchString,
                std::vector<std::filesystem::path>& foundPaths);
+bool findFiles(const std::filesystem::path& dirPath,
+               const std::string& matchString,
+               std::vector<std::filesystem::path>& foundPaths,
+               const std::vector<std::string>& prefixes);
+bool findFiles(const std::vector<std::filesystem::path>&& dirPaths,
+               const std::string& matchString,
+               std::vector<std::filesystem::path>& foundPaths,
+               const std::vector<std::string>& prefixes);
+
+std::vector<std::string> splitConfigString(
+    const std::string& input, char delimiter = ',', bool ignoreSpaces = true);
 
 bool getI2cDevicePaths(
     const std::filesystem::path& dirPath,
