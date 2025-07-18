@@ -16,6 +16,7 @@ schemas = [
     'openbmc-dbus.json',
     'pid.json',
     'pid_zone.json',
+    'pldm.json',
     'satellite_controller.json',
     'stepwise.json',
     'topology.json',
