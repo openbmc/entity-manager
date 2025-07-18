@@ -1,0 +1,41 @@
+{
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "$defs": {
+        "SpdmTcpEndpoint": {
+            "title": "SPDM TCP responder configuration",
+            "description": "The configuration used to add remote SPDM responder to the system",
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+                "Hostname": {
+                    "description": "Hostname or IP of remote SPDM TCP responder",
+                    "type": "string"
+                },
+                "Port": {
+                    "description": "Network port SPDM TCP responder is listening on per DSP0287_1.0.0",
+                    "type": "number"
+                },
+                "TrustedComponentType": {
+                    "description": "Type of the Root of Trust",
+                    "enum": ["discrete", "integrated"]
+                },
+                "Name": {
+                    "description": "The name of the object",
+                    "type": "string"
+                },
+                "Type": {
+                    "description": "The type of object",
+                    "type": "string",
+                    "enum": ["SpdmTcpResponder"]
+                }
+            },
+            "required": [
+                "Hostname",
+                "Port",
+                "TrustedComponentType",
+                "Name",
+                "Type"
+            ]
+        }
+    }
+}
