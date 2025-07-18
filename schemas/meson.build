@@ -21,4 +21,5 @@ schemas = [
     'topology.json',
     'usb_port.json',
     'virtual_sensor.json',
+    'spdm_responder.json',
 ]
