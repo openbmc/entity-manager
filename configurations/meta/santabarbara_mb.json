@@ -34,7 +34,6 @@
             "Labels": [
                 "in0",
                 "in1",
-                "in2",
                 "in3",
                 "in4",
                 "in5",
@@ -73,20 +72,6 @@
                 },
                 {
                     "Direction": "greater than",
-                    "Label": "in2",
-                    "Name": "upper critical",
-                    "Severity": 1,
-                    "Value": 3.465
-                },
-                {
-                    "Direction": "less than",
-                    "Label": "in2",
-                    "Name": "lower critical",
-                    "Severity": 1,
-                    "Value": 3.135
-                },
-                {
-                    "Direction": "greater than",
                     "Label": "in3",
                     "Name": "upper critical",
                     "Severity": 1,
@@ -119,8 +104,6 @@
             "in0_Scale": 410.6776,
             "in1_Name": "MB_P3V3_E1S0_VOLT_V",
             "in1_Scale": 410.6776,
-            "in2_Name": "MB_P3V3_E1S1_VOLT_V",
-            "in2_Scale": 410.6776,
             "in3_Name": "MB_PVDD33_S5_VOLT_V",
             "in3_Scale": 410.6776,
             "in4_Name": "MB_PVDD18_S5_VOLT_V",
@@ -476,53 +459,6 @@
             "Type": "I2CFan"
         },
         {
-            "Address": "0x40",
-            "Bus": 19,
-            "Labels": [
-                "in1",
-                "curr1",
-                "power1"
-            ],
-            "Name": "MB_P12V_E1S1",
-            "PowerState": "On",
-            "Thresholds": [
-                {
-                    "Direction": "greater than",
-                    "Label": "in1",
-                    "Name": "upper critical",
-                    "Severity": 1,
-                    "Value": 13.2
-                },
-                {
-                    "Direction": "less than",
-                    "Label": "in1",
-                    "Name": "lower critical",
-                    "Severity": 1,
-                    "Value": 10.8
-                },
-                {
-                    "Direction": "greater than",
-                    "Label": "curr1",
-                    "Name": "upper critical",
-                    "Severity": 1,
-                    "Value": 2
-                },
-                {
-                    "Direction": "greater than",
-                    "Label": "power1",
-                    "Name": "upper critical",
-                    "Severity": 1,
-                    "Value": 25
-                }
-            ],
-            "Type": "INA230",
-            "curr1_Name": "MB_P12V_E1S1_CURR_A",
-            "curr1_Scale": 993.048659384,
-            "in1_Name": "MB_P12V_E1S1_VOLT_V",
-            "power1_Name": "MB_P12V_E1S1_PWR_W",
-            "power1_Scale": 993048.659384
-        },
-        {
             "Address": "0x42",
             "Bus": 19,
             "Labels": [
@@ -803,29 +739,6 @@
             "Address": "0x6a",
             "Bus": 20,
             "Name": "MB_E1S0_TEMP_C",
-            "PowerState": "On",
-            "Thresholds": [
-                {
-                    "Direction": "less than",
-                    "Hysteresis": 0.1,
-                    "Name": "lower critical",
-                    "Severity": 1,
-                    "Value": 5.0
-                },
-                {
-                    "Direction": "greater than",
-                    "Hysteresis": 1.4,
-                    "Name": "upper critical",
-                    "Severity": 1,
-                    "Value": 70.0
-                }
-            ],
-            "Type": "NVME1000"
-        },
-        {
-            "Address": "0x6a",
-            "Bus": 21,
-            "Name": "MB_E1S1_TEMP_C",
             "PowerState": "On",
             "Thresholds": [
                 {
