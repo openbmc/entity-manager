@@ -17,6 +17,7 @@ schemas = [
     'pid.json',
     'pid_zone.json',
     'satellite_controller.json',
+    'spdm_endpoint.json',
     'stepwise.json',
     'topology.json',
     'usb_port.json',
