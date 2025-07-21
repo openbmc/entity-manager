@@ -60,6 +60,7 @@
                             "type": "object"
                         },
                         "ManagedHost": {
+                            "description": "Used to enumerate hosts from 1 to N on multi-host platforms. Set to 0 for a single-host system. Can be used to map a host to e.g. a systemd service instance.",
                             "additionalProperties": false,
                             "properties": {
                                 "HostIndex": {
