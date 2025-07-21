@@ -1,0 +1,17 @@
+{
+  "Exposes": [
+    {
+      "HostName": "",
+      "Port": 4429,
+      "Type": "SpdmTcpResponder",
+      "Name": "SpdmTcpResponder"
+    }
+  ],
+  "Name": "Ingraham Board",
+  "Type": "Board",
+  "Probe": [
+    "com.ibm.ipzvpd.VSBP({'IM': [112, 0, 16, 0]})",
+    "AND",
+    "com.ibm.ipzvpd.VINI({'CC': [54, 66, 53, 56]})"
+  ]
+}
