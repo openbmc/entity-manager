@@ -1,0 +1,21 @@
+{
+    "Exposes": [
+        {
+            "Hostname": "$ManagementAddressIPv4",
+            "Name": "SpdmTcpResponder $index",
+            "Port": 4429,
+            "TrustedComponentType": "discrete",
+            "Type": "SpdmTcpResponder"
+        }
+    ],
+    "Name": "Huygens BMC Peer",
+    "Probe": [
+        "xyz.openbmc_project.Network.LLDP.TLVs({'ExchangeType': 'xyz.openbmc_project.Network.LLDP.TLVs.LLDPExchangeType.Receive'})",
+        "AND",
+        "xyz.openbmc_project.Network.LLDP.TLVs({'SystemDescription': 'BMC'})",
+        "MATCH_ONE",
+        "AND",
+        "FOUND('Huygens System Chassis')"
+    ],
+    "Type": "Board"
+}
