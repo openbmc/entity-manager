@@ -7,7 +7,7 @@
             "type": "object",
             "additionalProperties": false,
             "properties": {
-                "Hostname": {
+                "HostName": {
                     "description": "Hostname or IP of remote SPDM TCP responder",
                     "type": "string"
                 },
@@ -26,11 +26,11 @@
                 "Type": {
                     "description": "The type of object",
                     "type": "string",
-                    "enum": ["SpdmTcpResponder"]
+                    "enum": ["SpdmTcpEndpoint"]
                 }
             },
             "required": [
-                "Hostname",
+                "HostName",
                 "Port",
                 "TrustedComponentType",
                 "Name",
