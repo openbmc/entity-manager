@@ -1,0 +1,17 @@
+{
+    "Exposes": [
+        {
+            "HostName": "$ipaddress",
+            "Name": "SpdmTcpResponder $index",
+            "Port": 4429,
+            "Type": "SpdmTcpResponder"
+        }
+    ],
+    "Name": "Ingraham Board",
+    "Probe": [
+         "xyz.openbmc_project.Network.Neighbor({'State': 'xyz.openbmc_project.Network.Neighbor.State.Reachable'})",
+         "AND",
+         "FOUND('Huygens System Chassis')"
+    ],
+    "Type": "Board"
+}
