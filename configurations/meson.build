@@ -59,6 +59,7 @@ configs = [
     'ibm/genesis3_chassis.json',
     'ibm/genesis3_psu.json',
     'ibm/huygens_chassis.json',
+    'ibm/huygens_spdm_responder.json',
     'ibm/ibm_tacoma_rack_controller.json',
     'ibm/ingraham.json',
     'ibm/mudflap.json',
