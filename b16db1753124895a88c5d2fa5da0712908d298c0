@@ -16,6 +16,24 @@
       "message": "What is the utility of the “name” property here?",
       "revId": "b16db1753124895a88c5d2fa5da0712908d298c0",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6431985d_b6569ba6",
+        "filename": "schemas/spdm_responder.json",
+        "patchSetId": 6
+      },
+      "lineNbr": 18,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-07-21T12:01:36Z",
+      "side": 1,
+      "message": "It\u0027s to create the object path for the exposes record.\n\nSince the schema is top-level (listed in `exposes_record.json`)\n`Name` is needed to form the object path.\n\nThe requirement is also encoded in the schema file itself\n\nhttps://github.com/openbmc/entity-manager/blob/ee867a631897fce5443e59f321dae8043125fbdf/schemas/exposes_record.json#L178",
+      "parentUuid": "dbf1a836_3ed0222b",
+      "revId": "b16db1753124895a88c5d2fa5da0712908d298c0",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }
