@@ -15,7 +15,7 @@ constexpr const char* schemaDirectory = PACKAGE_DIR "schemas";
 
 bool writeJsonFiles(const nlohmann::json& systemConfiguration);
 
-bool loadConfigurations(std::list<nlohmann::json>& configurations);
+std::list<nlohmann::json> loadConfigurations();
 
 template <typename JsonType>
 bool setJsonFromPointer(const std::string& ptrStr, const JsonType& value,

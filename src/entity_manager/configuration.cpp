@@ -34,8 +34,15 @@ bool writeJsonFiles(const nlohmann::json& systemConfiguration)
 }
 
 // reads json files out of the filesystem
-bool loadConfigurations(std::list<nlohmann::json>& configurations)
+std::list<nlohmann::json> loadConfigurations()
 {
+    static std::list<nlohmann::json> configurations;
+
+    if (!configurations.empty())
+    {
+        return configurations;
+    }
+
     const auto start = std::chrono::steady_clock::now();
 
     // find configuration files
@@ -47,7 +54,7 @@ bool loadConfigurations(std::list<nlohmann::json>& configurations)
     {
         std::cerr << "Unable to find any configuration files in "
                   << configurationDirectory << "\n";
-        return false;
+        return configurations;
     }
 
     std::ifstream schemaStream(
@@ -57,7 +64,6 @@ bool loadConfigurations(std::list<nlohmann::json>& configurations)
         std::cerr
             << "Cannot open schema file,  cannot validate JSON, exiting\n\n";
         std::exit(EXIT_FAILURE);
-        return false;
     }
     nlohmann::json schema =
         nlohmann::json::parse(schemaStream, nullptr, false, true);
@@ -66,7 +72,6 @@ bool loadConfigurations(std::list<nlohmann::json>& configurations)
         std::cerr
             << "Illegal schema file detected, cannot validate JSON, exiting\n";
         std::exit(EXIT_FAILURE);
-        return false;
     }
 
     for (auto& jsonPath : jsonPaths)
@@ -110,7 +115,7 @@ bool loadConfigurations(std::list<nlohmann::json>& configurations)
     lg2::debug("Finished loading json configuration in {MILLIS}ms", "MILLIS",
                duration);
 
-    return true;
+    return configurations;
 }
 
 // Iterate over new configuration and erase items from old configuration.
@@ -147,11 +152,8 @@ bool validateJson(const nlohmann::json& schemaFile, const nlohmann::json& input)
 std::set<std::string> getProbeInterfaces()
 {
     std::set<std::string> interfaces;
-    std::list<nlohmann::json> configurations;
-    if (!configuration::loadConfigurations(configurations))
-    {
-        return interfaces;
-    }
+    std::list<nlohmann::json> configurations =
+        configuration::loadConfigurations();
 
     for (auto it = configurations.begin(); it != configurations.end();)
     {

@@ -502,8 +502,9 @@ void EntityManager::propertiesChangedCallback()
         auto missingConfigurations = std::make_shared<nlohmann::json>();
         *missingConfigurations = systemConfiguration;
 
-        std::list<nlohmann::json> configurations;
-        if (!configuration::loadConfigurations(configurations))
+        std::list<nlohmann::json> configurations =
+            configuration::loadConfigurations();
+        if (configurations.empty())
         {
             std::cerr << "Could not load configurations\n";
             inProgress = false;
