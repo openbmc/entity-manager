@@ -309,6 +309,166 @@
             "power1_Name": "SWB_P12V_NIC3_PWR_W"
         },
         {
+            "Address": "0x42",
+            "Bus": "33",
+            "Labels": [
+                "iout1",
+                "iout2",
+                "vout1",
+                "vout2",
+                "pout1",
+                "pout2"
+            ],
+            "Name": "SWB_P0V895_PEX",
+            "Name1": "SWB_P0V81_PEX_0",
+            "PowerState": "On",
+            "Thresholds": [
+                {
+                    "Direction": "greater than",
+                    "Label": "vout1",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 0.93
+                },
+                {
+                    "Direction": "less than",
+                    "Label": "vout1",
+                    "Name": "lower critical",
+                    "Severity": 1,
+                    "Value": 0.86
+                },
+                {
+                    "Direction": "greater than",
+                    "Label": "iout1",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 145.2
+                },
+                {
+                    "Direction": "greater than",
+                    "Label": "pout1",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 135
+                },
+                {
+                    "Direction": "greater than",
+                    "Label": "vout2",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 0.86
+                },
+                {
+                    "Direction": "less than",
+                    "Label": "vout2",
+                    "Name": "lower critical",
+                    "Severity": 1,
+                    "Value": 0.76
+                },
+                {
+                    "Direction": "greater than",
+                    "Label": "iout2",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 33
+                },
+                {
+                    "Direction": "greater than",
+                    "Label": "pout2",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 28.38
+                }
+            ],
+            "Type": "MP2971",
+            "iout1_Name": "SWB_P0V895_PEX_CURR_A",
+            "iout2_Name": "SWB_P0V81_PEX_0_CURR_A",
+            "pout1_Name": "SWB_P0V895_PEX_PWR_W",
+            "pout2_Name": "SWB_P0V81_PEX_0_PWR_W",
+            "vout1_Name": "SWB_P0V895_PEX_VOLT_V",
+            "vout2_Name": "SWB_P0V81_PEX_0_VOLT_V"
+        },
+        {
+            "Address": "0x43",
+            "Bus": "33",
+            "Labels": [
+                "iout1",
+                "iout2",
+                "vout1",
+                "vout2",
+                "pout1",
+                "pout2"
+            ],
+            "Name": "SWB_P0V81_PEX_1",
+            "Name1": "SWB_P1V2_PEX",
+            "PowerState": "On",
+            "Thresholds": [
+                {
+                    "Direction": "greater than",
+                    "Label": "vout1",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 0.86
+                },
+                {
+                    "Direction": "less than",
+                    "Label": "vout1",
+                    "Name": "lower critical",
+                    "Severity": 1,
+                    "Value": 0.76
+                },
+                {
+                    "Direction": "greater than",
+                    "Label": "iout1",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 41.25
+                },
+                {
+                    "Direction": "greater than",
+                    "Label": "pout1",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 35.48
+                },
+                {
+                    "Direction": "greater than",
+                    "Label": "vout2",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 1.23
+                },
+                {
+                    "Direction": "less than",
+                    "Label": "vout2",
+                    "Name": "lower critical",
+                    "Severity": 1,
+                    "Value": 1.15
+                },
+                {
+                    "Direction": "greater than",
+                    "Label": "iout2",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 12.87
+                },
+                {
+                    "Direction": "greater than",
+                    "Label": "pout2",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 15.83
+                }
+            ],
+            "Type": "MP2971",
+            "iout1_Name": "SWB_P0V81_PEX_1_CURR_A",
+            "iout2_Name": "SWB_P1V2_PEX_CURR_A",
+            "pout1_Name": "SWB_P0V81_PEX_1_PWR_W",
+            "pout2_Name": "SWB_P1V2_PEX_PWR_W",
+            "vout1_Name": "SWB_P0V81_PEX_1_VOLT_V",
+            "vout2_Name": "SWB_P1V2_PEX_VOLT_V"
+        },
+        {
             "Address": "0x48",
             "Bus": 32,
             "Name": "SWB_TEMP_C",
