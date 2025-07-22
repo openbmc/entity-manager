@@ -26,6 +26,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "8ae0faea_b604e75b",
+        "filename": "src/entity_manager/entity_manager.cpp",
+        "patchSetId": 5
+      },
+      "lineNbr": 474,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-07-22T16:14:48Z",
+      "side": 1,
+      "message": "The reason is to avoid the lambda from reformatting and creating a large diff.",
+      "parentUuid": "19eb2f97_c94bb60b",
+      "range": {
+        "startLine": 474,
+        "startChar": 4,
+        "endLine": 474,
+        "endChar": 8
+      },
+      "revId": "851280b252fca171f7d61bda78ab32e6787c21dd",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "aac13b74_e2be098e",
         "filename": "src/entity_manager/entity_manager.cpp",
         "patchSetId": 5
@@ -37,6 +61,30 @@
       "writtenOn": "2025-07-22T15:48:58Z",
       "side": 1,
       "message": "Now that this isn\u0027t a global/static, this is a lifetime problem.  Can you talk through your thought process on that?  If the EntityManager object is destroyed between this being created and this being called back, this will be nullptr dereference.\n\nMaybe it\u0027s not a problem in practice?",
+      "range": {
+        "startLine": 536,
+        "startChar": 53,
+        "endLine": 536,
+        "endChar": 75
+      },
+      "revId": "851280b252fca171f7d61bda78ab32e6787c21dd",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c764c009_6e7dbc35",
+        "filename": "src/entity_manager/entity_manager.cpp",
+        "patchSetId": 5
+      },
+      "lineNbr": 536,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-07-22T16:14:48Z",
+      "side": 1,
+      "message": "From my perspective, the `EntityManager` object should not be destroyed\nat runtime during any normal control flow.\n\nIt is constructed in `main` function and exists until it goes out of scope.\n\nWhen it goes out of scope the `io.run()` has completed (or thrown, idk) \nand at that point nothing new can be run on this io context, right?\n\nI did not consider the ordering of the destructors for `EntityManager` class and `boost::asio::io_context` since i did not consider that as any normal control flow.\n\nIf there is a crash or the user manually restarts the service, those are also cases i did not consider.",
+      "parentUuid": "aac13b74_e2be098e",
       "range": {
         "startLine": 536,
         "startChar": 53,
