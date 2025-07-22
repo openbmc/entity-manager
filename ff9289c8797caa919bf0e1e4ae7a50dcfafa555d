@@ -189,6 +189,30 @@
       },
       "revId": "ff9289c8797caa919bf0e1e4ae7a50dcfafa555d",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "db2f6cd3_e32203e8",
+        "filename": "src/entity_manager/meson.build",
+        "patchSetId": 1
+      },
+      "lineNbr": 23,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2025-07-22T17:05:59Z",
+      "side": 1,
+      "message": "Lets just make it consistent and set BOOST_ASIO_DISABLE_THREADS everywhere for now.  I suspect the reason this existed in the past is gone.",
+      "parentUuid": "9f506e17_3dc29ecb",
+      "range": {
+        "startLine": 23,
+        "startChar": 29,
+        "endLine": 23,
+        "endChar": 55
+      },
+      "revId": "ff9289c8797caa919bf0e1e4ae7a50dcfafa555d",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }
