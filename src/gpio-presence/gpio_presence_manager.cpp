@@ -244,16 +244,22 @@ auto GPIOPresenceManager::readGPIOAsyncEvent(std::string gpioLine)
 
         debug("Received gpio event for {LINENAME}", "LINENAME", gpioLine);
 
-        gpioLines[gpioLine].event_read();
-
-        auto lineValue = gpioLines[gpioLine].get_value();
-
-        if (lineValue < 0)
+        // event_read doesn't clear EPOLLIN immediately; it's cleared during the
+        // next epoll check. So we need to call event_wait to make sure the
+        // event is available before calling event_read() to avoid blocking.
+        while (gpioLines[gpioLine].event_wait(std::chrono::milliseconds(0)))
         {
-            error("Failed to read GPIO line {LINENAME}", "LINENAME", gpioLine);
-        }
+            gpioLines[gpioLine].event_read();
 
-        updatePresence(gpioLine, lineValue == gpiod::line_event::RISING_EDGE);
+            auto lineValue = gpioLines[gpioLine].get_value();
+
+            if (lineValue < 0)
+            {
+                error("Failed to read GPIO line {LINENAME}", "LINENAME", gpioLine);
+            }
+
+            updatePresence(gpioLine, lineValue == gpiod::line_event::RISING_EDGE);
+        }
     }
 }
 
