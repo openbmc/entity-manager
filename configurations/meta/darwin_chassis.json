@@ -1,0 +1,13 @@
+{
+    "Exposes": [],
+    "Name": "Darwin Chassis",
+    "Probe": "com.meta.Serial({'ID': 'Darwin'})",
+    "Type": "Chassis",
+    "xyz.openbmc_project.Inventory.Decorator.Asset": {
+        "Manufacturer": "N/A",
+        "Model": "N/A",
+        "PartNumber": "N/A",
+        "SerialNumber": "$SerialNumber",
+        "SparePartNumber": "N/A"
+    }
+}
