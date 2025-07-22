@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f9238cff_038067d4",
+        "filename": "configurations/meta/darwin_chassis.json",
+        "patchSetId": 1
+      },
+      "lineNbr": 4,
+      "author": {
+        "id": 1002542
+      },
+      "writtenOn": "2025-07-22T12:08:15Z",
+      "side": 1,
+      "message": "This is a work-around since the Darwin BMC has no direct access to the EEPROM, so we need to probe a custom dbus server(which is kept downstream) that supplies the x86 Serial Number.",
+      "revId": "d6c31ae5742ebf74755871ed623325e82d3ea278",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    }
+  ]
+}
