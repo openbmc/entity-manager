@@ -51,6 +51,24 @@
       "parentUuid": "710977cb_55076b6c",
       "revId": "cb4dd3b6b4112be4963816f668e409c331c43629",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "cc2bc27e_7d95f8dd",
+        "filename": "src/entity_manager/configuration.cpp",
+        "patchSetId": 1
+      },
+      "lineNbr": 39,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-07-22T15:25:45Z",
+      "side": 1,
+      "message": "I think we can keep it in case you find any issues with the fix that @christopher.meis@9elements.com already did.\n\nThen we would just have to put the list somewhere, the `EntityManager` class could work as a place to store it, to avoid doing any OOP design work here for this simple fix.",
+      "parentUuid": "39ff86e8_c20a3acb",
+      "revId": "cb4dd3b6b4112be4963816f668e409c331c43629",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }
