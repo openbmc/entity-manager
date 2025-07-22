@@ -35,6 +35,16 @@ class EntityManager
         std::shared_ptr<sdbusplus::asio::connection>& systemBus,
         boost::asio::io_context& io);
 
+    // disable copy
+    EntityManager(const EntityManager&) = delete;
+    EntityManager& operator=(const EntityManager&) = delete;
+
+    // disable move
+    EntityManager(EntityManager&&) = delete;
+    EntityManager& operator=(EntityManager&&) = delete;
+
+    ~EntityManager() = default;
+
     std::shared_ptr<sdbusplus::asio::connection> systemBus;
     sdbusplus::asio::object_server objServer;
     std::shared_ptr<sdbusplus::asio::dbus_interface> entityIface;
