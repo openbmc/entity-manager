@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b94efd6b_687651c3",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 11,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-07-22T08:30:28Z",
+      "side": 1,
+      "message": "Do you know why `fdio.next()` is triggered?\n\nWe are only requesting edge events, right?\n\nSo i am wondering what is happening for `fdio.next()` to pass.\n\n```\n        gpiod::line_request lineConfig;\n        lineConfig.consumer \u003d \"gpio-presence\";\n        lineConfig.request_type \u003d gpiod::line_request::EVENT_BOTH_EDGES |\n                                  gpiod::line_request::DIRECTION_INPUT;\n\n        int lineFd \u003d -1; \n        try \n        {   \n            gpioLines[gpioName].request(lineConfig);\n\n            lineFd \u003d gpioLines[gpioName].event_get_fd();\n        }\n        catch (std::exception\u0026 e)\n        {\n            error(\"{ERROR}\", \"ERROR\", e);\n            return;\n        }\n        if (lineFd \u003c 0)\n        {\n            error(\"could not get event fd for gpio \u0027{NAME}\u0027\", \"NAME\", gpioName);\n            return;\n        }\n\n        if (!fdios.contains(gpioName))\n        {\n            fdios.insert(\n                {gpioName,\n                 std::make_unique\u003csdbusplus::async::fdio\u003e(ctx, lineFd)});\n```",
+      "revId": "93de19fdc682d71eb1be3fee242240aa8b61014e",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    }
+  ]
+}
