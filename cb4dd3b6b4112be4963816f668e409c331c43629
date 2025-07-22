@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "6364c2ea_4f883b75",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-07-22T15:09:26Z",
+      "side": 1,
+      "message": "This patch from Chris should also have the fix for the same issue.\n\nhttps://gerrit.openbmc.org/c/openbmc/entity-manager/+/81223",
+      "revId": "cb4dd3b6b4112be4963816f668e409c331c43629",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "710977cb_55076b6c",
+        "filename": "src/entity_manager/configuration.cpp",
+        "patchSetId": 1
+      },
+      "lineNbr": 39,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-07-22T15:09:26Z",
+      "side": 1,
+      "message": "Can we add this variable to a class instead.\n\n`static` variables like this make it difficult to see what the state of the application looks like.",
+      "revId": "cb4dd3b6b4112be4963816f668e409c331c43629",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    }
+  ]
+}
