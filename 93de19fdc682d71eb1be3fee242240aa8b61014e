@@ -16,6 +16,24 @@
       "message": "Do you know why `fdio.next()` is triggered?\n\nWe are only requesting edge events, right?\n\nSo i am wondering what is happening for `fdio.next()` to pass.\n\n```\n        gpiod::line_request lineConfig;\n        lineConfig.consumer \u003d \"gpio-presence\";\n        lineConfig.request_type \u003d gpiod::line_request::EVENT_BOTH_EDGES |\n                                  gpiod::line_request::DIRECTION_INPUT;\n\n        int lineFd \u003d -1; \n        try \n        {   \n            gpioLines[gpioName].request(lineConfig);\n\n            lineFd \u003d gpioLines[gpioName].event_get_fd();\n        }\n        catch (std::exception\u0026 e)\n        {\n            error(\"{ERROR}\", \"ERROR\", e);\n            return;\n        }\n        if (lineFd \u003c 0)\n        {\n            error(\"could not get event fd for gpio \u0027{NAME}\u0027\", \"NAME\", gpioName);\n            return;\n        }\n\n        if (!fdios.contains(gpioName))\n        {\n            fdios.insert(\n                {gpioName,\n                 std::make_unique\u003csdbusplus::async::fdio\u003e(ctx, lineFd)});\n```",
       "revId": "93de19fdc682d71eb1be3fee242240aa8b61014e",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5df11ba1_3608025b",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 11,
+      "author": {
+        "id": 1002520
+      },
+      "writtenOn": "2025-07-23T03:10:38Z",
+      "side": 1,
+      "message": "sdbusplus::async::fdio lets us handle sd_event in an async way, but that also brings a race condition.\n\nFrom the sd-event man page(https://man7.org/linux/man-pages/man3/sd-event.3.html), we can see this behavior:\n\n“In each event loop iteration a single event source is dispatched. Each time an event source is dispatched, the kernel is polled for new events before the next event source is dispatched.”\n\nHere’s what happens:\nWhen sd_event sees that a FD is readable, it calls handleEvent(), which resumes our fdio.next() coroutine. But before we call event_read(), sd_event performs another poll in the same loop. If the FD is still marked readable, it triggers the handler again.\n\nAt this point, a second coroutine starts — but the event queue is already empty because the first one hasn’t consumed the event yet. As a result, the second coroutine blocks on event_read().\n\nIf you insert a short delay before event_read(), you’ll see the issue more often. This helps confirm the root cause.",
+      "parentUuid": "b94efd6b_687651c3",
+      "revId": "93de19fdc682d71eb1be3fee242240aa8b61014e",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }
