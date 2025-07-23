@@ -20,6 +20,24 @@
     {
       "unresolved": false,
       "key": {
+        "uuid": "eb6fd072_0720bcf3",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 6
+      },
+      "lineNbr": 10,
+      "author": {
+        "id": 1002479
+      },
+      "writtenOn": "2025-07-23T19:44:45Z",
+      "side": 1,
+      "message": "The Name property is generally separated by spaces. However, if a variable is used (in this case, $bus), spaces are not allowed; otherwise, D-Bus will not display it correctly. Additionally, underscores cannot be used in the Name property either, as they will also cause display issues in D-Bus.",
+      "parentUuid": "a9fdab96_f674f1e5",
+      "revId": "ea8745e40aecb2271f279ceae9e658b16158ee1e",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
         "uuid": "1c739333_969545cc",
         "filename": "/PATCHSET_LEVEL",
         "patchSetId": 6
