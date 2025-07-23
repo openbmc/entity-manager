@@ -111,6 +111,7 @@ configs = [
     'meta/santabarbara_pcie_switch_board.json',
     'meta/santabarbara_pdb1.json',
     'meta/santabarbara_pdb2.json',
+    'meta/santabarbara_pttv.json',
     'meta/santabarbara_scm.json',
     'meta/santabarbara_sitv_pcie.json',
     'meta/terminus_2x100g_nic_tsff.json',
