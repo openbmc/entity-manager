@@ -1,5 +1,5 @@
-# This file is auto-generated. Do not edit manually.
-# File content generated with generate_config_list.sh
+#This file is auto - generated.Do not edit manually.
+#File content generated with generate_config_list.sh
 configs = [
     '1ux16_riser.json',
     '2ux8_riser.json',
@@ -157,8 +157,10 @@ configs = [
     'meta/yosemite4_sentineldome_t1_retimer.json',
     'meta/yosemite4_sentineldome_t2.json',
     'meta/yosemite4_sentineldome_t2_retimer.json',
+    'meta/yosemite4_spiderboard_adc_max_pwr_rt.json',
     'meta/yosemite4_spiderboard_adc_max_pwr_silergy.json',
     'meta/yosemite4_spiderboard_adc_max_pwr_ti.json',
+    'meta/yosemite4_spiderboard_adc_ti_pwr_rt.json',
     'meta/yosemite4_spiderboard_adc_ti_pwr_silergy.json',
     'meta/yosemite4_spiderboard_adc_ti_pwr_ti.json',
     'meta/yosemite4_wailuafalls.json',
