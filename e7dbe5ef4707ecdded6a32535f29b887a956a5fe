@@ -22,6 +22,30 @@
       },
       "revId": "e7dbe5ef4707ecdded6a32535f29b887a956a5fe",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "00f7e406_cf575ba0",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 6
+      },
+      "lineNbr": 14,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-07-23T10:28:48Z",
+      "side": 1,
+      "message": "If we don\u0027t make a library for entity-manager, we need to compile some .cpp files multiple times.\n\nThis is how it currently looks like on master\n\n```\n\ntest(\n    \u0027test_entity_manager\u0027,\n    executable(\n        \u0027test_entity_manager\u0027,\n        \u0027test_entity-manager.cpp\u0027,\n        \u0027../src/entity_manager/expression.cpp\u0027,\n        \u0027../src/utils.cpp\u0027,\n        \u0027../src/entity_manager/utils.cpp\u0027,\n        cpp_args: test_boost_args,\n        dependencies: [\n            boost,\n            gtest,\n            nlohmann_json_dep,\n            phosphor_logging_dep,\n            sdbusplus,\n            valijson,\n        ],\n        include_directories: test_include_dir,\n    ),  \n)\n```\n\nSo a bunch of files are listed there which were already compiled for entity-manager. So no need to compile it again here.",
+      "parentUuid": "92fb5307_9acdd04b",
+      "range": {
+        "startLine": 10,
+        "startChar": 42,
+        "endLine": 14,
+        "endChar": 0
+      },
+      "revId": "e7dbe5ef4707ecdded6a32535f29b887a956a5fe",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }
