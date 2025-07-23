@@ -3,6 +3,23 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "2f94c4b1_344c75a2",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 8
+      },
+      "lineNbr": 15,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2025-07-23T18:39:13Z",
+      "side": 1,
+      "message": "Not really sure what this second sentence is trying to get at.\n\n\"There may be more than one definition of an inline function\" from the linked page is why it\u0027s used in this place.\n\nThe produced code definitely will change by moving to a compile unit (which is likely fine), but this tries to imply that removing inline has zero effect?\n\nI suspect this reference could just be removed.",
+      "revId": "bdf76bebdb2c65bc96964ea89a1607b9629077d9",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "af5223b3_197ecd0e",
         "filename": "src/entity_manager/log_device_inventory.cpp",
         "patchSetId": 8
