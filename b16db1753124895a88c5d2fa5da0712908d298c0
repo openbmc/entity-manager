@@ -1,6 +1,23 @@
 {
   "comments": [
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "550386cb_b92b700a",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 6
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1001516
+      },
+      "writtenOn": "2025-07-23T14:07:58Z",
+      "side": 1,
+      "message": "ss",
+      "revId": "b16db1753124895a88c5d2fa5da0712908d298c0",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "dbf1a836_3ed0222b",
@@ -50,6 +67,40 @@
       "side": 1,
       "message": "Is there a way to just inherit from it then and not duplicate this information?",
       "parentUuid": "6431985d_b6569ba6",
+      "revId": "b16db1753124895a88c5d2fa5da0712908d298c0",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a2422bcb_fc73bea0",
+        "filename": "schemas/spdm_responder.json",
+        "patchSetId": 6
+      },
+      "lineNbr": 25,
+      "author": {
+        "id": 1001516
+      },
+      "writtenOn": "2025-07-23T14:07:58Z",
+      "side": 1,
+      "message": "Will have to define TrustedComponentType in entity manager configuration, since SPDM Spec does not define whether root of trust is discrete or integrated?",
+      "revId": "b16db1753124895a88c5d2fa5da0712908d298c0",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6f18cd45_4504cf02",
+        "filename": "schemas/spdm_responder.json",
+        "patchSetId": 6
+      },
+      "lineNbr": 28,
+      "author": {
+        "id": 1001516
+      },
+      "writtenOn": "2025-07-23T14:07:58Z",
+      "side": 1,
+      "message": "I don\u0027t see the required association for the SPDM D-Bus object here. How is the association expected to be populated in the SPDM daemon",
       "revId": "b16db1753124895a88c5d2fa5da0712908d298c0",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
