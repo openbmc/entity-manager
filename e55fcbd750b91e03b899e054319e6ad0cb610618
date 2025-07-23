@@ -16,6 +16,41 @@
       "message": "Looking for feedback on the exact wording of the description here.\n\nWe may want to also reference the meson options used in bmcweb which need enabled to make use of this interface.\n\nWhat do you think",
       "revId": "e55fcbd750b91e03b899e054319e6ad0cb610618",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "34a97d09_ec98165a",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1002065
+      },
+      "writtenOn": "2025-07-23T16:12:48Z",
+      "side": 1,
+      "message": "Maybe sth like \"The interface is used in bmcweb to create mappings to specific hosts, when BMCWEB_EXPERIMENTAL_REDFISH_MULTI_COMPUTER_SYSTEM option is set.\" ?\n\nAlso, technically the interface does nothing for single-host. Afaik it is only used in bmcweb and only when the meson option for multi-host is set. Not sure if this needs to be pointed out in the description.",
+      "parentUuid": "7ab3c1ec_a9807344",
+      "revId": "e55fcbd750b91e03b899e054319e6ad0cb610618",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e340cf97_3af1f767",
+        "filename": "schemas/openbmc-dbus.json",
+        "patchSetId": 1
+      },
+      "lineNbr": 63,
+      "author": {
+        "id": 1002065
+      },
+      "writtenOn": "2025-07-23T16:12:48Z",
+      "side": 1,
+      "message": "nit: \"Used to enumerate hosts from 1 to N on multi-host platforms. [..]\"",
+      "revId": "e55fcbd750b91e03b899e054319e6ad0cb610618",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }
