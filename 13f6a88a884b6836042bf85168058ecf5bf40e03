@@ -24,6 +24,30 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "810ab9f6_e698c43a",
+        "filename": "src/entity_manager/utils.cpp",
+        "patchSetId": 8
+      },
+      "lineNbr": 21,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-07-24T10:43:06Z",
+      "side": 1,
+      "message": "Yes, good point. I create the `power_status_monitor.hpp` in this patch\nbut move the member functions in a separate patch since it should be easier to look at if they are only moved and otherwise unchanged.",
+      "parentUuid": "6e557295_b787dd6d",
+      "range": {
+        "startLine": 21,
+        "startChar": 5,
+        "endLine": 21,
+        "endChar": 23
+      },
+      "revId": "13f6a88a884b6836042bf85168058ecf5bf40e03",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "858d95be_e2f9f6b8",
@@ -37,6 +61,30 @@
       "writtenOn": "2025-07-23T18:35:43Z",
       "side": 1,
       "message": "Do you know why unique_ptr is required here?   Now that it\u0027s a class, I wouldn\u0027t expect to need that.  I would expect match can be used as is and constructed in the constructor.",
+      "range": {
+        "startLine": 32,
+        "startChar": 9,
+        "endLine": 32,
+        "endChar": 19
+      },
+      "revId": "13f6a88a884b6836042bf85168058ecf5bf40e03",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7eb71a4c_4a475a56",
+        "filename": "src/entity_manager/utils.hpp",
+        "patchSetId": 8
+      },
+      "lineNbr": 32,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-07-24T10:43:06Z",
+      "side": 1,
+      "message": "I am using `std::unique_ptr` here to preserve the original control flow where the `setupPowerMatch` is called to create the match.\n\nI did not want to look into the implication of changing that control flow just yet since this patch is focused on removing the global variable.",
+      "parentUuid": "858d95be_e2f9f6b8",
       "range": {
         "startLine": 32,
         "startChar": 9,
