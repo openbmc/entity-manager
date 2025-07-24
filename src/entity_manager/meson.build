@@ -14,6 +14,7 @@ executable(
     'dbus_interface.cpp',
     'perform_scan.cpp',
     'perform_probe.cpp',
+    'power_status_monitor.cpp',
     'overlay.cpp',
     'topology.cpp',
     'utils.cpp',
