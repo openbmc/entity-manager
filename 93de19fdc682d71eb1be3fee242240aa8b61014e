@@ -52,6 +52,24 @@
       "parentUuid": "5df11ba1_3608025b",
       "revId": "93de19fdc682d71eb1be3fee242240aa8b61014e",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a5989f9f_c5f82963",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 11,
+      "author": {
+        "id": 1002520
+      },
+      "writtenOn": "2025-07-24T01:47:32Z",
+      "side": 1,
+      "message": "\u003e The complete() function (which gets called from event handler) gets de-registered before fdio-\u003enext() resumes.\n\n\u003e Are you saying the handler was still being invoked even after last event_read() which made the fdio-\u003enext() in next iteration to proceed further?\n\n\nWhat you mentioned is exactly the issue. The handler was invoked and returned immediately, but the event hadn’t been consumed yet. sd_event polled the FD again in the same iteration and saw it was still readable, so it marked it with EPOLLIN again. \nOn the next iteration, sd_event dispatched this event, causing fdio-\u003enext() to resume another coroutine. But by that time, the first coroutine had already consumed the event, so event_read() in the second coroutine found nothing and blocked.",
+      "parentUuid": "2efdf37b_4a9f2f92",
+      "revId": "93de19fdc682d71eb1be3fee242240aa8b61014e",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }
