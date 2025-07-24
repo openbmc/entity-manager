@@ -34,6 +34,24 @@
       "parentUuid": "b94efd6b_687651c3",
       "revId": "93de19fdc682d71eb1be3fee242240aa8b61014e",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2efdf37b_4a9f2f92",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 11,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-07-24T01:01:03Z",
+      "side": 1,
+      "message": "\u003e sdbusplus::async::fdio lets us handle sd_event in an async way, but that also brings a race condition.\n\u003e \n\u003e From the sd-event man page(https://man7.org/linux/man-pages/man3/sd-event.3.html), we can see this behavior:\n\u003e \n\u003e “In each event loop iteration a single event source is dispatched. Each time an event source is dispatched, the kernel is polled for new events before the next event source is dispatched.”\n\u003e \n\u003e Here’s what happens:\n\u003e When sd_event sees that a FD is readable, it calls handleEvent(), which resumes our fdio.next() coroutine. But before we call event_read(), sd_event performs another poll in the same loop. If the FD is still marked readable, it triggers the handler again.\n\n\nThe complete() function (which gets called from event handler) gets de-registered before fdio-\u003enext() resumes. \n\n\u003e \n\u003e At this point, a second coroutine starts — but the event queue is already empty because the first one hasn’t consumed the event yet. As a result, the second coroutine blocks on event_read().\n\nSpecifically on what you mentioned here - How the event queue is empty if first one (run iteration after fdio-\u003enext()) hasn\u0027t been consumed yet?\n\nAre you saying the handler was still being invoked even after last event_read() which made the fdio-\u003enext() in next iteration to proceed further?\n\n\u003e \n\u003e If you insert a short delay before event_read(), you’ll see the issue more often. This helps confirm the root cause.",
+      "parentUuid": "5df11ba1_3608025b",
+      "revId": "93de19fdc682d71eb1be3fee242240aa8b61014e",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }
