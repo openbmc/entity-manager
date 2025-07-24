@@ -18,6 +18,24 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "aa2bbc1e_1b516edb",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 8
+      },
+      "lineNbr": 15,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-07-24T10:43:23Z",
+      "side": 1,
+      "message": "Removed the reference. I really do not understand why `inline` is used so much in openbmc.",
+      "parentUuid": "2f94c4b1_344c75a2",
+      "revId": "bdf76bebdb2c65bc96964ea89a1607b9629077d9",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "af5223b3_197ecd0e",
@@ -41,6 +59,30 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "3f3f5a4e_206b5113",
+        "filename": "src/entity_manager/log_device_inventory.cpp",
+        "patchSetId": 8
+      },
+      "lineNbr": 8,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-07-24T10:43:23Z",
+      "side": 1,
+      "message": "no. thanks. removed them 👍",
+      "parentUuid": "af5223b3_197ecd0e",
+      "range": {
+        "startLine": 7,
+        "startChar": 0,
+        "endLine": 8,
+        "endChar": 43
+      },
+      "revId": "bdf76bebdb2c65bc96964ea89a1607b9629077d9",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "377d03af_86d7dce5",
@@ -54,6 +96,24 @@
       "writtenOn": "2025-07-23T15:22:02Z",
       "side": 1,
       "message": "I guess missing utils.hpp for deviceHasLogging",
+      "revId": "bdf76bebdb2c65bc96964ea89a1607b9629077d9",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "7cc9269a_d90f11bc",
+        "filename": "src/entity_manager/log_device_inventory.cpp",
+        "patchSetId": 8
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-07-24T10:43:23Z",
+      "side": 1,
+      "message": "including it on line 1.",
+      "parentUuid": "377d03af_86d7dce5",
       "revId": "bdf76bebdb2c65bc96964ea89a1607b9629077d9",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
