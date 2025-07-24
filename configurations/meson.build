@@ -226,5 +226,6 @@ configs = [
     'vegman_rx20_baseboard.json',
     'vegman_sx20_baseboard.json',
     'waterloo.json',
+    'wcu.json',
     'wft_baseboard.json',
 ]
