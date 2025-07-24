@@ -231,6 +231,7 @@ configs = [
     'tyan/tyan_s8036_baseboard.json',
     'tyan/tyan_s8040_baseboard.json',
     'tyan/tyan_s8047_baseboard.json',
+    'wcu.json',
     'wft_baseboard.json',
     'yadro/vegman_n110_baseboard.json',
     'yadro/vegman_rx20_baseboard.json',
