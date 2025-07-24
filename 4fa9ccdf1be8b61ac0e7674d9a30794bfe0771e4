@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "34623fdd_ab9a9318",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1000338
+      },
+      "writtenOn": "2025-07-24T03:19:18Z",
+      "side": 1,
+      "message": "Agree with Andrew here. We need a new MCTPInterface object definition in (I think) mctp.json. Does not make sense to place the local EID in a remote target definition.\n\n@andrew@codeconstruct.com.au: How do you think we can ensure that the local EID setup and bringing the interface up is done before a corresponding remote mctp target setup is attempted by the reactor?",
+      "revId": "4fa9ccdf1be8b61ac0e7674d9a30794bfe0771e4",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    }
+  ]
+}
