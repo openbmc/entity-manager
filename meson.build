@@ -40,7 +40,11 @@ sdbusplus = dependency('sdbusplus', include_type: 'system')
 phosphor_logging_dep = dependency('phosphor-logging')
 
 if get_option('gpio-presence') or get_option('tests').allowed()
-    libgpio_dep = dependency('libgpiodcxx', default_options: ['bindings=cxx'])
+    libgpio_dep = dependency(
+        'libgpiodcxx',
+        default_options: ['bindings=cxx'],
+        version: '<1.7.0',
+    )
 endif
 
 systemd = dependency('systemd')
