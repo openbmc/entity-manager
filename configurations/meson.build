@@ -81,6 +81,7 @@ configs = [
     'ibm/system1_psu.json',
     'ibm/tola.json',
     'ibm/waterloo.json',
+    'ibm/wcu.json',
     'intel/1ux16_riser.json',
     'intel/2ux8_riser.json',
     'intel/8x25_hsbp.json',
