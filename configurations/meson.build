@@ -199,6 +199,7 @@ configs = [
     'sbp1_nvme.json',
     'sbp1_psu.json',
     'sbp1_rssd.json',
+    'wcu.json',
     'solum_pssf162202_psu.json',
     'storm_king.json',
     'storm_king2.json',
