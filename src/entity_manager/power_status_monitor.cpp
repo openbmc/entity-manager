@@ -1,9 +1,11 @@
 #include "power_status_monitor.hpp"
 
+#include "phosphor-logging/lg2.hpp"
 #include "utils.hpp"
 
-#include <boost/algorithm/string/predicate.hpp>
 #include <sdbusplus/bus/match.hpp>
+
+#include <flat_map>
 
 namespace power
 {
@@ -22,6 +24,21 @@ bool PowerStatusMonitor::isPowerOn()
     return powerStatusOn;
 }
 
+void PowerStatusMonitor::handlePowerMatch(sdbusplus::message_t& message)
+{
+    lg2::debug("power match triggered");
+
+    std::string objectName;
+    std::flat_map<std::string, std::variant<std::string>> values;
+    message.read(objectName, values);
+    auto findState = values.find(power::property);
+    if (findState != values.end())
+    {
+        powerStatusOn =
+            std::get<std::string>(findState->second).ends_with("Running");
+    }
+}
+
 void PowerStatusMonitor::setupPowerMatch(
     const std::shared_ptr<sdbusplus::asio::connection>& conn)
 {
@@ -31,18 +48,7 @@ void PowerStatusMonitor::setupPowerMatch(
             std::string(em_utils::properties::interface) + "',path='" +
             std::string(power::path) + "',arg0='" +
             std::string(power::interface) + "'",
-        [this](sdbusplus::message_t& message) {
-            std::string objectName;
-            boost::container::flat_map<std::string, std::variant<std::string>>
-                values;
-            message.read(objectName, values);
-            auto findState = values.find(power::property);
-            if (findState != values.end())
-            {
-                powerStatusOn = boost::ends_with(
-                    std::get<std::string>(findState->second), "Running");
-            }
-        });
+        std::bind_front(&PowerStatusMonitor::handlePowerMatch, this));
 
     conn->async_method_call(
         [this](boost::system::error_code ec,
@@ -51,8 +57,7 @@ void PowerStatusMonitor::setupPowerMatch(
             {
                 return;
             }
-            powerStatusOn =
-                boost::ends_with(std::get<std::string>(state), "Running");
+            powerStatusOn = std::get<std::string>(state).ends_with("Running");
         },
         power::busname, power::path, em_utils::properties::interface,
         em_utils::properties::get, power::interface, power::property);
