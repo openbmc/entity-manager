@@ -14,6 +14,8 @@ class PowerStatusMonitor
         const std::shared_ptr<sdbusplus::asio::connection>& conn);
 
   private:
+    void handlePowerMatch(sdbusplus::message_t& message);
+
     bool powerStatusOn = false;
     std::unique_ptr<sdbusplus::bus::match_t> powerMatch = nullptr;
 };
