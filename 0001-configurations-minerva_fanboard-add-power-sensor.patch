@@ -1,0 +1,949 @@
+From 1480908f08d8cbbd7f068af5b4c4ed1197e7b7b0 Mon Sep 17 00:00:00 2001
+From: Yang Chen <yang.chen@quantatw.com>
+Date: Fri, 11 Jul 2025 16:46:23 +0800
+Subject: [PATCH] configurations: minerva_fanboard: add power sensor
+
+Add power sensor on each fan module.
+
+Change-Id: I2af99a6206490f332fe108182e814b03b9a86918
+Signed-off-by: Yang Chen <yang.chen@quantatw.com>
+---
+ .../meta/minerva_fanboard_adc_silergy.json    | 144 ++++++++++++------
+ .../meta/minerva_fanboard_adc_ti.json         | 144 ++++++++++++------
+ 2 files changed, 192 insertions(+), 96 deletions(-)
+
+diff --git a/configurations/meta/minerva_fanboard_adc_silergy.json b/configurations/meta/minerva_fanboard_adc_silergy.json
+index 1b61661..a73acf6 100644
+--- a/configurations/meta/minerva_fanboard_adc_silergy.json
++++ b/configurations/meta/minerva_fanboard_adc_silergy.json
+@@ -262,7 +262,8 @@
+                 "Bus": "$bus",
+                 "Labels": [
+                     "in1",
+-                    "curr1"
++                    "curr1",
++                    "power1"
+                 ],
+                 "Name": "FCB_$bus - 15 FAN_$bus * 4 - 64 + 1",
+                 "Thresholds": [
+@@ -294,14 +295,16 @@
+                 "Type": "INA238",
+                 "curr1_Name": "FCB_$bus - 15 FAN $bus * 4 - 64 + 1 CURR_A",
+                 "in1_Name": "FCB_$bus - 15 FAN $bus * 4 - 64 + 1 VOLT_V",
+-                "in1_Scale": 833.3333
++                "in1_Scale": 833.3333,
++                "power1_Name": "FCB_$bus - 15 FAN $bus * 4 - 64 + 1 PWR_W"
+             },
+             {
+                 "Address": "0x40",
+                 "Bus": "$bus",
+                 "Labels": [
+                     "in1",
+-                    "curr1"
++                    "curr1",
++                    "power1"
+                 ],
+                 "Name": "FCB_$bus - 15 FAN_$bus * 4 - 64 + 2",
+                 "Thresholds": [
+@@ -333,14 +336,16 @@
+                 "Type": "INA238",
+                 "curr1_Name": "FCB_$bus - 15 FAN $bus * 4 - 64 + 2 CURR_A",
+                 "in1_Name": "FCB_$bus - 15 FAN $bus * 4 - 64 + 2 VOLT_V",
+-                "in1_Scale": 833.3333
++                "in1_Scale": 833.3333,
++                "power1_Name": "FCB_$bus - 15 FAN $bus * 4 - 64 + 2 PWR_W"
+             },
+             {
+                 "Address": "0x45",
+                 "Bus": "$bus",
+                 "Labels": [
+                     "in1",
+-                    "curr1"
++                    "curr1",
++                    "power1"
+                 ],
+                 "Name": "FCB_$bus - 15 FAN_$bus * 4 - 64 + 3",
+                 "Thresholds": [
+@@ -372,14 +377,16 @@
+                 "Type": "INA238",
+                 "curr1_Name": "FCB_$bus - 15 FAN $bus * 4 - 64 + 3 CURR_A",
+                 "in1_Name": "FCB_$bus - 15 FAN $bus * 4 - 64 + 3 VOLT_V",
+-                "in1_Scale": 833.3333
++                "in1_Scale": 833.3333,
++                "power1_Name": "FCB_$bus - 15 FAN $bus * 4 - 64 + 3 PWR_W"
+             },
+             {
+                 "Address": "0x44",
+                 "Bus": "$bus",
+                 "Labels": [
+                     "in1",
+-                    "curr1"
++                    "curr1",
++                    "power1"
+                 ],
+                 "Name": "FCB_$bus - 15 FAN_$bus * 4 - 64 + 4",
+                 "Thresholds": [
+@@ -411,7 +418,8 @@
+                 "Type": "INA238",
+                 "curr1_Name": "FCB_$bus - 15 FAN $bus * 4 - 64 + 4 CURR_A",
+                 "in1_Name": "FCB_$bus - 15 FAN $bus * 4 - 64 + 4 VOLT_V",
+-                "in1_Scale": 833.3333
++                "in1_Scale": 833.3333,
++                "power1_Name": "FCB_$bus - 15 FAN $bus * 4 - 64 + 4 PWR_W"
+             },
+             {
+                 "Address": "0x49",
+@@ -728,7 +736,8 @@
+                 "Bus": "$bus",
+                 "Labels": [
+                     "in1",
+-                    "curr1"
++                    "curr1",
++                    "power1"
+                 ],
+                 "Name": "FCB_$bus - 15 FAN_$bus * 4 - 64 + 1",
+                 "Thresholds": [
+@@ -760,14 +769,16 @@
+                 "Type": "INA238",
+                 "curr1_Name": "FCB_$bus - 15 FAN $bus * 4 - 64 + 1 CURR_A",
+                 "in1_Name": "FCB_$bus - 15 FAN $bus * 4 - 64 + 1 VOLT_V",
+-                "in1_Scale": 833.3333
++                "in1_Scale": 833.3333,
++                "power1_Name": "FCB_$bus - 15 FAN $bus * 4 - 64 + 1 PWR_W"
+             },
+             {
+                 "Address": "0x40",
+                 "Bus": "$bus",
+                 "Labels": [
+                     "in1",
+-                    "curr1"
++                    "curr1",
++                    "power1"
+                 ],
+                 "Name": "FCB_$bus - 15 FAN_$bus * 4 - 64 + 2",
+                 "Thresholds": [
+@@ -799,14 +810,16 @@
+                 "Type": "INA238",
+                 "curr1_Name": "FCB_$bus - 15 FAN $bus * 4 - 64 + 2 CURR_A",
+                 "in1_Name": "FCB_$bus - 15 FAN $bus * 4 - 64 + 2 VOLT_V",
+-                "in1_Scale": 833.3333
++                "in1_Scale": 833.3333,
++                "power1_Name": "FCB_$bus - 15 FAN $bus * 4 - 64 + 2 PWR_W"
+             },
+             {
+                 "Address": "0x45",
+                 "Bus": "$bus",
+                 "Labels": [
+                     "in1",
+-                    "curr1"
++                    "curr1",
++                    "power1"
+                 ],
+                 "Name": "FCB_$bus - 15 FAN_$bus * 4 - 64 + 3",
+                 "Thresholds": [
+@@ -838,14 +851,16 @@
+                 "Type": "INA238",
+                 "curr1_Name": "FCB_$bus - 15 FAN $bus * 4 - 64 + 3 CURR_A",
+                 "in1_Name": "FCB_$bus - 15 FAN $bus * 4 - 64 + 3 VOLT_V",
+-                "in1_Scale": 833.3333
++                "in1_Scale": 833.3333,
++                "power1_Name": "FCB_$bus - 15 FAN $bus * 4 - 64 + 3 PWR_W"
+             },
+             {
+                 "Address": "0x44",
+                 "Bus": "$bus",
+                 "Labels": [
+                     "in1",
+-                    "curr1"
++                    "curr1",
++                    "power1"
+                 ],
+                 "Name": "FCB_$bus - 15 FAN_$bus * 4 - 64 + 4",
+                 "Thresholds": [
+@@ -877,7 +892,8 @@
+                 "Type": "INA238",
+                 "curr1_Name": "FCB_$bus - 15 FAN $bus * 4 - 64 + 4 CURR_A",
+                 "in1_Name": "FCB_$bus - 15 FAN $bus * 4 - 64 + 4 VOLT_V",
+-                "in1_Scale": 833.3333
++                "in1_Scale": 833.3333,
++                "power1_Name": "FCB_$bus - 15 FAN $bus * 4 - 64 + 4 PWR_W"
+             },
+             {
+                 "Address": "0x49",
+@@ -1194,7 +1210,8 @@
+                 "Bus": "$bus",
+                 "Labels": [
+                     "in1",
+-                    "curr1"
++                    "curr1",
++                    "power1"
+                 ],
+                 "Name": "FCB_$bus - 15 FAN_$bus * 4 - 64 + 1",
+                 "Thresholds": [
+@@ -1226,14 +1243,16 @@
+                 "Type": "INA238",
+                 "curr1_Name": "FCB_$bus - 15 FAN $bus * 4 - 64 + 1 CURR_A",
+                 "in1_Name": "FCB_$bus - 15 FAN $bus * 4 - 64 + 1 VOLT_V",
+-                "in1_Scale": 833.3333
++                "in1_Scale": 833.3333,
++                "power1_Name": "FCB_$bus - 15 FAN $bus * 4 - 64 + 1 PWR_W"
+             },
+             {
+                 "Address": "0x40",
+                 "Bus": "$bus",
+                 "Labels": [
+                     "in1",
+-                    "curr1"
++                    "curr1",
++                    "power1"
+                 ],
+                 "Name": "FCB_$bus - 15 FAN_$bus * 4 - 64 + 2",
+                 "Thresholds": [
+@@ -1265,14 +1284,16 @@
+                 "Type": "INA238",
+                 "curr1_Name": "FCB_$bus - 15 FAN $bus * 4 - 64 + 2 CURR_A",
+                 "in1_Name": "FCB_$bus - 15 FAN $bus * 4 - 64 + 2 VOLT_V",
+-                "in1_Scale": 833.3333
++                "in1_Scale": 833.3333,
++                "power1_Name": "FCB_$bus - 15 FAN $bus * 4 - 64 + 2 PWR_W"
+             },
+             {
+                 "Address": "0x45",
+                 "Bus": "$bus",
+                 "Labels": [
+                     "in1",
+-                    "curr1"
++                    "curr1",
++                    "power1"
+                 ],
+                 "Name": "FCB_$bus - 15 FAN_$bus * 4 - 64 + 3",
+                 "Thresholds": [
+@@ -1304,14 +1325,16 @@
+                 "Type": "INA238",
+                 "curr1_Name": "FCB_$bus - 15 FAN $bus * 4 - 64 + 3 CURR_A",
+                 "in1_Name": "FCB_$bus - 15 FAN $bus * 4 - 64 + 3 VOLT_V",
+-                "in1_Scale": 833.3333
++                "in1_Scale": 833.3333,
++                "power1_Name": "FCB_$bus - 15 FAN $bus * 4 - 64 + 3 PWR_W"
+             },
+             {
+                 "Address": "0x44",
+                 "Bus": "$bus",
+                 "Labels": [
+                     "in1",
+-                    "curr1"
++                    "curr1",
++                    "power1"
+                 ],
+                 "Name": "FCB_$bus - 15 FAN_$bus * 4 - 64 + 4",
+                 "Thresholds": [
+@@ -1343,7 +1366,8 @@
+                 "Type": "INA238",
+                 "curr1_Name": "FCB_$bus - 15 FAN $bus * 4 - 64 + 4 CURR_A",
+                 "in1_Name": "FCB_$bus - 15 FAN $bus * 4 - 64 + 4 VOLT_V",
+-                "in1_Scale": 833.3333
++                "in1_Scale": 833.3333,
++                "power1_Name": "FCB_$bus - 15 FAN $bus * 4 - 64 + 4 PWR_W"
+             },
+             {
+                 "Address": "0x49",
+@@ -1660,7 +1684,8 @@
+                 "Bus": "$bus",
+                 "Labels": [
+                     "in1",
+-                    "curr1"
++                    "curr1",
++                    "power1"
+                 ],
+                 "Name": "FCB_$bus - 15 FAN_$bus * 4 - 64 + 1",
+                 "Thresholds": [
+@@ -1692,14 +1717,16 @@
+                 "Type": "INA238",
+                 "curr1_Name": "FCB_$bus - 15 FAN $bus * 4 - 64 + 1 CURR_A",
+                 "in1_Name": "FCB_$bus - 15 FAN $bus * 4 - 64 + 1 VOLT_V",
+-                "in1_Scale": 833.3333
++                "in1_Scale": 833.3333,
++                "power1_Name": "FCB_$bus - 15 FAN $bus * 4 - 64 + 1 PWR_W"
+             },
+             {
+                 "Address": "0x40",
+                 "Bus": "$bus",
+                 "Labels": [
+                     "in1",
+-                    "curr1"
++                    "curr1",
++                    "power1"
+                 ],
+                 "Name": "FCB_$bus - 15 FAN_$bus * 4 - 64 + 2",
+                 "Thresholds": [
+@@ -1731,14 +1758,16 @@
+                 "Type": "INA238",
+                 "curr1_Name": "FCB_$bus - 15 FAN $bus * 4 - 64 + 2 CURR_A",
+                 "in1_Name": "FCB_$bus - 15 FAN $bus * 4 - 64 + 2 VOLT_V",
+-                "in1_Scale": 833.3333
++                "in1_Scale": 833.3333,
++                "power1_Name": "FCB_$bus - 15 FAN $bus * 4 - 64 + 2 PWR_W"
+             },
+             {
+                 "Address": "0x45",
+                 "Bus": "$bus",
+                 "Labels": [
+                     "in1",
+-                    "curr1"
++                    "curr1",
++                    "power1"
+                 ],
+                 "Name": "FCB_$bus - 15 FAN_$bus * 4 - 64 + 3",
+                 "Thresholds": [
+@@ -1770,14 +1799,16 @@
+                 "Type": "INA238",
+                 "curr1_Name": "FCB_$bus - 15 FAN $bus * 4 - 64 + 3 CURR_A",
+                 "in1_Name": "FCB_$bus - 15 FAN $bus * 4 - 64 + 3 VOLT_V",
+-                "in1_Scale": 833.3333
++                "in1_Scale": 833.3333,
++                "power1_Name": "FCB_$bus - 15 FAN $bus * 4 - 64 + 3 PWR_W"
+             },
+             {
+                 "Address": "0x44",
+                 "Bus": "$bus",
+                 "Labels": [
+                     "in1",
+-                    "curr1"
++                    "curr1",
++                    "power1"
+                 ],
+                 "Name": "FCB_$bus - 15 FAN_$bus * 4 - 64 + 4",
+                 "Thresholds": [
+@@ -1809,7 +1840,8 @@
+                 "Type": "INA238",
+                 "curr1_Name": "FCB_$bus - 15 FAN $bus * 4 - 64 + 4 CURR_A",
+                 "in1_Name": "FCB_$bus - 15 FAN $bus * 4 - 64 + 4 VOLT_V",
+-                "in1_Scale": 833.3333
++                "in1_Scale": 833.3333,
++                "power1_Name": "FCB_$bus - 15 FAN $bus * 4 - 64 + 4 PWR_W"
+             },
+             {
+                 "Address": "0x49",
+@@ -2126,7 +2158,8 @@
+                 "Bus": "$bus",
+                 "Labels": [
+                     "in1",
+-                    "curr1"
++                    "curr1",
++                    "power1"
+                 ],
+                 "Name": "FCB_$bus - 15 FAN_$bus * 4 - 64 + 1",
+                 "Thresholds": [
+@@ -2158,14 +2191,16 @@
+                 "Type": "INA238",
+                 "curr1_Name": "FCB_$bus - 15 FAN $bus * 4 - 64 + 1 CURR_A",
+                 "in1_Name": "FCB_$bus - 15 FAN $bus * 4 - 64 + 1 VOLT_V",
+-                "in1_Scale": 833.3333
++                "in1_Scale": 833.3333,
++                "power1_Name": "FCB_$bus - 15 FAN $bus * 4 - 64 + 1 PWR_W"
+             },
+             {
+                 "Address": "0x45",
+                 "Bus": "$bus",
+                 "Labels": [
+                     "in1",
+-                    "curr1"
++                    "curr1",
++                    "power1"
+                 ],
+                 "Name": "FCB_$bus - 15 FAN_$bus * 4 - 64 + 2",
+                 "Thresholds": [
+@@ -2197,14 +2232,16 @@
+                 "Type": "INA238",
+                 "curr1_Name": "FCB_$bus - 15 FAN $bus * 4 - 64 + 2 CURR_A",
+                 "in1_Name": "FCB_$bus - 15 FAN $bus * 4 - 64 + 2 VOLT_V",
+-                "in1_Scale": 833.3333
++                "in1_Scale": 833.3333,
++                "power1_Name": "FCB_$bus - 15 FAN $bus * 4 - 64 + 2 PWR_W"
+             },
+             {
+                 "Address": "0x40",
+                 "Bus": "$bus",
+                 "Labels": [
+                     "in1",
+-                    "curr1"
++                    "curr1",
++                    "power1"
+                 ],
+                 "Name": "FCB_$bus - 15 FAN_$bus * 4 - 64 + 3",
+                 "Thresholds": [
+@@ -2236,14 +2273,16 @@
+                 "Type": "INA238",
+                 "curr1_Name": "FCB_$bus - 15 FAN $bus * 4 - 64 + 3 CURR_A",
+                 "in1_Name": "FCB_$bus - 15 FAN $bus * 4 - 64 + 3 VOLT_V",
+-                "in1_Scale": 833.3333
++                "in1_Scale": 833.3333,
++                "power1_Name": "FCB_$bus - 15 FAN $bus * 4 - 64 + 3 PWR_W"
+             },
+             {
+                 "Address": "0x41",
+                 "Bus": "$bus",
+                 "Labels": [
+                     "in1",
+-                    "curr1"
++                    "curr1",
++                    "power1"
+                 ],
+                 "Name": "FCB_$bus - 15 FAN_$bus * 4 - 64 + 4",
+                 "Thresholds": [
+@@ -2275,7 +2314,8 @@
+                 "Type": "INA238",
+                 "curr1_Name": "FCB_$bus - 15 FAN $bus * 4 - 64 + 4 CURR_A",
+                 "in1_Name": "FCB_$bus - 15 FAN $bus * 4 - 64 + 4 VOLT_V",
+-                "in1_Scale": 833.3333
++                "in1_Scale": 833.3333,
++                "power1_Name": "FCB_$bus - 15 FAN $bus * 4 - 64 + 4 PWR_W"
+             },
+             {
+                 "Address": "0x49",
+@@ -2592,7 +2632,8 @@
+                 "Bus": "$bus",
+                 "Labels": [
+                     "in1",
+-                    "curr1"
++                    "curr1",
++                    "power1"
+                 ],
+                 "Name": "FCB_$bus - 15 FAN_$bus * 4 - 64 + 1",
+                 "Thresholds": [
+@@ -2624,14 +2665,16 @@
+                 "Type": "INA238",
+                 "curr1_Name": "FCB_$bus - 15 FAN $bus * 4 - 64 + 1 CURR_A",
+                 "in1_Name": "FCB_$bus - 15 FAN $bus * 4 - 64 + 1 VOLT_V",
+-                "in1_Scale": 833.3333
++                "in1_Scale": 833.3333,
++                "power1_Name": "FCB_$bus - 15 FAN $bus * 4 - 64 + 1 PWR_W"
+             },
+             {
+                 "Address": "0x45",
+                 "Bus": "$bus",
+                 "Labels": [
+                     "in1",
+-                    "curr1"
++                    "curr1",
++                    "power1"
+                 ],
+                 "Name": "FCB_$bus - 15 FAN_$bus * 4 - 64 + 2",
+                 "Thresholds": [
+@@ -2663,14 +2706,16 @@
+                 "Type": "INA238",
+                 "curr1_Name": "FCB_$bus - 15 FAN $bus * 4 - 64 + 2 CURR_A",
+                 "in1_Name": "FCB_$bus - 15 FAN $bus * 4 - 64 + 2 VOLT_V",
+-                "in1_Scale": 833.3333
++                "in1_Scale": 833.3333,
++                "power1_Name": "FCB_$bus - 15 FAN $bus * 4 - 64 + 2 PWR_W"
+             },
+             {
+                 "Address": "0x40",
+                 "Bus": "$bus",
+                 "Labels": [
+                     "in1",
+-                    "curr1"
++                    "curr1",
++                    "power1"
+                 ],
+                 "Name": "FCB_$bus - 15 FAN_$bus * 4 - 64 + 3",
+                 "Thresholds": [
+@@ -2702,14 +2747,16 @@
+                 "Type": "INA238",
+                 "curr1_Name": "FCB_$bus - 15 FAN $bus * 4 - 64 + 3 CURR_A",
+                 "in1_Name": "FCB_$bus - 15 FAN $bus * 4 - 64 + 3 VOLT_V",
+-                "in1_Scale": 833.3333
++                "in1_Scale": 833.3333,
++                "power1_Name": "FCB_$bus - 15 FAN $bus * 4 - 64 + 3 PWR_W"
+             },
+             {
+                 "Address": "0x41",
+                 "Bus": "$bus",
+                 "Labels": [
+                     "in1",
+-                    "curr1"
++                    "curr1",
++                    "power1"
+                 ],
+                 "Name": "FCB_$bus - 15 FAN_$bus * 4 - 64 + 4",
+                 "Thresholds": [
+@@ -2741,7 +2788,8 @@
+                 "Type": "INA238",
+                 "curr1_Name": "FCB_$bus - 15 FAN $bus * 4 - 64 + 4 CURR_A",
+                 "in1_Name": "FCB_$bus - 15 FAN $bus * 4 - 64 + 4 VOLT_V",
+-                "in1_Scale": 833.3333
++                "in1_Scale": 833.3333,
++                "power1_Name": "FCB_$bus - 15 FAN $bus * 4 - 64 + 4 PWR_W"
+             },
+             {
+                 "Address": "0x49",
+diff --git a/configurations/meta/minerva_fanboard_adc_ti.json b/configurations/meta/minerva_fanboard_adc_ti.json
+index 2150fab..a4f29d3 100644
+--- a/configurations/meta/minerva_fanboard_adc_ti.json
++++ b/configurations/meta/minerva_fanboard_adc_ti.json
+@@ -262,7 +262,8 @@
+                 "Bus": "$bus",
+                 "Labels": [
+                     "in1",
+-                    "curr1"
++                    "curr1",
++                    "power1"
+                 ],
+                 "Name": "FCB_$bus - 15 FAN_$bus * 4 - 64 + 1",
+                 "Thresholds": [
+@@ -293,14 +294,16 @@
+                 ],
+                 "Type": "INA238",
+                 "curr1_Name": "FCB_$bus - 15 FAN $bus * 4 - 64 + 1 CURR_A",
+-                "in1_Name": "FCB_$bus - 15 FAN $bus * 4 - 64 + 1 VOLT_V"
++                "in1_Name": "FCB_$bus - 15 FAN $bus * 4 - 64 + 1 VOLT_V",
++                "power1_Name": "FCB_$bus - 15 FAN $bus * 4 - 64 + 1 PWR_W"
+             },
+             {
+                 "Address": "0x40",
+                 "Bus": "$bus",
+                 "Labels": [
+                     "in1",
+-                    "curr1"
++                    "curr1",
++                    "power1"
+                 ],
+                 "Name": "FCB_$bus - 15 FAN_$bus * 4 - 64 + 2",
+                 "Thresholds": [
+@@ -331,14 +334,16 @@
+                 ],
+                 "Type": "INA238",
+                 "curr1_Name": "FCB_$bus - 15 FAN $bus * 4 - 64 + 2 CURR_A",
+-                "in1_Name": "FCB_$bus - 15 FAN $bus * 4 - 64 + 2 VOLT_V"
++                "in1_Name": "FCB_$bus - 15 FAN $bus * 4 - 64 + 2 VOLT_V",
++                "power1_Name": "FCB_$bus - 15 FAN $bus * 4 - 64 + 2 PWR_W"
+             },
+             {
+                 "Address": "0x45",
+                 "Bus": "$bus",
+                 "Labels": [
+                     "in1",
+-                    "curr1"
++                    "curr1",
++                    "power1"
+                 ],
+                 "Name": "FCB_$bus - 15 FAN_$bus * 4 - 64 + 3",
+                 "Thresholds": [
+@@ -369,14 +374,16 @@
+                 ],
+                 "Type": "INA238",
+                 "curr1_Name": "FCB_$bus - 15 FAN $bus * 4 - 64 + 3 CURR_A",
+-                "in1_Name": "FCB_$bus - 15 FAN $bus * 4 - 64 + 3 VOLT_V"
++                "in1_Name": "FCB_$bus - 15 FAN $bus * 4 - 64 + 3 VOLT_V",
++                "power1_Name": "FCB_$bus - 15 FAN $bus * 4 - 64 + 3 PWR_W"
+             },
+             {
+                 "Address": "0x44",
+                 "Bus": "$bus",
+                 "Labels": [
+                     "in1",
+-                    "curr1"
++                    "curr1",
++                    "power1"
+                 ],
+                 "Name": "FCB_$bus - 15 FAN_$bus * 4 - 64 + 4",
+                 "Thresholds": [
+@@ -407,7 +414,8 @@
+                 ],
+                 "Type": "INA238",
+                 "curr1_Name": "FCB_$bus - 15 FAN $bus * 4 - 64 + 4 CURR_A",
+-                "in1_Name": "FCB_$bus - 15 FAN $bus * 4 - 64 + 4 VOLT_V"
++                "in1_Name": "FCB_$bus - 15 FAN $bus * 4 - 64 + 4 VOLT_V",
++                "power1_Name": "FCB_$bus - 15 FAN $bus * 4 - 64 + 4 PWR_W"
+             },
+             {
+                 "Address": "0x49",
+@@ -724,7 +732,8 @@
+                 "Bus": "$bus",
+                 "Labels": [
+                     "in1",
+-                    "curr1"
++                    "curr1",
++                    "power1"
+                 ],
+                 "Name": "FCB_$bus - 15 FAN_$bus * 4 - 64 + 1",
+                 "Thresholds": [
+@@ -755,14 +764,16 @@
+                 ],
+                 "Type": "INA238",
+                 "curr1_Name": "FCB_$bus - 15 FAN $bus * 4 - 64 + 1 CURR_A",
+-                "in1_Name": "FCB_$bus - 15 FAN $bus * 4 - 64 + 1 VOLT_V"
++                "in1_Name": "FCB_$bus - 15 FAN $bus * 4 - 64 + 1 VOLT_V",
++                "power1_Name": "FCB_$bus - 15 FAN $bus * 4 - 64 + 1 PWR_W"
+             },
+             {
+                 "Address": "0x40",
+                 "Bus": "$bus",
+                 "Labels": [
+                     "in1",
+-                    "curr1"
++                    "curr1",
++                    "power1"
+                 ],
+                 "Name": "FCB_$bus - 15 FAN_$bus * 4 - 64 + 2",
+                 "Thresholds": [
+@@ -793,14 +804,16 @@
+                 ],
+                 "Type": "INA238",
+                 "curr1_Name": "FCB_$bus - 15 FAN $bus * 4 - 64 + 2 CURR_A",
+-                "in1_Name": "FCB_$bus - 15 FAN $bus * 4 - 64 + 2 VOLT_V"
++                "in1_Name": "FCB_$bus - 15 FAN $bus * 4 - 64 + 2 VOLT_V",
++                "power1_Name": "FCB_$bus - 15 FAN $bus * 4 - 64 + 2 PWR_W"
+             },
+             {
+                 "Address": "0x45",
+                 "Bus": "$bus",
+                 "Labels": [
+                     "in1",
+-                    "curr1"
++                    "curr1",
++                    "power1"
+                 ],
+                 "Name": "FCB_$bus - 15 FAN_$bus * 4 - 64 + 3",
+                 "Thresholds": [
+@@ -831,14 +844,16 @@
+                 ],
+                 "Type": "INA238",
+                 "curr1_Name": "FCB_$bus - 15 FAN $bus * 4 - 64 + 3 CURR_A",
+-                "in1_Name": "FCB_$bus - 15 FAN $bus * 4 - 64 + 3 VOLT_V"
++                "in1_Name": "FCB_$bus - 15 FAN $bus * 4 - 64 + 3 VOLT_V",
++                "power1_Name": "FCB_$bus - 15 FAN $bus * 4 - 64 + 3 PWR_W"
+             },
+             {
+                 "Address": "0x44",
+                 "Bus": "$bus",
+                 "Labels": [
+                     "in1",
+-                    "curr1"
++                    "curr1",
++                    "power1"
+                 ],
+                 "Name": "FCB_$bus - 15 FAN_$bus * 4 - 64 + 4",
+                 "Thresholds": [
+@@ -869,7 +884,8 @@
+                 ],
+                 "Type": "INA238",
+                 "curr1_Name": "FCB_$bus - 15 FAN $bus * 4 - 64 + 4 CURR_A",
+-                "in1_Name": "FCB_$bus - 15 FAN $bus * 4 - 64 + 4 VOLT_V"
++                "in1_Name": "FCB_$bus - 15 FAN $bus * 4 - 64 + 4 VOLT_V",
++                "power1_Name": "FCB_$bus - 15 FAN $bus * 4 - 64 + 4 PWR_W"
+             },
+             {
+                 "Address": "0x49",
+@@ -1186,7 +1202,8 @@
+                 "Bus": "$bus",
+                 "Labels": [
+                     "in1",
+-                    "curr1"
++                    "curr1",
++                    "power1"
+                 ],
+                 "Name": "FCB_$bus - 15 FAN_$bus * 4 - 64 + 1",
+                 "Thresholds": [
+@@ -1217,14 +1234,16 @@
+                 ],
+                 "Type": "INA238",
+                 "curr1_Name": "FCB_$bus - 15 FAN $bus * 4 - 64 + 1 CURR_A",
+-                "in1_Name": "FCB_$bus - 15 FAN $bus * 4 - 64 + 1 VOLT_V"
++                "in1_Name": "FCB_$bus - 15 FAN $bus * 4 - 64 + 1 VOLT_V",
++                "power1_Name": "FCB_$bus - 15 FAN $bus * 4 - 64 + 1 PWR_W"
+             },
+             {
+                 "Address": "0x40",
+                 "Bus": "$bus",
+                 "Labels": [
+                     "in1",
+-                    "curr1"
++                    "curr1",
++                    "power1"
+                 ],
+                 "Name": "FCB_$bus - 15 FAN_$bus * 4 - 64 + 2",
+                 "Thresholds": [
+@@ -1255,14 +1274,16 @@
+                 ],
+                 "Type": "INA238",
+                 "curr1_Name": "FCB_$bus - 15 FAN $bus * 4 - 64 + 2 CURR_A",
+-                "in1_Name": "FCB_$bus - 15 FAN $bus * 4 - 64 + 2 VOLT_V"
++                "in1_Name": "FCB_$bus - 15 FAN $bus * 4 - 64 + 2 VOLT_V",
++                "power1_Name": "FCB_$bus - 15 FAN $bus * 4 - 64 + 2 PWR_W"
+             },
+             {
+                 "Address": "0x45",
+                 "Bus": "$bus",
+                 "Labels": [
+                     "in1",
+-                    "curr1"
++                    "curr1",
++                    "power1"
+                 ],
+                 "Name": "FCB_$bus - 15 FAN_$bus * 4 - 64 + 3",
+                 "Thresholds": [
+@@ -1293,14 +1314,16 @@
+                 ],
+                 "Type": "INA238",
+                 "curr1_Name": "FCB_$bus - 15 FAN $bus * 4 - 64 + 3 CURR_A",
+-                "in1_Name": "FCB_$bus - 15 FAN $bus * 4 - 64 + 3 VOLT_V"
++                "in1_Name": "FCB_$bus - 15 FAN $bus * 4 - 64 + 3 VOLT_V",
++                "power1_Name": "FCB_$bus - 15 FAN $bus * 4 - 64 + 3 PWR_W"
+             },
+             {
+                 "Address": "0x44",
+                 "Bus": "$bus",
+                 "Labels": [
+                     "in1",
+-                    "curr1"
++                    "curr1",
++                    "power1"
+                 ],
+                 "Name": "FCB_$bus - 15 FAN_$bus * 4 - 64 + 4",
+                 "Thresholds": [
+@@ -1331,7 +1354,8 @@
+                 ],
+                 "Type": "INA238",
+                 "curr1_Name": "FCB_$bus - 15 FAN $bus * 4 - 64 + 4 CURR_A",
+-                "in1_Name": "FCB_$bus - 15 FAN $bus * 4 - 64 + 4 VOLT_V"
++                "in1_Name": "FCB_$bus - 15 FAN $bus * 4 - 64 + 4 VOLT_V",
++                "power1_Name": "FCB_$bus - 15 FAN $bus * 4 - 64 + 4 PWR_W"
+             },
+             {
+                 "Address": "0x49",
+@@ -1648,7 +1672,8 @@
+                 "Bus": "$bus",
+                 "Labels": [
+                     "in1",
+-                    "curr1"
++                    "curr1",
++                    "power1"
+                 ],
+                 "Name": "FCB_$bus - 15 FAN_$bus * 4 - 64 + 1",
+                 "Thresholds": [
+@@ -1679,14 +1704,16 @@
+                 ],
+                 "Type": "INA238",
+                 "curr1_Name": "FCB_$bus - 15 FAN $bus * 4 - 64 + 1 CURR_A",
+-                "in1_Name": "FCB_$bus - 15 FAN $bus * 4 - 64 + 1 VOLT_V"
++                "in1_Name": "FCB_$bus - 15 FAN $bus * 4 - 64 + 1 VOLT_V",
++                "power1_Name": "FCB_$bus - 15 FAN $bus * 4 - 64 + 1 PWR_W"
+             },
+             {
+                 "Address": "0x40",
+                 "Bus": "$bus",
+                 "Labels": [
+                     "in1",
+-                    "curr1"
++                    "curr1",
++                    "power1"
+                 ],
+                 "Name": "FCB_$bus - 15 FAN_$bus * 4 - 64 + 2",
+                 "Thresholds": [
+@@ -1717,14 +1744,16 @@
+                 ],
+                 "Type": "INA238",
+                 "curr1_Name": "FCB_$bus - 15 FAN $bus * 4 - 64 + 2 CURR_A",
+-                "in1_Name": "FCB_$bus - 15 FAN $bus * 4 - 64 + 2 VOLT_V"
++                "in1_Name": "FCB_$bus - 15 FAN $bus * 4 - 64 + 2 VOLT_V",
++                "power1_Name": "FCB_$bus - 15 FAN $bus * 4 - 64 + 2 PWR_W"
+             },
+             {
+                 "Address": "0x45",
+                 "Bus": "$bus",
+                 "Labels": [
+                     "in1",
+-                    "curr1"
++                    "curr1",
++                    "power1"
+                 ],
+                 "Name": "FCB_$bus - 15 FAN_$bus * 4 - 64 + 3",
+                 "Thresholds": [
+@@ -1755,14 +1784,16 @@
+                 ],
+                 "Type": "INA238",
+                 "curr1_Name": "FCB_$bus - 15 FAN $bus * 4 - 64 + 3 CURR_A",
+-                "in1_Name": "FCB_$bus - 15 FAN $bus * 4 - 64 + 3 VOLT_V"
++                "in1_Name": "FCB_$bus - 15 FAN $bus * 4 - 64 + 3 VOLT_V",
++                "power1_Name": "FCB_$bus - 15 FAN $bus * 4 - 64 + 3 PWR_W"
+             },
+             {
+                 "Address": "0x44",
+                 "Bus": "$bus",
+                 "Labels": [
+                     "in1",
+-                    "curr1"
++                    "curr1",
++                    "power1"
+                 ],
+                 "Name": "FCB_$bus - 15 FAN_$bus * 4 - 64 + 4",
+                 "Thresholds": [
+@@ -1793,7 +1824,8 @@
+                 ],
+                 "Type": "INA238",
+                 "curr1_Name": "FCB_$bus - 15 FAN $bus * 4 - 64 + 4 CURR_A",
+-                "in1_Name": "FCB_$bus - 15 FAN $bus * 4 - 64 + 4 VOLT_V"
++                "in1_Name": "FCB_$bus - 15 FAN $bus * 4 - 64 + 4 VOLT_V",
++                "power1_Name": "FCB_$bus - 15 FAN $bus * 4 - 64 + 4 PWR_W"
+             },
+             {
+                 "Address": "0x49",
+@@ -2110,7 +2142,8 @@
+                 "Bus": "$bus",
+                 "Labels": [
+                     "in1",
+-                    "curr1"
++                    "curr1",
++                    "power1"
+                 ],
+                 "Name": "FCB_$bus - 15 FAN_$bus * 4 - 64 + 1",
+                 "Thresholds": [
+@@ -2141,14 +2174,16 @@
+                 ],
+                 "Type": "INA238",
+                 "curr1_Name": "FCB_$bus - 15 FAN $bus * 4 - 64 + 1 CURR_A",
+-                "in1_Name": "FCB_$bus - 15 FAN $bus * 4 - 64 + 1 VOLT_V"
++                "in1_Name": "FCB_$bus - 15 FAN $bus * 4 - 64 + 1 VOLT_V",
++                "power1_Name": "FCB_$bus - 15 FAN $bus * 4 - 64 + 1 PWR_W"
+             },
+             {
+                 "Address": "0x45",
+                 "Bus": "$bus",
+                 "Labels": [
+                     "in1",
+-                    "curr1"
++                    "curr1",
++                    "power1"
+                 ],
+                 "Name": "FCB_$bus - 15 FAN_$bus * 4 - 64 + 2",
+                 "Thresholds": [
+@@ -2179,14 +2214,16 @@
+                 ],
+                 "Type": "INA238",
+                 "curr1_Name": "FCB_$bus - 15 FAN $bus * 4 - 64 + 2 CURR_A",
+-                "in1_Name": "FCB_$bus - 15 FAN $bus * 4 - 64 + 2 VOLT_V"
++                "in1_Name": "FCB_$bus - 15 FAN $bus * 4 - 64 + 2 VOLT_V",
++                "power1_Name": "FCB_$bus - 15 FAN $bus * 4 - 64 + 2 PWR_W"
+             },
+             {
+                 "Address": "0x40",
+                 "Bus": "$bus",
+                 "Labels": [
+                     "in1",
+-                    "curr1"
++                    "curr1",
++                    "power1"
+                 ],
+                 "Name": "FCB_$bus - 15 FAN_$bus * 4 - 64 + 3",
+                 "Thresholds": [
+@@ -2217,14 +2254,16 @@
+                 ],
+                 "Type": "INA238",
+                 "curr1_Name": "FCB_$bus - 15 FAN $bus * 4 - 64 + 3 CURR_A",
+-                "in1_Name": "FCB_$bus - 15 FAN $bus * 4 - 64 + 3 VOLT_V"
++                "in1_Name": "FCB_$bus - 15 FAN $bus * 4 - 64 + 3 VOLT_V",
++                "power1_Name": "FCB_$bus - 15 FAN $bus * 4 - 64 + 3 PWR_W"
+             },
+             {
+                 "Address": "0x41",
+                 "Bus": "$bus",
+                 "Labels": [
+                     "in1",
+-                    "curr1"
++                    "curr1",
++                    "power1"
+                 ],
+                 "Name": "FCB_$bus - 15 FAN_$bus * 4 - 64 + 4",
+                 "Thresholds": [
+@@ -2255,7 +2294,8 @@
+                 ],
+                 "Type": "INA238",
+                 "curr1_Name": "FCB_$bus - 15 FAN $bus * 4 - 64 + 4 CURR_A",
+-                "in1_Name": "FCB_$bus - 15 FAN $bus * 4 - 64 + 4 VOLT_V"
++                "in1_Name": "FCB_$bus - 15 FAN $bus * 4 - 64 + 4 VOLT_V",
++                "power1_Name": "FCB_$bus - 15 FAN $bus * 4 - 64 + 4 PWR_W"
+             },
+             {
+                 "Address": "0x49",
+@@ -2572,7 +2612,8 @@
+                 "Bus": "$bus",
+                 "Labels": [
+                     "in1",
+-                    "curr1"
++                    "curr1",
++                    "power1"
+                 ],
+                 "Name": "FCB_$bus - 15 FAN_$bus * 4 - 64 + 1",
+                 "Thresholds": [
+@@ -2603,14 +2644,16 @@
+                 ],
+                 "Type": "INA238",
+                 "curr1_Name": "FCB_$bus - 15 FAN $bus * 4 - 64 + 1 CURR_A",
+-                "in1_Name": "FCB_$bus - 15 FAN $bus * 4 - 64 + 1 VOLT_V"
++                "in1_Name": "FCB_$bus - 15 FAN $bus * 4 - 64 + 1 VOLT_V",
++                "power1_Name": "FCB_$bus - 15 FAN $bus * 4 - 64 + 1 PWR_W"
+             },
+             {
+                 "Address": "0x45",
+                 "Bus": "$bus",
+                 "Labels": [
+                     "in1",
+-                    "curr1"
++                    "curr1",
++                    "power1"
+                 ],
+                 "Name": "FCB_$bus - 15 FAN_$bus * 4 - 64 + 2",
+                 "Thresholds": [
+@@ -2641,14 +2684,16 @@
+                 ],
+                 "Type": "INA238",
+                 "curr1_Name": "FCB_$bus - 15 FAN $bus * 4 - 64 + 2 CURR_A",
+-                "in1_Name": "FCB_$bus - 15 FAN $bus * 4 - 64 + 2 VOLT_V"
++                "in1_Name": "FCB_$bus - 15 FAN $bus * 4 - 64 + 2 VOLT_V",
++                "power1_Name": "FCB_$bus - 15 FAN $bus * 4 - 64 + 2 PWR_W"
+             },
+             {
+                 "Address": "0x40",
+                 "Bus": "$bus",
+                 "Labels": [
+                     "in1",
+-                    "curr1"
++                    "curr1",
++                    "power1"
+                 ],
+                 "Name": "FCB_$bus - 15 FAN_$bus * 4 - 64 + 3",
+                 "Thresholds": [
+@@ -2679,14 +2724,16 @@
+                 ],
+                 "Type": "INA238",
+                 "curr1_Name": "FCB_$bus - 15 FAN $bus * 4 - 64 + 3 CURR_A",
+-                "in1_Name": "FCB_$bus - 15 FAN $bus * 4 - 64 + 3 VOLT_V"
++                "in1_Name": "FCB_$bus - 15 FAN $bus * 4 - 64 + 3 VOLT_V",
++                "power1_Name": "FCB_$bus - 15 FAN $bus * 4 - 64 + 3 PWR_W"
+             },
+             {
+                 "Address": "0x41",
+                 "Bus": "$bus",
+                 "Labels": [
+                     "in1",
+-                    "curr1"
++                    "curr1",
++                    "power1"
+                 ],
+                 "Name": "FCB_$bus - 15 FAN_$bus * 4 - 64 + 4",
+                 "Thresholds": [
+@@ -2717,7 +2764,8 @@
+                 ],
+                 "Type": "INA238",
+                 "curr1_Name": "FCB_$bus - 15 FAN $bus * 4 - 64 + 4 CURR_A",
+-                "in1_Name": "FCB_$bus - 15 FAN $bus * 4 - 64 + 4 VOLT_V"
++                "in1_Name": "FCB_$bus - 15 FAN $bus * 4 - 64 + 4 VOLT_V",
++                "power1_Name": "FCB_$bus - 15 FAN $bus * 4 - 64 + 4 PWR_W"
+             },
+             {
+                 "Address": "0x49",
+-- 
+2.34.1
+
