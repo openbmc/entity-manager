@@ -13,12 +13,22 @@ const static constexpr char* interface = "xyz.openbmc_project.State.Host";
 const static constexpr char* path = "/xyz/openbmc_project/state/host0";
 const static constexpr char* property = "CurrentHostState";
 
-bool PowerStatusMonitor::isPowerOn()
+PowerStatusMonitor::PowerStatusMonitor(
+    const std::shared_ptr<sdbusplus::asio::connection>& conn) :
+
+    powerMatch(static_cast<sdbusplus::bus_t&>(*conn),
+               "type='signal',interface='" +
+                   std::string(em_utils::properties::interface) + "',path='" +
+                   std::string(power::path) + "',arg0='" +
+                   std::string(power::interface) + "'",
+               std::bind_front(&PowerStatusMonitor::handlePowerMatch, this))
+
 {
-    if (!powerMatch)
-    {
-        throw std::runtime_error("Power Match Not Created");
-    }
+    setupPowerMatch(conn);
+}
+
+bool PowerStatusMonitor::isPowerOn() const
+{
     return powerStatusOn;
 }
 
@@ -38,14 +48,6 @@ void PowerStatusMonitor::handlePowerMatch(sdbusplus::message_t& message)
 void PowerStatusMonitor::setupPowerMatch(
     const std::shared_ptr<sdbusplus::asio::connection>& conn)
 {
-    powerMatch = std::make_unique<sdbusplus::bus::match_t>(
-        static_cast<sdbusplus::bus_t&>(*conn),
-        "type='signal',interface='" +
-            std::string(em_utils::properties::interface) + "',path='" +
-            std::string(power::path) + "',arg0='" +
-            std::string(power::interface) + "'",
-        std::bind_front(&PowerStatusMonitor::handlePowerMatch, this));
-
     conn->async_method_call(
         [this](boost::system::error_code ec,
                const std::variant<std::string>& state) {
