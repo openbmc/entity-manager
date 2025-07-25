@@ -90,6 +90,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "7e91e5c6_b3879a38",
+        "filename": "schemas/spdm_responder.json",
+        "patchSetId": 6
+      },
+      "lineNbr": 18,
+      "author": {
+        "id": 1000022
+      },
+      "writtenOn": "2025-07-25T14:51:34Z",
+      "side": 1,
+      "message": "You want to use the satellite controller here?",
+      "parentUuid": "a927f10d_a6d978d9",
+      "revId": "b16db1753124895a88c5d2fa5da0712908d298c0",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "6427af48_38d709f3",
         "filename": "schemas/spdm_responder.json",
         "patchSetId": 6
@@ -135,6 +153,23 @@
       "writtenOn": "2025-07-23T14:07:58Z",
       "side": 1,
       "message": "I don\u0027t see the required association for the SPDM D-Bus object here. How is the association expected to be populated in the SPDM daemon",
+      "revId": "b16db1753124895a88c5d2fa5da0712908d298c0",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "81e9e6b9_7b732508",
+        "filename": "schemas/spdm_responder.json",
+        "patchSetId": 6
+      },
+      "lineNbr": 29,
+      "author": {
+        "id": 1000022
+      },
+      "writtenOn": "2025-07-25T14:51:34Z",
+      "side": 1,
+      "message": "This is the root of trust inventory object and it is protecting to some inventory, It could be self or it could be protecting to some other entity, we need to define that association too.",
       "revId": "b16db1753124895a88c5d2fa5da0712908d298c0",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
