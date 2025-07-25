@@ -262,7 +262,8 @@
                 "Bus": "$bus",
                 "Labels": [
                     "in1",
-                    "curr1"
+                    "curr1",
+                    "power1"
                 ],
                 "Name": "FCB_$bus - 15 FAN_$bus * 4 - 64 + 1",
                 "Thresholds": [
@@ -289,19 +290,29 @@
                         "Name": "upper critical",
                         "Severity": 1,
                         "Value": 7.0
+                    },
+                    {
+                        "Direction": "greater than",
+                        "Hysteresis": 5.66,
+                        "Label": "power1",
+                        "Name": "upper critical",
+                        "Severity": 1,
+                        "Value": 283.0
                     }
                 ],
                 "Type": "INA238",
                 "curr1_Name": "FCB_$bus - 15 FAN $bus * 4 - 64 + 1 CURR_A",
                 "in1_Name": "FCB_$bus - 15 FAN $bus * 4 - 64 + 1 VOLT_V",
-                "in1_Scale": 833.3333
+                "in1_Scale": 833.3333,
+                "power1_Name": "FCB_$bus - 15 FAN $bus * 4 - 64 + 1 PWR_W"
             },
             {
                 "Address": "0x40",
                 "Bus": "$bus",
                 "Labels": [
                     "in1",
-                    "curr1"
+                    "curr1",
+                    "power1"
                 ],
                 "Name": "FCB_$bus - 15 FAN_$bus * 4 - 64 + 2",
                 "Thresholds": [
@@ -328,19 +339,29 @@
                         "Name": "upper critical",
                         "Severity": 1,
                         "Value": 7.0
+                    },
+                    {
+                        "Direction": "greater than",
+                        "Hysteresis": 5.66,
+                        "Label": "power1",
+                        "Name": "upper critical",
+                        "Severity": 1,
+                        "Value": 283.0
                     }
                 ],
                 "Type": "INA238",
                 "curr1_Name": "FCB_$bus - 15 FAN $bus * 4 - 64 + 2 CURR_A",
                 "in1_Name": "FCB_$bus - 15 FAN $bus * 4 - 64 + 2 VOLT_V",
-                "in1_Scale": 833.3333
+                "in1_Scale": 833.3333,
+                "power1_Name": "FCB_$bus - 15 FAN $bus * 4 - 64 + 2 PWR_W"
             },
             {
                 "Address": "0x45",
                 "Bus": "$bus",
                 "Labels": [
                     "in1",
-                    "curr1"
+                    "curr1",
+                    "power1"
                 ],
                 "Name": "FCB_$bus - 15 FAN_$bus * 4 - 64 + 3",
                 "Thresholds": [
@@ -367,19 +388,29 @@
                         "Name": "upper critical",
                         "Severity": 1,
                         "Value": 7.0
+                    },
+                    {
+                        "Direction": "greater than",
+                        "Hysteresis": 5.66,
+                        "Label": "power1",
+                        "Name": "upper critical",
+                        "Severity": 1,
+                        "Value": 283.0
                     }
                 ],
                 "Type": "INA238",
                 "curr1_Name": "FCB_$bus - 15 FAN $bus * 4 - 64 + 3 CURR_A",
                 "in1_Name": "FCB_$bus - 15 FAN $bus * 4 - 64 + 3 VOLT_V",
-                "in1_Scale": 833.3333
+                "in1_Scale": 833.3333,
+                "power1_Name": "FCB_$bus - 15 FAN $bus * 4 - 64 + 3 PWR_W"
             },
             {
                 "Address": "0x44",
                 "Bus": "$bus",
                 "Labels": [
                     "in1",
-                    "curr1"
+                    "curr1",
+                    "power1"
                 ],
                 "Name": "FCB_$bus - 15 FAN_$bus * 4 - 64 + 4",
                 "Thresholds": [
@@ -406,12 +437,21 @@
                         "Name": "upper critical",
                         "Severity": 1,
                         "Value": 7.0
+                    },
+                    {
+                        "Direction": "greater than",
+                        "Hysteresis": 5.66,
+                        "Label": "power1",
+                        "Name": "upper critical",
+                        "Severity": 1,
+                        "Value": 283.0
                     }
                 ],
                 "Type": "INA238",
                 "curr1_Name": "FCB_$bus - 15 FAN $bus * 4 - 64 + 4 CURR_A",
                 "in1_Name": "FCB_$bus - 15 FAN $bus * 4 - 64 + 4 VOLT_V",
-                "in1_Scale": 833.3333
+                "in1_Scale": 833.3333,
+                "power1_Name": "FCB_$bus - 15 FAN $bus * 4 - 64 + 4 PWR_W"
             },
             {
                 "Address": "0x49",
@@ -728,7 +768,8 @@
                 "Bus": "$bus",
                 "Labels": [
                     "in1",
-                    "curr1"
+                    "curr1",
+                    "power1"
                 ],
                 "Name": "FCB_$bus - 15 FAN_$bus * 4 - 64 + 1",
                 "Thresholds": [
@@ -755,19 +796,29 @@
                         "Name": "upper critical",
                         "Severity": 1,
                         "Value": 7.0
+                    },
+                    {
+                        "Direction": "greater than",
+                        "Hysteresis": 5.66,
+                        "Label": "power1",
+                        "Name": "upper critical",
+                        "Severity": 1,
+                        "Value": 283.0
                     }
                 ],
                 "Type": "INA238",
                 "curr1_Name": "FCB_$bus - 15 FAN $bus * 4 - 64 + 1 CURR_A",
                 "in1_Name": "FCB_$bus - 15 FAN $bus * 4 - 64 + 1 VOLT_V",
-                "in1_Scale": 833.3333
+                "in1_Scale": 833.3333,
+                "power1_Name": "FCB_$bus - 15 FAN $bus * 4 - 64 + 1 PWR_W"
             },
             {
                 "Address": "0x40",
                 "Bus": "$bus",
                 "Labels": [
                     "in1",
-                    "curr1"
+                    "curr1",
+                    "power1"
                 ],
                 "Name": "FCB_$bus - 15 FAN_$bus * 4 - 64 + 2",
                 "Thresholds": [
@@ -794,19 +845,29 @@
                         "Name": "upper critical",
                         "Severity": 1,
                         "Value": 7.0
+                    },
+                    {
+                        "Direction": "greater than",
+                        "Hysteresis": 5.66,
+                        "Label": "power1",
+                        "Name": "upper critical",
+                        "Severity": 1,
+                        "Value": 283.0
                     }
                 ],
                 "Type": "INA238",
                 "curr1_Name": "FCB_$bus - 15 FAN $bus * 4 - 64 + 2 CURR_A",
                 "in1_Name": "FCB_$bus - 15 FAN $bus * 4 - 64 + 2 VOLT_V",
-                "in1_Scale": 833.3333
+                "in1_Scale": 833.3333,
+                "power1_Name": "FCB_$bus - 15 FAN $bus * 4 - 64 + 2 PWR_W"
             },
             {
                 "Address": "0x45",
                 "Bus": "$bus",
                 "Labels": [
                     "in1",
-                    "curr1"
+                    "curr1",
+                    "power1"
                 ],
                 "Name": "FCB_$bus - 15 FAN_$bus * 4 - 64 + 3",
                 "Thresholds": [
@@ -833,19 +894,29 @@
                         "Name": "upper critical",
                         "Severity": 1,
                         "Value": 7.0
+                    },
+                    {
+                        "Direction": "greater than",
+                        "Hysteresis": 5.66,
+                        "Label": "power1",
+                        "Name": "upper critical",
+                        "Severity": 1,
+                        "Value": 283.0
                     }
                 ],
                 "Type": "INA238",
                 "curr1_Name": "FCB_$bus - 15 FAN $bus * 4 - 64 + 3 CURR_A",
                 "in1_Name": "FCB_$bus - 15 FAN $bus * 4 - 64 + 3 VOLT_V",
-                "in1_Scale": 833.3333
+                "in1_Scale": 833.3333,
+                "power1_Name": "FCB_$bus - 15 FAN $bus * 4 - 64 + 3 PWR_W"
             },
             {
                 "Address": "0x44",
                 "Bus": "$bus",
                 "Labels": [
                     "in1",
-                    "curr1"
+                    "curr1",
+                    "power1"
                 ],
                 "Name": "FCB_$bus - 15 FAN_$bus * 4 - 64 + 4",
                 "Thresholds": [
@@ -872,12 +943,21 @@
                         "Name": "upper critical",
                         "Severity": 1,
                         "Value": 7.0
+                    },
+                    {
+                        "Direction": "greater than",
+                        "Hysteresis": 5.66,
+                        "Label": "power1",
+                        "Name": "upper critical",
+                        "Severity": 1,
+                        "Value": 283.0
                     }
                 ],
                 "Type": "INA238",
                 "curr1_Name": "FCB_$bus - 15 FAN $bus * 4 - 64 + 4 CURR_A",
                 "in1_Name": "FCB_$bus - 15 FAN $bus * 4 - 64 + 4 VOLT_V",
-                "in1_Scale": 833.3333
+                "in1_Scale": 833.3333,
+                "power1_Name": "FCB_$bus - 15 FAN $bus * 4 - 64 + 4 PWR_W"
             },
             {
                 "Address": "0x49",
@@ -1194,7 +1274,8 @@
                 "Bus": "$bus",
                 "Labels": [
                     "in1",
-                    "curr1"
+                    "curr1",
+                    "power1"
                 ],
                 "Name": "FCB_$bus - 15 FAN_$bus * 4 - 64 + 1",
                 "Thresholds": [
@@ -1221,19 +1302,29 @@
                         "Name": "upper critical",
                         "Severity": 1,
                         "Value": 7.0
+                    },
+                    {
+                        "Direction": "greater than",
+                        "Hysteresis": 5.66,
+                        "Label": "power1",
+                        "Name": "upper critical",
+                        "Severity": 1,
+                        "Value": 283.0
                     }
                 ],
                 "Type": "INA238",
                 "curr1_Name": "FCB_$bus - 15 FAN $bus * 4 - 64 + 1 CURR_A",
                 "in1_Name": "FCB_$bus - 15 FAN $bus * 4 - 64 + 1 VOLT_V",
-                "in1_Scale": 833.3333
+                "in1_Scale": 833.3333,
+                "power1_Name": "FCB_$bus - 15 FAN $bus * 4 - 64 + 1 PWR_W"
             },
             {
                 "Address": "0x40",
                 "Bus": "$bus",
                 "Labels": [
                     "in1",
-                    "curr1"
+                    "curr1",
+                    "power1"
                 ],
                 "Name": "FCB_$bus - 15 FAN_$bus * 4 - 64 + 2",
                 "Thresholds": [
@@ -1260,19 +1351,29 @@
                         "Name": "upper critical",
                         "Severity": 1,
                         "Value": 7.0
+                    },
+                    {
+                        "Direction": "greater than",
+                        "Hysteresis": 5.66,
+                        "Label": "power1",
+                        "Name": "upper critical",
+                        "Severity": 1,
+                        "Value": 283.0
                     }
                 ],
                 "Type": "INA238",
                 "curr1_Name": "FCB_$bus - 15 FAN $bus * 4 - 64 + 2 CURR_A",
                 "in1_Name": "FCB_$bus - 15 FAN $bus * 4 - 64 + 2 VOLT_V",
-                "in1_Scale": 833.3333
+                "in1_Scale": 833.3333,
+                "power1_Name": "FCB_$bus - 15 FAN $bus * 4 - 64 + 2 PWR_W"
             },
             {
                 "Address": "0x45",
                 "Bus": "$bus",
                 "Labels": [
                     "in1",
-                    "curr1"
+                    "curr1",
+                    "power1"
                 ],
                 "Name": "FCB_$bus - 15 FAN_$bus * 4 - 64 + 3",
                 "Thresholds": [
@@ -1299,19 +1400,29 @@
                         "Name": "upper critical",
                         "Severity": 1,
                         "Value": 7.0
+                    },
+                    {
+                        "Direction": "greater than",
+                        "Hysteresis": 5.66,
+                        "Label": "power1",
+                        "Name": "upper critical",
+                        "Severity": 1,
+                        "Value": 283.0
                     }
                 ],
                 "Type": "INA238",
                 "curr1_Name": "FCB_$bus - 15 FAN $bus * 4 - 64 + 3 CURR_A",
                 "in1_Name": "FCB_$bus - 15 FAN $bus * 4 - 64 + 3 VOLT_V",
-                "in1_Scale": 833.3333
+                "in1_Scale": 833.3333,
+                "power1_Name": "FCB_$bus - 15 FAN $bus * 4 - 64 + 3 PWR_W"
             },
             {
                 "Address": "0x44",
                 "Bus": "$bus",
                 "Labels": [
                     "in1",
-                    "curr1"
+                    "curr1",
+                    "power1"
                 ],
                 "Name": "FCB_$bus - 15 FAN_$bus * 4 - 64 + 4",
                 "Thresholds": [
@@ -1338,12 +1449,21 @@
                         "Name": "upper critical",
                         "Severity": 1,
                         "Value": 7.0
+                    },
+                    {
+                        "Direction": "greater than",
+                        "Hysteresis": 5.66,
+                        "Label": "power1",
+                        "Name": "upper critical",
+                        "Severity": 1,
+                        "Value": 283.0
                     }
                 ],
                 "Type": "INA238",
                 "curr1_Name": "FCB_$bus - 15 FAN $bus * 4 - 64 + 4 CURR_A",
                 "in1_Name": "FCB_$bus - 15 FAN $bus * 4 - 64 + 4 VOLT_V",
-                "in1_Scale": 833.3333
+                "in1_Scale": 833.3333,
+                "power1_Name": "FCB_$bus - 15 FAN $bus * 4 - 64 + 4 PWR_W"
             },
             {
                 "Address": "0x49",
@@ -1660,7 +1780,8 @@
                 "Bus": "$bus",
                 "Labels": [
                     "in1",
-                    "curr1"
+                    "curr1",
+                    "power1"
                 ],
                 "Name": "FCB_$bus - 15 FAN_$bus * 4 - 64 + 1",
                 "Thresholds": [
@@ -1687,19 +1808,29 @@
                         "Name": "upper critical",
                         "Severity": 1,
                         "Value": 7.0
+                    },
+                    {
+                        "Direction": "greater than",
+                        "Hysteresis": 5.66,
+                        "Label": "power1",
+                        "Name": "upper critical",
+                        "Severity": 1,
+                        "Value": 283.0
                     }
                 ],
                 "Type": "INA238",
                 "curr1_Name": "FCB_$bus - 15 FAN $bus * 4 - 64 + 1 CURR_A",
                 "in1_Name": "FCB_$bus - 15 FAN $bus * 4 - 64 + 1 VOLT_V",
-                "in1_Scale": 833.3333
+                "in1_Scale": 833.3333,
+                "power1_Name": "FCB_$bus - 15 FAN $bus * 4 - 64 + 1 PWR_W"
             },
             {
                 "Address": "0x40",
                 "Bus": "$bus",
                 "Labels": [
                     "in1",
-                    "curr1"
+                    "curr1",
+                    "power1"
                 ],
                 "Name": "FCB_$bus - 15 FAN_$bus * 4 - 64 + 2",
                 "Thresholds": [
@@ -1726,19 +1857,29 @@
                         "Name": "upper critical",
                         "Severity": 1,
                         "Value": 7.0
+                    },
+                    {
+                        "Direction": "greater than",
+                        "Hysteresis": 5.66,
+                        "Label": "power1",
+                        "Name": "upper critical",
+                        "Severity": 1,
+                        "Value": 283.0
                     }
                 ],
                 "Type": "INA238",
                 "curr1_Name": "FCB_$bus - 15 FAN $bus * 4 - 64 + 2 CURR_A",
                 "in1_Name": "FCB_$bus - 15 FAN $bus * 4 - 64 + 2 VOLT_V",
-                "in1_Scale": 833.3333
+                "in1_Scale": 833.3333,
+                "power1_Name": "FCB_$bus - 15 FAN $bus * 4 - 64 + 2 PWR_W"
             },
             {
                 "Address": "0x45",
                 "Bus": "$bus",
                 "Labels": [
                     "in1",
-                    "curr1"
+                    "curr1",
+                    "power1"
                 ],
                 "Name": "FCB_$bus - 15 FAN_$bus * 4 - 64 + 3",
                 "Thresholds": [
@@ -1765,19 +1906,29 @@
                         "Name": "upper critical",
                         "Severity": 1,
                         "Value": 7.0
+                    },
+                    {
+                        "Direction": "greater than",
+                        "Hysteresis": 5.66,
+                        "Label": "power1",
+                        "Name": "upper critical",
+                        "Severity": 1,
+                        "Value": 283.0
                     }
                 ],
                 "Type": "INA238",
                 "curr1_Name": "FCB_$bus - 15 FAN $bus * 4 - 64 + 3 CURR_A",
                 "in1_Name": "FCB_$bus - 15 FAN $bus * 4 - 64 + 3 VOLT_V",
-                "in1_Scale": 833.3333
+                "in1_Scale": 833.3333,
+                "power1_Name": "FCB_$bus - 15 FAN $bus * 4 - 64 + 3 PWR_W"
             },
             {
                 "Address": "0x44",
                 "Bus": "$bus",
                 "Labels": [
                     "in1",
-                    "curr1"
+                    "curr1",
+                    "power1"
                 ],
                 "Name": "FCB_$bus - 15 FAN_$bus * 4 - 64 + 4",
                 "Thresholds": [
@@ -1804,12 +1955,21 @@
                         "Name": "upper critical",
                         "Severity": 1,
                         "Value": 7.0
+                    },
+                    {
+                        "Direction": "greater than",
+                        "Hysteresis": 5.66,
+                        "Label": "power1",
+                        "Name": "upper critical",
+                        "Severity": 1,
+                        "Value": 283.0
                     }
                 ],
                 "Type": "INA238",
                 "curr1_Name": "FCB_$bus - 15 FAN $bus * 4 - 64 + 4 CURR_A",
                 "in1_Name": "FCB_$bus - 15 FAN $bus * 4 - 64 + 4 VOLT_V",
-                "in1_Scale": 833.3333
+                "in1_Scale": 833.3333,
+                "power1_Name": "FCB_$bus - 15 FAN $bus * 4 - 64 + 4 PWR_W"
             },
             {
                 "Address": "0x49",
@@ -2126,7 +2286,8 @@
                 "Bus": "$bus",
                 "Labels": [
                     "in1",
-                    "curr1"
+                    "curr1",
+                    "power1"
                 ],
                 "Name": "FCB_$bus - 15 FAN_$bus * 4 - 64 + 1",
                 "Thresholds": [
@@ -2153,19 +2314,29 @@
                         "Name": "upper critical",
                         "Severity": 1,
                         "Value": 7.0
+                    },
+                    {
+                        "Direction": "greater than",
+                        "Hysteresis": 5.66,
+                        "Label": "power1",
+                        "Name": "upper critical",
+                        "Severity": 1,
+                        "Value": 283.0
                     }
                 ],
                 "Type": "INA238",
                 "curr1_Name": "FCB_$bus - 15 FAN $bus * 4 - 64 + 1 CURR_A",
                 "in1_Name": "FCB_$bus - 15 FAN $bus * 4 - 64 + 1 VOLT_V",
-                "in1_Scale": 833.3333
+                "in1_Scale": 833.3333,
+                "power1_Name": "FCB_$bus - 15 FAN $bus * 4 - 64 + 1 PWR_W"
             },
             {
                 "Address": "0x45",
                 "Bus": "$bus",
                 "Labels": [
                     "in1",
-                    "curr1"
+                    "curr1",
+                    "power1"
                 ],
                 "Name": "FCB_$bus - 15 FAN_$bus * 4 - 64 + 2",
                 "Thresholds": [
@@ -2192,19 +2363,29 @@
                         "Name": "upper critical",
                         "Severity": 1,
                         "Value": 7.0
+                    },
+                    {
+                        "Direction": "greater than",
+                        "Hysteresis": 5.66,
+                        "Label": "power1",
+                        "Name": "upper critical",
+                        "Severity": 1,
+                        "Value": 283.0
                     }
                 ],
                 "Type": "INA238",
                 "curr1_Name": "FCB_$bus - 15 FAN $bus * 4 - 64 + 2 CURR_A",
                 "in1_Name": "FCB_$bus - 15 FAN $bus * 4 - 64 + 2 VOLT_V",
-                "in1_Scale": 833.3333
+                "in1_Scale": 833.3333,
+                "power1_Name": "FCB_$bus - 15 FAN $bus * 4 - 64 + 2 PWR_W"
             },
             {
                 "Address": "0x40",
                 "Bus": "$bus",
                 "Labels": [
                     "in1",
-                    "curr1"
+                    "curr1",
+                    "power1"
                 ],
                 "Name": "FCB_$bus - 15 FAN_$bus * 4 - 64 + 3",
                 "Thresholds": [
@@ -2231,19 +2412,29 @@
                         "Name": "upper critical",
                         "Severity": 1,
                         "Value": 7.0
+                    },
+                    {
+                        "Direction": "greater than",
+                        "Hysteresis": 5.66,
+                        "Label": "power1",
+                        "Name": "upper critical",
+                        "Severity": 1,
+                        "Value": 283.0
                     }
                 ],
                 "Type": "INA238",
                 "curr1_Name": "FCB_$bus - 15 FAN $bus * 4 - 64 + 3 CURR_A",
                 "in1_Name": "FCB_$bus - 15 FAN $bus * 4 - 64 + 3 VOLT_V",
-                "in1_Scale": 833.3333
+                "in1_Scale": 833.3333,
+                "power1_Name": "FCB_$bus - 15 FAN $bus * 4 - 64 + 3 PWR_W"
             },
             {
                 "Address": "0x41",
                 "Bus": "$bus",
                 "Labels": [
                     "in1",
-                    "curr1"
+                    "curr1",
+                    "power1"
                 ],
                 "Name": "FCB_$bus - 15 FAN_$bus * 4 - 64 + 4",
                 "Thresholds": [
@@ -2270,12 +2461,21 @@
                         "Name": "upper critical",
                         "Severity": 1,
                         "Value": 7.0
+                    },
+                    {
+                        "Direction": "greater than",
+                        "Hysteresis": 5.66,
+                        "Label": "power1",
+                        "Name": "upper critical",
+                        "Severity": 1,
+                        "Value": 283.0
                     }
                 ],
                 "Type": "INA238",
                 "curr1_Name": "FCB_$bus - 15 FAN $bus * 4 - 64 + 4 CURR_A",
                 "in1_Name": "FCB_$bus - 15 FAN $bus * 4 - 64 + 4 VOLT_V",
-                "in1_Scale": 833.3333
+                "in1_Scale": 833.3333,
+                "power1_Name": "FCB_$bus - 15 FAN $bus * 4 - 64 + 4 PWR_W"
             },
             {
                 "Address": "0x49",
@@ -2592,7 +2792,8 @@
                 "Bus": "$bus",
                 "Labels": [
                     "in1",
-                    "curr1"
+                    "curr1",
+                    "power1"
                 ],
                 "Name": "FCB_$bus - 15 FAN_$bus * 4 - 64 + 1",
                 "Thresholds": [
@@ -2619,19 +2820,29 @@
                         "Name": "upper critical",
                         "Severity": 1,
                         "Value": 7.0
+                    },
+                    {
+                        "Direction": "greater than",
+                        "Hysteresis": 5.66,
+                        "Label": "power1",
+                        "Name": "upper critical",
+                        "Severity": 1,
+                        "Value": 283.0
                     }
                 ],
                 "Type": "INA238",
                 "curr1_Name": "FCB_$bus - 15 FAN $bus * 4 - 64 + 1 CURR_A",
                 "in1_Name": "FCB_$bus - 15 FAN $bus * 4 - 64 + 1 VOLT_V",
-                "in1_Scale": 833.3333
+                "in1_Scale": 833.3333,
+                "power1_Name": "FCB_$bus - 15 FAN $bus * 4 - 64 + 1 PWR_W"
             },
             {
                 "Address": "0x45",
                 "Bus": "$bus",
                 "Labels": [
                     "in1",
-                    "curr1"
+                    "curr1",
+                    "power1"
                 ],
                 "Name": "FCB_$bus - 15 FAN_$bus * 4 - 64 + 2",
                 "Thresholds": [
@@ -2658,19 +2869,29 @@
                         "Name": "upper critical",
                         "Severity": 1,
                         "Value": 7.0
+                    },
+                    {
+                        "Direction": "greater than",
+                        "Hysteresis": 5.66,
+                        "Label": "power1",
+                        "Name": "upper critical",
+                        "Severity": 1,
+                        "Value": 283.0
                     }
                 ],
                 "Type": "INA238",
                 "curr1_Name": "FCB_$bus - 15 FAN $bus * 4 - 64 + 2 CURR_A",
                 "in1_Name": "FCB_$bus - 15 FAN $bus * 4 - 64 + 2 VOLT_V",
-                "in1_Scale": 833.3333
+                "in1_Scale": 833.3333,
+                "power1_Name": "FCB_$bus - 15 FAN $bus * 4 - 64 + 2 PWR_W"
             },
             {
                 "Address": "0x40",
                 "Bus": "$bus",
                 "Labels": [
                     "in1",
-                    "curr1"
+                    "curr1",
+                    "power1"
                 ],
                 "Name": "FCB_$bus - 15 FAN_$bus * 4 - 64 + 3",
                 "Thresholds": [
@@ -2697,19 +2918,29 @@
                         "Name": "upper critical",
                         "Severity": 1,
                         "Value": 7.0
+                    },
+                    {
+                        "Direction": "greater than",
+                        "Hysteresis": 5.66,
+                        "Label": "power1",
+                        "Name": "upper critical",
+                        "Severity": 1,
+                        "Value": 283.0
                     }
                 ],
                 "Type": "INA238",
                 "curr1_Name": "FCB_$bus - 15 FAN $bus * 4 - 64 + 3 CURR_A",
                 "in1_Name": "FCB_$bus - 15 FAN $bus * 4 - 64 + 3 VOLT_V",
-                "in1_Scale": 833.3333
+                "in1_Scale": 833.3333,
+                "power1_Name": "FCB_$bus - 15 FAN $bus * 4 - 64 + 3 PWR_W"
             },
             {
                 "Address": "0x41",
                 "Bus": "$bus",
                 "Labels": [
                     "in1",
-                    "curr1"
+                    "curr1",
+                    "power1"
                 ],
                 "Name": "FCB_$bus - 15 FAN_$bus * 4 - 64 + 4",
                 "Thresholds": [
@@ -2736,12 +2967,21 @@
                         "Name": "upper critical",
                         "Severity": 1,
                         "Value": 7.0
+                    },
+                    {
+                        "Direction": "greater than",
+                        "Hysteresis": 5.66,
+                        "Label": "power1",
+                        "Name": "upper critical",
+                        "Severity": 1,
+                        "Value": 283.0
                     }
                 ],
                 "Type": "INA238",
                 "curr1_Name": "FCB_$bus - 15 FAN $bus * 4 - 64 + 4 CURR_A",
                 "in1_Name": "FCB_$bus - 15 FAN $bus * 4 - 64 + 4 VOLT_V",
-                "in1_Scale": 833.3333
+                "in1_Scale": 833.3333,
+                "power1_Name": "FCB_$bus - 15 FAN $bus * 4 - 64 + 4 PWR_W"
             },
             {
                 "Address": "0x49",
