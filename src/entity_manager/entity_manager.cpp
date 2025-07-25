@@ -73,7 +73,7 @@ EntityManager::EntityManager(
     objServer(sdbusplus::asio::object_server(systemBus, /*skipManager=*/true)),
     lastJson(nlohmann::json::object()),
     systemConfiguration(nlohmann::json::object()), io(io),
-    propertiesChangedTimer(io)
+    powerStatus(systemBus), propertiesChangedTimer(io)
 {
     // All other objects that EntityManager currently support are under the
     // inventory subtree.
