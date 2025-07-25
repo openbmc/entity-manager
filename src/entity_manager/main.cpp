@@ -34,10 +34,6 @@ int main()
 
     em.handleCurrentConfigurationJson();
 
-    // some boards only show up after power is on, we want to not say they are
-    // removed until the same state happens
-    em.powerStatus.setupPowerMatch(em.systemBus);
-
     io.run();
 
     return 0;

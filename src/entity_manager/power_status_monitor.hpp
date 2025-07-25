@@ -9,15 +9,16 @@ namespace power
 class PowerStatusMonitor
 {
   public:
-    bool isPowerOn();
-    void setupPowerMatch(
-        const std::shared_ptr<sdbusplus::asio::connection>& conn);
+    explicit PowerStatusMonitor(sdbusplus::asio::connection& conn);
+
+    bool isPowerOn() const;
 
   private:
     void handlePowerMatch(sdbusplus::message_t& message);
+    void getInitialPowerStatus(sdbusplus::asio::connection& conn);
 
     bool powerStatusOn = false;
-    std::unique_ptr<sdbusplus::bus::match_t> powerMatch = nullptr;
+    sdbusplus::bus::match_t powerMatch;
 };
 
 } // namespace power
