@@ -16,6 +16,24 @@
       "message": "Doesn’t this make it so the gpio is set for all readings from the ADC?  Not just the rtc battery?  Hos do we prevent excessive drain on the battery?  Usually we limit rtc readings to once every hour or day.",
       "revId": "44b69cf2b6882ada70f119ca5e157a50a9f612c4",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "02bf2a4b_cd565902",
+        "filename": "configurations/meta/harma_mb_vr_infineon.json",
+        "patchSetId": 3
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 1001906
+      },
+      "writtenOn": "2025-07-25T09:30:19Z",
+      "side": 1,
+      "message": "\"Label\": \"in0\",\n\"Name\": \"rtc-battery-voltage-read-enable\",\n\nRegarding the JSON configuration: if a label is defined there, it means only that channel can control the GPIO. Currently, inX_xxxx does not support setting the polling interval. I think I can submit another commit to add support for inX_PollRate.",
+      "parentUuid": "04b8f403_a8357df9",
+      "revId": "44b69cf2b6882ada70f119ca5e157a50a9f612c4",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }
