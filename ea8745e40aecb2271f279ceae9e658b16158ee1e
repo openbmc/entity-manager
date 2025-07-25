@@ -56,6 +56,24 @@
     {
       "unresolved": false,
       "key": {
+        "uuid": "0e0fced0_c37e22a1",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 6
+      },
+      "lineNbr": 10,
+      "author": {
+        "id": 1002479
+      },
+      "writtenOn": "2025-07-25T17:32:45Z",
+      "side": 1,
+      "message": "Taking FAN as an example, the expected name is \"FAN0_TACH_IL_SPEED_RPM\".\n\nPreviously, the name attribute in the JSON was set using the expression:\n\"FAN$bus - 1 % 2 * 4 + 0_TACH_IL\".\nWith this configuration, we observed that the sensor name only appeared as \"FAN0\", and the full expected name was not displayed properly.\n\nAfter changing the configuration to:\n\"FAN$bus - 1 % 2 * 4 + 0 TACH_IL\" (removing the underscore _),\nthe full name was displayed correctly as expected.\n\nBefore modification (using \"FAN$bus - 1 % 2 * 4 + 0_TACH_IL\"):\n├─ /xyz/openbmc_project/inventory/system/board/NVIDIA_GB300_0\n│ ├─ /xyz/openbmc_project/inventory/system/board/NVIDIA_GB300_0/FAN0  \u003c\u003d\u003d Incorrect name shown\n│ ├─ /xyz/openbmc_project/inventory/system/board/NVIDIA_GB300_0/FAN0_TACH_OL_SPEED_RPM\n│ ├─ /xyz/openbmc_project/inventory/system/board/NVIDIA_GB300_0/FAN1_TACH_IL_SPEED_RPM\n│ ├─ /xyz/openbmc_project/inventory/system/board/NVIDIA_GB300_0/FAN1_TACH_OL_SPEED_RPM\n│ ├─ /xyz/openbmc_project/inventory/system/board/NVIDIA_GB300_0/FAN2_TACH_IL_SPEED_RPM\n│ ├─ /xyz/openbmc_project/inventory/system/board/NVIDIA_GB300_0/FAN2_TACH_OL_SPEED_RPM\n│ ├─ /xyz/openbmc_project/inventory/system/board/NVIDIA_GB300_0/FAN3_TACH_IL_SPEED_RPM\n│ ├─ /xyz/openbmc_project/inventory/system/board/NVIDIA_GB300_0/FAN3_TACH_OL_SPEED_RPM\n│ ├─ /xyz/openbmc_project/inventory/system/board/NVIDIA_GB300_0/NVIDIA_GB300_CPU0\n\n--------------------------------------------------------------------------------\nAfter modification (using \"FAN$bus - 1 % 2 * 4 + 0 TACH_IL\"):\n├─ /xyz/openbmc_project/inventory/system/board/NVIDIA_GB300_0\n│ ├─ /xyz/openbmc_project/inventory/system/board/NVIDIA_GB300_0/FAN0_TACH_IL_SPEED_RPM  \u003c\u003d\u003d Correct name shown\n│ ├─ /xyz/openbmc_project/inventory/system/board/NVIDIA_GB300_0/FAN0_TACH_OL_SPEED_RPM\n│ ├─ /xyz/openbmc_project/inventory/system/board/NVIDIA_GB300_0/FAN1_TACH_IL_SPEED_RPM\n│ ├─ /xyz/openbmc_project/inventory/system/board/NVIDIA_GB300_0/FAN1_TACH_OL_SPEED_RPM\n│ ├─ /xyz/openbmc_project/inventory/system/board/NVIDIA_GB300_0/FAN2_TACH_IL_SPEED_RPM\n│ ├─ /xyz/openbmc_project/inventory/system/board/NVIDIA_GB300_0/FAN2_TACH_OL_SPEED_RPM\n│ ├─ /xyz/openbmc_project/inventory/system/board/NVIDIA_GB300_0/FAN3_TACH_IL_SPEED_RPM\n│ ├─ /xyz/openbmc_project/inventory/system/board/NVIDIA_GB300_0/FAN3_TACH_OL_SPEED_RPM\n│ ├─ /xyz/openbmc_project/inventory/system/board/NVIDIA_GB300_0/NVIDIA_GB300_CPU0\n│ └─ /xyz/openbmc_project/inventory/system/board/NVIDIA_GB300_0/NVIDIA_GB300_FRU_0",
+      "parentUuid": "bc961ddd_d3d31e97",
+      "revId": "ea8745e40aecb2271f279ceae9e658b16158ee1e",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
         "uuid": "1c739333_969545cc",
         "filename": "/PATCHSET_LEVEL",
         "patchSetId": 6
