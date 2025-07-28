@@ -16,6 +16,7 @@ executable(
     'perform_probe.cpp',
     'power_status_monitor.cpp',
     'overlay.cpp',
+    'system_mapper.cpp',
     'topology.cpp',
     'utils.cpp',
     'log_device_inventory.cpp',
