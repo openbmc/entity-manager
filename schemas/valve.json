@@ -1,0 +1,44 @@
+{
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "$defs": {
+        "GPIOValve": {
+            "additionalProperties": false,
+            "description": "Configuration for GPIO based Valve.",
+            "type": "object",
+            "properties": {
+                "Name": {
+                    "description": "The name of the valve.",
+                    "type": "string"
+                },
+                "Type": {
+                    "description": "The type of configuration object",
+                    "const": "GPIOValve"
+                },
+                "OpenPinName": {
+                    "description": "The name of the GPIO pin that shows the valve's open status.",
+                    "type": "string"
+                },
+                "OpenPolarity": {
+                    "description": "The GPIO polarity depicting valve's open status.",
+                    "$ref": "legacy.json#/$defs/Types/Polarity"
+                },
+                "OpenControlPinName": {
+                    "description": "The name of the GPIO pin that controls opening the valve.",
+                    "type": "string"
+                },
+                "OpenControlValue": {
+                    "description": "The GPIO value to set to open the valve.",
+                    "type": "boolean"
+                }
+            },
+            "required": [
+                "Name",
+                "Type",
+                "OpenPinName",
+                "OpenPolarity",
+                "OpenControlPinName",
+                "OpenControlValue"
+            ]
+        }
+    }
+}
