@@ -115,19 +115,6 @@ void findDbusObjects(
     const std::shared_ptr<scan::PerformScan>& scan, boost::asio::io_context& io,
     size_t retries = 5)
 {
-    // Filter out interfaces already obtained.
-    for (const auto& [path, probeInterfaces] : scan->dbusProbeObjects)
-    {
-        for (const auto& [interface, _] : probeInterfaces)
-        {
-            interfaces.erase(interface);
-        }
-    }
-    if (interfaces.empty())
-    {
-        return;
-    }
-
     // find all connections in the mapper that expose a specific type
     scan->_em.systemBus->async_method_call(
         [interfaces, probeVector{std::move(probeVector)}, scan, retries,
@@ -606,6 +593,19 @@ void scan::PerformScan::run()
             dbusProbePointers.emplace_back(probePointer);
         }
         it++;
+    }
+
+    // Filter out interfaces already obtained.
+    for (const auto& [path, probeInterfaces] : dbusProbeObjects)
+    {
+        for (const auto& [interface, _] : probeInterfaces)
+        {
+            dbusProbeInterfaces.erase(interface);
+        }
+    }
+    if (dbusProbeInterfaces.empty())
+    {
+        return;
     }
 
     // probe vector stores a shared_ptr to each PerformProbe that cares
