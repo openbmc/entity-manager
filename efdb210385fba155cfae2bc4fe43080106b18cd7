@@ -16,6 +16,24 @@
       "message": "i would suggest Type `ValveStatus`, `ValveStatusInput` or `GPIOValveStatus` unless that\u0027s already fixed by the design.\n\nThe idea is to enhance readability without having the schema at hand.\n\nFor example in the following record, it is unclear if an input or output (gpio based valve control) has been implemented.\n\n```json\n{\n   \"Name\": \"VM1\",\n   \"PinName\": \"VALVE_GPIO_8\",\n   \"Polarity\": \"High\",\n   \"Type\": \"GPIOValve\"\n}\n```",
       "revId": "efdb210385fba155cfae2bc4fe43080106b18cd7",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "f65c55a0_55a82025",
+        "filename": "schemas/valve.json",
+        "patchSetId": 1
+      },
+      "lineNbr": 15,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-07-28T18:00:04Z",
+      "side": 1,
+      "message": "I have updated the PinName and Polarity to StatusPinName and StatusPolarity to reflect their intended purpose. Thanks",
+      "parentUuid": "ea9eb7ab_fc79a1b2",
+      "revId": "efdb210385fba155cfae2bc4fe43080106b18cd7",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }
