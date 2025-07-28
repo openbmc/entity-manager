@@ -19,6 +19,7 @@
 
 #include "../utils.hpp"
 #include "dbus_interface.hpp"
+#include "system_mapper.hpp"
 #include "topology.hpp"
 
 #include <systemd/sd-journal.h>
@@ -48,7 +49,8 @@ class EntityManager
     ~EntityManager() = default;
 
     std::shared_ptr<sdbusplus::asio::connection> systemBus;
-    sdbusplus::asio::object_server objServer;
+    std::shared_ptr<sdbusplus::asio::object_server> objServer;
+    SystemMapper systemMapper;
     std::shared_ptr<sdbusplus::asio::dbus_interface> entityIface;
     nlohmann::json lastJson;
     nlohmann::json systemConfiguration;
