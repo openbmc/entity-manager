@@ -1,0 +1,55 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7a29659f_916031c1",
+        "filename": "src/entity_manager/perform_scan.cpp",
+        "patchSetId": 1
+      },
+      "lineNbr": 118,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-07-28T14:35:38Z",
+      "side": 0,
+      "message": "Previous behavior (please forgive any lack of understanding)\n\n`findDbusObjects -\u003e processDbusObjects -\u003e getInterfaces`\n\ndoes\n```\nscan-\u003edbusProbeObjects[instance.path][instance.interface] \u003d resp;\n```\n\nand then that does not get queried anymore in the next retry for the `GetSubTree` call.\n\n`findDbusObjects` has exactly one non-recursive call site in `void scan::PerformScan::run()`.\n\nMoving the battery saving code there makes the `GetSubTree` call be performed with the same arguments each time.\n\n\nWhich may have different results even for the interfaces which were already found.\n\nNow for each interface `processDbusObjects` does the `getInterfaces` does a DBus `GetAll` call.\n\nSo we are potentially doing more DBus calls as result of this change on systems where the retries are used. Is this the correct understanding?",
+      "revId": "213b397d35168ef975a2bf5b6de7492dc00439c6",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0faa0112_55edf14d",
+        "filename": "src/entity_manager/perform_scan.cpp",
+        "patchSetId": 1
+      },
+      "lineNbr": 126,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-07-28T14:35:38Z",
+      "side": 0,
+      "message": "We may want to keep the `if (interfaces.empty())` check\n\nhere, otherwise it will be duplicated in callers (even if there is *currently* only one caller)",
+      "revId": "213b397d35168ef975a2bf5b6de7492dc00439c6",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "587ce7ea_6bff12a6",
+        "filename": "src/entity_manager/perform_scan.cpp",
+        "patchSetId": 1
+      },
+      "lineNbr": 148,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-07-28T14:35:38Z",
+      "side": 0,
+      "message": "sidenote: let\u0027s not exit here. Exiting won\u0027t revive the mapper, right?",
+      "revId": "213b397d35168ef975a2bf5b6de7492dc00439c6",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    }
+  ]
+}
