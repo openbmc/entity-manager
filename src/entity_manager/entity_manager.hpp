@@ -3,10 +3,9 @@
 
 #pragma once
 
-#include "configuration.hpp"
 #include "dbus_interface.hpp"
 #include "power_status_monitor.hpp"
-#include "topology.hpp"
+#include "system_mapper.hpp"
 
 #include <boost/container/flat_map.hpp>
 #include <nlohmann/json.hpp>
@@ -33,12 +32,9 @@ class EntityManager
     ~EntityManager() = default;
 
     std::shared_ptr<sdbusplus::asio::connection> systemBus;
-    sdbusplus::asio::object_server objServer;
+    std::shared_ptr<sdbusplus::asio::object_server> objServer;
+    SystemMapper systemMapper;
     std::shared_ptr<sdbusplus::asio::dbus_interface> entityIface;
-    Configuration configuration;
-    nlohmann::json lastJson;
-    nlohmann::json systemConfiguration;
-    Topology topology;
     boost::asio::io_context& io;
 
     dbus_interface::EMDBusInterface dbus_interface;

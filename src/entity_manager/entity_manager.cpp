@@ -10,8 +10,7 @@
 #include "log_device_inventory.hpp"
 #include "overlay.hpp"
 #include "perform_scan.hpp"
-#include "phosphor-logging/lg2.hpp"
-#include "topology.hpp"
+#include "system_mapper.hpp"
 #include "utils.hpp"
 
 #include <boost/algorithm/string/case_conv.hpp>
@@ -26,6 +25,7 @@
 #include <boost/container/flat_set.hpp>
 #include <boost/range/iterator_range.hpp>
 #include <nlohmann/json.hpp>
+#include <phosphor-logging/lg2.hpp>
 #include <sdbusplus/asio/connection.hpp>
 #include <sdbusplus/asio/object_server.hpp>
 
@@ -35,6 +35,9 @@
 #include <iostream>
 #include <map>
 #include <regex>
+
+PHOSPHOR_LOG2_USING;
+
 constexpr const char* tempConfigDir = "/tmp/configuration/";
 constexpr const char* lastConfiguration = "/tmp/configuration/last.json";
 
@@ -56,25 +59,26 @@ EntityManager::EntityManager(
     std::shared_ptr<sdbusplus::asio::connection>& systemBus,
     boost::asio::io_context& io) :
     systemBus(systemBus),
-    objServer(sdbusplus::asio::object_server(systemBus, /*skipManager=*/true)),
-    lastJson(nlohmann::json::object()),
-    systemConfiguration(nlohmann::json::object()), io(io),
-    powerStatus(*systemBus), propertiesChangedTimer(io)
+    objServer(std::make_shared<sdbusplus::asio::object_server>(
+        systemBus, /*skipManager=*/true)),
+    systemMapper(*this, io, systemBus), io(io), powerStatus(*systemBus),
+    propertiesChangedTimer(io)
 {
     // All other objects that EntityManager currently support are under the
     // inventory subtree.
     // See the discussion at
     // https://discord.com/channels/775381525260664832/1018929092009144380
-    objServer.add_manager("/xyz/openbmc_project/inventory");
+    objServer->add_manager("/xyz/openbmc_project/inventory");
 
-    entityIface = objServer.add_interface("/xyz/openbmc_project/EntityManager",
-                                          "xyz.openbmc_project.EntityManager");
+    entityIface = objServer->add_interface("/xyz/openbmc_project/EntityManager",
+                                           "xyz.openbmc_project.EntityManager");
     entityIface->register_method("ReScan", [this]() {
         propertiesChangedCallback();
     });
+    ;
     dbus_interface::tryIfaceInitialize(entityIface);
 
-    initFilters(configuration.probeInterfaces);
+    initFilters(systemMapper.configuration.probeInterfaces);
 }
 
 void EntityManager::postToDbus(const nlohmann::json& newConfiguration)
@@ -88,7 +92,7 @@ void EntityManager::postToDbus(const nlohmann::json& newConfiguration)
     }
 
     for (const auto& [assocPath, assocPropValue] :
-         topology.getAssocs(newBoards))
+         systemMapper.topology.getAssocs(newBoards))
     {
         auto findBoard = newBoards.find(assocPath);
         if (findBoard == newBoards.end())
@@ -97,8 +101,8 @@ void EntityManager::postToDbus(const nlohmann::json& newConfiguration)
         }
 
         auto ifacePtr = dbus_interface.createInterface(
-            objServer, assocPath, "xyz.openbmc_project.Association.Definitions",
-            findBoard->second);
+            *objServer, assocPath,
+            "xyz.openbmc_project.Association.Definitions", findBoard->second);
 
         ifacePtr->register_property("Associations", assocPropValue);
         dbus_interface::tryIfaceInitialize(ifacePtr);
@@ -114,7 +118,7 @@ void EntityManager::postBoardToDBus(
     std::string jsonPointerPath = "/" + boardId;
     // loop through newConfiguration, but use values from system
     // configuration to be able to modify via dbus later
-    auto boardValues = systemConfiguration[boardId];
+    auto boardValues = systemMapper.systemConfiguration[boardId];
     auto findBoardType = boardValues.find("Type");
     std::string boardType;
     if (findBoardType != boardValues.end() &&
@@ -140,22 +144,22 @@ void EntityManager::postBoardToDBus(
     boardPath += boardName;
 
     std::shared_ptr<sdbusplus::asio::dbus_interface> inventoryIface =
-        dbus_interface.createInterface(objServer, boardPath,
+        dbus_interface.createInterface(*objServer, boardPath,
                                        "xyz.openbmc_project.Inventory.Item",
                                        boardName);
 
     std::shared_ptr<sdbusplus::asio::dbus_interface> boardIface =
         dbus_interface.createInterface(
-            objServer, boardPath,
+            *objServer, boardPath,
             "xyz.openbmc_project.Inventory.Item." + boardType, boardNameOrig);
 
     dbus_interface.createAddObjectMethod(
-        io, jsonPointerPath, boardPath, systemConfiguration, objServer,
-        boardNameOrig);
+        io, jsonPointerPath, boardPath, systemMapper.systemConfiguration,
+        *objServer, boardNameOrig);
 
     dbus_interface::populateInterfaceFromJson(
-        io, systemConfiguration, jsonPointerPath, boardIface, boardValues,
-        objServer);
+        io, systemMapper.systemConfiguration, jsonPointerPath, boardIface,
+        boardValues, *objServer);
     jsonPointerPath += "/";
     // iterate through board properties
     for (const auto& [propName, propValue] : boardValues.items())
@@ -163,12 +167,12 @@ void EntityManager::postBoardToDBus(
         if (propValue.type() == nlohmann::json::value_t::object)
         {
             std::shared_ptr<sdbusplus::asio::dbus_interface> iface =
-                dbus_interface.createInterface(objServer, boardPath, propName,
+                dbus_interface.createInterface(*objServer, boardPath, propName,
                                                boardNameOrig);
 
             dbus_interface::populateInterfaceFromJson(
-                io, systemConfiguration, jsonPointerPath + propName, iface,
-                propValue, objServer);
+                io, systemMapper.systemConfiguration,
+                jsonPointerPath + propName, iface, propValue, *objServer);
         }
     }
 
@@ -241,21 +245,21 @@ void EntityManager::postExposesRecordsToDBus(
     {
         std::shared_ptr<sdbusplus::asio::dbus_interface> bmcIface =
             dbus_interface.createInterface(
-                objServer, ifacePath, "xyz.openbmc_project.Inventory.Item.Bmc",
+                *objServer, ifacePath, "xyz.openbmc_project.Inventory.Item.Bmc",
                 boardNameOrig);
         dbus_interface::populateInterfaceFromJson(
-            io, systemConfiguration, jsonPointerPath, bmcIface, item, objServer,
-            getPermission(itemType));
+            io, systemMapper.systemConfiguration, jsonPointerPath, bmcIface,
+            item, *objServer, getPermission(itemType));
     }
     else if (itemType == "System")
     {
         std::shared_ptr<sdbusplus::asio::dbus_interface> systemIface =
             dbus_interface.createInterface(
-                objServer, ifacePath,
+                *objServer, ifacePath,
                 "xyz.openbmc_project.Inventory.Item.System", boardNameOrig);
         dbus_interface::populateInterfaceFromJson(
-            io, systemConfiguration, jsonPointerPath, systemIface, item,
-            objServer, getPermission(itemType));
+            io, systemMapper.systemConfiguration, jsonPointerPath, systemIface,
+            item, *objServer, getPermission(itemType));
     }
 
     for (const auto& [name, config] : item.items())
@@ -270,12 +274,12 @@ void EntityManager::postExposesRecordsToDBus(
             ifaceName.append(itemType).append(".").append(name);
 
             std::shared_ptr<sdbusplus::asio::dbus_interface> objectIface =
-                dbus_interface.createInterface(objServer, ifacePath, ifaceName,
+                dbus_interface.createInterface(*objServer, ifacePath, ifaceName,
                                                boardNameOrig);
 
             dbus_interface::populateInterfaceFromJson(
-                io, systemConfiguration, jsonPointerPath, objectIface, config,
-                objServer, getPermission(name));
+                io, systemMapper.systemConfiguration, jsonPointerPath,
+                objectIface, config, *objServer, getPermission(name));
         }
         else if (config.type() == nlohmann::json::value_t::array)
         {
@@ -313,13 +317,13 @@ void EntityManager::postExposesRecordsToDBus(
                 ifaceName.append(std::to_string(index));
 
                 std::shared_ptr<sdbusplus::asio::dbus_interface> objectIface =
-                    dbus_interface.createInterface(objServer, ifacePath,
+                    dbus_interface.createInterface(*objServer, ifacePath,
                                                    ifaceName, boardNameOrig);
 
                 dbus_interface::populateInterfaceFromJson(
-                    io, systemConfiguration,
+                    io, systemMapper.systemConfiguration,
                     jsonPointerPath + "/" + std::to_string(index), objectIface,
-                    arrayItem, objServer, getPermission(name));
+                    arrayItem, *objServer, getPermission(name));
                 index++;
             }
         }
@@ -327,14 +331,14 @@ void EntityManager::postExposesRecordsToDBus(
 
     std::shared_ptr<sdbusplus::asio::dbus_interface> itemIface =
         dbus_interface.createInterface(
-            objServer, ifacePath,
+            *objServer, ifacePath,
             "xyz.openbmc_project.Configuration." + itemType, boardNameOrig);
 
     dbus_interface::populateInterfaceFromJson(
-        io, systemConfiguration, jsonPointerPath, itemIface, item, objServer,
-        getPermission(itemType));
+        io, systemMapper.systemConfiguration, jsonPointerPath, itemIface, item,
+        *objServer, getPermission(itemType));
 
-    topology.addBoard(boardPath, boardType, boardNameOrig, item);
+    systemMapper.topology.addBoard(boardPath, boardType, boardNameOrig, item);
 }
 
 static bool deviceRequiresPowerOn(const nlohmann::json& entity)
@@ -374,7 +378,7 @@ static void pruneDevice(const nlohmann::json& systemConfiguration,
 void EntityManager::startRemovedTimer(boost::asio::steady_timer& timer,
                                       nlohmann::json& systemConfiguration)
 {
-    if (systemConfiguration.empty() || lastJson.empty())
+    if (systemConfiguration.empty() || systemMapper.lastJson.empty())
     {
         return; // not ready yet
     }
@@ -397,7 +401,7 @@ void EntityManager::startRemovedTimer(boost::asio::steady_timer& timer,
             }
 
             bool powerOff = !powerStatus.isPowerOn();
-            for (const auto& [name, device] : lastJson.items())
+            for (const auto& [name, device] : systemMapper.lastJson.items())
             {
                 pruneDevice(systemConfiguration, powerOff, scannedPowerOff,
                             name, device);
@@ -426,13 +430,13 @@ void EntityManager::pruneConfiguration(bool powerOff, const std::string& name,
         auto sharedPtr = iface.lock();
         if (!!sharedPtr)
         {
-            objServer.remove_interface(sharedPtr);
+            objServer->remove_interface(sharedPtr);
         }
     }
 
     ifaces.clear();
-    systemConfiguration.erase(name);
-    topology.remove(device["Name"].get<std::string>());
+    systemMapper.systemConfiguration.erase(name);
+    systemMapper.topology.remove(device["Name"].get<std::string>());
     logDeviceRemoved(device);
 }
 
@@ -450,7 +454,7 @@ void EntityManager::publishNewConfiguration(
     loadOverlays(newConfiguration, io);
 
     boost::asio::post(io, [this]() {
-        if (!writeJsonFiles(systemConfiguration))
+        if (!writeJsonFiles(systemMapper.systemConfiguration))
         {
             std::cerr << "Error writing json files\n";
         }
@@ -460,7 +464,7 @@ void EntityManager::publishNewConfiguration(
         postToDbus(newConfiguration);
         if (count == instance)
         {
-            startRemovedTimer(timer, systemConfiguration);
+            startRemovedTimer(timer, systemMapper.systemConfiguration);
         }
     });
 }
@@ -494,12 +498,13 @@ void EntityManager::propertiesChangedCallback()
             }
             propertiesChangedInProgress = true;
 
-            nlohmann::json oldConfiguration = systemConfiguration;
+            nlohmann::json oldConfiguration = systemMapper.systemConfiguration;
             auto missingConfigurations = std::make_shared<nlohmann::json>();
-            *missingConfigurations = systemConfiguration;
+            *missingConfigurations = systemMapper.systemConfiguration;
 
             auto perfScan = std::make_shared<scan::PerformScan>(
-                *this, *missingConfigurations, configuration.configurations, io,
+                *this, *missingConfigurations,
+                systemMapper.configuration.configurations, io,
                 [this, count, oldConfiguration, missingConfigurations]() {
                     // this is something that since ac has been applied to the
                     // bmc we saw, and we no longer see it
@@ -509,7 +514,8 @@ void EntityManager::propertiesChangedCallback()
                     {
                         pruneConfiguration(powerOff, name, device);
                     }
-                    nlohmann::json newConfiguration = systemConfiguration;
+                    nlohmann::json newConfiguration =
+                        systemMapper.systemConfiguration;
 
                     deriveNewConfiguration(oldConfiguration, newConfiguration);
 
@@ -525,6 +531,9 @@ void EntityManager::propertiesChangedCallback()
                             std::ref(propertiesChangedInstance), count,
                             std::ref(propertiesChangedTimer), newConfiguration);
                     });
+                    // This code is reached after all probes have been
+                    // processed.
+                    systemMapper.dbusProbeObjects.clear();
                 });
             perfScan->run();
         });
@@ -593,7 +602,7 @@ void EntityManager::handleCurrentConfigurationJson()
                 }
                 else
                 {
-                    lastJson = std::move(data);
+                    systemMapper.lastJson = std::move(data);
                 }
             }
             else
