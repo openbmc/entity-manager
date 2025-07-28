@@ -17,6 +17,7 @@
 #include "perform_scan.hpp"
 
 #include "perform_probe.hpp"
+#include "system_mapper.hpp"
 #include "utils.hpp"
 
 #include <boost/algorithm/string/predicate.hpp>
@@ -27,148 +28,6 @@
 
 #include <charconv>
 #include <iostream>
-
-using GetSubTreeType = std::vector<
-    std::pair<std::string,
-              std::vector<std::pair<std::string, std::vector<std::string>>>>>;
-
-constexpr const int32_t maxMapperDepth = 0;
-
-struct DBusInterfaceInstance
-{
-    std::string busName;
-    std::string path;
-    std::string interface;
-};
-
-void getInterfaces(
-    const DBusInterfaceInstance& instance,
-    const std::vector<std::shared_ptr<probe::PerformProbe>>& probeVector,
-    const std::shared_ptr<scan::PerformScan>& scan, boost::asio::io_context& io,
-    size_t retries = 5)
-{
-    if (retries == 0U)
-    {
-        std::cerr << "retries exhausted on " << instance.busName << " "
-                  << instance.path << " " << instance.interface << "\n";
-        return;
-    }
-
-    scan->_em.systemBus->async_method_call(
-        [instance, scan, probeVector, retries,
-         &io](boost::system::error_code& errc, const DBusInterface& resp) {
-            if (errc)
-            {
-                std::cerr << "error calling getall on  " << instance.busName
-                          << " " << instance.path << " "
-                          << instance.interface << "\n";
-
-                auto timer = std::make_shared<boost::asio::steady_timer>(io);
-                timer->expires_after(std::chrono::seconds(2));
-
-                timer->async_wait([timer, instance, scan, probeVector, retries,
-                                   &io](const boost::system::error_code&) {
-                    getInterfaces(instance, probeVector, scan, io, retries - 1);
-                });
-                return;
-            }
-
-            scan->dbusProbeObjects[instance.path][instance.interface] = resp;
-        },
-        instance.busName, instance.path, "org.freedesktop.DBus.Properties",
-        "GetAll", instance.interface);
-}
-
-static void processDbusObjects(
-    std::vector<std::shared_ptr<probe::PerformProbe>>& probeVector,
-    const std::shared_ptr<scan::PerformScan>& scan,
-    const GetSubTreeType& interfaceSubtree, boost::asio::io_context& io)
-{
-    for (const auto& [path, object] : interfaceSubtree)
-    {
-        // Get a PropertiesChanged callback for all interfaces on this path.
-        scan->_em.registerCallback(path);
-
-        for (const auto& [busname, ifaces] : object)
-        {
-            for (const std::string& iface : ifaces)
-            {
-                // The 3 default org.freedeskstop interfaces (Peer,
-                // Introspectable, and Properties) are returned by
-                // the mapper but don't have properties, so don't bother
-                // with the GetAll call to save some cycles.
-                if (!boost::algorithm::starts_with(iface, "org.freedesktop"))
-                {
-                    getInterfaces({busname, path, iface}, probeVector, scan,
-                                  io);
-                }
-            }
-        }
-    }
-}
-
-// Populates scan->dbusProbeObjects with all interfaces and properties
-// for the paths that own the interfaces passed in.
-void findDbusObjects(
-    std::vector<std::shared_ptr<probe::PerformProbe>>&& probeVector,
-    boost::container::flat_set<std::string>&& interfaces,
-    const std::shared_ptr<scan::PerformScan>& scan, boost::asio::io_context& io,
-    size_t retries = 5)
-{
-    // Filter out interfaces already obtained.
-    for (const auto& [path, probeInterfaces] : scan->dbusProbeObjects)
-    {
-        for (const auto& [interface, _] : probeInterfaces)
-        {
-            interfaces.erase(interface);
-        }
-    }
-    if (interfaces.empty())
-    {
-        return;
-    }
-
-    // find all connections in the mapper that expose a specific type
-    scan->_em.systemBus->async_method_call(
-        [interfaces, probeVector{std::move(probeVector)}, scan, retries,
-         &io](boost::system::error_code& ec,
-              const GetSubTreeType& interfaceSubtree) mutable {
-            if (ec)
-            {
-                if (ec.value() == ENOENT)
-                {
-                    return; // wasn't found by mapper
-                }
-                std::cerr << "Error communicating to mapper.\n";
-
-                if (retries == 0U)
-                {
-                    // if we can't communicate to the mapper something is very
-                    // wrong
-                    std::exit(EXIT_FAILURE);
-                }
-
-                auto timer = std::make_shared<boost::asio::steady_timer>(io);
-                timer->expires_after(std::chrono::seconds(10));
-
-                timer->async_wait(
-                    [timer, interfaces{std::move(interfaces)}, scan,
-                     probeVector{std::move(probeVector)}, retries,
-                     &io](const boost::system::error_code&) mutable {
-                        findDbusObjects(std::move(probeVector),
-                                        std::move(interfaces), scan, io,
-                                        retries - 1);
-                    });
-                return;
-            }
-
-            processDbusObjects(probeVector, scan, interfaceSubtree, io);
-        },
-        "xyz.openbmc_project.ObjectMapper",
-        "/xyz/openbmc_project/object_mapper",
-        "xyz.openbmc_project.ObjectMapper", "GetSubTree", "/", maxMapperDepth,
-        interfaces);
-}
 
 static std::string getRecordName(const DBusInterface& probe,
                                  const std::string& probeName)
@@ -473,10 +332,11 @@ void scan::PerformScan::updateSystemConfiguration(
         // interface, such as if it was just TRUE, then
         // templateCharReplace will just get passed in an empty
         // map.
-        auto objectIt = dbusProbeObjects.find(path);
-        const DBusObject& dbusObject = (objectIt == dbusProbeObjects.end())
-                                           ? emptyObject
-                                           : objectIt->second;
+        auto objectIt = _em.systemMapper->dbusProbeObjects.find(path);
+        const DBusObject& dbusObject =
+            (objectIt == _em.systemMapper->dbusProbeObjects.end())
+                ? emptyObject
+                : objectIt->second;
 
         nlohmann::json record = recordRef;
         std::string recordName = getRecordName(foundDevice, probeName);
@@ -610,8 +470,8 @@ void scan::PerformScan::run()
 
     // probe vector stores a shared_ptr to each PerformProbe that cares
     // about a dbus interface
-    findDbusObjects(std::move(dbusProbePointers),
-                    std::move(dbusProbeInterfaces), shared_from_this(), io);
+    _em.systemMapper->findDbusObjects(std::move(dbusProbePointers),
+                                      std::move(dbusProbeInterfaces));
 }
 
 scan::PerformScan::~PerformScan()
@@ -622,7 +482,6 @@ scan::PerformScan::~PerformScan()
             _em, _missingConfigurations, _configurations, io,
             std::move(_callback));
         nextScan->passedProbes = std::move(passedProbes);
-        nextScan->dbusProbeObjects = std::move(dbusProbeObjects);
         nextScan->run();
     }
     else

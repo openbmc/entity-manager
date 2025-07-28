@@ -24,6 +24,7 @@
 #include "overlay.hpp"
 #include "perform_scan.hpp"
 #include "phosphor-logging/lg2.hpp"
+#include "system_mapper.hpp"
 #include "topology.hpp"
 #include "utils.hpp"
 
@@ -69,6 +70,7 @@ EntityManager::EntityManager(
     std::shared_ptr<sdbusplus::asio::connection>& systemBus,
     boost::asio::io_context& io) :
     systemBus(systemBus),
+    systemMapper(std::make_unique<SystemMapper>(*this, io, systemBus)),
     objServer(sdbusplus::asio::object_server(systemBus, /*skipManager=*/true)),
     lastJson(nlohmann::json::object()),
     systemConfiguration(nlohmann::json::object()), io(io),
@@ -85,6 +87,7 @@ EntityManager::EntityManager(
     entityIface->register_method("ReScan", [this]() {
         propertiesChangedCallback();
     });
+    ;
     dbus_interface::tryIfaceInitialize(entityIface);
 }
 
@@ -535,6 +538,9 @@ void EntityManager::propertiesChangedCallback()
                             std::ref(propertiesChangedInstance), count,
                             std::ref(propertiesChangedTimer), newConfiguration);
                     });
+                    // This code is reached after all probes have been
+                    // processed.
+                    systemMapper->dbusProbeObjects.clear();
                 });
             perfScan->run();
         });

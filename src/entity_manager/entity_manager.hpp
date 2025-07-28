@@ -30,6 +30,8 @@
 
 #include <string>
 
+class SystemMapper;
+
 class EntityManager
 {
   public:
@@ -48,6 +50,7 @@ class EntityManager
     ~EntityManager() = default;
 
     std::shared_ptr<sdbusplus::asio::connection> systemBus;
+    std::unique_ptr<SystemMapper> systemMapper;
     sdbusplus::asio::object_server objServer;
     std::shared_ptr<sdbusplus::asio::dbus_interface> entityIface;
     nlohmann::json lastJson;
