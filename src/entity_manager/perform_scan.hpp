@@ -39,7 +39,6 @@ struct PerformScan : std::enable_shared_from_this<PerformScan>
     std::list<nlohmann::json> _configurations;
     std::function<void()> _callback;
     bool _passed = false;
-    MapperGetSubTreeResponse dbusProbeObjects;
     std::vector<std::string> passedProbes;
 
     boost::asio::io_context& io;
