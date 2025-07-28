@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "0a852b75_42bb3932",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 11
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-07-28T15:06:13Z",
+      "side": 1,
+      "message": "Since a lot of time has passed and various schemas have merged these would need to be adjusted as well to make this work consistently for all i2c devices.\n\n(e.g. `EEPROMDeviceFirmware` schema in `firmaware.json` which also has `Bus` field but not `MuxChannel` field)",
+      "revId": "94918b3823ebb9631ab5bf4df0945a1bc32a21b6",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    }
+  ]
+}
