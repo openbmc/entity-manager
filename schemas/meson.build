@@ -20,5 +20,6 @@ schemas = [
     'stepwise.json',
     'topology.json',
     'usb_port.json',
+    'valve.json',
     'virtual_sensor.json',
 ]
