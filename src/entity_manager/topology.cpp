@@ -4,7 +4,7 @@
 
 const AssocName assocContaining =
     AssocName("containing", "contained_by", {"Chassis"},
-              {"Board", "Chassis", "PowerSupply"});
+              {"Board", "Chassis", "PowerSupply", "Fan"});
 const AssocName assocContainedBy = assocContaining.getReverse();
 
 // Topology tests say that a chassis can be powering another chassis.
@@ -20,6 +20,8 @@ const std::vector<AssocName> supportedAssocs = {
     assocContainedBy,
     assocPowering,
     assocPoweredBy,
+    assocCooling,
+    assocCooledBy
 };
 
 AssocName::AssocName(const std::string& name, const std::string& reverse,
