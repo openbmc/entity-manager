@@ -2,109 +2,8 @@
     {
         "Exposes": [
             {
-                "Connector": {
-                    "Name": "Fan Connector 1",
-                    "Pwm": 0,
-                    "Tachs": []
-                },
-                "Index": 0,
-                "Name": "Fan 1",
-                "Presence": {
-                    "MonitorType": "Polling",
-                    "PinName": "FAN1_INST",
-                    "Polarity": "High"
-                },
-                "Type": "HPEFan"
-            },
-            {
-                "Connector": {
-                    "Name": "Fan Connector 2",
-                    "Pwm": 1,
-                    "Tachs": []
-                },
-                "Index": 1,
-                "Name": "Fan 2",
-                "Presence": {
-                    "MonitorType": "Polling",
-                    "PinName": "FAN2_INST",
-                    "Polarity": "High"
-                },
-                "Type": "HPEFan"
-            },
-            {
-                "Connector": {
-                    "Name": "Fan Connector 3",
-                    "Pwm": 2,
-                    "Tachs": []
-                },
-                "Index": 2,
-                "Name": "Fan 3",
-                "Presence": {
-                    "MonitorType": "Polling",
-                    "PinName": "FAN3_INST",
-                    "Polarity": "High"
-                },
-                "Type": "HPEFan"
-            },
-            {
-                "Connector": {
-                    "Name": "Fan Connector 4",
-                    "Pwm": 3,
-                    "Tachs": []
-                },
-                "Index": 3,
-                "Name": "Fan 4",
-                "Presence": {
-                    "MonitorType": "Polling",
-                    "PinName": "FAN4_INST",
-                    "Polarity": "High"
-                },
-                "Type": "HPEFan"
-            },
-            {
-                "Connector": {
-                    "Name": "Fan Connector 5",
-                    "Pwm": 4,
-                    "Tachs": []
-                },
-                "Index": 4,
-                "Name": "Fan 5",
-                "Presence": {
-                    "MonitorType": "Polling",
-                    "PinName": "FAN5_INST",
-                    "Polarity": "High"
-                },
-                "Type": "HPEFan"
-            },
-            {
-                "Connector": {
-                    "Name": "Fan Connector 6",
-                    "Pwm": 5,
-                    "Tachs": []
-                },
-                "Index": 5,
-                "Name": "Fan 6",
-                "Presence": {
-                    "MonitorType": "Polling",
-                    "PinName": "FAN6_INST",
-                    "Polarity": "High"
-                },
-                "Type": "HPEFan"
-            },
-            {
-                "Connector": {
-                    "Name": "Fan Connector 7",
-                    "Pwm": 6,
-                    "Tachs": []
-                },
-                "Index": 6,
-                "Name": "Fan 7",
-                "Presence": {
-                    "MonitorType": "Polling",
-                    "PinName": "FAN7_INST",
-                    "Polarity": "High"
-                },
-                "Type": "HPEFan"
+                "Name": "FanManyPort",
+                "Type": "MB Upstream Port"
             },
             {
                 "Class": "fan",
@@ -384,5 +283,202 @@
             "xyz.openbmc_project.Inventory.Decorator.Asset({'Model': 'HPE-PCA-8675'})"
         ],
         "Type": "Chassis"
+    },
+    {
+        "Exposes": [
+            {
+                "ConnectsToType": "MB Upstream Port",
+                "FanPort": true,
+                "Name": "HPEFan 1 Downstream Port",
+                "Type": "DownstreamPort"
+            },
+            {
+                "Connector": {
+                    "Name": "Fan Connector 1",
+                    "Pwm": 0,
+                    "Tachs": [],
+                    "_Comment1": "HPE Fans don't present a tach reading"
+                },
+                "Index": 0,
+                "Name": "Fan 1",
+                "Presence": {
+                    "MonitorType": "Polling",
+                    "PinName": "FAN1_INST",
+                    "Polarity": "High"
+                },
+                "Type": "HPEFan"
+            }
+        ],
+        "Name": "HPEFan_1",
+        "Probe": "FOUND('DL360/DL380 G12 Server')",
+        "Type": "Fan"
+    },
+    {
+        "Exposes": [
+            {
+                "ConnectsToType": "MB Upstream Port",
+                "FanPort": true,
+                "Name": "HPEFan 2 Downstream Port",
+                "Type": "DownstreamPort"
+            },
+            {
+                "Connector": {
+                    "Name": "Fan Connector 2",
+                    "Pwm": 1,
+                    "Tachs": []
+                },
+                "Index": 1,
+                "Name": "Fan 2",
+                "Presence": {
+                    "MonitorType": "Polling",
+                    "PinName": "FAN2_INST",
+                    "Polarity": "High"
+                },
+                "Type": "HPEFan"
+            }
+        ],
+        "Name": "HPEFan_2",
+        "Probe": "FOUND('DL360/DL380 G12 Server')",
+        "Type": "Fan"
+    },
+    {
+        "Exposes": [
+            {
+                "ConnectsToType": "MB Upstream Port",
+                "FanPort": true,
+                "Name": "HPEFan 3 Downstream Port",
+                "Type": "DownstreamPort"
+            },
+            {
+                "Connector": {
+                    "Name": "Fan Connector 3",
+                    "Pwm": 2,
+                    "Tachs": []
+                },
+                "Index": 2,
+                "Name": "Fan 3",
+                "Presence": {
+                    "MonitorType": "Polling",
+                    "PinName": "FAN3_INST",
+                    "Polarity": "High"
+                },
+                "Type": "HPEFan"
+            }
+        ],
+        "Name": "HPEFan_3",
+        "Probe": "FOUND('DL360/DL380 G12 Server')",
+        "Type": "Fan"
+    },
+    {
+        "Exposes": [
+            {
+                "ConnectsToType": "MB Upstream Port",
+                "FanPort": true,
+                "Name": "HPEFan 4 Downstream Port",
+                "Type": "DownstreamPort"
+            },
+            {
+                "Connector": {
+                    "Name": "Fan Connector 4",
+                    "Pwm": 3,
+                    "Tachs": []
+                },
+                "Index": 3,
+                "Name": "Fan 4",
+                "Presence": {
+                    "MonitorType": "Polling",
+                    "PinName": "FAN4_INST",
+                    "Polarity": "High"
+                },
+                "Type": "HPEFan"
+            }
+        ],
+        "Name": "HPEFan_4",
+        "Probe": "FOUND('DL360/DL380 G12 Server')",
+        "Type": "Fan"
+    },
+    {
+        "Exposes": [
+            {
+                "ConnectsToType": "MB Upstream Port",
+                "FanPort": true,
+                "Name": "HPEFan 5 Downstream Port",
+                "Type": "DownstreamPort"
+            },
+            {
+                "Connector": {
+                    "Name": "Fan Connector 5",
+                    "Pwm": 4,
+                    "Tachs": []
+                },
+                "Index": 4,
+                "Name": "Fan 5",
+                "Presence": {
+                    "MonitorType": "Polling",
+                    "PinName": "FAN5_INST",
+                    "Polarity": "High"
+                },
+                "Type": "HPEFan"
+            }
+        ],
+        "Name": "HPEFan_5",
+        "Probe": "FOUND('DL360/DL380 G12 Server')",
+        "Type": "Fan"
+    },
+    {
+        "Exposes": [
+            {
+                "ConnectsToType": "MB Upstream Port",
+                "FanPort": true,
+                "Name": "FanSinglePort1",
+                "Type": "DownstreamPort"
+            },
+            {
+                "Connector": {
+                    "Name": "Fan Connector 6",
+                    "Pwm": 5,
+                    "Tachs": []
+                },
+                "Index": 5,
+                "Name": "Fan 6",
+                "Presence": {
+                    "MonitorType": "Polling",
+                    "PinName": "FAN6_INST",
+                    "Polarity": "High"
+                },
+                "Type": "HPEFan"
+            }
+        ],
+        "Name": "HPEFan_6",
+        "Probe": "FOUND('DL360/DL380 G12 Server')",
+        "Type": "Fan"
+    },
+    {
+        "Exposes": [
+            {
+                "ConnectsToType": "MB Upstream Port",
+                "FanPort": true,
+                "Name": "HPEFan 7 Downstream Port",
+                "Type": "DownstreamPort"
+            },
+            {
+                "Connector": {
+                    "Name": "Fan Connector 7",
+                    "Pwm": 6,
+                    "Tachs": []
+                },
+                "Index": 6,
+                "Name": "Fan 7",
+                "Presence": {
+                    "MonitorType": "Polling",
+                    "PinName": "FAN7_INST",
+                    "Polarity": "High"
+                },
+                "Type": "HPEFan"
+            }
+        ],
+        "Name": "HPEFan_7",
+        "Probe": "FOUND('DL360/DL380 G12 Server')",
+        "Type": "Fan"
     }
 ]
