@@ -49,6 +49,12 @@ void Topology::addDownstreamPort(const Path& path,
     {
         powerPaths.insert(path);
     }
+
+    auto findCooledBy = exposesItem.find("FanPort");
+    if (findCooledBy != exposesItem.end())
+    {
+        fanPaths.insert(path);
+    }
 }
 
 std::unordered_map<std::string, std::set<Association>> Topology::getAssocs(
@@ -122,10 +128,24 @@ void Topology::fillAssocForPortId(
 
         result[downstream].insert({assoc, opposite.value(), upstream});
     }
+
+    else if (fanPaths.contains(downstream))
+    {
+        assoc = "cooling";
+        opposite = getOppositeAssoc(assoc);
+        if (!opposite.has_value())
+        {
+            return;
+        }
+
+        result[downstream].insert({assoc, opposite.value(), upstream});
+    }
 }
 
 const std::set<std::pair<std::string, std::string>> assocs = {
-    {"powering", "powered_by"}, {"containing", "contained_by"},
+    {"powering", "powered_by"},
+    {"containing", "contained_by"},
+    {"cooling", "cooled_by"},
     // ... extend as needed
 };
 
