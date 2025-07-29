@@ -1,0 +1,106 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "62f3dbbc_3b25f33c",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 3
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-07-29T13:27:41Z",
+      "side": 1,
+      "message": "Let\u0027s split the wrapper for ObjectMapper into a separate class and use the opportunity to get rid of the related inline callbacks.\n\nObjectMapper is a fairly standard dependency and we do not need to mix it up with any other functionality.",
+      "revId": "101ce9121edadaacb01be2d2cd83cba2a0cbf9b9",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9d3e1977_59f4e4ab",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 3
+      },
+      "lineNbr": 13,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-07-29T13:27:41Z",
+      "side": 1,
+      "message": "I assume that\u0027s a dataflow diagram.\n\nCan we restructure the diagram to visualize how the code would work with this patch, at the current stage of development.\n\nBecause currently we do not have `InventoryManager` class.",
+      "revId": "101ce9121edadaacb01be2d2cd83cba2a0cbf9b9",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "482565c0_131184aa",
+        "filename": "src/entity_manager/entity_manager.cpp",
+        "patchSetId": 3
+      },
+      "lineNbr": 90,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-07-29T13:27:41Z",
+      "side": 1,
+      "message": "leftover semicolon 😄",
+      "revId": "101ce9121edadaacb01be2d2cd83cba2a0cbf9b9",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ff75c867_88dec7b8",
+        "filename": "src/entity_manager/entity_manager.hpp",
+        "patchSetId": 3
+      },
+      "lineNbr": 53,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-07-29T13:27:41Z",
+      "side": 1,
+      "message": "Why `unique_ptr`, is it reset anywhere?\n\nFrom how it\u0027s initialized in the constructor, it can be a regular class member variable, right?",
+      "revId": "101ce9121edadaacb01be2d2cd83cba2a0cbf9b9",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9b2c939e_c90c71b8",
+        "filename": "src/entity_manager/system_mapper.cpp",
+        "patchSetId": 3
+      },
+      "lineNbr": 68,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-07-29T13:27:41Z",
+      "side": 1,
+      "message": "Since `ObjectMapper` interaction is separate from what `SystemMapper` is doing,\nwhat do you think about first extracting some class to abstract away the `ObjectMapper` usage and use that opportunity to get rid of these inline callbacks.\n\nThen at the next patch introduce `SystemMapper` class.",
+      "revId": "101ce9121edadaacb01be2d2cd83cba2a0cbf9b9",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4679f16a_3ac85219",
+        "filename": "src/entity_manager/system_mapper.hpp",
+        "patchSetId": 3
+      },
+      "lineNbr": 59,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-07-29T13:27:41Z",
+      "side": 1,
+      "message": "Why underscore this variable?\nYou did not do that with the other private members vars.",
+      "revId": "101ce9121edadaacb01be2d2cd83cba2a0cbf9b9",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    }
+  ]
+}
