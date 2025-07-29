@@ -78,6 +78,39 @@ servers.
 }
 ```
 
+### cooling Association
+
+Baseboard configuration. This baseboard accepts one of several generic Fans.
+
+```json
+{
+  "Exposes": [
+    {
+      "Name": "GenericFanPort",
+      "PortType": "cooled_by"
+      "Type": "Port"
+    }
+  ],
+  "Name": "Tyan S8030 Baseboard"
+}
+```
+
+Fan configuration. This example Fan is generic and can be used on different
+servers.
+
+```json
+{
+  "Exposes": [
+    {
+      "Name": "GenericFanPort",
+      "PortType": "cooling"
+      "Type": "Port"
+    }
+  ],
+  "Name": "Generic Fan"
+}
+```
+
 ### probing Association
 
 The probing association matches an entry in the inventory to a probed path and
