@@ -20,6 +20,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "0671b9a4_c69b9531",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1000009
+      },
+      "writtenOn": "2025-07-29T01:10:46Z",
+      "side": 1,
+      "message": "\u003e How do you think we can ensure that the local EID setup and bringing the interface up is done before a corresponding remote mctp target setup is attempted by the reactor?\n\nA strategy that can be achieved quickly is to use the deferred setup infrastructure that already exists:\n\nhttps://gerrit.openbmc.org/plugins/gitiles/openbmc/dbus-sensors/+/refs/heads/master/src/mctp/MCTPReactor.cpp#20\n\nWhile the local interface hasn\u0027t been configured, defer the setup of the remote endpoint.\n\nIf the latency is eventually considered unacceptable, we can look at something more involved to schedule configuring the device as a consequence of successful configuration of the local interface.\n\n\u003e Agree with Andrew here. We need a new MCTPInterface object definition in (I think) mctp.json. \n\nYes, something of that manner. However, we need to be a little careful. The reason this is tricky is it starts to enter the same design-space as static EID assignment, which has run aground on the basis that it\u0027s platform-specific information that\u0027s being described in a card-specific configuration file.\n\nHowever, maybe it\u0027s helpful to observe that while Linux requires each interface be assigned an EID, that EID doesn\u0027t have to be unique across all interfaces participating in the network. That is, we can assign the same EID to all local interfaces for the given network (which may be the default network).\n\nIf we\u0027re not trying to segregate interfaces into separate networks, it\u0027s possible to have a udev rule assign the EIDs for us, which avoids any changes to `mctpreactor`. Or, we could add that function to `mctpreactor` if you feel it\u0027s warranted.",
+      "parentUuid": "34623fdd_ab9a9318",
+      "revId": "4fa9ccdf1be8b61ac0e7674d9a30794bfe0771e4",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "f5cb29f2_5f07ba43",
         "filename": "schemas/openbmc-dbus.json",
         "patchSetId": 2
