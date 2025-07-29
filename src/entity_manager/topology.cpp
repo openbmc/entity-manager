@@ -4,7 +4,7 @@
 
 const AssocName assocContaining =
     AssocName("containing", "contained_by", {"Chassis"},
-              {"Board", "Chassis", "PowerSupply"});
+              {"Board", "Chassis", "PowerSupply", "Fan"});
 const AssocName assocContainedBy = assocContaining.getReverse();
 
 // Topology tests say that a chassis can be powering another chassis.
@@ -15,14 +15,19 @@ const AssocName assocPowering =
               {"Board", "Chassis", "PowerSupply"});
 const AssocName assocPoweredBy = assocPowering.getReverse();
 
+<<<<<<< PATCH SET (dc4bb0 cooling/cooled_by associations in entity-manager)
+const AssocName assocCooling = AssocName("cooling", "cooled_by", {"Fan"},
+                                         {"Board", "Chassis", "PowerSupply"});
+
+const AssocName assocCooledBy = assocCooling.getReverse();
+=======
 const AssocName assocProbing = AssocName("probing", "probed_by", {}, {});
 const AssocName assocProbedBy = assocProbing.getReverse();
+>>>>>>> BASE      (7f2fbf Remove enable_shared_from_this on PerformProbe)
 
 const std::vector<AssocName> supportedAssocs = {
-    assocContaining,
-    assocContainedBy,
-    assocPowering,
-    assocPoweredBy,
+    assocContaining, assocContainedBy, assocPowering,
+    assocPoweredBy,  assocCooling,     assocCooledBy,
 };
 
 AssocName::AssocName(const std::string& name, const std::string& reverse,

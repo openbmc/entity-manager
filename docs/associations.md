@@ -78,6 +78,40 @@ servers.
 }
 ```
 
+<<<<<<< PATCH SET (dc4bb0 cooling/cooled_by associations in entity-manager)
+### cooling Association
+
+Baseboard configuration. This baseboard accepts one of several generic Fans.
+
+```json
+{
+  "Exposes": [
+    {
+      "Name": "GenericFanPort",
+      "PortType": "cooled_by"
+      "Type": "Port"
+    }
+  ],
+  "Name": "Tyan S8030 Baseboard"
+}
+```
+
+Fan configuration. This example Fan is generic and can be used on different
+servers.
+
+```json
+{
+  "Exposes": [
+    {
+      "Name": "GenericFanPort",
+      "PortType": "cooling"
+      "Type": "Port"
+    }
+  ],
+  "Name": "Generic Fan"
+}
+```
+=======
 ### probing Association
 
 The probing association matches an entry in the inventory to a probed path and
@@ -105,6 +139,7 @@ with the stated property values (BOARD_PRODUCT_NAME, PRODUCT_NAME). The path
 loads the configuration. The found path is the probed path and is placed as the
 probing/probed_by association property in the inventory item of the
 configuration.
+>>>>>>> BASE      (7f2fbf Remove enable_shared_from_this on PerformProbe)
 
 ## Deprecated configuration style
 
