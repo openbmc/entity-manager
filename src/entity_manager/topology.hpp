@@ -69,6 +69,12 @@ class Topology
         BoardPathsView boardPaths, const Path& upstream, const Path& downstream,
         const AssocName& assocName);
 
+<<<<<<< PATCH SET (c88873 cooling/cooled_by associations in entity-manager)
+    std::unordered_map<PortType, std::set<Path>> upstreamPorts;
+    std::unordered_map<PortType, std::set<Path>> downstreamPorts;
+    std::set<Path> powerPaths;
+    std::set<Path> fanPaths;
+=======
     void addConfiguredPort(const Path& path, const nlohmann::json& exposesItem);
     void addPort(const PortType& port, const Path& path,
                  const AssocName& assocName);
@@ -81,6 +87,7 @@ class Topology
     // will have "powering" role.
     std::unordered_map<PortType, std::map<Path, std::set<AssocName>>> ports;
 
+>>>>>>> BASE      (34b21f test: topology: new configurations)
     std::unordered_map<Path, BoardType> boardTypes;
     std::unordered_map<BoardName, Path> boardNames;
 };

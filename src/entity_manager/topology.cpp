@@ -138,6 +138,12 @@ void Topology::addDownstreamPort(const Path& path,
     {
         addPort(connectsTo, path, assocPowering);
     }
+
+    auto findCooledBy = exposesItem.find("FanPort");
+    if (findCooledBy != exposesItem.end())
+    {
+        fanPaths.insert(path);
+    }
 }
 
 void Topology::addPort(const PortType& port, const Path& path,
@@ -201,7 +207,65 @@ void Topology::fillAssocsForPortId(
 
 void Topology::fillAssocForPortId(
     std::unordered_map<std::string, std::set<Association>>& result,
+<<<<<<< PATCH SET (c88873 cooling/cooled_by associations in entity-manager)
+    BoardPathsView boardPaths, const Path& upstream, const Path& downstream)
+{
+    if (boardTypes[upstream] != "Chassis" && boardTypes[upstream] != "Board")
+    {
+        return;
+    }
+    // The downstream path must be one we care about.
+    if (!std::ranges::contains(boardPaths, downstream))
+    {
+        return;
+    }
+
+    std::string assoc = "contained_by";
+    std::optional<std::string> opposite = getOppositeAssoc(assoc);
+
+    if (!opposite.has_value())
+    {
+        return;
+    }
+
+    result[downstream].insert({assoc, opposite.value(), upstream});
+
+    if (powerPaths.contains(downstream))
+    {
+        assoc = "powering";
+        opposite = getOppositeAssoc(assoc);
+        if (!opposite.has_value())
+        {
+            return;
+        }
+
+        result[downstream].insert({assoc, opposite.value(), upstream});
+    }
+
+    else if (fanPaths.contains(downstream))
+    {
+        assoc = "cooling";
+        opposite = getOppositeAssoc(assoc);
+        if (!opposite.has_value())
+        {
+            return;
+        }
+
+        result[downstream].insert({assoc, opposite.value(), upstream});
+    }
+}
+
+const std::set<std::pair<std::string, std::string>> assocs = {
+    {"powering", "powered_by"},
+    {"containing", "contained_by"},
+    {"cooling", "cooled_by"},
+    // ... extend as needed
+};
+
+std::optional<std::string> Topology::getOppositeAssoc(
+=======
     BoardPathsView boardPaths, const Path& upstream, const Path& downstream,
+>>>>>>> BASE      (34b21f test: topology: new configurations)
     const AssocName& assocName)
 {
     if (!assocName.allowedOnBoardTypes.contains(boardTypes[upstream]))
