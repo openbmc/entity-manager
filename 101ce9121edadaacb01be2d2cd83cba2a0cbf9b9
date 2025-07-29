@@ -106,6 +106,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "4e2cf30d_54d98aab",
+        "filename": "src/entity_manager/system_mapper.cpp",
+        "patchSetId": 3
+      },
+      "lineNbr": 68,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-07-29T14:08:24Z",
+      "side": 1,
+      "message": "\u003e Further more, i would have to pass the reference to dbusProbeObjects into this class, which I want to avoid.\n\nWhy? You can just have a `std::bind_front` to bind the arguments to whichever callback you pass into the wrapper for object mapper.\n\n\u003e GetSubTree and getInterface functions will be very short with sdbusplus::async, like less than 20LoCs. \n\nYes, small and well-defined functions. We do not have to create a class but a namespace could work. It reduces the visual noise from having mapper-specific bus names and object path literals inside code that\u0027s only a mapper client.",
+      "parentUuid": "41be486a_5be4fcda",
+      "revId": "101ce9121edadaacb01be2d2cd83cba2a0cbf9b9",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "4679f16a_3ac85219",
         "filename": "src/entity_manager/system_mapper.hpp",
         "patchSetId": 3
