@@ -15,11 +15,14 @@ const AssocName assocPowering =
               {"Board", "Chassis", "PowerSupply"});
 const AssocName assocPoweredBy = assocPowering.getReverse();
 
+const AssocName assocCooling = AssocName("cooling", "cooled_by", {"Fan"},
+                                         {"Board", "Chassis", "PowerSupply"});
+
+const AssocName assocCooledBy = assocCooling.getReverse();
+
 const std::vector<AssocName> supportedAssocs = {
-    assocContaining,
-    assocContainedBy,
-    assocPowering,
-    assocPoweredBy,
+    assocContaining, assocContainedBy, assocPowering,
+    assocPoweredBy,  assocCooling,     assocCooledBy,
 };
 
 AssocName::AssocName(const std::string& name, const std::string& reverse,
@@ -137,6 +140,12 @@ void Topology::addDownstreamPort(const Path& path,
     if (findPoweredBy != exposesItem.end())
     {
         addPort(connectsTo, path, assocPowering);
+    }
+
+    auto findCooledBy = exposesItem.find("FanPort");
+    if (findCooledBy != exposesItem.end())
+    {
+        addPort(connectsTo, path, assocCooling);
     }
 }
 
