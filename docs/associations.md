@@ -81,6 +81,68 @@ psu.json:
       "Type": "DownstreamPort",
       "PowerPort": true
     }
+  "Type": "PowerSupply"
+  ]
+}
+```
+
+## `cooled_by`, `cooling`
+
+In addition to the `containing` associations, entity-manager will add
+`cooling`/`cooled_by` associations between a fan and its parent when its
+downstream port is marked as a `FanPort`.
+
+The below example shows two Fan ports on the motherboard, where the `Type`
+fields for those ports match up with the `ConnectsToType` field from the Fans.
+
+Depending on your fan configuration, it may make sense to set probes for each
+fan slot entity to trigger on specific chassis configs being active, or based on
+specific asset decorations being set.
+
+motherboard.json:
+
+```json
+{
+  "Exposes": [
+    {
+      "Name": "Fan 1 Port",
+      "Type": "Fan 1 Port"
+    },
+    {
+      "Name": "Fan 2 Port",
+      "Type": "Fan 2 Port"
+    }
+  ]
+}
+```
+
+fan.json:
+
+```json
+{
+  "Exposes": [
+    {
+      "ConnectsToType": "Fan 1 Port",
+      "Name": "Fan Port 1",
+      "Type": "DownstreamPort",
+      "FanPort": true
+    },
+    {
+      //fan 1 stanza
+    }
+  "Type": "Fan"
+  ],
+  "Exposes": [
+    {
+      "ConnectsToType": "Fan 2 Port",
+      "Name": "Fan Connect 2",
+      "Type": "DownstreamPort",
+      "FanPort": true
+    },
+    {
+      //fan 2 stanza
+    }
+  "Type": "Fan"
   ]
 }
 ```
