@@ -18,7 +18,31 @@ void Topology::addBoard(const std::string& path, const std::string& boardType,
 
     if (exposesType == "DownstreamPort")
     {
+<<<<<<< PATCH SET (9e7533 cooling/cooled_by associations in entity-manager)
+        auto findConnectsTo = exposesItem.find("ConnectsToType");
+        if (findConnectsTo == exposesItem.end())
+        {
+            std::cerr << "Board at path " << path
+                      << " is missing ConnectsToType" << std::endl;
+            return;
+        }
+        PortType connectsTo = findConnectsTo->get<std::string>();
+
+        downstreamPorts[connectsTo].emplace_back(path);
+        boardTypes[path] = boardType;
+        auto findPoweredBy = exposesItem.find("PowerPort");
+        if (findPoweredBy != exposesItem.end())
+        {
+            powerPaths.insert(path);
+        }
+
+        if (exposesItem.find("FanPort") != exposesItem.end())
+        {
+            fanPaths.insert(path);
+        }
+=======
         addDownstreamPort(path, exposesItem);
+>>>>>>> BASE      (e66518 entity-manager: Add meson option to cache config)
     }
     else if (exposesType.ends_with("Port"))
     {
@@ -82,6 +106,32 @@ void Topology::fillAssocsForPortId(
     {
         for (const Path& downstream : downstreamPaths)
         {
+<<<<<<< PATCH SET (9e7533 cooling/cooled_by associations in entity-manager)
+            if (boardTypes[upstream] == "Chassis" ||
+                boardTypes[upstream] == "Board")
+            {
+                for (const Path& downstream : downstreamMatch->second)
+                {
+                    // The downstream path must be one we care about.
+                    if (boards.contains(downstream))
+                    {
+                        result[downstream].emplace_back("contained_by",
+                                                        "containing", upstream);
+                        if (powerPaths.contains(downstream))
+                        {
+                            result[downstream].emplace_back(
+                                "powering", "powered_by", upstream);
+                        }
+
+                        else if (fanPaths.contains(downstream))
+                        {
+                            result[upstream].emplace_back(
+                                "cooled_by", "cooling", downstream);
+                        }
+                    }
+                }
+            }
+=======
             fillAssocForPortId(result, boardPaths, upstream, downstream);
         }
     }
@@ -141,6 +191,7 @@ std::optional<std::string> Topology::getOppositeAssoc(
         if (entry.second == assocName)
         {
             return entry.first;
+>>>>>>> BASE      (e66518 entity-manager: Add meson option to cache config)
         }
     }
 

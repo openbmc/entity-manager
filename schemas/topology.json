@@ -11,7 +11,11 @@
                 "Type": {
                     "description": "This enum may be extended as described in the design",
                     "type": "string",
+<<<<<<< PATCH SET (9e7533 cooling/cooled_by associations in entity-manager)
+                    "pattern": "^[A-Za-z].*Port$"
+=======
                     "enum": ["MB Upstream Port", "BackplanePort"]
+>>>>>>> BASE      (e66518 entity-manager: Add meson option to cache config)
                 }
             },
             "required": ["Name", "Type"],
@@ -27,9 +31,16 @@
                 "ConnectsToType": {
                     "description": "Should be equal to the 'Type' property on the upstream port",
                     "type": "string",
+<<<<<<< PATCH SET (9e7533 cooling/cooled_by associations in entity-manager)
+                    "pattern": "^[A-Za-z].*Port$"
+=======
                     "enum": ["MB Upstream Port", "BackplanePort"]
+>>>>>>> BASE      (e66518 entity-manager: Add meson option to cache config)
                 },
                 "PowerPort": {
+                    "type": "boolean"
+                },
+                "FanPort": {
                     "type": "boolean"
                 },
                 "Type": {
