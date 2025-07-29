@@ -28,6 +28,7 @@ class Topology
     std::unordered_map<PortType, std::vector<Path>> upstreamPorts;
     std::unordered_map<PortType, std::vector<Path>> downstreamPorts;
     std::set<Path> powerPaths;
+    std::set<Path> fanPaths;
     std::unordered_map<Path, BoardType> boardTypes;
     std::unordered_map<BoardName, Path> boardNames;
 };

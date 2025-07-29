@@ -34,6 +34,11 @@ void Topology::addBoard(const std::string& path, const std::string& boardType,
         {
             powerPaths.insert(path);
         }
+
+        if (exposesItem.find("FanPort") != exposesItem.end())
+        {
+            fanPaths.insert(path);
+        }
     }
     else if (exposesType.ends_with("Port"))
     {
@@ -74,6 +79,12 @@ std::unordered_map<std::string, std::vector<Association>> Topology::getAssocs(
                         {
                             result[downstream].emplace_back(
                                 "powering", "powered_by", upstream);
+                        }
+
+                        else if (fanPaths.contains(downstream))
+                        {
+                            result[upstream].emplace_back(
+                                "cooled_by", "cooling", downstream);
                         }
                     }
                 }
