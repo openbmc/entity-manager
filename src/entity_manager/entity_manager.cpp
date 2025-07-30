@@ -72,7 +72,8 @@ EntityManager::EntityManager(
     systemBus(systemBus),
     objServer(std::make_shared<sdbusplus::asio::object_server>(
         systemBus, /*skipManager=*/true)),
-    systemMapper(std::make_shared<SystemMapper>(*this, io, systemBus)),
+    systemMapper(
+        std::make_shared<SystemMapper>(*this, io, systemBus, objServer)),
     lastJson(nlohmann::json::object()),
     systemConfiguration(nlohmann::json::object()), io(io),
     propertiesChangedTimer(io)
@@ -88,7 +89,6 @@ EntityManager::EntityManager(
     entityIface->register_method("ReScan", [this]() {
         propertiesChangedCallback();
     });
-    ;
     dbus_interface::tryIfaceInitialize(entityIface);
 }
 
