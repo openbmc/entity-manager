@@ -54,6 +54,11 @@ class EntityManager
     void postBoardToDBus(const std::string& boardId,
                          const nlohmann::json& boardConfig,
                          std::map<std::string, std::string>& newBoards);
+    void postExposesRecordsToDBus(
+        nlohmann::json& item, size_t& exposesIndex,
+        const std::string& boardNameOrig, std::string jsonPointerPath,
+        const std::string& jsonPointerPathBoard, const std::string& boardPath,
+        const std::string& boardType);
 
     void pruneConfiguration(bool powerOff, const std::string& name,
                             const nlohmann::json& device);
