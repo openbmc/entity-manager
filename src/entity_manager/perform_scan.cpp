@@ -16,6 +16,7 @@
 /// \file perform_scan.cpp
 #include "perform_scan.hpp"
 
+#include "object_mapper.hpp"
 #include "perform_probe.hpp"
 #include "system_mapper.hpp"
 #include "utils.hpp"
@@ -468,10 +469,24 @@ void scan::PerformScan::run()
         it++;
     }
 
+    // Filter out interfaces already obtained.
+    for (const auto& [path, probeInterfaces] :
+         _em.systemMapper->dbusProbeObjects)
+    {
+        for (const auto& [interface, _] : probeInterfaces)
+        {
+            dbusProbeInterfaces.erase(interface);
+        }
+    }
+    if (dbusProbeInterfaces.empty())
+    {
+        return;
+    }
+
     // probe vector stores a shared_ptr to each PerformProbe that cares
     // about a dbus interface
-    _em.systemMapper->findDbusObjects(std::move(dbusProbePointers),
-                                      std::move(dbusProbeInterfaces));
+    _em.systemMapper->objectMapper.getSubTree(std::move(dbusProbePointers),
+                                              std::move(dbusProbeInterfaces));
 }
 
 scan::PerformScan::~PerformScan()
