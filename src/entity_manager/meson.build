@@ -12,6 +12,7 @@ executable(
     'configuration.cpp',
     'expression.cpp',
     'dbus_interface.cpp',
+    'inventory_manager.cpp',
     'perform_scan.cpp',
     'perform_probe.cpp',
     'overlay.cpp',
