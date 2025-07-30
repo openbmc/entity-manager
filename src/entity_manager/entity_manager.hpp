@@ -51,6 +51,10 @@ class EntityManager
                                  boost::asio::steady_timer& timer,
                                  nlohmann::json newConfiguration);
     void postToDbus(const nlohmann::json& newConfiguration);
+    void postBoardToDBus(const std::string& boardId,
+                         const nlohmann::json& boardConfig,
+                         std::map<std::string, std::string>& newBoards);
+
     void pruneConfiguration(bool powerOff, const std::string& name,
                             const nlohmann::json& device);
 
