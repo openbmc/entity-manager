@@ -3,7 +3,7 @@
 class EntityManager;
 
 #include "configuration.hpp"
-#include "dbus_interface.hpp"
+#include "inventory_manager.hpp"
 #include "perform_probe.hpp"
 #include "perform_scan.hpp"
 #include "topology.hpp"
@@ -47,7 +47,8 @@ class SystemMapper
     };
 
     SystemMapper(EntityManager& em, boost::asio::io_context& io,
-                 std::shared_ptr<sdbusplus::asio::connection>& systemBus);
+                 std::shared_ptr<sdbusplus::asio::connection>& systemBus,
+                 std::shared_ptr<sdbusplus::asio::object_server>& objServer);
 
     // disable copy
     SystemMapper(const SystemMapper&) = delete;
@@ -67,6 +68,7 @@ class SystemMapper
                  scan::FoundDevices& foundDevs);
 
     Configuration configuration;
+    InventoryManager inventoryManager;
     nlohmann::json lastJson;
     nlohmann::json systemConfiguration;
     Topology topology;

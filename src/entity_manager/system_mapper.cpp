@@ -1,6 +1,7 @@
 #include "system_mapper.hpp"
 
 #include "entity_manager.hpp"
+#include "inventory_manager.hpp"
 
 #include <boost/algorithm/string/replace.hpp>
 #include <phosphor-logging/lg2.hpp>
@@ -12,7 +13,9 @@ PHOSPHOR_LOG2_USING;
 
 SystemMapper::SystemMapper(
     EntityManager& em, boost::asio::io_context& io,
-    std::shared_ptr<sdbusplus::asio::connection>& systemBus) :
+    std::shared_ptr<sdbusplus::asio::connection>& systemBus,
+    std::shared_ptr<sdbusplus::asio::object_server>& objServer) :
+    inventoryManager(io, systemBus, objServer, *this),
     lastJson(nlohmann::json::object()),
     systemConfiguration(nlohmann::json::object()), entityManager(em), io(io),
     systemBus(systemBus)
