@@ -81,6 +81,7 @@ configs = [
     'meta/clemente_osfp.json',
     'meta/clemente_pdb.json',
     'meta/clemente_scm.json',
+    'meta/darwin_chassis.json',
     'meta/fbtp.json',
     'meta/fbyv2.json',
     'meta/fbyv35.json',
