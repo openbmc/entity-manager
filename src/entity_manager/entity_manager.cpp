@@ -89,7 +89,6 @@ EntityManager::EntityManager(
     entityIface->register_method("ReScan", [this]() {
         propertiesChangedCallback();
     });
-    ;
     dbus_interface::tryIfaceInitialize(entityIface);
 }
 
