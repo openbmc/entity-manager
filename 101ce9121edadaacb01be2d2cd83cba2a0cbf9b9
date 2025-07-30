@@ -52,6 +52,24 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "29d12c28_3d1e25aa",
+        "filename": "src/entity_manager/entity_manager.cpp",
+        "patchSetId": 3
+      },
+      "lineNbr": 90,
+      "author": {
+        "id": 1002222
+      },
+      "writtenOn": "2025-07-30T06:35:29Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "482565c0_131184aa",
+      "revId": "101ce9121edadaacb01be2d2cd83cba2a0cbf9b9",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "ff75c867_88dec7b8",
@@ -65,6 +83,24 @@
       "writtenOn": "2025-07-29T13:27:41Z",
       "side": 1,
       "message": "Why `unique_ptr`, is it reset anywhere?\n\nFrom how it\u0027s initialized in the constructor, it can be a regular class member variable, right?",
+      "revId": "101ce9121edadaacb01be2d2cd83cba2a0cbf9b9",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "d50d2e8c_c1467ef4",
+        "filename": "src/entity_manager/entity_manager.hpp",
+        "patchSetId": 3
+      },
+      "lineNbr": 53,
+      "author": {
+        "id": 1002222
+      },
+      "writtenOn": "2025-07-30T06:35:29Z",
+      "side": 1,
+      "message": "Made it a shared_ptr.",
+      "parentUuid": "ff75c867_88dec7b8",
       "revId": "101ce9121edadaacb01be2d2cd83cba2a0cbf9b9",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
@@ -135,6 +171,24 @@
       "writtenOn": "2025-07-29T13:27:41Z",
       "side": 1,
       "message": "Why underscore this variable?\nYou did not do that with the other private members vars.",
+      "revId": "101ce9121edadaacb01be2d2cd83cba2a0cbf9b9",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "b7ff1315_430ebd29",
+        "filename": "src/entity_manager/system_mapper.hpp",
+        "patchSetId": 3
+      },
+      "lineNbr": 59,
+      "author": {
+        "id": 1002222
+      },
+      "writtenOn": "2025-07-30T06:35:29Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "4679f16a_3ac85219",
       "revId": "101ce9121edadaacb01be2d2cd83cba2a0cbf9b9",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
