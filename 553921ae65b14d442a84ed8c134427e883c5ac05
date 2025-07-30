@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d69d8ba3_1f54e7d0",
+        "filename": "src/gpio-presence/gpio_presence_manager.cpp",
+        "patchSetId": 7
+      },
+      "lineNbr": 251,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-07-30T07:54:26Z",
+      "side": 1,
+      "message": "Can this be changed to following instead? it will make code more cleaner in terms of readability.\n\nif (!gpioLines[gpioLine].event_wait(std::chrono::milliseconds(0))\n{\n    continue;\n}",
+      "revId": "553921ae65b14d442a84ed8c134427e883c5ac05",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    }
+  ]
+}
