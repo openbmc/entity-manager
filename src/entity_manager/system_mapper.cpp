@@ -2,6 +2,7 @@
 
 #include "entity_manager.hpp"
 #include "inventory_manager.hpp"
+#include "object_mapper.hpp"
 
 #include <boost/algorithm/string/replace.hpp>
 #include <phosphor-logging/lg2.hpp>
@@ -17,67 +18,10 @@ SystemMapper::SystemMapper(
     std::shared_ptr<sdbusplus::asio::object_server>& objServer) :
     inventoryManager(io, systemBus, objServer, *this),
     lastJson(nlohmann::json::object()),
-    systemConfiguration(nlohmann::json::object()), entityManager(em), io(io),
+    systemConfiguration(nlohmann::json::object()),
+    objectMapper(io, systemBus, *this), entityManager(em), io(io),
     systemBus(systemBus)
 {}
-
-void SystemMapper::findDbusObjects(
-    std::vector<std::shared_ptr<probe::PerformProbe>>&& probeVector,
-    boost::container::flat_set<std::string>&& interfaces, size_t retries)
-{
-    // Filter out interfaces already obtained.
-    for (const auto& [path, probeInterfaces] : dbusProbeObjects)
-    {
-        for (const auto& [interface, _] : probeInterfaces)
-        {
-            interfaces.erase(interface);
-        }
-    }
-    if (interfaces.empty())
-    {
-        return;
-    }
-
-    // find all connections in the mapper that expose a specific type
-    systemBus->async_method_call(
-        [this, interfaces, probeVector{std::move(probeVector)},
-         retries](boost::system::error_code& ec,
-                  const GetSubTreeType& interfaceSubtree) mutable {
-            if (ec)
-            {
-                if (ec.value() == ENOENT)
-                {
-                    return; // wasn't found by mapper
-                }
-                std::cerr << "Error communicating to mapper.\n";
-
-                if (retries == 0U)
-                {
-                    // if we can't communicate to the mapper something is very
-                    // wrong
-                    std::exit(EXIT_FAILURE);
-                }
-
-                auto timer = std::make_shared<boost::asio::steady_timer>(io);
-                timer->expires_after(std::chrono::seconds(10));
-
-                timer->async_wait(
-                    [this, timer, interfaces{std::move(interfaces)},
-                     probeVector{std::move(probeVector)},
-                     retries](const boost::system::error_code&) mutable {
-                        findDbusObjects(std::move(probeVector),
-                                        std::move(interfaces), retries - 1);
-                    });
-                return;
-            }
-
-            processDbusObjects(probeVector, interfaceSubtree);
-        },
-        "xyz.openbmc_project.ObjectMapper",
-        "/xyz/openbmc_project/object_mapper",
-        "xyz.openbmc_project.ObjectMapper", "GetSubTree", "/", maxMapperDepth,
-        interfaces);
-}
 
 void SystemMapper::processDbusObjects(
     std::vector<std::shared_ptr<probe::PerformProbe>>& probeVector,
@@ -98,48 +42,12 @@ void SystemMapper::processDbusObjects(
                 // with the GetAll call to save some cycles.
                 if (!iface.starts_with("org.freedesktop"))
                 {
-                    getInterfaces({busname, path, iface}, probeVector);
+                    objectMapper.getInterfaceProperties(
+                        {busname, path, iface}, probeVector, dbusProbeObjects);
                 }
             }
         }
     }
-}
-
-void SystemMapper::getInterfaces(
-    const DBusInterfaceInstance& instance,
-    const std::vector<std::shared_ptr<probe::PerformProbe>>& probeVector,
-    size_t retries)
-{
-    if (retries == 0U)
-    {
-        std::cerr << "retries exhausted on " << instance.busName << " "
-                  << instance.path << " " << instance.interface << "\n";
-        return;
-    }
-
-    systemBus->async_method_call(
-        [this, instance, probeVector,
-         retries](boost::system::error_code& errc, const DBusInterface& resp) {
-            if (errc)
-            {
-                std::cerr << "error calling getall on  " << instance.busName
-                          << " " << instance.path << " "
-                          << instance.interface << "\n";
-
-                auto timer = std::make_shared<boost::asio::steady_timer>(io);
-                timer->expires_after(std::chrono::seconds(2));
-
-                timer->async_wait([this, timer, instance, probeVector,
-                                   retries](const boost::system::error_code&) {
-                    getInterfaces(instance, probeVector, retries - 1);
-                });
-                return;
-            }
-
-            dbusProbeObjects[instance.path][instance.interface] = resp;
-        },
-        instance.busName, instance.path, "org.freedesktop.DBus.Properties",
-        "GetAll", instance.interface);
 }
 
 // default probe entry point, iterates a list looking for specific types to
