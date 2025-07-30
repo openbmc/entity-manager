@@ -16,6 +16,24 @@
       "message": "Can this be changed to following instead? it will make code more cleaner in terms of readability.\n\nif (!gpioLines[gpioLine].event_wait(std::chrono::milliseconds(0))\n{\n    continue;\n}",
       "revId": "553921ae65b14d442a84ed8c134427e883c5ac05",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "e1256726_5c199c05",
+        "filename": "src/gpio-presence/gpio_presence_manager.cpp",
+        "patchSetId": 7
+      },
+      "lineNbr": 251,
+      "author": {
+        "id": 1002520
+      },
+      "writtenOn": "2025-07-30T12:05:21Z",
+      "side": 1,
+      "message": "\u003e Can this be changed to following instead? it will make code more cleaner in terms of readability.\n\u003e \n\u003e if (!gpioLines[gpioLine].event_wait(std::chrono::milliseconds(0))\n\u003e {\n\u003e     continue;\n\u003e }\n\nI used `while` instead of `if` because GPIO signals can bounce during plug/unplug events. Using `while` lets us consume all pending events in one loop iteration, helping to avoid missed triggers and improve efficiency.\n\nThat said, the event queue is usually shallow, so both `if` and `while` would behave similarly in most cases. So, I’ll go with your suggestion.",
+      "parentUuid": "d69d8ba3_1f54e7d0",
+      "revId": "553921ae65b14d442a84ed8c134427e883c5ac05",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }

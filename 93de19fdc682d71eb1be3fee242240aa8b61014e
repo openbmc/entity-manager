@@ -105,6 +105,24 @@
       "message": "Lets rephrase this as -\n\nevent_read() does not clear the EPOLLIN flag immediately; it is cleared during the subsequent epoll check. Therefore, call event_wait with a zero timeout to ensure that event_read() is only invoked when an event is available, preventing it from blocking.",
       "revId": "93de19fdc682d71eb1be3fee242240aa8b61014e",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "eb73cd03_fb4617f3",
+        "filename": "src/gpio-presence/gpio_presence_manager.cpp",
+        "patchSetId": 1
+      },
+      "lineNbr": 248,
+      "author": {
+        "id": 1002520
+      },
+      "writtenOn": "2025-07-30T12:05:21Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "881305c8_a100f6eb",
+      "revId": "93de19fdc682d71eb1be3fee242240aa8b61014e",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }
