@@ -16,6 +16,7 @@ executable(
     'perform_scan.cpp',
     'perform_probe.cpp',
     'overlay.cpp',
+    'object_mapper.cpp',
     'system_mapper.cpp',
     'topology.cpp',
     'utils.cpp',
