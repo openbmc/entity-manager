@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "86ca2137_e5d2e9e3",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 12
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2025-07-30T16:27:41Z",
+      "side": 1,
+      "message": "My minor concern here is that we\u0027re going to relink the whole library anytime any minor thing changes, versus specifically linking each cpp file with each test.\n\nThis commit has a pattern used elsewhere, so I\u0027m ok with it for now.",
+      "revId": "275917c5a48c77a8949c86bf397e1d418abd5519",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    }
+  ]
+}
