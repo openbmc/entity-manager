@@ -13,7 +13,7 @@ entity_manager_lib = static_library(
     'entity_manager.cpp',
     'configuration.cpp',
     'expression.cpp',
-    'dbus_interface.cpp',
+    'inventory_manager.cpp',
     'perform_scan.cpp',
     'perform_probe.cpp',
     'power_status_monitor.cpp',
