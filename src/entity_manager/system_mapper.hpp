@@ -31,6 +31,8 @@ const std::string objectMapperGetSubTreeCmd = "GetSubTree";
 
 constexpr const int32_t maxMapperDepth = 0;
 
+class InventoryManager;
+
 class SystemMapper
 {
   public:
@@ -42,7 +44,8 @@ class SystemMapper
     };
 
     SystemMapper(EntityManager& em, boost::asio::io_context& io,
-                 std::shared_ptr<sdbusplus::asio::connection>& systemBus);
+                 std::shared_ptr<sdbusplus::asio::connection>& systemBus,
+                 std::shared_ptr<sdbusplus::asio::object_server>& objServer);
 
     void findDbusObjects(
         std::vector<std::shared_ptr<probe::PerformProbe>>&& probeVector,
@@ -57,6 +60,7 @@ class SystemMapper
 
   private:
     EntityManager& entityManager;
+    std::shared_ptr<InventoryManager> inventoryManager;
     boost::asio::io_context& io;
     std::shared_ptr<sdbusplus::asio::connection>& systemBus;
 
