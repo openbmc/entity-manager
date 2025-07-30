@@ -244,6 +244,15 @@ auto GPIOPresenceManager::readGPIOAsyncEvent(std::string gpioLine)
 
         debug("Received gpio event for {LINENAME}", "LINENAME", gpioLine);
 
+        // event_read() does not clear the EPOLLIN flag immediately; it is
+        // cleared during the subsequent epoll check. Therefore, call event_wait
+        // with a zero timeout to ensure that event_read() is only invoked when
+        // an event is available, preventing it from blocking.
+        if (!gpioLines[gpioLine].event_wait(std::chrono::milliseconds(0)))
+        {
+            continue;
+        }
+
         gpioLines[gpioLine].event_read();
 
         auto lineValue = gpioLines[gpioLine].get_value();
