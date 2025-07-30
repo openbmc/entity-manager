@@ -17,7 +17,6 @@
 
 #pragma once
 
-#include "dbus_interface.hpp"
 #include "power_status_monitor.hpp"
 #include "system_mapper.hpp"
 
@@ -50,8 +49,6 @@ class EntityManager
     SystemMapper systemMapper;
     std::shared_ptr<sdbusplus::asio::dbus_interface> entityIface;
     boost::asio::io_context& io;
-
-    dbus_interface::EMDBusInterface dbus_interface;
 
     power::PowerStatusMonitor powerStatus;
 
