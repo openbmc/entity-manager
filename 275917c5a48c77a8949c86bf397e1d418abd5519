@@ -16,6 +16,24 @@
       "message": "My minor concern here is that we\u0027re going to relink the whole library anytime any minor thing changes, versus specifically linking each cpp file with each test.\n\nThis commit has a pattern used elsewhere, so I\u0027m ok with it for now.",
       "revId": "275917c5a48c77a8949c86bf397e1d418abd5519",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f64c48bd_9719aade",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 12
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-07-30T16:58:35Z",
+      "side": 1,
+      "message": "Okay, with the previous structure, if we change a single test file, we only have to recompile that test.\n\nBut if we change EM code then we have to potentially recompile multiple different test cases.\n\nI was always under the impression that linking is faster than compiling.\n\nGuess that depends on the project structure, compiler and linking flags and so on.",
+      "parentUuid": "86ca2137_e5d2e9e3",
+      "revId": "275917c5a48c77a8949c86bf397e1d418abd5519",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }
