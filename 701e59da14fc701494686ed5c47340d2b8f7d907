@@ -1,0 +1,44 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ddad4dc2_d5a9d976",
+        "filename": "test/entity_manager/test_entity_manager.cpp",
+        "patchSetId": 6
+      },
+      "lineNbr": 59,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2025-07-30T16:39:04Z",
+      "side": 1,
+      "message": "These aren\u0027t really requirements of the class, correct?  Can we keep unit tests to expected behavior, and not a test of internal data structures?",
+      "range": {
+        "startLine": 56,
+        "startChar": 0,
+        "endLine": 59,
+        "endChar": 0
+      },
+      "revId": "701e59da14fc701494686ed5c47340d2b8f7d907",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "54e5e9c5_b51b93fa",
+        "filename": "test/entity_manager/test_entity_manager.cpp",
+        "patchSetId": 6
+      },
+      "lineNbr": 65,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2025-07-30T16:39:04Z",
+      "side": 1,
+      "message": "Tests like this are just testing internals of EntityManager, not that it has accomplished the task its intended to accomplish.  Unit tests should ideally check to see if the function works as intended.  For example, scannedPowerOff being true might be completely valid as an init state.  It\u0027s the dbus interface that matters.\n\nI really do want to see unit tests, if this is what we have so be it, we can iterate.",
+      "revId": "701e59da14fc701494686ed5c47340d2b8f7d907",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    }
+  ]
+}
