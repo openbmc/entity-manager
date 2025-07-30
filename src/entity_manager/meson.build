@@ -16,6 +16,7 @@ executable(
     'perform_probe.cpp',
     'power_status_monitor.cpp',
     'overlay.cpp',
+    'object_mapper.cpp',
     'system_mapper.cpp',
     'topology.cpp',
     'utils.cpp',

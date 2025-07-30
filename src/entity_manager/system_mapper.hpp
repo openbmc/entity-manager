@@ -4,6 +4,7 @@ class EntityManager;
 
 #include "configuration.hpp"
 #include "inventory_manager.hpp"
+#include "object_mapper.hpp"
 #include "perform_probe.hpp"
 #include "perform_scan.hpp"
 #include "topology.hpp"
@@ -13,7 +14,6 @@ class EntityManager;
 #include <boost/asio/awaitable.hpp>
 #include <boost/asio/co_spawn.hpp>
 #include <boost/asio/io_context.hpp>
-#include <boost/container/flat_set.hpp>
 #include <sdbusplus/asio/connection.hpp>
 
 #include <vector>
@@ -27,25 +27,9 @@ using DBusValueVariant =
                  int16_t, uint16_t, uint8_t, bool, std::vector<uint8_t>>;
 using DBusInterface = boost::container::flat_map<std::string, DBusValueVariant>;
 
-const std::string objectMapperServiceName = "xyz.openbmc_project.ObjectMapper";
-const std::string objectMapperServicePath =
-    "/xyz/openbmc_project/object_mapper";
-const std::string objectMapperServiceInterface =
-    "xyz.openbmc_project.ObjectMapper";
-const std::string objectMapperGetSubTreeCmd = "GetSubTree";
-
-constexpr const int32_t maxMapperDepth = 0;
-
 class SystemMapper
 {
   public:
-    struct DBusInterfaceInstance
-    {
-        std::string busName;
-        std::string path;
-        std::string interface;
-    };
-
     SystemMapper(EntityManager& em, boost::asio::io_context& io,
                  std::shared_ptr<sdbusplus::asio::connection>& systemBus,
                  std::shared_ptr<sdbusplus::asio::object_server>& objServer);
@@ -73,6 +57,11 @@ class SystemMapper
     nlohmann::json systemConfiguration;
     Topology topology;
 
+    void processDbusObjects(
+        std::vector<std::shared_ptr<probe::PerformProbe>>& probeVector,
+        const GetSubTreeType& interfaceSubtree);
+
+    ObjectMapper objectMapper;
     MapperGetSubTreeResponse dbusProbeObjects;
 
   private:
@@ -83,13 +72,4 @@ class SystemMapper
     bool probeDbus(const std::string& interfaceName,
                    const std::map<std::string, nlohmann::json>& matches,
                    scan::FoundDevices& devices, bool& foundProbe);
-
-    void getInterfaces(
-        const DBusInterfaceInstance& instance,
-        const std::vector<std::shared_ptr<probe::PerformProbe>>& probeVector,
-        size_t retries = 5);
-
-    void processDbusObjects(
-        std::vector<std::shared_ptr<probe::PerformProbe>>& probeVector,
-        const GetSubTreeType& interfaceSubtree);
 };
