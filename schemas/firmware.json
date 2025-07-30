@@ -145,6 +145,25 @@
                 "FirmwareDevice",
                 "FirmwareInfo"
             ]
+        },
+        "TPMFirmware": {
+            "description": "Required information to complete the TPM firmware update process",
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+                "Name": {
+                    "description": "Unique identifier or label for the TPM device",
+                    "type": "string"
+                },
+                "Type": {
+                    "description": "The type of configuration object",
+                    "enum": ["TPM2Firmware"]
+                },
+                "FirmwareInfo": {
+                    "$ref": "#/$defs/FirmwareInfoDef"
+                }
+            },
+            "required": ["Name", "Type", "FirmwareInfo"]
         }
     }
 }
