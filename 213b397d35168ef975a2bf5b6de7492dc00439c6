@@ -20,6 +20,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "8bf85d2b_ca2566fb",
+        "filename": "src/entity_manager/perform_scan.cpp",
+        "patchSetId": 1
+      },
+      "lineNbr": 118,
+      "author": {
+        "id": 1002222
+      },
+      "writtenOn": "2025-07-31T06:05:55Z",
+      "side": 0,
+      "message": "We\u0027re doing less, because the asynchronous function \"findDbusObjects\" is not invoked, if the argument \u0027interfaces\u0027 of findDbusObjects is empty. The run-function is called every time a PerformScan object is created. So I simply moved the check before the asynchronous call.",
+      "parentUuid": "7a29659f_916031c1",
+      "revId": "213b397d35168ef975a2bf5b6de7492dc00439c6",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "0faa0112_55edf14d",
         "filename": "src/entity_manager/perform_scan.cpp",
         "patchSetId": 1
@@ -31,6 +49,24 @@
       "writtenOn": "2025-07-28T14:35:38Z",
       "side": 0,
       "message": "We may want to keep the `if (interfaces.empty())` check\n\nhere, otherwise it will be duplicated in callers (even if there is *currently* only one caller)",
+      "revId": "213b397d35168ef975a2bf5b6de7492dc00439c6",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5d11f6b7_4c5e1aa8",
+        "filename": "src/entity_manager/perform_scan.cpp",
+        "patchSetId": 1
+      },
+      "lineNbr": 126,
+      "author": {
+        "id": 1002222
+      },
+      "writtenOn": "2025-07-31T06:05:55Z",
+      "side": 0,
+      "message": "If the interfaces are empty at this point, they probably are already before the invokation of findDbusObjects.",
+      "parentUuid": "0faa0112_55edf14d",
       "revId": "213b397d35168ef975a2bf5b6de7492dc00439c6",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
