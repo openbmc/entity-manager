@@ -259,64 +259,11 @@ void EntityManager::postExposesRecordsToDBus(
         jsonPointerPath.append(std::to_string(exposesIndex))
             .append("/")
             .append(name);
-        if (config.type() == nlohmann::json::value_t::object)
+
+        if (!postConfigurationRecord(name, config, boardNameOrig, itemType,
+                                     jsonPointerPath, ifacePath))
         {
-            std::string ifaceName = "xyz.openbmc_project.Configuration.";
-            ifaceName.append(itemType).append(".").append(name);
-
-            std::shared_ptr<sdbusplus::asio::dbus_interface> objectIface =
-                dbus_interface.createInterface(objServer, ifacePath, ifaceName,
-                                               boardNameOrig);
-
-            dbus_interface::populateInterfaceFromJson(
-                io, systemConfiguration, jsonPointerPath, objectIface, config,
-                objServer, getPermission(name));
-        }
-        else if (config.type() == nlohmann::json::value_t::array)
-        {
-            size_t index = 0;
-            if (config.empty())
-            {
-                continue;
-            }
-            bool isLegal = true;
-            auto type = config[0].type();
-            if (type != nlohmann::json::value_t::object)
-            {
-                continue;
-            }
-
-            // verify legal json
-            for (const auto& arrayItem : config)
-            {
-                if (arrayItem.type() != type)
-                {
-                    isLegal = false;
-                    break;
-                }
-            }
-            if (!isLegal)
-            {
-                std::cerr << "dbus format error" << config << "\n";
-                break;
-            }
-
-            for (auto& arrayItem : config)
-            {
-                std::string ifaceName = "xyz.openbmc_project.Configuration.";
-                ifaceName.append(itemType).append(".").append(name);
-                ifaceName.append(std::to_string(index));
-
-                std::shared_ptr<sdbusplus::asio::dbus_interface> objectIface =
-                    dbus_interface.createInterface(objServer, ifacePath,
-                                                   ifaceName, boardNameOrig);
-
-                dbus_interface::populateInterfaceFromJson(
-                    io, systemConfiguration,
-                    jsonPointerPath + "/" + std::to_string(index), objectIface,
-                    arrayItem, objServer, getPermission(name));
-                index++;
-            }
+            break;
         }
     }
 
@@ -330,6 +277,74 @@ void EntityManager::postExposesRecordsToDBus(
         getPermission(itemType));
 
     topology.addBoard(boardPath, boardType, boardNameOrig, item);
+}
+
+bool EntityManager::postConfigurationRecord(
+    const std::string& name, nlohmann::json& config,
+    const std::string& boardNameOrig, const std::string& itemType,
+    const std::string& jsonPointerPath, const std::string& ifacePath)
+{
+    if (config.type() == nlohmann::json::value_t::object)
+    {
+        std::string ifaceName = "xyz.openbmc_project.Configuration.";
+        ifaceName.append(itemType).append(".").append(name);
+
+        std::shared_ptr<sdbusplus::asio::dbus_interface> objectIface =
+            dbus_interface.createInterface(objServer, ifacePath, ifaceName,
+                                           boardNameOrig);
+
+        dbus_interface::populateInterfaceFromJson(
+            io, systemConfiguration, jsonPointerPath, objectIface, config,
+            objServer, getPermission(name));
+    }
+    else if (config.type() == nlohmann::json::value_t::array)
+    {
+        size_t index = 0;
+        if (config.empty())
+        {
+            return true;
+        }
+        bool isLegal = true;
+        auto type = config[0].type();
+        if (type != nlohmann::json::value_t::object)
+        {
+            return true;
+        }
+
+        // verify legal json
+        for (const auto& arrayItem : config)
+        {
+            if (arrayItem.type() != type)
+            {
+                isLegal = false;
+                break;
+            }
+        }
+        if (!isLegal)
+        {
+            std::cerr << "dbus format error" << config << "\n";
+            return false;
+        }
+
+        for (auto& arrayItem : config)
+        {
+            std::string ifaceName = "xyz.openbmc_project.Configuration.";
+            ifaceName.append(itemType).append(".").append(name);
+            ifaceName.append(std::to_string(index));
+
+            std::shared_ptr<sdbusplus::asio::dbus_interface> objectIface =
+                dbus_interface.createInterface(objServer, ifacePath, ifaceName,
+                                               boardNameOrig);
+
+            dbus_interface::populateInterfaceFromJson(
+                io, systemConfiguration,
+                jsonPointerPath + "/" + std::to_string(index), objectIface,
+                arrayItem, objServer, getPermission(name));
+            index++;
+        }
+    }
+
+    return true;
 }
 
 static bool deviceRequiresPowerOn(const nlohmann::json& entity)
