@@ -155,6 +155,7 @@ configs = [
     'meta/yosemite4_wailuafalls.json',
     'meta/yosemite4n.json',
     'meta/yosemite5_1kw_paddle_board.json',
+    'meta/yosemite5_e1s_expansion_board.json',
     'meta/yosemite5_mb.json',
     'meta/yosemite5_medusa_board.json',
     'meta/yosemite5_scm.json',
