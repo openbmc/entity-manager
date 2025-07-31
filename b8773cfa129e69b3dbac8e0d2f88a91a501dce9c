@@ -16,6 +16,24 @@
       "message": "Here\u0027s the FanSensor modifications to get this working: https://gerrit.openbmc.org/c/openbmc/dbus-sensors/+/82436\n\nby \u0027working\u0027 I mean to get PWM and FanTach sensors (separately exposed, and linked to chassis through downstream port(s) in EMConfig) reporting in the webUI sensors page, and showing fan inventory items on the inventory page.\n\nI think I\u0027m about 95% of the way there, but will want some community input to help make sure I\u0027ve got the structures organized in a way that makes sense.\n\nI\u0027ll be back on this tomorrow to update entity-manger documentation for cooling/cooled_by and to see about adding some example entity-manager code for further discussion.\n\nThen I plan to ask around for folks\u0027 thoughts on Discord.",
       "revId": "b8773cfa129e69b3dbac8e0d2f88a91a501dce9c",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "146b7330_d8addb51",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1000008
+      },
+      "writtenOn": "2025-07-31T14:07:18Z",
+      "side": 1,
+      "message": "If fansensor is already creating the cooling/cooled_by associations, what are the EM associations for?  Are they multiple hop associations? Can bmcweb handle that?",
+      "parentUuid": "64a11721_276c1b03",
+      "revId": "b8773cfa129e69b3dbac8e0d2f88a91a501dce9c",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }
