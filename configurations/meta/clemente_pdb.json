@@ -21,16 +21,23 @@
                 {
                     "Direction": "greater than",
                     "Label": "temp1",
-                    "Name": "upper critical",
-                    "Severity": 1,
-                    "Value": 80.0
+                    "Name": "upper non recoverable",
+                    "Severity": 4,
+                    "Value": 110
                 },
                 {
-                    "Direction": "less than",
+                    "Direction": "greater than",
                     "Label": "temp1",
-                    "Name": "lower critical",
+                    "Name": "upper critical",
                     "Severity": 1,
-                    "Value": 5
+                    "Value": 107
+                },
+                {
+                    "Direction": "greater than",
+                    "Label": "temp1",
+                    "Name": "upper non critical",
+                    "Severity": 0,
+                    "Value": 105
                 },
                 {
                     "Direction": "greater than",
@@ -83,16 +90,23 @@
                 {
                     "Direction": "greater than",
                     "Label": "temp1",
-                    "Name": "upper critical",
-                    "Severity": 1,
-                    "Value": 80.0
+                    "Name": "upper non recoverable",
+                    "Severity": 4,
+                    "Value": 110
                 },
                 {
-                    "Direction": "less than",
+                    "Direction": "greater than",
                     "Label": "temp1",
-                    "Name": "lower critical",
+                    "Name": "upper critical",
                     "Severity": 1,
-                    "Value": 5
+                    "Value": 107
+                },
+                {
+                    "Direction": "greater than",
+                    "Label": "temp1",
+                    "Name": "upper non critical",
+                    "Severity": 0,
+                    "Value": 105
                 },
                 {
                     "Direction": "greater than",
@@ -163,33 +177,49 @@
                     "Direction": "greater than",
                     "Hysteresis": 2.5,
                     "Label": "temp1",
-                    "Name": "upper critical",
-                    "Severity": 1,
-                    "Value": 125
+                    "Name": "upper non recoverable",
+                    "Severity": 4,
+                    "Value": 120
                 },
                 {
-                    "Direction": "less than",
+                    "Direction": "greater than",
                     "Hysteresis": 0.1,
                     "Label": "temp1",
-                    "Name": "lower critical",
+                    "Name": "upper critical",
                     "Severity": 1,
-                    "Value": 5
+                    "Value": 118
+                },
+                {
+                    "Direction": "greater than",
+                    "Hysteresis": 0.1,
+                    "Label": "temp1",
+                    "Name": "upper non critical",
+                    "Severity": 0,
+                    "Value": 110
                 },
                 {
                     "Direction": "greater than",
                     "Hysteresis": 2.5,
                     "Label": "temp2",
-                    "Name": "upper critical",
-                    "Severity": 1,
-                    "Value": 125
+                    "Name": "upper non recoverable",
+                    "Severity": 4,
+                    "Value": 115
                 },
                 {
-                    "Direction": "less than",
+                    "Direction": "greater than",
                     "Hysteresis": 0.1,
                     "Label": "temp2",
-                    "Name": "lower critical",
+                    "Name": "upper critical",
                     "Severity": 1,
-                    "Value": 5
+                    "Value": 113
+                },
+                {
+                    "Direction": "greater than",
+                    "Hysteresis": 0.1,
+                    "Label": "temp2",
+                    "Name": "upper non critical",
+                    "Severity": 0,
+                    "Value": 110
                 }
             ],
             "Type": "RAA228004",
@@ -232,33 +262,49 @@
                     "Direction": "greater than",
                     "Hysteresis": 2.5,
                     "Label": "temp1",
-                    "Name": "upper critical",
-                    "Severity": 1,
-                    "Value": 125
+                    "Name": "upper non recoverable",
+                    "Severity": 4,
+                    "Value": 115
                 },
                 {
-                    "Direction": "less than",
+                    "Direction": "greater than",
                     "Hysteresis": 0.1,
                     "Label": "temp1",
-                    "Name": "lower critical",
+                    "Name": "upper critical",
                     "Severity": 1,
-                    "Value": 5
+                    "Value": 113
+                },
+                {
+                    "Direction": "greater than",
+                    "Hysteresis": 0.1,
+                    "Label": "temp1",
+                    "Name": "upper non critical",
+                    "Severity": 0,
+                    "Value": 110
                 },
                 {
                     "Direction": "greater than",
                     "Hysteresis": 2.5,
                     "Label": "temp2",
-                    "Name": "upper critical",
-                    "Severity": 1,
-                    "Value": 125
+                    "Name": "upper non recoverable",
+                    "Severity": 4,
+                    "Value": 115
                 },
                 {
-                    "Direction": "less than",
+                    "Direction": "greater than",
                     "Hysteresis": 0.1,
                     "Label": "temp2",
-                    "Name": "lower critical",
+                    "Name": "upper critical",
                     "Severity": 1,
-                    "Value": 5
+                    "Value": 113
+                },
+                {
+                    "Direction": "greater than",
+                    "Hysteresis": 0.1,
+                    "Label": "temp2",
+                    "Name": "upper non critical",
+                    "Severity": 0,
+                    "Value": 110
                 }
             ],
             "Type": "RAA228004",
@@ -276,16 +322,23 @@
                 {
                     "Direction": "greater than",
                     "Hysteresis": 1.6,
-                    "Name": "upper critical",
-                    "Severity": 1,
-                    "Value": 80
+                    "Name": "upper non recoverable",
+                    "Severity": 4,
+                    "Value": 100
                 },
                 {
-                    "Direction": "less than",
-                    "Hysteresis": 0.1,
-                    "Name": "lower critical",
+                    "Direction": "greater than",
+                    "Hysteresis": 1.6,
+                    "Name": "upper critical",
                     "Severity": 1,
-                    "Value": 5
+                    "Value": 95
+                },
+                {
+                    "Direction": "greater than",
+                    "Hysteresis": 0.1,
+                    "Name": "upper non critical",
+                    "Severity": 0,
+                    "Value": 90
                 }
             ],
             "Type": "TMP1075"
