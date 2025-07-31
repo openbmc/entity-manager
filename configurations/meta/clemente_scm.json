@@ -204,14 +204,26 @@
             "Thresholds": [
                 {
                     "Direction": "greater than",
+                    "Name": "upper non recoverable",
+                    "Severity": 4,
+                    "Value": 95
+                },
+                {
+                    "Direction": "greater than",
                     "Name": "upper critical",
                     "Severity": 1,
-                    "Value": 45
+                    "Value": 93
+                },
+                {
+                    "Direction": "greater than",
+                    "Name": "upper non critical",
+                    "Severity": 0,
+                    "Value": 90
                 },
                 {
                     "Direction": "less than",
-                    "Name": "lower critical",
-                    "Severity": 1,
+                    "Name": "lower non critical",
+                    "Severity": 0,
                     "Value": 5
                 }
             ],
