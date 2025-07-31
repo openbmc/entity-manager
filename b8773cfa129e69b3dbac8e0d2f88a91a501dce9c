@@ -34,6 +34,24 @@
       "parentUuid": "64a11721_276c1b03",
       "revId": "b8773cfa129e69b3dbac8e0d2f88a91a501dce9c",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "3f375351_ca90621d",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1001354
+      },
+      "writtenOn": "2025-07-31T17:05:39Z",
+      "side": 1,
+      "message": "As I understand it, this is the bit that associates a chassis with a \u0027type:fan\u0027 entity (probe + exposes) called out in an EM json. \n\nThe FanSensor parts association records (after the dbus-sensors PR is accepted) uses the associations called out here to link sensors to the chasis so they\u0027ll show up in redfish/bmcweb on the sensors page.\n\nThe \u0027type:fan\u0027 entity seems to be needed to get a \u0027fan\u0027 item to show up in the webui inventory page, but I\u0027m still experimenting around there to get a handle on the finer details on the display there.",
+      "parentUuid": "146b7330_d8addb51",
+      "revId": "b8773cfa129e69b3dbac8e0d2f88a91a501dce9c",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }
