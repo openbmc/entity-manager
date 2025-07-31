@@ -16,6 +16,24 @@
       "message": "I\u0027m looking to get an previously existing existing DL360 config update merged into Entity-Manager. From there, I figure I\u0027d add a modification to the .json in this PR that shows how fan the records are setup in EM configs.\n\nbut it\u0027ll look something like this:\n{\n   \"Exposes\": [\n...\n     {\n        \"Name\": \"FanConnector1Port\",\n        \"Type\": \"FanConnector1Port\"\n      },\n      {\n        \"Name\": \"FanConnector2Port\",\n        \"Type\": \"FanConnector2Port\"\n      }\n..\"Type\": \"Chassis\",.. ]\n}\n\n\n{\n    \"Exposes\": [\n      {\n        \"ConnectsToType\": \"FanConnector1Port\",\n        \"Name\": \"HPEFan 1 Downstream Port\",\n        \"FanPort\": true,\n        \"Type\": \"DownstreamPort\"\n      },\n      {\n        \"Name\": \"Fan 1\",\n        \"Type\": \"HPEFan\",\n        \"Index\": 1,\n        \"MaxReading\": 16500,\n        \"Connector\": {\n          \"_comment1\": \"on the Dl340, fans reads start from \u0027hwmon/pwm2\u0027 so start fan 1 numbering from pwm\u003d1, and index\u003d1 instead of the usual 0-based\",\n          \"Name\": \"Fan Conn 1\",\n          \"Pwm\": 1,\n          \"PwmName\": \"Pwm 1\"\n        },\n        \"Presence\": {\n          \"PinName\": \"FAN2_INST\",\n          \"Polarity\": \"High\",\n          \"MonitorType\": \"Polling\"\n        },\n        \"StatusMonitor\": {\n          \"PinName\": \"FAN3_FAIL\",\n          \"Polarity\": \"High\",\n          \"MonitorType\": \"Polling\"\n        }\n      }\n    ],\n    \"Name\": \"HPEFan_1\",\n    \"Probe\": \"FOUND(\u0027DL340 G12 Server\u0027)\",\n    \"Type\": \"Fan\",\n    \"xyz.openbmc_project.Inventory.Decorator.Asset\": {\n      \"Manufacturer\": \"HPE\",\n      \"Model\": \"DL340-fan\"\n    },\n    \"xyz.openbmc_project.Inventory.Decorator.Replaceable\": {\n      \"FieldReplaceable\": true,\n      \"HotPluggable\": true\n    }\n  },\n\n\n  {\n    \"Exposes\": [\n      {\n        \"ConnectsToType\": \"FanConnector2Port\",\n        \"Name\": \"HPEFan 2 Downstream Port\",\n        \"FanPort\": true,\n        \"Type\": \"DownstreamPort\"\n      },\n      { \n        \"Name\": \"Fan 2\",\n        \"Type\": \"HPEFan\",\n        \"Index\": 2,\n        \"MaxReading\": 16500,\n        \"Connector\": {\n          \"Name\": \"Fan Conn 2\",\n          \"Pwm\": 2,\n          \"PwmName\": \"Pwm 2\"\n        },\n        \"Presence\": {\n          \"PinName\": \"FAN3_INST\",\n          \"Polarity\": \"High\",\n          \"MonitorType\": \"Polling\"\n        },\n        \"StatusMonitor\": {\n          \"PinName\": \"FAN5_FAIL\",\n          \"Polarity\": \"High\",\n          \"MonitorType\": \"Polling\"\n        }\n      }\n    ],\n    \"Name\": \"HPEFan_2\",\n    \"Probe\": \"FOUND(\u0027DL340 G12 Server\u0027)\",\n    \"Type\": \"Fan\",\n    \"xyz.openbmc_project.Inventory.Decorator.Asset\": {\n      \"Manufacturer\": \"HPE\",\n      \"Model\": \"DL340-fan\"\n    },\n    \"xyz.openbmc_project.Inventory.Decorator.Replaceable\": {\n      \"FieldReplaceable\": true,\n      \"HotPluggable\": true\n    }\n  }",
       "revId": "1605103cdd64d08669bb9c0c106fa1a643d75c48",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "81881a10_63851125",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1001354
+      },
+      "writtenOn": "2025-07-31T19:57:45Z",
+      "side": 1,
+      "message": "The EM config change in question already has a +2, but I\u0027m waiting for this dbus-sensors PR it depends on to get turned into a +2 so they can merge together, since there\u0027s technically a dependency (even if it\u0027s not enforced by anything). \n\n78023: hwmontempsensor: add support for tmp1075 temp sensors | https://gerrit.openbmc.org/c/openbmc/dbus-sensors/+/78023\n\nIt went went a sibling PR that was already merged, but this one hit a merge conflict that didn\u0027t get noticed for awhile. Brought it up in discord, so should get noticed sooner than later.",
+      "parentUuid": "b07d0736_fdc0a81c",
+      "revId": "1605103cdd64d08669bb9c0c106fa1a643d75c48",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }
