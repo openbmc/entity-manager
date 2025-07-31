@@ -13,15 +13,21 @@
             "Thresholds": [
                 {
                     "Direction": "greater than",
-                    "Name": "upper critical",
-                    "Severity": 1,
+                    "Name": "upper non recoverable",
+                    "Severity": 4,
                     "Value": 45
                 },
                 {
-                    "Direction": "less than",
-                    "Name": "lower critical",
+                    "Direction": "greater than",
+                    "Name": "upper critical",
                     "Severity": 1,
-                    "Value": 5
+                    "Value": 43
+                },
+                {
+                    "Direction": "greater than",
+                    "Name": "upper non critical",
+                    "Severity": 0,
+                    "Value": 40
                 }
             ],
             "Type": "TMP75"
