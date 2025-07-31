@@ -9,15 +9,29 @@
                 "Thresholds": [
                     {
                         "Direction": "greater than",
+                        "Index": 2,
+                        "Name": "upper non recoverable",
+                        "Severity": 4,
+                        "Value": 85
+                    },
+                    {
+                        "Direction": "greater than",
+                        "Index": 2,
                         "Name": "upper critical",
                         "Severity": 1,
-                        "Value": 70
+                        "Value": 83
+                    },
+                    {
+                        "Direction": "greater than",
+                        "Name": "upper non critical",
+                        "Severity": 0,
+                        "Value":80
                     },
                     {
                         "Direction": "less than",
-                        "Name": "lower critical",
-                        "Severity": 1,
-                        "Value": 5
+                        "Name": "lower non critical",
+                        "Severity": 0,
+                        "Value":5
                     }
                 ],
                 "Type": "NVME1000"
@@ -30,15 +44,29 @@
                 "Thresholds": [
                     {
                         "Direction": "greater than",
+                        "Index": 2,
+                        "Name": "upper non recoverable",
+                        "Severity": 4,
+                        "Value": 85
+                    },
+                    {
+                        "Direction": "greater than",
+                        "Index": 2,
                         "Name": "upper critical",
                         "Severity": 1,
-                        "Value": 70
+                        "Value": 83
+                    },
+                    {
+                        "Direction": "greater than",
+                        "Name": "upper non critical",
+                        "Severity": 0,
+                        "Value":80
                     },
                     {
                         "Direction": "less than",
-                        "Name": "lower critical",
-                        "Severity": 1,
-                        "Value": 5
+                        "Name": "lower non critical",
+                        "Severity": 0,
+                        "Value":5
                     }
                 ],
                 "Type": "NVME1000"
@@ -62,15 +90,29 @@
                 "Thresholds": [
                     {
                         "Direction": "greater than",
+                        "Index": 2,
+                        "Name": "upper non recoverable",
+                        "Severity": 4,
+                        "Value": 85
+                    },
+                    {
+                        "Direction": "greater than",
+                        "Index": 2,
                         "Name": "upper critical",
                         "Severity": 1,
-                        "Value": 70
+                        "Value": 83
+                    },
+                    {
+                        "Direction": "greater than",
+                        "Name": "upper non critical",
+                        "Severity": 0,
+                        "Value":80
                     },
                     {
                         "Direction": "less than",
-                        "Name": "lower critical",
-                        "Severity": 1,
-                        "Value": 5
+                        "Name": "lower non critical",
+                        "Severity": 0,
+                        "Value":5
                     }
                 ],
                 "Type": "NVME1000"
@@ -83,15 +125,29 @@
                 "Thresholds": [
                     {
                         "Direction": "greater than",
+                        "Index": 2,
+                        "Name": "upper non recoverable",
+                        "Severity": 4,
+                        "Value": 85
+                    },
+                    {
+                        "Direction": "greater than",
+                        "Index": 2,
                         "Name": "upper critical",
                         "Severity": 1,
-                        "Value": 70
+                        "Value": 83
+                    },
+                    {
+                        "Direction": "greater than",
+                        "Name": "upper non critical",
+                        "Severity": 0,
+                        "Value":80
                     },
                     {
                         "Direction": "less than",
-                        "Name": "lower critical",
-                        "Severity": 1,
-                        "Value": 5
+                        "Name": "lower non critical",
+                        "Severity": 0,
+                        "Value":5
                     }
                 ],
                 "Type": "NVME1000"
