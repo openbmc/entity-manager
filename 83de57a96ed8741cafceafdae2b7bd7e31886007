@@ -1,0 +1,140 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ec8a39e4_633ec35d",
+        "filename": "src/entity_manager/config_record.hpp",
+        "patchSetId": 16
+      },
+      "lineNbr": 8,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-08-01T12:12:45Z",
+      "side": 1,
+      "message": "I believe this is wrong since the `configurations` vector holds EM configs of which there may be more than one in a configuration file (see `loadConfigurations`)\n\nMaybe reword to \n\"ConfigRecord represents information about an EM Config\"",
+      "revId": "83de57a96ed8741cafceafdae2b7bd7e31886007",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f4567d5c_8ad68033",
+        "filename": "src/entity_manager/config_record.hpp",
+        "patchSetId": 16
+      },
+      "lineNbr": 13,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-08-01T12:12:45Z",
+      "side": 1,
+      "message": "Maybe we should rename this to `class EMConfig` to match with the name of the json schema\nin `schemas/global.json`.",
+      "revId": "83de57a96ed8741cafceafdae2b7bd7e31886007",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9b7878e1_b27cf97a",
+        "filename": "src/entity_manager/config_record.hpp",
+        "patchSetId": 16
+      },
+      "lineNbr": 29,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-08-01T12:12:45Z",
+      "side": 1,
+      "message": "\"extracted from an EM config\"",
+      "revId": "83de57a96ed8741cafceafdae2b7bd7e31886007",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "5a1dfeb1_601ce7c9",
+        "filename": "src/entity_manager/configuration.cpp",
+        "patchSetId": 16
+      },
+      "lineNbr": 86,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-08-01T12:12:45Z",
+      "side": 1,
+      "message": "part of `schemas/global.json`\n\n```\n\"title\": \"Entity Manager Configuration File\",\n    \"description\": \"The schema for an entity manager configuration file. An entity mananger configuration file can consist of a single object, or an array of objects. Objects must be of type EMConfig.\",\n    \"oneOf\": [\n        {\n            \"type\": \"array\",\n            \"items\": {\n                \"$ref\": \"#/$defs/EMConfig\"\n            }\n        },\n        {\n            \"$ref\": \"#/$defs/EMConfig\"\n        }\n    ]\n```\n\nSo this is what\u0027s being iterated in `filterProbeInterfaces`",
+      "revId": "83de57a96ed8741cafceafdae2b7bd7e31886007",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "dd979bde_7c772c65",
+        "filename": "src/entity_manager/configuration.cpp",
+        "patchSetId": 16
+      },
+      "lineNbr": 133,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-08-01T12:12:45Z",
+      "side": 1,
+      "message": "The comment here does not match anymore and the function name does not match as well since we extract more than the interfaces.",
+      "revId": "83de57a96ed8741cafceafdae2b7bd7e31886007",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1478e757_c3f303ec",
+        "filename": "src/entity_manager/configuration.cpp",
+        "patchSetId": 16
+      },
+      "lineNbr": 142,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-08-01T12:12:45Z",
+      "side": 1,
+      "message": "The error message is wrong since in `configuration.cpp` in `loadConfigurations` we insert EM configs (of which there can be multiple in single json file).\n\nIt\u0027s been wrong before but we should not copy-paste this error.",
+      "revId": "83de57a96ed8741cafceafdae2b7bd7e31886007",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "7ca8a9a1_cf588daa",
+        "filename": "src/entity_manager/configuration.cpp",
+        "patchSetId": 16
+      },
+      "lineNbr": 143,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-08-01T12:12:45Z",
+      "side": 1,
+      "message": "I am wondering if we need to delete those EM configs here since for `Name` and `Probe` we will use the class anyways and the schema guarantees it exists.",
+      "revId": "83de57a96ed8741cafceafdae2b7bd7e31886007",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4f12ba0b_b84a1694",
+        "filename": "src/entity_manager/configuration.cpp",
+        "patchSetId": 16
+      },
+      "lineNbr": 150,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-08-01T12:12:45Z",
+      "side": 1,
+      "message": "`lg2::error`",
+      "revId": "83de57a96ed8741cafceafdae2b7bd7e31886007",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    }
+  ]
+}
