@@ -216,6 +216,96 @@
             "Type": "EEPROM"
         },
         {
+            "Name": "RackDripPanPort",
+            "PresencePinNames": [
+                "wPRSNT_LEAK0_SENSOR_R_PLD_N"
+            ],
+            "PresencePinValues": [
+                0
+            ],
+            "Type": "GPIODeviceDetect"
+        },
+        {
+            "Name": "RackFloorLeakPort1",
+            "PresencePinNames": [
+                "wPRSNT_LEAK1_SENSOR_R_PLD_N"
+            ],
+            "PresencePinValues": [
+                0
+            ],
+            "Type": "GPIODeviceDetect"
+        },
+        {
+            "Name": "RackFloorLeakPort2",
+            "PresencePinNames": [
+                "wPRSNT_LEAK2_SENSOR_R_PLD_N"
+            ],
+            "PresencePinValues": [
+                0
+            ],
+            "Type": "GPIODeviceDetect"
+        },
+        {
+            "Name": "RackRightManifoldPort",
+            "PresencePinNames": [
+                "wPRSNT_LEAK3_SENSOR_R_PLD_N"
+            ],
+            "PresencePinValues": [
+                0
+            ],
+            "Type": "GPIODeviceDetect"
+        },
+        {
+            "Name": "RackLeftManifoldPort",
+            "PresencePinNames": [
+                "wPRSNT_LEAK4_SENSOR_R_PLD_N"
+            ],
+            "PresencePinValues": [
+                0
+            ],
+            "Type": "GPIODeviceDetect"
+        },
+        {
+            "Name": "RPU1LeakPort1",
+            "PresencePinNames": [
+                "wIT_GEAR_RPU_LINK_PRSNT_N_R"
+            ],
+            "PresencePinValues": [
+                0
+            ],
+            "Type": "GPIODeviceDetect"
+        },
+        {
+            "Name": "RPU1LeakPort2",
+            "PresencePinNames": [
+                "wIT_GEAR_RPU_LINK_PRSNT_SPARE_N"
+            ],
+            "PresencePinValues": [
+                0
+            ],
+            "Type": "GPIODeviceDetect"
+        },
+        {
+            "Name": "RPU2LeakPort1",
+            "PresencePinNames": [
+                "wIT_GEAR_RPU_2_LINK_PRSNT_N_R"
+            ],
+            "PresencePinValues": [
+                0
+            ],
+            "Type": "GPIODeviceDetect"
+        },
+        {
+            "Name": "RPU2LeakPort2",
+            "PresencePinNames": [
+                "wIT_GEAR_RPU_2_LINK_PRSNT_SPARE"
+            ],
+            "PresencePinValues": [
+                0
+            ],
+            "Type": "GPIODeviceDetect"
+        },
+        {
             "Name": "LeakPort1",
             "PresencePinNames": [
                 "PRSNT_COMPUTE_TRAY1_N"
