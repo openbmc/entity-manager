@@ -20,6 +20,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "1f0c330c_35069961",
+        "filename": "docs/associations.md",
+        "patchSetId": 5
+      },
+      "lineNbr": 109,
+      "author": {
+        "id": 1001354
+      },
+      "writtenOn": "2025-08-04T16:34:27Z",
+      "side": 1,
+      "message": "I would wholeheartedly agree if we were starting from scratch -- but a complicating factor is that current association handling for the powering/powered_by example in association.md explicitly says\n\n\u003ethe Type fields for those ports match up with the ConnectsToType field from the PSUs.\n\nhttps://github.com/openbmc/entity-manager/blob/master/docs/associations.md\n\n\nand there\u0027s a small handful of EMConfigs using it in templated form as described today:\n\nhttps://github.com/search?q\u003drepo%3Aopenbmc%2Fentity-manager%20path%3A%2F%5Econfigurations%5C%2F%2F%20downstream\u0026type\u003dcode\n\nI think if we changed how that works for cooling/cooled_by, we\u0027d probably want to change it for powering/powered_by too -- but I\u0027m not sure what the appetite for backtesting changes there would be.",
+      "parentUuid": "24eedc53_211c8129",
+      "revId": "bef153daf219b4e79b0f3a57443c5e6816f81b36",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "571efd81_33c233b4",
         "filename": "docs/associations.md",
         "patchSetId": 5
@@ -31,6 +49,24 @@
       "writtenOn": "2025-08-04T08:43:25Z",
       "side": 1,
       "message": "`ConnectsToType` here does not match with `DownstreamPort` schema currently.\nIt only accepts\n```\n                \"ConnectsToType\": {\n                    \"description\": \"Should be equal to the \u0027Type\u0027 property on the upstream port\",\n                    \"type\": \"string\",\n                    \"const\": \"MB Upstream Port\"\n                },\n```",
+      "revId": "bef153daf219b4e79b0f3a57443c5e6816f81b36",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a9a933ae_15a28aec",
+        "filename": "docs/associations.md",
+        "patchSetId": 5
+      },
+      "lineNbr": 137,
+      "author": {
+        "id": 1001354
+      },
+      "writtenOn": "2025-08-04T16:34:27Z",
+      "side": 1,
+      "message": "Thanks for pointing that out -- I\u0027ve only recently started looking more clossely at the Entity-Manger schema side of things.\n\nHere\u0027s a recently added change to the topology.json that I believe should address that issue\n\nhttps://gerrit.openbmc.org/c/openbmc/entity-manager/+/82408/5/schemas/topology.json",
+      "parentUuid": "571efd81_33c233b4",
       "revId": "bef153daf219b4e79b0f3a57443c5e6816f81b36",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
