@@ -22,7 +22,7 @@ using MapperGetSubTreeResponse =
 bool findFiles(const std::filesystem::path& dirPath,
                const std::string& matchString,
                std::vector<std::filesystem::path>& foundPaths);
-bool findFiles(const std::vector<std::filesystem::path>&& dirPaths,
+bool findFiles(const std::vector<std::filesystem::path>& dirPaths,
                const std::string& matchString,
                std::vector<std::filesystem::path>& foundPaths);
 
