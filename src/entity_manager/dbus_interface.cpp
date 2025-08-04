@@ -25,6 +25,11 @@ namespace dbus_interface
 const std::regex illegalDbusPathRegex("[^A-Za-z0-9_.]");
 const std::regex illegalDbusMemberRegex("[^A-Za-z0-9_]");
 
+EMDBusInterface::EMDBusInterface(boost::asio::io_context& io,
+                                 sdbusplus::asio::object_server& objServer) :
+    io(io), objServer(objServer)
+{}
+
 void tryIfaceInitialize(std::shared_ptr<sdbusplus::asio::dbus_interface>& iface)
 {
     try
@@ -41,9 +46,9 @@ void tryIfaceInitialize(std::shared_ptr<sdbusplus::asio::dbus_interface>& iface)
 }
 
 std::shared_ptr<sdbusplus::asio::dbus_interface>
-    EMDBusInterface::createInterface(
-        sdbusplus::asio::object_server& objServer, const std::string& path,
-        const std::string& interface, const std::string& parent, bool checkNull)
+    EMDBusInterface::createInterface(const std::string& path,
+                                     const std::string& interface,
+                                     const std::string& parent, bool checkNull)
 {
     // on first add we have no reason to check for null before add, as there
     // won't be any. For dynamically added interfaces, we check for null so that
@@ -65,16 +70,15 @@ std::shared_ptr<sdbusplus::asio::dbus_interface>
     return ptr;
 }
 
-void createDeleteObjectMethod(
+void EMDBusInterface::createDeleteObjectMethod(
     const std::string& jsonPointerPath,
     const std::shared_ptr<sdbusplus::asio::dbus_interface>& iface,
-    sdbusplus::asio::object_server& objServer,
-    nlohmann::json& systemConfiguration, boost::asio::io_context& io)
+    nlohmann::json& systemConfiguration)
 {
     std::weak_ptr<sdbusplus::asio::dbus_interface> interface = iface;
     iface->register_method(
-        "Delete", [&objServer, &systemConfiguration, interface,
-                   jsonPointerPath{std::string(jsonPointerPath)}, &io]() {
+        "Delete", [this, &systemConfiguration, interface,
+                   jsonPointerPath{std::string(jsonPointerPath)}]() {
             std::shared_ptr<sdbusplus::asio::dbus_interface> dbusInterface =
                 interface.lock();
             if (!dbusInterface)
@@ -88,7 +92,7 @@ void createDeleteObjectMethod(
 
             // todo(james): dig through sdbusplus to find out why we can't
             // delete it in a method call
-            boost::asio::post(io, [&objServer, dbusInterface]() mutable {
+            boost::asio::post(io, [dbusInterface, this]() mutable {
                 objServer.remove_interface(dbusInterface);
             });
 
@@ -199,11 +203,10 @@ static void populateInterfacePropertyFromJson(
 }
 
 void EMDBusInterface::populateIntfPDICompatObject(
-    boost::asio::io_context& io, nlohmann::json& systemConfiguration,
-    const std::string& jsonPointerPath,
+    nlohmann::json& systemConfiguration, const std::string& jsonPointerPath,
     std::shared_ptr<sdbusplus::asio::dbus_interface>& iface,
     const std::string& key, nlohmann::json& value,
-    sdbusplus::asio::object_server& objServer, const std::string& boardNameOrig,
+    const std::string& boardNameOrig,
     const config_type_tree::ConfigTypeNode& ctn,
     sdbusplus::asio::PropertyPermission permission, size_t depth)
 {
@@ -212,18 +215,16 @@ void EMDBusInterface::populateIntfPDICompatObject(
     const std::string ifaceNameAlt =
         std::format("xyz.openbmc_project.Configuration.{}", ctn.type);
     std::shared_ptr<sdbusplus::asio::dbus_interface> objectIfaceAlt =
-        createInterface(objServer, ifacePathAlt, ifaceNameAlt, boardNameOrig);
-    populateIntfPDICompat(io, systemConfiguration, jsonPointerPath,
-                          objectIfaceAlt, value, objServer, boardNameOrig, ctn,
-                          permission, depth + 1);
+        createInterface(ifacePathAlt, ifaceNameAlt, boardNameOrig);
+    populateIntfPDICompat(systemConfiguration, jsonPointerPath, objectIfaceAlt,
+                          value, boardNameOrig, ctn, permission, depth + 1);
 }
 
 void EMDBusInterface::populateIntfPDICompatArray(
-    boost::asio::io_context& io, nlohmann::json& systemConfiguration,
-    const std::string& jsonPointerPath,
+    nlohmann::json& systemConfiguration, const std::string& jsonPointerPath,
     std::shared_ptr<sdbusplus::asio::dbus_interface>& iface,
     const std::string& propertyName, nlohmann::json& value,
-    sdbusplus::asio::object_server& objServer, const std::string& boardNameOrig,
+    const std::string& boardNameOrig,
     const config_type_tree::ConfigTypeNode& ctn,
     sdbusplus::asio::PropertyPermission permission, size_t depth)
 {
@@ -234,20 +235,17 @@ void EMDBusInterface::populateIntfPDICompatArray(
         const std::string ifaceNameAlt =
             std::format("xyz.openbmc_project.Configuration.{}", ctn.type);
         std::shared_ptr<sdbusplus::asio::dbus_interface> objectIfaceAlt =
-            createInterface(objServer, ifacePathAlt, ifaceNameAlt,
-                            boardNameOrig);
-        populateIntfPDICompat(io, systemConfiguration, jsonPointerPath,
-                              objectIfaceAlt, v, objServer, boardNameOrig, ctn,
-                              permission, depth + 1);
+            createInterface(ifacePathAlt, ifaceNameAlt, boardNameOrig);
+        populateIntfPDICompat(systemConfiguration, jsonPointerPath,
+                              objectIfaceAlt, v, boardNameOrig, ctn, permission,
+                              depth + 1);
     }
 }
 
 void EMDBusInterface::populateIntfPDICompat(
-    boost::asio::io_context& io, nlohmann::json& systemConfiguration,
-    const std::string& jsonPointerPath,
+    nlohmann::json& systemConfiguration, const std::string& jsonPointerPath,
     std::shared_ptr<sdbusplus::asio::dbus_interface>& iface,
-    nlohmann::json& dict, sdbusplus::asio::object_server& objServer,
-    const std::string& boardNameOrig,
+    nlohmann::json& dict, const std::string& boardNameOrig,
     const config_type_tree::ConfigTypeNode& ctn,
     sdbusplus::asio::PropertyPermission permission, size_t depth)
 {
@@ -287,9 +285,8 @@ void EMDBusInterface::populateIntfPDICompat(
             }
 
             populateIntfPDICompatObject(
-                io, systemConfiguration, jsonPointerPath, iface, key, value,
-                objServer, boardNameOrig, ctn.properties.at(key), permission,
-                depth);
+                systemConfiguration, jsonPointerPath, iface, key, value,
+                boardNameOrig, ctn.properties.at(key), permission, depth);
             continue;
         }
         if (type == nlohmann::json::value_t::array && !value.empty() &&
@@ -297,9 +294,8 @@ void EMDBusInterface::populateIntfPDICompat(
             ctn.properties.contains(key))
         {
             populateIntfPDICompatArray(
-                io, systemConfiguration, jsonPointerPath, iface, key, value,
-                objServer, boardNameOrig, ctn.properties.at(key), permission,
-                depth);
+                systemConfiguration, jsonPointerPath, iface, key, value,
+                boardNameOrig, ctn.properties.at(key), permission, depth);
             continue;
         }
 
@@ -311,19 +307,16 @@ void EMDBusInterface::populateIntfPDICompat(
     }
     if (permission == sdbusplus::asio::PropertyPermission::readWrite)
     {
-        createDeleteObjectMethod(jsonPointerPath, iface, objServer,
-                                 systemConfiguration, io);
+        createDeleteObjectMethod(jsonPointerPath, iface, systemConfiguration);
     }
     tryIfaceInitialize(iface);
 }
 
 // adds simple json types to interface's properties
 void EMDBusInterface::populateInterfaceFromJson(
-    boost::asio::io_context& io, nlohmann::json& systemConfiguration,
-    const std::string& jsonPointerPath,
+    nlohmann::json& systemConfiguration, const std::string& jsonPointerPath,
     std::shared_ptr<sdbusplus::asio::dbus_interface>& iface,
-    nlohmann::json& dict, sdbusplus::asio::object_server& objServer,
-    sdbusplus::asio::PropertyPermission permission)
+    nlohmann::json& dict, sdbusplus::asio::PropertyPermission permission)
 {
     for (const auto& [key, value] : dict.items())
     {
@@ -354,25 +347,22 @@ void EMDBusInterface::populateInterfaceFromJson(
     }
     if (permission == sdbusplus::asio::PropertyPermission::readWrite)
     {
-        createDeleteObjectMethod(jsonPointerPath, iface, objServer,
-                                 systemConfiguration, io);
+        createDeleteObjectMethod(jsonPointerPath, iface, systemConfiguration);
     }
     tryIfaceInitialize(iface);
 }
 
 void EMDBusInterface::createAddObjectMethod(
-    boost::asio::io_context& io, const std::string& jsonPointerPath,
-    const std::string& path, nlohmann::json& systemConfiguration,
-    sdbusplus::asio::object_server& objServer, const std::string& board)
+    const std::string& jsonPointerPath, const std::string& path,
+    nlohmann::json& systemConfiguration, const std::string& board)
 {
-    std::shared_ptr<sdbusplus::asio::dbus_interface> iface = createInterface(
-        objServer, path, "xyz.openbmc_project.AddObject", board);
+    std::shared_ptr<sdbusplus::asio::dbus_interface> iface =
+        createInterface(path, "xyz.openbmc_project.AddObject", board);
 
     iface->register_method(
         "AddObject",
-        [&systemConfiguration, &objServer,
-         jsonPointerPath{std::string(jsonPointerPath)}, path{std::string(path)},
-         board, &io,
+        [&systemConfiguration, jsonPointerPath{std::string(jsonPointerPath)},
+         path{std::string(path)}, board,
          this](const boost::container::flat_map<std::string, JsonVariantType>&
                    data) {
             nlohmann::json::json_pointer ptr(jsonPointerPath);
@@ -474,15 +464,15 @@ void EMDBusInterface::createAddObjectMethod(
                                dbusName.end(), illegalDbusMemberRegex, "_");
 
             std::shared_ptr<sdbusplus::asio::dbus_interface> interface =
-                createInterface(objServer, path + "/" + dbusName,
+                createInterface(path + "/" + dbusName,
                                 "xyz.openbmc_project.Configuration." + *type,
                                 board, true);
             // permission is read-write, as since we just created it, must be
             // runtime modifiable
             populateInterfaceFromJson(
-                io, systemConfiguration,
+                systemConfiguration,
                 jsonPointerPath + "/Exposes/" + std::to_string(lastIndex),
-                interface, newData, objServer,
+                interface, newData,
                 sdbusplus::asio::PropertyPermission::readWrite);
         });
     tryIfaceInitialize(iface);
