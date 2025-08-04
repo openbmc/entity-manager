@@ -40,7 +40,7 @@ bool findFiles(const fs::path& dirPath, const std::string& matchString,
     return true;
 }
 
-bool findFiles(const std::vector<fs::path>&& dirPaths,
+bool findFiles(const std::vector<fs::path>& dirPaths,
                const std::string& matchString,
                std::vector<fs::path>& foundPaths)
 {

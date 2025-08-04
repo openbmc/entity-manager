@@ -10,10 +10,13 @@
 
 int main()
 {
+    const std::vector<std::filesystem::path> configurationDirectories = {
+        PACKAGE_DIR "configurations", SYSCONF_DIR "configurations"};
+
     boost::asio::io_context io;
     auto systemBus = std::make_shared<sdbusplus::asio::connection>(io);
     systemBus->request_name("xyz.openbmc_project.EntityManager");
-    EntityManager em(systemBus, io);
+    EntityManager em(systemBus, io, configurationDirectories);
 
     boost::asio::post(io, [&]() { em.propertiesChangedCallback(); });
 

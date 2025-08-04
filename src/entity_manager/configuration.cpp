@@ -15,7 +15,9 @@
 #include <string>
 #include <vector>
 
-Configuration::Configuration()
+Configuration::Configuration(
+    const std::vector<std::filesystem::path>& configurationDirectories) :
+    configurationDirectories(configurationDirectories)
 {
     loadConfigurations();
     filterProbeInterfaces();
@@ -27,13 +29,13 @@ void Configuration::loadConfigurations()
 
     // find configuration files
     std::vector<std::filesystem::path> jsonPaths;
-    if (!findFiles(
-            std::vector<std::filesystem::path>{configurationDirectory,
-                                               hostConfigurationDirectory},
-            R"(.*\.json)", jsonPaths))
+    if (!findFiles(configurationDirectories, R"(.*\.json)", jsonPaths))
     {
-        lg2::error("Unable to find any configuration files in {DIR}", "DIR",
-                   configurationDirectory);
+        for (const auto& configurationDirectory : configurationDirectories)
+        {
+            lg2::error("Unable to find any configuration files in {DIR}", "DIR",
+                       configurationDirectory);
+        }
         return;
     }
 
