@@ -727,6 +727,16 @@
             "Type": "GPIOLeakDetector"
         },
         {
+            "Address": "0x40",
+            "Bus": 15,
+            "FirmwareInfo": {
+                "CompatibleHardware": "com.meta.Hardware.Minerva.CPLD.LCMXO3LF_2100C_scm",
+                "VendorIANA": 40981
+            },
+            "Name": "Minerva_SCM_CPLD",
+            "Type": "LatticeLCMXO3LF_2100CFirmware"
+        },
+        {
             "Address": "0x4B",
             "Bus": 1,
             "Name": "SCM_INLET_TEMP_C",

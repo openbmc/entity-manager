@@ -215,6 +215,16 @@
                 "vout1_Name": "CMM_HSC_VOUT_VOLT_V"
             },
             {
+                "Address": "0x44",
+                "Bus": 8,
+                "FirmwareInfo": {
+                    "CompatibleHardware": "com.meta.Hardware.Minerva.CPLD.LCMXO3D_9400HC_cmm",
+                    "VendorIANA": 40981
+                },
+                "Name": "Minerva_CMM_CPLD",
+                "Type": "LatticeLCMXO3D_9400Firmware"
+            },
+            {
                 "Address": "0x4f",
                 "Bus": 1,
                 "Name": "CMM_OUTLET_TEMP_C",
