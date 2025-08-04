@@ -1,0 +1,89 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "893bd048_fa5017fd",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 11
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1001526
+      },
+      "writtenOn": "2025-08-04T10:57:24Z",
+      "side": 1,
+      "message": "Hi @jonico.eustaquio@fii-na.com. I have not had a chance to test this yet but have some initial comments.",
+      "revId": "5ec925827827ee3dfd4cce6244fa2eb7d0be9a65",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a0c9b6bf_9ff242ec",
+        "filename": "src/entity_manager/overlay.cpp",
+        "patchSetId": 11
+      },
+      "lineNbr": 190,
+      "author": {
+        "id": 1001526
+      },
+      "writtenOn": "2025-08-04T10:57:24Z",
+      "side": 1,
+      "message": "Will `linkMux` be called when `buildDevice` is triggered as a retry?",
+      "revId": "5ec925827827ee3dfd4cce6244fa2eb7d0be9a65",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e31296b6_46915243",
+        "filename": "src/entity_manager/overlay.cpp",
+        "patchSetId": 11
+      },
+      "lineNbr": 259,
+      "author": {
+        "id": 1001526
+      },
+      "writtenOn": "2025-08-04T10:57:24Z",
+      "side": 1,
+      "message": "You should compare `ec` against `file_exists` instead - https://en.cppreference.com/w/cpp/header/system_error.html.",
+      "revId": "5ec925827827ee3dfd4cce6244fa2eb7d0be9a65",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9995db3a_0b120745",
+        "filename": "src/entity_manager/overlay.cpp",
+        "patchSetId": 11
+      },
+      "lineNbr": 263,
+      "author": {
+        "id": 1001526
+      },
+      "writtenOn": "2025-08-04T10:57:24Z",
+      "side": 1,
+      "message": "Can the logic be like?:\n\n```\nif (ec)\n{\n   if (ec !\u003d std::make_error_code(std::errc::file_exists)) {\n      return newMuxConfigs;\n   }\n   // Remove the old symlink\n}\n\n// The remaining logic to construct the bus field for the configs\n```",
+      "revId": "5ec925827827ee3dfd4cce6244fa2eb7d0be9a65",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d9718771_0ca9487f",
+        "filename": "src/entity_manager/overlay.cpp",
+        "patchSetId": 11
+      },
+      "lineNbr": 300,
+      "author": {
+        "id": 1001526
+      },
+      "writtenOn": "2025-08-04T10:57:24Z",
+      "side": 1,
+      "message": "Should \"Bus\" be looked for first to exclude entities that have already been linked before parsing more into MuxChannel?\n\nI wonder if \"MuxChannel\" should be kept after \"Bus\" is filled? Because in the schema, \"Bus\" and \"MuxChannel\" can\u0027t exist together. After the linkMux job is done, MuxChannel is not useful anymore.",
+      "revId": "5ec925827827ee3dfd4cce6244fa2eb7d0be9a65",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    }
+  ]
+}
