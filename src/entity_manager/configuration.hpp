@@ -14,11 +14,11 @@ constexpr const char* schemaDirectory = PACKAGE_DIR "schemas";
 class Configuration
 {
   public:
-    explicit Configuration();
+    explicit Configuration(bool loadConfigs);
     std::unordered_set<std::string> probeInterfaces;
     std::vector<nlohmann::json> configurations;
 
-  private:
+  protected:
     void loadConfigurations();
     void filterProbeInterfaces();
 };

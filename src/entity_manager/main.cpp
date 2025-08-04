@@ -13,7 +13,7 @@ int main()
     boost::asio::io_context io;
     auto systemBus = std::make_shared<sdbusplus::asio::connection>(io);
     systemBus->request_name("xyz.openbmc_project.EntityManager");
-    EntityManager em(systemBus, io);
+    EntityManager em(systemBus, io, true);
 
     nlohmann::json systemConfiguration = nlohmann::json::object();
 

@@ -16,8 +16,12 @@
 #include <string>
 #include <vector>
 
-Configuration::Configuration()
+Configuration::Configuration(bool loadConfigs)
 {
+    if (!loadConfigs)
+    {
+        return;
+    }
     loadConfigurations();
     filterProbeInterfaces();
 }

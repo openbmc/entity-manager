@@ -20,7 +20,7 @@ class EntityManager
   public:
     explicit EntityManager(
         std::shared_ptr<sdbusplus::asio::connection>& systemBus,
-        boost::asio::io_context& io);
+        boost::asio::io_context& io, bool loadConfigs);
 
     // disable copy
     EntityManager(const EntityManager&) = delete;
