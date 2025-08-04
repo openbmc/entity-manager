@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "24eedc53_211c8129",
+        "filename": "docs/associations.md",
+        "patchSetId": 5
+      },
+      "lineNbr": 109,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-08-04T08:43:25Z",
+      "side": 1,
+      "message": "I do not like `Type` field to be templated or otherwise variable.\n`Type` field is what is used by people to find the schema and create the dbus interfaces name.\n\nSo for both purposes `Type` should be fixed. Maybe topology schema needs to be reworked. Not sure how to go about this but could we extend `DownstreamPort` with an optional `ConnectsToName` property.\n\nFrom my understanding the ports are only consumed by EM to create the associations, so we should be free to make changes there?",
+      "revId": "bef153daf219b4e79b0f3a57443c5e6816f81b36",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "571efd81_33c233b4",
+        "filename": "docs/associations.md",
+        "patchSetId": 5
+      },
+      "lineNbr": 137,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-08-04T08:43:25Z",
+      "side": 1,
+      "message": "`ConnectsToType` here does not match with `DownstreamPort` schema currently.\nIt only accepts\n```\n                \"ConnectsToType\": {\n                    \"description\": \"Should be equal to the \u0027Type\u0027 property on the upstream port\",\n                    \"type\": \"string\",\n                    \"const\": \"MB Upstream Port\"\n                },\n```",
+      "revId": "bef153daf219b4e79b0f3a57443c5e6816f81b36",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    }
+  ]
+}
