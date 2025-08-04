@@ -339,6 +339,16 @@
             "power1_Name": "PTTV_$bus_P30V_MMIC_PWR_W"
         },
         {
+            "Address": "0x20",
+            "Bus": "$bus",
+            "FirmwareInfo": {
+                "CompatibleHardware": "com.meta.Hardware.Santabarbara.CPLD.LCMXO3LF_2100C_pttv",
+                "VendorIANA": 40981
+            },
+            "Name": "Santabarbara_PTTV_CPLD_$bus",
+            "Type": "LatticeLCMXO3LF_2100CFirmware"
+        },
+        {
             "Address": "0x67",
             "Bus": "$bus / 2 * 4 + 36",
             "Name": "PTTV_$bus_HEATER_TEMP_C",
