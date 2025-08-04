@@ -16,20 +16,37 @@ namespace dbus_interface
 class EMDBusInterface
 {
   public:
+    EMDBusInterface(boost::asio::io_context& io,
+                    sdbusplus::asio::object_server& objServer);
+
     std::shared_ptr<sdbusplus::asio::dbus_interface> createInterface(
-        sdbusplus::asio::object_server& objServer, const std::string& path,
-        const std::string& interface, const std::string& parent,
-        bool checkNull = false);
+        const std::string& path, const std::string& interface,
+        const std::string& parent, bool checkNull = false);
 
     std::vector<std::weak_ptr<sdbusplus::asio::dbus_interface>>&
         getDeviceInterfaces(const nlohmann::json& device);
 
-    void createAddObjectMethod(
-        boost::asio::io_context& io, const std::string& jsonPointerPath,
-        const std::string& path, nlohmann::json& systemConfiguration,
-        sdbusplus::asio::object_server& objServer, const std::string& board);
+    void createAddObjectMethod(const std::string& jsonPointerPath,
+                               const std::string& path,
+                               nlohmann::json& systemConfiguration,
+                               const std::string& board);
+
+    void populateInterfaceFromJson(
+        nlohmann::json& systemConfiguration, const std::string& jsonPointerPath,
+        std::shared_ptr<sdbusplus::asio::dbus_interface>& iface,
+        nlohmann::json& dict,
+        sdbusplus::asio::PropertyPermission permission =
+            sdbusplus::asio::PropertyPermission::readOnly);
+
+    void createDeleteObjectMethod(
+        const std::string& jsonPointerPath,
+        const std::shared_ptr<sdbusplus::asio::dbus_interface>& iface,
+        nlohmann::json& systemConfiguration);
 
   private:
+    boost::asio::io_context& io;
+    sdbusplus::asio::object_server& objServer;
+
     boost::container::flat_map<
         std::string,
         std::vector<std::weak_ptr<sdbusplus::asio::dbus_interface>>>
@@ -137,19 +154,5 @@ void addValueToDBus(const std::string& key, const nlohmann::json& value,
                     sdbusplus::asio::PropertyPermission::readOnly);
     }
 }
-
-void createDeleteObjectMethod(
-    const std::string& jsonPointerPath,
-    const std::shared_ptr<sdbusplus::asio::dbus_interface>& iface,
-    sdbusplus::asio::object_server& objServer,
-    nlohmann::json& systemConfiguration, boost::asio::io_context& io);
-
-void populateInterfaceFromJson(
-    boost::asio::io_context& io, nlohmann::json& systemConfiguration,
-    const std::string& jsonPointerPath,
-    std::shared_ptr<sdbusplus::asio::dbus_interface>& iface,
-    nlohmann::json& dict, sdbusplus::asio::object_server& objServer,
-    sdbusplus::asio::PropertyPermission permission =
-        sdbusplus::asio::PropertyPermission::readOnly);
 
 } // namespace dbus_interface
