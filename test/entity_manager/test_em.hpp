@@ -31,10 +31,12 @@ class TestEM : public EntityManager
            boost::asio::io_context& io) :
         EntityManager(systemBus, io, false, true)
     {
-        std::string busName = getRandomBusName();
+        busName = getRandomBusName();
         systemBus->request_name(busName.c_str());
         lg2::debug("requesting bus name {NAME}", "NAME", busName);
     };
+
+    std::string busName;
 
     // declare protected members of the base class as public here
     using EntityManager::dbusMatches;
