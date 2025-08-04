@@ -16,7 +16,9 @@
 #include <string>
 #include <vector>
 
-Configuration::Configuration()
+Configuration::Configuration(
+    const std::filesystem::path& configurationDirectory) :
+    configurationDirectory(configurationDirectory)
 {
     loadConfigurations();
     filterProbeInterfaces();

@@ -7,20 +7,22 @@
 
 constexpr const char* globalSchema = "global.json";
 constexpr const char* hostConfigurationDirectory = SYSCONF_DIR "configurations";
-constexpr const char* configurationDirectory = PACKAGE_DIR "configurations";
 constexpr const char* currentConfiguration = "/var/configuration/system.json";
 constexpr const char* schemaDirectory = PACKAGE_DIR "schemas";
 
 class Configuration
 {
   public:
-    explicit Configuration();
+    explicit Configuration(const std::filesystem::path& configurationDirectory);
     std::unordered_set<std::string> probeInterfaces;
     std::vector<nlohmann::json> configurations;
 
-  private:
+  protected:
     void loadConfigurations();
     void filterProbeInterfaces();
+
+  private:
+    std::filesystem::path configurationDirectory;
 };
 
 bool writeJsonFiles(const nlohmann::json& systemConfiguration);
