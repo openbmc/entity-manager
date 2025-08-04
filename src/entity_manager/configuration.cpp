@@ -190,7 +190,12 @@ bool writeJsonFiles(const nlohmann::json& systemConfiguration)
         return true;
     }
 
-    std::filesystem::create_directory(configurationOutDir);
+    std::error_code ec;
+    std::filesystem::create_directory(configurationOutDir, ec);
+    if (ec)
+    {
+        return false;
+    }
     std::ofstream output(currentConfiguration);
     if (!output.good())
     {
