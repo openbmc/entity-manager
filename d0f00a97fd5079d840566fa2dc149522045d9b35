@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4265dd4e_f70a285a",
+        "filename": "configurations/meta/ventura_scm.json",
+        "patchSetId": 1
+      },
+      "lineNbr": 219,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-08-04T16:53:35Z",
+      "side": 1,
+      "message": "1. Do we have RPU leak status exposed on RMC via a GPIO?\n2. We should name this better - probably RPU1LeakPort1, RPU1LeakPort2 and so on. @patrick@stwcx.xyz Any better ideas on nomenclature?",
+      "revId": "d0f00a97fd5079d840566fa2dc149522045d9b35",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ca0aa4da_795fd412",
+        "filename": "configurations/meta/ventura_scm.json",
+        "patchSetId": 1
+      },
+      "lineNbr": 259,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-08-04T16:53:35Z",
+      "side": 1,
+      "message": "Can you please name these based on leak sensors, for example for \"RackDripPan\" leak, name the corresponding cable port as \"RackDripPanPort\" and so on to they can mapped appropriately.",
+      "revId": "d0f00a97fd5079d840566fa2dc149522045d9b35",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    }
+  ]
+}
