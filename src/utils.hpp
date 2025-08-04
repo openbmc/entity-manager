@@ -14,6 +14,7 @@
 using DBusValueVariant =
     std::variant<std::string, int64_t, uint64_t, double, int32_t, uint32_t,
                  int16_t, uint16_t, uint8_t, bool, std::vector<uint8_t>,
+                 std::vector<int64_t>, std::vector<double>,
                  std::vector<std::string>>;
 using DBusInterface = std::flat_map<std::string, DBusValueVariant, std::less<>>;
 using DBusObject = std::flat_map<std::string, DBusInterface, std::less<>>;
