@@ -16,6 +16,24 @@
       "message": "The examples I see at https://spdx.github.io/spdx-spec/v2.3/file-tags/  all have \u0027Copyright\u0027 in the string on this line.  So does bmcweb.",
       "revId": "a94121ed4f3d4fbc5e3d0ef5131018e5276736b9",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "d0fe3835_203fc018",
+        "filename": "src/devicetree_vpd_parser/machine_context.hpp",
+        "patchSetId": 6
+      },
+      "lineNbr": 2,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-08-04T11:14:47Z",
+      "side": 1,
+      "message": "There is one example\n```\nSPDX-FileCopyrightText: 2019 Jane Doe \u003cjane@example.com\u003e\n```\nwhich does not have it.\n\nAnyways, fixed it for consistency reasons since most examples do have it 👍",
+      "parentUuid": "6c760be1_66ff165e",
+      "revId": "a94121ed4f3d4fbc5e3d0ef5131018e5276736b9",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }
