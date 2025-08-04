@@ -54,3 +54,22 @@ test(
         include_directories: test_include_dir,
     ),
 )
+
+test(
+    'test_dbus_interface',
+    executable(
+        'test_dbus_interface',
+        'test_dbus_interface.cpp',
+        cpp_args: test_boost_args,
+        dependencies: [
+            boost,
+            gtest,
+            nlohmann_json_dep,
+            phosphor_logging_dep,
+            sdbusplus,
+            valijson,
+        ],
+        link_with: entity_manager_lib,
+        include_directories: test_include_dir,
+    ),
+)
