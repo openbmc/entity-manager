@@ -33,7 +33,7 @@ class TestEM : public UniqueSuffix, public EntityManager
            boost::asio::io_context& io) :
         EntityManager(systemBus, io, {getTestConfigDir()}, getTestConfigDir())
     {
-        std::string busName = getRandomBusName();
+        busName = getRandomBusName();
         systemBus->request_name(busName.c_str());
         lg2::debug("requesting bus name {NAME}", "NAME", busName);
     };
@@ -66,6 +66,8 @@ class TestEM : public UniqueSuffix, public EntityManager
         std::filesystem::create_directory(dir, ec);
         return dir;
     }
+
+    std::string busName;
 
     // declare protected members of the base class as public here
     using EntityManager::dbusMatches;
