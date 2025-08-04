@@ -1,4 +1,4 @@
-tests = ['utils', 'topology', 'entity_manager']
+tests = ['utils', 'topology', 'entity_manager', 'dbus_interface']
 em_test_deps = [
     boost,
     gtest,
