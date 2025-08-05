@@ -132,6 +132,7 @@ configs = [
     'meta/ventura_rmc_hsc_ltc_fsc_max_p24vsen_ina_gndsen_ina_p12vbrick_delta.json',
     'meta/ventura_rmc_hsc_xdp_fsc_nct_p24vsen_isl_gndsen_isl_p12vbrick_flex.json',
     'meta/ventura_scm.json',
+    'meta/ventura_valve.json',
     'meta/yosemite4.json',
     'meta/yosemite4_chassis.json',
     'meta/yosemite4_cpu.json',
