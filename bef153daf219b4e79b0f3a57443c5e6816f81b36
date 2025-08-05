@@ -213,6 +213,24 @@
       "parentUuid": "b0765366_72e95d9f",
       "revId": "bef153daf219b4e79b0f3a57443c5e6816f81b36",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f1bca45a_ca90aa96",
+        "filename": "docs/associations.md",
+        "patchSetId": 5
+      },
+      "lineNbr": 137,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-08-05T21:10:04Z",
+      "side": 1,
+      "message": "starting point idea:\n\n```\n\"NewPort\": {\n  \"additionalProperties\": false,\n  \"properties\": {\n     \"Name\": {\n       \"$ref\": \"#/$defs/Types/Name\"\n     },\n     \"ConnectsToName\":  {\n       \"type\": \"string\"\n     },\n     \"PortType\":  {\n       \"enum\": {\"PoweredBy\", \"Powering\", \"CooledBy\", \"Cooling\"}\n     },\n     \"Type\":  {\n       \"const\": \"Port\"\n     }\n  }\n}\n```\n\nNow we will still need to see what is the upstream and downstream port or `containing` / `contained_by`, `powered_by` / `powering`.\n\nThats what `PortType` is for in that idea. It allows to express the relationship between the 2 components in a straightforward way.\n\nExample:\n\n```\n{\n    \"Name\": \"PowerUnit1\",\n    \"ConnectsToName\": \"Blade1Power\",\n    \"PortType\": \"Powering\",\n    \"Type\": \"Port\"\n}\n```\n\nthen in some other config \n\n```\n{\n    \"Name\": \"Blade1Power\",\n    \"ConnectsToName\": \"PowerUnit1\",\n    \"PortType\": \"PoweredBy\",\n    \"Type\": \"Port\"\n}\n```\n\nLet me know what you think of this idea 😊 and if it applies to all use-cases you have in mind.",
+      "parentUuid": "8180fc14_e664291a",
+      "revId": "bef153daf219b4e79b0f3a57443c5e6816f81b36",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }
