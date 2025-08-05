@@ -24,6 +24,30 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "ca1b1f85_6bdaeb7e",
+        "filename": "test/entity_manager/test_entity_manager.cpp",
+        "patchSetId": 6
+      },
+      "lineNbr": 59,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-08-05T14:59:13Z",
+      "side": 1,
+      "message": "Currently `class EntityManager` has around 19 members, some of which are collections or smart pointers.\n\nThere is a lot of stuff in EM which can be tested at the unit test level without DBus. My goal is to have a balance of DBus and non-DBus related testing.",
+      "parentUuid": "ddad4dc2_d5a9d976",
+      "range": {
+        "startLine": 56,
+        "startChar": 0,
+        "endLine": 59,
+        "endChar": 0
+      },
+      "revId": "701e59da14fc701494686ed5c47340d2b8f7d907",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "54e5e9c5_b51b93fa",
@@ -37,6 +61,24 @@
       "writtenOn": "2025-07-30T16:39:04Z",
       "side": 1,
       "message": "Tests like this are just testing internals of EntityManager, not that it has accomplished the task its intended to accomplish.  Unit tests should ideally check to see if the function works as intended.  For example, scannedPowerOff being true might be completely valid as an init state.  It\u0027s the dbus interface that matters.\n\nI really do want to see unit tests, if this is what we have so be it, we can iterate.",
+      "revId": "701e59da14fc701494686ed5c47340d2b8f7d907",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a0043008_6e159d96",
+        "filename": "test/entity_manager/test_entity_manager.cpp",
+        "patchSetId": 6
+      },
+      "lineNbr": 65,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-08-05T14:59:13Z",
+      "side": 1,
+      "message": "The unit tests for dbus interfaces come in https://gerrit.openbmc.org/c/openbmc/entity-manager/+/82547\n\nThese test might look primitive but they already revealed a memory leak to me which resulted from stopping the `io_context` before the call to object mapper returned which happened in the power status monitor.\n\nWill need to restructure some of the code to make it possible to init an EM without any initial dbus calls.\n\n\u003e I really do want to see unit tests, if this is what we have so be it, we can iterate.\n\nNice. Then i will have someone to review my works ❤️",
+      "parentUuid": "54e5e9c5_b51b93fa",
       "revId": "701e59da14fc701494686ed5c47340d2b8f7d907",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
