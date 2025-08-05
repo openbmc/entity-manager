@@ -1,0 +1,58 @@
+[
+    {
+        "Exposes": [
+            {
+                "CoolantLoopName": "ValveTrain",
+                "Name": "$Name",
+                "OpenControlPinName": "WATER_VALVE_CLOSED_N",
+                "OpenControlValue": false,
+                "OpenPinName": "SUPPLY_CNTL_FB_D_R",
+                "OpenPolarity": "High",
+                "Type": "GPIOValve"
+            }
+        ],
+        "Name": "$Name",
+        "Probe": [
+            "xyz.openbmc_project.Inventory.Source.DevicePresence({'Name': '^SupplyValve$'})"
+        ],
+        "Type": "Valve",
+        "xyz.openbmc_project.Inventory.Decorator.Asset": {
+            "Manufacturer": "Unknown",
+            "Model": "Unknown",
+            "PartNumber": "Unknown",
+            "SerialNumber": "Unknown",
+            "SparePartNumber": "Unknown"
+        },
+        "xyz.openbmc_project.Inventory.Item.Valve": {
+            "Direction": "xyz.openbmc_project.Inventory.Item.Valve.Direction.Supply"
+        }
+    },
+    {
+        "Exposes": [
+            {
+                "CoolantLoopName": "ValveTrain",
+                "Name": "$Name",
+                "OpenControlPinName": "WATER_VALVE_CLOSED_N",
+                "OpenControlValue": false,
+                "OpenPinName": "RETURN_CNTL_FB_D_R",
+                "OpenPolarity": "High",
+                "Type": "GPIOValve"
+            }
+        ],
+        "Name": "$Name",
+        "Probe": [
+            "xyz.openbmc_project.Inventory.Source.DevicePresence({'Name': '^ReturnValve$'})"
+        ],
+        "Type": "Valve",
+        "xyz.openbmc_project.Inventory.Decorator.Asset": {
+            "Manufacturer": "Unknown",
+            "Model": "Unknown",
+            "PartNumber": "Unknown",
+            "SerialNumber": "Unknown",
+            "SparePartNumber": "Unknown"
+        },
+        "xyz.openbmc_project.Inventory.Item.Valve": {
+            "Direction": "xyz.openbmc_project.Inventory.Item.Valve.Direction.Return"
+        }
+    }
+]
