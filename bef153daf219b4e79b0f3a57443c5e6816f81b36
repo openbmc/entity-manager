@@ -69,6 +69,24 @@
       "parentUuid": "571efd81_33c233b4",
       "revId": "bef153daf219b4e79b0f3a57443c5e6816f81b36",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "348bf904_44c87ff5",
+        "filename": "docs/associations.md",
+        "patchSetId": 5
+      },
+      "lineNbr": 137,
+      "author": {
+        "id": 1001354
+      },
+      "writtenOn": "2025-08-05T16:07:35Z",
+      "side": 1,
+      "message": "Oh shoot - my eyes must have glazed over on the \u0027cost: MB Upstream Port\u0027 line and it\u0027s implications.\n\nI thought you were pointing out the lack of \u0027FanPort\u0027 in the current schema.\n\nI\u0027ll have to dig in and think about this more, but my current thinking is that the schema should be updated to remove the \u0027const\u0027 (or change it to an enum?) since \n\nA) it contradicts the examples given in associations.md\n\nB) would mean there could only be 1 port per chassis to be shared by all PSU, fans, or any \u0027contains by\u0027 associations people might want to setup -- right?",
+      "parentUuid": "a9a933ae_15a28aec",
+      "revId": "bef153daf219b4e79b0f3a57443c5e6816f81b36",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }
