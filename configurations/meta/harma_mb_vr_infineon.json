@@ -420,6 +420,7 @@
                 "Bus": 5,
                 "FirmwareInfo": {
                     "CompatibleHardware": "com.meta.Hardware.Harma.CPLD.LCMXO3LF_4300C_mb",
+                    "Type": "FirmwareInfoDef",
                     "VendorIANA": 40981
                 },
                 "Name": "Harma_MB_CPLD",
@@ -603,16 +604,19 @@
                 "FirmwareDevice": "Harma_MB_Retimer_EEPROM",
                 "FirmwareInfo": {
                     "CompatibleHardware": "com.meta.Hardware.Harma.Retimer.PT5161L",
+                    "Type": "FirmwareInfoDef",
                     "VendorIANA": 40981
                 },
                 "MuxOutputs": [
                     {
                         "Name": "rt-cpu0-p1-enable",
-                        "Polarity": "High"
+                        "Polarity": "High",
+                        "Type": "MuxOutput"
                     },
                     {
                         "Name": "smb-rt-rom-p1-select",
-                        "Polarity": "High"
+                        "Polarity": "High",
+                        "Type": "MuxOutput"
                     }
                 ],
                 "Name": "Harma_MB_Retimer_0",
@@ -624,16 +628,19 @@
                 "FirmwareDevice": "Harma_MB_Retimer_EEPROM",
                 "FirmwareInfo": {
                     "CompatibleHardware": "com.meta.Hardware.Harma.Retimer.PT5161L",
+                    "Type": "FirmwareInfoDef",
                     "VendorIANA": 40981
                 },
                 "MuxOutputs": [
                     {
                         "Name": "rt-cpu0-p1-enable",
-                        "Polarity": "High"
+                        "Polarity": "High",
+                        "Type": "MuxOutput"
                     },
                     {
                         "Name": "smb-rt-rom-p1-select",
-                        "Polarity": "High"
+                        "Polarity": "High",
+                        "Type": "MuxOutput"
                     }
                 ],
                 "Name": "Harma_MB_Retimer_1",
@@ -910,12 +917,14 @@
             {
                 "FirmwareInfo": {
                     "CompatibleHardware": "com.meta.Hardware.Harma.SPI.Host",
+                    "Type": "FirmwareInfoDef",
                     "VendorIANA": 40981
                 },
                 "MuxOutputs": [
                     {
                         "Name": "bmc-spi-mux-select-0",
-                        "Polarity": "High"
+                        "Polarity": "High",
+                        "Type": "MuxOutput"
                     }
                 ],
                 "Name": "Harma_BIOS",
@@ -1285,6 +1294,7 @@
                 "Bus": 28,
                 "FirmwareInfo": {
                     "CompatibleHardware": "com.meta.Hardware.Harma.VR.XDPE192C3B_vcore0",
+                    "Type": "FirmwareInfoDef",
                     "VendorIANA": 40981
                 },
                 "Name": "Harma_MB_VR_cpu0_vcore0",
@@ -1295,6 +1305,7 @@
                 "Bus": 28,
                 "FirmwareInfo": {
                     "CompatibleHardware": "com.meta.Hardware.Harma.VR.XDPE192C3B_vcore1",
+                    "Type": "FirmwareInfoDef",
                     "VendorIANA": 40981
                 },
                 "Name": "Harma_MB_VR_cpu0_vcore1",
@@ -1305,6 +1316,7 @@
                 "Bus": 28,
                 "FirmwareInfo": {
                     "CompatibleHardware": "com.meta.Hardware.Harma.VR.XDPE19283B_pvdd11",
+                    "Type": "FirmwareInfoDef",
                     "VendorIANA": 40981
                 },
                 "Name": "Harma_MB_VR_cpu0_pvdd11",
