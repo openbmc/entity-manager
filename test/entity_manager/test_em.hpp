@@ -40,10 +40,12 @@ class TestEM : public EntityManager
 
     // declare protected members of the base class as public here
     using EntityManager::dbusMatches;
+    using EntityManager::handleCurrentConfigurationJson;
     using EntityManager::initFilters;
     using EntityManager::interfacesAddedMatch;
     using EntityManager::interfacesRemovedMatch;
     using EntityManager::nameOwnerChangedMatch;
+    using EntityManager::propertiesChangedCallback;
     using EntityManager::propertiesChangedInProgress;
     using EntityManager::propertiesChangedInstance;
     using EntityManager::propertiesChangedTimer;
