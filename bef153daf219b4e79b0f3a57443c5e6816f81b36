@@ -177,6 +177,24 @@
       "parentUuid": "5aba509c_ec1bb801",
       "revId": "bef153daf219b4e79b0f3a57443c5e6816f81b36",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b0765366_72e95d9f",
+        "filename": "docs/associations.md",
+        "patchSetId": 5
+      },
+      "lineNbr": 137,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-08-05T20:14:05Z",
+      "side": 1,
+      "message": "option 2 is more of a joke. I just wanted to highlight there is alternatives other than the minimum change which makes it work.\n\nYes it works for you but there is other concerns besides working code. like conceptual integrity.\n\noption 3 and 4 depends on how many existing configs. if there is a lot then i suggest new schema otherwise fix existing. \n\nMaybe some enum for type of port and index for linking them as per your suggestion.\n\nIt should not be any big schema or big effort, maybe 1 or 2 patches and then we have something good which scales.\n\nWe need one schema for each side of the association.\nNeeds to have fixed or enum Type field. Needs Name field. Then we can either link via name or some index. ConnectsToName or ConnectsToIndex.",
+      "parentUuid": "0315e204_ff36bfce",
+      "revId": "bef153daf219b4e79b0f3a57443c5e6816f81b36",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }
