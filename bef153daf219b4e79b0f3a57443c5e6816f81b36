@@ -159,6 +159,24 @@
       "parentUuid": "6b1b9527_f51fa870",
       "revId": "bef153daf219b4e79b0f3a57443c5e6816f81b36",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0315e204_ff36bfce",
+        "filename": "docs/associations.md",
+        "patchSetId": 5
+      },
+      "lineNbr": 137,
+      "author": {
+        "id": 1001354
+      },
+      "writtenOn": "2025-08-05T19:59:01Z",
+      "side": 1,
+      "message": "Thanks for the writeup! I\u0027m going to have to think on some of this. My questions for now:\n\n(2) Where is the RegEx support needed in object mapper? In my experiments, I got the impression linking entities via \"Fan 1 Port\" \"Fan 2 Port\" types (as described in the assocation.md examples) was all working like I\u0027d expect. (to be fair, I don\u0027t know enough to know what might be missing, though :) \n\nFan objects with the paths to be showing up under \u003e busctl tree xyz.openbmc_project.ObjectMapper and were being linked via association records\n\n\u0027Fan inventory\u0027 items (1 per EMConfig entity linked via a uniquely named port \u0027type\u0027)  started showing up in the webui inventory page, and the fan sensors were being linked to the chassis through association connections that were able to find - through the item association functions.\n\n(3) and (4)\n\nAny thoughts on how this might look? As far as I know, it\u0027d be preferable to leave things open-ended re: port count for linking, else we could end up with exhaustively long lists of ports for every type. I\u0027d be looking to support at least 6-8 fan ports on the platforms I\u0027ve been looking at lately.",
+      "parentUuid": "5aba509c_ec1bb801",
+      "revId": "bef153daf219b4e79b0f3a57443c5e6816f81b36",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }
