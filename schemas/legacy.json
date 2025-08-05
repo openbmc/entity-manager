@@ -651,6 +651,12 @@
                 "Name": {
                     "$ref": "#/$defs/Types/Name"
                 },
+                "NamePressure": {
+                    "$ref": "#/$defs/Types/Name"
+                },
+                "NameHumidity": {
+                    "$ref": "#/$defs/Types/Name"
+                },
                 "Address": {
                     "$ref": "#/$defs/Types/Address"
                 },
@@ -687,6 +693,7 @@
                 "Type": {
                     "enum": [
                         "ADM1021",
+                        "BME280",
                         "DPS310",
                         "EMC1403",
                         "EMC1412",
