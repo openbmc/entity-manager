@@ -35,6 +35,24 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "bcf4a1d2_afeb9c62",
+        "filename": "configurations/meta/ventura_scm.json",
+        "patchSetId": 1
+      },
+      "lineNbr": 489,
+      "author": {
+        "id": 1002064
+      },
+      "writtenOn": "2025-08-05T06:14:24Z",
+      "side": 1,
+      "message": "It has been renamed to ReturnValve.",
+      "parentUuid": "7f10e45e_d19cee5c",
+      "revId": "88d4193f3adcbfdaf79813db0912b529a3468e0b",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "b9b5d44d_7fa15667",
@@ -48,6 +66,24 @@
       "writtenOn": "2025-08-05T02:51:12Z",
       "side": 1,
       "message": "Lets name this SupplyValve",
+      "revId": "88d4193f3adcbfdaf79813db0912b529a3468e0b",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "e4b4259d_cf758753",
+        "filename": "configurations/meta/ventura_scm.json",
+        "patchSetId": 1
+      },
+      "lineNbr": 499,
+      "author": {
+        "id": 1002064
+      },
+      "writtenOn": "2025-08-05T06:14:24Z",
+      "side": 1,
+      "message": "It has been renamed to SupplyValve.",
+      "parentUuid": "b9b5d44d_7fa15667",
       "revId": "88d4193f3adcbfdaf79813db0912b529a3468e0b",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
@@ -69,6 +105,24 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "484241f2_a7fa1caa",
+        "filename": "configurations/meta/ventura_scm.json",
+        "patchSetId": 1
+      },
+      "lineNbr": 509,
+      "author": {
+        "id": 1002064
+      },
+      "writtenOn": "2025-08-05T06:14:24Z",
+      "side": 1,
+      "message": "We will place RETURN_CNTL_FB_D_R and SUPPLY_CNTL_FB_D_R in phosphor-gpio-monitor for now. Once you’ve finished adding valve-monitor, we’ll move them over to valve-monitor, thank you.",
+      "parentUuid": "3c2bf7ef_159034e1",
+      "revId": "88d4193f3adcbfdaf79813db0912b529a3468e0b",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "b4c9513f_206a15d9",
@@ -82,6 +136,24 @@
       "writtenOn": "2025-08-05T02:51:12Z",
       "side": 1,
       "message": "Is this RPU inventory or status? Looks like status to me, if yes, then it should be modeled via phosphor-gpio-monitor.\nAlso, if above is true we will need an event for this RPU status.",
+      "revId": "88d4193f3adcbfdaf79813db0912b529a3468e0b",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "ae388f7e_90d82225",
+        "filename": "configurations/meta/ventura_scm.json",
+        "patchSetId": 1
+      },
+      "lineNbr": 529,
+      "author": {
+        "id": 1002064
+      },
+      "writtenOn": "2025-08-05T06:14:24Z",
+      "side": 1,
+      "message": "It looks like phosphor-gpio-monitor is already present, so this part can be removed.",
+      "parentUuid": "b4c9513f_206a15d9",
       "revId": "88d4193f3adcbfdaf79813db0912b529a3468e0b",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
