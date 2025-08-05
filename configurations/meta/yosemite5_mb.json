@@ -957,12 +957,14 @@
         {
             "FirmwareInfo": {
                 "CompatibleHardware": "com.meta.Hardware.Yosemite5.SPI.Host",
+                "Type": "FirmwareInfoDef",
                 "VendorIANA": 40981
             },
             "MuxOutputs": [
                 {
                     "Name": "FM_BMC_MUX1_SEL",
-                    "Polarity": "High"
+                    "Polarity": "High",
+                    "Type": "MuxOutput"
                 }
             ],
             "Name": "Yosemite5_BIOS",

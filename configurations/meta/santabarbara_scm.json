@@ -216,12 +216,14 @@
         {
             "FirmwareInfo": {
                 "CompatibleHardware": "com.meta.Hardware.Santabarbara.SPI.Host",
+                "Type": "FirmwareInfoDef",
                 "VendorIANA": 40981
             },
             "MuxOutputs": [
                 {
                     "Name": "FM_MUX1_SEL_R",
-                    "Polarity": "High"
+                    "Polarity": "High",
+                    "Type": "MuxOutput"
                 }
             ],
             "Name": "Santabarbara_BIOS",

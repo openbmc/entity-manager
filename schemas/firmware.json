@@ -13,9 +13,12 @@
                 "CompatibleHardware": {
                     "description": "The compatible hardware with name format com.<vendor>.Hardware.<XXX> specified by vendor in phosphor-dbus-interfaces",
                     "type": "string"
+                },
+                "Type": {
+                    "const": "FirmwareInfoDef"
                 }
             },
-            "required": ["VendorIANA", "CompatibleHardware"]
+            "required": ["VendorIANA", "CompatibleHardware", "Type"]
         },
         "I2CVRFirmware": {
             "description": "Required information to complete I2C voltage regulator firmware update",
@@ -75,9 +78,12 @@
                             },
                             "Polarity": {
                                 "$ref": "legacy.json#/$defs/Types/Polarity"
+                            },
+                            "Type": {
+                                "const": "MuxOutput"
                             }
                         },
-                        "required": ["Name", "Polarity"]
+                        "required": ["Name", "Polarity", "Type"]
                     }
                 },
                 "FirmwareInfo": {
@@ -128,9 +134,12 @@
                             },
                             "Polarity": {
                                 "$ref": "legacy.json#/$defs/Types/Polarity"
+                            },
+                            "Type": {
+                                "const": "MuxOutput"
                             }
                         },
-                        "required": ["Name", "Polarity"]
+                        "required": ["Name", "Polarity", "Type"]
                     }
                 },
                 "FirmwareInfo": {
