@@ -42,6 +42,7 @@ struct PerformProbe : std::enable_shared_from_this<PerformProbe>
                  std::shared_ptr<scan::PerformScan>& scanPtr);
     virtual ~PerformProbe();
 
+  private:
     nlohmann::json& recordRef;
     std::vector<std::string> _probeCommand;
     std::string probeName;
