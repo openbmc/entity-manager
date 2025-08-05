@@ -406,12 +406,14 @@
         {
             "FirmwareInfo": {
                 "CompatibleHardware": "com.tyan.Hardware.S8030.SPI.Host",
+                "Type": "FirmwareInfoDef",
                 "VendorIANA": 6653
             },
             "MuxOutputs": [
                 {
                     "Name": "BMC_SPI_SEL",
-                    "Polarity": "High"
+                    "Polarity": "High",
+                    "Type": "MuxOutput"
                 }
             ],
             "Name": "HostSPIFlash",
