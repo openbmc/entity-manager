@@ -1,0 +1,40 @@
+[
+    {
+        "Exposes": [
+            {
+                "Name": "SupplyValve",
+                "OpenControlPinName": "WATER_VALVE_CLOSED_N",
+                "OpenControlValue": false,
+                "OpenPinName": "SUPPLY_CNTL_FB_D_R",
+                "OpenPolarity": "High",
+                "Type": "GPIOValve"
+            }
+        ],
+        "Name": "Ventura Supply Valve",
+        "Probe": "TRUE_T",
+        "Type": "Valve",
+        "xyz.openbmc_project.Inventory.Item.Valve": {
+            "Direction": "xyz.openbmc_project.Inventory.Item.Valve.Direction.Supply",
+            "PairName": "VenturaValveTrain1"
+        }
+    },
+    {
+        "Exposes": [
+            {
+                "Name": "ReturnValve",
+                "OpenControlPinName": "WATER_VALVE_CLOSED_N",
+                "OpenControlValue": false,
+                "OpenPinName": "RETURN_CNTL_FB_D_R",
+                "OpenPolarity": "High",
+                "Type": "GPIOValve"
+            }
+        ],
+        "Name": "Ventura Return Valve",
+        "Probe": "TRUE_T",
+        "Type": "Valve",
+        "xyz.openbmc_project.Inventory.Item.Valve": {
+            "Direction": "xyz.openbmc_project.Inventory.Item.Valve.Direction.Return",
+            "PairName": "VenturaValveTrain1"
+        }
+    }
+]
