@@ -47,6 +47,30 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "90d8fe94_47a84fc8",
+        "filename": "docs/entity_manager_dbus_api.md",
+        "patchSetId": 57
+      },
+      "lineNbr": 194,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-08-05T12:23:55Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "a20cf469_69c9ef11",
+      "range": {
+        "startLine": 187,
+        "startChar": 0,
+        "endLine": 194,
+        "endChar": 6
+      },
+      "revId": "6e2040f220e72d34a131b47393fed186709bf071",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "97570de3_904e34a3",
@@ -72,6 +96,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "430317af_34b8ef0f",
+        "filename": "docs/entity_manager_dbus_api.md",
+        "patchSetId": 57
+      },
+      "lineNbr": 204,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-08-05T12:23:55Z",
+      "side": 1,
+      "message": "I will keep this open for now since there are multiple options to fix this and have not explored them yet.\n\nWe need some way for each nested object to construct the DBus interface name.\n\nEither\n- Change the schema to have `Type` field on all nested objects\n- Do some runtime schema resolution to find the schema name for the nested object and construct the DBus interface name in that way.\n- something else entirely\n\nWhat i don\u0027t want to do is to use the property name like it is currently done since that may not match between different schemas.\n\ne.g. multiple schemas may use another schema to declare a nested gpio configuration object but the property may have a different name. So we cannot use that.",
+      "parentUuid": "97570de3_904e34a3",
+      "range": {
+        "startLine": 204,
+        "startChar": 0,
+        "endLine": 204,
+        "endChar": 31
+      },
+      "revId": "6e2040f220e72d34a131b47393fed186709bf071",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "2f4c518b_f6857414",
         "filename": "docs/entity_manager_dbus_api.md",
         "patchSetId": 57
@@ -83,6 +131,30 @@
       "writtenOn": "2025-08-04T17:01:42Z",
       "side": 1,
       "message": "I suspect this needs to be \"SPIConnectedBIOS\" or make some mention of the device?",
+      "range": {
+        "startLine": 212,
+        "startChar": 13,
+        "endLine": 212,
+        "endChar": 17
+      },
+      "revId": "6e2040f220e72d34a131b47393fed186709bf071",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "1c7f574c_12e13841",
+        "filename": "docs/entity_manager_dbus_api.md",
+        "patchSetId": 57
+      },
+      "lineNbr": 212,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-08-05T12:23:55Z",
+      "side": 1,
+      "message": "Changed this to `SPIFlash` from `schemas/firmware.json`",
+      "parentUuid": "2f4c518b_f6857414",
       "range": {
         "startLine": 212,
         "startChar": 13,
