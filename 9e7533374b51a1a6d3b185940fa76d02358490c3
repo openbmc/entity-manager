@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "26a70d24_275abcf1",
+        "filename": "schemas/topology.json",
+        "patchSetId": 7
+      },
+      "lineNbr": 14,
+      "author": {
+        "id": 1001354
+      },
+      "writtenOn": "2025-08-05T19:01:18Z",
+      "side": 1,
+      "message": "Changed to match topology design doc description @ https://github.com/openbmc/docs/blob/master/designs/physical-topology.md#entity-manager\n\n\u003e The upstream port has a type ending in Port (such as a BackplanePort, PowerInputPort, etc). The downstream port has type DownstreamPort and a ConnectsToType property that refers to the upstream port based on its type.",
+      "revId": "9e7533374b51a1a6d3b185940fa76d02358490c3",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ef608b0f_c8cd7cab",
+        "filename": "schemas/topology.json",
+        "patchSetId": 7
+      },
+      "lineNbr": 14,
+      "author": {
+        "id": 1001354
+      },
+      "writtenOn": "2025-08-05T19:01:18Z",
+      "side": 1,
+      "message": "Changed to match",
+      "revId": "9e7533374b51a1a6d3b185940fa76d02358490c3",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    }
+  ]
+}
