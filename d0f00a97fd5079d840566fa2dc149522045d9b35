@@ -20,6 +20,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "89dd223e_833b377e",
+        "filename": "configurations/meta/ventura_scm.json",
+        "patchSetId": 1
+      },
+      "lineNbr": 219,
+      "author": {
+        "id": 1000317
+      },
+      "writtenOn": "2025-08-05T10:49:13Z",
+      "side": 1,
+      "message": "Since the RMC can only detect the AALC\u0027s status via the RPU_READY_* pins provided by the AALC, and leakage is just one of the abnormal conditions, should we then rename them to RPU1LeakPort1, RPU1LeakPort2, and so on?",
+      "parentUuid": "4265dd4e_f70a285a",
+      "revId": "d0f00a97fd5079d840566fa2dc149522045d9b35",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "ca0aa4da_795fd412",
         "filename": "configurations/meta/ventura_scm.json",
         "patchSetId": 1
@@ -31,6 +49,24 @@
       "writtenOn": "2025-08-04T16:53:35Z",
       "side": 1,
       "message": "Can you please name these based on leak sensors, for example for \"RackDripPan\" leak, name the corresponding cable port as \"RackDripPanPort\" and so on to they can mapped appropriately.",
+      "revId": "d0f00a97fd5079d840566fa2dc149522045d9b35",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b6ee2ee6_863cce6f",
+        "filename": "configurations/meta/ventura_scm.json",
+        "patchSetId": 1
+      },
+      "lineNbr": 259,
+      "author": {
+        "id": 1000317
+      },
+      "writtenOn": "2025-08-05T10:49:13Z",
+      "side": 1,
+      "message": "Understood. I will submit a patchset based on your current suggestions.",
+      "parentUuid": "ca0aa4da_795fd412",
       "revId": "d0f00a97fd5079d840566fa2dc149522045d9b35",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
