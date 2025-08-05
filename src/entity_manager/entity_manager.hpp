@@ -32,21 +32,27 @@ class EntityManager
 
     ~EntityManager() = default;
 
-    std::shared_ptr<sdbusplus::asio::connection> systemBus;
+  protected:
     sdbusplus::asio::object_server objServer;
     std::shared_ptr<sdbusplus::asio::dbus_interface> entityIface;
     Configuration configuration;
-    nlohmann::json lastJson;
-    nlohmann::json systemConfiguration;
     Topology topology;
     boost::asio::io_context& io;
 
+  public:
+    std::shared_ptr<sdbusplus::asio::connection> systemBus;
+    nlohmann::json lastJson;
+    nlohmann::json systemConfiguration;
     dbus_interface::EMDBusInterface dbus_interface;
 
     power::PowerStatusMonitor powerStatus;
 
     void propertiesChangedCallback();
     void registerCallback(const std::string& path);
+
+    void handleCurrentConfigurationJson();
+
+  protected:
     void publishNewConfiguration(const size_t& instance, size_t count,
                                  boost::asio::steady_timer& timer,
                                  nlohmann::json newConfiguration);
@@ -69,9 +75,6 @@ class EntityManager
     void pruneConfiguration(bool powerOff, const std::string& name,
                             const nlohmann::json& device);
 
-    void handleCurrentConfigurationJson();
-
-  protected:
     std::unique_ptr<sdbusplus::bus::match_t> nameOwnerChangedMatch = nullptr;
     std::unique_ptr<sdbusplus::bus::match_t> interfacesAddedMatch = nullptr;
     std::unique_ptr<sdbusplus::bus::match_t> interfacesRemovedMatch = nullptr;
