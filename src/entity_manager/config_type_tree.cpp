@@ -5,22 +5,20 @@
 namespace config_type_tree
 {
 
-/*
 const ConfigTypeNode firmwareNode = {
     "",
     {
         {"FirmwareInfo", {"FirmwareInfo", {}}},
         {"MuxOutputs", {"MuxOutput", {}}},
     }};
-    */
 
 // maps "Type" of toplevel configuration to map which tells us the DBus
 // interface name suffix for the nested object properties. e.g. "Type": "ADC" ->
 // { {"Thresholds", "Threshold"} }
 const std::map<std::string, ConfigTypeNode> configTypeTree = {
     {
-        //{"XDPE1X2XXFirmware", firmwareNode},
-        //{"ISL69269Firmware", firmwareNode},
+        {"SPIFlash", firmwareNode},
+        {"IntelSPIFlash", firmwareNode},
     },
 };
 
