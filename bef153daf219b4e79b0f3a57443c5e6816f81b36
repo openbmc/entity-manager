@@ -38,6 +38,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "464f2f9e_05599c74",
+        "filename": "docs/associations.md",
+        "patchSetId": 5
+      },
+      "lineNbr": 109,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-08-05T18:58:32Z",
+      "side": 1,
+      "message": "\u003e and there\u0027s a small handful of EMConfigs using it in templated form as described today:\n\nOnly 3 configs. Can be fixed even manually without script 😊.\n\n\n\u003e I think if we changed how that works for cooling/cooled_by, we\u0027d probably want to change it for powering/powered_by too -- but I\u0027m not sure what the appetite for backtesting changes there would be.\n\nSince the design intent is to create the association, i am doubting there are any external consumers (of the configuration, not the association)  github code search could be helpful there.",
+      "parentUuid": "1f0c330c_35069961",
+      "revId": "bef153daf219b4e79b0f3a57443c5e6816f81b36",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "571efd81_33c233b4",
         "filename": "docs/associations.md",
         "patchSetId": 5
@@ -121,6 +139,24 @@
       "side": 1,
       "message": "\u003eI think if necessary there should be able to be 1-1 correspondence between EM ports and physical connectors\n\nThat sounds like the EMConfig update I\u0027ll be adding to this PR for discussion - one \u0027fan N port\u0027 per fan.\n\nAnd seems to line up with what I\u0027m finding in the physical topology design doc @ http://github.com/openbmc/docs/blob/master/designs/physical-topology.md#entity-manager\n\n\u003eThe upstream port has a type ending in Port (such as a BackplanePort, PowerInputPort, etc). The downstream port has type DownstreamPort and a ConnectsToType property that refers to the upstream port based on its type\n\nBased on that, I\u0027m thinking I should go ahead and update the topology.json schema to use something like:\n\n\"type\": \"string\",\n\"pattern\": \"^.*Port$\"\n\nfor the Port-\u003eType and Downstream-\u003eConnectsToType instead of enum and const.",
       "parentUuid": "91cc3ecf_6d2a66ff",
+      "revId": "bef153daf219b4e79b0f3a57443c5e6816f81b36",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5aba509c_ec1bb801",
+        "filename": "docs/associations.md",
+        "patchSetId": 5
+      },
+      "lineNbr": 137,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-08-05T18:58:32Z",
+      "side": 1,
+      "message": "\u003e The upstream port has a type ending in Port (such as a BackplanePort, PowerInputPort, etc). The downstream port has type DownstreamPort and a ConnectsToType property that refers to the upstream port based on its type\n\nIf we make `Type` a pattern then it will break PDI compatibility.\n\nSince `Type` is used to create the DBus interface name. It is a special property (just like `Name`) and we cannot just use it for any purpose.\n\n\u003e The upstream port has a type ending in Port (such as a BackplanePort, PowerInputPort, etc). The downstream port has type DownstreamPort and a ConnectsToType property that refers to the upstream port based on its type\n\nThe design is from 2022\n\nSo i see at least 5 choices here\n\n(1) make a (possibly large) enum with `BackplanePort1`, `BackplanePort2`, ...\n    (not happy)\n\n(2) make object mapper support regex\n    (not happy)\n\n(3) introduce new schema with fixed `Type` field\n\n(4) fix old schema to make it less cursed\n\n(5) introduce a quirk into EM to not expose any configurations from this schema externally\n    (not happy)",
+      "parentUuid": "6b1b9527_f51fa870",
       "revId": "bef153daf219b4e79b0f3a57443c5e6816f81b36",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
