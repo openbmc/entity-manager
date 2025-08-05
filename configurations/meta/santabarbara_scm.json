@@ -218,6 +218,7 @@
             "Bus": 7,
             "FirmwareInfo": {
                 "CompatibleHardware": "com.meta.Hardware.Santabarbara.CPLD.LCMXO3D_9400_scm",
+                "Type": "FirmwareInfoDef",
                 "VendorIANA": 40981
             },
             "Name": "Santabarbara_SCM_CPLD",
@@ -226,12 +227,14 @@
         {
             "FirmwareInfo": {
                 "CompatibleHardware": "com.meta.Hardware.Santabarbara.SPI.Host",
+                "Type": "FirmwareInfoDef",
                 "VendorIANA": 40981
             },
             "MuxOutputs": [
                 {
                     "Name": "FM_MUX1_SEL_R",
-                    "Polarity": "High"
+                    "Polarity": "High",
+                    "Type": "MuxOutput"
                 }
             ],
             "Name": "Santabarbara_BIOS",
