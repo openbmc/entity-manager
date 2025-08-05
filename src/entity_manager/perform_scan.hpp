@@ -35,12 +35,14 @@ struct PerformScan : std::enable_shared_from_this<PerformScan>
     void run();
     virtual ~PerformScan();
     EntityManager& _em;
+    MapperGetSubTreeResponse dbusProbeObjects;
+    std::vector<std::string> passedProbes;
+
+  private:
     nlohmann::json& _missingConfigurations;
     std::vector<nlohmann::json> _configurations;
     std::function<void()> _callback;
     bool _passed = false;
-    MapperGetSubTreeResponse dbusProbeObjects;
-    std::vector<std::string> passedProbes;
 
     boost::asio::io_context& io;
 };
