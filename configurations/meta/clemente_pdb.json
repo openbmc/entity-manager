@@ -137,6 +137,7 @@
                 "iout1",
                 "pout1",
                 "temp1",
+                "temp2",
                 "vout1"
             ],
             "Name": "PDB_VR_P12V_N1",
@@ -173,12 +174,29 @@
                     "Name": "lower critical",
                     "Severity": 1,
                     "Value": 5
+                },
+                {
+                    "Direction": "greater than",
+                    "Hysteresis": 2.5,
+                    "Label": "temp2",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 125
+                },
+                {
+                    "Direction": "less than",
+                    "Hysteresis": 0.1,
+                    "Label": "temp2",
+                    "Name": "lower critical",
+                    "Severity": 1,
+                    "Value": 5
                 }
             ],
             "Type": "RAA228004",
             "iout1_Name": "PDB_VR_P12V_N1_CURR_A",
             "pout1_Name": "PDB_VR_P12V_N1_PWR_W",
             "temp1_Name": "PDB_VR_P12V_N1_TEMP_C",
+            "temp2_Name": "PDB_VR_P12V_N1_TEMP1_C",
             "vout1_Name": "PDB_VR_P12V_N1_VOLT_V"
         },
         {
@@ -188,6 +206,7 @@
                 "iout1",
                 "pout1",
                 "temp1",
+                "temp2",
                 "vout1"
             ],
             "Name": "PDB_VR_P12V_N2",
@@ -224,12 +243,29 @@
                     "Name": "lower critical",
                     "Severity": 1,
                     "Value": 5
+                },
+                {
+                    "Direction": "greater than",
+                    "Hysteresis": 2.5,
+                    "Label": "temp2",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 125
+                },
+                {
+                    "Direction": "less than",
+                    "Hysteresis": 0.1,
+                    "Label": "temp2",
+                    "Name": "lower critical",
+                    "Severity": 1,
+                    "Value": 5
                 }
             ],
             "Type": "RAA228004",
             "iout1_Name": "PDB_VR_P12V_N2_CURR_A",
             "pout1_Name": "PDB_VR_P12V_N2_PWR_W",
             "temp1_Name": "PDB_VR_P12V_N2_TEMP_C",
+            "temp2_Name": "PDB_VR_P12V_N2_TEMP1_C",
             "vout1_Name": "PDB_VR_P12V_N2_VOLT_V"
         },
         {
