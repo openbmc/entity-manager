@@ -87,6 +87,24 @@
       "parentUuid": "a9a933ae_15a28aec",
       "revId": "bef153daf219b4e79b0f3a57443c5e6816f81b36",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "91cc3ecf_6d2a66ff",
+        "filename": "docs/associations.md",
+        "patchSetId": 5
+      },
+      "lineNbr": 137,
+      "author": {
+        "id": 1000008
+      },
+      "writtenOn": "2025-08-05T16:19:32Z",
+      "side": 1,
+      "message": "I think if necessary there should be able to be 1-1 correspondence between EM ports and physical connectors, hence the name physical topology as opposed to logical.  So far that just hasn\u0027t been necessary.\n\nI have far future hopes of hanging IBM\u0027s connector location codes off of these ports, and so would use unique ports that would be exposed even when no child is plugged.  TBD if I\u0027ll ever get there though.",
+      "parentUuid": "348bf904_44c87ff5",
+      "revId": "bef153daf219b4e79b0f3a57443c5e6816f81b36",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }
