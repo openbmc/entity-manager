@@ -556,8 +556,7 @@
             "Labels": [
                 "in1",
                 "curr1",
-                "power1",
-                "temp1"
+                "power1"
             ],
             "Name": "PDB_P12V_NIC0",
             "Thresholds": [
@@ -576,22 +575,6 @@
                     "Name": "lower critical",
                     "Severity": 1,
                     "Value": 10.56
-                },
-                {
-                    "Direction": "greater than",
-                    "Hysteresis": 2.2,
-                    "Label": "temp1",
-                    "Name": "upper critical",
-                    "Severity": 1,
-                    "Value": 110
-                },
-                {
-                    "Direction": "less than",
-                    "Hysteresis": 0.1,
-                    "Label": "temp1",
-                    "Name": "lower critical",
-                    "Severity": 1,
-                    "Value": 5
                 }
             ],
             "Type": "INA238",
@@ -601,8 +584,7 @@
             "in1_Name": "PDB_P12V_NIC0_VOLT_V",
             "power1_Name": "PDB_P12V_NIC0_PWR_W",
             "power1_Offset": 0.0022,
-            "power1_Scale": 58031.56917363,
-            "temp1_Name": "PDB_P12V_NIC0_TEMP_C"
+            "power1_Scale": 58031.56917363
         },
         {
             "Address": "0x42",
@@ -610,8 +592,7 @@
             "Labels": [
                 "in1",
                 "curr1",
-                "power1",
-                "temp1"
+                "power1"
             ],
             "Name": "PDB_P12V_NIC1",
             "Thresholds": [
@@ -630,22 +611,6 @@
                     "Name": "lower critical",
                     "Severity": 1,
                     "Value": 10.56
-                },
-                {
-                    "Direction": "greater than",
-                    "Hysteresis": 2.2,
-                    "Label": "temp1",
-                    "Name": "upper critical",
-                    "Severity": 1,
-                    "Value": 110
-                },
-                {
-                    "Direction": "less than",
-                    "Hysteresis": 0.1,
-                    "Label": "temp1",
-                    "Name": "lower critical",
-                    "Severity": 1,
-                    "Value": 5
                 }
             ],
             "Type": "INA238",
@@ -655,8 +620,7 @@
             "in1_Name": "PDB_P12V_NIC1_VOLT_V",
             "power1_Name": "PDB_P12V_NIC1_PWR_W",
             "power1_Offset": 0.0032,
-            "power1_Scale": 54077.438892494,
-            "temp1_Name": "PDB_P12V_NIC1_TEMP_C"
+            "power1_Scale": 54077.438892494
         },
         {
             "Address": "0x44",
@@ -664,8 +628,7 @@
             "Labels": [
                 "in1",
                 "curr1",
-                "power1",
-                "temp1"
+                "power1"
             ],
             "Name": "PDB_P12V_SCM",
             "Thresholds": [
@@ -684,22 +647,6 @@
                     "Name": "lower critical",
                     "Severity": 1,
                     "Value": 10.5
-                },
-                {
-                    "Direction": "greater than",
-                    "Hysteresis": 2.2,
-                    "Label": "temp1",
-                    "Name": "upper critical",
-                    "Severity": 1,
-                    "Value": 110
-                },
-                {
-                    "Direction": "less than",
-                    "Hysteresis": 0.1,
-                    "Label": "temp1",
-                    "Name": "lower critical",
-                    "Severity": 1,
-                    "Value": 5
                 }
             ],
             "Type": "INA238",
@@ -709,8 +656,7 @@
             "in1_Name": "PDB_P12V_SCM_VOLT_V",
             "power1_Name": "PDB_P12V_SCM_PWR_W",
             "power1_Offset": -0.0102,
-            "power1_Scale": 50875.050875051,
-            "temp1_Name": "PDB_P12V_SCM_TEMP_C"
+            "power1_Scale": 50875.050875051
         },
         {
             "Address": "0x43",
