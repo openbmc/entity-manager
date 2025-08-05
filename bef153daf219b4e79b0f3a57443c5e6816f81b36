@@ -105,6 +105,24 @@
       "parentUuid": "348bf904_44c87ff5",
       "revId": "bef153daf219b4e79b0f3a57443c5e6816f81b36",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6b1b9527_f51fa870",
+        "filename": "docs/associations.md",
+        "patchSetId": 5
+      },
+      "lineNbr": 137,
+      "author": {
+        "id": 1001354
+      },
+      "writtenOn": "2025-08-05T18:36:46Z",
+      "side": 1,
+      "message": "\u003eI think if necessary there should be able to be 1-1 correspondence between EM ports and physical connectors\n\nThat sounds like the EMConfig update I\u0027ll be adding to this PR for discussion - one \u0027fan N port\u0027 per fan.\n\nAnd seems to line up with what I\u0027m finding in the physical topology design doc @ http://github.com/openbmc/docs/blob/master/designs/physical-topology.md#entity-manager\n\n\u003eThe upstream port has a type ending in Port (such as a BackplanePort, PowerInputPort, etc). The downstream port has type DownstreamPort and a ConnectsToType property that refers to the upstream port based on its type\n\nBased on that, I\u0027m thinking I should go ahead and update the topology.json schema to use something like:\n\n\"type\": \"string\",\n\"pattern\": \"^.*Port$\"\n\nfor the Port-\u003eType and Downstream-\u003eConnectsToType instead of enum and const.",
+      "parentUuid": "91cc3ecf_6d2a66ff",
+      "revId": "bef153daf219b4e79b0f3a57443c5e6816f81b36",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }
