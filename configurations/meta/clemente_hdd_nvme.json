@@ -103,6 +103,9 @@
             "xyz.openbmc_project.Inventory.Item.Board({'Name': 'Clemente HDD Carrier 1'})"
         ],
         "Type": "Board",
-        "xyz.openbmc_project.Inventory.Item.Chassis": {}
+        "xyz.openbmc_project.Inventory.Item.Chassis": {},
+        "xyz.openbmc_project.Inventory.Decorator.Slot": {
+            "SlotNumber": "1"
+        }
     }
 ]
