@@ -104,5 +104,37 @@
         ],
         "Type": "Board",
         "xyz.openbmc_project.Inventory.Item.Chassis": {}
+    },
+    {
+        "Exposes": [
+            {
+                "Address": "0x6a",
+                "Bus": "45",
+                "Name": "BOOTDRIVE_TEMP_C",
+                "PowerState": "On",
+                "Thresholds": [
+                    {
+                        "Direction": "greater than",
+                        "Name": "upper critical",
+                        "Severity": 1,
+                        "Value": 70
+                    },
+                    {
+                        "Direction": "less than",
+                        "Name": "lower critical",
+                        "Severity": 1,
+                        "Value": 5
+                    }
+                ],
+                "Type": "NVME1000"
+            }
+        ],
+        /* Clemente Boot Drive NVMe*/
+        "Name": "Clemente Boot Drive NVMe",
+        "Probe": [
+            "xyz.openbmc_project.FruDevice({'BUS': 45, 'ADDRESS': 83})"
+        ],
+        "Type": "Board",
+        "xyz.openbmc_project.Inventory.Item.Chassis": {}
     }
 ]
