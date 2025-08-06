@@ -16,6 +16,41 @@
       "message": "Our EE informed us that the presence pins of the VT, AALC, and rack leak sensors need to be logged as event logs. However, these pins are already used by the gpio-presence-sensor in the gpiopresence service. Is there any way to log presence/not present status as event logs in this case?",
       "revId": "5f4fca68b9455af7e1d4fc5493b6a4e260bdeb89",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "805e21e3_edbb8c5d",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-08-06T18:54:29Z",
+      "side": 1,
+      "message": "The clients need to rely on the hardware inventory for inventory presence. There are no events for inventory at the moment. Please inform them accordingly.",
+      "parentUuid": "b9586588_d419a2e9",
+      "revId": "5f4fca68b9455af7e1d4fc5493b6a4e260bdeb89",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2cfba006_78476bde",
+        "filename": "configurations/meta/ventura_scm.json",
+        "patchSetId": 2
+      },
+      "lineNbr": 259,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-08-06T18:54:29Z",
+      "side": 1,
+      "message": "Are these actual leak sensors or the cable presence pins?",
+      "revId": "5f4fca68b9455af7e1d4fc5493b6a4e260bdeb89",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }
