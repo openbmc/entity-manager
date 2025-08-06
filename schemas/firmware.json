@@ -28,7 +28,11 @@
                 },
                 "Type": {
                     "description": "The type of configuration object",
-                    "enum": ["XDPE1X2XXFirmware", "ISL69269Firmware"]
+                    "enum": [
+                        "XDPE1X2XXFirmware",
+                        "ISL69269Firmware",
+                        "MP2X6XXFirmware"
+                    ]
                 },
                 "Bus": {
                     "$ref": "legacy.json#/$defs/Types/Bus"
