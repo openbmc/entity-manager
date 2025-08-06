@@ -38,6 +38,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "916dbe28_5d415053",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-08-06T19:01:56Z",
+      "side": 1,
+      "message": "@jason-hsu@quantatw.com\n\nYou need to also add an EM Configuration which defines the VT inventory item. This configuration should probe on reverse interface (xyz.openbmc_project.Inventory.Source.DevicePresence) exposed by gpio-presence daemon . You can refer to Ventura cables as an example https://github.com/openbmc/entity-manager/blob/master/configurations/meta/ventura_cable.json#L29 and [1] for design.\n\n\n\n[1] https://github.com/openbmc/docs/blob/master/designs/inventory/gpio-based-hardware-inventory.md",
+      "parentUuid": "b354ab18_6c9c8d58",
+      "revId": "88d4193f3adcbfdaf79813db0912b529a3468e0b",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "7f10e45e_d19cee5c",
         "filename": "configurations/meta/ventura_scm.json",
         "patchSetId": 1
