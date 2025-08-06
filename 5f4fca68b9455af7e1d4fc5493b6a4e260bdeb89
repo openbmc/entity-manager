@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b9586588_d419a2e9",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1000317
+      },
+      "writtenOn": "2025-08-06T11:17:53Z",
+      "side": 1,
+      "message": "Our EE informed us that the presence pins of the VT, AALC, and rack leak sensors need to be logged as event logs. However, these pins are already used by the gpio-presence-sensor in the gpiopresence service. Is there any way to log presence/not present status as event logs in this case?",
+      "revId": "5f4fca68b9455af7e1d4fc5493b6a4e260bdeb89",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    }
+  ]
+}
