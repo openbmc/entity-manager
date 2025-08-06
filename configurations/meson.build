@@ -112,6 +112,7 @@ configs = [
     'meta/santabarbara_pdb1.json',
     'meta/santabarbara_pdb2.json',
     'meta/santabarbara_scm.json',
+    'meta/santabarbara_sitv_eth.json',
     'meta/santabarbara_sitv_pcie.json',
     'meta/terminus_2x100g_nic_tsff.json',
     'meta/twinlake.json',
