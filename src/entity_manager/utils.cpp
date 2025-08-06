@@ -2,6 +2,7 @@
 
 #include "../variant_visitors.hpp"
 #include "expression.hpp"
+#include "phosphor-logging/lg2.hpp"
 
 #include <boost/algorithm/string/case_conv.hpp>
 #include <boost/algorithm/string/classification.hpp>
@@ -26,7 +27,7 @@ bool fwVersionIsSame()
     std::ifstream version(versionFile);
     if (!version.good())
     {
-        std::cerr << "Can't read " << versionFile << "\n";
+        lg2::error("Can't read {PATH}", "PATH", versionFile);
         return false;
     }
 
@@ -40,7 +41,16 @@ bool fwVersionIsSame()
     std::string expectedHash =
         std::to_string(std::hash<std::string>{}(versionData));
 
-    std::filesystem::create_directory(configurationOutDir);
+    std::error_code ec;
+    std::filesystem::create_directory(configurationOutDir, ec);
+
+    if (ec)
+    {
+        lg2::error("could not create directory {DIR}", "DIR",
+                   configurationOutDir);
+        return false;
+    }
+
     std::ifstream hashFile(versionHashFile);
     if (hashFile.good())
     {
