@@ -20,6 +20,23 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "74c52776_6e117f4f",
+        "filename": "src/entity_manager/overlay.cpp",
+        "patchSetId": 11
+      },
+      "lineNbr": 82,
+      "author": {
+        "id": 1001526
+      },
+      "writtenOn": "2025-08-06T03:59:40Z",
+      "side": 1,
+      "message": "I think the current logic involves looping through the systemConfiguration repeatedly to look for the desired device and fill Bus in. What do you think about the below logic?\n\n```\n// Assuming there\u0027s a dynamic mux map \u003cmuxMap\u003e visible to DeviceConfig object and here\n\nwhile (!deviceConfigurations.empty())\n{\n    std::vector\u003cDeviceConfig\u003e unBuiltDevices \u003d deviceConfigurations;\n    for (auto\u0026 config : unBuiltDevices)\n    {\n        if (config.buildDevice()) // Build the device using mux info from \u003cmuxMap\u003e\n        {\n            if (config.isMux())\n            {\n                config.linkMux(); // Inside linkMux(), append to \u003cmuxMap\u003e the info of the successfully linked dynamic mux.\n                deviceConfigurations.erase(config);\n            }\n        }\n    }\n}\n\n// Loop through the systemConfiguration and map MuxChannel to \u003cmuxMap\u003e to retrieve Bus info and replace\n```",
+      "revId": "5ec925827827ee3dfd4cce6244fa2eb7d0be9a65",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "a0c9b6bf_9ff242ec",
         "filename": "src/entity_manager/overlay.cpp",
         "patchSetId": 11
