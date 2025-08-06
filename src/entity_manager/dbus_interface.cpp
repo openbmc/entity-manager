@@ -456,7 +456,6 @@ void EMDBusInterface::createAddObjectMethod(
             if (!writeJsonFiles(systemConfiguration))
             {
                 std::cerr << "Error writing json files\n";
-                throw DBusInternalError();
             }
             std::string dbusName = *name;
 
