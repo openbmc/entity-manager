@@ -78,6 +78,34 @@ servers.
 }
 ```
 
+### probing Association
+
+The probing association matches an entry in the inventory to a probed path and
+depends on the 'Probe' statement of an EM configuration. If the 'Probe'
+statement matches properties to a path, this path is set as the probed path in
+the inventory item.
+
+For example 'yosemite4.json':
+
+```json
+{
+    "Exposes": [
+        ...
+    ],
+    "Name": "Yosemite 4 Management Board",
+    "Probe": "xyz.openbmc_project.FruDevice({'BOARD_PRODUCT_NAME': 'Management Board wBMC', 'PRODUCT_PRODUCT_NAME': 'Yosemite V4'})",
+    "Type": "Board",
+    ...
+}
+```
+
+This configuration queries the object mapper to find an FruDevice interface with
+with the stated property values (BOARD_PRODUCT_NAME, PRODUCT_NAME). The path
+`/xyz/openbmc_project/FruDevice/Management_Board_wBMC` is found, which means EM
+loads the configuration. The found path is the probed path and is placed as
+the probing/probed_by association property in the inventory item of the
+configuration.
+
 ## Deprecated configuration style
 
 The configuration style described below is deprecated and superseded.
