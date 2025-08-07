@@ -47,6 +47,11 @@ class Topology
                   const nlohmann::json& exposesItem);
     std::unordered_map<std::string, std::set<Association>> getAssocs(
         BoardPathsView boardPaths);
+
+    // Adds an entry to probePaths for object mapper board path
+    // and inventory board path.
+    void addProbePath(const std::string& boardPath,
+                      const std::string& probePath);
     void remove(const std::string& boardName);
 
   private:
@@ -83,4 +88,9 @@ class Topology
 
     std::unordered_map<Path, BoardType> boardTypes;
     std::unordered_map<BoardName, Path> boardNames;
+
+    // Represents the mapping between inventory object pathes of a
+    // probed configuration and the object paths of DBus interfaces
+    // it was probed on.
+    std::unordered_map<Path, std::set<Path>> probePaths;
 };
