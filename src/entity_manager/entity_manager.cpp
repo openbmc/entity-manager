@@ -109,6 +109,7 @@ void EntityManager::postBoardToDBus(
     const std::string& boardId, const nlohmann::json& boardConfig,
     std::map<std::string, std::string>& newBoards)
 {
+    std::string probePath = boardConfig["ProbePath"];
     std::string boardName = boardConfig["Name"];
     std::string boardNameOrig = boardConfig["Name"];
     std::string jsonPointerPath = "/" + boardId;
@@ -190,6 +191,12 @@ void EntityManager::postBoardToDBus(
                                  boardPath, boardType);
     }
 
+    // Construct probe association object to be properly processed
+    // by topology.addBoard
+    nlohmann::json probePathObj =
+        nlohmann::json::object({{"Type", "ProbePath"}, {"Path", probePath}});
+
+    topology.addBoard(boardPath, boardType, boardNameOrig, probePathObj);
     newBoards.emplace(boardPath, boardNameOrig);
 }
 

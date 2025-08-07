@@ -516,6 +516,16 @@ void scan::PerformScan::updateSystemConfiguration(
             }
         }
 
+        // If we end up here and the path is empty, we have Probe: "True"
+        if (path.empty())
+        {
+            record.push_back({"ProbePath", "Probe=True"});
+        }
+        else
+        {
+            record.push_back({"ProbePath", path});
+        }
+
         // overwrite ourselves with cleaned up version
         _em.systemConfiguration[recordName] = record;
         _missingConfigurations.erase(recordName);
