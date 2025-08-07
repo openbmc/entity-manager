@@ -141,6 +141,24 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "507ff18e_ade108f5",
+        "filename": "schemas/spdm_responder.json",
+        "patchSetId": 6
+      },
+      "lineNbr": 23,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-08-07T12:10:09Z",
+      "side": 1,
+      "message": "`Type` and `Name` are properties required on any toplevel configuration record in EM. EM uses `Name` to create the object path and `Type` to create the DBus interface name for the configuration record.\n\nSo the property is required here.\n\n\nSome people fill out `description` field for consistency reason, if that\u0027s what you meant.",
+      "parentUuid": "6427af48_38d709f3",
+      "revId": "b16db1753124895a88c5d2fa5da0712908d298c0",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "a2422bcb_fc73bea0",
