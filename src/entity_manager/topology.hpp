@@ -17,6 +17,11 @@ class Topology
                   const nlohmann::json& exposesItem);
     std::unordered_map<std::string, std::vector<Association>> getAssocs(
         const std::map<std::string, std::string>& boards);
+
+    // addProbeAssociation adds an associationen between object mapper
+    // board path and inventory board path.
+    void addProbeAssociation(const std::string& boardPath,
+                             const std::string& probePath);
     void remove(const std::string& boardName);
 
   private:
@@ -30,4 +35,8 @@ class Topology
     std::set<Path> powerPaths;
     std::unordered_map<Path, BoardType> boardTypes;
     std::unordered_map<BoardName, Path> boardNames;
+
+    // probePaths represents the mapping between object mapper
+    // board path and inventory board path.
+    std::unordered_map<Path, Path> probePaths;
 };
