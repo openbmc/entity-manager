@@ -70,6 +70,24 @@ std::unordered_map<std::string, std::set<Association>> Topology::getAssocs(
         fillAssocsForPortId(result, boardPaths, upstreamPortPair.second,
                             downstreamMatch->second);
     }
+
+    for (const auto& [boardPath, paths] : probePaths)
+    {
+        for (const auto& probePath : paths)
+        {
+            std::string probeAssocName = "probed_by";
+            std::optional<std::string> opposite =
+                getOppositeAssoc(probeAssocName);
+            if (!opposite.has_value())
+            {
+                continue;
+            }
+
+            result[boardPath].insert(
+                {probeAssocName, opposite.value(), probePath});
+        }
+    }
+
     return result;
 }
 
@@ -126,6 +144,7 @@ void Topology::fillAssocForPortId(
 
 const std::set<std::pair<std::string, std::string>> assocs = {
     {"powering", "powered_by"}, {"containing", "contained_by"},
+    {"probing","probed_by"},
     // ... extend as needed
 };
 
@@ -171,4 +190,12 @@ void Topology::remove(const std::string& boardName)
     {
         downstreamPort.second.erase(boardPath);
     }
+
+    probePaths.erase(boardName);
+}
+
+void Topology::addProbePath(const std::string& boardPath,
+                            const std::string& probePath)
+{
+    probePaths[boardPath].emplace(probePath);
 }
