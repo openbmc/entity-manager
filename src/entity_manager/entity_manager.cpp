@@ -182,10 +182,10 @@ void EntityManager::postBoardToDBus(
     {
         postExposesRecordsToDBus(item, exposesIndex, boardNameOrig,
                                  jsonPointerPath, jsonPointerPathBoard,
-                                 boardPath, boardType);
+                                 completeBoardPath, boardType);
     }
 
-    newBoards.emplace(boardPath, boardNameOrig);
+    newBoards.emplace(completeBoardPath, boardNameOrig);
 }
 
 void EntityManager::postExposesRecordsToDBus(

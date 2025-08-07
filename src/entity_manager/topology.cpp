@@ -81,6 +81,11 @@ std::unordered_map<std::string, std::vector<Association>> Topology::getAssocs(
         }
     }
 
+    for (const auto& [boardPath, probePath] : probePaths)
+    {
+        result[boardPath].emplace_back("probed_by", "probed", probePath);
+    }
+
     return result;
 }
 
@@ -136,4 +141,10 @@ void Topology::remove(const std::string& boardName)
             ++it;
         }
     }
+}
+
+void Topology::addProbeAssociation(const std::string& boardPath,
+        const std::string& probePath)
+{
+        probePaths.emplace(boardPath, probePath);
 }
