@@ -14,10 +14,13 @@
 
 #include <charconv>
 #include <iostream>
+#include <regex>
 
 using GetSubTreeType = std::vector<
     std::pair<std::string,
               std::vector<std::pair<std::string, std::vector<std::string>>>>>;
+
+const std::regex illegalDbusMemberRegex("[^A-Za-z0-9_]");
 
 constexpr const int32_t maxMapperDepth = 0;
 
@@ -514,6 +517,29 @@ void scan::PerformScan::updateSystemConfiguration(
                 applyExposeActions(_em.systemConfiguration, recordName, expose,
                                    keyPair);
             }
+        }
+
+        // If we end up here and the path is empty, we have Probe: "True"
+        // and we dont want that to show up in the associations.
+        if (!path.empty())
+        {
+            auto findBoardType = record.find("Type");
+            std::string boardType;
+            if (findBoardType != record.end() &&
+                findBoardType->type() == nlohmann::json::value_t::string)
+            {
+                boardType = findBoardType->get<std::string>();
+                std::regex_replace(boardType.begin(), boardType.begin(),
+                                   boardType.end(), illegalDbusMemberRegex,
+                                   "_");
+            }
+            else
+            {
+                boardType = "Chassis";
+            }
+            std::string boardInventoryPath =
+                em_utils::buildInventorySystemPath(recordRef, boardType);
+            _em.topology.addProbePath(boardInventoryPath, path);
         }
 
         // overwrite ourselves with cleaned up version
