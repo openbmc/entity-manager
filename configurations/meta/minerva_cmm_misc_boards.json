@@ -5,7 +5,7 @@
         "Probe": [
             "xyz.openbmc_project.Inventory.Source.DevicePresence({'Name': 'CableCartridgeTop'})"
         ],
-        "Type": "Board",
+        "Type": "Cable",
         "xyz.openbmc_project.Inventory.Decorator.Asset": {
             "Manufacturer": "Unknown",
             "Model": "Unknown",
@@ -20,7 +20,7 @@
         "Probe": [
             "xyz.openbmc_project.Inventory.Source.DevicePresence({'Name': 'CableCartridgeBottom'})"
         ],
-        "Type": "Board",
+        "Type": "Cable",
         "xyz.openbmc_project.Inventory.Decorator.Asset": {
             "Manufacturer": "Unknown",
             "Model": "Unknown",
@@ -67,58 +67,6 @@
             "OR",
             "xyz.openbmc_project.Inventory.Source.DevicePresence({'Name': 'SpareRpuLink'})"
         ],
-        "Type": "Cable",
-        "xyz.openbmc_project.Inventory.Decorator.Asset": {
-            "Manufacturer": "Unknown",
-            "Model": "Unknown",
-            "PartNumber": "Unknown",
-            "SerialNumber": "Unknown",
-            "SparePartNumber": "Unknown"
-        }
-    },
-    {
-        "Exposes": [],
-        "Name": "$Name",
-        "Probe": [
-            "xyz.openbmc_project.Inventory.Source.DevicePresence({'Name': 'MtiaBlade*'})"
-        ],
-        "Type": "Board",
-        "xyz.openbmc_project.Inventory.Decorator.Asset": {
-            "Manufacturer": "Quanta",
-            "Model": "MINERVA_T21_GENOA",
-            "PartNumber": "Unknown",
-            "SerialNumber": "Unknown",
-            "SparePartNumber": "01-101316"
-        }
-    },
-    {
-        "Exposes": [],
-        "Name": "$Name",
-        "Probe": [
-            "xyz.openbmc_project.Inventory.Source.DevicePresence({'Name': 'NWBlade*'})"
-        ],
-        "Type": "Board",
-        "xyz.openbmc_project.Inventory.Decorator.Asset": {
-            "Manufacturer": "Celestica LLC",
-            "Model": "Unknown",
-            "PartNumber": "Unknown",
-            "SerialNumber": "Unknown",
-            "SparePartNumber": "Unknown"
-        }
-    },
-    {
-        "Exposes": [],
-        "Name": "$Name",
-        "Probe": [
-            "xyz.openbmc_project.Inventory.Source.DevicePresence({'Name': 'FanControlBoard*'})"
-        ],
-        "Type": "Board",
-        "xyz.openbmc_project.Inventory.Decorator.Asset": {
-            "Manufacturer": "Quanta",
-            "Model": "Unknown",
-            "PartNumber": "Unknown",
-            "SerialNumber": "Unknown",
-            "SparePartNumber": "05-100277"
-        }
+        "Type": "Cable"
     }
 ]
