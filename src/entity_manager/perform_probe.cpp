@@ -179,7 +179,9 @@ bool doProbe(const std::vector<std::string>& probeCommand,
         lastCommand = probeType.value_or(probe::probe_type_codes::FALSE_T);
     }
 
-    // probe passed, but empty device
+    // probe passed, but empty device.
+    // If the string has an invalid path, this creates issues with DBus/
+    // object mapper.
     if (ret && foundDevs.empty())
     {
         foundDevs.emplace_back(

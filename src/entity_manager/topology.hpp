@@ -30,4 +30,5 @@ class Topology
     std::set<Path> powerPaths;
     std::unordered_map<Path, BoardType> boardTypes;
     std::unordered_map<BoardName, Path> boardNames;
+    std::unordered_map<Path, Path> probePaths;
 };
