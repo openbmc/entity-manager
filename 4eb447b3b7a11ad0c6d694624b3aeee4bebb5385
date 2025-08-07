@@ -1,0 +1,106 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "548069f5_30266a6b",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 5
+      },
+      "lineNbr": 14,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-08-07T09:49:14Z",
+      "side": 1,
+      "message": "To get an object path we can use a DBus interface already existing somewhere.\n\nFor example you could make 2 configurations. The first one is `\"Probe\": \"TRUE\"` and then use that to probe the \n`xyz.openbmc_project.Inventory.Item.Board` interface\nfrom the second configuration.\n\nThat way we will have an object path to associate to.",
+      "revId": "4eb447b3b7a11ad0c6d694624b3aeee4bebb5385",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5b5c294b_d3a65625",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 5
+      },
+      "lineNbr": 22,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-08-07T09:49:14Z",
+      "side": 1,
+      "message": "We can also include the `busctl` output from `ObjectMapper` here to check that it picked up the association definition and created the association.",
+      "revId": "4eb447b3b7a11ad0c6d694624b3aeee4bebb5385",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3d4460e2_285efc83",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 5
+      },
+      "lineNbr": 66,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-08-07T09:49:14Z",
+      "side": 1,
+      "message": "Now in case of `Probe\u003dTrue` there is no object path that we probed on. So i would assume the association definitions to be empty in that case.\n\nFrom my understanding, associations are intended to link object paths so they should contain object paths and we cannot put just any string there.",
+      "revId": "4eb447b3b7a11ad0c6d694624b3aeee4bebb5385",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "74bab6bb_4c316303",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 5
+      },
+      "lineNbr": 82,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-08-07T09:49:14Z",
+      "side": 1,
+      "message": "Why do we have `ProbePath` on DBus as part of the inventory item.\n\nThe association already tells us the object paths the configuration was probed on.",
+      "revId": "4eb447b3b7a11ad0c6d694624b3aeee4bebb5385",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8fbc597b_10ca276b",
+        "filename": "src/entity_manager/entity_manager.cpp",
+        "patchSetId": 5
+      },
+      "lineNbr": 196,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-08-07T09:49:14Z",
+      "side": 1,
+      "message": "`Topology::addBoard` is meant to receise exposes record json but in our case there is no configuration backing this feature.\n\nSo we may want to create a separate function in topology class to insert this information and call from here.",
+      "revId": "4eb447b3b7a11ad0c6d694624b3aeee4bebb5385",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e02712be_6c6e40fe",
+        "filename": "src/entity_manager/topology.hpp",
+        "patchSetId": 5
+      },
+      "lineNbr": 33,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-08-07T09:49:14Z",
+      "side": 1,
+      "message": "Can we have a small comment here as to what this map is representing.\n\ne.g. \"Mapping the inventory object path to the object path the configuration was probed on\"",
+      "revId": "4eb447b3b7a11ad0c6d694624b3aeee4bebb5385",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    }
+  ]
+}
