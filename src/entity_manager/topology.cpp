@@ -40,6 +40,11 @@ void Topology::addBoard(const std::string& path, const std::string& boardType,
         upstreamPorts[exposesType].emplace_back(path);
         boardTypes[path] = boardType;
     }
+    else if (exposesType == "ProbePath")
+    {
+        auto probeAssocPath = exposesItem.find("Path");
+        probePaths.emplace(path, probeAssocPath->get<std::string>());
+    }
 }
 
 std::unordered_map<std::string, std::vector<Association>> Topology::getAssocs(
@@ -79,6 +84,11 @@ std::unordered_map<std::string, std::vector<Association>> Topology::getAssocs(
                 }
             }
         }
+    }
+
+    for (const auto& [objPath, probePath] : probePaths)
+    {
+        result[objPath].emplace_back("probed_by", "probed", probePath);
     }
 
     return result;
