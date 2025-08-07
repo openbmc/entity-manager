@@ -516,6 +516,15 @@ void scan::PerformScan::updateSystemConfiguration(
             }
         }
 
+        // If we end up here and the path is empty, we have Probe: "True"
+        // and we dont want that to show up in the associations.
+        if (!path.empty())
+        {
+            std::string boardInventoryPath =
+                em_utils::buildInventorySystemPath(recordRef);
+            _em.topology.addProbeAssociation(boardInventoryPath, path);
+        }
+
         // overwrite ourselves with cleaned up version
         _em.systemConfiguration[recordName] = record;
         _missingConfigurations.erase(recordName);
