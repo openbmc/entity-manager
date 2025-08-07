@@ -15,6 +15,9 @@ const AssocName assocPowering =
               {"Board", "Chassis", "PowerSupply"});
 const AssocName assocPoweredBy = assocPowering.getReverse();
 
+const AssocName assocProbing = AssocName("probing", "probed_by", {}, {});
+const AssocName assocProbedBy = assocProbing.getReverse();
+
 const std::vector<AssocName> supportedAssocs = {
     assocContaining,
     assocContainedBy,
@@ -164,6 +167,18 @@ std::unordered_map<std::string, std::set<Association>> Topology::getAssocs(
     {
         fillAssocsForPortId(result, boardPaths, port.second);
     }
+
+    for (const auto& [boardPath, probePaths] : probePaths)
+    {
+        if (std::ranges::contains(boardPaths, boardPath))
+        {
+            for (const auto& path : probePaths)
+            {
+                result[boardPath].insert(
+                    {assocProbing.name, assocProbedBy.name, path});
+            }
+        }
+    }
     return result;
 }
 
@@ -246,4 +261,14 @@ void Topology::remove(const std::string& boardName)
     {
         port.second.erase(boardPath);
     }
+
+    probePaths.erase(boardName);
+}
+
+void Topology::addProbePath(const std::string& boardPath,
+                            const std::string& probePath)
+{
+    lg2::info("Probe path added: {PROBE} probed_by {BOARD} boards config",
+              "PROBE", probePath, "BOARD", boardPath);
+    probePaths[boardPath].emplace(probePath);
 }
