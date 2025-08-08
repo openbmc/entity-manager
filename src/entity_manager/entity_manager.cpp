@@ -116,14 +116,9 @@ void EntityManager::postBoardToDBus(
     // configuration to be able to modify via dbus later
     auto boardValues = systemConfiguration[boardId];
     std::string boardType = boardValues.find("Type")->get<std::string>();
-    std::string boardtypeLower = boost::algorithm::to_lower_copy(boardType);
 
-    std::regex_replace(boardName.begin(), boardName.begin(), boardName.end(),
-                       illegalDbusMemberRegex, "_");
-    std::string boardPath = "/xyz/openbmc_project/inventory/system/";
-    boardPath += boardtypeLower;
-    boardPath += "/";
-    boardPath += boardName;
+    const std::string boardPath =
+        em_utils::buildInventorySystemPath(boardConfig);
 
     std::shared_ptr<sdbusplus::asio::dbus_interface> inventoryIface =
         dbus_interface.createInterface(objServer, boardPath,
