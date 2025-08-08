@@ -3,6 +3,7 @@
 #include "../variant_visitors.hpp"
 #include "expression.hpp"
 
+#include <boost/algorithm/string/case_conv.hpp>
 #include <boost/algorithm/string/classification.hpp>
 #include <boost/algorithm/string/find.hpp>
 #include <boost/algorithm/string/predicate.hpp>
@@ -12,6 +13,10 @@
 
 #include <fstream>
 #include <iostream>
+#include <regex>
+
+const std::regex illegalDbusPathRegex("[^A-Za-z0-9_.]");
+const std::regex illegalDbusMemberRegex("[^A-Za-z0-9_]");
 
 namespace em_utils
 {
@@ -219,4 +224,22 @@ std::optional<std::string> templateCharReplace(
     return ret;
 }
 
+std::string buildInventorySystemPath(const nlohmann::json& recordRef)
+{
+    std::string ret;
+    std::string boardName = recordRef["Name"];
+    std::string boardType = recordRef["Type"];
+    std::string path = "/xyz/openbmc_project/inventory/system/";
+    std::string boardTypeLower = boost::algorithm::to_lower_copy(boardType);
+
+    std::regex_replace(boardName.begin(), boardName.begin(), boardName.end(),
+            illegalDbusMemberRegex, "_");
+
+    ret += path;
+    ret += boardTypeLower;
+    ret += "/";
+    ret += boardName;
+
+    return ret;
+}
 } // namespace em_utils
