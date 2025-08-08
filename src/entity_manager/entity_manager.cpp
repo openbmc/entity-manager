@@ -130,27 +130,22 @@ void EntityManager::postBoardToDBus(
                   << " reverting to Chassis.\n";
         boardType = "Chassis";
     }
-    std::string boardtypeLower = boost::algorithm::to_lower_copy(boardType);
 
-    std::regex_replace(boardName.begin(), boardName.begin(), boardName.end(),
-                       illegalDbusMemberRegex, "_");
-    std::string boardPath = "/xyz/openbmc_project/inventory/system/";
-    boardPath += boardtypeLower;
-    boardPath += "/";
-    boardPath += boardName;
+    std::string completeBoardPath =
+        em_utils::buildInventorySystemPath(boardConfig);
 
     std::shared_ptr<sdbusplus::asio::dbus_interface> inventoryIface =
-        dbus_interface.createInterface(objServer, boardPath,
+        dbus_interface.createInterface(objServer, completeBoardPath,
                                        "xyz.openbmc_project.Inventory.Item",
                                        boardName);
 
     std::shared_ptr<sdbusplus::asio::dbus_interface> boardIface =
         dbus_interface.createInterface(
-            objServer, boardPath,
+            objServer, completeBoardPath,
             "xyz.openbmc_project.Inventory.Item." + boardType, boardNameOrig);
 
     dbus_interface.createAddObjectMethod(
-        io, jsonPointerPath, boardPath, systemConfiguration, objServer,
+        io, jsonPointerPath, completeBoardPath, systemConfiguration, objServer,
         boardNameOrig);
 
     dbus_interface::populateInterfaceFromJson(
@@ -163,8 +158,8 @@ void EntityManager::postBoardToDBus(
         if (propValue.type() == nlohmann::json::value_t::object)
         {
             std::shared_ptr<sdbusplus::asio::dbus_interface> iface =
-                dbus_interface.createInterface(objServer, boardPath, propName,
-                                               boardNameOrig);
+                dbus_interface.createInterface(objServer, completeBoardPath,
+                                               propName, boardNameOrig);
 
             dbus_interface::populateInterfaceFromJson(
                 io, systemConfiguration, jsonPointerPath + propName, iface,
