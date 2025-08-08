@@ -34,4 +34,7 @@ std::optional<std::string> templateCharReplace(
     nlohmann::json::iterator& keyPair, const DBusInterface& interface,
     size_t index, const std::optional<std::string>& replaceStr = std::nullopt);
 
+std::string buildInventorySystemPath(const nlohmann::json& recordRef,
+                                     const std::string& boardType);
+
 } // namespace em_utils
