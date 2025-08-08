@@ -1,0 +1,72 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8cf26638_38831101",
+        "filename": "src/entity_manager/entity_manager.cpp",
+        "patchSetId": 4
+      },
+      "lineNbr": 134,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-08-08T08:49:07Z",
+      "side": 1,
+      "message": "Can we make it `const` ? Or is the board path modified anywhere.",
+      "revId": "43d15543e0ae6384da6a184d9a3fa4829c620b15",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "230ef289_4c657867",
+        "filename": "src/entity_manager/entity_manager.cpp",
+        "patchSetId": 4
+      },
+      "lineNbr": 148,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-08-08T08:49:07Z",
+      "side": 1,
+      "message": "Why are we changing the variable name from `boardPath` to `completeBoardPath`.\n\nIt creates a larger diff. I just want to understand why this is done.",
+      "revId": "43d15543e0ae6384da6a184d9a3fa4829c620b15",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "386e33fd_d28aee96",
+        "filename": "src/entity_manager/utils.cpp",
+        "patchSetId": 4
+      },
+      "lineNbr": 230,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-08-08T08:49:07Z",
+      "side": 1,
+      "message": "Now we have to do error handling since we are looking into the json and the key may not exist in the json object.\n\nCan we pass `boardName` and `boardType` instead.\n\nIn the caller these vars already exist. Otherwise we are passing much more information than required to create the path.",
+      "revId": "43d15543e0ae6384da6a184d9a3fa4829c620b15",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1b6b471a_f041e230",
+        "filename": "src/entity_manager/utils.cpp",
+        "patchSetId": 4
+      },
+      "lineNbr": 238,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-08-08T08:49:07Z",
+      "side": 1,
+      "message": "Can use `std::format` here",
+      "revId": "43d15543e0ae6384da6a184d9a3fa4829c620b15",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    }
+  ]
+}
