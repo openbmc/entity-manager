@@ -1,0 +1,89 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6b5e111e_a756c536",
+        "filename": "src/entity_manager/topology.cpp",
+        "patchSetId": 9
+      },
+      "lineNbr": 149,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-08-08T08:36:46Z",
+      "side": 1,
+      "message": "We are always adding things to the map here but it never gets cleared and nothing is ever removed.\n\nSo the map will not represent the current state of probe associations anymore when a configuration is removed from DBus.",
+      "revId": "9a99065372abb4a916ac80f9c14ce029e369e833",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "085eb8ab_53b98a9d",
+        "filename": "src/entity_manager/topology.hpp",
+        "patchSetId": 9
+      },
+      "lineNbr": 21,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-08-08T08:36:46Z",
+      "side": 1,
+      "message": "No need to repeat the function name.",
+      "revId": "9a99065372abb4a916ac80f9c14ce029e369e833",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0f037846_21f10586",
+        "filename": "src/entity_manager/topology.hpp",
+        "patchSetId": 9
+      },
+      "lineNbr": 22,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-08-08T08:36:46Z",
+      "side": 1,
+      "message": "\u0027keeps track of the mapping between inventory items and the object paths they were probed on`.\n\nThe function does not create any association in the current patchset. It only populates the map.",
+      "revId": "9a99065372abb4a916ac80f9c14ce029e369e833",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "799548da_3faf5dac",
+        "filename": "src/entity_manager/topology.hpp",
+        "patchSetId": 9
+      },
+      "lineNbr": 39,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-08-08T08:36:46Z",
+      "side": 1,
+      "message": "No need to repeat the `probePath` variable name. It will just bitrot when someone renames the variable.",
+      "revId": "9a99065372abb4a916ac80f9c14ce029e369e833",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "61e0c54c_bc888848",
+        "filename": "src/entity_manager/topology.hpp",
+        "patchSetId": 9
+      },
+      "lineNbr": 41,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-08-08T08:36:46Z",
+      "side": 1,
+      "message": "What happens in case there is multiple object paths responsible for the Probe.\n\nFor example\n\n```\n    \"Probe\": [\n        \"xyz.openbmc_project.FruDevice({\u0027BOARD_PRODUCT_NAME\u0027: \u0027Ventura RMC\u0027})\",\n        \"AND\",\n        \"xyz.openbmc_project.FruDevice({\u0027BOARD_INFO_AM4\u0027: \u0027hsc-xdp fsc-nct p24vsen-isl gndsen-isl p12vbrick-flex\u0027})\"\n    ],\n```\n\nin `meta/ventura_rmc_hsc_xdp_fsc_nct_p24vsen_isl_gndsen_isl_p12vbrick_flex.json`.\n\nDo the DBus interfaces in `Probe` statement always have to be on the same object path, and it makes no difference?\n\nOr do we have to consider the possibility of multiple object paths, in which case we have to associate to all of them? In that case we will have to change the map type.",
+      "revId": "9a99065372abb4a916ac80f9c14ce029e369e833",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    }
+  ]
+}
