@@ -18,6 +18,24 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "eb3275a1_2c37278f",
+        "filename": "src/entity_manager/entity_manager.cpp",
+        "patchSetId": 4
+      },
+      "lineNbr": 134,
+      "author": {
+        "id": 1002222
+      },
+      "writtenOn": "2025-08-08T10:13:09Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "8cf26638_38831101",
+      "revId": "43d15543e0ae6384da6a184d9a3fa4829c620b15",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "230ef289_4c657867",
@@ -31,6 +49,24 @@
       "writtenOn": "2025-08-08T08:49:07Z",
       "side": 1,
       "message": "Why are we changing the variable name from `boardPath` to `completeBoardPath`.\n\nIt creates a larger diff. I just want to understand why this is done.",
+      "revId": "43d15543e0ae6384da6a184d9a3fa4829c620b15",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "8f62ec38_69acc3ed",
+        "filename": "src/entity_manager/entity_manager.cpp",
+        "patchSetId": 4
+      },
+      "lineNbr": 148,
+      "author": {
+        "id": 1002222
+      },
+      "writtenOn": "2025-08-08T10:13:09Z",
+      "side": 1,
+      "message": "No particular reason. Took back the change.",
+      "parentUuid": "230ef289_4c657867",
       "revId": "43d15543e0ae6384da6a184d9a3fa4829c620b15",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
@@ -52,6 +88,24 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "d6892207_83cdef27",
+        "filename": "src/entity_manager/utils.cpp",
+        "patchSetId": 4
+      },
+      "lineNbr": 230,
+      "author": {
+        "id": 1002222
+      },
+      "writtenOn": "2025-08-08T10:13:09Z",
+      "side": 1,
+      "message": "Configuration class shall be responsible for checking if the information is present for each config. IIRC, \u0027Name\u0027 is already checked. Not sure about type.",
+      "parentUuid": "386e33fd_d28aee96",
+      "revId": "43d15543e0ae6384da6a184d9a3fa4829c620b15",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "1b6b471a_f041e230",
@@ -65,6 +119,24 @@
       "writtenOn": "2025-08-08T08:49:07Z",
       "side": 1,
       "message": "Can use `std::format` here",
+      "revId": "43d15543e0ae6384da6a184d9a3fa4829c620b15",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "fc045347_b4b8eb06",
+        "filename": "src/entity_manager/utils.cpp",
+        "patchSetId": 4
+      },
+      "lineNbr": 238,
+      "author": {
+        "id": 1002222
+      },
+      "writtenOn": "2025-08-08T10:13:09Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "1b6b471a_f041e230",
       "revId": "43d15543e0ae6384da6a184d9a3fa4829c620b15",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
