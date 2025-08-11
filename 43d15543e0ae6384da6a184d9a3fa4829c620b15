@@ -108,6 +108,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "6d0e541a_bb59b185",
+        "filename": "src/entity_manager/utils.cpp",
+        "patchSetId": 4
+      },
+      "lineNbr": 230,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-08-11T11:17:47Z",
+      "side": 1,
+      "message": "I would like the function to accept 2 strings to construct the object path.\n\nAlternatively we would have to handle the failure case if the keys are not in the json.\n\nThe failure case is partially handled in the caller which has special case if `Type` is not found.\n\nIt then sets `boardType \u003d \"Chassis\"` in that case.\n\nWe should not duplicate that logic though.\n\nMaybe have one function to get the `boardType` and one to construct the object path from that and `Name`?",
+      "parentUuid": "d6892207_83cdef27",
+      "revId": "43d15543e0ae6384da6a184d9a3fa4829c620b15",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "1b6b471a_f041e230",
         "filename": "src/entity_manager/utils.cpp",
         "patchSetId": 4
