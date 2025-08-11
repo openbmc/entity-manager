@@ -1,6 +1,38 @@
 {
     "Exposes": [
         {
+            "Address": "0x45",
+            "Bus": 4,
+            "Labels": [
+                "in1",
+                "curr1",
+                "power1"
+            ],
+            "Name": "PDB_P48V",
+            "Thresholds": [
+                {
+                    "Direction": "less than",
+                    "Hysteresis": 0.92,
+                    "Label": "in1",
+                    "Name": "lower critical",
+                    "Severity": 1,
+                    "Value": 46.0
+                },
+                {
+                    "Direction": "greater than",
+                    "Hysteresis": 1.1,
+                    "Label": "in1",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 55.0
+                }
+            ],
+            "Type": "INA238",
+            "curr1_Name": "PDB_P48V_CURR_A",
+            "in1_Name": "PDB_P48V_VOLT_V",
+            "power1_Name": "PDB_P48V_PWR_W"
+        },
+        {
             "Address": "0x49",
             "Bus": 4,
             "Name": "PDB_TEMP_C",
