@@ -36,7 +36,7 @@ if get_option('devicetree-vpd') or get_option('gpio-presence')
 endif
 
 nlohmann_json_dep = dependency('nlohmann_json', include_type: 'system')
-sdbusplus = dependency('sdbusplus', include_type: 'system')
+sdbusplus = dependency('sdbusplus')
 phosphor_logging_dep = dependency('phosphor-logging')
 
 if get_option('gpio-presence') or get_option('tests').allowed()
