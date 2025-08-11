@@ -1,0 +1,89 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7cef71a2_4d064c37",
+        "filename": "src/entity_manager/topology.cpp",
+        "patchSetId": 14
+      },
+      "lineNbr": 84,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-08-11T12:03:14Z",
+      "side": 1,
+      "message": "This looks correct, but confusing. Let\u0027s not create the same var name in the inner scope.",
+      "revId": "4d1df5c30cda1b45f8961a65ae384b5cf967916f",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "67828beb_304db09a",
+        "filename": "src/entity_manager/topology.cpp",
+        "patchSetId": 14
+      },
+      "lineNbr": 148,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-08-11T12:03:14Z",
+      "side": 1,
+      "message": "We do not need a loop here since we only remove one mapping.\n\nThe loop can be confusing for readability.",
+      "revId": "4d1df5c30cda1b45f8961a65ae384b5cf967916f",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "36ae4f8a_3dc859a8",
+        "filename": "src/entity_manager/topology.hpp",
+        "patchSetId": 14
+      },
+      "lineNbr": 39,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-08-11T12:03:14Z",
+      "side": 1,
+      "message": "The mapping is not exclusive to inventory board path.\n\nWe can probe on any DBus interface, so any object path would be fine.\n\nMaybe we can reword to \n\n`Represents the mapping between the inventory object path of a probed config and the object paths of DBus interfaces it was probed on.`",
+      "revId": "4d1df5c30cda1b45f8961a65ae384b5cf967916f",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "da5ace41_d82e8ec8",
+        "filename": "src/entity_manager/topology.hpp",
+        "patchSetId": 14
+      },
+      "lineNbr": 41,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-08-11T12:03:14Z",
+      "side": 1,
+      "message": "Let\u0027s use `std::unordered_map\u003cPath, std::set\u003cPath\u003e\u003e` here since the order does not matter and we do not need any duplicates.",
+      "revId": "4d1df5c30cda1b45f8961a65ae384b5cf967916f",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "04661795_ae57f0c3",
+        "filename": "src/entity_manager/topology.hpp",
+        "patchSetId": 14
+      },
+      "lineNbr": 41,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-08-11T12:03:14Z",
+      "side": 1,
+      "message": "typo: `probePaths`",
+      "revId": "4d1df5c30cda1b45f8961a65ae384b5cf967916f",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    }
+  ]
+}
