@@ -116,6 +116,7 @@ configs = [
     'meta/santabarbara_scm.json',
     'meta/santabarbara_sitv_eth.json',
     'meta/santabarbara_sitv_pcie.json',
+    'meta/santabarbara_cable.json',
     'meta/terminus_2x100g_nic_tsff.json',
     'meta/twinlake.json',
     'meta/ventura_cable.json',
