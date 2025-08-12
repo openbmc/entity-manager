@@ -1,0 +1,72 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "80dca297_64aa0f7c",
+        "filename": "src/entity_manager/configuration.cpp",
+        "patchSetId": 1
+      },
+      "lineNbr": 90,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-08-12T07:14:35Z",
+      "side": 1,
+      "message": "We could call the lightweight validation function here to skip emplacing any invalid configurations.",
+      "revId": "d34ba316d1af73bd940a6eee2cd7b65c947b143c",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f98e9015_73debfb9",
+        "filename": "src/entity_manager/configuration.cpp",
+        "patchSetId": 1
+      },
+      "lineNbr": 163,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-08-12T07:14:35Z",
+      "side": 1,
+      "message": "You are setting `boardType` here but it has no effect in `postBoardToDBus` function since you are just writing to the local variable?",
+      "revId": "d34ba316d1af73bd940a6eee2cd7b65c947b143c",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b03d38ef_1ee1c402",
+        "filename": "src/entity_manager/configuration.cpp",
+        "patchSetId": 1
+      },
+      "lineNbr": 169,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-08-12T07:14:35Z",
+      "side": 1,
+      "message": "Should this be `error` log?\n\nSince `Name` also has `error` log if it is not there.",
+      "revId": "d34ba316d1af73bd940a6eee2cd7b65c947b143c",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8ea15e7e_98ab8249",
+        "filename": "src/entity_manager/configuration.cpp",
+        "patchSetId": 1
+      },
+      "lineNbr": 171,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-08-12T07:14:35Z",
+      "side": 1,
+      "message": "From looking at `schemas/global.json`, `Type` and `Name` are required properties.\n\nSo i would suggest we can just skip these configurations altogether and not emplace them into `configurations` in the first place, instead of modifying the `configurations` collection later on.\n\nSince there is already the runtime json validation feature, maybe we can have a `validateJsonLight` function which just checks for the presence of\n\n`Name`, `Probe`, `Type`, `Exposes` properties as per `schemas/global.json`.\n\nThat way the validation is lightweight and we can still drop the check in `postBoardToDBus` function.",
+      "revId": "d34ba316d1af73bd940a6eee2cd7b65c947b143c",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    }
+  ]
+}
