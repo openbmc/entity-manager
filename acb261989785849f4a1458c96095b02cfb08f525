@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6ad457e5_9484b4af",
+        "filename": "src/entity_manager/perform_scan.cpp",
+        "patchSetId": 18
+      },
+      "lineNbr": 522,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-08-12T10:01:45Z",
+      "side": 1,
+      "message": "The function is getting too long. cpp core guidelines.",
+      "revId": "acb261989785849f4a1458c96095b02cfb08f525",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ee695243_62d772f2",
+        "filename": "src/entity_manager/perform_scan.cpp",
+        "patchSetId": 18
+      },
+      "lineNbr": 538,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-08-12T10:01:45Z",
+      "side": 1,
+      "message": "Let\u0027s not duplicate this `Chassis` quirk here. We can just get rid of it in another patch.",
+      "revId": "acb261989785849f4a1458c96095b02cfb08f525",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    }
+  ]
+}
