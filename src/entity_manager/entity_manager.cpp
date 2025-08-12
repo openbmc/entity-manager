@@ -115,21 +115,7 @@ void EntityManager::postBoardToDBus(
     // loop through newConfiguration, but use values from system
     // configuration to be able to modify via dbus later
     auto boardValues = systemConfiguration[boardId];
-    auto findBoardType = boardValues.find("Type");
-    std::string boardType;
-    if (findBoardType != boardValues.end() &&
-        findBoardType->type() == nlohmann::json::value_t::string)
-    {
-        boardType = findBoardType->get<std::string>();
-        std::regex_replace(boardType.begin(), boardType.begin(),
-                           boardType.end(), illegalDbusMemberRegex, "_");
-    }
-    else
-    {
-        std::cerr << "Unable to find type for " << boardName
-                  << " reverting to Chassis.\n";
-        boardType = "Chassis";
-    }
+    std::string boardType = boardValues.find("Type")->get<std::string>();
     std::string boardtypeLower = boost::algorithm::to_lower_copy(boardType);
 
     std::regex_replace(boardName.begin(), boardName.begin(), boardName.end(),

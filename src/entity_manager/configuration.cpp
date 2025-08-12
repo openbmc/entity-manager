@@ -13,8 +13,13 @@
 #include <filesystem>
 #include <fstream>
 #include <iostream>
+#include <regex>
 #include <string>
 #include <vector>
+
+PHOSPHOR_LOG2_USING;
+
+const std::regex illegalDbusMemberRegex("[^A-Za-z0-9_]");
 
 Configuration::Configuration()
 {
@@ -140,6 +145,30 @@ void Configuration::filterProbeInterfaces()
             std::cerr << "configuration file missing probe:\n " << *it << "\n";
             it++;
             continue;
+        }
+
+        auto findName = it->find("Name");
+        if (findName == it->end())
+        {
+            error("Configuration file missing name");
+            it = configurations.erase(it);
+            continue;
+        }
+
+        std::string boardType;
+        auto findBoardType = it->find("Type");
+        if (findBoardType != it->end() &&
+            findBoardType->type() == nlohmann::json::value_t::string)
+        {
+            boardType = findBoardType->get<std::string>();
+            std::regex_replace(boardType.begin(), boardType.begin(),
+                               boardType.end(), illegalDbusMemberRegex, "_");
+        }
+        else
+        {
+            debug("Unable to find type for {BOARDNAME}, reverting to Chassis",
+                  "BOARDTYPE", findName->get<std::string>());
+            configurations.at(*it)["Type"] = "Chassis";
         }
 
         nlohmann::json probeCommand;
