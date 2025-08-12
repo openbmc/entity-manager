@@ -3,6 +3,29 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "525dcf57_5959e25f",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 10,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2025-08-12T13:11:54Z",
+      "side": 1,
+      "message": "Instead, add some details of what is Darwin.  \"A network switch ...\"?",
+      "range": {
+        "startLine": 9,
+        "startChar": 0,
+        "endLine": 10,
+        "endChar": 61
+      },
+      "revId": "0b6b7819e1bd5f1652b3e9066a7473c6c4439c84",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "0f3162ca_ef196e29",
         "filename": "/COMMIT_MSG",
         "patchSetId": 1
@@ -110,6 +133,30 @@
       "side": 1,
       "message": "It sounds like this system won\u0027t work with upstream openbmc code, so I\u0027m not sure why you need to even put this config in upstream openbmc?\n\nI will defer to @patrick@stwcx.xyz since he\u0027s a meta and upstream openbmc maintainer.",
       "parentUuid": "8456dd7b_3293d18c",
+      "range": {
+        "startLine": 11,
+        "startChar": 0,
+        "endLine": 11,
+        "endChar": 72
+      },
+      "revId": "0b6b7819e1bd5f1652b3e9066a7473c6c4439c84",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b53ba7b7_62e1e8af",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 11,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2025-08-12T13:11:54Z",
+      "side": 1,
+      "message": "Let\u0027s drop this entire line from the commit message.\n\nDarwin is a [network switch] system we already have in production using a non-OpenBMC implementation.  Robert is an intern working on a proof-of-concept of running OpenBMC natively.\n\nPart of this effort is to figure out what code changes need to happen to support a new platform.  Part of this effort is to figure out where we messed up the hardware design (and the EEPROM is one of them obviously).\n\nIf we end up having multiple of these platforms, or this becomes a longer-term endeavor, I think we\u0027ll do what HPE did and figure out a way to get the EEPROM data exposed via contributed daemon.\n\nThis is a pretty minimal config and generally we want to have as much of our code upstreamed as possible.  I think there is pretty light burden in having this merged.  It also helps with the \"figure out what code changes need to happen to support a new platform\" for our network switch team.",
+      "parentUuid": "e22fefeb_f942dca6",
       "range": {
         "startLine": 11,
         "startChar": 0,
