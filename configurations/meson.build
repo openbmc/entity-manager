@@ -103,6 +103,7 @@ configs = [
     'meta/minerva_cmm_scm.json',
     'meta/minerva_fanboard_adc_silergy.json',
     'meta/minerva_fanboard_adc_ti.json',
+    'meta/minerva_fanboard_misc.json',
     'meta/minerva_janga_smb.json',
     'meta/minerva_pdb.json',
     'meta/minerva_pdb_hsc_xdp.json',
