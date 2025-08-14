@@ -22,6 +22,30 @@
       },
       "revId": "5c7663313edda4ccee399b422c7067af4d0820c0",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "654ec6ba_11c4958e",
+        "filename": "src/entity_manager/entity_manager.hpp",
+        "patchSetId": 3
+      },
+      "lineNbr": 35,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-08-14T11:42:23Z",
+      "side": 1,
+      "message": "I mark them `protected` for testing purpose. That way we can have a test class inherit from it.\n\nI am somewhat wary of changing the order of the member variables too much because the initialization order will be different as well.\n\nhttps://en.cppreference.com/w/cpp/language/initializer_list.html",
+      "parentUuid": "4a92501e_9c3adff1",
+      "range": {
+        "startLine": 35,
+        "startChar": 1,
+        "endLine": 35,
+        "endChar": 11
+      },
+      "revId": "5c7663313edda4ccee399b422c7067af4d0820c0",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }
