@@ -344,6 +344,8 @@ CheckOptions:
     value: true
 -   key: misc-include-cleaner.IgnoreHeaders
     value: ((nlohmann/json_fwd.hpp)|(boost/.*/src.hpp)|(boost/.*/detail/.*)|(nlohmann/detail/.*)|(stdio.h)|(ranges)|(bits/chrono.h)|(boost/system/error_code.hpp))
+-   key: readability-function-size.LineThreshold
+    value: 170
 -   key: readability-identifier-naming.ClassCase
     value: CamelCase
 -   key: readability-identifier-naming.FunctionCase
