@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "003f75d2_9ae4fb1c",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 64
+      },
+      "lineNbr": 90,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-08-14T21:15:51Z",
+      "side": 1,
+      "message": "Would EM still expose the config in old way along with new way if Type field is added? If yes, then wouldn\u0027t it create duplicate configuration and also confuse clients (Which have Type property) which one to use. Wouldn\u0027t it be better to switch to new format if Type field is added. Since, you are explicitly calling for a field addition, not adding will automatically make it backwards compatible in terms of exposed interfaces, isn\u0027t it?",
+      "revId": "33176026da361a5ad4617095abb77217b8c4e7fc",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    }
+  ]
+}
