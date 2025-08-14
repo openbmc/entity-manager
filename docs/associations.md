@@ -2,6 +2,11 @@
 
 Entity Manager will create [associations][1] between entities in certain cases.
 
+## Deprecated configuration style
+
+The configuration style described here is deprecated and superseded. The new
+style is described as well in this document.
+
 ## `contained_by`, `containing`
 
 Entity Manager can model the [physical topology][2] of how entities plug into
@@ -88,3 +93,118 @@ psu.json:
 [1]:
   https://github.com/openbmc/docs/blob/master/architecture/object-mapper.md#associations
 [2]: https://github.com/openbmc/docs/blob/master/designs/physical-topology.md
+
+## New configuration style
+
+The configuration record has `Name` field which is used with `ConnectsToName`
+field to connect 2 ports for an association definition.
+
+If an element of `ConnectsToName` is not found, that is not an error, it simply
+means the component we want to associate to is not present.
+
+The `PortType` describes which association to create. This is limited to
+pre-defined values. It also defines the direction of the association.
+
+### containing Association
+
+Baseboard configuration.
+
+```json
+{
+  "Exposes": [
+    {
+      "Name": "ContainedPortS8030",
+      "ConnectsToName": [],
+      "PortType": "contained_by"
+      "Type": "Port"
+    }
+  ],
+  "Name": "Tyan S8030 Baseboard"
+}
+```
+
+Chassis configuration. For example purpose this chassis may contain either an
+S8030 or an S5549
+
+```json
+{
+  "Exposes": [
+    {
+      "Name": "ContainedByPort",
+      "ConnectsToName": ["ContainedPortS8030", "ContainedPortS5549"],
+      "PortType": "containing"
+      "Type": "Port"
+    }
+  ],
+  "Name": "MBX Chassis"
+}
+```
+
+### powering Association
+
+Baseboard configuration. This baseboard accepts one of several generic PSUs.
+
+```json
+{
+  "Exposes": [
+    {
+      "Name": "GenericPoweredPort",
+      "ConnectsToName": [],
+      "PortType": "powered_by"
+      "Type": "Port"
+    }
+  ],
+  "Name": "Tyan S8030 Baseboard"
+}
+```
+
+PSU configuration. This example PSU is generic and can be used on different
+servers.
+
+```json
+{
+  "Exposes": [
+    {
+      "Name": "GenericPoweringPort",
+      "ConnectsToName": ["GenericPoweredPort"],
+      "PortType": "powering"
+      "Type": "Port"
+    }
+  ],
+  "Name": "Generic Supermicro PSU"
+}
+```
+
+### cooling Association
+
+Baseboard configuration.
+
+```json
+{
+  "Exposes": [
+    {
+      "Name": "GenericCooledByPort",
+      "ConnectsToName": [],
+      "PortType": "cooled_by"
+      "Type": "Port"
+    }
+  ],
+  "Name": "Tyan S8030 Baseboard"
+}
+```
+
+Fan configuration.
+
+```json
+{
+  "Exposes": [
+    {
+      "Name": "GenericCoolingPort",
+      "ConnectsToName": ["GenericCooledByPort"],
+      "PortType": "cooling"
+      "Type": "Port"
+    }
+  ],
+  "Name": "Generic Fan"
+}
+```
