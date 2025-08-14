@@ -50,7 +50,8 @@
             "xyz.openbmc_project.Inventory.Item.Board({'Name': 'Clemente HDD Carrier 0'})"
         ],
         "Type": "Board",
-        "xyz.openbmc_project.Inventory.Item.Chassis": {}
+        "xyz.openbmc_project.Inventory.Item.Chassis": {},
+        "xyz.openbmc_project.Inventory.Decorator.Asset": {}
     },
     {
         "Exposes": [
@@ -103,7 +104,8 @@
             "xyz.openbmc_project.Inventory.Item.Board({'Name': 'Clemente HDD Carrier 1'})"
         ],
         "Type": "Board",
-        "xyz.openbmc_project.Inventory.Item.Chassis": {}
+        "xyz.openbmc_project.Inventory.Item.Chassis": {},
+        "xyz.openbmc_project.Inventory.Decorator.Asset": {}
     },
     {
         "Exposes": [
@@ -135,6 +137,7 @@
             "xyz.openbmc_project.FruDevice({'BUS': 45, 'ADDRESS': 83})"
         ],
         "Type": "Board",
-        "xyz.openbmc_project.Inventory.Item.Chassis": {}
+        "xyz.openbmc_project.Inventory.Item.Chassis": {},
+        "xyz.openbmc_project.Inventory.Decorator.Asset": {}
     }
 ]
