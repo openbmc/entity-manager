@@ -16,6 +16,24 @@
       "message": "Did you have a plan for testing this?  Since loadConfigurations and filterProbeInterfaces are private a testcase can\u0027t even call them (unless its a friend) which makes this class pretty useless when loadConfigs \u003d false.",
       "revId": "6d5c08dd1c4417fb0f5a62a60ef297e928ddb995",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "e15281a6_0b79949a",
+        "filename": "src/entity_manager/configuration.hpp",
+        "patchSetId": 4
+      },
+      "lineNbr": 17,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-08-14T11:38:50Z",
+      "side": 1,
+      "message": "Sorry, had not thought about it.\n\nMade the functions `protected` which is my go-to recipe for testing things while keeping the encapsulation intact.",
+      "parentUuid": "06b3241f_4d3ea9c9",
+      "revId": "6d5c08dd1c4417fb0f5a62a60ef297e928ddb995",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }
