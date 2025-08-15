@@ -9,6 +9,31 @@
         {
             "Name": "NVIDIA GB200 GPU",
             "Type": "NvidiaMctpVdm"
+        },
+        {
+            "Name": "NVIDIA GB200 FPGA",
+            "Type": "PldmDevice",
+            "UUID": "c01dc250-5678-11ed-9b6a-0242ac120002"
+        },
+        {
+            "Name": "NVIDIA GB200 FPGA EROT",
+            "Type": "PldmDevice",
+            "UUID": "f72d6f50-5675-11ed-9b6a-0242ac120002"
+        },
+        {
+            "Name": "NVIDIA GB200 CPU EROT",
+            "Type": "PldmDevice",
+            "UUID": "f72d6f60-5675-11ed-9b6a-0242ac120002"
+        },
+        {
+            "Name": "NVIDIA GB200 GPU0",
+            "Type": "PldmDevice",
+            "UUID": "f72d6fb0-5675-11ed-9b6a-0242ac120002"
+        },
+        {
+            "Name": "NVIDIA GB200 GPU1",
+            "Type": "PldmDevice",
+            "UUID": "f72d6fb1-5675-11ed-9b6a-0242ac120002"
         }
     ],
     "Name": "NVIDIA GB200 $bus + 1 % 2",
