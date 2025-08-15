@@ -16,6 +16,24 @@
       "message": "Would EM still expose the config in old way along with new way if Type field is added? If yes, then wouldn\u0027t it create duplicate configuration and also confuse clients (Which have Type property) which one to use. Wouldn\u0027t it be better to switch to new format if Type field is added. Since, you are explicitly calling for a field addition, not adding will automatically make it backwards compatible in terms of exposed interfaces, isn\u0027t it?",
       "revId": "33176026da361a5ad4617095abb77217b8c4e7fc",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3e648bac_303aa034",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 64
+      },
+      "lineNbr": 90,
+      "author": {
+        "id": 1000008
+      },
+      "writtenOn": "2025-08-15T19:07:29Z",
+      "side": 1,
+      "message": "There is dbus-sensors code today that requires the old way (if i\u0027m reading the code right):\n```\n    for (size_t ii \u003d 0; ii \u003c thresholdCount; ii++)\n    {\n        std::string thresholdInterface \u003d\n            baseInterface + \".Thresholds\" + std::to_string(ii);\n```\n\nSo I guess you\u0027d need to find all of the places that do things like this and fix them to make them work both ways before it could ever be enabled?",
+      "parentUuid": "003f75d2_9ae4fb1c",
+      "revId": "33176026da361a5ad4617095abb77217b8c4e7fc",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }
