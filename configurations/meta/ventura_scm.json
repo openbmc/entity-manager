@@ -486,6 +486,26 @@
             "Type": "GPIODeviceDetect"
         },
         {
+            "Name": "ReturnValve",
+            "PresencePinNames": [
+                "wPRSNT_RETURN_PLD_R_N"
+            ],
+            "PresencePinValues": [
+                0
+            ],
+            "Type": "GPIODeviceDetect"
+        },
+        {
+            "Name": "SupplyValve",
+            "PresencePinNames": [
+                "wPRSNT_SUPPLY_PLD_R_N"
+            ],
+            "PresencePinValues": [
+                0
+            ],
+            "Type": "GPIODeviceDetect"
+        },
+        {
             "Level": "Warning",
             "Name": "LeakPort1_Small",
             "PinName": "SMALL_LEAK_COMPUTE_TRAY1_N",
