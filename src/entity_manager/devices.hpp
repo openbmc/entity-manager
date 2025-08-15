@@ -188,5 +188,17 @@ const boost::container::flat_map<const char*, ExportTemplate, CmpStr>
          {"PIC32",
           ExportTemplate("pic32 $Address", "/sys/bus/i2c/devices/i2c-$Bus",
                          "new_device", "delete_device",
-                         createsHWMon::hasHWMonDir)}}};
+                         createsHWMon::hasHWMonDir)},
+        {"INA233",
+          ExportTemplate("ina233 $Address", "/sys/bus/i2c/devices/i2c-$Bus",
+                         "new_device", "delete_device",
+                         createsHWMon::hasHWMonDir)},
+        {"RTQ6056",
+          ExportTemplate("rtq6056 $Address", "/sys/bus/i2c/devices/i2c-$Bus",
+                         "new_device", "delete_device",
+                         createsHWMon::noHWMonDir)},
+        {"SY24655",
+          ExportTemplate("sy24655 $Address", "/sys/bus/i2c/devices/i2c-$Bus",
+                          "new_device", "delete_device",
+                          createsHWMon::hasHWMonDir)}}};
 } // namespace devices
