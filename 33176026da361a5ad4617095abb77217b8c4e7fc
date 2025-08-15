@@ -52,6 +52,24 @@
       "parentUuid": "3e648bac_303aa034",
       "revId": "33176026da361a5ad4617095abb77217b8c4e7fc",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "bf0b633a_a8492a7a",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 64
+      },
+      "lineNbr": 90,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-08-15T20:04:04Z",
+      "side": 1,
+      "message": "### Jagpal\u0027s suggestion changes the enablement strategy.\n\nIf we look for `Type` field in nested objects to expose them in the new way (and stop exposing them in the old way) then\nthere needs to be a schema change for each configuration schema (and daemon) which wants to use that.\n\nEither a synchronized bump (to change the schema, the reactor and the configurations at the same time) or some work in the daemon to allow it to accept both styles of configuration.\n\n\nIf we do not stop exposing the configuration in the old way when we add `Type` to any particular schema for the nested objects, then we have duplicated the information the configuration is meant to expose.\n\nWith Jagpal`s suggested approach, reactors and their configurations fully switch from old to new, at least in how they fetch their nested configuration.\n\nWith the current patchset revision, the configuration is exposed in both ways,\nas the `Type` field is added to nested objects, so there is no need for synchronized changes.\n\nAt some point we may want to stop exposing configuration in the old way,\nand jagpal\u0027s approach makes that easier, as no reactor can come to depend on using both styles at the same time.\n\n### no DBus interface is duplicated in any of the 2 alternatives\n\nAt no point any DBus interface should be duplicated since for both the arrays of objects and nested objects, the DBus interfaces name is constructed differently by both styles.\n\nToplevel configuration records stay the same as before.\n\n\n### To summarize my point of view of the tradeoffs\n\n### Jagpals Idea\n`+` better performance, less DBus interfaces exposed\n`+` no daemon can come to depend on a schema to be exposed by both old and new style\n`-` synchronized changes or extra code in the daemon are needed for it to \u0027just work\u0027 when the configuration changes land.\n`+` easily see which schema has been migrated, if it has required `Type` field on nested object, it is migrated and the daemon should already support it.\n\n### Current revision\n`-` worse performance, more DBus interfaces exposed, presenting the same information\n`+` schemas can be enabled at any point and the reactor that consumes them can be migrated at a later point\n`-` reactors could accidentally come to depend on both the PDI-compatible DBus interfaces and the incompatible ones, making it harder to stop exposing configuration in the old style in the future\n`-` no \u0027easy\u0027 way to know which schema/reactor has already made the transition on their side.\n\n\n### decision point\n\nLet me know which enabling strategy you prefer or if there is any extra information i can provide, such as which specific schemas and reactors would have to be adjusted, or how the new style would work with DBus matches.",
+      "parentUuid": "84c03226_99db89a5",
+      "revId": "33176026da361a5ad4617095abb77217b8c4e7fc",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }
