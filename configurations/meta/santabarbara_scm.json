@@ -170,6 +170,78 @@
             "Type": "EEPROM"
         },
         {
+            "Level": "Critical",
+            "Name": "PDB1_Right_Manifold",
+            "PinName": "LEAK_PDB1_RIGHT_MANIFOLD",
+            "Polarity": "High",
+            "SubType": "LeakSensingCable",
+            "Type": "GPIOLeakDetector"
+        },
+        {
+            "Level": "Critical",
+            "Name": "PDB1_Left_Manifold",
+            "PinName": "LEAK_PDB1_LEFT_MANIFOLD",
+            "Polarity": "High",
+            "SubType": "LeakSensingCable",
+            "Type": "GPIOLeakDetector"
+        },
+        {
+            "Level": "Critical",
+            "Name": "MB_Manifold",
+            "PinName": "LEAK_MB_MANIFOLD",
+            "Polarity": "High",
+            "SubType": "LeakSensingCable",
+            "Type": "GPIOLeakDetector"
+        },
+        {
+            "Level": "Warning",
+            "Name": "SWB_Cold_Plate",
+            "PinName": "LEAK_SWB_COLDPLATE",
+            "Polarity": "High",
+            "SubType": "LeakSensingCable",
+            "Type": "GPIOLeakDetector"
+        },
+        {
+            "Level": "Warning",
+            "Name": "Rainbow3_Cold_Plate",
+            "PinName": "LEAK_R3_COLDPLATE",
+            "Polarity": "High",
+            "SubType": "LeakSensingCable",
+            "Type": "GPIOLeakDetector"
+        },
+        {
+            "Level": "Warning",
+            "Name": "Rainbow2_Cold_Plate",
+            "PinName": "LEAK_R2_COLDPLATE",
+            "Polarity": "High",
+            "SubType": "LeakSensingCable",
+            "Type": "GPIOLeakDetector"
+        },
+        {
+            "Level": "Warning",
+            "Name": "Rainbow1_Cold_Plate",
+            "PinName": "LEAK_R1_COLDPLATE",
+            "Polarity": "High",
+            "SubType": "LeakSensingCable",
+            "Type": "GPIOLeakDetector"
+        },
+        {
+            "Level": "Warning",
+            "Name": "Rainbow0_Cold_Plate",
+            "PinName": "LEAK_R0_COLDPLATE",
+            "Polarity": "High",
+            "SubType": "LeakSensingCable",
+            "Type": "GPIOLeakDetector"
+        },
+        {
+            "Level": "Warning",
+            "Name": "MB_Cold_Plate",
+            "PinName": "LEAK_MB_COLDPLATE",
+            "Polarity": "High",
+            "SubType": "LeakSensingCable",
+            "Type": "GPIOLeakDetector"
+        },
+        {
             "Address": "0x46",
             "Bus": 19,
             "Labels": [
