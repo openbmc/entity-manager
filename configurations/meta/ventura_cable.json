@@ -305,5 +305,43 @@
             "Length": 0.9,
             "Type": "Copper"
         }
+    },
+    {
+        "Exposes": [],
+        "Name": "$Name",
+        "Probe": [
+            "xyz.openbmc_project.Inventory.Source.DevicePresence({'Name': 'ReturnValve'})"
+        ],
+        "Type": "Cable",
+        "xyz.openbmc_project.Inventory.Decorator.Asset": {
+            "Manufacturer": "Unknown",
+            "Model": "Unknown",
+            "PartNumber": "Unknown",
+            "SerialNumber": "Unknown",
+            "SparePartNumber": "07-100705"
+        },
+        "xyz.openbmc_project.Inventory.Decorator.Cable": {
+            "Length": 0.46,
+            "Type": "Copper"
+        }
+    },
+    {
+        "Exposes": [],
+        "Name": "$Name",
+        "Probe": [
+            "xyz.openbmc_project.Inventory.Source.DevicePresence({'Name': 'SupplyValve'})"
+        ],
+        "Type": "Cable",
+        "xyz.openbmc_project.Inventory.Decorator.Asset": {
+            "Manufacturer": "Unknown",
+            "Model": "Unknown",
+            "PartNumber": "Unknown",
+            "SerialNumber": "Unknown",
+            "SparePartNumber": "07-100704"
+        },
+        "xyz.openbmc_project.Inventory.Decorator.Cable": {
+            "Length": 0.46,
+            "Type": "Copper"
+        }
     }
 ]
