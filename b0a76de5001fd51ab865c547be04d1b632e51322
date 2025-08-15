@@ -16,6 +16,24 @@
       "message": "Based on your next patch to add configurations using this, it looks like this is following some fixed format, can you form a regex for that and make it part of the schema?\n\nSince it\u0027s UUID, i would not expect it to be parameterized on `$bus` or something like that.",
       "revId": "b0a76de5001fd51ab865c547be04d1b632e51322",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "671bc186_72a4203c",
+        "filename": "schemas/pldm.json",
+        "patchSetId": 15
+      },
+      "lineNbr": 16,
+      "author": {
+        "id": 1002459
+      },
+      "writtenOn": "2025-08-15T20:20:30Z",
+      "side": 1,
+      "message": "Yes good idea. Added a regex for MCTPd\u0027s UUID dbus string.",
+      "parentUuid": "6db18a47_9480cdaa",
+      "revId": "b0a76de5001fd51ab865c547be04d1b632e51322",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }
