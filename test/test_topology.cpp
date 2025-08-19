@@ -146,7 +146,7 @@ TEST(Topology, Basic)
 
     EXPECT_EQ(assocs.size(), 1U);
     EXPECT_EQ(assocs[subchassisPath].size(), 1U);
-    EXPECT_EQ(assocs[subchassisPath][0], subchassisAssoc);
+    EXPECT_TRUE(assocs[subchassisPath].contains(subchassisAssoc));
 }
 
 TEST(Topology, BasicPower)
@@ -162,8 +162,8 @@ TEST(Topology, BasicPower)
 
     EXPECT_EQ(assocs.size(), 1U);
     EXPECT_EQ(assocs[subchassisPath].size(), 2U);
-    EXPECT_EQ(assocs[subchassisPath][0], subchassisAssoc);
-    EXPECT_EQ(assocs[subchassisPath][1], powerAssoc);
+    EXPECT_TRUE(assocs[subchassisPath].contains(subchassisAssoc));
+    EXPECT_TRUE(assocs[subchassisPath].contains(powerAssoc));
 }
 
 TEST(Topology, NoNewBoards)
@@ -198,9 +198,9 @@ TEST(Topology, 2Subchassis)
 
     EXPECT_EQ(assocs.size(), 2U);
     EXPECT_EQ(assocs[subchassisPath].size(), 1U);
-    EXPECT_EQ(assocs[subchassisPath][0], subchassisAssoc);
+    EXPECT_TRUE(assocs[subchassisPath].contains(subchassisAssoc));
     EXPECT_EQ(assocs[subchassisPath + "2"].size(), 1U);
-    EXPECT_EQ(assocs[subchassisPath + "2"][0], subchassisAssoc);
+    EXPECT_TRUE(assocs[subchassisPath + "2"].contains(subchassisAssoc));
 }
 
 TEST(Topology, OneNewBoard)
@@ -219,7 +219,7 @@ TEST(Topology, OneNewBoard)
 
     EXPECT_EQ(assocs.size(), 1U);
     EXPECT_EQ(assocs[subchassisPath].size(), 1U);
-    EXPECT_EQ(assocs[subchassisPath][0], subchassisAssoc);
+    EXPECT_TRUE(assocs[subchassisPath].contains(subchassisAssoc));
 }
 
 TEST(Topology, 2Superchassis)
@@ -296,9 +296,9 @@ TEST(Topology, Remove)
 
         EXPECT_EQ(assocs.size(), 2U);
         EXPECT_EQ(assocs[subchassisPath].size(), 1U);
-        EXPECT_EQ(assocs[subchassisPath][0], subchassisAssoc);
+        EXPECT_TRUE(assocs[subchassisPath].contains(subchassisAssoc));
         EXPECT_EQ(assocs[subchassisPath + "2"].size(), 1U);
-        EXPECT_EQ(assocs[subchassisPath + "2"][0], subchassisAssoc);
+        EXPECT_TRUE(assocs[subchassisPath + "2"].contains(subchassisAssoc));
     }
 
     {
@@ -307,7 +307,7 @@ TEST(Topology, Remove)
 
         EXPECT_EQ(assocs.size(), 1U);
         EXPECT_EQ(assocs[subchassisPath + "2"].size(), 1U);
-        EXPECT_EQ(assocs[subchassisPath + "2"][0], subchassisAssoc);
+        EXPECT_TRUE(assocs[subchassisPath + "2"].contains(subchassisAssoc));
     }
 
     {

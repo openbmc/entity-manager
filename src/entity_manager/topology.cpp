@@ -51,10 +51,10 @@ void Topology::addDownstreamPort(const Path& path,
     }
 }
 
-std::unordered_map<std::string, std::vector<Association>> Topology::getAssocs(
+std::unordered_map<std::string, std::set<Association>> Topology::getAssocs(
     const std::map<Path, BoardName>& boards)
 {
-    std::unordered_map<std::string, std::vector<Association>> result;
+    std::unordered_map<std::string, std::set<Association>> result;
 
     // look at each upstream port type
     for (const auto& upstreamPortPair : upstreamPorts)
@@ -77,12 +77,12 @@ std::unordered_map<std::string, std::vector<Association>> Topology::getAssocs(
                     // The downstream path must be one we care about.
                     if (boards.contains(downstream))
                     {
-                        result[downstream].emplace_back("contained_by",
-                                                        "containing", upstream);
+                        result[downstream].insert(
+                            {"contained_by", "containing", upstream});
                         if (powerPaths.contains(downstream))
                         {
-                            result[downstream].emplace_back(
-                                "powering", "powered_by", upstream);
+                            result[downstream].insert(
+                                {"powering", "powered_by", upstream});
                         }
                     }
                 }

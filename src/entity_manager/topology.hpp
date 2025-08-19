@@ -15,7 +15,7 @@ class Topology
     void addBoard(const std::string& path, const std::string& boardType,
                   const std::string& boardName,
                   const nlohmann::json& exposesItem);
-    std::unordered_map<std::string, std::vector<Association>> getAssocs(
+    std::unordered_map<std::string, std::set<Association>> getAssocs(
         const std::map<std::string, std::string>& boards);
     void remove(const std::string& boardName);
 
