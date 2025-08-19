@@ -18,27 +18,36 @@ void Topology::addBoard(const std::string& path, const std::string& boardType,
 
     if (exposesType == "DownstreamPort")
     {
-        auto findConnectsTo = exposesItem.find("ConnectsToType");
-        if (findConnectsTo == exposesItem.end())
-        {
-            std::cerr << "Board at path " << path
-                      << " is missing ConnectsToType" << std::endl;
-            return;
-        }
-        PortType connectsTo = findConnectsTo->get<std::string>();
-
-        downstreamPorts[connectsTo].emplace_back(path);
-        boardTypes[path] = boardType;
-        auto findPoweredBy = exposesItem.find("PowerPort");
-        if (findPoweredBy != exposesItem.end())
-        {
-            powerPaths.insert(path);
-        }
+        addDownstreamPort(path, exposesItem);
     }
     else if (exposesType.ends_with("Port"))
     {
         upstreamPorts[exposesType].emplace_back(path);
-        boardTypes[path] = boardType;
+    }
+    else
+    {
+        return;
+    }
+    boardTypes[path] = boardType;
+}
+
+void Topology::addDownstreamPort(const Path& path,
+                                 const nlohmann::json& exposesItem)
+{
+    auto findConnectsTo = exposesItem.find("ConnectsToType");
+    if (findConnectsTo == exposesItem.end())
+    {
+        std::cerr << "Board at path " << path << " is missing ConnectsToType"
+                  << std::endl;
+        return;
+    }
+    PortType connectsTo = findConnectsTo->get<std::string>();
+
+    downstreamPorts[connectsTo].emplace_back(path);
+    auto findPoweredBy = exposesItem.find("PowerPort");
+    if (findPoweredBy != exposesItem.end())
+    {
+        powerPaths.insert(path);
     }
 }
 
