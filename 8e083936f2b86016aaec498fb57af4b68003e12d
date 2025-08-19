@@ -1,6 +1,23 @@
 {
   "comments": [
     {
+      "unresolved": true,
+      "key": {
+        "uuid": "34d20c0c_5543d913",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 99,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-08-19T18:48:27Z",
+      "side": 1,
+      "message": "Your UT doesn\u0027t show the xyz.openbmc_project.Inventory.Source.DevicePresence and Fan inventory items (which gets probed). Can you please test and make sure they are being exposed?",
+      "revId": "8e083936f2b86016aaec498fb57af4b68003e12d",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": false,
       "key": {
         "uuid": "f526b637_c0aab93a",
@@ -14,6 +31,24 @@
       "writtenOn": "2025-08-19T17:00:47Z",
       "side": 1,
       "message": "(I\u0027m not convinced this specific commit should be held up but we should do something to fix DevicePresence overall.",
+      "revId": "8e083936f2b86016aaec498fb57af4b68003e12d",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "ff1347b6_6d174ba5",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-08-19T18:48:27Z",
+      "side": 1,
+      "message": "Yes, agree we should not hold the commit.",
+      "parentUuid": "f526b637_c0aab93a",
       "revId": "8e083936f2b86016aaec498fb57af4b68003e12d",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
@@ -49,6 +84,24 @@
       "side": 1,
       "message": "Yes.  Quite likely to collide.\n\n@paligill@gmail.com - I think we need to fix something here with the DevicePresence code.  Even a name like \"LeakPortN\" is likely to collide in the future.  Can we do something in the device presence daemon to pull a Compatible or Manufacturer or something from the underlying device and expose it in DevicePresence also?",
       "parentUuid": "d3b0b4c8_0652f891",
+      "revId": "8e083936f2b86016aaec498fb57af4b68003e12d",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b7fb95d8_d8dd6320",
+        "filename": "configurations/meta/minerva_fanboard_misc.json",
+        "patchSetId": 1
+      },
+      "lineNbr": 6,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-08-19T18:48:27Z",
+      "side": 1,
+      "message": "\u003e Yes.  Quite likely to collide.\n\u003e \n\u003e @paligill@gmail.com - I think we need to fix something here with the DevicePresence code.  Even a name like \"LeakPortN\" is likely to collide in the future.  Can we do something in the device presence daemon to pull a Compatible or Manufacturer or something from the underlying device and expose it in DevicePresence also?\n\nYes, getting some info from the parent inventory item and exposing it via xyz.openbmc_project.Inventory.Source.DevicePresence interface will be good. The Name and Type will always be there for every inventory item.\n\\+ @alexander.hansen@9elements.com to look into this.",
+      "parentUuid": "d8a730db_6cc3daf7",
       "revId": "8e083936f2b86016aaec498fb57af4b68003e12d",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
