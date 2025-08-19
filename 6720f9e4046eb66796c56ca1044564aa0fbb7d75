@@ -16,6 +16,24 @@
       "message": "Can you add the new association names into the message, or in first paragraph below? \n\nAlso, there is documentation on how to name associations at https://github.com/openbmc/phosphor-dbus-interfaces/blob/master/requirements.md#associations:\n\n- The `{primary element}` is `{primary association}` the `{secondary element}`.\n- The `{secondary element}` is `{secondary association}` the\n  `{primary element}`.",
       "revId": "6720f9e4046eb66796c56ca1044564aa0fbb7d75",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "49988783_af56f2d1",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 23
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-08-19T15:09:45Z",
+      "side": 1,
+      "message": "Good to know this naming guide 👍\n\nDo you think `probing` / `probed_by` is ok?\n\n\nThe sentences make sense also\n\nThe `{primary element}` is `probed_by` the `{secondary element}`\nThe `{secondary element}` is `probing` the `{primary element}`",
+      "parentUuid": "dae10f5e_4503b46d",
+      "revId": "6720f9e4046eb66796c56ca1044564aa0fbb7d75",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }
