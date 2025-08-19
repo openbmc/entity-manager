@@ -25,6 +25,11 @@ class Topology
     using BoardName = std::string;
     using PortType = std::string;
 
+    void addDownstreamPort(const Path& path, const BoardType& boardType,
+                           const nlohmann::json& exposesItem);
+    void addUpstreamPort(const Path& path, const BoardType& boardType,
+                         const PortType& exposesType);
+
     std::unordered_map<PortType, std::vector<Path>> upstreamPorts;
     std::unordered_map<PortType, std::vector<Path>> downstreamPorts;
     std::set<Path> powerPaths;
