@@ -18,6 +18,24 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "7c8bb192_7597a4a3",
+        "filename": "src/entity_manager/config_record.hpp",
+        "patchSetId": 16
+      },
+      "lineNbr": 8,
+      "author": {
+        "id": 1002222
+      },
+      "writtenOn": "2025-08-19T10:06:25Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "ec8a39e4_633ec35d",
+      "revId": "83de57a96ed8741cafceafdae2b7bd7e31886007",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "f4567d5c_8ad68033",
@@ -37,6 +55,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "fc1930a0_31d13b54",
+        "filename": "src/entity_manager/config_record.hpp",
+        "patchSetId": 16
+      },
+      "lineNbr": 13,
+      "author": {
+        "id": 1002222
+      },
+      "writtenOn": "2025-08-19T10:06:25Z",
+      "side": 1,
+      "message": "I would like to stay with ConfigRecord, because it is a hint, that this is just a structure for processing, but not the actual configuration.",
+      "parentUuid": "f4567d5c_8ad68033",
+      "revId": "83de57a96ed8741cafceafdae2b7bd7e31886007",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "9b7878e1_b27cf97a",
         "filename": "src/entity_manager/config_record.hpp",
         "patchSetId": 16
@@ -48,6 +84,24 @@
       "writtenOn": "2025-08-01T12:12:45Z",
       "side": 1,
       "message": "\"extracted from an EM config\"",
+      "revId": "83de57a96ed8741cafceafdae2b7bd7e31886007",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "965865ac_d96cfa29",
+        "filename": "src/entity_manager/config_record.hpp",
+        "patchSetId": 16
+      },
+      "lineNbr": 29,
+      "author": {
+        "id": 1002222
+      },
+      "writtenOn": "2025-08-19T10:06:25Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "9b7878e1_b27cf97a",
       "revId": "83de57a96ed8741cafceafdae2b7bd7e31886007",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
@@ -86,6 +140,24 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "fb08d9a0_a6d8d0cf",
+        "filename": "src/entity_manager/configuration.cpp",
+        "patchSetId": 16
+      },
+      "lineNbr": 133,
+      "author": {
+        "id": 1002222
+      },
+      "writtenOn": "2025-08-19T10:06:25Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "dd979bde_7c772c65",
+      "revId": "83de57a96ed8741cafceafdae2b7bd7e31886007",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "1478e757_c3f303ec",
@@ -99,6 +171,24 @@
       "writtenOn": "2025-08-01T12:12:45Z",
       "side": 1,
       "message": "The error message is wrong since in `configuration.cpp` in `loadConfigurations` we insert EM configs (of which there can be multiple in single json file).\n\nIt\u0027s been wrong before but we should not copy-paste this error.",
+      "revId": "83de57a96ed8741cafceafdae2b7bd7e31886007",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "549ed3dc_b6610810",
+        "filename": "src/entity_manager/configuration.cpp",
+        "patchSetId": 16
+      },
+      "lineNbr": 142,
+      "author": {
+        "id": 1002222
+      },
+      "writtenOn": "2025-08-19T10:06:25Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "1478e757_c3f303ec",
       "revId": "83de57a96ed8741cafceafdae2b7bd7e31886007",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
@@ -133,6 +223,24 @@
       "writtenOn": "2025-08-01T12:12:45Z",
       "side": 1,
       "message": "`lg2::error`",
+      "revId": "83de57a96ed8741cafceafdae2b7bd7e31886007",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "27fdaaff_8e33aa23",
+        "filename": "src/entity_manager/configuration.cpp",
+        "patchSetId": 16
+      },
+      "lineNbr": 150,
+      "author": {
+        "id": 1002222
+      },
+      "writtenOn": "2025-08-19T10:06:25Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "4f12ba0b_b84a1694",
       "revId": "83de57a96ed8741cafceafdae2b7bd7e31886007",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
