@@ -99,41 +99,23 @@ void Topology::remove(const std::string& boardName)
 
     boardNames.erase(boardFind);
 
-    for (auto it = upstreamPorts.begin(); it != upstreamPorts.end();)
+    for (auto& upstreamPort : upstreamPorts)
     {
-        auto pathIt =
-            std::find(it->second.begin(), it->second.end(), boardPath);
-        if (pathIt != it->second.end())
+        auto pathIt = std::find(upstreamPort.second.begin(),
+                                upstreamPort.second.end(), boardPath);
+        if (pathIt != upstreamPort.second.end())
         {
-            it->second.erase(pathIt);
-        }
-
-        if (it->second.empty())
-        {
-            it = upstreamPorts.erase(it);
-        }
-        else
-        {
-            ++it;
+            upstreamPort.second.erase(pathIt);
         }
     }
 
-    for (auto it = downstreamPorts.begin(); it != downstreamPorts.end();)
+    for (auto& downstreamPort : downstreamPorts)
     {
-        auto pathIt =
-            std::find(it->second.begin(), it->second.end(), boardPath);
-        if (pathIt != it->second.end())
+        auto pathIt = std::find(downstreamPort.second.begin(),
+                                downstreamPort.second.end(), boardPath);
+        if (pathIt != downstreamPort.second.end())
         {
-            it->second.erase(pathIt);
-        }
-
-        if (it->second.empty())
-        {
-            it = downstreamPorts.erase(it);
-        }
-        else
-        {
-            ++it;
+            downstreamPort.second.erase(pathIt);
         }
     }
 }
