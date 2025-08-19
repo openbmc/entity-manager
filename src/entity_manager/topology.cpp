@@ -1,6 +1,6 @@
 #include "topology.hpp"
 
-#include <iostream>
+#include "phosphor-logging/lg2.hpp"
 
 void Topology::addBoard(const std::string& path, const std::string& boardType,
                         const std::string& boardName,
@@ -37,8 +37,8 @@ void Topology::addDownstreamPort(const Path& path,
     auto findConnectsTo = exposesItem.find("ConnectsToType");
     if (findConnectsTo == exposesItem.end())
     {
-        std::cerr << "Board at path " << path << " is missing ConnectsToType"
-                  << std::endl;
+        lg2::error("Board at path {PATH} is missing ConnectsToType", "PATH",
+                   path);
         return;
     }
     PortType connectsTo = findConnectsTo->get<std::string>();
