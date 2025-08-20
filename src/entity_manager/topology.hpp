@@ -7,6 +7,9 @@
 
 using Association = std::tuple<std::string, std::string, std::string>;
 
+using BoardPathsView = decltype(std::views::keys(
+    std::declval<std::map<std::string, std::string>&>()));
+
 class Topology
 {
   public:
@@ -16,7 +19,7 @@ class Topology
                   const std::string& boardName,
                   const nlohmann::json& exposesItem);
     std::unordered_map<std::string, std::set<Association>> getAssocs(
-        const std::map<std::string, std::string>& boards);
+        BoardPathsView boardPaths);
     void remove(const std::string& boardName);
 
   private:

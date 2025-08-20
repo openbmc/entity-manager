@@ -87,7 +87,7 @@ void EntityManager::postToDbus(const nlohmann::json& newConfiguration)
     }
 
     for (const auto& [assocPath, assocPropValue] :
-         topology.getAssocs(newBoards))
+         topology.getAssocs(std::views::keys(newBoards)))
     {
         auto findBoard = newBoards.find(assocPath);
         if (findBoard == newBoards.end())
