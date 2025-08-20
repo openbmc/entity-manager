@@ -29,6 +29,13 @@ class Topology
     using BoardName = std::string;
     using PortType = std::string;
 
+    // @brief: fill associations map with the associations for a port identifier
+    // such as 'MB Upstream Port'
+    void fillAssocsForPortId(
+        std::unordered_map<std::string, std::set<Association>>& result,
+        BoardPathsView boardPaths, const std::set<Path>& upstreamPaths,
+        const std::set<Path>& downstreamPaths);
+
     void addDownstreamPort(const Path& path, const BoardType& boardType,
                            const nlohmann::json& exposesItem);
     void addUpstreamPort(const Path& path, const BoardType& boardType,
