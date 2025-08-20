@@ -36,6 +36,11 @@ class Topology
         BoardPathsView boardPaths, const std::set<Path>& upstreamPaths,
         const std::set<Path>& downstreamPaths);
 
+    void fillAssocForPortId(
+        std::unordered_map<std::string, std::set<Association>>& result,
+        BoardPathsView boardPaths, const Path& upstream,
+        const Path& downstream);
+
     void addDownstreamPort(const Path& path, const BoardType& boardType,
                            const nlohmann::json& exposesItem);
     void addUpstreamPort(const Path& path, const BoardType& boardType,
