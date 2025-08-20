@@ -2,13 +2,13 @@
     "Exposes": [
         {
             "Address": "0x57",
-            "Bus": "$bus",
-            "Name": "PSU $index FRU",
+            "Bus": "${bus}",
+            "Name": "PSU ${index} FRU",
             "Type": "EEPROM"
         },
         {
             "Address": "0x40",
-            "Bus": "$bus",
+            "Bus": "${bus}",
             "Labels": [
                 "iin",
                 "iout1",
@@ -25,18 +25,18 @@
                 "temp2",
                 "temp3"
             ],
-            "Name": "PSU $index",
+            "Name": "PSU ${index}",
             "PollRate": 5.0,
             "Type": "pmbus"
         }
     ],
-    "Name": "Delta AWF2DC3200W $index",
+    "Name": "Delta AWF2DC3200W ${index}",
     "Probe": "xyz.openbmc_project.FruDevice({'PRODUCT_PRODUCT_NAME': 'AWF2DC3200W'})",
     "Type": "PowerSupply",
     "xyz.openbmc_project.Inventory.Decorator.Asset": {
-        "Manufacturer": "$PRODUCT_MANUFACTURER",
-        "Model": "$PRODUCT_PRODUCT_NAME",
-        "PartNumber": "$PRODUCT_PART_NUMBER",
-        "SerialNumber": "$PRODUCT_SERIAL_NUMBER"
+        "Manufacturer": "${PRODUCT_MANUFACTURER}",
+        "Model": "${PRODUCT_PRODUCT_NAME}",
+        "PartNumber": "${PRODUCT_PART_NUMBER}",
+        "SerialNumber": "${PRODUCT_SERIAL_NUMBER}"
     }
 }

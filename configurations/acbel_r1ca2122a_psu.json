@@ -1,20 +1,20 @@
 {
     "Exposes": [
         {
-            "Address": "$address",
-            "Bus": "$bus",
-            "Name": "PSU$ADDRESS % 4 + 1 FRU",
+            "Address": "${address}",
+            "Bus": "${bus}",
+            "Name": "PSU${ADDRESS} % 4 + 1 FRU",
             "Type": "EEPROM"
         },
         {
-            "Address": "$address",
-            "Bus": "$bus",
-            "Name": "PSU$address % 4 + 1 ADDR",
+            "Address": "${address}",
+            "Bus": "${bus}",
+            "Name": "PSU${address} % 4 + 1 ADDR",
             "Type": "PSUPresence"
         },
         {
-            "Address": "$ADDRESS - 24",
-            "Bus": "$bus",
+            "Address": "${ADDRESS} - 24",
+            "Bus": "${bus}",
             "Labels": [
                 "temp1",
                 "pin",
@@ -23,7 +23,7 @@
                 "fan1",
                 "pout1"
             ],
-            "Name": "PSU$ADDRESS % 4 + 1",
+            "Name": "PSU${ADDRESS} % 4 + 1",
             "Thresholds": [
                 {
                     "Direction": "greater than",
@@ -85,16 +85,16 @@
             "Type": "cffps"
         }
     ],
-    "Name": "ACBEL RICA PSU$ADDRESS % 4 + 1",
+    "Name": "ACBEL RICA PSU${ADDRESS} % 4 + 1",
     "Probe": "xyz.openbmc_project.FruDevice({'PRODUCT_PRODUCT_NAME': 'R1CA2122A*'})",
     "Type": "PowerSupply",
     "xyz.openbmc_project.Inventory.Decorator.Asset": {
-        "Manufacturer": "$PRODUCT_MANUFACTURER",
-        "Model": "$PRODUCT_PRODUCT_NAME",
-        "PartNumber": "$PRODUCT_PART_NUMBER",
-        "SerialNumber": "$PRODUCT_SERIAL_NUMBER"
+        "Manufacturer": "${PRODUCT_MANUFACTURER}",
+        "Model": "${PRODUCT_PRODUCT_NAME}",
+        "PartNumber": "${PRODUCT_PART_NUMBER}",
+        "SerialNumber": "${PRODUCT_SERIAL_NUMBER}"
     },
     "xyz.openbmc_project.Inventory.Decorator.AssetTag": {
-        "AssetTag": "$PRODUCT_ASSET_TAG"
+        "AssetTag": "${PRODUCT_ASSET_TAG}"
     }
 }

@@ -2,7 +2,7 @@
     "Exposes": [
         {
             "Address": "0x1f",
-            "Bus": "$bus",
+            "Bus": "${bus}",
             "Labels": [
                 "in0",
                 "in1",
@@ -13,7 +13,7 @@
                 "in6",
                 "in7"
             ],
-            "Name": "FANBOARD$bus % 30 ADC",
+            "Name": "FANBOARD${bus} % 30 ADC",
             "Thresholds": [
                 {
                     "Direction": "greater than",
@@ -258,47 +258,47 @@
             ],
             "Type": "ADC128D818",
             "in0_Max": 2.5,
-            "in0_Name": "FANBOARD$bus % 30 ADC_FAN$bus % 30 * 2 + 8 48V_CURR_A",
+            "in0_Name": "FANBOARD${bus} % 30 ADC_FAN${bus} % 30 * 2 + 8 48V_CURR_A",
             "in0_Scale": 240,
             "in1_Max": 2.5,
-            "in1_Name": "FANBOARD$bus % 30 ADC_FAN$bus % 30 * 2 + 4 48V_CURR_A",
+            "in1_Name": "FANBOARD${bus} % 30 ADC_FAN${bus} % 30 * 2 + 4 48V_CURR_A",
             "in1_Scale": 240,
             "in2_Max": 2.5,
-            "in2_Name": "FANBOARD$bus % 30 ADC_FAN$bus % 30 * 2 + 0 48V_CURR_A",
+            "in2_Name": "FANBOARD${bus} % 30 ADC_FAN${bus} % 30 * 2 + 0 48V_CURR_A",
             "in2_Scale": 240,
             "in3_Max": 2.5,
-            "in3_Name": "FANBOARD$bus % 30 ADC_FAN$bus % 30 * 2 + 9 48V_CURR_A",
+            "in3_Name": "FANBOARD${bus} % 30 ADC_FAN${bus} % 30 * 2 + 9 48V_CURR_A",
             "in3_Scale": 240,
             "in4_Max": 2.5,
-            "in4_Name": "FANBOARD$bus % 30 ADC_FAN$bus % 30 * 2 + 5 48V_CURR_A",
+            "in4_Name": "FANBOARD${bus} % 30 ADC_FAN${bus} % 30 * 2 + 5 48V_CURR_A",
             "in4_Scale": 240,
             "in5_Max": 2.5,
-            "in5_Name": "FANBOARD$bus % 30 ADC_FAN$bus % 30 * 2 + 1 48V_CURR_A",
+            "in5_Name": "FANBOARD${bus} % 30 ADC_FAN${bus} % 30 * 2 + 1 48V_CURR_A",
             "in5_Scale": 240,
-            "in6_Name": "FANBOARD$bus % 30 ADC_48V_AUX_VOLT_V",
+            "in6_Name": "FANBOARD${bus} % 30 ADC_48V_AUX_VOLT_V",
             "in6_Scale": 31.9458,
-            "in7_Name": "FANBOARD$bus % 30 ADC_3V3_STBY_VOLT_V",
+            "in7_Name": "FANBOARD${bus} % 30 ADC_3V3_STBY_VOLT_V",
             "in7_Scale": 500
         },
         {
-            "Address": "$address",
-            "Bus": "$bus",
-            "Name": "Fan Board $bus % 30 FRU",
+            "Address": "${address}",
+            "Bus": "${bus}",
+            "Name": "Fan Board ${bus} % 30 FRU",
             "Type": "EEPROM"
         },
         {
             "Address": "0x20",
-            "Bus": "$bus",
+            "Bus": "${bus}",
             "Connector": {
-                "Name": "FANBOARD$bus % 30 FAN$bus % 30 * 2 + 0 TACH_INLET_SPEED_RPM",
+                "Name": "FANBOARD${bus} % 30 FAN${bus} % 30 * 2 + 0 TACH_INLET_SPEED_RPM",
                 "Pwm": 2,
-                "PwmName": "FANBOARD$bus % 30 FAN$bus % 30 * 2 + 0 PWM_PCT",
+                "PwmName": "FANBOARD${bus} % 30 FAN${bus} % 30 * 2 + 0 PWM_PCT",
                 "Tachs": [
                     3
                 ]
             },
             "Index": 3,
-            "Name": "FANBOARD$bus % 30 FAN$bus % 30 * 2 + 0 TACH_INLET_SPEED_RPM",
+            "Name": "FANBOARD${bus} % 30 FAN${bus} % 30 * 2 + 0 TACH_INLET_SPEED_RPM",
             "PowerState": "Always",
             "Thresholds": [
                 {
@@ -327,17 +327,17 @@
         },
         {
             "Address": "0x20",
-            "Bus": "$bus",
+            "Bus": "${bus}",
             "Connector": {
-                "Name": "FANBOARD$bus % 30 FAN$bus % 30 * 2 + 0 TACH_OUTLET_SPEED_RPM",
+                "Name": "FANBOARD${bus} % 30 FAN${bus} % 30 * 2 + 0 TACH_OUTLET_SPEED_RPM",
                 "Pwm": 2,
-                "PwmName": "FANBOARD$bus % 30 FAN$bus % 30 * 2 + 0 PWM_PCT",
+                "PwmName": "FANBOARD${bus} % 30 FAN${bus} % 30 * 2 + 0 PWM_PCT",
                 "Tachs": [
                     10
                 ]
             },
             "Index": 10,
-            "Name": "FANBOARD$bus % 30 FAN$bus % 30 * 2 + 0 TACH_OUTLET_SPEED_RPM",
+            "Name": "FANBOARD${bus} % 30 FAN${bus} % 30 * 2 + 0 TACH_OUTLET_SPEED_RPM",
             "PowerState": "Always",
             "Thresholds": [
                 {
@@ -366,17 +366,17 @@
         },
         {
             "Address": "0x2f",
-            "Bus": "$bus",
+            "Bus": "${bus}",
             "Connector": {
-                "Name": "FANBOARD$bus % 30 FAN$bus % 30 * 2 + 1 TACH_INLET_SPEED_RPM",
+                "Name": "FANBOARD${bus} % 30 FAN${bus} % 30 * 2 + 1 TACH_INLET_SPEED_RPM",
                 "Pwm": 2,
-                "PwmName": "FANBOARD$bus % 30 FAN$bus % 30 * 2 + 1 PWM_PCT",
+                "PwmName": "FANBOARD${bus} % 30 FAN${bus} % 30 * 2 + 1 PWM_PCT",
                 "Tachs": [
                     3
                 ]
             },
             "Index": 3,
-            "Name": "FANBOARD$bus % 30 FAN$bus % 30 * 2 + 1 TACH_INLET_SPEED_RPM",
+            "Name": "FANBOARD${bus} % 30 FAN${bus} % 30 * 2 + 1 TACH_INLET_SPEED_RPM",
             "PowerState": "Always",
             "Thresholds": [
                 {
@@ -405,17 +405,17 @@
         },
         {
             "Address": "0x2f",
-            "Bus": "$bus",
+            "Bus": "${bus}",
             "Connector": {
-                "Name": "FANBOARD$bus % 30 FAN$bus % 30 * 2 + 1 TACH_OUTLET_SPEED_RPM",
+                "Name": "FANBOARD${bus} % 30 FAN${bus} % 30 * 2 + 1 TACH_OUTLET_SPEED_RPM",
                 "Pwm": 2,
-                "PwmName": "FANBOARD$bus % 30 FAN$bus % 30 * 2 + 1 PWM_PCT",
+                "PwmName": "FANBOARD${bus} % 30 FAN${bus} % 30 * 2 + 1 PWM_PCT",
                 "Tachs": [
                     10
                 ]
             },
             "Index": 10,
-            "Name": "FANBOARD$bus % 30 FAN$bus % 30 * 2 + 1 TACH_OUTLET_SPEED_RPM",
+            "Name": "FANBOARD${bus} % 30 FAN${bus} % 30 * 2 + 1 TACH_OUTLET_SPEED_RPM",
             "PowerState": "Always",
             "Thresholds": [
                 {
@@ -444,17 +444,17 @@
         },
         {
             "Address": "0x20",
-            "Bus": "$bus",
+            "Bus": "${bus}",
             "Connector": {
-                "Name": "FANBOARD$bus % 30 FAN$bus % 30 * 2 + 4 TACH_INLET_SPEED_RPM",
+                "Name": "FANBOARD${bus} % 30 FAN${bus} % 30 * 2 + 4 TACH_INLET_SPEED_RPM",
                 "Pwm": 1,
-                "PwmName": "FANBOARD$bus % 30 FAN$bus % 30 * 2 + 4 PWM_PCT",
+                "PwmName": "FANBOARD${bus} % 30 FAN${bus} % 30 * 2 + 4 PWM_PCT",
                 "Tachs": [
                     2
                 ]
             },
             "Index": 2,
-            "Name": "FANBOARD$bus % 30 FAN$bus % 30 * 2 + 4 TACH_INLET_SPEED_RPM",
+            "Name": "FANBOARD${bus} % 30 FAN${bus} % 30 * 2 + 4 TACH_INLET_SPEED_RPM",
             "PowerState": "Always",
             "Thresholds": [
                 {
@@ -483,17 +483,17 @@
         },
         {
             "Address": "0x20",
-            "Bus": "$bus",
+            "Bus": "${bus}",
             "Connector": {
-                "Name": "FANBOARD$bus % 30 FAN$bus % 30 * 2 + 4 TACH_OUTLET_SPEED_RPM",
+                "Name": "FANBOARD${bus} % 30 FAN${bus} % 30 * 2 + 4 TACH_OUTLET_SPEED_RPM",
                 "Pwm": 1,
-                "PwmName": "FANBOARD$bus % 30 FAN$bus % 30 * 2 + 4 PWM_PCT",
+                "PwmName": "FANBOARD${bus} % 30 FAN${bus} % 30 * 2 + 4 PWM_PCT",
                 "Tachs": [
                     9
                 ]
             },
             "Index": 9,
-            "Name": "FANBOARD$bus % 30 FAN$bus % 30 * 2 + 4 TACH_OUTLET_SPEED_RPM",
+            "Name": "FANBOARD${bus} % 30 FAN${bus} % 30 * 2 + 4 TACH_OUTLET_SPEED_RPM",
             "PowerState": "Always",
             "Thresholds": [
                 {
@@ -522,17 +522,17 @@
         },
         {
             "Address": "0x2f",
-            "Bus": "$bus",
+            "Bus": "${bus}",
             "Connector": {
-                "Name": "FANBOARD$bus % 30 FAN$bus % 30 * 2 + 5 TACH_INLET_SPEED_RPM",
+                "Name": "FANBOARD${bus} % 30 FAN${bus} % 30 * 2 + 5 TACH_INLET_SPEED_RPM",
                 "Pwm": 1,
-                "PwmName": "FANBOARD$bus % 30 FAN$bus % 30 * 2 + 5 PWM_PCT",
+                "PwmName": "FANBOARD${bus} % 30 FAN${bus} % 30 * 2 + 5 PWM_PCT",
                 "Tachs": [
                     2
                 ]
             },
             "Index": 2,
-            "Name": "FANBOARD$bus % 30 FAN$bus % 30 * 2 + 5 TACH_INLET_SPEED_RPM",
+            "Name": "FANBOARD${bus} % 30 FAN${bus} % 30 * 2 + 5 TACH_INLET_SPEED_RPM",
             "PowerState": "Always",
             "Thresholds": [
                 {
@@ -561,17 +561,17 @@
         },
         {
             "Address": "0x2f",
-            "Bus": "$bus",
+            "Bus": "${bus}",
             "Connector": {
-                "Name": "FANBOARD$bus % 30 FAN$bus % 30 * 2 + 5 TACH_OUTLET_SPEED_RPM",
+                "Name": "FANBOARD${bus} % 30 FAN${bus} % 30 * 2 + 5 TACH_OUTLET_SPEED_RPM",
                 "Pwm": 1,
-                "PwmName": "FANBOARD$bus % 30 FAN$bus % 30 * 2 + 5 PWM_PCT",
+                "PwmName": "FANBOARD${bus} % 30 FAN${bus} % 30 * 2 + 5 PWM_PCT",
                 "Tachs": [
                     9
                 ]
             },
             "Index": 9,
-            "Name": "FANBOARD$bus % 30 FAN$bus % 30 * 2 + 5 TACH_OUTLET_SPEED_RPM",
+            "Name": "FANBOARD${bus} % 30 FAN${bus} % 30 * 2 + 5 TACH_OUTLET_SPEED_RPM",
             "PowerState": "Always",
             "Thresholds": [
                 {
@@ -600,17 +600,17 @@
         },
         {
             "Address": "0x20",
-            "Bus": "$bus",
+            "Bus": "${bus}",
             "Connector": {
-                "Name": "FANBOARD$bus % 30 FAN$bus % 30 * 2 + 8 TACH_INLET_SPEED_RPM",
+                "Name": "FANBOARD${bus} % 30 FAN${bus} % 30 * 2 + 8 TACH_INLET_SPEED_RPM",
                 "Pwm": 0,
-                "PwmName": "FANBOARD$bus % 30 FAN$bus % 30 * 2 + 8 PWM_PCT",
+                "PwmName": "FANBOARD${bus} % 30 FAN${bus} % 30 * 2 + 8 PWM_PCT",
                 "Tachs": [
                     0
                 ]
             },
             "Index": 0,
-            "Name": "FANBOARD$bus % 30 FAN$bus % 30 * 2 + 8 TACH_INLET_SPEED_RPM",
+            "Name": "FANBOARD${bus} % 30 FAN${bus} % 30 * 2 + 8 TACH_INLET_SPEED_RPM",
             "PowerState": "Always",
             "Thresholds": [
                 {
@@ -639,17 +639,17 @@
         },
         {
             "Address": "0x20",
-            "Bus": "$bus",
+            "Bus": "${bus}",
             "Connector": {
-                "Name": "FANBOARD$bus % 30 FAN$bus % 30 * 2 + 8 TACH_OUTLET_SPEED_RPM",
+                "Name": "FANBOARD${bus} % 30 FAN${bus} % 30 * 2 + 8 TACH_OUTLET_SPEED_RPM",
                 "Pwm": 0,
-                "PwmName": "FANBOARD$bus % 30 FAN$bus % 30 * 2 + 8 PWM_PCT",
+                "PwmName": "FANBOARD${bus} % 30 FAN${bus} % 30 * 2 + 8 PWM_PCT",
                 "Tachs": [
                     1
                 ]
             },
             "Index": 1,
-            "Name": "FANBOARD$bus % 30 FAN$bus % 30 * 2 + 8 TACH_OUTLET_SPEED_RPM",
+            "Name": "FANBOARD${bus} % 30 FAN${bus} % 30 * 2 + 8 TACH_OUTLET_SPEED_RPM",
             "PowerState": "Always",
             "Thresholds": [
                 {
@@ -678,17 +678,17 @@
         },
         {
             "Address": "0x2f",
-            "Bus": "$bus",
+            "Bus": "${bus}",
             "Connector": {
-                "Name": "FANBOARD$bus % 30 FAN$bus % 30 * 2 + 9 TACH_INLET_SPEED_RPM",
+                "Name": "FANBOARD${bus} % 30 FAN${bus} % 30 * 2 + 9 TACH_INLET_SPEED_RPM",
                 "Pwm": 0,
-                "PwmName": "FANBOARD$bus % 30 FAN$bus % 30 * 2 + 9 PWM_PCT",
+                "PwmName": "FANBOARD${bus} % 30 FAN${bus} % 30 * 2 + 9 PWM_PCT",
                 "Tachs": [
                     0
                 ]
             },
             "Index": 0,
-            "Name": "FANBOARD$bus % 30 FAN$bus % 30 * 2 + 9 TACH_INLET_SPEED_RPM",
+            "Name": "FANBOARD${bus} % 30 FAN${bus} % 30 * 2 + 9 TACH_INLET_SPEED_RPM",
             "PowerState": "Always",
             "Thresholds": [
                 {
@@ -717,17 +717,17 @@
         },
         {
             "Address": "0x2f",
-            "Bus": "$bus",
+            "Bus": "${bus}",
             "Connector": {
-                "Name": "FANBOARD$bus % 30 FAN$bus % 30 * 2 + 9 TACH_OUTLET_SPEED_RPM",
+                "Name": "FANBOARD${bus} % 30 FAN${bus} % 30 * 2 + 9 TACH_OUTLET_SPEED_RPM",
                 "Pwm": 0,
-                "PwmName": "FANBOARD$bus % 30 FAN$bus % 30 * 2 + 9 PWM_PCT",
+                "PwmName": "FANBOARD${bus} % 30 FAN${bus} % 30 * 2 + 9 PWM_PCT",
                 "Tachs": [
                     1
                 ]
             },
             "Index": 1,
-            "Name": "FANBOARD$bus % 30 FAN$bus % 30 * 2 + 9 TACH_OUTLET_SPEED_RPM",
+            "Name": "FANBOARD${bus} % 30 FAN${bus} % 30 * 2 + 9 TACH_OUTLET_SPEED_RPM",
             "PowerState": "Always",
             "Thresholds": [
                 {
@@ -755,7 +755,7 @@
             "Type": "I2CFan"
         }
     ],
-    "Name": "Yosemite 4 Fan Board $bus % 30",
+    "Name": "Yosemite 4 Fan Board ${bus} % 30",
     "Probe": [
         "xyz.openbmc_project.FruDevice({'BOARD_PRODUCT_NAME': 'Fan Board FSC-MAX ADC-TI LED-NXP EFUSE-MAX', 'PRODUCT_PRODUCT_NAME': 'Yosemite V4'})",
         "OR",
@@ -765,20 +765,20 @@
     ],
     "Type": "Board",
     "xyz.openbmc_project.Inventory.Decorator.Asset": {
-        "BuildDate": "$BOARD_MANUFACTURE_DATE",
-        "Manufacturer": "$BOARD_MANUFACTURER",
-        "Model": "$BOARD_PRODUCT_NAME",
-        "PartNumber": "$BOARD_PART_NUMBER",
-        "SerialNumber": "$BOARD_SERIAL_NUMBER",
-        "SparePartNumber": "$BOARD_INFO_AM1"
+        "BuildDate": "${BOARD_MANUFACTURE_DATE}",
+        "Manufacturer": "${BOARD_MANUFACTURER}",
+        "Model": "${BOARD_PRODUCT_NAME}",
+        "PartNumber": "${BOARD_PART_NUMBER}",
+        "SerialNumber": "${BOARD_SERIAL_NUMBER}",
+        "SparePartNumber": "${BOARD_INFO_AM1}"
     },
     "xyz.openbmc_project.Inventory.Decorator.AssetTag": {
-        "AssetTag": "$PRODUCT_ASSET_TAG"
+        "AssetTag": "${PRODUCT_ASSET_TAG}"
     },
     "xyz.openbmc_project.Inventory.Decorator.Revision": {
-        "Version": "$PRODUCT_VERSION"
+        "Version": "${PRODUCT_VERSION}"
     },
     "xyz.openbmc_project.Inventory.Decorator.Slot": {
-        "SlotNumber": "$bus % 30"
+        "SlotNumber": "${bus} % 30"
     }
 }
