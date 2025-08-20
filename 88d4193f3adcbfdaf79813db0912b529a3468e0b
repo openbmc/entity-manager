@@ -56,6 +56,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "6666d1fa_0f3693c1",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1002520
+      },
+      "writtenOn": "2025-08-20T01:09:40Z",
+      "side": 1,
+      "message": "\u003e @jason-hsu@quantatw.com\n\u003e \n\u003e You need to also add an EM Configuration which defines the VT inventory item. This configuration should probe on reverse interface (xyz.openbmc_project.Inventory.Source.DevicePresence) exposed by gpio-presence daemon . You can refer to Ventura cables as an example https://github.com/openbmc/entity-manager/blob/master/configurations/meta/ventura_cable.json#L29 and [1] for design.\n\u003e \n\u003e \n\u003e \n\u003e [1] https://github.com/openbmc/docs/blob/master/designs/inventory/gpio-based-hardware-inventory.md\n\n@paligill@gmail.com Thanks for your suggestion. I’ve updated [ventura_cable.json](https://gerrit.openbmc.org/c/openbmc/entity-manager/+/82525/5/configurations/meta/ventura_cable.json) to include the ReturnValve and SupplyValve. Could you please help us review this update?\n\n```bash\nbusctl tree xyz.openbmc_project.EntityManager \n\n        └─ /xyz/openbmc_project/inventory/system/cable\n          ├─ /xyz/openbmc_project/inventory/system/cable/ReturnValve\n          └─ /xyz/openbmc_project/inventory/system/cable/SupplyValve\n```\n\n```bash\nbusctl introspect xyz.openbmc_project.EntityManager /xyz/openbmc_project/inventory/system/cable/ReturnValve\n\nNAME                                          TYPE      SIGNATURE RESULT/VALUE\norg.freedesktop.DBus.Introspectable           interface -         -\n.Introspect                                   method    -         s\norg.freedesktop.DBus.Peer                     interface -         -\n.GetMachineId                                 method    -         s\n.Ping                                         method    -         -\norg.freedesktop.DBus.Properties               interface -         -\n.Get                                          method    ss        v\n.GetAll                                       method    s         a{sv}\n.Set                                          method    ssv       -\n.PropertiesChanged                            signal    sa{sv}as  -\nxyz.openbmc_project.AddObject                 interface -         -\n.AddObject                                    method    a{sv}     -\nxyz.openbmc_project.Inventory.Decorator.Asset interface -         -\n.Manufacturer                                 property  s         \"Unknown\"\n.Model                                        property  s         \"Unknown\"\n.PartNumber                                   property  s         \"Unknown\"\n.SerialNumber                                 property  s         \"Unknown\"\n.SparePartNumber                              property  s         \"07-100975\"\nxyz.openbmc_project.Inventory.Decorator.Cable interface -         -\n.Length                                       property  d         0.485\n.Type                                         property  s         \"Copper\"\nxyz.openbmc_project.Inventory.Item.Cable      interface -         -\n.Name                                         property  s         \"ReturnValve\"\n.Probe                                        property  as        3 \"xyz.openbmc_project.Inventory.Source▒\n.Type                                         property  s         \"Cable\"\n\n\n```",
+      "parentUuid": "916dbe28_5d415053",
+      "revId": "88d4193f3adcbfdaf79813db0912b529a3468e0b",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "7f10e45e_d19cee5c",
         "filename": "configurations/meta/ventura_scm.json",
         "patchSetId": 1
