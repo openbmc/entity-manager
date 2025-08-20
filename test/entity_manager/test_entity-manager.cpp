@@ -240,6 +240,34 @@ TEST(TemplateCharReplace, singleHex)
     EXPECT_EQ(expected, j["foo"]);
 }
 
+TEST(TemplateCharReplace, leftOverTemplateVars)
+{
+    nlohmann::json j = {{"foo", "$EXISTENT_VAR and $NON_EXISTENT_VAR"}};
+    auto it = j.begin();
+
+    DBusInterface data;
+    data["EXISTENT_VAR"] = std::string("Replaced");
+
+    DBusObject object;
+    object["PATH"] = data;
+
+    em_utils::templateCharReplace(it, object, 0);
+
+    nlohmann::json expected = "Replaced and ";
+    EXPECT_EQ(expected, j["foo"]);
+}
+
+TEST(HandleLeftOverTemplateVars, replaceLeftOverTemplateVar)
+{
+    nlohmann::json j = {{"foo", "the Test $TEST is $TESTED"}};
+    auto it = j.begin();
+
+    em_utils::handleLeftOverTemplateVars(it);
+
+    nlohmann::json expected = "the Test  is ";
+    EXPECT_EQ(expected, j["foo"]);
+}
+
 TEST(MatchProbe, stringEqString)
 {
     nlohmann::json j = R"("foo")"_json;
