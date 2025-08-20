@@ -240,6 +240,17 @@ TEST(TemplateCharReplace, singleHex)
     EXPECT_EQ(expected, j["foo"]);
 }
 
+TEST(HandleLeftOverTemplateVars, replaceLeftOverTemplateVar)
+{
+    nlohmann::json j = {{"foo", "the Test $TEST is $TESTED"}};
+    auto it = j.begin();
+
+    em_utils::handleLeftOverTemplateVars(it);
+
+    nlohmann::json expected = "the Test  is ";
+    EXPECT_EQ(expected, j["foo"]);
+}
+
 TEST(MatchProbe, stringEqString)
 {
     nlohmann::json j = R"("foo")"_json;
