@@ -9,6 +9,7 @@
 #include <boost/algorithm/string/predicate.hpp>
 #include <boost/algorithm/string/replace.hpp>
 #include <boost/algorithm/string/split.hpp>
+#include <phosphor-logging/lg2.hpp>
 #include <sdbusplus/bus/match.hpp>
 
 #include <fstream>
@@ -21,6 +22,8 @@ namespace em_utils
 {
 
 constexpr const char* templateChar = "$";
+constexpr const char* templateVarStart = "${";
+constexpr const char* templateVarEnd = "}";
 
 bool fwVersionIsSame()
 {
@@ -60,6 +63,54 @@ bool fwVersionIsSame()
     return false;
 }
 
+void handleLeftOverTemplateVars(nlohmann::json::iterator& keyPair)
+{
+    if (keyPair.value().type() == nlohmann::json::value_t::object ||
+        keyPair.value().type() == nlohmann::json::value_t::array)
+    {
+        for (auto nextLayer = keyPair.value().begin();
+             nextLayer != keyPair.value().end(); nextLayer++)
+        {
+            handleLeftOverTemplateVars(nextLayer);
+        }
+        return;
+    }
+
+    std::string* strPtr = keyPair.value().get_ptr<std::string*>();
+    if (strPtr == nullptr)
+    {
+        return;
+    }
+
+    // Walking through the string to find ${<templateVar>}
+    while (true)
+    {
+        boost::iterator_range<std::string::const_iterator> findStart =
+            boost::ifind_first(*strPtr, std::string(templateVarStart));
+
+        if (!findStart)
+        {
+            break;
+        }
+
+        boost::iterator_range<std::string::iterator> searchRange(
+            strPtr->begin() + (findStart.end() - strPtr->begin()),
+            strPtr->end());
+        boost::iterator_range<std::string::const_iterator> findEnd =
+            boost::ifind_first(searchRange, std::string(templateVarEnd));
+
+        if (!findEnd)
+        {
+            break;
+        }
+
+        lg2::error(
+            "There's still template variable {VAR} un-replaced. Removing it from the string.\n",
+            "VAR", std::string(findStart.begin(), findEnd.end()));
+        strPtr->erase(findStart.begin(), findEnd.end());
+    }
+}
+
 // Replaces the template character like the other version of this function,
 // but checks all properties on all interfaces provided to do the substitution
 // with.
@@ -72,9 +123,11 @@ std::optional<std::string> templateCharReplace(
         auto ret = templateCharReplace(keyPair, interface, index, replaceStr);
         if (ret)
         {
+            handleLeftOverTemplateVars(keyPair);
             return ret;
         }
     }
+    handleLeftOverTemplateVars(keyPair);
     return std::nullopt;
 }
 
@@ -106,6 +159,10 @@ std::optional<std::string> templateCharReplace(
 
     boost::replace_all(*strPtr, std::string(templateChar) + "index",
                        std::to_string(index));
+    boost::replace_all(
+        *strPtr,
+        std::string(templateVarStart) + "index" + std::string(templateVarEnd),
+        std::to_string(index));
     if (replaceStr)
     {
         boost::replace_all(*strPtr, *replaceStr, std::to_string(index));
@@ -113,12 +170,19 @@ std::optional<std::string> templateCharReplace(
 
     for (const auto& [propName, propValue] : interface)
     {
-        std::string templateName = templateChar + propName;
+        std::string templateName = templateVarStart + propName + templateVarEnd;
         boost::iterator_range<std::string::const_iterator> find =
             boost::ifind_first(*strPtr, templateName);
         if (!find)
         {
-            continue;
+            // TODO - ChauLy: Remove when all configs are updated with new
+            // format
+            templateName = templateChar + propName;
+            find = boost::ifind_first(*strPtr, templateName);
+            if (!find)
+            {
+                continue;
+            }
         }
 
         size_t start = find.begin() - strPtr->begin();

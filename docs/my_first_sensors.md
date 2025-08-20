@@ -125,20 +125,20 @@ identified we know the address of the temperature sensor is 0x4c.
 {
   "Exposes": [
     {
-      "Address": "$address",
-      "Bus": "$bus",
-      "Name": "$bus great eeprom",
+      "Address": "${address}",
+      "Bus": "${bus}",
+      "Name": "${bus} great eeprom",
       "Type": "EEPROM_24C02"
     },
     {
       "Address": "0x4c",
-      "Bus": "$bus",
-      "Name": "$bus great local",
-      "Name1": "$bus great ext",
+      "Bus": "${bus}",
+      "Name": "${bus} great local",
+      "Name1": "${bus} great ext",
       "Type": "TMP441"
     }
   ],
-  "Name": "$bus Great Card",
+  "Name": "${bus} Great Card",
   "Probe": "xyz.openbmc_project.FruDevice({'PRODUCT_PRODUCT_NAME': 'Super Great'})",
   "Type": "Board"
 }
@@ -151,10 +151,10 @@ this case, we want the hardware profile to be applied when a Fru is found with
 the field `PRODUCT_PRODUCT_NAME` holding the value `Super Great`. In our system,
 this will match twice. When the probe has matched the information from that
 device is then swapped into the hardware profile via the templated variables,
-such as `$bus` or `$address`. We then shift our focus to the `Exposes` field.
-This lists the entities that are added when this hardware profile is loaded. The
-field is optional and there is a wide variety of entities that can be added this
-way.
+such as `${bus}` or `${address}`. We then shift our focus to the `Exposes`
+field. This lists the entities that are added when this hardware profile is
+loaded. The field is optional and there is a wide variety of entities that can
+be added this way.
 
 In our example we only care about the eeprom and the temperature sensor. The
 `Type` field is checked against a device export map and if it matches a known

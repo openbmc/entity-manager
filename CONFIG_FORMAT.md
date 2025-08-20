@@ -92,14 +92,14 @@ Within a configuration file, there is a JSON object which consists of multiple
 | "Bind\*"      | `"2U System Fan connector 1"`                                       | The record isn't complete and needs to be combined with another to be functional. The value is a unique reference to a record elsewhere.                                                                                                                                                                      |
 | "DisableNode" | `"Fan 1"`                                                           | Sets the status of another Entity to disabled.                                                                                                                                                                                                                                                                |
 
-Template strings in the form of "$identifier" may be used in configuration
+Template strings in the form of "${identifier}" may be used in configuration
 files. The following table describes the template strings currently defined.
 
 | Template String | Description                                                                                                                                                                                                                         |
 | :-------------- | :---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| "$bus"          | During a I2C bus scan and when the "probe" command is successful, this template string is substituted with the bus number to which the device is connected.                                                                         |
-| "$address"      | When the "probe" is successful, this template string is substituted with the (7-bit) I2C address of the FRU device.                                                                                                                 |
-| "$index"        | A run-tim enumeration. This template string is substituted with a unique index value when the "probe" command is successful. This allows multiple identical devices (e.g., HSBPs) to exist in a system but each with a unique name. |
+| "${bus}"        | During a I2C bus scan and when the "probe" command is successful, this template string is substituted with the bus number to which the device is connected.                                                                         |
+| "${address}"    | When the "probe" is successful, this template string is substituted with the (7-bit) I2C address of the FRU device.                                                                                                                 |
+| "${index}"      | A run-tim enumeration. This template string is substituted with a unique index value when the "probe" command is successful. This allows multiple identical devices (e.g., HSBPs) to exist in a system but each with a unique name. |
 
 ## Configuration HowTos
 
