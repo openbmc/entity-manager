@@ -1,5 +1,7 @@
 #include "entity_manager/topology.hpp"
 
+#include <ranges>
+
 #include "gmock/gmock.h"
 #include "gtest/gtest.h"
 
@@ -53,7 +55,7 @@ TEST(Topology, Empty)
     Topology topo;
     BoardMap boards;
 
-    auto assocs = topo.getAssocs(boards);
+    auto assocs = topo.getAssocs(std::views::keys(boards));
 
     EXPECT_EQ(assocs.size(), 0U);
 }
@@ -66,7 +68,7 @@ TEST(Topology, EmptyExposes)
     topo.addBoard(subchassisPath, "Chassis", "BoardA", nlohmann::json());
     topo.addBoard(superchassisPath, "Chassis", "BoardB", nlohmann::json());
 
-    auto assocs = topo.getAssocs(boards);
+    auto assocs = topo.getAssocs(std::views::keys(boards));
 
     EXPECT_EQ(assocs.size(), 0U);
 }
@@ -88,7 +90,7 @@ TEST(Topology, MissingConnectsTo)
     topo.addBoard(superchassisPath, "Chassis", "BoardB",
                   superchassisExposesItem);
 
-    auto assocs = topo.getAssocs(boards);
+    auto assocs = topo.getAssocs(std::views::keys(boards));
 
     EXPECT_EQ(assocs.size(), 0U);
 }
@@ -101,7 +103,7 @@ TEST(Topology, OtherExposes)
     topo.addBoard(subchassisPath, "Chassis", "BoardA", otherExposesItem);
     topo.addBoard(superchassisPath, "Chassis", "BoardB", otherExposesItem);
 
-    auto assocs = topo.getAssocs(boards);
+    auto assocs = topo.getAssocs(std::views::keys(boards));
 
     EXPECT_EQ(assocs.size(), 0U);
 }
@@ -115,7 +117,7 @@ TEST(Topology, NoMatchSubchassis)
     topo.addBoard(superchassisPath, "Chassis", "BoardB",
                   superchassisExposesItem);
 
-    auto assocs = topo.getAssocs(boards);
+    auto assocs = topo.getAssocs(std::views::keys(boards));
 
     EXPECT_EQ(assocs.size(), 0U);
 }
@@ -128,7 +130,7 @@ TEST(Topology, NoMatchSuperchassis)
     topo.addBoard(subchassisPath, "Chassis", "BoardA", subchassisExposesItem);
     topo.addBoard(superchassisPath, "Chassis", "BoardB", otherExposesItem);
 
-    auto assocs = topo.getAssocs(boards);
+    auto assocs = topo.getAssocs(std::views::keys(boards));
 
     EXPECT_EQ(assocs.size(), 0U);
 }
@@ -142,7 +144,7 @@ TEST(Topology, Basic)
     topo.addBoard(superchassisPath, "Chassis", "BoardB",
                   superchassisExposesItem);
 
-    auto assocs = topo.getAssocs(boards);
+    auto assocs = topo.getAssocs(std::views::keys(boards));
 
     EXPECT_EQ(assocs.size(), 1U);
     EXPECT_EQ(assocs[subchassisPath].size(), 1U);
@@ -158,7 +160,7 @@ TEST(Topology, BasicPower)
     topo.addBoard(superchassisPath, "Chassis", "BoardB",
                   superchassisExposesItem);
 
-    auto assocs = topo.getAssocs(boards);
+    auto assocs = topo.getAssocs(std::views::keys(boards));
 
     EXPECT_EQ(assocs.size(), 1U);
     EXPECT_EQ(assocs[subchassisPath].size(), 2U);
@@ -176,7 +178,7 @@ TEST(Topology, NoNewBoards)
                   superchassisExposesItem);
 
     // Boards A and B aren't new, so no assocs are returned.
-    auto assocs = topo.getAssocs(boards);
+    auto assocs = topo.getAssocs(std::views::keys(boards));
 
     EXPECT_EQ(assocs.size(), 0U);
 }
@@ -194,7 +196,7 @@ TEST(Topology, 2Subchassis)
     topo.addBoard(superchassisPath, "Chassis", "BoardC",
                   superchassisExposesItem);
 
-    auto assocs = topo.getAssocs(boards);
+    auto assocs = topo.getAssocs(std::views::keys(boards));
 
     EXPECT_EQ(assocs.size(), 2U);
     EXPECT_EQ(assocs[subchassisPath].size(), 1U);
@@ -215,7 +217,7 @@ TEST(Topology, OneNewBoard)
                   superchassisExposesItem);
 
     // Only the assoc for BoardA should be returned
-    auto assocs = topo.getAssocs(boards);
+    auto assocs = topo.getAssocs(std::views::keys(boards));
 
     EXPECT_EQ(assocs.size(), 1U);
     EXPECT_EQ(assocs[subchassisPath].size(), 1U);
@@ -224,7 +226,7 @@ TEST(Topology, OneNewBoard)
 
 TEST(Topology, 2Superchassis)
 {
-    const Association subchassisAssoc2 =
+    Association subchassisAssoc2 =
         std::make_tuple("contained_by", "containing", superchassisPath + "2");
 
     Topology topo;
@@ -238,7 +240,7 @@ TEST(Topology, 2Superchassis)
     topo.addBoard(superchassisPath + "2", "Chassis", "BoardC",
                   superchassisExposesItem);
 
-    auto assocs = topo.getAssocs(boards);
+    auto assocs = topo.getAssocs(std::views::keys(boards));
 
     EXPECT_EQ(assocs.size(), 1U);
     EXPECT_EQ(assocs[subchassisPath].size(), 2U);
@@ -249,7 +251,7 @@ TEST(Topology, 2Superchassis)
 
 TEST(Topology, 2SuperchassisAnd2Subchassis)
 {
-    const Association subchassisAssoc2 =
+    Association subchassisAssoc2 =
         std::make_tuple("contained_by", "containing", superchassisPath + "2");
 
     Topology topo;
@@ -266,7 +268,7 @@ TEST(Topology, 2SuperchassisAnd2Subchassis)
     topo.addBoard(superchassisPath + "2", "Chassis", "BoardD",
                   superchassisExposesItem);
 
-    auto assocs = topo.getAssocs(boards);
+    auto assocs = topo.getAssocs(std::views::keys(boards));
 
     EXPECT_EQ(assocs.size(), 2U);
     EXPECT_EQ(assocs[subchassisPath].size(), 2U);
@@ -292,7 +294,7 @@ TEST(Topology, Remove)
                   superchassisExposesItem);
 
     {
-        auto assocs = topo.getAssocs(boards);
+        auto assocs = topo.getAssocs(std::views::keys(boards));
 
         EXPECT_EQ(assocs.size(), 2U);
         EXPECT_EQ(assocs[subchassisPath].size(), 1U);
@@ -303,7 +305,7 @@ TEST(Topology, Remove)
 
     {
         topo.remove("BoardA");
-        auto assocs = topo.getAssocs(boards);
+        auto assocs = topo.getAssocs(std::views::keys(boards));
 
         EXPECT_EQ(assocs.size(), 1U);
         EXPECT_EQ(assocs[subchassisPath + "2"].size(), 1U);
@@ -312,7 +314,7 @@ TEST(Topology, Remove)
 
     {
         topo.remove("BoardB");
-        auto assocs = topo.getAssocs(boards);
+        auto assocs = topo.getAssocs(std::views::keys(boards));
 
         EXPECT_EQ(assocs.size(), 0U);
     }
