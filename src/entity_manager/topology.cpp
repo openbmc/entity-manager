@@ -22,7 +22,7 @@ void Topology::addBoard(const std::string& path, const std::string& boardType,
     }
     else if (exposesType.ends_with("Port"))
     {
-        upstreamPorts[exposesType].emplace_back(path);
+        upstreamPorts[exposesType].insert(path);
     }
     else
     {
@@ -43,7 +43,7 @@ void Topology::addDownstreamPort(const Path& path,
     }
     PortType connectsTo = findConnectsTo->get<std::string>();
 
-    downstreamPorts[connectsTo].emplace_back(path);
+    downstreamPorts[connectsTo].insert(path);
     auto findPoweredBy = exposesItem.find("PowerPort");
     if (findPoweredBy != exposesItem.end())
     {
@@ -110,11 +110,11 @@ void Topology::remove(const std::string& boardName)
 
     for (auto& upstreamPort : upstreamPorts)
     {
-        std::erase(upstreamPort.second, boardPath);
+        upstreamPort.second.erase(boardPath);
     }
 
     for (auto& downstreamPort : downstreamPorts)
     {
-        std::erase(downstreamPort.second, boardPath);
+        downstreamPort.second.erase(boardPath);
     }
 }
