@@ -11,7 +11,7 @@
                 "Type": {
                     "description": "This enum may be extended as described in the design",
                     "type": "string",
-                    "enum": ["MB Upstream Port"]
+                    "enum": ["MB Upstream Port", "BackplanePort"]
                 }
             },
             "required": ["Name", "Type"],
@@ -27,7 +27,7 @@
                 "ConnectsToType": {
                     "description": "Should be equal to the 'Type' property on the upstream port",
                     "type": "string",
-                    "const": "MB Upstream Port"
+                    "enum": ["MB Upstream Port", "BackplanePort"]
                 },
                 "PowerPort": {
                     "type": "boolean"
