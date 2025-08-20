@@ -91,17 +91,21 @@ void Topology::fillAssocForPortId(
     std::unordered_map<std::string, std::set<Association>>& result,
     BoardPathsView boardPaths, const Path& upstream, const Path& downstream)
 {
-    if (boardTypes[upstream] == "Chassis" || boardTypes[upstream] == "Board")
+    if (boardTypes[upstream] != "Chassis" && boardTypes[upstream] != "Board")
     {
-        // The downstream path must be one we care about.
-        if (std::ranges::contains(boardPaths, downstream))
-        {
-            result[downstream].insert({"contained_by", "containing", upstream});
-            if (powerPaths.contains(downstream))
-            {
-                result[downstream].insert({"powering", "powered_by", upstream});
-            }
-        }
+        return;
+    }
+    // The downstream path must be one we care about.
+    if (!std::ranges::contains(boardPaths, downstream))
+    {
+        return;
+    }
+
+    result[downstream].insert({"contained_by", "containing", upstream});
+
+    if (powerPaths.contains(downstream))
+    {
+        result[downstream].insert({"powering", "powered_by", upstream});
     }
 }
 
