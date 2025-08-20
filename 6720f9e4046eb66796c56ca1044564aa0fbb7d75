@@ -52,6 +52,24 @@
       "parentUuid": "49988783_af56f2d1",
       "revId": "6720f9e4046eb66796c56ca1044564aa0fbb7d75",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b69ccf32_edaf58be",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 23
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 1002222
+      },
+      "writtenOn": "2025-08-20T06:34:05Z",
+      "side": 1,
+      "message": "IIUC, I have to do it like this:\n```\n    for (const auto\u0026 [boardPath, paths] : probePaths)\n    {\n        for (const auto\u0026 probePath : paths)\n        {\n            result[boardPath].emplace_back(\"probed_by\", \"probing\", probePath);\n            result[probePath].emplace_back(\"probing\", \"probed_by\", boardPath);\n        }\n    }\n```\nNow I basically have a bidirectional association between boardPath and each probePath. \n\nDid you mean it like that?",
+      "parentUuid": "621d0795_c5d738e8",
+      "revId": "6720f9e4046eb66796c56ca1044564aa0fbb7d75",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }
