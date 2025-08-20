@@ -2,8 +2,8 @@
     {
         "Exposes": [
             {
-                "Address": "$address",
-                "Bus": "$bus",
+                "Address": "${address}",
+                "Bus": "${bus}",
                 "Name": "SOLUM CO IS162F22 PSU FRU",
                 "Type": "EEPROM"
             },
@@ -15,14 +15,14 @@
                 "ILimitMax": 0.0,
                 "ILimitMin": 0.0,
                 "Inputs": [
-                    "PSU$ADDRESS % 4 + 1 Fan Speed 1"
+                    "PSU${ADDRESS} % 4 + 1 Fan Speed 1"
                 ],
-                "Name": "PSU$ADDRESS % 4 + 1 Fan 1",
+                "Name": "PSU${ADDRESS} % 4 + 1 Fan 1",
                 "NegativeHysteresis": 2.0,
                 "OutLimitMax": 100.0,
                 "OutLimitMin": 30.0,
                 "Outputs": [
-                    "Pwm PSU$ADDRESS % 4 + 1 Fan 1"
+                    "Pwm PSU${ADDRESS} % 4 + 1 Fan 1"
                 ],
                 "PCoefficient": 0.0,
                 "PositiveHysteresis": 0.0,
@@ -41,14 +41,14 @@
                 "ILimitMax": 0.0,
                 "ILimitMin": 0.0,
                 "Inputs": [
-                    "PSU$ADDRESS % 4 + 1 Fan Speed 2"
+                    "PSU${ADDRESS} % 4 + 1 Fan Speed 2"
                 ],
-                "Name": "PSU$ADDRESS % 4 + 1 Fan 2",
+                "Name": "PSU${ADDRESS} % 4 + 1 Fan 2",
                 "NegativeHysteresis": 2.0,
                 "OutLimitMax": 100.0,
                 "OutLimitMin": 30.0,
                 "Outputs": [
-                    "Pwm PSU$ADDRESS % 4 + 1 Fan 2"
+                    "Pwm PSU${ADDRESS} % 4 + 1 Fan 2"
                 ],
                 "PCoefficient": 0.0,
                 "PositiveHysteresis": 0.0,
@@ -67,9 +67,9 @@
                 "ILimitMax": 100,
                 "ILimitMin": 30,
                 "Inputs": [
-                    "PSU$ADDRESS % 4 + 1 Temperature"
+                    "PSU${ADDRESS} % 4 + 1 Temperature"
                 ],
-                "Name": "PSU$ADDRESS % 4 + 1 Temperature",
+                "Name": "PSU${ADDRESS} % 4 + 1 Temperature",
                 "NegativeHysteresis": 5.0,
                 "OutLimitMax": 100,
                 "OutLimitMin": 30,
@@ -87,9 +87,9 @@
             {
                 "Class": "Floor",
                 "Inputs": [
-                    "PSU$ADDRESS % 4 + 1 Temperature"
+                    "PSU${ADDRESS} % 4 + 1 Temperature"
                 ],
-                "Name": "PSU$ADDRESS % 4 + 1 LCC",
+                "Name": "PSU${ADDRESS} % 4 + 1 LCC",
                 "NegativeHysteresis": 2,
                 "Output": [
                     40.0,
@@ -106,8 +106,8 @@
                 ]
             },
             {
-                "Address": "$ADDRESS % 4 + 88",
-                "Bus": "$bus",
+                "Address": "${ADDRESS} % 4 + 88",
+                "Bus": "${bus}",
                 "Labels": [
                     "pin",
                     "pout1",
@@ -118,8 +118,8 @@
                     "fan1",
                     "fan2"
                 ],
-                "Name": "PSU$ADDRESS % 4 + 1",
-                "Name1": "PSU$ADDRESS % 4 + 1",
+                "Name": "PSU${ADDRESS} % 4 + 1",
+                "Name1": "PSU${ADDRESS} % 4 + 1",
                 "Thresholds": [
                     {
                         "Direction": "greater than",
@@ -167,14 +167,14 @@
                 "Type": "pmbus"
             }
         ],
-        "Name": "SOLUM CO IS162F22 PSU$ADDRESS % 4 + 1",
+        "Name": "SOLUM CO IS162F22 PSU${ADDRESS} % 4 + 1",
         "Probe": "xyz.openbmc_project.FruDevice({'PRODUCT_PRODUCT_NAME': 'IS162F22*'})",
         "Type": "PowerSupply",
         "xyz.openbmc_project.Inventory.Decorator.Asset": {
-            "Manufacturer": "$PRODUCT_MANUFACTURER",
-            "Model": "$PRODUCT_PRODUCT_NAME",
-            "PartNumber": "$PRODUCT_PART_NUMBER",
-            "SerialNumber": "$PRODUCT_SERIAL_NUMBER"
+            "Manufacturer": "${PRODUCT_MANUFACTURER}",
+            "Model": "${PRODUCT_PRODUCT_NAME}",
+            "PartNumber": "${PRODUCT_PART_NUMBER}",
+            "SerialNumber": "${PRODUCT_SERIAL_NUMBER}"
         }
     }
 ]

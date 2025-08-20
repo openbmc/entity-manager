@@ -1,16 +1,16 @@
 {
-    "Bus": "$bus",
+    "Bus": "${bus}",
     "Exposes": [
         {
-            "Address": "$address",
-            "Bus": "$bus",
-            "Name": "NVMe $index FRU",
+            "Address": "${address}",
+            "Bus": "${bus}",
+            "Name": "NVMe ${index} FRU",
             "Type": "EEPROM"
         },
         {
             "Address": "0x53",
-            "Bus": "$bus",
-            "Name": "NVMe $index Temp",
+            "Bus": "${bus}",
+            "Name": "NVMe ${index} Temp",
             "Thresholds": [
                 {
                     "Direction": "greater than",
@@ -41,14 +41,14 @@
         }
     ],
     "Logging": "Off",
-    "Name": "NVMe $index",
+    "Name": "NVMe ${index}",
     "Probe": "xyz.openbmc_project.FruDevice({'PRODUCT_PRODUCT_NAME': 'P(31|33|35|36|37|41|43|44|46|48|53|56|58)\\d\\d\\w?', 'PRODUCT_MANUFACTURER': '(Intel|INTEL).*'})",
     "Type": "NVMe",
     "xyz.openbmc_project.Inventory.Decorator.Asset": {
-        "Manufacturer": "$PRODUCT_MANUFACTURER",
-        "Model": "$PRODUCT_PRODUCT_NAME",
-        "PartNumber": "$PRODUCT_PART_NUMBER",
-        "SerialNumber": "$PRODUCT_SERIAL_NUMBER"
+        "Manufacturer": "${PRODUCT_MANUFACTURER}",
+        "Model": "${PRODUCT_PRODUCT_NAME}",
+        "PartNumber": "${PRODUCT_PART_NUMBER}",
+        "SerialNumber": "${PRODUCT_SERIAL_NUMBER}"
     },
     "xyz.openbmc_project.Inventory.Item.Chassis": {}
 }
