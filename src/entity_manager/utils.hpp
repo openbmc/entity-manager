@@ -26,6 +26,8 @@ constexpr const char* get = "Get";
 
 bool fwVersionIsSame();
 
+void handleLeftOverTemplateVars(nlohmann::json::iterator& keyPair);
+
 std::optional<std::string> templateCharReplace(
     nlohmann::json::iterator& keyPair, const DBusObject& object, size_t index,
     const std::optional<std::string>& replaceStr = std::nullopt);

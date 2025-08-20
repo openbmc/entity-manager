@@ -12,7 +12,7 @@ using namespace std::string_literals;
 
 TEST(TemplateCharReplace, replaceOneInt)
 {
-    nlohmann::json j = {{"foo", "$bus"}};
+    nlohmann::json j = {{"foo", "${bus}"}};
     auto it = j.begin();
     DBusInterface data;
     data["BUS"] = 23;
@@ -25,7 +25,7 @@ TEST(TemplateCharReplace, replaceOneInt)
 
 TEST(TemplateCharReplace, replaceOneStr)
 {
-    nlohmann::json j = {{"foo", "$TEST"}};
+    nlohmann::json j = {{"foo", "${TEST}"}};
     auto it = j.begin();
     DBusInterface data;
     data["TEST"] = std::string("Test");
@@ -38,7 +38,7 @@ TEST(TemplateCharReplace, replaceOneStr)
 
 TEST(TemplateCharReplace, replaceSecondStr)
 {
-    nlohmann::json j = {{"foo", "the $TEST"}};
+    nlohmann::json j = {{"foo", "the ${TEST}"}};
     auto it = j.begin();
     DBusInterface data;
     data["TEST"] = std::string("Test");
@@ -51,7 +51,7 @@ TEST(TemplateCharReplace, replaceSecondStr)
 
 TEST(TemplateCharReplace, replaceMiddleStr)
 {
-    nlohmann::json j = {{"foo", "the $TEST worked"}};
+    nlohmann::json j = {{"foo", "the ${TEST} worked"}};
     auto it = j.begin();
     DBusInterface data;
     data["TEST"] = std::string("Test");
@@ -64,7 +64,7 @@ TEST(TemplateCharReplace, replaceMiddleStr)
 
 TEST(TemplateCharReplace, replaceLastStr)
 {
-    nlohmann::json j = {{"foo", "the Test $TEST"}};
+    nlohmann::json j = {{"foo", "the Test ${TEST}"}};
     auto it = j.begin();
     DBusInterface data;
     data["TEST"] = 23;
@@ -77,7 +77,7 @@ TEST(TemplateCharReplace, replaceLastStr)
 
 TEST(TemplateCharReplace, increment)
 {
-    nlohmann::json j = {{"foo", "3 plus 1 equals $TEST + 1"}};
+    nlohmann::json j = {{"foo", "3 plus 1 equals ${TEST} + 1"}};
     auto it = j.begin();
     DBusInterface data;
     data["TEST"] = 3;
@@ -90,7 +90,7 @@ TEST(TemplateCharReplace, increment)
 
 TEST(TemplateCharReplace, decrement)
 {
-    nlohmann::json j = {{"foo", "3 minus 1 equals $TEST - 1 !"}};
+    nlohmann::json j = {{"foo", "3 minus 1 equals ${TEST} - 1 !"}};
     auto it = j.begin();
     DBusInterface data;
     data["TEST"] = 3;
@@ -103,7 +103,7 @@ TEST(TemplateCharReplace, decrement)
 
 TEST(TemplateCharReplace, modulus)
 {
-    nlohmann::json j = {{"foo", "3 mod 2 equals $TEST % 2"}};
+    nlohmann::json j = {{"foo", "3 mod 2 equals ${TEST} % 2"}};
     auto it = j.begin();
     DBusInterface data;
     data["TEST"] = 3;
@@ -116,7 +116,7 @@ TEST(TemplateCharReplace, modulus)
 
 TEST(TemplateCharReplace, multiply)
 {
-    nlohmann::json j = {{"foo", "3 * 2 equals $TEST * 2"}};
+    nlohmann::json j = {{"foo", "3 * 2 equals ${TEST} * 2"}};
     auto it = j.begin();
     DBusInterface data;
     data["TEST"] = 3;
@@ -129,7 +129,7 @@ TEST(TemplateCharReplace, multiply)
 
 TEST(TemplateCharReplace, divide)
 {
-    nlohmann::json j = {{"foo", "4 / 2 equals $TEST / 2"}};
+    nlohmann::json j = {{"foo", "4 / 2 equals ${TEST} / 2"}};
     auto it = j.begin();
     DBusInterface data;
     data["TEST"] = 4;
@@ -142,7 +142,7 @@ TEST(TemplateCharReplace, divide)
 
 TEST(TemplateCharReplace, multiMath)
 {
-    nlohmann::json j = {{"foo", "4 * 2 % 6 equals $TEST * 2 % 6"}};
+    nlohmann::json j = {{"foo", "4 * 2 % 6 equals ${TEST} * 2 % 6"}};
     auto it = j.begin();
     DBusInterface data;
     data["TEST"] = 4;
@@ -155,7 +155,7 @@ TEST(TemplateCharReplace, multiMath)
 
 TEST(TemplateCharReplace, twoReplacements)
 {
-    nlohmann::json j = {{"foo", "$FOO $BAR"}};
+    nlohmann::json j = {{"foo", "${FOO} ${BAR}"}};
     auto it = j.begin();
     DBusInterface data;
     data["FOO"] = std::string("foo");
@@ -169,7 +169,7 @@ TEST(TemplateCharReplace, twoReplacements)
 
 TEST(TemplateCharReplace, twoReplacementsWithMath)
 {
-    nlohmann::json j = {{"foo", "4 / 2 equals $TEST / 2 $BAR"}};
+    nlohmann::json j = {{"foo", "4 / 2 equals ${TEST} / 2 ${BAR}"}};
     auto it = j.begin();
     DBusInterface data;
     data["TEST"] = 4;
@@ -182,7 +182,7 @@ TEST(TemplateCharReplace, twoReplacementsWithMath)
 
 TEST(TemplateCharReplace, twoReplacementsWithMath2)
 {
-    nlohmann::json j = {{"foo", "4 / 2 equals $ADDRESS / 2 $BAR"}};
+    nlohmann::json j = {{"foo", "4 / 2 equals ${ADDRESS} / 2 ${BAR}"}};
     auto it = j.begin();
     DBusInterface data;
     data["ADDRESS"] = 4;
@@ -198,7 +198,7 @@ TEST(TemplateCharReplace, hexAndWrongCase)
 {
     nlohmann::json j = {{"Address", "0x54"},
                         {"Bus", 15},
-                        {"Name", "$bus sensor 0"},
+                        {"Name", "${bus} sensor 0"},
                         {"Type", "SomeType"}};
 
     DBusInterface data;
@@ -217,7 +217,7 @@ TEST(TemplateCharReplace, hexAndWrongCase)
 
 TEST(TemplateCharReplace, replaceSecondAsInt)
 {
-    nlohmann::json j = {{"foo", "twelve is $TEST"}};
+    nlohmann::json j = {{"foo", "twelve is ${TEST}"}};
     auto it = j.begin();
     DBusInterface data;
     data["test"] = 12;
@@ -237,6 +237,17 @@ TEST(TemplateCharReplace, singleHex)
     em_utils::templateCharReplace(it, data, 0);
 
     nlohmann::json expected = 84;
+    EXPECT_EQ(expected, j["foo"]);
+}
+
+TEST(PostProcess, replaceLeftOverTemplateVar)
+{
+    nlohmann::json j = {{"foo", "the Test ${TEST}: ${TESTED}"}};
+    auto it = j.begin();
+
+    em_utils::handleLeftOverTemplateVars(it);
+
+    nlohmann::json expected = "the Test : ";
     EXPECT_EQ(expected, j["foo"]);
 }
 
