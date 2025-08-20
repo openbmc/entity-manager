@@ -9,6 +9,7 @@
 #include <boost/algorithm/string/find.hpp>
 #include <boost/algorithm/string/replace.hpp>
 #include <boost/algorithm/string/split.hpp>
+#include <phosphor-logging/lg2.hpp>
 #include <sdbusplus/bus/match.hpp>
 
 #include <fstream>
@@ -69,6 +70,63 @@ bool fwVersionIsSame()
     return false;
 }
 
+void handleLeftOverTemplateVars(nlohmann::json::iterator& keyPair)
+{
+    if (keyPair.value().type() == nlohmann::json::value_t::object ||
+        keyPair.value().type() == nlohmann::json::value_t::array)
+    {
+        for (auto nextLayer = keyPair.value().begin();
+             nextLayer != keyPair.value().end(); nextLayer++)
+        {
+            handleLeftOverTemplateVars(nextLayer);
+        }
+        return;
+    }
+
+    std::string* strPtr = keyPair.value().get_ptr<std::string*>();
+    if (strPtr == nullptr)
+    {
+        return;
+    }
+
+    // Walking through the string to find $<templateVar>
+    while (true)
+    {
+        boost::iterator_range<std::string::const_iterator> findStart =
+            boost::ifind_first(*strPtr, std::string_view(templateChar));
+
+        if (!findStart)
+        {
+            break;
+        }
+
+        boost::iterator_range<std::string::iterator> searchRange(
+            strPtr->begin() + (findStart.end() - strPtr->begin()),
+            strPtr->end());
+        boost::iterator_range<std::string::const_iterator> findSpace =
+            boost::ifind_first(searchRange, " ");
+
+        std::string::const_iterator templateVarEnd;
+
+        if (!findSpace)
+        {
+            // No space means the template var spans to the end of
+            // of the keyPair value
+            templateVarEnd = strPtr->end();
+        }
+        else
+        {
+            // A space marks the end of a template var
+            templateVarEnd = findSpace.begin();
+        }
+
+        lg2::error(
+            "There's still template variable {VAR} un-replaced. Removing it from the string.\n",
+            "VAR", std::string(findStart.begin(), templateVarEnd));
+        strPtr->erase(findStart.begin(), templateVarEnd);
+    }
+}
+
 // Replaces the template character like the other version of this function,
 // but checks all properties on all interfaces provided to do the substitution
 // with.
@@ -81,9 +139,11 @@ std::optional<std::string> templateCharReplace(
         auto ret = templateCharReplace(keyPair, interface, index, replaceStr);
         if (ret)
         {
+            handleLeftOverTemplateVars(keyPair);
             return ret;
         }
     }
+    handleLeftOverTemplateVars(keyPair);
     return std::nullopt;
 }
 
