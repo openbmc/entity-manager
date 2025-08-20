@@ -3,17 +3,17 @@
         "Exposes": [
             {
                 "Address": "0x5e",
-                "Bus": "$bus",
+                "Bus": "${bus}",
                 "Connector": {
-                    "Name": "FCB_$bus - 15 FAN $bus * 4 - 64 + 1 TACH_IL",
+                    "Name": "FCB_${bus} - 15 FAN ${bus} * 4 - 64 + 1 TACH_IL",
                     "Pwm": 2,
-                    "PwmName": "FCB_$bus - 15 FAN_PWM_PCT",
+                    "PwmName": "FCB_${bus} - 15 FAN_PWM_PCT",
                     "Tachs": [
                         0
                     ]
                 },
                 "Index": 0,
-                "Name": "FCB_$bus - 15 FAN $bus * 4 - 64 + 1 TACH_IL_SPEED_RPM",
+                "Name": "FCB_${bus} - 15 FAN ${bus} * 4 - 64 + 1 TACH_IL_SPEED_RPM",
                 "PowerState": "Always",
                 "Thresholds": [
                     {
@@ -35,17 +35,17 @@
             },
             {
                 "Address": "0x5e",
-                "Bus": "$bus",
+                "Bus": "${bus}",
                 "Connector": {
-                    "Name": "FCB_$bus - 15 FAN $bus * 4 - 64 + 1 TACH_OL",
+                    "Name": "FCB_${bus} - 15 FAN ${bus} * 4 - 64 + 1 TACH_OL",
                     "Pwm": 2,
-                    "PwmName": "FCB_$bus - 15 FAN_PWM_PCT",
+                    "PwmName": "FCB_${bus} - 15 FAN_PWM_PCT",
                     "Tachs": [
                         1
                     ]
                 },
                 "Index": 1,
-                "Name": "FCB_$bus - 15 FAN $bus * 4 - 64 + 1 TACH_OL_SPEED_RPM",
+                "Name": "FCB_${bus} - 15 FAN ${bus} * 4 - 64 + 1 TACH_OL_SPEED_RPM",
                 "PowerState": "Always",
                 "Thresholds": [
                     {
@@ -67,17 +67,17 @@
             },
             {
                 "Address": "0x5e",
-                "Bus": "$bus",
+                "Bus": "${bus}",
                 "Connector": {
-                    "Name": "FCB_$bus - 15 FAN $bus * 4 - 64 + 2 TACH_IL",
+                    "Name": "FCB_${bus} - 15 FAN ${bus} * 4 - 64 + 2 TACH_IL",
                     "Pwm": 2,
-                    "PwmName": "FCB_$bus - 15 FAN_PWM_PCT",
+                    "PwmName": "FCB_${bus} - 15 FAN_PWM_PCT",
                     "Tachs": [
                         2
                     ]
                 },
                 "Index": 2,
-                "Name": "FCB_$bus - 15 FAN $bus * 4 - 64 + 2 TACH_IL_SPEED_RPM",
+                "Name": "FCB_${bus} - 15 FAN ${bus} * 4 - 64 + 2 TACH_IL_SPEED_RPM",
                 "PowerState": "Always",
                 "Thresholds": [
                     {
@@ -99,17 +99,17 @@
             },
             {
                 "Address": "0x5e",
-                "Bus": "$bus",
+                "Bus": "${bus}",
                 "Connector": {
-                    "Name": "FCB_$bus - 15 FAN $bus * 4 - 64 + 2 TACH_OL",
+                    "Name": "FCB_${bus} - 15 FAN ${bus} * 4 - 64 + 2 TACH_OL",
                     "Pwm": 2,
-                    "PwmName": "FCB_$bus - 15 FAN_PWM_PCT",
+                    "PwmName": "FCB_${bus} - 15 FAN_PWM_PCT",
                     "Tachs": [
                         3
                     ]
                 },
                 "Index": 3,
-                "Name": "FCB_$bus - 15 FAN $bus * 4 - 64 + 2 TACH_OL_SPEED_RPM",
+                "Name": "FCB_${bus} - 15 FAN ${bus} * 4 - 64 + 2 TACH_OL_SPEED_RPM",
                 "PowerState": "Always",
                 "Thresholds": [
                     {
@@ -131,17 +131,17 @@
             },
             {
                 "Address": "0x5e",
-                "Bus": "$bus",
+                "Bus": "${bus}",
                 "Connector": {
-                    "Name": "FCB_$bus - 15 FAN $bus * 4 - 64 + 3 TACH_IL",
+                    "Name": "FCB_${bus} - 15 FAN ${bus} * 4 - 64 + 3 TACH_IL",
                     "Pwm": 2,
-                    "PwmName": "FCB_$bus - 15 FAN_PWM_PCT",
+                    "PwmName": "FCB_${bus} - 15 FAN_PWM_PCT",
                     "Tachs": [
                         4
                     ]
                 },
                 "Index": 4,
-                "Name": "FCB_$bus - 15 FAN $bus * 4 - 64 + 3 TACH_IL_SPEED_RPM",
+                "Name": "FCB_${bus} - 15 FAN ${bus} * 4 - 64 + 3 TACH_IL_SPEED_RPM",
                 "PowerState": "Always",
                 "Thresholds": [
                     {
@@ -163,17 +163,17 @@
             },
             {
                 "Address": "0x5e",
-                "Bus": "$bus",
+                "Bus": "${bus}",
                 "Connector": {
-                    "Name": "FCB_$bus - 15 FAN $bus * 4 - 64 + 3 TACH_OL",
+                    "Name": "FCB_${bus} - 15 FAN ${bus} * 4 - 64 + 3 TACH_OL",
                     "Pwm": 2,
-                    "PwmName": "FCB_$bus - 15 FAN_PWM_PCT",
+                    "PwmName": "FCB_${bus} - 15 FAN_PWM_PCT",
                     "Tachs": [
                         5
                     ]
                 },
                 "Index": 5,
-                "Name": "FCB_$bus - 15 FAN $bus * 4 - 64 + 3 TACH_OL_SPEED_RPM",
+                "Name": "FCB_${bus} - 15 FAN ${bus} * 4 - 64 + 3 TACH_OL_SPEED_RPM",
                 "PowerState": "Always",
                 "Thresholds": [
                     {
@@ -195,17 +195,17 @@
             },
             {
                 "Address": "0x5e",
-                "Bus": "$bus",
+                "Bus": "${bus}",
                 "Connector": {
-                    "Name": "FCB_$bus - 15 FAN $bus * 4 - 64 + 4 TACH_IL",
+                    "Name": "FCB_${bus} - 15 FAN ${bus} * 4 - 64 + 4 TACH_IL",
                     "Pwm": 2,
-                    "PwmName": "FCB_$bus - 15 FAN_PWM_PCT",
+                    "PwmName": "FCB_${bus} - 15 FAN_PWM_PCT",
                     "Tachs": [
                         6
                     ]
                 },
                 "Index": 6,
-                "Name": "FCB_$bus - 15 FAN $bus * 4 - 64 + 4 TACH_IL_SPEED_RPM",
+                "Name": "FCB_${bus} - 15 FAN ${bus} * 4 - 64 + 4 TACH_IL_SPEED_RPM",
                 "PowerState": "Always",
                 "Thresholds": [
                     {
@@ -227,17 +227,17 @@
             },
             {
                 "Address": "0x5e",
-                "Bus": "$bus",
+                "Bus": "${bus}",
                 "Connector": {
-                    "Name": "FCB_$bus - 15 FAN $bus * 4 - 64 + 4 TACH_OL",
+                    "Name": "FCB_${bus} - 15 FAN ${bus} * 4 - 64 + 4 TACH_OL",
                     "Pwm": 2,
-                    "PwmName": "FCB_$bus - 15 FAN_PWM_PCT",
+                    "PwmName": "FCB_${bus} - 15 FAN_PWM_PCT",
                     "Tachs": [
                         7
                     ]
                 },
                 "Index": 7,
-                "Name": "FCB_$bus - 15 FAN $bus * 4 - 64 + 4 TACH_OL_SPEED_RPM",
+                "Name": "FCB_${bus} - 15 FAN ${bus} * 4 - 64 + 4 TACH_OL_SPEED_RPM",
                 "PowerState": "Always",
                 "Thresholds": [
                     {
@@ -259,13 +259,13 @@
             },
             {
                 "Address": "0x41",
-                "Bus": "$bus",
+                "Bus": "${bus}",
                 "Labels": [
                     "in1",
                     "curr1",
                     "power1"
                 ],
-                "Name": "FCB_$bus - 15 FAN_$bus * 4 - 64 + 1",
+                "Name": "FCB_${bus} - 15 FAN_${bus} * 4 - 64 + 1",
                 "Thresholds": [
                     {
                         "Direction": "less than",
@@ -301,19 +301,19 @@
                     }
                 ],
                 "Type": "INA238",
-                "curr1_Name": "FCB_$bus - 15 FAN $bus * 4 - 64 + 1 CURR_A",
-                "in1_Name": "FCB_$bus - 15 FAN $bus * 4 - 64 + 1 VOLT_V",
-                "power1_Name": "FCB_$bus - 15 FAN $bus * 4 - 64 + 1 PWR_W"
+                "curr1_Name": "FCB_${bus} - 15 FAN ${bus} * 4 - 64 + 1 CURR_A",
+                "in1_Name": "FCB_${bus} - 15 FAN ${bus} * 4 - 64 + 1 VOLT_V",
+                "power1_Name": "FCB_${bus} - 15 FAN ${bus} * 4 - 64 + 1 PWR_W"
             },
             {
                 "Address": "0x40",
-                "Bus": "$bus",
+                "Bus": "${bus}",
                 "Labels": [
                     "in1",
                     "curr1",
                     "power1"
                 ],
-                "Name": "FCB_$bus - 15 FAN_$bus * 4 - 64 + 2",
+                "Name": "FCB_${bus} - 15 FAN_${bus} * 4 - 64 + 2",
                 "Thresholds": [
                     {
                         "Direction": "less than",
@@ -349,19 +349,19 @@
                     }
                 ],
                 "Type": "INA238",
-                "curr1_Name": "FCB_$bus - 15 FAN $bus * 4 - 64 + 2 CURR_A",
-                "in1_Name": "FCB_$bus - 15 FAN $bus * 4 - 64 + 2 VOLT_V",
-                "power1_Name": "FCB_$bus - 15 FAN $bus * 4 - 64 + 2 PWR_W"
+                "curr1_Name": "FCB_${bus} - 15 FAN ${bus} * 4 - 64 + 2 CURR_A",
+                "in1_Name": "FCB_${bus} - 15 FAN ${bus} * 4 - 64 + 2 VOLT_V",
+                "power1_Name": "FCB_${bus} - 15 FAN ${bus} * 4 - 64 + 2 PWR_W"
             },
             {
                 "Address": "0x45",
-                "Bus": "$bus",
+                "Bus": "${bus}",
                 "Labels": [
                     "in1",
                     "curr1",
                     "power1"
                 ],
-                "Name": "FCB_$bus - 15 FAN_$bus * 4 - 64 + 3",
+                "Name": "FCB_${bus} - 15 FAN_${bus} * 4 - 64 + 3",
                 "Thresholds": [
                     {
                         "Direction": "less than",
@@ -397,19 +397,19 @@
                     }
                 ],
                 "Type": "INA238",
-                "curr1_Name": "FCB_$bus - 15 FAN $bus * 4 - 64 + 3 CURR_A",
-                "in1_Name": "FCB_$bus - 15 FAN $bus * 4 - 64 + 3 VOLT_V",
-                "power1_Name": "FCB_$bus - 15 FAN $bus * 4 - 64 + 3 PWR_W"
+                "curr1_Name": "FCB_${bus} - 15 FAN ${bus} * 4 - 64 + 3 CURR_A",
+                "in1_Name": "FCB_${bus} - 15 FAN ${bus} * 4 - 64 + 3 VOLT_V",
+                "power1_Name": "FCB_${bus} - 15 FAN ${bus} * 4 - 64 + 3 PWR_W"
             },
             {
                 "Address": "0x44",
-                "Bus": "$bus",
+                "Bus": "${bus}",
                 "Labels": [
                     "in1",
                     "curr1",
                     "power1"
                 ],
-                "Name": "FCB_$bus - 15 FAN_$bus * 4 - 64 + 4",
+                "Name": "FCB_${bus} - 15 FAN_${bus} * 4 - 64 + 4",
                 "Thresholds": [
                     {
                         "Direction": "less than",
@@ -445,24 +445,24 @@
                     }
                 ],
                 "Type": "INA238",
-                "curr1_Name": "FCB_$bus - 15 FAN $bus * 4 - 64 + 4 CURR_A",
-                "in1_Name": "FCB_$bus - 15 FAN $bus * 4 - 64 + 4 VOLT_V",
-                "power1_Name": "FCB_$bus - 15 FAN $bus * 4 - 64 + 4 PWR_W"
+                "curr1_Name": "FCB_${bus} - 15 FAN ${bus} * 4 - 64 + 4 CURR_A",
+                "in1_Name": "FCB_${bus} - 15 FAN ${bus} * 4 - 64 + 4 VOLT_V",
+                "power1_Name": "FCB_${bus} - 15 FAN ${bus} * 4 - 64 + 4 PWR_W"
             },
             {
                 "Address": "0x49",
-                "Bus": "$bus",
+                "Bus": "${bus}",
                 "Labels": [
                     "temp1"
                 ],
-                "Name": "FCB_$bus - 15 T_SENSE",
+                "Name": "FCB_${bus} - 15 T_SENSE",
                 "Type": "INA238",
-                "temp1_Name": "FCB_$bus - 15 T_SENSE_TEMP_C"
+                "temp1_Name": "FCB_${bus} - 15 T_SENSE_TEMP_C"
             },
             {
                 "Address": "0x4b",
-                "Bus": "$bus",
-                "Name": "FCB_$bus - 15 TEMP_C",
+                "Bus": "${bus}",
+                "Name": "FCB_${bus} - 15 TEMP_C",
                 "Thresholds": [
                     {
                         "Direction": "greater than",
@@ -490,32 +490,32 @@
         ],
         "Type": "Board",
         "xyz.openbmc_project.Inventory.Decorator.Asset": {
-            "BuildDate": "$BOARD_MANUFACTURE_DATE",
-            "Manufacturer": "$BOARD_MANUFACTURER",
-            "Model": "$BOARD_PRODUCT_NAME",
-            "PartNumber": "$BOARD_PART_NUMBER",
-            "SerialNumber": "$BOARD_SERIAL_NUMBER",
-            "SparePartNumber": "$BOARD_INFO_AM1"
+            "BuildDate": "${BOARD_MANUFACTURE_DATE}",
+            "Manufacturer": "${BOARD_MANUFACTURER}",
+            "Model": "${BOARD_PRODUCT_NAME}",
+            "PartNumber": "${BOARD_PART_NUMBER}",
+            "SerialNumber": "${BOARD_SERIAL_NUMBER}",
+            "SparePartNumber": "${BOARD_INFO_AM1}"
         },
         "xyz.openbmc_project.Inventory.Decorator.AssetTag": {
-            "AssetTag": "$PRODUCT_ASSET_TAG"
+            "AssetTag": "${PRODUCT_ASSET_TAG}"
         }
     },
     {
         "Exposes": [
             {
                 "Address": "0x5e",
-                "Bus": "$bus",
+                "Bus": "${bus}",
                 "Connector": {
-                    "Name": "FCB_$bus - 15 FAN $bus * 4 - 64 + 1 TACH_IL",
+                    "Name": "FCB_${bus} - 15 FAN ${bus} * 4 - 64 + 1 TACH_IL",
                     "Pwm": 2,
-                    "PwmName": "FCB_$bus - 15 FAN_PWM_PCT",
+                    "PwmName": "FCB_${bus} - 15 FAN_PWM_PCT",
                     "Tachs": [
                         0
                     ]
                 },
                 "Index": 0,
-                "Name": "FCB_$bus - 15 FAN $bus * 4 - 64 + 1 TACH_IL_SPEED_RPM",
+                "Name": "FCB_${bus} - 15 FAN ${bus} * 4 - 64 + 1 TACH_IL_SPEED_RPM",
                 "PowerState": "Always",
                 "Thresholds": [
                     {
@@ -537,17 +537,17 @@
             },
             {
                 "Address": "0x5e",
-                "Bus": "$bus",
+                "Bus": "${bus}",
                 "Connector": {
-                    "Name": "FCB_$bus - 15 FAN $bus * 4 - 64 + 1 TACH_OL",
+                    "Name": "FCB_${bus} - 15 FAN ${bus} * 4 - 64 + 1 TACH_OL",
                     "Pwm": 2,
-                    "PwmName": "FCB_$bus - 15 FAN_PWM_PCT",
+                    "PwmName": "FCB_${bus} - 15 FAN_PWM_PCT",
                     "Tachs": [
                         1
                     ]
                 },
                 "Index": 1,
-                "Name": "FCB_$bus - 15 FAN $bus * 4 - 64 + 1 TACH_OL_SPEED_RPM",
+                "Name": "FCB_${bus} - 15 FAN ${bus} * 4 - 64 + 1 TACH_OL_SPEED_RPM",
                 "PowerState": "Always",
                 "Thresholds": [
                     {
@@ -569,17 +569,17 @@
             },
             {
                 "Address": "0x5e",
-                "Bus": "$bus",
+                "Bus": "${bus}",
                 "Connector": {
-                    "Name": "FCB_$bus - 15 FAN $bus * 4 - 64 + 2 TACH_IL",
+                    "Name": "FCB_${bus} - 15 FAN ${bus} * 4 - 64 + 2 TACH_IL",
                     "Pwm": 2,
-                    "PwmName": "FCB_$bus - 15 FAN_PWM_PCT",
+                    "PwmName": "FCB_${bus} - 15 FAN_PWM_PCT",
                     "Tachs": [
                         2
                     ]
                 },
                 "Index": 2,
-                "Name": "FCB_$bus - 15 FAN $bus * 4 - 64 + 2 TACH_IL_SPEED_RPM",
+                "Name": "FCB_${bus} - 15 FAN ${bus} * 4 - 64 + 2 TACH_IL_SPEED_RPM",
                 "PowerState": "Always",
                 "Thresholds": [
                     {
@@ -601,17 +601,17 @@
             },
             {
                 "Address": "0x5e",
-                "Bus": "$bus",
+                "Bus": "${bus}",
                 "Connector": {
-                    "Name": "FCB_$bus - 15 FAN $bus * 4 - 64 + 2 TACH_OL",
+                    "Name": "FCB_${bus} - 15 FAN ${bus} * 4 - 64 + 2 TACH_OL",
                     "Pwm": 2,
-                    "PwmName": "FCB_$bus - 15 FAN_PWM_PCT",
+                    "PwmName": "FCB_${bus} - 15 FAN_PWM_PCT",
                     "Tachs": [
                         3
                     ]
                 },
                 "Index": 3,
-                "Name": "FCB_$bus - 15 FAN $bus * 4 - 64 + 2 TACH_OL_SPEED_RPM",
+                "Name": "FCB_${bus} - 15 FAN ${bus} * 4 - 64 + 2 TACH_OL_SPEED_RPM",
                 "PowerState": "Always",
                 "Thresholds": [
                     {
@@ -633,17 +633,17 @@
             },
             {
                 "Address": "0x5e",
-                "Bus": "$bus",
+                "Bus": "${bus}",
                 "Connector": {
-                    "Name": "FCB_$bus - 15 FAN $bus * 4 - 64 + 3 TACH_IL",
+                    "Name": "FCB_${bus} - 15 FAN ${bus} * 4 - 64 + 3 TACH_IL",
                     "Pwm": 2,
-                    "PwmName": "FCB_$bus - 15 FAN_PWM_PCT",
+                    "PwmName": "FCB_${bus} - 15 FAN_PWM_PCT",
                     "Tachs": [
                         4
                     ]
                 },
                 "Index": 4,
-                "Name": "FCB_$bus - 15 FAN $bus * 4 - 64 + 3 TACH_IL_SPEED_RPM",
+                "Name": "FCB_${bus} - 15 FAN ${bus} * 4 - 64 + 3 TACH_IL_SPEED_RPM",
                 "PowerState": "Always",
                 "Thresholds": [
                     {
@@ -665,17 +665,17 @@
             },
             {
                 "Address": "0x5e",
-                "Bus": "$bus",
+                "Bus": "${bus}",
                 "Connector": {
-                    "Name": "FCB_$bus - 15 FAN $bus * 4 - 64 + 3 TACH_OL",
+                    "Name": "FCB_${bus} - 15 FAN ${bus} * 4 - 64 + 3 TACH_OL",
                     "Pwm": 2,
-                    "PwmName": "FCB_$bus - 15 FAN_PWM_PCT",
+                    "PwmName": "FCB_${bus} - 15 FAN_PWM_PCT",
                     "Tachs": [
                         5
                     ]
                 },
                 "Index": 5,
-                "Name": "FCB_$bus - 15 FAN $bus * 4 - 64 + 3 TACH_OL_SPEED_RPM",
+                "Name": "FCB_${bus} - 15 FAN ${bus} * 4 - 64 + 3 TACH_OL_SPEED_RPM",
                 "PowerState": "Always",
                 "Thresholds": [
                     {
@@ -697,17 +697,17 @@
             },
             {
                 "Address": "0x5e",
-                "Bus": "$bus",
+                "Bus": "${bus}",
                 "Connector": {
-                    "Name": "FCB_$bus - 15 FAN $bus * 4 - 64 + 4 TACH_IL",
+                    "Name": "FCB_${bus} - 15 FAN ${bus} * 4 - 64 + 4 TACH_IL",
                     "Pwm": 2,
-                    "PwmName": "FCB_$bus - 15 FAN_PWM_PCT",
+                    "PwmName": "FCB_${bus} - 15 FAN_PWM_PCT",
                     "Tachs": [
                         6
                     ]
                 },
                 "Index": 6,
-                "Name": "FCB_$bus - 15 FAN $bus * 4 - 64 + 4 TACH_IL_SPEED_RPM",
+                "Name": "FCB_${bus} - 15 FAN ${bus} * 4 - 64 + 4 TACH_IL_SPEED_RPM",
                 "PowerState": "Always",
                 "Thresholds": [
                     {
@@ -729,17 +729,17 @@
             },
             {
                 "Address": "0x5e",
-                "Bus": "$bus",
+                "Bus": "${bus}",
                 "Connector": {
-                    "Name": "FCB_$bus - 15 FAN $bus * 4 - 64 + 4 TACH_OL",
+                    "Name": "FCB_${bus} - 15 FAN ${bus} * 4 - 64 + 4 TACH_OL",
                     "Pwm": 2,
-                    "PwmName": "FCB_$bus - 15 FAN_PWM_PCT",
+                    "PwmName": "FCB_${bus} - 15 FAN_PWM_PCT",
                     "Tachs": [
                         7
                     ]
                 },
                 "Index": 7,
-                "Name": "FCB_$bus - 15 FAN $bus * 4 - 64 + 4 TACH_OL_SPEED_RPM",
+                "Name": "FCB_${bus} - 15 FAN ${bus} * 4 - 64 + 4 TACH_OL_SPEED_RPM",
                 "PowerState": "Always",
                 "Thresholds": [
                     {
@@ -761,13 +761,13 @@
             },
             {
                 "Address": "0x41",
-                "Bus": "$bus",
+                "Bus": "${bus}",
                 "Labels": [
                     "in1",
                     "curr1",
                     "power1"
                 ],
-                "Name": "FCB_$bus - 15 FAN_$bus * 4 - 64 + 1",
+                "Name": "FCB_${bus} - 15 FAN_${bus} * 4 - 64 + 1",
                 "Thresholds": [
                     {
                         "Direction": "less than",
@@ -803,19 +803,19 @@
                     }
                 ],
                 "Type": "INA238",
-                "curr1_Name": "FCB_$bus - 15 FAN $bus * 4 - 64 + 1 CURR_A",
-                "in1_Name": "FCB_$bus - 15 FAN $bus * 4 - 64 + 1 VOLT_V",
-                "power1_Name": "FCB_$bus - 15 FAN $bus * 4 - 64 + 1 PWR_W"
+                "curr1_Name": "FCB_${bus} - 15 FAN ${bus} * 4 - 64 + 1 CURR_A",
+                "in1_Name": "FCB_${bus} - 15 FAN ${bus} * 4 - 64 + 1 VOLT_V",
+                "power1_Name": "FCB_${bus} - 15 FAN ${bus} * 4 - 64 + 1 PWR_W"
             },
             {
                 "Address": "0x40",
-                "Bus": "$bus",
+                "Bus": "${bus}",
                 "Labels": [
                     "in1",
                     "curr1",
                     "power1"
                 ],
-                "Name": "FCB_$bus - 15 FAN_$bus * 4 - 64 + 2",
+                "Name": "FCB_${bus} - 15 FAN_${bus} * 4 - 64 + 2",
                 "Thresholds": [
                     {
                         "Direction": "less than",
@@ -851,19 +851,19 @@
                     }
                 ],
                 "Type": "INA238",
-                "curr1_Name": "FCB_$bus - 15 FAN $bus * 4 - 64 + 2 CURR_A",
-                "in1_Name": "FCB_$bus - 15 FAN $bus * 4 - 64 + 2 VOLT_V",
-                "power1_Name": "FCB_$bus - 15 FAN $bus * 4 - 64 + 2 PWR_W"
+                "curr1_Name": "FCB_${bus} - 15 FAN ${bus} * 4 - 64 + 2 CURR_A",
+                "in1_Name": "FCB_${bus} - 15 FAN ${bus} * 4 - 64 + 2 VOLT_V",
+                "power1_Name": "FCB_${bus} - 15 FAN ${bus} * 4 - 64 + 2 PWR_W"
             },
             {
                 "Address": "0x45",
-                "Bus": "$bus",
+                "Bus": "${bus}",
                 "Labels": [
                     "in1",
                     "curr1",
                     "power1"
                 ],
-                "Name": "FCB_$bus - 15 FAN_$bus * 4 - 64 + 3",
+                "Name": "FCB_${bus} - 15 FAN_${bus} * 4 - 64 + 3",
                 "Thresholds": [
                     {
                         "Direction": "less than",
@@ -899,19 +899,19 @@
                     }
                 ],
                 "Type": "INA238",
-                "curr1_Name": "FCB_$bus - 15 FAN $bus * 4 - 64 + 3 CURR_A",
-                "in1_Name": "FCB_$bus - 15 FAN $bus * 4 - 64 + 3 VOLT_V",
-                "power1_Name": "FCB_$bus - 15 FAN $bus * 4 - 64 + 3 PWR_W"
+                "curr1_Name": "FCB_${bus} - 15 FAN ${bus} * 4 - 64 + 3 CURR_A",
+                "in1_Name": "FCB_${bus} - 15 FAN ${bus} * 4 - 64 + 3 VOLT_V",
+                "power1_Name": "FCB_${bus} - 15 FAN ${bus} * 4 - 64 + 3 PWR_W"
             },
             {
                 "Address": "0x44",
-                "Bus": "$bus",
+                "Bus": "${bus}",
                 "Labels": [
                     "in1",
                     "curr1",
                     "power1"
                 ],
-                "Name": "FCB_$bus - 15 FAN_$bus * 4 - 64 + 4",
+                "Name": "FCB_${bus} - 15 FAN_${bus} * 4 - 64 + 4",
                 "Thresholds": [
                     {
                         "Direction": "less than",
@@ -947,24 +947,24 @@
                     }
                 ],
                 "Type": "INA238",
-                "curr1_Name": "FCB_$bus - 15 FAN $bus * 4 - 64 + 4 CURR_A",
-                "in1_Name": "FCB_$bus - 15 FAN $bus * 4 - 64 + 4 VOLT_V",
-                "power1_Name": "FCB_$bus - 15 FAN $bus * 4 - 64 + 4 PWR_W"
+                "curr1_Name": "FCB_${bus} - 15 FAN ${bus} * 4 - 64 + 4 CURR_A",
+                "in1_Name": "FCB_${bus} - 15 FAN ${bus} * 4 - 64 + 4 VOLT_V",
+                "power1_Name": "FCB_${bus} - 15 FAN ${bus} * 4 - 64 + 4 PWR_W"
             },
             {
                 "Address": "0x49",
-                "Bus": "$bus",
+                "Bus": "${bus}",
                 "Labels": [
                     "temp1"
                 ],
-                "Name": "FCB_$bus - 15 T_SENSE",
+                "Name": "FCB_${bus} - 15 T_SENSE",
                 "Type": "INA238",
-                "temp1_Name": "FCB_$bus - 15 T_SENSE_TEMP_C"
+                "temp1_Name": "FCB_${bus} - 15 T_SENSE_TEMP_C"
             },
             {
                 "Address": "0x4b",
-                "Bus": "$bus",
-                "Name": "FCB_$bus - 15 TEMP_C",
+                "Bus": "${bus}",
+                "Name": "FCB_${bus} - 15 TEMP_C",
                 "Thresholds": [
                     {
                         "Direction": "greater than",
@@ -992,32 +992,32 @@
         ],
         "Type": "Board",
         "xyz.openbmc_project.Inventory.Decorator.Asset": {
-            "BuildDate": "$BOARD_MANUFACTURE_DATE",
-            "Manufacturer": "$BOARD_MANUFACTURER",
-            "Model": "$BOARD_PRODUCT_NAME",
-            "PartNumber": "$BOARD_PART_NUMBER",
-            "SerialNumber": "$BOARD_SERIAL_NUMBER",
-            "SparePartNumber": "$BOARD_INFO_AM1"
+            "BuildDate": "${BOARD_MANUFACTURE_DATE}",
+            "Manufacturer": "${BOARD_MANUFACTURER}",
+            "Model": "${BOARD_PRODUCT_NAME}",
+            "PartNumber": "${BOARD_PART_NUMBER}",
+            "SerialNumber": "${BOARD_SERIAL_NUMBER}",
+            "SparePartNumber": "${BOARD_INFO_AM1}"
         },
         "xyz.openbmc_project.Inventory.Decorator.AssetTag": {
-            "AssetTag": "$PRODUCT_ASSET_TAG"
+            "AssetTag": "${PRODUCT_ASSET_TAG}"
         }
     },
     {
         "Exposes": [
             {
                 "Address": "0x5e",
-                "Bus": "$bus",
+                "Bus": "${bus}",
                 "Connector": {
-                    "Name": "FCB_$bus - 15 FAN $bus * 4 - 64 + 1 TACH_IL",
+                    "Name": "FCB_${bus} - 15 FAN ${bus} * 4 - 64 + 1 TACH_IL",
                     "Pwm": 2,
-                    "PwmName": "FCB_$bus - 15 FAN_PWM_PCT",
+                    "PwmName": "FCB_${bus} - 15 FAN_PWM_PCT",
                     "Tachs": [
                         0
                     ]
                 },
                 "Index": 0,
-                "Name": "FCB_$bus - 15 FAN $bus * 4 - 64 + 1 TACH_IL_SPEED_RPM",
+                "Name": "FCB_${bus} - 15 FAN ${bus} * 4 - 64 + 1 TACH_IL_SPEED_RPM",
                 "PowerState": "Always",
                 "Thresholds": [
                     {
@@ -1039,17 +1039,17 @@
             },
             {
                 "Address": "0x5e",
-                "Bus": "$bus",
+                "Bus": "${bus}",
                 "Connector": {
-                    "Name": "FCB_$bus - 15 FAN $bus * 4 - 64 + 1 TACH_OL",
+                    "Name": "FCB_${bus} - 15 FAN ${bus} * 4 - 64 + 1 TACH_OL",
                     "Pwm": 2,
-                    "PwmName": "FCB_$bus - 15 FAN_PWM_PCT",
+                    "PwmName": "FCB_${bus} - 15 FAN_PWM_PCT",
                     "Tachs": [
                         1
                     ]
                 },
                 "Index": 1,
-                "Name": "FCB_$bus - 15 FAN $bus * 4 - 64 + 1 TACH_OL_SPEED_RPM",
+                "Name": "FCB_${bus} - 15 FAN ${bus} * 4 - 64 + 1 TACH_OL_SPEED_RPM",
                 "PowerState": "Always",
                 "Thresholds": [
                     {
@@ -1071,17 +1071,17 @@
             },
             {
                 "Address": "0x5e",
-                "Bus": "$bus",
+                "Bus": "${bus}",
                 "Connector": {
-                    "Name": "FCB_$bus - 15 FAN $bus * 4 - 64 + 2 TACH_IL",
+                    "Name": "FCB_${bus} - 15 FAN ${bus} * 4 - 64 + 2 TACH_IL",
                     "Pwm": 2,
-                    "PwmName": "FCB_$bus - 15 FAN_PWM_PCT",
+                    "PwmName": "FCB_${bus} - 15 FAN_PWM_PCT",
                     "Tachs": [
                         2
                     ]
                 },
                 "Index": 2,
-                "Name": "FCB_$bus - 15 FAN $bus * 4 - 64 + 2 TACH_IL_SPEED_RPM",
+                "Name": "FCB_${bus} - 15 FAN ${bus} * 4 - 64 + 2 TACH_IL_SPEED_RPM",
                 "PowerState": "Always",
                 "Thresholds": [
                     {
@@ -1103,17 +1103,17 @@
             },
             {
                 "Address": "0x5e",
-                "Bus": "$bus",
+                "Bus": "${bus}",
                 "Connector": {
-                    "Name": "FCB_$bus - 15 FAN $bus * 4 - 64 + 2 TACH_OL",
+                    "Name": "FCB_${bus} - 15 FAN ${bus} * 4 - 64 + 2 TACH_OL",
                     "Pwm": 2,
-                    "PwmName": "FCB_$bus - 15 FAN_PWM_PCT",
+                    "PwmName": "FCB_${bus} - 15 FAN_PWM_PCT",
                     "Tachs": [
                         3
                     ]
                 },
                 "Index": 3,
-                "Name": "FCB_$bus - 15 FAN $bus * 4 - 64 + 2 TACH_OL_SPEED_RPM",
+                "Name": "FCB_${bus} - 15 FAN ${bus} * 4 - 64 + 2 TACH_OL_SPEED_RPM",
                 "PowerState": "Always",
                 "Thresholds": [
                     {
@@ -1135,17 +1135,17 @@
             },
             {
                 "Address": "0x5e",
-                "Bus": "$bus",
+                "Bus": "${bus}",
                 "Connector": {
-                    "Name": "FCB_$bus - 15 FAN $bus * 4 - 64 + 3 TACH_IL",
+                    "Name": "FCB_${bus} - 15 FAN ${bus} * 4 - 64 + 3 TACH_IL",
                     "Pwm": 2,
-                    "PwmName": "FCB_$bus - 15 FAN_PWM_PCT",
+                    "PwmName": "FCB_${bus} - 15 FAN_PWM_PCT",
                     "Tachs": [
                         4
                     ]
                 },
                 "Index": 4,
-                "Name": "FCB_$bus - 15 FAN $bus * 4 - 64 + 3 TACH_IL_SPEED_RPM",
+                "Name": "FCB_${bus} - 15 FAN ${bus} * 4 - 64 + 3 TACH_IL_SPEED_RPM",
                 "PowerState": "Always",
                 "Thresholds": [
                     {
@@ -1167,17 +1167,17 @@
             },
             {
                 "Address": "0x5e",
-                "Bus": "$bus",
+                "Bus": "${bus}",
                 "Connector": {
-                    "Name": "FCB_$bus - 15 FAN $bus * 4 - 64 + 3 TACH_OL",
+                    "Name": "FCB_${bus} - 15 FAN ${bus} * 4 - 64 + 3 TACH_OL",
                     "Pwm": 2,
-                    "PwmName": "FCB_$bus - 15 FAN_PWM_PCT",
+                    "PwmName": "FCB_${bus} - 15 FAN_PWM_PCT",
                     "Tachs": [
                         5
                     ]
                 },
                 "Index": 5,
-                "Name": "FCB_$bus - 15 FAN $bus * 4 - 64 + 3 TACH_OL_SPEED_RPM",
+                "Name": "FCB_${bus} - 15 FAN ${bus} * 4 - 64 + 3 TACH_OL_SPEED_RPM",
                 "PowerState": "Always",
                 "Thresholds": [
                     {
@@ -1199,17 +1199,17 @@
             },
             {
                 "Address": "0x5e",
-                "Bus": "$bus",
+                "Bus": "${bus}",
                 "Connector": {
-                    "Name": "FCB_$bus - 15 FAN $bus * 4 - 64 + 4 TACH_IL",
+                    "Name": "FCB_${bus} - 15 FAN ${bus} * 4 - 64 + 4 TACH_IL",
                     "Pwm": 2,
-                    "PwmName": "FCB_$bus - 15 FAN_PWM_PCT",
+                    "PwmName": "FCB_${bus} - 15 FAN_PWM_PCT",
                     "Tachs": [
                         6
                     ]
                 },
                 "Index": 6,
-                "Name": "FCB_$bus - 15 FAN $bus * 4 - 64 + 4 TACH_IL_SPEED_RPM",
+                "Name": "FCB_${bus} - 15 FAN ${bus} * 4 - 64 + 4 TACH_IL_SPEED_RPM",
                 "PowerState": "Always",
                 "Thresholds": [
                     {
@@ -1231,17 +1231,17 @@
             },
             {
                 "Address": "0x5e",
-                "Bus": "$bus",
+                "Bus": "${bus}",
                 "Connector": {
-                    "Name": "FCB_$bus - 15 FAN $bus * 4 - 64 + 4 TACH_OL",
+                    "Name": "FCB_${bus} - 15 FAN ${bus} * 4 - 64 + 4 TACH_OL",
                     "Pwm": 2,
-                    "PwmName": "FCB_$bus - 15 FAN_PWM_PCT",
+                    "PwmName": "FCB_${bus} - 15 FAN_PWM_PCT",
                     "Tachs": [
                         7
                     ]
                 },
                 "Index": 7,
-                "Name": "FCB_$bus - 15 FAN $bus * 4 - 64 + 4 TACH_OL_SPEED_RPM",
+                "Name": "FCB_${bus} - 15 FAN ${bus} * 4 - 64 + 4 TACH_OL_SPEED_RPM",
                 "PowerState": "Always",
                 "Thresholds": [
                     {
@@ -1263,13 +1263,13 @@
             },
             {
                 "Address": "0x41",
-                "Bus": "$bus",
+                "Bus": "${bus}",
                 "Labels": [
                     "in1",
                     "curr1",
                     "power1"
                 ],
-                "Name": "FCB_$bus - 15 FAN_$bus * 4 - 64 + 1",
+                "Name": "FCB_${bus} - 15 FAN_${bus} * 4 - 64 + 1",
                 "Thresholds": [
                     {
                         "Direction": "less than",
@@ -1305,19 +1305,19 @@
                     }
                 ],
                 "Type": "INA238",
-                "curr1_Name": "FCB_$bus - 15 FAN $bus * 4 - 64 + 1 CURR_A",
-                "in1_Name": "FCB_$bus - 15 FAN $bus * 4 - 64 + 1 VOLT_V",
-                "power1_Name": "FCB_$bus - 15 FAN $bus * 4 - 64 + 1 PWR_W"
+                "curr1_Name": "FCB_${bus} - 15 FAN ${bus} * 4 - 64 + 1 CURR_A",
+                "in1_Name": "FCB_${bus} - 15 FAN ${bus} * 4 - 64 + 1 VOLT_V",
+                "power1_Name": "FCB_${bus} - 15 FAN ${bus} * 4 - 64 + 1 PWR_W"
             },
             {
                 "Address": "0x40",
-                "Bus": "$bus",
+                "Bus": "${bus}",
                 "Labels": [
                     "in1",
                     "curr1",
                     "power1"
                 ],
-                "Name": "FCB_$bus - 15 FAN_$bus * 4 - 64 + 2",
+                "Name": "FCB_${bus} - 15 FAN_${bus} * 4 - 64 + 2",
                 "Thresholds": [
                     {
                         "Direction": "less than",
@@ -1353,19 +1353,19 @@
                     }
                 ],
                 "Type": "INA238",
-                "curr1_Name": "FCB_$bus - 15 FAN $bus * 4 - 64 + 2 CURR_A",
-                "in1_Name": "FCB_$bus - 15 FAN $bus * 4 - 64 + 2 VOLT_V",
-                "power1_Name": "FCB_$bus - 15 FAN $bus * 4 - 64 + 2 PWR_W"
+                "curr1_Name": "FCB_${bus} - 15 FAN ${bus} * 4 - 64 + 2 CURR_A",
+                "in1_Name": "FCB_${bus} - 15 FAN ${bus} * 4 - 64 + 2 VOLT_V",
+                "power1_Name": "FCB_${bus} - 15 FAN ${bus} * 4 - 64 + 2 PWR_W"
             },
             {
                 "Address": "0x45",
-                "Bus": "$bus",
+                "Bus": "${bus}",
                 "Labels": [
                     "in1",
                     "curr1",
                     "power1"
                 ],
-                "Name": "FCB_$bus - 15 FAN_$bus * 4 - 64 + 3",
+                "Name": "FCB_${bus} - 15 FAN_${bus} * 4 - 64 + 3",
                 "Thresholds": [
                     {
                         "Direction": "less than",
@@ -1401,19 +1401,19 @@
                     }
                 ],
                 "Type": "INA238",
-                "curr1_Name": "FCB_$bus - 15 FAN $bus * 4 - 64 + 3 CURR_A",
-                "in1_Name": "FCB_$bus - 15 FAN $bus * 4 - 64 + 3 VOLT_V",
-                "power1_Name": "FCB_$bus - 15 FAN $bus * 4 - 64 + 3 PWR_W"
+                "curr1_Name": "FCB_${bus} - 15 FAN ${bus} * 4 - 64 + 3 CURR_A",
+                "in1_Name": "FCB_${bus} - 15 FAN ${bus} * 4 - 64 + 3 VOLT_V",
+                "power1_Name": "FCB_${bus} - 15 FAN ${bus} * 4 - 64 + 3 PWR_W"
             },
             {
                 "Address": "0x44",
-                "Bus": "$bus",
+                "Bus": "${bus}",
                 "Labels": [
                     "in1",
                     "curr1",
                     "power1"
                 ],
-                "Name": "FCB_$bus - 15 FAN_$bus * 4 - 64 + 4",
+                "Name": "FCB_${bus} - 15 FAN_${bus} * 4 - 64 + 4",
                 "Thresholds": [
                     {
                         "Direction": "less than",
@@ -1449,24 +1449,24 @@
                     }
                 ],
                 "Type": "INA238",
-                "curr1_Name": "FCB_$bus - 15 FAN $bus * 4 - 64 + 4 CURR_A",
-                "in1_Name": "FCB_$bus - 15 FAN $bus * 4 - 64 + 4 VOLT_V",
-                "power1_Name": "FCB_$bus - 15 FAN $bus * 4 - 64 + 4 PWR_W"
+                "curr1_Name": "FCB_${bus} - 15 FAN ${bus} * 4 - 64 + 4 CURR_A",
+                "in1_Name": "FCB_${bus} - 15 FAN ${bus} * 4 - 64 + 4 VOLT_V",
+                "power1_Name": "FCB_${bus} - 15 FAN ${bus} * 4 - 64 + 4 PWR_W"
             },
             {
                 "Address": "0x49",
-                "Bus": "$bus",
+                "Bus": "${bus}",
                 "Labels": [
                     "temp1"
                 ],
-                "Name": "FCB_$bus - 15 T_SENSE",
+                "Name": "FCB_${bus} - 15 T_SENSE",
                 "Type": "INA238",
-                "temp1_Name": "FCB_$bus - 15 T_SENSE_TEMP_C"
+                "temp1_Name": "FCB_${bus} - 15 T_SENSE_TEMP_C"
             },
             {
                 "Address": "0x4b",
-                "Bus": "$bus",
-                "Name": "FCB_$bus - 15 TEMP_C",
+                "Bus": "${bus}",
+                "Name": "FCB_${bus} - 15 TEMP_C",
                 "Thresholds": [
                     {
                         "Direction": "greater than",
@@ -1494,32 +1494,32 @@
         ],
         "Type": "Board",
         "xyz.openbmc_project.Inventory.Decorator.Asset": {
-            "BuildDate": "$BOARD_MANUFACTURE_DATE",
-            "Manufacturer": "$BOARD_MANUFACTURER",
-            "Model": "$BOARD_PRODUCT_NAME",
-            "PartNumber": "$BOARD_PART_NUMBER",
-            "SerialNumber": "$BOARD_SERIAL_NUMBER",
-            "SparePartNumber": "$BOARD_INFO_AM1"
+            "BuildDate": "${BOARD_MANUFACTURE_DATE}",
+            "Manufacturer": "${BOARD_MANUFACTURER}",
+            "Model": "${BOARD_PRODUCT_NAME}",
+            "PartNumber": "${BOARD_PART_NUMBER}",
+            "SerialNumber": "${BOARD_SERIAL_NUMBER}",
+            "SparePartNumber": "${BOARD_INFO_AM1}"
         },
         "xyz.openbmc_project.Inventory.Decorator.AssetTag": {
-            "AssetTag": "$PRODUCT_ASSET_TAG"
+            "AssetTag": "${PRODUCT_ASSET_TAG}"
         }
     },
     {
         "Exposes": [
             {
                 "Address": "0x5e",
-                "Bus": "$bus",
+                "Bus": "${bus}",
                 "Connector": {
-                    "Name": "FCB_$bus - 15 FAN $bus * 4 - 64 + 1 TACH_IL",
+                    "Name": "FCB_${bus} - 15 FAN ${bus} * 4 - 64 + 1 TACH_IL",
                     "Pwm": 2,
-                    "PwmName": "FCB_$bus - 15 FAN_PWM_PCT",
+                    "PwmName": "FCB_${bus} - 15 FAN_PWM_PCT",
                     "Tachs": [
                         0
                     ]
                 },
                 "Index": 0,
-                "Name": "FCB_$bus - 15 FAN $bus * 4 - 64 + 1 TACH_IL_SPEED_RPM",
+                "Name": "FCB_${bus} - 15 FAN ${bus} * 4 - 64 + 1 TACH_IL_SPEED_RPM",
                 "PowerState": "Always",
                 "Thresholds": [
                     {
@@ -1541,17 +1541,17 @@
             },
             {
                 "Address": "0x5e",
-                "Bus": "$bus",
+                "Bus": "${bus}",
                 "Connector": {
-                    "Name": "FCB_$bus - 15 FAN $bus * 4 - 64 + 1 TACH_OL",
+                    "Name": "FCB_${bus} - 15 FAN ${bus} * 4 - 64 + 1 TACH_OL",
                     "Pwm": 2,
-                    "PwmName": "FCB_$bus - 15 FAN_PWM_PCT",
+                    "PwmName": "FCB_${bus} - 15 FAN_PWM_PCT",
                     "Tachs": [
                         1
                     ]
                 },
                 "Index": 1,
-                "Name": "FCB_$bus - 15 FAN $bus * 4 - 64 + 1 TACH_OL_SPEED_RPM",
+                "Name": "FCB_${bus} - 15 FAN ${bus} * 4 - 64 + 1 TACH_OL_SPEED_RPM",
                 "PowerState": "Always",
                 "Thresholds": [
                     {
@@ -1573,17 +1573,17 @@
             },
             {
                 "Address": "0x5e",
-                "Bus": "$bus",
+                "Bus": "${bus}",
                 "Connector": {
-                    "Name": "FCB_$bus - 15 FAN $bus * 4 - 64 + 2 TACH_IL",
+                    "Name": "FCB_${bus} - 15 FAN ${bus} * 4 - 64 + 2 TACH_IL",
                     "Pwm": 2,
-                    "PwmName": "FCB_$bus - 15 FAN_PWM_PCT",
+                    "PwmName": "FCB_${bus} - 15 FAN_PWM_PCT",
                     "Tachs": [
                         2
                     ]
                 },
                 "Index": 2,
-                "Name": "FCB_$bus - 15 FAN $bus * 4 - 64 + 2 TACH_IL_SPEED_RPM",
+                "Name": "FCB_${bus} - 15 FAN ${bus} * 4 - 64 + 2 TACH_IL_SPEED_RPM",
                 "PowerState": "Always",
                 "Thresholds": [
                     {
@@ -1605,17 +1605,17 @@
             },
             {
                 "Address": "0x5e",
-                "Bus": "$bus",
+                "Bus": "${bus}",
                 "Connector": {
-                    "Name": "FCB_$bus - 15 FAN $bus * 4 - 64 + 2 TACH_OL",
+                    "Name": "FCB_${bus} - 15 FAN ${bus} * 4 - 64 + 2 TACH_OL",
                     "Pwm": 2,
-                    "PwmName": "FCB_$bus - 15 FAN_PWM_PCT",
+                    "PwmName": "FCB_${bus} - 15 FAN_PWM_PCT",
                     "Tachs": [
                         3
                     ]
                 },
                 "Index": 3,
-                "Name": "FCB_$bus - 15 FAN $bus * 4 - 64 + 2 TACH_OL_SPEED_RPM",
+                "Name": "FCB_${bus} - 15 FAN ${bus} * 4 - 64 + 2 TACH_OL_SPEED_RPM",
                 "PowerState": "Always",
                 "Thresholds": [
                     {
@@ -1637,17 +1637,17 @@
             },
             {
                 "Address": "0x5e",
-                "Bus": "$bus",
+                "Bus": "${bus}",
                 "Connector": {
-                    "Name": "FCB_$bus - 15 FAN $bus * 4 - 64 + 3 TACH_IL",
+                    "Name": "FCB_${bus} - 15 FAN ${bus} * 4 - 64 + 3 TACH_IL",
                     "Pwm": 2,
-                    "PwmName": "FCB_$bus - 15 FAN_PWM_PCT",
+                    "PwmName": "FCB_${bus} - 15 FAN_PWM_PCT",
                     "Tachs": [
                         4
                     ]
                 },
                 "Index": 4,
-                "Name": "FCB_$bus - 15 FAN $bus * 4 - 64 + 3 TACH_IL_SPEED_RPM",
+                "Name": "FCB_${bus} - 15 FAN ${bus} * 4 - 64 + 3 TACH_IL_SPEED_RPM",
                 "PowerState": "Always",
                 "Thresholds": [
                     {
@@ -1669,17 +1669,17 @@
             },
             {
                 "Address": "0x5e",
-                "Bus": "$bus",
+                "Bus": "${bus}",
                 "Connector": {
-                    "Name": "FCB_$bus - 15 FAN $bus * 4 - 64 + 3 TACH_OL",
+                    "Name": "FCB_${bus} - 15 FAN ${bus} * 4 - 64 + 3 TACH_OL",
                     "Pwm": 2,
-                    "PwmName": "FCB_$bus - 15 FAN_PWM_PCT",
+                    "PwmName": "FCB_${bus} - 15 FAN_PWM_PCT",
                     "Tachs": [
                         5
                     ]
                 },
                 "Index": 5,
-                "Name": "FCB_$bus - 15 FAN $bus * 4 - 64 + 3 TACH_OL_SPEED_RPM",
+                "Name": "FCB_${bus} - 15 FAN ${bus} * 4 - 64 + 3 TACH_OL_SPEED_RPM",
                 "PowerState": "Always",
                 "Thresholds": [
                     {
@@ -1701,17 +1701,17 @@
             },
             {
                 "Address": "0x5e",
-                "Bus": "$bus",
+                "Bus": "${bus}",
                 "Connector": {
-                    "Name": "FCB_$bus - 15 FAN $bus * 4 - 64 + 4 TACH_IL",
+                    "Name": "FCB_${bus} - 15 FAN ${bus} * 4 - 64 + 4 TACH_IL",
                     "Pwm": 2,
-                    "PwmName": "FCB_$bus - 15 FAN_PWM_PCT",
+                    "PwmName": "FCB_${bus} - 15 FAN_PWM_PCT",
                     "Tachs": [
                         6
                     ]
                 },
                 "Index": 6,
-                "Name": "FCB_$bus - 15 FAN $bus * 4 - 64 + 4 TACH_IL_SPEED_RPM",
+                "Name": "FCB_${bus} - 15 FAN ${bus} * 4 - 64 + 4 TACH_IL_SPEED_RPM",
                 "PowerState": "Always",
                 "Thresholds": [
                     {
@@ -1733,17 +1733,17 @@
             },
             {
                 "Address": "0x5e",
-                "Bus": "$bus",
+                "Bus": "${bus}",
                 "Connector": {
-                    "Name": "FCB_$bus - 15 FAN $bus * 4 - 64 + 4 TACH_OL",
+                    "Name": "FCB_${bus} - 15 FAN ${bus} * 4 - 64 + 4 TACH_OL",
                     "Pwm": 2,
-                    "PwmName": "FCB_$bus - 15 FAN_PWM_PCT",
+                    "PwmName": "FCB_${bus} - 15 FAN_PWM_PCT",
                     "Tachs": [
                         7
                     ]
                 },
                 "Index": 7,
-                "Name": "FCB_$bus - 15 FAN $bus * 4 - 64 + 4 TACH_OL_SPEED_RPM",
+                "Name": "FCB_${bus} - 15 FAN ${bus} * 4 - 64 + 4 TACH_OL_SPEED_RPM",
                 "PowerState": "Always",
                 "Thresholds": [
                     {
@@ -1765,13 +1765,13 @@
             },
             {
                 "Address": "0x41",
-                "Bus": "$bus",
+                "Bus": "${bus}",
                 "Labels": [
                     "in1",
                     "curr1",
                     "power1"
                 ],
-                "Name": "FCB_$bus - 15 FAN_$bus * 4 - 64 + 1",
+                "Name": "FCB_${bus} - 15 FAN_${bus} * 4 - 64 + 1",
                 "Thresholds": [
                     {
                         "Direction": "less than",
@@ -1807,19 +1807,19 @@
                     }
                 ],
                 "Type": "INA238",
-                "curr1_Name": "FCB_$bus - 15 FAN $bus * 4 - 64 + 1 CURR_A",
-                "in1_Name": "FCB_$bus - 15 FAN $bus * 4 - 64 + 1 VOLT_V",
-                "power1_Name": "FCB_$bus - 15 FAN $bus * 4 - 64 + 1 PWR_W"
+                "curr1_Name": "FCB_${bus} - 15 FAN ${bus} * 4 - 64 + 1 CURR_A",
+                "in1_Name": "FCB_${bus} - 15 FAN ${bus} * 4 - 64 + 1 VOLT_V",
+                "power1_Name": "FCB_${bus} - 15 FAN ${bus} * 4 - 64 + 1 PWR_W"
             },
             {
                 "Address": "0x40",
-                "Bus": "$bus",
+                "Bus": "${bus}",
                 "Labels": [
                     "in1",
                     "curr1",
                     "power1"
                 ],
-                "Name": "FCB_$bus - 15 FAN_$bus * 4 - 64 + 2",
+                "Name": "FCB_${bus} - 15 FAN_${bus} * 4 - 64 + 2",
                 "Thresholds": [
                     {
                         "Direction": "less than",
@@ -1855,19 +1855,19 @@
                     }
                 ],
                 "Type": "INA238",
-                "curr1_Name": "FCB_$bus - 15 FAN $bus * 4 - 64 + 2 CURR_A",
-                "in1_Name": "FCB_$bus - 15 FAN $bus * 4 - 64 + 2 VOLT_V",
-                "power1_Name": "FCB_$bus - 15 FAN $bus * 4 - 64 + 2 PWR_W"
+                "curr1_Name": "FCB_${bus} - 15 FAN ${bus} * 4 - 64 + 2 CURR_A",
+                "in1_Name": "FCB_${bus} - 15 FAN ${bus} * 4 - 64 + 2 VOLT_V",
+                "power1_Name": "FCB_${bus} - 15 FAN ${bus} * 4 - 64 + 2 PWR_W"
             },
             {
                 "Address": "0x45",
-                "Bus": "$bus",
+                "Bus": "${bus}",
                 "Labels": [
                     "in1",
                     "curr1",
                     "power1"
                 ],
-                "Name": "FCB_$bus - 15 FAN_$bus * 4 - 64 + 3",
+                "Name": "FCB_${bus} - 15 FAN_${bus} * 4 - 64 + 3",
                 "Thresholds": [
                     {
                         "Direction": "less than",
@@ -1903,19 +1903,19 @@
                     }
                 ],
                 "Type": "INA238",
-                "curr1_Name": "FCB_$bus - 15 FAN $bus * 4 - 64 + 3 CURR_A",
-                "in1_Name": "FCB_$bus - 15 FAN $bus * 4 - 64 + 3 VOLT_V",
-                "power1_Name": "FCB_$bus - 15 FAN $bus * 4 - 64 + 3 PWR_W"
+                "curr1_Name": "FCB_${bus} - 15 FAN ${bus} * 4 - 64 + 3 CURR_A",
+                "in1_Name": "FCB_${bus} - 15 FAN ${bus} * 4 - 64 + 3 VOLT_V",
+                "power1_Name": "FCB_${bus} - 15 FAN ${bus} * 4 - 64 + 3 PWR_W"
             },
             {
                 "Address": "0x44",
-                "Bus": "$bus",
+                "Bus": "${bus}",
                 "Labels": [
                     "in1",
                     "curr1",
                     "power1"
                 ],
-                "Name": "FCB_$bus - 15 FAN_$bus * 4 - 64 + 4",
+                "Name": "FCB_${bus} - 15 FAN_${bus} * 4 - 64 + 4",
                 "Thresholds": [
                     {
                         "Direction": "less than",
@@ -1951,24 +1951,24 @@
                     }
                 ],
                 "Type": "INA238",
-                "curr1_Name": "FCB_$bus - 15 FAN $bus * 4 - 64 + 4 CURR_A",
-                "in1_Name": "FCB_$bus - 15 FAN $bus * 4 - 64 + 4 VOLT_V",
-                "power1_Name": "FCB_$bus - 15 FAN $bus * 4 - 64 + 4 PWR_W"
+                "curr1_Name": "FCB_${bus} - 15 FAN ${bus} * 4 - 64 + 4 CURR_A",
+                "in1_Name": "FCB_${bus} - 15 FAN ${bus} * 4 - 64 + 4 VOLT_V",
+                "power1_Name": "FCB_${bus} - 15 FAN ${bus} * 4 - 64 + 4 PWR_W"
             },
             {
                 "Address": "0x49",
-                "Bus": "$bus",
+                "Bus": "${bus}",
                 "Labels": [
                     "temp1"
                 ],
-                "Name": "FCB_$bus - 15 T_SENSE",
+                "Name": "FCB_${bus} - 15 T_SENSE",
                 "Type": "INA238",
-                "temp1_Name": "FCB_$bus - 15 T_SENSE_TEMP_C"
+                "temp1_Name": "FCB_${bus} - 15 T_SENSE_TEMP_C"
             },
             {
                 "Address": "0x4b",
-                "Bus": "$bus",
-                "Name": "FCB_$bus - 15 TEMP_C",
+                "Bus": "${bus}",
+                "Name": "FCB_${bus} - 15 TEMP_C",
                 "Thresholds": [
                     {
                         "Direction": "greater than",
@@ -1996,32 +1996,32 @@
         ],
         "Type": "Board",
         "xyz.openbmc_project.Inventory.Decorator.Asset": {
-            "BuildDate": "$BOARD_MANUFACTURE_DATE",
-            "Manufacturer": "$BOARD_MANUFACTURER",
-            "Model": "$BOARD_PRODUCT_NAME",
-            "PartNumber": "$BOARD_PART_NUMBER",
-            "SerialNumber": "$BOARD_SERIAL_NUMBER",
-            "SparePartNumber": "$BOARD_INFO_AM1"
+            "BuildDate": "${BOARD_MANUFACTURE_DATE}",
+            "Manufacturer": "${BOARD_MANUFACTURER}",
+            "Model": "${BOARD_PRODUCT_NAME}",
+            "PartNumber": "${BOARD_PART_NUMBER}",
+            "SerialNumber": "${BOARD_SERIAL_NUMBER}",
+            "SparePartNumber": "${BOARD_INFO_AM1}"
         },
         "xyz.openbmc_project.Inventory.Decorator.AssetTag": {
-            "AssetTag": "$PRODUCT_ASSET_TAG"
+            "AssetTag": "${PRODUCT_ASSET_TAG}"
         }
     },
     {
         "Exposes": [
             {
                 "Address": "0x5e",
-                "Bus": "$bus",
+                "Bus": "${bus}",
                 "Connector": {
-                    "Name": "FCB_$bus - 15 FAN $bus * 4 - 64 + 1 TACH_IL",
+                    "Name": "FCB_${bus} - 15 FAN ${bus} * 4 - 64 + 1 TACH_IL",
                     "Pwm": 2,
-                    "PwmName": "FCB_$bus - 15 FAN_PWM_PCT",
+                    "PwmName": "FCB_${bus} - 15 FAN_PWM_PCT",
                     "Tachs": [
                         6
                     ]
                 },
                 "Index": 6,
-                "Name": "FCB_$bus - 15 FAN $bus * 4 - 64 + 1 TACH_IL_SPEED_RPM",
+                "Name": "FCB_${bus} - 15 FAN ${bus} * 4 - 64 + 1 TACH_IL_SPEED_RPM",
                 "PowerState": "Always",
                 "Thresholds": [
                     {
@@ -2043,17 +2043,17 @@
             },
             {
                 "Address": "0x5e",
-                "Bus": "$bus",
+                "Bus": "${bus}",
                 "Connector": {
-                    "Name": "FCB_$bus - 15 FAN $bus * 4 - 64 + 1 TACH_OL",
+                    "Name": "FCB_${bus} - 15 FAN ${bus} * 4 - 64 + 1 TACH_OL",
                     "Pwm": 2,
-                    "PwmName": "FCB_$bus - 15 FAN_PWM_PCT",
+                    "PwmName": "FCB_${bus} - 15 FAN_PWM_PCT",
                     "Tachs": [
                         7
                     ]
                 },
                 "Index": 7,
-                "Name": "FCB_$bus - 15 FAN $bus * 4 - 64 + 1 TACH_OL_SPEED_RPM",
+                "Name": "FCB_${bus} - 15 FAN ${bus} * 4 - 64 + 1 TACH_OL_SPEED_RPM",
                 "PowerState": "Always",
                 "Thresholds": [
                     {
@@ -2075,17 +2075,17 @@
             },
             {
                 "Address": "0x5e",
-                "Bus": "$bus",
+                "Bus": "${bus}",
                 "Connector": {
-                    "Name": "FCB_$bus - 15 FAN $bus * 4 - 64 + 2 TACH_IL",
+                    "Name": "FCB_${bus} - 15 FAN ${bus} * 4 - 64 + 2 TACH_IL",
                     "Pwm": 2,
-                    "PwmName": "FCB_$bus - 15 FAN_PWM_PCT",
+                    "PwmName": "FCB_${bus} - 15 FAN_PWM_PCT",
                     "Tachs": [
                         4
                     ]
                 },
                 "Index": 4,
-                "Name": "FCB_$bus - 15 FAN $bus * 4 - 64 + 2 TACH_IL_SPEED_RPM",
+                "Name": "FCB_${bus} - 15 FAN ${bus} * 4 - 64 + 2 TACH_IL_SPEED_RPM",
                 "PowerState": "Always",
                 "Thresholds": [
                     {
@@ -2107,17 +2107,17 @@
             },
             {
                 "Address": "0x5e",
-                "Bus": "$bus",
+                "Bus": "${bus}",
                 "Connector": {
-                    "Name": "FCB_$bus - 15 FAN $bus * 4 - 64 + 2 TACH_OL",
+                    "Name": "FCB_${bus} - 15 FAN ${bus} * 4 - 64 + 2 TACH_OL",
                     "Pwm": 2,
-                    "PwmName": "FCB_$bus - 15 FAN_PWM_PCT",
+                    "PwmName": "FCB_${bus} - 15 FAN_PWM_PCT",
                     "Tachs": [
                         5
                     ]
                 },
                 "Index": 5,
-                "Name": "FCB_$bus - 15 FAN $bus * 4 - 64 + 2 TACH_OL_SPEED_RPM",
+                "Name": "FCB_${bus} - 15 FAN ${bus} * 4 - 64 + 2 TACH_OL_SPEED_RPM",
                 "PowerState": "Always",
                 "Thresholds": [
                     {
@@ -2139,17 +2139,17 @@
             },
             {
                 "Address": "0x5e",
-                "Bus": "$bus",
+                "Bus": "${bus}",
                 "Connector": {
-                    "Name": "FCB_$bus - 15 FAN $bus * 4 - 64 + 3 TACH_IL",
+                    "Name": "FCB_${bus} - 15 FAN ${bus} * 4 - 64 + 3 TACH_IL",
                     "Pwm": 2,
-                    "PwmName": "FCB_$bus - 15 FAN_PWM_PCT",
+                    "PwmName": "FCB_${bus} - 15 FAN_PWM_PCT",
                     "Tachs": [
                         2
                     ]
                 },
                 "Index": 2,
-                "Name": "FCB_$bus - 15 FAN $bus * 4 - 64 + 3 TACH_IL_SPEED_RPM",
+                "Name": "FCB_${bus} - 15 FAN ${bus} * 4 - 64 + 3 TACH_IL_SPEED_RPM",
                 "PowerState": "Always",
                 "Thresholds": [
                     {
@@ -2171,17 +2171,17 @@
             },
             {
                 "Address": "0x5e",
-                "Bus": "$bus",
+                "Bus": "${bus}",
                 "Connector": {
-                    "Name": "FCB_$bus - 15 FAN $bus * 4 - 64 + 3 TACH_OL",
+                    "Name": "FCB_${bus} - 15 FAN ${bus} * 4 - 64 + 3 TACH_OL",
                     "Pwm": 2,
-                    "PwmName": "FCB_$bus - 15 FAN_PWM_PCT",
+                    "PwmName": "FCB_${bus} - 15 FAN_PWM_PCT",
                     "Tachs": [
                         3
                     ]
                 },
                 "Index": 3,
-                "Name": "FCB_$bus - 15 FAN $bus * 4 - 64 + 3 TACH_OL_SPEED_RPM",
+                "Name": "FCB_${bus} - 15 FAN ${bus} * 4 - 64 + 3 TACH_OL_SPEED_RPM",
                 "PowerState": "Always",
                 "Thresholds": [
                     {
@@ -2203,17 +2203,17 @@
             },
             {
                 "Address": "0x5e",
-                "Bus": "$bus",
+                "Bus": "${bus}",
                 "Connector": {
-                    "Name": "FCB_$bus - 15 FAN $bus * 4 - 64 + 4 TACH_IL",
+                    "Name": "FCB_${bus} - 15 FAN ${bus} * 4 - 64 + 4 TACH_IL",
                     "Pwm": 2,
-                    "PwmName": "FCB_$bus - 15 FAN_PWM_PCT",
+                    "PwmName": "FCB_${bus} - 15 FAN_PWM_PCT",
                     "Tachs": [
                         0
                     ]
                 },
                 "Index": 0,
-                "Name": "FCB_$bus - 15 FAN $bus * 4 - 64 + 4 TACH_IL_SPEED_RPM",
+                "Name": "FCB_${bus} - 15 FAN ${bus} * 4 - 64 + 4 TACH_IL_SPEED_RPM",
                 "PowerState": "Always",
                 "Thresholds": [
                     {
@@ -2235,17 +2235,17 @@
             },
             {
                 "Address": "0x5e",
-                "Bus": "$bus",
+                "Bus": "${bus}",
                 "Connector": {
-                    "Name": "FCB_$bus - 15 FAN $bus * 4 - 64 + 4 TACH_OL",
+                    "Name": "FCB_${bus} - 15 FAN ${bus} * 4 - 64 + 4 TACH_OL",
                     "Pwm": 2,
-                    "PwmName": "FCB_$bus - 15 FAN_PWM_PCT",
+                    "PwmName": "FCB_${bus} - 15 FAN_PWM_PCT",
                     "Tachs": [
                         1
                     ]
                 },
                 "Index": 1,
-                "Name": "FCB_$bus - 15 FAN $bus * 4 - 64 + 4 TACH_OL_SPEED_RPM",
+                "Name": "FCB_${bus} - 15 FAN ${bus} * 4 - 64 + 4 TACH_OL_SPEED_RPM",
                 "PowerState": "Always",
                 "Thresholds": [
                     {
@@ -2267,13 +2267,13 @@
             },
             {
                 "Address": "0x44",
-                "Bus": "$bus",
+                "Bus": "${bus}",
                 "Labels": [
                     "in1",
                     "curr1",
                     "power1"
                 ],
-                "Name": "FCB_$bus - 15 FAN_$bus * 4 - 64 + 1",
+                "Name": "FCB_${bus} - 15 FAN_${bus} * 4 - 64 + 1",
                 "Thresholds": [
                     {
                         "Direction": "less than",
@@ -2309,19 +2309,19 @@
                     }
                 ],
                 "Type": "INA238",
-                "curr1_Name": "FCB_$bus - 15 FAN $bus * 4 - 64 + 1 CURR_A",
-                "in1_Name": "FCB_$bus - 15 FAN $bus * 4 - 64 + 1 VOLT_V",
-                "power1_Name": "FCB_$bus - 15 FAN $bus * 4 - 64 + 1 PWR_W"
+                "curr1_Name": "FCB_${bus} - 15 FAN ${bus} * 4 - 64 + 1 CURR_A",
+                "in1_Name": "FCB_${bus} - 15 FAN ${bus} * 4 - 64 + 1 VOLT_V",
+                "power1_Name": "FCB_${bus} - 15 FAN ${bus} * 4 - 64 + 1 PWR_W"
             },
             {
                 "Address": "0x45",
-                "Bus": "$bus",
+                "Bus": "${bus}",
                 "Labels": [
                     "in1",
                     "curr1",
                     "power1"
                 ],
-                "Name": "FCB_$bus - 15 FAN_$bus * 4 - 64 + 2",
+                "Name": "FCB_${bus} - 15 FAN_${bus} * 4 - 64 + 2",
                 "Thresholds": [
                     {
                         "Direction": "less than",
@@ -2357,19 +2357,19 @@
                     }
                 ],
                 "Type": "INA238",
-                "curr1_Name": "FCB_$bus - 15 FAN $bus * 4 - 64 + 2 CURR_A",
-                "in1_Name": "FCB_$bus - 15 FAN $bus * 4 - 64 + 2 VOLT_V",
-                "power1_Name": "FCB_$bus - 15 FAN $bus * 4 - 64 + 2 PWR_W"
+                "curr1_Name": "FCB_${bus} - 15 FAN ${bus} * 4 - 64 + 2 CURR_A",
+                "in1_Name": "FCB_${bus} - 15 FAN ${bus} * 4 - 64 + 2 VOLT_V",
+                "power1_Name": "FCB_${bus} - 15 FAN ${bus} * 4 - 64 + 2 PWR_W"
             },
             {
                 "Address": "0x40",
-                "Bus": "$bus",
+                "Bus": "${bus}",
                 "Labels": [
                     "in1",
                     "curr1",
                     "power1"
                 ],
-                "Name": "FCB_$bus - 15 FAN_$bus * 4 - 64 + 3",
+                "Name": "FCB_${bus} - 15 FAN_${bus} * 4 - 64 + 3",
                 "Thresholds": [
                     {
                         "Direction": "less than",
@@ -2405,19 +2405,19 @@
                     }
                 ],
                 "Type": "INA238",
-                "curr1_Name": "FCB_$bus - 15 FAN $bus * 4 - 64 + 3 CURR_A",
-                "in1_Name": "FCB_$bus - 15 FAN $bus * 4 - 64 + 3 VOLT_V",
-                "power1_Name": "FCB_$bus - 15 FAN $bus * 4 - 64 + 3 PWR_W"
+                "curr1_Name": "FCB_${bus} - 15 FAN ${bus} * 4 - 64 + 3 CURR_A",
+                "in1_Name": "FCB_${bus} - 15 FAN ${bus} * 4 - 64 + 3 VOLT_V",
+                "power1_Name": "FCB_${bus} - 15 FAN ${bus} * 4 - 64 + 3 PWR_W"
             },
             {
                 "Address": "0x41",
-                "Bus": "$bus",
+                "Bus": "${bus}",
                 "Labels": [
                     "in1",
                     "curr1",
                     "power1"
                 ],
-                "Name": "FCB_$bus - 15 FAN_$bus * 4 - 64 + 4",
+                "Name": "FCB_${bus} - 15 FAN_${bus} * 4 - 64 + 4",
                 "Thresholds": [
                     {
                         "Direction": "less than",
@@ -2453,24 +2453,24 @@
                     }
                 ],
                 "Type": "INA238",
-                "curr1_Name": "FCB_$bus - 15 FAN $bus * 4 - 64 + 4 CURR_A",
-                "in1_Name": "FCB_$bus - 15 FAN $bus * 4 - 64 + 4 VOLT_V",
-                "power1_Name": "FCB_$bus - 15 FAN $bus * 4 - 64 + 4 PWR_W"
+                "curr1_Name": "FCB_${bus} - 15 FAN ${bus} * 4 - 64 + 4 CURR_A",
+                "in1_Name": "FCB_${bus} - 15 FAN ${bus} * 4 - 64 + 4 VOLT_V",
+                "power1_Name": "FCB_${bus} - 15 FAN ${bus} * 4 - 64 + 4 PWR_W"
             },
             {
                 "Address": "0x49",
-                "Bus": "$bus",
+                "Bus": "${bus}",
                 "Labels": [
                     "temp1"
                 ],
-                "Name": "FCB_$bus - 15 T_SENSE",
+                "Name": "FCB_${bus} - 15 T_SENSE",
                 "Type": "INA238",
-                "temp1_Name": "FCB_$bus - 15 T_SENSE_TEMP_C"
+                "temp1_Name": "FCB_${bus} - 15 T_SENSE_TEMP_C"
             },
             {
                 "Address": "0x4b",
-                "Bus": "$bus",
-                "Name": "FCB_$bus - 15 TEMP_C",
+                "Bus": "${bus}",
+                "Name": "FCB_${bus} - 15 TEMP_C",
                 "Thresholds": [
                     {
                         "Direction": "greater than",
@@ -2498,32 +2498,32 @@
         ],
         "Type": "Board",
         "xyz.openbmc_project.Inventory.Decorator.Asset": {
-            "BuildDate": "$BOARD_MANUFACTURE_DATE",
-            "Manufacturer": "$BOARD_MANUFACTURER",
-            "Model": "$BOARD_PRODUCT_NAME",
-            "PartNumber": "$BOARD_PART_NUMBER",
-            "SerialNumber": "$BOARD_SERIAL_NUMBER",
-            "SparePartNumber": "$BOARD_INFO_AM1"
+            "BuildDate": "${BOARD_MANUFACTURE_DATE}",
+            "Manufacturer": "${BOARD_MANUFACTURER}",
+            "Model": "${BOARD_PRODUCT_NAME}",
+            "PartNumber": "${BOARD_PART_NUMBER}",
+            "SerialNumber": "${BOARD_SERIAL_NUMBER}",
+            "SparePartNumber": "${BOARD_INFO_AM1}"
         },
         "xyz.openbmc_project.Inventory.Decorator.AssetTag": {
-            "AssetTag": "$PRODUCT_ASSET_TAG"
+            "AssetTag": "${PRODUCT_ASSET_TAG}"
         }
     },
     {
         "Exposes": [
             {
                 "Address": "0x5e",
-                "Bus": "$bus",
+                "Bus": "${bus}",
                 "Connector": {
-                    "Name": "FCB_$bus - 15 FAN $bus * 4 - 64 + 1 TACH_IL",
+                    "Name": "FCB_${bus} - 15 FAN ${bus} * 4 - 64 + 1 TACH_IL",
                     "Pwm": 2,
-                    "PwmName": "FCB_$bus - 15 FAN_PWM_PCT",
+                    "PwmName": "FCB_${bus} - 15 FAN_PWM_PCT",
                     "Tachs": [
                         6
                     ]
                 },
                 "Index": 6,
-                "Name": "FCB_$bus - 15 FAN $bus * 4 - 64 + 1 TACH_IL_SPEED_RPM",
+                "Name": "FCB_${bus} - 15 FAN ${bus} * 4 - 64 + 1 TACH_IL_SPEED_RPM",
                 "PowerState": "Always",
                 "Thresholds": [
                     {
@@ -2545,17 +2545,17 @@
             },
             {
                 "Address": "0x5e",
-                "Bus": "$bus",
+                "Bus": "${bus}",
                 "Connector": {
-                    "Name": "FCB_$bus - 15 FAN $bus * 4 - 64 + 1 TACH_OL",
+                    "Name": "FCB_${bus} - 15 FAN ${bus} * 4 - 64 + 1 TACH_OL",
                     "Pwm": 2,
-                    "PwmName": "FCB_$bus - 15 FAN_PWM_PCT",
+                    "PwmName": "FCB_${bus} - 15 FAN_PWM_PCT",
                     "Tachs": [
                         7
                     ]
                 },
                 "Index": 7,
-                "Name": "FCB_$bus - 15 FAN $bus * 4 - 64 + 1 TACH_OL_SPEED_RPM",
+                "Name": "FCB_${bus} - 15 FAN ${bus} * 4 - 64 + 1 TACH_OL_SPEED_RPM",
                 "PowerState": "Always",
                 "Thresholds": [
                     {
@@ -2577,17 +2577,17 @@
             },
             {
                 "Address": "0x5e",
-                "Bus": "$bus",
+                "Bus": "${bus}",
                 "Connector": {
-                    "Name": "FCB_$bus - 15 FAN $bus * 4 - 64 + 2 TACH_IL",
+                    "Name": "FCB_${bus} - 15 FAN ${bus} * 4 - 64 + 2 TACH_IL",
                     "Pwm": 2,
-                    "PwmName": "FCB_$bus - 15 FAN_PWM_PCT",
+                    "PwmName": "FCB_${bus} - 15 FAN_PWM_PCT",
                     "Tachs": [
                         4
                     ]
                 },
                 "Index": 4,
-                "Name": "FCB_$bus - 15 FAN $bus * 4 - 64 + 2 TACH_IL_SPEED_RPM",
+                "Name": "FCB_${bus} - 15 FAN ${bus} * 4 - 64 + 2 TACH_IL_SPEED_RPM",
                 "PowerState": "Always",
                 "Thresholds": [
                     {
@@ -2609,17 +2609,17 @@
             },
             {
                 "Address": "0x5e",
-                "Bus": "$bus",
+                "Bus": "${bus}",
                 "Connector": {
-                    "Name": "FCB_$bus - 15 FAN $bus * 4 - 64 + 2 TACH_OL",
+                    "Name": "FCB_${bus} - 15 FAN ${bus} * 4 - 64 + 2 TACH_OL",
                     "Pwm": 2,
-                    "PwmName": "FCB_$bus - 15 FAN_PWM_PCT",
+                    "PwmName": "FCB_${bus} - 15 FAN_PWM_PCT",
                     "Tachs": [
                         5
                     ]
                 },
                 "Index": 5,
-                "Name": "FCB_$bus - 15 FAN $bus * 4 - 64 + 2 TACH_OL_SPEED_RPM",
+                "Name": "FCB_${bus} - 15 FAN ${bus} * 4 - 64 + 2 TACH_OL_SPEED_RPM",
                 "PowerState": "Always",
                 "Thresholds": [
                     {
@@ -2641,17 +2641,17 @@
             },
             {
                 "Address": "0x5e",
-                "Bus": "$bus",
+                "Bus": "${bus}",
                 "Connector": {
-                    "Name": "FCB_$bus - 15 FAN $bus * 4 - 64 + 3 TACH_IL",
+                    "Name": "FCB_${bus} - 15 FAN ${bus} * 4 - 64 + 3 TACH_IL",
                     "Pwm": 2,
-                    "PwmName": "FCB_$bus - 15 FAN_PWM_PCT",
+                    "PwmName": "FCB_${bus} - 15 FAN_PWM_PCT",
                     "Tachs": [
                         2
                     ]
                 },
                 "Index": 2,
-                "Name": "FCB_$bus - 15 FAN $bus * 4 - 64 + 3 TACH_IL_SPEED_RPM",
+                "Name": "FCB_${bus} - 15 FAN ${bus} * 4 - 64 + 3 TACH_IL_SPEED_RPM",
                 "PowerState": "Always",
                 "Thresholds": [
                     {
@@ -2673,17 +2673,17 @@
             },
             {
                 "Address": "0x5e",
-                "Bus": "$bus",
+                "Bus": "${bus}",
                 "Connector": {
-                    "Name": "FCB_$bus - 15 FAN $bus * 4 - 64 + 3 TACH_OL",
+                    "Name": "FCB_${bus} - 15 FAN ${bus} * 4 - 64 + 3 TACH_OL",
                     "Pwm": 2,
-                    "PwmName": "FCB_$bus - 15 FAN_PWM_PCT",
+                    "PwmName": "FCB_${bus} - 15 FAN_PWM_PCT",
                     "Tachs": [
                         3
                     ]
                 },
                 "Index": 3,
-                "Name": "FCB_$bus - 15 FAN $bus * 4 - 64 + 3 TACH_OL_SPEED_RPM",
+                "Name": "FCB_${bus} - 15 FAN ${bus} * 4 - 64 + 3 TACH_OL_SPEED_RPM",
                 "PowerState": "Always",
                 "Thresholds": [
                     {
@@ -2705,17 +2705,17 @@
             },
             {
                 "Address": "0x5e",
-                "Bus": "$bus",
+                "Bus": "${bus}",
                 "Connector": {
-                    "Name": "FCB_$bus - 15 FAN $bus * 4 - 64 + 4 TACH_IL",
+                    "Name": "FCB_${bus} - 15 FAN ${bus} * 4 - 64 + 4 TACH_IL",
                     "Pwm": 2,
-                    "PwmName": "FCB_$bus - 15 FAN_PWM_PCT",
+                    "PwmName": "FCB_${bus} - 15 FAN_PWM_PCT",
                     "Tachs": [
                         0
                     ]
                 },
                 "Index": 0,
-                "Name": "FCB_$bus - 15 FAN $bus * 4 - 64 + 4 TACH_IL_SPEED_RPM",
+                "Name": "FCB_${bus} - 15 FAN ${bus} * 4 - 64 + 4 TACH_IL_SPEED_RPM",
                 "PowerState": "Always",
                 "Thresholds": [
                     {
@@ -2737,17 +2737,17 @@
             },
             {
                 "Address": "0x5e",
-                "Bus": "$bus",
+                "Bus": "${bus}",
                 "Connector": {
-                    "Name": "FCB_$bus - 15 FAN $bus * 4 - 64 + 4 TACH_OL",
+                    "Name": "FCB_${bus} - 15 FAN ${bus} * 4 - 64 + 4 TACH_OL",
                     "Pwm": 2,
-                    "PwmName": "FCB_$bus - 15 FAN_PWM_PCT",
+                    "PwmName": "FCB_${bus} - 15 FAN_PWM_PCT",
                     "Tachs": [
                         1
                     ]
                 },
                 "Index": 1,
-                "Name": "FCB_$bus - 15 FAN $bus * 4 - 64 + 4 TACH_OL_SPEED_RPM",
+                "Name": "FCB_${bus} - 15 FAN ${bus} * 4 - 64 + 4 TACH_OL_SPEED_RPM",
                 "PowerState": "Always",
                 "Thresholds": [
                     {
@@ -2769,13 +2769,13 @@
             },
             {
                 "Address": "0x44",
-                "Bus": "$bus",
+                "Bus": "${bus}",
                 "Labels": [
                     "in1",
                     "curr1",
                     "power1"
                 ],
-                "Name": "FCB_$bus - 15 FAN_$bus * 4 - 64 + 1",
+                "Name": "FCB_${bus} - 15 FAN_${bus} * 4 - 64 + 1",
                 "Thresholds": [
                     {
                         "Direction": "less than",
@@ -2811,19 +2811,19 @@
                     }
                 ],
                 "Type": "INA238",
-                "curr1_Name": "FCB_$bus - 15 FAN $bus * 4 - 64 + 1 CURR_A",
-                "in1_Name": "FCB_$bus - 15 FAN $bus * 4 - 64 + 1 VOLT_V",
-                "power1_Name": "FCB_$bus - 15 FAN $bus * 4 - 64 + 1 PWR_W"
+                "curr1_Name": "FCB_${bus} - 15 FAN ${bus} * 4 - 64 + 1 CURR_A",
+                "in1_Name": "FCB_${bus} - 15 FAN ${bus} * 4 - 64 + 1 VOLT_V",
+                "power1_Name": "FCB_${bus} - 15 FAN ${bus} * 4 - 64 + 1 PWR_W"
             },
             {
                 "Address": "0x45",
-                "Bus": "$bus",
+                "Bus": "${bus}",
                 "Labels": [
                     "in1",
                     "curr1",
                     "power1"
                 ],
-                "Name": "FCB_$bus - 15 FAN_$bus * 4 - 64 + 2",
+                "Name": "FCB_${bus} - 15 FAN_${bus} * 4 - 64 + 2",
                 "Thresholds": [
                     {
                         "Direction": "less than",
@@ -2859,19 +2859,19 @@
                     }
                 ],
                 "Type": "INA238",
-                "curr1_Name": "FCB_$bus - 15 FAN $bus * 4 - 64 + 2 CURR_A",
-                "in1_Name": "FCB_$bus - 15 FAN $bus * 4 - 64 + 2 VOLT_V",
-                "power1_Name": "FCB_$bus - 15 FAN $bus * 4 - 64 + 2 PWR_W"
+                "curr1_Name": "FCB_${bus} - 15 FAN ${bus} * 4 - 64 + 2 CURR_A",
+                "in1_Name": "FCB_${bus} - 15 FAN ${bus} * 4 - 64 + 2 VOLT_V",
+                "power1_Name": "FCB_${bus} - 15 FAN ${bus} * 4 - 64 + 2 PWR_W"
             },
             {
                 "Address": "0x40",
-                "Bus": "$bus",
+                "Bus": "${bus}",
                 "Labels": [
                     "in1",
                     "curr1",
                     "power1"
                 ],
-                "Name": "FCB_$bus - 15 FAN_$bus * 4 - 64 + 3",
+                "Name": "FCB_${bus} - 15 FAN_${bus} * 4 - 64 + 3",
                 "Thresholds": [
                     {
                         "Direction": "less than",
@@ -2907,19 +2907,19 @@
                     }
                 ],
                 "Type": "INA238",
-                "curr1_Name": "FCB_$bus - 15 FAN $bus * 4 - 64 + 3 CURR_A",
-                "in1_Name": "FCB_$bus - 15 FAN $bus * 4 - 64 + 3 VOLT_V",
-                "power1_Name": "FCB_$bus - 15 FAN $bus * 4 - 64 + 3 PWR_W"
+                "curr1_Name": "FCB_${bus} - 15 FAN ${bus} * 4 - 64 + 3 CURR_A",
+                "in1_Name": "FCB_${bus} - 15 FAN ${bus} * 4 - 64 + 3 VOLT_V",
+                "power1_Name": "FCB_${bus} - 15 FAN ${bus} * 4 - 64 + 3 PWR_W"
             },
             {
                 "Address": "0x41",
-                "Bus": "$bus",
+                "Bus": "${bus}",
                 "Labels": [
                     "in1",
                     "curr1",
                     "power1"
                 ],
-                "Name": "FCB_$bus - 15 FAN_$bus * 4 - 64 + 4",
+                "Name": "FCB_${bus} - 15 FAN_${bus} * 4 - 64 + 4",
                 "Thresholds": [
                     {
                         "Direction": "less than",
@@ -2955,24 +2955,24 @@
                     }
                 ],
                 "Type": "INA238",
-                "curr1_Name": "FCB_$bus - 15 FAN $bus * 4 - 64 + 4 CURR_A",
-                "in1_Name": "FCB_$bus - 15 FAN $bus * 4 - 64 + 4 VOLT_V",
-                "power1_Name": "FCB_$bus - 15 FAN $bus * 4 - 64 + 4 PWR_W"
+                "curr1_Name": "FCB_${bus} - 15 FAN ${bus} * 4 - 64 + 4 CURR_A",
+                "in1_Name": "FCB_${bus} - 15 FAN ${bus} * 4 - 64 + 4 VOLT_V",
+                "power1_Name": "FCB_${bus} - 15 FAN ${bus} * 4 - 64 + 4 PWR_W"
             },
             {
                 "Address": "0x49",
-                "Bus": "$bus",
+                "Bus": "${bus}",
                 "Labels": [
                     "temp1"
                 ],
-                "Name": "FCB_$bus - 15 T_SENSE",
+                "Name": "FCB_${bus} - 15 T_SENSE",
                 "Type": "INA238",
-                "temp1_Name": "FCB_$bus - 15 T_SENSE_TEMP_C"
+                "temp1_Name": "FCB_${bus} - 15 T_SENSE_TEMP_C"
             },
             {
                 "Address": "0x4b",
-                "Bus": "$bus",
-                "Name": "FCB_$bus - 15 TEMP_C",
+                "Bus": "${bus}",
+                "Name": "FCB_${bus} - 15 TEMP_C",
                 "Thresholds": [
                     {
                         "Direction": "greater than",
@@ -3000,15 +3000,15 @@
         ],
         "Type": "Board",
         "xyz.openbmc_project.Inventory.Decorator.Asset": {
-            "BuildDate": "$BOARD_MANUFACTURE_DATE",
-            "Manufacturer": "$BOARD_MANUFACTURER",
-            "Model": "$BOARD_PRODUCT_NAME",
-            "PartNumber": "$BOARD_PART_NUMBER",
-            "SerialNumber": "$BOARD_SERIAL_NUMBER",
-            "SparePartNumber": "$BOARD_INFO_AM1"
+            "BuildDate": "${BOARD_MANUFACTURE_DATE}",
+            "Manufacturer": "${BOARD_MANUFACTURER}",
+            "Model": "${BOARD_PRODUCT_NAME}",
+            "PartNumber": "${BOARD_PART_NUMBER}",
+            "SerialNumber": "${BOARD_SERIAL_NUMBER}",
+            "SparePartNumber": "${BOARD_INFO_AM1}"
         },
         "xyz.openbmc_project.Inventory.Decorator.AssetTag": {
-            "AssetTag": "$PRODUCT_ASSET_TAG"
+            "AssetTag": "${PRODUCT_ASSET_TAG}"
         }
     }
 ]

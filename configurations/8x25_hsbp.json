@@ -2,15 +2,15 @@
     "Exposes": [
         {
             "Address": "0xEB",
-            "Name": "HSBP $index Drive Mux",
+            "Name": "HSBP ${index} Drive Mux",
             "Type": "GenericSMBusMux"
         },
         {
-            "Name": "HSBP $index FRU",
+            "Name": "HSBP ${index} FRU",
             "Type": "IntelHsbpFruDevice"
         },
         {
-            "Name": "HSBP $index Temperature",
+            "Name": "HSBP ${index} Temperature",
             "Type": "IntelHsbpTempSensor"
         }
     ],

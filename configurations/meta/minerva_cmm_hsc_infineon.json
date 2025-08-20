@@ -277,19 +277,19 @@
         ],
         "Type": "Board",
         "xyz.openbmc_project.Inventory.Decorator.Asset": {
-            "BuildDate": "$BOARD_MANUFACTURE_DATE",
-            "Manufacturer": "$BOARD_MANUFACTURER",
-            "Model": "$BOARD_PRODUCT_NAME",
-            "PartNumber": "$BOARD_PART_NUMBER",
-            "SerialNumber": "$BOARD_SERIAL_NUMBER",
-            "SparePartNumber": "$BOARD_INFO_AM1"
+            "BuildDate": "${BOARD_MANUFACTURE_DATE}",
+            "Manufacturer": "${BOARD_MANUFACTURER}",
+            "Model": "${BOARD_PRODUCT_NAME}",
+            "PartNumber": "${BOARD_PART_NUMBER}",
+            "SerialNumber": "${BOARD_SERIAL_NUMBER}",
+            "SparePartNumber": "${BOARD_INFO_AM1}"
         },
         "xyz.openbmc_project.Inventory.Decorator.AssetTag": {
-            "AssetTag": "$PRODUCT_ASSET_TAG"
+            "AssetTag": "${PRODUCT_ASSET_TAG}"
         },
         "xyz.openbmc_project.Inventory.Item.Board.Motherboard": {},
         "xyz.openbmc_project.Inventory.Item.NetworkInterface": {
-            "MACAddress": "$CHASSIS_INFO_AM2"
+            "MACAddress": "${CHASSIS_INFO_AM2}"
         }
     },
     {
@@ -302,14 +302,14 @@
         ],
         "Type": "Chassis",
         "xyz.openbmc_project.Inventory.Decorator.Asset": {
-            "Manufacturer": "$PRODUCT_MANUFACTURER",
-            "Model": "$PRODUCT_PRODUCT_NAME",
-            "PartNumber": "$CHASSIS_PART_NUMBER",
-            "SerialNumber": "$CHASSIS_SERIAL_NUMBER",
-            "SparePartNumber": "$CHASSIS_INFO_AM1"
+            "Manufacturer": "${PRODUCT_MANUFACTURER}",
+            "Model": "${PRODUCT_PRODUCT_NAME}",
+            "PartNumber": "${CHASSIS_PART_NUMBER}",
+            "SerialNumber": "${CHASSIS_SERIAL_NUMBER}",
+            "SparePartNumber": "${CHASSIS_INFO_AM1}"
         },
         "xyz.openbmc_project.Inventory.Decorator.AssetTag": {
-            "AssetTag": "$CHASSIS_INFO_AM3"
+            "AssetTag": "${CHASSIS_INFO_AM3}"
         }
     }
 ]

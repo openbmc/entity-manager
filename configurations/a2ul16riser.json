@@ -2,14 +2,14 @@
     {
         "Exposes": [
             {
-                "Address": "$address",
-                "Bus": "$bus",
+                "Address": "${address}",
+                "Bus": "${bus}",
                 "Name": "Riser 1 Fru",
                 "Type": "EEPROM"
             },
             {
                 "Address": "0x72",
-                "Bus": "$bus",
+                "Bus": "${bus}",
                 "ChannelNames": [
                     "Pcie_Slot_1",
                     "Pcie_Slot_2",
@@ -48,7 +48,7 @@
             },
             {
                 "Address": "0x48",
-                "Bus": "$bus",
+                "Bus": "${bus}",
                 "Name": "Riser1 Temp",
                 "Thresholds": [
                     {
@@ -83,23 +83,23 @@
         "Probe": "xyz.openbmc_project.FruDevice({'BOARD_PRODUCT_NAME': 'A2UL16RISER\\d', 'ADDRESS' : 80})",
         "Type": "Board",
         "xyz.openbmc_project.Inventory.Decorator.Asset": {
-            "Manufacturer": "$BOARD_MANUFACTURER",
-            "Model": "$BOARD_PRODUCT_NAME",
-            "PartNumber": "$BOARD_PART_NUMBER",
-            "SerialNumber": "$BOARD_SERIAL_NUMBER"
+            "Manufacturer": "${BOARD_MANUFACTURER}",
+            "Model": "${BOARD_PRODUCT_NAME}",
+            "PartNumber": "${BOARD_PART_NUMBER}",
+            "SerialNumber": "${BOARD_SERIAL_NUMBER}"
         }
     },
     {
         "Exposes": [
             {
-                "Address": "$address",
-                "Bus": "$bus",
+                "Address": "${address}",
+                "Bus": "${bus}",
                 "Name": "Riser 2 Fru",
                 "Type": "EEPROM"
             },
             {
                 "Address": "0x73",
-                "Bus": "$bus",
+                "Bus": "${bus}",
                 "ChannelNames": [
                     "Pcie_Slot_1",
                     "Pcie_Slot_2",
@@ -111,7 +111,7 @@
             },
             {
                 "Address": "0x49",
-                "Bus": "$bus",
+                "Bus": "${bus}",
                 "Name": "Riser2 Temp",
                 "Thresholds": [
                     {
@@ -146,10 +146,10 @@
         "Probe": "xyz.openbmc_project.FruDevice({'BOARD_PRODUCT_NAME': 'A2UL16RISER\\d', 'ADDRESS' : 81})",
         "Type": "Board",
         "xyz.openbmc_project.Inventory.Decorator.Asset": {
-            "Manufacturer": "$BOARD_MANUFACTURER",
-            "Model": "$BOARD_PRODUCT_NAME",
-            "PartNumber": "$BOARD_PART_NUMBER",
-            "SerialNumber": "$BOARD_SERIAL_NUMBER"
+            "Manufacturer": "${BOARD_MANUFACTURER}",
+            "Model": "${BOARD_PRODUCT_NAME}",
+            "PartNumber": "${BOARD_PART_NUMBER}",
+            "SerialNumber": "${BOARD_SERIAL_NUMBER}"
         }
     }
 ]

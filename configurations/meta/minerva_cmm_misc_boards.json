@@ -1,7 +1,7 @@
 [
     {
         "Exposes": [],
-        "Name": "$Name",
+        "Name": "${Name}",
         "Probe": [
             "xyz.openbmc_project.Inventory.Source.DevicePresence({'Name': 'CableCartridgeTop'})"
         ],
@@ -16,7 +16,7 @@
     },
     {
         "Exposes": [],
-        "Name": "$Name",
+        "Name": "${Name}",
         "Probe": [
             "xyz.openbmc_project.Inventory.Source.DevicePresence({'Name': 'CableCartridgeBottom'})"
         ],
@@ -31,7 +31,7 @@
     },
     {
         "Exposes": [],
-        "Name": "$Name",
+        "Name": "${Name}",
         "Probe": [
             "xyz.openbmc_project.Inventory.Source.DevicePresence({'Name': 'BCBCableTop'})"
         ],
@@ -46,7 +46,7 @@
     },
     {
         "Exposes": [],
-        "Name": "$Name",
+        "Name": "${Name}",
         "Probe": [
             "xyz.openbmc_project.Inventory.Source.DevicePresence({'Name': 'BCBCableBottom'})"
         ],
@@ -61,7 +61,7 @@
     },
     {
         "Exposes": [],
-        "Name": "$Name",
+        "Name": "${Name}",
         "Probe": [
             "xyz.openbmc_project.Inventory.Source.DevicePresence({'Name': 'RpuLink'})",
             "OR",
@@ -78,7 +78,7 @@
     },
     {
         "Exposes": [],
-        "Name": "$Name",
+        "Name": "${Name}",
         "Probe": [
             "xyz.openbmc_project.Inventory.Source.DevicePresence({'Name': 'MtiaBlade*'})"
         ],
@@ -93,7 +93,7 @@
     },
     {
         "Exposes": [],
-        "Name": "$Name",
+        "Name": "${Name}",
         "Probe": [
             "xyz.openbmc_project.Inventory.Source.DevicePresence({'Name': 'NWBlade*'})"
         ],
@@ -108,7 +108,7 @@
     },
     {
         "Exposes": [],
-        "Name": "$Name",
+        "Name": "${Name}",
         "Probe": [
             "xyz.openbmc_project.Inventory.Source.DevicePresence({'Name': 'FanControlBoard*'})"
         ],

@@ -2,28 +2,28 @@
     "Exposes": [
         {
             "Address": "0x01",
-            "Bus": "$ipmbindex",
+            "Bus": "${ipmbindex}",
             "Class": "IpmbDevice",
-            "Name": "$ipmbindex + 1 Twinlake Board",
+            "Name": "${ipmbindex} + 1 Twinlake Board",
             "PowerState": "Always",
             "Type": "IpmbDevice"
         },
         {
             "Address": "0x03",
-            "Bus": "$ipmbindex",
+            "Bus": "${ipmbindex}",
             "Class": "twin_lake",
-            "Name": "$ipmbindex + 1 Twinlake",
+            "Name": "${ipmbindex} + 1 Twinlake",
             "Type": "IpmbPowerMonitor"
         }
     ],
-    "Name": "Twin Lakes $ipmbindex + 1",
+    "Name": "Twin Lakes ${ipmbindex} + 1",
     "Probe": "xyz.openbmc_project.Ipmb.FruDevice({'PRODUCT_PRODUCT_NAME': 'Twin Lakes .*'})",
     "Type": "Board",
     "xyz.openbmc_project.Inventory.Decorator.Asset": {
-        "Manufacturer": "$PRODUCT_MANUFACTURER",
-        "Model": "$PRODUCT_PRODUCT_NAME",
-        "PartNumber": "$BOARD_PART_NUMBER",
-        "SerialNumber": "$BOARD_SERIAL_NUMBER"
+        "Manufacturer": "${PRODUCT_MANUFACTURER}",
+        "Model": "${PRODUCT_PRODUCT_NAME}",
+        "PartNumber": "${BOARD_PART_NUMBER}",
+        "SerialNumber": "${BOARD_SERIAL_NUMBER}"
     },
     "xyz.openbmc_project.Inventory.Decorator.Replaceable": {
         "FieldReplaceable": true,

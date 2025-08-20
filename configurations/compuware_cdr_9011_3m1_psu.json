@@ -1,20 +1,20 @@
 {
     "Exposes": [
         {
-            "Address": "$address",
-            "Bus": "$bus",
-            "Name": "PSU$address % 4 + 1 FRU",
+            "Address": "${address}",
+            "Bus": "${bus}",
+            "Name": "PSU${address} % 4 + 1 FRU",
             "Type": "EEPROM"
         },
         {
-            "Address": "$address",
-            "Bus": "$bus",
-            "Name": "PSU$address % 4 + 1 ADDR",
+            "Address": "${address}",
+            "Bus": "${bus}",
+            "Name": "PSU${address} % 4 + 1 ADDR",
             "Type": "PSUPresence"
         },
         {
-            "Address": "$address + 8",
-            "Bus": "$bus",
+            "Address": "${address} + 8",
+            "Bus": "${bus}",
             "Labels": [
                 "temp1",
                 "pin",
@@ -22,7 +22,7 @@
                 "vin",
                 "fan1"
             ],
-            "Name": "PSU$address % 4 + 1",
+            "Name": "PSU${address} % 4 + 1",
             "Thresholds": [
                 {
                     "Direction": "greater than",
@@ -112,13 +112,13 @@
             "Type": "pmbus"
         }
     ],
-    "Name": "COMPUWARE CDR 9011 3M1 PSU$address % 4 + 1",
+    "Name": "COMPUWARE CDR 9011 3M1 PSU${address} % 4 + 1",
     "Probe": "xyz.openbmc_project.FruDevice({'PRODUCT_MANUFACTURER': 'COMPUWARE', 'PRODUCT_PRODUCT_NAME': 'CDR-9011-3M1*'})",
     "Type": "PowerSupply",
     "xyz.openbmc_project.Inventory.Decorator.Asset": {
-        "Manufacturer": "$PRODUCT_MANUFACTURER",
-        "Model": "$PRODUCT_PRODUCT_NAME",
-        "PartNumber": "$PRODUCT_PART_NUMBER",
-        "SerialNumber": "$PRODUCT_SERIAL_NUMBER"
+        "Manufacturer": "${PRODUCT_MANUFACTURER}",
+        "Model": "${PRODUCT_PRODUCT_NAME}",
+        "PartNumber": "${PRODUCT_PART_NUMBER}",
+        "SerialNumber": "${PRODUCT_SERIAL_NUMBER}"
     }
 }
