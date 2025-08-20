@@ -1,37 +1,37 @@
 {
     "Exposes": [
         {
-            "Address": "$address",
-            "Bus": "$bus",
-            "Name": "Santa Barbara SITV3_PCIe FRU $bus",
+            "Address": "${address}",
+            "Bus": "${bus}",
+            "Name": "Santa Barbara SITV3_PCIe FRU ${bus}",
             "Type": "EEPROM"
         },
         {
             "Address": "0x40",
-            "Bus": "$bus",
+            "Bus": "${bus}",
             "FirmwareInfo": {
                 "CompatibleHardware": "com.meta.Hardware.Santabarbara.CPLD.LCMXO3LF_2100C_sitv3",
                 "VendorIANA": 40981
             },
-            "Name": "Santabarbara_SITV3_PCIe_CPLD_$bus",
+            "Name": "Santabarbara_SITV3_PCIe_CPLD_${bus}",
             "Type": "LatticeLCMXO3LF_2100CFirmware"
         }
     ],
-    "Name": "Santa Barbara SITV3_PCIe $bus",
+    "Name": "Santa Barbara SITV3_PCIe ${bus}",
     "Probe": "xyz.openbmc_project.FruDevice({'BOARD_PRODUCT_NAME': 'Santa Barbara SITV3_PCIe'})",
     "Type": "Board",
     "xyz.openbmc_project.Inventory.Decorator.Asset": {
-        "BuildDate": "$BOARD_MANUFACTURE_DATE",
-        "Manufacturer": "$BOARD_MANUFACTURER",
-        "Model": "$BOARD_PRODUCT_NAME",
-        "PartNumber": "$BOARD_PART_NUMBER",
-        "SerialNumber": "$BOARD_SERIAL_NUMBER",
-        "SparePartNumber": "$BOARD_INFO_AM1"
+        "BuildDate": "${BOARD_MANUFACTURE_DATE}",
+        "Manufacturer": "${BOARD_MANUFACTURER}",
+        "Model": "${BOARD_PRODUCT_NAME}",
+        "PartNumber": "${BOARD_PART_NUMBER}",
+        "SerialNumber": "${BOARD_SERIAL_NUMBER}",
+        "SparePartNumber": "${BOARD_INFO_AM1}"
     },
     "xyz.openbmc_project.Inventory.Decorator.AssetTag": {
-        "AssetTag": "$PRODUCT_ASSET_TAG"
+        "AssetTag": "${PRODUCT_ASSET_TAG}"
     },
     "xyz.openbmc_project.Inventory.Decorator.Revision": {
-        "Version": "$PRODUCT_VERSION"
+        "Version": "${PRODUCT_VERSION}"
     }
 }

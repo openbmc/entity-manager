@@ -114,7 +114,6 @@ void postProcess(nlohmann::json::iterator& keyPair)
             "VAR", std::string(findStart.begin(), findEnd.end()));
         strPtr->erase(findStart.begin(), findEnd.end());
     }
-    return;
 }
 
 // Replaces the template character like the other version of this function,

@@ -368,9 +368,9 @@
     ],
     "Type": "Chassis",
     "xyz.openbmc_project.Inventory.Decorator.Asset": {
-        "Manufacturer": "$BOARD_MANUFACTURER",
-        "Model": "$BOARD_PRODUCT_NAME",
-        "PartNumber": "$CHASSIS_PART_NUMBER",
-        "SerialNumber": "$CHASSIS_SERIAL_NUMBER"
+        "Manufacturer": "${BOARD_MANUFACTURER}",
+        "Model": "${BOARD_PRODUCT_NAME}",
+        "PartNumber": "${CHASSIS_PART_NUMBER}",
+        "SerialNumber": "${CHASSIS_SERIAL_NUMBER}"
     }
 }

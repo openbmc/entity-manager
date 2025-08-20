@@ -1,21 +1,21 @@
 {
     "Exposes": [
         {
-            "Address": "$address",
-            "Bus": "$bus",
-            "Name": "PCIe Retimer $index FRU",
+            "Address": "${address}",
+            "Bus": "${bus}",
+            "Name": "PCIe Retimer ${index} FRU",
             "Type": "EEPROM"
         },
         {
             "Address": "0x74",
-            "Bus": "$bus",
+            "Bus": "${bus}",
             "ChannelNames": [
                 "MiniSASHD1",
                 "MiniSASHD2",
                 "MiniSASHD3",
                 "MiniSASHD4"
             ],
-            "Name": "PCIe Retimer $index Mux",
+            "Name": "PCIe Retimer ${index} Mux",
             "Type": "PCA9544Mux"
         },
         {
@@ -48,7 +48,7 @@
         },
         {
             "Address": "0x4F",
-            "Bus": "$bus",
+            "Bus": "${bus}",
             "Name": "PCIE Retimer Temp",
             "Thresholds": [
                 {
@@ -83,9 +83,9 @@
     "Probe": "xyz.openbmc_project.FruDevice({'BOARD_PRODUCT_NAME': 'AXX2PRTHDHD'})",
     "Type": "Board",
     "xyz.openbmc_project.Inventory.Decorator.Asset": {
-        "Manufacturer": "$BOARD_MANUFACTURER",
-        "Model": "$BOARD_PRODUCT_NAME",
-        "PartNumber": "$BOARD_PART_NUMBER",
-        "SerialNumber": "$BOARD_SERIAL_NUMBER"
+        "Manufacturer": "${BOARD_MANUFACTURER}",
+        "Model": "${BOARD_PRODUCT_NAME}",
+        "PartNumber": "${BOARD_PART_NUMBER}",
+        "SerialNumber": "${BOARD_SERIAL_NUMBER}"
     }
 }

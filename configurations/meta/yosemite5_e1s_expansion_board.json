@@ -155,8 +155,8 @@
             "in7_Name": "E1S_EB_P12V_E1S_1_R_VOLT_V"
         },
         {
-            "Address": "$address",
-            "Bus": "$bus",
+            "Address": "${address}",
+            "Bus": "${bus}",
             "Name": "Yosemite5 E1S Expansion Board FRU",
             "Type": "EEPROM"
         },
@@ -425,14 +425,14 @@
     "Probe": "xyz.openbmc_project.FruDevice({'PRODUCT_PRODUCT_NAME': 'Yosemite V5 .*', 'BOARD_PRODUCT_NAME': 'E1.S Expansion Board'})",
     "Type": "Board",
     "xyz.openbmc_project.Inventory.Decorator.Asset": {
-        "BuildDate": "$BOARD_MANUFACTURE_DATE",
-        "Manufacturer": "$BOARD_MANUFACTURER",
-        "Model": "$BOARD_PRODUCT_NAME",
-        "PartNumber": "$BOARD_PART_NUMBER",
-        "SerialNumber": "$BOARD_SERIAL_NUMBER",
-        "SparePartNumber": "$BOARD_INFO_AM1"
+        "BuildDate": "${BOARD_MANUFACTURE_DATE}",
+        "Manufacturer": "${BOARD_MANUFACTURER}",
+        "Model": "${BOARD_PRODUCT_NAME}",
+        "PartNumber": "${BOARD_PART_NUMBER}",
+        "SerialNumber": "${BOARD_SERIAL_NUMBER}",
+        "SparePartNumber": "${BOARD_INFO_AM1}"
     },
     "xyz.openbmc_project.Inventory.Decorator.AssetTag": {
-        "AssetTag": "$PRODUCT_ASSET_TAG"
+        "AssetTag": "${PRODUCT_ASSET_TAG}"
     }
 }
