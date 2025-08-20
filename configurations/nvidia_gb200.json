@@ -1,9 +1,9 @@
 {
     "Exposes": [
         {
-            "Address": "$address",
-            "Bus": "$bus",
-            "Name": "NVIDIA GB200 $bus + 1 % 2 FRU",
+            "Address": "${address}",
+            "Bus": "${bus}",
+            "Name": "NVIDIA GB200 ${bus} + 1 % 2 FRU",
             "Type": "EEPROM"
         },
         {
@@ -11,20 +11,20 @@
             "Type": "NvidiaMctpVdm"
         }
     ],
-    "Name": "NVIDIA GB200 $bus + 1 % 2",
+    "Name": "NVIDIA GB200 ${bus} + 1 % 2",
     "Probe": "xyz.openbmc_project.FruDevice({'BOARD_PRODUCT_NAME': 'PG548', 'BOARD_MANUFACTURER': 'NVIDIA', 'PRODUCT_PRODUCT_NAME': 'GB200'})",
     "Type": "Board",
     "xyz.openbmc_project.Inventory.Decorator.Asset": {
-        "BuildDate": "$BOARD_MANUFACTURE_DATE",
-        "Manufacturer": "$BOARD_MANUFACTURER",
-        "Model": "$BOARD_PRODUCT_NAME",
-        "PartNumber": "$BOARD_PART_NUMBER",
-        "SerialNumber": "$BOARD_SERIAL_NUMBER"
+        "BuildDate": "${BOARD_MANUFACTURE_DATE}",
+        "Manufacturer": "${BOARD_MANUFACTURER}",
+        "Model": "${BOARD_PRODUCT_NAME}",
+        "PartNumber": "${BOARD_PART_NUMBER}",
+        "SerialNumber": "${BOARD_SERIAL_NUMBER}"
     },
     "xyz.openbmc_project.Inventory.Decorator.AssetTag": {
-        "AssetTag": "$PRODUCT_ASSET_TAG"
+        "AssetTag": "${PRODUCT_ASSET_TAG}"
     },
     "xyz.openbmc_project.Inventory.Decorator.Revision": {
-        "Version": "$PRODUCT_VERSION"
+        "Version": "${PRODUCT_VERSION}"
     }
 }

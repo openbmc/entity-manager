@@ -1,18 +1,18 @@
 {
     "Exposes": [
         {
-            "Address": "$address",
-            "Bus": "$bus",
-            "Name": "Terminus NIC FRU $bus",
+            "Address": "${address}",
+            "Bus": "${bus}",
+            "Name": "Terminus NIC FRU ${bus}",
             "Type": "EEPROM"
         },
         {
             "Address": "0x3c",
-            "Bus": "$bus",
+            "Bus": "${bus}",
             "Labels": [
                 "temp1"
             ],
-            "Name": "NIC TEMP $bus",
+            "Name": "NIC TEMP ${bus}",
             "Thresholds": [
                 {
                     "Direction": "greater than",
@@ -32,13 +32,13 @@
             "Type": "EMC1403"
         }
     ],
-    "Name": "Terminus NIC FRU $bus",
+    "Name": "Terminus NIC FRU ${bus}",
     "Probe": "xyz.openbmc_project.FruDevice({'BOARD_PRODUCT_NAME': 'Terminus 2x100G NIC TSFF'})",
     "Type": "Board",
     "xyz.openbmc_project.Inventory.Decorator.Asset": {
-        "Manufacturer": "$BOARD_MANUFACTURER",
-        "Model": "$BOARD_PRODUCT_NAME",
-        "PartNumber": "$BOARD_PART_NUMBER",
-        "SerialNumber": "$BOARD_SERIAL_NUMBER"
+        "Manufacturer": "${BOARD_MANUFACTURER}",
+        "Model": "${BOARD_PRODUCT_NAME}",
+        "PartNumber": "${BOARD_PART_NUMBER}",
+        "SerialNumber": "${BOARD_SERIAL_NUMBER}"
     }
 }

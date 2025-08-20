@@ -848,9 +848,9 @@
     "Probe": "xyz.openbmc_project.FruDevice({'PRODUCT_PRODUCT_NAME': 'Yosemite V3.5 .*', 'BOARD_PRODUCT_NAME': 'Management Board wBMC'})",
     "Type": "Board",
     "xyz.openbmc_project.Inventory.Decorator.Asset": {
-        "Manufacturer": "$PRODUCT_MANUFACTURER",
-        "Model": "$PRODUCT_PRODUCT_NAME",
-        "PartNumber": "$PRODUCT_PART_NUMBER",
-        "SerialNumber": "$PRODUCT_SERIAL_NUMBER"
+        "Manufacturer": "${PRODUCT_MANUFACTURER}",
+        "Model": "${PRODUCT_PRODUCT_NAME}",
+        "PartNumber": "${PRODUCT_PART_NUMBER}",
+        "SerialNumber": "${PRODUCT_SERIAL_NUMBER}"
     }
 }
