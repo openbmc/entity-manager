@@ -37,6 +37,11 @@ class Topology
         BoardPathsView boardPaths, const std::set<Path>& upstreamPaths,
         const std::set<Path>& downstreamPaths);
 
+    void fillAssocForPortId(
+        std::unordered_map<std::string, std::set<Association>>& result,
+        BoardPathsView boardPaths, const Path& upstream,
+        const Path& downstream);
+
     std::unordered_map<PortType, std::set<Path>> upstreamPorts;
     std::unordered_map<PortType, std::set<Path>> downstreamPorts;
     std::set<Path> powerPaths;
