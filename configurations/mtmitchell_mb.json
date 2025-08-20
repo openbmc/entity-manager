@@ -2259,17 +2259,17 @@
         ],
         "Type": "Board",
         "xyz.openbmc_project.Common.UUID": {
-            "UUID": "$MULTIRECORD_UUID"
+            "UUID": "${MULTIRECORD_UUID}"
         },
         "xyz.openbmc_project.Inventory.Decorator.Asset": {
-            "BuildDate": "$BOARD_MANUFACTURE_DATE",
-            "Manufacturer": "$PRODUCT_MANUFACTURER",
-            "Model": "$PRODUCT_PRODUCT_NAME $PRODUCT_VERSION",
-            "PartNumber": "$PRODUCT_PART_NUMBER",
-            "SerialNumber": "$PRODUCT_SERIAL_NUMBER"
+            "BuildDate": "${BOARD_MANUFACTURE_DATE}",
+            "Manufacturer": "${PRODUCT_MANUFACTURER}",
+            "Model": "${PRODUCT_PRODUCT_NAME} ${PRODUCT_VERSION}",
+            "PartNumber": "${PRODUCT_PART_NUMBER}",
+            "SerialNumber": "${PRODUCT_SERIAL_NUMBER}"
         },
         "xyz.openbmc_project.Inventory.Decorator.AssetTag": {
-            "AssetTag": "$PRODUCT_ASSET_TAG"
+            "AssetTag": "${PRODUCT_ASSET_TAG}"
         },
         "xyz.openbmc_project.Inventory.Decorator.Compatible": {
             "Names": [
@@ -2277,7 +2277,7 @@
             ]
         },
         "xyz.openbmc_project.Inventory.Decorator.Revision": {
-            "Version": "$PRODUCT_VERSION"
+            "Version": "${PRODUCT_VERSION}"
         },
         "xyz.openbmc_project.Inventory.Item.System": {}
     },
@@ -2285,12 +2285,12 @@
         "Exposes": [
             {
                 "ConnectsToType": "MB Upstream Port",
-                "Name": "PowerSupply$ADDRESS % 80 Downstream Port",
+                "Name": "PowerSupply${ADDRESS} % 80 Downstream Port",
                 "PowerPort": true,
                 "Type": "DownstreamPort"
             }
         ],
-        "Name": "PowerSupply$ADDRESS % 80",
+        "Name": "PowerSupply${ADDRESS} % 80",
         "Probe": [
             "xyz.openbmc_project.FruDevice({'BUS': 2, 'ADDRESS': 80})",
             "OR",
@@ -2300,13 +2300,13 @@
         ],
         "Type": "PowerSupply",
         "xyz.openbmc_project.Inventory.Decorator.Asset": {
-            "Manufacturer": "$PRODUCT_MANUFACTURER",
-            "Model": "$PRODUCT_PRODUCT_NAME",
-            "PartNumber": "$PRODUCT_PART_NUMBER",
-            "SerialNumber": "$PRODUCT_SERIAL_NUMBER"
+            "Manufacturer": "${PRODUCT_MANUFACTURER}",
+            "Model": "${PRODUCT_PRODUCT_NAME}",
+            "PartNumber": "${PRODUCT_PART_NUMBER}",
+            "SerialNumber": "${PRODUCT_SERIAL_NUMBER}"
         },
         "xyz.openbmc_project.Inventory.Decorator.AssetTag": {
-            "AssetTag": "$PRODUCT_ASSET_TAG"
+            "AssetTag": "${PRODUCT_ASSET_TAG}"
         },
         "xyz.openbmc_project.Inventory.Decorator.Replaceable": {
             "FieldReplaceable": false,
