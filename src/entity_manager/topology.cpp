@@ -67,30 +67,38 @@ std::unordered_map<std::string, std::set<Association>> Topology::getAssocs(
             continue;
         }
 
-        for (const Path& upstream : upstreamPortPair.second)
+        fillAssocsForPortId(result, boardPaths, upstreamPortPair.second,
+                            downstreamMatch->second);
+    }
+    return result;
+}
+
+void Topology::fillAssocsForPortId(
+    std::unordered_map<std::string, std::set<Association>>& result,
+    BoardPathsView boardPaths, const std::set<Path>& upstreamPaths,
+    const std::set<Path>& downstreamPaths)
+{
+    for (const Path& upstream : upstreamPaths)
+    {
+        if (boardTypes[upstream] == "Chassis" ||
+            boardTypes[upstream] == "Board")
         {
-            if (boardTypes[upstream] == "Chassis" ||
-                boardTypes[upstream] == "Board")
+            for (const Path& downstream : downstreamPaths)
             {
-                for (const Path& downstream : downstreamMatch->second)
+                // The downstream path must be one we care about.
+                if (std::ranges::contains(boardPaths, downstream))
                 {
-                    // The downstream path must be one we care about.
-                    if (std::ranges::contains(boardPaths, downstream))
+                    result[downstream].insert(
+                        {"contained_by", "containing", upstream});
+                    if (powerPaths.contains(downstream))
                     {
                         result[downstream].insert(
-                            {"contained_by", "containing", upstream});
-                        if (powerPaths.contains(downstream))
-                        {
-                            result[downstream].insert(
-                                {"powering", "powered_by", upstream});
-                        }
+                            {"powering", "powered_by", upstream});
                     }
                 }
             }
         }
     }
-
-    return result;
 }
 
 void Topology::remove(const std::string& boardName)
