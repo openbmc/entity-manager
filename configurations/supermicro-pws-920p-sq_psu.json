@@ -2,20 +2,20 @@
     {
         "Exposes": [
             {
-                "Address": "$address",
-                "Bus": "$bus",
-                "Name": "PSU$address % 4 FRU",
+                "Address": "${address}",
+                "Bus": "${bus}",
+                "Name": "PSU${address} % 4 FRU",
                 "Type": "EEPROM"
             },
             {
-                "Address": "$address",
-                "Bus": "$bus",
-                "Name": "PSU$address % 4 ADDR",
+                "Address": "${address}",
+                "Bus": "${bus}",
+                "Name": "PSU${address} % 4 ADDR",
                 "Type": "PSUPresence"
             },
             {
-                "Address": "$address + 4",
-                "Bus": "$bus",
+                "Address": "${address} + 4",
+                "Bus": "${bus}",
                 "Labels": [
                     "pin",
                     "pout1",
@@ -26,7 +26,7 @@
                     "temp1",
                     "fan1"
                 ],
-                "Name": "PSU$address % 4",
+                "Name": "PSU${address} % 4",
                 "Thresholds": [
                     {
                         "Direction": "greater than",
@@ -109,19 +109,19 @@
                 "Type": "pmbus"
             }
         ],
-        "Name": "Supermicro PWS 920P SQ $address % 4",
+        "Name": "Supermicro PWS 920P SQ ${address} % 4",
         "Probe": [
             "xyz.openbmc_project.FruDevice({'PRODUCT_PRODUCT_NAME': 'PWS-920P-SQ'})"
         ],
         "Type": "PowerSupply",
         "xyz.openbmc_project.Inventory.Decorator.Asset": {
-            "Manufacturer": "$PRODUCT_MANUFACTURER",
-            "Model": "$PRODUCT_PRODUCT_NAME",
-            "PartNumber": "$PRODUCT_PART_NUMBER",
-            "SerialNumber": "$PRODUCT_SERIAL_NUMBER"
+            "Manufacturer": "${PRODUCT_MANUFACTURER}",
+            "Model": "${PRODUCT_PRODUCT_NAME}",
+            "PartNumber": "${PRODUCT_PART_NUMBER}",
+            "SerialNumber": "${PRODUCT_SERIAL_NUMBER}"
         },
         "xyz.openbmc_project.Inventory.Decorator.AssetTag": {
-            "AssetTag": "$PRODUCT_ASSET_TAG"
+            "AssetTag": "${PRODUCT_ASSET_TAG}"
         }
     }
 ]

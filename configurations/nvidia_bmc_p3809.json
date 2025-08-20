@@ -1,8 +1,8 @@
 {
     "Exposes": [
         {
-            "Address": "$address",
-            "Bus": "$bus",
+            "Address": "${address}",
+            "Bus": "${bus}",
             "Name": "HMC_FRU",
             "Type": "EEPROM_24C02"
         }
@@ -11,6 +11,6 @@
     "Probe": "xyz.openbmc_project.FruDevice({'PRODUCT_MANUFACTURER': 'NVIDIA', 'PRODUCT_PRODUCT_NAME': 'P3809-BMC'})",
     "Type": "Board",
     "xyz.openbmc_project.Inventory.Item.NetworkInterface": {
-        "MACAddress": "$MAC_BOARD_INFO_AM2"
+        "MACAddress": "${MAC_BOARD_INFO_AM2}"
     }
 }

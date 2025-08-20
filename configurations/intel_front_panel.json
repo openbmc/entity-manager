@@ -1,14 +1,14 @@
 {
     "Exposes": [
         {
-            "Address": "$address",
-            "Bus": "$bus",
+            "Address": "${address}",
+            "Bus": "${bus}",
             "Name": "Front Panel FRU",
             "Type": "EEPROM"
         },
         {
             "Address": "0x4D",
-            "Bus": "$bus",
+            "Bus": "${bus}",
             "Name": "Front Panel Temp",
             "Thresholds": [
                 {
@@ -47,10 +47,10 @@
     ],
     "Type": "Board",
     "xyz.openbmc_project.Inventory.Decorator.Asset": {
-        "Manufacturer": "$BOARD_MANUFACTURER",
-        "Model": "$BOARD_PRODUCT_NAME",
-        "PartNumber": "$BOARD_PART_NUMBER",
-        "SerialNumber": "$BOARD_SERIAL_NUMBER"
+        "Manufacturer": "${BOARD_MANUFACTURER}",
+        "Model": "${BOARD_PRODUCT_NAME}",
+        "PartNumber": "${BOARD_PART_NUMBER}",
+        "SerialNumber": "${BOARD_SERIAL_NUMBER}"
     },
     "xyz.openbmc_project.Inventory.Item.Panel": {}
 }
