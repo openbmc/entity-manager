@@ -55,7 +55,7 @@ void Topology::addUpstreamPort(const Path& path, const BoardType& boardType,
 }
 
 std::unordered_map<std::string, std::set<Association>> Topology::getAssocs(
-    const std::map<Path, BoardName>& boards)
+    BoardPathsView boardPaths)
 {
     std::unordered_map<std::string, std::set<Association>> result;
 
@@ -78,7 +78,7 @@ std::unordered_map<std::string, std::set<Association>> Topology::getAssocs(
                 for (const Path& downstream : downstreamMatch->second)
                 {
                     // The downstream path must be one we care about.
-                    if (boards.contains(downstream))
+                    if (std::ranges::contains(boardPaths, downstream))
                     {
                         result[downstream].insert(
                             {"contained_by", "containing", upstream});
