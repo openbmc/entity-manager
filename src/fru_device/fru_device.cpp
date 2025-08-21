@@ -1475,7 +1475,7 @@ int main()
                     case IN_DELETE:
                     {
                         std::string_view name(&iEvent->name[0], iEvent->len);
-                        if (boost::starts_with(name, "i2c"))
+                        if (name.starts_with("i2c"))
                         {
                             int bus = busStrToInt(name);
                             if (bus < 0)

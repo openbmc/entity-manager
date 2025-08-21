@@ -205,7 +205,7 @@ std::optional<std::string> templateCharReplace(
 
     std::string_view strView = *strPtr;
     int base = 10;
-    if (boost::starts_with(strView, "0x"))
+    if (strView.starts_with("0x"))
     {
         strView.remove_prefix(2);
         base = 16;
