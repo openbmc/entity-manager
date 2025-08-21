@@ -30,6 +30,9 @@ class Topology
 
     void addDownstreamPort(const Path& path, const nlohmann::json& exposesItem);
 
+    // e.g. contained_by, containing, powered_by, ...
+    using AssocName = std::string;
+
     // @brief: fill associations map with the associations for a port identifier
     // such as 'MB Upstream Port'
     void fillAssocsForPortId(
@@ -41,6 +44,9 @@ class Topology
         std::unordered_map<std::string, std::set<Association>>& result,
         BoardPathsView boardPaths, const Path& upstream,
         const Path& downstream);
+
+    static std::optional<std::string> getOppositeAssoc(
+        const AssocName& assocName);
 
     std::unordered_map<PortType, std::set<Path>> upstreamPorts;
     std::unordered_map<PortType, std::set<Path>> downstreamPorts;
