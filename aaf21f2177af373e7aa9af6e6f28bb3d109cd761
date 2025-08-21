@@ -16,6 +16,24 @@
       "message": "@yang.chen@quantatw.com Does the same firmware image go in both the CMM board types  minerva_cmm_hsc_infineon and minerva_cmm? If its different firmware images (even though the CPLD chip is same) then the CompatibleHardware needs to be different. Can you please confirm?",
       "revId": "aaf21f2177af373e7aa9af6e6f28bb3d109cd761",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "5c1aaf87_a92b1483",
+        "filename": "configurations/meta/minerva_cmm_hsc_infineon.json",
+        "patchSetId": 5
+      },
+      "lineNbr": 166,
+      "author": {
+        "id": 1001896
+      },
+      "writtenOn": "2025-08-21T02:07:36Z",
+      "side": 1,
+      "message": "There are two CMM board variants with different HSCs. Both use the same CPLD firmware.",
+      "parentUuid": "f0118442_f8bfa30f",
+      "revId": "aaf21f2177af373e7aa9af6e6f28bb3d109cd761",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }
