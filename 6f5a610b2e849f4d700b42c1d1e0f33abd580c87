@@ -24,6 +24,30 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "c7bf7f01_2f76a0cf",
+        "filename": "test/entity_manager/meson.build",
+        "patchSetId": 20
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-08-21T10:31:33Z",
+      "side": 1,
+      "message": "Array of which tests to build.\n\nAlternative here would be to just declare a single test but most of the lines for declaring a test are repeated for each test binary.\n\nSo i just went with the loop there to avoid having to do this change later on when other tests are added for `src/entity_manager`.\n\nIt makes more sense in the new revision, since the toplogy test also needs moving as you mentioned in the other comment 😊",
+      "parentUuid": "28a56bea_32b47cef",
+      "range": {
+        "startLine": 1,
+        "startChar": 0,
+        "endLine": 1,
+        "endChar": 17
+      },
+      "revId": "6f5a610b2e849f4d700b42c1d1e0f33abd580c87",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "62464736_a911b113",
@@ -37,6 +61,30 @@
       "writtenOn": "2025-08-20T21:35:25Z",
       "side": 1,
       "message": "Shouldn\u0027t this move into test/entity_manager/ since topology.cpp is in src/entity_manager/?",
+      "range": {
+        "startLine": 48,
+        "startChar": 8,
+        "endLine": 48,
+        "endChar": 27
+      },
+      "revId": "6f5a610b2e849f4d700b42c1d1e0f33abd580c87",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "3d86a137_cc47d7f9",
+        "filename": "test/meson.build",
+        "patchSetId": 20
+      },
+      "lineNbr": 48,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-08-21T10:31:33Z",
+      "side": 1,
+      "message": "Yes.. thanks for pointing it out 😊. New revision has this change.",
+      "parentUuid": "62464736_a911b113",
       "range": {
         "startLine": 48,
         "startChar": 8,
