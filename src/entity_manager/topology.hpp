@@ -37,20 +37,26 @@ class Topology
     // such as 'MB Upstream Port'
     void fillAssocsForPortId(
         std::unordered_map<std::string, std::set<Association>>& result,
-        BoardPathsView boardPaths, const std::set<Path>& upstreamPaths,
-        const std::set<Path>& downstreamPaths);
+        BoardPathsView boardPaths,
+        const std::map<Path, std::set<AssocName>>& pathAssocs);
 
     void fillAssocForPortId(
         std::unordered_map<std::string, std::set<Association>>& result,
-        BoardPathsView boardPaths, const Path& upstream,
-        const Path& downstream);
+        BoardPathsView boardPaths, const Path& upstream, const Path& downstream,
+        const AssocName& assocName);
+
+    void addPort(const PortType& port, const Path& path,
+                 const AssocName& assocName);
 
     static std::optional<std::string> getOppositeAssoc(
         const AssocName& assocName);
 
-    std::unordered_map<PortType, std::set<Path>> upstreamPorts;
-    std::unordered_map<PortType, std::set<Path>> downstreamPorts;
-    std::set<Path> powerPaths;
+    // Maps the port name to the participating paths.
+    // each path also has their role(s) in the association.
+    // For example a PSU path which is part of "MB Upstream Port"
+    // will have "powering" role.
+    std::unordered_map<PortType, std::map<Path, std::set<AssocName>>> ports;
+
     std::unordered_map<Path, BoardType> boardTypes;
     std::unordered_map<BoardName, Path> boardNames;
 };
