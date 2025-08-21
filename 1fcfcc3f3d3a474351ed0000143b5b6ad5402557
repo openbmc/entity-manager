@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "56b8bba8_14bd78dc",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1001526
+      },
+      "writtenOn": "2025-08-21T03:52:36Z",
+      "side": 1,
+      "message": "Bash script for this task\n\n```\n#!/bin/bash\n#!/bin/bash\nDIR\u003d\"configurations/\"\nfind \"$DIR\" -type f -name \u0027*.json\u0027 | while read -r file; do\n    echo \"Processing file: $file\"\n    matches\u003d$(grep -oP \u0027\\$[0-9a-zA-Z_]+\u0027 \"$file\" | sort -u)\n    if [[ -n \"$matches\" ]]; then\n      echo \"$matches\"\n    fi\n    # Replace all occurrences of $VAR with ${VAR}\n    perl -i.bk -pe \u0027s/\\$([0-9a-zA-Z_]+)/\\${$1}/g\u0027 \"$file\"\ndone\n```",
+      "revId": "1fcfcc3f3d3a474351ed0000143b5b6ad5402557",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    }
+  ]
+}
