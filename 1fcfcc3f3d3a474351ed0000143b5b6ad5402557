@@ -16,6 +16,41 @@
       "message": "Bash script for this task\n\n```\n#!/bin/bash\n#!/bin/bash\nDIR\u003d\"configurations/\"\nfind \"$DIR\" -type f -name \u0027*.json\u0027 | while read -r file; do\n    echo \"Processing file: $file\"\n    matches\u003d$(grep -oP \u0027\\$[0-9a-zA-Z_]+\u0027 \"$file\" | sort -u)\n    if [[ -n \"$matches\" ]]; then\n      echo \"$matches\"\n    fi\n    # Replace all occurrences of $VAR with ${VAR}\n    perl -i.bk -pe \u0027s/\\$([0-9a-zA-Z_]+)/\\${$1}/g\u0027 \"$file\"\ndone\n```",
       "revId": "1fcfcc3f3d3a474351ed0000143b5b6ad5402557",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "f2313b8a_d9347c50",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-08-21T08:45:42Z",
+      "side": 1,
+      "message": "randomly looked into some files, did not find any mistakes in this migration 👍",
+      "revId": "1fcfcc3f3d3a474351ed0000143b5b6ad5402557",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "6cfc072d_b0faa945",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-08-21T08:45:42Z",
+      "side": 1,
+      "message": "Do you think this could be useful to the downstream if we had it in `scripts/` directory?\n\nSomething like `migrate-legacy-template-var.sh` and then put a note there for it to be removed in a year or so, with a link to this gerrit.\n\nIt will be convenient for any downstream developers to have this script already available.",
+      "parentUuid": "56b8bba8_14bd78dc",
+      "revId": "1fcfcc3f3d3a474351ed0000143b5b6ad5402557",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }
