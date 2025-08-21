@@ -16,6 +16,24 @@
       "message": "How does this already have merge conflicts with other topology code you just put up?",
       "revId": "6902707437618a8b3b5a1e6481c916d2b8e8b7cf",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "4bcc05c9_33218bde",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-08-21T09:55:46Z",
+      "side": 1,
+      "message": "No idea what gerrit is doing there or how it is determining \u0027Merge conflict\u0027 with other changes.\n\nLocally i have all these changes on the same branch, and just rebased that branch onto gerrit master branch. The whole branch builds so there cannot be any git conflict markers or anything like that.\n\nEven if this gerrit curiosity may be interesting, it\u0027s probably not a review concern for this specific patch. 😊",
+      "parentUuid": "da034f3b_d51f826e",
+      "revId": "6902707437618a8b3b5a1e6481c916d2b8e8b7cf",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }
