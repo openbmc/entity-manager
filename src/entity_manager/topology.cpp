@@ -104,12 +104,39 @@ void Topology::fillAssocForPortId(
         return;
     }
 
-    result[downstream].insert({"contained_by", "containing", upstream});
+    std::string assoc = "contained_by";
+
+    result[downstream].insert(
+        {assoc, getReverseAssoc(assoc).value(), upstream});
 
     if (powerPaths.contains(downstream))
     {
-        result[downstream].insert({"powering", "powered_by", upstream});
+        assoc = "powering";
+        result[downstream].insert(
+            {assoc, getReverseAssoc(assoc).value(), upstream});
     }
+}
+
+const std::set<std::pair<std::string, std::string>> assocs = {
+    {"powering", "powered_by"}, {"containing", "contained_by"},
+    // ... extend as needed
+};
+
+std::optional<std::string> Topology::getReverseAssoc(const AssocName& assocName)
+{
+    for (const auto& entry : assocs)
+    {
+        if (entry.first == assocName)
+        {
+            return entry.second;
+        }
+        if (entry.second == assocName)
+        {
+            return entry.first;
+        }
+    }
+
+    return std::nullopt;
 }
 
 void Topology::remove(const std::string& boardName)
