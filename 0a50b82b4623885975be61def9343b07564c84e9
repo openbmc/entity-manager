@@ -16,6 +16,24 @@
       "message": "nit: rename to `eraseLeftoverTemplateVars` or similar to be more precise in what this function does.",
       "revId": "0a50b82b4623885975be61def9343b07564c84e9",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "3b713f82_e8bac50a",
+        "filename": "src/entity_manager/utils.cpp",
+        "patchSetId": 2
+      },
+      "lineNbr": 66,
+      "author": {
+        "id": 1001526
+      },
+      "writtenOn": "2025-08-21T08:50:33Z",
+      "side": 1,
+      "message": "Updated to `handleLeftOverTemplateVars`.\nThe new PS also removed the below lines as we already defined a search range so they are unnecessary.\n\n```\nif (findEnd.begin() \u003c findStart.begin())\n{\n   break;\n}\n```",
+      "parentUuid": "e8841244_495ec4ce",
+      "revId": "0a50b82b4623885975be61def9343b07564c84e9",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }
