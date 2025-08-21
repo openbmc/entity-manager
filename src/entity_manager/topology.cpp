@@ -38,20 +38,35 @@ void Topology::addDownstreamPort(const Path& path, const BoardType& boardType,
     }
     PortType connectsTo = findConnectsTo->get<std::string>();
 
-    downstreamPorts[connectsTo].insert(path);
+    addPort(connectsTo, path, "contained_by");
+
     boardTypes[path] = boardType;
     auto findPoweredBy = exposesItem.find("PowerPort");
     if (findPoweredBy != exposesItem.end())
     {
-        powerPaths.insert(path);
+        addPort(connectsTo, path, "powering");
     }
 }
 
 void Topology::addUpstreamPort(const Path& path, const BoardType& boardType,
                                const PortType& exposesType)
 {
-    upstreamPorts[exposesType].insert(path);
+    addPort(exposesType, path, "containing");
     boardTypes[path] = boardType;
+}
+
+void Topology::addPort(const PortType& port, const Path& path,
+                       const AssocName& assocName)
+{
+    if (!ports.contains(port))
+    {
+        ports.insert({port, {}});
+    }
+    if (!ports[port].contains(path))
+    {
+        ports[port].insert({path, {}});
+    }
+    ports[port][path].insert(assocName);
 }
 
 std::unordered_map<std::string, std::set<Association>> Topology::getAssocs(
@@ -60,61 +75,83 @@ std::unordered_map<std::string, std::set<Association>> Topology::getAssocs(
     std::unordered_map<std::string, std::set<Association>> result;
 
     // look at each upstream port type
-    for (const auto& upstreamPortPair : upstreamPorts)
+    for (const auto& port : ports)
     {
-        auto downstreamMatch = downstreamPorts.find(upstreamPortPair.first);
-
-        if (downstreamMatch == downstreamPorts.end())
-        {
-            // no match
-            continue;
-        }
-
-        fillAssocsForPortId(result, boardPaths, upstreamPortPair.second,
-                            downstreamMatch->second);
+        fillAssocsForPortId(result, boardPaths, port.second);
     }
     return result;
 }
 
 void Topology::fillAssocsForPortId(
     std::unordered_map<std::string, std::set<Association>>& result,
-    BoardPathsView boardPaths, const std::set<Path>& upstreamPaths,
-    const std::set<Path>& downstreamPaths)
+    BoardPathsView boardPaths,
+    const std::map<Path, std::set<AssocName>>& pathAssocs)
 {
-    for (const Path& upstream : upstreamPaths)
+    for (const auto& member : pathAssocs)
     {
-        for (const Path& downstream : downstreamPaths)
+        for (const auto& other : pathAssocs)
         {
-            fillAssocForPortId(result, boardPaths, upstream, downstream);
+            if (other.first == member.first)
+            {
+                continue;
+            }
+            for (const auto& assocName : member.second)
+            {
+                auto optReverse = getReverseAssoc(assocName);
+                if (!optReverse.has_value())
+                {
+                    continue;
+                }
+                // if the other end of the assocation does not declare
+                // the reverse association, do not associate
+                const bool otherAgrees =
+                    other.second.contains(optReverse.value());
+
+                // quirk: since the other side of the association cannot declare
+                // to be powered_by in the legacy schema, in case of "powering",
+                // the two associations do not have to agree.
+                if (!otherAgrees && assocName != "powering")
+                {
+                    continue;
+                }
+
+                fillAssocForPortId(result, boardPaths, member.first,
+                                   other.first, assocName);
+            }
         }
     }
 }
 
 void Topology::fillAssocForPortId(
     std::unordered_map<std::string, std::set<Association>>& result,
-    BoardPathsView boardPaths, const Path& upstream, const Path& downstream)
+    BoardPathsView boardPaths, const Path& upstream, const Path& downstream,
+    const AssocName& assocName)
 {
     if (boardTypes[upstream] != "Chassis" && boardTypes[upstream] != "Board")
     {
         return;
     }
     // The downstream path must be one we care about.
-    if (!std::ranges::contains(boardPaths, downstream))
+    if (!std::ranges::contains(boardPaths, upstream))
     {
         return;
     }
 
-    std::string assoc = "contained_by";
+    auto optReverse = getReverseAssoc(assocName);
 
-    result[downstream].insert(
-        {assoc, getReverseAssoc(assoc).value(), upstream});
-
-    if (powerPaths.contains(downstream))
+    if (!optReverse)
     {
-        assoc = "powering";
-        result[downstream].insert(
-            {assoc, getReverseAssoc(assoc).value(), upstream});
+        return;
     }
+
+    // quirk: legacy code did not associate from both sides
+    // TODO(alexander): revisit this
+    if (assocName == "containing" || assocName == "powered_by")
+    {
+        return;
+    }
+
+    result[upstream].insert({assocName, optReverse.value(), downstream});
 }
 
 const std::set<std::pair<std::string, std::string>> assocs = {
@@ -142,8 +179,7 @@ std::optional<std::string> Topology::getReverseAssoc(const AssocName& assocName)
 void Topology::remove(const std::string& boardName)
 {
     // Remove the board from boardNames, and then using the path
-    // found in boardNames remove it from upstreamPorts and
-    // downstreamPorts.
+    // found in boardNames remove it from ports
     auto boardFind = boardNames.find(boardName);
     if (boardFind == boardNames.end())
     {
@@ -154,13 +190,8 @@ void Topology::remove(const std::string& boardName)
 
     boardNames.erase(boardFind);
 
-    for (auto& upstreamPort : upstreamPorts)
+    for (auto& port : ports)
     {
-        upstreamPort.second.erase(boardPath);
-    }
-
-    for (auto& downstreamPort : downstreamPorts)
-    {
-        downstreamPort.second.erase(boardPath);
+        port.second.erase(boardPath);
     }
 }
