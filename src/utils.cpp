@@ -5,7 +5,6 @@
 
 #include <boost/algorithm/string/classification.hpp>
 #include <boost/algorithm/string/find.hpp>
-#include <boost/algorithm/string/predicate.hpp>
 #include <boost/algorithm/string/replace.hpp>
 #include <boost/algorithm/string/split.hpp>
 #include <boost/container/flat_map.hpp>

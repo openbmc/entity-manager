@@ -6,7 +6,6 @@
 #include "perform_probe.hpp"
 #include "utils.hpp"
 
-#include <boost/algorithm/string/predicate.hpp>
 #include <boost/asio/steady_timer.hpp>
 #include <boost/container/flat_map.hpp>
 #include <boost/container/flat_set.hpp>
@@ -84,7 +83,7 @@ static void processDbusObjects(
                 // Introspectable, and Properties) are returned by
                 // the mapper but don't have properties, so don't bother
                 // with the GetAll call to save some cycles.
-                if (!boost::algorithm::starts_with(iface, "org.freedesktop"))
+                if (!iface.starts_with("org.freedesktop"))
                 {
                     getInterfaces({busname, path, iface}, probeVector, scan,
                                   io);
@@ -292,7 +291,7 @@ static void applyBindExposeAction(nlohmann::json& exposedObject,
                                   nlohmann::json& expose,
                                   const std::string& propertyName)
 {
-    if (boost::starts_with(propertyName, "Bind"))
+    if (propertyName.starts_with("Bind"))
     {
         std::string bind = propertyName.substr(sizeof("Bind") - 1);
         exposedObject["Status"] = "okay";
@@ -329,7 +328,7 @@ static void applyExposeActions(
     nlohmann::json& systemConfiguration, const std::string& recordName,
     nlohmann::json& expose, nlohmann::json::iterator& keyPair)
 {
-    bool isBind = boost::starts_with(keyPair.key(), "Bind");
+    bool isBind = keyPair.key().starts_with("Bind");
     bool isDisable = keyPair.key() == "DisableNode";
     bool isExposeAction = isBind || isDisable;
 
