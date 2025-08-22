@@ -70,6 +70,24 @@
       "parentUuid": "84c03226_99db89a5",
       "revId": "33176026da361a5ad4617095abb77217b8c4e7fc",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "28d84e3b_f4fdf7e1",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 64
+      },
+      "lineNbr": 90,
+      "author": {
+        "id": 1000008
+      },
+      "writtenOn": "2025-08-22T15:19:47Z",
+      "side": 1,
+      "message": "Yea, Jagpal\u0027s idea sounds fine if I understand it right.\nWhich I think is:\n1. If Type is present, don\u0027t do the old style for that interface.\n2. Update say the all code that deals with the current threshold arrays to only use the new style.\n3. Add the Type to every threshold in the config files\n4. merge 2 and 3 at the same time.\n\n?",
+      "parentUuid": "bf0b633a_a8492a7a",
+      "revId": "33176026da361a5ad4617095abb77217b8c4e7fc",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }
