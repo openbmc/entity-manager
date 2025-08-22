@@ -92,9 +92,11 @@ auto DevicePresence::updateDbusInterfaces() -> void
         info("Detected {NAME} as present, adding dbus interface", "NAME",
              deviceName);
 
+        // Initialize with empty; call emit_added() first, then set Name via the
+        // setter to emit PropertiesChanged.
         detectedIface = std::make_unique<DevicePresenceInterface>(
-            ctx, objPath.str.c_str(), DevicePresenceProperties{deviceName});
-
+            ctx, objPath.str.c_str(), DevicePresenceProperties{std::string{}});
+        detectedIface->name(deviceName);
         detectedIface->emit_added();
     }
 
@@ -102,8 +104,9 @@ auto DevicePresence::updateDbusInterfaces() -> void
     {
         info("Detected {NAME} as absent, removing dbus interface", "NAME",
              deviceName);
-        detectedIface->emit_removed();
 
+        detectedIface->name(std::string{});
+        detectedIface->emit_removed();
         detectedIface.reset();
     }
 }
