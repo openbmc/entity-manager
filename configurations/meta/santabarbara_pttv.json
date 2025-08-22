@@ -1,0 +1,386 @@
+{
+    "Exposes": [
+        {
+            "Address": "0x1d",
+            "Bus": "$bus / 2 * 4 + 39",
+            "Labels": [
+                "in0",
+                "in1",
+                "in2",
+                "in3",
+                "in4"
+            ],
+            "Name": "PTTV_$bus_ADC_0",
+            "PowerState": "On",
+            "Thresholds": [
+                {
+                    "Direction": "greater than",
+                    "Label": "in0",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 39.14
+                },
+                {
+                    "Direction": "greater than",
+                    "Label": "in1",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 39.14
+                },
+                {
+                    "Direction": "greater than",
+                    "Label": "in2",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 39.14
+                },
+                {
+                    "Direction": "greater than",
+                    "Label": "in3",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 39.14
+                },
+                {
+                    "Direction": "less than",
+                    "Label": "in4",
+                    "Name": "lower critical",
+                    "Severity": 1,
+                    "Value": 46.08
+                },
+                {
+                    "Direction": "greater than",
+                    "Label": "in4",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 56
+                }
+            ],
+            "Type": "ADC128D818",
+            "in0_Name": "PTTV_$bus_ADC_P38V_1_VOLT_V",
+            "in0_Scale": 43.233563571,
+            "in1_Name": "PTTV_$bus_ADC_P38V_2_VOLT_V",
+            "in1_Scale": 43.233563571,
+            "in2_Name": "PTTV_$bus_ADC_P38V_3_VOLT_V",
+            "in2_Scale": 43.233563571,
+            "in3_Name": "PTTV_$bus_ADC_P38V_4_VOLT_V",
+            "in3_Scale": 43.233563571,
+            "in4_Name": "PTTV_$bus_RADSOK_IN_VOLT_V",
+            "in4_Scale": 35.336600464
+        },
+        {
+            "Address": "0x37",
+            "Bus": "$bus / 2 * 4 + 39",
+            "Labels": [
+                "in0",
+                "in1",
+                "in2",
+                "in3",
+                "in4"
+            ],
+            "Name": "PTTV_$bus_ADC_1",
+            "PowerState": "On",
+            "Thresholds": [
+                {
+                    "Direction": "greater than",
+                    "Label": "in0",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 26.25
+                },
+                {
+                    "Direction": "greater than",
+                    "Label": "in1",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 26.25
+                },
+                {
+                    "Direction": "greater than",
+                    "Label": "in2",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 31.5
+                },
+                {
+                    "Direction": "greater than",
+                    "Label": "in3",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 31.5
+                },
+                {
+                    "Direction": "less than",
+                    "Label": "in4",
+                    "Name": "lower critical",
+                    "Severity": 1,
+                    "Value": 3.07
+                },
+                {
+                    "Direction": "greater than",
+                    "Label": "in4",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 3.53
+                }
+            ],
+            "Type": "ADC128D818",
+            "in0_Name": "PTTV_$bus_ADC_P25_1_VOLT_V",
+            "in0_Scale": 61.00928948,
+            "in1_Name": "PTTV_$bus_ADC_P25_2_VOLT_V",
+            "in1_Scale": 61.00928948,
+            "in2_Name": "PTTV_$bus_ADC_UBC_VOLT_V",
+            "in2_Scale": 61.00928948,
+            "in3_Name": "PTTV_$bus_ADC_MIMIC_VOLT_V",
+            "in3_Scale": 61.00928948,
+            "in4_Name": "PTTV_$bus_AUX_VOLT_V",
+            "in4_Scale": 500
+        },
+        {
+            "Address": "$address",
+            "Bus": "$bus",
+            "Name": "Santa Barbara PTTV FRU $bus",
+            "Type": "EEPROM"
+        },
+        {
+            "Address": "0x45",
+            "Bus": "$bus / 2 * 4 + 37",
+            "Labels": [
+                "in1",
+                "curr1",
+                "power1"
+            ],
+            "Name": "PTTV_$bus_P38V_1",
+            "PowerState": "On",
+            "Thresholds": [
+                {
+                    "Direction": "greater than",
+                    "Label": "in1",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 39.14
+                }
+            ],
+            "Type": "INA238",
+            "curr1_Name": "PTTV_$bus_P38V_1_CURR_A",
+            "in1_Name": "PTTV_$bus_P38V_1_VOLT_V",
+            "power1_Name": "PTTV_$bus_P38V_1_PWR_W"
+        },
+        {
+            "Address": "0x40",
+            "Bus": "$bus / 2 * 4 + 37",
+            "Labels": [
+                "in1",
+                "curr1",
+                "power1"
+            ],
+            "Name": "PTTV_$bus_P38V_2",
+            "PowerState": "On",
+            "Thresholds": [
+                {
+                    "Direction": "greater than",
+                    "Label": "in1",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 39.14
+                }
+            ],
+            "Type": "INA238",
+            "curr1_Name": "PTTV_$bus_P38V_2_CURR_A",
+            "in1_Name": "PTTV_$bus_P38V_2_VOLT_V",
+            "power1_Name": "PTTV_$bus_P38V_2_PWR_W"
+        },
+        {
+            "Address": "0x44",
+            "Bus": "$bus / 2 * 4 + 37",
+            "Labels": [
+                "in1",
+                "curr1",
+                "power1"
+            ],
+            "Name": "PTTV_$bus_P38V_3",
+            "PowerState": "On",
+            "Thresholds": [
+                {
+                    "Direction": "greater than",
+                    "Label": "in1",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 39.14
+                }
+            ],
+            "Type": "INA238",
+            "curr1_Name": "PTTV_$bus_P38V_3_CURR_A",
+            "in1_Name": "PTTV_$bus_P38V_3_VOLT_V",
+            "power1_Name": "PTTV_$bus_P38V_3_PWR_W"
+        },
+        {
+            "Address": "0x45",
+            "Bus": "$bus / 2 * 4 + 38",
+            "Labels": [
+                "in1",
+                "curr1",
+                "power1"
+            ],
+            "Name": "PTTV_$bus_P38V_4",
+            "PowerState": "On",
+            "Thresholds": [
+                {
+                    "Direction": "greater than",
+                    "Label": "in1",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 39.14
+                }
+            ],
+            "Type": "INA238",
+            "curr1_Name": "PTTV_$bus_P38V_4_CURR_A",
+            "in1_Name": "PTTV_$bus_P38V_4_VOLT_V",
+            "power1_Name": "PTTV_$bus_P38V_4_PWR_W"
+        },
+        {
+            "Address": "0x40",
+            "Bus": "$bus / 2 * 4 + 38",
+            "Labels": [
+                "in1",
+                "curr1",
+                "power1"
+            ],
+            "Name": "PTTV_$bus_P25V_1",
+            "PowerState": "On",
+            "Thresholds": [
+                {
+                    "Direction": "greater than",
+                    "Hysteresis": 1.1,
+                    "Label": "in1",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 26.25
+                }
+            ],
+            "Type": "INA238",
+            "curr1_Name": "PTTV_$bus_P25V_1_CURR_A",
+            "in1_Name": "PTTV_$bus_P25V_1_VOLT_V",
+            "power1_Name": "PTTV_$bus_P25V_1_PWR_W"
+        },
+        {
+            "Address": "0x44",
+            "Bus": "$bus / 2 * 4 + 38",
+            "Labels": [
+                "in1",
+                "curr1",
+                "power1"
+            ],
+            "Name": "PTTV_$bus_P25V_2",
+            "PowerState": "On",
+            "Thresholds": [
+                {
+                    "Direction": "greater than",
+                    "Hysteresis": 1.1,
+                    "Label": "in1",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 26.25
+                }
+            ],
+            "Type": "INA238",
+            "curr1_Name": "PTTV_$bus_P25V_2_CURR_A",
+            "in1_Name": "PTTV_$bus_P25V_2_VOLT_V",
+            "power1_Name": "PTTV_$bus_P25V_2_PWR_W"
+        },
+        {
+            "Address": "0x45",
+            "Bus": "$bus / 2 * 4 + 39",
+            "Labels": [
+                "in1",
+                "curr1",
+                "power1"
+            ],
+            "Name": "PTTV_$bus_P30V_UBC",
+            "PowerState": "On",
+            "Thresholds": [
+                {
+                    "Direction": "greater than",
+                    "Hysteresis": 1.1,
+                    "Label": "in1",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 31.5
+                }
+            ],
+            "Type": "INA238",
+            "curr1_Name": "PTTV_$bus_P30V_UBC_CURR_A",
+            "in1_Name": "PTTV_$bus_P30V_UBC_VOLT_V",
+            "power1_Name": "PTTV_$bus_P30V_UBC_PWR_W"
+        },
+        {
+            "Address": "0x40",
+            "Bus": "$bus / 2 * 4 + 39",
+            "Labels": [
+                "in1",
+                "curr1",
+                "power1"
+            ],
+            "Name": "PTTV_$bus_P30V_MMIC",
+            "PowerState": "On",
+            "Thresholds": [
+                {
+                    "Direction": "greater than",
+                    "Hysteresis": 1.1,
+                    "Label": "in1",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 31.5
+                }
+            ],
+            "Type": "INA238",
+            "curr1_Name": "PTTV_$bus_P30V_MMIC_CURR_A",
+            "in1_Name": "PTTV_$bus_P30V_MMIC_VOLT_V",
+            "power1_Name": "PTTV_$bus_P30V_MMIC_PWR_W"
+        },
+        {
+            "Address": "0x67",
+            "Bus": "$bus / 2 * 4 + 36",
+            "Name": "PTTV_$bus_HEATER_TEMP_C",
+            "Type": "MCP9600"
+        },
+        {
+            "Address": "0x64",
+            "Bus": "$bus / 2 * 4 + 36",
+            "Name": "PTTV_$bus_UBC_R_TEMP_C",
+            "Type": "MCP9600"
+        },
+        {
+            "Address": "0x65",
+            "Bus": "$bus / 2 * 4 + 36",
+            "Name": "PTTV_$bus_UBC_L_TEMP_C",
+            "Type": "MCP9600"
+        },
+        {
+            "Address": "0x48",
+            "Bus": "$bus / 2 * 4 + 39",
+            "Name": "PTTV_$bus_BOT_TEMP_C",
+            "Type": "TMP175"
+        },
+        {
+            "Address": "0x49",
+            "Bus": "$bus / 2 * 4 + 39",
+            "Name": "PTTV_$bus_TOP_TEMP_C",
+            "Type": "TMP175"
+        }
+    ],
+    "Name": "Santa Barbara PTTV $bus",
+    "Probe": "xyz.openbmc_project.FruDevice({'BOARD_PRODUCT_NAME': 'Santa Barbara PTTV', 'BOARD_MANUFACTURER': 'Quanta'})",
+    "Type": "Board",
+    "xyz.openbmc_project.Inventory.Decorator.Asset": {
+        "BuildDate": "$BOARD_MANUFACTURE_DATE",
+        "Manufacturer": "$BOARD_MANUFACTURER",
+        "Model": "$BOARD_PRODUCT_NAME",
+        "PartNumber": "$BOARD_PART_NUMBER",
+        "SerialNumber": "$BOARD_SERIAL_NUMBER",
+        "SparePartNumber": "$BOARD_INFO_AM1"
+    },
+    "xyz.openbmc_project.Inventory.Decorator.AssetTag": {
+        "AssetTag": "$PRODUCT_ASSET_TAG"
+    }
+}
