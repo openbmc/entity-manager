@@ -255,6 +255,7 @@ void EMDBusInterface::createAddObjectMethod(
                    data) {
             nlohmann::json::json_pointer ptr(jsonPointerPath);
             nlohmann::json& base = systemConfiguration[ptr];
+
             auto findExposes = base.find("Exposes");
 
             if (findExposes == base.end())
@@ -312,11 +313,11 @@ void EMDBusInterface::createAddObjectMethod(
                 lastIndex++;
             }
 
-            std::ifstream schemaFile(std::string(schemaDirectory) + "/" +
-                                     boost::to_lower_copy(*type) + ".json");
-            // todo(james) we might want to also make a list of 'can add'
-            // interfaces but for now I think the assumption if there is a
-            // schema avaliable that it is allowed to update is fine
+            const std::filesystem::path schemaPath =
+                std::filesystem::path(schemaDirectory) / globalSchema;
+
+            std::ifstream schemaFile{schemaPath};
+
             if (!schemaFile.good())
             {
                 throw std::invalid_argument(
@@ -329,7 +330,8 @@ void EMDBusInterface::createAddObjectMethod(
                 std::cerr << "Schema not legal" << *type << ".json\n";
                 throw DBusInternalError();
             }
-            if (!validateJson(schema, newData))
+
+            if (ENABLE_RUNTIME_VALIDATE_JSON && !validateJson(schema, newData))
             {
                 throw std::invalid_argument("Data does not match schema");
             }
