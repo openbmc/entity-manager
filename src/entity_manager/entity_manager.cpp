@@ -546,20 +546,15 @@ static bool iaContainsProbeInterface(
 {
     sdbusplus::message::object_path path;
     DBusObject interfaces;
-    std::set<std::string> interfaceSet;
-    std::set<std::string> intersect;
-
     msg.read(path, interfaces);
-
-    std::for_each(interfaces.begin(), interfaces.end(),
-                  [&interfaceSet](const auto& iface) {
-                      interfaceSet.insert(iface.first);
-                  });
-
-    std::set_intersection(interfaceSet.begin(), interfaceSet.end(),
-                          probeInterfaces.begin(), probeInterfaces.end(),
-                          std::inserter(intersect, intersect.end()));
-    return !intersect.empty();
+    for (const auto& [ifaceName, _] : interfaces)
+    {
+        if (probeInterfaces.contains(ifaceName))
+        {
+            return true;
+        }
+    }
+    return false;
 }
 
 // Check if InterfacesRemoved payload contains an iface that needs probing.
@@ -568,15 +563,16 @@ static bool irContainsProbeInterface(
     const std::unordered_set<std::string>& probeInterfaces)
 {
     sdbusplus::message::object_path path;
-    std::set<std::string> interfaces;
-    std::set<std::string> intersect;
-
+    std::vector<std::string> interfaces;
     msg.read(path, interfaces);
-
-    std::set_intersection(interfaces.begin(), interfaces.end(),
-                          probeInterfaces.begin(), probeInterfaces.end(),
-                          std::inserter(intersect, intersect.end()));
-    return !intersect.empty();
+    for (const auto& ifaceName : interfaces)
+    {
+        if (probeInterfaces.contains(ifaceName))
+        {
+            return true;
+        }
+    }
+    return false;
 }
 
 void EntityManager::handleCurrentConfigurationJson()
