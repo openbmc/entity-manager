@@ -311,27 +311,33 @@ void EMDBusInterface::createAddObjectMethod(
                 lastIndex++;
             }
 
-            std::ifstream schemaFile(std::string(schemaDirectory) + "/" +
-                                     boost::to_lower_copy(*type) + ".json");
-            // todo(james) we might want to also make a list of 'can add'
-            // interfaces but for now I think the assumption if there is a
-            // schema avaliable that it is allowed to update is fine
-            if (!schemaFile.good())
+            if constexpr (ENABLE_RUNTIME_VALIDATE_JSON)
             {
-                throw std::invalid_argument(
-                    "No schema avaliable, cannot validate.");
+                const std::filesystem::path schemaPath =
+                    std::filesystem::path(schemaDirectory) /
+                    "exposes_record.json";
+
+                std::ifstream schemaFile{schemaPath};
+
+                if (!schemaFile.good())
+                {
+                    throw std::invalid_argument(
+                        "No schema avaliable, cannot validate.");
+                }
+                nlohmann::json schema =
+                    nlohmann::json::parse(schemaFile, nullptr, false, true);
+                if (schema.is_discarded())
+                {
+                    std::cerr << "Schema not legal" << *type << ".json\n";
+                    throw DBusInternalError();
+                }
+
+                if (!validateJson(schema, newData))
+                {
+                    throw std::invalid_argument("Data does not match schema");
+                }
             }
-            nlohmann::json schema =
-                nlohmann::json::parse(schemaFile, nullptr, false, true);
-            if (schema.is_discarded())
-            {
-                std::cerr << "Schema not legal" << *type << ".json\n";
-                throw DBusInternalError();
-            }
-            if (!validateJson(schema, newData))
-            {
-                throw std::invalid_argument("Data does not match schema");
-            }
+
             if (foundNull)
             {
                 findExposes->at(lastIndex) = newData;
