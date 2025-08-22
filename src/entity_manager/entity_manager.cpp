@@ -525,44 +525,39 @@ void EntityManager::propertiesChangedCallback()
         });
 }
 
-// Check if InterfacesAdded payload contains an iface that needs probing.
-static bool iaContainsProbeInterface(
+// Check if InterfacesAdded/InterfacesRemoved payload contains an iface that
+// needs probing.
+static bool signalContainsProbeInterface(
     sdbusplus::message_t& msg,
     const std::unordered_set<std::string>& probeInterfaces)
 {
     sdbusplus::message::object_path path;
-    DBusObject interfaces;
-    std::set<std::string> interfaceSet;
-    std::set<std::string> intersect;
-
-    msg.read(path, interfaces);
-
-    std::for_each(interfaces.begin(), interfaces.end(),
-                  [&interfaceSet](const auto& iface) {
-                      interfaceSet.insert(iface.first);
-                  });
-
-    std::set_intersection(interfaceSet.begin(), interfaceSet.end(),
-                          probeInterfaces.begin(), probeInterfaces.end(),
-                          std::inserter(intersect, intersect.end()));
-    return !intersect.empty();
-}
-
-// Check if InterfacesRemoved payload contains an iface that needs probing.
-static bool irContainsProbeInterface(
-    sdbusplus::message_t& msg,
-    const std::unordered_set<std::string>& probeInterfaces)
-{
-    sdbusplus::message::object_path path;
-    std::set<std::string> interfaces;
-    std::set<std::string> intersect;
-
-    msg.read(path, interfaces);
-
-    std::set_intersection(interfaces.begin(), interfaces.end(),
-                          probeInterfaces.begin(), probeInterfaces.end(),
-                          std::inserter(intersect, intersect.end()));
-    return !intersect.empty();
+    std::string sig = msg.get_signature();
+    if (sig == "oa{sa{sv}}")
+    { // InterfacesAdded
+        DBusObject interfaces;
+        msg.read(path, interfaces);
+        for (const auto& [ifaceName, _] : interfaces)
+        {
+            if (probeInterfaces.contains(ifaceName))
+            {
+                return true;
+            }
+        }
+    }
+    else if (sig == "oas")
+    { // InterfacesRemoved
+        std::vector<std::string> interfaces;
+        msg.read(path, interfaces);
+        for (const auto& ifaceName : interfaces)
+        {
+            if (probeInterfaces.contains(ifaceName))
+            {
+                return true;
+            }
+        }
+    }
+    return false;
 }
 
 void EntityManager::handleCurrentConfigurationJson()
@@ -654,7 +649,7 @@ void EntityManager::initFilters(
         static_cast<sdbusplus::bus_t&>(*systemBus),
         sdbusplus::bus::match::rules::interfacesAdded(),
         [this, probeInterfaces](sdbusplus::message_t& msg) {
-            if (iaContainsProbeInterface(msg, probeInterfaces))
+            if (signalContainsProbeInterface(msg, probeInterfaces))
             {
                 propertiesChangedCallback();
             }
@@ -664,7 +659,7 @@ void EntityManager::initFilters(
         static_cast<sdbusplus::bus_t&>(*systemBus),
         sdbusplus::bus::match::rules::interfacesRemoved(),
         [this, probeInterfaces](sdbusplus::message_t& msg) {
-            if (irContainsProbeInterface(msg, probeInterfaces))
+            if (signalContainsProbeInterface(msg, probeInterfaces))
             {
                 propertiesChangedCallback();
             }
