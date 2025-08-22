@@ -121,6 +121,24 @@
       "parentUuid": "d8a730db_6cc3daf7",
       "revId": "8e083936f2b86016aaec498fb57af4b68003e12d",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5284c86b_0ce8080b",
+        "filename": "configurations/meta/minerva_fanboard_misc.json",
+        "patchSetId": 1
+      },
+      "lineNbr": 6,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-08-22T15:42:36Z",
+      "side": 1,
+      "message": "This patch for entity-manager\nhttps://gerrit.openbmc.org/c/openbmc/entity-manager/+/83062\n\nadds a `Compatible` field on `xyz.openbmc_project.Inventory.Source.DevicePresence` interface which is pulled from the parent inventory item.",
+      "parentUuid": "b7fb95d8_d8dd6320",
+      "revId": "8e083936f2b86016aaec498fb57af4b68003e12d",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }
