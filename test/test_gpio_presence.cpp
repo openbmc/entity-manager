@@ -37,8 +37,11 @@ TEST(GpioPresence, AcceptConfig1Gpio)
     std::vector<std::string> gpioNames = {gpioName};
     std::vector<uint64_t> gpioValues = {0};
 
+    std::vector<std::string> parentInvCompatible = {};
+
     auto c = std::make_unique<gpio_presence::DevicePresence>(
-        ctx, gpioNames, gpioValues, name, sensor.gpioState);
+        ctx, gpioNames, gpioValues, name, sensor.gpioState,
+        parentInvCompatible);
 
     sensor.addConfig(name, std::move(c));
 
@@ -67,8 +70,14 @@ auto testDevicePresentDbus(sdbusplus::async::context& ctx)
     std::vector<std::string> gpioNames = {gpioName};
     std::vector<uint64_t> gpioValues = {0};
 
+    std::vector<std::string> parentInvCompatible = {
+        "com.ibm.Hardware.Chassis.Model.BlueRidge4U",
+        "com.ibm.Hardware.Chassis.Model.BlueRidge",
+    };
+
     auto c = std::make_unique<gpio_presence::DevicePresence>(
-        ctx, gpioNames, gpioValues, name, sensor.gpioState);
+        ctx, gpioNames, gpioValues, name, sensor.gpioState,
+        parentInvCompatible);
 
     sdbusplus::message::object_path objPath = c->getObjPath();
 
@@ -86,6 +95,10 @@ auto testDevicePresentDbus(sdbusplus::async::context& ctx)
     std::string nameFound = co_await client.name();
 
     assert(nameFound == "cable0");
+
+    auto compatibleFound = co_await client.compatible();
+
+    EXPECT_EQ(compatibleFound, "com.ibm.Hardware.Chassis.Model.BlueRidge4U");
 
     ctx.request_stop();
 
@@ -112,8 +125,11 @@ auto testDevicePresentThenDisappearDbus(sdbusplus::async::context& ctx)
     std::vector<std::string> gpioNames = {gpioName};
     std::vector<uint64_t> gpioValues = {0};
 
+    std::vector<std::string> parentInvCompatible = {};
+
     auto c = std::make_unique<gpio_presence::DevicePresence>(
-        ctx, gpioNames, gpioValues, name, sensor.gpioState);
+        ctx, gpioNames, gpioValues, name, sensor.gpioState,
+        parentInvCompatible);
 
     sdbusplus::message::object_path objPath = c->getObjPath();
 

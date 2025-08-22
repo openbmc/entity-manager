@@ -30,7 +30,8 @@ class DevicePresence
                    const std::vector<std::string>& gpioNames,
                    const std::vector<uint64_t>& gpioValues,
                    const std::string& deviceName,
-                   const std::unordered_map<std::string, bool>& gpioState);
+                   const std::unordered_map<std::string, bool>& gpioState,
+                   const std::vector<std::string>& parentInvCompatible);
 
     auto updateGPIOPresence(const std::string& gpioLine) -> void;
 
@@ -52,6 +53,8 @@ class DevicePresence
     const std::unordered_map<std::string, bool>& gpioState;
 
     sdbusplus::async::context& ctx;
+
+    const std::vector<std::string> parentInventoryCompatible;
 
     auto updateDbusInterfaces() -> void;
 

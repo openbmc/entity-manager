@@ -24,6 +24,7 @@ PHOSPHOR_LOG2_USING;
 
 namespace gpio_presence
 {
+const std::string entityManagerBusName = "xyz.openbmc_project.EntityManager";
 
 GPIOPresenceManager::GPIOPresenceManager(sdbusplus::async::context& ctx) :
     ctx(ctx), manager(ctx, "/"),
@@ -139,7 +140,7 @@ auto GPIOPresenceManager::addConfigFromDbusAsync(
 {
     auto props = co_await sdbusplus::client::xyz::openbmc_project::
                      configuration::GPIODeviceDetect<>(ctx)
-                         .service("xyz.openbmc_project.EntityManager")
+                         .service(entityManagerBusName)
                          .path(obj.str)
                          .properties();
 
@@ -150,13 +151,48 @@ auto GPIOPresenceManager::addConfigFromDbusAsync(
         co_return;
     }
 
+    const auto parentInvCompatible = co_await getParentInventoryCompatible(obj);
+
     auto devicePresence = std::make_unique<DevicePresence>(
         ctx, props.presence_pin_names, props.presence_pin_values, props.name,
-        gpioState);
+        gpioState, parentInvCompatible);
 
     if (devicePresence)
     {
         addConfig(obj, std::move(devicePresence));
+    }
+}
+
+auto GPIOPresenceManager::getParentInventoryCompatible(
+    const sdbusplus::message::object_path& obj)
+    -> sdbusplus::async::task<std::vector<std::string>>
+{
+    const auto parentInvObjPath = obj.parent_path();
+
+    const std::string compatibleDecoratorIntf =
+        "xyz.openbmc_project.Inventory.Decorator.Compatible";
+
+    auto clientCompatible = sdbusplus::async::proxy()
+                                .service(entityManagerBusName)
+                                .path(parentInvObjPath.str)
+                                .interface(compatibleDecoratorIntf);
+
+    try
+    {
+        auto parentCompatibleHardware =
+            co_await clientCompatible.get_property<std::vector<std::string>>(
+                ctx, "Names");
+        lg2::debug(
+            "Found 'Compatible' decorator on parent inventory path of {PATH}",
+            "PATH", obj);
+        co_return parentCompatibleHardware;
+    }
+    catch (std::exception& e)
+    {
+        // pass, since it is an optional interface
+        lg2::debug("Did not find interface {INTF} on path {PATH}", "INTF",
+                   compatibleDecoratorIntf, "PATH", parentInvObjPath);
+        co_return {};
     }
 }
 
