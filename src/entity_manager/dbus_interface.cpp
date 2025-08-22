@@ -160,10 +160,8 @@ static void populateInterfacePropertyFromJson(
     {
         case (nlohmann::json::value_t::boolean):
         {
-            // todo: array of bool isn't detected correctly by
-            // sdbusplus, change it to numbers
-            addValueToDBus<uint64_t, bool>(key, value, *iface, permission,
-                                           systemConfiguration, path);
+            addValueToDBus<bool>(key, value, *iface, permission,
+                                 systemConfiguration, path);
             break;
         }
         case (nlohmann::json::value_t::number_integer):
