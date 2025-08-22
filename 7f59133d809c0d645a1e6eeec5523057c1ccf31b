@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "6c99e6f3_63227fc1",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 4
+      },
+      "lineNbr": 86,
+      "author": {
+        "id": 1002065
+      },
+      "writtenOn": "2025-08-22T18:06:38Z",
+      "side": 1,
+      "message": "In general I am in favor of this design. It is very flexible, and - speaking for multi-host - covers all usecases. It gives room for extending the schema easily with further associations, i.e. \u0027cooling\u0027 / \u0027cooled_by\u0027.\n \nHaving only a single \u0027Port\u0027 definition feels more intuitive too. The relationship between two items is well expressed with the PortType property on every Port record.",
+      "revId": "7f59133d809c0d645a1e6eeec5523057c1ccf31b",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "848808d0_a1885499",
+        "filename": "docs/associations.md",
+        "patchSetId": 4
+      },
+      "lineNbr": 133,
+      "author": {
+        "id": 1002065
+      },
+      "writtenOn": "2025-08-22T18:06:38Z",
+      "side": 1,
+      "message": "nit: this should be ContainingPort to follow the rest of the naming scheme in the examples.",
+      "revId": "7f59133d809c0d645a1e6eeec5523057c1ccf31b",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    }
+  ]
+}
