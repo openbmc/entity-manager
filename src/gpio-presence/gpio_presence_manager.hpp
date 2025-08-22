@@ -55,6 +55,12 @@ class GPIOPresenceManager
     auto addConfigFromDbusAsync(sdbusplus::message::object_path obj)
         -> sdbusplus::async::task<void>;
 
+    // fetch the parent inventory items 'Compatible' Decorator
+    // @param[in] obj object path of our configuration
+    auto getParentInventoryCompatible(
+        const sdbusplus::message::object_path& obj)
+        -> sdbusplus::async::task<std::vector<std::string>>;
+
     // delete our configuration for the object at 'objPath'
     // @param[in] objPath         path of the object we want to forget
     auto removeConfig(const std::string& objPath) -> void;
