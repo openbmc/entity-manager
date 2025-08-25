@@ -4,7 +4,6 @@
 #include "utils.hpp"
 
 #include <boost/algorithm/string/classification.hpp>
-#include <boost/algorithm/string/find.hpp>
 #include <boost/algorithm/string/replace.hpp>
 #include <boost/algorithm/string/split.hpp>
 #include <boost/container/flat_map.hpp>
@@ -12,9 +11,14 @@
 #include <phosphor-logging/lg2.hpp>
 #include <sdbusplus/bus/match.hpp>
 
+#include <algorithm>
+#include <cctype>
 #include <filesystem>
 #include <map>
+#include <ranges>
 #include <regex>
+#include <string_view>
+#include <utility>
 
 namespace fs = std::filesystem;
 
@@ -175,4 +179,35 @@ struct MatchProbeForwarder
 bool matchProbe(const nlohmann::json& probe, const DBusValueVariant& dbusValue)
 {
     return std::visit(MatchProbeForwarder(probe), dbusValue);
+}
+
+inline char asciiToLower(char c)
+{
+    // Converts a character to lower case without relying on std::locale
+    if ('A' <= c && c <= 'Z')
+    {
+        c -= static_cast<char>('A' - 'a');
+    }
+    return c;
+}
+
+std::pair<FirstIndex, LastIndex> iFindFirst(std::string_view str,
+                                            std::string_view sub)
+{
+    if (sub.empty())
+    {
+        return {std::string_view::npos, std::string_view::npos};
+    }
+    auto result = std::ranges::search(str, sub, [](char a, char b) {
+        return asciiToLower(a) == asciiToLower(b);
+    });
+
+    if (!result.empty())
+    {
+        size_t start = static_cast<size_t>(
+            std::ranges::distance(str.begin(), result.begin()));
+        return {start, start + sub.size()};
+    }
+
+    return {std::string_view::npos, std::string_view::npos};
 }
