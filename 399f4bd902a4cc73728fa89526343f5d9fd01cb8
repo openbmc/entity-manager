@@ -87,6 +87,30 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "15381d3f_3b8eeae3",
+        "filename": "docs/entity_manager_dbus_api.md",
+        "patchSetId": 65
+      },
+      "lineNbr": 188,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-08-25T08:57:41Z",
+      "side": 1,
+      "message": "That\u0027s not a review concern for this patch, right?\n\nIt\u0027s a review concern for the schema, which was already accepted.",
+      "parentUuid": "2802b531_ba0529fb",
+      "range": {
+        "startLine": 188,
+        "startChar": 0,
+        "endLine": 188,
+        "endChar": 27
+      },
+      "revId": "399f4bd902a4cc73728fa89526343f5d9fd01cb8",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "ee876491_b0ff74b2",
@@ -110,6 +134,30 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "83f870dd_f3633155",
+        "filename": "docs/entity_manager_dbus_api.md",
+        "patchSetId": 65
+      },
+      "lineNbr": 189,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-08-25T08:57:41Z",
+      "side": 1,
+      "message": "It\u0027s as per the schema. I am using the schema as an example.",
+      "parentUuid": "ee876491_b0ff74b2",
+      "range": {
+        "startLine": 189,
+        "startChar": 0,
+        "endLine": 189,
+        "endChar": 58
+      },
+      "revId": "399f4bd902a4cc73728fa89526343f5d9fd01cb8",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "cba4b775_de6d61fb",
@@ -123,6 +171,30 @@
       "writtenOn": "2025-08-22T18:01:35Z",
       "side": 1,
       "message": "Requiring every sub tree element to have a type seems messy and duplicates a lot of things between the trees.  In terms of this file, what value does it add?\n\nIn this case, why would I (in this case a config file writer) ever put:\n\nType: \"DifferentMuxOutput\" ?\n\nDoing so would break the one type per property case, right?\n\n\nI think anything but the top level type can be removed.",
+      "range": {
+        "startLine": 196,
+        "startChar": 0,
+        "endLine": 196,
+        "endChar": 31
+      },
+      "revId": "399f4bd902a4cc73728fa89526343f5d9fd01cb8",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7d6e0d43_27c93269",
+        "filename": "docs/entity_manager_dbus_api.md",
+        "patchSetId": 65
+      },
+      "lineNbr": 196,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-08-25T08:57:41Z",
+      "side": 1,
+      "message": "\u003e In terms of this file, what value does it add?\n\nIt was added to easily check which config should be exposed in PDI compatible way.\n\nIf we do not have `Type` field on the nested object, we will need some other way to construct the DBus interface name.\n\nI will consider what can be done there to follow your suggestion and only have `Type` on the top level.",
+      "parentUuid": "cba4b775_de6d61fb",
       "range": {
         "startLine": 196,
         "startChar": 0,
@@ -175,6 +247,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "17370484_5ecedef5",
+        "filename": "docs/entity_manager_dbus_api.md",
+        "patchSetId": 65
+      },
+      "lineNbr": 212,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-08-25T08:57:41Z",
+      "side": 1,
+      "message": "Fan Zones are also exposed by EM and they are just configuration structures.\n\nEM does expose configuration. It is not only for configuring the physical hardware.\n\nFor example\n\n`virtual_sensor.json#/$defs/VirtualSensor`\n`pid_zone.json#/$defs/PidZone`\n`ibm.json#/$defs/PowerModeProperties`\n`pid.json#/$defs/Pid`\n\n\u003e If the path is to represent anything at all, it should be consistently representing that thing. It\u0027s not clear to me if we did it this way to try to separate things.\n\none object path per `thing` does not work if the `thing` becomes too complicated (e.g. various thresholds, various gpio definitions, etc..)\n\n\u003e I\u0027m not terribly comfortable with these dbus paths.\n\nLet me know, how can i improve it?",
+      "parentUuid": "047e52cf_7d333221",
+      "range": {
+        "startLine": 212,
+        "startChar": 57,
+        "endLine": 212,
+        "endChar": 78
+      },
+      "revId": "399f4bd902a4cc73728fa89526343f5d9fd01cb8",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "13fc672c_01fe045e",
         "filename": "docs/entity_manager_dbus_api.md",
         "patchSetId": 65
@@ -213,6 +309,48 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "04909ef8_9afa4725",
+        "filename": "docs/entity_manager_dbus_api.md",
+        "patchSetId": 65
+      },
+      "lineNbr": 215,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-08-25T08:57:41Z",
+      "side": 1,
+      "message": "The interface exposed is as per the configuration record.",
+      "parentUuid": "6ddd07ac_bea0f2dc",
+      "revId": "399f4bd902a4cc73728fa89526343f5d9fd01cb8",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f5353d0f_b727af4c",
+        "filename": "docs/entity_manager_dbus_api.md",
+        "patchSetId": 65
+      },
+      "lineNbr": 215,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-08-25T08:57:41Z",
+      "side": 1,
+      "message": "No, i do not have any example.\n\nAs for DBus matches, for the `InterfacesAdded`, the toplevel config needs to be signalled last. When receiving the signal, the reactor can then also query the nested config.\n\n\u003e Condensing those seems difficult.\n\nmicro optimizing this patch is not on the list of things i want to do here. Since the patch is considered to be a larger change already (in terms of review effort).\n\n\u003e Also, how would we port the bmcweb APIs over for property modification? Presumably that would need to change?\n\nThis can be done on a per schema level. I assume bmcweb is not going to modify any and all properties, so there will be schemas we can migrate without problems there?",
+      "parentUuid": "13fc672c_01fe045e",
+      "range": {
+        "startLine": 214,
+        "startChar": 0,
+        "endLine": 215,
+        "endChar": 80
+      },
+      "revId": "399f4bd902a4cc73728fa89526343f5d9fd01cb8",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "fdbbe607_9ecd7f7a",
@@ -230,6 +368,24 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "b133ab84_728fcdd3",
+        "filename": "docs/entity_manager_dbus_api.md",
+        "patchSetId": 65
+      },
+      "lineNbr": 233,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-08-25T08:57:41Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "fdbbe607_9ecd7f7a",
+      "revId": "399f4bd902a4cc73728fa89526343f5d9fd01cb8",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "cb21a824_da72de43",
@@ -243,6 +399,30 @@
       "writtenOn": "2025-08-22T18:01:35Z",
       "side": 1,
       "message": "We can\u0027t have a default option that breaks the majority of the system without some amount of documentation and staging.",
+      "range": {
+        "startLine": 37,
+        "startChar": 0,
+        "endLine": 42,
+        "endChar": 1
+      },
+      "revId": "399f4bd902a4cc73728fa89526343f5d9fd01cb8",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "03953603_71d43ec5",
+        "filename": "meson.options",
+        "patchSetId": 65
+      },
+      "lineNbr": 42,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-08-25T08:57:41Z",
+      "side": 1,
+      "message": "There is nothing broken by this patch. Everything stays the same.\nIt\u0027s only enabling this code path. The code (as of current revision) needs `Type` field on nested configuration record to do anything at all.",
+      "parentUuid": "cb21a824_da72de43",
       "range": {
         "startLine": 37,
         "startChar": 0,
