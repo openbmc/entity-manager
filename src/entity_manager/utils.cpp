@@ -4,7 +4,6 @@
 #include "../variant_visitors.hpp"
 #include "expression.hpp"
 
-#include <boost/algorithm/string/case_conv.hpp>
 #include <sdbusplus/bus/match.hpp>
 
 #include <fstream>
