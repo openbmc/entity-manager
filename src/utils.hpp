@@ -77,8 +77,23 @@ inline bool deviceHasLogging(const nlohmann::json& json)
 /// \return true if the dbusValue matched the probe otherwise false.
 bool matchProbe(const nlohmann::json& probe, const DBusValueVariant& dbusValue);
 
-std::pair<FirstIndex, LastIndex> iFindFirst(std::string_view str,
-                                            std::string_view sub);
+inline char asciiToLower(char c)
+{
+    // Converts a character to lower case without relying on std::locale
+    if ('A' <= c && c <= 'Z')
+    {
+        c -= static_cast<char>('A' - 'a');
+    }
+    return c;
+}
+
+template <typename T>
+auto iFindFirst(T&& str, std::string_view sub)
+{
+    return std::ranges::search(str, sub, [](char a, char b) {
+        return asciiToLower(a) == asciiToLower(b);
+    });
+}
 
 template <typename T>
 std::from_chars_result fromCharsWrapper(const std::string_view& str, T& out,

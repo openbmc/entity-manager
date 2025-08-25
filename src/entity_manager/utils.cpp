@@ -92,31 +92,38 @@ void handleLeftOverTemplateVars(nlohmann::json::iterator& keyPair)
     // Walking through the string to find $<templateVar>
     while (true)
     {
-        auto [firstIndex, lastIndex] = iFindFirst(*strPtr, templateChar);
-        if (firstIndex == std::string_view::npos)
+        std::ranges::subrange<std::string::const_iterator> findStart =
+            iFindFirst(*strPtr, std::string_view(templateChar));
+
+        if (!findStart)
         {
             break;
         }
 
-        size_t templateVarEndIndex = 0;
-        auto [firstSpaceIndex, _] = iFindFirst(strPtr->substr(lastIndex), " ");
-        if (firstSpaceIndex == std::string_view::npos)
+        std::ranges::subrange<std::string::iterator> searchRange(
+            strPtr->begin() + (findStart.end() - strPtr->begin()),
+            strPtr->end());
+        std::ranges::subrange<std::string::const_iterator> findSpace =
+            iFindFirst(searchRange, " ");
+
+        std::string::const_iterator templateVarEnd;
+
+        if (!findSpace)
         {
             // No space means the template var spans to the end of
             // of the keyPair value
-            templateVarEndIndex = strPtr->size();
+            templateVarEnd = strPtr->end();
         }
         else
         {
             // A space marks the end of a template var
-            templateVarEndIndex = lastIndex + firstSpaceIndex;
+            templateVarEnd = findSpace.begin();
         }
 
         lg2::error(
             "There's still template variable {VAR} un-replaced. Removing it from the string.\n",
-            "VAR",
-            strPtr->substr(firstIndex, templateVarEndIndex - firstIndex));
-        strPtr->erase(firstIndex, templateVarEndIndex - firstIndex);
+            "VAR", std::string(findStart.begin(), templateVarEnd));
+        strPtr->erase(findStart.begin(), templateVarEnd);
     }
 }
 
@@ -176,14 +183,17 @@ std::optional<std::string> templateCharReplace(
     for (const auto& [propName, propValue] : interface)
     {
         std::string templateName = templateChar + propName;
-        auto [start, endIdx] = iFindFirst(*strPtr, templateName);
-        if (start == std::string::npos)
+        std::ranges::subrange<std::string::const_iterator> find =
+            iFindFirst(*strPtr, templateName);
+        if (!find)
         {
             continue;
         }
 
+        size_t start = find.begin() - strPtr->begin();
+
         // check for additional operations
-        if ((start == 0U) && endIdx == strPtr->size())
+        if ((start == 0U) && find.end() == strPtr->end())
         {
             std::visit([&](auto&& val) { keyPair.value() = val; }, propValue);
             return ret;
@@ -233,7 +243,7 @@ std::optional<std::string> templateCharReplace(
 
         number = expression::evaluate(number, exprBegin, exprEnd);
 
-        std::string replaced(strPtr->begin() + start, strPtr->begin() + endIdx);
+        std::string replaced(find.begin(), find.end());
         while (exprBegin != exprEnd)
         {
             replaced.append(" ").append(*exprBegin++);
