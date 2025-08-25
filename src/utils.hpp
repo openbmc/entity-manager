@@ -97,6 +97,12 @@ auto iFindFirst(T&& str, std::string_view sub)
 
 std::vector<std::string> split(std::string_view str, char delim);
 
+void iReplaceAll(std::string& str, std::string_view search,
+                 std::string_view replace);
+
+void replaceAll(std::string& str, std::string_view search,
+                std::string_view replace);
+
 template <typename T>
 std::from_chars_result fromCharsWrapper(const std::string_view& str, T& out,
                                         bool& fullMatch, int base = 10)

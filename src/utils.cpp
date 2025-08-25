@@ -3,7 +3,6 @@
 
 #include "utils.hpp"
 
-#include <boost/algorithm/string/replace.hpp>
 #include <boost/container/flat_map.hpp>
 #include <boost/lexical_cast.hpp>
 #include <sdbusplus/bus/match.hpp>
@@ -197,4 +196,41 @@ std::vector<std::string> split(std::string_view str, char delim)
     }
 
     return out;
+}
+
+void iReplaceAll(std::string& str, std::string_view search,
+                 std::string_view replace)
+{
+    if (search.empty() || search == replace)
+    {
+        return;
+    }
+
+    while (true)
+    {
+        std::ranges::subrange<std::string::iterator> match =
+            iFindFirst(str, search);
+        if (!match)
+        {
+            break;
+        }
+
+        str.replace(match.begin(), match.end(), replace.begin(), replace.end());
+    }
+}
+
+void replaceAll(std::string& str, std::string_view search,
+                std::string_view replace)
+{
+    if (search.empty())
+    {
+        return;
+    }
+
+    size_t pos = 0;
+    while ((pos = str.find(search, pos)) != std::string::npos)
+    {
+        str.replace(pos, search.size(), replace);
+        pos += replace.size();
+    }
 }

@@ -6,7 +6,6 @@
 #include "phosphor-logging/lg2.hpp"
 
 #include <boost/algorithm/string/case_conv.hpp>
-#include <boost/algorithm/string/replace.hpp>
 #include <phosphor-logging/lg2.hpp>
 #include <sdbusplus/bus/match.hpp>
 
@@ -171,11 +170,11 @@ std::optional<std::string> templateCharReplace(
         return ret;
     }
 
-    boost::replace_all(*strPtr, std::string(templateChar) + "index",
-                       std::to_string(index));
+    replaceAll(*strPtr, std::string(templateChar) + "index",
+               std::to_string(index));
     if (replaceStr)
     {
-        boost::replace_all(*strPtr, *replaceStr, std::to_string(index));
+        replaceAll(*strPtr, *replaceStr, std::to_string(index));
     }
 
     for (const auto& [propName, propValue] : interface)
@@ -206,7 +205,7 @@ std::optional<std::string> templateCharReplace(
                       strPtr->at(nextItemIdx)) == mathChars.end())
         {
             std::string val = std::visit(VariantToStringVisitor(), propValue);
-            boost::ireplace_all(*strPtr, templateName, val);
+            iReplaceAll(*strPtr, templateName, val);
             continue;
         }
 
