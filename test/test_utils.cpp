@@ -53,3 +53,45 @@ TEST(IfindFirstTest, EmptyString)
     auto match = iFindFirst("", "Hello");
     EXPECT_FALSE(match);
 }
+
+TEST(SplitTest, NormalSplit)
+{
+    auto result = split("a,b,c", ',');
+    std::vector<std::string> expected = {"a", "b", "c"};
+    EXPECT_EQ(result, expected);
+}
+
+TEST(SplitTest, ConsecutiveDelimiters)
+{
+    auto result = split("a,,b", ',');
+    std::vector<std::string> expected = {"a", "", "b"};
+    EXPECT_EQ(result, expected);
+}
+
+TEST(SplitTest, LeadingDelimiter)
+{
+    auto result = split(",a,b", ',');
+    std::vector<std::string> expected = {"", "a", "b"};
+    EXPECT_EQ(result, expected);
+}
+
+TEST(SplitTest, TrailingDelimiter)
+{
+    auto result = split("a,b,", ',');
+    std::vector<std::string> expected = {"a", "b", ""};
+    EXPECT_EQ(result, expected);
+}
+
+TEST(SplitTest, NoDelimiter)
+{
+    auto result = split("abc", ',');
+    std::vector<std::string> expected = {"abc"};
+    EXPECT_EQ(result, expected);
+}
+
+TEST(SplitTest, EmptyString)
+{
+    auto result = split("", ',');
+    std::vector<std::string> expected = {""};
+    EXPECT_EQ(result, expected);
+}
