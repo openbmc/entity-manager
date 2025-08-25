@@ -73,3 +73,6 @@ inline bool deviceHasLogging(const nlohmann::json& json)
 /// \param dbusValue the property value being matched to a probe.
 /// \return true if the dbusValue matched the probe otherwise false.
 bool matchProbe(const nlohmann::json& probe, const DBusValueVariant& dbusValue);
+
+std::pair<size_t, size_t> ifindFirst(std::string_view str,
+                                     std::string_view sub);
