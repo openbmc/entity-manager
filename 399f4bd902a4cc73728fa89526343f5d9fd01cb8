@@ -41,6 +41,30 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "6c7ad15d_4a488491",
+        "filename": "docs/entity_manager_dbus_api.md",
+        "patchSetId": 65
+      },
+      "lineNbr": 134,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-08-25T15:52:31Z",
+      "side": 1,
+      "message": "I don\u0027t understand this comment. I\u0027m making a section title about\nEM PDI compatible DBus API. \n\nIf i remove the \"PDI compatible\" then what\u0027s left is just \"Entity-Manager DBus API\" which is the title of the whole document (see line 1).\n\nSo i am repeating the title of the document as a section title?\n\nDoes not make sense to me.",
+      "parentUuid": "025104af_25d1800c",
+      "range": {
+        "startLine": 134,
+        "startChar": 18,
+        "endLine": 134,
+        "endChar": 32
+      },
+      "revId": "399f4bd902a4cc73728fa89526343f5d9fd01cb8",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "f443a31c_aa1d0c29",
@@ -54,6 +78,30 @@
       "writtenOn": "2025-08-22T18:01:35Z",
       "side": 1,
       "message": "Lets rewrite this in terms of:\n1. The API that is produced is not consistent or easy to parse\n2. That API being difficult to parse prevents us from inserting deeper structures.\n\nAnd lets get details about WHY it\u0027s difficult to parse back into structures.",
+      "range": {
+        "startLine": 143,
+        "startChar": 0,
+        "endLine": 145,
+        "endChar": 46
+      },
+      "revId": "399f4bd902a4cc73728fa89526343f5d9fd01cb8",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "73355923_46c39dd2",
+        "filename": "docs/entity_manager_dbus_api.md",
+        "patchSetId": 65
+      },
+      "lineNbr": 145,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-08-25T15:52:31Z",
+      "side": 1,
+      "message": "\u003e easy to parse\n\nThe API is quite easy to parse, there is not a lot of code needed.\n\n\u003e That API being difficult to parse prevents us from inserting deeper structures.\n\nThe old API theoretically allows even further nesting.\n\nYou could have `xyz.openbmc_project.Configuration.ADC.Thresholds0.NestedObject`\n\nfor example. So it is not \u0027preventing\u0027 us from inserting deeper structures.\n\n\u003e And lets get details about WHY it\u0027s difficult to parse back into structures.\n\nIt\u0027s fairly easy to parse back into structures if you know which property is an array and which is an object. It\u0027s just wrong from a DBus perspective.",
+      "parentUuid": "f443a31c_aa1d0c29",
       "range": {
         "startLine": 143,
         "startChar": 0,
@@ -205,6 +253,30 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "6dcdc2d5_18f31ee2",
+        "filename": "docs/entity_manager_dbus_api.md",
+        "patchSetId": 65
+      },
+      "lineNbr": 196,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-08-25T15:52:31Z",
+      "side": 1,
+      "message": "I briefly looked into going via the schema files to construct `Type` property of nested objects by looking at schema names and property names in case of inline schemas.\n\nBut that\u0027s not easily possible in all cases, for example:\n```\n\"MuxOutputs\": {\n                    \"description\": \"The pin names and values for the mux which toggles the flash to BMC\",\n                    \"type\": \"array\",\n                    \"items\": {\n                        \"type\": \"object\",\n                        \"additionalProperties\": false,\n                        \"properties\": {\n                            \"Name\": {\n                                \"$ref\": \"legacy.json#/$defs/Types/Name\"\n                            },  \n                            \"Polarity\": {\n                                \"$ref\": \"legacy.json#/$defs/Types/Polarity\"\n                            }   \n                        },  \n                        \"required\": [\"Name\", \"Polarity\"]\n                    }   \n                },  \n```\n\nInstead, settled on hardcoding this information in a tree structure.\nThe tree structure can be extended as needed.\n\nBased on that structure we know which configuration to expose in the new vs. old way. The structure is in `config_type_tree.cpp`.\n\n\nThanks for your comment here. It was some work to create the structure and adjust the patch but it will be good to reduce overall config bloat.",
+      "parentUuid": "7d6e0d43_27c93269",
+      "range": {
+        "startLine": 196,
+        "startChar": 0,
+        "endLine": 196,
+        "endChar": 31
+      },
+      "revId": "399f4bd902a4cc73728fa89526343f5d9fd01cb8",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "5abbbff3_3194a77b",
@@ -218,6 +290,24 @@
       "writtenOn": "2025-08-22T18:01:35Z",
       "side": 1,
       "message": "Could we also get what the prior tree was for this?",
+      "revId": "399f4bd902a4cc73728fa89526343f5d9fd01cb8",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "a37b7d44_e07bd7e3",
+        "filename": "docs/entity_manager_dbus_api.md",
+        "patchSetId": 65
+      },
+      "lineNbr": 209,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-08-25T15:52:31Z",
+      "side": 1,
+      "message": "This section of the documentation is for documenting the new API. So i should not go into detail here on the old way which is discussed above starting at line 1.",
+      "parentUuid": "5abbbff3_3194a77b",
       "revId": "399f4bd902a4cc73728fa89526343f5d9fd01cb8",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
