@@ -18,6 +18,24 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "bc5690fc_f6112cd0",
+        "filename": "src/gpio-presence/device_presence.cpp",
+        "patchSetId": 1
+      },
+      "lineNbr": 98,
+      "author": {
+        "id": 1002520
+      },
+      "writtenOn": "2025-08-25T01:47:30Z",
+      "side": 1,
+      "message": "@alexander.hansen@9elements.com Thanks for sharing your experience. Yes, that happens a lot. I’ll try to fix this issue on the entity-manager side, which makes more sense and should prevent future confusion.",
+      "parentUuid": "8d6110e8_33b1931f",
+      "revId": "a6535cb3ced77d44c9d311f93a71f057055b0e79",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "54393a66_b1626d51",
@@ -31,6 +49,24 @@
       "writtenOn": "2025-08-22T08:50:14Z",
       "side": 1,
       "message": "Is the order now wrong here?\n\nSince the properties can only change once the interface has been added, right?\n\nOtherwise we are changing properties on some interface that`s not even there (from DBus signal perspective)",
+      "revId": "a6535cb3ced77d44c9d311f93a71f057055b0e79",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "ba7c0179_f97f27a6",
+        "filename": "src/gpio-presence/device_presence.cpp",
+        "patchSetId": 1
+      },
+      "lineNbr": 100,
+      "author": {
+        "id": 1002520
+      },
+      "writtenOn": "2025-08-25T01:47:30Z",
+      "side": 1,
+      "message": "Sorry, copy-paste mistake when I rearranged the code — the actual order is correct.",
+      "parentUuid": "54393a66_b1626d51",
       "revId": "a6535cb3ced77d44c9d311f93a71f057055b0e79",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
