@@ -4,17 +4,20 @@
 #include "utils.hpp"
 
 #include <boost/algorithm/string/classification.hpp>
-#include <boost/algorithm/string/find.hpp>
 #include <boost/algorithm/string/replace.hpp>
 #include <boost/algorithm/string/split.hpp>
 #include <boost/container/flat_map.hpp>
 #include <boost/lexical_cast.hpp>
 #include <sdbusplus/bus/match.hpp>
 
+#include <algorithm>
+#include <cctype>
 #include <filesystem>
 #include <iostream>
 #include <map>
 #include <regex>
+#include <string_view>
+#include <utility>
 
 namespace fs = std::filesystem;
 
@@ -174,4 +177,28 @@ struct MatchProbeForwarder
 bool matchProbe(const nlohmann::json& probe, const DBusValueVariant& dbusValue)
 {
     return std::visit(MatchProbeForwarder(probe), dbusValue);
+}
+
+inline char asciiToLower(char c)
+{
+    // Converts a character to lower case without relying on std::locale
+    if ('A' <= c && c <= 'Z')
+    {
+        c -= static_cast<char>('A' - 'a');
+    }
+    return c;
+}
+
+std::pair<size_t, size_t> iFindFirst(std::string_view str, std::string_view sub)
+{
+    const auto* it = std::ranges::search(
+        str.begin(), str.end(), sub.begin(), sub.end(),
+        [](char a, char b) { return asciiToLower(a) == asciiToLower(b); });
+    if (it != str.end())
+    {
+        size_t start = it - str.begin();
+        return {start, start + sub.size()};
+    }
+
+    return {std::string_view::npos, std::string_view::npos};
 }

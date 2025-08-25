@@ -7,7 +7,6 @@
 
 #include <boost/algorithm/string/case_conv.hpp>
 #include <boost/algorithm/string/classification.hpp>
-#include <boost/algorithm/string/find.hpp>
 #include <boost/algorithm/string/replace.hpp>
 #include <boost/algorithm/string/split.hpp>
 #include <phosphor-logging/lg2.hpp>
@@ -184,17 +183,14 @@ std::optional<std::string> templateCharReplace(
     for (const auto& [propName, propValue] : interface)
     {
         std::string templateName = templateChar + propName;
-        boost::iterator_range<std::string::const_iterator> find =
-            boost::ifind_first(*strPtr, templateName);
-        if (!find)
+        auto [start, endIdx] = iFindFirst(*strPtr, templateName);
+        if (start == std::string::npos)
         {
             continue;
         }
 
-        size_t start = find.begin() - strPtr->begin();
-
         // check for additional operations
-        if ((start == 0U) && find.end() == strPtr->end())
+        if ((start == 0U) && endIdx == strPtr->size())
         {
             std::visit([&](auto&& val) { keyPair.value() = val; }, propValue);
             return ret;
@@ -244,7 +240,7 @@ std::optional<std::string> templateCharReplace(
 
         number = expression::evaluate(number, exprBegin, exprEnd);
 
-        std::string replaced(find.begin(), find.end());
+        std::string replaced(strPtr->begin() + start, strPtr->begin() + endIdx);
         while (exprBegin != exprEnd)
         {
             replaced.append(" ").append(*exprBegin++);
