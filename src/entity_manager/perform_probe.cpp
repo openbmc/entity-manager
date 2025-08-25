@@ -5,7 +5,6 @@
 
 #include "perform_scan.hpp"
 
-#include <boost/algorithm/string/replace.hpp>
 #include <phosphor-logging/lg2.hpp>
 
 #include <iostream>
@@ -115,7 +114,7 @@ bool doProbe(const std::vector<std::string>& probeCommand,
                         return false;
                     }
                     std::string commandStr = *(match.begin() + 1);
-                    boost::replace_all(commandStr, "'", "");
+                    replaceAll(commandStr, "'", "");
                     cur = (std::find(scan->passedProbes.begin(),
                                      scan->passedProbes.end(), commandStr) !=
                            scan->passedProbes.end());
@@ -137,8 +136,8 @@ bool doProbe(const std::vector<std::string>& probeCommand,
             }
             std::string commandStr = *(match.begin() + 1);
             // convert single ticks and single slashes into legal json
-            boost::replace_all(commandStr, "'", "\"");
-            boost::replace_all(commandStr, R"(\)", R"(\\)");
+            replaceAll(commandStr, "'", "\"");
+            replaceAll(commandStr, R"(\)", R"(\\)");
             auto json = nlohmann::json::parse(commandStr, nullptr, false, true);
             if (json.is_discarded())
             {
