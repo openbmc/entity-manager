@@ -2,51 +2,54 @@
 
 #include <gtest/gtest.h>
 
+constexpr std::string_view helloWorld = "Hello World";
+
 TEST(IfindFirstTest, BasicMatch)
 {
-    auto [firstIndex, lastIndex] = iFindFirst("Hello World", "World");
-    EXPECT_EQ(firstIndex, 6);
-    EXPECT_EQ(lastIndex, 11);
+    auto match = iFindFirst(helloWorld, "World");
+    EXPECT_TRUE(match);
+    EXPECT_EQ(std::distance(helloWorld.begin(), match.begin()), 6);
+    EXPECT_EQ(std::distance(helloWorld.begin(), match.end()), 11);
 }
 
 TEST(IfindFirstTest, CaseInsensitiveMatch)
 {
-    auto [firstIndex, lastIndex] = iFindFirst("Hello World", "world");
-    EXPECT_EQ(firstIndex, 6);
-    EXPECT_EQ(lastIndex, 11);
+    auto match = iFindFirst(helloWorld, "world");
+    EXPECT_TRUE(match);
+    EXPECT_EQ(std::distance(helloWorld.begin(), match.begin()), 6);
+    EXPECT_EQ(std::distance(helloWorld.begin(), match.end()), 11);
 }
 
 TEST(IfindFirstTest, NoMatch)
 {
-    auto [firstIndex, lastIndex] = iFindFirst("Hello World", "Planet");
-    EXPECT_EQ(firstIndex, std::string_view::npos);
-    EXPECT_EQ(lastIndex, std::string_view::npos);
+    auto match = iFindFirst(helloWorld, "Planet");
+    EXPECT_FALSE(match);
 }
 
 TEST(IfindFirstTest, MatchAtStart)
 {
-    auto [firstIndex, lastIndex] = iFindFirst("Hello World", "HeLLo");
-    EXPECT_EQ(firstIndex, 0);
-    EXPECT_EQ(lastIndex, 5);
+    auto match = iFindFirst(helloWorld, "HeLLo");
+    EXPECT_TRUE(match);
+    EXPECT_EQ(std::distance(helloWorld.begin(), match.begin()), 0);
+    EXPECT_EQ(std::distance(helloWorld.begin(), match.end()), 5);
 }
 
 TEST(IfindFirstTest, MatchAtEnd)
 {
-    auto [firstIndex, lastIndex] = iFindFirst("Hello World", "LD");
-    EXPECT_EQ(firstIndex, 9);
-    EXPECT_EQ(lastIndex, 11);
+    auto match = iFindFirst(helloWorld, "LD");
+    EXPECT_TRUE(match);
+    EXPECT_EQ(std::distance(helloWorld.begin(), match.begin()), 9);
+    EXPECT_EQ(std::distance(helloWorld.begin(), match.end()), 11);
 }
 
 TEST(IfindFirstTest, EmptySubstring)
 {
-    auto [firstIndex, lastIndex] = iFindFirst("Hello", "");
-    EXPECT_EQ(firstIndex, std::string_view::npos);
-    EXPECT_EQ(lastIndex, std::string_view::npos);
+    auto match = iFindFirst(helloWorld, "");
+    EXPECT_FALSE(match);
 }
 
 TEST(IfindFirstTest, EmptyString)
 {
-    auto [firstIndex, lastIndex] = iFindFirst("", "Hello");
-    EXPECT_EQ(firstIndex, std::string_view::npos);
-    EXPECT_EQ(lastIndex, std::string_view::npos);
+    auto match = iFindFirst("", "Hello");
+    EXPECT_FALSE(match);
 }
