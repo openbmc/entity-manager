@@ -6,9 +6,7 @@
 #include "phosphor-logging/lg2.hpp"
 
 #include <boost/algorithm/string/case_conv.hpp>
-#include <boost/algorithm/string/classification.hpp>
 #include <boost/algorithm/string/replace.hpp>
-#include <boost/algorithm/string/split.hpp>
 #include <phosphor-logging/lg2.hpp>
 #include <sdbusplus/bus/match.hpp>
 
@@ -209,15 +207,14 @@ std::optional<std::string> templateCharReplace(
         // operate on the rest
         std::string end = strPtr->substr(nextItemIdx);
 
-        std::vector<std::string> split;
-        boost::split(split, end, boost::is_any_of(" "));
+        std::vector<std::string> splitResult = split(end, ' ');
 
         // need at least 1 operation and number
-        if (split.size() < 2)
+        if (splitResult.size() < 2)
         {
             std::cerr << "Syntax error on template replacement of " << *strPtr
                       << "\n";
-            for (const std::string& data : split)
+            for (const std::string& data : splitResult)
             {
                 std::cerr << data << " ";
             }
@@ -229,8 +226,8 @@ std::optional<std::string> templateCharReplace(
         // only do math on numbers.. we might concatenate strings in the
         // future, but thats later
         int number = std::visit(VariantToIntVisitor(), propValue);
-        auto exprBegin = split.begin();
-        auto exprEnd = split.end();
+        auto exprBegin = splitResult.begin();
+        auto exprEnd = splitResult.end();
 
         number = expression::evaluate(number, exprBegin, exprEnd);
 
@@ -242,7 +239,7 @@ std::optional<std::string> templateCharReplace(
         ret = replaced;
 
         std::string result = prefix + std::to_string(number);
-        while (exprEnd != split.end())
+        while (exprEnd != splitResult.end())
         {
             result.append(" ").append(*exprEnd++);
         }
