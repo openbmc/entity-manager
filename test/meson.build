@@ -62,6 +62,6 @@ test(
         'test_utils.cpp',
         '../src/utils.cpp',
         include_directories: test_include_dir,
-        dependencies: [gtest],
+        dependencies: [gtest, sdbusplus],
     ),
 )
