@@ -16,6 +16,24 @@
       "message": "I\u0027m still trying to figure out how this class helps.",
       "revId": "a6d509da4ab95a205d8d1091b40fa4ad2523768c",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "350f4e08_c6479a53",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 11
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 1002222
+      },
+      "writtenOn": "2025-08-25T06:15:05Z",
+      "side": 1,
+      "message": "So, the EntityManager class serves as a general service setup, while the SystemMapper class acutally connects the different means and sources of information and processes them. If you take a look on the follow up changes in the patch train, you\u0027ll get an idea. \n\nIn the next two changes there\u0027s a ASCII diagram about the end result im trying to reach. Over all I\u0027ll try to achieve more seperation of concern. In the end I want a state that is simple to follow data flow and have different classes each with a well scoped responsibility. Fundamental principles of software engineering basically.\n\nIm aware that this change cannot stand for itself, the two follow up changes are required for this change to really make sense :)",
+      "parentUuid": "afc68ccf_4e06584d",
+      "revId": "a6d509da4ab95a205d8d1091b40fa4ad2523768c",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }
