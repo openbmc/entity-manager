@@ -92,15 +92,23 @@ void handleLeftOverTemplateVars(nlohmann::json::iterator& keyPair)
     // Walking through the string to find $<templateVar>
     while (true)
     {
-        auto [firstIndex, lastIndex] = iFindFirst(*strPtr, templateChar);
-        if (firstIndex == std::string_view::npos)
+        std::ranges::subrange<std::string::iterator> findStart =
+            iFindFirst(*strPtr, std::string_view(templateChar));
+
+        if (!findStart)
         {
             break;
         }
 
-        size_t templateVarEndIndex = 0;
-        auto [firstSpaceIndex, _] = iFindFirst(strPtr->substr(lastIndex), " ");
-        if (firstSpaceIndex == std::string_view::npos)
+        std::ranges::subrange<std::string::iterator> searchRange(
+            strPtr->begin() + (findStart.end() - strPtr->begin()),
+            strPtr->end());
+        std::ranges::subrange<std::string::iterator> findSpace =
+            iFindFirst(searchRange, " ");
+
+        std::string::iterator templateVarEnd;
+
+        if (!findSpace)
         {
             // No space means the template var spans to the end of
             // of the keyPair value
@@ -176,8 +184,9 @@ std::optional<std::string> templateCharReplace(
     for (const auto& [propName, propValue] : interface)
     {
         std::string templateName = templateChar + propName;
-        auto [start, endIdx] = iFindFirst(*strPtr, templateName);
-        if (start == std::string::npos)
+        std::ranges::subrange<std::string::const_iterator> find =
+            iFindFirst(*strPtr, templateName);
+        if (!find)
         {
             continue;
         }
