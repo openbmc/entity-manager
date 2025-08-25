@@ -1,9 +1,9 @@
 #include "dbus_interface.hpp"
 
+#include "../utils.hpp"
 #include "perform_probe.hpp"
 #include "utils.hpp"
 
-#include <boost/algorithm/string/case_conv.hpp>
 #include <boost/container/flat_map.hpp>
 
 #include <fstream>
@@ -313,7 +313,7 @@ void EMDBusInterface::createAddObjectMethod(
             }
 
             std::ifstream schemaFile(std::string(schemaDirectory) + "/" +
-                                     boost::to_lower_copy(*type) + ".json");
+                                     toLowerCopy(*type) + ".json");
             // todo(james) we might want to also make a list of 'can add'
             // interfaces but for now I think the assumption if there is a
             // schema avaliable that it is allowed to update is fine

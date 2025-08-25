@@ -4,7 +4,6 @@
 #include "../variant_visitors.hpp"
 #include "expression.hpp"
 
-#include <boost/algorithm/string/case_conv.hpp>
 #include <sdbusplus/bus/match.hpp>
 
 #include <fstream>
@@ -219,8 +218,7 @@ std::string buildInventorySystemPath(std::string& boardName,
                                      const std::string& boardType)
 {
     std::string path = "/xyz/openbmc_project/inventory/system/";
-    std::string boardTypeLower = boost::algorithm::to_lower_copy(boardType);
-
+    std::string boardTypeLower = toLowerCopy(boardType);
     std::regex_replace(boardName.begin(), boardName.begin(), boardName.end(),
                        illegalDbusMemberRegex, "_");
 

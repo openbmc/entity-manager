@@ -84,3 +84,5 @@ void replaceAll(std::string& str, std::string_view search,
                 std::string_view replace);
 
 std::vector<std::string> split(const std::string& srcStr, char delim);
+
+std::string toLowerCopy(std::string_view str);
