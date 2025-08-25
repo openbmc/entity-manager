@@ -77,5 +77,11 @@ bool matchProbe(const nlohmann::json& probe, const DBusValueVariant& dbusValue);
 std::pair<size_t, size_t> ifindFirst(std::string_view str,
                                      std::string_view sub);
 
+void ireplaceAll(std::string& str, std::string_view search,
+                 std::string_view replace);
+
+void replaceAll(std::string& str, std::string_view search,
+                std::string_view replace);
+
 std::vector<std::string> split(std::string_view srcStr, std::string_view delim,
                                std::string_view trimStr = "");
