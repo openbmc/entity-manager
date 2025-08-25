@@ -80,6 +80,8 @@ bool matchProbe(const nlohmann::json& probe, const DBusValueVariant& dbusValue);
 std::pair<FirstIndex, LastIndex> iFindFirst(std::string_view str,
                                             std::string_view sub);
 
+std::vector<std::string> split(std::string_view str, char delim);
+
 template <typename T>
 std::from_chars_result fromCharsWrapper(const std::string_view& str, T& out,
                                         bool& fullMatch, int base = 10)
