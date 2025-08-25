@@ -148,3 +148,18 @@ TEST(IReplaceAllTest, ReplaceWithEmptyCaseInsensitive)
     iReplaceAll(str, "abc", "");
     EXPECT_EQ(str, "  ");
 }
+
+TEST(ToLowerCopyTest, BasicTests)
+{
+    EXPECT_EQ(toLowerCopy("HelloWorld"), "helloworld");
+
+    EXPECT_EQ(toLowerCopy("HELLOWORLD"), "helloworld");
+
+    EXPECT_EQ(toLowerCopy("helloworld"), "helloworld");
+
+    EXPECT_EQ(toLowerCopy("123ABC!@#"), "123abc!@#");
+
+    EXPECT_EQ(toLowerCopy("!@#$%^&*()_+"), "!@#$%^&*()_+");
+
+    EXPECT_EQ(toLowerCopy(""), "");
+}

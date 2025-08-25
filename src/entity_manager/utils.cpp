@@ -5,7 +5,6 @@
 #include "expression.hpp"
 #include "phosphor-logging/lg2.hpp"
 
-#include <boost/algorithm/string/case_conv.hpp>
 #include <phosphor-logging/lg2.hpp>
 #include <sdbusplus/bus/match.hpp>
 
@@ -282,8 +281,7 @@ std::string buildInventorySystemPath(std::string& boardName,
                                      const std::string& boardType)
 {
     std::string path = "/xyz/openbmc_project/inventory/system/";
-    std::string boardTypeLower = boost::algorithm::to_lower_copy(boardType);
-
+    std::string boardTypeLower = toLowerCopy(boardType);
     std::regex_replace(boardName.begin(), boardName.begin(), boardName.end(),
                        illegalDbusMemberRegex, "_");
 
