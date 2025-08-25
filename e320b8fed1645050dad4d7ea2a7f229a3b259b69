@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b0dfa471_356d12df",
+        "filename": "src/entity_manager/utils.cpp",
+        "patchSetId": 1
+      },
+      "lineNbr": 146,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-08-25T08:02:19Z",
+      "side": 1,
+      "message": "parameter `trimStr` is unused, right?\n\nCan we remove it?",
+      "revId": "e320b8fed1645050dad4d7ea2a7f229a3b259b69",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "24cd84b0_2a554869",
+        "filename": "src/utils.cpp",
+        "patchSetId": 1
+      },
+      "lineNbr": 203,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-08-25T08:02:19Z",
+      "side": 1,
+      "message": "What about `std::getline`, would that work as well?\n\nhttp://www.en.cppreference.com/w/cpp/string/basic_string/getline.html",
+      "revId": "e320b8fed1645050dad4d7ea2a7f229a3b259b69",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    }
+  ]
+}
