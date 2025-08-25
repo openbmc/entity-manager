@@ -18,6 +18,8 @@ using DBusInterface = boost::container::flat_map<std::string, DBusValueVariant>;
 using DBusObject = boost::container::flat_map<std::string, DBusInterface>;
 using MapperGetSubTreeResponse =
     boost::container::flat_map<std::string, DBusObject>;
+using FirstIndex = size_t;
+using LastIndex = size_t;
 
 bool findFiles(const std::filesystem::path& dirPath,
                const std::string& matchString,
@@ -74,6 +76,9 @@ inline bool deviceHasLogging(const nlohmann::json& json)
 /// \param dbusValue the property value being matched to a probe.
 /// \return true if the dbusValue matched the probe otherwise false.
 bool matchProbe(const nlohmann::json& probe, const DBusValueVariant& dbusValue);
+
+std::pair<FirstIndex, LastIndex> iFindFirst(std::string_view str,
+                                            std::string_view sub);
 
 template <typename T>
 std::from_chars_result fromCharsWrapper(const std::string_view& str, T& out,

@@ -54,3 +54,14 @@ test(
         link_with: gpio_presence_lib,
     ),
 )
+
+test(
+    'test_utils',
+    executable(
+        'test_utils',
+        'test_utils.cpp',
+        '../src/utils.cpp',
+        include_directories: test_include_dir,
+        dependencies: [gtest, phosphor_logging_dep],
+    ),
+)
