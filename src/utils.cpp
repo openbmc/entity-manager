@@ -234,3 +234,11 @@ void replaceAll(std::string& str, std::string_view search,
         pos += replace.size();
     }
 }
+
+std::string toLowerCopy(std::string_view str)
+{
+    std::string result(str);
+    std::transform(result.begin(), result.end(), result.begin(),
+                   [](unsigned char c) { return asciiToLower(c); });
+    return result;
+}

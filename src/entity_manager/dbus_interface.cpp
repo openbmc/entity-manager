@@ -3,7 +3,6 @@
 #include "perform_probe.hpp"
 #include "utils.hpp"
 
-#include <boost/algorithm/string/case_conv.hpp>
 #include <boost/container/flat_map.hpp>
 
 #include <fstream>
