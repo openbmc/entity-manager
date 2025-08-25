@@ -3,9 +3,7 @@
 
 #include "utils.hpp"
 
-#include <boost/algorithm/string/classification.hpp>
 #include <boost/algorithm/string/replace.hpp>
-#include <boost/algorithm/string/split.hpp>
 #include <boost/container/flat_map.hpp>
 #include <boost/lexical_cast.hpp>
 #include <sdbusplus/bus/match.hpp>
@@ -193,4 +191,31 @@ std::pair<size_t, size_t> ifindFirst(std::string_view str, std::string_view sub)
     }
 
     return {std::string_view::npos, std::string_view::npos};
+}
+
+std::vector<std::string> split(std::string_view srcStr, std::string_view delim,
+                               std::string_view trimStr)
+{
+    std::vector<std::string> out;
+    size_t start = 0;
+    size_t end = 0;
+
+    while ((start = srcStr.find_first_not_of(delim, end)) != std::string::npos)
+    {
+        end = srcStr.find(delim, start);
+        std::string_view dstStr = srcStr.substr(start, end - start);
+        if (!trimStr.empty())
+        {
+            dstStr.remove_prefix(dstStr.find_first_not_of(trimStr));
+            dstStr.remove_suffix(
+                dstStr.size() - 1 - dstStr.find_last_not_of(trimStr));
+        }
+
+        if (!dstStr.empty())
+        {
+            out.emplace_back(dstStr);
+        }
+    }
+
+    return out;
 }
