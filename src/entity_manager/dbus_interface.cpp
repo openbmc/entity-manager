@@ -3,7 +3,6 @@
 #include "perform_probe.hpp"
 #include "utils.hpp"
 
-#include <boost/algorithm/string/case_conv.hpp>
 #include <boost/container/flat_map.hpp>
 
 #include <fstream>
@@ -312,8 +311,13 @@ void EMDBusInterface::createAddObjectMethod(
                 lastIndex++;
             }
 
-            std::ifstream schemaFile(std::string(schemaDirectory) + "/" +
-                                     boost::to_lower_copy(*type) + ".json");
+            std::string typeLower = *type;
+            std::transform(typeLower.begin(), typeLower.end(),
+                           typeLower.begin(),
+                           [](unsigned char c) { return std::tolower(c); });
+
+            std::ifstream schemaFile(
+                std::string(schemaDirectory) + "/" + typeLower + ".json");
             // todo(james) we might want to also make a list of 'can add'
             // interfaces but for now I think the assumption if there is a
             // schema avaliable that it is allowed to update is fine
