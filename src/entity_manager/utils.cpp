@@ -7,7 +7,6 @@
 
 #include <boost/algorithm/string/case_conv.hpp>
 #include <boost/algorithm/string/classification.hpp>
-#include <boost/algorithm/string/find.hpp>
 #include <boost/algorithm/string/replace.hpp>
 #include <boost/algorithm/string/split.hpp>
 #include <phosphor-logging/lg2.hpp>
@@ -93,38 +92,31 @@ void handleLeftOverTemplateVars(nlohmann::json::iterator& keyPair)
     // Walking through the string to find $<templateVar>
     while (true)
     {
-        boost::iterator_range<std::string::const_iterator> findStart =
-            boost::ifind_first(*strPtr, std::string_view(templateChar));
-
-        if (!findStart)
+        auto [firstIndex, lastIndex] = iFindFirst(*strPtr, templateChar);
+        if (firstIndex == std::string_view::npos)
         {
             break;
         }
 
-        boost::iterator_range<std::string::iterator> searchRange(
-            strPtr->begin() + (findStart.end() - strPtr->begin()),
-            strPtr->end());
-        boost::iterator_range<std::string::const_iterator> findSpace =
-            boost::ifind_first(searchRange, " ");
-
-        std::string::const_iterator templateVarEnd;
-
-        if (!findSpace)
+        size_t templateVarEndIndex = 0;
+        auto [firstSpaceIndex, _] = iFindFirst(strPtr->substr(lastIndex), " ");
+        if (firstSpaceIndex == std::string_view::npos)
         {
             // No space means the template var spans to the end of
             // of the keyPair value
-            templateVarEnd = strPtr->end();
+            templateVarEndIndex = strPtr->size();
         }
         else
         {
             // A space marks the end of a template var
-            templateVarEnd = findSpace.begin();
+            templateVarEndIndex = lastIndex + firstSpaceIndex;
         }
 
         lg2::error(
             "There's still template variable {VAR} un-replaced. Removing it from the string.\n",
-            "VAR", std::string(findStart.begin(), templateVarEnd));
-        strPtr->erase(findStart.begin(), templateVarEnd);
+            "VAR",
+            strPtr->substr(firstIndex, templateVarEndIndex - firstIndex));
+        strPtr->erase(firstIndex, templateVarEndIndex - firstIndex);
     }
 }
 
@@ -184,17 +176,14 @@ std::optional<std::string> templateCharReplace(
     for (const auto& [propName, propValue] : interface)
     {
         std::string templateName = templateChar + propName;
-        boost::iterator_range<std::string::const_iterator> find =
-            boost::ifind_first(*strPtr, templateName);
-        if (!find)
+        auto [start, endIdx] = iFindFirst(*strPtr, templateName);
+        if (start == std::string::npos)
         {
             continue;
         }
 
-        size_t start = find.begin() - strPtr->begin();
-
         // check for additional operations
-        if ((start == 0U) && find.end() == strPtr->end())
+        if ((start == 0U) && endIdx == strPtr->size())
         {
             std::visit([&](auto&& val) { keyPair.value() = val; }, propValue);
             return ret;
@@ -244,7 +233,7 @@ std::optional<std::string> templateCharReplace(
 
         number = expression::evaluate(number, exprBegin, exprEnd);
 
-        std::string replaced(find.begin(), find.end());
+        std::string replaced(strPtr->begin() + start, strPtr->begin() + endIdx);
         while (exprBegin != exprEnd)
         {
             replaced.append(" ").append(*exprBegin++);
