@@ -3,10 +3,10 @@
 
 #include "overlay.hpp"
 
+#include "../utils.hpp"
 #include "devices.hpp"
 #include "utils.hpp"
 
-#include <boost/algorithm/string/replace.hpp>
 #include <boost/asio/io_context.hpp>
 #include <boost/asio/steady_timer.hpp>
 #include <boost/container/flat_map.hpp>
@@ -39,7 +39,7 @@ std::string jsonToString(const nlohmann::json& in)
         // remove brackets and comma from array
         std::string array = in.dump();
         array = array.substr(1, array.size() - 2);
-        boost::replace_all(array, ",", " ");
+        std::ranges::replace(array, ',', ' ');
         return array;
     }
     return in.dump();
@@ -247,10 +247,8 @@ void exportDevice(const std::string& type,
         {
             channels = keyPair.value().get<std::vector<std::string>>();
         }
-        boost::replace_all(parameters, templateChar + keyPair.key(),
-                           subsituteString);
-        boost::replace_all(busPath, templateChar + keyPair.key(),
-                           subsituteString);
+        replaceAll(parameters, templateChar + keyPair.key(), subsituteString);
+        replaceAll(busPath, templateChar + keyPair.key(), subsituteString);
     }
 
     if (!bus || !address)

@@ -95,3 +95,59 @@ TEST(SplitTest, EmptyString)
     std::vector<std::string> expected = {""};
     EXPECT_EQ(result, expected);
 }
+
+TEST(ReplaceAllTest, BasicReplacement)
+{
+    std::string str = "hello world, world!";
+    replaceAll(str, "world", "earth");
+    EXPECT_EQ(str, "hello earth, earth!");
+}
+
+TEST(ReplaceAllTest, NoMatch)
+{
+    std::string str = "hello world";
+    replaceAll(str, "xxx", "abc");
+    EXPECT_EQ(str, "hello world");
+}
+
+TEST(ReplaceAllTest, ReplaceWithEmpty)
+{
+    std::string str = "apple apple";
+    replaceAll(str, "apple", "");
+    EXPECT_EQ(str, " ");
+}
+
+TEST(ReplaceAllTest, ReplaceEmptySearch)
+{
+    std::string str = "abc";
+    replaceAll(str, "", "x");
+    EXPECT_EQ(str, "abc");
+}
+
+TEST(IReplaceAllTest, CaseInsensitive)
+{
+    std::string str = "Hello hEllo heLLo";
+    iReplaceAll(str, "hello", "hi");
+    EXPECT_EQ(str, "hi hi hi");
+}
+
+TEST(IReplaceAllTest, MixedContent)
+{
+    std::string str = "Hello World! WORLD world";
+    iReplaceAll(str, "world", "Earth");
+    EXPECT_EQ(str, "Hello Earth! Earth Earth");
+}
+
+TEST(IReplaceAllTest, NoMatchCaseInsensitive)
+{
+    std::string str = "Good Morning";
+    iReplaceAll(str, "night", "day");
+    EXPECT_EQ(str, "Good Morning");
+}
+
+TEST(IReplaceAllTest, ReplaceWithEmptyCaseInsensitive)
+{
+    std::string str = "ABC abc AbC";
+    iReplaceAll(str, "abc", "");
+    EXPECT_EQ(str, "  ");
+}
