@@ -3,9 +3,7 @@
 
 #include "utils.hpp"
 
-#include <boost/algorithm/string/classification.hpp>
 #include <boost/algorithm/string/replace.hpp>
-#include <boost/algorithm/string/split.hpp>
 #include <boost/container/flat_map.hpp>
 #include <boost/lexical_cast.hpp>
 #include <sdbusplus/bus/match.hpp>
@@ -208,4 +206,25 @@ std::pair<size_t, size_t> iFindFirst(std::string_view str, std::string_view sub)
     }
 
     return {std::string_view::npos, std::string_view::npos};
+}
+
+std::vector<std::string> split(std::string_view str, char delim)
+{
+    std::vector<std::string> out;
+
+    size_t start = 0;
+    while (start <= str.size())
+    {
+        size_t end = str.find(delim, start);
+        if (end == std::string_view::npos)
+        {
+            out.emplace_back(str.substr(start));
+            break;
+        }
+
+        out.emplace_back(str.substr(start, end - start));
+        start = end + 1;
+    }
+
+    return out;
 }

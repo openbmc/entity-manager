@@ -50,3 +50,45 @@ TEST(IfindFirstTest, EmptyString)
     EXPECT_EQ(res.first, std::string_view::npos);
     EXPECT_EQ(res.second, std::string_view::npos);
 }
+
+TEST(SplitTest, NormalSplit)
+{
+    auto result = split("a,b,c", ',');
+    std::vector<std::string> expected = {"a", "b", "c"};
+    EXPECT_EQ(result, expected);
+}
+
+TEST(SplitTest, ConsecutiveDelimiters)
+{
+    auto result = split("a,,b", ',');
+    std::vector<std::string> expected = {"a", "", "b"};
+    EXPECT_EQ(result, expected);
+}
+
+TEST(SplitTest, LeadingDelimiter)
+{
+    auto result = split(",a,b", ',');
+    std::vector<std::string> expected = {"", "a", "b"};
+    EXPECT_EQ(result, expected);
+}
+
+TEST(SplitTest, TrailingDelimiter)
+{
+    auto result = split("a,b,", ',');
+    std::vector<std::string> expected = {"a", "b", ""};
+    EXPECT_EQ(result, expected);
+}
+
+TEST(SplitTest, NoDelimiter)
+{
+    auto result = split("abc", ',');
+    std::vector<std::string> expected = {"abc"};
+    EXPECT_EQ(result, expected);
+}
+
+TEST(SplitTest, EmptyString)
+{
+    auto result = split("", ',');
+    std::vector<std::string> expected = {""};
+    EXPECT_EQ(result, expected);
+}
