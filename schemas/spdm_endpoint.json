@@ -1,7 +1,7 @@
 {
     "$schema": "http://json-schema.org/draft-07/schema#",
     "$defs": {
-        "SpdmEndpoint": {
+        "SpdmTcpEndpoint": {
             "title": "SPDM TCP responder configuration",
             "description": "The configuration used to add remote SPDM responder to the system",
             "type": "object",
@@ -35,6 +35,47 @@
                 "TrustedComponentType",
                 "Name",
                 "Type"
+            ]
+        },
+        "SpdmMctpEndpoint": {
+            "title": "SPDM MCTP endpoint configuration",
+            "description": "The configuration used to add an SPDM MCTP endpoint",
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+                "EID": {
+                    "description": "MCTP Endpoint ID of the SPDM supported device",
+                    "type": "number"
+                },
+                "TrustedComponentType": {
+                    "description": "Type of the Root of Trust",
+                    "enum": ["discrete", "integrated"]
+                },
+                "Name": {
+                    "description": "The name of the object",
+                    "type": "string"
+                },
+                "Type": {
+                    "description": "The type of object",
+                    "type": "string",
+                    "enum": ["SpdmMctpRequester"]
+                },
+                "Authenticating": {
+                    "description": "Association to provide a link to the target component whose integrity this resource authenticates",
+                    "$ref": "openbmc-dbus.json#/$defs/xyz/openbmc_project/Inventory/Item/Chassis"
+                },
+                "Reporting": {
+                    "description": "Association to provide a link to the target trusted component whose integrity this resource reports",
+                    "$ref": "openbmc-dbus.json#/$defs/xyz/openbmc_project/Inventory/Item/TrustedComponent"
+                }
+            },
+            "required": [
+                "EID",
+                "TrustedComponentType",
+                "Name",
+                "Type",
+                "Authenticating",
+                "Reporting"
             ]
         }
     }

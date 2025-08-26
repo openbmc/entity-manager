@@ -186,6 +186,10 @@
                             },
                             "required": ["Direction", "PairName"],
                             "type": "object"
+                        },
+                        "TrustedComponent": {
+                            "additionalProperties": false,
+                            "type": "object"
                         }
                     }
                 },

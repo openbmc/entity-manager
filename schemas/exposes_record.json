@@ -31,7 +31,10 @@
                     "$ref": "satellite_controller.json#/$defs/SatelliteController"
                 },
                 {
-                    "$ref": "spdm_endpoint.json#/$defs/SpdmEndpoint"
+                    "$ref": "spdm_endpoint.json#/$defs/SpdmTcpEndpoint"
+                },
+                {
+                    "$ref": "spdm_endpoint.json#/$defs/SpdmMctpEndpoint"
                 },
                 {
                     "$ref": "stepwise.json#/$defs/Stepwise"
