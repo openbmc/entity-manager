@@ -22,6 +22,30 @@
       },
       "revId": "164af2fd1cce6c461ad43ca04e85ff0b73806ee2",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "80afe4b5_3bb42633",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 13,
+      "author": {
+        "id": 1000397
+      },
+      "writtenOn": "2025-08-26T00:45:10Z",
+      "side": 1,
+      "message": "I did a quick benchmark using std::chrono with 10M iterations on a 1000-char string and a short prefix.\nThe results were:\n```\nboost::starts_with: ~0.027 s\nstd::starts_with: ~0.020 s\n```\nSo std::starts_with is around 20–25% faster.\nIn real code, the difference will usually be negligible unless it’s in a very hot path. My main motivation for switching was to reduce the Boost dependency and use the standard library API.",
+      "parentUuid": "4a19b0fd_591f30f7",
+      "range": {
+        "startLine": 12,
+        "startChar": 57,
+        "endLine": 13,
+        "endChar": 24
+      },
+      "revId": "164af2fd1cce6c461ad43ca04e85ff0b73806ee2",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }
