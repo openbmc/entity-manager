@@ -36,6 +36,24 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "43637016_17b34c1e",
+        "filename": "src/gpio-presence/device_presence.cpp",
+        "patchSetId": 1
+      },
+      "lineNbr": 98,
+      "author": {
+        "id": 1002520
+      },
+      "writtenOn": "2025-08-26T13:11:14Z",
+      "side": 1,
+      "message": "Entity-manager already has InterfacesAdded and InterfacesRemoved listeners. However, after adding debug logs, I saw the interface check always failed, so these listeners didn’t behave as expected.\n\nSince `std::set_intersection` requires ordered containers, using it with `unordered_set` caused the check to always fail and caused the signal to be dropped every time. I refactored the snippet to make it simpler and clearer.\n\nRoot cause:\n```bash\n\u003c7\u003e interfacesRemovedMatch: sender\u003d:1.1013716 member\u003dInterfacesRemoved path\u003d/ interface\u003dorg.freedesktop.DBus.ObjectManager\n\u003c7\u003e irContainsProbeInterface:\n\u003c7\u003e \u003e\u003e interfaces: xyz.openbmc_project.Inventory.Source.DevicePresence\n\u003c7\u003e \u003e\u003e probeInterfaces: xyz.openbmc_project.Ipmb.FruDevice, xyz.openbmc_project.Inventory.Item, xyz.openbmc_project.Inventory.Decorator.Revision, xyz.openbmc_project.Inventory.Source.DevicePresence, com.ibm.ipzvpd.VSYS, xyz.openbmc_project.Inventory.Item.Board, xyz.openbmc_project.Inventory.Decorator.Asset, com.ibm.ipzvpd.VINI, com.ibm.ipzvpd.VSBP, xyz.openbmc_project.FruDevice\n\u003c7\u003e \u003e\u003e intersect.empty(): True\n\u003c7\u003e interfacesRemovedMatch does not contain probe interface\n\u003c7\u003e interfacesAddedMatch: sender\u003d:1.1013716 member\u003dInterfacesAdded path\u003d/ interface\u003dorg.freedesktop.DBus.ObjectManager\n\u003c7\u003e iaContainsProbeInterface:\n\u003c7\u003e \u003e\u003e interfaces: xyz.openbmc_project.Inventory.Source.DevicePresence\n\u003c7\u003e \u003e\u003e probeInterfaces: xyz.openbmc_project.Ipmb.FruDevice, xyz.openbmc_project.Inventory.Item, xyz.openbmc_project.Inventory.Decorator.Revision, xyz.openbmc_project.Inventory.Source.DevicePresence, com.ibm.ipzvpd.VSYS, xyz.openbmc_project.Inventory.Item.Board, xyz.openbmc_project.Inventory.Decorator.Asset, com.ibm.ipzvpd.VINI, com.ibm.ipzvpd.VSBP, xyz.openbmc_project.FruDevice\n\u003c7\u003e \u003e\u003e intersect.empty(): True\n\u003c7\u003e interfacesAddedMatch does not contain probe interface\n```\n\nCould you have a look at my new update when you have time?",
+      "parentUuid": "bc5690fc_f6112cd0",
+      "revId": "a6535cb3ced77d44c9d311f93a71f057055b0e79",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "54393a66_b1626d51",
