@@ -751,6 +751,18 @@ bool findFRUHeader(FRUReader& reader, const std::string& errorHelp,
         return findFRUHeader(reader, errorHelp, blockData, baseOffset);
     }
 
+    // check if blockData starts with gigabyteHeader
+    const std::vector<uint8_t> gigabyteHeader = {'G', 'I', 'G', 'A', 'B', 'Y',
+                                                 'T', 'E'};
+    if (blockData.size() >= gigabyteHeader.size() &&
+        std::equal(gigabyteHeader.begin(), gigabyteHeader.end(), blockData.begin()))
+    {
+        // look for the FRU header at offset 0x4000
+        baseOffset = 0x4000;
+        return findFRUHeader(reader, errorHelp, blockData, baseOffset);
+    }
+
+
     lg2::debug("Illegal header {HEADER} base offset {OFFSET}", "HEADER",
                errorHelp, "OFFSET", baseOffset);
 
