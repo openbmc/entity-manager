@@ -54,6 +54,24 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "063b765c_ea85038b",
+        "filename": "src/gpio-presence/device_presence.cpp",
+        "patchSetId": 1
+      },
+      "lineNbr": 98,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-08-26T16:19:02Z",
+      "side": 1,
+      "message": "\u003e Could you have a look at my new update when you have time?\n\nSure, my main feedback is that the handlers for intf added and intf removed can have separate functions, which Matt already said.\n\nOtherwise the fix looks good to me.\n\nFor the commit message, maybe\nyou can add your comments here to commit message to make it clearer, since not everyone is aware of preconditions for `set_intersection`.\n\n\u003e Entity-manager already has InterfacesAdded and InterfacesRemoved listeners. However, after adding debug logs, I saw the interface check always failed, so these listeners didn’t behave as expected.\n\n\u003e Since std::set_intersection requires ordered containers, using it with unordered_set caused the check to always fail and caused the signal to be dropped every time. I refactored the snippet to make it simpler and clearer.\n\nMakes complete sense, we can link to \nhttps://en.cppreference.com/w/cpp/algorithm/set_intersection.html",
+      "parentUuid": "43637016_17b34c1e",
+      "revId": "a6535cb3ced77d44c9d311f93a71f057055b0e79",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "54393a66_b1626d51",
