@@ -463,6 +463,22 @@
             "Type": "IpmbSensor"
         },
         {
+            "ConnectsToName": [
+                "GenericContainPort"
+            ],
+            "Name": "GenericContainPort",
+            "PortType": "contained_by",
+            "Type": "Port"
+        },
+        {
+            "ConnectsToName": [
+                "GenericPowerPort"
+            ],
+            "Name": "GenericPowerPort",
+            "PortType": "powered_by",
+            "Type": "Port"
+        },
+        {
             "Address": "0x49",
             "Bus": 6,
             "Name": "AIR_INLET_TEMP",

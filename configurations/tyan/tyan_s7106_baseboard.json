@@ -231,6 +231,22 @@
             "Type": "BMC"
         },
         {
+            "ConnectsToName": [
+                "GenericContainPort"
+            ],
+            "Name": "GenericContainPort",
+            "PortType": "contained_by",
+            "Type": "Port"
+        },
+        {
+            "ConnectsToName": [
+                "GenericPowerPort"
+            ],
+            "Name": "GenericPowerPort",
+            "PortType": "powered_by",
+            "Type": "Port"
+        },
+        {
             "Address": "0x28",
             "Bus": 0,
             "EntityId": 7,
