@@ -10,6 +10,18 @@ using Association = std::tuple<std::string, std::string, std::string>;
 using BoardPathsView = decltype(std::views::keys(
     std::declval<std::map<std::string, std::string>&>()));
 
+class AssocName
+{
+  public:
+    std::string name;
+    std::string reverse;
+
+    AssocName getReverse() const;
+
+    bool operator==(const AssocName& other) const = default;
+    bool operator<(const AssocName& other) const;
+};
+
 class Topology
 {
   public:
@@ -30,9 +42,6 @@ class Topology
 
     void addDownstreamPort(const Path& path, const nlohmann::json& exposesItem);
 
-    // e.g. contained_by, containing, powered_by, ...
-    using AssocName = std::string;
-
     // @brief: fill associations map with the associations for a port identifier
     // such as 'MB Upstream Port'
     void fillAssocsForPortId(
@@ -47,9 +56,6 @@ class Topology
 
     void addPort(const PortType& port, const Path& path,
                  const AssocName& assocName);
-
-    static std::optional<std::string> getOppositeAssoc(
-        const AssocName& assocName);
 
     // Maps the port name to the participating paths.
     // each path also has their role(s) in the association.
