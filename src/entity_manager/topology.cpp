@@ -2,6 +2,25 @@
 
 #include "phosphor-logging/lg2.hpp"
 
+const AssocName assocContaining = AssocName("containing", "contained_by");
+const AssocName assocContainedBy = assocContaining.getReverse();
+const AssocName assocPowering = AssocName("powering", "powered_by");
+const AssocName assocPoweredBy = assocPowering.getReverse();
+
+AssocName::AssocName(const std::string& name, const std::string& reverse) :
+    name(name), reverse(reverse)
+{}
+
+AssocName AssocName::getReverse() const
+{
+    return {reverse, name};
+}
+
+bool AssocName::operator<(const AssocName& other) const
+{
+    return name < other.name;
+}
+
 void Topology::addBoard(const std::string& path, const std::string& boardType,
                         const std::string& boardName,
                         const nlohmann::json& exposesItem)
@@ -22,7 +41,7 @@ void Topology::addBoard(const std::string& path, const std::string& boardType,
     }
     else if (exposesType.ends_with("Port"))
     {
-        addPort(exposesType, path, "containing");
+        addPort(exposesType, path, assocContaining);
     }
     else
     {
@@ -43,12 +62,12 @@ void Topology::addDownstreamPort(const Path& path,
     }
     PortType connectsTo = findConnectsTo->get<std::string>();
 
-    addPort(connectsTo, path, "contained_by");
+    addPort(connectsTo, path, assocContainedBy);
 
     auto findPoweredBy = exposesItem.find("PowerPort");
     if (findPoweredBy != exposesItem.end())
     {
-        addPort(connectsTo, path, "powering");
+        addPort(connectsTo, path, assocPowering);
     }
 }
 
@@ -94,20 +113,15 @@ void Topology::fillAssocsForPortId(
             }
             for (const auto& assocName : member.second)
             {
-                auto optReverse = getOppositeAssoc(assocName);
-                if (!optReverse.has_value())
-                {
-                    continue;
-                }
                 // if the other end of the assocation does not declare
                 // the reverse association, do not associate
                 const bool otherAgrees =
-                    other.second.contains(optReverse.value());
+                    other.second.contains(assocName.getReverse());
 
                 // quirk: since the other side of the association cannot declare
                 // to be powered_by in the legacy schema, in case of "powering",
                 // the two associations do not have to agree.
-                if (!otherAgrees && assocName != "powering")
+                if (!otherAgrees && assocName != assocPowering)
                 {
                     continue;
                 }
@@ -134,44 +148,14 @@ void Topology::fillAssocForPortId(
         return;
     }
 
-    auto optReverse = getOppositeAssoc(assocName);
-
-    if (!optReverse)
-    {
-        return;
-    }
-
     // quirk: legacy code did not associate from both sides
     // TODO(alexander): revisit this
-    if (assocName == "containing" || assocName == "powered_by")
+    if (assocName == assocContaining || assocName == assocPoweredBy)
     {
         return;
     }
 
-    result[upstream].insert({assocName, optReverse.value(), downstream});
-}
-
-const std::set<std::pair<std::string, std::string>> assocs = {
-    {"powering", "powered_by"}, {"containing", "contained_by"},
-    // ... extend as needed
-};
-
-std::optional<std::string> Topology::getOppositeAssoc(
-    const AssocName& assocName)
-{
-    for (const auto& entry : assocs)
-    {
-        if (entry.first == assocName)
-        {
-            return entry.second;
-        }
-        if (entry.second == assocName)
-        {
-            return entry.first;
-        }
-    }
-
-    return std::nullopt;
+    result[upstream].insert({assocName.name, assocName.reverse, downstream});
 }
 
 void Topology::remove(const std::string& boardName)
