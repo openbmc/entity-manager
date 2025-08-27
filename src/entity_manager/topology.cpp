@@ -76,6 +76,11 @@ void Topology::addBoard(const std::string& path, const std::string& boardType,
     else if (exposesType.ends_with("Port"))
     {
         addPort(exposesType, path, assocContaining);
+
+        // this represents the legacy quirk of upstream ports having no choice
+        // in the
+        // powered_by association
+        addPort(exposesType, path, assocPoweredBy);
     }
     else
     {
@@ -182,10 +187,7 @@ void Topology::fillAssocsForPortId(
                 const bool otherAgrees =
                     other.second.contains(assocName.getReverse());
 
-                // quirk: since the other side of the association cannot declare
-                // to be powered_by in the legacy schema, in case of "powering",
-                // the two associations do not have to agree.
-                if (!otherAgrees && assocName != assocPowering)
+                if (!otherAgrees)
                 {
                     continue;
                 }
