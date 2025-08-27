@@ -25,6 +25,8 @@ class AssocName
     bool operator<(const AssocName& other) const;
 };
 
+extern const std::vector<AssocName> assocs;
+
 class Topology
 {
   public:
@@ -57,8 +59,11 @@ class Topology
         BoardPathsView boardPaths, const Path& upstream, const Path& downstream,
         const AssocName& assocName);
 
+    void addConfiguredPort(const Path& path, const nlohmann::json& exposesItem);
     void addPort(const PortType& port, const Path& path,
                  const AssocName& assocName);
+
+    static std::optional<AssocName> getAssocByName(const std::string& name);
 
     // Maps the port name to the participating paths.
     // each path also has their role(s) in the association.
