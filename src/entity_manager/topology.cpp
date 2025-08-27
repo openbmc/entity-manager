@@ -7,6 +7,13 @@ const AssocName assocContainedBy = assocContaining.getReverse();
 const AssocName assocPowering = AssocName("powering", "powered_by");
 const AssocName assocPoweredBy = assocPowering.getReverse();
 
+const std::vector<AssocName> assocs = {
+    assocContaining,
+    assocContainedBy,
+    assocPowering,
+    assocPoweredBy,
+};
+
 AssocName AssocName::getReverse() const
 {
     return AssocName(reverse, name);
@@ -15,6 +22,18 @@ AssocName AssocName::getReverse() const
 bool AssocName::operator<(const AssocName& other) const
 {
     return name < other.name;
+}
+
+std::optional<AssocName> Topology::getAssocByName(const std::string& name)
+{
+    for (const auto& assoc : assocs)
+    {
+        if (assoc.name == name)
+        {
+            return assoc;
+        }
+    }
+    return std::nullopt;
 }
 
 void Topology::addBoard(const std::string& path, const std::string& boardType,
@@ -35,6 +54,10 @@ void Topology::addBoard(const std::string& path, const std::string& boardType,
     {
         addDownstreamPort(path, exposesItem);
     }
+    else if (exposesType == "Port")
+    {
+        addConfiguredPort(path, exposesItem);
+    }
     else if (exposesType.ends_with("Port"))
     {
         addPort(exposesType, path, assocContaining);
@@ -44,6 +67,41 @@ void Topology::addBoard(const std::string& path, const std::string& boardType,
         return;
     }
     boardTypes[path] = boardType;
+}
+
+void Topology::addConfiguredPort(const Path& path,
+                                 const nlohmann::json& exposesItem)
+{
+    const auto findConnectsToName = exposesItem.find("ConnectsToName");
+    if (findConnectsToName == exposesItem.end())
+    {
+        lg2::error("Board at path {PATH} is missing ConnectsToName", "PATH",
+                   path);
+        return;
+    }
+    const std::vector<std::string> connectsToName =
+        findConnectsToName->get<std::vector<std::string>>();
+
+    const auto findPortType = exposesItem.find("PortType");
+    if (findPortType == exposesItem.end())
+    {
+        lg2::error("Board at path {PATH} is missing PortType", "PATH", path);
+        return;
+    }
+    const std::string portType = findPortType->get<std::string>();
+
+    const auto assoc = getAssocByName(portType);
+    if (!assoc.has_value())
+    {
+        lg2::error("Could not find configured association name {ASSOC}",
+                   "ASSOC", portType);
+        return;
+    }
+
+    for (const auto& name : connectsToName)
+    {
+        addPort(name, path, assoc.value());
+    }
 }
 
 void Topology::addDownstreamPort(const Path& path,
