@@ -404,6 +404,22 @@
             "Type": "NCT7802"
         },
         {
+            "ConnectsToName": [
+                "GenericContainPort"
+            ],
+            "Name": "GenericContainPort",
+            "PortType": "contained_by",
+            "Type": "Port"
+        },
+        {
+            "ConnectsToName": [
+                "GenericPowerPort"
+            ],
+            "Name": "GenericPowerPort",
+            "PortType": "powered_by",
+            "Type": "Port"
+        },
+        {
             "FirmwareInfo": {
                 "CompatibleHardware": "com.tyan.Hardware.S8030.SPI.Host",
                 "VendorIANA": 6653
