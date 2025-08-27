@@ -103,6 +103,9 @@ std::optional<std::string> templateCharReplace(
         return ret;
     }
 
+    // Track whether we matched any DBus property replacements in this call.
+    bool matchedAny = false;
+
     boost::replace_all(*strPtr, std::string(templateChar) + "index",
                        std::to_string(index));
     if (replaceStr)
@@ -139,6 +142,7 @@ std::optional<std::string> templateCharReplace(
         {
             std::string val = std::visit(VariantToStringVisitor(), propValue);
             boost::ireplace_all(*strPtr, templateName, val);
+            matchedAny = true;
             continue;
         }
 
@@ -178,6 +182,7 @@ std::optional<std::string> templateCharReplace(
         {
             replaced.append(" ").append(*exprBegin++);
         }
+        matchedAny = true;
         ret = replaced;
 
         std::string result = prefix + std::to_string(number);
@@ -200,6 +205,19 @@ std::optional<std::string> templateCharReplace(
     if (strPtr == nullptr)
     {
         return ret;
+    }
+
+    // If no DBus property was matched for this field, replace any remaining
+    // template variables (like $FOO) with an empty string "".
+    if (!matchedAny)
+    {
+        const std::string cur = *strPtr;
+        std::regex varRe(R"(\$[A-Za-z0-9_]+)");
+        if (std::regex_search(cur, varRe))
+        {
+            // Replace all $VAR occurrences with empty string.
+            *strPtr = std::regex_replace(cur, varRe, std::string(""));
+        }
     }
 
     std::string_view strView = *strPtr;
