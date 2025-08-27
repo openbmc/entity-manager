@@ -1,6 +1,29 @@
 {
   "comments": [
     {
+      "unresolved": true,
+      "key": {
+        "uuid": "63f29cbb_dc7d0c4d",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 4
+      },
+      "lineNbr": 65,
+      "author": {
+        "id": 1000008
+      },
+      "writtenOn": "2025-08-27T22:02:37Z",
+      "side": 1,
+      "message": "I don\u0027t quite follow what \u0027System\u0027 is in this case. What type of probed entity?",
+      "range": {
+        "startLine": 65,
+        "startChar": 0,
+        "endLine": 65,
+        "endChar": 7
+      },
+      "revId": "7f59133d809c0d645a1e6eeec5523057c1ccf31b",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": false,
       "key": {
         "uuid": "6c99e6f3_63227fc1",
@@ -14,6 +37,41 @@
       "writtenOn": "2025-08-22T18:06:38Z",
       "side": 1,
       "message": "In general I am in favor of this design. It is very flexible, and - speaking for multi-host - covers all usecases. It gives room for extending the schema easily with further associations, i.e. \u0027cooling\u0027 / \u0027cooled_by\u0027.\n \nHaving only a single \u0027Port\u0027 definition feels more intuitive too. The relationship between two items is well expressed with the PortType property on every Port record.",
+      "revId": "7f59133d809c0d645a1e6eeec5523057c1ccf31b",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "f66f9105_796b6467",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 4
+      },
+      "lineNbr": 86,
+      "author": {
+        "id": 1000008
+      },
+      "writtenOn": "2025-08-27T22:02:37Z",
+      "side": 1,
+      "message": "I agree, it is a good enhancement.",
+      "parentUuid": "6c99e6f3_63227fc1",
+      "revId": "7f59133d809c0d645a1e6eeec5523057c1ccf31b",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ec05d7c1_b4ee69a5",
+        "filename": "docs/associations.md",
+        "patchSetId": 4
+      },
+      "lineNbr": 97,
+      "author": {
+        "id": 1000008
+      },
+      "writtenOn": "2025-08-27T22:02:37Z",
+      "side": 1,
+      "message": "I\u0027d say move this up first since this is what everyone from now on whould be using.",
       "revId": "7f59133d809c0d645a1e6eeec5523057c1ccf31b",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
