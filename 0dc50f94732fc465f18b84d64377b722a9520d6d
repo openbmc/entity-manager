@@ -74,6 +74,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "78401d61_1c62f916",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 12,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-08-27T14:56:45Z",
+      "side": 1,
+      "message": "I wanted to say that ChauLy already made the complete fix + migrating the configurations in https://gerrit.openbmc.org/q/topic:%22templateVarFormat%22\n\nso there is no need to make a half-solution when the complete solution is already available.\n\nAnd https://gerrit.openbmc.org/c/openbmc/entity-manager/+/82998 already contains a testcase as well.\n\n\u003e This is why you shouldn\u0027t write your own parsers... but... having a \"complete parsing solution\" is kind of outside the scope of this bug fix, isn\u0027t it?\n\nThis patch simply changes the behavior without any testcase.\n\nWould have at least expected a testcase.",
+      "parentUuid": "511476d0_d200cdb6",
+      "revId": "0dc50f94732fc465f18b84d64377b722a9520d6d",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "73600499_b3872dcb",
         "filename": "src/entity_manager/utils.cpp",
         "patchSetId": 1
