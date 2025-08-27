@@ -16,8 +16,17 @@ class AssocName
     std::string name;
     std::string reverse;
 
-    AssocName(const std::string& name, const std::string& reverse);
+    AssocName(const std::string& name, const std::string& reverse,
+              const std::set<std::string>& allowedOnBoardTypes,
+              const std::set<std::string>& allowedOnBoardTypesReverse);
     AssocName() = delete;
+
+    // on which board type (e.g. Chassis, Board, Valve, ...) can we have this
+    // association
+    std::set<std::string> allowedOnBoardTypes;
+
+    // on which board type can we have the reverse association
+    std::set<std::string> allowedOnBoardTypesReverse;
 
     AssocName getReverse() const;
 
