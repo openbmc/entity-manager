@@ -2,9 +2,17 @@
 
 #include "phosphor-logging/lg2.hpp"
 
-const AssocName assocContaining = AssocName("containing", "contained_by");
+const AssocName assocContaining =
+    AssocName("containing", "contained_by", {"Chassis"},
+              {"Board", "Chassis", "PowerSupply"});
 const AssocName assocContainedBy = assocContaining.getReverse();
-const AssocName assocPowering = AssocName("powering", "powered_by");
+
+// Topology tests say that a chassis can be powering another chassis.
+// In case there is any confusion as to why 'Chassis' can have 'powering'
+// association.
+const AssocName assocPowering =
+    AssocName("powering", "powered_by", {"Chassis", "PowerSupply"},
+              {"Board", "Chassis", "PowerSupply"});
 const AssocName assocPoweredBy = assocPowering.getReverse();
 
 const std::vector<AssocName> supportedAssocs = {
@@ -14,13 +22,16 @@ const std::vector<AssocName> supportedAssocs = {
     assocPoweredBy,
 };
 
-AssocName::AssocName(const std::string& name, const std::string& reverse) :
-    name(name), reverse(reverse)
+AssocName::AssocName(const std::string& name, const std::string& reverse,
+                     const std::set<std::string>& allowedOnBoardTypes,
+                     const std::set<std::string>& allowedOnBoardTypesReverse) :
+    name(name), reverse(reverse), allowedOnBoardTypes(allowedOnBoardTypes),
+    allowedOnBoardTypesReverse(allowedOnBoardTypesReverse)
 {}
 
 AssocName AssocName::getReverse() const
 {
-    return {reverse, name};
+    return {reverse, name, allowedOnBoardTypesReverse, allowedOnBoardTypes};
 }
 
 bool AssocName::operator<(const AssocName& other) const
@@ -191,8 +202,12 @@ void Topology::fillAssocForPortId(
     BoardPathsView boardPaths, const Path& upstream, const Path& downstream,
     const AssocName& assocName)
 {
-    if (boardTypes[upstream] != "Chassis" && boardTypes[upstream] != "Board")
+    if (!assocName.allowedOnBoardTypes.contains(boardTypes[upstream]))
     {
+        lg2::error(
+            "Cannot create Association Definition {ASSOC} for {PATH} with board type {TYPE}",
+            "ASSOC", assocName.name, "PATH", upstream, "TYPE",
+            boardTypes[upstream]);
         return;
     }
     // The downstream path must be one we care about.
