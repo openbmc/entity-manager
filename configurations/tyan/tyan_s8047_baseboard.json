@@ -536,6 +536,16 @@
             "Type": "Pid.Zone"
         },
         {
+            "Name": "GenericContainPort",
+            "PortType": "contained_by",
+            "Type": "Port"
+        },
+        {
+            "Name": "GenericPowerPort",
+            "PortType": "powered_by",
+            "Type": "Port"
+        },
+        {
             "Address": "0x3c",
             "Bus": "5",
             "Labels": [

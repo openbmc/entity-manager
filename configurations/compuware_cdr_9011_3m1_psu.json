@@ -13,6 +13,16 @@
             "Type": "PSUPresence"
         },
         {
+            "Name": "GenericPowerPort",
+            "PortType": "powering",
+            "Type": "Port"
+        },
+        {
+            "Name": "GenericContainPort",
+            "PortType": "contained_by",
+            "Type": "Port"
+        },
+        {
             "Address": "$address + 8",
             "Bus": "$bus",
             "Labels": [
