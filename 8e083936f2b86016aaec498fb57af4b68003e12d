@@ -20,6 +20,24 @@
     {
       "unresolved": false,
       "key": {
+        "uuid": "c681b55b_f9a52dc0",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 99,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-08-27T21:24:31Z",
+      "side": 1,
+      "message": "Inventory paths are shown.",
+      "parentUuid": "34d20c0c_5543d913",
+      "revId": "8e083936f2b86016aaec498fb57af4b68003e12d",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
         "uuid": "f526b637_c0aab93a",
         "filename": "/PATCHSET_LEVEL",
         "patchSetId": 1
@@ -155,6 +173,24 @@
       "side": 1,
       "message": "This patch for entity-manager\nhttps://gerrit.openbmc.org/c/openbmc/entity-manager/+/83062\n\nadds a `Compatible` field on `xyz.openbmc_project.Inventory.Source.DevicePresence` interface which is pulled from the parent inventory item.",
       "parentUuid": "b7fb95d8_d8dd6320",
+      "revId": "8e083936f2b86016aaec498fb57af4b68003e12d",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "d89349c8_ed67673f",
+        "filename": "configurations/meta/minerva_fanboard_misc.json",
+        "patchSetId": 1
+      },
+      "lineNbr": 6,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-08-27T21:24:31Z",
+      "side": 1,
+      "message": "The DevicePresence change is being handled as part of separate patch mentioned by Alexander above, so resolving this comment.",
+      "parentUuid": "5284c86b_0ce8080b",
       "revId": "8e083936f2b86016aaec498fb57af4b68003e12d",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
