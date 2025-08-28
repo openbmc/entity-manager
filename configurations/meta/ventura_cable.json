@@ -3,11 +3,11 @@
         "Exposes": [],
         "Name": "$Name",
         "Probe": [
-            "xyz.openbmc_project.Inventory.Source.DevicePresence({'Name': 'RackDripPanPort'})",
+            "xyz.openbmc_project.Inventory.Source.DevicePresence({'Name': '^RackDripPanPort$'})",
             "OR",
-            "xyz.openbmc_project.Inventory.Source.DevicePresence({'Name': 'RackFloorLeakPort1'})",
+            "xyz.openbmc_project.Inventory.Source.DevicePresence({'Name': '^RackFloorLeakPort1$'})",
             "OR",
-            "xyz.openbmc_project.Inventory.Source.DevicePresence({'Name': 'RackFloorLeakPort2'})"
+            "xyz.openbmc_project.Inventory.Source.DevicePresence({'Name': '^RackFloorLeakPort2$'})"
         ],
         "Type": "Cable",
         "xyz.openbmc_project.Inventory.Decorator.Asset": {
@@ -26,7 +26,7 @@
         "Exposes": [],
         "Name": "$Name",
         "Probe": [
-            "xyz.openbmc_project.Inventory.Source.DevicePresence({'Name': 'RackRightManifoldPort'})"
+            "xyz.openbmc_project.Inventory.Source.DevicePresence({'Name': '^RackRightManifoldPort$'})"
         ],
         "Type": "Cable",
         "xyz.openbmc_project.Inventory.Decorator.Asset": {
@@ -45,7 +45,7 @@
         "Exposes": [],
         "Name": "$Name",
         "Probe": [
-            "xyz.openbmc_project.Inventory.Source.DevicePresence({'Name': 'RackLeftManifoldPort'})"
+            "xyz.openbmc_project.Inventory.Source.DevicePresence({'Name': '^RackLeftManifoldPort$'})"
         ],
         "Type": "Cable",
         "xyz.openbmc_project.Inventory.Decorator.Asset": {
@@ -64,10 +64,10 @@
         "Exposes": [],
         "Name": "$Name",
         "Probe": [
-            "xyz.openbmc_project.Inventory.Source.DevicePresence({'Name': 'RPU1LeakPort1'})",
-            "xyz.openbmc_project.Inventory.Source.DevicePresence({'Name': 'RPU1LeakPort2'})",
-            "xyz.openbmc_project.Inventory.Source.DevicePresence({'Name': 'RPU2LeakPort1'})",
-            "xyz.openbmc_project.Inventory.Source.DevicePresence({'Name': 'RPU2LeakPort2'})"
+            "xyz.openbmc_project.Inventory.Source.DevicePresence({'Name': '^RPU1LeakPort1$'})",
+            "xyz.openbmc_project.Inventory.Source.DevicePresence({'Name': '^RPU1LeakPort2$'})",
+            "xyz.openbmc_project.Inventory.Source.DevicePresence({'Name': '^RPU2LeakPort1$'})",
+            "xyz.openbmc_project.Inventory.Source.DevicePresence({'Name': '^RPU2LeakPort2$'})"
         ],
         "Type": "Cable",
         "xyz.openbmc_project.Inventory.Decorator.Asset": {
@@ -86,11 +86,11 @@
         "Exposes": [],
         "Name": "$Name",
         "Probe": [
-            "xyz.openbmc_project.Inventory.Source.DevicePresence({'Name': 'LeakPort1'})",
+            "xyz.openbmc_project.Inventory.Source.DevicePresence({'Name': '^LeakPort1$'})",
             "OR",
-            "xyz.openbmc_project.Inventory.Source.DevicePresence({'Name': 'LeakPort2'})",
+            "xyz.openbmc_project.Inventory.Source.DevicePresence({'Name': '^LeakPort2$'})",
             "OR",
-            "xyz.openbmc_project.Inventory.Source.DevicePresence({'Name': 'LeakPort3'})"
+            "xyz.openbmc_project.Inventory.Source.DevicePresence({'Name': '^LeakPort3$'})"
         ],
         "Type": "Cable",
         "xyz.openbmc_project.Inventory.Decorator.Asset": {
@@ -109,11 +109,11 @@
         "Exposes": [],
         "Name": "$Name",
         "Probe": [
-            "xyz.openbmc_project.Inventory.Source.DevicePresence({'Name': 'LeakPort4'})",
+            "xyz.openbmc_project.Inventory.Source.DevicePresence({'Name': '^LeakPort4$'})",
             "OR",
-            "xyz.openbmc_project.Inventory.Source.DevicePresence({'Name': 'LeakPort5'})",
+            "xyz.openbmc_project.Inventory.Source.DevicePresence({'Name': '^LeakPort5$'})",
             "OR",
-            "xyz.openbmc_project.Inventory.Source.DevicePresence({'Name': 'LeakPort6'})"
+            "xyz.openbmc_project.Inventory.Source.DevicePresence({'Name': '^LeakPort6$'})"
         ],
         "Type": "Cable",
         "xyz.openbmc_project.Inventory.Decorator.Asset": {
@@ -132,9 +132,9 @@
         "Exposes": [],
         "Name": "$Name",
         "Probe": [
-            "xyz.openbmc_project.Inventory.Source.DevicePresence({'Name': 'LeakPort7'})",
+            "xyz.openbmc_project.Inventory.Source.DevicePresence({'Name': '^LeakPort7$'})",
             "OR",
-            "xyz.openbmc_project.Inventory.Source.DevicePresence({'Name': 'LeakPort8'})"
+            "xyz.openbmc_project.Inventory.Source.DevicePresence({'Name': '^LeakPort8$'})"
         ],
         "Type": "Cable",
         "xyz.openbmc_project.Inventory.Decorator.Asset": {
@@ -153,9 +153,9 @@
         "Exposes": [],
         "Name": "$Name",
         "Probe": [
-            "xyz.openbmc_project.Inventory.Source.DevicePresence({'Name': 'LeakPort9'})",
+            "xyz.openbmc_project.Inventory.Source.DevicePresence({'Name': '^LeakPort9$'})",
             "OR",
-            "xyz.openbmc_project.Inventory.Source.DevicePresence({'Name': 'LeakPort10'})"
+            "xyz.openbmc_project.Inventory.Source.DevicePresence({'Name': '^LeakPort10$'})"
         ],
         "Type": "Cable",
         "xyz.openbmc_project.Inventory.Decorator.Asset": {
@@ -174,15 +174,15 @@
         "Exposes": [],
         "Name": "$Name",
         "Probe": [
-            "xyz.openbmc_project.Inventory.Source.DevicePresence({'Name': 'LeakPort11'})",
+            "xyz.openbmc_project.Inventory.Source.DevicePresence({'Name': '^LeakPort11$'})",
             "OR",
-            "xyz.openbmc_project.Inventory.Source.DevicePresence({'Name': 'LeakPort12'})",
+            "xyz.openbmc_project.Inventory.Source.DevicePresence({'Name': '^LeakPort12$'})",
             "OR",
-            "xyz.openbmc_project.Inventory.Source.DevicePresence({'Name': 'LeakPort13'})",
+            "xyz.openbmc_project.Inventory.Source.DevicePresence({'Name': '^LeakPort13$'})",
             "OR",
-            "xyz.openbmc_project.Inventory.Source.DevicePresence({'Name': 'LeakPort16'})",
+            "xyz.openbmc_project.Inventory.Source.DevicePresence({'Name': '^LeakPort16$'})",
             "OR",
-            "xyz.openbmc_project.Inventory.Source.DevicePresence({'Name': 'LeakPort17'})"
+            "xyz.openbmc_project.Inventory.Source.DevicePresence({'Name': '^LeakPort17$'})"
         ],
         "Type": "Cable",
         "xyz.openbmc_project.Inventory.Decorator.Asset": {
@@ -201,9 +201,9 @@
         "Exposes": [],
         "Name": "$Name",
         "Probe": [
-            "xyz.openbmc_project.Inventory.Source.DevicePresence({'Name': 'LeakPort14'})",
+            "xyz.openbmc_project.Inventory.Source.DevicePresence({'Name': '^LeakPort14$'})",
             "OR",
-            "xyz.openbmc_project.Inventory.Source.DevicePresence({'Name': 'LeakPort15'})"
+            "xyz.openbmc_project.Inventory.Source.DevicePresence({'Name': '^LeakPort15$'})"
         ],
         "Type": "Cable",
         "xyz.openbmc_project.Inventory.Decorator.Asset": {
@@ -222,11 +222,11 @@
         "Exposes": [],
         "Name": "$Name",
         "Probe": [
-            "xyz.openbmc_project.Inventory.Source.DevicePresence({'Name': 'LeakPort18'})",
+            "xyz.openbmc_project.Inventory.Source.DevicePresence({'Name': '^LeakPort18$'})",
             "OR",
-            "xyz.openbmc_project.Inventory.Source.DevicePresence({'Name': 'LeakPort19'})",
+            "xyz.openbmc_project.Inventory.Source.DevicePresence({'Name': '^LeakPort19$'})",
             "OR",
-            "xyz.openbmc_project.Inventory.Source.DevicePresence({'Name': 'LeakPort20'})"
+            "xyz.openbmc_project.Inventory.Source.DevicePresence({'Name': '^LeakPort20$'})"
         ],
         "Type": "Cable",
         "xyz.openbmc_project.Inventory.Decorator.Asset": {
@@ -245,9 +245,9 @@
         "Exposes": [],
         "Name": "$Name",
         "Probe": [
-            "xyz.openbmc_project.Inventory.Source.DevicePresence({'Name': 'LeakPort21'})",
+            "xyz.openbmc_project.Inventory.Source.DevicePresence({'Name': '^LeakPort21$'})",
             "OR",
-            "xyz.openbmc_project.Inventory.Source.DevicePresence({'Name': 'LeakPort22'})"
+            "xyz.openbmc_project.Inventory.Source.DevicePresence({'Name': '^LeakPort22$'})"
         ],
         "Type": "Cable",
         "xyz.openbmc_project.Inventory.Decorator.Asset": {
@@ -266,9 +266,9 @@
         "Exposes": [],
         "Name": "$Name",
         "Probe": [
-            "xyz.openbmc_project.Inventory.Source.DevicePresence({'Name': 'LeakPort23'})",
+            "xyz.openbmc_project.Inventory.Source.DevicePresence({'Name': '^LeakPort23$'})",
             "OR",
-            "xyz.openbmc_project.Inventory.Source.DevicePresence({'Name': 'LeakPort24'})"
+            "xyz.openbmc_project.Inventory.Source.DevicePresence({'Name': '^LeakPort24$'})"
         ],
         "Type": "Cable",
         "xyz.openbmc_project.Inventory.Decorator.Asset": {
@@ -287,11 +287,11 @@
         "Exposes": [],
         "Name": "$Name",
         "Probe": [
-            "xyz.openbmc_project.Inventory.Source.DevicePresence({'Name': 'LeakPort25'})",
+            "xyz.openbmc_project.Inventory.Source.DevicePresence({'Name': '^LeakPort25$'})",
             "OR",
-            "xyz.openbmc_project.Inventory.Source.DevicePresence({'Name': 'LeakPort26'})",
+            "xyz.openbmc_project.Inventory.Source.DevicePresence({'Name': '^LeakPort26$'})",
             "OR",
-            "xyz.openbmc_project.Inventory.Source.DevicePresence({'Name': 'LeakPort27'})"
+            "xyz.openbmc_project.Inventory.Source.DevicePresence({'Name': '^LeakPort27$'})"
         ],
         "Type": "Cable",
         "xyz.openbmc_project.Inventory.Decorator.Asset": {
@@ -310,7 +310,7 @@
         "Exposes": [],
         "Name": "$Name",
         "Probe": [
-            "xyz.openbmc_project.Inventory.Source.DevicePresence({'Name': 'ReturnValve'})"
+            "xyz.openbmc_project.Inventory.Source.DevicePresence({'Name': '^ReturnValve$'})"
         ],
         "Type": "Cable",
         "xyz.openbmc_project.Inventory.Decorator.Asset": {
@@ -329,7 +329,7 @@
         "Exposes": [],
         "Name": "$Name",
         "Probe": [
-            "xyz.openbmc_project.Inventory.Source.DevicePresence({'Name': 'SupplyValve'})"
+            "xyz.openbmc_project.Inventory.Source.DevicePresence({'Name': '^SupplyValve$'})"
         ],
         "Type": "Cable",
         "xyz.openbmc_project.Inventory.Decorator.Asset": {
