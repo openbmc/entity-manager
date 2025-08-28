@@ -18,6 +18,24 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "50a89d4b_11489dc9",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 3
+      },
+      "lineNbr": 8,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-08-28T09:19:01Z",
+      "side": 1,
+      "message": "Renaming the schema itself does nothing. e.g. `LegacyPort` is only the name of the schema used for internal referencing.\n\nI can look into migrating upstream configs when the implementation change for the new schema is up.\n\nAlternatively we could keep some of the quirks in the code and wait for people to migrate their configurations by themselves.",
+      "parentUuid": "969db0fb_93ffff84",
+      "revId": "3d149e681377e6b9edf0257fbb5591d1ed490619",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "dd8fd7cc_0cdf72fe",
@@ -31,6 +49,24 @@
       "writtenOn": "2025-08-22T18:06:38Z",
       "side": 1,
       "message": "nit: second sentence, second word should probably be \u0027of\u0027 ?",
+      "revId": "3d149e681377e6b9edf0257fbb5591d1ed490619",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "000e8877_1c9207b9",
+        "filename": "schemas/topology.json",
+        "patchSetId": 3
+      },
+      "lineNbr": 12,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-08-28T09:19:01Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "dd8fd7cc_0cdf72fe",
       "revId": "3d149e681377e6b9edf0257fbb5591d1ed490619",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
