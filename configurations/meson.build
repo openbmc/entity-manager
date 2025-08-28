@@ -22,6 +22,7 @@ configs = [
     'asrock_n3_xlarge_x86.json',
     'asrock_romed8hm3.json',
     'asrock_spc621d8hm3.json',
+    'asrock_x470d4u.json',
     'axx1p100hssi_aic.json',
     'axx2prthdhd.json',
     'balcones.json',
