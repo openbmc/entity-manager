@@ -173,6 +173,24 @@
                             "additionalProperties": false,
                             "type": "object"
                         },
+                        "Tpm": {
+                            "additionalProperties": false,
+                            "type": "object"
+                        },
+                        "TrustedComponent": {
+                            "additionalProperties": false,
+                            "properties": {
+                                "TrustedComponentType": {
+                                    "enum": [
+                                        "Discrete",
+                                        "Integrated",
+                                        "Unknown"
+                                    ]
+                                }
+                            },
+                            "required": ["TrustedComponentType"],
+                            "type": "object"
+                        },
                         "Valve": {
                             "additionalProperties": false,
                             "properties": {
