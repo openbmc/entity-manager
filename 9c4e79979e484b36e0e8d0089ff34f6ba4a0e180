@@ -1,0 +1,78 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "4af634d3_8d287792",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 11,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-08-28T10:08:14Z",
+      "side": 1,
+      "message": "Let\u0027s add some motivation for why the schema has to be changed, that TPM is a separate FRU, that it can be probed separately.\n\nMaybe going into detail about how the TPM is detected, maybe even which specific TPM module is being used.",
+      "revId": "9c4e79979e484b36e0e8d0089ff34f6ba4a0e180",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "650569c1_757fe8b0",
+        "filename": "configurations/tpm.json",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-08-28T10:08:14Z",
+      "side": 1,
+      "message": "Can we rename it to something like `rainier_4u_tpm.json` so it is clear this config is for a specific system and not generic.",
+      "revId": "9c4e79979e484b36e0e8d0089ff34f6ba4a0e180",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b5428490_53ca6a35",
+        "filename": "schemas/global.json",
+        "patchSetId": 1
+      },
+      "lineNbr": 52,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-08-28T10:08:14Z",
+      "side": 1,
+      "message": "nit: i would prefer `TPM` since it\u0027s an abbreviation.",
+      "revId": "9c4e79979e484b36e0e8d0089ff34f6ba4a0e180",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "fc0e91c5_fa9e753f",
+        "filename": "schemas/openbmc-dbus.json",
+        "patchSetId": 1
+      },
+      "lineNbr": 183,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-08-28T10:08:14Z",
+      "side": 1,
+      "message": "in PDI, this is `ComponentAttachType`, why is the name different here",
+      "range": {
+        "startLine": 183,
+        "startChar": 33,
+        "endLine": 183,
+        "endChar": 53
+      },
+      "revId": "9c4e79979e484b36e0e8d0089ff34f6ba4a0e180",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    }
+  ]
+}
