@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "c09441da_0c17bd7a",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 6
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1002479
+      },
+      "writtenOn": "2025-08-28T08:29:08Z",
+      "side": 1,
+      "message": "I’ve tested the patch and it resolves my issue. In my case, leaving the template variable as-is does not help with debugging, since it only confuses downstream users. Replacing it with an empty string makes the output clearer and avoids misinterpretation.",
+      "revId": "d713ec011d07c2cc3536119865af97ab1cdc3501",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    }
+  ]
+}
