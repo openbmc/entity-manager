@@ -50,6 +50,24 @@
       "message": "could also have:  return std::ranges::any_of(...);",
       "revId": "bc5a138883fac481ab47b69a92d51f3878dcb997",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "f1f76d32_9aa60879",
+        "filename": "src/entity_manager/entity_manager.cpp",
+        "patchSetId": 6
+      },
+      "lineNbr": 550,
+      "author": {
+        "id": 1002520
+      },
+      "writtenOn": "2025-08-28T02:33:59Z",
+      "side": 1,
+      "message": "Thanks for sharing your experience. That’s a nice cleanup. Since we already use C++23, switching to std::ranges::any_of makes the code clearer. \nCould you please review it again?",
+      "parentUuid": "0e3c49fd_8ad94306",
+      "revId": "bc5a138883fac481ab47b69a92d51f3878dcb997",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }
