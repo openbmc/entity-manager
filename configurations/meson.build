@@ -31,6 +31,7 @@ configs = [
     'asrock/asrock_n3_xlarge_x86.json',
     'asrock/asrock_romed8hm3.json',
     'asrock/asrock_spc621d8hm3.json',
+    'asrock/asrock_x470d4u.json',
     'axx1p100hssi_aic.json',
     'axx2prthdhd.json',
     'bnp_baseboard.json',
