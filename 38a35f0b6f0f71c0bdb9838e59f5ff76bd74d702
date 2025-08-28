@@ -24,6 +24,30 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "b49e72af_c56a3940",
+        "filename": "src/entity_manager/topology.cpp",
+        "patchSetId": 1
+      },
+      "lineNbr": 110,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-08-28T09:18:26Z",
+      "side": 1,
+      "message": "It did complain, just saw there was a Verified -1.\n\nI did not run CI locally due to the number of patches. Fixed it in latest revision.",
+      "parentUuid": "5fbd776d_57d4be02",
+      "range": {
+        "startLine": 110,
+        "startChar": 38,
+        "endLine": 110,
+        "endChar": 46
+      },
+      "revId": "38a35f0b6f0f71c0bdb9838e59f5ff76bd74d702",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "7dc97f69_534ae62e",
@@ -41,6 +65,24 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "59b337e4_75540058",
+        "filename": "src/entity_manager/topology.cpp",
+        "patchSetId": 1
+      },
+      "lineNbr": 125,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-08-28T09:18:26Z",
+      "side": 1,
+      "message": "Fixed it in a later patch. As of this patch the associations are still modeled on strings so from a single functions perspective we do not know if our input string will be part of the map.\n\nSo this patch is more of a transition step to avoid explicitly listing both the forward and reverse association.\n\nLater the whole function will go away again as it will not be needed anymore.",
+      "parentUuid": "7dc97f69_534ae62e",
+      "revId": "38a35f0b6f0f71c0bdb9838e59f5ff76bd74d702",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "640c7926_44373985",
@@ -54,6 +96,24 @@
       "writtenOn": "2025-08-27T21:47:38Z",
       "side": 1,
       "message": "\u0027Reverse\u0027 has a specific meaning in assocations https://github.com/openbmc/docs/blob/master/architecture/object-mapper.md#associations.  While you do just use it to get the reverse one, I see the function can return either.  Maybe \u0027getOpposite\u0027?",
+      "revId": "38a35f0b6f0f71c0bdb9838e59f5ff76bd74d702",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "e80ed03c_b5890c52",
+        "filename": "src/entity_manager/topology.cpp",
+        "patchSetId": 1
+      },
+      "lineNbr": 139,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-08-28T09:18:26Z",
+      "side": 1,
+      "message": "Yes, it could be misleading. My interpretation was that the order does not matter,\nbut i renamed as `getOppositeAssoc` to avoid any confusions.",
+      "parentUuid": "640c7926_44373985",
       "revId": "38a35f0b6f0f71c0bdb9838e59f5ff76bd74d702",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
