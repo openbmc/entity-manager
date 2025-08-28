@@ -1,0 +1,13 @@
+{
+    "Exposes": [],
+    "Name": "TPM",
+    "Probe": [
+        "FOUND('Rainier 4U Chassis')",
+        "AND",
+        "xyz.openbmc_project.Network.Neighbor({'State': 'xyz.openbmc_project.Network.Neighbor.State.Permanent'})"
+    ],
+    "Type": "Tpm",
+    "xyz.openbmc_project.Inventory.Item.TrustedComponent": {
+        "TrustedComponentType": "xyz.openbmc_project.Inventory.Item.TrustedComponent.ComponentAttachType.Discrete"
+    }
+}
