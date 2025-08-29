@@ -16,6 +16,24 @@
       "message": "If this upstream board must be a Chassis or Board, and assocName must be contained_by or powering, should the assoc be added to downstream instead?",
       "revId": "5cd44d2e5c2d100b0087f68a310826e6a41e0609",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1664eccc_59fffabc",
+        "filename": "src/entity_manager/topology.cpp",
+        "patchSetId": 2
+      },
+      "lineNbr": 151,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-08-29T11:39:48Z",
+      "side": 1,
+      "message": "Thanks for looking into this patch 😊\n\nThe testcases have some restriction on which path the association definitions must go.\n\nI added a comment a few lines above that the association definition happens from one side in the old code and it\u0027s not necessarily consistent.\n\nFrom my perspective i do not understand what `upstream` and `downstream` is about,\n\nWhen looking at `containing` it is vaguely clear that the `containing` entity is the upstream but i am not sure what the benefit is in the distinction.\n\n\nTheoretically we can define the association definition from either side or even from both sides.\n\nThere should not be any difference in the ObjectMapper output if we define the association from a different side.\n\nBut i wrote it this way to pass the unit tests without changes.",
+      "parentUuid": "4aa8f2a4_cc38c15a",
+      "revId": "5cd44d2e5c2d100b0087f68a310826e6a41e0609",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }
