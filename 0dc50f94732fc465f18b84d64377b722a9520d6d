@@ -231,6 +231,23 @@
       "parentUuid": "a7345bef_8d1db258",
       "revId": "0dc50f94732fc465f18b84d64377b722a9520d6d",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e532bfd8_ff86404b",
+        "filename": "src/entity_manager/utils.cpp",
+        "patchSetId": 1
+      },
+      "lineNbr": 219,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2025-08-29T17:58:21Z",
+      "side": 1,
+      "message": "This would break systems that pull properties from multiple dbus interfaces, only applying the first one.",
+      "revId": "0dc50f94732fc465f18b84d64377b722a9520d6d",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ],
   "submitRequirementResults": []
