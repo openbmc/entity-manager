@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "074c58fa_b2c9b61f",
+        "filename": "src/entity_manager/topology.cpp",
+        "patchSetId": 24
+      },
+      "lineNbr": 155,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-09-01T08:32:13Z",
+      "side": 1,
+      "message": "In the .hpp you have\n```\n    // Represents the mapping between inventory object pathes of a\n    // probed configuration and the object paths of DBus interfaces\n    // it was probed on.\n    std::unordered_map\u003cPath, std::set\u003cPath\u003e\u003e probePaths;\n```\n\nSo i would assume the key is always the probed element and the value is the object paths it was probed on.\n\nThat also lines up with your changes\n```\nfor (const auto\u0026 [boardPath, paths] : probePaths)\n    {\n        for (const auto\u0026 probePath : paths)\n        {\n            result[boardPath].emplace_back(\"probed_by\", \"probing\", probePath);\n        }\n    }\n```\n\nwhere `boardPath` is mentioned as variable name.\n\nBut here on line 155 you insert `probePath` as a key into this map, which does not look right to me.\n\n\n```suggestion\n    probePaths[boardPath].emplace(probePath);\n```",
+      "range": {
+        "startLine": 154,
+        "startChar": 4,
+        "endLine": 155,
+        "endChar": 45
+      },
+      "revId": "01de1fc85aa7db201ed5680c904534c08bc847b1",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    }
+  ]
+}
