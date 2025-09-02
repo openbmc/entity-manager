@@ -89,4 +89,5 @@ class EntityManager
     void startRemovedTimer(boost::asio::steady_timer& timer,
                            nlohmann::json& systemConfiguration);
     void initFilters(const std::unordered_set<std::string>& probeInterfaces);
+    static bool waitForFruReadyAndInitialized(int maxRetries, int sleepMs);
 };
