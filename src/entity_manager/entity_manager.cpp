@@ -507,6 +507,12 @@ void EntityManager::propertiesChangedCallback()
             auto missingConfigurations = std::make_shared<nlohmann::json>();
             *missingConfigurations = systemConfiguration;
 
+            if (!waitForFruReadyAndInitialized(6, 500))
+            {
+                propertiesChangedInProgress = false;
+                return;
+            }
+
             auto perfScan = std::make_shared<scan::PerformScan>(
                 *this, *missingConfigurations, configuration.configurations, io,
                 [this, count, oldConfiguration, missingConfigurations]() {
@@ -683,4 +689,68 @@ void EntityManager::initFilters(
                 propertiesChangedCallback();
             }
         });
+}
+
+/**
+ * Waits for the FRU (Field Replaceable Unit) D-Bus service and object
+ * to become available and initialized.
+ *
+ * @param[in] maxRetries  Maximum number of retries before giving up.
+ * @param[in] sleepMs     Delay in milliseconds between each retry attempt.
+ *
+ * @return true  if the FRU service is ready and initialized (child nodes
+ * found).
+ * @return false if the FRU service did not become ready within the retry limit.
+ *
+ */
+bool EntityManager::waitForFruReadyAndInitialized(int maxRetries, int sleepMs)
+{
+    const std::string fruService = "xyz.openbmc_project.FruDevice";
+    const std::string fruPath = "/xyz/openbmc_project/FruDevice";
+
+    sdbusplus::bus::bus bus = sdbusplus::bus::new_default();
+
+    bool fruReady = false;
+
+    // Wait for the D-Bus node to appear
+    for (int i = 0; i < maxRetries; ++i)
+    {
+        try
+        {
+            auto proxy = bus.new_method_call(fruService.c_str(),
+                fruPath.c_str(),
+                "org.freedesktop.DBus.Introspectable",
+                "Introspect");
+
+            auto reply = bus.call(proxy);
+
+            std::string xml;
+            reply.read(xml);
+
+            // Check if there are child nodes
+            if (xml.find("<node ") != std::string::npos)
+            {
+                std::cerr << "FRU ready and initialized after " << i
+                          << " retries\n";
+                fruReady = true;
+                break;
+            }
+        }
+        catch (const sdbusplus::exception::SdBusError& e)
+        {
+            // The node may not exist yet
+            std::cerr << "FRU D-Bus node not ready, retrying...\n";
+        }
+
+        // Wait before the next retry
+        std::this_thread::sleep_for(std::chrono::milliseconds(sleepMs));
+    }
+
+    if (!fruReady)
+    {
+        std::cerr << "FRU not ready or not initialized after " << maxRetries
+                  << " retries\n";
+    }
+
+    return fruReady;
 }
