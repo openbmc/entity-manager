@@ -10,6 +10,20 @@ configs = [
     'acbel/acbel_r1ca2122a_psu.json',
     'acbel/acbell_rica_psu.json',
     'ahw1um2riser.json',
+<<<<<<< PATCH SET (f03f46 configurations/aspower: organize configs)
+    'aspower/aspower_u1a-d10550_psu.json',
+    'aspower/aspower_u1a-d10800_psu.json',
+    'aspower/aspower_u1a-d11200_psu.json',
+    'aspower/aspower_u1a-d11600_psu.json',
+    'aspower/aspower_u1d-d10800_psu.json',
+    'asrock_c3_medium_x86.json',
+    'asrock_e3c246d4i.json',
+    'asrock_e3c256d4i.json',
+    'asrock_m3_small_x86.json',
+    'asrock_n3_xlarge_x86.json',
+    'asrock_romed8hm3.json',
+    'asrock_spc621d8hm3.json',
+=======
     'ampere/mtjade.json',
     'ampere/mtjefferson_bmc.json',
     'ampere/mtjefferson_bp.json',
@@ -31,6 +45,7 @@ configs = [
     'asrock/asrock_n3_xlarge_x86.json',
     'asrock/asrock_romed8hm3.json',
     'asrock/asrock_spc621d8hm3.json',
+>>>>>>> BASE      (0de882 configurations/asrock: organize configs)
     'axx1p100hssi_aic.json',
     'axx2prthdhd.json',
     'bnp_baseboard.json',
