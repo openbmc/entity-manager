@@ -1,0 +1,123 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f4efe925_c40a74e5",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 4
+      },
+      "lineNbr": 13,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-09-02T10:26:32Z",
+      "side": 1,
+      "message": "Can you check if https://gerrit.openbmc.org/c/openbmc/entity-manager/+/83047\n\nfixes the issue?\n\nentity-manager should listen to `InterfacesAdded`/`InterfacesRemoved` for the interfaces in probes on.\n\nSo it should not matter if some DBus interfaces are not yet created, since entity-manager should receive the signal when they get created.",
+      "revId": "d463e6b191bfb4d26a304cff6e9b3e5c4babcb15",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "39641bf8_a3659e55",
+        "filename": "src/entity_manager/entity_manager.cpp",
+        "patchSetId": 4
+      },
+      "lineNbr": 510,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-09-02T10:26:32Z",
+      "side": 1,
+      "message": "EM does not only depend on `fru-device`. It can probe on any DBus interface.\n\nSo we cannot return from this golden callback just because fru device is not ready.\n\nAnd `fru-device` is an optional component due to meson option.",
+      "revId": "d463e6b191bfb4d26a304cff6e9b3e5c4babcb15",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "71898b50_5204551d",
+        "filename": "src/entity_manager/entity_manager.cpp",
+        "patchSetId": 4
+      },
+      "lineNbr": 510,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-09-02T10:26:32Z",
+      "side": 1,
+      "message": "the function is only ever called with same arguments, so we do not need to pass these numbers and can simply hardcode them in the function itself, right?",
+      "revId": "d463e6b191bfb4d26a304cff6e9b3e5c4babcb15",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d885d03b_596d0d20",
+        "filename": "src/entity_manager/entity_manager.cpp",
+        "patchSetId": 4
+      },
+      "lineNbr": 510,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-09-02T10:26:32Z",
+      "side": 1,
+      "message": "Would this be the right place to put it?\n\nBased on your commit message, this is more of an initialization logic.",
+      "revId": "d463e6b191bfb4d26a304cff6e9b3e5c4babcb15",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "eecc8102_8eeac89c",
+        "filename": "src/entity_manager/entity_manager.cpp",
+        "patchSetId": 4
+      },
+      "lineNbr": 694,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-09-02T10:26:32Z",
+      "side": 1,
+      "message": "Does the docs comment go into the header?",
+      "revId": "d463e6b191bfb4d26a304cff6e9b3e5c4babcb15",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "405770dc_e6f97e3f",
+        "filename": "src/entity_manager/entity_manager.cpp",
+        "patchSetId": 4
+      },
+      "lineNbr": 741,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-09-02T10:26:32Z",
+      "side": 1,
+      "message": "`lg2::error` ?",
+      "revId": "d463e6b191bfb4d26a304cff6e9b3e5c4babcb15",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9a4a9b14_68c452b7",
+        "filename": "src/entity_manager/entity_manager.cpp",
+        "patchSetId": 4
+      },
+      "lineNbr": 745,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-09-02T10:26:32Z",
+      "side": 1,
+      "message": "This blocking sleep will block the whole daemon.",
+      "revId": "d463e6b191bfb4d26a304cff6e9b3e5c4babcb15",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    }
+  ]
+}
