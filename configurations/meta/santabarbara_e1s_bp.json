@@ -186,8 +186,12 @@
             ],
             "Type": "INA230",
             "curr1_Name": "E1S_BP_P12V_E1S1_CURR_A",
+            "curr1_Offset": -5e-05,
+            "curr1_Scale": 1323.101349563,
             "in1_Name": "E1S_BP_P12V_E1S1_VOLT_V",
-            "power1_Name": "E1S_BP_P12V_E1S1_PWR_W"
+            "power1_Name": "E1S_BP_P12V_E1S1_PWR_W",
+            "power1_Offset": 0.0004,
+            "power1_Scale": 1327492.366919
         },
         {
             "Address": "0x45",
