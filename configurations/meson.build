@@ -228,8 +228,8 @@ configs = [
     'tyan/tyan_s8036_baseboard.json',
     'tyan/tyan_s8040_baseboard.json',
     'tyan/tyan_s8047_baseboard.json',
-    'vegman_n110_baseboard.json',
-    'vegman_rx20_baseboard.json',
-    'vegman_sx20_baseboard.json',
     'wft_baseboard.json',
+    'yadro/vegman_n110_baseboard.json',
+    'yadro/vegman_rx20_baseboard.json',
+    'yadro/vegman_sx20_baseboard.json',
 ]
