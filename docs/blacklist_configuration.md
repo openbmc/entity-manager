@@ -37,7 +37,18 @@ Put in bus and addresses with this format:
 ```
 
 Note that "bus" should be an unsigned integer and "addresses" be an array of
-string of hex.
+string of hex. Addresses can also be blocked on all busses. In this case, they
+should be strings of hex, just like specifying an address on a bus. This is
+useful for when you may not know the bus ahead of time, such as when adding
+busses dynamically through the addition of an i2c-mux through a new_device node.
+
+```json
+{
+  "addresses": ["0x70", "0x71"]
+}
+```
+
+This example will not query addresses 0x70 or 0x71 on any bus.
 
 ## For both
 
@@ -49,6 +60,10 @@ string of hex.
       "bus": 3,
       "addresses": ["0x30", "0x40"]
     }
-  ]
+  ],
+  "addresses": ["0x71"]
 }
 ```
+
+This example will skip addresses 0x30 and 0x40 on bus 3, all devices on bus 1,
+and all devices at address 0x71.
