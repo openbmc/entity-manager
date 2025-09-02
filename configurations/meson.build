@@ -39,10 +39,18 @@ configs = [
     'compuware_cdr_9011_3m1_psu.json',
     'cx7_ocp.json',
     'cx8_ocp.json',
+<<<<<<< PATCH SET (1e955b configurations/delta: organize configs)
+    'delta/delta_awf2dc3200w_psu.json',
+    'delta/delta_dps-1600ab_psu.json',
+    'delta/delta_dps-2000ab_psu.json',
+    'delta/delta_dps-750xb_psu.json',
+    'everest.json',
+=======
     'delta_awf2dc3200w_psu.json',
     'delta_dps-1600ab_psu.json',
     'delta_dps-2000ab_psu.json',
     'delta_dps-750xb_psu.json',
+>>>>>>> BASE      (0de882 configurations/asrock: organize configs)
     'f1u12x25_hsbp.json',
     'f1u4x25_hsbp.json',
     'f2u12x35_hsbp.json',
