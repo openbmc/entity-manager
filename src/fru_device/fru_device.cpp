@@ -893,6 +893,44 @@ static bool readBaseboardFRU(std::vector<uint8_t>& baseboardFRU)
     return true;
 }
 
+bool writeFruByteData(bool is16BitBool, int file, uint8_t address,
+                      uint16_t index, uint8_t byteData)
+{
+    bool isSuccess = false;
+    if (is16BitBool)
+    {
+        // if uses 16-bit addressing we need to use ioctl as smbus commands
+        // are not supported
+        struct i2c_rdwr_ioctl_data messagesData = {};
+        std::array<struct i2c_msg, 1> messages{};
+        std::array<uint8_t, 3> writeBuffer{};
+
+        uint8_t indexH = index >> 8;
+        uint8_t indexL = index & 0xFF;
+
+        writeBuffer[0] = indexH;
+        writeBuffer[1] = indexL;
+        writeBuffer[2] = byteData;
+
+        messages[0].flags = 0;
+        messages[0].len = writeBuffer.size();
+        messages[0].buf = writeBuffer.data();
+        messages[0].addr = address;
+
+        messagesData.msgs = messages.data();
+        messagesData.nmsgs = 1;
+
+        return ioctl(file, I2C_RDWR, &messagesData) >= 0;
+    }
+    else
+    {
+        // if 8-bit addressing
+        return i2c_smbus_write_byte_data(file, static_cast<uint8_t>(index),
+                                              byteData) == 0;
+    }
+    return isSuccess;
+}
+
 bool writeFRU(uint8_t bus, uint8_t address, const std::vector<uint8_t>& fru)
 {
     boost::container::flat_map<std::string, std::string> tmp;
@@ -987,6 +1025,14 @@ bool writeFRU(uint8_t bus, uint8_t address, const std::vector<uint8_t>& fru)
         return false;
     }
 
+    std::optional<bool> is16Bit = isDevice16Bit(file, address);
+    if (!is16Bit.has_value())
+    {
+        std::cerr << "failed to detect if device is 8 or 16 bits" << std::endl;
+        return false;
+    }
+
+    bool is16BitBool = *is16Bit;
     constexpr const size_t retryMax = 2;
     uint16_t index = 0;
     size_t retries = retryMax;
@@ -1006,8 +1052,15 @@ bool writeFRU(uint8_t bus, uint8_t address, const std::vector<uint8_t>& fru)
             }
         }
 
-        if (i2c_smbus_write_byte_data(file, static_cast<uint8_t>(index),
-                                      fru[index]) < 0)
+        bool isSuccess =
+            writeFruByteData(is16BitBool, file, address, index, fru[index]);
+
+        if (isSuccess)
+        {
+            retries = retryMax;
+            index++;
+        }
+        else
         {
             if ((retries--) == 0U)
             {
@@ -1017,11 +1070,7 @@ bool writeFRU(uint8_t bus, uint8_t address, const std::vector<uint8_t>& fru)
                 return false;
             }
         }
-        else
-        {
-            retries = retryMax;
-            index++;
-        }
+
         // most eeproms require 5-10ms between writes
         std::this_thread::sleep_for(std::chrono::milliseconds(10));
     }
