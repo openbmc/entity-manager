@@ -992,6 +992,21 @@ bool writeFRU(uint8_t bus, uint8_t address, const std::vector<uint8_t>& fru)
     size_t retries = retryMax;
     while (index < fru.size())
     {
+        struct i2c_rdwr_ioctl_data messagesData = {};
+        struct i2c_msg messages[1];
+        uint8_t writeBuffer[3];
+
+        uint8_t indexH = index >> 8;
+        uint8_t indexL = index & 0xFF;
+
+        writeBuffer[0] = indexH;
+        writeBuffer[1] = indexL;
+        writeBuffer[2] = fru[index];
+
+        messages[0].flags = 0;
+        messages[0].len = sizeof(writeBuffer);
+        messages[0].buf = writeBuffer;
+
         if (((index != 0U) && ((index % (maxEepromPageIndex + 1)) == 0)) &&
             (retries == retryMax))
         {
@@ -1006,8 +1021,12 @@ bool writeFRU(uint8_t bus, uint8_t address, const std::vector<uint8_t>& fru)
             }
         }
 
-        if (i2c_smbus_write_byte_data(file, static_cast<uint8_t>(index),
-                                      fru[index]) < 0)
+        messages[0].addr = address;
+
+        messagesData.msgs = messages;
+        messagesData.nmsgs = 1;
+
+        if (ioctl(file, I2C_RDWR, &messagesData) < 0)
         {
             if ((retries--) == 0U)
             {
