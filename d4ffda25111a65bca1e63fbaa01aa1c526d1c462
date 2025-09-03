@@ -222,6 +222,29 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "f91d8af3_cca94517",
+        "filename": "schemas/mctp.json",
+        "patchSetId": 13
+      },
+      "lineNbr": 58,
+      "author": {
+        "id": 1000857
+      },
+      "writtenOn": "2025-09-03T00:59:40Z",
+      "side": 1,
+      "message": "The MCTP endpoints maps to a USB interface. \n\nSo the configuration should be the property of its parent (as part of a USB configuration descriptor)?",
+      "range": {
+        "startLine": 58,
+        "startChar": 17,
+        "endLine": 58,
+        "endChar": 30
+      },
+      "revId": "d4ffda25111a65bca1e63fbaa01aa1c526d1c462",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "a1a2a319_65d16b70",
         "filename": "schemas/mctp.json",
         "patchSetId": 13
@@ -233,6 +256,30 @@
       "writtenOn": "2025-06-12T01:21:37Z",
       "side": 1,
       "message": "Why `InterfaceNum` rather than `Interface`? Is there some constraint that prevents use of `Interface`?",
+      "range": {
+        "startLine": 62,
+        "startChar": 16,
+        "endLine": 62,
+        "endChar": 30
+      },
+      "revId": "d4ffda25111a65bca1e63fbaa01aa1c526d1c462",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c856d6a2_eb091fb8",
+        "filename": "schemas/mctp.json",
+        "patchSetId": 13
+      },
+      "lineNbr": 62,
+      "author": {
+        "id": 1000857
+      },
+      "writtenOn": "2025-09-03T00:59:40Z",
+      "side": 1,
+      "message": "I would suggest to provide both. The `InterfaceNum` is useful for multi-interfaces architecture and the latter is useful for single interface re-configuration.",
+      "parentUuid": "a1a2a319_65d16b70",
       "range": {
         "startLine": 62,
         "startChar": 16,
