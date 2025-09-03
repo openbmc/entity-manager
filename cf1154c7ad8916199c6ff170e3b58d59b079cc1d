@@ -16,6 +16,29 @@
       "message": "@ed@tanous.net - Can you please review the nvidia changes?",
       "revId": "cf1154c7ad8916199c6ff170e3b58d59b079cc1d",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1e10137d_27a5291a",
+        "filename": "configurations/nvidia_cx8_mezzanine_module.json",
+        "patchSetId": 9
+      },
+      "lineNbr": 49,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2025-09-03T21:01:51Z",
+      "side": 1,
+      "message": "Why was the critical threshold removed?\n\nI would not expect any production part to need a non recoverable threshold, but they definitely need a critical threshold.",
+      "range": {
+        "startLine": 49,
+        "startChar": 0,
+        "endLine": 49,
+        "endChar": 52
+      },
+      "revId": "cf1154c7ad8916199c6ff170e3b58d59b079cc1d",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }
