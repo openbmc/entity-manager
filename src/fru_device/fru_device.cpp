@@ -1304,8 +1304,9 @@ bool updateFRUProperty(
 
 #ifdef ENABLE_FRU_AREA_RESIZE
     ++nextFRUAreaNewLoc;
-    ssize_t nextFRUAreaOffsetDiff =
-        (nextFRUAreaNewLoc - nextFRUAreaLoc) / fruBlockSize;
+    ssize_t nextFRUAreaOffsetDiff = (static_cast<int>(nextFRUAreaNewLoc) -
+                                     static_cast<int>(nextFRUAreaLoc)) /
+                                    static_cast<ssize_t>(fruBlockSize);
     // Append rest FRU Areas if size changed and there were other sections after
     // updated one
     if (nextFRUAreaOffsetDiff && nextFRUAreaLoc)
@@ -1319,7 +1320,10 @@ bool updateFRUProperty(
             unsigned int fruAreaOffsetField =
                 getHeaderAreaFieldOffset(nextFRUArea);
             size_t curFRUAreaOffset = fruData[fruAreaOffsetField];
-            if (curFRUAreaOffset > fruAreaParams.end)
+            const size_t curFRUAreaOffsetBytes =
+                curFRUAreaOffset * fruBlockSize;
+            if (curFRUAreaOffsetBytes > nextFRUAreaNewLoc ||
+                curFRUAreaOffsetBytes > nextFRUAreaLoc)
             {
                 fruData[fruAreaOffsetField] = static_cast<int8_t>(
                     curFRUAreaOffset + nextFRUAreaOffsetDiff);
