@@ -85,6 +85,149 @@
       "message": "I still don\u0027t see why we\u0027re adding a new API for this.  It seems like we just weren\u0027t aware the previous API existed?",
       "revId": "08dc8b593024b512e1c14c966af38b0a1dd813d2",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "4fcc9dd2_1dce8aed",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 17
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2025-09-03T15:15:38Z",
+      "side": 1,
+      "message": "Had a really tough time verifying what had actually changed.  I see a lot of refactors, which is GREAT!  But they\u0027re mixed in with new features, so it makes it really hard to track whether this patchset is correct or not.",
+      "revId": "08dc8b593024b512e1c14c966af38b0a1dd813d2",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "967f968e_c626a3d9",
+        "filename": "src/fru_device/fru_device.cpp",
+        "patchSetId": 17
+      },
+      "lineNbr": 80,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2025-09-03T15:15:38Z",
+      "side": 1,
+      "message": "This looks like just a function rename?  It\u0027s arguably correct, but doesn\u0027t  have anything to do with this feature?",
+      "revId": "08dc8b593024b512e1c14c966af38b0a1dd813d2",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "582762d5_fd476867",
+        "filename": "src/fru_device/fru_device.cpp",
+        "patchSetId": 17
+      },
+      "lineNbr": 840,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2025-09-03T15:15:38Z",
+      "side": 1,
+      "message": "Please make this lambad a normal method",
+      "range": {
+        "startLine": 825,
+        "startChar": 0,
+        "endLine": 840,
+        "endChar": 13
+      },
+      "revId": "08dc8b593024b512e1c14c966af38b0a1dd813d2",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "30aa1c4c_22a765ae",
+        "filename": "src/fru_device/fru_device.cpp",
+        "patchSetId": 17
+      },
+      "lineNbr": 1205,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2025-09-03T15:15:38Z",
+      "side": 1,
+      "message": "Again, changing the name in a minor way.  If we want to do this rename, that\u0027s fine, but do it in a separate commit.",
+      "range": {
+        "startLine": 1205,
+        "startChar": 5,
+        "endLine": 1205,
+        "endChar": 22
+      },
+      "revId": "08dc8b593024b512e1c14c966af38b0a1dd813d2",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "18aa82e6_03821f19",
+        "filename": "src/fru_device/fru_device.cpp",
+        "patchSetId": 17
+      },
+      "lineNbr": 1215,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2025-09-03T15:15:38Z",
+      "side": 1,
+      "message": "You\u0027ve changed some of these to lg2, and left others.  Please make sure that the result is consistent.",
+      "revId": "08dc8b593024b512e1c14c966af38b0a1dd813d2",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "504ab481_489db7dc",
+        "filename": "src/fru_device/fru_utils.cpp",
+        "patchSetId": 17
+      },
+      "lineNbr": 1261,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2025-09-03T15:15:38Z",
+      "side": 1,
+      "message": "what is a \"dummy\" area?",
+      "range": {
+        "startLine": 1261,
+        "startChar": 5,
+        "endLine": 1261,
+        "endChar": 20
+      },
+      "revId": "08dc8b593024b512e1c14c966af38b0a1dd813d2",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7c67e79f_377df283",
+        "filename": "src/fru_device/fru_utils.hpp",
+        "patchSetId": 17
+      },
+      "lineNbr": 219,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2025-09-03T15:15:38Z",
+      "side": 1,
+      "message": "Just spell out \"checksum\". Also please make it camel case.",
+      "range": {
+        "startLine": 219,
+        "startChar": 15,
+        "endLine": 219,
+        "endChar": 20
+      },
+      "revId": "08dc8b593024b512e1c14c966af38b0a1dd813d2",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }
