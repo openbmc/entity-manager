@@ -1,0 +1,90 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "311124b9_7acf5fdc",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 17
+      },
+      "lineNbr": 14,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2025-09-03T15:08:49Z",
+      "side": 1,
+      "message": "This seems in conflict with this option.\nhttps://github.com/openbmc/entity-manager/blob/d3ec0661dda2d26f2268cc3aab23c354f261b699/meson.options#L7\n\nAre you sure you had resize ability enabled?",
+      "range": {
+        "startLine": 12,
+        "startChar": 0,
+        "endLine": 14,
+        "endChar": 5
+      },
+      "revId": "08dc8b593024b512e1c14c966af38b0a1dd813d2",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "bef7521d_7dde84dd",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 17
+      },
+      "lineNbr": 28,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2025-09-03T15:08:49Z",
+      "side": 1,
+      "message": "what does \"check\" mean?",
+      "range": {
+        "startLine": 28,
+        "startChar": 0,
+        "endLine": 28,
+        "endChar": 57
+      },
+      "revId": "08dc8b593024b512e1c14c966af38b0a1dd813d2",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3d952867_16ecad32",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 17
+      },
+      "lineNbr": 31,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2025-09-03T15:08:49Z",
+      "side": 1,
+      "message": "Can we not just support the property set API we already had?  Why do we need a new one?  That one is already capable of calling setField.",
+      "range": {
+        "startLine": 31,
+        "startChar": 0,
+        "endLine": 31,
+        "endChar": 54
+      },
+      "revId": "08dc8b593024b512e1c14c966af38b0a1dd813d2",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "252418f7_6839e4ef",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 17
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2025-09-03T15:08:49Z",
+      "side": 1,
+      "message": "I still don\u0027t see why we\u0027re adding a new API for this.  It seems like we just weren\u0027t aware the previous API existed?",
+      "revId": "08dc8b593024b512e1c14c966af38b0a1dd813d2",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    }
+  ]
+}
