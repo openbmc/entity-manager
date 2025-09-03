@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d42f84f1_6ba94a91",
+        "filename": "src/fru_device/fru_utils.cpp",
+        "patchSetId": 15
+      },
+      "lineNbr": 1209,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2025-09-03T15:18:32Z",
+      "side": 1,
+      "message": "Can\u0027t this whole section just be \"return true\" rather than try to parse out a complex name?\n\nI guess will work as-is, but these fields are coming from the parser so we don\u0027t have to defend against bad input.  Even if we were, this allows a field like\n\n\nPART_NUMBER999999. which is invalid.",
+      "range": {
+        "startLine": 1187,
+        "startChar": 0,
+        "endLine": 1209,
+        "endChar": 59
+      },
+      "revId": "0047b01070d7795db4f0bfe7baf025af90abc628",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    }
+  ]
+}
