@@ -22,6 +22,30 @@
       },
       "revId": "0047b01070d7795db4f0bfe7baf025af90abc628",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "671658b6_dc53339c",
+        "filename": "src/fru_device/fru_utils.cpp",
+        "patchSetId": 15
+      },
+      "lineNbr": 1209,
+      "author": {
+        "id": 1001426
+      },
+      "writtenOn": "2025-09-04T03:56:32Z",
+      "side": 1,
+      "message": "I agree with your point that the input comes from a trusted parser, so we don’t need to worry about malformed names.\nHowever, not all fields are editable — for example, LANGUAGE_CODE and CHASSIS_TYPE should not be returned as editable.\n\nWhen you run something like:\n```\nbusctl introspect  xyz.openbmc_project.FruDevice /xyz/openbmc_project/FruDevice/MDA_WCU_AI\n```\nthe interface will only expose fields as editable if they are explicitly supported by the current logic. That’s why we need to keep the editableFields list to enforce which fields are allowed.\n\nThe special case is INFO_AM, which can have trailing numbers (e.g., INFO_AM1, INFO_AM2, …). That’s the only reason for the suffix-trimming logic — without it, those fields wouldn’t be marked editable even though they should be.\n\nSo in short:\n- Parser guarantees valid input.\n- Editable fields must be explicitly controlled.\n- INFO_AM requires numeric suffix handling.",
+      "parentUuid": "d42f84f1_6ba94a91",
+      "range": {
+        "startLine": 1187,
+        "startChar": 0,
+        "endLine": 1209,
+        "endChar": 59
+      },
+      "revId": "0047b01070d7795db4f0bfe7baf025af90abc628",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ],
   "submitRequirementResults": []
