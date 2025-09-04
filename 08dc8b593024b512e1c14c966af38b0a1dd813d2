@@ -104,6 +104,24 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "1c7de7cb_107ec430",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 17
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1001426
+      },
+      "writtenOn": "2025-09-04T04:41:59Z",
+      "side": 1,
+      "message": "I had some function renames which will be removed in next patchset.\nThis patch adds following:\n\n1.\nIntroduce method: \u0027UpdateFruField\u0027\nWhich allows adding missing Fru field/area.\n\n2.\nUpdate mechanism to update fru fields.\nThis introduces disassembleFruAreas, assembleFruAreas, setFields.\nHence, the previously used method is replaced.\n\nFor simplicity I can work on spliting the patch into multiple patchs so that it becomes easy to review. Please let me know if you want me to do that.",
+      "parentUuid": "4fcc9dd2_1dce8aed",
+      "revId": "08dc8b593024b512e1c14c966af38b0a1dd813d2",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "967f968e_c626a3d9",
@@ -117,6 +135,24 @@
       "writtenOn": "2025-09-03T15:15:38Z",
       "side": 1,
       "message": "This looks like just a function rename?  It\u0027s arguably correct, but doesn\u0027t  have anything to do with this feature?",
+      "revId": "08dc8b593024b512e1c14c966af38b0a1dd813d2",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "945a4e1b_39c5d194",
+        "filename": "src/fru_device/fru_device.cpp",
+        "patchSetId": 17
+      },
+      "lineNbr": 80,
+      "author": {
+        "id": 1001426
+      },
+      "writtenOn": "2025-09-04T04:41:59Z",
+      "side": 1,
+      "message": "Agree.\nWill restore it to previous name for now.",
+      "parentUuid": "967f968e_c626a3d9",
       "revId": "08dc8b593024b512e1c14c966af38b0a1dd813d2",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
@@ -169,6 +205,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "8161ae1a_0d97187b",
+        "filename": "src/fru_device/fru_device.cpp",
+        "patchSetId": 17
+      },
+      "lineNbr": 1205,
+      "author": {
+        "id": 1001426
+      },
+      "writtenOn": "2025-09-04T04:41:59Z",
+      "side": 1,
+      "message": "Will restore function name in next patchset.",
+      "parentUuid": "30aa1c4c_22a765ae",
+      "range": {
+        "startLine": 1205,
+        "startChar": 5,
+        "endLine": 1205,
+        "endChar": 22
+      },
+      "revId": "08dc8b593024b512e1c14c966af38b0a1dd813d2",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "18aa82e6_03821f19",
         "filename": "src/fru_device/fru_device.cpp",
         "patchSetId": 17
@@ -180,6 +240,24 @@
       "writtenOn": "2025-09-03T15:15:38Z",
       "side": 1,
       "message": "You\u0027ve changed some of these to lg2, and left others.  Please make sure that the result is consistent.",
+      "revId": "08dc8b593024b512e1c14c966af38b0a1dd813d2",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "bea84abe_92098f75",
+        "filename": "src/fru_device/fru_device.cpp",
+        "patchSetId": 17
+      },
+      "lineNbr": 1215,
+      "author": {
+        "id": 1001426
+      },
+      "writtenOn": "2025-09-04T04:41:59Z",
+      "side": 1,
+      "message": "Sure.",
+      "parentUuid": "18aa82e6_03821f19",
       "revId": "08dc8b593024b512e1c14c966af38b0a1dd813d2",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
@@ -207,6 +285,30 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "e0cf9b27_7591ede1",
+        "filename": "src/fru_device/fru_utils.cpp",
+        "patchSetId": 17
+      },
+      "lineNbr": 1261,
+      "author": {
+        "id": 1001426
+      },
+      "writtenOn": "2025-09-04T04:41:59Z",
+      "side": 1,
+      "message": "If suppose the FRU doesn\u0027t has FRU are say BOARD,\nThen it creates one with empty fields.\nLater setField sets the field with provided value in the Fru Area.",
+      "parentUuid": "504ab481_489db7dc",
+      "range": {
+        "startLine": 1261,
+        "startChar": 5,
+        "endLine": 1261,
+        "endChar": 20
+      },
+      "revId": "08dc8b593024b512e1c14c966af38b0a1dd813d2",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "7c67e79f_377df283",
@@ -220,6 +322,30 @@
       "writtenOn": "2025-09-03T15:15:38Z",
       "side": 1,
       "message": "Just spell out \"checksum\". Also please make it camel case.",
+      "range": {
+        "startLine": 219,
+        "startChar": 15,
+        "endLine": 219,
+        "endChar": 20
+      },
+      "revId": "08dc8b593024b512e1c14c966af38b0a1dd813d2",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9447fb15_d8f79aaf",
+        "filename": "src/fru_device/fru_utils.hpp",
+        "patchSetId": 17
+      },
+      "lineNbr": 219,
+      "author": {
+        "id": 1001426
+      },
+      "writtenOn": "2025-09-04T04:41:59Z",
+      "side": 1,
+      "message": "Sure",
+      "parentUuid": "7c67e79f_377df283",
       "range": {
         "startLine": 219,
         "startChar": 15,
