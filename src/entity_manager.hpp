@@ -53,6 +53,7 @@ enum class probe_type_codes
     TRUE_T,
     AND,
     OR,
+    JOINT,
     FOUND,
     MATCH_ONE
 };
@@ -204,4 +205,44 @@ inline void logDeviceRemoved(const nlohmann::json& record)
                     "OpenBMC.0.1.InventoryRemoved",
                     "REDFISH_MESSAGE_ARGS=%s,%s,%s", model.c_str(),
                     type.c_str(), sn.c_str(), "NAME=%s", name.c_str(), NULL);
+}
+
+// find the intersection of two sets of devices based on the object path, return
+// the result in set1. set2 is destroyed.
+// Note: if there are duplicates in either set or both, the duplicates will be
+// kept if they are in the intersection.
+inline void intersectDevices(FoundDevices& set1, FoundDevices& set2)
+{
+    for (auto itrDev = set2.begin(); itrDev != set2.end();)
+    {
+        auto findIt = std::find_if(set1.begin(), set1.end(),
+                                   [&itrDev](const auto& existingDev) {
+            return existingDev.path == itrDev->path;
+        });
+        if (findIt == set1.end())
+        {
+            itrDev = set2.erase(itrDev);
+        }
+        else
+        {
+            ++itrDev;
+        }
+    }
+
+    for (auto itrDev = set1.begin(); itrDev != set1.end();)
+    {
+        auto findIt = std::find_if(set2.begin(), set2.end(),
+                                   [&itrDev](const auto& existingDev) {
+            return existingDev.path == itrDev->path;
+        });
+        if (findIt == set2.end())
+        {
+            itrDev = set1.erase(itrDev);
+        }
+        else
+        {
+            ++itrDev;
+        }
+    }
+    set1.insert(set1.end(), set2.begin(), set2.end());
 }

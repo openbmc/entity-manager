@@ -58,6 +58,7 @@ const boost::container::flat_map<const char*, probe_type_codes, CmpStr>
                 {"TRUE", probe_type_codes::TRUE_T},
                 {"AND", probe_type_codes::AND},
                 {"OR", probe_type_codes::OR},
+                {"JOINT", probe_type_codes::JOINT},
                 {"FOUND", probe_type_codes::FOUND},
                 {"MATCH_ONE", probe_type_codes::MATCH_ONE}}};
 
