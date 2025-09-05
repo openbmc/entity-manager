@@ -16,6 +16,24 @@
       "message": "@ed@tanous.net - Please weigh in on if you\u0027re ok with the \"upper non critical\" now being removed...  I don\u0027t know if you explicitly want 3 thresholds here or not.",
       "revId": "31411f3a5352ee91c7f7ce875ad1e29a2b1bdd39",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "a5566d40_acfb5526",
+        "filename": "configurations/nvidia_cx8_mezzanine_module.json",
+        "patchSetId": 11
+      },
+      "lineNbr": 29,
+      "author": {
+        "id": 1002479
+      },
+      "writtenOn": "2025-09-05T02:30:09Z",
+      "side": 1,
+      "message": "After the modification, there are only two thresholds: \"upper non-recoverable\" and \"upper critical.\" These two settings are based on the information provided by Nvidia. Therefore, the \"upper non-critical\" is required.",
+      "parentUuid": "af2a142a_10d035ea",
+      "revId": "31411f3a5352ee91c7f7ce875ad1e29a2b1bdd39",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }
