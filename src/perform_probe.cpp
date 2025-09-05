@@ -90,6 +90,7 @@ bool probe(const std::vector<std::string>& probeCommand,
 
     for (const auto& probe : probeCommand)
     {
+        FoundDevices curFoundDevs;
         FoundProbeTypeT probeType = findProbeType(probe);
         if (probeType)
         {
@@ -116,6 +117,8 @@ bool probe(const std::vector<std::string>& probeCommand,
                 /*case probe_type_codes::AND:
                   break;
                 case probe_type_codes::OR:
+                  break;
+                case probe_type_codes::JOINT:
                   break;
                   // these are no-ops until the last command switch
                   */
@@ -169,13 +172,25 @@ bool probe(const std::vector<std::string>& probeCommand,
             }
             bool foundProbe = !!probeType;
             std::string probeInterface = probe.substr(0, findStart);
-            cur = probeDbus(probeInterface, dbusProbeMap, foundDevs, scan,
+            cur = probeDbus(probeInterface, dbusProbeMap, curFoundDevs, scan,
                             foundProbe);
         }
 
-        // some functions like AND and OR only take affect after the
+        // handle the foundProbe based on last command
+        if (lastCommand == probe_type_codes::JOINT)
+        {
+            intersectDevices(foundDevs, curFoundDevs);
+        }
+        else
+        {
+            foundDevs.insert(foundDevs.end(), curFoundDevs.begin(),
+                             curFoundDevs.end());
+        }
+
+        // some functions like AND, OR and JOINT only take affect after the
         // fact
-        if (lastCommand == probe_type_codes::AND)
+        if (lastCommand == probe_type_codes::AND ||
+            lastCommand == probe_type_codes::JOINT)
         {
             ret = cur && ret;
         }

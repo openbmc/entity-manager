@@ -305,4 +305,18 @@ if not build_tests.disabled()
             include_directories: 'src',
         )
     )
+    test(
+        'test_interset_device',
+        executable(
+            'test_intersection',
+            'test/test_intersection.cpp',
+            cpp_args: test_boost_args,
+            dependencies: [
+                gtest,
+                gmock,
+                nlohmann_json_dep,
+            ],
+            include_directories: 'src',
+        )
+    )
 endif
