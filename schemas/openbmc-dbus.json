@@ -177,7 +177,11 @@
                             "additionalProperties": false,
                             "properties": {
                                 "Direction": {
-                                    "enum": ["Supply", "Return", "Unknown"]
+                                    "enum": [
+                                        "xyz.openbmc_project.Inventory.Item.Valve.Direction.Supply",
+                                        "xyz.openbmc_project.Inventory.Item.Valve.Direction.Return",
+                                        "xyz.openbmc_project.Inventory.Item.Valve.Direction.Unknown"
+                                    ]
                                 },
                                 "PairName": {
                                     "description": "This property specifies the pair name for valves when they form a supply and return valve pair; otherwise, it is set to NA.",
