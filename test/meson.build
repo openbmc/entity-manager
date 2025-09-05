@@ -54,3 +54,13 @@ test(
         link_with: gpio_presence_lib,
     ),
 )
+test(
+    'test_interset_device',
+    executable(
+        'test_intersection',
+        'test_intersection.cpp',
+        cpp_args: test_boost_args + ['-DPACKAGE_DIR="' + packagedir + '/"', '-DSYSCONF_DIR="' + sysconfdir + '/"'],
+        dependencies: [gtest, gmock, nlohmann_json_dep, phosphor_logging_dep],
+        include_directories: test_include_dir,
+    )
+)
