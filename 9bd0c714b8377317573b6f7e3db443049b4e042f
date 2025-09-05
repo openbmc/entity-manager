@@ -56,6 +56,24 @@
       "message": "Where is the code to actually put this interface on D-Bus?  Am I just missing it?",
       "revId": "9bd0c714b8377317573b6f7e3db443049b4e042f",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0792fe73_91edd019",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 25
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-09-05T15:52:09Z",
+      "side": 1,
+      "message": "The patch updates `Topology::getAssocs` to add the association information.\n\n`Topology::getAssocs` gets called in EM to actually add the association definition interfaces.\n\nhttps://github.com/openbmc/entity-manager/blob/ca121f525386cc8cd91c90b201a01972af5ac370/src/entity_manager/entity_manager.cpp#L90\n\nSo as long as the information was added before that point (in this patch via `Topology::addProbePath`), it should show up as association definition.",
+      "parentUuid": "9097f695_7a819b1c",
+      "revId": "9bd0c714b8377317573b6f7e3db443049b4e042f",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }
