@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ca578c87_e2dabb11",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-09-05T11:34:21Z",
+      "side": 1,
+      "message": "can you please link to this change.\n\nI cannot find any inventory item for valve\n\nhttps://github.com/openbmc/phosphor-dbus-interfaces/tree/5b6deab0ed505aba429fd468ec11c17e5ae35c32/yaml/xyz/openbmc_project/Inventory/Item",
+      "revId": "fdb2ecd9751b21773efc6881f61ea2a79dcfa1ce",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f5b61f11_144a3457",
+        "filename": "schemas/openbmc-dbus.json",
+        "patchSetId": 1
+      },
+      "lineNbr": 180,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-09-05T11:34:21Z",
+      "side": 1,
+      "message": "This does not change how EM exposes it on DBus, right?\n\nSince EM goes by the config json and not by the schema.\n\n\nFrom a schema perspective this is worse since we do not have a finite set of values.\n\nSo anything could go there and the reactors would crash or log errors, as it can only handle these 3 values, right?",
+      "revId": "fdb2ecd9751b21773efc6881f61ea2a79dcfa1ce",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    }
+  ]
+}
