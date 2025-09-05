@@ -177,7 +177,7 @@
                             "additionalProperties": false,
                             "properties": {
                                 "Direction": {
-                                    "enum": ["Supply", "Return", "Unknown"]
+                                    "type": "string"
                                 },
                                 "PairName": {
                                     "description": "This property specifies the pair name for valves when they form a supply and return valve pair; otherwise, it is set to NA.",
