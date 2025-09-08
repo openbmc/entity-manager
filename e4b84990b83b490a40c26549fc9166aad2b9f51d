@@ -39,6 +39,30 @@
       },
       "revId": "e4b84990b83b490a40c26549fc9166aad2b9f51d",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "68c97796_30c1f015",
+        "filename": "schemas/spdm_endpoint.json",
+        "patchSetId": 1
+      },
+      "lineNbr": 70,
+      "author": {
+        "id": 1001516
+      },
+      "writtenOn": "2025-09-08T11:26:46Z",
+      "side": 1,
+      "message": "You meant D-Bus snapshot for EM?\n\n```\nbusctl introspect xyz.openbmc_project.EntityManager /xyz/openbmc_project/inventory/system/chassis/IRoT_BMC_0 -l\nNAME                                                  TYPE      SIGNATURE RESULT/VALUE                                                 FLAGS\norg.freedesktop.DBus.Introspectable                   interface -         -                                                            -\n.Introspect                                           method    -         s                                                            -\norg.freedesktop.DBus.Peer                             interface -         -                                                            -\n.GetMachineId                                         method    -         s                                                            -\n.Ping                                                 method    -         -                                                            -\norg.freedesktop.DBus.Properties                       interface -         -                                                            -\n.Get                                                  method    ss        v                                                            -\n.GetAll                                               method    s         a{sv}                                                        -\n.Set                                                  method    ssv       -                                                            -\n.PropertiesChanged                                    signal    sa{sv}as  -                                                            -\nxyz.openbmc_project.Configuration.SpdmMctpRequester   interface -         -                                                            -\n.Authenticating                                       property  s         \"/xyz/openbmc_project/inventory/system/chassis/BMC_0\"        emits-change\n.EID                                                  property  t         15                                                           emits-change\n.Name                                                 property  s         \"IRoT_BMC_0\"                                                 emits-change\n.Reporting                                            property  s         \"/xyz/openbmc_project/inventory/system/chassis/IRoT_BMC_0\"   emits-change\n.TrustedComponentType                                 property  s         \"discrete\"                                                   emits-change\n.Type                                                 property  s         \"SpdmMctpRequester\"                                          emits-change\n```",
+      "parentUuid": "f2022daa_e3c50f86",
+      "range": {
+        "startLine": 63,
+        "startChar": 0,
+        "endLine": 70,
+        "endChar": 17
+      },
+      "revId": "e4b84990b83b490a40c26549fc9166aad2b9f51d",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }
