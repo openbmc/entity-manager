@@ -24,6 +24,7 @@ configs = [
     'aspower/aspower_u1a-d11200_psu.json',
     'aspower/aspower_u1a-d11600_psu.json',
     'aspower/aspower_u1d-d10800_psu.json',
+    'asrock/asrock_altrad8.json',
     'asrock/asrock_c3_medium_x86.json',
     'asrock/asrock_e3c246d4i.json',
     'asrock/asrock_e3c256d4i.json',
