@@ -29,6 +29,10 @@
                 "OpenControlValue": {
                     "description": "The GPIO value to set to open the valve.",
                     "type": "boolean"
+                },
+                "CoolantLoopName": {
+                    "description": "The name of the coolant loop to which this valve is connected.",
+                    "type": "string"
                 }
             },
             "required": [
@@ -37,7 +41,8 @@
                 "OpenPinName",
                 "OpenPolarity",
                 "OpenControlPinName",
-                "OpenControlValue"
+                "OpenControlValue",
+                "CoolantLoopName"
             ]
         }
     }
