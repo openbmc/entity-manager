@@ -63,6 +63,30 @@
       },
       "revId": "e4b84990b83b490a40c26549fc9166aad2b9f51d",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "97dc0506_dd761e0d",
+        "filename": "schemas/spdm_endpoint.json",
+        "patchSetId": 1
+      },
+      "lineNbr": 70,
+      "author": {
+        "id": 1000008
+      },
+      "writtenOn": "2025-09-08T20:30:59Z",
+      "side": 1,
+      "message": "\u003e .Authenticating                                       property  s         \"/xyz/openbmc_project/inventory/system/chassis/BMC_0\"        emits-change\n\nSo you would hardcode a D-Bus inventory path here, and then some other code would create an association? If so, hardcoded D-Bus object paths aren\u0027t the right level of abstraction for these config files.\n\nAn alternative would be the new proposed topology associations https://gerrit.openbmc.org/c/openbmc/entity-manager/+/82817.  When that goes in, you could have EM create associations between of its objects for you, without hardcoding object paths.",
+      "parentUuid": "68c97796_30c1f015",
+      "range": {
+        "startLine": 63,
+        "startChar": 0,
+        "endLine": 70,
+        "endChar": 17
+      },
+      "revId": "e4b84990b83b490a40c26549fc9166aad2b9f51d",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }
