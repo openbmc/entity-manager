@@ -16,6 +16,24 @@
       "message": "`configurations/meta/yosemite4_chassis.json` has\n```\n\"Exposes\": [], \n    \"Name\": \"Yosemite 4 Chassis\",\n    \"Probe\": \"xyz.openbmc_project.FruDevice({\u0027BOARD_PRODUCT_NAME\u0027: \u0027Management Board wBMC\u0027, \u0027PRODUCT_PRODUCT_NAME\u0027: \u0027Yosemite V4\u0027})\",\n    \"Type\": \"Chassis\",\n```\n\nso it should be probed_by a FruDevice object path, right?\n\nSorry if i\u0027m in the wrong config here.\n\nIt would be good to check this use-case for probing on FruDevice object path anyways since that\u0027s one of the main use-cases for this feature and FruDevice interfaces is what configs usually probe on.",
       "revId": "9e148173d2787f3f36cf5ec243a2fdd97e169cba",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "15edc378_884a1a10",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 28
+      },
+      "lineNbr": 133,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-09-08T11:49:22Z",
+      "side": 1,
+      "message": "Don\u0027t wonder where the logs come from, i put some debug logs on top for my understanding on my local branch.\n\n```\nSep 08 11:41:41 s8030-bmc-30303035c0c1 entity-manager[7197]: board /xyz/openbmc_project/inventory/system/powersupply/Supermicro_PWS_920P_SQ_0 has 1 associations\nSep 08 11:41:41 s8030-bmc-30303035c0c1 entity-manager[7197]: association: /xyz/openbmc_project/inventory/system/powersupply/Supermicro_PWS_920P_SQ_0 probed_by /xyz/openbmc_project/FruDevice/PWS_920P_SQ\nSep 08 11:41:41 s8030-bmc-30303035c0c1 entity-manager[7197]: board /xyz/openbmc_project/inventory/system/powersupply/Supermicro_PWS_920P_SQ_1 has 1 associations\nSep 08 11:41:41 s8030-bmc-30303035c0c1 entity-manager[7197]: association: /xyz/openbmc_project/inventory/system/powersupply/Supermicro_PWS_920P_SQ_1 probed_by /xyz/openbmc_project/FruDevice/PWS_920P_SQ_0\n```\n\n```\nSep 08 11:41:50 s8030-bmc-30303035c0c1 entity-manager[7197]: board /xyz/openbmc_project/inventory/system/powersupply/Supermicro_PWS_920P_SQ_0 has 1 associations\nSep 08 11:41:50 s8030-bmc-30303035c0c1 entity-manager[7197]: association: /xyz/openbmc_project/inventory/system/powersupply/Supermicro_PWS_920P_SQ_0 probed_by /xyz/openbmc_project/FruDevice/PWS_920P_SQ\nSep 08 11:41:50 s8030-bmc-30303035c0c1 entity-manager[7197]: board /xyz/openbmc_project/inventory/system/powersupply/Supermicro_PWS_920P_SQ_1 has 1 associations\nSep 08 11:41:50 s8030-bmc-30303035c0c1 entity-manager[7197]: association: /xyz/openbmc_project/inventory/system/powersupply/Supermicro_PWS_920P_SQ_1 probed_by /xyz/openbmc_project/FruDevice/PWS_920P_SQ_0\nSep 08 11:41:50 s8030-bmc-30303035c0c1 entity-manager[7197]: board /xyz/openbmc_project/inventory/system/board/Tyan_S8030_Baseboard has 1 associations\n```\n\nlooking for association definition\n```\nbusctl get-property xyz.openbmc_project.EntityManager /xyz/openbmc_project/inventory/system/powersupply/Supermicro_PWS_920P_SQ_0 xyz.openbmc_project.Association.Definitions Associations\na(sss) 1 \"probed_by\" \"probing\" \"/xyz/openbmc_project/FruDevice/PWS_920P_SQ\"\n```\n\nlooking for object mapper output\n```\nbusctl get-property xyz.openbmc_project.ObjectMapper /xyz/openbmc_project/inventory/system/powersupply/Supermicro_PWS_920P_SQ_0/probed_by xyz.openbmc_project.Association endpoints\nas 1 \"/xyz/openbmc_project/FruDevice/PWS_920P_SQ\"\n```\n\nSummary: the feature works on my machine 👍",
+      "parentUuid": "5e2f7222_9fab46b6",
+      "revId": "9e148173d2787f3f36cf5ec243a2fdd97e169cba",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }
