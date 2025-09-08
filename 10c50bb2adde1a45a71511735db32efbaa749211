@@ -16,6 +16,24 @@
       "message": "I thought these were suppose to all be capital?",
       "revId": "10c50bb2adde1a45a71511735db32efbaa749211",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "720f4ca9_3004c586",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 4
+      },
+      "lineNbr": 15,
+      "author": {
+        "id": 1002528
+      },
+      "writtenOn": "2025-09-08T07:46:27Z",
+      "side": 1,
+      "message": "You\u0027re right. I double-checked the RF naming regex.\nFor example, the redfish endpoint: \u0027temperature_Interposer_P12V_NIC0_TEMP_C\u0027\nI thought \u0027interposer\u0027 was supposed to be all caps to match the naming rule.\n\nI\u0027ll sync up with the reporter on this and then fix the change.",
+      "parentUuid": "e5a12da0_8301c65c",
+      "revId": "10c50bb2adde1a45a71511735db32efbaa749211",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ],
   "submitRequirementResults": []
