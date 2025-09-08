@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5e2f7222_9fab46b6",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 28
+      },
+      "lineNbr": 133,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-09-08T09:29:24Z",
+      "side": 1,
+      "message": "`configurations/meta/yosemite4_chassis.json` has\n```\n\"Exposes\": [], \n    \"Name\": \"Yosemite 4 Chassis\",\n    \"Probe\": \"xyz.openbmc_project.FruDevice({\u0027BOARD_PRODUCT_NAME\u0027: \u0027Management Board wBMC\u0027, \u0027PRODUCT_PRODUCT_NAME\u0027: \u0027Yosemite V4\u0027})\",\n    \"Type\": \"Chassis\",\n```\n\nso it should be probed_by a FruDevice object path, right?\n\nSorry if i\u0027m in the wrong config here.\n\nIt would be good to check this use-case for probing on FruDevice object path anyways since that\u0027s one of the main use-cases for this feature and FruDevice interfaces is what configs usually probe on.",
+      "revId": "9e148173d2787f3f36cf5ec243a2fdd97e169cba",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    }
+  ]
+}
