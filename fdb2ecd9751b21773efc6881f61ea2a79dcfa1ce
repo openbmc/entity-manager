@@ -18,6 +18,24 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "30c193dd_f8a610c8",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-09-08T20:55:02Z",
+      "side": 1,
+      "message": "Added to the PR description.",
+      "parentUuid": "ca578c87_e2dabb11",
+      "revId": "fdb2ecd9751b21773efc6881f61ea2a79dcfa1ce",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "f5b61f11_144a3457",
@@ -31,6 +49,24 @@
       "writtenOn": "2025-09-05T11:34:21Z",
       "side": 1,
       "message": "This does not change how EM exposes it on DBus, right?\n\nSince EM goes by the config json and not by the schema.\n\n\nFrom a schema perspective this is worse since we do not have a finite set of values.\n\nSo anything could go there and the reactors would crash or log errors, as it can only handle these 3 values, right?",
+      "revId": "fdb2ecd9751b21773efc6881f61ea2a79dcfa1ce",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "55e127e5_0ae4a3a7",
+        "filename": "schemas/openbmc-dbus.json",
+        "patchSetId": 1
+      },
+      "lineNbr": 180,
+      "author": {
+        "id": 1001758
+      },
+      "writtenOn": "2025-09-08T20:55:02Z",
+      "side": 1,
+      "message": "\u003e This does not change how EM exposes it on DBus, right?\n\nNo, it doesn\u0027t.\n\n\u003e \n\u003e Since EM goes by the config json and not by the schema.\n\u003e \n\u003e \n\u003e From a schema perspective this is worse since we do not have a finite set of values.\n\nI have changed this to xyz.openbmc_project.xxx prefix types as per latest change, so its a enum again.\n\n\u003e \n\u003e So anything could go there and the reactors would crash or log errors, as it can only handle these 3 values, right?\n\nChanged to xyz.openbmc_project.xxx prefix enum again in latest patch.",
+      "parentUuid": "f5b61f11_144a3457",
       "revId": "fdb2ecd9751b21773efc6881f61ea2a79dcfa1ce",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
