@@ -146,6 +146,7 @@ configs = [
     'meta/santabarbara/santabarbara_pdb1.json',
     'meta/santabarbara/santabarbara_pdb2.json',
     'meta/santabarbara/santabarbara_pttv.json',
+    'meta/santabarbara/santabarbara_rainbow.json',
     'meta/santabarbara/santabarbara_scm.json',
     'meta/santabarbara/santabarbara_sitv_eth.json',
     'meta/santabarbara/santabarbara_sitv_pcie.json',
