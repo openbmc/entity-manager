@@ -226,3 +226,7 @@ bool assembleFruData(std::vector<uint8_t>& fruData,
 
 bool setField(const fruAreas& fruAreaToUpdate, std::vector<uint8_t>& areaData,
               const std::string& propertyName, const std::string& value);
+
+bool updateAddProperty(const std::string& propertyValue,
+                       const std::string& propertyName,
+                       std::vector<uint8_t>& data);
