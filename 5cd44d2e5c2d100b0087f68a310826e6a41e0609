@@ -52,6 +52,24 @@
       "parentUuid": "1664eccc_59fffabc",
       "revId": "5cd44d2e5c2d100b0087f68a310826e6a41e0609",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b6b1e126_eb6556e5",
+        "filename": "src/entity_manager/topology.cpp",
+        "patchSetId": 2
+      },
+      "lineNbr": 151,
+      "author": {
+        "id": 1001526
+      },
+      "writtenOn": "2025-09-09T04:17:00Z",
+      "side": 1,
+      "message": "Hi @spinler@us.ibm.com, it\u0027s not quite because of my commit.\n\nI was just looking at it from the old implementation point of view.\n\nIf `fillAssocsForPortId` only accepts Chassis or Board (L127) and does not accept assocName of `containing` or `powered_by` (L146), then assocName is either `contained_by` or `powering`. For a `powering` assocName, it shouldn\u0027t be attached to a Chassis/Board, right?",
+      "parentUuid": "45114d63_86184065",
+      "revId": "5cd44d2e5c2d100b0087f68a310826e6a41e0609",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }
