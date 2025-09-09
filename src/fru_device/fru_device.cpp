@@ -1218,16 +1218,6 @@ bool updateFruProperty(
         "updateFruProperty called: FieldName = {NAME}, FieldValue = {VALUE}",
         "NAME", propertyName, "VALUE", propertyValue);
 
-    // Validate field length: must be 2–63 characters
-    const size_t len = propertyValue.length();
-    if (len <= 1 || len > 63)
-    {
-        lg2::debug(
-            "FRU field data must be between 2 and 63 characters. Invalid Length: {LEN}",
-            "LEN", len);
-        return false;
-    }
-
     std::vector<uint8_t> fruData;
     if (!getFruData(fruData, bus, address))
     {
@@ -1242,51 +1232,9 @@ bool updateFruProperty(
         return false;
     }
 
-    // Extract area name (prefix before underscore)
-    fruAreas fruAreaToUpdate{};
-    std::string areaName = propertyName.substr(0, propertyName.find('_'));
-    if (!getAreaIdx(areaName, fruAreaToUpdate))
+    bool success = updateAddProperty(propertyValue, propertyName, fruData);
+    if (!success)
     {
-        lg2::debug("Failed to get FRU area for property: {AREA}", "AREA",
-                   areaName);
-        return false;
-    }
-
-    std::vector<std::vector<uint8_t>> areasData;
-    disassembleFruData(fruData, areasData);
-
-    std::vector<uint8_t>& areaData =
-        areasData[static_cast<size_t>(fruAreaToUpdate)];
-    if (areaData.empty())
-    {
-        // If ENABLE_FRU_AREA_RESIZE is not defined then return with failure
-#ifndef ENABLE_FRU_AREA_RESIZE
-        lg2::debug(
-            "FRU area {AREA} not present and ENABLE_FRU_AREA_RESIZE is not set. "
-            "Returning failure.",
-            "AREA", areaName);
-        return false;
-#endif
-        if (!createDummyArea(fruAreaToUpdate, areaData))
-        {
-            lg2::debug("Failed to create dummy area for {AREA}", "AREA",
-                       areaName);
-            return false;
-        }
-    }
-
-    if (!setField(fruAreaToUpdate, areaData, propertyName, propertyValue))
-    {
-        lg2::debug("Failed to set field value for property: {PROPERTY}",
-                   "PROPERTY", propertyName);
-        return false;
-    }
-
-    assembleFruData(fruData, areasData);
-
-    if (fruData.empty())
-    {
-        std::cerr << "FRU data is empty after assembly\n";
         return false;
     }
 
