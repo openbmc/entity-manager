@@ -70,6 +70,24 @@
       "parentUuid": "45114d63_86184065",
       "revId": "5cd44d2e5c2d100b0087f68a310826e6a41e0609",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0490dfae_0e8f8981",
+        "filename": "src/entity_manager/topology.cpp",
+        "patchSetId": 2
+      },
+      "lineNbr": 151,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-09-09T12:27:41Z",
+      "side": 1,
+      "message": "\u003e For a powering assocName, it shouldn\u0027t be attached to a Chassis/Board, right?\n\nThere is a testcase for  `https://github.com/openbmc/entity-manager/blob/86780aa23e01a4215314f067b139d01fa0b320d0/test/test_topology.cpp#L168`\n\nwhich has \n```\nEXPECT_TRUE(assocs[subchassisPath].contains(powerAssoc));\n```\nand\n```\nconst Association powerAssoc \u003d\n    std::make_tuple(\"powering\", \"powered_by\", superchassisPath);\n```\n\nso the subchassis is powering the superchassis.\n\nDo you think it would help if i tried to create some testcases involving\nconfig with Type `PowerSupply` and `powering` association if that\u0027s possible.\n\nSo we do not break anything that\u0027s currently possible to configure there.",
+      "parentUuid": "b6b1e126_eb6556e5",
+      "revId": "5cd44d2e5c2d100b0087f68a310826e6a41e0609",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }
