@@ -2,44 +2,15 @@
     {
         "Exposes": [
             {
-                "Address": "0x6a",
-                "Bus": "48",
-                "Name": "HDDBOARD0_SSD0_TEMP_C",
-                "PowerState": "On",
-                "Thresholds": [
-                    {
-                        "Direction": "greater than",
-                        "Index": 2,
-                        "Name": "upper non recoverable",
-                        "Severity": 4,
-                        "Value": 85
-                    },
-                    {
-                        "Direction": "greater than",
-                        "Index": 2,
-                        "Name": "upper critical",
-                        "Severity": 1,
-                        "Value": 83
-                    },
-                    {
-                        "Direction": "greater than",
-                        "Name": "upper non critical",
-                        "Severity": 0,
-                        "Value": 80
-                    },
-                    {
-                        "Direction": "less than",
-                        "Name": "lower non critical",
-                        "Severity": 0,
-                        "Value": 5
-                    }
-                ],
-                "Type": "NVME1000"
+                "Address": "$address",
+                "Bus": "$bus",
+                "Name": "NVMe $index FRU",
+                "Type": "EEPROM"
             },
             {
                 "Address": "0x6a",
-                "Bus": "50",
-                "Name": "HDDBOARD0_SSD1_TEMP_C",
+                "Bus": "$bus",
+                "Name": "HDDBOARD0 SSD$index TEMP_C",
                 "PowerState": "On",
                 "Thresholds": [
                     {
@@ -73,54 +44,33 @@
             }
         ],
         /* Clemente Hard Disk Drive NVMe Board 0*/
-        "Name": "Clemente HDD NVMe 0",
+        "Name": "Clemente HDD NVMe 0 $index",
         "Probe": [
-            "xyz.openbmc_project.Inventory.Item.Board({'Name': 'Clemente HDD Carrier 0'})"
+            "xyz.openbmc_project.FruDevice({'BUS': 48, 'ADDRESS': 83, 'PRODUCT_MANUFACTURER': '(Samsung|MICRON)'})",
+            "OR",
+            "xyz.openbmc_project.FruDevice({'BUS': 50, 'ADDRESS': 83, 'PRODUCT_MANUFACTURER': '(Samsung|MICRON)'})"
         ],
-        "Type": "Board",
+        "Type": "NVMe",
+        "xyz.openbmc_project.Inventory.Decorator.Asset": {
+            "Manufacturer": "$PRODUCT_MANUFACTURER",
+            "Model": "$PRODUCT_PRODUCT_NAME",
+            "PartNumber": "$PRODUCT_PART_NUMBER",
+            "SerialNumber": "$PRODUCT_SERIAL_NUMBER"
+        },
         "xyz.openbmc_project.Inventory.Item.Chassis": {}
     },
     {
         "Exposes": [
             {
-                "Address": "0x6a",
-                "Bus": "52",
-                "Name": "HDDBOARD1_SSD0_TEMP_C",
-                "PowerState": "On",
-                "Thresholds": [
-                    {
-                        "Direction": "greater than",
-                        "Index": 2,
-                        "Name": "upper non recoverable",
-                        "Severity": 4,
-                        "Value": 85
-                    },
-                    {
-                        "Direction": "greater than",
-                        "Index": 2,
-                        "Name": "upper critical",
-                        "Severity": 1,
-                        "Value": 83
-                    },
-                    {
-                        "Direction": "greater than",
-                        "Name": "upper non critical",
-                        "Severity": 0,
-                        "Value": 80
-                    },
-                    {
-                        "Direction": "less than",
-                        "Name": "lower non critical",
-                        "Severity": 0,
-                        "Value": 5
-                    }
-                ],
-                "Type": "NVME1000"
+                "Address": "$address",
+                "Bus": "$bus",
+                "Name": "NVMe $index FRU",
+                "Type": "EEPROM"
             },
             {
                 "Address": "0x6a",
-                "Bus": "54",
-                "Name": "HDDBOARD1_SSD1_TEMP_C",
+                "Bus": "$bus",
+                "Name": "HDDBOARD1 SSD$index TEMP_C",
                 "PowerState": "On",
                 "Thresholds": [
                     {
@@ -154,15 +104,29 @@
             }
         ],
         /* Clemente Hard Disk Drive NVMe Board 1*/
-        "Name": "Clemente HDD NVMe 1",
+        "Name": "Clemente HDD NVMe 1 $index",
         "Probe": [
-            "xyz.openbmc_project.Inventory.Item.Board({'Name': 'Clemente HDD Carrier 1'})"
+            "xyz.openbmc_project.FruDevice({'BUS': 52, 'ADDRESS': 83, 'PRODUCT_MANUFACTURER': '(Samsung|MICRON)'})",
+            "OR",
+            "xyz.openbmc_project.FruDevice({'BUS': 54, 'ADDRESS': 83, 'PRODUCT_MANUFACTURER': '(Samsung|MICRON)'})"
         ],
-        "Type": "Board",
+        "Type": "NVMe",
+        "xyz.openbmc_project.Inventory.Decorator.Asset": {
+            "Manufacturer": "$PRODUCT_MANUFACTURER",
+            "Model": "$PRODUCT_PRODUCT_NAME",
+            "PartNumber": "$PRODUCT_PART_NUMBER",
+            "SerialNumber": "$PRODUCT_SERIAL_NUMBER"
+        },
         "xyz.openbmc_project.Inventory.Item.Chassis": {}
     },
     {
         "Exposes": [
+            {
+                "Address": "$address",
+                "Bus": "$bus",
+                "Name": "NVMe $index FRU",
+                "Type": "EEPROM"
+            },
             {
                 "Address": "0x6a",
                 "Bus": "45",
@@ -188,9 +152,15 @@
         /* Clemente Boot Drive NVMe*/
         "Name": "Clemente Boot Drive NVMe",
         "Probe": [
-            "xyz.openbmc_project.FruDevice({'BUS': 45, 'ADDRESS': 83})"
+            "xyz.openbmc_project.FruDevice({'BUS': 45, 'ADDRESS': 83, 'PRODUCT_MANUFACTURER': '(Samsung|MICRON|KIOXIA)'})"
         ],
-        "Type": "Board",
+        "Type": "NVMe",
+        "xyz.openbmc_project.Inventory.Decorator.Asset": {
+            "Manufacturer": "$PRODUCT_MANUFACTURER",
+            "Model": "$PRODUCT_PRODUCT_NAME",
+            "PartNumber": "$PRODUCT_PART_NUMBER",
+            "SerialNumber": "$PRODUCT_SERIAL_NUMBER"
+        },
         "xyz.openbmc_project.Inventory.Item.Chassis": {}
     }
 ]
