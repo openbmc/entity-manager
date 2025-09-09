@@ -139,6 +139,7 @@ configs = [
     'meta/minerva/minerva_sitv.json',
     'meta/minerva/minerva_tahan_smb.json',
     'meta/santabarbara/santabarbara_e1s_bp.json',
+    'meta/santabarbara/santabarbara_evb.json',
     'meta/santabarbara/santabarbara_evb_pdb2.json',
     'meta/santabarbara/santabarbara_mb.json',
     'meta/santabarbara/santabarbara_pcie_switch_board.json',
