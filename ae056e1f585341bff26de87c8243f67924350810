@@ -1,0 +1,55 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "8be9291f_f05c41a2",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 5
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-09-09T09:12:02Z",
+      "side": 1,
+      "message": "Looks like a useful feature to me 👍",
+      "revId": "ae056e1f585341bff26de87c8243f67924350810",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e1b98fe0_f202a468",
+        "filename": "src/entity_manager/perform_probe.hpp",
+        "patchSetId": 5
+      },
+      "lineNbr": 28,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-09-09T09:12:02Z",
+      "side": 1,
+      "message": "Can we also document this `JOINT` operator somewhere else than the test cases.\n\nMaybe something like `docs/Probe.md`.\n\nThe commit message could be a good starting point for that file.",
+      "revId": "ae056e1f585341bff26de87c8243f67924350810",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2d51c6ec_8369eb69",
+        "filename": "src/entity_manager/perform_probe.hpp",
+        "patchSetId": 5
+      },
+      "lineNbr": 56,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-09-09T09:12:02Z",
+      "side": 1,
+      "message": "Does this have to go in the header? \n\nIt\u0027s not a template, right?",
+      "revId": "ae056e1f585341bff26de87c8243f67924350810",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    }
+  ]
+}
