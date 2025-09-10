@@ -1,0 +1,23 @@
+{
+    "Exposes": [
+        {
+            "Address": "$address",
+            "Bus": "$bus",
+            "Name": "Nvidia Alon8 HPM FRU",
+            "Type": "EEPROM"
+        }
+    ],
+    "Name": "Nvida Alon8 HPM",
+    "Probe": "xyz.openbmc_project.FruDevice({'BOARD_PRODUCT_NAME': 'MSX4-MG1-000', 'BOARD_MANUFACTURER': 'Giga Computing'})",
+    "Type": "Board",
+    "xyz.openbmc_project.Inventory.Decorator.Asset": {
+        "BuildDate": "$BOARD_MANUFACTURE_DATE",
+        "Manufacturer": "$BOARD_MANUFACTURER",
+        "Model": "$BOARD_PRODUCT_NAME",
+        "PartNumber": "$BOARD_PART_NUMBER",
+        "SerialNumber": "$BOARD_SERIAL_NUMBER"
+    },
+    "xyz.openbmc_project.Inventory.Item.NetworkInterface": {
+        "MACAddress": "$MAC_BOARD_INFO_AM2"
+    }
+}
