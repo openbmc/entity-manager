@@ -124,6 +124,24 @@
       "parentUuid": "afd3f74d_02b92978",
       "revId": "5cd44d2e5c2d100b0087f68a310826e6a41e0609",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3a25ce48_42345627",
+        "filename": "src/entity_manager/topology.cpp",
+        "patchSetId": 2
+      },
+      "lineNbr": 151,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-09-10T12:59:12Z",
+      "side": 1,
+      "message": "\u003e However, if it\u0027s aiming at a final solution that ends up moving all the current configs to the new topology schema,\n\nCurrent solution does not have that many configs, so it should be possible to migrate things.\n\n```\nmtmitchell_mb.json\n2290:                \"Type\": \"DownstreamPort\"\n\nmtjade.json\n1945:                \"Type\": \"DownstreamPort\"\n\nmtjefferson_mb.json\n2234:                \"Type\": \"DownstreamPort\"\n```\n\nI have started some small effort to organize the configurations into vendor specific folders\nhttps://gerrit.openbmc.org/c/openbmc/entity-manager/+/83292\n\nFrom that point it can then be further organized into folders for separate server chassis / product.\n\nHaving this organization will make it easier to keep track of topology configuration since one can at least see which baseboard configs + chassis configs are used in a given system.\n\nThat will make it easier to do edits.",
+      "parentUuid": "c64d5d2a_c2ac9c63",
+      "revId": "5cd44d2e5c2d100b0087f68a310826e6a41e0609",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }
