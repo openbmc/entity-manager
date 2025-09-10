@@ -189,6 +189,7 @@ configs = [
     'nvidia_gb200.json',
     'nvidia_gb300.json',
     'nvidia_hmc.json',
+    'nvidia_imgx_connectx8_supernic_switch.json',
     'nvidia_rtx6000_pro.json',
     'nvme_intel_p_series.json',
     'nvme_p4500_p5500.json',
