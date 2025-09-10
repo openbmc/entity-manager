@@ -34,6 +34,24 @@
       "parentUuid": "e05defd4_47d1cb98",
       "revId": "737cbfebf1f6020900411a865b6a92a60b40a822",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b8bd1b03_8bb3bc86",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 3
+      },
+      "lineNbr": 12,
+      "author": {
+        "id": 1002505
+      },
+      "writtenOn": "2025-09-10T18:33:09Z",
+      "side": 1,
+      "message": "@alexander.hansen@9elements.com @spinler@us.ibm.com this is for 24AA64. Given it\u0027s 64kibit EEPROM looks like you need to pass in a 2-byte address (higher and lower order bytes) [1] which smbus commands does not support [2].\n\n[1] 24AA64 data sheet -\u003e see section 6.0 WRITE OPERATIONS: https://ww1.microchip.com/downloads/aemDocuments/documents/MPD/ProductDocuments/DataSheets/24AA64-24FC64-24LC64-64-Kbit-I2C-Serial-EEPROM-DS20001189.pdf\n\n[2] https://docs.kernel.org/i2c/smbus-protocol.html -\u003e command bytes is only 8 bits",
+      "parentUuid": "eddd6f12_4a3ab5d6",
+      "revId": "737cbfebf1f6020900411a865b6a92a60b40a822",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }
