@@ -28,45 +28,6 @@
             "required": ["Name", "PortType", "Type"],
             "type": "object"
         },
-        "LegacyPort": {
-            "description": "deprecated schema. https://github.com/openbmc/docs/blob/master/designs/physical-topology.md",
-            "additionalProperties": false,
-            "properties": {
-                "Name": {
-                    "$ref": "#/$defs/Types/Name"
-                },
-                "Type": {
-                    "description": "This enum may be extended as described in the design",
-                    "type": "string",
-                    "enum": ["MB Upstream Port", "BackplanePort"]
-                }
-            },
-            "required": ["Name", "Type"],
-            "type": "object"
-        },
-        "LegacyDownstreamPort": {
-            "description": "deprecated schema. https://github.com/openbmc/docs/blob/master/designs/physical-topology.md",
-            "additionalProperties": false,
-            "properties": {
-                "Name": {
-                    "$ref": "#/$defs/Types/Name"
-                },
-                "ConnectsToType": {
-                    "description": "Should be equal to the 'Type' property on the upstream port",
-                    "type": "string",
-                    "enum": ["MB Upstream Port", "BackplanePort"]
-                },
-                "PowerPort": {
-                    "type": "boolean"
-                },
-                "Type": {
-                    "type": "string",
-                    "const": "DownstreamPort"
-                }
-            },
-            "required": ["Name", "Type", "ConnectsToType"],
-            "type": "object"
-        },
         "Types": {
             "Name": {
                 "type": "string"
