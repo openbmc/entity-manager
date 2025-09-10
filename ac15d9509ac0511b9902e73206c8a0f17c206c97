@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "36c57ffc_56f6d924",
+        "filename": "configurations/meta/clemente_hdd_nvme.json",
+        "patchSetId": 2
+      },
+      "lineNbr": 52,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2025-09-10T01:46:53Z",
+      "side": 1,
+      "message": "We need something here to differentiate that this is only loaded on a Clemente system.  Right now with just a generic bus/address/product match, any other system with the same bus/address and an SSD can end up loading this commit.",
+      "range": {
+        "startLine": 48,
+        "startChar": 0,
+        "endLine": 52,
+        "endChar": 10
+      },
+      "revId": "ac15d9509ac0511b9902e73206c8a0f17c206c97",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    }
+  ]
+}
