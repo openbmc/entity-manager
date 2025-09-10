@@ -1,0 +1,55 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "11f402bc_16eb688c",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 18
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1002504
+      },
+      "writtenOn": "2025-09-10T20:57:50Z",
+      "side": 1,
+      "message": "tested on nvl32-obmc, and it works for me. Thanks for the patch",
+      "revId": "927787e307d44e5f7d0bfbc4834229134a58eece",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9a150232_e76c39da",
+        "filename": "src/fru_device/fru_utils.cpp",
+        "patchSetId": 18
+      },
+      "lineNbr": 989,
+      "author": {
+        "id": 1002504
+      },
+      "writtenOn": "2025-09-10T20:57:50Z",
+      "side": 1,
+      "message": "not blocking but this may be worth breaking out as a function in a future commit. This whole chunk seems to just calculate a given area\u0027s size.",
+      "revId": "927787e307d44e5f7d0bfbc4834229134a58eece",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9e7cfb4a_a2404467",
+        "filename": "src/fru_device/fru_utils.cpp",
+        "patchSetId": 18
+      },
+      "lineNbr": 1269,
+      "author": {
+        "id": 1002504
+      },
+      "writtenOn": "2025-09-10T20:57:50Z",
+      "side": 1,
+      "message": "nit: use the constant please.",
+      "revId": "927787e307d44e5f7d0bfbc4834229134a58eece",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    }
+  ]
+}
