@@ -50,6 +50,7 @@ configs = [
     'flextronics_s-1100adu00-201_psu.json',
     'fp5280g3_chassis.json',
     'fp5280g3_fanboard.json',
+    'gigabyte/gigabyte_msx4_mg1.json',
     'gospower_g1136-1300wna_psu.json',
     'hpe/dl360g12_baseboard.json',
     'ibm/balcones.json',
