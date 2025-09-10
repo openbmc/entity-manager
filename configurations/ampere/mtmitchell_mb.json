@@ -2050,10 +2050,6 @@
                 "Type": "I2CFan"
             },
             {
-                "Name": "MB Upstream Port",
-                "Type": "MB Upstream Port"
-            },
-            {
                 "Name": "NVMeM2_MaxTemp",
                 "Sensors": [
                     "m2nvme0",
@@ -2117,6 +2113,16 @@
                 "Bus": 81,
                 "Name": "m2nvme1",
                 "Type": "NVME1000"
+            },
+            {
+                "Name": "ContainPort",
+                "PortType": "containing",
+                "Type": "Port"
+            },
+            {
+                "Name": "PowerPort",
+                "PortType": "powered_by",
+                "Type": "Port"
             },
             {
                 "Address": "0x48",
@@ -2284,10 +2290,14 @@
     {
         "Exposes": [
             {
-                "ConnectsToType": "MB Upstream Port",
-                "Name": "PowerSupply$ADDRESS % 80 Downstream Port",
-                "PowerPort": true,
-                "Type": "DownstreamPort"
+                "Name": "PowerPort",
+                "PortType": "powering",
+                "Type": "Port"
+            },
+            {
+                "Name": "ContainPort",
+                "PortType": "contained_by",
+                "Type": "Port"
             }
         ],
         "Name": "PowerSupply$ADDRESS % 80",
