@@ -215,6 +215,7 @@ configs = [
     'nvidia/nvidia_gb200.json',
     'nvidia/nvidia_gb300.json',
     'nvidia/nvidia_hmc.json',
+    'nvidia/nvidia_rtx6000_pro.json',
     'ocp/cx7_ocp.json',
     'ocp/cx8_ocp.json',
     'solum/pssf132202a.json',
