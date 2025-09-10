@@ -1237,10 +1237,6 @@
                 "Type": "I2CFan"
             },
             {
-                "Name": "MB Upstream Port",
-                "Type": "MB Upstream Port"
-            },
-            {
                 "EntityId": 4,
                 "EntityInstance": 1,
                 "MaxValue": 127,
@@ -1496,6 +1492,16 @@
                 "Name": "Zone 1",
                 "Type": "Pid.Zone",
                 "UpdateThermalsTimeMS": 6000
+            },
+            {
+                "Name": "ContainPort",
+                "PortType": "containing",
+                "Type": "Port"
+            },
+            {
+                "Name": "PowerPort",
+                "PortType": "powered_by",
+                "Type": "Port"
             },
             {
                 "Class": "temp",
@@ -2228,10 +2234,14 @@
     {
         "Exposes": [
             {
-                "ConnectsToType": "MB Upstream Port",
-                "Name": "PowerSupply$ADDRESS % 80 Downstream Port",
-                "PowerPort": true,
-                "Type": "DownstreamPort"
+                "Name": "ContainPort",
+                "PortType": "contained_by",
+                "Type": "Port"
+            },
+            {
+                "Name": "PowerPort",
+                "PortType": "powering",
+                "Type": "Port"
             }
         ],
         "Name": "PowerSupply$ADDRESS % 80",
