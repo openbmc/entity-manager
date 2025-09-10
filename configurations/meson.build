@@ -54,6 +54,7 @@ configs = [
     'genesis3_baseboard.json',
     'genesis3_chassis.json',
     'genesis3_psu.json',
+    'gigabyte_msx4_mg1.json',
     'gospower_g1136-1300wna_psu.json',
     'hpe/dl360g12_baseboard.json',
     'ibm_tacoma_rack_controller.json',
