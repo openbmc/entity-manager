@@ -88,6 +88,24 @@
       "parentUuid": "b6b1e126_eb6556e5",
       "revId": "5cd44d2e5c2d100b0087f68a310826e6a41e0609",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "afd3f74d_02b92978",
+        "filename": "src/entity_manager/topology.cpp",
+        "patchSetId": 2
+      },
+      "lineNbr": 151,
+      "author": {
+        "id": 1001526
+      },
+      "writtenOn": "2025-09-10T08:32:03Z",
+      "side": 1,
+      "message": "I understand it now.\n\nIf assocName is \"powering\", then the upstream path passed into `fillAssocForPortId` is the board with an power port. However, this is skipping board types that are not Chassis or Board, so if the power port is configured in a board of type PowerSupply, then the assoc will be skipped.\n\nThe test case passed because the subchassis is defined as \"Chassis\" type.\n\nAm I missing something here?",
+      "parentUuid": "0490dfae_0e8f8981",
+      "revId": "5cd44d2e5c2d100b0087f68a310826e6a41e0609",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }
