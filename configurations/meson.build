@@ -38,6 +38,7 @@ configs = [
     'foxconn-industrial-internet/kudo_motherboard.json',
     'foxconn-industrial-internet/mori_bmc.json',
     'foxconn-industrial-internet/mori_motherboard.json',
+    'gigabyte/gigabyte_msx4_mg1.json',
     'gospower/gospower_g1136-1300wna_psu.json',
     'hpe/dl360g12_baseboard.json',
     'ibm/balcones.json',
