@@ -1053,10 +1053,6 @@
                 "Type": "EEPROM"
             },
             {
-                "Name": "MB Upstream Port",
-                "Type": "MB Upstream Port"
-            },
-            {
                 "Name": "S0_DIMMG0_Temp",
                 "Sensors": [
                     "S0_DIMM_CH0_Temp",
@@ -1345,6 +1341,16 @@
                 "Bus": "81",
                 "Name": "nvme25",
                 "Type": "NVME1000"
+            },
+            {
+                "Name": "ContainPort",
+                "PortType": "containing",
+                "Type": "Port"
+            },
+            {
+                "Name": "PowerPort",
+                "PortType": "powered_by",
+                "Type": "Port"
             },
             {
                 "Address": "0x28",
@@ -1939,10 +1945,14 @@
     {
         "Exposes": [
             {
-                "ConnectsToType": "MB Upstream Port",
-                "Name": "PowerSupply$ADDRESS % 80 Downstream Port",
-                "PowerPort": true,
-                "Type": "DownstreamPort"
+                "Name": "PowerPort",
+                "PortType": "powering",
+                "Type": "Port"
+            },
+            {
+                "Name": "ContainPort",
+                "PortType": "contained_by",
+                "Type": "Port"
             }
         ],
         "Name": "PowerSupply$ADDRESS % 80",
