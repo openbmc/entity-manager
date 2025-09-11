@@ -109,7 +109,9 @@
             ],
             "Type": "INA233",
             "iout1_Name": "SPIDER_PMON_12V_STBY_CURR_A",
+            "iout1_Scale": 2500,
             "pout1_Name": "SPIDER_PMON_12V_STBY_PWR_W",
+            "pout1_Scale": 2500000,
             "vout1_Name": "SPIDER_PMON_12V_STBY_VOLT_V"
         },
         {
@@ -122,30 +124,6 @@
             ],
             "Name": "SPIDER_PMON_NIC0_12V",
             "Thresholds": [
-                {
-                    "Direction": "greater than",
-                    "Hysteresis": 0,
-                    "Label": "iout1",
-                    "Name": "upper non recoverable",
-                    "Severity": 4,
-                    "Value": 5.4
-                },
-                {
-                    "Direction": "greater than",
-                    "Hysteresis": 0,
-                    "Label": "iout1",
-                    "Name": "upper critical",
-                    "Severity": 1,
-                    "Value": 4.51
-                },
-                {
-                    "Direction": "greater than",
-                    "Hysteresis": 0,
-                    "Label": "iout1",
-                    "Name": "upper non critical",
-                    "Severity": 0,
-                    "Value": 4.305
-                },
                 {
                     "Direction": "greater than",
                     "Hysteresis": 0,
@@ -221,7 +199,9 @@
             ],
             "Type": "INA233",
             "iout1_Name": "SPIDER_PMON_NIC0_12V_CURR_A",
+            "iout1_Scale": 2500,
             "pout1_Name": "SPIDER_PMON_NIC0_12V_PWR_W",
+            "pout1_Scale": 2500000,
             "vout1_Name": "SPIDER_PMON_NIC0_12V_VOLT_V"
         },
         {
@@ -234,30 +214,6 @@
             ],
             "Name": "SPIDER_PMON_NIC1_12V",
             "Thresholds": [
-                {
-                    "Direction": "greater than",
-                    "Hysteresis": 0,
-                    "Label": "iout1",
-                    "Name": "upper non recoverable",
-                    "Severity": 4,
-                    "Value": 5.4
-                },
-                {
-                    "Direction": "greater than",
-                    "Hysteresis": 0,
-                    "Label": "iout1",
-                    "Name": "upper critical",
-                    "Severity": 1,
-                    "Value": 4.51
-                },
-                {
-                    "Direction": "greater than",
-                    "Hysteresis": 0,
-                    "Label": "iout1",
-                    "Name": "upper non critical",
-                    "Severity": 0,
-                    "Value": 4.305
-                },
                 {
                     "Direction": "greater than",
                     "Hysteresis": 0,
@@ -333,7 +289,9 @@
             ],
             "Type": "INA233",
             "iout1_Name": "SPIDER_PMON_NIC1_12V_CURR_A",
+            "iout1_Scale": 2500,
             "pout1_Name": "SPIDER_PMON_NIC1_12V_PWR_W",
+            "pout1_Scale": 2500000,
             "vout1_Name": "SPIDER_PMON_NIC1_12V_VOLT_V"
         },
         {
@@ -346,30 +304,6 @@
             ],
             "Name": "SPIDER_PMON_NIC2_12V",
             "Thresholds": [
-                {
-                    "Direction": "greater than",
-                    "Hysteresis": 0,
-                    "Label": "iout1",
-                    "Name": "upper non recoverable",
-                    "Severity": 4,
-                    "Value": 5.4
-                },
-                {
-                    "Direction": "greater than",
-                    "Hysteresis": 0,
-                    "Label": "iout1",
-                    "Name": "upper critical",
-                    "Severity": 1,
-                    "Value": 4.51
-                },
-                {
-                    "Direction": "greater than",
-                    "Hysteresis": 0,
-                    "Label": "iout1",
-                    "Name": "upper non critical",
-                    "Severity": 0,
-                    "Value": 4.305
-                },
                 {
                     "Direction": "greater than",
                     "Hysteresis": 0,
@@ -445,7 +379,9 @@
             ],
             "Type": "INA233",
             "iout1_Name": "SPIDER_PMON_NIC2_12V_CURR_A",
+            "iout1_Scale": 2500,
             "pout1_Name": "SPIDER_PMON_NIC2_12V_PWR_W",
+            "pout1_Scale": 2500000,
             "vout1_Name": "SPIDER_PMON_NIC2_12V_VOLT_V"
         },
         {
@@ -458,30 +394,6 @@
             ],
             "Name": "SPIDER_PMON_NIC3_12V",
             "Thresholds": [
-                {
-                    "Direction": "greater than",
-                    "Hysteresis": 0,
-                    "Label": "iout1",
-                    "Name": "upper non recoverable",
-                    "Severity": 4,
-                    "Value": 5.4
-                },
-                {
-                    "Direction": "greater than",
-                    "Hysteresis": 0,
-                    "Label": "iout1",
-                    "Name": "upper critical",
-                    "Severity": 1,
-                    "Value": 4.51
-                },
-                {
-                    "Direction": "greater than",
-                    "Hysteresis": 0,
-                    "Label": "iout1",
-                    "Name": "upper non critical",
-                    "Severity": 0,
-                    "Value": 4.305
-                },
                 {
                     "Direction": "greater than",
                     "Hysteresis": 0,
@@ -557,7 +469,9 @@
             ],
             "Type": "INA233",
             "iout1_Name": "SPIDER_PMON_NIC3_12V_CURR_A",
+            "iout1_Scale": 2500,
             "pout1_Name": "SPIDER_PMON_NIC3_12V_PWR_W",
+            "pout1_Scale": 2500000,
             "vout1_Name": "SPIDER_PMON_NIC3_12V_VOLT_V"
         },
         {
