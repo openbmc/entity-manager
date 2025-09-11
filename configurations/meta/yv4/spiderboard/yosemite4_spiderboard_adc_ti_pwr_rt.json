@@ -544,16 +544,16 @@
             "Address": "0x40",
             "Bus": 14,
             "Labels": [
-                "in_voltage0",
-                "in_current0",
-                "in_power0"
+                "in_voltage1",
+                "in_power2",
+                "in_current3"
             ],
             "Name": "SPIDER_PMON_12V_STBY",
             "Thresholds": [
                 {
                     "Direction": "greater than",
                     "Hysteresis": 0,
-                    "Label": "in_current0",
+                    "Label": "in_current3",
                     "Name": "upper non recoverable",
                     "Severity": 4,
                     "Value": 1.5
@@ -561,7 +561,7 @@
                 {
                     "Direction": "greater than",
                     "Hysteresis": 0,
-                    "Label": "in_current0",
+                    "Label": "in_current3",
                     "Name": "upper critical",
                     "Severity": 1,
                     "Value": 0.88
@@ -569,7 +569,7 @@
                 {
                     "Direction": "greater than",
                     "Hysteresis": 0,
-                    "Label": "in_current0",
+                    "Label": "in_current3",
                     "Name": "upper non critical",
                     "Severity": 0,
                     "Value": 0.84
@@ -577,7 +577,7 @@
                 {
                     "Direction": "greater than",
                     "Hysteresis": 0,
-                    "Label": "in_power0",
+                    "Label": "in_power2",
                     "Name": "upper non recoverable",
                     "Severity": 4,
                     "Value": 18.75
@@ -585,7 +585,7 @@
                 {
                     "Direction": "greater than",
                     "Hysteresis": 0,
-                    "Label": "in_power0",
+                    "Label": "in_power2",
                     "Name": "upper critical",
                     "Severity": 1,
                     "Value": 11
@@ -593,7 +593,7 @@
                 {
                     "Direction": "greater than",
                     "Hysteresis": 0,
-                    "Label": "in_power0",
+                    "Label": "in_power2",
                     "Name": "upper non critical",
                     "Severity": 0,
                     "Value": 10.5
@@ -601,7 +601,7 @@
                 {
                     "Direction": "greater than",
                     "Hysteresis": 0,
-                    "Label": "in_voltage0",
+                    "Label": "in_voltage1",
                     "Name": "upper non recoverable",
                     "Severity": 4,
                     "Value": 14.333
@@ -609,7 +609,7 @@
                 {
                     "Direction": "greater than",
                     "Hysteresis": 0,
-                    "Label": "in_voltage0",
+                    "Label": "in_voltage1",
                     "Name": "upper critical",
                     "Severity": 1,
                     "Value": 13.176
@@ -617,7 +617,7 @@
                 {
                     "Direction": "greater than",
                     "Hysteresis": 0,
-                    "Label": "in_voltage0",
+                    "Label": "in_voltage1",
                     "Name": "upper non critical",
                     "Severity": 0,
                     "Value": 13.054
@@ -625,7 +625,7 @@
                 {
                     "Direction": "less than",
                     "Hysteresis": 0,
-                    "Label": "in_voltage0",
+                    "Label": "in_voltage1",
                     "Name": "lower non critical",
                     "Severity": 0,
                     "Value": 11.346
@@ -633,7 +633,7 @@
                 {
                     "Direction": "less than",
                     "Hysteresis": 0,
-                    "Label": "in_voltage0",
+                    "Label": "in_voltage1",
                     "Name": "lower critical",
                     "Severity": 1,
                     "Value": 11.224
@@ -641,31 +641,34 @@
                 {
                     "Direction": "less than",
                     "Hysteresis": 0,
-                    "Label": "in_voltage0",
+                    "Label": "in_voltage1",
                     "Name": "lower non recoverable",
                     "Severity": 4,
                     "Value": 10.091
                 }
             ],
             "Type": "RTQ6056",
-            "in_current0_Name": "SPIDER_PMON_12V_STBY_CURR_A",
-            "in_power0_Name": "SPIDER_PMON_12V_STBY_PWR_W",
-            "in_voltage0_Name": "SPIDER_PMON_12V_STBY_VOLT_V"
+            "in_current3_Name": "SPIDER_PMON_12V_STBY_CURR_A",
+            "in_current3_Scale": 2500,
+            "in_power2_Name": "SPIDER_PMON_12V_STBY_PWR_W",
+            "in_power2_Scale": 100,
+            "in_voltage1_Name": "SPIDER_PMON_12V_STBY_VOLT_V",
+            "in_voltage1_Scale": 800
         },
         {
             "Address": "0x41",
             "Bus": 14,
             "Labels": [
-                "in_voltage0",
-                "in_current0",
-                "in_power0"
+                "in_voltage1",
+                "in_power2",
+                "in_current3"
             ],
             "Name": "SPIDER_PMON_NIC0_12V",
             "Thresholds": [
                 {
                     "Direction": "greater than",
                     "Hysteresis": 0,
-                    "Label": "in_current0",
+                    "Label": "in_current3",
                     "Name": "upper non recoverable",
                     "Severity": 4,
                     "Value": 5.4
@@ -673,7 +676,7 @@
                 {
                     "Direction": "greater than",
                     "Hysteresis": 0,
-                    "Label": "in_current0",
+                    "Label": "in_current3",
                     "Name": "upper critical",
                     "Severity": 1,
                     "Value": 4.51
@@ -681,7 +684,7 @@
                 {
                     "Direction": "greater than",
                     "Hysteresis": 0,
-                    "Label": "in_current0",
+                    "Label": "in_current3",
                     "Name": "upper non critical",
                     "Severity": 0,
                     "Value": 4.305
@@ -689,7 +692,7 @@
                 {
                     "Direction": "greater than",
                     "Hysteresis": 0,
-                    "Label": "in_power0",
+                    "Label": "in_power2",
                     "Name": "upper non recoverable",
                     "Severity": 4,
                     "Value": 67.5
@@ -697,7 +700,7 @@
                 {
                     "Direction": "greater than",
                     "Hysteresis": 0,
-                    "Label": "in_power0",
+                    "Label": "in_power2",
                     "Name": "upper critical",
                     "Severity": 1,
                     "Value": 56.375
@@ -705,7 +708,7 @@
                 {
                     "Direction": "greater than",
                     "Hysteresis": 0,
-                    "Label": "in_power0",
+                    "Label": "in_power2",
                     "Name": "upper non critical",
                     "Severity": 0,
                     "Value": 53.8125
@@ -713,7 +716,7 @@
                 {
                     "Direction": "greater than",
                     "Hysteresis": 0,
-                    "Label": "in_voltage0",
+                    "Label": "in_voltage1",
                     "Name": "upper non recoverable",
                     "Severity": 4,
                     "Value": 14.333
@@ -721,7 +724,7 @@
                 {
                     "Direction": "greater than",
                     "Hysteresis": 0,
-                    "Label": "in_voltage0",
+                    "Label": "in_voltage1",
                     "Name": "upper critical",
                     "Severity": 1,
                     "Value": 13.176
@@ -729,7 +732,7 @@
                 {
                     "Direction": "greater than",
                     "Hysteresis": 0,
-                    "Label": "in_voltage0",
+                    "Label": "in_voltage1",
                     "Name": "upper non critical",
                     "Severity": 0,
                     "Value": 13.054
@@ -737,7 +740,7 @@
                 {
                     "Direction": "less than",
                     "Hysteresis": 0,
-                    "Label": "in_voltage0",
+                    "Label": "in_voltage1",
                     "Name": "lower non critical",
                     "Severity": 0,
                     "Value": 11.346
@@ -745,7 +748,7 @@
                 {
                     "Direction": "less than",
                     "Hysteresis": 0,
-                    "Label": "in_voltage0",
+                    "Label": "in_voltage1",
                     "Name": "lower critical",
                     "Severity": 1,
                     "Value": 11.224
@@ -753,31 +756,34 @@
                 {
                     "Direction": "less than",
                     "Hysteresis": 0,
-                    "Label": "in_voltage0",
+                    "Label": "in_voltage1",
                     "Name": "lower non recoverable",
                     "Severity": 4,
                     "Value": 10.091
                 }
             ],
             "Type": "RTQ6056",
-            "in_current0_Name": "SPIDER_PMON_NIC0_12V_CURR_A",
-            "in_power0_Name": "SPIDER_PMON_NIC0_12V_PWR_W",
-            "in_voltage0_Name": "SPIDER_PMON_NIC0_12V_VOLT_V"
+            "in_current3_Name": "SPIDER_PMON_NIC0_12V_CURR_A",
+            "in_current3_Scale": 2500,
+            "in_power2_Name": "SPIDER_PMON_NIC0_12V_PWR_W",
+            "in_power2_Scale": 100,
+            "in_voltage1_Name": "SPIDER_PMON_NIC0_12V_VOLT_V",
+            "in_voltage1_Scale": 800
         },
         {
             "Address": "0x42",
             "Bus": 14,
             "Labels": [
-                "in_voltage0",
-                "in_current0",
-                "in_power0"
+                "in_voltage1",
+                "in_power2",
+                "in_current3"
             ],
             "Name": "SPIDER_PMON_NIC1_12V",
             "Thresholds": [
                 {
                     "Direction": "greater than",
                     "Hysteresis": 0,
-                    "Label": "in_current0",
+                    "Label": "in_current3",
                     "Name": "upper non recoverable",
                     "Severity": 4,
                     "Value": 5.4
@@ -785,7 +791,7 @@
                 {
                     "Direction": "greater than",
                     "Hysteresis": 0,
-                    "Label": "in_current0",
+                    "Label": "in_current3",
                     "Name": "upper critical",
                     "Severity": 1,
                     "Value": 4.51
@@ -793,7 +799,7 @@
                 {
                     "Direction": "greater than",
                     "Hysteresis": 0,
-                    "Label": "in_current0",
+                    "Label": "in_current3",
                     "Name": "upper non critical",
                     "Severity": 0,
                     "Value": 4.305
@@ -801,7 +807,7 @@
                 {
                     "Direction": "greater than",
                     "Hysteresis": 0,
-                    "Label": "in_power0",
+                    "Label": "in_power2",
                     "Name": "upper non recoverable",
                     "Severity": 4,
                     "Value": 67.5
@@ -809,7 +815,7 @@
                 {
                     "Direction": "greater than",
                     "Hysteresis": 0,
-                    "Label": "in_power0",
+                    "Label": "in_power2",
                     "Name": "upper critical",
                     "Severity": 1,
                     "Value": 56.375
@@ -817,7 +823,7 @@
                 {
                     "Direction": "greater than",
                     "Hysteresis": 0,
-                    "Label": "in_power0",
+                    "Label": "in_power2",
                     "Name": "upper non critical",
                     "Severity": 0,
                     "Value": 53.8125
@@ -825,7 +831,7 @@
                 {
                     "Direction": "greater than",
                     "Hysteresis": 0,
-                    "Label": "in_voltage0",
+                    "Label": "in_voltage1",
                     "Name": "upper non recoverable",
                     "Severity": 4,
                     "Value": 14.333
@@ -833,7 +839,7 @@
                 {
                     "Direction": "greater than",
                     "Hysteresis": 0,
-                    "Label": "in_voltage0",
+                    "Label": "in_voltage1",
                     "Name": "upper critical",
                     "Severity": 1,
                     "Value": 13.176
@@ -841,7 +847,7 @@
                 {
                     "Direction": "greater than",
                     "Hysteresis": 0,
-                    "Label": "in_voltage0",
+                    "Label": "in_voltage1",
                     "Name": "upper non critical",
                     "Severity": 0,
                     "Value": 13.054
@@ -849,7 +855,7 @@
                 {
                     "Direction": "less than",
                     "Hysteresis": 0,
-                    "Label": "in_voltage0",
+                    "Label": "in_voltage1",
                     "Name": "lower non critical",
                     "Severity": 0,
                     "Value": 11.346
@@ -857,7 +863,7 @@
                 {
                     "Direction": "less than",
                     "Hysteresis": 0,
-                    "Label": "in_voltage0",
+                    "Label": "in_voltage1",
                     "Name": "lower critical",
                     "Severity": 1,
                     "Value": 11.224
@@ -865,31 +871,34 @@
                 {
                     "Direction": "less than",
                     "Hysteresis": 0,
-                    "Label": "in_voltage0",
+                    "Label": "in_voltage1",
                     "Name": "lower non recoverable",
                     "Severity": 4,
                     "Value": 10.091
                 }
             ],
             "Type": "RTQ6056",
-            "in_current0_Name": "SPIDER_PMON_NIC1_12V_CURR_A",
-            "in_power0_Name": "SPIDER_PMON_NIC1_12V_PWR_W",
-            "in_voltage0_Name": "SPIDER_PMON_NIC1_12V_VOLT_V"
+            "in_current3_Name": "SPIDER_PMON_NIC1_12V_CURR_A",
+            "in_current3_Scale": 2500,
+            "in_power2_Name": "SPIDER_PMON_NIC1_12V_PWR_W",
+            "in_power2_Scale": 100,
+            "in_voltage1_Name": "SPIDER_PMON_NIC1_12V_VOLT_V",
+            "in_voltage1_Scale": 800
         },
         {
             "Address": "0x43",
             "Bus": 14,
             "Labels": [
-                "in_voltage0",
-                "in_current0",
-                "in_power0"
+                "in_voltage1",
+                "in_power2",
+                "in_current3"
             ],
             "Name": "SPIDER_PMON_NIC2_12V",
             "Thresholds": [
                 {
                     "Direction": "greater than",
                     "Hysteresis": 0,
-                    "Label": "in_current0",
+                    "Label": "in_current3",
                     "Name": "upper non recoverable",
                     "Severity": 4,
                     "Value": 5.4
@@ -897,7 +906,7 @@
                 {
                     "Direction": "greater than",
                     "Hysteresis": 0,
-                    "Label": "in_current0",
+                    "Label": "in_current3",
                     "Name": "upper critical",
                     "Severity": 1,
                     "Value": 4.51
@@ -905,7 +914,7 @@
                 {
                     "Direction": "greater than",
                     "Hysteresis": 0,
-                    "Label": "in_current0",
+                    "Label": "in_current3",
                     "Name": "upper non critical",
                     "Severity": 0,
                     "Value": 4.305
@@ -913,7 +922,7 @@
                 {
                     "Direction": "greater than",
                     "Hysteresis": 0,
-                    "Label": "in_power0",
+                    "Label": "in_power2",
                     "Name": "upper non recoverable",
                     "Severity": 4,
                     "Value": 67.5
@@ -921,7 +930,7 @@
                 {
                     "Direction": "greater than",
                     "Hysteresis": 0,
-                    "Label": "in_power0",
+                    "Label": "in_power2",
                     "Name": "upper critical",
                     "Severity": 1,
                     "Value": 56.375
@@ -929,7 +938,7 @@
                 {
                     "Direction": "greater than",
                     "Hysteresis": 0,
-                    "Label": "in_power0",
+                    "Label": "in_power2",
                     "Name": "upper non critical",
                     "Severity": 0,
                     "Value": 53.8125
@@ -937,7 +946,7 @@
                 {
                     "Direction": "greater than",
                     "Hysteresis": 0,
-                    "Label": "in_voltage0",
+                    "Label": "in_voltage1",
                     "Name": "upper non recoverable",
                     "Severity": 4,
                     "Value": 14.333
@@ -945,7 +954,7 @@
                 {
                     "Direction": "greater than",
                     "Hysteresis": 0,
-                    "Label": "in_voltage0",
+                    "Label": "in_voltage1",
                     "Name": "upper critical",
                     "Severity": 1,
                     "Value": 13.176
@@ -953,7 +962,7 @@
                 {
                     "Direction": "greater than",
                     "Hysteresis": 0,
-                    "Label": "in_voltage0",
+                    "Label": "in_voltage1",
                     "Name": "upper non critical",
                     "Severity": 0,
                     "Value": 13.054
@@ -961,7 +970,7 @@
                 {
                     "Direction": "less than",
                     "Hysteresis": 0,
-                    "Label": "in_voltage0",
+                    "Label": "in_voltage1",
                     "Name": "lower non critical",
                     "Severity": 0,
                     "Value": 11.346
@@ -969,7 +978,7 @@
                 {
                     "Direction": "less than",
                     "Hysteresis": 0,
-                    "Label": "in_voltage0",
+                    "Label": "in_voltage1",
                     "Name": "lower critical",
                     "Severity": 1,
                     "Value": 11.224
@@ -977,31 +986,34 @@
                 {
                     "Direction": "less than",
                     "Hysteresis": 0,
-                    "Label": "in_voltage0",
+                    "Label": "in_voltage1",
                     "Name": "lower non recoverable",
                     "Severity": 4,
                     "Value": 10.091
                 }
             ],
             "Type": "RTQ6056",
-            "in_current0_Name": "SPIDER_PMON_NIC2_12V_CURR_A",
-            "in_power0_Name": "SPIDER_PMON_NIC2_12V_PWR_W",
-            "in_voltage0_Name": "SPIDER_PMON_NIC2_12V_VOLT_V"
+            "in_current3_Name": "SPIDER_PMON_NIC2_12V_CURR_A",
+            "in_current3_Scale": 2500,
+            "in_power2_Name": "SPIDER_PMON_NIC2_12V_PWR_W",
+            "in_power2_Scale": 100,
+            "in_voltage1_Name": "SPIDER_PMON_NIC2_12V_VOLT_V",
+            "in_voltage1_Scale": 800
         },
         {
             "Address": "0x44",
             "Bus": 14,
             "Labels": [
-                "in_voltage0",
-                "in_current0",
-                "in_power0"
+                "in_voltage1",
+                "in_power2",
+                "in_current3"
             ],
             "Name": "SPIDER_PMON_NIC3_12V",
             "Thresholds": [
                 {
                     "Direction": "greater than",
                     "Hysteresis": 0,
-                    "Label": "in_current0",
+                    "Label": "in_current3",
                     "Name": "upper non recoverable",
                     "Severity": 4,
                     "Value": 5.4
@@ -1009,7 +1021,7 @@
                 {
                     "Direction": "greater than",
                     "Hysteresis": 0,
-                    "Label": "in_current0",
+                    "Label": "in_current3",
                     "Name": "upper critical",
                     "Severity": 1,
                     "Value": 4.51
@@ -1017,7 +1029,7 @@
                 {
                     "Direction": "greater than",
                     "Hysteresis": 0,
-                    "Label": "in_current0",
+                    "Label": "in_current3",
                     "Name": "upper non critical",
                     "Severity": 0,
                     "Value": 4.305
@@ -1025,7 +1037,7 @@
                 {
                     "Direction": "greater than",
                     "Hysteresis": 0,
-                    "Label": "in_power0",
+                    "Label": "in_power2",
                     "Name": "upper non recoverable",
                     "Severity": 4,
                     "Value": 67.5
@@ -1033,7 +1045,7 @@
                 {
                     "Direction": "greater than",
                     "Hysteresis": 0,
-                    "Label": "in_power0",
+                    "Label": "in_power2",
                     "Name": "upper critical",
                     "Severity": 1,
                     "Value": 56.375
@@ -1041,7 +1053,7 @@
                 {
                     "Direction": "greater than",
                     "Hysteresis": 0,
-                    "Label": "in_power0",
+                    "Label": "in_power2",
                     "Name": "upper non critical",
                     "Severity": 0,
                     "Value": 53.8125
@@ -1049,7 +1061,7 @@
                 {
                     "Direction": "greater than",
                     "Hysteresis": 0,
-                    "Label": "in_voltage0",
+                    "Label": "in_voltage1",
                     "Name": "upper non recoverable",
                     "Severity": 4,
                     "Value": 14.333
@@ -1057,7 +1069,7 @@
                 {
                     "Direction": "greater than",
                     "Hysteresis": 0,
-                    "Label": "in_voltage0",
+                    "Label": "in_voltage1",
                     "Name": "upper critical",
                     "Severity": 1,
                     "Value": 13.176
@@ -1065,7 +1077,7 @@
                 {
                     "Direction": "greater than",
                     "Hysteresis": 0,
-                    "Label": "in_voltage0",
+                    "Label": "in_voltage1",
                     "Name": "upper non critical",
                     "Severity": 0,
                     "Value": 13.054
@@ -1073,7 +1085,7 @@
                 {
                     "Direction": "less than",
                     "Hysteresis": 0,
-                    "Label": "in_voltage0",
+                    "Label": "in_voltage1",
                     "Name": "lower non critical",
                     "Severity": 0,
                     "Value": 11.346
@@ -1081,7 +1093,7 @@
                 {
                     "Direction": "less than",
                     "Hysteresis": 0,
-                    "Label": "in_voltage0",
+                    "Label": "in_voltage1",
                     "Name": "lower critical",
                     "Severity": 1,
                     "Value": 11.224
@@ -1089,16 +1101,19 @@
                 {
                     "Direction": "less than",
                     "Hysteresis": 0,
-                    "Label": "in_voltage0",
+                    "Label": "in_voltage1",
                     "Name": "lower non recoverable",
                     "Severity": 4,
                     "Value": 10.091
                 }
             ],
             "Type": "RTQ6056",
-            "in_current0_Name": "SPIDER_PMON_NIC3_12V_CURR_A",
-            "in_power0_Name": "SPIDER_PMON_NIC3_12V_PWR_W",
-            "in_voltage0_Name": "SPIDER_PMON_NIC3_12V_VOLT_V"
+            "in_current3_Name": "SPIDER_PMON_NIC3_12V_CURR_A",
+            "in_current3_Scale": 2500,
+            "in_power2_Name": "SPIDER_PMON_NIC3_12V_PWR_W",
+            "in_power2_Scale": 100,
+            "in_voltage1_Name": "SPIDER_PMON_NIC3_12V_VOLT_V",
+            "in_voltage1_Scale": 800
         },
         {
             "Class": "temp",
@@ -1170,7 +1185,7 @@
         }
     ],
     "Name": "Yosemite 4 Spider Board",
-    "Probe": "xyz.openbmc_project.FruDevice({'BOARD_PRODUCT_NAME': 'Spider Board ADC-TI PWR-RT', 'PRODUCT_PRODUCT_NAME': 'Yosemite V4', 'BOARD_MANUFACTURER': 'Wiwynn'})",
+    "Probe": "xyz.openbmc_project.FruDevice({'BOARD_PRODUCT_NAME': 'Spider Board ADC-TI PWR-RICHTECK', 'PRODUCT_PRODUCT_NAME': 'Yosemite V4', 'BOARD_MANUFACTURER': 'Wiwynn'})",
     "Type": "Board",
     "xyz.openbmc_project.Inventory.Decorator.Asset": {
         "BuildDate": "$BOARD_MANUFACTURE_DATE",
