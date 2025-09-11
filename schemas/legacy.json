@@ -818,6 +818,18 @@
                 },
                 "(power|curr|iout|pout|pin)(1[0-7]|[1-9])?_Offset$": {
                     "$ref": "#/$defs/Types/OffsetType"
+                },
+                "(in_power|in_current)(1[0-7]|[1-9])Name": {
+                     "ref": "#/defs/Types/Name" 
+                },
+                "(in_power|in_current)(1[0-7]|[1-9])_Scale": { 
+                    "ref": "#/defs/Types/ScaleValue" 
+                },
+                "(in_power|in_current)(1[0-7]|[1-9])(Min|Max)": { 
+                    "ref": "#/defs/Types/MinMaxType" 
+                },
+                "(in_power|in_current)(1[0-7]|[1-9])?_Offset": { 
+                    "ref": "#/defs/Types/OffsetType" 
                 }
             },
             "properties": {
