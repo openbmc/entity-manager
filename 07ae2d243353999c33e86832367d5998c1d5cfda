@@ -16,6 +16,24 @@
       "message": "I\u0027m not interested in maintaining a threshold so close to the largest at this time.  Maintaining a hard threshold requires that I have to reject patches that make functions longer.\n\nI would be in support of a threshold that had ~30-50% margin on the longest length present in the repo today, so we\u0027d prevent new regressions.",
       "revId": "07ae2d243353999c33e86832367d5998c1d5cfda",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "820e788f_f86d680c",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-09-11T08:22:50Z",
+      "side": 1,
+      "message": "\u003e Maintaining a hard threshold requires that I have to reject patches that make functions longer.\n\nIf there is a good reason (such as `clang-format` requiring it or some other tradeoff), we can always increase this threshold. It does not mean you have to reject all patches which increase it.\n\n\n\n\n\u003e I would be in support of a threshold that had ~30-50% margin on the longest length present in the repo today, so we\u0027d prevent new regressions.\n\nIMO your idea is actually encouraging regressions since we would leave space for them to occur unnoticed.\n\nExample:\n\nIf our longest function is e.g. `100` lines, and we set the threshold to `150` (50% margin), and a patch `P1` comes in which increases the size of that function to `120` lines, it will not be flagged by the check.\n\nThen when `P1` gets merged we get:\n\n- a regression on following cpp core guidelines and readability\n- a mismatch with your goal to have a 50% margin\n\n\nSo instead of using some percentage of margin, we can closely follow the largest function, adjust if necessary, and make sure we are proceeding in the right direction.\n\nMy intent with this change and threshold is that any patch which makes the problem worse (increasing the size of our largest functions and making the code less readable) has to document that it\u0027s doing so by adjusting this threshold to match.\n\nWhat do you think 😊",
+      "parentUuid": "f9d0f069_20f7dbbb",
+      "revId": "07ae2d243353999c33e86832367d5998c1d5cfda",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }
