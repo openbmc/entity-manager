@@ -70,6 +70,24 @@
       "parentUuid": "b8bd1b03_8bb3bc86",
       "revId": "737cbfebf1f6020900411a865b6a92a60b40a822",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5832669b_80e19976",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 3
+      },
+      "lineNbr": 12,
+      "author": {
+        "id": 1002505
+      },
+      "writtenOn": "2025-09-11T09:53:12Z",
+      "side": 1,
+      "message": "You\u0027re right. The ioctl command writes both higher and lower byte which may not work with 8-bit address.\n\nUpdated the code to check if device is 16 or 8 bits. Then calls ioctl or smbus commands respectively.\n\nUpdated my commit message.",
+      "parentUuid": "4ea0a7ee_3516567f",
+      "revId": "737cbfebf1f6020900411a865b6a92a60b40a822",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }
