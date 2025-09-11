@@ -34,6 +34,24 @@
       "parentUuid": "092dbbaf_f47b3733",
       "revId": "ee0b3932e43c0374a27ad116c0dfcf52320f6cf4",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7df42b06_b784225b",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2025-09-11T16:07:06Z",
+      "side": 1,
+      "message": "Not quite, I had asked for anything new or modified to have a manufacturer probe statement, and if people are modifying and moving files around, I suspect they have the systems to know who the manufacturer field is in the fru and update it.\n\nAnything that seems like I chained the probe statement updates to the folder structure is coincidental/because the author could probably fix it.\n\n\n\u003e IBM specific eeprom format\n\nYou kind of answered this yourself in the question, but just to make my position clear, the IBM VPD file format IS the match on the manufacturer, because nobody except IBM will be putting that file format on their systems.\n\nThe goal here is that we correctly detect the hardware, with prejudice toward avoiding false positives (matching on the wrong hardware).",
+      "parentUuid": "5d5380c0_e0c7fccd",
+      "revId": "ee0b3932e43c0374a27ad116c0dfcf52320f6cf4",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }
