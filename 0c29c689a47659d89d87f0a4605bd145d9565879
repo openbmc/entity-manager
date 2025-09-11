@@ -3,6 +3,40 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "6dd19277_d7d02a8d",
+        "filename": "src/fru_device/fru_device.cpp",
+        "patchSetId": 6
+      },
+      "lineNbr": 1017,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2025-09-11T15:29:21Z",
+      "side": 1,
+      "message": "This section needs broken down into a method.",
+      "revId": "0c29c689a47659d89d87f0a4605bd145d9565879",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "17676b1f_50b2858c",
+        "filename": "src/fru_device/fru_device.cpp",
+        "patchSetId": 6
+      },
+      "lineNbr": 1027,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2025-09-11T15:29:21Z",
+      "side": 1,
+      "message": "Considering we have to now maintain this code anyway, should 8 bit addressing run through here as well so we can keep things simpler?",
+      "revId": "0c29c689a47659d89d87f0a4605bd145d9565879",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "5dbae548_7d766f96",
         "filename": "src/fru_device/fru_device.cpp",
         "patchSetId": 6
@@ -14,6 +48,24 @@
       "writtenOn": "2025-09-11T13:49:50Z",
       "side": 1,
       "message": "This returns `0` on success https://docs.kernel.org/driver-api/i2c.html\nso `isSuccess` would be false and we would go into the error path on 1056, right?",
+      "revId": "0c29c689a47659d89d87f0a4605bd145d9565879",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7682f205_05ca5aea",
+        "filename": "src/fru_device/fru_device.cpp",
+        "patchSetId": 6
+      },
+      "lineNbr": 1046,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2025-09-11T15:29:21Z",
+      "side": 1,
+      "message": "+1",
+      "parentUuid": "5dbae548_7d766f96",
       "revId": "0c29c689a47659d89d87f0a4605bd145d9565879",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
