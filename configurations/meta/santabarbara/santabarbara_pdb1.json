@@ -70,7 +70,10 @@
             ],
             "Name": "PDB1_BUSBAR_TSENSE_P1",
             "Type": "INA238",
-            "curr1_Name": "PDB1_BUSBAR_TSENSE_P1_CURR_A"
+            "curr1_Max": 0.1,
+            "curr1_Min": 0,
+            "curr1_Name": "PDB1_BUSBAR_TSENSE_P1_CURR_A",
+            "curr1_Scale": 50000
         },
         {
             "Address": "0x4d",
@@ -80,7 +83,10 @@
             ],
             "Name": "PDB1_BUSBAR_TSENSE_P2",
             "Type": "INA238",
-            "curr1_Name": "PDB1_BUSBAR_TSENSE_P2_CURR_A"
+            "curr1_Max": 0.1,
+            "curr1_Min": 0,
+            "curr1_Name": "PDB1_BUSBAR_TSENSE_P2_CURR_A",
+            "curr1_Scale": 50000
         },
         {
             "Address": "0x45",
