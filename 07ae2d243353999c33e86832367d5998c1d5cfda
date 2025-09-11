@@ -52,6 +52,24 @@
       "parentUuid": "820e788f_f86d680c",
       "revId": "07ae2d243353999c33e86832367d5998c1d5cfda",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1c5c3c0e_7f432ecd",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2025-09-11T16:27:51Z",
+      "side": 1,
+      "message": "\u003e Let\u0027s go back to where you documented this as a desired check https://github.com/openbmc/docs/commit/ba560cc31297caddfc157c540ae9e6d760d630e5\n\nTo be clear, we now differentiate between \"These checks are able to be enabled\" and \"These are checks people are trying to enable\" I made it very clear in the review that I don\u0027t find that check to hit the threshold of general usefulness at this point, and I think it can be actively combative to people trying to fix one thing, or clean up code.\n\n\u003e \n\u003e and specifically, with the original value of `60`, which was taken directly from C++ core guidelines.\n\nCPP core guidelines also says to not enforce it because there are exceptions, so if our argument is based on that, this patchset is incorrect.\n\n\u003e \n\u003e \u003e These two checks around cognative complexity and function size were put\n\u003e in this file aspirationally.  To date no repositories have been able to\n\u003e successfully enable these two checks.  This maintainer has personally\n\u003e tried and we\u0027d either have to bypass so many functions that the check\n\u003e became more cumbersome to maintain, or we\u0027d have to raise the limits to\n\u003e where they were not useful.  While I\u0027m hopeful that these checks could\n\u003e be enabled in the future, they don\u0027t match the reality of where tidy is\n\u003e at.\n\u003e \n\u003e and you listed an overly large limit as `no longer useful`.\n\u003e \n\u003e Now you want to raise the limit above where the codebase is currently at.\n\nTo be clear, at this time, I don\u0027t think this check helps with maintenance, and I as a maintainer am not interested in enabling it.  If the other maintainers here are interested in maintaining it, I\u0027m happy to have that discussion.\n\nIf we got the codebase to the point where we passed the 60 line rule, THEN we enforced a size that\u0027s larger than that, that\u0027s something I could be in support of, but in that order, with abstraction patterns that show we can actually get the line count down.\n\n\u003e \n\u003e This is going against the documented intention of moving to the documented value for this check.\n\nThat\u0027s not what the \"desired\" list intends.  The desired list is \"someone is trying to enable this, and the project doesn\u0027t immediately see objections to that\".  The desired list also keeps the default of 60 lines, which this patchset doesn\u0027t so arguing that this matches the desired tidy doesn\u0027t track for me.\n\n\u003e \n\u003e \u003e To date no repositories have been able to\n\u003e successfully enable these two checks.\n\u003e \n\u003e EM is now able to enable this check at a reasonable value of 170.\n\nThis is the point, you and I disagree that 170 is reasonable.  There is nothing documented that says that 170 is reasonable and 171 is unreasonable, so when someone checks in a 171 line method (or more likely adds to the 170 line method) I as the maintainer now have to take time to explain the background of why their (theoretical) one line bug fix has to include a multi line refactor.\n\n\u003e \n\u003e Let\u0027s not mess up this opportunity, it might not come back.\n\u003e \n\u003e If we do not enable this check now, 20 patches later we might be at 200 or 250 lines for the longest function.\n\nThis assumes that maintainers don\u0027t do their jobs, and that there\u0027s significant active development going on.  I routinely (even an hour ago) commented that a function needed to be made shorter and utilities broken out.  We\u0027ve continued to improve over time without this check, I suspect it will continue to happen in its absence.\n\nThe opportunity here is to work on breaking down the largest functions and add unit tests where appropriate, not enabling some blanket check that isn\u0027t an easy refactor for people new to the project to make.",
+      "parentUuid": "b9c19d04_9ef021cb",
+      "revId": "07ae2d243353999c33e86832367d5998c1d5cfda",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }
