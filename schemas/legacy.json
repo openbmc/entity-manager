@@ -1,6 +1,43 @@
 {
     "$schema": "http://json-schema.org/draft-07/schema#",
     "$defs": {
+        "MCTPEndpoint": {
+            "description": "downstream support for static eid",
+            "additionalProperties": false,
+            "properties": {
+                "Address": {
+                    "$ref": "#/$defs/Types/AddressArray"
+                },
+                "Bus": {
+                    "$ref": "#/$defs/Types/Bus"
+                },
+                "Class": {
+                    "$ref": "#/$defs/Types/MCTPClass"
+                },
+                "EndpointId": {
+                    "$ref": "#/$defs/Types/EndpointId"
+                },
+                "IANA": {
+                    "$ref": "#/$defs/Types/IANA"
+                },
+                "Name": {
+                    "$ref": "#/$defs/Types/Name"
+                },
+                "Type": {
+                    "type": "string",
+                    "const": "MCTPEndpoint"
+                }
+            },
+            "required": [
+                "Address",
+                "Bus",
+                "Class",
+                "EndpointId",
+                "Name",
+                "Type"
+            ],
+            "type": "object"
+        },
         "ExitAirTempSensor": {
             "description": "implemented in dbus-sensors: ExitAirTempSensor",
             "additionalProperties": false,
@@ -1176,6 +1213,9 @@
             "EntityInstance": {
                 "type": "number"
             },
+            "EndpointId": {
+                "type": ["string", "number"]
+            },
             "GpioPins": {
                 "items": {
                     "type": "number"
@@ -1184,6 +1224,9 @@
             },
             "GpioPolarity": {
                 "enum": ["Low"]
+            },
+            "IANA": {
+                "type": "string"
             },
             "Index": {
                 "type": "number",
@@ -1204,6 +1247,10 @@
             },
             "MaxValue": {
                 "type": "number"
+            },
+            "MCTPClass": {
+                "type": "string",
+                "enum": ["I2C", "I3C"]
             },
             "MinMaxType": {
                 "type": "number"
