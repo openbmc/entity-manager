@@ -34,6 +34,24 @@
       "parentUuid": "f9d0f069_20f7dbbb",
       "revId": "07ae2d243353999c33e86832367d5998c1d5cfda",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b9c19d04_9ef021cb",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-09-11T13:42:35Z",
+      "side": 1,
+      "message": "Let\u0027s go back to where you documented this as a desired check https://github.com/openbmc/docs/commit/ba560cc31297caddfc157c540ae9e6d760d630e5\n\nand specifically, with the original value of `60`, which was taken directly from C++ core guidelines.\n\n\u003e These two checks around cognative complexity and function size were put\nin this file aspirationally.  To date no repositories have been able to\nsuccessfully enable these two checks.  This maintainer has personally\ntried and we\u0027d either have to bypass so many functions that the check\nbecame more cumbersome to maintain, or we\u0027d have to raise the limits to\nwhere they were not useful.  While I\u0027m hopeful that these checks could\nbe enabled in the future, they don\u0027t match the reality of where tidy is\nat.\n\nand you listed an overly large limit as `no longer useful`.\n\nNow you want to raise the limit above where the codebase is currently at.\n\nThis is going against the documented intention of moving to the documented value for this check.\n\n\u003e To date no repositories have been able to\nsuccessfully enable these two checks.\n\nEM is now able to enable this check at a reasonable value of 170.\n\nLet\u0027s not mess up this opportunity, it might not come back.\n\nIf we do not enable this check now, 20 patches later we might be at 200 or 250 lines for the longest function.",
+      "parentUuid": "820e788f_f86d680c",
+      "revId": "07ae2d243353999c33e86832367d5998c1d5cfda",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }
