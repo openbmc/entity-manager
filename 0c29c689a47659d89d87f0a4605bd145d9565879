@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5dbae548_7d766f96",
+        "filename": "src/fru_device/fru_device.cpp",
+        "patchSetId": 6
+      },
+      "lineNbr": 1046,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-09-11T13:49:50Z",
+      "side": 1,
+      "message": "This returns `0` on success https://docs.kernel.org/driver-api/i2c.html\nso `isSuccess` would be false and we would go into the error path on 1056, right?",
+      "revId": "0c29c689a47659d89d87f0a4605bd145d9565879",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    }
+  ]
+}
