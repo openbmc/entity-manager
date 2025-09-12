@@ -4,8 +4,12 @@
 
 #include <boost/container/flat_map.hpp>
 #include <nlohmann/json.hpp>
+#include <xyz/openbmc_project/Inventory/Decorator/Asset/common.hpp>
 
 #include <string>
+
+using DecoratorAsset =
+    sdbusplus::common::xyz::openbmc_project::inventory::decorator::Asset;
 
 void logDeviceAdded(const nlohmann::json& record)
 {
@@ -18,8 +22,7 @@ void logDeviceAdded(const nlohmann::json& record)
         return;
     }
     auto findType = record.find("Type");
-    auto findAsset =
-        record.find("xyz.openbmc_project.Inventory.Decorator.Asset");
+    auto findAsset = record.find(DecoratorAsset::interface);
 
     std::string model = "Unknown";
     std::string type = "Unknown";
@@ -72,8 +75,7 @@ void logDeviceRemoved(const nlohmann::json& record)
         return;
     }
     auto findType = record.find("Type");
-    auto findAsset =
-        record.find("xyz.openbmc_project.Inventory.Decorator.Asset");
+    auto findAsset = record.find(DecoratorAsset::interface);
 
     std::string model = "Unknown";
     std::string type = "Unknown";
