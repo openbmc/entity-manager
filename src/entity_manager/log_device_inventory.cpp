@@ -4,6 +4,7 @@
 
 #include <boost/container/flat_map.hpp>
 #include <nlohmann/json.hpp>
+#include <xyz/openbmc_project/Inventory/Decorator/Asset/common.hpp>
 
 #include <string>
 
@@ -18,8 +19,8 @@ struct InvAddRemoveInfo
 static InvAddRemoveInfo queryInvInfo(const nlohmann::json& record)
 {
     auto findType = record.find("Type");
-    auto findAsset =
-        record.find("xyz.openbmc_project.Inventory.Decorator.Asset");
+    auto findAsset = record.find(sdbusplus::common::xyz::openbmc_project::
+                                     inventory::decorator::Asset::interface);
 
     std::string model = "Unknown";
     std::string type = "Unknown";
