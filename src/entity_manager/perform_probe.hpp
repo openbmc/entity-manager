@@ -1,12 +1,16 @@
 #pragma once
 
-#include "perform_scan.hpp"
-
 #include <boost/container/flat_map.hpp>
+#include <nlohmann/json.hpp>
 
 #include <memory>
 #include <string>
 #include <vector>
+
+namespace scan
+{
+struct PerformScan;
+};
 
 namespace probe
 {
