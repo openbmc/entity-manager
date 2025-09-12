@@ -7,6 +7,11 @@
 #include <string>
 #include <vector>
 
+namespace scan
+{
+struct PerformScan;
+};
+
 namespace probe
 {
 

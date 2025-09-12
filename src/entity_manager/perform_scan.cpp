@@ -13,10 +13,7 @@
 #include <charconv>
 #include <flat_map>
 #include <flat_set>
-
-using GetSubTreeType = std::vector<
-    std::pair<std::string,
-              std::vector<std::pair<std::string, std::vector<std::string>>>>>;
+#include <list>
 
 constexpr const int32_t maxMapperDepth = 0;
 
@@ -96,13 +93,48 @@ static void processDbusObjects(
     }
 }
 
+void scan::PerformScan::findDBusObjectsCallback(
+    size_t retries,
+    std::vector<std::shared_ptr<probe::PerformProbe>> probeVector,
+    std::flat_set<std::string, std::less<>> interfaces,
+    const std::shared_ptr<scan::PerformScan>& scan,
+    boost::system::error_code& ec, const GetSubTreeType& interfaceSubtree)
+{
+    if (ec)
+    {
+        if (ec.value() == ENOENT)
+        {
+            return; // wasn't found by mapper
+        }
+        lg2::error("Error communicating to mapper");
+
+        if (retries == 0U)
+        {
+            // if we can't communicate to the mapper something is very
+            // wrong
+            std::exit(EXIT_FAILURE);
+        }
+
+        auto timer = std::make_shared<boost::asio::steady_timer>(io);
+        timer->expires_after(std::chrono::seconds(10));
+
+        timer->async_wait([timer, interfaces{std::move(interfaces)}, scan,
+                           probeVector{std::move(probeVector)}, retries,
+                           this](const boost::system::error_code&) mutable {
+            findDbusObjects(std::move(probeVector), std::move(interfaces), scan,
+                            retries - 1);
+        });
+        return;
+    }
+    processDbusObjects(probeVector, scan, interfaceSubtree, io);
+}
+
 // Populates scan->dbusProbeObjects with all interfaces and properties
 // for the paths that own the interfaces passed in.
-void findDbusObjects(
+void scan::PerformScan::findDbusObjects(
     std::vector<std::shared_ptr<probe::PerformProbe>>&& probeVector,
     std::flat_set<std::string, std::less<>>&& interfaces,
-    const std::shared_ptr<scan::PerformScan>& scan, boost::asio::io_context& io,
-    size_t retries = 5)
+    const std::shared_ptr<scan::PerformScan>& scan, size_t retries)
 {
     // Filter out interfaces already obtained.
     for (const auto& [path, probeInterfaces] : scan->dbusProbeObjects)
@@ -117,43 +149,13 @@ void findDbusObjects(
         return;
     }
 
+    const std::function<void(boost::system::error_code&, const GetSubTreeType&)>
+        cb = std::bind_front(&PerformScan::findDBusObjectsCallback, this,
+                             retries, probeVector, interfaces, scan);
+
     // find all connections in the mapper that expose a specific type
     scan->_em.systemBus->async_method_call(
-        [interfaces, probeVector{std::move(probeVector)}, scan, retries,
-         &io](boost::system::error_code& ec,
-              const GetSubTreeType& interfaceSubtree) mutable {
-            if (ec)
-            {
-                if (ec.value() == ENOENT)
-                {
-                    return; // wasn't found by mapper
-                }
-                lg2::error("Error communicating to mapper.");
-
-                if (retries == 0U)
-                {
-                    // if we can't communicate to the mapper something is very
-                    // wrong
-                    std::exit(EXIT_FAILURE);
-                }
-
-                auto timer = std::make_shared<boost::asio::steady_timer>(io);
-                timer->expires_after(std::chrono::seconds(10));
-
-                timer->async_wait(
-                    [timer, interfaces{std::move(interfaces)}, scan,
-                     probeVector{std::move(probeVector)}, retries,
-                     &io](const boost::system::error_code&) mutable {
-                        findDbusObjects(std::move(probeVector),
-                                        std::move(interfaces), scan, io,
-                                        retries - 1);
-                    });
-                return;
-            }
-
-            processDbusObjects(probeVector, scan, interfaceSubtree, io);
-        },
-        "xyz.openbmc_project.ObjectMapper",
+        cb, "xyz.openbmc_project.ObjectMapper",
         "/xyz/openbmc_project/object_mapper",
         "xyz.openbmc_project.ObjectMapper", "GetSubTree", "/", maxMapperDepth,
         interfaces);
@@ -698,7 +700,7 @@ void scan::PerformScan::run()
     // probe vector stores a shared_ptr to each PerformProbe that cares
     // about a dbus interface
     findDbusObjects(std::move(dbusProbePointers),
-                    std::move(dbusProbeInterfaces), shared_from_this(), io);
+                    std::move(dbusProbeInterfaces), shared_from_this());
 }
 
 scan::PerformScan::~PerformScan()
