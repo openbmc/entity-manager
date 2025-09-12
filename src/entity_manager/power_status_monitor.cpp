@@ -4,15 +4,18 @@
 #include "utils.hpp"
 
 #include <sdbusplus/bus/match.hpp>
+#include <xyz/openbmc_project/State/Host/client.hpp>
 
 #include <flat_map>
 
 namespace power
 {
 
-const static constexpr char* busname = "xyz.openbmc_project.State.Host";
-const static constexpr char* interface = "xyz.openbmc_project.State.Host";
-const static constexpr char* path = "/xyz/openbmc_project/state/host0";
+using HostState = sdbusplus::common::xyz::openbmc_project::state::Host;
+
+const static std::string path =
+    std::format("{}/{}{}", HostState::namespace_path::value,
+                HostState::namespace_path::host, 0);
 const static constexpr char* property = "CurrentHostState";
 
 PowerStatusMonitor::PowerStatusMonitor(sdbusplus::asio::connection& conn) :
@@ -21,7 +24,7 @@ PowerStatusMonitor::PowerStatusMonitor(sdbusplus::asio::connection& conn) :
                "type='signal',interface='" +
                    std::string(em_utils::properties::interface) + "',path='" +
                    std::string(power::path) + "',arg0='" +
-                   std::string(power::interface) + "'",
+                   std::string(HostState::interface) + "'",
                std::bind_front(&PowerStatusMonitor::handlePowerMatch, this))
 
 {
@@ -51,6 +54,8 @@ void PowerStatusMonitor::handlePowerMatch(sdbusplus::message_t& message)
 void PowerStatusMonitor::getInitialPowerStatus(
     sdbusplus::asio::connection& conn)
 {
+    lg2::debug("querying initial power state");
+
     conn.async_method_call(
         [this](boost::system::error_code ec,
                const std::variant<std::string>& state) {
@@ -60,8 +65,8 @@ void PowerStatusMonitor::getInitialPowerStatus(
             }
             powerStatusOn = std::get<std::string>(state).ends_with("Running");
         },
-        power::busname, power::path, em_utils::properties::interface,
-        em_utils::properties::get, power::interface, power::property);
+        HostState::interface, power::path, em_utils::properties::interface,
+        em_utils::properties::get, HostState::interface, power::property);
 }
 
 } // namespace power
