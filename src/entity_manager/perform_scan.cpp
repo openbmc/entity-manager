@@ -9,6 +9,7 @@
 
 #include <boost/asio/steady_timer.hpp>
 #include <phosphor-logging/lg2.hpp>
+#include <xyz/openbmc_project/ObjectMapper/client.hpp>
 
 #include <charconv>
 #include <flat_map>
@@ -153,12 +154,12 @@ void scan::PerformScan::findDbusObjects(
         cb = std::bind_front(&PerformScan::findDBusObjectsCallback, this,
                              retries, probeVector, interfaces, scan);
 
+    using Mapper = sdbusplus::common::xyz::openbmc_project::ObjectMapper;
+
     // find all connections in the mapper that expose a specific type
     scan->_em.systemBus->async_method_call(
-        cb, "xyz.openbmc_project.ObjectMapper",
-        "/xyz/openbmc_project/object_mapper",
-        "xyz.openbmc_project.ObjectMapper", "GetSubTree", "/", maxMapperDepth,
-        interfaces);
+        cb, Mapper::default_service, Mapper::instance_path, Mapper::interface,
+        "GetSubTree", "/", maxMapperDepth, interfaces);
 }
 
 static std::string getRecordName(const DBusInterface& probe,
