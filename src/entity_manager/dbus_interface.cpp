@@ -1,7 +1,6 @@
 #include "dbus_interface.hpp"
 
-#include "perform_probe.hpp"
-#include "utils.hpp"
+#include "../utils.hpp"
 
 #include <boost/algorithm/string/case_conv.hpp>
 #include <boost/container/flat_map.hpp>

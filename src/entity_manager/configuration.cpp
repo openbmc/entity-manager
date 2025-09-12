@@ -1,5 +1,6 @@
 #include "configuration.hpp"
 
+#include "../utils.hpp"
 #include "perform_probe.hpp"
 #include "utils.hpp"
 
