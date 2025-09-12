@@ -42,9 +42,11 @@ auto ConfigProvider::initialize(AddedCallback addConfig,
 auto ConfigProvider::getConfig(AddedCallback addConfig)
     -> sdbusplus::async::task<void>
 {
+    using Mapper = sdbusplus::common::xyz::openbmc_project::ObjectMapper;
+
     auto client = sdbusplus::client::xyz::openbmc_project::ObjectMapper<>(ctx)
-                      .service("xyz.openbmc_project.ObjectMapper")
-                      .path("/xyz/openbmc_project/object_mapper");
+                      .service(Mapper::default_service)
+                      .path(Mapper::instance_path);
 
     debug("calling 'GetSubTree' to find instances of {INTF}", "INTF",
           interface);
