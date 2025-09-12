@@ -1,7 +1,6 @@
 #include "dbus_interface.hpp"
 
-#include "perform_probe.hpp"
-#include "utils.hpp"
+#include "../utils.hpp"
 
 #include <phosphor-logging/lg2.hpp>
 
