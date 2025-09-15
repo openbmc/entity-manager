@@ -52,6 +52,24 @@
       "parentUuid": "5d5380c0_e0c7fccd",
       "revId": "ee0b3932e43c0374a27ad116c0dfcf52320f6cf4",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "32de599c_cf69d372",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-09-15T14:23:06Z",
+      "side": 1,
+      "message": "\u003e and if people are modifying and moving files around, I suspect they have the systems to know who the manufacturer field is in the fru and update it.\n\nFor the asrock configs i moved them based on the filename which contains `asrock` string.\n\nDo you want me to do some further research here on asrock website or other sites to confirm based on the system names?\n\n\n\u003e Anything that seems like I chained the probe statement updates to the folder structure is coincidental/because the author could probably fix it.\n\nDo you think changes like this one can be merged?\n\n\nEven if we end up moving a config into the wrong folder by accident, or having sub-optimal probe statement, at least we have attempted to create some structure.\n\n\nAlternatively, we can keep the flat structure, but i can imagine it may not scale that well as people loose the overview about their config files.\n\nAnd for some tasks it is essential to know at least some of the configs which are used in a given system. For example to configure associations correctly, which go across individual config files.",
+      "parentUuid": "7df42b06_b784225b",
+      "revId": "ee0b3932e43c0374a27ad116c0dfcf52320f6cf4",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }
