@@ -8,10 +8,10 @@
 #include <boost/algorithm/string/find.hpp>
 #include <boost/algorithm/string/replace.hpp>
 #include <boost/algorithm/string/split.hpp>
+#include <phosphor-logging/lg2.hpp>
 #include <sdbusplus/bus/match.hpp>
 
 #include <fstream>
-#include <iostream>
 #include <regex>
 
 const std::regex illegalDbusMemberRegex("[^A-Za-z0-9_]");
@@ -26,7 +26,7 @@ bool fwVersionIsSame()
     std::ifstream version(versionFile);
     if (!version.good())
     {
-        std::cerr << "Can't read " << versionFile << "\n";
+        lg2::error("Can't read {PATH}", "PATH", versionFile);
         return false;
     }
 
@@ -154,13 +154,13 @@ std::optional<std::string> templateCharReplace(
         // need at least 1 operation and number
         if (split.size() < 2)
         {
-            std::cerr << "Syntax error on template replacement of " << *strPtr
-                      << "\n";
+            lg2::error("Syntax error on template replacement of {STR}", "STR",
+                       *strPtr);
             for (const std::string& data : split)
             {
-                std::cerr << data << " ";
+                lg2::error("{T1} ", "T1", data);
             }
-            std::cerr << "\n";
+            lg2::error("");
             continue;
         }
 
