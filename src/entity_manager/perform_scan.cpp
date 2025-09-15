@@ -12,7 +12,6 @@
 #include <phosphor-logging/lg2.hpp>
 
 #include <charconv>
-#include <iostream>
 
 using GetSubTreeType = std::vector<
     std::pair<std::string,
@@ -35,8 +34,9 @@ void getInterfaces(
 {
     if (retries == 0U)
     {
-        std::cerr << "retries exhausted on " << instance.busName << " "
-                  << instance.path << " " << instance.interface << "\n";
+        lg2::error("retries exhausted on {BUSNAME} {PATH} {INTF}", "BUSNAME",
+                   instance.busName, "PATH", instance.path, "INTF",
+                   instance.interface);
         return;
     }
 
@@ -45,9 +45,9 @@ void getInterfaces(
          &io](boost::system::error_code& errc, const DBusInterface& resp) {
             if (errc)
             {
-                std::cerr << "error calling getall on  " << instance.busName
-                          << " " << instance.path << " "
-                          << instance.interface << "\n";
+                lg2::error("error calling getall on {BUSNAME} {PATH} {INTF}",
+                           "BUSNAME", instance.busName, "PATH", instance.path,
+                           "INTF", instance.interface);
 
                 auto timer = std::make_shared<boost::asio::steady_timer>(io);
                 timer->expires_after(std::chrono::seconds(2));
@@ -125,7 +125,7 @@ void findDbusObjects(
                 {
                     return; // wasn't found by mapper
                 }
-                std::cerr << "Error communicating to mapper.\n";
+                lg2::error("Error communicating to mapper.");
 
                 if (retries == 0U)
                 {
@@ -220,7 +220,7 @@ static void recordDiscoveredIdentifiers(
     auto nameIt = record.find("Name");
     if (nameIt == record.end())
     {
-        std::cerr << "Last JSON Illegal\n";
+        lg2::error("Last JSON Illegal");
         return;
     }
 
@@ -258,7 +258,7 @@ static bool extractExposeActionRecordNames(std::vector<std::string>& matches,
         {
             if (!value.is_string())
             {
-                std::cerr << "Value is invalid type " << value << "\n";
+                lg2::error("Value is invalid type {VALUE}", "VALUE", value);
                 break;
             }
             matches.emplace_back(value);
@@ -267,7 +267,7 @@ static bool extractExposeActionRecordNames(std::vector<std::string>& matches,
         return true;
     }
 
-    std::cerr << "Value is invalid type " << keyPair.key() << "\n";
+    lg2::error("Value is invalid type {KEY}", "KEY", keyPair.key());
 
     return false;
 }
@@ -369,8 +369,9 @@ static void applyExposeActions(
 
     if (!matches.empty())
     {
-        std::cerr << "configuration file dependency error, could not find "
-                  << keyPair.key() << " " << keyPair.value() << "\n";
+        lg2::error(
+            "configuration file dependency error, could not find {KEY} {VALUE}",
+            "KEY", keyPair.key(), "VALUE", keyPair.value());
     }
 }
 
@@ -398,9 +399,9 @@ static std::string generateDeviceName(
 
     if (replaceStr)
     {
-        std::cerr << "Duplicates found, replacing " << *replaceStr
-                  << " with found device index.\n Consider "
-                     "fixing template to not have duplicates\n";
+        lg2::error(
+            "Duplicates found, replacing {T1} with found device index. Consider fixing template to not have duplicates",
+            "T1", *replaceStr);
     }
 
     return copyIt.value();
@@ -473,7 +474,7 @@ void scan::PerformScan::updateSystemConfiguration(
         auto getName = record.find("Name");
         if (getName == record.end())
         {
-            std::cerr << "Record Missing Name! " << record.dump();
+            lg2::error("Record Missing Name! {JSON}", "JSON", record.dump());
             continue; // this should be impossible at this level
         }
 
@@ -532,7 +533,8 @@ void scan::PerformScan::run()
         auto findProbe = it->find("Probe");
         if (findProbe == it->end())
         {
-            std::cerr << "configuration file missing probe:\n " << *it << "\n";
+            lg2::error("configuration file missing probe:\n {JSON}", "JSON",
+                       *it);
             it = _configurations.erase(it);
             continue;
         }
@@ -540,7 +542,8 @@ void scan::PerformScan::run()
         auto findName = it->find("Name");
         if (findName == it->end())
         {
-            std::cerr << "configuration file missing name:\n " << *it << "\n";
+            lg2::error("configuration file missing name:\n {JSON}", "JSON",
+                       *it);
             it = _configurations.erase(it);
             continue;
         }
@@ -578,7 +581,7 @@ void scan::PerformScan::run()
             const std::string* probe = probeJson.get_ptr<const std::string*>();
             if (probe == nullptr)
             {
-                std::cerr << "Probe statement wasn't a string, can't parse";
+                lg2::error("Probe statement wasn't a string, can't parse");
                 continue;
             }
             if (probe::findProbeType(*probe))
