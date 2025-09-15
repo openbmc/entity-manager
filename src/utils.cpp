@@ -9,10 +9,10 @@
 #include <boost/algorithm/string/split.hpp>
 #include <boost/container/flat_map.hpp>
 #include <boost/lexical_cast.hpp>
+#include <phosphor-logging/lg2.hpp>
 #include <sdbusplus/bus/match.hpp>
 
 #include <filesystem>
-#include <iostream>
 #include <map>
 #include <regex>
 
@@ -144,8 +144,9 @@ struct MatchProbe<std::string>
             }
             catch (const std::regex_error&)
             {
-                std::cerr << "Syntax error in regular expression: " << probe
-                          << " will never match";
+                lg2::error(
+                    "Syntax error in regular expression: {PROBE} will never match",
+                    "PROBE", probe);
             }
         }
 
