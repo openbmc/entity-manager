@@ -10,7 +10,6 @@
 #include "log_device_inventory.hpp"
 #include "overlay.hpp"
 #include "perform_scan.hpp"
-#include "phosphor-logging/lg2.hpp"
 #include "topology.hpp"
 #include "utils.hpp"
 
@@ -25,13 +24,13 @@
 #include <boost/container/flat_set.hpp>
 #include <boost/range/iterator_range.hpp>
 #include <nlohmann/json.hpp>
+#include <phosphor-logging/lg2.hpp>
 #include <sdbusplus/asio/connection.hpp>
 #include <sdbusplus/asio/object_server.hpp>
 
 #include <filesystem>
 #include <fstream>
 #include <functional>
-#include <iostream>
 #include <map>
 #include <regex>
 constexpr const char* tempConfigDir = "/tmp/configuration/";
@@ -126,8 +125,8 @@ void EntityManager::postBoardToDBus(
     }
     else
     {
-        std::cerr << "Unable to find type for " << boardName
-                  << " reverting to Chassis.\n";
+        lg2::error("Unable to find type for {BOARD} reverting to Chassis.",
+                   "BOARD", boardName);
         boardType = "Chassis";
     }
 
@@ -198,7 +197,7 @@ void EntityManager::postExposesRecordsToDBus(
     auto findName = item.find("Name");
     if (findName == item.end())
     {
-        std::cerr << "cannot find name in field " << item << "\n";
+        lg2::error("cannot find name in field {ITEM}", "ITEM", item);
         return;
     }
     auto findStatus = item.find("Status");
@@ -318,7 +317,7 @@ bool EntityManager::postConfigurationRecord(
         }
         if (!isLegal)
         {
-            std::cerr << "dbus format error" << config << "\n";
+            lg2::error("dbus format error {JSON}", "JSON", config);
             return false;
         }
 
@@ -458,7 +457,7 @@ void EntityManager::publishNewConfiguration(
     boost::asio::post(io, [this]() {
         if (!writeJsonFiles(systemConfiguration))
         {
-            std::cerr << "Error writing json files\n";
+            lg2::error("Error writing json files");
         }
     });
 
@@ -489,7 +488,7 @@ void EntityManager::propertiesChangedCallback()
             }
             if (ec)
             {
-                std::cerr << "async wait error " << ec << "\n";
+                lg2::error("async wait error {ERR}", "ERR", ec.message());
                 return;
             }
 
@@ -582,8 +581,8 @@ void EntityManager::handleCurrentConfigurationJson()
                 auto data = nlohmann::json::parse(jsonStream, nullptr, false);
                 if (data.is_discarded())
                 {
-                    std::cerr
-                        << "syntax error in " << lastConfiguration << "\n";
+                    lg2::error("syntax error in {PATH}", "PATH",
+                               lastConfiguration);
                 }
                 else
                 {
@@ -592,7 +591,7 @@ void EntityManager::handleCurrentConfigurationJson()
             }
             else
             {
-                std::cerr << "unable to open " << lastConfiguration << "\n";
+                lg2::error("unable to open {PATH}", "PATH", lastConfiguration);
             }
         }
     }
@@ -600,7 +599,7 @@ void EntityManager::handleCurrentConfigurationJson()
     {
         // not an error, just logging at this level to make it in the journal
         std::error_code ec;
-        std::cerr << "Clearing previous configuration\n";
+        lg2::error("Clearing previous configuration");
         std::filesystem::remove(currentConfiguration, ec);
     }
 }

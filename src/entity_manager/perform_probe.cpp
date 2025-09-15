@@ -8,7 +8,6 @@
 #include <boost/algorithm/string/replace.hpp>
 #include <phosphor-logging/lg2.hpp>
 
-#include <iostream>
 #include <regex>
 #include <utility>
 
@@ -110,8 +109,8 @@ bool doProbe(const std::vector<std::string>& probeCommand,
                 {
                     if (!std::regex_search(probe, match, command))
                     {
-                        std::cerr
-                            << "found probe syntax error " << probe << "\n";
+                        lg2::error("found probe syntax error {JSON}", "JSON",
+                                   probe);
                         return false;
                     }
                     std::string commandStr = *(match.begin() + 1);
@@ -132,7 +131,7 @@ bool doProbe(const std::vector<std::string>& probeCommand,
         {
             if (!std::regex_search(probe, match, command))
             {
-                std::cerr << "dbus probe syntax error " << probe << "\n";
+                lg2::error("dbus probe syntax error {JSON}", "JSON", probe);
                 return false;
             }
             std::string commandStr = *(match.begin() + 1);
@@ -142,7 +141,8 @@ bool doProbe(const std::vector<std::string>& probeCommand,
             auto json = nlohmann::json::parse(commandStr, nullptr, false, true);
             if (json.is_discarded())
             {
-                std::cerr << "dbus command syntax error " << commandStr << "\n";
+                lg2::error("dbus command syntax error {STR}", "STR",
+                           commandStr);
                 return false;
             }
             // we can match any (string, variant) property. (string, string)

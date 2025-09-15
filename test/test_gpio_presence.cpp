@@ -144,7 +144,7 @@ auto testDevicePresentThenDisappearDbus(sdbusplus::async::context& ctx)
     {
         // expected, since cable 0 is gone.
         // have to do something here to shut up clang-tidy
-        std::cout << "" << std::endl;
+        lg2::info("");
     }
 
     ctx.request_stop();

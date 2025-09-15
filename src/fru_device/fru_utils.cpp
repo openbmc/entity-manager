@@ -10,7 +10,6 @@
 #include <cstdint>
 #include <filesystem>
 #include <iomanip>
-#include <iostream>
 #include <numeric>
 #include <set>
 #include <sstream>
@@ -95,7 +94,7 @@ std::pair<DecodeState, std::string> decodeFRUData(
     /* we need at least one byte to decode the type/len header */
     if (iter == end)
     {
-        std::cerr << "Truncated FRU data\n";
+        lg2::error("Truncated FRU data");
         return make_pair(DecodeState::err, value);
     }
 
@@ -114,7 +113,7 @@ std::pair<DecodeState, std::string> decodeFRUData(
     /* we should have at least len bytes of data available overall */
     if (iter + len > end)
     {
-        std::cerr << "FRU data field extends past end of FRU area data\n";
+        lg2::error("FRU data field extends past end of FRU area data");
         return make_pair(DecodeState::err, value);
     }
 
@@ -143,7 +142,7 @@ std::pair<DecodeState, std::string> decodeFRUData(
              */
             if (!isLangEng)
             {
-                std::cerr << "Error: Non english string is not supported \n";
+                lg2::error("Error: Non english string is not supported ");
                 return make_pair(DecodeState::err, value);
             }
 
@@ -193,8 +192,7 @@ bool checkLangEng(uint8_t lang)
     // but we don't support that.
     if ((lang != 0U) && lang != 25)
     {
-        std::cerr << "Warning: languages other than English is not "
-                     "supported\n";
+        lg2::error("Warning: languages other than English is not supported");
         // Return language flag as non english
         return false;
     }
@@ -218,21 +216,21 @@ bool verifyOffset(std::span<const uint8_t> fruBytes, fruAreas currentArea,
     // check if Fru data has at least 8 byte header
     if (fruBytesSize <= fruBlockSize)
     {
-        std::cerr << "Error: trying to parse empty FRU\n";
+        lg2::error("Error: trying to parse empty FRU");
         return false;
     }
 
     // Check range of passed currentArea value
     if (currentArea > fruAreas::fruAreaMultirecord)
     {
-        std::cerr << "Error: Fru area is out of range\n";
+        lg2::error("Error: Fru area is out of range");
         return false;
     }
 
     unsigned int currentAreaIndex = getHeaderAreaFieldOffset(currentArea);
     if (currentAreaIndex > fruBytesSize)
     {
-        std::cerr << "Error: Fru area index is out of range\n";
+        lg2::error("Error: Fru area index is out of range");
         return false;
     }
 
@@ -252,7 +250,7 @@ bool verifyOffset(std::span<const uint8_t> fruBytes, fruAreas currentArea,
         unsigned int areaIndex = getHeaderAreaFieldOffset(area);
         if (areaIndex > fruBytesSize)
         {
-            std::cerr << "Error: Fru area index is out of range\n";
+            lg2::error("Error: Fru area index is out of range");
             return false;
         }
 
@@ -266,9 +264,9 @@ bool verifyOffset(std::span<const uint8_t> fruBytes, fruAreas currentArea,
         // check for overlapping of current offset with given areaoffset
         if (areaOffset == start || (areaOffset > start && areaOffset < end))
         {
-            std::cerr << getFruAreaName(currentArea)
-                      << " offset is overlapping with " << getFruAreaName(area)
-                      << " offset\n";
+            lg2::error("{AREA1} offset is overlapping with {AREA2} offset",
+                       "AREA1", getFruAreaName(currentArea), "AREA2",
+                       getFruAreaName(area));
             return false;
         }
     }
@@ -406,13 +404,13 @@ resCodes decodeField(
     }
     else if (state == DecodeState::err)
     {
-        std::cerr << "Error while parsing " << name << "\n";
+        lg2::error("Error while parsing {NAME}", "NAME", name);
 
         // Cancel decoding if failed to parse any of mandatory
         // fields
         if (fieldIndex < fruAreaFieldNames.size())
         {
-            std::cerr << "Failed to parse mandatory field \n";
+            lg2::error("Failed to parse mandatory field ");
             return resCodes::resErr;
         }
         return resCodes::resWarn;
@@ -421,8 +419,9 @@ resCodes decodeField(
     {
         if (fieldIndex < fruAreaFieldNames.size())
         {
-            std::cerr << "Mandatory fields absent in FRU area "
-                      << getFruAreaName(area) << " after " << name << "\n";
+            lg2::error(
+                "Mandatory fields absent in FRU area {AREA} after {NAME}",
+                "AREA", getFruAreaName(area), "NAME", name);
             return resCodes::resWarn;
         }
     }
@@ -436,7 +435,7 @@ resCodes formatIPMIFRU(
     resCodes ret = resCodes::resOK;
     if (fruBytes.size() <= fruBlockSize)
     {
-        std::cerr << "Error: trying to parse empty FRU \n";
+        lg2::error("Error: trying to parse empty FRU ");
         return resCodes::resErr;
     }
     result["Common_Format_Version"] =
@@ -458,13 +457,14 @@ resCodes formatIPMIFRU(
             fruBytes.begin() + offset;
         if (fruBytesIter + fruBlockSize >= fruBytes.end())
         {
-            std::cerr << "Not enough data to parse \n";
+            lg2::error("Not enough data to parse ");
             return resCodes::resErr;
         }
         // check for format version 1
         if (*fruBytesIter != 0x01)
         {
-            std::cerr << "Unexpected version " << *fruBytesIter << "\n";
+            lg2::error("Unexpected version {VERSION}", "VERSION",
+                       *fruBytesIter);
             return resCodes::resErr;
         }
         ++fruBytesIter;
@@ -493,7 +493,7 @@ resCodes formatIPMIFRU(
                << static_cast<int>(fruComputedChecksum) << "\n";
             ss << "\tThe read checksum: 0x" << std::setw(2)
                << static_cast<int>(*fruBytesIterEndArea) << "\n";
-            std::cerr << ss.str();
+            lg2::error("{ERR}", "ERR", ss.str());
             ret = resCodes::resWarn;
         }
 
@@ -534,7 +534,7 @@ resCodes formatIPMIFRU(
                                            "%Y%m%dT%H%M%SZ", &fruTime);
                 if (bytes == 0)
                 {
-                    std::cerr << "invalid time string encountered\n";
+                    lg2::error("invalid time string encountered");
                     return resCodes::resErr;
                 }
 
@@ -556,8 +556,9 @@ resCodes formatIPMIFRU(
             }
             default:
             {
-                std::cerr << "Internal error: unexpected FRU area index: "
-                          << static_cast<int>(area) << " \n";
+                lg2::error(
+                    "Internal error: unexpected FRU area index: {INDEX} ",
+                    "INDEX", static_cast<int>(area));
                 return resCodes::resErr;
             }
         }
@@ -582,8 +583,8 @@ resCodes formatIPMIFRU(
             uint8_t c = *fruBytesIter;
             if (c != 0U)
             {
-                std::cerr << "Non-zero byte after EndOfFields in FRU area "
-                          << getFruAreaName(area) << "\n";
+                lg2::error("Non-zero byte after EndOfFields in FRU area {AREA}",
+                           "AREA", getFruAreaName(area));
                 ret = resCodes::resWarn;
                 break;
             }
@@ -722,8 +723,8 @@ bool findFRUHeader(FRUReader& reader, const std::string& errorHelp,
 {
     if (reader.read(baseOffset, 0x8, blockData.data()) < 0)
     {
-        std::cerr << "failed to read " << errorHelp << " base offset "
-                  << baseOffset << "\n";
+        lg2::error("failed to read {ERR} base offset {OFFSET}", "ERR",
+                   errorHelp, "OFFSET", baseOffset);
         return false;
     }
 
@@ -804,8 +805,8 @@ std::pair<std::vector<uint8_t>, bool> readFRUContents(
          */
         if (areaOffset <= prevOffset)
         {
-            std::cerr << "Fru area offsets are not in required order as per "
-                         "Section 17 of Fru specification\n";
+            lg2::error(
+                "Fru area offsets are not in required order as per Section 17 of Fru specification");
             return {{}, true};
         }
         prevOffset = areaOffset;
@@ -822,8 +823,8 @@ std::pair<std::vector<uint8_t>, bool> readFRUContents(
 
         if (reader.read(baseOffset + areaOffset, 0x2, blockData.data()) < 0)
         {
-            std::cerr << "failed to read " << errorHelp << " base offset "
-                      << baseOffset << "\n";
+            lg2::error("failed to read {ERR} base offset {OFFSET}", "ERR",
+                       errorHelp, "OFFSET", baseOffset);
             return {{}, true};
         }
 
@@ -852,8 +853,8 @@ std::pair<std::vector<uint8_t>, bool> readFRUContents(
             // record has 3 bytes of the header we care about.
             if (reader.read(baseOffset + areaOffset, 0x3, blockData.data()) < 0)
             {
-                std::cerr << "failed to read " << errorHelp << " base offset "
-                          << baseOffset << "\n";
+                lg2::error("failed to read {STR} base offset {OFFSET}", "STR",
+                           errorHelp, "OFFSET", baseOffset);
                 return {{}, true};
             }
 
@@ -884,8 +885,8 @@ std::pair<std::vector<uint8_t>, bool> readFRUContents(
         if (reader.read(baseOffset + readOffset, requestLength,
                         blockData.data()) < 0)
         {
-            std::cerr << "failed to read " << errorHelp << " base offset "
-                      << baseOffset << "\n";
+            lg2::error("failed to read {ERR} base offset {OFFSET}", "ERR",
+                       errorHelp, "OFFSET", baseOffset);
             return {{}, true};
         }
 
@@ -939,8 +940,8 @@ bool findFruAreaLocationAndField(std::vector<uint8_t>& fruData,
     auto it = std::find(fruAreaNames.begin(), fruAreaNames.end(), areaName);
     if (it == fruAreaNames.end())
     {
-        std::cerr << "Can't parse area name for property " << propertyName
-                  << " \n";
+        lg2::error("Can't parse area name for property {PROP} ", "PROP",
+                   propertyName);
         return false;
     }
     fruAreas fruAreaToUpdate = static_cast<fruAreas>(it - fruAreaNames.begin());
@@ -963,12 +964,12 @@ bool findFruAreaLocationAndField(std::vector<uint8_t>& fruData,
             fruAreaFieldNames = &productFruAreas;
             break;
         default:
-            std::cerr << "Invalid PropertyName " << propertyName << " \n";
+            lg2::error("Invalid PropertyName {PROP}", "PROP", propertyName);
             return false;
     }
     if (fruAreaOffsetFieldValue == 0)
     {
-        std::cerr << "FRU Area for " << propertyName << " not present \n";
+        lg2::error("FRU Area for {PROP} not present ", "PROP", propertyName);
         return false;
     }
 
@@ -994,8 +995,8 @@ bool findFruAreaLocationAndField(std::vector<uint8_t>& fruData,
         std::size_t pos = propertyName.find(fruCustomFieldName);
         if (pos == std::string::npos)
         {
-            std::cerr << "PropertyName doesn't exist in FRU Area Vectors: "
-                      << propertyName << "\n";
+            lg2::error("PropertyName doesn't exist in FRU Area Vectors: {PROP}",
+                       "PROP", propertyName);
             return false;
         }
         std::string fieldNumStr =
@@ -1003,8 +1004,8 @@ bool findFruAreaLocationAndField(std::vector<uint8_t>& fruData,
         size_t fieldNum = std::stoi(fieldNumStr);
         if (fieldNum == 0)
         {
-            std::cerr << "PropertyName not recognized: " << propertyName
-                      << "\n";
+            lg2::error("PropertyName not recognized: {PROP}", "PROP",
+                       propertyName);
             return false;
         }
         skipToFRUUpdateField += fieldNum;
@@ -1044,7 +1045,7 @@ bool copyRestFRUArea(std::vector<uint8_t>& fruData,
     ssize_t fieldLength = getFieldLength(fruData[fieldLoc]);
     if (fieldLength < 0)
     {
-        std::cerr << "Property " << propertyName << " not present \n";
+        lg2::error("Property {PROP} not present ", "PROP", propertyName);
         return false;
     }
 
@@ -1136,14 +1137,15 @@ std::optional<std::string> getProductName(
     resCodes res = formatIPMIFRU(device, formattedFRU);
     if (res == resCodes::resErr)
     {
-        std::cerr << "failed to parse FRU for device at bus " << bus
-                  << " address " << address << "\n";
+        lg2::error("failed to parse FRU for device at bus {BUS} address {ADDR}",
+                   "BUS", bus, "ADDR", address);
         return std::nullopt;
     }
     if (res == resCodes::resWarn)
     {
-        std::cerr << "Warnings while parsing FRU for device at bus " << bus
-                  << " address " << address << "\n";
+        lg2::error(
+            "Warnings while parsing FRU for device at bus {BUS} address {ADDR}",
+            "BUS", bus, "ADDR", address);
     }
 
     auto productNameFind = formattedFRU.find("BOARD_PRODUCT_NAME");
@@ -1178,7 +1180,7 @@ bool getFruData(std::vector<uint8_t>& fruData, uint32_t bus, uint32_t address)
     }
     catch (const std::invalid_argument& e)
     {
-        std::cerr << "Failure getting FRU Info" << e.what() << "\n";
+        lg2::error("Failure getting FRU Info: {ERR}", "ERR", e);
         return false;
     }
 
