@@ -5,6 +5,7 @@
 
 #include <boost/algorithm/string/case_conv.hpp>
 #include <boost/container/flat_map.hpp>
+#include <phosphor-logging/lg2.hpp>
 
 #include <fstream>
 #include <regex>
@@ -35,10 +36,10 @@ void tryIfaceInitialize(std::shared_ptr<sdbusplus::asio::dbus_interface>& iface)
     }
     catch (std::exception& e)
     {
-        std::cerr << "Unable to initialize dbus interface : " << e.what()
-                  << "\n"
-                  << "object Path : " << iface->get_object_path() << "\n"
-                  << "interface name : " << iface->get_interface_name() << "\n";
+        lg2::error(
+            "Unable to initialize dbus interface : {ERR} object Path : {PATH} interface name : {INTF}",
+            "ERR", e, "PATH", iface->get_object_path(), "INTF",
+            iface->get_interface_name());
     }
 }
 
@@ -95,7 +96,7 @@ void EMDBusInterface::createDeleteObjectMethod(
 
             if (!writeJsonFiles(systemConfiguration))
             {
-                std::cerr << "error setting json file\n";
+                lg2::error("error setting json file");
                 throw DBusInternalError();
             }
         });
@@ -192,8 +193,9 @@ static void populateInterfacePropertyFromJson(
         }
         default:
         {
-            std::cerr << "Unexpected json type in system configuration " << key
-                      << ": " << value.type_name() << "\n";
+            lg2::error(
+                "Unexpected json type in system configuration {KEY}: {VALUE}",
+                "KEY", key, "VALUE", value.type_name());
             break;
         }
     }
@@ -217,7 +219,7 @@ void EMDBusInterface::populateInterfaceFromJson(
             type = value[0].type();
             if (!checkArrayElementsSameType(value))
             {
-                std::cerr << "dbus format error" << value << "\n";
+                lg2::error("dbus format error {VALUE}", "VALUE", value);
                 continue;
             }
         }
@@ -325,7 +327,7 @@ void EMDBusInterface::createAddObjectMethod(
                 nlohmann::json::parse(schemaFile, nullptr, false, true);
             if (schema.is_discarded())
             {
-                std::cerr << "Schema not legal" << *type << ".json\n";
+                lg2::error("Schema not legal {TYPE}.json", "TYPE", *type);
                 throw DBusInternalError();
             }
             if (!validateJson(schema, newData))
@@ -342,7 +344,7 @@ void EMDBusInterface::createAddObjectMethod(
             }
             if (!writeJsonFiles(systemConfiguration))
             {
-                std::cerr << "Error writing json files\n";
+                lg2::error("Error writing json files");
             }
             std::string dbusName = *name;
 
