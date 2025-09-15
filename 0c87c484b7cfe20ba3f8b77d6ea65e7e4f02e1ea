@@ -1,0 +1,95 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3131b673_d404fab4",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 8
+      },
+      "lineNbr": 32,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-09-15T08:06:29Z",
+      "side": 1,
+      "message": "```suggestion\nleft-over\n```",
+      "range": {
+        "startLine": 32,
+        "startChar": 0,
+        "endLine": 32,
+        "endChar": 10
+      },
+      "revId": "0c87c484b7cfe20ba3f8b77d6ea65e7e4f02e1ea",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d0b59297_acdc91ae",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 8
+      },
+      "lineNbr": 34,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-09-15T08:06:29Z",
+      "side": 1,
+      "message": "Testing once with a real config would be nice. From what i have seen, the unit tests only cover the `templateCharReplace` stuff and not how and when it is called.\n\nWe can have a config with some real and some non-existent template vars and then logs and `busctl` output can show that some were correctly replaced and others could not be replaced.",
+      "revId": "0c87c484b7cfe20ba3f8b77d6ea65e7e4f02e1ea",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2439b4a4_caeca093",
+        "filename": "src/entity_manager/utils.cpp",
+        "patchSetId": 8
+      },
+      "lineNbr": 113,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-09-15T08:06:29Z",
+      "side": 1,
+      "message": "We may need to know the file and line number where the template var was found.\n\nOtherwise it could be hard to track down if one has a lot of config.",
+      "revId": "0c87c484b7cfe20ba3f8b77d6ea65e7e4f02e1ea",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6a2147dc_a1e490c2",
+        "filename": "src/entity_manager/utils.cpp",
+        "patchSetId": 8
+      },
+      "lineNbr": 168,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-09-15T08:06:29Z",
+      "side": 1,
+      "message": "nit: extra newline",
+      "revId": "0c87c484b7cfe20ba3f8b77d6ea65e7e4f02e1ea",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b10ff5e0_c778adfb",
+        "filename": "test/entity_manager/test_entity-manager.cpp",
+        "patchSetId": 8
+      },
+      "lineNbr": 243,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-09-15T08:06:29Z",
+      "side": 1,
+      "message": "nit: Since `handleLeftOverTemplateVars` is called by `templateCharReplace`, it would be good to have a test with `templateCharReplace` as well.",
+      "revId": "0c87c484b7cfe20ba3f8b77d6ea65e7e4f02e1ea",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    }
+  ]
+}
