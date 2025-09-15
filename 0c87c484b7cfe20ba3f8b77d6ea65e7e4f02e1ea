@@ -120,6 +120,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "4a0f3504_64aa472f",
+        "filename": "src/entity_manager/utils.cpp",
+        "patchSetId": 8
+      },
+      "lineNbr": 113,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-09-15T09:40:29Z",
+      "side": 1,
+      "message": "For filename, it would have to be passed through `templateCharReplace` and possibly other functions. The \n\n\u003e Hi, is there a reference somewhere to extract file name and line num?\n\nOther functions in EM simply dump the entire file but i don\u0027t like that, it does not help to debug. I did not find a reference where the filename is printed.\n\n```\nsrc/entity_manager/configuration.cpp\n140:            std::cerr \u003c\u003c \"configuration file missing probe:\\n \" \u003c\u003c *it \u003c\u003c \"\\n\";\n\n\nsrc/entity_manager/perform_scan.cpp\n372:        std::cerr \u003c\u003c \"configuration file dependency error, could not find \"\n535:            std::cerr \u003c\u003c \"configuration file missing probe:\\n \" \u003c\u003c *it \u003c\u003c \"\\n\";\n543:            std::cerr \u003c\u003c \"configuration file missing name:\\n \" \u003c\u003c *it \u003c\u003c \"\\n\";\n```\n\ncurrently EM knows this information in `configuration.cpp`\nhttps://github.com/openbmc/entity-manager/blob/3911d80afb6956b17c4f4b9a76c7eb45bb76e3b9/src/entity_manager/configuration.cpp#L90\n\nbut its discarded after. May need to keep a map instead of vector for the configuration, to keep the filename around. Alternatively we could have a class to wrap both the filename and json.\n\nFor lohmann json, getting the line number is apparently not possible \nhttps://github.com/nlohmann/json/discussions/3949.\nI apologize for suggesting this.",
+      "parentUuid": "32bf765a_b38af361",
+      "revId": "0c87c484b7cfe20ba3f8b77d6ea65e7e4f02e1ea",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "6a2147dc_a1e490c2",
         "filename": "src/entity_manager/utils.cpp",
         "patchSetId": 8
