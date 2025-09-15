@@ -3,7 +3,8 @@
 
 #include "expression.hpp"
 
-#include <iostream>
+#include <phosphor-logging/lg2.hpp>
+
 #include <stdexcept>
 
 namespace expression
@@ -99,8 +100,8 @@ int evaluate(int substitute, std::vector<std::string>::iterator curr,
             }
             catch (const std::invalid_argument&)
             {
-                std::cerr << "Parameter not supported for templates " << *curr
-                          << "\n";
+                lg2::error("Parameter not supported for templates {STR}", "STR",
+                           *curr);
                 continue;
             }
         }
