@@ -4,10 +4,10 @@
 
 #include <boost/container/flat_map.hpp>
 #include <nlohmann/json.hpp>
+#include <phosphor-logging/lg2.hpp>
 #include <sdbusplus/asio/connection.hpp>
 #include <sdbusplus/asio/object_server.hpp>
 
-#include <iostream>
 #include <vector>
 
 namespace dbus_interface
@@ -89,12 +89,12 @@ void addArrayToDbus(const std::string& name, const nlohmann::json& array,
                 if (!setJsonFromPointer(jsonPointerString, val,
                                         systemConfiguration))
                 {
-                    std::cerr << "error setting json field\n";
+                    lg2::error("error setting json field");
                     return -1;
                 }
                 if (!writeJsonFiles(systemConfiguration))
                 {
-                    std::cerr << "error setting json file\n";
+                    lg2::error("error setting json file");
                     return -1;
                 }
                 return 1;
@@ -123,12 +123,12 @@ void addProperty(const std::string& name, const PropertyType& value,
             if (!setJsonFromPointer(jsonPointerString, val,
                                     systemConfiguration))
             {
-                std::cerr << "error setting json field\n";
+                lg2::error("error setting json field");
                 return -1;
             }
             if (!writeJsonFiles(systemConfiguration))
             {
-                std::cerr << "error setting json file\n";
+                lg2::error("error setting json file");
                 return -1;
             }
             return 1;

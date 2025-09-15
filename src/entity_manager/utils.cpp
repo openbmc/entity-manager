@@ -14,7 +14,6 @@
 #include <sdbusplus/bus/match.hpp>
 
 #include <fstream>
-#include <iostream>
 #include <regex>
 
 const std::regex illegalDbusMemberRegex("[^A-Za-z0-9_]");
@@ -225,13 +224,13 @@ std::optional<std::string> templateCharReplace(
         // need at least 1 operation and number
         if (split.size() < 2)
         {
-            std::cerr << "Syntax error on template replacement of " << *strPtr
-                      << "\n";
+            lg2::error("Syntax error on template replacement of {STR}", "STR",
+                       *strPtr);
             for (const std::string& data : split)
             {
-                std::cerr << data << " ";
+                lg2::error("{SPLIT} ", "SPLIT", data);
             }
-            std::cerr << "\n";
+            lg2::error("");
             continue;
         }
 
