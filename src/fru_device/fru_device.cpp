@@ -26,7 +26,6 @@
 #include <functional>
 #include <future>
 #include <iomanip>
-#include <iostream>
 #include <limits>
 #include <map>
 #include <optional>
@@ -112,7 +111,7 @@ static int64_t readFromEeprom(int fd, off_t offset, size_t len, uint8_t* buf)
     auto result = lseek(fd, offset, SEEK_SET);
     if (result < 0)
     {
-        std::cerr << "failed to seek\n";
+        lg2::error("failed to seek");
         return -1;
     }
 
@@ -351,7 +350,7 @@ static std::vector<uint8_t> processEeprom(int bus, int address)
     int file = open(path.c_str(), O_RDONLY);
     if (file < 0)
     {
-        std::cerr << "Unable to open eeprom file: " << path << "\n";
+        lg2::error("Unable to open eeprom file: {PATH}", "PATH", path);
         return {};
     }
 
@@ -383,7 +382,7 @@ std::set<size_t> findI2CEeproms(int i2cBus,
     {
         if (ec)
         {
-            std::cerr << "directory_iterator err " << ec.message() << "\n";
+            lg2::error("directory_iterator err {ERR}", "ERR", ec.message());
             break;
         }
         const std::string node = p.path().string();
@@ -397,7 +396,7 @@ std::set<size_t> findI2CEeproms(int i2cBus,
         }
         if (m.size() != 2)
         {
-            std::cerr << "regex didn't capture\n";
+            lg2::error("regex didn't capture");
             continue;
         }
 
@@ -510,8 +509,8 @@ int getBusFRUs(int file, int first, int last, int bus,
             // Set target address
             if (ioctl(file, I2C_SLAVE, ii) < 0)
             {
-                std::cerr << "device at bus " << bus << " address " << ii
-                          << " busy\n";
+                lg2::error("device at bus {BUS} address {ADDR} busy", "BUS",
+                           bus, "ADDR", ii);
                 continue;
             }
             // probe
@@ -543,8 +542,8 @@ int getBusFRUs(int file, int first, int last, int bus,
             std::optional<bool> is16Bit = isDevice16Bit(file, ii);
             if (!is16Bit.has_value())
             {
-                std::cerr << "failed to read bus " << bus << " address " << ii
-                          << "\n";
+                lg2::error("failed to read bus {BUS} address {ADDR}", "BUS",
+                           bus, "ADDR", ii);
                 if (powerIsOn)
                 {
                     failedItems.insert(ii);
@@ -594,7 +593,7 @@ int getBusFRUs(int file, int first, int last, int bus,
         future.wait_for(std::chrono::seconds(busTimeoutSeconds));
     if (status == std::future_status::timeout)
     {
-        std::cerr << "Error reading bus " << bus << "\n";
+        lg2::error("Error reading bus {BUS}", "BUS", bus);
         if (powerIsOn)
         {
             busBlocklist[bus] = std::nullopt;
@@ -613,7 +612,7 @@ void loadBlocklist(const char* path)
     if (!blocklistStream.good())
     {
         // File is optional.
-        std::cerr << "Cannot open blocklist file.\n\n";
+        lg2::error("Cannot open blocklist file.\n");
         return;
     }
 
@@ -621,8 +620,8 @@ void loadBlocklist(const char* path)
         nlohmann::json::parse(blocklistStream, nullptr, false);
     if (data.is_discarded())
     {
-        std::cerr << "Illegal blocklist file detected, cannot validate JSON, "
-                     "exiting\n";
+        lg2::error(
+            "Illegal blocklist file detected, cannot validate JSON, exiting");
         std::exit(EXIT_FAILURE);
     }
 
@@ -631,7 +630,7 @@ void loadBlocklist(const char* path)
     // such as specific addresses or ranges.
     if (data.type() != nlohmann::json::value_t::object)
     {
-        std::cerr << "Illegal blocklist, expected to read dictionary\n";
+        lg2::error("Illegal blocklist, expected to read dictionary");
         std::exit(EXIT_FAILURE);
     }
 
@@ -643,7 +642,7 @@ void loadBlocklist(const char* path)
         if (buses.type() != nlohmann::json::value_t::array)
         {
             // Buses field present but invalid, therefore this is an error.
-            std::cerr << "Invalid contents for blocklist buses field\n";
+            lg2::error("Invalid contents for blocklist buses field");
             std::exit(EXIT_FAILURE);
         }
 
@@ -682,7 +681,7 @@ void loadBlocklist(const char* path)
         catch (const nlohmann::detail::type_error& e)
         {
             // Type mis-match is a critical error.
-            std::cerr << "Invalid bus type: " << e.what() << "\n";
+            lg2::error("Invalid bus type: {ERR}", "ERR", e.what());
             std::exit(EXIT_FAILURE);
         }
     }
@@ -698,7 +697,7 @@ static void findI2CDevices(const std::vector<fs::path>& i2cBuses,
 
         if (bus < 0)
         {
-            std::cerr << "Cannot translate " << i2cBus << " to int\n";
+            lg2::error("Cannot translate {BUS} to int", "BUS", i2cBus);
             continue;
         }
         auto busFind = busBlocklist.find(bus);
@@ -722,25 +721,25 @@ static void findI2CDevices(const std::vector<fs::path>& i2cBuses,
         auto file = open(i2cBus.c_str(), O_RDWR);
         if (file < 0)
         {
-            std::cerr << "unable to open i2c device " << i2cBus.string()
-                      << "\n";
+            lg2::error("unable to open i2c device {PATH}", "PATH",
+                       i2cBus.string());
             continue;
         }
         unsigned long funcs = 0;
 
         if (ioctl(file, I2C_FUNCS, &funcs) < 0)
         {
-            std::cerr
-                << "Error: Could not get the adapter functionality matrix bus "
-                << bus << "\n";
+            lg2::error(
+                "Error: Could not get the adapter functionality matrix bus {BUS}",
+                "BUS", bus);
             close(file);
             continue;
         }
         if (((funcs & I2C_FUNC_SMBUS_READ_BYTE) == 0U) ||
             ((I2C_FUNC_SMBUS_READ_I2C_BLOCK) == 0))
         {
-            std::cerr << "Error: Can't use SMBus Receive Byte command bus "
-                      << bus << "\n";
+            lg2::error("Error: Can't use SMBus Receive Byte command bus {BUS}",
+                       "BUS", bus);
             close(file);
             continue;
         }
@@ -800,7 +799,7 @@ void addFruObjectToDbus(
         device, formattedFRU, bus, address, unknownBusObjectCount);
     if (!optionalProductName)
     {
-        std::cerr << "getProductName failed. product name is empty.\n";
+        lg2::error("getProductName failed. product name is empty.");
         return;
     }
 
@@ -859,7 +858,7 @@ void addFruObjectToDbus(
         }
         else if (!iface->register_property(key, property.second + '\0'))
         {
-            std::cerr << "illegal key: " << key << "\n";
+            lg2::error("illegal key: {KEY}", "KEY", key);
         }
         lg2::debug("parsed FRU property: {FIRST}: {SECOND}", "FIRST",
                    property.first, "SECOND", property.second);
@@ -898,13 +897,13 @@ bool writeFRU(uint8_t bus, uint8_t address, const std::vector<uint8_t>& fru)
     boost::container::flat_map<std::string, std::string> tmp;
     if (fru.size() > maxFruSize)
     {
-        std::cerr << "Invalid fru.size() during writeFRU\n";
+        lg2::error("Invalid fru.size() during writeFRU");
         return false;
     }
     // verify legal fru by running it through fru parsing logic
     if (formatIPMIFRU(fru, tmp) != resCodes::resOK)
     {
-        std::cerr << "Invalid fru format during writeFRU\n";
+        lg2::error("Invalid fru format during writeFRU");
         return false;
     }
     // baseboard fru
@@ -913,7 +912,8 @@ bool writeFRU(uint8_t bus, uint8_t address, const std::vector<uint8_t>& fru)
         std::ofstream file(baseboardFruLocation, std::ios_base::binary);
         if (!file.good())
         {
-            std::cerr << "Error opening file " << baseboardFruLocation << "\n";
+            lg2::error("Error opening file {PATH}", "PATH",
+                       baseboardFruLocation);
             throw DBusInternalError();
             return false;
         }
@@ -931,7 +931,7 @@ bool writeFRU(uint8_t bus, uint8_t address, const std::vector<uint8_t>& fru)
         int eeprom = open(path.c_str(), O_RDWR | O_CLOEXEC);
         if (eeprom < 0)
         {
-            std::cerr << "unable to open i2c device " << path << "\n";
+            lg2::error("unable to open i2c device {PATH}", "PATH", path);
             throw DBusInternalError();
             return false;
         }
@@ -951,8 +951,8 @@ bool writeFRU(uint8_t bus, uint8_t address, const std::vector<uint8_t>& fru)
 
         if (lseek(eeprom, offset, SEEK_SET) < 0)
         {
-            std::cerr << "Unable to seek to offset " << offset
-                      << " in device: " << path << "\n";
+            lg2::error("Unable to seek to offset {OFFSET} in device: {PATH}",
+                       "OFFSET", offset, "PATH", path);
             close(eeprom);
             throw DBusInternalError();
         }
@@ -960,7 +960,7 @@ bool writeFRU(uint8_t bus, uint8_t address, const std::vector<uint8_t>& fru)
         ssize_t writtenBytes = write(eeprom, fru.data(), fru.size());
         if (writtenBytes < 0)
         {
-            std::cerr << "unable to write to i2c device " << path << "\n";
+            lg2::error("unable to write to i2c device {PATH}", "PATH", path);
             close(eeprom);
             throw DBusInternalError();
             return false;
@@ -975,13 +975,13 @@ bool writeFRU(uint8_t bus, uint8_t address, const std::vector<uint8_t>& fru)
     int file = open(i2cBus.c_str(), O_RDWR | O_CLOEXEC);
     if (file < 0)
     {
-        std::cerr << "unable to open i2c device " << i2cBus << "\n";
+        lg2::error("unable to open i2c device {PATH}", "PATH", i2cBus);
         throw DBusInternalError();
         return false;
     }
     if (ioctl(file, I2C_SLAVE_FORCE, address) < 0)
     {
-        std::cerr << "unable to set device address\n";
+        lg2::error("unable to set device address");
         close(file);
         throw DBusInternalError();
         return false;
@@ -999,7 +999,7 @@ bool writeFRU(uint8_t bus, uint8_t address, const std::vector<uint8_t>& fru)
             // with the third bit being a memory page address bit.
             if (ioctl(file, I2C_SLAVE_FORCE, ++address) < 0)
             {
-                std::cerr << "unable to set device address\n";
+                lg2::error("unable to set device address");
                 close(file);
                 throw DBusInternalError();
                 return false;
@@ -1011,7 +1011,7 @@ bool writeFRU(uint8_t bus, uint8_t address, const std::vector<uint8_t>& fru)
         {
             if ((retries--) == 0U)
             {
-                std::cerr << "error writing fru: " << strerror(errno) << "\n";
+                lg2::error("error writing fru: {ERR}", "ERR", strerror(errno));
                 close(file);
                 throw DBusInternalError();
                 return false;
@@ -1055,8 +1055,8 @@ void rescanOneBus(
     {
         if (dbusCall)
         {
-            std::cerr << "Unable to access i2c bus " << static_cast<int>(busNum)
-                      << "\n";
+            lg2::error("Unable to access i2c bus {BUS}", "BUS",
+                       static_cast<int>(busNum));
             throw std::invalid_argument("Invalid Bus.");
         }
         return;
@@ -1117,7 +1117,7 @@ void rescanBusses(
 
         if (ec)
         {
-            std::cerr << "Error in timer: " << ec.message() << "\n";
+            lg2::error("Error in timer: {ERR}", "ERR", ec.message());
             return;
         }
 
@@ -1127,7 +1127,7 @@ void rescanBusses(
         boost::container::flat_map<size_t, fs::path> busPaths;
         if (!getI2cDevicePaths(devDir, busPaths))
         {
-            std::cerr << "unable to find i2c devices\n";
+            lg2::error("unable to find i2c devices");
             return;
         }
 
@@ -1200,10 +1200,9 @@ bool updateFRUProperty(
     size_t updatePropertyReqLen = updatePropertyReq.length();
     if (updatePropertyReqLen == 1 || updatePropertyReqLen > 63)
     {
-        std::cerr
-            << "FRU field data cannot be of 1 char or more than 63 chars. "
-               "Invalid Length "
-            << updatePropertyReqLen << "\n";
+        lg2::error(
+            "FRU field data cannot be of 1 char or more than 63 chars. Invalid Length {LENGTH}",
+            "LENGTH", updatePropertyReqLen);
         return false;
     }
 
@@ -1211,7 +1210,7 @@ bool updateFRUProperty(
 
     if (!getFruData(fruData, bus, address))
     {
-        std::cerr << "Failure getting FRU Data \n";
+        lg2::error("Failure getting FRU Data ");
         return false;
     }
 
@@ -1219,7 +1218,7 @@ bool updateFRUProperty(
 
     if (!findFruAreaLocationAndField(fruData, propertyName, fruAreaParams))
     {
-        std::cerr << "findFruAreaLocationAndField failed \n";
+        lg2::error("findFruAreaLocationAndField failed ");
         return false;
     }
 
@@ -1227,7 +1226,7 @@ bool updateFRUProperty(
     if (!copyRestFRUArea(fruData, propertyName, fruAreaParams,
                          restFRUAreaFieldsData))
     {
-        std::cerr << "copyRestFRUArea failed \n";
+        lg2::error("copyRestFRUArea failed ");
         return false;
     }
 
@@ -1270,9 +1269,10 @@ bool updateFRUProperty(
         fruAreaParams.size = newFRUAreaSize;
         fruAreaParams.end = fruAreaParams.start + fruAreaParams.size;
 #else
-        std::cerr << "FRU field length: " << updatePropertyReqLen + 1
-                  << " should not be greater than available FRU area size: "
-                  << fruAreaAvailableSize << "\n";
+        lg2::error(
+            "FRU field length: {FIELD_LENGTH} should not be greater than available FRU area size: {AREA_SIZE}",
+            "FIELD_LENGTH", updatePropertyReqLen + 1, "AREA_SIZE",
+            fruAreaAvailableSize);
         return false;
 #endif // ENABLE_FRU_AREA_RESIZE
     }
@@ -1368,7 +1368,7 @@ int main()
 
     if (!findFiles(devDir, matchString, i2cBuses))
     {
-        std::cerr << "unable to find i2c devices\n";
+        lg2::error("unable to find i2c devices");
         return 1;
     }
 
@@ -1455,7 +1455,7 @@ int main()
                              std::size_t bytesTransferred) {
             if (ec)
             {
-                std::cout << "Callback Error " << ec << "\n";
+                lg2::info("Callback Error {ERR}", "ERR", ec.message());
                 return;
             }
             size_t index = 0;
@@ -1476,8 +1476,8 @@ int main()
                             int bus = busStrToInt(name);
                             if (bus < 0)
                             {
-                                std::cerr
-                                    << "Could not parse bus " << name << "\n";
+                                lg2::error("Could not parse bus {BUS}", "BUS",
+                                           name);
                                 continue;
                             }
                             int rootBus = getRootBus(bus);

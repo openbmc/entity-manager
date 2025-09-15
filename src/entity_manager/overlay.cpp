@@ -17,7 +17,6 @@
 #include <filesystem>
 #include <fstream>
 #include <iomanip>
-#include <iostream>
 #include <regex>
 #include <string>
 
@@ -81,8 +80,8 @@ void linkMux(const std::string& muxName, uint64_t busIndex, uint64_t address,
             devDir / ("channel-" + std::to_string(channelIndex));
         if (!is_symlink(channelPath))
         {
-            std::cerr << channelPath << " for mux channel " << channelName
-                      << " doesn't exist!\n";
+            lg2::error("{PATH} for mux channel {CHANNEL} doesn't exist!",
+                       "PATH", channelPath.string(), "CHANNEL", channelName);
             continue;
         }
         std::filesystem::path bus = std::filesystem::read_symlink(channelPath);
@@ -93,8 +92,8 @@ void linkMux(const std::string& muxName, uint64_t busIndex, uint64_t address,
         std::filesystem::create_symlink(fp, link, ec);
         if (ec)
         {
-            std::cerr << "Failure creating symlink for " << fp << " to " << link
-                      << "\n";
+            lg2::error("Failure creating symlink for {PATH} to {LINK}", "PATH",
+                       fp.string(), "LINK", link.string());
         }
     }
 }
@@ -107,7 +106,7 @@ static int deleteDevice(const std::string& busPath, uint64_t address,
     std::ofstream deviceFile(deviceDestructor);
     if (!deviceFile.good())
     {
-        std::cerr << "Error writing " << deviceDestructor << "\n";
+        lg2::error("Error writing {PATH}", "PATH", deviceDestructor.string());
         return -1;
     }
     deviceFile << std::to_string(address);
@@ -124,7 +123,7 @@ static int createDevice(const std::string& busPath,
     std::ofstream deviceFile(deviceConstructor);
     if (!deviceFile.good())
     {
-        std::cerr << "Error writing " << deviceConstructor << "\n";
+        lg2::error("Error writing {PATH}", "PATH", deviceConstructor.string());
         return -1;
     }
     deviceFile << parameters;
@@ -183,7 +182,7 @@ static int buildDevice(
                  &io](const boost::system::error_code& ec) mutable {
                     if (ec)
                     {
-                        std::cerr << "Timer error: " << ec << "\n";
+                        lg2::error("Timer error: {ERR}", "ERR", ec.message());
                         return -2;
                     }
                     return buildDevice(name, busPath, parameters, bus, address,

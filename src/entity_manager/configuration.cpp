@@ -1,10 +1,10 @@
 #include "configuration.hpp"
 
 #include "perform_probe.hpp"
-#include "phosphor-logging/lg2.hpp"
 #include "utils.hpp"
 
 #include <nlohmann/json.hpp>
+#include <phosphor-logging/lg2.hpp>
 #include <valijson/adapters/nlohmann_json_adapter.hpp>
 #include <valijson/schema.hpp>
 #include <valijson/schema_parser.hpp>
@@ -12,7 +12,6 @@
 
 #include <filesystem>
 #include <fstream>
-#include <iostream>
 #include <string>
 #include <vector>
 
@@ -33,8 +32,8 @@ void Configuration::loadConfigurations()
                                                hostConfigurationDirectory},
             R"(.*\.json)", jsonPaths))
     {
-        std::cerr << "Unable to find any configuration files in "
-                  << configurationDirectory << "\n";
+        lg2::error("Unable to find any configuration files in {DIR}", "DIR",
+                   configurationDirectory);
         return;
     }
 
@@ -42,8 +41,7 @@ void Configuration::loadConfigurations()
         std::string(schemaDirectory) + "/" + globalSchema);
     if (!schemaStream.good())
     {
-        std::cerr
-            << "Cannot open schema file,  cannot validate JSON, exiting\n\n";
+        lg2::error("Cannot open schema file,  cannot validate JSON, exiting");
         std::exit(EXIT_FAILURE);
         return;
     }
@@ -51,8 +49,8 @@ void Configuration::loadConfigurations()
         nlohmann::json::parse(schemaStream, nullptr, false, true);
     if (schema.is_discarded())
     {
-        std::cerr
-            << "Illegal schema file detected, cannot validate JSON, exiting\n";
+        lg2::error(
+            "Illegal schema file detected, cannot validate JSON, exiting");
         std::exit(EXIT_FAILURE);
         return;
     }
@@ -62,19 +60,19 @@ void Configuration::loadConfigurations()
         std::ifstream jsonStream(jsonPath.c_str());
         if (!jsonStream.good())
         {
-            std::cerr << "unable to open " << jsonPath.string() << "\n";
+            lg2::error("unable to open {PATH}", "PATH", jsonPath.string());
             continue;
         }
         auto data = nlohmann::json::parse(jsonStream, nullptr, false, true);
         if (data.is_discarded())
         {
-            std::cerr << "syntax error in " << jsonPath.string() << "\n";
+            lg2::error("syntax error in {PATH}", "PATH", jsonPath.string());
             continue;
         }
 
         if (ENABLE_RUNTIME_VALIDATE_JSON && !validateJson(schema, data))
         {
-            std::cerr << "Error validating " << jsonPath.string() << "\n";
+            lg2::error("Error validating {PATH}", "PATH", jsonPath.string());
             continue;
         }
 
@@ -137,7 +135,8 @@ void Configuration::filterProbeInterfaces()
         auto findProbe = it->find("Probe");
         if (findProbe == it->end())
         {
-            std::cerr << "configuration file missing probe:\n " << *it << "\n";
+            lg2::error("configuration file missing probe: {PROBE}", "PROBE",
+                       *it);
             it++;
             continue;
         }
@@ -158,7 +157,7 @@ void Configuration::filterProbeInterfaces()
             const std::string* probe = probeJson.get_ptr<const std::string*>();
             if (probe == nullptr)
             {
-                std::cerr << "Probe statement wasn't a string, can't parse";
+                lg2::error("Probe statement wasn't a string, can't parse");
                 continue;
             }
             // Skip it if the probe cmd doesn't contain an interface.
