@@ -156,6 +156,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "97ad55af_2e3803b4",
+        "filename": "src/entity_manager/utils.cpp",
+        "patchSetId": 8
+      },
+      "lineNbr": 113,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-09-15T10:45:03Z",
+      "side": 1,
+      "message": "It will be better to have a proper error message with filename, right?\n\nBut since the patch is fixing the existing bug (leftover template var is ignored without any message), i think it\u0027s fine to leave out the filename for now if that\u0027s too much work.",
+      "parentUuid": "48ea19e8_d224c016",
+      "revId": "0c87c484b7cfe20ba3f8b77d6ea65e7e4f02e1ea",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "6a2147dc_a1e490c2",
         "filename": "src/entity_manager/utils.cpp",
         "patchSetId": 8
