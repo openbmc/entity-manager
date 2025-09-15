@@ -24,6 +24,30 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "21a4b3b8_3a8b8ed9",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 8
+      },
+      "lineNbr": 32,
+      "author": {
+        "id": 1001526
+      },
+      "writtenOn": "2025-09-15T09:26:10Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "3131b673_d404fab4",
+      "range": {
+        "startLine": 32,
+        "startChar": 0,
+        "endLine": 32,
+        "endChar": 10
+      },
+      "revId": "0c87c484b7cfe20ba3f8b77d6ea65e7e4f02e1ea",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "d0b59297_acdc91ae",
@@ -37,6 +61,24 @@
       "writtenOn": "2025-09-15T08:06:29Z",
       "side": 1,
       "message": "Testing once with a real config would be nice. From what i have seen, the unit tests only cover the `templateCharReplace` stuff and not how and when it is called.\n\nWe can have a config with some real and some non-existent template vars and then logs and `busctl` output can show that some were correctly replaced and others could not be replaced.",
+      "revId": "0c87c484b7cfe20ba3f8b77d6ea65e7e4f02e1ea",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "cc6e8a10_1b0fd450",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 8
+      },
+      "lineNbr": 34,
+      "author": {
+        "id": 1001526
+      },
+      "writtenOn": "2025-09-15T09:26:10Z",
+      "side": 1,
+      "message": "Added real test result.",
+      "parentUuid": "d0b59297_acdc91ae",
       "revId": "0c87c484b7cfe20ba3f8b77d6ea65e7e4f02e1ea",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
@@ -60,6 +102,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "32bf765a_b38af361",
+        "filename": "src/entity_manager/utils.cpp",
+        "patchSetId": 8
+      },
+      "lineNbr": 113,
+      "author": {
+        "id": 1001526
+      },
+      "writtenOn": "2025-09-15T09:26:10Z",
+      "side": 1,
+      "message": "Hi, is there a reference somewhere to extract file name and line num?",
+      "parentUuid": "2439b4a4_caeca093",
+      "revId": "0c87c484b7cfe20ba3f8b77d6ea65e7e4f02e1ea",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "6a2147dc_a1e490c2",
         "filename": "src/entity_manager/utils.cpp",
         "patchSetId": 8
@@ -71,6 +131,24 @@
       "writtenOn": "2025-09-15T08:06:29Z",
       "side": 1,
       "message": "nit: extra newline",
+      "revId": "0c87c484b7cfe20ba3f8b77d6ea65e7e4f02e1ea",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "48c69268_ae36e6d3",
+        "filename": "src/entity_manager/utils.cpp",
+        "patchSetId": 8
+      },
+      "lineNbr": 168,
+      "author": {
+        "id": 1001526
+      },
+      "writtenOn": "2025-09-15T09:26:10Z",
+      "side": 1,
+      "message": "Removed.",
+      "parentUuid": "6a2147dc_a1e490c2",
       "revId": "0c87c484b7cfe20ba3f8b77d6ea65e7e4f02e1ea",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
@@ -88,6 +166,24 @@
       "writtenOn": "2025-09-15T08:06:29Z",
       "side": 1,
       "message": "nit: Since `handleLeftOverTemplateVars` is called by `templateCharReplace`, it would be good to have a test with `templateCharReplace` as well.",
+      "revId": "0c87c484b7cfe20ba3f8b77d6ea65e7e4f02e1ea",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "bde8a1f7_3bd55f18",
+        "filename": "test/entity_manager/test_entity-manager.cpp",
+        "patchSetId": 8
+      },
+      "lineNbr": 243,
+      "author": {
+        "id": 1001526
+      },
+      "writtenOn": "2025-09-15T09:26:10Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "b10ff5e0_c778adfb",
       "revId": "0c87c484b7cfe20ba3f8b77d6ea65e7e4f02e1ea",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
