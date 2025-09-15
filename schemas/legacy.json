@@ -745,6 +745,10 @@
                 "Thresholds": {
                     "$ref": "#/$defs/Types/Thresholds"
                 },
+                "EnablePEC": {
+                    "description": "Enable SMBus PEC generation and verification.",
+                    "type": "boolean"
+                },
                 "Type": {
                     "const": "NVME1000"
                 }
