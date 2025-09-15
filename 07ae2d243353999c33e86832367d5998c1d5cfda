@@ -70,6 +70,41 @@
       "parentUuid": "b9c19d04_9ef021cb",
       "revId": "07ae2d243353999c33e86832367d5998c1d5cfda",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "920df166_462d7640",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-09-15T08:35:20Z",
+      "side": 1,
+      "message": "I",
+      "revId": "07ae2d243353999c33e86832367d5998c1d5cfda",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "30dfd272_ab82a4b3",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-09-15T08:35:20Z",
+      "side": 1,
+      "message": "\u003e I made it very clear in the review that I don\u0027t find that check to hit the threshold of general usefulness at this point, and I think it can be actively combative to people trying to fix one thing, or clean up code.\n\nMaybe you are completely alone in this opinion. You are the only one objecting to this patch.\n\nDid you maintain a repo with this check enabled before? In case it\u0027s new to you, does it make sense to go for a trial run where we enable this check and see how it goes?\n\nI guess it would not be too much work for you to extract functions where appropriate in your EM development. You are really good at C++ and would almost never hit any problem with this check.\n\n\u003e This assumes that maintainers don\u0027t do their jobs, and that there\u0027s significant active development going on.\n\nRelying on maintainers for this specific issue **did not work in the past**, and i am *doubting* it will work in the future.\n\nI also consider it some waste of time to manually keep track of this issue which is why this check exists.\n\n\u003e not enabling some blanket check that isn\u0027t an easy refactor for people new to the project to make.\n\nFrom my (beginner) perspective, it is easier to contribute in a codebase with smaller functions which is more readable.\n\nUnderstanding the code is the hard part. Extracting a function is usually an easy task.\n\nWhich is why there is IDE\u0027s like CLion and others where extracting a function is already automated.\n\nMaybe you cannot take this perspective because of your experience. You would not have issues understanding these larger functions.",
+      "parentUuid": "1c5c3c0e_7f432ecd",
+      "revId": "07ae2d243353999c33e86832367d5998c1d5cfda",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }
