@@ -1,0 +1,107 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7b7cf4bf_94869a54",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2025-09-16T19:46:26Z",
+      "side": 1,
+      "message": "Minor nits.  I wish we could come up with something better than this per-image blocklist.... but I get that\u0027s difficult.",
+      "revId": "4876b53baf1822a9229fae782358bc12afeab9b3",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "415f73d6_6216c990",
+        "filename": "src/fru_device/fru_device.cpp",
+        "patchSetId": 3
+      },
+      "lineNbr": 702,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2025-09-16T19:46:26Z",
+      "side": 1,
+      "message": "auto it \u003d data.find(\"addresses\");\nif (it !\u003d data.end()){\n    const nlohmann::json::array_t arr \u003d data.get_ptr\u003cnlohmann::json::array_t\u003e();\nif (arr !\u003d nullptr){\n    Do code.\n}\n}",
+      "range": {
+        "startLine": 702,
+        "startChar": 0,
+        "endLine": 702,
+        "endChar": 37
+      },
+      "revId": "4876b53baf1822a9229fae782358bc12afeab9b3",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a1c6afb5_8256ea76",
+        "filename": "src/fru_device/fru_device.cpp",
+        "patchSetId": 3
+      },
+      "lineNbr": 713,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2025-09-16T19:46:26Z",
+      "side": 1,
+      "message": "This is going to rearrange the elements based on string order.  We probably don\u0027t want that.\n\nSee above, get as an array.",
+      "range": {
+        "startLine": 713,
+        "startChar": 17,
+        "endLine": 713,
+        "endChar": 60
+      },
+      "revId": "4876b53baf1822a9229fae782358bc12afeab9b3",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "de13c8c1_80069d01",
+        "filename": "src/fru_device/fru_device.cpp",
+        "patchSetId": 3
+      },
+      "lineNbr": 716,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2025-09-16T19:46:26Z",
+      "side": 1,
+      "message": "Need to check the output of from_chars.  Also, i think we already have a helper for this?",
+      "revId": "4876b53baf1822a9229fae782358bc12afeab9b3",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9c7c33be_1e4dc9ff",
+        "filename": "src/fru_device/fru_device.cpp",
+        "patchSetId": 3
+      },
+      "lineNbr": 716,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2025-09-16T19:46:26Z",
+      "side": 1,
+      "message": "As written, this will accept \n\nFOABC as 0XABC.",
+      "range": {
+        "startLine": 716,
+        "startChar": 47,
+        "endLine": 716,
+        "endChar": 51
+      },
+      "revId": "4876b53baf1822a9229fae782358bc12afeab9b3",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    }
+  ]
+}
