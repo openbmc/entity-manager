@@ -20,6 +20,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "b6edd7c7_ee0e4649",
+        "filename": "configurations/asrock_altrad8.json",
+        "patchSetId": 5
+      },
+      "lineNbr": 139,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2025-09-16T21:06:42Z",
+      "side": 1,
+      "message": "Generally these names include spaces, which are then escaped when the object is put on dbus.",
+      "parentUuid": "cb768290_9ebada94",
+      "revId": "11e659f14215efee86aa4455966adb0a0134f288",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "42d2e920_8142875e",
         "filename": "configurations/asrock_altrad8.json",
         "patchSetId": 5
@@ -31,6 +49,52 @@
       "writtenOn": "2025-09-16T21:02:41Z",
       "side": 1,
       "message": "could be dropped. This ADC is not scaled.",
+      "revId": "11e659f14215efee86aa4455966adb0a0134f288",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9692223a_b7ee8752",
+        "filename": "configurations/asrock_altrad8.json",
+        "patchSetId": 5
+      },
+      "lineNbr": 849,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2025-09-16T21:06:42Z",
+      "side": 1,
+      "message": "Does System76 really show up in the BOARD manufacturer field?  I would expect that would show up in the PRODUCT manufacturer field.",
+      "range": {
+        "startLine": 849,
+        "startChar": 151,
+        "endLine": 849,
+        "endChar": 159
+      },
+      "revId": "11e659f14215efee86aa4455966adb0a0134f288",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "85d469b8_d98f249f",
+        "filename": "configurations/asrock_altrad8.json",
+        "patchSetId": 5
+      },
+      "lineNbr": 854,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2025-09-16T21:06:42Z",
+      "side": 1,
+      "message": "Remove, just leave blank or omit.  \"Unknown\" is not recommended by Redfish because it can\u0027t interop",
+      "range": {
+        "startLine": 854,
+        "startChar": 23,
+        "endLine": 854,
+        "endChar": 30
+      },
       "revId": "11e659f14215efee86aa4455966adb0a0134f288",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
