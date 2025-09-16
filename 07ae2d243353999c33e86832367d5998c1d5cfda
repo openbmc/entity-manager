@@ -3,6 +3,29 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "1cd21a0c_e23c3736",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 4
+      },
+      "lineNbr": 14,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2025-09-16T17:59:18Z",
+      "side": 1,
+      "message": "This change doesn\u0027t follow cpp core guidelines recommendations.\n\nF.3 https://isocpp.github.io/CppCoreGuidelines/CppCoreGuidelines#f3-keep-functions-short-and-simple\n\n```\nFlag functions that do not “fit on a screen.” How big is a screen? Try 60 lines by 140 characters; that’s roughly the maximum that’s comfortable for a book page.\n```\n\nConsidering we don\u0027t allow 140 character line lengths, and this doesn\u0027t enforce 60 line methods, this commit message isn\u0027t accurate.",
+      "range": {
+        "startLine": 13,
+        "startChar": 0,
+        "endLine": 14,
+        "endChar": 17
+      },
+      "revId": "07ae2d243353999c33e86832367d5998c1d5cfda",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "f9d0f069_20f7dbbb",
         "filename": "/PATCHSET_LEVEL",
         "patchSetId": 4
