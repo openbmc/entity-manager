@@ -18,6 +18,24 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "3615a87b_59e90415",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1002504
+      },
+      "writtenOn": "2025-09-16T22:05:37Z",
+      "side": 1,
+      "message": "Yeah, I don\u0027t love this either, but I can\u0027t know the space of things that expose a fru-like interface a priori.",
+      "parentUuid": "7b7cf4bf_94869a54",
+      "revId": "4876b53baf1822a9229fae782358bc12afeab9b3",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "415f73d6_6216c990",
@@ -65,6 +83,30 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "c67c223d_00b4ed89",
+        "filename": "src/fru_device/fru_device.cpp",
+        "patchSetId": 3
+      },
+      "lineNbr": 702,
+      "author": {
+        "id": 1002504
+      },
+      "writtenOn": "2025-09-16T22:05:37Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "8cfb500e_b12c8313",
+      "range": {
+        "startLine": 702,
+        "startChar": 0,
+        "endLine": 702,
+        "endChar": 37
+      },
+      "revId": "4876b53baf1822a9229fae782358bc12afeab9b3",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "a1c6afb5_8256ea76",
@@ -102,6 +144,30 @@
       "side": 1,
       "message": "We treat it as a set elsewhere, but I don\u0027t see any issues with treating it like an array for parsing.",
       "parentUuid": "a1c6afb5_8256ea76",
+      "range": {
+        "startLine": 713,
+        "startChar": 17,
+        "endLine": 713,
+        "endChar": 60
+      },
+      "revId": "4876b53baf1822a9229fae782358bc12afeab9b3",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "e30f656a_903914ef",
+        "filename": "src/fru_device/fru_device.cpp",
+        "patchSetId": 3
+      },
+      "lineNbr": 713,
+      "author": {
+        "id": 1002504
+      },
+      "writtenOn": "2025-09-16T22:05:37Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "628d837b_8dad43e4",
       "range": {
         "startLine": 713,
         "startChar": 17,
@@ -190,6 +256,48 @@
       "side": 1,
       "message": "ack. I didn\u0027t see a helper but will add better parsing and deal with incorrect prefixes etc.",
       "parentUuid": "de13c8c1_80069d01",
+      "revId": "4876b53baf1822a9229fae782358bc12afeab9b3",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "3fab1f10_20501f83",
+        "filename": "src/fru_device/fru_device.cpp",
+        "patchSetId": 3
+      },
+      "lineNbr": 716,
+      "author": {
+        "id": 1002504
+      },
+      "writtenOn": "2025-09-16T22:05:37Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "815e4c59_96f1df13",
+      "range": {
+        "startLine": 716,
+        "startChar": 47,
+        "endLine": 716,
+        "endChar": 51
+      },
+      "revId": "4876b53baf1822a9229fae782358bc12afeab9b3",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "ac0ff014_960783d4",
+        "filename": "src/fru_device/fru_device.cpp",
+        "patchSetId": 3
+      },
+      "lineNbr": 716,
+      "author": {
+        "id": 1002504
+      },
+      "writtenOn": "2025-09-16T22:05:37Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "f778af1c_7217dbf4",
       "revId": "4876b53baf1822a9229fae782358bc12afeab9b3",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
