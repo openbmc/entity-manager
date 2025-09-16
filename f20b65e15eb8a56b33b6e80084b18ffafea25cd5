@@ -16,6 +16,52 @@
       "message": "I\u0027m considering adding a follow-up patch to split this out into a separate function and add unit tests. this logic ended up getting relatively complex.",
       "revId": "f20b65e15eb8a56b33b6e80084b18ffafea25cd5",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "56b19743_09264435",
+        "filename": "src/fru_device/fru_device.cpp",
+        "patchSetId": 4
+      },
+      "lineNbr": 725,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2025-09-16T23:10:02Z",
+      "side": 1,
+      "message": "nit, get_ptr lets you do the check on line 719 without doubling the type checking.\n\nI\u0027m not worried about it here, but something to consider if you end up doing a follow on.",
+      "range": {
+        "startLine": 725,
+        "startChar": 36,
+        "endLine": 725,
+        "endChar": 43
+      },
+      "revId": "f20b65e15eb8a56b33b6e80084b18ffafea25cd5",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "24083a10_a9c069f7",
+        "filename": "src/fru_device/fru_device.cpp",
+        "patchSetId": 4
+      },
+      "lineNbr": 744,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2025-09-16T23:10:02Z",
+      "side": 1,
+      "message": "if (ptr !\u003d addrS.data() + addrS.length() || ec \u003d\u003d std::errc()){\n    // problems\n}",
+      "range": {
+        "startLine": 744,
+        "startChar": 12,
+        "endLine": 744,
+        "endChar": 15
+      },
+      "revId": "f20b65e15eb8a56b33b6e80084b18ffafea25cd5",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }
