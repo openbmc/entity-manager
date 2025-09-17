@@ -144,6 +144,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "ca52e597_533d48bd",
+        "filename": "src/fru_device/fru_device.cpp",
+        "patchSetId": 5
+      },
+      "lineNbr": 723,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-09-17T18:55:34Z",
+      "side": 1,
+      "message": "You can easily reduce the number of `std::exit` being added here by extracting your address block list parsing code into a separate function like `loadAddressBlockList`.\n\nThen just `std::exit` once in `loadBlocklist`. in case `loadAddressBlockList` fails.\n\nAs of this patchset, the function very long anyways.",
+      "parentUuid": "80da1c5e_f34b1f42",
+      "revId": "f0bb21e6e0837cbfd3829f2e066b65af0b6b6925",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "b4d87d9b_3a854413",
         "filename": "src/fru_device/fru_device.cpp",
         "patchSetId": 5
