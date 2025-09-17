@@ -18,6 +18,24 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "60bc8fa8_bd40e8b0",
+        "filename": "src/fru_device/fru_device.cpp",
+        "patchSetId": 5
+      },
+      "lineNbr": 466,
+      "author": {
+        "id": 1002504
+      },
+      "writtenOn": "2025-09-17T16:56:51Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "be8cf350_cc4c803b",
+      "revId": "f0bb21e6e0837cbfd3829f2e066b65af0b6b6925",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "850fac8a_9f1f8ee0",
@@ -31,6 +49,24 @@
       "writtenOn": "2025-09-17T08:30:31Z",
       "side": 1,
       "message": "lg2::error, same for the below logs",
+      "revId": "f0bb21e6e0837cbfd3829f2e066b65af0b6b6925",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "cf05f632_aced5684",
+        "filename": "src/fru_device/fru_device.cpp",
+        "patchSetId": 5
+      },
+      "lineNbr": 711,
+      "author": {
+        "id": 1002504
+      },
+      "writtenOn": "2025-09-17T16:56:51Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "850fac8a_9f1f8ee0",
       "revId": "f0bb21e6e0837cbfd3829f2e066b65af0b6b6925",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
@@ -54,6 +90,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "691a6667_c07fc58d",
+        "filename": "src/fru_device/fru_device.cpp",
+        "patchSetId": 5
+      },
+      "lineNbr": 723,
+      "author": {
+        "id": 1002504
+      },
+      "writtenOn": "2025-09-17T16:56:51Z",
+      "side": 1,
+      "message": "std::exit and std::cerr were put in as extending the previous logic in this function. I\u0027m fine with moving logs over to lg2.\n\nThat said, if we have critical system resources that aren\u0027t being cleaned up by the OS on process exit, destructors won\u0027t save us in general and we likely have a design flaw. std::exit isn\u0027t the only way that this program can end without firing destructors.\n\nFrom a code design perspective, yes, returning from main is cleaner; from a \"are resources cleaned up\" perspective, if we\u0027re relying on destructors firing on process exit paths, things are kind of broken.",
+      "parentUuid": "41c9a126_68bf93ac",
+      "revId": "f0bb21e6e0837cbfd3829f2e066b65af0b6b6925",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "b4d87d9b_3a854413",
         "filename": "src/fru_device/fru_device.cpp",
         "patchSetId": 5
@@ -65,6 +119,24 @@
       "writtenOn": "2025-09-17T08:30:31Z",
       "side": 1,
       "message": "Do you think it could work to create `class FRUDevice` or similar so functions like `rescanOneBus` can be member functions and avoid passing this parameter through all these functions.\n\nOr is it not possible due to some other concern.",
+      "revId": "f0bb21e6e0837cbfd3829f2e066b65af0b6b6925",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f0342cda_7a9b8794",
+        "filename": "src/fru_device/fru_device.cpp",
+        "patchSetId": 5
+      },
+      "lineNbr": 1486,
+      "author": {
+        "id": 1002504
+      },
+      "writtenOn": "2025-09-17T16:56:51Z",
+      "side": 1,
+      "message": "Its certainly possible, but would be a relatively large refactor of the code base, which I\u0027m not opposed to but I don\u0027t want to tie that refactor to this change. There\u0027s a number of places where having an object (or more) would make some of this easier, especially around passing around the contents of the FRU and this kind of bus level metadata. Specifically on rescanOneBus and its ilk, I don\u0027t think a FruDevice should be responsible for that (rescanOneBus \u0026 rescanBusses should probably return constructed FruDevices), but thats the kind of bikeshedding we can do in a different review.",
+      "parentUuid": "b4d87d9b_3a854413",
       "revId": "f0bb21e6e0837cbfd3829f2e066b65af0b6b6925",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
