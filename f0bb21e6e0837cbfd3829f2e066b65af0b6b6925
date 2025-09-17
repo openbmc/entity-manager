@@ -1,0 +1,72 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "be8cf350_cc4c803b",
+        "filename": "src/fru_device/fru_device.cpp",
+        "patchSetId": 5
+      },
+      "lineNbr": 466,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-09-17T08:30:31Z",
+      "side": 1,
+      "message": "lg2::debug",
+      "revId": "f0bb21e6e0837cbfd3829f2e066b65af0b6b6925",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "850fac8a_9f1f8ee0",
+        "filename": "src/fru_device/fru_device.cpp",
+        "patchSetId": 5
+      },
+      "lineNbr": 711,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-09-17T08:30:31Z",
+      "side": 1,
+      "message": "lg2::error, same for the below logs",
+      "revId": "f0bb21e6e0837cbfd3829f2e066b65af0b6b6925",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "41c9a126_68bf93ac",
+        "filename": "src/fru_device/fru_device.cpp",
+        "patchSetId": 5
+      },
+      "lineNbr": 723,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-09-17T08:30:31Z",
+      "side": 1,
+      "message": "nit: this is just preference but i don\u0027t like having `std::exit` all over the code.\n\nIt messes with the symmetry of constructor/destructor, as some destructors will not be called.\n\nhttps://en.cppreference.com/w/cpp/utility/program/exit\n\nMy preference would be to pass some return value in error case and then `std::exit` in on place, or not `std::exit` at all and just return from main function.",
+      "revId": "f0bb21e6e0837cbfd3829f2e066b65af0b6b6925",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b4d87d9b_3a854413",
+        "filename": "src/fru_device/fru_device.cpp",
+        "patchSetId": 5
+      },
+      "lineNbr": 1486,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-09-17T08:30:31Z",
+      "side": 1,
+      "message": "Do you think it could work to create `class FRUDevice` or similar so functions like `rescanOneBus` can be member functions and avoid passing this parameter through all these functions.\n\nOr is it not possible due to some other concern.",
+      "revId": "f0bb21e6e0837cbfd3829f2e066b65af0b6b6925",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    }
+  ]
+}
