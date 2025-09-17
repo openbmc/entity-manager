@@ -78,6 +78,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "7f621054_327a24bc",
+        "filename": "configurations/asrock_altrad8.json",
+        "patchSetId": 5
+      },
+      "lineNbr": 849,
+      "author": {
+        "id": 1002603
+      },
+      "writtenOn": "2025-09-17T00:31:06Z",
+      "side": 1,
+      "message": "It shows up in both BOARD and PRODUCT manufacturer fields:\n```\n xyz.openbmc_project.FruDevice       interface -         -                       -\n.ADDRESS                            property  u         87                      emits-change\n.BOARD_INFO_AM1                     property  s         \"thelio-astra-a1\"       emits-change\n.BOARD_LANGUAGE_CODE                property  s         \"0\"                     emits-change\n.BOARD_MANUFACTURER                 property  s         \"System76\"              emits-change\n.BOARD_MANUFACTURE_DATE             property  s         \"2024-04-09 - 22:54:00\" emits-change\n.BOARD_PRODUCT_NAME                 property  s         \"Thelio Astra\"          emits-change\n.BOARD_SERIAL_NUMBER                property  s         \"BR80H1008200116\"       emits-change\n.BUS                                property  u         7                       emits-change\n.CHASSIS_INFO_AM1                   property  s         \"System76\"              emits-change\n.CHASSIS_INFO_AM2                   property  s         \"thelio-astra-a1\"       emits-change\n.CHASSIS_TYPE                       property  s         \"1\"                     emits-change\n.Common_Format_Version              property  s         \"1\"                     emits-change\n.PRODUCT_ASSET_TAG                  property  s         \"\"                      emits-change writable\n.PRODUCT_LANGUAGE_CODE              property  s         \"0\"                     emits-change\n.PRODUCT_MANUFACTURER               property  s         \"System76\"              emits-change\n.PRODUCT_PRODUCT_NAME               property  s         \"Thelio Astra\"          emits-change\n.PRODUCT_VERSION                    property  s         \"thelio-astra-a1\"       emits-change\n```",
+      "parentUuid": "9692223a_b7ee8752",
+      "range": {
+        "startLine": 849,
+        "startChar": 151,
+        "endLine": 849,
+        "endChar": 159
+      },
+      "revId": "11e659f14215efee86aa4455966adb0a0134f288",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "85d469b8_d98f249f",
         "filename": "configurations/asrock_altrad8.json",
         "patchSetId": 5
