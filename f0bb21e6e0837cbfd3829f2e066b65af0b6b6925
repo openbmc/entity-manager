@@ -126,6 +126,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "80da1c5e_f34b1f42",
+        "filename": "src/fru_device/fru_device.cpp",
+        "patchSetId": 5
+      },
+      "lineNbr": 723,
+      "author": {
+        "id": 1002504
+      },
+      "writtenOn": "2025-09-17T18:30:18Z",
+      "side": 1,
+      "message": "we haven\u0027t changed any of the operating assumptions of this function, namely that if the config is malformed enough, we refuse to parse it, and if we don\u0027t have a proper config, we can\u0027t do anything well enough to move on with the process. Which, for config parsing, is generally a decent assumption IMO, separate from concerns about function design or which entity in the callgraph makes that decision.\n\nI understand your points about unit testing and local reasoning, and I generally agree with them. In its current form this function isn\u0027t unit testable in any way. Its hidden in a .cpp file, and relies on global variables as is.\n\nI don\u0027t see any of the code in this entire file as being a decent target for a separable library, there are much bigger fish to fry around that, i.e. that dbus logic is deeply intertwined with business logic.\n\nThis is a function that runs at startup, once, by design. If this was deep into a dbus driven callgraph, I would absolutely agree with you that this needs to be fixed.\n\nIf we want to refactor this function and make it unit testable, etc, its a decent target for that IMO. That should be a separate commit from a feature add, however.",
+      "parentUuid": "a1ba99a0_07fc89ed",
+      "revId": "f0bb21e6e0837cbfd3829f2e066b65af0b6b6925",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "b4d87d9b_3a854413",
         "filename": "src/fru_device/fru_device.cpp",
         "patchSetId": 5
