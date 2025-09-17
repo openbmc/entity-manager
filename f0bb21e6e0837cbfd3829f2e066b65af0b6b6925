@@ -108,6 +108,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "a1ba99a0_07fc89ed",
+        "filename": "src/fru_device/fru_device.cpp",
+        "patchSetId": 5
+      },
+      "lineNbr": 723,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-09-17T17:37:15Z",
+      "side": 1,
+      "message": "\u003e std::exit and std::cerr were put in as extending the previous logic in this function. I\u0027m fine with moving logs over to lg2.\n\nYes, usually implementing similar to the existing code is a good idea.\n\nBut the existing code here is not amazing so we may want to go a different route.\n\n### lg2\n\nFor the lg2, you can just also pick and choose from https://gerrit.openbmc.org/c/openbmc/entity-manager/+/83682 for whichever files/functions you consider in scope of your change (or just convert the entire file in a patch before/after this one).\n\n### local reasoning and `std::exit`\n\nregular functions usually return or throw something.\n\nIf we `std::exit` anywhere along the way then local reasoning is broken, because\n\nin function `a` we now need to consider the `std::exit` that happens in function `c` along the caller relationship `a -\u003e b -\u003e c`\n\nbecause any code after the call to `b` will not be run.\n\nAnd if local reasoning is broken, the code will become unmaintainable (IMO).\n\n### funny example of how EM uses destructors\n\n\u003e From a code design perspective, yes, returning from main is cleaner; from a \"are resources cleaned up\" perspective, if we\u0027re relying on destructors firing on process exit paths, things are kind of broken.\n\nhttps://github.com/openbmc/entity-manager/blob/fd939286bad96a52004925893ae5b98d6b67a623/src/entity_manager/perform_scan.cpp#L603\nthis is `scan::PerformScan::~PerformScan()`.\n\nIt\u0027s a destructor which either makes a shared_ptr (of another instance of itself) or calls a callback.\n\n### program portability and `std::exit`\n\nprograms using `std::exit` are hard to turn into libraries. Since control flow does not go back through the main function.\n\n### unit testing and `std::exit`\n\nIt\u0027s hard to test code using `std::exit` because the test will ... exit.\n\nSo it\u0027s not possible to do any assertions after such an exit has taken place.\n\nAlso not possible to run multiple tests in sequence in the same process.",
+      "parentUuid": "691a6667_c07fc58d",
+      "revId": "f0bb21e6e0837cbfd3829f2e066b65af0b6b6925",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "b4d87d9b_3a854413",
         "filename": "src/fru_device/fru_device.cpp",
         "patchSetId": 5
@@ -137,6 +155,24 @@
       "side": 1,
       "message": "Its certainly possible, but would be a relatively large refactor of the code base, which I\u0027m not opposed to but I don\u0027t want to tie that refactor to this change. There\u0027s a number of places where having an object (or more) would make some of this easier, especially around passing around the contents of the FRU and this kind of bus level metadata. Specifically on rescanOneBus and its ilk, I don\u0027t think a FruDevice should be responsible for that (rescanOneBus \u0026 rescanBusses should probably return constructed FruDevices), but thats the kind of bikeshedding we can do in a different review.",
       "parentUuid": "b4d87d9b_3a854413",
+      "revId": "f0bb21e6e0837cbfd3829f2e066b65af0b6b6925",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "95be6518_e1a673d1",
+        "filename": "src/fru_device/fru_device.cpp",
+        "patchSetId": 5
+      },
+      "lineNbr": 1486,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-09-17T17:37:15Z",
+      "side": 1,
+      "message": "\u003e Specifically on rescanOneBus and its ilk, I don\u0027t think a FruDevice should be responsible for that\n\n\u003e but thats the kind of bikeshedding we can do in a different review.\n\nOk, if there is no obviously right class definition then i will close the comment. You will know best since you recently edited the code.",
+      "parentUuid": "f0342cda_7a9b8794",
       "revId": "f0bb21e6e0837cbfd3829f2e066b65af0b6b6925",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
