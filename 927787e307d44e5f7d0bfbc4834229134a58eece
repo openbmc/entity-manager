@@ -95,6 +95,29 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "4616c6a5_93334c5d",
+        "filename": "src/fru_device/fru_device.cpp",
+        "patchSetId": 18
+      },
+      "lineNbr": 1257,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2025-09-18T19:20:52Z",
+      "side": 1,
+      "message": "missing range check.  You can\u0027t index into an unknown size struct without first checking that fruAreaToUpdate is within the size range of this vector.",
+      "range": {
+        "startLine": 1257,
+        "startChar": 38,
+        "endLine": 1257,
+        "endChar": 53
+      },
+      "revId": "927787e307d44e5f7d0bfbc4834229134a58eece",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "0944fb42_a924b655",
         "filename": "src/fru_device/fru_utils.cpp",
         "patchSetId": 18
@@ -222,6 +245,29 @@
       "side": 1,
       "message": "sure",
       "parentUuid": "9e7cfb4a_a2404467",
+      "revId": "927787e307d44e5f7d0bfbc4834229134a58eece",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "66669c45_403ff07b",
+        "filename": "src/fru_device/fru_utils.cpp",
+        "patchSetId": 18
+      },
+      "lineNbr": 1320,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2025-09-18T19:20:52Z",
+      "side": 1,
+      "message": "Why not just return the iterator here?",
+      "range": {
+        "startLine": 1320,
+        "startChar": 0,
+        "endLine": 1320,
+        "endChar": 2
+      },
       "revId": "927787e307d44e5f7d0bfbc4834229134a58eece",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
