@@ -96,6 +96,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "54ce71ad_e525b2e1",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 17
+      },
+      "lineNbr": 31,
+      "author": {
+        "id": 1001426
+      },
+      "writtenOn": "2025-09-18T18:23:24Z",
+      "side": 1,
+      "message": "UpdateFruField is needed only if the field is absent in existing FRU.\nExample: Support INFO_AM10 is missing in existing fru, then we use UpdateFruField to add the field in the area.",
+      "parentUuid": "8b52a046_ea348af6",
+      "range": {
+        "startLine": 31,
+        "startChar": 0,
+        "endLine": 31,
+        "endChar": 54
+      },
+      "revId": "08dc8b593024b512e1c14c966af38b0a1dd813d2",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "252418f7_6839e4ef",
         "filename": "/PATCHSET_LEVEL",
         "patchSetId": 17
@@ -160,6 +184,24 @@
       "side": 1,
       "message": "Hi, the reason for adding this API is mentioned in the commit message.\n\n\u003e This patch adds the ability to dynamically ***add*** or update FRU fields\nat runtime,\n\nThe previous API is limited to updating existing fields or writing the entire FRU contents.\n\nAdding fields which did not previously exist is IMO a valid use-case.",
       "parentUuid": "252418f7_6839e4ef",
+      "revId": "08dc8b593024b512e1c14c966af38b0a1dd813d2",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "efcb3f97_60d14a75",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 17
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1001426
+      },
+      "writtenOn": "2025-09-18T18:23:24Z",
+      "side": 1,
+      "message": "Previously, field modification was limited to the preassigned space\navailable in the FRU area. Any attempt to exceed this boundary would\nfail:\nExample:\n```busctl set-property xyz.openbmc_project.FruDevice /xyz/openbmc_project/FruDevice/MDA_WCU_AI xyz.openbmc_project.FruDevice CHASSIS_SERIAL_NUMBER s \"1234567890123\"\nbusctl set-property xyz.openbmc_project.FruDevice /xyz/openbmc_project/FruDevice/MDA_WCU_AI xyz.openbmc_project.FruDevice CHASSIS_SERIAL_NUMBER s \"12345678901234\"\nFailed to set property CHASSIS_SERIAL_NUMBER on interface xyz.openbmc_project.FruDevice: Invalid argument\nhexdump -C  /sys/bus/i2c/drivers/at24/8-0051/eeprom\n```\nWith this patch, the FRU area can extend dynamically. All FRU areas are\nrepacked, and the FRU common header is updated without errors:\nExample:\n```\nbusctl set-property xyz.openbmc_project.FruDevice /xyz/openbmc_project/FruDevice/MDA_WCU_AI xyz.openbmc_project.FruDevice CHASSIS_SERIAL_NUMBER s \"1234567890123\"\nbusctl set-property xyz.openbmc_project.FruDevice /xyz/openbmc_project/FruDevice/MDA_WCU_AI xyz.openbmc_project.FruDevice CHASSIS_SERIAL_NUMBER s \"12345678901234567890123456789\"",
+      "parentUuid": "30479ea1_5ef5c982",
       "revId": "08dc8b593024b512e1c14c966af38b0a1dd813d2",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
