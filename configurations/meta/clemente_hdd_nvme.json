@@ -8,8 +8,10 @@
                 "Type": "EEPROM"
             },
             {
-                "Address": "0x6a",
-                "Bus": "$bus",
+                "EntityId": 0,
+                "EntityInstance": 0,
+                "MaxValue": 255,
+                "MinValue": -255.0,
                 "Name": "HDDBOARD0 SSD$index TEMP_C",
                 "PowerState": "On",
                 "Thresholds": [
@@ -40,7 +42,9 @@
                         "Value": 5
                     }
                 ],
-                "Type": "NVME1000"
+                "Timeout": 30.0,
+                "Type": "ExternalSensor",
+                "Units": "DegreesC"
             }
         ],
         /* Clemente Hard Disk Drive NVMe Board 0*/
@@ -70,8 +74,10 @@
                 "Type": "EEPROM"
             },
             {
-                "Address": "0x6a",
-                "Bus": "$bus",
+                "EntityId": 1,
+                "EntityInstance": 0,
+                "MaxValue": 255,
+                "MinValue": -255.0,
                 "Name": "HDDBOARD1 SSD$index TEMP_C",
                 "PowerState": "On",
                 "Thresholds": [
@@ -102,7 +108,9 @@
                         "Value": 5
                     }
                 ],
-                "Type": "NVME1000"
+                "Timeout": 30.0,
+                "Type": "ExternalSensor",
+                "Units": "DegreesC"
             }
         ],
         /* Clemente Hard Disk Drive NVMe Board 1*/

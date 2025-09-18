@@ -7,13 +7,11 @@
             "Type": "EEPROM"
         },
         {
-            "Address": "0x1f",
-            "Bus": "$bus + 3",
-            "Labels": [
-                "temp2"
-            ],
+            "EntityId": 0,
+            "EntityInstance": 0,
+            "MaxValue": 255,
+            "MinValue": -255.0,
             "Name": "IOB$bus - 29 % 11 NIC0_TEMP_C",
-            "Name1": "IOB$bus - 29 % 11 NIC0_TEMP_C",
             "PowerState": "On",
             "Thresholds": [
                 {
@@ -38,16 +36,16 @@
                     "Value": 5
                 }
             ],
-            "Type": "TMP421"
+            "Timeout": 30.0,
+            "Type": "ExternalSensor",
+            "Units": "DegreesC"
         },
         {
-            "Address": "0x1f",
-            "Bus": "$bus + 6",
-            "Labels": [
-                "temp2"
-            ],
+            "EntityId": 1,
+            "EntityInstance": 0,
+            "MaxValue": 255,
+            "MinValue": -255.0,
             "Name": "IOB$bus - 29 % 11 NIC1_TEMP_C",
-            "Name1": "IOB$bus - 29 % 11 NIC1_TEMP_C",
             "PowerState": "On",
             "Thresholds": [
                 {
@@ -72,7 +70,67 @@
                     "Value": 5
                 }
             ],
-            "Type": "TMP421"
+            "Timeout": 30.0,
+            "Type": "ExternalSensor",
+            "Units": "DegreesC"
+        },
+        {
+            "EntityId": 2,
+            "EntityInstance": 0,
+            "MaxValue": 255,
+            "MinValue": -255.0,
+            "Name": "IOB$bus - 29 % 11 NIC0_OSFP_TEMP_C",
+            "PowerState": "On",
+            "Thresholds": [
+                {
+                    "Direction": "greater than",
+                    "Hysteresis": 1.4,
+                    "Index": 2,
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 70.0
+                },
+                {
+                    "Direction": "less than",
+                    "Hysteresis": 0.1,
+                    "Index": 2,
+                    "Name": "lower critical",
+                    "Severity": 1,
+                    "Value": 5
+                }
+            ],
+            "Timeout": 30.0,
+            "Type": "ExternalSensor",
+            "Units": "DegreesC"
+        },
+        {
+            "EntityId": 3,
+            "EntityInstance": 0,
+            "MaxValue": 255,
+            "MinValue": -255.0,
+            "Name": "IOB$bus - 29 % 11 NIC1_OSFP_TEMP_C",
+            "PowerState": "On",
+            "Thresholds": [
+                {
+                    "Direction": "greater than",
+                    "Hysteresis": 1.4,
+                    "Index": 2,
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 70.0
+                },
+                {
+                    "Direction": "less than",
+                    "Hysteresis": 0.1,
+                    "Index": 2,
+                    "Name": "lower critical",
+                    "Severity": 1,
+                    "Value": 5
+                }
+            ],
+            "Timeout": 30.0,
+            "Type": "ExternalSensor",
+            "Units": "DegreesC"
         }
     ],
     "Name": "NVIDIA GB300 IO Board $bus - 29 % 11",
