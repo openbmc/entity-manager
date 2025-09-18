@@ -773,9 +773,7 @@
                 "vin",
                 "vout1",
                 "iout1",
-                "temp1",
-                "pin",
-                "pout1"
+                "temp1"
             ],
             "Name": "PDB_BRICK0",
             "Thresholds": [
@@ -842,44 +840,10 @@
                     "Name": "upper non recoverable",
                     "Severity": 4,
                     "Value": 122
-                },
-                {
-                    "Direction": "greater than",
-                    "Hysteresis": 38.86,
-                    "Label": "pin",
-                    "Name": "upper critical",
-                    "Severity": 1,
-                    "Value": 1943
-                },
-                {
-                    "Direction": "greater than",
-                    "Hysteresis": 40,
-                    "Label": "pin",
-                    "Name": "upper non recoverable",
-                    "Severity": 4,
-                    "Value": 2000
-                },
-                {
-                    "Direction": "greater than",
-                    "Hysteresis": 37.7,
-                    "Label": "pout1",
-                    "Name": "upper critical",
-                    "Severity": 1,
-                    "Value": 1885
-                },
-                {
-                    "Direction": "greater than",
-                    "Hysteresis": 40,
-                    "Label": "pout1",
-                    "Name": "upper non recoverable",
-                    "Severity": 4,
-                    "Value": 2000
                 }
             ],
             "Type": "pmbus",
             "iout1_Name": "PDB_BRICK0_CURR_A",
-            "pin_Name": "PDB_BRICK0_PIN_PWR_W",
-            "pout1_Name": "PDB_BRICK0_POUT_PWR_W",
             "temp1_Name": "PDB_BRICK0_TEMP_C",
             "vin_Name": "PDB_BRICK0_VIN_VOLT_V",
             "vout1_Name": "PDB_BRICK0_VOUT_VOLT_V"
@@ -891,9 +855,7 @@
                 "vin",
                 "vout1",
                 "iout1",
-                "temp1",
-                "pin",
-                "pout1"
+                "temp1"
             ],
             "Name": "PDB_BRICK1",
             "Thresholds": [
@@ -960,44 +922,10 @@
                     "Name": "upper non recoverable",
                     "Severity": 4,
                     "Value": 122
-                },
-                {
-                    "Direction": "greater than",
-                    "Hysteresis": 38.86,
-                    "Label": "pin",
-                    "Name": "upper critical",
-                    "Severity": 1,
-                    "Value": 1943
-                },
-                {
-                    "Direction": "greater than",
-                    "Hysteresis": 40,
-                    "Label": "pin",
-                    "Name": "upper non recoverable",
-                    "Severity": 4,
-                    "Value": 2000
-                },
-                {
-                    "Direction": "greater than",
-                    "Hysteresis": 37.7,
-                    "Label": "pout1",
-                    "Name": "upper critical",
-                    "Severity": 1,
-                    "Value": 1885
-                },
-                {
-                    "Direction": "greater than",
-                    "Hysteresis": 40,
-                    "Label": "pout1",
-                    "Name": "upper non recoverable",
-                    "Severity": 4,
-                    "Value": 2000
                 }
             ],
             "Type": "pmbus",
             "iout1_Name": "PDB_BRICK1_CURR_A",
-            "pin_Name": "PDB_BRICK1_PIN_PWR_W",
-            "pout1_Name": "PDB_BRICK1_POUT_PWR_W",
             "temp1_Name": "PDB_BRICK1_TEMP_C",
             "vin_Name": "PDB_BRICK1_VIN_VOLT_V",
             "vout1_Name": "PDB_BRICK1_VOUT_VOLT_V"
@@ -1009,9 +937,7 @@
                 "vin",
                 "vout1",
                 "iout1",
-                "temp1",
-                "pin",
-                "pout1"
+                "temp1"
             ],
             "Name": "PDB_BRICK2",
             "Thresholds": [
@@ -1078,38 +1004,6 @@
                     "Name": "upper non recoverable",
                     "Severity": 4,
                     "Value": 122
-                },
-                {
-                    "Direction": "greater than",
-                    "Hysteresis": 38.86,
-                    "Label": "pin",
-                    "Name": "upper critical",
-                    "Severity": 1,
-                    "Value": 1943
-                },
-                {
-                    "Direction": "greater than",
-                    "Hysteresis": 40,
-                    "Label": "pin",
-                    "Name": "upper non recoverable",
-                    "Severity": 4,
-                    "Value": 2000
-                },
-                {
-                    "Direction": "greater than",
-                    "Hysteresis": 37.7,
-                    "Label": "pout1",
-                    "Name": "upper critical",
-                    "Severity": 1,
-                    "Value": 1885
-                },
-                {
-                    "Direction": "greater than",
-                    "Hysteresis": 40,
-                    "Label": "pout1",
-                    "Name": "upper non recoverable",
-                    "Severity": 4,
-                    "Value": 2000
                 }
             ],
             "Type": "pmbus",
