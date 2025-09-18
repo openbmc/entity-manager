@@ -37,6 +37,127 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "11dfe322_3e3a28ae",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 18
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2025-09-18T19:17:45Z",
+      "side": 1,
+      "message": "I replied to the things I saw, please make sure the refactors are in a separate commit, and the commit message is updated with the intent, as well as the new API we\u0027re adding, and I suspect we\u0027re good.",
+      "parentUuid": "93a4830a_ca2de636",
+      "revId": "927787e307d44e5f7d0bfbc4834229134a58eece",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "661a2f9f_51693de0",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 18
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2025-09-18T19:17:45Z",
+      "side": 1,
+      "message": "Didn\u0027t make it all the way through the code review.  Lets get the stuff identified previously fixed up, and this should be good to go.",
+      "revId": "927787e307d44e5f7d0bfbc4834229134a58eece",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "827f9594_904da37a",
+        "filename": "src/fru_device/fru_device.cpp",
+        "patchSetId": 18
+      },
+      "lineNbr": 824,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2025-09-18T19:17:45Z",
+      "side": 1,
+      "message": "Should we make the distinction between the existing \"update\" API, and this new one, to \"create\"?\n\nTechnically the property set API is an \"update\"  I\u0027m fine if this is also capable of updating, but we should call it \"AddField\"\n\nNote, we\u0027re already on the FruDevice interface here, there\u0027s no need to repeat \"fru\" in the method name again.",
+      "range": {
+        "startLine": 824,
+        "startChar": 13,
+        "endLine": 824,
+        "endChar": 27
+      },
+      "revId": "927787e307d44e5f7d0bfbc4834229134a58eece",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0944fb42_a924b655",
+        "filename": "src/fru_device/fru_utils.cpp",
+        "patchSetId": 18
+      },
+      "lineNbr": 918,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2025-09-18T19:17:45Z",
+      "side": 1,
+      "message": "nit, 7 is used as a magic number here several times, just make this a const reference\n\nuint8\u0026 checksum \u003d fruData[7];\n\nso you don\u0027t need to redo the lookup over and over again.",
+      "range": {
+        "startLine": 918,
+        "startChar": 31,
+        "endLine": 918,
+        "endChar": 32
+      },
+      "revId": "927787e307d44e5f7d0bfbc4834229134a58eece",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5375924f_80ef35e4",
+        "filename": "src/fru_device/fru_utils.cpp",
+        "patchSetId": 18
+      },
+      "lineNbr": 921,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2025-09-18T19:17:45Z",
+      "side": 1,
+      "message": "It looks like changes were made to this routine compared to what it was previously??\n\nhttps://github.com/openbmc/entity-manager/blob/72bd807010cbc43430b8361e6b604d01d9a50b3c/src/fru_device/fru_device.cpp#L1331",
+      "revId": "927787e307d44e5f7d0bfbc4834229134a58eece",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "035dcbd4_309f513d",
+        "filename": "src/fru_device/fru_utils.cpp",
+        "patchSetId": 18
+      },
+      "lineNbr": 933,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2025-09-18T19:17:45Z",
+      "side": 1,
+      "message": "nit, updateAreaChecksum",
+      "range": {
+        "startLine": 933,
+        "startChar": 5,
+        "endLine": 933,
+        "endChar": 20
+      },
+      "revId": "927787e307d44e5f7d0bfbc4834229134a58eece",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "9a150232_e76c39da",
         "filename": "src/fru_device/fru_utils.cpp",
         "patchSetId": 18

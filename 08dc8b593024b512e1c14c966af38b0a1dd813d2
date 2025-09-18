@@ -120,6 +120,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "0c903361_276eb252",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 17
+      },
+      "lineNbr": 31,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2025-09-18T19:17:45Z",
+      "side": 1,
+      "message": "Answer in the commit message please.  Something like \"Needed the ability to add a field without necessarily parsing the full raw fru\"",
+      "parentUuid": "54ce71ad_e525b2e1",
+      "range": {
+        "startLine": 31,
+        "startChar": 0,
+        "endLine": 31,
+        "endChar": 54
+      },
+      "revId": "08dc8b593024b512e1c14c966af38b0a1dd813d2",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "252418f7_6839e4ef",
         "filename": "/PATCHSET_LEVEL",
         "patchSetId": 17
@@ -202,6 +226,24 @@
       "side": 1,
       "message": "Previously, field modification was limited to the preassigned space\navailable in the FRU area. Any attempt to exceed this boundary would\nfail:\nExample:\n```busctl set-property xyz.openbmc_project.FruDevice /xyz/openbmc_project/FruDevice/MDA_WCU_AI xyz.openbmc_project.FruDevice CHASSIS_SERIAL_NUMBER s \"1234567890123\"\nbusctl set-property xyz.openbmc_project.FruDevice /xyz/openbmc_project/FruDevice/MDA_WCU_AI xyz.openbmc_project.FruDevice CHASSIS_SERIAL_NUMBER s \"12345678901234\"\nFailed to set property CHASSIS_SERIAL_NUMBER on interface xyz.openbmc_project.FruDevice: Invalid argument\nhexdump -C  /sys/bus/i2c/drivers/at24/8-0051/eeprom\n```\nWith this patch, the FRU area can extend dynamically. All FRU areas are\nrepacked, and the FRU common header is updated without errors:\nExample:\n```\nbusctl set-property xyz.openbmc_project.FruDevice /xyz/openbmc_project/FruDevice/MDA_WCU_AI xyz.openbmc_project.FruDevice CHASSIS_SERIAL_NUMBER s \"1234567890123\"\nbusctl set-property xyz.openbmc_project.FruDevice /xyz/openbmc_project/FruDevice/MDA_WCU_AI xyz.openbmc_project.FruDevice CHASSIS_SERIAL_NUMBER s \"12345678901234567890123456789\"",
       "parentUuid": "30479ea1_5ef5c982",
+      "revId": "08dc8b593024b512e1c14c966af38b0a1dd813d2",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6b3a209a_8df25144",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 17
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2025-09-18T19:17:45Z",
+      "side": 1,
+      "message": "\u003e field modification was limited to the preassigned space\n\nOk, so this is designed to be a medium between FruDevice.RawFru interface, and the single-property update interface?  Can you get that noted in the commit message that RawFru does work for this purpose, but this is being added for erogonomics?",
+      "parentUuid": "efcb3f97_60d14a75",
       "revId": "08dc8b593024b512e1c14c966af38b0a1dd813d2",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
