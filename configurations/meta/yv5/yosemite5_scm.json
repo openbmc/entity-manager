@@ -218,16 +218,6 @@
         },
         {
             "Address": "0x40",
-            "Bus": 0,
-            "FirmwareInfo": {
-                "CompatibleHardware": "com.meta.Hardware.Yosemite5.CPLD.LCMXO3D_9400HC_mb",
-                "VendorIANA": 40981
-            },
-            "Name": "Yosemite5_MB_CPLD",
-            "Type": "LatticeLCMXO3D_9400Firmware"
-        },
-        {
-            "Address": "0x40",
             "Bus": 7,
             "FirmwareInfo": {
                 "CompatibleHardware": "com.meta.Hardware.Yosemite5.CPLD.LCMXO3D_9400HC_scm",
@@ -257,6 +247,15 @@
                 }
             ],
             "Type": "TMP75"
+        },
+        {
+            "FirmwareInfo": {
+                "CompatibleHardware": "com.meta.Hardware.Yosemite5.TPM.BMC",
+                "VendorIANA": 40981
+            },
+            "Name": "Yosemite5_TPM",
+            "TPMIndex": 0,
+            "Type": "TPM2Firmware"
         }
     ],
     "Name": "Yosemite5 SCM",
