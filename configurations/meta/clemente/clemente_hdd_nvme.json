@@ -10,7 +10,7 @@
             {
                 "Address": "0x6a",
                 "Bus": "$bus",
-                "Name": "HDDBOARD0 SSD$index TEMP_C",
+                "Name": "HDDBOARD0 SSD$bus - 48 / 2 TEMP_C",
                 "PowerState": "On",
                 "Thresholds": [
                     {
@@ -44,7 +44,7 @@
             }
         ],
         /* Clemente Hard Disk Drive NVMe Board 0*/
-        "Name": "Clemente HDD NVMe 0 $index",
+        "Name": "Clemente HDD NVMe 0 $bus - 48 / 2",
         "Probe": [
             "xyz.openbmc_project.FruDevice({'BUS': 48, 'ADDRESS': 83, 'PRODUCT_MANUFACTURER': '(Samsung|MICRON)'})",
             "OR",
@@ -72,7 +72,7 @@
             {
                 "Address": "0x6a",
                 "Bus": "$bus",
-                "Name": "HDDBOARD1 SSD$index TEMP_C",
+                "Name": "HDDBOARD1 SSD$bus - 52 / 2 TEMP_C",
                 "PowerState": "On",
                 "Thresholds": [
                     {
@@ -106,7 +106,7 @@
             }
         ],
         /* Clemente Hard Disk Drive NVMe Board 1*/
-        "Name": "Clemente HDD NVMe 1 $index",
+        "Name": "Clemente HDD NVMe 1 $bus - 52 / 2",
         "Probe": [
             "xyz.openbmc_project.FruDevice({'BUS': 52, 'ADDRESS': 83, 'PRODUCT_MANUFACTURER': '(Samsung|MICRON)'})",
             "OR",
