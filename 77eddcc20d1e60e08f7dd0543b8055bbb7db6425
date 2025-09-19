@@ -16,6 +16,24 @@
       "message": "Does it work for future associations where the allowed list of an assoc end does not apply for the reversed end of it?\n\nIf all the port types are allowed on all types of board, the check against the allowedOnBoardTypes at line 197 is not needed at all. It was there because in the old schema, the upstream board were always the one with a containing or powered_by port (which means they are either Chassis or Board) and you are allowing a PowerSupply board to have a containing port or a powered_by port.",
       "revId": "77eddcc20d1e60e08f7dd0543b8055bbb7db6425",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "228dd420_b2adb469",
+        "filename": "src/entity_manager/topology.cpp",
+        "patchSetId": 4
+      },
+      "lineNbr": 26,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-09-19T10:43:53Z",
+      "side": 1,
+      "message": "\u003e and you are allowing a PowerSupply board to have a containing port or a powered_by port.\n\nI guess this could be expanded to have both `allowedOnBoardTypes` and `reverseAllowedOnBoardTypes` to make it more flexible.\n\nSo something like \n\n```\nconst AssocName assocContaining \u003d AssocName(\n    \"containing\", \"contained_by\",\n  {\"Chassis\"},\n  {\"Board\", \"Chassis\", \"PowerSupply\"}\n\n);\nconst AssocName assocPowering \u003d\n    AssocName(\"powering\", \"powered_by\", \n  {\"PowerSupply\"},\n  {\"Board\", \"Chassis\", \"PowerSupply\"}\n);\n```\n\nto indicate that `PowerSupply` can be `powering` something but `Board` and `Chassis` cannot. \n\nAnd all three can be `powered_by` something.\n\nAnd chassis can be `containing` something but the others cannot.\n\nThis change would make the relationship between components more meaningful.\n\nIs this in line with your expectation? 😊",
+      "parentUuid": "3654cae2_165ebcf2",
+      "revId": "77eddcc20d1e60e08f7dd0543b8055bbb7db6425",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }
