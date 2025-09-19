@@ -180,6 +180,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "4116401a_db8d9ca4",
+        "filename": "src/fru_device/fru_device.cpp",
+        "patchSetId": 5
+      },
+      "lineNbr": 723,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-09-19T10:24:44Z",
+      "side": 1,
+      "message": "\u003e for something that this method already does, and follows the existing standard.\n\nAgree on this point, we do not need to introduce an inconsistency into the existing function.\n\nThis feature should go into a separate function since with this patch the function is around 139 lines.\n\nhttps://isocpp.github.io/CppCoreGuidelines/CppCoreGuidelines#Rf-single\nhttps://github.com/openbmc/docs/blob/master/style/cpp/tidy-desired.md\n\nI do not see any reason why that would be difficult. The code for this feature is at the end of the function. Just take whatever is needed as reference parameter and then call the new function at the end of `loadBlocklist`",
+      "parentUuid": "b8fb619a_284ba528",
+      "revId": "f0bb21e6e0837cbfd3829f2e066b65af0b6b6925",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "b4d87d9b_3a854413",
         "filename": "src/fru_device/fru_device.cpp",
         "patchSetId": 5
