@@ -197,6 +197,7 @@ configs = [
     'meta/yv4/yosemite4_wailuafalls.json',
     'meta/yv4/yosemite4n.json',
     'meta/yv5/yosemite5_1kw_paddle_board.json',
+    'meta/yv5/yosemite5_cxl_board.json',
     'meta/yv5/yosemite5_e1s_expansion_board.json',
     'meta/yv5/yosemite5_mb.json',
     'meta/yv5/yosemite5_medusa_board.json',
