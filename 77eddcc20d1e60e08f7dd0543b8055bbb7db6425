@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3654cae2_165ebcf2",
+        "filename": "src/entity_manager/topology.cpp",
+        "patchSetId": 4
+      },
+      "lineNbr": 26,
+      "author": {
+        "id": 1001526
+      },
+      "writtenOn": "2025-09-19T07:39:37Z",
+      "side": 1,
+      "message": "Does it work for future associations where the allowed list of an assoc end does not apply for the reversed end of it?\n\nIf all the port types are allowed on all types of board, the check against the allowedOnBoardTypes at line 197 is not needed at all. It was there because in the old schema, the upstream board were always the one with a containing or powered_by port (which means they are either Chassis or Board) and you are allowing a PowerSupply board to have a containing port or a powered_by port.",
+      "revId": "77eddcc20d1e60e08f7dd0543b8055bbb7db6425",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    }
+  ]
+}
