@@ -529,6 +529,46 @@
             "Type": "LM75A"
         },
         {
+            "Address": "0x40",
+            "Bus": 0,
+            "FirmwareInfo": {
+                "CompatibleHardware": "com.meta.Hardware.Yosemite5.CPLD.LCMXO3D_9400HC_mb",
+                "VendorIANA": 40981
+            },
+            "Name": "Yosemite5_MB_CPLD",
+            "Type": "LatticeLCMXO3D_9400Firmware"
+        },
+        {
+            "Address": "0x4d",
+            "Bus": 11,
+            "FirmwareInfo": {
+                "CompatibleHardware": "com.meta.Hardware.Yosemite5.VR.MP29612A_pvddcr_soc",
+                "VendorIANA": 40981
+            },
+            "Name": "Yosemite5_MB_VR_SOC",
+            "Type": "MP2X6XXFirmware"
+        },
+        {
+            "Address": "0x4e",
+            "Bus": 11,
+            "FirmwareInfo": {
+                "CompatibleHardware": "com.meta.Hardware.Yosemite5.VR.MP29612A_pvddcr_cpu1",
+                "VendorIANA": 40981
+            },
+            "Name": "Yosemite5_MB_VR_CPU1",
+            "Type": "MP2X6XXFirmware"
+        },
+        {
+            "Address": "0x4f",
+            "Bus": 11,
+            "FirmwareInfo": {
+                "CompatibleHardware": "com.meta.Hardware.Yosemite5.VR.MP2869A_pvddcr_cpu0",
+                "VendorIANA": 40981
+            },
+            "Name": "Yosemite5_MB_VR_CPU0",
+            "Type": "MP2X6XXFirmware"
+        },
+        {
             "Address": "0x6a",
             "Bus": 13,
             "Name": "MB_E1S0_TEMP_C",
