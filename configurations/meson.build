@@ -161,6 +161,7 @@ configs = [
     'meta/ventura_scm.json',
     'meta/ventura_valve.json',
     'meta/yosemite5_1kw_paddle_board.json',
+    'meta/yosemite5_cxl_board.json',
     'meta/yosemite5_e1s_expansion_board.json',
     'meta/yosemite5_mb.json',
     'meta/yosemite5_medusa_board.json',
