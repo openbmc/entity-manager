@@ -422,51 +422,131 @@
             "Type": "ADC"
         },
         {
+            "Connector": {
+                "Name": "FAN Connector 1",
+                "Pwm": 0,
+                "PwmName": "pwm1",
+                "Tachs": [
+                    0
+                ]
+            },
             "Index": 0,
             "Name": "FAN1",
             "Type": "AspeedFan"
         },
         {
+            "Connector": {
+                "Name": "FAN Connector 1_1",
+                "Pwm": 0,
+                "PwmName": "pwm1",
+                "Tachs": [
+                    0
+                ]
+            },
             "Index": 1,
             "Name": "FAN1_1",
             "Type": "AspeedFan"
         },
         {
+            "Connector": {
+                "Name": "FAN Connector 2",
+                "Pwm": 1,
+                "PwmName": "pwm2",
+                "Tachs": [
+                    1
+                ]
+            },
             "Index": 2,
             "Name": "FAN2",
             "Type": "AspeedFan"
         },
         {
+            "Connector": {
+                "Name": "FAN Connector 2_1",
+                "Pwm": 1,
+                "PwmName": "pwm2",
+                "Tachs": [
+                    1
+                ]
+            },
             "Index": 3,
             "Name": "FAN2_1",
             "Type": "AspeedFan"
         },
         {
+            "Connector": {
+                "Name": "FAN Connector 3",
+                "Pwm": 2,
+                "PwmName": "pwm3",
+                "Tachs": [
+                    2
+                ]
+            },
             "Index": 4,
             "Name": "FAN3",
             "Type": "AspeedFan"
         },
         {
+            "Connector": {
+                "Name": "FAN Connector 3_1",
+                "Pwm": 2,
+                "PwmName": "pwm3",
+                "Tachs": [
+                    2
+                ]
+            },
             "Index": 5,
             "Name": "FAN3_1",
             "Type": "AspeedFan"
         },
         {
+            "Connector": {
+                "Name": "FAN Connector 4",
+                "Pwm": 3,
+                "PwmName": "pwm4",
+                "Tachs": [
+                    3
+                ]
+            },
             "Index": 6,
             "Name": "FAN4",
             "Type": "AspeedFan"
         },
         {
+            "Connector": {
+                "Name": "FAN Connector 4_1",
+                "Pwm": 3,
+                "PwmName": "pwm4",
+                "Tachs": [
+                    3
+                ]
+            },
             "Index": 7,
             "Name": "FAN4_1",
             "Type": "AspeedFan"
         },
         {
+            "Connector": {
+                "Name": "FAN Connector 5",
+                "Pwm": 4,
+                "PwmName": "pwm5",
+                "Tachs": [
+                    4
+                ]
+            },
             "Index": 8,
             "Name": "FAN5",
             "Type": "AspeedFan"
         },
         {
+            "Connector": {
+                "Name": "FAN Connector 5_1",
+                "Pwm": 4,
+                "PwmName": "pwm5",
+                "Tachs": [
+                    4
+                ]
+            },
             "Index": 9,
             "Name": "FAN5_1",
             "Type": "AspeedFan"
@@ -476,6 +556,11 @@
             "GpioPolarity": "Low",
             "Name": "Chassis Intrusion Sensor",
             "Type": "ChassisIntrusionSensor"
+        },
+        {
+            "AllowedFailures": 10,
+            "Name": "FanRedundancy",
+            "Type": "FanRedundancy"
         },
         {
             "Address": "0x29",
@@ -646,6 +731,86 @@
                 }
             ],
             "Type": "NVME1000"
+        },
+        {
+            "Class": "fan",
+            "FFGainCoefficient": 1,
+            "FFOffCoefficient": 0,
+            "ICoefficient": 0,
+            "ILimitMax": 0,
+            "ILimitMin": 0,
+            "Inputs": [
+                "FAN1",
+                "FAN2",
+                "FAN3",
+                "FAN4",
+                "FAN5"
+            ],
+            "Name": "System Fans",
+            "NegativeHysteresis": 0,
+            "OutLimitMax": 100,
+            "OutLimitMin": 0,
+            "Outputs": [
+                "pwm1",
+                "pwm2",
+                "pwm3",
+                "pwm4",
+                "pwm5"
+            ],
+            "PCoefficient": 0,
+            "PositiveHysteresis": 0,
+            "SetPoint": 0,
+            "SlewNeg": 0,
+            "SlewPos": 0,
+            "Type": "Pid",
+            "Zones": [
+                "Zone 1"
+            ]
+        },
+        {
+            "Class": "temp",
+            "FFGainCoefficient": 0,
+            "FFOffCoefficient": 0,
+            "ICoefficient": -0.2,
+            "ILimitMax": 95,
+            "ILimitMin": 5,
+            "Inputs": [
+                "TEMP SOC",
+                "TEMP DIMM A1",
+                "TEMP DIMM B1",
+                "TEMP DIMM C1",
+                "TEMP DIMM D1",
+                "TEMP DIMM E1",
+                "TEMP DIMM F1",
+                "TEMP DIMM G1",
+                "TEMP X550",
+                "TEMP DIMM VRD",
+                "TEMP CORE VRD",
+                "TEMP SOC VRD",
+                "TEMP RCA VRD",
+                "TEMP VR"
+            ],
+            "Name": "Temperatures",
+            "NegativeHysteresis": 0,
+            "OutLimitMax": 100,
+            "OutLimitMin": 0,
+            "Outputs": [],
+            "PCoefficient": -10,
+            "PositiveHysteresis": 0,
+            "SetPoint": 60,
+            "SlewNeg": -0.2,
+            "SlewPos": 0,
+            "Type": "Pid",
+            "Zones": [
+                "Zone 1"
+            ],
+            "samplePeriod": 1
+        },
+        {
+            "FailSafePercent": 100,
+            "MinThermalOutput": 10,
+            "Name": "Zone 1",
+            "Type": "Pid.Zone"
         },
         {
             "Address": "0x4c",
