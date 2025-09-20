@@ -1,0 +1,89 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "51aca4a0_308bdb4e",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 7
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-09-20T00:58:07Z",
+      "side": 1,
+      "message": "Thanks for making adjustments.\n\nLooks okay to me, i did not look too deeply into it, therefore not voting.\n\nLeft a few comments in case you want to make further revisions.",
+      "revId": "7fdfdc20beabc8fe459794bdff4951f99cd5d792",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "193be83c_e083d98b",
+        "filename": "src/fru_device/fru_device.cpp",
+        "patchSetId": 7
+      },
+      "lineNbr": 655,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-09-20T00:58:07Z",
+      "side": 1,
+      "message": "It should be possible to read strings from json without doing pointer arithmetic and getting this warning from clang tidy.\n\nYou can go with constructor 7 which accepts pointer.\n\nhttps://en.cppreference.com/w/cpp/string/basic_string/basic_string.html\n\nThen get a substring from that one https://en.cppreference.com/w/cpp/string/basic_string/substr.html\n\nand use `.data()` on that one instead of the `+2`.",
+      "revId": "7fdfdc20beabc8fe459794bdff4951f99cd5d792",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "16d1e69c_8c6c31d3",
+        "filename": "src/fru_device/fru_device.cpp",
+        "patchSetId": 7
+      },
+      "lineNbr": 671,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-09-20T00:58:07Z",
+      "side": 1,
+      "message": "if you returned `std::optional`, you would not have to construct a set in the failure case.\n\nSince we only check for success/fail and not handle any cases based on the int return value.\n\nThen the error case would be simplified with only `return std::nullopt`.",
+      "revId": "7fdfdc20beabc8fe459794bdff4951f99cd5d792",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "d19dd8ce_39cfcb3e",
+        "filename": "src/fru_device/fru_device.cpp",
+        "patchSetId": 7
+      },
+      "lineNbr": 734,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-09-20T00:58:07Z",
+      "side": 1,
+      "message": "Isn\u0027t this kind of the same logic being added in this patch?\n\nAs per documentation, we are reading hex string formatted values from a json array.\n\nSo now we have 2 ways of doing the same thing, one with and one without error messages?",
+      "revId": "7fdfdc20beabc8fe459794bdff4951f99cd5d792",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "7f21ff82_74c62a36",
+        "filename": "src/fru_device/fru_device.cpp",
+        "patchSetId": 7
+      },
+      "lineNbr": 1473,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-09-20T00:58:07Z",
+      "side": 1,
+      "message": "can be const, right?",
+      "revId": "7fdfdc20beabc8fe459794bdff4951f99cd5d792",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    }
+  ]
+}
