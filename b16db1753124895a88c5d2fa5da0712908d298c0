@@ -339,6 +339,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "48234c69_da24cda6",
+        "filename": "schemas/spdm_responder.json",
+        "patchSetId": 6
+      },
+      "lineNbr": 28,
+      "author": {
+        "id": 1001384
+      },
+      "writtenOn": "2025-09-22T14:34:41Z",
+      "side": 1,
+      "message": "@hosmanechinmay@gmail.com @spinler@us.ibm.com - Current schema provides requester/responder configuration. Associations are required for redfish enablement. Associations should not block the spdm daemon work for discovery and such. We do not have inventory model ready for our next system and might take some time. I can get back to association once we have something that can be testable in our environment.\nCan we get this in ? and later I can create another patch for adding the association support.",
+      "parentUuid": "6cc67088_ae596741",
+      "revId": "b16db1753124895a88c5d2fa5da0712908d298c0",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "81e9e6b9_7b732508",
         "filename": "schemas/spdm_responder.json",
         "patchSetId": 6
