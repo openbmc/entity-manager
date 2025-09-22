@@ -26,6 +26,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "1b2c3b9f_5cc648dc",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 4
+      },
+      "lineNbr": 14,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-09-22T16:00:11Z",
+      "side": 1,
+      "message": "We set the threshold close to the currently largest function to prevent regression.\n\nThe actual goal is the one documented by ISO cpp core guidelines.\n\nThat\u0027s the reason why i am referencing it.\n\nWe cannot set the threshold larger since that would leave room for regression.\n\nWe cannot set the threshold smaller without NOLINTing many functions, which is not the point of this check.",
+      "parentUuid": "1cd21a0c_e23c3736",
+      "range": {
+        "startLine": 13,
+        "startChar": 0,
+        "endLine": 14,
+        "endChar": 17
+      },
+      "revId": "07ae2d243353999c33e86832367d5998c1d5cfda",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "f9d0f069_20f7dbbb",
         "filename": "/PATCHSET_LEVEL",
         "patchSetId": 4
@@ -144,6 +168,24 @@
       "side": 1,
       "message": "\u003e \u003e I made it very clear in the review that I don\u0027t find that check to hit the threshold of general usefulness at this point, and I think it can be actively combative to people trying to fix one thing, or clean up code.\n\u003e \n\u003e Maybe you are completely alone in this opinion. You are the only one objecting to this patch.\n\nIf that\u0027s true, then I\u0027m happy to see other folks chime in here.\n\nIf this were true, we\u0027d be able to point at all the other maintainers that have enabled this check in their maintained repos.  Maybe there are some that have had a better experience with this check?\n\n\u003e \n\u003e Did you maintain a repo with this check enabled before? In case it\u0027s new to you, does it make sense to go for a trial run where we enable this check and see how it goes?\n\nI have attempted to maintain this repo with this check not enforced, but run manually.  It was actively an issue in maintenance when doing things like reformatting, and constantly needed adjusted when doing maintenance.  As stated before, this check doesn\u0027t correctly count the longest lambda methods, so it limits its usefulness in actually detecting where the problems are.  If that were fixed in clang-tidy itself, I\u0027d be a lot more willing to enable this.\n\n\u003e \n\u003e I guess it would not be too much work for you to extract functions where appropriate in your EM development. You are really good at C++ and would almost never hit any problem with this check.\n\nI have no doubt that for MY patches, I could handle this check.  Where I\u0027m worried is about other peoples patches and maintenance activities (reformatting, rebasing etc).\n\n\u003e \n\u003e \u003e This assumes that maintainers don\u0027t do their jobs, and that there\u0027s significant active development going on.\n\u003e \n\u003e Relying on maintainers for this specific issue **did not work in the past**, and i am *doubting* it will work in the future.\n\nConsidering the majority of OpenBMC users either have transitioned or are transitioning to dbus-sensors over the alternatives like phosphor-hwmon, I would say the end goal was accomplished, even if we did it with longer-than-we-would like methods.\n\n\u003e \n\u003e I also consider it some waste of time to manually keep track of this issue which is why this check exists.\n\nThis check does not correctly enforce the intent, that\u0027s the gap.\n\n\u003e \n\u003e \u003e not enabling some blanket check that isn\u0027t an easy refactor for people new to the project to make.\n\u003e \n\u003e From my (beginner) perspective, it is easier to contribute in a codebase with smaller functions which is more readable.\n\u003e \n\u003e Understanding the code is the hard part. Extracting a function is usually an easy task.\n\u003e \n\u003e Which is why there is IDE\u0027s like CLion and others where extracting a function is already automated.\n\nGreat, lets start putting together patches to clean that up.\n\n\u003e \n\u003e Maybe you cannot take this perspective because of your experience. You would not have issues understanding these larger functions.\n\n\nI agree, we should strive for better interfaces, which probably_ means smaller functions  The issue in this review is not that, it\u0027s that the tidy check we\u0027re enabling:\n1. Doesn\u0027t match the standard we code against.\n2. Is set to enforce a limit that\u0027s made up and that I don\u0027t want to maintain.\n3. Doesn\u0027t correctly enforce that standard for lambdas.\n\nI would like to see continued effort in actually cleaning up these.",
       "parentUuid": "30dfd272_ab82a4b3",
+      "revId": "07ae2d243353999c33e86832367d5998c1d5cfda",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "02050ac9_e455daf7",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-09-22T16:00:11Z",
+      "side": 1,
+      "message": "\u003e If that\u0027s true, then I\u0027m happy to see other folks chime in here.\n\nSure, i have posted in discord to get some input here for community alignment.\n\n\n\u003e If this were true, we\u0027d be able to point at all the other maintainers that have enabled this check in their maintained repos. Maybe there are some that have had a better experience with this check?\n\nSince there has been a bunch of rework in entity-manager lately, i think it is on a good path to enable this check at a reasonable value which reflects the current state of the code.\n\nI am starting to enable this check here because i see a realistic path to clean things up even further. There are other repos which are a lost cause in this regard and would be too much work to clean up. So we can be happy to have this opportunity here where we can aspire to achieve readability like that.\n\n\u003e This check does not correctly enforce the intent, that\u0027s the gap.\n\nThe intent of the patch is to prevent regression on what we have already achieved in this repo.\n\n\u003e Great, lets start putting together patches to clean that up.\n\nYes, and this patch will help to prevent any regression in the meantime. So we do not accidentally merge some patch which increases the problem again.\n\n\n\u003e Doesn\u0027t match the standard we code against.\n\nI am not pulling this value out of this air. It is a direct result of all the patches you and Matt merged. So it is directly representative of the current state of the code.\n\n(which is pretty good compared to some other repos out there, so thanks for the efforts 👍)\n\nIf we prevent any regression there then we are on a good path to improve further 😊\n\n\u003e Is set to enforce a limit that\u0027s made up and that I don\u0027t want to maintain.\n\nLet\u0027s clarify, there is not much to actively maintain. The check should maintain itself.\n\n\u003e I would like to see continued effort in actually cleaning up these.\n\nSure, and i would be happy for your support in this effort by preventing any regressions on what we have already achieved. Which is what this patch tries to do.\n\n\nI am really struggling to understand the \n\n\"i want to go to X but i do not want to enforce X+70 because that is not where i want to go\" mentality.\n\nIt\u0027s like climbing a mountain but forgetting to clip in at different points.\nOne bad patch or review oversight and we fall down to 200 or 250 and lose a bunch of progress and start from the beginning again.\n\n\nI do not want to start from the beginning again. I do not want to be out for a month and then come back and see some kind of surprise. I want to achieve something, and then make sure we do not loose it again, either by unit tests or clang-tidy checks.",
+      "parentUuid": "a7c6a197_291c1d9c",
       "revId": "07ae2d243353999c33e86832367d5998c1d5cfda",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
