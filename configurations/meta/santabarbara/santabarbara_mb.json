@@ -759,6 +759,50 @@
             "Type": "NVME1000"
         },
         {
+            "Address": "0x3c",
+            "Bus": 3,
+            "Labels": [
+                "power1"
+            ],
+            "Name": "SBRMI",
+            "PowerState": "BiosPost",
+            "Thresholds": [
+                {
+                    "Direction": "greater than",
+                    "Hysteresis": 10.5,
+                    "Label": "power1",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 525
+                }
+            ],
+            "Type": "SBRMI",
+            "power1_Name": "MB_CPU_PKG_PWR_W"
+        },
+        {
+            "Address": "0x4c",
+            "Bus": 3,
+            "Name": "MB_CPU_TEMP_C",
+            "PowerState": "BiosPost",
+            "Thresholds": [
+                {
+                    "Direction": "less than",
+                    "Hysteresis": 0.02,
+                    "Name": "lower critical",
+                    "Severity": 1,
+                    "Value": -1.0
+                },
+                {
+                    "Direction": "greater than",
+                    "Hysteresis": 1.9,
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 95.0
+                }
+            ],
+            "Type": "SBTSI"
+        },
+        {
             "Address": "0x4c",
             "Bus": 19,
             "Name": "MB_OUTLET_TEMP_C",
