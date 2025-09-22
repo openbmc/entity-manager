@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "09b40f07_6fe25fc2",
+        "filename": "src/fru_device/fru_device.cpp",
+        "patchSetId": 21
+      },
+      "lineNbr": 821,
+      "author": {
+        "id": 1002504
+      },
+      "writtenOn": "2025-09-22T17:40:31Z",
+      "side": 1,
+      "message": "we have kind of an existing potential bug in this code, I think, that this makes somewhat worse. I don\u0027t see where we check that we can actually write down the amount of data required when we go to write. If we can\u0027t resize areas, thats fine. But if we can add and update fields, we may end up with a corrupted fru. Since we don\u0027t necessarily have drivers, that\u0027s kind of difficult. Seems like we might be able to just seek to the end of the device in the file mode in writeFRU, or we can try to block read to the end of the device in the character device mode. Or maybe its just buyer beware if the resize area field is set.",
+      "revId": "01df23120d9289c9865125e9b6d6b5e7f7288978",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    }
+  ]
+}
