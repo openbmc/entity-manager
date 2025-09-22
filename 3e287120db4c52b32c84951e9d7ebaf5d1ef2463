@@ -1,0 +1,55 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "56f2305d_8a728215",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1000016
+      },
+      "writtenOn": "2025-09-22T02:29:44Z",
+      "side": 1,
+      "message": "All good for the change itself, just a suggestion on wording.",
+      "revId": "3e287120db4c52b32c84951e9d7ebaf5d1ef2463",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ed696002_88a09ead",
+        "filename": "schemas/mctp.json",
+        "patchSetId": 3
+      },
+      "lineNbr": 19,
+      "author": {
+        "id": 1000016
+      },
+      "writtenOn": "2025-09-22T02:29:44Z",
+      "side": 1,
+      "message": "the wording \"bridged to\" is a bit ambiguous, and could be read as the device provides bridging to another endpoint, or that the device connectivity is via another (bridge) endpoint. I assume you mean the latter, but would be good to make this clear\n\nHow about:\n\n\"Indicates that the device is connected via a bridge endpoint\"\n\nwould that work?",
+      "revId": "3e287120db4c52b32c84951e9d7ebaf5d1ef2463",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "05febe3c_e535ba05",
+        "filename": "schemas/mctp.json",
+        "patchSetId": 3
+      },
+      "lineNbr": 49,
+      "author": {
+        "id": 1000016
+      },
+      "writtenOn": "2025-09-22T02:29:44Z",
+      "side": 1,
+      "message": "... and the same as above.",
+      "revId": "3e287120db4c52b32c84951e9d7ebaf5d1ef2463",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    }
+  ]
+}
