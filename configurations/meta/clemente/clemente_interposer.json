@@ -165,7 +165,7 @@
             }
         ],
         "Name": "Clemente Interposer",
-        "Probe": "xyz.openbmc_project.FruDevice({'BOARD_PRODUCT_NAME': 'Clemente Interposer ', 'BOARD_MANUFACTURER': '(Ingrasys|Quanta)', 'PRODUCT_VERSION': '^(?!(PVT2|MP)).*'})",
+        "Probe": "xyz.openbmc_project.FruDevice({'BOARD_PRODUCT_NAME': 'Clemente Interposer ', 'BOARD_MANUFACTURER': 'Ingrasys', 'PRODUCT_VERSION': '^(?!(PVT2|MP)).*'})",
         "Type": "Board",
         "xyz.openbmc_project.Inventory.Decorator.Asset": {
             "BuildDate": "$BOARD_MANUFACTURE_DATE",
@@ -370,7 +370,11 @@
             }
         ],
         "Name": "Clemente Interposer",
-        "Probe": "xyz.openbmc_project.FruDevice({'BOARD_PRODUCT_NAME': 'Clemente Interposer ', 'BOARD_MANUFACTURER': '(Ingrasys|Quanta)', 'PRODUCT_VERSION': '\\b(PVT2|MP)\\b'})",
+        "Probe": [
+            "xyz.openbmc_project.FruDevice({'BOARD_PRODUCT_NAME': 'Clemente Interposer ', 'BOARD_MANUFACTURER': 'Ingrasys', 'PRODUCT_VERSION': '\\b(PVT2|MP)\\b'})",
+            "OR",
+            "xyz.openbmc_project.FruDevice({'BOARD_PRODUCT_NAME': 'Clemente Interposer ', 'BOARD_MANUFACTURER': 'Quanta'})"
+        ],
         "Type": "Board",
         "xyz.openbmc_project.Inventory.Decorator.Asset": {
             "BuildDate": "$BOARD_MANUFACTURE_DATE",
