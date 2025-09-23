@@ -37,6 +37,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "f125732e_4e507b28",
+        "filename": "src/fru_device/fru_device.cpp",
+        "patchSetId": 6
+      },
+      "lineNbr": 1027,
+      "author": {
+        "id": 1002505
+      },
+      "writtenOn": "2025-09-23T20:38:42Z",
+      "side": 1,
+      "message": "https://www.kernel.org/doc/html/v6.1/i2c/smbus-protocol.html -\u003e Doc here says \"If you write a driver for some I2C device, please try to use the SMBus commands if at all possible....This makes it possible to use the device driver on both SMBus adapters and I2C adapters.\" Do we want to keep it so smbus is supported, or do most eeproms not use smbus so we don\u0027t need the smbus commands?\n\n(and looks like by definition smbus uses 8-bit address so we do not need to worry about smbus support for 16-bit address eeproms)",
+      "parentUuid": "17676b1f_50b2858c",
+      "revId": "0c29c689a47659d89d87f0a4605bd145d9565879",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "5dbae548_7d766f96",
         "filename": "src/fru_device/fru_device.cpp",
         "patchSetId": 6
