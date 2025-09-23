@@ -16,6 +16,224 @@
       "message": "we have kind of an existing potential bug in this code, I think, that this makes somewhat worse. I don\u0027t see where we check that we can actually write down the amount of data required when we go to write. If we can\u0027t resize areas, thats fine. But if we can add and update fields, we may end up with a corrupted fru. Since we don\u0027t necessarily have drivers, that\u0027s kind of difficult. Seems like we might be able to just seek to the end of the device in the file mode in writeFRU, or we can try to block read to the end of the device in the character device mode. Or maybe its just buyer beware if the resize area field is set.",
       "revId": "01df23120d9289c9865125e9b6d6b5e7f7288978",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ec6b373c_5129326f",
+        "filename": "src/fru_device/fru_device.cpp",
+        "patchSetId": 21
+      },
+      "lineNbr": 1221,
+      "author": {
+        "id": 1001198
+      },
+      "writtenOn": "2025-09-23T06:43:35Z",
+      "side": 1,
+      "message": "As defined in the chapter 13 - TYPE/LENGTH BYTE FORMAT of FRU specification, the size of a field can be zero. It has to be `len \u003d\u003d 1` not `len \u003c\u003d1`",
+      "range": {
+        "startLine": 1221,
+        "startChar": 8,
+        "endLine": 1221,
+        "endChar": 17
+      },
+      "revId": "01df23120d9289c9865125e9b6d6b5e7f7288978",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b3d728ed_4a547206",
+        "filename": "src/fru_device/fru_utils.cpp",
+        "patchSetId": 21
+      },
+      "lineNbr": 925,
+      "author": {
+        "id": 1001198
+      },
+      "writtenOn": "2025-09-23T06:43:35Z",
+      "side": 1,
+      "message": "The Header area only has 8 bytes, You should update this to `fruData.size() !\u003d fruBlockSize`",
+      "range": {
+        "startLine": 925,
+        "startChar": 8,
+        "endLine": 925,
+        "endChar": 26
+      },
+      "revId": "01df23120d9289c9865125e9b6d6b5e7f7288978",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d7e54beb_1b512def",
+        "filename": "src/fru_device/fru_utils.cpp",
+        "patchSetId": 21
+      },
+      "lineNbr": 1054,
+      "author": {
+        "id": 1001198
+      },
+      "writtenOn": "2025-09-23T06:43:35Z",
+      "side": 1,
+      "message": "IMO, it seems that updating Area\u0027s checksum is redundant. The purpose of this function is disassembling FRU areas, we should not update any value of FRU\u0027s data",
+      "range": {
+        "startLine": 1054,
+        "startChar": 16,
+        "endLine": 1054,
+        "endChar": 31
+      },
+      "revId": "01df23120d9289c9865125e9b6d6b5e7f7288978",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "33ea9f2e_eb5ccea5",
+        "filename": "src/fru_device/fru_utils.cpp",
+        "patchSetId": 21
+      },
+      "lineNbr": 1066,
+      "author": {
+        "id": 1001198
+      },
+      "writtenOn": "2025-09-23T06:43:35Z",
+      "side": 1,
+      "message": "Please check the length of `value`, the length of `value` can not be 1",
+      "range": {
+        "startLine": 1066,
+        "startChar": 66,
+        "endLine": 1066,
+        "endChar": 71
+      },
+      "revId": "01df23120d9289c9865125e9b6d6b5e7f7288978",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "91bcd56f_06a7b7d3",
+        "filename": "src/fru_device/fru_utils.cpp",
+        "patchSetId": 21
+      },
+      "lineNbr": 1090,
+      "author": {
+        "id": 1001198
+      },
+      "writtenOn": "2025-09-23T06:43:35Z",
+      "side": 1,
+      "message": "For the `Internal` and `MultiRecord` area, we do not support editing them now. IMO, it is not an error, we should log an information instead error here.",
+      "revId": "01df23120d9289c9865125e9b6d6b5e7f7288978",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6eaa3e70_976ad8c1",
+        "filename": "src/fru_device/fru_utils.cpp",
+        "patchSetId": 21
+      },
+      "lineNbr": 1133,
+      "author": {
+        "id": 1001198
+      },
+      "writtenOn": "2025-09-23T06:43:35Z",
+      "side": 1,
+      "message": "Why it never happen? if user request to update an extra information field that does not exit. E.g: the Board area only has extra information 1, but users request to update extra information 5.",
+      "range": {
+        "startLine": 1133,
+        "startChar": 27,
+        "endLine": 1133,
+        "endChar": 71
+      },
+      "revId": "01df23120d9289c9865125e9b6d6b5e7f7288978",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2d8d635d_3bafa7f4",
+        "filename": "src/fru_device/fru_utils.cpp",
+        "patchSetId": 21
+      },
+      "lineNbr": 1134,
+      "author": {
+        "id": 1001198
+      },
+      "writtenOn": "2025-09-23T06:43:35Z",
+      "side": 1,
+      "message": "This action can make the size of area is increased, you should check the `ENABLE_FRU_AREA_RESIZE` before",
+      "range": {
+        "startLine": 1134,
+        "startChar": 33,
+        "endLine": 1134,
+        "endChar": 39
+      },
+      "revId": "01df23120d9289c9865125e9b6d6b5e7f7288978",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ed543312_208d85fe",
+        "filename": "src/fru_device/fru_utils.cpp",
+        "patchSetId": 21
+      },
+      "lineNbr": 1156,
+      "author": {
+        "id": 1001198
+      },
+      "writtenOn": "2025-09-23T06:43:35Z",
+      "side": 1,
+      "message": "If the new data is bigger than old data, I think you have to check the `ENABLE_FRU_AREA_RESIZE` macro before erase/insert actions.",
+      "revId": "01df23120d9289c9865125e9b6d6b5e7f7288978",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "45bb51e3_83a4451b",
+        "filename": "src/fru_device/fru_utils.cpp",
+        "patchSetId": 21
+      },
+      "lineNbr": 1183,
+      "author": {
+        "id": 1001198
+      },
+      "writtenOn": "2025-09-23T06:43:35Z",
+      "side": 1,
+      "message": "WHy do you only add a `0`? I think you have to check the new area\u0027s size before make decison how much 0\u0027s has to be added/removed",
+      "range": {
+        "startLine": 1183,
+        "startChar": 20,
+        "endLine": 1183,
+        "endChar": 40
+      },
+      "revId": "01df23120d9289c9865125e9b6d6b5e7f7288978",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e4066cd6_3221381c",
+        "filename": "src/fru_device/fru_utils.cpp",
+        "patchSetId": 21
+      },
+      "lineNbr": 1259,
+      "author": {
+        "id": 1001198
+      },
+      "writtenOn": "2025-09-23T06:43:35Z",
+      "side": 1,
+      "message": "why don\u0027t you resize the frudata before do copy?",
+      "range": {
+        "startLine": 1253,
+        "startChar": 0,
+        "endLine": 1259,
+        "endChar": 65
+      },
+      "revId": "01df23120d9289c9865125e9b6d6b5e7f7288978",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }
