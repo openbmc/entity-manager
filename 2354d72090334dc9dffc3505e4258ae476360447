@@ -3,6 +3,52 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "e53cf206_c36251f6",
+        "filename": "src/entity_manager/topology.cpp",
+        "patchSetId": 5
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 1002222
+      },
+      "writtenOn": "2025-09-23T06:12:43Z",
+      "side": 1,
+      "message": "While you\u0027re at it: Can you add Cpu and Dimm (if that makes sense) to the containing/contained_by association?",
+      "range": {
+        "startLine": 6,
+        "startChar": 4,
+        "endLine": 7,
+        "endChar": 51
+      },
+      "revId": "2354d72090334dc9dffc3505e4258ae476360447",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "308a3551_f4d12c3f",
+        "filename": "src/entity_manager/topology.cpp",
+        "patchSetId": 5
+      },
+      "lineNbr": 23,
+      "author": {
+        "id": 1002222
+      },
+      "writtenOn": "2025-09-23T06:12:43Z",
+      "side": 1,
+      "message": "In the association.md changed in: https://gerrit.openbmc.org/c/openbmc/entity-manager/+/82817/9, you mention cooling/cooled_by. Where is that type of association?",
+      "range": {
+        "startLine": 18,
+        "startChar": 0,
+        "endLine": 23,
+        "endChar": 2
+      },
+      "revId": "2354d72090334dc9dffc3505e4258ae476360447",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "eb1b8b77_94bf72fd",
         "filename": "src/entity_manager/topology.hpp",
         "patchSetId": 5
