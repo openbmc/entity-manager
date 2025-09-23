@@ -54,6 +54,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "2ea34c46_bfedafe5",
+        "filename": "src/entity_manager/dbus_interface.hpp",
+        "patchSetId": 3
+      },
+      "lineNbr": 12,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-09-23T13:31:55Z",
+      "side": 1,
+      "message": "I did not do this because the `lg2::` does not take much space and prevents name collision.\n\nSo if we want to define any function like `info` or `warning` then it is no longer possible because there is already such a function in scope from lg2.\n\nEven in the definition of `PHOSPHOR_LOG2_USING` itself they describe this problem of name collision.\n\n```\n 81 /** Handy scope-level `using` to get the necessary bits of lg2. */\n 82 #define PHOSPHOR_LOG2_USING                                                    \\\n 83     using lg2::emergency;                                                      \\\n 84     using lg2::alert;                                                          \\\n 85     using lg2::critical;                                                       \\\n 86     using lg2::error;                                                          \\\n 87     using lg2::warning;                                                        \\\n 88     using lg2::notice;                                                         \\\n 89     using lg2::info;                                                           \\\n 90     using lg2::debug\n 91 // We purposefully left out `using lg2::log` above to avoid collisions with\n 92 // the math function `log`.  There is little use for direct calls to `lg2::log`,\n 93 // when the level-aliases are available, since it is just a more awkward syntax.\n```\n\nThere is another issue which is greppability. In `dbus-sensors` grepping for `debug` would also shows us `static bool debug` in which case `lg2::debug` is more grep friendly.\n\n@spinler@us.ibm.com @ed@tanous.net what do you think, do we have to have this `PHOSPHOR_LOG2_USING` ?\n\n\n@christopher.meis@9elements.com is this a blocking comment for you or do you consider the `PHOSPHOR_LOG2_USING` to be an optional improvement to this patch?\n\nI looked into https://isocpp.github.io/CppCoreGuidelines/CppCoreGuidelines#sf6-use-using-namespace-directives-for-transition-for-foundation-libraries-such-as-std-or-within-a-local-scope-only\n\nand they recommend `using` the namespace if it would be verbose and distracting otherwise. Now `lg2` qualifies as a foundational library for OpenBMC but \u0027verbose\u0027 and \u0027distracting\u0027 is more subjective.",
+      "parentUuid": "7d6be993_18fe9d38",
+      "revId": "757508a8da8303896c941f8a51daaa73e6f7dd0e",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "98ef3844_27e33970",
         "filename": "src/entity_manager/entity_manager.cpp",
         "patchSetId": 3
