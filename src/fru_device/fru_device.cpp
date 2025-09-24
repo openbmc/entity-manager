@@ -1029,6 +1029,31 @@ bool writeFRU(uint8_t bus, uint8_t address, const std::vector<uint8_t>& fru)
     return true;
 }
 
+bool writeFruFromFile(uint8_t bus, uint8_t address, const std::string& file)
+{
+    std::vector<uint8_t> fru;
+    std::ifstream inputFile(file, std::ios_base::binary);
+    if (!inputFile.is_open())
+    {
+        std::cerr << "unable to open fru file\n";
+        return false;
+    }
+
+    std::error_code ec{};
+    size_t fileSize = std::filesystem::file_size(file, ec);
+    if (ec)
+    {
+        std::cerr << "unable to get fru file size\n";
+        return false;
+    }
+    fru.resize(fileSize);
+    // NOLINTNEXTLINE(cppcoreguidelines-pro-type-reinterpret-cast)
+    inputFile.read(reinterpret_cast<char*>(fru.data()), fru.size());
+    inputFile.close();
+
+    return writeFRU(bus, address, fru);
+}
+
 void rescanOneBus(
     BusMap& busmap, uint16_t busNum,
     boost::container::flat_map<
@@ -1409,7 +1434,18 @@ int main()
             if (!writeFRU(bus, address, data))
             {
                 throw std::invalid_argument("Invalid Arguments.");
-                return;
+            }
+            // schedule rescan on success
+            rescanBusses(busMap, dbusInterfaceMap, unknownBusObjectCount,
+                         powerIsOn, objServer, systemBus);
+        });
+
+    iface->register_method(
+        "WriteFruFromFile", [&](const uint16_t bus, const uint8_t address,
+                                const std::string& file) {
+            if (!writeFruFromFile(bus, address, file))
+            {
+                throw std::invalid_argument("Error from WriteFruFromFile.");
             }
             // schedule rescan on success
             rescanBusses(busMap, dbusInterfaceMap, unknownBusObjectCount,
