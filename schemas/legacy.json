@@ -861,6 +861,10 @@
                 "CurrScaleFactor": {
                     "$ref": "#/$defs/Types/CurrScaleFactor"
                 },
+                "FirmwareName": {
+                    "description": "Firmware object name from entity-manager config. Pauses sensor monitoring during firmware updates to prevent I2C bus contention.",
+                    "$ref": "#/$defs/Types/Name"
+                },
                 "InScaleFactor": {
                     "$ref": "#/$defs/Types/InScaleFactor"
                 },
