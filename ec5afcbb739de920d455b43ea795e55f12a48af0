@@ -18,6 +18,24 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "1017d130_59c15e8a",
+        "filename": "src/fru_device/fru_device.cpp",
+        "patchSetId": 7
+      },
+      "lineNbr": 923,
+      "author": {
+        "id": 1002505
+      },
+      "writtenOn": "2025-09-24T18:25:25Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "895ec1a4_41cdc47b",
+      "revId": "ec5afcbb739de920d455b43ea795e55f12a48af0",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "808dac23_7cddf920",
@@ -31,6 +49,30 @@
       "writtenOn": "2025-09-24T07:58:13Z",
       "side": 1,
       "message": "```suggestion\n        return i2c_smbus_write_byte_data(file, static_cast\u003cuint8_t\u003e(index),\n                                              byteData) \u003d\u003d 0;\n```",
+      "range": {
+        "startLine": 928,
+        "startChar": 8,
+        "endLine": 929,
+        "endChar": 61
+      },
+      "revId": "ec5afcbb739de920d455b43ea795e55f12a48af0",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "35b27918_87d3a701",
+        "filename": "src/fru_device/fru_device.cpp",
+        "patchSetId": 7
+      },
+      "lineNbr": 929,
+      "author": {
+        "id": 1002505
+      },
+      "writtenOn": "2025-09-24T18:25:25Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "808dac23_7cddf920",
       "range": {
         "startLine": 928,
         "startChar": 8,
@@ -64,6 +106,30 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "a5f36597_d7f119ff",
+        "filename": "src/fru_device/fru_device.cpp",
+        "patchSetId": 7
+      },
+      "lineNbr": 1035,
+      "author": {
+        "id": 1002505
+      },
+      "writtenOn": "2025-09-24T18:25:25Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "da0a8d98_43849290",
+      "range": {
+        "startLine": 1035,
+        "startChar": 4,
+        "endLine": 1035,
+        "endChar": 32
+      },
+      "revId": "ec5afcbb739de920d455b43ea795e55f12a48af0",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "c15e6562_3ccd8998",
@@ -77,6 +143,24 @@
       "writtenOn": "2025-09-24T07:58:13Z",
       "side": 1,
       "message": "since `isSuccess` is not used anywhere else, can this be inlined to \n```suggestion\n        if (writeFruByteData(is16BitBool, file, address, index, fru[index]))\n```",
+      "revId": "ec5afcbb739de920d455b43ea795e55f12a48af0",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "13e36ab2_f3077ddd",
+        "filename": "src/fru_device/fru_device.cpp",
+        "patchSetId": 7
+      },
+      "lineNbr": 1058,
+      "author": {
+        "id": 1002505
+      },
+      "writtenOn": "2025-09-24T18:25:25Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "c15e6562_3ccd8998",
       "revId": "ec5afcbb739de920d455b43ea795e55f12a48af0",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
