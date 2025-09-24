@@ -56,6 +56,9 @@ constexpr const char* blocklistPath = PACKAGE_DIR "blacklist.json";
 const static constexpr char* baseboardFruLocation =
     "/etc/fru/baseboard.fru.bin";
 
+constexpr const char* fruFromFileDir = "/tmp/fru";
+constexpr const char* fruFromFileLocation = "/tmp/fru/fru.bin";
+
 const static constexpr char* i2CDevLocation = "/dev";
 
 constexpr const char* fruDevice16BitDetectMode = FRU_DEVICE_16BITDETECTMODE;
@@ -1029,6 +1032,40 @@ bool writeFRU(uint8_t bus, uint8_t address, const std::vector<uint8_t>& fru)
     return true;
 }
 
+bool writeFruFromFile(uint8_t bus, uint8_t address)
+{
+    std::vector<uint8_t> fru;
+
+    std::ifstream inputFile(fruFromFileLocation, std::ios_base::binary);
+    if (!inputFile.is_open())
+    {
+        std::cerr << "unable to open fru file\n";
+        return false;
+    }
+
+    try
+    {
+        size_t fileSize = std::filesystem::file_size(fruFromFileLocation);
+        fru.resize(fileSize);
+    }
+    catch (const std::filesystem::filesystem_error& e)
+    {
+        std::cerr << "unable to get fru file size\n";
+        inputFile.close();
+        return false;
+    }
+    // NOLINTNEXTLINE(cppcoreguidelines-pro-type-reinterpret-cast)
+    inputFile.read(reinterpret_cast<char*>(fru.data()), fru.size());
+    inputFile.close();
+
+    if (!writeFRU(bus, address, fru))
+    {
+        return false;
+    }
+    std::filesystem::remove(fruFromFileLocation);
+    return true;
+}
+
 void rescanOneBus(
     BusMap& busmap, uint16_t busNum,
     boost::container::flat_map<
@@ -1376,6 +1413,12 @@ int main()
         return 1;
     }
 
+    if (!std::filesystem::create_directory(fruFromFileDir))
+    {
+        std::cerr << "Failed to create temporary directory: " << fruFromFileDir
+                  << std::endl;
+    }
+
     // check for and load blocklist with initial buses.
     loadBlocklist(blocklistPath);
 
@@ -1409,6 +1452,18 @@ int main()
             if (!writeFRU(bus, address, data))
             {
                 throw std::invalid_argument("Invalid Arguments.");
+                return;
+            }
+            // schedule rescan on success
+            rescanBusses(busMap, dbusInterfaceMap, unknownBusObjectCount,
+                         powerIsOn, objServer, systemBus);
+        });
+
+    iface->register_method(
+        "WriteFruFromFile", [&](const uint16_t bus, const uint8_t address) {
+            if (!writeFruFromFile(bus, address))
+            {
+                throw std::invalid_argument("Error from WriteFruFromFile.");
                 return;
             }
             // schedule rescan on success
