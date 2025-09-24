@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "e57941cd_2a34add1",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1002505
+      },
+      "writtenOn": "2025-09-24T20:21:23Z",
+      "side": 1,
+      "message": "This is a proposal to write to fru from a .bin file. Idea is the same as existing dbus method WriteFru, but we are writing from .bin file instead of passing the arguments in dbus command. We need this as many of our fru data are stored in .bin file and need a good way to write fru from file.",
+      "revId": "613cc133740f248fa7793135749b345cd4d26fe8",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    }
+  ]
+}
