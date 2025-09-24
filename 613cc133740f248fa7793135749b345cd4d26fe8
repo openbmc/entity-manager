@@ -33,6 +33,69 @@
       "message": "Why would we use this over just cat file \u003e /sys/..../eeprom ?",
       "revId": "613cc133740f248fa7793135749b345cd4d26fe8",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "23b09bee_13407cf1",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2025-09-24T21:47:20Z",
+      "side": 1,
+      "message": "Trying to understand the use case for this if this is a development tool.\n\nIf this is intended to be used elsewhere in the system, I suspect we need some more security in the API against writing bad content or devices that aren\u0027t eeproms.",
+      "revId": "613cc133740f248fa7793135749b345cd4d26fe8",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9a1af6a5_d157f40e",
+        "filename": "src/fru_device/fru_device.cpp",
+        "patchSetId": 4
+      },
+      "lineNbr": 60,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2025-09-24T21:47:20Z",
+      "side": 1,
+      "message": "This isn\u0027t really an IPC mechanism to read from a fixed path.  If we want to send a file, we should be using an fd as the argument.",
+      "range": {
+        "startLine": 60,
+        "startChar": 0,
+        "endLine": 60,
+        "endChar": 2
+      },
+      "revId": "613cc133740f248fa7793135749b345cd4d26fe8",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "61778a8a_ce212bdd",
+        "filename": "src/fru_device/fru_device.cpp",
+        "patchSetId": 4
+      },
+      "lineNbr": 1467,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2025-09-24T21:47:20Z",
+      "side": 1,
+      "message": "returning after throwing does nothing.",
+      "range": {
+        "startLine": 1467,
+        "startChar": 0,
+        "endLine": 1467,
+        "endChar": 2
+      },
+      "revId": "613cc133740f248fa7793135749b345cd4d26fe8",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }
