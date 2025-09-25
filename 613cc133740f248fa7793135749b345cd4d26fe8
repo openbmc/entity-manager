@@ -20,6 +20,24 @@
     {
       "unresolved": false,
       "key": {
+        "uuid": "ba848b4f_97b16cb6",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 4
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 1002505
+      },
+      "writtenOn": "2025-09-25T18:19:34Z",
+      "side": 1,
+      "message": "updated. for testing/dev purpose we need a streamlined way to write to fru from .bin file. yes we already have writeFru and perhaps we can have a linux command or bash script that cat .bin file and pipe to writeFRU. But i think my proposal is the clean way to go.",
+      "parentUuid": "a639eeb1_ed6cf23e",
+      "revId": "613cc133740f248fa7793135749b345cd4d26fe8",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
         "uuid": "e57941cd_2a34add1",
         "filename": "/PATCHSET_LEVEL",
         "patchSetId": 4
@@ -71,6 +89,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "c5f9562b_26a338d6",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1002505
+      },
+      "writtenOn": "2025-09-25T18:19:34Z",
+      "side": 1,
+      "message": "how is this different from directly calling dbus method writeFru? writeFRU has all the sanity checks.",
+      "parentUuid": "23b09bee_13407cf1",
+      "revId": "613cc133740f248fa7793135749b345cd4d26fe8",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "9a1af6a5_d157f40e",
         "filename": "src/fru_device/fru_device.cpp",
         "patchSetId": 4
@@ -82,6 +118,30 @@
       "writtenOn": "2025-09-24T21:47:20Z",
       "side": 1,
       "message": "This isn\u0027t really an IPC mechanism to read from a fixed path.  If we want to send a file, we should be using an fd as the argument.",
+      "range": {
+        "startLine": 60,
+        "startChar": 0,
+        "endLine": 60,
+        "endChar": 2
+      },
+      "revId": "613cc133740f248fa7793135749b345cd4d26fe8",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "2a175c8e_b41018b6",
+        "filename": "src/fru_device/fru_device.cpp",
+        "patchSetId": 4
+      },
+      "lineNbr": 60,
+      "author": {
+        "id": 1002505
+      },
+      "writtenOn": "2025-09-25T18:19:34Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "9a1af6a5_d157f40e",
       "range": {
         "startLine": 60,
         "startChar": 0,
@@ -109,6 +169,24 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "e41b6a34_8d3abf3a",
+        "filename": "src/fru_device/fru_device.cpp",
+        "patchSetId": 4
+      },
+      "lineNbr": 1048,
+      "author": {
+        "id": 1002505
+      },
+      "writtenOn": "2025-09-25T18:19:34Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "d9c6cdfc_5236cea1",
+      "revId": "613cc133740f248fa7793135749b345cd4d26fe8",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "1a48970d_872445f8",
@@ -122,6 +200,30 @@
       "writtenOn": "2025-09-24T21:49:37Z",
       "side": 1,
       "message": "nit, can be removed.  raii will do this for you.",
+      "range": {
+        "startLine": 1054,
+        "startChar": 18,
+        "endLine": 1054,
+        "endChar": 23
+      },
+      "revId": "613cc133740f248fa7793135749b345cd4d26fe8",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "1886e855_3402b0f9",
+        "filename": "src/fru_device/fru_device.cpp",
+        "patchSetId": 4
+      },
+      "lineNbr": 1054,
+      "author": {
+        "id": 1002505
+      },
+      "writtenOn": "2025-09-25T18:19:34Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "1a48970d_872445f8",
       "range": {
         "startLine": 1054,
         "startChar": 18,
@@ -149,6 +251,24 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "54c15813_6e561fc4",
+        "filename": "src/fru_device/fru_device.cpp",
+        "patchSetId": 4
+      },
+      "lineNbr": 1065,
+      "author": {
+        "id": 1002505
+      },
+      "writtenOn": "2025-09-25T18:19:34Z",
+      "side": 1,
+      "message": "Done. Removing this as we will be passing .bin file path to dbus arg instead.",
+      "parentUuid": "a66d348f_f3387751",
+      "revId": "613cc133740f248fa7793135749b345cd4d26fe8",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "61778a8a_ce212bdd",
@@ -162,6 +282,30 @@
       "writtenOn": "2025-09-24T21:47:20Z",
       "side": 1,
       "message": "returning after throwing does nothing.",
+      "range": {
+        "startLine": 1467,
+        "startChar": 0,
+        "endLine": 1467,
+        "endChar": 2
+      },
+      "revId": "613cc133740f248fa7793135749b345cd4d26fe8",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "c049a5b8_efae7496",
+        "filename": "src/fru_device/fru_device.cpp",
+        "patchSetId": 4
+      },
+      "lineNbr": 1467,
+      "author": {
+        "id": 1002505
+      },
+      "writtenOn": "2025-09-25T18:19:34Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "61778a8a_ce212bdd",
       "range": {
         "startLine": 1467,
         "startChar": 0,
