@@ -642,14 +642,15 @@
         "TempSensor": {
             "description": "implemented in dbus-sensors: HwmonTempSensor",
             "additionalProperties": false,
-            "patternProperties": {
-                "Name([1-9][0-9]*)?$": {
-                    "$ref": "#/$defs/Types/Name"
-                }
-            },
             "properties": {
                 "Name": {
                     "$ref": "#/$defs/Types/Name"
+                },
+                "ExtraNames": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/$defs/Types/Name"
+                    }
                 },
                 "Address": {
                     "$ref": "#/$defs/Types/Address"

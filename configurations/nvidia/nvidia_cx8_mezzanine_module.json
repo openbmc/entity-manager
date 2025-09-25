@@ -9,11 +9,13 @@
         {
             "Address": "0x1f",
             "Bus": "$bus + 3",
+            "ExtraNames": [
+                "IOB$bus - 29 % 11 NIC0_TEMP_C"
+            ],
             "Labels": [
                 "temp2"
             ],
             "Name": "IOB$bus - 29 % 11 NIC0_TEMP_C",
-            "Name1": "IOB$bus - 29 % 11 NIC0_TEMP_C",
             "PowerState": "On",
             "Thresholds": [
                 {
@@ -36,11 +38,13 @@
         {
             "Address": "0x1f",
             "Bus": "$bus + 6",
+            "ExtraNames": [
+                "IOB$bus - 29 % 11 NIC1_TEMP_C"
+            ],
             "Labels": [
                 "temp2"
             ],
             "Name": "IOB$bus - 29 % 11 NIC1_TEMP_C",
-            "Name1": "IOB$bus - 29 % 11 NIC1_TEMP_C",
             "PowerState": "On",
             "Thresholds": [
                 {

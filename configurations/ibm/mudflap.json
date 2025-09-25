@@ -3,15 +3,19 @@
         {
             "Address": "0x76",
             "Bus": "$bus",
+            "ExtraNames": [
+                "Station Pressure"
+            ],
             "Name": "Ambient 1 Temp",
-            "Name1": "Station Pressure",
             "Type": "DPS310"
         },
         {
             "Address": "0x40",
             "Bus": "$bus",
+            "ExtraNames": [
+                "Humidity"
+            ],
             "Name": "Ambient 2 Temp",
-            "Name1": "Humidity",
             "Type": "HDC1080"
         },
         {
