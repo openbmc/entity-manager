@@ -209,17 +209,21 @@
         {
             "Address": "0x4c",
             "Bus": "$bus",
+            "ExtraNames": [
+                "PDB_R_BUSBAR_TEMP_C",
+                "PDB_R_EAM2_AMB_TEMP_C"
+            ],
             "Name": "PDB_R_P12V_MB VRM_AMB_TEMP_C",
-            "Name1": "PDB_R_BUSBAR_TEMP_C",
-            "Name2": "PDB_R_EAM2_AMB_TEMP_C",
             "Type": "TMP432"
         },
         {
             "Address": "0x4d",
             "Bus": "$bus",
+            "ExtraNames": [
+                "PDB_R_P12V_STBY_VRM_AMB_TEMP_C",
+                "PDB_R_EAM3_AMB_TEMP_C"
+            ],
             "Name": "PDB_R_OUTLET_TEMP_C",
-            "Name1": "PDB_R_P12V_STBY_VRM_AMB_TEMP_C",
-            "Name2": "PDB_R_EAM3_AMB_TEMP_C",
             "Type": "TMP432"
         }
     ],

@@ -247,8 +247,10 @@
         {
             "Address": "0x4c",
             "Bus": 0,
+            "ExtraNames": [
+                "Inlet_alt"
+            ],
             "Name": "Inlet",
-            "Name1": "Inlet_alt",
             "Thresholds": [
                 {
                     "Direction": "greater than",
@@ -280,9 +282,11 @@
         {
             "Address": "0x4c",
             "Bus": 2,
+            "ExtraNames": [
+                "IPB_alt",
+                "IPB_alt2"
+            ],
             "Name": "IPB",
-            "Name1": "IPB_alt",
-            "Name2": "IPB_alt2",
             "Thresholds": [
                 {
                     "Direction": "greater than",
@@ -314,8 +318,10 @@
         {
             "Address": "0x4c",
             "Bus": 5,
+            "ExtraNames": [
+                "Backplane_alt"
+            ],
             "Name": "Backplane",
-            "Name1": "Backplane_alt",
             "PowerState": "On",
             "Thresholds": [
                 {
