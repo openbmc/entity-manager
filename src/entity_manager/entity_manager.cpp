@@ -596,11 +596,12 @@ void EntityManager::handleCurrentConfigurationJson()
             }
         }
     }
-    else
+    else if (std::filesystem::exists(currentConfiguration))
     {
         // not an error, just logging at this level to make it in the journal
+        std::error_code ec;
         std::cerr << "Clearing previous configuration\n";
-        std::filesystem::remove(currentConfiguration);
+        std::filesystem::remove(currentConfiguration, ec);
     }
 }
 
