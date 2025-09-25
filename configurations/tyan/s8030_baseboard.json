@@ -306,15 +306,17 @@
         {
             "Address": "0x28",
             "Bus": 5,
+            "ExtraNames": [
+                "SYS_Air_Inlet",
+                "MB_Air_Inlet",
+                "MB_Air_Outlet"
+            ],
             "Labels": [
                 "temp2",
                 "temp3",
                 "temp4"
             ],
             "Name": "GARBO_SENSOR",
-            "Name1": "SYS_Air_Inlet",
-            "Name2": "MB_Air_Inlet",
-            "Name3": "MB_Air_Outlet",
             "Thresholds": [
                 {
                     "Direction": "less than",
@@ -432,8 +434,10 @@
         {
             "Address": "0x4c",
             "Bus": 5,
+            "ExtraNames": [
+                "X550_TEMP"
+            ],
             "Name": "X550",
-            "Name1": "X550_TEMP",
             "Thresholds": [
                 {
                     "Direction": "greater than",

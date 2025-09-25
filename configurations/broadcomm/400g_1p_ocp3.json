@@ -9,11 +9,13 @@
         {
             "Address": "0x1f",
             "Bus": "$bus",
+            "ExtraNames": [
+                "NIC Temp $bus"
+            ],
             "Labels": [
                 "temp2"
             ],
             "Name": "NIC Temp $bus",
-            "Name1": "NIC Temp $bus",
             "Thresholds": [
                 {
                     "Direction": "less than",

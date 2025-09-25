@@ -565,12 +565,14 @@
         {
             "Address": "0x29",
             "Bus": 4,
+            "ExtraNames": [
+                "TEMP_MB"
+            ],
             "Labels": [
                 "temp1",
                 "temp2"
             ],
             "Name": "TEMP TR1",
-            "Name1": "TEMP_MB",
             "PollRate": 1,
             "Thresholds": [
                 {
@@ -815,14 +817,16 @@
         {
             "Address": "0x4c",
             "Bus": "4",
+            "ExtraNames": [
+                "TEMP X550",
+                "TEMP VR"
+            ],
             "Labels": [
                 "temp1",
                 "temp2",
                 "temp3"
             ],
             "Name": "TEMP CARD SIDE",
-            "Name1": "TEMP X550",
-            "Name2": "TEMP VR",
             "PollRate": 1,
             "Thresholds": [
                 {
