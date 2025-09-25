@@ -125,7 +125,8 @@ void Topology::fillAssocForPortId(
 }
 
 const std::set<std::pair<std::string, std::string>> assocs = {
-    {"powering", "powered_by"}, {"containing", "contained_by"},
+    {"powering", "powered_by"},
+    {"containing", "contained_by"},
     // ... extend as needed
 };
 
