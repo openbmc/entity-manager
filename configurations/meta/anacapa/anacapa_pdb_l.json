@@ -223,9 +223,11 @@
         {
             "Address": "0x4c",
             "Bus": "$bus",
+            "ExtraNames": [
+                "PDB_L_EAM0_TEMP_C",
+                "PDB_L_BUSBAR_TEMP_C"
+            ],
             "Name": "PDB_L_EAM1_TEMP_C",
-            "Name1": "PDB_L_EAM0_TEMP_C",
-            "Name2": "PDB_L_BUSBAR_TEMP_C",
             "Type": "TMP432"
         },
         {

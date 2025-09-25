@@ -143,8 +143,10 @@
         {
             "Address": "0x4c",
             "Bus": 4,
+            "ExtraNames": [
+                "Inlet_alt"
+            ],
             "Name": "Inlet",
-            "Name1": "Inlet_alt",
             "PowerState": "On",
             "Thresholds": [
                 {
@@ -185,9 +187,11 @@
         {
             "Address": "0x4c",
             "Bus": 7,
+            "ExtraNames": [
+                "IPB_alt",
+                "IPB_alt2"
+            ],
             "Name": "IPB",
-            "Name1": "IPB_alt",
-            "Name2": "IPB_alt2",
             "Thresholds": [
                 {
                     "Direction": "greater than",
