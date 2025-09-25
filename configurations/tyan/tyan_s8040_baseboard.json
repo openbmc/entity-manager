@@ -311,9 +311,11 @@
                 "temp4"
             ],
             "Name": "NC",
-            "Name1": "SYS_Air_Inlet",
-            "Name2": "MB_Air_Inlet",
-            "Name3": "MB_Air_Outlet",
+            "Names": [
+                "SYS_Air_Inlet",
+                "MB_Air_Inlet",
+                "MB_Air_Outlet"
+            ],
             "Thresholds": [
                 {
                     "Direction": "less than",

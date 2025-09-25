@@ -847,7 +847,9 @@
             "Address": "0x4e",
             "Bus": 6,
             "Name": "MB_INLET_TEMP",
-            "Name1": "MB_INLET_REMOTE_TEMP",
+            "Names": [
+                "MB_INLET_REMOTE_TEMP"
+            ],
             "Thresholds": [
                 {
                     "Direction": "greater than",
@@ -862,7 +864,9 @@
             "Address": "0x4f",
             "Bus": 6,
             "Name": "MB_OUTLET_TEMP",
-            "Name1": "MB_OUTLET_REMOTE_TEMP",
+            "Names": [
+                "MB_OUTLET_REMOTE_TEMP"
+            ],
             "Thresholds": [
                 {
                     "Direction": "greater than",
@@ -877,7 +881,9 @@
             "Address": "0x1f",
             "Bus": 8,
             "Name": "MEZZ_SENSOR_REMOTE_TEMP",
-            "Name1": "MEZZ_SENSOR_TEMP",
+            "Names": [
+                "MEZZ_SENSOR_TEMP"
+            ],
             "Thresholds": [
                 {
                     "Direction": "greater than",

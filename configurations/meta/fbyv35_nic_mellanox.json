@@ -4,7 +4,9 @@
             "Address": "0x1f",
             "Bus": 8,
             "Name": "NIC_SENSOR_REMOTE_TEMP",
-            "Name1": "NIC_SENSOR_TEMP",
+            "Names": [
+                "NIC_SENSOR_TEMP"
+            ],
             "Thresholds": [
                 {
                     "Direction": "greater than",

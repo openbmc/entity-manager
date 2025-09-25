@@ -607,7 +607,9 @@
             "Address": "0x4C",
             "Bus": 6,
             "Name": "BMC Temp",
-            "Name1": "TMP421 Internal Temp",
+            "Names": [
+                "TMP421 Internal Temp"
+            ],
             "Thresholds": [
                 {
                     "Direction": "greater than",

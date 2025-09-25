@@ -438,7 +438,9 @@
             "Address": "0x4e",
             "Bus": 9,
             "Name": "SP_INLET_TEMP",
-            "Name1": "SP_INLET_REMOTE_TEMP",
+            "Names": [
+                "SP_INLET_REMOTE_TEMP"
+            ],
             "Thresholds": [
                 {
                     "Direction": "greater than",
@@ -453,7 +455,9 @@
             "Address": "0x4f",
             "Bus": 9,
             "Name": "SP_OUTLET_TEMP",
-            "Name1": "SP_OUTLET_REMOTE_TEMP",
+            "Names": [
+                "SP_OUTLET_REMOTE_TEMP"
+            ],
             "Thresholds": [
                 {
                     "Direction": "greater than",
@@ -468,7 +472,9 @@
             "Address": "0x1f",
             "Bus": 11,
             "Name": "MEZZ_SENSOR_REMOTE_TEMP",
-            "Name1": "MEZZ_SENSOR_TEMP",
+            "Names": [
+                "MEZZ_SENSOR_TEMP"
+            ],
             "Thresholds": [
                 {
                     "Direction": "greater than",

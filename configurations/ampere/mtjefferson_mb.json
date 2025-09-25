@@ -1887,7 +1887,9 @@
                 "MaxValue": 127,
                 "MinValue": 0,
                 "Name": "PCIeNIC1_Lcl",
-                "Name1": "PCIeNIC1_Temp",
+                "Names": [
+                    "PCIeNIC1_Temp"
+                ],
                 "PowerState": "ChassisOn",
                 "Thresholds": [
                     {
@@ -1929,7 +1931,9 @@
                 "MaxValue": 127,
                 "MinValue": 0,
                 "Name": "OCP1_Local_Temp",
-                "Name1": "OCP1_Temp",
+                "Names": [
+                    "OCP1_Temp"
+                ],
                 "Thresholds": [
                     {
                         "Direction": "greater than",
@@ -1971,10 +1975,12 @@
                 "MaxValue": 127,
                 "MinValue": 0,
                 "Name": "MB0_THERM_Lcl",
-                "Name1": "S0_THDIODE_3",
-                "Name2": "S0_THDIODE_2",
-                "Name3": "S0_THDIODE_1",
-                "Name4": "S0_THDIODE_0",
+                "Names": [
+                    "S0_THDIODE_3",
+                    "S0_THDIODE_2",
+                    "S0_THDIODE_1",
+                    "S0_THDIODE_0"
+                ],
                 "Type": "TMP464"
             },
             {

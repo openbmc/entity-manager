@@ -1643,7 +1643,9 @@
                 "Address": "0x7c",
                 "Bus": 23,
                 "Name": "MBInletTemp1",
-                "Name1": "SysCabInletTemp",
+                "Names": [
+                    "SysCabInletTemp"
+                ],
                 "Thresholds": [
                     {
                         "Direction": "greater than",
@@ -1665,8 +1667,10 @@
                 "Address": "0x4c",
                 "Bus": 23,
                 "Name": "MBInletTemp2",
-                "Name1": "S0_THDIODE_Temp",
-                "Name2": "S1_THDIODE_Temp",
+                "Names": [
+                    "S0_THDIODE_Temp",
+                    "S1_THDIODE_Temp"
+                ],
                 "Thresholds": [
                     {
                         "Direction": "greater than",
@@ -2136,14 +2140,18 @@
                 "Address": "0x1f",
                 "Bus": 30,
                 "Name": "OCP1_Local_Temp",
-                "Name1": "OCP1_Temp",
+                "Names": [
+                    "OCP1_Temp"
+                ],
                 "Type": "TMP421"
             },
             {
                 "Address": "0x1f",
                 "Bus": 31,
                 "Name": "OCP2_Local_Temp",
-                "Name1": "OCP2_Temp",
+                "Names": [
+                    "OCP2_Temp"
+                ],
                 "Type": "TMP421"
             },
             {

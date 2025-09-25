@@ -485,7 +485,9 @@
                 "temp2"
             ],
             "Name": "TEMP TR1",
-            "Name1": "TEMP_MB",
+            "Names": [
+                "TEMP_MB"
+            ],
             "PollRate": 1,
             "Thresholds": [
                 {
@@ -656,8 +658,10 @@
                 "temp3"
             ],
             "Name": "TEMP CARD SIDE",
-            "Name1": "TEMP X550",
-            "Name2": "TEMP VR",
+            "Names": [
+                "TEMP X550",
+                "TEMP VR"
+            ],
             "PollRate": 1,
             "Thresholds": [
                 {

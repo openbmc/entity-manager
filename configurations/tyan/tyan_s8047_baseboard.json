@@ -425,9 +425,11 @@
                 "temp4"
             ],
             "Name": "NC",
-            "Name1": "SYS_AIR_INLET",
-            "Name2": "MB_AIR_INLET",
-            "Name3": "MB_AIR_OUTLET",
+            "Names": [
+                "SYS_AIR_INLET",
+                "MB_AIR_INLET",
+                "MB_AIR_OUTLET"
+            ],
             "PowerState": "Always",
             "Thresholds": [
                 {
