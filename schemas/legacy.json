@@ -642,13 +642,9 @@
         "TempSensor": {
             "description": "implemented in dbus-sensors: HwmonTempSensor",
             "additionalProperties": false,
-            "patternProperties": {
-                "Name([1-9][0-9]*)?$": {
-                    "$ref": "#/$defs/Types/Name"
-                }
-            },
             "properties": {
                 "Name": {
+                    "description": "configure the name of the first channel",
                     "$ref": "#/$defs/Types/Name"
                 },
                 "NamePressure": {
@@ -656,6 +652,14 @@
                 },
                 "NameHumidity": {
                     "$ref": "#/$defs/Types/Name"
+                },
+                "ExtraNames": {
+                    "description": "configure names of additional channels here",
+                    "type": "array",
+                    "maxItems": 12,
+                    "items": {
+                        "$ref": "#/$defs/Types/Name"
+                    }
                 },
                 "Address": {
                     "$ref": "#/$defs/Types/Address"

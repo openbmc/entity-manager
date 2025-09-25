@@ -34,17 +34,21 @@
         {
             "Address": "0x4c",
             "Bus": "$bus",
+            "ExtraNames": [
+                "BRB_R_OUTLET_SW_TEMP_C",
+                "BRB_R_OUTLET_BE7_TEMP_C"
+            ],
             "Name": "BRB_R_OUTLET_BE5_TEMP_C",
-            "Name1": "BRB_R_OUTLET_SW_TEMP_C",
-            "Name2": "BRB_R_OUTLET_BE7_TEMP_C",
             "Type": "TMP432"
         },
         {
             "Address": "0x4c",
             "Bus": "$bus + 1",
+            "ExtraNames": [
+                "BRB_R_INLET_BE7_TEMP_C",
+                "BRB_R_INLET_BE5_TEMP_C"
+            ],
             "Name": "BRB_R_INLET_SW_TEMP_C",
-            "Name1": "BRB_R_INLET_BE7_TEMP_C",
-            "Name2": "BRB_R_INLET_BE5_TEMP_C",
             "Type": "TMP432"
         }
     ],
