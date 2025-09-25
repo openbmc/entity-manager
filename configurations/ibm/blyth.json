@@ -3,8 +3,10 @@
         {
             "Address": "0x76",
             "Bus": 7,
+            "ExtraNames": [
+                "Station Pressure"
+            ],
             "Name": "Ambient 1 Temp",
-            "Name1": "Station Pressure",
             "Thresholds": [
                 {
                     "Direction": "greater than",
@@ -63,8 +65,10 @@
         {
             "Address": "0x40",
             "Bus": 7,
+            "ExtraNames": [
+                "Relative Humidity"
+            ],
             "Name": "Ambient 2 Temp",
-            "Name1": "Relative Humidity",
             "Thresholds": [
                 {
                     "Direction": "greater than",

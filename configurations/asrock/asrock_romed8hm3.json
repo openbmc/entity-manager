@@ -543,19 +543,21 @@
         {
             "Address": "0x2d",
             "Bus": 1,
+            "ExtraNames": [
+                "CPUTIN",
+                "AUXTIN0",
+                "AUXTIN1",
+                "AUXTIN2",
+                "AUXTIN3",
+                "PCH_CHIP_CPU_MAX_TEMP",
+                "PCH_CHIP_TEMP",
+                "PCH_CPU_TEMP",
+                "PCH_MCH_TEMP",
+                "PCH_DIM0_TEMP",
+                "PCH_DIM1_TEMP",
+                "TSI0_TEMP"
+            ],
             "Name": "SYSTIN",
-            "Name1": "CPUTIN",
-            "Name10": "PCH_DIM0_TEMP",
-            "Name11": "PCH_DIM1_TEMP",
-            "Name12": "TSI0_TEMP",
-            "Name2": "AUXTIN0",
-            "Name3": "AUXTIN1",
-            "Name4": "AUXTIN2",
-            "Name5": "AUXTIN3",
-            "Name6": "PCH_CHIP_CPU_MAX_TEMP",
-            "Name7": "PCH_CHIP_TEMP",
-            "Name8": "PCH_CPU_TEMP",
-            "Name9": "PCH_MCH_TEMP",
             "PowerState": "BiosPost",
             "Thresholds": [
                 {
