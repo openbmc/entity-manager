@@ -896,34 +896,95 @@ static bool readBaseboardFRU(std::vector<uint8_t>& baseboardFRU)
 bool writeFruByteData(bool is16Bit, int file, uint8_t address, uint16_t index,
                       uint8_t byteData)
 {
-    if (is16Bit)
+    for (int tries = 0; tries < 2; tries++)
     {
-        // if uses 16-bit addressing we need to use ioctl as smbus commands
-        // are not supported
-        struct i2c_rdwr_ioctl_data messagesData = {};
-        std::array<struct i2c_msg, 1> messages{};
-        std::array<uint8_t, 3> writeBuffer{};
+        bool isSuccess = false;
+        if (is16Bit)
+        {
+            // if uses 16-bit addressing we need to use ioctl as smbus commands
+            // are not supported
+            struct i2c_rdwr_ioctl_data messagesData = {};
+            std::array<struct i2c_msg, 1> messages{};
+            std::array<uint8_t, 3> writeBuffer{};
 
-        uint8_t indexH = index >> 8;
-        uint8_t indexL = index & 0xFF;
+            uint8_t indexH = index >> 8;
+            uint8_t indexL = index & 0xFF;
 
-        writeBuffer[0] = indexH;
-        writeBuffer[1] = indexL;
-        writeBuffer[2] = byteData;
+            writeBuffer[0] = indexH;
+            writeBuffer[1] = indexL;
+            writeBuffer[2] = byteData;
 
-        messages[0].flags = 0;
-        messages[0].len = writeBuffer.size();
-        messages[0].buf = writeBuffer.data();
-        messages[0].addr = address;
+            messages[0].flags = 0;
+            messages[0].len = writeBuffer.size();
+            messages[0].buf = writeBuffer.data();
+            messages[0].addr = address;
 
-        messagesData.msgs = messages.data();
-        messagesData.nmsgs = 1;
+            messagesData.msgs = messages.data();
+            messagesData.nmsgs = 1;
 
-        return ioctl(file, I2C_RDWR, &messagesData) >= 0;
+            isSuccess = ioctl(file, I2C_RDWR, &messagesData) >= 0;
+        }
+        else
+        {
+            isSuccess = i2c_smbus_write_byte_data(
+                            file, static_cast<uint8_t>(index), byteData) == 0;
+        }
+
+        if (isSuccess)
+        {
+            // most eeproms require 5-10ms between writes
+            std::this_thread::sleep_for(std::chrono::milliseconds(10));
+            return true;
+        }
     }
-    // if 8-bit addressing
-    return i2c_smbus_write_byte_data(file, static_cast<uint8_t>(index),
-                                     byteData) == 0;
+    return false;
+}
+
+// check if device use page address bit by setting register address 0 and
+// maxEepromPageIndex + 1 to different values. If the device uses page address
+// bit, the value at register address 0 and maxEepromPageIndex + 1 will be same
+// as it wraps. set them back to original values after testing.
+bool deviceUsePageAddressBit(bool is16Bit, int file, uint16_t address)
+{
+    bool ret = false;
+
+    // Read original values
+    uint8_t firstByte{};
+    uint8_t nextPageByte{};
+
+    readData(is16Bit, false, file, address, 0, 1, &firstByte);
+    readData(is16Bit, false, file, address, maxEepromPageIndex + 1, 1,
+             &nextPageByte);
+
+    // Test if device uses page address bit by writing different values
+    bool writeSuccess =
+        writeFruByteData(is16Bit, file, address, 0, 0x00) &&
+        writeFruByteData(is16Bit, file, address, maxEepromPageIndex + 1, 0x01);
+
+    if (writeSuccess)
+    {
+        // Read back the test values
+        uint8_t testFirstByte{};
+        uint8_t testNextPageByte{};
+
+        readData(is16Bit, false, file, address, 0, 1, &testFirstByte);
+        readData(is16Bit, false, file, address, maxEepromPageIndex + 1, 1,
+                 &testNextPageByte);
+
+        ret = testFirstByte == testNextPageByte;
+    }
+    else
+    {
+        std::cerr << "failed checking if device uses page address bit"
+                  << std::endl;
+    }
+
+    // write back the original values
+    writeFruByteData(is16Bit, file, address, 0, firstByte);
+    writeFruByteData(is16Bit, file, address, maxEepromPageIndex + 1,
+                     nextPageByte);
+
+    return ret;
 }
 
 bool writeFRU(uint8_t bus, uint8_t address, const std::vector<uint8_t>& fru)
@@ -1027,16 +1088,16 @@ bool writeFRU(uint8_t bus, uint8_t address, const std::vector<uint8_t>& fru)
         return false;
     }
 
-    constexpr const size_t retryMax = 2;
+    // Some EEPROMs only use the A2 and A1 device address bits
+    // with the third bit being a memory page address bit.
+    bool usePageAddressBit = deviceUsePageAddressBit(*is16Bit, file, address);
+
     uint16_t index = 0;
-    size_t retries = retryMax;
     while (index < fru.size())
     {
-        if (((index != 0U) && ((index % (maxEepromPageIndex + 1)) == 0)) &&
-            (retries == retryMax))
+        if (usePageAddressBit && (index != 0U) &&
+            ((index % (maxEepromPageIndex + 1)) == 0))
         {
-            // The 4K EEPROM only uses the A2 and A1 device address bits
-            // with the third bit being a memory page address bit.
             if (ioctl(file, I2C_SLAVE_FORCE, ++address) < 0)
             {
                 std::cerr << "unable to set device address\n";
@@ -1046,24 +1107,14 @@ bool writeFRU(uint8_t bus, uint8_t address, const std::vector<uint8_t>& fru)
             }
         }
 
-        if (writeFruByteData(*is16Bit, file, address, index, fru[index]))
+        if (!writeFruByteData(*is16Bit, file, address, index, fru[index]))
         {
-            retries = retryMax;
-            index++;
+            std::cerr << "error writing fru: " << strerror(errno) << "\n";
+            close(file);
+            throw DBusInternalError();
+            return false;
         }
-        else
-        {
-            if ((retries--) == 0U)
-            {
-                std::cerr << "error writing fru: " << strerror(errno) << "\n";
-                close(file);
-                throw DBusInternalError();
-                return false;
-            }
-        }
-
-        // most eeproms require 5-10ms between writes
-        std::this_thread::sleep_for(std::chrono::milliseconds(10));
+        index++;
     }
     close(file);
     return true;
