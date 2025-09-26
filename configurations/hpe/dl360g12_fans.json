@@ -1,0 +1,57 @@
+[
+    {
+        "Exposes": [
+            {
+                "Connector": {
+                    "Name": "Fan Connector 1",
+                    "Pwm": 0,
+                    "Tachs": [],
+                    "_Comment1": "HPE Fans don't present a tach reading"
+                },
+                "Index": 0,
+                "Name": "Fan 1",
+                "Presence": {
+                    "MonitorType": "Polling",
+                    "PinName": "FAN1_INST",
+                    "Polarity": "High"
+                },
+                "Type": "HPEFan"
+            },
+            {
+                "Name": "FanManyPort",
+                "PortType": "cooling",
+                "Type": "Port"
+            }
+        ],
+        "Name": "HPEFan_1",
+        "Probe": "FOUND('HPE DL360 G12 Server')",
+        "Type": "Fan"
+    },
+    {
+        "Exposes": [
+            {
+                "Connector": {
+                    "Name": "Fan Connector 2",
+                    "Pwm": 1,
+                    "Tachs": []
+                },
+                "Index": 1,
+                "Name": "Fan 2",
+                "Presence": {
+                    "MonitorType": "Polling",
+                    "PinName": "FAN2_INST",
+                    "Polarity": "High"
+                },
+                "Type": "HPEFan"
+            },
+            {
+                "Name": "FanManyPort",
+                "PortType": "cooling",
+                "Type": "Port"
+            }
+        ],
+        "Name": "HPEFan_2",
+        "Probe": "FOUND('HPE DL360 G12 Server')",
+        "Type": "Fan"
+    }
+]
