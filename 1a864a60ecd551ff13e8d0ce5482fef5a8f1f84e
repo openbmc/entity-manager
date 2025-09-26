@@ -18,6 +18,24 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "248cd019_a4000d1f",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 12,
+      "author": {
+        "id": 1002505
+      },
+      "writtenOn": "2025-09-26T17:53:47Z",
+      "side": 1,
+      "message": "done. setting this patch to only moving retry logics. moving impl for \"if eeprom use page addressing bits\" to https://gerrit.openbmc.org/c/openbmc/entity-manager/+/84053",
+      "parentUuid": "a7486b72_d86b4b5e",
+      "revId": "1a864a60ecd551ff13e8d0ce5482fef5a8f1f84e",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "63ac413b_0aa7b6d4",
@@ -58,6 +76,48 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "9052130f_8dcb086e",
+        "filename": "src/fru_device/fru_device.cpp",
+        "patchSetId": 2
+      },
+      "lineNbr": 899,
+      "author": {
+        "id": 1002505
+      },
+      "writtenOn": "2025-09-26T17:53:47Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "caf3a0f3_d62817a8",
+      "range": {
+        "startLine": 899,
+        "startChar": 0,
+        "endLine": 899,
+        "endChar": 2
+      },
+      "revId": "1a864a60ecd551ff13e8d0ce5482fef5a8f1f84e",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "59570bc0_162e8296",
+        "filename": "src/fru_device/fru_device.cpp",
+        "patchSetId": 2
+      },
+      "lineNbr": 899,
+      "author": {
+        "id": 1002505
+      },
+      "writtenOn": "2025-09-26T17:53:47Z",
+      "side": 1,
+      "message": "Done. Changed to use lambda function since we should always call the function with retry logic and not it\u0027s standalone implementations.",
+      "parentUuid": "63ac413b_0aa7b6d4",
+      "revId": "1a864a60ecd551ff13e8d0ce5482fef5a8f1f84e",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "e02bc852_9dceadf3",
@@ -71,6 +131,30 @@
       "writtenOn": "2025-09-26T08:58:50Z",
       "side": 1,
       "message": "```suggestion\n    const bool usePageAddressBit \u003d deviceUsePageAddressBit(*is16Bit, file, address);\n```",
+      "range": {
+        "startLine": 1093,
+        "startChar": 4,
+        "endLine": 1093,
+        "endChar": 78
+      },
+      "revId": "1a864a60ecd551ff13e8d0ce5482fef5a8f1f84e",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "fdce5431_49b84e3a",
+        "filename": "src/fru_device/fru_device.cpp",
+        "patchSetId": 2
+      },
+      "lineNbr": 1093,
+      "author": {
+        "id": 1002505
+      },
+      "writtenOn": "2025-09-26T17:53:47Z",
+      "side": 1,
+      "message": "done. see https://gerrit.openbmc.org/c/openbmc/entity-manager/+/84053",
+      "parentUuid": "e02bc852_9dceadf3",
       "range": {
         "startLine": 1093,
         "startChar": 4,
