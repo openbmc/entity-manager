@@ -281,7 +281,8 @@ std::optional<std::string> templateCharReplace(
     }
 
     uint64_t temp = 0;
-    const char* strDataEndPtr = strView.data() + strView.size();
+    const char* strDataEndPtr = strView.data();
+    std::advance(const_cast<char*&>(strDataEndPtr), strView.size());
     const std::from_chars_result res =
         std::from_chars(strView.data(), strDataEndPtr, temp, base);
     if (res.ec == std::errc{} && res.ptr == strDataEndPtr)

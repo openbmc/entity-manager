@@ -129,7 +129,9 @@ static int busStrToInt(const std::string_view busName)
     }
     std::string_view num = busName.substr(findBus + 1);
     int val = 0;
-    std::from_chars(num.data(), num.data() + num.size(), val);
+    const char* endPtr = num.data();
+    std::advance(const_cast<char*&>(endPtr), num.size());
+    std::from_chars(num.data(), endPtr, val);
     return val;
 }
 
@@ -667,7 +669,10 @@ void loadBlocklist(const char* path)
                     for (const auto& address : addresses)
                     {
                         size_t addressInt = 0;
-                        std::from_chars(address.begin() + 2, address.end(),
+                        const char* startPtr = address.data();
+                        std::advance(const_cast<char*&>(startPtr), 2);
+                        std::from_chars(startPtr,
+                                        address.data() + address.size(),
                                         addressInt, 16);
                         block.insert(addressInt);
                     }
