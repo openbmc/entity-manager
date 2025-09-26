@@ -56,6 +56,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "797768fd_7c9a5892",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-09-26T11:46:47Z",
+      "side": 1,
+      "message": "\u003e Should we rebase on it?\n\nMy patch does not depend on it. What do we gain by rebasing.\n\nIt\u0027s not like review will magically speed up overnight and merge both patches in a short time (in which case rebasing would make sense to avoid extra revisions due to conflicts)\n\nConsider we have not a single comment or indication from dbus-sensors maintainers\nif Naresh\u0027s patch is good to go. If i rebased my patch and they found problems with 82559 then my patch gets delayed or not reviewed at all.",
+      "parentUuid": "4187030f_4c5ac36c",
+      "revId": "c22fc3b2a404086a51cdc79860be2ce02ca75ea0",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "38fb428c_a8c56a74",
         "filename": "schemas/legacy.json",
         "patchSetId": 1
@@ -67,6 +85,30 @@
       "writtenOn": "2025-09-26T10:42:07Z",
       "side": 1,
       "message": "Can we make the Name or Names a OneOf in the schema?  I don\u0027t really like that you have a name plus an optional array of extra ones.  I think we should either use an array or a singleton.",
+      "range": {
+        "startLine": 646,
+        "startChar": 1,
+        "endLine": 654,
+        "endChar": 18
+      },
+      "revId": "c22fc3b2a404086a51cdc79860be2ce02ca75ea0",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e373978f_3d1fc768",
+        "filename": "schemas/legacy.json",
+        "patchSetId": 1
+      },
+      "lineNbr": 654,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-09-26T11:46:47Z",
+      "side": 1,
+      "message": "`Name` is required as per `schemas/exposes_record.json`\n\n```\n  \"EMExposesElement\": {\n            \"description\": \"The exposes property element schema.  An element of the exposes property is always an array where elements are of type exposes entry.\",\n            \"allOf\": [\n                {\n                    \"$ref\": \"#/$defs/ConfigSchema\"\n                },\n                {\n                    \"title\": \"Missing \u0027Name\u0027\",\n                    \"description\": \"Ensure the schema does not validate when an element does not define a Name\",\n                    \"required\": [\"Name\"]\n                },\n                {\n                    \"title\": \"Missing \u0027Type\u0027\",\n                    \"description\": \"Ensure the schema does not validate when an element does not define a Type\",\n                    \"required\": [\"Type\"]\n                }\n            ],\n            \"title\": \"Exposes Property Element\"\n        }\n```\n\nSo we cannot get rid of `Name` without having a much bigger discussion.\nSince `Name` is how EM forms the leaf on the object path.\n\nCan we go with `ExtraNames` instead?",
+      "parentUuid": "38fb428c_a8c56a74",
       "range": {
         "startLine": 646,
         "startChar": 1,
