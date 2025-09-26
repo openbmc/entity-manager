@@ -128,9 +128,12 @@ definition interface on the downstream entity.
 
 In addition to the `containing` associations, entity-manager will add
 `powering`/`powered_by` associations between a power supply and its parent when
-its downstream port is marked as a `PowerPort`.
 
-The below example shows two PSU ports on the motherboard, where the `Type`
+- Downstream Type:Port stanza is marked as a PortType `powered_by` and
+- Upstream Type:Port stanza(s) are marked with PortType `powering`
+- Ports are linked via matching 'Name' fields in the Type:Port stanzas.
+
+The below example shows two PSU ports on the motherboard, where the `PortType`
 fields for those ports match up with the `ConnectsToType` field from the PSUs.
 
 motherboard.json:
@@ -140,11 +143,13 @@ motherboard.json:
   "Exposes": [
     {
       "Name": "PSU 1 Port",
-      "Type": "PSU 1 Port"
+      "Type": "Port",
+      "PortType": "powered_by"
     },
     {
       "Name": "PSU 2 Port",
-      "Type": "PSU 2 Port"
+      "Type": "Port",
+      "PortType": "powered_by"
     }
   ]
 }
@@ -154,14 +159,101 @@ psu.json:
 
 ```json
 {
+  {
+    "Exposes": [
+    {
+      "Name": "PSU$ADDRESS % 4 + 1 Port",
+      "Type": "Port",
+      "PortType": "powering"
+    }
+    "Type": "PowerSupply",
+    "Probe": ...
+    ]
+  }
+}
+```
+
+## `cooled_by`, `cooling`
+
+In addition to the `containing` associations, entity-manager will add
+`cooling`/`cooled_by` associations between a fan and its parent when:
+
+- Downstream Type:Port stanza is marked as a PortType `cooled_by` and
+- Upstream Type:Port stanza(s) are marked with PortType `cooling`
+- Ports are linked via matching 'Name' fields in the Type:Port stanzas.
+
+The below example shows three Fan ports on the motherboard, where the `Name`
+`PortType` field from the Fans.
+
+Depending on your fan configuration, it may make sense to set probes for each
+fan slot entity to trigger on specific chassis configs being active, or based on
+specific asset decorations being set.
+
+motherboard.json:
+
+```json
+{
   "Exposes": [
     {
-      "ConnectsToType": "PSU$ADDRESS % 4 + 1 Port",
-      "Name": "PSU Port",
-      "Type": "DownstreamPort",
-      "PowerPort": true
+      "Name": "Fan Single Port 1",
+      "Type": "Port",
+      "PortType": "cooled_by"
+    },
+    {
+      "Name": "Fan Many Port",
+      "Type": "Port",
+      "PortType": "cooled_by"
     }
   ]
+}
+```
+
+fan.json:
+
+```json
+{
+  {
+    "Exposes": [
+      {
+        "Name": "Fan Single Port 1",
+        "Type": "Port",
+        "PortType": "cooling"
+      },
+      {
+       //fan 1 stanza
+      },
+      "Type": "Fan",
+      "Probe": ...
+    ]
+  },
+  {
+    "Exposes": [
+      {
+        "Name": "Fan Many Port",
+        "Type": "Port",
+        "PortType": "cooling"
+      },
+      {
+        //fan 2 stanza
+      },
+    "Type": "Fan",
+      "Probe": ...
+    ]
+  },
+  {
+    "Exposes": [
+      {
+        "Name": "Fan Many Port",
+        "Type": "Port",
+        "PortType": "cooling"
+      },
+      {
+        //fan 3 stanza
+      },
+    "Type": "Fan",
+    "Probe": ...
+    ]
+  }
 }
 ```
 
