@@ -1,0 +1,84 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a7486b72_d86b4b5e",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 12,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-09-26T08:58:50Z",
+      "side": 1,
+      "message": "IMO you are right to make the retry logic a separate function, but it should be a separate patch.",
+      "revId": "1a864a60ecd551ff13e8d0ce5482fef5a8f1f84e",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "63ac413b_0aa7b6d4",
+        "filename": "src/fru_device/fru_device.cpp",
+        "patchSetId": 2
+      },
+      "lineNbr": 899,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-09-26T08:58:50Z",
+      "side": 1,
+      "message": "IMO retry logic should be a separate function from the thing that it\u0027s retrying, in cases like this where it\u0027s more than 5 lines or so.\n\nIt will help to separate the two since the `tries` variable will not be in scope for the logic that\u0027s being retried.",
+      "revId": "1a864a60ecd551ff13e8d0ce5482fef5a8f1f84e",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "caf3a0f3_d62817a8",
+        "filename": "src/fru_device/fru_device.cpp",
+        "patchSetId": 2
+      },
+      "lineNbr": 899,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-09-26T08:58:50Z",
+      "side": 1,
+      "message": "```suggestion\n    for (size_t tries \u003d 0; tries \u003c 2; tries++)\n```\n\nretry logic can be done with unsigned integer",
+      "range": {
+        "startLine": 899,
+        "startChar": 0,
+        "endLine": 899,
+        "endChar": 2
+      },
+      "revId": "1a864a60ecd551ff13e8d0ce5482fef5a8f1f84e",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e02bc852_9dceadf3",
+        "filename": "src/fru_device/fru_device.cpp",
+        "patchSetId": 2
+      },
+      "lineNbr": 1093,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-09-26T08:58:50Z",
+      "side": 1,
+      "message": "```suggestion\n    const bool usePageAddressBit \u003d deviceUsePageAddressBit(*is16Bit, file, address);\n```",
+      "range": {
+        "startLine": 1093,
+        "startChar": 4,
+        "endLine": 1093,
+        "endChar": 78
+      },
+      "revId": "1a864a60ecd551ff13e8d0ce5482fef5a8f1f84e",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    }
+  ]
+}
