@@ -16,6 +16,24 @@
       "message": "This seems to conflict with https://gerrit.openbmc.org/c/openbmc/entity-manager/+/82560 which was already moving some of the names to direct properties.  Is that a better approach?",
       "revId": "c22fc3b2a404086a51cdc79860be2ce02ca75ea0",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "292a1408_cc1fc390",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-09-26T09:29:02Z",
+      "side": 1,
+      "message": "The linked patch does not get rid of `patternProperties`. I do not want to block 82560 because of my work here so i guess it can go first since it\u0027s been up for some time.\n\nAnd 82560\u0027s related patch\nhttps://gerrit.openbmc.org/c/openbmc/dbus-sensors/+/82559\nhas been pending for more than a month already without a single comment from dbus-sensors maintainers.\n\nI am not sure if the \u0027temp\u0027 sensors are structured enough to allow dropping the names array thing. Since apparently there are now also pressure and humidity sensors managed by that reactor.\n\nFor the case of a chip exposing multiple temperature sensors we may still need some kind of array to find a `Name` for all of them.\n\nSo i guess my patch here can be considered separately from 82560.\n\nResolving this comment since the linked patch does not fix my issue.",
+      "parentUuid": "73c43891_f885e04d",
+      "revId": "c22fc3b2a404086a51cdc79860be2ce02ca75ea0",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }
