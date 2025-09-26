@@ -52,6 +52,24 @@
       "parentUuid": "0ec848c1_f9bed347",
       "revId": "41e9548330ff89ce3718c58fca51558c740bc2d7",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "64da76f8_62058155",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-09-26T10:32:15Z",
+      "side": 1,
+      "message": "\u003e when will the other patch be merged \n\nMy crystal ball says in 3 weeks. Maintainers have requested splitting the patch and there are several comments.\n\nIf you comment your testing results on that patch then it will go 15.832% faster.\n\n\u003e can we merge this in the meantime\n\nI\u0027m not an expert on the ipmi fru thing so i cannot easily see how this fixes any issue.\n\nIf you could expand your commit message with a specific example of how things are miscalculated in the current code, with actual variable values, and with references to FRU spec for how it is supposed to be done,\nthat would help to understand the change better.\n\nMaybe also consider adding a `Tested` statement demonstrating the failure scenario and the fixed code working.\n\nA unit test that fails with current code but passes with your code would also help.\n\nBut keep in mind i\u0027m just reviewing things here and cannot merge your change. Also i\u0027m kind of partial to Naresh\u0027s change since i believe that\u0027s how things are supposed to be done.\n\nGoing from\nbinary format -\u003e structured representation and\nstructured representation -\u003e binary format\n\ninstead of taking the binary data, extracting some metadata and then trying to adjust it in the middle hoping it will still be valid after those adjustments.",
+      "parentUuid": "e19adeba_8d5f05a6",
+      "revId": "41e9548330ff89ce3718c58fca51558c740bc2d7",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }
