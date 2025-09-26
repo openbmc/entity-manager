@@ -1,5 +1,6 @@
 #include "utils.hpp"
 
+#include "../utils.hpp"
 #include "../variant_visitors.hpp"
 #include "expression.hpp"
 #include "phosphor-logging/lg2.hpp"
@@ -281,10 +282,10 @@ std::optional<std::string> templateCharReplace(
     }
 
     uint64_t temp = 0;
-    const char* strDataEndPtr = strView.data() + strView.size();
+    bool fullMatch = false;
     const std::from_chars_result res =
-        std::from_chars(strView.data(), strDataEndPtr, temp, base);
-    if (res.ec == std::errc{} && res.ptr == strDataEndPtr)
+        fromCharsWrapper(strView, temp, fullMatch, base);
+    if (res.ec == std::errc{} && fullMatch)
     {
         keyPair.value() = temp;
     }

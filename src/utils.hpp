@@ -8,6 +8,7 @@
 #include <sdbusplus/asio/connection.hpp>
 #include <sdbusplus/exception.hpp>
 
+#include <charconv>
 #include <filesystem>
 
 using DBusValueVariant =
@@ -73,3 +74,15 @@ inline bool deviceHasLogging(const nlohmann::json& json)
 /// \param dbusValue the property value being matched to a probe.
 /// \return true if the dbusValue matched the probe otherwise false.
 bool matchProbe(const nlohmann::json& probe, const DBusValueVariant& dbusValue);
+
+template <typename T>
+std::from_chars_result fromCharsWrapper(const std::string_view& str, T& out,
+                                        bool& fullMatch, int base = 10)
+{
+    auto result = std::from_chars(
+        str.data(), std::next(str.begin(), str.size()), out, base);
+
+    fullMatch = result.ptr == std::next(str.begin(), str.size());
+
+    return result;
+}
