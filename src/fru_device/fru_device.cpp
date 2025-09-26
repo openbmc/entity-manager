@@ -941,6 +941,53 @@ bool writeFruByteData(bool is16Bit, int file, uint8_t address, uint16_t index,
     return false;
 }
 
+// check if device use page address bit by setting register address 0 and
+// maxEepromPageIndex + 1 to different values. If the device uses page address
+// bit, the value at register address 0 and maxEepromPageIndex + 1 will be same
+// as it wraps. set them back to original values after testing.
+bool deviceUsePageAddressBit(bool is16Bit, int file, uint16_t address)
+{
+    bool ret = false;
+
+    // Read original values
+    uint8_t firstByte{};
+    uint8_t nextPageByte{};
+
+    readData(is16Bit, false, file, address, 0, 1, &firstByte);
+    readData(is16Bit, false, file, address, maxEepromPageIndex + 1, 1,
+             &nextPageByte);
+
+    // Test if device uses page address bit by writing different values
+    bool writeSuccess =
+        writeFruByteData(is16Bit, file, address, 0, 0x00) &&
+        writeFruByteData(is16Bit, file, address, maxEepromPageIndex + 1, 0x01);
+
+    if (writeSuccess)
+    {
+        // Read back the test values
+        uint8_t testFirstByte{};
+        uint8_t testNextPageByte{};
+
+        readData(is16Bit, false, file, address, 0, 1, &testFirstByte);
+        readData(is16Bit, false, file, address, maxEepromPageIndex + 1, 1,
+                 &testNextPageByte);
+
+        ret = testFirstByte == testNextPageByte;
+    }
+    else
+    {
+        std::cerr << "failed checking if device uses page address bit"
+                  << std::endl;
+    }
+
+    // write back the original values
+    writeFruByteData(is16Bit, file, address, 0, firstByte);
+    writeFruByteData(is16Bit, file, address, maxEepromPageIndex + 1,
+                     nextPageByte);
+
+    return ret;
+}
+
 bool writeFRU(uint8_t bus, uint8_t address, const std::vector<uint8_t>& fru)
 {
     boost::container::flat_map<std::string, std::string> tmp;
@@ -1042,10 +1089,16 @@ bool writeFRU(uint8_t bus, uint8_t address, const std::vector<uint8_t>& fru)
         return false;
     }
 
+    // Some EEPROMs only use the A2 and A1 device address bits
+    // with the third bit being a memory page address bit.
+    const bool usePageAddressBit =
+        deviceUsePageAddressBit(*is16Bit, file, address);
+
     uint16_t index = 0;
     while (index < fru.size())
     {
-        if (((index != 0U) && ((index % (maxEepromPageIndex + 1)) == 0)))
+        if (usePageAddressBit && (index != 0U) &&
+            ((index % (maxEepromPageIndex + 1)) == 0))
         {
             // The 4K EEPROM only uses the A2 and A1 device address bits
             // with the third bit being a memory page address bit.
