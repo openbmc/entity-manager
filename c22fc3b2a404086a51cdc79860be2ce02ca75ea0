@@ -34,6 +34,47 @@
       "parentUuid": "73c43891_f885e04d",
       "revId": "c22fc3b2a404086a51cdc79860be2ce02ca75ea0",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4187030f_4c5ac36c",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2025-09-26T10:42:07Z",
+      "side": 1,
+      "message": "Should we rebase on it?",
+      "parentUuid": "292a1408_cc1fc390",
+      "revId": "c22fc3b2a404086a51cdc79860be2ce02ca75ea0",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "38fb428c_a8c56a74",
+        "filename": "schemas/legacy.json",
+        "patchSetId": 1
+      },
+      "lineNbr": 654,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2025-09-26T10:42:07Z",
+      "side": 1,
+      "message": "Can we make the Name or Names a OneOf in the schema?  I don\u0027t really like that you have a name plus an optional array of extra ones.  I think we should either use an array or a singleton.",
+      "range": {
+        "startLine": 646,
+        "startChar": 1,
+        "endLine": 654,
+        "endChar": 18
+      },
+      "revId": "c22fc3b2a404086a51cdc79860be2ce02ca75ea0",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }
