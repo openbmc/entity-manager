@@ -781,7 +781,8 @@ std::pair<std::vector<uint8_t>, bool> readFRUContents(
     }
 
     std::vector<uint8_t> device;
-    device.insert(device.end(), blockData.begin(), blockData.begin() + 8);
+    device.insert(device.end(), blockData.begin(),
+                  std::next(blockData.begin(), 8));
 
     bool hasMultiRecords = false;
     size_t fruLength = fruBlockSize; // At least FRU header is present
@@ -889,7 +890,7 @@ std::pair<std::vector<uint8_t>, bool> readFRUContents(
         }
 
         device.insert(device.end(), blockData.begin(),
-                      blockData.begin() + requestLength);
+                      std::next(blockData.begin(), requestLength));
 
         readOffset += requestLength;
         fruLength -= std::min(requestLength, fruLength);
