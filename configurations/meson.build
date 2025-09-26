@@ -43,6 +43,7 @@ configs = [
     'gigabyte/gigabyte_msx4_mg1.json',
     'gospower/gospower_g1136-1300wna_psu.json',
     'hpe/dl360g12_baseboard.json',
+    'hpe/dl360g12_fans.json',
     'ibm/balcones.json',
     'ibm/bellavista.json',
     'ibm/blueridge_1s4u_chassis.json',
