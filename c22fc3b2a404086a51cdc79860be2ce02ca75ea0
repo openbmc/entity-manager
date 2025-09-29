@@ -72,6 +72,24 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "15472864_3ce70515",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-09-29T12:03:16Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "797768fd_7c9a5892",
+      "revId": "c22fc3b2a404086a51cdc79860be2ce02ca75ea0",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "38fb428c_a8c56a74",
@@ -109,6 +127,30 @@
       "side": 1,
       "message": "`Name` is required as per `schemas/exposes_record.json`\n\n```\n  \"EMExposesElement\": {\n            \"description\": \"The exposes property element schema.  An element of the exposes property is always an array where elements are of type exposes entry.\",\n            \"allOf\": [\n                {\n                    \"$ref\": \"#/$defs/ConfigSchema\"\n                },\n                {\n                    \"title\": \"Missing \u0027Name\u0027\",\n                    \"description\": \"Ensure the schema does not validate when an element does not define a Name\",\n                    \"required\": [\"Name\"]\n                },\n                {\n                    \"title\": \"Missing \u0027Type\u0027\",\n                    \"description\": \"Ensure the schema does not validate when an element does not define a Type\",\n                    \"required\": [\"Type\"]\n                }\n            ],\n            \"title\": \"Exposes Property Element\"\n        }\n```\n\nSo we cannot get rid of `Name` without having a much bigger discussion.\nSince `Name` is how EM forms the leaf on the object path.\n\nCan we go with `ExtraNames` instead?",
       "parentUuid": "38fb428c_a8c56a74",
+      "range": {
+        "startLine": 646,
+        "startChar": 1,
+        "endLine": 654,
+        "endChar": 18
+      },
+      "revId": "c22fc3b2a404086a51cdc79860be2ce02ca75ea0",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "43fce7b8_b1e0a809",
+        "filename": "schemas/legacy.json",
+        "patchSetId": 1
+      },
+      "lineNbr": 654,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-09-29T12:03:16Z",
+      "side": 1,
+      "message": "ping for reply on this discussion",
+      "parentUuid": "e373978f_3d1fc768",
       "range": {
         "startLine": 646,
         "startChar": 1,
