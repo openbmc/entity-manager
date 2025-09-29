@@ -22,6 +22,30 @@
       },
       "revId": "25887d82f04ea11aa0afb1f4c91bc54273cd3a09",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "ee1d192d_9815b9c8",
+        "filename": "src/utils.hpp",
+        "patchSetId": 1
+      },
+      "lineNbr": 84,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-09-29T11:17:08Z",
+      "side": 1,
+      "message": "There was some idea to do as bmcweb does\n\n`std::from_chars(value.begin(), value.end(), query.expandLevel);`\n\nhttps://github.com/openbmc/bmcweb/blob/f7e62c142ced153e9400b519bdd66062dd6bbf0e/redfish-core/include/utils/query_param.hpp#L292\n\nDoing `std::next(s.begin(), s.size());` compares equal to `s.end()`\nand the time is constant in both cases.\n\nIt looks like it could work and since bmcweb does it, it does compile but i had trouble understanding how the iterator gets converted to a pointer.\n\nApplied your suggestion.",
+      "parentUuid": "91a77643_bd80fb94",
+      "range": {
+        "startLine": 84,
+        "startChar": 36,
+        "endLine": 84,
+        "endChar": 59
+      },
+      "revId": "25887d82f04ea11aa0afb1f4c91bc54273cd3a09",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }
