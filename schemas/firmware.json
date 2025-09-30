@@ -13,6 +13,23 @@
                 "CompatibleHardware": {
                     "description": "The compatible hardware with name format com.<vendor>.Hardware.<XXX> specified by vendor in phosphor-dbus-interfaces",
                     "type": "string"
+                },
+                "MuxOutputs": {
+                    "description": "The pin names and values for the mux which toggles the flash to BMC",
+                    "type": "array",
+                    "items": {
+                        "type": "object",
+                        "additionalProperties": false,
+                        "properties": {
+                            "Name": {
+                                "$ref": "legacy.json#/$defs/Types/Name"
+                            },
+                            "Polarity": {
+                                "$ref": "legacy.json#/$defs/Types/Polarity"
+                            }
+                        },
+                        "required": ["Name", "Polarity"]
+                    }
                 }
             },
             "required": ["VendorIANA", "CompatibleHardware"]
@@ -70,21 +87,7 @@
                     "type": "number"
                 },
                 "MuxOutputs": {
-                    "description": "The pin names and values for the mux which toggles the flash to BMC",
-                    "type": "array",
-                    "items": {
-                        "type": "object",
-                        "additionalProperties": false,
-                        "properties": {
-                            "Name": {
-                                "$ref": "legacy.json#/$defs/Types/Name"
-                            },
-                            "Polarity": {
-                                "$ref": "legacy.json#/$defs/Types/Polarity"
-                            }
-                        },
-                        "required": ["Name", "Polarity"]
-                    }
+                    "$ref": "#/$defs/FirmwareInfoDef/properties/MuxOutputs"
                 },
                 "FirmwareInfo": {
                     "$ref": "#/$defs/FirmwareInfoDef"
@@ -123,21 +126,7 @@
                     "type": "string"
                 },
                 "MuxOutputs": {
-                    "description": "The pin names and polarities for the mux which toggles the flash to BMC",
-                    "type": "array",
-                    "items": {
-                        "type": "object",
-                        "additionalProperties": false,
-                        "properties": {
-                            "Name": {
-                                "$ref": "legacy.json#/$defs/Types/Name"
-                            },
-                            "Polarity": {
-                                "$ref": "legacy.json#/$defs/Types/Polarity"
-                            }
-                        },
-                        "required": ["Name", "Polarity"]
-                    }
+                    "$ref": "#/$defs/FirmwareInfoDef/properties/MuxOutputs"
                 },
                 "FirmwareInfo": {
                     "$ref": "#/$defs/FirmwareInfoDef"
