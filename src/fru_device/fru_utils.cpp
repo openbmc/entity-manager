@@ -972,19 +972,26 @@ unsigned int getHeaderAreaFieldOffset(fruAreas area)
     return static_cast<unsigned int>(area) + 1;
 }
 
-std::vector<uint8_t>& getFRUInfo(const uint16_t& bus, const uint8_t& address)
+const std::vector<uint8_t>& FruUtils::getFRUInfo(const uint16_t& bus,
+                                                 const uint8_t& address) const
 {
     auto deviceMap = busMap.find(bus);
     if (deviceMap == busMap.end())
     {
+        lg2::error("Get FRU Info: Did not find bus {BUS} in map", "BUS", bus);
+        lg2::error("Get FRU Info: map has {N} buses", "N", busMap.size());
         throw std::invalid_argument("Invalid Bus.");
     }
-    auto device = deviceMap->second->find(address);
-    if (device == deviceMap->second->end())
+    auto device = deviceMap->second.find(address);
+    if (device == deviceMap->second.end())
     {
+        lg2::error("Get FRU Info: Did not find address {ADDR} in map", "ADDR",
+                   address);
+        lg2::error("Get FRU Info: map for bus {BUS} has {N} elements", "BUS",
+                   bus, "N", deviceMap->second.size());
         throw std::invalid_argument("Invalid Address.");
     }
-    std::vector<uint8_t>& ret = device->second;
+    const std::vector<uint8_t>& ret = device->second;
 
     return ret;
 }
@@ -1639,7 +1646,7 @@ std::optional<int> findIndexForFRU(
 // productName if found or return NULL.
 
 std::optional<std::string> getProductName(
-    std::vector<uint8_t>& device,
+    const std::vector<uint8_t>& device,
     std::flat_map<std::string, std::string, std::less<>>& formattedFRU,
     uint32_t bus, uint32_t address, size_t& unknownBusObjectCount)
 {
@@ -1682,7 +1689,8 @@ std::optional<std::string> getProductName(
     return productName;
 }
 
-bool getFruData(std::vector<uint8_t>& fruData, uint32_t bus, uint32_t address)
+bool FruUtils::getFruData(std::vector<uint8_t>& fruData, uint32_t bus,
+                          uint32_t address) const
 {
     try
     {
@@ -1696,6 +1704,44 @@ bool getFruData(std::vector<uint8_t>& fruData, uint32_t bus, uint32_t address)
     }
 
     return !fruData.empty();
+}
+
+void FruUtils::addToBusMap(uint16_t bus, uint8_t address,
+                           const std::vector<uint8_t>& data)
+{
+    lg2::debug("insert into bus map: bus: {BUS}, address: {ADDRESS}", "BUS",
+               bus, "ADDRESS", address);
+    if (!busMap.contains(bus))
+    {
+        busMap[bus] = DeviceMap();
+    }
+
+    auto& deviceMap = busMap[bus];
+
+    deviceMap.insert_or_assign(address, data);
+}
+
+void FruUtils::clearBusMap()
+{
+    lg2::debug("clearing bus map");
+    busMap.clear();
+}
+
+std::vector<std::tuple<uint16_t, uint8_t, const std::vector<uint8_t>&>>
+    FruUtils::getDevices() const
+{
+    std::vector<std::tuple<uint16_t, uint8_t, const std::vector<uint8_t>&>>
+        result;
+
+    for (const auto& deviceMap : busMap)
+    {
+        for (const auto& device : deviceMap.second)
+        {
+            result.emplace_back(deviceMap.first, device.first, device.second);
+        }
+    }
+
+    return result;
 }
 
 bool isFieldEditable(std::string_view fieldName)

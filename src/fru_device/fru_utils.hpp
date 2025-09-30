@@ -22,11 +22,37 @@ extern "C"
 
 constexpr size_t fruBlockSize = 8;
 
-using DeviceMap = std::flat_map<int, std::vector<uint8_t>>;
-using BusMap = std::flat_map<int, std::shared_ptr<DeviceMap>>;
+class FruUtils
+{
+  public:
+    FruUtils() = default;
+    // non-copyable
+    FruUtils(const FruUtils&) = delete;
+    FruUtils& operator=(const FruUtils&) = delete;
+    // non-moveable
+    FruUtils(FruUtils&&) = delete;
+    FruUtils& operator=(FruUtils&&) = delete;
 
-// NOLINTNEXTLINE(cppcoreguidelines-avoid-non-const-global-variables)
-inline BusMap busMap;
+    const std::vector<uint8_t>& getFRUInfo(const uint16_t& bus,
+                                           const uint8_t& address) const;
+
+    bool getFruData(std::vector<uint8_t>& fruData, uint32_t bus,
+                    uint32_t address) const;
+
+    void addToBusMap(uint16_t bus, uint8_t address,
+                     const std::vector<uint8_t>& data);
+    void clearBusMap();
+
+    // @returns vector of {bus, address, data} for the 'busMap' contents
+    std::vector<std::tuple<uint16_t, uint8_t, const std::vector<uint8_t>&>>
+        getDevices() const;
+
+  private:
+    using DeviceMap = std::flat_map<int, std::vector<uint8_t>>;
+
+    // map: bus -> (map: address -> data)
+    std::flat_map<int, DeviceMap> busMap{};
+};
 
 enum class DecodeState
 {
@@ -112,8 +138,6 @@ bool checkLangEng(uint8_t lang);
 resCodes formatIPMIFRU(
     std::span<const uint8_t> fruBytes,
     std::flat_map<std::string, std::string, std::less<>>& result);
-
-std::vector<uint8_t>& getFRUInfo(const uint16_t& bus, const uint8_t& address);
 
 uint8_t calculateChecksum(std::span<const uint8_t>::const_iterator iter,
                           std::span<const uint8_t>::const_iterator end);
@@ -213,11 +237,9 @@ std::optional<int> findIndexForFRU(
 /// \return optional string. it returns productName or NULL
 
 std::optional<std::string> getProductName(
-    std::vector<uint8_t>& device,
+    const std::vector<uint8_t>& device,
     std::flat_map<std::string, std::string, std::less<>>& formattedFRU,
     uint32_t bus, uint32_t address, size_t& unknownBusObjectCount);
-
-bool getFruData(std::vector<uint8_t>& fruData, uint32_t bus, uint32_t address);
 
 bool isFieldEditable(std::string_view fieldName);
 
