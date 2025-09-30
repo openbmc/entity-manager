@@ -25,8 +25,17 @@ constexpr size_t fruBlockSize = 8;
 using DeviceMap = boost::container::flat_map<int, std::vector<uint8_t>>;
 using BusMap = boost::container::flat_map<int, std::shared_ptr<DeviceMap>>;
 
-// NOLINTNEXTLINE(cppcoreguidelines-avoid-non-const-global-variables)
-inline BusMap busMap;
+class FruUtils
+{
+  public:
+    const BusMap& busMap;
+
+    std::vector<uint8_t>& getFRUInfo(const uint16_t& bus,
+                                     const uint8_t& address);
+
+    bool getFruData(std::vector<uint8_t>& fruData, uint32_t bus,
+                    uint32_t address);
+};
 
 enum class DecodeState
 {
@@ -112,8 +121,6 @@ bool checkLangEng(uint8_t lang);
 resCodes formatIPMIFRU(
     std::span<const uint8_t> fruBytes,
     boost::container::flat_map<std::string, std::string>& result);
-
-std::vector<uint8_t>& getFRUInfo(const uint16_t& bus, const uint8_t& address);
 
 uint8_t calculateChecksum(std::span<const uint8_t>::const_iterator iter,
                           std::span<const uint8_t>::const_iterator end);
@@ -209,7 +216,5 @@ std::optional<std::string> getProductName(
     std::vector<uint8_t>& device,
     boost::container::flat_map<std::string, std::string>& formattedFRU,
     uint32_t bus, uint32_t address, size_t& unknownBusObjectCount);
-
-bool getFruData(std::vector<uint8_t>& fruData, uint32_t bus, uint32_t address);
 
 bool isFieldEditable(std::string_view fieldName);
