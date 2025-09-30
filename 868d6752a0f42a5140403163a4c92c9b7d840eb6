@@ -442,6 +442,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "f632a0b9_7a6e031d",
+        "filename": "src/fru_device/fru_dcscm.cpp",
+        "patchSetId": 6
+      },
+      "lineNbr": 96,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2025-09-30T20:38:00Z",
+      "side": 1,
+      "message": "No, you need to post these as the integer value, not the hex value.",
+      "parentUuid": "f47bd2b5_5fdafde0",
+      "range": {
+        "startLine": 87,
+        "startChar": 0,
+        "endLine": 96,
+        "endChar": 9
+      },
+      "revId": "868d6752a0f42a5140403163a4c92c9b7d840eb6",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "3e852988_db2e490c",
         "filename": "src/fru_device/fru_dcscm.cpp",
         "patchSetId": 6
@@ -630,6 +654,24 @@
       "side": 1,
       "message": "\u003e Will work on it in the other patch set.\n\nThey would be needed in this commit.",
       "parentUuid": "a8660da7_b331f9a0",
+      "revId": "868d6752a0f42a5140403163a4c92c9b7d840eb6",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d92411ca_ec6885de",
+        "filename": "src/fru_device/fru_dcscm.hpp",
+        "patchSetId": 6
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2025-09-30T20:38:00Z",
+      "side": 1,
+      "message": "They\u0027re needed before merge.  If you want to stack another commit, that\u0027s fine, but might be harder to manage.",
+      "parentUuid": "be188b83_065984f0",
       "revId": "868d6752a0f42a5140403163a4c92c9b7d840eb6",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
