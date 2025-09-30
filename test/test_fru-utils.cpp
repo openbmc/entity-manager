@@ -567,24 +567,25 @@ TEST(DisassembleFruDataTest, ValidData)
 
     std::vector<std::vector<uint8_t>> areasData;
     EXPECT_TRUE(disassembleFruData(fruData, areasData));
-    EXPECT_GT(areasData.size(), 1);
+    EXPECT_GT(areasData.size(), 1U);
 
     // Internal area is size is zero
     EXPECT_EQ(areasData[static_cast<size_t>(fruAreas::fruAreaInternal)].size(),
-              0);
+              0U);
     // Chassis are is zero
     EXPECT_EQ(areasData[static_cast<size_t>(fruAreas::fruAreaChassis)].size(),
-              0);
+              0U);
     // Board area is 96 byte
     EXPECT_EQ(areasData[static_cast<size_t>(fruAreas::fruAreaBoard)].size(),
-              96);
+              96U);
     // Product area is 96 byte
     EXPECT_EQ(areasData[static_cast<size_t>(fruAreas::fruAreaProduct)].size(),
-              96);
+              96U);
 
     // Multi-record area is 64 byte.
     EXPECT_EQ(
-        areasData[static_cast<size_t>(fruAreas::fruAreaMultirecord)].size(), 0);
+        areasData[static_cast<size_t>(fruAreas::fruAreaMultirecord)].size(),
+        0U);
 
     EXPECT_TRUE(setField(fruAreas::fruAreaBoard,
                          areasData[static_cast<size_t>(fruAreas::fruAreaBoard)],
