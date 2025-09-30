@@ -29,6 +29,9 @@
                         "LatticeLCMXO3LF_4300CFirmware",
                         "LatticeLFMXO5_25Firmware"
                     ]
+                },
+                "MuxOutputs": {
+                    "$ref": "firmware.json#/$defs/MuxOutputs"
                 }
             },
             "required": ["Address", "Bus", "FirmwareInfo", "Name", "Type"]

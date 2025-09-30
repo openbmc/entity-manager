@@ -17,6 +17,23 @@
             },
             "required": ["VendorIANA", "CompatibleHardware"]
         },
+        "MuxOutputs": {
+            "description": "The pin names and values for the mux which toggles the flash to BMC",
+            "type": "array",
+            "items": {
+                "type": "object",
+                "additionalProperties": false,
+                "properties": {
+                    "Name": {
+                        "$ref": "legacy.json#/$defs/Types/Name"
+                    },
+                    "Polarity": {
+                        "$ref": "legacy.json#/$defs/Types/Polarity"
+                    }
+                },
+                "required": ["Name", "Polarity"]
+            }
+        },
         "I2CVRFirmware": {
             "description": "Required information to complete I2C voltage regulator firmware update",
             "object": "object",
@@ -72,21 +89,7 @@
                     "type": "number"
                 },
                 "MuxOutputs": {
-                    "description": "The pin names and values for the mux which toggles the flash to BMC",
-                    "type": "array",
-                    "items": {
-                        "type": "object",
-                        "additionalProperties": false,
-                        "properties": {
-                            "Name": {
-                                "$ref": "legacy.json#/$defs/Types/Name"
-                            },
-                            "Polarity": {
-                                "$ref": "legacy.json#/$defs/Types/Polarity"
-                            }
-                        },
-                        "required": ["Name", "Polarity"]
-                    }
+                    "$ref": "#/$defs/MuxOutputs"
                 },
                 "FirmwareInfo": {
                     "$ref": "#/$defs/FirmwareInfoDef"
@@ -125,21 +128,7 @@
                     "type": "string"
                 },
                 "MuxOutputs": {
-                    "description": "The pin names and polarities for the mux which toggles the flash to BMC",
-                    "type": "array",
-                    "items": {
-                        "type": "object",
-                        "additionalProperties": false,
-                        "properties": {
-                            "Name": {
-                                "$ref": "legacy.json#/$defs/Types/Name"
-                            },
-                            "Polarity": {
-                                "$ref": "legacy.json#/$defs/Types/Polarity"
-                            }
-                        },
-                        "required": ["Name", "Polarity"]
-                    }
+                    "$ref": "#/$defs/MuxOutputs"
                 },
                 "FirmwareInfo": {
                     "$ref": "#/$defs/FirmwareInfoDef"
