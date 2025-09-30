@@ -904,16 +904,23 @@ unsigned int getHeaderAreaFieldOffset(fruAreas area)
     return static_cast<unsigned int>(area) + 1;
 }
 
-std::vector<uint8_t>& getFRUInfo(const uint16_t& bus, const uint8_t& address)
+std::vector<uint8_t>& FruUtils::getFRUInfo(const uint16_t& bus,
+                                           const uint8_t& address)
 {
     auto deviceMap = busMap.find(bus);
     if (deviceMap == busMap.end())
     {
+        lg2::error("Get FRU Info: Did not find bus {BUS} in map", "BUS", bus);
+        lg2::error("Get FRU Info: map has {N} buses", "N", busMap.size());
         throw std::invalid_argument("Invalid Bus.");
     }
     auto device = deviceMap->second->find(address);
     if (device == deviceMap->second->end())
     {
+        lg2::error("Get FRU Info: Did not find address {ADDR} in map", "ADDR",
+                   address);
+        lg2::error("Get FRU Info: map for bus {BUS} has {N} elements", "BUS",
+                   bus, "N", deviceMap->second->size());
         throw std::invalid_argument("Invalid Address.");
     }
     std::vector<uint8_t>& ret = device->second;
@@ -1613,7 +1620,8 @@ std::optional<std::string> getProductName(
     return productName;
 }
 
-bool getFruData(std::vector<uint8_t>& fruData, uint32_t bus, uint32_t address)
+bool FruUtils::getFruData(std::vector<uint8_t>& fruData, uint32_t bus,
+                          uint32_t address)
 {
     try
     {
