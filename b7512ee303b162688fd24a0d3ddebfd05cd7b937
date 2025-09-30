@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "fc93470a_22b6d059",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1001354
+      },
+      "writtenOn": "2025-09-30T14:14:06Z",
+      "side": 1,
+      "message": "My understanding is that this PR should solve the clang-tidy complaints by replacing pointer arithmetic with calls to std::advance and std::next instead.\n\nDespite the CI fail being reported, it build on my machine, and the changes make sense to my eyes.",
+      "revId": "b7512ee303b162688fd24a0d3ddebfd05cd7b937",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    }
+  ]
+}
