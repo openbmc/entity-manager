@@ -958,7 +958,6 @@ bool writeFRU(uint8_t bus, uint8_t address, const std::vector<uint8_t>& fru)
             return false;
         }
 
-        std::array<uint8_t, I2C_SMBUS_BLOCK_MAX> blockData{};
         std::string errorMessage = "eeprom at " + std::to_string(bus) +
                                    " address " + std::to_string(address);
         auto readFunc = [eeprom](off_t offset, size_t length, uint8_t* outbuf) {
@@ -966,9 +965,14 @@ bool writeFRU(uint8_t bus, uint8_t address, const std::vector<uint8_t>& fru)
         };
         FRUReader reader(std::move(readFunc));
 
-        if (!findFRUHeader(reader, errorMessage, blockData, offset))
+        auto sections = findFRUHeader(reader, errorMessage, 0);
+        if (!sections)
         {
             offset = 0;
+        }
+        else
+        {
+            offset = sections->IpmiFruOffset;
         }
 
         if (lseek(eeprom, offset, SEEK_SET) < 0)
