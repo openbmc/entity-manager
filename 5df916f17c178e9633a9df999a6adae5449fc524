@@ -16,6 +16,23 @@
       "message": "merging to unblock things.",
       "revId": "5df916f17c178e9633a9df999a6adae5449fc524",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c4c92bfa_fefbdba7",
+        "filename": "src/utils.hpp",
+        "patchSetId": 3
+      },
+      "lineNbr": 84,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2025-09-30T16:43:35Z",
+      "side": 1,
+      "message": "If we\u0027re going to wrap around from_chars, we should be checking the ec rather than returning it.",
+      "revId": "5df916f17c178e9633a9df999a6adae5449fc524",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ],
   "submitRequirementResults": []
