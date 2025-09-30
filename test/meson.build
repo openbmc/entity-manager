@@ -23,10 +23,20 @@ test(
     executable(
         'test_fru_utils',
         'test_fru-utils.cpp',
+        'test_gzip-utils.cpp',
         '../src/fru_device/fru_utils.cpp',
         '../src/fru_device/fru_reader.cpp',
+        '../src/fru_device/gzip_utils.cpp',
         cpp_args: test_boost_args,
-        dependencies: [boost, gtest, gmock, phosphor_logging_dep, sdbusplus],
+        dependencies: [
+            boost,
+            gmock,
+            gtest,
+            libxml2_dep,
+            phosphor_logging_dep,
+            sdbusplus,
+            zlib_dep,
+        ],
         include_directories: test_include_dir,
     ),
 )
