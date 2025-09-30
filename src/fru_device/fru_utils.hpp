@@ -126,6 +126,14 @@ unsigned int updateFRUAreaLenAndChecksum(
 
 ssize_t getFieldLength(uint8_t fruFieldTypeLenValue);
 
+struct FruSections
+{
+    off_t IpmiFruOffset = 0;
+    std::array<uint8_t, I2C_SMBUS_BLOCK_MAX> ipmiFruBlock;
+
+    off_t GigabyteXmlOffset = 0;
+};
+
 /// \brief Find a FRU header.
 /// \param reader the FRUReader to read via
 /// \param errorHelp and a helper string for failures
@@ -134,9 +142,8 @@ ssize_t getFieldLength(uint8_t fruFieldTypeLenValue);
 ///        set to 0 to perform search;
 ///        returns the offset at which a header was found
 /// \return whether a header was found
-bool findFRUHeader(FRUReader& reader, const std::string& errorHelp,
-                   std::array<uint8_t, I2C_SMBUS_BLOCK_MAX>& blockData,
-                   off_t& baseOffset);
+std::optional<FruSections> findFRUHeader(
+    FRUReader& reader, const std::string& errorHelp, off_t offset);
 
 /// \brief Read and validate FRU contents.
 /// \param reader the FRUReader to read via
@@ -229,5 +236,8 @@ bool assembleFruData(std::vector<uint8_t>& fruData,
 bool setField(const fruAreas& fruAreaToUpdate, std::vector<uint8_t>& areaData,
               const std::string& propertyName, const std::string& value);
 
-bool updateAddProperty(const std::string& property, const std::string& name,
-                       std::vector<uint8_t>& data);
+bool updateAddProperty(const std::string& propertyValue,
+                       const std::string& propertyName,
+                       std::vector<uint8_t>& fruData);
+
+std::string parseMacFromGzipXmlHeader(FRUReader& reader, off_t offset);
