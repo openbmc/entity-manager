@@ -27,6 +27,23 @@
                         "LatticeLCMXO3LF_2100CFirmware",
                         "LatticeLCMXO3LF_4300CFirmware"
                     ]
+                },
+                "MuxOutputs": {
+                    "description": "The pin names and values for the mux which toggles the flash to BMC",
+                    "type": "array",
+                    "items": {
+                        "type": "object",
+                        "additionalProperties": false,
+                        "properties": {
+                            "Name": {
+                                "$ref": "legacy.json#/$defs/Types/Name"
+                            },
+                            "Polarity": {
+                                "$ref": "legacy.json#/$defs/Types/Polarity"
+                            }
+                        },
+                        "required": ["Name", "Polarity"]
+                    }
                 }
             },
             "required": ["Address", "Bus", "FirmwareInfo", "Name", "Type"]
