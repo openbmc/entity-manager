@@ -56,6 +56,24 @@
       "message": "cppreference says the single arg version returns:\n\nReturn value\n1,2) true if the file was deleted, false if it did not exist.\n\nso I wonder why it throws instead.  maybe a bug on their part I guess?",
       "revId": "7ba1d2e5edf125029b88c4651ad36f5a3730a8fd",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "05f0f40c_a4eca112",
+        "filename": "src/entity_manager/entity_manager.cpp",
+        "patchSetId": 2
+      },
+      "lineNbr": 604,
+      "author": {
+        "id": 1002504
+      },
+      "writtenOn": "2025-09-30T15:59:56Z",
+      "side": 1,
+      "message": "retesting, looks like the directory was read-only after a reboot, so this wasn\u0027t about the file existing, we threw an error from the underlying filesystem call returning something other than ENOENT. I\u0027ll modify the commit message after I fix the unrelated clang-tidy issues.",
+      "parentUuid": "9243335f_b7dcfdb1",
+      "revId": "7ba1d2e5edf125029b88c4651ad36f5a3730a8fd",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }
