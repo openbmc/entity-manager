@@ -3,6 +3,8 @@
 
 #include "fru_utils.hpp"
 
+#include "gzip_utils.hpp"
+
 #include <phosphor-logging/lg2.hpp>
 
 #include <array>
@@ -716,27 +718,66 @@ bool validateHeader(const std::array<uint8_t, I2C_SMBUS_BLOCK_MAX>& blockData)
     return true;
 }
 
-bool findFRUHeader(FRUReader& reader, const std::string& errorHelp,
-                   std::array<uint8_t, I2C_SMBUS_BLOCK_MAX>& blockData,
-                   off_t& baseOffset)
+static std::string parseMacFromGzipXmlHeader(FRUReader& reader, off_t offset)
 {
-    if (reader.read(baseOffset, 0x8, blockData.data()) < 0)
+    // gzip starts at offset 512. Read that from the FRU
+    // in this case, 32k bytes is enough to hold the whole manifest
+    constexpr size_t totalReadSize = 32UL * 1024UL;
+
+    std::vector<uint8_t> headerData(totalReadSize, 0U);
+
+    int rc = reader.read(offset, totalReadSize, headerData.data());
+    if (rc <= 0)
+    {
+        return {};
+    }
+
+    std::optional<std::string> xml = gzipInflate(headerData);
+    if (!xml)
+    {
+        return {};
+    }
+    std::vector<std::string> node =
+        getNodeFromXml(*xml, "//Interface1/MacAddr0");
+    if (node.empty())
+    {
+        lg2::debug("No mac address found in gzip xml header");
+        return {};
+    }
+    if (node.size() > 1)
+    {
+        lg2::warning("Multiple mac addresses found in gzip xml header");
+    }
+    return node[0];
+}
+
+std::optional<FruSections> findFRUHeader(
+    FRUReader& reader, const std::string& errorHelp, off_t startingOffset)
+{
+    std::array<uint8_t, I2C_SMBUS_BLOCK_MAX> blockData = {};
+    if (reader.read(startingOffset, 0x8, blockData.data()) < 0)
     {
         std::cerr << "failed to read " << errorHelp << " base offset "
-                  << baseOffset << "\n";
-        return false;
+                  << startingOffset << "\n";
+        return std::nullopt;
     }
 
     // check the header checksum
     if (validateHeader(blockData))
     {
-        return true;
+        FruSections fru = {};
+        static_assert(fru.ipmiFruBlock.size() == blockData.size(),
+                      "size mismatch in block data");
+        std::memcpy(fru.ipmiFruBlock.data(), blockData.data(),
+                    I2C_SMBUS_BLOCK_MAX);
+        fru.IpmiFruOffset = startingOffset;
+        return fru;
     }
 
     // only continue the search if we just looked at 0x0.
-    if (baseOffset != 0)
+    if (startingOffset != 0)
     {
-        return false;
+        return std::nullopt;
     }
 
     // now check for special cases where the IPMI data is at an offset
@@ -747,8 +788,8 @@ bool findFRUHeader(FRUReader& reader, const std::string& errorHelp,
         std::equal(tyanHeader.begin(), tyanHeader.end(), blockData.begin()))
     {
         // look for the FRU header at offset 0x6000
-        baseOffset = 0x6000;
-        return findFRUHeader(reader, errorHelp, blockData, baseOffset);
+        off_t tyanOffset = 0x6000;
+        return findFRUHeader(reader, errorHelp, tyanOffset);
     }
 
     // check if blockData starts with gigabyteHeader
@@ -759,27 +800,39 @@ bool findFRUHeader(FRUReader& reader, const std::string& errorHelp,
                    blockData.begin()))
     {
         // look for the FRU header at offset 0x4000
-        baseOffset = 0x4000;
-        return findFRUHeader(reader, errorHelp, blockData, baseOffset);
+        off_t gbOffset = 0x4000;
+        auto sections = findFRUHeader(reader, errorHelp, gbOffset);
+        if (sections)
+        {
+            lg2::debug("succeeded on GB parse");
+            // GB xml header is at 512 bytes
+            sections->GigabyteXmlOffset = 512;
+        }
+        else
+        {
+            lg2::error("Failed on GB parse");
+        }
+        return sections;
     }
 
     lg2::debug("Illegal header {HEADER} base offset {OFFSET}", "HEADER",
-               errorHelp, "OFFSET", baseOffset);
+               errorHelp, "OFFSET", startingOffset);
 
-    return false;
+    return std::nullopt;
 }
 
 std::pair<std::vector<uint8_t>, bool> readFRUContents(
     FRUReader& reader, const std::string& errorHelp)
 {
     std::array<uint8_t, I2C_SMBUS_BLOCK_MAX> blockData{};
-    off_t baseOffset = 0x0;
-
-    if (!findFRUHeader(reader, errorHelp, blockData, baseOffset))
+    std::optional<FruSections> sections = findFRUHeader(reader, errorHelp, 0);
+    if (!sections)
     {
         return {{}, false};
     }
-
+    const off_t baseOffset = sections->IpmiFruOffset;
+    std::memcpy(blockData.data(), sections->ipmiFruBlock.data(),
+                blockData.size());
     std::vector<uint8_t> device;
     device.insert(device.end(), blockData.begin(),
                   std::next(blockData.begin(), 8));
@@ -894,6 +947,20 @@ std::pair<std::vector<uint8_t>, bool> readFRUContents(
 
         readOffset += requestLength;
         fruLength -= std::min(requestLength, fruLength);
+    }
+
+    if (sections->GigabyteXmlOffset != 0)
+    {
+        std::string macAddress =
+            parseMacFromGzipXmlHeader(reader, sections->GigabyteXmlOffset);
+        if (!macAddress.empty())
+        {
+            // launder the mac address as we expect into
+            // BOARD_INFO_AM2 to allow the rest of the
+            // system to use it
+            std::string mac = std::format("MAC: {}", macAddress);
+            updateAddProperty(mac, "BOARD_INFO_AM2", device);
+        }
     }
 
     return {device, true};
