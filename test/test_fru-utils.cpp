@@ -311,26 +311,25 @@ TEST(FindFRUHeaderTest, InvalidHeader)
 {
     const std::vector<uint8_t> data = {255, 16};
     off_t offset = 0;
-    std::array<uint8_t, I2C_SMBUS_BLOCK_MAX> blockData{};
     auto getData = [&data](auto o, auto l, auto* b) {
         return getDataTempl(data, o, l, b);
     };
     FRUReader reader(getData);
-
-    EXPECT_FALSE(findFRUHeader(reader, "error", blockData, offset));
+    auto sections = findFRUHeader(reader, "error", offset);
+    EXPECT_EQ(sections, std::nullopt);
 }
 
 TEST(FindFRUHeaderTest, NoData)
 {
     const std::vector<uint8_t> data = {};
     off_t offset = 0;
-    std::array<uint8_t, I2C_SMBUS_BLOCK_MAX> blockData{};
     auto getData = [&data](auto o, auto l, auto* b) {
         return getDataTempl(data, o, l, b);
     };
     FRUReader reader(getData);
 
-    EXPECT_FALSE(findFRUHeader(reader, "error", blockData, offset));
+    auto sections = findFRUHeader(reader, "error", offset);
+    EXPECT_EQ(sections, std::nullopt);
 }
 
 TEST(FindFRUHeaderTest, ValidHeader)
@@ -338,14 +337,16 @@ TEST(FindFRUHeaderTest, ValidHeader)
     const std::vector<uint8_t> data = {0x01, 0x00, 0x01, 0x02,
                                        0x03, 0x04, 0x00, 0xf5};
     off_t offset = 0;
-    std::array<uint8_t, I2C_SMBUS_BLOCK_MAX> blockData{};
     auto getData = [&data](auto o, auto l, auto* b) {
         return getDataTempl(data, o, l, b);
     };
     FRUReader reader(getData);
-
-    EXPECT_TRUE(findFRUHeader(reader, "error", blockData, offset));
-    EXPECT_EQ(0, offset);
+    auto sections = findFRUHeader(reader, "error", offset);
+    ASSERT_NE(sections, std::nullopt);
+    if (sections)
+    {
+        EXPECT_EQ(0, sections->IpmiFruOffset);
+    }
 }
 
 TEST(FindFRUHeaderTest, TyanInvalidHeader)
@@ -353,26 +354,24 @@ TEST(FindFRUHeaderTest, TyanInvalidHeader)
     std::vector<uint8_t> data = {'$', 'T', 'Y', 'A', 'N', '$', 0, 0};
     data.resize(0x6000 + I2C_SMBUS_BLOCK_MAX);
     off_t offset = 0;
-    std::array<uint8_t, I2C_SMBUS_BLOCK_MAX> blockData{};
     auto getData = [&data](auto o, auto l, auto* b) {
         return getDataTempl(data, o, l, b);
     };
     FRUReader reader(getData);
-
-    EXPECT_FALSE(findFRUHeader(reader, "error", blockData, offset));
+    auto sections = findFRUHeader(reader, "error", offset);
+    EXPECT_EQ(sections, std::nullopt);
 }
 
 TEST(FindFRUHeaderTest, TyanNoData)
 {
     const std::vector<uint8_t> data = {'$', 'T', 'Y', 'A', 'N', '$', 0, 0};
     off_t offset = 0;
-    std::array<uint8_t, I2C_SMBUS_BLOCK_MAX> blockData{};
     auto getData = [&data](auto o, auto l, auto* b) {
         return getDataTempl(data, o, l, b);
     };
     FRUReader reader(getData);
-
-    EXPECT_FALSE(findFRUHeader(reader, "error", blockData, offset));
+    auto sections = findFRUHeader(reader, "error", offset);
+    EXPECT_EQ(sections, std::nullopt);
 }
 
 TEST(FindFRUHeaderTest, TyanValidHeader)
@@ -384,14 +383,67 @@ TEST(FindFRUHeaderTest, TyanValidHeader)
     copy(fruHeader.begin(), fruHeader.end(), back_inserter(data));
 
     off_t offset = 0;
-    std::array<uint8_t, I2C_SMBUS_BLOCK_MAX> blockData{};
     auto getData = [&data](auto o, auto l, auto* b) {
         return getDataTempl(data, o, l, b);
     };
     FRUReader reader(getData);
 
-    EXPECT_TRUE(findFRUHeader(reader, "error", blockData, offset));
-    EXPECT_EQ(0x6000, offset);
+    auto sections = findFRUHeader(reader, "error", offset);
+
+    ASSERT_NE(sections, std::nullopt);
+    if (sections)
+    {
+        EXPECT_EQ(0x6000, sections->IpmiFruOffset);
+    }
+}
+
+TEST(FindFRUHeaderTest, GigaInvalidHeader)
+{
+    std::vector<uint8_t> data = {'G', 'I', 'G', 'A', 'B', 'Y', 'T', 'E'};
+    data.resize(0x6000 + I2C_SMBUS_BLOCK_MAX);
+    off_t offset = 0;
+    auto getData = [&data](auto o, auto l, auto* b) {
+        return getDataTempl(data, o, l, b);
+    };
+    FRUReader reader(getData);
+    auto sections = findFRUHeader(reader, "error", offset);
+    EXPECT_EQ(sections, std::nullopt);
+}
+
+TEST(FindFRUHeaderTest, GigaNoData)
+{
+    const std::vector<uint8_t> data = {'G', 'I', 'G', 'A', 'B', 'Y', 'T', 'E'};
+    off_t offset = 0;
+    auto getData = [&data](auto o, auto l, auto* b) {
+        return getDataTempl(data, o, l, b);
+    };
+    FRUReader reader(getData);
+    auto sections = findFRUHeader(reader, "error", offset);
+    EXPECT_EQ(sections, std::nullopt);
+}
+
+TEST(FindFRUHeaderTest, GigaValidHeader)
+{
+    std::vector<uint8_t> data = {'G', 'I', 'G', 'A', 'B', 'Y', 'T', 'E'};
+    data.resize(0x4000);
+    constexpr std::array<uint8_t, I2C_SMBUS_BLOCK_MAX> fruHeader = {
+        0x01, 0x00, 0x01, 0x02, 0x03, 0x04, 0x00, 0xf5};
+    copy(fruHeader.begin(), fruHeader.end(), back_inserter(data));
+
+    off_t offset = 0;
+    auto getData = [&data](auto o, auto l, auto* b) {
+        return getDataTempl(data, o, l, b);
+    };
+    FRUReader reader(getData);
+
+    auto sections = findFRUHeader(reader, "error", offset);
+
+    ASSERT_NE(sections, std::nullopt);
+    if (sections)
+    {
+        EXPECT_EQ(0x4000, sections->IpmiFruOffset);
+        EXPECT_EQ(512, sections->GigabyteXmlOffset);
+    }
 }
 
 TEST(formatIPMIFRU, FullDecode)
