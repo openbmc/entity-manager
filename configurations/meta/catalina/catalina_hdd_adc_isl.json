@@ -75,6 +75,16 @@
             "in0_Name": "HDDBOARD_SSD2_P12V_VOLT_V",
             "power1_Name": "HDDBOARD_SSD2_P12V_PWR_W",
             "power1_Scale": 200000
+        },
+        {
+            "Address": "0x30",
+            "Bus": 5,
+            "FirmwareInfo": {
+                "CompatibleHardware": "com.meta.Hardware.Catalina.CPLD.LCMXO2_4000HC_hdd",
+                "VendorIANA": 40981
+            },
+            "Name": "Catalina_HDD_cpld",
+            "Type": "LatticeLCMXO2_4000HCFirmware"
         }
     ],
     /* Catalina Hard Disk Drive Carrier Board */
