@@ -33,6 +33,24 @@
       "message": "Please move this under the defs section and not under FirmwareInfoDef.",
       "revId": "83544b03cf89003f217b193ff3d044cf581b571e",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "118140c2_1e814909",
+        "filename": "schemas/firmware.json",
+        "patchSetId": 2
+      },
+      "lineNbr": 17,
+      "author": {
+        "id": 1002466
+      },
+      "writtenOn": "2025-10-01T01:43:53Z",
+      "side": 1,
+      "message": "Hi Japal,\nShould this property only be moved under defs here?\nHow about the BIOS, EEPROM, and CPLD configurations — should they still remain under \"properties\"?",
+      "parentUuid": "e73da542_7e838ec1",
+      "revId": "83544b03cf89003f217b193ff3d044cf581b571e",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }
