@@ -237,36 +237,6 @@
             "power1_Name": "CXL_P12V_STBY_PWR_W"
         },
         {
-            "Address": "0x61",
-            "Bus": 35,
-            "FirmwareInfo": {
-                "CompatibleHardware": "com.meta.Hardware.Yosemite5.VR.RAA228244_p1v2_vdd_ddr_ch02",
-                "VendorIANA": 40981
-            },
-            "Name": "Yosemite5_CXL_VR_P1V2_VDD_DDR_CH02",
-            "Type": "ISL69269Firmware"
-        },
-        {
-            "Address": "0x63",
-            "Bus": 35,
-            "FirmwareInfo": {
-                "CompatibleHardware": "com.meta.Hardware.Yosemite5.VR.RAA228244_pvdd_core",
-                "VendorIANA": 40981
-            },
-            "Name": "Yosemite5_CXL_VR_PVDD_CORE",
-            "Type": "ISL69269Firmware"
-        },
-        {
-            "Address": "0x72",
-            "Bus": 35,
-            "FirmwareInfo": {
-                "CompatibleHardware": "com.meta.Hardware.Yosemite5.VR.RAA228244_p1v2_vdd_ddr_ch13",
-                "VendorIANA": 40981
-            },
-            "Name": "Yosemite5_CXL_VR_P1V2_VDD_DDR_CH13",
-            "Type": "ISL69269Firmware"
-        },
-        {
             "Address": "0x4e",
             "Bus": 34,
             "Name": "CXL_INLET_TEMP_C",
@@ -309,6 +279,36 @@
                 }
             ],
             "Type": "LM75A"
+        },
+        {
+            "Address": "0x61",
+            "Bus": 35,
+            "FirmwareInfo": {
+                "CompatibleHardware": "com.meta.Hardware.Yosemite5.VR.RAA228244_p1v2_vdd_ddr_ch02",
+                "VendorIANA": 40981
+            },
+            "Name": "Yosemite5_CXL_VR_P1V2_VDD_DDR_CH02",
+            "Type": "RAA22XGen3p5Firmware"
+        },
+        {
+            "Address": "0x63",
+            "Bus": 35,
+            "FirmwareInfo": {
+                "CompatibleHardware": "com.meta.Hardware.Yosemite5.VR.RAA228244_pvdd_core",
+                "VendorIANA": 40981
+            },
+            "Name": "Yosemite5_CXL_VR_PVDD_CORE",
+            "Type": "RAA22XGen3p5Firmware"
+        },
+        {
+            "Address": "0x72",
+            "Bus": 35,
+            "FirmwareInfo": {
+                "CompatibleHardware": "com.meta.Hardware.Yosemite5.VR.RAA228244_p1v2_vdd_ddr_ch13",
+                "VendorIANA": 40981
+            },
+            "Name": "Yosemite5_CXL_VR_P1V2_VDD_DDR_CH13",
+            "Type": "RAA22XGen3p5Firmware"
         },
         {
             "Address": "0x4c",
