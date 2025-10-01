@@ -1,0 +1,78 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "66d4b321_5b705ad3",
+        "filename": "src/fru_device/fru_utils.cpp",
+        "patchSetId": 7
+      },
+      "lineNbr": 796,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-10-01T09:00:56Z",
+      "side": 1,
+      "message": "`lg2::debug/info`",
+      "revId": "7703a8241e9b621ac2d54d07b16a305e75077fcb",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0d06f445_950e8095",
+        "filename": "src/fru_device/fru_utils.cpp",
+        "patchSetId": 7
+      },
+      "lineNbr": 802,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-10-01T09:00:56Z",
+      "side": 1,
+      "message": "`lg2::debug/error`",
+      "revId": "7703a8241e9b621ac2d54d07b16a305e75077fcb",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d7fa876d_d55ae460",
+        "filename": "test/meson.build",
+        "patchSetId": 7
+      },
+      "lineNbr": 29,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-10-01T09:00:56Z",
+      "side": 1,
+      "message": "Why do we compile `gzip_utils.cpp` twice (refer `src/fru_device/meson.build`, line 18)\n\nWhat about making it a static library instead.",
+      "revId": "7703a8241e9b621ac2d54d07b16a305e75077fcb",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "269bc301_3efc3f07",
+        "filename": "test/test_fru-utils.cpp",
+        "patchSetId": 7
+      },
+      "lineNbr": 348,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-10-01T09:00:56Z",
+      "side": 1,
+      "message": "```suggestion\n    if (sections-\u003ehas_value()){\n        EXPECT_EQ(0, sections-\u003eIpmiFruOffset);\n    }\n```\nso we avoid the NOLINT.\n\nIt\u0027s 3 lines as before but then we do not incur the need to explain ourselves here.\n\nSame for the other places with this pattern.",
+      "range": {
+        "startLine": 346,
+        "startChar": 4,
+        "endLine": 348,
+        "endChar": 42
+      },
+      "revId": "7703a8241e9b621ac2d54d07b16a305e75077fcb",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    }
+  ]
+}
