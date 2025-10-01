@@ -18,6 +18,24 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "0c5e4a57_4e1ed6f1",
+        "filename": "src/fru_device/fru_utils.cpp",
+        "patchSetId": 7
+      },
+      "lineNbr": 796,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2025-10-01T15:35:25Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "66d4b321_5b705ad3",
+      "revId": "7703a8241e9b621ac2d54d07b16a305e75077fcb",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "0d06f445_950e8095",
@@ -31,6 +49,24 @@
       "writtenOn": "2025-10-01T09:00:56Z",
       "side": 1,
       "message": "`lg2::debug/error`",
+      "revId": "7703a8241e9b621ac2d54d07b16a305e75077fcb",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "a1487023_e02f6842",
+        "filename": "src/fru_device/fru_utils.cpp",
+        "patchSetId": 7
+      },
+      "lineNbr": 802,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2025-10-01T15:35:25Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "0d06f445_950e8095",
       "revId": "7703a8241e9b621ac2d54d07b16a305e75077fcb",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
@@ -54,6 +90,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "d70574e7_5ff1e7f2",
+        "filename": "test/meson.build",
+        "patchSetId": 7
+      },
+      "lineNbr": 29,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2025-10-01T15:35:25Z",
+      "side": 1,
+      "message": "Same reason we compile fru-utils twice.  We can fix that in a followup commit if we like.  Looks like it was originally caused by:\nhttps://github.com/openbmc/entity-manager/commit/3cbff97f6980709aec45730515e48e85c7c02cc1\n\nBut this commit is making the problem no worse.",
+      "parentUuid": "d7fa876d_d55ae460",
+      "revId": "7703a8241e9b621ac2d54d07b16a305e75077fcb",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "269bc301_3efc3f07",
         "filename": "test/test_fru-utils.cpp",
         "patchSetId": 7
@@ -65,6 +119,30 @@
       "writtenOn": "2025-10-01T09:00:56Z",
       "side": 1,
       "message": "```suggestion\n    if (sections-\u003ehas_value()){\n        EXPECT_EQ(0, sections-\u003eIpmiFruOffset);\n    }\n```\nso we avoid the NOLINT.\n\nIt\u0027s 3 lines as before but then we do not incur the need to explain ourselves here.\n\nSame for the other places with this pattern.",
+      "range": {
+        "startLine": 346,
+        "startChar": 4,
+        "endLine": 348,
+        "endChar": 42
+      },
+      "revId": "7703a8241e9b621ac2d54d07b16a305e75077fcb",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "e67ce756_65e6995c",
+        "filename": "test/test_fru-utils.cpp",
+        "patchSetId": 7
+      },
+      "lineNbr": 348,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2025-10-01T15:35:25Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "269bc301_3efc3f07",
       "range": {
         "startLine": 346,
         "startChar": 4,
