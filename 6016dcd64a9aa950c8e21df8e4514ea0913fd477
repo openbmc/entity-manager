@@ -86,6 +86,93 @@
       "parentUuid": "0301452c_e3df74fe",
       "revId": "6016dcd64a9aa950c8e21df8e4514ea0913fd477",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8d7154de_2cb2da0b",
+        "filename": "src/utils.cpp",
+        "patchSetId": 1
+      },
+      "lineNbr": 182,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2025-10-01T22:54:45Z",
+      "side": 1,
+      "message": "George, you closed this then didn\u0027t add test cases.  Please leave this open until you\u0027ve done so.",
+      "parentUuid": "f104cbad_f4edc5b4",
+      "revId": "6016dcd64a9aa950c8e21df8e4514ea0913fd477",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "19ac2e45_a0694e44",
+        "filename": "src/utils.cpp",
+        "patchSetId": 1
+      },
+      "lineNbr": 184,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2025-10-01T22:54:45Z",
+      "side": 1,
+      "message": "should we be using std::ranges::search here?",
+      "range": {
+        "startLine": 184,
+        "startChar": 21,
+        "endLine": 184,
+        "endChar": 26
+      },
+      "revId": "6016dcd64a9aa950c8e21df8e4514ea0913fd477",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "63a00c65_70914e75",
+        "filename": "src/utils.cpp",
+        "patchSetId": 1
+      },
+      "lineNbr": 186,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2025-10-01T22:54:45Z",
+      "side": 1,
+      "message": "we shouldn\u0027t be using the std::locale based tolower for this, as it implements far more features than we use here.  Look at the simple version of this that bmcweb implements and use that.",
+      "range": {
+        "startLine": 186,
+        "startChar": 24,
+        "endLine": 186,
+        "endChar": 31
+      },
+      "revId": "6016dcd64a9aa950c8e21df8e4514ea0913fd477",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "592a1d45_f488ba04",
+        "filename": "src/utils.hpp",
+        "patchSetId": 1
+      },
+      "lineNbr": 77,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2025-10-01T22:54:45Z",
+      "side": 1,
+      "message": "nit capital F on find.",
+      "range": {
+        "startLine": 77,
+        "startChar": 27,
+        "endLine": 77,
+        "endChar": 28
+      },
+      "revId": "6016dcd64a9aa950c8e21df8e4514ea0913fd477",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }
