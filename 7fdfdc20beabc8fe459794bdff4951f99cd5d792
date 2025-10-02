@@ -37,6 +37,24 @@
     {
       "unresolved": false,
       "key": {
+        "uuid": "39101f46_b65d2c58",
+        "filename": "src/fru_device/fru_device.cpp",
+        "patchSetId": 7
+      },
+      "lineNbr": 655,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2025-10-02T20:02:54Z",
+      "side": 1,
+      "message": "Yes, bmcweb has workarounds for this using std::string_view and remove_prefix to get the real string.  Those are c++17 features that didn\u0027t exist at the time this was written and haven\u0027t really be propagated.",
+      "parentUuid": "193be83c_e083d98b",
+      "revId": "7fdfdc20beabc8fe459794bdff4951f99cd5d792",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
         "uuid": "16d1e69c_8c6c31d3",
         "filename": "src/fru_device/fru_device.cpp",
         "patchSetId": 7
