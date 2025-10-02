@@ -92,6 +92,23 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "e9da4ac1_8103b98a",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2025-10-02T05:18:37Z",
+      "side": 1,
+      "message": "Not interested in breaking changes to the json format here.  These files are used in a lot of places, and causing this level of thrash by breaking all in-process files and everyones forks doesn\u0027t seem worth it for this minor of a change.",
+      "revId": "c22fc3b2a404086a51cdc79860be2ce02ca75ea0",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "38fb428c_a8c56a74",
         "filename": "schemas/legacy.json",
         "patchSetId": 1
