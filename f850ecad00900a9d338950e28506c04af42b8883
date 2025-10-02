@@ -22,6 +22,30 @@
       },
       "revId": "f850ecad00900a9d338950e28506c04af42b8883",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a8add9dd_4405be27",
+        "filename": "schemas/topology.json",
+        "patchSetId": 11
+      },
+      "lineNbr": 47,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-10-02T09:19:52Z",
+      "side": 1,
+      "message": "\u003e Why are we renaming these? \n\nSo that config authors know what is the new, preferred way to configure things.\nIf we provide two alternatives without clear preference then it\u0027s confusing for people.\n\n\u003e This will break configurations that used this!\n\nCan you explain further what breaks as result of this change?\n\nIs there any config which will fail to validate / fail to parse / any different behavior at runtime?",
+      "parentUuid": "0d09cdb1_1063ee51",
+      "range": {
+        "startLine": 47,
+        "startChar": 9,
+        "endLine": 47,
+        "endChar": 29
+      },
+      "revId": "f850ecad00900a9d338950e28506c04af42b8883",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }
