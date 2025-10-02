@@ -1,0 +1,119 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "702f91e9_fb2b3786",
+        "filename": "src/fru_device/fru_device.cpp",
+        "patchSetId": 3
+      },
+      "lineNbr": 1051,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2025-10-02T21:10:57Z",
+      "side": 1,
+      "message": "capturing by \"this\" alone in a lambda context isn\u0027t safe.  Probably need to do the shared_from_this trick?  Or make scan somehow outlive the lifetime of FruDevice",
+      "range": {
+        "startLine": 1051,
+        "startChar": 21,
+        "endLine": 1051,
+        "endChar": 25
+      },
+      "revId": "a6fe39eddfd5aa955da6f103393787692f0b0c60",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "442e03e9_0572740c",
+        "filename": "src/fru_device/fru_device.cpp",
+        "patchSetId": 3
+      },
+      "lineNbr": 1439,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2025-10-02T21:10:57Z",
+      "side": 1,
+      "message": "io_context should be shared separately from the fru portions itself.  this directory watcher really should know nothign about what a \"fru\" is ideally.",
+      "range": {
+        "startLine": 1439,
+        "startChar": 51,
+        "endLine": 1439,
+        "endChar": 60
+      },
+      "revId": "a6fe39eddfd5aa955da6f103393787692f0b0c60",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "fc6ea720_77db3ac8",
+        "filename": "src/fru_device/fru_device.hpp",
+        "patchSetId": 3
+      },
+      "lineNbr": 17,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2025-10-02T21:10:57Z",
+      "side": 1,
+      "message": "Should this just be owned within FruUtils?  Passing in a reference (even const) worries me that we\u0027ll get lifetime issues.",
+      "range": {
+        "startLine": 17,
+        "startChar": 0,
+        "endLine": 17,
+        "endChar": 18
+      },
+      "revId": "a6fe39eddfd5aa955da6f103393787692f0b0c60",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "dc8f992a_2216fa02",
+        "filename": "src/fru_device/fru_device.hpp",
+        "patchSetId": 3
+      },
+      "lineNbr": 30,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2025-10-02T21:10:57Z",
+      "side": 1,
+      "message": "THis is a busmap reference, not a busmap.",
+      "range": {
+        "startLine": 30,
+        "startChar": 34,
+        "endLine": 30,
+        "endChar": 40
+      },
+      "revId": "a6fe39eddfd5aa955da6f103393787692f0b0c60",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8413d248_1f5a4ca7",
+        "filename": "src/fru_device/fru_utils.hpp",
+        "patchSetId": 3
+      },
+      "lineNbr": 31,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2025-10-02T21:10:57Z",
+      "side": 1,
+      "message": "See above, should this just be owned within the class?",
+      "range": {
+        "startLine": 31,
+        "startChar": 0,
+        "endLine": 31,
+        "endChar": 25
+      },
+      "revId": "a6fe39eddfd5aa955da6f103393787692f0b0c60",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    }
+  ]
+}
