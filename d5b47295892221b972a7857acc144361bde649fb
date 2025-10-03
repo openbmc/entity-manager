@@ -1,0 +1,67 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "70ab47e5_7a9cf17e",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2025-10-03T16:20:04Z",
+      "side": 1,
+      "message": "Overall in support.  Just want to document how long it\u0027s been this way.",
+      "revId": "d5b47295892221b972a7857acc144361bde649fb",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ad81c782_585604db",
+        "filename": "configurations/meta/yv4/yosemite4_cpu.json",
+        "patchSetId": 4
+      },
+      "lineNbr": 5,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2025-10-03T16:20:04Z",
+      "side": 1,
+      "message": "What kind of CPU has an ipmi fru for its model detection and serial number?\n\nThis probably should be Board?",
+      "range": {
+        "startLine": 5,
+        "startChar": 13,
+        "endLine": 5,
+        "endChar": 16
+      },
+      "revId": "d5b47295892221b972a7857acc144361bde649fb",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e71a35b5_29b09a23",
+        "filename": "schemas/global.json",
+        "patchSetId": 4
+      },
+      "lineNbr": 49,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2025-10-03T16:20:04Z",
+      "side": 1,
+      "message": "Can we get a little trace of how long this has been this way (ideally a sha that was wrong)?  Is this a recently introduced error, or is this ancient?",
+      "range": {
+        "startLine": 49,
+        "startChar": 25,
+        "endLine": 49,
+        "endChar": 28
+      },
+      "revId": "d5b47295892221b972a7857acc144361bde649fb",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    }
+  ]
+}
