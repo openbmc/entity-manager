@@ -18,6 +18,24 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "570ba62a_2ccefa90",
+        "filename": "src/fru_device/fru_device.cpp",
+        "patchSetId": 21
+      },
+      "lineNbr": 821,
+      "author": {
+        "id": 1002504
+      },
+      "writtenOn": "2025-10-03T23:39:04Z",
+      "side": 1,
+      "message": "this isn\u0027t a solveable problem in the dynamic discovery space, at least not reasonably. Resolving",
+      "parentUuid": "09b40f07_6fe25fc2",
+      "revId": "01df23120d9289c9865125e9b6d6b5e7f7288978",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "ec6b373c_5129326f",
@@ -31,6 +49,30 @@
       "writtenOn": "2025-09-23T06:43:35Z",
       "side": 1,
       "message": "As defined in the chapter 13 - TYPE/LENGTH BYTE FORMAT of FRU specification, the size of a field can be zero. It has to be `len \u003d\u003d 1` not `len \u003c\u003d1`",
+      "range": {
+        "startLine": 1221,
+        "startChar": 8,
+        "endLine": 1221,
+        "endChar": 17
+      },
+      "revId": "01df23120d9289c9865125e9b6d6b5e7f7288978",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "6f43c70e_0f43360e",
+        "filename": "src/fru_device/fru_device.cpp",
+        "patchSetId": 21
+      },
+      "lineNbr": 1221,
+      "author": {
+        "id": 1002504
+      },
+      "writtenOn": "2025-10-03T23:39:04Z",
+      "side": 1,
+      "message": "Fixed in a follow-on patch.",
+      "parentUuid": "ec6b373c_5129326f",
       "range": {
         "startLine": 1221,
         "startChar": 8,
@@ -64,6 +106,30 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "ade7ef8e_83191788",
+        "filename": "src/fru_device/fru_utils.cpp",
+        "patchSetId": 21
+      },
+      "lineNbr": 925,
+      "author": {
+        "id": 1002504
+      },
+      "writtenOn": "2025-10-03T23:39:04Z",
+      "side": 1,
+      "message": "Fixed in a follow-on patch.",
+      "parentUuid": "b3d728ed_4a547206",
+      "range": {
+        "startLine": 925,
+        "startChar": 8,
+        "endLine": 925,
+        "endChar": 26
+      },
+      "revId": "01df23120d9289c9865125e9b6d6b5e7f7288978",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "d7e54beb_1b512def",
@@ -77,6 +143,30 @@
       "writtenOn": "2025-09-23T06:43:35Z",
       "side": 1,
       "message": "IMO, it seems that updating Area\u0027s checksum is redundant. The purpose of this function is disassembling FRU areas, we should not update any value of FRU\u0027s data",
+      "range": {
+        "startLine": 1054,
+        "startChar": 16,
+        "endLine": 1054,
+        "endChar": 31
+      },
+      "revId": "01df23120d9289c9865125e9b6d6b5e7f7288978",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "e4982047_5b7fd3df",
+        "filename": "src/fru_device/fru_utils.cpp",
+        "patchSetId": 21
+      },
+      "lineNbr": 1054,
+      "author": {
+        "id": 1002504
+      },
+      "writtenOn": "2025-10-03T23:39:04Z",
+      "side": 1,
+      "message": "Agreed. Fixed in a follow-on patch.",
+      "parentUuid": "d7e54beb_1b512def",
       "range": {
         "startLine": 1054,
         "startChar": 16,
@@ -110,6 +200,30 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "caed7386_d0ab9b6a",
+        "filename": "src/fru_device/fru_utils.cpp",
+        "patchSetId": 21
+      },
+      "lineNbr": 1066,
+      "author": {
+        "id": 1002504
+      },
+      "writtenOn": "2025-10-03T23:39:04Z",
+      "side": 1,
+      "message": "Verified length of value in a follow-on patch.",
+      "parentUuid": "33ea9f2e_eb5ccea5",
+      "range": {
+        "startLine": 1066,
+        "startChar": 66,
+        "endLine": 1066,
+        "endChar": 71
+      },
+      "revId": "01df23120d9289c9865125e9b6d6b5e7f7288978",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "91bcd56f_06a7b7d3",
@@ -127,6 +241,24 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "38ff8814_365815f9",
+        "filename": "src/fru_device/fru_utils.cpp",
+        "patchSetId": 21
+      },
+      "lineNbr": 1090,
+      "author": {
+        "id": 1002504
+      },
+      "writtenOn": "2025-10-03T23:39:04Z",
+      "side": 1,
+      "message": "Fixed in a follow on patch.",
+      "parentUuid": "91bcd56f_06a7b7d3",
+      "revId": "01df23120d9289c9865125e9b6d6b5e7f7288978",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "6eaa3e70_976ad8c1",
@@ -140,6 +272,30 @@
       "writtenOn": "2025-09-23T06:43:35Z",
       "side": 1,
       "message": "Why it never happen? if user request to update an extra information field that does not exit. E.g: the Board area only has extra information 1, but users request to update extra information 5.",
+      "range": {
+        "startLine": 1133,
+        "startChar": 27,
+        "endLine": 1133,
+        "endChar": 71
+      },
+      "revId": "01df23120d9289c9865125e9b6d6b5e7f7288978",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "72c5800f_0a7df7d2",
+        "filename": "src/fru_device/fru_utils.cpp",
+        "patchSetId": 21
+      },
+      "lineNbr": 1133,
+      "author": {
+        "id": 1002504
+      },
+      "writtenOn": "2025-10-03T23:39:04Z",
+      "side": 1,
+      "message": "Fixed in a follow on patch.",
+      "parentUuid": "6eaa3e70_976ad8c1",
       "range": {
         "startLine": 1133,
         "startChar": 27,
@@ -173,6 +329,30 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "0bba6026_1caaa658",
+        "filename": "src/fru_device/fru_utils.cpp",
+        "patchSetId": 21
+      },
+      "lineNbr": 1134,
+      "author": {
+        "id": 1002504
+      },
+      "writtenOn": "2025-10-03T23:39:04Z",
+      "side": 1,
+      "message": "Fixed in a follow-on patch by doing work in a temporary buffer.",
+      "parentUuid": "2d8d635d_3bafa7f4",
+      "range": {
+        "startLine": 1134,
+        "startChar": 33,
+        "endLine": 1134,
+        "endChar": 39
+      },
+      "revId": "01df23120d9289c9865125e9b6d6b5e7f7288978",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "ed543312_208d85fe",
@@ -186,6 +366,24 @@
       "writtenOn": "2025-09-23T06:43:35Z",
       "side": 1,
       "message": "If the new data is bigger than old data, I think you have to check the `ENABLE_FRU_AREA_RESIZE` macro before erase/insert actions.",
+      "revId": "01df23120d9289c9865125e9b6d6b5e7f7288978",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "0ca3a804_d9393f01",
+        "filename": "src/fru_device/fru_utils.cpp",
+        "patchSetId": 21
+      },
+      "lineNbr": 1156,
+      "author": {
+        "id": 1002504
+      },
+      "writtenOn": "2025-10-03T23:39:04Z",
+      "side": 1,
+      "message": "Fixed in a follow-on patch by doing work in a temporary buffer.",
+      "parentUuid": "ed543312_208d85fe",
       "revId": "01df23120d9289c9865125e9b6d6b5e7f7288978",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
@@ -213,6 +411,30 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "5fa245e6_fee14eef",
+        "filename": "src/fru_device/fru_utils.cpp",
+        "patchSetId": 21
+      },
+      "lineNbr": 1183,
+      "author": {
+        "id": 1002504
+      },
+      "writtenOn": "2025-10-03T23:39:04Z",
+      "side": 1,
+      "message": "This is not adding one zero, technically this is only going to remove bytes in the areaData vector as written because of previous behavior. That said, this is removed in a follow on patch by just using a temporary buffer and calculating the padding correctly on the resultant buffer.",
+      "parentUuid": "45bb51e3_83a4451b",
+      "range": {
+        "startLine": 1183,
+        "startChar": 20,
+        "endLine": 1183,
+        "endChar": 40
+      },
+      "revId": "01df23120d9289c9865125e9b6d6b5e7f7288978",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "e4066cd6_3221381c",
@@ -226,6 +448,30 @@
       "writtenOn": "2025-09-23T06:43:35Z",
       "side": 1,
       "message": "why don\u0027t you resize the frudata before do copy?",
+      "range": {
+        "startLine": 1253,
+        "startChar": 0,
+        "endLine": 1259,
+        "endChar": 65
+      },
+      "revId": "01df23120d9289c9865125e9b6d6b5e7f7288978",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "d5bd5b0b_56544c63",
+        "filename": "src/fru_device/fru_utils.cpp",
+        "patchSetId": 21
+      },
+      "lineNbr": 1259,
+      "author": {
+        "id": 1002504
+      },
+      "writtenOn": "2025-10-03T23:39:04Z",
+      "side": 1,
+      "message": "this is fixed in a follow-on patch by assuming that areas are properly aligned. If they aren\u0027t, this function can\u0027t handle it anyways as written.",
+      "parentUuid": "e4066cd6_3221381c",
       "range": {
         "startLine": 1253,
         "startChar": 0,

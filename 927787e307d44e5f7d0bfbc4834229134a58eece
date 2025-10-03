@@ -116,6 +116,30 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "5aacfebe_70506e00",
+        "filename": "src/fru_device/fru_device.cpp",
+        "patchSetId": 18
+      },
+      "lineNbr": 1257,
+      "author": {
+        "id": 1002504
+      },
+      "writtenOn": "2025-10-03T23:39:04Z",
+      "side": 1,
+      "message": "Fixed in a follow-on.",
+      "parentUuid": "4616c6a5_93334c5d",
+      "range": {
+        "startLine": 1257,
+        "startChar": 38,
+        "endLine": 1257,
+        "endChar": 53
+      },
+      "revId": "927787e307d44e5f7d0bfbc4834229134a58eece",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "0944fb42_a924b655",
@@ -129,6 +153,30 @@
       "writtenOn": "2025-09-18T19:17:45Z",
       "side": 1,
       "message": "nit, 7 is used as a magic number here several times, just make this a const reference\n\nuint8\u0026 checksum \u003d fruData[7];\n\nso you don\u0027t need to redo the lookup over and over again.",
+      "range": {
+        "startLine": 918,
+        "startChar": 31,
+        "endLine": 918,
+        "endChar": 32
+      },
+      "revId": "927787e307d44e5f7d0bfbc4834229134a58eece",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1918fa7d_714af07b",
+        "filename": "src/fru_device/fru_utils.cpp",
+        "patchSetId": 18
+      },
+      "lineNbr": 918,
+      "author": {
+        "id": 1002504
+      },
+      "writtenOn": "2025-10-03T23:39:04Z",
+      "side": 1,
+      "message": "will fix, although we can\u0027t make it const since we assign to it.",
+      "parentUuid": "0944fb42_a924b655",
       "range": {
         "startLine": 918,
         "startChar": 31,
@@ -214,6 +262,24 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "fd0ff295_18baeb6c",
+        "filename": "src/fru_device/fru_utils.cpp",
+        "patchSetId": 18
+      },
+      "lineNbr": 989,
+      "author": {
+        "id": 1002504
+      },
+      "writtenOn": "2025-10-03T23:39:04Z",
+      "side": 1,
+      "message": "Fixed in a follow on patch",
+      "parentUuid": "ba69f182_f2a64700",
+      "revId": "927787e307d44e5f7d0bfbc4834229134a58eece",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "9e7cfb4a_a2404467",
@@ -249,6 +315,24 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "898c01cd_9e78db4c",
+        "filename": "src/fru_device/fru_utils.cpp",
+        "patchSetId": 18
+      },
+      "lineNbr": 1269,
+      "author": {
+        "id": 1002504
+      },
+      "writtenOn": "2025-10-03T23:39:04Z",
+      "side": 1,
+      "message": "fixed in a follow on patch",
+      "parentUuid": "077dd096_74411a5a",
+      "revId": "927787e307d44e5f7d0bfbc4834229134a58eece",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "66669c45_403ff07b",
@@ -262,6 +346,30 @@
       "writtenOn": "2025-09-18T19:20:52Z",
       "side": 1,
       "message": "Why not just return the iterator here?",
+      "range": {
+        "startLine": 1320,
+        "startChar": 0,
+        "endLine": 1320,
+        "endChar": 2
+      },
+      "revId": "927787e307d44e5f7d0bfbc4834229134a58eece",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "4cd93ec7_f687c6fc",
+        "filename": "src/fru_device/fru_utils.cpp",
+        "patchSetId": 18
+      },
+      "lineNbr": 1320,
+      "author": {
+        "id": 1002504
+      },
+      "writtenOn": "2025-10-03T23:39:04Z",
+      "side": 1,
+      "message": "Fixed in a follow-on. This is only used in one place, just used iterators instead.",
+      "parentUuid": "66669c45_403ff07b",
       "range": {
         "startLine": 1320,
         "startChar": 0,
