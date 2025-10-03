@@ -214,9 +214,7 @@ bool getFruData(std::vector<uint8_t>& fruData, uint32_t bus, uint32_t address);
 
 bool isFieldEditable(std::string_view fieldName);
 
-bool getAreaIdx(const std::string& areaName, fruAreas& fruAreaToUpdate);
-
-bool updateAreacksum(std::vector<uint8_t>& fruArea);
+bool updateAreaChecksum(std::vector<uint8_t>& fruArea);
 
 bool disassembleFruData(std::vector<uint8_t>& fruData,
                         std::vector<std::vector<uint8_t>>& areasData);
