@@ -86,6 +86,30 @@
       },
       "revId": "d5b47295892221b972a7857acc144361bde649fb",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "8b1de08c_f2ef9b1c",
+        "filename": "schemas/global.json",
+        "patchSetId": 4
+      },
+      "lineNbr": 49,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2025-10-03T16:38:42Z",
+      "side": 1,
+      "message": "The PDI interface pre-dates EM.\n\n```\ncommit a948d268ffed67381d75fe17607fd84ecb498e8b\nAuthor: Brad Bishop \u003cbradleyb@us.ibm.com\u003e\nDate:   Wed Oct 5 19:51:48 2016 -0400\n\n    Add inventory interfaces for OpenBMC\n    \n    A first pass at a machine parseable DBus specification for the\n    inventory features of OpenBMC.\n    \n    Change-Id: Ia061ab2d5c2ea9d06cd991940303250cef48ab66\n    Signed-off-by: Brad Bishop \u003cbradleyb@fuzziesquirrel.com\u003e\n```\n\nThe bmcweb commits are probably from at least 2018:\n\n```\n$ git blame -w redfish-core/lib/systems.hpp | grep Item.Cpu\ndeae6a789 (Ed Tanous                  2024-11-11 21:58:57 -0800  158)         service, path, \"xyz.openbmc_project.Inventory.Item.Cpu\",\n04a258f40 (Ed Tanous                  2018-10-15 08:00:41 -0700  378)                          \"xyz.openbmc_project.Inventory.Item.Cpu\")\na974c132c (Lakshmi Yadlapati          2023-10-25 15:31:25 -0500  434)         \"xyz.openbmc_project.Inventory.Item.Cpu\",\n```",
+      "parentUuid": "e71a35b5_29b09a23",
+      "range": {
+        "startLine": 49,
+        "startChar": 25,
+        "endLine": 49,
+        "endChar": 28
+      },
+      "revId": "d5b47295892221b972a7857acc144361bde649fb",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }
