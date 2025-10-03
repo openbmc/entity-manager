@@ -101,6 +101,13 @@ void handleLeftOverTemplateVars(nlohmann::json::iterator& keyPair)
             break;
         }
 
+        // Skip this case to avoid false errors caused by regex '$' anchors
+        auto firstCharIt = std::next(findStart.begin());
+        if (firstCharIt != strPtr->end() && *firstCharIt == '\'')
+        {
+            break;
+        }
+
         boost::iterator_range<std::string::iterator> searchRange(
             strPtr->begin() + (findStart.end() - strPtr->begin()),
             strPtr->end());
