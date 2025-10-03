@@ -89,6 +89,30 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "2d932cd7_4351d9eb",
+        "filename": "configurations/meta/yv4/yosemite4_cpu.json",
+        "patchSetId": 4
+      },
+      "lineNbr": 5,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2025-10-03T17:57:30Z",
+      "side": 1,
+      "message": "There is a separate EM file for the SD card and a separate EM file for the SD \"chassis\" (being the hunk of metal that it is all enclosed in).  All 3 entities (CPU, SD board, SD chassis) come from the same EEPROM.\n\nChassis:\nyosemite4_sentineldome_chassis.json\n\nBoard variants:\nyosemite4_sentineldome_t1.json\nyosemite4_sentineldome_t1_retimer.json\nyosemite4_sentineldome_t2.json\nyosemite4_sentineldome_t2_retimer.json",
+      "parentUuid": "2f7c2e8a_41860922",
+      "range": {
+        "startLine": 5,
+        "startChar": 13,
+        "endLine": 5,
+        "endChar": 16
+      },
+      "revId": "d5b47295892221b972a7857acc144361bde649fb",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "e71a35b5_29b09a23",
@@ -174,6 +198,30 @@
       "side": 1,
       "message": "48e44b75001a69b6ca1c114427f65f3ac967b62c\n\nLooks like this was incorrectly added on the above sha, specifically for this system. August 20th 2024.  That\u0027s the source of why this is wrong, and likely only impacts Yosemite 4.  That\u0027s mostly what I wanted to know.\n\nIt\u0027s probably worth having a discussion about whether we really want to start inventorying CPUs in EM.  We specifically didn\u0027t initially, only adding a \"socket\" type, because the majority of CPUs have some sort of API to get their make/model/serial (pirom/peci for intel cpus) so having something common here didn\u0027t make a ton of sense.  Obviously you guys have a more unique case than a CPU in a socket, and some manufacturing process to get the CPU serial into the FRU, but that\u0027s also why this is showing up as a bug.\n\nIs the XeonSocket patterns something you guys looked at and discounted?",
       "parentUuid": "90cb24e2_cc63f057",
+      "range": {
+        "startLine": 49,
+        "startChar": 25,
+        "endLine": 49,
+        "endChar": 28
+      },
+      "revId": "d5b47295892221b972a7857acc144361bde649fb",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0145dca5_279491dc",
+        "filename": "schemas/global.json",
+        "patchSetId": 4
+      },
+      "lineNbr": 49,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2025-10-03T17:57:30Z",
+      "side": 1,
+      "message": "\u003e 48e44b75001a69b6ca1c114427f65f3ac967b62c\n\nLet me add a Fixes for that then.\n\n\u003e Is the XeonSocket patterns something you guys looked at and discounted?\n\nI don\u0027t think it is something we even considered.  Looking at the XeonCPU in legacy.json, assuming that\u0027s what you\u0027re referring to, seems to be configuration for IntelCPUSensor and not FRU information.  In this case we\u0027re trying to expose the CPU FRU data itself (even though I know that sounds funny considering that I said the CPU isn\u0027t a FRU; having the serial number, etc., is useful for dealing with CPU mfg vintage concerns).",
+      "parentUuid": "a56caf72_26854d30",
       "range": {
         "startLine": 49,
         "startChar": 25,
