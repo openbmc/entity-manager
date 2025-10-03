@@ -1214,10 +1214,10 @@ bool updateFruProperty(
 
     // Validate field length: must be 2–63 characters
     const size_t len = propertyValue.length();
-    if (len <= 1 || len > 63)
+    if (len == 1 || len > 63)
     {
-        lg2::debug(
-            "FRU field data must be between 2 and 63 characters. Invalid Length: {LEN}",
+        lg2::error(
+            "FRU field data must be 0 or between 2 and 63 characters. Invalid Length: {LEN}",
             "LEN", len);
         return false;
     }
@@ -1225,29 +1225,37 @@ bool updateFruProperty(
     std::vector<uint8_t> fruData;
     if (!getFruData(fruData, bus, address))
     {
-        std::cerr << "Failure getting FRU Data from bus " << bus << ", address "
-                  << address << "\n";
+        lg2::error("Failure getting FRU Data from bus {BUS}, address {ADDRESS}",
+                   "BUS", bus, "ADDRESS", address);
         return false;
     }
 
     if (fruData.empty())
     {
-        std::cerr << "Empty FRU data\n";
+        lg2::error("Empty FRU data\n");
         return false;
     }
 
     // Extract area name (prefix before underscore)
-    fruAreas fruAreaToUpdate{};
     std::string areaName = propertyName.substr(0, propertyName.find('_'));
-    if (!getAreaIdx(areaName, fruAreaToUpdate))
+    auto areaIterator =
+        std::find(fruAreaNames.begin(), fruAreaNames.end(), areaName);
+    if (areaIterator == fruAreaNames.end())
     {
-        lg2::debug("Failed to get FRU area for property: {AREA}", "AREA",
+        lg2::error("Failed to get FRU area for property: {AREA}", "AREA",
                    areaName);
         return false;
     }
 
+    fruAreas fruAreaToUpdate = static_cast<fruAreas>(
+        std::distance(fruAreaNames.begin(), areaIterator));
+
     std::vector<std::vector<uint8_t>> areasData;
-    disassembleFruData(fruData, areasData);
+    if (!disassembleFruData(fruData, areasData))
+    {
+        lg2::error("Failed to disassemble Fru Data");
+        return false;
+    }
 
     std::vector<uint8_t>& areaData =
         areasData[static_cast<size_t>(fruAreaToUpdate)];
@@ -1255,7 +1263,7 @@ bool updateFruProperty(
     {
         // If ENABLE_FRU_AREA_RESIZE is not defined then return with failure
 #ifndef ENABLE_FRU_AREA_RESIZE
-        lg2::debug(
+        lg2::error(
             "FRU area {AREA} not present and ENABLE_FRU_AREA_RESIZE is not set. "
             "Returning failure.",
             "AREA", areaName);
@@ -1263,7 +1271,7 @@ bool updateFruProperty(
 #endif
         if (!createDummyArea(fruAreaToUpdate, areaData))
         {
-            lg2::debug("Failed to create dummy area for {AREA}", "AREA",
+            lg2::error("Failed to create dummy area for {AREA}", "AREA",
                        areaName);
             return false;
         }
@@ -1271,22 +1279,27 @@ bool updateFruProperty(
 
     if (!setField(fruAreaToUpdate, areaData, propertyName, propertyValue))
     {
-        lg2::debug("Failed to set field value for property: {PROPERTY}",
+        lg2::error("Failed to set field value for property: {PROPERTY}",
                    "PROPERTY", propertyName);
         return false;
     }
 
-    assembleFruData(fruData, areasData);
+    if (!assembleFruData(fruData, areasData))
+    {
+        lg2::error("Failed to reassemble FRU data");
+        return false;
+    }
 
     if (fruData.empty())
     {
-        std::cerr << "FRU data is empty after assembly\n";
+        lg2::error("FRU data is empty after assembly");
         return false;
     }
 
     if (!writeFRU(static_cast<uint8_t>(bus), static_cast<uint8_t>(address),
                   fruData))
     {
+        lg2::error("Failed to write the FRU");
         return false;
     }
 
