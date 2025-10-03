@@ -268,6 +268,17 @@ TEST(HandleLeftOverTemplateVars, replaceLeftOverTemplateVar)
     EXPECT_EQ(expected, j["foo"]);
 }
 
+TEST(HandleLeftOverTemplateVars, skipWhenRegexEndsWithDollarQuote)
+{
+    nlohmann::json j = {{"foo", "'pattern$'"}};
+    auto it = j.begin();
+
+    em_utils::handleLeftOverTemplateVars(it);
+
+    nlohmann::json expected = "'pattern$'";
+    EXPECT_EQ(expected, j["foo"]);
+}
+
 TEST(MatchProbe, stringEqString)
 {
     nlohmann::json j = R"("foo")"_json;

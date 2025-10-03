@@ -101,6 +101,13 @@ void handleLeftOverTemplateVars(nlohmann::json::iterator& keyPair)
             break;
         }
 
+        // Skip this case to avoid false errors caused by regex '$' anchors
+        auto firstCharIt = std::next(findStart.begin());
+        if (firstCharIt != strPtr->end() && *firstCharIt == '\'')
+        {
+            break;
+        }
+
         boost::iterator_range<std::string::iterator> searchRange(
             strPtr->begin() + (findStart.end() - strPtr->begin()),
             strPtr->end());
@@ -121,6 +128,7 @@ void handleLeftOverTemplateVars(nlohmann::json::iterator& keyPair)
             templateVarEnd = findSpace.begin();
         }
 
+        lg2::debug("String value: `{STR}`", "STR", *strPtr);
         lg2::error(
             "There's still template variable {VAR} un-replaced. Removing it from the string.\n",
             "VAR", std::string(findStart.begin(), templateVarEnd));
