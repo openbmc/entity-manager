@@ -921,29 +921,30 @@ std::vector<uint8_t>& getFRUInfo(const uint16_t& bus, const uint8_t& address)
     return ret;
 }
 
-static bool updateHeadercksum(std::vector<uint8_t>& fruData)
+static bool updateHeaderChecksum(std::vector<uint8_t>& fruData)
 {
-    if (fruData.size() < 8)
+    if (fruData.size() < fruBlockSize)
     {
         lg2::debug("FRU data is too small to contain a valid header.");
         return false;
     }
-    uint8_t oldcksum = fruData[7];
-    std::span<const uint8_t> fruSpan{fruData};
-    uint8_t checksum = calculateChecksum(fruSpan.begin(), fruSpan.begin() + 7);
-    fruData[7] = checksum;
 
-    if (oldcksum != checksum)
+    uint8_t& checksumInBytes = fruData[7];
+    uint8_t checksum =
+        calculateChecksum({fruData.begin(), fruData.begin() + 7});
+    std::swap(checksumInBytes, checksum);
+
+    if (checksumInBytes != checksum)
     {
         lg2::debug(
             "FRU header checksum updated from {OLD_CHECKSUM} to {NEW_CHECKSUM}",
-            "OLD_CHECKSUM", static_cast<int>(oldcksum), "NEW_CHECKSUM",
-            static_cast<int>(checksum));
+            "OLD_CHECKSUM", static_cast<int>(checksum), "NEW_CHECKSUM",
+            static_cast<int>(checksumInBytes));
     }
     return true;
 }
 
-bool updateAreacksum(std::vector<uint8_t>& fruArea)
+bool updateAreaChecksum(std::vector<uint8_t>& fruArea)
 {
     if (fruArea.size() < fruBlockSize)
     {
@@ -973,6 +974,53 @@ bool updateAreacksum(std::vector<uint8_t>& fruArea)
     return true;
 }
 
+static std::optional<size_t> calculateAreaSize(
+    fruAreas area, std::span<const uint8_t> fruData, size_t areaOffset)
+{
+    switch (area)
+    {
+        case fruAreas::fruAreaChassis:
+        case fruAreas::fruAreaBoard:
+        case fruAreas::fruAreaProduct:
+            return fruData[areaOffset + 1] * fruBlockSize; // Area size in bytes
+        case fruAreas::fruAreaInternal:
+        {
+            // Internal area size: It is difference between the next area
+            // offset and current area offset
+            size_t nextAreaOffset = 0;
+            for (uint8_t i = 1; i <= 4; i++)
+            {
+                nextAreaOffset =
+                    fruData[getHeaderAreaFieldOffset(static_cast<fruAreas>(i))];
+                if (nextAreaOffset != 0)
+                {
+                    return nextAreaOffset * fruBlockSize - areaOffset;
+                }
+            }
+            return std::nullopt;
+        }
+        break;
+        case fruAreas::fruAreaMultirecord:
+            // Multirecord area size.
+            return fruData.size() - areaOffset; // Area size in bytes
+        default:
+            lg2::error("Invalid FRU area: {AREA}", "AREA",
+                       static_cast<int>(area));
+    }
+    return std::nullopt;
+}
+
+static size_t getBlockCount(size_t byteCount)
+{
+    size_t blocks = (byteCount + fruBlockSize - 1) / fruBlockSize;
+    // if we're perfectly aligned, we need another block for the checksum
+    if ((byteCount % fruBlockSize) == 0)
+    {
+        blocks++;
+    }
+    return blocks;
+}
+
 bool disassembleFruData(std::vector<uint8_t>& fruData,
                         std::vector<std::vector<uint8_t>>& areasData)
 {
@@ -998,80 +1046,42 @@ bool disassembleFruData(std::vector<uint8_t>& fruData,
             continue;               // Skip areas that are not present
         }
         areaOffset *= fruBlockSize; // Convert to byte offset
-        size_t areaSize = 0;
-        switch (area)
+
+        std::optional<size_t> areaSize =
+            calculateAreaSize(area, fruData, areaOffset);
+        if (!areaSize)
         {
-            case fruAreas::fruAreaChassis:
-            case fruAreas::fruAreaBoard:
-            case fruAreas::fruAreaProduct:
-                areaSize = fruData[areaOffset + 1] *
-                           fruBlockSize; // Area size in bytes
-                break;
-            case fruAreas::fruAreaInternal:
-            {
-                // Internal area size: It is difference between the next area
-                // offset and current area offset
-                size_t nextAreaOffset = 0;
-                for (uint8_t i = 1; i <= 4; i++)
-                {
-                    nextAreaOffset = fruData[getHeaderAreaFieldOffset(
-                        static_cast<fruAreas>(i))];
-                    if (nextAreaOffset != 0)
-                    {
-                        break; // Found the next area offset
-                    }
-                }
-                if (nextAreaOffset == 0)
-                {
-                    return false; // No next area found, invalid FRU data
-                }
-                areaSize = (nextAreaOffset * fruBlockSize) -
-                           areaOffset; // Area size in bytes
-            }
-            break;
-            case fruAreas::fruAreaMultirecord:
-                // Multirecord area size.
-                areaSize = fruData.size() - areaOffset; // Area size in bytes
-                break;
-            default:
-                lg2::error("Invalid FRU area: {AREA}", "AREA",
-                           static_cast<int>(area));
-                return false;
+            return false;
         }
 
-        if ((areaOffset + areaSize) > fruData.size())
+        if ((areaOffset + *areaSize) > fruData.size())
         {
             lg2::error("Area offset + size exceeds FRU data size.");
             return false;
         }
-        std::vector<uint8_t> areaData(fruData.begin() + areaOffset,
-                                      fruData.begin() + areaOffset + areaSize);
-        // Update areaData checksum as well
-        switch (area)
-        {
-            case fruAreas::fruAreaChassis:
-            case fruAreas::fruAreaBoard:
-            case fruAreas::fruAreaProduct:
-                updateAreacksum(areaData);
-                break;
-            default:
-                // No checksum update for other areas
-                break;
-        }
-        areasData.push_back(areaData);
+
+        areasData.emplace_back(fruData.begin() + areaOffset,
+                               fruData.begin() + areaOffset + *areaSize);
     }
+
     return true;
 }
 
-bool setField(const fruAreas& fruAreaToUpdate, std::vector<uint8_t>& areaData,
-              const std::string& propertyName, const std::string& value)
+struct FieldInfo
 {
-    const std::vector<std::string>* fruAreaFieldNames = nullptr;
+    size_t length;
+    size_t index;
+};
+
+static std::optional<FieldInfo> findOrCreateField(
+    std::vector<uint8_t>& areaData, const std::string& propertyName,
+    const fruAreas& fruAreaToUpdate)
+{
+    int fieldIndex = 0;
     int fieldLength = 0;
-    size_t fieldIndex = 0;
-    size_t endOfFieldMarker = 0;
     std::string areaName = propertyName.substr(0, propertyName.find('_'));
     std::string propertyNamePrefix = areaName + "_";
+    const std::vector<std::string>* fruAreaFieldNames = nullptr;
 
     switch (fruAreaToUpdate)
     {
@@ -1088,128 +1098,154 @@ bool setField(const fruAreas& fruAreaToUpdate, std::vector<uint8_t>& areaData,
             fieldIndex = 3;
             break;
         default:
-            lg2::error("Invalid FRU area: {AREA}", "AREA",
-                       static_cast<int>(fruAreaToUpdate));
-            return false;
+            lg2::info("Invalid FRU area: {AREA}", "AREA",
+                      static_cast<int>(fruAreaToUpdate));
+            return std::nullopt;
     }
-    bool found = false;
+
     for (const auto& field : *fruAreaFieldNames)
     {
         fieldLength = getFieldLength(areaData[fieldIndex]);
         if (fieldLength < 0)
         {
-            // This should never happen. Insert dummy field.
             areaData.insert(areaData.begin() + fieldIndex, 0xc0);
             fieldLength = 0;
         }
 
         if (propertyNamePrefix + field == propertyName)
         {
-            found = true;
-            break;
+            return FieldInfo{static_cast<size_t>(fieldLength),
+                             static_cast<size_t>(fieldIndex)};
         }
         fieldIndex += 1 + fieldLength;
     }
-    if (!found)
-    {
-        size_t pos = propertyName.find(fruCustomFieldName);
-        if (pos != std::string::npos)
-        {
-            // Get field after pos
-            std::string customFieldIdx =
-                propertyName.substr(pos + fruCustomFieldName.size());
 
-            // Check if customFieldIdx is a number
-            if (std::all_of(customFieldIdx.begin(), customFieldIdx.end(),
-                            ::isdigit))
-            {
-                // Convert to integer
-                size_t customFieldIndex = std::stoi(customFieldIdx);
-                // Loop through the custom fields to find the correct index
-                for (size_t i = 0; i < customFieldIndex; i++)
-                {
-                    fieldLength = getFieldLength(areaData[fieldIndex]);
-                    if (fieldLength < 0)
-                    {
-                        // This should never happen. Insert dummy field.
-                        areaData.insert(areaData.begin() + fieldIndex, 0xc0);
-                        fieldLength = 0;
-                    }
-                    fieldIndex += 1 + fieldLength;
-                }
-                fieldIndex -= (fieldLength + 1);
-                fieldLength = getFieldLength(areaData[fieldIndex]);
-                found = true;
-            }
-        }
+    size_t pos = propertyName.find(fruCustomFieldName);
+    if (pos == std::string::npos)
+    {
+        return std::nullopt;
     }
 
-    if (!found)
+    // Get field after pos
+    std::string customFieldIdx =
+        propertyName.substr(pos + fruCustomFieldName.size());
+
+    // Check if customFieldIdx is a number
+    if (!std::all_of(customFieldIdx.begin(), customFieldIdx.end(), ::isdigit))
     {
-        lg2::debug("Field {FIELD} not found in area {AREA}", "FIELD",
+        return std::nullopt;
+    }
+
+    size_t customFieldIndex = std::stoi(customFieldIdx);
+
+    // insert custom fields up to the index we want
+    for (size_t i = 0; i < customFieldIndex; i++)
+    {
+        fieldLength = getFieldLength(areaData[fieldIndex]);
+        if (fieldLength < 0)
+        {
+            areaData.insert(areaData.begin() + fieldIndex, 0xc0);
+            fieldLength = 0;
+        }
+        fieldIndex += 1 + fieldLength;
+    }
+
+    fieldIndex -= (fieldLength + 1);
+    fieldLength = getFieldLength(areaData[fieldIndex]);
+    return FieldInfo{static_cast<size_t>(fieldLength),
+                     static_cast<size_t>(fieldIndex)};
+}
+
+static std::optional<size_t> findEndOfFieldMarker(std::span<uint8_t> bytes)
+{
+    // we're skipping the checksum
+    // this function assumes a properly sized and formatted area
+    static uint8_t constexpr endOfFieldsByte = 0xc1;
+    for (int index = bytes.size() - 2; index >= 0; --index)
+    {
+        if (bytes[index] == endOfFieldsByte)
+        {
+            return index;
+        }
+    }
+    return std::nullopt;
+}
+
+static std::optional<size_t> getNonPaddedSizeOfArea(std::span<uint8_t> bytes)
+{
+    if (auto endOfFields = findEndOfFieldMarker(bytes))
+    {
+        return *endOfFields + 1;
+    }
+    return std::nullopt;
+}
+
+bool setField(const fruAreas& fruAreaToUpdate, std::vector<uint8_t>& areaData,
+              const std::string& propertyName, const std::string& value)
+{
+    if (value.size() == 1 || value.size() > 63)
+    {
+        lg2::error("Invalid value {VALUE} for field {PROP}", "VALUE", value,
+                   "PROP", propertyName);
+        return false;
+    }
+
+    // This is inneficient, but the alternative requires
+    // a bunch of complicated indexing and search to
+    // figure out if we cross a block boundary
+    // if we feel that this is too inneficient in the future,
+    // we can implement that.
+    std::vector<uint8_t> tmpBuffer = areaData;
+
+    auto fieldInfo =
+        findOrCreateField(tmpBuffer, propertyName, fruAreaToUpdate);
+
+    if (!fieldInfo)
+    {
+        lg2::error("Field {FIELD} not found in area {AREA}", "FIELD",
                    propertyName, "AREA", getFruAreaName(fruAreaToUpdate));
         return false;
     }
-    // Reset checksum byte to 0 before recalculating
-    areaData[areaData.size() - 1] = 0;
 
+    auto fieldIt = tmpBuffer.begin() + fieldInfo->index;
     // Erase the existing field content.
-    areaData.erase(areaData.begin() + fieldIndex,
-                   areaData.begin() + fieldIndex + fieldLength + 1);
+    tmpBuffer.erase(fieldIt, fieldIt + fieldInfo->length + 1);
     // Insert the new field value
-    areaData.insert(areaData.begin() + fieldIndex, 0xc0 | value.size());
-    areaData.insert(areaData.begin() + fieldIndex + 1, value.begin(),
-                    value.end());
+    tmpBuffer.insert(fieldIt, 0xc0 | value.size());
+    tmpBuffer.insert_range(fieldIt + 1, value);
 
-    // Locate the end of fields marker
-    endOfFieldMarker = fieldIndex + 1 + value.size();
+    auto newSize = getNonPaddedSizeOfArea(tmpBuffer);
+    auto oldSize = getNonPaddedSizeOfArea(areaData);
 
-    for (; endOfFieldMarker < areaData.size();)
+    if (!oldSize || !newSize)
     {
-        fieldLength = getFieldLength(areaData[endOfFieldMarker]);
-        if (fieldLength < 0)
-        {
-            break;
-        }
-        endOfFieldMarker += 1 + fieldLength;
-    }
-    if (endOfFieldMarker >= areaData.size())
-    {
-        lg2::debug("End of fields marker not found in area {AREA}.", "AREA",
-                   getFruAreaName(fruAreaToUpdate));
+        lg2::error("Failed to find the size of the area");
         return false;
     }
 
-    // Resize areaData to endOfFieldMarker
-    areaData.resize(endOfFieldMarker + 1, 0); // Fill with zeros
-
-    // Calculate number of blocks needed
-    uint8_t numOfBlocks = (areaData.size() + fruBlockSize - 1) / fruBlockSize;
-    if (areaData.size() % fruBlockSize == 0)
-    {
-        numOfBlocks++;
-    }
-
-    // If ENABLE_FRU_AREA_RESIZE  is not defined, we do not change the size
-    // of the areaData vector & return false.
+    size_t newSizePadded = getBlockCount(*newSize);
 #ifndef ENABLE_FRU_AREA_RESIZE
-    uint8_t prevNumOfBlocks = areaData[1];
-    if (numOfBlocks != prevNumOfBlocks)
+
+    size_t oldSizePadded = getBlockCount(*oldSize);
+
+    if (newSizePadded != oldSizePadded)
     {
-        lg2::debug(
+        lg2::error(
             "FRU area {AREA} resize is disabled, cannot increase size from {OLD_SIZE} to {NEW_SIZE}",
             "AREA", getFruAreaName(fruAreaToUpdate), "OLD_SIZE",
-            static_cast<int>(prevNumOfBlocks), "NEW_SIZE",
-            static_cast<int>(numOfBlocks));
+            static_cast<int>(oldSizePadded), "NEW_SIZE",
+            static_cast<int>(newSizePadded));
         return false;
     }
-#endif // ENABLE_FRU_AREA_RESIZE
+#endif
+    // Resize the buffer as per numOfBlocks & pad with zeros
+    tmpBuffer.resize(newSizePadded * fruBlockSize, 0);
 
-    // Resize areaData as per numOfBlocks & fill with zeros
-    areaData.resize(numOfBlocks * fruBlockSize, 0);
     // Update the length field
-    areaData[1] = numOfBlocks;
-    updateAreacksum(areaData);
+    tmpBuffer[1] = newSizePadded;
+    updateAreaChecksum(tmpBuffer);
+
+    areaData = std::move(tmpBuffer);
 
     return true;
 }
@@ -1217,6 +1253,15 @@ bool setField(const fruAreas& fruAreaToUpdate, std::vector<uint8_t>& areaData,
 bool assembleFruData(std::vector<uint8_t>& fruData,
                      const std::vector<std::vector<uint8_t>>& areasData)
 {
+    for (const auto& area : areasData)
+    {
+        if ((area.size() % fruBlockSize) != 0U)
+        {
+            lg2::error("unaligned area sent to assembleFruData");
+            return false;
+        }
+    }
+
     // Clear the existing FRU data
     fruData.clear();
     fruData.resize(8); // Start with the header size
@@ -1236,11 +1281,9 @@ bool assembleFruData(std::vector<uint8_t>& fruData,
     for (fruAreas area = fruAreas::fruAreaInternal;
          area <= fruAreas::fruAreaMultirecord; ++area)
     {
-        size_t areaBlockSize =
-            (areasData[static_cast<size_t>(area)].size() + fruBlockSize - 1) /
-            fruBlockSize; // Calculate block size
+        const auto& areaBytes = areasData[static_cast<size_t>(area)];
 
-        if (areasData[static_cast<size_t>(area)].empty())
+        if (areaBytes.empty())
         {
             lg2::debug("Skipping empty area: {AREA}", "AREA",
                        getFruAreaName(area));
@@ -1248,25 +1291,18 @@ bool assembleFruData(std::vector<uint8_t>& fruData,
         }
 
         // Set the area offset in the header
-        fruData[getHeaderAreaFieldOffset(area)] =
-            (writeOffset + fruBlockSize - 1) / fruBlockSize;
-
-        // Copy area data back to the main fruData vector
-        std::copy(areasData[static_cast<size_t>(area)].begin(),
-                  areasData[static_cast<size_t>(area)].end(),
-                  std::back_inserter(fruData));
-
-        fruData.resize(writeOffset + areaBlockSize * fruBlockSize,
-                       0); // Resize to accommodate the area data
-        writeOffset += areaBlockSize * fruBlockSize; // Update write offset
+        fruData[getHeaderAreaFieldOffset(area)] = writeOffset / fruBlockSize;
+        fruData.append_range(areaBytes);
+        writeOffset += areaBytes.size();
     }
 
     // Update the header checksum
-    if (!updateHeadercksum(fruData))
+    if (!updateHeaderChecksum(fruData))
     {
-        lg2::debug("Failed to update FRU header checksum.");
+        lg2::error("failed to update header checksum");
         return false;
     }
+
     return true;
 }
 
@@ -1279,8 +1315,8 @@ bool createDummyArea(fruAreas fruArea, std::vector<uint8_t>& areaData)
     areaData.clear();
 
     // Set the version, length, and other fields
-    areaData.push_back(1); // Version 1
-    areaData.push_back(0); // Length (to be updated later)
+    areaData.push_back(fruVersion); // Version 1
+    areaData.push_back(0);          // Length (to be updated later)
 
     switch (fruArea)
     {
@@ -1316,21 +1352,7 @@ bool createDummyArea(fruAreas fruArea, std::vector<uint8_t>& areaData)
                   fruBlockSize; // Calculate number of blocks needed
     areaData.resize(numOfBlocks * fruBlockSize, 0); // Fill with zeros
     areaData[1] = numOfBlocks;                      // Update length field
-    updateAreacksum(areaData);
-
-    return true;
-}
-
-bool getAreaIdx(const std::string& areaName, fruAreas& fruAreaToUpdate)
-{
-    auto it = std::find(fruAreaNames.begin(), fruAreaNames.end(), areaName);
-
-    if (it == fruAreaNames.end())
-    {
-        lg2::debug("Can't parse index for area name: {AREA}", "AREA", areaName);
-        return false;
-    }
-    fruAreaToUpdate = static_cast<fruAreas>(it - fruAreaNames.begin());
+    updateAreaChecksum(areaData);
 
     return true;
 }
