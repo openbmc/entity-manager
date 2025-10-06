@@ -1,6 +1,23 @@
 {
   "comments": [
     {
+      "unresolved": true,
+      "key": {
+        "uuid": "8d42c87d_edb4e760",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 17,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-10-06T10:08:44Z",
+      "side": 1,
+      "message": "Can you revert 7962944f072b54e22075e8290e1e6708bdb30c38 locally and check if it fixes the issue 😊\n\nIn which case we can note in the commit message that the bug was introduced there. Might help to get some context about this change.",
+      "revId": "a8d2bb0d8a4ca5be6c3ee607af21d235533fa50b",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": false,
       "key": {
         "uuid": "07942642_6b365b0f",
@@ -14,6 +31,41 @@
       "writtenOn": "2025-10-03T19:33:08Z",
       "side": 1,
       "message": "I\u0027m pretty sure this is the Nth copy of this same code being proposed.  Can we pick something as the fix we\u0027re going to go with?  This is a seriously irritating bug.\n\nIf we don\u0027t like the solution, can we give concrete direction on what we\u0027d like to do as the solution?",
+      "revId": "a8d2bb0d8a4ca5be6c3ee607af21d235533fa50b",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "36b7923d_008eb680",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-10-06T10:08:44Z",
+      "side": 1,
+      "message": "Looks like https://gerrit.openbmc.org/c/openbmc/entity-manager/+/82998 broke something (regex `$` removed at the end).\n\n@chaul@amperecomputing.com had another version of that patch (see PS6) which replaced syntax of `$bus` with `${bus}` which does not have the issue observed here.\n\nAnother benefit of that version of her patch was that the boundary of a template var is clearly defined so there is no conflict in case a template var is a prefix of another template var.\n\nThe sticking point seemed to be the format change https://discordapp.com/channels/775381525260664832/1402479981111676978/1415571530716549160\n\nMaybe the proposed fix can work for now but long-term it would be better to have something like `${...}` which ChauLy had initially and/or to go with some kind of parser which Ed had an old patch for.",
+      "parentUuid": "07942642_6b365b0f",
+      "revId": "a8d2bb0d8a4ca5be6c3ee607af21d235533fa50b",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f69e0d89_acaa8691",
+        "filename": "src/entity_manager/utils.cpp",
+        "patchSetId": 1
+      },
+      "lineNbr": 104,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-10-06T10:08:44Z",
+      "side": 1,
+      "message": "Since we are introducing another branch here, i assume we need a unit test to make the fix last longer.",
       "revId": "a8d2bb0d8a4ca5be6c3ee607af21d235533fa50b",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
