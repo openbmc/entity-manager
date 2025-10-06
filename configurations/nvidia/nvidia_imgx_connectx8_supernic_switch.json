@@ -5,6 +5,12 @@
             "Bus": "$bus",
             "Name": "Nvidia IMGX ConnectX8 SuperNIC Switch FRU",
             "Type": "EEPROM"
+        },
+        {
+            "Name": "Nvidia ConnectX",
+            "NicNetworkPortCount": 2,
+            "NicNetworkPortType": "Ethernet",
+            "Type": "NvidiaMctpVdm"
         }
     ],
     "Name": "Nvidia IMGX ConnectX8 SuperNIC Switch",
