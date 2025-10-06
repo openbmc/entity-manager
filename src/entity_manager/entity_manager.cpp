@@ -9,6 +9,7 @@
 #include "configuration.hpp"
 #include "dbus_interface.hpp"
 #include "log_device_inventory.hpp"
+#include "managed_host.hpp"
 #include "overlay.hpp"
 #include "perform_scan.hpp"
 #include "topology.hpp"
@@ -24,6 +25,7 @@
 #include <sdbusplus/asio/connection.hpp>
 #include <sdbusplus/asio/object_server.hpp>
 #include <xyz/openbmc_project/Association/Definitions/common.hpp>
+#include <xyz/openbmc_project/Inventory/Decorator/ManagedHost/common.hpp>
 #include <xyz/openbmc_project/Inventory/Item/Bmc/common.hpp>
 #include <xyz/openbmc_project/Inventory/Item/System/common.hpp>
 #include <xyz/openbmc_project/Inventory/Item/common.hpp>
@@ -412,15 +414,6 @@ void EntityManager::startRemovedTimer(boost::asio::steady_timer& timer)
     {
         return; // not ready yet
     }
-    if (scannedPowerOn)
-    {
-        return;
-    }
-
-    if (!powerStatus.isPowerOn() && scannedPowerOff)
-    {
-        return;
-    }
 
     timer.expires_after(std::chrono::seconds(10));
     timer.async_wait([this](const boost::system::error_code& ec) {
@@ -429,17 +422,29 @@ void EntityManager::startRemovedTimer(boost::asio::steady_timer& timer)
             return;
         }
 
-        bool powerOff = !powerStatus.isPowerOn();
         for (const auto& [name, device] : lastJson.items())
         {
-            pruneDevice(systemConfiguration, powerOff, scannedPowerOff, name,
-                        device);
-        }
+            const nlohmann::json::object_t* devicePtr =
+                device.get_ptr<nlohmann::json::object_t*>();
 
-        scannedPowerOff = true;
-        if (!powerOff)
-        {
-            scannedPowerOn = true;
+            if (devicePtr == nullptr)
+            {
+                lg2::error("device json was not an object");
+                continue;
+            }
+
+            const size_t hostIndex =
+                managed_host::getManagedHostIndex(name, devicePtr);
+            bool powerOff = !powerStatus.isPowerOn(hostIndex);
+
+            pruneDevice(systemConfiguration, powerOff,
+                        scannedPowerOff[hostIndex], name, device);
+
+            scannedPowerOff[hostIndex] = true;
+            if (!powerOff)
+            {
+                scannedPowerOn[hostIndex] = true;
+            }
         }
     });
 }
@@ -533,9 +538,19 @@ void EntityManager::propertiesChangedCallbackDebounced(
         [this, count, oldConfiguration, missingConfigurations]() {
             // this is something that since ac has been applied to the
             // bmc we saw, and we no longer see it
-            bool powerOff = !powerStatus.isPowerOn();
             for (const auto& [name, device] : missingConfigurations->items())
             {
+                if (device.get_ptr<nlohmann::json::object_t*>() == nullptr)
+                {
+                    lg2::error("device json was not an object");
+                    continue;
+                }
+                const nlohmann::json::object_t* devicePtr =
+                    device.get_ptr<nlohmann::json::object_t*>();
+                const size_t hostIndex =
+                    managed_host::getManagedHostIndex(name, devicePtr);
+                bool powerOff = !powerStatus.isPowerOn(hostIndex);
+
                 pruneConfiguration(powerOff, name, device);
             }
             nlohmann::json newConfiguration = systemConfiguration;
