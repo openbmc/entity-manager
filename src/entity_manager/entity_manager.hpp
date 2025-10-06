@@ -82,8 +82,8 @@ class EntityManager
     std::unique_ptr<sdbusplus::match> interfacesAddedMatch = nullptr;
     std::unique_ptr<sdbusplus::match> interfacesRemovedMatch = nullptr;
 
-    bool scannedPowerOff = false;
-    bool scannedPowerOn = false;
+    std::map<size_t, bool> scannedPowerOff;
+    std::map<size_t, bool> scannedPowerOn;
 
     bool propertiesChangedInProgress = false;
     boost::asio::steady_timer propertiesChangedTimer;
