@@ -1,0 +1,61 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "de6e1af4_54e58b31",
+        "filename": "src/fru_device/fru_device.cpp",
+        "patchSetId": 1
+      },
+      "lineNbr": 1251,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2025-10-06T15:47:07Z",
+      "side": 1,
+      "message": "nit, should technically use std::distance to measure between two iterators.",
+      "revId": "f3b623a49c123f0fbdeee03f3bdb05ca3a347ac8",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "22eb976b_5ceaa1af",
+        "filename": "src/fru_device/fru_utils.cpp",
+        "patchSetId": 1
+      },
+      "lineNbr": 932,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2025-10-06T15:47:07Z",
+      "side": 1,
+      "message": "If you\u0027re not planning to update the value, no reason to keep a reference for a uint8, just use the value.",
+      "revId": "f3b623a49c123f0fbdeee03f3bdb05ca3a347ac8",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9a26b8ae_cee1147d",
+        "filename": "src/fru_device/fru_utils.cpp",
+        "patchSetId": 1
+      },
+      "lineNbr": 985,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2025-10-06T15:47:07Z",
+      "side": 1,
+      "message": "needs a range check",
+      "range": {
+        "startLine": 985,
+        "startChar": 20,
+        "endLine": 985,
+        "endChar": 42
+      },
+      "revId": "f3b623a49c123f0fbdeee03f3bdb05ca3a347ac8",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    }
+  ]
+}
