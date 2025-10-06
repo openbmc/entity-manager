@@ -37,6 +37,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "b660c343_ac2ed533",
+        "filename": "src/fru_device/fru_utils.cpp",
+        "patchSetId": 1
+      },
+      "lineNbr": 932,
+      "author": {
+        "id": 1002504
+      },
+      "writtenOn": "2025-10-06T16:34:29Z",
+      "side": 1,
+      "message": "we are updating via `std::swap`",
+      "parentUuid": "22eb976b_5ceaa1af",
+      "revId": "f3b623a49c123f0fbdeee03f3bdb05ca3a347ac8",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "9a26b8ae_cee1147d",
         "filename": "src/fru_device/fru_utils.cpp",
         "patchSetId": 1
@@ -48,6 +66,30 @@
       "writtenOn": "2025-10-06T15:47:07Z",
       "side": 1,
       "message": "needs a range check",
+      "range": {
+        "startLine": 985,
+        "startChar": 20,
+        "endLine": 985,
+        "endChar": 42
+      },
+      "revId": "f3b623a49c123f0fbdeee03f3bdb05ca3a347ac8",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f4862d13_b93048de",
+        "filename": "src/fru_device/fru_utils.cpp",
+        "patchSetId": 1
+      },
+      "lineNbr": 985,
+      "author": {
+        "id": 1002504
+      },
+      "writtenOn": "2025-10-06T16:34:29Z",
+      "side": 1,
+      "message": "correct, will update.",
+      "parentUuid": "9a26b8ae_cee1147d",
       "range": {
         "startLine": 985,
         "startChar": 20,
