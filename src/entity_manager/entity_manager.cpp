@@ -384,37 +384,30 @@ void EntityManager::startRemovedTimer(boost::asio::steady_timer& timer,
     {
         return; // not ready yet
     }
-    if (scannedPowerOn)
-    {
-        return;
-    }
-
-    if (!powerStatus.isPowerOn() && scannedPowerOff)
-    {
-        return;
-    }
 
     timer.expires_after(std::chrono::seconds(10));
-    timer.async_wait(
-        [&systemConfiguration, this](const boost::system::error_code& ec) {
-            if (ec == boost::asio::error::operation_aborted)
-            {
-                return;
-            }
+    timer.async_wait([&systemConfiguration,
+                      this](const boost::system::error_code& ec) {
+        if (ec == boost::asio::error::operation_aborted)
+        {
+            return;
+        }
 
-            bool powerOff = !powerStatus.isPowerOn();
-            for (const auto& [name, device] : lastJson.items())
-            {
-                pruneDevice(systemConfiguration, powerOff, scannedPowerOff,
-                            name, device);
-            }
+        for (const auto& [name, device] : lastJson.items())
+        {
+            const size_t hostIndex = EntityManager::getManagedHostIndex(device);
+            bool powerOff = !powerStatus.isPowerOn(hostIndex);
 
-            scannedPowerOff = true;
+            pruneDevice(systemConfiguration, powerOff,
+                        scannedPowerOff[hostIndex], name, device);
+
+            scannedPowerOff[hostIndex] = true;
             if (!powerOff)
             {
-                scannedPowerOn = true;
+                scannedPowerOn[hostIndex] = true;
             }
-        });
+        }
+    });
 }
 
 void EntityManager::pruneConfiguration(bool powerOff, const std::string& name,
@@ -471,6 +464,21 @@ void EntityManager::publishNewConfiguration(
     });
 }
 
+size_t EntityManager::getManagedHostIndex(nlohmann::json& config)
+{
+    if (!config.contains("xyz.openbmc_project.Inventory.Decorator.ManagedHost"))
+    {
+        return 0;
+    }
+
+    auto& mh = config["xyz.openbmc_project.Inventory.Decorator.ManagedHost"];
+    if (!mh.contains("HostIndex"))
+    {
+        return 0;
+    }
+    return mh["HostIndex"];
+}
+
 // main properties changed entry
 void EntityManager::propertiesChangedCallback()
 {
@@ -509,10 +517,12 @@ void EntityManager::propertiesChangedCallback()
                 [this, count, oldConfiguration, missingConfigurations]() {
                     // this is something that since ac has been applied to the
                     // bmc we saw, and we no longer see it
-                    bool powerOff = !powerStatus.isPowerOn();
                     for (const auto& [name, device] :
                          missingConfigurations->items())
                     {
+                        size_t hostIndex =
+                            EntityManager::getManagedHostIndex(device);
+                        const bool powerOff = !powerStatus.isPowerOn(hostIndex);
                         pruneConfiguration(powerOff, name, device);
                     }
                     nlohmann::json newConfiguration = systemConfiguration;
