@@ -5,6 +5,34 @@
             "Bus": "$bus",
             "Name": "Nvidia IMGX ConnectX8 SuperNIC Switch FRU",
             "Type": "EEPROM"
+        },
+        {
+            "Name": "Nvidia ConnectX 0",
+            "NicPcieDownstreamPortCountPerUpstreamPort": 2,
+            "NicPcieUpstreamPortCount": 1,
+            "StaticEid": 24,
+            "Type": "NvidiaMctpVdm"
+        },
+        {
+            "Name": "Nvidia ConnectX 1",
+            "NicPcieDownstreamPortCountPerUpstreamPort": 2,
+            "NicPcieUpstreamPortCount": 1,
+            "StaticEid": 25,
+            "Type": "NvidiaMctpVdm"
+        },
+        {
+            "Name": "Nvidia ConnectX 2",
+            "NicPcieDownstreamPortCountPerUpstreamPort": 2,
+            "NicPcieUpstreamPortCount": 1,
+            "StaticEid": 29,
+            "Type": "NvidiaMctpVdm"
+        },
+        {
+            "Name": "Nvidia ConnectX 3",
+            "NicPcieDownstreamPortCountPerUpstreamPort": 2,
+            "NicPcieUpstreamPortCount": 1,
+            "StaticEid": 30,
+            "Type": "NvidiaMctpVdm"
         }
     ],
     "Name": "Nvidia IMGX ConnectX8 SuperNIC Switch",
