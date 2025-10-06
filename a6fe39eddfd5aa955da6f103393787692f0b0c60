@@ -26,6 +26,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "50ca1f5c_4f3d9d99",
+        "filename": "src/fru_device/fru_device.cpp",
+        "patchSetId": 3
+      },
+      "lineNbr": 1051,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-10-06T11:57:13Z",
+      "side": 1,
+      "message": "`FruDevice` instance is in scope from beginning to end of `main` function.\n\nYou are right in a generic C++ context but in our particular case `FruDevice` is a singleton in the application context.\n\nAnd when `FruDevice` instance goes out of scope we are already at the point where `fruDevice.io.run()` returns so there should not be any other code running beyond that point.\n\nI am kind of stuck here as from a local reasoning perspective your suggestion is better but i would like to avoid introducing any `shared_ptr` for `FruDevice` instance since we know it\u0027s lifetime already (thus no need for `shared_ptr`).\n\nSo both choices are wrong and because of that i would like to go with the simpler choice (no `shared_ptr`).",
+      "parentUuid": "702f91e9_fb2b3786",
+      "range": {
+        "startLine": 1051,
+        "startChar": 21,
+        "endLine": 1051,
+        "endChar": 25
+      },
+      "revId": "a6fe39eddfd5aa955da6f103393787692f0b0c60",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "442e03e9_0572740c",
         "filename": "src/fru_device/fru_device.cpp",
         "patchSetId": 3
@@ -37,6 +61,30 @@
       "writtenOn": "2025-10-02T21:10:57Z",
       "side": 1,
       "message": "io_context should be shared separately from the fru portions itself.  this directory watcher really should know nothign about what a \"fru\" is ideally.",
+      "range": {
+        "startLine": 1439,
+        "startChar": 51,
+        "endLine": 1439,
+        "endChar": 60
+      },
+      "revId": "a6fe39eddfd5aa955da6f103393787692f0b0c60",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d780ac89_4436e334",
+        "filename": "src/fru_device/fru_device.cpp",
+        "patchSetId": 3
+      },
+      "lineNbr": 1439,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-10-06T11:57:13Z",
+      "side": 1,
+      "message": "Yes but it was like that before with the global variables due to the wildcard capture. So i am not changing things here.\n\nHaving a class enables us to have encapsulation and do some OOP design but we don\u0027t necessarily have to do that right now.\n\nIf we start the fine grained encapsulation now we might open up some rabbit hole leading to further work which could bloat the diff and make this change harder to review.",
+      "parentUuid": "442e03e9_0572740c",
       "range": {
         "startLine": 1439,
         "startChar": 51,
@@ -70,6 +118,30 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "a02bfdbf_c2b628bb",
+        "filename": "src/fru_device/fru_device.hpp",
+        "patchSetId": 3
+      },
+      "lineNbr": 17,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-10-06T11:57:13Z",
+      "side": 1,
+      "message": "Sure. We can reach it via the class member then and do not need a reference anymore.",
+      "parentUuid": "fc6ea720_77db3ac8",
+      "range": {
+        "startLine": 17,
+        "startChar": 0,
+        "endLine": 17,
+        "endChar": 18
+      },
+      "revId": "a6fe39eddfd5aa955da6f103393787692f0b0c60",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "dc8f992a_2216fa02",
@@ -93,6 +165,30 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "9a4b9837_af0c4bbf",
+        "filename": "src/fru_device/fru_device.hpp",
+        "patchSetId": 3
+      },
+      "lineNbr": 30,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-10-06T11:57:13Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "dc8f992a_2216fa02",
+      "range": {
+        "startLine": 30,
+        "startChar": 34,
+        "endLine": 30,
+        "endChar": 40
+      },
+      "revId": "a6fe39eddfd5aa955da6f103393787692f0b0c60",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "8413d248_1f5a4ca7",
@@ -106,6 +202,30 @@
       "writtenOn": "2025-10-02T21:10:57Z",
       "side": 1,
       "message": "See above, should this just be owned within the class?",
+      "range": {
+        "startLine": 31,
+        "startChar": 0,
+        "endLine": 31,
+        "endChar": 25
+      },
+      "revId": "a6fe39eddfd5aa955da6f103393787692f0b0c60",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "fb8ed81d_2e257ce5",
+        "filename": "src/fru_device/fru_utils.hpp",
+        "patchSetId": 3
+      },
+      "lineNbr": 31,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-10-06T11:57:13Z",
+      "side": 1,
+      "message": "Changed it to be stored here.",
+      "parentUuid": "8413d248_1f5a4ca7",
       "range": {
         "startLine": 31,
         "startChar": 0,
