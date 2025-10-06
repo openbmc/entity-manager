@@ -26,6 +26,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "117fdac7_6b0def6f",
+        "filename": "src/entity_manager/config_type_tree.cpp",
+        "patchSetId": 72
+      },
+      "lineNbr": 15,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-10-06T13:48:20Z",
+      "side": 1,
+      "message": "You are making a comment about code details which is *valid*, but currently this patch is stuck in design phase due to how it creates multiple object paths for a configuration record.\n\nOne of the maintainers did not like that so i went back to the drawing board.\n\nhttps://gerrit.openbmc.org/c/openbmc/docs/+/83264\n\nis a design which outlines several alternatives for how to proceed.\n\nLeaving this comment as unresolved  + wont-fix until we align on that design review for how to solve the DBus compatibility issues in EM.",
+      "parentUuid": "31d907b6_cf31db9f",
+      "range": {
+        "startLine": 8,
+        "startChar": 0,
+        "endLine": 15,
+        "endChar": 6
+      },
+      "revId": "20cac88135db0cedf9cf62f728b637b5a5ed830b",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "75ad0701_1263ee6e",
         "filename": "src/entity_manager/config_type_tree.cpp",
         "patchSetId": 72
