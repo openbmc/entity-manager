@@ -265,6 +265,24 @@
       "parentUuid": "e10b4b66_d29964ee",
       "revId": "a8d2bb0d8a4ca5be6c3ee607af21d235533fa50b",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "c63a0bc0_f2947ca6",
+        "filename": "src/entity_manager/utils.cpp",
+        "patchSetId": 1
+      },
+      "lineNbr": 135,
+      "author": {
+        "id": 1002520
+      },
+      "writtenOn": "2025-10-07T12:34:49Z",
+      "side": 1,
+      "message": "I’m sorry, I didn’t provide enough details earlier, which might have caused some misunderstanding.\n```cpp\n        // Skip this case to avoid false errors caused by regex \u0027$\u0027 anchors\n        auto firstCharIt \u003d std::next(findStart.begin());\n        if (firstCharIt !\u003d strPtr-\u003eend() \u0026\u0026 *firstCharIt \u003d\u003d \u0027\\\u0027\u0027)\n        {\n            lg2::info(\"String value: `{STR}`\", \"STR\", *strPtr);\n            break;\n        }\n```\noutput:\n```log\n\u003c6\u003e String value: `xyz.openbmc_project.Inventory.Source.DevicePresence({\u0027Name\u0027: \u0027^RPU1LeakPort1$\u0027})`\n```\n\nThe case I mentioned isn’t about having a dollar sign in plain text like `Some$ random thing`, but rather about regex expressions such as `xyz.openbmc_project.Inventory.Source.DevicePresence({\u0027Name\u0027: \u0027^RPU1LeakPort1$\u0027})`, where `$` is a valid end-of-line anchor. \nThose were being falsely reported as leftover template variables.\n\n\u003e If there is any mistake in the config file, it is the user\u0027s fault and the user can fix their config file.\n\u003e How would we detect if the $ is there by mistake or on purpose?\n\nActually, I have the same question. If we simply skip every `$`, we might also miss real cases where the user accidentally left a `$` by mistake.\nThat’s why I only handled the specific `$\u0027` case.",
+      "parentUuid": "0835218a_17d2f012",
+      "revId": "a8d2bb0d8a4ca5be6c3ee607af21d235533fa50b",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }
