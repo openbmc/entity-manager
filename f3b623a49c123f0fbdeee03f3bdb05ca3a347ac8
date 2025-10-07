@@ -36,6 +36,24 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "9a063f3f_bc0d6bea",
+        "filename": "src/fru_device/fru_device.cpp",
+        "patchSetId": 1
+      },
+      "lineNbr": 1251,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2025-10-07T21:18:17Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "2b09d9d0_a2609202",
+      "revId": "f3b623a49c123f0fbdeee03f3bdb05ca3a347ac8",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "22eb976b_5ceaa1af",
@@ -103,6 +121,24 @@
       "side": 1,
       "message": "yeah, it might be too subtle. The comparison is just for logging sake, and the only subtle piece is matching variables to logging statements. Honestly, the log is a little silly, the checksum should pretty much always be changing when we call this function.",
       "parentUuid": "ed0d4f67_7e5cfd2f",
+      "revId": "f3b623a49c123f0fbdeee03f3bdb05ca3a347ac8",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "08639e10_015ebbcd",
+        "filename": "src/fru_device/fru_utils.cpp",
+        "patchSetId": 1
+      },
+      "lineNbr": 932,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2025-10-07T21:18:17Z",
+      "side": 1,
+      "message": "Done.  Code makes sense as is I guess.",
+      "parentUuid": "88ef8bb1_6b1103a7",
       "revId": "f3b623a49c123f0fbdeee03f3bdb05ca3a347ac8",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
