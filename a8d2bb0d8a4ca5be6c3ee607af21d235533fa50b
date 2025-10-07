@@ -20,6 +20,24 @@
     {
       "unresolved": false,
       "key": {
+        "uuid": "5c6d44c8_e2339db1",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 17,
+      "author": {
+        "id": 1002520
+      },
+      "writtenOn": "2025-10-07T07:31:02Z",
+      "side": 1,
+      "message": "Thanks for pointing that out. I added it in the footer. Is that okay?\n\n`Fixes: I4499baf3ebe9560e13932a49e324d1c8b0255623`",
+      "parentUuid": "8d42c87d_edb4e760",
+      "revId": "a8d2bb0d8a4ca5be6c3ee607af21d235533fa50b",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
         "uuid": "07942642_6b365b0f",
         "filename": "/PATCHSET_LEVEL",
         "patchSetId": 1
@@ -88,6 +106,24 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "ea69776b_7e335b92",
+        "filename": "src/entity_manager/utils.cpp",
+        "patchSetId": 1
+      },
+      "lineNbr": 104,
+      "author": {
+        "id": 1002520
+      },
+      "writtenOn": "2025-10-07T07:31:02Z",
+      "side": 1,
+      "message": "I’ve added a unit test to make sure the fix lasts.\nWhile testing, I noticed that the `$\"` case wouldn’t happen, so I removed it.",
+      "parentUuid": "f69e0d89_acaa8691",
+      "revId": "a8d2bb0d8a4ca5be6c3ee607af21d235533fa50b",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "5fdb2166_80f11089",
@@ -101,6 +137,24 @@
       "writtenOn": "2025-10-07T03:11:23Z",
       "side": 1,
       "message": "How about we check the var length here before treating it as an error? In the regex case, std::string(findStart.begin(), templateVarEnd) should be 1 character long only, right? That means it only contains the \"$\" character.\n\nWhat do you think about this @alexander.hansen@9elements.com?",
+      "revId": "a8d2bb0d8a4ca5be6c3ee607af21d235533fa50b",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "862c46c8_a0d3abf5",
+        "filename": "src/entity_manager/utils.cpp",
+        "patchSetId": 1
+      },
+      "lineNbr": 135,
+      "author": {
+        "id": 1002520
+      },
+      "writtenOn": "2025-10-07T07:31:02Z",
+      "side": 1,
+      "message": "I think `handleLeftOverTemplateVars` should still detect cases where a dollar sign is left by mistake.\nThe regex case is quite specific, so I’d prefer to just add an exception for that.",
+      "parentUuid": "5fdb2166_80f11089",
       "revId": "a8d2bb0d8a4ca5be6c3ee607af21d235533fa50b",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
