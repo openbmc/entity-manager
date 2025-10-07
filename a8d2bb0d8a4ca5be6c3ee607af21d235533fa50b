@@ -143,6 +143,24 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "97698968_f02245f6",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1002520
+      },
+      "writtenOn": "2025-10-07T13:19:38Z",
+      "side": 1,
+      "message": "After adding the debug logs, it seems handleLeftOverTemplateVars() is actually catching real user mistakes.\n\n```log\n\u003c7\u003e String value: `FCB_0 FAN_$bus % 2 * 2 VOLT_V`\n\u003c3\u003e There\u0027s still template variable $bus un-replaced. Removing it from the string.\n\n\u003c7\u003e String value: `FCB_0 FAN_$bus % 2 * 2 IMON_VOLT_V`\n\u003c3\u003e There\u0027s still template variable $bus un-replaced. Removing it from the string.\n\n\u003c7\u003e String value: `FCB_0 FAN_$bus % 2 * 2 + 1 VOLT_V`\n\u003c3\u003e There\u0027s still template variable $bus un-replaced. Removing it from the string.\n\n\u003c7\u003e String value: `FCB_0 FAN_$bus % 2 * 2 + 1 IMON_VOLT_V`\n\u003c3\u003e There\u0027s still template variable $bus un-replaced. Removing it from the string.\n\n\u003c7\u003e String value: `FCB_1 FAN_$bus % 2 * 2 VOLT_V`\n\u003c3\u003e There\u0027s still template variable $bus un-replaced. Removing it from the string.\n\n\u003c7\u003e String value: `FCB_1 FAN_$bus % 2 * 2 IMON_VOLT_V`\n\u003c3\u003e There\u0027s still template variable $bus un-replaced. Removing it from the string.\n\n\u003c7\u003e String value: `FCB_1 FAN_$bus % 2 * 2 + 1 VOLT_V`\n\u003c3\u003e There\u0027s still template variable $bus un-replaced. Removing it from the string.\n\n\u003c7\u003e String value: `FCB_1 FAN_$bus % 2 * 2 + 1 IMON_VOLT_V`\n\u003c3\u003e There\u0027s still template variable $bus un-replaced. Removing it from the string.\n```\n\nbusctl introspect xyz.openbmc_project.EntityManager  /xyz/openbmc_project/inventory/system/board/Ventura_Fan_Board_0/FAN_ADC\n\nHere’s part of the busctl introspection result for reference:\n```\nxyz.openbmc_project.Configuration.ADC128D818             interface -         -                                    -\n.Address                                                 property  t         31                                   emits-change\n.Bus                                                     property  t         16                                   emits-change\n.Labels                                                  property  as        4 \"in0\" \"in1\" \"in2\" \"in3\"            emits-change\n.Name                                                    property  s         \"FAN_ADC\"                            emits-change\n.Type                                                    property  s         \"ADC128D818\"                         emits-change\n.in0_Max                                                 property  t         18                                   emits-change\n.in0_Name                                                property  s         \"FCB_0 FAN_ % 2 * 2 VOLT_V\"          emits-change\n.in0_Scale                                               property  d         133.262                              emits-change\n.in1_Name                                                property  s         \"FCB_0 FAN_ % 2 * 2 IMON_VOLT_V\"     emits-change\n.in1_Scale                                               property  t         1                                    emits-change\n.in2_Max                                                 property  t         18                                   emits-change\n.in2_Name                                                property  s         \"FCB_0 FAN_ % 2 * 2 + 1 VOLT_V\"      emits-change\n.in2_Scale                                               property  d         133.262                              emits-change\n.in3_Name                                                property  s         \"FCB_0 FAN_ % 2 * 2 + 1 IMON_VOLT_V\" emits-change\n\n```",
+      "parentUuid": "66faf4b8_d7614d78",
+      "revId": "a8d2bb0d8a4ca5be6c3ee607af21d235533fa50b",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "f69e0d89_acaa8691",
