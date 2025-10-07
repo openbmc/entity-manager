@@ -161,6 +161,24 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "8c160bac_95c5554f",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-10-07T14:07:45Z",
+      "side": 1,
+      "message": "```\n[alexander@alexanderarchlinux ventura]$ rg -B 2 -A 2  Probe ventura_fan*\nventura_fanboard_adc_max.json\n60-        ],\n61-        \"Name\": \"Ventura Fan Board $bus % 2\",\n62:        \"Probe\": \"xyz.openbmc_project.FruDevice({\u0027BOARD_MANUFACTURER\u0027: \u0027(Quanta|Ingrasys)\u0027, \u0027BOARD_PRODUCT_NAME\u0027: \u0027Ventura FAN Board\u0027, \u0027BOARD_INFO_AM4\u0027: \u0027adc-max\u0027})\",\n63-        \"Type\": \"Board\",\n64-        \"xyz.openbmc_project.Inventory.Decorator.Asset\": {\n\nventura_fanboard_adc_ocp_max.json\n60-        ],\n61-        \"Name\": \"Ventura Fan Board $bus % 2\",\n62:        \"Probe\": \"xyz.openbmc_project.FruDevice({\u0027BOARD_MANUFACTURER\u0027: \u0027Quanta\u0027, \u0027BOARD_PRODUCT_NAME\u0027: \u0027Ventura FAN Board\u0027, \u0027BOARD_INFO_AM4\u0027: \u0027adc-ocp-max\u0027})\",\n63-        \"Type\": \"Board\",\n64-        \"xyz.openbmc_project.Inventory.Decorator.Asset\": {\n\nventura_fanboard_adc_ocp_tic.json\n60-        ],\n61-        \"Name\": \"Ventura Fan Board $bus % 2\",\n62:        \"Probe\": \"xyz.openbmc_project.FruDevice({\u0027BOARD_MANUFACTURER\u0027: \u0027Quanta\u0027, \u0027BOARD_PRODUCT_NAME\u0027: \u0027Ventura FAN Board\u0027, \u0027BOARD_INFO_AM4\u0027: \u0027adc-ocp-tic\u0027})\",\n63-        \"Type\": \"Board\",\n64-        \"xyz.openbmc_project.Inventory.Decorator.Asset\": {\n\nventura_fanboard_adc_tic.json\n60-        ],\n61-        \"Name\": \"Ventura Fan Board $bus % 2\",\n62:        \"Probe\": \"xyz.openbmc_project.FruDevice({\u0027BOARD_MANUFACTURER\u0027: \u0027(Quanta|Ingrasys)\u0027, \u0027BOARD_PRODUCT_NAME\u0027: \u0027Ventura FAN Board\u0027, \u0027BOARD_INFO_AM4\u0027: \u0027adc-tic\u0027})\",\n63-        \"Type\": \"Board\",\n64-        \"xyz.openbmc_project.Inventory.Decorator.Asset\": {\n```\n\nso all fanbord configs for ventura probe on FruDevice interface, it should always have the `$bus` property, right?\n\nDo you think there is another bug here besides the trailing `$` thing.",
+      "parentUuid": "97698968_f02245f6",
+      "revId": "a8d2bb0d8a4ca5be6c3ee607af21d235533fa50b",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "f69e0d89_acaa8691",
