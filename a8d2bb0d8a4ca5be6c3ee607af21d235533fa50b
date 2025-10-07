@@ -38,6 +38,24 @@
     {
       "unresolved": false,
       "key": {
+        "uuid": "4247c0c0_be849b1c",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 17,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-10-07T11:44:51Z",
+      "side": 1,
+      "message": "Thanks 👍",
+      "parentUuid": "5c6d44c8_e2339db1",
+      "revId": "a8d2bb0d8a4ca5be6c3ee607af21d235533fa50b",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
         "uuid": "07942642_6b365b0f",
         "filename": "/PATCHSET_LEVEL",
         "patchSetId": 1
@@ -160,6 +178,24 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "67112c1e_755efb8a",
+        "filename": "src/entity_manager/utils.cpp",
+        "patchSetId": 1
+      },
+      "lineNbr": 104,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-10-07T11:44:51Z",
+      "side": 1,
+      "message": "Thanks 👍",
+      "parentUuid": "ea69776b_7e335b92",
+      "revId": "a8d2bb0d8a4ca5be6c3ee607af21d235533fa50b",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "5fdb2166_80f11089",
@@ -209,6 +245,24 @@
       "side": 1,
       "message": "I can\u0027t think of a scenario where a dollar sign is left at the end of a word (\"Some$ random thing\"). If there is, maybe it\u0027s user\u0027s intention.",
       "parentUuid": "862c46c8_a0d3abf5",
+      "revId": "a8d2bb0d8a4ca5be6c3ee607af21d235533fa50b",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0835218a_17d2f012",
+        "filename": "src/entity_manager/utils.cpp",
+        "patchSetId": 1
+      },
+      "lineNbr": 135,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-10-07T11:44:51Z",
+      "side": 1,
+      "message": "\u003e How about we check the var length here before treating it as an error?\n\nSounds like a good fix for the observed issue.\n\n\u003e I think handleLeftOverTemplateVars should still detect cases where a dollar sign is left by mistake.\n\nIf there is any mistake in the config file, it is the user\u0027s fault and the user can  fix their config file.\n\nHow would we detect if the `$` is there by mistake or on purpose?",
+      "parentUuid": "e10b4b66_d29964ee",
       "revId": "a8d2bb0d8a4ca5be6c3ee607af21d235533fa50b",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
