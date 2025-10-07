@@ -53,6 +53,24 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "6bc83cc3_c1ac66db",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1001526
+      },
+      "writtenOn": "2025-10-07T03:11:23Z",
+      "side": 1,
+      "message": "My concern finally become a bug. That\u0027s why in the first place I wanted the vars to have boundary. I\u0027m still with the ${var} direction, though if I need to suggest a solution. Please let me know what I should do to address this bug from my previous commit.",
+      "parentUuid": "36b7923d_008eb680",
+      "revId": "a8d2bb0d8a4ca5be6c3ee607af21d235533fa50b",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "f69e0d89_acaa8691",
@@ -66,6 +84,23 @@
       "writtenOn": "2025-10-06T10:08:44Z",
       "side": 1,
       "message": "Since we are introducing another branch here, i assume we need a unit test to make the fix last longer.",
+      "revId": "a8d2bb0d8a4ca5be6c3ee607af21d235533fa50b",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5fdb2166_80f11089",
+        "filename": "src/entity_manager/utils.cpp",
+        "patchSetId": 1
+      },
+      "lineNbr": 135,
+      "author": {
+        "id": 1001526
+      },
+      "writtenOn": "2025-10-07T03:11:23Z",
+      "side": 1,
+      "message": "How about we check the var length here before treating it as an error? In the regex case, std::string(findStart.begin(), templateVarEnd) should be 1 character long only, right? That means it only contains the \"$\" character.\n\nWhat do you think about this @alexander.hansen@9elements.com?",
       "revId": "a8d2bb0d8a4ca5be6c3ee607af21d235533fa50b",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
