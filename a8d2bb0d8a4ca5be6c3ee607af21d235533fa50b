@@ -107,6 +107,24 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "66faf4b8_d7614d78",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1001526
+      },
+      "writtenOn": "2025-10-07T09:35:56Z",
+      "side": 1,
+      "message": "\u003e The case you mentioned also occurs on Ventura.\nIt triggers an error message like:\n\n\u003c3\u003e There\u0027s still template variable $bus un-replaced. Removing it from the string.\n\nHi @eldin.lee@quantatw.com, I don\u0027t understand why $bus falls into this check. Shouldn\u0027t all $bus be replaced by BUS property?",
+      "parentUuid": "0a8bb63b_06a240b9",
+      "revId": "a8d2bb0d8a4ca5be6c3ee607af21d235533fa50b",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "f69e0d89_acaa8691",
@@ -173,6 +191,24 @@
       "side": 1,
       "message": "I think `handleLeftOverTemplateVars` should still detect cases where a dollar sign is left by mistake.\nThe regex case is quite specific, so I’d prefer to just add an exception for that.",
       "parentUuid": "5fdb2166_80f11089",
+      "revId": "a8d2bb0d8a4ca5be6c3ee607af21d235533fa50b",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e10b4b66_d29964ee",
+        "filename": "src/entity_manager/utils.cpp",
+        "patchSetId": 1
+      },
+      "lineNbr": 135,
+      "author": {
+        "id": 1001526
+      },
+      "writtenOn": "2025-10-07T09:35:56Z",
+      "side": 1,
+      "message": "I can\u0027t think of a scenario where a dollar sign is left at the end of a word (\"Some$ random thing\"). If there is, maybe it\u0027s user\u0027s intention.",
+      "parentUuid": "862c46c8_a0d3abf5",
       "revId": "a8d2bb0d8a4ca5be6c3ee607af21d235533fa50b",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
