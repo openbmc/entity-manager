@@ -1,0 +1,73 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4d9be43f_0d17a985",
+        "filename": "src/entity_manager/utils.cpp",
+        "patchSetId": 4
+      },
+      "lineNbr": 95,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2025-10-07T21:30:24Z",
+      "side": 1,
+      "message": "Don\u0027t use auto like this.  It\u0027s requires explicitly looking up the type.",
+      "range": {
+        "startLine": 95,
+        "startChar": 8,
+        "endLine": 95,
+        "endChar": 12
+      },
+      "revId": "d988561acea5216529d7478e63ef7c25974964a8",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d2085467_e4eadff5",
+        "filename": "src/entity_manager/utils.cpp",
+        "patchSetId": 4
+      },
+      "lineNbr": 95,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2025-10-07T21:30:24Z",
+      "side": 1,
+      "message": "No need to explicitly cast to string_view anymore, right?",
+      "range": {
+        "startLine": 95,
+        "startChar": 45,
+        "endLine": 95,
+        "endChar": 61
+      },
+      "revId": "d988561acea5216529d7478e63ef7c25974964a8",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a1bfcc98_2fa9ded3",
+        "filename": "src/utils.hpp",
+        "patchSetId": 4
+      },
+      "lineNbr": 78,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2025-10-07T21:30:24Z",
+      "side": 1,
+      "message": "Should this be an explicit struct, something like\n\nstruct Match {\n   size_t firstIndex;\n   size_t lastIndex;\n};\n\nAs written it\u0027s hard to know which is which",
+      "range": {
+        "startLine": 78,
+        "startChar": 0,
+        "endLine": 78,
+        "endChar": 25
+      },
+      "revId": "d988561acea5216529d7478e63ef7c25974964a8",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    }
+  ]
+}
