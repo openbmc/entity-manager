@@ -179,6 +179,24 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "5244533c_16734c4d",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1001526
+      },
+      "writtenOn": "2025-10-08T07:42:33Z",
+      "side": 1,
+      "message": "I don\u0027t think the math calculating logic in templateCharReplace supports more than one variable in a JSON value string. But there\u0027s a logic in perform_scan that has supported the maths in the ventura fan board config until `handleLeftOverTemplateVars` intervened and broke that.\n\nThe string with issue is: `\"in0_Name\": \"FCB_$bus % 2 FAN_$bus % 2 * 2 VOLT_V\"`, which has 2 $bus in it.\n\nWhen perform_scan first calls templateCharReplace for JSON pairs that do not have Name key, including `Exposes` ([code](https://grok.openbmc.org/xref/openbmc/entity-manager/src/entity_manager/perform_scan.cpp?r\u003d164af2fd1cce6c461ad43ca04e85ff0b73806ee2#489)), it handles the math with the first $bus in it. Result:\n\n```\nFCB_0 FAN_$bus % 2 * 2 VOLT_V\n```\n\nThen when it calls templateCharReplace for JSON pairs under \"Exposes\" ([code](https://grok.openbmc.org/xref/openbmc/entity-manager/src/entity_manager/perform_scan.cpp?r\u003d164af2fd1cce6c461ad43ca04e85ff0b73806ee2#510)), it handles the math with the second $bus in it.\n\nBut as `handleLeftOverTemplateVars` detects a leftover $bus after the first call, the second $bus in the string is removed, that\u0027s why the error log is:\n\n```\n\u003c7\u003e String value: `FCB_0 FAN_$bus % 2 * 2 VOLT_V`\n\u003c3\u003e There\u0027s still template variable $bus un-replaced. Removing it from the string.\n```\n... and then the second call continues with no $bus left which results in a weird value on D-Bus\n```\n\"FCB_0 FAN_ % 2 * 2 VOLT_V\"\n```\n\nIf `handleLeftOverTemplateVars` is removed, D-Bus will show correct string, but it will still fail if another $bus is added to the string). I don\u0027t understand why there needs to be two calls like that. At least it goes well with that specific config until `handleLeftOverTemplateVars` came into play.",
+      "parentUuid": "8c160bac_95c5554f",
+      "revId": "a8d2bb0d8a4ca5be6c3ee607af21d235533fa50b",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "f69e0d89_acaa8691",
@@ -317,6 +335,24 @@
       "side": 1,
       "message": "I’m sorry, I didn’t provide enough details earlier, which might have caused some misunderstanding.\n```cpp\n        // Skip this case to avoid false errors caused by regex \u0027$\u0027 anchors\n        auto firstCharIt \u003d std::next(findStart.begin());\n        if (firstCharIt !\u003d strPtr-\u003eend() \u0026\u0026 *firstCharIt \u003d\u003d \u0027\\\u0027\u0027)\n        {\n            lg2::info(\"String value: `{STR}`\", \"STR\", *strPtr);\n            break;\n        }\n```\noutput:\n```log\n\u003c6\u003e String value: `xyz.openbmc_project.Inventory.Source.DevicePresence({\u0027Name\u0027: \u0027^RPU1LeakPort1$\u0027})`\n```\n\nThe case I mentioned isn’t about having a dollar sign in plain text like `Some$ random thing`, but rather about regex expressions such as `xyz.openbmc_project.Inventory.Source.DevicePresence({\u0027Name\u0027: \u0027^RPU1LeakPort1$\u0027})`, where `$` is a valid end-of-line anchor. \nThose were being falsely reported as leftover template variables.\n\n\u003e If there is any mistake in the config file, it is the user\u0027s fault and the user can fix their config file.\n\u003e How would we detect if the $ is there by mistake or on purpose?\n\nActually, I have the same question. If we simply skip every `$`, we might also miss real cases where the user accidentally left a `$` by mistake.\nThat’s why I only handled the specific `$\u0027` case.",
       "parentUuid": "0835218a_17d2f012",
+      "revId": "a8d2bb0d8a4ca5be6c3ee607af21d235533fa50b",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ac122c71_dd60684d",
+        "filename": "src/entity_manager/utils.cpp",
+        "patchSetId": 1
+      },
+      "lineNbr": 135,
+      "author": {
+        "id": 1001526
+      },
+      "writtenOn": "2025-10-08T07:42:33Z",
+      "side": 1,
+      "message": "\u003e Actually, I have the same question. If we simply skip every $, we might also miss real cases where the user accidentally left a $ by mistake.\n\nOur plan is: If it\u0027s not intentionally configured as a variable template in the first place, whether it\u0027s user mistake or on their purpose, we should skip it from being judged.\n\nHowever, I see that regex is only used in \"Probe\", right? And probe string should never contain a template variable because template vars are replaced by probed properties at the end, I assume?. If you want to skip regex out of this handleLeftOverTemplateVars function, I think you can just skip all JSON under \"Probe\" and don\u0027t touch the logic for other pairs.",
+      "parentUuid": "c63a0bc0_f2947ca6",
       "revId": "a8d2bb0d8a4ca5be6c3ee607af21d235533fa50b",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }

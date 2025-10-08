@@ -34,6 +34,24 @@
       "parentUuid": "60b9a018_7cd817ca",
       "revId": "531ab840a6636e8137a47a9317fea80432355545",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "236d88ea_8c30f9c2",
+        "filename": "src/entity_manager/utils.cpp",
+        "patchSetId": 2
+      },
+      "lineNbr": 106,
+      "author": {
+        "id": 1001526
+      },
+      "writtenOn": "2025-10-08T07:42:33Z",
+      "side": 1,
+      "message": "The logic I meant is:\n\n```\n        if (findStart.end() \u003d\u003d strPtr-\u003eend())\n        {\n            lg2::info(\"Skipping regex $ anchor\");\n            break;\n        }\n```\n\nIf \"$\" is at the end of the JSON value string, then end() of findStart will be end() strPtr.",
+      "parentUuid": "37772905_f956d514",
+      "revId": "531ab840a6636e8137a47a9317fea80432355545",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }
