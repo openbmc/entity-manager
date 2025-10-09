@@ -486,8 +486,16 @@ void scan::PerformScan::updateSystemConfiguration(
         {
             if (keyPair.key() != "Name")
             {
+                bool handleLeftOver = true;
+                if ((keyPair.key() == "Probe") || (keyPair.key() == "Exposes"))
+                {
+                    // "Probe" string does not contain template variables
+                    // Handle left-over variables for "Exposes" later below
+                    handleLeftOver = false;
+                }
                 em_utils::templateCharReplace(keyPair, dbusObject,
-                                              foundDeviceIdx, replaceStr);
+                                              foundDeviceIdx, replaceStr,
+                                              handleLeftOver);
             }
         }
 
