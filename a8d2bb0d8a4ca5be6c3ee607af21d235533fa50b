@@ -215,6 +215,24 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "69d63db2_822f8c3a",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1001526
+      },
+      "writtenOn": "2025-10-09T07:46:58Z",
+      "side": 1,
+      "message": "I proposed a patch https://gerrit.openbmc.org/c/openbmc/entity-manager/+/84325?usp\u003dsearch",
+      "parentUuid": "ebe32a6a_2ca01729",
+      "revId": "a8d2bb0d8a4ca5be6c3ee607af21d235533fa50b",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "f69e0d89_acaa8691",
@@ -389,6 +407,24 @@
       "side": 1,
       "message": "If you have a better idea to fix this issue, that’d be great. This PR just proposes a simple fix because the issue was quite annoying while I was debugging EM.",
       "parentUuid": "ac122c71_dd60684d",
+      "revId": "a8d2bb0d8a4ca5be6c3ee607af21d235533fa50b",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "5af0f2f7_d762f4c7",
+        "filename": "src/entity_manager/utils.cpp",
+        "patchSetId": 1
+      },
+      "lineNbr": 135,
+      "author": {
+        "id": 1001526
+      },
+      "writtenOn": "2025-10-09T07:46:58Z",
+      "side": 1,
+      "message": "Okay. Let\u0027s have this resolved. But I sent a patch https://gerrit.openbmc.org/c/openbmc/entity-manager/+/84325 that can solve both the \"Probe\" string issue and the two $bus math issue. Can you please help review and test it on your boards? I simulated similar configs on my board and see no issue with the change applied.",
+      "parentUuid": "d9986926_8bc9b27e",
       "revId": "a8d2bb0d8a4ca5be6c3ee607af21d235533fa50b",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
