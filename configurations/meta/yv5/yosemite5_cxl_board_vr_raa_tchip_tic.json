@@ -281,6 +281,263 @@
             "Type": "LM75A"
         },
         {
+            "Address": "0x63",
+            "Bus": 35,
+            "Labels": [
+                "vout1",
+                "iout1",
+                "pout1",
+                "temp1",
+                "vout2",
+                "iout2",
+                "pout2",
+                "temp2"
+            ],
+            "Name": "CXL_PVDD_CORE",
+            "PowerState": "On",
+            "Thresholds": [
+                {
+                    "Direction": "less than",
+                    "Hysteresis": 0.014,
+                    "Label": "vout1",
+                    "Name": "lower critical",
+                    "Severity": 1,
+                    "Value": 0.7
+                },
+                {
+                    "Direction": "greater than",
+                    "Hysteresis": 0.0187,
+                    "Label": "vout1",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 0.935
+                },
+                {
+                    "Direction": "greater than",
+                    "Hysteresis": 0.84,
+                    "Label": "iout1",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 42
+                },
+                {
+                    "Direction": "greater than",
+                    "Hysteresis": 0.71,
+                    "Label": "pout1",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 35.5
+                },
+                {
+                    "Direction": "less than",
+                    "Hysteresis": 0.1,
+                    "Label": "temp1",
+                    "Name": "lower critical",
+                    "Severity": 1,
+                    "Value": 5
+                },
+                {
+                    "Direction": "greater than",
+                    "Hysteresis": 2.5,
+                    "Label": "temp1",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 125
+                },
+                {
+                    "Direction": "less than",
+                    "Hysteresis": 0.014,
+                    "Label": "vout2",
+                    "Name": "lower critical",
+                    "Severity": 1,
+                    "Value": 0.7
+                },
+                {
+                    "Direction": "greater than",
+                    "Hysteresis": 0.0187,
+                    "Label": "vout2",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 0.935
+                },
+                {
+                    "Direction": "greater than",
+                    "Hysteresis": 0.84,
+                    "Label": "iout2",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 42
+                },
+                {
+                    "Direction": "greater than",
+                    "Hysteresis": 0.71,
+                    "Label": "pout2",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 35.5
+                },
+                {
+                    "Direction": "less than",
+                    "Hysteresis": 0.1,
+                    "Label": "temp2",
+                    "Name": "lower critical",
+                    "Severity": 1,
+                    "Value": 5
+                },
+                {
+                    "Direction": "greater than",
+                    "Hysteresis": 2.5,
+                    "Label": "temp2",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 125
+                }
+            ],
+            "Type": "RAA228228",
+            "iout1_Name": "CXL_PVDD_CORE_CURR_A",
+            "iout2_Name": "CXL_P0V75_VDD_DIG_CURR_A",
+            "pout1_Name": "CXL_PVDD_CORE_PWR_W",
+            "pout2_Name": "CXL_P0V75_VDD_DIG_PWR_W",
+            "temp1_Name": "CXL_PVDD_CORE_TEMP_C",
+            "temp2_Name": "CXL_P0V75_VDD_DIG_TEMP_C",
+            "vout1_Name": "CXL_PVDD_CORE_VOLT_V",
+            "vout2_Name": "CXL_P0V75_VDD_DIG_VOLT_V"
+        },
+        {
+            "Address": "0x61",
+            "Bus": 35,
+            "Labels": [
+                "vout1",
+                "iout1",
+                "pout1",
+                "temp1"
+            ],
+            "Name": "CXL_P1V2_VDD_DDR02",
+            "PowerState": "On",
+            "Thresholds": [
+                {
+                    "Direction": "less than",
+                    "Hysteresis": 0.0232,
+                    "Label": "vout1",
+                    "Name": "lower critical",
+                    "Severity": 1,
+                    "Value": 1.16
+                },
+                {
+                    "Direction": "greater than",
+                    "Hysteresis": 0.0252,
+                    "Label": "vout1",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 1.26
+                },
+                {
+                    "Direction": "greater than",
+                    "Hysteresis": 0.7424,
+                    "Label": "iout1",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 37.12
+                },
+                {
+                    "Direction": "greater than",
+                    "Hysteresis": 0.891,
+                    "Label": "pout1",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 44.55
+                },
+                {
+                    "Direction": "less than",
+                    "Hysteresis": 0.1,
+                    "Label": "temp1",
+                    "Name": "lower critical",
+                    "Severity": 1,
+                    "Value": 5
+                },
+                {
+                    "Direction": "greater than",
+                    "Hysteresis": 2.5,
+                    "Label": "temp1",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 125
+                }
+            ],
+            "Type": "RAA228228",
+            "iout1_Name": "CXL_P1V2_VDD_DDR02_CURR_A",
+            "pout1_Name": "CXL_P1V2_VDD_DDR02_PWR_W",
+            "temp1_Name": "CXL_P1V2_VDD_DDR02_TEMP_C",
+            "vout1_Name": "CXL_P1V2_VDD_DDR02_VOLT_V"
+        },
+        {
+            "Address": "0x72",
+            "Bus": 35,
+            "Labels": [
+                "vout1",
+                "iout1",
+                "pout1",
+                "temp1"
+            ],
+            "Name": "P1V2_VDD_DDR_CH13",
+            "PowerState": "On",
+            "Thresholds": [
+                {
+                    "Direction": "less than",
+                    "Hysteresis": 0.0232,
+                    "Label": "vout1",
+                    "Name": "lower critical",
+                    "Severity": 1,
+                    "Value": 1.16
+                },
+                {
+                    "Direction": "greater than",
+                    "Hysteresis": 0.0252,
+                    "Label": "vout1",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 1.26
+                },
+                {
+                    "Direction": "greater than",
+                    "Hysteresis": 0.7424,
+                    "Label": "iout1",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 37.12
+                },
+                {
+                    "Direction": "greater than",
+                    "Hysteresis": 0.891,
+                    "Label": "pout1",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 44.55
+                },
+                {
+                    "Direction": "less than",
+                    "Hysteresis": 0.1,
+                    "Label": "temp1",
+                    "Name": "lower critical",
+                    "Severity": 1,
+                    "Value": 5
+                },
+                {
+                    "Direction": "greater than",
+                    "Hysteresis": 2.5,
+                    "Label": "temp1",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 125
+                }
+            ],
+            "Type": "RAA228228",
+            "iout1_Name": "CXL_P1V2_VDD_DDR13_CURR_A",
+            "pout1_Name": "CXL_P1V2_VDD_DDR13_PWR_W",
+            "temp1_Name": "CXL_P1V2_VDD_DDR13_TEMP_C",
+            "vout1_Name": "CXL_P1V2_VDD_DDR13_VOLT_V"
+        },
+        {
             "Address": "0x61",
             "Bus": 35,
             "FirmwareInfo": {
@@ -335,7 +592,11 @@
         }
     ],
     "Name": "Yosemite5 CXL Board",
-    "Probe": "xyz.openbmc_project.FruDevice({'PRODUCT_PRODUCT_NAME': 'Yosemite V5 .*', 'BOARD_PRODUCT_NAME': 'Maple Falls', 'BOARD_MANUFACTURER': '(Quanta|Wiwynn)'})",
+    "Probe": [
+        "xyz.openbmc_project.FruDevice({'PRODUCT_PRODUCT_NAME': 'Yosemite V5 .*', 'BOARD_PRODUCT_NAME': 'Maple Falls', 'BOARD_MANUFACTURER': '(Quanta|Wiwynn)'})",
+        "AND",
+        "xyz.openbmc_project.FruDevice({'BOARD_INFO_AM4': 'VR-RAA Tchip-TIC'})"
+    ],
     "Type": "Board",
     "xyz.openbmc_project.Inventory.Decorator.Asset": {
         "BuildDate": "$BOARD_MANUFACTURE_DATE",
