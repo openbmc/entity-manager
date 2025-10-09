@@ -1,0 +1,325 @@
+{
+    "Exposes": [
+        {
+            "Address": "0x1e",
+            "Bus": 34,
+            "Labels": [
+                "in3",
+                "in4",
+                "in5",
+                "in6"
+            ],
+            "Name": "CXL_ADC0",
+            "Thresholds": [
+                {
+                    "Direction": "less than",
+                    "Hysteresis": 0.0342,
+                    "Label": "in3",
+                    "Name": "lower critical",
+                    "Severity": 1,
+                    "Value": 1.71
+                },
+                {
+                    "Direction": "greater than",
+                    "Hysteresis": 0.0378,
+                    "Label": "in3",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 1.89
+                },
+                {
+                    "Direction": "less than",
+                    "Hysteresis": 0.0342,
+                    "Label": "in4",
+                    "Name": "lower critical",
+                    "Severity": 1,
+                    "Value": 1.71
+                },
+                {
+                    "Direction": "greater than",
+                    "Hysteresis": 0.0378,
+                    "Label": "in4",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 1.89
+                },
+                {
+                    "Direction": "less than",
+                    "Hysteresis": 0.0627,
+                    "Label": "in5",
+                    "Name": "lower critical",
+                    "Severity": 1,
+                    "Value": 3.135
+                },
+                {
+                    "Direction": "greater than",
+                    "Hysteresis": 0.0693,
+                    "Label": "in5",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 3.465
+                },
+                {
+                    "Direction": "less than",
+                    "Hysteresis": 0.095,
+                    "Label": "in6",
+                    "Name": "lower critical",
+                    "Severity": 1,
+                    "Value": 4.75
+                },
+                {
+                    "Direction": "greater than",
+                    "Hysteresis": 0.105,
+                    "Label": "in6",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 5.25
+                }
+            ],
+            "Type": "ADC128D818",
+            "in3_Name": "CXL_ADC_P1V8_VDD_IO_VOLT_V",
+            "in3_PowerState": "On",
+            "in4_Name": "CXL_ADC_P1V8_STBY_VOLT_V",
+            "in5_Name": "CXL_ADC_P3V3_STBY_VOLT_V",
+            "in5_Scale": 500,
+            "in6_Name": "CXL_ADC_P5V_STBY_VOLT_V",
+            "in6_Scale": 281.293
+        },
+        {
+            "Address": "0x1f",
+            "Bus": 34,
+            "Labels": [
+                "in3",
+                "in4",
+                "in5",
+                "in6",
+                "in7"
+            ],
+            "Name": "CXL_ADC1",
+            "PowerState": "On",
+            "Thresholds": [
+                {
+                    "Direction": "less than",
+                    "Hysteresis": 0.0114,
+                    "Label": "in3",
+                    "Name": "lower critical",
+                    "Severity": 1,
+                    "Value": 0.57
+                },
+                {
+                    "Direction": "greater than",
+                    "Hysteresis": 0.0126,
+                    "Label": "in3",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 0.63
+                },
+                {
+                    "Direction": "less than",
+                    "Hysteresis": 0.0114,
+                    "Label": "in4",
+                    "Name": "lower critical",
+                    "Severity": 1,
+                    "Value": 0.57
+                },
+                {
+                    "Direction": "greater than",
+                    "Hysteresis": 0.0126,
+                    "Label": "in4",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 0.63
+                },
+                {
+                    "Direction": "less than",
+                    "Hysteresis": 0.0475,
+                    "Label": "in5",
+                    "Name": "lower critical",
+                    "Severity": 1,
+                    "Value": 2.375
+                },
+                {
+                    "Direction": "greater than",
+                    "Hysteresis": 0.055,
+                    "Label": "in5",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 2.75
+                },
+                {
+                    "Direction": "less than",
+                    "Hysteresis": 0.0475,
+                    "Label": "in6",
+                    "Name": "lower critical",
+                    "Severity": 1,
+                    "Value": 2.375
+                },
+                {
+                    "Direction": "greater than",
+                    "Hysteresis": 0.055,
+                    "Label": "in6",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 2.75
+                },
+                {
+                    "Direction": "less than",
+                    "Hysteresis": 0.0233,
+                    "Label": "in7",
+                    "Name": "lower critical",
+                    "Severity": 1,
+                    "Value": 1.167
+                },
+                {
+                    "Direction": "greater than",
+                    "Hysteresis": 0.0244,
+                    "Label": "in7",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 1.221
+                }
+            ],
+            "Type": "ADC128D818",
+            "in3_Name": "CXL_ADC_P0V6_VTT_CH13_VOLT_V",
+            "in4_Name": "CXL_ADC_P0V6_VTT_CH02_VOLT_V",
+            "in5_Name": "CXL_ADC_P2V5_VPP_CH13_VOLT_V",
+            "in5_Scale": 500,
+            "in6_Name": "CXL_ADC_P2V5_VPP_CH02_VOLT_V",
+            "in6_Scale": 500,
+            "in7_Name": "CXL_ADC_P1V2_VDD_HA"
+        },
+        {
+            "Address": "0x5c",
+            "Bus": 34,
+            "Name": "CXL_EXT_CHIP_TEMP_C",
+            "PowerState": "On",
+            "Thresholds": [
+                {
+                    "Direction": "less than",
+                    "Hysteresis": 0.1,
+                    "Name": "lower critical",
+                    "Severity": 1,
+                    "Value": 5.0
+                },
+                {
+                    "Direction": "greater than",
+                    "Hysteresis": 2.5,
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 125.0
+                }
+            ],
+            "Type": "EMC1413"
+        },
+        {
+            "Address": "0x4d",
+            "Bus": 34,
+            "Labels": [
+                "in1",
+                "curr1",
+                "power1"
+            ],
+            "Name": "CXL_PMON_P12_STBY",
+            "Thresholds": [
+                {
+                    "Direction": "less than",
+                    "Hysteresis": 0.228,
+                    "Label": "in1",
+                    "Name": "lower critical",
+                    "Severity": 1,
+                    "Value": 11.4
+                },
+                {
+                    "Direction": "greater than",
+                    "Hysteresis": 0.252,
+                    "Label": "in1",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 12.6
+                },
+                {
+                    "Direction": "greater than",
+                    "Hysteresis": 0.3692,
+                    "Label": "curr1",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 18.46
+                },
+                {
+                    "Direction": "greater than",
+                    "Hysteresis": 4.44,
+                    "Label": "power1",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 222
+                }
+            ],
+            "Type": "INA230",
+            "curr1_Name": "CXL_P12V_STBY_CURR_A",
+            "in1_Name": "CXL_P12V_STBY_VOLT_V",
+            "power1_Name": "CXL_P12V_STBY_PWR_W"
+        },
+        {
+            "Address": "0x4e",
+            "Bus": 34,
+            "Name": "CXL_INLET_TEMP_C",
+            "Thresholds": [
+                {
+                    "Direction": "less than",
+                    "Hysteresis": 0.1,
+                    "Name": "lower critical",
+                    "Severity": 1,
+                    "Value": 5.0
+                },
+                {
+                    "Direction": "greater than",
+                    "Hysteresis": 1.1,
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 55.0
+                }
+            ],
+            "Type": "LM75A"
+        },
+        {
+            "Address": "0x4a",
+            "Bus": 34,
+            "Name": "CXL_OUTLET_TEMP_C",
+            "Thresholds": [
+                {
+                    "Direction": "less than",
+                    "Hysteresis": 0.1,
+                    "Name": "lower critical",
+                    "Severity": 1,
+                    "Value": 5.0
+                },
+                {
+                    "Direction": "greater than",
+                    "Hysteresis": 1.5,
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 75.0
+                }
+            ],
+            "Type": "LM75A"
+        }
+    ],
+    "Name": "Yosemite5 CXL Board",
+    "Probe": [
+        "xyz.openbmc_project.FruDevice({'PRODUCT_PRODUCT_NAME': 'Yosemite V5 .*', 'BOARD_PRODUCT_NAME': 'Maple Falls', 'BOARD_MANUFACTURER': '(Quanta|Wiwynn)'})",
+        "AND",
+        "xyz.openbmc_project.FruDevice({'BOARD_INFO_AM4': 'VR-MPS Tchip-STM'})"
+    ],
+    "Type": "Board",
+    "xyz.openbmc_project.Inventory.Decorator.Asset": {
+        "BuildDate": "$BOARD_MANUFACTURE_DATE",
+        "Manufacturer": "$BOARD_MANUFACTURER",
+        "Model": "$BOARD_PRODUCT_NAME",
+        "PartNumber": "$BOARD_PART_NUMBER",
+        "SerialNumber": "$BOARD_SERIAL_NUMBER",
+        "SparePartNumber": "$BOARD_INFO_AM1"
+    },
+    "xyz.openbmc_project.Inventory.Decorator.AssetTag": {
+        "AssetTag": "$PRODUCT_ASSET_TAG"
+    }
+}
