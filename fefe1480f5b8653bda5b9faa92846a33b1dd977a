@@ -20,6 +20,24 @@
     {
       "unresolved": false,
       "key": {
+        "uuid": "2ef4f5c9_7b9de05d",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 18,
+      "author": {
+        "id": 1001526
+      },
+      "writtenOn": "2025-10-09T08:59:53Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "0c12431e_168a4ae2",
+      "revId": "fefe1480f5b8653bda5b9faa92846a33b1dd977a",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
         "uuid": "cf09321b_c3bfa7fe",
         "filename": "/PATCHSET_LEVEL",
         "patchSetId": 1
@@ -66,6 +84,30 @@
       "writtenOn": "2025-10-09T08:39:22Z",
       "side": 1,
       "message": "nit, we can avoid branching and compute the value directly.\n\nmarking as resolved, we do not have to change it since it\u0027s not a real issue with the code.\n\n```suggestion\n                // \"Probe\" string does not contain template variables\n                // Handle left-over variables for \"Exposes\" later below\n                const bool handleLeftOver \u003d (keyPair.key() !\u003d \"Probe\") \u0026\u0026 (keyPair.key() !\u003d \"Exposes\");\n```",
+      "range": {
+        "startLine": 489,
+        "startChar": 16,
+        "endLine": 495,
+        "endChar": 17
+      },
+      "revId": "fefe1480f5b8653bda5b9faa92846a33b1dd977a",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "5811e024_398f5791",
+        "filename": "src/entity_manager/perform_scan.cpp",
+        "patchSetId": 1
+      },
+      "lineNbr": 495,
+      "author": {
+        "id": 1001526
+      },
+      "writtenOn": "2025-10-09T08:59:53Z",
+      "side": 1,
+      "message": "Updated as suggested.\n\nHowever, I still can\u0027t get rid of the thought that those configs are using math operations for more than two template variables in the same JSON pair value while templateCharReplace does not support that. It just works because of the \"Exposes\" object is handled twice. I don\u0027t know if that\u0027s correct or not.",
+      "parentUuid": "83df1202_d2edf911",
       "range": {
         "startLine": 489,
         "startChar": 16,
