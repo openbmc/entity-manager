@@ -116,6 +116,30 @@
       },
       "revId": "fefe1480f5b8653bda5b9faa92846a33b1dd977a",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "1d873d2e_60d990c3",
+        "filename": "src/entity_manager/perform_scan.cpp",
+        "patchSetId": 1
+      },
+      "lineNbr": 495,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-10-09T09:28:38Z",
+      "side": 1,
+      "message": "If you look at the probe expression evaluation you may also find that it does not do the operator precedence correctly (`perform_probe.cpp`) with `AND`, `OR`.\n\nhttps://en.cppreference.com/w/cpp/language/operator_precedence.html\n\nIt looks like it simply goes from left to right.\n\nThe whole thing is duct taped.",
+      "parentUuid": "5811e024_398f5791",
+      "range": {
+        "startLine": 489,
+        "startChar": 16,
+        "endLine": 495,
+        "endChar": 17
+      },
+      "revId": "fefe1480f5b8653bda5b9faa92846a33b1dd977a",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }
