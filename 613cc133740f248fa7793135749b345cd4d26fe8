@@ -143,6 +143,42 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "0d11ee06_550bab19",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-10-09T21:00:10Z",
+      "side": 1,
+      "message": "offsets, and flexibility in implementation.\n\nFor example:\n\n- one could add protections that the data we are using to overwrite actually parses as valid fru data.\n\n- preventing overwrite of serial number if that\u0027s already been written.\n\n- making sure the length of data actually fits before writing\n\nThere is a lot of benefits to having a high level API here.",
+      "parentUuid": "e2da62d5_d2e2efaf",
+      "revId": "613cc133740f248fa7793135749b345cd4d26fe8",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "092a3793_39ef4810",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-10-09T21:00:10Z",
+      "side": 1,
+      "message": "\u003e WriteFru isn\u0027t used by anything externally, that\u0027s the point.\n\nWrong. There is 4 usages\n\nhttps://github.com/search?q\u003dorg%3Aopenbmc+%2F%22WriteFru%22%2F\u0026type\u003dcode\n\nand one of which is in ipmid, which is still supported and used by quite a bunch of folks.\n\nhttps://github.com/openbmc/phosphor-host-ipmid/blob/6b47d5a1da42dca58eff80c6f348eb4e719b427b/dbus-sdr/storagecommands.cpp#L121\n\nIf i remember right you can even trigger this API via `ipmitool` over the network.",
+      "parentUuid": "84a09890_23ca8472",
+      "revId": "613cc133740f248fa7793135749b345cd4d26fe8",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "9a1af6a5_d157f40e",
         "filename": "src/fru_device/fru_device.cpp",
         "patchSetId": 4
