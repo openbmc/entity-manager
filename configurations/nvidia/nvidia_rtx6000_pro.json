@@ -8,7 +8,7 @@
         }
     ],
     "Name": "Nvidia RTX PRO 6000 Blackwell $index",
-    "Probe": "xyz.openbmc_project.FruDevice({'BOARD_PRODUCT_NAME': 'RTXPRO6000Blackwel', 'BOARD_MANUFACTURER': 'Nvidia'})",
+    "Probe": "xyz.openbmc_project.FruDevice({'BOARD_PRODUCT_NAME': 'RTXPRO6000Blackwel(l)?(DC)?', 'BOARD_MANUFACTURER': '((Nvidia)|(NVIDIA)|(nvidia))'})",
     "Type": "Board",
     "xyz.openbmc_project.Inventory.Decorator.Asset": {
         "BuildDate": "$BOARD_MANUFACTURE_DATE",
