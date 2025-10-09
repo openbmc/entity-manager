@@ -117,17 +117,17 @@
             "Thresholds": [
                 {
                     "Direction": "less than",
-                    "Hysteresis": 0.0627,
+                    "Hysteresis": 0.0342,
                     "Name": "lower critical",
                     "Severity": 1,
-                    "Value": 3.135
+                    "Value": 1.71
                 },
                 {
                     "Direction": "greater than",
-                    "Hysteresis": 0.0693,
+                    "Hysteresis": 0.0378,
                     "Name": "upper critical",
                     "Severity": 1,
-                    "Value": 3.465
+                    "Value": 1.89
                 }
             ],
             "Type": "ADC"
@@ -169,17 +169,17 @@
             "Thresholds": [
                 {
                     "Direction": "less than",
-                    "Hysteresis": 0.052,
+                    "Hysteresis": 0.054,
                     "Name": "lower critical",
                     "Severity": 1,
-                    "Value": 2.6
+                    "Value": 2.7
                 },
                 {
                     "Direction": "greater than",
-                    "Hysteresis": 0.068,
+                    "Hysteresis": 0.066,
                     "Name": "upper critical",
                     "Severity": 1,
-                    "Value": 3.4
+                    "Value": 3.3
                 }
             ],
             "Type": "ADC"
@@ -243,7 +243,7 @@
                     "Hysteresis": 0.9,
                     "Name": "upper critical",
                     "Severity": 1,
-                    "Value": 45
+                    "Value": 45.0
                 }
             ],
             "Type": "TMP75"
