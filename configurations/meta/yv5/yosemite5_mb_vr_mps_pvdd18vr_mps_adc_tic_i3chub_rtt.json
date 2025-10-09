@@ -4,27 +4,10 @@
             "Address": "0x4b",
             "Bus": 11,
             "Labels": [
-                "in0",
                 "in1"
             ],
             "Name": "MB_ADC0",
             "Thresholds": [
-                {
-                    "Direction": "less than",
-                    "Hysteresis": 0.0228,
-                    "Label": "in0",
-                    "Name": "lower critical",
-                    "Severity": 1,
-                    "Value": 1.14
-                },
-                {
-                    "Direction": "greater than",
-                    "Hysteresis": 0.0252,
-                    "Label": "in0",
-                    "Name": "upper critical",
-                    "Severity": 1,
-                    "Value": 1.26
-                },
                 {
                     "Direction": "less than",
                     "Hysteresis": 0.019,
@@ -43,7 +26,6 @@
                 }
             ],
             "Type": "ADS7830",
-            "in0_Name": "MB_ADC_P1V2_STBY_VOLT_V",
             "in1_Name": "MB_ADC_P1V0_STBY_VOLT_V"
         },
         {
@@ -570,7 +552,7 @@
             "Type": "LatticeLCMXO3D_9400Firmware"
         },
         {
-            "Address": "0x4f",
+            "Address": "0x47",
             "Bus": 11,
             "Labels": [
                 "vout1",
@@ -863,7 +845,7 @@
             "Type": "MP2X6XXFirmware"
         },
         {
-            "Address": "0x4f",
+            "Address": "0x47",
             "Bus": 11,
             "FirmwareInfo": {
                 "CompatibleHardware": "com.meta.Hardware.Yosemite5.VR.MP2869A_pvddcr_cpu0",
@@ -897,7 +879,7 @@
         },
         {
             "Address": "0x6a",
-            "Bus": 10,
+            "Bus": 5,
             "Name": "MB_E1S1_TEMP_C",
             "PowerState": "On",
             "Thresholds": [
@@ -1555,7 +1537,11 @@
         }
     ],
     "Name": "Yosemite5 MB",
-    "Probe": "xyz.openbmc_project.FruDevice({'PRODUCT_PRODUCT_NAME': 'Yosemite V5 .*', 'BOARD_PRODUCT_NAME': 'Motherboard', 'BOARD_MANUFACTURER': '(Quanta|Wiwynn)'})",
+    "Probe": [
+        "xyz.openbmc_project.FruDevice({'PRODUCT_PRODUCT_NAME': 'Yosemite V5 .*', 'BOARD_PRODUCT_NAME': 'Motherboard', 'BOARD_MANUFACTURER': '(Quanta|Wiwynn)'})",
+        "AND",
+        "xyz.openbmc_project.FruDevice({'BOARD_INFO_AM4': 'VR-MPS PVDD18VR-MPS ADC-TIC I3CHUB-RTT'})"
+    ],
     "Type": "Board",
     "xyz.openbmc_project.Inventory.Decorator.Asset": {
         "BuildDate": "$BOARD_MANUFACTURE_DATE",
