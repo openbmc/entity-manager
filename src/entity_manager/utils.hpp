@@ -30,7 +30,8 @@ void handleLeftOverTemplateVars(nlohmann::json::iterator& keyPair);
 
 std::optional<std::string> templateCharReplace(
     nlohmann::json::iterator& keyPair, const DBusObject& object, size_t index,
-    const std::optional<std::string>& replaceStr = std::nullopt);
+    const std::optional<std::string>& replaceStr = std::nullopt,
+    bool handleLeftOver = true);
 
 std::optional<std::string> templateCharReplace(
     nlohmann::json::iterator& keyPair, const DBusInterface& interface,

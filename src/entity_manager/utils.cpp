@@ -133,18 +133,25 @@ void handleLeftOverTemplateVars(nlohmann::json::iterator& keyPair)
 // with.
 std::optional<std::string> templateCharReplace(
     nlohmann::json::iterator& keyPair, const DBusObject& object,
-    const size_t index, const std::optional<std::string>& replaceStr)
+    const size_t index, const std::optional<std::string>& replaceStr,
+    bool handleLeftOver)
 {
     for (const auto& [_, interface] : object)
     {
         auto ret = templateCharReplace(keyPair, interface, index, replaceStr);
         if (ret)
         {
-            handleLeftOverTemplateVars(keyPair);
+            if (handleLeftOver)
+            {
+                handleLeftOverTemplateVars(keyPair);
+            }
             return ret;
         }
     }
-    handleLeftOverTemplateVars(keyPair);
+    if (handleLeftOver)
+    {
+        handleLeftOverTemplateVars(keyPair);
+    }
     return std::nullopt;
 }
 
