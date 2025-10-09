@@ -3,6 +3,23 @@
     {
       "unresolved": false,
       "key": {
+        "uuid": "bd387d08_b5e125de",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1002520
+      },
+      "writtenOn": "2025-10-09T02:27:53Z",
+      "side": 1,
+      "message": "We’ve just discovered two issues in this PR:\n1.The regex anchor ($) causes a false fault log.\n2.When there are two $bus variables in the same line, handleLeftOverTemplateVars may intervene and break it.\n\nIf the reviewers don’t prefer this simple fix(issue#1), this PR can be abandoned. However, I hope someone can help fix the issues introduced by PR [I4499baf3ebe9560e13932a49e324d1c8b0255623].",
+      "revId": "32876ce96e2a651f16644fbcce845a55490d2701",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
         "uuid": "d80ef22c_5b56a881",
         "filename": "src/entity_manager/utils.cpp",
         "patchSetId": 3

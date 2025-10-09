@@ -197,6 +197,24 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "ebe32a6a_2ca01729",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1002520
+      },
+      "writtenOn": "2025-10-09T02:27:53Z",
+      "side": 1,
+      "message": "When you have time, could you take a look at the issue introduced by handleLeftOverTemplateVars?\n\nHere’s the list of affected files. There might be more — I just filtered out those that use `$bus`.\n```bash\neldinlee$ rg -l \u0027\\$bus.*\\$bus\u0027\nconfigurations/meta/ventura/ventura_fanboard_adc_ocp_max.json\nconfigurations/meta/ventura/ventura_fanboard_adc_ocp_tic.json\nconfigurations/meta/yv4/fanboard/yosemite4_fanboard_fsc_nct_adc_max_led_nxp_ons_efuse_mps.json\nconfigurations/meta/yv4/fanboard/yosemite4_fanboard_fsc_nct_adc_max_led_nxp_ons_efuse_max.json\nconfigurations/meta/yv4/fanboard/yosemite4_fanboard_fsc_max_adc_ti_led_nxp_ons_efuse_mps.json\nconfigurations/meta/yv4/fanboard/yosemite4_fanboard_fsc_max_adc_ti_led_nxp_ons_efuse_max.json\nconfigurations/meta/ventura/ventura_fanboard_adc_tic.json\nconfigurations/meta/ventura/ventura_fanboard_adc_max.json\nconfigurations/meta/minerva/minerva_fanboard_adc_ti.json\nconfigurations/meta/minerva/minerva_fanboard_adc_silergy.json\n```\n/cc @jason-hsu@quantatw.com @potin.lai@quantatw.com",
+      "parentUuid": "5244533c_16734c4d",
+      "revId": "a8d2bb0d8a4ca5be6c3ee607af21d235533fa50b",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "f69e0d89_acaa8691",
@@ -353,6 +371,24 @@
       "side": 1,
       "message": "\u003e Actually, I have the same question. If we simply skip every $, we might also miss real cases where the user accidentally left a $ by mistake.\n\nOur plan is: If it\u0027s not intentionally configured as a variable template in the first place, whether it\u0027s user mistake or on their purpose, we should skip it from being judged.\n\nHowever, I see that regex is only used in \"Probe\", right? And probe string should never contain a template variable because template vars are replaced by probed properties at the end, I assume?. If you want to skip regex out of this handleLeftOverTemplateVars function, I think you can just skip all JSON under \"Probe\" and don\u0027t touch the logic for other pairs.",
       "parentUuid": "c63a0bc0_f2947ca6",
+      "revId": "a8d2bb0d8a4ca5be6c3ee607af21d235533fa50b",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d9986926_8bc9b27e",
+        "filename": "src/entity_manager/utils.cpp",
+        "patchSetId": 1
+      },
+      "lineNbr": 135,
+      "author": {
+        "id": 1002520
+      },
+      "writtenOn": "2025-10-09T02:27:53Z",
+      "side": 1,
+      "message": "If you have a better idea to fix this issue, that’d be great. This PR just proposes a simple fix because the issue was quite annoying while I was debugging EM.",
+      "parentUuid": "ac122c71_dd60684d",
       "revId": "a8d2bb0d8a4ca5be6c3ee607af21d235533fa50b",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }

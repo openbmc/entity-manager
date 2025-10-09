@@ -52,6 +52,24 @@
       "parentUuid": "37772905_f956d514",
       "revId": "531ab840a6636e8137a47a9317fea80432355545",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "6bf597c8_2314f2ca",
+        "filename": "src/entity_manager/utils.cpp",
+        "patchSetId": 2
+      },
+      "lineNbr": 106,
+      "author": {
+        "id": 1002520
+      },
+      "writtenOn": "2025-10-09T02:27:53Z",
+      "side": 1,
+      "message": "I see that the capture variable logic simply uses findSpace as the end position; otherwise, it takes strPtr-\u003eend() as the end.\nSo in our case, it captures `$\u0027})` instead of just `$`.\n\nI don’t really understand why the capture logic works that way. Since this code has already been reviewed, I just excluded the regex case where the character following $ is a quote (\u0027).",
+      "parentUuid": "236d88ea_8c30f9c2",
+      "revId": "531ab840a6636e8137a47a9317fea80432355545",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }
