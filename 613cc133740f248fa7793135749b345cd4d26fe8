@@ -36,6 +36,24 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": true,
+      "key": {
+        "uuid": "8398a739_f8ef419d",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 4
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2025-10-09T20:28:06Z",
+      "side": 1,
+      "message": "\u003e streamlined.... clean\n\nI\u0027m really not sure what this means.  Can we talk about (in the commit message) why this is better than just a shell command?\n\n\"streamlined\" and \"clean\" are very abstract.  Maybe this is about being able to check the fru before write?  Maybe this is not having a documented understanding of the existing i2c CLI tools?",
+      "parentUuid": "ba848b4f_97b16cb6",
+      "revId": "613cc133740f248fa7793135749b345cd4d26fe8",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": false,
       "key": {
         "uuid": "e57941cd_2a34add1",
@@ -107,6 +125,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "84a09890_23ca8472",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2025-10-09T20:28:06Z",
+      "side": 1,
+      "message": "WriteFru isn\u0027t used by anything externally, that\u0027s the point.",
+      "parentUuid": "c5f9562b_26a338d6",
+      "revId": "613cc133740f248fa7793135749b345cd4d26fe8",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "9a1af6a5_d157f40e",
         "filename": "src/fru_device/fru_device.cpp",
         "patchSetId": 4
@@ -142,6 +178,30 @@
       "side": 1,
       "message": "Done",
       "parentUuid": "9a1af6a5_d157f40e",
+      "range": {
+        "startLine": 60,
+        "startChar": 0,
+        "endLine": 60,
+        "endChar": 2
+      },
+      "revId": "613cc133740f248fa7793135749b345cd4d26fe8",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "52dcf043_bc6d17a6",
+        "filename": "src/fru_device/fru_device.cpp",
+        "patchSetId": 4
+      },
+      "lineNbr": 60,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2025-10-09T20:28:06Z",
+      "side": 1,
+      "message": "Current code now passes a file path, not a FD.",
+      "parentUuid": "2a175c8e_b41018b6",
       "range": {
         "startLine": 60,
         "startChar": 0,

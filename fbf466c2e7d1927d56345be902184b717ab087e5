@@ -24,6 +24,30 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": true,
+      "key": {
+        "uuid": "64f1dde1_4020e7b9",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 8
+      },
+      "lineNbr": 11,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2025-10-09T20:28:06Z",
+      "side": 1,
+      "message": "This is a new method on the xyz.openbmc_project.FruDeviceManager interface which isn\u0027t in PDI.  It wasn\u0027t an interface that is expected to be called from.... anywhere except a developer or debug shell.  By our current definition I would call that still internal?  I think at one point the idea was that these would get a fru-device CLI wrapped on them so we could do simple debug tasks from the shell, but that never happened (although might be worth an afternoon of my time to go do to make that more obvious).\n\nI\u0027m a little worried that documenting them in PDI will give the wrong idea about their stability or security.  They really shouldn\u0027t be used.  The \"I don\u0027t want to remember the command to write an eeprom directly\" case might be a minor exception, although I\u0027m not sure even that qualifies.\n\nFWIW, I\u0027m a little suspect about this API being needed at all versus the bytes one we already have.",
+      "parentUuid": "ac0260c9_e0243bcb",
+      "range": {
+        "startLine": 9,
+        "startChar": 0,
+        "endLine": 11,
+        "endChar": 53
+      },
+      "revId": "fbf466c2e7d1927d56345be902184b717ab087e5",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": false,
       "key": {
         "uuid": "ab8b817b_6598fcc5",
