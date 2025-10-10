@@ -1,0 +1,78 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "cd26e64c_dbd5d470",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 5
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2025-10-10T15:32:46Z",
+      "side": 1,
+      "message": "Overall VERY much in support of this.",
+      "revId": "f9b94ca05b448a7a7346b7814357959ba022fd11",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b43c2cdd_bec8efb1",
+        "filename": "src/entity_manager/utils.cpp",
+        "patchSetId": 5
+      },
+      "lineNbr": 180,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2025-10-10T15:32:46Z",
+      "side": 1,
+      "message": "Need to check against start OR end being npos.  Please fix for all the refactors.",
+      "revId": "f9b94ca05b448a7a7346b7814357959ba022fd11",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "cbd69f23_312656eb",
+        "filename": "src/utils.cpp",
+        "patchSetId": 5
+      },
+      "lineNbr": 183,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2025-10-10T15:32:46Z",
+      "side": 1,
+      "message": "We\u0027re in a cpp file here, this should be \"static\" or \"inline static\", but probably the former.",
+      "range": {
+        "startLine": 183,
+        "startChar": 0,
+        "endLine": 183,
+        "endChar": 6
+      },
+      "revId": "f9b94ca05b448a7a7346b7814357959ba022fd11",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "064304a8_f243fb06",
+        "filename": "src/utils.hpp",
+        "patchSetId": 5
+      },
+      "lineNbr": 22,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2025-10-10T15:32:46Z",
+      "side": 1,
+      "message": "You\u0027ve misunderstood what I asked.\n\nThe function should return\n\nstruct Match{\n   size_t firstIndex;\n   size_t lastIndex;\n};\n\nRather than a pair.  Declaring new typedefs doesn\u0027t help with the naming.\n\nNow that I look at it, this is kind of why boost returns an iterator range rather than just a pair.",
+      "revId": "f9b94ca05b448a7a7346b7814357959ba022fd11",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    }
+  ]
+}
