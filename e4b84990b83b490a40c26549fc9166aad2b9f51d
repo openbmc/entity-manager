@@ -159,6 +159,30 @@
       },
       "revId": "e4b84990b83b490a40c26549fc9166aad2b9f51d",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0083e251_51d9979a",
+        "filename": "schemas/spdm_endpoint.json",
+        "patchSetId": 1
+      },
+      "lineNbr": 70,
+      "author": {
+        "id": 1001516
+      },
+      "writtenOn": "2025-10-10T09:49:19Z",
+      "side": 1,
+      "message": "Here is the snippet of EM config which we need to update Authenticating and Reporting association in Component Integrity and TrustedComponent D-Bus objects hosted by SPDM. Can you please help how can we solve this issue with #82817\n\n```\n{\n    \"Exposes\": [\n        {\n            \"EID\": 14,\n            \"TrustedComponentType\": \"discrete\",\n            \"Name\": \"RoT_BMC_0\",\n            \"Type\": \"MCTPTcpRequester\",\n            \"Authenticating\": \"/xyz/openbmc_project/inventory/system/chassis/BMC_0\",\n            \"Reporting\": \"/xyz/openbmc_project/inventory/system/chassis/RoT_BMC_0\"\n        }\n    ],\n    \"Name\": \"RoT_BMC_0\",\n    \"Probe\": \"xyz.openbmc_project.MCTP.Endpoint({\u0027EID\u0027: 14})\",\n    \"Type\": \"Chassis\"\n}\n```",
+      "parentUuid": "cb108a12_a504048f",
+      "range": {
+        "startLine": 63,
+        "startChar": 0,
+        "endLine": 70,
+        "endChar": 17
+      },
+      "revId": "e4b84990b83b490a40c26549fc9166aad2b9f51d",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }
