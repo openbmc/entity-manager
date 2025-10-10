@@ -183,6 +183,30 @@
       },
       "revId": "e4b84990b83b490a40c26549fc9166aad2b9f51d",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "74600684_53bb34a0",
+        "filename": "schemas/spdm_endpoint.json",
+        "patchSetId": 1
+      },
+      "lineNbr": 70,
+      "author": {
+        "id": 1000008
+      },
+      "writtenOn": "2025-10-10T19:08:47Z",
+      "side": 1,
+      "message": "You define a Port on your 2 entities with matching names, and entity-manager will then create the associations between them if they are both probed.  The examples in https://github.com/openbmc/entity-manager/blob/master/docs/associations.md have more details.  It will take some minor EM code changes to support the new association names.",
+      "parentUuid": "0083e251_51d9979a",
+      "range": {
+        "startLine": 63,
+        "startChar": 0,
+        "endLine": 70,
+        "endChar": 17
+      },
+      "revId": "e4b84990b83b490a40c26549fc9166aad2b9f51d",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }
