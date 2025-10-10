@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "6954727a_416ea175",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 14
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-10-10T22:43:35Z",
+      "side": 1,
+      "message": "would prefer if this was split into multiple patches since there\u0027s a lot of code.\n\nFor example\n- typo fix\n- feature patch\n- tests\n\nIt would help to make it easier for review.",
+      "revId": "e62cc63530830fbbc820964cffa8fd0444d8c7bc",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ca9b2903_8696deaf",
+        "filename": "test/test_fru-utils.cpp",
+        "patchSetId": 14
+      },
+      "lineNbr": 543,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-10-10T22:43:35Z",
+      "side": 1,
+      "message": "nit: due to the typo fix there\u0027s now extra diff unrelated to your change.\n\nIMO the typo fix would be better as a separate change.",
+      "revId": "e62cc63530830fbbc820964cffa8fd0444d8c7bc",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    }
+  ]
+}
