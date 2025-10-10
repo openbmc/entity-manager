@@ -50,6 +50,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "278e01dd_bcd4e8f0",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 4
+      },
+      "lineNbr": 14,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2025-10-10T15:13:02Z",
+      "side": 1,
+      "message": "\u003e We set the threshold close to the currently largest function to prevent regression.\n\nThat\u0027s not what the commit message says.\n\n\u003e \n\u003e The actual goal is the one documented by ISO cpp core guidelines.\n\nCore Guideslines say that enforcing this like you\u0027ve done isn\u0027t correct.\n\n\u003e \n\u003e That\u0027s the reason why i am referencing it.\n\u003e \n\u003e We cannot set the threshold larger since that would leave room for regression.\n\nOnly if people that find this function size threshold useful don\u0027t review.  Please do code reviews for this, and if necessary, run the check offline.\n\n\u003e \n\u003e We cannot set the threshold smaller without NOLINTing many functions, which is not the point of this check.\n\nAgreed.",
+      "parentUuid": "1b2c3b9f_5cc648dc",
+      "range": {
+        "startLine": 13,
+        "startChar": 0,
+        "endLine": 14,
+        "endChar": 17
+      },
+      "revId": "07ae2d243353999c33e86832367d5998c1d5cfda",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "f9d0f069_20f7dbbb",
         "filename": "/PATCHSET_LEVEL",
         "patchSetId": 4
@@ -221,6 +245,41 @@
       "side": 1,
       "message": "But how does this patch accomplish avoiding the burden?  It pushes it to maintainers.",
       "parentUuid": "b7e9492f_6d09347d",
+      "revId": "07ae2d243353999c33e86832367d5998c1d5cfda",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "67975b82_0a172db2",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2025-10-10T15:13:02Z",
+      "side": 1,
+      "message": "I\u0027ve made my position clear.  To proceed with this:\n1. Figure out a check that enforces lengths correctly (including lambdas).\n2. Refactor the code so that it hits cpp core guidelines recommendations.\n\nThen we can talk about enforcing an automated check.\n\nAlternatively, there\u0027s lots of other repositories that could likely use this check where maybe the maintainers aren\u0027t as swamped with reviews and have time to define how this new enforcement works in terms of review velocity.  Feel free to enable on those.",
+      "revId": "07ae2d243353999c33e86832367d5998c1d5cfda",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "cc6da2db_a8fbacec",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2025-10-10T15:13:02Z",
+      "side": 1,
+      "message": "Would love to see all the patches refactoring commits to make them smaller.\n\nYou\u0027ve completely glossed over that no other maintainers in the project have enabled this check and gotten to the appropriate size, so at least amongst maintainers I don\u0027t seem to be alone.\n\nThe check we\u0027ve enabled here doesn\u0027t accomplish setting a real threshold, due to limitations in clang-tidy.\n\n\u003e \n\u003e Yes, and this patch will help to prevent any regression in the meantime.\n\nI will review in the meantime and ensure that the longest function doesn\u0027t get any longer (within reason).\n\n\u003e \n\u003e \n\u003e \u003e Doesn\u0027t match the standard we code against.\n\u003e \n\u003e I am not pulling this value out of this air. It is a direct result of all the patches you and Matt merged. So it is directly representative of the current state of the code.\n\nWith respect, most of the code you\u0027re complaining about was committed before Matt or I were maintainers on this repository.  Please tone down your accusatory language for those that are actively trying to help you.  Like I said, I\u0027m happy to see improvements made, where I draw the line is arbitrary thresholds.\n\n\u003e \n\u003e \u003e Is set to enforce a limit that\u0027s made up and that I don\u0027t want to maintain.\n\u003e \n\u003e Let\u0027s clarify, there is not much to actively maintain. The check should maintain itself.\n\u003e \n\u003e \u003e I would like to see continued effort in actually cleaning up these.\n\u003e \n\u003e Sure, and i would be happy for your support in this effort by preventing any regressions on what we have already achieved. Which is what this patch tries to do.\n\u003e \n\u003e \n\u003e I am really struggling to understand the \n\u003e \n\u003e \"i want to go to X but i do not want to enforce X+70 because that is not where i want to go\" mentality.\n\u003e \n\u003e It\u0027s like climbing a mountain but forgetting to clip in at different points.\n\u003e One bad patch or review oversight and we fall down to 200 or 250 and lose a bunch of progress and start from the beginning again.\n\nAs someone who used to mountain climb a lot, I\u0027ll extend your analogy, this is the equivalent of clipping into your car in the parking lot.  The safety margin here isn\u0027t useful until someone actually starts to \"climb\" by refactoring methods to be smaller, and you\u0027ve clipped to something that isn\u0027t a safety device and won\u0027t prevent you from falling.\n\nIf we start actually refactoring to where we\u0027re close to the threshold, I\u0027m happy to discuss this once the check is made to be correct.\n\n\u003e \n\u003e \n\u003e I do not want to start from the beginning again. I do not want to be out for a month and then come back and see some kind of surprise. I want to achieve something, and then make sure we do not loose it again, either by unit tests or clang-tidy checks.\n\nThere is nothing in this check that prevents that.  Someone could disable the check in the next commit \"while you\u0027re out\".  I will do my best as maintainer to hold the line to within reason, I just don\u0027t want to see it enforced at CI time.",
+      "parentUuid": "02050ac9_e455daf7",
       "revId": "07ae2d243353999c33e86832367d5998c1d5cfda",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
