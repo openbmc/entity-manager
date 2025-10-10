@@ -1,0 +1,107 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0c3c7978_7cc8f49e",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 27,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2025-10-10T15:25:53Z",
+      "side": 1,
+      "message": "I see inventory added, any inventory removed tests?",
+      "revId": "3a37ba7c2e0bd64b4c7bff13bd48ae713d06cc43",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "9b5f23a5_d8db77c3",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2025-10-10T15:25:53Z",
+      "side": 1,
+      "message": "If you don\u0027t want to do the refactors, this is probably fine as is, I commented on a few minor things I noticed.",
+      "revId": "3a37ba7c2e0bd64b4c7bff13bd48ae713d06cc43",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "04fc2d1a_eb33f335",
+        "filename": "src/entity_manager/log_device_inventory.cpp",
+        "patchSetId": 1
+      },
+      "lineNbr": 27,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2025-10-10T15:25:53Z",
+      "side": 1,
+      "message": "as written this is now duplicating the init for these, then makes a string copy at the end.\n\nplease:\nDeclare the return at the top of the function:\nInvAddRemoveInfo ret;\n\nSo we can avoid this duplication.\n\nThen set ret.serial/ret.model throughout this function so the loaded value can be returned directly with fewer copies.",
+      "range": {
+        "startLine": 24,
+        "startChar": 0,
+        "endLine": 27,
+        "endChar": 33
+      },
+      "revId": "3a37ba7c2e0bd64b4c7bff13bd48ae713d06cc43",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "dd3cf22f_6525fe93",
+        "filename": "src/entity_manager/log_device_inventory.cpp",
+        "patchSetId": 1
+      },
+      "lineNbr": 31,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2025-10-10T15:25:53Z",
+      "side": 1,
+      "message": "Not your problem, but all of these gets are throwing uncaught exceptions to the main io loop.  Oh well.  The funny part is that line 43 does it the way I\u0027d expect, but the rest of the field choose to throw.  Oh well.",
+      "range": {
+        "startLine": 31,
+        "startChar": 0,
+        "endLine": 31,
+        "endChar": 44
+      },
+      "revId": "3a37ba7c2e0bd64b4c7bff13bd48ae713d06cc43",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d4381bad_4e0f407d",
+        "filename": "src/entity_manager/log_device_inventory.cpp",
+        "patchSetId": 1
+      },
+      "lineNbr": 91,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2025-10-10T15:25:53Z",
+      "side": 1,
+      "message": "Please use the type here.  Using auto in this way makes it difficult to review.",
+      "range": {
+        "startLine": 91,
+        "startChar": 10,
+        "endLine": 91,
+        "endChar": 14
+      },
+      "revId": "3a37ba7c2e0bd64b4c7bff13bd48ae713d06cc43",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    }
+  ]
+}
