@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "6aa43477_75d5cab5",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 8
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-10-10T22:16:05Z",
+      "side": 1,
+      "message": "Did not look too deeply into it since you just moved the code around.\n\nSeparating the fru data update from DBus and application logic looks like a good idea to me.",
+      "revId": "a3b509c1d3362e1ef1614790cdbb849a3dddacd5",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d3adad8c_95209805",
+        "filename": "src/fru_device/fru_utils.hpp",
+        "patchSetId": 8
+      },
+      "lineNbr": 229,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-10-10T22:16:05Z",
+      "side": 1,
+      "message": "nit: a brief comment would be good here.\n\nThe other function\u0027s don\u0027t have that so i don\u0027t see it as required.",
+      "revId": "a3b509c1d3362e1ef1614790cdbb849a3dddacd5",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    }
+  ]
+}
