@@ -1,65 +1,53 @@
+#include "log_device_inventory.hpp"
+
 #include "../utils.hpp"
 
 #include <systemd/sd-journal.h>
 
-#include <boost/container/flat_map.hpp>
 #include <nlohmann/json.hpp>
 #include <xyz/openbmc_project/Inventory/Decorator/Asset/common.hpp>
 
 #include <string>
 
-struct InvAddRemoveInfo
+static void setStringIfFound(std::string& value, const std::string& key,
+                             const nlohmann::json& record, bool dump = false)
 {
-    std::string model = "Unknown";
-    std::string type = "Unknown";
-    std::string sn = "Unknown";
-    std::string name = "Unknown";
-};
+    const nlohmann::json::const_iterator find = record.find(key);
 
-static InvAddRemoveInfo queryInvInfo(const nlohmann::json& record)
-{
-    auto findType = record.find("Type");
-    auto findAsset = record.find(sdbusplus::common::xyz::openbmc_project::
-                                     inventory::decorator::Asset::interface);
-
-    std::string model = "Unknown";
-    std::string type = "Unknown";
-    std::string sn = "Unknown";
-    std::string name = "Unknown";
-
-    if (findType != record.end())
+    if (find == record.end())
     {
-        type = findType->get<std::string>();
+        return;
     }
+
+    const std::string* foundValue = find->get_ptr<const std::string*>();
+    if (foundValue != nullptr)
+    {
+        value = *foundValue;
+    }
+    else if (dump)
+    {
+        value = find->dump();
+    }
+}
+
+InvAddRemoveInfo queryInvInfo(const nlohmann::json& record)
+{
+    InvAddRemoveInfo ret;
+
+    setStringIfFound(ret.type, "Type", record);
+    setStringIfFound(ret.name, "Name", record);
+
+    const nlohmann::json::const_iterator findAsset = record.find(
+        sdbusplus::common::xyz::openbmc_project::inventory::decorator::Asset::
+            interface);
+
     if (findAsset != record.end())
     {
-        auto findModel = findAsset->find("Model");
-        auto findSn = findAsset->find("SerialNumber");
-        if (findModel != findAsset->end())
-        {
-            model = findModel->get<std::string>();
-        }
-        if (findSn != findAsset->end())
-        {
-            const std::string* getSn = findSn->get_ptr<const std::string*>();
-            if (getSn != nullptr)
-            {
-                sn = *getSn;
-            }
-            else
-            {
-                sn = findSn->dump();
-            }
-        }
+        setStringIfFound(ret.model, "Model", *findAsset);
+        setStringIfFound(ret.sn, "SerialNumber", *findAsset, true);
     }
 
-    auto findName = record.find("Name");
-    if (findName != record.end())
-    {
-        name = findName->get<std::string>();
-    }
-
-    return {model, type, sn, name};
+    return ret;
 }
 
 void logDeviceAdded(const nlohmann::json& record)
@@ -73,7 +61,7 @@ void logDeviceAdded(const nlohmann::json& record)
         return;
     }
 
-    const auto info = queryInvInfo(record);
+    const InvAddRemoveInfo info = queryInvInfo(record);
 
     sd_journal_send(
         "MESSAGE=Inventory Added: %s", info.name.c_str(), "PRIORITY=%i",
@@ -89,7 +77,7 @@ void logDeviceRemoved(const nlohmann::json& record)
         return;
     }
 
-    const auto info = queryInvInfo(record);
+    const InvAddRemoveInfo info = queryInvInfo(record);
 
     sd_journal_send(
         "MESSAGE=Inventory Removed: %s", info.name.c_str(), "PRIORITY=%i",
