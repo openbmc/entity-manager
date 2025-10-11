@@ -1,0 +1,44 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c14d6c53_fa2ebaf3",
+        "filename": "test/test_gpio_presence_state.cpp",
+        "patchSetId": 2
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-10-11T10:30:19Z",
+      "side": 1,
+      "message": "nit: do we need the gmock header?",
+      "revId": "a19df306fff390456244b455dde0a1f29aae4f90",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9ad9358d_4b7f020e",
+        "filename": "test/test_gpio_presence_state.cpp",
+        "patchSetId": 2
+      },
+      "lineNbr": 99,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-10-11T10:30:19Z",
+      "side": 1,
+      "message": "Can these all be separate testcases?\n\nSince you are not using\n\n`std::unordered_map\u003cstd::string, bool\u003e gpioState;`\n\nfrom the testing class.",
+      "range": {
+        "startLine": 87,
+        "startChar": 4,
+        "endLine": 99,
+        "endChar": 5
+      },
+      "revId": "a19df306fff390456244b455dde0a1f29aae4f90",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    }
+  ]
+}
