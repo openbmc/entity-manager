@@ -1,8 +1,8 @@
 #include "power_status_monitor.hpp"
 
-#include "phosphor-logging/lg2.hpp"
 #include "utils.hpp"
 
+#include <phosphor-logging/lg2.hpp>
 #include <sdbusplus/bus/match.hpp>
 
 #include <flat_map>
