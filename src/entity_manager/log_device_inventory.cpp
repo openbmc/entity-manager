@@ -2,9 +2,9 @@
 
 #include <systemd/sd-journal.h>
 
-#include <boost/container/flat_map.hpp>
 #include <nlohmann/json.hpp>
 
+#include <flat_map>
 #include <string>
 
 void logDeviceAdded(const nlohmann::json& record)

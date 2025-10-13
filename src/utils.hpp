@@ -3,21 +3,21 @@
 
 #pragma once
 
-#include <boost/container/flat_map.hpp>
 #include <nlohmann/json.hpp>
 #include <sdbusplus/asio/connection.hpp>
 #include <sdbusplus/exception.hpp>
 
 #include <charconv>
 #include <filesystem>
+#include <flat_map>
 
 using DBusValueVariant =
     std::variant<std::string, int64_t, uint64_t, double, int32_t, uint32_t,
                  int16_t, uint16_t, uint8_t, bool, std::vector<uint8_t>>;
-using DBusInterface = boost::container::flat_map<std::string, DBusValueVariant>;
-using DBusObject = boost::container::flat_map<std::string, DBusInterface>;
+using DBusInterface = std::flat_map<std::string, DBusValueVariant, std::less<>>;
+using DBusObject = std::flat_map<std::string, DBusInterface, std::less<>>;
 using MapperGetSubTreeResponse =
-    boost::container::flat_map<std::string, DBusObject>;
+    std::flat_map<std::string, DBusObject, std::less<>>;
 using FirstIndex = size_t;
 using LastIndex = size_t;
 
@@ -28,9 +28,8 @@ bool findFiles(const std::vector<std::filesystem::path>&& dirPaths,
                const std::string& matchString,
                std::vector<std::filesystem::path>& foundPaths);
 
-bool getI2cDevicePaths(
-    const std::filesystem::path& dirPath,
-    boost::container::flat_map<size_t, std::filesystem::path>& busPaths);
+bool getI2cDevicePaths(const std::filesystem::path& dirPath,
+                       std::flat_map<size_t, std::filesystem::path>& busPaths);
 
 struct DBusInternalError final : public sdbusplus::exception_t
 {

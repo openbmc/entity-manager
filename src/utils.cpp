@@ -4,7 +4,6 @@
 #include "utils.hpp"
 
 #include <boost/algorithm/string/replace.hpp>
-#include <boost/container/flat_map.hpp>
 #include <boost/lexical_cast.hpp>
 #include <phosphor-logging/lg2.hpp>
 #include <sdbusplus/bus/match.hpp>
@@ -12,6 +11,7 @@
 #include <algorithm>
 #include <cctype>
 #include <filesystem>
+#include <flat_map>
 #include <map>
 #include <ranges>
 #include <regex>
@@ -80,7 +80,7 @@ bool findFiles(const std::vector<fs::path>&& dirPaths,
 }
 
 bool getI2cDevicePaths(const fs::path& dirPath,
-                       boost::container::flat_map<size_t, fs::path>& busPaths)
+                       std::flat_map<size_t, fs::path>& busPaths)
 {
     if (!fs::exists(dirPath))
     {
