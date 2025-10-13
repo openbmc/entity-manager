@@ -1,0 +1,78 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "896774f4_294c5ec9",
+        "filename": "src/entity_manager/dbus_interface.hpp",
+        "patchSetId": 2
+      },
+      "lineNbr": 5,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-10-13T20:16:31Z",
+      "side": 1,
+      "message": "boost flat_map still included here",
+      "revId": "3d948611f3f2474a69666334014f4a37ee93cdf2",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a31f1f25_9e6b3791",
+        "filename": "src/entity_manager/entity_manager.cpp",
+        "patchSetId": 2
+      },
+      "lineNbr": 19,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-10-13T20:16:31Z",
+      "side": 1,
+      "message": "boost flat_set still present here",
+      "revId": "3d948611f3f2474a69666334014f4a37ee93cdf2",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "77146066_02cec22e",
+        "filename": "src/entity_manager/overlay.cpp",
+        "patchSetId": 2
+      },
+      "lineNbr": 12,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-10-13T20:16:31Z",
+      "side": 1,
+      "message": "boost flat_set still present here",
+      "range": {
+        "startLine": 12,
+        "startChar": 0,
+        "endLine": 12,
+        "endChar": 39
+      },
+      "revId": "3d948611f3f2474a69666334014f4a37ee93cdf2",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7ac3d646_347ac97a",
+        "filename": "src/fru_device/fru_device.cpp",
+        "patchSetId": 2
+      },
+      "lineNbr": 372,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-10-13T20:16:31Z",
+      "side": 1,
+      "message": "Why are we going away from the normal `std::set`, is it a performance consideration?\n\nGoing from the commit message i would have expected only the boost collections to be migrated.",
+      "revId": "3d948611f3f2474a69666334014f4a37ee93cdf2",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    }
+  ]
+}
