@@ -53,7 +53,7 @@ static std::string deviceDirName(uint64_t bus, uint64_t address)
     return name.str();
 }
 
-void linkMux(const std::string& muxName, uint64_t busIndex, uint64_t address,
+void linkMux(std::string_view muxName, uint64_t busIndex, uint64_t address,
              const std::vector<std::string>& channelNames)
 {
     std::error_code ec;
@@ -98,8 +98,8 @@ void linkMux(const std::string& muxName, uint64_t busIndex, uint64_t address,
     }
 }
 
-static int deleteDevice(const std::string& busPath, uint64_t address,
-                        const std::string& destructor)
+static int deleteDevice(std::string_view busPath, uint64_t address,
+                        std::string_view destructor)
 {
     std::filesystem::path deviceDestructor(busPath);
     deviceDestructor /= destructor;
@@ -114,9 +114,8 @@ static int deleteDevice(const std::string& busPath, uint64_t address,
     return 0;
 }
 
-static int createDevice(const std::string& busPath,
-                        const std::string& parameters,
-                        const std::string& constructor)
+static int createDevice(std::string_view busPath, std::string_view parameters,
+                        std::string_view constructor)
 {
     std::filesystem::path deviceConstructor(busPath);
     deviceConstructor /= constructor;
@@ -132,7 +131,7 @@ static int createDevice(const std::string& busPath,
     return 0;
 }
 
-static bool deviceIsCreated(const std::string& busPath, uint64_t bus,
+static bool deviceIsCreated(std::string_view busPath, uint64_t bus,
                             uint64_t address,
                             const devices::createsHWMon hasHWMonDir)
 {
@@ -149,9 +148,9 @@ static bool deviceIsCreated(const std::string& busPath, uint64_t bus,
 }
 
 static int buildDevice(
-    const std::string& name, const std::string& busPath,
-    const std::string& parameters, uint64_t bus, uint64_t address,
-    const std::string& constructor, const std::string& destructor,
+    std::string_view name, std::string_view busPath,
+    std::string_view parameters, uint64_t bus, uint64_t address,
+    std::string_view constructor, std::string_view destructor,
     const devices::createsHWMon hasHWMonDir,
     std::vector<std::string> channelNames, boost::asio::io_context& io,
     const size_t retries = 5)
@@ -203,15 +202,15 @@ static int buildDevice(
     return 0;
 }
 
-void exportDevice(const std::string& type,
-                  const devices::ExportTemplate& exportTemplate,
+void exportDevice(const devices::ExportTemplate& exportTemplate,
                   const nlohmann::json& configuration,
                   boost::asio::io_context& io)
 {
-    std::string parameters = exportTemplate.parameters;
-    std::string busPath = exportTemplate.busPath;
-    std::string constructor = exportTemplate.add;
-    std::string destructor = exportTemplate.remove;
+    std::string_view type = exportTemplate.type;
+    std::string parameters(exportTemplate.parameters);
+    std::string busPath(exportTemplate.busPath);
+    std::string_view constructor = exportTemplate.add;
+    std::string_view destructor = exportTemplate.remove;
     devices::createsHWMon hasHWMonDir = exportTemplate.hasHWMonDir;
     std::string name = "unknown";
     std::optional<uint64_t> bus;
@@ -289,11 +288,13 @@ bool loadOverlays(const nlohmann::json& systemConfiguration,
             {
                 continue;
             }
-            std::string type = findType.value().get<std::string>();
-            auto device = devices::exportTemplates.find(type.c_str());
+            const std::string& type = findType.value().get<std::string>();
+            const auto* device = std::ranges::find_if(
+                devices::exportTemplates,
+                [&type](const auto& tmp) { return tmp.type == type; });
             if (device != devices::exportTemplates.end())
             {
-                exportDevice(type, device->second, configuration, io);
+                exportDevice(*device, configuration, io);
                 continue;
             }
 
