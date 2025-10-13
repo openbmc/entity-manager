@@ -3,7 +3,6 @@
 #include "../utils.hpp"
 #include "../variant_visitors.hpp"
 #include "expression.hpp"
-#include "phosphor-logging/lg2.hpp"
 
 #include <boost/algorithm/string/case_conv.hpp>
 #include <boost/algorithm/string/classification.hpp>
