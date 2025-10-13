@@ -4,11 +4,11 @@
 #pragma once
 #include "fru_reader.hpp"
 
-#include <boost/container/flat_map.hpp>
 #include <sdbusplus/asio/object_server.hpp>
 
 #include <cstdint>
 #include <cstdio>
+#include <flat_map>
 #include <functional>
 #include <regex>
 #include <string>
@@ -22,8 +22,8 @@ extern "C"
 
 constexpr size_t fruBlockSize = 8;
 
-using DeviceMap = boost::container::flat_map<int, std::vector<uint8_t>>;
-using BusMap = boost::container::flat_map<int, std::shared_ptr<DeviceMap>>;
+using DeviceMap = std::flat_map<int, std::vector<uint8_t>>;
+using BusMap = std::flat_map<int, std::shared_ptr<DeviceMap>>;
 
 // NOLINTNEXTLINE(cppcoreguidelines-avoid-non-const-global-variables)
 inline BusMap busMap;
@@ -111,7 +111,7 @@ bool checkLangEng(uint8_t lang);
 
 resCodes formatIPMIFRU(
     std::span<const uint8_t> fruBytes,
-    boost::container::flat_map<std::string, std::string>& result);
+    std::flat_map<std::string, std::string, std::less<>>& result);
 
 std::vector<uint8_t>& getFRUInfo(const uint16_t& bus, const uint8_t& address);
 
@@ -198,9 +198,9 @@ bool copyRestFRUArea(std::vector<uint8_t>& fruData,
 /// \return optional<int> highest index for fru device on success, return
 /// nullopt on failure.
 std::optional<int> findIndexForFRU(
-    boost::container::flat_map<
-        std::pair<size_t, size_t>,
-        std::shared_ptr<sdbusplus::asio::dbus_interface>>& dbusInterfaceMap,
+    std::flat_map<std::pair<size_t, size_t>,
+                  std::shared_ptr<sdbusplus::asio::dbus_interface>>&
+        dbusInterfaceMap,
     std::string& productName);
 
 /// \brief It does format fru data and find productName in the formatted
@@ -214,7 +214,7 @@ std::optional<int> findIndexForFRU(
 
 std::optional<std::string> getProductName(
     std::vector<uint8_t>& device,
-    boost::container::flat_map<std::string, std::string>& formattedFRU,
+    std::flat_map<std::string, std::string, std::less<>>& formattedFRU,
     uint32_t bus, uint32_t address, size_t& unknownBusObjectCount);
 
 bool getFruData(std::vector<uint8_t>& fruData, uint32_t bus, uint32_t address);

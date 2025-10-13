@@ -2,21 +2,13 @@
 
 #include "perform_scan.hpp"
 
-#include <boost/container/flat_map.hpp>
-
+#include <flat_map>
 #include <memory>
 #include <string>
 #include <vector>
 
 namespace probe
 {
-struct CmpStr
-{
-    bool operator()(const char* a, const char* b) const
-    {
-        return std::strcmp(a, b) < 0;
-    }
-};
 
 // underscore T for collison with dbus c api
 enum class probe_type_codes

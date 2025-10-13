@@ -2,10 +2,10 @@
 
 #include <systemd/sd-journal.h>
 
-#include <boost/container/flat_map.hpp>
 #include <nlohmann/json.hpp>
 #include <xyz/openbmc_project/Inventory/Decorator/Asset/common.hpp>
 
+#include <flat_map>
 #include <string>
 
 struct InvAddRemoveInfo
