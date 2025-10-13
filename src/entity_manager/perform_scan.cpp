@@ -7,11 +7,11 @@
 #include "utils.hpp"
 
 #include <boost/asio/steady_timer.hpp>
-#include <boost/container/flat_map.hpp>
-#include <boost/container/flat_set.hpp>
 #include <phosphor-logging/lg2.hpp>
 
 #include <charconv>
+#include <flat_map>
+#include <flat_set>
 
 using GetSubTreeType = std::vector<
     std::pair<std::string,
@@ -42,7 +42,8 @@ void getInterfaces(
 
     scan->_em.systemBus->async_method_call(
         [instance, scan, probeVector, retries,
-         &io](boost::system::error_code& errc, const DBusInterface& resp) {
+         &io](boost::system::error_code& errc,
+              const DBusInterface& resp) mutable {
             if (errc)
             {
                 lg2::error("error calling getall on {BUSNAME} {PATH} {INTF}",
@@ -59,7 +60,8 @@ void getInterfaces(
                 return;
             }
 
-            scan->dbusProbeObjects[instance.path][instance.interface] = resp;
+            auto& object = scan->dbusProbeObjects[std::string(instance.path)];
+            object[std::string(instance.interface)] = resp;
         },
         instance.busName, instance.path, "org.freedesktop.DBus.Properties",
         "GetAll", instance.interface);
@@ -97,7 +99,7 @@ static void processDbusObjects(
 // for the paths that own the interfaces passed in.
 void findDbusObjects(
     std::vector<std::shared_ptr<probe::PerformProbe>>&& probeVector,
-    boost::container::flat_set<std::string>&& interfaces,
+    std::flat_set<std::string, std::less<>>&& interfaces,
     const std::shared_ptr<scan::PerformScan>& scan, boost::asio::io_context& io,
     size_t retries = 5)
 {
@@ -524,7 +526,7 @@ void scan::PerformScan::updateSystemConfiguration(
 
 void scan::PerformScan::run()
 {
-    boost::container::flat_set<std::string> dbusProbeInterfaces;
+    std::flat_set<std::string, std::less<>> dbusProbeInterfaces;
     std::vector<std::shared_ptr<probe::PerformProbe>> dbusProbePointers;
 
     for (auto it = _configurations.begin(); it != _configurations.end();)

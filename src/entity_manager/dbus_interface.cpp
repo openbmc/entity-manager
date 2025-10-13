@@ -3,9 +3,9 @@
 #include "perform_probe.hpp"
 #include "utils.hpp"
 
-#include <boost/container/flat_map.hpp>
 #include <phosphor-logging/lg2.hpp>
 
+#include <flat_map>
 #include <fstream>
 #include <regex>
 #include <string>
@@ -249,7 +249,7 @@ void EMDBusInterface::createAddObjectMethod(
         "AddObject",
         [&systemConfiguration, jsonPointerPath{std::string(jsonPointerPath)},
          path{std::string(path)}, board,
-         this](const boost::container::flat_map<std::string, JsonVariantType>&
+         this](const std::flat_map<std::string, JsonVariantType, std::less<>>&
                    data) {
             nlohmann::json::json_pointer ptr(jsonPointerPath);
             nlohmann::json& base = systemConfiguration[ptr];
