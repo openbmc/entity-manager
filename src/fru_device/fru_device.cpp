@@ -10,7 +10,6 @@
 
 #include <boost/asio/io_context.hpp>
 #include <boost/asio/steady_timer.hpp>
-#include <boost/container/flat_map.hpp>
 #include <nlohmann/json.hpp>
 #include <phosphor-logging/lg2.hpp>
 #include <sdbusplus/asio/connection.hpp>
@@ -22,6 +21,8 @@
 #include <chrono>
 #include <ctime>
 #include <filesystem>
+#include <flat_map>
+#include <flat_set>
 #include <fstream>
 #include <functional>
 #include <future>
@@ -60,16 +61,15 @@ constexpr const char* fruDevice16BitDetectMode = FRU_DEVICE_16BITDETECTMODE;
 
 // TODO Refactor these to not be globals
 // NOLINTBEGIN(cppcoreguidelines-avoid-non-const-global-variables)
-static boost::container::flat_map<size_t, std::optional<std::set<size_t>>>
-    busBlocklist;
+static std::flat_map<size_t, std::optional<std::flat_set<size_t>>> busBlocklist;
 struct FindDevicesWithCallback;
 
-static boost::container::flat_map<
-    std::pair<size_t, size_t>, std::shared_ptr<sdbusplus::asio::dbus_interface>>
+static std::flat_map<std::pair<size_t, size_t>,
+                     std::shared_ptr<sdbusplus::asio::dbus_interface>>
     foundDevices;
 
-static boost::container::flat_map<size_t, std::set<size_t>> failedAddresses;
-static boost::container::flat_map<size_t, std::set<size_t>> fruAddresses;
+static std::flat_map<size_t, std::flat_set<size_t>> failedAddresses;
+static std::flat_map<size_t, std::flat_set<size_t>> fruAddresses;
 
 boost::asio::io_context io;
 // NOLINTEND(cppcoreguidelines-avoid-non-const-global-variables)
@@ -77,9 +77,9 @@ boost::asio::io_context io;
 bool updateFruProperty(
     const std::string& propertyValue, uint32_t bus, uint32_t address,
     const std::string& propertyName,
-    boost::container::flat_map<
-        std::pair<size_t, size_t>,
-        std::shared_ptr<sdbusplus::asio::dbus_interface>>& dbusInterfaceMap,
+    std::flat_map<std::pair<size_t, size_t>,
+                  std::shared_ptr<sdbusplus::asio::dbus_interface>>&
+        dbusInterfaceMap,
     size_t& unknownBusObjectCount, const bool& powerIsOn,
     const std::set<size_t>& addressBlocklist,
     sdbusplus::asio::object_server& objServer);
@@ -454,8 +454,8 @@ int getBusFRUs(int file, int first, int last, int bus,
 
         // Scan for i2c eeproms loaded on this bus.
         std::set<size_t> skipList = findI2CEeproms(bus, devices);
-        std::set<size_t>& failedItems = failedAddresses[bus];
-        std::set<size_t>& foundItems = fruAddresses[bus];
+        std::flat_set<size_t>& failedItems = failedAddresses[bus];
+        std::flat_set<size_t>& foundItems = fruAddresses[bus];
         foundItems.clear();
 
         skipList.insert_range(addressBlocklist);
@@ -472,7 +472,7 @@ int getBusFRUs(int file, int first, int last, int bus,
             }
         }
 
-        std::set<size_t>* rootFailures = nullptr;
+        std::flat_set<size_t>* rootFailures = nullptr;
         int rootBus = getRootBus(bus);
 
         if (rootBus >= 0)
@@ -875,14 +875,14 @@ struct FindDevicesWithCallback :
 
 void addFruObjectToDbus(
     std::vector<uint8_t>& device,
-    boost::container::flat_map<
-        std::pair<size_t, size_t>,
-        std::shared_ptr<sdbusplus::asio::dbus_interface>>& dbusInterfaceMap,
+    std::flat_map<std::pair<size_t, size_t>,
+                  std::shared_ptr<sdbusplus::asio::dbus_interface>>&
+        dbusInterfaceMap,
     uint32_t bus, uint32_t address, size_t& unknownBusObjectCount,
     const bool& powerIsOn, const std::set<size_t>& addressBlocklist,
     sdbusplus::asio::object_server& objServer)
 {
-    boost::container::flat_map<std::string, std::string> formattedFRU;
+    std::flat_map<std::string, std::string, std::less<>> formattedFRU;
 
     std::optional<std::string> optionalProductName = getProductName(
         device, formattedFRU, bus, address, unknownBusObjectCount);
@@ -928,7 +928,7 @@ void addFruObjectToDbus(
             });
     }
 
-    for (auto& property : formattedFRU)
+    for (auto property : formattedFRU)
     {
         std::regex_replace(property.second.begin(), property.second.begin(),
                            property.second.end(), nonAsciiRegex, "_");
@@ -1005,7 +1005,7 @@ static bool readBaseboardFRU(std::vector<uint8_t>& baseboardFRU)
 
 bool writeFRU(uint8_t bus, uint8_t address, const std::vector<uint8_t>& fru)
 {
-    boost::container::flat_map<std::string, std::string> tmp;
+    std::flat_map<std::string, std::string, std::less<>> tmp;
     if (fru.size() > maxFruSize)
     {
         lg2::error("Invalid fru.size() during writeFRU");
@@ -1146,9 +1146,9 @@ bool writeFRU(uint8_t bus, uint8_t address, const std::vector<uint8_t>& fru)
 
 void rescanOneBus(
     BusMap& busmap, uint16_t busNum,
-    boost::container::flat_map<
-        std::pair<size_t, size_t>,
-        std::shared_ptr<sdbusplus::asio::dbus_interface>>& dbusInterfaceMap,
+    std::flat_map<std::pair<size_t, size_t>,
+                  std::shared_ptr<sdbusplus::asio::dbus_interface>>&
+        dbusInterfaceMap,
     bool dbusCall, size_t& unknownBusObjectCount, const bool& powerIsOn,
     const std::set<size_t>& addressBlocklist,
     sdbusplus::asio::object_server& objServer)
@@ -1203,7 +1203,7 @@ void rescanOneBus(
             {
                 return;
             }
-            for (auto& device : *(found->second))
+            for (auto device : *(found->second))
             {
                 addFruObjectToDbus(device.second, dbusInterfaceMap,
                                    static_cast<uint32_t>(busNum), device.first,
@@ -1216,9 +1216,9 @@ void rescanOneBus(
 
 void rescanBusses(
     BusMap& busmap,
-    boost::container::flat_map<
-        std::pair<size_t, size_t>,
-        std::shared_ptr<sdbusplus::asio::dbus_interface>>& dbusInterfaceMap,
+    std::flat_map<std::pair<size_t, size_t>,
+                  std::shared_ptr<sdbusplus::asio::dbus_interface>>&
+        dbusInterfaceMap,
     size_t& unknownBusObjectCount, const bool& powerIsOn,
     const std::set<size_t>& addressBlocklist,
     sdbusplus::asio::object_server& objServer)
@@ -1242,7 +1242,7 @@ void rescanBusses(
         auto devDir = fs::path("/dev/");
         std::vector<fs::path> i2cBuses;
 
-        boost::container::flat_map<size_t, fs::path> busPaths;
+        std::flat_map<size_t, fs::path> busPaths;
         if (!getI2cDevicePaths(devDir, busPaths))
         {
             lg2::error("unable to find i2c devices");
@@ -1255,7 +1255,7 @@ void rescanBusses(
         }
 
         busmap.clear();
-        for (auto& [pair, interface] : foundDevices)
+        for (auto [pair, interface] : foundDevices)
         {
             objServer.remove_interface(interface);
         }
@@ -1263,7 +1263,7 @@ void rescanBusses(
 
         auto scan = std::make_shared<FindDevicesWithCallback>(
             i2cBuses, busmap, powerIsOn, objServer, addressBlocklist, [&]() {
-                for (auto& busIface : dbusInterfaceMap)
+                for (auto busIface : dbusInterfaceMap)
                 {
                     objServer.remove_interface(busIface.second);
                 }
@@ -1280,9 +1280,9 @@ void rescanBusses(
                         busmap.try_emplace(0, std::make_shared<DeviceMap>());
                     bus0.first->second->emplace(0, baseboardFRU);
                 }
-                for (auto& devicemap : busmap)
+                for (auto devicemap : busmap)
                 {
-                    for (auto& device : *devicemap.second)
+                    for (auto device : *devicemap.second)
                     {
                         addFruObjectToDbus(device.second, dbusInterfaceMap,
                                            devicemap.first, device.first,
@@ -1298,9 +1298,9 @@ void rescanBusses(
 bool updateFruProperty(
     const std::string& propertyValue, uint32_t bus, uint32_t address,
     const std::string& propertyName,
-    boost::container::flat_map<
-        std::pair<size_t, size_t>,
-        std::shared_ptr<sdbusplus::asio::dbus_interface>>& dbusInterfaceMap,
+    std::flat_map<std::pair<size_t, size_t>,
+                  std::shared_ptr<sdbusplus::asio::dbus_interface>>&
+        dbusInterfaceMap,
     size_t& unknownBusObjectCount, const bool& powerIsOn,
     const std::set<size_t>& addressBlocklist,
     sdbusplus::asio::object_server& objServer)
@@ -1364,8 +1364,8 @@ int main()
 
     // this is a map with keys of pair(bus number, address) and values of
     // the object on dbus
-    boost::container::flat_map<std::pair<size_t, size_t>,
-                               std::shared_ptr<sdbusplus::asio::dbus_interface>>
+    std::flat_map<std::pair<size_t, size_t>,
+                  std::shared_ptr<sdbusplus::asio::dbus_interface>>
         dbusInterfaceMap;
 
     std::shared_ptr<sdbusplus::asio::dbus_interface> iface =
@@ -1401,9 +1401,8 @@ int main()
     std::function<void(sdbusplus::message_t & message)> eventHandler =
         [&](sdbusplus::message_t& message) {
             std::string objectName;
-            boost::container::flat_map<
-                std::string,
-                std::variant<std::string, bool, int64_t, uint64_t, double>>
+            std::flat_map<std::string, std::variant<std::string, bool, int64_t,
+                                                    uint64_t, double>>
                 values;
             message.read(objectName, values);
             auto findState = values.find("CurrentHostState");

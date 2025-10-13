@@ -184,7 +184,7 @@ bool doProbe(const std::vector<std::string>& probeCommand,
     if (ret && foundDevs.empty())
     {
         foundDevs.emplace_back(
-            boost::container::flat_map<std::string, DBusValueVariant>{},
+            std::flat_map<std::string, DBusValueVariant, std::less<>>{},
             std::string{});
     }
     if (matchOne && ret)
@@ -220,8 +220,7 @@ PerformProbe::~PerformProbe()
 
 FoundProbeTypeT findProbeType(const std::string& probe)
 {
-    static const boost::container::flat_map<const char*, probe_type_codes,
-                                            CmpStr>
+    static const std::flat_map<std::string_view, probe_type_codes, std::less<>>
         probeTypes{{{"FALSE", probe_type_codes::FALSE_T},
                     {"TRUE", probe_type_codes::TRUE_T},
                     {"AND", probe_type_codes::AND},
@@ -229,8 +228,8 @@ FoundProbeTypeT findProbeType(const std::string& probe)
                     {"FOUND", probe_type_codes::FOUND},
                     {"MATCH_ONE", probe_type_codes::MATCH_ONE}}};
 
-    boost::container::flat_map<const char*, probe_type_codes,
-                               CmpStr>::const_iterator probeType;
+    std::flat_map<std::string_view, probe_type_codes,
+                  std::less<>>::const_iterator probeType;
     for (probeType = probeTypes.begin(); probeType != probeTypes.end();
          ++probeType)
     {

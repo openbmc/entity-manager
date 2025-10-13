@@ -464,7 +464,7 @@ TEST(formatIPMIFRU, FullDecode)
         0x35, 0x30, 0xc0, 0xc4, 0x76, 0x30, 0x2e, 0x31, 0xc1, 0x00, 0x00, 0x00,
         0x00, 0x00, 0x00, 0xb4, 0xff, 0xff, 0xff, 0xff, 0xff, 0xff, 0xff, 0xff,
         0xff, 0xff, 0xff, 0xff, 0xff, 0xff, 0xff, 0xff};
-    boost::container::flat_map<std::string, std::string> result;
+    std::flat_map<std::string, std::string, std::less<>> result;
     ASSERT_EQ(formatIPMIFRU(bmcFru, result), resCodes::resOK);
 
     EXPECT_THAT(
@@ -641,7 +641,7 @@ TEST(DisassembleFruDataTest, ValidData)
     std::vector<uint8_t> assembledData;
     EXPECT_TRUE(assembleFruData(assembledData, areasData));
 
-    boost::container::flat_map<std::string, std::string> result;
+    std::flat_map<std::string, std::string, std::less<>> result;
     auto rescode = formatIPMIFRU(assembledData, result);
     EXPECT_NE(rescode, resCodes::resErr);
 
