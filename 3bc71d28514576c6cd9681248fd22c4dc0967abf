@@ -16,6 +16,40 @@
       "message": "We should use named structs for this kind of thing, unless we really intend to use this as a tuple.",
       "revId": "3bc71d28514576c6cd9681248fd22c4dc0967abf",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "184f843d_3854d6aa",
+        "filename": "src/fru_device/fru_device.cpp",
+        "patchSetId": 8
+      },
+      "lineNbr": 649,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2025-10-13T22:00:58Z",
+      "side": 1,
+      "message": "This is redundant, right?",
+      "revId": "3bc71d28514576c6cd9681248fd22c4dc0967abf",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "95ebc4f8_b1aa17ee",
+        "filename": "src/fru_device/fru_device.cpp",
+        "patchSetId": 8
+      },
+      "lineNbr": 657,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2025-10-13T22:00:58Z",
+      "side": 1,
+      "message": "https://github.com/openbmc/bmcweb/blob/5ecf7b4e1bb6988dd3403fa80b723afbe2be30ae/redfish-core/include/utils/journal_utils.hpp#L59\n\nMight be a better pattern here.",
+      "revId": "3bc71d28514576c6cd9681248fd22c4dc0967abf",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }
