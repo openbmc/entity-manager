@@ -8,6 +8,7 @@
 #include <sdbusplus/asio/connection.hpp>
 #include <sdbusplus/asio/object_server.hpp>
 
+#include <flat_map>
 #include <vector>
 
 namespace dbus_interface

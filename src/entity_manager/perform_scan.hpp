@@ -5,10 +5,10 @@
 
 #include <systemd/sd-journal.h>
 
-#include <boost/container/flat_map.hpp>
 #include <nlohmann/json.hpp>
 #include <sdbusplus/asio/object_server.hpp>
 
+#include <flat_map>
 #include <functional>
 #include <list>
 #include <vector>
