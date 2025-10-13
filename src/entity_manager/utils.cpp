@@ -3,7 +3,6 @@
 #include "../utils.hpp"
 #include "../variant_visitors.hpp"
 #include "expression.hpp"
-#include "phosphor-logging/lg2.hpp"
 
 #include <phosphor-logging/lg2.hpp>
 #include <sdbusplus/bus/match.hpp>
