@@ -2,18 +2,10 @@
 // SPDX-FileCopyrightText: Copyright 2018 Intel Corporation
 
 #pragma once
-#include <boost/container/flat_map.hpp>
+#include <flat_map>
 
 namespace devices
 {
-
-struct CmpStr
-{
-    bool operator()(const char* a, const char* b) const
-    {
-        return std::strcmp(a, b) < 0;
-    }
-};
 
 // I2C device drivers may create a /hwmon subdirectory. For example the tmp75
 // driver creates a /sys/bus/i2c/devices/<busnum>-<i2caddr>/hwmon
@@ -50,7 +42,7 @@ struct ExportTemplate
     createsHWMon hasHWMonDir;
 };
 
-const boost::container::flat_map<const char*, ExportTemplate, CmpStr>
+const std::flat_map<std::string_view, ExportTemplate, std::less<>>
     exportTemplates{
         {{"EEPROM_24C01",
           ExportTemplate("24c01 $Address", "/sys/bus/i2c/devices/i2c-$Bus",

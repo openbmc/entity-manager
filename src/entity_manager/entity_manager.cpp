@@ -16,7 +16,6 @@
 #include <boost/asio/io_context.hpp>
 #include <boost/asio/post.hpp>
 #include <boost/asio/steady_timer.hpp>
-#include <boost/container/flat_map.hpp>
 #include <boost/container/flat_set.hpp>
 #include <boost/range/iterator_range.hpp>
 #include <nlohmann/json.hpp>
@@ -25,6 +24,7 @@
 #include <sdbusplus/asio/object_server.hpp>
 
 #include <filesystem>
+#include <flat_map>
 #include <fstream>
 #include <functional>
 #include <map>

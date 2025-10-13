@@ -275,7 +275,7 @@ bool verifyOffset(std::span<const uint8_t> fruBytes, fruAreas currentArea,
 
 static void parseMultirecordUUID(
     std::span<const uint8_t> device,
-    boost::container::flat_map<std::string, std::string>& result)
+    std::flat_map<std::string, std::string, std::less<>>& result)
 {
     constexpr size_t uuidDataLen = 16;
     constexpr size_t multiRecordHeaderLen = 5;
@@ -362,7 +362,7 @@ resCodes decodeField(
     std::span<const uint8_t>::const_iterator& fruBytesIterEndArea,
     const std::vector<std::string>& fruAreaFieldNames, size_t& fieldIndex,
     DecodeState& state, bool isLangEng, const fruAreas& area,
-    boost::container::flat_map<std::string, std::string>& result)
+    std::flat_map<std::string, std::string, std::less<>>& result)
 {
     auto res = decodeFRUData(fruBytesIter, fruBytesIterEndArea, isLangEng);
     state = res.first;
@@ -430,7 +430,7 @@ resCodes decodeField(
 
 resCodes formatIPMIFRU(
     std::span<const uint8_t> fruBytes,
-    boost::container::flat_map<std::string, std::string>& result)
+    std::flat_map<std::string, std::string, std::less<>>& result)
 {
     resCodes ret = resCodes::resOK;
     if (fruBytes.size() <= fruBlockSize)
@@ -1527,9 +1527,9 @@ bool copyRestFRUArea(std::vector<uint8_t>& fruData,
 // regular expression and find the device index for all devices.
 
 std::optional<int> findIndexForFRU(
-    boost::container::flat_map<
-        std::pair<size_t, size_t>,
-        std::shared_ptr<sdbusplus::asio::dbus_interface>>& dbusInterfaceMap,
+    std::flat_map<std::pair<size_t, size_t>,
+                  std::shared_ptr<sdbusplus::asio::dbus_interface>>&
+        dbusInterfaceMap,
     std::string& productName)
 {
     int highest = -1;
@@ -1573,7 +1573,7 @@ std::optional<int> findIndexForFRU(
 
 std::optional<std::string> getProductName(
     std::vector<uint8_t>& device,
-    boost::container::flat_map<std::string, std::string>& formattedFRU,
+    std::flat_map<std::string, std::string, std::less<>>& formattedFRU,
     uint32_t bus, uint32_t address, size_t& unknownBusObjectCount)
 {
     std::string productName;
