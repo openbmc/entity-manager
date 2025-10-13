@@ -18,6 +18,24 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "ab7b10d6_d4cbed58",
+        "filename": "src/entity_manager/dbus_interface.hpp",
+        "patchSetId": 2
+      },
+      "lineNbr": 5,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2025-10-13T20:43:24Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "896774f4_294c5ec9",
+      "revId": "3d948611f3f2474a69666334014f4a37ee93cdf2",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "a31f1f25_9e6b3791",
@@ -31,6 +49,24 @@
       "writtenOn": "2025-10-13T20:16:31Z",
       "side": 1,
       "message": "boost flat_set still present here",
+      "revId": "3d948611f3f2474a69666334014f4a37ee93cdf2",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "ddc6fe23_4c67546c",
+        "filename": "src/entity_manager/entity_manager.cpp",
+        "patchSetId": 2
+      },
+      "lineNbr": 19,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2025-10-13T20:43:24Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "a31f1f25_9e6b3791",
       "revId": "3d948611f3f2474a69666334014f4a37ee93cdf2",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
@@ -58,6 +94,30 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "84e8c8af_55a4d5a1",
+        "filename": "src/entity_manager/overlay.cpp",
+        "patchSetId": 2
+      },
+      "lineNbr": 12,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2025-10-13T20:43:24Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "77146066_02cec22e",
+      "range": {
+        "startLine": 12,
+        "startChar": 0,
+        "endLine": 12,
+        "endChar": 39
+      },
+      "revId": "3d948611f3f2474a69666334014f4a37ee93cdf2",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "7ac3d646_347ac97a",
@@ -71,6 +131,24 @@
       "writtenOn": "2025-10-13T20:16:31Z",
       "side": 1,
       "message": "Why are we going away from the normal `std::set`, is it a performance consideration?\n\nGoing from the commit message i would have expected only the boost collections to be migrated.",
+      "revId": "3d948611f3f2474a69666334014f4a37ee93cdf2",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "c18c54ab_1e4e4b93",
+        "filename": "src/fru_device/fru_device.cpp",
+        "patchSetId": 2
+      },
+      "lineNbr": 372,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2025-10-13T20:43:24Z",
+      "side": 1,
+      "message": "Sure, this was done so that everything was consistent, but sure, this specific one has been removed from the patchset.\n\nGoal is consistency for our \"default\" choice of structure now that we have std things that are \"better\", but lets keep this patchset on just removing boost.",
+      "parentUuid": "7ac3d646_347ac97a",
       "revId": "3d948611f3f2474a69666334014f4a37ee93cdf2",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
