@@ -35,6 +35,24 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": true,
+      "key": {
+        "uuid": "85240e9a_ecb74633",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 14
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2025-10-13T17:20:13Z",
+      "side": 1,
+      "message": "Lets follow out on the typo fix in that thread.\n\nWe generally do not split feature patch from unit tests, as it\u0027s clear from the commit that the code is in fact tested.  Feel free to segment your review to ignore _test.cpp files if you think the patch is too large and you don\u0027t want to review the unit tests, but I\u0027d like them to stay together.",
+      "parentUuid": "6954727a_416ea175",
+      "revId": "e62cc63530830fbbc820964cffa8fd0444d8c7bc",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": false,
       "key": {
         "uuid": "48eaccb3_c24fc1c0",
@@ -65,6 +83,24 @@
       "writtenOn": "2025-10-10T22:43:35Z",
       "side": 1,
       "message": "nit: due to the typo fix there\u0027s now extra diff unrelated to your change.\n\nIMO the typo fix would be better as a separate change.",
+      "revId": "e62cc63530830fbbc820964cffa8fd0444d8c7bc",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "62582f31_a16b2eb2",
+        "filename": "test/test_fru-utils.cpp",
+        "patchSetId": 14
+      },
+      "lineNbr": 543,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2025-10-13T17:20:13Z",
+      "side": 1,
+      "message": "Maybe you were looking at a diff between the different patchsets?  There\u0027s no diff on this patchset on this line.",
+      "parentUuid": "ca9b2903_8696deaf",
       "revId": "e62cc63530830fbbc820964cffa8fd0444d8c7bc",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
