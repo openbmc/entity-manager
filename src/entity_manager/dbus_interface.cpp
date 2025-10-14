@@ -291,6 +291,17 @@ void EMDBusInterface::addObject(
             item.second);
     }
 
+    addObjectJson(newData, systemConfiguration, jsonPointerPath, path, board);
+}
+
+void EMDBusInterface::addObjectJson(
+    nlohmann::json& newData, nlohmann::json& systemConfiguration,
+    const std::string& jsonPointerPath, const std::string& path,
+    const std::string& board)
+{
+    nlohmann::json::json_pointer ptr(jsonPointerPath);
+    nlohmann::json& base = systemConfiguration[ptr];
+    auto findExposes = base.find("Exposes");
     auto findName = newData.find("Name");
     auto findType = newData.find("Type");
     if (findName == newData.end() || findType == newData.end())
