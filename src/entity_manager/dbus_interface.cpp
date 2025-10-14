@@ -11,11 +11,6 @@
 #include <string>
 #include <vector>
 
-using JsonVariantType =
-    std::variant<std::vector<std::string>, std::vector<double>, std::string,
-                 int64_t, uint64_t, double, int32_t, uint32_t, int16_t,
-                 uint16_t, uint8_t, bool>;
-
 namespace dbus_interface
 {
 
@@ -238,6 +233,124 @@ void EMDBusInterface::populateInterfaceFromJson(
     tryIfaceInitialize(iface);
 }
 
+void EMDBusInterface::addObject(
+    const std::flat_map<std::string, JsonVariantType, std::less<>>& data,
+    nlohmann::json& systemConfiguration, const std::string& jsonPointerPath,
+    const std::string& path, const std::string& board)
+{
+    nlohmann::json::json_pointer ptr(jsonPointerPath);
+    nlohmann::json& base = systemConfiguration[ptr];
+    auto findExposes = base.find("Exposes");
+
+    if (findExposes == base.end())
+    {
+        throw std::invalid_argument("Entity must have children.");
+    }
+
+    // this will throw invalid-argument to sdbusplus if invalid json
+    nlohmann::json newData{};
+    for (const auto& item : data)
+    {
+        nlohmann::json& newJson = newData[item.first];
+        std::visit(
+            [&newJson](auto&& val) {
+                newJson = std::forward<decltype(val)>(val);
+            },
+            item.second);
+    }
+
+    auto findName = newData.find("Name");
+    auto findType = newData.find("Type");
+    if (findName == newData.end() || findType == newData.end())
+    {
+        throw std::invalid_argument("AddObject missing Name or Type");
+    }
+    const std::string* type = findType->get_ptr<const std::string*>();
+    const std::string* name = findName->get_ptr<const std::string*>();
+    if (type == nullptr || name == nullptr)
+    {
+        throw std::invalid_argument("Type and Name must be a string.");
+    }
+
+    bool foundNull = false;
+    size_t lastIndex = 0;
+    // we add in the "exposes"
+    for (const auto& expose : *findExposes)
+    {
+        if (expose.is_null())
+        {
+            foundNull = true;
+            continue;
+        }
+
+        if (expose["Name"] == *name && expose["Type"] == *type)
+        {
+            throw std::invalid_argument("Field already in JSON, not adding");
+        }
+
+        if (foundNull)
+        {
+            continue;
+        }
+
+        lastIndex++;
+    }
+
+    if constexpr (ENABLE_RUNTIME_VALIDATE_JSON)
+    {
+        const std::filesystem::path schemaPath =
+            std::filesystem::path(schemaDirectory) / "exposes_record.json";
+
+        std::ifstream schemaFile{schemaPath};
+
+        if (!schemaFile.good())
+        {
+            throw std::invalid_argument(
+                "No schema avaliable, cannot validate.");
+        }
+        nlohmann::json schema =
+            nlohmann::json::parse(schemaFile, nullptr, false, true);
+        if (schema.is_discarded())
+        {
+            lg2::error("Schema not legal: {TYPE}.json", "TYPE", *type);
+            throw DBusInternalError();
+        }
+
+        if (!validateJson(schema, newData))
+        {
+            throw std::invalid_argument("Data does not match schema");
+        }
+    }
+
+    if (foundNull)
+    {
+        findExposes->at(lastIndex) = newData;
+    }
+    else
+    {
+        findExposes->push_back(newData);
+    }
+    if (!writeJsonFiles(systemConfiguration))
+    {
+        lg2::error("Error writing json files");
+    }
+    std::string dbusName = *name;
+
+    std::regex_replace(dbusName.begin(), dbusName.begin(), dbusName.end(),
+                       illegalDbusMemberRegex, "_");
+
+    std::shared_ptr<sdbusplus::asio::dbus_interface> interface =
+        createInterface(path + "/" + dbusName,
+                        "xyz.openbmc_project.Configuration." + *type, board,
+                        true);
+    // permission is read-write, as since we just created it, must be
+    // runtime modifiable
+    populateInterfaceFromJson(
+        systemConfiguration,
+        jsonPointerPath + "/Exposes/" + std::to_string(lastIndex), interface,
+        newData, sdbusplus::asio::PropertyPermission::readWrite);
+}
+
 void EMDBusInterface::createAddObjectMethod(
     const std::string& jsonPointerPath, const std::string& path,
     nlohmann::json& systemConfiguration, const std::string& board)
@@ -248,123 +361,10 @@ void EMDBusInterface::createAddObjectMethod(
     iface->register_method(
         "AddObject",
         [&systemConfiguration, jsonPointerPath{std::string(jsonPointerPath)},
-         path{std::string(path)}, board,
+         path{std::string(path)}, board{std::string(board)},
          this](const std::flat_map<std::string, JsonVariantType, std::less<>>&
                    data) {
-            nlohmann::json::json_pointer ptr(jsonPointerPath);
-            nlohmann::json& base = systemConfiguration[ptr];
-            auto findExposes = base.find("Exposes");
-
-            if (findExposes == base.end())
-            {
-                throw std::invalid_argument("Entity must have children.");
-            }
-
-            // this will throw invalid-argument to sdbusplus if invalid json
-            nlohmann::json newData{};
-            for (const auto& item : data)
-            {
-                nlohmann::json& newJson = newData[item.first];
-                std::visit(
-                    [&newJson](auto&& val) {
-                        newJson = std::forward<decltype(val)>(val);
-                    },
-                    item.second);
-            }
-
-            auto findName = newData.find("Name");
-            auto findType = newData.find("Type");
-            if (findName == newData.end() || findType == newData.end())
-            {
-                throw std::invalid_argument("AddObject missing Name or Type");
-            }
-            const std::string* type = findType->get_ptr<const std::string*>();
-            const std::string* name = findName->get_ptr<const std::string*>();
-            if (type == nullptr || name == nullptr)
-            {
-                throw std::invalid_argument("Type and Name must be a string.");
-            }
-
-            bool foundNull = false;
-            size_t lastIndex = 0;
-            // we add in the "exposes"
-            for (const auto& expose : *findExposes)
-            {
-                if (expose.is_null())
-                {
-                    foundNull = true;
-                    continue;
-                }
-
-                if (expose["Name"] == *name && expose["Type"] == *type)
-                {
-                    throw std::invalid_argument(
-                        "Field already in JSON, not adding");
-                }
-
-                if (foundNull)
-                {
-                    continue;
-                }
-
-                lastIndex++;
-            }
-
-            if constexpr (ENABLE_RUNTIME_VALIDATE_JSON)
-            {
-                const std::filesystem::path schemaPath =
-                    std::filesystem::path(schemaDirectory) /
-                    "exposes_record.json";
-
-                std::ifstream schemaFile{schemaPath};
-
-                if (!schemaFile.good())
-                {
-                    throw std::invalid_argument(
-                        "No schema avaliable, cannot validate.");
-                }
-                nlohmann::json schema =
-                    nlohmann::json::parse(schemaFile, nullptr, false, true);
-                if (schema.is_discarded())
-                {
-                    lg2::error("Schema not legal: {TYPE}.json", "TYPE", *type);
-                    throw DBusInternalError();
-                }
-
-                if (!validateJson(schema, newData))
-                {
-                    throw std::invalid_argument("Data does not match schema");
-                }
-            }
-
-            if (foundNull)
-            {
-                findExposes->at(lastIndex) = newData;
-            }
-            else
-            {
-                findExposes->push_back(newData);
-            }
-            if (!writeJsonFiles(systemConfiguration))
-            {
-                lg2::error("Error writing json files");
-            }
-            std::string dbusName = *name;
-
-            std::regex_replace(dbusName.begin(), dbusName.begin(),
-                               dbusName.end(), illegalDbusMemberRegex, "_");
-
-            std::shared_ptr<sdbusplus::asio::dbus_interface> interface =
-                createInterface(path + "/" + dbusName,
-                                "xyz.openbmc_project.Configuration." + *type,
-                                board, true);
-            // permission is read-write, as since we just created it, must be
-            // runtime modifiable
-            populateInterfaceFromJson(
-                systemConfiguration,
-                jsonPointerPath + "/Exposes/" + std::to_string(lastIndex),
-                interface, newData,
-                sdbusplus::asio::PropertyPermission::readWrite);
+            addObject(data, systemConfiguration, jsonPointerPath, path, board);
         });
     tryIfaceInitialize(iface);
 }
