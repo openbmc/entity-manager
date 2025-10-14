@@ -54,6 +54,12 @@ class EMDBusInterface
         nlohmann::json& systemConfiguration, const std::string& jsonPointerPath,
         const std::string& path, const std::string& board);
 
+    // @brief: same as 'addObject', but operates on json
+    void addObjectJson(nlohmann::json& newData,
+                       nlohmann::json& systemConfiguration,
+                       const std::string& jsonPointerPath,
+                       const std::string& path, const std::string& board);
+
     boost::asio::io_context& io;
     sdbusplus::asio::object_server& objServer;
 
