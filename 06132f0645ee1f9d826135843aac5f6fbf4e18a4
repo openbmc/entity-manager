@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d0ca882e_7803597f",
+        "filename": "src/entity_manager/devices.hpp",
+        "patchSetId": 3
+      },
+      "lineNbr": 34,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-10-14T09:10:11Z",
+      "side": 1,
+      "message": "should we call it `type` instead?\n\nconsidering this code found later on\n```\n            auto findType \u003d configuration.find(\"Type\");\n            if (findType \u003d\u003d configuration.end() ||\n                findType-\u003etype() !\u003d nlohmann::json::value_t::string)\n            {\n                continue;\n            }\n            const std::string\u0026 type \u003d findType.value().get\u003cstd::string\u003e();\n            const auto* device \u003d std::ranges::find_if(\n                devices::exportTemplates,\n                [\u0026type](const auto\u0026 tmp) { return tmp.name \u003d\u003d type; });\n```\n\nwhere we compare with `Type`.",
+      "range": {
+        "startLine": 34,
+        "startChar": 4,
+        "endLine": 34,
+        "endChar": 26
+      },
+      "revId": "06132f0645ee1f9d826135843aac5f6fbf4e18a4",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    }
+  ]
+}
