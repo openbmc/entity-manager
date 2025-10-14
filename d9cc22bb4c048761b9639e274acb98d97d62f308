@@ -1,0 +1,101 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b02f97ed_14a30a65",
+        "filename": "src/entity_manager/dbus_interface.cpp",
+        "patchSetId": 3
+      },
+      "lineNbr": 252,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-10-14T10:09:45Z",
+      "side": 1,
+      "message": "nit:\n\nSince this type appears a lot, what about creating an alias template to avoid template bloat\n\n```\ntemplate \u003c\n class Key,\n class T\n\u003e\nusing less_map \u003d std::flat_map\u003cKey, T, std::less\u003c\u003e\u003e;\n```\n\ncomparison\n```\nconst std::flat_map\u003cstd::string, JsonVariantType, std::less\u003c\u003e\u003e\u0026\nconst less_map\u003cstd::string, JsonVariantType\u003e\u0026\n```\n\nI\u0027m not sure if it\u0027s an enhancement, you can consider it.",
+      "range": {
+        "startLine": 252,
+        "startChar": 21,
+        "endLine": 252,
+        "endChar": 77
+      },
+      "revId": "d9cc22bb4c048761b9639e274acb98d97d62f308",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "87f0ae77_4aaf6e3a",
+        "filename": "src/entity_manager/perform_scan.cpp",
+        "patchSetId": 3
+      },
+      "lineNbr": 64,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-10-14T10:09:45Z",
+      "side": 1,
+      "message": "why do we call the `std::string` constructor here.\n\nThe\n```\n\nstruct DBusInterfaceInstance\n{\n    std::string busName;\n    std::string path;\n    std::string interface;\n};\n```\n\nalready has a string type and `flat_map` `[]` has an overload that accepts const reference\n\nhttps://en.cppreference.com/w/cpp/container/flat_map/operator_at.html",
+      "range": {
+        "startLine": 63,
+        "startChar": 12,
+        "endLine": 64,
+        "endChar": 59
+      },
+      "revId": "d9cc22bb4c048761b9639e274acb98d97d62f308",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7f1af725_7b9b4cf3",
+        "filename": "src/fru_device/fru_device.cpp",
+        "patchSetId": 3
+      },
+      "lineNbr": 455,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-10-14T10:09:45Z",
+      "side": 1,
+      "message": "\u003e but lets keep this patchset on just removing boost.\n\nfound another one 😎",
+      "revId": "d9cc22bb4c048761b9639e274acb98d97d62f308",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5509821c_c8f97494",
+        "filename": "src/fru_device/fru_device.cpp",
+        "patchSetId": 3
+      },
+      "lineNbr": 471,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-10-14T10:09:45Z",
+      "side": 1,
+      "message": "\u003e but lets keep this patchset on just removing boost.\n\n^",
+      "revId": "d9cc22bb4c048761b9639e274acb98d97d62f308",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "b0928935_523380c0",
+        "filename": "src/utils.hpp",
+        "patchSetId": 3
+      },
+      "lineNbr": 20,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-10-14T10:09:45Z",
+      "side": 1,
+      "message": "i\u0027m wondering if sdbusplus can map to `std::flat_map`",
+      "revId": "d9cc22bb4c048761b9639e274acb98d97d62f308",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    }
+  ]
+}
