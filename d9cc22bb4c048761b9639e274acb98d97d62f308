@@ -95,6 +95,30 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "beaf8432_224a2c37",
+        "filename": "src/entity_manager/perform_scan.cpp",
+        "patchSetId": 3
+      },
+      "lineNbr": 64,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2025-10-14T23:38:52Z",
+      "side": 1,
+      "message": "Nvm, had to go back to constructing the strings.  Not sure why\n\n```\n/usr/include/c++/15/flat_map: In instantiation of ‘typename std::flat_map\u003c_Key, _Tp, _Compare, _KeyContainer, _MappedContainer\u003e::_Impl::mapped_type\u0026 std::flat_map\u003c_Key, _Tp, _Compare, _KeyContainer, _MappedContainer\u003e::operator[](const typename _Impl::key_type\u0026) [with _Key \u003d std::__cxx11::basic_string\u003cchar\u003e; _Tp \u003d std::flat_map\u003cstd::__cxx11::basic_string\u003cchar\u003e, std::flat_map\u003cstd::__cxx11::basic_string\u003cchar\u003e, std::variant\u003cstd::__cxx11::basic_string\u003cchar, std::char_traits\u003cchar\u003e, std::allocator\u003cchar\u003e \u003e, long int, long unsigned int, double, int, unsigned int, short int, short unsigned int, unsigned char, bool, std::vector\u003cunsigned char, std::allocator\u003cunsigned char\u003e \u003e \u003e, std::less\u003cvoid\u003e \u003e, std::less\u003cvoid\u003e \u003e; _Compare \u003d std::less\u003cvoid\u003e; _KeyContainer \u003d std::vector\u003cstd::__cxx11::basic_string\u003cchar\u003e, std::allocator\u003cstd::__cxx11::basic_string\u003cchar\u003e \u003e \u003e; _MappedContainer \u003d std::vector\u003cstd::flat_map\u003cstd::__cxx11::basic_string\u003cchar\u003e, std::flat_map\u003cstd::__cxx11::basic_string\u003cchar\u003e, std::variant\u003cstd::__cxx11::basic_string\u003cchar, std::char_traits\u003cchar\u003e, std::allocator\u003cchar\u003e \u003e, long int, long unsigned int, double, int, unsigned int, short int, short unsigned int, unsigned char, bool, std::vector\u003cunsigned char, std::allocator\u003cunsigned char\u003e \u003e \u003e, std::less\u003cvoid\u003e \u003e, std::less\u003cvoid\u003e \u003e, std::allocator\u003cstd::flat_map\u003cstd::__cxx11::basic_string\u003cchar\u003e, std::flat_map\u003cstd::__cxx11::basic_string\u003cchar\u003e, std::variant\u003cstd::__cxx11::basic_string\u003cchar, std::char_traits\u003cchar\u003e, std::allocator\u003cchar\u003e \u003e, long int, long unsigned int, double, int, unsigned int, short int, short unsigned int, unsigned char, bool, std::vector\u003cunsigned char, std::allocator\u003cunsigned char\u003e \u003e \u003e, std::less\u003cvoid\u003e \u003e, std::less\u003cvoid\u003e \u003e \u003e \u003e; typename _Impl::mapped_type \u003d std::flat_map\u003cstd::__cxx11::basic_string\u003cchar\u003e, std::flat_map\u003cstd::__cxx11::basic_string\u003cchar\u003e, std::variant\u003cstd::__cxx11::basic_string\u003cchar, std::char_traits\u003cchar\u003e, std::allocator\u003cchar\u003e \u003e, long int, long unsigned int, double, int, unsigned int, short int, short unsigned int, unsigned char, bool, std::vector\u003cunsigned char, std::allocator\u003cunsigned char\u003e \u003e \u003e, std::less\u003cvoid\u003e \u003e, std::less\u003cvoid\u003e \u003e; _Impl \u003d std::flat_map\u003cstd::__cxx11::basic_string\u003cchar\u003e, std::flat_map\u003cstd::__cxx11::basic_string\u003cchar\u003e, std::flat_map\u003cstd::__cxx11::basic_string\u003cchar\u003e, std::variant\u003cstd::__cxx11::basic_string\u003cchar, std::char_traits\u003cchar\u003e, std::allocator\u003cchar\u003e \u003e, long int, long unsigned int, double, int, unsigned int, short int, short unsigned int, unsigned char, bool, std::vector\u003cunsigned char, std::allocator\u003cunsigned char\u003e \u003e \u003e, std::less\u003cvoid\u003e \u003e, std::less\u003cvoid\u003e \u003e, std::less\u003cvoid\u003e \u003e::_Impl; typename _Impl::key_type \u003d std::__cxx11::basic_string\u003cchar\u003e]’:\n```\n\nIf you have a solution, I\u0027m happy to fix this, but I played with it a bit and couldn\u0027t figure it out.",
+      "parentUuid": "47290c77_6309d8c7",
+      "range": {
+        "startLine": 63,
+        "startChar": 12,
+        "endLine": 64,
+        "endChar": 59
+      },
+      "revId": "d9cc22bb4c048761b9639e274acb98d97d62f308",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "7f1af725_7b9b4cf3",
