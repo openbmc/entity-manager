@@ -26,6 +26,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "fb285302_b3f0014a",
+        "filename": "src/entity_manager/dbus_interface.cpp",
+        "patchSetId": 3
+      },
+      "lineNbr": 252,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2025-10-14T23:25:24Z",
+      "side": 1,
+      "message": "I thought about that, but the std::library folks thought this shouldn\u0027t be the default, and I don\u0027t really want to argue with them 😊\n\nReally, I don\u0027t think adding a using declaration helps here, as we really should avoid throwing dicts of keys all over the place.  Sometimes it\u0027s needed, but making a using would imply that it\u0027s a core type that we want to use a lot of places, and Id\u0027 really just prefer we keep it out of api boundaries in the future.\n\nI\u0027d also note that we actually don\u0027t want to use the template std::less lookup if the key is not a string, but that gets subtle, and I don\u0027t really want to be subtle in a using declaration.",
+      "parentUuid": "b02f97ed_14a30a65",
+      "range": {
+        "startLine": 252,
+        "startChar": 21,
+        "endLine": 252,
+        "endChar": 77
+      },
+      "revId": "d9cc22bb4c048761b9639e274acb98d97d62f308",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "87f0ae77_4aaf6e3a",
         "filename": "src/entity_manager/perform_scan.cpp",
         "patchSetId": 3
@@ -37,6 +61,30 @@
       "writtenOn": "2025-10-14T10:09:45Z",
       "side": 1,
       "message": "why do we call the `std::string` constructor here.\n\nThe\n```\n\nstruct DBusInterfaceInstance\n{\n    std::string busName;\n    std::string path;\n    std::string interface;\n};\n```\n\nalready has a string type and `flat_map` `[]` has an overload that accepts const reference\n\nhttps://en.cppreference.com/w/cpp/container/flat_map/operator_at.html",
+      "range": {
+        "startLine": 63,
+        "startChar": 12,
+        "endLine": 64,
+        "endChar": 59
+      },
+      "revId": "d9cc22bb4c048761b9639e274acb98d97d62f308",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "47290c77_6309d8c7",
+        "filename": "src/entity_manager/perform_scan.cpp",
+        "patchSetId": 3
+      },
+      "lineNbr": 64,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2025-10-14T23:25:24Z",
+      "side": 1,
+      "message": "At one point that overload wasn\u0027t working, and I did this as a test to fix the bug.  The code has been brought back to the old way of doing this.",
+      "parentUuid": "87f0ae77_4aaf6e3a",
       "range": {
         "startLine": 63,
         "startChar": 12,
@@ -66,6 +114,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "dc2d1222_cb9d073a",
+        "filename": "src/fru_device/fru_device.cpp",
+        "patchSetId": 3
+      },
+      "lineNbr": 455,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2025-10-14T23:25:24Z",
+      "side": 1,
+      "message": "This is part of the boost change.  This struct is boost::flat_map\u003cstr, std::set\u003e.  Might as well just change it once.",
+      "parentUuid": "7f1af725_7b9b4cf3",
+      "revId": "d9cc22bb4c048761b9639e274acb98d97d62f308",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "5509821c_c8f97494",
         "filename": "src/fru_device/fru_device.cpp",
         "patchSetId": 3
@@ -77,6 +143,24 @@
       "writtenOn": "2025-10-14T10:09:45Z",
       "side": 1,
       "message": "\u003e but lets keep this patchset on just removing boost.\n\n^",
+      "revId": "d9cc22bb4c048761b9639e274acb98d97d62f308",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ba8e3d2f_93a042ba",
+        "filename": "src/fru_device/fru_device.cpp",
+        "patchSetId": 3
+      },
+      "lineNbr": 471,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2025-10-14T23:25:24Z",
+      "side": 1,
+      "message": "^",
+      "parentUuid": "5509821c_c8f97494",
       "revId": "d9cc22bb4c048761b9639e274acb98d97d62f308",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
