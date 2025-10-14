@@ -37,6 +37,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "3584f280_b595ddde",
+        "filename": "src/entity_manager/overlay.cpp",
+        "patchSetId": 11
+      },
+      "lineNbr": 82,
+      "author": {
+        "id": 1001538
+      },
+      "writtenOn": "2025-10-14T16:20:09Z",
+      "side": 1,
+      "message": "Would `DeviceConfig` objects then need to have `MuxChannel`/`ChannelName` added to it so that it can be compared against the muxMap?",
+      "parentUuid": "74c52776_6e117f4f",
+      "revId": "5ec925827827ee3dfd4cce6244fa2eb7d0be9a65",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "a0c9b6bf_9ff242ec",
         "filename": "src/entity_manager/overlay.cpp",
         "patchSetId": 11
@@ -48,6 +66,24 @@
       "writtenOn": "2025-08-04T10:57:24Z",
       "side": 1,
       "message": "Will `linkMux` be called when `buildDevice` is triggered as a retry?",
+      "revId": "5ec925827827ee3dfd4cce6244fa2eb7d0be9a65",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "536113ba_5423ea04",
+        "filename": "src/entity_manager/overlay.cpp",
+        "patchSetId": 11
+      },
+      "lineNbr": 190,
+      "author": {
+        "id": 1001538
+      },
+      "writtenOn": "2025-10-14T16:20:09Z",
+      "side": 1,
+      "message": "Yes, `linkMux` will be called as long as `buildDevice` succeeds",
+      "parentUuid": "a0c9b6bf_9ff242ec",
       "revId": "5ec925827827ee3dfd4cce6244fa2eb7d0be9a65",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
@@ -69,6 +105,24 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "408a0d18_0901935c",
+        "filename": "src/entity_manager/overlay.cpp",
+        "patchSetId": 11
+      },
+      "lineNbr": 259,
+      "author": {
+        "id": 1001538
+      },
+      "writtenOn": "2025-10-14T16:20:09Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "e31296b6_46915243",
+      "revId": "5ec925827827ee3dfd4cce6244fa2eb7d0be9a65",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "9995db3a_0b120745",
@@ -86,6 +140,24 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "0dd96a84_6257237b",
+        "filename": "src/entity_manager/overlay.cpp",
+        "patchSetId": 11
+      },
+      "lineNbr": 263,
+      "author": {
+        "id": 1001538
+      },
+      "writtenOn": "2025-10-14T16:20:09Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "9995db3a_0b120745",
+      "revId": "5ec925827827ee3dfd4cce6244fa2eb7d0be9a65",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "d9718771_0ca9487f",
@@ -99,6 +171,24 @@
       "writtenOn": "2025-08-04T10:57:24Z",
       "side": 1,
       "message": "Should \"Bus\" be looked for first to exclude entities that have already been linked before parsing more into MuxChannel?\n\nI wonder if \"MuxChannel\" should be kept after \"Bus\" is filled? Because in the schema, \"Bus\" and \"MuxChannel\" can\u0027t exist together. After the linkMux job is done, MuxChannel is not useful anymore.",
+      "revId": "5ec925827827ee3dfd4cce6244fa2eb7d0be9a65",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "294819cc_50bdbe80",
+        "filename": "src/entity_manager/overlay.cpp",
+        "patchSetId": 11
+      },
+      "lineNbr": 300,
+      "author": {
+        "id": 1001538
+      },
+      "writtenOn": "2025-10-14T16:20:09Z",
+      "side": 1,
+      "message": "I don\u0027t think \"MuxChannel\" needs to be removed once \"Bus\" is inserted. The schema shows that they can\u0027t exist together as part of the user\u0027s configurations, but having the \"Bus\" be inserted by entity-manager after processing the configuration should be fine.",
+      "parentUuid": "d9718771_0ca9487f",
       "revId": "5ec925827827ee3dfd4cce6244fa2eb7d0be9a65",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
