@@ -13,6 +13,11 @@
 namespace dbus_interface
 {
 
+using JsonVariantType =
+    std::variant<std::vector<std::string>, std::vector<double>, std::string,
+                 int64_t, uint64_t, double, int32_t, uint32_t, int16_t,
+                 uint16_t, uint8_t, bool>;
+
 class EMDBusInterface
 {
   public:
@@ -44,6 +49,11 @@ class EMDBusInterface
         nlohmann::json& systemConfiguration);
 
   private:
+    void addObject(
+        const boost::container::flat_map<std::string, JsonVariantType>& data,
+        nlohmann::json& systemConfiguration, const std::string& jsonPointerPath,
+        const std::string& path, const std::string& board);
+
     boost::asio::io_context& io;
     sdbusplus::asio::object_server& objServer;
 
