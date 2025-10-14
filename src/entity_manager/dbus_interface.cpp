@@ -233,6 +233,38 @@ void EMDBusInterface::populateInterfaceFromJson(
     tryIfaceInitialize(iface);
 }
 
+// @brief: throws on error
+static void addObjectRuntimeValidateJson(const nlohmann::json& newData,
+                                         const std::string* type)
+{
+    if constexpr (!ENABLE_RUNTIME_VALIDATE_JSON)
+    {
+        return;
+    }
+
+    const std::filesystem::path schemaPath =
+        std::filesystem::path(schemaDirectory) / "exposes_record.json";
+
+    std::ifstream schemaFile{schemaPath};
+
+    if (!schemaFile.good())
+    {
+        throw std::invalid_argument("No schema avaliable, cannot validate.");
+    }
+    nlohmann::json schema =
+        nlohmann::json::parse(schemaFile, nullptr, false, true);
+    if (schema.is_discarded())
+    {
+        lg2::error("Schema not legal: {TYPE}.json", "TYPE", *type);
+        throw DBusInternalError();
+    }
+
+    if (!validateJson(schema, newData))
+    {
+        throw std::invalid_argument("Data does not match schema");
+    }
+}
+
 void EMDBusInterface::addObject(
     const std::flat_map<std::string, JsonVariantType, std::less<>>& data,
     nlohmann::json& systemConfiguration, const std::string& jsonPointerPath,
@@ -296,31 +328,7 @@ void EMDBusInterface::addObject(
         lastIndex++;
     }
 
-    if constexpr (ENABLE_RUNTIME_VALIDATE_JSON)
-    {
-        const std::filesystem::path schemaPath =
-            std::filesystem::path(schemaDirectory) / "exposes_record.json";
-
-        std::ifstream schemaFile{schemaPath};
-
-        if (!schemaFile.good())
-        {
-            throw std::invalid_argument(
-                "No schema avaliable, cannot validate.");
-        }
-        nlohmann::json schema =
-            nlohmann::json::parse(schemaFile, nullptr, false, true);
-        if (schema.is_discarded())
-        {
-            lg2::error("Schema not legal: {TYPE}.json", "TYPE", *type);
-            throw DBusInternalError();
-        }
-
-        if (!validateJson(schema, newData))
-        {
-            throw std::invalid_argument("Data does not match schema");
-        }
-    }
+    addObjectRuntimeValidateJson(newData, type);
 
     if (foundNull)
     {
