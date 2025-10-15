@@ -74,6 +74,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "03449f3f_cbfc0f7f",
+        "filename": "src/entity_manager/entity_manager.cpp",
+        "patchSetId": 8
+      },
+      "lineNbr": 119,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2025-10-15T23:36:14Z",
+      "side": 1,
+      "message": "I looked at this for a second, and even this verbose code has a non-obvious unhandled error if this isn\u0027t an object.\n\nI did attempt to add the helper function, and it devolved pretty quick:\n\nhttps://gerrit.openbmc.org/c/openbmc/entity-manager/+/84471",
+      "parentUuid": "e259a33a_de3c5d7f",
+      "range": {
+        "startLine": 107,
+        "startChar": 4,
+        "endLine": 119,
+        "endChar": 5
+      },
+      "revId": "c3fe4bb799f511b61b4fb599ed38dded735ce425",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "5430611f_9518a3a9",
         "filename": "src/entity_manager/perform_scan.cpp",
         "patchSetId": 8
@@ -121,6 +145,24 @@
       "side": 1,
       "message": "\u003e Will dig deeper on the suggestion and see if I\u0027m able to stack a patch, because I do think this is worthwhile to look at.\n\nI\u0027m fine with it as long as we can get it fixed. closing.",
       "parentUuid": "b6e003ac_bb5aa97e",
+      "revId": "c3fe4bb799f511b61b4fb599ed38dded735ce425",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "0a5f2242_8aa0e630",
+        "filename": "src/entity_manager/perform_scan.cpp",
+        "patchSetId": 8
+      },
+      "lineNbr": 417,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2025-10-15T23:36:14Z",
+      "side": 1,
+      "message": "👍",
+      "parentUuid": "696f1a68_bee058b9",
       "revId": "c3fe4bb799f511b61b4fb599ed38dded735ce425",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
