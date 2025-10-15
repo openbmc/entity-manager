@@ -47,6 +47,7 @@ test(
         'test_topology',
         'test_topology.cpp',
         '../src/entity_manager/topology.cpp',
+        '../src/json_utils.cpp',
         cpp_args: test_boost_args,
         dependencies: [gtest, gmock, nlohmann_json_dep, phosphor_logging_dep],
         include_directories: test_include_dir,

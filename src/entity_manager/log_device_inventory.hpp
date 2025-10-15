@@ -5,6 +5,6 @@
 
 #include <nlohmann/json.hpp>
 
-void logDeviceAdded(const nlohmann::json& record);
+void logDeviceAdded(const nlohmann::json::object_t& record);
 
-void logDeviceRemoved(const nlohmann::json& record);
+void logDeviceRemoved(const nlohmann::json::object_t& record);

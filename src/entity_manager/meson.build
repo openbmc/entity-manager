@@ -25,8 +25,10 @@ entity_manager_lib = static_library(
     'utils.cpp',
     'log_device_inventory.cpp',
     '../utils.cpp',
+    '../json_utils.cpp',
     cpp_args: cpp_args_em,
     dependencies: em_deps,
+    include_directories: '..',
 )
 
 executable(

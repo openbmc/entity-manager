@@ -1,5 +1,6 @@
 #include "topology.hpp"
 
+#include "json_utils.hpp"
 #include "phosphor-logging/lg2.hpp"
 
 const AssocName assocContaining =
@@ -53,34 +54,32 @@ std::optional<AssocName> Topology::getAssocByName(const std::string& name)
 
 void Topology::addBoard(const std::string& path, const std::string& boardType,
                         const std::string& boardName,
-                        const nlohmann::json& exposesItem)
+                        const nlohmann::json::object_t& exposesItem)
 {
-    auto findType = exposesItem.find("Type");
-    if (findType == exposesItem.end())
+    const std::string* exposesType = getStringFromObject(exposesItem, "Type");
+    if (exposesType == nullptr)
     {
         return;
     }
 
     boardNames.try_emplace(boardName, path);
 
-    PortType exposesType = findType->get<std::string>();
-
-    if (exposesType == "DownstreamPort")
+    if (*exposesType == "DownstreamPort")
     {
         addDownstreamPort(path, exposesItem);
     }
-    else if (exposesType == "Port")
+    else if (*exposesType == "Port")
     {
         addConfiguredPort(path, exposesItem);
     }
-    else if (exposesType.ends_with("Port"))
+    else if (exposesType->ends_with("Port"))
     {
-        addPort(exposesType, path, assocContaining);
+        addPort(*exposesType, path, assocContaining);
 
         // this represents the legacy quirk of upstream ports having no choice
         // in the
         // powered_by association
-        addPort(exposesType, path, assocPoweredBy);
+        addPort(*exposesType, path, assocPoweredBy);
     }
     else
     {
@@ -120,21 +119,22 @@ void Topology::addConfiguredPort(const Path& path,
 }
 
 void Topology::addDownstreamPort(const Path& path,
-                                 const nlohmann::json& exposesItem)
+                                 const nlohmann::json::object_t& exposesItem)
 {
-    auto findConnectsTo = exposesItem.find("ConnectsToType");
-    if (findConnectsTo == exposesItem.end())
+    const std::string* connectsToType =
+        getStringFromObject(exposesItem, "ConnectsToType");
+    if (connectsToType == nullptr)
     {
         lg2::error("Board at path {PATH} is missing ConnectsToType", "PATH",
                    path);
         return;
     }
-    PortType connectsTo = findConnectsTo->get<std::string>();
+
+    PortType connectsTo = *connectsToType;
 
     addPort(connectsTo, path, assocContainedBy);
 
-    auto findPoweredBy = exposesItem.find("PowerPort");
-    if (findPoweredBy != exposesItem.end())
+    if (exposesItem.find("PowerPort") != exposesItem.end())
     {
         addPort(connectsTo, path, assocPowering);
     }

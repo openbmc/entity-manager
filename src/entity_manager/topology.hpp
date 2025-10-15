@@ -44,7 +44,7 @@ class Topology
 
     void addBoard(const std::string& path, const std::string& boardType,
                   const std::string& boardName,
-                  const nlohmann::json& exposesItem);
+                  const nlohmann::json::object_t& exposesItem);
     std::unordered_map<std::string, std::set<Association>> getAssocs(
         BoardPathsView boardPaths);
     void remove(const std::string& boardName);
@@ -55,7 +55,8 @@ class Topology
     using BoardName = std::string;
     using PortType = std::string;
 
-    void addDownstreamPort(const Path& path, const nlohmann::json& exposesItem);
+    void addDownstreamPort(const Path& path,
+                           const nlohmann::json::object_t& exposesItem);
 
     // @brief: fill associations map with the associations for a port identifier
     // such as 'MB Upstream Port'

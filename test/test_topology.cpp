@@ -17,36 +17,44 @@ const Association subchassisAssoc =
 const Association powerAssoc =
     std::make_tuple("powering", "powered_by", superchassisPath);
 
-const nlohmann::json subchassisExposesItem = nlohmann::json::parse(R"(
+const nlohmann::json::object_t subchassisExposesItem =
+    nlohmann::json::parse(R"(
     {
         "ConnectsToType": "BackplanePort",
         "Name": "MyDownstreamPort",
         "Type": "DownstreamPort"
     }
-)");
+)")
+        .get<nlohmann::json::object_t>();
 
-const nlohmann::json powerExposesItem = nlohmann::json::parse(R"(
+const nlohmann::json::object_t powerExposesItem =
+    nlohmann::json::parse(R"(
     {
         "ConnectsToType": "BackplanePort",
         "Name": "MyDownstreamPort",
         "Type": "DownstreamPort",
         "PowerPort": true
     }
-)");
+)")
+        .get<nlohmann::json::object_t>();
 
-const nlohmann::json superchassisExposesItem = nlohmann::json::parse(R"(
+const nlohmann::json::object_t superchassisExposesItem =
+    nlohmann::json::parse(R"(
     {
         "Name": "MyBackplanePort",
         "Type": "BackplanePort"
     }
-)");
+)")
+        .get<nlohmann::json::object_t>();
 
-const nlohmann::json otherExposesItem = nlohmann::json::parse(R"(
+const nlohmann::json::object_t otherExposesItem =
+    nlohmann::json::parse(R"(
     {
         "Name": "MyExposes",
         "Type": "OtherType"
     }
-)");
+)")
+        .get<nlohmann::json::object_t>();
 
 using BoardMap = std::map<std::string, std::string>;
 
@@ -65,8 +73,8 @@ TEST(Topology, EmptyExposes)
     Topology topo;
     BoardMap boards{{subchassisPath, "BoardA"}, {superchassisPath, "BoardB"}};
 
-    topo.addBoard(subchassisPath, "Chassis", "BoardA", nlohmann::json());
-    topo.addBoard(superchassisPath, "Chassis", "BoardB", nlohmann::json());
+    topo.addBoard(subchassisPath, "Chassis", "BoardA", {});
+    topo.addBoard(superchassisPath, "Chassis", "BoardB", {});
 
     auto assocs = topo.getAssocs(std::views::keys(boards));
 
@@ -75,12 +83,13 @@ TEST(Topology, EmptyExposes)
 
 TEST(Topology, MissingConnectsTo)
 {
-    const nlohmann::json subchassisMissingConnectsTo = nlohmann::json::parse(R"(
-        {
-            "Name": "MyDownstreamPort",
-            "Type": "DownstreamPort"
-        }
-    )");
+    nlohmann::json::object_t subchassisMissingConnectsTo;
+    subchassisMissingConnectsTo["Name"] = "MyDownstreamPort";
+    subchassisMissingConnectsTo["Type"] = "DownstreamPort";
+
+    nlohmann::json::object_t superchassisExposesItem;
+    superchassisExposesItem["Name"] = "MyBackplanePort";
+    superchassisExposesItem["Type"] = "BackplanePort";
 
     Topology topo;
     BoardMap boards{{subchassisPath, "BoardA"}, {superchassisPath, "BoardB"}};
@@ -331,34 +340,42 @@ TEST(Topology, SimilarToTyanS8030)
     const std::string psu1Path =
         "/xyz/openbmc_project/inventory/system/powersupply/PSU1";
 
-    const nlohmann::json chassisContainExposesItem = nlohmann::json::parse(R"(
+    const nlohmann::json::object_t chassisContainExposesItem =
+        nlohmann::json::parse(R"(
     {
         "Name": "GenericContainPort",
         "PortType": "containing",
         "Type": "Port"
     }
-)");
-    const nlohmann::json containedByExposesItem = nlohmann::json::parse(R"(
+)")
+            .get<nlohmann::json::object_t>();
+    const nlohmann::json::object_t containedByExposesItem =
+        nlohmann::json::parse(R"(
     {
         "Name": "GenericContainPort",
         "PortType": "contained_by",
         "Type": "Port"
     }
-)");
-    const nlohmann::json boardPowerExposesItem = nlohmann::json::parse(R"(
+)")
+            .get<nlohmann::json::object_t>();
+    const nlohmann::json::object_t boardPowerExposesItem =
+        nlohmann::json::parse(R"(
     {
         "Name": "GenericPowerPort",
         "PortType": "powered_by",
         "Type": "Port"
     }
-)");
-    const nlohmann::json psuPowerExposesItem = nlohmann::json::parse(R"(
+)")
+            .get<nlohmann::json::object_t>();
+    const nlohmann::json::object_t psuPowerExposesItem =
+        nlohmann::json::parse(R"(
     {
         "Name": "GenericPowerPort",
         "PortType": "powering",
         "Type": "Port"
     }
-)");
+)")
+            .get<nlohmann::json::object_t>();
     Topology topo;
     BoardMap boards{
         {chassisPath, "ChassisA"},
@@ -411,29 +428,26 @@ TEST(Topology, SimilarToTyanS8030)
         assocs[psu1Path].contains({"contained_by", "containing", chassisPath}));
 }
 
-static nlohmann::json makeExposesItem(const std::string& name,
-                                      const std::string& assocName)
+static nlohmann::json::object_t makeExposesItem(const std::string& name,
+                                                const std::string& assocName)
 {
-    nlohmann::json exposesItem = nlohmann::json::parse(R"(
-    {
-        "Name": "REPLACE",
-        "PortType": "REPLACE",
-        "Type": "Port"
-    }
-)");
+    nlohmann::json::object_t exposesItem;
 
+    exposesItem["Type"] = "Port";
     exposesItem["Name"] = name;
     exposesItem["PortType"] = assocName;
 
     return exposesItem;
 }
 
-static nlohmann::json makeContainedPortExposesItem(const std::string& name)
+static nlohmann::json::object_t makeContainedPortExposesItem(
+    const std::string& name)
 {
     return makeExposesItem(name, "contained_by");
 }
 
-static nlohmann::json makeContainingPortExposesItem(const std::string& name)
+static nlohmann::json::object_t makeContainingPortExposesItem(
+    const std::string& name)
 {
     return makeExposesItem(name, "containing");
 }
@@ -459,34 +473,34 @@ TEST(Topology, SimilarToYosemiteV3)
     const std::string superChassisPath =
         "/xyz/openbmc_project/inventory/system/chassis/SuperChassis";
 
-    const nlohmann::json blade1ExposesItem =
+    const nlohmann::json::object_t blade1ExposesItem =
         makeContainedPortExposesItem("Blade1Port");
-    const nlohmann::json blade2ExposesItem =
+    const nlohmann::json::object_t blade2ExposesItem =
         makeContainedPortExposesItem("Blade2Port");
-    const nlohmann::json blade3ExposesItem =
+    const nlohmann::json::object_t blade3ExposesItem =
         makeContainedPortExposesItem("Blade3Port");
-    const nlohmann::json blade4ExposesItem =
+    const nlohmann::json::object_t blade4ExposesItem =
         makeContainedPortExposesItem("Blade4Port");
 
-    const nlohmann::json chassis1ExposesItem =
+    const nlohmann::json::object_t chassis1ExposesItem =
         makeContainingPortExposesItem("Blade1Port");
-    const nlohmann::json chassis2ExposesItem =
+    const nlohmann::json::object_t chassis2ExposesItem =
         makeContainingPortExposesItem("Blade2Port");
-    const nlohmann::json chassis3ExposesItem =
+    const nlohmann::json::object_t chassis3ExposesItem =
         makeContainingPortExposesItem("Blade3Port");
-    const nlohmann::json chassis4ExposesItem =
+    const nlohmann::json::object_t chassis4ExposesItem =
         makeContainingPortExposesItem("Blade4Port");
 
-    const nlohmann::json chassis1ExposesItem2 =
+    const nlohmann::json::object_t chassis1ExposesItem2 =
         makeContainedPortExposesItem("SuperChassisPort");
-    const nlohmann::json chassis2ExposesItem2 =
+    const nlohmann::json::object_t chassis2ExposesItem2 =
         makeContainedPortExposesItem("SuperChassisPort");
-    const nlohmann::json chassis3ExposesItem2 =
+    const nlohmann::json::object_t chassis3ExposesItem2 =
         makeContainedPortExposesItem("SuperChassisPort");
-    const nlohmann::json chassis4ExposesItem2 =
+    const nlohmann::json::object_t chassis4ExposesItem2 =
         makeContainedPortExposesItem("SuperChassisPort");
 
-    const nlohmann::json superChassisExposesItem =
+    const nlohmann::json::object_t superChassisExposesItem =
         makeContainingPortExposesItem("SuperChassisPort");
 
     Topology topo;

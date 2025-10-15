@@ -3,6 +3,8 @@
 
 #pragma once
 
+#include "json_utils.hpp"
+
 #include <boost/container/flat_map.hpp>
 #include <nlohmann/json.hpp>
 #include <sdbusplus/asio/connection.hpp>
@@ -54,20 +56,17 @@ struct DBusInternalError final : public sdbusplus::exception_t
     }
 };
 
-inline bool deviceHasLogging(const nlohmann::json& json)
+inline bool deviceHasLogging(const nlohmann::json::object_t& json)
 {
-    auto logging = json.find("Logging");
-    if (logging != json.end())
+    const std::string* logging = getStringFromObject(json, "Logging");
+    if (logging != nullptr)
     {
-        const auto* ptr = logging->get_ptr<const std::string*>();
-        if (ptr != nullptr)
+        if (*logging == "Off")
         {
-            if (*ptr == "Off")
-            {
-                return false;
-            }
+            return false;
         }
     }
+
     return true;
 }
 

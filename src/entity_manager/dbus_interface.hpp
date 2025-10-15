@@ -34,7 +34,7 @@ class EMDBusInterface
     void populateInterfaceFromJson(
         nlohmann::json& systemConfiguration, const std::string& jsonPointerPath,
         std::shared_ptr<sdbusplus::asio::dbus_interface>& iface,
-        nlohmann::json& dict,
+        const nlohmann::json::object_t& dict,
         sdbusplus::asio::PropertyPermission permission =
             sdbusplus::asio::PropertyPermission::readOnly);
 

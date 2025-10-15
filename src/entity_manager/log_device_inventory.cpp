@@ -61,7 +61,7 @@ static InvAddRemoveInfo queryInvInfo(const nlohmann::json& record)
     return {model, type, sn, name};
 }
 
-void logDeviceAdded(const nlohmann::json& record)
+void logDeviceAdded(const nlohmann::json::object_t& record)
 {
     if (!EM_CACHE_CONFIGURATION)
     {
@@ -81,7 +81,7 @@ void logDeviceAdded(const nlohmann::json& record)
         info.sn.c_str(), "NAME=%s", info.name.c_str(), NULL);
 }
 
-void logDeviceRemoved(const nlohmann::json& record)
+void logDeviceRemoved(const nlohmann::json::object_t& record)
 {
     if (!deviceHasLogging(record))
     {

@@ -101,9 +101,10 @@ void EMDBusInterface::createDeleteObjectMethod(
         });
 }
 
-static bool checkArrayElementsSameType(nlohmann::json& value)
+static bool checkArrayElementsSameType(const nlohmann::json& value)
 {
-    nlohmann::json::array_t* arr = value.get_ptr<nlohmann::json::array_t*>();
+    const nlohmann::json::array_t* arr =
+        value.get_ptr<const nlohmann::json::array_t*>();
     if (arr == nullptr)
     {
         return false;
@@ -202,9 +203,10 @@ static void populateInterfacePropertyFromJson(
 void EMDBusInterface::populateInterfaceFromJson(
     nlohmann::json& systemConfiguration, const std::string& jsonPointerPath,
     std::shared_ptr<sdbusplus::asio::dbus_interface>& iface,
-    nlohmann::json& dict, sdbusplus::asio::PropertyPermission permission)
+    const nlohmann::json::object_t& dict,
+    sdbusplus::asio::PropertyPermission permission)
 {
-    for (const auto& [key, value] : dict.items())
+    for (const auto& [key, value] : dict)
     {
         auto type = value.type();
         if (value.type() == nlohmann::json::value_t::array)
@@ -261,7 +263,7 @@ void EMDBusInterface::createAddObjectMethod(
             }
 
             // this will throw invalid-argument to sdbusplus if invalid json
-            nlohmann::json newData{};
+            nlohmann::json::object_t newData;
             for (const auto& item : data)
             {
                 nlohmann::json& newJson = newData[item.first];
@@ -271,15 +273,8 @@ void EMDBusInterface::createAddObjectMethod(
                     },
                     item.second);
             }
-
-            auto findName = newData.find("Name");
-            auto findType = newData.find("Type");
-            if (findName == newData.end() || findType == newData.end())
-            {
-                throw std::invalid_argument("AddObject missing Name or Type");
-            }
-            const std::string* type = findType->get_ptr<const std::string*>();
-            const std::string* name = findName->get_ptr<const std::string*>();
+            const std::string* type = getStringFromObject(newData, "Type");
+            const std::string* name = getStringFromObject(newData, "Name");
             if (type == nullptr || name == nullptr)
             {
                 throw std::invalid_argument("Type and Name must be a string.");
