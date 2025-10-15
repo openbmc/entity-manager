@@ -1,0 +1,67 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e4878915_9feb103f",
+        "filename": "src/entity_manager/entity_manager.cpp",
+        "patchSetId": 8
+      },
+      "lineNbr": 119,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-10-15T08:23:17Z",
+      "side": 1,
+      "message": "IMO that\u0027s too much code for getting a value out of a json and confirming it\u0027s some type.\n\nIf it\u0027s not possible to do this with a single function (and possibly a branch afterwards to check the error) then maybe we should go with a helper function?\n\nAs written that\u0027s 14 lines to get `std::string boardName`\n\n\nI get that we may need to write it this way but if it\u0027s a pattern that shows up a lot (and EM gets a lot of strings from json) then let\u0027s make a helper function to contain it.",
+      "range": {
+        "startLine": 107,
+        "startChar": 4,
+        "endLine": 119,
+        "endChar": 5
+      },
+      "revId": "c3fe4bb799f511b61b4fb599ed38dded735ce425",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5430611f_9518a3a9",
+        "filename": "src/entity_manager/perform_scan.cpp",
+        "patchSetId": 8
+      },
+      "lineNbr": 417,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-10-15T08:23:17Z",
+      "side": 1,
+      "message": "IMO That\u0027s the wrong way to go about this.\n\nline 397\n\n```\n nlohmann::json copyForName \u003d nameTemplate;\n```\n\nwe are making json out a string, just to call `templateCharReplace` which\nthen internally makes a string out of that again anyways.\n\nOne way to solve would be to extract the part of `templateCharReplace` which operates on a string to a separate function and call that here.",
+      "revId": "c3fe4bb799f511b61b4fb599ed38dded735ce425",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "41b72c72_54c5dda4",
+        "filename": "src/entity_manager/perform_scan.cpp",
+        "patchSetId": 8
+      },
+      "lineNbr": 511,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-10-15T08:23:17Z",
+      "side": 1,
+      "message": "helper function. Too much code for getting a simple string from json.\n\nWe are mixing abstraction levels and having multiple branches here for what should be a function call and a single branch.",
+      "range": {
+        "startLine": 498,
+        "startChar": 7,
+        "endLine": 511,
+        "endChar": 9
+      },
+      "revId": "c3fe4bb799f511b61b4fb599ed38dded735ce425",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    }
+  ]
+}
