@@ -50,6 +50,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "e259a33a_de3c5d7f",
+        "filename": "src/entity_manager/entity_manager.cpp",
+        "patchSetId": 8
+      },
+      "lineNbr": 119,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-10-15T16:55:36Z",
+      "side": 1,
+      "message": "\u003e That would save us one branch in the calling code, so we\u0027re down to ~6 lines instead of 13, but for cases where multiple keys are pulled from the same object, we N times the object_t check. We lose the call site information.\n\nLet\u0027s go with this additional runtime overhead if it can simplify the code.\n\nI would be happy to have a complicated code for optimization purpose if this was heavily unit tested, which it is not.\n\n\u003e All of the above is solvable. My biggest concern is that if you\u0027re seeing this pattern, it means the function in question should\u0027ve never accepted by nlohmann::json, it should\u0027ve accepted by nlohmann::json::object_t, which is a transform I\u0027ve done in some places in this patch, but not all. If we wrap that in a helper function, the code now \"looks correct\" even though we should be fixing the API.\n\nAgree, we should probably be more specific about if we are passing json object or array.",
+      "parentUuid": "46321d33_01944ec7",
+      "range": {
+        "startLine": 107,
+        "startChar": 4,
+        "endLine": 119,
+        "endChar": 5
+      },
+      "revId": "c3fe4bb799f511b61b4fb599ed38dded735ce425",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "5430611f_9518a3a9",
         "filename": "src/entity_manager/perform_scan.cpp",
         "patchSetId": 8
@@ -79,6 +103,24 @@
       "side": 1,
       "message": "I\u0027m not following what the suggestion is.  templateCharReplace isn\u0027t called in the highlighed lines at all, so calling it would significantly change behavior.  FWIW, I\u0027m actually not sure what this path does.\n\nI agree, there\u0027s likely something better we could do here, I\u0027m just not sure what without turning this into a huge refactoring patch.  This function was arguably wrong before, it could be improved, but I don\u0027t think that should hold up this refactor?\n\nWill dig deeper on the suggestion and see if I\u0027m able to stack a patch, because I do think this is worthwhile to look at.",
       "parentUuid": "5430611f_9518a3a9",
+      "revId": "c3fe4bb799f511b61b4fb599ed38dded735ce425",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "696f1a68_bee058b9",
+        "filename": "src/entity_manager/perform_scan.cpp",
+        "patchSetId": 8
+      },
+      "lineNbr": 417,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-10-15T16:55:36Z",
+      "side": 1,
+      "message": "\u003e Will dig deeper on the suggestion and see if I\u0027m able to stack a patch, because I do think this is worthwhile to look at.\n\nI\u0027m fine with it as long as we can get it fixed. closing.",
+      "parentUuid": "b6e003ac_bb5aa97e",
       "revId": "c3fe4bb799f511b61b4fb599ed38dded735ce425",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
