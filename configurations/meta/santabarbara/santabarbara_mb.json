@@ -1,1130 +1,2262 @@
-{
-    "Exposes": [
-        {
-            "BridgeGpio": [
-                {
-                    "Name": "rtc-battery-voltage-read-enable",
-                    "Polarity": "High",
-                    "SetupTime": 1
-                }
-            ],
-            "Index": 7,
-            "Name": "MB_P3V_BAT_VOLT_V",
-            "PollRate": 86400,
-            "ScaleFactor": 0.333333333,
-            "Thresholds": [
-                {
-                    "Direction": "greater than",
-                    "Name": "upper critical",
-                    "Severity": 1,
-                    "Value": 3.4
-                },
-                {
-                    "Direction": "less than",
-                    "Name": "lower critical",
-                    "Severity": 1,
-                    "Value": 2.6
-                }
-            ],
-            "Type": "ADC"
-        },
-        {
-            "Address": "0x48",
-            "Bus": 19,
-            "Labels": [
-                "in0",
-                "in1",
-                "in3",
-                "in4",
-                "in5",
-                "in6",
-                "in7"
-            ],
-            "Name": "MB_ADC0",
-            "Thresholds": [
-                {
-                    "Direction": "greater than",
-                    "Label": "in0",
-                    "Name": "upper critical",
-                    "Severity": 1,
-                    "Value": 3.345
-                },
-                {
-                    "Direction": "less than",
-                    "Label": "in0",
-                    "Name": "lower critical",
-                    "Severity": 1,
-                    "Value": 3.135
-                },
-                {
-                    "Direction": "greater than",
-                    "Label": "in1",
-                    "Name": "upper critical",
-                    "Severity": 1,
-                    "Value": 3.465
-                },
-                {
-                    "Direction": "less than",
-                    "Label": "in1",
-                    "Name": "lower critical",
-                    "Severity": 1,
-                    "Value": 3.135
-                },
-                {
-                    "Direction": "greater than",
-                    "Label": "in3",
-                    "Name": "upper critical",
-                    "Severity": 1,
-                    "Value": 3.46
-                },
-                {
-                    "Direction": "less than",
-                    "Label": "in3",
-                    "Name": "lower critical",
-                    "Severity": 1,
-                    "Value": 3.13
-                },
-                {
-                    "Direction": "greater than",
-                    "Label": "in4",
-                    "Name": "upper critical",
-                    "Severity": 1,
-                    "Value": 1.83
-                },
-                {
-                    "Direction": "less than",
-                    "Label": "in4",
-                    "Name": "lower critical",
-                    "Severity": 1,
-                    "Value": 1.76
-                }
-            ],
-            "Type": "ADS7830",
-            "in0_Name": "MB_P3V3_OCP_SFF_VOLT_V",
-            "in0_Scale": 410.6776,
-            "in1_Name": "MB_P3V3_E1S0_VOLT_V",
-            "in1_Scale": 410.6776,
-            "in3_Name": "MB_PVDD33_S5_VOLT_V",
-            "in3_Scale": 410.6776,
-            "in4_Name": "MB_PVDD18_S5_VOLT_V",
-            "in4_Scale": 750.469,
-            "in5_Name": "MB_MCIO_1A_CARD_VOLT_V",
-            "in6_Name": "MB_MCIO_1B_CARD_VOLT_V",
-            "in7_Name": "MB_MCIO_0A_CARD_VOLT_V"
-        },
-        {
-            "Address": "0x4a",
-            "Bus": 19,
-            "Labels": [
-                "in0",
-                "in1",
-                "in2",
-                "in3",
-                "in4",
-                "in5"
-            ],
-            "Name": "MB_ADC1",
-            "Type": "ADS7830",
-            "in0_Name": "MB_MCIO_2A_CARD_VOLT_V",
-            "in1_Name": "MB_MCIO_2B_CARD_VOLT_V",
-            "in2_Name": "MB_MCIO_3A_CARD_VOLT_V",
-            "in3_Name": "MB_MCIO_3B_CARD_VOLT_V",
-            "in4_Name": "MB_MCIO_4A_CARD_VOLT_V",
-            "in5_Name": "MB_MCIO_4B_CARD_VOLT_V"
-        },
-        {
-            "Address": "0x48",
-            "Bus": 22,
-            "Labels": [
-                "in0",
-                "in1",
-                "in2",
-                "in3",
-                "in4"
-            ],
-            "Name": "MB_ADC2",
-            "Thresholds": [
-                {
-                    "Direction": "greater than",
-                    "Label": "in0",
-                    "Name": "upper critical",
-                    "Severity": 1,
-                    "Value": 12.61
-                },
-                {
-                    "Direction": "less than",
-                    "Label": "in0",
-                    "Name": "lower critical",
-                    "Severity": 1,
-                    "Value": 11.39
-                },
-                {
-                    "Direction": "greater than",
-                    "Label": "in1",
-                    "Name": "upper critical",
-                    "Severity": 1,
-                    "Value": 5.26
-                },
-                {
-                    "Direction": "less than",
-                    "Label": "in1",
-                    "Name": "lower critical",
-                    "Severity": 1,
-                    "Value": 4.74
-                },
-                {
-                    "Direction": "greater than",
-                    "Label": "in2",
-                    "Name": "upper critical",
-                    "Severity": 1,
-                    "Value": 3.48
-                },
-                {
-                    "Direction": "less than",
-                    "Label": "in2",
-                    "Name": "lower critical",
-                    "Severity": 1,
-                    "Value": 3.12
-                },
-                {
-                    "Direction": "greater than",
-                    "Label": "in3",
-                    "Name": "upper critical",
-                    "Severity": 1,
-                    "Value": 1.89
-                },
-                {
-                    "Direction": "less than",
-                    "Label": "in3",
-                    "Name": "lower critical",
-                    "Severity": 1,
-                    "Value": 1.74
-                }
-            ],
-            "Type": "ADS7830",
-            "in0_Name": "MB_P12V_AUX_VOLT_V",
-            "in0_Scale": 112.3596,
-            "in1_Name": "MB_P5V_AUX_VOLT_V",
-            "in1_Scale": 271.7391,
-            "in2_Name": "MB_P3V3_AUX_VOLT_V",
-            "in2_Scale": 410.6776,
-            "in3_Name": "MB_P1V8_LDO_VOLT_V",
-            "in3_Scale": 750.469,
-            "in4_Name": "MB_P1V_LDO_VOLT_V"
-        },
-        {
-            "Address": "$address",
-            "Bus": "$bus",
-            "Name": "MB FRU",
-            "Type": "EEPROM"
-        },
-        {
-            "Address": "0x21",
-            "Bus": 1,
-            "Connector": {
-                "Name": "MB_FAN0_TACH_IL",
-                "Pwm": 2,
-                "PwmName": "MB_FAN_PWM_PCT",
-                "Tachs": [
-                    0
-                ]
+[
+    {
+        "Exposes": [
+            {
+                "BridgeGpio": [
+                    {
+                        "Name": "rtc-battery-voltage-read-enable",
+                        "Polarity": "High",
+                        "SetupTime": 1
+                    }
+                ],
+                "Index": 7,
+                "Name": "MB_P3V_BAT_VOLT_V",
+                "PollRate": 86400,
+                "ScaleFactor": 0.333333333,
+                "Thresholds": [
+                    {
+                        "Direction": "greater than",
+                        "Name": "upper critical",
+                        "Severity": 1,
+                        "Value": 3.4
+                    },
+                    {
+                        "Direction": "less than",
+                        "Name": "lower critical",
+                        "Severity": 1,
+                        "Value": 2.6
+                    }
+                ],
+                "Type": "ADC"
             },
-            "Index": 0,
-            "Name": "MB_FAN0_TACH_IL_SPEED_RPM",
-            "PowerState": "Always",
-            "Thresholds": [
-                {
-                    "Direction": "greater than",
-                    "Name": "upper critical",
-                    "Severity": 1,
-                    "Value": 40000
-                },
-                {
-                    "Direction": "less than",
-                    "Name": "lower critical",
-                    "Severity": 1,
-                    "Value": 1000
-                }
-            ],
-            "Type": "I2CFan"
-        },
-        {
-            "Address": "0x21",
-            "Bus": 1,
-            "Connector": {
-                "Name": "MB_FAN0_TACH_OL",
-                "Pwm": 2,
-                "PwmName": "MB_FAN_PWM_PCT",
-                "Tachs": [
-                    1
-                ]
+            {
+                "Address": "0x48",
+                "Bus": 19,
+                "Labels": [
+                    "in0",
+                    "in1",
+                    "in3",
+                    "in4",
+                    "in5",
+                    "in6",
+                    "in7"
+                ],
+                "Name": "MB_ADC0",
+                "Thresholds": [
+                    {
+                        "Direction": "greater than",
+                        "Label": "in0",
+                        "Name": "upper critical",
+                        "Severity": 1,
+                        "Value": 3.345
+                    },
+                    {
+                        "Direction": "less than",
+                        "Label": "in0",
+                        "Name": "lower critical",
+                        "Severity": 1,
+                        "Value": 3.135
+                    },
+                    {
+                        "Direction": "greater than",
+                        "Label": "in1",
+                        "Name": "upper critical",
+                        "Severity": 1,
+                        "Value": 3.465
+                    },
+                    {
+                        "Direction": "less than",
+                        "Label": "in1",
+                        "Name": "lower critical",
+                        "Severity": 1,
+                        "Value": 3.135
+                    },
+                    {
+                        "Direction": "greater than",
+                        "Label": "in3",
+                        "Name": "upper critical",
+                        "Severity": 1,
+                        "Value": 3.46
+                    },
+                    {
+                        "Direction": "less than",
+                        "Label": "in3",
+                        "Name": "lower critical",
+                        "Severity": 1,
+                        "Value": 3.13
+                    },
+                    {
+                        "Direction": "greater than",
+                        "Label": "in4",
+                        "Name": "upper critical",
+                        "Severity": 1,
+                        "Value": 1.83
+                    },
+                    {
+                        "Direction": "less than",
+                        "Label": "in4",
+                        "Name": "lower critical",
+                        "Severity": 1,
+                        "Value": 1.76
+                    }
+                ],
+                "Type": "ADS7830",
+                "in0_Name": "MB_P3V3_OCP_SFF_VOLT_V",
+                "in0_Scale": 410.6776,
+                "in1_Name": "MB_P3V3_E1S0_VOLT_V",
+                "in1_Scale": 410.6776,
+                "in3_Name": "MB_PVDD33_S5_VOLT_V",
+                "in3_Scale": 410.6776,
+                "in4_Name": "MB_PVDD18_S5_VOLT_V",
+                "in4_Scale": 750.469,
+                "in5_Name": "MB_MCIO_1A_CARD_VOLT_V",
+                "in6_Name": "MB_MCIO_1B_CARD_VOLT_V",
+                "in7_Name": "MB_MCIO_0A_CARD_VOLT_V"
             },
-            "Index": 1,
-            "Name": "MB_FAN0_TACH_OL_SPEED_RPM",
-            "PowerState": "Always",
-            "Thresholds": [
-                {
-                    "Direction": "greater than",
-                    "Name": "upper critical",
-                    "Severity": 1,
-                    "Value": 35000
-                },
-                {
-                    "Direction": "less than",
-                    "Name": "lower critical",
-                    "Severity": 1,
-                    "Value": 1000
-                }
-            ],
-            "Type": "I2CFan"
-        },
-        {
-            "Address": "0x21",
-            "Bus": 1,
-            "Connector": {
-                "Name": "MB_FAN1_TACH_IL",
-                "Pwm": 2,
-                "PwmName": "MB_FAN_PWM_PCT",
-                "Tachs": [
-                    2
-                ]
+            {
+                "Address": "0x4a",
+                "Bus": 19,
+                "Labels": [
+                    "in0",
+                    "in1",
+                    "in2",
+                    "in3",
+                    "in4",
+                    "in5"
+                ],
+                "Name": "MB_ADC1",
+                "Type": "ADS7830",
+                "in0_Name": "MB_MCIO_2A_CARD_VOLT_V",
+                "in1_Name": "MB_MCIO_2B_CARD_VOLT_V",
+                "in2_Name": "MB_MCIO_3A_CARD_VOLT_V",
+                "in3_Name": "MB_MCIO_3B_CARD_VOLT_V",
+                "in4_Name": "MB_MCIO_4A_CARD_VOLT_V",
+                "in5_Name": "MB_MCIO_4B_CARD_VOLT_V"
             },
-            "Index": 2,
-            "Name": "MB_FAN1_TACH_IL_SPEED_RPM",
-            "PowerState": "Always",
-            "Thresholds": [
-                {
-                    "Direction": "greater than",
-                    "Name": "upper critical",
-                    "Severity": 1,
-                    "Value": 40000
-                },
-                {
-                    "Direction": "less than",
-                    "Name": "lower critical",
-                    "Severity": 1,
-                    "Value": 1000
-                }
-            ],
-            "Type": "I2CFan"
-        },
-        {
-            "Address": "0x21",
-            "Bus": 1,
-            "Connector": {
-                "Name": "MB_FAN1_TACH_OL",
-                "Pwm": 2,
-                "PwmName": "MB_FAN_PWM_PCT",
-                "Tachs": [
-                    3
-                ]
+            {
+                "Address": "0x48",
+                "Bus": 22,
+                "Labels": [
+                    "in0",
+                    "in1",
+                    "in2",
+                    "in3",
+                    "in4"
+                ],
+                "Name": "MB_ADC2",
+                "Thresholds": [
+                    {
+                        "Direction": "greater than",
+                        "Label": "in0",
+                        "Name": "upper critical",
+                        "Severity": 1,
+                        "Value": 12.61
+                    },
+                    {
+                        "Direction": "less than",
+                        "Label": "in0",
+                        "Name": "lower critical",
+                        "Severity": 1,
+                        "Value": 11.39
+                    },
+                    {
+                        "Direction": "greater than",
+                        "Label": "in1",
+                        "Name": "upper critical",
+                        "Severity": 1,
+                        "Value": 5.26
+                    },
+                    {
+                        "Direction": "less than",
+                        "Label": "in1",
+                        "Name": "lower critical",
+                        "Severity": 1,
+                        "Value": 4.74
+                    },
+                    {
+                        "Direction": "greater than",
+                        "Label": "in2",
+                        "Name": "upper critical",
+                        "Severity": 1,
+                        "Value": 3.48
+                    },
+                    {
+                        "Direction": "less than",
+                        "Label": "in2",
+                        "Name": "lower critical",
+                        "Severity": 1,
+                        "Value": 3.12
+                    },
+                    {
+                        "Direction": "greater than",
+                        "Label": "in3",
+                        "Name": "upper critical",
+                        "Severity": 1,
+                        "Value": 1.89
+                    },
+                    {
+                        "Direction": "less than",
+                        "Label": "in3",
+                        "Name": "lower critical",
+                        "Severity": 1,
+                        "Value": 1.74
+                    }
+                ],
+                "Type": "ADS7830",
+                "in0_Name": "MB_P12V_AUX_VOLT_V",
+                "in0_Scale": 112.3596,
+                "in1_Name": "MB_P5V_AUX_VOLT_V",
+                "in1_Scale": 271.7391,
+                "in2_Name": "MB_P3V3_AUX_VOLT_V",
+                "in2_Scale": 410.6776,
+                "in3_Name": "MB_P1V8_LDO_VOLT_V",
+                "in3_Scale": 750.469,
+                "in4_Name": "MB_P1V_LDO_VOLT_V"
             },
-            "Index": 3,
-            "Name": "MB_FAN1_TACH_OL_SPEED_RPM",
-            "PowerState": "Always",
-            "Thresholds": [
-                {
-                    "Direction": "greater than",
-                    "Name": "upper critical",
-                    "Severity": 1,
-                    "Value": 35000
-                },
-                {
-                    "Direction": "less than",
-                    "Name": "lower critical",
-                    "Severity": 1,
-                    "Value": 1000
-                }
-            ],
-            "Type": "I2CFan"
-        },
-        {
-            "Address": "0x21",
-            "Bus": 1,
-            "Connector": {
-                "Name": "MB_FAN2_TACH_IL",
-                "Pwm": 2,
-                "PwmName": "MB_FAN_PWM_PCT",
-                "Tachs": [
-                    4
-                ]
+            {
+                "Address": "$address",
+                "Bus": "$bus",
+                "Name": "MB FRU",
+                "Type": "EEPROM"
             },
-            "Index": 4,
-            "Name": "MB_FAN2_TACH_IL_SPEED_RPM",
-            "PowerState": "Always",
-            "Thresholds": [
-                {
-                    "Direction": "greater than",
-                    "Name": "upper critical",
-                    "Severity": 1,
-                    "Value": 40000
+            {
+                "Address": "0x21",
+                "Bus": 1,
+                "Connector": {
+                    "Name": "MB_FAN0_TACH_IL",
+                    "Pwm": 2,
+                    "PwmName": "MB_FAN_PWM_PCT",
+                    "Tachs": [
+                        0
+                    ]
                 },
-                {
-                    "Direction": "less than",
-                    "Name": "lower critical",
-                    "Severity": 1,
-                    "Value": 1000
-                }
-            ],
-            "Type": "I2CFan"
-        },
-        {
-            "Address": "0x21",
-            "Bus": 1,
-            "Connector": {
-                "Name": "MB_FAN2_TACH_OL",
-                "Pwm": 2,
-                "PwmName": "MB_FAN_PWM_PCT",
-                "Tachs": [
-                    5
-                ]
+                "Index": 0,
+                "Name": "MB_FAN0_TACH_IL_SPEED_RPM",
+                "PowerState": "Always",
+                "Thresholds": [
+                    {
+                        "Direction": "greater than",
+                        "Name": "upper critical",
+                        "Severity": 1,
+                        "Value": 40000
+                    },
+                    {
+                        "Direction": "less than",
+                        "Name": "lower critical",
+                        "Severity": 1,
+                        "Value": 1000
+                    }
+                ],
+                "Type": "I2CFan"
             },
-            "Index": 5,
-            "Name": "MB_FAN2_TACH_OL_SPEED_RPM",
-            "PowerState": "Always",
-            "Thresholds": [
-                {
-                    "Direction": "greater than",
-                    "Name": "upper critical",
-                    "Severity": 1,
-                    "Value": 35000
+            {
+                "Address": "0x21",
+                "Bus": 1,
+                "Connector": {
+                    "Name": "MB_FAN0_TACH_OL",
+                    "Pwm": 2,
+                    "PwmName": "MB_FAN_PWM_PCT",
+                    "Tachs": [
+                        1
+                    ]
                 },
-                {
-                    "Direction": "less than",
-                    "Name": "lower critical",
-                    "Severity": 1,
-                    "Value": 1000
-                }
-            ],
-            "Type": "I2CFan"
-        },
-        {
-            "Address": "0x21",
-            "Bus": 1,
-            "Connector": {
-                "Name": "MB_FAN3_TACH_IL",
-                "Pwm": 2,
-                "PwmName": "MB_FAN_PWM_PCT",
-                "Tachs": [
-                    6
-                ]
+                "Index": 1,
+                "Name": "MB_FAN0_TACH_OL_SPEED_RPM",
+                "PowerState": "Always",
+                "Thresholds": [
+                    {
+                        "Direction": "greater than",
+                        "Name": "upper critical",
+                        "Severity": 1,
+                        "Value": 35000
+                    },
+                    {
+                        "Direction": "less than",
+                        "Name": "lower critical",
+                        "Severity": 1,
+                        "Value": 1000
+                    }
+                ],
+                "Type": "I2CFan"
             },
-            "Index": 6,
-            "Name": "MB_FAN3_TACH_IL_SPEED_RPM",
-            "PowerState": "Always",
-            "Thresholds": [
-                {
-                    "Direction": "greater than",
-                    "Name": "upper critical",
-                    "Severity": 1,
-                    "Value": 40000
+            {
+                "Address": "0x21",
+                "Bus": 1,
+                "Connector": {
+                    "Name": "MB_FAN1_TACH_IL",
+                    "Pwm": 2,
+                    "PwmName": "MB_FAN_PWM_PCT",
+                    "Tachs": [
+                        2
+                    ]
                 },
-                {
-                    "Direction": "less than",
-                    "Name": "lower critical",
-                    "Severity": 1,
-                    "Value": 1000
-                }
-            ],
-            "Type": "I2CFan"
-        },
-        {
-            "Address": "0x21",
-            "Bus": 1,
-            "Connector": {
-                "Name": "MB_FAN3_TACH_OL",
-                "Pwm": 2,
-                "PwmName": "MB_FAN_PWM_PCT",
-                "Tachs": [
-                    7
-                ]
+                "Index": 2,
+                "Name": "MB_FAN1_TACH_IL_SPEED_RPM",
+                "PowerState": "Always",
+                "Thresholds": [
+                    {
+                        "Direction": "greater than",
+                        "Name": "upper critical",
+                        "Severity": 1,
+                        "Value": 40000
+                    },
+                    {
+                        "Direction": "less than",
+                        "Name": "lower critical",
+                        "Severity": 1,
+                        "Value": 1000
+                    }
+                ],
+                "Type": "I2CFan"
             },
-            "Index": 7,
-            "Name": "MB_FAN3_TACH_OL_SPEED_RPM",
-            "PowerState": "Always",
-            "Thresholds": [
-                {
-                    "Direction": "greater than",
-                    "Name": "upper critical",
-                    "Severity": 1,
-                    "Value": 35000
+            {
+                "Address": "0x21",
+                "Bus": 1,
+                "Connector": {
+                    "Name": "MB_FAN1_TACH_OL",
+                    "Pwm": 2,
+                    "PwmName": "MB_FAN_PWM_PCT",
+                    "Tachs": [
+                        3
+                    ]
                 },
-                {
-                    "Direction": "less than",
-                    "Name": "lower critical",
-                    "Severity": 1,
-                    "Value": 1000
-                }
-            ],
-            "Type": "I2CFan"
-        },
-        {
-            "Address": "0x42",
-            "Bus": 19,
-            "Labels": [
-                "in1",
-                "curr1",
-                "power1"
-            ],
-            "Name": "MB_P12V_E1S0",
-            "PowerState": "On",
-            "Thresholds": [
-                {
-                    "Direction": "greater than",
-                    "Label": "in1",
-                    "Name": "upper critical",
-                    "Severity": 1,
-                    "Value": 13.2
-                },
-                {
-                    "Direction": "less than",
-                    "Label": "in1",
-                    "Name": "lower critical",
-                    "Severity": 1,
-                    "Value": 10.8
-                },
-                {
-                    "Direction": "greater than",
-                    "Label": "curr1",
-                    "Name": "upper critical",
-                    "Severity": 1,
-                    "Value": 2
-                },
-                {
-                    "Direction": "greater than",
-                    "Label": "power1",
-                    "Name": "upper critical",
-                    "Severity": 1,
-                    "Value": 25
-                }
-            ],
-            "Type": "INA230",
-            "curr1_Name": "MB_P12V_E1S0_CURR_A",
-            "curr1_Scale": 1016.260162602,
-            "in1_Name": "MB_P12V_E1S0_VOLT_V",
-            "power1_Name": "MB_P12V_E1S0_PWR_W",
-            "power1_Scale": 1016260.162602
-        },
-        {
-            "Address": "0x44",
-            "Bus": 19,
-            "Labels": [
-                "in1",
-                "curr1",
-                "power1"
-            ],
-            "Name": "MB_P12V_OCP_SFF",
-            "Thresholds": [
-                {
-                    "Direction": "greater than",
-                    "Label": "in1",
-                    "Name": "upper critical",
-                    "Severity": 1,
-                    "Value": 13.2
-                },
-                {
-                    "Direction": "less than",
-                    "Label": "in1",
-                    "Name": "lower critical",
-                    "Severity": 1,
-                    "Value": 10.8
-                },
-                {
-                    "Direction": "greater than",
-                    "Label": "curr1",
-                    "Name": "upper critical",
-                    "Severity": 1,
-                    "Value": 7.26
-                },
-                {
-                    "Direction": "greater than",
-                    "Label": "power1",
-                    "Name": "upper critical",
-                    "Severity": 1,
-                    "Value": 87.12
-                }
-            ],
-            "Type": "INA230",
-            "curr1_Name": "MB_P12V_OCP_SFF_CURR_A",
-            "curr1_Scale": 1098.901098901,
-            "in1_Name": "MB_P12V_OCP_SFF_VOLT_V",
-            "power1_Name": "MB_P12V_OCP_SFF_PWR_W",
-            "power1_Scale": 1098901.098901
-        },
-        {
-            "Address": "0x40",
-            "Bus": 22,
-            "Labels": [
-                "in1",
-                "curr1",
-                "power1"
-            ],
-            "Name": "MB_P12V_FAN0",
-            "Thresholds": [
-                {
-                    "Direction": "greater than",
-                    "Label": "in1",
-                    "Name": "upper critical",
-                    "Severity": 1,
-                    "Value": 13.2
-                },
-                {
-                    "Direction": "less than",
-                    "Label": "in1",
-                    "Name": "lower critical",
-                    "Severity": 1,
-                    "Value": 10.8
-                },
-                {
-                    "Direction": "greater than",
-                    "Label": "curr1",
-                    "Name": "upper critical",
-                    "Severity": 1,
-                    "Value": 3.6
-                },
-                {
-                    "Direction": "greater than",
-                    "Label": "power1",
-                    "Name": "upper critical",
-                    "Severity": 1,
-                    "Value": 43.2
-                }
-            ],
-            "Type": "INA230",
-            "curr1_Name": "MB_P12V_FAN0_CURR_A",
-            "curr1_Scale": 1063.829787234,
-            "in1_Name": "MB_P12V_FAN0_VOLT_V",
-            "power1_Name": "MB_P12V_FAN0_PWR_W",
-            "power1_Scale": 1063829.787234
-        },
-        {
-            "Address": "0x42",
-            "Bus": 22,
-            "Labels": [
-                "in1",
-                "curr1",
-                "power1"
-            ],
-            "Name": "MB_P12V_FAN1",
-            "Thresholds": [
-                {
-                    "Direction": "greater than",
-                    "Label": "in1",
-                    "Name": "upper critical",
-                    "Severity": 1,
-                    "Value": 13.2
-                },
-                {
-                    "Direction": "less than",
-                    "Label": "in1",
-                    "Name": "lower critical",
-                    "Severity": 1,
-                    "Value": 10.8
-                },
-                {
-                    "Direction": "greater than",
-                    "Label": "curr1",
-                    "Name": "upper critical",
-                    "Severity": 1,
-                    "Value": 3.6
-                },
-                {
-                    "Direction": "greater than",
-                    "Label": "power1",
-                    "Name": "upper critical",
-                    "Severity": 1,
-                    "Value": 43.2
-                }
-            ],
-            "Type": "INA230",
-            "curr1_Name": "MB_P12V_FAN1_CURR_A",
-            "curr1_Scale": 1141.552511416,
-            "in1_Name": "MB_P12V_FAN1_VOLT_V",
-            "power1_Name": "MB_P12V_FAN1_PWR_W",
-            "power1_Scale": 1141552.511416
-        },
-        {
-            "Address": "0x44",
-            "Bus": 22,
-            "Labels": [
-                "in1",
-                "curr1",
-                "power1"
-            ],
-            "Name": "MB_P12V_FAN2",
-            "Thresholds": [
-                {
-                    "Direction": "greater than",
-                    "Label": "in1",
-                    "Name": "upper critical",
-                    "Severity": 1,
-                    "Value": 13.2
-                },
-                {
-                    "Direction": "less than",
-                    "Label": "in1",
-                    "Name": "lower critical",
-                    "Severity": 1,
-                    "Value": 10.8
-                },
-                {
-                    "Direction": "greater than",
-                    "Label": "curr1",
-                    "Name": "upper critical",
-                    "Severity": 1,
-                    "Value": 3.6
-                },
-                {
-                    "Direction": "greater than",
-                    "Label": "power1",
-                    "Name": "upper critical",
-                    "Severity": 1,
-                    "Value": 43.2
-                }
-            ],
-            "Type": "INA230",
-            "curr1_Name": "MB_P12V_FAN2_CURR_A",
-            "curr1_Scale": 1079.913606911,
-            "in1_Name": "MB_P12V_FAN2_VOLT_V",
-            "power1_Name": "MB_P12V_FAN2_PWR_W",
-            "power1_Scale": 1079913.606911
-        },
-        {
-            "Address": "0x46",
-            "Bus": 22,
-            "Labels": [
-                "in1",
-                "curr1",
-                "power1"
-            ],
-            "Name": "MB_P12V_FAN3",
-            "Thresholds": [
-                {
-                    "Direction": "greater than",
-                    "Label": "in1",
-                    "Name": "upper critical",
-                    "Severity": 1,
-                    "Value": 13.2
-                },
-                {
-                    "Direction": "less than",
-                    "Label": "in1",
-                    "Name": "lower critical",
-                    "Severity": 1,
-                    "Value": 10.8
-                },
-                {
-                    "Direction": "greater than",
-                    "Label": "curr1",
-                    "Name": "upper critical",
-                    "Severity": 1,
-                    "Value": 3.6
-                },
-                {
-                    "Direction": "greater than",
-                    "Label": "power1",
-                    "Name": "upper critical",
-                    "Severity": 1,
-                    "Value": 43.2
-                }
-            ],
-            "Type": "INA230",
-            "curr1_Name": "MB_P12V_FAN3_CURR_A",
-            "curr1_Scale": 1144.164759725,
-            "in1_Name": "MB_P12V_FAN3_VOLT_V",
-            "power1_Name": "MB_P12V_FAN3_PWR_W",
-            "power1_Scale": 1144164.759725
-        },
-        {
-            "Address": "0x60",
-            "Bus": 0,
-            "FirmwareInfo": {
-                "CompatibleHardware": "com.meta.Hardware.Santabarbara.CPLD.LFMXO5_25_mb",
-                "VendorIANA": 40981
+                "Index": 3,
+                "Name": "MB_FAN1_TACH_OL_SPEED_RPM",
+                "PowerState": "Always",
+                "Thresholds": [
+                    {
+                        "Direction": "greater than",
+                        "Name": "upper critical",
+                        "Severity": 1,
+                        "Value": 35000
+                    },
+                    {
+                        "Direction": "less than",
+                        "Name": "lower critical",
+                        "Severity": 1,
+                        "Value": 1000
+                    }
+                ],
+                "Type": "I2CFan"
             },
-            "Name": "Santabarbara_MB_CPLD",
-            "Type": "LatticeLFMXO5_25Firmware"
-        },
-        {
-            "Address": "0x4f",
-            "Bus": 18,
-            "Labels": [
-                "vout1",
-                "vout2",
-                "iout1",
-                "iout2",
-                "pout1",
-                "pout2"
-            ],
-            "Name": "PVDDCR_CPU0_P0",
-            "Name1": "PVDDIO_MEM_S3_P0",
-            "PowerState": "On",
-            "Thresholds": [
-                {
-                    "Direction": "greater than",
-                    "Label": "vout1",
-                    "Name": "upper critical",
-                    "Severity": 1,
-                    "Value": 1.7
+            {
+                "Address": "0x21",
+                "Bus": 1,
+                "Connector": {
+                    "Name": "MB_FAN2_TACH_IL",
+                    "Pwm": 2,
+                    "PwmName": "MB_FAN_PWM_PCT",
+                    "Tachs": [
+                        4
+                    ]
                 },
-                {
-                    "Direction": "less than",
-                    "Label": "vout1",
-                    "Name": "lower critical",
-                    "Severity": 1,
-                    "Value": 0.27
-                },
-                {
-                    "Direction": "greater than",
-                    "Label": "iout1",
-                    "Name": "upper critical",
-                    "Severity": 1,
-                    "Value": 404
-                },
-                {
-                    "Direction": "greater than",
-                    "Label": "pout1",
-                    "Name": "upper critical",
-                    "Severity": 1,
-                    "Value": 690
-                },
-                {
-                    "Direction": "greater than",
-                    "Label": "vout2",
-                    "Name": "upper critical",
-                    "Severity": 1,
-                    "Value": 1.35
-                },
-                {
-                    "Direction": "less than",
-                    "Label": "vout2",
-                    "Name": "lower critical",
-                    "Severity": 1,
-                    "Value": 0.84
-                },
-                {
-                    "Direction": "greater than",
-                    "Label": "iout2",
-                    "Name": "upper critical",
-                    "Severity": 1,
-                    "Value": 262
-                },
-                {
-                    "Direction": "greater than",
-                    "Label": "pout2",
-                    "Name": "upper critical",
-                    "Severity": 1,
-                    "Value": 355.5
-                }
-            ],
-            "Type": "MP2869",
-            "iout1_Name": "MB_VR_CPU_PVDDCR_CPU0_CURR_A",
-            "iout2_Name": "MB_VR_CPU_PVDDIO_MEM_S3_CURR_A",
-            "pout1_Name": "MB_VR_CPU_PVDDCR_CPU0_PWR_W",
-            "pout2_Name": "MB_VR_CPU_PVDDIO_MEM_S3_PWR_W",
-            "vout1_Name": "MB_VR_CPU_PVDDCR_CPU0_VOLT_V",
-            "vout2_Name": "MB_VR_CPU_PVDDIO_MEM_S3_VOLT_V"
-        },
-        {
-            "Address": "0x4d",
-            "Bus": 18,
-            "Labels": [
-                "vout1",
-                "vout2",
-                "iout1",
-                "iout2",
-                "iout3",
-                "pout1",
-                "pout2"
-            ],
-            "Name": "PVDDCR_SOC_P0",
-            "Name1": "PVDDIO_P0",
-            "PowerState": "On",
-            "Thresholds": [
-                {
-                    "Direction": "greater than",
-                    "Label": "vout1",
-                    "Name": "upper critical",
-                    "Severity": 1,
-                    "Value": 1.32
-                },
-                {
-                    "Direction": "less than",
-                    "Label": "vout1",
-                    "Name": "lower critical",
-                    "Severity": 1,
-                    "Value": 0.61
-                },
-                {
-                    "Direction": "greater than",
-                    "Label": "iout1",
-                    "Name": "upper critical",
-                    "Severity": 1,
-                    "Value": 325
-                },
-                {
-                    "Direction": "greater than",
-                    "Label": "pout1",
-                    "Name": "upper critical",
-                    "Severity": 1,
-                    "Value": 431
-                },
-                {
-                    "Direction": "greater than",
-                    "Label": "vout2",
-                    "Name": "upper critical",
-                    "Severity": 1,
-                    "Value": 1.325
-                },
-                {
-                    "Direction": "less than",
-                    "Label": "vout2",
-                    "Name": "lower critical",
-                    "Severity": 1,
-                    "Value": 0.865
-                },
-                {
-                    "Direction": "greater than",
-                    "Label": "iout2",
-                    "Name": "upper critical",
-                    "Severity": 1,
-                    "Value": 50.5
-                },
-                {
-                    "Direction": "greater than",
-                    "Label": "pout2",
-                    "Name": "upper critical",
-                    "Severity": 1,
-                    "Value": 67.12
-                }
-            ],
-            "Type": "MP29612",
-            "iout1_Name": "MB_VR_CPU_PVDDCR_SOC_CURR_A",
-            "iout2_Name": "MB_VR_CPU_PVDDIO_CURR_A",
-            "pout1_Name": "MB_VR_CPU_PVDDCR_SOC_PWR_W",
-            "pout2_Name": "MB_VR_CPU_PVDDIO_PWR_W",
-            "vout1_Name": "MB_VR_CPU_PVDDCR_SOC_VOLT_V",
-            "vout2_Name": "MB_VR_CPU_PVDDIO_VOLT_V"
-        },
-        {
-            "Address": "0x4e",
-            "Bus": 18,
-            "Labels": [
-                "vout1",
-                "vout2",
-                "iout1",
-                "pout1"
-            ],
-            "Name": "PVDDCR_CPU1_P0",
-            "Name1": "PVDD18_S5_P0",
-            "PowerState": "On",
-            "Thresholds": [
-                {
-                    "Direction": "greater than",
-                    "Label": "vout1",
-                    "Name": "upper critical",
-                    "Severity": 1,
-                    "Value": 1.7
-                },
-                {
-                    "Direction": "less than",
-                    "Label": "vout1",
-                    "Name": "lower critical",
-                    "Severity": 1,
-                    "Value": 0.27
-                },
-                {
-                    "Direction": "greater than",
-                    "Label": "iout1",
-                    "Name": "upper critical",
-                    "Severity": 1,
-                    "Value": 404
-                },
-                {
-                    "Direction": "greater than",
-                    "Label": "pout1",
-                    "Name": "upper critical",
-                    "Severity": 1,
-                    "Value": 690
-                },
-                {
-                    "Direction": "greater than",
-                    "Label": "vout2",
-                    "Name": "upper critical",
-                    "Severity": 1,
-                    "Value": 1.83
-                },
-                {
-                    "Direction": "less than",
-                    "Label": "vout2",
-                    "Name": "lower critical",
-                    "Severity": 1,
-                    "Value": 1.76
-                }
-            ],
-            "Type": "MP29612",
-            "iout1_Name": "MB_VR_CPU_PVDDCR_CPU1_CURR_A",
-            "pout1_Name": "MB_VR_CPU_PVDDCR_CPU1_PWR_W",
-            "vout1_Name": "MB_VR_CPU_PVDDCR_CPU1_VOLT_V",
-            "vout2_Name": "MB_PVDD18_S5_VOLT_V"
-        },
-        {
-            "Address": "0x4d",
-            "Bus": 18,
-            "FirmwareInfo": {
-                "CompatibleHardware": "com.meta.Hardware.Santabarbara.VR.MP29612_pvddcr_soc_p0",
-                "VendorIANA": 40981
+                "Index": 4,
+                "Name": "MB_FAN2_TACH_IL_SPEED_RPM",
+                "PowerState": "Always",
+                "Thresholds": [
+                    {
+                        "Direction": "greater than",
+                        "Name": "upper critical",
+                        "Severity": 1,
+                        "Value": 40000
+                    },
+                    {
+                        "Direction": "less than",
+                        "Name": "lower critical",
+                        "Severity": 1,
+                        "Value": 1000
+                    }
+                ],
+                "Type": "I2CFan"
             },
-            "Name": "Santabarbara_MB_VR_pvddcr_soc_p0",
-            "Type": "MP2X6XXFirmware"
-        },
-        {
-            "Address": "0x4e",
-            "Bus": 18,
-            "FirmwareInfo": {
-                "CompatibleHardware": "com.meta.Hardware.Santabarbara.VR.MP29612_pvddcr_cpu1_p0",
-                "VendorIANA": 40981
+            {
+                "Address": "0x21",
+                "Bus": 1,
+                "Connector": {
+                    "Name": "MB_FAN2_TACH_OL",
+                    "Pwm": 2,
+                    "PwmName": "MB_FAN_PWM_PCT",
+                    "Tachs": [
+                        5
+                    ]
+                },
+                "Index": 5,
+                "Name": "MB_FAN2_TACH_OL_SPEED_RPM",
+                "PowerState": "Always",
+                "Thresholds": [
+                    {
+                        "Direction": "greater than",
+                        "Name": "upper critical",
+                        "Severity": 1,
+                        "Value": 35000
+                    },
+                    {
+                        "Direction": "less than",
+                        "Name": "lower critical",
+                        "Severity": 1,
+                        "Value": 1000
+                    }
+                ],
+                "Type": "I2CFan"
             },
-            "Name": "Santabarbara_MB_VR_pvddcr_cpu1_p0",
-            "Type": "MP2X6XXFirmware"
-        },
-        {
-            "Address": "0x4f",
-            "Bus": 18,
-            "FirmwareInfo": {
-                "CompatibleHardware": "com.meta.Hardware.Santabarbara.VR.MP2869_pvddcr_cpu0_p0",
-                "VendorIANA": 40981
+            {
+                "Address": "0x21",
+                "Bus": 1,
+                "Connector": {
+                    "Name": "MB_FAN3_TACH_IL",
+                    "Pwm": 2,
+                    "PwmName": "MB_FAN_PWM_PCT",
+                    "Tachs": [
+                        6
+                    ]
+                },
+                "Index": 6,
+                "Name": "MB_FAN3_TACH_IL_SPEED_RPM",
+                "PowerState": "Always",
+                "Thresholds": [
+                    {
+                        "Direction": "greater than",
+                        "Name": "upper critical",
+                        "Severity": 1,
+                        "Value": 40000
+                    },
+                    {
+                        "Direction": "less than",
+                        "Name": "lower critical",
+                        "Severity": 1,
+                        "Value": 1000
+                    }
+                ],
+                "Type": "I2CFan"
             },
-            "Name": "Santabarbara_MB_VR_pvddcr_cpu0_p0",
-            "Type": "MP2X6XXFirmware"
-        },
-        {
-            "Address": "0x6a",
-            "Bus": 20,
-            "Name": "MB_E1S0_TEMP_C",
-            "PowerState": "On",
-            "Thresholds": [
-                {
-                    "Direction": "less than",
-                    "Hysteresis": 0.1,
-                    "Name": "lower critical",
-                    "Severity": 1,
-                    "Value": 5.0
+            {
+                "Address": "0x21",
+                "Bus": 1,
+                "Connector": {
+                    "Name": "MB_FAN3_TACH_OL",
+                    "Pwm": 2,
+                    "PwmName": "MB_FAN_PWM_PCT",
+                    "Tachs": [
+                        7
+                    ]
                 },
-                {
-                    "Direction": "greater than",
-                    "Hysteresis": 1.4,
-                    "Name": "upper critical",
-                    "Severity": 1,
-                    "Value": 70.0
-                }
-            ],
-            "Type": "NVME1000"
-        },
-        {
-            "Address": "0x3c",
-            "Bus": 3,
-            "Labels": [
-                "power1"
-            ],
-            "Name": "SBRMI",
-            "PowerState": "BiosPost",
-            "Thresholds": [
-                {
-                    "Direction": "greater than",
-                    "Hysteresis": 10.5,
-                    "Label": "power1",
-                    "Name": "upper critical",
-                    "Severity": 1,
-                    "Value": 525
-                }
-            ],
-            "Type": "SBRMI",
-            "power1_Name": "MB_CPU_PKG_PWR_W"
-        },
-        {
-            "Address": "0x4c",
-            "Bus": 3,
-            "Name": "MB_CPU_TEMP_C",
-            "PowerState": "BiosPost",
-            "Thresholds": [
-                {
-                    "Direction": "less than",
-                    "Hysteresis": 0.02,
-                    "Name": "lower critical",
-                    "Severity": 1,
-                    "Value": -1.0
+                "Index": 7,
+                "Name": "MB_FAN3_TACH_OL_SPEED_RPM",
+                "PowerState": "Always",
+                "Thresholds": [
+                    {
+                        "Direction": "greater than",
+                        "Name": "upper critical",
+                        "Severity": 1,
+                        "Value": 35000
+                    },
+                    {
+                        "Direction": "less than",
+                        "Name": "lower critical",
+                        "Severity": 1,
+                        "Value": 1000
+                    }
+                ],
+                "Type": "I2CFan"
+            },
+            {
+                "Address": "0x42",
+                "Bus": 19,
+                "Labels": [
+                    "in1",
+                    "curr1",
+                    "power1"
+                ],
+                "Name": "MB_P12V_E1S0",
+                "PowerState": "On",
+                "Thresholds": [
+                    {
+                        "Direction": "greater than",
+                        "Label": "in1",
+                        "Name": "upper critical",
+                        "Severity": 1,
+                        "Value": 13.2
+                    },
+                    {
+                        "Direction": "less than",
+                        "Label": "in1",
+                        "Name": "lower critical",
+                        "Severity": 1,
+                        "Value": 10.8
+                    },
+                    {
+                        "Direction": "greater than",
+                        "Label": "curr1",
+                        "Name": "upper critical",
+                        "Severity": 1,
+                        "Value": 2
+                    },
+                    {
+                        "Direction": "greater than",
+                        "Label": "power1",
+                        "Name": "upper critical",
+                        "Severity": 1,
+                        "Value": 25
+                    }
+                ],
+                "Type": "INA230",
+                "curr1_Name": "MB_P12V_E1S0_CURR_A",
+                "curr1_Scale": 1016.260162602,
+                "in1_Name": "MB_P12V_E1S0_VOLT_V",
+                "power1_Name": "MB_P12V_E1S0_PWR_W",
+                "power1_Scale": 1016260.162602
+            },
+            {
+                "Address": "0x44",
+                "Bus": 19,
+                "Labels": [
+                    "in1",
+                    "curr1",
+                    "power1"
+                ],
+                "Name": "MB_P12V_OCP_SFF",
+                "Thresholds": [
+                    {
+                        "Direction": "greater than",
+                        "Label": "in1",
+                        "Name": "upper critical",
+                        "Severity": 1,
+                        "Value": 13.2
+                    },
+                    {
+                        "Direction": "less than",
+                        "Label": "in1",
+                        "Name": "lower critical",
+                        "Severity": 1,
+                        "Value": 10.8
+                    },
+                    {
+                        "Direction": "greater than",
+                        "Label": "curr1",
+                        "Name": "upper critical",
+                        "Severity": 1,
+                        "Value": 7.26
+                    },
+                    {
+                        "Direction": "greater than",
+                        "Label": "power1",
+                        "Name": "upper critical",
+                        "Severity": 1,
+                        "Value": 87.12
+                    }
+                ],
+                "Type": "INA230",
+                "curr1_Name": "MB_P12V_OCP_SFF_CURR_A",
+                "curr1_Scale": 1098.901098901,
+                "in1_Name": "MB_P12V_OCP_SFF_VOLT_V",
+                "power1_Name": "MB_P12V_OCP_SFF_PWR_W",
+                "power1_Scale": 1098901.098901
+            },
+            {
+                "Address": "0x40",
+                "Bus": 22,
+                "Labels": [
+                    "in1",
+                    "curr1",
+                    "power1"
+                ],
+                "Name": "MB_P12V_FAN0",
+                "Thresholds": [
+                    {
+                        "Direction": "greater than",
+                        "Label": "in1",
+                        "Name": "upper critical",
+                        "Severity": 1,
+                        "Value": 13.2
+                    },
+                    {
+                        "Direction": "less than",
+                        "Label": "in1",
+                        "Name": "lower critical",
+                        "Severity": 1,
+                        "Value": 10.8
+                    },
+                    {
+                        "Direction": "greater than",
+                        "Label": "curr1",
+                        "Name": "upper critical",
+                        "Severity": 1,
+                        "Value": 3.6
+                    },
+                    {
+                        "Direction": "greater than",
+                        "Label": "power1",
+                        "Name": "upper critical",
+                        "Severity": 1,
+                        "Value": 43.2
+                    }
+                ],
+                "Type": "INA230",
+                "curr1_Name": "MB_P12V_FAN0_CURR_A",
+                "curr1_Scale": 1063.829787234,
+                "in1_Name": "MB_P12V_FAN0_VOLT_V",
+                "power1_Name": "MB_P12V_FAN0_PWR_W",
+                "power1_Scale": 1063829.787234
+            },
+            {
+                "Address": "0x42",
+                "Bus": 22,
+                "Labels": [
+                    "in1",
+                    "curr1",
+                    "power1"
+                ],
+                "Name": "MB_P12V_FAN1",
+                "Thresholds": [
+                    {
+                        "Direction": "greater than",
+                        "Label": "in1",
+                        "Name": "upper critical",
+                        "Severity": 1,
+                        "Value": 13.2
+                    },
+                    {
+                        "Direction": "less than",
+                        "Label": "in1",
+                        "Name": "lower critical",
+                        "Severity": 1,
+                        "Value": 10.8
+                    },
+                    {
+                        "Direction": "greater than",
+                        "Label": "curr1",
+                        "Name": "upper critical",
+                        "Severity": 1,
+                        "Value": 3.6
+                    },
+                    {
+                        "Direction": "greater than",
+                        "Label": "power1",
+                        "Name": "upper critical",
+                        "Severity": 1,
+                        "Value": 43.2
+                    }
+                ],
+                "Type": "INA230",
+                "curr1_Name": "MB_P12V_FAN1_CURR_A",
+                "curr1_Scale": 1141.552511416,
+                "in1_Name": "MB_P12V_FAN1_VOLT_V",
+                "power1_Name": "MB_P12V_FAN1_PWR_W",
+                "power1_Scale": 1141552.511416
+            },
+            {
+                "Address": "0x44",
+                "Bus": 22,
+                "Labels": [
+                    "in1",
+                    "curr1",
+                    "power1"
+                ],
+                "Name": "MB_P12V_FAN2",
+                "Thresholds": [
+                    {
+                        "Direction": "greater than",
+                        "Label": "in1",
+                        "Name": "upper critical",
+                        "Severity": 1,
+                        "Value": 13.2
+                    },
+                    {
+                        "Direction": "less than",
+                        "Label": "in1",
+                        "Name": "lower critical",
+                        "Severity": 1,
+                        "Value": 10.8
+                    },
+                    {
+                        "Direction": "greater than",
+                        "Label": "curr1",
+                        "Name": "upper critical",
+                        "Severity": 1,
+                        "Value": 3.6
+                    },
+                    {
+                        "Direction": "greater than",
+                        "Label": "power1",
+                        "Name": "upper critical",
+                        "Severity": 1,
+                        "Value": 43.2
+                    }
+                ],
+                "Type": "INA230",
+                "curr1_Name": "MB_P12V_FAN2_CURR_A",
+                "curr1_Scale": 1079.913606911,
+                "in1_Name": "MB_P12V_FAN2_VOLT_V",
+                "power1_Name": "MB_P12V_FAN2_PWR_W",
+                "power1_Scale": 1079913.606911
+            },
+            {
+                "Address": "0x46",
+                "Bus": 22,
+                "Labels": [
+                    "in1",
+                    "curr1",
+                    "power1"
+                ],
+                "Name": "MB_P12V_FAN3",
+                "Thresholds": [
+                    {
+                        "Direction": "greater than",
+                        "Label": "in1",
+                        "Name": "upper critical",
+                        "Severity": 1,
+                        "Value": 13.2
+                    },
+                    {
+                        "Direction": "less than",
+                        "Label": "in1",
+                        "Name": "lower critical",
+                        "Severity": 1,
+                        "Value": 10.8
+                    },
+                    {
+                        "Direction": "greater than",
+                        "Label": "curr1",
+                        "Name": "upper critical",
+                        "Severity": 1,
+                        "Value": 3.6
+                    },
+                    {
+                        "Direction": "greater than",
+                        "Label": "power1",
+                        "Name": "upper critical",
+                        "Severity": 1,
+                        "Value": 43.2
+                    }
+                ],
+                "Type": "INA230",
+                "curr1_Name": "MB_P12V_FAN3_CURR_A",
+                "curr1_Scale": 1144.164759725,
+                "in1_Name": "MB_P12V_FAN3_VOLT_V",
+                "power1_Name": "MB_P12V_FAN3_PWR_W",
+                "power1_Scale": 1144164.759725
+            },
+            {
+                "Address": "0x60",
+                "Bus": 0,
+                "FirmwareInfo": {
+                    "CompatibleHardware": "com.meta.Hardware.Santabarbara.CPLD.LFMXO5_25_mb",
+                    "VendorIANA": 40981
                 },
-                {
-                    "Direction": "greater than",
-                    "Hysteresis": 1.9,
-                    "Name": "upper critical",
-                    "Severity": 1,
-                    "Value": 95.0
-                }
-            ],
-            "Type": "SBTSI"
-        },
-        {
-            "Address": "0x4c",
-            "Bus": 19,
-            "Name": "MB_OUTLET_TEMP_C",
-            "Thresholds": [
-                {
-                    "Direction": "less than",
-                    "Hysteresis": 0.1,
-                    "Name": "lower critical",
-                    "Severity": 1,
-                    "Value": 5.0
+                "Name": "Santabarbara_MB_CPLD",
+                "Type": "LatticeLFMXO5_25Firmware"
+            },
+            {
+                "Address": "0x4f",
+                "Bus": 18,
+                "Labels": [
+                    "vout1",
+                    "vout2",
+                    "iout1",
+                    "iout2",
+                    "pout1",
+                    "pout2"
+                ],
+                "Name": "PVDDCR_CPU0_P0",
+                "Name1": "PVDDIO_MEM_S3_P0",
+                "PowerState": "On",
+                "Thresholds": [
+                    {
+                        "Direction": "greater than",
+                        "Label": "vout1",
+                        "Name": "upper critical",
+                        "Severity": 1,
+                        "Value": 1.7
+                    },
+                    {
+                        "Direction": "less than",
+                        "Label": "vout1",
+                        "Name": "lower critical",
+                        "Severity": 1,
+                        "Value": 0.27
+                    },
+                    {
+                        "Direction": "greater than",
+                        "Label": "iout1",
+                        "Name": "upper critical",
+                        "Severity": 1,
+                        "Value": 404
+                    },
+                    {
+                        "Direction": "greater than",
+                        "Label": "pout1",
+                        "Name": "upper critical",
+                        "Severity": 1,
+                        "Value": 690
+                    },
+                    {
+                        "Direction": "greater than",
+                        "Label": "vout2",
+                        "Name": "upper critical",
+                        "Severity": 1,
+                        "Value": 1.35
+                    },
+                    {
+                        "Direction": "less than",
+                        "Label": "vout2",
+                        "Name": "lower critical",
+                        "Severity": 1,
+                        "Value": 0.84
+                    },
+                    {
+                        "Direction": "greater than",
+                        "Label": "iout2",
+                        "Name": "upper critical",
+                        "Severity": 1,
+                        "Value": 262
+                    },
+                    {
+                        "Direction": "greater than",
+                        "Label": "pout2",
+                        "Name": "upper critical",
+                        "Severity": 1,
+                        "Value": 355.5
+                    }
+                ],
+                "Type": "MP2869",
+                "iout1_Name": "MB_VR_CPU_PVDDCR_CPU0_CURR_A",
+                "iout2_Name": "MB_VR_CPU_PVDDIO_MEM_S3_CURR_A",
+                "pout1_Name": "MB_VR_CPU_PVDDCR_CPU0_PWR_W",
+                "pout2_Name": "MB_VR_CPU_PVDDIO_MEM_S3_PWR_W",
+                "vout1_Name": "MB_VR_CPU_PVDDCR_CPU0_VOLT_V",
+                "vout2_Name": "MB_VR_CPU_PVDDIO_MEM_S3_VOLT_V"
+            },
+            {
+                "Address": "0x4d",
+                "Bus": 18,
+                "Labels": [
+                    "vout1",
+                    "vout2",
+                    "iout1",
+                    "iout2",
+                    "iout3",
+                    "pout1",
+                    "pout2"
+                ],
+                "Name": "PVDDCR_SOC_P0",
+                "Name1": "PVDDIO_P0",
+                "PowerState": "On",
+                "Thresholds": [
+                    {
+                        "Direction": "greater than",
+                        "Label": "vout1",
+                        "Name": "upper critical",
+                        "Severity": 1,
+                        "Value": 1.32
+                    },
+                    {
+                        "Direction": "less than",
+                        "Label": "vout1",
+                        "Name": "lower critical",
+                        "Severity": 1,
+                        "Value": 0.61
+                    },
+                    {
+                        "Direction": "greater than",
+                        "Label": "iout1",
+                        "Name": "upper critical",
+                        "Severity": 1,
+                        "Value": 325
+                    },
+                    {
+                        "Direction": "greater than",
+                        "Label": "pout1",
+                        "Name": "upper critical",
+                        "Severity": 1,
+                        "Value": 431
+                    },
+                    {
+                        "Direction": "greater than",
+                        "Label": "vout2",
+                        "Name": "upper critical",
+                        "Severity": 1,
+                        "Value": 1.325
+                    },
+                    {
+                        "Direction": "less than",
+                        "Label": "vout2",
+                        "Name": "lower critical",
+                        "Severity": 1,
+                        "Value": 0.865
+                    },
+                    {
+                        "Direction": "greater than",
+                        "Label": "iout2",
+                        "Name": "upper critical",
+                        "Severity": 1,
+                        "Value": 50.5
+                    },
+                    {
+                        "Direction": "greater than",
+                        "Label": "pout2",
+                        "Name": "upper critical",
+                        "Severity": 1,
+                        "Value": 67.12
+                    }
+                ],
+                "Type": "MP29612",
+                "iout1_Name": "MB_VR_CPU_PVDDCR_SOC_CURR_A",
+                "iout2_Name": "MB_VR_CPU_PVDDIO_CURR_A",
+                "pout1_Name": "MB_VR_CPU_PVDDCR_SOC_PWR_W",
+                "pout2_Name": "MB_VR_CPU_PVDDIO_PWR_W",
+                "vout1_Name": "MB_VR_CPU_PVDDCR_SOC_VOLT_V",
+                "vout2_Name": "MB_VR_CPU_PVDDIO_VOLT_V"
+            },
+            {
+                "Address": "0x4e",
+                "Bus": 18,
+                "Labels": [
+                    "vout1",
+                    "vout2",
+                    "iout1",
+                    "pout1"
+                ],
+                "Name": "PVDDCR_CPU1_P0",
+                "Name1": "PVDD18_S5_P0",
+                "PowerState": "On",
+                "Thresholds": [
+                    {
+                        "Direction": "greater than",
+                        "Label": "vout1",
+                        "Name": "upper critical",
+                        "Severity": 1,
+                        "Value": 1.7
+                    },
+                    {
+                        "Direction": "less than",
+                        "Label": "vout1",
+                        "Name": "lower critical",
+                        "Severity": 1,
+                        "Value": 0.27
+                    },
+                    {
+                        "Direction": "greater than",
+                        "Label": "iout1",
+                        "Name": "upper critical",
+                        "Severity": 1,
+                        "Value": 404
+                    },
+                    {
+                        "Direction": "greater than",
+                        "Label": "pout1",
+                        "Name": "upper critical",
+                        "Severity": 1,
+                        "Value": 690
+                    },
+                    {
+                        "Direction": "greater than",
+                        "Label": "vout2",
+                        "Name": "upper critical",
+                        "Severity": 1,
+                        "Value": 1.83
+                    },
+                    {
+                        "Direction": "less than",
+                        "Label": "vout2",
+                        "Name": "lower critical",
+                        "Severity": 1,
+                        "Value": 1.76
+                    }
+                ],
+                "Type": "MP29612",
+                "iout1_Name": "MB_VR_CPU_PVDDCR_CPU1_CURR_A",
+                "pout1_Name": "MB_VR_CPU_PVDDCR_CPU1_PWR_W",
+                "vout1_Name": "MB_VR_CPU_PVDDCR_CPU1_VOLT_V",
+                "vout2_Name": "MB_PVDD18_S5_VOLT_V"
+            },
+            {
+                "Address": "0x4d",
+                "Bus": 18,
+                "FirmwareInfo": {
+                    "CompatibleHardware": "com.meta.Hardware.Santabarbara.VR.MP29612_pvddcr_soc_p0",
+                    "VendorIANA": 40981
                 },
-                {
-                    "Direction": "greater than",
-                    "Hysteresis": 1.6,
-                    "Name": "upper critical",
-                    "Severity": 1,
-                    "Value": 75.0
-                }
-            ],
-            "Type": "TMP75"
-        },
-        {
-            "Address": "0x4e",
-            "Bus": 19,
-            "Name": "MB_INLET_TEMP_C",
-            "Thresholds": [
-                {
-                    "Direction": "less than",
-                    "Hysteresis": 0.1,
-                    "Name": "lower critical",
-                    "Severity": 1,
-                    "Value": 5.0
+                "Name": "Santabarbara_MB_VR_pvddcr_soc_p0",
+                "Type": "MP2X6XXFirmware"
+            },
+            {
+                "Address": "0x4e",
+                "Bus": 18,
+                "FirmwareInfo": {
+                    "CompatibleHardware": "com.meta.Hardware.Santabarbara.VR.MP29612_pvddcr_cpu1_p0",
+                    "VendorIANA": 40981
                 },
-                {
-                    "Direction": "greater than",
-                    "Hysteresis": 1.2,
-                    "Name": "upper critical",
-                    "Severity": 1,
-                    "Value": 70.0
-                }
-            ],
-            "Type": "TMP75"
+                "Name": "Santabarbara_MB_VR_pvddcr_cpu1_p0",
+                "Type": "MP2X6XXFirmware"
+            },
+            {
+                "Address": "0x4f",
+                "Bus": 18,
+                "FirmwareInfo": {
+                    "CompatibleHardware": "com.meta.Hardware.Santabarbara.VR.MP2869_pvddcr_cpu0_p0",
+                    "VendorIANA": 40981
+                },
+                "Name": "Santabarbara_MB_VR_pvddcr_cpu0_p0",
+                "Type": "MP2X6XXFirmware"
+            },
+            {
+                "Address": "0x6a",
+                "Bus": 20,
+                "Name": "MB_E1S0_TEMP_C",
+                "PowerState": "On",
+                "Thresholds": [
+                    {
+                        "Direction": "less than",
+                        "Hysteresis": 0.1,
+                        "Name": "lower critical",
+                        "Severity": 1,
+                        "Value": 5.0
+                    },
+                    {
+                        "Direction": "greater than",
+                        "Hysteresis": 1.4,
+                        "Name": "upper critical",
+                        "Severity": 1,
+                        "Value": 70.0
+                    }
+                ],
+                "Type": "NVME1000"
+            },
+            {
+                "Address": "0x3c",
+                "Bus": 3,
+                "Labels": [
+                    "power1"
+                ],
+                "Name": "SBRMI",
+                "PowerState": "BiosPost",
+                "Thresholds": [
+                    {
+                        "Direction": "greater than",
+                        "Hysteresis": 10.5,
+                        "Label": "power1",
+                        "Name": "upper critical",
+                        "Severity": 1,
+                        "Value": 525
+                    }
+                ],
+                "Type": "SBRMI",
+                "power1_Name": "MB_CPU_PKG_PWR_W"
+            },
+            {
+                "Address": "0x4c",
+                "Bus": 3,
+                "Name": "MB_CPU_TEMP_C",
+                "PowerState": "BiosPost",
+                "Thresholds": [
+                    {
+                        "Direction": "less than",
+                        "Hysteresis": 0.02,
+                        "Name": "lower critical",
+                        "Severity": 1,
+                        "Value": -1.0
+                    },
+                    {
+                        "Direction": "greater than",
+                        "Hysteresis": 1.9,
+                        "Name": "upper critical",
+                        "Severity": 1,
+                        "Value": 95.0
+                    }
+                ],
+                "Type": "SBTSI"
+            },
+            {
+                "Address": "0x4c",
+                "Bus": 19,
+                "Name": "MB_OUTLET_TEMP_C",
+                "Thresholds": [
+                    {
+                        "Direction": "less than",
+                        "Hysteresis": 0.1,
+                        "Name": "lower critical",
+                        "Severity": 1,
+                        "Value": 5.0
+                    },
+                    {
+                        "Direction": "greater than",
+                        "Hysteresis": 1.6,
+                        "Name": "upper critical",
+                        "Severity": 1,
+                        "Value": 75.0
+                    }
+                ],
+                "Type": "TMP75"
+            },
+            {
+                "Address": "0x4e",
+                "Bus": 19,
+                "Name": "MB_INLET_TEMP_C",
+                "Thresholds": [
+                    {
+                        "Direction": "less than",
+                        "Hysteresis": 0.1,
+                        "Name": "lower critical",
+                        "Severity": 1,
+                        "Value": 5.0
+                    },
+                    {
+                        "Direction": "greater than",
+                        "Hysteresis": 1.2,
+                        "Name": "upper critical",
+                        "Severity": 1,
+                        "Value": 70.0
+                    }
+                ],
+                "Type": "TMP75"
+            }
+        ],
+        "Name": "Santa Barbara Chassis",
+        "Probe": "xyz.openbmc_project.FruDevice({'BOARD_PRODUCT_NAME': 'Santa Barbara MB', 'BOARD_MANUFACTURER': 'Quanta', 'PRODUCT_VERSION': '^EVT1.*'})",
+        "Type": "Board",
+        "xyz.openbmc_project.Inventory.Decorator.Asset": {
+            "BuildDate": "$BOARD_MANUFACTURE_DATE",
+            "Manufacturer": "$BOARD_MANUFACTURER",
+            "Model": "$BOARD_PRODUCT_NAME",
+            "PartNumber": "$BOARD_PART_NUMBER",
+            "SerialNumber": "$BOARD_SERIAL_NUMBER",
+            "SparePartNumber": "$BOARD_INFO_AM1"
+        },
+        "xyz.openbmc_project.Inventory.Decorator.AssetTag": {
+            "AssetTag": "$PRODUCT_ASSET_TAG"
+        },
+        "xyz.openbmc_project.Inventory.Decorator.Revision": {
+            "Version": "$PRODUCT_VERSION"
         }
-    ],
-    "Name": "Santa Barbara Chassis",
-    "Probe": "xyz.openbmc_project.FruDevice({'BOARD_PRODUCT_NAME': 'Santa Barbara MB'})",
-    "Type": "Board",
-    "xyz.openbmc_project.Inventory.Decorator.Asset": {
-        "BuildDate": "$BOARD_MANUFACTURE_DATE",
-        "Manufacturer": "$BOARD_MANUFACTURER",
-        "Model": "$BOARD_PRODUCT_NAME",
-        "PartNumber": "$BOARD_PART_NUMBER",
-        "SerialNumber": "$BOARD_SERIAL_NUMBER",
-        "SparePartNumber": "$BOARD_INFO_AM1"
     },
-    "xyz.openbmc_project.Inventory.Decorator.AssetTag": {
-        "AssetTag": "$PRODUCT_ASSET_TAG"
-    },
-    "xyz.openbmc_project.Inventory.Decorator.Revision": {
-        "Version": "$PRODUCT_VERSION"
+    {
+        "Exposes": [
+            {
+                "BridgeGpio": [
+                    {
+                        "Name": "rtc-battery-voltage-read-enable",
+                        "Polarity": "High",
+                        "SetupTime": 1
+                    }
+                ],
+                "Index": 7,
+                "Name": "MB_P3V_BAT_VOLT_V",
+                "PollRate": 86400,
+                "ScaleFactor": 0.333333333,
+                "Thresholds": [
+                    {
+                        "Direction": "greater than",
+                        "Name": "upper critical",
+                        "Severity": 1,
+                        "Value": 3.4
+                    },
+                    {
+                        "Direction": "less than",
+                        "Name": "lower critical",
+                        "Severity": 1,
+                        "Value": 2.6
+                    }
+                ],
+                "Type": "ADC"
+            },
+            {
+                "Address": "0x48",
+                "Bus": 19,
+                "Labels": [
+                    "in0",
+                    "in1",
+                    "in3",
+                    "in4",
+                    "in5",
+                    "in6",
+                    "in7"
+                ],
+                "Name": "MB_ADC0",
+                "Thresholds": [
+                    {
+                        "Direction": "greater than",
+                        "Label": "in0",
+                        "Name": "upper critical",
+                        "Severity": 1,
+                        "Value": 3.345
+                    },
+                    {
+                        "Direction": "less than",
+                        "Label": "in0",
+                        "Name": "lower critical",
+                        "Severity": 1,
+                        "Value": 3.135
+                    },
+                    {
+                        "Direction": "greater than",
+                        "Label": "in1",
+                        "Name": "upper critical",
+                        "Severity": 1,
+                        "Value": 3.465
+                    },
+                    {
+                        "Direction": "less than",
+                        "Label": "in1",
+                        "Name": "lower critical",
+                        "Severity": 1,
+                        "Value": 3.135
+                    },
+                    {
+                        "Direction": "greater than",
+                        "Label": "in3",
+                        "Name": "upper critical",
+                        "Severity": 1,
+                        "Value": 3.46
+                    },
+                    {
+                        "Direction": "less than",
+                        "Label": "in3",
+                        "Name": "lower critical",
+                        "Severity": 1,
+                        "Value": 3.13
+                    },
+                    {
+                        "Direction": "greater than",
+                        "Label": "in4",
+                        "Name": "upper critical",
+                        "Severity": 1,
+                        "Value": 1.83
+                    },
+                    {
+                        "Direction": "less than",
+                        "Label": "in4",
+                        "Name": "lower critical",
+                        "Severity": 1,
+                        "Value": 1.76
+                    }
+                ],
+                "Type": "ADS7830",
+                "in0_Name": "MB_P3V3_OCP_SFF_VOLT_V",
+                "in0_Scale": 410.6776,
+                "in1_Name": "MB_P3V3_E1S0_VOLT_V",
+                "in1_Scale": 410.6776,
+                "in3_Name": "MB_PVDD33_S5_VOLT_V",
+                "in3_Scale": 410.6776,
+                "in4_Name": "MB_PVDD18_S5_VOLT_V",
+                "in4_Scale": 750.469,
+                "in5_Name": "MB_MCIO_1A_CARD_VOLT_V",
+                "in6_Name": "MB_MCIO_1B_CARD_VOLT_V",
+                "in7_Name": "MB_MCIO_0A_CARD_VOLT_V"
+            },
+            {
+                "Address": "0x4a",
+                "Bus": 19,
+                "Labels": [
+                    "in0",
+                    "in1",
+                    "in2",
+                    "in3",
+                    "in4",
+                    "in5"
+                ],
+                "Name": "MB_ADC1",
+                "Type": "ADS7830",
+                "in0_Name": "MB_MCIO_2A_CARD_VOLT_V",
+                "in1_Name": "MB_MCIO_2B_CARD_VOLT_V",
+                "in2_Name": "MB_MCIO_3A_CARD_VOLT_V",
+                "in3_Name": "MB_MCIO_3B_CARD_VOLT_V",
+                "in4_Name": "MB_MCIO_4A_CARD_VOLT_V",
+                "in5_Name": "MB_MCIO_4B_CARD_VOLT_V"
+            },
+            {
+                "Address": "0x48",
+                "Bus": 22,
+                "Labels": [
+                    "in0",
+                    "in1",
+                    "in2",
+                    "in3",
+                    "in4"
+                ],
+                "Name": "MB_ADC2",
+                "Thresholds": [
+                    {
+                        "Direction": "greater than",
+                        "Label": "in0",
+                        "Name": "upper critical",
+                        "Severity": 1,
+                        "Value": 12.61
+                    },
+                    {
+                        "Direction": "less than",
+                        "Label": "in0",
+                        "Name": "lower critical",
+                        "Severity": 1,
+                        "Value": 11.39
+                    },
+                    {
+                        "Direction": "greater than",
+                        "Label": "in1",
+                        "Name": "upper critical",
+                        "Severity": 1,
+                        "Value": 5.26
+                    },
+                    {
+                        "Direction": "less than",
+                        "Label": "in1",
+                        "Name": "lower critical",
+                        "Severity": 1,
+                        "Value": 4.74
+                    },
+                    {
+                        "Direction": "greater than",
+                        "Label": "in2",
+                        "Name": "upper critical",
+                        "Severity": 1,
+                        "Value": 3.48
+                    },
+                    {
+                        "Direction": "less than",
+                        "Label": "in2",
+                        "Name": "lower critical",
+                        "Severity": 1,
+                        "Value": 3.12
+                    },
+                    {
+                        "Direction": "greater than",
+                        "Label": "in3",
+                        "Name": "upper critical",
+                        "Severity": 1,
+                        "Value": 1.89
+                    },
+                    {
+                        "Direction": "less than",
+                        "Label": "in3",
+                        "Name": "lower critical",
+                        "Severity": 1,
+                        "Value": 1.74
+                    }
+                ],
+                "Type": "ADS7830",
+                "in0_Name": "MB_P12V_AUX_VOLT_V",
+                "in0_Scale": 112.3596,
+                "in1_Name": "MB_P5V_AUX_VOLT_V",
+                "in1_Scale": 271.7391,
+                "in2_Name": "MB_P3V3_AUX_VOLT_V",
+                "in2_Scale": 410.6776,
+                "in3_Name": "MB_P1V8_LDO_VOLT_V",
+                "in3_Scale": 750.469,
+                "in4_Name": "MB_P1V_LDO_VOLT_V"
+            },
+            {
+                "Address": "$address",
+                "Bus": "$bus",
+                "Name": "MB FRU",
+                "Type": "EEPROM"
+            },
+            {
+                "Address": "0x21",
+                "Bus": 1,
+                "Connector": {
+                    "Name": "MB_FAN0_TACH_IL",
+                    "Pwm": 2,
+                    "PwmName": "MB_FAN_PWM_PCT",
+                    "Tachs": [
+                        0
+                    ]
+                },
+                "Index": 0,
+                "Name": "MB_FAN0_TACH_IL_SPEED_RPM",
+                "PowerState": "Always",
+                "Thresholds": [
+                    {
+                        "Direction": "greater than",
+                        "Name": "upper critical",
+                        "Severity": 1,
+                        "Value": 40000
+                    },
+                    {
+                        "Direction": "less than",
+                        "Name": "lower critical",
+                        "Severity": 1,
+                        "Value": 1000
+                    }
+                ],
+                "Type": "I2CFan"
+            },
+            {
+                "Address": "0x21",
+                "Bus": 1,
+                "Connector": {
+                    "Name": "MB_FAN0_TACH_OL",
+                    "Pwm": 2,
+                    "PwmName": "MB_FAN_PWM_PCT",
+                    "Tachs": [
+                        1
+                    ]
+                },
+                "Index": 1,
+                "Name": "MB_FAN0_TACH_OL_SPEED_RPM",
+                "PowerState": "Always",
+                "Thresholds": [
+                    {
+                        "Direction": "greater than",
+                        "Name": "upper critical",
+                        "Severity": 1,
+                        "Value": 35000
+                    },
+                    {
+                        "Direction": "less than",
+                        "Name": "lower critical",
+                        "Severity": 1,
+                        "Value": 1000
+                    }
+                ],
+                "Type": "I2CFan"
+            },
+            {
+                "Address": "0x21",
+                "Bus": 1,
+                "Connector": {
+                    "Name": "MB_FAN1_TACH_IL",
+                    "Pwm": 2,
+                    "PwmName": "MB_FAN_PWM_PCT",
+                    "Tachs": [
+                        2
+                    ]
+                },
+                "Index": 2,
+                "Name": "MB_FAN1_TACH_IL_SPEED_RPM",
+                "PowerState": "Always",
+                "Thresholds": [
+                    {
+                        "Direction": "greater than",
+                        "Name": "upper critical",
+                        "Severity": 1,
+                        "Value": 40000
+                    },
+                    {
+                        "Direction": "less than",
+                        "Name": "lower critical",
+                        "Severity": 1,
+                        "Value": 1000
+                    }
+                ],
+                "Type": "I2CFan"
+            },
+            {
+                "Address": "0x21",
+                "Bus": 1,
+                "Connector": {
+                    "Name": "MB_FAN1_TACH_OL",
+                    "Pwm": 2,
+                    "PwmName": "MB_FAN_PWM_PCT",
+                    "Tachs": [
+                        3
+                    ]
+                },
+                "Index": 3,
+                "Name": "MB_FAN1_TACH_OL_SPEED_RPM",
+                "PowerState": "Always",
+                "Thresholds": [
+                    {
+                        "Direction": "greater than",
+                        "Name": "upper critical",
+                        "Severity": 1,
+                        "Value": 35000
+                    },
+                    {
+                        "Direction": "less than",
+                        "Name": "lower critical",
+                        "Severity": 1,
+                        "Value": 1000
+                    }
+                ],
+                "Type": "I2CFan"
+            },
+            {
+                "Address": "0x21",
+                "Bus": 1,
+                "Connector": {
+                    "Name": "MB_FAN2_TACH_IL",
+                    "Pwm": 2,
+                    "PwmName": "MB_FAN_PWM_PCT",
+                    "Tachs": [
+                        4
+                    ]
+                },
+                "Index": 4,
+                "Name": "MB_FAN2_TACH_IL_SPEED_RPM",
+                "PowerState": "Always",
+                "Thresholds": [
+                    {
+                        "Direction": "greater than",
+                        "Name": "upper critical",
+                        "Severity": 1,
+                        "Value": 40000
+                    },
+                    {
+                        "Direction": "less than",
+                        "Name": "lower critical",
+                        "Severity": 1,
+                        "Value": 1000
+                    }
+                ],
+                "Type": "I2CFan"
+            },
+            {
+                "Address": "0x21",
+                "Bus": 1,
+                "Connector": {
+                    "Name": "MB_FAN2_TACH_OL",
+                    "Pwm": 2,
+                    "PwmName": "MB_FAN_PWM_PCT",
+                    "Tachs": [
+                        5
+                    ]
+                },
+                "Index": 5,
+                "Name": "MB_FAN2_TACH_OL_SPEED_RPM",
+                "PowerState": "Always",
+                "Thresholds": [
+                    {
+                        "Direction": "greater than",
+                        "Name": "upper critical",
+                        "Severity": 1,
+                        "Value": 35000
+                    },
+                    {
+                        "Direction": "less than",
+                        "Name": "lower critical",
+                        "Severity": 1,
+                        "Value": 1000
+                    }
+                ],
+                "Type": "I2CFan"
+            },
+            {
+                "Address": "0x21",
+                "Bus": 1,
+                "Connector": {
+                    "Name": "MB_FAN3_TACH_IL",
+                    "Pwm": 2,
+                    "PwmName": "MB_FAN_PWM_PCT",
+                    "Tachs": [
+                        6
+                    ]
+                },
+                "Index": 6,
+                "Name": "MB_FAN3_TACH_IL_SPEED_RPM",
+                "PowerState": "Always",
+                "Thresholds": [
+                    {
+                        "Direction": "greater than",
+                        "Name": "upper critical",
+                        "Severity": 1,
+                        "Value": 40000
+                    },
+                    {
+                        "Direction": "less than",
+                        "Name": "lower critical",
+                        "Severity": 1,
+                        "Value": 1000
+                    }
+                ],
+                "Type": "I2CFan"
+            },
+            {
+                "Address": "0x21",
+                "Bus": 1,
+                "Connector": {
+                    "Name": "MB_FAN3_TACH_OL",
+                    "Pwm": 2,
+                    "PwmName": "MB_FAN_PWM_PCT",
+                    "Tachs": [
+                        7
+                    ]
+                },
+                "Index": 7,
+                "Name": "MB_FAN3_TACH_OL_SPEED_RPM",
+                "PowerState": "Always",
+                "Thresholds": [
+                    {
+                        "Direction": "greater than",
+                        "Name": "upper critical",
+                        "Severity": 1,
+                        "Value": 35000
+                    },
+                    {
+                        "Direction": "less than",
+                        "Name": "lower critical",
+                        "Severity": 1,
+                        "Value": 1000
+                    }
+                ],
+                "Type": "I2CFan"
+            },
+            {
+                "Address": "0x42",
+                "Bus": 19,
+                "Labels": [
+                    "in1",
+                    "curr1",
+                    "power1"
+                ],
+                "Name": "MB_P12V_E1S0",
+                "PowerState": "On",
+                "Thresholds": [
+                    {
+                        "Direction": "greater than",
+                        "Label": "in1",
+                        "Name": "upper critical",
+                        "Severity": 1,
+                        "Value": 13.2
+                    },
+                    {
+                        "Direction": "less than",
+                        "Label": "in1",
+                        "Name": "lower critical",
+                        "Severity": 1,
+                        "Value": 10.8
+                    },
+                    {
+                        "Direction": "greater than",
+                        "Label": "curr1",
+                        "Name": "upper critical",
+                        "Severity": 1,
+                        "Value": 2
+                    },
+                    {
+                        "Direction": "greater than",
+                        "Label": "power1",
+                        "Name": "upper critical",
+                        "Severity": 1,
+                        "Value": 25
+                    }
+                ],
+                "Type": "INA230",
+                "curr1_Name": "MB_P12V_E1S0_CURR_A",
+                "curr1_Scale": 1016.260162602,
+                "in1_Name": "MB_P12V_E1S0_VOLT_V",
+                "power1_Name": "MB_P12V_E1S0_PWR_W",
+                "power1_Scale": 1016260.162602
+            },
+            {
+                "Address": "0x44",
+                "Bus": 19,
+                "Labels": [
+                    "in1",
+                    "curr1",
+                    "power1"
+                ],
+                "Name": "MB_P12V_OCP_SFF",
+                "Thresholds": [
+                    {
+                        "Direction": "greater than",
+                        "Label": "in1",
+                        "Name": "upper critical",
+                        "Severity": 1,
+                        "Value": 13.2
+                    },
+                    {
+                        "Direction": "less than",
+                        "Label": "in1",
+                        "Name": "lower critical",
+                        "Severity": 1,
+                        "Value": 10.8
+                    },
+                    {
+                        "Direction": "greater than",
+                        "Label": "curr1",
+                        "Name": "upper critical",
+                        "Severity": 1,
+                        "Value": 7.26
+                    },
+                    {
+                        "Direction": "greater than",
+                        "Label": "power1",
+                        "Name": "upper critical",
+                        "Severity": 1,
+                        "Value": 87.12
+                    }
+                ],
+                "Type": "INA230",
+                "curr1_Name": "MB_P12V_OCP_SFF_CURR_A",
+                "curr1_Scale": 1098.901098901,
+                "in1_Name": "MB_P12V_OCP_SFF_VOLT_V",
+                "power1_Name": "MB_P12V_OCP_SFF_PWR_W",
+                "power1_Scale": 1098901.098901
+            },
+            {
+                "Address": "0x40",
+                "Bus": 22,
+                "Labels": [
+                    "in1",
+                    "curr1",
+                    "power1"
+                ],
+                "Name": "MB_P12V_FAN0",
+                "Thresholds": [
+                    {
+                        "Direction": "greater than",
+                        "Label": "in1",
+                        "Name": "upper critical",
+                        "Severity": 1,
+                        "Value": 13.2
+                    },
+                    {
+                        "Direction": "less than",
+                        "Label": "in1",
+                        "Name": "lower critical",
+                        "Severity": 1,
+                        "Value": 10.8
+                    },
+                    {
+                        "Direction": "greater than",
+                        "Label": "curr1",
+                        "Name": "upper critical",
+                        "Severity": 1,
+                        "Value": 3.6
+                    },
+                    {
+                        "Direction": "greater than",
+                        "Label": "power1",
+                        "Name": "upper critical",
+                        "Severity": 1,
+                        "Value": 43.2
+                    }
+                ],
+                "Type": "INA230",
+                "curr1_Name": "MB_P12V_FAN0_CURR_A",
+                "curr1_Scale": 1063.829787234,
+                "in1_Name": "MB_P12V_FAN0_VOLT_V",
+                "power1_Name": "MB_P12V_FAN0_PWR_W",
+                "power1_Scale": 1063829.787234
+            },
+            {
+                "Address": "0x42",
+                "Bus": 22,
+                "Labels": [
+                    "in1",
+                    "curr1",
+                    "power1"
+                ],
+                "Name": "MB_P12V_FAN1",
+                "Thresholds": [
+                    {
+                        "Direction": "greater than",
+                        "Label": "in1",
+                        "Name": "upper critical",
+                        "Severity": 1,
+                        "Value": 13.2
+                    },
+                    {
+                        "Direction": "less than",
+                        "Label": "in1",
+                        "Name": "lower critical",
+                        "Severity": 1,
+                        "Value": 10.8
+                    },
+                    {
+                        "Direction": "greater than",
+                        "Label": "curr1",
+                        "Name": "upper critical",
+                        "Severity": 1,
+                        "Value": 3.6
+                    },
+                    {
+                        "Direction": "greater than",
+                        "Label": "power1",
+                        "Name": "upper critical",
+                        "Severity": 1,
+                        "Value": 43.2
+                    }
+                ],
+                "Type": "INA230",
+                "curr1_Name": "MB_P12V_FAN1_CURR_A",
+                "curr1_Scale": 1141.552511416,
+                "in1_Name": "MB_P12V_FAN1_VOLT_V",
+                "power1_Name": "MB_P12V_FAN1_PWR_W",
+                "power1_Scale": 1141552.511416
+            },
+            {
+                "Address": "0x44",
+                "Bus": 22,
+                "Labels": [
+                    "in1",
+                    "curr1",
+                    "power1"
+                ],
+                "Name": "MB_P12V_FAN2",
+                "Thresholds": [
+                    {
+                        "Direction": "greater than",
+                        "Label": "in1",
+                        "Name": "upper critical",
+                        "Severity": 1,
+                        "Value": 13.2
+                    },
+                    {
+                        "Direction": "less than",
+                        "Label": "in1",
+                        "Name": "lower critical",
+                        "Severity": 1,
+                        "Value": 10.8
+                    },
+                    {
+                        "Direction": "greater than",
+                        "Label": "curr1",
+                        "Name": "upper critical",
+                        "Severity": 1,
+                        "Value": 3.6
+                    },
+                    {
+                        "Direction": "greater than",
+                        "Label": "power1",
+                        "Name": "upper critical",
+                        "Severity": 1,
+                        "Value": 43.2
+                    }
+                ],
+                "Type": "INA230",
+                "curr1_Name": "MB_P12V_FAN2_CURR_A",
+                "curr1_Scale": 1079.913606911,
+                "in1_Name": "MB_P12V_FAN2_VOLT_V",
+                "power1_Name": "MB_P12V_FAN2_PWR_W",
+                "power1_Scale": 1079913.606911
+            },
+            {
+                "Address": "0x46",
+                "Bus": 22,
+                "Labels": [
+                    "in1",
+                    "curr1",
+                    "power1"
+                ],
+                "Name": "MB_P12V_FAN3",
+                "Thresholds": [
+                    {
+                        "Direction": "greater than",
+                        "Label": "in1",
+                        "Name": "upper critical",
+                        "Severity": 1,
+                        "Value": 13.2
+                    },
+                    {
+                        "Direction": "less than",
+                        "Label": "in1",
+                        "Name": "lower critical",
+                        "Severity": 1,
+                        "Value": 10.8
+                    },
+                    {
+                        "Direction": "greater than",
+                        "Label": "curr1",
+                        "Name": "upper critical",
+                        "Severity": 1,
+                        "Value": 3.6
+                    },
+                    {
+                        "Direction": "greater than",
+                        "Label": "power1",
+                        "Name": "upper critical",
+                        "Severity": 1,
+                        "Value": 43.2
+                    }
+                ],
+                "Type": "INA230",
+                "curr1_Name": "MB_P12V_FAN3_CURR_A",
+                "curr1_Scale": 1144.164759725,
+                "in1_Name": "MB_P12V_FAN3_VOLT_V",
+                "power1_Name": "MB_P12V_FAN3_PWR_W",
+                "power1_Scale": 1144164.759725
+            },
+            {
+                "Address": "0x60",
+                "Bus": 0,
+                "FirmwareInfo": {
+                    "CompatibleHardware": "com.meta.Hardware.Santabarbara.CPLD.LFMXO5_25_mb",
+                    "VendorIANA": 40981
+                },
+                "Name": "Santabarbara_MB_CPLD",
+                "Type": "LatticeLFMXO5_25Firmware"
+            },
+            {
+                "Address": "0x4f",
+                "Bus": 18,
+                "Labels": [
+                    "vout1",
+                    "vout2",
+                    "iout1",
+                    "iout2",
+                    "pout1",
+                    "pout2"
+                ],
+                "Name": "PVDDCR_CPU0_P0",
+                "Name1": "PVDDIO_MEM_S3_P0",
+                "PowerState": "On",
+                "Thresholds": [
+                    {
+                        "Direction": "greater than",
+                        "Label": "vout1",
+                        "Name": "upper critical",
+                        "Severity": 1,
+                        "Value": 1.7
+                    },
+                    {
+                        "Direction": "less than",
+                        "Label": "vout1",
+                        "Name": "lower critical",
+                        "Severity": 1,
+                        "Value": 0.27
+                    },
+                    {
+                        "Direction": "greater than",
+                        "Label": "iout1",
+                        "Name": "upper critical",
+                        "Severity": 1,
+                        "Value": 404
+                    },
+                    {
+                        "Direction": "greater than",
+                        "Label": "pout1",
+                        "Name": "upper critical",
+                        "Severity": 1,
+                        "Value": 690
+                    },
+                    {
+                        "Direction": "greater than",
+                        "Label": "vout2",
+                        "Name": "upper critical",
+                        "Severity": 1,
+                        "Value": 1.35
+                    },
+                    {
+                        "Direction": "less than",
+                        "Label": "vout2",
+                        "Name": "lower critical",
+                        "Severity": 1,
+                        "Value": 0.84
+                    },
+                    {
+                        "Direction": "greater than",
+                        "Label": "iout2",
+                        "Name": "upper critical",
+                        "Severity": 1,
+                        "Value": 262
+                    },
+                    {
+                        "Direction": "greater than",
+                        "Label": "pout2",
+                        "Name": "upper critical",
+                        "Severity": 1,
+                        "Value": 355.5
+                    }
+                ],
+                "Type": "MP2869",
+                "iout1_Name": "MB_VR_CPU_PVDDCR_CPU0_CURR_A",
+                "iout2_Name": "MB_VR_CPU_PVDDIO_MEM_S3_CURR_A",
+                "pout1_Name": "MB_VR_CPU_PVDDCR_CPU0_PWR_W",
+                "pout2_Name": "MB_VR_CPU_PVDDIO_MEM_S3_PWR_W",
+                "vout1_Name": "MB_VR_CPU_PVDDCR_CPU0_VOLT_V",
+                "vout2_Name": "MB_VR_CPU_PVDDIO_MEM_S3_VOLT_V"
+            },
+            {
+                "Address": "0x4d",
+                "Bus": 18,
+                "Labels": [
+                    "vout1",
+                    "vout2",
+                    "iout1",
+                    "iout2",
+                    "iout3",
+                    "pout1",
+                    "pout2"
+                ],
+                "Name": "PVDDCR_SOC_P0",
+                "Name1": "PVDDIO_P0",
+                "PowerState": "On",
+                "Thresholds": [
+                    {
+                        "Direction": "greater than",
+                        "Label": "vout1",
+                        "Name": "upper critical",
+                        "Severity": 1,
+                        "Value": 1.32
+                    },
+                    {
+                        "Direction": "less than",
+                        "Label": "vout1",
+                        "Name": "lower critical",
+                        "Severity": 1,
+                        "Value": 0.61
+                    },
+                    {
+                        "Direction": "greater than",
+                        "Label": "iout1",
+                        "Name": "upper critical",
+                        "Severity": 1,
+                        "Value": 325
+                    },
+                    {
+                        "Direction": "greater than",
+                        "Label": "pout1",
+                        "Name": "upper critical",
+                        "Severity": 1,
+                        "Value": 431
+                    },
+                    {
+                        "Direction": "greater than",
+                        "Label": "vout2",
+                        "Name": "upper critical",
+                        "Severity": 1,
+                        "Value": 1.325
+                    },
+                    {
+                        "Direction": "less than",
+                        "Label": "vout2",
+                        "Name": "lower critical",
+                        "Severity": 1,
+                        "Value": 0.865
+                    },
+                    {
+                        "Direction": "greater than",
+                        "Label": "iout2",
+                        "Name": "upper critical",
+                        "Severity": 1,
+                        "Value": 50.5
+                    },
+                    {
+                        "Direction": "greater than",
+                        "Label": "pout2",
+                        "Name": "upper critical",
+                        "Severity": 1,
+                        "Value": 67.12
+                    }
+                ],
+                "Type": "MP29612",
+                "iout1_Name": "MB_VR_CPU_PVDDCR_SOC_CURR_A",
+                "iout2_Name": "MB_VR_CPU_PVDDIO_CURR_A",
+                "pout1_Name": "MB_VR_CPU_PVDDCR_SOC_PWR_W",
+                "pout2_Name": "MB_VR_CPU_PVDDIO_PWR_W",
+                "vout1_Name": "MB_VR_CPU_PVDDCR_SOC_VOLT_V",
+                "vout2_Name": "MB_VR_CPU_PVDDIO_VOLT_V"
+            },
+            {
+                "Address": "0x4e",
+                "Bus": 18,
+                "Labels": [
+                    "vout1",
+                    "vout2",
+                    "iout1",
+                    "pout1"
+                ],
+                "Name": "PVDDCR_CPU1_P0",
+                "Name1": "PVDD18_S5_P0",
+                "PowerState": "On",
+                "Thresholds": [
+                    {
+                        "Direction": "greater than",
+                        "Label": "vout1",
+                        "Name": "upper critical",
+                        "Severity": 1,
+                        "Value": 1.7
+                    },
+                    {
+                        "Direction": "less than",
+                        "Label": "vout1",
+                        "Name": "lower critical",
+                        "Severity": 1,
+                        "Value": 0.27
+                    },
+                    {
+                        "Direction": "greater than",
+                        "Label": "iout1",
+                        "Name": "upper critical",
+                        "Severity": 1,
+                        "Value": 404
+                    },
+                    {
+                        "Direction": "greater than",
+                        "Label": "pout1",
+                        "Name": "upper critical",
+                        "Severity": 1,
+                        "Value": 690
+                    },
+                    {
+                        "Direction": "greater than",
+                        "Label": "vout2",
+                        "Name": "upper critical",
+                        "Severity": 1,
+                        "Value": 1.83
+                    },
+                    {
+                        "Direction": "less than",
+                        "Label": "vout2",
+                        "Name": "lower critical",
+                        "Severity": 1,
+                        "Value": 1.76
+                    }
+                ],
+                "Type": "MP29612",
+                "iout1_Name": "MB_VR_CPU_PVDDCR_CPU1_CURR_A",
+                "pout1_Name": "MB_VR_CPU_PVDDCR_CPU1_PWR_W",
+                "vout1_Name": "MB_VR_CPU_PVDDCR_CPU1_VOLT_V",
+                "vout2_Name": "MB_PVDD18_S5_VOLT_V"
+            },
+            {
+                "Address": "0x4d",
+                "Bus": 18,
+                "FirmwareInfo": {
+                    "CompatibleHardware": "com.meta.Hardware.Santabarbara.VR.MP29612_pvddcr_soc_p0",
+                    "VendorIANA": 40981
+                },
+                "Name": "Santabarbara_MB_VR_pvddcr_soc_p0",
+                "Type": "MP2X6XXFirmware"
+            },
+            {
+                "Address": "0x4e",
+                "Bus": 18,
+                "FirmwareInfo": {
+                    "CompatibleHardware": "com.meta.Hardware.Santabarbara.VR.MP29612_pvddcr_cpu1_p0",
+                    "VendorIANA": 40981
+                },
+                "Name": "Santabarbara_MB_VR_pvddcr_cpu1_p0",
+                "Type": "MP2X6XXFirmware"
+            },
+            {
+                "Address": "0x4f",
+                "Bus": 18,
+                "FirmwareInfo": {
+                    "CompatibleHardware": "com.meta.Hardware.Santabarbara.VR.MP2869_pvddcr_cpu0_p0",
+                    "VendorIANA": 40981
+                },
+                "Name": "Santabarbara_MB_VR_pvddcr_cpu0_p0",
+                "Type": "MP2X6XXFirmware"
+            },
+            {
+                "Address": "0x6a",
+                "Bus": 20,
+                "Name": "MB_E1S0_TEMP_C",
+                "PowerState": "On",
+                "Thresholds": [
+                    {
+                        "Direction": "less than",
+                        "Hysteresis": 0.1,
+                        "Name": "lower critical",
+                        "Severity": 1,
+                        "Value": 5.0
+                    },
+                    {
+                        "Direction": "greater than",
+                        "Hysteresis": 1.4,
+                        "Name": "upper critical",
+                        "Severity": 1,
+                        "Value": 70.0
+                    }
+                ],
+                "Type": "NVME1000"
+            },
+            {
+                "Address": "0x3c",
+                "Bus": 3,
+                "Labels": [
+                    "power1"
+                ],
+                "Name": "SBRMI",
+                "PowerState": "BiosPost",
+                "Thresholds": [
+                    {
+                        "Direction": "greater than",
+                        "Hysteresis": 10.5,
+                        "Label": "power1",
+                        "Name": "upper critical",
+                        "Severity": 1,
+                        "Value": 525
+                    }
+                ],
+                "Type": "SBRMI",
+                "power1_Name": "MB_CPU_PKG_PWR_W"
+            },
+            {
+                "Address": "0x4c",
+                "Bus": 3,
+                "Name": "MB_CPU_TEMP_C",
+                "PowerState": "BiosPost",
+                "Thresholds": [
+                    {
+                        "Direction": "less than",
+                        "Hysteresis": 0.02,
+                        "Name": "lower critical",
+                        "Severity": 1,
+                        "Value": -1.0
+                    },
+                    {
+                        "Direction": "greater than",
+                        "Hysteresis": 1.9,
+                        "Name": "upper critical",
+                        "Severity": 1,
+                        "Value": 95.0
+                    }
+                ],
+                "Type": "SBTSI"
+            },
+            {
+                "Address": "0x4c",
+                "Bus": 19,
+                "Name": "MB_OUTLET_TEMP_C",
+                "Thresholds": [
+                    {
+                        "Direction": "less than",
+                        "Hysteresis": 0.1,
+                        "Name": "lower critical",
+                        "Severity": 1,
+                        "Value": 5.0
+                    },
+                    {
+                        "Direction": "greater than",
+                        "Hysteresis": 1.6,
+                        "Name": "upper critical",
+                        "Severity": 1,
+                        "Value": 75.0
+                    }
+                ],
+                "Type": "TMP75"
+            },
+            {
+                "Address": "0x4e",
+                "Bus": 19,
+                "Name": "MB_INLET_TEMP_C",
+                "Thresholds": [
+                    {
+                        "Direction": "less than",
+                        "Hysteresis": 0.1,
+                        "Name": "lower critical",
+                        "Severity": 1,
+                        "Value": 5.0
+                    },
+                    {
+                        "Direction": "greater than",
+                        "Hysteresis": 1.2,
+                        "Name": "upper critical",
+                        "Severity": 1,
+                        "Value": 70.0
+                    }
+                ],
+                "Type": "TMP75"
+            }
+        ],
+        "Name": "Santa Barbara Chassis",
+        "Probe": "xyz.openbmc_project.FruDevice({'BOARD_PRODUCT_NAME': 'Santa Barbara MB', 'BOARD_MANUFACTURER': 'Quanta', 'PRODUCT_VERSION': '^(?!EVT1).*'})",
+        "Type": "Board",
+        "xyz.openbmc_project.Inventory.Decorator.Asset": {
+            "BuildDate": "$BOARD_MANUFACTURE_DATE",
+            "Manufacturer": "$BOARD_MANUFACTURER",
+            "Model": "$BOARD_PRODUCT_NAME",
+            "PartNumber": "$BOARD_PART_NUMBER",
+            "SerialNumber": "$BOARD_SERIAL_NUMBER",
+            "SparePartNumber": "$BOARD_INFO_AM1"
+        },
+        "xyz.openbmc_project.Inventory.Decorator.AssetTag": {
+            "AssetTag": "$PRODUCT_ASSET_TAG"
+        },
+        "xyz.openbmc_project.Inventory.Decorator.Revision": {
+            "Version": "$PRODUCT_VERSION"
+        }
     }
-}
+]
