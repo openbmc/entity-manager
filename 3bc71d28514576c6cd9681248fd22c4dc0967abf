@@ -18,6 +18,24 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "256241b5_a7d7163a",
+        "filename": "src/fru_device/fru_device.cpp",
+        "patchSetId": 8
+      },
+      "lineNbr": 614,
+      "author": {
+        "id": 1002504
+      },
+      "writtenOn": "2025-10-15T17:43:44Z",
+      "side": 1,
+      "message": "fixed",
+      "parentUuid": "0f01ee5e_8f255c33",
+      "revId": "3bc71d28514576c6cd9681248fd22c4dc0967abf",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "184f843d_3854d6aa",
@@ -37,6 +55,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "0ddaefd5_e97997ca",
+        "filename": "src/fru_device/fru_device.cpp",
+        "patchSetId": 8
+      },
+      "lineNbr": 649,
+      "author": {
+        "id": 1002504
+      },
+      "writtenOn": "2025-10-15T17:43:44Z",
+      "side": 1,
+      "message": "It is, I\u0027ll upload a patch with this gone.",
+      "parentUuid": "184f843d_3854d6aa",
+      "revId": "3bc71d28514576c6cd9681248fd22c4dc0967abf",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "95ebc4f8_b1aa17ee",
         "filename": "src/fru_device/fru_device.cpp",
         "patchSetId": 8
@@ -48,6 +84,24 @@
       "writtenOn": "2025-10-13T22:00:58Z",
       "side": 1,
       "message": "https://github.com/openbmc/bmcweb/blob/5ecf7b4e1bb6988dd3403fa80b723afbe2be30ae/redfish-core/include/utils/journal_utils.hpp#L59\n\nMight be a better pattern here.",
+      "revId": "3bc71d28514576c6cd9681248fd22c4dc0967abf",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "fabc4a7f_966e9752",
+        "filename": "src/fru_device/fru_device.cpp",
+        "patchSetId": 8
+      },
+      "lineNbr": 657,
+      "author": {
+        "id": 1002504
+      },
+      "writtenOn": "2025-10-15T17:43:44Z",
+      "side": 1,
+      "message": "Discussed offline, but this pattern has UB, as we\u0027re dereferencing an iterator given by .end(). Pointer arithmetic does suck a bit, but the behavior here is well defined and accesses are checked.",
+      "parentUuid": "95ebc4f8_b1aa17ee",
       "revId": "3bc71d28514576c6cd9681248fd22c4dc0967abf",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
