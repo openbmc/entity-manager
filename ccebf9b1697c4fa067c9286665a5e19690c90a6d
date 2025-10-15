@@ -1,0 +1,44 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7696a730_10046963",
+        "filename": "src/entity_manager/object_mapper.cpp",
+        "patchSetId": 2
+      },
+      "lineNbr": 12,
+      "author": {
+        "id": 1000008
+      },
+      "writtenOn": "2025-10-15T19:52:09Z",
+      "side": 1,
+      "message": "not a big deal, but this function doesn\u0027t need a shared pointer, rather just a reference to asio::connection.",
+      "range": {
+        "startLine": 12,
+        "startChar": 4,
+        "endLine": 12,
+        "endChar": 60
+      },
+      "revId": "ccebf9b1697c4fa067c9286665a5e19690c90a6d",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0778687b_7253eac0",
+        "filename": "src/entity_manager/object_mapper.cpp",
+        "patchSetId": 2
+      },
+      "lineNbr": 21,
+      "author": {
+        "id": 1000008
+      },
+      "writtenOn": "2025-10-15T19:52:09Z",
+      "side": 1,
+      "message": "I assume you\u0027d want to use the PDI constants here now...",
+      "revId": "ccebf9b1697c4fa067c9286665a5e19690c90a6d",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    }
+  ]
+}
