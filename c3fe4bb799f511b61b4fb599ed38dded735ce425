@@ -26,6 +26,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "46321d33_01944ec7",
+        "filename": "src/entity_manager/entity_manager.cpp",
+        "patchSetId": 8
+      },
+      "lineNbr": 119,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2025-10-15T15:32:19Z",
+      "side": 1,
+      "message": "\u003e IMO that\u0027s too much code for getting a value out of a json and confirming it\u0027s some type.\n\u003e \n\u003e If it\u0027s not possible to do this with a single function (and possibly a branch afterwards to check the error) then maybe we should go with a helper function?\n\u003e \n\u003e As written that\u0027s 14 lines to get `std::string boardName`\n\nI\u0027m not really sure what the suggestion is for what the helper function would do?  It\u0027s 13 lines (I\u0027m not counting the copy) to:\n1. Confirm the element is an object\n2. Log an error if it\u0027s not\n3. Confirm the key is a string\n4. Log an error if it\u0027s not.\n\nBranches that return take a minimum of 4 lines in our coding standard.  Log statements take 1.\n\n\u003e \n\u003e \n\u003e I get that we may need to write it this way but if it\u0027s a pattern that shows up a lot (and EM gets a lot of strings from json) then let\u0027s make a helper function to contain it.\n\n```\ntemplate\u003ctypename T\u003e\nT* get_item_from_object(nlohmann::json\u0026, std::string_view key);\n```\n\nThat would save us one branch in the calling code, so we\u0027re down to ~6 lines instead of 13, but for cases where multiple keys are pulled from the same object, we N times the object_t check.  We lose the call site information.\n\nbmcweb optimizes this away with readJson (PTAL), which is a complex template to do this for you, but I don\u0027t really love that complexity for the simple cases that EM has.\n\nI\u0027m open to options here, but the nlohmann apis for this aren\u0027t the best.\n\n\n\nAll of the above is solvable.  My biggest concern is that if you\u0027re seeing this pattern, it means the function in question should\u0027ve never accepted by nlohmann::json, it should\u0027ve accepted by nlohmann::json::object_t, which is a transform I\u0027ve done in some places in this patch, but not all.  If we wrap that in a helper function, the code now \"looks correct\" even though we should be fixing the API.",
+      "parentUuid": "e4878915_9feb103f",
+      "range": {
+        "startLine": 107,
+        "startChar": 4,
+        "endLine": 119,
+        "endChar": 5
+      },
+      "revId": "c3fe4bb799f511b61b4fb599ed38dded735ce425",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "5430611f_9518a3a9",
         "filename": "src/entity_manager/perform_scan.cpp",
         "patchSetId": 8
@@ -43,6 +67,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "b6e003ac_bb5aa97e",
+        "filename": "src/entity_manager/perform_scan.cpp",
+        "patchSetId": 8
+      },
+      "lineNbr": 417,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2025-10-15T15:32:19Z",
+      "side": 1,
+      "message": "I\u0027m not following what the suggestion is.  templateCharReplace isn\u0027t called in the highlighed lines at all, so calling it would significantly change behavior.  FWIW, I\u0027m actually not sure what this path does.\n\nI agree, there\u0027s likely something better we could do here, I\u0027m just not sure what without turning this into a huge refactoring patch.  This function was arguably wrong before, it could be improved, but I don\u0027t think that should hold up this refactor?\n\nWill dig deeper on the suggestion and see if I\u0027m able to stack a patch, because I do think this is worthwhile to look at.",
+      "parentUuid": "5430611f_9518a3a9",
+      "revId": "c3fe4bb799f511b61b4fb599ed38dded735ce425",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "41b72c72_54c5dda4",
         "filename": "src/entity_manager/perform_scan.cpp",
         "patchSetId": 8
@@ -54,6 +96,30 @@
       "writtenOn": "2025-10-15T08:23:17Z",
       "side": 1,
       "message": "helper function. Too much code for getting a simple string from json.\n\nWe are mixing abstraction levels and having multiple branches here for what should be a function call and a single branch.",
+      "range": {
+        "startLine": 498,
+        "startChar": 7,
+        "endLine": 511,
+        "endChar": 9
+      },
+      "revId": "c3fe4bb799f511b61b4fb599ed38dded735ce425",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0d76fa4a_6682f11b",
+        "filename": "src/entity_manager/perform_scan.cpp",
+        "patchSetId": 8
+      },
+      "lineNbr": 511,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2025-10-15T15:32:19Z",
+      "side": 1,
+      "message": "Lets close on the helper function on the other thread",
+      "parentUuid": "41b72c72_54c5dda4",
       "range": {
         "startLine": 498,
         "startChar": 7,
