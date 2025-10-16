@@ -24,9 +24,9 @@ entity_manager_lib = static_library(
     'topology.cpp',
     'utils.cpp',
     'log_device_inventory.cpp',
-    '../utils.cpp',
     cpp_args: cpp_args_em,
     dependencies: em_deps,
+    link_with: utils_lib,
 )
 
 executable(

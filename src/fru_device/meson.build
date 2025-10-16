@@ -12,7 +12,6 @@ cpp_args_fd += [
 executable(
     'fru-device',
     'fru_device.cpp',
-    '../utils.cpp',
     'fru_reader.cpp',
     'fru_utils.cpp',
     'gzip_utils.cpp',
@@ -28,6 +27,7 @@ executable(
         valijson,
         zlib_dep,
     ],
+    link_with: utils_lib,
     install: true,
     install_dir: installdir,
 )
