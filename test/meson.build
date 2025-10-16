@@ -70,8 +70,8 @@ test(
     executable(
         'test_utils',
         'test_utils.cpp',
-        '../src/utils.cpp',
         include_directories: test_include_dir,
+        link_with: utils_lib,
         dependencies: [gtest, phosphor_logging_dep, sdbusplus],
     ),
 )
