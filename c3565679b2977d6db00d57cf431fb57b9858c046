@@ -33,6 +33,24 @@
       "message": "Setting type: fan for an entity seems to be a requirement for getting \u0027fan\u0027 items to show up in fan inventory presented through redfish/bmcweb\u0027s inventory page.",
       "revId": "c3565679b2977d6db00d57cf431fb57b9858c046",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "d4d74f64_133ed106",
+        "filename": "schemas/global.json",
+        "patchSetId": 4
+      },
+      "lineNbr": 49,
+      "author": {
+        "id": 1002222
+      },
+      "writtenOn": "2025-10-16T05:24:26Z",
+      "side": 1,
+      "message": "Your assumption is correct. Also setting this allows the EM Config validation to succeed.",
+      "parentUuid": "899c6ebd_aba39ce9",
+      "revId": "c3565679b2977d6db00d57cf431fb57b9858c046",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }
