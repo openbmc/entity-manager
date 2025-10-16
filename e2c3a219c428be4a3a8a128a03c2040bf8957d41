@@ -1,0 +1,118 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "dc2541fb_a50c5c4a",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-10-16T11:10:16Z",
+      "side": 1,
+      "message": "IMO it\u0027s a good direction but we could do some tweaks to avoid the raw pointers",
+      "revId": "e2c3a219c428be4a3a8a128a03c2040bf8957d41",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8ddbb468_b65b2b5e",
+        "filename": "src/entity_manager/dbus_interface.cpp",
+        "patchSetId": 1
+      },
+      "lineNbr": 281,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-10-16T11:10:16Z",
+      "side": 1,
+      "message": "```suggestion\n            const auto [name, foundName] \u003d getStringFromObject(newData, \"Name\");\n            const auto [type, foundType] \u003d getStringFromObject(newData, \"Type\");\n\n            if (!foundName || !foundType)\n            {\n                throw std::invalid_argument(\"Type and Name must be a string.\");\n            }\n```",
+      "range": {
+        "startLine": 276,
+        "startChar": 12,
+        "endLine": 281,
+        "endChar": 13
+      },
+      "revId": "e2c3a219c428be4a3a8a128a03c2040bf8957d41",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e59e3898_c0b1b71a",
+        "filename": "src/json_utils.cpp",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-10-16T11:10:16Z",
+      "side": 1,
+      "message": "Do we put the SPDX-License-Identifier here?",
+      "revId": "e2c3a219c428be4a3a8a128a03c2040bf8957d41",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "02fa46ac_55d1f8aa",
+        "filename": "src/json_utils.cpp",
+        "patchSetId": 1
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-10-16T11:10:16Z",
+      "side": 1,
+      "message": "nit: what about `getStringFromObj`  which is a bit shorter.",
+      "range": {
+        "startLine": 9,
+        "startChar": 19,
+        "endLine": 9,
+        "endChar": 38
+      },
+      "revId": "e2c3a219c428be4a3a8a128a03c2040bf8957d41",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4d2ff438_0fafe57e",
+        "filename": "src/json_utils.cpp",
+        "patchSetId": 1
+      },
+      "lineNbr": 21,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-10-16T11:10:16Z",
+      "side": 1,
+      "message": "Did you consider to use a structured binding declaration, to return a tuple here and then use it like this later:\n\n```\nauto [name, foundName] \u003d getStringFromObject(obj, \"Name\");\nif (!foundName){\n    return;\n}\n\n// do any mutation on the `name` variable here in case of escaping for DBus, template var replacement or whatever\n```\n\nIn that case we avoid having to copy it to an `std::string` later if we need to pass a `std::string\u0026` to another function.\n\nWe also avoid dealing with raw pointers. I would like to avoid raw pointers if possible since they could spread throughout the codebase and then we would have to do `nullptr` checks.",
+      "revId": "e2c3a219c428be4a3a8a128a03c2040bf8957d41",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d1d4eb4d_aefb8d58",
+        "filename": "src/json_utils.hpp",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-10-16T11:10:16Z",
+      "side": 1,
+      "message": "Do we put the SPDX-License-Identifier here?",
+      "revId": "e2c3a219c428be4a3a8a128a03c2040bf8957d41",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    }
+  ]
+}
