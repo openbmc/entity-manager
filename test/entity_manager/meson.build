@@ -16,7 +16,7 @@ foreach t : tests
             t + '.cpp',
             cpp_args: test_boost_args,
             dependencies: em_test_deps,
-            link_with: entity_manager_lib,
+            link_with: [entity_manager_lib, utils_lib],
             include_directories: test_include_dir,
         ),
     )
