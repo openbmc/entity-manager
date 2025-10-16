@@ -96,6 +96,30 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "3b3c4577_0e5b6730",
+        "filename": "src/entity_manager/entity_manager.cpp",
+        "patchSetId": 8
+      },
+      "lineNbr": 119,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-10-16T11:18:21Z",
+      "side": 1,
+      "message": "Ok, the helper function looks good with a few tweaks.\n\nMaybe the helper function should go in first, i am not sure.\n\nAnyways since we now have a way forward to get rid of these branches again i guess we can close this comment.",
+      "parentUuid": "03449f3f_cbfc0f7f",
+      "range": {
+        "startLine": 107,
+        "startChar": 4,
+        "endLine": 119,
+        "endChar": 5
+      },
+      "revId": "c3fe4bb799f511b61b4fb599ed38dded735ce425",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "5430611f_9518a3a9",
@@ -204,6 +228,30 @@
       "side": 1,
       "message": "Lets close on the helper function on the other thread",
       "parentUuid": "41b72c72_54c5dda4",
+      "range": {
+        "startLine": 498,
+        "startChar": 7,
+        "endLine": 511,
+        "endChar": 9
+      },
+      "revId": "c3fe4bb799f511b61b4fb599ed38dded735ce425",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "16e591d2_413a551f",
+        "filename": "src/entity_manager/perform_scan.cpp",
+        "patchSetId": 8
+      },
+      "lineNbr": 511,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-10-16T11:18:21Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "0d76fa4a_6682f11b",
       "range": {
         "startLine": 498,
         "startChar": 7,
