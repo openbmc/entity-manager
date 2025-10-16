@@ -60,6 +60,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "fc8f0ca4_5b6b9988",
+        "filename": "src/json_utils.cpp",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2025-10-16T17:01:56Z",
+      "side": 1,
+      "message": "ACK",
+      "parentUuid": "e59e3898_c0b1b71a",
+      "revId": "e2c3a219c428be4a3a8a128a03c2040bf8957d41",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "02fa46ac_55d1f8aa",
         "filename": "src/json_utils.cpp",
         "patchSetId": 1
@@ -71,6 +89,30 @@
       "writtenOn": "2025-10-16T11:10:16Z",
       "side": 1,
       "message": "nit: what about `getStringFromObj`  which is a bit shorter.",
+      "range": {
+        "startLine": 9,
+        "startChar": 19,
+        "endLine": 9,
+        "endChar": 38
+      },
+      "revId": "e2c3a219c428be4a3a8a128a03c2040bf8957d41",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2b2fbf24_aa614dd7",
+        "filename": "src/json_utils.cpp",
+        "patchSetId": 1
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2025-10-16T17:01:56Z",
+      "side": 1,
+      "message": "Is saving 3 characters really important?  If i wanted to save characters, i\u0027d do something like:\n\nstrFromObject(...)",
+      "parentUuid": "02fa46ac_55d1f8aa",
       "range": {
         "startLine": 9,
         "startChar": 19,
@@ -100,6 +142,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "0d988472_aa226a2b",
+        "filename": "src/json_utils.cpp",
+        "patchSetId": 1
+      },
+      "lineNbr": 21,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2025-10-16T17:01:56Z",
+      "side": 1,
+      "message": "foundName would be a bool?  If I were to follow that pattern, I\u0027d do std::expected\u003cstd::string, bool\u003e but returning nullptr on not found seems pretty standard.\n\nKeep in mind, your example doesn\u0027t work for the non-const cast because you put auto instead of auto\u0026.",
+      "parentUuid": "4d2ff438_0fafe57e",
+      "revId": "e2c3a219c428be4a3a8a128a03c2040bf8957d41",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "d1d4eb4d_aefb8d58",
         "filename": "src/json_utils.hpp",
         "patchSetId": 1
@@ -111,6 +171,24 @@
       "writtenOn": "2025-10-16T11:10:16Z",
       "side": 1,
       "message": "Do we put the SPDX-License-Identifier here?",
+      "revId": "e2c3a219c428be4a3a8a128a03c2040bf8957d41",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c59b5383_5fb86310",
+        "filename": "src/json_utils.hpp",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2025-10-16T17:01:56Z",
+      "side": 1,
+      "message": "ACK",
+      "parentUuid": "d1d4eb4d_aefb8d58",
       "revId": "e2c3a219c428be4a3a8a128a03c2040bf8957d41",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
