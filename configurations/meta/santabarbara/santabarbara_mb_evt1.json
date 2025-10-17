@@ -1111,7 +1111,7 @@
         }
     ],
     "Name": "Santa Barbara Chassis",
-    "Probe": "xyz.openbmc_project.FruDevice({'BOARD_PRODUCT_NAME': 'Santa Barbara MB', 'BOARD_MANUFACTURER': 'Quanta', 'PRODUCT_VERSION': '^(?!EVT1).*'})",
+    "Probe": "xyz.openbmc_project.FruDevice({'BOARD_PRODUCT_NAME': 'Santa Barbara MB', 'BOARD_MANUFACTURER': 'Quanta', 'PRODUCT_VERSION': '^EVT1.*'})",
     "Type": "Board",
     "xyz.openbmc_project.Inventory.Decorator.Asset": {
         "BuildDate": "$BOARD_MANUFACTURE_DATE",
