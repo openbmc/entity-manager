@@ -1,6 +1,6 @@
 # This file is auto-generated. Do not edit manually.
-# File content generated with generate_config_list.sh
-configs = [
+# File content generated with nvidia/nvidia_cable_cartridge.json
+meson.build = [
     '3y-power/3ypower_vast2112_psu.json',
     'acbel/acbel_r1ca2122a_psu.json',
     'acbel/acbell_rica_psu.json',
@@ -222,6 +222,7 @@ configs = [
     'micron/micron_7450.json',
     'nuvoton/nuvoton_npcm8xx_evb.json',
     'nvidia/nvidia_bmc_p3809.json',
+    'nvidia/nvidia_cable_cartridge.json',
     'nvidia/nvidia_cx7_mezzanine_module.json',
     'nvidia/nvidia_cx8_mezzanine_module.json',
     'nvidia/nvidia_gb200.json',
