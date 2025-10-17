@@ -1,0 +1,96 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9a419bce_403ddd43",
+        "filename": "src/entity_manager/object_mapper.cpp",
+        "patchSetId": 3
+      },
+      "lineNbr": 14,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2025-10-17T20:26:59Z",
+      "side": 1,
+      "message": "interfaces should be passed by span so these can be passed by a consexpr array.  They\u0027re not required to be sorted, so we shouldn\u0027t take the hit for sorting at every call site.",
+      "range": {
+        "startLine": 14,
+        "startChar": 36,
+        "endLine": 14,
+        "endChar": 39
+      },
+      "revId": "02fb0ddc9ceb7a75667de3936e6af855508de4de",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2d8f861a_a0e2a1e9",
+        "filename": "src/entity_manager/object_mapper.cpp",
+        "patchSetId": 3
+      },
+      "lineNbr": 16,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2025-10-17T20:26:59Z",
+      "side": 1,
+      "message": "This should be accepted by rvalue reference (\u0026\u0026)",
+      "range": {
+        "startLine": 16,
+        "startChar": 65,
+        "endLine": 16,
+        "endChar": 73
+      },
+      "revId": "02fb0ddc9ceb7a75667de3936e6af855508de4de",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "95925832_9643c56f",
+        "filename": "src/entity_manager/object_mapper.cpp",
+        "patchSetId": 3
+      },
+      "lineNbr": 24,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2025-10-17T20:26:59Z",
+      "side": 1,
+      "message": "This should be std::move",
+      "range": {
+        "startLine": 24,
+        "startChar": 8,
+        "endLine": 24,
+        "endChar": 16
+      },
+      "revId": "02fb0ddc9ceb7a75667de3936e6af855508de4de",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9368bb46_d1624b38",
+        "filename": "src/entity_manager/perform_scan.hpp",
+        "patchSetId": 3
+      },
+      "lineNbr": 20,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2025-10-17T20:26:59Z",
+      "side": 1,
+      "message": "Please don\u0027t forward declare classes like this.  Just #include the things you need.",
+      "range": {
+        "startLine": 16,
+        "startChar": 0,
+        "endLine": 20,
+        "endChar": 2
+      },
+      "revId": "02fb0ddc9ceb7a75667de3936e6af855508de4de",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    }
+  ]
+}
