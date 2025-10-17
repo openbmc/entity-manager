@@ -222,6 +222,7 @@ configs = [
     'micron/micron_7450.json',
     'nuvoton/nuvoton_npcm8xx_evb.json',
     'nvidia/nvidia_bmc_p3809.json',
+    'nvidia/nvidia_cable_cartridge.json',
     'nvidia/nvidia_cx7_mezzanine_module.json',
     'nvidia/nvidia_cx8_mezzanine_module.json',
     'nvidia/nvidia_gb200.json',
