@@ -123,6 +123,30 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "1c21497c_f1db85c2",
+        "filename": "src/json_utils.cpp",
+        "patchSetId": 1
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-10-20T13:21:45Z",
+      "side": 1,
+      "message": "it\u0027s not important to me, we can close this comment.",
+      "parentUuid": "2b2fbf24_aa614dd7",
+      "range": {
+        "startLine": 9,
+        "startChar": 19,
+        "endLine": 9,
+        "endChar": 38
+      },
+      "revId": "e2c3a219c428be4a3a8a128a03c2040bf8957d41",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "4d2ff438_0fafe57e",
@@ -154,6 +178,24 @@
       "side": 1,
       "message": "foundName would be a bool?  If I were to follow that pattern, I\u0027d do std::expected\u003cstd::string, bool\u003e but returning nullptr on not found seems pretty standard.\n\nKeep in mind, your example doesn\u0027t work for the non-const cast because you put auto instead of auto\u0026.",
       "parentUuid": "4d2ff438_0fafe57e",
+      "revId": "e2c3a219c428be4a3a8a128a03c2040bf8957d41",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "25a5fb6a_0607325c",
+        "filename": "src/json_utils.cpp",
+        "patchSetId": 1
+      },
+      "lineNbr": 21,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-10-20T13:21:45Z",
+      "side": 1,
+      "message": "\u003e If I were to follow that pattern, I\u0027d do std::expected\u003cstd::string, bool\u003e \n\nsounds good too. There are various solutions without using raw pointer.\n\n\u003e Keep in mind, your example doesn\u0027t work for the non-const cast because you put auto instead of auto\u0026.\n\nI don\u0027t intend to propose a complete solution here, you could probably come up with something better / specialize.\n\nMy main point is that we avoid introducing raw pointers if we can avoid it.\n\nBy using the raw pointer we are coupling the valid scope of that pointer to the lifetime of the lohmann json object.\n\nI would prefer if we just copied out the string which we need and avoid those troubles.\n\nIf it\u0027s somehow relevant for performance (in a measurable way) and done in code that has decent test coverage, i would be in favor of such optimizations.\n\nSince this is a utility function which can be called anywhere i doubt we can meaningfully cover all the call sites.\n\nCopying out the string seems like a safer alternative to me.",
+      "parentUuid": "0d988472_aa226a2b",
       "revId": "e2c3a219c428be4a3a8a128a03c2040bf8957d41",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
