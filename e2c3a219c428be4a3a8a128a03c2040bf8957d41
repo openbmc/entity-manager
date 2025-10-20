@@ -202,6 +202,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "180e7d32_5b29f7d0",
+        "filename": "src/json_utils.cpp",
+        "patchSetId": 1
+      },
+      "lineNbr": 21,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2025-10-20T17:19:48Z",
+      "side": 1,
+      "message": "I\u0027d prefer we avoid the copy because this is a generic routine, and copies are known to be \"expensive\".  Also keep in mind that there\u0027s non const use cases that need to pull the string out, then modify it, so we can\u0027t have an \"always safe\" version of this.  I think it makes the most sense to just return a pointer/reference.",
+      "parentUuid": "25a5fb6a_0607325c",
+      "revId": "e2c3a219c428be4a3a8a128a03c2040bf8957d41",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "d1d4eb4d_aefb8d58",
         "filename": "src/json_utils.hpp",
         "patchSetId": 1
