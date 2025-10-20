@@ -220,6 +220,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "c218c23d_97603f1c",
+        "filename": "src/json_utils.cpp",
+        "patchSetId": 1
+      },
+      "lineNbr": 21,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-10-20T17:31:56Z",
+      "side": 1,
+      "message": "\u003e I\u0027d prefer we avoid the copy because this is a generic routine, and copies are known to be \"expensive\". \n\nYeah but that\u0027s an optimization concern. Optimization concerns apply to code which has a good test coverage. (IMO)\n\n\u003e Also keep in mind that there\u0027s non const use cases that need to pull the string out, then modify it\n\nYeah i don\u0027t think EM should do this. If it does that now, better to refactor that.\n\njson just happens to be our config format, it should be in the config parsing and persistence layer and not all over EM internals (IMO).\n\n\u003e I think it makes the most sense to just return a pointer/reference.\n\nIf it\u0027s at all possible, let\u0027s go with the reference then to avoid putting nullptr checks everywhere.",
+      "parentUuid": "180e7d32_5b29f7d0",
+      "revId": "e2c3a219c428be4a3a8a128a03c2040bf8957d41",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "d1d4eb4d_aefb8d58",
         "filename": "src/json_utils.hpp",
         "patchSetId": 1
