@@ -24,6 +24,30 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "af86afda_8af2c50a",
+        "filename": "src/entity_manager/object_mapper.cpp",
+        "patchSetId": 3
+      },
+      "lineNbr": 14,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-10-20T11:10:15Z",
+      "side": 1,
+      "message": "Yeah, apparently `std::span` does not work with the `std::flat_set`. Changed it to flat_set here.\n\nhttps://stackoverflow.com/questions/58300580/why-are-flat-set-and-flat-map-not-contiguousrange",
+      "parentUuid": "9a419bce_403ddd43",
+      "range": {
+        "startLine": 14,
+        "startChar": 36,
+        "endLine": 14,
+        "endChar": 39
+      },
+      "revId": "02fb0ddc9ceb7a75667de3936e6af855508de4de",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "2d8f861a_a0e2a1e9",
@@ -37,6 +61,30 @@
       "writtenOn": "2025-10-17T20:26:59Z",
       "side": 1,
       "message": "This should be accepted by rvalue reference (\u0026\u0026)",
+      "range": {
+        "startLine": 16,
+        "startChar": 65,
+        "endLine": 16,
+        "endChar": 73
+      },
+      "revId": "02fb0ddc9ceb7a75667de3936e6af855508de4de",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "c2a4be2d_c5837cf0",
+        "filename": "src/entity_manager/object_mapper.cpp",
+        "patchSetId": 3
+      },
+      "lineNbr": 16,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-10-20T11:10:15Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "2d8f861a_a0e2a1e9",
       "range": {
         "startLine": 16,
         "startChar": 65,
@@ -70,6 +118,30 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "a142d97b_7c890e52",
+        "filename": "src/entity_manager/object_mapper.cpp",
+        "patchSetId": 3
+      },
+      "lineNbr": 24,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-10-20T11:10:15Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "95925832_9643c56f",
+      "range": {
+        "startLine": 24,
+        "startChar": 8,
+        "endLine": 24,
+        "endChar": 16
+      },
+      "revId": "02fb0ddc9ceb7a75667de3936e6af855508de4de",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "9368bb46_d1624b38",
@@ -83,6 +155,30 @@
       "writtenOn": "2025-10-17T20:26:59Z",
       "side": 1,
       "message": "Please don\u0027t forward declare classes like this.  Just #include the things you need.",
+      "range": {
+        "startLine": 16,
+        "startChar": 0,
+        "endLine": 20,
+        "endChar": 2
+      },
+      "revId": "02fb0ddc9ceb7a75667de3936e6af855508de4de",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f66e16e7_7ab719e0",
+        "filename": "src/entity_manager/perform_scan.hpp",
+        "patchSetId": 3
+      },
+      "lineNbr": 20,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-10-20T11:10:15Z",
+      "side": 1,
+      "message": "It\u0027s a cyclic include if i were to do this.\n\nI don\u0027t like it either but did not want to do any further refactoring for these simple function extractions.\n\nLet me know if it\u0027s still blocking and what specifically you would like to see in terms of moving functions around / new headers / ... to resolve this issue.",
+      "parentUuid": "9368bb46_d1624b38",
       "range": {
         "startLine": 16,
         "startChar": 0,
