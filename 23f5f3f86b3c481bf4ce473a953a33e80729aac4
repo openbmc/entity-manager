@@ -1,0 +1,118 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2354b66d_6e318e4a",
+        "filename": "src/entity_manager/overlay.cpp",
+        "patchSetId": 22
+      },
+      "lineNbr": 10,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-10-21T09:23:58Z",
+      "side": 1,
+      "message": "Let\u0027s go with `lg2::debug` so folks don\u0027t have to write a patch just to get debug logs.",
+      "revId": "23f5f3f86b3c481bf4ce473a953a33e80729aac4",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f05503fc_9d8b93df",
+        "filename": "src/entity_manager/overlay.cpp",
+        "patchSetId": 22
+      },
+      "lineNbr": 65,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-10-21T09:23:58Z",
+      "side": 1,
+      "message": "`lg2::debug`",
+      "revId": "23f5f3f86b3c481bf4ce473a953a33e80729aac4",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9a59b11d_7df83666",
+        "filename": "src/entity_manager/overlay.cpp",
+        "patchSetId": 22
+      },
+      "lineNbr": 207,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-10-21T09:23:58Z",
+      "side": 1,
+      "message": "why do we clear the error if line 209 will set it again.\n\nWill it ever be read before being written again?",
+      "range": {
+        "startLine": 207,
+        "startChar": 4,
+        "endLine": 207,
+        "endChar": 15
+      },
+      "revId": "23f5f3f86b3c481bf4ce473a953a33e80729aac4",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "068b72a5_74996238",
+        "filename": "src/entity_manager/overlay.cpp",
+        "patchSetId": 22
+      },
+      "lineNbr": 221,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-10-21T09:23:58Z",
+      "side": 1,
+      "message": "Let\u0027s go for a helper function here to make the code more readable since there is a lot of things happening here. The helper function can do the per-channel setup.",
+      "revId": "23f5f3f86b3c481bf4ce473a953a33e80729aac4",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "92ec5303_8a26a20b",
+        "filename": "src/entity_manager/overlay.cpp",
+        "patchSetId": 22
+      },
+      "lineNbr": 321,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-10-21T09:23:58Z",
+      "side": 1,
+      "message": "This looks like a config parsing function, does it make sense to write as a separate function?\n\nMaybe that would simplify the control flow as `linkMux` then only needs one branch in case the parsing function fails.",
+      "range": {
+        "startLine": 284,
+        "startChar": 16,
+        "endLine": 321,
+        "endChar": 17
+      },
+      "revId": "23f5f3f86b3c481bf4ce473a953a33e80729aac4",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "57472b61_ba9d89ea",
+        "filename": "src/entity_manager/overlay.hpp",
+        "patchSetId": 22
+      },
+      "lineNbr": 33,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-10-21T09:23:58Z",
+      "side": 1,
+      "message": "Can the function definition go into the cpp file?",
+      "revId": "23f5f3f86b3c481bf4ce473a953a33e80729aac4",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    }
+  ]
+}
