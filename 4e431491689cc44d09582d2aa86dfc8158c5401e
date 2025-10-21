@@ -34,6 +34,24 @@
       "parentUuid": "e32b72aa_86884568",
       "revId": "4e431491689cc44d09582d2aa86dfc8158c5401e",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "79e26cea_307609a2",
+        "filename": "src/fru_device/fru_device.cpp",
+        "patchSetId": 2
+      },
+      "lineNbr": 1320,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-10-21T15:54:42Z",
+      "side": 1,
+      "message": "Thanks for explaining this nuance here and linking the patch 👍\n\n\n\u003e Therefore, it seems safer to keep this logic separate for now. \n\nIt\u0027s a small difference in handling. We can use the same power status monitor and store the complete value of `CurrentHostState` internally.\n\nThen provide 2 different methods to access them something like this:\n\n```\nbool isPowerOn() // currently used in EM\nbool isPowerOnComplete() // require exactly \"xyz.openbmc_project.State.Host.HostState.Running\"\n```",
+      "parentUuid": "0d84f62d_af18a0e9",
+      "revId": "4e431491689cc44d09582d2aa86dfc8158c5401e",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }
