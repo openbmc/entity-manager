@@ -41,6 +41,30 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "53fb0790_d01dee2d",
+        "filename": "src/entity_manager/dbus_interface.cpp",
+        "patchSetId": 1
+      },
+      "lineNbr": 281,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-10-22T12:44:35Z",
+      "side": 1,
+      "message": "We are already going over this point in the other comment, closing this one.",
+      "parentUuid": "8ddbb468_b65b2b5e",
+      "range": {
+        "startLine": 276,
+        "startChar": 12,
+        "endLine": 281,
+        "endChar": 13
+      },
+      "revId": "e2c3a219c428be4a3a8a128a03c2040bf8957d41",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "e59e3898_c0b1b71a",
@@ -250,6 +274,24 @@
       "side": 1,
       "message": "\u003e \u003e I\u0027d prefer we avoid the copy because this is a generic routine, and copies are known to be \"expensive\". \n\u003e \n\u003e Yeah but that\u0027s an optimization concern. Optimization concerns apply to code which has a good test coverage. (IMO)\n\nWe disagree about the relationship with testing, and that\u0027s fine, we don\u0027t need to go into it in this review context.\n\n\u003e \n\u003e \u003e Also keep in mind that there\u0027s non const use cases that need to pull the string out, then modify it\n\u003e \n\u003e Yeah i don\u0027t think EM should do this. If it does that now, better to refactor that.\n\nFor things like \"shouldn\u0027t do this\" type concerns we should look in terms of patches or concrete changes.  The cases that I saw were valid.\n\n\u003e \n\u003e json just happens to be our config format, it should be in the config parsing and persistence layer and not all over EM internals (IMO).\n\nSame as above, this is a review for a refactor, there\u0027s no need to have a debate about things not in this commit.\n\n\u003e \n\u003e \u003e I think it makes the most sense to just return a pointer/reference.\n\u003e \n\u003e If it\u0027s at all possible, let\u0027s go with the reference then to avoid putting nullptr checks everywhere.\n\nIf we want to use a reference in c++23, we need to return by\n```\nstd::optional\u003cstd::reference_wrapper\u003cT\u003e\u003e\n```\nor\n```\nT*\n```\n\nstd::optional\u003cT\u0026\u003e is only supported in c++26.",
       "parentUuid": "c218c23d_97603f1c",
+      "revId": "e2c3a219c428be4a3a8a128a03c2040bf8957d41",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "343cdb20_ef15185a",
+        "filename": "src/json_utils.cpp",
+        "patchSetId": 1
+      },
+      "lineNbr": 21,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-10-22T12:44:35Z",
+      "side": 1,
+      "message": "\u003e If we want to use a reference in c++23, we need to return by\n\nsorry, i did not know that. In that case a reference wrapper seems like a good choice.\n\nWhen C++26 rolls around we will then be able to simplify again.",
+      "parentUuid": "42cd7393_84c8372b",
       "revId": "e2c3a219c428be4a3a8a128a03c2040bf8957d41",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
