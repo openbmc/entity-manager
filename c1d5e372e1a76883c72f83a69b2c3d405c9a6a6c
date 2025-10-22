@@ -1,0 +1,113 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "5364db5c_5e8c14b0",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 9
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-10-22T13:09:25Z",
+      "side": 1,
+      "message": "Did not find any actual problem, and looks like the raw pointers are getting fixed up in the next patch.",
+      "revId": "c1d5e372e1a76883c72f83a69b2c3d405c9a6a6c",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0a69a7a4_dfe5fca4",
+        "filename": "src/entity_manager/perform_scan.cpp",
+        "patchSetId": 9
+      },
+      "lineNbr": 330,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-10-22T13:09:25Z",
+      "side": 1,
+      "message": "```suggestion\n                lg2::error(\"Exposed object wasn\u0027t a object: {JSON}\", \"JSON\",\n                           exposedObject.dump());\n```",
+      "range": {
+        "startLine": 329,
+        "startChar": 16,
+        "endLine": 330,
+        "endChar": 49
+      },
+      "revId": "c1d5e372e1a76883c72f83a69b2c3d405c9a6a6c",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f88f174c_70687137",
+        "filename": "src/entity_manager/perform_scan.cpp",
+        "patchSetId": 9
+      },
+      "lineNbr": 420,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-10-22T13:09:25Z",
+      "side": 1,
+      "message": "```suggestion\n        lg2::error(\"Device name wasn\u0027t a string: ${JSON}\", \"JSON\", copyForName.dump());\n```\n\nnit: we are not asking a question here. And would be nice for the user to have some context as to what\u0027s causing the issue.",
+      "range": {
+        "startLine": 420,
+        "startChar": 8,
+        "endLine": 420,
+        "endChar": 53
+      },
+      "revId": "c1d5e372e1a76883c72f83a69b2c3d405c9a6a6c",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "52c63064_ea188549",
+        "filename": "src/entity_manager/perform_scan.cpp",
+        "patchSetId": 9
+      },
+      "lineNbr": 509,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-10-22T13:09:25Z",
+      "side": 1,
+      "message": "```suggestion\n        {\n            lg2::error(\"Name wasn\u0027t a string: {JSON}\", \"JSON\",\n                       recordRef.dump());\n```\n\nnit: Let\u0027s reword to make this not a question.",
+      "range": {
+        "startLine": 507,
+        "startChar": 9,
+        "endLine": 509,
+        "endChar": 41
+      },
+      "revId": "c1d5e372e1a76883c72f83a69b2c3d405c9a6a6c",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "387dfee1_3c2e4ccb",
+        "filename": "src/entity_manager/perform_scan.cpp",
+        "patchSetId": 9
+      },
+      "lineNbr": 553,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-10-22T13:09:25Z",
+      "side": 1,
+      "message": "nit: can we consider a helper function like `applyTemplateAndExposeActions` \nto avoid doubling up this code snippet.",
+      "range": {
+        "startLine": 549,
+        "startChar": 16,
+        "endLine": 553,
+        "endChar": 59
+      },
+      "revId": "c1d5e372e1a76883c72f83a69b2c3d405c9a6a6c",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    }
+  ]
+}
