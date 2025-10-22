@@ -1,5 +1,76 @@
 {
-    "Exposes": [],
+    "Exposes": [
+        {
+            "Address": "$Address",
+            "BaudRate": 115200,
+            "DataParity": "Even",
+            "FirmwareRegisters": [
+                {
+                    "Address": 6632,
+                    "Name": "RPU_PLC_FW_Revision",
+                    "RegisterType": "Version",
+                    "Size": 4
+                }
+            ],
+            "Name": "$Name",
+            "SensorRegisters": [
+                {
+                    "Address": 36866,
+                    "Format": "Float",
+                    "Name": "RPU_Coolant_Inlet_Temp_C",
+                    "Precision": 0,
+                    "RegisterType": "Temperature",
+                    "Scale": 0.1,
+                    "Shift": 0.0,
+                    "Signed": true,
+                    "Size": 1
+                },
+                {
+                    "Address": 36865,
+                    "Format": "Float",
+                    "Name": "RPU_Coolant_Outlet_Temp_C",
+                    "Precision": 0,
+                    "RegisterType": "Temperature",
+                    "Scale": 0.1,
+                    "Shift": 0.0,
+                    "Signed": true,
+                    "Size": 1
+                }
+            ],
+            "SerialPort": "$LinkTTY",
+            "StatusBits": [
+                {
+                    "Address": 37377,
+                    "BitPosition": 2,
+                    "Name": "RPU_Coolant_Inlet_Temp_C",
+                    "StatusType": "SensorReadingCritical",
+                    "Value": true
+                },
+                {
+                    "Address": 37377,
+                    "BitPosition": 1,
+                    "Name": "RPU_Coolant_Outlet_Temp_C",
+                    "StatusType": "SensorReadingCritical",
+                    "Value": true
+                },
+                {
+                    "Address": 37376,
+                    "BitPosition": 0,
+                    "Name": "RPU_Coolant_Inlet_Thermometer_Status",
+                    "StatusType": "SensorFailure",
+                    "Value": true
+                },
+                {
+                    "Address": 37376,
+                    "BitPosition": 1,
+                    "Name": "RPU_Coolant_Outlet_Thermometer_Status",
+                    "StatusType": "SensorFailure",
+                    "Value": true
+                }
+            ],
+            "Type": "ModbusRDF040DSS5193E0ReservoirPumpUnit"
+        }
+    ],
     "Name": "$Name",
     "Probe": "xyz.openbmc_project.Inventory.Source.Modbus.FRU({'Name': 'Reservoir Pumping Unit.*'})",
     "Type": "Chassis",
