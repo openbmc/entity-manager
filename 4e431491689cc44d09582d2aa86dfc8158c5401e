@@ -70,6 +70,24 @@
       "parentUuid": "79e26cea_307609a2",
       "revId": "4e431491689cc44d09582d2aa86dfc8158c5401e",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "3f20d00f_43af85b5",
+        "filename": "src/fru_device/fru_device.cpp",
+        "patchSetId": 2
+      },
+      "lineNbr": 1320,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-10-23T17:34:53Z",
+      "side": 1,
+      "message": "\u003e For example, do we need callbacks for every power state change, or only for specific transitions?\n\nThe callback can filter/register for the transitions that it finds interesting.\n\n\u003e It\u0027s also uncertain whether such functionality might be needed in the future.\n\nThat\u0027s the point of reusable software modules / classes.\nBundling several things and exposing them in some sane way.\nTo avoid duplicating these implementation details all over the place.\nLike property names / object paths / storing the matches.\n\nAnyways i guess i will close my comment since i realize it\u0027s asking a lot (scope creep) to do all this rework for a simple bugfix.\n\nThanks for the detailed explanation.",
+      "parentUuid": "d75a2115_d5a0c419",
+      "revId": "4e431491689cc44d09582d2aa86dfc8158c5401e",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }
