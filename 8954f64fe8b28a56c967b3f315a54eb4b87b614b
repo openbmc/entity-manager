@@ -90,6 +90,24 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": true,
+      "key": {
+        "uuid": "923234d1_f9691261",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 10,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-10-23T08:38:34Z",
+      "side": 1,
+      "message": "\u003e Do folks want to see more specific details than what I added already?\n\nCommit message could be expanded to go into more detail as to the fan inventory.\n\nI could be wrong here but i feel like that\u0027s one of the remaining points to be resolved.\n\nIf EM can have a fan inventory with `cooling` / `cooled_by`, where does that leave Fan sensor daemon?\n\nI grepped through dbus-sensors and could not find `cooling` / `cooled_by` in there.\n\nIt looks like you have a patch for that\nhttps://gerrit.openbmc.org/c/openbmc/dbus-sensors/+/82436\n\nso it would be good to have that linked in the commit message.\n\nIt would be nice if we do not end up in a situation where the fan inventory is held by EM for some boards and then held by fan sensor on other boards. Maybe it could be done but discussing these tradeoffs can be part of a commit message.\n\nSuch an implementation may lead to code drift. If someone needs to add another association to a fan inventory item or another property to it\u0027s interface then that would need to be done in 2 repositories.\n\nmeta uses `Type: Board` for a fanboard \nhttps://github.com/openbmc/entity-manager/blob/master/configurations/meta/yv4/fanboard/yosemite4_fanboard_fsc_max_adc_ti_led_nxp_ons_efuse_max.json\n\nso having a `Type: Board` config with the `cooling` port/association record and having the fans simply copy that would be a way to avoid these issues.\n\nSo conceptually the `Board` is `cooling` some other item (e.g. chassis) and there are fan(s) on that board. fan sensor can then go and look at the association defined for the board and copy that to create the same association on the fan inventory item.\n\nNow if the `Board` in question actually exists or if it\u0027s just the fan is more of a conceptual question to me and should not make a difference to the implementation.\n\nThe issue with that idea is that we would be creating a `cooling` association on a `Board` inventory item.\n\nHowever i feel like creating such an association is less of a problem than distributing a specific inventory across multiple services.\n\nI assume there is some reason for fan sensor to hold the fan inventory. It can go via hwmon to figure out if the fan in question is actually there (tach input / pwm output), so it has some role in device detection / initialization.\n\nLet me know what you think of these ideas, i may be wrong since i don\u0027t know much about the design intent behind who\u0027s holding which inventory.",
+      "parentUuid": "fe3a1f2f_7dbd390e",
+      "revId": "8954f64fe8b28a56c967b3f315a54eb4b87b614b",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": false,
       "key": {
         "uuid": "586008d7_356a4299",
