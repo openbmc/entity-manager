@@ -52,6 +52,24 @@
       "parentUuid": "0d84f62d_af18a0e9",
       "revId": "4e431491689cc44d09582d2aa86dfc8158c5401e",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d75a2115_d5a0c419",
+        "filename": "src/fru_device/fru_device.cpp",
+        "patchSetId": 2
+      },
+      "lineNbr": 1320,
+      "author": {
+        "id": 1001853
+      },
+      "writtenOn": "2025-10-23T17:20:11Z",
+      "side": 1,
+      "message": "This approach won\u0027t address the problem. The primary goal isn\u0027t just checking the power state, but triggering actions, such as rescans, when the power state transitions from one specific state to another. This requires callback support in the power status monitor. \n\nImplementing callbacks is more complex than the current solution and depends on the use cases. For example, do we need callbacks for every power state change, or only for specific transitions?\n\nThe power status monitor is currently used only by entity-manager. Reviewing the entity-manager code shows that it does not need to trigger actions on power state changes. It\u0027s also uncertain whether such functionality might be needed in the future.",
+      "parentUuid": "79e26cea_307609a2",
+      "revId": "4e431491689cc44d09582d2aa86dfc8158c5401e",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }
