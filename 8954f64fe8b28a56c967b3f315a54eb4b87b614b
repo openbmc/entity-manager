@@ -108,6 +108,24 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": true,
+      "key": {
+        "uuid": "b591c8a9_9d4404a4",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 10,
+      "author": {
+        "id": 1001354
+      },
+      "writtenOn": "2025-10-23T20:33:45Z",
+      "side": 1,
+      "message": "\u003eI could be wrong here but i feel like that\u0027s one of the remaining points to be resolved.\n\nI agree. \n\nSo far, the current method has been the only way I\u0027ve managed to get any fan items to show up in redfish/bmcweb\u0027s Fan Inventory, but we\u0027re not tied to that solution.\n\nI still have more experimenting and digging around to do to figure out why adding an Inventory.Item.Fan interface to fan paths on the xyz.openbmc_project.FanSensors dbus wasn\u0027t enough to get them picked up like I initially thought it would. \n\nI figured if we accepted this code as it is today, we\u0027d end up doing a later pass later to reconcile and \u0027nice up\u0027 how Fan Inventory is handled.\n\nWith a bit of guidance, I\u0027m happy to get it figured out now. \n\nI hadn\u0027t seen that fan \u0027board\u0027 example -- that\u0027s useful for my understanding. \n\nI\u0027m not fundamentally against having a \"fan board\" and keeping the fan Inventory.Item stuff under xyz.openbmc_project.FanSensors. I\u0027ll do some thinking and experimenting and come back to this.\n\nThanks a ton for the in-depth writeup!",
+      "parentUuid": "923234d1_f9691261",
+      "revId": "8954f64fe8b28a56c967b3f315a54eb4b87b614b",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": false,
       "key": {
         "uuid": "586008d7_356a4299",
