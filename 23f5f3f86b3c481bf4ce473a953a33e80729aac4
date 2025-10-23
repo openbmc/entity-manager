@@ -20,6 +20,23 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "5a2de723_8de81aa3",
+        "filename": "src/entity_manager/overlay.cpp",
+        "patchSetId": 22
+      },
+      "lineNbr": 43,
+      "author": {
+        "id": 1002725
+      },
+      "writtenOn": "2025-10-23T07:11:51Z",
+      "side": 1,
+      "message": "After BMC reboot, the hwmon device enumeration order can change (e.g., I3C logical I2C \nbuses from MCTP). This causes the bus numbers derived from MuxChannel in the previous \nsystem.json to be stale. The current code will:\n\n1. First export devices using the stale bus number from system.json\n2. Then linkMux() recalculates the correct bus and exports again via newMuxConfigs\n\nThis results in duplicate device exports with different bus numbers.\n\n```suggestion\n            }\n            auto findMuxChannel \u003d configuration.find(\"MuxChannel\");\n            if (findMuxChannel !\u003d configuration.end())\n            {\n                continue;\n            }\n```\n\nThis ensures MuxChannel-based devices are only processed after linkMux() calculates \nthe current bus numbers.",
+      "revId": "23f5f3f86b3c481bf4ce473a953a33e80729aac4",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "f05503fc_9d8b93df",
         "filename": "src/entity_manager/overlay.cpp",
         "patchSetId": 22
