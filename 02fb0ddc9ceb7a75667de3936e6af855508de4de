@@ -187,6 +187,30 @@
       },
       "revId": "02fb0ddc9ceb7a75667de3936e6af855508de4de",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "e77a57ae_afb4e9b6",
+        "filename": "src/entity_manager/perform_scan.hpp",
+        "patchSetId": 3
+      },
+      "lineNbr": 20,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-10-23T12:33:15Z",
+      "side": 1,
+      "message": "\u003e Just #include the things you need.\n\nClosing this comment since the suggested fix simply does not work (creating cyclic include and build failure).\n\nPlease let me know if you have a concrete idea for how to fix the cyclic dependency between `PerformProbe` and `PerformScan`. Anywho, if we find a solution for that, it will not be in scope for this patch (which is about extracting a helper function for object mapper usage).",
+      "parentUuid": "f66e16e7_7ab719e0",
+      "range": {
+        "startLine": 16,
+        "startChar": 0,
+        "endLine": 20,
+        "endChar": 2
+      },
+      "revId": "02fb0ddc9ceb7a75667de3936e6af855508de4de",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }
