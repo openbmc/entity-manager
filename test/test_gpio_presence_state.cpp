@@ -25,7 +25,8 @@ TEST_F(DevicePresenceDetailedTest, ConstructorSingleGpioActiveLow)
     std::vector<uint64_t> gpioValues = {0}; // Active low
     std::string deviceName = "device1";
 
-    DevicePresence device(ctx, gpioNames, gpioValues, deviceName, gpioState);
+    DevicePresence device(ctx, gpioNames, gpioValues, deviceName, gpioState,
+                          {});
 
     EXPECT_EQ(device.deviceName, deviceName);
     EXPECT_EQ(device.gpioPolarity.size(), 1);
@@ -39,7 +40,8 @@ TEST_F(DevicePresenceDetailedTest, ConstructorSingleGpioActiveHigh)
     std::vector<uint64_t> gpioValues = {1}; // Active high
     std::string deviceName = "device2";
 
-    DevicePresence device(ctx, gpioNames, gpioValues, deviceName, gpioState);
+    DevicePresence device(ctx, gpioNames, gpioValues, deviceName, gpioState,
+                          {});
 
     EXPECT_EQ(device.deviceName, deviceName);
     EXPECT_EQ(device.gpioPolarity.size(), 1);
@@ -53,7 +55,8 @@ TEST_F(DevicePresenceDetailedTest, ConstructorMultipleGpiosMixedPolarities)
     std::vector<uint64_t> gpioValues = {0, 1, 0}; // Active low, high, low
     std::string deviceName = "device3";
 
-    DevicePresence device(ctx, gpioNames, gpioValues, deviceName, gpioState);
+    DevicePresence device(ctx, gpioNames, gpioValues, deviceName, gpioState,
+                          {});
 
     EXPECT_EQ(device.deviceName, deviceName);
     EXPECT_EQ(device.gpioPolarity.size(), 3);
@@ -74,7 +77,7 @@ TEST_F(DevicePresenceDetailedTest, IsPresentActiveLowGpioLow)
     localGpioState["GPIO1"] = false; // GPIO is low
 
     DevicePresence device(ctx, gpioNames, gpioValues, deviceName,
-                          localGpioState);
+                          localGpioState, {});
     EXPECT_TRUE(device.isPresent());
 }
 
@@ -90,7 +93,7 @@ TEST_F(DevicePresenceDetailedTest, IsPresentActiveLowGpioHigh)
     localGpioState["GPIO1"] = true; // GPIO is high
 
     DevicePresence device(ctx, gpioNames, gpioValues, deviceName,
-                          localGpioState);
+                          localGpioState, {});
     EXPECT_FALSE(device.isPresent());
 }
 
@@ -106,7 +109,7 @@ TEST_F(DevicePresenceDetailedTest, IsPresentActiveHighGpioHigh)
     localGpioState["GPIO1"] = true; // GPIO is high
 
     DevicePresence device(ctx, gpioNames, gpioValues, deviceName,
-                          localGpioState);
+                          localGpioState, {});
     EXPECT_TRUE(device.isPresent());
 }
 
@@ -122,7 +125,7 @@ TEST_F(DevicePresenceDetailedTest, IsPresentActiveHighGpioLow)
     localGpioState["GPIO1"] = false; // GPIO is low
 
     DevicePresence device(ctx, gpioNames, gpioValues, deviceName,
-                          localGpioState);
+                          localGpioState, {});
     EXPECT_FALSE(device.isPresent());
 }
 
@@ -140,7 +143,7 @@ TEST_F(DevicePresenceDetailedTest, IsPresentMultipleGpiosAllCorrect)
     localGpioState["GPIO3"] = false; // Active low, should be low
 
     DevicePresence device(ctx, gpioNames, gpioValues, deviceName,
-                          localGpioState);
+                          localGpioState, {});
     EXPECT_TRUE(device.isPresent());
 }
 
@@ -158,7 +161,7 @@ TEST_F(DevicePresenceDetailedTest, IsPresentMultipleGpiosOneIncorrect)
     localGpioState["GPIO3"] = false; // Active low, should be low - correct
 
     DevicePresence device(ctx, gpioNames, gpioValues, deviceName,
-                          localGpioState);
+                          localGpioState, {});
     EXPECT_FALSE(device.isPresent());
 }
 
@@ -173,7 +176,7 @@ TEST_F(DevicePresenceDetailedTest, IsPresentMissingGpioState)
     // localGpioState["GPIO1"] is not set - simulating missing GPIO
 
     DevicePresence device(ctx, gpioNames, gpioValues, deviceName,
-                          localGpioState);
+                          localGpioState, {});
     EXPECT_FALSE(device.isPresent());
 }
 
@@ -184,7 +187,8 @@ TEST_F(DevicePresenceDetailedTest, GetObjPathTest)
     std::vector<uint64_t> gpioValues = {0};
     std::string deviceName = "test_device";
 
-    DevicePresence device(ctx, gpioNames, gpioValues, deviceName, gpioState);
+    DevicePresence device(ctx, gpioNames, gpioValues, deviceName, gpioState,
+                          {});
 
     sdbusplus::message::object_path objPath = device.getObjPath();
     std::string expectedPath =
