@@ -24,6 +24,30 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "5237fe96_adc9581f",
+        "filename": "src/entity_manager/object_mapper.cpp",
+        "patchSetId": 4
+      },
+      "lineNbr": 15,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-10-27T14:30:40Z",
+      "side": 1,
+      "message": "Thanks, looks like a good idea to me 👍\n\nDone.",
+      "parentUuid": "e02126e9_8a676272",
+      "range": {
+        "startLine": 15,
+        "startChar": 9,
+        "endLine": 15,
+        "endChar": 17
+      },
+      "revId": "3bf16a10b077ea18509f9406e1e8ffe44795a719",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "604c76cf_18df43c7",
@@ -37,6 +61,24 @@
       "writtenOn": "2025-10-24T17:57:44Z",
       "side": 1,
       "message": "putting async_method calls in their own compile unit can cause template duplication issues, because this same code might be compiled in multiple units.",
+      "revId": "3bf16a10b077ea18509f9406e1e8ffe44795a719",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "61e28844_e77fb846",
+        "filename": "src/entity_manager/object_mapper.cpp",
+        "patchSetId": 4
+      },
+      "lineNbr": 23,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-10-27T14:30:40Z",
+      "side": 1,
+      "message": "Can you unpack this template duplication issue for me?\n\nDon\u0027t the `async_method_call` usages we have all have different callback types?\n\nSo we will need to instantiate the template multiple times anyways, right?\n\nThe usages we have\n- GetSubTree\n- get host state\n- properties GetAll\n\nWhat do you suggest? I don\u0027t think it\u0027s appropriate to put all those in a `dbus_utils.cpp` since it\u0027s different usages.\n\nShould we perhaps explicitly instantiate the templates we use and then put that into `dbus_utils.cpp` or something like that?\n\nSomething like\n`async_method_call_variant_string_type`\n`async_method_call_getsubtree_type`\n`async_method_call_getall_type`\n\nThat would keep it at least somewhat independent of usage semantics and then we can compile all those together and add others as needed. Let me know 😊",
+      "parentUuid": "604c76cf_18df43c7",
       "revId": "3bf16a10b077ea18509f9406e1e8ffe44795a719",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
