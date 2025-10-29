@@ -1,0 +1,55 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0197c6ca_36b2e355",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-10-29T09:14:52Z",
+      "side": 1,
+      "message": "Can you link to the implementation patch https://gerrit.openbmc.org/c/openbmc/dbus-sensors/+/83271",
+      "revId": "0142580bc50572ff9844e69dc80bab01e95e21fc",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0d95bf56_3c4a6f4a",
+        "filename": "schemas/legacy.json",
+        "patchSetId": 3
+      },
+      "lineNbr": 811,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-10-29T09:14:52Z",
+      "side": 1,
+      "message": "What if we defined it as `in_PollRates` instead and made it an array of numbers.\n\nThat would be more in line with\nhttps://dbus.freedesktop.org/doc/dbus-api-design.html\n\n`in_PollRates[0]` would then be what is `in0_PollRate` in the current revision.",
+      "revId": "0142580bc50572ff9844e69dc80bab01e95e21fc",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9397195f_1394a329",
+        "filename": "schemas/legacy.json",
+        "patchSetId": 3
+      },
+      "lineNbr": 812,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-10-29T09:14:52Z",
+      "side": 1,
+      "message": "nit: `PollRate` (line 1360) could use a `description` field which documents the unit (seconds)",
+      "revId": "0142580bc50572ff9844e69dc80bab01e95e21fc",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    }
+  ]
+}
