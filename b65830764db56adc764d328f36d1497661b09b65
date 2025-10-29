@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7e8be5b9_b776e6c4",
+        "filename": "src/entity_manager/perform_scan.hpp",
+        "patchSetId": 5
+      },
+      "lineNbr": 21,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2025-10-29T17:11:00Z",
+      "side": 1,
+      "message": "Not the first time I\u0027ve made this comment, but please don\u0027t forward declare classes like this.  If you have a circular dependency, fix it such that headers can be included directly.",
+      "range": {
+        "startLine": 21,
+        "startChar": 0,
+        "endLine": 21,
+        "endChar": 20
+      },
+      "revId": "b65830764db56adc764d328f36d1497661b09b65",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    }
+  ]
+}
