@@ -808,6 +808,9 @@
                 "(curr|power|iout)(1[0-7]|[1-9])_Scale$": {
                     "$ref": "#/$defs/Types/ScaleValue"
                 },
+                "in(1[0-7]|[0-9])_PollRate$": {
+                    "$ref": "#/$defs/Types/PollRate"
+                },
                 "in(1[0-7]|[0-9])_PowerState$": {
                     "$ref": "#/$defs/Types/PowerState"
                 },
