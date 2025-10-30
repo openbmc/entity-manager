@@ -15,8 +15,6 @@ int main()
     systemBus->request_name("xyz.openbmc_project.EntityManager");
     EntityManager em(systemBus, io);
 
-    nlohmann::json systemConfiguration = nlohmann::json::object();
-
     boost::asio::post(io, [&]() { em.propertiesChangedCallback(); });
 
     em.handleCurrentConfigurationJson();
