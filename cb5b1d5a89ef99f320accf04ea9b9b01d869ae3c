@@ -22,6 +22,30 @@
       },
       "revId": "cb5b1d5a89ef99f320accf04ea9b9b01d869ae3c",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "8ca99ec1_3a79db3d",
+        "filename": "test/entity_manager/meson.build",
+        "patchSetId": 32
+      },
+      "lineNbr": 22,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-10-31T11:48:48Z",
+      "side": 1,
+      "message": "Makes sense to me, we can follow the fine-grained approach.\nChanged it to list the dependencies for each test inline.\n\nAlso changed it in\n- test/fru_device\n- test/gpio_presence\n\nto put the fine grained dependencies.",
+      "parentUuid": "5d096fce_c93cacf6",
+      "range": {
+        "startLine": 1,
+        "startChar": 0,
+        "endLine": 22,
+        "endChar": 5
+      },
+      "revId": "cb5b1d5a89ef99f320accf04ea9b9b01d869ae3c",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }

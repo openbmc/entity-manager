@@ -16,6 +16,24 @@
       "message": "Do we know why this got registered as a delete then add rather than a file move?  that\u0027s going to mess up the git log --follow history.",
       "revId": "bd98a13d7ce04407cfb37ad8e80a06d6afe4a773",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "5c262088_47781b3a",
+        "filename": "test/test_utils.cpp",
+        "patchSetId": 32
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-10-31T11:48:48Z",
+      "side": 0,
+      "message": "There is another rename\n\ntest/entity_manager/test_entity-manager.cpp -\u003e test/utils.cpp\n\nwhich contains tests like `TEST(IfindFirstTest, BasicMatch)` now.\n\nI assume as per file renaming semantics, we cannot have 2 files renamed to one file.\n\n\u003e that\u0027s going to mess up the git log --follow history.\n\nYes but mirroring `src/` directory structure in `test/` folder helps to make sure we will be able to avoid this issue in the future.\n\nWe are solving an issue with a number of files here, if a single (test) file has a problem now with it\u0027s history, i consider it an acceptable tradeoff.\n\nIf you consider the history to be a greater priority, let me know and i can exclude the file from this restructuring.",
+      "parentUuid": "593c762c_ccdb181c",
+      "revId": "bd98a13d7ce04407cfb37ad8e80a06d6afe4a773",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }
