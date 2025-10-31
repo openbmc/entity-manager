@@ -22,6 +22,30 @@
       },
       "revId": "cfcbd3bd0e6b1ed6cbb34774f76192ccfc493d48",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "06b7f4d4_e359f568",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 10,
+      "author": {
+        "id": 1001896
+      },
+      "writtenOn": "2025-10-31T09:43:22Z",
+      "side": 1,
+      "message": "Hi Patrick,\n\nRegarding Meta Shreyas Rao’s reply about the FCB assert tag field (quoted below):\n\n```\nThe FAN Board is not tied to any L10 hence we do not have any relevant Product Info to tie to.\n\nBoard Info \u003d PCBA Level\nProduct Info \u003d Blade Level\nChassis Info \u003d 30OU Chassis Level\n\nBased on this the FAN Board can only expect Board and Chassis Info. What is the requirement here from LF-BMC?\n```\n\nShould we request adding a new field for this, or can we remove it as this commit proposes?\n\nThanks.",
+      "parentUuid": "14271fd1_434f8833",
+      "range": {
+        "startLine": 9,
+        "startChar": 0,
+        "endLine": 10,
+        "endChar": 23
+      },
+      "revId": "cfcbd3bd0e6b1ed6cbb34774f76192ccfc493d48",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }
