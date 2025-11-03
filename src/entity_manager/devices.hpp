@@ -68,6 +68,9 @@ constexpr auto exportTemplates = std::to_array<ExportTemplate>(
       createsHWMon::noHWMonDir},
      {"IPSPS1", "ipsps1 $Address", "/sys/bus/i2c/devices/i2c-$Bus",
       "new_device", "delete_device", createsHWMon::hasHWMonDir},
+      {"PCF85053", "pcf85053 $Address", "/sys/bus/i2c/devices/i2c-$Bus",
+                         "new_device", "delete_device",
+                         createsHWMon::noHWMonDir)}
      {"MAX34440", "max34440 $Address", "/sys/bus/i2c/devices/i2c-$Bus",
       "new_device", "delete_device", createsHWMon::hasHWMonDir},
      {"PCA9537", "pca9537 $Address", "/sys/bus/i2c/devices/i2c-$Bus",
