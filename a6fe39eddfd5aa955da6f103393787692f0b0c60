@@ -74,6 +74,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "bdb707c8_ee6130ea",
+        "filename": "src/fru_device/fru_device.cpp",
+        "patchSetId": 3
+      },
+      "lineNbr": 1051,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2025-11-03T20:47:23Z",
+      "side": 1,
+      "message": "\u003e `FruDevice` instance is in scope from beginning to end of `main` function.\n\nAt this scope, that\u0027s not gauranteed that FruDevice and io_context are in the same scope, which leads to subtle bugs.\n\n\u003e \n\u003e You are right in a generic C++ context but in our particular case `FruDevice` is a singleton in the application context.\n\nMaybe I\u0027m not understanding the term here.  This isn\u0027t a singleton, this is a stack variable declared in main, right?  \n\n\u003e \n\u003e And when `FruDevice` instance goes out of scope we are already at the point where `fruDevice.io.run()` returns so there should not be any other code running beyond that point.\n\nRight... this is the point, there\u0027s no guarantee of this within the class, which leads to subtle bugs.  FWIW, that\u0027s somewhat why these were globals initially and not on stack.\n\n\u003e \n\u003e I am kind of stuck here as from a local reasoning perspective your suggestion is better but i would like to avoid introducing any `shared_ptr` for `FruDevice` instance since we know it\u0027s lifetime already (thus no need for `shared_ptr`).\n\u003e \n\u003e So both choices are wrong and because of that i would like to go with the simpler choice (no `shared_ptr`).",
+      "parentUuid": "50ca1f5c_4f3d9d99",
+      "range": {
+        "startLine": 1051,
+        "startChar": 21,
+        "endLine": 1051,
+        "endChar": 25
+      },
+      "revId": "a6fe39eddfd5aa955da6f103393787692f0b0c60",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "442e03e9_0572740c",
         "filename": "src/fru_device/fru_device.cpp",
         "patchSetId": 3
@@ -132,6 +156,30 @@
       "writtenOn": "2025-10-13T13:59:34Z",
       "side": 1,
       "message": "closing this discussion thread since there\u0027s been no further response in a week.",
+      "parentUuid": "d780ac89_4436e334",
+      "range": {
+        "startLine": 1439,
+        "startChar": 51,
+        "endLine": 1439,
+        "endChar": 60
+      },
+      "revId": "a6fe39eddfd5aa955da6f103393787692f0b0c60",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3f7a1ab9_53f61c05",
+        "filename": "src/fru_device/fru_device.cpp",
+        "patchSetId": 3
+      },
+      "lineNbr": 1439,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2025-11-03T20:47:23Z",
+      "side": 1,
+      "message": "\u003e So i am not changing things here.\n\nYou\u0027ve created the FruDevice class, so you\u0027ve changed things.\n\nThe goal is not \"fine grained\" the goal is simplicity.  As written, now every API within fru device now could potentially be called from inotify.  At least with the global we have one variable.",
       "parentUuid": "d780ac89_4436e334",
       "range": {
         "startLine": 1439,
