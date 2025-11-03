@@ -829,7 +829,7 @@
                 "power(1[0-7]|[1-9])?_Max$": {
                     "$ref": "#/$defs/Types/MinMaxType"
                 },
-                "(power|curr|iout|pout|pin)(1[0-7]|[1-9])?_Offset$": {
+                "(in|power|curr|iout|pout|pin)(1[0-7]|[1-9])?_Offset$": {
                     "$ref": "#/$defs/Types/OffsetType"
                 }
             },
