@@ -98,6 +98,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "27fc9c6a_7a6e38a3",
+        "filename": "src/fru_device/fru_device.cpp",
+        "patchSetId": 3
+      },
+      "lineNbr": 1051,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-11-04T09:40:05Z",
+      "side": 1,
+      "message": "\u003e Maybe I\u0027m not understanding the term here. This isn\u0027t a singleton, this is a stack variable declared in main, right? \n\nThere\u0027s only ever a single instance of `FruDevice` class in the application.\n~\u003e singleton.\n\nhttps://en.wikipedia.org/wiki/Singleton_pattern\n\n\u003e In object-oriented programming, the singleton pattern is a software design pattern that restricts the instantiation of a class to a singular instance\n\nI did not put a mechanism in the class to enforce it as singleton because i consider it to be obvious from looking at the usage within the application context.\n\n\n\u003e Right... this is the point, there\u0027s no guarantee of this within the class, which leads to subtle bugs. FWIW, that\u0027s somewhat why these were globals initially and not on stack.\n\nAnd global vars accessible from any function which can see them does not lead to subtle bugs?",
+      "parentUuid": "bdb707c8_ee6130ea",
+      "range": {
+        "startLine": 1051,
+        "startChar": 21,
+        "endLine": 1051,
+        "endChar": 25
+      },
+      "revId": "a6fe39eddfd5aa955da6f103393787692f0b0c60",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "442e03e9_0572740c",
         "filename": "src/fru_device/fru_device.cpp",
         "patchSetId": 3
@@ -181,6 +205,30 @@
       "side": 1,
       "message": "\u003e So i am not changing things here.\n\nYou\u0027ve created the FruDevice class, so you\u0027ve changed things.\n\nThe goal is not \"fine grained\" the goal is simplicity.  As written, now every API within fru device now could potentially be called from inotify.  At least with the global we have one variable.",
       "parentUuid": "d780ac89_4436e334",
+      "range": {
+        "startLine": 1439,
+        "startChar": 51,
+        "endLine": 1439,
+        "endChar": 60
+      },
+      "revId": "a6fe39eddfd5aa955da6f103393787692f0b0c60",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6ba55953_f8225a15",
+        "filename": "src/fru_device/fru_device.cpp",
+        "patchSetId": 3
+      },
+      "lineNbr": 1439,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-11-04T09:40:05Z",
+      "side": 1,
+      "message": "\u003e At least with the global we have one variable.\n\n```\n  // TODO Refactor these to not be globals\n  // NOLINTBEGIN(cppcoreguidelines-avoid-non-const-global-variables)\n  static boost::container::flat_map\u003csize_t, std::optional\u003cstd::set\u003csize_t\u003e\u003e\u003e\n      busBlocklist;\n  struct FindDevicesWithCallback;\n      \n  static boost::container::flat_map\u003c\n      std::pair\u003csize_t, size_t\u003e, std::shared_ptr\u003csdbusplus::asio::dbus_interface\u003e\u003e\n      foundDevices;\n      \n  static boost::container::flat_map\u003csize_t, std::set\u003csize_t\u003e\u003e failedAddresses;\n  static boost::container::flat_map\u003csize_t, std::set\u003csize_t\u003e\u003e fruAddresses;\n  \n  boost::asio::io_context io;\n  // NOLINTEND(cppcoreguidelines-avoid-non-const-global-variables)\n```\n\nWe have around 6 global vars? (which are btw annotated as TODO for rework)\n\n\n\u003e As written, now every API within fru device now could potentially be called from inotify.\n\nThis patch is a basic rework. It\u0027s not meant to be the pinnacle of encapsulation.\n\nIt\u0027s meant to get us started in a direction where we can define proper encapsulation via `public` and `private` member variables and member functions.",
+      "parentUuid": "3f7a1ab9_53f61c05",
       "range": {
         "startLine": 1439,
         "startChar": 51,
