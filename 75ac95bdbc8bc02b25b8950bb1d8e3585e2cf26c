@@ -22,6 +22,30 @@
       },
       "revId": "75ac95bdbc8bc02b25b8950bb1d8e3585e2cf26c",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6d58091b_4aa39363",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 10,
+      "author": {
+        "id": 1001906
+      },
+      "writtenOn": "2025-11-04T06:43:07Z",
+      "side": 1,
+      "message": "The MMC has changed the terminus name from Minerva Aegis to uppercase MINERVA AEGIS. If we don’t modify it accordingly, we will end up with two inventories in the Redfish path (MINERVA_AEGIS and Minerva_Aegis).\n\nHere is the MMC commit.\nhttps://github.com/facebook/OpenBIC/commit/a24aa585ac1151b61466a7c2a1e7de941b014aeb",
+      "parentUuid": "7fd76eff_7fed11a2",
+      "range": {
+        "startLine": 9,
+        "startChar": 0,
+        "endLine": 10,
+        "endChar": 18
+      },
+      "revId": "75ac95bdbc8bc02b25b8950bb1d8e3585e2cf26c",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }
