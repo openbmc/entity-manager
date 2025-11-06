@@ -65,8 +65,11 @@
         "Name": "$Name",
         "Probe": [
             "xyz.openbmc_project.Inventory.Source.DevicePresence({'Name': '^RPU1LeakPort1$'})",
+            "OR",
             "xyz.openbmc_project.Inventory.Source.DevicePresence({'Name': '^RPU1LeakPort2$'})",
+            "OR",
             "xyz.openbmc_project.Inventory.Source.DevicePresence({'Name': '^RPU2LeakPort1$'})",
+            "OR",
             "xyz.openbmc_project.Inventory.Source.DevicePresence({'Name': '^RPU2LeakPort2$'})"
         ],
         "Type": "Cable",
