@@ -819,7 +819,7 @@ static void findI2CDevices(const std::vector<fs::path>& i2cBuses,
             continue;
         }
         if (((funcs & I2C_FUNC_SMBUS_READ_BYTE) == 0U) ||
-            ((I2C_FUNC_SMBUS_READ_I2C_BLOCK) == 0))
+            ((funcs & I2C_FUNC_SMBUS_READ_I2C_BLOCK) == 0U))
         {
             lg2::error("Error: Can't use SMBus Receive Byte command bus {BUS}",
                        "BUS", bus);
