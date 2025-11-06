@@ -281,6 +281,12 @@
             "Type": "LM75A"
         },
         {
+            "Address": "0x32",
+            "Bus": 12,
+            "Name": "CXL",
+            "Type": "MCTPI2CTarget"
+        },
+        {
             "Address": "0x63",
             "Bus": 35,
             "Labels": [
@@ -591,7 +597,7 @@
             "Type": "TMP432"
         }
     ],
-    "Name": "Yosemite5 CXL Board",
+    "Name": "Yosemite5 CXL",
     "Probe": [
         "xyz.openbmc_project.FruDevice({'PRODUCT_PRODUCT_NAME': 'Yosemite V5 .*', 'BOARD_PRODUCT_NAME': 'Maple Falls', 'BOARD_MANUFACTURER': '(Quanta|Wiwynn)'})",
         "AND",

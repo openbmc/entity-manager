@@ -1,0 +1,59 @@
+{
+    "Exposes": [
+        {
+            "Address": "$address",
+            "Bus": "$bus",
+            "Name": "NIC FRU",
+            "Type": "EEPROM"
+        },
+        {
+            "Address": "0x32",
+            "Bus": "$bus",
+            "Name": "NIC",
+            "Type": "MCTPI2CTarget"
+        },
+        {
+            "Address": "0x1f",
+            "Bus": "$bus",
+            "Labels": [
+                "temp2"
+            ],
+            "Name": "NIC Temp",
+            "Name1": "NIC Temp",
+            "Thresholds": [
+                {
+                    "Direction": "less than",
+                    "Index": 2,
+                    "Name": "lower critical",
+                    "Severity": 1,
+                    "Value": 5
+                },
+                {
+                    "Direction": "greater than",
+                    "Index": 2,
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 105
+                }
+            ],
+            "Type": "TMP421"
+        }
+    ],
+    "Name": "Yosemite5 CX7",
+    "Probe": [
+        "xyz.openbmc_project.FruDevice({'BOARD_PRODUCT_NAME': 'Nvidia ConnectX-7 OCP3.0'})",
+        "AND",
+        "FOUND('Yosemite5 SCM')"
+    ],
+    "Type": "Board",
+    "xyz.openbmc_project.Inventory.Decorator.Asset": {
+        "Manufacturer": "$BOARD_MANUFACTURER",
+        "Model": "$BOARD_PRODUCT_NAME",
+        "PartNumber": "$BOARD_PART_NUMBER",
+        "SerialNumber": "$BOARD_SERIAL_NUMBER",
+        "SparePartNumber": "$BOARD_INFO_AM1"
+    },
+    "xyz.openbmc_project.Inventory.Decorator.AssetTag": {
+        "AssetTag": "$PRODUCT_ASSET_TAG"
+    }
+}
