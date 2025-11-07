@@ -144,6 +144,30 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "16f23d1a_b4369b5f",
+        "filename": "src/fru_device/fru_device.cpp",
+        "patchSetId": 3
+      },
+      "lineNbr": 1051,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-11-07T17:06:13Z",
+      "side": 1,
+      "message": "I have moved to `shared_ptr` as suggested based on feedback received in discord.",
+      "parentUuid": "9840b90b_7088565e",
+      "range": {
+        "startLine": 1051,
+        "startChar": 21,
+        "endLine": 1051,
+        "endChar": 25
+      },
+      "revId": "a6fe39eddfd5aa955da6f103393787692f0b0c60",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "442e03e9_0572740c",
@@ -253,6 +277,30 @@
       "side": 1,
       "message": "\u003e At least with the global we have one variable.\n\n```\n  // TODO Refactor these to not be globals\n  // NOLINTBEGIN(cppcoreguidelines-avoid-non-const-global-variables)\n  static boost::container::flat_map\u003csize_t, std::optional\u003cstd::set\u003csize_t\u003e\u003e\u003e\n      busBlocklist;\n  struct FindDevicesWithCallback;\n      \n  static boost::container::flat_map\u003c\n      std::pair\u003csize_t, size_t\u003e, std::shared_ptr\u003csdbusplus::asio::dbus_interface\u003e\u003e\n      foundDevices;\n      \n  static boost::container::flat_map\u003csize_t, std::set\u003csize_t\u003e\u003e failedAddresses;\n  static boost::container::flat_map\u003csize_t, std::set\u003csize_t\u003e\u003e fruAddresses;\n  \n  boost::asio::io_context io;\n  // NOLINTEND(cppcoreguidelines-avoid-non-const-global-variables)\n```\n\nWe have around 6 global vars? (which are btw annotated as TODO for rework)\n\n\n\u003e As written, now every API within fru device now could potentially be called from inotify.\n\nThis patch is a basic rework. It\u0027s not meant to be the pinnacle of encapsulation.\n\nIt\u0027s meant to get us started in a direction where we can define proper encapsulation via `public` and `private` member variables and member functions.",
       "parentUuid": "3f7a1ab9_53f61c05",
+      "range": {
+        "startLine": 1439,
+        "startChar": 51,
+        "endLine": 1439,
+        "endChar": 60
+      },
+      "revId": "a6fe39eddfd5aa955da6f103393787692f0b0c60",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "cd46e306_105c3390",
+        "filename": "src/fru_device/fru_device.cpp",
+        "patchSetId": 3
+      },
+      "lineNbr": 1439,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-11-07T17:06:13Z",
+      "side": 1,
+      "message": "\u003e io_context should be shared separately from the fru portions itself. this directory watcher really should know nothign about what a \"fru\" is ideally.\n\nDone, FruDevice now only stores a reference to io context. Sorry for getting stuck on this detail.",
+      "parentUuid": "6ba55953_f8225a15",
       "range": {
         "startLine": 1439,
         "startChar": 51,
