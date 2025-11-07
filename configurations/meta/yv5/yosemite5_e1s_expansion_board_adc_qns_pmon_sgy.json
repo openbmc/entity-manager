@@ -175,12 +175,58 @@
             "Type": "EEPROM"
         },
         {
+            "Address": "0x6a",
+            "Bus": 20,
+            "Name": "E1S_EB_E1S0_TEMP_C",
+            "PowerState": "On",
+            "Thresholds": [
+                {
+                    "Direction": "less than",
+                    "Hysteresis": 0.1,
+                    "Name": "lower critical",
+                    "Severity": 1,
+                    "Value": 5.0
+                },
+                {
+                    "Direction": "greater than",
+                    "Hysteresis": 1.4,
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 70.0
+                }
+            ],
+            "Type": "NVME1000"
+        },
+        {
+            "Address": "0x6a",
+            "Bus": 21,
+            "Name": "E1S_EB_E1S1_TEMP_C",
+            "PowerState": "On",
+            "Thresholds": [
+                {
+                    "Direction": "less than",
+                    "Hysteresis": 0.1,
+                    "Name": "lower critical",
+                    "Severity": 1,
+                    "Value": 5.0
+                },
+                {
+                    "Direction": "greater than",
+                    "Hysteresis": 1.4,
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 70.0
+                }
+            ],
+            "Type": "NVME1000"
+        },
+        {
             "Address": "0x40",
             "Bus": 10,
             "Labels": [
-                "iout1",
-                "vin",
-                "pout1"
+                "in_voltage1",
+                "in_power2",
+                "in_current3"
             ],
             "Name": "E1S_EB_PMON_E1S1",
             "PowerState": "On",
@@ -234,18 +280,21 @@
                     "Value": 20.6
                 }
             ],
-            "Type": "INA233",
-            "iout1_Name": "E1S_EB_PMON_E1S1_P12V_CURR_A",
-            "pout1_Name": "E1S_EB_PMON_E1S1_P12V_PWR_W",
-            "vin_Name": "E1S_EB_PMON_E1S1_P12V_VOLT_V"
+            "Type": "RTQ6056",
+            "in_current3_Name": "E1S_EB_PMON_E1S1_P12V_CURR_A",
+            "in_current3_Scale": 2500,
+            "in_power2_Name": "E1S_EB_PMON_E1S1_P12V_PWR_W",
+            "in_power2_Scale": 100,
+            "in_voltage1_Name": "E1S_EB_PMON_E1S1_P12V_VOLT_V",
+            "in_voltage1_Scale": 800
         },
         {
             "Address": "0x45",
             "Bus": 10,
             "Labels": [
-                "iout1",
-                "vin",
-                "pout1"
+                "in_voltage1",
+                "in_power2",
+                "in_current3"
             ],
             "Name": "E1S_EB_PMON_E1S0",
             "PowerState": "On",
@@ -299,56 +348,13 @@
                     "Value": 20.6
                 }
             ],
-            "Type": "INA233",
-            "iout1_Name": "E1S_EB_PMON_E1S0_P12V_CURR_A",
-            "pout1_Name": "E1S_EB_PMON_E1S0_P12V_PWR_W",
-            "vin_Name": "E1S_EB_PMON_E1S0_P12V_VOLT_V"
-        },
-        {
-            "Address": "0x6a",
-            "Bus": 20,
-            "Name": "E1S_EB_E1S0_TEMP_C",
-            "PowerState": "On",
-            "Thresholds": [
-                {
-                    "Direction": "less than",
-                    "Hysteresis": 0.1,
-                    "Name": "lower critical",
-                    "Severity": 1,
-                    "Value": 5.0
-                },
-                {
-                    "Direction": "greater than",
-                    "Hysteresis": 1.4,
-                    "Name": "upper critical",
-                    "Severity": 1,
-                    "Value": 70.0
-                }
-            ],
-            "Type": "NVME1000"
-        },
-        {
-            "Address": "0x6a",
-            "Bus": 21,
-            "Name": "E1S_EB_E1S1_TEMP_C",
-            "PowerState": "On",
-            "Thresholds": [
-                {
-                    "Direction": "less than",
-                    "Hysteresis": 0.1,
-                    "Name": "lower critical",
-                    "Severity": 1,
-                    "Value": 5.0
-                },
-                {
-                    "Direction": "greater than",
-                    "Hysteresis": 1.4,
-                    "Name": "upper critical",
-                    "Severity": 1,
-                    "Value": 70.0
-                }
-            ],
-            "Type": "NVME1000"
+            "Type": "RTQ6056",
+            "in_current3_Name": "E1S_EB_PMON_E1S0_P12V_CURR_A",
+            "in_current3_Scale": 2500,
+            "in_power2_Name": "E1S_EB_PMON_E1S0_P12V_PWR_W",
+            "in_power2_Scale": 100,
+            "in_voltage1_Name": "E1S_EB_PMON_E1S0_P12V_VOLT_V",
+            "in_voltage1_Scale": 800
         },
         {
             "Address": "0x49",
@@ -374,7 +380,11 @@
         }
     ],
     "Name": "Yosemite5 E1S Expansion Board",
-    "Probe": "xyz.openbmc_project.FruDevice({'PRODUCT_PRODUCT_NAME': 'Yosemite V5 .*', 'BOARD_PRODUCT_NAME': 'E1.S Expansion Board'})",
+    "Probe": [
+        "xyz.openbmc_project.FruDevice({'PRODUCT_PRODUCT_NAME': 'Yosemite V5 .*', 'BOARD_PRODUCT_NAME': 'E1.S Expansion Board', 'BOARD_MANUFACTURER': '(Quanta|Wiwynn)'})",
+        "AND",
+        "xyz.openbmc_project.FruDevice({'BOARD_INFO_AM4': 'ADC-ONS PMON-SGY'})"
+    ],
     "Type": "Board",
     "xyz.openbmc_project.Inventory.Decorator.Asset": {
         "BuildDate": "$BOARD_MANUFACTURE_DATE",
