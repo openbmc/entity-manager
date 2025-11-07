@@ -9,7 +9,7 @@
                 },
                 "Bus": {
                     "description": "The bus index to which the device is attached",
-                    "type": "string"
+                    "type": ["string", "number"]
                 },
                 "Name": {
                     "description": "A recognisable name for the device",
@@ -31,7 +31,7 @@
                 },
                 "Bus": {
                     "description": "The bus index to which the device is attached",
-                    "type": "string"
+                    "type": ["string", "number"]
                 },
                 "Name": {
                     "description": "A recognisable name for the device",
