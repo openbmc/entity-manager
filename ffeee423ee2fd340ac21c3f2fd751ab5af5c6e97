@@ -1,0 +1,84 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8f1c81ef_2785a928",
+        "filename": "configurations/meta/yv5/yosemite5_cx7.json",
+        "patchSetId": 1
+      },
+      "lineNbr": 22,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2025-11-10T17:46:48Z",
+      "side": 1,
+      "message": "I would expect all of these to be in the base CX-7 file.  Any reason why they are not?",
+      "range": {
+        "startLine": 3,
+        "startChar": 0,
+        "endLine": 22,
+        "endChar": 32
+      },
+      "revId": "ffeee423ee2fd340ac21c3f2fd751ab5af5c6e97",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "808b792d_5cc21be2",
+        "filename": "configurations/meta/yv5/yosemite5_cx7.json",
+        "patchSetId": 1
+      },
+      "lineNbr": 42,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2025-11-10T17:46:48Z",
+      "side": 1,
+      "message": "This doesn\u0027t seem like a separate FRU, so we shouldn\u0027t create a separate inventory object for it.",
+      "revId": "ffeee423ee2fd340ac21c3f2fd751ab5af5c6e97",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9934e70e_1a135e15",
+        "filename": "configurations/meta/yv5/yosemite5_cx7.json",
+        "patchSetId": 1
+      },
+      "lineNbr": 44,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2025-11-10T17:46:48Z",
+      "side": 1,
+      "message": "This is not a Meta piece of hardware.  Why is it under the meta subdirectory?\n\nWhy is there no manufacturer?",
+      "range": {
+        "startLine": 44,
+        "startChar": 0,
+        "endLine": 44,
+        "endChar": 92
+      },
+      "revId": "ffeee423ee2fd340ac21c3f2fd751ab5af5c6e97",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f6a52597_c48680a6",
+        "filename": "configurations/meta/yv5/yosemite5_cxl_board_vr_mps_tchip_stm.json",
+        "patchSetId": 1
+      },
+      "lineNbr": 306,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2025-11-10T17:46:48Z",
+      "side": 1,
+      "message": "I suggest splitting this into two commits.  Adding the CXL connection can be done separately from modifying the nvidia CX-7 config.",
+      "revId": "ffeee423ee2fd340ac21c3f2fd751ab5af5c6e97",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    }
+  ]
+}
