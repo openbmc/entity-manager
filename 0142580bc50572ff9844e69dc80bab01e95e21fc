@@ -73,6 +73,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "a36e45f2_6ee89aca",
+        "filename": "schemas/legacy.json",
+        "patchSetId": 3
+      },
+      "lineNbr": 811,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-11-10T10:20:05Z",
+      "side": 1,
+      "message": "\u003e if we want to change it to an array, since it should be related to all of the inx_ items?\n\ni am bringing this concern now since i had problems in the past to change already existing schemas. For example here: https://gerrit.openbmc.org/c/openbmc/entity-manager/+/84024\n\nIf we create or modify existing schemas it should appear on DBus as per DBus api design guidelines if at all possible.\n\n\nI\u0027m aware that\u0027s not consistent with the rest of the properties on this schema.",
+      "parentUuid": "280fddb4_4b2ce29f",
+      "revId": "0142580bc50572ff9844e69dc80bab01e95e21fc",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "9397195f_1394a329",
         "filename": "schemas/legacy.json",
         "patchSetId": 3
