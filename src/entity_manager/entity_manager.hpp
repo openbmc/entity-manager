@@ -21,7 +21,8 @@ class EntityManager
     explicit EntityManager(
         std::shared_ptr<sdbusplus::asio::connection>& systemBus,
         boost::asio::io_context& io,
-        const std::vector<std::filesystem::path>& configurationDirectories);
+        const std::vector<std::filesystem::path>& configurationDirectories,
+        const std::filesystem::path& schemaDirectory);
 
     // disable copy
     EntityManager(const EntityManager&) = delete;

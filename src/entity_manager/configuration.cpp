@@ -16,14 +16,17 @@
 #include <vector>
 
 Configuration::Configuration(
-    const std::vector<std::filesystem::path>& configurationDirectories) :
+    const std::vector<std::filesystem::path>& configurationDirectories,
+    const std::filesystem::path& schemaDirectory) :
+    schemaDirectory(schemaDirectory),
     configurationDirectories(configurationDirectories)
 {
-    loadConfigurations();
+    loadConfigurations(schemaDirectory);
     filterProbeInterfaces();
 }
 
-void Configuration::loadConfigurations()
+void Configuration::loadConfigurations(
+    const std::filesystem::path& schemaDirectory)
 {
     const auto start = std::chrono::steady_clock::now();
 
@@ -39,8 +42,7 @@ void Configuration::loadConfigurations()
         return;
     }
 
-    std::ifstream schemaStream(
-        std::string(schemaDirectory) + "/" + globalSchema);
+    std::ifstream schemaStream(schemaDirectory / "global.json");
     if (!schemaStream.good())
     {
         lg2::error("Cannot open schema file,  cannot validate JSON, exiting");

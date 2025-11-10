@@ -53,10 +53,12 @@ sdbusplus::asio::PropertyPermission getPermission(const std::string& interface)
 EntityManager::EntityManager(
     std::shared_ptr<sdbusplus::asio::connection>& systemBus,
     boost::asio::io_context& io,
-    const std::vector<std::filesystem::path>& configurationDirectories) :
+    const std::vector<std::filesystem::path>& configurationDirectories,
+    const std::filesystem::path& schemaDirectory) :
     systemBus(systemBus),
     objServer(sdbusplus::asio::object_server(systemBus, /*skipManager=*/true)),
-    configuration(configurationDirectories), lastJson(nlohmann::json::object()),
+    configuration(configurationDirectories, schemaDirectory),
+    lastJson(nlohmann::json::object()),
     systemConfiguration(nlohmann::json::object()), io(io),
     dbus_interface(io, objServer), powerStatus(*systemBus),
     propertiesChangedTimer(io)
@@ -150,8 +152,9 @@ void EntityManager::postBoardToDBus(
     std::shared_ptr<sdbusplus::asio::dbus_interface> boardIface =
         dbus_interface.createInterface(boardPath, invItemIntf, boardNameOrig);
 
-    dbus_interface.createAddObjectMethod(jsonPointerPath, boardPath,
-                                         systemConfiguration, boardNameOrig);
+    dbus_interface.createAddObjectMethod(
+        jsonPointerPath, boardPath, systemConfiguration, boardNameOrig,
+        configuration.schemaDirectory);
 
     dbus_interface.populateInterfaceFromJson(
         systemConfiguration, jsonPointerPath, boardIface, boardValues);
