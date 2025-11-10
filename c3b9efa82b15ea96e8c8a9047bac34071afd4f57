@@ -16,6 +16,24 @@
       "message": "How would the reactor know which one it is?",
       "revId": "c3b9efa82b15ea96e8c8a9047bac34071afd4f57",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0c3b7b89_8eb2be00",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 13,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2025-11-10T19:24:47Z",
+      "side": 1,
+      "message": "Ideally it should _only_ be a number, but due to the way any \"$bus\"-like statements are in the EM config, you have to have string for nearly everything.  I think it gets converted back to a number for dbus though.\n\nI looked at a device that had an instance of `clemente_scm.json` and the Configuration.EEPROM had both `t` as the type for Address and Bus, when I do a `busctl introspect`.  But, in legacy.json, Address is defined as just `string` and Bus is `[string, number]`",
+      "parentUuid": "bc5d3c2e_defe12fc",
+      "revId": "c3b9efa82b15ea96e8c8a9047bac34071afd4f57",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }
