@@ -16,7 +16,9 @@
 #include <vector>
 
 Configuration::Configuration(
-    const std::vector<std::filesystem::path>& configurationDirectories) :
+    const std::vector<std::filesystem::path>& configurationDirectories,
+    const std::filesystem::path& schemaDirectory) :
+    schemaDirectory(schemaDirectory),
     configurationDirectories(configurationDirectories)
 {
     loadConfigurations();
@@ -39,8 +41,7 @@ void Configuration::loadConfigurations()
         return;
     }
 
-    std::ifstream schemaStream(
-        std::string(schemaDirectory) + "/" + globalSchema);
+    std::ifstream schemaStream(schemaDirectory / "global.json");
     if (!schemaStream.good())
     {
         lg2::error("Cannot open schema file,  cannot validate JSON, exiting");
