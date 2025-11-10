@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "34dba38f_ced2f0c9",
+        "filename": "configurations/ibm/huygens_spdm_responder.json",
+        "patchSetId": 9
+      },
+      "lineNbr": 4,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-11-10T10:11:30Z",
+      "side": 1,
+      "message": "nit:\n\n```suggestion\n            \"HostName\": \"$IPAddress\",\n```\n\nwould prefer if it was exactly the property name as in the PDI.\n\nShould make it easier to grep for.",
+      "range": {
+        "startLine": 4,
+        "startChar": 25,
+        "endLine": 4,
+        "endChar": 35
+      },
+      "revId": "f58deebc8f4c1d2e643755c49f5d1eff44721c21",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    }
+  ]
+}
