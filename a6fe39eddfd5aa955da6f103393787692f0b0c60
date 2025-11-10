@@ -168,6 +168,30 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "fda21128_bd695fec",
+        "filename": "src/fru_device/fru_device.cpp",
+        "patchSetId": 3
+      },
+      "lineNbr": 1051,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-11-10T14:29:38Z",
+      "side": 1,
+      "message": "\u003e Right... this is the point, there\u0027s no guarantee of this within the class, which leads to subtle bugs. FWIW, that\u0027s somewhat why these were globals initially and not on stack.\n\nYes, there can be problems with classes that we do not have with globals.\n\nI got one such issue in testing when `std::bind_front` was implicitly copy constructing the bus map.\n\nChanged the code now to make the classes non-copyable and non-moveable.\n\nThis solidifies their role as singletons in the application context.\nI hope this resolves your concern 👍",
+      "parentUuid": "16f23d1a_b4369b5f",
+      "range": {
+        "startLine": 1051,
+        "startChar": 21,
+        "endLine": 1051,
+        "endChar": 25
+      },
+      "revId": "a6fe39eddfd5aa955da6f103393787692f0b0c60",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "442e03e9_0572740c",
