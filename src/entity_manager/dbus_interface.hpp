@@ -26,10 +26,10 @@ class EMDBusInterface
     std::vector<std::weak_ptr<sdbusplus::asio::dbus_interface>>&
         getDeviceInterfaces(const nlohmann::json& device);
 
-    void createAddObjectMethod(const std::string& jsonPointerPath,
-                               const std::string& path,
-                               nlohmann::json& systemConfiguration,
-                               const std::string& board);
+    void createAddObjectMethod(
+        const std::string& jsonPointerPath, const std::string& path,
+        nlohmann::json& systemConfiguration, const std::string& board,
+        const std::filesystem::path& schemaDirectory);
 
     void populateInterfaceFromJson(
         nlohmann::json& systemConfiguration, const std::string& jsonPointerPath,

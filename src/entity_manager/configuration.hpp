@@ -5,20 +5,21 @@
 #include <unordered_set>
 #include <vector>
 
-constexpr const char* globalSchema = "global.json";
 constexpr const char* currentConfiguration = "/var/configuration/system.json";
-constexpr const char* schemaDirectory = PACKAGE_DIR "schemas";
 
 class Configuration
 {
   public:
     explicit Configuration(
-        const std::vector<std::filesystem::path>& configurationDirectories);
+        const std::vector<std::filesystem::path>& configurationDirectories,
+        const std::filesystem::path& schemaDirectory);
     std::unordered_set<std::string> probeInterfaces;
     std::vector<nlohmann::json> configurations;
 
+    const std::filesystem::path schemaDirectory;
+
   protected:
-    void loadConfigurations();
+    void loadConfigurations(const std::filesystem::path& schemaDirectory);
     void filterProbeInterfaces();
 
   private:

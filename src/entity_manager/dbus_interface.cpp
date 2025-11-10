@@ -240,7 +240,8 @@ void EMDBusInterface::populateInterfaceFromJson(
 
 void EMDBusInterface::createAddObjectMethod(
     const std::string& jsonPointerPath, const std::string& path,
-    nlohmann::json& systemConfiguration, const std::string& board)
+    nlohmann::json& systemConfiguration, const std::string& board,
+    const std::filesystem::path& schemaDirectory)
 {
     std::shared_ptr<sdbusplus::asio::dbus_interface> iface =
         createInterface(path, "xyz.openbmc_project.AddObject", board);
@@ -248,9 +249,9 @@ void EMDBusInterface::createAddObjectMethod(
     iface->register_method(
         "AddObject",
         [&systemConfiguration, jsonPointerPath{std::string(jsonPointerPath)},
-         path{std::string(path)}, board,
-         this](const boost::container::flat_map<std::string, JsonVariantType>&
-                   data) {
+         path{std::string(path)}, board, this, schemaDirectory](
+            const boost::container::flat_map<std::string, JsonVariantType>&
+                data) {
             nlohmann::json::json_pointer ptr(jsonPointerPath);
             nlohmann::json& base = systemConfiguration[ptr];
             auto findExposes = base.find("Exposes");
@@ -313,8 +314,7 @@ void EMDBusInterface::createAddObjectMethod(
             if constexpr (ENABLE_RUNTIME_VALIDATE_JSON)
             {
                 const std::filesystem::path schemaPath =
-                    std::filesystem::path(schemaDirectory) /
-                    "exposes_record.json";
+                    schemaDirectory / "exposes_record.json";
 
                 std::ifstream schemaFile{schemaPath};
 
