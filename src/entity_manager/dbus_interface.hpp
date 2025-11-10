@@ -23,7 +23,8 @@ class EMDBusInterface
 {
   public:
     EMDBusInterface(boost::asio::io_context& io,
-                    sdbusplus::asio::object_server& objServer);
+                    sdbusplus::asio::object_server& objServer,
+                    const std::filesystem::path& schemaDirectory);
 
     std::shared_ptr<sdbusplus::asio::dbus_interface> createInterface(
         const std::string& path, const std::string& interface,
@@ -68,6 +69,8 @@ class EMDBusInterface
         std::string,
         std::vector<std::weak_ptr<sdbusplus::asio::dbus_interface>>>
         inventory;
+
+    const std::filesystem::path schemaDirectory;
 };
 
 void tryIfaceInitialize(
