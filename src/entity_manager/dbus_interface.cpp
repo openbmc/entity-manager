@@ -18,8 +18,9 @@ const std::regex illegalDbusPathRegex("[^A-Za-z0-9_.]");
 const std::regex illegalDbusMemberRegex("[^A-Za-z0-9_]");
 
 EMDBusInterface::EMDBusInterface(boost::asio::io_context& io,
-                                 sdbusplus::asio::object_server& objServer) :
-    io(io), objServer(objServer)
+                                 sdbusplus::asio::object_server& objServer,
+                                 const std::filesystem::path& schemaDirectory) :
+    io(io), objServer(objServer), schemaDirectory(schemaDirectory)
 {}
 
 void tryIfaceInitialize(std::shared_ptr<sdbusplus::asio::dbus_interface>& iface)
@@ -234,8 +235,9 @@ void EMDBusInterface::populateInterfaceFromJson(
 }
 
 // @brief: throws on error
-static void addObjectRuntimeValidateJson(const nlohmann::json& newData,
-                                         const std::string* type)
+static void addObjectRuntimeValidateJson(
+    const nlohmann::json& newData, const std::string* type,
+    const std::filesystem::path& schemaDirectory)
 {
     if constexpr (!ENABLE_RUNTIME_VALIDATE_JSON)
     {
@@ -339,7 +341,7 @@ void EMDBusInterface::addObjectJson(
         lastIndex++;
     }
 
-    addObjectRuntimeValidateJson(newData, type);
+    addObjectRuntimeValidateJson(newData, type, schemaDirectory);
 
     if (foundNull)
     {
