@@ -34,6 +34,24 @@
       "parentUuid": "bc5d3c2e_defe12fc",
       "revId": "c3b9efa82b15ea96e8c8a9047bac34071afd4f57",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b6a2cbf3_5e40472c",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 13,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-11-11T09:23:43Z",
+      "side": 1,
+      "message": "EM does not know about the DBus type when we configure with string.\nIt looks at the string at runtime and does a duck typing based on whatever it evaluates to.\n\nSo if there are no template vars and no operators like `+` then EM may just put a string on DBus and possibly crash the reactor.\n\njson-schema cannot represent this information.\n\nWe may need our own data structure in EM to represent what we need out of a schema:\n\n- name of property\n- type of property in config json\n- type of property on DBus (current solution cannot represent this)\n- optional/required property\n\nCurrently we use json-schema in a very specific way and we only need a small subset of it\u0027s features.\n\n@ed@tanous.net would you be ok with replacing json schema with our own json based solution here to solve these issues?\n\nWhat\u0027s your take on this, how do we teach EM which type is to be used at runtime for a given property?",
+      "parentUuid": "0c3b7b89_8eb2be00",
+      "revId": "c3b9efa82b15ea96e8c8a9047bac34071afd4f57",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }
