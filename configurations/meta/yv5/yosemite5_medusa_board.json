@@ -588,6 +588,8 @@
                 }
             ],
             "Type": "INA238",
+            "in0_Max": 1,
+            "in0_Min": -1,
             "in0_Name": "PDB_ADC_52V_SENSE_VOLT_V"
         },
         {
@@ -616,6 +618,8 @@
                 }
             ],
             "Type": "INA238",
+            "in0_Max": 1,
+            "in0_Min": -1,
             "in0_Name": "PDB_ADC_GND_SENSE_VOLT_V"
         },
         {
@@ -644,6 +648,8 @@
                 }
             ],
             "Type": "INA238",
+            "in0_Max": 1,
+            "in0_Min": -1,
             "in0_Name": "PDB_ADC_P52V_TMP_SENSE_VOLT_V"
         },
         {
@@ -672,6 +678,8 @@
                 }
             ],
             "Type": "INA238",
+            "in0_Max": 1,
+            "in0_Min": -1,
             "in0_Name": "PDB_ADC_GND_TMP_SENSE_VOLT_V"
         },
         {
@@ -700,7 +708,9 @@
                 }
             ],
             "Type": "ISL28022",
-            "in0_Name": "PDB_ADC_52V_SENSE_VOLT_V"
+            "in1_Max": 1,
+            "in1_Min": -1,
+            "in1_Name": "PDB_ADC_52V_SENSE_VOLT_V"
         },
         {
             "Address": "0x59",
@@ -728,7 +738,9 @@
                 }
             ],
             "Type": "ISL28022",
-            "in0_Name": "PDB_ADC_GND_SENSE_VOLT_V"
+            "in1_Max": 1,
+            "in1_Min": -1,
+            "in1_Name": "PDB_ADC_GND_SENSE_VOLT_V"
         },
         {
             "Address": "0x5a",
@@ -756,7 +768,9 @@
                 }
             ],
             "Type": "ISL28022",
-            "in0_Name": "PDB_ADC_P52V_TMP_SENSE_VOLT_V"
+            "in1_Max": 1,
+            "in1_Min": -1,
+            "in1_Name": "PDB_ADC_P52V_TMP_SENSE_VOLT_V"
         },
         {
             "Address": "0x5b",
@@ -784,7 +798,9 @@
                 }
             ],
             "Type": "ISL28022",
-            "in0_Name": "PDB_ADC_GND_TMP_SENSE_VOLT_V"
+            "in1_Max": 1,
+            "in1_Min": -1,
+            "in1_Name": "PDB_ADC_GND_TMP_SENSE_VOLT_V"
         },
         {
             "Address": "0x43",
