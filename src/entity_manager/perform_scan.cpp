@@ -4,6 +4,7 @@
 #include "perform_scan.hpp"
 
 #include "perform_probe.hpp"
+#include "probe_type.hpp"
 #include "utils.hpp"
 
 #include <boost/asio/steady_timer.hpp>

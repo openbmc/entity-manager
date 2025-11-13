@@ -19,6 +19,7 @@ entity_manager_lib = static_library(
     'dbus_interface.cpp',
     'perform_scan.cpp',
     'perform_probe.cpp',
+    'probe_type.cpp',
     'power_status_monitor.cpp',
     'overlay.cpp',
     'topology.cpp',
