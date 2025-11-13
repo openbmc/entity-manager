@@ -109,6 +109,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "941f5509_f18679fb",
+        "filename": "schemas/legacy.json",
+        "patchSetId": 3
+      },
+      "lineNbr": 811,
+      "author": {
+        "id": 1001712
+      },
+      "writtenOn": "2025-11-13T08:49:15Z",
+      "side": 1,
+      "message": "\u003e And when we are switching to solution\n\nMy proposed solution does absolutely nothing for pattern properties...\nhttps://gerrit.openbmc.org/c/openbmc/docs/+/83264\n\nStarted a discussion around the pattern properties back in September. If you have the time to read:\n\nhttps://discordapp.com/channels/775381525260664832/1421114765656199248/1421114770060345385\n\nMy current understanding based on feedback is that EM configuration schemas are a stable API which cannot be changed later on due to `AddObject` use-case and `per-platform API`.\n\nTake a look at https://gerrit.openbmc.org/c/openbmc/entity-manager/+/84024\nwhere i tried to change a configuration schema. It did not go well.\n\nSo there is no such thing as \u0027change it later\u0027.",
+      "parentUuid": "4505f01e_74a2383b",
+      "revId": "0142580bc50572ff9844e69dc80bab01e95e21fc",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "9397195f_1394a329",
         "filename": "schemas/legacy.json",
         "patchSetId": 3
