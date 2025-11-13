@@ -1,0 +1,346 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "308b9285_107aa1fa",
+        "filename": "configurations/meta/anacapa/anacapa_bridge_l.json",
+        "patchSetId": 4
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2025-11-13T18:57:41Z",
+      "side": 1,
+      "message": "This needs a phosphor-dbus-interfaces commit as well.",
+      "revId": "48242d52e5416ebbee9e85bc30242cbfb9e23546",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "66a0521e_858374d5",
+        "filename": "configurations/meta/anacapa/anacapa_bridge_l.json",
+        "patchSetId": 4
+      },
+      "lineNbr": 29,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2025-11-13T18:57:41Z",
+      "side": 1,
+      "message": "This needs a phosphor-dbus-interfaces commit as well.",
+      "revId": "48242d52e5416ebbee9e85bc30242cbfb9e23546",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "dad2d519_9d240be6",
+        "filename": "configurations/meta/anacapa/anacapa_bridge_l.json",
+        "patchSetId": 4
+      },
+      "lineNbr": 76,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2025-11-13T18:57:41Z",
+      "side": 1,
+      "message": "We probably want a name that includes Anacapa?",
+      "revId": "48242d52e5416ebbee9e85bc30242cbfb9e23546",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c8c5aea6_e225ceaa",
+        "filename": "configurations/meta/anacapa/anacapa_bridge_l.json",
+        "patchSetId": 4
+      },
+      "lineNbr": 77,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2025-11-13T18:57:41Z",
+      "side": 1,
+      "message": "Please add manufacturer.  This board product name is very short and not very well defined that it is related to Anacapa.\n\nWhy are we fixing bus/address numbers here?",
+      "range": {
+        "startLine": 77,
+        "startChar": 0,
+        "endLine": 77,
+        "endChar": 101
+      },
+      "revId": "48242d52e5416ebbee9e85bc30242cbfb9e23546",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "623bfe98_1077900f",
+        "filename": "configurations/meta/anacapa/anacapa_bridge_r.json",
+        "patchSetId": 4
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2025-11-13T18:57:41Z",
+      "side": 1,
+      "message": "Same comments throughout this file as the \"bridge l\".",
+      "revId": "48242d52e5416ebbee9e85bc30242cbfb9e23546",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "fd81bc81_ce8c72f1",
+        "filename": "configurations/meta/anacapa/anacapa_bsm.json",
+        "patchSetId": 4
+      },
+      "lineNbr": 16,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2025-11-13T18:57:41Z",
+      "side": 1,
+      "message": "Why aren\u0027t we using the base BSM json file?  The way you\u0027ve specified this we\u0027re going to end up with 2 entity-manager objects for the same FRU.",
+      "range": {
+        "startLine": 12,
+        "startChar": 0,
+        "endLine": 16,
+        "endChar": 119
+      },
+      "revId": "48242d52e5416ebbee9e85bc30242cbfb9e23546",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "253fb326_3e1ffe7e",
+        "filename": "configurations/meta/anacapa/anacapa_mb.json",
+        "patchSetId": 4
+      },
+      "lineNbr": 189,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2025-11-13T18:57:41Z",
+      "side": 1,
+      "message": "Add to PDI.",
+      "revId": "48242d52e5416ebbee9e85bc30242cbfb9e23546",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c7f7ee8b_9bde69df",
+        "filename": "configurations/meta/anacapa/anacapa_mb.json",
+        "patchSetId": 4
+      },
+      "lineNbr": 338,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2025-11-13T18:57:41Z",
+      "side": 1,
+      "message": "This board product name is unacceptable.  This product name is way too generic.  You have no way to differentiate this EEPROM value from a \"MB\" on some other random system.  We _must_ have a clear \"this is an Anacapa Board\" for each FRU in the system (unless it _is_ a generic FRU, like the BSM or a NIC).\n\nWe must have a manufacturer on all Probe statements.",
+      "revId": "48242d52e5416ebbee9e85bc30242cbfb9e23546",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f8f461f8_d223ec7f",
+        "filename": "configurations/meta/anacapa/anacapa_pdb_l.json",
+        "patchSetId": 4
+      },
+      "lineNbr": 259,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2025-11-13T18:57:41Z",
+      "side": 1,
+      "message": "Unacceptable product name / probe statement.",
+      "range": {
+        "startLine": 259,
+        "startChar": 0,
+        "endLine": 259,
+        "endChar": 102
+      },
+      "revId": "48242d52e5416ebbee9e85bc30242cbfb9e23546",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "cced4a17_00c936e1",
+        "filename": "configurations/meta/anacapa/anacapa_pdb_r.json",
+        "patchSetId": 4
+      },
+      "lineNbr": 265,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2025-11-13T18:57:41Z",
+      "side": 1,
+      "message": "Unacceptable product name / probe statement.",
+      "revId": "48242d52e5416ebbee9e85bc30242cbfb9e23546",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7477d027_0bbe1d8b",
+        "filename": "configurations/meta/anacapa/anacapa_scm.json",
+        "patchSetId": 4
+      },
+      "lineNbr": 261,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2025-11-13T18:57:41Z",
+      "side": 1,
+      "message": "Add to PDI.",
+      "revId": "48242d52e5416ebbee9e85bc30242cbfb9e23546",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b37917d6_9a6dc5ab",
+        "filename": "configurations/meta/anacapa/anacapa_scm.json",
+        "patchSetId": 4
+      },
+      "lineNbr": 293,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2025-11-13T18:57:41Z",
+      "side": 1,
+      "message": "Must have manufacturer.",
+      "revId": "48242d52e5416ebbee9e85bc30242cbfb9e23546",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1b1fba2d_053da6a8",
+        "filename": "schemas/cpld.json",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2025-11-13T18:57:41Z",
+      "side": 1,
+      "message": "This needs to go in a separate commit where you\u0027re adding support for firmware update of this CPLD.  We shouldn\u0027t be modifying schemas as a fundamental part of adding a system.\n\nYou\u0027re going to have to add support in phosphor-bmc-code-mgmt at the same time.",
+      "revId": "48242d52e5416ebbee9e85bc30242cbfb9e23546",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a3f2c1df_bb4e82aa",
+        "filename": "schemas/exposes_record.json",
+        "patchSetId": 4
+      },
+      "lineNbr": 181,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2025-11-13T18:57:41Z",
+      "side": 1,
+      "message": "nit: PCIeSwitchFirmware?  Use PCIe capitalization rather than something different.  I\u0027m guessing \"SW\" means \"switch\" and not \"software\" so be clear.  Characters are cheap; clarity is not.",
+      "range": {
+        "startLine": 181,
+        "startChar": 53,
+        "endLine": 181,
+        "endChar": 67
+      },
+      "revId": "48242d52e5416ebbee9e85bc30242cbfb9e23546",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7e78adb4_f8bbdbe5",
+        "filename": "schemas/legacy.json",
+        "patchSetId": 4
+      },
+      "lineNbr": 907,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2025-11-13T18:57:41Z",
+      "side": 1,
+      "message": "These all appear to be VRMs that are not currently supported by dbus-sensors either and probably not even with support in the kernel.  You can\u0027t put the entity-manager config in before the rest of the software support.",
+      "revId": "48242d52e5416ebbee9e85bc30242cbfb9e23546",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2adad2bb_c7ebd3b9",
+        "filename": "schemas/pcie_switch.json",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2025-11-13T18:57:41Z",
+      "side": 1,
+      "message": "This should be handled in a separate commit where you add support for updating PCIe switch firmware.",
+      "revId": "48242d52e5416ebbee9e85bc30242cbfb9e23546",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b90a58a8_0149200a",
+        "filename": "schemas/pcie_switch.json",
+        "patchSetId": 4
+      },
+      "lineNbr": 5,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2025-11-13T18:57:41Z",
+      "side": 1,
+      "message": "nit: PCIe.",
+      "range": {
+        "startLine": 5,
+        "startChar": 54,
+        "endLine": 5,
+        "endChar": 58
+      },
+      "revId": "48242d52e5416ebbee9e85bc30242cbfb9e23546",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "073b2995_fcbf1400",
+        "filename": "schemas/pcie_switch.json",
+        "patchSetId": 4
+      },
+      "lineNbr": 14,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2025-11-13T18:57:41Z",
+      "side": 1,
+      "message": "How is the firmware updated on this device?  I believe there is already support for SPI-NOR based update without specifying it as a \"PCIe switch\" specifically.",
+      "range": {
+        "startLine": 9,
+        "startChar": 0,
+        "endLine": 14,
+        "endChar": 18
+      },
+      "revId": "48242d52e5416ebbee9e85bc30242cbfb9e23546",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    }
+  ]
+}
