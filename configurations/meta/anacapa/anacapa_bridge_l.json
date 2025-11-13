@@ -1,0 +1,93 @@
+{
+    "Exposes": [
+        {
+            "Address": "0x6a",
+            "Bus": 17,
+            "FirmwareInfo": {
+                "CompatibleHardware": "com.meta.Hardware.Anacapa.PCIESW.PEX90080_lbb",
+                "VendorIANA": 40981
+            },
+            "MuxOutputs": [
+                {
+                    "Name": "LBB_SPI_MUX0_R2_SEL",
+                    "Polarity": "High"
+                }
+            ],
+            "Name": "Anacapa_LBB_PCIESW",
+            "Type": "BRCM_PEX90080Firmware"
+        },
+        {
+            "Address": "$address",
+            "Bus": "$bus",
+            "Name": "BRIDGE_L FRU",
+            "Type": "EEPROM"
+        },
+        {
+            "Address": "0x20",
+            "Bus": 18,
+            "FirmwareInfo": {
+                "CompatibleHardware": "com.meta.Hardware.Anacapa.CPLD.LFMXO5_15D_lbb",
+                "VendorIANA": 40981
+            },
+            "JtagIndex": "1",
+            "MuxOutputs": [
+                {
+                    "Name": "FM_SCM_JTAG_MUX_SEL",
+                    "Polarity": "High"
+                },
+                {
+                    "Name": "FM_BRIDGE_JTAG_MUX_SEL",
+                    "Polarity": "Low"
+                }
+            ],
+            "Name": "Anacapa_LBB_CPLD",
+            "Protocol": "JTAG",
+            "Type": "LatticeLFMXO5_15DFirmware"
+        },
+        {
+            "Address": "0x4c",
+            "Bus": "$bus",
+            "Name": "BRIDGE_L_PCIE_SW_TEMP_C",
+            "Name1": "BRIDGE_L_OUTLET_TEMP_C",
+            "Type": "TMP432"
+        },
+        {
+            "Address": "0x4c",
+            "Bus": "$bus + 1",
+            "Name": "BRIDGE_L_BE_TEMP_C",
+            "Name1": "BRIDGE_L_FE_TEMP_C",
+            "Type": "TMP432"
+        },
+        {
+            "Address": "0x60",
+            "Bus": "$bus",
+            "Labels": [
+                "in1",
+                "curr1",
+                "temp1"
+            ],
+            "Name": "BRIDGE_L_VR",
+            "Type": "pmbus",
+            "curr1_Name": "BRIDGE_L_VR_CURR_A",
+            "in1_Name": "BRIDGE_L_VR_VOLT_V",
+            "temp1_Name": "BRIDGE_L_VR_TEMP_C"
+        }
+    ],
+    "Name": "Bridge_L",
+    "Probe": "xyz.openbmc_project.FruDevice({'BOARD_PRODUCT_NAME': 'LBB','ADDRESS': 82, 'BUS': 49})",
+    "Type": "Board",
+    "xyz.openbmc_project.Inventory.Decorator.Asset": {
+        "BuildDate": "$BOARD_MANUFACTURE_DATE",
+        "Manufacturer": "$BOARD_MANUFACTURER",
+        "Model": "$BOARD_PRODUCT_NAME",
+        "PartNumber": "$BOARD_PART_NUMBER",
+        "SerialNumber": "$BOARD_SERIAL_NUMBER",
+        "SparePartNumber": "$BOARD_INFO_AM1"
+    },
+    "xyz.openbmc_project.Inventory.Decorator.AssetTag": {
+        "AssetTag": "$PRODUCT_ASSET_TAG"
+    },
+    "xyz.openbmc_project.Inventory.Decorator.Revision": {
+        "Version": "$PRODUCT_VERSION"
+    }
+}
