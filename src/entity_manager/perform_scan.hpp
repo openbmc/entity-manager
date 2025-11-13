@@ -23,7 +23,7 @@ struct DBusDeviceDescriptor
 
 using FoundDevices = std::vector<DBusDeviceDescriptor>;
 
-struct PerformScan : std::enable_shared_from_this<PerformScan>
+struct PerformScan final : std::enable_shared_from_this<PerformScan>
 {
     PerformScan(EntityManager& em, nlohmann::json& missingConfigurations,
                 std::vector<nlohmann::json>& configurations,
@@ -33,7 +33,7 @@ struct PerformScan : std::enable_shared_from_this<PerformScan>
                                    const std::string& probeName,
                                    FoundDevices& foundDevices);
     void run();
-    virtual ~PerformScan();
+    ~PerformScan();
     EntityManager& _em;
     MapperGetSubTreeResponse dbusProbeObjects;
     std::vector<std::string> passedProbes;
